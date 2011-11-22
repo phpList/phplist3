@@ -1,0 +1,28 @@
+#
+# List of attributes that may be useful.
+#
+# Format of this file:
+#
+# - anything with a # symbol is ignored
+# - first line without # will be the name of this "attribute"
+#   ShortEnglishName:Longer localized description.
+#   Where ShortEnglishName.txt is the filename.
+# - anything else will be values to use
+#
+# If you have any useful contributions like this for PHPlist, 
+# send them to me, and I can include them in next versions. 
+# That will save others in collecting the information.
+#
+Provinces-NL:Provincies van Nederland
+Drenthe
+Flevoland
+Fryslân
+Gelderland
+Groningen
+Limburg
+Noord-Brabant
+Noord-Holland
+Overijssel
+Utrecht
+Zeeland
+Zuid-Holland

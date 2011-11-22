@@ -1,0 +1,26 @@
+
+
+2011-01-17 - MD
+
+UTF-8 conversion, some notes
+
+as from around now, code is changed to force everything into UTF-8
+
+to handle this in the DB, the tables need converting
+
+clean empty DB -> initialise will create them using UTF-8
+
+existing DB -
+
+run admin/?page=converttoutf8
+
+this will take the existing tables and set any that are not UTF-8 to become UTF-8
+seems to work fairly ok, but fails on key over 1000 and data in DB data is still scrambled, when text has been entered
+with UTF-8
+
+to convert the DB as well, the following can be done:
+
+mysqldump database > database-preutf8.sql 
+iconv -f iso-8859-1 -t utf-8 database-preutf8.sql  > database-utf8.sql
+mysql database < database-utf8.sql
+

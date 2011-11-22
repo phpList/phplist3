@@ -1,0 +1,33 @@
+# list of attributes that may be useful
+# format of this file: anything with a # symbol is ignored
+# first line without # will be the name of this "attribute"
+# anything else will be values to use
+# if you have any useful contributions like this for PHPlist, send them to me,
+# and I can include them in next versions. That will save others in collecting
+# the information
+# Autor: Juan Pablo Chavez
+# www.tallerdigitalvw.com
+# support@tallerdigitalvw.com
+DepartamentosGT:Departamentos de Guatemala
+Alta Verapaz
+Baja Verapaz
+Chimaltenango
+Chiquimula
+El Petén
+El Progreso
+Quiché
+Escuintla
+Guatemala
+Huehuetenango
+Izabal
+Jalapa
+Jutiapa
+Quetzaltenango
+Retalhuleu
+Sacatepéquez
+San Marcos
+Santa Rosa
+Sololá
+Suchitepéquez
+Totonicapán
+Zacapa

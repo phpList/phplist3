@@ -1,0 +1,194 @@
+BODY  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	background-color : white;
+	text-decoration : none;
+	text-align : left;
+}
+
+P  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+	text-align : left;
+}
+
+H1  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 18px;
+	font-style : normal;
+	font-weight : normal;
+	color : black;
+	text-align : left;
+}
+
+H2  {
+	font-size : 14px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+H3  {
+	font-size : 14px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+TD  {
+	font-size : 10px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+A  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : green;
+	text-decoration : none;
+}
+
+A:Visited  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : green;
+	text-decoration : none;
+}
+
+A:Active  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : green;
+	text-decoration : none;
+}
+
+A:Hover  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : orange;
+	text-decoration : none;
+}
+
+.menuhead  {
+	font-size : 13px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : Red;
+	text-decoration : none;
+	text-indent : 0 px;
+	text-align : right;
+}
+
+.attributeinput  {
+	font-size : 10px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+.menuitem  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+	text-indent : 0 px;
+	text-align : right;
+}
+
+.sectionlink  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.email  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : blue;
+	text-decoration : none;
+}
+
+.address  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.url  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.listitem  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.error  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : red;
+	text-decoration : none;
+}
+
+.info  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : magenta;
+	text-decoration : none;
+}
+
+.botbar  {
+	font-size : 11px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	color : white;
+	text-decoration : none;
+}

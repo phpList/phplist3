@@ -1,0 +1,8 @@
+<FilesMatch "\.(php|inc)$">
+Order allow,deny
+deny from all
+</FilesMatch>
+<FilesMatch "index.php$">
+Order allow,deny
+allow from all
+</FilesMatch>

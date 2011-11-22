@@ -1,0 +1,70 @@
+
+How to use RSS feeds in PHPlist
+
+If you are puzzled what RSS is, check out http://backend.userland.com/rss or 
+http://www.syndic8.com/
+
+Quick overview, more comprehensive documentation will follow
+
+In order to allow PHPlist to send out RSS you need to follow these steps:
+
+- set ENABLE_RSS to 1 in your config file
+
+PHPlist will now have additional functionality that allows you to set up RSS mailings.
+
+The steps to add mailings are:
+
+1. add a RSS source to a list. Currently you can have one source per list.
+
+2. create a subscribe page that has RSS frequency selection set up for the users who subscribe
+Current possible values for frequencies are "daily", "weekly" and "monthly"
+
+3. regularly run the page "getrss". You can set this up similarly to "processqueue"
+The getrss page (which is linked from the admin homepage at the bottom) will find all 
+data from the RSS feeds you have set up on your lists.
+This data is cached (by Onyx RSS) and the cache file is written in your "tmpdir" directory
+as identified in your config file.
+
+The cache will expire every 3 hours. 
+
+4. Create a message that will be the template for your RSS messages, and identify the 
+frequency for the message. You can send the message like a normal PHPlist message, and 
+you need to add [RSS] to the content of the message to identify where the list of RSS items 
+needs to go.
+
+You can set up one message per frequency. If you have a previous message for the frequency
+you create, that one will be marked "sent" instead of "submitted".
+If you run a multi admin system the messages are unique for a frequency-admin combinarion
+
+5. Run your "processqueue" page as normal
+
+What will happen:
+
+When PHPlist encounters a message that is a template for RSS feeds, it will find the users
+who match the lists it exists for and assemble the RSS items for the user. A message will be 
+used only for users who have identified the same RSS-frequency as the message. 
+
+If there is something to send, the message will be send to the user containing the RSS items
+in the place where you identified [RSS] in the body.
+
+Notes:
+
+1. PHPlist uses a threshold for sending emails. If there are less than the threshold items 
+to be send to the user, the message will not be sent. The threshold is set in your PHPlist
+configuration (not the config file)
+
+2. PHPlist uses templates for the items to be sent, one for text items and one for HTML items
+You can change these in the PHPlist configuration.
+use [title], [link] and [description] as the placeholders.
+
+3. The order of RSS items is by list and you can add separators between sets of items
+if you use [listname] as a placeholder in the separator it will be replaced by the listname
+for that set of RSS items, and only once per set of items (ie per list)
+
+
+
+
+
+
+
+

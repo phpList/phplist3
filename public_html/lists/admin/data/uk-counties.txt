@@ -1,0 +1,192 @@
+# list of attributes that may be useful
+# format of this file: anything with a # symbol is ignored
+# first line without # will be the name and description of this "attribute"
+# (seperated by a colon : )
+# anything else will be values to use
+# if you have any useful contributions like this for PHPlist, send them to me, 
+# and I can include them in next versions. That will save others in collecting 
+# the information
+County:Counties in the UK
+Aberconwy and Colwyn
+Aberdeenshire
+Abroad
+Angus
+Antrim
+Ards
+Argyll & Bute
+Armagh
+Balleymena
+Balleymoney
+Banbridge
+Barnsley
+Bath & North East Somerset
+Bedfordshire
+Berkshire
+Birmingham
+Blaenau Gwent
+Bolton
+Bournemouth
+Bradford
+Bridgent
+Brighton & Hove
+Bristol
+Buckinghamshire
+Bury
+Caernarfonshire & Merionethsire
+Caerphilly
+Cambridgeshire
+Cardiff
+Cardiganshire
+Carmarthenshire
+Carrickfergus
+Castlereagh
+Channel Islands
+Cheshire
+City of Aberdeen
+City of Belfast
+City of Derry
+City of Dundee
+City of Edinburgh
+City of Glasgow
+Clackmannan
+Colderdale
+Coleraine
+Cookstown
+Cornwall
+Coventry
+Craigavon
+Cumbria
+Cynon
+Darlington
+Denbighshire
+Derby
+Derbyshire
+Devon
+Doncaster
+Dorset
+Down
+Dudley
+Dumbarton & Clydebank
+Dumfries & Galloway
+Dungannon
+Durham
+East Ayrshire
+East Dunbartonshire
+East Lothian
+East Renfrewshire
+East Riding of Yorkshire
+East Sussex
+Essex
+Falkirk
+Fermanagh
+Fife
+Flintshire
+Gateshead
+Gloucestershire
+Greater London
+Hampshire
+Hartlepool
+Hereford & Worcester
+Hertfordshire
+Highland
+Inverclyde
+Isle of Anglesey
+Isle of Man
+Isle of Wight
+Kent
+Kingston upon Hull
+Kirklees
+Knowsley
+Lancashire
+Larne
+Leeds
+Leicester
+Leicestershire
+Limavady
+Lincolnshire
+Lisburn
+Liverpool
+Luton
+Magherafelt
+Manchester
+Merthyr Tydfil
+Middlesbrough
+Midlothian
+Milton Keynes
+Monmouthshire
+Moray
+Moyle
+Neath and Port Talbot
+Newcastle Upon Tyne
+Newport
+Newry and Morne
+Newtownabbey
+Norfolk
+North Ayrshire
+North Down
+North East Lincolnshire
+North Lanarkshire
+North Lincolnshire
+North Somerset
+North Tyneside
+North Yorkshire
+Northamptonshire
+Northumberland
+Nottinghamshire
+Oldham
+Omagh
+Orkney Islands
+Oxfordshire
+Pembrokeshire
+Perthshire & Kinross
+Poole
+Portsmouth
+Powys
+Redcar & Cleveland
+Renfrewshire
+Rep. of Ireland
+Rhondda
+Rochdale
+Rotherham
+Rutland
+Salford
+Sandwell
+Sefton
+Sheffield
+Shetland Islands
+Shropshire
+Solihull
+Somerset
+South Ayrshire
+South Gloucestershire
+South Lanarkshire
+South Tyneside
+Southampton
+St. Helen's
+Staffordshire
+Stirling
+Stockport
+Strabane
+Suffolk
+Sunderland
+Surrey
+Swansea
+Swindon
+Taff
+Tameside
+The Borders
+Torfaen
+Trafford
+Vale of Glamorgan
+Wakefield
+Walsall
+Warwickshire
+West Lothian
+West Sussex
+Western Isles
+Wigan
+Wiltshire
+Wirral
+Wolverhampton
+Wrexham
+York

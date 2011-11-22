@@ -1,0 +1,168 @@
+BODY,P,DIV,TD {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+}
+
+A.menu {
+	color : #99CCFF;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : none;
+	font-weight : bold;
+ 	font-size: small;
+}
+
+A.menu:HOVER {
+	color : white;
+	text-decoration : underline;
+}
+A.disclaimer {
+	color : #99CCFF;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : none;
+ 	font-size: xx-small;
+}
+
+SUP {
+  font-size: xx-small;
+}
+
+.rowlistingelement {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: small;
+}  
+.tinyheading{
+ 	font-size: xx-small;
+}
+.tinyheading A{
+        color: Black;
+        text-decoration: none;
+}
+.tinyheading A:HOVER{
+        background-color: White;
+        text-decoration: underline;
+}
+
+.infolinkheader {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.infolinktext {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: small;
+}
+  
+.header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-weight: bold;
+  font-size: small;
+}
+
+.text {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: small;
+}  
+ 
+.whitetext{
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color: white;
+  font-size: small;
+}
+.whitetext A{
+	color:#99CCFF;
+}
+.whitetext A:HOVER{
+	color: White;
+}
+
+.purpleareatext{
+  font-family : Verdana, Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: small;
+}
+
+.purpleareatext A{
+  color:white;
+}
+.purpleareatext A:HOVER{
+  color: White;
+}
+
+.smokingchoicetext{
+  font-family : Verdana, Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: small;
+}
+.smokingchoicetext A{
+  color:black;
+}
+.smokingchoicetext A:HOVER{
+  color: #99CCFF;
+}
+
+
+
+.privacy {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: x-small;
+}  
+  
+.debug{
+	background-color : #FFFFCC;
+	border : thin solid #FF6699;
+	
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : xx-small ;
+	color : #FF6699;
+}
+.debugbr{
+	background-color : #FFFFCC;
+	border : thin solid #FF6699;
+	
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : xx-small ;
+	color : #FF6699;
+	display : block;
+}
+.error{
+	background-color : #FF6699;
+	border : thin solid #FFFFCC;
+	display : block;
+	
+	font-family : Times, "Times New Roman", serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : small ;
+}
+
+.divih{
+	/*This is for DHTML purposes*/
+	BACKGROUND-COLOR: White;
+	POSITION: relative;
+	VISIBILITY: hidden;
+	layer-background-color: White;
+}
+.divi{
+	/*This is for DHTML purposes*/
+	BACKGROUND-COLOR: White;
+	POSITION: relative;
+	VISIBILITY: visible;
+	layer-background-color : White;
+}
+
+.delete{
+/*for the bbs admin interface */
+	background-color : blue;
+	color : white;
+}

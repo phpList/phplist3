@@ -1,0 +1,54 @@
+
+# explanation of repetition feature
+
+PHPlist can now automatically re-schedule your messages after sending it. It will
+create an exact copy of your message, which is generally not what you want, so it's
+probably not that useful yet.
+
+It will become useful once we have added the functionality to the system to allow
+for dynamic content of messages (ie automated retrieval of some webpage)
+
+For now (version 2.7.x), it's only use will be to work in conjunction with file system
+attachments.
+If you want PHPlist to send you some file from the server at a regular interval, 
+the filesystem attachment will be refreshed at the moment of sending the (first) message.
+
+*Exclusion of times and dates*
+
+Even if you set PHPlist to send every certain interval, you can still tell it to
+NOT send (ie re-schedule) the message at certain moments. You do this as follows:
+
+You add the following to your config file (between ---)
+---
+# exclude dates for repetition
+$repeat_exclude = array(
+  array("format" => "%a", "values" => array("Sun","Sat")),
+  array("format" => "%d-%m-%Y","values" => array("31-01-2004","01-01-2005")),
+);
+## end
+---
+
+Now that needs a bit of explanation. You can add as many entries as you like and 
+the format is as follows:
+
+one entry is formatted
+array("format" => [format], "values" => array([list of values])),
+
+where the bits between [ and ] can be chosen as you like it, but they have to fit
+the following:
+
+[format] needs to be a Mysql data format string which you can find at 
+http://www.mysql.com/doc/en/Date_and_time_functions.html under "Date Format"
+
+[list of values] needs to be a list of values that this format can return, 
+which then, if matched with the new "embargo" for a message will not create a 
+message for that date, but instead increases the "repetition value" to find the 
+next one in a row.
+
+So for example for excluding the weekend you use
+  array("format" => "%a", "values" => array("Sun","Sat")),
+
+and for excluding specific dates you can use
+  array("format" => "%d-%m-%Y","values" => array("31-01-2004","28-08-2004")),
+
+  

@@ -1,0 +1,1604 @@
+
+#### ChangeLog before move to SourceForge
+
+Changelog for PHPlist 2003-11-21 20:50
+
+2003-11-20 18:21  michiel
+
+	added merging of attributes
+
+2003-11-20 18:21  michiel
+
+	moved attributes into commonlib
+
+2003-11-20 12:18  michiel
+
+	added userid and groups to session info
+
+2003-11-18 13:31  michiel
+
+	updated frontend security access
+
+2003-11-18 13:10  michiel
+
+	moved mozilla sidebar to plugin
+
+2003-11-18 13:09  michiel
+
+	added display of foreign key (if one) to list of users
+
+2003-11-18 13:08  michiel
+
+	updated CVS import
+
+2003-11-18 09:47  michiel
+
+	updated some variables to use newer style superglobals
+
+2003-11-13 12:50  michiel
+
+	updated integration with Webbler
+
+2003-11-13 12:50  michiel
+
+	updated index for older PHP versions
+
+2003-11-13 10:37  michiel
+
+	added add to group in import
+
+2003-11-10 11:00  michiel
+
+	fixed bug 748, error functions used wrong value to send error
+	report to by email
+
+2003-11-10 10:59  michiel
+
+	fixed bug 759, URLs had disappeared in text versions of emails
+
+2003-11-05 16:28  michiel
+
+	added reminder to subscribe to announcements list so people are
+	informed of security and other issues
+
+2003-11-05 11:52  michiel
+
+	added htaccess file for increased security
+
+2003-11-05 01:35  michiel
+
+	new version 2.6.4
+
+2003-11-04 22:21  michiel
+
+	new version 2.6.3
+
+2003-11-04 21:42  michiel
+
+	renamed defaultconfig to an inc file
+
+2003-11-04 21:33  michiel
+
+	updated all admin files to increase security from invalid remote
+	requests
+
+2003-11-04 12:18  michiel
+
+	updated interface for list of subscribe pages
+
+2003-10-29 16:36  michiel
+
+	new version 2.6.2
+
+2003-10-29 16:35  michiel
+
+	added more verbosity if verbose is on in process queue
+
+2003-10-29 16:34  michiel
+
+	fixed empty Errors-To header
+
+2003-10-28 20:31  michiel
+
+	added security check on login page
+
+2003-10-28 20:24  michiel
+
+	fixed bug number of emails and rss items reported in list of
+	members of a list was wrong
+
+2003-10-28 20:23  michiel
+
+	fixed issue where RSS items that contain HTML are stripped for
+	sending as text
+
+2003-10-28 19:32  michiel
+
+	fixed bug 736, adding member to a list did not remember
+	checkboxgroup values
+
+2003-10-28 19:32  michiel
+
+	fixed bug 737, adding member to a list has option to choose HTML
+
+2003-10-28 19:31  michiel
+
+	added extra security check on admin, IP address needs to stay the
+	same
+
+2003-10-28 18:25  michiel
+
+	fixed bug 716, default subscribe page radio button is not checked
+
+2003-10-28 18:22  michiel
+
+	fixed bug 714, configure page does not save when pressing return,
+	only when button is clicked
+
+2003-10-28 18:20  michiel
+
+	added check on From and Subject field so they do not contain \r or
+	\n, when cut-n-paste has been used to populate the fields
+
+2003-10-28 18:02  michiel
+
+	fixed bug 705, adding a new user passes email address on to
+	subscribe page
+
+2003-10-28 18:01  michiel
+
+	fixed bug 707, import2 sets existing user to wrong values
+
+2003-10-28 17:54  michiel
+
+	fixed bug 717, initialise does not create the correct entries in
+	the task table
+
+2003-10-22 19:52  michiel
+
+	fixed Header of Outlook workaround showing up in the email body
+
+2003-10-21 14:35  michiel
+
+	new version 2.6.1
+
+2003-10-21 14:33  michiel
+
+	some small tweakes and fixes
+
+2003-10-21 12:06  michiel
+
+	new version 2.6.0
+
+2003-10-21 11:56  michiel
+
+	fixed error when bypassing Outlook bug
+
+2003-10-21 11:51  michiel
+
+	cleaned up a lot of old images and other things
+
+2003-10-20 01:15  michiel
+
+	some interface updates
+
+2003-10-19 15:05  michiel
+
+	changed database error to display in a div, so it won't break the
+	page
+
+2003-10-19 15:04  michiel
+
+	added updated version of french.inc
+
+2003-10-18 16:55  michiel
+
+	more on making frontend really work with register globals off
+
+2003-10-18 16:55  michiel
+
+	updated methods in process bounces to mark users as unconfirmed
+	when too many bounces received
+
+2003-10-18 16:54  michiel
+
+	made sure that even if an administrator marks a hidden field as
+	required it is not (for obvious reasons)
+
+2003-10-18 16:52  michiel
+
+	fixed issue where checkbox group value were not exported correctly
+
+2003-10-16 01:02  michiel
+
+	updated frontend system to properly work with register globals off
+
+2003-10-13 21:40  michiel
+
+	fixed issue in BOCS where some data was placed in the user array,
+	that should not be there
+
+2003-10-13 14:00  michiel
+
+	updated formdata listing, improved interface
+
+2003-10-12 14:22  michiel
+
+	added first stage of simple plugin system, to allow addition of
+	pages in PHPlist that are not generic, but can still be useful
+
+2003-10-12 14:21  michiel
+
+	added new config variable to allow distiguishing between different
+	PHPlist installations in the reports by email
+
+2003-10-12 14:20  michiel
+
+	removed style selection from frontend to stop it interfering with
+	frontend design
+
+2003-10-09 18:17  michiel
+
+	update to settings of FCKeditor
+
+2003-10-09 18:17  michiel
+
+	update to italian.inc
+
+2003-10-09 01:32  michiel
+
+	fixed issue where attributes were wiped when using a subset of
+	attributes in a subscribe page and only that subscribe page was
+	used to update preferences
+
+2003-10-09 01:31  michiel
+
+	fixed problem where admin was not able to unsubscribe a user from
+	all lists
+
+2003-10-02 19:32  michiel
+
+	new version 2.5.8
+
+2003-10-02 19:29  michiel
+
+	added feature request 616 prefill From field with configuration
+	values
+
+2003-10-02 19:29  michiel
+
+	fixed bug 626, a sub admin cannot see any messages
+
+2003-10-02 19:28  michiel
+
+	fixed bug 624 anyone can harvest user info
+
+2003-10-02 19:26  michiel
+
+	fixed bug 623, sending a message when no users are found by
+	criteria sends it to everyone
+
+2003-10-02 19:25  michiel
+
+	fixed bug 620, saving user and listmembership in one go
+
+2003-10-01 22:58  michiel
+
+	fixed import to not overwrite html status of a user if it hasn't
+	been specified in the import file
+
+2003-09-30 13:01  michiel
+
+	added functionality to duplicate an entire trunk
+
+2003-09-30 10:55  michiel
+
+	some small fixes
+
+2003-09-30 10:54  michiel
+
+	fixed remembering sort order in list of users when going to the
+	next page
+
+2003-09-29 22:59  michiel
+
+	new version 2.5.7
+
+2003-09-29 22:51  michiel
+
+	added functionality that list is hidden in unsubscribe page when
+	there is only one list and the config option to hide a single list
+	is set
+
+2003-09-29 22:38  michiel
+
+	added configurable character encoding for outgoing messages
+
+2003-09-26 22:27  michiel
+
+	added RFC 2369 headers to outgoing emails
+
+2003-09-22 16:01  michiel
+
+	new version 2.5.6
+
+2003-09-22 15:37  michiel
+
+	added checkboxgroup as selectable criteria when sending a message
+
+2003-09-22 14:50  michiel
+
+	reactivated checkbox as a selectable criteria when sending messages
+
+2003-09-22 13:26  michiel
+
+	merged send and preparesend to facilitate easier updating of code
+
+2003-09-22 13:15  michiel
+
+	updated system to work around Outlook 2000 bug
+
+2003-09-22 13:14  michiel
+
+	fixed bug where users were unsubscribed from all lists, even if a
+	subscribe page only listed a few
+
+2003-09-18 12:32  michiel
+
+	new webbler version 2.5.1
+
+2003-09-09 23:21  michiel
+
+	updated system to work with central library
+
+2003-09-08 17:00  michiel
+
+	updated latinamerican translation
+
+2003-09-08 14:43  michiel
+
+	added configurable mimetype for exports
+
+2003-09-08 00:32  michiel
+
+	updated list of messages to be split into different types of
+	messages, normal, prepared and rss messages
+
+2003-09-07 17:42  michiel
+
+	fixed issue that user did not save when not using attributes
+
+2003-09-07 00:05  michiel
+
+	new version 2.5.5
+
+2003-09-07 00:00  michiel
+
+	fixed problem with mails not bouncing to the correct address
+
+2003-09-06 21:37  michiel
+
+	added view items to list with RSS feed
+
+2003-09-06 21:34  michiel
+
+	added maximum items to send in RSS mailing, so avoid new users
+	getting the entire backlog of items
+
+2003-09-06 01:07  michiel
+
+	fixed invalid return path in messages sent out
+
+2003-09-06 00:34  michiel
+
+	added new layout to list of users
+
+2003-09-05 23:28  michiel
+
+	added separator templates for RSS messages that will be used to
+	group rss items by list and give each group a header
+
+2003-09-05 22:47  michiel
+
+	fixed remembering last time RSS was sent for user
+
+2003-09-05 22:14  michiel
+
+	updated interface of list of members
+
+2003-09-05 21:35  michiel
+
+	initial commit
+
+2003-09-05 16:59  michiel
+
+	updated import to create a user with a new (invalid) email if a
+	clash is discovered on email when importing with a foreign key
+
+2003-09-04 01:03  michiel
+
+	Updated import and export to use the same format and to follow the
+	database structure whenever it changes, which means that system
+	values are placed in the correct places without automatic creation
+	of attributes.	Added 'Foreign Key' to a user, that will be used to
+	match users during import, before matching them on email. This will
+	facilitate proper synchronisation between external databases and
+	PHPlist, without the requirement to have an email for a user.
+
+2003-09-02 20:39  michiel
+
+	added spanish translation of pagetitles
+
+2003-09-02 15:16  michiel
+
+	new version 2.5.4
+
+2003-09-02 15:13  michiel
+
+	fixed error in attributes
+
+2003-09-01 23:56  michiel
+
+	updated method to replace a RSS message when a new one is created.
+	RSS messages are now replaced if they match both frequency and
+	admin, which means that each admin can have their own RSS messages.
+	However, this does mean that the superadmin needs to be careful
+	creating RSS templates that may clash with subadmins
+
+2003-09-01 22:51  michiel
+
+	added filter to eventlog to allow subset of events
+
+2003-09-01 22:06  michiel
+
+	added webbler listing class for nicer interface of listings
+
+2003-09-01 14:42  michiel
+
+	new version 2.5.3
+
+2003-09-01 14:37  michiel
+
+	added check on attributes so email is not added manually
+
+2003-09-01 14:29  michiel
+
+	fixed attribute to add record for existing users when a new
+	attribute is added. this issue caused many 'user not found'
+	problems when attributes were added after users were imported
+
+2003-08-31 00:54  michiel
+
+	reorganised the menu a little bit
+
+2003-08-30 00:45  michiel
+
+	updated pages to allow a subadmin to change their own password
+
+2003-08-29 23:49  michiel
+
+	added easier interface to change default subscribe page
+
+2003-08-29 23:33  michiel
+
+	added distinction between boolean and other values in configure, so
+	1 and 0 can be config numbers as well
+
+2003-08-29 23:20  michiel
+
+	added multiple admin options to subscribe pages
+
+2003-08-29 23:20  michiel
+
+	added link to change default admin password in setup
+
+2003-08-29 23:19  michiel
+
+	added default permissions settings to admins
+
+2003-08-28 15:01  michiel
+
+	fixed table and port bugs in process bounces
+
+2003-08-28 13:11  michiel
+
+	added more reporting and process locking to the RSS retrieval
+	process
+
+2003-08-26 16:18  michiel
+
+	added background color to list membership in user page to make it
+	clearer what lists the user is a member of
+
+2003-08-26 15:57  michiel
+
+	fixed issue where confirm of user not found displayed the wrong
+	info text
+
+2003-08-26 14:45  michiel
+
+	fixed Sql query when changing password
+
+2003-08-22 22:39  michiel
+
+	fixed rss cache to use database name, to avoid clashes of multi
+	hosted system
+
+2003-08-22 21:33  michiel
+
+	new version 2.5.2
+
+2003-08-22 21:08  michiel
+
+	fixed File Not Found issue when subscribe page 1 is the default
+	(which is quite likely) and a few small bugs and cosmetics
+
+2003-08-15 13:46  michiel
+
+	new version 2.5.1
+
+2003-08-15 12:38  michiel
+
+	added new public page, default preferences where the user can
+	request an email with their personal location in it, in order to be
+	able to update it. this will also be the page that users get when
+	they load the wrong URL, generally because the URL wrapped in the
+	email
+
+2003-08-14 16:40  michiel
+
+	new version 2.5.0
+
+2003-08-14 16:33  michiel
+
+	updated signature image to the latest
+
+2003-08-14 16:33  michiel
+
+	added more default options when using phpmail class
+
+2003-08-14 16:31  michiel
+
+	added default subscribe page to configuration to load when no
+	subscribe page is identified
+
+2003-08-14 16:31  michiel
+
+	fixed the admin pages to work from command line again
+
+2003-08-14 16:30  michiel
+
+	added check on password if someone subscribes with an existing
+	email, that has a password set
+
+2003-08-14 16:29  michiel
+
+	fixed latest version check
+
+2003-08-13 13:10  michiel
+
+	removed confirm on public page
+
+2003-08-13 13:09  michiel
+
+	added phplistmailer class as extension of the popular phpmailer
+	class. this is still highly experimental
+
+2003-08-13 13:08  michiel
+
+	updated ut and dl to fit new config file system
+
+2003-08-12 18:13  michiel
+
+	fixed error when adding unknown user to members of a list
+
+2003-08-12 18:12  michiel
+
+	fixed db connection error when no password is used
+
+2003-08-12 12:56  michiel
+
+	new feature: added import from a different PHPlist database
+
+2003-08-07 00:22  michiel
+
+	fixed import to work with new subscribe system
+
+2003-08-06 15:18  michiel
+
+	made a first start to make the backend translatable, by splitting
+	help and information in the pages into different directories
+	identified by the language iso
+
+2003-08-06 15:08  michiel
+
+	moved usetemplate.php to en
+
+2003-08-06 15:08  michiel
+
+	moved subject.php to en
+
+2003-08-06 15:08  michiel
+
+	moved sendformat.php to en
+
+2003-08-06 15:08  michiel
+
+	moved preparemessage.php to en
+
+2003-08-06 15:08  michiel
+
+	moved message.php to en
+
+2003-08-06 15:08  michiel
+
+	moved index.php to en
+
+2003-08-06 15:08  michiel
+
+	moved from.php to en
+
+2003-08-06 15:07  michiel
+
+	moved format.php to en
+
+2003-08-06 15:07  michiel
+
+	moved attachments.php to en
+
+2003-08-06 13:07  michiel
+
+	added NEWS file with tips between versions, also a README.passwords
+	to explain the news password system for the user preferences page
+
+2003-08-06 12:51  michiel
+
+	fixed small cosmetic stuff
+
+2003-08-06 11:53  michiel
+
+	added filter memory to list of users, which means that if you go
+	back to the list, it remembers your previous selection. quite
+	useful for large numbers of users
+
+2003-08-05 13:00  michiel
+
+	moved language files into their own directory, so upgrades can
+	retain them
+
+2003-08-05 11:37  michiel
+
+	removed legacy files subscribe, confirm, subscribelib and
+	unsubscribe
+
+2003-08-04 16:52  michiel
+
+	added method to require password for a user to view and edit their
+	personal details
+
+2003-08-04 16:51  michiel
+
+	added FCKeditor to send as well
+
+2003-07-31 23:44  michiel
+
+	new version 2.4.0
+
+2003-07-31 23:26  michiel
+
+	integrated FCKeditor with preparesend
+
+2003-07-31 21:43  michiel
+
+	updated preview of templates and message to use iframes, to avoid
+	conflicts in design and styles
+
+2003-07-31 21:41  michiel
+
+	updated the powered by image to the latest design
+
+2003-07-31 21:41  michiel
+
+	erased double spacing in from line when using a full email address
+
+2003-07-18 15:34  michiel
+
+	fixed bug in RSS processqueue when nothing to send for a user
+
+2003-07-18 15:20  michiel
+
+	updated processqueue to not send reports when nothing is sent, and
+	to count the number of unconfirmed users per message sent out, that
+	would have been sent, if the user had been confirmed
+
+2003-07-18 15:05  michiel
+
+	updated viewing of rss items to be per administrator, and changed
+	page in tasks to be unique so it is not duplicated in the system
+
+2003-07-18 13:32  michiel
+
+	added more logging of RSS events, and fixed bug when an RSS item
+	was not identified as duplicate when it has a very long title
+
+2003-07-17 19:09  michiel
+
+	fixed system to work with Register Globals OFF
+
+2003-07-11 10:09  michiel
+
+	new version 2.3.4
+
+2003-07-11 09:52  michiel
+
+	fixed bug with subscription page where an include included the
+	wrong file
+
+2003-07-10 13:49  michiel
+
+	added czech translation
+
+2003-07-10 12:06  michiel
+
+	added more logging of RSS retrieval results
+
+2003-07-09 12:04  michiel
+
+	new version 2.4.7
+
+2003-07-08 14:35  michiel
+
+	New version 2.3.3
+
+2003-07-04 10:02  michiel
+
+	fixed messages lsit when not login required and RSS update for when
+	sent to user
+
+2003-07-02 15:37  michiel
+
+	new version 2.3.2
+
+2003-07-02 10:09  michiel
+
+	new version 2.3.1
+
+2003-07-01 14:19  michiel
+
+	new version 2.3.0
+
+2003-07-01 14:18  michiel
+
+	fixes and cleanup
+
+2003-07-01 11:51  michiel
+
+	added webbler userlib for more thorough integration
+
+2003-06-17 14:46  michiel
+
+	
+	quite a few small fixed continued to finish off IMAP import added
+	ability to specify config file as apache env var
+
+2003-05-15 17:57  michiel
+
+	fixed issue that admins can send messages to lists they don't own
+
+2003-05-15 11:58  michiel
+
+	testing
+
+2003-04-15 14:17  michiel
+
+	new version 2.2.1
+
+2003-04-15 13:42  michiel
+
+	fixed bug in unsubscribe
+
+2003-04-15 13:17  michiel
+
+	added rough checking of templates at upload time. check for URLs
+	and existence of images
+
+2003-04-12 14:36  michiel
+
+	bug in user.php referring to wrong table names
+
+2003-04-11 16:34  michiel
+
+	new version 2.2.0
+
+2003-04-11 15:39  michiel
+
+	added functionality to send RSS feeds to the lists
+
+2003-04-09 17:07  michiel
+
+	added support for PDF, initially by converting the text message to
+	a PDF attachment
+
+2003-04-09 13:32  michiel
+
+	added support for attachments
+
+2003-03-27 20:37  michiel
+
+	more in imap import
+
+2003-03-24 20:10  michiel
+
+	added import from IMAP
+
+2003-03-24 16:54  michiel
+
+	new version 2.1.4
+
+2003-03-24 10:49  michiel
+
+	load of small fixes and detection of admin logged in on frontend,
+	so it allows and admin to add users without sending the request for
+	confirmation
+
+2003-03-21 11:59  michiel
+
+	small fixes, user confirmed state can now be updated and config
+	variables can be used in messages
+
+2003-03-20 18:04  michiel
+
+	altered processqueue to only log things that are interesting
+
+2003-03-20 17:30  michiel
+
+	changed user management code to allow easier updating of list
+	membership
+
+2003-02-25 14:47  michiel
+
+	new version 2.1.3
+
+2003-02-25 14:45  michiel
+
+	
+	fixed bug that made the system use website instead of domain for
+	emails fixed bug when not using attributes, system didn't accept
+	emails fixed bug when selecting yes to display single list, it
+	didn't show the list anyway
+
+2003-02-24 10:15  michiel
+
+	new version
+
+2003-02-24 10:14  michiel
+
+	two bugs fixed: columns in message table and commented sendMail
+
+2003-02-21 18:13  michiel
+
+	new version 2.1.1
+
+2003-02-21 18:13  michiel
+
+	small bug in home
+
+2003-02-21 16:22  michiel
+
+	new version: 2.1.0
+
+2003-02-21 13:57  michiel
+
+	added statistics collection
+
+2003-02-21 12:47  michiel
+
+	added page for bugreports and events in the system
+
+2003-02-21 12:46  michiel
+
+	
+	A lot of changes: added reconciliation of user data added locking
+	of processbouncing added actions on bounces, update user data made
+	public pages work better with different sets of pages and templates
+
+2002-11-21 18:32  michiel
+
+	added languages file for reference
+
+2002-11-21 18:30  michiel
+
+	added french
+
+2002-11-21 18:30  michiel
+
+	turkish added
+
+2002-11-21 18:30  michiel
+
+	added admin access to subscribe pages
+
+2002-11-20 10:07  michiel
+
+	removed some old command line processing files and added two new
+	ones
+
+2002-11-18 15:47  michiel
+
+	new version 1.9.3
+
+2002-11-18 15:47  michiel
+
+	silly bug in new subscribe page system
+
+2002-11-18 15:06  michiel
+
+	version 1.9.2
+
+2002-11-18 15:05  michiel
+
+	actually added the files, duh
+
+2002-11-18 14:53  michiel
+
+	version 1.9.1
+
+2002-11-18 14:40  michiel
+
+	 new version 1.9.0, addition: configurable subscribe pages in the
+	backend
+
+2002-11-18 14:37  michiel
+
+	added portuguese portuguese
+
+2002-11-18 14:36  michiel
+
+	finished off some stuff
+
+2002-11-15 16:52  michiel
+
+	added method to create different subscribe pages on the frontend,
+	with their own messages and templates
+
+2002-10-10 18:08  michiel
+
+	new version 1.8.0
+
+2002-10-09 16:08  michiel
+
+	new design
+
+2002-10-03 22:48  michiel
+
+	added bens new design
+
+2002-10-01 13:42  michiel
+
+	changed listing of performances to be in schedule
+
+2002-09-25 23:44  michiel
+
+	new version 1.7.1
+
+2002-09-25 22:59  michiel
+
+	added ability to subselect lists in subscribe and improved parsing
+	HTML to plain text
+
+2002-09-25 16:58  michiel
+
+	more on bounce processing
+
+2002-09-23 15:16  michiel
+
+	new version 1.7.0, added: bounce processing
+
+2002-09-20 00:46  michiel
+
+	config for bouncehandling
+
+2002-09-20 00:45  michiel
+
+	more done on bouncehandling
+
+2002-09-19 20:15  michiel
+
+	added bounce processing, needs finishing
+
+2002-09-18 11:40  michiel
+
+	more robust handling of server disconnections
+
+2002-09-05 00:23  michiel
+
+	send text to domains actually implemented
+
+2002-09-04 23:50  michiel
+
+	more help and changed help system
+
+2002-08-28 20:16  michiel
+
+	new version 1.6.4
+
+2002-08-28 20:13  michiel
+
+	bug fix preventing forms being submitted in IE and NS
+
+2002-08-09 18:15  michiel
+
+	new version 1.6.3
+
+2002-08-09 18:13  michiel
+
+	loads of fixes and finished export, some cleaning up
+
+2002-08-01 09:01  michiel
+
+	more work to integrate with EU
+
+2002-07-31 17:06  michiel
+
+	fixed search and continued integration of phplist
+
+2002-07-23 11:58  michiel
+
+	new version 1.6.1
+
+2002-07-22 22:22  michiel
+
+	ability to hide a single list
+
+2002-07-22 12:25  michiel
+
+	new version 1.6.0
+
+2002-07-16 23:17  michiel
+
+	some moving around of files to put all configurable files in one
+	directory
+
+2002-07-10 09:22  michiel
+
+	additions to make pages work in safe mode
+
+2002-05-31 12:33  michiel
+
+	small fixes and attribute selection when sending prepared message
+	fixed
+
+2002-05-31 11:22  michiel
+
+	added more access checks for admin, not all done yet
+
+2002-05-24 15:58  michiel
+
+	new version 1.5.1
+
+2002-05-24 15:29  michiel
+
+	export is importable
+
+2002-05-24 15:10  michiel
+
+	checkboxes are now remembered
+
+2002-05-24 11:26  michiel
+
+	small changes
+
+2002-05-24 11:14  michiel
+
+	added copying to lists and processing all members of a list
+
+2002-05-24 10:27  michiel
+
+	bugfixes and generic mail added
+
+2002-05-17 11:07  michiel
+
+	fixed problems in import
+
+2002-05-16 18:36  michiel
+
+	new version 1.5.0
+
+2002-05-16 18:32  michiel
+
+	more bugs and envelope added
+
+2002-05-16 18:26  michiel
+
+	more bugs and envelope added
+
+2002-05-16 17:31  michiel
+
+	loads of bugfixes
+
+2002-05-14 16:51  michiel
+
+	finishing off
+
+2002-05-13 23:42  michiel
+
+	reset config
+
+2002-05-13 23:39  michiel
+
+	authorization and authentication added
+
+2002-05-13 17:45  michiel
+
+	file importadmin.php was initially added on branch pl143cr.
+
+2002-05-13 17:45  michiel
+
+	file sendprepared.php was initially added on branch pl143cr.
+
+2002-05-13 17:45  michiel
+
+	file preparesend.php was initially added on branch pl143cr.
+
+2002-05-10 18:08  michiel
+
+	file image.php was initially added on branch pl143cr.
+
+2002-05-09 18:35  michiel
+
+	file admin.php was initially added on branch pl143cr.
+
+2002-05-08 16:59  michiel
+
+	new files
+
+2002-05-08 16:59  michiel
+
+	file admins.php was initially added on branch pl143cr.
+
+2002-05-08 16:14  michiel
+
+	file logout.php was initially added on branch pl143cr.
+
+2002-05-08 16:14  michiel
+
+	file adminattributes.php was initially added on branch pl143cr.
+
+2002-05-08 16:14  michiel
+
+	new files
+
+2002-05-08 16:14  michiel
+
+	file login.php was initially added on branch pl143cr.
+
+2002-05-08 09:18  michiel
+
+	#
+
+2002-05-01 15:44  michiel
+
+	new version
+
+2002-05-01 15:37  michiel
+
+	bug in defaultconfig
+
+2002-04-29 17:34  michiel
+
+	linked users to user search results
+
+2002-04-25 17:19  michiel
+
+	stylesheet changes
+
+2002-04-23 10:14  michiel
+
+	bugfix when using prefix
+
+2002-04-18 22:49  michiel
+
+	new version 1.4.1
+
+2002-04-17 00:03  michiel
+
+	index added for generic frontend
+
+2002-04-16 23:45  michiel
+
+	almost done with editable config
+
+2002-04-14 22:33  michiel
+
+	more configure
+
+2002-04-14 22:30  michiel
+
+	more configure
+
+2002-04-13 21:21  michiel
+
+	fixed way checkboxes get dealt with and bug in download
+
+2002-04-12 19:19  michiel
+
+	changes to configuration system
+
+2002-04-11 16:33  michiel
+
+	new version
+
+2002-04-11 16:32  michiel
+
+	fixes in language modules and HTML email
+
+2002-04-09 23:07  michiel
+
+	some alterations to work with EU, not finished
+
+2002-04-09 23:00  michiel
+
+	class added for plugging into easyuploader
+
+2002-04-09 09:33  michiel
+
+	new version
+
+2002-04-08 17:19  michiel
+
+	bug in sending
+
+2002-04-05 10:47  michiel
+
+	new version
+
+2002-04-05 10:44  michiel
+
+	Finalised HTML email and preferences update
+
+2002-03-30 11:23  michiel
+
+	almost there with HTML, hopefully, bit more testing needed
+
+2002-03-30 00:48  michiel
+
+	more html email added, not finished
+
+2002-03-28 18:11  michiel
+
+	next stage of HTML email
+
+2002-03-28 16:13  michiel
+
+	first stage of templates and some help
+
+2002-03-26 23:22  michiel
+
+	more new linking method
+
+2002-03-26 12:41  michiel
+
+	new method for linking pages
+
+2002-03-05 00:50  michiel
+
+	new version
+
+2002-03-05 00:16  michiel
+
+	new method of upgrade
+
+2002-03-05 00:15  michiel
+
+	german updated
+
+2002-03-04 23:55  michiel
+
+	add sorting of attr, resending of msgs, fixing bit and pieces
+
+2001-11-26 16:58  michiel
+
+	new version 1.3.7
+
+2001-11-23 17:26  michiel
+
+	added new upgrade
+
+2001-11-23 17:25  michiel
+
+	minor bugfixes
+
+2001-11-20 16:10  michiel
+
+	new version
+
+2001-11-20 16:03  michiel
+
+	added prefix to database tables
+
+2001-10-29 11:47  michiel
+
+	bugfix in progress meter
+
+2001-10-25 15:36  michiel
+
+	new version 1.3.5
+
+2001-10-25 14:19  michiel
+
+	bug in membership of lists
+
+2001-10-25 12:23  michiel
+
+	finished off editing user
+
+2001-10-25 00:43  michiel
+
+	
+	* added a javascript progress bar to pages that can take a while to
+	process * added possibility to change attribute-types into each
+	other	(had been lost after addition of textline attributes) *
+	fixed some bugs * added ability to change user details (for
+	administrator)
+
+2001-10-20 16:19  michiel
+
+	new version
+
+2001-10-20 16:16  michiel
+
+	change in config
+
+2001-10-20 15:46  michiel
+
+	added portugues
+
+2001-10-19 22:04  michiel
+
+	changed tag
+
+2001-10-19 22:00  michiel
+
+	added versioning mechanism
+
+2001-10-19 21:59  michiel
+
+	minor changes
+
+2001-10-16 12:27  michiel
+
+	bugs in subscribe fonts
+
+2001-10-06 12:21  michiel
+
+	little bug in import2
+
+2001-10-06 11:21  michiel
+
+	little bug
+
+2001-10-03 23:04  michiel
+
+	small fixes
+
+2001-10-03 22:52  michiel
+
+	small bug in test
+
+2001-10-03 17:53  michiel
+
+	some test bugs
+
+2001-10-03 13:22  michiel
+
+	made cgi script up to date with current version
+
+2001-10-03 11:47  michiel
+
+	small changes
+
+2001-10-02 17:44  michiel
+
+	finishing for publishing
+
+2001-10-02 17:09  michiel
+
+	finishing for publishing
+
+2001-10-02 16:23  michiel
+
+	small fix
+
+2001-10-02 15:20  michiel
+
+	small fixes
+
+2001-10-02 13:45  michiel
+
+	little bug
+
+2001-10-02 13:40  michiel
+
+	change in structure
+
+2001-10-02 00:55  michiel
+
+	new version tag pl131
+
+2001-10-02 00:53  michiel
+
+	small fixes and bugs
+
+2001-10-02 00:40  michiel
+
+	small fixes and bugs
+
+2001-10-01 18:36  michiel
+
+	Tags file added for tag releases
+
+2001-10-01 18:34  michiel
+
+	Major changes, including new freetext import
+
+2001-09-20 18:39  michiel
+
+	stylesheet updates
+
+2001-09-20 17:12  michiel
+
+	added required as css class
+
+2001-09-03 15:53  michiel
+
+	added dutch and new upgrade
+
+2001-08-30 13:33  michiel
+
+	changed confusion
+
+2001-08-30 11:48  michiel
+
+	small fixes
+
+2001-08-30 11:36  michiel
+
+	change in styles and added requirement of text lines
+
+2001-08-24 13:14  michiel
+
+	finished adding text lines
+
+2001-08-24 12:20  michiel
+
+	text as attributes
+
+2001-08-24 12:07  michiel
+
+	small
+
+2001-08-24 12:04  michiel
+
+	added text as attributes type
+
+2001-08-10 19:23  michiel
+
+	small fixes
+
+2001-08-10 17:59  michiel
+
+	bug in processqueue, if no attributes apply it would send to all
+	users anyway. Fixed
+
+2001-08-10 17:13  michiel
+
+	added multiple delete in attributes
+
+2001-08-07 17:24  michiel
+
+	added default step 2
+
+2001-08-07 17:14  michiel
+
+	added default values for attributes
+
+2001-08-07 15:47  michiel
+
+	small bugs
+
+2001-08-02 18:30  michiel
+
+	actually added pagetop
+
+2001-08-02 18:24  michiel
+
+	centralised header and added sending confirmation message
+
+2001-08-02 15:06  michiel
+
+	added danish and 2nd italian.inc
+
+2001-08-02 12:11  michiel
+
+	finished off import, to allow complete address info in import file
+
+2001-08-01 19:21  michiel
+
+	added italian
+
+2001-08-01 19:20  michiel
+
+	
+	Fixed little bug in header Added importing, revision 1
+
+2001-08-01 12:35  michiel
+
+	Initial Upload
+
+2001-08-01 12:35  michiel
+
+	Initial revision
+
+
+Moved to CVS, changelog is supposed to be automatic now :-)
+
+Old changelog before CVS:
+
+1.1.7 1 Aug 2001
+* added importing of lists of emails, part of code contributed by Kaare Christensen, kaare@mermaidconsulting.com
+* finally add italian which had been contributed ages ago
+
+1.1.6 12 Jun 2001
+* wrapped it all up and published
+
+1.1.5 6 Jun 2001
+* added finding a user
+* added dynamic selection of stylesheets
+
+1.1.5b 5 Jun 2001 (oops, half a year later)
+* added upgrading
+* ben made me a nice design
+* made stress testing a bit more useful
+* some minor fixes related to redesign
+* added confirmation of subscription
+
+1.1.4b 6 Dec 2000
+* bug in editlist
+* bug in deleting a message
+* bug in users, not showing no of msgs
+
+1.1.3b 26 October 2000
+* showing attributes when viewing user
+* typo in unsubscribe_url
+* problem with message footer
+* host not exported to processing
+* added exporting to CSV
+
+1.1.2b 17th October 2000
+* bug in members, when adding single user
+* added checking for other running send processes, to avoid too many clogging up the machine
+  and making the other crawl to a halt
+
+1.1.1b 16th October 2000 - released in beta
+* started using PHP4 specific stuff, PHP3 will not work any more
+* separated db calls to allow for extension to other DBs
+* separated user interface strings to allow translations
+* made user attributes databased for more flexible configuration, with loads of consequences:
+  - process queue has different method to find users.
+  - subscribe uses new listing
+  - admin uses new strucure
+* users now get UNIQID, which allows them to go back and get their details directly
+  (ie site "remembers" them).
+* more items for a list or a message, prefix, footer, ordering
+* paged listing of users when over 50, both in "all users" and "list membership"
+* actions on userlists, move or delete multiple
+* changed all files to .php instead of .php3
+
+1.0.1 September 2000 (not published)
+* moved config and connect to admin dir to allow password protection of docs
+* bit more error capturing
+* more help information
+* some bugs removed
+* different formatting of outgoing from-email
+
+1.0 initial release. April 2000.

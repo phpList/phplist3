@@ -1,0 +1,19 @@
+
+DirectoryIndex index.php
+
+<FilesMatch "\.(php|inc)$">
+Order allow,deny
+deny from all
+</FilesMatch>
+<FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php)$">
+Order allow,deny
+allow from all
+</FilesMatch>
+php_flag magic_quotes_gpc on
+
+# if you want more than this for attachments, you can increase these values
+# but you really, really should consider uploading them somewhere
+# and only sending a link in your mails
+# bigger than this really doesn't make sense in emails
+php_value upload_max_filesize 3M
+php_value post_max_size 4M

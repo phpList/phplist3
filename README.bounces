@@ -1,0 +1,53 @@
+
+# handling bounces with PHPlist
+
+# requirements:
+	PHP version 4.0.5 and up
+  for PHP 4.2.3 and up, it will not work in safe mode
+  IMAP support in your PHP (see http://www.php.net/manual/en/ref.imap.php)
+
+How to make sure you can process bounces in PHPlist:
+
+Make sure the $message_envelope is a reference to a valid mailbox that you can access with
+the POP3 protocol (currently only POP3, other methods will follow)
+
+All messages will now be sent with this email address as the envelope, which means that in
+most cases they will bounce to this address.
+
+In the config file, configure the following to be valid to access the mailbox
+$bounce_mailbox_host = 'localhost';
+$bounce_mailbox_user = 'login';
+$bounce_mailbox_password = 'password';
+
+In the admin pages, you can now load the bounces in the PHPlist database. Some bounces are not
+always really bounces, but they can be "Message delayed" or "Out of Office" messages. Therefore
+PHPlist will not immediately unsubscribe a user when a message has bounces, but it will determine
+a treshold of messages which will identify a bounce.
+
+You set the threshold with the variable
+
+$bounce_unsubscribe_treshold = 3;
+
+This variable will be used to returns of normal messages. If "systemmessages" return, a user will
+be unsubscribed immediately. Unsubscribed means that their email will be marked unconfirmed, which
+will cause the system to stop sending emails to this user.
+
+In the future it will become possible to "probe" the unconfirmed emails with a renewed request for
+confirmation, which will be dealt with seperately, most likely by simply deleting the user.
+
+If a message to a user bounces, the threshold will be used to determine the previous number of
+message that have bounced. A user will only be marked unconfirmed once a row of consecutive messages
+as many as your threshold have occurred.
+
+If you run in TEST mode, the emails in the bounce system will not be deleted from the mailbox. If you
+have set TEST to 0, it will delete the emails it has dealt with, according to the settings
+
+$bounce_mailbox_purge = 1;
+and
+$bounce_mailbox_purge_unprocessed = 1;
+
+$bounce_mailbox_purge can be 1 or 0, and 1 means that messages that have been processed and identified
+will be delete from the mailbox. $bounce_mailbox_purge_unprocessed can be 1 or 0 as well, and
+1 means that also unprocessed messages, which are messages that could not be matched with a user in
+the system, will be deleted. This is fairly safe, because you can still look at the messages
+in PHPlist.

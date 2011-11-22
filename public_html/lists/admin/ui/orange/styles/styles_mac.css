@@ -1,0 +1,162 @@
+BODY,P,DIV,TD {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+}
+
+A.menu {
+	color : #99CCFF;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : none;
+	font-weight : bold;
+}
+
+A.menu:HOVER {
+	color : white;
+	text-decoration : underline;
+}
+A.disclaimer {
+	color : #99CCFF;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : none;
+ 	font-size: xx-small;
+}
+
+/* the style for listing the lists */
+LI.list {
+  list-style-type:circle;
+  margin-left: 1em;
+}
+
+/* the style for the description of a list in the listing of lists */
+.listdescription {
+  margin-left: 6em;
+}
+
+SUP {
+  font-size: xx-small;
+}
+
+.rowlistingelement {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: x-small;
+}  
+
+.infolinkheader {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-weight: bold;
+  font-size: small;
+}
+
+.infolinktext {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: x-small;
+}
+  
+.header {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-weight: bold;
+  font-size: small;
+}
+
+.text {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: x-small;
+}  
+ 
+ .whitetext{
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color: white;
+  font-size: x-small;
+}
+ 
+.whitetext A{
+	color:#99CCFF;
+}
+.whitetext A:HOVER{
+	color: White;
+}
+
+.attributename  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.attributeinput  {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : black;
+	text-decoration : none;
+}
+
+.required {
+	font-size : 12px;
+	font-family : Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	color : red;
+	text-decoration : none;
+}
+
+.privacy {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+  font-size: x-small;
+}  
+  
+.debug{
+	background-color : #FFFFCC;
+	border : thin solid #FF6699;
+	
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : xx-small ;
+	color : #FF6699;
+}
+.debugbr{
+	background-color : #FFFFCC;
+	border : thin solid #FF6699;
+	
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : xx-small ;
+  color : #FF6699;
+	display : block;
+}
+.error{
+	background-color : #FF6699;
+	border : thin solid #FFFFCC;
+	display : block;
+	
+	font-family : Times, "Times New Roman", serif;
+	margin : 3px 3px 3px 3px;
+	padding : 3px 3px 3px 3px;
+	font-size : small ;
+}
+
+.divih{
+	/*This is for DHTML purposes*/
+	BACKGROUND-COLOR: White;
+	POSITION: relative;
+	VISIBILITY: hidden;
+	layer-background-color: White;
+}
+.divi{
+	/*This is for DHTML purposes*/
+	BACKGROUND-COLOR: White;
+	POSITION: relative;
+	VISIBILITY: visible;
+	layer-background-color : White;
+}

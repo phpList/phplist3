@@ -1,0 +1,71 @@
+72a73
+>   public $TextEncoding      = '7bit';
+315c316,317
+<   private   $attachment     = array();
+---
+>   ## patched for phpList to allow inline images from templates
+>   public   $attachment     = array();
+762c764
+<     return true;
+---
+>    return true;
+1201,1202c1203,1204
+<         $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', '');
+<         $body .= $this->EncodeString($this->AltBody, $this->Encoding);
+---
+>         $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', $this->TextEncoding);
+>         $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+1204c1206
+<         $body .= $this->GetBoundary($this->boundary[1], '', 'text/html', '');
+---
+>         $body .= $this->GetBoundary($this->boundary[1], '', 'text/html', $this->Encoding);
+1210c1212
+<         $body .= $this->EncodeString($this->Body, $this->Encoding);
+---
+>         $body .= $this->EncodeString($this->Body, $this->TextEncoding);
+1221,1222c1223,1224
+<         $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', '') . $this->LE; // Create text body
+<         $body .= $this->EncodeString($this->AltBody, $this->Encoding);
+---
+>         $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', $this->TextEncoding) . $this->LE; // Create text body
+>         $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+1224c1226
+<         $body .= $this->GetBoundary($this->boundary[2], '', 'text/html', '') . $this->LE; // Create the HTML body
+---
+>         $body .= $this->GetBoundary($this->boundary[2], '', 'text/html', $this->Encoding) . $this->LE; // Create the HTML body
+1770a1773,1802
+>    * Adds an embedded attachment as a string.  This can include images, sounds, and
+>    * just about any other document.  Make sure to set the $type to an
+>    * image type.  For JPEG images use "image/jpeg" and for GIF images
+>    * use "image/gif".
+>    * @param string $string The attachment encoded in "encoding"
+>    * @param string $cid Content ID of the attachment.  Use this to identify
+>    *        the Id for accessing the image in an HTML form.
+>    * @param string $name Overrides the attachment name.
+>    * @param string $encoding File encoding (see $Encoding).
+>    * @param string $type File extension (MIME) type.
+>    * @return bool
+>    */
+>   public function AddEmbeddedImageString($string, $cid, $name = '', $encoding = 'base64', $type = 'application/octet-stream') {
+> 
+>     // Append to $attachment array
+>     $this->attachment[] = array(
+>       0 => $string,
+>       1 => $name,
+>       2 => $name,
+>       3 => $encoding,
+>       4 => $type,
+>       5 => true,  // isStringAttachment
+>       6 => 'inline',
+>       7 => $cid
+>     );
+> 
+>     return true;
+>   }
+> 
+>   /**
+2320c2352
+< ?>
+\ No newline at end of file
+---
+> ?>

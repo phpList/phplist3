@@ -1,0 +1,11 @@
+
+# if you want to use this, copy the followin
+# content to the file called .htaccess that already exists
+# in this directory and change the path. 
+# for more information: http://httpd.apache.org/docs/
+AuthName "Mailinglist Administration"
+AuthType Basic
+AuthUserFile /path/to/password/file
+
+require valid-user
+

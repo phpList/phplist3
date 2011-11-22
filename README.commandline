@@ -1,0 +1,39 @@
+
+Running PHPlist from the commandline
+
+Commandline processing requires PHP 4.3.0 or higher
+
+A few pages in the PHPlist system can now, as of version 2.7.0 be run with 
+a simple command from the commandline.
+
+the script to use is called "phplist" in the "bin" directory. You will have to edit 
+this script to fit your system
+
+The normal PHPlist access restrictions are bypassed, but the Unix users who are
+allowed to run the script should be mentioned in the "commandline_users" config
+variable. The identity of a user is determined by the USER environment variable, which
+may not always match your system.
+
+The "p" parameter is the page that needs to be run. 
+Currently you can use "send", "processqueue" and "processbounces"
+
+phplist -psend
+
+This will require some more arguments:
+
+-l list
+-s subject
+[-f from]
+
+and you need to "pipe" the message into the script.
+
+The -l parameter can have two types of values, the name of the list or the number of the list. 
+You can added multiple lists or multiple -l parameters
+The subject can have spaces
+The from is optional. It will default to the system administrator as set up in your config.
+
+So the full "send" command line would be:
+
+phplist -psend -s This is the subject -l test 1 2 3 -f me@server.com < messagefile
+
+

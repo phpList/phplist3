@@ -1,0 +1,93 @@
+
+Contributors to PHPlist.
+
+Most of the code of PHPlist was hand written by Michiel Dethmers, using
+kate (http://kate.kde.org/) on a Redhat 7.3 (http://www.redhat.com) system.
+
+For sending HTML emails, PHPlist uses the class from Richard Heyes
+<richard@phpguru.org>, although gradually this class is being modified to
+fit more closely into the PHPlist methods.
+
+For parsing RSS feeds, the Onyx-RSS class from Ed Swindelles <ed@readinged.com> was
+used. Currently this class has been used verbatim. Lots of thanks go to Ed.
+More info in the lists/admin/onyxrss directory
+
+For a more visual message editing facility the FCKeditor from Frederico Caldeira Knabben
+has been integrated. Frederico has done a brilliant job, and we're very thankful
+for making his code LGPL.
+More information is at http://www.fredck.com/FCKeditor/
+
+Thanks go to all the people who have contributed (and are contributing) by
+donating, submitting bugreports or feature requests, and by commissioning changes
+that they really want and are willing to pay for. These are quite a few, and it's
+a growing group of people, so it's becoming more and more difficult to keep
+track of who did what and how. Below is a list of some people I managed to
+identify, but if you are not listed, your contribution is still very appreciated.
+If you feel you want to be listed here, (or if you want to get out of this list),
+let me know.
+
+Ben Henshall made the current design. I think it looks great :-)
+
+Carsten Bunz, Carsten.Bunz@T-Online.de, 23/10/00, german.inc
+Bertalan Ivan, iberti@presso.net, 17/11/00, italian.inc
+Steen Rabl, srabol@mail.tele.dk, 31/07/01, danish.inc
+Kaare Christensen, kaare@mermaidconsulting.com, 18/07/01, first stages of import
+Bartolotta Gioachino, developers@rockitalia.com, 26/05/01, italian2.inc
+Gijsbert Rochat, <gysbertr@wxs.nl>, 25/08/01, dutch.inc
+Igor Guskow, igor@suplementa.com.br, 11/10/01, portuguese.inc
+Carlos Yaconi, cyaconi@123.cl, 11/01/02, spanish.inc
+Morton Rahbek, morton.rahbek@autospiegel.com, 20/01/02, update to german.inc
+Xavier Dutoit, xdutoit@ccgpartnersltd.com, suggesting the methods for processing bounces
+Olivier Mills, olivier@dbaweb.org, 19/10/02, french.inc
+Seref Erkayhan erkayhan@fzi.de, 21/11/02, turkish.inc
+info@thuiswerk.biz, 21/11/02, update to dutch.inc
+Jorge Rotero xxx@dustyroses.com, 26/11/02, update to spanish.inc
+Bart.Veldhuizen Bart.Veldhuizen@nuon.com, June 03, suggested and contributed a lot of
+changes in the Preparesend system, particularly the integration with FCKeditor and using
+Iframes for the preview
+Ota Lun�, ota.lunak@arxon.cz, 10/07/03, czech.inc
+Guillermo Scharffenorth, gscharf@cantv.net 05/08/03, latinamerican.inc
+Ben Sauer, ben@webprojects.co.uk, 28/08/03 found a few bugs in process bounces
+Bundit Suewirotjanakun, bundit@geton.com, suggestions and code for checkbox group and checkbox use in the selection
+process
+Lorenzo Cipriani, lorenzocipriani@fimmg.org, 10/09/2003 update to italian.inc
+Michel, phobos@ifrance.com, 19/10/2003, update to french.inc
+Massimiliano Savelli, massi@webanics.com, 08/12/2003, italian3.inc
+Tito de Morais, tito@titodemorais.com, 08/01/2004 update to portuguese_pt.inc
+Pete Ness, pete@nessoft.com, January 2004, added functionality to edit messages
+Carsten Gehling, carsten@sarum.dk, 23/01/2004, update to danish.inc
+Rudi Van Overloop, ruda@skynet.be 27/2/2004, update to dutch.inc
+Noam, noamse@hotmail.com, 13/03/2004, hebrew.inc
+Bruce Morrison, brucem@designit.com.au, 25/05/2004, patch for double entry of email in subscribe pages
+Agata Szczesniak, agata.szczesniak@krytykapolityczna.pl, 2004/08/11 polish.inc
+Paul Bloomfield, paul@paulbloomfield.com, 26/10/2004, help pointing out some security issues and how to fix them
+Bjørn Meldgaard, bme@siteseeing.dk, 26/10/2004, update to danish translation
+Muralikrishnan, muralikrishnan@quicksilverhq.com, 07/11/2004, data for states in India
+Tuyo Isaza, tboard@transfercontrol.com, 21/01/2005, update to spanish.inc
+Finjon Kiang, kiange@gmail.com, Spring 2005, help in internationalising the code
+Jon webb, jon@openhouseit.com, Spring 2005, help in internationalising the code
+Nizar nizar@ras.eu.org, Spring 2005, help in internationalising the code
+Yan yanbrai@ras.eu.org, Spring 2005, help in internationalising the code
+German german@ras.eu.org, Spring 2005, help in internationalising the code
+Mike Gifford, mike@openconcept.ca, Spring 2005, help in internationalising the code
+Neil Drummond, niel@cyanescent.co.uk, May 2005, update to layout, css and design
+Cristi Cotovan, cristi.cotovan@gmail.com, May 2005, romanian.inc
+Fidel Santiago, pperez333@gmail.com, July 2005, file upload in template editing
+Patrick Le guillou <pleguillou@inforquin.com>, July 2005, update to french.inc
+Ronny Williams, ronny@williams.no, Sept 2005, norwegian.inc
+Michael Stenitzer, stenitzer@wienfluss.net, Sept 2005, security checks
+Marshall Roch, marshall@kineticode.com, Oct 2005, some more security checks
+Tobias Klein, tk@trapkit.de, Nov 2005, security and xss checks and identification
+Pallieter Koopmans PK@atQuest.nl, Jan 2006, list of dutch provinces
+Ota Luňák, ota.lunak@arxon.cz, Mar 2006, Update to czech translation
+Tobias Klein, tk@trapkit.de, Nov 2005, security and xss checks and identification
+Mr. Mato Spekuljak, mato.spekuljak@post.t-com.hr, Mar 2006 Croatian Translation
+Johan Tufberg, johan.tufberg@usbe.umu.se, Apr 2006, update to swedish translation
+Le, Viet, Viet.Le@britishcouncil.org.vn, Mar 2006, Vietnamese translation of front and backend
+Sander Weyens, sawey@telenet.be, Mar 2006, Dutch Translation of backend
+Davor Bauk, philtre@skylined.org, May 2006, Slovenian Translation
+John Dovey, john@justdone.co.za, Dec 2006, Afrikaans Translation.
+Khaled al-Horani, Dec 2007, Arabic Translation
+Peter Jacobsen, Jan 2009, update to german translation
+LWC, http://lior.weissbrod.com, Nov 2009, hebrew.inc 
+

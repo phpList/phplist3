@@ -1,0 +1,262 @@
+﻿# liste af attributer der kan være brugbare.
+# filens format: alt efter symbolet # er ignoreret.
+# den første linie uden # bliver navnet på denne attribut.
+# alt andet betragtes som værdier som bliver anvendt.
+# hvis du har nogen brugbare bidrag som denne, kan den sendes til PHPlist, 
+# denne bliver dermed inkluderet i den næste version og sparer andre for at oprette lister
+# af information
+Land:Verdens lande
+Afghanistan
+Albanien
+Algir
+Amerikansk Samoa
+Amerikas Forenede Stater (USA)
+Andorra
+Angola
+Anguilla
+Antarktis
+Antigua og Barbuda
+Argentina
+Armenien
+Aruba
+Aserbajdsjan
+Australien
+Bahama
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgien
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bosnien-Hercegovina
+Botswana
+Bouvet-øen
+Brasilien
+British Indian Ocean Territory
+Brunei Darussalam
+Bulgarien
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Cayman-øerne
+Centralafrikanske Republik
+Chad
+Chile
+Colombia
+Comorerne
+Congo
+Cook-øerne
+Costa Rica
+Côte d'Ivoire (Elfenbenskysten)
+Cuba
+Cypern
+Danmark
+Den Demokratiske Republik Congo
+Djibouti
+Dominica
+Dominikanske Republik
+Ecuador
+Egypten
+El Salvador
+Eritrea
+Estland
+Ethiopien
+Falklandsøerne (Malvinerne)
+Fiji
+Finland
+Forenede Arabiske Emirater
+Forenede Staters Mindre Perifere Øer
+Frankrig
+Frankrig, Metropolitan
+Fransk Guiana
+Fransk Polynesien
+Franske Sydlige Territorier
+Færøerne
+Gabon
+Gambia
+Georgien
+Ghana
+Gibraltar
+Grenada
+Grækenland
+Grønland
+Guadeloupe
+Guam
+Guatemala
+Guinea
+Guinea-Bissau
+Guyana
+Haiti
+Heard- og McDonald-øerne
+Holland
+Hollandske Antiller
+Honduras
+Hong Kong
+Indien
+Indonesien
+Irak
+Iran
+Irland
+Island
+Israel
+Italien
+Jamaica
+Japan
+Jomfruøerne, Engelsk
+Jomfruøerne, USA
+Jordan
+Jugoslavien (Serbien og Montenegro)
+Juleøen
+Kap Verde
+Kasakhstan
+Kenya
+Kina
+Kirgisistan
+Kiribati
+Kokos-øerne (Keeling-øerne)
+Kroatien
+Kuwait
+Laos
+Lesotho
+Letland
+Libanon
+Liberia
+Libyen
+Lichtenstein
+Litauen
+Luxemburg
+Macau
+Madagaskar
+Makedonien
+Malawi
+Malaysia
+Maldiverne
+Mali
+Malta
+Marokko
+Marshall-øerne
+Martinique
+Mauretanien
+Mauritius
+Mayotte
+Mexico
+Mikronesien
+Moldova
+Monaco
+Mongoliet
+Montserrat
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Nordkorea
+Nordlige Marianere
+Norfolk-øen
+Norge
+Oman
+Pakistan
+Palau-øerne
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippinerne
+Pitcairn
+Polen
+Portugal
+Puerto Rico
+Qatar
+Réunion
+Rumænien
+Russiske Føderation
+Rwanda
+Salomon-øerne
+Samoa
+San Marino
+Sankt Helena
+Sankt Kitts og Nevis
+Sankt Lucia
+Sankt Pierre og Miquelon
+Sankt Vincent og Grenadinerne
+São Tomé og Príncipe
+Saudi-Arabien
+Schweiz
+Senegal
+Seychellerne
+Sierra Leone
+Singapore
+Slovakiet
+Slovenien
+Somalia
+Spanien
+Sri Lanka
+Storbritannien
+Sudan
+Suriname
+Svalbard og Jan Mayen
+Sverige
+Swaziland
+Syd-Georgien og Sydlige Sandwich-øer
+Sydafrikanske Republik
+Sydkorea
+Syrien
+Tadsjikistan
+Taiwan
+Tanzania
+Thailand
+Tjekkiet
+Togo
+Tokelau
+Tonga
+Trinidad og Tobago
+Tunesien
+Turkmenistan
+Turks- og Caicos-øerne
+Tuvalu
+Tyrkiet
+Tyskland
+Uganda
+Ukraine
+Ungarn
+Uruguay
+Usbekistan
+Vanuatu
+Vatikanstaten
+Venezuela
+Vest-Sahara
+Viet Nam
+Wallis- og Futuna-øerne
+Yemen
+Zambia
+Zimbabwe
+Ækvatorial Guinea
+Øst-Timor
+Østrig
+Canton og Enderbury-øen
+Dronning Maud Land
+England
+Forenede Staters Forskellige Stillehavsøer
+Johnston- og Sand-øerne
+Midway-øerne
+Pacific Islands
+Wake-øen
+Burma [Myanmar]
+Demokratisk Yemen [Yemen]
+Tjekkoslovakiet [Tjekkiet / Slovakiet]
+USSR [Russiske Føderation]
+Østtyskland [Tyskland]
+Øvre Volta [Burkina Faso]
+Zaire [Den Demokratiske Republik Congo]

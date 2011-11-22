@@ -1,0 +1,36 @@
+
+Batch processing and shared server configurations
+
+To process in batches, you can configure two variables:
+
+MAILQUEUE_BATCH_SIZE - the size of a batch
+
+MAILQUEUE_BATCH_PERIOD - the time to wait until running the next batch (in seconds)
+
+
+ISPs now have the following option available as well:
+
+They can create a file /etc/phplist.conf that can have the following content:
+
+---------
+maxbatch=50
+minbatchperiod=600
+lockfile=/var/run/phplist-processqueue
+---------
+
+Max Batch
+  Maximum size of a batch that can be assigned by any user on the server
+  Any user making a batch larger than this will use this value
+
+Min Batch Period
+  Minimum Batch Period that can be assigned by any user on the server
+  Any user making a period less than this will use this value
+  
+Lockfile
+  path to a file that if it exists, blocks sending completely
+ 
+The last one can be used to disallow sending in certain times of the day.
+It only has to exist, no content is read or displayed. I suppose your users
+will appreciate if it doesn't exist as certain times as well.
+
+

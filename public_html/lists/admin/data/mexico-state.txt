@@ -1,0 +1,42 @@
+# list of attributes that may be useful
+# format of this file: anything with a # symbol is ignored
+# first line without # will be the name of this "attribute"
+# anything else will be values to use
+# if you have any useful contributions like this for PHPlist, send them to me, 
+# and I can include them in next versions. That will save others in collecting 
+# the information
+EstadoMX:Estados en México
+--- Fuera de México ---
+Aguascalientes
+Baja California Norte
+Baja California Sur
+Campeche
+Chiapas
+Chihuahua
+Coahuila
+Colima
+Distrito Federal
+Durango
+Estado de México
+Guanajuato
+Guerrero
+Hidalgo
+Jalisco
+Michoacán
+Morelos
+Nayarit
+Nuevo León
+Oaxaca
+Puebla
+Querétaro
+Quintana Roo
+San Luis Potosí
+Sinaloa
+Sonora
+Tabasaco
+Tamaulipas
+Tlaxcala
+Veracruz
+Yucatán
+Zacatecas
+

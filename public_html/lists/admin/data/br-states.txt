@@ -1,0 +1,35 @@
+# list of attributes that may be useful
+# format of this file: anything with a # symbol is ignored
+# first line without # will be the name of this "attribute"
+# anything else will be values to use
+# if you have any useful contributions like this for PHPlist, send them to me,
+# and I can include them in next versions. That will save others in collecting
+# the information
+EstadoBR:Estados Brasileiros
+Acre
+Alagoas
+Amazonas
+Amapá
+Bahia
+Ceará
+Distrito Federal
+Espírito Santo
+Goiás
+Maranhão
+Mato Grosso
+Mato Grosso do Sul
+Minas Gerais
+Pará
+Paraíba
+Pernambuco
+Piauí
+Paraná
+Rio de Janeiro
+Rio Grande do Norte
+Rio Grande do Sul
+Rondônia
+Roraima
+Santa Catarina
+Sergipe
+São Paulo
+Tocantins

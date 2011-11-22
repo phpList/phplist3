@@ -1,0 +1,17 @@
+
+Configuring the tables
+
+You can now specify a prefix for all tables. See the config.php file.
+
+You can also specify a seperate prefix for user tables. This can be useful
+if you use your usertables for other purposes. You will need to have three
+tables for this:
+
+"user", "attribute" and "user_attribute" (each of these with the prefix that you choose)
+
+The user table will contain some system values for a user, the attribute table
+will contain the possible attributes for a user and the user_attribute table 
+will contain the values for an attribute for a user. 
+
+Consult the "structure.php" file for more database structure information.
+
