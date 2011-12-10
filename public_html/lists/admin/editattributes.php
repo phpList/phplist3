@@ -35,9 +35,9 @@ switch ($data['type']) {
 ?>
 <div class="panel"><div class="header"></div><!-- ENDOF .header -->
 <div class="content">
-
-<div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('AddNew'),"id=$id&amp;action=new")?> <?php echo $data["name"]?>
-  <br/><a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('SureToDeleteAll');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('DelAll'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('DelAll');?></a>
+<h3 id="attribute-name"><?php echo $data["name"]?></h3>
+<div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('AddNew'),"id=$id&amp;action=new")?> 
+  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('SureToDeleteAll');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('DelAll'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('DelAll');?></a>
 </div>
 <hr/>
 <?php echo formStart(' class="editattributesAdd" ')?>
@@ -164,10 +164,10 @@ if ($num < 100 && $num > 25)
   printf('<input class="submit" type="submit" name="action" value="%s" /><br />',$GLOBALS["I18N"]->get("changeorder"));
 
 while ($row = Sql_Fetch_array($rs)) {
-  printf( '<span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('Delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
+  printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('Delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
   if ($num < 100)
     printf(' <input type="text" name="listorder[%d]" value="%s" size="5" class="listorder" />',$row["id"],$row["listorder"]);
-  printf(' %s %s <br />', $row["name"],($row["name"] == $data["default_value"]) ? $GLOBALS['I18N']->get('Default'):"");
+  printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? $GLOBALS['I18N']->get('Default'):"");
 }
 if ($num && $num < 100)
   printf('<input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));
