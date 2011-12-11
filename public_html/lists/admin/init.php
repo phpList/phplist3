@@ -157,6 +157,15 @@ if (!defined('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD')) define('MESSAGE_SENDSTATUS
 if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLETIME',600);
 if (!defined('SEND_QUEUE_PROCESSING_REPORT')) define('SEND_QUEUE_PROCESSING_REPORT',true);
 if (!defined('DEFAULT_MESSAGEAGE')) define('DEFAULT_MESSAGEAGE',604800); ## 7 days in seconds
+if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
+  define('PHPMAILERBLASTHOST',PHPMAILERHOST);
+}
+if (!defined('PHPMAILERBLASTPORT') && defined('PHPMAILERPORT')) {
+  define('PHPMAILERBLASTPORT',PHPMAILERPORT);
+}
+if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
+  define('PHPMAILERTESTHOST',PHPMAILERHOST);
+}
 
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
