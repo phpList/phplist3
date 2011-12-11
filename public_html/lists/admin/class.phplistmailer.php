@@ -18,6 +18,7 @@ class PHPlistMailer extends PHPMailer {
     public $destionationemail = '';
     public $estimatedsize = 0;
     public $mailsize = 0;
+    private $inBlast = false;
     public $image_types = array(
                   'gif'  => 'image/gif',
                   'jpg'  => 'image/jpeg',
@@ -34,7 +35,7 @@ class PHPlistMailer extends PHPMailer {
     public $Hello = '';
     public $timeStamp = '';
 
-    function PHPlistMailer($messageid,$email) {
+    function PHPlistMailer($messageid,$email,$inBlast = true) {
     #  parent::PHPMailer();
       parent::SetLanguage('en', dirname(__FILE__) . '/phpmailer/language/');
       $this->addCustomHeader("X-Mailer: phplist v".VERSION);
@@ -54,34 +55,56 @@ class PHPlistMailer extends PHPMailer {
       }
       $this->destinationemail = $email;
       $this->SingleTo = false;
-
       $this->CharSet =  'UTF-8';# getConfig("html_charset");
-      if (defined('PHPMAILERPORT')) {
-        $this->Port = PHPMAILERPORT;
+      $this->inBlast = $inBlast;
+      ### hmm, would be good to sort this out differently, but it'll work for now
+      ## don't send test message using the blast server
+      if ($_GET['page'] == 'send') {
+        $this->inBlast = false;
       }
 
-      if (defined('PHPMAILERHOST') && PHPMAILERHOST != '') {
+      if ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT')) {
+        $this->Helo = getConfig("website");
+        $this->Host = PHPMAILERBLASTHOST;
+        $this->Port = PHPMAILERBLASTPORT;
+        if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+             && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
+          $this->Username = $GLOBALS['phpmailer_smtpuser'];
+          $this->Password = $GLOBALS['phpmailer_smtppassword'];
+        }
+        $this->Mailer = "smtp";
+      } elseif (!$this->inBlast && defined('PHPMAILERTESTHOST')) {
+        if (defined('PHPMAILERPORT')) {
+          $this->Port = PHPMAILERPORT;
+        }
+        //logEvent('Sending email via '.PHPMAILERHOST);
+        $this->Helo = getConfig("website");
+        $this->Host = PHPMAILERTESTHOST;
+        if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+             && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
+          $this->Username = $GLOBALS['phpmailer_smtpuser'];
+          $this->Password = $GLOBALS['phpmailer_smtppassword'];
+        }
+        $this->Mailer = "smtp";
+      } elseif (defined('PHPMAILERHOST') && PHPMAILERHOST != '') {
+        if (defined('PHPMAILERPORT')) {
+          $this->Port = PHPMAILERPORT;
+        }
         //logEvent('Sending email via '.PHPMAILERHOST);
         $this->Helo = getConfig("website");
         $this->Host = PHPMAILERHOST;
         if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
-/*
-          add$this->SMTPAuth = true;
-*/
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
           $this->Password = $GLOBALS['phpmailer_smtppassword'];
         }
         $this->Mailer = "smtp";
       } else {
-         #  logEvent('Sending via mail');
-       #  $this->Mailer = "mail";
-      # $this->IsSendmail();
-         $this->CharSet =  'UTF-8';#getConfig("text_charset");
+        # logEvent('Sending via mail');
+        # $this->Mailer = "mail";
+        # $this->IsSendmail();
          $this->isMail();
       }
-
-      //$ip = gethostbyname($this->Host);
 
       if ($GLOBALS["message_envelope"]) {
         $this->Sender = $GLOBALS["message_envelope"];
