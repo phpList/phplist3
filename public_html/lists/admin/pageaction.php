@@ -22,7 +22,7 @@ if (!empty($_GET['action'])) {
 } 
 
 print $status;
-if (!empty($GLOBALS['developer_email'])) {
+if (0 && !empty($GLOBALS['developer_email'])) {
   print '<br/><a href="'.$_SERVER['REQUEST_URI'].'" target="_blank">'.$_SERVER['REQUEST_URI'].'</a>';
 }
 
