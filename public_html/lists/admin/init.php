@@ -166,6 +166,9 @@ if (!defined('PHPMAILERBLASTPORT') && defined('PHPMAILERPORT')) {
 if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
   define('PHPMAILERTESTHOST',PHPMAILERHOST);
 }
+if (!defined('PHPMAILER_SECURE')) {
+  define('PHPMAILER_SECURE',false);
+}
 
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
