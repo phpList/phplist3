@@ -84,6 +84,7 @@ class PHPlistMailer extends PHPMailer {
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
           $this->Password = $GLOBALS['phpmailer_smtppassword'];
+          $this->SMTPAuth = true;
         }
         $this->Mailer = "smtp";
       } elseif (defined('PHPMAILERHOST') && PHPMAILERHOST != '') {
@@ -106,13 +107,14 @@ class PHPlistMailer extends PHPMailer {
          $this->isMail();
       }
 
+      if (defined('PHPMAILER_SECURE') && PHPMAILER_SECURE) {
+        $this->SMTPSecure = PHPMAILER_SECURE;
+      }
+
       if ($GLOBALS["message_envelope"]) {
         $this->Sender = $GLOBALS["message_envelope"];
-        ## don't use with Amazon SES
-        if (!USE_AMAZONSES) {
-          $this->addCustomHeader("Errors-To: ".$GLOBALS["message_envelope"]);
-        }
-
+        $this->addCustomHeader("Bounces-To: ".$GLOBALS["message_envelope"]);
+        
 ## one to work on at a later stage
 #        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
       }
