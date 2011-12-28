@@ -62,8 +62,20 @@ $database_connection = Sql_Connect($database_host,$database_user,$database_passw
 Sql_Set_Search_Path($database_schema);
 
 if (defined('SYSTEM_TIMEZONE')) {
+#  print('set time_zone = "'.SYSTEM_TIMEZONE.'"');
   Sql_Query('set time_zone = "'.SYSTEM_TIMEZONE.'"');
-  date_default_timezone_set(SYSTEM_TIMEZONE);
+  ## verify that it applied correctly
+  $tz = Sql_Fetch_Row_Query('select @@session.time_zone');
+  if ($tz[0] != SYSTEM_TIMEZONE) {
+    ## I18N doesn't exist yet, @@TODO need better error catching here
+    print 'Error setting timezone in Sql Database'.'<br/>';
+  }
+  $phptz_set = date_default_timezone_set(SYSTEM_TIMEZONE);
+  $phptz = date_default_timezone_get ();
+  if (!$phptz_set || $phptz != SYSTEM_TIMEZONE) {
+    ## I18N doesn't exist yet, @@TODO need better error catching here
+    print 'Error setting timezone in PHP'.'<br/>';
+  }
 }
 
 if (!empty($GLOBALS["SessionTableName"])) {
@@ -790,13 +802,22 @@ function recentlyVisited() {
     $browsetrail = array_unique($_SESSION['browsetrail']);
     $browsetrail = array_reverse($browsetrail);
     foreach ($browsetrail as $pageid => $visitedpage) {
-      if (strpos($visitedpage,'SEP')) {
+      if (strpos($visitedpage,'SEP')) { ## old method, store page title in cookie. However, that breaks on multibyte languages
         list($pageurl,$pagetitle) = explode('SEP',$visitedpage);
         if ($pagetitle != 'phplist') {  ## pages with no title
-          $pagetitle = str_replace('%',' ',$pagetitle);
+#          $pagetitle = str_replace('%',' ',$pagetitle);
           if (strpos($pagetitle,' ') > 20) $pagetitle = substr($pagetitle,0,10).' ...';
           $html .= '<li class="shade'.$shade.'"><a href="./'.$pageurl.'" title="'.htmlspecialchars($pagetitle).'"><!--'.$pageid.'-->'.$pagetitle.'</a></li>';
           $shade = !$shade;
+        }
+      } else {
+        if (@preg_match('/\?page=([\w]+)/',$visitedpage,$regs)) {
+          $p = $regs[1];
+          $title = $GLOBALS['I18N']->pageTitle($p);
+          if (!empty($p) && !empty($title)) {
+            $html .= '<li class="shade'.$shade.'"><a href="./?page='.$p.'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
+            $shade = !$shade;
+          }
         }
       }
     }
