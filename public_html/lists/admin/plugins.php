@@ -14,8 +14,11 @@ That way your changes will continue to work, when you need to upgrade to a newer
 <pre class="examplecode">
 &lt;?php
 class myplugin extends phplistPlugin {
-  var $name = "This is my plugin";     ## name of the plugin
-  var $coderoot = "plugins/myplugin/"; ## location of files for the plugin
+  public $name = "This is my plugin";     ## name of the plugin
+  public $coderoot = "myplugin";          ## location of files for the plugin, relative to the plugin root 
+  public $enabled = 1;                    ## enable this plugin
+  public $version = "0.1";                ## version of this plugin
+  public $authors = "Your Name";          ## who made it
 
   function myplugin() {
   }
