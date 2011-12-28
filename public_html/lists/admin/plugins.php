@@ -11,6 +11,7 @@ That way your changes will continue to work, when you need to upgrade to a newer
 <p>Plugins can influence the functionality in a variety of places. If necessary, you can create pages that will show up in the backend interface, but in many cases, this may not be necessary.</p>
 <ul>
 <li>Create a class file "myplugin.php" and store it in the plugins folder in the phpList "admin" folder.
+<p><b>Note:</b> the ClassName needs to be the same as the file it is stored in, with the php extension. Eg "myplugin" is stored as "myplugin.php".</p>
 <pre class="examplecode">
 &lt;?php
 class myplugin extends phplistPlugin {
