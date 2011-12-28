@@ -441,7 +441,7 @@ print '</ul>';
   echo sprintf( $GLOBALS['I18N']->get('To move all subscribers who are not subscribed to any list to %s'), snippetListsSelector() );
 ?>
 </p>
-<input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" />
+<input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" />
 </form>
 
 <hr/>
