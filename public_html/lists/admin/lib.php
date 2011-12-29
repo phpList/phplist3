@@ -424,7 +424,7 @@ function sendMailPhpMailer ($to,$subject,$message) {
         return 0;
       } else {
         $mail = new PHPlistMailer('systemmessage',$to,false);
-        $mail->add_text($textmessage);
+        $mail->add_text($message);
         $destinationemail = $GLOBALS["developer_email"];
       }
     } else {
