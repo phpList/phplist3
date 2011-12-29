@@ -633,11 +633,13 @@ $GLOBALS['pagecategories'] = array(
         'about',
         'community',
         'home',
+        'translate',
         'vote'
       ),
       'menulinks' => array(
         'about',
         'community',
+        'translate',
         'home',
       ),
   ),
@@ -847,9 +849,11 @@ function topMenu() {
       }
     } 
   }
-  
+
   $topmenu = '';
   $topmenu .= '<div id="menuTop">';
+
+  
   foreach ($GLOBALS['pagecategories'] as $category => $categoryDetails) {
     if (
       $category == 'hide' ||
@@ -958,14 +962,21 @@ function PageLinkAjax ($name,$desc="",$url="",$extraclass = '') {
   return $link;
 }
 
-function PageLinkButton($name,$desc="",$url="",$extraclass = '') {
+function PageLinkClass($name,$desc="",$url="",$class = '') {
   ## as PageLink2, but add the option to ajax it in a popover window
   $link = PageLink2($name,$desc,$url);
+  if (empty($class)) {
+    $class='link';
+  }
   if ($link) {
-    $link = str_replace('<a ','<a class="button '.$extraclass.'"',$link);
+    $link = str_replace('<a ','<a class="'.$class.'"',$link);
     $link .= '';
   }
   return $link;
+}
+
+function PageLinkButton($name,$desc="",$url="",$extraclass = '') {
+  return PageLinkClass($name,$desc,$url,'button '.$extraclass);
 }
 
 function PageLinkActionButton($name,$desc="",$url="",$extraclass = '') {
