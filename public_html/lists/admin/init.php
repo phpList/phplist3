@@ -217,6 +217,8 @@ if (!defined("WORKAROUND_OUTLOOK_BUG") && defined("USE_CARRIAGE_RETURNS")) {
 if (!isset($GLOBALS["blacklist_gracetime"])) $GLOBALS["blacklist_gracetime"] = 5;
 if (!isset($GLOBALS["message_envelope"])) $GLOBALS["message_envelope"] = '';
 
+if (!isset($GLOBALS['pageheader']) || !is_array($GLOBALS['pageheader'])) $GLOBALS['pageheader'] = array();
+
 $GLOBALS['disallowpages'] = array();
 # list of pages and categorisation in the system
 ## old version
