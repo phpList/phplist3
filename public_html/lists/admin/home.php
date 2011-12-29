@@ -76,13 +76,13 @@ if (!stristr($_SERVER['HTTP_USER_AGENT'],'firefox')) {
 print '<div class="accordion">';
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('Main'));
+$ls = new WebblerListing('');
 if (checkAccess("setup") && !$_GET["pi"]) {
   if (!empty($_SESSION['firstinstall'])) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('Continue Configuration');
     $ls->addElement($element,PageURL2("setup"));
-    $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Continue the Configuration process of phpList'));
+    $ls->addColumn($element,"&nbsp;",PageLink2($GLOBALS['I18N']->get('Continue the Configuration process of phpList','setup')));
     $ls->setClass($element,"config-link");
   }
 }
@@ -90,22 +90,29 @@ if (checkAccess("send") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('Send a campaign');
   $ls->addElement($element,PageURL2("send"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Start or continue a campaign'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('send',$GLOBALS['I18N']->get('Start or continue a campaign'),'','hometext'));
   $ls->setClass($element,"send-campaign");
 }
 if (checkAccess("messages")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('Manage Campaigns');
   $ls->addElement($element,PageURL2("messages"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('View current campaigns'));
-    $ls->setClass($element,"manage-campaigns");
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('messages',$GLOBALS['I18N']->get('View current campaigns'),'','hometext'));
+  $ls->setClass($element,"manage-campaigns");
 }
 if (checkAccess("users")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('Manage Subscribers');
   $ls->addElement($element,PageURL2("users"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Search, edit and add Subscribers'));
-    $ls->setClass($element,"manage-users");
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('users',$GLOBALS['I18N']->get('Search, edit and add Subscribers'),'','hometext'));
+  $ls->setClass($element,"manage-users");
+}
+if (checkAccess("statsoverview")) {
+  $some = 1;
+  $element = $GLOBALS['I18N']->get('View Statistics');
+  $ls->addElement($element,PageURL2("statsoverview"));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('statsoverview',$GLOBALS['I18N']->get('View statistics'),'','hometext'));
+  $ls->setClass($element,"view-statistics");
 }
 
 if ($some) {
@@ -116,40 +123,40 @@ if ($some) {
 }
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('List and user functions'));
+$ls = new WebblerListing('');
 if (checkAccess("list")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('Manage Lists');
   $ls->addElement($element,PageURL2("list"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('View, edit and add lists, that your subscribers can sign up to'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('list',$GLOBALS['I18N']->get('View, edit and add lists, that your subscribers can sign up to'),'','hometext'));
   $ls->setClass($element,"manage-lists");
 }
 if (checkAccess("users")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('users');
   $ls->addElement($element,PageURL2("users"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('List all Users'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('users',$GLOBALS['I18N']->get('List all Users'),'','hometext'));
     $ls->setClass($element,"list-users");
 }
 if (checkAccess("reconcileusers")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('reconcileusers');
   $ls->addElement($element,PageURL2("reconcileusers"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Reconcile the User Database'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('reconcile',$GLOBALS['I18N']->get('Reconcile the User Database'),'','hometext'));
   $ls->setClass($element,"reconcileusers");
 }
 if (ALLOW_IMPORT && checkAccess("import") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('import');
   $ls->addElement($element,PageURL2("import"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Import Users'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('import',$GLOBALS['I18N']->get('Import Users'),'','hometext'));
   $ls->setClass($element,"import-users");
 }
 if (checkAccess("export") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('export');
   $ls->addElement($element,PageURL2("export"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Export Users'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('export',$GLOBALS['I18N']->get('Export Users'),'','hometext'));
   $ls->setClass($element,"export-users");
 }
 if ($some) {
@@ -159,26 +166,26 @@ if ($some) {
   print '<div>'. $ls->display() .'</div>';
 }
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('Configuration Functions'));
+$ls = new WebblerListing('');
 if (checkAccess("configure")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('configure');
   $ls->addElement($element,PageURL2("configure"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Configure').' '.NAME);
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('configure',$GLOBALS['I18N']->get('Configure').' '.NAME,'','hometext'));
   $ls->setClass($element,"configure");
 }
 if (checkAccess("attributes") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('attributes');
   $ls->addElement($element,PageURL2("attributes"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Configure Attributes'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('attributes',$GLOBALS['I18N']->get('Configure Attributes'),'','hometext'));
   $ls->setClass($element,"configure-attributes");
   if (Sql_table_exists($tables["attribute"])) {
     $res = Sql_Query("select * from ".$tables["attribute"],0);
     while ($row = Sql_Fetch_array($res)) {
       if ($row["type"] != "checkbox" && $row["type"] != "textarea" && $row["type"] != "textline" && $row["type"] != "hidden") {
         $ls->addElement($row["name"],PageURL2("editattributes&amp;id=".$row["id"]));
-        $ls->addColumn($row["name"],"&nbsp;",$GLOBALS['I18N']->get('Control values for').' '.$row["name"]);
+        $ls->addColumn($row["name"],"&nbsp;",PageLinkClass('editattributes&amp;id='.$row["id"],$GLOBALS['I18N']->get('Control values for').' '.$row["name"],'','hometext'));
         $ls->setClass($row["name"],"custom-attribute");
       }
     }
@@ -188,7 +195,7 @@ if (checkAccess("spage")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('spage');
   $ls->addElement($element,PageURL2("spage"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Configure Subscribe Pages'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('spage',$GLOBALS['I18N']->get('Configure Subscribe Pages'),'','hometext'));
   $ls->setClass($element,"spage");
 }
 
@@ -200,19 +207,19 @@ if ($some) {
 }
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('Administrator Functions'));
+$ls = new WebblerListing('');
 if (checkAccess("admins")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('admins');
   $ls->addElement($element,PageURL2("admins"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Add, edit and remove Administrators'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('admins',$GLOBALS['I18N']->get('Add, edit and remove Administrators'),'','hometext'));
   $ls->setClass($element,"admins");
 }
 if (checkAccess("adminattributes")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('adminattributes');
   $ls->addElement($element,PageURL2("adminattributes"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Configure Attributes for administrators'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('adminattributes',$GLOBALS['I18N']->get('Configure Attributes for administrators'),'','hometext'));
   $ls->setClass($element,"adminattributes");
 }
 if ($some) {
@@ -223,12 +230,12 @@ if ($some) {
 }
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('Message Functions'));
+$ls = new WebblerListing('');
 if (checkAccess("send")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('send');
   $ls->addElement($element,PageURL2("send"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Send a Message'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('send',$GLOBALS['I18N']->get('Send a Message'),'','hometext'));
   $ls->setClass($element,"send-message");
 }
 if (USE_PREPARE) {
@@ -236,36 +243,36 @@ if (USE_PREPARE) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('preparesend');
     $ls->addElement($element,PageURL2("preparesend"));
-    $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Prepare a Message'));
-	$ls->setClass($element,"preparesend");
+    $ls->addColumn($element,"&nbsp;",PageLinkClass('preparesend',$GLOBALS['I18N']->get('Prepare a Message'),'','hometext'));
+    $ls->setClass($element,"preparesend");
   }
   if (checkAccess("sendprepared")) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('sendprepared');
     $ls->addElement($element,PageURL2("sendprepared"));
-    $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Send a Prepared Message'));
-	$ls->setClass($element,"sendprepared");
+    $ls->addColumn($element,"&nbsp;",PageLinkClass('sendprepared',$GLOBALS['I18N']->get('Send a Prepared Message'),'','hometext'));
+    $ls->setClass($element,"sendprepared");
   }
 }
 if (checkAccess("templates")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('templates');
   $ls->addElement($element,PageURL2("templates"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Configure Templates'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('templates',$GLOBALS['I18N']->get('Configure Templates'),'','hometext'));
   $ls->setClass($element,"templates");
 }
 if (checkAccess("messages")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('messages');
   $ls->addElement($element,PageURL2("messages"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('List all Messages'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('messages',$GLOBALS['I18N']->get('List all Messages'),'','hometext'));
   $ls->setClass($element,"list-all-msg");
 }
 if (checkAccess("processqueue") && MANUALLY_PROCESS_QUEUE) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('processqueue');
   $ls->addElement($element,PageURL2("processqueue"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Process the Message Queue'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('processqueue',$GLOBALS['I18N']->get('Process the Message Queue'),'','hometext'));
   $ls->setClass($element,"processqueue");
   if (TEST) {
    $ls->addColumn($element,$GLOBALS['I18N']->get('warning'),$GLOBALS['I18N']->get('You have set TEST in config.php to 1, so it will only show what would be sent'));
@@ -275,14 +282,14 @@ if (checkAccess("processbounces") && MANUALLY_PROCESS_BOUNCES) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('processbounces');
   $ls->addElement($element,PageURL2("processbounces"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Process Bounces'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('processbounces',$GLOBALS['I18N']->get('Process Bounces'),'','hometext'));
   $ls->setClass($element,"processbounces");
 }
 if (checkAccess("bounces")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('bounces');
   $ls->addElement($element,PageURL2("bounces"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('View Bounces'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('bounces',$GLOBALS['I18N']->get('View Bounces'),'','hometext'));
   $ls->setClass($element,"bounces");
 }
 if ($some) {
@@ -345,21 +352,21 @@ if (checkAccess("initialise") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('setup');
   $ls->addElement($element,PageURL2("setup"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Setup ').NAME);
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('setup',$GLOBALS['I18N']->get('Setup ').NAME,'','hometext'));
   $ls->setClass($element,"setup");
 }
 if (checkAccess("upgrade") && !$_GET["pi"] && $upgrade_required) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('upgrade');
   $ls->addElement($element,PageURL2("upgrade"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Upgrade'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('upgrade',$GLOBALS['I18N']->get('Upgrade'),'','hometext'));
   $ls->setClass($element,"upgrade");
 }
 if (checkAccess("dbcheck")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('dbcheck');
   $ls->addElement($element,PageURL2("dbcheck"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Check Database structure'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('dbcheck',$GLOBALS['I18N']->get('Check Database structure'),'','hometext'));
   $ls->setClass($element,"dbcheck");
 }
 
@@ -367,14 +374,14 @@ if (checkAccess("eventlog")) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('eventlog');
   $ls->addElement($element,PageURL2("eventlog"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('View the eventlog'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('eventlog',$GLOBALS['I18N']->get('View the eventlog'),'','hometext'));
   $ls->setClass($element,"view-log");
 }
 if (checkAccess("admin") && $GLOBALS["require_login"] && !isSuperUser()) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('admin');
   $ls->addElement($element,PageURL2("admin"));
-  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Change your details (e.g. password)'));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('admin',$GLOBALS['I18N']->get('Change your details (e.g. password)'),'','hometext'));
   $ls->setClass($element,"change-pass");
 }
 if ($some) {
@@ -385,7 +392,4 @@ if ($some) {
 }
 
 print '</div>';
-?>
-
-
 
