@@ -821,7 +821,10 @@ while ($message = Sql_fetch_array($messages)) {
             reset($GLOBALS['plugins']);
             while (!$throttled && $plugin = current($GLOBALS['plugins']) ) {
               $throttled = $plugin->throttleSend($msgdata, $user);
-              if ($throttled) $failure_reason .= 'Sending throttled by plugin '.$plugin->name;
+              if ($throttled) {
+                $counters['send throttled by plugin '.$plugin->name]++;
+                $failure_reason .= 'Sending throttled by plugin '.$plugin->name;
+              }
               next($GLOBALS['plugins']);
             } 
             if (!$throttled) {
