@@ -68,7 +68,6 @@ if (is_file($configfile) && filesize($configfile) > 20) {
   include(dirname(__FILE__).'/install.php');
   exit;
 }
-
 $ajax = isset($_GET['ajaxed']);
 
 if (!isset($database_host) || !isset($database_user) || !isset($database_password) || !isset($database_name)) {
@@ -120,6 +119,12 @@ header('X-UA-Compatible: IE=Edge');
 if (!$ajax) {
   include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
 }
+if (isset($GLOBALS['pageheader'])) {
+  foreach ($GLOBALS['pageheader'] as $sHeaderItem => $sHtml ) {
+    print '<!--'.$sHeaderItem.'-->'.$sHtml;
+    print "\n";
+  }
+} 
 
 if ($GLOBALS["commandline"]) {
   if (!isset($_SERVER["USER"]) && sizeof($GLOBALS["commandline_users"])) {
@@ -507,7 +512,7 @@ if (checkAccess($page,"") || $page == 'about') {
 }
 
 # some debugging stuff
-if (strpos(VERSION,"dev") !== false) {
+if (strpos(VERSION,"dev") !== false && !empty($GLOBALS['developer_email'])) {
   $now =  gettimeofday();
   $finished = $now["sec"] * 1000000 + $now["usec"];
   $elapsed = $finished - $GLOBALS["pagestats"]["time_start"];
