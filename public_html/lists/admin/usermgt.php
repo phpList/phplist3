@@ -24,7 +24,7 @@ foreach ($attrmenu as $page => $desc) {
     $attributehtml .= '<li>'.$link.'</li>';
   }
 }
-$html .= '<li id="edit-values">'.$GLOBALS['I18N']->get('edit values for attributes').$spe.'<ul>'.$attributehtml.'</ul>';
+$html .= '<li id="edit-values">'.$GLOBALS['I18N']->get('edit values for attributes').'<ul>'.$attributehtml.'</ul>';
 
 $html .= '<li id="reconcileusers">'.PageLink2("reconcileusers",$GLOBALS['I18N']->get('reconcile')).'</li>';
 $html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('check')).'</li>';
