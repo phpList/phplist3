@@ -13,6 +13,7 @@ $addcomparison = 0;
 $access = accessLevel('statsoverview');
 $and = '';
 $subselect = '';
+$paging = '';
 $and_params = array();
 #print "Access Level: $access";
 switch ($access) {
@@ -96,7 +97,7 @@ if (!$id) {
   if ($total > 10 && !$download) {
     #print Paging(PageUrl2('statsoverview'),$start,$total,10);
     $paging = simplePaging('statsoverview',$start,$total,10);
-   $query .= $limit;
+    $query .= $limit;
     $req = Sql_Query($query);
   }
 
