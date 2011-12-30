@@ -99,6 +99,39 @@ if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($L
   );
 }
 
+/*
+if (!empty($_SESSION['show_translation_colours'])) {
+  $GLOBALS['pageheader']['translationtools'] = '
+    <script type="text/javascript" src="js/jquery.contextMenu.js"></script>
+    <link rel="stylesheet" href="js/jquery.contextMenu.css" />
+    <ul id="translationMenu" class="contextMenu">
+    <li class="translate">
+        <a href="#translate">Translate</a>
+    </li>
+    <li class="quit separator">
+        <a href="#quit">Quit</a>
+    </li>
+</ul>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $(".translate").contextMenu({
+        menu: "translationMenu"
+    },
+    function(action, el, pos) {
+      alert(
+          "Action: " + action + "\n\n" +
+          "Element ID: " + $(el).attr("id") + "\n\n" +
+          "X: " + pos.x + "  Y: " + pos.y + " (relative to element)\n\n" +
+          "X: " + pos.docX + "  Y: " + pos.docY+ " (relative to document)"
+      );
+    });
+  });
+  </script>
+
+  ';
+}
+*/
+
 if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage'])) {
   if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     $accept_lan = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -165,6 +198,8 @@ class phplist_I18N {
     include dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php';
     if (!empty($page_title)) {
       $title = $page_title;
+    } elseif (preg_match('/pi=([\w]+)/',$page,$regs)) {
+      $title = $regs[1];
     } else {
       $title = $page;
     }
@@ -173,7 +208,7 @@ class phplist_I18N {
 
   function formatText($text) {
     # we've decided to spell phplist with on L
-    $text = str_replace('PHPlist','phpList',$text);
+    $text = str_ireplace('PHPlist','phpList',$text);
 
     if (isset($GLOBALS["developer_email"])) {
       if (!empty($_SESSION['show_translation_colours'])) {
