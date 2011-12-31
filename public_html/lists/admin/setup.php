@@ -15,10 +15,10 @@ $alldone = 1;
 $html = '';
 $html .= '<table class="setupMain">';
 
-$link = PageLink2("initialise",$GLOBALS['I18N']->get('go_there'));
+$link = PageLink2("initialise",$GLOBALS['I18N']->get('Go there'));
 if (!empty($link)) {
   $html .=
-  '<tr><td>'.$GLOBALS['I18N']->get('initialise_database').'</td>
+  '<tr><td>'.$GLOBALS['I18N']->get('Initialise Database').'</td>
   <td>'.$link.'</td><td>';
 
   if (Sql_Table_Exists($tables["config"],1)) {
@@ -31,9 +31,9 @@ if (!empty($link)) {
   $html .= '</td></tr>';
 }
 
-$link = PageLink2("admin&amp;id=1",$GLOBALS['I18N']->get('go_there'));
+$link = PageLink2("admin&amp;id=1",$GLOBALS['I18N']->get('Go there'));
 if (!empty($link) && $GLOBALS["require_login"]) {
-  $html .= '<tr><td>'.$GLOBALS['I18N']->get('change_admin_passwd').' </td>
+  $html .= '<tr><td>'.$GLOBALS['I18N']->get('Change Admin Password').' </td>
   <td>'.$link.'</td><td>';
   $query
   = " select password"
@@ -50,7 +50,7 @@ if (!empty($link) && $GLOBALS["require_login"]) {
   $html .= '</td></tr>';
 }
 
-$link = PageLink2("configure",$GLOBALS['I18N']->get('go_there'));
+$link = PageLink2("configure",$GLOBALS['I18N']->get('Go there'));
 if (!empty($link)) {
   $html .= '<tr><td>'.$GLOBALS['I18N']->get('Verify Settings').'</td>
     <td>'.$link.'</td><td>';
@@ -69,8 +69,8 @@ if (!empty($link)) {
   $html .= '</td></tr>';
 }
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('config_attribs').'</td>
-<td>'.PageLink2("attributes",$GLOBALS['I18N']->get('go_there')).'</td><td>';
+$html .= '<tr><td>'.$GLOBALS['I18N']->get('Configure Attributes').'</td>
+<td>'.PageLink2("attributes",$GLOBALS['I18N']->get('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["attribute"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -81,8 +81,8 @@ if (Sql_Affected_Rows()) {
 
 $html .= '</td></tr>';
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('create_lists').'</td>
-<td>'.PageLink2("list",$GLOBALS['I18N']->get('go_there')).'</td><td>';
+$html .= '<tr><td>'.$GLOBALS['I18N']->get('Create Lists').'</td>
+<td>'.PageLink2("list",$GLOBALS['I18N']->get('Go there')).'</td><td>';
 $req = Sql_Query("select * from ${tables['list']} where active <> 0");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -92,8 +92,8 @@ if (Sql_Affected_Rows()) {
 }
 $html .= '</td></tr>';
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('create_subscr_pages').'</td>
-<td>'.PageLink2("spage",$GLOBALS['I18N']->get('go_there')).'</td><td>';
+$html .= '<tr><td>'.$GLOBALS['I18N']->get('Create Subscribe Pages').'</td>
+<td>'.PageLink2("spage",$GLOBALS['I18N']->get('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["subscribepage"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -104,7 +104,7 @@ if (Sql_Affected_Rows()) {
 
 $html .= '</td></tr>';
 $html .= '<tr><td>'.$GLOBALS['I18N']->get('Add some subscribers').'</td>
-<td>'.PageLink2("import",$GLOBALS['I18N']->get('go_there')).'</td><td>';
+<td>'.PageLink2("import",$GLOBALS['I18N']->get('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["user"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];

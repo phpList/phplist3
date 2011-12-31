@@ -20,7 +20,7 @@ $unconfirm = isset($_GET["unconfirm"]); #BUGFIX #15286 - CS2
 $maketext = isset($_GET["maketext"]); #BUGFIX #15286 - CS2 
 $deleteuser = isset($_GET["deleteuser"]);  #BUGFIX #15286 - CS2 
 if (!$id && !$delete) {
-  Fatal_Error($GLOBALS['I18N']->get('NoRecord'));
+  Fatal_Error($GLOBALS['I18N']->get('No such record'));
   exit;
 }
 
@@ -35,7 +35,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
   }
 }
 if (isset($start))
-  echo "<br />".PageLink2("bounces",$GLOBALS['I18N']->get('BackToBList'),"start=$start")."\n";
+  echo "<br />".PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'),"start=$start")."\n";
 
 
 if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$GLOBALS["require_login"])) {
@@ -44,41 +44,41 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
       $tables["user"],$useremail));
      $userid = $req[0];
     if (!$userid) {
-      print "$useremail => ".$GLOBALS['I18N']->get('NotFound')."\n";
+      print "$useremail => ".$GLOBALS['I18N']->get('Not Found')."\n";
     }
   }
   if (isset($userid) && $amount) {
     Sql_Query(sprintf('update %s set bouncecount = bouncecount + %d where id = %d',
       $tables["user"],$amount,$userid));
      if (Sql_Affected_Rows()) {
-      print sprintf($GLOBALS['I18N']->get('AddedToB'),$amount,$userid)."\n";
+      print sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
     } else {
-      print sprintf($GLOBALS['I18N']->get('AddedToB'),$amount,$userid)."\n";
+      print sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
     }
   }
 
   if ($userid && $unconfirm) {
     Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
       $tables["user"],$userid));
-     print sprintf($GLOBALS['I18N']->get('MadeUnconfirmed'), $userid);
+     print sprintf($GLOBALS['I18N']->get('Made subscriber %s unconfirmed'), $userid);
   }
 
   if ($userid && $maketext) {
     Sql_Query(sprintf('update %s set htmlemail = 0 where id = %d',
       $tables["user"],$userid));
-     print sprintf($GLOBALS['I18N']->get('MadeUserRText'), $userid);
+     print sprintf($GLOBALS['I18N']->get('Made subscriber %s to receive text'), $userid);
   }
 
   if ($userid && $deleteuser) {
     deleteUser($userid);
-    print sprintf($GLOBALS['I18N']->get('DelUser').'\n', $userid);
+    print sprintf($GLOBALS['I18N']->get('Deleted subscriber %s').'\n', $userid);
   }
 
   if (ALLOW_DELETEBOUNCE && $deletebounce) {
-    print sprintf($GLOBALS['I18N']->get('DeletingB').'\n', $id);
+    print sprintf($GLOBALS['I18N']->get('Deleting bounce %s .. ').'\n', $id);
     Sql_query("delete from {$tables["bounce"]} where id = $id");
-    print $GLOBALS['I18N']->get('DoneAndLoading')."<br /><hr/><br />\n";
-    print PageLink2("bounces",$GLOBALS['I18N']->get('BackToBList'));
+    print $GLOBALS['I18N']->get('..Done, loading next bounce..')."<br /><hr/><br />\n";
+    print PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'));
     $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d',$tables["bounce"],$id));
     $id = $next[0];
     if (!$id) {
@@ -120,22 +120,22 @@ if ($id) {
    print '<form method="get">';
   print '<input type="hidden" name=page value="'.$page.'" />';
   print '<input type="hidden" name=id value="'.$id.'" />';
-  print '<table class="bounceActions"><tr><td>'.$GLOBALS['I18N']->get('PossibleActions').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('ForUser').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('IncreaseB').'</td><td><input type="text" name="amount" value="1" size="5" />'.$GLOBALS['I18N']->get('IncreaseBNote').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('MarkAsUnconfirmed').' </td><td><input type="checkbox" name="unconfirm" value="1" /> '.$GLOBALS['I18N']->get('MarkAsUnconfirmedNote').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('SetReceiveText').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('DelUser1').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
+  print '<table class="bounceActions"><tr><td>'.$GLOBALS['I18N']->get('Possible Actions:').'</td></tr>';
+  print '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
+  print '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'</td><td><input type="text" name="amount" value="1" size="5" />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td></tr>';
+  print '<tr><td>'.$GLOBALS['I18N']->get('Mark subscriber as unconfirmed').' </td><td><input type="checkbox" name="unconfirm" value="1" /> '.$GLOBALS['I18N']->get('(so you can resend the request for confirmation)').'</td></tr>';
+  print '<tr><td>'.$GLOBALS['I18N']->get('Set subscriber to receive text instead of HTML').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
+  print '<tr><td>'.$GLOBALS['I18N']->get('Delete subscriber').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
   if (ALLOW_DELETEBOUNCE) {
-    print '<tr><td>'.$GLOBALS['I18N']->get('DelAndGo').' </td><td><input type="checkbox" name="deletebounce" value="1" checked="checked" /></td></tr>';
+    print '<tr><td>'.$GLOBALS['I18N']->get('Delete this bounce and go to the next').' </td><td><input type="checkbox" name="deletebounce" value="1" checked="checked" /></td></tr>';
   }
-  print '<tr><td><input class="submit" type="submit" name="doit" value="'.$GLOBALS['I18N']->get('DoAbove').'" /></td></tr>';
+  print '<tr><td><input class="submit" type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Do the above').'" /></td></tr>';
   print "</table></form>";
   if (USE_ADVANCED_BOUNCEHANDLING) {
     print '<p class="button"><a href="#newrule">'.$GLOBALS['I18N']->get('Create New Rule based on this bounce').'</a></p>';
   }
   
-  print '<p class="information">'.$GLOBALS['I18N']->get('BounceDetails').'<table class="bounceDetails" border=1>';
+  print '<p class="information">'.$GLOBALS['I18N']->get('Bounce Details:').'<table class="bounceDetails" border=1>';
   printf ('
   <tr><td valign="top">'.$GLOBALS['I18N']->get('ID').'</td><td valign="top">%d</td></tr>
   <tr><td valign="top">'.$GLOBALS['I18N']->get('Date').'</td><td valign="top">%s</td></tr>

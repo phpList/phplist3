@@ -26,7 +26,7 @@ if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"])) {
 }
 #if (ini_get("open_basedir")) {
 if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"])) {
-  Warn($GLOBALS['I18N']->get('temp_dir_not_writeable')." (".$GLOBALS["tmpdir"].")");
+  Warn($GLOBALS['I18N']->get('The temporary directory for uploading is not writable, so import will fail')." (".$GLOBALS["tmpdir"].")");
 }
 
 $import_lists = getSelectedLists('importlists');
@@ -36,27 +36,27 @@ if(isset($_REQUEST['import'])) {
   $test_import = (isset($_POST["import_test"]) && $_POST["import_test"] == "yes");
 
   if(empty($_FILES["import_file"])) {
-    Fatal_Error($GLOBALS['I18N']->get('none_specified'));
+    Fatal_Error($GLOBALS['I18N']->get('No file was specified. Maybe the file is too big?'));
     return;
   }
   if(!$_FILES["import_file"]) {
-    Fatal_Error($GLOBALS['I18N']->get('too_large_inexistant'));
+    Fatal_Error($GLOBALS['I18N']->get('File is either too large or does not exist.'));
     return;
   }
   if (filesize($_FILES["import_file"]['tmp_name']) > 1000000) {
-    Fatal_Error($GLOBALS['I18N']->get('too_big'));
+    Fatal_Error($GLOBALS['I18N']->get('File too big, please split it up into smaller ones'));
     return;
   }
 /*
   if( !preg_match("/^[0-9A-Za-z_\.\-\/\s \(\)]+$/", $_FILES["import_file"]["name"]) ) {
-    Fatal_Error($GLOBALS['I18N']->get('wrong_characters').$_FILES["import_file"]["name"]);
+    Fatal_Error($GLOBALS['I18N']->get('Use of wrong characters: ').$_FILES["import_file"]["name"]);
     return;
   }
 */
   # don't send notification, but use processqueue instead
   $_POST['notify'] = 'no'; 
   if (!$_POST["notify"] && !$test_import) {
-    Fatal_Error($GLOBALS['I18N']->get('signup_or_notify'));
+    Fatal_Error($GLOBALS['I18N']->get('Please choose whether to sign up immediately or to send a notification'));
     return;
   }
   $notify = $_POST["notify"];
@@ -66,13 +66,13 @@ if(isset($_REQUEST['import'])) {
     $newfile = $GLOBALS['tmpdir'].'/import'. $GLOBALS['installation_name'].time();
     move_uploaded_file($_FILES['import_file']['tmp_name'], $newfile);
     if( !($fp = fopen ($newfile, "r"))) {
-      Fatal_Error($GLOBALS['I18N']->get('unreadable')." (".$newfile.")");
+      Fatal_Error($GLOBALS['I18N']->get('Cannot read file. It is not readable !')." (".$newfile.")");
       return;
      }
     $email_list = fread($fp, filesize ($newfile));
     fclose($fp);
   } elseif ($_FILES["import_file"]) {
-    Fatal_Error($GLOBALS['I18N']->get('empty_file'));
+    Fatal_Error($GLOBALS['I18N']->get('Something went wrong while uploading the file. Empty file received. Maybe the file is too big, or you have no permissions to read it.'));
     return;
   }
 
@@ -122,7 +122,7 @@ if(isset($_REQUEST['import'])) {
 
   // View test output of emails
   if($test_import) {
-    print $GLOBALS['I18N']->get('test_output').':<br/>'.$GLOBALS['I18N']->get('one_email_per_line').'<br/>'.$GLOBALS['I18N']->get('output_ok').' <a href="javascript:history.go(-1)">'.$GLOBALS['I18N']->get('back').'</a>'.$GLOBALS['I18N']->get('resubmit').'<br/><br/>';
+    print $GLOBALS['I18N']->get('Test output:').':<br/>'.$GLOBALS['I18N']->get('There should only be ONE email per line.').'<br/>'.$GLOBALS['I18N']->get('If the output looks ok, go').' <a href="javascript:history.go(-1)">'.$GLOBALS['I18N']->get('back').'</a>'.$GLOBALS['I18N']->get(' to resubmit for real').'<br/><br/>';
     $i = 1;
     while (list($email,$data) = each ($user_list)) {
       $email = trim($email);
@@ -191,7 +191,7 @@ if(isset($_REQUEST['import'])) {
           $user = Sql_fetch_array($result);
           $userid = $user["id"];
           $uniqid = $user["uniqid"];
-          $history_entry = $GLOBALS['I18N']->get('import_user');
+          $history_entry = $GLOBALS['I18N']->get('Import of existing subscriber');
           $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["user"],$userid));
           $old_data = array_merge($old_data,getUserAttributeValues('',$userid));
           # and membership of lists
@@ -217,7 +217,7 @@ if(isset($_REQUEST['import'])) {
 
           $count_email_add++;
           $some = 1;
-          $history_entry = $GLOBALS['I18N']->get('import_new_user');
+          $history_entry = $GLOBALS['I18N']->get('Import of new subscriber');
 
           # add the attributes for this user
           foreach($attributes as $attr => $value) {
@@ -262,25 +262,25 @@ if(isset($_REQUEST['import'])) {
           }
         }
         if (!$history_entry) {
-          $history_entry = "\n".$GLOBALS['I18N']->get('no_data_changed');
+          $history_entry = "\n".$GLOBALS['I18N']->get('No data changed');
         }
         # check lists
         $req = Sql_Query("select * from {$tables["listuser"]} where userid = $userid");
         while ($row = Sql_Fetch_Array($req)) {
           $listmembership[$row["listid"]] = listName($row["listid"]);
         }
-        $history_entry .= "\n".$GLOBALS['I18N']->get('lists_subscriptions')."\n";
+        $history_entry .= "\n".$GLOBALS['I18N']->get('List subscriptions:')."\n";
         foreach ($old_listmembership as $key => $val) {
-          $history_entry .= $GLOBALS['I18N']->get('was_subscribed')." $val\n";
+          $history_entry .= $GLOBALS['I18N']->get('Was subscribed to:')." $val\n";
         }
         foreach ($listmembership as $key => $val) {
-          $history_entry .= $GLOBALS['I18N']->get('is_subscribed')." $val\n";
+          $history_entry .= $GLOBALS['I18N']->get('Is now subscribed to:')." $val\n";
         }
         if (!sizeof($listmembership)) {
-          $history_entry .= $GLOBALS['I18N']->get('not_subscribed')."\n";
+          $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists')."\n";
         }
 
-        addUserHistory($email,$GLOBALS['I18N']->get('import_by').adminName(),$history_entry);
+        addUserHistory($email,$GLOBALS['I18N']->get('Import by ').adminName(),$history_entry);
 
       }; // end if
     }; // end while
@@ -288,23 +288,23 @@ if(isset($_REQUEST['import'])) {
     print '<script language="Javascript" type="text/javascript"> finish(); </script>';
     # lets be gramatically correct :-)
     $displists = ($num_lists == 1) ? $GLOBALS['I18N']->get('list'): $GLOBALS['I18N']->get('lists');
-    $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new_email_was'): $GLOBALS['I18N']->get('new_emails_were');
-    $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email_was'): $GLOBALS['I18N']->get('emails_were');
+    $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new email was'): $GLOBALS['I18N']->get('new emails were');
+    $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email was'): $GLOBALS['I18N']->get('emails were');
 
     if ($count_email_exist) {
-      $report .= "<br/>$count_email_exist ".$GLOBALS['I18N']->get('some_emails_exist');
+      $report .= "<br/>$count_email_exist ".$GLOBALS['I18N']->get('emails existed in the database');
     }
     if(!$some && !$additional_emails) {
-      $report .= "<br/>".$GLOBALS['I18N']->get('all_emails_exist');
+      $report .= "<br/>".$GLOBALS['I18N']->get('All the emails already exist in the database.');
     } else {
-      $report .= "<br/>$count_email_add $dispemail ".$GLOBALS['I18N']->get('import_successful')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed')." $displists";
+      $report .= "<br/>$count_email_add $dispemail ".$GLOBALS['I18N']->get('succesfully imported to the database and added to')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed to the')." $displists";
     }
     print ActionResult($report);
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->importReport($report);
     }
   }; // end else
-  print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('import_more_emails')).'</p>';
+  print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
 
 
 } else {
@@ -350,12 +350,12 @@ function addFieldToCheck(value,name) {
 
 </script>
 <table class="import1" border="1">
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('info_emails_file'); ?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('emails_file'); ?></td><td><input type="file" name="import_file"></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('info_test_output'); ?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('test_output'); ?></td><td><input type="checkbox" name="import_test" value="yes"></td></tr>
-<!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('info_notification_email'); ?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('notification_email'); ?><input type="radio" name="notify" value="yes"></td><td><?php echo $GLOBALS['I18N']->get('confirmed_immediately'); ?><input type="radio" name="notify" value="no"></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute "Info" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document.'); ?></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('File containing emails:'); ?></td><td><input type="file" name="import_file"></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.'); ?></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('Test output:'); ?></td><td><input type="checkbox" name="import_test" value="yes"></td></tr>
+<!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.'); ?></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('Send Notification email'); ?><input type="radio" name="notify" value="yes"></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately'); ?><input type="radio" name="notify" value="no"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you are going to send notification to users, you may want to add a little delay between messages')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Notification throttle')?>:</td><td><input type="text" name="throttle_import" size="5"> <?php echo $GLOBALS['I18N']->get('(default is nothing, will send as fast as it can)')?></td></tr-->
 <?php

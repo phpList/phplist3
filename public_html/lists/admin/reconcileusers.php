@@ -465,7 +465,7 @@ print '</ul>';
 <tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up before')?>:</td><td><?php echo $to->showInput("","",$toval);?></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Text to prepend to email')?>:</td></tr>
 <tr><td colspan="2"><textarea name="prepend" rows="10" cols="60">
-<?php echo $GLOBALS['I18N']->get('prependemailtext')?>
+<?php echo $GLOBALS['I18N']->get(' Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   ')?>
 </textarea>
 </td></tr>
 </table>

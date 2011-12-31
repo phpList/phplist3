@@ -243,7 +243,7 @@ if (!$_POST["server"] || !$_POST["user"] || !$_POST["password"] || !is_array($_P
 <tr><td>'.$GLOBALS['I18N']->get("Only use complete addresses").':</td><td><input type="checkbox" name="onlyfull" value="yes"></td></tr>
 <tr><td colspan="2">'.$GLOBALS['I18N']->get('If you choose')." '".$GLOBALS['I18N']->get('send notification email')."' ".$GLOBALS['I18N']->get("the users you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.").'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get("Send&nbsp;Notification&nbsp;email&nbsp;").'<input type="radio" name="notify" value="yes"></td><td>'.$GLOBALS['I18N']->get("Make confirmed immediately").'&nbsp;<input type="radio" name="notify" value="no"></td></tr>
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('import3info').'
+<tr><td colspan="2">'.$GLOBALS['I18N']->get('There are two ways to add the names of the users,  either one attribute for the entire name or two attributes, one for first name and one for last name. If you use &quot;two attributes&quot;, the name will be split after the first space.').'
 </td></tr>
 <tr><td>'.$GLOBALS['I18N']->get("Use one attribute for name").'<input type="radio" name="nameattributes" value="one"></td><td>'.$GLOBALS['I18N']->get('Use two attributes for the name').'&nbsp;<input type="radio" name="nameattributes" value="two"></td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Attribute one').': </td><td><select name="attributeone">

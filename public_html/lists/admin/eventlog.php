@@ -54,7 +54,7 @@ $count = Sql_Query("select count(*) from {$tables['eventlog']} $where");
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 
-print $total . ' ' .  $GLOBALS['I18N']->get('events') . '<br/>';
+print $total . ' ' .  $GLOBALS['I18N']->get('Events') . '<br/>';
 if ($total > MAX_USER_PP) {
   if (isset($start) && $start) {
     $limit = "limit $start," . MAX_USER_PP;
@@ -97,7 +97,7 @@ htmlspecialchars(stripslashes($filter)),
 $GLOBALS['I18N']->get('Exclude filter'),
 $exclude == 1 ? 'checked="checked"':'');
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('events'));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Events'));
 
 # @@@@ Looks like there are a few del, page, date, message which may not be i18nable.
 

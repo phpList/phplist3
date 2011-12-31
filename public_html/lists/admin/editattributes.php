@@ -7,7 +7,7 @@ $id = !empty($_GET['id']) ? sprintf('%d',$_GET['id']) : 0;
 ob_end_flush();
 
 if (!$id) {
-  Fatal_Error($GLOBALS['I18N']->get('NoAttr')." $id");
+  Fatal_Error($GLOBALS['I18N']->get('No such attribute:')." $id");
   return;
 }
 
@@ -36,8 +36,8 @@ switch ($data['type']) {
 <div class="panel"><div class="header"></div><!-- ENDOF .header -->
 <div class="content">
 <h3 id="attribute-name"><?php echo $data["name"]?></h3>
-<div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('AddNew'),"id=$id&amp;action=new")?> 
-  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('SureToDeleteAll');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('DelAll'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('DelAll');?></a>
+<div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('add new'),"id=$id&amp;action=new")?> 
+  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('Are you sure you want to delete all records?');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('delete all'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('DelAll');?></a>
 </div>
 <hr/>
 <?php echo formStart(' class="editattributesAdd" ')?>
@@ -75,8 +75,8 @@ if (isset($_POST["listorder"]) && is_array($_POST["listorder"])) {
 }
 
 function giveAlternative($table,$delete,$attributeid) {
-  print $GLOBALS['I18N']->get('ReplaceAllWith').formStart(' class="editattributesAlternatives" ');
-  print '<select name="replace"><option value="0">-- '.$GLOBALS['I18N']->get('ReplaceWith').'</option>';
+  print $GLOBALS['I18N']->get('Alternatively you can replace all values with another one:').formStart(' class="editattributesAlternatives" ');
+  print '<select name="replace"><option value="0">-- '.$GLOBALS['I18N']->get('Replace with').'</option>';
   $req = Sql_Query("select * from $table order by listorder,name");
   while ($row = Sql_Fetch_array($req))
     if ($row["id"] != $delete)
@@ -84,7 +84,7 @@ function giveAlternative($table,$delete,$attributeid) {
   print "</select>";
   printf('<input type="hidden" name="delete" value="%d" />',$delete);
   printf('<input type="hidden" name="id" value="%d" />',$attributeid);
-  printf('<input class="submit" type="submit" name="deleteandreplace" value="%s" /><hr class="line" />',$GLOBALS['I18N']->get('deleteandreplace'));
+  printf('<input class="submit" type="submit" name="deleteandreplace" value="%s" /><hr class="line" />',$GLOBALS['I18N']->get('Delete and Replace'));
 }
 
 function deleteItem($table,$attributeid,$delete) {
@@ -115,7 +115,7 @@ function deleteItem($table,$attributeid,$delete) {
     for ($i=0;$i<sizeof($dependencies);$i++) {
       print PageLink2("user",$GLOBALS["I18N"]->get("user")." ".$dependencies[$i],"id=$dependencies[$i]")."<br />\n";
       if ($i>10) {
-        print $GLOBALS['I18N']->get('TooManyToList')."
+        print $GLOBALS['I18N']->get('* Too many to list, total dependencies:')."
  ".sizeof($dependencies)."<br /><br />";
         giveAlternative($table,$delete,$attributeid);
         return 0;
@@ -140,7 +140,7 @@ if (isset($_GET["delete"])) {
     } else {
       $errcount++;
       if ($errcount > 10) {
-        print $GLOBALS['I18N']->get('TooManyErrors')."<br /><br /><br />\n";
+        print $GLOBALS['I18N']->get('* Too many errors, quitting')."<br /><br /><br />\n";
         break;
       }
     }
@@ -164,10 +164,10 @@ if ($num < 100 && $num > 25)
   printf('<input class="submit" type="submit" name="action" value="%s" /><br />',$GLOBALS["I18N"]->get("changeorder"));
 
 while ($row = Sql_Fetch_array($rs)) {
-  printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('Delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
+  printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
   if ($num < 100)
     printf(' <input type="text" name="listorder[%d]" value="%s" size="5" class="listorder" />',$row["id"],$row["listorder"]);
-  printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? $GLOBALS['I18N']->get('Default'):"");
+  printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? $GLOBALS['I18N']->get('(default)'):"");
 }
 if ($num && $num < 100)
   printf('<input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));

@@ -16,7 +16,7 @@ if (isset($_POST["usercheck"])) {
       $id = Sql_Fetch_Array($exists);
       $lsexist->addElement($user,PageUrl2("user&amp;id=".$id["id"]));
       $lsexist->addColumn($user,$GLOBALS["I18N"]->get('email'),$id['email']);
-      $lsexist->addColumn($user,$GLOBALS["I18N"]->get('key'),$id['foreignkey']);
+      $lsexist->addColumn($user,$GLOBALS["I18N"]->get('key'),$id['Foreign Key']);
     } else {
       $lsnonexist->addElement($user);
     }

@@ -48,15 +48,15 @@ if (!$_POST["remote_host"] ||
   !$_POST["remote_user"] ||
   !$_POST["remote_password"] || !$_POST["remote_database"]) {
   printf( '
-  <p class="information">'.$GLOBALS['I18N']->get('remote_server').'</p>
+  <p class="information">'.$GLOBALS['I18N']->get('Please enter details of the remote Server').'</p>
   <form method="post">
   <table class="importForm">
-  <tr><td>'.$GLOBALS['I18N']->get('server').'</td><td><input type="text" name="remote_host" value="%s" size="30"></td></tr>
+  <tr><td>'.$GLOBALS['I18N']->get('Server:').'</td><td><input type="text" name="remote_host" value="%s" size="30"></td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('user').'</td><td><input type="text" name="remote_user" value="%s" size="30"></td></tr>
-  <tr><td>'.$GLOBALS['I18N']->get('passwd').'</td><td><input type="text" name="remote_password" value="%s" size="30"></td></tr>
-  <tr><td>'.$GLOBALS['I18N']->get('database').'</td><td><input type="text" name="remote_database" value="%s" size="30"></td></tr>
-  <tr><td>'.$GLOBALS['I18N']->get('table_prefix').'</td><td><input type="text" name="remote_prefix" value="%s" size="30"></td></tr>
-  <tr><td>'.$GLOBALS['I18N']->get('usertable_prefix').'</td><td><input type="text" name="remote_userprefix" value="%s" size="30"></td></tr>
+  <tr><td>'.$GLOBALS['I18N']->get('Password:').'</td><td><input type="text" name="remote_password" value="%s" size="30"></td></tr>
+  <tr><td>'.$GLOBALS['I18N']->get('Database Name:').'</td><td><input type="text" name="remote_database" value="%s" size="30"></td></tr>
+  <tr><td>'.$GLOBALS['I18N']->get('Table prefix:').'</td><td><input type="text" name="remote_prefix" value="%s" size="30"></td></tr>
+  <tr><td>'.$GLOBALS['I18N']->get('Usertable prefix:').'</td><td><input type="text" name="remote_userprefix" value="%s" size="30"></td></tr>
   ',$_POST["remote_server"],$_POST["remote_user"],$_POST["remote_password"],
   $_POST["remote_database"],$_POST["remote_prefix"],$_POST["remote_userprefix"]);
   $c = 0;
@@ -70,11 +70,11 @@ if (!$_POST["remote_host"] ||
     $c++;
   }
   printf('
-  <li><input type="checkbox" name="copyremotelists" value="yes" %s>'.$GLOBALS['I18N']->get('copy_lists').'</li>
+  <li><input type="checkbox" name="copyremotelists" value="yes" %s>'.$GLOBALS['I18N']->get('Copy lists from remote server (lists are matched by name)').'</li>
   </ul></td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('users_as_html').'</td><td><input type="checkbox" name="markhtml" value="yes" %s></td></tr>
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('info_overwrite_existing').'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('overwrite_existing').'</td><td><input type="checkbox" name="overwrite" value="yes" %s></td></tr>
+<tr><td>'.$GLOBALS['I18N']->get('Mark new users as HTML:').'</td><td><input type="checkbox" name="markhtml" value="yes" %s></td></tr>
+<tr><td colspan="2">'.$GLOBALS['I18N']->get('If you check "Overwrite Existing", information about a user in the database will be replaced by the imported information. Users are matched by email.').'</td></tr>
+<tr><td>'.$GLOBALS['I18N']->get('Overwrite Existing:').'</td><td><input type="checkbox" name="overwrite" value="yes" %s></td></tr>
   <tr><td colspan="2"><p class="submit"><input type="submit" value="'.$GLOBALS['I18N']->get('continue').'"></p></td></tr>
   </table></form>
   ',$_POST["copyremotelists"] == "yes"?"checked":"",$_POST["markhtml"] == "yes"?"checked":"",$_POST["overwrite"] == "yes"?"checked":""
@@ -83,11 +83,11 @@ if (!$_POST["remote_host"] ||
   set_time_limit(600);
   ob_end_flush();
   include_once("structure.php");
-  print $GLOBALS['I18N']->get('connecting_remote')."<br/>";
+  print $GLOBALS['I18N']->get('Making connection with remote database')."<br/>";
   flush();
   $remote = connectRemote();
   if (!$remote) {
-    Fatal_Error($GLOBALS['I18N']->get('cant_connect'));
+    Fatal_Error($GLOBALS['I18N']->get('cannot connect to remote database'));
     return;
   }
   $remote_tables = array(
@@ -98,24 +98,24 @@ if (!$_POST["remote_host"] ||
     "user_attribute" => $_POST["remote_userprefix"] . "user_attribute",
     "config" => $_POST["remote_prefix"] . "config",
   );
-  print $GLOBALS['I18N']->get('getting_data').$_POST["remote_database"]."@".$_POST["remote_host"]."<br/>";
+  print $GLOBALS['I18N']->get('Getting data from ').$_POST["remote_database"]."@".$_POST["remote_host"]."<br/>";
 
   $query = "select value from {$remote_tables["config"]} where item = ?";
   $rs = Sql_Query_Params($query, array('version'));
   $version = Sql_Fetch_Row($rs);
-  print $GLOBALS['I18N']->get('remote_version')." $version[0]<br/>\n";
+  print $GLOBALS['I18N']->get('Remote version is')." $version[0]<br/>\n";
   $usercnt = Sql_Fetch_Row_Query("select count(*) from {$remote_tables["user"]}");
-  print $GLOBALS['I18N']->get('remote_has')." $usercnt[0] ".$GLOBALS['I18N']->get('users')."<br/>";
+  print $GLOBALS['I18N']->get('Remote version has')." $usercnt[0] ".$GLOBALS['I18N']->get('users')."<br/>";
   if (!$usercnt[0]) {
-    Fatal_Error($GLOBALS['I18N']->get('no_users_to_copy'));
+    Fatal_Error($GLOBALS['I18N']->get('No users to copy, is the prefix correct?'));
     return;
   }
   $totalusers = $usercnt[0];
   $listcnt = Sql_Fetch_Row_Query("select count(*) from {$remote_tables["list"]}");
-  print $GLOBALS['I18N']->get('remote_has')." $listcnt[0] ".$GLOBALS['I18N']->get('lists')."<br/>";
+  print $GLOBALS['I18N']->get('Remote version has')." $listcnt[0] ".$GLOBALS['I18N']->get('lists')."<br/>";
 
   flush();
-  print '<h3>'.$GLOBALS['I18N']->get('copying_lists').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Copying lists').'</h3>';
   # first copy the lists across
   $listmap = array();
   $remote_lists = array();
@@ -131,7 +131,7 @@ if (!$_POST["remote_host"] ||
     $localid_req = Sql_Fetch_Row($rs);
     if ($localid_req[0]) {
       $listmap[$list["id"]] = $localid_req[0];
-       print $GLOBALS['I18N']->get('list').' '.$list["name"] .$GLOBALS['I18N']->get('exists_locally')." <br/>\n";
+       print $GLOBALS['I18N']->get('list').' '.$list["name"] .$GLOBALS['I18N']->get('exists locally')." <br/>\n";
     } elseif ($_POST["copyremotelists"]) {
       # BUG  This query is probably busted.  As they say in math,
       # this one is left as an exercise for the reader.
@@ -142,16 +142,16 @@ if (!$_POST["remote_host"] ||
          }
        }
       $query = substr($query,0,-1);
-       print $GLOBALS['I18N']->get('list')." ".$list["name"] .$GLOBALS['I18N']->get('created_locally')." <br/>\n";
+       print $GLOBALS['I18N']->get('list')." ".$list["name"] .$GLOBALS['I18N']->get('created locally')." <br/>\n";
       Sql_Query("insert into {$tables["list"]} set $query");
       $listmap[$list["id"]] = Sql_Insert_Id($tables['list'], 'id');
     } else {
-       print $GLOBALS['I18N']->get('remote_list')." ".$list["name"] .$GLOBALS['I18N']->get('not_created')." <br/>\n";
+       print $GLOBALS['I18N']->get('Remote list')." ".$list["name"] .$GLOBALS['I18N']->get('not created')." <br/>\n";
     }
   }
 
   connectRemote();
-  print '<h3>'.$GLOBALS['I18N']->get('copying_attribs').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Copying attributes').'</h3>';
   # now copy the attributes
   $attributemap = array();
   $remote_atts = array();
@@ -167,7 +167,7 @@ if (!$_POST["remote_host"] ||
     $localid_req = Sql_Fetch_Row($rs);
     if ($localid_req[0]) {
       $attributemap[$att["id"]] = $localid_req[0];
-       print $GLOBALS['I18N']->get('attrib')." ".$att["name"] .$GLOBALS['I18N']->get('exists_locally')." <br/>\n";
+       print $GLOBALS['I18N']->get('Attribute')." ".$att["name"] .$GLOBALS['I18N']->get('exists locally')." <br/>\n";
     } else {
       $query = "";
       foreach ($DBstruct["attribute"] as $colname => $colspec) {
@@ -177,7 +177,7 @@ if (!$_POST["remote_host"] ||
          }
        }
       $query = substr($query,0,-1);#
-       print $GLOBALS['I18N']->get('attrib')." ".$att["name"].$GLOBALS['I18N']->get('created_locally')." <br/>\n";
+       print $GLOBALS['I18N']->get('Attribute')." ".$att["name"].$GLOBALS['I18N']->get('created locally')." <br/>\n";
       Sql_Query("insert into {$tables["attribute"]} set $query");
       $attributemap[$att["id"]] = Sql_Insert_Id($tables['attribute'], 'id');
       if ($att["type"] == "select" || $att["type"] == "radio" || $att["type"] == "checkboxgroup") {
@@ -201,7 +201,7 @@ if (!$_POST["remote_host"] ||
     }
   }
 
-  print '<h3>'.$GLOBALS['I18N']->get('copying_users').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Copying users').'</h3>';
   # copy the users
   $usercnt = 0;
   $existcnt = 0;
@@ -223,19 +223,19 @@ if (!$_POST["remote_host"] ||
     $exists = Sql_Fetch_Row($rs);
     if ($exists[0]) {
       $existcnt++;
-  #    print $user["email"] .$GLOBALS['I18N']->get('exists_locally')." ..";
+  #    print $user["email"] .$GLOBALS['I18N']->get('exists locally')." ..";
       if ($_POST["overwrite"]) {
-  #      print " .. ".$GLOBALS['I18N']->get('overwrite_local')."<br/>";
+  #      print " .. ".$GLOBALS['I18N']->get('overwriting local data')."<br/>";
         # BUG
         $query = "replace into ".$tables["user"] . " set id = ".$exists[0].", ";
       } else {
-  #      print " .. ".$GLOBALS['I18N']->get('keep_local')."<br/>";
+  #      print " .. ".$GLOBALS['I18N']->get('keeping local data')."<br/>";
       }
       $userid = $exists[0];
     } else {
       $newcnt++;
       $new = 1;
-  #    print $user["email"] .$GLOBALS['I18N']->get('new_user')."<br/>";
+  #    print $user["email"] .$GLOBALS['I18N']->get('is a new user')."<br/>";
       $query = "insert into ".$tables["user"]. " set ";
     }
     if ($query) {
@@ -296,7 +296,7 @@ if (!$_POST["remote_host"] ||
       foreach ($useratt as $att) {
         $localattid = $attributemap[$att["attributeid"]];
         if (!localattid) {
-          print $GLOBALS['I18N']->get('no_mapped_attrib')." ".$att["name"]."<br/>";
+          print $GLOBALS['I18N']->get('Error, no mapped attribute for')." ".$att["name"]."<br/>";
         } else {
           $query = "select tablename from {$tables["attribute"]} where id = ?";
           $rs = Sql_Query_Params($query, array($localattid));
@@ -348,7 +348,7 @@ if (!$_POST["remote_host"] ||
       if ($listmap[$list["listid"]]) {
         Sql_Replace($tables["listuser"], array('listid' => $listmap[$list["listid"]], 'userid' => $userid), array('userid', 'listid'));
        } else {
-        print $GLOBALS['I18N']->get('no_local_list')." ".$list["name"]."<br/>";
+        print $GLOBALS['I18N']->get('Error, no local list defined for')." ".$list["name"]."<br/>";
       }
     }
   }

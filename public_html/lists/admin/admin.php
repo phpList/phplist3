@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 $start = sprintf('%d',!empty($_GET['start'])?$_GET['start']:0);
-print PageLink2("admins",$GLOBALS['I18N']->get('listofadministrators'),"start=$start");
+print PageLink2("admins",$GLOBALS['I18N']->get('List of Administrators'),"start=$start");
 
 require dirname(__FILE__) . "/structure.php";
 
@@ -220,7 +220,7 @@ print '<tr><td colspan="2"><input class="submit" type="submit" name="change" val
 
 # what pages can this administrator see:
 if (!$data["superuser"] && $accesslevel == "all") {
-  print $I18N->get('strAccessExplain');
+  print $I18N->get(' Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the "user", "users" and "members" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long ');
   print '<p class="details">'.$GLOBALS['I18N']->get('Access Details').':</p><table class="adminAccess" border="1">';
   reset($access_levels);
   printf ('<tr><td colspan="%d" align="center">'.$GLOBALS['I18N']->get('Access Privileges').'</td></tr>',sizeof($access_levels)+2);

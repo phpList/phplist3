@@ -141,7 +141,7 @@ if (USE_LIST_EXCLUDE) {
   if (!isset($messagedata['excludelist']) || !is_array($messagedata['excludelist'])) {
     $messagedata['excludelist'] = array();
   }
-  $list_content .= listSelectHTML($messagedata['excludelist'],'excludelist',$subselect,$GLOBALS['I18N']->get('excludelistexplain'));
+  $list_content .= listSelectHTML($messagedata['excludelist'],'excludelist',$subselect,$GLOBALS['I18N']->get('The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here.'));
 }
 
 $list_content .= '</div>'; ## close accordion

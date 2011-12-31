@@ -32,7 +32,7 @@ if ($delete) {
     $tables["subscribepage"],$delete));
   Sql_Query(sprintf('delete from %s where id = %d',
     $tables["subscribepage_data"],$delete));
-   Info($GLOBALS['I18N']->get('deleted')." $delete");
+   Info($GLOBALS['I18N']->get('Deleted')." $delete");
 }
 print formStart('name="pagelist" class="spageEdit" ');
 $ls = new WebblerListing($GLOBALS['I18N']->get('subscribe pages'));
@@ -59,6 +59,6 @@ while ($p = Sql_Fetch_Array($req)) {
   }
 }
 print $ls->display();
-print '<p class="button">'.PageLink2("spageedit",$GLOBALS['I18N']->get('add_new')).'</p>';
+print '<p class="button">'.PageLink2("spageedit",$GLOBALS['I18N']->get('Add a new one')).'</p>';
 ?>
 </form>

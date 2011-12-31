@@ -36,13 +36,13 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
   while(list($key,$val) = each($selected)) {
     $entry = readentry("data/$val");
     list($name,$desc) = explode(":",$entry);
-    print "<br/><br/>".$GLOBALS['I18N']->get('loading')." $desc<br/>\n";
+    print "<br/><br/>".$GLOBALS['I18N']->get('Loading')." $desc<br/>\n";
     $lc_name = str_replace(" ","", strtolower(str_replace(".txt","",$val)));
     $lc_name = preg_replace("/[\W]/","",$lc_name);
 
-    if ($lc_name == "") Fatal_Error($GLOBALS['I18N']->get('name_empty')." $lc_name");
+    if ($lc_name == "") Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty:')." $lc_name");
     Sql_Query("select * from {$tables['attribute']} where tablename = \"$lc_name\"");
-    if (Sql_Affected_Rows()) Fatal_Error($GLOBALS['I18N']->get('name_not_unique'));
+    if (Sql_Affected_Rows()) Fatal_Error($GLOBALS['I18N']->get('Name is not unique enough'));
 
     $query = sprintf('insert into %s (name,type,required,tablename) values("%s","%s",%d,"%s")',
     $tables["attribute"],addslashes($name),"select",1,$lc_name);
@@ -86,7 +86,7 @@ while (list($key,$attribute) = each ($attributes)) {
     }
   }
 }
-print '<input class="submit" type="submit" value="'.$GLOBALS['I18N']->get('add').'" /></form>';
+print '<input class="submit" type="submit" value="'.$GLOBALS['I18N']->get('Add').'" /></form>';
 
 }
 ?>

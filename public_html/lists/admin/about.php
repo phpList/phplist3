@@ -34,7 +34,7 @@
       <?php echo $GLOBALS['I18N']->get('credits for this translation') ?>
     </ul>
     <p class="greetings">
-        <?php echo $GLOBALS['I18N']->get('thankseveryone')?>
+        <?php echo $GLOBALS['I18N']->get('The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions.')?>
     </p>
     <b><?php echo $GLOBALS['I18N']->get('Portions of the system include')?></b>
     <ul class="aboutSystem">

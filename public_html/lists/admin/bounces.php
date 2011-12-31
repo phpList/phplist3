@@ -115,7 +115,7 @@ while ($bounce = Sql_fetch_array($result)) {
    %s ] </td><td>%s</td><td>%s</td><td>%s</td></tr>\n",
    PageURL2("bounces",$GLOBALS['I18N']->get('delete'),"s=$start&amp;delete=".$bounce["id"]),
    $GLOBALS['I18N']->get('delete'),
-   PageLinkButton("bounce",$GLOBALS['I18N']->get('show'),"s=$start&amp;id=".$bounce["id"]),
+   PageLinkButton("bounce",$GLOBALS['I18N']->get('Show'),"s=$start&amp;id=".$bounce["id"]),
    $messageid,
    $userid,
    $bounce["date"]

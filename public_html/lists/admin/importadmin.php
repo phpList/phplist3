@@ -140,7 +140,7 @@ if(!empty($_POST['import'])) {
   // View test output of emails
   if($test_import) {
   	
-    print $GLOBALS['I18N']->get('testoutputinfo');
+    print $GLOBALS['I18N']->get('Test output:There should only be ONE email per line.If the output looks ok, go Back to resubmit for real');
     $i = 1;
     while (list($email,$data) = each ($user_list)) {
       $email = trim($email);
@@ -284,11 +284,11 @@ if (!Sql_Affected_Rows())
 </ul>
 
 <table class="importadmin" border="1">
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('importadmininfo')?></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: email, loginname, password. Any other columns will be added as admin attributes.  Warning: the file needs to be plain text. Do not upload binary files like a Word Document.   ')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('File containing emails')?>:</td><td><input type="file" name="import_file"></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Field Delimiter')?>:</td><td><input type="text" name="import_field_delimiter" size=5> (<?php echo $GLOBALS['I18N']->get('default is TAB')?>)</td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter')?>:</td><td><input type="text" name="import_record_delimiter" size=5> (<?php echo $GLOBALS['I18N']->get('default is line break')?>)</td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('importadmintestinfo')?></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Test output')?>:</td><td><input type="checkbox" name="import_test" value="yes"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Check this box to create a list for each administrator, named after their loginname')?> <input type=checkbox name="createlist" value="yes" checked></td></tr>
 <tr><td><p class="submit"><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('Do Import')?>"></p></td><td>&nbsp;</td></tr>

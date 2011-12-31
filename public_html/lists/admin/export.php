@@ -76,9 +76,9 @@ if (isset($_POST['processexport'])) {
   $fromdate= $from->getDate("from");
   $todate =  $to->getDate("to");
   if ($list)
-    $filename = sprintf($GLOBALS['I18N']->get('ExportOnList'),ListName($list),$fromdate,$todate,date("Y-M-d"));
+    $filename = sprintf($GLOBALS['I18N']->get('PHPList Export on %s from %s to %s (%s).csv'),ListName($list),$fromdate,$todate,date("Y-M-d"));
   else
-    $filename = sprintf($GLOBALS['I18N']->get('ExportFromval'),$fromdate,$todate,date("Y-M-d"));
+    $filename = sprintf($GLOBALS['I18N']->get('PHPList Export from %s to %s (%s).csv'),$fromdate,$todate,date("Y-M-d"));
   ob_end_clean();
   $filename = trim(strip_tags($filename));
 
@@ -143,7 +143,7 @@ if (isset($_POST['processexport'])) {
       $querytables,$column,$fromdate,$column,$todate,$subselect));
   }
 
-  print $GLOBALS['I18N']->get('ListMembership').$row_delim;
+  print $GLOBALS['I18N']->get('List Membership').$row_delim;
 
 # print Sql_Affected_Rows()." users apply<br/>";
 #return;
@@ -183,7 +183,7 @@ if (isset($_POST['processexport'])) {
 }
 
 if ($list)
-  print sprintf($GLOBALS['I18N']->get('ExportOn'),ListName($list));
+  print sprintf($GLOBALS['I18N']->get('Export subscribers on %s'),ListName($list));
 
 
 print formStart();
@@ -191,11 +191,11 @@ print formStart();
 
 <table class="exportForm">
 
-<tr><td><?php echo $GLOBALS['I18N']->get('DateFrom');?></td><td><?php echo $from->showInput("","",$fromdate);?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('DateTo');?> </td><td><?php echo $to->showInput("","",$todate);?></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('DateToUsed');?></td></tr>
-<tr><td><input type=radio name="column" value="entered" checked></td><td><?php echo $GLOBALS['I18N']->get('WhenSignedUp');?></td></tr>
-<tr><td><input type=radio name="column" value="modified"></td><td><?php echo $GLOBALS['I18N']->get('WhenRecordChanged');?></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('Date From:');?></td><td><?php echo $from->showInput("","",$fromdate);?></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('Date To:');?> </td><td><?php echo $to->showInput("","",$todate);?></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('What date needs to be used:');?></td></tr>
+<tr><td><input type=radio name="column" value="entered" checked></td><td><?php echo $GLOBALS['I18N']->get('When they signed up');?></td></tr>
+<tr><td><input type=radio name="column" value="modified"></td><td><?php echo $GLOBALS['I18N']->get('When the record was changed');?></td></tr>
 <tr><td><input type=radio name="column" value="historyentry"></td><td><?php echo $GLOBALS['I18N']->get('Based on changelog');?></td></tr>
 <tr><td><input type=radio name="column" value="listentered"></td><td><?php echo $GLOBALS['I18N']->get('When they subscribed to');?>
 <select name="list">
@@ -208,7 +208,7 @@ while ($row = Sql_Fetch_Array($req)) {
 </select>
 </td></tr>
 </td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('SelectColToIn');?></td></tr>
+<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Select the columns to include in the export');?></td></tr>
 
 <?php
   $cols = array();

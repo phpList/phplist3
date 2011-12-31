@@ -82,11 +82,11 @@ $content = '<table class="messageView">';
 while ($msg = Sql_fetch_array($result)) {
   foreach($DBstruct["message"] as $field => $val) {
     # Correct for bug 0009687
-    # Skip 'astextandhtml' and add this count to 'ashtml'
+    # Skip 'astextandhtml' and add this count to 'as html'
     # change the name of sendformat
-    if ($field != 'ashtml') {
+    if ($field != 'as html') {
       if ($field == 'astextandhtml') {
-        $field = 'ashtml';
+        $field = 'as html';
         $msg[$field] += $msg['astextandhtml'];
       };
       if ($field == 'sendformat' and $msg[$field] = 'text and HTML')
