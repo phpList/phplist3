@@ -76,7 +76,7 @@ $baseurl = '';
 
 if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
   if (!$id)
-    $msg = $GLOBALS['I18N']->get("No such template");
+    $msg = $GLOBALS['I18N']->get('No such template');
   else {
     $content_req = Sql_Fetch_Row_Query("select template from {$tables["template"]} where id = $id");
     $images = getTemplateImages($content_req[0]);
@@ -87,9 +87,9 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
        # printf('Image name: <b>%s</b> (%d times used)<br />',$key,$val);
         $image->uploadImage($key,$id);
       }
-      $msg = $GLOBALS['I18N']->get("Images stored");
+      $msg = $GLOBALS['I18N']->get('Images stored');
     } else
-      $msg = $GLOBALS['I18N']->get("No images found");
+      $msg = $GLOBALS['I18N']->get('No images found');
   }
   print '<p class="information">'.$msg.'</p>';
   return;
@@ -104,7 +104,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       foreach ($images as $key => $val) {
         if (!preg_match("#^https?://#i",$key)) {
           if ($checkfullimages) {
-            print $GLOBALS['I18N']->get("Image")." $key => ".$GLOBALS['I18N']->get("not full URL")."<br/>\n";
+            print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('"not full URL')."<br/>\n";
             $templateok = 0;
            }
         } else {
@@ -112,12 +112,12 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
             if ($cantestremoteimages) {
               $fp = @fopen($key,"r");
               if (!$fp) {
-                print $GLOBALS['I18N']->get("Image")." $key => ".$GLOBALS['I18N']->get("does not exist")."<br/>\n";
+                print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
                 $templateok = 0;
               }
               @fclose($fp);
             } else {
-              print $GLOBALS['I18N']->get("Image")." $key => ".$GLOBALS['I18N']->get('cannot check, "allow_url_fopen" disabled in PHP settings')."<br/>\n";
+              print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('cannot check, "allow_url_fopen" disabled in PHP settings')."<br/>\n";
             }
           }
         }
@@ -127,14 +127,14 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $links = getTemplateLinks($content);
       foreach ($links as $key => $val) {
         if (!preg_match("#^https?://#i",$val) && !preg_match("#^mailto:#i",$val)) {
-           print $GLOBALS['I18N']->get("Not a full URL:")." $val<br/>\n";
+           print $GLOBALS['I18N']->get('Not a full URL').": $val<br/>\n";
            $templateok = 0;
          }
       }
     }
   } else {
-    if (!$title) print $GLOBALS['I18N']->get("No Title")."<br/>";
-    else print $GLOBALS['I18N']->get("Template does not contain the [CONTENT] placeholder")."<br/>";
+    if (!$title) print $GLOBALS['I18N']->get('No Title')."<br/>";
+    else print $GLOBALS['I18N']->get('Template does not contain the [CONTENT] placeholder')."<br/>";
     $templateok = 0;
   }
   if ($templateok) {
@@ -152,33 +152,33 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $tables["templateimage"],$id,"image/png","powerphplist.png",
       $newpoweredimage,
       70,30));
-    print '<p class="information">'.$GLOBALS['I18N']->get("Template saved").'</p>';
+    print '<p class="information">'.$GLOBALS['I18N']->get('Template saved').'</p>';
 
     if (sizeof($images)) {
       include dirname(__FILE__) . "/class.image.inc";
       $image = new imageUpload();
-      print "<h3>".$GLOBALS['I18N']->get("Images").'</h3><p class="information">'.$GLOBALS['I18N']->get("Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.")."</p>";
-      print '<p class="information">'.$GLOBALS['I18N']->get("This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template.")."</p>";
+      print "<h3>".$GLOBALS['I18N']->get('Images').'</h3><p class="information">'.$GLOBALS['I18N']->get('Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.')."</p>";
+      print '<p class="information">'.$GLOBALS['I18N']->get('This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template.')."</p>";
       print formStart('enctype="multipart/form-data" class="template1" ');
       print '<input type="hidden" name="id" value="'.$id.'" />';
       ksort($images);
       reset($images);
       while (list($key,$val) = each ($images)) {
-        printf($GLOBALS['I18N']->get("Image name:").' <b>%s</b> (%d '.$GLOBALS['I18N']->get("times used").')<br/>',$key,$val);
+        printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',$key,$val);
         print $image->showInput($key,$val,$id);
       }
 
       print '<input type="hidden" name="id" value="'.$id.'" /><input type="hidden" name="action" value="addimages" />
-        <input class="submit" type="submit" name="addimages" value="'.$GLOBALS['I18N']->get("Save Images").'" /></form>';
+        <input class="submit" type="submit" name="addimages" value="'.$GLOBALS['I18N']->get('Save Images').'" /></form>';
       if (empty($_POST['sendtest'])) return;
   #    return;
     } else {
-      print '<p class="information">'.$GLOBALS['I18N']->get("Template does not contain local images")."</p>";
+      print '<p class="information">'.$GLOBALS['I18N']->get('Template does not contain local images')."</p>";
       if (empty($_POST['sendtest'])) return;
   #    return;
     }
   } else {
-    print '<p class="information">'.$GLOBALS['I18N']->get("Some errors were found, template NOT saved!").'</p>';
+    print '<p class="information">'.$GLOBALS['I18N']->get('Some errors were found, template NOT saved!').'</p>';
     $data["title"] = $title;
     $data["template"] = $content;
   }
@@ -193,14 +193,14 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       foreach ($targetEmails as $email) {
         if (validateEmail($email)) {
           $testtarget .= $email.', ';
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Request for confirmation" to ').$email.'</p>';
+          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Request for confirmation" to').' '.$email.'</p>';
           sendMail ($email,getConfig('subscribesubject'),getConfig('subscribemessage'));
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Welcome" to ').$email.'</p>';
+          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Welcome" to').' '.$email.'</p>';
           sendMail ($email,getConfig('confirmationsubject'),getConfig('confirmationmessage'));
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Unsubscribe confirmation" to ').$email.'</p>';
+          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Unsubscribe confirmation" to').' '.$email.'</p>';
           sendMail ($email,getConfig('unsubscribesubject'),getConfig('unsubscribemessage'));
         } elseif (trim($email) != '') {
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Eror sending test messages to ').$email.'</p>';
+          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Error sending test messages to').' '.$email.'</p>';
         }
       }
     } else {
@@ -228,7 +228,7 @@ if ($id) {
 ?>
 
 <p class="information"><?php echo $msg?></p>
-<?php echo '<p class="button">'.PageLink2("templates",$GLOBALS['I18N']->get("List of Templates")).'</p>';?>
+<?php echo '<p class="button">'.PageLink2("templates",$GLOBALS['I18N']->get('List of Templates')).'</p>';?>
 
 <?php echo formStart(' enctype="multipart/form-data" class="template2" ')?>
 <input type="hidden" name="id" value="<?php echo $id?>" />
