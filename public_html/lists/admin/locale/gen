@@ -1,0 +1,1 @@
+msgfmt -cv -o phplist.mo phplist.po.new -v
