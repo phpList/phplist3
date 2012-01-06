@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-05 19:32-0300\n"
+"POT-Creation-Date: 2012-01-05 19:06-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -25,11 +25,11 @@ msgstr "Statistics"
 
 #: admin/import1.php:7
 msgid "import is not available"
-msgstr ""
+msgstr "importazione non disponibile"
 
 #: admin/import1.php:29
 msgid "The temporary directory for uploading is not writable, so import will fail"
-msgstr ""
+msgstr "La cartella temporanea per l'upload non &egrave; scrivibile, l'operazione di importazione fallir&agrave;"
 
 #: admin/import1.php:39
 msgid "No file was specified. Maybe the file is too big?"
@@ -37,128 +37,128 @@ msgstr ""
 
 #: admin/import1.php:43
 msgid "File is either too large or does not exist."
-msgstr ""
+msgstr "Il file &egrave; troppo grande o non esiste."
 
 #: admin/import1.php:47
 msgid "File too big, please split it up into smaller ones"
-msgstr ""
+msgstr "File troppo grande, dividerlo in file pi&ugrave; piccoli"
 
 #: admin/import1.php:59
 msgid "Please choose whether to sign up immediately or to send a notification"
-msgstr ""
+msgstr "Scegli se iscrivere subito l'utente oppure se inviare una email di notifica con conferma iscrizione"
 
 #: admin/import1.php:69
 msgid "Cannot read file. It is not readable !"
-msgstr ""
+msgstr "File non leggibile!"
 
 #: admin/import1.php:75
 msgid "Something went wrong while uploading the file. Empty file received. Maybe the file is too big, or you have no permissions to read it."
-msgstr ""
+msgstr "C'&eacute; stato un errore durante l'upload. Il file risulta vuoto. Probabilmente &egrave; troppo grande, o non hai i permessi per leggerlo."
 
 #: admin/import1.php:125
 #: admin/import1.php:356
 msgid "Test output:"
-msgstr ""
+msgstr "Test output:"
 
 #: admin/import1.php:125
 msgid "There should only be ONE email per line."
-msgstr ""
+msgstr "Ci deve essere <b>un solo</b> indirizzo email per riga."
 
 #: admin/import1.php:125
 msgid "If the output looks ok, go"
-msgstr ""
+msgstr "Se l'output sembra valido, procedi"
 
 #: admin/import1.php:125
 msgid "back"
-msgstr ""
+msgstr "indietro"
 
 #: admin/import1.php:125
 msgid " to resubmit for real"
-msgstr ""
+msgstr " riprova"
 
 #: admin/import1.php:194
 msgid "Import of existing subscriber"
-msgstr ""
+msgstr "Importo un utente esistente"
 
 #: admin/import1.php:220
 msgid "Import of new subscriber"
-msgstr ""
+msgstr "Importo nuovo utente"
 
 #: admin/import1.php:265
 msgid "No data changed"
-msgstr ""
+msgstr "Dati utente non cambiati"
 
 #: admin/import1.php:272
 msgid "List subscriptions:"
-msgstr ""
+msgstr "Lista iscrizioni"
 
 #: admin/import1.php:274
 msgid "Was subscribed to:"
-msgstr ""
+msgstr "Era iscritto a"
 
 #: admin/import1.php:277
 msgid "Is now subscribed to:"
-msgstr ""
+msgstr "E' ora iscritto a"
 
 #: admin/import1.php:280
 msgid "Not subscribed to any lists"
-msgstr ""
+msgstr "Non iscritto in nessuna lista"
 
 #: admin/import1.php:283
 msgid "Import by "
-msgstr ""
+msgstr "Importa da "
 
 #: admin/import1.php:290
 msgid "list"
-msgstr ""
+msgstr "lista"
 
 #: admin/import1.php:290
 msgid "lists"
-msgstr ""
+msgstr "liste"
 
 #: admin/import1.php:291
 msgid "new email was"
-msgstr ""
+msgstr "la nuova email era"
 
 #: admin/import1.php:291
 msgid "new emails were"
-msgstr ""
+msgstr "le nuove email erano"
 
 #: admin/import1.php:292
 msgid "email was"
-msgstr ""
+msgstr "email era"
 
 #: admin/import1.php:292
 msgid "emails were"
-msgstr ""
+msgstr "email erano"
 
 #: admin/import1.php:295
 msgid "emails existed in the database"
-msgstr ""
+msgstr "email gi&agrave; presenti nel database"
 
 #: admin/import1.php:298
 msgid "All the emails already exist in the database."
-msgstr ""
+msgstr "Tutte le  email sono gi&agrave; presenti nel database."
 
 #: admin/import1.php:300
 msgid "succesfully imported to the database and added to"
-msgstr ""
+msgstr "Importati con successo nel database e aggiunti a"
 
 #: admin/import1.php:300
 msgid "subscribed to the"
-msgstr ""
+msgstr "inscritte"
 
 #: admin/import1.php:307
 msgid "Import some more emails"
-msgstr ""
+msgstr "Importa altri email"
 
 #: admin/import1.php:333
 msgid "adding_users"
-msgstr ""
+msgstr "Sto aggiungendo gli utenti alla lista"
 
 #: admin/import1.php:335
 msgid "select_lists"
-msgstr ""
+msgstr "Seleziona le liste a cui aggiungere gli indirizzi email"
 
 #: admin/import1.php:353
 msgid "The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute \"Info\" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document."
@@ -166,7 +166,7 @@ msgstr ""
 
 #: admin/import1.php:354
 msgid "File containing emails:"
-msgstr ""
+msgstr "Il file contiene le email:"
 
 #: admin/import1.php:355
 msgid "If you check \"Test Output\", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records."
@@ -178,11 +178,11 @@ msgstr ""
 
 #: admin/import1.php:358
 msgid "Send Notification email"
-msgstr ""
+msgstr "Manda&nbsp;Notifiche&nbsp;per&nbsp;email&nbsp;"
 
 #: admin/import1.php:358
 msgid "Make confirmed immediately"
-msgstr ""
+msgstr "Conferma Immediatamente&nbsp;"
 
 #: admin/import1.php:359
 msgid "If you are going to send notification to users, you may want to add a little delay between messages"
@@ -198,24 +198,24 @@ msgstr ""
 
 #: admin/import1.php:366
 msgid "import"
-msgstr ""
+msgstr "Importa"
 
 #: admin/purgerss.php:11
 msgid "Sorry, only super users can purge RSS items from the database"
-msgstr ""
+msgstr "Solo un super-user pu&ograve; cancellare gli RSS dal database"
 
 #: admin/purgerss.php:24
 #, php-format
 msgid "%d RSS items purged"
-msgstr ""
+msgstr "Cancellati %d elementi RSS"
 
 #: admin/purgerss.php:27
 msgid "Purge RSS items from database"
-msgstr ""
+msgstr "Elimina RSS dal database"
 
 #: admin/purgerss.php:28
 msgid "Enter the number of days to go back purging entries"
-msgstr ""
+msgstr "Inserisci il numero di giorni da cui far partire l'eliminazione"
 
 #: admin/purgerss.php:29
 msgid "All entries that are older than the number of days you enter will be purged."
@@ -224,51 +224,51 @@ msgstr ""
 #: admin/adminattributes.php:5
 #: admin/adminattributes.php:107
 msgid "Save Changes"
-msgstr ""
+msgstr "Salva modifiche"
 
 #: admin/adminattributes.php:12
 msgid "Name cannot be empty:"
-msgstr ""
+msgstr "Il nome non pu&ograve; essere vuoto:"
 
 #: admin/adminattributes.php:14
 msgid "Name is not unique enough"
-msgstr ""
+msgstr "Il nome non &egrave; sufficientemente unico"
 
 #: admin/adminattributes.php:74
 msgid "Existing attributes:"
-msgstr ""
+msgstr "Attributi esistenti:<p>"
 
 #: admin/adminattributes.php:76
 msgid "No Attributes have been defined yet"
-msgstr ""
+msgstr "Nessun attributo &egrave; stato ancora definito<br>"
 
 #: admin/adminattributes.php:81
 msgid "Attribute:"
-msgstr ""
+msgstr "Attributi:"
 
 #: admin/adminattributes.php:81
 msgid "Delete"
-msgstr ""
+msgstr "Cancella"
 
 #: admin/adminattributes.php:82
 #: admin/adminattributes.php:93
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: admin/adminattributes.php:83
 #: admin/adminattributes.php:94
 msgid "Type"
-msgstr ""
+msgstr "Tipo:"
 
 #: admin/adminattributes.php:84
 #: admin/adminattributes.php:102
 msgid "Default Value:"
-msgstr ""
+msgstr "Valore di default:"
 
 #: admin/adminattributes.php:85
 #: admin/adminattributes.php:103
 msgid "Order of Listing:"
-msgstr ""
+msgstr "Ordinamento:"
 
 #: admin/adminattributes.php:86
 #: admin/adminattributes.php:104
@@ -277,11 +277,11 @@ msgstr ""
 
 #: admin/adminattributes.php:91
 msgid "Add a new Attribute:"
-msgstr ""
+msgstr "Aggiungi un nuovo attributo:"
 
 #: admin/send_core.php:128
 msgid "noaccess"
-msgstr ""
+msgstr "Nessun messaggio, o non hai accesso a questo messaggio"
 
 #: admin/send_core.php:135
 #: admin/send_core.php:1093
@@ -333,7 +333,7 @@ msgstr ""
 
 #: admin/send_core.php:374
 msgid "processqueue"
-msgstr ""
+msgstr "inviacoda"
 
 #: admin/send_core.php:376
 msgid "view progress"
@@ -379,11 +379,11 @@ msgstr ""
 #: admin/initialise.php:65
 #: admin/initialise.php:109
 msgid "failed"
-msgstr ""
+msgstr "fallito"
 
 #: admin/send_core.php:448
 msgid "success"
-msgstr ""
+msgstr "successo"
 
 #: admin/send_core.php:452
 msgid "emailnotfound"
@@ -401,7 +401,7 @@ msgstr ""
 #: admin/send_core.php:519
 #: admin/send_core.php:620
 msgid "Content"
-msgstr ""
+msgstr "Contenuto"
 
 #: admin/send_core.php:499
 msgid "Text"
@@ -413,15 +413,15 @@ msgstr ""
 
 #: admin/send_core.php:504
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #: admin/send_core.php:506
 msgid "Attach"
-msgstr ""
+msgstr "allega"
 
 #: admin/send_core.php:508
 msgid "Scheduling"
-msgstr ""
+msgstr "Programmazione"
 
 #: admin/send_core.php:513
 msgid "Lists"
@@ -442,7 +442,7 @@ msgstr ""
 #: admin/send_core.php:609
 #: admin/send_core.php:644
 msgid "Subject"
-msgstr ""
+msgstr "Oggetto"
 
 #: admin/send_core.php:612
 msgid "fromline"
@@ -503,7 +503,7 @@ msgstr ""
 
 #: admin/send_core.php:679
 msgid "repeatuntil"
-msgstr ""
+msgstr "Ripeti fino a"
 
 #: admin/send_core.php:686
 msgid "requeueevery"
@@ -523,11 +523,11 @@ msgstr ""
 
 #: admin/send_core.php:713
 msgid "html"
-msgstr ""
+msgstr "html"
 
 #: admin/send_core.php:716
 msgid "text"
-msgstr ""
+msgstr "testo"
 
 #: admin/send_core.php:742
 msgid "usetemplate"
@@ -571,24 +571,24 @@ msgstr ""
 
 #: admin/send_core.php:873
 msgid "filename"
-msgstr ""
+msgstr "nome del file"
 
 #: admin/send_core.php:874
 msgid "desc"
-msgstr ""
+msgstr "disc"
 
 #: admin/send_core.php:875
 msgid "size"
-msgstr ""
+msgstr "grandezza"
 
 #: admin/send_core.php:878
 #: admin/send_core.php:880
 msgid "file"
-msgstr ""
+msgstr "file"
 
 #: admin/send_core.php:882
 msgid "del"
-msgstr ""
+msgstr "Canc"
 
 #: admin/send_core.php:884
 msgid "delchecked"
@@ -604,7 +604,7 @@ msgstr ""
 
 #: admin/send_core.php:890
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: admin/send_core.php:890
 msgid "pathtofile"
@@ -628,16 +628,16 @@ msgstr ""
 
 #: admin/send_core.php:939
 msgid "email to alert when sending of this message starts"
-msgstr ""
+msgstr "email da avvertire quando l'invio di questo messaggio comincia:"
 
 #: admin/send_core.php:940
 #: admin/send_core.php:942
 msgid "separate multiple with a comma"
-msgstr ""
+msgstr "(separa pi&ugrave; email con una virgola)"
 
 #: admin/send_core.php:941
 msgid "email to alert when sending of this message has finished"
-msgstr ""
+msgstr "email da avvertire quando l'invio di questo messaggio &egrave; finito:"
 
 #: admin/send_core.php:948
 msgid "add Google tracking code"
@@ -690,7 +690,7 @@ msgstr ""
 
 #: admin/message.php:9
 msgid "Please select a message to display"
-msgstr ""
+msgstr "Seleziona un messaggio da visualizzare"
 
 #: admin/message.php:46
 msgid "campaign requeued"
@@ -706,35 +706,35 @@ msgstr ""
 
 #: admin/message.php:102
 msgid "Attachments for this message"
-msgstr ""
+msgstr "Allegati per questo messaggio"
 
 #: admin/message.php:107
 msgid "No attachments"
-msgstr ""
+msgstr "Nessun allegato"
 
 #: admin/message.php:109
 msgid "Filename"
-msgstr ""
+msgstr "Nome del file"
 
 #: admin/message.php:110
 msgid "Size"
-msgstr ""
+msgstr "Dimensione"
 
 #: admin/message.php:111
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipo Mime"
 
 #: admin/message.php:112
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #: admin/message.php:117
 msgid "Lists this message has been sent to"
-msgstr ""
+msgstr "Liste a cui questo messaggio &egrave; stato inviato"
 
 #: admin/message.php:122
 msgid "None yet"
-msgstr ""
+msgstr "Non ancora"
 
 #: admin/message.php:134
 msgid "Send this (same) message to (a) new list(s)"
@@ -742,11 +742,11 @@ msgstr ""
 
 #: admin/message.php:148
 msgid "List is Active"
-msgstr ""
+msgstr "Lista attiva"
 
 #: admin/message.php:150
 msgid "List is not Active"
-msgstr ""
+msgstr "Lista non attiva"
 
 #: admin/message.php:157
 msgid "<b>Note:</b> this message has already been sent to all lists. To resend it to new users use the \"Requeue\" function."
@@ -754,7 +754,7 @@ msgstr ""
 
 #: admin/message.php:159
 msgid "Resend"
-msgstr ""
+msgstr "Invia di nuovo"
 
 #: admin/viewtemplate.php:17
 msgid "Back to edit template"
@@ -766,7 +766,7 @@ msgstr ""
 
 #: admin/massunconfirm.php:5
 msgid "Sorry, this page can only be used by super admins"
-msgstr ""
+msgstr "Spiacente, questa pagina pu&ograve; essere usata solo da super amministratori"
 
 #: admin/massunconfirm.php:21
 msgid "Blacklisted by"
@@ -779,7 +779,7 @@ msgstr ""
 
 #: admin/massunconfirm.php:31
 msgid "Mass unconfirm email addresses"
-msgstr ""
+msgstr "Revoca di massa indirizzi email"
 
 #: admin/massunconfirm.php:32
 msgid "Check to also add the emails to the blacklist"
@@ -787,12 +787,12 @@ msgstr ""
 
 #: admin/massunconfirm.php:33
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
-msgstr ""
+msgstr "Incolla le emails da revocare conferma in questo box, e clicca continua"
 
 #: admin/massunconfirm.php:34
 #: admin/initialise.php:32
 msgid "Continue"
-msgstr ""
+msgstr "Continua"
 
 #: admin/bounce.php:23
 msgid "No such record"
@@ -843,19 +843,19 @@ msgstr ""
 
 #: admin/bounce.php:109
 msgid "Regular Expression"
-msgstr ""
+msgstr "Espressione Regolare"
 
 #: admin/bounce.php:110
 msgid "Action"
-msgstr ""
+msgstr "Azione"
 
 #: admin/bounce.php:116
 msgid "Memo for this rule"
-msgstr ""
+msgstr "Memorizza questa regola"
 
 #: admin/bounce.php:117
 msgid "Add new Rule"
-msgstr ""
+msgstr "Aggiungi una nuova regola"
 
 #: admin/bounce.php:123
 msgid "Possible Actions:"
@@ -899,7 +899,7 @@ msgstr ""
 
 #: admin/bounce.php:135
 msgid "Create New Rule based on this bounce"
-msgstr ""
+msgstr "Crea una nuova regola basata su questo messaggio respinto"
 
 #: admin/bounce.php:138
 msgid "Bounce Details:"
@@ -907,27 +907,27 @@ msgstr ""
 
 #: admin/bounce.php:140
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: admin/bounce.php:141
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: admin/bounce.php:142
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: admin/bounce.php:143
 msgid "Comment"
-msgstr ""
+msgstr "Commento"
 
 #: admin/bounce.php:144
 msgid "Header"
-msgstr ""
+msgstr "Intestazione"
 
 #: admin/bounce.php:145
 msgid "Body"
-msgstr ""
+msgstr "Corpo"
 
 #: admin/initialise.php:14
 msgid "Please enter your email."
@@ -947,51 +947,51 @@ msgstr ""
 
 #: admin/initialise.php:37
 msgid "Creating tables"
-msgstr ""
+msgstr "Creazione tabelle"
 
 #: admin/initialise.php:62
 msgid "Initialising table"
-msgstr ""
+msgstr "inizializzazione tabella"
 
 #: admin/initialise.php:64
 msgid "Table already exists"
-msgstr ""
+msgstr "La tabella esiste gi&agrave;"
 
 #: admin/initialise.php:106
 msgid "ok"
-msgstr ""
+msgstr "ok"
 
 #: admin/initialise.php:120
 msgid "List for testing."
-msgstr ""
+msgstr "Lista per prove."
 
 #: admin/initialise.php:130
 msgid "Success"
-msgstr ""
+msgstr "Successo"
 
 #: admin/initialise.php:130
 msgid "Tell us about it"
-msgstr ""
+msgstr "Raccontaci"
 
 #: admin/initialise.php:132
 msgid "Please make sure to read the file README.security that can be found in the zip file."
-msgstr ""
+msgstr "Per favore assicurati di leggere README.security che pu&ograve; essere trovato nel file zip."
 
 #: admin/initialise.php:134
 msgid "Please make sure to"
-msgstr ""
+msgstr "Per favore assicurati di"
 
 #: admin/initialise.php:135
 msgid "subscribe to the announcements list"
-msgstr ""
+msgstr "iscriviti alla lista degli annunci"
 
 #: admin/initialise.php:136
 msgid "to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
-msgstr ""
+msgstr "to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
 
 #: admin/initialise.php:140
 msgid "Continue with"
-msgstr ""
+msgstr "Continua con"
 
 #: admin/initialise.php:140
 msgid "phpList Setup"
@@ -999,11 +999,11 @@ msgstr ""
 
 #: admin/initialise.php:142
 msgid "Maybe you want to"
-msgstr ""
+msgstr "Forse vuoi"
 
 #: admin/initialise.php:142
 msgid "Upgrade"
-msgstr ""
+msgstr "Aggiorna"
 
 #: admin/initialise.php:142
 msgid "instead?"
@@ -1011,7 +1011,7 @@ msgstr ""
 
 #: admin/initialise.php:143
 msgid "Force Initialisation"
-msgstr ""
+msgstr "Forza l'inizializzazione"
 
 #: admin/initialise.php:143
 msgid "(will erase all data!)"
@@ -1019,94 +1019,94 @@ msgstr ""
 
 #: admin/date.php:16
 msgid "Sunday"
-msgstr ""
+msgstr "Domenica"
 
 #: admin/date.php:17
 msgid "Monday"
-msgstr ""
+msgstr "Luned&igrave;"
 
 #: admin/date.php:18
 msgid "Tuesday"
-msgstr ""
+msgstr "Marted&igrave;"
 
 #: admin/date.php:19
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercoled&igrave;"
 
 #: admin/date.php:20
 msgid "Thursday"
-msgstr ""
+msgstr "Gioved&igrave;"
 
 #: admin/date.php:21
 msgid "Friday"
-msgstr ""
+msgstr "Venerd&igrave;"
 
 #: admin/date.php:22
 msgid "Saturday"
-msgstr ""
+msgstr "Sabato"
 
 #: admin/date.php:25
 msgid "January"
-msgstr ""
+msgstr "Gennaio"
 
 #: admin/date.php:26
 msgid "February"
-msgstr ""
+msgstr "Febbraio"
 
 #: admin/date.php:27
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: admin/date.php:28
 msgid "April"
-msgstr ""
+msgstr "Aprile"
 
 #: admin/date.php:29
 msgid "May"
-msgstr ""
+msgstr "Mag"
 
 #: admin/date.php:30
 msgid "June"
-msgstr ""
+msgstr "Giugno"
 
 #: admin/date.php:31
 msgid "July"
-msgstr ""
+msgstr "Luglio"
 
 #: admin/date.php:32
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: admin/date.php:33
 msgid "September"
-msgstr ""
+msgstr "Settembre"
 
 #: admin/date.php:34
 msgid "October"
-msgstr ""
+msgstr "Ottobre"
 
 #: admin/date.php:35
 msgid "November"
-msgstr ""
+msgstr "Novembre"
 
 #: admin/date.php:36
 msgid "December"
-msgstr ""
+msgstr "Dicembre"
 
 #: admin/eventlog.php:33
 #: admin/admins.php:41
 msgid "Deleting"
-msgstr ""
+msgstr "Cancello"
 
 #: admin/eventlog.php:38
 #: admin/admins.php:45
 msgid "Done"
-msgstr ""
+msgstr "Fatto"
 
 #: admin/eventlog.php:57
 #: admin/eventlog.php:100
 msgid "Events"
-msgstr ""
+msgstr "Eventi"
 
 #: admin/eventlog.php:78
 msgid "Are you sure you want to delete all events older than 2 months?"
@@ -1122,85 +1122,85 @@ msgstr ""
 
 #: admin/eventlog.php:84
 msgid "Delete all"
-msgstr ""
+msgstr "Elimina tutto"
 
 #: admin/eventlog.php:87
 msgid "No events available"
-msgstr ""
+msgstr "Nessun evento disponibile"
 
 #: admin/eventlog.php:95
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 #: admin/eventlog.php:97
 msgid "Exclude filter"
-msgstr ""
+msgstr "Escludi il filtro"
 
 #: admin/eventlog.php:109
 msgid "page"
-msgstr ""
+msgstr "Pagina"
 
 #: admin/eventlog.php:110
 #: admin/statsoverview.php:117
 msgid "date"
-msgstr ""
+msgstr "Data"
 
 #: admin/eventlog.php:111
 msgid "message"
-msgstr ""
+msgstr "Messaggio"
 
 #: admin/languages.php:382
 msgid "over treshold, user marked unconfirmed"
-msgstr ""
+msgstr "oltre la soglia, selezioni utente non confermate"
 
 #: admin/home.php:9
 msgid "Your database is out of date, please make sure to upgrade"
-msgstr ""
+msgstr "Il database &egrave; deprecato, si prega aggiornarlo"
 
 #: admin/home.php:10
 #: admin/home.php:56
 msgid "Your version"
-msgstr ""
+msgstr "Tua versione"
 
 #: admin/home.php:11
 msgid "phplist version"
-msgstr ""
+msgstr "<a href=\"http://www.phplist.com\">phplist</a> versione"
 
 #: admin/home.php:17
 msgid "Database has not been initialised"
-msgstr ""
+msgstr "Il Database non &egrave; correttamente inizializzato"
 
 #: admin/home.php:18
 msgid "go to"
-msgstr ""
+msgstr "Vai a"
 
 #: admin/home.php:19
 msgid "Initialise Database"
-msgstr ""
+msgstr "Inizializza Database"
 
 #: admin/home.php:20
 msgid "to continue"
-msgstr ""
+msgstr "Per continuare"
 
 #: admin/home.php:53
 msgid "A new version of PHPlist is available!"
-msgstr ""
+msgstr "Una nuova versione di PHPlist &egrave; disponibile!"
 
 #: admin/home.php:55
 msgid "The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible"
-msgstr ""
+msgstr "La nuova versione pu&ograve; avere degli aggiornamenti di sicurezza,<br/>si raccomanda di aggiornarla appena possibile"
 
 #: admin/home.php:57
 msgid "Latest version"
-msgstr ""
+msgstr "Ultima versione"
 
 #: admin/home.php:58
 msgid "View what has changed"
-msgstr ""
+msgstr "Visualizza cosa &egrave; cambiato"
 
 #: admin/home.php:59
 msgid "Download"
-msgstr ""
+msgstr "Scarica"
 
 #: admin/home.php:83
 msgid "Continue Configuration"
@@ -1257,15 +1257,15 @@ msgstr ""
 #: admin/home.php:136
 #: admin/processqueueforked.php:988
 msgid "users"
-msgstr ""
+msgstr "utenti"
 
 #: admin/home.php:138
 msgid "List all Users"
-msgstr ""
+msgstr "Elenca tutti gli utenti"
 
 #: admin/home.php:143
 msgid "reconcileusers"
-msgstr ""
+msgstr "reconcileusers"
 
 #: admin/home.php:145
 msgid "Reconcile the User Database"
@@ -1273,23 +1273,23 @@ msgstr ""
 
 #: admin/home.php:152
 msgid "Import Users"
-msgstr ""
+msgstr "Importa utenti"
 
 #: admin/home.php:157
 msgid "export"
-msgstr ""
+msgstr "esporta"
 
 #: admin/home.php:159
 msgid "Export Users"
-msgstr ""
+msgstr "Esporta utenti"
 
 #: admin/home.php:163
 msgid "List and user functions"
-msgstr ""
+msgstr "Elenco e funzioni utente"
 
 #: admin/home.php:172
 msgid "configure"
-msgstr ""
+msgstr "Configura"
 
 #: admin/home.php:174
 msgid "Configure"
@@ -1297,19 +1297,19 @@ msgstr ""
 
 #: admin/home.php:179
 msgid "attributes"
-msgstr ""
+msgstr "attributi"
 
 #: admin/home.php:181
 msgid "Configure Attributes"
-msgstr ""
+msgstr "Configura gli attributi"
 
 #: admin/home.php:188
 msgid "Control values for"
-msgstr ""
+msgstr "Valore di controllo per"
 
 #: admin/home.php:196
 msgid "spage"
-msgstr ""
+msgstr "pagineiscrizione"
 
 #: admin/home.php:198
 msgid "Configure Subscribe Pages"
@@ -1321,15 +1321,15 @@ msgstr ""
 
 #: admin/home.php:213
 msgid "admins"
-msgstr ""
+msgstr "admins"
 
 #: admin/home.php:215
 msgid "Add, edit and remove Administrators"
-msgstr ""
+msgstr "Aggiunge, modifica e cancella amministratori"
 
 #: admin/home.php:220
 msgid "adminattributes"
-msgstr ""
+msgstr "adminattributes"
 
 #: admin/home.php:222
 msgid "Configure Attributes for administrators"
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: admin/home.php:236
 msgid "send"
-msgstr ""
+msgstr "invia"
 
 #: admin/home.php:238
 msgid "Send a Message"
@@ -1349,7 +1349,7 @@ msgstr ""
 
 #: admin/home.php:244
 msgid "preparesend"
-msgstr ""
+msgstr "preparesend"
 
 #: admin/home.php:246
 msgid "Prepare a Message"
@@ -1357,7 +1357,7 @@ msgstr ""
 
 #: admin/home.php:251
 msgid "sendprepared"
-msgstr ""
+msgstr "sendprepared"
 
 #: admin/home.php:253
 msgid "Send a Prepared Message"
@@ -1365,19 +1365,19 @@ msgstr ""
 
 #: admin/home.php:259
 msgid "templates"
-msgstr ""
+msgstr "modelli"
 
 #: admin/home.php:261
 msgid "Configure Templates"
-msgstr ""
+msgstr "Configura i modelli"
 
 #: admin/home.php:266
 msgid "messages"
-msgstr ""
+msgstr "messaggi"
 
 #: admin/home.php:268
 msgid "List all Messages"
-msgstr ""
+msgstr "Elenca tutti i messaggi"
 
 #: admin/home.php:275
 msgid "Process the Message Queue"
@@ -1389,25 +1389,25 @@ msgstr ""
 
 #: admin/home.php:278
 msgid "You have set TEST in config.php to 1, so it will only show what would be sent"
-msgstr ""
+msgstr "Hai impostato TEST = 1 in config.php, in questo modo nessuna email sar&agrave; spedita ma visualizzerai soltanto quello che avresti potuto inviare"
 
 #: admin/home.php:283
 msgid "processbounces"
-msgstr ""
+msgstr "recuperarespinti"
 
 #: admin/home.php:285
 #: admin/bouncemgt.php:12
 msgid "Process Bounces"
-msgstr ""
+msgstr "Recupera messaggi respinti"
 
 #: admin/home.php:290
 msgid "bounces"
-msgstr ""
+msgstr "vedirespinti"
 
 #: admin/home.php:292
 #: admin/bouncemgt.php:8
 msgid "View Bounces"
-msgstr ""
+msgstr "Visualizza messaggi respinti"
 
 #: admin/home.php:296
 msgid "Message Functions"
@@ -1416,44 +1416,44 @@ msgstr ""
 #: admin/home.php:329
 #: admin/home.php:343
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: admin/home.php:350
 #: admin/home.php:388
 msgid "System Functions"
-msgstr ""
+msgstr "Funzioni di sistema"
 
 #: admin/home.php:353
 msgid "setup"
-msgstr ""
+msgstr "setup"
 
 #: admin/home.php:355
 msgid "Setup "
-msgstr ""
+msgstr "Setup "
 
 #: admin/home.php:360
 msgid "upgrade"
-msgstr ""
+msgstr "aggiornamento"
 
 #: admin/home.php:367
 msgid "dbcheck"
-msgstr ""
+msgstr "dbcheck"
 
 #: admin/home.php:369
 msgid "Check Database structure"
-msgstr ""
+msgstr "Controlla struttura database"
 
 #: admin/home.php:375
 msgid "eventlog"
-msgstr ""
+msgstr "logeventi"
 
 #: admin/home.php:377
 msgid "View the eventlog"
-msgstr ""
+msgstr "Visualizza il log degli eventi"
 
 #: admin/home.php:382
 msgid "admin"
-msgstr ""
+msgstr "admin"
 
 #: admin/home.php:384
 msgid "Change your details (e.g. password)"
@@ -1462,7 +1462,7 @@ msgstr ""
 #: admin/statsoverview.php:28
 #: admin/statsoverview.php:40
 msgid "You do not have access to this page"
-msgstr ""
+msgstr "Non hai accesso a questa pagina"
 
 #: admin/statsoverview.php:58
 msgid "Download as CSV file"
@@ -1480,7 +1480,7 @@ msgstr ""
 #: admin/statsoverview.php:219
 #: admin/msgstatus.php:28
 msgid "sent"
-msgstr ""
+msgstr "Inviato"
 
 #: admin/statsoverview.php:119
 msgid "bounced"
@@ -1494,12 +1494,12 @@ msgstr ""
 #: admin/statsoverview.php:130
 #: admin/statsoverview.php:223
 msgid "views"
-msgstr ""
+msgstr "vista"
 
 #: admin/statsoverview.php:123
 #: admin/statsoverview.php:132
 msgid "rate"
-msgstr ""
+msgstr "Tasso di invio"
 
 #: admin/statsoverview.php:128
 msgid "Comparison to other admins"
@@ -1507,75 +1507,75 @@ msgstr ""
 
 #: admin/statsoverview.php:144
 msgid "View Details for a Message"
-msgstr ""
+msgstr "Visualizza dettagli per un messaggio"
 
 #: admin/statsoverview.php:151
 msgid "Entered"
-msgstr ""
+msgstr "Inserito"
 
 #: admin/statsoverview.php:152
 msgid "Sent"
-msgstr ""
+msgstr "Inviato"
 
 #: admin/statsoverview.php:156
 msgid "Message Open Statistics"
-msgstr ""
+msgstr "Apre statistiche messaggi"
 
 #: admin/statsoverview.php:175
 #: admin/statsoverview.php:178
 #, php-format
 msgid "Listing user %d to %d"
-msgstr ""
+msgstr "Elenco utenti da %d a %d"
 
 #: admin/statsoverview.php:186
 msgid "Entries"
-msgstr ""
+msgstr "Entrate"
 
 #: admin/statsoverview.php:221
 #: admin/statsoverview.php:225
 msgid "firstview"
-msgstr ""
+msgstr "primavista"
 
 #: admin/statsoverview.php:222
 msgid "lastview"
-msgstr ""
+msgstr "ultimavista"
 
 #: admin/statsoverview.php:226
 msgid "responsetime"
-msgstr ""
+msgstr "temporisposta"
 
 #: admin/statsoverview.php:226
 msgid "sec"
-msgstr ""
+msgstr "sec"
 
 #: admin/login.php:5
 msgid "default login is"
-msgstr ""
+msgstr "Il login predefinito &egrave;"
 
 #: admin/login.php:5
 msgid "with password"
-msgstr ""
+msgstr "con password"
 
 #: admin/login.php:24
 msgid "In order to login, you need to enable cookies in your browser"
-msgstr ""
+msgstr "Per effettuare l'accesso, devi abilitare i cookies nel tuo browser"
 
 #: admin/login.php:32
 msgid "forgot password"
-msgstr ""
+msgstr "Password dimenticata?"
 
 #: admin/login.php:33
 msgid "enter your email"
-msgstr ""
+msgstr "Inserisci la tua email"
 
 #: admin/login.php:34
 msgid "send password"
-msgstr ""
+msgstr "Invia Password"
 
 #: admin/login.php:91
 #: admin/login.php:109
 msgid "name"
-msgstr ""
+msgstr "Nome"
 
 #: admin/login.php:93
 msgid "new password"
@@ -1592,12 +1592,12 @@ msgstr ""
 
 #: admin/login.php:111
 msgid "password"
-msgstr ""
+msgstr "password"
 
 #: admin/admins.php:34
 #: admin/admins.php:129
 msgid "Add new admin"
-msgstr ""
+msgstr "Aggiungi nuovo amministratore"
 
 #: admin/admins.php:39
 msgid "You cannot delete yourself"
@@ -1605,21 +1605,21 @@ msgstr ""
 
 #: admin/admins.php:60
 msgid "Admin added"
-msgstr ""
+msgstr "Amministratore aggiunto"
 
 #: admin/admins.php:68
 #: admin/admins.php:83
 #: admin/admins.php:118
 msgid "Administrators"
-msgstr ""
+msgstr "Amministratori"
 
 #: admin/admins.php:84
 msgid "found"
-msgstr ""
+msgstr "Trovato"
 
 #: admin/admins.php:87
 msgid "Listing admin"
-msgstr ""
+msgstr "Creazione elenco amministratori"
 
 #: admin/admins.php:87
 #: admin/processqueueforked.php:318
@@ -1627,61 +1627,61 @@ msgstr ""
 #: admin/processqueueforked.php:707
 #: admin/processqueueforked.php:888
 msgid "to"
-msgstr ""
+msgstr "a"
 
 #: admin/admins.php:90
 msgid "Listing admin 1 to 50"
-msgstr ""
+msgstr "Elenco amministratori da 1 a 50"
 
 #: admin/admins.php:115
 msgid "Find an admin"
-msgstr ""
+msgstr "Trova un amministratore"
 
 #: admin/admins.php:123
 msgid "Show"
-msgstr ""
+msgstr "Visualizza"
 
 #: admin/admins.php:130
 msgid "Import list of admins"
-msgstr ""
+msgstr "Importa la lista degli amministratori"
 
 #: admin/processqueueforked.php:34
 msgid "Running in testmode, no emails will be sent. Check your config file."
-msgstr ""
+msgstr "Eseguito in testmode, nessuna email sar&agrave; inviata. Controlla il tuo file di configurazone. "
 
 #: admin/processqueueforked.php:55
 msgid "The following restrictions have been set by your ISP:"
-msgstr ""
+msgstr "Le seguenti limitazioni sono state settate dal vostro ISP: "
 
 #: admin/processqueueforked.php:100
 msgid "Running in safe mode"
-msgstr ""
+msgstr "Eseguito in modo sicuro"
 
 #: admin/processqueueforked.php:165
 msgid "Script stage"
-msgstr ""
+msgstr "Script stage"
 
 #: admin/processqueueforked.php:169
 msgid "Finished, Nothing to do"
-msgstr ""
+msgstr "Finito, niente da segnalare"
 
 #: admin/processqueueforked.php:176
 msgid "messages sent in"
-msgstr ""
+msgstr "messaggio inviato in"
 
 #: admin/processqueueforked.php:177
 #: admin/processqueueforked.php:348
 msgid "seconds"
-msgstr ""
+msgstr "secondi"
 
 #: admin/processqueueforked.php:177
 #: admin/msgstatus.php:29
 msgid "msgs/hr"
-msgstr ""
+msgstr "msgs/hr"
 
 #: admin/processqueueforked.php:179
 msgid "invalid emails"
-msgstr ""
+msgstr "email non valide"
 
 #: admin/processqueueforked.php:181
 msgid "emails failed (will retry later)"
@@ -1693,36 +1693,36 @@ msgstr ""
 
 #: admin/processqueueforked.php:190
 msgid "Warning: script never reached stage 5"
-msgstr ""
+msgstr "Attenzione: lo script non raggiunge lo stage 5"
 
 #: admin/processqueueforked.php:190
 msgid "This may be caused by a too slow or too busy server"
-msgstr ""
+msgstr "Questo pu&ograve; essere causato da un server troppo lento o troppo occupato "
 
 #: admin/processqueueforked.php:196
 msgid "Less than batch size were sent, so reloading imminently"
-msgstr ""
+msgstr "Meno batch sono stati inviati, imminente ricarica"
 
 #: admin/processqueueforked.php:199
 #, php-format
 msgid "Waiting for %d seconds before reloading"
-msgstr ""
+msgstr "Attendere %d secondi prima di ricaricare"
 
 #: admin/processqueueforked.php:221
 msgid "Reload required"
-msgstr ""
+msgstr "Richiesta ricarica"
 
 #: admin/processqueueforked.php:225
 msgid "Finished, All done"
-msgstr ""
+msgstr "Finito, Tutto fatto"
 
 #: admin/processqueueforked.php:227
 msgid "Script finished, but not all messages have been sent yet."
-msgstr ""
+msgstr "Script finito, ma non tutti i messaggi sono stati inviati ora"
 
 #: admin/processqueueforked.php:249
 msgid "Finished this run"
-msgstr ""
+msgstr "Finita questa elaborazione"
 
 #: admin/processqueueforked.php:318
 #: admin/processqueueforked.php:320
@@ -1732,65 +1732,65 @@ msgstr ""
 #: admin/processqueueforked.php:318
 #: admin/processqueueforked.php:320
 msgid "Would have sent"
-msgstr ""
+msgstr "Would have sent"
 
 #: admin/processqueueforked.php:328
 msgid "Started"
-msgstr ""
+msgstr "Inizio"
 
 #: admin/processqueueforked.php:338
 msgid "Processing has been suspended by your ISP, please try again later"
-msgstr ""
+msgstr "L'elaborazione &egrave; stata sospesa dal vostro ISP, per favore prova pi&ugrave; tardi"
 
 #: admin/processqueueforked.php:343
 msgid "In safe mode, batches are set to a maximum of 100"
-msgstr ""
+msgstr "Nel modo sicuro, i batch sono regolati ad un massimo di 100 "
 
 #: admin/processqueueforked.php:346
 #: admin/processqueueforked.php:350
 msgid "Sending in batches of"
-msgstr ""
+msgstr "Sending in batches of"
 
 #: admin/processqueueforked.php:346
 #: admin/processqueueforked.php:350
 msgid "emails"
-msgstr ""
+msgstr "emails"
 
 #: admin/processqueueforked.php:348
 msgid "This batch will be"
-msgstr ""
+msgstr "Questo batch sar&agrave;"
 
 #: admin/processqueueforked.php:348
 msgid "emails, because in the last"
-msgstr ""
+msgstr "email, perche nell'ultimo"
 
 #: admin/processqueueforked.php:348
 msgid "emails were sent"
-msgstr ""
+msgstr "email sono state inviate"
 
 #: admin/processqueueforked.php:353
 msgid "In the last"
-msgstr ""
+msgstr "Nell'ultimo"
 
 #: admin/processqueueforked.php:353
 msgid "seconds more emails were sent"
-msgstr ""
+msgstr "secondi pi&ugrave; email saranno inviate"
 
 #: admin/processqueueforked.php:353
 msgid "than is currently allowed per batch"
-msgstr ""
+msgstr "che attualmente &egrave; consentito a per il batch "
 
 #: admin/processqueueforked.php:364
 msgid "Sent in last run"
-msgstr ""
+msgstr "Spedite nell'ultimo invio"
 
 #: admin/processqueueforked.php:365
 msgid "Skipped in last run"
-msgstr ""
+msgstr "Saltato nell'ultimo invio"
 
 #: admin/processqueueforked.php:386
 msgid "Processing has started,"
-msgstr ""
+msgstr "Il processo &egrave; iniziato,"
 
 #: admin/processqueueforked.php:386
 msgid "message(s) to process."
@@ -1798,53 +1798,53 @@ msgstr ""
 
 #: admin/processqueueforked.php:391
 msgid "It is safe to click your stop button now, report will be sent by email to"
-msgstr ""
+msgstr "&egrave; sicuro premere il bottone di \"stop\" ora, il report sar&agrave; inviato via email a"
 
 #: admin/processqueueforked.php:393
 msgid "Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to"
-msgstr ""
+msgstr "Per favore lasciare questa finestra aperta. Hai i processi di batch abilitati, la pagina si ricaricher&agrave; parecchie volte per trasmettere i messaggi. I report saranno trasmessi via email a "
 
 #: admin/processqueueforked.php:396
 msgid "Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent."
-msgstr ""
+msgstr "Il tuo webserver &egrave; in \"safe_mode\". Per favore tieni la finestra aperta.  Pu√≤ ricaricarsi p√¨&ugrave; volte assicurarsi che tutti i messaggi siano trasmessi."
 
 #: admin/processqueueforked.php:396
 msgid "Reports will be sent by email to"
-msgstr ""
+msgstr "I report saranno inviati via mail a "
 
 #: admin/processqueueforked.php:429
 msgid "Message Sending has started"
-msgstr ""
+msgstr "Invio Messaggi iniziato"
 
 #: admin/processqueueforked.php:430
 #, php-format
 msgid "phplist has started sending the message with subject %s"
-msgstr ""
+msgstr "phplist ha iniziato ad inviare il messaggio con il soggetto %s"
 
 #: admin/processqueueforked.php:431
 #, php-format
 msgid "to view the progress of this message, go to %s"
-msgstr ""
+msgstr "per vedere il progresso di questo messaggio, vai a  %s"
 
 #: admin/processqueueforked.php:437
 msgid "Processing message"
-msgstr ""
+msgstr "Elaborazione messaggio"
 
 #: admin/processqueueforked.php:458
 msgid "Looking for users"
-msgstr ""
+msgstr "Ricerca utenti "
 
 #: admin/processqueueforked.php:474
 msgid "users apply for attributes, now checking lists"
-msgstr ""
+msgstr "gli utenti richiedono attributi, ora verifico liste"
 
 #: admin/processqueueforked.php:483
 msgid "No users apply for attributes"
-msgstr ""
+msgstr "Nessun utente richiede attributi"
 
 #: admin/processqueueforked.php:537
 msgid "looking for users who can be excluded from this mailing"
-msgstr ""
+msgstr "ricerca utenti che possono essere esclusi dal processo di coda"
 
 #: admin/processqueueforked.php:610
 msgid "Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
@@ -1852,15 +1852,15 @@ msgstr ""
 
 #: admin/processqueueforked.php:613
 msgid "Found them"
-msgstr ""
+msgstr "Trovato"
 
 #: admin/processqueueforked.php:613
 msgid "to process"
-msgstr ""
+msgstr "al processo"
 
 #: admin/processqueueforked.php:627
 msgid "No users to process for this batch"
-msgstr ""
+msgstr "Nessun utente da processare per questo batch"
 
 #: admin/processqueueforked.php:632
 msgid " Processing batch of "
@@ -1869,79 +1869,79 @@ msgstr ""
 #: admin/processqueueforked.php:707
 #: admin/processqueueforked.php:888
 msgid "Sending"
-msgstr ""
+msgstr "Invio"
 
 #: admin/processqueueforked.php:711
 #: admin/processqueueforked.php:892
 #: admin/processqueueforked.php:1011
 msgid "It took"
-msgstr ""
+msgstr "It took"
 
 #: admin/processqueueforked.php:711
 #: admin/processqueueforked.php:892
 msgid "seconds to send"
-msgstr ""
+msgstr "secondi a inviare"
 
 #: admin/processqueueforked.php:728
 #: admin/processqueueforked.php:908
 msgid "Failed sending to"
-msgstr ""
+msgstr "Fallito invio a "
 
 #: admin/processqueueforked.php:747
 #: admin/processqueueforked.php:927
 msgid "not sending to "
-msgstr ""
+msgstr "non inviato a "
 
 #: admin/processqueueforked.php:763
 #: admin/processqueueforked.php:950
 msgid "Not sending to"
-msgstr ""
+msgstr "Non inviati a"
 
 #: admin/processqueueforked.php:763
 #: admin/processqueueforked.php:950
 msgid "already sent"
-msgstr ""
+msgstr "gi&agrave; inviato"
 
 #: admin/processqueueforked.php:818
 msgid "batch limit reached"
-msgstr ""
+msgstr "limite batch raggiunto"
 
 #: admin/processqueueforked.php:831
 msgid "Process Killed by other process"
-msgstr ""
+msgstr "Processo fermato da altri processi"
 
 #: admin/processqueueforked.php:836
 msgid "Message I was working on has disappeared"
-msgstr ""
+msgstr "Message I was working on has disappeared"
 
 #: admin/processqueueforked.php:838
 msgid "Sending of this message has been suspended"
-msgstr ""
+msgstr "L'invio di questo messaggio &egrave; stato sospeso"
 
 #: admin/processqueueforked.php:988
 msgid "Processed"
-msgstr ""
+msgstr "Elaborato"
 
 #: admin/processqueueforked.php:988
 msgid "out of"
-msgstr ""
+msgstr "fuori di"
 
 #: admin/processqueueforked.php:992
 msgid "Hmmm, No users found to send to"
-msgstr ""
+msgstr "Hmmm, Nessun utente trovato per l'invio a"
 
 #: admin/processqueueforked.php:999
 msgid "Message Sending has finished"
-msgstr ""
+msgstr "Invio Messaggi finito"
 
 #: admin/processqueueforked.php:1000
 #, php-format
 msgid "phplist has finished sending the message with subject %s"
-msgstr ""
+msgstr "phplist a finito di inviare il messaggio con l'oggetto %s"
 
 #: admin/processqueueforked.php:1011
 msgid "to send this message"
-msgstr ""
+msgstr "per inviare questo messaggio"
 
 #: admin/msgstatus.php:14
 msgid "requeue"
@@ -1953,15 +1953,15 @@ msgstr ""
 
 #: admin/msgstatus.php:26
 msgid "still to process"
-msgstr ""
+msgstr "ancora in elaborazione"
 
 #: admin/msgstatus.php:27
 msgid "ETA"
-msgstr ""
+msgstr "ETA"
 
 #: admin/msgstatus.php:29
 msgid "Processing"
-msgstr ""
+msgstr "In lavorazione"
 
 #: admin/editattributes.php:10
 msgid "No such attribute:"
@@ -1981,11 +1981,11 @@ msgstr ""
 
 #: admin/editattributes.php:40
 msgid "delete all"
-msgstr ""
+msgstr "Cancella tutto"
 
 #: admin/editattributes.php:40
 msgid "DelAll"
-msgstr ""
+msgstr "Cancella tutto"
 
 #: admin/editattributes.php:78
 msgid "Alternatively you can replace all values with another one:"
@@ -2001,15 +2001,16 @@ msgstr ""
 
 #: admin/editattributes.php:111
 msgid "cannotdelete"
-msgstr ""
+msgstr "Impossibile cancellare "
 
 #: admin/editattributes.php:113
 msgid "dependentrecords"
-msgstr ""
+msgstr "Il/i seguente/i record dipendono da questo valore<br />"
+"    Aggiorna il/i record senza usare questo attributo e prova di nuovo"
 
 #: admin/editattributes.php:116
 msgid "user"
-msgstr ""
+msgstr "Utente:"
 
 #: admin/editattributes.php:118
 msgid "* Too many to list, total dependencies:"
@@ -2022,28 +2023,28 @@ msgstr ""
 #: admin/editattributes.php:155
 #: admin/editattributes.php:157
 msgid "addnew"
-msgstr ""
+msgstr "Aggiunge nuovo"
 
 #: admin/editattributes.php:155
 msgid "oneperline"
-msgstr ""
+msgstr "Uno per linea"
 
 #: admin/editattributes.php:164
 #: admin/editattributes.php:173
 msgid "changeorder"
-msgstr ""
+msgstr "Cambia l'ordine"
 
 #: admin/editattributes.php:167
 msgid "delete"
-msgstr ""
+msgstr "elimina"
 
 #: admin/editattributes.php:170
-msgid "default"
+msgid "(default)"
 msgstr ""
 
 #: admin/bouncemgt.php:7
 msgid "List Bounce Rules"
-msgstr ""
+msgstr "Elenca regole per i messaggi respinti"
 
 #: admin/bouncemgt.php:9
 msgid "View Bounces per list"
@@ -2051,7 +2052,7 @@ msgstr ""
 
 #: admin/bouncemgt.php:10
 msgid "Check Current Bounce Rules"
-msgstr ""
+msgstr "Controlla le regole attuali per i messaggi respinti"
 
 #: admin/bouncemgt.php:16
 msgid "You currently have no rules defined.      You can click \"Generate Bounce Rules\" in order to auto-generate rules from your existing bounces.      This will results in a lot of rules which you will need to review and activate.      It will however, not catch every single bounce, so it will be necessary to add new rules over      time when new bounces come in."
@@ -2059,11 +2060,11 @@ msgstr ""
 
 #: admin/bouncemgt.php:18
 msgid "You have already defined bounce rules in your system.      Be careful with generating new ones, because these may interfere with the ones that exist."
-msgstr ""
+msgstr "Hai gi&agrave; definito i criteri di rimbalzo sul tuo sistema. Fai attenzione quando generi un nuovo criterio, perch&egrave; potrebbe interferire con quello esistente."
 
 #: admin/bouncemgt.php:20
 msgid "Generate Bounce Rules"
-msgstr ""
+msgstr "Genera regole per i messaggi respinti"
 
 #: admin/defaultplugin.php:126
 msgid "choose"
@@ -2103,11 +2104,11 @@ msgstr ""
 
 #: admin/configure.php:27
 msgid "No Access"
-msgstr ""
+msgstr "Accesso non consentito"
 
 #: admin/configure.php:41
 msgid "cannot be empty"
-msgstr ""
+msgstr "non pu&oacute; essere vuoto"
 
 #: admin/configure.php:49
 msgid "Changes Saved"
@@ -2119,27 +2120,27 @@ msgstr ""
 
 #: admin/configure.php:73
 msgid "edit"
-msgstr ""
+msgstr "Modifica"
 
 #: admin/reconcileusers.php:44
 msgid "Resending confirmation request to"
-msgstr ""
+msgstr "Sto inviando di nuovo la richiesta di conferma a"
 
 #: admin/reconcileusers.php:87
 msgid "user found"
-msgstr ""
+msgstr "utente trovato"
 
 #: admin/reconcileusers.php:104
 msgid "no user found"
-msgstr ""
+msgstr "nessun utente trovato"
 
 #: admin/reconcileusers.php:111
 msgid "unable to find original email"
-msgstr ""
+msgstr "impossibile trovare l'email originale"
 
 #: admin/reconcileusers.php:136
 msgid "Marking all users confirmed"
-msgstr ""
+msgstr "Sto segnando tutti gli utenti confermati"
 
 #: admin/reconcileusers.php:139
 #, php-format
@@ -2157,89 +2158,89 @@ msgstr ""
 #: admin/reconcileusers.php:217
 #: admin/reconcileusers.php:224
 msgid "users apply"
-msgstr ""
+msgstr "utenti trovati"
 
 #: admin/reconcileusers.php:147
 msgid "Creating UniqID for all users who do not have one"
-msgstr ""
+msgstr "Sto creando un unico ID per tutti gli utenti che non ne hanno uno"
 
 #: admin/reconcileusers.php:154
 msgid "Marking all users to receive HTML"
-msgstr ""
+msgstr "Tutti gli utenti riceveranno le email in formato HTML"
 
 #: admin/reconcileusers.php:160
 msgid "Marking all users to receive text"
-msgstr ""
+msgstr "Tutti gli utenti riceveranno le email in formato testo"
 
 #: admin/reconcileusers.php:166
 msgid "Deleting users who are not on any list"
-msgstr ""
+msgstr "Sto cancellando tutti gli utenti non assegnati a nessuna lista"
 
 #: admin/reconcileusers.php:177
 msgid "Moving users who are not on any list to"
-msgstr ""
+msgstr "Sto spostando tutti gli utenti non assegnati a nessuna lista"
 
 #: admin/reconcileusers.php:187
 msgid "Deleting users with more than"
-msgstr ""
+msgstr "Sto cancellando gli uteni con pi&ugrave; di"
 
 #: admin/reconcileusers.php:199
 msgid "Resending request for confirmation to users who signed up after"
-msgstr ""
+msgstr "Sto mandando di nuovo la richiesta di conferma agli utenti iscrittesi dopo"
 
 #: admin/reconcileusers.php:199
 #: admin/reconcileusers.php:211
 msgid "and before"
-msgstr ""
+msgstr "e prima di"
 
 #: admin/reconcileusers.php:211
 msgid "Deleting unconfirmed users who signed up after"
-msgstr ""
+msgstr "Sto cancellando gli utenti non confermati che si sono iscritti dopo"
 
 #: admin/reconcileusers.php:221
 msgid "Trying to merge duplicates"
-msgstr ""
+msgstr "Sto cercando di unire i duplicati"
 
 #: admin/reconcileusers.php:249
 msgid "Don't know how to"
-msgstr ""
+msgstr "Non &egrave; chiaro come"
 
 #: admin/reconcileusers.php:262
 msgid "Trying to fix users with an invalid email"
-msgstr ""
+msgstr "Sto cercando di correggere gli utenti con una email non valida"
 
 #: admin/reconcileusers.php:274
 #: admin/reconcileusers.php:278
 msgid "User"
-msgstr ""
+msgstr "Utenti"
 
 #: admin/reconcileusers.php:282
 msgid "Users fixed"
-msgstr ""
+msgstr "Utenti corretti"
 
 #: admin/reconcileusers.php:282
 msgid "Users could not be fixed"
-msgstr ""
+msgstr "Utenti non corretti"
 
 #: admin/reconcileusers.php:284
 msgid "Deleting users with an invalid email"
-msgstr ""
+msgstr "Sto cancellando gli utenti con una "
 
 #: admin/reconcileusers.php:295
 msgid "Users deleted"
-msgstr ""
+msgstr "Utenti cancellati"
 
 #: admin/reconcileusers.php:297
 msgid "Marking users with an invalid email as unconfirmed"
-msgstr ""
+msgstr "Sto segnando gli utenti con una email non valida come non confermati"
 
 #: admin/reconcileusers.php:308
 msgid "Users updated"
-msgstr ""
+msgstr "Utenti aggiornati"
 
 #: admin/reconcileusers.php:310
 msgid "Cleaning some user tables of invalid entries"
-msgstr ""
+msgstr "Sto ripulendo alcune tabelle utente dalle voci non valide"
 
 #: admin/reconcileusers.php:315
 #: admin/reconcileusers.php:322
@@ -2247,19 +2248,19 @@ msgstr ""
 #: admin/reconcileusers.php:336
 #: admin/reconcileusers.php:343
 msgid "entries apply"
-msgstr ""
+msgstr "voci applicate"
 
 #: admin/reconcileusers.php:361
 msgid "Delete will delete user and all listmemberships"
-msgstr ""
+msgstr "Cancella rimuover&agrave; l'utente e tutte le sue iscrizioni"
 
 #: admin/reconcileusers.php:384
 msgid "Users"
-msgstr ""
+msgstr "Utenti"
 
 #: admin/reconcileusers.php:385
 msgid "in the database"
-msgstr ""
+msgstr "nel database"
 
 #: admin/reconcileusers.php:402
 msgid "-All-"
@@ -2288,7 +2289,7 @@ msgstr ""
 #: admin/reconcileusers.php:474
 #: admin/reconcileusers.php:485
 msgid "Click here"
-msgstr ""
+msgstr "Invia richiesta"
 
 #: admin/reconcileusers.php:441
 #, php-format
@@ -2297,53 +2298,57 @@ msgstr ""
 
 #: admin/reconcileusers.php:451
 msgid "To delete all users with more than"
-msgstr ""
+msgstr "Cancella tutti gli utenti con pi&ugrave; di&nbsp;"
 
 #: admin/reconcileusers.php:459
 msgid "Note: this will use the total count of bounces on a user, not consecutive bounces"
-msgstr ""
+msgstr "Nota: verr&agrave; usato il numero totale di messaggi respinti, non il numero di messaggi respinti consecutivamente"
 
 #: admin/reconcileusers.php:463
 msgid "To resend the request for confirmation to users who signed up and have not confirmed their subscription"
-msgstr ""
+msgstr "Manda di nuovo la richiesta di conferma agli utenti iscritti che non hanno confermato ancora la loro sottoscrizione"
 
 #: admin/reconcileusers.php:464
 #: admin/reconcileusers.php:480
 msgid "Date they signed up after"
-msgstr ""
+msgstr "Data dell'iscrizione successiva a"
 
 #: admin/reconcileusers.php:465
 #: admin/reconcileusers.php:481
 msgid "Date they signed up before"
-msgstr ""
+msgstr "Data dell'iscrizione precedente a"
 
 #: admin/reconcileusers.php:466
 msgid "Text to prepend to email"
-msgstr ""
+msgstr "Testo da inserire all'inizio della email"
 
 #: admin/reconcileusers.php:468
 msgid " Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   "
-msgstr ""
+msgstr "Scusa per il disturbo ma stiamo ripulendo la nostra banca dati e ci risulta che qualche tempo hai chiesto di essere iscritto ad una delle nostre mailinglist ma non hai confermato la tua sottoscrizione. Vorremmo darti l'opportunit&agrave; di confermare ora la tua iscrizione. Le istruzioni per farlo sono di seguito."
 
 #: admin/reconcileusers.php:479
 msgid "To delete users who signed up and have not confirmed their subscription"
-msgstr ""
+msgstr "Cancella gli utenti iscritti ma che non hanno confermato la loro sottoscrizione"
 
 #: admin/spageedit.php:120
 msgid "Title of this set of lists"
-msgstr ""
+msgstr "Titolo di questo insieme di liste"
 
 #: admin/spageedit.php:134
 msgid "Please indicate how often you want to receive messages"
-msgstr ""
+msgstr "Indicare con che frquenza si desidera ricevere i messaggi"
 
 #: admin/spageedit.php:173
 msgid "General Information"
-msgstr ""
+msgstr "Informazioni generali"
 
 #: admin/spageedit.php:176
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
+
+#: admin/spageedit.php:192
+msgid "default"
+msgstr "predefinito"
 
 #: admin/spageedit.php:199
 msgid "Language file to use"
@@ -2351,96 +2356,96 @@ msgstr ""
 
 #: admin/spageedit.php:202
 msgid "Intro"
-msgstr ""
+msgstr "Intro"
 
 #: admin/spageedit.php:208
 msgid "Footer"
-msgstr ""
+msgstr "Pi&egrave; pagina"
 
 #: admin/spageedit.php:211
 msgid "Thank you page"
-msgstr ""
+msgstr "Pagina di ringraziamento"
 
 #: admin/spageedit.php:214
 msgid "Text for Button"
-msgstr ""
+msgstr "Testo del bottone"
 
 #: admin/spageedit.php:216
 msgid "HTML Email choice"
-msgstr ""
+msgstr "Scelta email HTML "
 
 #: admin/spageedit.php:220
 msgid "Don't offer choice, default to <b>text</b>"
-msgstr ""
+msgstr "Non offrire scelte,  scelta predefinita: <b>testo</b>"
 
 #: admin/spageedit.php:224
 msgid "Don't offer choice, default to <b>HTML</b>"
-msgstr ""
+msgstr "Non offrire scelte,  scelta predefinita: <b>HTML</b>"
 
 #: admin/spageedit.php:228
 msgid "Offer checkbox for text"
-msgstr ""
+msgstr "Offri checkbox per testo"
 
 #: admin/spageedit.php:232
 msgid "Offer checkbox for HTML"
-msgstr ""
+msgstr "Offri checkbox per HTML"
 
 #: admin/spageedit.php:236
 msgid "Radio buttons, default to text"
-msgstr ""
+msgstr "Bottoni Radio, predefinito il testo"
 
 #: admin/spageedit.php:240
 msgid "Radio buttons, default to HTML"
-msgstr ""
+msgstr "Bottoni Radio, predefinito HTML"
 
 #: admin/spageedit.php:243
 msgid "Display Email confirmation"
-msgstr ""
+msgstr "Visualizza conferma Email"
 
 #: admin/spageedit.php:246
 msgid "Display email confirmation"
-msgstr ""
+msgstr "Visualizza conferma Email"
 
 #: admin/spageedit.php:249
 msgid "Don't display email confirmation"
-msgstr ""
+msgstr "Non visualizzare la conferma email"
 
 #: admin/spageedit.php:252
 msgid "Message they receive when they subscribe"
-msgstr ""
+msgstr "Messaggio che ricevono quando si iscrivono"
 
 #: admin/spageedit.php:257
 #: admin/spageedit.php:264
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 #: admin/spageedit.php:259
 msgid "Message they receive when they confirm their subscription"
-msgstr ""
+msgstr "Messaggio che ricevono quando confermano l'iscrizione"
 
 #: admin/spageedit.php:266
 msgid "Select the attributes to use"
-msgstr ""
+msgstr "Scegli gli attributi da usare"
 
 #: admin/spageedit.php:283
 msgid "Attribute"
-msgstr ""
+msgstr "Attribute"
 
 #: admin/spageedit.php:284
 msgid "Check this box to use this attribute in the page"
-msgstr ""
+msgstr "Check this box to use this attribute in the page"
 
 #: admin/spageedit.php:286
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: admin/spageedit.php:288
 msgid "Default Value"
-msgstr ""
+msgstr "Default Value"
 
 #: admin/spageedit.php:289
 msgid "Order of Listing"
-msgstr ""
+msgstr "Order of Listing"
 
 #: admin/spageedit.php:290
 msgid "Is this attribute required?"
@@ -2448,23 +2453,23 @@ msgstr ""
 
 #: admin/spageedit.php:323
 msgid "Select the lists to offer"
-msgstr ""
+msgstr "Scegli le liste da offrire"
 
 #: admin/spageedit.php:327
 msgid "No lists available, please create one first"
-msgstr ""
+msgstr "Nessuna lista disponibile, per favore creane una prima"
 
 #: admin/spageedit.php:338
 msgid "Owner"
-msgstr ""
+msgstr "Proprietario"
 
 #: admin/spageedit.php:348
 msgid "Save and Activate"
-msgstr ""
+msgstr "Salva e attiva"
 
 #: admin/spageedit.php:349
 msgid "Save and Deactivate"
-msgstr ""
+msgstr "Salva e disattiva"
 
 #: admin/reindex.php:17
 msgid "processing "
@@ -2492,74 +2497,74 @@ msgstr ""
 
 #: admin/bouncerules.php:49
 msgid "That rule exists already"
-msgstr ""
+msgstr "Questa regola esiste gi&agrave;"
 
 #: admin/bouncerules.php:56
 #, php-format
 msgid "Number of %s rules: %d"
-msgstr ""
+msgstr "Numero di %s regole: %d"
 
 #: admin/bouncerules.php:60
 #: admin/bouncerules.php:65
 msgid "active"
-msgstr ""
+msgstr "attivo"
 
 #: admin/bouncerules.php:61
 #: admin/bouncerules.php:63
 msgid "candidate"
-msgstr ""
+msgstr "candidato"
 
 #: admin/bouncerules.php:71
 msgid "Bounce Regular Expressions"
-msgstr ""
+msgstr "Espressioni regolari per i messaggi respinti"
 
 #: admin/bouncerules.php:73
 msgid "No Rules found"
-msgstr ""
+msgstr "Regole non trovate"
 
 #: admin/bouncerules.php:80
 msgid "rule"
-msgstr ""
+msgstr "regola"
 
 #: admin/bouncerules.php:86
 msgid "match"
-msgstr ""
+msgstr "abbina"
 
 #: admin/bouncerules.php:90
 msgid "expression"
-msgstr ""
+msgstr "espressione"
 
 #: admin/bouncerules.php:91
 msgid "action"
-msgstr ""
+msgstr "azione"
 
 #: admin/bouncerules.php:94
 msgid "#bncs"
-msgstr ""
+msgstr "#bncs"
 
 #: admin/bouncerules.php:96
 msgid "tag"
-msgstr ""
+msgstr "seleziona"
 
 #: admin/bouncerules.php:97
 msgid "order"
-msgstr ""
+msgstr "ordina"
 
 #: admin/bouncerules.php:102
 msgid "with tagged rules: "
-msgstr ""
+msgstr "con regole selezionate: "
 
 #: admin/bouncerules.php:105
 msgid "make active"
-msgstr ""
+msgstr "attiva"
 
 #: admin/bouncerules.php:107
 msgid "make inactive"
-msgstr ""
+msgstr "rendi inattive"
 
 #: admin/bouncerules.php:113
 msgid "add a new rule"
-msgstr ""
+msgstr "aggiungi una nuova regola"
 
 #: admin/sendemaillib2.php:232
 msgid "sendingmessage"
@@ -2595,7 +2600,7 @@ msgstr ""
 
 #: admin/msgbounces.php:13
 msgid "subject"
-msgstr ""
+msgstr "Soggetto"
 
 #: admin/msgbounces.php:14
 msgid "# bounced"
@@ -2612,7 +2617,7 @@ msgstr ""
 
 #: admin/msgbounces.php:69
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: admin/msgbounces.php:70
 msgid "# bounces"
@@ -2620,47 +2625,47 @@ msgstr ""
 
 #: admin/systemstats.php:11
 msgid "Jan"
-msgstr ""
+msgstr "Gen"
 
 #: admin/systemstats.php:11
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: admin/systemstats.php:11
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: admin/systemstats.php:11
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: admin/systemstats.php:11
 msgid "Jun"
-msgstr ""
+msgstr "Giu"
 
 #: admin/systemstats.php:11
 msgid "Jul"
-msgstr ""
+msgstr "Lug"
 
 #: admin/systemstats.php:11
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: admin/systemstats.php:11
 msgid "Sep"
-msgstr ""
+msgstr "Set"
 
 #: admin/systemstats.php:11
 msgid "Oct"
-msgstr ""
+msgstr "Ott"
 
 #: admin/systemstats.php:11
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: admin/systemstats.php:11
 msgid "Dec"
-msgstr ""
+msgstr "Dic"
 
 #: admin/send.php:81
 msgid "All draft campaigns deleted"
@@ -2692,7 +2697,7 @@ msgstr ""
 
 #: admin/send.php:101
 msgid "entered"
-msgstr ""
+msgstr "Inserito"
 
 #: admin/send.php:102
 msgid "age"
@@ -2708,25 +2713,25 @@ msgstr ""
 
 #: admin/send.php:144
 msgid "The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here."
-msgstr ""
+msgstr "Il messaggio andr&agrave; agli utenti che sono membri delle liste sopra, a meno che non siano membri di una delle liste che hai scelto qui."
 
 #: admin/template.php:79
 msgid "No such template"
-msgstr ""
+msgstr "Non questo modello"
 
 #: admin/template.php:90
 msgid "Images stored"
-msgstr ""
+msgstr "Immagini caricate"
 
 #: admin/template.php:92
 msgid "No images found"
-msgstr ""
+msgstr "Nessuna immagine trovata"
 
 #: admin/template.php:107
 #: admin/template.php:115
 #: admin/template.php:120
 msgid "Image"
-msgstr ""
+msgstr "Immagine"
 
 #: admin/template.php:107
 msgid "\"not full URL"
@@ -2734,7 +2739,7 @@ msgstr ""
 
 #: admin/template.php:115
 msgid "does not exist"
-msgstr ""
+msgstr "Non esiste"
 
 #: admin/template.php:120
 msgid "cannot check, \"allow_url_fopen\" disabled in PHP settings"
@@ -2746,7 +2751,7 @@ msgstr ""
 
 #: admin/template.php:136
 msgid "No Title"
-msgstr ""
+msgstr "Nessun titolo"
 
 #: admin/template.php:137
 msgid "Template does not contain the [CONTENT] placeholder"
@@ -2754,15 +2759,15 @@ msgstr ""
 
 #: admin/template.php:155
 msgid "Template saved"
-msgstr ""
+msgstr "Modello salvato"
 
 #: admin/template.php:160
 msgid "Images"
-msgstr ""
+msgstr "Immagini"
 
 #: admin/template.php:160
 msgid "Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database."
-msgstr ""
+msgstr "In basso trovi la lista delle immagini usate nel tuo modello. Se al momento un'immagine non &egrave; disponibile, caricala nel sistema."
 
 #: admin/template.php:161
 msgid "This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template."
@@ -2770,7 +2775,7 @@ msgstr ""
 
 #: admin/template.php:167
 msgid "Image name:"
-msgstr ""
+msgstr "Nome immagine:"
 
 #: admin/template.php:167
 #, php-format
@@ -2779,15 +2784,15 @@ msgstr ""
 
 #: admin/template.php:172
 msgid "Save Images"
-msgstr ""
+msgstr "Salva immagini"
 
 #: admin/template.php:176
 msgid "Template does not contain local images"
-msgstr ""
+msgstr "Il modello non contiene immagini locali"
 
 #: admin/template.php:181
 msgid "Some errors were found, template NOT saved!"
-msgstr ""
+msgstr "Alcuni errori sono stati trovati, modello NON salvato!"
 
 #: admin/template.php:190
 msgid "Sending test"
@@ -2811,15 +2816,15 @@ msgstr ""
 
 #: admin/template.php:231
 msgid "List of Templates"
-msgstr ""
+msgstr "Elenco dei modelli"
 
 #: admin/template.php:239
 msgid "Title of this template"
-msgstr ""
+msgstr "Titolo di questo modello:"
 
 #: admin/template.php:243
 msgid "Content of the template."
-msgstr ""
+msgstr "Contenuto di questo modello"
 
 #: admin/template.php:243
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
@@ -2827,23 +2832,23 @@ msgstr ""
 
 #: admin/template.php:243
 msgid "You can upload a template file or paste the text in the box below"
-msgstr ""
+msgstr "Puoi caricare un file modello o incollare il testo nel riquadro in basso."
 
 #: admin/template.php:246
 msgid "Template file."
-msgstr ""
+msgstr "Carica modello da file:"
 
 #: admin/template.php:314
 msgid "Check that all links have a full URL"
-msgstr ""
+msgstr "Controlla che tutti i collegamenti abbiano un URL completo (assoluto)."
 
 #: admin/template.php:318
 msgid "Check that all images have a full URL"
-msgstr ""
+msgstr "Controlla che tutte le immagini abbiano un URL completo (assoluto)."
 
 #: admin/template.php:322
 msgid "Check that all external images exist"
-msgstr ""
+msgstr "Controlla l'esistenza di tutte le immagini esterne"
 
 #: admin/template.php:336
 msgid "Send test message"
@@ -2855,12 +2860,12 @@ msgstr ""
 
 #: admin/domainstats.php:22
 msgid "Top 50 domains with more than 5 emails"
-msgstr ""
+msgstr "I migliori 50 domini con pi&ugrave; di 5 emails"
 
 #: admin/domainstats.php:27
 #: admin/members.php:268
 msgid "confirmed"
-msgstr ""
+msgstr "conf."
 
 #: admin/domainstats.php:29
 #: admin/domainstats.php:42
@@ -2875,7 +2880,7 @@ msgstr ""
 
 #: admin/domainstats.php:44
 msgid "num"
-msgstr ""
+msgstr "num"
 
 #: admin/catlists.php:29
 msgid "No list categories have been defined"
@@ -2907,7 +2912,7 @@ msgstr ""
 
 #: admin/mclicks.php:55
 msgid "Available Messages"
-msgstr ""
+msgstr "Messaggi disponibili"
 
 #: admin/mclicks.php:63
 #: admin/mclicks.php:105
@@ -2932,7 +2937,7 @@ msgstr ""
 
 #: admin/mclicks.php:98
 msgid "Click Details for a Message"
-msgstr ""
+msgstr "Dettagli sui click di un messaggio"
 
 #: admin/mclicks.php:111
 msgid "Sent to"
@@ -2940,11 +2945,11 @@ msgstr ""
 
 #: admin/mclicks.php:111
 msgid "Subscribers"
-msgstr ""
+msgstr "utenti"
 
 #: admin/mclicks.php:112
 msgid "Clicks"
-msgstr ""
+msgstr "Clicks"
 
 #: admin/mclicks.php:113
 msgid "Click Rate"
@@ -2952,17 +2957,17 @@ msgstr ""
 
 #: admin/mclicks.php:116
 msgid "Message Click Statistics"
-msgstr ""
+msgstr "Statistiche sui click nei messaggi"
 
 #: admin/mclicks.php:143
 #: admin/uclicks.php:101
 msgid "firstclick"
-msgstr ""
+msgstr "firstclick"
 
 #: admin/mclicks.php:144
 #: admin/uclicks.php:102
 msgid "latestclick"
-msgstr ""
+msgstr "latestclick"
 
 #: admin/mclicks.php:146
 #: admin/mclicks.php:163
@@ -2970,38 +2975,38 @@ msgstr ""
 #: admin/uclicks.php:104
 #: admin/uclicks.php:118
 msgid "clicks"
-msgstr ""
+msgstr "clicks"
 
 #: admin/mclicks.php:150
 #: admin/mclicks.php:165
 #: admin/uclicks.php:106
 #: admin/uclicks.php:120
 msgid "clickrate"
-msgstr ""
+msgstr "Clickrate"
 
 #: admin/mclicks.php:152
 #: admin/mclicks.php:167
 #: admin/uclicks.php:109
 #: admin/uclicks.php:122
 msgid "unique clicks"
-msgstr ""
+msgstr "Click unici"
 
 #: admin/mclicks.php:154
 #: admin/mclicks.php:169
 #: admin/uclicks.php:111
 #: admin/uclicks.php:124
 msgid "unique clickrate"
-msgstr ""
+msgstr "Clickrate unico"
 
 #: admin/mclicks.php:159
 #: admin/uclicks.php:114
 msgid "who"
-msgstr ""
+msgstr "Chi"
 
 #: admin/mclicks.php:160
 #: admin/uclicks.php:114
 msgid "view users"
-msgstr ""
+msgstr "Vedi gli utenti"
 
 #: admin/subscribelib2.php:103
 msgid "spamblockemailintro"
@@ -3009,122 +3014,122 @@ msgstr ""
 
 #: admin/subscribelib2.php:309
 msgid "Email is blacklisted, so request for confirmation has been sent."
-msgstr ""
+msgstr "L'utente &egrave; presente nella blacklist, e per tale motivo &egrave; stata inviata una rischiesta di conferma."
 
 #: admin/subscribelib2.php:310
 msgid "If user confirms subscription, they will be removed from the blacklist."
-msgstr ""
+msgstr "Se l'utente confermer&agrave; la sua iscrizione, allora verr&agrave; rimosso dalla blacklist."
 
 #: admin/processbounces.php:7
 msgid "This page can only be called from the commandline"
-msgstr ""
+msgstr "Questa pagina pu&ograve; solo essere chiamata da linea di comando"
 
 #: admin/processbounces.php:31
 msgid "Bounce processing error"
-msgstr ""
+msgstr "Errore processando bounce"
 
 #: admin/processbounces.php:33
 msgid "Bounce Processing info"
-msgstr ""
+msgstr "Informazioni processo bounce"
 
 #: admin/processbounces.php:149
 msgid "system message bounced, user marked unconfirmed"
-msgstr ""
+msgstr "bounce del messaggio di sistema, selezioni utente non confermate"
 
 #: admin/processbounces.php:150
 msgid "Bounced system message"
-msgstr ""
+msgstr "Bounced messaggi di sistema"
 
 #: admin/processbounces.php:151
 msgid "User marked unconfirmed"
-msgstr ""
+msgstr "Selezioni utente non confermate"
 
 #: admin/processbounces.php:152
 msgid "View Bounce"
-msgstr ""
+msgstr "Vedi Bounce"
 
 #: admin/processbounces.php:201
 msgid "system message bounced, but unknown user"
-msgstr ""
+msgstr "bounce dei  messaggi di sistema, ma l'utente &egrave; sconoscuto"
 
 #: admin/processbounces.php:241
 msgid "Cannot create POP3 connection to"
-msgstr ""
+msgstr "Non posso creare la connessione POP3 a"
 
 #: admin/processbounces.php:256
 msgid "Cannot open mailbox file"
-msgstr ""
+msgstr "Non posso aprire la mailbox"
 
 #: admin/processbounces.php:266
 msgid "bounces to fetch from the mailbox"
-msgstr ""
+msgstr "bounce presi dalla mailbox"
 
 #: admin/processbounces.php:267
 msgid "Please do not interrupt this process"
-msgstr ""
+msgstr "Per favore non interrompere questo processo"
 
 #: admin/processbounces.php:268
 msgid "bounces to process"
-msgstr ""
+msgstr "bounces da processare"
 
 #: admin/processbounces.php:270
 msgid "Processing first"
-msgstr ""
+msgstr "Prima elaborazione"
 
 #: admin/processbounces.php:271
 msgid "processing first"
-msgstr ""
+msgstr "Prima elaborazione"
 
 #: admin/processbounces.php:275
 msgid "Running in test mode, not deleting messages from mailbox"
-msgstr ""
+msgstr "Eseguito in modalit&agrave; test, nessun messaggio cancellato dalla mailbox"
 
 #: admin/processbounces.php:277
 msgid "Processed messages will be deleted from mailbox"
-msgstr ""
+msgstr "I messaggi saranno cancellati dalla mailbox"
 
 #: admin/processbounces.php:293
 #: admin/processbounces.php:299
 msgid "Deleting message"
-msgstr ""
+msgstr "Cancellazione messaggio"
 
 #: admin/processbounces.php:306
 msgid "Closing mailbox, and purging messages"
-msgstr ""
+msgstr "Chiusura mailbox, ed eliminazione dei messaggi"
 
 #: admin/processbounces.php:315
 msgid "IMAP is not included in your PHP installation, cannot continue"
-msgstr ""
+msgstr "IMAP non &egrave; incluso nella tua installazione di PHP, non posso continuare"
 
 #: admin/processbounces.php:316
 msgid "Check out"
-msgstr ""
+msgstr "Verifica"
 
 #: admin/processbounces.php:322
 msgid "Bounce mechanism not properly configured"
-msgstr ""
+msgstr "Meccanismo di bounce non propriamente configurato"
 
 #: admin/processbounces.php:347
 msgid "bounce_protocol not supported"
-msgstr ""
+msgstr "bounce_protocol non supportato"
 
 #: admin/processbounces.php:354
 msgid "Processing bounces based on active bounce rules"
-msgstr ""
+msgstr "Elaborazione bounce basati sulle attive regole di bounce"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
 #: admin/processbounces.php:425
 #: admin/processbounces.php:434
 msgid "Auto Unsubscribed"
-msgstr ""
+msgstr "Auto cancellazione sottoscrizione"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
 #: admin/processbounces.php:425
 #: admin/processbounces.php:434
 msgid "User auto unsubscribed for"
-msgstr ""
+msgstr "Utente auto cancellazione sottoscrizione per"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
@@ -3133,52 +3138,52 @@ msgstr ""
 #: admin/processbounces.php:430
 #: admin/processbounces.php:434
 msgid "bounce rule"
-msgstr ""
+msgstr "regole di bounce"
 
 #: admin/processbounces.php:421
 #: admin/processbounces.php:430
 msgid "Auto Blacklisted"
-msgstr ""
+msgstr "Auto Blacklist"
 
 #: admin/processbounces.php:421
 #: admin/processbounces.php:430
 msgid "User auto blacklisted for"
-msgstr ""
+msgstr "Blacklist automatica utente per"
 
 #: admin/processbounces.php:452
 msgid "bounces processed by advanced processing"
-msgstr ""
+msgstr "bounce processati da processi avanzati"
 
 #: admin/processbounces.php:453
 msgid "bounces were not matched by advanced processing rules"
-msgstr ""
+msgstr "bounce non sono uguali alle regole dei processi avanzati"
 
 #: admin/processbounces.php:457
 #: admin/processbounces.php:547
 #: admin/processbounces.php:557
 msgid "Identifying consecutive bounces"
-msgstr ""
+msgstr "Identifying consecutive bounces"
 
 #: admin/processbounces.php:471
 msgid "Nothing to do"
-msgstr ""
+msgstr "Nulla da fare"
 
 #: admin/processbounces.php:548
 msgid "of"
-msgstr ""
+msgstr "di"
 
 #: admin/processbounces.php:548
 #: admin/processbounces.php:558
 msgid "users processed"
-msgstr ""
+msgstr "utenti processati"
 
 #: admin/processbounces.php:563
 msgid "Report:"
-msgstr ""
+msgstr "Report:"
 
 #: admin/processbounces.php:567
 msgid "Report of advanced bounce processing:"
-msgstr ""
+msgstr "Report del processo di bounce avanzato:"
 
 #: admin/processbounces.php:570
 msgid "Below are users who have been marked unconfirmed. The in () is the number of consecutive bounces."
@@ -3186,31 +3191,31 @@ msgstr ""
 
 #: admin/lib.php:37
 msgid "delete user"
-msgstr ""
+msgstr "cancella utente"
 
 #: admin/lib.php:38
 msgid "unconfirm user"
-msgstr ""
+msgstr "utente non confermato"
 
 #: admin/lib.php:39
 msgid "blacklist user"
-msgstr ""
+msgstr "utenti in blacklist"
 
 #: admin/lib.php:40
 msgid "delete user and bounce"
-msgstr ""
+msgstr "cancella utente e messaggio respinto"
 
 #: admin/lib.php:41
 msgid "unconfirm user and delete bounce"
-msgstr ""
+msgstr "non confermare utente e cancella messaggio respinto"
 
 #: admin/lib.php:42
 msgid "blacklist user and delete bounce"
-msgstr ""
+msgstr "metti utente nella lista nera e cancella messaggio respinto"
 
 #: admin/lib.php:43
 msgid "delete bounce"
-msgstr ""
+msgstr "cancella messaggio respinto"
 
 #: admin/lib.php:55
 msgid "Unnamed List"
@@ -3242,35 +3247,35 @@ msgstr ""
 
 #: admin/lib.php:514
 msgid "Unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 #: admin/lib.php:525
 msgid "very little time"
-msgstr ""
+msgstr "Tempo piccolissimo"
 
 #: admin/lib.php:673
 msgid "A process for this page is already running and it was still alive"
-msgstr ""
+msgstr "Un processo per questa pagina &egrave; attualmente attivo ed ancora in esecuzione"
 
 #: admin/lib.php:673
 msgid "seconds ago"
-msgstr ""
+msgstr "secondi passati"
 
 #: admin/lib.php:679
 msgid "Sleeping for 20 seconds, aborting will quit"
-msgstr ""
+msgstr "In attesa per 20 secondi, annullando sar&agrave; interrotto il processo"
 
 #: admin/lib.php:687
 msgid "We have been waiting too long, I guess the other process is still going ok"
-msgstr ""
+msgstr "Abbiamo aspettato anche troppo, suppongo vi sia un altro processo ancora in esecuzione"
 
 #: admin/uclicks.php:46
 msgid "Available URLs"
-msgstr ""
+msgstr "URLs disponibili"
 
 #: admin/uclicks.php:50
 msgid "msgs"
-msgstr ""
+msgstr "mess.gi"
 
 #: admin/uclicks.php:51
 msgid "last clicked"
@@ -3278,7 +3283,7 @@ msgstr ""
 
 #: admin/uclicks.php:59
 msgid "Select URL to view"
-msgstr ""
+msgstr "Seleziona URL per vedere"
 
 #: admin/uclicks.php:63
 msgid "There are currently no statistics available"
@@ -3286,15 +3291,15 @@ msgstr ""
 
 #: admin/uclicks.php:70
 msgid "URL Click Statistics"
-msgstr ""
+msgstr "Statistica dei Click su URL"
 
 #: admin/uclicks.php:74
 msgid "Click Details for a URL"
-msgstr ""
+msgstr "Dettagli dei Click per un URL"
 
 #: admin/uclicks.php:89
 msgid "msg"
-msgstr ""
+msgstr "msg"
 
 #: admin/uclicks.php:117
 #: admin/uclicks.php:118
@@ -3302,25 +3307,25 @@ msgstr ""
 #: admin/uclicks.php:122
 #: admin/uclicks.php:124
 msgid "total"
-msgstr ""
+msgstr "Totale"
 
 #: admin/members.php:21
 #: admin/members.php:32
 msgid "You do not have enough priviliges to view this page"
-msgstr ""
+msgstr "Non hai privilegi sufficienti per visualizzare questa pagina"
 
 #: admin/members.php:41
 msgid "Add a user"
-msgstr ""
+msgstr "Aggiungi un utente"
 
 #: admin/members.php:42
 #: admin/members.php:141
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #: admin/members.php:47
 msgid "Members of"
-msgstr ""
+msgstr "Membro di"
 
 #: admin/members.php:49
 msgid "edit list details"
@@ -3351,23 +3356,23 @@ msgstr ""
 
 #: admin/members.php:139
 msgid "Users found, click add to add this user"
-msgstr ""
+msgstr "Utenti trovati, clicca su aggiungi per aggiungere questo utente"
 
 #: admin/members.php:146
 msgid "No user found with that email"
-msgstr ""
+msgstr "Nessun utente trovato con quella email"
 
 #: admin/members.php:163
 msgid "add user"
-msgstr ""
+msgstr "Aggiunta utente"
 
 #: admin/members.php:173
 msgid "Inserting user"
-msgstr ""
+msgstr "Inserimento utente"
 
 #: admin/members.php:203
 msgid "User added"
-msgstr ""
+msgstr "Utente aggiunto"
 
 #: admin/members.php:234
 #, php-format
@@ -3384,11 +3389,11 @@ msgstr ""
 
 #: admin/members.php:259
 msgid "Tag all users in this page"
-msgstr ""
+msgstr "Seleziona tutti gli utenti di questa pagina"
 
 #: admin/members.php:264
 msgid "Members"
-msgstr ""
+msgstr "Membri"
 
 #: admin/members.php:273
 msgid "Del"
@@ -3405,128 +3410,128 @@ msgstr ""
 #: admin/members.php:316
 #: admin/members.php:340
 msgid "from this list"
-msgstr ""
+msgstr "da questa lista"
 
 #: admin/members.php:327
 #: admin/members.php:344
 msgid "Move"
-msgstr ""
+msgstr "Sposta"
 
 #: admin/members.php:331
 #: admin/members.php:348
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: admin/members.php:335
 #: admin/members.php:352
 msgid "Nothing"
-msgstr ""
+msgstr "Niente"
 
 #: admin/members.php:338
 msgid "What to do with all users"
-msgstr ""
+msgstr "Cosa fare con tutti gli utenti"
 
 #: admin/members.php:339
 msgid "This will process all users on this list"
-msgstr ""
+msgstr "Saranno processati tutti gli utenti di questa lista"
 
 #: admin/members.php:354
 msgid "do it"
-msgstr ""
+msgstr "procedi"
 
 #: admin/import3.php:21
 msgid "Import emails from IMAP folders"
-msgstr ""
+msgstr "Importa indirizzi email da cartelline IMAP"
 
 #: admin/import3.php:40
 #: admin/import4.php:42
 msgid "No lists available"
-msgstr ""
+msgstr "Nessuna lista disponibile"
 
 #: admin/import3.php:40
 msgid "Add a list"
-msgstr ""
+msgstr "Aggiungi una lista"
 
 #: admin/import3.php:142
 #: admin/import3.php:173
 msgid "can't connect"
-msgstr ""
+msgstr "non posso connettermi"
 
 #: admin/import3.php:161
 #: admin/import3.php:399
 msgid "done"
-msgstr ""
+msgstr "fatto"
 
 #: admin/import3.php:181
 msgid "imap_getmailboxes failed"
-msgstr ""
+msgstr "imap_getmailboxes fallito"
 
 #: admin/import3.php:209
 msgid "Please enter details of the IMAP account"
-msgstr ""
+msgstr "Per favore inserisci dettagli dell'account IMAP"
 
 #: admin/import3.php:212
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: admin/import3.php:214
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: admin/import3.php:215
 msgid "Select the headers fields to search"
-msgstr ""
+msgstr "Scegli i campi intestazioni da cercare"
 
 #: admin/import3.php:224
 msgid "Select the lists to add the emails to"
-msgstr ""
+msgstr "Scegli le liste a cui aggiungere gli indirizzi email"
 
 #: admin/import3.php:229
 msgid "Adding users to list"
-msgstr ""
+msgstr "Aggiunta utenti alla lista"
 
 #: admin/import3.php:239
 msgid "Mark new users as HTML"
-msgstr ""
+msgstr "Segna nuovi utenti come HTML"
 
 #: admin/import3.php:240
 #: admin/import3.php:242
 msgid "If you check"
-msgstr ""
+msgstr "Se tu controlli"
 
 #: admin/import3.php:240
 #: admin/import3.php:241
 msgid "Overwrite Existing"
-msgstr ""
+msgstr "Sovrapponi esistente"
 
 #: admin/import3.php:240
 msgid "information about a user in the database will be replaced by the imported information. Users are matched by email."
-msgstr ""
+msgstr "le informazioni riguardanti un utente nella base dati saranno sostituite dalle informazioi importate. Verr&agrave; usato l'indirizzo email come campo chiave."
 
 #: admin/import3.php:242
 #: admin/import3.php:243
 msgid "Only use complete addresses"
-msgstr ""
+msgstr "Usa solo indirizzi completi"
 
 #: admin/import3.php:242
 msgid "addresses that do not have a real name will be ignored. Otherwise all emails will be imported."
-msgstr ""
+msgstr "indirizzi senza nome reale verranno ignorati. Diversamente tutte le email verranno importate."
 
 #: admin/import3.php:244
 msgid "If you choose"
-msgstr ""
+msgstr "Se tu scegli"
 
 #: admin/import3.php:244
 msgid "send notification email"
-msgstr ""
+msgstr "invia messaggio di notifica"
 
 #: admin/import3.php:244
 msgid "the users you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
-msgstr ""
+msgstr "agli utenti che stai aggiungendo verr&agrave; inviata una richiesta di conferma di iscrizione alla quale dovranno rispondere. Questo &egrave; raccomendato, perch&egrave; individua indirizzi email non validi."
 
 #: admin/import3.php:245
 msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
-msgstr ""
+msgstr "Invia&nbsp;notifica&nbsp;email&nbsp;"
 
 #: admin/import3.php:246
 msgid "There are two ways to add the names of the users,  either one attribute for the entire name or two attributes, one for first name and one for last name. If you use &quot;two attributes&quot;, the name will be split after the first space."
@@ -3534,96 +3539,96 @@ msgstr ""
 
 #: admin/import3.php:248
 msgid "Use one attribute for name"
-msgstr ""
+msgstr "Usa un attributo per il nome"
 
 #: admin/import3.php:248
 msgid "Use two attributes for the name"
-msgstr ""
+msgstr "Usa due attributi per il nome"
 
 #: admin/import3.php:249
 msgid "Attribute one"
-msgstr ""
+msgstr "Attributo uno"
 
 #: admin/import3.php:250
 #: admin/import3.php:258
 msgid "Create Attribute"
-msgstr ""
+msgstr "Crea attributo"
 
 #: admin/import3.php:257
 msgid "Attribute two"
-msgstr ""
+msgstr "Attributo due"
 
 #: admin/import3.php:270
 msgid "Cannot continue"
-msgstr ""
+msgstr "Non posso continuare"
 
 #: admin/import3.php:325
 msgid "Process Selected Folders"
-msgstr ""
+msgstr "elabora cartelle selezionate"
 
 #: admin/import3.php:350
 msgid "folders and"
-msgstr ""
+msgstr "cartelle e"
 
 #: admin/import3.php:351
 msgid "unique emails found"
-msgstr ""
+msgstr "trovati indirizzi email unici"
 
 #: admin/import3.php:477
 msgid "All the emails already exist in the database and are members of the"
-msgstr ""
+msgstr "Tutte le email esistono gi&agrave; nella base dati e sono parte di"
 
 #: admin/import3.php:481
 msgid "emails already existed in the database"
-msgstr ""
+msgstr "le email esistevano gi&agrave; nella base dati"
 
 #: admin/import3.php:483
 msgid "Invalid Emails found."
-msgstr ""
+msgstr "Trovate email non valide"
 
 #: admin/import3.php:485
 msgid "These records were added, but the email has been made up. You can find them by doing a search on"
-msgstr ""
+msgstr "Questi record sono stati aggiunti, ma le email sono state fatte. Puoi trovarli facendo una ricerca."
 
 #: admin/import3.php:487
 msgid "These records were deleted. Check your source and reimport the data. Duplicates will be identified."
-msgstr ""
+msgstr "Questi record sono stati cancellati. Controlla il tuo sorgente e reimporta i dati. I duplicati verranno identificati."
 
 #: admin/import3.php:491
 msgid "No emails found"
-msgstr ""
+msgstr "Nessun email trovato"
 
 #: admin/spage.php:35
 msgid "Deleted"
-msgstr ""
+msgstr "Cancellato"
 
 #: admin/spage.php:38
 msgid "subscribe pages"
-msgstr ""
+msgstr "Pagine iscrizione"
 
 #: admin/spage.php:43
 msgid "title"
-msgstr ""
+msgstr "Titolo"
 
 #: admin/spage.php:46
 msgid "view"
-msgstr ""
+msgstr "Mostra"
 
 #: admin/spage.php:47
 msgid "status"
-msgstr ""
+msgstr "Stato"
 
 #: admin/spage.php:47
 msgid "not active"
-msgstr ""
+msgstr "Non attivo"
 
 #: admin/spage.php:49
 msgid "owner"
-msgstr ""
+msgstr "Proprietario"
 
 #: admin/spage.php:62
 msgid "Add a new one"
-msgstr ""
+msgstr "Aggiungi nuovo"
 
 #: admin/statsmgt.php:7
 msgid "Overview"
@@ -3631,19 +3636,19 @@ msgstr ""
 
 #: admin/statsmgt.php:8
 msgid "View Clicks by URL"
-msgstr ""
+msgstr "Mostra click per URL"
 
 #: admin/statsmgt.php:9
 msgid "View Clicks by Message"
-msgstr ""
+msgstr "Mostra click per Messaggio"
 
 #: admin/statsmgt.php:10
 msgid "View Opens by Message"
-msgstr ""
+msgstr "Mostra aperture per Messaggio"
 
 #: admin/statsmgt.php:11
 msgid "Domain Statistics"
-msgstr ""
+msgstr "Statistiche del dominio"
 
 #: admin/statsmgt.php:15
 msgid "The clicktracking system has changed"
@@ -3664,31 +3669,31 @@ msgstr ""
 
 #: admin/import4.php:42
 msgid "add_list"
-msgstr ""
+msgstr "Aggiungi alla lista"
 
 #: admin/import4.php:51
 msgid "Please enter details of the remote Server"
-msgstr ""
+msgstr "Inserisci i dettagli del Server remoto"
 
 #: admin/import4.php:54
 msgid "Server:"
-msgstr ""
+msgstr "Server:"
 
 #: admin/import4.php:56
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: admin/import4.php:57
 msgid "Database Name:"
-msgstr ""
+msgstr "Nome Database:"
 
 #: admin/import4.php:58
 msgid "Table prefix:"
-msgstr ""
+msgstr "Prefisso Tabella:"
 
 #: admin/import4.php:59
 msgid "Usertable prefix:"
-msgstr ""
+msgstr "Prefisso tabella utenti:"
 
 #: admin/import4.php:73
 msgid "Copy lists from remote server (lists are matched by name)"
@@ -3696,7 +3701,7 @@ msgstr ""
 
 #: admin/import4.php:75
 msgid "Mark new users as HTML:"
-msgstr ""
+msgstr "Spunta nuovo utente come HTML:"
 
 #: admin/import4.php:76
 msgid "If you check \"Overwrite Existing\", information about a user in the database will be replaced by the imported information. Users are matched by email."
@@ -3704,32 +3709,32 @@ msgstr ""
 
 #: admin/import4.php:77
 msgid "Overwrite Existing:"
-msgstr ""
+msgstr "Sovrascrivi Esistenti:"
 
 #: admin/import4.php:78
 msgid "continue"
-msgstr ""
+msgstr "Continua"
 
 #: admin/import4.php:86
 msgid "Making connection with remote database"
-msgstr ""
+msgstr "Esegue connessione con database remoto"
 
 #: admin/import4.php:90
 msgid "cannot connect to remote database"
-msgstr ""
+msgstr "non &egrave; possibile collegarsi al database remoto"
 
 #: admin/import4.php:101
 msgid "Getting data from "
-msgstr ""
+msgstr "Ottieni i dati da "
 
 #: admin/import4.php:106
 msgid "Remote version is"
-msgstr ""
+msgstr "Versione Remota &egrave;"
 
 #: admin/import4.php:108
 #: admin/import4.php:115
 msgid "Remote version has"
-msgstr ""
+msgstr "Versione Remota ha"
 
 #: admin/import4.php:110
 msgid "No users to copy, is the prefix correct?"
@@ -3737,53 +3742,53 @@ msgstr ""
 
 #: admin/import4.php:118
 msgid "Copying lists"
-msgstr ""
+msgstr "copiare liste"
 
 #: admin/import4.php:134
 #: admin/import4.php:170
 msgid "exists locally"
-msgstr ""
+msgstr "esiste localmente"
 
 #: admin/import4.php:145
 #: admin/import4.php:180
 msgid "created locally"
-msgstr ""
+msgstr "creata localmente"
 
 #: admin/import4.php:149
 msgid "Remote list"
-msgstr ""
+msgstr "lista remota"
 
 #: admin/import4.php:149
 msgid "not created"
-msgstr ""
+msgstr "non creata"
 
 #: admin/import4.php:154
 msgid "Copying attributes"
-msgstr ""
+msgstr "copiare attributi"
 
 #: admin/import4.php:204
 msgid "Copying users"
-msgstr ""
+msgstr "Copiare utenti"
 
 #: admin/import4.php:299
 msgid "Error, no mapped attribute for"
-msgstr ""
+msgstr "Errore, non rilevati attributi per"
 
 #: admin/import4.php:351
 msgid "Error, no local list defined for"
-msgstr ""
+msgstr "Errore, nessuna lista definita per"
 
 #: admin/import4.php:359
 msgid "new users"
-msgstr ""
+msgstr "nuovi utenti"
 
 #: admin/import4.php:360
 msgid "and"
-msgstr ""
+msgstr "e"
 
 #: admin/import4.php:361
 msgid "existing users"
-msgstr ""
+msgstr "utenti esistenti"
 
 #: admin/convertstats.php:5
 msgid "Hint: this page also works from commandline"
@@ -3805,11 +3810,11 @@ msgstr ""
 #: admin/setup.php:96
 #: admin/setup.php:107
 msgid "Go there"
-msgstr ""
+msgstr "vai l&igrave;"
 
 #: admin/setup.php:36
 msgid "Change Admin Password"
-msgstr ""
+msgstr "Cambia password amministratore"
 
 #: admin/setup.php:55
 msgid "Verify Settings"
@@ -3817,11 +3822,11 @@ msgstr ""
 
 #: admin/setup.php:84
 msgid "Create Lists"
-msgstr ""
+msgstr "Crea liste"
 
 #: admin/setup.php:95
 msgid "Create Subscribe Pages"
-msgstr ""
+msgstr "Crea pagine di iscrizione"
 
 #: admin/setup.php:106
 msgid "Add some subscribers"
@@ -3849,7 +3854,7 @@ msgstr ""
 
 #: admin/usercheck.php:19
 msgid "key"
-msgstr ""
+msgstr "chiave"
 
 #: admin/usercheck.php:36
 msgid "whatistype"
@@ -3857,143 +3862,143 @@ msgstr ""
 
 #: admin/usercheck.php:37
 msgid "foreignkey"
-msgstr ""
+msgstr "chiave esterna"
 
 #: admin/usercheck.php:39
 msgid "pastevalues"
-msgstr ""
+msgstr "Incolla i valori da controllare in questo box, uno per linea"
 
 #: admin/importadmin.php:17
 msgid "File is either to large or does not exist."
-msgstr ""
+msgstr "L'archivio &egrave; troppo largo o non esiste."
 
 #: admin/importadmin.php:19
 msgid "No file was specified."
-msgstr ""
+msgstr "Nessun archivio specificato."
 
 #: admin/importadmin.php:54
 msgid "Some characters that are not valid have been found. These might be delimiters. Please check the file and select the right delimiter. Character found:"
-msgstr ""
+msgstr "Sono stati trovati alcuni caratteri non validi. questi possono essere delimitati. Controllo l'archivio e seleziona i seguenti delimitatori. Caratteri trovati:"
 
 #: admin/importadmin.php:84
 msgid "Name cannot be empty"
-msgstr ""
+msgstr "Il nome non pu&ograve; essere vuoto"
 
 #: admin/importadmin.php:100
 msgid "Cannot find the email in the header"
-msgstr ""
+msgstr "Non trovata email nell'intestazione"
 
 #: admin/importadmin.php:102
 msgid "Cannot find the password in the header"
-msgstr ""
+msgstr "Non trovata la password nell'intestazione"
 
 #: admin/importadmin.php:104
 msgid "Cannot find the loginname in the header"
-msgstr ""
+msgstr "non trovato il nome login nell'intestazione"
 
 #: admin/importadmin.php:117
 msgid "Record has no email"
-msgstr ""
+msgstr "Questi Record non hanno email"
 
 #: admin/importadmin.php:118
 msgid "Invalid Email"
-msgstr ""
+msgstr "Email non valida"
 
 #: admin/importadmin.php:123
 msgid "Record has more values than header indicated, this may cause trouble"
-msgstr ""
+msgstr "I Record hanno pi&ugrave; valori di quelli indicati sulla testata, questo causa confusione"
 
 #: admin/importadmin.php:143
 msgid "Test output:There should only be ONE email per line.If the output looks ok, go Back to resubmit for real"
-msgstr ""
+msgstr "Verifica formato archivio:<br>Deve esserci solo UNA email per linea.<br>Se &egrave; corretto, vai a <a href=\"javascript:history.go(-1)\">Back</a> per risottomettere per reale<br><br>"
 
 #: admin/importadmin.php:151
 msgid "login"
-msgstr ""
+msgstr "login"
 
 #: admin/importadmin.php:183
 msgid "Empty loginname, using email:"
-msgstr ""
+msgstr "Nome login vuoto, usa email:"
 
 #: admin/importadmin.php:211
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #: admin/importadmin.php:211
 msgid "added to attribute"
-msgstr ""
+msgstr "aggiunto agli attributi"
 
 #: admin/importadmin.php:240
 msgid "List for"
-msgstr ""
+msgstr "Lista per"
 
 #: admin/importadmin.php:258
 msgid "All the emails already exist in the database"
-msgstr ""
+msgstr "Tutte le emails esistono gi&agrave; nel database"
 
 #: admin/importadmin.php:260
 msgid "succesfully imported to the database and added to the system."
-msgstr ""
+msgstr "importazione completata con successo nel database e aggiunta al sistema."
 
 #: admin/importadmin.php:282
 msgid "No default permissions have been defined, please create default permissions first, by creating one dummy admin and assigning the default permissions to this admin"
-msgstr ""
+msgstr "Nessun permesso di default &egrave; stato definito, creare prima i permessi di default, creando un amministratore di comodo e asegnando i permessi di default a questo amministratore"
 
 #: admin/importadmin.php:287
 msgid "   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: email, loginname, password. Any other columns will be added as admin attributes.  Warning: the file needs to be plain text. Do not upload binary files like a Word Document.   "
-msgstr ""
+msgstr "L'archivio da caricare deve contenere gli amministratori verr&agrave; aggiunto al sistema. Le colonne dovranno avere le seguenti intestazioni: <b>email</b>, <b>loginname</b>, <b>password</b>. Ogni altra colonna verr&agrave; aggiunta come attributo degli amministratori. <b>Attenzione</b>: l'archivio deve essere di testo semplice. Non caricare archivi binari come documenti Word."
 
 #: admin/importadmin.php:288
 msgid "File containing emails"
-msgstr ""
+msgstr "Arcihvio contenente emails"
 
 #: admin/importadmin.php:289
 msgid "Field Delimiter"
-msgstr ""
+msgstr "Delimitatore di campo"
 
 #: admin/importadmin.php:289
-msgid "default is TAB"
-msgstr ""
+msgid "(default is TAB)"
+msgstr "(prefedinito &egrave; TAB)"
 
 #: admin/importadmin.php:290
 msgid "Record Delimiter"
-msgstr ""
+msgstr "Delimitatore di record"
 
 #: admin/importadmin.php:290
-msgid "default is line break"
-msgstr ""
+msgid "(default is line break)"
+msgstr "(prefedinito &egrave; interruzione di linea)"
 
 #: admin/importadmin.php:292
 msgid "Test output"
-msgstr ""
+msgstr "Verifica formato archivio"
 
 #: admin/importadmin.php:293
 msgid "Check this box to create a list for each administrator, named after their loginname"
-msgstr ""
+msgstr "Spunta questo box per create una lista per ogni amministratore, nominata dopo il loro loginname"
 
 #: admin/importadmin.php:294
 msgid "Do Import"
-msgstr ""
+msgstr "Da Importare"
 
 #: admin/generatebouncerules.php:37
 msgid "Process Next Batch"
-msgstr ""
+msgstr "Processo batch successivo"
 
 #: admin/generatebouncerules.php:130
 msgid "Hmm, duplicate entry, "
-msgstr ""
+msgstr "Hmm, inserimento doppio, "
 
 #: admin/generatebouncerules.php:142
 msgid "new rules found"
-msgstr ""
+msgstr "Trovate nuove regole"
 
 #: admin/generatebouncerules.php:143
 msgid "bounces not matched"
-msgstr ""
+msgstr "Messaggio respinto non corrispondente"
 
 #: admin/generatebouncerules.php:144
 msgid "bounces matched to existing rules"
-msgstr ""
+msgstr "Il messaggio respinto corrisponde alla regola esistente"
 
 #: admin/tests.php:5
 msgid "phplist test suite"
@@ -4029,7 +4034,7 @@ msgstr ""
 
 #: admin/list.php:214
 msgid "Bounces"
-msgstr ""
+msgstr "Messaggi respinti"
 
 #: admin/list.php:217
 msgid "Public"
@@ -4037,11 +4042,11 @@ msgstr ""
 
 #: admin/list.php:222
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: admin/list.php:229
 msgid "Order"
-msgstr ""
+msgstr "Ordinamento"
 
 #: admin/list.php:233
 msgid "Are you sure you want to delete this list?"
@@ -4061,36 +4066,36 @@ msgstr ""
 
 #: admin/bouncerule.php:16
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
 #: admin/bouncerule.php:17
 msgid "No"
-msgstr ""
+msgstr "Num."
 
 #: admin/bouncerule.php:23
 msgid "back to list of bounce rules"
-msgstr ""
+msgstr "torna alla lista delle regole per i messaggi respinti"
 
 #: admin/bouncerule.php:33
 msgid "Created By"
-msgstr ""
+msgstr "Creata Da"
 
 #: admin/bouncerule.php:40
 msgid "Select Status"
-msgstr ""
+msgstr "Seleziona Stato"
 
 #: admin/bouncerule.php:54
 msgid "related bounces"
-msgstr ""
+msgstr "messaggi respinti collegati"
 
 #: admin/bouncerule.php:56
 msgid "no related bounces found"
-msgstr ""
+msgstr "non sono stati trovati messaggi respinti collegati"
 
 #: admin/bouncerule.php:65
 #, php-format
 msgid "and more, %d in total"
-msgstr ""
+msgstr "e ancora, %d in totale"
 
 #: admin/editlist.php:26
 msgid "You cannot create a new list because you have reached maximum number of lists."
@@ -4098,7 +4103,7 @@ msgstr ""
 
 #: admin/editlist.php:48
 msgid "Members of this list"
-msgstr ""
+msgstr "Membri di questa lista"
 
 #: admin/editlist.php:96
 msgid "New List added"
@@ -4106,7 +4111,7 @@ msgstr ""
 
 #: admin/editlist.php:131
 msgid "List name"
-msgstr ""
+msgstr "Nome della lista"
 
 #: admin/editlist.php:133
 msgid "Public list (listed on the frontend)"
@@ -4114,78 +4119,78 @@ msgstr ""
 
 #: admin/editlist.php:135
 msgid "Order for listing"
-msgstr ""
+msgstr "Ordine per l'elenco"
 
 #: admin/editlist.php:169
 msgid "List Description"
-msgstr ""
+msgstr "Descrizione della lista"
 
 #: admin/editlist.php:172
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #: admin/dlusers.php:49
 #: admin/dlusers.php:51
 msgid "PHPList Users"
-msgstr ""
+msgstr "Utenti di PHPList"
 
 #: admin/dlusers.php:51
 msgid "on"
-msgstr ""
+msgstr "nella lista"
 
 #: admin/dlusers.php:75
 #: admin/export.php:146
 msgid "List Membership"
-msgstr ""
+msgstr "Membri della lista"
 
 #: admin/dlusers.php:97
 msgid "No Lists"
-msgstr ""
+msgstr "nessuna lista"
 
 #: admin/segmentation.php:10
 msgid "selectattribute"
-msgstr ""
+msgstr "scegli attributo"
 
 #: admin/segmentation.php:23
 msgid "matchallrules"
-msgstr ""
+msgstr "Trova corrispondenze con tutte queste regole"
 
 #: admin/segmentation.php:25
 msgid "matchanyrules"
-msgstr ""
+msgstr "Trova corrispondenze con qualsisi regola"
 
 #: admin/segmentation.php:59
 msgid "addcriterion"
-msgstr ""
+msgstr "Aggiungi una prova di verifica"
 
 #: admin/getrss.php:12
 msgid "Getting and Parsing the RSS sources"
-msgstr ""
+msgstr "Ottenere e analizzare la sorgente RSS"
 
 #: admin/getrss.php:41
 msgid "Rss Errors"
-msgstr ""
+msgstr "Errore Rss"
 
 #: admin/getrss.php:43
 msgid "Rss Results"
-msgstr ""
+msgstr "Risultato Rss"
 
 #: admin/getrss.php:52
 msgid "Rss Failure report"
-msgstr ""
+msgstr "Rapporto Rss fallito"
 
 #: admin/getrss.php:69
 #: admin/getrss.php:71
 msgid "Parsing"
-msgstr ""
+msgstr "Analisi"
 
 #: admin/getrss.php:119
 msgid "items"
-msgstr ""
+msgstr "Articolo"
 
 #: admin/getrss.php:119
 msgid "new items"
-msgstr ""
+msgstr "Nuovo articolo"
 
 #: admin/massremove.php:38
 #, php-format
@@ -4245,7 +4250,7 @@ msgstr ""
 
 #: admin/export.php:200
 msgid "When they subscribed to"
-msgstr ""
+msgstr "Quando si sono iscritti a"
 
 #: admin/export.php:211
 msgid "Select the columns to include in the export"
@@ -4253,7 +4258,7 @@ msgstr ""
 
 #: admin/export.php:230
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 #: admin/listbounces.php:12
 msgid "Choose a list"
@@ -4277,47 +4282,47 @@ msgstr ""
 
 #: admin/about.php:14
 msgid "Developers"
-msgstr ""
+msgstr "Sviluppatori"
 
 #: admin/about.php:18
 msgid "Contributors"
-msgstr ""
+msgstr "Collaboratori"
 
 #: admin/about.php:26
 msgid "Documentation"
-msgstr ""
+msgstr "Documentazione"
 
 #: admin/about.php:31
 msgid "Translations"
-msgstr ""
+msgstr "Traduzioni"
 
 #: admin/about.php:34
 msgid "credits for this translation"
-msgstr ""
+msgstr "Traduzione originale di Adriano Peruffo, rivista e corretta da Andrea Panisson"
 
 #: admin/about.php:37
 msgid "The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions."
-msgstr ""
+msgstr "Gli sviluppatori ringraziano tutti coloro che hanno deciso di contribuire, che ci hanno aiutato con segnalazioni di bug, suggerimenti, donazioni, richieste di nuove funzioni, traduzioni e contribuendo in molti altri modi."
 
 #: admin/about.php:39
 msgid "Portions of the system include"
-msgstr ""
+msgstr "Porzioni del sistema incluse"
 
 #: admin/admin.php:6
 msgid "List of Administrators"
-msgstr ""
+msgstr "Elenco degli amministratori"
 
 #: admin/admin.php:87
 msgid "Changes saved"
-msgstr ""
+msgstr "Modiche salvate"
 
 #: admin/admin.php:89
 msgid "Error adding new admin"
-msgstr ""
+msgstr "Errore aggiungendo nuovi amministratori"
 
 #: admin/admin.php:98
 msgid "Current set of permissions made default"
-msgstr ""
+msgstr "L'impostazione corrente dei permessi &egrave; stata impostata come predefinita"
 
 #: admin/admin.php:121
 msgid "Failed, you cannot delete yourself"
@@ -4325,19 +4330,19 @@ msgstr ""
 
 #: admin/admin.php:127
 msgid "Edit Administrator"
-msgstr ""
+msgstr "Modifica Amministratori"
 
 #: admin/admin.php:135
 msgid "Add a new Administrator"
-msgstr ""
+msgstr "Aggiungi un nuovo amministratore"
 
 #: admin/admin.php:138
 msgid "Admin Details"
-msgstr ""
+msgstr "Dettagli Amministratore"
 
 #: admin/admin.php:162
 msgid "hidden"
-msgstr ""
+msgstr "nascosto"
 
 #: admin/admin.php:163
 msgid "Update it?"
@@ -4349,7 +4354,7 @@ msgstr ""
 
 #: admin/admin.php:174
 msgid "Login Name"
-msgstr ""
+msgstr "Nome di Login"
 
 #: admin/admin.php:223
 msgid " Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the \"user\", \"users\" and \"members\" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long "
@@ -4357,51 +4362,51 @@ msgstr ""
 
 #: admin/admin.php:224
 msgid "Access Details"
-msgstr ""
+msgstr "Dettagli di accesso"
 
 #: admin/admin.php:226
 msgid "Access Privileges"
-msgstr ""
+msgstr "Privilegi di accesso"
 
 #: admin/admin.php:227
 msgid "Page"
-msgstr ""
+msgstr "Pagina"
 
 #: admin/admin.php:258
 msgid "Set these permissions as default"
-msgstr ""
+msgstr "Imposta questi permessi come predefiniti"
 
 #: admin/admin.php:260
 msgid "Reset to Default"
-msgstr ""
+msgstr "Resetta a valori predefiniti"
 
 #: admin/userclicks.php:28
 msgid "Invalid Request"
-msgstr ""
+msgstr "richiesta non valida"
 
 #: admin/userclicks.php:47
 msgid "User Click Statistics"
-msgstr ""
+msgstr "Statistiche dei click degli utenti"
 
 #: admin/userclicks.php:61
 msgid "User Click Details for a URL in a message"
-msgstr ""
+msgstr "Dettagli click utente  per un URL in un messaggio"
 
 #: admin/userclicks.php:74
 msgid "User Click Details for a message"
-msgstr ""
+msgstr "Dettagli click utente  per un messaggio"
 
 #: admin/userclicks.php:86
 msgid "User Click Details for a URL"
-msgstr ""
+msgstr "Dettagli click utente  per un URL"
 
 #: admin/userclicks.php:92
 msgid "User Click Details for a Message"
-msgstr ""
+msgstr "Dettagli click utente  per un messaggio"
 
 #: admin/userclicks.php:103
 msgid "User Click Details"
-msgstr ""
+msgstr "Dettagli click utente"
 
 #: admin/userclicks.php:140
 msgid "view user"
@@ -4427,16 +4432,16 @@ msgstr ""
 
 #: admin/templates.php:25
 msgid "No template have been defined"
-msgstr ""
+msgstr "Nessun modello Ë stato definito"
 
 #: admin/templates.php:30
 msgid "Existing templates"
-msgstr ""
+msgstr "Modelli esistenti"
 
 #: admin/templates.php:40
 #: admin/messages.php:368
 msgid "View"
-msgstr ""
+msgstr "Visualizza"
 
 #: admin/templates.php:41
 msgid "Campaign Default"
@@ -4448,7 +4453,7 @@ msgstr ""
 
 #: admin/templates.php:51
 msgid "Add new Template"
-msgstr ""
+msgstr "Aggiungi nuovo modello"
 
 #: admin/templates.php:55
 msgid "Add default system template"
@@ -4465,7 +4470,7 @@ msgstr ""
 #: admin/index.php:240
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
-msgstr ""
+msgstr "login non valido da %s, ha tentato di connettersi come %s"
 
 #: admin/index.php:260
 #: admin/index.php:273
@@ -4487,12 +4492,12 @@ msgstr ""
 #: admin/index.php:271
 #, php-format
 msgid "successful password request from %s for %s"
-msgstr ""
+msgstr "richiesta password completata con successo da %s per %s"
 
 #: admin/index.php:274
 #, php-format
 msgid "failed password request from %s for %s"
-msgstr ""
+msgstr "richiesta password fallita da %s per %s"
 
 #: admin/index.php:281
 #, php-format
@@ -4510,7 +4515,7 @@ msgstr ""
 
 #: admin/index.php:346
 msgid "goodbye"
-msgstr ""
+msgstr "Arrivederci"
 
 #: admin/index.php:350
 msgid "goodmorning"
@@ -4598,17 +4603,17 @@ msgstr ""
 #: admin/processqueue.php:800
 #, php-format
 msgid "There have been more than 10 attempts to send to %s that have been blocked for domain throttling."
-msgstr ""
+msgstr "Ci sono stati pi&ugrave; di 10 tentativi di trasmettere a %s che sono stati bloccati dal dominio. "
 
 #: admin/processqueue.php:801
 #: admin/processqueue.php:803
 msgid "Introducing extra delay to decrease throttle failures"
-msgstr ""
+msgstr "Introduzione di un tempo extra per ridurre il fallimento di smistamento"
 
 #: admin/processqueue.php:812
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
-msgstr ""
+msgstr "%s &egrave; attualmente limite di smistamento di %d per %d seconds"
 
 #: admin/processqueue.php:917
 #, php-format
@@ -4617,7 +4622,7 @@ msgstr ""
 
 #: admin/processqueue.php:947
 msgid "Unconfirmed user"
-msgstr ""
+msgstr "Utenti non confermati"
 
 #: admin/processqueue.php:1027
 msgid "Message Campaign finished"
@@ -4635,7 +4640,7 @@ msgstr ""
 
 #: admin/bounces.php:9
 msgid "deleting"
-msgstr ""
+msgstr "cancellazione"
 
 #: admin/bounces.php:62
 msgid "view bounces by list"
@@ -4643,7 +4648,7 @@ msgstr ""
 
 #: admin/bounces.php:66
 msgid "are you sure you want to delete all unidentified bounces older than 2 months"
-msgstr ""
+msgstr "Sicuro di voler eliminare tutti i messaggi respinti non identificati pi&ugrave; vecchi di 2 mesi?"
 
 #: admin/bounces.php:68
 msgid "delete all unidentified (&gt; 2 months old)"
@@ -4651,7 +4656,7 @@ msgstr ""
 
 #: admin/bounces.php:71
 msgid "are you sure you want to delete all bounces older than 2 months"
-msgstr ""
+msgstr "Sicuro di voler eliminare tutti i messaggi respinti pi&ugrave; vecchi di due mesi?"
 
 #: admin/bounces.php:73
 msgid "delete all processed (&gt; 2 months old)"
@@ -4663,7 +4668,7 @@ msgstr ""
 
 #: admin/bounces.php:85
 msgid "no unprocessed bounces available"
-msgstr ""
+msgstr "Non sono presenti messaggi respinti non analizzati"
 
 #: admin/bounces.php:98
 msgid "System Message"
@@ -4679,7 +4684,7 @@ msgstr ""
 
 #: admin/upgrade.php:65
 msgid "Please wait, upgrading your database, do not interrupt"
-msgstr ""
+msgstr "Si prega di attendere, aggiornamento database in corso, non interrompere"
 
 #: admin/upgrade.php:414
 msgid "Upgrading the database to use UTF-8, please wait"
@@ -4711,15 +4716,15 @@ msgstr ""
 
 #: admin/messages.php:77
 msgid "draft"
-msgstr ""
+msgstr "Bozze"
 
 #: admin/messages.php:80
 msgid "static"
-msgstr ""
+msgstr "Statico"
 
 #: admin/messages.php:121
 msgid "Requeuing"
-msgstr ""
+msgstr "Riaccodato"
 
 #: admin/messages.php:140
 msgid "Suspending"
@@ -4739,31 +4744,31 @@ msgstr ""
 
 #: admin/messages.php:246
 msgid "Campaigns"
-msgstr ""
+msgstr "Messaggi"
 
 #: admin/messages.php:301
 msgid "Viewed"
-msgstr ""
+msgstr "Visualizzato"
 
 #: admin/messages.php:302
 msgid "Unique Views"
-msgstr ""
+msgstr "Viste Singole"
 
 #: admin/messages.php:307
 msgid "Time to send"
-msgstr ""
+msgstr "Tempo di spedizione"
 
 #: admin/messages.php:323
 msgid "Bounced"
-msgstr ""
+msgstr "Respinto"
 
 #: admin/messages.php:337
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: admin/messages.php:338
 msgid "both"
-msgstr ""
+msgstr "Entrambi"
 
 #: admin/messages.php:352
 msgid "Suspend"
@@ -4771,7 +4776,7 @@ msgstr ""
 
 #: admin/messages.php:354
 msgid "Requeue"
-msgstr ""
+msgstr "Riaccodato"
 
 #: admin/messages.php:358
 msgid "Mark&nbsp;sent"
@@ -4780,11 +4785,11 @@ msgstr ""
 #: admin/messages.php:359
 #: admin/messages.php:366
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
 #: admin/messages.php:371
 msgid "click stats"
-msgstr ""
+msgstr "Click stats"
 
 #: admin/messages.php:389
 msgid "Suspend All"
@@ -4817,59 +4822,59 @@ msgstr ""
 #: admin/checkbouncerules.php:21
 #, php-format
 msgid "Process Next %d"
-msgstr ""
+msgstr "Procedi con il prossimo %d"
 
 #: admin/checkbouncerules.php:36
 msgid "No match"
-msgstr ""
+msgstr "Nessuna corrispondenza"
 
 #: admin/checkbouncerules.php:41
 msgid "bounces did not match any current active rule"
-msgstr ""
+msgstr "I messaggi respinti non sono stati abbinati a nessuna regola attiva"
 
 #: admin/checkbouncerules.php:42
 msgid "bounce matched current active rules"
-msgstr ""
+msgstr "il messaggio respinto corrisponde ad una regola gi&agrave; attiva"
 
 #: admin/stacked_attributes_prev.php:48
 #: admin/stacked_attributes_prev.php:58
 #: admin/stacked_attributes_prev.php:68
 #: admin/stacked_attributes_prev.php:140
 msgid "is"
-msgstr ""
+msgstr "&egrave;"
 
 #: admin/stacked_attributes_prev.php:49
 #: admin/stacked_attributes_prev.php:59
 #: admin/stacked_attributes_prev.php:69
 #: admin/stacked_attributes_prev.php:141
 msgid "isnot"
-msgstr ""
+msgstr "non &egrave;"
 
 #: admin/stacked_attributes_prev.php:55
 msgid "unchecked"
-msgstr ""
+msgstr "non segnato"
 
 #: admin/stacked_attributes_prev.php:56
 msgid "checked"
-msgstr ""
+msgstr "Segnato "
 
 #: admin/stacked_attributes_prev.php:63
 msgid "dd-mm-yyyy"
-msgstr ""
+msgstr "dd-mm-yyyy"
 
 #: admin/stacked_attributes_prev.php:70
 #: admin/stacked_attributes_prev.php:142
 msgid "isbefore"
-msgstr ""
+msgstr "&egrave; prima"
 
 #: admin/stacked_attributes_prev.php:71
 #: admin/stacked_attributes_prev.php:143
 msgid "isafter"
-msgstr ""
+msgstr "&egrave; dopo"
 
 #: admin/stacked_attributes_prev.php:94
 msgid "buggywithie"
-msgstr ""
+msgstr "Attenzione, questa funzionalit&agrave; &egrave; difettosa e inaffidabile con IE (Internet Explorer).\nSarebbe meglio usare Mozilla, Firefox o Opera\nAlternativamente disattiva STACKED_ATTRIBUTE_SELECTION nel tuo file di configurazione."
 
 #: admin/importsimple.php:57
 msgid "import_by"
@@ -4901,7 +4906,7 @@ msgstr ""
 
 #: admin/importsimple.php:89
 msgid "phplist Import Results"
-msgstr ""
+msgstr "Risultati import phplist"
 
 #: admin/importsimple.php:133
 msgid "Please enter the emails to import, one per line, in the box below and click \"Import Emails\""
@@ -4929,15 +4934,15 @@ msgstr ""
 
 #: admin/usermgt.php:29
 msgid "Reconcile Subscribers"
-msgstr ""
+msgstr "Riconcilia Utenti"
 
 #: admin/usermgt.php:30
 msgid "Check for Subscribers"
-msgstr ""
+msgstr "Controlli per Utenti"
 
 #: admin/usermgt.php:31
 msgid "mass unconfirm users"
-msgstr ""
+msgstr "Revoca di massa Utenti confermati"
 
 #: admin/usermgt.php:32
 msgid "mass remove users"
@@ -4949,7 +4954,7 @@ msgstr ""
 
 #: admin/connect.php:360
 msgid "error"
-msgstr ""
+msgstr "errore"
 
 #: admin/connect.php:400
 #: admin/connect.php:404
@@ -4963,11 +4968,11 @@ msgstr ""
 
 #: admin/connect.php:716
 msgid "Main Page"
-msgstr ""
+msgstr "Pagina Principale"
 
 #: admin/connect.php:716
 msgid "about"
-msgstr ""
+msgstr "Informazioni su"
 
 #: admin/connect.php:776
 msgid "In this section"
@@ -4979,19 +4984,19 @@ msgstr ""
 
 #: admin/connect.php:1033
 msgid "alllists"
-msgstr ""
+msgstr "Tutte le liste"
 
 #: admin/connect.php:1039
 msgid "All Active Lists"
-msgstr ""
+msgstr "Tutte le liste attive"
 
 #: admin/connect.php:1069
 msgid "listactive"
-msgstr ""
+msgstr "La lista &egrave; attiva"
 
 #: admin/connect.php:1071
 msgid "listnotactive"
-msgstr ""
+msgstr "La lista NON &egrave; attiva"
 
 #: admin/connect.php:1112
 msgid "nolistsavailable"
@@ -5054,7 +5059,7 @@ msgstr ""
 #: admin/tests/sendpage.php:27
 #: admin/tests/sendpage.php:31
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: admin/tests/sendpage.php:29
 msgid "Sending Text version to "
@@ -5070,15 +5075,15 @@ msgstr ""
 
 #: admin/actions/listinvalid.php:33
 msgid "Users apply"
-msgstr ""
+msgstr "utenti corrispondo ai criteri"
 
 #: admin/actions/listinvalid.php:35
 msgid "Delete Tagged Users"
-msgstr ""
+msgstr "Cancella gli utenti selezionati"
 
 #: admin/actions/msgstatus.php:45
 msgid "unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 #: admin/actions/msgstatus.php:55
 #, php-format
@@ -5100,11 +5105,11 @@ msgstr ""
 
 #: admin/actions/listcriteria.php:32
 msgid "operator"
-msgstr ""
+msgstr "operatore"
 
 #: admin/actions/listcriteria.php:166
 msgid "values"
-msgstr ""
+msgstr "valori"
 
 #: admin/actions/listcriteria.php:167
 msgid "remove"
@@ -5112,11 +5117,11 @@ msgstr ""
 
 #: admin/actions/configure.php:26
 msgid "Editing"
-msgstr ""
+msgstr "Modifica"
 
 #: admin/actions/configure.php:66
 msgid "save changes"
-msgstr ""
+msgstr "Salva i cambiamenti"
 
 #: admin/actions/checkurl.php:20
 #: admin/actions/checkurl.php:22
@@ -5142,7 +5147,7 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:34
 msgid "Delete will delete user from the list"
-msgstr ""
+msgstr "Elimina, canceller&agrave; l'utente dall'iscrizione alla/e liste"
 
 #: admin/commonlib/pages/user.php:56
 msgid "Error adding empty password, please check that the password is complete"
@@ -5150,7 +5155,7 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:67
 msgid "Error adding user, please check that the user exists"
-msgstr ""
+msgstr "Errore aggiungendo l'utente, controllare che l'utente non esista gi&agrave;"
 
 #: admin/commonlib/pages/user.php:125
 msgid "Uploaded avatar file too big"
@@ -5159,12 +5164,12 @@ msgstr ""
 #: admin/commonlib/pages/user.php:183
 #: admin/commonlib/pages/user.php:193
 msgid "User added to group"
-msgstr ""
+msgstr "Utente aggiunto al gruppo"
 
 #: admin/commonlib/pages/user.php:212
 #, php-format
 msgid "User added to list %s"
-msgstr ""
+msgstr "Utente aggiunto alla lista %s"
 
 #: admin/commonlib/pages/user.php:294
 msgid "User removed from group"
@@ -5172,43 +5177,43 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:308
 msgid "No such User"
-msgstr ""
+msgstr "Nessun utente"
 
 #: admin/commonlib/pages/user.php:327
 msgid "update page"
-msgstr ""
+msgstr "aggiorna pagina"
 
 #: admin/commonlib/pages/user.php:328
 msgid "unsubscribe page"
-msgstr ""
+msgstr "pagina di cancellazione"
 
 #: admin/commonlib/pages/user.php:329
 msgid "History"
-msgstr ""
+msgstr "Storico"
 
 #: admin/commonlib/pages/user.php:360
 msgid "Add a new User"
-msgstr ""
+msgstr "Aggiungi un nuovo utente"
 
 #: admin/commonlib/pages/user.php:363
 msgid "User Details"
-msgstr ""
+msgstr "Dettagli utente"
 
 #: admin/commonlib/pages/user.php:459
 msgid "User is blacklisted. No emails will be sent to this user"
-msgstr ""
+msgstr "L'utente Ë nella blacklist. Non verr&agrave; inviata nessuna email a questo utente"
 
 #: admin/commonlib/pages/user.php:462
 msgid "Mailinglist Membership"
-msgstr ""
+msgstr "Rendi membro delle seguenti mailinglist"
 
 #: admin/commonlib/pages/user.php:487
 msgid "Group Membership"
-msgstr ""
+msgstr "Rendi membro dei seguenti gruppi"
 
 #: admin/commonlib/pages/user.php:490
 msgid "Please select the groups this user is a member of"
-msgstr ""
+msgstr "Seleziona i gruppi a cui appartiene questo utente"
 
 #: admin/commonlib/pages/user.php:571
 #: admin/commonlib/pages/user.php:578
@@ -5221,7 +5226,7 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:157
 msgid "Your privileges for this page are insufficient"
-msgstr ""
+msgstr "I tuoi permessi per questa pagina sono insufficienti"
 
 #: admin/commonlib/pages/users.php:213
 msgid "Sorry, only super users can delete users"
@@ -5230,7 +5235,7 @@ msgstr ""
 #: admin/commonlib/pages/users.php:229
 #, php-format
 msgid "%s users in total"
-msgstr ""
+msgstr "%s utenti in totale"
 
 #: admin/commonlib/pages/users.php:247
 msgid "Users marked <span class=\"highlight\">red</span> are unconfirmed"
@@ -5238,23 +5243,23 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:275
 msgid "Show only unconfirmed users"
-msgstr ""
+msgstr "Mostra solo utenti non confermati (conf)"
 
 #: admin/commonlib/pages/users.php:277
 msgid "Show only blacklisted users"
-msgstr ""
+msgstr "Mostra solo utenti in blacklist (bl)"
 
 #: admin/commonlib/pages/users.php:300
 msgid "Sort by"
-msgstr ""
+msgstr "ordinato per"
 
 #: admin/commonlib/pages/users.php:302
 msgid "asc"
-msgstr ""
+msgstr "asc"
 
 #: admin/commonlib/pages/users.php:303
 msgid "Go"
-msgstr ""
+msgstr "Vai"
 
 #: admin/commonlib/pages/users.php:349
 msgid "too many subscribers, use a search query to list some"
@@ -5262,19 +5267,19 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:360
 msgid "Find a user"
-msgstr ""
+msgstr "Trova un utente"
 
 #: admin/commonlib/pages/users.php:369
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: admin/commonlib/pages/users.php:372
 msgid "Foreign Key"
-msgstr ""
+msgstr "Chiave straniera"
 
 #: admin/commonlib/pages/users.php:379
 msgid "reset"
-msgstr ""
+msgstr "reimposta"
 
 #: admin/commonlib/pages/users.php:387
 msgid "Find subscribers"
@@ -5282,19 +5287,19 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:392
 msgid "Download all users as CSV file"
-msgstr ""
+msgstr "Scarica tutti gli utenti in un file CSV"
 
 #: admin/commonlib/pages/users.php:393
 msgid "Add a User"
-msgstr ""
+msgstr "Aggiungi un utente"
 
 #: admin/commonlib/pages/users.php:407
 msgid "bl l"
-msgstr ""
+msgstr "bl"
 
 #: admin/commonlib/pages/users.php:454
 msgid "bncs"
-msgstr ""
+msgstr "rsp"
 
 #: admin/commonlib/pages/users.php:459
 msgid "no results"
@@ -5302,7 +5307,7 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:459
 msgid "No users apply"
-msgstr ""
+msgstr "Nessun utente corrisponde"
 
 #: admin/commonlib/pages/attributes.php:24
 msgid "warnemailattribute"
@@ -5314,7 +5319,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:118
 msgid "from"
-msgstr ""
+msgstr "from"
 
 #: admin/commonlib/pages/attributes.php:181
 msgid "cannotmergeone"
@@ -5326,7 +5331,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:185
 msgid "into"
-msgstr ""
+msgstr "in"
 
 #: admin/commonlib/pages/attributes.php:189
 msgid "notsametype"
@@ -5366,7 +5371,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:334
 msgid "forms"
-msgstr ""
+msgstr "forms"
 
 #: admin/commonlib/pages/attributes.php:340
 #: admin/commonlib/pages/attributes.php:392
@@ -5399,7 +5404,7 @@ msgstr ""
 #: admin/commonlib/pages/attributes.php:375
 #: admin/commonlib/pages/attributes.php:403
 msgid "savechanges"
-msgstr ""
+msgstr "Salva cambiamenti"
 
 #: admin/commonlib/pages/attributes.php:381
 msgid "withtagged"
@@ -5416,11 +5421,11 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:122
 msgid "Import cleared"
-msgstr ""
+msgstr "Importazione approvata"
 
 #: admin/commonlib/pages/importcsv.php:127
 msgid "Reset Import session"
-msgstr ""
+msgstr "Azzera la sessione di importazione"
 
 #: admin/commonlib/pages/importcsv.php:139
 msgid "No file was specified. Maybe the file is too big? "
@@ -5429,16 +5434,16 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:177
 #, php-format
 msgid "Cannot read %s. file is not readable !"
-msgstr ""
+msgstr "Non si riesce a leggere %s. File non leggibile !"
 
 #: admin/commonlib/pages/importcsv.php:227
 msgid "Reading emails from file ... "
-msgstr ""
+msgstr "Lettura email dal file... "
 
 #: admin/commonlib/pages/importcsv.php:262
 #, php-format
 msgid "ok, %d lines"
-msgstr ""
+msgstr "ok, %d linee"
 
 #: admin/commonlib/pages/importcsv.php:370
 msgid "Cannot find column with email, please make sure the column is called &quot;email&quot; and not eg e-mail, and that your column delimiter is correct"
@@ -5446,28 +5451,28 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:380
 msgid "Create new one"
-msgstr ""
+msgstr "Crea un nuovo"
 
 #: admin/commonlib/pages/importcsv.php:381
 #: admin/commonlib/pages/importcsv.php:435
 msgid "Skip Column"
-msgstr ""
+msgstr "Salta la colonna"
 
 #: admin/commonlib/pages/importcsv.php:389
 msgid "Import Attributes"
-msgstr ""
+msgstr "Importa attributi"
 
 #: admin/commonlib/pages/importcsv.php:401
 msgid "select"
-msgstr ""
+msgstr "men&ugrave; di selezione"
 
 #: admin/commonlib/pages/importcsv.php:406
 msgid "Please identify the target of the following unknown columns"
-msgstr ""
+msgstr "Si prega identificare l'obbiettivo per queste colonne sconosciute"
 
 #: admin/commonlib/pages/importcsv.php:423
 msgid "Summary"
-msgstr ""
+msgstr "Sommario"
 
 #: admin/commonlib/pages/importcsv.php:426
 #: admin/commonlib/pages/importcsv.php:433
@@ -5476,84 +5481,84 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:439
 #: admin/commonlib/pages/importcsv.php:441
 msgid "maps to"
-msgstr ""
+msgstr "Pianifica"
 
 #: admin/commonlib/pages/importcsv.php:433
 msgid "Create new Attribute"
-msgstr ""
+msgstr "Crea nuovo attributo"
 
 #: admin/commonlib/pages/importcsv.php:441
 msgid "none"
-msgstr ""
+msgstr "nessuno"
 
 #: admin/commonlib/pages/importcsv.php:450
 #, php-format
 msgid "%d lines will be imported"
-msgstr ""
+msgstr "%d linee sono state importate"
 
 #: admin/commonlib/pages/importcsv.php:452
 #: admin/commonlib/pages/importcsv.php:935
 msgid "Confirm Import"
-msgstr ""
+msgstr "Conferma importazione"
 
 #: admin/commonlib/pages/importcsv.php:453
 msgid "Test Output"
-msgstr ""
+msgstr "Verifica risultato"
 
 #: admin/commonlib/pages/importcsv.php:585
 msgid "clear value"
-msgstr ""
+msgstr "Pulisce valori"
 
 #: admin/commonlib/pages/importcsv.php:595
 msgid "New Attribute"
-msgstr ""
+msgstr "Nuovo attributo"
 
 #: admin/commonlib/pages/importcsv.php:599
 msgid "Skip value"
-msgstr ""
+msgstr "Salta valore"
 
 #: admin/commonlib/pages/importcsv.php:648
 #: admin/commonlib/pages/importcsv.php:658
 #: admin/commonlib/pages/importcsv.php:659
 msgid "duplicate"
-msgstr ""
+msgstr "duplicato"
 
 #: admin/commonlib/pages/importcsv.php:658
 #: admin/commonlib/pages/importcsv.php:693
 msgid "Duplicate Email"
-msgstr ""
+msgstr "Email duplicato"
 
 #: admin/commonlib/pages/importcsv.php:658
 msgid " user imported as "
-msgstr ""
+msgstr " Utente importato come "
 
 #: admin/commonlib/pages/importcsv.php:896
 msgid "All the emails already exist in the database and are member of the lists"
-msgstr ""
+msgstr "Tutte le emails esistono gi&agrave; nel database e sono membri delle liste"
 
 #: admin/commonlib/pages/importcsv.php:898
 #, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
-msgstr ""
+msgstr "%s emails importate con successo nel database e aggiunte a %d liste."
 
 #: admin/commonlib/pages/importcsv.php:899
 #, php-format
 msgid "%d emails subscribed to the lists"
-msgstr ""
+msgstr "%d email sottoscritte alle liste"
 
 #: admin/commonlib/pages/importcsv.php:901
 #, php-format
 msgid "%s emails already existed in the database"
-msgstr ""
+msgstr "%s email esistono gi&agrave; nel database"
 
 #: admin/commonlib/pages/importcsv.php:905
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr ""
+msgstr "%d Trovate email non valide."
 
 #: admin/commonlib/pages/importcsv.php:907
 msgid "These records were added, but the email has been made up from "
-msgstr ""
+msgstr "Questi records sono stati aggiunti, ma le email sono state preparate da "
 
 #: admin/commonlib/pages/importcsv.php:913
 #, php-format
@@ -5563,25 +5568,25 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:916
 #, php-format
 msgid "User data was updated for %d users"
-msgstr ""
+msgstr "I dati utente sono stati aggiornati per %d utenti"
 
 #: admin/commonlib/pages/importcsv.php:918
 #, php-format
 msgid "%d users were matched by foreign key, %d by email"
-msgstr ""
+msgstr "%d utenti erano combinati tramite chiave sconosciuta, %d tramite email"
 
 #: admin/commonlib/pages/importcsv.php:935
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
-msgstr ""
+msgstr "Verifica risultato<br/>Se i risultati sono validi, click %s su invia per renderli effettivi"
 
 #: admin/commonlib/pages/importcsv.php:982
 msgid "Select the groups to add the users to"
-msgstr ""
+msgstr "Seleziona il gruppo a cui aggiungere utenti"
 
 #: admin/commonlib/pages/importcsv.php:985
 msgid "automatically added"
-msgstr ""
+msgstr "Automaticamente aggiunto"
 
 #: admin/commonlib/pages/importcsv.php:1010
 msgid "importintro"
@@ -5601,7 +5606,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1022
 msgid "Show Warnings"
-msgstr ""
+msgstr "Visualizza Avvertenze"
 
 #: admin/commonlib/pages/importcsv.php:1023
 msgid "omitinvalid_blurb"
@@ -5609,7 +5614,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1024
 msgid "Omit Invalid"
-msgstr ""
+msgstr "Omette Non Validi"
 
 #: admin/commonlib/pages/importcsv.php:1025
 msgid "assigninvalid_blurb"
@@ -5617,7 +5622,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1027
 msgid "Assign Invalid"
-msgstr ""
+msgstr "Assegna Non Validi"
 
 #: admin/commonlib/pages/importcsv.php:1028
 msgid "overwriteexisting_blurb"
@@ -5629,7 +5634,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1031
 msgid "Retain Old User Email"
-msgstr ""
+msgstr "Conserva Email Utente Vecchia"
 
 #: admin/commonlib/pages/importcsv.php:1036
 msgid "sendnotification_blurb"
@@ -5637,45 +5642,45 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1037
 msgid "Send&nbsp;Notification&nbsp;email"
-msgstr ""
+msgstr "Invia&nbsp;&nbsp;email&nbsp;di&nbsp;notifica"
 
 #: admin/commonlib/pages/importcsv.php:1041
 msgid "Import"
-msgstr ""
+msgstr "Importa"
 
 #: admin/commonlib/pages/userhistory.php:6
 #: admin/commonlib/pages/userhistory.php:38
 msgid "no such User"
-msgstr ""
+msgstr "Nessun utente"
 
 #: admin/commonlib/pages/userhistory.php:21
 msgid "you only have privileges to view this page, not change any of the information"
-msgstr ""
+msgstr "Hai solo i privilegi per vedere questa pagina, non puoi modificare nessuna informazione"
 
 #: admin/commonlib/pages/userhistory.php:63
 msgid "time"
-msgstr ""
+msgstr "ora"
 
 #: admin/commonlib/pages/userhistory.php:68
 msgid "Messages"
-msgstr ""
+msgstr "Messaggi"
 
 #: admin/commonlib/pages/userhistory.php:76
 msgid "messages sent to this user"
-msgstr ""
+msgstr "messaggi inviati a questo utente"
 
 #: admin/commonlib/pages/userhistory.php:96
 msgid "viewed"
-msgstr ""
+msgstr "Visto"
 
 #: admin/commonlib/pages/userhistory.php:102
 msgid "bounce"
-msgstr ""
+msgstr "messaggio respinto"
 
 #: admin/commonlib/pages/userhistory.php:107
 #: admin/commonlib/pages/userhistory.php:108
 msgid "average"
-msgstr ""
+msgstr "media"
 
 #: admin/commonlib/pages/userhistory.php:118
 msgid "Subscription"
@@ -5683,19 +5688,19 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:129
 msgid "user is Blacklisted since"
-msgstr ""
+msgstr "L'utente &egrave; &egrave; nella Lista Nera da"
 
 #: admin/commonlib/pages/userhistory.php:134
 msgid "are you sure you want to delete this user from the blacklist"
-msgstr ""
+msgstr "Sei sicuro di volere cancellare questo utente dalla Lista Nera"
 
 #: admin/commonlib/pages/userhistory.php:135
 msgid "it should only be done with explicit permission from this user"
-msgstr ""
+msgstr "Puoi solo agire con esplicito permesso di questo utente"
 
 #: admin/commonlib/pages/userhistory.php:136
 msgid "remove User from Blacklist"
-msgstr ""
+msgstr "Rimouvi utente dalla Lista Nera"
 
 #: admin/commonlib/pages/userhistory.php:138
 msgid "Blacklist Info"
@@ -5703,7 +5708,7 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:143
 msgid "value"
-msgstr ""
+msgstr "valore"
 
 #: admin/commonlib/pages/userhistory.php:149
 msgid "Subscription History"
@@ -5711,27 +5716,27 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:152
 msgid "no details found"
-msgstr ""
+msgstr "nessun dettaglio trovato"
 
 #: admin/commonlib/pages/userhistory.php:156
 msgid "ip"
-msgstr ""
+msgstr "ip"
 
 #: admin/commonlib/pages/userhistory.php:158
 msgid "summary"
-msgstr ""
+msgstr "sommario"
 
 #: admin/commonlib/pages/userhistory.php:159
 msgid "detail"
-msgstr ""
+msgstr "dettaglio"
 
 #: admin/commonlib/pages/userhistory.php:160
 msgid "info"
-msgstr ""
+msgstr "info"
 
 #: admin/commonlib/pages/userhistory.php:164
 msgid "user subscription history"
-msgstr ""
+msgstr "Storico sottoscrizione utente"
 
 #: admin/commonlib/lib/interfacelib.php:892
 msgid "Back"
@@ -5744,12 +5749,12 @@ msgstr ""
 #: admin/commonlib/lib/interfacelib.php:1234
 #: admin/commonlib/lib/interfacelib.php:1289
 msgid "open"
-msgstr ""
+msgstr "apri"
 
 #: admin/commonlib/lib/interfacelib.php:1242
 #: admin/commonlib/lib/interfacelib.php:1287
 msgid "close"
-msgstr ""
+msgstr "chiudi"
 
 #: admin/help/index.php:57
 msgid "nohelpavailable"
@@ -5757,27 +5762,27 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:65
 msgid "Daily"
-msgstr ""
+msgstr "Giornaliero"
 
 #: admin/plugins/rssmanager.php:67
 msgid "Weekly"
-msgstr ""
+msgstr "Settimanale"
 
 #: admin/plugins/rssmanager.php:68
 msgid "Monthly"
-msgstr ""
+msgstr "mensile"
 
 #: admin/plugins/rssmanager.php:95
 msgid "Get RSS feeds"
-msgstr ""
+msgstr "Recupera i feed RSS"
 
 #: admin/plugins/rssmanager.php:99
 msgid "View RSS items"
-msgstr ""
+msgstr "Visualizza voci RSS"
 
 #: admin/plugins/rssmanager.php:101
 msgid "Purge RSS items"
-msgstr ""
+msgstr "Elimina oggetti RSS"
 
 #: admin/plugins/rssmanager.php:104
 msgid "Initialise rssmanager"
@@ -5793,19 +5798,19 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:320
 msgid "rss"
-msgstr ""
+msgstr "rss"
 
 #: admin/plugins/rssmanager.php:323
 msgid "rss freq"
-msgstr ""
+msgstr "freq rss"
 
 #: admin/plugins/rssmanager.php:327
 msgid "last sent"
-msgstr ""
+msgstr "ultimo inviato"
 
 #: admin/plugins/rssmanager.php:351
 msgid "RSS source"
-msgstr ""
+msgstr "Sorgente RSS"
 
 #: admin/plugins/rssmanager.php:353
 msgid "(View Items)"
@@ -5813,27 +5818,27 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:363
 msgid "validate"
-msgstr ""
+msgstr "Convalida"
 
 #: admin/plugins/rssmanager.php:364
 msgid "View Items"
-msgstr ""
+msgstr "Visualizza oggetti"
 
 #: admin/plugins/rssmanager.php:369
 msgid "RSS Source"
-msgstr ""
+msgstr "Sorgente RSS"
 
 #: admin/plugins/rssmanager.php:399
 msgid "RSS settings"
-msgstr ""
+msgstr "Impostazioni RSS"
 
 #: admin/plugins/rssmanager.php:400
 msgid "Intro Text"
-msgstr ""
+msgstr "testo di introduzione "
 
 #: admin/plugins/rssmanager.php:403
 msgid "Offer option to receive"
-msgstr ""
+msgstr "Offri opzioni per ricevere"
 
 #: admin/plugins/keymanager.php:54
 msgid "invalid keyring location"

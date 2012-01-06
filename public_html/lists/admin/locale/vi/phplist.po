@@ -1,0 +1,5947 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-30 15:43-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: admin/uclicks.php:50
+msgid "msgs"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1027
+msgid "Assign Invalid"
+msgstr ""
+
+#: admin/send_core.php:356
+msgid "saved"
+msgstr ""
+
+#: admin/template.php:203
+msgid "Eror sending test messages to "
+msgstr ""
+
+#: admin/message.php:111
+msgid "Mime Type"
+msgstr ""
+
+#: admin/editattributes.php:40
+msgid "delete all"
+msgstr ""
+
+#: admin/bouncerules.php:56
+#, php-format
+msgid "Number of %s rules: %d"
+msgstr ""
+
+#: admin/send.php:85
+msgid "campaign deleted"
+msgstr ""
+
+#: admin/spageedit.php:252
+msgid "Message they receive when they subscribe"
+msgstr ""
+
+#: admin/send_core.php:384
+msgid "errorsubject"
+msgstr ""
+
+#: admin/processqueueforked.php:348
+msgid "emails, because in the last"
+msgstr ""
+
+#: admin/index.php:260
+#: admin/index.php:273
+msgid "cannotsendpassword"
+msgstr ""
+
+#: admin/installer/install1.php:47
+msgid "Connection refused, check your host, user or password"
+msgstr ""
+
+#: admin/connect.php:400
+#: admin/connect.php:404
+msgid "fatalerror"
+msgstr ""
+
+#: admin/setup.php:121
+msgid "Congratulations, phpList is set up, you are ready to start mailing"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:364
+msgid "View Items"
+msgstr ""
+
+#: admin/purgerss.php:24
+#, php-format
+msgid "%d RSS items purged"
+msgstr ""
+
+#: admin/export.php:195
+msgid "Date To:"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:303
+msgid "Go"
+msgstr ""
+
+#: admin/members.php:163
+msgid "add user"
+msgstr ""
+
+#: admin/lib.php:673
+msgid "seconds ago"
+msgstr ""
+
+#: admin/send.php:131
+msgid "Please select the lists you want to send your campaign to"
+msgstr ""
+
+#: admin/bounce.php:80
+msgid "..Done, loading next bounce.."
+msgstr ""
+
+#: admin/home.php:55
+msgid "The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible"
+msgstr ""
+
+#: admin/mclicks.php:116
+msgid "Message Click Statistics"
+msgstr ""
+
+#: admin/send_core.php:840
+msgid "plaintextversion"
+msgstr ""
+
+#: admin/mclicks.php:144
+#: admin/uclicks.php:102
+msgid "latestclick"
+msgstr ""
+
+#: admin/bounces.php:68
+msgid "delete all unidentified (&gt; 2 months old)"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:389
+msgid "Import Attributes"
+msgstr ""
+
+#: admin/home.php:238
+msgid "Send a Message"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:157
+msgid "Your privileges for this page are insufficient"
+msgstr ""
+
+#: admin/import4.php:145
+#: admin/import4.php:180
+msgid "created locally"
+msgstr ""
+
+#: admin/upgrade.php:65
+msgid "Please wait, upgrading your database, do not interrupt"
+msgstr ""
+
+#: admin/spage.php:35
+msgid "Deleted"
+msgstr ""
+
+#: admin/lib.php:55
+msgid "Unnamed List"
+msgstr ""
+
+#: admin/processbounces.php:151
+msgid "User marked unconfirmed"
+msgstr ""
+
+#: admin/processbounces.php:398
+#: admin/processbounces.php:415
+#: admin/processbounces.php:421
+#: admin/processbounces.php:425
+#: admin/processbounces.php:430
+#: admin/processbounces.php:434
+msgid "bounce rule"
+msgstr ""
+
+#: admin/subscribelib2.php:103
+msgid "spamblockemailintro"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:370
+msgid "Cannot find column with email, please make sure the column is called &quot;email&quot; and not eg e-mail, and that your column delimiter is correct"
+msgstr ""
+
+#: admin/importsimple.php:89
+msgid "phplist Import Results"
+msgstr ""
+
+#: admin/processqueueforked.php:348
+msgid "emails were sent"
+msgstr ""
+
+#: admin/bouncerules.php:105
+msgid "make active"
+msgstr ""
+
+#: admin/bouncerules.php:60
+#: admin/bouncerules.php:65
+msgid "active"
+msgstr ""
+
+#: admin/bounce.php:138
+msgid "Bounce Details:"
+msgstr ""
+
+#: admin/upgrade.php:423
+msgid "Upgrading column "
+msgstr ""
+
+#: admin/importadmin.php:289
+msgid "Field Delimiter"
+msgstr ""
+
+#: admin/getrss.php:119
+msgid "items"
+msgstr ""
+
+#: admin/date.php:18
+msgid "Tuesday"
+msgstr ""
+
+#: admin/spageedit.php:338
+msgid "Owner"
+msgstr ""
+
+#: admin/processqueue.php:702
+msgid "queue processing time has exceeded max processing time "
+msgstr ""
+
+#: admin/processqueue.php:801
+#: admin/processqueue.php:803
+msgid "Introducing extra delay to decrease throttle failures"
+msgstr ""
+
+#: admin/bounce.php:78
+#, php-format
+msgid "Deleting bounce %s .. "
+msgstr ""
+
+#: admin/adminattributes.php:91
+msgid "Add a new Attribute:"
+msgstr ""
+
+#: admin/setup.php:125
+msgid "configuration steps"
+msgstr ""
+
+#: admin/userclicks.php:86
+msgid "User Click Details for a URL"
+msgstr ""
+
+#: admin/template.php:243
+msgid "Content of the template."
+msgstr ""
+
+#: admin/uclicks.php:117
+#: admin/uclicks.php:118
+#: admin/uclicks.php:120
+#: admin/uclicks.php:122
+#: admin/uclicks.php:124
+msgid "total"
+msgstr ""
+
+#: admin/spageedit.php:228
+msgid "Offer checkbox for text"
+msgstr ""
+
+#: admin/spageedit.php:243
+msgid "Display Email confirmation"
+msgstr ""
+
+#: admin/home.php:174
+msgid "Configure"
+msgstr ""
+
+#: admin/date.php:30
+msgid "June"
+msgstr ""
+
+#: admin/editattributes.php:39
+msgid "add new"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:982
+msgid "Select the groups to add the users to"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:340
+#: admin/commonlib/pages/attributes.php:392
+msgid "type"
+msgstr ""
+
+#: admin/importadmin.php:294
+msgid "Do Import"
+msgstr ""
+
+#: admin/home.php:369
+msgid "Check Database structure"
+msgstr ""
+
+#: admin/reconcileusers.php:416
+msgid "Mark all subscribers to receive HTML"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:125
+msgid "Uploaded avatar file too big"
+msgstr ""
+
+#: admin/processbounces.php:270
+msgid "Processing first"
+msgstr ""
+
+#: admin/login.php:34
+msgid "send password"
+msgstr ""
+
+#: admin/send_core.php:499
+msgid "Text"
+msgstr ""
+
+#: admin/home.php:353
+msgid "setup"
+msgstr ""
+
+#: admin/bounce.php:144
+msgid "Header"
+msgstr ""
+
+#: admin/upgrade.php:440
+msgid "Upgrade successful"
+msgstr ""
+
+#: admin/importadmin.php:102
+msgid "Cannot find the password in the header"
+msgstr ""
+
+#: admin/reconcileusers.php:479
+msgid "To delete users who signed up and have not confirmed their subscription"
+msgstr ""
+
+#: admin/import4.php:118
+msgid "Copying lists"
+msgstr ""
+
+#: admin/messages.php:140
+msgid "Suspending"
+msgstr ""
+
+#: admin/index.php:392
+msgid "noxml"
+msgstr ""
+
+#: admin/massunconfirm.php:25
+#, php-format
+msgid "All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>"
+msgstr ""
+
+#: admin/import4.php:86
+msgid "Making connection with remote database"
+msgstr ""
+
+#: admin/import4.php:75
+msgid "Mark new users as HTML:"
+msgstr ""
+
+#: admin/send_core.php:504
+msgid "Format"
+msgstr ""
+
+#: admin/send_core.php:621
+msgid "Send a Webpage"
+msgstr ""
+
+#: admin/editattributes.php:143
+msgid "* Too many errors, quitting"
+msgstr ""
+
+#: admin/admin.php:226
+msgid "Access Privileges"
+msgstr ""
+
+#: admin/importsimple.php:133
+msgid "Please enter the emails to import, one per line, in the box below and click \"Import Emails\""
+msgstr ""
+
+#: admin/editattributes.php:40
+msgid "DelAll"
+msgstr ""
+
+#: admin/bouncerule.php:23
+msgid "back to list of bounce rules"
+msgstr ""
+
+#: admin/home.php:196
+msgid "spage"
+msgstr ""
+
+#: admin/admins.php:90
+msgid "Listing admin 1 to 50"
+msgstr ""
+
+#: admin/bounce.php:124
+msgid "For subscriber with email"
+msgstr ""
+
+#: admin/import4.php:56
+msgid "Password:"
+msgstr ""
+
+#: admin/initialise.php:37
+msgid "Creating tables"
+msgstr ""
+
+#: admin/processqueue.php:707
+msgid "Campaign sending timed out, is past date to process until"
+msgstr ""
+
+#: admin/login.php:97
+#: admin/login.php:113
+msgid "enter"
+msgstr ""
+
+#: admin/bouncerules.php:97
+msgid "order"
+msgstr ""
+
+#: admin/login.php:95
+msgid "confirm password"
+msgstr ""
+
+#: admin/login.php:5
+msgid "default login is"
+msgstr ""
+
+#: admin/import4.php:57
+msgid "Database Name:"
+msgstr ""
+
+#: admin/import1.php:292
+msgid "emails were"
+msgstr ""
+
+#: admin/send_core.php:539
+msgid "Finish"
+msgstr ""
+
+#: admin/importadmin.php:19
+msgid "No file was specified."
+msgstr ""
+
+#: admin/template.php:167
+msgid "times used"
+msgstr ""
+
+#: admin/admin.php:174
+msgid "Login Name"
+msgstr ""
+
+#: admin/spageedit.php:211
+msgid "Thank you page"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:67
+msgid "Error adding user, please check that the user exists"
+msgstr ""
+
+#: admin/admin.php:162
+msgid "hidden"
+msgstr ""
+
+#: admin/home.php:181
+msgid "Configure Attributes"
+msgstr ""
+
+#: admin/home.php:220
+msgid "adminattributes"
+msgstr ""
+
+#: admin/plugins/keymanager.php:115
+msgid "No emails capable of signing"
+msgstr ""
+
+#: admin/importadmin.php:118
+msgid "Invalid Email"
+msgstr ""
+
+#: admin/spageedit.php:290
+msgid "Is this attribute required?"
+msgstr ""
+
+#: admin/spageedit.php:120
+msgid "Title of this set of lists"
+msgstr ""
+
+#: admin/export.php:194
+msgid "Date From:"
+msgstr ""
+
+#: admin/editattributes.php:87
+msgid "Delete and Replace"
+msgstr ""
+
+#: admin/import3.php:242
+msgid "addresses that do not have a real name will be ignored. Otherwise all emails will be imported."
+msgstr ""
+
+#: admin/mclicks.php:98
+msgid "Click Details for a Message"
+msgstr ""
+
+#: admin/eventlog.php:80
+msgid "Delete all (&gt; 2 months old)"
+msgstr ""
+
+#: admin/home.php:53
+msgid "A new version of PHPlist is available!"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1036
+msgid "sendnotification_blurb"
+msgstr ""
+
+#: admin/setup.php:95
+msgid "Create Subscribe Pages"
+msgstr ""
+
+#: admin/adminattributes.php:83
+#: admin/adminattributes.php:94
+msgid "Type"
+msgstr ""
+
+#: admin/eventlog.php:111
+msgid "message"
+msgstr ""
+
+#: admin/template.php:181
+msgid "Some errors were found, template NOT saved!"
+msgstr ""
+
+#: admin/reindex.php:20
+#, php-format
+msgid "Adding index <b>%s</b> to %s</li>"
+msgstr ""
+
+#: admin/import4.php:54
+msgid "Server:"
+msgstr ""
+
+#: admin/editattributes.php:111
+msgid "cannotdelete"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:139
+msgid "No file was specified. Maybe the file is too big? "
+msgstr ""
+
+#: admin/send_core.php:207
+msgid "htmlusedwarning"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:41
+#, php-format
+msgid "The temporary directory for uploading (%s) is not writable, so import will fail"
+msgstr ""
+
+#: admin/import1.php:75
+msgid "Something went wrong while uploading the file. Empty file received. Maybe the file is too big, or you have no permissions to read it."
+msgstr ""
+
+#: admin/home.php:9
+msgid "Your database is out of date, please make sure to upgrade"
+msgstr ""
+
+#: admin/admin.php:127
+msgid "Edit Administrator"
+msgstr ""
+
+#: admin/admin.php:121
+msgid "Failed, you cannot delete yourself"
+msgstr ""
+
+#: admin/editattributes.php:118
+msgid "* Too many to list, total dependencies:"
+msgstr ""
+
+#: admin/about.php:18
+msgid "Contributors"
+msgstr ""
+
+#: admin/date.php:33
+msgid "September"
+msgstr ""
+
+#: admin/send_core.php:390
+msgid "entermessage"
+msgstr ""
+
+#: admin/home.php:266
+msgid "messages"
+msgstr ""
+
+#: admin/connect.php:1713
+msgid "days"
+msgstr ""
+
+#: admin/reconcileusers.php:465
+#: admin/reconcileusers.php:481
+msgid "Date they signed up before"
+msgstr ""
+
+#: admin/msgbounces.php:69
+msgid "email"
+msgstr ""
+
+#: admin/export.php:196
+msgid "What date needs to be used:"
+msgstr ""
+
+#: admin/uclicks.php:51
+msgid "last clicked"
+msgstr ""
+
+#: admin/plugins/keymanager.php:370
+msgid "When a message cannot be encrypted because the public key cannot be found"
+msgstr ""
+
+#: admin/import3.php:215
+msgid "Select the headers fields to search"
+msgstr ""
+
+#: admin/import1.php:354
+msgid "File containing emails:"
+msgstr ""
+
+#: admin/send_core.php:664
+msgid "repeatevery"
+msgstr ""
+
+#: admin/import1.php:292
+msgid "email was"
+msgstr ""
+
+#: admin/languages.php:382
+msgid "over treshold, user marked unconfirmed"
+msgstr ""
+
+#: admin/import1.php:283
+msgid "Import by "
+msgstr ""
+
+#: admin/send.php:81
+msgid "All draft campaigns deleted"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:896
+msgid "All the emails already exist in the database and are member of the lists"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Sep"
+msgstr ""
+
+#: admin/lib.php:223
+msgid "You have requested a new password for phpList."
+msgstr ""
+
+#: admin/home.php:10
+#: admin/home.php:56
+msgid "Your version"
+msgstr ""
+
+#: admin/send_core.php:612
+msgid "fromline"
+msgstr ""
+
+#: admin/processbounces.php:563
+msgid "Report:"
+msgstr ""
+
+#: admin/bounce.php:135
+msgid "Create New Rule based on this bounce"
+msgstr ""
+
+#: admin/template.php:167
+msgid "Image name:"
+msgstr ""
+
+#: admin/connect.php:1719
+msgid "mins"
+msgstr ""
+
+#: admin/spageedit.php:216
+msgid "HTML Email choice"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:152
+msgid "no details found"
+msgstr ""
+
+#: admin/template.php:239
+msgid "Title of this template"
+msgstr ""
+
+#: admin/uclicks.php:63
+msgid "There are currently no statistics available"
+msgstr ""
+
+#: admin/processqueueforked.php:338
+msgid "Processing has been suspended by your ISP, please try again later"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:351
+msgid "RSS source"
+msgstr ""
+
+#: admin/importsimple.php:74
+#, php-format
+msgid "%d lines processed"
+msgstr ""
+
+#: admin/processqueueforked.php:183
+msgid "emails unconfirmed (not sent)"
+msgstr ""
+
+#: admin/lib.php:224
+msgid "To enter a new one, please visit the following link:"
+msgstr ""
+
+#: admin/send_core.php:374
+msgid "processqueue"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:71
+#: admin/stacked_attributes_prev.php:143
+msgid "isafter"
+msgstr ""
+
+#: admin/message.php:75
+msgid "Edit this message"
+msgstr ""
+
+#: admin/processbounces.php:33
+msgid "Bounce Processing info"
+msgstr ""
+
+#: admin/connect.php:1788
+msgid "Last Page"
+msgstr ""
+
+#: admin/import1.php:360
+msgid "Notification throttle"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:918
+#, php-format
+msgid "%d users were matched by foreign key, %d by email"
+msgstr ""
+
+#: admin/setup.php:84
+msgid "Create Lists"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:189
+msgid "notsametype"
+msgstr ""
+
+#: admin/export.php:81
+#, php-format
+msgid "PHPList Export from %s to %s (%s).csv"
+msgstr ""
+
+#: admin/send_core.php:128
+msgid "noaccess"
+msgstr ""
+
+#: admin/reconcileusers.php:429
+#, php-format
+msgid "Mark all subscribers on list %s confirmed"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:450
+#, php-format
+msgid "%d lines will be imported"
+msgstr ""
+
+#: admin/import1.php:125
+msgid " to resubmit for real"
+msgstr ""
+
+#: admin/messages.php:337
+msgid "PDF"
+msgstr ""
+
+#: admin/home.php:275
+msgid "Process the Message Queue"
+msgstr ""
+
+#: admin/bouncerule.php:65
+#, php-format
+msgid "and more, %d in total"
+msgstr ""
+
+#: admin/adminattributes.php:14
+msgid "Name is not unique enough"
+msgstr ""
+
+#: admin/send_core.php:925
+msgid "sendtestmessage"
+msgstr ""
+
+#: admin/editattributes.php:78
+msgid "Alternatively you can replace all values with another one:"
+msgstr ""
+
+#: admin/reconcileusers.php:221
+msgid "Trying to merge duplicates"
+msgstr ""
+
+#: admin/send_core.php:857
+msgid "uploadlimits"
+msgstr ""
+
+#: admin/bouncemgt.php:7
+msgid "List Bounce Rules"
+msgstr ""
+
+#: admin/home.php:152
+msgid "Import Users"
+msgstr ""
+
+#: admin/actions/checkurl.php:20
+msgid "Check your \"remoteurl_append\" setting."
+msgstr ""
+
+#: admin/commonlib/pages/users.php:459
+msgid "No users apply"
+msgstr ""
+
+#: admin/send_core.php:135
+#: admin/send_core.php:1093
+#: admin/send_core.php:1098
+msgid "sendmessage"
+msgstr ""
+
+#: admin/processqueueforked.php:391
+msgid "It is safe to click your stop button now, report will be sent by email to"
+msgstr ""
+
+#: admin/send_core.php:954
+msgid "Estimated size of HTML email"
+msgstr ""
+
+#: admin/configure.php:49
+msgid "Changes Saved"
+msgstr ""
+
+#: admin/statsoverview.php:28
+#: admin/statsoverview.php:40
+msgid "You do not have access to this page"
+msgstr ""
+
+#: admin/userclicks.php:140
+msgid "view user"
+msgstr ""
+
+#: admin/admin.php:223
+msgid " Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the \"user\", \"users\" and \"members\" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long "
+msgstr ""
+
+#: admin/editattributes.php:170
+msgid "(default)"
+msgstr ""
+
+#: admin/messages.php:175
+msgid "Marking all as sent "
+msgstr ""
+
+#: admin/home.php:355
+msgid "Setup "
+msgstr ""
+
+#: admin/domainstats.php:44
+msgid "num"
+msgstr ""
+
+#: admin/admin.php:138
+msgid "Admin Details"
+msgstr ""
+
+#: admin/msgbounces.php:13
+msgid "subject"
+msgstr ""
+
+#: admin/usermgt.php:9
+msgid "manage subscriber attributes"
+msgstr ""
+
+#: admin/processqueueforked.php:763
+#: admin/processqueueforked.php:950
+msgid "Not sending to"
+msgstr ""
+
+#: admin/send_core.php:873
+msgid "filename"
+msgstr ""
+
+#: admin/massunconfirm.php:21
+msgid "Blacklisted by"
+msgstr ""
+
+#: admin/send_core.php:651
+msgid "Dates and times are relative to the Server Time"
+msgstr ""
+
+#: admin/home.php:329
+#: admin/home.php:343
+msgid "Plugins"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:381
+#: admin/commonlib/pages/importcsv.php:435
+msgid "Skip Column"
+msgstr ""
+
+#: admin/reconcileusers.php:284
+msgid "Deleting users with an invalid email"
+msgstr ""
+
+#: admin/plugins/keymanager.php:339
+msgid "Select email to sign with"
+msgstr ""
+
+#: admin/eventlog.php:97
+msgid "Exclude filter"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:392
+msgid "Download all users as CSV file"
+msgstr ""
+
+#: admin/send.php:139
+msgid "Please select the lists you want to exclude from this campaign"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:185
+msgid "merging"
+msgstr ""
+
+#: admin/bouncemgt.php:18
+msgid "You have already defined bounce rules in your system.      Be careful with generating new ones, because these may interfere with the ones that exist."
+msgstr ""
+
+#: admin/importadmin.php:151
+msgid "login"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:400
+msgid "Intro Text"
+msgstr ""
+
+#: admin/send_core.php:651
+msgid "Current Server Time is"
+msgstr ""
+
+#: admin/reconcileusers.php:177
+msgid "Moving users who are not on any list to"
+msgstr ""
+
+#: admin/processqueueforked.php:437
+msgid "Processing message"
+msgstr ""
+
+#: admin/processqueue.php:341
+msgid "Time now "
+msgstr ""
+
+#: admin/commonlib/pages/user.php:462
+msgid "Mailinglist Membership"
+msgstr ""
+
+#: admin/send_core.php:1097
+msgid "Some required information is missing. The send button will be enabled when this is resolved."
+msgstr ""
+
+#: admin/send_core.php:376
+msgid "view progress"
+msgstr ""
+
+#: admin/index.php:271
+#, php-format
+msgid "successful password request from %s for %s"
+msgstr ""
+
+#: admin/plugins/keymanager.php:563
+msgid "Manage PGP keys"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:327
+msgid "last sent"
+msgstr ""
+
+#: admin/import1.php:47
+msgid "File too big, please split it up into smaller ones"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:585
+msgid "Groups"
+msgstr ""
+
+#: admin/send.php:101
+msgid "entered"
+msgstr ""
+
+#: admin/bouncerules.php:49
+msgid "That rule exists already"
+msgstr ""
+
+#: admin/admin.php:89
+msgid "Error adding new admin"
+msgstr ""
+
+#: admin/dlusers.php:97
+msgid "No Lists"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:101
+msgid "Purge RSS items"
+msgstr ""
+
+#: admin/mclicks.php:160
+#: admin/uclicks.php:114
+msgid "view users"
+msgstr ""
+
+#: admin/processqueueforked.php:632
+msgid " Processing batch of "
+msgstr ""
+
+#: admin/editattributes.php:10
+msgid "No such attribute:"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:70
+#: admin/stacked_attributes_prev.php:142
+msgid "isbefore"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:156
+msgid "ip"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:48
+#: admin/stacked_attributes_prev.php:58
+#: admin/stacked_attributes_prev.php:68
+#: admin/stacked_attributes_prev.php:140
+msgid "is"
+msgstr ""
+
+#: admin/list.php:157
+msgid "You seem to have quite a lot of lists, do you want to organise them in categories? "
+msgstr ""
+
+#: admin/commonlib/pages/user.php:487
+msgid "Group Membership"
+msgstr ""
+
+#: admin/processqueueforked.php:346
+#: admin/processqueueforked.php:350
+msgid "Sending in batches of"
+msgstr ""
+
+#: admin/send_core.php:888
+msgid "addandsave"
+msgstr ""
+
+#: admin/domainstats.php:27
+#: admin/members.php:268
+msgid "confirmed"
+msgstr ""
+
+#: admin/home.php:119
+msgid "Main"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:369
+#: admin/commonlib/pages/attributes.php:399
+msgid "orderoflisting"
+msgstr ""
+
+#: admin/bouncerules.php:107
+msgid "make inactive"
+msgstr ""
+
+#: admin/translate.php:23
+msgid "Hello World"
+msgstr "Wello Horld"
+
+#: admin/processbounces.php:315
+msgid "IMAP is not included in your PHP installation, cannot continue"
+msgstr ""
+
+#: admin/send_core.php:742
+msgid "usetemplate"
+msgstr ""
+
+#: admin/processbounces.php:316
+msgid "Check out"
+msgstr ""
+
+#: admin/mclicks.php:111
+msgid "Sent to"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:916
+#, php-format
+msgid "User data was updated for %d users"
+msgstr ""
+
+#: admin/setup.php:106
+msgid "Add some subscribers"
+msgstr ""
+
+#: admin/send_core.php:1064
+msgid "message content missing"
+msgstr ""
+
+#: admin/listbounces.php:82
+msgid "Bounces on"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:300
+msgid "Sort by"
+msgstr ""
+
+#: admin/home.php:138
+msgid "List all Users"
+msgstr ""
+
+#: admin/processbounces.php:421
+#: admin/processbounces.php:430
+msgid "Auto Blacklisted"
+msgstr ""
+
+#: admin/processqueue.php:800
+#, php-format
+msgid "There have been more than 10 attempts to send to %s that have been blocked for domain throttling."
+msgstr ""
+
+#: admin/eventlog.php:84
+msgid "Delete all"
+msgstr ""
+
+#: admin/editlist.php:48
+msgid "Members of this list"
+msgstr ""
+
+#: admin/processqueueforked.php:343
+msgid "In safe mode, batches are set to a maximum of 100"
+msgstr ""
+
+#: admin/home.php:350
+#: admin/home.php:388
+msgid "System Functions"
+msgstr ""
+
+#: admin/spageedit.php:349
+msgid "Save and Deactivate"
+msgstr ""
+
+#: admin/editlist.php:133
+msgid "Public list (listed on the frontend)"
+msgstr ""
+
+#: admin/import3.php:477
+msgid "All the emails already exist in the database and are members of the"
+msgstr ""
+
+#: admin/home.php:244
+msgid "preparesend"
+msgstr ""
+
+#: admin/message.php:9
+msgid "Please select a message to display"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:490
+msgid "Please select the groups this user is a member of"
+msgstr ""
+
+#: admin/members.php:139
+msgid "Users found, click add to add this user"
+msgstr ""
+
+#: admin/bouncerules.php:61
+#: admin/bouncerules.php:63
+msgid "candidate"
+msgstr ""
+
+#: admin/checkbouncerules.php:36
+msgid "No match"
+msgstr ""
+
+#: admin/send_core.php:1043
+msgid "saveasdraft"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:68
+msgid "Messages"
+msgstr ""
+
+#: admin/messages.php:358
+msgid "Mark&nbsp;sent"
+msgstr ""
+
+#: admin/message.php:148
+msgid "List is Active"
+msgstr ""
+
+#: admin/send_core.php:1071
+msgid "From missing"
+msgstr ""
+
+#: admin/plugins/keymanager.php:370
+msgid "Send it anyway, but unencrypted"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:328
+#: admin/commonlib/pages/userhistory.php:47
+msgid "unsubscribe page"
+msgstr ""
+
+#: admin/templates.php:43
+msgid "System"
+msgstr ""
+
+#: admin/export.php:211
+msgid "Select the columns to include in the export"
+msgstr ""
+
+#: admin/uclicks.php:70
+msgid "URL Click Statistics"
+msgstr ""
+
+#: admin/import3.php:240
+#: admin/import3.php:242
+msgid "If you check"
+msgstr ""
+
+#: admin/reconcileusers.php:199
+msgid "Resending request for confirmation to users who signed up after"
+msgstr ""
+
+#: admin/about.php:37
+msgid "The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions."
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:94
+msgid "buggywithie"
+msgstr ""
+
+#: admin/segmentation.php:23
+msgid "matchallrules"
+msgstr ""
+
+#: admin/reconcileusers.php:463
+msgid "To resend the request for confirmation to users who signed up and have not confirmed their subscription"
+msgstr ""
+
+#: admin/send_core.php:622
+#: admin/send_core.php:766
+#: admin/send_core.php:767
+msgid "Compose Message"
+msgstr ""
+
+#: admin/initialise.php:143
+msgid "(will erase all data!)"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:6
+#: admin/commonlib/pages/userhistory.php:38
+msgid "no such User"
+msgstr ""
+
+#: admin/send_core.php:743
+msgid "selectone"
+msgstr ""
+
+#: admin/statsmgt.php:8
+msgid "View Clicks by URL"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:65
+msgid "Daily"
+msgstr ""
+
+#: admin/processqueue.php:917
+#, php-format
+msgid "waiting for %.1f seconds to meet target of %s seconds per message"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:360
+msgid "Add a new User"
+msgstr ""
+
+#: admin/spage.php:38
+msgid "subscribe pages"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:403
+msgid "Offer option to receive"
+msgstr ""
+
+#: admin/send_core.php:846
+msgid "messagefooter"
+msgstr ""
+
+#: admin/send_core.php:609
+#: admin/send_core.php:644
+msgid "Subject"
+msgstr ""
+
+#: admin/adminattributes.php:84
+#: admin/adminattributes.php:102
+msgid "Default Value:"
+msgstr ""
+
+#: admin/template.php:107
+#: admin/template.php:115
+#: admin/template.php:120
+msgid "Image"
+msgstr ""
+
+#: admin/actions/addemail.php:7
+msgid "Email added"
+msgstr ""
+
+#: admin/initialise.php:26
+msgid "The initial <i>login name</i> will be"
+msgstr ""
+
+#: admin/home.php:105
+msgid "Manage Subscribers"
+msgstr ""
+
+#: admin/processbounces.php:354
+msgid "Processing bounces based on active bounce rules"
+msgstr ""
+
+#: admin/processqueueforked.php:613
+msgid "Found them"
+msgstr ""
+
+#: admin/import1.php:307
+msgid "Import some more emails"
+msgstr ""
+
+#: admin/importadmin.php:123
+msgid "Record has more values than header indicated, this may cause trouble"
+msgstr ""
+
+#: admin/uclicks.php:74
+msgid "Click Details for a URL"
+msgstr ""
+
+#: admin/bouncerules.php:73
+msgid "No Rules found"
+msgstr ""
+
+#: admin/plugins/keymanager.php:357
+msgid "incorrect passphrase, signing will fail"
+msgstr ""
+
+#: admin/date.php:25
+msgid "January"
+msgstr ""
+
+#: admin/initialise.php:142
+msgid "Maybe you want to"
+msgstr ""
+
+#: admin/spageedit.php:214
+msgid "Text for Button"
+msgstr ""
+
+#: admin/actions/listinvalid.php:33
+msgid "Users apply"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:379
+msgid "reset"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:406
+msgid "Please identify the target of the following unknown columns"
+msgstr ""
+
+#: admin/purgerss.php:29
+msgid "All entries that are older than the number of days you enter will be purged."
+msgstr ""
+
+#: admin/processbounces.php:471
+msgid "Nothing to do"
+msgstr ""
+
+#: admin/import1.php:59
+msgid "Please choose whether to sign up immediately or to send a notification"
+msgstr ""
+
+#: admin/processbounces.php:457
+#: admin/processbounces.php:547
+#: admin/processbounces.php:557
+msgid "Identifying consecutive bounces"
+msgstr ""
+
+#: admin/processbounces.php:241
+msgid "Cannot create POP3 connection to"
+msgstr ""
+
+#: admin/editattributes.php:167
+msgid "delete"
+msgstr ""
+
+#: admin/send_core.php:884
+msgid "delchecked"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:227
+msgid "Reading emails from file ... "
+msgstr ""
+
+#: admin/bounce.php:23
+msgid "No such record"
+msgstr ""
+
+#: admin/importadmin.php:289
+msgid "default is TAB"
+msgstr ""
+
+#: admin/processqueueforked.php:537
+msgid "looking for users who can be excluded from this mailing"
+msgstr ""
+
+#: admin/reconcileusers.php:315
+#: admin/reconcileusers.php:322
+#: admin/reconcileusers.php:329
+#: admin/reconcileusers.php:336
+#: admin/reconcileusers.php:343
+msgid "entries apply"
+msgstr ""
+
+#: admin/msgstatus.php:26
+msgid "still to process"
+msgstr ""
+
+#: admin/message.php:112
+msgid "Description"
+msgstr ""
+
+#: admin/send_core.php:559
+msgid "unsavedchanges"
+msgstr ""
+
+#: admin/template.php:246
+msgid "Template file."
+msgstr ""
+
+#: admin/home.php:143
+msgid "reconcileusers"
+msgstr ""
+
+#: admin/import4.php:106
+msgid "Remote version is"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:369
+msgid "Email"
+msgstr ""
+
+#: admin/editlist.php:131
+msgid "List name"
+msgstr ""
+
+#: admin/processqueueforked.php:988
+msgid "out of"
+msgstr ""
+
+#: admin/import3.php:224
+msgid "Select the lists to add the emails to"
+msgstr ""
+
+#: admin/template.php:200
+msgid "Sending test \"Unsubscribe confirmation\" to "
+msgstr ""
+
+#: admin/plugins/keymanager.php:102
+msgid "Synchronise keys"
+msgstr ""
+
+#: admin/messages.php:359
+#: admin/messages.php:366
+msgid "Edit"
+msgstr ""
+
+#: admin/initialise.php:27
+msgid "Please enter the password you want to use for this account."
+msgstr ""
+
+#: admin/editlist.php:96
+msgid "New List added"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1019
+msgid "testoutput_blurb"
+msgstr ""
+
+#: admin/reconcileusers.php:199
+#: admin/reconcileusers.php:211
+msgid "and before"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:63
+msgid "time"
+msgstr ""
+
+#: admin/import3.php:481
+msgid "emails already existed in the database"
+msgstr ""
+
+#: admin/spageedit.php:176
+msgid "Title"
+msgstr ""
+
+#: admin/uclicks.php:59
+msgid "Select URL to view"
+msgstr ""
+
+#: admin/mclicks.php:112
+msgid "Clicks"
+msgstr ""
+
+#: admin/members.php:314
+msgid "What to do with \"Tagged\" users"
+msgstr ""
+
+#: admin/spageedit.php:240
+msgid "Radio buttons, default to HTML"
+msgstr ""
+
+#: admin/import1.php:125
+msgid "There should only be ONE email per line."
+msgstr ""
+
+#: admin/editattributes.php:79
+msgid "Replace with"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1037
+msgid "Send&nbsp;Notification&nbsp;email"
+msgstr ""
+
+#: admin/message.php:157
+msgid "<b>Note:</b> this message has already been sent to all lists. To resend it to new users use the \"Requeue\" function."
+msgstr ""
+
+#: admin/userclicks.php:103
+msgid "User Click Details"
+msgstr ""
+
+#: admin/processbounces.php:266
+msgid "bounces to fetch from the mailbox"
+msgstr ""
+
+#: admin/index.php:289
+#, php-format
+msgid "invalidated login from %s for %s (error %s)"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1021
+msgid "warnings_blurb"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:658
+#: admin/commonlib/pages/importcsv.php:693
+msgid "Duplicate Email"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:177
+#, php-format
+msgid "Cannot read %s. file is not readable !"
+msgstr ""
+
+#: admin/setup.php:18
+#: admin/setup.php:34
+#: admin/setup.php:53
+#: admin/setup.php:73
+#: admin/setup.php:85
+#: admin/setup.php:96
+#: admin/setup.php:107
+msgid "Go there"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:407
+msgid "bl l"
+msgstr ""
+
+#: admin/template.php:115
+msgid "does not exist"
+msgstr ""
+
+#: admin/home.php:384
+msgid "Change your details (e.g. password)"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:319
+msgid "defaults"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:369
+msgid "RSS Source"
+msgstr ""
+
+#: admin/spageedit.php:348
+msgid "Save and Activate"
+msgstr ""
+
+#: admin/send_core.php:332
+msgid "uploadfailed"
+msgstr ""
+
+#: admin/admin.php:6
+msgid "List of Administrators"
+msgstr ""
+
+#: admin/pageaction.php:11
+#: admin/messages.php:158
+#: admin/messages.php:181
+msgid "Failed"
+msgstr ""
+
+#: admin/importadmin.php:287
+msgid "   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: email, loginname, password. Any other columns will be added as admin attributes.  Warning: the file needs to be plain text. Do not upload binary files like a Word Document.   "
+msgstr ""
+
+#: admin/home.php:131
+msgid "View, edit and add lists, that your subscribers can sign up to"
+msgstr ""
+
+#: admin/import3.php:485
+msgid "These records were added, but the email has been made up. You can find them by doing a search on"
+msgstr ""
+
+#: admin/send_core.php:293
+msgid "longmimetype"
+msgstr ""
+
+#: admin/index.php:447
+msgid "warnpageroot"
+msgstr ""
+
+#: admin/bounce.php:130
+msgid "Delete this bounce and go to the next"
+msgstr ""
+
+#: admin/sendemaillib2.php:232
+msgid "withsubject"
+msgstr ""
+
+#: admin/message.php:159
+msgid "Resend"
+msgstr ""
+
+#: admin/initialise.php:120
+msgid "List for testing."
+msgstr ""
+
+#: admin/lib.php:228
+msgid "A password change token has been sent to the corresponding email address."
+msgstr ""
+
+#: admin/members.php:76
+#: admin/members.php:115
+msgid "subscribers were moved to"
+msgstr ""
+
+#: admin/send_core.php:686
+msgid "requeueevery"
+msgstr ""
+
+#: admin/connect.php:1767
+#, php-format
+msgid "Listing %d to %d of %d"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:905
+#, php-format
+msgid "%d Invalid Emails found."
+msgstr ""
+
+#: admin/home.php:159
+msgid "Export Users"
+msgstr ""
+
+#: admin/home.php:112
+msgid "View Statistics"
+msgstr ""
+
+#: admin/admins.php:60
+msgid "Admin added"
+msgstr ""
+
+#: admin/processqueueforked.php:393
+msgid "Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to"
+msgstr ""
+
+#: admin/processbounces.php:398
+#: admin/processbounces.php:415
+#: admin/processbounces.php:425
+#: admin/processbounces.php:434
+msgid "Auto Unsubscribed"
+msgstr ""
+
+#: admin/members.php:50
+msgid "Download subscribers"
+msgstr ""
+
+#: admin/plugins/keymanager.php:127
+msgid "No emails capable of encrypting"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:56
+msgid "Error adding empty password, please check that the password is complete"
+msgstr ""
+
+#: admin/message.php:117
+msgid "Lists this message has been sent to"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1041
+msgid "Import"
+msgstr ""
+
+#: admin/domainstats.php:29
+#: admin/domainstats.php:42
+#: admin/domainstats.php:46
+#: admin/mclicks.php:113
+msgid "perc"
+msgstr ""
+
+#: admin/date.php:32
+msgid "August"
+msgstr ""
+
+#: admin/processqueueforked.php:353
+msgid "seconds more emails were sent"
+msgstr ""
+
+#: admin/uclicks.php:89
+msgid "msg"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:134
+msgid "are you sure you want to delete this user from the blacklist"
+msgstr ""
+
+#: admin/usermgt.php:30
+msgid "Check for Subscribers"
+msgstr ""
+
+#: admin/spageedit.php:266
+msgid "Select the attributes to use"
+msgstr ""
+
+#: admin/date.php:34
+msgid "October"
+msgstr ""
+
+#: admin/dlusers.php:49
+#: admin/dlusers.php:51
+msgid "PHPList Users"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:423
+msgid "Summary"
+msgstr ""
+
+#: admin/processqueueforked.php:988
+msgid "Processed"
+msgstr ""
+
+#: admin/template.php:130
+msgid "Not a full URL:"
+msgstr ""
+
+#: admin/processqueueforked.php:365
+msgid "Skipped in last run"
+msgstr ""
+
+#: admin/import3.php:239
+msgid "Mark new users as HTML"
+msgstr ""
+
+#: admin/actions/listcriteria.php:166
+msgid "values"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:331
+msgid "attribute"
+msgstr ""
+
+#: admin/listbounces.php:62
+msgid " bounces to list "
+msgstr ""
+
+#: admin/send_core.php:469
+msgid "removedattachment"
+msgstr ""
+
+#: admin/plugins/keymanager.php:371
+msgid "Do not send it"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1030
+msgid "retainold_blurb"
+msgstr ""
+
+#: admin/messages.php:302
+msgid "Unique Views"
+msgstr ""
+
+#: admin/send_core.php:392
+msgid "entersubject"
+msgstr ""
+
+#: admin/import3.php:245
+msgid "Make confirmed immediately"
+msgstr ""
+
+#: admin/import4.php:149
+msgid "Remote list"
+msgstr ""
+
+#: admin/import3.php:181
+msgid "imap_getmailboxes failed"
+msgstr ""
+
+#: admin/processqueueforked.php:364
+msgid "Sent in last run"
+msgstr ""
+
+#: admin/tests/sendpage.php:24
+msgid "Sending HTML version to "
+msgstr ""
+
+#: admin/importadmin.php:290
+msgid "Record Delimiter"
+msgstr ""
+
+#: admin/listbounces.php:12
+msgid "Choose a list"
+msgstr ""
+
+#: admin/import1.php:295
+msgid "emails existed in the database"
+msgstr ""
+
+#: admin/home.php:226
+msgid "Administrator Functions"
+msgstr ""
+
+#: admin/eventlog.php:110
+#: admin/statsoverview.php:117
+msgid "date"
+msgstr ""
+
+#: admin/templates.php:40
+#: admin/messages.php:368
+msgid "View"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:453
+msgid "Test Output"
+msgstr ""
+
+#: admin/messages.php:352
+msgid "Suspend"
+msgstr ""
+
+#: admin/editlist.php:169
+msgid "List Description"
+msgstr ""
+
+#: admin/segmentation.php:25
+msgid "matchanyrules"
+msgstr ""
+
+#: admin/import4.php:101
+msgid "Getting data from "
+msgstr ""
+
+#: admin/login.php:93
+msgid "new password"
+msgstr ""
+
+#: admin/processqueueforked.php:169
+msgid "Finished, Nothing to do"
+msgstr ""
+
+#: admin/importadmin.php:100
+msgid "Cannot find the email in the header"
+msgstr ""
+
+#: admin/message.php:122
+msgid "None yet"
+msgstr ""
+
+#: admin/connect.php:1710
+msgid "years"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Jan"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Feb"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:334
+msgid "forms"
+msgstr ""
+
+#: admin/home.php:100
+msgid "View current campaigns"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:164
+msgid "user subscription history"
+msgstr ""
+
+#: admin/statsoverview.php:121
+#: admin/statsoverview.php:130
+#: admin/statsoverview.php:223
+msgid "views"
+msgstr ""
+
+#: admin/processqueueforked.php:386
+msgid "Processing has started,"
+msgstr ""
+
+#: admin/plugins/keymanager.php:102
+msgid "Sign Text"
+msgstr ""
+
+#: admin/members.php:241
+msgid "subscribers"
+msgstr ""
+
+#: admin/reconcileusers.php:310
+msgid "Cleaning some user tables of invalid entries"
+msgstr ""
+
+#: admin/importadmin.php:288
+msgid "File containing emails"
+msgstr ""
+
+#: admin/members.php:316
+#: admin/members.php:340
+msgid "from this list"
+msgstr ""
+
+#: admin/login.php:91
+#: admin/login.php:109
+msgid "name"
+msgstr ""
+
+#: admin/importadmin.php:292
+msgid "Test output"
+msgstr ""
+
+#: admin/import3.php:240
+msgid "information about a user in the database will be replaced by the imported information. Users are matched by email."
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:381
+msgid "withtagged"
+msgstr ""
+
+#: admin/members.php:47
+msgid "Members of"
+msgstr ""
+
+#: admin/admins.php:34
+#: admin/admins.php:129
+msgid "Add new admin"
+msgstr ""
+
+#: admin/editlist.php:172
+msgid "Save"
+msgstr ""
+
+#: admin/members.php:234
+#, php-format
+msgid "Listing subscriber %d to %d"
+msgstr ""
+
+#: admin/processqueueforked.php:249
+msgid "Finished this run"
+msgstr ""
+
+#: admin/adminattributes.php:12
+msgid "Name cannot be empty:"
+msgstr ""
+
+#: admin/bouncerule.php:40
+msgid "Select Status"
+msgstr ""
+
+#: admin/msgbounces.php:30
+msgid " Total"
+msgstr ""
+
+#: admin/index.php:269
+msgid "yourpassword"
+msgstr ""
+
+#: admin/import1.php:272
+msgid "List subscriptions:"
+msgstr ""
+
+#: admin/processbounces.php:152
+msgid "View Bounce"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Apr"
+msgstr ""
+
+#: admin/template.php:176
+msgid "Template does not contain local images"
+msgstr ""
+
+#: admin/getrss.php:69
+#: admin/getrss.php:71
+msgid "Parsing"
+msgstr ""
+
+#: admin/send_core.php:890
+msgid "pathtofile"
+msgstr ""
+
+#: admin/spage.php:46
+msgid "view"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1025
+msgid "assigninvalid_blurb"
+msgstr ""
+
+#: admin/lib.php:42
+msgid "blacklist user and delete bounce"
+msgstr ""
+
+#: admin/import1.php:265
+msgid "No data changed"
+msgstr ""
+
+#: admin/bounce.php:127
+msgid "Set subscriber to receive text instead of HTML"
+msgstr ""
+
+#: admin/import3.php:40
+msgid "Add a list"
+msgstr ""
+
+#: admin/commonlib/lib/interfacelib.php:1234
+#: admin/commonlib/lib/interfacelib.php:1289
+msgid "open"
+msgstr ""
+
+#: admin/send_core.php:875
+msgid "size"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:56
+msgid "checked"
+msgstr ""
+
+#: admin/date.php:17
+msgid "Monday"
+msgstr ""
+
+#: admin/messages.php:77
+msgid "draft"
+msgstr ""
+
+#: admin/processqueueforked.php:165
+msgid "Script stage"
+msgstr ""
+
+#: admin/bounce.php:141
+msgid "Date"
+msgstr ""
+
+#: admin/msgbounces.php:14
+msgid "# bounced"
+msgstr ""
+
+#: admin/login.php:33
+msgid "enter your email"
+msgstr ""
+
+#: admin/msgbounces.php:70
+msgid "# bounces"
+msgstr ""
+
+#: admin/import3.php:351
+msgid "unique emails found"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:329
+msgid "History"
+msgstr ""
+
+#: admin/processbounces.php:421
+#: admin/processbounces.php:430
+msgid "User auto blacklisted for"
+msgstr ""
+
+#: admin/import4.php:149
+msgid "not created"
+msgstr ""
+
+#: admin/processqueueforked.php:747
+#: admin/processqueueforked.php:927
+msgid "not sending to "
+msgstr ""
+
+#: admin/subscribelib2.php:309
+msgid "Email is blacklisted, so request for confirmation has been sent."
+msgstr ""
+
+#: admin/import3.php:242
+#: admin/import3.php:243
+msgid "Only use complete addresses"
+msgstr ""
+
+#: admin/import4.php:360
+msgid "and"
+msgstr ""
+
+#: admin/importsimple.php:77
+#, php-format
+msgid "%d invalidated"
+msgstr ""
+
+#: admin/send_core.php:654
+msgid "Stop sending after"
+msgstr ""
+
+#: admin/import3.php:142
+#: admin/import3.php:173
+msgid "can't connect"
+msgstr ""
+
+#: admin/reconcileusers.php:411
+msgid "Delete all subscribers who are not subscribed to any list"
+msgstr ""
+
+#: admin/template.php:120
+msgid "cannot check, \"allow_url_fopen\" disabled in PHP settings"
+msgstr ""
+
+#: admin/msgbounces.php:9
+msgid "Choose a message"
+msgstr ""
+
+#: admin/admin.php:258
+msgid "Set these permissions as default"
+msgstr ""
+
+#: admin/reconcileusers.php:466
+msgid "Text to prepend to email"
+msgstr ""
+
+#: admin/members.php:146
+msgid "No user found with that email"
+msgstr ""
+
+#: admin/import3.php:40
+#: admin/import4.php:42
+msgid "No lists available"
+msgstr ""
+
+#: admin/spageedit.php:236
+msgid "Radio buttons, default to text"
+msgstr ""
+
+#: admin/bounces.php:73
+msgid "delete all processed (&gt; 2 months old)"
+msgstr ""
+
+#: admin/connect.php:1039
+msgid "All Active Lists"
+msgstr ""
+
+#: admin/processqueue.php:476
+msgid "Campaign started"
+msgstr ""
+
+#: admin/index.php:346
+msgid "goodbye"
+msgstr ""
+
+#: admin/members.php:51
+msgid "Import Subscribers to this list"
+msgstr ""
+
+#: admin/messages.php:307
+msgid "Time to send"
+msgstr ""
+
+#: admin/processbounces.php:570
+msgid "Below are users who have been marked unconfirmed. The in () is the number of consecutive bounces."
+msgstr ""
+
+#: admin/defaults.php:39
+msgid "Loading"
+msgstr ""
+
+#: admin/bounce.php:74
+#, php-format
+msgid "Deleted subscriber %s"
+msgstr ""
+
+#: admin/processqueueforked.php:1011
+msgid "to send this message"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:104
+msgid "Initialise rssmanager"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:107
+#: admin/commonlib/pages/userhistory.php:108
+msgid "average"
+msgstr ""
+
+#: admin/usercheck.php:39
+msgid "pastevalues"
+msgstr ""
+
+#: admin/userclicks.php:28
+msgid "Invalid Request"
+msgstr ""
+
+#: admin/getrss.php:12
+msgid "Getting and Parsing the RSS sources"
+msgstr ""
+
+#: admin/send_core.php:855
+msgid "addattachments"
+msgstr ""
+
+#: admin/processqueue.php:679
+msgid "Processing batch of "
+msgstr ""
+
+#: admin/send.php:86
+msgid "Campaign deleted"
+msgstr ""
+
+#: admin/commonlib/lib/interfacelib.php:1029
+msgid "Hide"
+msgstr ""
+
+#: admin/tests.php:37
+msgid "Test failed"
+msgstr ""
+
+#: admin/home.php:360
+msgid "upgrade"
+msgstr ""
+
+#: admin/spage.php:43
+msgid "title"
+msgstr ""
+
+#: admin/import1.php:300
+msgid "subscribed to the"
+msgstr ""
+
+#: admin/bounce.php:69
+#, php-format
+msgid "Made subscriber %s to receive text"
+msgstr ""
+
+#: admin/reconcileusers.php:282
+msgid "Users fixed"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:63
+msgid "dd-mm-yyyy"
+msgstr ""
+
+#: admin/readtestmail.php:52
+msgid "test Processing info"
+msgstr ""
+
+#: admin/index.php:507
+msgid "notimplemented"
+msgstr ""
+
+#: admin/listbounces.php:24
+msgid "None found"
+msgstr ""
+
+#: admin/home.php:18
+msgid "go to"
+msgstr ""
+
+#: admin/purgerss.php:28
+msgid "Enter the number of days to go back purging entries"
+msgstr ""
+
+#: admin/send.php:93
+msgid "start a new message"
+msgstr ""
+
+#: admin/connect.php:1069
+msgid "listactive"
+msgstr ""
+
+#: admin/reconcileusers.php:432
+#: admin/reconcileusers.php:444
+#: admin/reconcileusers.php:458
+#: admin/reconcileusers.php:474
+#: admin/reconcileusers.php:485
+msgid "Click here"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:158
+msgid "summary"
+msgstr ""
+
+#: admin/home.php:213
+msgid "admins"
+msgstr ""
+
+#: admin/processqueueforked.php:386
+msgid "message(s) to process."
+msgstr ""
+
+#: admin/plugins/keymanager.php:102
+msgid "Encrypt Text"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:360
+msgid "Find a user"
+msgstr ""
+
+#: admin/home.php:292
+msgid "View Bounces"
+msgstr ""
+
+#: admin/index.php:231
+msgid "admininitfailure"
+msgstr ""
+
+#: admin/reconcileusers.php:308
+msgid "Users updated"
+msgstr ""
+
+#: admin/resetstats.php:14
+msgid "Statistics erased"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:372
+msgid "Foreign Key"
+msgstr ""
+
+#: admin/processqueueforked.php:627
+msgid "No users to process for this batch"
+msgstr ""
+
+#: admin/members.php:264
+msgid "Members"
+msgstr ""
+
+#: admin/import1.php:366
+msgid "import"
+msgstr ""
+
+#: admin/import3.php:229
+msgid "Adding users to list"
+msgstr ""
+
+#: admin/admins.php:39
+msgid "You cannot delete yourself"
+msgstr ""
+
+#: admin/send_core.php:957
+msgid "Estimated size of text email"
+msgstr ""
+
+#: admin/processqueueforked.php:179
+msgid "invalid emails"
+msgstr ""
+
+#: admin/plugins/keymanager.php:102
+msgid "Add a key"
+msgstr ""
+
+#: admin/usermgt.php:29
+msgid "Reconcile Subscribers"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:34
+#: admin/commonlib/pages/users.php:160
+msgid "Delete will delete user from the list"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:459
+msgid "no results"
+msgstr ""
+
+#: admin/connect.php:1716
+msgid "hours"
+msgstr ""
+
+#: admin/translate.php:22
+msgid "Have a nice day"
+msgstr ""
+
+#: admin/home.php:163
+msgid "List and user functions"
+msgstr ""
+
+#: admin/statsmgt.php:15
+msgid "The clicktracking system has changed"
+msgstr ""
+
+#: admin/actions/msgstatus.php:55
+#, php-format
+msgid "%s left until embargo"
+msgstr ""
+
+#: admin/import1.php:7
+msgid "import is not available"
+msgstr ""
+
+#: admin/ui/ph/pages/defaultsystemtemplate.php:39
+msgid "The default system template already exists"
+msgstr ""
+
+#: admin/statsoverview.php:151
+msgid "Entered"
+msgstr ""
+
+#: admin/eventlog.php:57
+#: admin/eventlog.php:100
+msgid "Events"
+msgstr ""
+
+#: admin/tests/sendpage.php:29
+msgid "Sending Text version to "
+msgstr ""
+
+#: admin/processbounces.php:277
+msgid "Processed messages will be deleted from mailbox"
+msgstr ""
+
+#: admin/reindex.php:26
+#, php-format
+msgid "Adding unique index <b>%s</b> to %s</li>"
+msgstr ""
+
+#: admin/checkbouncerules.php:21
+#, php-format
+msgid "Process Next %d"
+msgstr ""
+
+#: admin/bounces.php:85
+msgid "no unprocessed bounces available"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:935
+#, php-format
+msgid "Test output<br/>If the output looks ok, click %s to submit for real"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:99
+msgid "View RSS items"
+msgstr ""
+
+#: admin/template.php:160
+msgid "Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database."
+msgstr ""
+
+#: admin/connect.php:1769
+#, php-format
+msgid "Listing %d to %d"
+msgstr ""
+
+#: admin/bounce.php:110
+msgid "Action"
+msgstr ""
+
+#: admin/usermgt.php:27
+msgid "edit values for attributes"
+msgstr ""
+
+#: admin/import3.php:248
+msgid "Use two attributes for the name"
+msgstr ""
+
+#: admin/import1.php:291
+msgid "new email was"
+msgstr ""
+
+#: admin/message.php:110
+msgid "Size"
+msgstr ""
+
+#: admin/home.php:93
+msgid "Start or continue a campaign"
+msgstr ""
+
+#: admin/ui/ph/pages/dashboard.php:92
+msgid "Hide forever"
+msgstr ""
+
+#: admin/send_core.php:497
+#: admin/send_core.php:519
+#: admin/send_core.php:620
+msgid "Content"
+msgstr ""
+
+#: admin/reconcileusers.php:297
+msgid "Marking users with an invalid email as unconfirmed"
+msgstr ""
+
+#: admin/massunconfirm.php:33
+msgid "Paste the emails to mark unconfirmed in this box, and click continue"
+msgstr ""
+
+#: admin/catlists.php:29
+msgid "No list categories have been defined"
+msgstr ""
+
+#: admin/usermgt.php:8
+msgid "search subscribers"
+msgstr ""
+
+#: admin/upgrade.php:40
+msgid "Your database is already the correct version, there is no need to upgrade"
+msgstr ""
+
+#: admin/home.php:107
+msgid "Search, edit and add Subscribers"
+msgstr ""
+
+#: admin/spageedit.php:199
+msgid "Language file to use"
+msgstr ""
+
+#: admin/processbounces.php:453
+msgid "bounces were not matched by advanced processing rules"
+msgstr ""
+
+#: admin/send_core.php:713
+msgid "html"
+msgstr ""
+
+#: admin/actions/checkurl.php:31
+msgid "URL is valid"
+msgstr ""
+
+#: admin/home.php:129
+msgid "Manage Lists"
+msgstr ""
+
+#: admin/actions/listinvalid.php:35
+msgid "Delete Tagged Users"
+msgstr ""
+
+#: admin/export.php:73
+msgid "Invalid security token. Please reload the page and try again."
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Mar"
+msgstr ""
+
+#: admin/editlist.php:135
+msgid "Order for listing"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:363
+msgid "validate"
+msgstr ""
+
+#: admin/reconcileusers.php:147
+msgid "Creating UniqID for all users who do not have one"
+msgstr ""
+
+#: admin/bounce.php:140
+msgid "ID"
+msgstr ""
+
+#: admin/bouncerules.php:90
+msgid "expression"
+msgstr ""
+
+#: admin/processqueueforked.php:176
+msgid "messages sent in"
+msgstr ""
+
+#: admin/plugins/keymanager.php:351
+msgid "Enter pass phrase"
+msgstr ""
+
+#: admin/messages.php:390
+msgid "Mark All Sent"
+msgstr ""
+
+#: admin/generatebouncerules.php:130
+msgid "Hmm, duplicate entry, "
+msgstr ""
+
+#: admin/message.php:66
+msgid "No such message"
+msgstr ""
+
+#: admin/getrss.php:41
+msgid "Rss Errors"
+msgstr ""
+
+#: admin/import3.php:246
+msgid "There are two ways to add the names of the users,  either one attribute for the entire name or two attributes, one for first name and one for last name. If you use "
+msgstr ""
+
+#: admin/lib.php:40
+msgid "delete user and bounce"
+msgstr ""
+
+#: admin/members.php:354
+msgid "do it"
+msgstr ""
+
+#: admin/processqueueforked.php:225
+msgid "Finished, All done"
+msgstr ""
+
+#: admin/import3.php:350
+msgid "folders and"
+msgstr ""
+
+#: admin/home.php:283
+msgid "processbounces"
+msgstr ""
+
+#: admin/import3.php:244
+msgid "the users you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
+msgstr ""
+
+#: admin/admins.php:130
+msgid "Import list of admins"
+msgstr ""
+
+#: admin/reconcileusers.php:139
+#, php-format
+msgid "Marking all users on list %s confirmed"
+msgstr ""
+
+#: admin/mclicks.php:150
+#: admin/mclicks.php:165
+#: admin/uclicks.php:106
+#: admin/uclicks.php:120
+msgid "clickrate"
+msgstr ""
+
+#: admin/about.php:34
+msgid "credits for this translation"
+msgstr ""
+
+#: admin/processqueueforked.php:429
+msgid "Message Sending has started"
+msgstr ""
+
+#: admin/send.php:144
+msgid "The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here."
+msgstr ""
+
+#: admin/statsoverview.php:222
+msgid "lastview"
+msgstr ""
+
+#: admin/send_core.php:925
+msgid "toemailaddresses"
+msgstr ""
+
+#: admin/admins.php:123
+msgid "Show"
+msgstr ""
+
+#: admin/getrss.php:119
+msgid "new items"
+msgstr ""
+
+#: admin/tests/sendpage.php:36
+msgid "Check your INBOX to see if all worked ok"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:426
+#: admin/commonlib/pages/importcsv.php:433
+#: admin/commonlib/pages/importcsv.php:435
+#: admin/commonlib/pages/importcsv.php:437
+#: admin/commonlib/pages/importcsv.php:439
+#: admin/commonlib/pages/importcsv.php:441
+msgid "maps to"
+msgstr ""
+
+#: admin/bouncerules.php:71
+msgid "Bounce Regular Expressions"
+msgstr ""
+
+#: admin/statsoverview.php:128
+msgid "Comparison to other admins"
+msgstr ""
+
+#: admin/about.php:39
+msgid "Portions of the system include"
+msgstr ""
+
+#: admin/bouncerules.php:94
+msgid "#bncs"
+msgstr ""
+
+#: admin/actions/checkurl.php:20
+#: admin/actions/checkurl.php:22
+#: admin/actions/checkurl.php:27
+msgid "Error fetching URL"
+msgstr ""
+
+#: admin/initialise.php:134
+msgid "Please make sure to"
+msgstr ""
+
+#: admin/import3.php:483
+msgid "Invalid Emails found."
+msgstr ""
+
+#: admin/defaults.php:69
+msgid "return to editing attributes"
+msgstr ""
+
+#: admin/uclicks.php:46
+msgid "Available URLs"
+msgstr ""
+
+#: admin/processbounces.php:293
+#: admin/processbounces.php:299
+msgid "Deleting message"
+msgstr ""
+
+#: admin/home.php:114
+msgid "View statistics"
+msgstr ""
+
+#: admin/processqueueforked.php:177
+#: admin/processqueueforked.php:348
+msgid "seconds"
+msgstr ""
+
+#: admin/getrss.php:52
+msgid "Rss Failure report"
+msgstr ""
+
+#: admin/viewtemplate.php:17
+msgid "Back to edit template"
+msgstr ""
+
+#: admin/initialise.php:62
+msgid "Initialising table"
+msgstr ""
+
+#: admin/index.php:240
+#, php-format
+msgid "invalid login from %s, tried logging in as %s"
+msgstr ""
+
+#: admin/dlusers.php:51
+msgid "on"
+msgstr ""
+
+#: admin/initialise.php:106
+msgid "ok"
+msgstr ""
+
+#: admin/processbounces.php:548
+msgid "of"
+msgstr ""
+
+#: admin/template.php:243
+msgid "The content should at least have <b>[CONTENT]</b> somewhere."
+msgstr ""
+
+#: admin/template.php:161
+msgid "This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template."
+msgstr ""
+
+#: admin/importadmin.php:240
+msgid "List for"
+msgstr ""
+
+#: admin/template.php:160
+msgid "Images"
+msgstr ""
+
+#: admin/spageedit.php:257
+#: admin/spageedit.php:264
+msgid "Message"
+msgstr ""
+
+#: admin/send_core.php:890
+msgid "or"
+msgstr ""
+
+#: admin/dlusers.php:75
+#: admin/export.php:146
+msgid "List Membership"
+msgstr ""
+
+#: admin/initialise.php:142
+msgid "Upgrade"
+msgstr ""
+
+#: admin/bouncerule.php:17
+msgid "No"
+msgstr ""
+
+#: admin/members.php:42
+#: admin/members.php:141
+msgid "Add"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Jul"
+msgstr ""
+
+#: admin/actions/listcriteria.php:32
+msgid "operator"
+msgstr ""
+
+#: admin/bounce.php:125
+msgid "Increase bouncecount with"
+msgstr ""
+
+#: admin/statsoverview.php:120
+msgid "forwarded"
+msgstr ""
+
+#: admin/login.php:5
+msgid "with password"
+msgstr ""
+
+#: admin/processqueueforked.php:430
+#, php-format
+msgid "phplist has started sending the message with subject %s"
+msgstr ""
+
+#: admin/import4.php:90
+msgid "cannot connect to remote database"
+msgstr ""
+
+#: admin/adminattributes.php:85
+#: admin/adminattributes.php:103
+msgid "Order of Listing:"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:327
+#: admin/commonlib/pages/userhistory.php:46
+msgid "update page"
+msgstr ""
+
+#: admin/template.php:90
+msgid "Images stored"
+msgstr ""
+
+#: admin/import1.php:29
+msgid "The temporary directory for uploading is not writable, so import will fail"
+msgstr ""
+
+#: admin/importadmin.php:104
+msgid "Cannot find the loginname in the header"
+msgstr ""
+
+#: admin/reindex.php:27
+#, php-format
+msgid "Adding unique index <b>%s</b> to %s<br/>"
+msgstr ""
+
+#: admin/processbounces.php:548
+#: admin/processbounces.php:558
+msgid "users processed"
+msgstr ""
+
+#: admin/send_core.php:941
+msgid "email to alert when sending of this message has finished"
+msgstr ""
+
+#: admin/import3.php:325
+msgid "Process Selected Folders"
+msgstr ""
+
+#: admin/usercheck.php:37
+msgid "foreignkey"
+msgstr ""
+
+#: admin/spageedit.php:192
+msgid "default"
+msgstr ""
+
+#: admin/send_core.php:452
+msgid "emailnotfound"
+msgstr ""
+
+#: admin/send_core.php:1055
+msgid "subject missing"
+msgstr ""
+
+#: admin/import1.php:355
+msgid "If you check \"Test Output\", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records."
+msgstr ""
+
+#: admin/send_core.php:926
+msgid "(comma separate addresses - all must be existing subscribers)"
+msgstr ""
+
+#: admin/date.php:20
+msgid "Thursday"
+msgstr ""
+
+#: admin/tests.php:5
+msgid "phplist test suite"
+msgstr ""
+
+#: admin/send_core.php:878
+#: admin/send_core.php:880
+msgid "file"
+msgstr ""
+
+#: admin/lib.php:38
+msgid "unconfirm user"
+msgstr ""
+
+#: admin/generatebouncerules.php:37
+msgid "Process Next Batch"
+msgstr ""
+
+#: admin/initialise.php:132
+msgid "Please make sure to read the file README.security that can be found in the zip file."
+msgstr ""
+
+#: admin/admin.php:98
+msgid "Current set of permissions made default"
+msgstr ""
+
+#: admin/tests.php:47
+msgid "Purpose"
+msgstr ""
+
+#: admin/import3.php:214
+msgid "Password"
+msgstr ""
+
+#: admin/index.php:382
+msgid "safemodewarning"
+msgstr ""
+
+#: admin/spageedit.php:289
+msgid "Order of Listing"
+msgstr ""
+
+#: admin/home.php:296
+msgid "Message Functions"
+msgstr ""
+
+#: admin/bounce.php:125
+msgid "(use negative numbers to decrease)"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:353
+msgid "(View Items)"
+msgstr ""
+
+#: admin/processqueueforked.php:1000
+#, php-format
+msgid "phplist has finished sending the message with subject %s"
+msgstr ""
+
+#: admin/lib.php:514
+msgid "Unknown"
+msgstr ""
+
+#: admin/import4.php:59
+msgid "Usertable prefix:"
+msgstr ""
+
+#: admin/spage.php:62
+msgid "Add a new one"
+msgstr ""
+
+#: admin/export.php:200
+msgid "When they subscribed to"
+msgstr ""
+
+#: admin/home.php:285
+msgid "Process Bounces"
+msgstr ""
+
+#: admin/send_core.php:1077
+msgid "destination lists missing"
+msgstr ""
+
+#: admin/admins.php:87
+#: admin/processqueueforked.php:318
+#: admin/processqueueforked.php:320
+#: admin/processqueueforked.php:707
+#: admin/processqueueforked.php:888
+msgid "to"
+msgstr ""
+
+#: admin/statsoverview.php:186
+msgid "Entries"
+msgstr ""
+
+#: admin/plugins/keymanager.php:54
+msgid "invalid keyring location"
+msgstr ""
+
+#: admin/processqueueforked.php:999
+msgid "Message Sending has finished"
+msgstr ""
+
+#: admin/import1.php:290
+msgid "list"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:122
+msgid "Import cleared"
+msgstr ""
+
+#: admin/send_core.php:859
+msgid "maxfileupload"
+msgstr ""
+
+#: admin/send_core.php:388
+msgid "enterfrom"
+msgstr ""
+
+#: admin/resetstats.php:7
+msgid "Are you sure you want to clear all click statistics? "
+msgstr ""
+
+#: admin/reconcileusers.php:44
+msgid "Resending confirmation request to"
+msgstr ""
+
+#: admin/send_core.php:999
+#, php-format
+msgid "About %d users to receive HTML and %s users to receive text version of email"
+msgstr ""
+
+#: admin/statsoverview.php:123
+#: admin/statsoverview.php:132
+msgid "rate"
+msgstr ""
+
+#: admin/bounces.php:71
+msgid "are you sure you want to delete all bounces older than 2 months"
+msgstr ""
+
+#: admin/importadmin.php:84
+msgid "Name cannot be empty"
+msgstr ""
+
+#: admin/actions/listcriteria.php:11
+msgid "existingcriteria"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:313
+msgid "warninglongtime"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:323
+msgid "rss freq"
+msgstr ""
+
+#: admin/reconcileusers.php:262
+msgid "Trying to fix users with an invalid email"
+msgstr ""
+
+#: admin/home.php:198
+msgid "Configure Subscribe Pages"
+msgstr ""
+
+#: admin/members.php:95
+#: admin/members.php:128
+msgid "subscribers were deleted from this list"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:363
+msgid "User Details"
+msgstr ""
+
+#: admin/actions/msgstatus.php:91
+#, php-format
+msgid "next batch of %s in %s"
+msgstr ""
+
+#: admin/plugins/keymanager.php:359
+msgid "Passphrase correct"
+msgstr ""
+
+#: admin/initialise.php:135
+msgid "subscribe to the announcements list"
+msgstr ""
+
+#: admin/export.php:198
+msgid "When the record was changed"
+msgstr ""
+
+#: admin/spage.php:47
+msgid "not active"
+msgstr ""
+
+#: admin/bouncemgt.php:20
+msgid "Generate Bounce Rules"
+msgstr ""
+
+#: admin/about.php:26
+msgid "Documentation"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:898
+#, php-format
+msgid "%s emails succesfully imported to the database and added to %d lists."
+msgstr ""
+
+#: admin/processqueue.php:478
+#, php-format
+msgid "to view the progress of this campaign, go to http://%s"
+msgstr ""
+
+#: admin/catlists.php:30
+msgid "Once you have set up a few categories, come back to this page to classify your lists with your categories."
+msgstr ""
+
+#: admin/initialise.php:140
+msgid "Continue with"
+msgstr ""
+
+#: admin/index.php:396
+msgid "warnopenbasedir"
+msgstr ""
+
+#: admin/import.php:37
+msgid "copy and paste list of emails"
+msgstr ""
+
+#: admin/reconcileusers.php:282
+msgid "Users could not be fixed"
+msgstr ""
+
+#: admin/processbounces.php:347
+msgid "bounce_protocol not supported"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:302
+msgid "asc"
+msgstr ""
+
+#: admin/index.php:496
+msgid "pagenotfoundinplugin"
+msgstr ""
+
+#: admin/reconcileusers.php:402
+msgid "-All-"
+msgstr ""
+
+#: admin/bounce.php:116
+msgid "Memo for this rule"
+msgstr ""
+
+#: admin/import1.php:125
+msgid "If the output looks ok, go"
+msgstr ""
+
+#: admin/bouncerules.php:91
+msgid "action"
+msgstr ""
+
+#: admin/send_core.php:893
+msgid "attachmentdescription"
+msgstr ""
+
+#: admin/spageedit.php:284
+msgid "Check this box to use this attribute in the page"
+msgstr ""
+
+#: admin/eventlog.php:78
+msgid "Are you sure you want to delete all events older than 2 months?"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Aug"
+msgstr ""
+
+#: admin/lib.php:226
+msgid "You have 24 hours left to change your password. After that, your token won't be valid."
+msgstr ""
+
+#: admin/initialise.php:143
+msgid "Force Initialisation"
+msgstr ""
+
+#: admin/template.php:198
+msgid "Sending test \"Welcome\" to "
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:401
+msgid "select"
+msgstr ""
+
+#: admin/list.php:236
+msgid "new campaign"
+msgstr ""
+
+#: admin/members.php:237
+msgid "Listing subscriber 1 to 50"
+msgstr ""
+
+#: admin/import3.php:245
+msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
+msgstr ""
+
+#: admin/mclicks.php:69
+msgid "userclicks"
+msgstr ""
+
+#: admin/processbounces.php:7
+msgid "This page can only be called from the commandline"
+msgstr ""
+
+#: admin/configure.php:27
+msgid "No Access"
+msgstr ""
+
+#: admin/processbounces.php:306
+msgid "Closing mailbox, and purging messages"
+msgstr ""
+
+#: admin/statsmgt.php:11
+msgid "Domain Statistics"
+msgstr ""
+
+#: admin/members.php:339
+msgid "This will process all users on this list"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:441
+msgid "none"
+msgstr ""
+
+#: admin/import1.php:358
+msgid "Send Notification email"
+msgstr ""
+
+#: admin/send_core.php:671
+#: admin/send_core.php:693
+msgid "hour"
+msgstr ""
+
+#: admin/send_core.php:848
+msgid "forwardfooter"
+msgstr ""
+
+#: admin/send_core.php:882
+msgid "del"
+msgstr ""
+
+#: admin/processqueueforked.php:353
+msgid "In the last"
+msgstr ""
+
+#: admin/send.php:94
+msgid "Choose an existing draft message to work on"
+msgstr ""
+
+#: admin/connect.php:438
+#: admin/connect.php:444
+msgid "information"
+msgstr ""
+
+#: admin/import4.php:76
+msgid "If you check \"Overwrite Existing\", information about a user in the database will be replaced by the imported information. Users are matched by email."
+msgstr ""
+
+#: admin/userclicks.php:74
+msgid "User Click Details for a message"
+msgstr ""
+
+#: admin/bounces.php:62
+msgid "view bounces by list"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:308
+msgid "No such User"
+msgstr ""
+
+#: admin/importadmin.php:282
+msgid "No default permissions have been defined, please create default permissions first, by creating one dummy admin and assigning the default permissions to this admin"
+msgstr ""
+
+#: admin/home.php:246
+msgid "Prepare a Message"
+msgstr ""
+
+#: admin/members.php:259
+msgid "Tag all users in this page"
+msgstr ""
+
+#: admin/editattributes.php:155
+#: admin/editattributes.php:157
+msgid "addnew"
+msgstr ""
+
+#: admin/massunconfirm.php:34
+#: admin/initialise.php:32
+msgid "Continue"
+msgstr ""
+
+#: admin/home.php:222
+msgid "Configure Attributes for administrators"
+msgstr ""
+
+#: admin/connect.php:1722
+msgid "secs"
+msgstr ""
+
+#: admin/connect.php:803
+msgid "Recently Visited"
+msgstr ""
+
+#: admin/importsimple.php:70
+msgid "Imported"
+msgstr ""
+
+#: admin/statsmgt.php:9
+msgid "View Clicks by Message"
+msgstr ""
+
+#: admin/send_core.php:394
+msgid "duplicateattribute"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Oct"
+msgstr ""
+
+#: admin/date.php:27
+msgid "March"
+msgstr ""
+
+#: admin/templates.php:55
+msgid "Add default system template"
+msgstr ""
+
+#: admin/plugins/keymanager.php:567
+msgid "Initialise Keymanager"
+msgstr ""
+
+#: admin/mclicks.php:70
+msgid "click rate"
+msgstr ""
+
+#: admin/index.php:350
+msgid "goodmorning"
+msgstr ""
+
+#: admin/templates.php:25
+msgid "No template have been defined"
+msgstr ""
+
+#: admin/members.php:173
+msgid "Inserting user"
+msgstr ""
+
+#: admin/reconcileusers.php:166
+msgid "Deleting users who are not on any list"
+msgstr ""
+
+#: admin/lib.php:673
+msgid "A process for this page is already running and it was still alive"
+msgstr ""
+
+#: admin/members.php:21
+#: admin/members.php:32
+msgid "You do not have enough priviliges to view this page"
+msgstr ""
+
+#: admin/admins.php:84
+msgid "found"
+msgstr ""
+
+#: admin/send_core.php:677
+#: admin/send_core.php:699
+msgid "week"
+msgstr ""
+
+#: admin/spageedit.php:327
+msgid "No lists available, please create one first"
+msgstr ""
+
+#: admin/import4.php:204
+msgid "Copying users"
+msgstr ""
+
+#: admin/configure.php:54
+msgid "Continue phpList configuration"
+msgstr ""
+
+#: admin/processqueueforked.php:221
+msgid "Reload required"
+msgstr ""
+
+#: admin/send.php:82
+msgid "campaigns deleted"
+msgstr ""
+
+#: admin/processqueueforked.php:199
+#, php-format
+msgid "Waiting for %d seconds before reloading"
+msgstr ""
+
+#: admin/processbounces.php:256
+msgid "Cannot open mailbox file"
+msgstr ""
+
+#: admin/about.php:31
+msgid "Translations"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1015
+msgid "phplistuploadlimit"
+msgstr ""
+
+#: admin/message.php:134
+msgid "Send this (same) message to (a) new list(s)"
+msgstr ""
+
+#: admin/processqueueforked.php:353
+msgid "than is currently allowed per batch"
+msgstr ""
+
+#: admin/processqueueforked.php:458
+msgid "Looking for users"
+msgstr ""
+
+#: admin/export.php:197
+msgid "When they signed up"
+msgstr ""
+
+#: admin/plugins/keymanager.php:365
+msgid "Encrypt message"
+msgstr ""
+
+#: admin/purgerss.php:11
+msgid "Sorry, only super users can purge RSS items from the database"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:138
+msgid "Blacklist Info"
+msgstr ""
+
+#: admin/processqueueforked.php:190
+msgid "This may be caused by a too slow or too busy server"
+msgstr ""
+
+#: admin/lib.php:525
+msgid "very little time"
+msgstr ""
+
+#: admin/bouncerule.php:33
+msgid "Created By"
+msgstr ""
+
+#: admin/import1.php:39
+msgid "No file was specified. Maybe the file is too big?"
+msgstr ""
+
+#: admin/importsimple.php:136
+msgid "Check to skip emails that are not valid"
+msgstr ""
+
+#: admin/adminattributes.php:81
+msgid "Delete"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:286
+msgid "sorrymergingcbgroupnotimplemented"
+msgstr ""
+
+#: admin/editattributes.php:113
+msgid "dependentrecords"
+msgstr ""
+
+#: admin/import3.php:21
+msgid "Import emails from IMAP folders"
+msgstr ""
+
+#: admin/statsoverview.php:108
+msgid "Campaigns in the last year"
+msgstr ""
+
+#: admin/processqueueforked.php:474
+msgid "users apply for attributes, now checking lists"
+msgstr ""
+
+#: admin/import3.php:161
+#: admin/import3.php:399
+msgid "done"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:49
+#: admin/stacked_attributes_prev.php:59
+#: admin/stacked_attributes_prev.php:69
+#: admin/stacked_attributes_prev.php:141
+msgid "isnot"
+msgstr ""
+
+#: admin/export.php:186
+#, php-format
+msgid "Export subscribers on %s"
+msgstr ""
+
+#: admin/lib.php:37
+msgid "delete user"
+msgstr ""
+
+#: admin/statsmgt.php:10
+msgid "View Opens by Message"
+msgstr ""
+
+#: admin/home.php:375
+msgid "eventlog"
+msgstr ""
+
+#: admin/processqueueforked.php:328
+msgid "Started"
+msgstr ""
+
+#: admin/eventlog.php:33
+#: admin/admins.php:41
+msgid "Deleting"
+msgstr ""
+
+#: admin/templates.php:41
+msgid "Campaign Default"
+msgstr ""
+
+#: admin/massunconfirm.php:32
+msgid "Check to also add the emails to the blacklist"
+msgstr ""
+
+#: admin/import1.php:300
+msgid "succesfully imported to the database and added to"
+msgstr ""
+
+#: admin/spageedit.php:202
+msgid "Intro"
+msgstr ""
+
+#: admin/home.php:20
+msgid "to continue"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:129
+msgid "user is Blacklisted since"
+msgstr ""
+
+#: admin/readtestmail.php:222
+msgid "mails in mailbox"
+msgstr ""
+
+#: admin/generatebouncerules.php:143
+msgid "bounces not matched"
+msgstr ""
+
+#: admin/import4.php:42
+msgid "add_list"
+msgstr ""
+
+#: admin/bouncemgt.php:10
+msgid "Check Current Bounce Rules"
+msgstr ""
+
+#: admin/reconcileusers.php:384
+msgid "Users"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:23
+msgid "You only have privileges to view this page, not change any of the information"
+msgstr ""
+
+#: admin/templates.php:51
+msgid "Add new Template"
+msgstr ""
+
+#: admin/statsmgt.php:16
+#, php-format
+msgid "You have %s entries in the old statistics table"
+msgstr ""
+
+#: admin/members.php:203
+msgid "User added"
+msgstr ""
+
+#: admin/home.php:278
+msgid "You have set TEST in config.php to 1, so it will only show what would be sent"
+msgstr ""
+
+#: admin/ui/ph/pages/defaultsystemtemplate.php:40
+#: admin/ui/ph/pages/defaultsystemtemplate.php:47
+msgid "Go back to templates"
+msgstr ""
+
+#: admin/import1.php:358
+msgid "confirmed_immediately"
+msgstr ""
+
+#: admin/statsoverview.php:58
+msgid "Download as CSV file"
+msgstr ""
+
+#: admin/actions/msgstatus.php:85
+msgid "limit reached"
+msgstr ""
+
+#: admin/send.php:95
+msgid "Draft messages"
+msgstr ""
+
+#: admin/messages.php:301
+msgid "Viewed"
+msgstr ""
+
+#: admin/home.php:98
+msgid "Manage Campaigns"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:229
+#, php-format
+msgid "%s users in total"
+msgstr ""
+
+#: admin/import4.php:77
+msgid "Overwrite Existing:"
+msgstr ""
+
+#: admin/send_core.php:502
+msgid "Forward"
+msgstr ""
+
+#: admin/reconcileusers.php:451
+msgid "To delete all users with more than"
+msgstr ""
+
+#: admin/template.php:231
+msgid "List of Templates"
+msgstr ""
+
+#: admin/send_core.php:446
+#: admin/initialise.php:65
+#: admin/initialise.php:109
+msgid "failed"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:363
+msgid "edit values"
+msgstr ""
+
+#: admin/importadmin.php:211
+msgid "Value"
+msgstr ""
+
+#: admin/resetstats.php:8
+msgid "Yes, sure"
+msgstr ""
+
+#: admin/bouncerule.php:54
+msgid "related bounces"
+msgstr ""
+
+#: admin/send_core.php:328
+#: admin/send_core.php:330
+#: admin/send_core.php:343
+msgid "addingattachment"
+msgstr ""
+
+#: admin/generatebouncerules.php:144
+msgid "bounces matched to existing rules"
+msgstr ""
+
+#: admin/actions/configure.php:66
+msgid "save changes"
+msgstr ""
+
+#: admin/processqueueforked.php:346
+#: admin/processqueueforked.php:350
+msgid "emails"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:262
+#, php-format
+msgid "ok, %d lines"
+msgstr ""
+
+#: admin/importadmin.php:54
+msgid "Some characters that are not valid have been found. These might be delimiters. Please check the file and select the right delimiter. Character found:"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1031
+msgid "Retain Old User Email"
+msgstr ""
+
+#: admin/actions/listcriteria.php:167
+msgid "remove"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:135
+msgid "it should only be done with explicit permission from this user"
+msgstr ""
+
+#: admin/statsoverview.php:226
+msgid "sec"
+msgstr ""
+
+#: admin/commonlib/lib/interfacelib.php:1242
+#: admin/commonlib/lib/interfacelib.php:1287
+msgid "close"
+msgstr ""
+
+#: admin/home.php:58
+msgid "View what has changed"
+msgstr ""
+
+#: admin/import4.php:351
+msgid "Error, no local list defined for"
+msgstr ""
+
+#: admin/index.php:352
+msgid "goodafternoon"
+msgstr ""
+
+#: admin/send_core.php:369
+msgid "Campaign queued"
+msgstr ""
+
+#: admin/editattributes.php:40
+msgid "Are you sure you want to delete all records?"
+msgstr ""
+
+#: admin/index.php:281
+#, php-format
+msgid "login ip invalid from %s for %s (was %s)"
+msgstr ""
+
+#: admin/import4.php:359
+msgid "new users"
+msgstr ""
+
+#: admin/processqueueforked.php:196
+msgid "Less than batch size were sent, so reloading imminently"
+msgstr ""
+
+#: admin/usermgt.php:31
+msgid "mass unconfirm users"
+msgstr ""
+
+#: admin/import1.php:335
+msgid "select_lists"
+msgstr ""
+
+#: admin/import3.php:212
+msgid "Server"
+msgstr ""
+
+#: admin/lib.php:227
+msgid "New password"
+msgstr ""
+
+#: admin/template.php:314
+msgid "Check that all links have a full URL"
+msgstr ""
+
+#: admin/messages.php:338
+msgid "both"
+msgstr ""
+
+#: admin/importadmin.php:117
+msgid "Record has no email"
+msgstr ""
+
+#: admin/segmentation.php:59
+msgid "addcriterion"
+msgstr ""
+
+#: admin/home.php:19
+msgid "Initialise Database"
+msgstr ""
+
+#: admin/processqueue.php:1027
+msgid "Message Campaign finished"
+msgstr ""
+
+#: admin/statsoverview.php:156
+msgid "Message Open Statistics"
+msgstr ""
+
+#: admin/bouncerule.php:16
+msgid "Yes"
+msgstr ""
+
+#: admin/index.php:282
+msgid "ipchanged"
+msgstr ""
+
+#: admin/index.php:439
+msgid "nofpdf"
+msgstr ""
+
+#: admin/eventlog.php:82
+msgid "Are you sure you want to delete all events matching this filter?"
+msgstr ""
+
+#: admin/admin.php:135
+msgid "Add a new Administrator"
+msgstr ""
+
+#: admin/bounces.php:76
+msgid "are you sure you want to delete all bounces"
+msgstr ""
+
+#: admin/processqueueforked.php:396
+msgid "Reports will be sent by email to"
+msgstr ""
+
+#: admin/msgstatus.php:29
+msgid "Processing"
+msgstr ""
+
+#: admin/import1.php:298
+msgid "All the emails already exist in the database."
+msgstr ""
+
+#: admin/sendemaillib2.php:580
+msgid "sendingtextonlyto"
+msgstr ""
+
+#: admin/bouncerules.php:113
+msgid "add a new rule"
+msgstr ""
+
+#: admin/eventlog.php:87
+msgid "No events available"
+msgstr ""
+
+#: admin/messages.php:354
+msgid "Requeue"
+msgstr ""
+
+#: admin/catlists.php:40
+msgid "Categories saved"
+msgstr ""
+
+#: admin/template.php:336
+msgid "to email addresses"
+msgstr ""
+
+#: admin/processqueueforked.php:55
+msgid "The following restrictions have been set by your ISP:"
+msgstr ""
+
+#: admin/eventlog.php:38
+#: admin/admins.php:45
+msgid "Done"
+msgstr ""
+
+#: admin/connect.php:360
+msgid "error"
+msgstr ""
+
+#: admin/import1.php:220
+msgid "Import of new subscriber"
+msgstr ""
+
+#: admin/home.php:377
+msgid "View the eventlog"
+msgstr ""
+
+#: admin/reconcileusers.php:295
+msgid "Users deleted"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:380
+msgid "Create new one"
+msgstr ""
+
+#: admin/processbounces.php:31
+msgid "Bounce processing error"
+msgstr ""
+
+#: admin/import.php:39
+msgid "import by uploading a CSV file with emails and additional data"
+msgstr ""
+
+#: admin/index.php:354
+msgid "goodevening"
+msgstr ""
+
+#: admin/translate.php:21
+msgid "Welcome to My PHP Application"
+msgstr ""
+
+#: admin/list.php:157
+msgid "Great idea!"
+msgstr ""
+
+#: admin/catlists.php:51
+msgid "choose category"
+msgstr ""
+
+#: admin/listbounces.php:50
+msgid "Select another list"
+msgstr ""
+
+#: admin/domainstats.php:22
+msgid "Top 50 domains with more than 5 emails"
+msgstr ""
+
+#: admin/home.php:17
+msgid "Database has not been initialised"
+msgstr ""
+
+#: admin/members.php:331
+#: admin/members.php:348
+msgid "Copy"
+msgstr ""
+
+#: admin/adminattributes.php:82
+#: admin/adminattributes.php:93
+msgid "Name:"
+msgstr ""
+
+#: admin/members.php:49
+msgid "edit list details"
+msgstr ""
+
+#: admin/import.php:33
+msgid "Please choose one of the import methods below"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:24
+msgid "warnemailattribute"
+msgstr ""
+
+#: admin/editattributes.php:116
+msgid "user"
+msgstr ""
+
+#: admin/bouncerules.php:102
+msgid "with tagged rules: "
+msgstr ""
+
+#: admin/bouncerule.php:15
+msgid "Updating the regular expression of this rule caused an Sql conflict<br/>This is probably because there is already a rule like that. Do you want to delete this rule instead?"
+msgstr ""
+
+#: admin/importadmin.php:211
+msgid "added to attribute"
+msgstr ""
+
+#: admin/home.php:290
+msgid "bounces"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:393
+msgid "Add a User"
+msgstr ""
+
+#: admin/usercheck.php:36
+msgid "whatistype"
+msgstr ""
+
+#: admin/spageedit.php:288
+msgid "Default Value"
+msgstr ""
+
+#: admin/statsoverview.php:119
+msgid "bounced"
+msgstr ""
+
+#: admin/processqueueforked.php:818
+msgid "batch limit reached"
+msgstr ""
+
+#: admin/admin.php:163
+msgid "Remind it?"
+msgstr ""
+
+#: admin/checkbouncerules.php:42
+msgid "bounce matched current active rules"
+msgstr ""
+
+#: admin/reconcileusers.php:464
+#: admin/reconcileusers.php:480
+msgid "Date they signed up after"
+msgstr ""
+
+#: admin/lib.php:679
+msgid "Sleeping for 20 seconds, aborting will quit"
+msgstr ""
+
+#: admin/checkbouncerules.php:41
+msgid "bounces did not match any current active rule"
+msgstr ""
+
+#: admin/send_core.php:163
+msgid "You should not paste the results of a test email back into the editor"
+msgstr ""
+
+#: admin/import1.php:359
+msgid "If you are going to send notification to users, you may want to add a little delay between messages"
+msgstr ""
+
+#: admin/send_core.php:262
+msgid "warnnopearhttprequest"
+msgstr ""
+
+#: admin/send_core.php:668
+msgid "norepetition"
+msgstr ""
+
+#: admin/reconcileusers.php:385
+msgid "in the database"
+msgstr ""
+
+#: admin/import3.php:491
+msgid "No emails found"
+msgstr ""
+
+#: admin/template.php:243
+msgid "You can upload a template file or paste the text in the box below"
+msgstr ""
+
+#: admin/members.php:315
+msgid "This will only process the users in this page that have the \"Tag\" checkbox checked"
+msgstr ""
+
+#: admin/reconcileusers.php:187
+msgid "Deleting users with more than"
+msgstr ""
+
+#: admin/importadmin.php:290
+msgid "default is line break"
+msgstr ""
+
+#: admin/tests/sendpage.php:27
+#: admin/tests/sendpage.php:31
+msgid "OK"
+msgstr ""
+
+#: admin/bounce.php:47
+msgid "Not Found"
+msgstr ""
+
+#: admin/import4.php:78
+msgid "continue"
+msgstr ""
+
+#: admin/home.php:253
+msgid "Send a Prepared Message"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:294
+msgid "User removed from group"
+msgstr ""
+
+#: admin/processqueue.php:812
+#, php-format
+msgid "%s is currently over throttle limit of %d per %d seconds"
+msgstr ""
+
+#: admin/list.php:128
+msgid "Uncategorised"
+msgstr ""
+
+#: admin/userclicks.php:92
+msgid "User Click Details for a Message"
+msgstr ""
+
+#: admin/processqueueforked.php:348
+msgid "This batch will be"
+msgstr ""
+
+#: admin/import1.php:125
+msgid "back"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:102
+msgid "bounce"
+msgstr ""
+
+#: admin/editlist.php:26
+msgid "You cannot create a new list because you have reached maximum number of lists."
+msgstr ""
+
+#: admin/message.php:46
+msgid "campaign requeued"
+msgstr ""
+
+#: admin/processqueueforked.php:431
+#, php-format
+msgid "to view the progress of this message, go to %s"
+msgstr ""
+
+#: admin/import3.php:248
+msgid "Use one attribute for name"
+msgstr ""
+
+#: admin/reindex.php:17
+msgid "processing "
+msgstr ""
+
+#: admin/import1.php:274
+msgid "Was subscribed to:"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:658
+msgid " user imported as "
+msgstr ""
+
+#: admin/members.php:335
+#: admin/members.php:352
+msgid "Nothing"
+msgstr ""
+
+#: admin/spageedit.php:323
+msgid "Select the lists to offer"
+msgstr ""
+
+#: admin/index.php:269
+msgid "yourpasswordis"
+msgstr ""
+
+#: admin/send_core.php:1108
+msgid "Send Test"
+msgstr ""
+
+#: admin/lib.php:222
+msgid "Hello"
+msgstr ""
+
+#: admin/connect.php:1786
+msgid "Previous"
+msgstr ""
+
+#: admin/domainstats.php:40
+msgid "unconfirmed"
+msgstr ""
+
+#: admin/bounce.php:143
+msgid "Comment"
+msgstr ""
+
+#: admin/statsoverview.php:175
+#: admin/statsoverview.php:178
+#, php-format
+msgid "Listing user %d to %d"
+msgstr ""
+
+#: admin/template.php:107
+msgid "not full URL"
+msgstr ""
+
+#: admin/setup.php:55
+msgid "Verify Settings"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:585
+msgid "clear value"
+msgstr ""
+
+#: admin/configure.php:41
+msgid "cannot be empty"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1022
+msgid "Show Warnings"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:454
+msgid "bncs"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:185
+msgid "into"
+msgstr ""
+
+#: admin/bounces.php:98
+msgid "System Message"
+msgstr ""
+
+#: admin/msgstatus.php:18
+msgid "Stalled"
+msgstr ""
+
+#: admin/converttoutf8.php:30
+msgid "No tables to process, your database has probably been converted already"
+msgstr ""
+
+#: admin/send_core.php:513
+msgid "Lists"
+msgstr ""
+
+#: admin/statsmgt.php:17
+msgid "Convert Old data to new"
+msgstr ""
+
+#: admin/import1.php:69
+msgid "Cannot read file. It is not readable !"
+msgstr ""
+
+#: admin/reconcileusers.php:274
+#: admin/reconcileusers.php:278
+msgid "User"
+msgstr ""
+
+#: admin/mclicks.php:111
+msgid "Subscribers"
+msgstr ""
+
+#: admin/processqueueforked.php:711
+#: admin/processqueueforked.php:892
+#: admin/processqueueforked.php:1011
+msgid "It took"
+msgstr ""
+
+#: admin/eventlog.php:95
+msgid "Filter"
+msgstr ""
+
+#: admin/bounce.php:132
+msgid "Do the above"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:160
+msgid "info"
+msgstr ""
+
+#: admin/spageedit.php:283
+msgid "Attribute"
+msgstr ""
+
+#: admin/mclicks.php:72
+msgid "total clicks"
+msgstr ""
+
+#: admin/spageedit.php:286
+msgid "Name"
+msgstr ""
+
+#: admin/msgstatus.php:14
+msgid "requeue"
+msgstr ""
+
+#: admin/convertstats.php:5
+msgid "Hint: this page also works from commandline"
+msgstr ""
+
+#: admin/admin.php:87
+msgid "Changes saved"
+msgstr ""
+
+#: admin/bouncemgt.php:16
+msgid "You currently have no rules defined.      You can click \"Generate Bounce Rules\" in order to auto-generate rules from your existing bounces.      This will results in a lot of rules which you will need to review and activate.      It will however, not catch every single bounce, so it will be necessary to add new rules over      time when new bounces come in."
+msgstr ""
+
+#: admin/send_core.php:506
+msgid "Attach"
+msgstr ""
+
+#: admin/home.php:278
+msgid "warning"
+msgstr ""
+
+#: admin/send_core.php:652
+msgid "embargoeduntil"
+msgstr ""
+
+#: admin/template.php:79
+msgid "No such template"
+msgstr ""
+
+#: admin/send_core.php:163
+msgid "This will break the click track statistics."
+msgstr ""
+
+#: admin/send_core.php:407
+msgid "notargetemail"
+msgstr ""
+
+#: admin/date.php:29
+msgid "May"
+msgstr ""
+
+#: admin/send_core.php:690
+msgid "norequeueing"
+msgstr ""
+
+#: admin/send_core.php:362
+msgid "Campaign added"
+msgstr ""
+
+#: admin/home.php:83
+msgid "Continue Configuration"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:599
+msgid "Skip value"
+msgstr ""
+
+#: admin/mclicks.php:154
+#: admin/mclicks.php:169
+#: admin/uclicks.php:111
+#: admin/uclicks.php:124
+msgid "unique clickrate"
+msgstr ""
+
+#: admin/index.php:398
+msgid "warnattachmentrepository"
+msgstr ""
+
+#: admin/home.php:136
+#: admin/processqueueforked.php:988
+msgid "users"
+msgstr ""
+
+#: admin/processqueueforked.php:613
+msgid "to process"
+msgstr ""
+
+#: admin/mclicks.php:63
+#: admin/mclicks.php:105
+msgid "N/A"
+msgstr ""
+
+#: admin/messages.php:152
+msgid "Marking as sent "
+msgstr ""
+
+#: admin/processqueueforked.php:100
+msgid "Running in safe mode"
+msgstr ""
+
+#: admin/ui/ph/pages/defaultsystemtemplate.php:48
+msgid "Edit template"
+msgstr ""
+
+#: admin/send.php:102
+msgid "age"
+msgstr ""
+
+#: admin/send_core.php:508
+msgid "Scheduling"
+msgstr ""
+
+#: admin/generatebouncerules.php:142
+msgid "new rules found"
+msgstr ""
+
+#: admin/processbounces.php:567
+msgid "Report of advanced bounce processing:"
+msgstr ""
+
+#: admin/connect.php:1033
+msgid "alllists"
+msgstr ""
+
+#: admin/import4.php:299
+msgid "Error, no mapped attribute for"
+msgstr ""
+
+#: admin/message.php:102
+msgid "Attachments for this message"
+msgstr ""
+
+#: admin/initialise.php:130
+msgid "Tell us about it"
+msgstr ""
+
+#: admin/statsoverview.php:144
+msgid "View Details for a Message"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:323
+msgid "existing"
+msgstr ""
+
+#: admin/reconcileusers.php:160
+msgid "Marking all users to receive text"
+msgstr ""
+
+#: admin/reconcileusers.php:361
+msgid "Delete will delete user and all listmemberships"
+msgstr ""
+
+#: admin/processqueue.php:462
+#, php-format
+msgid "sending of this campaign will finish in %s"
+msgstr ""
+
+#: admin/tests.php:35
+msgid "Test passed"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:127
+msgid "Reset Import session"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:913
+#, php-format
+msgid "%d Duplicate Emails found."
+msgstr ""
+
+#: admin/processqueue.php:477
+#, php-format
+msgid "phplist has started sending the campaign with subject %s"
+msgstr ""
+
+#: admin/processqueueforked.php:181
+msgid "emails failed (will retry later)"
+msgstr ""
+
+#: admin/import3.php:240
+#: admin/import3.php:241
+msgid "Overwrite Existing"
+msgstr ""
+
+#: admin/home.php:236
+msgid "send"
+msgstr ""
+
+#: admin/messages.php:371
+msgid "click stats"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:149
+msgid "Subscription History"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Nov"
+msgstr ""
+
+#: admin/statsoverview.php:118
+#: admin/statsoverview.php:219
+#: admin/msgstatus.php:28
+msgid "sent"
+msgstr ""
+
+#: admin/processqueueforked.php:318
+#: admin/processqueueforked.php:320
+msgid "Would have sent"
+msgstr ""
+
+#: admin/processqueueforked.php:711
+#: admin/processqueueforked.php:892
+msgid "seconds to send"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:387
+msgid "Find subscribers"
+msgstr ""
+
+#: admin/statsoverview.php:221
+#: admin/statsoverview.php:225
+msgid "firstview"
+msgstr ""
+
+#: admin/import1.php:125
+#: admin/import1.php:356
+msgid "Test output:"
+msgstr ""
+
+#: admin/send_core.php:444
+msgid "sentemailto"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:370
+#: admin/commonlib/pages/attributes.php:400
+msgid "isrequired"
+msgstr ""
+
+#: admin/viewtemplate.php:22
+msgid "Sample Newsletter text"
+msgstr ""
+
+#: admin/mclicks.php:113
+msgid "Click Rate"
+msgstr ""
+
+#: admin/bounce.php:128
+msgid "Delete subscriber"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:181
+msgid "cannotmergeone"
+msgstr ""
+
+#: admin/bounces.php:9
+msgid "deleting"
+msgstr ""
+
+#: admin/usercheck.php:5
+msgid "existingusers"
+msgstr ""
+
+#: admin/initialise.php:142
+msgid "instead?"
+msgstr ""
+
+#: admin/catlists.php:44
+msgid "Categorise lists"
+msgstr ""
+
+#: admin/bounce.php:117
+msgid "Add new Rule"
+msgstr ""
+
+#: admin/importsimple.php:75
+#, php-format
+msgid "%d emails imported"
+msgstr ""
+
+#: admin/messages.php:246
+msgid "Campaigns"
+msgstr ""
+
+#: admin/userclicks.php:145
+msgid "HTML"
+msgstr ""
+
+#: admin/home.php:259
+msgid "templates"
+msgstr ""
+
+#: admin/usermgt.php:32
+msgid "mass remove users"
+msgstr ""
+
+#: admin/massunconfirm.php:31
+msgid "Mass unconfirm email addresses"
+msgstr ""
+
+#: admin/importadmin.php:183
+msgid "Empty loginname, using email:"
+msgstr ""
+
+#: admin/index.php:270
+msgid "passwordsent"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1023
+msgid "omitinvalid_blurb"
+msgstr ""
+
+#: admin/commonlib/lib/interfacelib.php:892
+msgid "Back"
+msgstr ""
+
+#: admin/statsoverview.php:105
+msgid "There are currently no messages to view"
+msgstr ""
+
+#: admin/home.php:59
+msgid "Download"
+msgstr ""
+
+#: admin/reconcileusers.php:111
+msgid "unable to find original email"
+msgstr ""
+
+#: admin/catlists.php:57
+msgid "Category"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:171
+msgid "rssintro"
+msgstr ""
+
+#: admin/import4.php:108
+#: admin/import4.php:115
+msgid "Remote version has"
+msgstr ""
+
+#: admin/segmentation.php:10
+msgid "selectattribute"
+msgstr ""
+
+#: admin/bounce.php:142
+msgid "Status"
+msgstr ""
+
+#: admin/template.php:155
+msgid "Template saved"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:118
+msgid "from"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:433
+msgid "Create new Attribute"
+msgstr ""
+
+#: admin/processbounces.php:150
+msgid "Bounced system message"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:648
+#: admin/commonlib/pages/importcsv.php:658
+#: admin/commonlib/pages/importcsv.php:659
+msgid "duplicate"
+msgstr ""
+
+#: admin/importadmin.php:260
+msgid "succesfully imported to the database and added to the system."
+msgstr ""
+
+#: admin/import4.php:134
+#: admin/import4.php:170
+msgid "exists locally"
+msgstr ""
+
+#: admin/bounce.php:63
+#, php-format
+msgid "Made subscriber %s unconfirmed"
+msgstr ""
+
+#: admin/bounces.php:66
+msgid "are you sure you want to delete all unidentified bounces older than 2 months"
+msgstr ""
+
+#: admin/date.php:19
+msgid "Wednesday"
+msgstr ""
+
+#: admin/tests/sendpage.php:34
+msgid "Note: Links in emails will not work, because this is a test message, which is deleted after sending"
+msgstr ""
+
+#: admin/usercheck.php:6
+msgid "nonexistingusers"
+msgstr ""
+
+#: admin/import3.php:244
+msgid "send notification email"
+msgstr ""
+
+#: admin/readtestmail.php:49
+msgid "test processing error"
+msgstr ""
+
+#: admin/reconcileusers.php:136
+msgid "Marking all users confirmed"
+msgstr ""
+
+#: admin/home.php:215
+msgid "Add, edit and remove Administrators"
+msgstr ""
+
+#: admin/mclicks.php:67
+msgid "links"
+msgstr ""
+
+#: admin/bounce.php:123
+msgid "Possible Actions:"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:68
+msgid "Monthly"
+msgstr ""
+
+#: admin/import1.php:43
+msgid "File is either too large or does not exist."
+msgstr ""
+
+#: admin/bouncerules.php:96
+msgid "tag"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:571
+#: admin/commonlib/pages/user.php:578
+#: admin/commonlib/pages/userhistory.php:48
+msgid "Details"
+msgstr ""
+
+#: admin/import1.php:277
+msgid "Is now subscribed to:"
+msgstr ""
+
+#: admin/message.php:107
+msgid "No attachments"
+msgstr ""
+
+#: admin/templates.php:30
+msgid "Existing templates"
+msgstr ""
+
+#: admin/processbounces.php:267
+msgid "Please do not interrupt this process"
+msgstr ""
+
+#: admin/purgerss.php:27
+msgid "Purge RSS items from database"
+msgstr ""
+
+#: admin/import4.php:73
+msgid "Copy lists from remote server (lists are matched by name)"
+msgstr ""
+
+#: admin/tests/sendpage.php:14
+msgid "Test email not set "
+msgstr ""
+
+#: admin/importadmin.php:17
+msgid "File is either to large or does not exist."
+msgstr ""
+
+#: admin/adminattributes.php:86
+#: admin/adminattributes.php:104
+msgid "Is this attribute required?:"
+msgstr ""
+
+#: admin/processqueueforked.php:177
+#: admin/msgstatus.php:29
+msgid "msgs/hr"
+msgstr ""
+
+#: admin/home.php:145
+msgid "Reconcile the User Database"
+msgstr ""
+
+#: admin/home.php:11
+msgid "phplist version"
+msgstr ""
+
+#: admin/reconcileusers.php:211
+msgid "Deleting unconfirmed users who signed up after"
+msgstr ""
+
+#: admin/send_core.php:712
+msgid "sendas"
+msgstr ""
+
+#: admin/sendemaillib2.php:232
+msgid "sendingmessage"
+msgstr ""
+
+#: admin/admin.php:260
+msgid "Reset to Default"
+msgstr ""
+
+#: admin/import3.php:250
+#: admin/import3.php:258
+msgid "Create Attribute"
+msgstr ""
+
+#: admin/upgrade.php:427
+msgid "upgrade to UTF-8, done"
+msgstr ""
+
+#: admin/send_core.php:633
+msgid "Send a Webpage - URL"
+msgstr "Send a Webpage - URL"
+
+#: admin/commonlib/pages/attributes.php:118
+msgid "converting"
+msgstr ""
+
+#: admin/about.php:14
+msgid "Developers"
+msgstr ""
+
+#: admin/stacked_attributes_prev.php:55
+msgid "unchecked"
+msgstr ""
+
+#: admin/bounce.php:145
+msgid "Body"
+msgstr ""
+
+#: admin/export.php:79
+#, php-format
+msgid "PHPList Export on %s from %s to %s (%s).csv"
+msgstr ""
+
+#: admin/reconcileusers.php:154
+msgid "Marking all users to receive HTML"
+msgstr ""
+
+#: admin/index.php:379
+msgid "It is safer to set Register Globals in your php.ini to be <b>off</b> instead of "
+msgstr ""
+
+#: admin/defaultplugin.php:126
+msgid "choose"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:459
+msgid "User is blacklisted. No emails will be sent to this user"
+msgstr ""
+
+#: admin/processqueueforked.php:318
+#: admin/processqueueforked.php:320
+msgid "(test)"
+msgstr ""
+
+#: admin/import4.php:361
+msgid "existing users"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:368
+#: admin/commonlib/pages/attributes.php:398
+msgid "defaultvalue"
+msgstr ""
+
+#: admin/send_core.php:940
+#: admin/send_core.php:942
+msgid "separate multiple with a comma"
+msgstr ""
+
+#: admin/template.php:196
+msgid "Sending test \"Request for confirmation\" to "
+msgstr ""
+
+#: admin/send_core.php:674
+#: admin/send_core.php:696
+msgid "day"
+msgstr ""
+
+#: admin/lib.php:43
+msgid "delete bounce"
+msgstr ""
+
+#: admin/spageedit.php:220
+msgid "Don't offer choice, default to <b>text</b>"
+msgstr ""
+
+#: admin/configure.php:73
+msgid "edit"
+msgstr ""
+
+#: admin/send_core.php:702
+msgid "requeueuntil"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:384
+msgid "merge"
+msgstr ""
+
+#: admin/statsmgt.php:7
+msgid "Overview"
+msgstr ""
+
+#: admin/bounce.php:126
+msgid "(so you can resend the request for confirmation)"
+msgstr ""
+
+#: admin/configure.php:18
+msgid "invalid request"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:67
+msgid "Weekly"
+msgstr ""
+
+#: admin/import3.php:249
+msgid "Attribute one"
+msgstr ""
+
+#: admin/subscriberstats.php:6
+msgid "Statistics"
+msgstr "Statistics"
+
+#: admin/adminattributes.php:76
+msgid "No Attributes have been defined yet"
+msgstr ""
+
+#: admin/list.php:222
+msgid "n/a"
+msgstr ""
+
+#: admin/connect.php:1787
+msgid "Next"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:136
+msgid "remove User from Blacklist"
+msgstr ""
+
+#: admin/messages.php:80
+msgid "static"
+msgstr ""
+
+#: admin/processqueueforked.php:396
+msgid "Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent."
+msgstr ""
+
+#: admin/adminattributes.php:74
+msgid "Existing attributes:"
+msgstr ""
+
+#: admin/send_core.php:679
+msgid "repeatuntil"
+msgstr ""
+
+#: admin/upgrade.php:38
+msgid "Your database version"
+msgstr ""
+
+#: admin/mclicks.php:143
+#: admin/uclicks.php:101
+msgid "firstclick"
+msgstr ""
+
+#: admin/connect.php:1071
+msgid "listnotactive"
+msgstr ""
+
+#: admin/spageedit.php:134
+msgid "Please indicate how often you want to receive messages"
+msgstr ""
+
+#: admin/importsimple.php:137
+msgid "Import Emails"
+msgstr ""
+
+#: admin/home.php:203
+msgid "Configuration Functions"
+msgstr ""
+
+#: admin/mclicks.php:152
+#: admin/mclicks.php:167
+#: admin/uclicks.php:109
+#: admin/uclicks.php:122
+msgid "unique clicks"
+msgstr ""
+
+#: admin/bouncemgt.php:9
+msgid "View Bounces per list"
+msgstr ""
+
+#: admin/spage.php:49
+msgid "owner"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:334
+msgid "usedin"
+msgstr ""
+
+#: admin/send_core.php:996
+msgid "Estimated size of mailout"
+msgstr ""
+
+#: admin/setup.php:36
+msgid "Change Admin Password"
+msgstr ""
+
+#: admin/import.php:38
+msgid "import by uploading a file with emails"
+msgstr ""
+
+#: admin/actions/msgstatus.php:45
+msgid "unknown"
+msgstr ""
+
+#: admin/upgrade.php:446
+msgid "Upgrade failed"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:901
+#, php-format
+msgid "%s emails already existed in the database"
+msgstr ""
+
+#: admin/login.php:32
+msgid "forgot password"
+msgstr ""
+
+#: admin/initialise.php:140
+msgid "phpList Setup"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:212
+#, php-format
+msgid "User added to list %s"
+msgstr ""
+
+#: admin/import1.php:194
+msgid "Import of existing subscriber"
+msgstr ""
+
+#: admin/home.php:172
+msgid "configure"
+msgstr ""
+
+#: admin/initialise.php:130
+msgid "Success"
+msgstr ""
+
+#: admin/processqueueforked.php:831
+msgid "Process Killed by other process"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1028
+msgid "overwriteexisting_blurb"
+msgstr ""
+
+#: admin/import1.php:290
+msgid "lists"
+msgstr ""
+
+#: admin/statsmgt.php:18
+msgid "To avoid overloading the system, this will convert 10000 records at a time"
+msgstr ""
+
+#: admin/processbounces.php:149
+msgid "system message bounced, user marked unconfirmed"
+msgstr ""
+
+#: admin/template.php:190
+msgid "Sending test"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:320
+msgid "rss"
+msgstr ""
+
+#: admin/processqueueforked.php:836
+msgid "Message I was working on has disappeared"
+msgstr ""
+
+#: admin/ui/ph/pages/defaultsystemtemplate.php:46
+msgid "The default system template has been added as template with ID"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1018
+msgid "(default is line break)"
+msgstr ""
+
+#: admin/login.php:24
+msgid "In order to login, you need to enable cookies in your browser"
+msgstr ""
+
+#: admin/home.php:85
+msgid "Continue the Configuration process of phpList"
+msgstr ""
+
+#: admin/import3.php:244
+msgid "If you choose"
+msgstr ""
+
+#: admin/bounce.php:54
+#: admin/bounce.php:56
+#, php-format
+msgid "Added %s to bouncecount for subscriber %s"
+msgstr ""
+
+#: admin/lib.php:687
+msgid "We have been waiting too long, I guess the other process is still going ok"
+msgstr ""
+
+#: admin/spageedit.php:224
+msgid "Don't offer choice, default to <b>HTML</b>"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:96
+msgid "viewed"
+msgstr ""
+
+#: admin/processbounces.php:452
+msgid "bounces processed by advanced processing"
+msgstr ""
+
+#: admin/processbounces.php:268
+msgid "bounces to process"
+msgstr ""
+
+#: admin/reconcileusers.php:459
+msgid "Note: this will use the total count of bounces on a user, not consecutive bounces"
+msgstr ""
+
+#: admin/connect.php:1112
+msgid "nolistsavailable"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:247
+msgid "Users marked <span class=\"highlight\">red</span> are unconfirmed"
+msgstr ""
+
+#: admin/massunconfirm.php:5
+msgid "Sorry, this page can only be used by super admins"
+msgstr ""
+
+#: admin/mclicks.php:159
+#: admin/uclicks.php:114
+msgid "who"
+msgstr ""
+
+#: admin/list.php:214
+msgid "Bounces"
+msgstr ""
+
+#: admin/plugins/keymanager.php:102
+msgid "List keys"
+msgstr ""
+
+#: admin/messages.php:323
+msgid "Bounced"
+msgstr ""
+
+#: admin/template.php:136
+msgid "No Title"
+msgstr ""
+
+#: admin/processbounces.php:398
+#: admin/processbounces.php:415
+#: admin/processbounces.php:425
+#: admin/processbounces.php:434
+msgid "User auto unsubscribed for"
+msgstr ""
+
+#: admin/connect.php:1785
+msgid "First Page"
+msgstr ""
+
+#: admin/import1.php:291
+msgid "new emails were"
+msgstr ""
+
+#: admin/export.php:230
+msgid "Export"
+msgstr ""
+
+#: admin/connect.php:776
+msgid "In this section"
+msgstr ""
+
+#: admin/date.php:22
+msgid "Saturday"
+msgstr ""
+
+#: admin/send_core.php:386
+msgid "errorfrom"
+msgstr ""
+
+#: admin/import3.php:487
+msgid "These records were deleted. Check your source and reimport the data. Duplicates will be identified."
+msgstr ""
+
+#: admin/send_core.php:716
+msgid "text"
+msgstr ""
+
+#: admin/processbounces.php:201
+msgid "system message bounced, but unknown user"
+msgstr ""
+
+#: admin/reconcileusers.php:417
+msgid "Mark all subscribers to receive text"
+msgstr ""
+
+#: admin/convertstats.php:136
+msgid "Convert some more"
+msgstr ""
+
+#: admin/list.php:217
+msgid "Public"
+msgstr ""
+
+#: admin/spageedit.php:249
+msgid "Don't display email confirmation"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Dec"
+msgstr ""
+
+#: admin/send_core.php:888
+msgid "newattachment"
+msgstr ""
+
+#: admin/processqueueforked.php:728
+#: admin/processqueueforked.php:908
+msgid "Failed sending to"
+msgstr ""
+
+#: admin/home.php:91
+msgid "Send a campaign"
+msgstr ""
+
+#: admin/upgrade.php:417
+msgid "Upgrading table "
+msgstr ""
+
+#: admin/initialise.php:14
+msgid "Please enter your email."
+msgstr ""
+
+#: admin/convertstats.php:132
+msgid "All done, optimizing table to recover space"
+msgstr ""
+
+#: admin/commonlib/pages/user.php:183
+#: admin/commonlib/pages/user.php:193
+msgid "User added to group"
+msgstr ""
+
+#: admin/processqueue.php:947
+msgid "Unconfirmed user"
+msgstr ""
+
+#: admin/template.php:336
+msgid "Send test message"
+msgstr ""
+
+#: admin/adminattributes.php:5
+#: admin/adminattributes.php:107
+msgid "Save Changes"
+msgstr ""
+
+#: admin/members.php:327
+#: admin/members.php:344
+msgid "Move"
+msgstr ""
+
+#: admin/message.php:150
+msgid "List is not Active"
+msgstr ""
+
+#: admin/initialise.php:27
+msgid "minimum of 8 characters."
+msgstr ""
+
+#: admin/usermgt.php:39
+msgid "subscriber management functions"
+msgstr ""
+
+#: admin/send_core.php:948
+msgid "add Google tracking code"
+msgstr ""
+
+#: admin/statsoverview.php:152
+msgid "Sent"
+msgstr ""
+
+#: admin/editattributes.php:155
+msgid "oneperline"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:452
+#: admin/commonlib/pages/importcsv.php:935
+msgid "Confirm Import"
+msgstr ""
+
+#: admin/admins.php:68
+#: admin/admins.php:83
+#: admin/admins.php:118
+msgid "Administrators"
+msgstr ""
+
+#: admin/date.php:31
+msgid "July"
+msgstr ""
+
+#: admin/send_core.php:396
+msgid "selectlist"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:118
+msgid "Subscription"
+msgstr ""
+
+#: admin/processqueueforked.php:707
+#: admin/processqueueforked.php:888
+msgid "Sending"
+msgstr ""
+
+#: admin/userclicks.php:47
+msgid "User Click Statistics"
+msgstr ""
+
+#: admin/admins.php:115
+msgid "Find an admin"
+msgstr ""
+
+#: admin/messages.php:70
+msgid "Start a new campaign"
+msgstr ""
+
+#: admin/usercheck.php:19
+msgid "key"
+msgstr ""
+
+#: admin/getrss.php:43
+msgid "Rss Results"
+msgstr ""
+
+#: admin/members.php:338
+msgid "What to do with all users"
+msgstr ""
+
+#: admin/home.php:382
+msgid "admin"
+msgstr ""
+
+#: admin/processbounces.php:275
+msgid "Running in test mode, not deleting messages from mailbox"
+msgstr ""
+
+#: admin/tests.php:42
+msgid "Tests available"
+msgstr ""
+
+#: admin/home.php:179
+msgid "attributes"
+msgstr ""
+
+#: admin/processbounces.php:271
+msgid "processing first"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:351
+msgid "authoritative list"
+msgstr ""
+
+#: admin/send_core.php:869
+msgid "currentattachments"
+msgstr ""
+
+#: admin/admin.php:163
+msgid "Update it?"
+msgstr ""
+
+#: admin/bounce.php:109
+msgid "Regular Expression"
+msgstr ""
+
+#: admin/index.php:274
+#, php-format
+msgid "failed password request from %s for %s"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:595
+msgid "New Attribute"
+msgstr ""
+
+#: admin/import3.php:257
+msgid "Attribute two"
+msgstr ""
+
+#: admin/systemstats.php:11
+msgid "Jun"
+msgstr ""
+
+#: admin/messages.php:389
+msgid "Suspend All"
+msgstr ""
+
+#: admin/upgrade.php:414
+msgid "Upgrading the database to use UTF-8, please wait"
+msgstr ""
+
+#: admin/import1.php:280
+msgid "Not subscribed to any lists"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:899
+#, php-format
+msgid "%d emails subscribed to the lists"
+msgstr ""
+
+#: admin/processqueue.php:1028
+#, php-format
+msgid "phplist has finished sending the campaign with subject %s"
+msgstr ""
+
+#: admin/actions/configure.php:26
+msgid "Editing"
+msgstr ""
+
+#: admin/spageedit.php:208
+msgid "Footer"
+msgstr ""
+
+#: admin/processqueueforked.php:483
+msgid "No users apply for attributes"
+msgstr ""
+
+#: admin/subscribelib2.php:310
+msgid "If user confirms subscription, they will be removed from the blacklist."
+msgstr ""
+
+#: admin/lib.php:41
+msgid "unconfirm user and delete bounce"
+msgstr ""
+
+#: admin/processqueue.php:1029
+#, php-format
+msgid "to view the results of this campaign, go to http://%s"
+msgstr ""
+
+#: admin/spageedit.php:232
+msgid "Offer checkbox for HTML"
+msgstr ""
+
+#: admin/bounce.php:126
+msgid "Mark subscriber as unconfirmed"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:143
+msgid "value"
+msgstr ""
+
+#: admin/import4.php:58
+msgid "Table prefix:"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:275
+msgid "Show only unconfirmed users"
+msgstr ""
+
+#: admin/template.php:322
+msgid "Check that all external images exist"
+msgstr ""
+
+#: admin/mviews.php:74
+msgid "in progress"
+msgstr ""
+
+#: admin/processqueueforked.php:992
+msgid "Hmmm, No users found to send to"
+msgstr ""
+
+#: admin/importadmin.php:258
+msgid "All the emails already exist in the database"
+msgstr ""
+
+#: admin/send_core.php:570
+msgid "whatisprepare"
+msgstr ""
+
+#: admin/admins.php:87
+msgid "Listing admin"
+msgstr ""
+
+#: admin/importadmin.php:143
+msgid "Test output:There should only be ONE email per line.If the output looks ok, go Back to resubmit for real"
+msgstr ""
+
+#: admin/catlists.php:31
+msgid "Configure Categories"
+msgstr ""
+
+#: admin/home.php:251
+msgid "sendprepared"
+msgstr ""
+
+#: admin/template.php:318
+msgid "Check that all images have a full URL"
+msgstr ""
+
+#: admin/import3.php:270
+msgid "Cannot continue"
+msgstr ""
+
+#: admin/msgbounces.php:28
+#, php-format
+msgid "Listing %s to %s"
+msgstr ""
+
+#: admin/massremove.php:47
+msgid "Paste the emails to remove in this box, and click continue"
+msgstr ""
+
+#: admin/initialise.php:64
+msgid "Table already exists"
+msgstr ""
+
+#: admin/list.php:229
+msgid "Order"
+msgstr ""
+
+#: admin/reconcileusers.php:468
+msgid " Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   "
+msgstr ""
+
+#: admin/reconcileusers.php:441
+#, php-format
+msgid "To move all subscribers who are not subscribed to any list to %s"
+msgstr ""
+
+#: admin/processbounces.php:322
+msgid "Bounce mechanism not properly configured"
+msgstr ""
+
+#: admin/home.php:268
+msgid "List all Messages"
+msgstr ""
+
+#: admin/processqueueforked.php:227
+msgid "Script finished, but not all messages have been sent yet."
+msgstr ""
+
+#: admin/lib.php:39
+msgid "blacklist user"
+msgstr ""
+
+#: admin/setup.php:121
+msgid "Start a message campaign"
+msgstr ""
+
+#: admin/message.php:109
+msgid "Filename"
+msgstr ""
+
+#: admin/adminattributes.php:81
+msgid "Attribute:"
+msgstr ""
+
+#: admin/date.php:16
+msgid "Sunday"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1017
+msgid "(default is TAB)"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:375
+#: admin/commonlib/pages/attributes.php:403
+msgid "savechanges"
+msgstr ""
+
+#: admin/home.php:367
+msgid "dbcheck"
+msgstr ""
+
+#: admin/date.php:21
+msgid "Friday"
+msgstr ""
+
+#: admin/list.php:233
+msgid "Are you sure you want to delete this list?"
+msgstr ""
+
+#: admin/send_core.php:453
+msgid "add"
+msgstr ""
+
+#: admin/messages.php:121
+msgid "Requeuing"
+msgstr ""
+
+#: admin/statsoverview.php:226
+msgid "responsetime"
+msgstr ""
+
+#: admin/massremove.php:44
+msgid "Mass remove email addresses"
+msgstr ""
+
+#: admin/template.php:137
+msgid "Template does not contain the [CONTENT] placeholder"
+msgstr ""
+
+#: admin/bouncerules.php:86
+msgid "match"
+msgstr ""
+
+#: admin/readtestmail.php:225
+msgid "tests"
+msgstr ""
+
+#: admin/spageedit.php:246
+msgid "Display email confirmation"
+msgstr ""
+
+#: admin/bounce.php:38
+#: admin/bounce.php:81
+msgid "Back to the list of bounces"
+msgstr ""
+
+#: admin/mclicks.php:55
+msgid "Available Messages"
+msgstr ""
+
+#: admin/login.php:111
+msgid "password"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:907
+msgid "These records were added, but the email has been made up from "
+msgstr ""
+
+#: admin/send_core.php:874
+msgid "desc"
+msgstr ""
+
+#: admin/reconcileusers.php:249
+msgid "Don't know how to"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:213
+msgid "Sorry, only super users can delete users"
+msgstr ""
+
+#: admin/importadmin.php:293
+msgid "Check this box to create a list for each administrator, named after their loginname"
+msgstr ""
+
+#: admin/send_core.php:448
+msgid "success"
+msgstr ""
+
+#: admin/msgstatus.php:27
+msgid "ETA"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:349
+msgid "too many subscribers, use a search query to list some"
+msgstr ""
+
+#: admin/reconcileusers.php:144
+#: admin/reconcileusers.php:150
+#: admin/reconcileusers.php:157
+#: admin/reconcileusers.php:163
+#: admin/reconcileusers.php:172
+#: admin/reconcileusers.php:183
+#: admin/reconcileusers.php:193
+#: admin/reconcileusers.php:205
+#: admin/reconcileusers.php:217
+#: admin/reconcileusers.php:224
+msgid "users apply"
+msgstr ""
+
+#: admin/reconcileusers.php:87
+msgid "user found"
+msgstr ""
+
+#: admin/importsimple.php:57
+msgid "import_by"
+msgstr ""
+
+#: admin/eventlog.php:109
+msgid "page"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:173
+msgid "No RSS"
+msgstr ""
+
+#: admin/processqueueforked.php:190
+msgid "Warning: script never reached stage 5"
+msgstr ""
+
+#: admin/reconcileusers.php:104
+msgid "no user found"
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:319
+msgid "loadfrom"
+msgstr ""
+
+#: admin/readtestmail.php:301
+msgid "test_protocol not supported"
+msgstr ""
+
+#: admin/home.php:157
+msgid "export"
+msgstr ""
+
+#: admin/import3.php:209
+msgid "Please enter details of the IMAP account"
+msgstr ""
+
+#: admin/messages.php:165
+msgid "Suspending all"
+msgstr ""
+
+#: admin/spageedit.php:259
+msgid "Message they receive when they confirm their subscription"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:399
+msgid "RSS settings"
+msgstr ""
+
+#: admin/import1.php:360
+msgid "(default is nothing, will send as fast as it can)"
+msgstr ""
+
+#: admin/commonlib/pages/users.php:277
+msgid "Show only blacklisted users"
+msgstr ""
+
+#: admin/connect.php:716
+msgid "about"
+msgstr ""
+
+#: admin/home.php:261
+msgid "Configure Templates"
+msgstr ""
+
+#: admin/reindex.php:21
+#, php-format
+msgid "Adding index <b>%s</b> to %s<br/>"
+msgstr ""
+
+#: admin/date.php:36
+msgid "December"
+msgstr ""
+
+#: admin/processqueueforked.php:610
+msgid "Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:76
+msgid "messages sent to this user"
+msgstr ""
+
+#: admin/admin.php:224
+msgid "Access Details"
+msgstr ""
+
+#: admin/bouncerule.php:56
+msgid "no related bounces found"
+msgstr ""
+
+#: admin/connect.php:716
+msgid "Main Page"
+msgstr ""
+
+#: admin/processqueueforked.php:34
+msgid "Running in testmode, no emails will be sent. Check your config file."
+msgstr ""
+
+#: admin/commonlib/pages/attributes.php:325
+msgid "noattributesdefined"
+msgstr ""
+
+#: admin/home.php:57
+msgid "Latest version"
+msgstr ""
+
+#: admin/import1.php:353
+msgid "The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute \"Info\" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document."
+msgstr ""
+
+#: admin/plugins/keymanager.php:338
+msgid "Sign message"
+msgstr ""
+
+#: admin/members.php:85
+#: admin/members.php:124
+msgid "subscribers were copied to"
+msgstr ""
+
+#: admin/help/index.php:57
+msgid "nohelpavailable"
+msgstr ""
+
+#: admin/import1.php:333
+msgid "adding_users"
+msgstr ""
+
+#: admin/import4.php:154
+msgid "Copying attributes"
+msgstr ""
+
+#: admin/admin.php:227
+msgid "Page"
+msgstr ""
+
+#: admin/import4.php:51
+msgid "Please enter details of the remote Server"
+msgstr ""
+
+#: admin/import1.php:357
+msgid "If you choose \"send notification email\" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1010
+msgid "importintro"
+msgstr ""
+
+#: admin/date.php:35
+msgid "November"
+msgstr ""
+
+#: admin/bounce.php:95
+msgid "This bounce no longer exists in the database."
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:21
+msgid "you only have privileges to view this page, not change any of the information"
+msgstr ""
+
+#: admin/members.php:273
+msgid "Del"
+msgstr ""
+
+#: admin/template.php:92
+msgid "No images found"
+msgstr ""
+
+#: admin/editattributes.php:164
+#: admin/editattributes.php:173
+msgid "changeorder"
+msgstr ""
+
+#: admin/import4.php:110
+msgid "No users to copy, is the prefix correct?"
+msgstr ""
+
+#: admin/massremove.php:38
+#, php-format
+msgid "All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found"
+msgstr ""
+
+#: admin/send_core.php:858
+msgid "maxtotaldata"
+msgstr ""
+
+#: admin/list.php:244
+msgid "No lists, use Add List to add one"
+msgstr ""
+
+#: admin/spageedit.php:173
+msgid "General Information"
+msgstr ""
+
+#: admin/processqueueforked.php:763
+#: admin/processqueueforked.php:950
+msgid "already sent"
+msgstr ""
+
+#: admin/template.php:172
+msgid "Save Images"
+msgstr ""
+
+#: admin/export.php:199
+msgid "Based on changelog"
+msgstr ""
+
+#: admin/editattributes.php:31
+msgid "This datatype does not have editable values"
+msgstr ""
+
+#: admin/home.php:188
+msgid "Control values for"
+msgstr ""
+
+#: admin/commonlib/pages/userhistory.php:159
+msgid "detail"
+msgstr ""
+
+#: admin/members.php:41
+msgid "Add a user"
+msgstr ""
+
+#: admin/mclicks.php:146
+#: admin/mclicks.php:163
+#: admin/uclicks.php:52
+#: admin/uclicks.php:104
+#: admin/uclicks.php:118
+msgid "clicks"
+msgstr ""
+
+#: admin/date.php:26
+msgid "February"
+msgstr ""
+
+#: admin/userclicks.php:61
+msgid "User Click Details for a URL in a message"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:985
+msgid "automatically added"
+msgstr ""
+
+#: admin/date.php:28
+msgid "April"
+msgstr ""
+
+#: admin/plugins/rssmanager.php:95
+msgid "Get RSS feeds"
+msgstr ""
+
+#: admin/processqueueforked.php:838
+msgid "Sending of this message has been suspended"
+msgstr ""
+
+#: admin/send_core.php:939
+msgid "email to alert when sending of this message starts"
+msgstr ""
+
+#: admin/initialise.php:136
+msgid "to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
+msgstr ""
+
+#: admin/bouncerules.php:80
+msgid "rule"
+msgstr ""
+
+#: admin/spage.php:47
+msgid "status"
+msgstr ""
+
+#: admin/commonlib/pages/importcsv.php:1024
+msgid "Omit Invalid"
+msgstr ""
+
+#: admin/importsimple.php:76
+#, php-format
+msgid "%d duplicates"
+msgstr ""

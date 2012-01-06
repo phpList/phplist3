@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-05 19:32-0300\n"
+"POT-Creation-Date: 2012-01-05 19:06-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -25,11 +25,11 @@ msgstr "Statistics"
 
 #: admin/import1.php:7
 msgid "import is not available"
-msgstr ""
+msgstr "az importálás nem elérhető"
 
 #: admin/import1.php:29
 msgid "The temporary directory for uploading is not writable, so import will fail"
-msgstr ""
+msgstr "A feltöltések ideiglenes könyvtára nem írható, ezért az importálás nem fog sikerülni"
 
 #: admin/import1.php:39
 msgid "No file was specified. Maybe the file is too big?"
@@ -37,128 +37,128 @@ msgstr ""
 
 #: admin/import1.php:43
 msgid "File is either too large or does not exist."
-msgstr ""
+msgstr "Vagy túl a nagy a fájl, vagy nem létezik."
 
 #: admin/import1.php:47
 msgid "File too big, please split it up into smaller ones"
-msgstr ""
+msgstr "Túl nagy a fájl. Kérjük, darabolja fel kisebbekre."
 
 #: admin/import1.php:59
 msgid "Please choose whether to sign up immediately or to send a notification"
-msgstr ""
+msgstr "Válassza ki az azonnali jelentkezést vagy az értesítés küldését"
 
 #: admin/import1.php:69
 msgid "Cannot read file. It is not readable !"
-msgstr ""
+msgstr "Nem lehet beolvasni a fájlt. Nem olvasható!"
 
 #: admin/import1.php:75
 msgid "Something went wrong while uploading the file. Empty file received. Maybe the file is too big, or you have no permissions to read it."
-msgstr ""
+msgstr "Valami elromlott a fájl feltöltésekor. Üres a fogadott fájl. Lehet, hogy túl nagy a fájl, vagy Önnek nincs joga elolvasni azt."
 
 #: admin/import1.php:125
 #: admin/import1.php:356
 msgid "Test output:"
-msgstr ""
+msgstr "Kimenet tesztelése:"
 
 #: admin/import1.php:125
 msgid "There should only be ONE email per line."
-msgstr ""
+msgstr "Soronként csak EGY e-mail cím legyen."
 
 #: admin/import1.php:125
 msgid "If the output looks ok, go"
-msgstr ""
+msgstr "Ha a kimenet jól néz ki, indítsa"
 
 #: admin/import1.php:125
 msgid "back"
-msgstr ""
+msgstr "vissza"
 
 #: admin/import1.php:125
 msgid " to resubmit for real"
-msgstr ""
+msgstr " újraküldeni igaziból"
 
 #: admin/import1.php:194
 msgid "Import of existing subscriber"
-msgstr ""
+msgstr "Létező felhasználó importálása"
 
 #: admin/import1.php:220
 msgid "Import of new subscriber"
-msgstr ""
+msgstr "Új felhasználó importálása"
 
 #: admin/import1.php:265
 msgid "No data changed"
-msgstr ""
+msgstr "Nem változott felhasználói adat"
 
 #: admin/import1.php:272
 msgid "List subscriptions:"
-msgstr ""
+msgstr "Lista megrendelések:"
 
 #: admin/import1.php:274
 msgid "Was subscribed to:"
-msgstr ""
+msgstr "A következőt rendelte meg:"
 
 #: admin/import1.php:277
 msgid "Is now subscribed to:"
-msgstr ""
+msgstr "Most a következőt rendelte meg:"
 
 #: admin/import1.php:280
 msgid "Not subscribed to any lists"
-msgstr ""
+msgstr "Egyik listát sem rendelte meg"
 
 #: admin/import1.php:283
 msgid "Import by "
-msgstr ""
+msgstr "Importálás által "
 
 #: admin/import1.php:290
 msgid "list"
-msgstr ""
+msgstr "lista"
 
 #: admin/import1.php:290
 msgid "lists"
-msgstr ""
+msgstr "listák"
 
 #: admin/import1.php:291
 msgid "new email was"
-msgstr ""
+msgstr "új e-mail volt"
 
 #: admin/import1.php:291
 msgid "new emails were"
-msgstr ""
+msgstr "új e-mailek voltak"
 
 #: admin/import1.php:292
 msgid "email was"
-msgstr ""
+msgstr "e-mail volt"
 
 #: admin/import1.php:292
 msgid "emails were"
-msgstr ""
+msgstr "emailek voltak"
 
 #: admin/import1.php:295
 msgid "emails existed in the database"
-msgstr ""
+msgstr "e-mail címek voltak az adatbázisban"
 
 #: admin/import1.php:298
 msgid "All the emails already exist in the database."
-msgstr ""
+msgstr "Az összes e-mail cím már az adatbázisban van."
 
 #: admin/import1.php:300
 msgid "succesfully imported to the database and added to"
-msgstr ""
+msgstr "importálása sikerült az adatbázisba és hozzáadva"
 
 #: admin/import1.php:300
 msgid "subscribed to the"
-msgstr ""
+msgstr "megrendelte a(z)"
 
 #: admin/import1.php:307
 msgid "Import some more emails"
-msgstr ""
+msgstr "Még néhány e-mail cím importálása"
 
 #: admin/import1.php:333
 msgid "adding_users"
-msgstr ""
+msgstr "Felhasználók felvétele a következő listára:"
 
 #: admin/import1.php:335
 msgid "select_lists"
-msgstr ""
+msgstr "Jelölje be azokat a listákat, melyekhez hozzá akarja adni az e-mail címeket"
 
 #: admin/import1.php:353
 msgid "The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute \"Info\" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document."
@@ -166,7 +166,7 @@ msgstr ""
 
 #: admin/import1.php:354
 msgid "File containing emails:"
-msgstr ""
+msgstr "Az e-mail címeket tartalmazó fájl:"
 
 #: admin/import1.php:355
 msgid "If you check \"Test Output\", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records."
@@ -178,11 +178,11 @@ msgstr ""
 
 #: admin/import1.php:358
 msgid "Send Notification email"
-msgstr ""
+msgstr "Értesítő&nbsp;e-mailek&nbsp;küldése&nbsp;"
 
 #: admin/import1.php:358
 msgid "Make confirmed immediately"
-msgstr ""
+msgstr "Visszaigazolttá tétel azonnal&nbsp;"
 
 #: admin/import1.php:359
 msgid "If you are going to send notification to users, you may want to add a little delay between messages"
@@ -198,24 +198,24 @@ msgstr ""
 
 #: admin/import1.php:366
 msgid "import"
-msgstr ""
+msgstr "importálás"
 
 #: admin/purgerss.php:11
 msgid "Sorry, only super users can purge RSS items from the database"
-msgstr ""
+msgstr "Sajnos csak a felügyelők üríthetik ki az RSS-elemeket az adatbázisból"
 
 #: admin/purgerss.php:24
 #, php-format
 msgid "%d RSS items purged"
-msgstr ""
+msgstr "%d RSS-elem kiürítése megtörtént"
 
 #: admin/purgerss.php:27
 msgid "Purge RSS items from database"
-msgstr ""
+msgstr "Az RSS-elemek kiürítése az adatbázisból"
 
 #: admin/purgerss.php:28
 msgid "Enter the number of days to go back purging entries"
-msgstr ""
+msgstr "Írja be, hogy hány napig kell visszamenni a bejegyzések kiürítéséhez"
 
 #: admin/purgerss.php:29
 msgid "All entries that are older than the number of days you enter will be purged."
@@ -224,51 +224,51 @@ msgstr ""
 #: admin/adminattributes.php:5
 #: admin/adminattributes.php:107
 msgid "Save Changes"
-msgstr ""
+msgstr "Módosítások mentése"
 
 #: admin/adminattributes.php:12
 msgid "Name cannot be empty:"
-msgstr ""
+msgstr "A név nem lehet üres:"
 
 #: admin/adminattributes.php:14
 msgid "Name is not unique enough"
-msgstr ""
+msgstr "A név nem eléggé egyedi"
 
 #: admin/adminattributes.php:74
 msgid "Existing attributes:"
-msgstr ""
+msgstr "Létező tulajdonságok:"
 
 #: admin/adminattributes.php:76
 msgid "No Attributes have been defined yet"
-msgstr ""
+msgstr "Még nem került sor tulajdonságok meghatározására<br/>"
 
 #: admin/adminattributes.php:81
 msgid "Attribute:"
-msgstr ""
+msgstr "Tulajdonság:"
 
 #: admin/adminattributes.php:81
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
 #: admin/adminattributes.php:82
 #: admin/adminattributes.php:93
 msgid "Name:"
-msgstr ""
+msgstr "Név:"
 
 #: admin/adminattributes.php:83
 #: admin/adminattributes.php:94
 msgid "Type"
-msgstr ""
+msgstr "Típus:"
 
 #: admin/adminattributes.php:84
 #: admin/adminattributes.php:102
 msgid "Default Value:"
-msgstr ""
+msgstr "Alapértelmezett érték:"
 
 #: admin/adminattributes.php:85
 #: admin/adminattributes.php:103
 msgid "Order of Listing:"
-msgstr ""
+msgstr "Listázási sorrend:"
 
 #: admin/adminattributes.php:86
 #: admin/adminattributes.php:104
@@ -277,11 +277,11 @@ msgstr ""
 
 #: admin/adminattributes.php:91
 msgid "Add a new Attribute:"
-msgstr ""
+msgstr "Új tulajdonság hozzáadása:"
 
 #: admin/send_core.php:128
 msgid "noaccess"
-msgstr ""
+msgstr "Nincs ilyen üzenet, vagy Ön nem férhet hozzá"
 
 #: admin/send_core.php:135
 #: admin/send_core.php:1093
@@ -333,7 +333,7 @@ msgstr ""
 
 #: admin/send_core.php:374
 msgid "processqueue"
-msgstr ""
+msgstr "várólistafeldolgozása"
 
 #: admin/send_core.php:376
 msgid "view progress"
@@ -379,11 +379,11 @@ msgstr ""
 #: admin/initialise.php:65
 #: admin/initialise.php:109
 msgid "failed"
-msgstr ""
+msgstr "sikertelen"
 
 #: admin/send_core.php:448
 msgid "success"
-msgstr ""
+msgstr "siker"
 
 #: admin/send_core.php:452
 msgid "emailnotfound"
@@ -401,7 +401,7 @@ msgstr ""
 #: admin/send_core.php:519
 #: admin/send_core.php:620
 msgid "Content"
-msgstr ""
+msgstr "Tartalom"
 
 #: admin/send_core.php:499
 msgid "Text"
@@ -413,15 +413,15 @@ msgstr ""
 
 #: admin/send_core.php:504
 msgid "Format"
-msgstr ""
+msgstr "Formátum"
 
 #: admin/send_core.php:506
 msgid "Attach"
-msgstr ""
+msgstr "Csatolás"
 
 #: admin/send_core.php:508
 msgid "Scheduling"
-msgstr ""
+msgstr "Ütemterv"
 
 #: admin/send_core.php:513
 msgid "Lists"
@@ -442,7 +442,7 @@ msgstr ""
 #: admin/send_core.php:609
 #: admin/send_core.php:644
 msgid "Subject"
-msgstr ""
+msgstr "Tárgy"
 
 #: admin/send_core.php:612
 msgid "fromline"
@@ -503,7 +503,7 @@ msgstr ""
 
 #: admin/send_core.php:679
 msgid "repeatuntil"
-msgstr ""
+msgstr "ismétlődésihatáridő"
 
 #: admin/send_core.php:686
 msgid "requeueevery"
@@ -523,11 +523,11 @@ msgstr ""
 
 #: admin/send_core.php:713
 msgid "html"
-msgstr ""
+msgstr "html"
 
 #: admin/send_core.php:716
 msgid "text"
-msgstr ""
+msgstr "szöveg"
 
 #: admin/send_core.php:742
 msgid "usetemplate"
@@ -571,24 +571,24 @@ msgstr ""
 
 #: admin/send_core.php:873
 msgid "filename"
-msgstr ""
+msgstr "fájlnév"
 
 #: admin/send_core.php:874
 msgid "desc"
-msgstr ""
+msgstr "csökk"
 
 #: admin/send_core.php:875
 msgid "size"
-msgstr ""
+msgstr "méret"
 
 #: admin/send_core.php:878
 #: admin/send_core.php:880
 msgid "file"
-msgstr ""
+msgstr "fájl"
 
 #: admin/send_core.php:882
 msgid "del"
-msgstr ""
+msgstr "törlés"
 
 #: admin/send_core.php:884
 msgid "delchecked"
@@ -604,7 +604,7 @@ msgstr ""
 
 #: admin/send_core.php:890
 msgid "or"
-msgstr ""
+msgstr "vagy"
 
 #: admin/send_core.php:890
 msgid "pathtofile"
@@ -628,16 +628,16 @@ msgstr ""
 
 #: admin/send_core.php:939
 msgid "email to alert when sending of this message starts"
-msgstr ""
+msgstr "értesítés e-mailben az üzenet küldésének megkezdésekor"
 
 #: admin/send_core.php:940
 #: admin/send_core.php:942
 msgid "separate multiple with a comma"
-msgstr ""
+msgstr "több elválasztása vesszővel"
 
 #: admin/send_core.php:941
 msgid "email to alert when sending of this message has finished"
-msgstr ""
+msgstr "értesítés e-mailben az üzenet küldésének befejezésekor"
 
 #: admin/send_core.php:948
 msgid "add Google tracking code"
@@ -690,7 +690,7 @@ msgstr ""
 
 #: admin/message.php:9
 msgid "Please select a message to display"
-msgstr ""
+msgstr "Válassza ki a megjelenítendő üzenetet"
 
 #: admin/message.php:46
 msgid "campaign requeued"
@@ -706,35 +706,35 @@ msgstr ""
 
 #: admin/message.php:102
 msgid "Attachments for this message"
-msgstr ""
+msgstr "Az üzenet mellékletei"
 
 #: admin/message.php:107
 msgid "No attachments"
-msgstr ""
+msgstr "Nincsenek mellékletek"
 
 #: admin/message.php:109
 msgid "Filename"
-msgstr ""
+msgstr "Fájlnév"
 
 #: admin/message.php:110
 msgid "Size"
-msgstr ""
+msgstr "Méret"
 
 #: admin/message.php:111
 msgid "Mime Type"
-msgstr ""
+msgstr "Mime-típus"
 
 #: admin/message.php:112
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: admin/message.php:117
 msgid "Lists this message has been sent to"
-msgstr ""
+msgstr "Listák, melyeknek ez az üzenet elküldésre került"
 
 #: admin/message.php:122
 msgid "None yet"
-msgstr ""
+msgstr "Még nincs"
 
 #: admin/message.php:134
 msgid "Send this (same) message to (a) new list(s)"
@@ -742,11 +742,11 @@ msgstr ""
 
 #: admin/message.php:148
 msgid "List is Active"
-msgstr ""
+msgstr "A lista aktív"
 
 #: admin/message.php:150
 msgid "List is not Active"
-msgstr ""
+msgstr "A lista nem aktív"
 
 #: admin/message.php:157
 msgid "<b>Note:</b> this message has already been sent to all lists. To resend it to new users use the \"Requeue\" function."
@@ -754,7 +754,7 @@ msgstr ""
 
 #: admin/message.php:159
 msgid "Resend"
-msgstr ""
+msgstr "Újraküldés"
 
 #: admin/viewtemplate.php:17
 msgid "Back to edit template"
@@ -766,7 +766,7 @@ msgstr ""
 
 #: admin/massunconfirm.php:5
 msgid "Sorry, this page can only be used by super admins"
-msgstr ""
+msgstr "Sajnos ezt az oldalt csak a főadminisztrátorok tekinthetik meg"
 
 #: admin/massunconfirm.php:21
 msgid "Blacklisted by"
@@ -779,7 +779,7 @@ msgstr ""
 
 #: admin/massunconfirm.php:31
 msgid "Mass unconfirm email addresses"
-msgstr ""
+msgstr "Az e-mail címek tömeges nem visszaigazolttá tétele"
 
 #: admin/massunconfirm.php:32
 msgid "Check to also add the emails to the blacklist"
@@ -787,12 +787,12 @@ msgstr ""
 
 #: admin/massunconfirm.php:33
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
-msgstr ""
+msgstr "Illessze be ebbe a mezőbe a nem visszaigazoltként megjelölendő e-mail címeket, majd kattintson a Folytatás gombra"
 
 #: admin/massunconfirm.php:34
 #: admin/initialise.php:32
 msgid "Continue"
-msgstr ""
+msgstr "Folytatás"
 
 #: admin/bounce.php:23
 msgid "No such record"
@@ -843,19 +843,19 @@ msgstr ""
 
 #: admin/bounce.php:109
 msgid "Regular Expression"
-msgstr ""
+msgstr "Reguláris kifejezés"
 
 #: admin/bounce.php:110
 msgid "Action"
-msgstr ""
+msgstr "Művelet"
 
 #: admin/bounce.php:116
 msgid "Memo for this rule"
-msgstr ""
+msgstr "Emlékeztető ehhez a szabályhoz"
 
 #: admin/bounce.php:117
 msgid "Add new Rule"
-msgstr ""
+msgstr "Új szabály alkotása"
 
 #: admin/bounce.php:123
 msgid "Possible Actions:"
@@ -899,7 +899,7 @@ msgstr ""
 
 #: admin/bounce.php:135
 msgid "Create New Rule based on this bounce"
-msgstr ""
+msgstr "Új szabály alkotása ezen visszapattanó alapján"
 
 #: admin/bounce.php:138
 msgid "Bounce Details:"
@@ -907,27 +907,27 @@ msgstr ""
 
 #: admin/bounce.php:140
 msgid "ID"
-msgstr ""
+msgstr "AZ"
 
 #: admin/bounce.php:141
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 #: admin/bounce.php:142
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: admin/bounce.php:143
 msgid "Comment"
-msgstr ""
+msgstr "Megjegyzés"
 
 #: admin/bounce.php:144
 msgid "Header"
-msgstr ""
+msgstr "Fejléc"
 
 #: admin/bounce.php:145
 msgid "Body"
-msgstr ""
+msgstr "Törzs"
 
 #: admin/initialise.php:14
 msgid "Please enter your email."
@@ -947,51 +947,51 @@ msgstr ""
 
 #: admin/initialise.php:37
 msgid "Creating tables"
-msgstr ""
+msgstr "Táblák létrehozása"
 
 #: admin/initialise.php:62
 msgid "Initialising table"
-msgstr ""
+msgstr "Tábla inicializálása"
 
 #: admin/initialise.php:64
 msgid "Table already exists"
-msgstr ""
+msgstr "A tábla már létezik"
 
 #: admin/initialise.php:106
 msgid "ok"
-msgstr ""
+msgstr "ok"
 
 #: admin/initialise.php:120
 msgid "List for testing."
-msgstr ""
+msgstr "Lista teszteléshez."
 
 #: admin/initialise.php:130
 msgid "Success"
-msgstr ""
+msgstr "Siker"
 
 #: admin/initialise.php:130
 msgid "Tell us about it"
-msgstr ""
+msgstr "Meséljen nekünk róla"
 
 #: admin/initialise.php:132
 msgid "Please make sure to read the file README.security that can be found in the zip file."
-msgstr ""
+msgstr "Győződjön meg róla, hogy elolvasta-e a zip fájlban található README.security fájlt."
 
 #: admin/initialise.php:134
 msgid "Please make sure to"
-msgstr ""
+msgstr "Győződjön meg róla,"
 
 #: admin/initialise.php:135
 msgid "subscribe to the announcements list"
-msgstr ""
+msgstr "hogy feliratkozott-e a közleménylistára,"
 
 #: admin/initialise.php:136
 msgid "to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
-msgstr ""
+msgstr "hogy megbizonyosodjon róla, frissített-e, amikor új verziók jönnek ki. Néha találnak biztonsági hibákat, melyek fontossá teszik a frissítést. Nagyon alacsony a listán a forgalom."
 
 #: admin/initialise.php:140
 msgid "Continue with"
-msgstr ""
+msgstr "A PHPlist telepítésének"
 
 #: admin/initialise.php:140
 msgid "phpList Setup"
@@ -999,11 +999,11 @@ msgstr ""
 
 #: admin/initialise.php:142
 msgid "Maybe you want to"
-msgstr ""
+msgstr "Esetleg"
 
 #: admin/initialise.php:142
 msgid "Upgrade"
-msgstr ""
+msgstr "frissíteni akar"
 
 #: admin/initialise.php:142
 msgid "instead?"
@@ -1011,7 +1011,7 @@ msgstr ""
 
 #: admin/initialise.php:143
 msgid "Force Initialisation"
-msgstr ""
+msgstr "Inicializálás kényszerítése"
 
 #: admin/initialise.php:143
 msgid "(will erase all data!)"
@@ -1019,94 +1019,94 @@ msgstr ""
 
 #: admin/date.php:16
 msgid "Sunday"
-msgstr ""
+msgstr "Vasárnap"
 
 #: admin/date.php:17
 msgid "Monday"
-msgstr ""
+msgstr "Hétfő"
 
 #: admin/date.php:18
 msgid "Tuesday"
-msgstr ""
+msgstr "Kedd"
 
 #: admin/date.php:19
 msgid "Wednesday"
-msgstr ""
+msgstr "Szerda"
 
 #: admin/date.php:20
 msgid "Thursday"
-msgstr ""
+msgstr "Csütörtök"
 
 #: admin/date.php:21
 msgid "Friday"
-msgstr ""
+msgstr "Péntek"
 
 #: admin/date.php:22
 msgid "Saturday"
-msgstr ""
+msgstr "Szombat"
 
 #: admin/date.php:25
 msgid "January"
-msgstr ""
+msgstr "Január"
 
 #: admin/date.php:26
 msgid "February"
-msgstr ""
+msgstr "Február"
 
 #: admin/date.php:27
 msgid "March"
-msgstr ""
+msgstr "Március"
 
 #: admin/date.php:28
 msgid "April"
-msgstr ""
+msgstr "Április"
 
 #: admin/date.php:29
 msgid "May"
-msgstr ""
+msgstr "Máj"
 
 #: admin/date.php:30
 msgid "June"
-msgstr ""
+msgstr "Június"
 
 #: admin/date.php:31
 msgid "July"
-msgstr ""
+msgstr "Július"
 
 #: admin/date.php:32
 msgid "August"
-msgstr ""
+msgstr "Augusztus"
 
 #: admin/date.php:33
 msgid "September"
-msgstr ""
+msgstr "Szeptember"
 
 #: admin/date.php:34
 msgid "October"
-msgstr ""
+msgstr "Október"
 
 #: admin/date.php:35
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: admin/date.php:36
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: admin/eventlog.php:33
 #: admin/admins.php:41
 msgid "Deleting"
-msgstr ""
+msgstr "Törlés"
 
 #: admin/eventlog.php:38
 #: admin/admins.php:45
 msgid "Done"
-msgstr ""
+msgstr "Kész"
 
 #: admin/eventlog.php:57
 #: admin/eventlog.php:100
 msgid "Events"
-msgstr ""
+msgstr "esemény"
 
 #: admin/eventlog.php:78
 msgid "Are you sure you want to delete all events older than 2 months?"
@@ -1122,32 +1122,32 @@ msgstr ""
 
 #: admin/eventlog.php:84
 msgid "Delete all"
-msgstr ""
+msgstr "Az összes törlése"
 
 #: admin/eventlog.php:87
 msgid "No events available"
-msgstr ""
+msgstr "Nincs esemény"
 
 #: admin/eventlog.php:95
 msgid "Filter"
-msgstr ""
+msgstr "Szűrő"
 
 #: admin/eventlog.php:97
 msgid "Exclude filter"
-msgstr ""
+msgstr "Szűrő kizárása"
 
 #: admin/eventlog.php:109
 msgid "page"
-msgstr ""
+msgstr "oldal"
 
 #: admin/eventlog.php:110
 #: admin/statsoverview.php:117
 msgid "date"
-msgstr ""
+msgstr "dátum"
 
 #: admin/eventlog.php:111
 msgid "message"
-msgstr ""
+msgstr "üzenet"
 
 #: admin/languages.php:382
 msgid "over treshold, user marked unconfirmed"
@@ -1155,52 +1155,52 @@ msgstr ""
 
 #: admin/home.php:9
 msgid "Your database is out of date, please make sure to upgrade"
-msgstr ""
+msgstr "Az adatbázisa elavult, kérjük frissíteni."
 
 #: admin/home.php:10
 #: admin/home.php:56
 msgid "Your version"
-msgstr ""
+msgstr "Az Ön verziója"
 
 #: admin/home.php:11
 msgid "phplist version"
-msgstr ""
+msgstr "<a href=\"http://www.phplist.com\">phplist</a> verzió"
 
 #: admin/home.php:17
 msgid "Database has not been initialised"
-msgstr ""
+msgstr "Nem történt meg az adatbázis inicializálása"
 
 #: admin/home.php:18
 msgid "go to"
-msgstr ""
+msgstr "ugrás"
 
 #: admin/home.php:19
 msgid "Initialise Database"
-msgstr ""
+msgstr "Adatbázis inicializálása"
 
 #: admin/home.php:20
 msgid "to continue"
-msgstr ""
+msgstr "folytatni"
 
 #: admin/home.php:53
 msgid "A new version of PHPlist is available!"
-msgstr ""
+msgstr "Jelent meg új PHPlist verzió!"
 
 #: admin/home.php:55
 msgid "The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible"
-msgstr ""
+msgstr "Az új verzióban biztonsági problémákat javíthattak,<br/>ezért ajánlatos minél előbb frissíteni"
 
 #: admin/home.php:57
 msgid "Latest version"
-msgstr ""
+msgstr "Legújabb verzió"
 
 #: admin/home.php:58
 msgid "View what has changed"
-msgstr ""
+msgstr "Tekintse meg, hogy mi változott"
 
 #: admin/home.php:59
 msgid "Download"
-msgstr ""
+msgstr "Letöltés"
 
 #: admin/home.php:83
 msgid "Continue Configuration"
@@ -1257,15 +1257,15 @@ msgstr ""
 #: admin/home.php:136
 #: admin/processqueueforked.php:988
 msgid "users"
-msgstr ""
+msgstr "felhasználók"
 
 #: admin/home.php:138
 msgid "List all Users"
-msgstr ""
+msgstr "Az összes felhasználó listája"
 
 #: admin/home.php:143
 msgid "reconcileusers"
-msgstr ""
+msgstr "felhasználókújraegyeztetése"
 
 #: admin/home.php:145
 msgid "Reconcile the User Database"
@@ -1273,23 +1273,23 @@ msgstr ""
 
 #: admin/home.php:152
 msgid "Import Users"
-msgstr ""
+msgstr "A felhasználók importálása"
 
 #: admin/home.php:157
 msgid "export"
-msgstr ""
+msgstr "exportálás"
 
 #: admin/home.php:159
 msgid "Export Users"
-msgstr ""
+msgstr "A felhasználók exportálása"
 
 #: admin/home.php:163
 msgid "List and user functions"
-msgstr ""
+msgstr "Lista és felhasználói funkciók"
 
 #: admin/home.php:172
 msgid "configure"
-msgstr ""
+msgstr "beállítások"
 
 #: admin/home.php:174
 msgid "Configure"
@@ -1297,19 +1297,19 @@ msgstr ""
 
 #: admin/home.php:179
 msgid "attributes"
-msgstr ""
+msgstr "tulajdonságok"
 
 #: admin/home.php:181
 msgid "Configure Attributes"
-msgstr ""
+msgstr "A tulajdonságok konfigurálása"
 
 #: admin/home.php:188
 msgid "Control values for"
-msgstr ""
+msgstr "A következő értékeinek ellenőrzése"
 
 #: admin/home.php:196
 msgid "spage"
-msgstr ""
+msgstr "rendelésioldal"
 
 #: admin/home.php:198
 msgid "Configure Subscribe Pages"
@@ -1321,15 +1321,15 @@ msgstr ""
 
 #: admin/home.php:213
 msgid "admins"
-msgstr ""
+msgstr "adminisztrátorok"
 
 #: admin/home.php:215
 msgid "Add, edit and remove Administrators"
-msgstr ""
+msgstr "Adminisztrátorok hozzáadása, módosítása és eltávolítása"
 
 #: admin/home.php:220
 msgid "adminattributes"
-msgstr ""
+msgstr "admintulajdonságok"
 
 #: admin/home.php:222
 msgid "Configure Attributes for administrators"
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: admin/home.php:236
 msgid "send"
-msgstr ""
+msgstr "küldés"
 
 #: admin/home.php:238
 msgid "Send a Message"
@@ -1349,7 +1349,7 @@ msgstr ""
 
 #: admin/home.php:244
 msgid "preparesend"
-msgstr ""
+msgstr "küldéselőkészítése"
 
 #: admin/home.php:246
 msgid "Prepare a Message"
@@ -1357,7 +1357,7 @@ msgstr ""
 
 #: admin/home.php:251
 msgid "sendprepared"
-msgstr ""
+msgstr "előkészítettekküldése"
 
 #: admin/home.php:253
 msgid "Send a Prepared Message"
@@ -1365,19 +1365,19 @@ msgstr ""
 
 #: admin/home.php:259
 msgid "templates"
-msgstr ""
+msgstr "sablonok"
 
 #: admin/home.php:261
 msgid "Configure Templates"
-msgstr ""
+msgstr "Sablonok beállítása"
 
 #: admin/home.php:266
 msgid "messages"
-msgstr ""
+msgstr "üzenet"
 
 #: admin/home.php:268
 msgid "List all Messages"
-msgstr ""
+msgstr "Az összes üzenet listája"
 
 #: admin/home.php:275
 msgid "Process the Message Queue"
@@ -1389,25 +1389,25 @@ msgstr ""
 
 #: admin/home.php:278
 msgid "You have set TEST in config.php to 1, so it will only show what would be sent"
-msgstr ""
+msgstr "A config.php fájlban a TEST paraméter értéke 1, vagyis csak azt fogja megmutatni, hogy mi kerülne elküldésre"
 
 #: admin/home.php:283
 msgid "processbounces"
-msgstr ""
+msgstr "visszapattanókfeldolgozása"
 
 #: admin/home.php:285
 #: admin/bouncemgt.php:12
 msgid "Process Bounces"
-msgstr ""
+msgstr "Visszapattanók feldolgozása"
 
 #: admin/home.php:290
 msgid "bounces"
-msgstr ""
+msgstr "visszapattanójuk van"
 
 #: admin/home.php:292
 #: admin/bouncemgt.php:8
 msgid "View Bounces"
-msgstr ""
+msgstr "Visszapattanók megtekintése"
 
 #: admin/home.php:296
 msgid "Message Functions"
@@ -1416,44 +1416,44 @@ msgstr ""
 #: admin/home.php:329
 #: admin/home.php:343
 msgid "Plugins"
-msgstr ""
+msgstr "Beépülő modulok"
 
 #: admin/home.php:350
 #: admin/home.php:388
 msgid "System Functions"
-msgstr ""
+msgstr "Rendszerfunkciók"
 
 #: admin/home.php:353
 msgid "setup"
-msgstr ""
+msgstr "telepítés"
 
 #: admin/home.php:355
 msgid "Setup "
-msgstr ""
+msgstr "Telepítés: "
 
 #: admin/home.php:360
 msgid "upgrade"
-msgstr ""
+msgstr "frissítés"
 
 #: admin/home.php:367
 msgid "dbcheck"
-msgstr ""
+msgstr "adatbázis-ellenőrzés"
 
 #: admin/home.php:369
 msgid "Check Database structure"
-msgstr ""
+msgstr "Az adatbázis-szerkezet elemzése"
 
 #: admin/home.php:375
 msgid "eventlog"
-msgstr ""
+msgstr "eseménynapló"
 
 #: admin/home.php:377
 msgid "View the eventlog"
-msgstr ""
+msgstr "Az eseménynapló megtekintése"
 
 #: admin/home.php:382
 msgid "admin"
-msgstr ""
+msgstr "admin"
 
 #: admin/home.php:384
 msgid "Change your details (e.g. password)"
@@ -1462,7 +1462,7 @@ msgstr ""
 #: admin/statsoverview.php:28
 #: admin/statsoverview.php:40
 msgid "You do not have access to this page"
-msgstr ""
+msgstr "Ön nem férhet hozzá ehhez az oldalhoz"
 
 #: admin/statsoverview.php:58
 msgid "Download as CSV file"
@@ -1480,7 +1480,7 @@ msgstr ""
 #: admin/statsoverview.php:219
 #: admin/msgstatus.php:28
 msgid "sent"
-msgstr ""
+msgstr "elküldve"
 
 #: admin/statsoverview.php:119
 msgid "bounced"
@@ -1494,12 +1494,12 @@ msgstr ""
 #: admin/statsoverview.php:130
 #: admin/statsoverview.php:223
 msgid "views"
-msgstr ""
+msgstr "nézetek"
 
 #: admin/statsoverview.php:123
 #: admin/statsoverview.php:132
 msgid "rate"
-msgstr ""
+msgstr "értékelés"
 
 #: admin/statsoverview.php:128
 msgid "Comparison to other admins"
@@ -1507,75 +1507,75 @@ msgstr ""
 
 #: admin/statsoverview.php:144
 msgid "View Details for a Message"
-msgstr ""
+msgstr "Üzenet adatainak megtekintése"
 
 #: admin/statsoverview.php:151
 msgid "Entered"
-msgstr ""
+msgstr "Tagság kezdete"
 
 #: admin/statsoverview.php:152
 msgid "Sent"
-msgstr ""
+msgstr "Elküldve"
 
 #: admin/statsoverview.php:156
 msgid "Message Open Statistics"
-msgstr ""
+msgstr "Üzenetmegnyitási statisztika"
 
 #: admin/statsoverview.php:175
 #: admin/statsoverview.php:178
 #, php-format
 msgid "Listing user %d to %d"
-msgstr ""
+msgstr "Felhasználó listázása, %d - %d"
 
 #: admin/statsoverview.php:186
 msgid "Entries"
-msgstr ""
+msgstr "Bejegyzések"
 
 #: admin/statsoverview.php:221
 #: admin/statsoverview.php:225
 msgid "firstview"
-msgstr ""
+msgstr "első nézet"
 
 #: admin/statsoverview.php:222
 msgid "lastview"
-msgstr ""
+msgstr "utolsó nézet"
 
 #: admin/statsoverview.php:226
 msgid "responsetime"
-msgstr ""
+msgstr "válaszidő"
 
 #: admin/statsoverview.php:226
 msgid "sec"
-msgstr ""
+msgstr "mp."
 
 #: admin/login.php:5
 msgid "default login is"
-msgstr ""
+msgstr "Az alapértelmezett bejelentkezési név:"
 
 #: admin/login.php:5
 msgid "with password"
-msgstr ""
+msgstr "jelszóval"
 
 #: admin/login.php:24
 msgid "In order to login, you need to enable cookies in your browser"
-msgstr ""
+msgstr "Engedélyeznie kell a bejelentkezéshez a cookie-k fogadását a böngészőjében"
 
 #: admin/login.php:32
 msgid "forgot password"
-msgstr ""
+msgstr "Elfelejtette jelszavát?"
 
 #: admin/login.php:33
 msgid "enter your email"
-msgstr ""
+msgstr "Írja be az e-mail címét"
 
 #: admin/login.php:34
 msgid "send password"
-msgstr ""
+msgstr "Jelszó küldése"
 
 #: admin/login.php:91
 #: admin/login.php:109
 msgid "name"
-msgstr ""
+msgstr "Név"
 
 #: admin/login.php:93
 msgid "new password"
@@ -1592,12 +1592,12 @@ msgstr ""
 
 #: admin/login.php:111
 msgid "password"
-msgstr ""
+msgstr "jelszó"
 
 #: admin/admins.php:34
 #: admin/admins.php:129
 msgid "Add new admin"
-msgstr ""
+msgstr "Új adminisztrátor hozzáadása"
 
 #: admin/admins.php:39
 msgid "You cannot delete yourself"
@@ -1605,21 +1605,21 @@ msgstr ""
 
 #: admin/admins.php:60
 msgid "Admin added"
-msgstr ""
+msgstr "Az adminisztrátor hozzáadása megtörtént"
 
 #: admin/admins.php:68
 #: admin/admins.php:83
 #: admin/admins.php:118
 msgid "Administrators"
-msgstr ""
+msgstr "adminisztrátor"
 
 #: admin/admins.php:84
 msgid "found"
-msgstr ""
+msgstr "található"
 
 #: admin/admins.php:87
 msgid "Listing admin"
-msgstr ""
+msgstr "Adminisztrátorok listázása"
 
 #: admin/admins.php:87
 #: admin/processqueueforked.php:318
@@ -1627,61 +1627,61 @@ msgstr ""
 #: admin/processqueueforked.php:707
 #: admin/processqueueforked.php:888
 msgid "to"
-msgstr ""
+msgstr "to"
 
 #: admin/admins.php:90
 msgid "Listing admin 1 to 50"
-msgstr ""
+msgstr "Adminisztrátorok listázása: 1 / 50"
 
 #: admin/admins.php:115
 msgid "Find an admin"
-msgstr ""
+msgstr "Adminisztrátor keresése"
 
 #: admin/admins.php:123
 msgid "Show"
-msgstr ""
+msgstr "Megjelenítés"
 
 #: admin/admins.php:130
 msgid "Import list of admins"
-msgstr ""
+msgstr "Adminisztrátorlista importálása"
 
 #: admin/processqueueforked.php:34
 msgid "Running in testmode, no emails will be sent. Check your config file."
-msgstr ""
+msgstr "A PHPlist próba üzemmódban fut, nem küld el e-maileket. Ellenőrizze a konfgurációs fájlt."
 
 #: admin/processqueueforked.php:55
 msgid "The following restrictions have been set by your ISP:"
-msgstr ""
+msgstr "Az internetszolgáltatója a következő korlátozásokat szabta meg:"
 
 #: admin/processqueueforked.php:100
 msgid "Running in safe mode"
-msgstr ""
+msgstr "Futás biztonságos módban"
 
 #: admin/processqueueforked.php:165
 msgid "Script stage"
-msgstr ""
+msgstr "Parancsfájl állapota"
 
 #: admin/processqueueforked.php:169
 msgid "Finished, Nothing to do"
-msgstr ""
+msgstr "Befejeződött, nincs tennivaló."
 
 #: admin/processqueueforked.php:176
 msgid "messages sent in"
-msgstr ""
+msgstr "üzenet elküldve in"
 
 #: admin/processqueueforked.php:177
 #: admin/processqueueforked.php:348
 msgid "seconds"
-msgstr ""
+msgstr "másodperc"
 
 #: admin/processqueueforked.php:177
 #: admin/msgstatus.php:29
 msgid "msgs/hr"
-msgstr ""
+msgstr "üz/óra"
 
 #: admin/processqueueforked.php:179
 msgid "invalid emails"
-msgstr ""
+msgstr "érvénytelen e-mail címek"
 
 #: admin/processqueueforked.php:181
 msgid "emails failed (will retry later)"
@@ -1693,36 +1693,36 @@ msgstr ""
 
 #: admin/processqueueforked.php:190
 msgid "Warning: script never reached stage 5"
-msgstr ""
+msgstr "Figyelmeztetés: a parancsfájl sohasem lépett az 5. szakaszba"
 
 #: admin/processqueueforked.php:190
 msgid "This may be caused by a too slow or too busy server"
-msgstr ""
+msgstr "Ezt túl lassú vagy túl leterhelt kiszolgáló okozhatja"
 
 #: admin/processqueueforked.php:196
 msgid "Less than batch size were sent, so reloading imminently"
-msgstr ""
+msgstr "A köteg méreténél kevesebb került elküldésre, ezért az újratöltés elkerülhetetlen"
 
 #: admin/processqueueforked.php:199
 #, php-format
 msgid "Waiting for %d seconds before reloading"
-msgstr ""
+msgstr "%d másodperc várakozás az újratöltés előtt"
 
 #: admin/processqueueforked.php:221
 msgid "Reload required"
-msgstr ""
+msgstr "Szükségesek újratöltése"
 
 #: admin/processqueueforked.php:225
 msgid "Finished, All done"
-msgstr ""
+msgstr "Befejeződött, mind kész."
 
 #: admin/processqueueforked.php:227
 msgid "Script finished, but not all messages have been sent yet."
-msgstr ""
+msgstr "A parancsfájl befejeződött, de még nem küldte el az összes üzenetet."
 
 #: admin/processqueueforked.php:249
 msgid "Finished this run"
-msgstr ""
+msgstr "A futás befejeződött"
 
 #: admin/processqueueforked.php:318
 #: admin/processqueueforked.php:320
@@ -1732,65 +1732,65 @@ msgstr ""
 #: admin/processqueueforked.php:318
 #: admin/processqueueforked.php:320
 msgid "Would have sent"
-msgstr ""
+msgstr "El lett volna küldve"
 
 #: admin/processqueueforked.php:328
 msgid "Started"
-msgstr ""
+msgstr "Elindult"
 
 #: admin/processqueueforked.php:338
 msgid "Processing has been suspended by your ISP, please try again later"
-msgstr ""
+msgstr "Az internetszolgáltató felfüggesztette a feldolgozást. Próbálja meg később"
 
 #: admin/processqueueforked.php:343
 msgid "In safe mode, batches are set to a maximum of 100"
-msgstr ""
+msgstr "Biztonságos módban legfeljebb 100-ra állítottak a kötegek"
 
 #: admin/processqueueforked.php:346
 #: admin/processqueueforked.php:350
 msgid "Sending in batches of"
-msgstr ""
+msgstr "Küldés kötegekben of"
 
 #: admin/processqueueforked.php:346
 #: admin/processqueueforked.php:350
 msgid "emails"
-msgstr ""
+msgstr "e-mail"
 
 #: admin/processqueueforked.php:348
 msgid "This batch will be"
-msgstr ""
+msgstr "Ez a köteg"
 
 #: admin/processqueueforked.php:348
 msgid "emails, because in the last"
-msgstr ""
+msgstr "e-mail lesz, mert az utolsó"
 
 #: admin/processqueueforked.php:348
 msgid "emails were sent"
-msgstr ""
+msgstr "e-mail lett elküldve"
 
 #: admin/processqueueforked.php:353
 msgid "In the last"
-msgstr ""
+msgstr "Az utolsó"
 
 #: admin/processqueueforked.php:353
 msgid "seconds more emails were sent"
-msgstr ""
+msgstr "másodpercben több e-mail került elküldésre,"
 
 #: admin/processqueueforked.php:353
 msgid "than is currently allowed per batch"
-msgstr ""
+msgstr "mint jelenleg kötegenként engedélyezett"
 
 #: admin/processqueueforked.php:364
 msgid "Sent in last run"
-msgstr ""
+msgstr "Az utolsó futáskor elküldöttek"
 
 #: admin/processqueueforked.php:365
 msgid "Skipped in last run"
-msgstr ""
+msgstr "Az utolsó futáskor kihagyottak"
 
 #: admin/processqueueforked.php:386
 msgid "Processing has started,"
-msgstr ""
+msgstr "A feldolgozás megkezdődött,"
 
 #: admin/processqueueforked.php:386
 msgid "message(s) to process."
@@ -1798,53 +1798,53 @@ msgstr ""
 
 #: admin/processqueueforked.php:391
 msgid "It is safe to click your stop button now, report will be sent by email to"
-msgstr ""
+msgstr "Most nyugodtan kattinthat a \"leállítás\" gombra, a jelentés a következőnek kerül e-mailben elküldésre:"
 
 #: admin/processqueueforked.php:393
 msgid "Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to"
-msgstr ""
+msgstr "Hagyja nyitva ezt az ablakot. Ön engedélyezte a tömeges feldolgozást, ezért többször újra fog tölteni az üzenetek elküldéséhez. A jelentések e-mailben kerülnek elküldésre a következőnek:"
 
 #: admin/processqueueforked.php:396
 msgid "Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent."
-msgstr ""
+msgstr "A webkiszolgáló \"safe_mode\" beállítással fut. Hagyja nyitva ezt az ablakot. Több alkalommal újratöltődhet, hogy megbizonyosdhasson arról, az összes üzenet elküldésre került."
 
 #: admin/processqueueforked.php:396
 msgid "Reports will be sent by email to"
-msgstr ""
+msgstr "A jelentések e-mailben kerülnek elküldésre a következőnek:"
 
 #: admin/processqueueforked.php:429
 msgid "Message Sending has started"
-msgstr ""
+msgstr "Az üzenet küldése megkezdődött"
 
 #: admin/processqueueforked.php:430
 #, php-format
 msgid "phplist has started sending the message with subject %s"
-msgstr ""
+msgstr "A phplist megkezdte a(z) %s tárgyú üzenet küldését"
 
 #: admin/processqueueforked.php:431
 #, php-format
 msgid "to view the progress of this message, go to %s"
-msgstr ""
+msgstr "ezen üzenet haladásának megtekintéséhez menjen %s"
 
 #: admin/processqueueforked.php:437
 msgid "Processing message"
-msgstr ""
+msgstr "Feldolgozandó üzenet:"
 
 #: admin/processqueueforked.php:458
 msgid "Looking for users"
-msgstr ""
+msgstr "Felhasználók keresése"
 
 #: admin/processqueueforked.php:474
 msgid "users apply for attributes, now checking lists"
-msgstr ""
+msgstr "a felhasználók alkalmazása a tulajdonságokra, most a listák ellenőrzése van folyamatban"
 
 #: admin/processqueueforked.php:483
 msgid "No users apply for attributes"
-msgstr ""
+msgstr "Egy felhasználó sem érvényes a tulajdonságokra"
 
 #: admin/processqueueforked.php:537
 msgid "looking for users who can be excluded from this mailing"
-msgstr ""
+msgstr "felhasználók keresése, akik kizárhatók ebből a várólista feldolgozási lefuttatásból"
 
 #: admin/processqueueforked.php:610
 msgid "Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
@@ -1852,15 +1852,15 @@ msgstr ""
 
 #: admin/processqueueforked.php:613
 msgid "Found them"
-msgstr ""
+msgstr "Találtak"
 
 #: admin/processqueueforked.php:613
 msgid "to process"
-msgstr ""
+msgstr "feldolgozandó"
 
 #: admin/processqueueforked.php:627
 msgid "No users to process for this batch"
-msgstr ""
+msgstr "Nincsenek ehhez a köteghez feldolgozandó felhasználók"
 
 #: admin/processqueueforked.php:632
 msgid " Processing batch of "
@@ -1869,79 +1869,79 @@ msgstr ""
 #: admin/processqueueforked.php:707
 #: admin/processqueueforked.php:888
 msgid "Sending"
-msgstr ""
+msgstr "Küldés"
 
 #: admin/processqueueforked.php:711
 #: admin/processqueueforked.php:892
 #: admin/processqueueforked.php:1011
 msgid "It took"
-msgstr ""
+msgstr "Az üzenet küldéséhez"
 
 #: admin/processqueueforked.php:711
 #: admin/processqueueforked.php:892
 msgid "seconds to send"
-msgstr ""
+msgstr "másodpercre volt szükség"
 
 #: admin/processqueueforked.php:728
 #: admin/processqueueforked.php:908
 msgid "Failed sending to"
-msgstr ""
+msgstr "A küldés nem sikerült a következőnek"
 
 #: admin/processqueueforked.php:747
 #: admin/processqueueforked.php:927
 msgid "not sending to "
-msgstr ""
+msgstr "nem küld a következő címre "
 
 #: admin/processqueueforked.php:763
 #: admin/processqueueforked.php:950
 msgid "Not sending to"
-msgstr ""
+msgstr "Nem küldendő a következőnek:"
 
 #: admin/processqueueforked.php:763
 #: admin/processqueueforked.php:950
 msgid "already sent"
-msgstr ""
+msgstr "már elküldve"
 
 #: admin/processqueueforked.php:818
 msgid "batch limit reached"
-msgstr ""
+msgstr "elérkezett a köteg korlátozása"
 
 #: admin/processqueueforked.php:831
 msgid "Process Killed by other process"
-msgstr ""
+msgstr "A folyamatot leállította egy másik folyamat"
 
 #: admin/processqueueforked.php:836
 msgid "Message I was working on has disappeared"
-msgstr ""
+msgstr "Az üzenet, melyen dolgoztam, eltűnt"
 
 #: admin/processqueueforked.php:838
 msgid "Sending of this message has been suspended"
-msgstr ""
+msgstr "Az üzenet küldése felfüggesztésre került"
 
 #: admin/processqueueforked.php:988
 msgid "Processed"
-msgstr ""
+msgstr "Feldolgozva"
 
 #: admin/processqueueforked.php:988
 msgid "out of"
-msgstr ""
+msgstr "/"
 
 #: admin/processqueueforked.php:992
 msgid "Hmmm, No users found to send to"
-msgstr ""
+msgstr "Hmmm. Nem találhatók felhasználók, akiknek küldhető"
 
 #: admin/processqueueforked.php:999
 msgid "Message Sending has finished"
-msgstr ""
+msgstr "Az üzenet küldése befejeződött"
 
 #: admin/processqueueforked.php:1000
 #, php-format
 msgid "phplist has finished sending the message with subject %s"
-msgstr ""
+msgstr "A phplist befejezte a(z) %s tárgyú üzenet küldését"
 
 #: admin/processqueueforked.php:1011
 msgid "to send this message"
-msgstr ""
+msgstr "volt szükség"
 
 #: admin/msgstatus.php:14
 msgid "requeue"
@@ -1953,15 +1953,15 @@ msgstr ""
 
 #: admin/msgstatus.php:26
 msgid "still to process"
-msgstr ""
+msgstr "még feldolgozandó"
 
 #: admin/msgstatus.php:27
 msgid "ETA"
-msgstr ""
+msgstr "ETA"
 
 #: admin/msgstatus.php:29
 msgid "Processing"
-msgstr ""
+msgstr "Feldolgozandó"
 
 #: admin/editattributes.php:10
 msgid "No such attribute:"
@@ -1981,11 +1981,11 @@ msgstr ""
 
 #: admin/editattributes.php:40
 msgid "delete all"
-msgstr ""
+msgstr "Az összes törlése"
 
 #: admin/editattributes.php:40
 msgid "DelAll"
-msgstr ""
+msgstr "az összes törlése"
 
 #: admin/editattributes.php:78
 msgid "Alternatively you can replace all values with another one:"
@@ -2001,15 +2001,16 @@ msgstr ""
 
 #: admin/editattributes.php:111
 msgid "cannotdelete"
-msgstr ""
+msgstr "Nem törölhető "
 
 #: admin/editattributes.php:113
 msgid "dependentrecords"
-msgstr ""
+msgstr "A következő rekord(ok) ettől az értéktől függnek<br />"
+"    Frissítse a rekordo(ka)t, hogy ne használják ezt a tulajdonságértéket, majd próbálja újra"
 
 #: admin/editattributes.php:116
 msgid "user"
-msgstr ""
+msgstr "Felhasználónév:"
 
 #: admin/editattributes.php:118
 msgid "* Too many to list, total dependencies:"
@@ -2022,28 +2023,28 @@ msgstr ""
 #: admin/editattributes.php:155
 #: admin/editattributes.php:157
 msgid "addnew"
-msgstr ""
+msgstr "új hozzáadása"
 
 #: admin/editattributes.php:155
 msgid "oneperline"
-msgstr ""
+msgstr "soronként egy"
 
 #: admin/editattributes.php:164
 #: admin/editattributes.php:173
 msgid "changeorder"
-msgstr ""
+msgstr "átrendezés"
 
 #: admin/editattributes.php:167
 msgid "delete"
-msgstr ""
+msgstr "törlés"
 
 #: admin/editattributes.php:170
-msgid "default"
+msgid "(default)"
 msgstr ""
 
 #: admin/bouncemgt.php:7
 msgid "List Bounce Rules"
-msgstr ""
+msgstr "Visszapattanók szabályainak listája"
 
 #: admin/bouncemgt.php:9
 msgid "View Bounces per list"
@@ -2051,7 +2052,7 @@ msgstr ""
 
 #: admin/bouncemgt.php:10
 msgid "Check Current Bounce Rules"
-msgstr ""
+msgstr "Jelenlegi szabályok ellenőrzése"
 
 #: admin/bouncemgt.php:16
 msgid "You currently have no rules defined.      You can click \"Generate Bounce Rules\" in order to auto-generate rules from your existing bounces.      This will results in a lot of rules which you will need to review and activate.      It will however, not catch every single bounce, so it will be necessary to add new rules over      time when new bounces come in."
@@ -2059,11 +2060,12 @@ msgstr ""
 
 #: admin/bouncemgt.php:18
 msgid "You have already defined bounce rules in your system.      Be careful with generating new ones, because these may interfere with the ones that exist."
-msgstr ""
+msgstr "Ön már határozott meg szabályokat a visszapattanó címekhez a rendszerében. "
+"    Legyen körültekintő az újak generálásakor, mert ezek ütközhetnek a meglévőkkel."
 
 #: admin/bouncemgt.php:20
 msgid "Generate Bounce Rules"
-msgstr ""
+msgstr "Visszapattanók szabályainak generálása"
 
 #: admin/defaultplugin.php:126
 msgid "choose"
@@ -2103,11 +2105,11 @@ msgstr ""
 
 #: admin/configure.php:27
 msgid "No Access"
-msgstr ""
+msgstr "Nincs hozzáférés"
 
 #: admin/configure.php:41
 msgid "cannot be empty"
-msgstr ""
+msgstr "nem lehet üres"
 
 #: admin/configure.php:49
 msgid "Changes Saved"
@@ -2119,27 +2121,27 @@ msgstr ""
 
 #: admin/configure.php:73
 msgid "edit"
-msgstr ""
+msgstr "módosítás"
 
 #: admin/reconcileusers.php:44
 msgid "Resending confirmation request to"
-msgstr ""
+msgstr "A visszaigazolási kérés újraküldése a következő jelentkező számára:"
 
 #: admin/reconcileusers.php:87
 msgid "user found"
-msgstr ""
+msgstr "felhasználó található"
 
 #: admin/reconcileusers.php:104
 msgid "no user found"
-msgstr ""
+msgstr "nem található felhasználó"
 
 #: admin/reconcileusers.php:111
 msgid "unable to find original email"
-msgstr ""
+msgstr "nem található az eredeti e-mail"
 
 #: admin/reconcileusers.php:136
 msgid "Marking all users confirmed"
-msgstr ""
+msgstr "Az összes felhasználó megjelölése visszaigazoltként"
 
 #: admin/reconcileusers.php:139
 #, php-format
@@ -2157,89 +2159,89 @@ msgstr ""
 #: admin/reconcileusers.php:217
 #: admin/reconcileusers.php:224
 msgid "users apply"
-msgstr ""
+msgstr "felhasználóra érvényes"
 
 #: admin/reconcileusers.php:147
 msgid "Creating UniqID for all users who do not have one"
-msgstr ""
+msgstr "UniqID készítése mindazon felhasználóknak, akiknek nincs"
 
 #: admin/reconcileusers.php:154
 msgid "Marking all users to receive HTML"
-msgstr ""
+msgstr "Az összes felhasználó bejelölése HTML-üzenet fogadásához"
 
 #: admin/reconcileusers.php:160
 msgid "Marking all users to receive text"
-msgstr ""
+msgstr "Az összes felhasználó bejelölése szöveges üzenet fogadásához"
 
 #: admin/reconcileusers.php:166
 msgid "Deleting users who are not on any list"
-msgstr ""
+msgstr "Az egyik listán sem szereplő felhasználók törlése"
 
 #: admin/reconcileusers.php:177
 msgid "Moving users who are not on any list to"
-msgstr ""
+msgstr "Az egyik listán sem szereplő felhasználók áthelyezése"
 
 #: admin/reconcileusers.php:187
 msgid "Deleting users with more than"
-msgstr ""
+msgstr "Felhasználók törlése, akiknek több, mint"
 
 #: admin/reconcileusers.php:199
 msgid "Resending request for confirmation to users who signed up after"
-msgstr ""
+msgstr "Visszaigazolás kérésének küldése az utána jelentkező felhasználóknak"
 
 #: admin/reconcileusers.php:199
 #: admin/reconcileusers.php:211
 msgid "and before"
-msgstr ""
+msgstr "és előtte"
 
 #: admin/reconcileusers.php:211
 msgid "Deleting unconfirmed users who signed up after"
-msgstr ""
+msgstr "A visszaigazolatlan felhasználók törlése, akik utána jelentkeztek"
 
 #: admin/reconcileusers.php:221
 msgid "Trying to merge duplicates"
-msgstr ""
+msgstr "A duplumok összevonásának megpróbálása"
 
 #: admin/reconcileusers.php:249
 msgid "Don't know how to"
-msgstr ""
+msgstr "Nem tudom, hogyan"
 
 #: admin/reconcileusers.php:262
 msgid "Trying to fix users with an invalid email"
-msgstr ""
+msgstr "Az érvénytelen e-mail címmel rendelkező felhasználók javításának megpróbálása"
 
 #: admin/reconcileusers.php:274
 #: admin/reconcileusers.php:278
 msgid "User"
-msgstr ""
+msgstr "Felhasználó"
 
 #: admin/reconcileusers.php:282
 msgid "Users fixed"
-msgstr ""
+msgstr "A felhasználók javítása megtörtént"
 
 #: admin/reconcileusers.php:282
 msgid "Users could not be fixed"
-msgstr ""
+msgstr "Nem lehetett megjavítani a felhasználókat"
 
 #: admin/reconcileusers.php:284
 msgid "Deleting users with an invalid email"
-msgstr ""
+msgstr "Érvénytelen e-mail címmel rendelkező felhasználók törlése"
 
 #: admin/reconcileusers.php:295
 msgid "Users deleted"
-msgstr ""
+msgstr "A felhasználók törlése megtörtént"
 
 #: admin/reconcileusers.php:297
 msgid "Marking users with an invalid email as unconfirmed"
-msgstr ""
+msgstr "Az érvénytelen e-mail címmel rendelkező felhasználók megjelölése nem visszaigazoltként"
 
 #: admin/reconcileusers.php:308
 msgid "Users updated"
-msgstr ""
+msgstr "A felhasználók frissítése megtörtént"
 
 #: admin/reconcileusers.php:310
 msgid "Cleaning some user tables of invalid entries"
-msgstr ""
+msgstr "Érvénytelen bejegyzések törlése néhány felhasználói táblából"
 
 #: admin/reconcileusers.php:315
 #: admin/reconcileusers.php:322
@@ -2247,19 +2249,19 @@ msgstr ""
 #: admin/reconcileusers.php:336
 #: admin/reconcileusers.php:343
 msgid "entries apply"
-msgstr ""
+msgstr "alkalmazás bejegyzésekre"
 
 #: admin/reconcileusers.php:361
 msgid "Delete will delete user and all listmemberships"
-msgstr ""
+msgstr "A Törlés törölni fogja a felhasználót és annak összes listatagságát"
 
 #: admin/reconcileusers.php:384
 msgid "Users"
-msgstr ""
+msgstr "felhasználó"
 
 #: admin/reconcileusers.php:385
 msgid "in the database"
-msgstr ""
+msgstr "az adatbázisban"
 
 #: admin/reconcileusers.php:402
 msgid "-All-"
@@ -2288,7 +2290,7 @@ msgstr ""
 #: admin/reconcileusers.php:474
 #: admin/reconcileusers.php:485
 msgid "Click here"
-msgstr ""
+msgstr "Kattintson ide"
 
 #: admin/reconcileusers.php:441
 #, php-format
@@ -2297,53 +2299,64 @@ msgstr ""
 
 #: admin/reconcileusers.php:451
 msgid "To delete all users with more than"
-msgstr ""
+msgstr "Mindazon felhasználó törlése, akiknek több, mint"
 
 #: admin/reconcileusers.php:459
 msgid "Note: this will use the total count of bounces on a user, not consecutive bounces"
-msgstr ""
+msgstr "Megjegyzés: Ez a lehetőség egy felhasználó visszapattanóinak összes számát fogja használni, nem az egymást követő visszapattanókét"
 
 #: admin/reconcileusers.php:463
 msgid "To resend the request for confirmation to users who signed up and have not confirmed their subscription"
-msgstr ""
+msgstr "A visszaigazolási kérés újraküldése azoknak a felhasználóknak, akik jelentkeztek és nem igazolták vissza a feliratkozásukat"
 
 #: admin/reconcileusers.php:464
 #: admin/reconcileusers.php:480
 msgid "Date they signed up after"
-msgstr ""
+msgstr "A jelentkezés utáni dátum"
 
 #: admin/reconcileusers.php:465
 #: admin/reconcileusers.php:481
 msgid "Date they signed up before"
-msgstr ""
+msgstr "A jelentkezés előtti dátum"
 
 #: admin/reconcileusers.php:466
 msgid "Text to prepend to email"
-msgstr ""
+msgstr "Az e-mail elejéhez hozzáfűzendő szöveg"
 
 #: admin/reconcileusers.php:468
 msgid " Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   "
 msgstr ""
+"Elnézést kérünk a zavarásért: takarítjuk az adatbázisunkat, "
+"s úgy tűnik, hogy Ön valamikor jelentkezett a levelező listáinkra, "
+"s nem igazolta vissza a jelentkezését."
+""
+"Szeretnénk Önnek lehetőséget adni a feliratkozás ismételt "
+"visszaigazolásához. Az utasításokat alább találja."
+"  "
 
 #: admin/reconcileusers.php:479
 msgid "To delete users who signed up and have not confirmed their subscription"
-msgstr ""
+msgstr "A jelentkezett és a feliratkozásukat vissza nem igazolt felhasználók törlése"
 
 #: admin/spageedit.php:120
 msgid "Title of this set of lists"
-msgstr ""
+msgstr "A listacsoport címe"
 
 #: admin/spageedit.php:134
 msgid "Please indicate how often you want to receive messages"
-msgstr ""
+msgstr "Kérjük, jelezze, hogy milyen gyakran kívánja megkapni a tájékoztatókat"
 
 #: admin/spageedit.php:173
 msgid "General Information"
-msgstr ""
+msgstr "Általános információk"
 
 #: admin/spageedit.php:176
 msgid "Title"
-msgstr ""
+msgstr "Cím"
+
+#: admin/spageedit.php:192
+msgid "default"
+msgstr "alapértelmezett"
 
 #: admin/spageedit.php:199
 msgid "Language file to use"
@@ -2351,96 +2364,96 @@ msgstr ""
 
 #: admin/spageedit.php:202
 msgid "Intro"
-msgstr ""
+msgstr "Bevezető"
 
 #: admin/spageedit.php:208
 msgid "Footer"
-msgstr ""
+msgstr "Lábléc"
 
 #: admin/spageedit.php:211
 msgid "Thank you page"
-msgstr ""
+msgstr "Köszönő oldal"
 
 #: admin/spageedit.php:214
 msgid "Text for Button"
-msgstr ""
+msgstr "Gombfelirat"
 
 #: admin/spageedit.php:216
 msgid "HTML Email choice"
-msgstr ""
+msgstr "HTML e-mail választása"
 
 #: admin/spageedit.php:220
 msgid "Don't offer choice, default to <b>text</b>"
-msgstr ""
+msgstr "Nincs választási lehetőség, alapértelmezés a <b>szöveg</b>"
 
 #: admin/spageedit.php:224
 msgid "Don't offer choice, default to <b>HTML</b>"
-msgstr ""
+msgstr "Nincs választási lehetőség, alapértelmezés a <b>HTML</b>"
 
 #: admin/spageedit.php:228
 msgid "Offer checkbox for text"
-msgstr ""
+msgstr "Jelölőnégyzet ajánlása a szöveghez"
 
 #: admin/spageedit.php:232
 msgid "Offer checkbox for HTML"
-msgstr ""
+msgstr "Jelölőnégyzet ajánlása a HTML-hez"
 
 #: admin/spageedit.php:236
 msgid "Radio buttons, default to text"
-msgstr ""
+msgstr "Választógombok, alapértelmezett a szöveg"
 
 #: admin/spageedit.php:240
 msgid "Radio buttons, default to HTML"
-msgstr ""
+msgstr "Választógombok, alapértelmezett a HTML"
 
 #: admin/spageedit.php:243
 msgid "Display Email confirmation"
-msgstr ""
+msgstr "E-mail cím visszaigazolásának megjelenítése"
 
 #: admin/spageedit.php:246
 msgid "Display email confirmation"
-msgstr ""
+msgstr "E-mail cím visszaigazolásának megjelenítése"
 
 #: admin/spageedit.php:249
 msgid "Don't display email confirmation"
-msgstr ""
+msgstr "Nem jelenik meg az e-mail cím visszaigazolása"
 
 #: admin/spageedit.php:252
 msgid "Message they receive when they subscribe"
-msgstr ""
+msgstr "A feliratkozáskor kapott üzenet"
 
 #: admin/spageedit.php:257
 #: admin/spageedit.php:264
 msgid "Message"
-msgstr ""
+msgstr "Üzenet"
 
 #: admin/spageedit.php:259
 msgid "Message they receive when they confirm their subscription"
-msgstr ""
+msgstr "A feliratkozás visszaigazolásakor kapott üzenet"
 
 #: admin/spageedit.php:266
 msgid "Select the attributes to use"
-msgstr ""
+msgstr "Válassza ki a felhasználandó tulajdonságokat"
 
 #: admin/spageedit.php:283
 msgid "Attribute"
-msgstr ""
+msgstr "Tulajdonság"
 
 #: admin/spageedit.php:284
 msgid "Check this box to use this attribute in the page"
-msgstr ""
+msgstr "Jelölje be ezt a jelölőnégyzetet a tulajdonság használatához az oldalon"
 
 #: admin/spageedit.php:286
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 #: admin/spageedit.php:288
 msgid "Default Value"
-msgstr ""
+msgstr "Alapértelmezett érték"
 
 #: admin/spageedit.php:289
 msgid "Order of Listing"
-msgstr ""
+msgstr "Listázási sorrend"
 
 #: admin/spageedit.php:290
 msgid "Is this attribute required?"
@@ -2448,23 +2461,23 @@ msgstr ""
 
 #: admin/spageedit.php:323
 msgid "Select the lists to offer"
-msgstr ""
+msgstr "Válassza ki a felajánlandó listákat"
 
 #: admin/spageedit.php:327
 msgid "No lists available, please create one first"
-msgstr ""
+msgstr "Nincsenek listák, előbb készítsen egyet"
 
 #: admin/spageedit.php:338
 msgid "Owner"
-msgstr ""
+msgstr "Tulajdonos"
 
 #: admin/spageedit.php:348
 msgid "Save and Activate"
-msgstr ""
+msgstr "Mentés és aktiválás"
 
 #: admin/spageedit.php:349
 msgid "Save and Deactivate"
-msgstr ""
+msgstr "Mentés és inaktiválás"
 
 #: admin/reindex.php:17
 msgid "processing "
@@ -2492,74 +2505,74 @@ msgstr ""
 
 #: admin/bouncerules.php:49
 msgid "That rule exists already"
-msgstr ""
+msgstr "Már van ilyen szabály"
 
 #: admin/bouncerules.php:56
 #, php-format
 msgid "Number of %s rules: %d"
-msgstr ""
+msgstr "A(z) %s szabályok száma: %d"
 
 #: admin/bouncerules.php:60
 #: admin/bouncerules.php:65
 msgid "active"
-msgstr ""
+msgstr "aktív"
 
 #: admin/bouncerules.php:61
 #: admin/bouncerules.php:63
 msgid "candidate"
-msgstr ""
+msgstr "jelölt"
 
 #: admin/bouncerules.php:71
 msgid "Bounce Regular Expressions"
-msgstr ""
+msgstr "Visszapattanók reguláris kifejezései"
 
 #: admin/bouncerules.php:73
 msgid "No Rules found"
-msgstr ""
+msgstr "Nem található szabály"
 
 #: admin/bouncerules.php:80
 msgid "rule"
-msgstr ""
+msgstr "szabály"
 
 #: admin/bouncerules.php:86
 msgid "match"
-msgstr ""
+msgstr "egyezik"
 
 #: admin/bouncerules.php:90
 msgid "expression"
-msgstr ""
+msgstr "kifejezés"
 
 #: admin/bouncerules.php:91
 msgid "action"
-msgstr ""
+msgstr "művelet"
 
 #: admin/bouncerules.php:94
 msgid "#bncs"
-msgstr ""
+msgstr "#vptnk"
 
 #: admin/bouncerules.php:96
 msgid "tag"
-msgstr ""
+msgstr "címke"
 
 #: admin/bouncerules.php:97
 msgid "order"
-msgstr ""
+msgstr "sorrend"
 
 #: admin/bouncerules.php:102
 msgid "with tagged rules: "
-msgstr ""
+msgstr "címkézett szabályokkal: "
 
 #: admin/bouncerules.php:105
 msgid "make active"
-msgstr ""
+msgstr "aktívvá tesz"
 
 #: admin/bouncerules.php:107
 msgid "make inactive"
-msgstr ""
+msgstr "inaktívvá tesz"
 
 #: admin/bouncerules.php:113
 msgid "add a new rule"
-msgstr ""
+msgstr "új szabály alkotása"
 
 #: admin/sendemaillib2.php:232
 msgid "sendingmessage"
@@ -2595,7 +2608,7 @@ msgstr ""
 
 #: admin/msgbounces.php:13
 msgid "subject"
-msgstr ""
+msgstr "tárgy"
 
 #: admin/msgbounces.php:14
 msgid "# bounced"
@@ -2612,7 +2625,7 @@ msgstr ""
 
 #: admin/msgbounces.php:69
 msgid "email"
-msgstr ""
+msgstr "e-mail"
 
 #: admin/msgbounces.php:70
 msgid "# bounces"
@@ -2620,47 +2633,47 @@ msgstr ""
 
 #: admin/systemstats.php:11
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: admin/systemstats.php:11
 msgid "Feb"
-msgstr ""
+msgstr "Febr"
 
 #: admin/systemstats.php:11
 msgid "Mar"
-msgstr ""
+msgstr "Márc"
 
 #: admin/systemstats.php:11
 msgid "Apr"
-msgstr ""
+msgstr "Ápr"
 
 #: admin/systemstats.php:11
 msgid "Jun"
-msgstr ""
+msgstr "Jún"
 
 #: admin/systemstats.php:11
 msgid "Jul"
-msgstr ""
+msgstr "Júl"
 
 #: admin/systemstats.php:11
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: admin/systemstats.php:11
 msgid "Sep"
-msgstr ""
+msgstr "Szep"
 
 #: admin/systemstats.php:11
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: admin/systemstats.php:11
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: admin/systemstats.php:11
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: admin/send.php:81
 msgid "All draft campaigns deleted"
@@ -2692,7 +2705,7 @@ msgstr ""
 
 #: admin/send.php:101
 msgid "entered"
-msgstr ""
+msgstr "beírva"
 
 #: admin/send.php:102
 msgid "age"
@@ -2708,25 +2721,26 @@ msgstr ""
 
 #: admin/send.php:144
 msgid "The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here."
-msgstr ""
+msgstr "Az üzenet azoknak a felhasználóknak fog menni, akik tagjai a fenti listáknak,"
+"    hacsak nem tagjai az Ön által itt kiválasztott egyik listának."
 
 #: admin/template.php:79
 msgid "No such template"
-msgstr ""
+msgstr "Nincs ilyen sablon"
 
 #: admin/template.php:90
 msgid "Images stored"
-msgstr ""
+msgstr "A képek tárolása megtörtént"
 
 #: admin/template.php:92
 msgid "No images found"
-msgstr ""
+msgstr "Nem találhatók képek"
 
 #: admin/template.php:107
 #: admin/template.php:115
 #: admin/template.php:120
 msgid "Image"
-msgstr ""
+msgstr "Kép"
 
 #: admin/template.php:107
 msgid "\"not full URL"
@@ -2734,7 +2748,7 @@ msgstr ""
 
 #: admin/template.php:115
 msgid "does not exist"
-msgstr ""
+msgstr "nem létezik"
 
 #: admin/template.php:120
 msgid "cannot check, \"allow_url_fopen\" disabled in PHP settings"
@@ -2746,7 +2760,7 @@ msgstr ""
 
 #: admin/template.php:136
 msgid "No Title"
-msgstr ""
+msgstr "Nincs cím"
 
 #: admin/template.php:137
 msgid "Template does not contain the [CONTENT] placeholder"
@@ -2754,15 +2768,15 @@ msgstr ""
 
 #: admin/template.php:155
 msgid "Template saved"
-msgstr ""
+msgstr "A sablon mentése megtörtént"
 
 #: admin/template.php:160
 msgid "Images"
-msgstr ""
+msgstr "Képek"
 
 #: admin/template.php:160
 msgid "Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database."
-msgstr ""
+msgstr "Alább található a sablonban felhasznált képek listája. Ha jelenleg nem érhető el egy kép, töltse fel az adatbázisba."
 
 #: admin/template.php:161
 msgid "This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template."
@@ -2770,7 +2784,7 @@ msgstr ""
 
 #: admin/template.php:167
 msgid "Image name:"
-msgstr ""
+msgstr "Kép neve:"
 
 #: admin/template.php:167
 #, php-format
@@ -2779,15 +2793,15 @@ msgstr ""
 
 #: admin/template.php:172
 msgid "Save Images"
-msgstr ""
+msgstr "Képek mentése"
 
 #: admin/template.php:176
 msgid "Template does not contain local images"
-msgstr ""
+msgstr "Nem tartalmaz helyi képeket a sablon"
 
 #: admin/template.php:181
 msgid "Some errors were found, template NOT saved!"
-msgstr ""
+msgstr "Néhány hiba található, a sablon mentése NEM történt meg!"
 
 #: admin/template.php:190
 msgid "Sending test"
@@ -2811,15 +2825,15 @@ msgstr ""
 
 #: admin/template.php:231
 msgid "List of Templates"
-msgstr ""
+msgstr "Sablonok listája"
 
 #: admin/template.php:239
 msgid "Title of this template"
-msgstr ""
+msgstr "A sablon címe"
 
 #: admin/template.php:243
 msgid "Content of the template."
-msgstr ""
+msgstr "A sablon tartalma."
 
 #: admin/template.php:243
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
@@ -2827,23 +2841,23 @@ msgstr ""
 
 #: admin/template.php:243
 msgid "You can upload a template file or paste the text in the box below"
-msgstr ""
+msgstr "Feltölthet egy sablonfájlt, vagy beillesztheti a szöveget az alábbi mezőbe---"
 
 #: admin/template.php:246
 msgid "Template file."
-msgstr ""
+msgstr "Sablonfájl:"
 
 #: admin/template.php:314
 msgid "Check that all links have a full URL"
-msgstr ""
+msgstr "Az összes hivatkozás teljes URL-címének ellenőrzése"
 
 #: admin/template.php:318
 msgid "Check that all images have a full URL"
-msgstr ""
+msgstr "Az összes kép teljes URL-címének ellenőrzése"
 
 #: admin/template.php:322
 msgid "Check that all external images exist"
-msgstr ""
+msgstr "Az összes külső kép meglétének ellenőrzése"
 
 #: admin/template.php:336
 msgid "Send test message"
@@ -2855,12 +2869,12 @@ msgstr ""
 
 #: admin/domainstats.php:22
 msgid "Top 50 domains with more than 5 emails"
-msgstr ""
+msgstr "50 leggyakoribb tartomány több, mint 5 e-mail címmel"
 
 #: admin/domainstats.php:27
 #: admin/members.php:268
 msgid "confirmed"
-msgstr ""
+msgstr "visszaigazolt"
 
 #: admin/domainstats.php:29
 #: admin/domainstats.php:42
@@ -2875,7 +2889,7 @@ msgstr ""
 
 #: admin/domainstats.php:44
 msgid "num"
-msgstr ""
+msgstr "num"
 
 #: admin/catlists.php:29
 msgid "No list categories have been defined"
@@ -2907,7 +2921,7 @@ msgstr ""
 
 #: admin/mclicks.php:55
 msgid "Available Messages"
-msgstr ""
+msgstr "Létező üzenetek"
 
 #: admin/mclicks.php:63
 #: admin/mclicks.php:105
@@ -2932,7 +2946,7 @@ msgstr ""
 
 #: admin/mclicks.php:98
 msgid "Click Details for a Message"
-msgstr ""
+msgstr "Egy üzenet kattintási adatai"
 
 #: admin/mclicks.php:111
 msgid "Sent to"
@@ -2940,11 +2954,11 @@ msgstr ""
 
 #: admin/mclicks.php:111
 msgid "Subscribers"
-msgstr ""
+msgstr "felhasználók"
 
 #: admin/mclicks.php:112
 msgid "Clicks"
-msgstr ""
+msgstr "Kattintások"
 
 #: admin/mclicks.php:113
 msgid "Click Rate"
@@ -2952,17 +2966,17 @@ msgstr ""
 
 #: admin/mclicks.php:116
 msgid "Message Click Statistics"
-msgstr ""
+msgstr "Üzenet-kattintási statisztika"
 
 #: admin/mclicks.php:143
 #: admin/uclicks.php:101
 msgid "firstclick"
-msgstr ""
+msgstr "első kattintás"
 
 #: admin/mclicks.php:144
 #: admin/uclicks.php:102
 msgid "latestclick"
-msgstr ""
+msgstr "utolsó kattintás"
 
 #: admin/mclicks.php:146
 #: admin/mclicks.php:163
@@ -2970,38 +2984,38 @@ msgstr ""
 #: admin/uclicks.php:104
 #: admin/uclicks.php:118
 msgid "clicks"
-msgstr ""
+msgstr "kattintások"
 
 #: admin/mclicks.php:150
 #: admin/mclicks.php:165
 #: admin/uclicks.php:106
 #: admin/uclicks.php:120
 msgid "clickrate"
-msgstr ""
+msgstr "Kattintási arány"
 
 #: admin/mclicks.php:152
 #: admin/mclicks.php:167
 #: admin/uclicks.php:109
 #: admin/uclicks.php:122
 msgid "unique clicks"
-msgstr ""
+msgstr "egyedi kattintás"
 
 #: admin/mclicks.php:154
 #: admin/mclicks.php:169
 #: admin/uclicks.php:111
 #: admin/uclicks.php:124
 msgid "unique clickrate"
-msgstr ""
+msgstr "egyedi kattintási arány"
 
 #: admin/mclicks.php:159
 #: admin/uclicks.php:114
 msgid "who"
-msgstr ""
+msgstr "ki"
 
 #: admin/mclicks.php:160
 #: admin/uclicks.php:114
 msgid "view users"
-msgstr ""
+msgstr "felhasználók megtekintése"
 
 #: admin/subscribelib2.php:103
 msgid "spamblockemailintro"
@@ -3009,122 +3023,122 @@ msgstr ""
 
 #: admin/subscribelib2.php:309
 msgid "Email is blacklisted, so request for confirmation has been sent."
-msgstr ""
+msgstr "A felhasználó feketelistán van, ezért elküldésre került neki a visszaigazoló e-mail."
 
 #: admin/subscribelib2.php:310
 msgid "If user confirms subscription, they will be removed from the blacklist."
-msgstr ""
+msgstr "Ha a felhasználó visszaigazolja a megrendelését, akkor eltávolításra kerül a feketelistáról."
 
 #: admin/processbounces.php:7
 msgid "This page can only be called from the commandline"
-msgstr ""
+msgstr "Ezt az oldalt csak a parancssorról hívhatja meg"
 
 #: admin/processbounces.php:31
 msgid "Bounce processing error"
-msgstr ""
+msgstr "Visszapattanó feldolgozási hiba"
 
 #: admin/processbounces.php:33
 msgid "Bounce Processing info"
-msgstr ""
+msgstr "Visszapattanó feldolgozási információ"
 
 #: admin/processbounces.php:149
 msgid "system message bounced, user marked unconfirmed"
-msgstr ""
+msgstr "a rendszerüzenet visszapattant, a felhasználó visszaigazolatlanként jelölt"
 
 #: admin/processbounces.php:150
 msgid "Bounced system message"
-msgstr ""
+msgstr "Visszapattanó rendszerüzenet"
 
 #: admin/processbounces.php:151
 msgid "User marked unconfirmed"
-msgstr ""
+msgstr "A felhasználó visszaigazolatlanként jelölt"
 
 #: admin/processbounces.php:152
 msgid "View Bounce"
-msgstr ""
+msgstr "Visszapattanó megtekintése"
 
 #: admin/processbounces.php:201
 msgid "system message bounced, but unknown user"
-msgstr ""
+msgstr "rendszerüzenet pattant vissza, a felhasználó viszont ismeretlen"
 
 #: admin/processbounces.php:241
 msgid "Cannot create POP3 connection to"
-msgstr ""
+msgstr "Nem létesíthető POP3-kapcsolat a következővel:"
 
 #: admin/processbounces.php:256
 msgid "Cannot open mailbox file"
-msgstr ""
+msgstr "Nem nyitható meg a postafiókfájl"
 
 #: admin/processbounces.php:266
 msgid "bounces to fetch from the mailbox"
-msgstr ""
+msgstr "a postafiókból lehívandó visszapattanók"
 
 #: admin/processbounces.php:267
 msgid "Please do not interrupt this process"
-msgstr ""
+msgstr "Kérjük, ne szakítsa félbe ezt a folyamatot"
 
 #: admin/processbounces.php:268
 msgid "bounces to process"
-msgstr ""
+msgstr "feldolgozandó visszapattanók"
 
 #: admin/processbounces.php:270
 msgid "Processing first"
-msgstr ""
+msgstr "Feldolgozandó első"
 
 #: admin/processbounces.php:271
 msgid "processing first"
-msgstr ""
+msgstr "feldolgozás előbb"
 
 #: admin/processbounces.php:275
 msgid "Running in test mode, not deleting messages from mailbox"
-msgstr ""
+msgstr "A phplist teszt módban fut, nem törli az üzeneteket a postafiókból"
 
 #: admin/processbounces.php:277
 msgid "Processed messages will be deleted from mailbox"
-msgstr ""
+msgstr "A feldolgozott üzenetek törlésre kerülnek a postafiókból"
 
 #: admin/processbounces.php:293
 #: admin/processbounces.php:299
 msgid "Deleting message"
-msgstr ""
+msgstr "Üzenet törlése"
 
 #: admin/processbounces.php:306
 msgid "Closing mailbox, and purging messages"
-msgstr ""
+msgstr "A postafiók bezárása és az üzenetek kiürítése"
 
 #: admin/processbounces.php:315
 msgid "IMAP is not included in your PHP installation, cannot continue"
-msgstr ""
+msgstr "A PHP-telepítés nem tartalmaz IMAP kiszolgálót, a művelet nem folytatható"
 
 #: admin/processbounces.php:316
 msgid "Check out"
-msgstr ""
+msgstr "Nézze meg"
 
 #: admin/processbounces.php:322
 msgid "Bounce mechanism not properly configured"
-msgstr ""
+msgstr "A visszapattanók mechanizmusának nem megfelelő a beállítása"
 
 #: admin/processbounces.php:347
 msgid "bounce_protocol not supported"
-msgstr ""
+msgstr "A bounce_protocol nem támogatott"
 
 #: admin/processbounces.php:354
 msgid "Processing bounces based on active bounce rules"
-msgstr ""
+msgstr "Visszapattanók feldolgozása az aktív visszapattanási szabályok alapján"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
 #: admin/processbounces.php:425
 #: admin/processbounces.php:434
 msgid "Auto Unsubscribed"
-msgstr ""
+msgstr "Automatikusan lemondott"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
 #: admin/processbounces.php:425
 #: admin/processbounces.php:434
 msgid "User auto unsubscribed for"
-msgstr ""
+msgstr "A felhasználó automatikusan lemondott"
 
 #: admin/processbounces.php:398
 #: admin/processbounces.php:415
@@ -3133,52 +3147,52 @@ msgstr ""
 #: admin/processbounces.php:430
 #: admin/processbounces.php:434
 msgid "bounce rule"
-msgstr ""
+msgstr "visszapattanási szabály"
 
 #: admin/processbounces.php:421
 #: admin/processbounces.php:430
 msgid "Auto Blacklisted"
-msgstr ""
+msgstr "Automatikusan feketelistára vettek"
 
 #: admin/processbounces.php:421
 #: admin/processbounces.php:430
 msgid "User auto blacklisted for"
-msgstr ""
+msgstr "A felhasználó automatikusan feketelistára került for"
 
 #: admin/processbounces.php:452
 msgid "bounces processed by advanced processing"
-msgstr ""
+msgstr "visszapattanó feldolgozva speciális feldolgozással"
 
 #: admin/processbounces.php:453
 msgid "bounces were not matched by advanced processing rules"
-msgstr ""
+msgstr "visszapattanó nem felelt meg a speciális visszapattanási szabályoknak"
 
 #: admin/processbounces.php:457
 #: admin/processbounces.php:547
 #: admin/processbounces.php:557
 msgid "Identifying consecutive bounces"
-msgstr ""
+msgstr "A folyamatosan visszapattanók beazonosítása"
 
 #: admin/processbounces.php:471
 msgid "Nothing to do"
-msgstr ""
+msgstr "Nincs végrehajtandó feladat"
 
 #: admin/processbounces.php:548
 msgid "of"
-msgstr ""
+msgstr "of"
 
 #: admin/processbounces.php:548
 #: admin/processbounces.php:558
 msgid "users processed"
-msgstr ""
+msgstr "felhasználó feldolgozva"
 
 #: admin/processbounces.php:563
 msgid "Report:"
-msgstr ""
+msgstr "Jelentés:"
 
 #: admin/processbounces.php:567
 msgid "Report of advanced bounce processing:"
-msgstr ""
+msgstr "Jelentés a speciális visszapattanási feldolgozásról:"
 
 #: admin/processbounces.php:570
 msgid "Below are users who have been marked unconfirmed. The in () is the number of consecutive bounces."
@@ -3186,31 +3200,31 @@ msgstr ""
 
 #: admin/lib.php:37
 msgid "delete user"
-msgstr ""
+msgstr "felhasználó törlése"
 
 #: admin/lib.php:38
 msgid "unconfirm user"
-msgstr ""
+msgstr "felhasználó visszaigazolatlanná tétele"
 
 #: admin/lib.php:39
 msgid "blacklist user"
-msgstr ""
+msgstr "felhasználó feketelistára vétele"
 
 #: admin/lib.php:40
 msgid "delete user and bounce"
-msgstr ""
+msgstr "a felhasználó és a visszapattanó törlése"
 
 #: admin/lib.php:41
 msgid "unconfirm user and delete bounce"
-msgstr ""
+msgstr "felhasználó visszaigazolatlanná tétele és a visszapattanó törlése"
 
 #: admin/lib.php:42
 msgid "blacklist user and delete bounce"
-msgstr ""
+msgstr "a felhasználó feketelistára vétele és a visszapattanó törlése"
 
 #: admin/lib.php:43
 msgid "delete bounce"
-msgstr ""
+msgstr "visszapattanó törlése"
 
 #: admin/lib.php:55
 msgid "Unnamed List"
@@ -3242,35 +3256,35 @@ msgstr ""
 
 #: admin/lib.php:514
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: admin/lib.php:525
 msgid "very little time"
-msgstr ""
+msgstr "nagyon kis idő"
 
 #: admin/lib.php:673
 msgid "A process for this page is already running and it was still alive"
-msgstr ""
+msgstr "Már fut egy folyamat ehhez az oldalhoz, s még működött"
 
 #: admin/lib.php:673
 msgid "seconds ago"
-msgstr ""
+msgstr "másodperce"
 
 #: admin/lib.php:679
 msgid "Sleeping for 20 seconds, aborting will quit"
-msgstr ""
+msgstr "20 másodperc szünet, a megszakítás ki fog lépni"
 
 #: admin/lib.php:687
 msgid "We have been waiting too long, I guess the other process is still going ok"
-msgstr ""
+msgstr "Túl sokáig vártunk, azt hiszem, a másik folyamat még rendben megy"
 
 #: admin/uclicks.php:46
 msgid "Available URLs"
-msgstr ""
+msgstr "Létező URL-címek"
 
 #: admin/uclicks.php:50
 msgid "msgs"
-msgstr ""
+msgstr "üz"
 
 #: admin/uclicks.php:51
 msgid "last clicked"
@@ -3278,7 +3292,7 @@ msgstr ""
 
 #: admin/uclicks.php:59
 msgid "Select URL to view"
-msgstr ""
+msgstr "Válassza ki a megtekintendő URL-címet"
 
 #: admin/uclicks.php:63
 msgid "There are currently no statistics available"
@@ -3286,15 +3300,15 @@ msgstr ""
 
 #: admin/uclicks.php:70
 msgid "URL Click Statistics"
-msgstr ""
+msgstr "URL-cím kattintási statisztikája"
 
 #: admin/uclicks.php:74
 msgid "Click Details for a URL"
-msgstr ""
+msgstr "Egy URL-cím kattintási adatai"
 
 #: admin/uclicks.php:89
 msgid "msg"
-msgstr ""
+msgstr "üz."
 
 #: admin/uclicks.php:117
 #: admin/uclicks.php:118
@@ -3302,25 +3316,25 @@ msgstr ""
 #: admin/uclicks.php:122
 #: admin/uclicks.php:124
 msgid "total"
-msgstr ""
+msgstr "összes"
 
 #: admin/members.php:21
 #: admin/members.php:32
 msgid "You do not have enough priviliges to view this page"
-msgstr ""
+msgstr "Ezen oldal megtekintéséhez Ön nem rendelkezik elegendő joggal"
 
 #: admin/members.php:41
 msgid "Add a user"
-msgstr ""
+msgstr "Felhasználó hozzáadása"
 
 #: admin/members.php:42
 #: admin/members.php:141
 msgid "Add"
-msgstr ""
+msgstr "Hozzáadás"
 
 #: admin/members.php:47
 msgid "Members of"
-msgstr ""
+msgstr "A következő lista tagjai:"
 
 #: admin/members.php:49
 msgid "edit list details"
@@ -3351,23 +3365,23 @@ msgstr ""
 
 #: admin/members.php:139
 msgid "Users found, click add to add this user"
-msgstr ""
+msgstr "felhasználó található, kattintson a Hozzáadás gombra a felhasználó hozzáadásához"
 
 #: admin/members.php:146
 msgid "No user found with that email"
-msgstr ""
+msgstr "Nem található ezzel az e-mail címmel rendelkező felhasználó"
 
 #: admin/members.php:163
 msgid "add user"
-msgstr ""
+msgstr "Felhasználó hozzáadása"
 
 #: admin/members.php:173
 msgid "Inserting user"
-msgstr ""
+msgstr "Felhasználó beszúrása"
 
 #: admin/members.php:203
 msgid "User added"
-msgstr ""
+msgstr "A felhasználó hozzáadása megtörtént"
 
 #: admin/members.php:234
 #, php-format
@@ -3384,11 +3398,11 @@ msgstr ""
 
 #: admin/members.php:259
 msgid "Tag all users in this page"
-msgstr ""
+msgstr "Az oldalon lévő összes felhasználó címkézése"
 
 #: admin/members.php:264
 msgid "Members"
-msgstr ""
+msgstr "Tagok"
 
 #: admin/members.php:273
 msgid "Del"
@@ -3405,128 +3419,128 @@ msgstr ""
 #: admin/members.php:316
 #: admin/members.php:340
 msgid "from this list"
-msgstr ""
+msgstr "erről a listáról"
 
 #: admin/members.php:327
 #: admin/members.php:344
 msgid "Move"
-msgstr ""
+msgstr "Áthelyezés"
 
 #: admin/members.php:331
 #: admin/members.php:348
 msgid "Copy"
-msgstr ""
+msgstr "Másolás"
 
 #: admin/members.php:335
 #: admin/members.php:352
 msgid "Nothing"
-msgstr ""
+msgstr "Semmi"
 
 #: admin/members.php:338
 msgid "What to do with all users"
-msgstr ""
+msgstr "Mi a teendő az összes felhasználóval"
 
 #: admin/members.php:339
 msgid "This will process all users on this list"
-msgstr ""
+msgstr "A listán lévő összes felhasználót fogja feldolgozni"
 
 #: admin/members.php:354
 msgid "do it"
-msgstr ""
+msgstr "csináld"
 
 #: admin/import3.php:21
 msgid "Import emails from IMAP folders"
-msgstr ""
+msgstr "E-mail címek importálása IMAP-mappákból"
 
 #: admin/import3.php:40
 #: admin/import4.php:42
 msgid "No lists available"
-msgstr ""
+msgstr "Nincsenek listák"
 
 #: admin/import3.php:40
 msgid "Add a list"
-msgstr ""
+msgstr "Lista hozzáadása"
 
 #: admin/import3.php:142
 #: admin/import3.php:173
 msgid "can't connect"
-msgstr ""
+msgstr "nem lehet csatlakozni"
 
 #: admin/import3.php:161
 #: admin/import3.php:399
 msgid "done"
-msgstr ""
+msgstr "kész"
 
 #: admin/import3.php:181
 msgid "imap_getmailboxes failed"
-msgstr ""
+msgstr "az imap_getmailboxes nem sikerült"
 
 #: admin/import3.php:209
 msgid "Please enter details of the IMAP account"
-msgstr ""
+msgstr "Írja be az IMAP-fiók adatait"
 
 #: admin/import3.php:212
 msgid "Server"
-msgstr ""
+msgstr "Kiszolgáló"
 
 #: admin/import3.php:214
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: admin/import3.php:215
 msgid "Select the headers fields to search"
-msgstr ""
+msgstr "Válassza ki a fejléc mezőket a kereséshez"
 
 #: admin/import3.php:224
 msgid "Select the lists to add the emails to"
-msgstr ""
+msgstr "Jelölje be azokat a listákat, melyekhez hozzá akarja adni az e-mail címeket"
 
 #: admin/import3.php:229
 msgid "Adding users to list"
-msgstr ""
+msgstr "Felhasználók felvétele a következő listára:"
 
 #: admin/import3.php:239
 msgid "Mark new users as HTML"
-msgstr ""
+msgstr "Az új felhasználók megjelölése HTML-ként"
 
 #: admin/import3.php:240
 #: admin/import3.php:242
 msgid "If you check"
-msgstr ""
+msgstr "Ha bejelöli"
 
 #: admin/import3.php:240
 #: admin/import3.php:241
 msgid "Overwrite Existing"
-msgstr ""
+msgstr "Meglévők felülírása"
 
 #: admin/import3.php:240
 msgid "information about a user in the database will be replaced by the imported information. Users are matched by email."
-msgstr ""
+msgstr "a felhasználóról az adatbázisban tárolt információkat kicseréli az importált adatokkal. A felhasználók egyeztetése e-mail cím alapján történik."
 
 #: admin/import3.php:242
 #: admin/import3.php:243
 msgid "Only use complete addresses"
-msgstr ""
+msgstr "Csak teljes címek használata"
 
 #: admin/import3.php:242
 msgid "addresses that do not have a real name will be ignored. Otherwise all emails will be imported."
-msgstr ""
+msgstr "a valódi névvel nem rendelkező címek mellőzésre kerülnek. Egyéb esetben az összes e-mail cím importálásra kerül."
 
 #: admin/import3.php:244
 msgid "If you choose"
-msgstr ""
+msgstr "Ha választja"
 
 #: admin/import3.php:244
 msgid "send notification email"
-msgstr ""
+msgstr "értesítő e-mail küldése"
 
 #: admin/import3.php:244
 msgid "the users you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
-msgstr ""
+msgstr "az Ön által hozzáadni kívánt felhasználóknak a PHPlist elküldi a feliratkozás visszaigazolásának kérését, melyre válaszolniuk kell. Ez azért ajánlott, mert így beazonosítja az érvénytelen e-mail címeket."
 
 #: admin/import3.php:245
 msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
-msgstr ""
+msgstr "Értesítő&nbsp;e-mail&nbsp;küldése&nbsp;"
 
 #: admin/import3.php:246
 msgid "There are two ways to add the names of the users,  either one attribute for the entire name or two attributes, one for first name and one for last name. If you use &quot;two attributes&quot;, the name will be split after the first space."
@@ -3534,96 +3548,96 @@ msgstr ""
 
 #: admin/import3.php:248
 msgid "Use one attribute for name"
-msgstr ""
+msgstr "Egy tulajdonság használata a névhez"
 
 #: admin/import3.php:248
 msgid "Use two attributes for the name"
-msgstr ""
+msgstr "Két tulajdonság használata a névhez"
 
 #: admin/import3.php:249
 msgid "Attribute one"
-msgstr ""
+msgstr "Első tulajdonság"
 
 #: admin/import3.php:250
 #: admin/import3.php:258
 msgid "Create Attribute"
-msgstr ""
+msgstr "Tulajdonság létrehozása"
 
 #: admin/import3.php:257
 msgid "Attribute two"
-msgstr ""
+msgstr "Második tulajdonság"
 
 #: admin/import3.php:270
 msgid "Cannot continue"
-msgstr ""
+msgstr "Nem folytatható"
 
 #: admin/import3.php:325
 msgid "Process Selected Folders"
-msgstr ""
+msgstr "Kiválasztott mappák feldolgozása"
 
 #: admin/import3.php:350
 msgid "folders and"
-msgstr ""
+msgstr "mappa és"
 
 #: admin/import3.php:351
 msgid "unique emails found"
-msgstr ""
+msgstr "egyedi e-mail cím található"
 
 #: admin/import3.php:477
 msgid "All the emails already exist in the database and are members of the"
-msgstr ""
+msgstr "Az összes e-mail már az adatbázisban van, és a következők tagjai:"
 
 #: admin/import3.php:481
 msgid "emails already existed in the database"
-msgstr ""
+msgstr "e-mail cím már volt az adatbázisban"
 
 #: admin/import3.php:483
 msgid "Invalid Emails found."
-msgstr ""
+msgstr "Hibás e-mail címek találhatók."
 
 #: admin/import3.php:485
 msgid "These records were added, but the email has been made up. You can find them by doing a search on"
-msgstr ""
+msgstr "Ezek a rekordok kerültek hozzáadásra, viszont az e-mail ki lett egészítve. A következő keresésével találhatja meg őket:"
 
 #: admin/import3.php:487
 msgid "These records were deleted. Check your source and reimport the data. Duplicates will be identified."
-msgstr ""
+msgstr "Ezek a rekordok törlésre kerültek. Ellenőrizze a forrást, s importálja újra az adatokat. A phplist be fogja azonosítani a duplumokat."
 
 #: admin/import3.php:491
 msgid "No emails found"
-msgstr ""
+msgstr "Nem találhatók e-mail címek"
 
 #: admin/spage.php:35
 msgid "Deleted"
-msgstr ""
+msgstr "Törölve"
 
 #: admin/spage.php:38
 msgid "subscribe pages"
-msgstr ""
+msgstr "Rendelési oldalak"
 
 #: admin/spage.php:43
 msgid "title"
-msgstr ""
+msgstr "cím"
 
 #: admin/spage.php:46
 msgid "view"
-msgstr ""
+msgstr "nézet"
 
 #: admin/spage.php:47
 msgid "status"
-msgstr ""
+msgstr "állapot"
 
 #: admin/spage.php:47
 msgid "not active"
-msgstr ""
+msgstr "nem aktív"
 
 #: admin/spage.php:49
 msgid "owner"
-msgstr ""
+msgstr "tulajdonos"
 
 #: admin/spage.php:62
 msgid "Add a new one"
-msgstr ""
+msgstr "Új hozzáadása"
 
 #: admin/statsmgt.php:7
 msgid "Overview"
@@ -3631,19 +3645,19 @@ msgstr ""
 
 #: admin/statsmgt.php:8
 msgid "View Clicks by URL"
-msgstr ""
+msgstr "Kattintások URL-cím szerinti megtekintése"
 
 #: admin/statsmgt.php:9
 msgid "View Clicks by Message"
-msgstr ""
+msgstr "Kattintások üzenet szerinti megtekintése"
 
 #: admin/statsmgt.php:10
 msgid "View Opens by Message"
-msgstr ""
+msgstr "Megnyitások üzenet szerinti megtekintése"
 
 #: admin/statsmgt.php:11
 msgid "Domain Statistics"
-msgstr ""
+msgstr "Tartománystatisztika"
 
 #: admin/statsmgt.php:15
 msgid "The clicktracking system has changed"
@@ -3664,31 +3678,31 @@ msgstr ""
 
 #: admin/import4.php:42
 msgid "add_list"
-msgstr ""
+msgstr "Lista hozzáadása"
 
 #: admin/import4.php:51
 msgid "Please enter details of the remote Server"
-msgstr ""
+msgstr "Írja be a távoli kiszolgáló adatait"
 
 #: admin/import4.php:54
 msgid "Server:"
-msgstr ""
+msgstr "Kiszolgáló:"
 
 #: admin/import4.php:56
 msgid "Password:"
-msgstr ""
+msgstr "Jelszó:"
 
 #: admin/import4.php:57
 msgid "Database Name:"
-msgstr ""
+msgstr "Adatbázis neve:"
 
 #: admin/import4.php:58
 msgid "Table prefix:"
-msgstr ""
+msgstr "Táblanév előtag:"
 
 #: admin/import4.php:59
 msgid "Usertable prefix:"
-msgstr ""
+msgstr "Felhasználó-táblanév előtag:"
 
 #: admin/import4.php:73
 msgid "Copy lists from remote server (lists are matched by name)"
@@ -3696,7 +3710,7 @@ msgstr ""
 
 #: admin/import4.php:75
 msgid "Mark new users as HTML:"
-msgstr ""
+msgstr "Az új felhasználók megjelölése HTML-ként:"
 
 #: admin/import4.php:76
 msgid "If you check \"Overwrite Existing\", information about a user in the database will be replaced by the imported information. Users are matched by email."
@@ -3704,32 +3718,32 @@ msgstr ""
 
 #: admin/import4.php:77
 msgid "Overwrite Existing:"
-msgstr ""
+msgstr "Meglévők felülírása:"
 
 #: admin/import4.php:78
 msgid "continue"
-msgstr ""
+msgstr "Folytatás"
 
 #: admin/import4.php:86
 msgid "Making connection with remote database"
-msgstr ""
+msgstr "Csatlakozás a távoli adatbázishoz"
 
 #: admin/import4.php:90
 msgid "cannot connect to remote database"
-msgstr ""
+msgstr "nem lehet csatlakozni a távoli adatbázishoz"
 
 #: admin/import4.php:101
 msgid "Getting data from "
-msgstr ""
+msgstr "Adatok lekérése innen: "
 
 #: admin/import4.php:106
 msgid "Remote version is"
-msgstr ""
+msgstr "A távoli változat"
 
 #: admin/import4.php:108
 #: admin/import4.php:115
 msgid "Remote version has"
-msgstr ""
+msgstr "A távoli verziónak van"
 
 #: admin/import4.php:110
 msgid "No users to copy, is the prefix correct?"
@@ -3737,53 +3751,53 @@ msgstr ""
 
 #: admin/import4.php:118
 msgid "Copying lists"
-msgstr ""
+msgstr "Listák másolása"
 
 #: admin/import4.php:134
 #: admin/import4.php:170
 msgid "exists locally"
-msgstr ""
+msgstr "helyileg létezik"
 
 #: admin/import4.php:145
 #: admin/import4.php:180
 msgid "created locally"
-msgstr ""
+msgstr "helyben létrehozva"
 
 #: admin/import4.php:149
 msgid "Remote list"
-msgstr ""
+msgstr "Távoli lista"
 
 #: admin/import4.php:149
 msgid "not created"
-msgstr ""
+msgstr "nincs létrehozva"
 
 #: admin/import4.php:154
 msgid "Copying attributes"
-msgstr ""
+msgstr "Tulajdonságok másolása"
 
 #: admin/import4.php:204
 msgid "Copying users"
-msgstr ""
+msgstr "Felhasználók másolása"
 
 #: admin/import4.php:299
 msgid "Error, no mapped attribute for"
-msgstr ""
+msgstr "Hiba: Nincs egyeztetett tulajdonság a következőhöz:"
 
 #: admin/import4.php:351
 msgid "Error, no local list defined for"
-msgstr ""
+msgstr "Hiba: Nincs helyi lista meghatározva a következőhöz:"
 
 #: admin/import4.php:359
 msgid "new users"
-msgstr ""
+msgstr "új felhasználók"
 
 #: admin/import4.php:360
 msgid "and"
-msgstr ""
+msgstr "és"
 
 #: admin/import4.php:361
 msgid "existing users"
-msgstr ""
+msgstr "létező felhasználók"
 
 #: admin/convertstats.php:5
 msgid "Hint: this page also works from commandline"
@@ -3805,11 +3819,11 @@ msgstr ""
 #: admin/setup.php:96
 #: admin/setup.php:107
 msgid "Go there"
-msgstr ""
+msgstr "Ugrás"
 
 #: admin/setup.php:36
 msgid "Change Admin Password"
-msgstr ""
+msgstr "Adminisztrátori jelszó megváltoztatása"
 
 #: admin/setup.php:55
 msgid "Verify Settings"
@@ -3817,11 +3831,11 @@ msgstr ""
 
 #: admin/setup.php:84
 msgid "Create Lists"
-msgstr ""
+msgstr "Listák létrehozása"
 
 #: admin/setup.php:95
 msgid "Create Subscribe Pages"
-msgstr ""
+msgstr "Rendelési oldalak készítése"
 
 #: admin/setup.php:106
 msgid "Add some subscribers"
@@ -3849,7 +3863,7 @@ msgstr ""
 
 #: admin/usercheck.php:19
 msgid "key"
-msgstr ""
+msgstr "kulcs"
 
 #: admin/usercheck.php:36
 msgid "whatistype"
@@ -3857,143 +3871,147 @@ msgstr ""
 
 #: admin/usercheck.php:37
 msgid "foreignkey"
-msgstr ""
+msgstr "idegen kulcs"
 
 #: admin/usercheck.php:39
 msgid "pastevalues"
-msgstr ""
+msgstr "Illessze be az alábbi mezőbe az ellenőrizendő értékeket, soronként egyet"
 
 #: admin/importadmin.php:17
 msgid "File is either to large or does not exist."
-msgstr ""
+msgstr "Vagy túl nagy a fájl, vagy nem létezik."
 
 #: admin/importadmin.php:19
 msgid "No file was specified."
-msgstr ""
+msgstr "Nem adta meg a fájlt."
 
 #: admin/importadmin.php:54
 msgid "Some characters that are not valid have been found. These might be delimiters. Please check the file and select the right delimiter. Character found:"
-msgstr ""
+msgstr "Néhány nem érvényes karakter található. Ezek elválasztók lehetnek. Ellenőrizze a fájlt, s válassza ki a megfelelő elválasztót. Talált karakter:"
 
 #: admin/importadmin.php:84
 msgid "Name cannot be empty"
-msgstr ""
+msgstr "A név nem lehet üres"
 
 #: admin/importadmin.php:100
 msgid "Cannot find the email in the header"
-msgstr ""
+msgstr "Nem található az e-mail cím a fejlécben"
 
 #: admin/importadmin.php:102
 msgid "Cannot find the password in the header"
-msgstr ""
+msgstr "Nem található a jelszó a fejlécben"
 
 #: admin/importadmin.php:104
 msgid "Cannot find the loginname in the header"
-msgstr ""
+msgstr "Nem található a bejelentkezési név a fejlécben"
 
 #: admin/importadmin.php:117
 msgid "Record has no email"
-msgstr ""
+msgstr "Nincs e-mail címe a rekordnak"
 
 #: admin/importadmin.php:118
 msgid "Invalid Email"
-msgstr ""
+msgstr "Hibás e-mail cím"
 
 #: admin/importadmin.php:123
 msgid "Record has more values than header indicated, this may cause trouble"
-msgstr ""
+msgstr "A rekordnak a fejléc által jelzettnél több értéke van, ez problémát okozhat"
 
 #: admin/importadmin.php:143
 msgid "Test output:There should only be ONE email per line.If the output looks ok, go Back to resubmit for real"
-msgstr ""
+msgstr "Kimenet tesztelése:<br/>Soronként csak EGY e-mail cím legyen.<br/>Ha jónak tűnik a kimenet, menjen <a href=\"javascript:history.go(-1)\">vissza</a> az igaziból történő beküldéshez.<br/><br/>"
 
 #: admin/importadmin.php:151
 msgid "login"
-msgstr ""
+msgstr "bejelentkezés"
 
 #: admin/importadmin.php:183
 msgid "Empty loginname, using email:"
-msgstr ""
+msgstr "A bejelentkezési név üres, a következő e-mail használata:"
 
 #: admin/importadmin.php:211
 msgid "Value"
-msgstr ""
+msgstr "Érték"
 
 #: admin/importadmin.php:211
 msgid "added to attribute"
-msgstr ""
+msgstr "hozzáadva tulajdonsághoz"
 
 #: admin/importadmin.php:240
 msgid "List for"
-msgstr ""
+msgstr "Lista a következőhöz"
 
 #: admin/importadmin.php:258
 msgid "All the emails already exist in the database"
-msgstr ""
+msgstr "Az összes e-mail már az adatbázisban van"
 
 #: admin/importadmin.php:260
 msgid "succesfully imported to the database and added to the system."
-msgstr ""
+msgstr "importálása az adatbázisba és hozzáadása a rendszerhez sikerült."
 
 #: admin/importadmin.php:282
 msgid "No default permissions have been defined, please create default permissions first, by creating one dummy admin and assigning the default permissions to this admin"
-msgstr ""
+msgstr "Nem kerültek meghatározásra az alapértelmezett engedélyek, előbb készítse el az alapértelmezett engedélyeket, egy áladminisztrátor létrehozásával, s az alapértelmezett engedélyek ehhez az adminisztrátorhoz történő hozzárendelésével"
 
 #: admin/importadmin.php:287
 msgid "   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: email, loginname, password. Any other columns will be added as admin attributes.  Warning: the file needs to be plain text. Do not upload binary files like a Word Document.   "
 msgstr ""
+"  Az Ön által feltöltésre kerülő fájlnak tartalmaznia kell "
+"az Ön által a rendszerhez hozzáadni kívánt adminisztrátorokat. Az oszlopoknak a következő fejléceik legyenek: <b>email</b>, <b>loginname</b>, <b>password</b>. Bármilyen más oszlop admin attribútumokként kerül hozzáadásra."
+" <b>Figyelmeztetés</b>: A fájlnak egyszerű szövegnek kell lennie. Ne töltsön fel bináris fájlokat, mint például a Word-dokumentum."
+"  "
 
 #: admin/importadmin.php:288
 msgid "File containing emails"
-msgstr ""
+msgstr "E-mail címeket tartalmazó fájl"
 
 #: admin/importadmin.php:289
 msgid "Field Delimiter"
-msgstr ""
+msgstr "Mezőhatároló"
 
 #: admin/importadmin.php:289
-msgid "default is TAB"
-msgstr ""
+msgid "(default is TAB)"
+msgstr "(alapértelmezés: TAB)"
 
 #: admin/importadmin.php:290
 msgid "Record Delimiter"
-msgstr ""
+msgstr "Rekordelválasztó"
 
 #: admin/importadmin.php:290
-msgid "default is line break"
-msgstr ""
+msgid "(default is line break)"
+msgstr "(alapértelmezés: sortörés)"
 
 #: admin/importadmin.php:292
 msgid "Test output"
-msgstr ""
+msgstr "Kimenet tesztelése"
 
 #: admin/importadmin.php:293
 msgid "Check this box to create a list for each administrator, named after their loginname"
-msgstr ""
+msgstr "Jelölje be ezt a jelölőnégyzetet, ha minden adminisztrátornak a bejelentkezési nevük után elnevezett listát akar készíteni"
 
 #: admin/importadmin.php:294
 msgid "Do Import"
-msgstr ""
+msgstr "Importáld"
 
 #: admin/generatebouncerules.php:37
 msgid "Process Next Batch"
-msgstr ""
+msgstr "Következő köteg feldolgozása"
 
 #: admin/generatebouncerules.php:130
 msgid "Hmm, duplicate entry, "
-msgstr ""
+msgstr "Hmm, dupla bejegyzés, "
 
 #: admin/generatebouncerules.php:142
 msgid "new rules found"
-msgstr ""
+msgstr "új szabály található"
 
 #: admin/generatebouncerules.php:143
 msgid "bounces not matched"
-msgstr ""
+msgstr "a visszapattanók nem egyeznek"
 
 #: admin/generatebouncerules.php:144
 msgid "bounces matched to existing rules"
-msgstr ""
+msgstr "a visszapattanók egyeznek a létező szabályokkal"
 
 #: admin/tests.php:5
 msgid "phplist test suite"
@@ -4029,7 +4047,7 @@ msgstr ""
 
 #: admin/list.php:214
 msgid "Bounces"
-msgstr ""
+msgstr "Visszapattanók"
 
 #: admin/list.php:217
 msgid "Public"
@@ -4037,11 +4055,11 @@ msgstr ""
 
 #: admin/list.php:222
 msgid "n/a"
-msgstr ""
+msgstr "n.a."
 
 #: admin/list.php:229
 msgid "Order"
-msgstr ""
+msgstr "Sorrend"
 
 #: admin/list.php:233
 msgid "Are you sure you want to delete this list?"
@@ -4061,36 +4079,36 @@ msgstr ""
 
 #: admin/bouncerule.php:16
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: admin/bouncerule.php:17
 msgid "No"
-msgstr ""
+msgstr "S.sz."
 
 #: admin/bouncerule.php:23
 msgid "back to list of bounce rules"
-msgstr ""
+msgstr "vissza a visszapattanó-szabályok listájához"
 
 #: admin/bouncerule.php:33
 msgid "Created By"
-msgstr ""
+msgstr "Készítette"
 
 #: admin/bouncerule.php:40
 msgid "Select Status"
-msgstr ""
+msgstr "Válassza ki az állapotot"
 
 #: admin/bouncerule.php:54
 msgid "related bounces"
-msgstr ""
+msgstr "kapcsolódó visszapattanók"
 
 #: admin/bouncerule.php:56
 msgid "no related bounces found"
-msgstr ""
+msgstr "nem található kapcsolódó visszapattanó"
 
 #: admin/bouncerule.php:65
 #, php-format
 msgid "and more, %d in total"
-msgstr ""
+msgstr "és több, összesen %d"
 
 #: admin/editlist.php:26
 msgid "You cannot create a new list because you have reached maximum number of lists."
@@ -4098,7 +4116,7 @@ msgstr ""
 
 #: admin/editlist.php:48
 msgid "Members of this list"
-msgstr ""
+msgstr "A lista tagjai"
 
 #: admin/editlist.php:96
 msgid "New List added"
@@ -4106,7 +4124,7 @@ msgstr ""
 
 #: admin/editlist.php:131
 msgid "List name"
-msgstr ""
+msgstr "A lista neve"
 
 #: admin/editlist.php:133
 msgid "Public list (listed on the frontend)"
@@ -4114,78 +4132,78 @@ msgstr ""
 
 #: admin/editlist.php:135
 msgid "Order for listing"
-msgstr ""
+msgstr "Listázási sorrend"
 
 #: admin/editlist.php:169
 msgid "List Description"
-msgstr ""
+msgstr "A lista ismertetése"
 
 #: admin/editlist.php:172
 msgid "Save"
-msgstr ""
+msgstr "Mentés"
 
 #: admin/dlusers.php:49
 #: admin/dlusers.php:51
 msgid "PHPList Users"
-msgstr ""
+msgstr "PHPlist felhasználók"
 
 #: admin/dlusers.php:51
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #: admin/dlusers.php:75
 #: admin/export.php:146
 msgid "List Membership"
-msgstr ""
+msgstr "Listatagság"
 
 #: admin/dlusers.php:97
 msgid "No Lists"
-msgstr ""
+msgstr "Nincsenek listák"
 
 #: admin/segmentation.php:10
 msgid "selectattribute"
-msgstr ""
+msgstr "tulajdonság kiválasztása"
 
 #: admin/segmentation.php:23
 msgid "matchallrules"
-msgstr ""
+msgstr "Az összes szabállyal megegyezik"
 
 #: admin/segmentation.php:25
 msgid "matchanyrules"
-msgstr ""
+msgstr "Bármelyik szabállyal megegyezik"
 
 #: admin/segmentation.php:59
 msgid "addcriterion"
-msgstr ""
+msgstr "Feltétel hozzáadása"
 
 #: admin/getrss.php:12
 msgid "Getting and Parsing the RSS sources"
-msgstr ""
+msgstr "Az RSS-források lekérése és elemzése"
 
 #: admin/getrss.php:41
 msgid "Rss Errors"
-msgstr ""
+msgstr "RSS hibák"
 
 #: admin/getrss.php:43
 msgid "Rss Results"
-msgstr ""
+msgstr "RSS eredmények"
 
 #: admin/getrss.php:52
 msgid "Rss Failure report"
-msgstr ""
+msgstr "RSS meghibásodás jelentése"
 
 #: admin/getrss.php:69
 #: admin/getrss.php:71
 msgid "Parsing"
-msgstr ""
+msgstr "Elemzés"
 
 #: admin/getrss.php:119
 msgid "items"
-msgstr ""
+msgstr "elemek"
 
 #: admin/getrss.php:119
 msgid "new items"
-msgstr ""
+msgstr "új elemek"
 
 #: admin/massremove.php:38
 #, php-format
@@ -4245,7 +4263,7 @@ msgstr ""
 
 #: admin/export.php:200
 msgid "When they subscribed to"
-msgstr ""
+msgstr "Amikor feliratkoztak a következő listára: "
 
 #: admin/export.php:211
 msgid "Select the columns to include in the export"
@@ -4253,7 +4271,7 @@ msgstr ""
 
 #: admin/export.php:230
 msgid "Export"
-msgstr ""
+msgstr "Exportálás"
 
 #: admin/listbounces.php:12
 msgid "Choose a list"
@@ -4277,47 +4295,47 @@ msgstr ""
 
 #: admin/about.php:14
 msgid "Developers"
-msgstr ""
+msgstr "Fejlesztők"
 
 #: admin/about.php:18
 msgid "Contributors"
-msgstr ""
+msgstr "Közreműködők"
 
 #: admin/about.php:26
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentáció"
 
 #: admin/about.php:31
 msgid "Translations"
-msgstr ""
+msgstr "Fordítások"
 
 #: admin/about.php:34
 msgid "credits for this translation"
-msgstr ""
+msgstr "Magyar fordítás: Herczeg József Tamás"
 
 #: admin/about.php:37
 msgid "The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions."
-msgstr ""
+msgstr "A fejlesztők szeretnék megköszönni mindazoknak a rendszer fejlesztésében nyújtott közreműködését, akik hibabejelentéseikkel, javaslataikkal, adományaikkal, javaslataikkal, támogatásaikkal, fordításaikkal és sok mással segítettek."
 
 #: admin/about.php:39
 msgid "Portions of the system include"
-msgstr ""
+msgstr "A rendszer részét képezik"
 
 #: admin/admin.php:6
 msgid "List of Administrators"
-msgstr ""
+msgstr "Adminisztrátorok listája"
 
 #: admin/admin.php:87
 msgid "Changes saved"
-msgstr ""
+msgstr "A változtatások mentése megtörtént"
 
 #: admin/admin.php:89
 msgid "Error adding new admin"
-msgstr ""
+msgstr "Hiba történt az új adminisztrátor hozzáadásakor"
 
 #: admin/admin.php:98
 msgid "Current set of permissions made default"
-msgstr ""
+msgstr "A jelenlegi jogbeállítások alapértelmezetté tétele megtörtént"
 
 #: admin/admin.php:121
 msgid "Failed, you cannot delete yourself"
@@ -4325,19 +4343,19 @@ msgstr ""
 
 #: admin/admin.php:127
 msgid "Edit Administrator"
-msgstr ""
+msgstr "Adminisztrátor módosítása"
 
 #: admin/admin.php:135
 msgid "Add a new Administrator"
-msgstr ""
+msgstr "Új adminisztrátor hozzáadása"
 
 #: admin/admin.php:138
 msgid "Admin Details"
-msgstr ""
+msgstr "Admin adatai"
 
 #: admin/admin.php:162
 msgid "hidden"
-msgstr ""
+msgstr "rejtett"
 
 #: admin/admin.php:163
 msgid "Update it?"
@@ -4349,7 +4367,7 @@ msgstr ""
 
 #: admin/admin.php:174
 msgid "Login Name"
-msgstr ""
+msgstr "Bejelentkezési név"
 
 #: admin/admin.php:223
 msgid " Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the \"user\", \"users\" and \"members\" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long "
@@ -4357,51 +4375,51 @@ msgstr ""
 
 #: admin/admin.php:224
 msgid "Access Details"
-msgstr ""
+msgstr "Hozzáférési adatok"
 
 #: admin/admin.php:226
 msgid "Access Privileges"
-msgstr ""
+msgstr "Hozzáférési jogok"
 
 #: admin/admin.php:227
 msgid "Page"
-msgstr ""
+msgstr "Oldal"
 
 #: admin/admin.php:258
 msgid "Set these permissions as default"
-msgstr ""
+msgstr "Jogok alapértelmezetté tétele"
 
 #: admin/admin.php:260
 msgid "Reset to Default"
-msgstr ""
+msgstr "Alaphelyzet"
 
 #: admin/userclicks.php:28
 msgid "Invalid Request"
-msgstr ""
+msgstr "Érvénytelen kérés"
 
 #: admin/userclicks.php:47
 msgid "User Click Statistics"
-msgstr ""
+msgstr "Felhasználó kattintási statisztikája"
 
 #: admin/userclicks.php:61
 msgid "User Click Details for a URL in a message"
-msgstr ""
+msgstr "Felhasználó üzenetben lévő URL-címre kattintási adatai"
 
 #: admin/userclicks.php:74
 msgid "User Click Details for a message"
-msgstr ""
+msgstr "Felhasználó üzenetre kattintási adatai"
 
 #: admin/userclicks.php:86
 msgid "User Click Details for a URL"
-msgstr ""
+msgstr "Felhasználó URL-címre kattintási adatai"
 
 #: admin/userclicks.php:92
 msgid "User Click Details for a Message"
-msgstr ""
+msgstr "Felhasználó üzenetre kattintási adatai"
 
 #: admin/userclicks.php:103
 msgid "User Click Details"
-msgstr ""
+msgstr "Felhasználó kattintási adatai"
 
 #: admin/userclicks.php:140
 msgid "view user"
@@ -4427,16 +4445,16 @@ msgstr ""
 
 #: admin/templates.php:25
 msgid "No template have been defined"
-msgstr ""
+msgstr "Nincs meghatározott sablon"
 
 #: admin/templates.php:30
 msgid "Existing templates"
-msgstr ""
+msgstr "Létező sablonok"
 
 #: admin/templates.php:40
 #: admin/messages.php:368
 msgid "View"
-msgstr ""
+msgstr "Nézet"
 
 #: admin/templates.php:41
 msgid "Campaign Default"
@@ -4448,7 +4466,7 @@ msgstr ""
 
 #: admin/templates.php:51
 msgid "Add new Template"
-msgstr ""
+msgstr "Új sablon hozzáadása"
 
 #: admin/templates.php:55
 msgid "Add default system template"
@@ -4465,7 +4483,7 @@ msgstr ""
 #: admin/index.php:240
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
-msgstr ""
+msgstr "érvénytelen bejelentkezés a(z) %s címről, bejelentkezési próba %s néven"
 
 #: admin/index.php:260
 #: admin/index.php:273
@@ -4487,12 +4505,12 @@ msgstr ""
 #: admin/index.php:271
 #, php-format
 msgid "successful password request from %s for %s"
-msgstr ""
+msgstr "sikeres jelszókérés a(z) %s címről %s számára"
 
 #: admin/index.php:274
 #, php-format
 msgid "failed password request from %s for %s"
-msgstr ""
+msgstr "sikertelen jelszókérés a(z) %s címről %s számára"
 
 #: admin/index.php:281
 #, php-format
@@ -4510,7 +4528,7 @@ msgstr ""
 
 #: admin/index.php:346
 msgid "goodbye"
-msgstr ""
+msgstr "viszlát,"
 
 #: admin/index.php:350
 msgid "goodmorning"
@@ -4598,17 +4616,17 @@ msgstr ""
 #: admin/processqueue.php:800
 #, php-format
 msgid "There have been more than 10 attempts to send to %s that have been blocked for domain throttling."
-msgstr ""
+msgstr "Több, mint 10 kísérlet történt a(z) %s címre történő küldéshez, mely tartományszabályozáshoz került blokkolásra."
 
 #: admin/processqueue.php:801
 #: admin/processqueue.php:803
 msgid "Introducing extra delay to decrease throttle failures"
-msgstr ""
+msgstr "További késleltetés bevezetése a szabályozási hibák csökkentése végett"
 
 #: admin/processqueue.php:812
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
-msgstr ""
+msgstr "%s jelenleg a(z) %d per %d másodperc szabályozási korlátozás fölött van"
 
 #: admin/processqueue.php:917
 #, php-format
@@ -4617,7 +4635,7 @@ msgstr ""
 
 #: admin/processqueue.php:947
 msgid "Unconfirmed user"
-msgstr ""
+msgstr "Nem visszaigazolt felhasználó"
 
 #: admin/processqueue.php:1027
 msgid "Message Campaign finished"
@@ -4635,7 +4653,7 @@ msgstr ""
 
 #: admin/bounces.php:9
 msgid "deleting"
-msgstr ""
+msgstr "törlés"
 
 #: admin/bounces.php:62
 msgid "view bounces by list"
@@ -4643,7 +4661,7 @@ msgstr ""
 
 #: admin/bounces.php:66
 msgid "are you sure you want to delete all unidentified bounces older than 2 months"
-msgstr ""
+msgstr "biztosan törölni akarja a 2 hónapnál régebbi, beazonosítatlan visszapattanókat"
 
 #: admin/bounces.php:68
 msgid "delete all unidentified (&gt; 2 months old)"
@@ -4651,7 +4669,7 @@ msgstr ""
 
 #: admin/bounces.php:71
 msgid "are you sure you want to delete all bounces older than 2 months"
-msgstr ""
+msgstr "Biztosan törölni akarja a 2 hónapnál régebbi visszapattanókat"
 
 #: admin/bounces.php:73
 msgid "delete all processed (&gt; 2 months old)"
@@ -4663,7 +4681,7 @@ msgstr ""
 
 #: admin/bounces.php:85
 msgid "no unprocessed bounces available"
-msgstr ""
+msgstr "Nincs feldolgozatlan visszapattanó"
 
 #: admin/bounces.php:98
 msgid "System Message"
@@ -4679,7 +4697,7 @@ msgstr ""
 
 #: admin/upgrade.php:65
 msgid "Please wait, upgrading your database, do not interrupt"
-msgstr ""
+msgstr "Kérjük, várjon. Frissítjük az adatbázist, ne szakítsa félbe."
 
 #: admin/upgrade.php:414
 msgid "Upgrading the database to use UTF-8, please wait"
@@ -4711,15 +4729,15 @@ msgstr ""
 
 #: admin/messages.php:77
 msgid "draft"
-msgstr ""
+msgstr "piszkozat"
 
 #: admin/messages.php:80
 msgid "static"
-msgstr ""
+msgstr "statikus"
 
 #: admin/messages.php:121
 msgid "Requeuing"
-msgstr ""
+msgstr "Ismételt várólistára vétel:"
 
 #: admin/messages.php:140
 msgid "Suspending"
@@ -4739,31 +4757,31 @@ msgstr ""
 
 #: admin/messages.php:246
 msgid "Campaigns"
-msgstr ""
+msgstr "üzenetek"
 
 #: admin/messages.php:301
 msgid "Viewed"
-msgstr ""
+msgstr "Megtekintett"
 
 #: admin/messages.php:302
 msgid "Unique Views"
-msgstr ""
+msgstr "Egyedi találatok"
 
 #: admin/messages.php:307
 msgid "Time to send"
-msgstr ""
+msgstr "Küldés időtartama"
 
 #: admin/messages.php:323
 msgid "Bounced"
-msgstr ""
+msgstr "Visszapattanó"
 
 #: admin/messages.php:337
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: admin/messages.php:338
 msgid "both"
-msgstr ""
+msgstr "mindkettő"
 
 #: admin/messages.php:352
 msgid "Suspend"
@@ -4771,7 +4789,7 @@ msgstr ""
 
 #: admin/messages.php:354
 msgid "Requeue"
-msgstr ""
+msgstr "Ismételt várólistára vétel"
 
 #: admin/messages.php:358
 msgid "Mark&nbsp;sent"
@@ -4780,11 +4798,11 @@ msgstr ""
 #: admin/messages.php:359
 #: admin/messages.php:366
 msgid "Edit"
-msgstr ""
+msgstr "Szerkesztés"
 
 #: admin/messages.php:371
 msgid "click stats"
-msgstr ""
+msgstr "kattintási statisztika"
 
 #: admin/messages.php:389
 msgid "Suspend All"
@@ -4817,59 +4835,59 @@ msgstr ""
 #: admin/checkbouncerules.php:21
 #, php-format
 msgid "Process Next %d"
-msgstr ""
+msgstr "Következő %d feldolgozása"
 
 #: admin/checkbouncerules.php:36
 msgid "No match"
-msgstr ""
+msgstr "Nincs egyezés"
 
 #: admin/checkbouncerules.php:41
 msgid "bounces did not match any current active rule"
-msgstr ""
+msgstr "visszapattanó nem egyezik meg egyik jelenlegi aktív szabállyal sem"
 
 #: admin/checkbouncerules.php:42
 msgid "bounce matched current active rules"
-msgstr ""
+msgstr "visszapattanó egyezik a jelenlegi aktív szabályokkal"
 
 #: admin/stacked_attributes_prev.php:48
 #: admin/stacked_attributes_prev.php:58
 #: admin/stacked_attributes_prev.php:68
 #: admin/stacked_attributes_prev.php:140
 msgid "is"
-msgstr ""
+msgstr "van"
 
 #: admin/stacked_attributes_prev.php:49
 #: admin/stacked_attributes_prev.php:59
 #: admin/stacked_attributes_prev.php:69
 #: admin/stacked_attributes_prev.php:141
 msgid "isnot"
-msgstr ""
+msgstr "nem"
 
 #: admin/stacked_attributes_prev.php:55
 msgid "unchecked"
-msgstr ""
+msgstr "Bejelöletlen"
 
 #: admin/stacked_attributes_prev.php:56
 msgid "checked"
-msgstr ""
+msgstr "Bejelölt"
 
 #: admin/stacked_attributes_prev.php:63
 msgid "dd-mm-yyyy"
-msgstr ""
+msgstr "nn-hh-éééé"
 
 #: admin/stacked_attributes_prev.php:70
 #: admin/stacked_attributes_prev.php:142
 msgid "isbefore"
-msgstr ""
+msgstr "előtte"
 
 #: admin/stacked_attributes_prev.php:71
 #: admin/stacked_attributes_prev.php:143
 msgid "isafter"
-msgstr ""
+msgstr "utána"
 
 #: admin/stacked_attributes_prev.php:94
 msgid "buggywithie"
-msgstr ""
+msgstr "Figyelmeztetés: Ez a funkció hibás, Internet Explorer esetén nem megbízható.\nJobban teszi, ha Mozilla, Firefox vagy Opera böngészőt használ.\nVálaszthatja a STACKED_ATTRIBUTE_SELECTION paraméter kikapcsolását is a konfigurációs fájlban"
 
 #: admin/importsimple.php:57
 msgid "import_by"
@@ -4901,7 +4919,7 @@ msgstr ""
 
 #: admin/importsimple.php:89
 msgid "phplist Import Results"
-msgstr ""
+msgstr "phplist importálási eredmény"
 
 #: admin/importsimple.php:133
 msgid "Please enter the emails to import, one per line, in the box below and click \"Import Emails\""
@@ -4929,15 +4947,15 @@ msgstr ""
 
 #: admin/usermgt.php:29
 msgid "Reconcile Subscribers"
-msgstr ""
+msgstr "A felhasználók újraegyeztetéséhez"
 
 #: admin/usermgt.php:30
 msgid "Check for Subscribers"
-msgstr ""
+msgstr "A felhasználók ellenőrzéséhez"
 
 #: admin/usermgt.php:31
 msgid "mass unconfirm users"
-msgstr ""
+msgstr "A felhasználók tömeges vissza nem igazolásához"
 
 #: admin/usermgt.php:32
 msgid "mass remove users"
@@ -4949,7 +4967,7 @@ msgstr ""
 
 #: admin/connect.php:360
 msgid "error"
-msgstr ""
+msgstr "hiba"
 
 #: admin/connect.php:400
 #: admin/connect.php:404
@@ -4963,11 +4981,11 @@ msgstr ""
 
 #: admin/connect.php:716
 msgid "Main Page"
-msgstr ""
+msgstr "Főlap"
 
 #: admin/connect.php:716
 msgid "about"
-msgstr ""
+msgstr "névjegy"
 
 #: admin/connect.php:776
 msgid "In this section"
@@ -4979,19 +4997,19 @@ msgstr ""
 
 #: admin/connect.php:1033
 msgid "alllists"
-msgstr ""
+msgstr "Minden lista"
 
 #: admin/connect.php:1039
 msgid "All Active Lists"
-msgstr ""
+msgstr "Az összes aktív lista"
 
 #: admin/connect.php:1069
 msgid "listactive"
-msgstr ""
+msgstr "A lista aktív"
 
 #: admin/connect.php:1071
 msgid "listnotactive"
-msgstr ""
+msgstr "A lista nem aktív"
 
 #: admin/connect.php:1112
 msgid "nolistsavailable"
@@ -5054,7 +5072,7 @@ msgstr ""
 #: admin/tests/sendpage.php:27
 #: admin/tests/sendpage.php:31
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: admin/tests/sendpage.php:29
 msgid "Sending Text version to "
@@ -5070,15 +5088,15 @@ msgstr ""
 
 #: admin/actions/listinvalid.php:33
 msgid "Users apply"
-msgstr ""
+msgstr "Alkalmazás felhasználókra"
 
 #: admin/actions/listinvalid.php:35
 msgid "Delete Tagged Users"
-msgstr ""
+msgstr "Címkézett felhasználók törlése"
 
 #: admin/actions/msgstatus.php:45
 msgid "unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: admin/actions/msgstatus.php:55
 #, php-format
@@ -5100,11 +5118,11 @@ msgstr ""
 
 #: admin/actions/listcriteria.php:32
 msgid "operator"
-msgstr ""
+msgstr "műveleti jel"
 
 #: admin/actions/listcriteria.php:166
 msgid "values"
-msgstr ""
+msgstr "értékek"
 
 #: admin/actions/listcriteria.php:167
 msgid "remove"
@@ -5112,11 +5130,11 @@ msgstr ""
 
 #: admin/actions/configure.php:26
 msgid "Editing"
-msgstr ""
+msgstr "Szerkesztés"
 
 #: admin/actions/configure.php:66
 msgid "save changes"
-msgstr ""
+msgstr "Módosítások mentése"
 
 #: admin/actions/checkurl.php:20
 #: admin/actions/checkurl.php:22
@@ -5138,11 +5156,11 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:23
 msgid "You only have privileges to view this page, not change any of the information"
-msgstr ""
+msgstr "Önnek csak az oldal megtekintéséhez van joga, valamely információ módosításához viszont nem"
 
 #: admin/commonlib/pages/user.php:34
 msgid "Delete will delete user from the list"
-msgstr ""
+msgstr "A Törlés törölni fogja a felhasználót a listáról"
 
 #: admin/commonlib/pages/user.php:56
 msgid "Error adding empty password, please check that the password is complete"
@@ -5150,7 +5168,7 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:67
 msgid "Error adding user, please check that the user exists"
-msgstr ""
+msgstr "Hiba történt a felhasználó hozzáadásakor. Ellenőrizze, hogy létezik-e a felhasználó."
 
 #: admin/commonlib/pages/user.php:125
 msgid "Uploaded avatar file too big"
@@ -5159,12 +5177,12 @@ msgstr ""
 #: admin/commonlib/pages/user.php:183
 #: admin/commonlib/pages/user.php:193
 msgid "User added to group"
-msgstr ""
+msgstr "A felhasználó hozzáadása a csoporthoz megtörtént"
 
 #: admin/commonlib/pages/user.php:212
 #, php-format
 msgid "User added to list %s"
-msgstr ""
+msgstr "A felhasználó felvétele a(z) %s listára megtörtént"
 
 #: admin/commonlib/pages/user.php:294
 msgid "User removed from group"
@@ -5172,43 +5190,43 @@ msgstr ""
 
 #: admin/commonlib/pages/user.php:308
 msgid "No such User"
-msgstr ""
+msgstr "Nincs ilyen felhasználó"
 
 #: admin/commonlib/pages/user.php:327
 msgid "update page"
-msgstr ""
+msgstr "frissítési oldal"
 
 #: admin/commonlib/pages/user.php:328
 msgid "unsubscribe page"
-msgstr ""
+msgstr "lemondási oldal"
 
 #: admin/commonlib/pages/user.php:329
 msgid "History"
-msgstr ""
+msgstr "Előzmények"
 
 #: admin/commonlib/pages/user.php:360
 msgid "Add a new User"
-msgstr ""
+msgstr "Új felhasználó hozzáadása"
 
 #: admin/commonlib/pages/user.php:363
 msgid "User Details"
-msgstr ""
+msgstr "Felhasználó adatai"
 
 #: admin/commonlib/pages/user.php:459
 msgid "User is blacklisted. No emails will be sent to this user"
-msgstr ""
+msgstr "A felhasználó feketelistára került. Ez a felhasználó nem fogja megkapni az e-maileket."
 
 #: admin/commonlib/pages/user.php:462
 msgid "Mailinglist Membership"
-msgstr ""
+msgstr "Levelező lista tagság"
 
 #: admin/commonlib/pages/user.php:487
 msgid "Group Membership"
-msgstr ""
+msgstr "Csoporttagság"
 
 #: admin/commonlib/pages/user.php:490
 msgid "Please select the groups this user is a member of"
-msgstr ""
+msgstr "Válassza ki, hogy mely csoportoknak a tagja ez a felhasználó"
 
 #: admin/commonlib/pages/user.php:571
 #: admin/commonlib/pages/user.php:578
@@ -5221,7 +5239,7 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:157
 msgid "Your privileges for this page are insufficient"
-msgstr ""
+msgstr "Ezen oldal megtekintéséhez Ön nem rendelkezik elegendő jogokkal"
 
 #: admin/commonlib/pages/users.php:213
 msgid "Sorry, only super users can delete users"
@@ -5238,23 +5256,23 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:275
 msgid "Show only unconfirmed users"
-msgstr ""
+msgstr "Csak a vissza nem igazolt felhasználók láthatók"
 
 #: admin/commonlib/pages/users.php:277
 msgid "Show only blacklisted users"
-msgstr ""
+msgstr "Csak a feketelistára felvett felhasználók láthatók"
 
 #: admin/commonlib/pages/users.php:300
 msgid "Sort by"
-msgstr ""
+msgstr "Rendezés"
 
 #: admin/commonlib/pages/users.php:302
 msgid "asc"
-msgstr ""
+msgstr "növ"
 
 #: admin/commonlib/pages/users.php:303
 msgid "Go"
-msgstr ""
+msgstr "Indítás"
 
 #: admin/commonlib/pages/users.php:349
 msgid "too many subscribers, use a search query to list some"
@@ -5262,19 +5280,19 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:360
 msgid "Find a user"
-msgstr ""
+msgstr "Felhasználó keresése"
 
 #: admin/commonlib/pages/users.php:369
 msgid "Email"
-msgstr ""
+msgstr "E-mail cím"
 
 #: admin/commonlib/pages/users.php:372
 msgid "Foreign Key"
-msgstr ""
+msgstr "Idegen kulcs"
 
 #: admin/commonlib/pages/users.php:379
 msgid "reset"
-msgstr ""
+msgstr "Törlés"
 
 #: admin/commonlib/pages/users.php:387
 msgid "Find subscribers"
@@ -5282,19 +5300,19 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:392
 msgid "Download all users as CSV file"
-msgstr ""
+msgstr "Az összes felhasználó letöltése CSV fájlként"
 
 #: admin/commonlib/pages/users.php:393
 msgid "Add a User"
-msgstr ""
+msgstr "Felhasználó hozzáadása"
 
 #: admin/commonlib/pages/users.php:407
 msgid "bl l"
-msgstr ""
+msgstr "fl l"
 
 #: admin/commonlib/pages/users.php:454
 msgid "bncs"
-msgstr ""
+msgstr "vpatt"
 
 #: admin/commonlib/pages/users.php:459
 msgid "no results"
@@ -5302,7 +5320,7 @@ msgstr ""
 
 #: admin/commonlib/pages/users.php:459
 msgid "No users apply"
-msgstr ""
+msgstr "Egy felhasználóra sem vonatkozik"
 
 #: admin/commonlib/pages/attributes.php:24
 msgid "warnemailattribute"
@@ -5314,7 +5332,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:118
 msgid "from"
-msgstr ""
+msgstr "miből"
 
 #: admin/commonlib/pages/attributes.php:181
 msgid "cannotmergeone"
@@ -5326,7 +5344,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:185
 msgid "into"
-msgstr ""
+msgstr "mibe:"
 
 #: admin/commonlib/pages/attributes.php:189
 msgid "notsametype"
@@ -5366,7 +5384,7 @@ msgstr ""
 
 #: admin/commonlib/pages/attributes.php:334
 msgid "forms"
-msgstr ""
+msgstr "űrlapon"
 
 #: admin/commonlib/pages/attributes.php:340
 #: admin/commonlib/pages/attributes.php:392
@@ -5399,7 +5417,7 @@ msgstr ""
 #: admin/commonlib/pages/attributes.php:375
 #: admin/commonlib/pages/attributes.php:403
 msgid "savechanges"
-msgstr ""
+msgstr "Módosítások mentése"
 
 #: admin/commonlib/pages/attributes.php:381
 msgid "withtagged"
@@ -5416,11 +5434,11 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:122
 msgid "Import cleared"
-msgstr ""
+msgstr "Az importálás törlése megtörtént"
 
 #: admin/commonlib/pages/importcsv.php:127
 msgid "Reset Import session"
-msgstr ""
+msgstr "Importálási munkafolyamat alaphelyzetbe állítása"
 
 #: admin/commonlib/pages/importcsv.php:139
 msgid "No file was specified. Maybe the file is too big? "
@@ -5429,16 +5447,16 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:177
 #, php-format
 msgid "Cannot read %s. file is not readable !"
-msgstr ""
+msgstr "%s nem olvasható be. a fájl nem olvasható !"
 
 #: admin/commonlib/pages/importcsv.php:227
 msgid "Reading emails from file ... "
-msgstr ""
+msgstr "E-mail címek beolvasása fájlból ... "
 
 #: admin/commonlib/pages/importcsv.php:262
 #, php-format
 msgid "ok, %d lines"
-msgstr ""
+msgstr "ok, %d sor"
 
 #: admin/commonlib/pages/importcsv.php:370
 msgid "Cannot find column with email, please make sure the column is called &quot;email&quot; and not eg e-mail, and that your column delimiter is correct"
@@ -5446,28 +5464,28 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:380
 msgid "Create new one"
-msgstr ""
+msgstr "Új létrehozása"
 
 #: admin/commonlib/pages/importcsv.php:381
 #: admin/commonlib/pages/importcsv.php:435
 msgid "Skip Column"
-msgstr ""
+msgstr "Oszlop kihagyása"
 
 #: admin/commonlib/pages/importcsv.php:389
 msgid "Import Attributes"
-msgstr ""
+msgstr "Tulajdonságok importálása"
 
 #: admin/commonlib/pages/importcsv.php:401
 msgid "select"
-msgstr ""
+msgstr "legördülő lista"
 
 #: admin/commonlib/pages/importcsv.php:406
 msgid "Please identify the target of the following unknown columns"
-msgstr ""
+msgstr "Azonosítsa be a következő ismeretlen oszlopok célját"
 
 #: admin/commonlib/pages/importcsv.php:423
 msgid "Summary"
-msgstr ""
+msgstr "Összegzés"
 
 #: admin/commonlib/pages/importcsv.php:426
 #: admin/commonlib/pages/importcsv.php:433
@@ -5476,84 +5494,84 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:439
 #: admin/commonlib/pages/importcsv.php:441
 msgid "maps to"
-msgstr ""
+msgstr "megfelel a következőnek"
 
 #: admin/commonlib/pages/importcsv.php:433
 msgid "Create new Attribute"
-msgstr ""
+msgstr "Új tulajdonság létrehozása"
 
 #: admin/commonlib/pages/importcsv.php:441
 msgid "none"
-msgstr ""
+msgstr "nincs"
 
 #: admin/commonlib/pages/importcsv.php:450
 #, php-format
 msgid "%d lines will be imported"
-msgstr ""
+msgstr "%d sor került importálásra"
 
 #: admin/commonlib/pages/importcsv.php:452
 #: admin/commonlib/pages/importcsv.php:935
 msgid "Confirm Import"
-msgstr ""
+msgstr "Importálás megerősítése"
 
 #: admin/commonlib/pages/importcsv.php:453
 msgid "Test Output"
-msgstr ""
+msgstr "Kimenet tesztelése"
 
 #: admin/commonlib/pages/importcsv.php:585
 msgid "clear value"
-msgstr ""
+msgstr "érték törlése"
 
 #: admin/commonlib/pages/importcsv.php:595
 msgid "New Attribute"
-msgstr ""
+msgstr "Új tulajdonság"
 
 #: admin/commonlib/pages/importcsv.php:599
 msgid "Skip value"
-msgstr ""
+msgstr "Érték kihagyása"
 
 #: admin/commonlib/pages/importcsv.php:648
 #: admin/commonlib/pages/importcsv.php:658
 #: admin/commonlib/pages/importcsv.php:659
 msgid "duplicate"
-msgstr ""
+msgstr "duplum"
 
 #: admin/commonlib/pages/importcsv.php:658
 #: admin/commonlib/pages/importcsv.php:693
 msgid "Duplicate Email"
-msgstr ""
+msgstr "Dupla e-mail cím"
 
 #: admin/commonlib/pages/importcsv.php:658
 msgid " user imported as "
-msgstr ""
+msgstr " felhasználó importálva mint "
 
 #: admin/commonlib/pages/importcsv.php:896
 msgid "All the emails already exist in the database and are member of the lists"
-msgstr ""
+msgstr "Az összes e-mail cím az adatbázisban van már, és a listák tagjai"
 
 #: admin/commonlib/pages/importcsv.php:898
 #, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
-msgstr ""
+msgstr "%s e-mail cím importálása sikerült az adatbázisba, és %d listához került hozzáadásra."
 
 #: admin/commonlib/pages/importcsv.php:899
 #, php-format
 msgid "%d emails subscribed to the lists"
-msgstr ""
+msgstr "%d e-mail címről iratkoztak  fel a listákra"
 
 #: admin/commonlib/pages/importcsv.php:901
 #, php-format
 msgid "%s emails already existed in the database"
-msgstr ""
+msgstr "%s e-mail cím már az adatbázisban van"
 
 #: admin/commonlib/pages/importcsv.php:905
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr ""
+msgstr "%d hibás e-mail cím található."
 
 #: admin/commonlib/pages/importcsv.php:907
 msgid "These records were added, but the email has been made up from "
-msgstr ""
+msgstr "Ezek a rekordok kerültek hozzáadásra, az e-mail viszont innen lett kiegészítve: "
 
 #: admin/commonlib/pages/importcsv.php:913
 #, php-format
@@ -5563,25 +5581,25 @@ msgstr ""
 #: admin/commonlib/pages/importcsv.php:916
 #, php-format
 msgid "User data was updated for %d users"
-msgstr ""
+msgstr "%d felhasználó felhasználói adatai kerültek frissítésre"
 
 #: admin/commonlib/pages/importcsv.php:918
 #, php-format
 msgid "%d users were matched by foreign key, %d by email"
-msgstr ""
+msgstr "%d felhasználó került egyeztetésre idegenkulcs alapján, %d by e-mail alapján"
 
 #: admin/commonlib/pages/importcsv.php:935
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
-msgstr ""
+msgstr "Kimenet tesztelése<br/>Ha a kimenet jónak néz ki, akkor kattintson a(z) %s gombra az igazi beküldéshez"
 
 #: admin/commonlib/pages/importcsv.php:982
 msgid "Select the groups to add the users to"
-msgstr ""
+msgstr "Válassza ki a csoportokat, melyekhez hozzá akarja adni a felhasználókat"
 
 #: admin/commonlib/pages/importcsv.php:985
 msgid "automatically added"
-msgstr ""
+msgstr "automatikusan hozzáadva"
 
 #: admin/commonlib/pages/importcsv.php:1010
 msgid "importintro"
@@ -5601,7 +5619,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1022
 msgid "Show Warnings"
-msgstr ""
+msgstr "Láthatók a figyelmeztetések"
 
 #: admin/commonlib/pages/importcsv.php:1023
 msgid "omitinvalid_blurb"
@@ -5609,7 +5627,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1024
 msgid "Omit Invalid"
-msgstr ""
+msgstr "Érvénytelenek kihagyása"
 
 #: admin/commonlib/pages/importcsv.php:1025
 msgid "assigninvalid_blurb"
@@ -5617,7 +5635,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1027
 msgid "Assign Invalid"
-msgstr ""
+msgstr "Érvénytelenek hozzárendelése"
 
 #: admin/commonlib/pages/importcsv.php:1028
 msgid "overwriteexisting_blurb"
@@ -5629,7 +5647,7 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1031
 msgid "Retain Old User Email"
-msgstr ""
+msgstr "A felhasználó régi e-mail címének megőrzése"
 
 #: admin/commonlib/pages/importcsv.php:1036
 msgid "sendnotification_blurb"
@@ -5637,45 +5655,45 @@ msgstr ""
 
 #: admin/commonlib/pages/importcsv.php:1037
 msgid "Send&nbsp;Notification&nbsp;email"
-msgstr ""
+msgstr "Értesítő&nbsp;e-mail&nbsp;küldése"
 
 #: admin/commonlib/pages/importcsv.php:1041
 msgid "Import"
-msgstr ""
+msgstr "Importálás"
 
 #: admin/commonlib/pages/userhistory.php:6
 #: admin/commonlib/pages/userhistory.php:38
 msgid "no such User"
-msgstr ""
+msgstr "Nincs ilyen felhasználó"
 
 #: admin/commonlib/pages/userhistory.php:21
 msgid "you only have privileges to view this page, not change any of the information"
-msgstr ""
+msgstr "Önnek csak ezen oldal megtekintéséhez van joga, bármely információ megváltoztatásához nem"
 
 #: admin/commonlib/pages/userhistory.php:63
 msgid "time"
-msgstr ""
+msgstr "idő"
 
 #: admin/commonlib/pages/userhistory.php:68
 msgid "Messages"
-msgstr ""
+msgstr "üzenet"
 
 #: admin/commonlib/pages/userhistory.php:76
 msgid "messages sent to this user"
-msgstr ""
+msgstr "üzenet került elküldésre ennek a felhasználónak"
 
 #: admin/commonlib/pages/userhistory.php:96
 msgid "viewed"
-msgstr ""
+msgstr "megtekintve"
 
 #: admin/commonlib/pages/userhistory.php:102
 msgid "bounce"
-msgstr ""
+msgstr "visszapattanó"
 
 #: admin/commonlib/pages/userhistory.php:107
 #: admin/commonlib/pages/userhistory.php:108
 msgid "average"
-msgstr ""
+msgstr "átlag"
 
 #: admin/commonlib/pages/userhistory.php:118
 msgid "Subscription"
@@ -5683,19 +5701,19 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:129
 msgid "user is Blacklisted since"
-msgstr ""
+msgstr "A felhasználó feketelistán van ezóta"
 
 #: admin/commonlib/pages/userhistory.php:134
 msgid "are you sure you want to delete this user from the blacklist"
-msgstr ""
+msgstr "Biztosan törölni akarja ezt a felhasználót a feketelistáról"
 
 #: admin/commonlib/pages/userhistory.php:135
 msgid "it should only be done with explicit permission from this user"
-msgstr ""
+msgstr "Ezt csak ennek a felhasználónak a kizárólagos engedélyével lehetne megtenni"
 
 #: admin/commonlib/pages/userhistory.php:136
 msgid "remove User from Blacklist"
-msgstr ""
+msgstr "Felhasználó eltávolítása a feketelistáról"
 
 #: admin/commonlib/pages/userhistory.php:138
 msgid "Blacklist Info"
@@ -5703,7 +5721,7 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:143
 msgid "value"
-msgstr ""
+msgstr "érték"
 
 #: admin/commonlib/pages/userhistory.php:149
 msgid "Subscription History"
@@ -5711,27 +5729,27 @@ msgstr ""
 
 #: admin/commonlib/pages/userhistory.php:152
 msgid "no details found"
-msgstr ""
+msgstr "Nem találhatók részletek"
 
 #: admin/commonlib/pages/userhistory.php:156
 msgid "ip"
-msgstr ""
+msgstr "ip"
 
 #: admin/commonlib/pages/userhistory.php:158
 msgid "summary"
-msgstr ""
+msgstr "összegzés"
 
 #: admin/commonlib/pages/userhistory.php:159
 msgid "detail"
-msgstr ""
+msgstr "részlet"
 
 #: admin/commonlib/pages/userhistory.php:160
 msgid "info"
-msgstr ""
+msgstr "információ"
 
 #: admin/commonlib/pages/userhistory.php:164
 msgid "user subscription history"
-msgstr ""
+msgstr "Felhasználó megrendelési előzményei"
 
 #: admin/commonlib/lib/interfacelib.php:892
 msgid "Back"
@@ -5744,12 +5762,12 @@ msgstr ""
 #: admin/commonlib/lib/interfacelib.php:1234
 #: admin/commonlib/lib/interfacelib.php:1289
 msgid "open"
-msgstr ""
+msgstr "kinyitás"
 
 #: admin/commonlib/lib/interfacelib.php:1242
 #: admin/commonlib/lib/interfacelib.php:1287
 msgid "close"
-msgstr ""
+msgstr "összecsukás"
 
 #: admin/help/index.php:57
 msgid "nohelpavailable"
@@ -5757,27 +5775,27 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:65
 msgid "Daily"
-msgstr ""
+msgstr "Naponta"
 
 #: admin/plugins/rssmanager.php:67
 msgid "Weekly"
-msgstr ""
+msgstr "Hetente"
 
 #: admin/plugins/rssmanager.php:68
 msgid "Monthly"
-msgstr ""
+msgstr "Havonta"
 
 #: admin/plugins/rssmanager.php:95
 msgid "Get RSS feeds"
-msgstr ""
+msgstr "RSS-csatornák lekérése"
 
 #: admin/plugins/rssmanager.php:99
 msgid "View RSS items"
-msgstr ""
+msgstr "RSS-elemek megtekintése"
 
 #: admin/plugins/rssmanager.php:101
 msgid "Purge RSS items"
-msgstr ""
+msgstr "RSS-elemek törlése"
 
 #: admin/plugins/rssmanager.php:104
 msgid "Initialise rssmanager"
@@ -5793,19 +5811,19 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:320
 msgid "rss"
-msgstr ""
+msgstr "rss"
 
 #: admin/plugins/rssmanager.php:323
 msgid "rss freq"
-msgstr ""
+msgstr "rss gyak"
 
 #: admin/plugins/rssmanager.php:327
 msgid "last sent"
-msgstr ""
+msgstr "utolsó küldés"
 
 #: admin/plugins/rssmanager.php:351
 msgid "RSS source"
-msgstr ""
+msgstr "RSS-forrás"
 
 #: admin/plugins/rssmanager.php:353
 msgid "(View Items)"
@@ -5813,27 +5831,27 @@ msgstr ""
 
 #: admin/plugins/rssmanager.php:363
 msgid "validate"
-msgstr ""
+msgstr "érvényesítés"
 
 #: admin/plugins/rssmanager.php:364
 msgid "View Items"
-msgstr ""
+msgstr "Elemek megtekintése"
 
 #: admin/plugins/rssmanager.php:369
 msgid "RSS Source"
-msgstr ""
+msgstr "RSS forrás"
 
 #: admin/plugins/rssmanager.php:399
 msgid "RSS settings"
-msgstr ""
+msgstr "RSS beállításai"
 
 #: admin/plugins/rssmanager.php:400
 msgid "Intro Text"
-msgstr ""
+msgstr "Bevezető szöveg"
 
 #: admin/plugins/rssmanager.php:403
 msgid "Offer option to receive"
-msgstr ""
+msgstr "Lehetőség felajánlása a fogadáshoz"
 
 #: admin/plugins/keymanager.php:54
 msgid "invalid keyring location"
