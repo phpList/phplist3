@@ -1268,46 +1268,13 @@ function addHTMLFooter($message,$footer) {
 function precacheMessage($messageid,$forwardContent = 0) {
   global $cached;
   $domain = getConfig('domain');
-  $default_from = getConfig('message_from_address');
-  if (empty($default_from)) {
-    $default_from = getConfig('admin_address');
-  }
-    
+   
 #    $message = Sql_query("select * from {$GLOBALS["tables"]["message"]} where id = $messageid");
 #    $cached[$messageid] = array();
 #    $message = Sql_fetch_array($message);
   $message = loadMessageData($messageid);
 
-  if (preg_match("/([^ ]+@[^ ]+)/",$message["from"],$regs)) {
-    # if there is an email in the from, rewrite it as "name <email>"
-    $message["from"] = str_replace($regs[0],"",$message["from"]);
-    $cached[$messageid]["fromemail"] = $regs[0];
-    # if the email has < and > take them out here
-    $cached[$messageid]["fromemail"] = str_replace("<","",$cached[$messageid]["fromemail"]);
-    $cached[$messageid]["fromemail"] = str_replace(">","",$cached[$messageid]["fromemail"]);
-    # make sure there are no quotes around the name
-    $cached[$messageid]["fromname"] = str_replace('"',"",ltrim(rtrim($message["from"])));
-  } elseif (strpos($message["from"]," ")) {
-    # if there is a space, we need to add the email
-    $cached[$messageid]["fromname"] = $message["from"];
-  #  $cached[$messageid]["fromemail"] = "listmaster@$domain";
-    $cached[$messageid]["fromemail"] = $default_from;
-  } else {
-    $cached[$messageid]["fromemail"] = $default_from;#$message["from"] . "@$domain";
-
-    ## makes more sense not to add the domain to the word, but the help says it does
-    ## so let's keep it for now
-    $cached[$messageid]["fromname"] = $message["from"] ;#. "@$domain";
-  }
-  # erase double spacing 
-  while (strpos($cached[$messageid]["fromname"],"  ")) {
-    $cached[$messageid]["fromname"] = str_replace("  "," ",$cached[$messageid]["fromname"]);
-  }
-
-  ## this has weird effects when used with only one word, so take it out for now
-#    $cached[$messageid]["fromname"] = eregi_replace("@","",$cached[$messageid]["fromname"]);
-
- if (preg_match("/([^ ]+@[^ ]+)/",$message["replyto"],$regs)) {
+  if (preg_match("/([^ ]+@[^ ]+)/",$message["replyto"],$regs)) {
     # if there is an email in the from, rewrite it as "name <email>"
     $message["replyto"] = str_replace($regs[0],"",$message["replyto"]);
     $cached[$messageid]["replytoemail"] = $regs[0];

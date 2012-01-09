@@ -89,6 +89,11 @@ function setMessageData($msgid,$name,$value) {
 }
 
 function loadMessageData($msgid) {
+  $default_from = getConfig('message_from_address');
+  if (empty($default_from)) {
+    $default_from = getConfig('admin_address');
+  }
+   
   if (!isset($GLOBALS['MD']) || !is_array($GLOBALS['MD'])) {
     $GLOBALS['MD'] = array();
   }
@@ -113,7 +118,7 @@ function loadMessageData($msgid) {
     'requeueinterval' => 0,
     'requeueuntil' =>  array('year' => date('Y'),'month' => date('m'),'day' => date('d'),'hour' => date('H'),'minute' => date('i')),
     'finishsending' => array('year' => date('Y',$finishSending),'month' => date('m',$finishSending),'day' => date('d',$finishSending),'hour' => date('H',$finishSending),'minute' => date('i',$finishSending)),
-    'from' => '',
+    'fromfield' => '',
     'subject' => '',
     'forwardsubject' => '',
     'footer' => getConfig("messagefooter"),
@@ -177,6 +182,37 @@ function loadMessageData($msgid) {
     # if there's a message and no url, make sure to show the editor, and not the URL input
     $messagedata['sendmethod'] = 'inputhere';
   }
+
+  ### parse the from field into it's components - email and name
+  if (preg_match("/([^ ]+@[^ ]+)/",$messagedata["fromfield"],$regs)) {
+    # if there is an email in the from, rewrite it as "name <email>"
+    $messagedata["fromname"] = str_replace($regs[0],"",$messagedata["fromfield"]);
+    $messagedata["fromemail"] = $regs[0];
+    # if the email has < and > take them out here
+    $messagedata["fromemail"] = str_replace("<","",$messagedata["fromemail"]);
+    $messagedata["fromemail"] = str_replace(">","",$messagedata["fromemail"]);
+    # make sure there are no quotes around the name
+    $messagedata["fromname"] = str_replace('"',"",ltrim(rtrim($messagedata["fromname"])));
+  } elseif (strpos($messagedata["fromfield"]," ")) {
+    # if there is a space, we need to add the email
+    $messagedata["fromname"] = $messagedata["fromfield"];
+  #  $cached[$messageid]["fromemail"] = "listmaster@$domain";
+    $messagedata["fromemail"] = $default_from;
+  } else {
+    $messagedata["fromemail"] = $default_from;
+    $messagedata["fromname"] = $messagedata["fromfield"] ;
+  }
+  # erase double spacing 
+  while (strpos($messagedata["fromname"],"  ")) {
+    $messagedata["fromname"] = str_replace("  "," ",$messagedata["fromname"]);
+  }
+  ## if the name ends up being empty, copy the email
+  if (empty($messagedata["fromname"])) {
+    $messagedata["fromname"] = $messagedata["fromemail"];
+  }
+
+  ## this has weird effects when used with only one word, so take it out for now
+#    $cached[$messageid]["fromname"] = eregi_replace("@","",$cached[$messageid]["fromname"]);
 
   $GLOBALS['MD'][$msgid] = $messagedata;
 //  var_dump($messagedata);
