@@ -132,7 +132,7 @@ if ($id) {
 
   print formStart($enctype . ' name="sendmessageform" class="sendSend" id="sendmessageform" ');
   if (empty($send)) {
-    $placeinqueue = '<div id="addtoqueue"><button class="submit" type="submit" name="send" id="addtoqueuebutton">'.$GLOBALS['I18N']->get('sendmessage').'</button></div>';
+    $placeinqueue = '<div id="addtoqueue"><button class="submit" type="submit" name="send" id="addtoqueuebutton">'.$GLOBALS['I18N']->get('Send Campaign').'</button></div>';
   } else {
     ## hide the div in the final "message added to queue" page
   #  print '<div id="addtoqueue"></div>';
@@ -224,7 +224,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
      . ' where id = ?', $tables["message"]);
   $result = Sql_Query_Params($query, array(
        $messagedata['subject']
-     , $messagedata['from']
+     , $messagedata['fromfield']
      , $messagedata['tofield']
      , $messagedata['replyto']
      , sprintf('%04d-%02d-%02d %02d:%02d',
@@ -259,7 +259,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 #    print "Message ID: $id";
     #    exit;
     if (!$GLOBALS["has_pear_http_request"] && preg_match("/\[URL:/i",$_POST["message"])) {
-      print Warn($GLOBALS['I18N']->get('warnnopearhttprequest'));
+      print Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
     }
 
 # we want to create a join on tables as follows, in order to find users who have their attributes to the values chosen
@@ -290,7 +290,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           $tmpfile = $GLOBALS['tmpdir'].'/'.$newtmpfile;
         }
         if (strlen($type) > 255) {
-          print Warn($GLOBALS['I18N']->get("longmimetype"));
+          print Warn($GLOBALS['I18N']->get("Mime Type is longer than 255 characters, this is trouble"));
         }
         $description = $_POST[$fieldname."_description"];
       } else {
@@ -329,7 +329,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           else
             print Info($GLOBALS['I18N']->get("addingattachment")." ".$att_cnt." .. failed");
         } else {
-          print Warn($GLOBALS['I18N']->get("uploadfailed"));
+          print Warn($GLOBALS['I18N']->get("Uploaded file not properly received, empty file"));
         }
       } elseif (!empty($_POST["localattachment".$att_cnt])) {
         $type = findMime(basename($_POST["localattachment".$att_cnt]));
@@ -364,7 +364,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
   // If we're sending the message, just return now to the calling script
   # we only need to check that everything is there, once we actually want to send
-  if ($send && !empty($messagedata['subject']) && !empty($messagedata['from']) && !empty($messagedata['message']) && empty($duplicate_atribute) && sizeof($messagedata["targetlist"])) {
+  if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_atribute) && sizeof($messagedata["targetlist"])) {
     if ($messagedata['status'] == "submitted") {
       print "<h3>".$GLOBALS['I18N']->get("Campaign queued")."</h3>";
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -381,19 +381,19 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   } elseif ($send || $sendtest) {
     $errormessage = "";
     if ($messagedata['subject'] != stripslashes($messagedata['subject'])) {
-      $errormessage = $GLOBALS['I18N']->get("errorsubject");
+      $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the Subject field.');
     } elseif (!empty($_POST["from"]) && $messagedata['from'] != $_POST["from"]) {
-      $errormessage = $GLOBALS['I18N']->get("errorfrom");
-    } elseif (empty($messagedata['from'])) {
-      $errormessage = $GLOBALS['I18N']->get("enterfrom");
+      $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the From field.');
+    } elseif (empty($messagedata['fromfield'])) {
+      $errormessage = $GLOBALS['I18N']->get('Please enter a from line.');
     } elseif (empty($messagedata['message'])) {
-      $errormessage = $GLOBALS['I18N']->get("entermessage");
+      $errormessage = $GLOBALS['I18N']->get('Please enter a message');
     } elseif (empty($messagedata['subject'])) {
-      $errormessage = $GLOBALS['I18N']->get("entersubject");
+      $errormessage = $GLOBALS['I18N']->get('Please enter a subject');
     } elseif (!empty($duplicate_attribute)) {
-      $errormessage = $GLOBALS['I18N']->get("duplicateattribute");
+      $errormessage = $GLOBALS['I18N']->get('Error: you can use an attribute in one rule only');
     } elseif ($send && !is_array($_POST["targetlist"])) {
-      $errormessage = $GLOBALS['I18N']->get("selectlist");
+      $errormessage = $GLOBALS['I18N']->get('Please select the list(s) to send the campaign to');
     }
     echo "$errormessage<br/>";
   }
@@ -404,7 +404,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     $sendtestresult = "<hr/>";
     // Let's send test messages to everyone that was specified in the
     if ($messagedata["testtarget"] == "") {
-      $sendtestresult .= $GLOBALS['I18N']->get("notargetemail")."<br/>";
+      $sendtestresult .= $GLOBALS['I18N']->get("No target email addresses listed for testing.")."<br/>";
     }
 
     if (isset($cached[$id])) {
@@ -441,7 +441,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
             $success = sendEmail($id, $address, $user["uniqid"], 1) && sendEmail($id, $address, $user["uniqid"], 0);
           }
         }
-        $sendtestresult .= $GLOBALS['I18N']->get("sentemailto").": $address ";
+        $sendtestresult .= $GLOBALS['I18N']->get("Sent test mail to").": $address ";
         if (!$success) {
           $sendtestresult .= $GLOBALS['I18N']->get('failed');
         } else {
@@ -449,7 +449,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         }
         $sendtestresult .= '<br/>';
       } else {
-        $sendtestresult .= $GLOBALS['I18N']->get("emailnotfound").": $address";
+        $sendtestresult .= $GLOBALS['I18N']->get("Email address not found to send test message.").": $address";
         $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s" class="button ajaxable">%s</a></div>',$baseurl,urlencode($address),$GLOBALS['I18N']->get("add"));
       }
     }
@@ -466,7 +466,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         $tables["message_attachment"],
         $attid,
         $id));
-      print Info($GLOBALS['I18N']->get("removedattachment"));
+      print Info($GLOBALS['I18N']->get("Removed Attachment "));
       // NOTE THAT THIS DOESN'T ACTUALLY DELETE THE ATTACHMENT FROM THE DATABASE, OR
       // FROM THE FILE SYSTEM - IT ONLY REMOVES THE MESSAGE / ATTACHMENT LINK.  THIS
       // SHOULD PROBABLY BE CORRECTED, BUT I (Pete Ness) AM NOT SURE WHAT OTHER IMPACTS
@@ -567,22 +567,22 @@ if (!$done) {
   print '<input type="hidden" name="followupto" value="" />';
 
   if ($_GET["page"] == "preparemessage")
-    print Help("preparemessage",$GLOBALS['I18N']->get("whatisprepare"));
+    print Help("preparemessage",$GLOBALS['I18N']->get("What is prepare a message"));
 
   if (!defined("IN_WEBBLER")) {
-    if (empty($messagedata['from'])) {
+    if (empty($messagedata['fromfield'])) {
       $defaultFrom = getConfig("campaignfrom_default");
       if (!empty($defaultFrom)) {
-        $messagedata['from'] = $defaultFrom;
+        $messagedata['fromfield'] = $defaultFrom;
       } elseif (USE_ADMIN_DETAILS_FOR_MESSAGES && is_object($GLOBALS["admin_auth"]) && $GLOBALS['require_login']) {
         $adminemail = $GLOBALS["admin_auth"]->adminEmail($_SESSION["logindetails"]["id"]);
         if (!empty($adminemail)) {
-          $messagedata['from'] = $GLOBALS["admin_auth"]->adminName($_SESSION["logindetails"]["id"]).' '.$adminemail;
+          $messagedata['fromfield'] = $GLOBALS["admin_auth"]->adminName($_SESSION["logindetails"]["id"]).' '.$adminemail;
         } else {
-          $messagedata['from'] = getConfig("message_from_name") . ' '.getConfig("message_from_address");
+          $messagedata['fromfield'] = getConfig("message_from_name") . ' '.getConfig("message_from_address");
         }
       } else {
-        $messagedata['from'] = getConfig("message_from_name") . ' '.getConfig("message_from_address");
+        $messagedata['fromfield'] = getConfig("message_from_name") . ' '.getConfig("message_from_address");
       }
     }
   }
@@ -599,7 +599,7 @@ if (!$done) {
 
 // custom code - start
   $utf8_subject = $messagedata['subject'];
-  $utf8_from = $messagedata['from'];
+  $utf8_from = $messagedata['fromfield'];
   if (0 && strcasecmp($GLOBALS['strCharSet'], 'utf-8') <> 0) {
      $utf8_subject = iconv($GLOBALS['strCharSet'],'UTF-8',$utf8_subject);
      $utf8_from = iconv($GLOBALS['strCharSet'],'UTF-8',$utf8_from);
@@ -609,8 +609,8 @@ if (!$done) {
   <div class="field"><label for="subject">'.$GLOBALS['I18N']->get("Subject").Help("subject").'</label>'.
   '<input type="text" name="subject"
     value="'.htmlentities($utf8_subject,ENT_QUOTES,'UTF-8').'" size="60" /></div>
-  <div class="field"><label for="from">'.$GLOBALS['I18N']->get("fromline").Help("from").'</label>'.'
-    <input type="text" name="from"
+  <div class="field"><label for="fromfield">'.$GLOBALS['I18N']->get("From Line").Help("from").'</label>'.'
+    <input type="text" name="fromfield"
    value="'.htmlentities($utf8_from,ENT_QUOTES,'UTF-8').'" size="60" /></div>';
    
    if ($GLOBALS['has_pear_http_request']) {
@@ -649,7 +649,7 @@ if (!$done) {
   $scheduling_content = '<div id="schedulecontent">';
   $scheduling_content .= '
   <div class="field">'.$GLOBALS['I18N']->get("Dates and times are relative to the Server Time").'<br/>'.$GLOBALS['I18N']->get('Current Server Time is').' <span id="servertime">'.$currentTime[0].'</span>'.'</div>
-  <div class="field"><label for="embargo">'.$GLOBALS['I18N']->get("embargoeduntil").Help('embargo').'</label>'.'
+  <div class="field"><label for="embargo">'.$GLOBALS['I18N']->get("Embargoed Until").Help('embargo').'</label>'.'
     '.$embargo->showInput('embargo',"",$messagedata['embargo']).'</div>
   <div class="field"><label for="finishsending">'.$GLOBALS['I18N']->get("Stop sending after").Help('finishsending').'</label>'.'
     '.$embargo->showInput('finishsending',"",$messagedata['finishsending']).'</div>
@@ -1040,7 +1040,7 @@ if (!$done) {
   }
 }
 
-$savecaption = $GLOBALS['I18N']->get('saveasdraft');
+$savecaption = $GLOBALS['I18N']->get('Save as Draft');
 
 ## if all is there, we can enable the send button
 $allReady = true;
@@ -1064,7 +1064,7 @@ if (empty($testValue) && (empty($testValue2) || $testValue2 == 'e.g. http://www.
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('message content missing').'</div>\');
   </script>';
 } 
-$testValue = trim($messagedata['from']);
+$testValue = trim($messagedata['fromfield']);
 if (empty($testValue)) {
   $allReady = false;
   $panelcontent .= '<script type="text/javascript">
