@@ -11,7 +11,7 @@ if (!empty($_REQUEST['firstinstall']) && empty($_REQUEST['adminemail'])) {
   print '<form method="post" action="">';
   print '<input type="hidden" name="firstinstall" value="1" />';
   print '<input type="hidden" name="page" value="initialise" />';
-  print '<p>'.$GLOBALS['I18N']->get('Please enter your email.').'</p>';
+  print '<p>'.$GLOBALS['I18N']->get('Please enter your email address.').'</p>';
 
   /* would be nice to do this, but needs more work
   if (ENCRYPT_ADMIN_PASSWORDS) {
