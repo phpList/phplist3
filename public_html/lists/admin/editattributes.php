@@ -167,7 +167,7 @@ while ($row = Sql_Fetch_array($rs)) {
   printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
   if ($num < 100)
     printf(' <input type="text" name="listorder[%d]" value="%s" size="5" class="listorder" />',$row["id"],$row["listorder"]);
-  printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? $GLOBALS['I18N']->get('(default)'):"");
+  printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? '('.$GLOBALS['I18N']->get('default').')':"");
 }
 if ($num && $num < 100)
   printf('<input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));
