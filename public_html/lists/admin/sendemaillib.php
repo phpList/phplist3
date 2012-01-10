@@ -1274,6 +1274,7 @@ function precacheMessage($messageid,$forwardContent = 0) {
 #    $message = Sql_fetch_array($message);
   $message = loadMessageData($messageid);
 
+  ## the reply to is actually not in use
   if (preg_match("/([^ ]+@[^ ]+)/",$message["replyto"],$regs)) {
     # if there is an email in the from, rewrite it as "name <email>"
     $message["replyto"] = str_replace($regs[0],"",$message["replyto"]);
@@ -1296,8 +1297,10 @@ function precacheMessage($messageid,$forwardContent = 0) {
       $cached[$messageid]["replytoname"] = $message["replyto"] . "@$domain";
     }
   }
+
   
-  $cached[$messageid]["fromname"] = trim($cached[$messageid]["fromname"]);
+  $cached[$messageid]["fromname"] = $message["fromname"];
+  $cached[$messageid]["fromemail"] = $message["fromemail"];
   $cached[$messageid]["to"] = $message["tofield"];
   #0013076: different content when forwarding 'to a friend'
   $cached[$messageid]["subject"] = $forwardContent ? stripslashes($message["forwardsubject"]) : $message["subject"];
