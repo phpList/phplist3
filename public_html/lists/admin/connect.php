@@ -824,8 +824,8 @@ function recentlyVisited() {
       }
     }
     $html .= '</ul>';
+    $_SESSION['browsetrail'] = array_slice($_SESSION['browsetrail'],0,6);
   }
-  $_SESSION['browsetrail'] = array_slice($_SESSION['browsetrail'],0,6);
   return $html;
 }
 
