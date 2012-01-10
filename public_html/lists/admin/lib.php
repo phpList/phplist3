@@ -202,10 +202,13 @@ function loadMessageData($msgid) {
     $messagedata["fromemail"] = $default_from;
     $messagedata["fromname"] = $messagedata["fromfield"] ;
   }
+  $messagedata["fromname"] = trim($messagedata["fromname"]);
+
   # erase double spacing 
   while (strpos($messagedata["fromname"],"  ")) {
     $messagedata["fromname"] = str_replace("  "," ",$messagedata["fromname"]);
   }
+  
   ## if the name ends up being empty, copy the email
   if (empty($messagedata["fromname"])) {
     $messagedata["fromname"] = $messagedata["fromemail"];
@@ -215,7 +218,7 @@ function loadMessageData($msgid) {
 #    $cached[$messageid]["fromname"] = eregi_replace("@","",$cached[$messageid]["fromname"]);
 
   $GLOBALS['MD'][$msgid] = $messagedata;
-//  var_dump($messagedata);
+#  var_dump($messagedata);
   return $messagedata;
 }
 
