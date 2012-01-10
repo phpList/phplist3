@@ -1,8 +1,9 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-if (TEST)
+if (TEST) {
   print $GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist";
+}
 
 $page = '';
 if (isset($_GET['page']) && $_GET["page"]) {
@@ -29,9 +30,9 @@ if (!navigator.cookieEnabled) {
 function footer(){
   echo '<form method="post" id="forgotpassword-form" action="">';
   echo '  <hr width="50%" size="3"/><p class="login">';
-  echo $GLOBALS['I18N']->get('forgot password').':';
-  echo $GLOBALS['I18N']->get('enter your email').': <input type="text" name="forgotpassword" value="" size="30" />';
-  echo '  <input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('send password').'" />';
+  echo $GLOBALS['I18N']->get('Forgot password').':';
+  echo $GLOBALS['I18N']->get('Enter your email address').': <input type="text" name="forgotpassword" value="" size="30" />';
+  echo '  <input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Send password').'" />';
   echo '</p></form>';
 }
 
@@ -44,35 +45,35 @@ function deleteOldTokens(){
 }
 
 //if (ENCRYPT_PASSWORDS) {
-  if(isset($_POST['password1']) && isset($_POST['password2'])) {
+  if (isset($_POST['password1']) && isset($_POST['password2'])) {
+    $SQLquery = sprintf('select date, admin from %s where key_value = "%s" and admin = %d', $GLOBALS['tables']['admin_password_request'],sql_escape($_GET['token']),$_POST['admin']);
+    $tokenData = Sql_Fetch_Row_Query($SQLquery);
     $p1 = $_POST['password1'];
     $p2 = $_POST['password2'];
-    $admin = $_POST['name'];
-    if($p1==$p2) {
+    $adminId = $tokenData[1];
+    $SQLquery=sprintf("select loginname from %s where id = %d;", $GLOBALS['tables']['admin'], $adminId);
+    $adminData = Sql_Fetch_Row_Query($SQLquery);
+    $admin = $adminData[0];
+    if ($p1 == $p2 && !empty($admin)) {
       #Database update.
       if (ENCRYPT_ADMIN_PASSWORDS) {
         $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], md5($p1), $admin);
       }
       else {
-        $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], $p1, $admin);
+        $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], sql_escape($p1), $admin);
       }
+ ##     print $SQLquery;
       $query = Sql_Query($SQLquery);
-      #Retrieve the id.
-      $SQLquery=sprintf("select id from %s where loginname = '%s';", $GLOBALS['tables']['admin'], $admin);
-      $row = Sql_Fetch_Row_Query($SQLquery);
-      if ($row[0]) {
-        echo("Your password was changed succesfully.\n");
-        echo("To return, click: <a href='./'>Home</a>.\n");
-        #Token deletion.
-        $SQLquery=sprintf("delete from %s where admin = %d;", $GLOBALS['tables']['admin_password_request'], $row[0]);
-        $query = Sql_Query($SQLquery);
-      }
+      print $GLOBALS['I18N']->get('Your password was changed succesfully').'<br/>';
+      print '<p><a href="./" class="action-button">'.$GLOBALS['I18N']->get('Continue').'</a></p>';
+      #Token deletion.
+      $SQLquery=sprintf("delete from %s where admin = %d;", $GLOBALS['tables']['admin_password_request'], $adminId);
+      $query = Sql_Query($SQLquery);
     } else {
-        echo("Your passwords are different.");
+      print $GLOBALS['I18N']->get('The passwords you entered are not the same.');
     }
   } elseif (isset($_GET['token'])) {
-    $SQLquery = sprintf("select date, admin from %s where key_value = '".$_GET['token']."';", $GLOBALS['tables']['admin_password_request']);
-    print "\n";
+    $SQLquery = sprintf("select date, admin from %s where key_value = '".sql_escape($_GET['token'])."';", $GLOBALS['tables']['admin_password_request']);
     $row = Sql_Fetch_Row_Query($SQLquery);
     $tokenDate = date("U", strtotime($row[0]));
     $actualDate = date("U");
@@ -81,38 +82,40 @@ function deleteOldTokens(){
       $date=strtotime($row[0]);
       $adminId=$row[1];
       $final_date=date("U", strtotime($row[0]));
-      $SQLquery=sprintf("select loginname from %s where id = %d;", $GLOBALS['tables']['admin'], $adminId);
-      $row = Sql_Fetch_Row_Query($SQLquery);
-      echo "You have requested a password update.\n";
+      print '<p>'.$GLOBALS['I18N']->get('You have requested a password update').'</p>';
       echo "<form method=\"post\" id=\"login-form\" action=\"\">\n";
-      echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
-      echo "  <input type=\"hidden\" name=\"name\" value=\"".$row[0]."\" />\n";
+#      echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
+      echo "  <input type=\"hidden\" name=\"admin\" value=\"".sprintf('%d',$adminId)."\" />\n";
       echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
-      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('name').":</span></td></tr>\n";
-      echo "    <tr><td>".$row[0]."</td></tr>";
-      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('new password').":</span></td></tr>\n";
+#      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
+#      echo "    <tr><td>".$row[0]."</td></tr>";
+      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('New password').":</span></td></tr>\n";
       echo "    <tr><td><input type=\"password\" name=\"password1\" value=\"\" size=\"30\" /></td></tr>";
-      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('confirm password').":</span></td></tr>";
+      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Confirm password').":</span></td></tr>";
       echo "    <tr><td><input type=\"password\" name=\"password2\" value=\"\" size=\"30\" /></td></tr>";
-      echo "    <tr><td><input class=\"submit\" type=\"submit\" name=\"process\" value=\"".$GLOBALS['I18N']->get('enter')."\" /></td></tr>";
+      echo "    <tr><td><input class=\"submit\" type=\"submit\" name=\"process\" value=\"".$GLOBALS['I18N']->get('Continue')."\" /></td></tr>";
       echo "  </table>";
       echo "</form>";
     } else {
-      echo "<p class=\"information\"> Unknown token or time expired (More than 24 hrs. passed since the notification email was sent).<br/><br/>";
-      echo "To return and log in again, click: <a href='./'>login</a>.</p><br/><br/>";
+      echo '<div class="action-result">';
+      print $GLOBALS['I18N']->get('Unknown token or time expired (More than 24 hrs. passed since the notification email was sent)');
+      print '<br/><br/>';
+      session_destroy();
+      print '<p><a href="./" class="action-button">'.$GLOBALS['I18N']->get('Continue').'</a></p>';
       deleteOldTokens();
+      exit;
     }
-    } else {
-    echo "<form method=\"post\" id=\"login-form\" action=\"\">\n";
-    echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
-    echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
-    echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('name').":</span></td></tr>\n";
-    echo "    <tr><td><input type=\"text\" name=\"login\" value=\"\" size=\"30\" /></td></tr>";
-    echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('password').":</span></td></tr>";
-    echo "    <tr><td><input type=\"password\" name=\"password\" value=\"\" size=\"30\" /></td></tr>";
-    echo "    <tr><td><input class=\"submit\" type=\"submit\" name=\"process\" value=\"".$GLOBALS['I18N']->get('enter')."\" /></td></tr>";
-    echo "  </table>";
-    echo "</form>";
-    footer();
-  }
+  } else {
+  echo "<form method=\"post\" id=\"login-form\" action=\"\">\n";
+  echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
+  echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
+  echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
+  echo "    <tr><td><input type=\"text\" name=\"login\" value=\"\" size=\"30\" /></td></tr>";
+  echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Password').":</span></td></tr>";
+  echo "    <tr><td><input type=\"password\" name=\"password\" value=\"\" size=\"30\" /></td></tr>";
+  echo "    <tr><td><input class=\"submit\" type=\"submit\" name=\"process\" value=\"".$GLOBALS['I18N']->get('Continue')."\" /></td></tr>";
+  echo "  </table>";
+  echo "</form>";
+  footer();
+}
 ?>
