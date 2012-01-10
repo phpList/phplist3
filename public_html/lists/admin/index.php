@@ -504,11 +504,11 @@ if (checkAccess($page,"") || $page == 'about') {
     if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
       include ('ui/'.$GLOBALS['ui'].'/pages/'.$include);
     } else {
-      print "$page -&gt; ".$GLOBALS['I18N']->get('notimplemented');
+      print "$page -&gt; ".$GLOBALS['I18N']->get('Sorry, not implemented yet');
     }
   }
 } else {
-  Error($GLOBALS['I18N']->get('noaccess'));
+  Error($GLOBALS['I18N']->get('Access Denied'));
 }
 
 # some debugging stuff
