@@ -78,7 +78,7 @@ if (!empty($_GET['tab'])) {
 ### if we're not working on an existing message, create one and redirect to edit it
 if (!$id) {
   $defaulttemplate = getConfig('defaultmessagetemplate');
-  $defaultfooter = getConfig('messagefooter');
+  $defaultfooter = getConfig('Footer');
   $query
   = " insert into %s"
   . "    (subject, status, entered, sendformat, embargo"
@@ -204,7 +204,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   }
 
   if (!$htmlformatted  && strip_tags($messagedata["message"]) !=  $messagedata["message"])
-    $errormsg = '<span  class="error">'.$GLOBALS['I18N']->get("htmlusedwarning").'</span>';
+    $errormsg = '<span  class="error">'.$GLOBALS['I18N']->get("Warning: You indicated the content was not HTML, but there were  some HTML  tags in it. This  may  cause  errors").'</span>';
     
   $query = sprintf('update %s  set '
      . '  subject = ?'
@@ -556,7 +556,7 @@ if (!$done) {
   // detection of unsaved changes,
   var browser = navigator.appName.substring ( 0, 9 );
   var changed = 0; function haschanged() {changed = 1; }
-  function savechanges() { if (changed) { if (confirm("<?php echo str_replace('"','&quot',reverse_htmlentities($GLOBALS['I18N']->get("unsavedchanges")))?>")) return true; else return false; return false;}}
+  function savechanges() { if (changed) { if (confirm("<?php echo str_replace('"','&quot',reverse_htmlentities($GLOBALS['I18N']->get("Warning, You have unsaved changes\nClick OK to continue, or Cancel to stay on this page\nso you can save the changes.")))?>")) return true; else return false; return false;}}
   //'
   var event_number = 0;if (browser=="Microsoft") {  document.onkeydown=haschanged;  document.onchange=haschanged;} else if (browser=="Netscape") {  document.captureEvents(Event.KEYDOWN);  document.captureEvents(Event.CHANGE); document.onkeydown=haschanged;document.onchange=haschanged;}
   function submitform() { document.sendmessageform.submit() }
@@ -661,11 +661,11 @@ if (!$done) {
     $repeatinterval = $messagedata["repeatinterval"];
 
     $scheduling_content .= '
-    <div class="field"><label for="repeatinterval">'.$GLOBALS['I18N']->get("repeatevery").Help("repetition").'</label>'.'
+    <div class="field"><label for="repeatinterval">'.$GLOBALS['I18N']->get("Repeat campaign every").Help("repetition").'</label>'.'
         <select name="repeatinterval">
       <option value="0"';
       if ($repeatinterval == 0) { $scheduling_content .= ' selected="selected"'; }
-      $scheduling_content .= '>-- '.$GLOBALS['I18N']->get("norepetition").'</option>
+      $scheduling_content .= '>-- '.$GLOBALS['I18N']->get("no repetition").'</option>
       <option value="60"';
       if ($repeatinterval == 60) { $scheduling_content .= ' selected="selected"'; }
       $scheduling_content .= '>'.$GLOBALS['I18N']->get("hour").'</option>
@@ -683,11 +683,11 @@ if (!$done) {
 
   $requeueinterval = $messagedata["requeueinterval"];
   $scheduling_content .= '
-  <div class="field"><label for="requeueinterval"> '.$GLOBALS['I18N']->get("requeueevery").Help("requeueing").'</label>'.'
+  <div class="field"><label for="requeueinterval"> '.$GLOBALS['I18N']->get("requeue every").Help("requeueing").'</label>'.'
     <select name="requeueinterval">
     <option value="0"';
     if ($requeueinterval == 0) { $scheduling_content .= ' selected="selected"'; }
-    $scheduling_content .= '>-- '.$GLOBALS['I18N']->get("norequeueing").'</option>
+    $scheduling_content .= '>-- '.$GLOBALS['I18N']->get("do not requeue").'</option>
     <option value="60"';
     if ($requeueinterval == 60) { $scheduling_content .= ' selected="selected"'; }
     $scheduling_content .= '>'.$GLOBALS['I18N']->get("hour").'</option>
@@ -709,7 +709,7 @@ if (!$done) {
 
   $formatting_content .= '
     <div class="field">
-    <label for="sendformat"> '.$GLOBALS['I18N']->get("sendas").Help("sendformat").'</label>'.'
+    <label for="sendformat"> '.$GLOBALS['I18N']->get("Send As").Help("sendformat").'</label>'.'
   '.$GLOBALS['I18N']->get("html").' <input type="radio" name="sendformat" value="HTML" ';
     $formatting_content .= $messagedata["sendformat"]=="HTML"?'checked="checked"':'';
     $formatting_content .= '/>
@@ -719,7 +719,7 @@ if (!$done) {
   ';
 
 //  0009687: Confusing use of the word "Both", indicating one email with both text and html and not two emails
-//  $formatting_content .= $GLOBALS['I18N']->get("textandhtml").' <input type="radio" name="sendformat" value="text and HTML" ';
+//  $formatting_content .= $GLOBALS['I18N']->get("text and html").' <input type="radio" name="sendformat" value="text and HTML" ';
 //  $formatting_content .= $_POST["sendformat"]=="text and HTML" || !isset($_POST["sendformat"]) ?"checked":"";
 //  $formatting_content .= '/>';
 
@@ -739,8 +739,8 @@ if (!$done) {
 
   $req = Sql_Query("select id,title from {$tables["template"]} order by listorder");
   if (Sql_Num_Rows($req)) {
-    $formatting_content .= '<div class="field"><label for="template">'.$GLOBALS['I18N']->get("usetemplate").Help("usetemplate").'</label>'.'
-      <select name="template"><option value="0">-- '.$GLOBALS['I18N']->get("selectone").'</option>';
+    $formatting_content .= '<div class="field"><label for="template">'.$GLOBALS['I18N']->get("Use Template").Help("usetemplate").'</label>'.'
+      <select name="template"><option value="0">-- '.$GLOBALS['I18N']->get("select one").'</option>';
     $req = Sql_Query("select id,title from {$tables["template"]} order by listorder");
     while ($row = Sql_Fetch_Array($req)) {
       if ($row["title"]) {
@@ -753,7 +753,7 @@ if (!$done) {
 
 //obsolete, moved to rssmanager plugin
 //  if (ENABLE_RSS) {
-//    $rss_content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get("rssintro").'
+//    $rss_content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get("If you want to use this message as the template for sending RSS feeds     select the frequency it should be used for and use [RSS] in your message to indicate where the list of items needs to go.").'
 //    </td></tr>';
 //    $rss_content .= '<tr><td colspan="2"><input type="radio" name="rsstemplate" value="none"/>'.$GLOBALS['I18N']->get("none").' ';
 //    foreach ($rssfrequencies as $key => $val) {
@@ -837,13 +837,13 @@ if (!$done) {
 
   if (USE_MANUAL_TEXT_PART) {
   $textcontent = '<div class="field">
-    <label for="textmessage">'.$GLOBALS['I18N']->get("plaintextversion").Help("plaintextversion").'</label>'.'
+    <label for="textmessage">'.$GLOBALS['I18N']->get("Plain text version of message").Help("plaintextversion").'</label>'.'
     <textarea name="textmessage" cols="65" rows="20">'.$messagedata["textmessage"].'</textarea>
   </div>';
   }
 #var_dump($messagedata);
   #0013076: different content when forwarding 'to a friend'
-  $maincontent .= '<div class="field"><label for="footer">'.$GLOBALS['I18N']->get("messagefooter").Help("footer").'.</label>'.'
+  $maincontent .= '<div class="field"><label for="footer">'.$GLOBALS['I18N']->get("Footer").Help("footer").'.</label>'.'
    <textarea name="footer" cols="65" rows="5">'.htmlspecialchars($messagedata['footer']).'</textarea></div>';
   $forwardcontent .= '<div class="field"><label for="forwardfooter">'.$GLOBALS['I18N']->get("forwardfooter").Help("forwardfooter").'</label>'.'
     <textarea name="forwardfooter" cols="65" rows="5">'.htmlspecialchars($messagedata['forwardfooter']).'</textarea></div>';
@@ -852,11 +852,11 @@ if (!$done) {
     // If we have a message id saved, we want to query the attachments that are associated with this
     // message and display that (and allow deletion of!)
 
-    $att_content = '<div class="field"><label for="attach">'.$GLOBALS['I18N']->get("addattachments").Help("attachments").'</label>';
+    $att_content = '<div class="field"><label for="attach">'.$GLOBALS['I18N']->get("Add attachments to your campaign").Help("attachments").'</label>';
     $att_content .= '<div class="info">
-      '.$GLOBALS['I18N']->get("uploadlimits").':<br/>
-      '.$GLOBALS['I18N']->get("maxtotaldata").': '.ini_get("post_max_size").'<br/>
-      '.$GLOBALS['I18N']->get("maxfileupload").': '.ini_get("upload_max_filesize").'</div>';
+      '.$GLOBALS['I18N']->get("The upload has the following limits set by the server").':<br/>
+      '.$GLOBALS['I18N']->get("Maximum size of total data being sent to the server").': '.ini_get("post_max_size").'<br/>
+      '.$GLOBALS['I18N']->get("Maximum size of each individual file").': '.ini_get("upload_max_filesize").'</div>';
 
     if ($id) {
       $result = Sql_Query(sprintf("Select Att.id, Att.filename, Att.remotefile, Att.mimetype, Att.description, Att.size, MsgAtt.id linkid".
@@ -866,7 +866,7 @@ if (!$done) {
         $id));
 
 
-      $ls = new WebblerListing($GLOBALS['I18N']->get('currentattachments'));
+      $ls = new WebblerListing($GLOBALS['I18N']->get('Current Attachments'));
 
       while ($row = Sql_fetch_array($result)) {
         $ls->addElement($row["id"]);
@@ -885,12 +885,12 @@ if (!$done) {
       $att_content .= '<div>'.$ls->display().'</div>';
     }
     for ($att_cnt = 1;$att_cnt <= NUMATTACHMENTS;$att_cnt++) {
-      $att_content .= sprintf  ('<div>%s</div><div><input type="file" name="attachment%d"/>&nbsp;&nbsp;<input class="submit" type="submit" name="save" value="%s"/></div>',$GLOBALS['I18N']->get('newattachment'),$att_cnt,$GLOBALS['I18N']->get('addandsave'));
+      $att_content .= sprintf  ('<div>%s</div><div><input type="file" name="attachment%d"/>&nbsp;&nbsp;<input class="submit" type="submit" name="save" value="%s"/></div>',$GLOBALS['I18N']->get('New Attachment'),$att_cnt,$GLOBALS['I18N']->get('Add (and save)'));
       if (FILESYSTEM_ATTACHMENTS) {
-        $att_content .= sprintf('<div><b>%s</b> %s:</div><div><input type="text" name="localattachment%d" size="50"/></div>',$GLOBALS['I18N']->get('or'),$GLOBALS['I18N']->get('pathtofile'),$att_cnt,$att_cnt);
+        $att_content .= sprintf('<div><b>%s</b> %s:</div><div><input type="text" name="localattachment%d" size="50"/></div>',$GLOBALS['I18N']->get('or'),$GLOBALS['I18N']->get('Path to file on server'),$att_cnt,$att_cnt);
       }
       $att_content .= sprintf ('<div>%s:</div>
-        <div><textarea name="attachment%d_description" cols="65" rows="3" wrap="virtual"></textarea></div>',$GLOBALS['I18N']->get('attachmentdescription'),$att_cnt);
+        <div><textarea name="attachment%d_description" cols="65" rows="3" wrap="virtual"></textarea></div>',$GLOBALS['I18N']->get('Description of attachment'),$att_cnt);
     }
     $att_content .= '</div>';
     # $shader = new WebblerShader("Attachments");
@@ -919,10 +919,10 @@ if (!$done) {
   // Display the HTML for the "Send Test" button, and the input field for the email addresses
   $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     %s
-    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
+    <input class="submit" type="submit" name="sendtest" value="%s"/> '.Help('sendtest').' %s: 
     <input type="text" name="testtarget" size="40" value="'.$messagedata["testtarget"].'"/><br />%s
     </div>',$sendtestresult,
-    $GLOBALS['I18N']->get('sendtestmessage'),$GLOBALS['I18N']->get('toemailaddresses'),
+    $GLOBALS['I18N']->get('Send Test'),$GLOBALS['I18N']->get(' to email address(es)'),
     $GLOBALS['I18N']->get('(comma separate addresses - all must be existing subscribers)'));
 
   # notification of progress of message sending
@@ -1090,12 +1090,12 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 
 if ($allReady) {
   $panelcontent .= '<script type="text/javascript">
-  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars($GLOBALS['I18N']->get('sendmessage')).'">\');
+  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars($GLOBALS['I18N']->get('Send Campaign')).'">\');
   </script>';
 } else {
   $panelcontent .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="error">'.$GLOBALS['I18N']->get('Some required information is missing. The send button will be enabled when this is resolved.').'</div>\');
-//  $("#addtoqueue").append(\'<button class="submit" type="submit" name="save" id="addtoqueuebutton" disabled="disabled">'.$GLOBALS['I18N']->get('sendmessage').'</button>\');
+//  $("#addtoqueue").append(\'<button class="submit" type="submit" name="save" id="addtoqueuebutton" disabled="disabled">'.$GLOBALS['I18N']->get('Send Campaign').'</button>\');
   </script>';
 }
 
