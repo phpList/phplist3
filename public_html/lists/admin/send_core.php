@@ -145,8 +145,8 @@ if ($id) {
 $htmlformatted = strip_tags($messagedata["message"]) != $messagedata["message"];
 
 # sanitise the header fields, what else do we need to check on?
-if (preg_match("/\n|\r/",$messagedata["from"])) {
-  $messagedata["from"] = "";
+if (preg_match("/\n|\r/",$messagedata["fromfield"])) {
+  $messagedata["fromfield"] = "";
 } 
 if (preg_match("/\n|\r/",$messagedata["forwardsubject"])) {
   $messagedata["forwardsubject"] = "";
@@ -395,7 +395,9 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     } elseif ($send && !is_array($_POST["targetlist"])) {
       $errormessage = $GLOBALS['I18N']->get('Please select the list(s) to send the campaign to');
     }
-    echo "$errormessage<br/>";
+
+    ## this is now handled on the last Tab, so don't display
+#    echo "$errormessage<br/>";
   }
 
   // OK, the message has been saved, now check to see if we need to send a test message
