@@ -1,7 +1,6 @@
-
-<hr/>
-
 <?php
+require_once dirname(__FILE__).'/accesscheck.php';
+
 #Variable initialisation to avoid PHP notices.
 if (isset($_GET['start']))
 	$start = (int) $_GET['start'];
@@ -16,8 +15,6 @@ if (isset($_GET['find']))
 else
 	$find = 0;
 	
-require_once dirname(__FILE__).'/accesscheck.php';
-
 $external = $require_login && $GLOBALS["admin_auth_module"] != 'phplist_auth.inc';
 $start = isset($_GET['start']) ? sprintf('%d',$_GET['start']):0;
 $listid = isset($_GET['id']) ? sprintf('%d',$_GET['id']): 0;
@@ -31,7 +28,7 @@ if (!empty($find)) {
 
 # with external admins we simply display information
 if (!$external) {
-  print PageLink2("admin",$GLOBALS['I18N']->get('Add new admin'),"start=$start".$remember_find);
+  print PageLinkActionButton("admin",$GLOBALS['I18N']->get('Add new admin'),"start=$start".$remember_find);
 
   if (isset($_GET["delete"]) && $_GET["delete"]) {
     # delete the index in delete
@@ -126,7 +123,7 @@ while ($admin = Sql_fetch_array($result)) {
 }
 print $ls->display();
 print '<br/><hr/>';
-print PageLink2("admin",$GLOBALS['I18N']->get('Add new admin'),"start=$start".$remember_find);
+print PageLink2("admin",$GLOBALS['I18N']->get('Add a new administrator'),"start=$start".$remember_find);
 print '<p class="button">'.PageLink2("importadmin",$GLOBALS['I18N']->get('Import list of admins')).'</p>';
 
 ?>
