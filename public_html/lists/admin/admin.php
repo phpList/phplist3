@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 $start = sprintf('%d',!empty($_GET['start'])?$_GET['start']:0);
-print PageLink2("admins",$GLOBALS['I18N']->get('List of Administrators'),"start=$start");
+print PageLinkActionButton("admins",$GLOBALS['I18N']->get('List of Administrators'),"start=$start");
 
 require dirname(__FILE__) . "/structure.php";
 
@@ -64,7 +64,7 @@ if (!empty($_POST["change"])) {
     }
     if (ENCRYPT_ADMIN_PASSWORDS && !empty($_POST['updatepassword'])){
       //Send token email.
-      print sendAdminPasswordToken($id);
+      print '<div class="actionresult">'.sendAdminPasswordToken($id).'</div>';
     }
     ## check for password changes
     if (isset($_POST['password'])) {
