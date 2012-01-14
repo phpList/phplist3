@@ -558,8 +558,7 @@ if (!$done) {
   // detection of unsaved changes,
   var browser = navigator.appName.substring ( 0, 9 );
   var changed = 0; function haschanged() {changed = 1; }
-  function savechanges() { if (changed) { if (confirm("<?php echo str_replace('"','&quot',reverse_htmlentities($GLOBALS['I18N']->get("Warning, You have unsaved changes\nClick OK to continue, or Cancel to stay on this page\nso you can save the changes.")))?>")) return true; else return false; return false;}}
-  //'
+  function savechanges() { }
   var event_number = 0;if (browser=="Microsoft") {  document.onkeydown=haschanged;  document.onchange=haschanged;} else if (browser=="Netscape") {  document.captureEvents(Event.KEYDOWN);  document.captureEvents(Event.CHANGE); document.onkeydown=haschanged;document.onchange=haschanged;}
   function submitform() { document.sendmessageform.submit() }
   </script>
@@ -678,14 +677,14 @@ if (!$done) {
       if ($repeatinterval == 10080) { $scheduling_content .= ' selected="selected"'; }
       $scheduling_content .= '>'.$GLOBALS['I18N']->get("week").'</option>
       </select>
-        <label for="repeatuntil">'.$GLOBALS['I18N']->get("repeatuntil").'</label>
+        <label for="repeatuntil">'.$GLOBALS['I18N']->get("Repeat Until").'</label>
         '.$repeatuntil->showInput("repeatuntil","",$messagedata["repeatuntil"]);
       $scheduling_content .= '</div>';
   }
 
   $requeueinterval = $messagedata["requeueinterval"];
   $scheduling_content .= '
-  <div class="field"><label for="requeueinterval"> '.$GLOBALS['I18N']->get("requeue every").Help("requeueing").'</label>'.'
+  <div class="field"><label for="requeueinterval"> '.$GLOBALS['I18N']->get("Requeue every").Help("requeueing").'</label>'.'
     <select name="requeueinterval">
     <option value="0"';
     if ($requeueinterval == 0) { $scheduling_content .= ' selected="selected"'; }
@@ -701,7 +700,7 @@ if (!$done) {
     $scheduling_content .= '>'.$GLOBALS['I18N']->get("week").'</option>
     </select>
 
-      <label for="requeueuntil">'.$GLOBALS['I18N']->get("requeueuntil").'</label>
+      <label for="requeueuntil">'.$GLOBALS['I18N']->get("Requeue Until").'</label>
       '.$requeueuntil->showInput("requeueuntil","",$messagedata["requeueuntil"]);
     $scheduling_content .= '</div>';
 
@@ -711,7 +710,7 @@ if (!$done) {
 
   $formatting_content .= '
     <div class="field">
-    <label for="sendformat"> '.$GLOBALS['I18N']->get("Send As").Help("sendformat").'</label>'.'
+    <label for="sendformat"> '.$GLOBALS['I18N']->get("Send as").Help("sendformat").'</label>'.'
   '.$GLOBALS['I18N']->get("html").' <input type="radio" name="sendformat" value="HTML" ';
     $formatting_content .= $messagedata["sendformat"]=="HTML"?'checked="checked"':'';
     $formatting_content .= '/>
@@ -1084,6 +1083,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
   if ($pluginerror) {
     $allReady = false;
+    $pluginerror = preg_replace("/\n/","",$pluginerror);
     $panelcontent .= '<script type="text/javascript">
     $("#addtoqueue").append(\'<div class="missing">'.$pluginerror.'</div>\');
     </script>';
