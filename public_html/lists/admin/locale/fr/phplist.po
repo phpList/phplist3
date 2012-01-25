@@ -3,13 +3,15 @@ msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-05 19:06-0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: phpList <info@phplist.com>\n"
+"PO-Revision-Date: 2012-01-25 16:36+0200\n"
+"Last-Translator: Julien <julien.lusson@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.0.5\n"
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: UNITED KINGDOM\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -21,15 +23,17 @@ msgstr ""
 
 #: admin/subscriberstats.php:6
 msgid "Statistics"
-msgstr "Statistics"
+msgstr "Statistiques"
 
 #: admin/import1.php:7
 msgid "import is not available"
-msgstr ""
+msgstr "l'importation n'est pas disponible"
 
 #: admin/import1.php:29
 msgid "The temporary directory for uploading is not writable, so import will fail"
-msgstr "Le r&eacute;pertoire temporaire pour les t&eacute;l&eacute;chargements n&rsquo;a pas d&rsquo;acc&egrave;s en &eacute;criture; par cons&eacute;quent, l&rsquo;importation &eacute;chouera"
+msgstr ""
+"Le dossier temporaire pour les t&eacute;l&eacute;chargements n&rsquo;est pas "
+"inscriptible, par cons&eacute;quent, l&rsquo;importation &eacute;chouera"
 
 #: admin/import1.php:39
 msgid "No file was specified. Maybe the file is too big?"
@@ -5951,4 +5955,3 @@ msgstr ""
 #: admin/ui/ph/pages/dashboard.php:92
 msgid "Hide forever"
 msgstr ""
-
