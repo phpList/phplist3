@@ -228,7 +228,7 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
   if (class_exists('admin_auth')) {
     $GLOBALS["admin_auth"] = new admin_auth();
   } else {
-    print Fatal_Error($GLOBALS['I18N']->get('admininitfailure'));
+    print Fatal_Error($GLOBALS['I18N']->get('Admin Authentication initialisation failure'));
     return;
   }
   if ((!isset($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]) && isset($_REQUEST["login"]) && isset($_REQUEST["password"])) {
@@ -266,11 +266,11 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
       $pass = $GLOBALS["admin_auth"]->getPassword($_REQUEST["forgotpassword"]);
     } 
     if ($pass) {
-      sendMail ($_REQUEST["forgotpassword"],$GLOBALS['I18N']->get('yourpassword'),"\n\n".$GLOBALS['I18N']->get('yourpasswordis')." $pass");
-      $msg = $GLOBALS['I18N']->get('passwordsent');
+      sendMail ($_REQUEST["forgotpassword"],$GLOBALS['I18N']->get('Your password for phplist'),"\n\n".$GLOBALS['I18N']->get('Your password is')." $pass");
+      $msg = $GLOBALS['I18N']->get('Your password has been sent by email');
       logEvent(sprintf($GLOBALS['I18N']->get('successful password request from %s for %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["forgotpassword"]));
     } else {
-      $msg = $GLOBALS['I18N']->get('cannotsendpassword');
+      $msg = $GLOBALS['I18N']->get('Unable to send the password');
       logEvent(sprintf($GLOBALS['I18N']->get('failed password request from %s for %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["forgotpassword"]));
     }
     $page = "login";
@@ -279,7 +279,7 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
     $page = "login";
   } elseif (CHECK_SESSIONIP && $_SESSION["adminloggedin"] && $_SESSION["adminloggedin"] != $_SERVER["REMOTE_ADDR"]) {
     logEvent(sprintf($GLOBALS['I18N']->get('login ip invalid from %s for %s (was %s)'),$_SERVER['REMOTE_ADDR'],$_SESSION["logindetails"]['adminname'],$_SESSION["adminloggedin"]));
-    $msg = $GLOBALS['I18N']->get('ipchanged');
+    $msg = $GLOBALS['I18N']->get('Your IP address has changed. For security reasons, please login again');
     $_SESSION["adminloggedin"] = "";
     $_SESSION["logindetails"] = "";
     $page = "login";
@@ -347,11 +347,11 @@ if ($GLOBALS["require_login"] && $page != "login") {
   } else {
     $hr = date("G");
     if ($hr > 0 && $hr < 12) {
-      $greeting = $GLOBALS['I18N']->get('goodmorning');
+      $greeting = $GLOBALS['I18N']->get('good morning');
     } elseif ($hr <= 18) {
-      $greeting = $GLOBALS['I18N']->get('goodafternoon');
+      $greeting = $GLOBALS['I18N']->get('good afternoon');
     } else {
-      $greeting = $GLOBALS['I18N']->get('goodevening');
+      $greeting = $GLOBALS['I18N']->get('good evening');
     }
   }
 
@@ -379,23 +379,23 @@ if (!$ajax && $page != "login") {
     Error($GLOBALS['I18N']->get('It is safer to set Register Globals in your php.ini to be <b>off</b> instead of ').ini_get("register_globals") );
   }
   if (ini_get("safe_mode") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('safemodewarning'));
+    Warn($GLOBALS['I18N']->get('In safe mode, not everything will work as expected'));
 
     /* this needs checking 
   if (!ini_get("magic_quotes_gpc") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('magicquoteswarning'));
+    Warn($GLOBALS['I18N']->get('Things will work better when PHP magic_quotes_gpc = on'));
     
   if (ini_get("magic_quotes_runtime") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('magicruntimewarning'));
+    Warn($GLOBALS['I18N']->get('Things will work better when PHP magic_quotes_runtime = off'));
     */
   if (defined("ENABLE_RSS") && ENABLE_RSS && !function_exists("xml_parse") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('noxml'));
+    Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
 
   if (ALLOW_ATTACHMENTS && WARN_ABOUT_PHP_SETTINGS && (!is_dir($GLOBALS["attachment_repository"]) || !is_writable ($GLOBALS["attachment_repository"]))) {
     if (ini_get("open_basedir")) {
-      Warn($GLOBALS['I18N']->get('warnopenbasedir'));
+      Warn($GLOBALS['I18N']->get('open_basedir restrictions are in effect, which may be the cause of the next warning'));
     }
-    Warn($GLOBALS['I18N']->get('warnattachmentrepository'));
+    Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
 }
 
@@ -436,7 +436,7 @@ if (!empty($_COOKIE['browsetrail'])) {
 }
 
 if (defined("USE_PDF") && USE_PDF && !defined('FPDF_VERSION')) {
-  Warn($GLOBALS['I18N']->get('nofpdf'));
+  Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
 }
 
 $this_doc = getenv("REQUEST_URI");
@@ -444,7 +444,7 @@ if (preg_match("#(.*?)/admin?$#i",$this_doc,$regs)) {
   $check_pageroot = $pageroot;
   $check_pageroot = preg_replace('#/$#','',$check_pageroot);
   if ($check_pageroot != $regs[1] && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('warnpageroot'));
+    Warn($GLOBALS['I18N']->get('The pageroot in your config does not match the current locationCheck your config file.'));
 }
 
 clearstatcache();
@@ -493,7 +493,7 @@ if (checkAccess($page,"") || $page == 'about') {
       }
       print '</ul>';
     } else {
-      print '<br/>'."$page -&gt; ".$I18N->get("pagenotfoundinplugin").'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
+      print '<br/>'."$page -&gt; ".$I18N->get('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
       #print $plugin->coderoot . "$include";
     }
   } else {
