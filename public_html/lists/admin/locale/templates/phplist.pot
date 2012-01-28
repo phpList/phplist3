@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 22:01-0300\n"
-"PO-Revision-Date: 2012-01-27 22:01-0300\n"
+"POT-Creation-Date: 2012-01-27 22:28-0300\n"
+"PO-Revision-Date: 2012-01-27 22:28-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -2663,7 +2663,7 @@ msgid "view users"
 msgstr ""
 
 #: public_html/lists/admin/subscribelib2.php:103
-msgid "spamblockemailintro"
+msgid "  -------------------------------------------------------------------------------- This is a notification of a possible spam attack to your phplist subscribe page. The data submitted has been copied below, so you can check whether this was actually the case. The submitted data has been converted into non-html characters, for security reasons.  If you want to stop receiving this message, set     define(\"NOTIFY_SPAM\",0);  in your phplist config file.  This subscriber has not been added to the database. If there is an error, you will need to  add them manually.  --------------------------------------------------------------------------------  "
 msgstr ""
 
 #: public_html/lists/admin/subscribelib2.php:309
@@ -4867,69 +4867,69 @@ msgstr ""
 msgid "Recently Visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1033
-msgid "alllists"
+#: public_html/lists/admin/connect.php:1051
+msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1039
+#: public_html/lists/admin/connect.php:1057
 msgid "All Active Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1069
-msgid "listactive"
+#: public_html/lists/admin/connect.php:1087
+msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1071
-msgid "listnotactive"
+#: public_html/lists/admin/connect.php:1089
+msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1112
-msgid "nolistsavailable"
+#: public_html/lists/admin/connect.php:1130
+msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1710
+#: public_html/lists/admin/connect.php:1728
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1713
+#: public_html/lists/admin/connect.php:1731
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1716
+#: public_html/lists/admin/connect.php:1734
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1719
+#: public_html/lists/admin/connect.php:1737
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1722
+#: public_html/lists/admin/connect.php:1740
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1767
+#: public_html/lists/admin/connect.php:1785
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1769
+#: public_html/lists/admin/connect.php:1787
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1785
+#: public_html/lists/admin/connect.php:1803
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1786
+#: public_html/lists/admin/connect.php:1804
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1787
+#: public_html/lists/admin/connect.php:1805
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1788
+#: public_html/lists/admin/connect.php:1806
 msgid "Last Page"
 msgstr ""
 
