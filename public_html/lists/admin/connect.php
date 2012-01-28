@@ -803,6 +803,7 @@ function recentlyVisited() {
     $html .= '<h3>'.$GLOBALS['I18N']->get('Recently Visited').'</h3><ul class="recentlyvisited">';
     $browsetrail = array_unique($_SESSION['browsetrail']);
     $browsetrail = array_reverse($browsetrail);
+    $browsetaildone = array();
     foreach ($browsetrail as $pageid => $visitedpage) {
       if (strpos($visitedpage,'SEP')) { ## old method, store page title in cookie. However, that breaks on multibyte languages
         list($pageurl,$pagetitle) = explode('SEP',$visitedpage);
@@ -815,14 +816,31 @@ function recentlyVisited() {
       } else {
         if (@preg_match('/\?page=([\w]+)/',$visitedpage,$regs)) {
           $p = $regs[1];
+          $urlparams = array();
+          $pairs = explode('&',$visitedpage);
+          foreach ($pairs as $pair) {
+            list($var,$val) = explode('=',$pair);
+            $urlparams[$var] = $val;
+          }
+          ## pass on ID
+          if (isset($urlparams['id'])) {
+            $urlparams['id'] = sprintf('%d',$urlparams['id']);
+          }
+          $url = 'page='.$p;
+          if (!empty($urlparams['id'])) {
+            $url .= '&id='.$urlparams['id'];
+          }
+          
           $title = $GLOBALS['I18N']->pageTitle($p);
-          if (!empty($p) && !empty($title)) {
-            $html .= '<li class="shade'.$shade.'"><a href="./?page='.$p.'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
+          if (!empty($p) && !empty($title) && !in_array($url,$browsetaildone)) {
+            $html .= '<li class="shade'.$shade.'"><a href="./?'.$url.'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
             $shade = !$shade;
+            $browsetaildone[] = $url;
           }
         }
       }
     }
+   
     $html .= '</ul>';
     $_SESSION['browsetrail'] = array_slice($_SESSION['browsetrail'],0,6);
   }
@@ -1030,7 +1048,7 @@ function ListofLists($current,$fieldname,$subselect) {
   if (!empty($current["all"])) {
     $categoryhtml['all'] .= "checked";
   }
-  $categoryhtml['all'].= ' />'.$GLOBALS['I18N']->get('alllists').'</li>';
+  $categoryhtml['all'].= ' />'.$GLOBALS['I18N']->get('All Lists').'</li>';
 
   $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
   if (!empty($current["allactive"])) {
@@ -1066,9 +1084,9 @@ function ListofLists($current,$fieldname,$subselect) {
     }
     $categoryhtml[$list['category']] .= " />".stripslashes($list["name"]);
     if ($list["active"]) {
-      $categoryhtml[$list['category']] .= ' (<span class="activelist">'.$GLOBALS['I18N']->get('listactive').'</span>)';
+      $categoryhtml[$list['category']] .= ' (<span class="activelist">'.$GLOBALS['I18N']->get('Public list').'</span>)';
     } else {
-      $categoryhtml[$list['category']] .= ' (<span class="inactivelist">'.$GLOBALS['I18N']->get('listnotactive').'</span>)';
+      $categoryhtml[$list['category']] .= ' (<span class="inactivelist">'.$GLOBALS['I18N']->get('Private list').'</span>)';
     }
 
     if (!empty($list["description"])) {
@@ -1109,7 +1127,7 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
   $html .= '</div>'; ## close tabbed
 
   if (!$some) {
-    $html = $GLOBALS['I18N']->get('nolistsavailable');
+    $html = $GLOBALS['I18N']->get('There are no lists available');
   }
   return $html;
 }
