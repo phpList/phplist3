@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 19:40-0300\n"
-"PO-Revision-Date: 2012-01-27 19:40-0300\n"
+"POT-Creation-Date: 2012-01-27 22:01-0300\n"
+"PO-Revision-Date: 2012-01-27 22:01-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get\n"
-"X-Poedit-Basepath: phplist/translate/phplist\n"
+"X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
 "X-Poedit-Language: english\n"
 "X-Poedit-Country: uk\n"
 "X-Poedit-SearchPath-0: public_html\n"
@@ -3515,11 +3515,11 @@ msgid "configuration steps"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:5
-msgid "Existing Users"
+msgid "Existing subscribers"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:6
-msgid "Non Existing Users "
+msgid "Non existing subscribers "
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:19
@@ -4789,6 +4789,10 @@ msgstr ""
 msgid "phplist Import Results"
 msgstr ""
 
+#: public_html/lists/admin/importsimple.php:125
+msgid "Adding subscribers"
+msgstr ""
+
 #: public_html/lists/admin/importsimple.php:133
 msgid "Please enter the emails to import, one per line, in the box below and click \"Import Emails\""
 msgstr ""
@@ -4798,7 +4802,7 @@ msgid "Check to skip emails that are not valid"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:137
-msgid "Import Emails"
+msgid "Import emails"
 msgstr ""
 
 #: public_html/lists/admin/usermgt.php:8
@@ -4978,10 +4982,6 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:66
 msgid "save changes"
-msgstr ""
-
-#: public_html/lists/admin/actions/storemessage.php:17
-msgid "warnnopearhttprequest"
 msgstr ""
 
 #: public_html/lists/admin/actions/checkurl.php:20
