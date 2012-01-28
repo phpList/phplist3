@@ -401,7 +401,7 @@ function sendMailPhpMailer ($to,$subject,$message) {
     } else {
       $textmessage = $message;
       $htmlmessage = $message;
-      $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
+    #  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
       $htmlmessage = nl2br($htmlmessage);
       ## make links clickable:
       preg_match_all('~https?://[^\s<]+~i',$htmlmessage,$matches);
