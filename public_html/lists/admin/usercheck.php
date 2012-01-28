@@ -2,8 +2,8 @@
 
 $content = '';
 if (isset($_POST["usercheck"])) {
-  $lsexist = new WebblerListing($GLOBALS["I18N"]->get("Existing Users"));
-  $lsnonexist = new WebblerListing($GLOBALS["I18N"]->get("Non Existing Users "));
+  $lsexist = new WebblerListing($GLOBALS["I18N"]->get("Existing subscribers"));
+  $lsnonexist = new WebblerListing($GLOBALS["I18N"]->get("Non existing subscribers "));
   $users = explode("\n",$_POST["usercheck"]);
   foreach ($users as $user) {
     $user = trim($user);
