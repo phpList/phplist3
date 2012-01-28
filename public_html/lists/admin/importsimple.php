@@ -122,7 +122,7 @@ $total = Sql_Num_Rows($result);
 $c=0;
 if ($total == 1) {
   $row = Sql_fetch_array($result);
-  $content .= sprintf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.$GLOBALS['I18N']->get('adding_users').' <b>%s</b>',$c,stripslashes($row["name"]),$c,$row["id"],stripslashes($row["name"]));
+  $content .= sprintf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.$GLOBALS['I18N']->get('Adding subscribers').' <b>%s</b>',$c,stripslashes($row["name"]),$c,$row["id"],stripslashes($row["name"]));
 } else {
   $content .= '<p class="button">'.$GLOBALS['I18N']->get('Select the lists to add the emails to').'</p>';
 
@@ -134,7 +134,7 @@ $GLOBALS['I18N']->get('Please enter the emails to import, one per line, in the b
 #$GLOBALS['I18N']->get('<b>Warning</b>: the emails you import will not be checked on validity. You can do this later on the "reconcile subscribers" page.');
 $content .= '</p>';
 $content .= '<div class="field"><input type="checkbox" name="checkvalidity" value="1" checked="checked" /> '.$GLOBALS['I18N']->get('Check to skip emails that are not valid').'</div>';
-$content .= '<div class="field"><input type="submit" name="doimport" value="'.$GLOBALS['I18N']->get('Import Emails').'" ></div>';
+$content .= '<div class="field"><input type="submit" name="doimport" value="'.$GLOBALS['I18N']->get('Import emails').'" ></div>';
 $content .= '<div class="field"><textarea name="importcontent" rows="10" cols="40"></textarea></div>';
 
 $panel = new UIPanel('',$content);
