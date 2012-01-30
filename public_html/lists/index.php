@@ -243,6 +243,7 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
         foreach (explode(',',$GLOBALS['pagedata']["lists"]) as $listid) {
           $_POST['list'][$listid] = 'signup';
         }
+        $_POST['htmlemail'] = 1; ## @@ should actually be taken from the subscribe page data
       
         $success = require "admin/subscribelib2.php";
         $result = ob_get_contents();
