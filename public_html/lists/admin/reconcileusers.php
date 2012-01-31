@@ -408,7 +408,7 @@ function snippetListsSelector ($optionAll = false) {
 }
 
 print '<ul>';
-echo '<li>'.PageLinkButton("reconcileusers&amp;option=nolists",$GLOBALS['I18N']->get("Delete all subscribers who are not subscribed to any list")).'</li>';
+#echo '<li>'.PageLinkButton("reconcileusers&amp;option=nolists",$GLOBALS['I18N']->get("Delete all subscribers who are not subscribed to any list")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=invalidemail",$GLOBALS['I18N']->get("Find users who have an invalid email")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=adduniqid",$GLOBALS['I18N']->get("Make sure that all users have a UniqID")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=markinvalidunconfirmed",$GLOBALS['I18N']->get("Mark all users with an invalid email as unconfirmed")).'</li>';
@@ -458,6 +458,8 @@ print '</ul>';
 </select> <?php echo $GLOBALS['I18N']->get('bounces')?> <input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
 <p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a user, not consecutive bounces')?></p>
 
+<?php 
+/*
 <!--form method="get">
 <table class="reconcileForm"><tr><td colspan="2">
 <?php echo $GLOBALS['I18N']->get('To resend the request for confirmation to users who signed up and have not confirmed their subscription')?></td></tr>
@@ -472,7 +474,8 @@ print '</ul>';
 <input type="hidden" name="page" value="reconcileusers" />
 <input type="hidden" name="option" value="resendconfirm" />
 <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form-->
-
+*/
+?>
 <hr/>
 <form method="get">
 <table class="reconcileForm"><tr><td colspan="2">
