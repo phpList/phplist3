@@ -183,7 +183,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   } elseif ($send) {
     // We're sending - change state to "send-it" status!
     if (is_array($messagedata["targetlist"]) && sizeof($messagedata["targetlist"]) 
-      && !empty($messagedata['subject']) && !empty($messagedata['from']) && 
+      && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && 
       !empty($messagedata['message']) && empty($duplicate_attribute)) {
       $messagedata['status'] = "submitted";
       setMessageData($id,'status','submitted');
@@ -361,6 +361,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 #    $id = $messageid; // New ID - need to set it for later use (test email).
     print "<h3>".$GLOBALS['I18N']->get("Campaign added")."</h3><br/>";
   }
+ // var_dump($messagedata);
 
   // If we're sending the message, just return now to the calling script
   # we only need to check that everything is there, once we actually want to send
@@ -382,7 +383,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     $errormessage = "";
     if ($messagedata['subject'] != stripslashes($messagedata['subject'])) {
       $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the Subject field.');
-    } elseif (!empty($_POST["from"]) && $messagedata['from'] != $_POST["from"]) {
+    } elseif (!empty($_POST["fromfield"]) && $messagedata['fromfield'] != $_POST["from"]) {
       $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the From field.');
     } elseif (empty($messagedata['fromfield'])) {
       $errormessage = $GLOBALS['I18N']->get('Please enter a from line.');
