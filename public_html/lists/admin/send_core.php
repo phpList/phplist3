@@ -78,7 +78,7 @@ if (!empty($_GET['tab'])) {
 ### if we're not working on an existing message, create one and redirect to edit it
 if (!$id) {
   $defaulttemplate = getConfig('defaultmessagetemplate');
-  $defaultfooter = getConfig('Footer');
+  $defaultfooter = getConfig('messagefooter');
   $query
   = " insert into %s"
   . "    (subject, status, entered, sendformat, embargo"
