@@ -61,7 +61,9 @@ $database_schema = '';
 $database_connection = Sql_Connect($database_host,$database_user,$database_password,$database_name);
 Sql_Set_Search_Path($database_schema);
 
-if (defined('SYSTEM_TIMEZONE')) {
+
+## this needs more testing, and docs on how to set the Timezones in the DB
+if (false && defined('SYSTEM_TIMEZONE')) {
 #  print('set time_zone = "'.SYSTEM_TIMEZONE.'"');
   Sql_Query('set time_zone = "'.SYSTEM_TIMEZONE.'"');
   ## verify that it applied correctly
