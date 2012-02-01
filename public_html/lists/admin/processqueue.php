@@ -718,6 +718,7 @@ while ($message = Sql_fetch_array($messages)) {
       ProcessError($GLOBALS['I18N']->get('Sending of this message has been suspended'));
     }
     flush();
+    Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
 
     # check whether the user has already received the message
     if (!empty($getspeedstats)) output('verify message can go out to '.$userid);  
@@ -873,7 +874,7 @@ while ($message = Sql_fetch_array($messages)) {
              $failed_sent++;
              ## need to check this, the entry shouldn't be there in the first place, so no need to delete it
              ## might be a cause for duplicated emails
-             #Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ?',$tables['usermessage']), array($userid,$messageid));
+             Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
              if (VERBOSE) {
                output($GLOBALS['I18N']->get('Failed sending to').' '. $useremail);
                logEvent("Failed sending message $messageid to $useremail");
