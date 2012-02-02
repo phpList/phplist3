@@ -161,7 +161,7 @@ function my_shutdown () {
   global $script_stage,$reload;
 #  output( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
   output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0);
-  global $counters,$report,$send_process_id,$tables,$nothingtodo,$invalid,$processed,$failed_sent,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period,$num_users;
+  global $counters,$report,$send_process_id,$tables,$nothingtodo,$invalid,$processed,$failed_sent,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period,$counters;
   $some = $processed; #$sent;# || $invalid || $notsent;
   if (!$some) {
     output($GLOBALS['I18N']->get('Finished, Nothing to do'),0);
@@ -224,7 +224,7 @@ function my_shutdown () {
         query = query.replace(/&lastskipped=\d+/,"");
         document.location = document.location.pathname + query + "&reload=%d&lastsent=%d&lastskipped=%d";
       </script>',$reload,$sent,$notsent);
-      output($GLOBALS['I18N']->get(($processed < $num_users)?'Reload required':''));
+      output($GLOBALS['I18N']->get(($processed < $counters['num_users_for_message'])?'Reload required':''));
     }
   #  print '<script language="Javascript" type="text/javascript">alert(document.location)</script>';
   }  elseif ($script_stage == 6 || $nothingtodo) {
@@ -517,8 +517,8 @@ while ($message = Sql_fetch_array($messages)) {
 
   if ($userselection && $numattr[0]) {
     $res = Sql_Query($userselection);
-    $num_users = Sql_Num_Rows($res);
-    output($num_users.' '.$GLOBALS['I18N']->get('users apply for attributes, now checking lists'));
+    $counters['num_users_for_message'] = Sql_Num_Rows($res);
+    output($counters['num_users_for_message'].' '.$GLOBALS['I18N']->get('users apply for attributes, now checking lists'));
     $user_list = "";
     while ($row = Sql_Fetch_row($res)) {
       $user_list .= $row[0] . ",";
@@ -604,6 +604,7 @@ while ($message = Sql_fetch_array($messages)) {
       $exclusion .= " and listuser.userid not in (".join(",",$skipusers).")";
 */
   }
+#  Sql_Query_Params(sprintf('delete from %s where messageid = ? and status = "active"',$tables['usermessage']), array($messageid));
 
 /*
   ## 8478
@@ -646,9 +647,9 @@ while ($message = Sql_fetch_array($messages)) {
   if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
 
   # now we have all our users to send the message to
-  $num_users = Sql_Num_Rows($userids);
+  $counters['num_users_for_message'] = Sql_Num_Rows($userids);
   if ($skipped >= 10000) {
-    $num_users -= $skipped;
+    $counters['num_users_for_message'] -= $skipped;
   }
   
   $findUserEnd = $processqueue_timer->elapsed(1);
@@ -657,12 +658,12 @@ while ($message = Sql_fetch_array($messages)) {
     output($GLOBALS['I18N']->get('Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending'));
   }
   
-  output($GLOBALS['I18N']->get('Found them').': '.$num_users.' '.$GLOBALS['I18N']->get('to process'));
-  setMessageData($messageid,'to process',$num_users);
+  output($GLOBALS['I18N']->get('Found them').': '.$counters['num_users_for_message'].' '.$GLOBALS['I18N']->get('to process'));
+  setMessageData($messageid,'to process',$counters['num_users_for_message']);
 
   if ($num_per_batch) {
     # send in batches of $num_per_batch users
-    $batch_total = $num_users;
+    $batch_total = $counters['num_users_for_message'];
     if ($num_per_batch > 0) {
       $query .= sprintf(' limit 0,%d',$num_per_batch);
       if (VERBOSE) {
@@ -795,7 +796,7 @@ while ($message = Sql_fetch_array($messages)) {
               if (DOMAIN_AUTO_THROTTLE
                 && $domainthrottle[$domainname]['attempted'] > 25 # skip a few before auto throttling
                 && $num_messages <= 1 # only do this when there's only one message to process otherwise the other ones don't get a change
-                && $num_users < 1000 # and also when there's not too many left, because then it's likely they're all being throttled
+                && $counters['num_users_for_message'] < 1000 # and also when there's not too many left, because then it's likely they're all being throttled
               ) {
                 $domainthrottle[$domainname]['attempted'] = 0;
                 logEvent(sprintf($GLOBALS['I18N']->get('There have been more than 10 attempts to send to %s that have been blocked for domain throttling.'),$domainname));
@@ -981,9 +982,9 @@ while ($message = Sql_fetch_array($messages)) {
     $processed = $notsent + $sent + $invalid + $unconfirmed + $cannotsend + $failed_sent;
     #if ($processed % 10 == 0) {
     if (0) {
-      output('AR'.$affrows.' N '.$num_users.' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$invalid.' U'.$unconfirmed.' C'.$cannotsend.' F'.$failed_sent);
+      output('AR'.$affrows.' N '.$counters['num_users_for_message'].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$invalid.' U'.$unconfirmed.' C'.$cannotsend.' F'.$failed_sent);
       $rn = $reload * $num_per_batch;
-      output('P '.$processed .' N'. $num_users .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
+      output('P '.$processed .' N'. $counters['num_users_for_message'] .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
     }
     /* 
      * don't calculate this here, but in the "msgstatus" instead, so that
@@ -995,7 +996,7 @@ while ($message = Sql_fetch_array($messages)) {
     if ($sent > 0) {
       $msgperhour = (3600/$totaltime) * $sent;
       $secpermsg = $totaltime / $sent;
-      $timeleft = ($num_users - $sent) * $secpermsg;
+      $timeleft = ($counters['num_users_for_message'] - $sent) * $secpermsg;
       $eta = date('D j M H:i',time()+$timeleft);
     } else {
       $msgperhour = 0;
@@ -1006,15 +1007,15 @@ while ($message = Sql_fetch_array($messages)) {
     setMessageData($messageid,'ETA',$eta);
     setMessageData($messageid,'msg/hr',$msgperhour);
     */
-    setMessageData($messageid,'to process',$num_users - $sent);
+    setMessageData($messageid,'to process',$counters['num_users_for_message'] - $sent);
     setMessageData($messageid,'last msg sent',time());
   #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
     if (!empty($getspeedstats)) output('end process user '."\n".'-----------------------------------'."\n".$userid);  
   }
   $processed = $notsent + $sent + $invalid + $unconfirmed + $cannotsend + $failed_sent;
-  output($GLOBALS['I18N']->get('Processed').' '. $processed.' '.$GLOBALS['I18N']->get('out of').' '. $num_users .' '.$GLOBALS['I18N']->get('users'));
+  output($GLOBALS['I18N']->get('Processed').' '. $processed.' '.$GLOBALS['I18N']->get('out of').' '. $counters['num_users_for_message'] .' '.$GLOBALS['I18N']->get('users'));
 
-  if ($num_users - $sent <= 0 || $stopSending) {
+  if ($counters['num_users_for_message'] - $sent <= 0 || $stopSending) {
     # this message is done
     if (!$someusers)
       output($GLOBALS['I18N']->get('Hmmm, No users found to send to'));
