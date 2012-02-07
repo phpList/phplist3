@@ -1,0 +1,135 @@
+/*
+
+styles for the functionality. No styling/colours
+
+*/
+
+#mainContent {
+  width: 70%; float: left;
+}
+
+/* ********************* tabs that are links between pages ************************/
+
+#webblertabs, #sendtabs {display: inline-block}
+
+#webblertabs ul li a {
+  display: block; 
+  padding: 5px 10px;
+  margin: 0;
+  border: 2px solid #CCCCCC;
+  -moz-border-radius-topleft: 3px; 
+  -moz-border-radius-topright: 3px; 
+  -webkit-border-top-left-radius: 3px; 
+  -webkit-border-top-right-radius: 3px;
+  min-width: 80px; /*changed to min-width so this size is adaptable for longer tabs */
+}
+
+#webblertabs ul,
+#sendtabs ul {float: left; margin: 0 10px; padding: 0}
+
+#webblertabs ul li,
+#sendtabs ul li {
+  float: left;
+  margin-right: 5px;
+}
+
+#webblertabs ul li.current a,
+#sendtabs ul li.current a {opacity: 1}
+
+span.tabno {display: block; font-size: 22px; font-weight: bold; line-height: 1; padding: 4px 4px 0 4px; }
+span.title {display: block; padding:0 4px 4px; width: auto!important}
+
+#sendtabs ul li a {
+display:block; 
+opacity: .4;
+width: 80px;
+-moz-border-radius-topleft: 3px; 
+-moz-border-radius-topright: 3px; 
+border: 1px solid #f2f2f2; 
+-webkit-border-top-left-radius: 3px; 
+-webkit-border-top-right-radius: 3px;
+font-size: 12px;
+}
+
+#webblertabs ul li a:hover,
+#sendtabs ul li a:hover,
+#sendtabs ul li a:hover span {text-decoration: none; opacity: 1}
+
+/* ************* end of tabs ***************/
+
+/* ************* next/prev links ****************/
+
+.panel .step-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.panel .step-nav a {
+  -moz-border-radius: 3px 3px 3px 3px;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 0 0 4px;
+  padding: 3px 8px 3px;
+  line-height: 1.2;
+/*
+  text-shadow: 1px 1px 2px #333;
+*/
+}
+
+.panel .step-nav a[href=""] {
+  color: rgba(255,255,255,.4);
+  text-shadow: none
+}
+
+.panel .step-nav a.next {
+  padding-right: 25px}
+
+.panel .step-nav a:hover {text-decoration: none!important; background-color: #000}
+
+.panel .link-left {
+  display:block;
+  height:80px;
+  left:-46px;
+  position:absolute;
+  top:10px;
+  width:40px;
+}
+
+/* query why we need to position this here? */
+/*
+#testpanel {position: absolute; right: 40px; top: 550px; width:338px; }
+*/
+#testpanel {position: absolute; right: 40px; top: 550px; width:250px; }
+#testpanel input[type="text"]{width: 90%; }
+
+.error{
+  border:3px solid;
+  margin:0px 20px 20px;
+  padding:10px;
+}
+.examplecode{
+  border:3px solid;
+  margin:0px 20px 20px;
+  padding:10px;
+}
+
+table.about tr td {
+  border:1px solid;
+  padding: 20px;
+}
+td.abouthead {
+  font-size: 30px;
+}
+
+table.adminDetails td {
+  padding: 5px;
+}
+
+.actionresult, .result {
+border: 2px solid;
+margin: 15px 0;
+padding: 1em 1em 1em 50px;
+font-size: 12px;
+font-weight: bold
+}
