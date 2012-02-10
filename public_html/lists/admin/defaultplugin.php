@@ -339,17 +339,32 @@ class phplistPlugin {
     return $email;
   }
 
-  function parseFinalMessage($sendformat, $htmlmessage, $textmessage, & $mail,$messageid) {
-    ## parseFinalMessage
-    # purpose: create the actual message, based on the text and html content as prepared by phplist
-    # parameters:
-    # sendformat: the send format chosen by the admin
-    #    if this is not one of the sendFormats() set up for this plugin, return 0
-    # htmlmessage: contents of HTML version of message
-    # textmessage: contents of Text version of message
-    # mail:  mail object that is going to be send
+  /**
+   * messageHeaders
+   *
+   * return headers for the message to be added, as "key => val"
+   *
+   * @param object $mail
+   * @return array (headeritem => headervalue)
+   */
+  function messageHeaders($mail) {
+    return array();
+  }
+
+  /** parseFinalMessage
+    * purpose: create the actual message, based on the text and html content as prepared by phplist
+    * parameters:
+    * sendformat: the send format chosen by the admin
+    *    if this is not one of the sendFormats() set up for this plugin, return 0
+    * htmlmessage: contents of HTML version of message
+    * textmessage: contents of Text version of message
+    * mail:  mail object that is going to be send
+    * 
     ### you can alter the outgoing mail by calling the required methods of the mail object
-    # returns 1 if the message has been dealt with successfully and 0 if not
+    * returns 1 if the message has been dealt with successfully and 0 if not
+    */
+    
+  function parseFinalMessage($sendformat, $htmlmessage, $textmessage, & $mail,$messageid) {
     return 0;
   }
 

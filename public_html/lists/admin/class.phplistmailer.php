@@ -223,6 +223,18 @@ class PHPlistMailer extends PHPMailer {
       }
       $this->Subject = $subject;
       if ($this->Body) {
+        ## allow plugins to add header lines
+        foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+      #    print "Checking Destination for ".$plugin->name."<br/>";
+          $pluginHeaders = $plugin->messageHeaders($this);
+          if ($pluginHeaders && sizeof($pluginHeaders)) {
+            foreach ($pluginHeaders as $headerItem => $headerValue) {
+              ## @@TODO, do we need to sanitise them? 
+              $this->addCustomHeader($headerItem.': '.$headerValue);
+            }
+          }
+        }
+        
         if(!parent::Send()) {
           #echo "Message was not sent <p class="x">";
           logEvent("Error sending email to ".$to_addr);
