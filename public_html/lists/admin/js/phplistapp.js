@@ -61,7 +61,7 @@ $(".note .hide").click(function() {
   $(this).parents('.note').hide();
 });
 
-$(".paging").scrollable();
+//$(".paging").scrollable();
 
 $(".configurelink").click(function() {
  // alert(this.href);
