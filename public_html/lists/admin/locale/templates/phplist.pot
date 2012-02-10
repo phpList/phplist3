@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 22:28-0300\n"
-"PO-Revision-Date: 2012-01-27 22:28-0300\n"
+"POT-Creation-Date: 2012-02-10 11:20-0300\n"
+"PO-Revision-Date: 2012-02-10 11:20-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -5585,6 +5585,42 @@ msgstr ""
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:1238
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:1283
 msgid "close"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:261
+msgid "Your campaign does not contain an unsubscribe link. Please add [UNSUBSCRIBE] or [UNSUBSCRIBEURL] to the footer or content of the campaign"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:279
+#, php-format
+msgid "The \"From email address\" for this campaign has already been validated. %scontinue%s"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:287
+#, php-format
+msgid "Unrecognised code, please %stry again%s. Did you check your INBOX? When copying the code from the verification message you receive, make sure not to include spaces. Also, if you requested the code to be resent, only the last one will be valid."
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:296
+msgid "Verification message has been resent. Please note, only the last code sent will be valid."
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:353
+msgid "Address verification required"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:354
+msgid ""
+"\n"
+"      This is the fist time you use the email address ("
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:368
+msgid "If you did not receive the verification message, you can"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:368
+msgid "resend verification email"
 msgstr ""
 
 #: public_html/lists/admin/plugins2/email2fax/header.php:3
