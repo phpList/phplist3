@@ -383,7 +383,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     $errormessage = "";
     if ($messagedata['subject'] != stripslashes($messagedata['subject'])) {
       $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the Subject field.');
-    } elseif (!empty($_POST["fromfield"]) && $messagedata['fromfield'] != $_POST["from"]) {
+    } elseif (!empty($_POST["fromfield"]) && $messagedata['fromfield'] != $_POST["fromfield"]) {
       $errormessage = $GLOBALS['I18N']->get('Sorry, you used invalid characters in the From field.');
     } elseif (empty($messagedata['fromfield'])) {
       $errormessage = $GLOBALS['I18N']->get('Please enter a from line.');
@@ -558,7 +558,7 @@ if (!$done) {
 
   // detection of unsaved changes,
   var browser = navigator.appName.substring ( 0, 9 );
-  var changed = 0; function haschanged() {changed = 1; }
+  var changed = 1; function haschanged() {changed = 1; }
   function savechanges() { }
   var event_number = 0;if (browser=="Microsoft") {  document.onkeydown=haschanged;  document.onchange=haschanged;} else if (browser=="Netscape") {  document.captureEvents(Event.KEYDOWN);  document.captureEvents(Event.CHANGE); document.onkeydown=haschanged;document.onchange=haschanged;}
   function submitform() { document.sendmessageform.submit() }
@@ -840,7 +840,8 @@ if (!$done) {
   if (USE_MANUAL_TEXT_PART) {
   $textcontent = '<div class="field">
     <label for="textmessage">'.$GLOBALS['I18N']->get("Plain text version of message").Help("plaintextversion").'</label>'.'
-    <textarea name="textmessage" cols="65" rows="20">'.$messagedata["textmessage"].'</textarea>
+    <div id="generatetextversion">'.PageLinkAjax('send&id='.$id.'&action=generatetext',$GLOBALS['I18N']->get('generate from HTML')).'</a></div>
+    <textarea id="textmessage" name="textmessage" cols="65" rows="20">'.$messagedata["textmessage"].'</textarea>
   </div>';
   }
 #var_dump($messagedata);
