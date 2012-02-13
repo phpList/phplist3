@@ -4,6 +4,8 @@
 $msgid = sprintf('%d',$_GET['id']);
 $messagedata = loadMessageData($msgid);
 
+//sleep(10); // to test the busy image
+
 if (preg_match('/\[URL:(.+)\]/',$messagedata['message'],$regs)) {
   $content = fetchUrl($regs[1]);
 #  $textversion = 'Fetched '.$regs[1];
@@ -21,7 +23,7 @@ $textversion = preg_replace("/\n/","\\n",$textversion);
 $status =  '<script type="text/javascript">
 
 $("#textmessage").html("'.$textversion.'");
-
+$("#generatetextversion").hide();
 
 </script>
 ';
