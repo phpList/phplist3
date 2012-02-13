@@ -4,10 +4,6 @@ styles for the functionality. No styling/colours
 
 */
 
-#mainContent {
-  width: 70%; float: left;
-}
-
 /* ********************* tabs that are links between pages ************************/
 
 #webblertabs, #sendtabs {display: inline-block}
@@ -133,3 +129,12 @@ padding: 1em 1em 1em 50px;
 font-size: 12px;
 font-weight: bold
 }
+
+#generatetextversion {
+  float: right;
+  border:1px solid #CCCCCC;
+  margin: 5px 5px 5px 5px;
+  padding: 1em 1em 1em 1em;
+  width: 75px;
+}
+
