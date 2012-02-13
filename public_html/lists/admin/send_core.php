@@ -109,6 +109,15 @@ if (!$id) {
 
 # load all message data
 $messagedata = loadMessageData($id);
+
+## auto generate the text version if empty
+## hmm, might want this as config
+/*
+if (empty($messagedata['textmessage'])) {
+  include 'actions/generatetext.php';
+}
+*/
+  
 #var_dump($messagedata);
 #exit;
 #print '<h3>'.$messagedata['status'].'</h3>';
@@ -125,7 +134,7 @@ if ($id) {
   // Load message attributes / values
   $result = Sql_query("SELECT * FROM {$tables['message']} where id = $id $ownership");
   if (!Sql_Num_Rows($result)) {
-    print $GLOBALS['I18N']->get("noaccess");
+    print $GLOBALS['I18N']->get('Access Denied');
     $done = 1;
     return;
   }
@@ -840,7 +849,7 @@ if (!$done) {
   if (USE_MANUAL_TEXT_PART) {
   $textcontent = '<div class="field">
     <label for="textmessage">'.$GLOBALS['I18N']->get("Plain text version of message").Help("plaintextversion").'</label>'.'
-    <div id="generatetextversion">'.PageLinkAjax('send&id='.$id.'&action=generatetext',$GLOBALS['I18N']->get('generate from HTML')).'</a></div>
+    <div id="generatetextversion">'.PageLinkAjax('send&tab=Text&id='.$id.'&action=generatetext',$GLOBALS['I18N']->get('generate from HTML')).'</a> '.Help('generatetext').'</div>
     <textarea id="textmessage" name="textmessage" cols="65" rows="20">'.$messagedata["textmessage"].'</textarea>
   </div>';
   }
