@@ -16,6 +16,13 @@ if (!empty($_REQUEST['sendurl'])) {
   if (!$GLOBALS["has_pear_http_request"]) {
     print Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
   } else {
+    ## hard overwrite the message content, wipe all that was there.
+    ## check there's a protocol
+    ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
+    if (!preg_match('/^https?:\/\//i',$_REQUEST['sendurl'])) {
+      $_REQUEST['sendurl'] = 'http://'.$_REQUEST['sendurl'];
+    }
+    
     $_REQUEST["message"] = '[URL:'.$_REQUEST['sendurl'].']';
   }
 } 
