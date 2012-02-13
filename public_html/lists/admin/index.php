@@ -412,6 +412,8 @@ print $pageinfo->show();
 if (!empty($_GET['action']) && $_GET['page'] != 'pageaction') {
   $action = basename($_GET['action']);
   if (is_file(dirname(__FILE__).'/actions/'.$action.'.php')) {
+    $status = '';
+    ## the page action return the result in $status
     include dirname(__FILE__).'/actions/'.$action.'.php';
     print '<div id="actionresult">'.$status.'</div>';
   }
