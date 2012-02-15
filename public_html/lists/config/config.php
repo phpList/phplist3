@@ -728,6 +728,11 @@ define("PHPMAILERHOST",'');
 ## when using phpMailer, you can set this to send out via a different port as well
 # define('PHPMAILERPORT',25);
 
+## Smtp Timeout
+## If you use SMTP for sending, you can set the timeout of the SMTP connection
+## defaults to 5 seconds
+# define('SMTP_TIMEOUT',5);
+
 # tmpdir. A location where phplist can write some temporary files if necessary
 # Make sure it is writable by your webserver user, and also check that you have
 # open_basedir set to allow access to this directory. Linux users can leave it as it is.

@@ -53,8 +53,12 @@ class PHPlistMailer extends PHPMailer {
       if ($newwrap) {
         $this->WordWrap = $newwrap;
       }
+      if (defined('SMTP_TIMEOUT')) {
+        $this->Timeout = sprintf('%d',SMTP_TIMEOUT);
+      }
+      
       $this->destinationemail = $email;
-      $this->SingleTo = false;
+      $this->SingleTo = false;4
       $this->CharSet =  'UTF-8';# getConfig("html_charset");
       $this->inBlast = $inBlast;
       ### hmm, would be good to sort this out differently, but it'll work for now
