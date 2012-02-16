@@ -89,7 +89,11 @@ function giveAlternative($table,$delete,$attributeid) {
 
 function deleteItem($table,$attributeid,$delete) {
   global $tables;
-  $replace = sprintf('%d',$_REQUEST['replace']);
+  if (isset($_REQUEST['replace'])) {
+    $replace = sprintf('%d',$_REQUEST['replace']);
+  } else {
+    $replace = 0;
+  }
   # delete the index in delete
   $valreq = Sql_Fetch_Row_query("select name from $table where id = $delete");
   $val = $valreq[0];
