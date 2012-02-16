@@ -899,7 +899,7 @@ function topMenu() {
     if (!empty($categoryDetails['toplink'])) {
       $categoryurl = PageUrl2($categoryDetails['toplink'],'','',true);
       if ($categoryurl) {
-        $topmenu .=  '<ul><li><a href="'.$categoryurl.'">'.$GLOBALS['I18N']->get($category).'</a>'.$thismenu.'</li></ul>';
+        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->get($category).'">'.$GLOBALS['I18N']->get($category).'</a>'.$thismenu.'</li></ul>';
       } else {
         $topmenu .=  '<ul><li><span>'.$GLOBALS['I18N']->get($category).$categoryurl.'</span>'.$thismenu.'</li></ul>';
       }
