@@ -672,20 +672,27 @@ if (!$done) {
     $repeatinterval = $messagedata["repeatinterval"];
 
     $scheduling_content .= '
-    <div class="field"><label for="repeatinterval">'.$GLOBALS['I18N']->get("Repeat campaign every").Help("repetition").'</label>'.'
+    <div class="field"><label for="repeatinterval">'.$GLOBALS['I18N']->get('Repeat campaign every').Help('repetition').'</label>'.'
         <select name="repeatinterval">
       <option value="0"';
       if ($repeatinterval == 0) { $scheduling_content .= ' selected="selected"'; }
-      $scheduling_content .= '>-- '.$GLOBALS['I18N']->get("no repetition").'</option>
+      $scheduling_content .= '>-- '.$GLOBALS['I18N']->get('no repetition').'</option>
       <option value="60"';
       if ($repeatinterval == 60) { $scheduling_content .= ' selected="selected"'; }
-      $scheduling_content .= '>'.$GLOBALS['I18N']->get("hour").'</option>
+      $scheduling_content .= '>'.$GLOBALS['I18N']->get('hour').'</option>
       <option value="1440"';
       if ($repeatinterval == 1440) { $scheduling_content .= ' selected="selected"'; }
-      $scheduling_content .= '>'.$GLOBALS['I18N']->get("day").'</option>
+      $scheduling_content .= '>'.$GLOBALS['I18N']->get('day').'</option>
       <option value="10080"';
       if ($repeatinterval == 10080) { $scheduling_content .= ' selected="selected"'; }
-      $scheduling_content .= '>'.$GLOBALS['I18N']->get("week").'</option>
+      $scheduling_content .= '>'.$GLOBALS['I18N']->get('week').'</option>
+      <option value="20160"';
+      if ($repeatinterval == 20160) { $scheduling_content .= ' selected="selected"'; }
+      $scheduling_content .= '>'.$GLOBALS['I18N']->get('fortnight').'</option>
+      <option value="40320"';
+      ## @@@TODO adding "month" is a bit trickier, as we use seconds for value, and months have varying numbers of seconds
+      if ($repeatinterval == 40320) { $scheduling_content .= ' selected="selected"'; }
+      $scheduling_content .= '>'.$GLOBALS['I18N']->get('four weeks').'</option>
       </select>
         <label for="repeatuntil">'.$GLOBALS['I18N']->get("Repeat Until").'</label>
         '.$repeatuntil->showInput("repeatuntil","",$messagedata["repeatuntil"]);
