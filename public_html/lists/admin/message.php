@@ -84,9 +84,9 @@ while ($msg = Sql_fetch_array($result)) {
     # Correct for bug 0009687
     # Skip 'astextandhtml' and add this count to 'as html'
     # change the name of sendformat
-    if ($field != 'as html') {
+    if ($field != 'ashtml') {
       if ($field == 'astextandhtml') {
-        $field = 'as html';
+        $field = 'ashtml';
         $msg[$field] += $msg['astextandhtml'];
       };
       if ($field == 'sendformat' and $msg[$field] = 'text and HTML')
