@@ -243,6 +243,12 @@ $("#emailsearch").autocomplete({
     return true;
   });
 
+  //fade out 'actionresult' user feedback
+  $('.actionresult').delay(4000).fadeOut(4000); 
+  //fade out 'result' user feedback
+  $('.result').delay(4000).fadeOut(4000); 
+
+
   var docurl = document.location.search;
   document.cookie="browsetrail="+escape(docurl);
 
