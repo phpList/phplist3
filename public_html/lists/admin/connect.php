@@ -434,7 +434,7 @@ function Warn($msg) {
 #  sendMail(getConfig("report_address"),"Mail list warning",$message,"");
 }
 
-function Info($msg) {
+function Info($msg,$noClose = false) {
   if ($GLOBALS['commandline']) {
     @ob_end_clean();
     print "\n".strip_tags($GLOBALS["I18N"]->get("information").": ".$msg)."\n";
@@ -444,6 +444,9 @@ function Info($msg) {
     $id = substr(md5($msg),0,15);
     $pageinfo = new pageInfo($id);
     $pageinfo->setContent($GLOBALS["I18N"]->get("information").": $msg");
+    if ($noClose && method_exists($pageinfo,'suppressHide')) {
+      $pageinfo->suppressHide();
+    }
     print $pageinfo->show();
   }
 }
