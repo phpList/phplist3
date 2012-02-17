@@ -253,8 +253,13 @@ $ls->usePanel($paging);
 if ($total) {
   $result = Sql_query("SELECT * FROM ".$tables["message"]." $where order by status,entered desc limit $limit offset $offset");
   while ($msg = Sql_fetch_array($result)) {
+    $editlink = '';
     $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($msg["subject"]);
-    $ls->addElement($listingelement);
+    if ($msg['status'] == 'draft') {
+      $editlink = PageUrl2("send&id=".$msg["id"]);
+    }
+    
+    $ls->addElement($listingelement,$editlink);
 
     $uniqueviews = Sql_Fetch_Row_Query("select count(userid) from {$tables["usermessage"]} where viewed is not null and messageid = ".$msg["id"]);
 
