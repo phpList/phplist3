@@ -89,7 +89,7 @@ if (!$id) {
     $limit = ' limit '.$start. ', 10';
   }
 
-  $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg where um.messageid = msg.id %s %s
+  $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg where um.messageid = msg.id and um.status = "sent" %s %s
     group by msg.id order by msg.entered desc',
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$subselect,$timerange);
   $req = Sql_Query($query);
@@ -123,8 +123,8 @@ if (!$id) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('rate'),$perc.' %');
   }
   if ($addcomparison) {
-    $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um', $GLOBALS['tables']['usermessage']));
-    $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um', $GLOBALS['tables']['usermessage']));
+    $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
+    $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
     $overall = $GLOBALS['I18N']->get('Comparison to other admins');
     $ls->addElement($overall);
     $ls->addColumn($overall,$GLOBALS['I18N']->get('views'),$viewed['viewed']);
