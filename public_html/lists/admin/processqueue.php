@@ -621,23 +621,33 @@ while ($message = Sql_fetch_array($messages)) {
     $userconfirmed,
     $exclusion,
     $user_attribute_query);*/
-  $query
-  = ' select distinct u.id'
-  . ' from %s as listuser'
-  . '    cross join %s as u'
-  . '    cross join %s as listmessage'
-  . '    left join %s as um'
-  . '       on (um.messageid = ? and um.userid = listuser.userid)'
-  . ' where true'
-  . '   and listmessage.messageid = ?'
-  . '   and listmessage.listid = listuser.listid'
-  . '   and u.id = listuser.userid'
-  . '   and um.userid IS NULL'
-  . '   and u.confirmed = 1 and u.blacklisted = 0'
-  . ' %s %s';
-  $query = sprintf($query, $tables['listuser'], 
-  $tables['user'], $tables['listmessage'], $tables['usermessage'], 
-  $exclusion, $user_attribute_query);
+  $queued = 0;
+  if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+    $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
+    $queued_count = Sql_Query($query);
+    $queued = Sql_Affected_Rows();
+  }
+
+  ## if the above didn't find any, run the normal search (again)
+  if (empty($queued)) {
+    $query
+    = ' select distinct u.id'
+    . ' from %s as listuser'
+    . '    cross join %s as u'
+    . '    cross join %s as listmessage'
+    . '    left join %s as um'
+    . '       on (um.messageid = ? and um.userid = listuser.userid)'
+    . ' where true'
+    . '   and listmessage.messageid = ?'
+    . '   and listmessage.listid = listuser.listid'
+    . '   and u.id = listuser.userid'
+    . '   and um.userid IS NULL'
+    . '   and u.confirmed = 1 and u.blacklisted = 0'
+    . ' %s %s';
+    $query = sprintf($query, $tables['listuser'], 
+    $tables['user'], $tables['listmessage'], $tables['usermessage'], 
+    $exclusion, $user_attribute_query);
+  }
 
   if (VERBOSE) {
     output('User select query '.$query);
@@ -660,6 +670,16 @@ while ($message = Sql_fetch_array($messages)) {
   
   output($GLOBALS['I18N']->get('Found them').': '.$counters['num_users_for_message'].' '.$GLOBALS['I18N']->get('to process'));
   setMessageData($messageid,'to process',$counters['num_users_for_message']);
+
+  if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+    ## experimental MESSAGEQUEUE_PREPARE will first mark all messages as todo and then work it's way through the todo's
+    ## that should save time when running the queue multiple times, which avoids the user search after the first time
+    while ($userdata = Sql_Fetch_Row($userids)) {
+      ## mark message/user combination as "todo"
+      $userid = $userdata[0];    # id of the user
+      Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $userid, 'messageid' => $messageid, 'status' => "todo"), array('userid', 'messageid'), false);
+    }
+  }
 
   if ($num_per_batch) {
     # send in batches of $num_per_batch users
@@ -724,7 +744,7 @@ while ($message = Sql_fetch_array($messages)) {
     # check whether the user has already received the message
     if (!empty($getspeedstats)) output('verify message can go out to '.$userid);  
     
-    $um = Sql_query("select entered from {$tables['usermessage']} where userid = $userid and messageid = $messageid");
+    $um = Sql_query("select entered from {$tables['usermessage']} where userid = $userid and messageid = $messageid and status != 'todo'");
     if (!Sql_Num_Rows($um)) {
       ## mark this message that we're working on it, so that no other process will take it
       ## between two lines ago and here, should hopefully be quick enough

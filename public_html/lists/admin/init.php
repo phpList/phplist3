@@ -207,6 +207,8 @@ if (!defined('FORWARD_PERSONAL_NOTE_SIZE')) define('FORWARD_PERSONAL_NOTE_SIZE',
 if (!defined('EMBEDUPLOADIMAGES')) define('EMBEDUPLOADIMAGES',0);
 if (!defined('IMPORT_FILESIZE')) define('IMPORT_FILESIZE',1);
 if (!defined('SMTP_TIMEOUT')) define('SMTP_TIMEOUT',5);
+## experimental, mark mails "todo" in the DB and process the "todo" list, to avoid the user query being run every queue run
+if (!defined('MESSAGEQUEUE_PREPARE')) define('MESSAGEQUEUE_PREPARE',false);
 
 if (!isset($GLOBALS["export_mimetype"])) $GLOBALS["export_mimetype"] = 'application/csv';
 if (!isset($GLOBALS["admin_auth_module"])) $GLOBALS["admin_auth_module"] = 'phplist_auth.inc';
