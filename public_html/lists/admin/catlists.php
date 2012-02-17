@@ -41,6 +41,11 @@ if (!empty($_POST['category']) && is_array($_POST['category'])) {
 }
 
 $req = Sql_Query(sprintf('select * from %s %s',$tables['list'],$subselect));
+
+if (!Sql_Affected_Rows()) {
+  print Info($GLOBALS['I18N']->get('All lists have already been assigned a category'),true);
+}
+
 $ls = new WebblerListing($I18N->get('Categorise lists'));
 $aListCategories = listCategories();
 if (sizeof($aListCategories)) {
