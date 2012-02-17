@@ -140,6 +140,11 @@ $countquery
 $countresult = Sql_query($countquery);
 $total = Sql_Num_Rows($countresult);
 
+if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['tab'])) {
+  ## reload to first category, if none found by default (ie all lists are categorised)
+  Redirect('list&tab='.$aListCategories[0]);
+}
+
 print '<p>'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
 $limit = '';
 
@@ -230,10 +235,10 @@ while ($row = Sql_fetch_array($result)) {
     sprintf('<input type="text" name="listorder[%d]" value="%d" size="3" class="listorder" />',$row['id'],$row['listorder']));
 
   
-  $delete_url = sprintf('<a href="javascript:deleteRec2(\'%s\',\'%s\');">%s</a>',$GLOBALS['I18N']->get('Are you sure you want to delete this list?'),PageURL2("list&delete=".$row["id"]),$GLOBALS['I18N']->get('del'));
+  $delete_url = sprintf('<a href="javascript:deleteRec2(\'%s\',\'%s\');" title="%s">%s</a>',$GLOBALS['I18N']->get('Are you sure you want to delete this list?'),PageURL2("list&delete=".$row["id"]),$GLOBALS['I18N']->get('delete this list'),$GLOBALS['I18N']->get('del'));
 
   $ls->addColumn($element,$GLOBALS['I18N']->get('del'),$delete_url);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('send'),PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('new campaign')));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('send'),PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('new campaign'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')));
 
 
   $some = 1;
