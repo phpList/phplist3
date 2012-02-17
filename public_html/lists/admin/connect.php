@@ -443,7 +443,7 @@ function Info($msg,$noClose = false) {
     ## generate some ID for the info div
     $id = substr(md5($msg),0,15);
     $pageinfo = new pageInfo($id);
-    $pageinfo->setContent($GLOBALS["I18N"]->get("information").": $msg");
+    $pageinfo->setContent('<p>'.$GLOBALS["I18N"]->get("information").": $msg</p>");
     if ($noClose && method_exists($pageinfo,'suppressHide')) {
       $pageinfo->suppressHide();
     }
