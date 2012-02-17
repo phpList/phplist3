@@ -623,9 +623,13 @@ while ($message = Sql_fetch_array($messages)) {
     $user_attribute_query);*/
   $queued = 0;
   if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+    ## we duplicate messageid to match the query_params
     $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
-    $queued_count = Sql_Query($query);
+    $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
+    if (VERBOSE) {
+      output('Prequeued users '.$queued);
+    }
   }
 
   ## if the above didn't find any, run the normal search (again)
