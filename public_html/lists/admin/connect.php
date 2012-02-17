@@ -912,7 +912,7 @@ function topMenu() {
 }
 
 ### hmm, these really should become objects
-function PageLink2($name,$desc="",$url="",$no_plugin = false) {
+function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
   if ($url)
     $url = "&amp;".$url;
 
@@ -932,6 +932,9 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false) {
   if (empty($desc)) {
     $desc = $name;
   }
+  if (empty($title)) {
+    $title = $desc;
+  }
   
   if ($access == "owner" || $access == "all" || $access == "view") {
     if ($name == "processqueue" && !MANUALLY_PROCESS_QUEUE)
@@ -943,7 +946,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false) {
       } else {
         $pi = "";
       }
-      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,strip_tags($desc),strtolower($desc));
+      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,strip_tags($title),strtolower($desc));
     }
   } else
     return "";
@@ -982,9 +985,8 @@ function PageLinkAjax ($name,$desc="",$url="",$extraclass = '') {
   return $link;
 }
 
-function PageLinkClass($name,$desc="",$url="",$class = '') {
-  ## as PageLink2, but add the option to ajax it in a popover window
-  $link = PageLink2($name,$desc,$url);
+function PageLinkClass($name,$desc="",$url="",$class = '',$title = '') {
+  $link = PageLink2($name,$desc,$url,false,$title);
   if (empty($class)) {
     $class='link';
   }
@@ -995,11 +997,11 @@ function PageLinkClass($name,$desc="",$url="",$class = '') {
   return $link;
 }
 
-function PageLinkButton($name,$desc="",$url="",$extraclass = '') {
-  return PageLinkClass($name,$desc,$url,'button '.$extraclass);
+function PageLinkButton($name,$desc="",$url="",$extraclass = '',$title = '') {
+  return PageLinkClass($name,$desc,$url,'button '.$extraclass,$title);
 }
 
-function PageLinkActionButton($name,$desc="",$url="",$extraclass = '') {
+function PageLinkActionButton($name,$desc="",$url="",$extraclass = '',$title = '') {
   ## as PageLink2, but add the option to ajax it in a popover window
   $link = PageLink2($name,$desc,$url);
   if ($link) {
@@ -1107,9 +1109,10 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
 
   if (!empty($alltab)) {
     unset($categoryhtml['all']);
+    ### @@@TODO this has a weird effect when categories are numbers only eg years, because PHP renumbers them to 0,1,2
     array_unshift($categoryhtml,$alltab);
   }
-  
+ # var_dump($categoryhtml);
   $tabno = 1;
   $listindex = $listhtml = '';
   $some = sizeof($categoryhtml);
