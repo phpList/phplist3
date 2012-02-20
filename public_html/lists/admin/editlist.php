@@ -130,8 +130,7 @@ if (empty($list['category'])) {
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <div class="label"><label for="listname"><?php echo $GLOBALS['I18N']->get('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname" value="<?php echo  htmlspecialchars(StripSlashes($list["name"]))?>" /></div>
-<div class="label"><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
-<div class="field"><input type="checkbox" name="active" value="1" <?php echo $list["active"] ? 'checked="checked"' : ''; ?> /></div>
+<div class="field"><input type="checkbox" name="active" value="1" <?php echo $list["active"] ? 'checked="checked"' : ''; ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
 <div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
 <div class="field"><input type="text" name="listorder" value="<?php echo $list["listorder"] ?>" size="5" /></div>
 <?php if ($GLOBALS["require_login"] && (isSuperUser() || accessLevel("editlist") == "all")) {
@@ -170,4 +169,5 @@ if (sizeof($aListCategories)) {
 <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list["description"])) ?></textarea></div>
 <input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>" />
+<?php print PageLinkButton('list',$GLOBALS['I18N']->get('Cancel')); ?>
 </form>
