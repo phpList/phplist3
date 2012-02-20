@@ -169,5 +169,5 @@ if (sizeof($aListCategories)) {
 <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list["description"])) ?></textarea></div>
 <input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>" />
-<?php print PageLinkButton('list',$GLOBALS['I18N']->get('Cancel')); ?>
+<?php print PageLinkClass('list',$GLOBALS['I18N']->get('Cancel'),'','button cancel',$GLOBALS['I18N']->get('Do not save, and go back to the lists')); ?>
 </form>
