@@ -11,33 +11,32 @@
     <td class="top">
     phplist is licensed with the <a href="http://www.gnu.org/copyleft" target="_blank">GNU Public License (GPL)</a>.<br/>
     Copyright &copy; 2000-<?php echo date('Y')?> <a href="http://phplist.com" target="_blank">phpList Ltd.</a><br/><br/>
-    <b><?php echo $GLOBALS['I18N']->get('Developers')?></b>:
+    <h3><?php echo $GLOBALS['I18N']->get('Developers')?>:</h3>
     <ul>
       <li>Michiel Dethmers, phpList Ltd</li>
     </ul>
-    <b><?php echo $GLOBALS['I18N']->get('Contributors')?></b>
+    <!--h3><?php echo $GLOBALS['I18N']->get('Contributors')?></h3>
     <ul>
-      <li>Damien McKenna</li>
-      <li>Pete Ness, Nessoft LLC</li>
-      <li>Xavier Dutoit, Sydesy</li>
-      <li>Bas Ovink</li>
-      <li>and many others</li>
+    </ul-->
+    <h3><?php echo $GLOBALS['I18N']->get('Design')?>:</h3>
+    <ul>
+    <li>Tarek Djebali</li>
     </ul>
-    <b><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></b>
+    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></b>
     <ul>
       <li>Yan Brailowsky</li>
       <li><!--a href="http://pascal.vanhecke.info/" target="_blank"-->Pascal Van Hecke<!--/a--></li>
     </ul>
-    <b><?php echo $GLOBALS['I18N']->get('Translations') ?></b>
+    <h3><?php echo $GLOBALS['I18N']->get('Translations') ?></h3>
     <ul>
       <li><a href="http://www.babels.org" target="_blank">Babels</a></li>
       <?php echo $GLOBALS['I18N']->get('credits for this translation') ?>
     </ul>
-    <p class="greetings">
+    <p>
         <?php echo $GLOBALS['I18N']->get('The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions.')?>
     </p>
     <b><?php echo $GLOBALS['I18N']->get('Portions of the system include')?></b>
-    <ul class="aboutSystem">
+    <ul>
       <li><a href="http://www.webbler.org" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
       <li>the <a href="http://phpmailer.sourceforge.net/" target="_blank">phpmailer</a> class </li>
