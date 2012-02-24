@@ -91,7 +91,7 @@ if ($message['status'] != 'inprocess') {
     $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
     
   } elseif ($msgperhour<= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
-    $html .= $GLOBALS['I18N']->get('Stalled');
+    $html .= $GLOBALS['I18N']->get('Processing');
   } else {
     $html .= 
     $GLOBALS['I18N']->get('ETA').': '.$eta.'<br/>'.
