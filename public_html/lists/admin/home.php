@@ -14,7 +14,7 @@ if (Sql_Table_exists($tables["config"],1)) {
     $upgrade_required = 1;
   }
 } else {
-  Error($GLOBALS['I18N']->get('Database has not been initialised').', '.
+  Info($GLOBALS['I18N']->get('Database has not been initialised').', '.
   $GLOBALS['I18N']->get('go to').' '.
   PageLink2("initialise&firstinstall=1",$GLOBALS['I18N']->get('Initialise Database')). ' '.
   $GLOBALS['I18N']->get('to continue'));
