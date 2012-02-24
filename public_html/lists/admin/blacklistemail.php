@@ -1,28 +1,37 @@
 <?php
 
-ob_end_clean();
+#ob_end_clean();
 ## blacklist an email from commandline
 
-function cl_output($message) {
-  @ob_end_clean();
-  print strip_tags($message) . "\n";
-  $infostring = '';
-  ob_start();
-}
-
-var_dump($cline);
-
-$email = $cline['e'];
-if (empty($email)) {
-  cl_output('No email'); exit;
-}
-
-if (isBlackListed($email)) {
-  cl_output('Already blacklisted');
+if (!$GLOBALS['commandline']) {
+  print 'Error, this can only be called from commandline'."\n";
   exit;
 }
 
-addEmailToBlackList($email,'blacklisted due to spam complaints');
+$email = $date = $uid = '';
 
-cl_output($email. ' blacklisted');
+if (isset($cline['e'])) {
+  $email = $cline['e'];
+}
+if (isset($cline['u'])) {
+  $uid = $cline['u'];
+}
+if (isset($cline['d'])) {
+  $date = $cline['d'];
+}
+
+if (empty($email) && !empty($uid)) {
+  $emailQ = Sql_Fetch_Row_Query(sprintf('select email from %s where uniqid = "%s"',$GLOBALS['tables']['user'],Sql_escape($uid)));
+  $email = $emailQ[0];
+  if (empty($email)) {
+    cl_output('FAIL'); exit;
+  }
+}
+
+if (isBlackListed($email)) {
+  cl_output('OK');
+  exit;
+}
+addEmailToBlackList($email,'blacklisted due to spam complaints',$date);
+cl_output('OK '.$email);
 exit;
