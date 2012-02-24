@@ -116,9 +116,10 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables["config"],1)) {
 ## send a header for IE
 header('X-UA-Compatible: IE=Edge');
 
-if (!$ajax) {
+if (!$ajax && !$GLOBALS["commandline"]) {
   include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
 }
+
 if (isset($GLOBALS['pageheader'])) {
   foreach ($GLOBALS['pageheader'] as $sHeaderItem => $sHtml ) {
     print '<!--'.$sHeaderItem.'-->'.$sHtml;
@@ -475,7 +476,10 @@ if (checkAccess($page,"") || $page == 'about') {
         unset($_SESSION['action_result']);
       }
 
-
+      if ($GLOBALS['commandline']) {
+        @ob_end_clean();
+        @ob_start();
+      }
       if (isset($GLOBALS['developer_email'])) {
         include $include;
       } else {
