@@ -85,7 +85,8 @@ while ($row = sql_Fetch_array($req)) {
         $rule = str_replace('"','.',$rule);
         $rule = str_replace('(','.',$rule);
         $rule = str_replace(')','.',$rule);
-        if (eregi('Unknown local user',$rule)) {
+        
+        if (stripos($rule,'Unknown local user') !== false) {
           $rule = 'Unknown local user';
         } elseif (preg_match('/Unknown local part (.*) in/iU',$rule,$regs)) {
           $rule = preg_replace('/'.preg_quote($regs[1]).'/','.*',$rule);
