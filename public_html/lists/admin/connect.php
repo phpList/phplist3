@@ -566,9 +566,11 @@ $GLOBALS['pagecategories'] = array(
         'processbounces',
         'reindex',
         'resetstats',
+        'updatetranslation',
       ),
       'menulinks' => array(
         'bounces',
+        'updatetranslation',
         'dbcheck',
         'eventlog',
         'initialise',
