@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-28 12:07-0300\n"
-"PO-Revision-Date: 2012-02-28 12:07-0300\n"
+"POT-Creation-Date: 2012-02-28 17:03-0300\n"
+"PO-Revision-Date: 2012-02-28 17:03-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -4957,31 +4957,6 @@ msgstr ""
 msgid "Last Page"
 msgstr ""
 
-#: public_html/lists/admin/tests/sendpage.php:14
-msgid "Test email not set "
-msgstr ""
-
-#: public_html/lists/admin/tests/sendpage.php:24
-msgid "Sending HTML version to "
-msgstr ""
-
-#: public_html/lists/admin/tests/sendpage.php:27
-#: public_html/lists/admin/tests/sendpage.php:31
-msgid "OK"
-msgstr ""
-
-#: public_html/lists/admin/tests/sendpage.php:29
-msgid "Sending Text version to "
-msgstr ""
-
-#: public_html/lists/admin/tests/sendpage.php:34
-msgid "Note: Links in emails will not work, because this is a test message, which is deleted after sending"
-msgstr ""
-
-#: public_html/lists/admin/tests/sendpage.php:36
-msgid "Check your INBOX to see if all worked ok"
-msgstr ""
-
 #: public_html/lists/admin/actions/msgstatus.php:45
 msgid "unknown"
 msgstr ""
@@ -5074,12 +5049,10 @@ msgid "No such User"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:327
-#: public_html/lists/admin/commonlib/pages/userhistory.php:46
 msgid "update page"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:328
-#: public_html/lists/admin/commonlib/pages/userhistory.php:47
 msgid "unsubscribe page"
 msgstr ""
 
@@ -5113,7 +5086,6 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:571
 #: public_html/lists/admin/commonlib/pages/user.php:578
-#: public_html/lists/admin/commonlib/pages/userhistory.php:48
 msgid "Details"
 msgstr ""
 
@@ -5897,6 +5869,10 @@ msgstr ""
 msgid "Initialising Key Manager"
 msgstr ""
 
+#: public_html/lists/admin/plugins2/keymgr/initialise.php:12
+msgid "OK"
+msgstr ""
+
 #: public_html/lists/admin/plugins2/keymgr/add.php:13
 msgid "Key fingerprint"
 msgstr ""
@@ -5998,214 +5974,6 @@ msgstr ""
 msgid "Type some text to sign"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/email2fax/header.php:3
-msgid "Email 2 Fax settings for phplist"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:29
-msgid "temp_dir_not_writeable"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:42
-msgid "none_specified"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:46
-msgid "too_large_inexistant"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:50
-msgid "too_big"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:54
-msgid "wrong_characters"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:58
-msgid "signup_or_notify"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:68
-msgid "unreadable"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:74
-msgid "empty_file"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:102
-msgid "invalid_delimiter"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:131
-#: public_html/lists/admin/plugins2/emailimport/import1.php:361
-msgid "test_output"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:131
-msgid "one_email_per_line"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:131
-msgid "output_ok"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:131
-msgid "resubmit"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:195
-msgid "import_user"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:221
-msgid "import_new_user"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:264
-msgid "no_data_changed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:271
-msgid "lists_subscriptions"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:273
-msgid "was_subscribed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:276
-msgid "is_subscribed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:279
-msgid "not_subscribed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:290
-msgid "new_email_was"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:290
-msgid "new_emails_were"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:291
-msgid "email_was"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:291
-msgid "emails_were"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:294
-msgid "some_emails_exist"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:297
-msgid "all_emails_exist"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:299
-msgid "import_successful"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:299
-msgid "subscribed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:302
-msgid "import_more_emails"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:338
-msgid "no_lists"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:356
-msgid "info_emails_file"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:357
-msgid "emails_file"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:358
-msgid "field_delimiter"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:358
-msgid "tab_default"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:359
-msgid "record_delimiter"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:359
-msgid "line_break_default"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:360
-msgid "info_test_output"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:362
-msgid "info_notification_email"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:363
-msgid "notification_email"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/emailimport/import1.php:363
-msgid "confirmed_immediately"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:73
-msgid "Subscriptions"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:112
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:154
-msgid "Total"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:116
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:156
-msgid "Confirmed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:122
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:160
-msgid "Unconfirmed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:128
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:164
-msgid "Blacklisted"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:134
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:168
-msgid "Active"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:206
-msgid "Unsubscriptions"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:226
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:235
-msgid "Unsubscriptions in month"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:227
-#: public_html/lists/admin/plugins2/UserStatisticsPlugin/userstatistics/main.php:236
-msgid "(Blacklisteds in month)"
-msgstr ""
-
 #: public_html/lists/admin/plugins2/debugaids/dbadmin.php:171
 #: public_html/lists/admin/plugins2/debugaids/dbadmin.php:213
 msgid "users deleted"
@@ -6258,34 +6026,6 @@ msgstr ""
 #: public_html/lists/admin/plugins2/debugaids/devemails.php:15
 #, php-format
 msgid "%d to process"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/imapimport/import.php:245
-msgid "import3info"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/deletecriterion.php:11
-msgid "Removed"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/listcriteria.php:11
-msgid "existingcriteria"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/listcriteria.php:32
-msgid "operator"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/listcriteria.php:166
-msgid "values"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/listcriteria.php:167
-msgid "remove"
-msgstr ""
-
-#: public_html/lists/admin/plugins2/segmentation/actions/addcriterion.php:26
-msgid "adding"
 msgstr ""
 
 #: public_html/lists/admin/installer/install1.php:47
