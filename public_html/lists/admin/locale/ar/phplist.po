@@ -2,15 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 22:01-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-02-10 11:20-0300\n"
+"PO-Revision-Date: 2012-01-30 13:41+0200\n"
+"Last-Translator: tarekdj <tarekdj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Pootle 2.0.5\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
 "X-Poedit-Country: uk\n"
@@ -18,16 +20,17 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get\n"
 
 #: public_html/lists/index.php:926
+#, fuzzy
 msgid "When testing the phpList forward functionality, you need to be logged in as an administrator."
-msgstr ""
+msgstr "عند التحقق من وظيفة النقل لــ phplist، يجب تسجيل الدخول كمدير"
 
 #: public_html/lists/admin/subscriberstats.php:6
 msgid "Statistics"
-msgstr ""
+msgstr "إحصائيات"
 
 #: public_html/lists/admin/import1.php:7
 msgid "import is not available"
-msgstr ""
+msgstr "استيراد غير متوفر"
 
 #: public_html/lists/admin/import1.php:29
 msgid "The temporary directory for uploading is not writable, so import will fail"
@@ -2664,7 +2667,7 @@ msgid "view users"
 msgstr ""
 
 #: public_html/lists/admin/subscribelib2.php:103
-msgid "spamblockemailintro"
+msgid "  -------------------------------------------------------------------------------- This is a notification of a possible spam attack to your phplist subscribe page. The data submitted has been copied below, so you can check whether this was actually the case. The submitted data has been converted into non-html characters, for security reasons.  If you want to stop receiving this message, set     define(\"NOTIFY_SPAM\",0);  in your phplist config file.  This subscriber has not been added to the database. If there is an error, you will need to  add them manually.  --------------------------------------------------------------------------------  "
 msgstr ""
 
 #: public_html/lists/admin/subscribelib2.php:309
@@ -4868,69 +4871,69 @@ msgstr ""
 msgid "Recently Visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1033
-msgid "alllists"
+#: public_html/lists/admin/connect.php:1051
+msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1039
+#: public_html/lists/admin/connect.php:1057
 msgid "All Active Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1069
-msgid "listactive"
+#: public_html/lists/admin/connect.php:1087
+msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1071
-msgid "listnotactive"
+#: public_html/lists/admin/connect.php:1089
+msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1112
-msgid "nolistsavailable"
+#: public_html/lists/admin/connect.php:1130
+msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1710
+#: public_html/lists/admin/connect.php:1728
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1713
+#: public_html/lists/admin/connect.php:1731
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1716
+#: public_html/lists/admin/connect.php:1734
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1719
+#: public_html/lists/admin/connect.php:1737
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1722
+#: public_html/lists/admin/connect.php:1740
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1767
+#: public_html/lists/admin/connect.php:1785
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1769
+#: public_html/lists/admin/connect.php:1787
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1785
+#: public_html/lists/admin/connect.php:1803
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1786
+#: public_html/lists/admin/connect.php:1804
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1787
+#: public_html/lists/admin/connect.php:1805
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1788
+#: public_html/lists/admin/connect.php:1806
 msgid "Last Page"
 msgstr ""
 
@@ -5586,6 +5589,42 @@ msgstr ""
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:1238
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:1283
 msgid "close"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:261
+msgid "Your campaign does not contain an unsubscribe link. Please add [UNSUBSCRIBE] or [UNSUBSCRIBEURL] to the footer or content of the campaign"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:279
+#, php-format
+msgid "The \"From email address\" for this campaign has already been validated. %scontinue%s"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:287
+#, php-format
+msgid "Unrecognised code, please %stry again%s. Did you check your INBOX? When copying the code from the verification message you receive, make sure not to include spaces. Also, if you requested the code to be resent, only the last one will be valid."
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:296
+msgid "Verification message has been resent. Please note, only the last code sent will be valid."
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:353
+msgid "Address verification required"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:354
+msgid ""
+"\n"
+"      This is the fist time you use the email address ("
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:368
+msgid "If you did not receive the verification message, you can"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:368
+msgid "resend verification email"
 msgstr ""
 
 #: public_html/lists/admin/plugins2/email2fax/header.php:3
