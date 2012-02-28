@@ -72,6 +72,7 @@ class phplist extends DefaultPlugin {
       'linktrack_ml' => $table_prefix.'linktrack_ml',
       'linktrack_uml_click' => $table_prefix.'linktrack_uml_click',
       'userstats' => $table_prefix .'userstats',
+      'i18n' => $table_prefix,'i18n',
     );
     $this->addDataType("phplist_1","Mailinglist Pages");
    # $_GET["id"] = 1;

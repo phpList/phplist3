@@ -75,6 +75,7 @@ if (!defined("USE_PDF")) define("USE_PDF",0);
 if (!defined("VERBOSE")) define("VERBOSE",0);
 if (!defined("TEST")) define("TEST",1);
 if (!defined("DEVSITE")) define("DEVSITE",0);
+define('TRANSLATIONS_XML','http://translate.phplist.com/translations.xml');
 
 // obsolete by rssmanager plugin
 // if (!defined("ENABLE_RSS")) define("ENABLE_RSS",0);

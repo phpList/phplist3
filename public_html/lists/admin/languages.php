@@ -65,13 +65,15 @@ while ($lancode = readdir($d)) {
         $lan[$regs[1]] = $regs[2];
       }
     }
+    if (!isset($lan['gettext'])) $lan['gettext'] = $lancode;
     if (!empty($lan['name']) && !empty($lan['charset'])) {
-      $LANGUAGES[$lancode] = array($lan['name'],$lan['charset'],$lan['charset']);
+      $LANGUAGES[$lancode] = array($lan['name'],$lan['charset'],$lan['charset'],$lan['gettext']);
     }
     
 #    print '<br/>'.$landir.'/'.$lancode;
   }
 }
+
 function lanSort($a,$b) {
   return strcmp(strtolower($a[0]),strtolower($b[0]));
 }
@@ -139,6 +141,15 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
     $accept_lan = array('en'); # @@@ maybe make configurable?
   }
   $detectlan = '';
+
+  /* @@@TODO
+   * we need a mapping from Accept-Language to gettext, see below
+   *
+   * eg nl-be becomes nl_BE
+   *
+   * currently "nl-be" will become "nl" and not "nl_BE";
+   */
+  
   foreach ($accept_lan as $lan) {
     if (!$detectlan) {
       if (preg_match('/^([\w-]+)/',$lan,$regs)) {
@@ -176,9 +187,11 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
 # internationalisation (I18N)
 
 class phplist_I18N {
-  var $defaultlanguage = 'en';
-  var $language = 'en';
-  var $basedir = '';
+  public $defaultlanguage = 'en';
+  public $language = 'en';
+  public $basedir = '';
+  private $hasGettext = false;
+  private $hasDB = false;
 
   function phplist_I18N() {
     $this->basedir = dirname(__FILE__).'/lan/';
@@ -191,11 +204,76 @@ class phplist_I18N {
       $this->language = 'en';
 #      exit;
     }
+    if (function_exists('gettext')) {
+      $this->hasGettext = true;
+    }
+    if (Sql_Check_For_Table('i18n')) {
+      $this->hasDB = true;
+    }
+  }
+
+  function gettext($text) {
+    bindtextdomain('phplist', './locale');
+    textdomain('phplist');
+
+    /* gettext is a bit messy, at least on my Ubuntu 10.10 machine
+     *
+     * if eg language is "nl" it won't find it. It'll need to be "nl_NL";
+     * also the Ubuntu system needs to have the language installed, even if phpList has it
+     * it won't find it, if it's not on the system
+     *
+     * but when you use "nl_NL", the language .mo can still be in "nl".
+     * However, it needs "nl/LC_MESSAGES/phplist.mo s, put a symlink LC_MESSAGES to itself
+     *
+     * the "utf-8" strangely enough needs to be added but can be spelled all kinds
+     * of ways, eg "UTF8", "utf-8"
+     *
+     *
+     * AND then of course the lovely Accept-Language vs gettext
+     * https://bugs.php.net/bug.php?id=25051
+     *
+     * Accept-Language is lowercase and with - and gettext is country uppercase and with underscore
+     * 
+     * More ppl have come across that: http://grep.be/articles/php-accept
+     * 
+    */
+
+    ## so, to get the mapping from "nl" to "nl_NL", use a gettext map in the related directory
+    if (is_file('./locale/'.$this->language.'/gettext_code')) {
+      $lan_map = file_get_contents('./locale/'.$this->language.'/gettext_code');
+      $lan_map = trim($lan_map);
+    } else {
+      ## try to do "fr_FR", or "de_DE", might work in most cases
+      ## hmm, not for eg fa_IR or zh_CN so they'll need the above file
+      # http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes      
+      $lan_map = $this->language.'_'.strtoupper($this->language);
+    }
+
+    putenv("LANGUAGE=".$lan_map.'.utf-8'); 
+    setlocale(LC_ALL, $lan_map.'.utf-8');
+    bind_textdomain_codeset('phplist', 'UTF-8');
+    $gt = gettext($text);
+    if ($gt && $gt != $text) return $gt;
+  }
+
+  function databaseTranslation($text) {
+    $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
+      sql_escape($text),$this->language));
+    return $tr[0];
   }
 
   function pageTitle($page) {
+    ## try gettext and otherwise continue
+    if ($this->hasGettext) {
+      $gettext = $this->gettext($page);
+      if (!empty($gettext)) {
+        return $gettext;
+      }
+    }
     $page_title = '';
-    include dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php';
+    if (is_file(dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php')) {
+      include dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php';
+    }
     if (!empty($page_title)) {
       $title = $page_title;
     } elseif (preg_match('/pi=([\w]+)/',$page,$regs)) {
@@ -298,7 +376,23 @@ $lan = array(
     }
   }
   
-  function getTranslation($text,$page,$basedir) { 
+  function getTranslation($text,$page,$basedir) {
+    ## try gettext and otherwise continue
+    if ($this->hasGettext) {
+      $gettext = $this->gettext($text);
+      if (!empty($gettext)) {
+        return $this->formatText($gettext);
+      }
+    }
+
+    ## next try DB
+    if ($this->hasDB) {
+      $db_trans = $this->databaseTranslation($text);
+      if (!empty($db_trans)) {
+        return $this->formatText($db_trans);
+      }
+    }
+    
     if (is_file($basedir.'/'.$this->language.'/'.$page.'.php')) {
       @include $basedir.'/'.$this->language.'/'.$page.'.php';
     } elseif (!isset($GLOBALS['developer_email'])) {
@@ -390,11 +484,18 @@ $lan = array(
   }
 }
 
+function getTranslationUpdates() {
+  ## @@@TODO add some more error handling
+  $lan_update = fetchUrl(TRANSLATIONS_XML);
+  $LU = simplexml_load_string($lan_update);
+  return $LU;
+}
+
 $I18N = new phplist_I18N();
 
 /* add a shortcut that seems common in other apps */
 function s($text) {
-  print $GLOBALS['I18N']->get($text);
+  return $GLOBALS['I18N']->get($text);
 }
 
 ?>

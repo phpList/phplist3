@@ -490,6 +490,13 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         "entered" => array('integer not null',''),
         "expires" => array('datetime not null',''),
       ),
+      "i18n" => array (
+        "lan" => array('varchar(255) not null','Language ISO'),
+        "original" => array('text not null','Original string'),
+        "translation" => array('text not null','Translated string'),
+        "index_1" => array('lanorigidx (lan(50),original(200))','index'),
+      ),
+        
   /*    "translation" => array(
         "id" => array("integer not null primary key auto_increment",""),
         "translator" => array("varchar(255)","Name of translator"),
