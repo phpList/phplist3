@@ -404,7 +404,7 @@ if (!$ajax && $page != "login") {
     if ($queued_count[0]) {
       $link = PageLink2('processqueue',s('Process the queue'));
       if ($link) {
-        print Info(s(sprintf('You have %s message(s) waiting to be sent',$queued_count[0]).'<br/>'.$link));
+        print Info(sprintf(s('You have %s message(s) waiting to be sent'),$queued_count[0]).'<br/>'.$link);
       }
     }
   }
