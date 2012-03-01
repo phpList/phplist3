@@ -102,6 +102,8 @@ font-size: 12px;
 .error{
   border:3px solid;
   margin:0px 20px 20px;
+  color: red;
+  font-weight: bold;
   padding:10px;
 }
 .examplecode{
@@ -137,4 +139,62 @@ font-weight: bold
   padding: 1em 1em 1em 1em;
   width: 75px;
 }
+#processqueueprogress {
+  width: 99%;
+}
+#spinner {
+  width: 45px;
+  height: 45px;
+  float:left;
+}
+#processqueuecontrols {
+  width: 150px;
+  height: 45px;
+  margin: 3px 3px 3px 3px;
+  display: inline;
+  float: left;
+}
 
+#progressmeter {
+  width: 500px;
+  margin: 3px 3px 3px 3px;
+  display: block;
+  border: 1px dashed #CCCCCC;
+}
+#progress {
+  background-color: #CCCCCC;
+  display: block;
+  position: absolute;
+  width: 0px;
+  text-align: right;
+  overflow: hidden;
+  height: 20px;
+}
+
+#processqueueiframe {
+  width: 99%;
+  height: 10px;
+  border: 1px solid white;
+  display: none;
+}
+#processqueuesummary {
+  width: 99%;
+  height: 250px;
+  overflow: hidden;
+  border: 1px solid white;
+}
+#progresscount {
+  display: none;
+}
+#processqueueprogress {
+  width: 99%;
+  height: 100px;
+  overflow: hidden;
+  border: 1px solid white;
+}
+
+#processqueueoutput {
+  width: 99%;
+  height: 400px;
+  border: 1px solid white;
+}
