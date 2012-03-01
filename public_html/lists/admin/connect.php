@@ -435,7 +435,7 @@ function Warn($msg) {
 }
 
 function Info($msg,$noClose = false) {
-  if ($GLOBALS['commandline']) {
+  if (!empty($GLOBALS['commandline'])) {
     @ob_end_clean();
     print "\n".strip_tags($GLOBALS["I18N"]->get("information").": ".$msg)."\n";
     @ob_start();
@@ -1571,7 +1571,7 @@ function repeatMessage($msgid) {
   }
 
   # check whether the new embargo is not on an exclusion
-  if (is_array($GLOBALS["repeat_exclude"])) {
+  if (isset($GLOBALS["repeat_exclude"]) && is_array($GLOBALS["repeat_exclude"])) {
     $repeatinterval = $msgdata["repeatinterval"];
     $loopcnt = 0;
     while (excludedDateForRepetition($msgdata["newembargo"])) {
