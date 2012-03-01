@@ -182,6 +182,7 @@ if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN
 # check whether Pear HTTP/Request is available
 @include_once "HTTP/Request.php";
 $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
+$GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
 
 ## fairly crude way to determine php version, but mostly needed for the stripos
 if (function_exists('stripos')) {
