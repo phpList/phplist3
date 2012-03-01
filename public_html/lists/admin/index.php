@@ -398,6 +398,17 @@ if (!$ajax && $page != "login") {
     }
     Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
+
+  if (MANUALLY_PROCESS_QUEUE && $_GET['page'] != 'processqueue') {
+    $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
+    if ($queued_count[0]) {
+      $link = PageLink2('processqueue',s('Process the queue'));
+      if ($link) {
+        print Info(s(sprintf('You have %s message(s) waiting to be sent',$queued_count[0]).'<br/>'.$link));
+      }
+    }
+  }
+  
 }
 
 # always allow access to the about page
@@ -457,8 +468,8 @@ if (checkAccess($page,"") || $page == 'about') {
     if (is_file("lan/".$_SESSION['adminlanguage']['iso']."/".$include)) {
       include "lan/".$_SESSION['adminlanguage']['iso']."/".$include;
     }
-    if ($include == 'login.php' && is_file('ui/'.$GLOBALS['ui'].'/pages/login.php')) {
-      $include = 'ui/'.$GLOBALS['ui'].'/pages/login.php';
+    if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
+      $include = 'ui/'.$GLOBALS['ui'].'/pages/'.$include;
     }
   #  print "Including $include<br/>";
 
