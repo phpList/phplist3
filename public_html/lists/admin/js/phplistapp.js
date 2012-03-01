@@ -57,102 +57,101 @@ function totalSentUpdate(msgid) {
 }
 
 $(document).ready(function() {
-$(".note .hide").click(function() {
-  $(this).parents('.note').hide();
-});
+  $(".note .hide").click(function() {
+    $(this).parents('.note').hide();
+  });
 
-//$(".paging").scrollable();
+  //$(".paging").scrollable();
 
-$(".configurelink").click(function() {
- // alert(this.href);
-  $("#configurecontent").load('./?page=ajaxcall&action=test');
-  $("#configurecontent").show();
-  return false;
-});
+  $(".configurelink").click(function() {
+   // alert(this.href);
+    $("#configurecontent").load('./?page=ajaxcall&action=test');
+    $("#configurecontent").show();
+    return false;
+  });
 
-$("a.ajaxable").click(function() {
-  var url = this.href;
-  var thispage = urlParameter('page',window.location.href);
-  var action = urlParameter('action',url);
-  if (action == "") {
-    url += '&action='+thispage;
-  }
-  parent = $(this).parent();
-  parent.html(busyImage);
-  url = url.replace(/page=/,'origpage=');
-//  alert(url+'&ajaxed=true&page=pageaction');
-  parent.load(url+'&ajaxed=true&page=pageaction');
-  return false;
-});
+  $("a.ajaxable").click(function() {
+    var url = this.href;
+    var thispage = urlParameter('page',window.location.href);
+    var action = urlParameter('action',url);
+    if (action == "") {
+      url += '&action='+thispage;
+    }
+    parent = $(this).parent();
+    parent.html(busyImage);
+    url = url.replace(/page=/,'origpage=');
+  //  alert(url+'&ajaxed=true&page=pageaction');
+    parent.load(url+'&ajaxed=true&page=pageaction');
+    return false;
+  });
 
-$("input:checkbox.checkallcheckboxes").click(function() {
-  if (this.checked) {
-    $("input[type=checkbox]:not(:checked)").each(function(){
-      this.checked = true;
-    });
-  } else {
-    $("input[type=checkbox]:checked").each(function(){
-      this.checked = false;
-    });
-  }
-});
+  $("input:checkbox.checkallcheckboxes").click(function() {
+    if (this.checked) {
+      $("input[type=checkbox]:not(:checked)").each(function(){
+        this.checked = true;
+      });
+    } else {
+      $("input[type=checkbox]:checked").each(function(){
+        this.checked = false;
+      });
+    }
+  });
 
   var stop = false;
 
-$(".accordion").accordion({
-    autoHeight: false,
-    navigation: true,
-    collapsible: true
-  });
-
-$(".opendialog").click(function() {
-  openDialog(this.href);
-  return false;
-});
-$(".helpdialog").click(function() {
-  openDialog(this.href);
-  return false;
-});
-$(".closedialog").click(function() {
-  $("#dialog").dialog('close');
-});
-						   
-//dropbuttons						   
-$("div.dropButton img.arrow").click(function(){ 					
-		submenu = $(this).parent().parent().find("div.submenu");		
-		if(submenu.css('display')=="block"){
-			submenu.hide(); 		
-			$(this).attr('src',menuArrowImagesrc);									
-		} else {
-			submenu.fadeIn(); 		
-			$(this).attr('src',menuArrowActiveImagesrc);	
-		}	
-		return false;					
-});						   
-
-
-/* hmm, doesn't work yet, but would be nice at some point
-$("#emailsearch").autocomplete({
-  source: "?page=pageaction&ajaxed=true&action=searchemail",
-  minLength: 2,
-  select: function(event, ui) {
-  log(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
+  if ($.fn.accordion) {
+    $(".accordion").accordion({
+        autoHeight: false,
+        navigation: true,
+        collapsible: true
+      });
   }
-});
-*/
 
-  $("#listinvalid").load("./?page=pageaction&action=listinvalid&ajaxed=true",function() {
- //  alert("Loaded")
-   });
+  $(".opendialog").click(function() {
+    openDialog(this.href);
+    return false;
+  });
+  $(".helpdialog").click(function() {
+    openDialog(this.href);
+    return false;
+  });
+  $(".closedialog").click(function() {
+    $("#dialog").dialog('close');
+  });
+                 
+  //dropbuttons						   
+  $("div.dropButton img.arrow").click(function(){ 					
+      submenu = $(this).parent().parent().find("div.submenu");		
+      if(submenu.css('display')=="block"){
+        submenu.hide(); 		
+        $(this).attr('src',menuArrowImagesrc);									
+      } else {
+        submenu.fadeIn(); 		
+        $(this).attr('src',menuArrowActiveImagesrc);	
+      }	
+      return false;					
+  });						   
 
-  $(".tabbed").tabs({
-    ajaxOptions: {
-      error: function(xhr, status, index, anchor) {
-        $(anchor.hash).html("Error fetching page");
-      }
+  /* hmm, doesn't work yet, but would be nice at some point
+  $("#emailsearch").autocomplete({
+    source: "?page=pageaction&ajaxed=true&action=searchemail",
+    minLength: 2,
+    select: function(event, ui) {
+    log(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
     }
   });
-  $(".tabbed1").tabs();
+  */
+
+  if ($.fn.tabs) {
+    $(".tabbed").tabs({
+      ajaxOptions: {
+        error: function(xhr, status, index, anchor) {
+          $(anchor.hash).html("Error fetching page");
+        }
+      }
+    });
+    $(".tabbed1").tabs();
+  }
 
   $("#remoteurlinput").blur(function() {
     if (!this.value) return;
@@ -203,8 +202,6 @@ $("#emailsearch").autocomplete({
         $("#criteriaAttributeValues").html('');
         break;
     }
-      
-//    alert(val + " "+aT[val]);
   });
 
   $("#initialadminpassword").keyup(function() {
@@ -213,6 +210,28 @@ $("#emailsearch").autocomplete({
     }
   });
 
+  //fade out 'actionresult' user feedback
+  $('.actionresult').delay(4000).fadeOut(4000); 
+  //fade out 'result' user feedback
+  $('.result').delay(4000).fadeOut(4000); 
+
+
+//  $("#processqueueoutput").html('Processing queue, please wait<script type="text/javascript">alert(document.location)</script>');
+  $("#spinner").html(busyImage);
+  
+  $("#stopqueue").click(function() {
+    $("#processqueueoutput").html('Processing cancelled');
+    $("#spinner").html('&nbsp;');    
+    $("#stopqueue").html('<a href="" id="resumequeue" class="button">RESUME</a>');    
+  });
+
+  var docurl = document.location.search;
+  document.cookie="browsetrail="+escape(docurl);
+
+/* future dev
+  $("#listinvalid").load("./?page=pageaction&action=listinvalid&ajaxed=true",function() {
+ //  alert("Loaded")
+  });
   $("#refreshCriteria").click(refreshCriteriaList);
   
   $("#addcriterionbutton").click(function() {
@@ -242,17 +261,38 @@ $("#emailsearch").autocomplete({
 //    refreshCriteriaList();
     return true;
   });
-
-  //fade out 'actionresult' user feedback
-  $('.actionresult').delay(4000).fadeOut(4000); 
-  //fade out 'result' user feedback
-  $('.result').delay(4000).fadeOut(4000); 
-
-
-  var docurl = document.location.search;
-  document.cookie="browsetrail="+escape(docurl);
+*/
 
 });
+
+function allDone() {
+  $("#processqueueoutput").html('All done');
+  $("#spinner").html('&nbsp;');    
+  $("#stopqueue").html('<a href="" id="resumequeue" class="button">RESUME</a>');    
+}
+
+var overallTotal = 0;
+var overallSent = 0;
+$.fn.updateProgress = function() {
+  var args = arguments[0].split(',') || {}; //  arguments
+  var total = parseInt(args[1]);
+  // fix the total first time
+  if (total > overallTotal) {    overallTotal = total;  } else {    total = overallTotal;  }
+  var done = parseInt(args[0]);
+  if (done > 0) {
+    overallSent += done;
+  }
+  var perc;
+  if (overallTotal == 0) {
+    perc = 0;
+  } else {
+    perc = parseInt((overallSent / overallTotal) * 100);
+  }
+  $("#progress").width(perc * 5);
+//  $("#progress").html(overallSent + ' / '+ overallTotal +':'+perc + '%');
+  $("#progress").html(perc + '%');
+  $("#progresscount").html(overallSent + ' / '+ overallTotal);
+};
 
 
 /*
@@ -274,14 +314,14 @@ function deleteRec2(msg,url) {
 }
 
 function help(loc) {
-	if (helpwin && !helpwin.closed) {
-			helpwin.close();
-			helpwin = '';
-      helploc = loc;
-			setTimeout("openhelp()",500)
-	} else {
-  	helploc = loc;
-		openhelp();
+  if (helpwin && !helpwin.closed) {
+    helpwin.close();
+    helpwin = '';
+    helploc = loc;
+    setTimeout("openhelp()",500)
+  } else {
+    helploc = loc;
+    openhelp();
   }
 }
 
@@ -299,7 +339,7 @@ function print_self(){
 }
 
 function show_print_alert() {
-   alert("Please use your browser's print button");
+  alert("Please use your browser's print button");
 }
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0
@@ -310,30 +350,29 @@ var pic = null;
 var t_url;
 var t_w;
 var t_h;
-//window.onunload =  closePic;
 
 function viewImage(url,w,h) {
    openpic(url,w,h);
 }
 
 function openpic(url,w,h) {
-    if (w == null || w == 0) {
-		w = 120;
-    }
-    if (h == null || h == 0){
-	h = 120;
-    }
+  if (w == null || w == 0) {
+    w = 120;
+  }
+  if (h == null || h == 0){
+    h = 120;
+  }
 
-    if (pic){
-	pic.close();
-	pic = null;
-	t_url = url;
-	t_w = w;
-	t_h = h;
-	setTimeout("openit()",500);
-	} else {
-	do_openpic(url,w,h);
-	}
+  if (pic)  {
+    pic.close();
+    pic = null;
+    t_url = url;
+    t_w = w;
+    t_h = h;
+    setTimeout("openit()",500);
+  } else {
+    do_openpic(url,w,h);
+  }
 }
 
 function openit() {
@@ -344,31 +383,31 @@ function openit() {
 }
 
 function do_openpic(url,w,h) {
-    w +=30;
-    h +=30;
-    //var features = "scrollbars=auto,toolbar=yes,location=yes,menubar=yes,screenx=150,screeny=150";
-    var	features = "dependent=yes,width=" + w + ",height=" + h + ",noresize,scrollbars=auto,toolbar=no,location=no,menubar=no,screenx=150,screeny=150";
+  w +=30;
+  h +=30;
+  //var features = "scrollbars=auto,toolbar=yes,location=yes,menubar=yes,screenx=150,screeny=150";
+  var	features = "dependent=yes,width=" + w + ",height=" + h + ",noresize,scrollbars=auto,toolbar=no,location=no,menubar=no,screenx=150,screeny=150";
 //    alert(features);
-    pic = window.open(url,"picwin",features);
-    //    setTimeout("createContent()",100);
+  pic = window.open(url,"picwin",features);
+  //    setTimeout("createContent()",100);
 
 }
 function createContent(){
-    if (!pic.document){
-	setTimeout("createContent()",100);
-    } else {
-	var url ="aaa";
-	var w=100;
-	var h=200;
-	pic.document.write('<html><head><style>body{margin:0}</style></head><body>');
-	pic.document.write('<img border=0 src=\"');
-	pic.document.write(url);
-	pic.document.write('\" width=');
-	pic.document.write(w);
-	pic.document.write(' height=');
-	pic.document.write(h);
-	pic.document.write('></body></html>');
-	if (window.focus){pic.focus();}
-    }
+  if (!pic.document){
+    setTimeout("createContent()",100);
+  } else {
+    var url ="aaa";
+    var w=100;
+    var h=200;
+    pic.document.write('<html><head><style>body{margin:0}</style></head><body>');
+    pic.document.write('<img border=0 src=\"');
+    pic.document.write(url);
+    pic.document.write('\" width=');
+    pic.document.write(w);
+    pic.document.write(' height=');
+    pic.document.write(h);
+    pic.document.write('></body></html>');
+    if (window.focus){pic.focus();}
+  }
 }
 
