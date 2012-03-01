@@ -134,6 +134,7 @@ function loadMessageData($msgid) {
     'notify_start' =>  getConfig("notifystart_default"),
     'notify_end' =>  getConfig("notifyend_default"),
     'google_track' => getConfig('always_add_googletracking') == 'true',
+    'excludelist' => array(),
   );
   if (is_array($prevMsgData)) {
     foreach ($prevMsgData as $key => $val) {
@@ -713,10 +714,10 @@ function getPageLock($force = 0) {
       # process has been inactive for too long, kill it
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
     } elseif ($count >= $max) {
-      output ($GLOBALS['I18N']->get('A process for this page is already running and it was still alive').' '.$running_res['age'].' '.$GLOBALS['I18N']->get('seconds ago').' '.$count);
+      output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
-        output("Running commandline, quitting. We'll find out what to do in the next run.");
+        cl_output(s("Running commandline, quitting. We'll find out what to do in the next run."));
         exit;
       }
       output ($GLOBALS['I18N']->get('Sleeping for 20 seconds, aborting will quit'));
