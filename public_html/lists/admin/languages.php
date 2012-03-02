@@ -486,8 +486,11 @@ $lan = array(
 
 function getTranslationUpdates() {
   ## @@@TODO add some more error handling
+  $LU = false;
   $lan_update = fetchUrl(TRANSLATIONS_XML);
-  $LU = simplexml_load_string($lan_update);
+  if (!empty($lan_update)) {
+    $LU = simplexml_load_string($lan_update);
+  }
   return $LU;
 }
 
