@@ -8,6 +8,10 @@ if (isset($_GET['lan'])) {
   $lan = preg_replace('/[^\w_]/','',$lan);
 }
 $LU = getTranslationUpdates();
+if (!$LU || !is_object($LU)) {
+  print Error(s('Unable to fetch list of languages, please check your network or try again later'));
+  return;
+}
 
 $translations = array();
 foreach ($LU->translation as $update) {
@@ -45,7 +49,7 @@ if (sizeof($translations)) {
     Sql_Replace($GLOBALS['tables']['i18n'],array('lan' => $lan,'original' => $orig,'translation' => $trans),'');
   }
   saveConfig('lastlanguageupdate-'.$lan,time(),0);
-  $status = sizeof($translations).' '.s('Terms updated');
+  $status = sprintf(s('updated %d langague terms'),sizeof($translations));
 } else {
-  $status = s('Network error updating language, please try again later');
+  $status = Error(s('Network error updating language, please try again later'));
 }
