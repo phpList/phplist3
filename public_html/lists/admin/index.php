@@ -399,7 +399,7 @@ if (!$ajax && $page != "login") {
     Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
 
-  if (MANUALLY_PROCESS_QUEUE && $_GET['page'] != 'processqueue') {
+  if (MANUALLY_PROCESS_QUEUE && (!isset($_GET['page']) || $_GET['page'] != 'processqueue')) {
     $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
     if ($queued_count[0]) {
       $link = PageLink2('processqueue',s('Process the queue'));
@@ -529,12 +529,13 @@ if (checkAccess($page,"") || $page == 'about') {
 }
 
 # some debugging stuff
-if (strpos(VERSION,"dev") !== false && !empty($GLOBALS['developer_email'])) {
-  $now =  gettimeofday();
-  $finished = $now["sec"] * 1000000 + $now["usec"];
-  $elapsed = $finished - $GLOBALS["pagestats"]["time_start"];
-  $elapsed = ($elapsed / 1000000);
+$now =  gettimeofday();
+$finished = $now["sec"] * 1000000 + $now["usec"];
+$elapsed = $finished - $GLOBALS["pagestats"]["time_start"];
+$elapsed = ($elapsed / 1000000);
+
 #  print "\n\n".'<!--';
+if (!empty($GLOBALS['developer_email'])) {
   print '<br clear="all" />';
   print $GLOBALS["pagestats"]["number_of_queries"]." db queries in $elapsed seconds";
   if (function_exists('memory_get_peak_usage')) {
@@ -545,14 +546,14 @@ if (strpos(VERSION,"dev") !== false && !empty($GLOBALS['developer_email'])) {
     $memory_usage = 'Cannot determine with this PHP version';
   }
   print '<br/>Memory usage: '.$memory_usage;
-  
-  if (isset($GLOBALS["statslog"])) {
-    if ($fp = @fopen($GLOBALS["statslog"],"a")) {
-      @fwrite($fp,getenv("REQUEST_URI")."\t".$GLOBALS["pagestats"]["number_of_queries"]."\t$elapsed\n");
-    }
+}  
+
+if (isset($GLOBALS["statslog"])) {
+  if ($fp = @fopen($GLOBALS["statslog"],"a")) {
+    @fwrite($fp,$GLOBALS["pagestats"]["number_of_queries"]."\t$elapsed\t".$_SERVER['REQUEST_URI']."\t".$GLOBALS['installation_name']."\n");
   }
-#  print '-->';
 }
+#  print '-->';
 
 if ($ajax || (isset($GLOBALS["commandline"]) && $GLOBALS["commandline"])) {
   @ob_clean();
