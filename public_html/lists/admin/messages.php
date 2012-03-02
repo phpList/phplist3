@@ -354,14 +354,14 @@ if ($total) {
 
     $actionbuttons = '';
     if ($msg['status'] == 'inprocess' || $msg['status'] == 'submitted') {
-      $actionbuttons .= PageLinkButton('messages&suspend='.$msg['id'],$GLOBALS['I18N']->get('Suspend'));
+      $actionbuttons .= '<span class="suspend">'.PageLinkButton('messages&suspend='.$msg['id'],$GLOBALS['I18N']->get('Suspend')).'</span>';
     } elseif ($msg['status'] != 'draft') {
-      $actionbuttons .= PageLinkButton("messages",$GLOBALS['I18N']->get("Requeue"),"resend=".$msg["id"]);
+      $actionbuttons .= '<span class="resend">'.PageLinkButton("messages",$GLOBALS['I18N']->get("Requeue"),"resend=".$msg["id"]).'</span>';
     }
     #0012081: Add new 'Mark as sent' button
     if ($msg['status'] == 'suspended') {
-      $actionbuttons .= PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent'));
-      $actionbuttons .= PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"]); 
+      $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent')).'</span>';
+      $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"]).'</span>'; 
     }
     
     if ($msg['status'] == 'draft') {
@@ -376,7 +376,7 @@ PageURL2("messages$url_keep","","delete=".$msg["id"]));
       $actionbuttons .= PageLink2("mclicks",$GLOBALS['I18N']->get("click stats"),"id=".$msg["id"]);
     }
 
-    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), $actionbuttons);
+    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
 
 
     ## allow plugins to add information
