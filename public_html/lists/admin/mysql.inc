@@ -239,18 +239,18 @@ function Sql_Fetch_Row($dbresult) {
   return mysql_fetch_row($dbresult);
 }
 
-function Sql_Fetch_Row_Query($query) {
-  $req = Sql_Query($query);
+function Sql_Fetch_Row_Query($query,$ignore = 0) {
+  $req = Sql_Query($query,$ignore);
   return Sql_Fetch_Row($req);
 }
 
-function Sql_Fetch_Array_Query($query) {
-  $req = Sql_Query($query);
+function Sql_Fetch_Array_Query($query,$ignore = 0) {
+  $req = Sql_Query($query,$ignore);
   return Sql_Fetch_Array($req);
 }
 
-function Sql_Fetch_Assoc_Query($query) {
-  $req = Sql_Query($query);
+function Sql_Fetch_Assoc_Query($query,$ignore = 0) {
+  $req = Sql_Query($query,$ignore);
   return Sql_Fetch_Assoc($req);
 }
 
