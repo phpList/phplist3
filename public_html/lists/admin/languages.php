@@ -239,8 +239,8 @@ class phplist_I18N {
     */
 
     ## so, to get the mapping from "nl" to "nl_NL", use a gettext map in the related directory
-    if (is_file('./locale/'.$this->language.'/gettext_code')) {
-      $lan_map = file_get_contents('./locale/'.$this->language.'/gettext_code');
+    if (is_file(dirname(__FILE__).'/locale/'.$this->language.'/gettext_code')) {
+      $lan_map = file_get_contents(dirname(__FILE__).'/locale/'.$this->language.'/gettext_code');
       $lan_map = trim($lan_map);
     } else {
       ## try to do "fr_FR", or "de_DE", might work in most cases
