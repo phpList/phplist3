@@ -13,6 +13,10 @@ if (isset($_GET['lan'])) { ## Non-JS version
 }
 
 $LU = getTranslationUpdates();
+if (!$LU) {
+  print Error(s('Unable to fetch list of languages, please check your network or try again later'));
+  return;
+}
 
 #var_dump($LU);
 print '<ul>';
