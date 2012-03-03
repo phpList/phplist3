@@ -302,7 +302,7 @@ function output ($message,$logit = 1,$target = 'summary') {
     print $GLOBALS['installation_name'].' - '. strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')';
 #    print ' '.formatBytes($mem) . ' '.$mem;
     print "\n";
-    sleep(2);
+//    sleep(2); # for testing, so it doesn't fly across the screen :-)
     $infostring = '';
     ob_start();
   } else {
