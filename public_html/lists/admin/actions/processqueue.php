@@ -1,16 +1,34 @@
 <?php
+
+if (!empty($GLOBALS['developer_email'])) {
+  ob_end_flush();
+  error_reporting(E_ALL);
+  ini_set('display_errors',1);
+}
 require_once dirname(__FILE__).'/../accesscheck.php';
+require_once dirname(__FILE__) .'/../sendemaillib.php';
 
 $status = 'OK';
 $processqueue_timer = new timer();
 $domainthrottle = array();
-$send_process_id = 0;
-if (isset($_GET['reload'])) {
+# check for other processes running
+if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
+  # force set, so kill other processes
+  $send_process_id = getPageLock(1);
+} else {
+  $send_process_id = getPageLock();
+}
+#cl_output('page locked on '.$send_process_id);
+
+if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
   $reload = sprintf('%d',$_GET['reload']);
 } else {
   $reload = 0;
 }
-include 'ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
+
+if (is_file('ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
+  include 'ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
+}
 
 $num_per_batch = 0;
 $batch_period = 0;
@@ -64,6 +82,10 @@ if (MAILQUEUE_BATCH_PERIOD) {
 }
 
 ## force batch processing in small batches when called from the web interface
+/*
+ * bad idea, we shouldn't touch the batch settings, in case they are very specific for
+ * ISP restrictions, instead limit webpage processing by time (below)
+ * 
 if (empty($GLOBALS['commandline'])) {
   $num_per_batch = min($num_per_batch,100);
   $batch_period = max($batch_period,1);
@@ -74,6 +96,18 @@ if (empty($GLOBALS['commandline'])) {
     $num_per_batch = $cl_num_per_batch;
   }
   cl_output("Batch set with commandline to $num_per_batch");
+}
+*/
+$maxProcessQueueTime = 0;
+if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
+  $maxProcessQueueTime = (int)MAX_PROCESSQUEUE_TIME;
+}
+# in-page processing force to a minute max, and make sure there's a batch size
+if (empty($GLOBALS['commandline'])) {
+  $maxProcessQueueTime = min($maxProcessQueueTime,30);
+  if ($num_per_batch <= 0) {
+    $num_per_batch = 10000;
+  }
 }
 
 $safemode = 0;
@@ -112,13 +146,15 @@ for ($i=0;$i<10000; $i++) {
 print '<style type="text/css" src="css/app.css"></style>';
 print '<style type="text/css" src="ui/'.$GLOBALS['ui'].'/css/style.css"></style>';
 print '<script type="text/javascript" src="js/'.$GLOBALS['jQuery'].'"></script>';
+## not sure this works, but would be nice
+print '<script type="text/javascript">$("#favicon").attr("href","images/busy.gif");</script>';
+
 flush();
 # report keeps track of what is going on
 $report = "";
 $nothingtodo = 0;
 $cached = array(); # cache the message from the database to avoid reloading it every time
 
-require_once dirname(__FILE__) .'/../sendemaillib.php';
 //obsolete, moved to rssmanager plugin 
 //if (ENABLE_RSS) {
 //  require_once dirname(__FILE__) .'/plugins/rssmanager/rsslib.php';
@@ -150,6 +186,7 @@ function my_shutdown () {
     output(sprintf('%d %s',$failed_sent,$GLOBALS['I18N']->get('emails failed (will retry later)')),1,'progress');
     foreach ($counters as $label => $value) {
       output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)),1,'progress');
+      cl_output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)));
     }
   }
   if ($unconfirmed)
@@ -203,7 +240,9 @@ function my_shutdown () {
   }
   if (empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
     include_once "footer.inc";
-  } 
+  } elseif (!empty($GLOBALS['commandline'])) {
+    @ob_end_clean();
+  }
   exit;
 }
 
@@ -257,12 +296,13 @@ function output ($message,$logit = 1,$target = 'summary') {
     }
     $message = $tmp;
   }
-  if ($GLOBALS["commandline"]) {
+  if (!empty($GLOBALS["commandline"])) {
     @ob_end_clean();
 #    $mem = memory_get_usage(true);
     print $GLOBALS['installation_name'].' - '. strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')';
 #    print ' '.formatBytes($mem) . ' '.$mem;
     print "\n";
+    sleep(2);
     $infostring = '';
     ob_start();
   } else {
@@ -306,6 +346,10 @@ function sendEmailTest ($messageid,$email) {
     output($GLOBALS['I18N']->get('(test)').' '.$GLOBALS['I18N']->get('Would have sent').' '. $messageid .$GLOBALS['I18N']->get('to').' '. $email);
   else
     $report .= "\n".$GLOBALS['I18N']->get('(test)').' '.$GLOBALS['I18N']->get('Would have sent').' '. $messageid.$GLOBALS['I18N']->get('to').' '. $email;
+  // fake a bit of a delay
+  usleep(1500);
+  // and say it was fine.
+  return true;  
 }
 
 # we don not want to timeout or abort
@@ -319,6 +363,7 @@ if (empty($reload)) { ## only show on first load
     output($GLOBALS['I18N']->get('Time now ').date('Y-m-d H:i'));
   }
 }
+#output('Will process for a maximum of '.$maxProcessQueueTime.' seconds '.MAX_PROCESSQUEUE_TIME);
 
 # check for other processes running
 if (empty($send_process_id)) {
@@ -360,6 +405,7 @@ if ($num_per_batch > 0) {
   $GLOBALS["wait"] = $batch_period;
   return;
 }
+$counters['batch_total'] = $num_per_batch;
 
 //$rss_content_threshold = sprintf('%d',getConfig("rssthreshold")); // obsolete, moved to rssmanager plugin
 if (0 && $reload) {
@@ -421,11 +467,6 @@ $script_stage = 2; # we know the messages to process
 if (!isset($num_per_batch)) {
   $num_per_batch = 1000000;
 }
-
-$counters = array(
-  'campaign' => 0,
-  'num_users_for_message' => 0,
-);
 
 while ($message = Sql_fetch_array($messages)) {
   $counters['campaign']++;
@@ -499,7 +540,9 @@ while ($message = Sql_fetch_array($messages)) {
   . " set sendstart = current_timestamp"
   . " where sendstart is null and id = ?";
   $sendstart = Sql_Query_Params($query, array($messageid));
-  output($GLOBALS['I18N']->get('Looking for users'),1,'progress');
+  if (empty($reload)) {
+    output($GLOBALS['I18N']->get('Looking for users'));
+  }
   if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
 
   # make selection on attribute, users who at least apply to the attributes
@@ -628,9 +671,9 @@ while ($message = Sql_fetch_array($messages)) {
     $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
     $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
- #   if (VERBOSE) {
-      cl_output('found pre-queued users '.$queued,0,'progress');
- #   }
+    if (VERBOSE) {
+      cl_output($GLOBALS['installation_name'].' - found pre-queued users '.$queued,0,'progress');
+    }
   }
 
   ## if the above didn't find any, run the normal search (again)
@@ -674,7 +717,7 @@ while ($message = Sql_fetch_array($messages)) {
   }
 
   if (empty($reload)) {
-    output($GLOBALS['I18N']->get('Found them').': '.$counters['num_users_for_message'].' '.$GLOBALS['I18N']->get('to process'),1,'progress');
+    output($GLOBALS['I18N']->get('Found them').': '.$counters['num_users_for_message'].' '.$GLOBALS['I18N']->get('to process'));
   }
   setMessageData($messageid,'to process',$counters['num_users_for_message']);
 
@@ -727,8 +770,8 @@ while ($message = Sql_fetch_array($messages)) {
 
     ## check for max-process-queue-time
     $elapsed = $GLOBALS['processqueue_timer']->elapsed(1);
-    if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0 && $elapsed > MAX_PROCESSQUEUE_TIME && $sent > 0) {
-      output($GLOBALS['I18N']->get('queue processing time has exceeded max processing time ').MAX_PROCESSQUEUE_TIME,1,'progress');
+    if ($maxProcessQueueTime && $elapsed > $maxProcessQueueTime && $sent > 0) {
+      cl_output($GLOBALS['I18N']->get('queue processing time has exceeded max processing time ').$maxProcessQueueTime);
       break;
     } elseif ($alive && !$stopSending) {
       keepLock($send_process_id);
@@ -814,8 +857,11 @@ while ($message = Sql_fetch_array($messages)) {
           list($mailbox,$domainname) = explode('@',$useremail);
           $now = time();
           $interval = $now - ($now % DOMAIN_BATCH_PERIOD);
-          if (!is_array($domainthrottle[$domainname])) {
-            $domainthrottle[$domainname] = array();
+          if (!isset($domainthrottle[$domainname]) || !is_array($domainthrottle[$domainname])) {
+            $domainthrottle[$domainname] = array(
+              'interval' => '',
+              'sent' => 0,
+            );
           } elseif (isset($domainthrottle[$domainname]['interval']) && $domainthrottle[$domainname]['interval'] == $interval) {
             $throttled = $domainthrottle[$domainname]['sent'] >= DOMAIN_BATCH_SIZE;
             if ($throttled) {
@@ -861,6 +907,7 @@ while ($message = Sql_fetch_array($messages)) {
               if (VERBOSE)
                 output($GLOBALS['I18N']->get('Sending').' '. $messageid.' '.$GLOBALS['I18N']->get('to').' '. $useremail);
               $emailSentTimer = new timer();
+              $counters['batch_count']++;
               $success = sendEmail($messageid,$useremail,$userhash,$htmlpref); // $rssitems Obsolete by rssmanager plugin
               if (!$success) {
                 $counters['sendemail returned false']++;
@@ -877,12 +924,12 @@ while ($message = Sql_fetch_array($messages)) {
 
           #############################
           # tried to send email , process succes / failure
-          if ( $success) {
+          if ($success) {
             if (USE_DOMAIN_THROTTLE) {
               list($mailbox,$domainname) = explode('@',$useremail);
               if ($domainthrottle[$domainname]['interval'] != $interval) {
                 $domainthrottle[$domainname]['interval'] = $interval;
-                $domainthrottle[$domainname]['sent']=0;
+                $domainthrottle[$domainname]['sent'] = 0;
               } else {
                 $domainthrottle[$domainname]['sent']++;
               }
@@ -945,8 +992,8 @@ while ($message = Sql_fetch_array($messages)) {
                    $GLOBALS['I18N']->get('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
                    $GLOBALS['I18N']->get('messages in ').' '.MAILQUEUE_BATCH_PERIOD.$GLOBALS['I18N']->get('seconds')); */
                 output(sprintf($GLOBALS['I18N']->get('waiting for %.1f seconds to meet target of %s seconds per message'),
-                        $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE)
-                ));
+                        $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
+                );
                }
                usleep($delay * 1000000);
              }

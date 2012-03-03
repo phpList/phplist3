@@ -10,13 +10,6 @@ if (!$GLOBALS["commandline"]) {
 } else {
   @ob_end_clean();
   print ClineSignature();
-  # check for other processes running
-  if (isset($cline['f'])) {
-    # force set, so kill other processes
-    $send_process_id = getPageLock(1);
-  } else {
-    $send_process_id = getPageLock();
-  }
   ob_start();
   include dirname(__FILE__).'/actions/processqueue.php';
   return;
@@ -38,6 +31,7 @@ print '
       <div id="spinner"></div>
       <div id="processqueuecontrols">';
       print '<a href="#" id="stopqueue" class="button">'.s('stop processing').'</a>';
+      print '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.s('resume processing').'</a>';
       print '<div id="progressmeter"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
 print '</div>
     </div>
