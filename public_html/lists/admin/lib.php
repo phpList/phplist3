@@ -431,6 +431,7 @@ function sendMailPhpMailer ($to,$subject,$message) {
     }
 */
 
+    $htmltemplate = '';
     $templateid = getConfig('systemmessagetemplate');
     if (!empty($templateid)) {
       $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
@@ -687,6 +688,8 @@ function getPageLock($force = 0) {
   if ($thispage == 'pageaction') {
     $thispage = $_GET['action'];
   }
+#  cl_output('getting pagelock '.$thispage);
+#  ob_end_flush();
   
   if ($GLOBALS["commandline"] && $thispage == 'processqueue') {
     $max = MAX_SENDPROCESSES;
@@ -710,14 +713,16 @@ function getPageLock($force = 0) {
   $count = Sql_Num_Rows($running_req);
   $waited = 0;
   while ($running_res['age'] && $count >= $max) { # a process is already running
+ #   cl_output('running process: '.$running_res['age'].' '.$max);
     if ($running_res['age'] > 600) {# some sql queries can take quite a while
       # process has been inactive for too long, kill it
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
     } elseif ($count >= $max) {
+      cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
-        cl_output(s("Running commandline, quitting. We'll find out what to do in the next run."));
+        cl_output($GLOBALS['I18N']->get('Running commandline, quitting. We\'ll find out what to do in the next run.'));
         exit;
       }
       output ($GLOBALS['I18N']->get('Sleeping for 20 seconds, aborting will quit'));
@@ -756,6 +761,7 @@ function getPageLock($force = 0) {
   $res = Sql_Query_Params($query, array($thispage, $processIdentifier));
   $send_process_id = Sql_Insert_Id($tables['sendprocess'], 'id');
   $abort = ignore_user_abort(1);
+#  cl_output('Got pagelock '.$send_process_id );
   return $send_process_id;
 }
 
