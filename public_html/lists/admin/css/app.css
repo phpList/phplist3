@@ -131,6 +131,9 @@ padding: 1em 1em 1em 50px;
 font-size: 12px;
 font-weight: bold
 }
+.hidden {
+  display: none;
+}
 
 #generatetextversion {
   float: right;
@@ -138,9 +141,6 @@ font-weight: bold
   margin: 5px 5px 5px 5px;
   padding: 1em 1em 1em 1em;
   width: 75px;
-}
-#processqueueprogress {
-  width: 99%;
 }
 #spinner {
   width: 45px;
@@ -188,7 +188,7 @@ font-weight: bold
 }
 #processqueueprogress {
   width: 99%;
-  height: 100px;
+  height: 95px;
   overflow: hidden;
   border: 1px solid white;
 }
