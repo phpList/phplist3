@@ -222,7 +222,8 @@ $(document).ready(function() {
   $("#stopqueue").click(function() {
     $("#processqueueoutput").html('Processing cancelled');
     $("#spinner").html('&nbsp;');    
-    $("#stopqueue").html('<a href="" id="resumequeue" class="button">RESUME</a>');    
+    $("#stopqueue").hide();    
+    $("#resumequeue").show();    
   });
 
   var docurl = document.location.search;
@@ -268,7 +269,9 @@ $(document).ready(function() {
 function allDone() {
   $("#processqueueoutput").html('All done');
   $("#spinner").html('&nbsp;');    
-  $("#stopqueue").html('<a href="" id="resumequeue" class="button">RESUME</a>');    
+  $("#stopqueue").hide();    
+  $("#resumequeue").show();
+  $("#progressmeter").hide();   
 }
 
 var overallTotal = 0;
@@ -289,7 +292,6 @@ $.fn.updateProgress = function() {
     perc = parseInt((overallSent / overallTotal) * 100);
   }
   $("#progress").width(perc * 5);
-//  $("#progress").html(overallSent + ' / '+ overallTotal +':'+perc + '%');
   $("#progress").html(perc + '%');
   $("#progresscount").html(overallSent + ' / '+ overallTotal);
 };
