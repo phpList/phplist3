@@ -224,6 +224,15 @@ if (!isset($GLOBALS["message_envelope"])) $GLOBALS["message_envelope"] = '';
 
 if (!isset($GLOBALS['pageheader']) || !is_array($GLOBALS['pageheader'])) $GLOBALS['pageheader'] = array();
 
+## global counters array to keep track of things
+$counters = array(
+  'campaign' => 0,
+  'num_users_for_message' => 0,
+  'batch_count' => 0,
+  'batch_total' => 0,
+  'sendemail returned false' => 0,
+);
+
 $GLOBALS['disallowpages'] = array();
 # list of pages and categorisation in the system
 ## old version
