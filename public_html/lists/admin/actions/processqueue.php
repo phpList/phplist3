@@ -202,7 +202,7 @@ function my_shutdown () {
   finish("info",$report,$script_stage);
   if ($script_stage < 5 && !$nothingtodo) {
     output ($GLOBALS['I18N']->get('Warning: script never reached stage 5')."\n".$GLOBALS['I18N']->get('This may be caused by a too slow or too busy server')." \n");
-  } elseif( $script_stage == 5 && (!$nothingtodo || $GLOBALS["wait"]))  {
+  } elseif( $script_stage == 5 && (!$nothingtodo || isset($GLOBALS["wait"])))  {
     # if the script timed out in stage 5, reload the page to continue with the rest
     $reload++;
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
@@ -721,14 +721,20 @@ while ($message = Sql_fetch_array($messages)) {
   }
   setMessageData($messageid,'to process',$counters['num_users_for_message']);
 
-  if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+  if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE && empty($queued)) {
     ## experimental MESSAGEQUEUE_PREPARE will first mark all messages as todo and then work it's way through the todo's
     ## that should save time when running the queue multiple times, which avoids the user search after the first time
+    ## only do this first time, ie empty($queued);
+    ## the last run will pick up changes
     while ($userdata = Sql_Fetch_Row($userids)) {
       ## mark message/user combination as "todo"
       $userid = $userdata[0];    # id of the user
       Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $userid, 'messageid' => $messageid, 'status' => "todo"), array('userid', 'messageid'), false);
     }
+    ## rerun the initial query, in order to continue as normal
+    $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
+    $userids = Sql_Query_Params($query, array($messageid, $messageid));
+    $counters['num_users_for_message'] = Sql_Num_Rows($userids);
   }
 
   if ($num_per_batch) {
@@ -745,9 +751,9 @@ while ($message = Sql_fetch_array($messages)) {
       output($GLOBALS['I18N']->get('No users to process for this batch'),0,'progress');
       $userids = Sql_Query("select * from ${tables['user']} where id = 0");
     }
+    $affrows = Sql_Num_Rows($userids);
+    output($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows,0,'progress');
   }
-  $affrows = Sql_Num_Rows($userids);
-  output($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows,0,'progress');
 
   while ($userdata = Sql_Fetch_Row($userids)) {
     $failure_reason = '';
