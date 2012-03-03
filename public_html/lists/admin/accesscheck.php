@@ -54,6 +54,3 @@ function isSuperUser() {
   }
   return $issuperuser;
 }
-
-
-?>
