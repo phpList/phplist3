@@ -23,7 +23,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   ## for testing concurrency, put in a delay to check if multiple send processes cause duplicates
   #usleep(rand(0,10) * 1000000);
     
-  global $strThisLink,$strUnsubscribe,$PoweredByImage,$PoweredByText,$cached,$website;
+  global $strThisLink,$strUnsubscribe,$PoweredByImage,$PoweredByText,$cached,$website,$counters;
   if ($email == "")
     return 0;
   if ($getspeedstats) output('sendEmail start '.$GLOBALS['processqueue_timer']->interval(1));
@@ -893,7 +893,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 #    $mail->setSMTPParams('nogal');
     if (!$mail->send("", $destinationemail, $fromname, $fromemail, $subject)) {
 #    if (!$mail->send(array($destinationemail),'spool')) {
-      output("Error sending message $messageid to $email ($destinationemail)");
+      output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
+        $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail));
       logEvent("Error sending message $messageid to $email ($destinationemail)");
       return 0;
     } else {
@@ -1438,8 +1439,4 @@ if (!Sql_Num_Rows($rs)) {
   $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
   Sql_Query_Params($query, array('image/png', 'powerphplist.png', $newpoweredimage, 70, 30));
 }
-
-
-?>
-
 
