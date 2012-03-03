@@ -19,7 +19,9 @@ if (!empty($_GET['action'])) {
       include dirname(__FILE__).'/actions/'.$action.'.php';
     }
   }
-} 
+} else {
+  Redirect('home');
+}
 
 print $status;
 if (0 && !empty($GLOBALS['developer_email'])) {
