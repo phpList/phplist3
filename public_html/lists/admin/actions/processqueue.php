@@ -102,9 +102,12 @@ $maxProcessQueueTime = 0;
 if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
   $maxProcessQueueTime = (int)MAX_PROCESSQUEUE_TIME;
 }
+if ($maxProcessQueueTime) {
+  output(s('Maximum time for queue processing').': '.$maxProcessQueueTime);
+}
 # in-page processing force to a minute max, and make sure there's a batch size
 if (empty($GLOBALS['commandline'])) {
-  $maxProcessQueueTime = min($maxProcessQueueTime,30);
+  $maxProcessQueueTime = min($maxProcessQueueTime,60);
   if ($num_per_batch <= 0) {
     $num_per_batch = 10000;
   }
@@ -189,8 +192,9 @@ function my_shutdown () {
       cl_output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)));
     }
   }
-  if ($unconfirmed)
-    output(sprintf('%d %s',$unconfirmed,$GLOBALS['I18N']->get('emails unconfirmed (not sent)')),1,'progress');
+  if ($unconfirmed) {
+    output(sprintf($GLOBALS['I18N']->get('%d emails unconfirmed (not sent)'),$unconfirmed),1,'progress');
+  }
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->processSendStats($sent,$invalid,$failed_sent,$unconfirmed);
@@ -346,8 +350,8 @@ function sendEmailTest ($messageid,$email) {
     output($GLOBALS['I18N']->get('(test)').' '.$GLOBALS['I18N']->get('Would have sent').' '. $messageid .$GLOBALS['I18N']->get('to').' '. $email);
   else
     $report .= "\n".$GLOBALS['I18N']->get('(test)').' '.$GLOBALS['I18N']->get('Would have sent').' '. $messageid.$GLOBALS['I18N']->get('to').' '. $email;
-  // fake a bit of a delay
-  usleep(1500);
+  // fake a bit of a delay, 
+  usleep(0.75 * 1000000);
   // and say it was fine.
   return true;  
 }
