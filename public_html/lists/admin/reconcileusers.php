@@ -15,6 +15,10 @@ $to = new date("to");
 $fromval = $toval = $todo = "";
 
 $find = (!isset($find))?'':$find;
+$num = 0;
+if (isset($_REQUEST['num'])) {
+  $num = sprintf('%d',$_REQUEST['num']);
+}
 
 $findtables = '';
 $findbyselect = sprintf(' email like "%%%s%%"',$find);;
@@ -184,10 +188,10 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
             $todo = "moveUser";
             break;
           case "bounces":
-            info( $GLOBALS['I18N']->get("Deleting users with more than")." ".$_REQUEST["num"]." ".$GLOBALS['I18N']->get('bounces'));
+            info( $GLOBALS['I18N']->get("Deleting users with more than")." ".$num." ".$GLOBALS['I18N']->get('bounces'));
             $req = Sql_Query(sprintf('select id from %s
               where bouncecount > %d',
-              $tables["user"],$_REQUEST["num"]
+              $tables["user"],$num
             ));
             $total = Sql_Affected_Rows();
             print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
