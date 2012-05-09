@@ -12,8 +12,10 @@ $status = 'OK';
 $processqueue_timer = new timer();
 $domainthrottle = array();
 # check for other processes running
+
 if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
   # force set, so kill other processes
+  cl_output('Force set, killing other send processes');
   $send_process_id = getPageLock(1);
 } else {
   $send_process_id = getPageLock();
@@ -113,6 +115,20 @@ if (empty($GLOBALS['commandline'])) {
   }
 }
 
+if (isset($cline['m'])) {
+  cl_output('Max to send is '.$cline['m'].' num per batch is '.$num_per_batch);
+  $clinemax = (int)$cline['m'];
+  ## slow down just before max
+  if ($clinemax < 20) {
+    $num_per_batch = min(2,$clinemax,$num_per_batch);
+  } elseif ($clinemax < 200) {
+    $num_per_batch = min(20,$clinemax,$num_per_batch);
+  } else {
+    $num_per_batch = min($clinemax,$num_per_batch);
+  }
+  cl_output('Max to send is '.$cline['m'].' setting num per batch to '.$num_per_batch);
+}
+
 $safemode = 0;
 if (ini_get("safe_mode")) {
   # keep an eye on timeouts
@@ -188,7 +204,7 @@ function my_shutdown () {
   if ($failed_sent) {
     output(sprintf('%d %s',$failed_sent,$GLOBALS['I18N']->get('emails failed (will retry later)')),1,'progress');
     foreach ($counters as $label => $value) {
-      output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)),1,'progress');
+    #  output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)),1,'progress');
       cl_output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)));
     }
   }
@@ -559,6 +575,7 @@ while ($message = Sql_fetch_array($messages)) {
   $rs = Sql_Query('select count(*) from ' . $tables['attribute']);
   $numattr = Sql_Fetch_Row($rs);
 
+  $user_attribute_query = ''; #16552
   if ($userselection && $numattr[0]) {
     $res = Sql_Query($userselection);
     $counters['num_users_for_message'] = Sql_Num_Rows($res);
@@ -675,13 +692,21 @@ while ($message = Sql_fetch_array($messages)) {
     $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
     $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
-    if (VERBOSE) {
+   # if (VERBOSE) {
       cl_output($GLOBALS['installation_name'].' - found pre-queued users '.$queued,0,'progress');
-    }
-  }
+   # }
+  } 
 
   ## if the above didn't find any, run the normal search (again)
   if (empty($queued)) {
+    ## remove pre-queued messages, otherwise they wouldn't go out
+    $remove_query = sprintf('delete from '.$tables['usermessage'].' where messageid = ? and status = "todo"');
+    Sql_Query_Params($remove_query, array($messageid));
+    $removed = Sql_Affected_Rows();
+    if ($removed) {
+      cl_output($GLOBALS['installation_name'].' - removed pre-queued users '.$removed,0,'progress');
+    }
+
     $query
     = ' select distinct u.id'
     . ' from %s as listuser'
@@ -871,6 +896,7 @@ while ($message = Sql_fetch_array($messages)) {
             $domainthrottle[$domainname] = array(
               'interval' => '',
               'sent' => 0,
+              'attempted' => 0,
             );
           } elseif (isset($domainthrottle[$domainname]['interval']) && $domainthrottle[$domainname]['interval'] == $interval) {
             $throttled = $domainthrottle[$domainname]['sent'] >= DOMAIN_BATCH_SIZE;
@@ -879,7 +905,7 @@ while ($message = Sql_fetch_array($messages)) {
               $domainthrottle[$domainname]['attempted']++;
               if (DOMAIN_AUTO_THROTTLE
                 && $domainthrottle[$domainname]['attempted'] > 25 # skip a few before auto throttling
-                && $num_messages <= 1 # only do this when there's only one message to process otherwise the other ones don't get a change
+                && $num_messages <= 1 # only do this when there's only one message to process otherwise the other ones don't get a chance
                 && $counters['num_users_for_message'] < 1000 # and also when there's not too many left, because then it's likely they're all being throttled
               ) {
                 $domainthrottle[$domainname]['attempted'] = 0;
@@ -908,6 +934,9 @@ while ($message = Sql_fetch_array($messages)) {
             while (!$throttled && $plugin = current($GLOBALS['plugins']) ) {
               $throttled = $plugin->throttleSend($msgdata, $user);
               if ($throttled) {
+                if (!isset($counters['send throttled by plugin '.$plugin->name])) {
+                  $counters['send throttled by plugin '.$plugin->name] = 0;
+                }
                 $counters['send throttled by plugin '.$plugin->name]++;
                 $failure_reason .= 'Sending throttled by plugin '.$plugin->name;
               }
