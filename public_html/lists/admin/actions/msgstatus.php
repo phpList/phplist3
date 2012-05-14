@@ -74,28 +74,36 @@ if ($message['status'] != 'inprocess') {
   if ($messagedata['to process'] > 0) {
     $html .= $messagedata['to process'].' '.$GLOBALS['I18N']->get('still to process').'<br/>';
   }
+  $pluginhtml = '';
   foreach ($GLOBALS['plugins'] as $plname => $plugin) {
-    $html .= $plugin->messageStatus($id,$message['status']);
+    $pluginhtml .= $plugin->messageStatus($id,$message['status']);
   }
-  ## not sure this calculation is accurate
-#  $html .= $GLOBALS['I18N']->get('sent').': '.$totalsent.'<br/>';
-  $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
-    $tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
-  if (MAILQUEUE_BATCH_PERIOD && $recently_sent[0] >= MAILQUEUE_BATCH_SIZE) {
-    $html .= '<h4>'.$GLOBALS['I18N']->get('limit reached').'</h4>';
-    foreach ($GLOBALS['plugins'] as $plname => $plugin) {
-      $html .= $plugin->messageStatusLimitReached($recently_sent[0]);
+  
+  ## if the plugins don't return anything do the speed calculation
+  ## otherwise just what the plugins retunr
+  if (empty($pluginhtml)) {
+    ## not sure this calculation is accurate
+  #  $html .= $GLOBALS['I18N']->get('sent').': '.$totalsent.'<br/>';
+    $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
+      $tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
+    if (MAILQUEUE_BATCH_PERIOD && $recently_sent[0] >= MAILQUEUE_BATCH_SIZE) {
+      $html .= '<h4>'.$GLOBALS['I18N']->get('limit reached').'</h4>';
+      foreach ($GLOBALS['plugins'] as $plname => $plugin) {
+        $html .= $plugin->messageStatusLimitReached($recently_sent[0]);
+      }
+      $nextbatch = Sql_Fetch_Row_Query(sprintf('select current_timestamp,date_add(entered,interval %d second) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
+        MAILQUEUE_BATCH_PERIOD,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
+      $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
+      
+    } elseif ($msgperhour<= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
+      $html .= $GLOBALS['I18N']->get('Processing');
+    } else {
+      $html .= 
+      $GLOBALS['I18N']->get('ETA').': '.$eta.'<br/>'.
+      $GLOBALS['I18N']->get('Processing').' '.sprintf('%d',$msgperhour).' '.$GLOBALS['I18N']->get('msgs/hr');
     }
-    $nextbatch = Sql_Fetch_Row_Query(sprintf('select current_timestamp,date_add(entered,interval %d second) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
-      MAILQUEUE_BATCH_PERIOD,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
-    $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
-    
-  } elseif ($msgperhour<= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
-    $html .= $GLOBALS['I18N']->get('Processing');
   } else {
-    $html .= 
-    $GLOBALS['I18N']->get('ETA').': '.$eta.'<br/>'.
-    $GLOBALS['I18N']->get('Processing').' '.sprintf('%d',$msgperhour).' '.$GLOBALS['I18N']->get('msgs/hr');
+    $html .= $pluginhtml;
   }
 }
 
