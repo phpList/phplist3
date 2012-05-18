@@ -969,12 +969,16 @@ if (!$done) {
    
   $show_lists = 0;
 
+  $send_content .= '<div class="sizeEstimate">';
   if (!empty($messagedata['htmlsize'])) {
     $send_content .= $GLOBALS['I18N']->get('Estimated size of HTML email').': '.formatBytes($messagedata['htmlsize']).'<br/>';
   }
   if (!empty($messagedata['textsize'])) {
     $send_content .= $GLOBALS['I18N']->get('Estimated size of text email').': '.formatBytes($messagedata['textsize']).'<br/>';
   }
+/*
+  var_dump($messagedata['targetlist']);
+*/
 
   if (!empty($messagedata['textsize']) || !empty($messagedata['htmlsize'])) {
     if (is_array($messagedata['targetlist']) && sizeof($messagedata['targetlist'])) {
@@ -998,7 +1002,7 @@ if (!$done) {
       }
       unset($lists['all']);
       unset($lists['allactive']);
-      if (isset($messagedata['excludelist']) && is_array($messagedata['excludelist'])) {
+      if (isset($messagedata['excludelist']) && is_array($messagedata['excludelist']) && sizeof($messagedata['excludelist'])) {
         $exclude = sprintf(' and listuser.listid not in (%s)',join(',',$messagedata['excludelist']));
       } else {
         $exclude = '';
@@ -1021,6 +1025,7 @@ if (!$done) {
       }
     }
   }
+  $send_content .= '</div>';
 
   ## the button to actually send the campagin
   $send_content .= $placeinqueue;
@@ -1127,7 +1132,5 @@ $saveDraftButton = '<div class="sendSubmit">
 
   $testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'),$sendtest_content);
   $testpanel->setID('testpanel');
-  print $testpanel->display();
 
-
-?>
+ # print $testpanel->display();

@@ -157,3 +157,7 @@ $panel = new UIPanel($tabs->tabTitle(),$panelcontent,$tabs->prevNextNav());
 print $panel->display();
 
 print '</form>';
+
+if (isset($testpanel)) {
+  print $testpanel->display();
+}
