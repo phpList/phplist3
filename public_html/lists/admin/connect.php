@@ -54,12 +54,17 @@ $checkboxgroup_storesize = 1; # this will allow 10000 options for checkboxes
 # identify pages that can be run on commandline
 $commandline_pages = array('send','processqueueforked','processqueue','processbounces','import','upgrade','convertstats','reindex','blacklistemail','systemstats'); // ,'getrss' //Obsolete by rssmanager plugin
 
-if (isset($message_envelope))
+if (isset($message_envelope)) {
   $envelope = "-f$message_envelope";
+}
+  
+include_once dirname(__FILE__)."/pluginlib.php";
 
+/*
 $database_schema = '';
 $database_connection = Sql_Connect($database_host,$database_user,$database_password,$database_name);
 Sql_Set_Search_Path($database_schema);
+*/
 
 
 ## this needs more testing, and docs on how to set the Timezones in the DB
@@ -91,7 +96,6 @@ if (!isset($usertable_prefix)) {
   $usertable_prefix = $table_prefix;
 }
 
-include_once dirname(__FILE__)."/pluginlib.php";
 include_once dirname(__FILE__)."/structure.php";
 
 $tables = array();
@@ -478,7 +482,7 @@ $GLOBALS['pagecategories'] = array(
     # pages => pages in this category
     
   'subscribers' => array(
-     'toplink' => 'usermgt',
+     'toplink' => 'list',
      'pages' => array(
         'users',
         'usermgt',
