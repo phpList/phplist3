@@ -96,7 +96,9 @@ font-size: 12px;
 /*
 #testpanel {position: absolute; right: 40px; top: 550px; width:338px; }
 */
+/*
 #testpanel {position: absolute; right: 40px; top: 550px; width:250px; }
+*/
 #testpanel input[type="text"]{width: 90%; }
 
 .error{
