@@ -12,7 +12,7 @@ close(F);
 open F,">testimport2.txt";
 $start = 0;
 for ($i=$start;$i<$start+$num;$i++) {
-  print F "testing-$i\@mailinator.com\n";
+  print F "michiel-$i\@phplist.com\n";
 }
 close(F);
 

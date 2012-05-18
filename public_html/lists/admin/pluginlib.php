@@ -48,5 +48,3 @@ if (is_dir(PLUGIN_ROOTDIR)) {
     }
   }
 } 
-
-?>

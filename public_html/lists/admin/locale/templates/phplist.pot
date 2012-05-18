@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-03 14:59-0300\n"
-"PO-Revision-Date: 2012-03-03 15:00-0300\n"
+"POT-Creation-Date: 2012-03-22 15:29-0300\n"
+"PO-Revision-Date: 2012-03-22 15:29-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -1842,192 +1842,192 @@ msgstr ""
 msgid "edit"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:44
+#: public_html/lists/admin/reconcileusers.php:48
 msgid "Resending confirmation request to"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:87
+#: public_html/lists/admin/reconcileusers.php:91
 msgid "user found"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:104
+#: public_html/lists/admin/reconcileusers.php:108
 msgid "no user found"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:111
+#: public_html/lists/admin/reconcileusers.php:115
 msgid "unable to find original email"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:136
+#: public_html/lists/admin/reconcileusers.php:140
 msgid "Marking all users confirmed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:139
+#: public_html/lists/admin/reconcileusers.php:143
 #, php-format
 msgid "Marking all users on list %s confirmed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:144
-#: public_html/lists/admin/reconcileusers.php:150
-#: public_html/lists/admin/reconcileusers.php:157
-#: public_html/lists/admin/reconcileusers.php:163
-#: public_html/lists/admin/reconcileusers.php:172
-#: public_html/lists/admin/reconcileusers.php:183
-#: public_html/lists/admin/reconcileusers.php:193
-#: public_html/lists/admin/reconcileusers.php:205
-#: public_html/lists/admin/reconcileusers.php:217
-#: public_html/lists/admin/reconcileusers.php:224
+#: public_html/lists/admin/reconcileusers.php:148
+#: public_html/lists/admin/reconcileusers.php:154
+#: public_html/lists/admin/reconcileusers.php:161
+#: public_html/lists/admin/reconcileusers.php:167
+#: public_html/lists/admin/reconcileusers.php:176
+#: public_html/lists/admin/reconcileusers.php:187
+#: public_html/lists/admin/reconcileusers.php:197
+#: public_html/lists/admin/reconcileusers.php:209
+#: public_html/lists/admin/reconcileusers.php:221
+#: public_html/lists/admin/reconcileusers.php:228
 msgid "users apply"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:147
+#: public_html/lists/admin/reconcileusers.php:151
 msgid "Creating UniqID for all users who do not have one"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:154
+#: public_html/lists/admin/reconcileusers.php:158
 msgid "Marking all users to receive HTML"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:160
+#: public_html/lists/admin/reconcileusers.php:164
 msgid "Marking all users to receive text"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:166
+#: public_html/lists/admin/reconcileusers.php:170
 msgid "Deleting users who are not on any list"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:177
+#: public_html/lists/admin/reconcileusers.php:181
 msgid "Moving users who are not on any list to"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:187
+#: public_html/lists/admin/reconcileusers.php:191
 msgid "Deleting users with more than"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:199
+#: public_html/lists/admin/reconcileusers.php:203
 msgid "Resending request for confirmation to users who signed up after"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:199
-#: public_html/lists/admin/reconcileusers.php:211
+#: public_html/lists/admin/reconcileusers.php:203
+#: public_html/lists/admin/reconcileusers.php:215
 msgid "and before"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:211
+#: public_html/lists/admin/reconcileusers.php:215
 msgid "Deleting unconfirmed users who signed up after"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:221
+#: public_html/lists/admin/reconcileusers.php:225
 msgid "Trying to merge duplicates"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:249
+#: public_html/lists/admin/reconcileusers.php:253
 msgid "Don't know how to"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:262
+#: public_html/lists/admin/reconcileusers.php:266
 msgid "Trying to fix users with an invalid email"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:274
 #: public_html/lists/admin/reconcileusers.php:278
+#: public_html/lists/admin/reconcileusers.php:282
 msgid "User"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:282
+#: public_html/lists/admin/reconcileusers.php:286
 msgid "Users fixed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:282
+#: public_html/lists/admin/reconcileusers.php:286
 msgid "Users could not be fixed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:284
+#: public_html/lists/admin/reconcileusers.php:288
 msgid "Deleting users with an invalid email"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:295
+#: public_html/lists/admin/reconcileusers.php:299
 msgid "Users deleted"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:297
+#: public_html/lists/admin/reconcileusers.php:301
 msgid "Marking users with an invalid email as unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:308
+#: public_html/lists/admin/reconcileusers.php:312
 msgid "Users updated"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:310
+#: public_html/lists/admin/reconcileusers.php:314
 msgid "Cleaning some user tables of invalid entries"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:315
-#: public_html/lists/admin/reconcileusers.php:322
-#: public_html/lists/admin/reconcileusers.php:329
-#: public_html/lists/admin/reconcileusers.php:336
-#: public_html/lists/admin/reconcileusers.php:343
+#: public_html/lists/admin/reconcileusers.php:319
+#: public_html/lists/admin/reconcileusers.php:326
+#: public_html/lists/admin/reconcileusers.php:333
+#: public_html/lists/admin/reconcileusers.php:340
+#: public_html/lists/admin/reconcileusers.php:347
 msgid "entries apply"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:361
+#: public_html/lists/admin/reconcileusers.php:365
 msgid "Delete will delete user and all listmemberships"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:384
+#: public_html/lists/admin/reconcileusers.php:388
 msgid "Users"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:385
+#: public_html/lists/admin/reconcileusers.php:389
 msgid "in the database"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:402
+#: public_html/lists/admin/reconcileusers.php:406
 msgid "-All-"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:416
+#: public_html/lists/admin/reconcileusers.php:420
 msgid "Mark all subscribers to receive HTML"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:417
+#: public_html/lists/admin/reconcileusers.php:421
 msgid "Mark all subscribers to receive text"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:429
+#: public_html/lists/admin/reconcileusers.php:433
 #, php-format
 msgid "Mark all subscribers on list %s confirmed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:432
-#: public_html/lists/admin/reconcileusers.php:444
-#: public_html/lists/admin/reconcileusers.php:458
-#: public_html/lists/admin/reconcileusers.php:488
+#: public_html/lists/admin/reconcileusers.php:436
+#: public_html/lists/admin/reconcileusers.php:448
+#: public_html/lists/admin/reconcileusers.php:462
+#: public_html/lists/admin/reconcileusers.php:492
 msgid "Click here"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:441
+#: public_html/lists/admin/reconcileusers.php:445
 #, php-format
 msgid "To move all subscribers who are not subscribed to any list to %s"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:451
+#: public_html/lists/admin/reconcileusers.php:455
 msgid "To delete all users with more than"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:459
+#: public_html/lists/admin/reconcileusers.php:463
 msgid "Note: this will use the total count of bounces on a user, not consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:482
+#: public_html/lists/admin/reconcileusers.php:486
 msgid "To delete users who signed up and have not confirmed their subscription"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:483
+#: public_html/lists/admin/reconcileusers.php:487
 msgid "Date they signed up after"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:484
+#: public_html/lists/admin/reconcileusers.php:488
 msgid "Date they signed up before"
 msgstr ""
 
@@ -4730,323 +4730,328 @@ msgstr ""
 msgid "The following restrictions have been set by your ISP:"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:120
+#: public_html/lists/admin/actions/processqueue.php:106
+msgid "Maximum time for queue processing"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:123
 msgid "Running in safe mode"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:166
+#: public_html/lists/admin/actions/processqueue.php:169
 msgid "Script stage"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:170
+#: public_html/lists/admin/actions/processqueue.php:173
 msgid "Finished, Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:178
+#: public_html/lists/admin/actions/processqueue.php:181
 msgid "Calculating"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:181
+#: public_html/lists/admin/actions/processqueue.php:184
 msgid "messages sent in"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:182
-#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:185
+#: public_html/lists/admin/actions/processqueue.php:401
 msgid "seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:184
+#: public_html/lists/admin/actions/processqueue.php:187
 msgid "invalid emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:186
+#: public_html/lists/admin/actions/processqueue.php:189
 msgid "emails failed (will retry later)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:193
-msgid "emails unconfirmed (not sent)"
+#: public_html/lists/admin/actions/processqueue.php:196
+#, php-format
+msgid "%d emails unconfirmed (not sent)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:204
+#: public_html/lists/admin/actions/processqueue.php:208
 msgid "Warning: script never reached stage 5"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:204
+#: public_html/lists/admin/actions/processqueue.php:208
 msgid "This may be caused by a too slow or too busy server"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:210
+#: public_html/lists/admin/actions/processqueue.php:214
 msgid "Less than batch size were sent, so reloading imminently"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:213
+#: public_html/lists/admin/actions/processqueue.php:217
 #, php-format
 msgid "Waiting for %d seconds before reloading"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:232
+#: public_html/lists/admin/actions/processqueue.php:236
 msgid "Finished, All done"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:239
+#: public_html/lists/admin/actions/processqueue.php:243
 msgid "Script finished, but not all messages have been sent yet."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:260
+#: public_html/lists/admin/actions/processqueue.php:264
 msgid "Finished this run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:346
-#: public_html/lists/admin/actions/processqueue.php:348
+#: public_html/lists/admin/actions/processqueue.php:350
+#: public_html/lists/admin/actions/processqueue.php:352
 msgid "(test)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:346
-#: public_html/lists/admin/actions/processqueue.php:348
+#: public_html/lists/admin/actions/processqueue.php:350
+#: public_html/lists/admin/actions/processqueue.php:352
 msgid "Would have sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:361
+#: public_html/lists/admin/actions/processqueue.php:365
 msgid "Started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:363
+#: public_html/lists/admin/actions/processqueue.php:367
 msgid "Time now "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:374
+#: public_html/lists/admin/actions/processqueue.php:378
 msgid "Unable get lock for processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:375
+#: public_html/lists/admin/actions/processqueue.php:379
 msgid "Error processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:383
+#: public_html/lists/admin/actions/processqueue.php:387
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:389
+#: public_html/lists/admin/actions/processqueue.php:393
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:393
-#: public_html/lists/admin/actions/processqueue.php:399
+#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:403
 msgid "Sending in batches of"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:393
-#: public_html/lists/admin/actions/processqueue.php:399
+#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:403
 msgid "emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:401
 msgid "This batch will be"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:401
 msgid "emails, because in the last"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:401
 msgid "emails were sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:402
+#: public_html/lists/admin/actions/processqueue.php:406
 msgid "In the last"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:402
+#: public_html/lists/admin/actions/processqueue.php:406
 msgid "seconds more emails were sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:402
+#: public_html/lists/admin/actions/processqueue.php:406
 msgid "than is currently allowed per batch"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:414
+#: public_html/lists/admin/actions/processqueue.php:418
 msgid "Sent in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:415
+#: public_html/lists/admin/actions/processqueue.php:419
 msgid "Skipped in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:453
+#: public_html/lists/admin/actions/processqueue.php:457
 msgid "Processing has started,"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:453
+#: public_html/lists/admin/actions/processqueue.php:457
 msgid "message(s) to process."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:458
+#: public_html/lists/admin/actions/processqueue.php:462
 msgid "Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:460
+#: public_html/lists/admin/actions/processqueue.php:464
 msgid "Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:460
+#: public_html/lists/admin/actions/processqueue.php:464
 msgid "Reports will be sent by email to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:496
+#: public_html/lists/admin/actions/processqueue.php:500
 #, php-format
 msgid "sending of this campaign will finish in %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:512
+#: public_html/lists/admin/actions/processqueue.php:516
 msgid "Campaign started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:513
+#: public_html/lists/admin/actions/processqueue.php:517
 #, php-format
 msgid "phplist has started sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:514
+#: public_html/lists/admin/actions/processqueue.php:518
 #, php-format
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:521
+#: public_html/lists/admin/actions/processqueue.php:525
 msgid "Processing message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:544
+#: public_html/lists/admin/actions/processqueue.php:548
 msgid "Looking for users"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:562
+#: public_html/lists/admin/actions/processqueue.php:566
 msgid "users apply for attributes, now checking lists"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:573
+#: public_html/lists/admin/actions/processqueue.php:577
 msgid "No users apply for attributes"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:628
+#: public_html/lists/admin/actions/processqueue.php:632
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:716
+#: public_html/lists/admin/actions/processqueue.php:720
 msgid "Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:720
+#: public_html/lists/admin/actions/processqueue.php:724
 msgid "Found them"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:720
+#: public_html/lists/admin/actions/processqueue.php:724
 msgid "to process"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:751
+#: public_html/lists/admin/actions/processqueue.php:755
 msgid "No users to process for this batch"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:755
+#: public_html/lists/admin/actions/processqueue.php:759
 msgid "Processing batch of "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:761
+#: public_html/lists/admin/actions/processqueue.php:765
 msgid "batch limit reached"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:780
+#: public_html/lists/admin/actions/processqueue.php:784
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:785
+#: public_html/lists/admin/actions/processqueue.php:789
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:794
+#: public_html/lists/admin/actions/processqueue.php:798
 msgid "Message I was working on has disappeared"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:796
+#: public_html/lists/admin/actions/processqueue.php:800
 msgid "Sending of this message has been suspended"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:882
+#: public_html/lists/admin/actions/processqueue.php:886
 #, php-format
 msgid "There have been more than 10 attempts to send to %s that have been blocked for domain throttling."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:883
-#: public_html/lists/admin/actions/processqueue.php:885
+#: public_html/lists/admin/actions/processqueue.php:887
+#: public_html/lists/admin/actions/processqueue.php:889
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:894
+#: public_html/lists/admin/actions/processqueue.php:898
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:914
+#: public_html/lists/admin/actions/processqueue.php:918
 msgid "Sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:922
-#: public_html/lists/admin/actions/processqueue.php:1124
+#: public_html/lists/admin/actions/processqueue.php:926
+#: public_html/lists/admin/actions/processqueue.php:1128
 msgid "It took"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:922
+#: public_html/lists/admin/actions/processqueue.php:926
 msgid "seconds to send"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:961
+#: public_html/lists/admin/actions/processqueue.php:965
 msgid "Failed sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1000
+#: public_html/lists/admin/actions/processqueue.php:1004
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1011
+#: public_html/lists/admin/actions/processqueue.php:1015
 msgid "not sending to "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1030
+#: public_html/lists/admin/actions/processqueue.php:1034
 msgid "Unconfirmed user"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1059
+#: public_html/lists/admin/actions/processqueue.php:1063
 msgid "Not sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1059
+#: public_html/lists/admin/actions/processqueue.php:1063
 msgid "already sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1097
+#: public_html/lists/admin/actions/processqueue.php:1101
 msgid "out of"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1102
+#: public_html/lists/admin/actions/processqueue.php:1106
 msgid "Hmmm, No users found to send to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1110
+#: public_html/lists/admin/actions/processqueue.php:1114
 msgid "Message Campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1111
+#: public_html/lists/admin/actions/processqueue.php:1115
 #, php-format
 msgid "phplist has finished sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1112
+#: public_html/lists/admin/actions/processqueue.php:1116
 #, php-format
 msgid "to view the results of this campaign, go to http://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1124
+#: public_html/lists/admin/actions/processqueue.php:1128
 msgid "to send this message"
 msgstr ""
 
@@ -5055,7 +5060,7 @@ msgid "You only have privileges to view this page, not change any of the informa
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:34
-#: public_html/lists/admin/commonlib/pages/users.php:160
+#: public_html/lists/admin/commonlib/pages/users.php:162
 msgid "Delete will delete user from the list"
 msgstr ""
 
@@ -5134,80 +5139,80 @@ msgstr ""
 msgid "Groups"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:157
+#: public_html/lists/admin/commonlib/pages/users.php:159
 msgid "Your privileges for this page are insufficient"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:213
+#: public_html/lists/admin/commonlib/pages/users.php:215
 msgid "Sorry, only super users can delete users"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:229
+#: public_html/lists/admin/commonlib/pages/users.php:231
 #, php-format
 msgid "%s users in total"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:247
+#: public_html/lists/admin/commonlib/pages/users.php:249
 msgid "Users marked <span class=\"highlight\">red</span> are unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:275
+#: public_html/lists/admin/commonlib/pages/users.php:277
 msgid "Show only unconfirmed users"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:277
+#: public_html/lists/admin/commonlib/pages/users.php:279
 msgid "Show only blacklisted users"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:300
+#: public_html/lists/admin/commonlib/pages/users.php:302
 msgid "Sort by"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:302
+#: public_html/lists/admin/commonlib/pages/users.php:304
 msgid "asc"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:303
+#: public_html/lists/admin/commonlib/pages/users.php:305
 msgid "Go"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:349
+#: public_html/lists/admin/commonlib/pages/users.php:351
 msgid "too many subscribers, use a search query to list some"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:360
+#: public_html/lists/admin/commonlib/pages/users.php:362
 msgid "Find a user"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:379
+#: public_html/lists/admin/commonlib/pages/users.php:381
 msgid "reset"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:387
+#: public_html/lists/admin/commonlib/pages/users.php:389
 msgid "Find subscribers"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:392
+#: public_html/lists/admin/commonlib/pages/users.php:394
 msgid "Download all users as CSV file"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:393
+#: public_html/lists/admin/commonlib/pages/users.php:395
 msgid "Add a User"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:407
+#: public_html/lists/admin/commonlib/pages/users.php:409
 msgid "bl l"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:454
+#: public_html/lists/admin/commonlib/pages/users.php:456
 msgid "bncs"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:459
+#: public_html/lists/admin/commonlib/pages/users.php:461
 msgid "no results"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:459
+#: public_html/lists/admin/commonlib/pages/users.php:461
 msgid "No users apply"
 msgstr ""
 

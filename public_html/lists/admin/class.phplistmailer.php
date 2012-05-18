@@ -238,7 +238,13 @@ class PHPlistMailer extends PHPMailer {
             }
           }
         }
+/*
+ * ## this needs more work
+        $header = $this->CreateHeader();
+        $body = $this->CreateBody();
         
+        $this->mailsize = strlen($header.$body);
+*/
         if(!parent::Send()) {
           #echo "Message was not sent <p class="x">";
           logEvent("Error sending email to ".$to_addr);
