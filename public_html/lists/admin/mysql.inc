@@ -17,6 +17,9 @@ function Sql_Connect($host,$user,$password,$database) {
     $errno = mysql_errno();
   }
   if ($errno) {
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+      $plugin->processDBerror($errno);
+    }
     switch ($errno) {
       case 1049: # unknown database
         Fatal_Error("unknown database, cannot continue");
@@ -278,6 +281,8 @@ function Sql_Table_exists($table,$refresh = 0) {
   ## table is the full table name including the prefix
   if (!empty($_GET['pi']) || $refresh || !isset($_SESSION) || !isset($_SESSION["dbtables"]) || !is_array($_SESSION["dbtables"])) {
     $_SESSION["dbtables"] = array();
+
+    # need to improve this. http://bugs.mysql.com/bug.php?id=19588    
     $req = Sql_Query("show tables");
     while ($row = Sql_Fetch_Row($req)) {
       array_push($_SESSION["dbtables"],$row[0]);
@@ -289,6 +294,7 @@ function Sql_Table_exists($table,$refresh = 0) {
 function Sql_Table_Column_Exists($table,$column) {
   ## table is the full table name including the prefix
   if (Sql_Table_exists($table)) {
+    # need to improve this. http://bugs.mysql.com/bug.php?id=19588    
     $req = Sql_Query("show columns from $table");
     while ($row = Sql_Fetch_Row($req)) {
       if ($row[0] == $column)

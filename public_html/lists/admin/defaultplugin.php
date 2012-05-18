@@ -44,6 +44,13 @@ class phplistPlugin {
   function name() {
     return $this->name;
   }
+  
+  /* 
+   * constructor
+   * plugins should not run SQL queries as construction time
+   * use the "activate" function instead
+   * that way you can use processDBerror to handle DB errors
+   */
 
   function phplistplugin() {
     # constructor
@@ -407,6 +414,14 @@ class phplistPlugin {
    * @return null
    */
   function sendError ($subject,$to = '',$message = '') {
+  }
+  
+  /* processDBerror
+   * @param integer $error number
+   * @return null
+   */
+  function processDBerror($errorid) {
+    
   }
 
   /* importReport
