@@ -4,7 +4,7 @@
  *
  */
 
-var busyImage = '<img src="images/busy.gif" with="34" height="34" border="0">';
+var busyImage = '<img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait" />';
 var menuArrowImage = 'ui/lite/images/menuarrow.png';
 var menuArrowActiveImagesrc = 'ui/lite/images/menuarrow_active.png';
 
@@ -152,9 +152,18 @@ $(document).ready(function() {
     });
     $(".tabbed1").tabs();
   }
-
+  
+  $("#remoteurlinput").focus(function() {
+    if (this.value == 'e.g. http://www.phplist.com/testcampaign.html') {
+      this.value = "";
+    }
+  })
+  
   $("#remoteurlinput").blur(function() {
-    if (!this.value) return;
+    if (this.value == "") {
+      this.value = "e.g. http://www.phplist.com/testcampaign.html";
+      return;
+    }
     $("#remoteurlstatus").html(busyImage);
     $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url="+this.value);
   });
