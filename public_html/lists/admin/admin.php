@@ -65,10 +65,9 @@ if (!empty($_POST["change"])) {
     if (ENCRYPT_ADMIN_PASSWORDS && !empty($_POST['updatepassword'])){
       //Send token email.
       print '<div class="actionresult">'.sendAdminPasswordToken($id).'</div>';
-    }
     ## check for password changes
-    if (isset($_POST['password'])) {
-      Sql_Query("update {$tables["admin"]} set password = \"".addslashes($_POST['password'])."\" where id = $id");
+    } elseif (isset($_POST['password'])) {
+      Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
     }
     if (isset($_POST["attribute"]) && is_array($_POST["attribute"])) {
       while (list($key,$val) = each ($_POST["attribute"])) {
@@ -76,7 +75,7 @@ if (!empty($_POST["change"])) {
           values(%d,%d,"%s")',$tables["admin_attribute"],$id,$key,addslashes($val)));
       }
     }
-    Sql_Query(sprintf('update %s set modifiedby = "%s" where id = %d',$tables["admin"],adminName($_SESSION["logindetails"]["id"]),$id));
+    Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s" where id = %d',$GLOBALS['tables']["admin"],adminName($_SESSION["logindetails"]["id"]),$id));
 
     if ($accesslevel == "all" && isset($_POST['access']) && is_array($_POST["access"])) {
       Sql_Query("delete from {$tables["admin_task"]} where adminid = $id");
@@ -209,17 +208,20 @@ while ($row = Sql_fetch_array($res)) {
     $checked = $checked_index == $row["value"]?'checked="checked"':'';
     printf('<tr><td>%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[]" value="%d" />
 <input class="attributeinput" type="checkbox" name="attribute[%d]" value="Checked" %s /></td></tr>'."\n",$row["name"],$row["id"],$row["id"],$checked);
+  } else {
+    if ($row["type"] != "textline" && $row["type"] != "hidden") {
+      printf ("<tr><td>%s</td><td>%s</td></tr>\n",$row["name"],AttributeValueSelect($row["id"],$row["tablename"],$row["value"],"adminattr"));
+    } else {
+      printf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
+    }
   }
-  else
-  if ($row["type"] != "textline" && $row["type"] != "hidden")
-    printf ("<tr><td>%s</td><td>%s</td></tr>\n",$row["name"],AttributeValueSelect($row["id"],$row["tablename"],$row["value"],"adminattr"));
-  else
-    printf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
 }
 print '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr></table>';
 
 # what pages can this administrator see:
-if (!$data["superuser"] && $accesslevel == "all") {
+
+## old, disabled
+if (0 && !$data["superuser"] && $accesslevel == "all") {
   print $I18N->get(' Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the "user", "users" and "members" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long ');
   print '<p class="details">'.$GLOBALS['I18N']->get('Access Details').':</p><table class="adminAccess" border="1">';
   reset($access_levels);
