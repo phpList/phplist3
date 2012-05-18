@@ -19,7 +19,8 @@ if (!empty($_REQUEST['sendurl'])) {
     ## hard overwrite the message content, wipe all that was there.
     ## check there's a protocol
     ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
-    if (!preg_match('/^https?:\/\//i',$_REQUEST['sendurl'])) {
+
+    if (!preg_match('/^https?:\/\//i',$_REQUEST['sendurl']) && !preg_match('/testcampaign/i',$_REQUEST['sendurl'])) {
       $_REQUEST['sendurl'] = 'http://'.$_REQUEST['sendurl'];
     }
     
