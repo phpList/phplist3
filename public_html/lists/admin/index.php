@@ -143,13 +143,13 @@ if ($GLOBALS["commandline"]) {
 
   $IsCommandlinePlugin = isset($cline['m']) && in_array($cline['m'],$GLOBALS["commandlinePlugins"]);
   if ($cline['p'] && !$IsCommandlinePlugin) {
-    if (isset($cline['p']) && !in_array($cline['p'],$GLOBALS["commandline_pages"])) {
+    if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],$GLOBALS["commandline_pages"])) {
       clineError($cline['p']." does not process commandline");
     } elseif (isset($cline['p'])) {
       $_GET['page'] = $cline['p'];
     }
   } elseif ($cline['p'] && $IsCommandlinePlugin) {
-    if (isset($cline['p']) && !in_array($cline['p'],$commandlinePluginPages[$cline['m']])) {
+    if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],$commandlinePluginPages[$cline['m']])) {
       clineError($cline['p']." does not process commandline");
     } elseif (isset($cline['p'])) {
       $_GET['page'] = $cline['p'];
@@ -399,12 +399,13 @@ if (!$ajax && $page != "login") {
     Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
 
-  if (MANUALLY_PROCESS_QUEUE && (!isset($_GET['page']) || $_GET['page'] != 'processqueue')) {
+  if (MANUALLY_PROCESS_QUEUE && (!isset($_GET['page']) || ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages'))) {
     $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
     if ($queued_count[0]) {
-      $link = PageLink2('processqueue',s('Process the queue'));
-      if ($link) {
-        print Info(sprintf(s('You have %s message(s) waiting to be sent'),$queued_count[0]).'<br/>'.$link);
+      $link = PageLinkButton('processqueue',s('Process the queue'));
+      $link2 = PageLinkButton('messages&amp;tab=active',s('View the queue'));
+      if ($link || $link2) {
+        print Info(sprintf(s('You have %s message(s) waiting to be sent'),$queued_count[0]).'<br/>'.$link.' '.$link2);
       }
     }
   }
@@ -534,7 +535,7 @@ $finished = $now["sec"] * 1000000 + $now["usec"];
 $elapsed = $finished - $GLOBALS["pagestats"]["time_start"];
 $elapsed = ($elapsed / 1000000);
 
-#  print "\n\n".'<!--';
+  print "\n\n".'<!--';
 if (!empty($GLOBALS['developer_email'])) {
   print '<br clear="all" />';
   print $GLOBALS["pagestats"]["number_of_queries"]." db queries in $elapsed seconds";
@@ -553,7 +554,7 @@ if (isset($GLOBALS["statslog"])) {
     @fwrite($fp,$GLOBALS["pagestats"]["number_of_queries"]."\t$elapsed\t".$_SERVER['REQUEST_URI']."\t".$GLOBALS['installation_name']."\n");
   }
 }
-#  print '-->';
+  print '-->';
 
 if ($ajax || (isset($GLOBALS["commandline"]) && $GLOBALS["commandline"])) {
   @ob_clean();
