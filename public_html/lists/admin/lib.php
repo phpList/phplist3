@@ -998,7 +998,7 @@ function fetchUrl($url,$userdata = array()) {
         logEvent('Fetching '.$url.' success');
         setPageCache($url,$lastmodified,$content);
       } else {
-        logEvent('Fetching '.$url.' failed on GET '.$req->getMessage());
+        logEvent('Fetching '.$url.' failed on GET '.$req->getResponseCode());
         return 0;
       }
     } else {
@@ -1368,4 +1368,3 @@ function pad_right($str,$len) {
 }
 }
 
-?>
