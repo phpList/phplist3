@@ -75,6 +75,7 @@ class PHPlistMailer extends PHPMailer {
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
           $this->Password = $GLOBALS['phpmailer_smtppassword'];
+          $this->SMTPAuth = true;
         }
         $this->Mailer = "smtp";
       } elseif (!$this->inBlast && defined('PHPMAILERTESTHOST')) {
@@ -102,6 +103,7 @@ class PHPlistMailer extends PHPMailer {
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
           $this->Password = $GLOBALS['phpmailer_smtppassword'];
+          $this->SMTPAuth = true;
         }
         $this->Mailer = "smtp";
       } else {
