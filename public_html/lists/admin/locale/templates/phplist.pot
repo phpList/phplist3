@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-22 15:29-0300\n"
-"PO-Revision-Date: 2012-03-22 15:29-0300\n"
+"POT-Creation-Date: 2012-05-18 14:44-0300\n"
+"PO-Revision-Date: 2012-05-18 14:45-0300\n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList team <phplist-translators@lists.sourceforge.net>\n"
 "Language: \n"
@@ -285,8 +285,8 @@ msgid "Access Denied"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:144
-#: public_html/lists/admin/send_core.php:1113
 #: public_html/lists/admin/send_core.php:1118
+#: public_html/lists/admin/send_core.php:1123
 msgid "Send Campaign"
 msgstr ""
 
@@ -622,7 +622,7 @@ msgid "Description of attachment"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:944
-#: public_html/lists/admin/send_core.php:1128
+#: public_html/lists/admin/send_core.php:1133
 msgid "Send Test"
 msgstr ""
 
@@ -651,44 +651,44 @@ msgstr ""
 msgid "add Google tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:973
+#: public_html/lists/admin/send_core.php:974
 msgid "Estimated size of HTML email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:976
+#: public_html/lists/admin/send_core.php:977
 msgid "Estimated size of text email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1015
+#: public_html/lists/admin/send_core.php:1019
 msgid "Estimated size of mailout"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1018
+#: public_html/lists/admin/send_core.php:1022
 #, php-format
 msgid "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1062
+#: public_html/lists/admin/send_core.php:1067
 msgid "Save as Draft"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1074
+#: public_html/lists/admin/send_core.php:1079
 msgid "subject missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1083
+#: public_html/lists/admin/send_core.php:1088
 msgid "message content missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1090
+#: public_html/lists/admin/send_core.php:1095
 msgid "From missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1096
+#: public_html/lists/admin/send_core.php:1101
 msgid "destination lists missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1117
+#: public_html/lists/admin/send_core.php:1122
 msgid "Some required information is missing. The send button will be enabled when this is resolved."
 msgstr ""
 
@@ -1782,7 +1782,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:126
+#: public_html/lists/admin/defaultplugin.php:133
 msgid "choose"
 msgstr ""
 
@@ -4013,71 +4013,71 @@ msgstr ""
 msgid "List of Administrators"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:87
+#: public_html/lists/admin/admin.php:86
 msgid "Changes saved"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:89
+#: public_html/lists/admin/admin.php:88
 msgid "Error adding new admin"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:98
+#: public_html/lists/admin/admin.php:97
 msgid "Current set of permissions made default"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:121
+#: public_html/lists/admin/admin.php:120
 msgid "Failed, you cannot delete yourself"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:127
+#: public_html/lists/admin/admin.php:126
 msgid "Edit Administrator"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:135
+#: public_html/lists/admin/admin.php:134
 msgid "Add a new Administrator"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:138
+#: public_html/lists/admin/admin.php:137
 msgid "Admin Details"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:162
+#: public_html/lists/admin/admin.php:161
 msgid "hidden"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:163
+#: public_html/lists/admin/admin.php:162
 msgid "Update it?"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:163
+#: public_html/lists/admin/admin.php:162
 msgid "Remind it?"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:174
+#: public_html/lists/admin/admin.php:173
 msgid "Login Name"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:223
+#: public_html/lists/admin/admin.php:225
 msgid " Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the \"user\", \"users\" and \"members\" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long "
 msgstr ""
 
-#: public_html/lists/admin/admin.php:224
+#: public_html/lists/admin/admin.php:226
 msgid "Access Details"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:226
+#: public_html/lists/admin/admin.php:228
 msgid "Access Privileges"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:227
+#: public_html/lists/admin/admin.php:229
 msgid "Page"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:258
+#: public_html/lists/admin/admin.php:260
 msgid "Set these permissions as default"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:260
+#: public_html/lists/admin/admin.php:262
 msgid "Reset to Default"
 msgstr ""
 
@@ -4262,24 +4262,28 @@ msgstr ""
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:407
+#: public_html/lists/admin/index.php:406
+msgid "View the queue"
+msgstr ""
+
+#: public_html/lists/admin/index.php:408
 #, php-format
 msgid "You have %s message(s) waiting to be sent"
 msgstr ""
 
-#: public_html/lists/admin/index.php:453
+#: public_html/lists/admin/index.php:454
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:461
+#: public_html/lists/admin/index.php:462
 msgid "The pageroot in your config does not match the current locationCheck your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:513
+#: public_html/lists/admin/index.php:514
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:524
+#: public_html/lists/admin/index.php:525
 msgid "Sorry, not implemented yet"
 msgstr ""
 
@@ -4577,99 +4581,99 @@ msgstr ""
 msgid "subscriber management functions"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:362
+#: public_html/lists/admin/connect.php:366
 msgid "error"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:402
 #: public_html/lists/admin/connect.php:406
+#: public_html/lists/admin/connect.php:410
 msgid "fatalerror"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:440
-#: public_html/lists/admin/connect.php:446
+#: public_html/lists/admin/connect.php:444
+#: public_html/lists/admin/connect.php:450
 msgid "information"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:722
+#: public_html/lists/admin/connect.php:726
 msgid "Main Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:722
+#: public_html/lists/admin/connect.php:726
 msgid "about"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:782
+#: public_html/lists/admin/connect.php:786
 msgid "In this section"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:809
+#: public_html/lists/admin/connect.php:813
 msgid "Recently Visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1059
+#: public_html/lists/admin/connect.php:1063
 msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1065
+#: public_html/lists/admin/connect.php:1069
 msgid "All Active Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1095
+#: public_html/lists/admin/connect.php:1099
 msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1097
+#: public_html/lists/admin/connect.php:1101
 msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1139
+#: public_html/lists/admin/connect.php:1143
 msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1737
+#: public_html/lists/admin/connect.php:1741
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1740
+#: public_html/lists/admin/connect.php:1744
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1743
+#: public_html/lists/admin/connect.php:1747
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1746
+#: public_html/lists/admin/connect.php:1750
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1749
+#: public_html/lists/admin/connect.php:1753
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1794
+#: public_html/lists/admin/connect.php:1798
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1796
+#: public_html/lists/admin/connect.php:1800
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1812
+#: public_html/lists/admin/connect.php:1816
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1813
+#: public_html/lists/admin/connect.php:1817
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1814
+#: public_html/lists/admin/connect.php:1818
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1815
+#: public_html/lists/admin/connect.php:1819
 msgid "Last Page"
 msgstr ""
 
@@ -4682,11 +4686,11 @@ msgstr ""
 msgid "%s left until embargo"
 msgstr ""
 
-#: public_html/lists/admin/actions/msgstatus.php:85
+#: public_html/lists/admin/actions/msgstatus.php:90
 msgid "limit reached"
 msgstr ""
 
-#: public_html/lists/admin/actions/msgstatus.php:91
+#: public_html/lists/admin/actions/msgstatus.php:96
 #, php-format
 msgid "next batch of %s in %s"
 msgstr ""
@@ -4726,332 +4730,332 @@ msgstr ""
 msgid "Email added"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:52
+#: public_html/lists/admin/actions/processqueue.php:54
 msgid "The following restrictions have been set by your ISP:"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:106
+#: public_html/lists/admin/actions/processqueue.php:108
 msgid "Maximum time for queue processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:123
+#: public_html/lists/admin/actions/processqueue.php:139
 msgid "Running in safe mode"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:169
+#: public_html/lists/admin/actions/processqueue.php:185
 msgid "Script stage"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:173
+#: public_html/lists/admin/actions/processqueue.php:189
 msgid "Finished, Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:181
+#: public_html/lists/admin/actions/processqueue.php:197
 msgid "Calculating"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:184
+#: public_html/lists/admin/actions/processqueue.php:200
 msgid "messages sent in"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:185
-#: public_html/lists/admin/actions/processqueue.php:401
+#: public_html/lists/admin/actions/processqueue.php:201
+#: public_html/lists/admin/actions/processqueue.php:417
 msgid "seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:187
+#: public_html/lists/admin/actions/processqueue.php:203
 msgid "invalid emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:189
+#: public_html/lists/admin/actions/processqueue.php:205
 msgid "emails failed (will retry later)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:196
+#: public_html/lists/admin/actions/processqueue.php:212
 #, php-format
 msgid "%d emails unconfirmed (not sent)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:208
+#: public_html/lists/admin/actions/processqueue.php:224
 msgid "Warning: script never reached stage 5"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:208
+#: public_html/lists/admin/actions/processqueue.php:224
 msgid "This may be caused by a too slow or too busy server"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:214
+#: public_html/lists/admin/actions/processqueue.php:230
 msgid "Less than batch size were sent, so reloading imminently"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:217
+#: public_html/lists/admin/actions/processqueue.php:233
 #, php-format
 msgid "Waiting for %d seconds before reloading"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:236
+#: public_html/lists/admin/actions/processqueue.php:252
 msgid "Finished, All done"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:243
+#: public_html/lists/admin/actions/processqueue.php:259
 msgid "Script finished, but not all messages have been sent yet."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:264
+#: public_html/lists/admin/actions/processqueue.php:280
 msgid "Finished this run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:350
-#: public_html/lists/admin/actions/processqueue.php:352
+#: public_html/lists/admin/actions/processqueue.php:366
+#: public_html/lists/admin/actions/processqueue.php:368
 msgid "(test)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:350
-#: public_html/lists/admin/actions/processqueue.php:352
+#: public_html/lists/admin/actions/processqueue.php:366
+#: public_html/lists/admin/actions/processqueue.php:368
 msgid "Would have sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:365
+#: public_html/lists/admin/actions/processqueue.php:381
 msgid "Started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:367
+#: public_html/lists/admin/actions/processqueue.php:383
 msgid "Time now "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:378
+#: public_html/lists/admin/actions/processqueue.php:394
 msgid "Unable get lock for processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:379
+#: public_html/lists/admin/actions/processqueue.php:395
 msgid "Error processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:387
+#: public_html/lists/admin/actions/processqueue.php:403
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:393
+#: public_html/lists/admin/actions/processqueue.php:409
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
-#: public_html/lists/admin/actions/processqueue.php:403
+#: public_html/lists/admin/actions/processqueue.php:413
+#: public_html/lists/admin/actions/processqueue.php:419
 msgid "Sending in batches of"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
-#: public_html/lists/admin/actions/processqueue.php:403
+#: public_html/lists/admin/actions/processqueue.php:413
+#: public_html/lists/admin/actions/processqueue.php:419
 msgid "emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:401
+#: public_html/lists/admin/actions/processqueue.php:417
 msgid "This batch will be"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:401
+#: public_html/lists/admin/actions/processqueue.php:417
 msgid "emails, because in the last"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:401
+#: public_html/lists/admin/actions/processqueue.php:417
 msgid "emails were sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:406
+#: public_html/lists/admin/actions/processqueue.php:422
 msgid "In the last"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:406
+#: public_html/lists/admin/actions/processqueue.php:422
 msgid "seconds more emails were sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:406
+#: public_html/lists/admin/actions/processqueue.php:422
 msgid "than is currently allowed per batch"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:418
+#: public_html/lists/admin/actions/processqueue.php:434
 msgid "Sent in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:419
+#: public_html/lists/admin/actions/processqueue.php:435
 msgid "Skipped in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:457
+#: public_html/lists/admin/actions/processqueue.php:473
 msgid "Processing has started,"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:457
+#: public_html/lists/admin/actions/processqueue.php:473
 msgid "message(s) to process."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:462
+#: public_html/lists/admin/actions/processqueue.php:478
 msgid "Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:464
+#: public_html/lists/admin/actions/processqueue.php:480
 msgid "Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:464
+#: public_html/lists/admin/actions/processqueue.php:480
 msgid "Reports will be sent by email to"
-msgstr ""
-
-#: public_html/lists/admin/actions/processqueue.php:500
-#, php-format
-msgid "sending of this campaign will finish in %s"
-msgstr ""
-
-#: public_html/lists/admin/actions/processqueue.php:516
-msgid "Campaign started"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:517
 #, php-format
+msgid "sending of this campaign will finish in %s"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:533
+msgid "Campaign started"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:534
+#, php-format
 msgid "phplist has started sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:518
+#: public_html/lists/admin/actions/processqueue.php:535
 #, php-format
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:525
+#: public_html/lists/admin/actions/processqueue.php:542
 msgid "Processing message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:548
+#: public_html/lists/admin/actions/processqueue.php:565
 msgid "Looking for users"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:566
+#: public_html/lists/admin/actions/processqueue.php:584
 msgid "users apply for attributes, now checking lists"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:577
+#: public_html/lists/admin/actions/processqueue.php:595
 msgid "No users apply for attributes"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:632
+#: public_html/lists/admin/actions/processqueue.php:650
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:720
+#: public_html/lists/admin/actions/processqueue.php:746
 msgid "Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:724
+#: public_html/lists/admin/actions/processqueue.php:750
 msgid "Found them"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:724
+#: public_html/lists/admin/actions/processqueue.php:750
 msgid "to process"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:755
+#: public_html/lists/admin/actions/processqueue.php:784
 msgid "No users to process for this batch"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:759
+#: public_html/lists/admin/actions/processqueue.php:788
 msgid "Processing batch of "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:765
+#: public_html/lists/admin/actions/processqueue.php:794
 msgid "batch limit reached"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:784
+#: public_html/lists/admin/actions/processqueue.php:813
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:789
+#: public_html/lists/admin/actions/processqueue.php:818
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:798
+#: public_html/lists/admin/actions/processqueue.php:827
 msgid "Message I was working on has disappeared"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:800
+#: public_html/lists/admin/actions/processqueue.php:829
 msgid "Sending of this message has been suspended"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:886
+#: public_html/lists/admin/actions/processqueue.php:916
 #, php-format
 msgid "There have been more than 10 attempts to send to %s that have been blocked for domain throttling."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:887
-#: public_html/lists/admin/actions/processqueue.php:889
+#: public_html/lists/admin/actions/processqueue.php:917
+#: public_html/lists/admin/actions/processqueue.php:919
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:898
+#: public_html/lists/admin/actions/processqueue.php:928
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:918
+#: public_html/lists/admin/actions/processqueue.php:951
 msgid "Sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:926
-#: public_html/lists/admin/actions/processqueue.php:1128
+#: public_html/lists/admin/actions/processqueue.php:959
+#: public_html/lists/admin/actions/processqueue.php:1161
 msgid "It took"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:926
+#: public_html/lists/admin/actions/processqueue.php:959
 msgid "seconds to send"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:965
+#: public_html/lists/admin/actions/processqueue.php:998
 msgid "Failed sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1004
+#: public_html/lists/admin/actions/processqueue.php:1037
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1015
+#: public_html/lists/admin/actions/processqueue.php:1048
 msgid "not sending to "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1034
+#: public_html/lists/admin/actions/processqueue.php:1067
 msgid "Unconfirmed user"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1063
+#: public_html/lists/admin/actions/processqueue.php:1096
 msgid "Not sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1063
+#: public_html/lists/admin/actions/processqueue.php:1096
 msgid "already sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1101
+#: public_html/lists/admin/actions/processqueue.php:1134
 msgid "out of"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1106
+#: public_html/lists/admin/actions/processqueue.php:1139
 msgid "Hmmm, No users found to send to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1114
+#: public_html/lists/admin/actions/processqueue.php:1147
 msgid "Message Campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1115
+#: public_html/lists/admin/actions/processqueue.php:1148
 #, php-format
 msgid "phplist has finished sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1116
+#: public_html/lists/admin/actions/processqueue.php:1149
 #, php-format
 msgid "to view the results of this campaign, go to http://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1128
+#: public_html/lists/admin/actions/processqueue.php:1161
 msgid "to send this message"
 msgstr ""
 
@@ -5733,39 +5737,69 @@ msgstr ""
 msgid "Offer option to receive"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:266
+#: public_html/lists/admin/plugins2/phplisthosted.php:135
+msgid "To continue sending now"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:135
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+msgid "Set up monthly payments"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid "Monthly limit reached"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+msgid "To continue sending"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid "Top-up your monthly limit"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid "Top-up"
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid "your limit, to ensure this campaign goes out."
+msgstr ""
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:287
 msgid "Your campaign does not contain an unsubscribe link. Please add [UNSUBSCRIBE] or [UNSUBSCRIBEURL] to the footer or content of the campaign"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:284
+#: public_html/lists/admin/plugins2/phplisthosted.php:305
 #, php-format
 msgid "The \"From email address\" for this campaign has already been validated. %scontinue%s"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:292
+#: public_html/lists/admin/plugins2/phplisthosted.php:313
 #, php-format
 msgid "Unrecognised code, please %stry again%s. Did you check your INBOX? When copying the code from the verification message you receive, make sure not to include spaces. Also, if you requested the code to be resent, only the last one will be valid."
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:301
+#: public_html/lists/admin/plugins2/phplisthosted.php:322
 msgid "Verification message has been resent. Please note, only the last code sent will be valid."
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:358
+#: public_html/lists/admin/plugins2/phplisthosted.php:379
 msgid "Address verification required"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:359
+#: public_html/lists/admin/plugins2/phplisthosted.php:380
 msgid ""
 "\n"
 "      This is the fist time you use the email address ("
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:373
+#: public_html/lists/admin/plugins2/phplisthosted.php:394
 msgid "If you did not receive the verification message, you can"
 msgstr ""
 
-#: public_html/lists/admin/plugins2/phplisthosted.php:373
+#: public_html/lists/admin/plugins2/phplisthosted.php:394
 msgid "resend verification email"
 msgstr ""
 
