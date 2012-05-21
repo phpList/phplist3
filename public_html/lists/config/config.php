@@ -674,6 +674,9 @@ define("USE_REPETITION",0);
 # 86400 - a day
 define('DEFAULT_MESSAGEAGE',15768000);
 
+# Users Page Max. The page listing subscribers will stop listing them and require a search, 
+# when the amount of subscribers is over 1000. With this settings you can change that cut-off point
+define('USERSPAGE_MAX',1000);
 
 # Prepare a message. This system allows you to create messages as a super admin
 # that can then be reviewed and selected by sub admins to send to their own lists
@@ -770,4 +773,3 @@ $adodb_driver = 'mysql';  // not really a site variable
 # if you want more trouble, make this 63 (very unlikely you will like the result)
 $error_level = error_reporting(0);
 
-?>
