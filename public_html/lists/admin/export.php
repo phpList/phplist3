@@ -73,12 +73,25 @@ if (isset($_POST['processexport'])) {
     print Error($GLOBALS['I18N']->get('Invalid security token. Please reload the page and try again.'));
     return;
   }
-  $fromdate= $from->getDate("from");
-  $todate =  $to->getDate("to");
-  if ($list)
-    $filename = sprintf($GLOBALS['I18N']->get('PHPList Export on %s from %s to %s (%s).csv'),ListName($list),$fromdate,$todate,date("Y-M-d"));
-  else
-    $filename = sprintf($GLOBALS['I18N']->get('PHPList Export from %s to %s (%s).csv'),$fromdate,$todate,date("Y-M-d"));
+  if ($_POST['column'] == 'nodate') {
+    ## fetch dates as min and max from user table
+    if ($list) {
+      $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s where listid = %d %s',$querytables,$list,$subselect));
+    } else {
+      $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s ',$querytables));
+    }
+
+    $fromdate = $dates[0];
+    $todate = $dates[1];
+  } else {
+    $fromdate = $from->getDate("from");
+    $todate =  $to->getDate("to");
+  }
+  if ($list) {
+    $filename = sprintf($GLOBALS['I18N']->get('phpList Export on %s from %s to %s (%s).csv'),ListName($list),$fromdate,$todate,date("Y-M-d"));
+  } else {
+    $filename = sprintf($GLOBALS['I18N']->get('phpList Export from %s to %s (%s).csv'),$fromdate,$todate,date("Y-M-d"));
+  }
   ob_end_clean();
   $filename = trim(strip_tags($filename));
 
@@ -182,22 +195,19 @@ if (isset($_POST['processexport'])) {
   exit;
 }
 
-if ($list)
+if ($list) {
   print sprintf($GLOBALS['I18N']->get('Export subscribers on %s'),ListName($list));
-
+}
 
 print formStart();
 ?>
 
-<table class="exportForm">
-
-<tr><td><?php echo $GLOBALS['I18N']->get('Date From:');?></td><td><?php echo $from->showInput("","",$fromdate);?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Date To:');?> </td><td><?php echo $to->showInput("","",$todate);?></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('What date needs to be used:');?></td></tr>
-<tr><td><input type=radio name="column" value="entered" checked></td><td><?php echo $GLOBALS['I18N']->get('When they signed up');?></td></tr>
-<tr><td><input type=radio name="column" value="modified"></td><td><?php echo $GLOBALS['I18N']->get('When the record was changed');?></td></tr>
-<tr><td><input type=radio name="column" value="historyentry"></td><td><?php echo $GLOBALS['I18N']->get('Based on changelog');?></td></tr>
-<tr><td><input type=radio name="column" value="listentered"></td><td><?php echo $GLOBALS['I18N']->get('When they subscribed to');?>
+<?php echo $GLOBALS['I18N']->get('What date needs to be used:');?><br/>
+<input type="radio" name="column" value="nodate" /> <?php echo $GLOBALS['I18N']->get('Any date');?><br/>
+<input type="radio" name="column" value="entered" checked="checked" /> <?php echo $GLOBALS['I18N']->get('When they signed up');?><br/>
+<input type="radio" name="column" value="modified" /> <?php echo $GLOBALS['I18N']->get('When the record was changed');?><br/>
+<input type="radio" name="column" value="historyentry" /> <?php echo $GLOBALS['I18N']->get('Based on changelog');?><br/>
+<input type="radio" name="column" value="listentered" /> <?php echo $GLOBALS['I18N']->get('When they subscribed to');?> 
 <select name="list">
 <?php
 $req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$listselect_where));
@@ -206,26 +216,30 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 ?>
 </select>
-</td></tr>
-</td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Select the columns to include in the export');?></td></tr>
+<div id="exportdates">
+<?php echo $GLOBALS['I18N']->get('Date From:');?> <?php echo $from->showInput("","",$fromdate);?>
+<?php echo $GLOBALS['I18N']->get('Date To:');?>  <?php echo $to->showInput("","",$todate);?>
+</div>
+
+
+<?php echo $GLOBALS['I18N']->get('Select the columns to include in the export');?>
 
 <?php
   $cols = array();
   while (list ($key,$val) = each ($DBstruct["user"])) {
     if (strpos($val[1],"sys") === false) {
-      printf ("\n".'<tr><td><input type=checkbox name="cols[]" value="%s" checked></td><td>%s</td></tr>',$key,$val[1]);
+      printf ("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ',$key,$val[1]);
     } elseif (preg_match("/sysexp:(.*)/",$val[1],$regs)) {
-      printf ("\n".'<tr><td><input type=checkbox name="cols[]" value="%s" checked></td><td>%s</td></tr>',$key,$regs[1]);
+      printf ("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ',$key,$regs[1]);
     }
   }
   $res = Sql_Query("select id,name,tablename,type from {$tables['attribute']} order by listorder");
   $attributes = array();
   while ($row = Sql_fetch_array($res)) {
-    printf ("\n".'<tr><td><input type=checkbox name="attrs[]" value="%s" checked></td><td>%s</td></tr>',$row["id"],stripslashes($row["name"]));
+    printf ("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ',$row["id"],stripslashes($row["name"]));
   }
 
 ?>
-</table>
-<p class="submit"><input type="submit" name="processexport" value="<?php echo $GLOBALS['I18N']->get('Export'); ?>"></p></form>
+
+<p class="submit"><input type="submit" name="processexport" id="processexport" value="<?php echo $GLOBALS['I18N']->get('Export'); ?>"></p></form>
 
