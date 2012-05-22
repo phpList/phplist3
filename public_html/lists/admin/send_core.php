@@ -376,6 +376,15 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   # we only need to check that everything is there, once we actually want to send
   if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_atribute) && sizeof($messagedata["targetlist"])) {
     if ($messagedata['status'] == "submitted") {
+      
+      ##16615, check that "send until" is in the future and warn if it isn't
+      $finishSending = mktime($messagedata['finishsending']['hour'],$messagedata['finishsending']['minute'],0,
+        $messagedata['finishsending']['month'],$messagedata['finishsending']['day'],$messagedata['finishsending']['year']);
+      if ($finishSending < time()) {
+        print Warn(s('This campaign is scheduled to stop sending in the past. No mails will be sent.'));
+        print PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling'));
+      }
+      
       print "<h3>".$GLOBALS['I18N']->get("Campaign queued")."</h3>";
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->messageQueued($id);
