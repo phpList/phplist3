@@ -86,8 +86,8 @@ if ($message['status'] != 'inprocess') {
   #  $html .= $GLOBALS['I18N']->get('sent').': '.$totalsent.'<br/>';
     $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
       $tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
-    if (MAILQUEUE_BATCH_PERIOD && $recently_sent[0] >= MAILQUEUE_BATCH_SIZE) {
-      $html .= '<h4>'.$GLOBALS['I18N']->get('limit reached').'</h4>';
+    if (MAILQUEUE_BATCH_PERIOD && MAILQUEUE_BATCH_SIZE && $recently_sent[0] >= MAILQUEUE_BATCH_SIZE) {
+      $html .= '<h4>'.$GLOBALS['I18N']->get('limit reached').'</h4>'.MAILQUEUE_BATCH_PERIOD;
       foreach ($GLOBALS['plugins'] as $plname => $plugin) {
         $html .= $plugin->messageStatusLimitReached($recently_sent[0]);
       }
@@ -95,8 +95,13 @@ if ($message['status'] != 'inprocess') {
         MAILQUEUE_BATCH_PERIOD,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
       $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
       
-    } elseif ($msgperhour<= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
-      $html .= $GLOBALS['I18N']->get('Processing');
+    } elseif ($msgperhour <= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
+      if (MANUALLY_PROCESS_QUEUE) {
+        $html .= $GLOBALS['I18N']->get('Stalled');
+        $html .= PageLinkButton('processqueue',s('Send the queue'));
+      } else {
+        $html .= $GLOBALS['I18N']->get('Processing'); 
+      }
     } else {
       $html .= 
       $GLOBALS['I18N']->get('ETA').': '.$eta.'<br/>'.
