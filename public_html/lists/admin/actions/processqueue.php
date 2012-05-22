@@ -1033,7 +1033,9 @@ while ($message = Sql_fetch_array($messages)) {
              $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
              $msgperhour = (3600/$totaltime) * $sent;
              $msgpersec = $msgperhour / 3600;
-             $secpermsg = $totaltime / $sent;
+             
+             ##11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
+           #  $secpermsg = $totaltime / $sent;
              $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $sent;
              $delay = $target - $totaltime;
 #             output("Sent: $sent mph $msgperhour mps $msgpersec secpm $secpermsg target $target actual $actual d $delay");
