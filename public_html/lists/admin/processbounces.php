@@ -379,7 +379,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
       if ($row['user']) {
         $userdata = Sql_Fetch_Array_Query("select * from {$tables["user"]} where id = ".$row['user']);
       }
-      $report_linkroot = $GLOBALS['scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
+      $report_linkroot = $GLOBALS['admin_scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
       
       switch ($rule['action']) {
         case 'deleteuser':

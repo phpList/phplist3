@@ -33,7 +33,7 @@ $database_password = 'phplist';
 # if you use multiple installations of PHPlist you can set this to
 # something to identify this one. it will be prepended to email report
 # subjects
-$installation_name = 'PHPlist';
+$installation_name = 'phpList';
 
 # if you want a prefix to all your tables, specify it here,
 $table_prefix = "phplist_";
@@ -42,7 +42,7 @@ $table_prefix = "phplist_";
 # read README.usertables for more information
 $usertable_prefix = "phplist_user_";
 
-# if you change the path to the PHPlist system, make the change here as well
+# if you change the path to the phpList system, make the change here as well
 # path should be relative to the root directory of your webserver (document root)
 # you cannot actually change the "admin", but you can change the "lists"
 $pageroot = '/lists';
@@ -484,6 +484,13 @@ define('CLICKTRACK',0);
 # However, this will slow down the process to view the statistics, so it is
 # recommended to leave it off, but if you're very curious, you can enable it
 define('CLICKTRACK_SHOWDETAIL',0);
+
+# Public protocol
+# phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
+# tracking images
+# but if you want to force this to be http, when you eg run the admin on https, uncomment the below line
+# see also https://mantis.phplist.com/view.php?id=16611
+#define('PUBLIC_PROTOCOL','http');
 
 # Domain Throttling
 # You can activate domain throttling, by setting USE_DOMAIN_THROTTLE to 1

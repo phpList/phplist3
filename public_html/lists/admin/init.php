@@ -63,7 +63,14 @@ if (empty($GLOBALS['database_module'])) {
 ## @@ would be nice to move this to the config file at some point
 # http://mantis.phplist.com/view.php?id=15521
 ## set it on the fly, although that will probably only work with Apache
+## we need to save this in the DB, so that it'll work on commandline
 $GLOBALS['scheme'] = (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) ? 'https' : 'http';
+$GLOBALS['admin_scheme'] = $GLOBALS['scheme'];
+if (defined('PUBLIC_PROTOCOL')) {
+  $GLOBALS['public_scheme'] = PUBLIC_PROTOCOL;
+} else {
+  $GLOBALS['public_scheme'] = $GLOBALS['scheme'];
+}
 
 ## spelling mistake in earlier version, make sure to set it correctly
 if (!isset($bounce_unsubscribe_threshold) && isset($bounce_unsubscribe_treshold)) {

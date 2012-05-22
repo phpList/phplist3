@@ -1176,7 +1176,7 @@ function Redirect($page) {
     ## could check SERVER_NAME as well
     $website = getConfig("website");
   }
-  Header("Location: ".$GLOBALS['scheme']."://".$website.$GLOBALS["adminpages"]."/?page=$page");
+  Header("Location: ".$GLOBALS['admin_scheme']."://".$website.$GLOBALS["adminpages"]."/?page=$page");
   exit;
 }
 

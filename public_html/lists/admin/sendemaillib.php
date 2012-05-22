@@ -366,13 +366,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
   if (ALWAYS_ADD_USERTRACK) {
     if (stripos($htmlmessage,'</body>')) {
-      $htmlmessage = str_replace('</body>','<img src="'.$GLOBALS['scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" /></body>',$htmlmessage);
+      $htmlmessage = str_replace('</body>','<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" /></body>',$htmlmessage);
     } else {
-      $htmlmessage .= '<img src="'.$GLOBALS['scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" />';
+      $htmlmessage .= '<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" />';
     }
   } else {
     ## can't use str_replace or str_ireplace, because those replace all, and we only want to replace one
-    $htmlmessage = preg_replace( '/\[USERTRACK\]/i','<img src="'.$GLOBALS['scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" />',$htmlmessage,1);
+    $htmlmessage = preg_replace( '/\[USERTRACK\]/i','<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&m='.$messageid.'" width="1" height="1" border="0" />',$htmlmessage,1);
   }
   # make sure to only include usertrack once, otherwise the stats would go silly
   $htmlmessage = str_ireplace('[USERTRACK]','',$htmlmessage);
@@ -457,7 +457,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
     # to process the Yahoo webpage with base href and link like <a href=link> we'd need this one
 #    preg_match_all('/<a href=([^> ]*)([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
-    $clicktrack_root = sprintf('%s://%s/lt.php',$GLOBALS["scheme"],$website.$GLOBALS["pageroot"]);
+    $clicktrack_root = sprintf('%s://%s/lt.php',$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"]);
     for($i=0; $i<count($links[2]); $i++){
       $link = cleanUrl($links[2][$i]); 
       $link = str_replace('"','',$link);
@@ -489,9 +489,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $masked = "H|$linkid|$messageid|".$userdata['id'] ^ XORmask;
         $masked = urlencode(base64_encode($masked));
         if (!CLICKTRACK_LINKMAP) {
-          $newlink = sprintf('<a%shref="%s://%s/lt.php?id=%s" %s>%s</a>',$links[1][$i],$GLOBALS["scheme"],$website.$GLOBALS["pageroot"],$masked,$links[3][$i],$links[4][$i]);
+          $newlink = sprintf('<a%shref="%s://%s/lt.php?id=%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked,$links[3][$i],$links[4][$i]);
         } else {
-          $newlink = sprintf('<a%shref="%s://%s%s" %s>%s</a>',$links[1][$i],$GLOBALS["scheme"],$website.CLICKTRACK_LINKMAP,$masked,$links[3][$i],$links[4][$i]);
+          $newlink = sprintf('<a%shref="%s://%s%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.CLICKTRACK_LINKMAP,$masked,$links[3][$i],$links[4][$i]);
         }
         $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
       }
@@ -525,7 +525,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
         $masked = "T|$linkid|$messageid|".$userdata['id'] ^ XORmask;
         $masked = urlencode(base64_encode($masked));
-        $newlink = sprintf('%s://%s/lt.php?id=%s',$GLOBALS["scheme"],$website.$GLOBALS["pageroot"],$masked);
+        $newlink = sprintf('%s://%s/lt.php?id=%s',$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked);
         $textmessage = str_replace($links[0][$i], '<'.$newlink.'>', $textmessage);
       }
     }
@@ -559,9 +559,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $masked = "T|$linkid|$messageid|".$userdata['id'] ^ XORmask;
         $masked = urlencode(base64_encode($masked));
         if (!CLICKTRACK_LINKMAP) {
-          $newlinks[$linkid] = sprintf('%s://%s/lt.php?id=%s',$GLOBALS["scheme"],$website.$GLOBALS["pageroot"],$masked);
+          $newlinks[$linkid] = sprintf('%s://%s/lt.php?id=%s',$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked);
         } else {
-          $newlinks[$linkid] = sprintf('%s://%s%s',$GLOBALS["scheme"],$website.CLICKTRACK_LINKMAP,$masked);
+          $newlinks[$linkid] = sprintf('%s://%s%s',$GLOBALS["public_scheme"],$website.CLICKTRACK_LINKMAP,$masked);
         }
 
 #        print $links[0][$i] .' -> '.$newlink.'<br/>';
@@ -987,7 +987,7 @@ function addAttachments($msgid,&$mail,$type) {
            break;
 
          case "text":
-          $viewurl = $GLOBALS["scheme"]."://".$website.$GLOBALS["pageroot"].'/dl.php?id='.$att["id"];
+          $viewurl = $GLOBALS["public_scheme"]."://".$website.$GLOBALS["pageroot"].'/dl.php?id='.$att["id"];
           $mail->append_text($att["description"]."\n".$GLOBALS["strLocation"].": ".$viewurl."\n");
           break;
       }
