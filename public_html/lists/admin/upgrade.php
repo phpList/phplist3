@@ -427,7 +427,10 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     output($GLOBALS['I18N']->get('upgrade to UTF-8, done').'<br/>');
   }
 
-
+  ## fetch the list of TLDs, if possible
+  if (defined('TLD_AUTH_LIST')) {
+    refreshTlds();
+  }
 
   # mark the database to be our current version
   if ($success) {
