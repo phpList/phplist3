@@ -1322,6 +1322,40 @@ function verifyToken() {
   return true;
 }
 
+function refreshTlds($force = 0) {
+  ## fetch list of Tlds and store in DB
+  $lastDone = getConfig('tld_last_sync');
+  ## let's not do this too often
+  if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
+    ## even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
+    SaveConfig('tld_last_sync',time(),0);
+    if (defined('TLD_AUTH_LIST')) {
+      $tlds = fetchUrl(TLD_AUTH_LIST);
+    }
+    if (defined('TLD_AUTH_MD5')) {
+      $tld_md5 = fetchUrl(TLD_AUTH_MD5);
+      list($remote_md5,$fname) = explode(' ',$tld_md5);
+      $mymd5 = md5($tlds);
+      if ($remote_md5 == $mymd5) {
+#        print 'OK: '.$remote_md5.' '.$mymd5;
+        $lines = explode("\n",$tlds);
+        $tld_list = '';
+        foreach ($lines as $line) {
+          ## for now, only handle ascii lines
+          if (preg_match('/^\w+$/',$line)) {
+            $tld_list .= $line.'|';
+          }
+        }
+        $tld_list = substr($tld_list,0,-1);
+        SaveConfig('internet_tlds',strtolower($tld_list),0);
+      }
+    }
+#  } else {
+#    print $lastDone;
+  }
+  return true;
+}
+
 function listCategories() {
 
   $sListCategories = getConfig('list_categories');
