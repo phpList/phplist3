@@ -36,7 +36,11 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
 
   if (empty($cached[$messageid])) {
-    precacheMessage($messageid,$forwardContent);
+    if (!precacheMessage($messageid,$forwardContent)) {
+      unset($cached[$messageid]);
+      logEvent('Error loading message '.$messageid.'  in cache');
+      return 0;
+    }
   } else {
   #  dbg("Using cached {$cached[$messageid]["fromemail"]}");
     if (VERBOSE) output('Using cached message');
@@ -1366,6 +1370,7 @@ function precacheMessage($messageid,$forwardContent = 0) {
       #  $cached[$messageid]['content'] = $remote_content;
         $cached[$messageid]["htmlformatted"] = strip_tags($remote_content) != $remote_content;
       } else {
+        print Error(s('unable to fetch web page for sending'));
         logEvent("Error fetching URL: ".$message['sendurl']. ' cannot proceed');
         return 0;
       }
@@ -1421,6 +1426,7 @@ exit;
   if (defined('FCKIMAGES_DIR') && FCKIMAGES_DIR) {
     $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/lists\/'.FCKIMAGES_DIR.'(.*)>/iU','<img\\1src="http://'.$baseurl.'/lists/'.FCKIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
   }
+  return 1;
 }  
 
 # make sure the 0 template has the powered by image

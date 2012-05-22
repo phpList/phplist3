@@ -105,7 +105,7 @@ if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
   $maxProcessQueueTime = (int)MAX_PROCESSQUEUE_TIME;
 }
 if ($maxProcessQueueTime) {
-  output(s('Maximum time for queue processing').': '.$maxProcessQueueTime);
+  output(s('Maximum time for queue processing').': '.$maxProcessQueueTime,'progress');
 }
 # in-page processing force to a minute max, and make sure there's a batch size
 if (empty($GLOBALS['commandline'])) {
@@ -521,7 +521,16 @@ while ($message = Sql_fetch_array($messages)) {
 
   $userselection = $msgdata["userselection"]; ## @@ needs more work
   ## load message in cache
-  precacheMessage($messageid);
+  if (!precacheMessage($messageid)) {
+    ## precache may fail on eg invalid remote URL
+    ## any reporting needed here?
+    output(s('Error loading message, please check the eventlog for details'));
+    if (MANUALLY_PROCESS_QUEUE) {
+      # wait a little, otherwise the message won't show
+      sleep(10);
+    }
+    continue; 
+  }
 
   if (!empty($getspeedstats)) output('message data loaded ');  
   if (VERBOSE) {
