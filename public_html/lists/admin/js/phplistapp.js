@@ -37,6 +37,11 @@ function refreshCriteriaList() {
   $("#existingCriteria").load('./?page=pageaction&ajaxed=true&action=listcriteria&id='+id);
 }
 
+function refreshExport() {
+ // alert('Refresh '+document.location);
+  document.location = document.location;
+}
+
 function openDialog(url) {
   $("#dialog").dialog({
     minHeight: 400,
@@ -218,6 +223,20 @@ $(document).ready(function() {
       $("#initialisecontinue").removeAttr('disabled');
     }
   });
+  
+  // export page
+  $("input:radio[name=column]").change(function() {
+    if (this.value == 'nodate') {
+      $("#exportdates").hide();
+    } else {
+      $("#exportdates").show();
+    }
+  });
+  
+  $("#processexport").click(function() {
+    // for export, refresh underlying page, to get a new security token
+    setTimeout("refreshExport()",2000);
+  })
 
   //fade out 'actionresult' user feedback
   $('.actionresult').delay(4000).fadeOut(4000); 
