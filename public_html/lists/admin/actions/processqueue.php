@@ -104,15 +104,16 @@ $maxProcessQueueTime = 0;
 if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
   $maxProcessQueueTime = (int)MAX_PROCESSQUEUE_TIME;
 }
-if ($maxProcessQueueTime) {
-  output(s('Maximum time for queue processing').': '.$maxProcessQueueTime,'progress');
-}
 # in-page processing force to a minute max, and make sure there's a batch size
 if (empty($GLOBALS['commandline'])) {
   $maxProcessQueueTime = min($maxProcessQueueTime,60);
   if ($num_per_batch <= 0) {
     $num_per_batch = 10000;
   }
+}
+
+if (VERBOSE && $maxProcessQueueTime) {
+  output(s('Maximum time for queue processing').': '.$maxProcessQueueTime,'progress');
 }
 
 if (isset($cline['m'])) {
