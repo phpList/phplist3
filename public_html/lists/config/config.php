@@ -87,9 +87,11 @@ $bounce_mailbox_password = 'password';
 # the default should be fine but if it doesn't work, you can try the second
 # one. To do that, add a # before the first line and take off the one before the
 # second line
-
 $bounce_mailbox_port = "110/pop3/notls";
 #$bounce_mailbox_port = "110/pop3";
+
+# it's getting more common to have secure connections, in which case you probably want to use
+#$bounce_mailbox_port = "995/pop3/ssl/novalidate-cert";
 
 # when the protocol is mbox specify this one
 # it needs to be a local file in mbox format, accessible to your webserver user
