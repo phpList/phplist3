@@ -5,8 +5,11 @@
 #testEmail();
 
 class test_is_email extends phplistTest {
+  public $name = 'isEmail';
+  public $purpose = 'Test email validation';
+  
 
-  function testEmail(){
+  function runtest(){
     $emailAddresses = array(
       "name@company.com"      	=> TRUE , // mother of all emails
       "name.last@company.com" 	=> TRUE , // with last name
@@ -39,7 +42,9 @@ class test_is_email extends phplistTest {
       "me@example.com"            => TRUE ,
       "a.nonymous@example.com"    => TRUE ,
       "name+tag@example.com"      => TRUE ,
-      '"name\@tag"@example.com'   => TRUE , // Ð this is a valid email address containing two @ symbols.
+      ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
+     # '"name\@tag"@example.com'   => TRUE , 
+      '"name\@tag"@example.com'   => FALSE , // Ð this is a valid email address containing two @ symbols.
       "escaped\ spaces\ are\ allowed@example.com"          => TRUE ,
       '"spaces may be quoted"@example.com'        => TRUE ,
       "!#$%&'*+-/=.?^_`{|}~@example.com"          => TRUE ,
@@ -53,7 +58,14 @@ class test_is_email extends phplistTest {
       "me@example..com"           => FALSE,
       "me.example@com"            => FALSE,
       "me\@example.com"           => FALSE,
-      "me\@sales.com@example.com"          => TRUE,
+      ## some uncommon TLDs
+      "me@domain.museum"          => TRUE,
+      "me@me.me"                  => TRUE,
+      "jobs@jobs.jobs"            => TRUE,
+      "hello@me.nonexistingtld"   => FALSE,
+      ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
+#      "me\@sales.com@example.com"          => TRUE,
+      "me\@sales.com@example.com"          => FALSE,
       # From http://www.faqs.org/rfcs/rfc3696.html
        "customer/department=shipping@example.com" => TRUE ,
        '$A12345@example.com'      => TRUE ,
@@ -63,6 +75,7 @@ class test_is_email extends phplistTest {
     print("<P>PHP " . PHP_VERSION . " running on " . PHP_OS . " - Testing email address validation...</P>");
     
     $resultString ="";
+    $nFoundWrong = 0;
     
     $boolean = array("FALSE","TRUE");
     
@@ -77,8 +90,10 @@ class test_is_email extends phplistTest {
     
     if ($nFoundWrong > 0) {
       print("<P>The following $nFoundWrong email addresses were evaluated wrong:<BR/>$resultString</P>");
+      return false;
     } else {
       print("<P>All email addresses evaluated correctly.</P>");
+      return true;
     }
   }
 }

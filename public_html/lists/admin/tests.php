@@ -1,13 +1,15 @@
 <?php
 
 error_reporting(E_ALL);
-## test suite for certain elements of phplist
+## some kind of attempt to make a test suite for certain elements of phplist
+
 print '<h3>'.$GLOBALS['I18N']->get('phplist test suite').'</h3>';
 
 if (empty($GLOBALS['developer_email'])) {
   print "Only available in developer mode";
   return;
 }
+
 
 $tests = array();
 # generic class that's extended by all tests
@@ -21,14 +23,16 @@ if (is_dir($testdir)) {
         require_once ($testdir.'/'.$file);
         $class = basename($file,'.php');
         eval("\$test = new \$class();");
-        $tests[$class] = $test;
+        if (method_exists($test,'runtest')) {
+          $tests[$class] = $test;
+        }
       }
     }
     closedir($dh);
   }
 }
 
-if ($_GET['runtest'] && in_array($_GET['runtest'],array_keys($tests))) {
+if (!empty($_GET['runtest']) && in_array($_GET['runtest'],array_keys($tests))) {
   print "<h3>Running test:  ".$tests[$_GET['runtest']]->name.'</h3>';
   $testresult = $tests[$_GET['runtest']]->runtest();
   if ($testresult) {
@@ -47,7 +51,4 @@ foreach ($tests as $testclassname => $testclass) {
   $ls->addColumn($el,$GLOBALS['I18N']->get('Purpose'),$GLOBALS['I18N']->get($testclass->purpose));
 }
 print $ls->display();
-?>
-
-
 

@@ -1,8 +1,8 @@
 <?php
 
 class sendpage extends phplistTest {
-  var $name = 'Send a Webpage';
-  var $purpose = 'Testing that sending a webpage works ok';
+  public $name = 'Send a Webpage';
+  public $purpose = 'Testing that sending a webpage works ok';
 
   function sendpage() {
     parent::phplistTest();
