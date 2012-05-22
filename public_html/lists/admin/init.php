@@ -77,6 +77,10 @@ if (!defined("TEST")) define("TEST",1);
 if (!defined("DEVSITE")) define("DEVSITE",0);
 define('TRANSLATIONS_XML','http://translate.phplist.com/translations.xml');
 
+define('TLD_AUTH_LIST','http://data.iana.org/TLD/tlds-alpha-by-domain.txt');
+define('TLD_AUTH_MD5','http://data.iana.org/TLD/tlds-alpha-by-domain.txt.md5');
+define('TLD_REFETCH_TIMEOUT',15552000); ## 180 days, about 6 months
+
 // obsolete by rssmanager plugin
 // if (!defined("ENABLE_RSS")) define("ENABLE_RSS",0);
 if (!defined("ALLOW_ATTACHMENTS")) define("ALLOW_ATTACHMENTS",0);
