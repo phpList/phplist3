@@ -100,9 +100,25 @@ if (isset($subscribepagedata['emaildoubleentry']) && $subscribepagedata['emaildo
 // anti spambot check
 if (!empty($_POST['VerificationCodeX'])) {
   if (NOTIFY_SPAM) {
-    $msg = $GLOBALS['I18N']->get('  -------------------------------------------------------------------------------- This is a notification of a possible spam attack to your phplist subscribe page. The data submitted has been copied below, so you can check whether this was actually the case. The submitted data has been converted into non-html characters, for security reasons.  If you want to stop receiving this message, set     define("NOTIFY_SPAM",0);  in your phplist config file.  This subscriber has not been added to the database. If there is an error, you will need to  add them manually.  --------------------------------------------------------------------------------  ');
+    $msg = $GLOBALS['I18N']->get('
+-------------------------------------------------------------------------------- 
+    This is a notification of a possible spam attack to your phplist subscribe page.
+    The data submitted has been copied below, so you can check whether this was actually the case.
+    The submitted data has been converted into non-html characters, for security reasons.
+    If you want to stop receiving this message, set 
+    
+     define("NOTIFY_SPAM",0);  
+     
+     in your phplist config file.  
+     
+     This subscriber has NOT been added to the database. 
+     If there is an error, you will need to  add them manually.
+--------------------------------------------------------------------------------  ');
     foreach ($_REQUEST as $key => $val) {
       $msg .= "\n".'Form field: '.htmlentities($key)."\n".'================='."\nSubmitted value: ".htmlentities($val)."\n".'=============='."\n\n";
+    }
+    foreach ($_SERVER as $key => $val) {
+      $msg .= "\n".'HTTP Server Data: '.htmlentities($key)."\n".'================='."\nValue: ".htmlentities($val)."\n".'=============='."\n\n";
     }
     sendAdminCopy("phplist Spam blocked","\n".$msg);
   }
