@@ -401,7 +401,7 @@ $default_config = array (
   
   Welcome to our Newsletter
 
-  Please keep this email for later reference.
+  Please keep this message for later reference.
 
   Your email address has been added to the following newsletter(s):
   [LISTS]
