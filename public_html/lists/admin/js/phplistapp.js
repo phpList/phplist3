@@ -219,7 +219,7 @@ $(document).ready(function() {
   });
 
   $("#initialadminpassword").keyup(function() {
-    if (this.value.length > 8) {
+    if (this.value.length >= 8) {
       $("#initialisecontinue").removeAttr('disabled');
     }
   });
