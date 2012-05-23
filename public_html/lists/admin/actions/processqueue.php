@@ -730,7 +730,7 @@ while ($message = Sql_fetch_array($messages)) {
     . '   and listmessage.listid = listuser.listid'
     . '   and u.id = listuser.userid'
     . '   and um.userid IS NULL'
-    . '   and u.confirmed = 1 and u.blacklisted = 0'
+    . '   and u.confirmed and !u.blacklisted and !u.disabled'
     . ' %s %s';
     $query = sprintf($query, $tables['listuser'], 
     $tables['user'], $tables['listmessage'], $tables['usermessage'], 
@@ -853,7 +853,7 @@ while ($message = Sql_fetch_array($messages)) {
       if ($script_stage < 4)
         $script_stage = 4; # we know a user
       $someusers = 1;
-      $users = Sql_query("select id,email,uniqid,htmlemail,rssfrequency,confirmed,blacklisted from {$tables['user']} where id = $userid");
+      $users = Sql_query("select id,email,uniqid,htmlemail,rssfrequency,confirmed,blacklisted,disabled from {$tables['user']} where id = $userid");
 
       # pick the first one (rather historical from before email was unique)
       $user = Sql_fetch_array($users); 
@@ -863,7 +863,7 @@ while ($message = Sql_fetch_array($messages)) {
         $userhash = $user[2];  # unique string of the user
         $htmlpref = $user[3];  # preference for HTML emails
 //        $rssfrequency = $user[4];
-        $confirmed = $user[5];
+        $confirmed = $user[5] && !$user[7];
         $blacklisted = $user[6];
 
 //obsolete, moved to rssmanager plugin 
@@ -878,7 +878,7 @@ while ($message = Sql_fetch_array($messages)) {
 //            $cansend = 0;
 //          }
 //        } else {
-          $cansend = !$blacklisted;
+          $cansend = !$blacklisted && $confirmed;
 //        }
 
 /*
@@ -1074,7 +1074,7 @@ while ($message = Sql_fetch_array($messages)) {
         ## this is quite old as well, with the preselection that avoids unconfirmed users
         # it is unlikely this is every processed.
 
-        if (!$user[5]) {
+        if (!$user[5] || $user[7]) {
           if (VERBOSE)
             output($GLOBALS['I18N']->get('Unconfirmed user').': '."$userid $user[1], $user[0]");
           $unconfirmed++;
