@@ -9,7 +9,7 @@ if (!empty($_GET['id'])) {
 }
 
 if ($GLOBALS["require_login"] && !isSuperUser()) {
-  $access = accessLevel("list");
+  $access = accessLevel("editlist");
   switch ($access) {
     case "owner":
       $subselect = " where owner = ".$_SESSION["logindetails"]["id"];
