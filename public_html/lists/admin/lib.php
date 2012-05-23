@@ -1274,34 +1274,35 @@ function strip_newlines( $str, $placeholder = '' ) {
 //  }
 //  return '';
 //}
-function parseDate($strdate,$format = 'Y-m-d') {
-  # parse a string date into a date
-  $strdate = trim($strdate);
-  if (strlen($strdate) < 6) {
-    $newvalue = 0;
+
+function parseDate($strdate, $format = 'Y-m-d') {
+	# parse a string date into a date
+	$strdate = trim($strdate);
+	if (strlen($strdate) < 6) {
+		$newvalue = 0;
 	}
 	elseif (preg_match("#(\d{2,2}).(\d{2,2}).(\d{4,4})#", $strdate, $regs)) {
-    $newvalue = mktime(0,0,0,$regs[2],$regs[1],$regs[3]);
+		$newvalue = mktime(0, 0, 0, $regs[2], $regs[1], $regs[3]);
 	}
 	elseif (preg_match("#(\d{4,4}).(\d{2,2}).(\d{2,2})#", $strdate, $regs)) {
-    $newvalue = mktime(0,0,0,$regs[3],$regs[1],$regs[1]);
+		$newvalue = mktime(0, 0, 0, $regs[2], $regs[3], $regs[1]);
 	}
 	elseif (preg_match("#(\d{2,2}).(\w{3,3}).(\d{2,4})#", $strdate, $regs)) {
-    $newvalue = strtotime($value);
+		$newvalue = strtotime($strdate);
 	}
 	elseif (preg_match("#(\d{2,4}).(\w{3,3}).(\d{2,2})#", $strdate, $regs)) {
-    $newvalue = strtotime($strdate);
-  } else {
-    $newvalue = strtotime($strdate);
-    if ($newvalue < 0) {
-      $newvalue = 0;
-    }
-  }
-  if ($newvalue) {
-    return date($format,$newvalue);
-  } else {
-    return "";
-  }
+		$newvalue = strtotime($strdate);
+	} else {
+		$newvalue = strtotime($strdate);
+		if ($newvalue < 0) {
+			$newvalue = 0;
+		}
+	}
+	if ($newvalue) {
+		return date($format, $newvalue);
+	} else {
+		return "";
+	}
 }
 
 function verifyToken() {
