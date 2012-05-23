@@ -58,6 +58,7 @@ class test_is_email extends phplistTest {
       "me@example..com"           => FALSE,
       "me.example@com"            => FALSE,
       "me\@example.com"           => FALSE,
+      "s'oneill@somenice.museum"  => TRUE,
       ## some uncommon TLDs
       "me@domain.museum"          => TRUE,
       "me@me.me"                  => TRUE,
