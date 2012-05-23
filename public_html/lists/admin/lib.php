@@ -915,7 +915,7 @@ function fetchUrl($url,$userdata = array()) {
   if (sizeof($userdata)) {
     foreach ($userdata as $key => $val) {
       if ($key != 'password') {
-        $url = str_ireplace("[$key]",urlencode($val),$url);
+        $url = utf8_encode(str_ireplace("[$key]",urlencode($val),utf8_decode($url)));
       }
     }
   }
