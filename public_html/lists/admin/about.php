@@ -55,7 +55,7 @@
 $pg = '';
 if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && sizeof($GLOBALS['plugins'])) {
   foreach ($GLOBALS['plugins'] as $pluginName=>$plugin) {
-    $pg .= '<li><b>' . $pluginName . "</b> version " . $plugin->version;
+    $pg .= '<li><strong>' . $plugin->name . '</strong> version ' . $plugin->version;
     if ( $plugin->authors ){
       $pg .= ' <span class="pluginauthor">by ' . $plugin->authors . '</span>'; 
     }
