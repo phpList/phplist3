@@ -9,9 +9,9 @@ $subselect = '';
 $access = accessLevel("spage");
 switch ($access) {
   case "owner":
-    $subselect = " where owner = ".$_SESSION["logindetails"]["id"];break;
+    $subselect = " where active and owner = ".$_SESSION["logindetails"]["id"];break;
   case "all":
-    $subselect = "";break;
+    $subselect = " where active";break;
   case "none":
   default:
     $subselect = " where id = 0";break;
@@ -320,7 +320,7 @@ print '</td></tr>'; #this is ok
     print $plugin->displaySubscribepageEdit($data);
   } 
   
-print '<tr><td colspan="2"><h3>'.$GLOBALS['I18N']->get('Select the lists to offer').'</h3></td></tr>';
+print '<tr><td colspan="2"><h3>'.$GLOBALS['I18N']->get('Select the lists to offer').'</h3>'.s('You can only select "public" lists for subscribe pages.').'</td></tr>';
 
 $req = Sql_query("SELECT * FROM {$tables["list"]} $subselect order by listorder");
 if (!Sql_Affected_Rows())
