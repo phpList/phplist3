@@ -228,6 +228,7 @@ function my_shutdown () {
     $reload++;
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
       if ($sent + 10 < $GLOBALS["original_num_per_batch"]) {
+        sleep(10); // wait 10 seconds
         output($GLOBALS['I18N']->get('Less than batch size were sent, so reloading imminently'),1,'progress');
         $delaytime = 10000;
       } else {
