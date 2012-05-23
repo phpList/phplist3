@@ -38,7 +38,7 @@ if ($download) {
   ob_end_clean();
 #  header("Content-type: text/plain");
   header('Content-type: text/csv');
-  header('Content-disposition:  attachment; filename="phpList Message click statistics.csv"');
+  header('Content-disposition:  attachment; filename="phpList Campaign click statistics.csv"');
   ob_start();
 }  
 
@@ -46,8 +46,10 @@ if (!$id) {
 /*  $req = Sql_Query(sprintf('select distinct messageid, subject, sum(clicked) as totalclicks, count(distinct userid) as users, count(distinct linkid) as linkcount from %s as linktrack, %s as message
     where clicked and linktrack.messageid = message.id %s group by messageid order by entered desc limit 50',
     $GLOBALS['tables']['linktrack'],$GLOBALS['tables']['message'],$subselect));*/
-  $req = Sql_Query(sprintf('select distinct messageid, subject,sum(total) as total, count(forwardid) as linkcount,sum(clicked) as totalclicks,sum(htmlclicked) as htmlclicked,sum(textclicked) as textclicked from %s as linktrack_ml, %s as message
-    where clicked and linktrack_ml.messageid = message.id %s  group by messageid order by entered  desc limit 50',
+  $req = Sql_Query(sprintf('select distinct messageid, subject,
+    sum(total) as total, count(forwardid) as linkcount,sum(clicked) as totalclicks,
+    sum(htmlclicked) as htmlclicked,sum(textclicked) as textclicked from %s as linktrack_ml, %s as message
+    where clicked and linktrack_ml.messageid = message.id %s  group by messageid order by entered desc limit 50',
     $GLOBALS['tables']['linktrack_ml'],$GLOBALS['tables']['message'],$subselect));
   if (!Sql_Affected_Rows()) {
     print '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
@@ -142,7 +144,7 @@ while ($row = Sql_Fetch_Array($req)) {
   $ls->addElement($element);
   $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
   $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
+ # $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
   $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked']);
   $ls->addColumn($element,$GLOBALS['I18N']->get('html'),$row['htmlclicked']);
   $ls->addColumn($element,$GLOBALS['I18N']->get('text'),$row['textclicked']);
