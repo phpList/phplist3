@@ -122,7 +122,7 @@ if (!defined("IN_WEBBLER") && !defined("WEBBLER")) {
         $month = $now["mon"];
         $year = $now["year"];
       }
-      $html = '';
+      $html = '<div class="date">';
 
       $html .= " 
       <!-- $day / $month / $year -->".'
@@ -195,7 +195,7 @@ if (!defined("IN_WEBBLER") && !defined("WEBBLER")) {
         $html .= '
         </select>';
       }
-      return $html;
+      return $html.'</div>';
     }
 
     function display($parent,$data,$leaf,$branch) {
