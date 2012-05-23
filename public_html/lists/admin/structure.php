@@ -167,7 +167,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
     ),
     "user_blacklist_data" => array(
         "email" => array("varchar(150) not null unique","Email"),
-        "name" => array("varchar(100) not null","Name of Dataitem"),
+        "name" => array("varchar(25) not null","Name of Dataitem"),
         "data" => array("text",""),
         "index_1" => array("emailidx (email)",""),
         "index_2" => array("emailnameidx (email,name)",""),
