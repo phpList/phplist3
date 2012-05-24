@@ -108,10 +108,11 @@ font-size: 12px;
   font-weight: bold;
   padding:10px;
 }
-.examplecode{
-  border:3px solid;
-  margin:0px 20px 20px;
-  padding:10px;
+.examplecode {
+    border: 3px solid;
+    margin: 0 20px 20px;
+    padding: 10px;
+    overflow: auto;
 }
 
 table.about tr td {
