@@ -1754,6 +1754,29 @@ function secs2time($secs) {
   return $res;
 }
 
+function listPlaceHolders() {
+  $html = '<table border="1"><tr><td><strong>'.s('Attribute').'</strong></td><td><strong>'.s('Placeholder').'</strong></td></tr>';
+  $req = Sql_query('select name from '.$GLOBALS['tables']["attribute"].' order by listorder');
+  while ($row = Sql_Fetch_Row($req))
+    if (strlen($row[0]) < 20) {
+      $html .= sprintf ('<tr><td>%s</td><td>[%s]</td></tr>',$row[0],strtoupper(cleanAttributeName($row[0])));
+    }
+  $html .= '</table>';  
+  return $html;
+}
+
+## clean out chars that make preg choke
+## primarily used for parsing the placeholders in emails.
+function cleanAttributeName($name) {
+  $name = str_replace('(','',$name);
+  $name = str_replace(')','',$name);
+  $name = str_replace('/','',$name);
+  $name = str_replace('\\','',$name);
+  $name = str_replace('*','',$name);
+  $name = str_replace('.','',$name);
+  return $name;
+}
+
 function cleanCommaList($sList) {
   if (strpos($sList,',') === false) return $sList;
   $aList = explode(',',$sList);
