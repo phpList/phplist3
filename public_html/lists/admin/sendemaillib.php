@@ -70,14 +70,15 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
   if (!is_array($user_att_values)) $user_att_values = array();
 
-  ## the editor seems to replace spaces with &nbsp; so add those
   foreach ($user_att_values as $key => $val) {
-    if (strpos($key,' ')) {
-      $newkey = str_replace(' ','&nbsp;',$key);
+    $newkey = cleanAttributeName($key);
+    ## in the help, we only list attributes with "strlen < 20"
+    unset($user_att_values[$key]);
+    if (strlen($key) < 20) {
       $user_att_values[$newkey] = $val;
     }
   }
- 
+ # print '<pre>';var_dump($user_att_values);print '</pre>';exit;
   $query = sprintf('select * from %s where email = ?', $GLOBALS["tables"]["user"]);
   $rs = Sql_Query_Params($query, array($email));
   $userdata = Sql_Fetch_Assoc($rs);
@@ -211,7 +212,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   You can configure how the credits are added to your pages and emails in your
   config file.
 
-  Michiel Dethmers, phpList Ltd 2003 - 2011
+  Michiel Dethmers, phpList Ltd 2003 - 2012
 */
   if (!EMAILTEXTCREDITS) {
     $html["signature"] = $PoweredByImage;#'<div align="center" id="signature"><a href="http://www.phplist.com"><img src="powerphplist.png" width=88 height=31 title="Powered by PHPlist" alt="Powered by PHPlist" border="0" /></a></div>';
@@ -1173,16 +1174,24 @@ function clickTrackLinkId($messageid,$userid,$url,$link) {
 }
  
 function parsePlaceHolders($content,$array = array()) {
+  ## the editor turns all non-ascii chars into the html equivalent so do that as well
   foreach ($array as $key => $val) {
-    if (PHP5) {
-      $key = str_replace('/','\/',$key);
+    $array[strtoupper($key)] = $val;
+    $array[htmlentities(strtoupper($key),ENT_QUOTES,'UTF-8')] = $val;
+  }
+
+  foreach ($array as $key => $val) {
+    if (PHP5) {  ## the help only lists attributes with strlen($name) < 20
+    #  print '<br/>'.$key.' '.$val.'<hr/>'.htmlspecialchars($content).'<hr/>';
       if (stripos($content,'['.$key.']') !== false) {
         $content = str_ireplace('['.$key.']',$val,$content);
-      } elseif (preg_match('/\['.$key.'%%([^\]]+)\]/i',$content,$regs)) { ## @@todo, check for quoting */ etc
+      } 
+      if (preg_match('/\['.$key.'%%([^\]]+)\]/i',$content,$regs)) { ## @@todo, check for quoting */ etc
+    #    var_dump($regs);
         if (!empty($val)) {
           $content = str_ireplace($regs[0],$val,$content);
         } else {
-          $content = str_ireplace($regs[1],$regs[1],$content);
+          $content = str_ireplace($regs[0],$regs[1],$content);
         }
       }
     } else { 
