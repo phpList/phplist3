@@ -22,10 +22,10 @@
     <ul>
     <li>Tarek Djebali</li>
     </ul>
-    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></b>
+    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></h3>
     <ul>
       <li>Yan Brailowsky</li>
-      <li><!--a href="http://pascal.vanhecke.info/" target="_blank"-->Pascal Van Hecke<!--/a--></li>
+      <li>Pascal Van Hecke</li>
     </ul>
     <h3><?php echo $GLOBALS['I18N']->get('Translations') ?></h3>
     <ul>
@@ -40,7 +40,7 @@
       <li><a href="http://www.webbler.org" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
       <li>the <a href="http://phpmailer.sourceforge.net/" target="_blank">phpmailer</a> class </li>
-      <li>The html email class from, <a href="http://www.phpguru.org/" target="_blank">Richard Heyes</a></li>
+      <!--li>The html email class from, <a href="http://www.phpguru.org/" target="_blank">Richard Heyes</a></li-->
     </ul>
     </td>
     </tr>
