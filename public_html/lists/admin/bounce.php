@@ -13,7 +13,7 @@ if (isset($_GET['delete'])) {
 } else {
   $delete = 0;
 }
-$useremail = isset($_GET["useremail"]) ? $_GET["useremail"] : ''; ## @TODO sanitize
+$useremail = isset($_GET["useremail"]) && is_email($_GET["useremail"]) ? $_GET["useremail"] : ''; ## @TODO sanitize
 $deletebounce = isset($_GET["deletebounce"]); #BUGFIX #15286 - nickyoung
 $amount = isset($_GET["amount"]) ? sprintf('%d',$_GET["amount"]) : ''; #BUGFIX #15286 - CS2 
 $unconfirm = isset($_GET["unconfirm"]); #BUGFIX #15286 - CS2 
@@ -41,7 +41,7 @@ if (isset($start))
 if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$GLOBALS["require_login"])) {
   if ($useremail) {
     $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',
-      $tables["user"],$useremail));
+      $tables["user"],sql_escape($useremail)));
      $userid = $req[0];
     if (!$userid) {
       print "$useremail => ".$GLOBALS['I18N']->get('Not Found')."\n";
@@ -66,16 +66,16 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
   if ($userid && $maketext) {
     Sql_Query(sprintf('update %s set htmlemail = 0 where id = %d',
       $tables["user"],$userid));
-     print sprintf($GLOBALS['I18N']->get('Made subscriber %s to receive text'), $userid);
+     print sprintf($GLOBALS['I18N']->get('Made subscriber %d to receive text'), $userid);
   }
 
   if ($userid && $deleteuser) {
     deleteUser($userid);
-    print sprintf($GLOBALS['I18N']->get('Deleted subscriber %s').'\n', $userid);
+    print sprintf($GLOBALS['I18N']->get('Deleted subscriber %d')."\n", $userid);
   }
 
   if (ALLOW_DELETEBOUNCE && $deletebounce) {
-    print sprintf($GLOBALS['I18N']->get('Deleting bounce %s .. ').'\n', $id);
+    print sprintf($GLOBALS['I18N']->get('Deleting bounce %d .. ')."\n", $id);
     Sql_query("delete from {$tables["bounce"]} where id = $id");
     print $GLOBALS['I18N']->get('..Done, loading next bounce..')."<br /><hr/><br />\n";
     print PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'));
