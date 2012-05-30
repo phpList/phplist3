@@ -192,6 +192,8 @@ class phplist_I18N {
   public $basedir = '';
   private $hasGettext = false;
   private $hasDB = false;
+  private $lan = array();
+
 
   function phplist_I18N() {
     $this->basedir = dirname(__FILE__).'/lan/';
@@ -210,6 +212,41 @@ class phplist_I18N {
     if (Sql_Check_For_Table('i18n')) {
       $this->hasDB = true;
     }
+    if (isset($_GET['origpage']) && !empty($_GET['ajaxed'])) { ## used in ajaxed requests
+      $page = basename($_GET["origpage"]);
+    } elseif (isset($_GET["page"])) {
+      $page = basename($_GET["page"]);
+    } else {
+      $page = "home";
+    }
+    ## as we're including things, let's make sure it's clean
+    $page = preg_replace('/\W/','',$page);
+
+    $lan = array();
+    
+    if (is_file($this->basedir.$this->language.'/'.$page.'.php')) {
+      @include $this->basedir.$this->language.'/'.$page.'.php';
+    } elseif (!isset($GLOBALS['developer_email'])) {
+      @include $this->basedir.$this->defaultlanguage.'/'.$page.'.php';
+    }
+    $this->lan = $lan;
+    $lan = array();
+
+    if (is_file($this->basedir.$this->language.'/common.php')) {
+      @include $this->basedir.$this->language.'/common.php';
+    } elseif (!isset($GLOBALS['developer_email'])) {
+      @include $this->basedir.$this->defaultlanguage.'/common.php';
+    }
+    $this->lan += $lan;
+    $lan = array();
+
+    if (is_file($this->basedir.$this->language.'/frontend.php')) {
+      @include $this->basedir.$this->language.'/frontend.php';
+    } elseif (!isset($GLOBALS['developer_email'])) {
+      @include $this->basedir.$this->defaultlanguage.'/frontend.php';
+    }
+    $this->lan += $lan;
+
   }
 
   function gettext($text) {
@@ -286,7 +323,7 @@ class phplist_I18N {
   }
 
   function formatText($text) {
-    # we've decided to spell phplist with on L
+    # we've decided to spell phplist with uc L
     $text = str_ireplace('PHPlist','phpList',$text);
 
     if (isset($GLOBALS["developer_email"])) {
@@ -393,7 +430,21 @@ $lan = array(
         return $this->formatText($db_trans);
       }
     }
+    $lan = $this->lan;
+
+    if (trim($text) == "") return "";
+    if (strip_tags($text) == "") return $text;
+    if (isset($lan[$text])) {
+      return $this->formatText($lan[$text]);
+    }
+    if (isset($lan[strtolower($text)])) {
+      return $this->formatText($lan[strtolower($text)]);
+    }
+    if (isset($lan[strtoupper($text)])) {
+      return $this->formatText($lan[strtoupper($text)]);
+    }
     
+/*
     if (is_file($basedir.'/'.$this->language.'/'.$page.'.php')) {
       @include $basedir.'/'.$this->language.'/'.$page.'.php';
     } elseif (!isset($GLOBALS['developer_email'])) {
@@ -442,6 +493,7 @@ $lan = array(
     if (isset($lan) && is_array($lan) && isset($lan[strtoupper($text)])) {
       return $this->formatText($lan[strtoupper($text)]);
     }
+*/
     return '';
   }
   
@@ -459,6 +511,7 @@ $lan = array(
     } else {
       $page = "home";
     }
+    $page = preg_replace('/\W/','',$page);
       
     if (!empty($_GET['pi'])) {
       $plugin_languagedir = $this->getPluginBasedir();
