@@ -990,7 +990,7 @@ function fetchUrl($url,$userdata = array()) {
       if (!PEAR::isError($req->sendRequest(true))) {
         $content = $req->getResponseBody();
 
-        if ($remote_charset != 'UTF-8') {
+        if ($remote_charset != 'UTF-8' && function_exists('iconv')) {
           $content = iconv($remote_charset,'UTF-8//TRANSLIT',$content);
         }
         

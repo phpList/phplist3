@@ -620,10 +620,12 @@ if (!$done) {
 // custom code - start
   $utf8_subject = $messagedata['subject'];
   $utf8_from = $messagedata['fromfield'];
+/*
   if (0 && strcasecmp($GLOBALS['strCharSet'], 'utf-8') <> 0) {
      $utf8_subject = iconv($GLOBALS['strCharSet'],'UTF-8',$utf8_subject);
      $utf8_from = iconv($GLOBALS['strCharSet'],'UTF-8',$utf8_from);
   }
+*/
 
   $maincontent .= '
   <div class="field"><label for="subject">'.$GLOBALS['I18N']->get("Subject").Help("subject").'</label>'.
