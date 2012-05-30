@@ -38,10 +38,10 @@ function resendConfirm($id) {
   }
 
   if ($userdata["subscribepage"]) {
-    $subscribemessage = ereg_replace('\[LISTS\]', $lists, getUserConfig("subscribemessage:".$userdata["subscribepage"],$id));
+    $subscribemessage = str_replace('[LISTS]', $lists, getUserConfig("subscribemessage:".$userdata["subscribepage"],$id));
     $subject = getConfig("subscribesubject:".$userdata["subscribepage"]);
   } else {
-    $subscribemessage = ereg_replace('\[LISTS\]', $lists, getUserConfig("subscribemessage",$id));
+    $subscribemessage = str_replace('[LISTS]', $lists, getUserConfig("subscribemessage",$id));
     $subject = getConfig("subscribesubject");
   }
 

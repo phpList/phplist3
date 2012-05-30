@@ -1197,125 +1197,6 @@ function formatBytes ($value) {
     return sprintf('%dBytes',$value);
 }
 
-# I would prefer not to use this version, as it is very heavy on memory, loading the content
-# of an entire table in memory, which tends to fail, but the other one (below) is not
-# always available, hmm
-function upgradeTableOld($table,$tablestructure) {
-  $columns = array();
-  $records = array();
-
-  $cols = Sql_Query("show columns from $table");
-  while ($row = Sql_Fetch_Row($cols))
-    array_push($columns,$row[0]);
-
-  $recs = Sql_Query("select * from $table");
-  while ($data = Sql_Fetch_Array($recs)) {
-    $rec = array();
-    reset($columns);
-    foreach ($columns as $column)
-      $rec[$column] = $data[$column];
-
-    # this is likely to require some memory, do we need to intercept that?
-    # hmm
-    array_push($records,$rec);
-  }
-
-  Sql_Drop_Table($table);
-  Sql_Create_Table($table,$tablestructure);
-
-  foreach ($records as $record) {
-#    while (list($key,$val) = each ($record))
-#      print "$key => $val<br/>\n";
-    $collist = "";
-    $vallist = "";
-
-    reset($tablestructure);
-    while (list($column, $value) = each ($tablestructure)) {
-      if ($column != "primary key" && $column != "unique") {
-        $collist .= "$column,";
-        $vallist .= sprintf('"%s",',addslashes($record[$column]));
-      }
-    }
-    $collist = substr($collist,0,-1);
-    $vallist = substr($vallist,0,-1);
-    $query = "replace into $table ($collist) values($vallist)";
-    Sql_Query($query);
-  }
-}
-
-# This one is a bit better, as it writes data to file instead of memory, but
-# its not brilliant
-function upgradeTable($table,$tablestructure) {
-  global $tmpdir;
-  $columns = array();
-  $records = array();
-
-  $fname = tempnam($tmpdir,"");
-  $fp = fopen($fname,"w");
-  if (Sql_Table_Exists($table)) {
-    $cols = Sql_Query("show columns from $table");
-    while ($row = Sql_Fetch_Row($cols))
-      array_push($columns,$row[0]);
-
-    #$fp = tmpfile();
-#    print "Writing tempfile $fname<br/>";
-    $recs = Sql_Query("select * from $table");
-    while ($data = Sql_Fetch_Array($recs)) {
-      reset($columns);
-      foreach ($columns as $column) {
-        fwrite($fp,"$column:".base64_encode($data[$column])."\n");
-      }
-      fwrite($fp,"--\n");
-    }
-  }
-  fclose($fp);
-
-  Sql_Drop_Table($table);
-  Sql_Create_Table($table,$tablestructure);
-
-  $fp=fopen($fname,"r");
-  if (!$fp) {
-    unlink($fname);
-    return 0;
-  }
-#  print "Reading tempfile<br/>";
-  while (!feof($fp)) {
-    # read one record
-    $buffer = "";
-    $record = array();
-    $buffer = fgets($fp, 4096);
-    while (!feof ($fp) && !ereg("^--",$buffer)) {
-      list($column,$value) = explode(":",$buffer);
-      if ($column && $value)
-        $record[$column] = base64_decode($value);
-      $buffer = fgets($fp, 4096);
-    }
-
-    $collist = "";
-    $vallist = "";
-    if (sizeof($record)) {
-      reset($tablestructure);
-      while (list($column, $value) = each ($tablestructure)) {
-        if ($column != "primary key" && $column != "unique") {
-          $collist .= "$column,";
-          $vallist .= sprintf('"%s",',addslashes($record[$column]));
-        }
-      }
-      $collist = substr($collist,0,-1);
-      $vallist = substr($vallist,0,-1);
-      $query = "replace into $table ($collist) values($vallist)";
-#      print $query . "<br/>";
-      if (!Sql_Query($query)) {
-        unlink($fname);
-        return 0;
-      }
-    }
-  }
-  fclose($fp);
-  unlink($fname);
-  return 1;
-}
-
 function Help($topic, $text = '?') {
   return sprintf('<a href="help/?topic=%s" class="helpdialog" target="_blank">%s</a>', $topic, $text);
 }
@@ -1487,7 +1368,7 @@ function findMime($filename) {
   fclose($fp);
   $lines = explode("\n",$contents);
   foreach ($lines as $line) {
-    if (!ereg("#",$line) && !preg_match("/^\s*$/",$line)) {
+    if (!preg_match("/^\s*#/",$line) && !preg_match("/^\s*$/",$line)) {
       $line = preg_replace("/\t/"," ",$line);
       $items = explode(" ",$line);
       $mime = array_shift($items);

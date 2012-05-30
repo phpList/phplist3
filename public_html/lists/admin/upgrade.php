@@ -60,7 +60,6 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
   print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
   # upgrade depending on old version
-#  $dbversion = ereg_replace("-dev","",$dbversion);
 
   output( '<p class="information">'.$GLOBALS['I18N']->get('Please wait, upgrading your database, do not interrupt').'</p>');
 

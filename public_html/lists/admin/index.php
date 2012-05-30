@@ -18,7 +18,7 @@ require_once dirname(__FILE__) .'/commonlib/lib/magic_quotes.php';
 if (php_sapi_name() == "cli") {
   for ($i=0; $i<$_SERVER['argc']; $i++) {
     $my_args = array();
-    if (ereg("(.*)=(.*)",$_SERVER['argv'][$i], $my_args)) {
+    if (preg_match("/(.*)=(.*)/",$_SERVER['argv'][$i], $my_args)) {
       $_GET[$my_args[1]] = $my_args[2];
       $_REQUEST[$my_args[1]] = $my_args[2];
     }

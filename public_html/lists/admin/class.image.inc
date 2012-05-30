@@ -93,14 +93,7 @@ class imageUpload {
   }
 
   function detect_php_upload_bug($tmp) {
-    $infile=fopen($tmp,"r"); // Open the file
-    $header=fgets($infile,255); //get the 1st line (netscape sometimes doesn't add a Content-type line)
-    if (eregi("^Content-type: (.*)",$header,$regs) || strlen($header)>2) {
-      $content_type = $regs[1] ? $regs[1] : "application/octet-stream";
-      fclose($infile);
-      return trim($content_type);
-    }
-    fclose($infile);
+    ## extremely old workaround of PHP Bug that was fixed years ago.
     return 0;
   }
 

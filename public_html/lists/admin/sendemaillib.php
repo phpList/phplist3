@@ -53,16 +53,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   ## at this stage we don't know whether the content is HTML or text, it's just content
   $content = $cached[$messageid]['content'];
 
-  # erase any placeholders that were not found
-#  $msg = ereg_replace("\[[A-Z ]+\]","",$msg);
-
-#0011857: forward to friend, retain attributes
   if (VERBOSE && $getspeedstats) {
     output('Load user start');
   }
   $userdata = array();
   $user_att_values = array();
 
+  #0011857: forward to friend, retain attributes
   if ($hash == 'forwarded' && defined('KEEPFORWARDERATTRIBUTES') && KEEPFORWARDERATTRIBUTES) {
     $user_att_values = getUserAttributeValues($forwardedby['email']);
   } elseif ($hash != 'forwarded') {
@@ -1255,7 +1252,6 @@ function parseText($text) {
 #  $paragraph = '<p class="x">';
   $br = '<br />';
   $text = preg_replace("/\r/","",$text);
-#  $text = ereg_replace("\n\n","\n".$paragraph,$text);
   $text = preg_replace("/\n/","$br\n",$text);
 
   # reverse our previous placeholders

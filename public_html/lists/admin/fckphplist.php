@@ -339,9 +339,8 @@ if (file_exists($UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'])) {
   $smileyextensions = array('gif');
   $smileys = '';
   if ($dir = opendir($smileypath)) {
-    while (false !== ($file = readdir($dir)))
-    {
-      if (ereg('\.',$file)) {
+    while (false !== ($file = readdir($dir))) {
+      if (strpos($file,'.') !== false) {
         list($fname,$ext) = explode(".",$file);
         if (in_array($ext,$smileyextensions)) {
           $smileys .= '"'.$file.'",';
@@ -533,9 +532,8 @@ if( window.console ) window.console.log( 'Config is loaded!' ) ;  // @Packager.C
   $smileys = '';
   if (is_dir($smileypath)) {
     if ($dir = opendir($smileypath)) {
-      while (false !== ($file = readdir($dir)))
-      {
-        if (ereg('\.',$file)) {
+      while (false !== ($file = readdir($dir))) {
+        if (strpos($file,'.') !== false) {
           list($fname,$ext) = explode(".",$file);
           if (in_array($ext,$smileyextensions)) {
             $smileys .= '"'.$file.'",';

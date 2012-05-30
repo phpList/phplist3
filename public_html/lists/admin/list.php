@@ -193,17 +193,6 @@ while ($row = Sql_fetch_array($result)) {
 
   $desc = stripslashes($row['description']);
 
-//Obsolete by rssmanager plugin 
-//  if ($row['rssfeed']) {
-//    $feed = $row['rssfeed'];
-//    # reformat string, so it wraps if it's very long
-//    $feed = ereg_replace("/","/ ",$feed);
-//    $feed = ereg_replace("&","& ",$feed);
-//    $desc = sprintf('%s: <a href="%s" target="_blank">%s</a><br /> ', $GLOBALS['I18N']->get('rss source'), $row['rssfeed'], $feed) .
-//    PageLink2("viewrss&amp;id=".$row["id"],$GLOBALS['I18N']->get('(View Items)')) . '<br />'.
-//    $desc;
-//  }
-
   ## allow plugins to add columns
   foreach ($GLOBALS['plugins'] as $plugin) {
     $desc = $plugin->displayLists($row) . $desc;

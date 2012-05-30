@@ -734,16 +734,6 @@ if (!function_exists("getconfig")) {
         }
 			}
 		}
-		/*
-		    $sep = ereg('\?',$value)?'&':'?';
-		    switch ($item) {
-		      case "subscribeurl":$value .= $sep.'p=subscribe';break;
-		      case "unsubscribeurl":$value .= $sep.'p=unsubscribe';break;
-		      case "preferencesurl":$value .= $sep.'p=preferences';break;
-		      case "confirmationurl":$value .= $sep.'p=confirm';break;
-		      case "forwardurl": $value .= $sep.'p=forward';break;
-		    }
-		*/
 		$value = preg_replace('/\[DOMAIN\]/i', $domain, $value);
 		$value = preg_replace('/\[WEBSITE\]/i', $website, $value);
 		$value = preg_replace('/<\?=VERSION\?>/i', VERSION, $value);
@@ -832,7 +822,7 @@ function getUserConfig($item, $userid = 0) {
 		}
 	}
 	# if this is a subpage item, and no value was found get the global one
-	if (!$value && ereg(":", $item)) {
+	if (!$value && strpos( $item,":") !== false) {
 		list ($a, $b) = split(":", $item);
 		$value = getUserConfig($a, $userid);
 	}

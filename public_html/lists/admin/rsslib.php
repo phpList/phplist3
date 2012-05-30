@@ -8,7 +8,7 @@ function parseRSSTemplate($template,$data) {
       $template = preg_replace('#\['.preg_quote($key).'\]#i',$val,$template);
      }
    }
-  $template = eregi_replace("\[[A-Z\. ]+\]","",$template);
+  $template = preg_replace("/\[[A-Z\. ]+\]/i","",$template);
   return $template;
 }
 

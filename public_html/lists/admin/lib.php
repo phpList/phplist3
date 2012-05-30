@@ -215,9 +215,6 @@ function loadMessageData($msgid) {
     $messagedata["fromname"] = $messagedata["fromemail"];
   }
 
-  ## this has weird effects when used with only one word, so take it out for now
-#    $cached[$messageid]["fromname"] = eregi_replace("@","",$cached[$messageid]["fromname"]);
-
   $GLOBALS['MD'][$msgid] = $messagedata;
 #  var_dump($messagedata);
   return $messagedata;
@@ -318,7 +315,7 @@ function sendMailOriginal ($to,$subject,$message,$header = "",$parameters = "") 
     if ($header)
       $header .= "\n";
     $header .= "Errors-To: ".$GLOBALS["message_envelope"];
-    if (!$parameters || !ereg("-f".$GLOBALS["message_envelope"],$parameters)) {
+    if (!$parameters || strpos($parameters),"-f".$GLOBALS["message_envelope"] === false) {
       $parameters = '-f'.$GLOBALS["message_envelope"];
     }
   }

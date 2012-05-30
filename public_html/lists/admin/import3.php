@@ -194,7 +194,7 @@ function getBestVersion($emails) {
   foreach ($emails as $email) {
     # now check how good the "personal" is
     # if it is only the email repeated we do not want it
-    if (!ereg("@",$email["personal"])) {
+    if (strpos($email["personal"],'@') === false) {
       return $email;
      }
     # we possibly want to search for better ones, but leave it here
@@ -402,7 +402,7 @@ if (!$_POST["server"] || !$_POST["user"] || !$_POST["password"] || !is_array($_P
 
       # check for full email
       if ($_POST["onlyfull"] != "yes" ||
-        ($_POST["onlyfull"] == "yes" && !ereg("@",$importuser["personal"])) &&
+        ($_POST["onlyfull"] == "yes" && strpos($importuser["personal"],"@") === false) &&
         strlen($importuser["email"]) > 4
         ) {
 
@@ -460,7 +460,7 @@ if (!$_POST["server"] || !$_POST["user"] || !$_POST["password"] || !is_array($_P
         if ($addition)
           $additional_emails++;
         if (!TEST && $_POST["notify"] == "yes" && $addition) {
-          $subscribemessage = ereg_replace('\[LISTS\]', $listoflists, getUserConfig("subscribemessage",$userid));
+          $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage",$userid));
           sendMail($email, getConfig("subscribesubject"), $subscribemessage,system_messageheaders(),$envelope);
         }
       }; // end if

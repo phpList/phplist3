@@ -51,7 +51,6 @@ function checkI18NDir($rootdir) {
         print "Page title: $page, $page_title<br/>";
       }
   */  foreach ($arr as $tag) {
-    #   $tag = ereg_replace('/','//',$tag);
         $translation = $GLOBALS['I18N']->get(stripslashes($tag));
         if (!isset($_GET['changedonly']) || ($_GET['changedonly'] === 'yes' && preg_match('/ff1717/i',$translation))) {
           $fileoutput .= "'".$tag.'\' =&gt; \''.$translation.'\',<br/>';

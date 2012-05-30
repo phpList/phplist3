@@ -17,8 +17,6 @@ if(!empty($_POST['import'])) {
     Fatal_Error($GLOBALS['I18N']->get("File is either to large or does not exist."));
   if(empty($_FILES['import_file']))
     Fatal_Error($GLOBALS['I18N']->get("No file was specified."));
-#  if( !ereg("^[0-9A-Za-z_\.-/\s]+$", $import_file_name) )
-#    Fatal_Error("Use of wrong characters: $import_file_name");
 
   if ($_FILES['import_file']['tmp_name'] && $_FILES['import_file']['tmp_name'] != "none") {
     $fp = fopen ($_FILES['import_file']['tmp_name'], "r");
