@@ -19,6 +19,8 @@ if (empty($_REQUEST['id'])) {
     return;
   }
 }
+
+print Info(s(' You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
 print formStart(' class="configForm" ');
 # configure options
 reset($default_config);
