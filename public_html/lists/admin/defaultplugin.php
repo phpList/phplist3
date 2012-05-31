@@ -22,7 +22,7 @@ class phplistPlugin {
   # * Don't add to manage Global plugins if disabled
   public $coderoot= "./PLUGIN_ROOTDIR/defaultplugin/"; # coderoot relative to the phplist admin directory
   # optional configuration variables
-  public $configvars= array ();
+  public $configvars = array ();
   # config var    array( type, name [array values]));
   public $DBstruct= array ();
   # These files can be called from the commandline
@@ -32,6 +32,8 @@ class phplistPlugin {
   public $configArray = array();
 
   public $importTabTitle = ''; ## title of the tab for the import page
+  
+  public $needI18N = 0;
   
   /* array of pages in this plugin to add to the menu
    * 
@@ -76,6 +78,11 @@ class phplistPlugin {
   function displayAbout() {
     # Return html snippet to tell about coopyrights of used third party code.
     # author is already displayed
+    return null;
+  }
+
+  function i18nLanguageDir() {
+    # Return i18n Language Dir so that main page content can be extended
     return null;
   }
 

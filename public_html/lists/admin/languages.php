@@ -222,6 +222,17 @@ class phplist_I18N {
     ## as we're including things, let's make sure it's clean
     $page = preg_replace('/\W/','',$page);
 
+    if (!empty($_GET['pi'])) {
+      $plugin_languagedir = $this->getPluginBasedir();
+      if (is_dir($plugin_languagedir)) {
+         $this->basedir = $plugin_languagedir;
+         foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
+         if ($pluginName == $_GET['pi'] && $plugin->enabled && $plugin->needI18N && $plugin->i18nLanguageDir() ) {
+           $this->basedir = $plugin->i18nLanguageDir();
+        }
+      }
+    }
+
     $lan = array();
     
     if (is_file($this->basedir.$this->language.'/'.$page.'.php')) {
@@ -444,56 +455,6 @@ $lan = array(
       return $this->formatText($lan[strtoupper($text)]);
     }
     
-/*
-    if (is_file($basedir.'/'.$this->language.'/'.$page.'.php')) {
-      @include $basedir.'/'.$this->language.'/'.$page.'.php';
-    } elseif (!isset($GLOBALS['developer_email'])) {
-      @include $basedir.'/'.$this->defaultlanguage.'/'.$page.'.php';
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[$text])) {
-      return $this->formatText($lan[$text]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtolower($text)])) {
-      return $this->formatText($lan[strtolower($text)]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtoupper($text)])) {
-      return $this->formatText($lan[strtoupper($text)]);
-    }
-    if (is_file($basedir.'/'.$this->language.'.php')) {
-      @include $basedir.'/'.$this->language.'.php';
-    } elseif (!isset($GLOBALS['developer_email'])) {
-      @include $basedir.'/'.$this->defaultlanguage.'.php';
-    }
-    if (is_file($basedir.'/'.$this->language.'/common.php')) {
-      @include $basedir.'/'.$this->language.'/common.php';
-    } elseif (!isset($GLOBALS['developer_email'])) {
-      @include $basedir.'/'.$this->defaultlanguage.'/common.php';
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[$text])) {
-      return $this->formatText($lan[$text]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtolower($text)])) {
-      return $this->formatText($lan[strtolower($text)]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtoupper($text)])) {
-      return $this->formatText($lan[strtoupper($text)]);
-    }
-
-    if (is_file($basedir.'/'.$this->language.'/frontend.php')) {
-      @include $basedir.'/'.$this->language.'/frontend.php';
-    } elseif (!isset($GLOBALS['developer_email'])) {
-      @include $basedir.'/'.$this->defaultlanguage.'/frontend.php';
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[$text])) {
-      return $this->formatText($lan[$text]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtolower($text)])) {
-      return $this->formatText($lan[strtolower($text)]);
-    }
-    if (isset($lan) && is_array($lan) && isset($lan[strtoupper($text)])) {
-      return $this->formatText($lan[strtoupper($text)]);
-    }
-*/
     return '';
   }
   
