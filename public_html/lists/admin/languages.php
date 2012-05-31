@@ -226,10 +226,12 @@ class phplist_I18N {
       $plugin_languagedir = $this->getPluginBasedir();
       if (is_dir($plugin_languagedir)) {
          $this->basedir = $plugin_languagedir;
-         foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
-         if ($pluginName == $_GET['pi'] && $plugin->enabled && $plugin->needI18N && $plugin->i18nLanguageDir() ) {
-           $this->basedir = $plugin->i18nLanguageDir();
-        }
+         if (isset($GLOBALS['plugins'][$_GET['pi']])) {
+           $plugin = $GLOBALS['plugins'][$_GET['pi']];
+           if ($plugin->enabled && $plugin->needI18N && $plugin->i18nLanguageDir() ) {
+             $this->basedir = $plugin->i18nLanguageDir();
+           }
+         }
       }
     }
 
