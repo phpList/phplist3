@@ -209,13 +209,6 @@ function sqllog($msg,$logfile = "") {
   @fclose($fp);
 }
 
-function db_db_Query($query,$database,$db_connection) {
-  $res = mysql_db_query($database,$query,$db_connection);
-  if (db_has_Error($db_connection))
-    Sql_Error($db_connection);
-  return $res;
-}
-
 function Sql_Verbose_Query($query,$ignore = 0) {
   if (preg_match("/dev/",VERSION)) {
     print "<b>$query</b><br>\n";
