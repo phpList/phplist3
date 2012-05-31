@@ -823,7 +823,7 @@ function getUserConfig($item, $userid = 0) {
 	}
 	# if this is a subpage item, and no value was found get the global one
 	if (!$value && strpos( $item,":") !== false) {
-		list ($a, $b) = split(":", $item);
+		list ($a, $b) = explode(":", $item);
 		$value = getUserConfig($a, $userid);
 	}
 	if ($userid) {

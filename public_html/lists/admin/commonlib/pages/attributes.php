@@ -126,7 +126,7 @@ if (isset($_POST["action"])) {
               $valuereq = Sql_Query("select userid,value from {$tables["user_attribute"]} where attributeid = $id");
               # take the first value!
               while ($row = Sql_Fetch_Row($valuereq)) {
-              	$values = split(",",$row[1]);
+              	$values = explode(",",$row[1]);
                 Sql_Query("update {$tables['user_attribute']} set value = \"$values[0]\" where attributeid = $id and userid = \"$row[0]\"");
               }
             }

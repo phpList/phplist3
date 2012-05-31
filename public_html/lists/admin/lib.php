@@ -315,7 +315,7 @@ function sendMailOriginal ($to,$subject,$message,$header = "",$parameters = "") 
     if ($header)
       $header .= "\n";
     $header .= "Errors-To: ".$GLOBALS["message_envelope"];
-    if (!$parameters || strpos($parameters),"-f".$GLOBALS["message_envelope"] === false) {
+    if (!$parameters || strpos($parameters,"-f".$GLOBALS["message_envelope"]) === false) {
       $parameters = '-f'.$GLOBALS["message_envelope"];
     }
   }

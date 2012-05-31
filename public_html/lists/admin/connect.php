@@ -1411,7 +1411,7 @@ function parseDelimitedData($value) {
   $data = array();
   $rawdata = explode('ITEMSEP',$value);
   foreach ($rawdata as $item) {
-    list($key,$val) = split('KEYVALSEP',$item);
+    list($key,$val) = explode('KEYVALSEP',$item);
     $data[$key] = ltrim($val);
   }
   return $data;
