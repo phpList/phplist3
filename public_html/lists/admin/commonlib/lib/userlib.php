@@ -1135,7 +1135,7 @@ function saveUserData($username,$fields) {
  #   dbg($fielddetails);
     $key = $fname;
     $val = $_POST[$fname];
-    if (strpos($key,"required") === false) && $key != "unrequire" &&
+    if (strpos($key,"required") === false && $key != "unrequire" &&
       $fields[$key]["type"] != "separator" &&
       $fields[$key]["type"] != "emailcheck" &&
       $fields[$key]["type"] != "passwordcheck"

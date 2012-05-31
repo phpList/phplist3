@@ -375,20 +375,9 @@ if (!$ajax && $page != "login") {
   if (TEST) {
     print Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
   }
-
-  if (ini_get("register_globals") == "on" && WARN_ABOUT_PHP_SETTINGS) {
-    Error($GLOBALS['I18N']->get('It is safer to set Register Globals in your php.ini to be <b>off</b> instead of ').ini_get("register_globals") );
+  if (version_compare(PHP_VERSION, '5.3.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
+    Error($GLOBALS['I18N']->get('phpList requires PHP version 5.3.0 or higher'));
   }
-  if (ini_get("safe_mode") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('In safe mode, not everything will work as expected'));
-
-    /* this needs checking 
-  if (!ini_get("magic_quotes_gpc") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('Things will work better when PHP magic_quotes_gpc = on'));
-    
-  if (ini_get("magic_quotes_runtime") && WARN_ABOUT_PHP_SETTINGS)
-    Warn($GLOBALS['I18N']->get('Things will work better when PHP magic_quotes_runtime = off'));
-    */
   if (defined("ENABLE_RSS") && ENABLE_RSS && !function_exists("xml_parse") && WARN_ABOUT_PHP_SETTINGS)
     Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
 

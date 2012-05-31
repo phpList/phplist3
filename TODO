@@ -1,10 +1,20 @@
 
-This is an old file. More up to date information is at
-http://bugtrack.tincan.co.uk
+phpList, wishlist and future plans, not in order of priority
 
-PHPlist, wishlist and future plans, not in order of priority
-(* -> done, or at least started)
+1. update ckeditor - https://mantis.phplist.com/view.php?id=15414
+2. change admin permission system to be similar to phosted, but keep listownership
+3. make reconcile page have plugin capacity and move loads of stuff to plugins
 
+4. finish RSS manager plugin
+5. finish user selection plugin
+
+6. translate system messages: https://mantis.phplist.com/view.php?id=16594
+7. remove deprecated code: https://mantis.phplist.com/view.php?id=15554
+
+8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
+9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
+
+other stuff:
 - Optimize database structure to really deal with large
   amounts of emails. It works now, but not *that* fast
 - List Archive entry
@@ -12,36 +22,14 @@ PHPlist, wishlist and future plans, not in order of priority
 - Allowing running processes to be viewed and killed
 - allow choice for multiple send processes
 - "preview" of messages to send, so you can check whether the layout is ok
-- editing of messages that have been sent
-* checkbox group needs updating to make it selectable for sending
-- flexible translation interface
 - make system multilingual and allow user to choose language
 - placeholder parsing in subscribe, confirm and unsubscribe messages
 - system messages need to be identifiable for bounces
 - direct delivery of subscription message to make sure it can arrive, and
   give error when it can't
 - move configurable stuff outside the webroot, to make upgrading easier
-- send to users of a list, who are *not* on another list
-- scheduled sending
-- allow html in footer
-* be able to run in safe_mode
-* start working towards register_globals = off
-- add input box to sign up multiple users in one go with import
 - seperate message for signing up people from import
 - statistics retrieval (#lists #users #messages)
 - integration with other OSS projects
 - bit of cleaning up of files
-- whatever else comes up, probably loads more....
 
-bugs, aargh the list is growing too quickly
-- stripslashes type problems in emails and subscribe page
-- saving user when not using attributes fails
-- sending to users who existed before attributes were added fails
-- import of simple list of emails seems not to work
-- checkbox group updates don't send all values
-- checkbox group uncheck everything at preferences is not remembered
-- importing via import2 copies info field into every other one imported??
-- people are still having problems with HTML emails
-- javascript errors in IE??
-- translations not always implemented, particularly the system and error messages
-- action of forms are not identified, which goes wrong on non apache servers

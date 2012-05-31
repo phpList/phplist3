@@ -1209,10 +1209,6 @@ function dbg($variable, $description = 'Value', $nestingLevel = 0) {
 //  return;
   
   global $config;
- # if (!$config["debug"])
-#   $er = error_reporting(0);
-  if (ini_get("safe_mode"))
-    return;
 
   if (isset($config["debug"]) && !$config["debug"]) {
     return;

@@ -135,8 +135,6 @@ if (ini_get("safe_mode")) {
   # keep an eye on timeouts
   $safemode = 1;
   $num_per_batch = min(100,$num_per_batch);
-#  Fatal_Error("Process queue will not work in safe mode");
-#  return;
   print $GLOBALS['I18N']->get('Running in safe mode').'<br/>';
 }
 

@@ -20,18 +20,9 @@ if (defined("IN_WEBBLER") && is_object($GLOBALS["config"]["plugins"]["phplist"])
   $GLOBALS["tables"] = $GLOBALS["config"]["plugins"]["phplist"]->tables;
 }
 
-$usephpmailer = 0;
-if (PHPMAILER) {
-  if (is_file(PHPMAILER_PATH)) {
-    include_once PHPMAILER_PATH;
-  } else {
-    ## fall back to old version, should be phased out
-    include_once dirname(__FILE__).'/class.phplistmailer.php';
-  }
-  $usephpmailer = 1;  
-} else {
-  require_once dirname(__FILE__)."/class.html.mime.mail.inc";
-}
+include_once dirname(__FILE__).'/class.phplistmailer.php';
+$usephpmailer = 1;  
+
 
 $GLOBALS['bounceruleactions'] = array(
   'deleteuser' => $GLOBALS['I18N']->get('delete user'),
@@ -296,81 +287,7 @@ function sendMail ($to,$subject,$message,$header = "",$parameters = "",$skipblac
     addUserHistory($to,"Marked Blacklisted","Found user in blacklist while trying to send an email, marked black listed");
     return 0;
   }
-  if ($GLOBALS['usephpmailer']) {
-    return sendMailPhpMailer($to,$subject,$message);
-  } else {
-    return sendMailOriginal($to,$subject,$message,$header,$parameters);
-  }
-  return 0;
-}
-
-
-function sendMailOriginal ($to,$subject,$message,$header = "",$parameters = "") {
-  # global function to capture sending emails, to avoid trouble with
-  # older (and newer!) php versions
-  $v = phpversion();
-  $v = preg_replace("/\-.*$/","",$v);
-  if ($GLOBALS["message_envelope"]) {
-    $header = rtrim($header);
-    if ($header)
-      $header .= "\n";
-    $header .= "Errors-To: ".$GLOBALS["message_envelope"];
-    if (!$parameters || strpos($parameters,"-f".$GLOBALS["message_envelope"]) === false) {
-      $parameters = '-f'.$GLOBALS["message_envelope"];
-    }
-  }
-
-  // Use the system email encoding method
-  if (TEXTEMAIL_ENCODING) {
-    // only add if the required header is not already present
-    if (!strpos(strtolower($header), 'content-transfer-encoding')) {
-      $header = rtrim($header);
-      if ($header)
-        $header .= "\n";
-      $header .= "Content-Transfer-Encoding: " . TEXTEMAIL_ENCODING;
-    }
-  }
-
-  if (WORKAROUND_OUTLOOK_BUG) {
-    $header = rtrim($header);
-    if ($header)
-      $header .= "\n";
-     $header .= "X-Outlookbug-fixed: Yes";
-    $message = preg_replace("/\r?\n/", "\r\n", $message);
-  }
-
-  # version 4.2.3 (and presumably up) does not allow the fifth parameter in safe mode
-  # make sure not to send out loads of test emails to ppl when developing
-  if (!DEVVERSION) {
-    if ($v > "4.0.5" && !ini_get("safe_mode")) {
-      if (mail($to,$subject,$message,$header,$parameters))
-        return 1;
-      else
-        return mail($to,$subject,$message,$header);
-    }
-    else
-      return mail($to,$subject,$message,$header);
-  } else {
-    # send mails to one place when running a test version
-    $message = "To: $to\n".$message;
-    if ($GLOBALS["developer_email"]) {
-      # fake occasional failure
-      if (mt_rand(0,50) == 1) {
-        return 0;
-      } else {
-        if(@mail($GLOBALS["developer_email"],$subject,$message,$header,$parameters)) {
-          return 1;
-        } else {
-          # Changed by Bas: Always ok, since the mac/xampp return false while sending and no error in /var/log/mail.log
-          # We are in developermode anyway, and errors are faked by code just above this.
-          mail($GLOBALS["developer_email"],$subject,$message,$header);
-          return 1;
-        }
-      }
-    } else {
-      print "Error: Running DEV version, but developer_email not set";
-    }
-  }
+  return sendMailPhpMailer($to,$subject,$message);
 }
 
 function sendMailPhpMailer ($to,$subject,$message) {
