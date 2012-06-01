@@ -25,7 +25,7 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
         $insertid = Sql_Insert_Id($tables['adminattribute'], 'id');
 
         # text boxes and hidden fields do not have their own table
-        if ($_POST["type"][$id] != "textline" && $_POST["type"]["id"] != "hidden") {
+        if ($_POST["type"][$id] != "textline" && $_POST["type"][$id] != "hidden") {
           $query = "create table $table_prefix"."adminattr_$lc_name
           (id integer not null primary key auto_increment,
           name varchar(255) unique,listorder integer default 0)";
@@ -47,8 +47,8 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
       } elseif (!empty($_POST["name"][$id])) {
         # it is a change
         $query = sprintf('update %s set name = "%s" ,listorder = %d,default_value = "%s" ,required = %d where id = %d',
-        $tables["adminattribute"],addslashes($_POST["name"][$id]),
-        $_POST["listorder"][$id],$_POST["default"][$id],$_POST["required"][$id],$id);
+        $tables["adminattribute"],sql_escape($_POST["name"][$id]),
+        $_POST["listorder"][$id],sql_escape($_POST["default"][$id]),$_POST["required"][$id],$id);
         Sql_Query($query);
       }
     }
@@ -93,7 +93,7 @@ while ($row = Sql_Fetch_array($res)) {
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Name:'); ?> </td><td colspan="2"><input type="text" name="name[0]" value="" size="40" /></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Type'); ?> </td><td colspan="2"><select name="type[0]">
 <?php
-$types = array('checkbox','textline',"hidden");#'radio','select',
+$types = array('textline',"hidden");#'radio','select','checkbox',
 while (list($key,$val) = each($types)) {
   printf('<option value="%s" %s>%s</option>',$val,"",$val);
 }
