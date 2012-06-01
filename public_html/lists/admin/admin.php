@@ -75,35 +75,18 @@ if (!empty($_POST["change"])) {
           values(%d,%d,"%s")',$tables["admin_attribute"],$id,$key,addslashes($val)));
       }
     }
-    Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s" where id = %d',$GLOBALS['tables']["admin"],adminName($_SESSION["logindetails"]["id"]),$id));
+    $privs = array(
+      'subscribers' => !empty($_POST['subscribers']),
+      'campaigns' => !empty($_POST['campaigns']),
+      'statistics' => !empty($_POST['statistics']),
+      'settings' => !empty($_POST['settings'])
+    );
+    Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s", privileges = "%s" where id = %d',
+      $GLOBALS['tables']["admin"],adminName($_SESSION["logindetails"]["id"]),sql_escape(serialize($privs)),$id));
 
-    if ($accesslevel == "all" && isset($_POST['access']) && is_array($_POST["access"])) {
-      Sql_Query("delete from {$tables["admin_task"]} where adminid = $id");
-      if ( is_array($_POST["access"]))
-        while (list($key,$val) = each ($_POST["access"]))
-          Sql_Query(sprintf('replace into %s (adminid,taskid,level) values(%d,%d,%d)',$GLOBALS['tables']["admin_task"],$id,$key,$val));
-    }
     Info($GLOBALS['I18N']->get('Changes saved'));
   } else {
     Info($GLOBALS['I18N']->get('Error adding new admin'));
-  }
-}
-
-if (!empty($_POST["setdefault"])) {
-  Sql_Query("delete from {$tables["admin_task"]} where adminid = 0");
-  if (is_array($_POST["access"]))
-    while (list($key,$val) = each ($_POST["access"]))
-      Sql_Query("insert into {$tables["admin_task"]} (adminid,taskid,level) values(0,$key,$val)");
-  Info($GLOBALS['I18N']->get('Current set of permissions made default'));
-}
-
-if (!empty($_POST["resetaccess"])) {
-  $reverse_accesscodes = array_flip($access_levels);
-  $req = Sql_Query("select * from {$tables["task"]} order by type");
-  while ($row = Sql_Fetch_Array($req)) {
-    $level = $system_pages[$row["type"]][$row["page"]];
-    Sql_Query(sprintf('replace into %s (adminid,taskid,level) values(%d,%d,%d)',
-      $tables["admin_task"],$id,$row["id"],$reverse_accesscodes[$level]));
   }
 }
 
@@ -125,7 +108,7 @@ if (!empty($_GET["delete"])) {
 if ($id) {
   print $GLOBALS['I18N']->get('Edit Administrator').': ';
   $result = Sql_query("SELECT * FROM {$tables["admin"]} where id = $id");
-  $data = sql_fetch_array($result);
+  $data = sql_fetch_assoc($result);
   print $data["loginname"];
   if ($data["id"] != $_SESSION["logindetails"]["id"] && $accesslevel == "all")
     printf( "<br /><li><a href=\"javascript:deleteRec('%s');\">Delete</a> %s\n",PageURL2("admin","","delete=$id"),$data["loginname"]);
@@ -134,8 +117,11 @@ if ($id) {
   print $GLOBALS['I18N']->get('Add a new Administrator');
 }
 print "<br/>";
+#var_dump($data);
 print '<p class="details">'.$GLOBALS['I18N']->get('Admin Details').':</p>'.formStart(' class="adminAdd"');
 printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">',$id);
+
+$privileges = unserialize($data['privileges']);
 
 reset($struct);
 while (list ($key,$val) = each ($struct)) {
@@ -144,6 +130,8 @@ while (list ($key,$val) = each ($struct)) {
   if (strstr($val[1],':'))
     list($a,$b) = explode(":",$val[1]);
   if ($a == "sys") {
+    if ($b == 'Privileges') { ## this whole thing of using structure is getting silly, @@TODO rewrite without
+    } else
   	#If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
   	if ($b == 'Password' && ENCRYPT_ADMIN_PASSWORDS){
       $changeAdminPass = !empty($_SESSION['firstinstall']);
@@ -163,12 +151,12 @@ while (list ($key,$val) = each ($struct)) {
       $checkNo,
 		 $GLOBALS['I18N']->get('No'), $checkYes, $GLOBALS['I18N']->get('Yes'));
   	} else {
-	  if ($b != 'Password'){
-	    printf('<tr><td>%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$data[$key]);
-	  } else {
-	    printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get('Password'),$key,stripslashes($data[$key]));
-	  }
-	}
+      if ($b != 'Password'){
+        printf('<tr><td>%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$data[$key]);
+      } else {
+        printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get('Password'),$key,stripslashes($data[$key]));
+      }
+    }
   } elseif ($key == "loginname" && $data[$key] == "admin") {
     printf('<tr><td>'.$GLOBALS['I18N']->get('Login Name').'</td><td>admin</td>');
     print('<td><input type="hidden" name="loginname" value="admin" /></td></tr>');
@@ -216,52 +204,30 @@ while ($row = Sql_fetch_array($res)) {
     }
   }
 }
+
+print '<tr><td colspan="2">';
+
+$checked = array();
+foreach ($privileges as $section => $allowed) {
+  if (!empty($allowed)) {
+    $checked[$section] = 'checked="checked"';
+  } else {
+    $checked[$section] = '';
+  }
+}
+
+print '<div id="privileges">
+'.s('Privileges').':
+<label for="subscribers"><input type="checkbox" name="subscribers" '.$checked['subscribers'].' />'.s('Manage subscribers').'</label>
+<label for="campaigns"><input type="checkbox" name="campaigns" '.$checked['campaigns'].'/>'.s('Send Campaigns').'</label>
+<label for="statistics"><input type="checkbox" name="statistics" '.$checked['statistics'].'/>'.s('View Statistics').'</label>
+<label for="settings"><input type="checkbox" name="settings" '.$checked['settings'].'/>'.s('Change Settings').'</label>
+</div>';
+print '</td></tr>';
+
 print '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr></table>';
 
-# what pages can this administrator see:
 
-## old, disabled
-if (0 && !$data["superuser"] && $accesslevel == "all") {
-  print $I18N->get(' Set permissions to view pages in the system:  All: admin has access to page without restrictions View: admin can view content of pages, but not change anything. This currently only work for the "user", "users" and "members" pages. None: admin cannot see this page Owner: admin can see this page, but only see the content of the lists they own  Note: Admin Password must be at least 4 characters long ');
-  print '<p class="details">'.$GLOBALS['I18N']->get('Access Details').':</p><table class="adminAccess" border="1">';
-  reset($access_levels);
-  printf ('<tr><td colspan="%d" align="center">'.$GLOBALS['I18N']->get('Access Privileges').'</td></tr>',sizeof($access_levels)+2);
-  print '<tr><td>'.$GLOBALS['I18N']->get('Type').'</td><td>'.$GLOBALS['I18N']->get('Page')."</td>\n";
-  foreach ($access_levels as $level)
-    printf('<td>%s</td>',$GLOBALS['I18N']->get($level));
-  print "</tr>\n";
-  $req = Sql_Query("select * from {$tables["task"]} order by type");
-  while ($row = Sql_Fetch_Array($req)) {
-    printf('<tr><td>%s</td><td>%s</td>',$row["type"],$row["page"]);
-    reset($access_levels);
-    while (list($key,$level) = each ($access_levels)) {
-      $current_level_req = Sql_Query(sprintf('
-        select level from %s where adminid = %d and taskid = %d',$tables["admin_task"],$id,$row["id"]));
-      if (!Sql_Affected_Rows()) {
-        # take a default
-        $default = $system_pages[$row["type"]][$row["page"]];
-     #   if ($row["type"] == "system") {
-     #     $curval = 0;
-     #   } else {
-     #     $curval = 4;
-     #   }
-          # by default disable everything
-          $curval = 0;
-        if ($level == $default) $curval = $key;
-      } else {
-        $current_level = Sql_Fetch_Row($current_level_req);
-        $curval = $current_level[0];
-      }
-      printf('<td><input type="radio" name="access[%d]" value="%s" %s /></td>',$row["id"],$key,$key == $curval ? 'checked="checked"':'');
-    }
-    print "</tr>\n";
-  }
-
-  printf('<tr><td colspan="%d"><input class="submit" type="submit" name=setdefault value="'.$GLOBALS['I18N']->get('Set these permissions as default').'" />
-     <input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr></table>',sizeof($access_levels)+2);
-  print '<input class="submit" type="submit" name="resetaccess" value="'.$GLOBALS['I18N']->get('Reset to Default').'" />';
-}
 print "</form>";
-?>
 
 
