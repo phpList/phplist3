@@ -306,6 +306,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
           "superuser" => array("tinyint default 0","Is this user Super Admin?"),
           "disabled" => array("tinyint default 0","Is this account disabled?"),
           "unique_1" => array("loginnameidx (loginname)",""),
+          'privileges' => array('text','sys:Privileges'),
 #          "index_1" => array("loginnameidx (loginname)",""),
       ),
       "adminattribute" => array ( # attributes for an admin
