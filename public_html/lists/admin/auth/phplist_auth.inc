@@ -6,14 +6,14 @@ class admin_auth {
 
   function validateLogin($login,$password) {
     $query
-    = ' select password, disabled, id'
+    = ' select password, disabled, id, privileges'
     . ' from %s'
     . ' where loginname = ?';
     $query = sprintf($query, $GLOBALS['tables']['admin']);
     $req = Sql_Query_Params($query, array($login));
-    $admindata = Sql_Fetch_Array($req);
+    $admindata = Sql_Fetch_Assoc($req);
     $encryptedPass = md5($password);
-    $passwordDB = $admindata[0];    
+    $passwordDB = $admindata['password'];    
     #Password encryption verification.
     if(ENCRYPT_ADMIN_PASSWORDS==1 && (strlen($passwordDB)<32)) { //Passwords are encrypted but the actual is not.
       #Encrypt the actual DB password before performing the validation below.
@@ -30,7 +30,7 @@ class admin_auth {
     } elseif (#Password validation.
       (ENCRYPT_ADMIN_PASSWORDS && $passwordDB && $encryptedPass == $encryptedPassDB) ||
    	  (!ENCRYPT_ADMIN_PASSWORDS && $passwordDB && $password == $passwordDB)) {
-      return array($admindata["id"],"OK");
+      return array($admindata['id'],"OK");
     } else {
       return array(0,"invalid password");
     }
@@ -49,19 +49,20 @@ class admin_auth {
 
   function validateAccount($id) {
     $query
-    = ' select id, disabled,password'
+    = ' select id, disabled,password,privileges'
     . ' from %s'
     . ' where id = ?';
     $query = sprintf($query, $GLOBALS['tables']['admin']);
     $req = Sql_Query_Params($query, array($id));
-    $noaccess_req = Sql_Fetch_Row($req);
-    if (!$noaccess_req[0]) {
+    $data = Sql_Fetch_Row($req);
+    if (!$data[0]) {
       return array(0,"No such account");
     } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION["logindetails"]["passhash"]) {
       return array(0,"Your session does not match your password.  If you just changed your password, simply log back in.");
-    } elseif ($noaccess_req[1]) {
+    } elseif ($data[1]) {
       return array(0,"your account has been disabled");
     }
+    $_SESSION['privileges'] = unserialize($data[3]);
     return array(1,"OK");
   }
 
