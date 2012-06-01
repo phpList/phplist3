@@ -101,6 +101,12 @@ if(!empty($_POST['import'])) {
   if (!isset($loginnameindex))
     Fatal_error($GLOBALS['I18N']->get("Cannot find the loginname in the header"));
 
+  $privs = array(
+    'subscribers' => !empty($_POST['subscribers']),
+    'campaigns' => !empty($_POST['campaigns']),
+    'statistics' => !empty($_POST['statistics']),
+    'settings' => !empty($_POST['settings'])
+  );
   // Parse the lines into records
   $c = 1;$invalid_email_count = 0;
 
@@ -181,9 +187,11 @@ if(!empty($_POST['import'])) {
             Warn($GLOBALS['I18N']->get("Empty loginname, using email:")." ".$email);
           }
           $query = sprintf('INSERT INTO %s
-            (email,loginname,namelc,created,modifiedby,password,superuser,disabled)
-            values("%s","%s","%s",current_timestamp,"%s","%s",0,0)',
-            $tables["admin"],$email,$loginname,normalize($loginname),adminName($_SESSION["logindetails"]["id"]),$data["password"]);
+            (email,loginname,namelc,created,modifiedby,password,superuser,disabled,privileges)
+            values("%s","%s","%s",current_timestamp,"%s","%s",0,0,"%s")',
+            $tables["admin"],sql_escape($email),sql_escape($loginname),
+            normalize($loginname),adminName($_SESSION["logindetails"]["id"]),
+            $data["password"],sql_escape(serialize($privs)));
           $result = Sql_query($query);
           $adminid = Sql_Insert_Id($tables['admin'], 'id');
           $count_email_add++;
@@ -274,10 +282,6 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
     $subselect = " where id = 0";
 }
 
-
-$req = Sql_Query("select * from {$tables["admin_task"]} where adminid = 0");
-if (!Sql_Affected_Rows())
-  Warn($GLOBALS['I18N']->get("No default permissions have been defined, please create default permissions first, by creating one dummy admin and assigning the default permissions to this admin"));
 ?>
 </ul>
 
@@ -289,6 +293,18 @@ if (!Sql_Affected_Rows())
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Test output')?>:</td><td><input type="checkbox" name="import_test" value="yes"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Check this box to create a list for each administrator, named after their loginname')?> <input type=checkbox name="createlist" value="yes" checked></td></tr>
+<?php
+print '<tr><td colspan="2">';
+print '<div id="privileges">
+'.s('Privileges').':
+<label for="subscribers"><input type="checkbox" name="subscribers" '.$checked['subscribers'].' />'.s('Manage subscribers').'</label>
+<label for="campaigns"><input type="checkbox" name="campaigns" '.$checked['campaigns'].'/>'.s('Send Campaigns').'</label>
+<label for="statistics"><input type="checkbox" name="statistics" '.$checked['statistics'].'/>'.s('View Statistics').'</label>
+<label for="settings"><input type="checkbox" name="settings" '.$checked['settings'].'/>'.s('Change Settings').'</label>
+</div>';
+print '</td></tr>';
+print '</td></tr>';
+?>
 <tr><td><p class="submit"><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('Do Import')?>"></p></td><td>&nbsp;</td></tr>
 </table>
 <?php } ?>
