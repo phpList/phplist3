@@ -1,6 +1,3 @@
-
-<hr/>
-
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
@@ -14,11 +11,6 @@ if (isset($_GET['s'])) {
 $baseurl = './?page=list';
 
 $actionresult = '';
-
-## quick DB fix
-if (!Sql_Table_Column_Exists($tables['list'],'category')) {
-  Sql_Query('alter table '.$tables['list'].' add column category varchar(255) default ""',1);
-}
 
 if (isset($_POST['listorder']) && is_array($_POST['listorder']))
   while (list($key,$val) = each ($_POST['listorder'])) {
@@ -142,7 +134,9 @@ $total = Sql_Num_Rows($countresult);
 
 if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['tab'])) {
   ## reload to first category, if none found by default (ie all lists are categorised)
-  Redirect('list&tab='.$aListCategories[0]);
+  if (!empty($aListCategories[0])) {
+    Redirect('list&tab='.$aListCategories[0]);
+  }
 }
 
 print '<p>'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
