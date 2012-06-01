@@ -123,7 +123,7 @@ while ($admin = Sql_fetch_array($result)) {
 }
 print $ls->display();
 print '<br/><hr/>';
-print PageLink2("admin",$GLOBALS['I18N']->get('Add a new administrator'),"start=$start".$remember_find);
+print PageLinkButton("admin",$GLOBALS['I18N']->get('Add a new administrator'),"start=$start".$remember_find);
 print '<p class="button">'.PageLink2("importadmin",$GLOBALS['I18N']->get('Import list of admins')).'</p>';
 
 ?>
