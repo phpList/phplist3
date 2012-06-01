@@ -12,14 +12,10 @@ function accessLevel($page) {
     return "all";
   if (!isset($_SESSION["adminloggedin"])) return 0;
   if (!is_array($_SESSION["logindetails"])) return 0;
-  # check whether it is a page to protect
-  Sql_Query("select id from {$tables["task"]} where page = \"$page\"");
-  if (!Sql_Affected_Rows())
-    return "all";
-  $req = Sql_Query(sprintf('select level from %s,%s where adminid = %d and page = "%s" and %s.taskid = %s.id',
-    $tables["task"],$tables["admin_task"],$_SESSION["logindetails"]["id"],$page,$tables["admin_task"],$tables["task"]));
-  $row = Sql_Fetch_Row($req);
-  return $access_levels[$row[0]];
+
+  ## for non-supers we only allow owner views
+  ## this is likely to need tweaking
+  return 'owner';
 }
 
 function requireAccessLevel($page,$level) {
@@ -54,3 +50,4 @@ function isSuperUser() {
   }
   return $issuperuser;
 }
+
