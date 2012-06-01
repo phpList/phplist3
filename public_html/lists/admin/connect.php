@@ -254,8 +254,10 @@ function checkAccess($page) {
     return 0;
   }
   
-  if (!$GLOBALS["require_login"] || isSuperUser())
+  if (isSuperUser())
     return 1;
+
+
   # check whether it Is a page to protect
   $query = sprintf("select id from %s where page = ?", $tables['task']);
   $rs = Sql_Query_Params($query, array($page));
@@ -606,8 +608,6 @@ $GLOBALS['pagecategories'] = array(
       'pages' => array(
         'setup',
         'configure',
-        'list',
-        'editlist',
         'catlists',
         'spage',
         'spageedit',
@@ -625,7 +625,6 @@ $GLOBALS['pagecategories'] = array(
       'menulinks' => array(
         'setup',
         'configure',
-        'list',
         'attributes',
         'spage',
         'admins',
