@@ -254,28 +254,12 @@ function checkAccess($page) {
     return 0;
   }
   
+/*
   if (isSuperUser())
     return 1;
-
-
-  # check whether it Is a page to protect
-  $query = sprintf("select id from %s where page = ?", $tables['task']);
-  $rs = Sql_Query_Params($query, array($page));
-  if (!Sql_Num_Rows( $rs ))
-    {
-    return 1;
-    }
-  $query
-  = ' select level'
-  . ' from %s t, %s at'
-  . ' where at.taskid = t.id'
-  . '   and adminid = ?'
-  . '   and t.page = ?';
-  $query = sprintf($query, $tables['task'], $tables['admin_task']);
-  $req = Sql_Query_Params($query, array($_SESSION["logindetails"]["id"], $page));
-  $row = Sql_Fetch_Row($req);
-  if (!$row[0])
-    return 0;
+*/
+  ## we allow all that haven't been disallowed
+  ## might be necessary to turn that around
   return 1;
 }
 
@@ -769,7 +753,7 @@ function contextMenu() {
 
   foreach ($GLOBALS["context_menu"] as $page => $desc) {
     if (!$desc) continue;
-    $link = PageLink2($page,$GLOBALS["I18N"]->get($desc));
+    $link = PageLink2($page,$GLOBALS["I18N"]->pageTitle($desc));
     if ($link) {
       if ($page == "preparesend" || $page == "sendprepared") {
         if (USE_PREPARE) {
@@ -1113,19 +1097,21 @@ function ListofLists($current,$fieldname,$subselect) {
 function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
   $categoryhtml = ListofLists($current,$fieldname,$subselect);
 
-  if (!empty($alltab)) {
-    unset($categoryhtml['all']);
-    ### @@@TODO this has a weird effect when categories are numbers only eg years, because PHP renumbers them to 0,1,2
-    array_unshift($categoryhtml,$alltab);
-  }
  # var_dump($categoryhtml);
   $tabno = 1;
   $listindex = $listhtml = '';
   $some = sizeof($categoryhtml);
+  
+  if (!empty($alltab) && $some > 1) {
+    unset($categoryhtml['all']);
+    ### @@@TODO this has a weird effect when categories are numbers only eg years, because PHP renumbers them to 0,1,2
+    array_unshift($categoryhtml,$alltab);
+  }
+  
   if ($some) {
     foreach ($categoryhtml as $category => $content) {
       if ($category == 'all') $category = '@';
-      if ($some > 1) { ## don't show tabs, when there's just one
+      if ($some == 1) { ## don't show tabs, when there's just one
         $listindex .= sprintf('<li><a href="#%s%d">%s</a></li>',$fieldname,$tabno,$category);
       }
       $listhtml .= sprintf('<div id="%s%d"><ul>%s</ul></div>',$fieldname,$tabno,$content);
