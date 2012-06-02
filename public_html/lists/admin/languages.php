@@ -325,10 +325,11 @@ class phplist_I18N {
     if (is_file(dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php')) {
       include dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php';
     }
-    if (!empty($page_title)) {
-      $title = $page_title;
-    } elseif (preg_match('/pi=([\w]+)/',$page,$regs)) {
+    if (preg_match('/pi=([\w]+)/',$page,$regs)) {
+      ## @@TODO call plugin to ask for title
       $title = $regs[1];
+    } elseif (!empty($page_title)) {
+      $title = $page_title;
     } else {
       $title = $page;
     }
