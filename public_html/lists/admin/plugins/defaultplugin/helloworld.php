@@ -1,8 +1,12 @@
 
 <?php
 
-if ($_POST["info"]) {
-  print "You typed: ".$_POST["info"]."<br/>";
+if (!empty($_POST["info"])) {
+  ## now make sure it only has the stuff we expect it to have
+  $posted = strip_tags($_POST['info']);
+  $posted = preg_replace('/\W/','',$posted);
+  
+  print "You typed: ".$posted."<br/>";
   print "<b>Thanks for that.</b>";
   return;
 }
