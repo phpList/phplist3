@@ -981,7 +981,7 @@ function PageLinkClass($name,$desc="",$url="",$class = '',$title = '') {
     $class='link';
   }
   if ($link) {
-    $link = str_replace('<a ','<a class="'.$class.'"',$link);
+    $link = str_replace('<a ','<a class="'.$class.'" ',$link);
     $link .= '';
   }
   return $link;
