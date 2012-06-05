@@ -182,6 +182,9 @@ if (!defined('PHPMAILER_SECURE')) {
   define('PHPMAILER_SECURE',false);
 }
 define('USERSPAGE_MAX',1000);
+if (!isset($plugins_disabled) || !is_array($plugins_disabled)) {
+  $plugins_disabled = array();
+}
 
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');

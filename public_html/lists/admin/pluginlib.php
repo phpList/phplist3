@@ -22,7 +22,7 @@ if (is_dir(PLUGIN_ROOTDIR)) {
   reset($files);
   foreach ($files as $file) {
     list($className,$ext) = explode(".",$file);
-    if (preg_match("/[\w]+/",$className)) {
+    if (preg_match("/[\w]+/",$className) && !in_array($className,$GLOBALS['plugins_disabled'])) {
       include_once PLUGIN_ROOTDIR."/" . $file;
       if (class_exists($className)) {
         eval("\$pluginInstance = new ". $className ."();");
