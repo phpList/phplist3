@@ -377,8 +377,8 @@ if (!$ajax && $page != "login") {
   if (TEST) {
     print Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
   }
-  if (version_compare(PHP_VERSION, '5.3.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
-    Error($GLOBALS['I18N']->get('phpList requires PHP version 5.3.0 or higher'));
+  if (version_compare(PHP_VERSION, '5.0.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
+    Error($GLOBALS['I18N']->get('phpList requires PHP version 5.0.0 or higher'));
   }
   if (defined("ENABLE_RSS") && ENABLE_RSS && !function_exists("xml_parse") && WARN_ABOUT_PHP_SETTINGS)
     Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
@@ -492,7 +492,7 @@ if (checkAccess($page,"") || $page == 'about') {
   #  print "End of inclusion<br/>";
   } elseif ($_GET['pi'] && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
     $plugin = $GLOBALS["plugins"][$_GET["pi"]];
-    $menu = $plugin->adminmenu();
+    $menu = $plugin->adminmenu(); 
     if (is_file($plugin->coderoot . $include)) {
       include ($plugin->coderoot . $include);
     } elseif ($include == 'main.php') {
