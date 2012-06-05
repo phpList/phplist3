@@ -816,6 +816,7 @@ if (state == "closed") {
 
 class WebblerTabs {
   private $tabs = array();
+  private $tablabels = array();
   private $current = "";
   private $previous = "";
   private $next = "";
@@ -826,8 +827,12 @@ class WebblerTabs {
   private $addprevnext = false;
   private $id = 'webblertabs';
 
-  function addTab($name,$url = "") {
+  function addTab($label,$url = "",$name = '') {
+    if (empty($name)) {
+      $name = $label;
+    }
     $this->tabs[$name] = $url;
+    $this->tablabels[$name] = $label;
   }
 
   function addPrevNext() {
@@ -929,11 +934,11 @@ class WebblerTabs {
         }
         $html .= '<li>';
       }
-      $html .= sprintf('<a href="%s" %s title="%s">',$url,$this->linkcode,htmlspecialchars(strip_tags($tab)));
+      $html .= sprintf('<a href="%s" %s title="%s">',$url,$this->linkcode,htmlspecialchars(strip_tags($this->tablabels[$tab])));
       if ($this->addTabNo) {
         $html .= sprintf('<span class="tabno">%d</span> ',$count);
       }
-      $html .= sprintf('<span class="title">%s</span></a>',ucfirst($tab));
+      $html .= sprintf('<span class="title">%s</span></a>',ucfirst($this->tablabels[$tab]));
       $html .= '</li>';
       $previous = $tab;
     }
