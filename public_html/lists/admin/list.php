@@ -79,12 +79,12 @@ if (!empty($_POST['importcontent'])) {
 $html = '';
 
 $aConfiguredListCategories = listCategories();
-  
 $aListCategories = array();
 $req = Sql_Query(sprintf('select distinct category from %s',$tables['list']));
 while ($row = Sql_Fetch_Row($req)) {
   array_push($aListCategories,$row[0]);
 }
+array_push($aListCategories,s('Uncategorised')); 
 
 if (sizeof($aListCategories)) {
   if (isset($_GET['tab']) && in_array($_GET['tab'],$aListCategories)) {
@@ -94,10 +94,9 @@ if (sizeof($aListCategories)) {
   } else {
     $current = '';
   }
-  if (stripos($current,'uncategorised') !== false) {
+  if (stripos($current,strtolower(s('Uncategorised'))) !== false) {
     $current = '';
   }
-
 /*
  *
  * hmm, if lists are marked for a category, which is then removed, this would
@@ -122,7 +121,11 @@ if (sizeof($aListCategories)) {
 
     $tabs->addTab($category,$baseurl.'&amp;tab='.urlencode($category));
   }
-  $tabs->setCurrent($current);
+  if ($current != '') {
+    $tabs->setCurrent($current);
+  } else {
+    $tabs->setCurrent(s('Uncategorised'));
+  }
   print $tabs->display();
 }
 $countquery
@@ -157,6 +160,12 @@ if ($numlists > 15) {
 }
 
 while ($row = Sql_fetch_array($result)) {
+  
+  /*
+   * this is rather demanding with quite a few lists/subscribers
+   * find a better way
+   */
+  
   $query
   = ' select count(*)'
   . ' from ' . $tables['listuser']
