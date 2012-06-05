@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__).'/accesscheck.php';
 
 error_reporting(E_ALL);
 ## some kind of attempt to make a test suite for certain elements of phplist
