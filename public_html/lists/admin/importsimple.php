@@ -124,7 +124,7 @@ if ($total == 1) {
   $row = Sql_fetch_array($result);
   $content .= sprintf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.$GLOBALS['I18N']->get('Adding subscribers').' <b>%s</b>',$c,stripslashes($row["name"]),$c,$row["id"],stripslashes($row["name"]));
 } else {
-  $content .= '<p class="button">'.$GLOBALS['I18N']->get('Select the lists to add the emails to').'</p>';
+  $content .= '<p>'.$GLOBALS['I18N']->get('Select the lists to add the emails to').'</p>';
 
   $content .= ListSelectHTML($selected_lists,'importlists',$subselect);
 }
