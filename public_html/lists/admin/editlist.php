@@ -132,7 +132,7 @@ if (empty($list['category'])) {
 <div class="field"><input type="text" name="listname" value="<?php echo  htmlspecialchars(StripSlashes($list["name"]))?>" /></div>
 <div class="field"><input type="checkbox" name="active" value="1" <?php echo $list["active"] ? 'checked="checked"' : ''; ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
 <div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
-<div class="field"><input type="text" name="listorder" value="<?php echo $list["listorder"] ?>" size="5" /></div>
+<div class="field"><input type="text" name="listorder" value="<?php echo $list["listorder"] ?>" class="listorder" /></div>
 <?php if ($GLOBALS["require_login"] && (isSuperUser() || accessLevel("editlist") == "all")) {
   if (empty($list["owner"])) {
     $list["owner"] = $_SESSION["logindetails"]["id"];
