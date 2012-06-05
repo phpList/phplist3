@@ -72,12 +72,12 @@ print '</div>';
 
 ### Print tabs
 $tabs = new WebblerTabs();
-$tabs->addTab($GLOBALS['I18N']->get("sent"),PageUrl2("messages&amp;tab=sent"));
-$tabs->addTab($GLOBALS['I18N']->get("active"),PageUrl2("messages&amp;tab=active"));
-$tabs->addTab($GLOBALS['I18N']->get("draft"),PageUrl2("messages&amp;tab=draft"));
+$tabs->addTab($GLOBALS['I18N']->get("sent"),PageUrl2("messages&amp;tab=sent"),'sent');
+$tabs->addTab($GLOBALS['I18N']->get("active"),PageUrl2("messages&amp;tab=active"),'active');
+$tabs->addTab($GLOBALS['I18N']->get("draft"),PageUrl2("messages&amp;tab=draft"),'draft');
 #$tabs->addTab($GLOBALS['I18N']->get("queued"),PageUrl2("messages&amp;tab=queued"));#
 if (USE_PREPARE) {
-  $tabs->addTab($GLOBALS['I18N']->get("static"),PageUrl2("messages&amp;tab=static"));
+  $tabs->addTab($GLOBALS['I18N']->get("static"),PageUrl2("messages&amp;tab=static"),'static');
 }
 //obsolete, moved to rssmanager plugin
 #if (ENABLE_RSS) {
