@@ -297,10 +297,10 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
 print '<tr><td colspan="2">';
 print '<div id="privileges">
 '.s('Privileges').':
-<label for="subscribers"><input type="checkbox" name="subscribers" '.$checked['subscribers'].' />'.s('Manage subscribers').'</label>
-<label for="campaigns"><input type="checkbox" name="campaigns" '.$checked['campaigns'].'/>'.s('Send Campaigns').'</label>
-<label for="statistics"><input type="checkbox" name="statistics" '.$checked['statistics'].'/>'.s('View Statistics').'</label>
-<label for="settings"><input type="checkbox" name="settings" '.$checked['settings'].'/>'.s('Change Settings').'</label>
+<label for="subscribers"><input type="checkbox" name="subscribers" checked="checked" />'.s('Manage subscribers').'</label>
+<label for="campaigns"><input type="checkbox" name="campaigns" checked="checked"/>'.s('Send Campaigns').'</label>
+<label for="statistics"><input type="checkbox" name="statistics" checked="checked"/>'.s('View Statistics').'</label>
+<label for="settings"><input type="checkbox" name="settings" checked="checked"/>'.s('Change Settings').'</label>
 </div>';
 print '</td></tr>';
 print '</td></tr>';
