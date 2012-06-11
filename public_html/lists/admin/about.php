@@ -15,9 +15,13 @@
     <ul>
       <li>Michiel Dethmers, phpList Ltd</li>
     </ul>
-    <!--h3><?php echo $GLOBALS['I18N']->get('Contributors')?></h3>
+    <h3><?php echo $GLOBALS['I18N']->get('Contributors')?></h3>
     <ul>
-    </ul-->
+      <li>H2B2, Forum Moderator, Mantis Manager</li>
+      <li><a href="http://dragonrider.co.uk/phplist">Dragonrider</a>, Forum Moderator</li>
+      <li><a href="http://www.dcameron.me.uk/phplist">Duncan Cameron</a>, Forum Moderator</li>
+      
+    </ul>
     <h3><?php echo $GLOBALS['I18N']->get('Design')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
