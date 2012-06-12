@@ -1,6 +1,3 @@
-
-<hr/>
-
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 $access = accessLevel("members");
@@ -50,11 +47,8 @@ if (!empty($id)) {
   echo PageLinkButton("export&amp;list=$id",$GLOBALS['I18N']->get("Download subscribers"),'','pill-c');
   echo PageLinkDialog("importsimple&amp;list=$id",$GLOBALS['I18N']->get("Import Subscribers to this list"),'','pill-r');
   print '</div>';
-
-#  print addUserForm($id);
 } else {
   Redirect('list');
-#  Fatal_Error($GLOBALS['I18N']->get("Please enter a listid"));
 }
 
 if (!empty($_POST['importcontent'])) {
@@ -144,7 +138,7 @@ if (isset($_POST["add"])) {
       print "</ul>\n";
     } else {
       print '<p class="information">'.$GLOBALS['I18N']->get("No user found with that email").'</p><table class="membersForm">'.formStart(' class="membersSubscribe" ');
-      require $GLOBALS["coderoot"] . "subscribelib2.php";
+      require dirname(__FILE__) . "/subscribelib2.php";
       ?>
       <?php
       # pass the entered email on to the form
