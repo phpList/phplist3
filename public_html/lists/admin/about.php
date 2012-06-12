@@ -41,10 +41,10 @@
     </p>
     <b><?php echo $GLOBALS['I18N']->get('Portions of the system include')?></b>
     <ul>
-      <li><a href="http://www.webbler.org" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
+      <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
       <li>the <a href="http://phpmailer.sourceforge.net/" target="_blank">phpmailer</a> class </li>
-      <!--li>The html email class from, <a href="http://www.phpguru.org/" target="_blank">Richard Heyes</a></li-->
+      <li>the <a href="http://jquery.com">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
     </ul>
     </td>
     </tr>
