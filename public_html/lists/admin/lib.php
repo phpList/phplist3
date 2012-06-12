@@ -824,7 +824,16 @@ function fetchUrl($url,$userdata = array()) {
   ## fix the Editor replacing & with &amp;
   $url = str_ireplace('&amp;','&',$url);
   
-  require_once "HTTP/Request.php";
+  
+  ## @#TODO, make it work with Request2
+  if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+    @require_once "HTTP/Request2.php";
+  } elseif ($GLOBALS['has_pear_http_request']) {
+    @require_once "HTTP/Request.php";
+  } else {
+    print Error('HTTP/Request not available, cannot continue');
+    return;
+  }
  # logEvent("Fetching $url");
   if (sizeof($userdata)) {
     foreach ($userdata as $key => $val) {
@@ -873,8 +882,13 @@ function fetchUrl($url,$userdata = array()) {
 
   $remote_charset = 'UTF-8';
   
-  $headreq = new HTTP_Request($url,$request_parameters);
-  $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+  if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+    $headreq = new HTTP_Request2($url,$request_parameters);
+    $headreq->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+  } else {
+    $headreq = new HTTP_Request($url,$request_parameters);
+    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+  }
   if (!PEAR::isError($headreq->sendRequest(false))) {
     $code = $headreq->getResponseCode();
     if ($code != 200) {
@@ -895,8 +909,13 @@ function fetchUrl($url,$userdata = array()) {
     $cache = getPageCache($url,$lastmodified);
     if (!$cache) {
       $request_parameters['method'] = 'GET';
-      $req = new HTTP_Request($url,$request_parameters);
-      $req->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+      if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+        $req = new HTTP_Request2($url,$request_parameters);
+        $req->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+      } else {
+        $req = new HTTP_Request($url,$request_parameters);
+        $req->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+      }
       logEvent('Fetching '.$url);
       if (VERBOSE && function_exists('output')) {
         output('Fetching remote: '.$url);
