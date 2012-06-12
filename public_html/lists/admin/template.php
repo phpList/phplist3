@@ -328,7 +328,7 @@ tinyMCE.init({
 </tr>
 </table>
 </div>
-<?  $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
+<?php  $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     '.$sendtestresult .'
     <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
     <input type="text" name="testtarget" size="40" value="'.$testtarget.'"/><br />%s
