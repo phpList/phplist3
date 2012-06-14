@@ -186,6 +186,10 @@ if (!isset($plugins_disabled) || !is_array($plugins_disabled)) {
   $plugins_disabled = array();
 }
 
+if (!isset($GLOBALS['installation_name'])) {
+  $GLOBALS['installation_name'] = 'phpList';
+}
+
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
 
@@ -194,9 +198,18 @@ if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
 }
 if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN','http://'.$_SERVER['HTTP_HOST']);
 
-# check whether Pear HTTP/Request is available
-@include_once "HTTP/Request.php";
-$GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
+# check whether Pear HTTP/Request is available, and which version
+# try 2 first
+
+# @@TODO finish this, as it is more involved than just renaming the class
+#@include_once "HTTP/Request2.php";
+if (0 && class_exists('HTTP_Request2')) {
+  $GLOBALS['has_pear_http_request'] = 2;
+} else {
+  @include_once "HTTP/Request.php";
+  $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
+}
+
 $GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
 
 ## fairly crude way to determine php version, but mostly needed for the stripos
