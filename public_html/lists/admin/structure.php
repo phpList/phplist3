@@ -303,7 +303,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
           "modifiedby" => array("varchar(25)","sys:Modified by"),
           "password" => array("varchar(255)","sys:Password"),
           "passwordchanged" => array("date","sys:Last time password was changed"),
-          "superuser" => array("tinyint default 0","Is this user Super Admin?"),
+          "superuser" => array("tinyint default 0","Is this admin Super Admin?"),
           "disabled" => array("tinyint default 0","Is this account disabled?"),
           "unique_1" => array("loginnameidx (loginname)",""),
           'privileges' => array('text','sys:Privileges'),
@@ -330,6 +330,8 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
           "admin" => array ("integer", "Admin's Id"),
           "key_value" => array ("varchar (32) not null", "Key")
       ),
+/*
+ * obsolete tables
       "task" => array(
           "id" => array("integer not null primary key auto_increment","ID"),
           "page" => array("varchar(25) not null","Page, page in system"),
@@ -344,6 +346,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
           "level" => array("integer","Level: all,none,view,add,edit,delete,self"),
           "primary key" => array("(adminid,taskid)","PKey")
       ),
+*/
       "subscribepage" => array(
           "id" => array("integer not null primary key auto_increment","ID"),
           "title" => array("varchar(255) not null","Title"),
