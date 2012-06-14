@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__).'/accesscheck.php';
 
 $content = '';
 if (isset($_POST["usercheck"])) {
