@@ -2,7 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_GET['id'])) {
-  $hash = '#'.$_GET['id'];
+  $hash = '#'.sprintf('%d',$_GET['id']);
 } else {
   $hash = '';
 }
