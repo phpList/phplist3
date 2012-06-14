@@ -1,5 +1,3 @@
-
-
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 require_once dirname(__FILE__).'/date.php';
@@ -56,9 +54,9 @@ switch ($access) {
     $subselect_where = " where ".$tables["list"].".owner = 0";break;
 }
 if ($access == "all") {
-  $delete_message = '<br />Delete will delete user from the list<br />';
+  $delete_message = '<br />'.s('Delete will remove subscriber from the list').'<br />';
 } else {
-  $delete_message = '<br />Delete will delete user and all listmemberships<br />';
+  $delete_message = '<br />'.s('Delete will remove subscriber from the database').'<br />';
 }
 
 function groupName($id) {
@@ -70,16 +68,6 @@ function groupName($id) {
 require dirname(__FILE__).'/structure.php';
 
 $struct = $DBstruct["user"];
-
-
-/*
-if (isset($_GET['list']))
-  echo "<br />".PageLink2("members","Back to Members of this list","id=".sprintf('%d',$_GET['list']))."\n";
-if (isset($start))
-  echo "<br />".PageLink2("users","Back to the list of users","start=$start&unconfirmed=".isset($_GET["unconfirmed"])?'1':'0')."\n";
-if ($find)
-  echo "<br />".PageLink2("users","Back to the search results","start=$start&amp;find=".urlencode($find)."&amp;findby=".urlencode($findby)."&amp;unconfirmed=".$_GET["unconfirmed"]."\n");
-*/
 
 $more = '';
 
