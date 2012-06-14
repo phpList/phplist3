@@ -338,9 +338,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
       }
       if ($minor < 11 || ($minor == 11 && $sub < 7)) {
         Sql_Create_Table($tables["admintoken"],$DBstruct["admintoken"],1);
-      }
-      break;
-      if ($minor < 11 || ($minor == 11 && $sub < 8)) {
+        Sql_Create_Table($tables["i18n"],$DBstruct["i18n"],1);
         Sql_Create_Table($tables["gchartcache"],$DBstruct["gchartcache"],1);
       }
       break;
