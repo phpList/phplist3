@@ -387,6 +387,7 @@ class phplist_I18N {
   }
 
   function appendText($file,$text) {
+    return;
     $filecontents = '';
     if (is_file($file)) {
       $filecontents = file_get_contents($file);
@@ -429,7 +430,16 @@ $lan = array(
   }
   
   function getTranslation($text,$page,$basedir) {
-    ## try gettext and otherwise continue
+
+    ## try DB, as it will be the latest
+    if ($this->hasDB) {
+      $db_trans = $this->databaseTranslation($text);
+      if (!empty($db_trans)) {
+        return $this->formatText($db_trans);
+      }
+    }
+
+    ## next try gettext
     if ($this->hasGettext) {
       $gettext = $this->gettext($text);
       if (!empty($gettext)) {
@@ -437,13 +447,6 @@ $lan = array(
       }
     }
 
-    ## next try DB
-    if ($this->hasDB) {
-      $db_trans = $this->databaseTranslation($text);
-      if (!empty($db_trans)) {
-        return $this->formatText($db_trans);
-      }
-    }
     $lan = $this->lan;
 
     if (trim($text) == "") return "";
