@@ -327,19 +327,22 @@ else {
 $c= 0;
 while ($row = Sql_Fetch_array($res)) {
 	$c++;
-  print '<table class="attributesForms" border="1"><tr><td colspan="2">'.
-  $GLOBALS['I18N']->get('Attribute').':'. $row["id"];
+  print '<div class="attributesForms"><h3>'.
+  $GLOBALS['I18N']->get('Attribute').': '. $row["id"];
   if ($formtable_exists) {
     sql_query("select * from formfield where attribute = ".$row["id"]);
     print "  (".$GLOBALS['I18N']->get('used in').' '.Sql_affected_rows().' '.$GLOBALS['I18N']->get('forms').')';
   }
     
-  print '</td><td colspan="2">'.$GLOBALS['I18N']->get('Tag').' <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></td></tr>';
+  print '</h3><div class="label check"><label>'.$GLOBALS['I18N']->get('Tag').'
+  <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></label></div>';
     
-  print '<tr><td colspan="2">'.$GLOBALS['I18N']->get('Name').': </td><td colspan="2"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["name"])).'" size="40" /></td></tr>';
-  print '<tr><td colspan="2">'.$GLOBALS['I18N']->get('Type').': </td><td colspan="2"><!--input type="hidden" name="type['.$row["id"].']" value="'.$row["type"].'">'.$row["type"].'-->';
+  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Name').':</label> </div>
+  <div class="field"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["name"])).'" size="40" /></div>';
+  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Type').': </label></div>
+  <!--<input type="hidden" name="type['.$row["id"].']" value="'.$row["type"].'">'.$row["type"].'-->';
 
-  print '<select name="type['.$row["id"].']" onchange="warn();">';
+  print '<div class="field"><select name="type['.$row["id"].']" onchange="warn();">';
   foreach($types as $key => $val) {
     printf('<option value="%s" %s>%s</option>',$val,$val == $row["type"] ? 'selected="selected"': '',$GLOBALS['I18N']->get($val));
   }
@@ -349,7 +352,7 @@ while ($row = Sql_Fetch_array($res)) {
   if ((defined('IN_WEBBLER') && IN_WEBBLER) || (defined('WEBBLER') && WEBBLER) ) {
     if ($row['type'] == 'select' || $row['type'] == 'radio' || $row['type'] == 'checkboxgroup') {
       print ' '.$I18N->get('authoritative list') .'&nbsp;';
-      printf('<select name="keywordlib[%d]"><option value="">-- select</option>',$row['id']);
+      printf('<div class="field"><select name="keywordlib[%d]"><option value="">-- select</option>',$row['id']);
       $req = Sql_Query(sprintf('select id,name from keywordlib order by listorder,name'));
       while ($kwlib = Sql_Fetch_Array($req)) {
         printf('<option value="%d" %s>%s</option>',$kwlib['id'],$row['keywordlib'] == $kwlib['id'] ? 'selected="selected"':'',htmlspecialchars($kwlib['name']));
@@ -364,13 +367,15 @@ while ($row = Sql_Fetch_array($res)) {
     }
   }
 
-  print '</td></tr>';
-  print '<tr><td colspan="2">'.$GLOBALS['I18N']->get('Default Value').': </td><td colspan="2"><input type="text" name="default['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["default_value"])).'" size="40" /></td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('Order of Listing').': </td><td><input type="text" name="listorder['.$row["id"].']" value="'.$row["listorder"].'" size="5" /></td>';
-  print '<td>'.$GLOBALS['I18N']->get('Is this attribute required?').': </td><td><input type="checkbox" name="required['.$row["id"].']" value="1" ';
+  print '</div>';
+  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Default Value').':</label> </div>
+  <div class="field"><input type="text" name="default['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["default_value"])).'" size="40" /></div>';
+  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Order of Listing').':</label> </div>
+  <div class="field"><input type="text" name="listorder['.$row["id"].']" value="'.$row["listorder"].'" size="5" /></div>';
+  print '<div class="label check"><label>'.$GLOBALS['I18N']->get('Is this attribute required ?').'<input type="checkbox" name="required['.$row["id"].']" value="1" ';
   print $row["required"] ? 'checked="checked"': '';
-  print  '/></td></tr>';
-  print '</table><hr/>';
+  print  '/></label></div>';
+  print '</div>';
  } 
  printf('<input class ="submit" type="submit" name="action" value="%s" />',$GLOBALS['I18N']->get('Save Changes'));
 
@@ -387,20 +392,23 @@ if ($c) {
 print '<div id="new-attribute">
 <a name="new"></a>
 <h3>'.$GLOBALS['I18N']->get('Add new Attribute').':</h3>
-<table class="attributesNew" border="1">
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('Name').': </td><td colspan="2"><input type="text" name="name[0]" value="" size="40" /></td></tr>
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('Type').': </td><td colspan="2"><select name="type[0]">';
+<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Name').': </label></div>
+<div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
+<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Type').': </label></div>
+<div class="field"><select name="type[0]">';
 foreach($types as $key => $val) {
   printf('     <option value="%s" %s>%s</option>',$val,"",$GLOBALS['I18N']->get($val));
 }
 print'
-</select></td></tr>
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('Default Value').': </td><td colspan="2"><input type="text" name="default[0]" value="" size="40" /></td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Order of Listing').': </td><td><input type="text" name="listorder[0]" value="" size="5" /></td>
-<td>'.$GLOBALS['I18N']->get('Is this attribute required?').': </td><td><input type="checkbox" name="required[0]" value="1" checked="checked" /></td></tr>
-</table><hr/>
+</select></div>
+<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Default Value').': </label></div>
+<div class="field"><input type="text" name="default[0]" value="" size="40" /></div>
+<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Order of Listing').': </label></div>
+<div class="field"><input type="text" name="listorder[0]" value="" size="5" /></div>
+<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Is this attribute required?').': </label></div>
+<div class="field"><input type="checkbox" name="required[0]" value="1" checked="checked" /></div>
 
-<input class="submit" type="submit" name="action" value="'.$GLOBALS['I18N']->get('Save Changes').'" />
+<div class="field"><input class="submit" type="submit" name="action" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></div>
 </div>
 </form>
 </div></div>
