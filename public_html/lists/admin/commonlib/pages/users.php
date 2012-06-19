@@ -263,7 +263,7 @@ if (!isset ($start)) {
   $start = 0;
 }
 
-$filterpanel .= '<table><tr><td valign="top">';
+$filterpanel .= '<div class="filter">';
 $filterpanel .= sprintf('<form method="get" name="listcontrol" action="">
   <input type="hidden" name="page" value="users" />
   <input type="hidden" name="start" value="%d" />
@@ -303,7 +303,7 @@ $filterpanel .= sprintf('
        $GLOBALS['I18N']->get('desc'), $sortorder == "desc" ? 'checked="checked"' : '', 
        $GLOBALS['I18N']->get('asc'), $sortorder == "asc" ? 'checked="checked"' : '', 
        $GLOBALS['I18N']->get('Go'));
-$filterpanel .= '</td></tr></table>';
+$filterpanel .= '</div>';
 
 $order = '';
 if ($sortby) {
@@ -356,8 +356,8 @@ if ($total > MAX_USER_PP) {
 }
 
 $filterpanel .= '
-<table class="usersFind" border="1">
-<tr><td colspan="4"><input type="hidden" name="id" value="'.$listid.'" />';
+<div class="usersFind">
+<input type="hidden" name="id" value="'.$listid.'" />';
 
 $filterpanel .= '<label for="find">'.$GLOBALS['I18N']->get('Find a user').'</label>';
 $filterpanel .= '<input type="text" name="find" value="';
@@ -379,9 +379,9 @@ while ($row = Sql_Fetch_Array($att_req)) {
 }
 
 $filterpanel .= '</select><input class="submit" type="submit" value="Go" />&nbsp;&nbsp;<a href="./?page=users&amp;find=NULL" class="reset">'. $GLOBALS['I18N']->get('reset').'</a>';
-$filterpanel .= '</form></td></tr>';
-$filterpanel .= '<tr><td colspan="4"></td></tr>
-</table>';
+$filterpanel .= '</form></div>';
+//$filterpanel .= '<tr><td colspan="4"></td></tr>
+//</table>';
 
 print Info($countpanel);
 
