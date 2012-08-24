@@ -337,9 +337,10 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
         Sql_Query(sprintf('alter table %s add column requeueuntil datetime',$tables['message']));
       }
       if ($minor < 11 || ($minor == 11 && $sub < 7)) {
+        Sql_Create_Table($tables["admin_password_request"],$DBstruct["admin_password_request"],1);
         Sql_Create_Table($tables["admintoken"],$DBstruct["admintoken"],1);
         Sql_Create_Table($tables["i18n"],$DBstruct["i18n"],1);
-        Sql_Create_Table($tables["gchartcache"],$DBstruct["gchartcache"],1);
+#        Sql_Create_Table($tables["gchartcache"],$DBstruct["gchartcache"],1); ## really need this?
       }
       break;
   }
@@ -354,6 +355,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   if (Sql_Table_Column_Exists($GLOBALS['tables']['message'],'repeat')) {
     Sql_Query(sprintf('alter ignore table %s change column repeat repeatinterval integer default 0',$GLOBALS['tables']['message']));
   }
+  
   # check whether it worked and otherwise throw an error to say it needs to be done manually
   if (Sql_Table_Column_Exists($GLOBALS['tables']['message'],'repeat')) {
     print 'Error, unable to rename column "repeat" in the table '.$GLOBALS['tables']['message'].' to be "repeatinterval"<br/>
@@ -367,6 +369,9 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   # update the system pages
   include_once dirname(__FILE__).'/defaultconfig.inc';
+
+  /* the task table can be ignored now
+
   $reverse_accesscodes = array_flip($GLOBALS['access_levels']);
   foreach ($system_pages as $type => $pages) {
     foreach ($pages as $page => $default) {
@@ -380,48 +385,58 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
       }
     }
   }
+  
+  
   # correct some strange access entries that have sneaked in
   $req = Sql_Query(sprintf('select id from %s where page = "all" or page = "none"',$GLOBALS['tables']['task']));
   while ($row = Sql_Fetch_Row($req)) {
     Sql_Query(sprintf('delete from %s where taskid = %d',$GLOBALS['tables']['admin_task'],$row[0]));
   }
   Sql_Query(sprintf('delete from %s where page = "all" or page = "none"',$GLOBALS['tables']['task']));
+  */
 
-  ## convert to UTF8
-  $dbname = $GLOBALS["database_name"];
-  if (!empty($dbname)) {
-    ## the conversion complains about a key length
-    Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
+  ## remember whether we've done this, to avoid doing it every time
+  ## even thought that's not such a big deal
+  $isUTF8 = getConfig('UTF8converted');
 
-    Sql_Query('use information_schema');
-    $req = Sql_Query('select * from columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
+  if (empty($isUTF8)) {
+    ## convert to UTF8
+    $dbname = $GLOBALS["database_name"];
+    if (!empty($dbname)) {
+      ## the conversion complains about a key length
+      Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
 
-    $dbcolumns = array();
-    $dbtables = array();
-    while ($row = Sql_Fetch_Assoc($req)) {
-      ## make sure to only change our own tables, in case we share with other applications
-      if (in_array($row['TABLE_NAME'],array_values($GLOBALS['tables']))) {
-        $dbcolumns[] = $row;
-        $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
+      Sql_Query('use information_schema');
+      $req = Sql_Query('select * from columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
+
+      $dbcolumns = array();
+      $dbtables = array();
+      while ($row = Sql_Fetch_Assoc($req)) {
+        ## make sure to only change our own tables, in case we share with other applications
+        if (in_array($row['TABLE_NAME'],array_values($GLOBALS['tables']))) {
+          $dbcolumns[] = $row;
+          $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
+        }
       }
-    }
 
-    Sql_Query('use '.$dbname);
+      Sql_Query('use '.$dbname);
 
-    output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait').'<br/>');
-    foreach ($dbtables as $dbtable) {
-      set_time_limit(600);
-      output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable.'<br/>');
-      Sql_Verbose_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
-    }
+      output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait').'<br/>');
+      foreach ($dbtables as $dbtable) {
+        set_time_limit(600);
+        output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable.'<br/>');
+        Sql_Verbose_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
+      }
 
-    foreach ($dbcolumns as $dbcolumn) {
-      set_time_limit(600);
-      output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME'].'<br/>');
-      Sql_Query(sprintf('alter table %s change column %s %s %s default character set utf8',
-        $dbcolumn['TABLE_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_TYPE']),1);
+      foreach ($dbcolumns as $dbcolumn) {
+        set_time_limit(600);
+        output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME'].'<br/>');
+        Sql_Query(sprintf('alter table %s change column %s %s %s default character set utf8',
+          $dbcolumn['TABLE_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_TYPE']),1);
+      }
+      output($GLOBALS['I18N']->get('upgrade to UTF-8, done').'<br/>');
     }
-    output($GLOBALS['I18N']->get('upgrade to UTF-8, done').'<br/>');
+    saveConfig('UTF8converted',date('Y-m-d H:i'),0);
   }
 
   ## 2.11.7 and up

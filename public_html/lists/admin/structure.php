@@ -375,13 +375,13 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
          "content" => array("mediumtext",""),
          "index_1" => array("urlindex (url)",""),
       ),
-      "gchartcache" => array(
-         "url" => array("text not null",""),
-         "lastmodified" => array("timestamp",""),
-         "added" => array("datetime",""),
-         "content" => array("blob",""),
-         "index_1" => array("urlindex (url (1000))",""),
-      ),
+      //"gchartcache" => array(
+         //"url" => array("text not null",""),
+         //"lastmodified" => array("timestamp",""),
+         //"added" => array("datetime",""),
+         //"content" => array("blob",""),
+         //"index_1" => array("urlindex (url (1000))",""),
+      //),
       # obsoleted table, but may still contain data
   
       ## keep it in for now, but could be dropped at some point
