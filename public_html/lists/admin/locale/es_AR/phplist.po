@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-02 16:06-0300\n"
-"PO-Revision-Date: 2012-06-08 19:44+0200\n"
-"Last-Translator: Manuel <manuel@minombre.es>\n"
+"PO-Revision-Date: 2012-06-20 22:18+0200\n"
+"Last-Translator: Leonardo A. <leonardo+phplist@libertum.com.ar>\n"
 "Language-Team: phpList <info@phplist.com>\n"
-"Language: \n"
+"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -882,6 +882,7 @@ msgid "Made subscriber %s unconfirmed"
 msgstr "Convertir al suscrito %s en no confirmado"
 
 #: public_html/lists/admin/bounce.php:69
+#, php-format
 #, php-format, fuzzy
 msgid "Made subscriber %d to receive text"
 msgstr "Hacer que el suscrito %s reciba texto plano"
@@ -2452,8 +2453,9 @@ msgid "All draft campaigns deleted"
 msgstr ""
 
 #: public_html/lists/admin/send.php:82
+#, fuzzy
 msgid "campaigns deleted"
-msgstr ""
+msgstr "campaña añadida de nuevo a la cola"
 
 #: public_html/lists/admin/send.php:85
 #, fuzzy
@@ -3065,6 +3067,7 @@ msgstr "muy poco tiempo"
 
 #: public_html/lists/admin/lib.php:635
 #: public_html/lists/admin/lib.php:636
+#, php-format
 #, php-format, fuzzy
 msgid "A process for this page is already running and it was still alive %s seconds ago"
 msgstr ""
@@ -6122,7 +6125,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins2/keymanager.php:119
 msgid "No emails capable of signing"
-msgstr ""
+msgstr "No hay emails con capacidad de firmar"
 
 #: public_html/lists/admin/plugins2/keymanager.php:131
 msgid "No emails capable of encrypting"
@@ -6385,7 +6388,7 @@ msgstr ""
 
 #: public_html/lists/admin/ui/ph/pages/dashboard.php:89
 msgid "Hide forever"
-msgstr ""
+msgstr "Ocultar siempre"
 
 #~ msgid "seconds ago"
 #~ msgstr "segundos atrás"
