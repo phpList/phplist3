@@ -135,6 +135,9 @@ if (!$xormask) {
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
+// set session name, without revealing version
+// but with version included, so that upgrading works more smoothly
+ini_set('session.name','phpList'.VERSION | $xormask);
 
 //obsolete, moved to rssmanager plugin
 //$GLOBALS['rssfrequencies'] = array(
@@ -183,9 +186,9 @@ if (DEVVERSION)
 else
   $v = VERSION;
 if (REGISTER) {
-  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website" ><img src="http://powered.phplist.com/images/'.$v.'/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList'.$v.', &copy; phpList ltd" border="0" /></a></p>';
+  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website" ><img src="http://powered.phplist.com/images/'.$v.'/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0" /></a></p>';
 } else {
-  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website"><img src="images/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList'.$v.', &copy; phpList ltd" border="0"/></a></p>';
+  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website"><img src="images/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0"/></a></p>';
 }
 $PoweredByText = '<div style="clear: both; font-family: arial, verdana, sans-serif; font-size: 8px; font-variant: small-caps; font-weight: normal; padding: 2px; padding-left:10px;padding-top:20px;">powered by <a href="http://www.phplist.com" target="_blank">phplist</a> v ' . $v . ', &copy; <a href="http://www.phplist.com/poweredby" target="_blank">phpList ltd</a></div>';
 
@@ -1097,15 +1100,15 @@ function ListofLists($current,$fieldname,$subselect) {
 function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
   $categoryhtml = ListofLists($current,$fieldname,$subselect);
 
- # var_dump($categoryhtml);
+#  var_dump($categoryhtml);
   $tabno = 1;
   $listindex = $listhtml = '';
   $some = sizeof($categoryhtml);
   
-  if (!empty($alltab) && $some > 1) {
-    unset($categoryhtml['all']);
+  if (!empty($alltab)) {#&& $some > 1) {
+ #   unset($categoryhtml['all']);
     ### @@@TODO this has a weird effect when categories are numbers only eg years, because PHP renumbers them to 0,1,2
-    array_unshift($categoryhtml,$alltab);
+ #   array_unshift($categoryhtml,$alltab);
   }
   
   if ($some) {
@@ -1119,6 +1122,7 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
     }
   }
 
+#var_dump($listindex);
   $html = '<div class="tabbed"><ul>'.$listindex.'</ul>';
   $html .= $listhtml;
   $html .= '</div>'; ## close tabbed
