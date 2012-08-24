@@ -121,7 +121,12 @@ print "<br/>";
 print '<p class="details">'.$GLOBALS['I18N']->get('Admin Details').':</p>'.formStart(' class="adminAdd"');
 printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">',$id);
 
-$privileges = unserialize($data['privileges']);
+if (isset($data['privileges'])) {
+  $privileges = unserialize($data['privileges']);
+} else {
+  $privileges = array( 
+  );
+}
 
 reset($struct);
 while (list ($key,$val) = each ($struct)) {
