@@ -81,7 +81,11 @@ class admin_auth {
 
     $query = sprintf($query, $GLOBALS['tables']['admin']);
     $req = Sql_Query_Params($query, array($id),1);
-    $data = Sql_Fetch_Row($req);
+    if ($req) {
+      $data = Sql_Fetch_Row($req);
+    } else {
+      $data = array();
+    }
     
     if (!empty($data[0])) {
       $_SESSION['privileges'] = unserialize($data[0]);
