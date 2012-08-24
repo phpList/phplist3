@@ -31,9 +31,9 @@ switch ($access) {
 }
 
 if ($access != "all") {
-  $delete_message =$GLOBALS['I18N']->get('Delete will delete user from the list');
+  $delete_message =$GLOBALS['I18N']->get('Delete will remove subscriber from the list');
 } else {
-  $delete_message = $GLOBALS['I18N']->get('Delete will delete user and all listmemberships');
+  $delete_message = $GLOBALS['I18N']->get('Delete will remove subscriber from the system');
 }
 
 $usegroups = Sql_Table_exists("groups") && Sql_Table_exists('user_group');
@@ -42,7 +42,7 @@ $error_exist= 0;
 
 if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
   if (!verifyToken()) {
-    print Error($GLOBALS['I18N']->get('No Access'));
+    print Error($GLOBALS['I18N']->get('Invalid security token, please reload the page and try again'));
     return;
   }
   if (isset($_POST['email'])) {
@@ -52,10 +52,12 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
     $email = '';
   }
 
+/*
   if (empty($_POST['password']) && !$id) {
     print $GLOBALS['I18N']->get('Error adding empty password, please check that the password is complete');
     $error_exist = 1;
   }
+*/
 
   if (!$error_exist){
      if (!$id) {
@@ -64,7 +66,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      }
    
      if (!$id) {
-       print $GLOBALS['I18N']->get('Error adding user, please check that the user exists');
+       print $GLOBALS['I18N']->get('Error adding subscriber, please check that the subscriber exists');
        $error_exist = 1;
        //return;
      }
@@ -209,9 +211,9 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      if (isset($_POST["subscribe"]) && is_array($_POST["subscribe"])) {
        foreach ($_POST["subscribe"] as $ind => $lst) {
          Sql_Query("insert into {$tables["listuser"]} (userid,listid) values($id,$lst)");
-         $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('User added to list %s'),ListName($lst));
+         $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'),ListName($lst));
        }
-       print "<br/>";
+       $feedback .= "<br/>";
      }
      $history_entry = '';
      $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["user"],$id));
@@ -225,7 +227,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
         }
      }
      if (!$history_entry) {
-       $history_entry = "\nNo userdata changed";
+       $history_entry = "\nNo data changed";
      }
 
      # check lists
@@ -291,7 +293,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      $delgrouptype = sprintf('%d',$_GET['deltype']);
      if (!empty($delgroup)) {# && !empty($delgrouptype)) {
        Sql_Query(sprintf('delete from user_group where userid = %d and groupid = %d and type = %d',$id,$delgroup,$delgrouptype));
-       print "<br/>".$GLOBALS['I18N']->get('User removed from group').' '.groupName($delgroup).' ';
+       print "<br/>".$GLOBALS['I18N']->get('Subscriber removed from group').' '.groupName($delgroup).' ';
        print PageLink2('user&amp;id='.$id,$GLOBALS['I18N']->get('Continue'));
        return;
      }
@@ -302,10 +304,10 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
 $membership = "";
 $subscribed = array();
 if ($id) {
-  $result = Sql_query("SELECT * FROM {$tables["user"]} where id = $id");
+  $result = Sql_query(sprintf('select * from %s where id = %d', $tables["user"],$id));
 
   if (!Sql_Affected_Rows()) {
-    Fatal_Error($GLOBALS['I18N']->get('No such User').' '.$id);
+    Fatal_Error($GLOBALS['I18N']->get('No such subscriber'));
     return;
   }
 
@@ -334,21 +336,11 @@ if ($id) {
   }
 
   if ($access != "view")
-  printf("<a class=\"delete button\" href=\"javascript:deleteRec('%s');\">delete</a> %s<h3>%s</h3>",
+  printf(" <a class=\"delete button\" href=\"javascript:deleteRec('%s');\">delete</a> %s<h3>%s</h3>",
          PageURL2("user","","delete=$id&amp;$returnurl"),$delete_message,$user["email"]);
 
   print '</div>';
-}
-else {
-  $database_name = $GLOBALS["db_config"]["database_name"];
-
-  $result = Sql_query("SELECT COLUMN_NAME
-                         FROM information_schema.COLUMNS
-                        WHERE TABLE_SCHEMA LIKE '$database_name' AND TABLE_NAME = '{$tables["user"]}'");
-
-  while($row = Sql_Fetch_Array($result)){
-     $user[$row[0]] = $_POST[$row[0]];
-  }
+} else {
 
   if (!empty($_POST["subscribe"])){
      foreach($_POST["subscribe"] AS $idx => $listid){
@@ -357,10 +349,10 @@ else {
   }
 
   $id = 0;
-  print '<h3>'.$GLOBALS['I18N']->get('Add a new User').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Add a new subscriber').'</h3>';
 }
 
-  print '<h3>'.$GLOBALS['I18N']->get('User Details')."</h3>".formStart('enctype="multipart/form-data"');
+  print '<h3>'.$GLOBALS['I18N']->get('Subscriber details')."</h3>".formStart('enctype="multipart/form-data"');
   if ( empty ($list) ) { $list = ''; }
   print '<input type="hidden" name="list" value="'.$list.'" /><input type="hidden" name="id" value="'.$id.'" />';
   if ( empty ($returnpage) ) { $returnpage = ''; }
@@ -408,14 +400,13 @@ else {
     $res = Sql_Query("select * from $tables[attribute] order by listorder");
 
     while ($row = Sql_fetch_array($res)) {
-      if (!empty($id)){
+      if (!empty($id)) {
          $val_req = Sql_Fetch_Row_Query("select value from $tables[user_attribute] where userid = $id and attributeid = $row[id]");
          $row["value"] = $val_req[0];
-      }
-      else{
-         if (!empty($_POST["attribute"][$row["id"]])){
-            $row["value"] = $_POST["attribute"][$row["id"]];
-         }
+      } elseif (!empty($_POST["attribute"][$row["id"]])) {
+         $row["value"] = $_POST["attribute"][$row["id"]];
+      } else {
+        $row['value'] = '';
       }
 
       if ($row["type"] == "date") {
@@ -456,10 +447,10 @@ else {
   $userdetailsHTML .= '</table>';
 
   if (isBlackListed($user["email"])) {
-     $userdetailsHTML .= '<h3>'.$GLOBALS['I18N']->get('User is blacklisted. No emails will be sent to this user').'</h3>';
+     $userdetailsHTML .= '<h3>'.$GLOBALS['I18N']->get('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
   }
 
-  $mailinglistsHTML .= "<h3>".$GLOBALS['I18N']->get('Mailinglist Membership').":</h3>";
+  $mailinglistsHTML .= "<h3>".$GLOBALS['I18N']->get('Mailinglist membership').":</h3>";
   $mailinglistsHTML .= '<table class="userListing" border="1"><tr>';
   $req = Sql_Query("select * from {$tables["list"]} $subselect_where order by listorder,name");
   $c = 0;
@@ -487,7 +478,7 @@ else {
     $groupsHTML  .= "<h3>".$GLOBALS['I18N']->get('Group Membership').":</h3>";
     $groupsHTML  .= '<table class="userGroup" border="1">';
     $groupsHTML  .= '<tr><td colspan="2"><hr width="50%" /></td></tr>
-  <tr><td colspan="2">'.$GLOBALS['I18N']->get('Please select the groups this user is a member of').'</td></tr>
+  <tr><td colspan="2">'.$GLOBALS['I18N']->get('Please select the groups this subscriber is a member of').'</td></tr>
   <tr><td colspan="2">';
     
     if (empty($GLOBALS['config']['usergroup_types'])) {
@@ -562,7 +553,7 @@ else {
 
     $groupsHTML  .= '</td></tr>';
     if ($access != "view")
-      $groupsHTML  .= '<tr><td><input type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+      $groupsHTML  .= '<tr><td><input type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save changes').'" /></td></tr>';
     $groupsHTML  .= '</table>';
   }
 
