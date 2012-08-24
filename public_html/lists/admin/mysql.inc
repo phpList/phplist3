@@ -327,7 +327,7 @@ function Sql_create_Table ($table,$structure) {
   $query = substr($query,0,-1);
   $query .= "\n) default character set utf8";
   # submit it to the database
-  $res = Sql_Query($query);
+  $res = Sql_Query($query,1);
   unset($_SESSION["dbtables"]);
 }
 
