@@ -198,7 +198,7 @@ function Sql_Query_Params($query,$params,$ignore = 0) {
 
 #  dbg($query);
 #  print $query."<br/>";
-  return Sql_Query($query);
+  return Sql_Query($query,$ignore);
 }
 
 function sqllog($msg,$logfile = "") {
