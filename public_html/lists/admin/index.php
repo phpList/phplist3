@@ -390,7 +390,10 @@ if (!$ajax && $page != "login") {
     Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
 
-  if (MANUALLY_PROCESS_QUEUE && (!isset($_GET['page']) || ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages'))) {
+  if (MANUALLY_PROCESS_QUEUE && 
+    ## hmm, how many more pages to not show this?
+    (!isset($_GET['page']) || 
+    ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))) {
     $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
     if ($queued_count[0]) {
       $link = PageLinkButton('processqueue',s('Process the queue'));
