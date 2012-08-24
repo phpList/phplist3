@@ -6,7 +6,7 @@ class admin_auth {
 
   function validateLogin($login,$password) {
     $query
-    = ' select password, disabled, id, privileges'
+    = ' select password, disabled, id'
     . ' from %s'
     . ' where loginname = ?';
     $query = sprintf($query, $GLOBALS['tables']['admin']);
@@ -26,7 +26,7 @@ class admin_auth {
     	$encryptedPassDB = $passwordDB;
 	  }
     if ($admindata["disabled"]) {
-      return array(0,"your account has been disabled");
+      return array(0,s("your account has been disabled"));
     } elseif (#Password validation.
       (ENCRYPT_ADMIN_PASSWORDS && $passwordDB && $encryptedPass == $encryptedPassDB) ||
    	  (!ENCRYPT_ADMIN_PASSWORDS && $passwordDB && $password == $passwordDB)) {
@@ -48,21 +48,44 @@ class admin_auth {
   }
 
   function validateAccount($id) {
+    /* can only do this after upgrade, which means
+     * that the first login will always fail
     $query
     = ' select id, disabled,password,privileges'
     . ' from %s'
     . ' where id = ?';
+    */
+    
+    $query
+    = ' select id, disabled,password'
+    . ' from %s'
+    . ' where id = ?';
+
     $query = sprintf($query, $GLOBALS['tables']['admin']);
     $req = Sql_Query_Params($query, array($id));
     $data = Sql_Fetch_Row($req);
     if (!$data[0]) {
-      return array(0,"No such account");
+      return array(0,s("No such account"));
     } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION["logindetails"]["passhash"]) {
-      return array(0,"Your session does not match your password.  If you just changed your password, simply log back in.");
+      return array(0,s("Your session does not match your password.  If you just changed your password, simply log back in."));
     } elseif ($data[1]) {
-      return array(0,"your account has been disabled");
+      return array(0,s("your account has been disabled"));
     }
-    $_SESSION['privileges'] = unserialize($data[3]);
+    
+    ## do this seperately from above, to avoid lock out when the DB hasn't been upgraded.
+    ## so, ignore the error
+    $query
+    = ' select privileges'
+    . ' from %s'
+    . ' where id = ?';
+
+    $query = sprintf($query, $GLOBALS['tables']['admin']);
+    $req = Sql_Query_Params($query, array($id),1);
+    $data = Sql_Fetch_Row($req);
+    
+    if (!empty($data[0])) {
+      $_SESSION['privileges'] = unserialize($data[0]);
+    }
     return array(1,"OK");
   }
 
