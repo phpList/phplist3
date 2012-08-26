@@ -394,13 +394,16 @@ if (!$ajax && $page != "login") {
     ## hmm, how many more pages to not show this?
     (!isset($_GET['page']) || 
     ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))) {
-    $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
-    if ($queued_count[0]) {
-      $link = PageLinkButton('processqueue',s('Process the queue'));
-      $link2 = PageLinkButton('messages&amp;tab=active',s('View the queue'));
-      if ($link || $link2) {
-        print Info(sprintf(s('You have %s message(s) waiting to be sent'),$queued_count[0]).'<br/>'.$link.' '.$link2);
-      }
+      ## avoid error on uninitialised DB
+      if (Sql_Table_exists('message')) {
+        $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
+        if ($queued_count[0]) {
+          $link = PageLinkButton('processqueue',s('Process the queue'));
+          $link2 = PageLinkButton('messages&amp;tab=active',s('View the queue'));
+          if ($link || $link2) {
+            print Info(sprintf(s('You have %s message(s) waiting to be sent'),$queued_count[0]).'<br/>'.$link.' '.$link2);
+          }
+        }
     }
   }
   
