@@ -656,8 +656,10 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
 
   ## remove any remaining placeholders
-  $htmlmessage = preg_replace("/\[[A-Z\. ]+\]/i","",$htmlmessage);
-  $textmessage = preg_replace("/\[[A-Z\. ]+\]/i","",$textmessage);
+  ## 16671 - do not do this, as it'll remove conditional CSS and other stuff
+  ## that we'd like to keep
+  //$htmlmessage = preg_replace("/\[[A-Z\. ]+\]/i","",$htmlmessage);
+  //$textmessage = preg_replace("/\[[A-Z\. ]+\]/i","",$textmessage);
 #  print htmlspecialchars($htmlmessage);exit;
 
   # check that the HTML message as proper <head> </head> and <body> </body> tags
