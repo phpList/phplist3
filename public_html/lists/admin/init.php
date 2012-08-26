@@ -36,13 +36,21 @@ $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 # http://www.hardened-php.net/globals-problem
 $GLOBALS['language_module'] = $language_module;
 $GLOBALS['database_module'] = $database_module;
+
+/* this can probably go */
 if (isset($GLOBALS['design'])) {
   $GLOBALS['ui'] = $GLOBALS['design'];
 #@todo 
 #  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
+
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
-  $GLOBALS['ui'] = 'orange';
+  ## prefer lite over orange
+  if (is_dir(dirname(__FILE__).'/ui/lite')) {
+    $GLOBALS['ui'] = 'lite';
+  } else {
+    $GLOBALS['ui'] = 'orange';
+  }
 }
 $GLOBALS['adodb_inc_file'] = $adodb_inc_file;
 $GLOBALS['show_dev_errors'] = $show_dev_errors;
@@ -163,7 +171,7 @@ if (!defined('CHECK_REFERRER')) define('CHECK_REFERRER',true);
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/phpmailer/class.phpmailer.php');
 if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
 if (!defined('DB_TRANSLATION')) define('DB_TRANSLATION',0);
-if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',10); ## how many campaigns to work on at the same time
+if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',1); ## how many campaigns to work on at the same time
 if (!defined('ALLOW_DELETEBOUNCE')) define('ALLOW_DELETEBOUNCE',1);
 if (!defined('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD')) define('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD',120);
 if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLETIME',600);
