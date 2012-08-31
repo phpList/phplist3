@@ -1,16 +1,6 @@
 <?php
 
-if (is_file(dirname(__FILE__) .'/../../../VERSION')) {
-  $fd = fopen (dirname(__FILE__) .'/../../../VERSION', "r");
-  while ($line = fscanf ($fd, "%[a-zA-Z0-9,. ]=%[a-zA-Z0-9,. ]")) {
-    list ($key, $val) = $line;
-    if ($key == "VERSION")
-      $version = $val;
-  }
-  fclose($fd);
-} else {
-  $version = "dev";
-}
+if (is_file(dirname(__FILE__) .'/../../../VERSION')) { $fd = fopen (dirname(__FILE__) .'/../../../VERSION', "r"); while ($line = fscanf ($fd, "%[a-zA-Z0-9,. ]=%[a-zA-Z0-9,. ]")) { list ($key, $val) = $line; if ($key == "VERSION") $version = $val; } fclose($fd); } else { $version = "dev";} // ### remove on rollout ###
 
 define("CODEREVISION",'$Rev$');
 if (preg_match('/Rev: (\d+)/','$Rev$',$match)) {
@@ -26,7 +16,7 @@ if (!defined('VERSION')) {
     define('DEVVERSION',false);
   }
 } else {
-  define('DEVVERSION',false);
+  define(   'DEVVERSION'    ,false);
 }
 
 require_once dirname(__FILE__)."/commonlib/lib/userlib.php";
