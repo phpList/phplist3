@@ -31,6 +31,7 @@ $GLOBALS['disallowpages'] = array(
 'subscribelib2',
 );
 
+if (!empty($_SESSION['logindetails']['superuser'])) return;
 
 if (!empty($_SESSION['privileges'])) {
   $removeSections = array('system','plugins','develop');
