@@ -45,9 +45,9 @@ if (isset($GLOBALS['design'])) {
 }
 
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
-  ## prefer lite over orange
-  if (is_dir(dirname(__FILE__).'/ui/lite')) {
-    $GLOBALS['ui'] = 'lite';
+  ## prefer dressprow over orange
+  if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
+    $GLOBALS['ui'] = 'dressprow';
   } else {
     $GLOBALS['ui'] = 'orange';
   }
