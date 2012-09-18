@@ -403,11 +403,23 @@ if ($result)
   while ($user = Sql_fetch_array($result)) {
     $some = 1;
     $ls->addElement($user["email"], PageURL2("user&amp;start=$start&amp;id=" . $user["id"] . $find_url));
-    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $user["confirmed"] ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
-    if (in_array("blacklist", $columns)) {
+    
+    ## we make one column with the subscriber status being "on" or "off"
+    ## two columns are too confusing and really unnecessary
+    # ON = confirmed &&  !blacklisted
+    
+#    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $user["confirmed"] ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
+ #   if (in_array("blacklist", $columns)) {
       $onblacklist = isBlackListed($user["email"]);
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('bl l'), $onblacklist ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
+  #    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('bl l'), $onblacklist ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
+  #  }
+  
+    if ($user['confirmed'] && !$onblacklist) {
+      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $GLOBALS["img_tick"]);
+    } else {
+      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $GLOBALS["img_cross"]);
     }
+  
 #    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('del'), sprintf('<a href="%s" onclick="return deleteRec(\'%s\');">del</a>',PageUrl2('users'.$find_url), PageURL2("users&start=$start&delete=" .$user["id"])));
     if (isSuperUser()) {
       $ls->addColumn($user["email"], $GLOBALS['I18N']->get('del'), sprintf('<a href="javascript:deleteRec(\'%s\');" class="del">del</a>',
