@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-24 15:39-0300\n"
-"PO-Revision-Date: 2012-08-24 23:43+0200\n"
-"Last-Translator: Michiel <michiel@phplist.com>\n"
+"PO-Revision-Date: 2012-09-25 12:02+0200\n"
+"Last-Translator: HvD <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -29,16 +29,17 @@ msgstr ""
 
 #: public_html/lists/admin/upgrade.php:38
 msgid "Your database version"
-msgstr "Jouw database versie"
+msgstr "De huidige database versie"
 
 #: public_html/lists/admin/upgrade.php:40
 msgid "Your database is already the correct version, there is no need to upgrade"
 msgstr ""
-"Je database heeft je juiste versie, er is geen reden om een upgrade te doen"
+"De database heeft de juiste versie, er is geen reden om een upgrade uit te "
+"voeren"
 
 #: public_html/lists/admin/upgrade.php:64
 msgid "Please wait, upgrading your database, do not interrupt"
-msgstr "Wacht aub, bezig met upgraden van de database, onderbreek dit niet"
+msgstr "Bezig met upgraden van de database, onderbreek dit niet"
 
 #: public_html/lists/admin/upgrade.php:424
 msgid "Upgrading the database to use UTF-8, please wait"
@@ -58,7 +59,7 @@ msgstr "Upgrade naar UTF-8 is klaar"
 
 #: public_html/lists/admin/upgrade.php:459
 msgid "Upgrade successful"
-msgstr "Succes met upgrade"
+msgstr "Upgrade voltooid"
 
 #: public_html/lists/admin/upgrade.php:465
 msgid "Upgrade failed"
@@ -66,31 +67,31 @@ msgstr "Upgrade mislukt"
 
 #: public_html/lists/admin/login.php:5
 msgid "default login is"
-msgstr "Standaard login is"
+msgstr "De standaard login is"
 
 #: public_html/lists/admin/login.php:5
 msgid "with password"
-msgstr "Met wachtwoord"
+msgstr "met als wachtwoord"
 
 #: public_html/lists/admin/login.php:25
 msgid "In order to login, you need to enable cookies in your browser"
-msgstr "Om in te loggen moet je cookies accepteren in je browser"
+msgstr "Om in te loggen moet jouw browser cookies accepteren"
 
 #: public_html/lists/admin/login.php:33
 msgid "Forgot password"
-msgstr "Wachtwoord vergeten?"
+msgstr "Wachtwoord vergeten"
 
 #: public_html/lists/admin/login.php:34
 msgid "Enter your email address"
-msgstr "Voer je email adres in"
+msgstr "vul je email adres in"
 
 #: public_html/lists/admin/login.php:35
 msgid "Send password"
-msgstr "Verzend Wachtwoord"
+msgstr "Verzend wachtwoord"
 
 #: public_html/lists/admin/login.php:67
 msgid "Your password was changed succesfully"
-msgstr "Wachtwoord verandering succesvol"
+msgstr "Jouw wachtwoord is gewijzigd"
 
 #: public_html/lists/admin/login.php:68
 #: public_html/lists/admin/login.php:96
@@ -105,11 +106,11 @@ msgstr "De wachtwoorden komen niet overeen"
 
 #: public_html/lists/admin/login.php:85
 msgid "You have requested a password update"
-msgstr "Je hebt een wachtwoord verandering aangevraagd"
+msgstr "Je hebt een wijziging van het wachtwoord aangevraagd"
 
 #: public_html/lists/admin/login.php:92
 msgid "New password"
-msgstr "Nieuwe wachtwoord"
+msgstr "Nieuw wachtwoord"
 
 #: public_html/lists/admin/login.php:94
 msgid "Confirm password"
@@ -702,7 +703,7 @@ msgstr "Sjabloon bevat geen locale afbeeldingen"
 
 #: public_html/lists/admin/template.php:181
 msgid "Some errors were found, template NOT saved!"
-msgstr "Er werden enkele fouten gevonden, sjabloon NIET opgeslagen!"
+msgstr "Er werden enkele fouten gevonden, de sjabloon is NIET opgeslagen!"
 
 #: public_html/lists/admin/template.php:190
 msgid "Sending test"
@@ -2341,7 +2342,6 @@ msgid "Resend"
 msgstr "Verstuur opnieuw"
 
 #: public_html/lists/admin/subscribelib2.php:103
-#, fuzzy
 msgid ""
 "\n"
 "-------------------------------------------------------------------------------- \n"
@@ -2764,13 +2764,13 @@ msgstr "Incorrect veiligheids token. Herlaad de pagina, en probeer opnieuw."
 
 #: public_html/lists/admin/export.php:91
 #, php-format
-#, php-format, fuzzy
+#, php-format, 
 msgid "phpList Export on %s from %s to %s (%s).csv"
 msgstr "phpList abonnees %s van %s tot %s (%s).csv"
 
 #: public_html/lists/admin/export.php:93
 #, php-format
-#, php-format, fuzzy
+#, php-format, 
 msgid "phpList Export from %s to %s (%s).csv"
 msgstr "phpList abonnees van %s tot %s (%s).csv"
 
@@ -2789,7 +2789,7 @@ msgstr "Welke datum moet worden gebruikt:"
 
 #: public_html/lists/admin/export.php:206
 msgid "Any date"
-msgstr ""
+msgstr "Alle data"
 
 #: public_html/lists/admin/export.php:207
 msgid "When they signed up"
@@ -4042,15 +4042,15 @@ msgstr "Je hebt verkeerde karakters gebruikt in het veld voor zender"
 
 #: public_html/lists/admin/send_core.php:407
 msgid "Please enter a from line."
-msgstr "Zender veld is leeg"
+msgstr "Afzender invullen ajb"
 
 #: public_html/lists/admin/send_core.php:409
 msgid "Please enter a message"
-msgstr "Bericht is leeg"
+msgstr "Een bericht invullen ajb"
 
 #: public_html/lists/admin/send_core.php:411
 msgid "Please enter a subject"
-msgstr "Onderwerp veld is leeg"
+msgstr "Een onderwerp invullen ajb"
 
 #: public_html/lists/admin/send_core.php:413
 msgid "Error: you can use an attribute in one rule only"
@@ -4066,7 +4066,7 @@ msgstr "Geen doel adres gevonden voor de test"
 
 #: public_html/lists/admin/send_core.php:465
 msgid "Sent test mail to"
-msgstr "Verzend test bericht naar"
+msgstr "Verzend testbericht naar"
 
 #: public_html/lists/admin/send_core.php:469
 msgid "success"
@@ -4074,7 +4074,7 @@ msgstr "gelukt"
 
 #: public_html/lists/admin/send_core.php:473
 msgid "Email address not found to send test message."
-msgstr "Email adres voor test bericht niet gevonden"
+msgstr "E-mailadres voor testbericht niet gevonden"
 
 #: public_html/lists/admin/send_core.php:490
 msgid "Removed Attachment "
@@ -4564,7 +4564,7 @@ msgstr "Doorgaan met configuratie"
 
 #: public_html/lists/admin/index.php:381
 msgid "phpList requires PHP version 5.0.0 or higher"
-msgstr ""
+msgstr "phpList werkt alleen met PHP versie 5 of hoger"
 
 #: public_html/lists/admin/index.php:384
 msgid "You are trying to use RSS, but XML is not included in your PHP"
@@ -5134,7 +5134,6 @@ msgid "edit values"
 msgstr "Beheer waarden"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:375
-#, fuzzy
 msgid "Is this attribute required ?"
 msgstr "Is dit attribuut verplicht?"
 
@@ -5157,21 +5156,18 @@ msgstr ""
 "wijzigen"
 
 #: public_html/lists/admin/commonlib/pages/user.php:34
-#, fuzzy
 msgid "Delete will remove subscriber from the list"
 msgstr "Verwijderen zal de abonnee van de lijst verwijderen"
 
 #: public_html/lists/admin/commonlib/pages/user.php:36
 msgid "Delete will remove subscriber from the system"
-msgstr ""
+msgstr "Verwijderen zal de abonnee uit het hele systeem verwijderen"
 
 #: public_html/lists/admin/commonlib/pages/user.php:45
-#, fuzzy
 msgid "Invalid security token, please reload the page and try again"
 msgstr "Incorrect veiligheids token. Herlaad de pagina, en probeer opnieuw."
 
 #: public_html/lists/admin/commonlib/pages/user.php:69
-#, fuzzy
 msgid "Error adding subscriber, please check that the subscriber exists"
 msgstr ""
 "Fout bij het toevoegen van een abonnee, controleer aub of de abonnee bestaat"
@@ -5188,16 +5184,15 @@ msgstr "Gerbuiker toegevoegd aan groep"
 #: public_html/lists/admin/commonlib/pages/user.php:214
 #, php-format
 msgid "Subscriber added to list %s"
-msgstr ""
+msgstr "Abonnee is toegevoegd aan lijst %s"
 
 #: public_html/lists/admin/commonlib/pages/user.php:296
-#, fuzzy
 msgid "Subscriber removed from group"
 msgstr "Abonnee verwijderd uit groep"
 
 #: public_html/lists/admin/commonlib/pages/user.php:310
 msgid "No such subscriber"
-msgstr ""
+msgstr "Abonnee bestaat niet"
 
 #: public_html/lists/admin/commonlib/pages/user.php:323
 msgid "No Lists"
@@ -5218,34 +5213,32 @@ msgid "History"
 msgstr "Geschiedenis"
 
 #: public_html/lists/admin/commonlib/pages/user.php:352
-#, fuzzy
 msgid "Add a new subscriber"
-msgstr "Voeg abonnees toe"
+msgstr "Voeg een nieuwe abonnee toe"
 
 #: public_html/lists/admin/commonlib/pages/user.php:355
 msgid "Subscriber details"
-msgstr ""
+msgstr "Details van de abonnee"
 
 #: public_html/lists/admin/commonlib/pages/user.php:450
 msgid "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
+"Abonnee staat op de zwartlijst en geen enkel bericht zal worden verstuurd "
+"naar dit email adres."
 
 #: public_html/lists/admin/commonlib/pages/user.php:453
-#, fuzzy
 msgid "Mailinglist membership"
-msgstr "Mailinglist Lidmaatschap"
+msgstr "Mailinglijst Lidmaatschap"
 
 #: public_html/lists/admin/commonlib/pages/user.php:478
 msgid "Group Membership"
 msgstr "Groep Lidmaatschap"
 
 #: public_html/lists/admin/commonlib/pages/user.php:481
-#, fuzzy
 msgid "Please select the groups this subscriber is a member of"
 msgstr "Selecteer aub de groepen waarvan deze abonnee lid van is"
 
 #: public_html/lists/admin/commonlib/pages/user.php:556
-#, fuzzy
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
