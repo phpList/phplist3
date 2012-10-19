@@ -740,6 +740,9 @@ define("PHPMAILERHOST",'');
 ## when using phpMailer, you can set this to send out via a different port as well
 # define('PHPMAILERPORT',25);
 
+# to use SSL/TLS set this to y
+# define("PHPMAILER_SECURE",'y');
+
 ## Smtp Timeout
 ## If you use SMTP for sending, you can set the timeout of the SMTP connection
 ## defaults to 5 seconds
