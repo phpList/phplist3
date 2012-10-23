@@ -67,7 +67,7 @@ class PHPlistMailer extends PHPMailer {
         $this->inBlast = false;
       }
 
-      if ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT')) {
+      if ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
         $this->Helo = getConfig("website");
         $this->Host = PHPMAILERBLASTHOST;
         $this->Port = PHPMAILERBLASTPORT;
@@ -78,7 +78,7 @@ class PHPlistMailer extends PHPMailer {
           $this->SMTPAuth = true;
         }
         $this->Mailer = "smtp";
-      } elseif (!$this->inBlast && defined('PHPMAILERTESTHOST')) {
+      } elseif (!$this->inBlast && defined('PHPMAILERTESTHOST') && PHPMAILERTESTHOST != '') {
         if (defined('PHPMAILERPORT')) {
           $this->Port = PHPMAILERPORT;
         }
