@@ -158,6 +158,8 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   }
   ## force reloading config values in session
   unset($_SESSION['config']);
+  ## and refresh the config immediately https://mantis.phplist.com/view.php?id=16693
+  unset($GLOBALS['config']); 
   return Sql_Replace( $tables["config"], array('item'=>$item, 'value'=>$value, 'editable'=>$editable), 'item');
 }
 
