@@ -1,38 +1,6 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-/*
- * something to work on
-print '<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="ckeditor/adapters/jquery.js"></script>';
-*/
-
-#initialisation###############
-
-// Verify that FCKeditor is available
-$usefck = $useck = false;
-if (USEFCK && file_exists("./FCKeditor/fckeditor.php")) {
-  include("./FCKeditor/fckeditor.php") ;
-  $oFCKeditor = new FCKeditor('message') ;
-  $usefck = $oFCKeditor->IsCompatible();
-  unset($oFCKeditor); 
-} elseif (USECK && file_exists("./ckeditor/ckeditor_php5.php")) {
-  include("./ckeditor/ckeditor_php5.php") ;
-  $oCKeditor = new CKeditor('message') ;
-  #$usefck = $oFCKeditor->IsCompatible();
-  $useck = true;
-  unset($oCKeditor); 
-} else {
-  $usefck = false;
-  $useck = false;
-}
-
-// Verify that TinyMCE is available
-$useTinyMCE = 0;
-if (USETINYMCEMESG && file_exists(TINYMCEPATH)) {
-  $useTinyMCE = 1;
-}
-
 include_once dirname(__FILE__). "/date.php";
 
 $errormsg = '';
@@ -792,58 +760,11 @@ if (!$done) {
 //  }
 
   #0013076: different content when forwarding 'to a friend'
-  $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.$GLOBALS['I18N']->get("Compose Message").Help("message").'</label> ';
-  $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.$GLOBALS['I18N']->get("Compose Message").Help("forwardmessage").'</label> ';
-
-  if ($usefck) {
-    $oFCKeditor = new FCKeditor('message') ;
-    $oFCKeditor->BasePath = './FCKeditor/';
-    //$oFCKeditor->ToolbarSet = 'Accessibility' ;
-    $oFCKeditor->ToolbarSet = 'Default' ;
-    $oFCKeditor->Value = stripslashes($messagedata["message"]);
-    $w = getConfig("fckeditor_width");
-    $h = getConfig("fckeditor_height");
-    if ($_SESSION["fckeditor_height"]) {
-      $h = sprintf('%d',$_SESSION["fckeditor_height"]);
-    }
-
-    # version 1.4
-#    $maincontent .= $oFCKeditor->ReturnFCKeditor( 'message', $w.'px', $h.'px' ) ;
-
-    # for version 2.0
-    if ($h < 400) {
-      $h = 400;
-    }
-    $oFCKeditor->Height = $h;
-    $oFCKeditor->Width = $w;
-    
-    $maincontent .= '<div>'.$oFCKeditor->CreateHtml() .'</div>';
-
-  } elseif ($useck) {
-    $oCKeditor = new CKeditor('./ckeditor/') ;
-  #  $maincontent .= '<div>'.$oCKeditor->editor('message',stripslashes($messagedata["message"])) .'</div>';
-    $maincontent .= '<div><textarea name="message" cols="65" rows="20">'.htmlspecialchars($messagedata["message"]).'</textarea></div>';
-  } elseif ($useTinyMCE) {
-
-  $tinyMCE_path = TINYMCEPATH;
-  $tinyMCE_lang = TINYMCELANG;
-  $tinyMCE_theme = TINYMCETHEME;
-  $tinyMCE_opts = TINYMCEOPTS;
-
-  $maincontent .= "
+  $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.s("Compose Message").Help("message").'</label> ';
+  $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.s("Compose Message").Help("forwardmessage").'</label> ';
   
-      <script language='javascript' type='text/javascript' src='{$tinyMCE_path}'></script>\n"
-        ."<script language='javascript' type='text/javascript'>\n"
-        ."   tinyMCE.init({\n"
-        ."      mode : 'exact',\n"
-        ."    elements : 'message',\n"
-        ."    language : '{$tinyMCE_lang}',\n"
-        ."    theme : '{$tinyMCE_theme}'\n"
-        ."    {$tinyMCE_opts}\n"
-        ."   });\n"
-        ."</script>\n"
-        ."<textarea name='message' id='message' cols='65' rows='20'>{$messagedata['message']}</textarea>";
-
+  if ($GLOBALS['editorplugin']) {
+    $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',stripslashes($messagedata["message"])) .'</div>';
   } else {
     $maincontent    .= '
       <div><textarea name="message" cols="65" rows="20">'.htmlspecialchars($messagedata["message"]).'</textarea></div>';
