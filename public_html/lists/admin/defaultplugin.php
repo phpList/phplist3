@@ -35,6 +35,15 @@ class phplistPlugin {
   
   public $needI18N = 0;
   
+  ## set to true, if this plugin provides the WYSIWYG editor for the send page
+  /* the plugin will then need to implement:
+   * 
+   * function editor($fieldname,$fieldvalue)
+   * 
+   * which returns the HTML for the editor.
+   */
+  public $editorProvider = false;
+  
   /* array of pages in this plugin to add to the menu
    * 
    * example format: 
