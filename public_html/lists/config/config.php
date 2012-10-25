@@ -30,7 +30,7 @@ $database_user = "phplist";
 # and what password do we use
 $database_password = 'phplist';
 
-# if you use multiple installations of PHPlist you can set this to
+# if you use multiple installations of phpList you can set this to
 # something to identify this one. it will be prepended to email report
 # subjects
 $installation_name = 'phpList';
@@ -104,8 +104,8 @@ $bounce_mailbox_purge = 1;
 
 # set this to 0 if you want to keep unprocessed messages in the mailbox. Unprocessed
 # messages are messages that could not be matched with a user in the system
-# messages are still downloaded into PHPlist, so it is safe to delete them from
-# the mailbox and view them in PHPlist
+# messages are still downloaded into phpList, so it is safe to delete them from
+# the mailbox and view them in phpList
 $bounce_mailbox_purge_unprocessed = 1;
 
 # how many bounces in a row need to have occurred for a user to be marked unconfirmed
@@ -122,7 +122,7 @@ Security related settings
 
 */
 
-# set this to 1 if you want PHPlist to deal with login for the administrative
+# set this to 1 if you want phpList to deal with login for the administrative
 # section of the system
 # you will be able to add administrators who control their own lists
 # default login is "admin" with password "phplist"
@@ -194,7 +194,6 @@ define ("TEST",1);
 
 # if you set verbose to 1, it will show the messages that will be sent. Do not do this
 # if you have a lot of users, because it is likely to crash your browser
-# (it does mine, Mozilla 0.9.2, well 1.6 now, but I would still keep it off :-)
 define ("VERBOSE",0);
 
 # some warnings may show up about your PHP settings. If you want to get rid of them
@@ -270,18 +269,18 @@ Feedback to developers
 
 */
 
-# use Register to "register" to PHPlist.com. Once you set TEST to 0, the system will then
+# use Register to "register" to phpList.com. Once you set TEST to 0, the system will then
 # request the "Powered By" image from www.phplist.com, instead of locally. This will give me
 # a little bit of an indication of how much it is used, which will encourage me to continue
-# developing PHPlist. If you do not like this, set Register to 0.
+# developing phpList. If you do not like this, set Register to 0.
 define ("REGISTER",1);
 
 # CREDITS
 # We request you retain some form of credits on the public elements of
-# PHPlist. These are the subscribe pages and the emails.
+# phpList. These are the subscribe pages and the emails.
 # This not only gives respect to the large amount of time given freely
 # by the developers but also helps build interest, traffic and use of
-# PHPlist, which is beneficial to future developments.
+# phpList, which is beneficial to future developments.
 # By default the webpages and the HTML emails will include an image and
 # the text emails will include a powered by line
 
@@ -293,7 +292,7 @@ define("EMAILTEXTCREDITS",0);
 # set the next one to 1, and the pages will only include a line of text
 define("PAGETEXTCREDITS",0);
 
-# in order to get some feedback about performance, PHPlist can send statistics to a central
+# in order to get some feedback about performance, phpList can send statistics to a central
 # email address. To de-activate this set the following value to 1
 define ("NOSTATSCOLLECTION",0);
 
@@ -552,7 +551,7 @@ define("HTMLEMAIL_ENCODING","quoted-printable");
 define("TEXTEMAIL_ENCODING",'7bit');
 
 
-# PHPlist can send RSS feeds to users. Feeds can be sent daily, weekly or
+# phpList can send RSS feeds to users. Feeds can be sent daily, weekly or
 # monthly. To use the feature you need XML support in your PHP installation, and you
 # need to set this constant to 1
 define("ENABLE_RSS",0);
@@ -560,55 +559,24 @@ define("ENABLE_RSS",0);
 # if you have set up a cron to download the RSS entries, you can set this to be 0
 define("MANUALLY_PROCESS_RSS",1);
 
-# the FCKeditor is now included in PHPlist, but the use of it is experimental
-# if it's not working for you, set this to 0
-# NOTE: If you enable TinyMCE please disable FCKeditor and vice-versa.
-define("USEFCK",1);
-
-# If you want to upload images to the FCKeditor, you need to specify the location
+# If you want to upload images in the editor, you need to specify the location
 # of the directory where the images go. This needs to be writable by the webserver,
 # and it needs to be in your public document (website) area
-# the directory is relative to the root of PHPlist as set above
+# the directory is relative to the webserver root directory
+#   eg if your webserver root is /home/user/public_html
+#   then the images directory is /home/user/public_html/uploadimages
 # This is a potential security risk, so read README.security for more information
-define("FCKIMAGES_DIR","uploadimages");
-
-# TinyMCE Support (http://tinymce.moxiecode.com/)
-# It is suggested to copy the tinymce/jscripts/tiny_mce directory from the
-# standard TinyMCE distribution into the public_html/lists/admin/plugins
-# directory in order to keep the install clean.
-# NOTE: If you enable TinyMCE please disable FCKeditor and vice-versa.
-# Set this to 1 to turn on TinyMCE for writing messages:
-define("USETINYMCEMESG", 0);
-# Set this to 1 to turn on TinyMCE for editing templates:
-define("USETINYMCETEMPL", 0);
-# Set this to path of the TinyMCE script, relative to the admin directory:
-define("TINYMCEPATH", "plugins/tiny_mce/tiny_mce.js");
-# Set this to the language you wish to use for TinyMCE:
-define("TINYMCELANG", "en");
-# Set this to the theme you wish to use.  Default options are: simple, default and advanced.
-define("TINYMCETHEME", "advanced");
-# Set this to any additional options you wish.  Please be careful with this as you can
-# inadvertantly break TinyMCE.  Rever to the TinyMCE documentation for full details.
-# Should be in the format: ',option1:"value",option2:"value"'   <--- note comma at beginning
-define("TINYMCEOPTS", "");
+define("UPLOADIMAGES_DIR","uploadimages");
 
 # Manual text part, will give you an input box for the text version of the message
 # instead of trying to create it by parsing the HTML version into plain text
-define("USE_MANUAL_TEXT_PART",0);
+define("USE_MANUAL_TEXT_PART",1);
 
-# attachments is a new feature and is currently still experimental
-# set this to 1 if you want to try it
+# set this to 1 to allow adding attachments to the mails
 # caution, message may become very large. it is generally more
 # acceptable to send a URL for download to users
-# if you try it, it will be appreciated to give feedback to the
-# users mailinglist, so we can learn whether it is working ok
 # using attachments requires PHP 4.1.0 and up
 define("ALLOW_ATTACHMENTS",0);
-
-# if you use the above, how many would you want to add per message (max)
-# You can leave this 1, even if you want to attach more files, because
-# you will be able to add them sequentially
-define("NUMATTACHMENTS",1);
 
 # when using attachments you can upload them to the server
 # if you want to use attachments from the local filesystem (server) set this to 1
@@ -616,17 +584,17 @@ define("NUMATTACHMENTS",1);
 # the time of creating the message
 define("FILESYSTEM_ATTACHMENTS",0);
 
-# if you add filesystem attachments, you will need to tell PHPlist where your
+# if you add filesystem attachments, you will need to tell phpList where your
 # mime.types file is.
 define("MIMETYPES_FILE","/etc/mime.types");
 
 # if a mimetype cannot be determined for a file, specify the default mimetype here:
 define("DEFAULT_MIMETYPE","application/octet-stream");
 
-# you can create your own pages to slot into PHPlist and do certain things
+# you can create your own pages to slot into phpList and do certain things
 # that are more specific to your situation (plugins)
 # if you do this, you can specify the directory where your plugins are. It is
-# useful to keep this outside the PHPlist system, so they are retained after
+# useful to keep this outside the phpList system, so they are retained after
 # upgrading
 # there are some example plugins in the "plugins" directory inside the
 # admin directory
@@ -687,34 +655,25 @@ define('DEFAULT_MESSAGEAGE',15768000);
 # when the amount of subscribers is over 1000. With this settings you can change that cut-off point
 define('USERSPAGE_MAX',1000);
 
-# Prepare a message. This system allows you to create messages as a super admin
-# that can then be reviewed and selected by sub admins to send to their own lists
-# it is old functionality that is quite confusing, and therefore by default it
-# is now off. If you used to use it, you can switch it on here. If you did not
-# use it, or are a new user, it is better to leave it off. It has nothing to
-# do with being able to edit messages.
-define("USE_PREPARE",0);
-
-#0011857: forward to friend, retain attributes
 # When forwarding ('to a friend') the message will be using the attributes of the destination email by default.
 # This often means the message gets stripped of al its attributes. 
 # When setting this constant to 1, the message will use the attributes of the forwarding user. It can be used
 # to connect the destinatory to the forwarder and/or reward the forwarder.
 define("KEEPFORWARDERATTRIBUTES",0);
 
-#0011860: forward to friend, multiple emails
+# forward to friend, multiple emails
 # This setting defines howmany email addresses you can enter in the forward page.
 # Default is 1 to not change behaviour from previous version.
 define("FORWARD_EMAIL_COUNT",1);
 
-#0011996: forward to friend - personal message
+# forward to friend - personal message
 # Allow user to add a personal note when forwarding 'to a friend'
 # 0 will turn this option off. default is 0 to not change behaviour from previous version.
 # 500 is recommended as a sound value to write a little introductory note to a friend
-#The note is prepeded to both text and html messages and will be stripped of all html 
+# The note is prepeded to both text and html messages and will be stripped of all html 
 define("FORWARD_PERSONAL_NOTE_SIZE",0);
 
-#0013076: different content when forwarding 'to a friend'
+# different content when forwarding 'to a friend'
 # Allow admin to enter a different message that will be sent when forwarding 'to a friend'
 # This will show an extra tab in the message dialog. 
 define("FORWARD_ALTERNATIVE_CONTENT",0);
