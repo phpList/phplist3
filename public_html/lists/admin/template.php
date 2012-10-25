@@ -26,11 +26,6 @@ if (file_exists("./FCKeditor/fckeditor.php") && USEFCK) {
   $usefck = 0;
 }
 
-// Verify that TinyMCE is available
-$useTinyMCE = 0;
-if (USETINYMCETEMPL && file_exists(TINYMCEPATH)) {
-  $useTinyMCE = 1;
-}
 if (isset($_REQUEST['id'])) {
   $id = sprintf('%d',$_REQUEST['id']);
 } else {
@@ -250,58 +245,13 @@ if ($id) {
   <td colspan="2">
 
 <?php
-
-if ($usefck) {
-  $oFCKeditor = new FCKeditor('content') ;
-  $w = 600;
-  $h = 800;
-
-  # version 1.4
-  //$oFCKeditor->ToolbarSet = 'Accessibility' ;
-#  $oFCKeditor->ToolbarSet = 'Default' ;
-#  $oFCKeditor->Value = stripslashes($data["template"]);
-#  $oFCKeditor->CreateFCKeditor( 'content', $w.'px', $h.'px' ) ;
-
-  # version 2.0
-  $oFCKeditor->BasePath = './FCKeditor/';
-  $oFCKeditor->ToolbarSet = 'Default' ;
-  $oFCKeditor->Height = $h;
-  $oFCKeditor->Width = $w;
-  $oFCKeditor->Value = stripslashes($data["template"]);
-  $oFCKeditor->Create() ;
-
-  print '</td></tr>';
-
-} elseif ($useTinyMCE) {
-
-  $tinyMCE_path = TINYMCEPATH;
-  $tinyMCE_lang = TINYMCELANG;
-  $tinyMCE_theme = TINYMCETHEME;
-  $tinyMCE_opts = TINYMCEOPTS;
-?>
-<script language="javascript" type="text/javascript" src="<?php echo $tinyMCE_path;?>"></script>
-<script language="javascript" type="text/javascript">
-tinyMCE.init({
-  mode : "exact",
-  elements : "content",
-  language : "<?php echo $tinyMCE_lang;?>",
-  theme : "<?php echo $tinyMCE_theme;?>"
-  <?php echo $tinyMCE_opts;?>
-});
-</script>
-<textarea name="content" id="content" cols="65" rows="20"><?php echo stripslashes(htmlspecialchars($data["template"]))?></textarea>
-<?php
-
-} else {
-
-?>
-
-<textarea name="content" cols="70" rows="40" wrap="virtual"><?php echo stripslashes(htmlspecialchars($data["template"]))?></textarea>
-
-<?php
-
-}
-
+  if ($GLOBALS['editorplugin']) {
+    print $GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('content', stripslashes($data["template"])) .'</div>';
+  } else {
+    print '<textarea name="content" id="content" cols="65" rows="20">';
+    print stripslashes(htmlspecialchars($data["template"]));
+    print '</textarea>';
+  }
 ?>
 </td>
 </tr>
