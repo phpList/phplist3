@@ -2,6 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 $GLOBALS["plugins"] = array();
+$GLOBALS['editorplugin'] = false;
 if (!defined("PLUGIN_ROOTDIR")) {
   define("PLUGIN_ROOTDIR","notdefined");
 }
@@ -27,6 +28,11 @@ if (is_dir(PLUGIN_ROOTDIR)) {
       if (class_exists($className)) {
         eval("\$pluginInstance = new ". $className ."();");
         if ($pluginInstance->enabled) {
+          ## remember the first plugin that says it can provide the editor
+          ## the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
+          if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance,'editor')) {
+            $GLOBALS['editorplugin'] = $className;
+          }
           $GLOBALS["plugins"][$className] = $pluginInstance;
         } else {
           dbg( $className .' disabled');
