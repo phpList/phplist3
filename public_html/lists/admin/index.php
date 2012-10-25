@@ -250,8 +250,10 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
         "superuser" => $admin_auth->isSuperUser($loginresult[0]),
         "passhash" => sha1($_REQUEST["password"]),
       );
-      if ($_POST["page"] && $_POST["page"] != "") {
-        $page = $_POST["page"];
+      ##16692 - make sure admin permissions apply at first login
+      $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]);      
+      if (!empty($_POST["page"])) {
+        $page = preg_replace('/\W+//',$_POST["page"]);
       }
     }
   #If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
