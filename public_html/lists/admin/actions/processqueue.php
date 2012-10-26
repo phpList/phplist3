@@ -1,10 +1,5 @@
 <?php
 
-if (!empty($GLOBALS['developer_email'])) {
-  ob_end_flush();
-  error_reporting(E_ALL);
-  ini_set('display_errors',1);
-}
 require_once dirname(__FILE__).'/../accesscheck.php';
 require_once dirname(__FILE__) .'/../sendemaillib.php';
 
