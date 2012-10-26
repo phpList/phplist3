@@ -1428,11 +1428,13 @@ exit;
 
   $baseurl = $GLOBALS['website'];
   if (defined('UPLOADIMAGES_DIR') && UPLOADIMAGES_DIR) {
-    $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/'.UPLOADIMAGES_DIR.'(.*)>/iU','<img\\1src="http://'.$baseurl.'/'.UPLOADIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
+    ## escape subdirectories, otherwise this renders empty
+    $dir = str_replace('/','\/',UPLOADIMAGES_DIR);
+    $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/'.$dir.'(.*)>/iU','<img\\1src="'.$GLOBALS['public_scheme'].'://'.$baseurl.'/'.UPLOADIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
   }
-  if (defined('FCKIMAGES_DIR') && FCKIMAGES_DIR) {
-    $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/lists\/'.FCKIMAGES_DIR.'(.*)>/iU','<img\\1src="http://'.$baseurl.'/lists/'.FCKIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
-  }
+  //if (defined('FCKIMAGES_DIR') && FCKIMAGES_DIR) {
+    //$cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/lists\/'.FCKIMAGES_DIR.'(.*)>/iU','<img\\1src="'.$GLOBALS['public_scheme'].'://'.$baseurl.'/lists/'.FCKIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
+  //}
   return 1;
 }  
 
