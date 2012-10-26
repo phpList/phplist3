@@ -763,7 +763,7 @@ if (!$done) {
   $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.s("Compose Message").Help("message").'</label> ';
   $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.s("Compose Message").Help("forwardmessage").'</label> ';
   
-  if ($GLOBALS['editorplugin']) {
+  if (!empty($GLOBALS['editorplugin'])) {
     $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',stripslashes($messagedata["message"])) .'</div>';
   } else {
     $maincontent    .= '
