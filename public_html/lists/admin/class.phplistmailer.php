@@ -392,22 +392,22 @@ class PHPlistMailer extends PHPMailer {
     ## addition for filesystem images
     function filesystem_image_exists($filename) {
       ##  find the image referenced and see if it's on the server
+      $imageroot = getConfig('uploadimageroot');
+#      cl_output('filesystem_image_exists '.$docroot.' '.$filename);
 
       $elements = parse_url($filename);
       $localfile = basename($elements['path']);
 
       $localfile = urldecode($localfile);
- #     print '<h3>CHECK'.$localfile.'</h3>';
+ #     cl_output('CHECK'.$localfile);
 
       if (defined('UPLOADIMAGES_DIR')) {
-        $docroot = getConfig('docroot');
       #  print $_SERVER['DOCUMENT_ROOT'].$localfile;
         return
           is_file($_SERVER['DOCUMENT_ROOT'].UPLOADIMAGES_DIR.'/image/'.$localfile)
           || is_file($_SERVER['DOCUMENT_ROOT'].UPLOADIMAGES_DIR.'/'.$localfile)
           ## commandline
-          || is_file($docroot.UPLOADIMAGES_DIR.'/'.$localfile)
-          || is_file($docroot.UPLOADIMAGES_DIR.'/image/'.$localfile);
+          || is_file($imageroot.'/'.$localfile);
       } else
       return
         is_file($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/image/'.$localfile)
@@ -420,7 +420,7 @@ class PHPlistMailer extends PHPMailer {
     function get_filesystem_image($filename) {
       ## get the image contents
       $localfile = basename(urldecode($filename));
- #     print '<h3>'.$localfile.'</h3>';
+#      cl_output('get file system image'.$filename.' '.$localfile);
       if (defined('UPLOADIMAGES_DIR')) {
  #       print 'UPLOAD';
         $imageroot = getConfig('uploadimageroot');
