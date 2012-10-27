@@ -395,7 +395,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           $advanced_report .= 'User '.$userdata['email'].' made unconfirmed by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
-          addUserHistory($userdata['email'],$GLOBALS['I18N']->get("Auto Unsubscribed"),$GLOBALS['I18N']->get("User auto unsubscribed for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addUserHistory($userdata['email'],s('Auto Unconfirmed'),s('Subscriber auto unconfirmed for')." ".s('bounce rule').' '.$rule['id']);
           addSubscriberStatistics('auto unsubscribe',1);
           break;
         case 'deleteuserandbounce':
@@ -412,7 +412,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           $advanced_report .= 'User '.$userdata['email'].' made unconfirmed by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
-          addUserHistory($userdata['email'],$GLOBALS['I18N']->get("Auto Unsubscribed"),$GLOBALS['I18N']->get("User auto unsubscribed for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addUserHistory($userdata['email'],s('Auto unconfirmed'),s('Subscriber auto unconfirmed for')." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
           addSubscriberStatistics('auto unsubscribe',1);
           deleteBounce($row['bounce']);
           break;
@@ -528,11 +528,11 @@ while ($user = Sql_Fetch_Row($userid_req)) {
         $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
         logEvent("User $userurl has consecutive bounces ($cnt) over treshold, user marked unconfirmed");
         $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
-        addUserHistory($emailreq[0],"Auto Unsubscribed","User auto unsubscribed for $cnt consecutive bounces");
+        addUserHistory($emailreq[0],s('Auto Unconfirmed'),s('Subscriber auto unconfirmed for %d consecutive bounces',$cnt));
         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',$tables["user"],$user[0]));
         if (BLACKLIST_EMAIL_ON_BOUNCE && $cnt > BLACKLIST_EMAIL_ON_BOUNCE) {
           #0012262: blacklist email when email bounces
-          addEmailToBlackList($emailreq, "$cnt consecutive bounces, threshold reached");
+          addEmailToBlackList($emailreq, s('%d consecutive bounces, threshold reached',$cnt));
         }
         $email_req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d',$tables["user"],$user[0]));
         $unsubscribed_users .= $email_req[0]."\t\t($cnt)\t\t". $GLOBALS['scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&amp;id='.$user[0]. "\n";
