@@ -568,6 +568,9 @@ define("MANUALLY_PROCESS_RSS",1);
 # This is a potential security risk, so read README.security for more information
 define("UPLOADIMAGES_DIR","uploadimages");
 
+## for the above, you can also use subdirectories, for example
+#define("UPLOADIMAGES_DIR","images/newsletter/upload");
+
 # Manual text part, will give you an input box for the text version of the message
 # instead of trying to create it by parsing the HTML version into plain text
 define("USE_MANUAL_TEXT_PART",1);
