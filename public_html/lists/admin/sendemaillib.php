@@ -140,17 +140,21 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     output('define placeholders start');
   }
 
-  $url = getConfig("unsubscribeurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-  $html["unsubscribe"] = sprintf('<a href="%s%suid=%s">%s</a>',$url,$sep,$hash,$strUnsubscribe);
+  $url = getConfig("unsubscribeurl");
+  ## https://mantis.phplist.com/view.php?id=16680 -> the "sep" should be & for the text links
+  $sep = strpos($url,'?') === false ? '?':'&';
+  
+  $html["unsubscribe"] = sprintf('<a href="%s%suid=%s">%s</a>',$url,htmlspecialchars($sep),$hash,$strUnsubscribe);
   $text["unsubscribe"] = sprintf('%s%suid=%s',$url,$sep,$hash);
-  $html["unsubscribeurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+  $html["unsubscribeurl"] = sprintf('%s%suid=%s',$url,htmlspecialchars($sep),$hash);
   $text["unsubscribeurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
 
   #0013076: Blacklisting posibility for unknown users
-  $url = getConfig("blacklisturl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-  $html["blacklist"] = sprintf('<a href="%s%semail=%s">%s</a>',$url,$sep,$email,$strUnsubscribe);
+  $url = getConfig("blacklisturl");
+  $sep = strpos($url,'?') === false ? '?':'&';
+  $html["blacklist"] = sprintf('<a href="%s%semail=%s">%s</a>',$url,htmlspecialchars($sep),$email,$strUnsubscribe);
   $text["blacklist"] = sprintf('%s%semail=%s',$url,$sep,$email);
-  $html["blacklisturl"] = sprintf('%s%semail=%s',$url,$sep,$email);
+  $html["blacklisturl"] = sprintf('%s%semail=%s',$url,htmlspecialchars($sep),$email);
   $text["blacklisturl"] = sprintf('%s%semail=%s',$url,$sep,$email);
 
   #0013076: Problem found during testing: message part must be parsed correctly as well.  
@@ -161,15 +165,15 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     $text["forwardedby"] = $forwardedby["email"];
   }
   
-  $url = getConfig("subscribeurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
+  $url = getConfig("subscribeurl");$sep = strpos($url,'?') === false ? '?':'&';
   $html["subscribe"] = sprintf('<a href="%s">%s</a>',$url,$strThisLink);
   $text["subscribe"] = sprintf('%s',$url);
   $html["subscribeurl"] = sprintf('%s',$url);
   $text["subscribeurl"] = sprintf('%s',$url);
-  $url = getConfig("forwardurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-  $html["forward"] = sprintf('<a href="%s%suid=%s&amp;mid=%d">%s</a>',$url,$sep,$hash,$messageid,$strThisLink);
-  $text["forward"] = sprintf('%s%suid=%s&amp;mid=%d',$url,$sep,$hash,$messageid);
-  $html["forwardurl"] = sprintf('%s%suid=%s&amp;mid=%d',$url,$sep,$hash,$messageid);
+  $url = getConfig("forwardurl");$sep = strpos($url,'?') === false ? '?':'&';
+  $html["forward"] = sprintf('<a href="%s%suid=%s&amp;mid=%d">%s</a>',$url,htmlspecialchars($sep),$hash,$messageid,$strThisLink);
+  $text["forward"] = sprintf('%s%suid=%s&mid=%d',$url,$sep,$hash,$messageid);
+  $html["forwardurl"] = sprintf('%s%suid=%s&amp;mid=%d',$url,htmlspecialchars($sep),$hash,$messageid);
   $text["forwardurl"] = $text["forward"];
   $html["messageid"] = sprintf('%d',$messageid);
   $text["messageid"] = sprintf('%d',$messageid);
@@ -178,10 +182,10 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   # make sure there are no newlines, otherwise they get turned into <br/>s
   $html["forwardform"] = sprintf('<form method="get" action="%s" name="forwardform" class="forwardform"><input type="hidden" name="uid" value="%s" /><input type="hidden" name="mid" value="%d" /><input type="hidden" name="p" value="forward" /><input type=text name="email" value="" class="forwardinput" /><input name="Send" type="submit" value="%s" class="forwardsubmit"/></form>',$url,$hash,$messageid,$GLOBALS['strForward']);
   $text["signature"] = "\n\n-- powered by phpList, www.phplist.com --\n\n";
-  $url = getConfig("preferencesurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-  $html["preferences"] = sprintf('<a href="%s%suid=%s">%s</a>',$url,$sep,$hash,$strThisLink);
+  $url = getConfig("preferencesurl");$sep = strpos($url,'?') === false ? '?':'&';
+  $html["preferences"] = sprintf('<a href="%s%suid=%s">%s</a>',$url,htmlspecialchars($sep),$hash,$strThisLink);
   $text["preferences"] = sprintf('%s%suid=%s',$url,$sep,$hash);
-  $html["preferencesurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+  $html["preferencesurl"] = sprintf('%s%suid=%s',$url,htmlspecialchars($sep),$hash);
   $text["preferencesurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
   #historical, not sure it's still used
   $html["userid"] = $hash;
@@ -329,9 +333,10 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $forwardtext = 'this link';
     }
     if (!empty($forwardmessage)) {
-      $url = getConfig("forwardurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-      $forwardurl = sprintf('%s%suid=%s&amp;mid=%d',$url,$sep,$hash,$forwardmessage);
-      $htmlmessage = str_replace($matchtext,'<a href="'.$forwardurl.'">'.$forwardtext.'</a>',$htmlmessage);
+      $url = getConfig("forwardurl");
+      $sep = strpos($url,'?') === false ? '?':'&';
+      $forwardurl = sprintf('%s%suid=%s&mid=%d',$url,$sep,$hash,$forwardmessage);
+      $htmlmessage = str_replace($matchtext,'<a href="'.htmlspecialchars($forwardurl).'">'.$forwardtext.'</a>',$htmlmessage);
     } else {
       ## make sure to remove the match, otherwise, it'll be an eternal loop
       $htmlmessage = str_replace($matchtext,'',$htmlmessage);
@@ -350,8 +355,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $forwardtext = 'this link';
     }
     if (!empty($forwardmessage)) {
-      $url = getConfig("forwardurl");$sep = strpos($url,'?') === false ? '?':'&amp;';
-      $forwardurl = sprintf('%s%suid=%s&amp;mid=%d',$url,$sep,$hash,$forwardmessage);
+      $url = getConfig("forwardurl");$sep = strpos($url,'?') === false ? '?':'&';
+      $forwardurl = sprintf('%s%suid=%s&mid=%d',$url,$sep,$hash,$forwardmessage);
       $textmessage = str_replace($matchtext,$forwardtext.' '.$forwardurl,$textmessage);
     } else {
       ## make sure to remove the match, otherwise, it'll be an eternal loop
