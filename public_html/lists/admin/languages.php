@@ -517,9 +517,30 @@ function getTranslationUpdates() {
 
 $I18N = new phplist_I18N();
 
-/* add a shortcut that seems common in other apps */
+/* add a shortcut that seems common in other apps 
+ * function s($text)
+ * @param $text string the text to find
+ * @params 2-n variable - parameters to pass on to the sprintf of the text
+ * @return translated text with parameters filled in
+ * 
+ * 
+ * eg s("This is a %s with a %d and a %0.2f","text",6,1.98765);
+ * 
+ * will look for the translation of the string and substitute the parameters
+ *  
+ **/
 function s($text) {
+  ## allow overloading with sprintf paramaters
+  $num_args = func_num_args();
+  if ($num_args > 1) {
+    $args = func_get_args();
+    array_shift($args);
+    $translation = $GLOBALS['I18N']->get($text);
+    $params = join(",",$args);
+    eval('$return = sprintf("'.$translation.'",'.$params.');');
+    return $return;
+  }
   return $GLOBALS['I18N']->get($text);
 }
 
-?>
+
