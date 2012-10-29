@@ -12,6 +12,7 @@ if (!function_exists("output")) {
 function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$forwardedby = array()) {
   $getspeedstats = VERBOSE && !empty($GLOBALS['getspeedstats']) && isset($GLOBALS['processqueue_timer']);
   $sqlCountStart = $GLOBALS["pagestats"]["number_of_queries"];
+  $isTestMail = isset($_GET['page'] && $_GET['page'] == 'send';
 
   ## for testing concurrency, put in a delay to check if multiple send processes cause duplicates
   #usleep(rand(0,10) * 1000000);
@@ -734,7 +735,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $plugin->processSuccesFailure ($messageid, 'astext', $userdata);
       }
       if ($htmlpref) {
-        Sql_Query("update {$GLOBALS["tables"]["message"]} set aspdf = aspdf + 1 where id = $messageid");
+        if (!$isTestMail) 
+          Sql_Query("update {$GLOBALS["tables"]["message"]} set aspdf = aspdf + 1 where id = $messageid");
         $pdffile = createPdf($textmessage);
         if (is_file($pdffile) && filesize($pdffile)) {
           $fp = fopen($pdffile,"r");
@@ -760,7 +762,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         }
         addAttachments($messageid,$mail,"HTML");
       } else {
-        Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
+        if (!$isTestMail) 
+          Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
         $mail->add_text($textmessage);
         addAttachments($messageid,$mail,"text");
       }
@@ -771,7 +774,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       }
       # send a PDF file to users who want html and text to everyone else
       if ($htmlpref) {
-        Sql_Query("update {$GLOBALS["tables"]["message"]} set astextandpdf = astextandpdf + 1 where id = $messageid");
+        if (!$isTestMail) 
+          Sql_Query("update {$GLOBALS["tables"]["message"]} set astextandpdf = astextandpdf + 1 where id = $messageid");
         $pdffile = createPdf($textmessage);
         if (is_file($pdffile) && filesize($pdffile)) {
           $fp = fopen($pdffile,"r");
@@ -797,7 +801,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         }
         addAttachments($messageid,$mail,"HTML");
       } else {
-        Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
+        if (!$isTestMail) 
+          Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
         $mail->add_text($textmessage);
         addAttachments($messageid,$mail,"text");
       }
@@ -807,8 +812,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->processSuccesFailure ($messageid, 'astext', $userdata);
       }
-      Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
-       $mail->add_text($textmessage);
+      if (!$isTestMail) 
+        Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
+      $mail->add_text($textmessage);
       addAttachments($messageid,$mail,"text");
       break;
     case "both":
@@ -827,7 +833,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       if (!$handled_by_plugin) {
         # send one big file to users who want html and text to everyone else
         if ($htmlpref) {
-          Sql_Query("update {$GLOBALS["tables"]["message"]} set astextandhtml = astextandhtml + 1 where id = $messageid");
+          if (!$isTestMail) 
+            Sql_Query("update {$GLOBALS["tables"]["message"]} set astextandhtml = astextandhtml + 1 where id = $messageid");
           foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             $plugin->processSuccesFailure($messageid, 'ashtml', $userdata);
           }
@@ -835,7 +842,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
           $mail->add_html($htmlmessage,$textmessage,$cached[$messageid]["templateid"]);
           addAttachments($messageid,$mail,"HTML");
         } else {
-          Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
+          if (!$isTestMail) 
+            Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
           foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             $plugin->processSuccesFailure($messageid, 'astext', $userdata);
           }
