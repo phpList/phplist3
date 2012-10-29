@@ -45,6 +45,14 @@ class PHPlistMailer extends PHPMailer {
       ## amazon SES doesn't like this
 /*
  * http://mantis.phplist.com/view.php?id=15562
+ * Interesting, https://mantis.phplist.com/view.php?id=16688
+ * says Gmail wants it. Everyone's confused.
+ * 
+ * Also, are we "Precedence: bulk, or Precedence: list"
+ * 
+ * I guess this should become configurable, to leave the choice up to the installation, 
+ * but what would be our default?
+ * 
       if (!USE_AMAZONSES) {
 #        $this->addCustomHeader("Precedence: bulk");
       }
