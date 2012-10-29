@@ -2,14 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 # send an email library
-
-if (PHPMAILER) {
-  include_once dirname(__FILE__).'/class.phplistmailer.php';
-} else {
-  require_once dirname(__FILE__)."/class.html.mime.mail.inc";
-}
-#require_once dirname(__FILE__)."/class.html.mime.mail.inc";
-#require_once dirname(__FILE__)."/Rmail/Rmail.php";
+include_once dirname(__FILE__).'/class.phplistmailer.php';
 
 if (!function_exists("output")) {
   function output($text) {
@@ -700,28 +693,15 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
   if ($getspeedstats) output('build Start '.$GLOBALS['processqueue_timer']->interval(1));
 
-  if (0) {  ## old method retired
-    $mail = new html_mime_mail(
-      array('X-Mailer: PHPlist v'.VERSION,
-            "X-MessageId: $messageid",
-            "X-ListMember: $email",
-            "Precedence: bulk",
-            "List-Help: <".$text["preferences"].">",
-            "List-Unsubscribe: <".$text["unsubscribe"].">",
-            "List-Subscribe: <".getConfig("subscribeurl").">",
-            "List-Owner: <mailto:".getConfig("admin_address").">"
-    ));
-  } else {
-    # build the email
-    $mail = new PHPlistMailer($messageid,$destinationemail);
-    if ($forwardedby) {
-      $mail->add_timestamp();
-    }
-    $mail->addCustomHeader("List-Help: <".$text["preferences"].">");
-    $mail->addCustomHeader("List-Unsubscribe: <".$text["unsubscribe"].">");
-    $mail->addCustomHeader("List-Subscribe: <".getConfig("subscribeurl").">");
-    $mail->addCustomHeader("List-Owner: <mailto:".getConfig("admin_address").">");
+  # build the email
+  $mail = new PHPlistMailer($messageid,$destinationemail);
+  if ($forwardedby) {
+    $mail->add_timestamp();
   }
+  $mail->addCustomHeader("List-Help: <".$text["preferences"].">");
+  $mail->addCustomHeader("List-Unsubscribe: <".$text["unsubscribe"].">");
+  $mail->addCustomHeader("List-Subscribe: <".getConfig("subscribeurl").">");
+  $mail->addCustomHeader("List-Owner: <mailto:".getConfig("admin_address").">");
 
   list($dummy,$domaincheck) = explode('@',$destinationemail);
   $text_domains = explode("\n",trim(getConfig("alwayssendtextto")));
