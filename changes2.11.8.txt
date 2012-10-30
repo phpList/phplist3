@@ -5,6 +5,7 @@ Minimum requirement PHP 5.1.2 due to use of "hash"
 
 
 Subscriber password (if used) always encrypted
+As a result, the "Forgot password" is a link to send an email to the admin. A token based Forgot has to be recoded.
 
 dropped config "ENCRYPT_PASSWORD" (always true, if ASKFORPASSWORD set)
 added config "ENCRYPTION_ALGO" which hash function to use, defaults to sha256

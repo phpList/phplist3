@@ -106,7 +106,26 @@ if (!defined("USECK")) define("USECK",0); ## ckeditor integration, not finished 
 if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
 if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",0);
-if (!defined("ENCRYPTPASSWORD")) define("ENCRYPTPASSWORD",0);
+if (ASKFORPASSWORD) {
+  ## we now always encrypt
+  define('ENCRYPTPASSWORD',1);
+}
+if (!defined("ENCRYPTPASSWORD")) {
+  ## old method to encrypt, used to be with md5, keep like this for backward compat.
+  define('ENCRYPTION_ALGO','md5');
+#  define("ENCRYPTPASSWORD",0);
+}
+
+if (!defined('ENCRYPTION_ALGO')) {
+  if (function_exists('hash_algos') && in_array('sha256',hash_algos())) {
+    define('ENCRYPTION_ALGO','sha256');
+  } else {
+    define('ENCRYPTION_ALGO','md5');
+  }
+}
+## remember the length of a hashed string
+$hash_length = strlen(hash(ENCRYPTION_ALGO,'some text'));
+
 if (!defined("PHPMAILER")) define("PHPMAILER",1);
 if (!defined('PHPMAILERHOST')) define("PHPMAILERHOST",'');
 if (!defined("MANUALLY_PROCESS_QUEUE")) define("MANUALLY_PROCESS_QUEUE",1);

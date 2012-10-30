@@ -108,13 +108,13 @@ function addNewUser($email,$password = "") {
     $GLOBALS['tables']['user'],$email));
   if ($exists[0]) return $exists[0];
 
-  $password = hash("sha256",$password); 
+  $passwordEnc = encryptPass($password);
   
   Sql_Query(sprintf('insert into %s set email = "%s",
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
     uniqid = "%s",htmlemail = 1
-    ',$GLOBALS['tables']['user'],$email,$password,getUniqid()));
+    ',$GLOBALS['tables']['user'],$email,$passwordEnc,getUniqid()));
   ##hash("sha256",$password)
 
   $id = Sql_Insert_Id();

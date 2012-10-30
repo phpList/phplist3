@@ -745,6 +745,22 @@ function compressContent($content) {
   return $content;
 }
 
+function encryptPass($pass) {
+  if (empty($pass)) return '';
+
+  if (function_exists('hash')) {
+    if(!in_array(ENCRYPTION_ALGO, hash_algos(), true)) {
+      ## fallback, not that secure, but better than none at all
+      $algo = 'md5';
+    } else {
+      $algo = ENCRYPTION_ALGO;
+    }
+    return hash($algo,$pass); 
+  } else {
+    return md5($pass);
+  }
+}
+
 /* do not use @@@
 
 # try to pull remote styles into the email, but that's a nightmare, because

@@ -144,6 +144,17 @@ $commandline_users = array("admin");
 # to 1. See README.passwords for more information
 define("ASKFORPASSWORD",0);
 
+# if you use passwords, they will be stored encrypted
+# set this one to the algorythm to use. You can find out which ones are
+# supported by your system with the command
+# $ php -r "var_dump(hash_algos());";
+# "sha256" is fairly common on the latest systems, but if your system is very old (not a good idea)
+# you may want to set it to "sha1" or "md5"
+# if you use encrypted passwords, users can only request you as an administrator to
+# reset the password. They will not be able to request the password from
+# the system
+define("ENCRYPTION_ALGO",'sha256');
+
 # if you also want to force people who unsubscribe to provide a password before
 # processing their unsubscription, set this to 1. You need to have the above one set
 # to 1 for this to have an effect
@@ -165,12 +176,7 @@ $blacklist_gracetime = 5;
 # switch off the checking by setting this to 0
 define("CHECK_SESSIONIP",1);
 
-# if you use passwords, you can store them encrypted or in plain text
-# if you want to encrypt them, set this one to 1
-# if you use encrypted passwords, users can only request you as an administrator to
-# reset the password. They will not be able to request the password from
-# the system
-define("ENCRYPTPASSWORD",0);
+
 
 # Check for host of email entered for subscription
 # Do not use it if your server is not 24hr online
@@ -681,16 +687,14 @@ define("FORWARD_PERSONAL_NOTE_SIZE",0);
 # This will show an extra tab in the message dialog. 
 define("FORWARD_ALTERNATIVE_CONTENT",0);
 
-# If you want to use the PHPMailer class from phpmailer.sourceforge.net, set the following
-# to 1. If you tend to send out html emails, it is recommended to do so.
-define("PHPMAILER",1);
-
-# when using phpmailer, you can provide the path to the class here
+# you can specify the location of the phpMailer class here
 # if not set, the version included in the distribution will be used
 ## eg for Debian based systems, it may be something like this
+## when you do this, you may need to run some tests, to see if the phpMailer version
+## you have works ok
 #define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
 
-# To use a SMTP please give your server hostname here, leave it blank to use the standard
+# To use a SMTP server please give your server hostname here, leave it blank to use the standard
 # PHP mail() command.
 define("PHPMAILERHOST",'');
 
@@ -699,7 +703,7 @@ define("PHPMAILERHOST",'');
 #$phpmailer_smtpuser = 'smtpuser';
 #$phpmailer_smtppassword = 'smtppassword';
 
-## when using phpMailer, you can set this to send out via a different port as well
+## you can set this to send out via a different SMTP port
 # define('PHPMAILERPORT',25);
 
 # to use SSL/TLS set this to y

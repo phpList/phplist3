@@ -12,6 +12,13 @@ $_REQUEST = removeXss($_REQUEST);
 $_SERVER = removeXss($_SERVER);
 $_COOKIE = removeXss($_COOKIE);
 
+## remove a trailing punctuation mark on the uid
+if (isset($_GET['uid'])) {
+  if (preg_match('/[\.,:;]$/',$_GET['uid'])) {
+    $_GET['uid'] = preg_replace('/[\.,:;]$/','',$_GET['uid']);
+  }
+}
+
 if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
   include $_SERVER["ConfigFile"];
 } elseif (is_file("config/config.php")) {
@@ -159,13 +166,21 @@ if ($login_required && empty($_SESSION["userloggedin"])) {
       $msg = $strEnterPassword;
     } else {
       if (ENCRYPTPASSWORD) {
-        $canlogin = md5($_POST["password"]) == $userpassword && $_POST["email"] == $emailcheck;
+        $encP = encryptPass($_POST["password"]);
+        $canlogin = false;
+        $canlogin = 
+          !empty($encP) && 
+          !empty($_POST['password']) && 
+          !empty($emailcheck) && 
+          $encP == $userpassword && $_POST["email"] == $emailcheck;
+  #      print $_POST['password'].' '.$encP.' '.$userpassword.' '.$canlogin; exit;
       } else {
         $canlogin = $_POST["password"] == $userpassword && $_POST["email"] == $emailcheck;
       }
     }
+
     if (!$canlogin) {
-      $msg = $strInvalidPassword;
+      $msg = '<p class="error">'.$strInvalidPassword.'</p>';
     } else {
       loadUser($emailcheck);
       $_SESSION["userloggedin"] = $_SERVER["REMOTE_ADDR"];
@@ -220,7 +235,7 @@ if ($id) {
   by the developers  but also helps build interest, traffic and use of
   PHPlist, which is beneficial to it's future development.
 
-  Michiel Dethmers, phpList Ltd 2000-2011
+  Michiel Dethmers, phpList Ltd 2000-2012
 */
 include 'admin/ui/'.$GLOBALS['ui'].'/publicpagetop.php';
 
@@ -334,7 +349,12 @@ function LoginPage($id,$userid,$email = "",$msg = "") {
   $html .= '</table>';
    $html .= '<p><input type=submit name="login" value="'.$GLOBALS["strLogin"].'"></p>';
   if (ENCRYPTPASSWORD) {
-    $html .= sprintf('<a href="mailto:%s?subject=%s">%s</a>',getConfig("admin_address"),$GLOBALS["strForgotPassword"],$GLOBALS["strForgotPassword"]);
+
+    $forgotPassBody = $GLOBALS["strForgotPasswordEmailBody"];
+    $forgotPassBody = str_replace("\n",'%0D%0A',$forgotPassBody);
+   
+    $html .= sprintf('<a href="mailto:%s?subject=%s&body=%s
+    ">%s</a>',getConfig("admin_address"),$GLOBALS["strForgotPassword"],$forgotPassBody,$GLOBALS["strForgotPassword"]);
   } else {
     $html .= '<input type=submit name="forgotpassword" value="'.$GLOBALS["strForgotPassword"].'">';
   }
