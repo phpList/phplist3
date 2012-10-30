@@ -1,0 +1,24 @@
+
+Changes 2.11.5
+
+More capabilities for plugins to manipulate elements of the system
+Removed RSS functionality in order to move it to a plugin
+Admin Passwords encrypted
+Removed attribute selection for outgoing mails, move to plugin
+Add requeue option, to automatically add messages back in the queue
+update to phpMailer 5.1
+auto blacklist emails on too many bounces
+click track handles large amounts
+suspend messages and allow "mark as sent"
+disallow deletion of messages that have gone out
+compression of outgoing mails, increase of speed
+send embedded images
+HTML Footer
+switching tabs in the "send a message" page will save it to the DB
+List categorisation -> Organise lists in groups
+Allow config for defaulting on send start and finish alerts
+Automatically add Google tracking code to all links
+Interface updates and improvements
+Before sending a mailout, stats will be cleared
+Download of statistics data
+import by pasting emails
