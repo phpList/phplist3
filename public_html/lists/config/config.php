@@ -44,9 +44,7 @@ $usertable_prefix = "phplist_user_";
 
 # if you change the path to the phpList system, make the change here as well
 # path should be relative to the root directory of your webserver (document root)
-# you cannot actually change the "admin", but you can change the "lists"
 $pageroot = '/lists';
-$adminpages = '/lists/admin';
 
 /*
 

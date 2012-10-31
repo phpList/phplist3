@@ -17,6 +17,9 @@ if (function_exists('mb_internal_encoding')) {
   mb_internal_encoding("UTF-8");
 }
 
+## as the "admin" in adminpages is hardcoded, don't put it in the config file
+$adminpages = $GLOBALS['pageroot'].'/admin';
+
 $IsCommandlinePlugin = '';
 $zlib_compression = ini_get('zlib.output_compression');
 # hmm older versions of PHP don't have this, but then again, upgrade php instead?
