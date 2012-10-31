@@ -15,5 +15,9 @@ allow from all
 # but you really, really should consider uploading them somewhere
 # and only sending a link in your mails
 # bigger than this really doesn't make sense in emails
-php_value upload_max_filesize 3M
-php_value post_max_size 4M
+
+## these lines are now commented out, to avoid 500 errors, https://mantis.phplist.com/view.php?id=9937
+## but you should consider adding them
+
+#php_value upload_max_filesize 3M
+#php_value post_max_size 4M
