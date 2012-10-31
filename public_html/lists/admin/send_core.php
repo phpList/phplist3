@@ -764,7 +764,7 @@ if (!$done) {
   $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.s("Compose Message").Help("forwardmessage").'</label> ';
   
   if (!empty($GLOBALS['editorplugin'])) {
-    $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',stripslashes($messagedata["message"])) .'</div>';
+    $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',$messagedata["message"]) .'</div>';
   } else {
     $maincontent    .= '
       <div><textarea name="message" cols="65" rows="20">'.htmlspecialchars($messagedata["message"]).'</textarea></div>';
