@@ -1,14 +1,10 @@
-
-<script language="Javascript" src="js/jslib.js" type="text/javascript"></script>
-
 <?php
-if (!defined('MAX_AVATAR_SIZE')) define('MAX_AVATAR_SIZE',2000);
+
 $id = sprintf('%d',isset($_GET["id"]) ? $_GET['id']:0);
 $delete = sprintf('%d',isset($_GET['delete']) ? $_GET["delete"]:0);
 $date = new Date();
 $newuser = 0;
 $feedback = '';
-
 
 $access = accessLevel("user");
 switch ($access) {
@@ -349,10 +345,18 @@ if ($id) {
   }
 
   $id = 0;
-  print '<h3>'.$GLOBALS['I18N']->get('Add a new subscriber').'</h3>';
+  print '<h3>'.s('Add a new subscriber').'</h3>';
+  if (empty($_POST['email'])) {
+    print formStart();
+    print s('Email address').': '.'<input type="text" name="email" value="" />';
+    print '<input type="submit" name="change" value="'.s('Continue').'">';
+    print '</form>';
+    return;
+  }
 }
 
-  print '<h3>'.$GLOBALS['I18N']->get('Subscriber details')."</h3>".formStart('enctype="multipart/form-data"');
+  #print '<h3>'.$GLOBALS['I18N']->get('Subscriber details')."</h3>";
+  print formStart('enctype="multipart/form-data"');
   if ( empty ($list) ) { $list = ''; }
   print '<input type="hidden" name="list" value="'.$list.'" /><input type="hidden" name="id" value="'.$id.'" />';
   if ( empty ($returnpage) ) { $returnpage = ''; }
