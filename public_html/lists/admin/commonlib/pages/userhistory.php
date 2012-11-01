@@ -42,9 +42,9 @@ $user = sql_fetch_array($result);
 
 print '<h3>'.$GLOBALS['I18N']->get('user').' '.PageLink2("user&id=".$user["id"],$user["email"]).'</h3>';
 print '<div class="actions">';
-printf('<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
-  '&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
-printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
+//printf('<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
+  //'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
+//printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
 print PageLinkButton("user&amp;id=$id",$GLOBALS['I18N']->get('Details'));
 if ($access != "view")
 printf( "<a class=\"delete button\" href=\"javascript:deleteRec('%s');\">delete</a>",

@@ -325,9 +325,9 @@ if ($id) {
   if (empty($returnurl)) { $returnurl = ''; }
 
   print '<div class="actions">';
-  printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
-         '&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
-  printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
+  //printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
+         //'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
+  //printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
   print '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id",$GLOBALS['I18N']->get('History'));
   if (!empty($GLOBALS['config']['plugins']) && is_array($GLOBALS['config']['plugins'])) {
     foreach ($GLOBALS['config']['plugins'] as $pluginName => $plugin) {
@@ -581,4 +581,3 @@ print '</div>'; ## end of tabbed
 
 
 print '</form>';
-?>
