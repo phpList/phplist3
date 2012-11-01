@@ -195,7 +195,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
     if (ASKFORPASSWORD && $old_data["password"]) {
       $encP = encryptPass($_POST["password"]);
       $canlogin = !empty($encP) && !empty($_POST['password']) && $encP == $old_data["password"];
-      print $canlogin.' '.$_POST['password'].' '.$encP.' '. $old_data["password"];
+ #     print $canlogin.' '.$_POST['password'].' '.$encP.' '. $old_data["password"];
       if (!$canlogin) {
         $msg = $GLOBALS["strUserExists"];
         $msg .= '<p class="information">'.$GLOBALS["strUserExistsExplanationStart"].
