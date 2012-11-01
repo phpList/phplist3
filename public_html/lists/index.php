@@ -806,7 +806,7 @@ function unsubscribePage($id) {
   }
 
   $res .= '<b>'. $GLOBALS["strUnsubscribeInfo"].'</b><br>'.
-  $msg.formStart();
+  $msg.'<form method="get" action=""><input type="hidden" name="p" value="unsubscribe" />';
   if (!isset($_POST['email']) || empty($email)) {
     $res .= '<p>'.$GLOBALS["strEnterEmail"].': <input type="text" name="email" value="'.$email.'" size="40" /></p>';
   } else {
