@@ -107,6 +107,7 @@ if (!defined("PAGETEXTCREDITS")) define("PAGETEXTCREDITS",0);
 if (!defined("USEFCK")) define("USEFCK",1);
 if (!defined("USECK")) define("USECK",0); ## ckeditor integration, not finished yet
 if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
+if (!defined('SILENT_RESUBSCRIBE')) define('SILENT_RESUBSCRIBE',true);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
 if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",0);
 if (ASKFORPASSWORD) {
@@ -146,7 +147,7 @@ if (!defined("MAILQUEUE_BATCH_SIZE")) define("MAILQUEUE_BATCH_SIZE",150); //Chan
 if (!defined("MAILQUEUE_BATCH_PERIOD")) define("MAILQUEUE_BATCH_PERIOD",1800); //Changed for test. (old value = 3600)
 if (!defined('MAILQUEUE_THROTTLE')) define('MAILQUEUE_THROTTLE',20); //Changed for test. (old value = 0)
 if (!defined('MAILQUEUE_AUTOTHROTTLE')) define('MAILQUEUE_AUTOTHROTTLE',1); //Changed for test. (old value = 0)
-if (!defined("NAME")) define("NAME",'phplist');
+if (!defined("NAME")) define("NAME",'phpList');
 if (!defined("USE_OUTLOOK_OPTIMIZED_HTML")) define("USE_OUTLOOK_OPTIMIZED_HTML",0);
 if (!defined("EXPORT_EXCEL")) define("EXPORT_EXCEL",0);
 if (!defined("USE_PREPARE")) define("USE_PREPARE",0);

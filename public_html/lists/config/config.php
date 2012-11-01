@@ -136,6 +136,15 @@ $commandline_users = array("admin");
 # or you can use the following to disable the check (take off the # in front of the line)
 # $commandline_users = array();
 
+## silent resubscribe
+# when someone signs up with an email address already in the database, 
+# phpList will simply accept it and subscribe them as if it is the first time
+# however, that allows anyone to overwrite data of someone else
+# see also https://mantis.phplist.com/view.php?id=15557
+# if you don't like that, you can stop this from happening and send the subscriber to the
+# preferences page instead. To do so, uncomment (remove the #) the next line
+#define('SILENT_RESUBSCRIBE',false);
+
 # as of version 2.4.1, you can have your users define a password for themselves as well
 # this will cause some public pages to ask for an email and a password when the password is
 # set for the user. If you want to activate this functionality, set the following
@@ -332,6 +341,10 @@ define("ALLOW_NON_LIST_SUBSCRIBE",0);
 # Please note, the following two values can be overridden by your ISP by using
 # a server wide configuration. So if you notice these values to be different
 # in reality, that may be the case
+
+# max messages to process
+# if there are multiple messages in the queue, set a maximum to work on
+define('MAX_PROCESS_MESSAGE',999);
 
 # define the amount of emails you want to send per period. If 0, batch processing
 # is disabled and messages are sent out as fast as possible

@@ -197,13 +197,22 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
       $canlogin = !empty($encP) && !empty($_POST['password']) && $encP == $old_data["password"];
  #     print $canlogin.' '.$_POST['password'].' '.$encP.' '. $old_data["password"];
       if (!$canlogin) {
-        $msg = $GLOBALS["strUserExists"];
+        $msg = '<p class="error">'.$GLOBALS["strUserExists"].'</p>';
         $msg .= '<p class="information">'.$GLOBALS["strUserExistsExplanationStart"].
           sprintf('<a href="%s&amp;email=%s">%s</a>',getConfig("preferencesurl"),$email,
           $GLOBALS["strUserExistsExplanationLink"]).
-          $GLOBALS["strUserExistsExplanationEnd"];
+          $GLOBALS["strUserExistsExplanationEnd"].'</p>';
         return;
       }
+    }
+    
+    # https://mantis.phplist.com/view.php?id=15557, disallow re-subscribing existing subscribers
+    if (!SILENT_RESUBSCRIBE) {
+      $msg = '<p class="error">'.$GLOBALS["strUserExistsResubscribe"].'</p>';
+      $msg .= '<p class="information">';
+      $msg .= sprintf($GLOBALS["strUserExistsResubscribeExplanation"],getConfig("preferencesurl"));
+      $msg .= '</p>';
+      return;
     }
 
     $userid = $old_data["id"];
@@ -330,7 +339,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
   if ($subscribepagedata["thankyoupage"]) {
     $thankyoupage = $subscribepagedata["thankyoupage"];
   } else {
-     $thankyoupage = '<h3>'.$strThanks.'</h3>'. $strEmailConfirmation;
+     $thankyoupage = '<h3>'.$strThanks.'</h3>'.'<p class="information">'. $strEmailConfirmation.'</p>';
   }
 
    $thankyoupage = str_ireplace("[email]",$email,$thankyoupage);
@@ -341,13 +350,6 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
      $thankyoupage = str_ireplace("[".$att_name."]",$att_value,$thankyoupage);
    }
 
-   if (is_array($GLOBALS["plugins"])) {
-      reset($GLOBALS["plugins"]);
-
-      foreach ($GLOBALS["plugins"] as $name => $plugin) {
-         $thankyoupage = $plugin->parseThankyou($id,$userid,$thankyoupage);
-      }
-   }
 
   if (is_array($GLOBALS["plugins"])) {
     reset($GLOBALS["plugins"]);
@@ -355,11 +357,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
       $thankyoupage = $plugin->parseThankyou($id,$userid,$thankyoupage);
     }
   }
-  if ($blacklisted) {
-    ## let's not confuse things. If someone re-subscribes then process it as normal, even if they are blacklisted
-#    $thankyoupage .= '<p class="information">'.$GLOBALS["strYouAreBlacklisted"].'</p>';
- #   return 1;
-  }
+
   if ($sendrequest && $listsok) { #is_array($_POST["list"])) {
     if (0) {
       ## try to deliver directly, so that any error (eg user not found) can be sent back to the
@@ -397,7 +395,6 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
     }
   } else {
       print $thankyoupage;
-
       if ($_SESSION["adminloggedin"]) {
          print '<p class="information">User has been added and confirmed</p>';
       }
@@ -407,7 +404,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
    print $subscribepagedata["footer"];
    //  exit;
    // Instead of exiting here, we return 2. So in lists/index.php
-   // We can decide, whether to show subcribe page or not.
+   // We can decide, whether to show subscribe page or not.
    ## issue 6508
    return 2;
 }
