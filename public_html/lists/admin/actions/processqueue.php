@@ -437,9 +437,9 @@ $notsent = $sent = $invalid = $unconfirmed = $cannotsend = 0;
 $req = Sql_Query(sprintf('select id,requeueinterval,embargo < now() as inthepast from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
 while ($msg = Sql_Fetch_Assoc($req)) {
   if ($msg['inthepast']) {
-    Sql_query(sprintf('update %s set status = "submitted",embargo = date_add(now(),interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
+    Sql_query(sprintf('update %s set status = "submitted",sendstart = null, embargo = date_add(now(),interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
   } else {
-    Sql_query(sprintf('update %s set status = "submitted",embargo = date_add(embargo,interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
+    Sql_query(sprintf('update %s set status = "submitted",sendstart = null, embargo = date_add(embargo,interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
   }
   ## @@@ need to update message data as well
 }
