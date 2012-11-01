@@ -12,7 +12,7 @@ if (!function_exists("output")) {
 function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$forwardedby = array()) {
   $getspeedstats = VERBOSE && !empty($GLOBALS['getspeedstats']) && isset($GLOBALS['processqueue_timer']);
   $sqlCountStart = $GLOBALS["pagestats"]["number_of_queries"];
-  $isTestMail = isset($_GET['page'] && $_GET['page'] == 'send';
+  $isTestMail = isset($_GET['page']) && $_GET['page'] == 'send';
 
   ## for testing concurrency, put in a delay to check if multiple send processes cause duplicates
   #usleep(rand(0,10) * 1000000);
