@@ -125,9 +125,11 @@ if (!$xormask) {
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
-// set session name, without revealing version
-// but with version included, so that upgrading works more smoothly
-ini_set('session.name','phpList'.VERSION | $xormask);
+
+/* set session name, without revealing version
+  * but with version included, so that upgrading works more smoothly
+  */
+ini_set('session.name','phpList-'.$GLOBALS['installation_name'].VERSION | $xormask);
 
 //obsolete, moved to rssmanager plugin
 //$GLOBALS['rssfrequencies'] = array(

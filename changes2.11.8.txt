@@ -16,3 +16,7 @@ dropped config "USEFCK" (now determined by plugin arrangement)
 
 Dropped config PHPMAILER (always true)
 Added config PHPMAILER_PATH -> specify path to phpMailer
+
+add option SILENT_RESUBSCRIBE default true (current behaviour)
+
+session.name = unique per installation
