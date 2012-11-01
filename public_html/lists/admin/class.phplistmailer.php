@@ -225,7 +225,7 @@ class PHPlistMailer extends PHPMailer {
         $this->From = $from_addr;
         $this->FromName = $from_name;
       }
-      if (strstr(VERSION, "dev")) {
+      if (!empty($GLOBALS["developer_email"])) {
         # make sure we are not sending out emails to real users
         # when developing
         $this->AddAddress($GLOBALS["developer_email"]);
