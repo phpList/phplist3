@@ -637,9 +637,15 @@ if (!$done) {
   $currentTime = Sql_Fetch_Row_Query('select now()');
 
   $scheduling_content = '<div id="schedulecontent">';
-  $scheduling_content .= '
-  <div class="field">'.$GLOBALS['I18N']->get("Dates and times are relative to the Server Time").'<br/>'.$GLOBALS['I18N']->get('Current Server Time is').' <span id="servertime">'.$currentTime[0].'</span>'.'</div>
-  <div class="field"><label for="embargo">'.$GLOBALS['I18N']->get("Embargoed Until").Help('embargo').'</label>'.'
+  if (defined('SYSTEM_TIMEZONE')) {
+    $scheduling_content .= '
+    <div class="field">'.s('phpList operates in the time zone ').SYSTEM_TIMEZONE.'</div>';
+  } else {
+    $scheduling_content .= '
+    <div class="field">'.s('Dates and times are relative to the Server Time').'<br/>'.s('Current Server Time is').' <span id="servertime">'.$currentTime[0].'</span>'.'</div>';
+  }
+  
+  $scheduling_content .= '  <div class="field"><label for="embargo">'.$GLOBALS['I18N']->get("Embargoed Until").Help('embargo').'</label>'.'
     '.$embargo->showInput('embargo',"",$messagedata['embargo']).'</div>
   <div class="field"><label for="finishsending">'.$GLOBALS['I18N']->get("Stop sending after").Help('finishsending').'</label>'.'
     '.$embargo->showInput('finishsending',"",$messagedata['finishsending']).'</div>

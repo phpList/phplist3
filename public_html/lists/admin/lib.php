@@ -7,6 +7,7 @@ include_once dirname(__FILE__).'/class.phplistmailer.php';
 
 $domain = getConfig("domain");
 $website = getConfig("website");
+
 if (!$GLOBALS["message_envelope"]) {
   # why not try set it to "person in charge of this system". Will help get rid of a lot of bounces to nobody@server :-)
   $admin = getConfig('admin_address');
@@ -22,7 +23,6 @@ if (defined("IN_WEBBLER") && is_object($GLOBALS["config"]["plugins"]["phplist"])
 
 include_once dirname(__FILE__).'/class.phplistmailer.php';
 $usephpmailer = 1;  
-
 
 $GLOBALS['bounceruleactions'] = array(
   'deleteuser' => $GLOBALS['I18N']->get('delete user'),
@@ -48,6 +48,7 @@ function listName($id) {
 
 function setMessageData($msgid,$name,$value) {
   if ($name == 'PHPSESSID') return;
+  if ($name == session_name()) return;
   
   if ($name == 'targetlist' && is_array($value))  {
     Sql_query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']["listmessage"],$msgid));
@@ -209,21 +210,6 @@ function loadMessageData($msgid) {
   $GLOBALS['MD'][$msgid] = $messagedata;
 #  var_dump($messagedata);
   return $messagedata;
-}
-
-function HTMLselect ($name, $table, $column, $value) {
-  $res = "<!--$value--><select name=$name>\n";
-  $result = Sql_Query("SELECT id,$column FROM $table");
-  while($row = Sql_Fetch_Array($result)) {
-    $res .= "<option value=".$row["id"] ;
-    if ($row["$column"] == $value)
-      $res .= 'selected="selected"';
-    if ($row["id"] == $value)
-      $res .= 'selected="selected"';
-    $res .= ">" . $row[$column] . "\n";
-  }
-  $res .= "</select>\n";
-  return $res;
 }
 
 #Send email with a random encrypted token.

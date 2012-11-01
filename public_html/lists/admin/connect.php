@@ -57,21 +57,26 @@ Sql_Set_Search_Path($database_schema);
 
 
 ## this needs more testing, and docs on how to set the Timezones in the DB
-if (false && defined('SYSTEM_TIMEZONE')) {
-#  print('set time_zone = "'.SYSTEM_TIMEZONE.'"');
+if (defined('SYSTEM_TIMEZONE')) {
+#  print('set time_zone = "'.SYSTEM_TIMEZONE.'"<br/>');
   Sql_Query('set time_zone = "'.SYSTEM_TIMEZONE.'"');
   ## verify that it applied correctly
   $tz = Sql_Fetch_Row_Query('select @@session.time_zone');
   if ($tz[0] != SYSTEM_TIMEZONE) {
     ## I18N doesn't exist yet, @@TODO need better error catching here
     print 'Error setting timezone in Sql Database'.'<br/>';
+  } else {
+#    print "Mysql timezone set to $tz[0]<br/>";
   }
   $phptz_set = date_default_timezone_set(SYSTEM_TIMEZONE);
   $phptz = date_default_timezone_get ();
   if (!$phptz_set || $phptz != SYSTEM_TIMEZONE) {
     ## I18N doesn't exist yet, @@TODO need better error catching here
     print 'Error setting timezone in PHP'.'<br/>';
+  } else {
+#    print "PHP system timezone set to $phptz<br/>";
   }
+#  print "Time now: ".date('Y-m-d H:i:s').'<br/>';
 }
 
 if (!empty($GLOBALS["SessionTableName"])) {
