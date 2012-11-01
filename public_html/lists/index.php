@@ -333,7 +333,7 @@ function LoginPage($id,$userid,$email = "",$msg = "") {
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $html = '<title>'.$GLOBALS["strLoginTitle"].'</title>';
   $html .= $GLOBALS['pagedata']["header"];
-  $html .= '<b>'.$GLOBALS["strLoginInfo"].'</b><br/>';
+  $html .= '<h3>'.$GLOBALS["strLoginInfo"].'</h3>';
   $html .= $msg;
   if (isset($_REQUEST["email"])) {
     $email = $_REQUEST["email"];
@@ -369,7 +369,7 @@ function sendPersonalLocationPage($id) {
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $html = '<title>'.$GLOBALS["strPreferencesTitle"].'</title>';
   $html .= $GLOBALS['pagedata']["header"];
-  $html .= '<b>'.$GLOBALS["strPreferencesTitle"].'</b><br/>';
+  $html .= '<h3>'.$GLOBALS["strPreferencesTitle"].'</h3>';
   $html .= $GLOBALS["msg"];
   if ($_REQUEST["email"]) {
     $email = $_REQUEST["email"];
@@ -395,7 +395,7 @@ function preferencesPage($id,$userid) {
   $selected_lists = explode(',',$GLOBALS['pagedata']["lists"]);
   $html = '<title>'.$GLOBALS["strPreferencesTitle"].'</title>';
   $html .= $GLOBALS['pagedata']["header"];
-  $html .= '<b>'.$GLOBALS["strPreferencesInfo"].'</b>';
+  $html .= '<h3>'.$GLOBALS["strPreferencesInfo"].'</h3>';
   $html .= '
 
 <br/><div class="error"><span class="required">'.$GLOBALS["strRequired"].'</span></div><br/>
@@ -805,7 +805,7 @@ function unsubscribePage($id) {
     $msg = '<span class="error">'.$GLOBALS["strEnterEmail"]."</span><br>";
   }
 
-  $res .= '<b>'. $GLOBALS["strUnsubscribeInfo"].'</b><br>'.
+  $res .= '<h3>'. $GLOBALS["strUnsubscribeInfo"].'</h3>'.
   $msg.'<form method="get" action=""><input type="hidden" name="p" value="unsubscribe" />';
   if (!isset($_POST['email']) || empty($email)) {
     $res .= '<p>'.$GLOBALS["strEnterEmail"].': <input type="text" name="email" value="'.$email.'" size="40" /></p>';
