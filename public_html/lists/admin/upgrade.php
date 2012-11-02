@@ -442,6 +442,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   ## 2.11.7 and up
   Sql_Query(sprintf('alter table %s add column privileges text',$tables['admin']),1);
   Sql_Query('alter table '.$tables['list'].' add column category varchar(255) default ""',1);
+  Sql_Query('alter table '.$tables['user_attribute'].' change column value value text');
 
   ## fetch the list of TLDs, if possible
   if (defined('TLD_AUTH_LIST')) {
