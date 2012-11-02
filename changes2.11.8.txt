@@ -20,3 +20,9 @@ Added config PHPMAILER_PATH -> specify path to phpMailer
 add option SILENT_RESUBSCRIBE default true (current behaviour)
 
 session.name = unique per installation
+
+SYSTEM_TIMEZONE -> allow config to set the Timezone 
+
+actually already in 2.11.7, but not mentioned: TLD auto-updating
+
+added PREFERENCEPAGE_SHOW_PRIVATE_LISTS

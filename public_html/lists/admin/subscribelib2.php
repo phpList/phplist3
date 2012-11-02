@@ -693,9 +693,21 @@ function ListAvailableLists($userid = 0,$lists_to_show = "") {
   $subselect = "";$listset = array();
 
   $showlists = explode(",",$lists_to_show);
-  foreach ($showlists as $listid)
-    if (preg_match("/^\d+$/",$listid))
+  if (PREFERENCEPAGE_SHOW_PRIVATE_LISTS && !empty($userid)) {
+    ## merge with the subscribed lists, regardless of public state
+    $subscribed = array();
+    $req = Sql_Query(sprintf('select listid from %s where userid = %d',$tables['listuser'],$userid));
+    while ($row = Sql_Fetch_Row($req)) {
+      $subscribed[] = $row[0];
+    }
+    $showlists = array_unique(array_merge($showlists,$subscribed));
+  }
+  
+  foreach ($showlists as $listid) {
+    if (preg_match("/^\d+$/",$listid)) {
       array_push($listset,$listid);
+    }
+  }
   if (sizeof($listset) >= 1) {
     $subselect = "where id in (".join(",",$listset).") ";
   }
@@ -704,7 +716,7 @@ function ListAvailableLists($userid = 0,$lists_to_show = "") {
   $html = '<ul class="list">';
   $result = Sql_query("SELECT * FROM {$GLOBALS["tables"]["list"]} $subselect order by listorder, name");
   while ($row = Sql_fetch_array($result)) {
-    if ($row["active"]) {
+    if ($row["active"] || in_array($row['id'],$subscribed)) {
       $html .= '<li class="list"><input type="checkbox" name="list['.$row["id"] . ']" value="signup" ';
       if (isset($list[$row["id"]]) && $list[$row['id']] == "signup")
         $html .= 'checked="checked"';
@@ -715,7 +727,7 @@ function ListAvailableLists($userid = 0,$lists_to_show = "") {
           $html .= 'checked="checked"';
       }
       $html .= " /><b>".stripslashes($row["name"]).'</b><div class="listdescription">';
-      $desc = nl2br(StripSlashes($row["description"]));
+      $desc = nl2br(stripslashes($row["description"]));
       $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
       $html .= $desc.'</div></li>';
       $some++;

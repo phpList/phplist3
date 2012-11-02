@@ -335,6 +335,13 @@ define ("NUMCRITERIAS",2);
 # users will not receive an error when they do not check a list to subscribe to
 define("ALLOW_NON_LIST_SUBSCRIBE",0);
 
+# Show private lists
+# If you have a mixture of public and private lists, you can set this to 1, to allow
+# your subscribers to see (and unsubscribe from) your private lists on their 
+# preferences page. By default it won't show private (non-public) lists
+# see also https://mantis.phplist.com/view.php?id=15274
+define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
+
 # batch processing
 # if you are on a shared host, it will probably be appreciated if you don't send
 # out loads of emails in one go. To do this, you can configure batch processing.

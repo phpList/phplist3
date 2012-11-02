@@ -230,6 +230,8 @@ if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
 }
 if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN','http://'.$_SERVER['HTTP_HOST']);
 
+if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',false);
+
 # check whether Pear HTTP/Request is available, and which version
 # try 2 first
 
