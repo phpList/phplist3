@@ -233,6 +233,7 @@ if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN
 if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',false);
 #https://mantis.phplist.com/view.php?id=15603
 if (!defined('WORDWRAP_HTML')) define('WORDWRAP_HTML',0);
+if (!defined('USE_PRECEDENCE_HEADER')) define('USE_PRECEDENCE_HEADER',true);
 
 # check whether Pear HTTP/Request is available, and which version
 # try 2 first

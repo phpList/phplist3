@@ -56,7 +56,14 @@ class PHPlistMailer extends PHPMailer {
       if (!USE_AMAZONSES) {
 #        $this->addCustomHeader("Precedence: bulk");
       }
+      * 
+      * ok, decided:
 */
+
+      if (!USE_AMAZONSES && USE_PRECEDENCE_HEADER) {
+        $this->addCustomHeader("Precedence: bulk");
+      }
+
       $newwrap = getConfig("wordwrap");
       if ($newwrap) {
         $this->WordWrap = $newwrap;

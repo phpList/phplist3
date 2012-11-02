@@ -325,6 +325,13 @@ Miscellaneous
 */
 
 
+## use Precedence
+# according to the email standards, the Precedence header is outdated, and should not be used
+# however, Google/Gmail requests that the header is used.
+# So, it's up to you what to do. Yes, or No. Defaults to "yes" use it
+# see also https://mantis.phplist.com/view.php?id=16688
+#define('USE_PRECEDENCE_HEADER',false);
+
 # the number of criterias you want to be able to select when sending a message.
 # Useful is is to make it the same as the number of selectable attributes you enter in the
 # system, but that is up to you (selectable = select, radio or checkbox)
