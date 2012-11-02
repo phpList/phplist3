@@ -174,7 +174,7 @@ if (!defined('DATE_END_YEAR')) define('DATE_END_YEAR',0);
 if (!defined('ALLOW_IMPORT')) define('ALLOW_IMPORT',1);
 if (!defined('EMPTY_VALUE_PREFIX')) define('EMPTY_VALUE_PREFIX','--');
 if (!defined('USE_ADMIN_DETAILS_FOR_MESSAGES')) define('USE_ADMIN_DETAILS_FOR_MESSAGES',1);
-if (!defined('SEND_ONE_TESTMAIL')) define('SEND_ONE_TESTMAIL',0);
+if (!defined('SEND_ONE_TESTMAIL')) define('SEND_ONE_TESTMAIL',1);
 if (!defined('USE_SPAM_BLOCK')) define('USE_SPAM_BLOCK',1);
 if (!defined('NOTIFY_SPAM')) define('NOTIFY_SPAM',1);
 if (!defined('CLICKTRACK_LINKMAP')) define('CLICKTRACK_LINKMAP',0);
