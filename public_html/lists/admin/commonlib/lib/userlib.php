@@ -13,9 +13,6 @@ function initialiseUserSession() {
   if (!is_array($_SESSION["userdata"])) {
     $_SESSION["userdata"] = array();
   }
-//  $_SESSION["session"] = $GLOBALS["PHPSESSID"];
-  // What should it be??
-    $_SESSION["session"] = $_COOKIE["PHPSESSID"];
 }
 
 function getEveryoneGroupID() {
