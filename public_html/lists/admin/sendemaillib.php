@@ -1377,9 +1377,9 @@ function precacheMessage($messageid,$forwardContent = 0) {
       #  $cached[$messageid]['content'] = $remote_content;
         $cached[$messageid]["htmlformatted"] = strip_tags($remote_content) != $remote_content;
       } else {
-        print Error(s('unable to fetch web page for sending'));
+        #print Error(s('unable to fetch web page for sending'));
         logEvent("Error fetching URL: ".$message['sendurl']. ' cannot proceed');
-        return 0;
+        return false;
       }
     }
     
