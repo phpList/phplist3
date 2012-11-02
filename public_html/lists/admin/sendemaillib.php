@@ -839,6 +839,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
             $plugin->processSuccesFailure($messageid, 'ashtml', $userdata);
           }
         #  dbg("Adding HTML ".$cached[$messageid]["templateid"]);
+          if (WORDWRAP_HTML) {
+            ## wrap it: http://mantis.phplist.com/view.php?id=15528
+            ## some reports say, this fixes things and others say it breaks things https://mantis.phplist.com/view.php?id=15617
+            ## so for now, only switch on if requested.
+            ## it probably has to do with the MTA used
+            $htmlmessage = wordwrap($htmlmessage, WORDWRAP_HTML, "\r\n");
+          }
           $mail->add_html($htmlmessage,$textmessage,$cached[$messageid]["templateid"]);
           addAttachments($messageid,$mail,"HTML");
         } else {

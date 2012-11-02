@@ -342,6 +342,12 @@ define("ALLOW_NON_LIST_SUBSCRIBE",0);
 # see also https://mantis.phplist.com/view.php?id=15274
 define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
 
+# wrap html
+# in some cases, strange newlines appear in the HTML source of campaigns
+# If that's happening to you, you may want to set this one
+# check https://mantis.phplist.com/view.php?id=15603 for more info
+# define('WORDWRAP_HTML',60)
+
 # batch processing
 # if you are on a shared host, it will probably be appreciated if you don't send
 # out loads of emails in one go. To do this, you can configure batch processing.
