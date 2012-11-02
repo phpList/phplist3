@@ -520,6 +520,9 @@ while ($message = Sql_fetch_array($messages)) {
   if (!precacheMessage($messageid)) {
     ## precache may fail on eg invalid remote URL
     ## any reporting needed here?
+
+    # mark the message as suspended
+    Sql_Query(sprintf('update %s set status = "suspended" where id = %d',$GLOBALS['tables']['message'],$messageid));
     output(s('Error loading message, please check the eventlog for details'));
     if (MANUALLY_PROCESS_QUEUE) {
       # wait a little, otherwise the message won't show
