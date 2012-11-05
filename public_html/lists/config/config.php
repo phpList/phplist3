@@ -213,19 +213,6 @@ define ("VERBOSE",0);
 # set this value to 0
 define ("WARN_ABOUT_PHP_SETTINGS",1);
 
-# If you set up your system to send the message automatically, you can set this value
-# to 0, so "Process Queue" will disappear from the site
-# this will also stop users from loading the page on the web frontend, so you will
-# have to make sure that you run the queue from the commandline
-# check README.commandline how to do this
-define ("MANUALLY_PROCESS_QUEUE",1);
-
-# if you want to use \r\n for formatting messages set the 0 to 1
-# see also http://www.securityfocus.com/archive/1/255910
-# this is likely to break things for other mailreaders, so you should
-# only use it if all your users have Outlook (not Express)
-define("WORKAROUND_OUTLOOK_BUG",0);
-
 # user history system info.
 # when logging the history of a user, you can specify which system variables you
 # want to log. These are the ones that are found in the $_SERVER and the $_ENV
@@ -314,6 +301,91 @@ define ("NOSTATSCOLLECTION",0);
 # which is useful for me for future developments
 # $stats_collection_address = 'phplist-stats@phplist.com';
 
+
+/* 
+
+=========================================================================
+
+Queue and Load management
+
+=========================================================================
+
+*/
+
+
+# If you set up your system to send the message automatically (from commandline), 
+# you can set this value to 0, so "Process Queue" will disappear from the site
+# this will also stop users from loading the page on the web frontend, so you will
+# have to make sure that you run the queue from the commandline
+# check README.commandline how to do this
+define ("MANUALLY_PROCESS_QUEUE",1);
+
+# batch processing
+# if you are on a shared host, it will probably be appreciated if you don't send
+# out loads of emails in one go. To do this, you can configure batch processing.
+# Please note, the following two values can be overridden by your ISP by using
+# a server wide configuration. So if you notice these values to be different
+# in reality, that may be the case
+
+# max messages to process
+# if there are multiple messages in the queue, set a maximum to work on
+define('MAX_PROCESS_MESSAGE',999);
+
+# define the amount of emails you want to send per period. If 0, batch processing
+# is disabled and messages are sent out as fast as possible
+define("MAILQUEUE_BATCH_SIZE",0); 
+
+# define the length of one batch processing period, in seconds (3600 is an hour)
+define("MAILQUEUE_BATCH_PERIOD",3600);
+
+# to avoid overloading the server that sends your email, you can add a little delay
+# between messages that will spread the load of sending
+# you will need to find a good value for your own server
+# value is in seconds, and you can use fractions, eg "0.5" is half a second
+# (or you can play with the autothrottle below)
+define('MAILQUEUE_THROTTLE',0); 
+
+# Mailqueue autothrottle. This will try to automatically change the delay
+# between messages to make sure that the MAILQUEUE_BATCH_SIZE (above) is spread evently over
+# MAILQUEUE_BATCH_PERIOD, instead of firing the Batch in the first few minutes of the period
+# and then waiting for the next period. This only works with mailqueue_throttle off
+# and MAILQUEUE_BATCH_PERIOD being a positive value
+# it still needs tweaking, so send your feedback to mantis.phplist.com if you find
+# any issues with it
+define('MAILQUEUE_AUTOTHROTTLE',0);
+
+# Domain Throttling
+# You can activate domain throttling, by setting USE_DOMAIN_THROTTLE to 1
+# define the maximum amount of emails you want to allow sending to any domain and the number
+# of seconds for that amount. This will make sure you don't send too many emails to one domain
+# which may cause blacklisting. Particularly the big ones are tricky about this.
+# it may cause a dramatic increase in the amount of time to send a message, depending on how
+# many users you have that have the same domain (eg hotmail.com)
+# if too many failures for throttling occur, the send process will automatically add an extra
+# delay to try to improve that. The example sends 1 message every 2 minutes.
+
+define('USE_DOMAIN_THROTTLE',0);
+define('DOMAIN_BATCH_SIZE',1);
+define('DOMAIN_BATCH_PERIOD',120);
+
+# if you have very large numbers of users on the same domains, this may result in the need
+# to run processqueue many times, when you use domain throttling. You can also tell phplist
+# to simply delay a bit between messages to increase the number of messages sent per queue run
+# if you want to use that set this to 1, otherwise simply run the queue many times. A cron
+# process every 10 or 15 minutes is recommended.
+define('DOMAIN_AUTO_THROTTLE',0);
+
+# MAX_PROCESSQUEUE_TIME
+# to limit the time, regardless of batch processing or other throttling of a single run of "processqueue"
+# you can set the MAX_PROCESSQUEUE_TIME in seconds
+# if a single queue run exceeds this amount, it will stop, just to pick up from where it left off next time
+# this allows multiple installations each to run the queue, but slow installations (eg with large emails) 
+# set to 0 to disable this feature.
+define('MAX_PROCESSQUEUE_TIME',0);
+
+
+
+
 /*
 
 =========================================================================
@@ -355,30 +427,6 @@ define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
 # check https://mantis.phplist.com/view.php?id=15603 for more info
 # define('WORDWRAP_HTML',60)
 
-# batch processing
-# if you are on a shared host, it will probably be appreciated if you don't send
-# out loads of emails in one go. To do this, you can configure batch processing.
-# Please note, the following two values can be overridden by your ISP by using
-# a server wide configuration. So if you notice these values to be different
-# in reality, that may be the case
-
-# max messages to process
-# if there are multiple messages in the queue, set a maximum to work on
-define('MAX_PROCESS_MESSAGE',999);
-
-# define the amount of emails you want to send per period. If 0, batch processing
-# is disabled and messages are sent out as fast as possible
-define("MAILQUEUE_BATCH_SIZE",0); 
-
-# define the length of one batch processing period, in seconds (3600 is an hour)
-define("MAILQUEUE_BATCH_PERIOD",3600);
-
-# to avoid overloading the server that sends your email, you can add a little delay
-# between messages that will spread the load of sending
-# you will need to find a good value for your own server
-# value is in seconds, and you can use fractions, eg "0.5" is half a second
-# (or you can play with the autothrottle below)
-define('MAILQUEUE_THROTTLE',0); 
 
 # year ranges. If you use dates, by default the drop down for year will be from
 # three years before until 10 years after this the current value for year. If there
@@ -412,24 +460,227 @@ define('USE_ADMIN_DETAILS_FOR_MESSAGES',1);
 # test emails are sent to
 define('SEND_ONE_TESTMAIL',0);
 
-# Time Zone
-# By default phpList will operate in the Timezone of your server. If you want to work
-# in a different Timezone, you can set that here. It will need to be a valid setting for
-# both PHP and Mysql. The value should be a city in the world
-# to find PHP timezones, check out http://php.net/manual/en/timezones.php
-# You will also need to tell Mysql about your timezones, which means you have to load the timezone
-# data in the Mysql Database, which you can find out about here:
-# http://dev.mysql.com/doc/refman/5.0/en/mysql-tzinfo-to-sql.html
-# make sure that the value you use works for both PHP and Mysql. If you find strange discrepancies
-# in the dates and times used in phpList, you probably used the wrong value.
+# send a webpage. You can send the contents of a webpage, by adding
+# [URL:http://website/file.html] as the content of a message. This can also be personalised
+# for users by using eg
+# [URL:http://website/file.html?email=[email]]
+# the timeout for refetching a URL can be defined here. When the last time a URL has been
+# fetched exceeds this time, the URL will be refetched. This is in seconds, 3600 is an hour
+# this only affects sending within the same "process queue". If a new process queue is started
+# the URL will be fetched the first time anyway. Therefore this is only useful is processing
+# your queue takes longer than the time identified here.
+define('REMOTE_URL_REFETCH_TIMEOUT',3600);
 
-# define('SYSTEM_TIMEZONE','Europe/London');
+# Users Page Max. The page listing subscribers will stop listing them and require a search, 
+# when the amount of subscribers is over 1000. With this settings you can change that cut-off point
+define('USERSPAGE_MAX',1000);
+
+# Message Age. The Scheduling tab has an option to stop sending a message when it has reached a certain date.
+# This can be used to avoid the campaign going out, eg when an event has already taken place.
+# This value defaults to the moment of creating the campaign + the number of seconds set here.
+# phpList will mark the campaign as sent, when this date has been reached
+# 15768000 is about 6 months, but other useful values can be
+# 2592000 - 30 days
+# 604800 - a week.
+# 86400 - a day
+define('DEFAULT_MESSAGEAGE',15768000);
+
+# Repetition. This adds the option to repeat the same message in the future.
+# After the message has been sent, this option will cause the system to automatically
+# create a new message with the same content. Be careful with it, because you may
+# send the same message to your users
+# the embargo of the message will be increased with the repetition interval you choose
+# also read the README.repetition for more info
+define('USE_REPETITION',0);
+
+# admin language
+# if you want to disable the language switch for the admin interface (and run all in english)
+# set this one to 0
+define('LANGUAGE_SWITCH',1);
+
+
+/*
+
+=========================================================================
+
+Message sending options
+* phpList now only uses phpMailer for sending, but below you can
+* tweak a few options on how that is done
+
+=========================================================================
+
+*/
+
+# you can specify the location of the phpMailer class here
+# if not set, the version included in the distribution will be used
+## eg for Debian based systems, it may be something like the example below
+## when you do this, you may need to run some tests, to see if the phpMailer version
+## you have works ok
+#define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
+
+# To use a SMTP server please give your server hostname here, leave it blank to use the standard
+# PHP mail() command.
+define("PHPMAILERHOST",'');
+
+# in the above you can specify multiple SMTP servers like this:
+# 'server1:port1;server2:port2;server3:port3' eg
+#define('PHPMAILERHOST','smtp1.mydomain.com:25;smtp2.mydomain.com:2500;smtp3.phplist.com:5123');
+
+# if you want to use smtp authentication when sending the email uncomment the following
+# two lines and set the username and password to be the correct ones
+#$phpmailer_smtpuser = 'smtpuser';
+#$phpmailer_smtppassword = 'smtppassword';
+
+## you can set this to send out via a different SMTP port
+# define('PHPMAILERPORT',25);
+
+## test vs blast
+# you can send test messages via a different SMTP host than the actual campaign queue 
+# if not set, these default to the above PHPMAILERHOST and PHPMAILERPORT
+# define('PHPMAILERTESTHOST','testsmtp.mydomain.com');
+# define('PHPMAILERBLASTHOST','livesmtp.mydomain.com');
+# define('PHPMAILERBLASTPORT',25);
+
+# to use SSL/TLS set this to y
+# define("PHPMAILER_SECURE",'y');
+
+## Smtp Timeout
+## If you use SMTP for sending, you can set the timeout of the SMTP connection
+## defaults to 5 seconds
+# define('SMTP_TIMEOUT',5);
+
+/*
+
+=========================================================================
+
+Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
+
+=========================================================================
+
+*/
+
+# Click tracking
+# If you set this to 1, all links in your emails will be converted to links that
+# go via phplist. This will make sure that clicks are tracked. This is experimental and
+# all your findings when using this feature should be reported to mantis
+# for now it's off by default until we think it works correctly
+define('CLICKTRACK',0);
+
+# Click track, list detail
+# if you enable this, you will get some extra statistics about unique users who have clicked the
+# links in your messages, and the breakdown between clicks from text or html messages.
+# However, this will slow down the process to view the statistics, so it is
+# recommended to leave it off, but if you're very curious, you can enable it
+define('CLICKTRACK_SHOWDETAIL',0);
+
+# If you want to upload images in the editor, you need to specify the location
+# of the directory where the images go. This needs to be writable by the webserver,
+# and it needs to be in your public document (website) area
+# the directory is relative to the webserver root directory
+#   eg if your webserver root is /home/user/public_html
+#   then the images directory is /home/user/public_html/uploadimages
+# This is a potential security risk, so read README.security for more information
+define('UPLOADIMAGES_DIR',"uploadimages");
+
+## for the above, you can also use subdirectories, for example
+#define("UPLOADIMAGES_DIR","images/newsletter/uploaded");
+
+# Manual text part, will give you an input box for the text version of the message
+# instead of trying to create it by parsing the HTML version into plain text
+define('USE_MANUAL_TEXT_PART',1);
+
+# set this to 1 to allow adding attachments to the mails
+# caution, message may become very large. it is generally more
+# acceptable to send a URL for download to users
+# using attachments requires PHP 4.1.0 and up
+define('ALLOW_ATTACHMENTS',0);
+
+# when using attachments you can upload them to the server
+# if you want to use attachments from the local filesystem (server) set this to 1
+# filesystem attachments are attached at real send time of the message, not at
+# the time of creating the message
+define("FILESYSTEM_ATTACHMENTS",0);
+
+# if you add filesystem attachments, you will need to tell phpList where your
+# mime.types file is.
+define("MIMETYPES_FILE","/etc/mime.types");
+
+# if a mimetype cannot be determined for a file, specify the default mimetype here:
+define("DEFAULT_MIMETYPE","application/octet-stream");
+
+# you can create your own pages to slot into phpList and do certain things
+# that are more specific to your situation (plugins)
+# if you do this, you can specify the directory where your plugins are. It is
+# useful to keep this outside the phpList system, so they are retained after
+# upgrading
+# there are some example plugins in the "plugins" directory inside the
+# admin directory
+# this directory needs to be absolute, or relative to the admin directory
+
+#define("PLUGIN_ROOTDIR","/home/me/phplistplugins");
+
+# uncomment this one to see the examples in the system (and then comment the
+# one above)
+define("PLUGIN_ROOTDIR","plugins");
+
+# the attachment repository is the place where the files are stored (if you use
+# ALLOW_ATTACHMENTS)
+# this needs to be writable to your webserver user
+# it also needs to be a full path, not a relative one
+# for secutiry reasons it is best if this directory is not public (ie below
+# your website document root)
+$attachment_repository = '/tmp';
+
+# if you want to be able to send your messages as PDF attachments, you need to install
+# FPDF (http://www.fpdf.org) and set these variables accordingly
+
+# define('FPDF_FONTPATH','/home/pdf/font/');
+# require('fpdf.php');
+# define("USE_PDF",1);
+# $pdf_font = 'Times';
+# $pdf_fontstyle = '';
+# $pdf_fontsize = 14;
+
+# the mime type for the export files. You can try changing this to
+# application/vnd.ms-excel to make it open automatically in excel
+# or text/tsv
+$export_mimetype = 'application/csv';
+
+# if you want to use export format optimized for Excel, set this one to 1
+define("EXPORT_EXCEL",0);
+
+
+
+# tmpdir. A location where phplist can write some temporary files if necessary
+# Make sure it is writable by your webserver user, and also check that you have
+# open_basedir set to allow access to this directory. Linux users can leave it as it is.
+# this directory is used for all kinds of things, mostly uploading of files (like in
+# import), creating PDFs and more
+$tmpdir = '/tmp';
+
+# if you are on Windoze, and/or you are not using apache, in effect when you are getting
+# "Method not allowed" errors you will want to uncomment this
+# ie take off the #-character in the next line
+# using this is not guaranteed to work, sorry. Easier to use Apache instead :-)
+# $form_action = 'index.php';
+
+# select the database module to use
+# anyone wanting to submit other database modules is
+# very welcome!
+$database_module = "mysql.inc";
+
+# you can store sessions in the database instead of the default place by assigning
+# a tablename to this value. The table will be created and will not use any prefixes
+# this only works when using mysql and only for administrator sessions
+# $SessionTableName = "phplistsessions";
+
 
 /*
 
 =========================================================================
 
 Experimental Features
+* these are things that require a bit more fine tuning and feedback in the bugtracker
 
 =========================================================================
 
@@ -451,11 +702,33 @@ Experimental Features
 #   topLevelDomain can only be one of the defined ones
 define("EMAIL_ADDRESS_VALIDATION_LEVEL",2);
 
+# Time Zone
+# By default phpList will operate in the Timezone of your server. If you want to work
+# in a different Timezone, you can set that here. It will need to be a valid setting for
+# both PHP and Mysql. The value should be a city in the world
+# to find PHP timezones, check out http://php.net/manual/en/timezones.php
+# You will also need to tell Mysql about your timezones, which means you have to load the timezone
+# data in the Mysql Database, which you can find out about here:
+# http://dev.mysql.com/doc/refman/5.0/en/mysql-tzinfo-to-sql.html
+# make sure that the value you use works for both PHP and Mysql. If you find strange discrepancies
+# in the dates and times used in phpList, you probably used the wrong value.
+
+# define('SYSTEM_TIMEZONE','Europe/London');
+
+
 # list exclude will add the option to send a message to users who are on a list
 # except when they are on another list.
-# this is currently marked experimental
+define('USE_LIST_EXCLUDE',0);
 
-define("USE_LIST_EXCLUDE",0);
+## message queue prepare
+# this option will handle the sending of the queue a little bit differently
+# it assumes running the queue many times in small batches
+# the first run will find all subscribers that need to receive a campaign and mark them all
+# as "todo" in the database. Subsequent calls will then work through the "todo" list and
+# send them. This can be useful if the SQL query to find subscribers for a campaign is slow
+# which is the case when your database is filling up.
+# set to 1 to use
+define('MESSAGEQUEUE_PREPARE',0);
 
 # admin authentication module.
 # to validate the login for an administrator, you can define your own authentication module
@@ -485,41 +758,11 @@ define("USE_LIST_EXCLUDE",0);
 
 # if you want to use dates for attribute selections, you need to use this one
 
+
+## this functionality has been dropped from the core phpList system, but will be added
+## using plugin functionality. 
 define("STACKED_ATTRIBUTE_SELECTION",0);
 
-# send a webpage. You can send the contents of a webpage, by adding
-# [URL:http://website/file.html] as the content of a message. This can also be personalised
-# for users by using eg
-# [URL:http://website/file.html?email=[email]]
-# the timeout for refetching a URL can be defined here. When the last time a URL has been
-# fetched exceeds this time, the URL will be refetched. This is in seconds, 3600 is an hour
-# this only affects sending within the same "process queue". If a new process queue is started
-# the URL will be fetched the first time anyway. Therefore this is only useful is processing
-# your queue takes longer than the time identified here.
-define('REMOTE_URL_REFETCH_TIMEOUT',3600);
-
-# Mailqueue autothrottle. This will try to automatically change the delay
-# between messages to make sure that the MAILQUEUE_BATCH_SIZE (above) is spread evently over
-# MAILQUEUE_BATCH_PERIOD, instead of firing the Batch in the first few minutes of the period
-# and then waiting for the next period. This only works with mailqueue_throttle off
-# and MAILQUEUE_BATCH_PERIOD being a positive value
-# it still needs tweaking, so send your feedback to mantis.phplist.com if you find
-# any issues with it
-define('MAILQUEUE_AUTOTHROTTLE',0);
-
-# Click tracking
-# If you set this to 1, all links in your emails will be converted to links that
-# go via phplist. This will make sure that clicks are tracked. This is experimental and
-# all your findings when using this feature should be reported to mantis
-# for now it's off by default until we think it works correctly
-define('CLICKTRACK',0);
-
-# Click track, list detail
-# if you enable this, you will get some extra statistics about unique users who have clicked the
-# links in your messages, and the breakdown between clicks from text or html messages.
-# However, this will slow down the process to view the statistics, so it is
-# recommended to leave it off, but if you're very curious, you can enable it
-define('CLICKTRACK_SHOWDETAIL',0);
 
 # Public protocol
 # phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
@@ -528,39 +771,6 @@ define('CLICKTRACK_SHOWDETAIL',0);
 # see also https://mantis.phplist.com/view.php?id=16611
 #define('PUBLIC_PROTOCOL','http');
 
-# Domain Throttling
-# You can activate domain throttling, by setting USE_DOMAIN_THROTTLE to 1
-# define the maximum amount of emails you want to allow sending to any domain and the number
-# of seconds for that amount. This will make sure you don't send too many emails to one domain
-# which may cause blacklisting. Particularly the big ones are tricky about this.
-# it may cause a dramatic increase in the amount of time to send a message, depending on how
-# many users you have that have the same domain (eg hotmail.com)
-# if too many failures for throttling occur, the send process will automatically add an extra
-# delay to try to improve that. The example sends 1 message every 2 minutes.
-
-define('USE_DOMAIN_THROTTLE',0);
-define('DOMAIN_BATCH_SIZE',1);
-define('DOMAIN_BATCH_PERIOD',120);
-
-# if you have very large numbers of users on the same domains, this may result in the need
-# to run processqueue many times, when you use domain throttling. You can also tell phplist
-# to simply delay a bit between messages to increase the number of messages sent per queue run
-# if you want to use that set this to 1, otherwise simply run the queue many times. A cron
-# process every 10 or 15 minutes is recommended.
-define('DOMAIN_AUTO_THROTTLE',0);
-
-# MAX_PROCESSQUEUE_TIME
-# to limit the time, regardless of batch processing or other throttling of a single run of "processqueue"
-# you can set the MAX_PROCESSQUEUE_TIME in seconds
-# if a single queue run exceeds this amount, it will stop, just to pick up from where it left off next time
-# this allows multiple installations each to run the queue, but slow installations (eg with large emails) 
-# set to 0 to disable this feature.
-define('MAX_PROCESSQUEUE_TIME',0);
-
-# admin language
-# if you want to disable the language switch for the admin interface (and run all in english)
-# set this one to 0
-define('LANGUAGE_SWITCH',1);
 
 # advanced bounce processing
 # with advanced bounce handling you are able to define regular expressions that match bounces and the
@@ -570,130 +780,6 @@ define('LANGUAGE_SWITCH',1);
 # if you use this, you will need to teach your system regularly about patterns in new bounces
 define('USE_ADVANCED_BOUNCEHANDLING',0);
 
-
-/*
-
-=========================================================================
-
-Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
-
-=========================================================================
-
-*/
-
-# you can specify the encoding for HTML and plaintext messages here. This only
-# works if you do not use the phpmailer (see below)
-# the default should be fine. Valid options are 7bit, quoted-printable and base64
-define("HTMLEMAIL_ENCODING","quoted-printable");
-define("TEXTEMAIL_ENCODING",'7bit');
-
-
-# phpList can send RSS feeds to users. Feeds can be sent daily, weekly or
-# monthly. To use the feature you need XML support in your PHP installation, and you
-# need to set this constant to 1
-define("ENABLE_RSS",0);
-
-# if you have set up a cron to download the RSS entries, you can set this to be 0
-define("MANUALLY_PROCESS_RSS",1);
-
-# If you want to upload images in the editor, you need to specify the location
-# of the directory where the images go. This needs to be writable by the webserver,
-# and it needs to be in your public document (website) area
-# the directory is relative to the webserver root directory
-#   eg if your webserver root is /home/user/public_html
-#   then the images directory is /home/user/public_html/uploadimages
-# This is a potential security risk, so read README.security for more information
-define("UPLOADIMAGES_DIR","uploadimages");
-
-## for the above, you can also use subdirectories, for example
-#define("UPLOADIMAGES_DIR","images/newsletter/upload");
-
-# Manual text part, will give you an input box for the text version of the message
-# instead of trying to create it by parsing the HTML version into plain text
-define("USE_MANUAL_TEXT_PART",1);
-
-# set this to 1 to allow adding attachments to the mails
-# caution, message may become very large. it is generally more
-# acceptable to send a URL for download to users
-# using attachments requires PHP 4.1.0 and up
-define("ALLOW_ATTACHMENTS",0);
-
-# when using attachments you can upload them to the server
-# if you want to use attachments from the local filesystem (server) set this to 1
-# filesystem attachments are attached at real send time of the message, not at
-# the time of creating the message
-define("FILESYSTEM_ATTACHMENTS",0);
-
-# if you add filesystem attachments, you will need to tell phpList where your
-# mime.types file is.
-define("MIMETYPES_FILE","/etc/mime.types");
-
-# if a mimetype cannot be determined for a file, specify the default mimetype here:
-define("DEFAULT_MIMETYPE","application/octet-stream");
-
-# you can create your own pages to slot into phpList and do certain things
-# that are more specific to your situation (plugins)
-# if you do this, you can specify the directory where your plugins are. It is
-# useful to keep this outside the phpList system, so they are retained after
-# upgrading
-# there are some example plugins in the "plugins" directory inside the
-# admin directory
-# this directory needs to be absolute, or relative to the admin directory
-
-define("PLUGIN_ROOTDIR","/home/me/phplistplugins");
-
-# uncomment this one to see the examples in the system (and then comment the
-# one above)
-#define("PLUGIN_ROOTDIR","plugins");
-
-
-# the attachment repository is the place where the files are stored (if you use
-# ALLOW_ATTACHMENTS)
-# this needs to be writable to your webserver user
-# it also needs to be a full path, not a relative one
-# for secutiry reasons it is best if this directory is not public (ie below
-# your website document root)
-$attachment_repository = '/tmp';
-
-# if you want to be able to send your messages as PDF attachments, you need to install
-# FPDF (http://www.fpdf.org) and set these variables accordingly
-
-# define('FPDF_FONTPATH','/home/pdf/font/');
-# require('fpdf.php');
-# define("USE_PDF",1);
-# $pdf_font = 'Times';
-# $pdf_fontstyle = '';
-# $pdf_fontsize = 14;
-
-# the mime type for the export files. You can try changing this to
-# application/vnd.ms-excel to make it open automatically in excel
-# or text/tsv
-$export_mimetype = 'application/csv';
-
-# if you want to use export format optimized for Excel, set this one to 1
-define("EXPORT_EXCEL",0);
-
-# Repetition. This adds the option to repeat the same message in the future.
-# After the message has been sent, this option will cause the system to automatically
-# create a new message with the same content. Be careful with it, because you may
-# send the same message to your users
-# the embargo of the message will be increased with the repetition interval you choose
-# also read the README.repetition for more info
-define("USE_REPETITION",0);
-
-# Message Age. The Scheduling tab has an option to stop sending a message when it has reached a certain date.
-# This can be used to avoid the campaign going out, eg when an event has already taken place.
-# This value defaults to the moment of creating the campaign + the number of seconds set here.
-# phpList will mark the campaign as sent, when this date has been reached
-# 15768000 is about 6 months, but other useful values can be
-# 2592000 - 30 days
-# 604800 - a week.
-# 86400 - a day
-define('DEFAULT_MESSAGEAGE',15768000);
-
-# Users Page Max. The page listing subscribers will stop listing them and require a search, 
-# when the amount of subscribers is over 1000. With this settings you can change that cut-off point
-define('USERSPAGE_MAX',1000);
 
 # When forwarding ('to a friend') the message will be using the attributes of the destination email by default.
 # This often means the message gets stripped of al its attributes. 
@@ -718,56 +804,6 @@ define("FORWARD_PERSONAL_NOTE_SIZE",0);
 # This will show an extra tab in the message dialog. 
 define("FORWARD_ALTERNATIVE_CONTENT",0);
 
-# you can specify the location of the phpMailer class here
-# if not set, the version included in the distribution will be used
-## eg for Debian based systems, it may be something like this
-## when you do this, you may need to run some tests, to see if the phpMailer version
-## you have works ok
-#define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
-
-# To use a SMTP server please give your server hostname here, leave it blank to use the standard
-# PHP mail() command.
-define("PHPMAILERHOST",'');
-
-# if you want to use smtp authentication when sending the email uncomment the following
-# two lines and set the username and password to be the correct ones
-#$phpmailer_smtpuser = 'smtpuser';
-#$phpmailer_smtppassword = 'smtppassword';
-
-## you can set this to send out via a different SMTP port
-# define('PHPMAILERPORT',25);
-
-# to use SSL/TLS set this to y
-# define("PHPMAILER_SECURE",'y');
-
-## Smtp Timeout
-## If you use SMTP for sending, you can set the timeout of the SMTP connection
-## defaults to 5 seconds
-# define('SMTP_TIMEOUT',5);
-
-# tmpdir. A location where phplist can write some temporary files if necessary
-# Make sure it is writable by your webserver user, and also check that you have
-# open_basedir set to allow access to this directory. Linux users can leave it as it is.
-# this directory is used for all kinds of things, mostly uploading of files (like in
-# import), creating PDFs and more
-$tmpdir = '/tmp';
-
-# if you are on Windoze, and/or you are not using apache, in effect when you are getting
-# "Method not allowed" errors you will want to uncomment this
-# ie take off the #-character in the next line
-# using this is not guaranteed to work, sorry. Easier to use Apache instead :-)
-# $form_action = 'index.php';
-
-# select the database module to use
-# anyone wanting to submit other database modules is
-# very welcome!
-$database_module = "mysql.inc";
-
-# you can store sessions in the database instead of the default place by assigning
-# a tablename to this value. The table will be created and will not use any prefixes
-# this only works when using mysql and only for administrator sessions
-# $SessionTableName = "phplistsessions";
-
 # there is now support for the use of ADOdb http://php.weblogs.com/ADODB
 # this is still experimental, and any findings should be reported in the
 # bugtracker
@@ -777,7 +813,6 @@ $database_module = "mysql.inc";
 #$adodb_driver = 'mysql';
 #$adodb_inc_file = '/usr/share/php/adodb/adodb.inc.php';
 $adodb_driver = 'mysql';  // not really a site variable
-
 
 # if you want more trouble, make this 63 (very unlikely you will like the result)
 $error_level = error_reporting(0);
