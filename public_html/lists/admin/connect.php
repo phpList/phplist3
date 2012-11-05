@@ -1540,7 +1540,7 @@ function formatDateTime ($datetime,$short = 0) {
 function cl_output($message) {
   if ($GLOBALS["commandline"]) {
     @ob_end_clean();
-    print strip_tags($message) . "\n";
+    print $GLOBALS['installation_name'].' - '.strip_tags($message) . "\n";
     @ob_start();
   } 
 }
