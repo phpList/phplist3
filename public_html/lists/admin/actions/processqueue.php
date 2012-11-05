@@ -312,14 +312,7 @@ function output ($message,$logit = 1,$target = 'summary') {
     $message = $tmp;
   }
   if (!empty($GLOBALS["commandline"])) {
-    @ob_end_clean();
-#    $mem = memory_get_usage(true);
-    print $GLOBALS['installation_name'].' - '. strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')';
-#    print ' '.formatBytes($mem) . ' '.$mem;
-    print "\n";
-//    sleep(2); # for testing, so it doesn't fly across the screen :-)
-    $infostring = '';
-    ob_start();
+    cl_output(strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')');
   } else {
     $infostring = "[". date("D j M Y H:i",time()) . "] [" . $_SERVER["REMOTE_ADDR"] ."]";
     #print "$infostring $message<br/>\n";
@@ -697,13 +690,13 @@ while ($message = Sql_fetch_array($messages)) {
     $user_attribute_query);*/
   $queued = 0;
   if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
-    ## we duplicate messageid to match the query_params
+    ## we duplicate messageid to match the query_params or the main query
     $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
     $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
-   # if (VERBOSE) {
-      cl_output($GLOBALS['installation_name'].' - found pre-queued users '.$queued,0,'progress');
-   # }
+  # if (VERBOSE) {
+      cl_output('found pre-queued users '.$queued,0,'progress');
+  #  }
   } 
 
   ## if the above didn't find any, run the normal search (again)
@@ -713,7 +706,7 @@ while ($message = Sql_fetch_array($messages)) {
     Sql_Query_Params($remove_query, array($messageid));
     $removed = Sql_Affected_Rows();
     if ($removed) {
-      cl_output($GLOBALS['installation_name'].' - removed pre-queued users '.$removed,0,'progress');
+      cl_output('removed pre-queued users '.$removed,0,'progress');
     }
 
     $query
@@ -839,7 +832,9 @@ while ($message = Sql_fetch_array($messages)) {
       ProcessError($GLOBALS['I18N']->get('Sending of this message has been suspended'));
     }
     flush();
-    Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
+
+    ## 
+    #Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
 
     # check whether the user has already received the message
     if (!empty($getspeedstats)) output('verify message can go out to '.$userid);  
@@ -851,36 +846,22 @@ while ($message = Sql_fetch_array($messages)) {
       $userlock = Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $userid, 'messageid' => $messageid, 'status' => "active"), array('userid', 'messageid'), false);
 
       if ($script_stage < 4)
-        $script_stage = 4; # we know a user
+        $script_stage = 4; # we know a subscriber to send to
       $someusers = 1;
       $users = Sql_query("select id,email,uniqid,htmlemail,rssfrequency,confirmed,blacklisted,disabled from {$tables['user']} where id = $userid");
 
       # pick the first one (rather historical from before email was unique)
       $user = Sql_fetch_array($users); 
       if ($user[5] && is_email($user[1])) {
-        $userid = $user[0];    # id of the user
-        $useremail = $user[1]; # email of the user
+        $userid = $user[0];    # id of the subscriber
+        $useremail = $user[1]; # email of the subscriber
         $userhash = $user[2];  # unique string of the user
         $htmlpref = $user[3];  # preference for HTML emails
 //        $rssfrequency = $user[4];
-        $confirmed = $user[5] && !$user[7];
+        $confirmed = $user[5] && !$user[7]; ## 7 = disabled flag 
         $blacklisted = $user[6];
 
-//obsolete, moved to rssmanager plugin 
-//        if (ENABLE_RSS && $pxrocessrss) {
-//          if ($rssfrequency == $message["rsstemplate"]) {
-//            # output("User matches message frequency");
-//            $rssitems = rssmanager::rssUserHasContent($userid,$messageid,$rssfrequency);
-//            $cansend = sizeof($rssitems) && (sizeof($rssitems) > $rss_content_threshold);
-//#            if (!$cansend)
-//#              output("No content to send for this user ".sizeof($rssitems));
-//          } else {
-//            $cansend = 0;
-//          }
-//        } else {
-          $cansend = !$blacklisted && $confirmed;
-//        }
-
+        $cansend = !$blacklisted && $confirmed;
 /*
 ## Ask plugins if they are ok with sending this message to this user
 */
