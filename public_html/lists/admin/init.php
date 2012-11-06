@@ -189,10 +189,10 @@ if (!defined('MANUALLY_PROCESS_BOUNCES')) define('MANUALLY_PROCESS_BOUNCES',1);
 if (!defined('ENCRYPT_ADMIN_PASSWORDS')) define('ENCRYPT_ADMIN_PASSWORDS',1);
 if (!defined('PASSWORD_CHANGE_TIMEFRAME')) define('PASSWORD_CHANGE_TIMEFRAME','1 day');
 if (!defined('MAX_SENDPROCESSES')) define('MAX_SENDPROCESSES',1);
-if (!defined('SENDPROCESS_ID')) define('SENDPROCESS_ID','');
+if (!defined('SENDPROCESS_SERVERNAME')) define('SENDPROCESS_SERVERNAME','localhost');
 if (!defined('CHECK_REFERRER')) define('CHECK_REFERRER',true);
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/phpmailer/class.phpmailer.php');
-if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
+# if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
 if (!defined('DB_TRANSLATION')) define('DB_TRANSLATION',0);
 if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',1); ## how many campaigns to work on at the same time
 if (!defined('ALLOW_DELETEBOUNCE')) define('ALLOW_DELETEBOUNCE',1);
@@ -275,8 +275,14 @@ if (!defined('EMBEDUPLOADIMAGES')) define('EMBEDUPLOADIMAGES',0);
 if (!defined('IMPORT_FILESIZE')) define('IMPORT_FILESIZE',1);
 if (!defined('SMTP_TIMEOUT')) define('SMTP_TIMEOUT',5);
 ## experimental, mark mails "todo" in the DB and process the "todo" list, to avoid the user query being run every queue run
-if (!defined('MESSAGEQUEUE_PREPARE')) define('MESSAGEQUEUE_PREPARE',false);
-
+if (!defined('MESSAGEQUEUE_PREPARE')) {
+  ## with a multi-process config, we need the queue prepare mechanism and memcache
+  if (MAX_SENDPROCESSES > 1) {
+    define('MESSAGEQUEUE_PREPARE',true);
+  } else {
+    define('MESSAGEQUEUE_PREPARE',false);
+  }
+}
 if (!isset($GLOBALS["export_mimetype"])) $GLOBALS["export_mimetype"] = 'application/csv';
 if (!isset($GLOBALS["admin_auth_module"])) $GLOBALS["admin_auth_module"] = 'phplist_auth.inc';
 if (!isset($GLOBALS["require_login"])) $GLOBALS["require_login"] = 1;
@@ -288,6 +294,25 @@ if (!isset($GLOBALS["blacklist_gracetime"])) $GLOBALS["blacklist_gracetime"] = 5
 if (!isset($GLOBALS["message_envelope"])) $GLOBALS["message_envelope"] = '';
 
 if (!isset($GLOBALS['pageheader']) || !is_array($GLOBALS['pageheader'])) $GLOBALS['pageheader'] = array();
+
+## set up a memcached global object, and test it
+if (defined('MEMCACHED')) {
+  include_once dirname(__FILE__).'/class.memcached.php';
+  if (class_exists('phpListMC')) {
+    $GLOBALS['MC'] = new phpListMC();
+    list($mc_server,$mc_port) = explode(':',MEMCACHED);
+    $MC->addServer($mc_server,$mc_port);
+    
+    /* check that the MC connection is ok
+    $MC->add('Hello','World');
+    $test = $MC->get('Hello');
+    if ($test != 'World') {
+      unset($MC);
+    }
+    */
+  }
+} 
+
 
 ## global counters array to keep track of things
 $counters = array(
