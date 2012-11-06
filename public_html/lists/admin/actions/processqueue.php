@@ -695,7 +695,7 @@ while ($message = Sql_fetch_array($messages)) {
     $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
   # if (VERBOSE) {
-      cl_output('found pre-queued users '.$queued,0,'progress');
+      cl_output('found pre-queued subscribers '.$queued,0,'progress');
   #  }
   } 
 
@@ -706,7 +706,7 @@ while ($message = Sql_fetch_array($messages)) {
     Sql_Query_Params($remove_query, array($messageid));
     $removed = Sql_Affected_Rows();
     if ($removed) {
-      cl_output('removed pre-queued users '.$removed,0,'progress');
+      cl_output('removed pre-queued subscribers '.$removed,0,'progress');
     }
 
     $query
