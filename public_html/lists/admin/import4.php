@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 if (!ALLOW_IMPORT) {
-  print '<p class="information">'.$GLOBALS['I18N']->get('import is not available').'</p>';
+  print '<p>'.$GLOBALS['I18N']->get('import is not available').'</p>';
   return;
 }
 
@@ -98,7 +98,7 @@ if (!$_POST["remote_host"] ||
     "user_attribute" => $_POST["remote_userprefix"] . "user_attribute",
     "config" => $_POST["remote_prefix"] . "config",
   );
-  print $GLOBALS['I18N']->get('Getting data from ').$_POST["remote_database"]."@".$_POST["remote_host"]."<br/>";
+  print $GLOBALS['I18N']->get('Getting data from ').htmlentities($_POST["remote_database"])."@".htmlentities($_POST["remote_host"])."<br/>";
 
   $query = "select value from {$remote_tables["config"]} where item = ?";
   $rs = Sql_Query_Params($query, array('version'));
@@ -266,14 +266,14 @@ if (!$_POST["remote_host"] ||
           case "select":
           case "radio":
             $query = sprintf('select name from %slistattr_%s where id = ?',
-              $_POST['remote_prefix'], $att['tablename']);
+              sql_escape($_POST['remote_prefix']), $att['tablename']);
             $rs = Sql_Query_Params($query, array($att['value']));
             $valreq = Sql_Fetch_Row($rs);
             $value = $valreq[0];
             break;
           case "checkboxgroup":
             $valreq = Sql_Query(sprintf('select name from %slistattr_%s where id in (%s)',
-              $_POST["remote_prefix"],$att["tablename"],$att["value"]));
+              sql_escape($_POST["remote_prefix"]),$att["tablename"],$att["value"]));
             while ($vals = Sql_fetch_Row($valreq)) {
               $value .= $vals[0].',';
             }
