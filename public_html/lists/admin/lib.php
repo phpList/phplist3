@@ -592,7 +592,12 @@ function getPageLock($force = 0) {
 #  ob_end_flush();
   
   if ($GLOBALS["commandline"] && $thispage == 'processqueue') {
-    $max = MAX_SENDPROCESSES;
+    if (is_object($GLOBALS['MC'])) {
+      ## multi-send requires a valid memcached setup
+      $max = MAX_SENDPROCESSES;
+    } else {
+      $max = 1;
+    }
   } else {
     $max = 1;
   }
@@ -653,7 +658,7 @@ function getPageLock($force = 0) {
   . '    (current_timestamp, ?, 1, ?)';
   
   if (!empty($GLOBALS['commandline'])) {
-    $processIdentifier = SENDPROCESS_ID;
+    $processIdentifier = SENDPROCESS_SERVERNAME.':'.getmypid();
   } else {
     $processIdentifier = $_SERVER['REMOTE_ADDR'];
   }
