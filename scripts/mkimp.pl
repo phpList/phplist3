@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# generate a test files to import
+# generate files to test import
 
 ## CSV import
 open F,">testimport-csv.txt";
 print F "email\tName\tAddr1\tAddr2\tTown\tPostcode\tforeign key\tsend this user HTML emails\n";
 $start = 20;
-$num = 10000;
+$num = 50000;
 for ($i=$start;$i<$start+$num;$i++) {
   print F "$i\@mailinator.com\tTestUser $i\tAddr line 1\tAddr line2\tTown\tPostcode $i\tABC $i\t1\n";
 }
