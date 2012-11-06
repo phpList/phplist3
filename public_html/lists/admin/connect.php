@@ -1404,6 +1404,10 @@ function parseDelimitedData($value) {
 function repeatMessage($msgid) {
 #  if (!USE_REPETITION && !USE_rss) return;
 
+  $data = loadMessageData($msgid);
+  ## do not repeat when it has already been done
+  if (!empty($data['repeatedid'])) return;
+
   # get the future embargo, either "repeat" minutes after the old embargo
   # or "repeat" after this very moment to make sure that we're not sending the
   # message every time running the queue when there's no embargo set.
@@ -1420,7 +1424,7 @@ function repeatMessage($msgid) {
   . ' values'
   . '    (current_timestamp)';
   Sql_Query($query);
-  $id = Sql_Insert_Id($GLOBALS['tables']['message'], 'id');
+  $newid = Sql_Insert_Id($GLOBALS['tables']['message'], 'id');
   require dirname(__FILE__).'/structure.php';
   if (!is_array($DBstruct["message"])) {
     logEvent("Error including structure when trying to duplicate message $msgid");
@@ -1429,13 +1433,13 @@ function repeatMessage($msgid) {
   foreach ($DBstruct["message"] as $column => $rec) {
     if ($column != "id" && $column != "entered" && $column != "sendstart") {
       Sql_Query(sprintf('update %s set %s = "%s" where id = %d',
-        $GLOBALS["tables"]["message"],$column,addslashes($msgdata[$column]),$id));
+        $GLOBALS["tables"]["message"],$column,addslashes($msgdata[$column]),$newid));
      }
   }
   $req = Sql_Query(sprintf('select * from %s where id = %d',
     $GLOBALS['tables']['messagedata'],$msgid));
   while ($row = Sql_Fetch_Array($req)) {
-    setMessageData($id,$row['name'],$row['data']);
+    setMessageData($newid,$row['name'],$row['data']);
   }
 
   # check whether the new embargo is not on an exclusion
@@ -1462,23 +1466,23 @@ function repeatMessage($msgid) {
   }
 
   Sql_Query(sprintf('update %s set embargo = "%s",status = "submitted",sent = "" where id = %d',
-      $GLOBALS["tables"]["message"],$msgdata["newembargo"],$id));
+      $GLOBALS["tables"]["message"],$msgdata["newembargo"],$newid));
       
   list($e['year'],$e['month'],$e['day'],$e['hour'],$e['minute'],$e['second']) = 
     sscanf($msgdata["newembargo"],'%04d-%02d-%02d %02d:%02d:%02d');
   unset($e['second']);  
-  setMessageData($id,'embargo',$e);
+  setMessageData($newid,'embargo',$e);
       
   foreach (array("processed","astext","ashtml","astextandhtml","aspdf","astextandpdf","viewed", "bouncecount") as $item) {
     Sql_Query(sprintf('update %s set %s = 0 where id = %d',
-        $GLOBALS["tables"]["message"],$item,$id));
+        $GLOBALS["tables"]["message"],$item,$newid));
   }
 
   # lists
   $req = Sql_Query(sprintf('select listid from %s where messageid = %d',$GLOBALS["tables"]["listmessage"],$msgid));
   while ($row = Sql_Fetch_Row($req)) {
     Sql_Query(sprintf('insert into %s (messageid,listid,entered) values(%d,%d,current_timestamp)',
-      $GLOBALS["tables"]["listmessage"],$id,$row[0]));
+      $GLOBALS["tables"]["listmessage"],$newid,$row[0]));
   }
 
   # attachments
@@ -1499,9 +1503,11 @@ function repeatMessage($msgid) {
       addslashes($row["mimetype"]),addslashes($row["description"]),$row["size"]));
     $attid = Sql_Insert_Id($GLOBALS['tables']['attachment'], 'id');
     Sql_Query(sprintf('insert into %s (messageid,attachmentid) values(%d,%d)',
-      $GLOBALS["tables"]["message_attachment"],$id,$attid));
+      $GLOBALS["tables"]["message_attachment"],$newid,$attid));
   }
-  logEvent("Message $msgid was successfully rescheduled as message $id");
+  logEvent("Message $msgid was successfully rescheduled as message $newid");
+  ## remember we duplicated, in order to avoid doing it again (eg when requeuing)
+  setMessageData($msgid,'repeatedid',$newid);
 }
 
 function versionCompare($thisversion,$latestversion) {
