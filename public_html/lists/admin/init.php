@@ -272,7 +272,7 @@ if (FORWARD_EMAIL_COUNT < 1) {
 if (!defined('FORWARD_EMAIL_PERIOD') ) define('FORWARD_EMAIL_PERIOD', '1 day');
 if (!defined('FORWARD_PERSONAL_NOTE_SIZE')) define('FORWARD_PERSONAL_NOTE_SIZE',0);
 if (!defined('EMBEDUPLOADIMAGES')) define('EMBEDUPLOADIMAGES',0);
-if (!defined('IMPORT_FILESIZE')) define('IMPORT_FILESIZE',1);
+if (!defined('IMPORT_FILESIZE')) define('IMPORT_FILESIZE',5);
 if (!defined('SMTP_TIMEOUT')) define('SMTP_TIMEOUT',5);
 ## experimental, mark mails "todo" in the DB and process the "todo" list, to avoid the user query being run every queue run
 if (!defined('MESSAGEQUEUE_PREPARE')) {
