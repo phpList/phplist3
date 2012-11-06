@@ -9,12 +9,23 @@ phpList, wishlist and future plans, not in order of priority
 5. finish user selection plugin
 
 6. translate system messages: https://mantis.phplist.com/view.php?id=16594
-7. remove deprecated code: https://mantis.phplist.com/view.php?id=15554
+7. re-request confirmation via campaign -> "invite mode"
 
 8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
 9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
+10. add system to manage versioning of translation of "info" and "help"
+11. test and finish queue prepare
 
-other stuff:
+12. subscriber management
+https://mantis.phplist.com/view.php?id=12801 and related
+
+- Invitation mode, send to unconfirmed subscribers, but require [CONFIRMATIONURL] placeholder
+- upload of Zip with All html and assets for a campaign/template
+- multiple placeholders (more advanced templates)
+- speed - allow sending with multiple processes/servers
+- memcached
+
+- make attributes classes that can be added with plugins
 - Optimize database structure to really deal with large
   amounts of emails. It works now, but not *that* fast
 - List Archive entry
@@ -31,5 +42,4 @@ other stuff:
 - seperate message for signing up people from import
 - statistics retrieval (#lists #users #messages)
 - integration with other OSS projects
-- bit of cleaning up of files
 
