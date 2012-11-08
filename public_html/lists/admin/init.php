@@ -264,6 +264,11 @@ if (!isset($systemroot)) {
 if (!defined('FORWARD_ALTERNATIVE_CONTENT')) define('FORWARD_ALTERNATIVE_CONTENT',0);
 if (!defined('KEEPFORWARDERATTRIBUTES')) define('KEEPFORWARDERATTRIBUTES',0);
 if (!defined('FORWARD_EMAIL_COUNT') ) define('FORWARD_EMAIL_COUNT',1);
+## when click track links are detected, block sending
+## if false, will only show warning. For now defaulting to false, but may change that later
+if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) define('BLOCK_PASTED_CLICKTRACKLINKS',false);
+
+
 if (FORWARD_EMAIL_COUNT < 1) {
   print 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
   exit;

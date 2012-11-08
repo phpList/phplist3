@@ -133,13 +133,12 @@ if (preg_match("/\n|\r/",$messagedata["forwardsubject"])) {
 ## it seems people are pasting the results of test messages back in the editor, which would duplicate
 ## tracking
 
-$hasClickTrackLinks = preg_match('/lt.php\?id=\w{24}/',$messagedata["message"]) ||
-(CLICKTRACK_LINKMAP && preg_match('#'.CLICKTRACK_LINKMAP.'/\w{24}#',$messagedata['message']));
+$hasClickTrackLinks = preg_match('/lt\.php\?id=\w{22}/',$messagedata["message"],$regs) ||
+(CLICKTRACK_LINKMAP && preg_match('#'.CLICKTRACK_LINKMAP.'/\w{22}#',$messagedata['message']));
 
 if ($hasClickTrackLinks) {
-  print Error($GLOBALS['I18N']->get('You should not paste the results of a test email back into the editor').'<br/>'.$GLOBALS['I18N']->get('This will break the click track statistics.'));
-} 
-
+  print Error(s('You should not paste the results of a test message back into the editor<br/>This will break the click-track statistics, and overload the server.'));
+}
 // If the variable isn't filled in, then the input fields don't default to the
 // values selected.  Need to fill it in so a post will correctly display.
 
@@ -1039,6 +1038,13 @@ if (empty($messagedata['targetlist'])) {
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('destination lists missing').'</div>\');
   </script>';
 }
+if ($hasClickTrackLinks && BLOCK_PASTED_CLICKTRACKLINKS) {
+  $allReady = false;
+  $panelcontent .= '<script type="text/javascript">
+  $("#addtoqueue").append(\'<div class="missing">'.s('Content contains click track links.').'</div>\');
+  </script>';
+}
+ 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   $pluginerror = '';
   $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
