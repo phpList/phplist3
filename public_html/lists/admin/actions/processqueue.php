@@ -133,10 +133,10 @@ if (ini_get("safe_mode")) {
   print $GLOBALS['I18N']->get('Running in safe mode').'<br/>';
 }
 
+$original_num_per_batch = $num_per_batch;
 if ($num_per_batch && $batch_period) {
   # check how many were sent in the last batch period and take off that
   # amount from this batch
-  $original_num_per_batch = $num_per_batch;
 /*
   output(sprintf('select count(*) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
     $tables["usermessage"],$batch_period));
