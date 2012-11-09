@@ -35,7 +35,7 @@ if (isset($_GET['action']) && $_GET['action']) {
 }
 
 # view bounces
-$count = Sql_Query(sprintf('select count(*) from %s',$tables["bounce"]));
+$count = Sql_Query(sprintf('select count(*) from %s where status != "unidentified bounce"',$tables["bounce"]));
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 $find_url = '';

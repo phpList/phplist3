@@ -264,6 +264,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
           "status" => array("varchar(255)","Status of this bounce"),
           "comment" => array("text","System Comment"),
           "index_1" => array("dateindex (date)","")
+          "index_2" => array("statusidx (status(20))",""),
       ),
       "user_message_bounce" => array( # bounce. We can have one usermessage bounce multiple times
           "id" => array("integer not null primary key auto_increment","ID"),
