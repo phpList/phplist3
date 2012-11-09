@@ -505,7 +505,7 @@ $GLOBALS['pagecategories'] = array(
       
    ),
   'campaigns' => array(
-      'toplink' => 'campaignmgt',
+      'toplink' => 'messages',
       'pages' => array(
         'send',
         'sendprepared',
