@@ -476,10 +476,9 @@ while ($user = Sql_Fetch_Row($userid_req)) {
   keepLock($process_id);
   set_time_limit(600);
   $msg_req = Sql_Query(sprintf('select * from
-    %s left join %s on (%s.messageid = %s.message and userid = user)
-    where userid = %d
+    %s um left join %s umb on (um.messageid = umb.message and userid = user)
+    where userid = %d and um.status = "sent"
     order by entered desc',
-    $tables["usermessage"],$tables["user_message_bounce"],
     $tables["usermessage"],$tables["user_message_bounce"],
     $user[0]));
 /*  $cnt = 0;
