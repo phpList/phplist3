@@ -213,7 +213,7 @@ if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
 if (!defined('PHPMAILER_SECURE')) {
   define('PHPMAILER_SECURE',false);
 }
-define('USERSPAGE_MAX',1000);
+if (!defined('USERSPAGE_MAX')) define('USERSPAGE_MAX',1000);
 if (!isset($plugins_disabled) || !is_array($plugins_disabled)) {
   $plugins_disabled = array();
 }
