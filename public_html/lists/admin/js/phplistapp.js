@@ -186,6 +186,7 @@ $(document).ready(function() {
   $("a.savechanges").click(function() {
     if (changed) {
       document.sendmessageform.followupto.value = this.href;
+      document.location.hash=""
       document.sendmessageform.submit();
       return false;
     }
