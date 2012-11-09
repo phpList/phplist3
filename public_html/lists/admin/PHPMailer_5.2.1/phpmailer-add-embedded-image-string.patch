@@ -1,0 +1,41 @@
+*** class.phpmailer.php.orig	2012-11-09 18:18:42.167300083 -0300
+--- class.phpmailer.php	2012-11-09 18:18:49.631337094 -0300
+*************** class PHPMailer {
+*** 1950,1955 ****
+--- 1950,1985 ----
+    }
+  
+    /**
++    * Adds an embedded attachment as a string.  This can include images, sounds, and
++    * just about any other document.  Make sure to set the $type to an
++    * image type.  For JPEG images use "image/jpeg" and for GIF images
++    * use "image/gif".
++    * @param string $string The attachment encoded in "encoding"
++    * @param string $cid Content ID of the attachment.  Use this to identify
++    *        the Id for accessing the image in an HTML form.
++    * @param string $name Overrides the attachment name.
++    * @param string $encoding File encoding (see $Encoding).
++    * @param string $type File extension (MIME) type.
++    * @return bool
++    */
++   public function AddEmbeddedImageString($string, $cid, $name = '', $encoding = 'base64', $type = 'application/octet-stream') {
++ 
++     // Append to $attachment array
++     $this->attachment[] = array(
++       0 => $string,
++       1 => $name,
++       2 => $name,
++       3 => $encoding,
++       4 => $type,
++       5 => true,  // isStringAttachment
++       6 => 'inline',
++       7 => $cid
++     );
++ 
++     return true;
++   }
++ 
++   /**
+     * Adds an embedded attachment.  This can include images, sounds, and
+     * just about any other document.  Make sure to set the $type to an
+     * image type.  For JPEG images use "image/jpeg" and for GIF images

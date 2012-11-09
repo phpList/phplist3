@@ -1,0 +1,71 @@
+--- class.phpmailer.php.orig	2012-11-09 18:18:42.167300083 -0300
++++ class.phpmailer.php	2012-11-09 18:53:12.445566035 -0300
+@@ -67,6 +67,7 @@
+    * @var string
+    */
+   public $Encoding          = '8bit';
++  public $TextEncoding      = '7bit';
+ 
+   /**
+    * Holds the most recent mailer error message.
+@@ -1312,7 +1313,7 @@
+ 
+     switch($this->message_type) {
+       case 'plain':
+-        $body .= $this->EncodeString($this->Body, $this->Encoding);
++        $body .= $this->EncodeString($this->Body, $this->TextEncoding);
+         break;
+       case 'inline':
+         $body .= $this->GetBoundary($this->boundary[1], '', '', '');
+@@ -1339,23 +1340,23 @@
+         $body .= $this->AttachAll("attachment", $this->boundary[1]);
+         break;
+       case 'alt':
+-        $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', '');
+-        $body .= $this->EncodeString($this->AltBody, $this->Encoding);
++        $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', $this->TextEncoding);
++        $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+         $body .= $this->LE.$this->LE;
+-        $body .= $this->GetBoundary($this->boundary[1], '', 'text/html', '');
++        $body .= $this->GetBoundary($this->boundary[1], '', 'text/html', $this->Encoding);
+         $body .= $this->EncodeString($this->Body, $this->Encoding);
+         $body .= $this->LE.$this->LE;
+         $body .= $this->EndBoundary($this->boundary[1]);
+         break;
+       case 'alt_inline':
+-        $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', '');
+-        $body .= $this->EncodeString($this->AltBody, $this->Encoding);
++        $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', $this->TextEncoding);
++        $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+         $body .= $this->LE.$this->LE;
+         $body .= $this->TextLine("--" . $this->boundary[1]);
+         $body .= $this->HeaderLine('Content-Type', 'multipart/related;');
+         $body .= $this->TextLine("\tboundary=\"" . $this->boundary[2] . '"');
+         $body .= $this->LE;
+-        $body .= $this->GetBoundary($this->boundary[2], '', 'text/html', '');
++        $body .= $this->GetBoundary($this->boundary[2], '', 'text/html', $this->Encoding);
+         $body .= $this->EncodeString($this->Body, $this->Encoding);
+         $body .= $this->LE.$this->LE;
+         $body .= $this->AttachAll("inline", $this->boundary[2]);
+@@ -1367,8 +1368,8 @@
+         $body .= $this->HeaderLine('Content-Type', 'multipart/alternative;');
+         $body .= $this->TextLine("\tboundary=\"" . $this->boundary[2] . '"');
+         $body .= $this->LE;
+-        $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', '');
+-        $body .= $this->EncodeString($this->AltBody, $this->Encoding);
++        $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', $this->TextEncoding);
++        $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+         $body .= $this->LE.$this->LE;
+         $body .= $this->GetBoundary($this->boundary[2], '', 'text/html', '');
+         $body .= $this->EncodeString($this->Body, $this->Encoding);
+@@ -1382,8 +1383,8 @@
+         $body .= $this->HeaderLine('Content-Type', 'multipart/alternative;');
+         $body .= $this->TextLine("\tboundary=\"" . $this->boundary[2] . '"');
+         $body .= $this->LE;
+-        $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', '');
+-        $body .= $this->EncodeString($this->AltBody, $this->Encoding);
++        $body .= $this->GetBoundary($this->boundary[2], '', 'text/plain', $this->TextEncoding);
++        $body .= $this->EncodeString($this->AltBody, $this->TextEncoding);
+         $body .= $this->LE.$this->LE;
+         $body .= $this->TextLine("--" . $this->boundary[2]);
+         $body .= $this->HeaderLine('Content-Type', 'multipart/related;');
