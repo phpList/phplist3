@@ -360,28 +360,8 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
 
   if ($sendrequest && $listsok) { #is_array($_POST["list"])) {
     if (0) {
-      ## try to deliver directly, so that any error (eg user not found) can be sent back to the
-      ## subscriber, so they can fix it
-
-      ## experimental (needs loads of testing) and completely unfinished
-    
-      include 'PHPMailer_v5.1/class.smtp.php';
-      list($dummy,$domain) = explode('@',$email);
-      $mx = getmxrr($domain, $mxhosts);
-#      print_r ($mxhosts);exit;
-      $smtp = new SMTP();
-      $smtp->Connect($mxhosts[0]);
-      print "Connected to ".$mxhosts[0].'<br/>';
-      $smtp->Mail($GLOBALS['message_envelope']);
-      print "Mail sent From ".$GLOBALS['message_envelope'].'<br/>';
-      $smtp->Recipient($email);
-      print "Recipient sent to $email".'<br/>';
-      $smtp->Data('Test');
-      print "Data sent".'<br/>';
-      $smtp->Quit(); 
-      print "Quit sent".'<br/>';
-      $smtp->Close();
-      print "Closed".'<br/>';
+    	## @TODO finish
+      $ok = sendMailDirect($email, getConfig("subscribesubject:$id"), $subscribemessage,system_messageheaders($email),$envelope,1);
 
     } elseif (sendMail($email, getConfig("subscribesubject:$id"), $subscribemessage,system_messageheaders($email),$envelope,1)) {
       sendAdminCopy("Lists subscription","\n".$email . " has subscribed\n\n$history_entry",$subscriptions);
