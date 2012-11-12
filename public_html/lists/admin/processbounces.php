@@ -511,7 +511,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
   $cnt=0;
   $alive = 1;$removed = 0; $msgokay=0;
         #while ($alive && !$removed && $bounce = Sql_Fetch_Array($msg_req)) { DT 051105
-  while ($alive && !$removed && !$msgokay &&$bounce = Sql_Fetch_Array($msg_req)) {
+  while ($alive && !$removed && !$msgokay && $bounce = Sql_Fetch_Array($msg_req)) {
 
     $alive = checkLock($process_id);
     if ($alive)
@@ -525,7 +525,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
         $removed = 1;
         output(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
         $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
-        logEvent("User $userurl has consecutive bounces ($cnt) over treshold, user marked unconfirmed");
+        logEvent(s('User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed',$userurl,$cnt,$bounce_unsubscribe_threshold));
         $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
         addUserHistory($emailreq[0],s('Auto Unconfirmed'),s('Subscriber auto unconfirmed for %d consecutive bounces',$cnt));
         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',$tables["user"],$user[0]));
