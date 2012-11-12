@@ -2,14 +2,14 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (defined('PHPMAILER_PATH')) {
+  #require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php';
   require_once PHPMAILER_PATH;
 }
 
 if (!class_exists('PHPmailer')) {
-#require_once dirname(__FILE__).'/phpmailer/class.phpmailer.php';
-  require_once dirname(__FILE__).'/PHPMailer_v5.1/class.phpmailer.php';
+ # require_once dirname(__FILE__).'/PHPMailer_v5.1/class.phpmailer.php';
+  require_once dirname(__FILE__).'/PHPMailer_5.2.1/class.phpmailer.php';
 }
-#require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php';
 
 class PHPlistMailer extends PHPMailer {
     public $WordWrap = 75;
@@ -36,7 +36,6 @@ class PHPlistMailer extends PHPMailer {
     public $timeStamp = '';
 
     function PHPlistMailer($messageid,$email,$inBlast = true) {
-    #  parent::PHPMailer();
       parent::SetLanguage('en', dirname(__FILE__) . '/phpmailer/language/');
       $this->addCustomHeader("X-Mailer: phplist v".VERSION);
       $this->addCustomHeader("X-MessageID: $messageid");
@@ -226,7 +225,7 @@ class PHPlistMailer extends PHPMailer {
     }
 
     function Send($to_name = "", $to_addr, $from_name, $from_addr, $subject = '', $headers = '',$envelope = '') {
-      if (method_exists($this,'SetFrom')) {
+      if (!empty($from_addr) && method_exists($this,'SetFrom')) {
         $this->SetFrom($from_addr, $from_name);
       } else {
         $this->From = $from_addr;
@@ -370,6 +369,11 @@ class PHPlistMailer extends PHPMailer {
        * the attachment array public or add the AddEmbeddedImageString method
        * we need to add instructions how to patch phpMailer for that.
        * find out here whether it's been done and give an error if not
+       * 
+       * it's been added to phpMailer 5.2.2
+       * http://code.google.com/a/apache-extras.org/p/phpmailer/issues/detail?id=119
+       * 
+       * 
        */
 
       /* @@TODO additional optimisation:
