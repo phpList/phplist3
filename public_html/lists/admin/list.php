@@ -80,7 +80,7 @@ $html = '';
 
 $aConfiguredListCategories = listCategories();
 $aListCategories = array();
-$req = Sql_Query(sprintf('select distinct category from %s',$tables['list']));
+$req = Sql_Query(sprintf('select distinct category from %s where category != "" %s ',$tables['list'],$subselect_and));
 while ($row = Sql_Fetch_Row($req)) {
   array_push($aListCategories,$row[0]);
 }
