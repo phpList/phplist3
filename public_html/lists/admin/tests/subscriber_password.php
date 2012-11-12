@@ -1,5 +1,8 @@
 <?php
 
+class subscriber_password {
+}
+
 /* not a code test, but the story board for (manually) testing subscriber password functionality
  * 
  * 
