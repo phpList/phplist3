@@ -390,10 +390,10 @@ class WebblerListing {
 #    global $float_menu;
 #    $float_menu .= "<a style=\"display: block;\" href=\"#".htmlspecialchars($this->title)."\">$this->title</a>";
     if ($this->sort) {
-      usort($this->elements,array("WebblerListing","cmp"));
+      usort($this->elements,array($this,"cmp"));
     }
     if ($this->sortcolumn) {
-      usort($this->elements,array("WebblerListing","cmp"));
+      usort($this->elements,array($this,"cmp"));
     }
 
     foreach ($this->elements as $element) {
