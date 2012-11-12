@@ -43,7 +43,7 @@ if(isset($_REQUEST['import'])) {
     Fatal_Error($GLOBALS['I18N']->get('File is either too large or does not exist.'));
     return;
   }
-  if (filesize($_FILES["import_file"]['tmp_name']) > 1000000) {
+  if (filesize($_FILES["import_file"]['tmp_name']) > (IMPORT_FILESIZE*1000000)) {
     Fatal_Error($GLOBALS['I18N']->get('File too big, please split it up into smaller ones'));
     return;
   }
