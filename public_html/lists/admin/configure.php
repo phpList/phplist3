@@ -20,7 +20,7 @@ if (empty($_REQUEST['id'])) {
   }
 }
 
-print Info(s(' You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
+print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
 print formStart(' class="configForm" ');
 # configure options
 reset($default_config);
@@ -86,4 +86,3 @@ if (empty($id)) {
 } else {
   include dirname(__FILE__).'/actions/configure.php';
 }
-?>
