@@ -36,15 +36,25 @@ if (!empty($_POST["change"])) {
     return;
   }
   if (empty($_POST["id"])) {
-    # new one
-    $result = Sql_query(sprintf('SELECT count(*) FROM %s WHERE namelc="%s"',
-      $tables["admin"],strtolower(normalize($_POST["loginname"]))));
-    $totalres = Sql_fetch_Row($result);
-    $total = $totalres[0]; 
-    if (!$total) {
-      Sql_Query(sprintf('insert into %s (loginname,namelc,created) values("%s","%s",current_timestamp)',
-        $tables["admin"],strtolower(normalize($_POST["loginname"])),strtolower(normalize($_POST["loginname"]))));
-      $id = Sql_Insert_Id($tables['admin'], 'id');
+    # Check if fields login name and email are present
+    if(!is_null($_POST["loginname"]) && $_POST["loginname"] !== '' && !is_null($_POST["email"]) && $_POST["email"] !== '') {
+      if(validateEmail($_POST["email"])) {
+        # new one
+        $result = Sql_query(sprintf('SELECT count(*) FROM %s WHERE namelc="%s" OR email="%s"',
+           $tables["admin"],strtolower(normalize($_POST["loginname"])),strtolower(normalize($_POST["email"]))));
+        $totalres = Sql_fetch_Row($result);
+        $total = $totalres[0]; 
+        if (!$total) {
+          Sql_Query(sprintf('insert into %s (loginname,namelc,created) values("%s","%s",current_timestamp)',
+            $tables["admin"],strtolower(normalize($_POST["loginname"])),strtolower(normalize($_POST["loginname"]))));
+          $id = Sql_Insert_Id($tables['admin'], 'id');
+        } else {
+          $id = 0;
+        }
+      } else {
+        ## email doesn't validate
+        $id = 0;
+      }
     } else {
       $id = 0;
     }
@@ -86,7 +96,7 @@ if (!empty($_POST["change"])) {
 
     Info($GLOBALS['I18N']->get('Changes saved'));
   } else {
-    Info($GLOBALS['I18N']->get('Error adding new admin'));
+    Info($GLOBALS['I18N']->get('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
   }
 }
 
