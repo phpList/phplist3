@@ -79,9 +79,14 @@ if (!empty($_POST['importcontent'])) {
   print ActionResult(nl2br($report));
 
   if ($_GET['page'] == 'importsimple') {
+    if (!empty($_GET['list'])) {
+      $toList = sprintf('&list=%d',$_GET['list']);
+    } else {
+      $toList = '';
+    }
     print '<div class="actions">
     '
-    .PageLinkButton('send',$GLOBALS['I18N']->get('Send a campaign'))
+    .PageLinkButton('send&new=1'.$toList,$GLOBALS['I18N']->get('Send a campaign'))
     .PageLinkButton('importsimple',$GLOBALS['I18N']->get('Import some more emails'))
     
     .'</div>';
