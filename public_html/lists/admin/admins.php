@@ -109,17 +109,17 @@ if ($total > MAX_USER_PP) {
 ?>
 <table>
 <tr><td colspan=4><?php echo formStart('action=""')?><input type="hidden" name="id" value="<?php echo $listid?>">
-<?php echo $GLOBALS['I18N']->get('Find an admin')?>: <input type=text name="find" value="<?php echo htmlspecialchars($find)?>" size="40"><input type="submit" value="Go">
+<?php echo $GLOBALS['I18N']->get('Find an admin')?>: <input type=text name="find" value="<?php echo htmlspecialchars($find)?>" size="40"><input type="submit" value="<?php echo $GLOBALS['I18N']->get('Go')?>">
 </form></td></tr></table>
 <?php
 $ls = new WebblerListing($GLOBALS['I18N']->get('Administrators'));
 while ($admin = Sql_fetch_array($result)) {
   if ($find)
     $remember_find = "&amp;find=".urlencode($find);
-  $delete_url = sprintf("<a href=\"javascript:deleteRec('%s');\">del</a>",PageURL2("admins","Delete","start=$start&amp;delete=".$admin["id"]));
+  $delete_url = sprintf("<a href=\"javascript:deleteRec('%s');\">" . $GLOBALS['I18N']->get('del') . "</a>",PageURL2("admins","Delete","start=$start&amp;delete=".$admin["id"]));
   $ls->addElement($admin["loginname"],PageUrl2("admin",$GLOBALS['I18N']->get('Show'),"start=$start&amp;id=".$admin["id"].$remember_find));
   if (!$external && $admin['id'] != $_SESSION['logindetails']['id'])
-    $ls->addColumn($admin["loginname"],"del",$delete_url);
+    $ls->addColumn($admin["loginname"],$GLOBALS['I18N']->get('Del'),$delete_url);
 }
 print $ls->display();
 print '<br/><hr/>';
