@@ -47,7 +47,7 @@ print '<div class="actions">';
 //printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
 print PageLinkButton("user&amp;id=$id",$GLOBALS['I18N']->get('Details'));
 if ($access != "view")
-printf( "<a class=\"delete button\" href=\"javascript:deleteRec('%s');\">delete</a>",
+printf( "<a class=\"delete button\" href=\"javascript:deleteRec('%s');\">" . $GLOBALS['I18N']->get('delete') . "</a>",
   PageURL2("user","","delete=$id"));
 print '</div>';
 
@@ -165,4 +165,3 @@ print "<h3>" . $GLOBALS['I18N']->get('user subscription history') . "</h3>";
 print $ls->display();
 print '</div>';
 print '</div>'; ## end of tabbed
-?>
