@@ -30,7 +30,7 @@ if (!navigator.cookieEnabled) {
 function footer(){
   echo '<form method="post" id="forgotpassword-form" action="">';
   echo '  <hr width="50%" size="3"/><p class="login">';
-  echo $GLOBALS['I18N']->get('Forgot password').':';
+  echo $GLOBALS['I18N']->get('Forgot password').' ';
   echo $GLOBALS['I18N']->get('Enter your email address').': <input type="text" name="forgotpassword" value="" size="30" />';
   echo '  <input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Send password').'" />';
   echo '</p></form>';
