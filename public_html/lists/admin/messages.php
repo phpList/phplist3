@@ -263,9 +263,8 @@ if ($total) {
 
     $uniqueviews = Sql_Fetch_Row_Query("select count(userid) from {$tables["usermessage"]} where viewed is not null and messageid = ".$msg["id"]);
 
-    ## need a better way to do this, it's way too slow 
- #   $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables["linktrack"]} where messageid = ".$msg["id"]);
-    $clicks = array(0);
+    $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables["linktrack_ml"]} where messageid = ".$msg["id"]);
+#    $clicks = array(0);
 
     $messagedata = loadMessageData($msg['id']);
 
@@ -302,10 +301,26 @@ if ($total) {
 #    if (!empty($msg["astextandpdf"])) {
 #      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("both"), $msg["astextandpdf"]);
 #    }
-#    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Clicks"), $clicks[0]);
-      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Viewed"), $msg["viewed"]);
-      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Unique Views"), $uniqueviews[0]);
-  #    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Bounced"), $msg["bouncecount"]);
+      $resultStats = '<table class="messagesendstats">
+      <tr><td>'.s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
+      <tr><td>'.s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
+      if ($clicks[0]) {
+        $resultStats .= '
+           <tr><td>'.s('Clicks').'</td><td>'.$clicks[0].'</td></tr>';
+      }
+      $resultStats .= '
+         <tr><td>'.s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
+      $resultStats .= '</table>';
+      
+      $ls->addColumn($listingelement,s('Results'),$resultStats);
+
+
+      //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Viewed"), $msg["viewed"]);
+      //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Unique Views"), $uniqueviews[0]);
+      //if ($clicks[0]) {
+        //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Clicks"), $clicks[0]);
+      //}
+      //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Bounced"), $msg["bouncecount"]);
     } 
 
     if ($msg['status'] == 'sent') {
@@ -319,17 +334,17 @@ if ($total) {
     if (!empty($msg['astextandpdf'])) $colspan++;
     $clicksrow = $bouncedrow = '';
 
-    if ($clicks[0]) {
-      $clicksrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
-        $colspan-1,$GLOBALS['I18N']->get("Clicks"),$clicks[0]);
-    }
-    if ($msg["bouncecount"]) {
-      $bouncedrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
-        $colspan-1,$GLOBALS['I18N']->get("Bounced"),$msg["bouncecount"]);
-    }
+    //if ($clicks[0]) {
+      //$clicksrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
+        //$colspan-1,$GLOBALS['I18N']->get("Clicks"),$clicks[0]);
+    //}
+    //if ($msg["bouncecount"]) {
+      //$bouncedrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
+        //$colspan-1,$GLOBALS['I18N']->get("Bounced"),$msg["bouncecount"]);
+    //}
     
     $sendstats =
-      sprintf('<table border="1">
+      sprintf('<table class="messagesendstats">
       %s
       <tr><td>'.$GLOBALS['I18N']->get("total").'</td><td>'.$GLOBALS['I18N']->get("text").'</td><td>'.$GLOBALS['I18N']->get("html").'</td>
         %s%s
@@ -373,7 +388,7 @@ PageURL2("messages$url_keep","","delete=".$msg["id"]));
     $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"]).'</span>';
 
     if ($clicks[0] && CLICKTRACK) {
-      $actionbuttons .= PageLink2("mclicks",$GLOBALS['I18N']->get("click stats"),"id=".$msg["id"]);
+      $actionbuttons .= '<span class="stats">'.PageLinkButton("mclicks",$GLOBALS['I18N']->get("click stats"),"id=".$msg["id"]).'</span>';
     }
 
     $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
