@@ -411,7 +411,7 @@ function snippetListsSelector ($optionAll = false) {
   return $result;
 }
 
-print '<ul>';
+print '<ul class="reconcile">';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=nolists",$GLOBALS['I18N']->get("Delete all subscribers who are not subscribed to any list")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=invalidemail",$GLOBALS['I18N']->get("Find users who have an invalid email")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=adduniqid",$GLOBALS['I18N']->get("Make sure that all users have a UniqID")).'</li>';
@@ -454,6 +454,8 @@ print '</ul>';
 <input type="hidden" name="option" value="bounces" />
 <p class="information"><?php echo $GLOBALS['I18N']->get('To delete all users with more than')?>
 <select name="num">
+  <option>1</option>
+  <option>2</option>
   <option selected="selected">5</option>
   <option>10</option>
   <option>15</option>
@@ -482,11 +484,11 @@ print '</ul>';
 ?>
 <hr/>
 <form method="get">
-<table class="reconcileForm"><tr><td colspan="2">
-<?php echo $GLOBALS['I18N']->get('To delete users who signed up and have not confirmed their subscription')?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up after')?>:</td><td><?php echo $from->showInput("","",$fromval);?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up before')?>:</td><td><?php echo $to->showInput("","",$toval);?></td></tr>
-</table>
+<fieldset>
+<legend><?php echo $GLOBALS['I18N']->get('To delete users who signed up and have not confirmed their subscription')?></legend>
+<div class="field"><label for="fromdate"><?php echo $GLOBALS['I18N']->get('Date they signed up after')?></label><div id="fromdate"><?php echo $from->showInput("","",$fromval);?></div></div>
+<div class="field"><label for="todate"><?php echo $GLOBALS['I18N']->get('Date they signed up before')?></label><div id="todate"><?php echo $to->showInput("","",$toval);?></div></div>
+</fieldset>
 <input type="hidden" name="page" value="reconcileusers" />
 <input type="hidden" name="option" value="deleteunconfirmed" />
 <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>"></form>
