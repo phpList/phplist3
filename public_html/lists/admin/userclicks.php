@@ -18,8 +18,8 @@ if (isset($_GET['userid'])) {
 } else {
   $userid = 0;
 }
-if (isset($_GET['s'])) {
-  $start = sprintf('%d',$_GET['s']);
+if (isset($_GET['start'])) {
+  $start = sprintf('%d',$_GET['start']);
 } else {
   $start = 0;
 }
@@ -113,7 +113,7 @@ if ($fwdid && $msgid) {
 $req = Sql_Query($query);
 $total = Sql_Num_Rows($req);
 if ($total > 100) {
-  print Paging(PageUrl2('userclicks&msgid='.$msgid.'&fwdid='.$fwdid.'&userid='.$userid),$start,$total,100);
+  print simplePaging('userclicks&msgid='.$msgid.'&fwdid='.$fwdid.'&userid='.$userid,$start,$total,100);
 
   $limit = ' limit '.$start.', 100';
   $req = Sql_Query($query.' '.$limit);
@@ -127,7 +127,9 @@ while ($row = Sql_Fetch_Array($req)) {
     $element = $row['email'];
     $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
   } else {
-    $element = $row['url'];
+#    $link = substr($row['url'],0,50);
+#    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
+    $element = substr($row['url'],0,50);
     $ls->addElement($element,PageUrl2('uclicks&amp;id='.$row['forwardid']));
     $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],$row['messageid']));
   }
