@@ -359,10 +359,16 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
   }
 
   if ($sendrequest && $listsok) { #is_array($_POST["list"])) {
-    if (0) {
-    	## @TODO finish
+    if (RFC_DIRECT_DELIVERY) {
       $ok = sendMailDirect($email, getConfig("subscribesubject:$id"), $subscribemessage,system_messageheaders($email),$envelope,1);
-
+      if (!$ok) {
+        print '<h3>'.$strEmailFailed.'</h3>';
+        print '<p>'.$GLOBALS['smtpError'].'</p>';
+      } else {
+        sendAdminCopy("Lists subscription","\n".$email . " has subscribed\n\n$history_entry",$subscriptions);
+        addUserHistory($email,$history_subject,$history_entry);
+        print $thankyoupage;
+      }
     } elseif (sendMail($email, getConfig("subscribesubject:$id"), $subscribemessage,system_messageheaders($email),$envelope,1)) {
       sendAdminCopy("Lists subscription","\n".$email . " has subscribed\n\n$history_entry",$subscriptions);
       addUserHistory($email,$history_subject,$history_entry);

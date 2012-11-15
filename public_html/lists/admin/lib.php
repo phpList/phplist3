@@ -247,8 +247,9 @@ function sendAdminPasswordToken ($adminId){
 
 function getTopSmtpServer($domain) {
   $mx = getmxrr($domain, $mxhosts,$weight);
-  $revW = array_flip($weight);
-  return $mxhosts[array_shift($revW)];
+  $thgiew = array_flip($weight);
+  ksort($thgiew);
+  return $mxhosts[array_shift($thgiew)];
 }
 
 function sendMail ($to,$subject,$message,$header = "",$parameters = "",$skipblacklistcheck = 0) {
@@ -383,6 +384,40 @@ function sendMailPhpMailer ($to,$subject,$message) {
         "text_encoding" => TEXTEMAIL_ENCODING)
       );
   return $mail->send("", $destinationemail, $fromname, $fromemail, $subject);
+}
+
+function sendMailDirect($destinationemail, $subject, $message) {
+  $GLOBALS['smtpError'] = '';
+  ## try to deliver directly, so that any error (eg user not found) can be sent back to the
+  ## subscriber, so they can fix it
+    unset($GLOBALS["developer_email"]);
+    
+  list($htmlmessage,$textmessage) = constructSystemMail($message,$subject);
+  $mail = new PHPlistMailer('systemmessage',$destinationemail,false,true);
+
+  list($dummy,$domain) = explode('@',$destinationemail);
+
+  #print_r ($mxhosts);exit;
+  $smtpServer = getTopSmtpServer($domain);
+
+  $fromemail = getConfig("message_from_address");
+  $fromname = getConfig("message_from_name");
+  $mail->Host = $smtpServer;
+  $mail->Helo = getConfig("website");
+  $mail->Port = 25;
+  $mail->Mailer = "smtp";
+  if (!empty($htmlmessage)) {
+    $mail->add_html($htmlmessage,$textmessage,getConfig('systemmessagetemplate'));
+    $mail->add_text($textmessage);
+  } 
+  $mail->add_text($textmessage);
+  try {
+    $mail->Send('',$destinationemail, $fromname, $fromemail, $subject);
+  } catch (Exception $e) {
+    $GLOBALS['smtpError'] = $e->getMessage();
+    return false;
+  }
+  return true;
 }
 
 function sendAdminCopy($subject,$message,$lists = array()) {

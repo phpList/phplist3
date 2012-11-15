@@ -236,7 +236,7 @@ if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) define('PREFERENCEPAGE_SHOW_P
 #https://mantis.phplist.com/view.php?id=15603
 if (!defined('WORDWRAP_HTML')) define('WORDWRAP_HTML',0);
 if (!defined('USE_PRECEDENCE_HEADER')) define('USE_PRECEDENCE_HEADER',true);
-
+if (!defined('RFC_DIRECT_DELIVERY')) define('RFC_DIRECT_DELIVERY',false);  ## Request for Confirmation, delivery with SMTP
 # check whether Pear HTTP/Request is available, and which version
 # try 2 first
 
