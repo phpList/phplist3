@@ -2,11 +2,11 @@
 phpList, wishlist and future plans, not in order of priority
 
 1. update ckeditor - https://mantis.phplist.com/view.php?id=15414
-2. change admin permission system to be similar to phosted, but keep listownership
+DONE - change admin permission system to be similar to phosted, but keep listownership
 3. make reconcile page have plugin capacity and move loads of stuff to plugins
 
 4. finish RSS manager plugin
-5. finish user selection plugin
+5. build user selection/segmentation plugin to mimic the 2.10 segmentation system
 
 6. translate system messages: https://mantis.phplist.com/view.php?id=16594
 7. re-request confirmation via campaign -> "invite mode"
@@ -14,7 +14,7 @@ phpList, wishlist and future plans, not in order of priority
 8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
 9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
 10. add system to manage versioning of translation of "info" and "help"
-11. test and finish queue prepare
+DONE test and finish queue prepare
 
 12. subscriber management
 https://mantis.phplist.com/view.php?id=12801 and related
@@ -25,21 +25,21 @@ https://mantis.phplist.com/view.php?id=12801 and related
 - speed - allow sending with multiple processes/servers
 - memcached
 
+- calculate subscriber engagement value, based on opens, optin, clicks, bounces etc
 - make attributes classes that can be added with plugins
 - Optimize database structure to really deal with large
   amounts of emails. It works now, but not *that* fast
 - List Archive entry
   A searchable archive of the lists, to use via the web
 - Allowing running processes to be viewed and killed
-- allow choice for multiple send processes
 - "preview" of messages to send, so you can check whether the layout is ok
 - make system multilingual and allow user to choose language
 - placeholder parsing in subscribe, confirm and unsubscribe messages
-- system messages need to be identifiable for bounces
-- direct delivery of subscription message to make sure it can arrive, and
-  give error when it can't
+- system messages identifiable for bounces and process them
+DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can arrive, and give error when it can't
 - move configurable stuff outside the webroot, to make upgrading easier
 - seperate message for signing up people from import
 - statistics retrieval (#lists #users #messages)
+- use DKIM capabilities of phpMailer
 - integration with other OSS projects
 

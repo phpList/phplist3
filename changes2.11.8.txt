@@ -3,9 +3,9 @@ Changes 2.11.8
 
 Minimum requirement PHP 5.1.2 due to use of "hash"
 
-
 Subscriber password (if used) always encrypted
-As a result, the "Forgot password" is a link to send an email to the admin. A token based Forgot has to be recoded.
+As a result, the "Forgot password" is a link to send an email to the admin. 
+A token based Forgot has to be recoded.
 
 dropped config "ENCRYPT_PASSWORD" (always true, if ASKFORPASSWORD set)
 added config "ENCRYPTION_ALGO" which hash function to use, defaults to sha256
@@ -24,8 +24,14 @@ session.name = unique per installation
 SYSTEM_TIMEZONE -> allow config to set the Timezone 
 
 actually already in 2.11.7, but not mentioned: TLD auto-updating
-Fallback placeholder using %%
 
+Fallback placeholder using %%
 
 added PREFERENCEPAGE_SHOW_PRIVATE_LISTS
 WORDWRAP_HTML
+
+ALWAYS_ADD_USERTRACK - not sure was mentioned before
+default jump-off to 1 and always add usertrack to 1
+
+
+RFC_DIRECT_DELIVERY - super experimental
