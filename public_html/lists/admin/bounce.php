@@ -1,6 +1,5 @@
-
-
 <?php
+
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_GET['id'])) {
@@ -13,6 +12,8 @@ if (isset($_GET['delete'])) {
 } else {
   $delete = 0;
 }
+$actionresult = '';
+
 $useremail = isset($_GET["useremail"]) && is_email($_GET["useremail"]) ? $_GET["useremail"] : ''; ## @TODO sanitize
 $deletebounce = isset($_GET["deletebounce"]); #BUGFIX #15286 - nickyoung
 $amount = isset($_GET["amount"]) ? sprintf('%d',$_GET["amount"]) : ''; #BUGFIX #15286 - CS2 
@@ -44,41 +45,41 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
       $tables["user"],sql_escape($useremail)));
      $userid = $req[0];
     if (!$userid) {
-      print "$useremail => ".$GLOBALS['I18N']->get('Not Found')."\n";
+      $actionresult .= "$useremail => ".$GLOBALS['I18N']->get('Not Found')."\n";
     }
   }
   if (isset($userid) && $amount) {
     Sql_Query(sprintf('update %s set bouncecount = bouncecount + %d where id = %d',
       $tables["user"],$amount,$userid));
      if (Sql_Affected_Rows()) {
-      print sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
+      $actionresult .= sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
     } else {
-      print sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
+      $actionresult .= sprintf($GLOBALS['I18N']->get('Added %s to bouncecount for subscriber %s'),$amount,$userid)."\n";
     }
   }
 
   if ($userid && $unconfirm) {
     Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
       $tables["user"],$userid));
-     print sprintf($GLOBALS['I18N']->get('Made subscriber %s unconfirmed'), $userid);
+     $actionresult .= sprintf($GLOBALS['I18N']->get('Made subscriber %s unconfirmed'), $userid);
   }
 
   if ($userid && $maketext) {
     Sql_Query(sprintf('update %s set htmlemail = 0 where id = %d',
       $tables["user"],$userid));
-     print sprintf($GLOBALS['I18N']->get('Made subscriber %d to receive text'), $userid);
+     $actionresult .= sprintf($GLOBALS['I18N']->get('Made subscriber %d to receive text'), $userid);
   }
 
   if ($userid && $deleteuser) {
     deleteUser($userid);
-    print sprintf($GLOBALS['I18N']->get('Deleted subscriber %d')."\n", $userid);
+    $actionresult .= sprintf($GLOBALS['I18N']->get('Deleted subscriber %d')."\n", $userid);
   }
 
   if (ALLOW_DELETEBOUNCE && $deletebounce) {
-    print sprintf($GLOBALS['I18N']->get('Deleting bounce %d .. ')."\n", $id);
+    $actionresult .= sprintf($GLOBALS['I18N']->get('Deleting bounce %d .. ')."\n", $id);
     Sql_query("delete from {$tables["bounce"]} where id = $id");
-    print $GLOBALS['I18N']->get('..Done, loading next bounce..')."<br /><hr/><br />\n";
-    print PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'));
+    $actionresult .= $GLOBALS['I18N']->get('..Done, loading next bounce..')."<br /><hr/><br />\n";
+    $actionresult .= PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'));
     $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d',$tables["bounce"],$id));
     $id = $next[0];
     if (!$id) {
@@ -86,6 +87,7 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
       $id = $next[0];
     }
   }
+  print '<div id="actionresult">'.$actionresult .'</div>';
 }
 
 $guessedemail = '';
@@ -117,41 +119,45 @@ if ($id) {
   $newruleform .= '<tr><td colspan="2"><p class="submit"><input type="submit" name="add" value="'.$GLOBALS['I18N']->get('Add new Rule').'" /></p></td></tr>';
   $newruleform .= '</table></form>';
 
-   print '<form method="get">';
-  print '<input type="hidden" name=page value="'.$page.'" />';
-  print '<input type="hidden" name=id value="'.$id.'" />';
-  print '<table class="bounceActions"><tr><td>'.$GLOBALS['I18N']->get('Possible Actions:').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'</td><td><input type="text" name="amount" value="1" size="5" />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('Mark subscriber as unconfirmed').' </td><td><input type="checkbox" name="unconfirm" value="1" /> '.$GLOBALS['I18N']->get('(so you can resend the request for confirmation)').'</td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('Set subscriber to receive text instead of HTML').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
-  print '<tr><td>'.$GLOBALS['I18N']->get('Delete subscriber').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
+  $actionpanel = '';
+  $actionpanel .= '<form method="get">';
+  $actionpanel .= '<input type="hidden" name=page value="'.$page.'" />';
+  $actionpanel .= '<input type="hidden" name=id value="'.$id.'" />';
+  $actionpanel .= '<table class="bounceActions"><tr><td>'.$GLOBALS['I18N']->get('Possible Actions:').'</td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'</td><td><input type="text" name="amount" value="1" size="5" />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Mark subscriber as unconfirmed').' </td><td><input type="checkbox" name="unconfirm" value="1" /> '.$GLOBALS['I18N']->get('(so you can resend the request for confirmation)').'</td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Set subscriber to receive text instead of HTML').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Delete subscriber').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
   if (ALLOW_DELETEBOUNCE) {
-    print '<tr><td>'.$GLOBALS['I18N']->get('Delete this bounce and go to the next').' </td><td><input type="checkbox" name="deletebounce" value="1" checked="checked" /></td></tr>';
+    $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Delete this bounce and go to the next').' </td><td><input type="checkbox" name="deletebounce" value="1" checked="checked" /></td></tr>';
   }
-  print '<tr><td><input class="submit" type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Do the above').'" /></td></tr>';
-  print "</table></form>";
+  $actionpanel .= '<tr><td><input class="submit" type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Do the above').'" /></td></tr>';
+  $actionpanel .= "</table></form>";
   if (USE_ADVANCED_BOUNCEHANDLING) {
-    print '<p class="button"><a href="#newrule">'.$GLOBALS['I18N']->get('Create New Rule based on this bounce').'</a></p>';
+    $actionpanel .= '<p class="button"><a href="#newrule">'.$GLOBALS['I18N']->get('Create New Rule based on this bounce').'</a></p>';
   }
   
-  print '<p class="information">'.$GLOBALS['I18N']->get('Bounce Details:').'<table class="bounceDetails" border=1>';
-  printf ('
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('ID').'</td><td valign="top">%d</td></tr>
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('Date').'</td><td valign="top">%s</td></tr>
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('Status').'</td><td valign="top">%s</td></tr>
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('Comment').'</td><td valign="top">%s</td></tr>
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('Header').'</td><td valign="top">%s</td></tr>
-  <tr><td valign="top">'.$GLOBALS['I18N']->get('Body').'</td><td valign="top">%s</td></tr>',$id,
+  $p = new UIPanel(s('View a bounce'),$actionpanel);
+  print $p->display();
+  
+  $bouncedetail = sprintf ('
+  <div class="label">'.$GLOBALS['I18N']->get('ID').'</div><div class="content">%d</div>
+  <div class="label">'.$GLOBALS['I18N']->get('Date').'</div><div class="content">%s</div>
+  <div class="label">'.$GLOBALS['I18N']->get('Status').'</div><div class="content">%s</div>
+  <div class="label">'.$GLOBALS['I18N']->get('Comment').'</div><div class="content">%s</div>
+  <div class="label">'.$GLOBALS['I18N']->get('Header').'</div><div class="content">%s</div>
+  <div class="label">'.$GLOBALS['I18N']->get('Body').'</div><div class="content">%s</div>',$id,
   $bounce["date"],$bounce["status"],$bounce["comment"],
   nl2br(htmlspecialchars($bounce["header"])),nl2br(htmlspecialchars($bounce["data"])));
 #   print '<tr><td colspan="2"><p class="submit"><input type="submit" name=change value="Save Changes"></p>';
-  print '</table>';
+
+  $p = new UIPanel(s('Bounce Details'),$bouncedetail);
+  print $p->display();
+  
   if (USE_ADVANCED_BOUNCEHANDLING) {
-    print '<a name="newrule"></a>';
-    print $newruleform;
+    $p = new UIPanel(s('New Rule').'<a name="newrule"></a>',$newruleform);
+    print $p->display();
   }
 }
-?>
-
 
