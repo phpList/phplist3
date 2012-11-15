@@ -984,7 +984,11 @@ while ($message = Sql_fetch_array($messages)) {
              $failed_sent++;
              ## need to check this, the entry shouldn't be there in the first place, so no need to delete it
              ## might be a cause for duplicated emails
-             Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
+             if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+               Sql_Query_Params(sprintf('update %s set status = "todo" where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
+             } else {
+               Sql_Query_Params(sprintf('delete from %s where userid = ? and messageid = ? and status = "active"',$tables['usermessage']), array($userid,$messageid));
+             }
              if (VERBOSE) {
                output($GLOBALS['I18N']->get('Failed sending to').' '. $useremail);
                logEvent("Failed sending message $messageid to $useremail");
