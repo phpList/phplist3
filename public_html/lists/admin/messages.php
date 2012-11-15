@@ -168,7 +168,7 @@ if (isset($_GET['action'])) {
       if ($suc6)
         $action_result .=  "... $suc6".$GLOBALS['I18N']->get("Done");
       else
-        $action_result .=  "... ".$GLOBALS['I18N']->get("failed");
+        $action_result .=  "... ".$GLOBALS['I18N']->get("Failed");
       $action_result .= '<br /><hr /><br />';
       break;
     case 'markallsent':
