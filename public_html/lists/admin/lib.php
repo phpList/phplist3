@@ -616,13 +616,18 @@ function getPageLock($force = 0) {
   $running_req = Sql_Query_Params($query, array($thispage));
   $running_res = Sql_Fetch_Assoc($running_req);
   $count = Sql_Num_Rows($running_req);
+  if (VERBOSE) {
+    cl_output($count. ' out of '.$max.' active processes');
+  }
   $waited = 0;
-  while ($running_res['age'] && $count >= $max) { # a process is already running
+ # while ($running_res['age'] && $count >= $max) { # a process is already running
+  while ($count >= $max) { # don't check age, as it may be 0
  #   cl_output('running process: '.$running_res['age'].' '.$max);
     if ($running_res['age'] > 600) {# some sql queries can take quite a while
+      #cl_output($running_res['id'].' is old '.$running_res['age']);
       # process has been inactive for too long, kill it
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
-    } elseif ($count >= $max) {
+    } elseif ((int)$count >= (int)$max) {
       cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       sleep(1); # to log the messages in the correct order
