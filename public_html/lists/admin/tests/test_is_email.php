@@ -44,7 +44,7 @@ class test_is_email extends phplistTest {
       "name+tag@example.com"      => TRUE ,
       ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
      # '"name\@tag"@example.com'   => TRUE , 
-      '"name\@tag"@example.com'   => FALSE , // Ð this is a valid email address containing two @ symbols.
+      '"name\@tag"@example.com'   => FALSE , // ï¿½ this is a valid email address containing two @ symbols.
       "escaped\ spaces\ are\ allowed@example.com"          => TRUE ,
       '"spaces may be quoted"@example.com'        => TRUE ,
       "!#$%&'*+-/=.?^_`{|}~@example.com"          => TRUE ,
