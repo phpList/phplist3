@@ -243,7 +243,12 @@ function sendAdminPasswordToken ($adminId){
   } else {
     return $GLOBALS['I18N']->get('Error sending password change token');
   }
-    
+}
+
+function getTopSmtpServer($domain) {
+  $mx = getmxrr($domain, $mxhosts,$weight);
+  $revW = array_flip($weight);
+  return $mxhosts[array_shift($revW)];
 }
 
 function sendMail ($to,$subject,$message,$header = "",$parameters = "",$skipblacklistcheck = 0) {
