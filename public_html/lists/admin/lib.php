@@ -276,6 +276,64 @@ function sendMail ($to,$subject,$message,$header = "",$parameters = "",$skipblac
   return sendMailPhpMailer($to,$subject,$message);
 }
 
+function constructSystemMail($message,$subject = '') {
+  $hasHTML = strip_tags($message) != $message;
+  $htmlcontent = '';
+
+  if ($hasHTML) {
+    $message = stripslashes($message);
+    $textmessage = HTML2Text($message);
+    $htmlmessage = $message;
+  } else {
+    $textmessage = $message;
+    $htmlmessage = $message;
+  #  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
+    $htmlmessage = nl2br($htmlmessage);
+    ## make links clickable:
+    preg_match_all('~https?://[^\s<]+~i',$htmlmessage,$matches);
+    for ($i=0; $i<sizeof($matches[0]);$i++) {
+      $match = $matches[0][$i];
+      $htmlmessage = str_replace($match,'<a href="'.$match.'">'.$match.'</a>',$htmlmessage);
+    }
+  }
+  ## add li-s around the lists
+  if (preg_match('/<ul>\s+(\*.*)<\/ul>/imsxU',$htmlmessage,$listsmatch)) {
+    $lists = $listsmatch[1];
+    $listsHTML = '';
+    preg_match_all('/\*([^\*]+)/',$lists,$matches);
+    for ($i=0;$i<sizeof($matches[0]);$i++) {
+      $listsHTML .= '<li>'.$matches[1][$i].'</li>';
+    }
+    $htmlmessage = str_replace($listsmatch[0],'<ul>'.$listsHTML.'</ul>',$htmlmessage);
+  }
+
+  $htmltemplate = '';
+  $templateid = getConfig('systemmessagetemplate');
+  if (!empty($templateid)) {
+    $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
+      $GLOBALS["tables"]["template"],$templateid));
+    $htmltemplate = stripslashes($req[0]);
+  }
+  if (strpos($htmltemplate,'[CONTENT]')) {
+    $htmlcontent = str_replace('[CONTENT]',$htmlmessage,$htmltemplate);
+    $htmlcontent = str_replace('[SUBJECT]',$subject,$htmlcontent);
+    $htmlcontent = str_replace('[FOOTER]','',$htmlcontent);
+    if (!EMAILTEXTCREDITS) {
+      $phpListPowered = preg_replace('/src=".*power-phplist.png"/','src="powerphplist.png"',$GLOBALS['PoweredByImage']);
+    } else {
+      $phpListPowered = $GLOBALS['PoweredByText'];
+    }
+    if (strpos($htmlcontent,'[SIGNATURE]')) {
+      $htmlcontent = str_replace('[SIGNATURE]',$phpListPowered,$htmlcontent);
+    } elseif (strpos($htmlcontent,'</body>')) {
+      $htmlcontent = str_replace('</body>',$phpListPowered.'</body>',$htmlcontent);
+    } else {
+      $htmlcontent .= $phpListPowered;
+    }
+  }
+  return array($htmlcontent,$textmessage);
+}
+
 function sendMailPhpMailer ($to,$subject,$message) {
   # global function to capture sending emails, to avoid trouble with
   # older (and newer!) php versions
@@ -289,93 +347,26 @@ function sendMailPhpMailer ($to,$subject,$message) {
   $destinationemail = '';
 
 #  print "Sending $to from $fromemail<br/>";
-  if (!DEVVERSION) {
-    $mail = new PHPlistMailer('systemmessage',$to,false);
-    $destinationemail = $to;
-
-    $hasHTML = strip_tags($message) != $message;
-
-    if ($hasHTML) {
-      $message = stripslashes($message);
-      $textmessage = HTML2Text($message);
-      $htmlmessage = $message;
-    } else {
-      $textmessage = $message;
-      $htmlmessage = $message;
-    #  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
-      $htmlmessage = nl2br($htmlmessage);
-      ## make links clickable:
-      preg_match_all('~https?://[^\s<]+~i',$htmlmessage,$matches);
-      for ($i=0; $i<sizeof($matches[0]);$i++) {
-        $match = $matches[0][$i];
-        $htmlmessage = str_replace($match,'<a href="'.$match.'">'.$match.'</a>',$htmlmessage);
-      }
-    }
-    ## add li-s around the lists
-    if (preg_match('/<ul>\s+(\*.*)<\/ul>/imsxU',$htmlmessage,$listsmatch)) {
-      $lists = $listsmatch[1];
-      $listsHTML = '';
-      preg_match_all('/\*([^\*]+)/',$lists,$matches);
-      for ($i=0;$i<sizeof($matches[0]);$i++) {
-        $listsHTML .= '<li>'.$matches[1][$i].'</li>';
-      }
-      $htmlmessage = str_replace($listsmatch[0],'<ul>'.$listsHTML.'</ul>',$htmlmessage);
-/*
-      print "<h1>MATCH</h1>";
-*/
-    }
-/*
-    } else {
-      print "<h1>NO MATCH</h1>";
-      print htmlspecialchars($htmlmessage); exit;
-    }
-*/
-
-    $htmltemplate = '';
-    $templateid = getConfig('systemmessagetemplate');
-    if (!empty($templateid)) {
-      $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
-        $GLOBALS["tables"]["template"],$templateid));
-      $htmltemplate = stripslashes($req[0]);
-    }
-    if (strpos($htmltemplate,'[CONTENT]')) {
-      $htmlcontent = str_replace('[CONTENT]',$htmlmessage,$htmltemplate);
-      $htmlcontent = str_replace('[SUBJECT]',$subject,$htmlcontent);
-      $htmlcontent = str_replace('[FOOTER]','',$htmlcontent);
-      if (!EMAILTEXTCREDITS) {
-        $phpListPowered = preg_replace('/src=".*power-phplist.png"/','src="powerphplist.png"',$GLOBALS['PoweredByImage']);
-      } else {
-        $phpListPowered = $GLOBALS['PoweredByText'];
-      }
-      if (strpos($htmlcontent,'[SIGNATURE]')) {
-        $htmlcontent = str_replace('[SIGNATURE]',$phpListPowered,$htmlcontent);
-      } elseif (strpos($htmlcontent,'</body>')) {
-        $htmlcontent = str_replace('</body>',$phpListPowered.'</body>',$htmlcontent);
-      } else {
-        $htmlcontent .= $phpListPowered;
-      }
-      $mail->add_html($htmlcontent,$textmessage,$templateid);
-      ## In the above phpMailer strips all tags, which removes the links which are wrapped in < and > by HTML2text
-      ## so add it again
-      $mail->add_text($textmessage);
-    } 
-    $mail->add_text($textmessage);
-  } else {
-    # send mails to one place when running a test version
+  if (DEVVERSION) {
     $message = "To: $to\n".$message;
     if ($GLOBALS["developer_email"]) {
-      # fake occasional failure
-      if (mt_rand(0,50) == 1) {
-        return 0;
-      } else {
-        $mail = new PHPlistMailer('systemmessage',$to,false);
-        $mail->add_text($message);
-        $destinationemail = $GLOBALS["developer_email"];
-      }
+      $destinationemail = $GLOBALS["developer_email"];
     } else {
       print "Error: Running DEV version, but developer_email not set";
     }
+  } else {
+    $destinationemail = $to;
   }
+  list($htmlmessage,$textmessage) = constructSystemMail($message,$subject);
+
+  $mail = new PHPlistMailer('systemmessage',$destinationemail,false);
+  if (!empty($htmlmessage)) {
+    $mail->add_html($htmlmessage,$textmessage,getConfig('systemmessagetemplate'));
+    ## In the above phpMailer strips all tags, which removes the links which are wrapped in < and > by HTML2text
+    ## so add it again
+    $mail->add_text($textmessage);
+  } 
+  $mail->add_text($textmessage);
   # 0008549: message envelope not passed to php mailer,
   $mail->Sender = $GLOBALS["message_envelope"];
 
@@ -628,7 +619,7 @@ function getPageLock($force = 0) {
       # process has been inactive for too long, kill it
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
     } elseif ((int)$count >= (int)$max) {
-      cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
+   #   cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
