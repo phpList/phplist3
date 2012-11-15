@@ -109,7 +109,7 @@ if (!defined("USECK")) define("USECK",0); ## ckeditor integration, not finished 
 if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
 if (!defined('SILENT_RESUBSCRIBE')) define('SILENT_RESUBSCRIBE',true);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
-if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",0);
+if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",1);
 if (ASKFORPASSWORD) {
   ## we now always encrypt
   define('ENCRYPTPASSWORD',1);
@@ -178,7 +178,7 @@ if (!defined('SEND_ONE_TESTMAIL')) define('SEND_ONE_TESTMAIL',1);
 if (!defined('USE_SPAM_BLOCK')) define('USE_SPAM_BLOCK',1);
 if (!defined('NOTIFY_SPAM')) define('NOTIFY_SPAM',1);
 if (!defined('CLICKTRACK_LINKMAP')) define('CLICKTRACK_LINKMAP',0);
-if (!defined('ALWAYS_ADD_USERTRACK')) define('ALWAYS_ADD_USERTRACK',0);
+if (!defined('ALWAYS_ADD_USERTRACK')) define('ALWAYS_ADD_USERTRACK',1);
 if (!defined('MERGE_DUPLICATES_DELETE_DUPLICATE')) define('MERGE_DUPLICATES_DELETE_DUPLICATE',1);
 if (!defined('USE_PERSONALISED_REMOTEURLS')) define('USE_PERSONALISED_REMOTEURLS',1);
 if (!defined('USE_LOCAL_SPOOL')) define('USE_LOCAL_SPOOL',0);
@@ -201,6 +201,8 @@ if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLE
 if (!defined('SEND_QUEUE_PROCESSING_REPORT')) define('SEND_QUEUE_PROCESSING_REPORT',true);
 if (!defined('MAX_AVATAR_SIZE')) define('MAX_AVATAR_SIZE',2000);
 if (!defined('DEFAULT_MESSAGEAGE')) define('DEFAULT_MESSAGEAGE',604800); ## 7 days in seconds
+
+if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
   define('PHPMAILERBLASTHOST',PHPMAILERHOST);
 }
