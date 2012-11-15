@@ -142,7 +142,8 @@ if (isset($start) && $start > 0) {
 }
 
 /*
-## hmm, this needs more work, as it'll run out of memory
+## hmm, this needs more work, as it'll run out of memory, because it's building the entire
+## listing before pushing it out. 
 if ($download) {
   $limit = '';
 }
@@ -183,6 +184,12 @@ $req = Sql_Query(sprintf('select userid,email,um.entered as sent,min(um.viewed) 
 
 $summary = array();
 while ($row = Sql_Fetch_Array($req)) {
+  
+  if ($download) {
+    ## with download, the 50 per page limit is not there.
+    set_time_limit(60);
+  }
+  
   $element = '<!--'.$row['userid'].'-->'.$row['email'];
   $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
   $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),formatDateTime($row['sent']));
