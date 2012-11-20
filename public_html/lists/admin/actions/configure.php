@@ -23,7 +23,7 @@ $(".configValue").each(function() {
 */
 
 $val = $default_config[$id];
-printf('<div class="configEditing">' . $GLOBALS['I18N']->get('Editing') . ' <b>%s</b></div>',$GLOBALS['I18N']->get($val[1]));
+printf('<div class="configEditing">' . $GLOBALS['I18N']->get('Editing') . ' <b>%s</b></div>',$val[1]);
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />',$id,$id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';

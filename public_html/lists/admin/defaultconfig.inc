@@ -126,7 +126,7 @@ $default_config = array (
   # what is your website location (url)
 "website" => array (
   $D_website,
-  "Website address (without http://)",
+  s("Website address (without http://)"),
   "text",
   0 ## indication this value cannot be empty (1 being it can be empty)
 ),
@@ -134,58 +134,58 @@ $default_config = array (
   # what is your domain (for sending emails)
 "domain" => array (
   $D_domain,
-  "Domain Name of your server (for email)",
+  s("Domain Name of your server (for email)"),
   "text"
 ),
 
   # admin address is the person who is in charge of this system
 "admin_address" => array (
   'webmaster@[DOMAIN]',
-  "Person in charge of this system (one email address)",
+  s("Person in charge of this system (one email address)"),
   "text"
 ),
 
   # how often to check for new versions of PHPlist
 "check_new_version" => array (
   "7",
-  "How often do you want to check for a new version of phplist (days)",
+  s("How often do you want to check for a new version of phplist (days)"),
   "text"
 ),
 
   # admin addresses are other people who receive copies of subscriptions
 "admin_addresses" => array (
   '',
-  "List of people to CC in system emails (separate by commas)",
+  s("List of people to CC in system emails (separate by commas)"),
   "text",
   1
 ),
 "campaignfrom_default" => array(
   '',
-  "Default for 'From:' in a campaign",
+  s("Default for 'From:' in a campaign"),
   "text",
   1
 ),
 "notifystart_default" => array(
   '',
-  "Default for 'email to alert when sending starts'",
+  s("Default for 'address to alert when sending starts'"),
   "text",
   1
 ),
 "notifyend_default" => array(
   '',
-  "Default for 'email to alert when sending finishes'",
+  s("Default for 'address to alert when sending finishes'"),
   "text",
   1
 ),
 "always_add_googletracking" => array(
   '0',
-  "Always add Google tracking code to campaigns",
+  s("Always add Google tracking code to campaigns"),
   "boolean",
 ),
   # report address is the person who gets the reports
 "report_address" => array (
   'listreports@[DOMAIN]',
-  "Who gets the reports (email address, separate multiple emails with a comma)",
+  s("Who gets the reports (email address, separate multiple emails with a comma)"),
   "text",
   1
 ),
@@ -193,20 +193,20 @@ $default_config = array (
   # where will messages appear to come from
 "message_from_address" => array (
   "noreply@[DOMAIN]",
-  "From email address for system messages",
+  s("From email address for system messages"),
   "text"
 ),
 
 "message_from_name" => array (
-  "Webmaster",
-  "What name do system messages appear to come from",
+  s("Webmaster"),
+  s("Name for system messages"),
   "text"
 ),
 
   # what is the reply-to on messages?
 "message_replyto_address" => array (
   "noreply@[DOMAIN]",
-  "Reply-to email address for system messages",
+  s("Reply-to email address for system messages"),
   "text"
 ),
 
@@ -214,8 +214,7 @@ $default_config = array (
   # subscribe users who sign up
 "hide_single_list" => array (
   "1",
-  "if there is only one visible list, should it be hidden in the page and automatically
-    subscribe users who sign up (0/1)",
+  s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up (0/1)"),
   "boolean"
 ),
 
@@ -223,49 +222,49 @@ $default_config = array (
   # comma separated list of words
 "list_categories" => array (
   "",
-  "categories for lists. Separate with commas.",
+  s("Categories for lists. Separate with commas."),
   "text",1
 ),
 
   # width of a textline field
 "textline_width" => array (
   "40",
-  "width of a textline field (numerical)",
+  s("Width of a textline field (numerical)"),
   "text"
 ),
 
   # dimensions of a textarea field
 "textarea_dimensions" => array (
   "10,40",
-  "dimensions of a textarea field (rows,columns)",
+  s("Dimensions of a textarea field (rows,columns)"),
   "text"
 ),
 
   # send copies of subscribe, update unsubscribe messages to the administrator
 "send_admin_copies" => array (
   "0",
-  "Does the admin get copies of subscribe, update and unsubscribe messages (0/1)",
+  s("Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"),
   "boolean"
 ),
 
   # the main subscribe page, when there are multiple
 "defaultsubscribepage" => array (
   1,
-  "The default subscribe page when there are multiple",
+  s("The default subscribe page when there are multiple"),
   "text"
 ),
 
   # the default template for sending an html message
 "defaultmessagetemplate" => array (
   0,
-  "The default HTML template to use when sending a message",
+  s("The default HTML template to use when sending a message"),
   "text"
 ),
 
   # the template for system messages (welcome confirm subscribe etc)
 "systemmessagetemplate" => array (
   0,
-  "The HTML wrapper template for system messages",
+  s("The HTML wrapper template for system messages"),
   "text"
 ),
   ## the location of your subscribe script
@@ -275,49 +274,49 @@ $default_config = array (
   # the location of your subscribe script
 "subscribeurl" => array (
   $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
-  "URL where users can subscribe",
+  s("URL where subscribers can sign up"),
   "text"
 ),
 
   # the location of your unsubscribe script:
 "unsubscribeurl" => array (
   $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
-  "URL where known users can unsubscribe",
+  s("URL where subscribers can unsubscribe"),
   "text"
 ),
 
   #0013076: Blacklisting posibility for unknown users
   # the location of your blacklist script:
 "blacklisturl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=blacklist",
-  "URL where unknown users can unsubscribe (blacklist)",
+  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
+  s("URL where unknown users can unsubscribe (do-not-send-list)"),
   "text"
 ),
 
 # the location of your confirm script:
 "confirmationurl" => array (
   $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
-  "URL where users have to confirm their subscription",
+  s("URL where subscribers have to confirm their subscription"),
   "text"
 ),
 
   # url to change their preferences
 "preferencesurl" => array (
   $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
-  "URL where users can update their details",
+  s("URL where subscribers can update their details"),
   "text"
 ),
 
   # url to change their preferences
 "forwardurl" => array (
   $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=forward",
-  "URL where messages can be forwarded",
+  s("URL for forwarding messages"),
   "text"
 ),
 
 'ajax_subscribeconfirmation' => array(
-  "<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>",
-  "Text to display when subscription with an AJAX request was successful",
+  s("<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>"),
+  s("Text to display when subscription with an AJAX request was successful"),
   "text",
   1
 ),
@@ -328,8 +327,8 @@ $default_config = array (
 
   # the subject of the message
 "subscribesubject" => array (
-  "Request for confirmation",
-  "Subject of the message users receive when they subscribe",
+  s("Request for confirmation"),
+  s("Subject of the message subscribers receive when they sign up"),
   "text"
 ),
 
@@ -356,14 +355,14 @@ $default_config = array (
   Thank you
   
     ',
-  "Message users receive when they subscribe",
+  s("Message subscribers receive when they sign up"),
   "textarea"
 ),
 
   # subject of the message when they unsubscribe
 "unsubscribesubject" => array (
-  "Goodbye from our Newsletter",
-  "Subject of the message users receive when they unsubscribe",
+  s("Goodbye from our Newsletter"),
+  s("Subject of the message subscribers receive when they unsubscribe"),
   "text"
 ),
 
@@ -384,14 +383,14 @@ $default_config = array (
   Thank you
   
   ',
-  "Message users receive when they unsubscribe",
+  s("Message subscribers receive when they unsubscribe"),
   "textarea"
 ),
 
   # confirmation of subscription
 "confirmationsubject" => array (
-  'Welcome to our Newsletter',
-  "Subject of the message users receive after confirming their email address",
+  s('Welcome to our Newsletter'),
+  s("Subject of the message subscribers receive after confirming their email address"),
   "text"
 ),
 
@@ -412,14 +411,14 @@ $default_config = array (
   Thank you
   
   ',
-  "Message users receive after confirming their email address",
+  s("Message subscribers receive after confirming their email address"),
   "textarea"
 ),
 
   # the subject of the message sent when changing the user details
 "updatesubject" => array (
-  "[notify] Change of List-Membership details",
-  "Subject of the message users receive when they have changed their details",
+  s("[notify] Change of List-Membership details"),
+  s("Subject of the message subscribers receive when they have changed their details"),
   "text"
 ),
 
@@ -449,7 +448,7 @@ $default_config = array (
   Thank you
   
     ',
-  "Message that is sent when users change their information",
+  s("Message subscribers receive when they have changed their details"),
   "textarea"
 ),
 
@@ -464,7 +463,7 @@ $default_config = array (
   [CONFIRMATIONURL]
   
   ',
-  "Part of the message that is sent to their new email address when users change their information, and the email address has changed",
+  s("Part of the message that is sent to their new email address when subscribers change their information, and the email address has changed"),
   "textarea"
 ),
 
@@ -479,13 +478,13 @@ $default_config = array (
   to confirm this change. Please visit this website to activate
   your membership.
   ',
-  "Part of the message that is sent to their old email address when users change their information, and the email address has changed",
+  s("Part of the message that is sent to their old email address when subscribers change their information, and the email address has changed"),
   "textarea"
 ),
 
 "personallocation_subject" => array (
-  'Your personal location',
-  "Subject of message to send when users request their personal location",
+  s('Your personal location'),
+  s("Subject of message when subscribers request their personal location"),
   "text"
 ),
 
@@ -501,45 +500,60 @@ $default_config = array (
   
   Thank you.
   ',
-  'Message to send when they request their personal location',
+  s('Message when subscribers request their personal location'),
   "textarea"
 ),
 
 "messagefooter" => array (
-  "--\n$strToUnsubscribe [UNSUBSCRIBE]\n\n$strToUpdate [PREFERENCES]\n$strForwardTitle [FORWARD]\n\n[USERTRACK]",
-  "Default footer for sending a message",
+  '--
+  
+    <div class="footer" style="text-align:left; font-size: 75%;">
+      <p>This message was sent to [EMAIL] by [FROMEMAIL]</p>
+      <p>To forward this message, please do not use the forward button of your email application, because this message was made specifically for you only. Instead use the <a href="[FORWARDURL]">forward page</a> in our newsletter system.</p>
+      <p>To change your details and to choose which lists to be subscribed to, visit your personal <a href="[PREFERENCESURL]">preferences page</a></p>
+      <p>Or you can <a href="[UNSUBSCRIBEURL]">Opt out completely</a> from all future mailings.</p>
+    </div>
+
+  ',
+  s("Default footer for sending a campaign"),
   "textarea"
 ),
 
 "forwardfooter" => array (
-  "--\n$strForwardFooter\n\n [SUBSCRIBE]\nClick [BLACKLIST] to refuse further email from this website",
-
-  "Footer used when a message has been forwarded",
+  '
+     <div class="footer" style="text-align:left; font-size: 75%;">
+      <p>This message has been forwarded to you by [FORWARDEDBY].</p>
+      <p>You have not been automatically subscribed to this newsletter.</p>
+      <p>If you think this newsletter may interest you, you can <a href="[SUBSCRIBEURL]">Subscribe</a> and you will receive our next newsletter directly to your inbox.</p>
+      <p>You can also <a href="[BLACKLISTURL]">opt out completely</a> from receiving any further email from our newsletter application, phpList.</p>
+    </div>
+  ',
+  s("Footer used when a message has been forwarded"),
   "textarea"
 ),
 
 "pageheader" => array (
   $defaultheader,
-  "Header of public pages. The header should start with &lt;/head&gt; . You can add header elements, but don't add the title or other basic header elements.",
+  s("Header of public pages."),
   "textarea"
 ),
 
 "pagefooter" => array (
   $defaultfooter,
-  "Footer of public pages",
+  s("Footer of public pages"),
   "textarea"
 ),
 
-"html_charset" => array (
-  "UTF-8",
-  "Charset for HTML messages",
-  "text"
-),
-"text_charset" => array (
-  "UTF-8",
-  "Charset for Text messages",
-  "text"
-),
+//"html_charset" => array (
+  //"UTF-8",
+  //"Charset for HTML messages",
+  //"text"
+//),
+//"text_charset" => array (
+  //"UTF-8",
+  //"Charset for Text messages",
+  //"text"
+//),
 
 "personallocation_message" => array('
 
@@ -551,24 +565,19 @@ Your personal location is:
 [PREFERENCESURL]
 
 Thank you.
-','Message to send when they request their personal location',"textarea"),
+',s('Message to send when they request their personal location'),"textarea"),
 
-"messagefooter" => array("--\n$strToUnsubscribe [UNSUBSCRIBE]\n\n$strToUpdate [PREFERENCES]\n$strForwardTitle [FORWARD]",
-  "Default footer for sending a message","textarea"),
+"remoteurl_append" => array(
+  "",
+  s("String to always append to remote URL when using send-a-webpage"),
+  "text",
+1),
 
-"forwardfooter" => array("--\n$strForwardFooter\n\n [SUBSCRIBE]\n",
-
-"Footer used when a message has been forwarded","textarea"),
-
-"pageheader" => array($defaultheader,"Header of public pages. The header should start with &lt;/head&gt; . You can add header elements, but don't add the title or other basic header elements.","textarea"),
-
-"pagefooter" => array($defaultfooter,"Footer of public pages","textarea"),
-
-"remoteurl_append" => array("","String to always append to remote URL when using send-a-webpage","text",1),
-
-"html_charset" => array("UTF-8","Charset for HTML messages","text"),
-"text_charset" => array("UTF-8","Charset for Text messages","text"),
-"wordwrap" => array("75","Width for Wordwrap of Text messages","text"),
+"wordwrap" => array(
+  "75",
+  s("Width for Wordwrap of Text messages"),
+  "text",
+  1),
 
 "html_email_style" => array('
 <style type="text/css">
@@ -588,9 +597,15 @@ hr {width : 100%; height : 1px; color: #ff9900; size:1px;}
 div.emailfooter { font-size : 11px; font-family: Verdana, Arial, Helvetica, sans-serif; }
 div.emailfooter a { font-size: 11px; color: #ff6600; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; }
 </style>
-',"CSS for HTML messages without a template","textarea"),
+',
+  s("CSS for HTML messages without a template"),
+  "textarea"
+  ),
 
-"alwayssendtextto" => array("","Domains that only accept text emails, one per line","textarea",
+  "alwayssendtextto" => array(
+    "",
+    s("Domains that only accept text emails, one per line"),
+    "textarea",
   1)
 );
 
@@ -649,17 +664,17 @@ div.emailfooter a { font-size: 11px; color: #ff6600; font-style: normal; font-fa
 #if (USEFCK) {
 $default_config["fckeditor_width"] = array (
 	600,
-	"Width in px of FCKeditor Area",
+	s("Width in px of FCKeditor Area"),
 	"text"
 );
 $default_config["fckeditor_height"] = array (
 	600,
-	"Height in px of FCKeditor Area",
+	s("Height in px of FCKeditor Area"),
 	"text"
 );
 $default_config["editortoolbar_row2"] = array(
   "",#"Style,FontFormat,FontName,FontSize",
-  "Second row of toolbar elements in the editor",
+  s("Second row of toolbar elements in the editor"),
   "text",
   1
 );
@@ -768,38 +783,8 @@ if (!function_exists("getconfig")) {
 	reset($default_config);
 	while (list ($item, $values) = each($default_config)) {
 		$val = getConfig($item);
-		if (!isset ($val)) {
-			#0013076: Blacklisting posibility for unknown users
-			if ($item == 'preferencesurl' || $item == 'unsubscribeurl' || $item == 'blacklisturl' || $item == 'subscribeurl' || $item == 'forwardurl' || $item == 'confirmationurl') {
-				$base = getConfig('public_baseurl');
-				$sep = strpos($base,'?') ? '&amp;' : '?';
-				if (trim($base) != '') {
-					switch ($item) {
-						case "preferencesurl" :
-							$values[0] = $base . $sep . 'p=preferences';
-							break;
-            case "unsubscribeurl" :
-              $values[0] = $base . $sep . 'p=unsubscribe';
-              break;
-            #0013076: Blacklisting posibility for unknown users
-            case "blacklisturl" :              
-              $values[0] = $base . $sep . 'p=blacklist';
-              break;
-            case "subscribeurl" :
-							$values[0] = $base . $sep . 'p=subscribe';
-							break;
-						case "forwardurl" :
-							$values[0] = $base . $sep . 'p=forward';
-							break;
-						case "confirmationurl" :
-							$values[0] = $base . $sep . 'p=confirm';
-							break;
-					}
-				}
-			}
-			saveConfig($item, $values[0], 0);
-		}
-	}
+    saveConfig($item, $values[0], 0);
+  }
 }
 
 function getUserConfig($item, $userid = 0) {
