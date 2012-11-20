@@ -27,9 +27,7 @@ if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
   print "Error, cannot find config file\n";
   exit;
 }
-print "After config";
 require_once dirname(__FILE__).'/admin/init.php';
-print "After init";
 if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
   error_reporting(E_ALL & ~E_NOTICE);
 } else {
