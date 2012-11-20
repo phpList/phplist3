@@ -17,9 +17,6 @@ if (function_exists('mb_internal_encoding')) {
   mb_internal_encoding("UTF-8");
 }
 
-## as the "admin" in adminpages is hardcoded, don't put it in the config file
-$adminpages = $GLOBALS['pageroot'].'/admin';
-
 $IsCommandlinePlugin = '';
 $zlib_compression = ini_get('zlib.output_compression');
 # hmm older versions of PHP don't have this, but then again, upgrade php instead?
@@ -130,6 +127,7 @@ if (!defined('ENCRYPTION_ALGO')) {
 ## remember the length of a hashed string
 $hash_length = strlen(hash(ENCRYPTION_ALGO,'some text'));
 
+define('PHPLISTINIT',true);
 if (!defined("PHPMAILER")) define("PHPMAILER",1);
 if (!defined('PHPMAILERHOST')) define("PHPMAILERHOST",'');
 if (!defined("MANUALLY_PROCESS_QUEUE")) define("MANUALLY_PROCESS_QUEUE",1);
@@ -257,9 +255,24 @@ if (function_exists('stripos')) {
 } else {
   define('PHP5',0);
 }
-if (!isset($pageroot)) {
-  $pageroot = '/lists/admin/';
+
+if (!isset($GLOBALS['tmpdir'])) {
+  $GLOBALS['tmpdir'] = '/tmp';
 }
+if (!isset($pageroot)) {
+  $pageroot = '/lists';
+  $GLOBALS['pageroot'] = '/lists'; 
+}
+## as the "admin" in adminpages is hardcoded, don't put it in the config file
+$adminpages = $GLOBALS['pageroot'].'/admin';
+
+if (!isset($table_prefix)) {
+  $table_prefix = 'phplist_';
+}
+if (!isset($usertable_prefix)) {
+  $usertable_prefix = 'phplist_user_';
+}
+
 if (!isset($systemroot)) {
   $systemroot = dirname(__FILE__);
 }
@@ -269,7 +282,6 @@ if (!defined('FORWARD_EMAIL_COUNT') ) define('FORWARD_EMAIL_COUNT',1);
 ## when click track links are detected, block sending
 ## if false, will only show warning. For now defaulting to false, but may change that later
 if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) define('BLOCK_PASTED_CLICKTRACKLINKS',false);
-
 
 if (FORWARD_EMAIL_COUNT < 1) {
   print 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
