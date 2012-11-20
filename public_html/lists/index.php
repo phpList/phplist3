@@ -27,9 +27,9 @@ if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
   print "Error, cannot find config file\n";
   exit;
 }
-
+print "After config";
 require_once dirname(__FILE__).'/admin/init.php';
-
+print "After init";
 if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
   error_reporting(E_ALL & ~E_NOTICE);
 } else {
@@ -49,20 +49,17 @@ if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {
   include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"];
 }
 
+include_once dirname(__FILE__)."/admin/languages.php";
 require_once dirname(__FILE__)."/admin/defaultconfig.inc";
 require_once dirname(__FILE__).'/admin/connect.php';
-include_once dirname(__FILE__)."/admin/languages.php";
 include_once dirname(__FILE__)."/admin/lib.php";
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
 
-if ($require_login || ASKFORPASSWORD) {
-  # we need session info if an admin subscribes a user
-  if (!empty($GLOBALS["SessionTableName"])) {
-    require_once dirname(__FILE__).'/admin/sessionlib.php';
-  }
-  @session_start(); # it may have been started already in languages
+if (!empty($GLOBALS["SessionTableName"])) {
+  require_once dirname(__FILE__).'/admin/sessionlib.php';
 }
+@session_start(); # it may have been started already in languages
 
 if (!isset($_POST) && isset($HTTP_POST_VARS)) {
   require "admin/commonlib/lib/oldphp_vars.php";
@@ -93,7 +90,7 @@ if (isset($_GET['uid']) && $_GET["uid"]) {
   $userid = $req[1];
   $userpassword = $req[2];
   $emailcheck = $req[3];
-} elseif ($_GET['p'] == 'subscribe' || $_GET['p'] == 'unsubscribe' || $_GET['p'] == 'blacklist') {
+} elseif ($_GET['p'] == 'subscribe' || $_GET['p'] == 'unsubscribe' || $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend') {
   if (isset($_GET["email"])) {
     $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where email = "%s"',
       $tables["user"],$_GET["email"]));
@@ -296,6 +293,7 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
          print ConfirmPage($id);
         break;
       #0013076: Blacklisting posibility for unknown users
+      case 'donotsend':
       case "blacklist":
       case "unsubscribe":
         print UnsubscribePage($id);
