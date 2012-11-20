@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists("checkAccess") && !isset($GLOBALS["installer"])) {
+if (!defined('PHPLISTINIT') && !isset($GLOBALS["installer"])) {
 #	print backtrace();
   print "Invalid Request";
   exit;
