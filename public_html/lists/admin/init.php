@@ -222,7 +222,7 @@ if (!isset($GLOBALS['installation_name'])) {
   $GLOBALS['installation_name'] = 'phpList';
 }
 if (!defined('SESSIONNAME')) define('SESSIONNAME','phpList'.$GLOBALS['installation_name'].'session');
-ini_set('session.name',SESSIONNAME);
+ini_set('session.name',urlencode(SESSIONNAME));
 
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
