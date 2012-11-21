@@ -134,7 +134,10 @@ define('XORmask',$xormask);
 /* set session name, without revealing version
   * but with version included, so that upgrading works more smoothly
   */
-ini_set('session.name','phpList-'.$GLOBALS['installation_name'].VERSION | $xormask);
+  
+/* hmm, won't work, going around in circles. Session is started in languages, where the DB
+ * is not known yet, so we can't read xormask from the DB yet
+#ini_set('session.name','phpList-'.$GLOBALS['installation_name'].VERSION | $xormask);
 
 //obsolete, moved to rssmanager plugin
 //$GLOBALS['rssfrequencies'] = array(
