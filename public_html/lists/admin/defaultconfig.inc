@@ -690,8 +690,9 @@ if (!TEST && REGISTER && defined("VERSION")) {
 	else
 		$v = VERSION;
 	$PoweredBy = '<p align="left"><a href="http://www.phplist.com"><img src="http://powered.phplist.com/images/' . $v . '/power-phplist.png" width="88" height="31" title="powered by phplist" alt="powered by phplist" border="0" /></a></p>';
-} else
+} else {
 	$PoweredBy = '<center><a href="http://www.phplist.com"><img src="images/power-phplist.png" width="88" height="31" title="powered by phplist" alt="powered by phplist" border="0" /></a></center>';
+}
 
 if (!function_exists("getconfig")) { 
 	function getConfig($item) {
