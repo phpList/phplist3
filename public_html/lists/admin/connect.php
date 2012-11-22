@@ -830,7 +830,7 @@ function recentlyVisited() {
           
           $title = $GLOBALS['I18N']->pageTitle($p);
           if (!empty($p) && !empty($title) && !in_array($url,$browsetaildone)) {
-            $html .= '<li class="shade'.$shade.'"><a href="./?'.$url.'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
+            $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
             $shade = !$shade;
             $browsetaildone[] = $url;
           }
