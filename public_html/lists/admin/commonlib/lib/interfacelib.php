@@ -23,7 +23,7 @@ class UIPanel {
   function display() {
     $html = '<div class="panel"';
     if (!empty($this->id)) {
-      $html .= 'id="'.$this->id.'"';
+      $html .= ' id="'.$this->id.'"';
     }
     $html .= '>';
     $html .= '<div class="header"><h2>'.$this->header.'</h2>';
