@@ -4,7 +4,6 @@ $er = error_reporting(0); # some ppl have warnings on
 
 require_once dirname(__FILE__) .'/admin/commonlib/lib/unregister_globals.php';
 require_once dirname(__FILE__) .'/admin/commonlib/lib/magic_quotes.php';
-require_once dirname(__FILE__).'/admin/init.php';
 ## none of our parameters can contain html for now
 $_GET = removeXss($_GET);
 $_POST = removeXss($_POST);
@@ -21,6 +20,7 @@ if ($_SERVER["ConfigFile"] && is_file($_SERVER["ConfigFile"])) {
   exit;
 }
 #error_reporting($er);
+require_once dirname(__FILE__).'/admin/init.php';
 if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
   error_reporting(E_ALL);
 } else {
