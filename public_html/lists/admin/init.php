@@ -199,6 +199,7 @@ if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLE
 if (!defined('SEND_QUEUE_PROCESSING_REPORT')) define('SEND_QUEUE_PROCESSING_REPORT',true);
 if (!defined('MAX_AVATAR_SIZE')) define('MAX_AVATAR_SIZE',2000);
 if (!defined('DEFAULT_MESSAGEAGE')) define('DEFAULT_MESSAGEAGE',604800); ## 7 days in seconds
+if (!defined('ADD_EMAIL_THROTTLE')) define('ADD_EMAIL_THROTTLE',1); ## seconds between addemail requests
 
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
@@ -222,7 +223,7 @@ if (!isset($GLOBALS['installation_name'])) {
   $GLOBALS['installation_name'] = 'phpList';
 }
 if (!defined('SESSIONNAME')) define('SESSIONNAME','phpList'.$GLOBALS['installation_name'].'session');
-ini_set('session.name',urlencode(SESSIONNAME));
+ini_set('session.name',str_replace(' ','',SESSIONNAME));
 
 define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
