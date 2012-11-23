@@ -8,7 +8,10 @@ if (!empty($_GET['email'])) {
     addUserHistory($_GET['email'],'Added by '.adminName(),'');
     $status = $GLOBALS['I18N']->get('Email address added');
   } else {
-    pluginsCall('processError','Error adding email address, throttled');
+   # pluginsCall('processError','Error adding email address, throttled');
+    foreach ($GLOBALS['plugins'] as $plname => $plugin) {
+      $plugin->processError('Add email throttled '.$delay);
+    }
     $status = $GLOBALS['I18N']->get('Adding email address failed');
   }
 }

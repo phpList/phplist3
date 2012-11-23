@@ -390,20 +390,39 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   if ($sendtest) {
 
     $sendtestresult = "<hr/>";
-    // Let's send test messages to everyone that was specified in the
-    if ($messagedata["testtarget"] == "") {
-      $sendtestresult .= $GLOBALS['I18N']->get("No target email addresses listed for testing.")."<br/>";
-    }
+    
+    $delay = time() - $_SESSION['lasttestsent'];
+    if ($delay < SENDTEST_THROTTLE) {
+      foreach ($GLOBALS['plugins'] as $plname => $plugin) {
+        $plugin->processError('Send test throttled on '.$delay);
+      }
+      $sendtestresult .= s('You can send a test mail once every %d seconds',SENDTEST_THROTTLE)."<br/>";
+      $emailaddresses = array();
+    } else {
+       $_SESSION['lasttestsent'] = time();
+      // Let's send test messages to everyone that was specified in the
+      if ($messagedata["testtarget"] == "") {
+        $sendtestresult .= $GLOBALS['I18N']->get("No target email addresses listed for testing.")."<br/>";
+      }
 
-    if (isset($cached[$id])) {
-      unset($cached[$id]);
-    }
-    clearPageCache();
-    include "sendemaillib.php";
+      if (isset($cached[$id])) {
+        unset($cached[$id]);
+      }
+      clearPageCache();
+      include "sendemaillib.php";
 
-    // OK, let's get to sending!
-    $emailaddresses = explode(',', $messagedata["testtarget"]);
- //   var_dump($messagedata);exit;
+      // OK, let's get to sending!
+      $emailaddresses = explode(',', $messagedata["testtarget"]);
+      if (sizeof($emailaddresses) > SENDTEST_MAX) {
+        foreach ($GLOBALS['plugins'] as $plname => $plugin) {
+          $plugin->processError('Send test capped from '.sizeof($emailaddresses).' to '.SENDTEST_MAX);
+        }
+        $limited = array_chunk($emailaddresses,SENDTEST_MAX);
+        $emailaddresses = $limited[0];
+        $sendtestresult .= s("There is a maximum of %d test emails allowed",SENDTEST_MAX)."<br/>";
+      }
+    }
+  #  var_dump($emailaddresses);#exit;
 
     foreach ($emailaddresses as $address) {
       $address = trim($address);
@@ -767,7 +786,7 @@ if (!$done) {
   #0013076: different content when forwarding 'to a friend'
   $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.s("Compose Message").Help("message").'</label> ';
   $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.s("Compose Message").Help("forwardmessage").'</label> ';
-  
+
   if (!empty($GLOBALS['editorplugin'])) {
     $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',$messagedata["message"]) .'</div>';
   } else {

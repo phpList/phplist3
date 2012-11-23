@@ -1,6 +1,11 @@
 <?php
 
 # initialisation stuff
+/* init sets all the defaults
+ * it is called after config, so that constants not defined in config can be set here
+ * it cannot use the DB contents, as the DB connection hasn't been established yet
+ */
+
 # record the start time(usec) of script
 $now =  gettimeofday();
 $GLOBALS["pagestats"] = array();
@@ -199,7 +204,9 @@ if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLE
 if (!defined('SEND_QUEUE_PROCESSING_REPORT')) define('SEND_QUEUE_PROCESSING_REPORT',true);
 if (!defined('MAX_AVATAR_SIZE')) define('MAX_AVATAR_SIZE',2000);
 if (!defined('DEFAULT_MESSAGEAGE')) define('DEFAULT_MESSAGEAGE',604800); ## 7 days in seconds
-if (!defined('ADD_EMAIL_THROTTLE')) define('ADD_EMAIL_THROTTLE',1); ## seconds between addemail requests
+if (!defined('ADD_EMAIL_THROTTLE')) define('ADD_EMAIL_THROTTLE',1); ## seconds between addemail ajax requests
+if (!defined('SENDTEST_THROTTLE')) define('SENDTEST_THROTTLE',1); ## seconds between send test
+if (!defined('SENDTEST_MAX')) define('SENDTEST_MAX',999); ## max number of emails in a send test
 
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
