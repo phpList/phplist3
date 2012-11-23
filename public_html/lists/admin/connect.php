@@ -136,7 +136,7 @@ define('XORmask',$xormask);
   */
   
 /* hmm, won't work, going around in circles. Session is started in languages, where the DB
- * is not known yet, so we can't read xormask from the DB yet
+ * is not known yet, so we can't read xormask from the DB yet*/
 #ini_set('session.name','phpList-'.$GLOBALS['installation_name'].VERSION | $xormask);
 
 //obsolete, moved to rssmanager plugin
