@@ -424,8 +424,8 @@ class PHPlistMailer extends PHPMailer {
       if (defined('UPLOADIMAGES_DIR')) {
       #  print $_SERVER['DOCUMENT_ROOT'].$localfile;
         return
-          is_file($_SERVER['DOCUMENT_ROOT'].UPLOADIMAGES_DIR.'/image/'.$localfile)
-          || is_file($_SERVER['DOCUMENT_ROOT'].UPLOADIMAGES_DIR.'/'.$localfile)
+          is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/image/'.$localfile)
+          || is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/'.$localfile)
           ## commandline
           || is_file($imageroot.'/'.$localfile);
       } else
