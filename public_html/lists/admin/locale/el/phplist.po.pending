@@ -384,3 +384,9 @@ msgid ""
 "_: suggested by kostas [1389702865317693657]\n"
 "Send Campaign"
 msgstr "Αποστολή καμπάνιας"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [-8275263586599547542]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "Δεν ορίστηκε αρχείο. Ίσως το αρχείο είναι πολύ μεγάλο"

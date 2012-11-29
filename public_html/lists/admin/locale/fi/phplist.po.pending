@@ -1,0 +1,235 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-13 17:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/admin/import1.php:43
+msgid ""
+"_: suggested by nobody [-4375791502894361643]\n"
+"File is either too large or does not exist."
+msgstr "Tiedosto on liian suuri tai sitä ei ole."
+
+#: public_html/lists/admin/subscriberstats.php:6
+msgid ""
+"_: suggested by nobody [-8480556838901704761]\n"
+"Statistics"
+msgstr "Statistiikka"
+
+#: public_html/lists/admin/import1.php:7
+msgid ""
+"_: suggested by nobody [-6587584450825231129]\n"
+"import is not available"
+msgstr "Tuonti ei ole käytössä"
+
+#: public_html/lists/admin/import1.php:125
+msgid ""
+"_: suggested by nobody [1761392161865423080]\n"
+"back"
+msgstr "takaisin"
+
+#: public_html/lists/admin/adminattributes.php:5
+#: public_html/lists/admin/adminattributes.php:107
+msgid ""
+"_: suggested by nobody [-7429876474301858824]\n"
+"Save Changes"
+msgstr "Tallenna muutokset"
+
+#: public_html/lists/admin/adminattributes.php:12
+msgid ""
+"_: suggested by nobody [7380967168875092829]\n"
+"Name cannot be empty:"
+msgstr "Nimi ei voi olla tyhjä:"
+
+#: public_html/lists/admin/adminattributes.php:14
+msgid ""
+"_: suggested by nobody [7165097790332145929]\n"
+"Name is not unique enough"
+msgstr "Nimi ei ole tarpeeksi yksilöllinen"
+
+#: public_html/lists/admin/adminattributes.php:76
+msgid ""
+"_: suggested by nobody [2407014232282808153]\n"
+"No Attributes have been defined yet"
+msgstr "Yhtään ominaisuutta ei ole vielä määritetty"
+
+#: public_html/lists/admin/adminattributes.php:81
+msgid ""
+"_: suggested by nobody [1041994784531146716]\n"
+"Attribute:"
+msgstr "Ominaisuus:"
+
+#: public_html/lists/admin/adminattributes.php:81
+msgid ""
+"_: suggested by nobody [-5996426002005255412]\n"
+"Delete"
+msgstr "Poista"
+
+#: public_html/lists/admin/adminattributes.php:82
+#: public_html/lists/admin/adminattributes.php:93
+msgid ""
+"_: suggested by nobody [3618190534162583024]\n"
+"Name:"
+msgstr "Nimi:"
+
+#: public_html/lists/admin/adminattributes.php:83
+#: public_html/lists/admin/adminattributes.php:94
+msgid ""
+"_: suggested by nobody [1442355120353213309]\n"
+"Type"
+msgstr "Tyyppi"
+
+#: public_html/lists/admin/adminattributes.php:84
+#: public_html/lists/admin/adminattributes.php:102
+msgid ""
+"_: suggested by nobody [4613227897764971823]\n"
+"Default Value:"
+msgstr "Oletusarvo:"
+
+#: public_html/lists/admin/adminattributes.php:85
+#: public_html/lists/admin/adminattributes.php:103
+msgid ""
+"_: suggested by nobody [-6077620709244082904]\n"
+"Order of Listing:"
+msgstr "Listausjärjestys:"
+
+#: public_html/lists/admin/send_core.php:402
+msgid ""
+"_: suggested by nobody [-5344174284002587605]\n"
+"Please enter a subject"
+msgstr "Syötä aihe"
+
+#: public_html/lists/admin/send_core.php:458
+msgid ""
+"_: suggested by nobody [-2054364148393356615]\n"
+"failed"
+msgstr "epäonnistui"
+
+#: public_html/lists/admin/send_core.php:460
+msgid ""
+"_: suggested by nobody [-8450470724732769757]\n"
+"success"
+msgstr "onnistui"
+
+#: public_html/lists/admin/send_core.php:465
+msgid ""
+"_: suggested by nobody [-243971909407768567]\n"
+"add"
+msgstr "lisää"
+
+#: public_html/lists/admin/send_core.php:481
+msgid ""
+"_: suggested by nobody [-3460934531605742364]\n"
+"Removed Attachment "
+msgstr "Poistettu liitetiedosto"
+
+#: public_html/lists/admin/send_core.php:509
+#: public_html/lists/admin/send_core.php:531
+#: public_html/lists/admin/send_core.php:631
+msgid ""
+"_: suggested by nobody [9159420456062093358]\n"
+"Content"
+msgstr "Sisältö"
+
+#: public_html/lists/admin/send_core.php:511
+msgid ""
+"_: suggested by nobody [4138086681870567112]\n"
+"Text"
+msgstr "Teksti"
+
+#: public_html/lists/admin/send_core.php:514
+msgid ""
+"_: suggested by nobody [1152529099040669541]\n"
+"Forward"
+msgstr "Välitä"
+
+#: public_html/lists/admin/send_core.php:516
+msgid ""
+"_: suggested by nobody [-2623037689408092178]\n"
+"Format"
+msgstr "Muotoilu"
+
+#: public_html/lists/admin/send_core.php:518
+msgid ""
+"_: suggested by nobody [-616299139011698438]\n"
+"Attach"
+msgstr "Liite"
+
+#: public_html/lists/admin/send_core.php:520
+msgid ""
+"_: suggested by nobody [3984194863503452096]\n"
+"Scheduling"
+msgstr "Ajastus"
+
+#: public_html/lists/admin/send_core.php:551
+msgid ""
+"_: suggested by nobody [2761640345808763416]\n"
+"Finish"
+msgstr "Valmis"
+
+#: public_html/lists/admin/send_core.php:620
+#: public_html/lists/admin/send_core.php:655
+msgid ""
+"_: suggested by nobody [-6654389622028491549]\n"
+"Subject"
+msgstr "Aihe"
+
+#: public_html/lists/admin/send_core.php:623
+msgid ""
+"_: suggested by nobody [2126450280628196660]\n"
+"From Line"
+msgstr "Lähettäjä"
+
+#: public_html/lists/admin/send_core.php:633
+#: public_html/lists/admin/send_core.php:784
+#: public_html/lists/admin/send_core.php:785
+msgid ""
+"_: suggested by nobody [-291598353559228220]\n"
+"Compose Message"
+msgstr "Luo viesti"
+
+#: public_html/lists/admin/send_core.php:682
+#: public_html/lists/admin/send_core.php:711
+msgid ""
+"_: suggested by nobody [-2646084437433296307]\n"
+"hour"
+msgstr "tunti"
+
+#: public_html/lists/admin/send_core.php:685
+#: public_html/lists/admin/send_core.php:714
+msgid ""
+"_: suggested by nobody [-2794290222072165350]\n"
+"day"
+msgstr "päivä"
+
+#: public_html/lists/admin/send_core.php:688
+#: public_html/lists/admin/send_core.php:717
+msgid ""
+"_: suggested by nobody [-6593517629958292801]\n"
+"week"
+msgstr "viikko"
+
+#: public_html/lists/admin/send_core.php:679
+msgid ""
+"_: suggested by nobody [7755079034848369233]\n"
+"no repetition"
+msgstr "ei toistoa"
+
+#: public_html/lists/admin/send_core.php:731
+msgid ""
+"_: suggested by nobody [7799575877465763251]\n"
+"html"
+msgstr "html"
+
+#: public_html/lists/admin/send_core.php:865
+msgid ""
+"_: suggested by nobody [-586440343739458637]\n"
+"Footer"
+msgstr "Alatunniste"
