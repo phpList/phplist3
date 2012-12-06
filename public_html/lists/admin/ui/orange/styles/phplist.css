@@ -96,7 +96,7 @@ ul.contextmenu li {
 
 .rightmenufill {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #CCCC99; font-weight: normal; text-align : left; text-decoration : none; padding: 0px;border-top: 1px white solid; border-bottom: 1px white solid; padding-left: 5px;}
 
-.delete {font-family: verdana, sans-serif;font-size : 11px; color : red;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : right; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
+.delete {font-family: verdana, sans-serif;font-size : 11px; color : red;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid; text-align : right; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
 
 a.deletelink,
 a:link.deletelink,
@@ -376,7 +376,6 @@ div.checkboxes > span {
 /* Note/Feedback Styles */
 
 .note .ajaxable.hide {
-background:url("../images/icon-note-close.png") no-repeat scroll left top transparent;
 display:block;
 height:18px;
 overflow:hidden;
@@ -407,20 +406,17 @@ button,
 p.button a,
 a.button{
 position:relative; /* check */
-margin: 5px 0; 
 border-color: #BBBBBB #AAAAAA #AAAAAA #BBBBBB;
 border-style: solid;
 border-width: 1px;
 -moz-border-radius: 2px;
 -webkit-border-radius: 2px;
 border-radius: 2px;
-padding: 3px 6px;
-background:url("../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
+background:url("../../../../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
 color: #333333;
 font-size: 14px; 
 font-family: Helvetica, Arial, sans-serif;
 text-transform: capitalize;
-top: 6px;
 }
 
 /*p.button a:first-child {border-right: 0}*/
@@ -453,7 +449,7 @@ border-width: 1px;
 -webkit-border-radius: 2px;
 border-radius: 2px;
 padding: 3px 6px;
-background:url("../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
+background:url("../../../../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
 color: #333333;
 font-size: 14px; 
 font-family: Helvetica, Arial, sans-serif;
