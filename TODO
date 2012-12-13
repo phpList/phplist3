@@ -1,5 +1,6 @@
 
 phpList, wishlist and future plans, not in order of priority
+these issues are "general outline", details handled in mantis
 
 1. update ckeditor - https://mantis.phplist.com/view.php?id=15414
 DONE - change admin permission system to be similar to phosted, but keep listownership
@@ -14,11 +15,18 @@ DONE - change admin permission system to be similar to phosted, but keep listown
 8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
 9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
 10. add system to manage versioning of translation of "info" and "help"
+
+-> dokuwiki or wordpress (or other? )
+
+downloadable themes and plugins
+theme changing
+
 DONE test and finish queue prepare
 
 12. subscriber management
 https://mantis.phplist.com/view.php?id=12801 and related
 
+- auto responder 
 - Invitation mode, send to unconfirmed subscribers, but require [CONFIRMATIONURL] placeholder
 - upload of Zip with All html and assets for a campaign/template
 - multiple placeholders (more advanced templates)
@@ -27,8 +35,7 @@ https://mantis.phplist.com/view.php?id=12801 and related
 
 - calculate subscriber engagement value, based on opens, optin, clicks, bounces etc
 - make attributes classes that can be added with plugins
-- Optimize database structure to really deal with large
-  amounts of emails. It works now, but not *that* fast
+- Optimize database structure to really deal with large amounts of emails.
 - List Archive entry
   A searchable archive of the lists, to use via the web
 - Allowing running processes to be viewed and killed
@@ -42,4 +49,5 @@ DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can
 - statistics retrieval (#lists #users #messages)
 - use DKIM capabilities of phpMailer
 - integration with other OSS projects
+- recode frontend to work like webbler templating
 

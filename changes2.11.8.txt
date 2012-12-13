@@ -35,3 +35,4 @@ default jump-off to 1 and always add usertrack to 1
 
 
 RFC_DIRECT_DELIVERY - super experimental
+SESSIONNAME - set the name of the cookie
