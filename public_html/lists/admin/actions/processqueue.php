@@ -27,6 +27,10 @@ if (is_file('ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
   include 'ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
 }
 
+foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+  $plugin->processQueueStart();
+}
+
 $num_per_batch = 0;
 $batch_period = 0;
 $script_stage = 0; # start
