@@ -298,7 +298,7 @@ function Sql_Table_Column_Exists($table,$column) {
 
 function Sql_Check_For_Table($table) {
   ## table is the full table name including the prefix, or the abbreviated one without prefix
-  return Sql_Table_exists($table) || Sql_Table_exists($GLOBALS['tables'][$table]);
+  return Sql_Table_exists($table) || (isset($GLOBALS['tables'][$table]) && Sql_Table_exists($GLOBALS['tables'][$table]));
 }
 
 function createTable($table) {
