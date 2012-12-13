@@ -54,3 +54,21 @@ if (is_dir(PLUGIN_ROOTDIR)) {
     }
   }
 } 
+
+/*
+  * central function to call a method on all plugins
+  * not sure to go down this route yet, MD 201212
+  */
+
+function pluginsCall($method) {
+  $args = func_get_args();
+  $m = array_shift($args); # the first is the method itself
+  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+    if (method_exists($plugin,$method)) {
+      $plugin->$method($args);
+    }
+  }
+}
+
+
+
