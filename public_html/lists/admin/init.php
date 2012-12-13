@@ -112,7 +112,7 @@ if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
 if (!defined('SILENT_RESUBSCRIBE')) define('SILENT_RESUBSCRIBE',true);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
 if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",1);
-if (ASKFORPASSWORD) {
+if (ASKFORPASSWORD && !defined("ENCRYPTPASSWORD")) {
   ## we now always encrypt
   define('ENCRYPTPASSWORD',1);
 }
