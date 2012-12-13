@@ -245,6 +245,14 @@ class phplistPlugin {
     # prefix the shorttag with _ to suppress it from the send page (for internal use)
     return array ();
   }
+  
+  /*
+   * HelloWorld
+   * just a simple check
+   */
+  function HelloWorld($params) {
+    print "Hello to you from ".$this->name;
+  }
 
   ############################################################
   # Processqueue
@@ -299,25 +307,28 @@ class phplistPlugin {
     return '';
   }
   
-  function parseOutgoingTextMessage($messageid, $content, $destination, $userdata= null) {
-    ## parseOutgoingTextMessage
-    # parameters: 
-    #  messageid: ID of the message
-    #  text content: entire text content of a message going out
-    #  destination: destination email
-    #  userhtmlpref: 1/0 whether the user wants to receive HTML
-    # returns: parsed content
+  
+  /* 
+   * parseOutgoingTextMessage
+   * @param integer messageid: ID of the message
+   * @param string  content: entire text content of a message going out
+   * @param string  destination: destination email
+   * @param array   userdata: associative array with data about user
+   * @return string parsed content
+   */
+  function parseOutgoingTextMessage($messageid, $content, $destination, $userdata = null) {
     return $content;
   }
 
-  function parseOutgoingHTMLMessage($messageid, $content, $destination, $userdata= null) {
-    ## parseOutgoingHTMLMessage
-    # parameters: 
-    #  messageid: ID of the message
-    #  text content: entire HTML content of a message going out
-    #  destination: destination email
-    #  userhtmlpref: 1/0 whether the user wants to receive HTML
-    # returns: parsed content
+  /* 
+   * parseOutgoingHTMLMessage
+   * @param integer messageid: ID of the message
+   * @param string  content: entire text content of a message going out
+   * @param string  destination: destination email
+   * @param array   userdata: associative array with data about user
+   * @return string parsed content
+   */
+  function parseOutgoingHTMLMessage($messageid, $content, $destination, $userdata = null) {
     return $content;
   }
 
@@ -452,7 +463,14 @@ class phplistPlugin {
    * @param string msg
    */
   function processError($msg) {
-    
+  }
+  
+  /* processQueueStart
+   * called at the beginning of processQueue, after the process was locked
+   * @param none
+   * @return null
+   */
+  function processQueueStart() {
   }
 
   /*
