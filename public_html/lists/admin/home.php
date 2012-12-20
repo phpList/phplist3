@@ -67,10 +67,6 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   }
 }
 
-if (!stristr($_SERVER['HTTP_USER_AGENT'],'firefox')) {
-  print '<div align="right"><a href="http://www.spreadfirefox.com/?q=affiliates&amp;id=131358&amp;t=81"><img border="0" alt="Get Firefox!" title="Get Firefox!" src="images/getff.gif"/></a></div>';
-}
-
 ?>
 
 <?php
