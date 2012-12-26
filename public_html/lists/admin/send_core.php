@@ -800,7 +800,7 @@ if (!$done) {
   #0013076: different content when forwarding 'to a friend'
   $tmp = '
  
-  </div> <!-- end of message content -->
+  </div></div> <!-- end of message content -->
   ';
   
   if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'inputhere') {
