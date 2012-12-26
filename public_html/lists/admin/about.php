@@ -1,5 +1,5 @@
 <div align="center">
-  <table class="about" width="75%" border="1" cellspacing="5" cellpadding="5">
+  <table class="about" border="1" cellspacing="5" cellpadding="5">
   <tr>
     <td colspan="2" class="abouthead"><?php echo NAME?></td>
   </tr>
