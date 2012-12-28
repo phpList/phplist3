@@ -29,11 +29,12 @@ if (!navigator.cookieEnabled) {
 <?php
 function footer(){
   echo '<form method="post" id="forgotpassword-form" action="">';
-  echo '  <hr width="50%" size="3"/><p class="login">';
+  echo '<div class="login"><p>';
   echo $GLOBALS['I18N']->get('Forgot password').' ';
-  echo $GLOBALS['I18N']->get('Enter your email address').': <input type="text" name="forgotpassword" value="" size="30" />';
+  echo $GLOBALS['I18N']->get('Enter your email address').': </p><input type="text" name="forgotpassword" value="" size="30" />';
   echo '  <input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Send password').'" />';
-  echo '</p></form>';
+  echo '  <div class="clear"></div>';
+  echo '</div></form>';
 }
 
 #Delete from the DB every token older than certain elapsed time.
