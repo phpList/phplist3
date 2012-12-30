@@ -2,7 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (TEST) {
-  print $GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist";
+  print "<p>" . $GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist</p>";
 }
 
 $page = '';
@@ -14,9 +14,17 @@ if (isset($_GET['page']) && $_GET["page"]) {
 } else {
   $page = $GLOBALS['homepage'];
 }
-if (!isset($GLOBALS['msg'])) $GLOBALS['msg'] = '';
+
+if (!isset($GLOBALS['msg'])) { 
+  $GLOBALS['msg'] = '';
+  $msg_class = '';
+} else {
+  $msg_class = " class='result' ";
+}
+
+echo "<div ".$msg_class.">" . $GLOBALS['msg'] . "</div>";
+
 ?>
-<?php echo $GLOBALS['msg']?>
 
 
 <script language="Javascript" type="text/javascript">
