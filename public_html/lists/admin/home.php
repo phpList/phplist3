@@ -325,7 +325,7 @@ if ($some) {
 //  print $ls->display();
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('Plugins'));
+$ls = new WebblerListing('');
 if (sizeof($GLOBALS["plugins"])) {
   foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
     $menu = $plugin->adminmenu();
@@ -346,7 +346,7 @@ if ($some) {
 }
 
 $some = 0;
-$ls = new WebblerListing($GLOBALS['I18N']->get('System Functions'));
+$ls = new WebblerListing('');
 if (checkAccess("initialise") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('setup');
