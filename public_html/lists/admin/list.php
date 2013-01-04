@@ -142,7 +142,7 @@ if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['ta
   }
 }
 
-print '<p>'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
+print '<p class="total">'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
 $limit = '';
 
 $query
