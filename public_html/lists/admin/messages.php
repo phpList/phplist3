@@ -260,7 +260,7 @@ if ($total) {
     }
     
     $ls->addElement($listingelement,$editlink);
-
+    $ls->setClass($listingelement,'row1');
     $uniqueviews = Sql_Fetch_Row_Query("select count(userid) from {$tables["usermessage"]} where viewed is not null and messageid = ".$msg["id"]);
 
     $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables["linktrack_ml"]} where messageid = ".$msg["id"]);
@@ -312,7 +312,7 @@ if ($total) {
          <tr><td>'.s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
       $resultStats .= '</table>';
       
-      $ls->addColumn($listingelement,s('Results'),$resultStats);
+//      $ls->addColumn($listingelement,s('Results'),$resultStats);
 
 
       //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Viewed"), $msg["viewed"]);
@@ -364,7 +364,7 @@ if ($total) {
       $clicksrow,$bouncedrow
     );
     if ($msg['status'] != 'draft') {
-      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Statistics"), $sendstats);
+      $ls->addRow($listingelement,'', $resultStats.$sendstats);
     }
 
     $actionbuttons = '';
