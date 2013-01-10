@@ -156,16 +156,17 @@ if (isset($_GET["action"]) && $_GET["action"] == "new") {
   // ??
   ?>
 
-  <p><?php echo $GLOBALS["I18N"]->get("addnew")." ".$data["name"].', '.$GLOBALS["I18N"]->get("oneperline") ?></p><br />
-  <textarea name="itemlist" rows="20" cols="50"></textarea><br />
+  <p><?php echo $GLOBALS["I18N"]->get("addnew")." ".$data["name"].', '.$GLOBALS["I18N"]->get("oneperline") ?></p>
+  <textarea name="itemlist" rows="20" cols="50"></textarea>
   <input class="submit" type="submit" name="addnew" value="<?php echo $GLOBALS["I18N"]->get("addnew")." ".$data["name"] ?>" /><br />
+  <hr />
 <?php
 }
 
 $rs = Sql_query("select * from $table order by listorder, name");
 $num = Sql_Num_Rows($rs);
 if ($num < 100 && $num > 25)
-  printf('<input class="submit" type="submit" name="action" value="%s" /><br />',$GLOBALS["I18N"]->get("changeorder"));
+  printf('<input class="submit" type="submit" name="action" value="%s" /><br /><br />',$GLOBALS["I18N"]->get("changeorder"));
 
 while ($row = Sql_Fetch_array($rs)) {
   printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
@@ -174,7 +175,7 @@ while ($row = Sql_Fetch_array($rs)) {
   printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? '('.$GLOBALS['I18N']->get('default').')':"");
 }
 if ($num && $num < 100)
-  printf('<input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));
+  printf('<br /><input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));
 
 ?>
 </form>
