@@ -403,6 +403,7 @@ if ($result)
   while ($user = Sql_fetch_array($result)) {
     $some = 1;
     $ls->addElement($user["email"], PageURL2("user&amp;start=$start&amp;id=" . $user["id"] . $find_url));
+    $ls->setClass($user["email"],"row1");
     
     ## we make one column with the subscriber status being "on" or "off"
     ## two columns are too confusing and really unnecessary
@@ -415,34 +416,34 @@ if ($result)
   #  }
   
     if ($user['confirmed'] && !$onblacklist) {
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $GLOBALS["img_tick"]);
+      $ls_confirmed=$GLOBALS["img_tick"];
     } else {
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $GLOBALS["img_cross"]);
+      $ls_confirmed=$GLOBALS["img_cross"];
     }
-  
+    
+    $ls_del="";
 #    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('del'), sprintf('<a href="%s" onclick="return deleteRec(\'%s\');">del</a>',PageUrl2('users'.$find_url), PageURL2("users&start=$start&delete=" .$user["id"])));
     if (isSuperUser()) {
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('del'), sprintf('<a href="javascript:deleteRec(\'%s\');" class="del">del</a>',
-                                                                        PageURL2("users&start=$start&find=$find&findby=$findby&delete=" .$user["id"])));
+      $ls_del=sprintf('<a href="javascript:deleteRec(\'%s\');" class="del">del</a>',PageURL2("users&start=$start&find=$find&findby=$findby&delete=" .$user["id"]));
     }
-                                                                         
-    if (isset ($user['foreignkey'])) {
+/*    if (isset ($user['foreignkey'])) {
       $ls->addColumn($user["email"], $GLOBALS['I18N']->get('key'), $user["foreignkey"]);
     }
     if (isset ($user["display"])) {
       $ls->addColumn($user["email"], "&nbsp;", $user["display"]);
     }
-    if (in_array("lists", $columns)) {
+*/    if (in_array("lists", $columns)) {
       $lists = Sql_query("SELECT count(*) FROM " . $tables["listuser"] . "," . $tables["list"] . " where userid = " . $user["id"] . " and " . $tables["listuser"] . ".listid = " . $tables["list"] . ".id");
       $membership = Sql_fetch_row($lists);
       $ls->addColumn($user["email"], $GLOBALS['I18N']->get('lists'), $membership[0]);
     }
+
+
     if (in_array("messages", $columns)) {
       $msgs = Sql_query("SELECT count(*) FROM " . $tables["usermessage"] . " where userid = " . $user["id"]);
       $nummsgs = Sql_fetch_row($msgs);
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('msgs'), $nummsgs[0]);
-    }
-    
+      $ls_msgs=$GLOBALS['I18N']->get('msgs').":&nbsp;".$nummsgs[0];
+    }    
 //obsolete, moved to rssmanager plugin 
 //    if (ENABLE_RSS && in_array("rss", $columns)) {
 //      $rss = Sql_query("SELECT count(*) FROM " . $tables["rssitem_user"] . " where userid = " . $user["id"]);
@@ -465,8 +466,10 @@ if ($result)
     }
     
     if (in_array("bounces", $columns)) {
-      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('bncs'), $user["bouncecount"]);
+      $ls_bncs=$GLOBALS['I18N']->get('bncs').": ".$user["bouncecount"];
     }
+    $ls->addRow($user["email"],"<div class='listinghdname gray'>".$ls_msgs."<br />".$ls_bncs."</div>",$ls_del.'&nbsp;'.$ls_confirmed);
+
   }
 print $ls->display();
 if (!$some && !$total) {
