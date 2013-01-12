@@ -92,7 +92,7 @@ while ($msg = Sql_fetch_array($result)) {
       if ($field == 'sendformat' and $msg[$field] = 'text and HTML')
         $msg[$field] = 'HTML';
       if (!empty($msg[$field])) {
-        $content .= sprintf('<tr><td valign="top">%s</td><td valign="top">%s</td></tr>',$GLOBALS['I18N']->get($field),$msg["htmlformatted"]?stripslashes($msg[$field]):nl2br(stripslashes($msg[$field])));
+        $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',$GLOBALS['I18N']->get($field),$msg["htmlformatted"]?stripslashes($msg[$field]):nl2br(stripslashes($msg[$field])));
       }
     }  
   }
