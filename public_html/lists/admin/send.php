@@ -97,10 +97,11 @@ if ($numdraft > 0 && !isset($_GET['id']) && !isset($_GET['new'])) {
   while ($row = Sql_Fetch_Array($req)) {
     $element = '<!--'.$row['id'].'-->'.$row['subject'];
     $ls->addElement($element,PageUrl2('send&amp;id='.$row['id']));
+    $ls->setClass($element,'row1');
 #    $ls->addColumn($element,$I18N->get('edit'),PageLink2('send&amp;id='.$row['id'],$I18N->get('edit')));
     $ls->addColumn($element,$I18N->get('entered'),$row['entered']);
     $ls->addColumn($element,$I18N->get('age'),secs2time($row['age']));
-    $ls->addColumn($element,$I18N->get('del'),PageLink2('send&amp;delete='.$row['id'],$I18N->get('delete')));
+    $ls->addRow($element,'','<a class="del" href="'.PageUrl2('send&amp;delete='.$row['id']).'" title="'.$I18N->get('del').'">'.$I18N->get('del').'</a>');
   }
   $ls->addButton($I18N->get('delete all'),PageUrl2('send&amp;delete=alldraft'));
   print $ls->display();
