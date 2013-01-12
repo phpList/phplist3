@@ -377,25 +377,25 @@ if ($id) {
 
     if ($key == "confirmed") {
       if (!$require_login || ($require_login && isSuperUser())) {
-        $userdetailsHTML .= sprintf('<tr><td>%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars($user[$key]));
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars($user[$key]));
       } else {
-        $userdetailsHTML .= sprintf('<tr><td>%s</td><td>%s</td></tr>',$b,$user[$key]);
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$b,$user[$key]);
       }
     } elseif ($key == "password") {
-      $userdetailsHTML .= sprintf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
     }
     /*
     } elseif ($key == "password" && ENCRYPTPASSWORD) {
       $userdetailsHTML .= sprintf('<tr><td>%s (%s)</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get('encrypted'),$val[1],$key,"");
     */
     elseif ($key == "blacklisted") {
-      $userdetailsHTML .= sprintf('<tr><td>%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),isBlackListed($user['email']));
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),isBlackListed($user['email']));
     } else {
       if (!strpos($key,'_')) {
         if (strpos($a,"sys") !== false)
-          $userdetailsHTML .= sprintf('<tr><td>%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$user[$key]);
+          $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$user[$key]);
         elseif ($val[1])
-          $userdetailsHTML .= sprintf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars($user[$key]));
+          $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars($user[$key]));
       }
     }
   }
@@ -416,22 +416,22 @@ if ($id) {
       if ($row["type"] == "date") {
         $userdetailsHTML .= sprintf('<input class="attributeinput" type="hidden" name="dateattribute[%d]" value="%s" />',$row["id"],$row["name"]);
         $novalue = trim($row["value"]) == "" ? "checked":"";
-        $userdetailsHTML .= sprintf('<tr><td>%s<!--%s--></td><td>%s&nbsp; Not set: <input type="checkbox" name="%s_novalue" %s /></td></tr>'."\n",stripslashes($row["name"]),$row["value"],$date->showInput($row["name"],"",$row["value"]),normalize(stripslashes($row["name"])),$novalue);
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s<!--%s--></td><td>%s&nbsp; Not set: <input type="checkbox" name="%s_novalue" %s /></td></tr>'."\n",stripslashes($row["name"]),$row["value"],$date->showInput($row["name"],"",$row["value"]),normalize(stripslashes($row["name"])),$novalue);
       } elseif ($row["type"] == "checkbox") {
         $checked = $row["value"] == "on" ? 'checked="checked"':'';
-        $userdetailsHTML .= sprintf('<tr><td>%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[%d]" value="%d" />
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[%d]" value="%d" />
                           <input class="attributeinput" type="checkbox" name="attribute[%d]" value="on" %s />
                 </td></tr>'."\n",stripslashes($row["name"]),$row["id"],$row["id"],$row["id"],$checked);
       } elseif ($row["type"] == "checkboxgroup") {
         $userdetailsHTML .= sprintf ('
-             <tr><td valign="top">%s</td><td>%s</td>
+             <tr><td valign="top" class="dataname">%s</td><td>%s</td>
              </tr>',stripslashes($row["name"]),UserAttributeValueCbGroup($id,$row["id"]));
       } elseif ($row["type"] == "textarea") {
         $userdetailsHTML .= sprintf ('
-             <tr><td valign="top">%s</td><td><textarea name="attribute[%d]" rows="10" cols="40" class="wrap virtual">%s</textarea></td>
+             <tr><td valign="top" class="dataname">%s</td><td><textarea name="attribute[%d]" rows="10" cols="40" class="wrap virtual">%s</textarea></td>
              </tr>',stripslashes($row["name"]),$row["id"],htmlspecialchars(stripslashes($row["value"])));
       } elseif ($row["type"] == "avatar") {
-        $userdetailsHTML .= sprintf ('<tr><td valign="top">%s</td><td>',stripslashes($row["name"]));
+        $userdetailsHTML .= sprintf ('<tr><td valign="top" class="dataname">%s</td><td>',stripslashes($row["name"]));
         if ($row['value']) {
           $userdetailsHTML .= sprintf('<img src="./?page=avatar&amp;user=%d&amp;avatar=%s" /><br/>',$id,$row['id']);
         }
@@ -439,15 +439,15 @@ if ($id) {
              </tr>',$row["id"],MAX_AVATAR_SIZE/1024);
       } else {
       if ($row["type"] != "textline" && $row["type"] != "hidden")
-        $userdetailsHTML .= sprintf ("<tr><td>%s</td><td>%s</td></tr>\n",stripslashes($row["name"]),UserAttributeValueSelect($id,$row["id"]));
+        $userdetailsHTML .= sprintf ("<tr><td class='dataname'>%s</td><td>%s</td></tr>\n",stripslashes($row["name"]),UserAttributeValueSelect($id,$row["id"]));
       else
-        $userdetailsHTML .= sprintf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
       }
     }
   }
 
   if ($access != "view")
-  $userdetailsHTML .=  '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+  $userdetailsHTML .=  '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
   $userdetailsHTML .= '</table>';
 
   if (isBlackListed($user["email"])) {
@@ -460,7 +460,7 @@ if ($id) {
   $c = 0;
   while ($row = Sql_Fetch_Array($req)) {
     $c++;
-    if ($c % 4 == 0)
+    if ($c % 1 == 0)
       $mailinglistsHTML .= '</tr><tr>';
     if (in_array($row["id"],$subscribed)) {
       $bgcol = '#F7E7C2';
@@ -469,12 +469,12 @@ if ($id) {
       $bgcol = '#ffffff';
       $subs = "";
     }
-    $mailinglistsHTML .=sprintf ('<td bgcolor="%s"><input type="checkbox" name="subscribe[]" value="%d" %s /> %s</td>',
+    $mailinglistsHTML .=sprintf ('<td class="tdcheck" bgcolor="%s"><input type="checkbox" name="subscribe[]" value="%d" %s /> %s</td>',
       $bgcol,$row["id"],$subs,stripslashes($row["name"]));
   }
   $mailinglistsHTML .= '</tr>';
   if ($access != "view")
-    $mailinglistsHTML .= '<tr><td><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+    $mailinglistsHTML .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
 
   $mailinglistsHTML .= '</table>';
 
@@ -570,10 +570,10 @@ if ($usegroups) {
 }
 print '</ul>';
 
-$p = new UIPanel($GLOBALS['I18N']->get('Details'),$userdetailsHTML);
+$p = new UIPanel('',$userdetailsHTML);
 print '<div id="details">'.$p->display().'</div>';
 
-$p = new UIPanel($GLOBALS['I18N']->get('Lists'),$mailinglistsHTML);
+$p = new UIPanel('',$mailinglistsHTML);
 print '<div id="lists">'.$p->display().'</div>';
 
 if ($usegroups) {
