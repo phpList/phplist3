@@ -105,6 +105,7 @@ if ($num) {
   if ($totalresp) {
     $avgresp = sprintf('%d',($resptime / $totalresp));
     $ls->addElement($GLOBALS['I18N']->get('average'));
+    $ls->setClass($GLOBALS['I18N']->get('average'),'row1');
     $ls->addColumn($GLOBALS['I18N']->get('average'),$GLOBALS['I18N']->get('responsetime'),$avgresp);
   }
 }
@@ -131,7 +132,7 @@ if (isBlackListed($user["email"])) {
     $tables["user_blacklist"],$user["email"]));
   print $blacklist_info["added"]."</h3><br/>";
   print '';
-  print "<a href=\"javascript:deleteRec2('" . htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this user from the blacklist')) . "?\\n"
+  print "<a class='button' href=\"javascript:deleteRec2('" . htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this user from the blacklist')) . "?\\n"
   . htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this user')) . "','./?page=userhistory&unblacklist={$user["id"]}&id={$user["id"]}')\">
   " . $GLOBALS['I18N']->get('remove User from Blacklist') . "</a>".'<br/><br/>';
 
@@ -152,16 +153,15 @@ if (!Sql_Affected_Rows())
   print $GLOBALS['I18N']->get('no details found');
 while ($row = Sql_Fetch_Array($req)) {
   $ls->addElement($row["id"]);
-
+  $ls->setClass($row["id"],'row1');
   $ls->addColumn($row["id"],$GLOBALS['I18N']->get('ip'),$row["ip"]);
   $ls->addColumn($row["id"],$GLOBALS['I18N']->get('date'),$row["date"]);
   $ls->addColumn($row["id"],$GLOBALS['I18N']->get('summary'),$row["summary"]);
-  $ls->addRow($row["id"],$GLOBALS['I18N']->get('detail'),nl2br(htmlspecialchars($row["detail"])));
-  $ls->addRow($row["id"],$GLOBALS['I18N']->get('info'),nl2br($row["systeminfo"]));
+  $ls->addRow($row["id"],"<div class='gray'>".$GLOBALS['I18N']->get('detail').": </div>","<div class='tleft'>".nl2br(htmlspecialchars($row["detail"]))."</div>");
+  $ls->addRow($row["id"],"<div class='gray'>".$GLOBALS['I18N']->get('info').": </div>","<div class='tleft'>".nl2br($row["systeminfo"])."</div>");
 }
 
 print '<div id="subscription">';
-print "<h3>" . $GLOBALS['I18N']->get('user subscription history') . "</h3>";
 print $ls->display();
 print '</div>';
 print '</div>'; ## end of tabbed

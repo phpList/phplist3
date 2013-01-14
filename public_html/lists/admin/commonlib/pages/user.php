@@ -333,7 +333,7 @@ if ($id) {
 
   if ($access != "view")
   printf(" <a class=\"delete button\" href=\"javascript:deleteRec('%s');\">delete</a> %s<h3>%s</h3>",
-         PageURL2("user","","delete=$id&amp;$returnurl"),$delete_message,$user["email"]);
+         PageURL2("user","","delete=$id&amp;$returnurl"),"<div class='note fright'>".$delete_message."</div>",$user["email"]);
 
   print '</div>';
 } else {
