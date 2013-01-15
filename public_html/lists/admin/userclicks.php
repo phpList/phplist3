@@ -152,6 +152,7 @@ while ($row = Sql_Fetch_Array($req)) {
   $summary['totalclicks'] += $row['clicked'];
 }
 $ls->addElement($GLOBALS['I18N']->get('total'));
+$ls->setClass($GLOBALS['I18N']->get('total'),'rowtotal');
 $ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
 print $ls->display();
 ?>

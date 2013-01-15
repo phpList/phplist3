@@ -68,10 +68,11 @@ if (!$id) {
   while ($row = Sql_Fetch_Array($req)) {
     $element = $row['messageid'].' '.substr($row['subject'],0,50);
     $ls->addElement($element,PageUrl2('mviews&amp;id='.$row['messageid']));
+    $ls->setClass($element,'row1');
     if (!empty($row['sent'])) {
-      $ls->addColumn($element,$GLOBALS['I18N']->get('date'),$row['sent']);
+      $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('date').': '.$row['sent'].'</div>','');
     } else {
-      $ls->addColumn($element,$GLOBALS['I18N']->get('date'),$GLOBALS['I18N']->get('in progress'));
+      $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('date').': '.$GLOBALS['I18N']->get('in progress').'</div>','');
     }
     $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
  #   $ls->addColumn($element,$GLOBALS['I18N']->get('bounced'),$row['bounced']);
@@ -192,14 +193,15 @@ while ($row = Sql_Fetch_Array($req)) {
   
   $element = '<!--'.$row['userid'].'-->'.$row['email'];
   $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),formatDateTime($row['sent']));
+  $ls->setClass($element,'row1');
+  $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.formatDateTime($row['sent'],1).'</div>','');
   if ($row['viewcount'] > 1) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('lastview'),formatDateTime($row['lastview']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('first view'),formatDateTime($row['firstview'],1));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('last view'),formatDateTime($row['lastview']));
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['viewcount']);
   } else {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('responsetime'),secs2time($row['responsetime']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('first view'),formatDateTime($row['firstview'],1));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('response time'),secs2time($row['responsetime']));
   }
 }
 if ($download) {

@@ -113,14 +113,15 @@ if (!$id) {
     $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',$GLOBALS['tables']['user_message_forward'],$row['messageid']));
     
     $ls->addElement($element,PageURL2('mviews&amp;id='.$row['messageid']));#,PageURL2('message&amp;id='.$row['messageid']));
+    $ls->setClass($element,'row1');
  #   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
-    $ls->addColumn($element,$GLOBALS['I18N']->get('date'),$row['sent']);
     $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
-    $ls->addColumn($element,$GLOBALS['I18N']->get('bounced'),$row['bounced']);
-    $ls->addColumn($element,$GLOBALS['I18N']->get('forwarded'),sprintf('%d',$fwded[0]));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('bncs'),$row['bounced']);
+    $ls->addColumn($element,$GLOBALS['I18N']->get('fwds'),sprintf('%d',$fwded[0]));
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['views'],$row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']):'');
     $perc = sprintf('%0.2f',($row['views'] / $row['total'] * 100));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('rate'),$perc.' %');
+    $ls->addRow($element,'',"<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('rate').": ".$perc.' %'."</div>".
+                            "<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('date').": ".$row['sent']."</div>");
   }
   if ($addcomparison) {
     $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
