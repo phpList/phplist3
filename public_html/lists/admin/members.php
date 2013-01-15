@@ -259,13 +259,16 @@ if (isset($id)) {
   $ls->usePanel($paging);
   while ($user = Sql_fetch_array($result)) {
     $ls->addElement($user["email"],PageUrl2("user&amp;id=".$user["id"]));
-    $ls->addColumn($user["email"],$GLOBALS['I18N']->get("confirmed"),$user["confirmed"]?$GLOBALS["img_tick"]:$GLOBALS["img_cross"]);
+    $ls->setClass($user["email"],'row1');
+    $ls_delete="";
+    if ($access != "view"){
+       $ls_delete=sprintf('<a title="'.$GLOBALS['I18N']->get('Delete').'" class="del" href="javascript:deleteRec(\'%s\');"></a>',
+       PageURL2("members","","start=$start&id=$id&delete=".$user["id"]));
+    }
+    $ls->addRow($user["email"],'',$user["confirmed"]?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
+
     if ($access != "view")
     $ls->addColumn($user["email"],$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
-    if ($access != "view")
-       $ls->addColumn($user["email"],$GLOBALS['I18N']->get("del"),
-       sprintf('<a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('Del').'</a>',
-       PageURL2("members","","start=$start&id=$id&delete=".$user["id"])));
 /*
     $query
     = ' select count(*)'
@@ -304,11 +307,10 @@ if (isset($id)) {
 if ($access == "view") return;
 ?>
 <hr/>
-<table class="membersProcess">
-<tr><td colspan="2"><h3><?php echo $GLOBALS['I18N']->get('What to do with "Tagged" users')?>:</h3>
-<?php echo $GLOBALS['I18N']->get('This will only process the users in this page that have the "Tag" checkbox checked')?></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)
-<input type="radio" name="tagaction" value="delete" /></td></tr>
+<div class="content"><table class="membersProcess">
+<tr><td><h3><?php echo $GLOBALS['I18N']->get('What to do with "Tagged" users')?>:</h3>
+<h6><?php echo $GLOBALS['I18N']->get('This will only process the users in this page that have the "Tag" checkbox checked')?></h6></td></tr>
+<tr><td><input type="radio" name="tagaction" value="delete" /> <?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)</td></tr>
 <?php
 $html = '';
 $res = Sql_Query("select id,name from {$tables["list"]} $subselect");
@@ -318,33 +320,36 @@ while ($row = Sql_Fetch_array($res)) {
 }
 if ($html) {
 ?>
-  <tr><td><?php echo $GLOBALS['I18N']->get('Move')?> <input type="radio" name="tagaction" value="move" /> </td><td><?php echo $GLOBALS['I18N']->get('to')?>
- <select name="movedestination">
+  <tr><td ><div class="fleft"><input type="radio" name="tagaction" value="move" /> <?php echo $GLOBALS['I18N']->get('Move').' '.$GLOBALS['I18N']->get('to')?> </div>
+  <div class="fleft"><select name="movedestination">
   <?php echo $html ?>
-</select></td></tr>
-  <tr><td><?php echo $GLOBALS['I18N']->get('Copy')?> <input type="radio" name="tagaction" value="copy" /> </td><td><?php echo $GLOBALS['I18N']->get('to')?>
- <select name="copydestination">
+  </select></div></td></tr>
+  <tr><td><div class="fleft"><input type="radio" name="tagaction" value="copy" /> <?php echo $GLOBALS['I18N']->get('Copy').' '.$GLOBALS['I18N']->get('to')?></div>
+  <div class="fleft"><select name="copydestination">
   <?php echo $html ?>
-</select></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Nothing')?> <input type="radio" name="tagaction" value="nothing" checked="checked" /></td></tr>
+  </select></div></td></tr>
+  <tr><td><input type="radio" name="tagaction" value="nothing" checked="checked" /><?php echo $GLOBALS['I18N']->get('Nothing')?> </td></tr>
 <?php } ?>
-<tr><td colspan="2"><hr/></td></tr>
-<tr><td colspan="2"><h3><?php echo $GLOBALS['I18N']->get('What to do with all users')?></h3>
-            <?php echo $GLOBALS['I18N']->get('This will process all users on this list')?></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)
-       <input type="radio" name="tagaction_all" value="delete" /></td>
-</tr>
+<tr><td><hr/></td></tr>
+<tr><td><h3><?php echo $GLOBALS['I18N']->get('What to do with all users')?></h3>
+        <h6><?php echo $GLOBALS['I18N']->get('This will process all users on this list')?></h6>
+</td></tr>
+<tr><td>
+    <input type="radio" name="tagaction_all" value="delete" /> <?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)
+</td></tr>
 <?php if ($html) { ?>
-  <tr><td><?php echo $GLOBALS['I18N']->get('Move')?> <input type="radio" name="tagaction_all" value="move" /> </td><td><?php echo $GLOBALS['I18N']->get('to')?>
- <select name="movedestination_all">
+  <tr><td><div class="fleft"><input type="radio" name="tagaction_all" value="move" /> <?php echo $GLOBALS['I18N']->get('Move').' '.$GLOBALS['I18N']->get('to')?></div>
+  <div class="fleft"><select name="movedestination_all">
   <?php echo $html ?>
-</select></td></tr>
-  <tr><td><?php echo $GLOBALS['I18N']->get('Copy')?> <input type="radio" name="tagaction_all" value="copy" /> </td><td><?php echo $GLOBALS['I18N']->get('to')?>
- <select name="copydestination_all">
+  </select></div></td></tr>
+  <tr><td><div class="fleft"><input type="radio" name="tagaction_all" value="copy" /> <?php echo $GLOBALS['I18N']->get('Copy').' '.$GLOBALS['I18N']->get('to')?></div>
+  <div class="fleft"><select name="copydestination_all">
   <?php echo $html ?>
-</select></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Nothing')?> <input type="radio" name="tagaction_all"  value="nothing" checked="checked" /></td></tr>
+  </select></div></td></tr>
+  <tr><td><?php echo $GLOBALS['I18N']->get('Nothing')?> <input type="radio" name="tagaction_all"  value="nothing" checked="checked" /></td></tr>
 <?php } ?>
-<tr><td colspan="2"><input class="submit" type="submit" name="processtags" value="<?php echo $GLOBALS['I18N']->get('do it')?>" /></td></tr>
+<tr><td><hr/></td></tr>
+<tr><td><input class="action-button" type="submit" name="processtags" value="<?php echo $GLOBALS['I18N']->get('do it')?>" /></td></tr>
 </table>
+</div>
 </form>
