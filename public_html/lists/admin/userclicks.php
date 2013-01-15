@@ -126,26 +126,29 @@ while ($row = Sql_Fetch_Array($req)) {
   if (!$userid) {
     $element = $row['email'];
     $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
+    $ls->setClass($element,'row1');
   } else {
 #    $link = substr($row['url'],0,50);
 #    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
     $element = substr($row['url'],0,50);
     $ls->addElement($element,PageUrl2('uclicks&amp;id='.$row['forwardid']));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],$row['messageid']));
+    $ls->setClass($element,'row1');
+    $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],' '.$row['messageid']));
   }
 #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
 #  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
 #    $GLOBALS['tables']['linktrack'],$id,$row['url']));
 #  $totalsent = Sql_Fetch_Array_Query(sprintf('select count(*) as total from %s where url = "%s"',
 #    $GLOBALS['tables']['linktrack'],$urldata['url']));
+  $ls_userid = "";
   if (!$userid) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('view user'),PageLink2('userclicks&amp;userid='.$row['userid'],$GLOBALS['I18N']->get('view user')));
+    $ls_userid='<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;userid='.$row['userid']).'" title="'.$GLOBALS['I18N']->get('view user').'"></a></span>';
   }
   $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
   $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('HTML'),$row['htmlclicked']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('text'),$row['textclicked']);
+  $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].$ls_userid);
+  $ls->addRow($element,'<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('HTML').': '.$row['htmlclicked'].'</div>'.
+                       '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>','');
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$total['total']);
 #  $perc = sprintf('%0.2f',($row['numclicks'] / $totalsent['total'] * 100));
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');

@@ -99,12 +99,12 @@ while ($row = Sql_Fetch_Array($req)) {
 
   $ls->addElement($element,PageUrl2('mclicks&amp;id='.$row['messageid']));
   $ls->setClass($element,'row1');
-  $ls->addColumn($element,$GLOBALS['I18N']->get('first click'),formatDateTime($row['firstclick'],1));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('latest click'),$row['latestclick']);
+  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
   $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.$row['total'].'</div>','');
   $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id.'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>'));
   $perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('click rate'),$perc.'%');
+  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
   $summary['totalsent'] += $row['total'];
   if (CLICKTRACK_SHOWDETAIL) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('unique clicks'),$uniqueclicks['users']);
@@ -118,7 +118,7 @@ $ls->addElement($GLOBALS['I18N']->get('total'));
 $ls->setClass($GLOBALS['I18N']->get('total'),'rowtotal');
 $ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
 $perc = sprintf('%0.2f',($summary['totalclicks'] / $summary['totalsent'] * 100));
-$ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('click rate'),$perc.'%');
+$ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 if (CLICKTRACK_SHOWDETAIL) {
   $ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('unique clicks'),$summary['uniqueclicks']);
   $perc = sprintf('%0.2f',($summary['uniqueclicks'] / $summary['totalsent'] * 100));

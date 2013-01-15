@@ -70,7 +70,7 @@ if (!$id) {
     $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('links'),$row['linkcount']);
 #    $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('sent'),$totalusers[0]);
     $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('user clicks'),$totalclicked[0]);
-    $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('click rate'),$clickrate);
+    $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('clickrate'),$clickrate);
     
     $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('total clicks'),$row['totalclicks']);
 #    $ls->addColumn($row['messageid'].' '.substr($row['subject'],0,50),$GLOBALS['I18N']->get('total'),$row['total']);
@@ -143,14 +143,14 @@ while ($row = Sql_Fetch_Array($req)) {
   $element = sprintf('<div title="%s" ondblclick="alert(\'%s\');">%s</div>',htmlspecialchars($row['url']),htmlspecialchars($row['url']),$display);
   $ls->addElement($element);
   $ls->setClass($element,'row1');
-  $ls->addColumn($element,$GLOBALS['I18N']->get('first click'),formatDateTime($row['firstclick'],1));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('latest click'),$row['latestclick']);
+  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
  # $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
   $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$id.'&amp;fwdid='.$row['forwardid']).'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>');
   $ls->addRow($element,'<div class="fright gray"><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div>'.
                        '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>','');
   $perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('click rate'),$perc.'%');
+  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
   if (CLICKTRACK_SHOWDETAIL) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('unique clicks'),$uniqueclicks['users']);
     $perc = sprintf('%0.2f',($uniqueclicks['users'] / $row['total'] * 100));
@@ -164,7 +164,7 @@ $ls->addElement('total');
 $ls->setClass('total','rowtotal');
 $ls->addColumn('total',$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
 $perc = sprintf('%0.2f',($summary['totalclicks'] / $summary['totalsent'] * 100));
-$ls->addColumn('total',$GLOBALS['I18N']->get('click rate'),$perc.'%');
+$ls->addColumn('total',$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 if (CLICKTRACK_SHOWDETAIL) {
   $ls->addColumn('total',$GLOBALS['I18N']->get('unique clicks'),$summary['uniqueclicks']);
   $perc = sprintf('%0.2f',($summary['uniqueclicks'] / $summary['totalsent'] * 100));

@@ -196,12 +196,12 @@ while ($row = Sql_Fetch_Array($req)) {
   $ls->setClass($element,'row1');
   $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.formatDateTime($row['sent'],1).'</div>','');
   if ($row['viewcount'] > 1) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('first view'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('last view'),formatDateTime($row['lastview']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('lastview'),formatDateTime($row['lastview']));
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['viewcount']);
   } else {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('first view'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('response time'),secs2time($row['responsetime']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('responsetime'),secs2time($row['responsetime']));
   }
 }
 if ($download) {
