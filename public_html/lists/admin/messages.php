@@ -26,7 +26,6 @@
 </script>
 
 
-<hr/>
 
 <?php
 
@@ -66,9 +65,9 @@ if (!isset($_GET["tab"]) && !empty($_SESSION["lastmessagetype"])) {
 #}
 #print '</p>';
 
-print '<div class="actions">';
+print '<div class="actions"><div class="fright">';
 print PageLinkActionButton('send&amp;new=1',$GLOBALS['I18N']->get('Start a new campaign'));
-print '</div>';
+print '</div><div class="clear"></div></div>';
 
 ### Print tabs
 $tabs = new WebblerTabs();
