@@ -197,7 +197,7 @@ if (!defined('CHECK_REFERRER')) define('CHECK_REFERRER',true);
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/phpmailer/class.phpmailer.php');
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
 if (!defined('DB_TRANSLATION')) define('DB_TRANSLATION',0);
-if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',1); ## how many campaigns to work on at the same time
+if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',5); ## how many campaigns to work on at the same time
 if (!defined('ALLOW_DELETEBOUNCE')) define('ALLOW_DELETEBOUNCE',1);
 if (!defined('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD')) define('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD',120);
 if (!defined('MESSAGE_SENDSTATUS_SAMPLETIME')) define('MESSAGE_SENDSTATUS_SAMPLETIME',600);
@@ -207,6 +207,7 @@ if (!defined('DEFAULT_MESSAGEAGE')) define('DEFAULT_MESSAGEAGE',604800); ## 7 da
 if (!defined('ADD_EMAIL_THROTTLE')) define('ADD_EMAIL_THROTTLE',1); ## seconds between addemail ajax requests
 if (!defined('SENDTEST_THROTTLE')) define('SENDTEST_THROTTLE',1); ## seconds between send test
 if (!defined('SENDTEST_MAX')) define('SENDTEST_MAX',999); ## max number of emails in a send test
+if (!defined('MAX_PROCESSQUEUE_TIME')) define('MAX_PROCESSQUEUE_TIME',99999);
 
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
