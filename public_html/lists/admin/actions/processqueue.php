@@ -696,6 +696,7 @@ while ($message = Sql_fetch_array($messages)) {
   if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
     ## we duplicate messageid to match the query_params or the main query
     $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = ? and messageid = ? and status = "todo"');
+ #   cl_output($query.' '.$messageid);
     $queued_count = Sql_Query_Params($query, array($messageid, $messageid));
     $queued = Sql_Affected_Rows();
   # if (VERBOSE) {
@@ -1108,9 +1109,11 @@ while ($message = Sql_fetch_array($messages)) {
     /* 
      * don't calculate this here, but in the "msgstatus" instead, so that
      * the total speed can be calculated, eg when there are multiple send processes
+     * 
+     * re-added for commandline outputting
      */
      
-    /*  
+    
     $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
     if ($sent > 0) {
       $msgperhour = (3600/$totaltime) * $sent;
@@ -1125,7 +1128,9 @@ while ($message = Sql_fetch_array($messages)) {
     }
     setMessageData($messageid,'ETA',$eta);
     setMessageData($messageid,'msg/hr',$msgperhour);
-    */
+    
+    cl_progress('sent '.$sent.' ETA '.$eta.' sending '.sprintf('%d',$msgperhour).' msg/hr');
+    
     setMessageData($messageid,'to process',$counters['total_users_for_message '.$messageid] - $sent);
     setMessageData($messageid,'last msg sent',time());
   #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
