@@ -306,6 +306,9 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
     $page = "login";
   }
 }
+if ($page == 'login') {
+  $_GET['pi'] = '';
+}
 
 if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
     $languageswitcher = '
@@ -514,7 +517,7 @@ if (checkAccess($page,"") || $page == 'about') {
         print '<li>'.PageLink2($page,$desc).'</li>';
       }
       print '</ul>';
-    } else {
+    } elseif ($page != 'login') {
       print '<br/>'."$page -&gt; ".$I18N->get('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
       #print $plugin->coderoot . "$include";
     }
