@@ -26,6 +26,11 @@
     <ul>
     <li>Tarek Djebali</li>
     </ul>
+    <h3><?php echo $GLOBALS['I18N']->get('Design implementation')?>:</h3>
+    <ul>
+    <li>Tarek Djebali</li>
+    <li><a href="http://www.marielazarate.com.ar">Mariela Zárate</a></li>
+    </ul>
     <h3><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></h3>
     <ul>
       <li>Yan Brailowsky</li>
@@ -43,7 +48,7 @@
     <ul>
       <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
-      <li>the <a href="http://phpmailer.sourceforge.net/" target="_blank">phpmailer</a> class </li>
+      <li>the <a href="https://code.google.com/a/apache-extras.org/p/phpmailer/" target="_blank">phpmailer</a> class </li>
       <li>the <a href="http://jquery.com">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
     </ul>
     </td>
