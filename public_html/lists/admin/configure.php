@@ -21,6 +21,29 @@ if (empty($_REQUEST['id'])) {
 }
 
 print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
+
+$configCategories = array();
+$configTypes = array();
+
+foreach ($default_config as $item => $details) {
+  if (empty($details['category'])) {
+    $details['category'] = 'other';
+  }
+  if (empty($details['type'])) {
+    $details['type'] = 'undefined';
+  }
+  if (!isset($configCategories[$details['category']])) {
+    $configCategories[$details['category']] = array();
+  }
+  if (!isset($configTypes[$details['type']])) {
+    $configTypes[$details['type']] = array();
+  }
+  $configTypes[$details['type']][] = $item;
+  $configCategories[$details['category']][] = $item;
+}
+#var_dump($configCategories);
+#var_dump($configTypes);
+
 print formStart(' class="configForm" ');
 # configure options
 reset($default_config);
@@ -39,8 +62,8 @@ if (!empty($_REQUEST['save'])) {
           $value = str_replace("[DOMAIN]","",$value);
           $value = str_replace("[WEBSITE]","",$value);
         }
-        if ($value == "" && empty($info[3])) {
-          Error("$info[1] " . $GLOBALS['I18N']->get('cannot be empty'));
+        if (empty($value) && !empty($info['allowempty'])) {
+          Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
           $haserror = 1;
         } else {
           SaveConfig($id,$value);
@@ -63,17 +86,22 @@ if (!empty($_REQUEST['save'])) {
 
 if (empty($id)) {
   $alternate = 1;
-  while (list($key,$val) = each($default_config)) {
-    if (is_array($val)) {
-      $dbval = getConfig($key);
-      if (isset($dbval)) {
-        $value = $dbval;
+
+  foreach ($configCategories as $configCategory => $configItems) {
+    print '<fieldset id="'.$configCategory.'">';
+    print '<legend>'.s($configCategory).' '.s('settings').'</legend>';
+  
+    foreach ($configItems as $configItem) {
+      
+      $dbvalue = getConfig($configItem);
+      if (isset($dbvalue)) {
+        $value = $dbvalue;
       } else {
-        $value = $val[0];
+        $value = $default_config[$configItem]['value'];
       }
-      if (!in_array($key,$GLOBALS['noteditableconfig'])) {
-        printf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b></div>',$alternate,PageURL2("configure","","id=$key"),$GLOBALS['I18N']->get('edit'),$GLOBALS['I18N']->get($val[1]));
-        printf('<div id="edit_%s" class="configcontent">%s</div></div>',$key,nl2br(htmlspecialchars(stripslashes($value))));
+      if (!in_array($configItem,$GLOBALS['noteditableconfig'])) {
+        printf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b> <span class="moreinfo"><a href="http://resources.phplist.com/config:%s">?</a></span></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$configItem);
+        printf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
         if ($alternate == 1) {
           $alternate = 2;
         } else {
@@ -81,6 +109,7 @@ if (empty($id)) {
         }
       }
     }
+    print '</fieldset>';
   }
   print '</form>';
 } else {

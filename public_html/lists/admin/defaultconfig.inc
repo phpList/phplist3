@@ -6,106 +6,18 @@
 # if you *do* edit them, make sure they stay in the correct format
 # otherwise you will end up with parse errors and things will stop working
 
-$defaultheader = '
-<link href="styles/phplist.css" type="text/css" rel="stylesheet">
+if (!defined('PHPLISTINIT')) die;
 
-</head>
-<body bgcolor="#ffffff">
-<a name="top"></a>
-<div align="center">
-<table class="defaultheader" cellspacing="0" cellpadding="0" width="710" border="0">
+$defaultheader = '</head><body>';
 
-<tr>
-<td bgcolor="#000000" rowspan="3"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="708" border="0" /></td>
-<td bgcolor="#000000" rowspan="3"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-</tr>
+$defaultfooter = '</body></html>';
 
-<tr valign="top">
-<td>
-<!--TOP TABLE starts-->
-<table class="defaultconfigTopTable" cellspacing="0" cellpadding="0" width="708" border="0" bgcolor="#ffffff">
 
-<tr valign="top">
-<td height="41" background="images/top01.png" colspan="2">
-<span class="phphead"><a href="http://www.phplist.com" class="phphead"><b>PHP</b>list</a></span></td>
-<td background="images/top02.png" align="left">
-&nbsp;<i>powered by:
-</i><br />&nbsp;<b>[<a class="powered" href="http://www.php.net/" target="_new"><i>PHP</i></a>]</b> + <b>[<a class="powered" href="http://www.mysql.com/" target="_new">mySQL</a>]</b></td>
-</tr>
-
-<tr valign="bottom">
-<td><img src="images/top03a.png" width="20" height="34" alt="" border="0" /></td>
-<td background="images/top03b.png" height="34"><!--hello <b>ben</b>:&nbsp;<a class="urhere" href="">you are here &gt; main admin</a>-->
-<td width="132" valign="bottom" background="images/top04.png"><span class="webblermenu">phplist</span></td>
-</tr>
-
-<tr>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="20" border="0" /></td>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="576" border="0" /></td>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="132" border="0" /></td>
-</tr>
-
-<tr valign="top">
-<td>&nbsp;</td>
-<td>
-<br />
-';
-
-$defaultfooter = '
-</td>
-<td>
-&nbsp;</td>
-</tr>
-<tr><td colspan="4">&nbsp;</td></tr>
-<tr><td colspan="4">&nbsp;</td></tr>
-</table>
-<!--TOP TABLE ends-->
-
-</td></tr>
-
-<!-- main page content-->
-
-<!-- end of main page content--><!-- bottom black line-->
-<tr>
-<td bgcolor="#000000" colspan="3"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-</tr>
-
-<tr>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-<td bgcolor="#ff9900" class="bottom">&copy; <a href="http://phplist.com" target="_phplist" class="urhere">phpList limited</a> | <a class="urhere" href="http://www.phplist.com" target="_blank">phplist</a> - version <?php echo VERSION?></td>
-<td bgcolor="#000000"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-</tr>
-
-<tr>
-<td bgcolor="#000000" colspan="3"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
-</tr>
-
-<tr>
-<td colspan="3"><img height="3" alt="" src="images/transparent.png" width="1" border="0" /></td>
-</tr>
-
-<tr>
-<td colspan="3">
-&nbsp;
-</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</body></html>
-';
-
-if (is_file("../config/header.inc")) {
-	$fd = fopen("../config/header.inc", "r");
-	$defaultheader = fread($fd, filesize("../config/header.inc"));
-	fclose($fd);
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendheader.php')) {
+	$defaultheader = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendheader.php');
 }
-if (is_file("../config/footer.inc")) {
-	$fd = fopen("../config/footer.inc", "r");
-	$defaultfooter = fread($fd, filesize("../config/footer.inc"));
-	fclose($fd);
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendfooter.php')) {
+	$defaultfooter = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendfooter.php');
 }
 
 if (isset ($_SERVER['HTTP_HOST'])) {
@@ -120,152 +32,203 @@ if (preg_match("#^www\.(.*)#i", $D_domain, $regs))
 # for starters, you want to leave this line as it is.
 $default_config = array (
 
-  # any next line has the format
-  # "name" => array('value','description','type'),
+  /* any next line has the format
+    "name" => array(
+      'value',     // default value
+      'description', 
+      'type',      // text, textarea, boolean
+      'allow empty', // 0 or 1 (or false/true)
+      'category'   // general
+    ),
+  */
+  
+  
 
   # what is your website location (url)
 "website" => array (
-  $D_website,
-  s("Website address (without http://)"),
-  "text",
-  0 ## indication this value cannot be empty (1 being it can be empty)
+  'value' => $D_website,
+  'description' => s("Website address (without http://)"),
+  'type' => "text",
+  'allowempty' => false, ## indication this value cannot be empty (1 being it can be empty)
+  'category'=> 'general'
 ),
 
   # what is your domain (for sending emails)
 "domain" => array (
-  $D_domain,
-  s("Domain Name of your server (for email)"),
-  "text"
+ 'value' =>   $D_domain,
+ 'description' => s("Domain Name of your server (for email)"),
+  'type' => "text",
+  'allowempty' => false,
+  'category'=> 'general',
 ),
 
   # admin address is the person who is in charge of this system
 "admin_address" => array (
-  'webmaster@[DOMAIN]',
-  s("Person in charge of this system (one email address)"),
-  "text"
+ 'value' => 'webmaster@[DOMAIN]',
+ 'description' => s("Person in charge of this system (one email address)"),
+  'type' => "text",
+  'allowempty' => false,
+  'category'=> 'general',
 ),
 
   # how often to check for new versions of PHPlist
 "check_new_version" => array (
-  "7",
-  s("How often do you want to check for a new version of phplist (days)"),
-  "text"
+ 'value' =>  "7",
+ 'description' => s("How often do you want to check for a new version of phplist (days)"),
+  'type' => "integer",
+  'min' => 1,
+  'max' => 180,
+  'category'=> 'security',
 ),
 
   # admin addresses are other people who receive copies of subscriptions
 "admin_addresses" => array (
-  '',
-  s("List of people to CC in system emails (separate by commas)"),
-  "text",
-  1
+  'value' => '',
+  'description' => s("List of people to CC in system emails (separate by commas)"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'reporting',
 ),
 "campaignfrom_default" => array(
-  '',
-  s("Default for 'From:' in a campaign"),
-  "text",
-  1
+  'value' => '',
+  'description' => s("Default for 'From:' in a campaign"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
 ),
 "notifystart_default" => array(
-  '',
-  s("Default for 'address to alert when sending starts'"),
-  "text",
-  1
+  'value' => '',
+  'description' => s("Default for 'address to alert when sending starts'"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
 ),
 "notifyend_default" => array(
-  '',
-  s("Default for 'address to alert when sending finishes'"),
-  "text",
-  1
+  'value' => '',
+  'description' => s("Default for 'address to alert when sending finishes'"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
 ),
 "always_add_googletracking" => array(
-  '0',
-  s("Always add Google tracking code to campaigns"),
-  "boolean",
+  'value' => '0',
+  'description' => s("Always add Google tracking code to campaigns"),
+  'type' => "boolean",
+  'allowempty' => 1,
+  'category'=> 'campaign',
 ),
   # report address is the person who gets the reports
 "report_address" => array (
-  'listreports@[DOMAIN]',
-  s("Who gets the reports (email address, separate multiple emails with a comma)"),
-  "text",
-  1
+  'value' => 'listreports@[DOMAIN]',
+  'description' => s("Who gets the reports (email address, separate multiple emails with a comma)"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'reporting',
 ),
 
   # where will messages appear to come from
 "message_from_address" => array (
-  "noreply@[DOMAIN]",
-  s("From email address for system messages"),
-  "text"
+  'value' => "noreply@[DOMAIN]",
+  'description' => s("From email address for system messages"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
 "message_from_name" => array (
-  s("Webmaster"),
-  s("Name for system messages"),
-  "text"
+  'value' => s("Webmaster"),
+  'description' => s("Name for system messages"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # what is the reply-to on messages?
 "message_replyto_address" => array (
-  "noreply@[DOMAIN]",
-  s("Reply-to email address for system messages"),
-  "text"
+  'value' => "noreply@[DOMAIN]",
+  'description' => s("Reply-to email address for system messages"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # if there is only one visible list, do we hide it and automatically
   # subscribe users who sign up
 "hide_single_list" => array (
-  "1",
-  s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up (0/1)"),
-  "boolean"
+  'value' => "1",
+  'description' => s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up (0/1)"),
+  'type' => "boolean",
+  'allowempty' => 1,
+  'category'=> 'subscription-ui',
 ),
 
   # categories for lists, to organise them a little bit
   # comma separated list of words
 "list_categories" => array (
-  "",
-  s("Categories for lists. Separate with commas."),
-  "text",1
+  'value' => "",
+  'description' => s("Categories for lists. Separate with commas."),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'segmentation',
 ),
 
   # width of a textline field
 "textline_width" => array (
-  "40",
-  s("Width of a textline field (numerical)"),
-  "text"
+  'value' => "40",
+  'description' => s("Width of a textline field (numerical)"),
+  'type' => "integer",
+  'min' => 20,
+  'max' => 150,
+  'category'=> 'subscription-ui',
 ),
 
   # dimensions of a textarea field
 "textarea_dimensions" => array (
-  "10,40",
-  s("Dimensions of a textarea field (rows,columns)"),
-  "text"
+  'value' => "10,40",
+  'description' => s("Dimensions of a textarea field (rows,columns)"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'subscription-ui',
 ),
 
   # send copies of subscribe, update unsubscribe messages to the administrator
 "send_admin_copies" => array (
-  "0",
-  s("Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"),
-  "boolean"
+  'value' => "0",
+  'description' => s("Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"),
+  'type' => "boolean",
+  'allowempty' => 1,
+  'category'=> 'reporting',
 ),
 
   # the main subscribe page, when there are multiple
 "defaultsubscribepage" => array (
-  1,
-  s("The default subscribe page when there are multiple"),
-  "text"
+  'value' => 1,
+  'description' => s("The default subscribe page when there are multiple"),
+  'type' => "integer",
+  'min' => 1,
+  'max' => 999,  // max(id) from subscribepage
+  'allowempty' => 1,
+  'category'=> 'subscription',
 ),
 
   # the default template for sending an html message
 "defaultmessagetemplate" => array (
-  0,
-  s("The default HTML template to use when sending a message"),
-  "text"
+  'value' => 0,
+  'description' => s("The default HTML template to use when sending a message"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
 ),
 
   # the template for system messages (welcome confirm subscribe etc)
 "systemmessagetemplate" => array (
-  0,
-  s("The HTML wrapper template for system messages"),
-  "text"
+  'value' => 0,
+  'description' => s("The HTML wrapper template for system messages"),
+  'type' => "integer",
+  'min' => 0,
+  'max' => 999, // or max(id) from template
+  'allowempty' => 1,
+  'category'=> 'transactional',
 ),
   ## the location of your subscribe script
   #"public_baseurl" => array("http://[WEBSITE]$pageroot/",
@@ -273,52 +236,65 @@ $default_config = array (
 
   # the location of your subscribe script
 "subscribeurl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
-  s("URL where subscribers can sign up"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
+  'description' => s("URL where subscribers can sign up"),
+  'type' => "url",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
   # the location of your unsubscribe script:
 "unsubscribeurl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
-  s("URL where subscribers can unsubscribe"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
+  'description' => s("URL where subscribers can unsubscribe"),
+  'type' => "url",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
   #0013076: Blacklisting posibility for unknown users
   # the location of your blacklist script:
 "blacklisturl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
-  s("URL where unknown users can unsubscribe (do-not-send-list)"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
+  'description' => s("URL where unknown users can unsubscribe (do-not-send-list)"),
+  'type' => "url",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
 # the location of your confirm script:
 "confirmationurl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
-  s("URL where subscribers have to confirm their subscription"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
+  'description' => s("URL where subscribers have to confirm their subscription"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
   # url to change their preferences
 "preferencesurl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
-  s("URL where subscribers can update their details"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
+  'description' => s("URL where subscribers can update their details"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
   # url to change their preferences
 "forwardurl" => array (
-  $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=forward",
-  s("URL for forwarding messages"),
-  "text"
+  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=forward",
+  'description' => s("URL for forwarding messages"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'subscription',
 ),
 
 'ajax_subscribeconfirmation' => array(
-  s("<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>"),
-  s("Text to display when subscription with an AJAX request was successful"),
-  "text",
-  1
+  'value' => s("<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>"),
+  'description' => s("Text to display when subscription with an AJAX request was successful"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'subscription',
 ),
 
   # the location of your subscribe script
@@ -327,9 +303,11 @@ $default_config = array (
 
   # the subject of the message
 "subscribesubject" => array (
-  s("Request for confirmation"),
-  s("Subject of the message subscribers receive when they sign up"),
-  "text"
+  'value' => s("Request for confirmation"),
+  'description' => s("Subject of the message subscribers receive when they sign up"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # message that is sent when people sign up to a list
@@ -337,7 +315,7 @@ $default_config = array (
   # [CONFIRMATIONURL] will be replaced with the URL where a user has to confirm
   # their subscription
 "subscribemessage" => array (
-  '
+  'value' => '
 
   Almost welcome to our newsletter(s) ...
 
@@ -355,20 +333,24 @@ $default_config = array (
   Thank you
   
     ',
-  s("Message subscribers receive when they sign up"),
-  "textarea"
+  'description' => s("Message subscribers receive when they sign up"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # subject of the message when they unsubscribe
 "unsubscribesubject" => array (
-  s("Goodbye from our Newsletter"),
-  s("Subject of the message subscribers receive when they unsubscribe"),
-  "text"
+  'value' => s("Goodbye from our Newsletter"),
+  'description' => s("Subject of the message subscribers receive when they unsubscribe"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # message that is sent when they unsubscribe
 "unsubscribemessage" => array (
-  '
+  'value' => '
   
   Goodbye from our Newsletter, sorry to see you go.
 
@@ -383,20 +365,24 @@ $default_config = array (
   Thank you
   
   ',
-  s("Message subscribers receive when they unsubscribe"),
-  "textarea"
+  'description' => s("Message subscribers receive when they unsubscribe"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # confirmation of subscription
 "confirmationsubject" => array (
-  s('Welcome to our Newsletter'),
-  s("Subject of the message subscribers receive after confirming their email address"),
-  "text"
+  'value' => s('Welcome to our Newsletter'),
+  'description' => s("Subject of the message subscribers receive after confirming their email address"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # message that is sent to confirm subscription
 "confirmationmessage" => array (
-  '
+  'value' => '
   
   Welcome to our Newsletter
 
@@ -411,15 +397,19 @@ $default_config = array (
   Thank you
   
   ',
-  s("Message subscribers receive after confirming their email address"),
-  "textarea"
+  'description' => s("Message subscribers receive after confirming their email address"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # the subject of the message sent when changing the user details
 "updatesubject" => array (
-  s("[notify] Change of List-Membership details"),
-  s("Subject of the message subscribers receive when they have changed their details"),
-  "text"
+  'value' => s("[notify] Change of List-Membership details"),
+  'description' => s("Subject of the message subscribers receive when they have changed their details"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # the message that is sent when a user updates their information.
@@ -427,7 +417,7 @@ $default_config = array (
   # confirmationinfo is replaced by one of the options below
   # userdata is replaced by the information in the database
 "updatemessage" => array (
-  '
+  'value' => '
   
   This message is to inform you of a change of your details on our newsletter database
 
@@ -448,64 +438,74 @@ $default_config = array (
   Thank you
   
     ',
-  s("Message subscribers receive when they have changed their details"),
-  "textarea"
+  'description' => s("Message subscribers receive when they have changed their details"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # this is the text that is placed in the [!-- confirmation --] location of the above
   # message, in case the email is sent to their new email address and they have changed
   # their email address
 "emailchanged_text" => array (
-  '
+  'value' => '
   When updating your details, your email address has changed.
   Please confirm your new email address by visiting this webpage:
   
   [CONFIRMATIONURL]
   
   ',
-  s("Part of the message that is sent to their new email address when subscribers change their information, and the email address has changed"),
-  "textarea"
+  'description' => s("Part of the message that is sent to their new email address when subscribers change their information, and the email address has changed"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
   # this is the text that is placed in the [!-- confirmation --] location of the above
   # message, in case the email is sent to their old email address and they have changed
   # their email address
 "emailchanged_text_oldaddress" => array (
-  '
+  'value' => '
   Please Note: when updating your details, your email address has changed.
 
   A message has been sent to your new email address with a URL
   to confirm this change. Please visit this website to activate
   your membership.
   ',
-  s("Part of the message that is sent to their old email address when subscribers change their information, and the email address has changed"),
-  "textarea"
+  'description' => s("Part of the message that is sent to their old email address when subscribers change their information, and the email address has changed"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
 "personallocation_subject" => array (
-  s('Your personal location'),
-  s("Subject of message when subscribers request their personal location"),
-  "text"
+  'value' => s('Your personal location'),
+  'description' => s("Subject of message when subscribers request their personal location"),
+  'type' => "text",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
 "personallocation_message" => array (
-  '
+  'value' => '
   
   You have requested your personal location to update your details in our newsletter database.
   The location is below. Please make sure that you use the full line as mentioned below.
-  Sometimes email programme can wrap the line into multiple lines.
+  Sometimes email programmes can wrap the line into multiple lines.
   
   Your personal location is:
   [PREFERENCESURL]
   
   Thank you.
   ',
-  s('Message when subscribers request their personal location'),
-  "textarea"
+  'description' => s('Message when subscribers request their personal location'),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
 ),
 
 "messagefooter" => array (
-  '--
+  'value' => '--
   
     <div class="footer" style="text-align:left; font-size: 75%;">
       <p>This message was sent to [EMAIL] by [FROMEMAIL]</p>
@@ -515,12 +515,14 @@ $default_config = array (
     </div>
 
   ',
-  s("Default footer for sending a campaign"),
-  "textarea"
+  'description' => s("Default footer for sending a campaign"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'campaign',
 ),
 
 "forwardfooter" => array (
-  '
+  'value' => '
      <div class="footer" style="text-align:left; font-size: 75%;">
       <p>This message has been forwarded to you by [FORWARDEDBY].</p>
       <p>You have not been automatically subscribed to this newsletter.</p>
@@ -528,20 +530,26 @@ $default_config = array (
       <p>You can also <a href="[BLACKLISTURL]">opt out completely</a> from receiving any further email from our newsletter application, phpList.</p>
     </div>
   ',
-  s("Footer used when a message has been forwarded"),
-  "textarea"
+  'description' => s("Footer used when a message has been forwarded"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'campaign',
 ),
 
 "pageheader" => array (
-  $defaultheader,
-  s("Header of public pages."),
-  "textarea"
+  'value' => $defaultheader,
+  'description' => s("Header of public pages."),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'subscription-ui',
 ),
 
 "pagefooter" => array (
-  $defaultfooter,
-  s("Footer of public pages"),
-  "textarea"
+  'value' => $defaultfooter,
+  'description' => s("Footer of public pages"),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'subscription-ui',
 ),
 
 //"html_charset" => array (
@@ -555,7 +563,8 @@ $default_config = array (
   //"text"
 //),
 
-"personallocation_message" => array('
+"personallocation_message" => array(
+  'value' => '
 
 You have requested your personal location to update your details from our website.
 The location is below. Please make sure that you use the full line as mentioned below.
@@ -565,48 +574,44 @@ Your personal location is:
 [PREFERENCESURL]
 
 Thank you.
-',s('Message to send when they request their personal location'),"textarea"),
+',
+  'description' => s('Message to send when they request their personal location'),
+  'type' => "textarea",
+  'allowempty' => 0,
+  'category'=> 'transactional',
+),
 
 "remoteurl_append" => array(
-  "",
-  s("String to always append to remote URL when using send-a-webpage"),
-  "text",
-1),
+  'value' => "",
+  'description' => s("String to always append to remote URL when using send-a-webpage"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
+),
 
 "wordwrap" => array(
-  "75",
-  s("Width for Wordwrap of Text messages"),
-  "text",
-  1),
+  'value' => "75",
+  'description' => s("Width for Wordwrap of Text messages"),
+  'type' => "text",
+  'allowempty' => 1,
+  'category'=> 'campaign',
+),
 
-"html_email_style" => array('
-<style type="text/css">
-body { font-size : 11px; font-family: Verdana, Arial, Helvetica, sans-serif; }
-a { font-size: 11px; color: #ff6600; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; }
-a:visited { color: #666666; }
-a:hover {  text-decoration: underline; }
-p { font-weight: normal; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; }
-h1 {font-weight: bold; font-size: 14px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
-h2 {font-weight: bold; font-size: 13px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
-h3 {font-weight: bold; font-size: 12px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; margin:0px; padding:0px;}
-h4 {font-weight: bold; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; margin:0px; padding:0px;}
-hr {width : 100%; height : 1px; color: #ff9900; size:1px;}
-.forwardform {margin: 0 0 0 0; padding: 0 0 0 0;}
-.forwardinput {margin: 0 0 0 0; padding: 0 0 0 0;}
-.forwardsubmit {margin: 0 0 0 0; padding: 0 0 0 0;}
-div.emailfooter { font-size : 11px; font-family: Verdana, Arial, Helvetica, sans-serif; }
-div.emailfooter a { font-size: 11px; color: #ff6600; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; }
-</style>
-',
-  s("CSS for HTML messages without a template"),
-  "textarea"
+"html_email_style" => array(
+  'value' => '',
+  'description' => s("CSS for HTML messages without a template"),
+  'type' => "textarea",
+  'allowempty' => 1,
+  'category'=> 'campaign',
   ),
 
-  "alwayssendtextto" => array(
-    "",
-    s("Domains that only accept text emails, one per line"),
-    "textarea",
-  1)
+"alwayssendtextto" => array(
+  'value' => "",
+  'description' => s("Domains that only accept text emails, one per line"),
+  'type' => "textarea",
+  'allowempty' => 1,
+  'category'=> 'campaign',
+  )
 );
 
 /*
@@ -661,23 +666,6 @@ div.emailfooter a { font-size: 11px; color: #ff6600; font-style: normal; font-fa
 */
 //}
 
-#if (USEFCK) {
-$default_config["fckeditor_width"] = array (
-	600,
-	s("Width in px of FCKeditor Area"),
-	"text"
-);
-$default_config["fckeditor_height"] = array (
-	600,
-	s("Height in px of FCKeditor Area"),
-	"text"
-);
-$default_config["editortoolbar_row2"] = array(
-  "",#"Style,FontFormat,FontName,FontSize",
-  s("Second row of toolbar elements in the editor"),
-  "text",
-  1
-);
 
 ########## certainly do not edit after this #########
 
@@ -735,7 +723,7 @@ if (!function_exists("getconfig")) {
 			$req = Sql_Query_Params($query, array($toget));
 			if (!Sql_Num_Rows($req) || !$hasconf) {
 				if (isset ($default_config[$item])) {
-					$value = $default_config[$item][0];
+					$value = $default_config[$item]['value'];
 				}
 				# save the default value to the database, so we can obtain
 				# the information when running from commandline
@@ -753,8 +741,8 @@ if (!function_exists("getconfig")) {
 		$value = preg_replace('/\[DOMAIN\]/i', $domain, $value);
 		$value = preg_replace('/\[WEBSITE\]/i', $website, $value);
 		$value = preg_replace('/<\?=VERSION\?>/i', VERSION, $value);
-		if (isset ($default_config[$item])) {
-			$type = $default_config[$item][2];
+		if (isset ($default_config[$item]['type'])) {
+			$type = $default_config[$item]['type'];
 		} else {
 			$type = "";
 		}
@@ -797,7 +785,7 @@ function getUserConfig($item, $userid = 0) {
 		$req = Sql_Query_Params($query, array($item));
 		if (!Sql_Num_Rows($req)) {
 		  if ( array_key_exists($item, $default_config) ) { 
-		    $value = $default_config[$item][0];
+		    $value = $default_config[$item]['value'];
 	    }
     } else {
 			$row = Sql_fetch_Row($req);
@@ -850,4 +838,4 @@ $access_levels = array (
 		#   3 => "edit",
 	4 => "owner"
 );
-?>
+

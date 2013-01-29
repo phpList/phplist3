@@ -22,15 +22,15 @@ $(".configValue").each(function() {
 </script>',$id);
 */
 
-$val = $default_config[$id];
-printf('<div class="configEditing">' . $GLOBALS['I18N']->get('Editing') . ' <b>%s</b></div>',$val[1]);
+$configItem = $default_config[$id];
+printf('<div class="configEditing">' . $GLOBALS['I18N']->get('Editing') . ' <b>%s</b></div>',$configItem['description']);
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />',$id,$id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';
 if (isset($dbval))
   $value = $dbval;
 else
-  $value = $val[0];
+  $value = $configItem['value'];
 #  print $id.' '.$value . " ".$website . " ".$domain.'<br/>';
 
 if ($id != "website" && $id != "domain") {
@@ -39,13 +39,16 @@ if ($id != "website" && $id != "domain") {
 }
 
 #  print "VALUE:".$value . '<br/>';
-if ($val[2] == "textarea") {
+if ($configItem['type'] == "textarea") {
   printf('<textarea name="values[%s]" rows=25 cols=55>%s</textarea>',
     $id,htmlspecialchars(stripslashes($value)));
-} else if ($val[2] == "text") {
+} else if ($configItem['type'] == "text" || $configItem['type'] == "url") {
   printf('<input type="text" name="values[%s]" size="70" value="%s" />',
   $id,htmlspecialchars(stripslashes($value)));
-} else if ($val[2] == "boolean") {
+} else if ($configItem['type'] == "integer") {
+  printf('<input type="text" name="values[%s]" size="70" value="%d" />',
+  $id,htmlspecialchars(stripslashes($value)));
+} else if ($configItem['type'] == "boolean") {
   printf ('<select name="values[%s]">',$id);
   print '<option value="true" ';
   if ($value == 'true') {
@@ -62,5 +65,7 @@ if ($val[2] == "textarea") {
   print $GLOBALS['I18N']->get('No') ;
   print '  </option>';
   print '</select>';
+} else {
+  print s('Don\'t know how to handle type '.$configItem['type']);
 }
-print '<input type="hidden" name="save" value="1" /><br/><input class="submit" type="submit" name="savebutton" value="' . $GLOBALS['I18N']->get('save changes') . '" /></div>';
+print '<input type="hidden" name="save" value="1" /><input class="submit" type="submit" name="savebutton" value="' . $GLOBALS['I18N']->get('save changes') . '" /></div>';
