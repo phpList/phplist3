@@ -44,13 +44,35 @@ class phplistPlugin {
    */
   public $editorProvider = false;
   
-  /* array of pages in this plugin to add to the menu
+  /* array of pages in this plugin to add to the main menu
    * 
    * example format: 
+   *      array(
+   *          'page' => array('category' => 'subscribers'),
+   *      )
+   * 
+   * valid categories are:
+   * 
+   * subscribers
+   * campaigns
+   * statistics
+   * system
+   * config
+   * develop (will only show up in "dev" mode)
+   * info
    * 
    */
-  public $menuLinks = array(); 
+  public $topMenuLinks = array(); 
+  
+  /* titles of pages in the plugin, this is used in the listing of the pages in the menu
+   * 
+   * example: 
+   *    array(
+   *      'page' => 'Title of page'
+   *    )
+   */
     
+  public $pageTitles = array();
   
   function name() {
     return $this->name;
