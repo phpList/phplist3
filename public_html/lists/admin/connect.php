@@ -640,11 +640,11 @@ $GLOBALS['pagecategories'] = array(
         'home',
       ),
   ),
-  'plugins' => array(
-    'toplink' => 'plugins',
-    'pages' => array(),
-    'menulinks' => array(),
-  ),
+  //'plugins' => array(
+    //'toplink' => 'plugins',
+    //'pages' => array(),
+    //'menulinks' => array(),
+  //),
 );
 
 function pageCategory($page) {
@@ -746,13 +746,18 @@ function contextMenu() {
     $thispage_category = 'plugins';
   }
 
-  if (!empty($thispage_category)) {
+  if (!empty($thispage_category) && !empty($GLOBALS['pagecategories'][$thispage_category]['menulinks'])) {
     if (sizeof($GLOBALS['pagecategories'][$thispage_category]['menulinks'])) {
       foreach ($GLOBALS['pagecategories'][$thispage_category]['menulinks'] as $category_page) {
         $GLOBALS['context_menu'][$category_page] = $category_page;
       }
     } else {
       unset($GLOBALS['context_menu']['categoryheader']);
+    }
+  } elseif (!empty($_GET['pi'])) {
+    if (method_exists($GLOBALS['plugins'][$_GET['pi']],'adminmenu')) {
+      $GLOBALS['context_menu']['categoryheader'] =  $GLOBALS['plugins'][$_GET['pi']]->name;
+      $GLOBALS['context_menu'] = $GLOBALS['plugins'][$_GET['pi']]->adminMenu();
     }
   }
 
@@ -848,19 +853,18 @@ function recentlyVisited() {
 function topMenu() {
   if (empty($_SESSION["logindetails"])) return '';
   
-  if ($_SESSION["logindetails"]['superuser']) {
+  if ($_SESSION["logindetails"]['superuser']) { // we don't have a system yet to distinguish access to plugins
     if (sizeof($GLOBALS["plugins"])) {
       foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
-        if (isset($GLOBALS['pagecategories']['plugins'])) {
-          array_push($GLOBALS['pagecategories']['plugins']['menulinks'],'main&pi='.$pluginName);
-        }
-        $menulinks = $plugin->menuLinks;
+        //if (isset($GLOBALS['pagecategories']['plugins'])) {
+          //array_push($GLOBALS['pagecategories']['plugins']['menulinks'],'main&pi='.$pluginName);
+        //}
+        $menulinks = $plugin->topMenuLinks;
         foreach ($menulinks as $link => $linkDetails) {
           if (isset($GLOBALS['pagecategories'][$linkDetails['category']])) {
             array_push($GLOBALS['pagecategories'][$linkDetails['category']]['menulinks'],$link.'&pi='.$pluginName);
           }
         }
-#          PageLink2("main&amp;pi=$pluginName",$pluginName).$spe;
       }
     } 
   }
@@ -908,6 +912,7 @@ function topMenu() {
 
 ### hmm, these really should become objects
 function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
+  $plugin = '';
   if ($url)
     $url = "&amp;".$url;
 
@@ -915,14 +920,25 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
   if (strpos($name,'&') !== false) {
     preg_match('/([^&]+)&/',$name,$regs);
     $page = $regs[1];
+    if (preg_match('/&pi=([^&]+)/',$name,$regs)) {
+      $plugin = $regs[1];
+    }
     if (in_array($page,$GLOBALS['disallowpages'])) return '';
   } else {
     $page = $name;
   }
-    
+  
   $access = accessLevel($page);
-  $name = str_replace('&amp;','&',$name);
-  $name = str_replace('&','&amp;',$name);
+  if (empty($plugin) || !is_object($GLOBALS['plugins'][$plugin])) {
+    $name = str_replace('&amp;','&',$name);
+    $name = str_replace('&','&amp;',$name);
+  } else {
+    if (isset($GLOBALS['plugins'][$plugin]->pageTitles[$page])) {
+      $desc = $GLOBALS['plugins'][$plugin]->pageTitles[$page];
+    } else {
+      $desc = $plugin . ' - '.$page;
+    }
+  }
   
   if (empty($desc)) {
     $desc = $name;
@@ -1550,6 +1566,14 @@ function cl_output($message) {
   if ($GLOBALS["commandline"]) {
     @ob_end_clean();
     print $GLOBALS['installation_name'].' - '.strip_tags($message) . "\n";
+    @ob_start();
+  } 
+}
+
+function cl_progress($message) {
+  if ($GLOBALS["commandline"]) {
+    @ob_end_clean();
+    print $GLOBALS['installation_name'].' - '.strip_tags($message) . "\r";
     @ob_start();
   } 
 }
