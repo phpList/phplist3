@@ -1379,3 +1379,11 @@ function pad_right($str,$len) {
 }
 }
 
+function delFsTree($dir) {
+  if (empty($dir) || !is_dir($dir)) return false;
+  $files = array_diff(scandir($dir), array('.','..'));
+  foreach ($files as $file) {
+    (is_dir("$dir/$file")) ? delFsTree("$dir/$file") : unlink("$dir/$file");
+  }
+  return rmdir($dir);
+}
