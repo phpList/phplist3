@@ -582,14 +582,12 @@ $GLOBALS['pagecategories'] = array(
         'stresstest',
         'subscriberstats',
         'tests',
-        'resetstats',
       ),
       'menulinks' => array(
         'checki18n',
         'stresstest',
         'subscriberstats',
         'tests',
-        'resetstats',
       ),
   ),
   'config' => array(
@@ -597,6 +595,7 @@ $GLOBALS['pagecategories'] = array(
       'pages' => array(
         'setup',
         'configure',
+        'plugins',
         'catlists',
         'spage',
         'spageedit',
@@ -614,6 +613,7 @@ $GLOBALS['pagecategories'] = array(
       'menulinks' => array(
         'setup',
         'configure',
+        'plugins',
         'attributes',
         'spage',
         'admins',
