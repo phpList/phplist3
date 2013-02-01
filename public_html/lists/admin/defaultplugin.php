@@ -15,12 +15,12 @@ class phplistPlugin {
   public $name= "Default Plugin";
   public $version= "unknown";
   public $authors= "";
-  public $enabled= 0; // use directly, can be privitsed later and calculated with __get and __set
+  public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
   public $system_root = ''; ## root dir of the phpList admin directory
   #@@Some ideas to implement this:
   # * Start each method with if (!$this->enabled) return parent :: parentMethod($args);
   # * Don't add to manage Global plugins if disabled
-  public $coderoot= "./PLUGIN_ROOTDIR/defaultplugin/"; # coderoot relative to the phplist admin directory
+  public $coderoot = "./PLUGIN_ROOTDIR/defaultplugin/"; # coderoot relative to the phplist admin directory
   # optional configuration variables
   public $configvars = array ();
   # config var    array( type, name [array values]));
@@ -99,6 +99,12 @@ class phplistPlugin {
     }
     $this->importTabTitle = $this->name;
     $this->system_root = dirname(__FILE__);
+    if (isset($this->settings)) {
+      foreach ($this->settings as $item => $itemDetails) {
+        $GLOBALS['default_config'][$item] = $itemDetails;
+      }
+    }
+    
   }
   
   function activate() {
