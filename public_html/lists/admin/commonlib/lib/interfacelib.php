@@ -1033,12 +1033,13 @@ class pageInfo {
       $_SESSION['suppressinfo'][$this->noteid] = 'hide';
     }
     
-    $html = '<div class="note '.$this->noteid.'">';
-    if ($this->addhide) {
+    $html = '<div id="note" class="accordion" role="tablist"><h3 role="tab" tabindex="'.$this->noteid.'" aria-expanded="true">'.
+            '<a name="info">&nbsp;</a></h3><div role="tabpanel">';
+/*    if ($this->addhide) {
       $html .= '<a href="./?page='.$GLOBALS['page'].'&amp;action=hidenote&amp;note='.$this->noteid.'" class="hide ajaxable" title="'.$GLOBALS['I18N']->get('Close this box').'" />'.$GLOBALS['I18N']->get('Hide').'</a>';
-    }
+    } */
     $html .= $this->infocontent;
-    $html  .= '</div>'; ## end of info div
+    $html  .= '</div></div>'; ## end of info div
     return $html;
   }
 }
