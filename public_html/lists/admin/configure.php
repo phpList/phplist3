@@ -100,7 +100,7 @@ if (empty($id)) {
         $value = $default_config[$configItem]['value'];
       }
       if (!in_array($configItem,$GLOBALS['noteditableconfig'])) {
-        printf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b> <span class="moreinfo"><a href="http://resources.phplist.com/config:%s">?</a></span></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$configItem);
+        printf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b><a class="helpdialog" href="http://resources.phplist.com/config:%s">?</a></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$configItem);
         printf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
         if ($alternate == 1) {
           $alternate = 2;
