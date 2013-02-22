@@ -11,6 +11,8 @@ if (empty($_GET['url'])) return;
 
 $url = expandURL($_GET['url']);
 
+$isOk = true;
+
 $headreq = new HTTP_Request($url,$request_parameters);
 $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
 if (!PEAR::isError($headreq->sendRequest(false))) {
@@ -21,11 +23,15 @@ if (!PEAR::isError($headreq->sendRequest(false))) {
     } else {
       $status = $GLOBALS['I18N']->get('Error fetching URL');
     }
-    return;
+    $isOk = false;
   }
 } else {
   $status = $GLOBALS['I18N']->get('Error fetching URL');
-  return;
+  $isOk = false;
 }
 
-$status = '<span class="pass">'.$GLOBALS['I18N']->get('URL is valid').'</span>';
+if ($isOk) {
+  $status = '<span class="pass">'.$GLOBALS['I18N']->get('URL is valid').'</span>';
+} else {
+  $status = '<span class="fail">'.$status.'</span>';
+}
