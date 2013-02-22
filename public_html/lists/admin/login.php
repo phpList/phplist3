@@ -2,7 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (TEST) {
-  print "<p>" . $GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist</p>";
+  print Info($GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist");
 }
 
 $page = '';
