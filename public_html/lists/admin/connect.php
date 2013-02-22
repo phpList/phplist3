@@ -431,13 +431,13 @@ function Warn($msg) {
 function Info($msg,$noClose = false) {
   if (!empty($GLOBALS['commandline'])) {
     @ob_end_clean();
-    print "\n".strip_tags($GLOBALS["I18N"]->get("information").": ".$msg)."\n";
+    print "\n".strip_tags($msg)."\n";
     @ob_start();
   } else {
     ## generate some ID for the info div
     $id = substr(md5($msg),0,15);
     $pageinfo = new pageInfo($id);
-    $pageinfo->setContent('<p>'.$GLOBALS["I18N"]->get("information").": $msg</p>");
+    $pageinfo->setContent('<p>'.$msg.'</p>');
     if ($noClose && method_exists($pageinfo,'suppressHide')) {
       $pageinfo->suppressHide();
     }
