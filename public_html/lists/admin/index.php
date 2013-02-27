@@ -335,11 +335,6 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
 
 require_once dirname(__FILE__).'/setpermissions.php';
 $include = '';
-if (!$ajax) {
-  include 'ui/'.$GLOBALS['ui']."/header.inc";
-} elseif (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
-  include 'ui/'.$GLOBALS['ui']."/mainmenu.php";
-}  
 
 if ($page != '' && $page != 'install') {
   preg_match("/([\w_]+)/",$page,$regs);
@@ -349,6 +344,14 @@ if ($page != '' && $page != 'install') {
 } else {
   $include = $GLOBALS['homepage'].".php";
 }
+$pageinfo = new pageInfo();
+$pageinfo->fetchInfoContent($include);
+
+if (!$ajax) {
+  include 'ui/'.$GLOBALS['ui']."/header.inc";
+} elseif (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
+  include 'ui/'.$GLOBALS['ui']."/mainmenu.php";
+}  
 
 if (!$ajax) {
   print '<h4 class="pagetitle">'.strtolower($page_title).'</h4>';
@@ -424,9 +427,6 @@ if (isset($_GET['page']) && $_GET['page'] == 'about') {
   $page = 'about';
   $include = 'about.php';
 }
-
-$pageinfo = new pageInfo();
-$pageinfo->fetchInfoContent($include);
 print $pageinfo->show();
 
 if (!empty($_GET['action']) && $_GET['page'] != 'pageaction') {
