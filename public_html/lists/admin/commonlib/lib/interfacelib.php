@@ -1041,6 +1041,10 @@ class pageInfo {
     $html  .= '</div>'; ## end of info div
     return $html;
   }
+  
+  public function content() {
+    return $this->infocontent;
+  }
 }
 
 class button {
