@@ -1043,7 +1043,10 @@ class pageInfo {
   }
   
   public function content() {
-    return $this->infocontent;
+    /* return current content, and then clear it, so it won't show twice */
+    $return = $this->infocontent;
+    $this->infocontent = '';
+    return $return;
   }
 }
 
