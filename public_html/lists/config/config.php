@@ -160,6 +160,7 @@ define("ASKFORPASSWORD",0);
 # if you use encrypted passwords, users can only request you as an administrator to
 # reset the password. They will not be able to request the password from
 # the system
+# if you change this, you may have to use the "Forgot password" system to get back in your installation
 define("ENCRYPTION_ALGO",'sha256');
 
 # if you also want to force people who unsubscribe to provide a password before

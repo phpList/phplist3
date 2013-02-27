@@ -340,6 +340,13 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
         Sql_Create_Table($tables["admin_password_request"],$DBstruct["admin_password_request"],1);
         Sql_Create_Table($tables["admintoken"],$DBstruct["admintoken"],1);
         Sql_Create_Table($tables["i18n"],$DBstruct["i18n"],1);
+        $req = Sql_Query(sprintf('select loginname,password from %s where length(password) < %d',$GLOBALS['tables']['admin'],$GLOBALS['hash_length']));
+        while ($row = Sql_Fetch_Assoc($req)) {
+          $encryptedPassDB =  hash(ENCRYPTION_ALGO,$row['password']);
+          $query = "update %s set password = '%s' where loginname = ?";
+          $query = sprintf($query, $GLOBALS['tables']['admin'], $encryptedPassDB);
+          Sql_Query_Params($query, array($row['loginname']));
+        }
 #        Sql_Create_Table($tables["gchartcache"],$DBstruct["gchartcache"],1); ## really need this?
       }
       break;
