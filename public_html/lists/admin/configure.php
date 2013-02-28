@@ -71,7 +71,7 @@ if (!empty($_REQUEST['save'])) {
       }
     }
     if (!$haserror) {
-      print Info($GLOBALS['I18N']->get('Changes Saved'));
+      print '<div class="actionresult">'.s('Changes Saved').'</div>';
       unset($id);
     }
     
@@ -88,8 +88,9 @@ if (empty($id)) {
   $alternate = 1;
 
   foreach ($configCategories as $configCategory => $configItems) {
-    print '<fieldset id="'.$configCategory.'">';
-    print '<legend>'.s($configCategory).' '.s('settings').'</legend>';
+    $some = 0;
+    $categoryHTML = '<fieldset id="'.$configCategory.'">';
+    $categoryHTML .= '<legend>'.s($configCategory).' '.s('settings').'</legend>';
   
     foreach ($configItems as $configItem) {
       
@@ -100,8 +101,9 @@ if (empty($id)) {
         $value = $default_config[$configItem]['value'];
       }
       if (!in_array($configItem,$GLOBALS['noteditableconfig'])) {
-        printf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b><a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$_SESSION['adminlanguage']['iso'],$configItem);
-        printf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
+        $some = 1;
+        $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b><a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$_SESSION['adminlanguage']['iso'],$configItem);
+        $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
         if ($alternate == 1) {
           $alternate = 2;
         } else {
@@ -109,7 +111,10 @@ if (empty($id)) {
         }
       }
     }
-    print '</fieldset>';
+    $categoryHTML .= '</fieldset>';
+    if ($some) {
+      print $categoryHTML;
+    }
   }
   print '</form>';
 } else {
