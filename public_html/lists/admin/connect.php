@@ -166,6 +166,19 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
     if ($value == "true" || $value == "yes") {
     $value = 1;
   }
+  $configInfo = $GLOBALS['default_config'][$item];
+  switch ($configInfo['type']) {
+    case 'integer':
+      $value = sprintf('%d',$value);
+      if ($value < $configInfo['min']) $value = $configInfo['min'];
+      if ($value > $configInfo['max']) $value = $configInfo['max'];
+      break;
+  }
+  ## reset to default if not set, and required
+  if (!$configInfo['allowempty'] && empty($value)) {
+    $value = $configInfo['value'];
+  }
+  
   ## force reloading config values in session
   unset($_SESSION['config']);
   ## and refresh the config immediately https://mantis.phplist.com/view.php?id=16693
@@ -418,7 +431,7 @@ function Warn($msg) {
     print "\n".strip_tags($GLOBALS["I18N"]->get("warning").": ".$msg)."\n";
     @ob_start();
   } else {
-    print '<div align=center class="error">'.$GLOBALS["I18N"]->get("warning").": $msg </div>";
+    print '<div align=center class="error">'."$msg </div>";
     $message = '
 
     An warning has occurred in the Mailinglist System
