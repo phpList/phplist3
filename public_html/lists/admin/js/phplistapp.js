@@ -42,7 +42,7 @@ function refreshExport() {
   document.location = document.location;
 }
 
-function openDialog(url) {
+function openHelpDialog(url) {
   $("#dialog").dialog({
     minHeight: 400,
     width: 600,
@@ -113,11 +113,11 @@ $(document).ready(function() {
   }
 
   $(".opendialog").click(function() {
-    openDialog(this.href);
+    openHelpDialog(this.href);
     return false;
   });
   $(".helpdialog").click(function() {
-    openDialog(this.href);
+    openHelpDialog(this.href);
     return false;
   });
   $(".closedialog").click(function() {
