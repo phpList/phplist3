@@ -15,6 +15,7 @@ class phplistPlugin {
   public $name= "Default Plugin";
   public $version= "unknown";
   public $authors= "";
+  public $description = 'No description';
   public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
   public $system_root = ''; ## root dir of the phpList admin directory
   #@@Some ideas to implement this:
