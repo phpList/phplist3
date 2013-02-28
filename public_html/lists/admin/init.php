@@ -134,6 +134,8 @@ $hash_length = strlen(hash(ENCRYPTION_ALGO,'some text'));
 
 define('PHPLISTINIT',true);
 if (!defined("PHPMAILER")) define("PHPMAILER",1);
+if (!defined('WARN_ABOUT_PHP_SETTINGS')) define('WARN_ABOUT_PHP_SETTINGS',1);
+if (!defined('NUMATTACHMENTS')) define('NUMATTACHMENTS',1);
 if (!defined('PHPMAILERHOST')) define("PHPMAILERHOST",'');
 if (!defined("MANUALLY_PROCESS_QUEUE")) define("MANUALLY_PROCESS_QUEUE",1);
 if (!defined("CHECK_SESSIONIP")) define("CHECK_SESSIONIP",1);
