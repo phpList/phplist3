@@ -86,35 +86,35 @@ $default_config = array (
   'value' => '',
   'description' => s("List of people to CC in system emails (separate by commas)"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'reporting',
 ),
 "campaignfrom_default" => array(
   'value' => '',
   'description' => s("Default for 'From:' in a campaign"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 "notifystart_default" => array(
   'value' => '',
   'description' => s("Default for 'address to alert when sending starts'"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 "notifyend_default" => array(
   'value' => '',
   'description' => s("Default for 'address to alert when sending finishes'"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 "always_add_googletracking" => array(
   'value' => '0',
   'description' => s("Always add Google tracking code to campaigns"),
   'type' => "boolean",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
   # report address is the person who gets the reports
@@ -122,7 +122,7 @@ $default_config = array (
   'value' => 'listreports@[DOMAIN]',
   'description' => s("Who gets the reports (email address, separate multiple emails with a comma)"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'reporting',
 ),
 
@@ -158,7 +158,7 @@ $default_config = array (
   'value' => "1",
   'description' => s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up (0/1)"),
   'type' => "boolean",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'subscription-ui',
 ),
 
@@ -168,7 +168,7 @@ $default_config = array (
   'value' => "",
   'description' => s("Categories for lists. Separate with commas."),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'segmentation',
 ),
 
@@ -196,7 +196,7 @@ $default_config = array (
   'value' => "0",
   'description' => s("Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"),
   'type' => "boolean",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'reporting',
 ),
 
@@ -207,7 +207,7 @@ $default_config = array (
   'type' => "integer",
   'min' => 1,
   'max' => 999,  // max(id) from subscribepage
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'subscription',
 ),
 
@@ -216,7 +216,7 @@ $default_config = array (
   'value' => 0,
   'description' => s("The default HTML template to use when sending a message"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 
@@ -227,7 +227,7 @@ $default_config = array (
   'type' => "integer",
   'min' => 0,
   'max' => 999, // or max(id) from template
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'transactional',
 ),
   ## the location of your subscribe script
@@ -293,7 +293,7 @@ $default_config = array (
   'value' => s("<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>"),
   'description' => s("Text to display when subscription with an AJAX request was successful"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'subscription',
 ),
 
@@ -585,7 +585,7 @@ Thank you.
   'value' => "",
   'description' => s("String to always append to remote URL when using send-a-webpage"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 
@@ -593,7 +593,7 @@ Thank you.
   'value' => "75",
   'description' => s("Width for Wordwrap of Text messages"),
   'type' => "text",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
 ),
 
@@ -601,7 +601,7 @@ Thank you.
   'value' => '',
   'description' => s("CSS for HTML messages without a template"),
   'type' => "textarea",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
   ),
 
@@ -609,7 +609,7 @@ Thank you.
   'value' => "",
   'description' => s("Domains that only accept text emails, one per line"),
   'type' => "textarea",
-  'allowempty' => 1,
+  'allowempty' => true,
   'category'=> 'campaign',
   )
 );
