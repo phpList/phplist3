@@ -175,7 +175,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
       break;
   }
   ## reset to default if not set, and required
-  if (!$configInfo['allowempty'] && empty($value)) {
+  if (empty($configInfo['allowempty']) && empty($value)) {
     $value = $configInfo['value'];
   }
   
