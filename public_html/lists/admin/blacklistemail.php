@@ -32,6 +32,9 @@ if (isBlackListed($email)) {
   cl_output('OK');
   exit;
 }
+## do this immediately
+Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"',$GLOBALS['tables']['user'],$email));
+
 addEmailToBlackList($email,'blacklisted due to spam complaints',$date);
 cl_output('OK '.$email);
 exit;
