@@ -53,6 +53,9 @@ function openHelpDialog(url) {
   var destpage = urlParameter('page',url);
   url = url.replace(/page=/,'origpage=');
   $("#dialog").load(url+'&ajaxed=true&page=pageaction&action='+destpage);
+  $(".ui-widget-overlay").click(function() {
+    $("#dialog").dialog('close');
+  });
 }
 
 function totalSentUpdate(msgid) {
