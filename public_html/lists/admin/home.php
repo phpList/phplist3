@@ -332,9 +332,9 @@ if (sizeof($GLOBALS["plugins"])) {
     if (is_array($menu)) {
       foreach ($menu as $page => $desc) {
         $some = 1;
-        $ls->addElement($page,PageUrl2("$page&amp;pi=$pluginName"));
-        $ls->addColumn($page,"&nbsp;",PageLinkClass("$page&amp;pi=$pluginName",$GLOBALS['I18N']->get($desc),'','hometext'));
-        $ls->setClass($page,"plugin");
+        $ls->addElement($pluginName.' '.$page,PageUrl2("$page&amp;pi=$pluginName"));
+        $ls->addColumn($pluginName.' '.$page,"&nbsp;",PageLinkClass("$page&amp;pi=$pluginName",$GLOBALS['I18N']->get($desc),'','hometext'));
+        $ls->setClass($pluginName.' '.$page,"plugin");
       }
     }
   }
