@@ -10,9 +10,9 @@ if (!defined("PLUGIN_ROOTDIR")) {
 $pluginRootDirs = array();
 if (defined('PLUGIN_ROOTDIRS')) {
   $pluginRootDirs = explode(';',PLUGIN_ROOTDIRS);
-} else {
-  $pluginRootDirs = array(PLUGIN_ROOTDIR);
-}  
+}
+$pluginRootDirs[] = PLUGIN_ROOTDIR;
+$pluginRootDirs = array_unique($pluginRootDirs);
 
 include_once dirname(__FILE__). "/defaultplugin.php";
 $pluginFiles = array();
