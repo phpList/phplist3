@@ -30,9 +30,9 @@ if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
 require_once dirname(__FILE__).'/admin/'.$GLOBALS["database_module"];
 require_once dirname(__FILE__)."/texts/english.inc";
 include_once dirname(__FILE__)."/texts/".$GLOBALS["language_module"];
+include_once dirname(__FILE__)."/admin/languages.php";
 require_once dirname(__FILE__)."/admin/defaultconfig.inc";
 require_once dirname(__FILE__).'/admin/connect.php';
-include_once dirname(__FILE__)."/admin/languages.php";
 
 $id = sprintf('%d',$_GET["id"]);
 
