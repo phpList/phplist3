@@ -529,18 +529,16 @@ $I18N = new phplist_I18N();
  * will look for the translation of the string and substitute the parameters
  *  
  **/
+
 function s($text) {
   ## allow overloading with sprintf paramaters
-  $num_args = func_num_args();
-  if ($num_args > 1) {
+  $translation = $GLOBALS['I18N']->get($text);
+
+  if (func_num_args() > 1) {
     $args = func_get_args();
     array_shift($args);
-    $translation = $GLOBALS['I18N']->get($text);
-    $params = join(",",$args);
-    eval('$return = sprintf("'.$translation.'",'.$params.');');
-    return $return;
+    $translation = vsprintf($translation, $args);
   }
-  return $GLOBALS['I18N']->get($text);
+  return $translation;
 }
-
 
