@@ -225,7 +225,7 @@ class PHPlistMailer extends PHPMailer {
       return $body;
     }
 
-    function Send($to_name = "", $to_addr, $from_name, $from_addr, $subject = '', $headers = '',$envelope = '') {
+    function compatSend($to_name = "", $to_addr, $from_name, $from_addr, $subject = '', $headers = '',$envelope = '') {
       if (!empty($from_addr) && method_exists($this,'SetFrom')) {
         $this->SetFrom($from_addr, $from_name);
       } else {
@@ -255,13 +255,6 @@ class PHPlistMailer extends PHPMailer {
             }
           }
         }
-/*
- * ## this needs more work
-        $header = $this->CreateHeader();
-        $body = $this->CreateBody();
-        
-        $this->mailsize = strlen($header.$body);
-*/
         if(!parent::Send()) {
           #echo "Message was not sent <p class="x">";
           logEvent("Error sending email to ".$to_addr);
@@ -269,6 +262,14 @@ class PHPlistMailer extends PHPMailer {
         }#
       } else {
         logEvent('Error sending email to '.$to_addr);
+        return 0;
+      }
+      return 1;
+    }
+
+    function Send() {
+      if(!parent::Send()) {
+        logEvent("Error sending email to ".$to_addr);
         return 0;
       }
       return 1;
