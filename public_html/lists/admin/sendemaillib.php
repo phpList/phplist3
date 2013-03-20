@@ -897,7 +897,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $destinationemail = $GLOBALS['developer_email'];
     }
     
-    if (!$mail->send("", $destinationemail, $fromname, $fromemail, $subject)) {
+    if (!$mail->compatSend("", $destinationemail, $fromname, $fromemail, $subject)) {
 #    if (!$mail->send(array($destinationemail),'spool')) {
       output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
         $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail));
