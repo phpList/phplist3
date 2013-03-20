@@ -611,7 +611,25 @@ Thank you.
   'type' => "textarea",
   'allowempty' => true,
   'category'=> 'campaign',
-  )
+  ),
+
+'tld_last_sync' => array(
+  'value' => "0",
+  'description' => s("last time TLDs were fetched"),
+  'type' => "text",
+  'allowempty' => true,
+  'category'=> 'system',
+  'hidden' => true,
+  ),
+'internet_tlds' => array(
+  'value' => "",
+  'description' => s("Top level domains"),
+  'type' => "textarea",
+  'allowempty' => true,
+  'category'=> 'system',
+  'hidden' => true,
+  ),
+
 );
 
 /*
