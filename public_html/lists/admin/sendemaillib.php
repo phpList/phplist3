@@ -430,6 +430,11 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     output('pass to plugins for destination email end');
   }
 
+  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+    $textmessage = $plugin->parseOutgoingTextMessage($messageid,$textmessage,$destinationemail, $userdata);
+    $htmlmessage = $plugin->parseOutgoingHTMLMessage($messageid,$htmlmessage,$destinationemail, $userdata);
+  }
+
   ## click tracking
   # for now we won't click track forwards, as they are not necessarily users, so everything would fail
   if (VERBOSE && $getspeedstats) {
@@ -712,10 +717,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       output($GLOBALS['I18N']->get('sendingtextonlyto')." $domaincheck");
   }
   
-/*
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    $textmessage = $plugin->parseOutgoingTextMessage($messageid,$textmessage,$destinationemail, $userdata);
-    $htmlmessage = $plugin->parseOutgoingHTMLMessage($messageid,$htmlmessage,$destinationemail, $userdata);
+#    $textmessage = $plugin->parseOutgoingTextMessage($messageid,$textmessage,$destinationemail, $userdata);
+#    $htmlmessage = $plugin->parseOutgoingHTMLMessage($messageid,$htmlmessage,$destinationemail, $userdata);
     $plugin_attachments = $plugin->getMessageAttachment($messageid,$mail->Body);
     if (!empty($plugin_attachments[0]['content'])) {
       foreach ($plugins_attachments as $plugin_attachment) {
@@ -725,7 +729,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       }
     }
   }
-*/
 
   # so what do we actually send?
   switch($cached[$messageid]["sendformat"]) {
@@ -894,7 +897,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $destinationemail = $GLOBALS['developer_email'];
     }
     
-#    $mail->setSMTPParams('nogal');
     if (!$mail->send("", $destinationemail, $fromname, $fromemail, $subject)) {
 #    if (!$mail->send(array($destinationemail),'spool')) {
       output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
