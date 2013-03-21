@@ -166,7 +166,14 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
     if ($value == "true" || $value == "yes") {
     $value = 1;
   }
-  $configInfo = $GLOBALS['default_config'][$item];
+  if (isset($GLOBALS['default_config'][$item])) {
+    $configInfo = $GLOBALS['default_config'][$item];
+  } else {
+    $configInfo = array(
+      'type' => 'unknown',
+      'value' => '',
+    );
+  }
   switch ($configInfo['type']) {
     case 'integer':
       $value = sprintf('%d',$value);
