@@ -185,6 +185,9 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   if (empty($configInfo['allowempty']) && empty($value)) {
     $value = $configInfo['value'];
   }
+  if (!empty($configInfo['hidden'])) {
+    $editable = false;
+  }
   
   ## force reloading config values in session
   unset($_SESSION['config']);
