@@ -6,7 +6,6 @@ $GLOBALS['disallowpages'] = array(
 'addprefix',
 'classlistmailer',
 'connect',
-'convertstats',
 'date',
 'defaultplugin',
 'defaulttest',
