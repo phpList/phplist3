@@ -467,6 +467,15 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     Sql_Query(sprintf('replace into %s (item,value,editable) values("updatelastcheck",current_timestamp,0)',
       $tables["config"]));
     Info("Success");
+    
+##  check for old click track data
+    $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
+    if ($num[0] > 0) {
+      print '<p class="information">'.$GLOBALS['I18N']->get('The clicktracking system has changed').'</p>';
+      printf($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]);
+      print PageLink2("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'));
+    }
+        
     if ($GLOBALS['commandline']) {
       output($GLOBALS['I18N']->get('Upgrade successful'));
     }
