@@ -82,18 +82,13 @@ while (list($table, $val) = each($DBstruct)) {
         } else {
           $adminpass = 'phplist';
         }
-        if (ENCRYPT_ADMIN_PASSWORDS) {
-          $adminpwd = md5($adminpass);
-        } else {
-          $adminpwd = $adminpass;
-        }
         
         Sql_Query(sprintf('insert into %s (loginname,namelc,email,created,modified,password,passwordchanged,superuser,disabled)
           values("%s","%s","%s",current_timestamp,current_timestamp,"%s",current_timestamp,%d,0)',
-          $tables["admin"],"admin","admin",$adminemail,$adminpwd,1));
+          $tables["admin"],"admin","admin",$adminemail,encryptPass($adminpass),1));
 
         ## let's add them as a subscriber as well
-        addNewUser($adminemail,$adminpwd);
+        addNewUser($adminemail,$adminpass);
         /* to send the token at the end, doesn't work yet
         $adminid = Sql_Insert_Id();
         */
