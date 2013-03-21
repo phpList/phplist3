@@ -376,14 +376,7 @@ function sendMailPhpMailer ($to,$subject,$message) {
   # 0008549: message envelope not passed to php mailer,
   $mail->Sender = $GLOBALS["message_envelope"];
 
-  $mail->build_message(
-      array(
-        "html_charset" => getConfig("html_charset"),
-        "html_encoding" => HTMLEMAIL_ENCODING,
-        "text_charset" => getConfig("text_charset"),
-        "text_encoding" => TEXTEMAIL_ENCODING)
-      );
-  return $mail->send("", $destinationemail, $fromname, $fromemail, $subject);
+  return $mail->compatSend("", $destinationemail, $fromname, $fromemail, $subject);
 }
 
 function sendMailDirect($destinationemail, $subject, $message) {
@@ -874,8 +867,10 @@ function fetchUrl($url,$userdata = array()) {
   } elseif ($GLOBALS['has_pear_http_request']) {
     @require_once "HTTP/Request.php";
   } else {
-    print Error('HTTP/Request not available, cannot continue');
-    return;
+  #  print Error('HTTP/Request not available, cannot continue');
+    ## @@TODO, should simply try using fopen, that is quite likely to work
+  
+    return false;
   }
  # logEvent("Fetching $url");
   if (sizeof($userdata)) {
@@ -1302,30 +1297,36 @@ function verifyToken() {
 function refreshTlds($force = 0) {
   ## fetch list of Tlds and store in DB
   $lastDone = getConfig('tld_last_sync');
+  $tlds = '';
   ## let's not do this too often
   if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
     ## even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
-    SaveConfig('tld_last_sync',time(),0);
+  #  SaveConfig('tld_last_sync',time(),0);
     if (defined('TLD_AUTH_LIST')) {
       $tlds = fetchUrl(TLD_AUTH_LIST);
     }
-    if (defined('TLD_AUTH_MD5')) {
+    if ($tlds && defined('TLD_AUTH_MD5')) {
       $tld_md5 = fetchUrl(TLD_AUTH_MD5);
       list($remote_md5,$fname) = explode(' ',$tld_md5);
       $mymd5 = md5($tlds);
-      if ($remote_md5 == $mymd5) {
 #        print 'OK: '.$remote_md5.' '.$mymd5;
-        $lines = explode("\n",$tlds);
-        $tld_list = '';
-        foreach ($lines as $line) {
-          ## for now, only handle ascii lines
-          if (preg_match('/^\w+$/',$line)) {
-            $tld_list .= $line.'|';
-          }
+      $validated = $remote_md5 == $mymd5;
+    } else {
+      $tlds = file_get_contents(dirname(__FILE__).'/data/tlds-alpha-by-domain.txt');
+      $validated = true;
+    }
+    
+    if ($validated) {
+      $lines = explode("\n",$tlds);
+      $tld_list = '';
+      foreach ($lines as $line) {
+        ## for now, only handle ascii lines
+        if (preg_match('/^\w+$/',$line)) {
+          $tld_list .= $line.'|';
         }
-        $tld_list = substr($tld_list,0,-1);
-        SaveConfig('internet_tlds',strtolower($tld_list),0);
       }
+      $tld_list = substr($tld_list,0,-1);
+      SaveConfig('internet_tlds',strtolower($tld_list),0);
     }
 #  } else {
 #    print $lastDone;
