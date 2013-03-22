@@ -118,6 +118,16 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables["config"],1)) {
     $plugin->activate();
   }
 }
+if ($_GET['page'] == 'logout') {
+  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+    $plugin->logout();
+  }
+
+  $_SESSION["adminloggedin"] = "";
+  $_SESSION["logindetails"] = "";
+  session_destroy();
+}
+
 ## send a header for IE
 header('X-UA-Compatible: IE=Edge');
 ## tell SE's to leave us alone
