@@ -524,9 +524,9 @@ $GLOBALS['pagecategories'] = array(
         'export',
         'listbounces',
         'massremove',
-        'massunconfirm',
+ #       'massunconfirm',
         'reconcileusers',
-        'usercheck',
+ #       'usercheck',
       ),
       
    ),
