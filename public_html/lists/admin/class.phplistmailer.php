@@ -38,7 +38,7 @@ class PHPlistMailer extends PHPMailer {
     function PHPlistMailer($messageid,$email,$inBlast = true,$exceptions = false) {
       parent::__construct($exceptions);
       parent::SetLanguage('en', dirname(__FILE__) . '/phpmailer/language/');
-      $this->addCustomHeader("X-Mailer: phplist v".VERSION);
+      $this->addCustomHeader("X-Mailer: phpList v".VERSION);
       $this->addCustomHeader("X-MessageID: $messageid");
       $this->addCustomHeader("X-ListMember: $email");
 
