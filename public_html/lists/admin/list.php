@@ -193,7 +193,7 @@ while ($row = Sql_fetch_array($result)) {
     $desc = $plugin->displayLists($row) . $desc;
   }
 
-  $element = '<!-- '.$row['id'].'-->'.$row['name'];
+  $element = '<!-- '.$row['id'].'-->'.stripslashes($row['name']);
   $ls->addElement($element,PageUrl2("editlist&amp;id=".$row["id"]));
   $ls->setClass($element,'row1');
   $ls->addColumn($element,
