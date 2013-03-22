@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-$subselect = '';
+$subselectimp = ''; ## do not use subselect: https://mantis.phplist.com/view.php?id=16725
 @ob_end_flush();
 
 if (!ALLOW_IMPORT) {
@@ -102,27 +102,27 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
   $access = accessLevel("import1");
   switch ($access) {
     case "owner":
-      $subselect = " where owner = ".$_SESSION["logindetails"]["id"];break;
+      $subselectimp = " where owner = ".$_SESSION["logindetails"]["id"];break;
     case "all":
-      $subselect = "";break;
+      $subselectimp = "";break;
     case "none":
     default:
-      $subselect = " where id = 0";break;
+      $subselectimp = " where id = 0";break;
   }
 }
 
 if (isset($_GET['list'])) {
   $id = sprintf('%d',$_GET['list']);
-  if (!empty($subselect)) {
-    $subselect .= ' and id = '.$id;
+  if (!empty($subselectimp)) {
+    $subselectimp .= ' and id = '.$id;
   } else {
-    $subselect .= ' where id = '.$id;
+    $subselectimp .= ' where id = '.$id;
   }
 } 
 #print PageLinkDialog('addlist',$GLOBALS['I18N']->get('Add a new list'));
 print FormStart(' enctype="multipart/form-data" name="import"');
 
-$result = Sql_query("SELECT id,name FROM ".$tables["list"]."$subselect ORDER BY listorder");
+$result = Sql_query("SELECT id,name FROM ".$tables["list"]."$subselectimp ORDER BY listorder");
 $total = Sql_Num_Rows($result);
 $c=0;
 if ($total == 1) {
@@ -131,7 +131,7 @@ if ($total == 1) {
 } else {
   $content .= '<p>'.$GLOBALS['I18N']->get('Select the lists to add the emails to').'</p>';
 
-  $content .= ListSelectHTML($selected_lists,'importlists',$subselect);
+  $content .= ListSelectHTML($selected_lists,'importlists',$subselectimp);
 }
 
 $content .= '<p class="information">'.
