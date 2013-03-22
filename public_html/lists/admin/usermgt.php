@@ -24,12 +24,15 @@ foreach ($attrmenu as $page => $desc) {
     $attributehtml .= '<li>'.$link.'</li>';
   }
 }
-$html .= '<li id="edit-values">'.$GLOBALS['I18N']->get('edit values for attributes').'<ul>'.$attributehtml.'</ul>';
+if (!empty($attributehtml)) {
+  $html .= '<li id="edit-values">'.$GLOBALS['I18N']->get('edit values for attributes').'<ul>'.$attributehtml.'</ul>';
+}
 
 $html .= '<li id="reconcileusers">'.PageLink2("reconcileusers",$GLOBALS['I18N']->get('Reconcile Subscribers')).'</li>';
 $html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('Check for Subscribers')).'</li>';
 $html .= '<li id="massunconfirm">'.PageLink2("massunconfirm",$GLOBALS['I18N']->get('mass unconfirm users')).'</li>';
 $html .= '<li id="massremove">'.PageLink2("massremove",$GLOBALS['I18N']->get('mass remove users')).'</li>';
+$html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('verify subscribers')).'</li>';
 if (ALLOW_IMPORT) {
   $html .= '<li id="import">'.PageLink2("import",$GLOBALS['I18N']->get('import')).'</li>';
 }
