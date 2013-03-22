@@ -62,8 +62,8 @@ if (isset($_GET['delete'])) {
   $result = Sql_query(sprintf('delete from '.$tables['list'].' where id = %d %s',$delete,$subselect_and));
   $done = Sql_Affected_Rows();
   if ($done) {
-    $result = Sql_query('delete from '.$tables['listuser']." where listid = $delete $subselect_and");
-    $result = Sql_query('delete from '.$tables['listmessage']." where listid = $delete $subselect_and");
+    $result = Sql_query('delete from '.$tables['listuser']." where listid = $delete");
+    $result = Sql_query('delete from '.$tables['listmessage']." where listid = $delete");
   }
   $actionresult .= '..' . $GLOBALS['I18N']->get('Done') . "<br /><hr /><br />\n";
   $_SESSION['action_result'] = $actionresult;
