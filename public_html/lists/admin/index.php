@@ -120,6 +120,8 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables["config"],1)) {
 }
 ## send a header for IE
 header('X-UA-Compatible: IE=Edge');
+## tell SE's to leave us alone
+header('X-Robots-Tag: noindex');
 
 if (!$ajax && !$GLOBALS["commandline"]) {
   include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
