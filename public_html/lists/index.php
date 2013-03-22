@@ -724,7 +724,7 @@ function unsubscribePage($id) {
       $_POST["unsubscribereason"] = 'Forwarded receiver requested blacklist';
     }
   }
-  if (UNSUBSCRIBE_JUMPOFF) {
+  if (UNSUBSCRIBE_JUMPOFF || !empty($_GET['jo'])) {
     $_POST["unsubscribe"] = 1;
     $_REQUEST["email"] = $email;
     $_POST["unsubscribereason"] = '"Jump off" set, reason not requested';

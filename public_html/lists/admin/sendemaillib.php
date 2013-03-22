@@ -140,8 +140,10 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   
   $html["unsubscribe"] = sprintf('<a href="%s%suid=%s">%s</a>',$url,htmlspecialchars($sep),$hash,$strUnsubscribe);
   $text["unsubscribe"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+  $text["jumpoff"] = sprintf('%s%suid=%s&jo=1',$url,$sep,$hash);
   $html["unsubscribeurl"] = sprintf('%s%suid=%s',$url,htmlspecialchars($sep),$hash);
   $text["unsubscribeurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+  $text["jumpoffurl"] = sprintf('%s%suid=%s&jo=1',$url,$sep,$hash);
 
   #0013076: Blacklisting posibility for unknown users
   $url = getConfig("blacklisturl");
@@ -207,7 +209,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   You can configure how the credits are added to your pages and emails in your
   config file.
 
-  Michiel Dethmers, phpList Ltd 2003 - 2012
+  Michiel Dethmers, phpList Ltd 2003 - 2013
 */
   if (!EMAILTEXTCREDITS) {
     $html["signature"] = $PoweredByImage;#'<div align="center" id="signature"><a href="http://www.phplist.com"><img src="powerphplist.png" width=88 height=31 title="Powered by PHPlist" alt="Powered by PHPlist" border="0" /></a></div>';
@@ -705,7 +707,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     $mail->add_timestamp();
   }
   $mail->addCustomHeader("List-Help: <".$text["preferences"].">");
-  $mail->addCustomHeader("List-Unsubscribe: <".$text["unsubscribe"].">");
+  $mail->addCustomHeader("List-Unsubscribe: <".$text["jumpoffurl"].">");
   $mail->addCustomHeader("List-Subscribe: <".getConfig("subscribeurl").">");
   $mail->addCustomHeader("List-Owner: <mailto:".getConfig("admin_address").">");
 
