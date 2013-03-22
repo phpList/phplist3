@@ -63,6 +63,7 @@ if (!empty($_POST["change"])) {
   }
 
   if ($id) {
+    print '<div class="actionresult">';
     reset($struct);
     while (list ($key,$val) = each ($struct)) {
       $a = $b = '';
@@ -74,7 +75,7 @@ if (!empty($_POST["change"])) {
     }
     if (ENCRYPT_ADMIN_PASSWORDS && !empty($_POST['updatepassword'])){
       //Send token email.
-      print '<div class="actionresult">'.sendAdminPasswordToken($id).'</div>';
+      print sendAdminPasswordToken($id);
     ## check for password changes
     } elseif (isset($_POST['password'])) {
       Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
@@ -94,9 +95,10 @@ if (!empty($_POST["change"])) {
     Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s", privileges = "%s" where id = %d',
       $GLOBALS['tables']["admin"],adminName($_SESSION["logindetails"]["id"]),sql_escape(serialize($privs)),$id));
 
-    Info($GLOBALS['I18N']->get('Changes saved'));
+    print '<br/>'.$GLOBALS['I18N']->get('Changes saved');
+    print '</div>';
   } else {
-    Info($GLOBALS['I18N']->get('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
+    Error($GLOBALS['I18N']->get('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
   }
 }
 
