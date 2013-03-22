@@ -45,6 +45,7 @@ if (!empty($_SESSION['privileges'])) {
   }
   foreach ($removeSections as $removeSection) {
 #    print '<h2>Removing '.$removeSection.' '.$priv_category.'</h2>';
+    if (empty($GLOBALS['pagecategories'][$removeSection]['pages'])) continue;
     foreach ($GLOBALS['pagecategories'][$removeSection]['pages'] as $sectionPage) {
   #    print '<h2>Disallow '.$sectionPage.'</h2>';
       $GLOBALS['disallowpages'][] = $sectionPage;
