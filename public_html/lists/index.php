@@ -727,9 +727,13 @@ function unsubscribePage($id) {
   if (UNSUBSCRIBE_JUMPOFF || !empty($_GET['jo'])) {
     $_POST["unsubscribe"] = 1;
     $_REQUEST["email"] = $email;
-    $_POST["unsubscribereason"] = '"Jump off" set, reason not requested';
+    if (!empty($_GET['jo'])) {
+      $blacklistRequest = true;
+      $_POST["unsubscribereason"] = '"Jump off" used by subscriber, reason not requested';
+    } else {
+      $_POST["unsubscribereason"] = '"Jump off" set, reason not requested';
+    }
   }
-
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 #    print $pluginname.'<br/>';
     if ($plugin->unsubscribePage($email)) {
@@ -737,7 +741,7 @@ function unsubscribePage($id) {
     }
   }
 
-  if ( is_email($email) && isset($_POST['unsubscribe']) &&
+  if ( !empty($email) && isset($_POST['unsubscribe']) &&
     isset($_REQUEST['email']) && isset($_POST['unsubscribereason'])) {
 
     ## all conditions met, do the unsubscribe
@@ -792,9 +796,9 @@ function unsubscribePage($id) {
     }
 
     #0013076: Blacklisting posibility for unknown users
-    if ($blacklistRequest) {
-      $res .= '<h3>'.$GLOBALS["strYouAreBlacklisted"] ."</h3>";
-    }
+    //if ($blacklistRequest) {
+      //$res .= '<h3>'.$GLOBALS["strYouAreBlacklisted"] ."</h3>";
+    //}
     $res .= $GLOBALS["PoweredBy"].'</p>';
     $res .= $GLOBALS['pagedata']["footer"];
     return $res;
