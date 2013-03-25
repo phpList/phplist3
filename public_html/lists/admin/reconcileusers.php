@@ -128,6 +128,7 @@ function addUniqID($userid) {
 }
 
 if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
+  $action_result = '';
   $access = accessLevel("reconcileusers");
   switch ($access) {
     case "all":
@@ -137,95 +138,95 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
           case "markallconfirmed":
               $list = sprintf('%d',$_GET["list"]);
               if ( $list == 0 ) {
-                info( $GLOBALS['I18N']->get("Marking all users confirmed"));
+                $action_result .= $GLOBALS['I18N']->get("Marking all subscribers confirmed");
                 Sql_Query("update {$tables["user"]} set confirmed = 1");
               } else {
-                info( sprintf( $GLOBALS['I18N']->get("Marking all users on list %s confirmed"), ListName($list) ) );
+                $action_result .= sprintf( $GLOBALS['I18N']->get("Marking all subscribers on list %s confirmed"), ListName($list) ) ;
                 Sql_Query( sprintf('UPDATE %s, %s SET confirmed =1 WHERE  %s.id = %s.userid AND %s.listid= %d',
                   $tables['user'],$tables['listuser'], $tables['user'], $tables['listuser'], $tables['listuser'], $list) );
               }
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             break;
           case "adduniqid":
-            info( $GLOBALS['I18N']->get("Creating UniqID for all users who do not have one"));
+            $action_result .= $GLOBALS['I18N']->get("Creating UniqID for all subscribers who do not have one");
             $req = Sql_Query("select * from {$tables["user"]} where uniqid is NULL or uniqid = \"\"");
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get("users apply")."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get("subscribers apply")."<br/>";
             $todo = "addUniqID";
             break;
           case "markallhtml":
-            info( $GLOBALS['I18N']->get("Marking all users to receive HTML"));
+            $action_result .= $GLOBALS['I18N']->get("Marking all subscribers to receive HTML");
             Sql_Query("update {$tables["user"]} set htmlemail = 1");
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get("users apply")."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get("subscribers apply")."<br/>";
             break;
           case "markalltext":
-            info( $GLOBALS['I18N']->get("Marking all users to receive text"));
+            $action_result .= $GLOBALS['I18N']->get("Marking all subscribers to receive text");
             Sql_Query("update {$tables["user"]} set htmlemail = 0");
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             break;
           case "nolists":
-            info( $GLOBALS['I18N']->get("Deleting users who are not on any list"));
+            $action_result .= $GLOBALS['I18N']->get("Deleting subscribers who are not on any list");
             $req = Sql_Query(sprintf('select %s.id from %s
               left join %s on %s.id = %s.userid
               where userid is NULL',
               $tables["user"],$tables["user"],$tables["listuser"],$tables["user"],$tables["listuser"]));
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "deleteUser";
             break;
           case "nolistsnewlist":
             $list = sprintf('%d',$_GET["list"]);
-            info( $GLOBALS['I18N']->get("Moving users who are not on any list to")." ".ListName($list));
+            $action_result .= $GLOBALS['I18N']->get("Moving subscribers who are not on any list to")." ".ListName($list);
             $req = Sql_Query(sprintf('select %s.id from %s
               left join %s on %s.id = %s.userid
               where userid is NULL',
               $tables["user"],$tables["user"],$tables["listuser"],$tables["user"],$tables["listuser"]));
             $total =Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "moveUser";
             break;
           case "bounces":
-            info( $GLOBALS['I18N']->get("Deleting users with more than")." ".$num." ".$GLOBALS['I18N']->get('bounces'));
+            $action_result .= $GLOBALS['I18N']->get("Deleting subscribers with more than")." ".$num." ".$GLOBALS['I18N']->get('bounces');
             $req = Sql_Query(sprintf('select id from %s
               where bouncecount > %d',
               $tables["user"],$num
             ));
             $total = Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "deleteUser";
             break;
           case "resendconfirm":
             $fromval = $from->getDate("from");
             $toval = $from->getDate("to");
-            Info($GLOBALS['I18N']->get("Resending request for confirmation to users who signed up after").' '. $fromval .' '.$GLOBALS['I18N']->get('and before'). ' '.$toval);
+            $action_result .= $GLOBALS['I18N']->get("Resending request for confirmation to subscribers who signed up after").' '. $fromval .' '.$GLOBALS['I18N']->get('and before'). ' '.$toval;
             $req = Sql_Query(sprintf('select id from %s
               where entered > "%s" and entered < "%s" and !confirmed',
               $tables["user"],$fromval,$toval
             ));
             $total = Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "resendConfirm";
             break;
           case "deleteunconfirmed":
             $fromval = $from->getDate("from");
             $toval = $from->getDate("to");
-            Info($GLOBALS['I18N']->get("Deleting unconfirmed users who signed up after"). ' '.$fromval .' '.$GLOBALS['I18N']->get('and before'). ' '.$toval);
+            $action_result .= $GLOBALS['I18N']->get("Deleting unconfirmed subscribers who signed up after"). ' '.$fromval .' '.$GLOBALS['I18N']->get('and before'). ' '.$toval;
             $req = Sql_Query(sprintf('select id from %s
               where entered > "%s" and entered < "%s" and !confirmed',
               $tables["user"],$fromval,$toval
             ));
             $total = Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "deleteuser";
             break;
           case "mergeduplicates":
-            Info($GLOBALS['I18N']->get('Trying to merge duplicates'));
+            $action_result .= $GLOBALS['I18N']->get('Trying to merge duplicates');
             $req = Sql_Verbose_Query(sprintf('select id from %s where (email like "duplicate%%" or email like "%% (_)") and (foreignkey = "" or foreignkey is null)',$tables["user"]));
             $total = Sql_Affected_Rows();
-            print "$total ".$GLOBALS['I18N']->get('users apply')."<br/>";
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "mergeUser";
           case "invalidemail":
           case "fixinvalidemail":
@@ -263,7 +264,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
         #include dirname(__FILE__).'/actions/listinvalid.php';
         print '<div id="listinvalid">LISTING</div>';
       } elseif (isset($_GET["option"]) && $_GET["option"] == "fixinvalidemail") {
-        Info($GLOBALS['I18N']->get("Trying to fix users with an invalid email"));
+        Info($GLOBALS['I18N']->get("Trying to fix subscribers with an invalid email"));
         flush();
         $req = Sql_Query("select id,email from {$tables["user"]}");
         $c=0;
@@ -283,9 +284,9 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
             }
           }
         }
-        print $fixed." ".$GLOBALS['I18N']->get('Users fixed')."<br/>".$notfixed." ".$GLOBALS['I18N']->get("Users could not be fixed")."<br/>".$list."\n";
+        print $fixed." ".$GLOBALS['I18N']->get('subscribers fixed')."<br/>".$notfixed." ".$GLOBALS['I18N']->get("subscribers could not be fixed")."<br/>".$list."\n";
       } elseif (isset($_GET["option"]) && $_GET["option"] == "deleteinvalidemail") {
-        Info($GLOBALS['I18N']->get("Deleting users with an invalid email"));
+        Info($GLOBALS['I18N']->get("Deleting subscribers with an invalid email"));
         flush();
         $req = Sql_Query("select id,email from {$tables["user"]}");
         $c=0;
@@ -296,9 +297,9 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
             deleteUser($row["id"]);
           }
         }
-        print $c." ".$GLOBALS['I18N']->get("Users deleted")."<br/>\n";
+        print $c." ".$GLOBALS['I18N']->get("subscribers deleted")."<br/>\n";
       } elseif (isset($_GET["option"]) && $_GET["option"] == "markinvalidunconfirmed") {
-        Info($GLOBALS['I18N']->get("Marking users with an invalid email as unconfirmed"));
+        Info($GLOBALS['I18N']->get("Marking subscribers with an invalid email as unconfirmed"));
         flush();
         $req = Sql_Query("select id,email from {$tables["user"]}");
         $c=0;
@@ -309,7 +310,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
             Sql_Query("update {$tables["user"]} set confirmed = 0 where id = {$row["id"]}");
           }
         }
-        print $c." ".$GLOBALS['I18N']->get('Users updated')."<br/>\n";
+        print $c." ".$GLOBALS['I18N']->get('subscribers updated')."<br/>\n";
       } elseif (isset($_GET["option"]) && $_GET["option"] == "removestaleentries") {
         Info($GLOBALS['I18N']->get("Cleaning some user tables of invalid entries"));
         # some cleaning up of data:
@@ -385,7 +386,9 @@ $totalunconfirmed = $totalres[0];
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 
-print '<p class="information"><b>'.$total." ".$GLOBALS['I18N']->get('Users')."</b>";
+print '<div class="actionresult">'.$action_result .'</div>';
+
+print '<p class="information"><b>'.$total." ".$GLOBALS['I18N']->get('subscribers')."</b>";
 print $find ? " ".$GLOBALS['I18N']->get("found"): " ".$GLOBALS['I18N']->get("in the database");
 print "</p>";
 
@@ -452,7 +455,7 @@ print '</ul>';
 <form method="get">
 <input type="hidden" name="page" value="reconcileusers" />
 <input type="hidden" name="option" value="bounces" />
-<p class="information"><?php echo $GLOBALS['I18N']->get('To delete all users with more than')?>
+<p class="information"><?php echo $GLOBALS['I18N']->get('To delete all subscribers with more than')?>
 <select name="num">
   <option>1</option>
   <option>2</option>
@@ -462,7 +465,7 @@ print '</ul>';
   <option>20</option>
   <option>50</option>
 </select> <?php echo $GLOBALS['I18N']->get('bounces')?> <input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
-<p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a user, not consecutive bounces')?></p>
+<p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a subscriber, not consecutive bounces')?></p>
 
 <?php 
 /*
@@ -485,7 +488,7 @@ print '</ul>';
 <hr/>
 <form method="get">
 <fieldset>
-<legend><?php echo $GLOBALS['I18N']->get('To delete users who signed up and have not confirmed their subscription')?></legend>
+<legend><?php echo $GLOBALS['I18N']->get('To delete subscribers who signed up and have not confirmed their subscription')?></legend>
 <div class="field"><label for="fromdate"><?php echo $GLOBALS['I18N']->get('Date they signed up after')?></label><div id="fromdate"><?php echo $from->showInput("","",$fromval);?></div></div>
 <div class="field"><label for="todate"><?php echo $GLOBALS['I18N']->get('Date they signed up before')?></label><div id="todate"><?php echo $to->showInput("","",$toval);?></div></div>
 </fieldset>
