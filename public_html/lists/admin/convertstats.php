@@ -68,48 +68,56 @@ while ($row = Sql_Fetch_Array($req)) {
   $messageid = $row['messageid'];
   $userid = $row['userid'];
 
-#  Sql_Query(sprintf('update %s set forwardid = %d where linkid = %d',$GLOBALS['tables']['linktrack'],$fwdid,$row['linkid']));
-  $ml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d',
-    $GLOBALS['tables']['linktrack_ml'],$messageid,$fwdid));
-
-  if (empty($ml['messageid'])) {
-    Sql_query(sprintf('insert into %s set total = 0,forwardid = %d,messageid = %d',
-      $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
-  } 
-  Sql_Query(sprintf('update %s set total = total + 1 where forwardid = %d and messageid = %d',
-    $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
+  Sql_query(sprintf(
+    'insert into %s
+    set total = 1, forwardid = %d, messageid = %d
+    ON DUPLICATE KEY UPDATE total = total + 1',
+    $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid
+  ));
 
   if (!empty($row['firstclick'])) {
-    $msgtype_req = Sql_Fetch_Row_Query(sprintf('select data from %s where name = "Message Type" and linkid = %d and userid= %d and messageid = %d',$GLOBALS['tables']['linktrack_userclick'],$row['linkid'],$row['userid'],$row['messageid']));
-    if ($msgtype_req[0] == 'HTML') {
-      $msgtype = 'H';
-    } elseif ($msgtype_req[0] == 'Text') {
-      $msgtype = 'T';
-    } else {
-      $msgtype = '';
-    }
-    if ($msgtype == 'H') {
-      Sql_Query(sprintf('update %s set clicked = clicked + 1, htmlclicked = htmlclicked + 1, firstclick =  "%s", latestclick = "%s" where forwardid = %d and messageid = %d',$GLOBALS['tables']['linktrack_ml'],$row['firstclick'],$row['latestclick'],$fwdid,$messageid));
-    } elseif ($msgtype == 'T') {
-      Sql_Query(sprintf('update %s set clicked = clicked + 1, textclicked = textclicked + 1, firstclick ="%s", latestclick = "%s"  where forwardid = %d and messageid = %d',$GLOBALS['tables']['linktrack_ml'],$row['firstclick'],$row['latestclick'],$fwdid,$messageid));
-    } else {
-      Sql_Query(sprintf('update %s set  clicked = clicked + 1, firstclick = "%s", latestclick = "%s"  where forwardid = %d and messageid = %d',$GLOBALS['tables']['linktrack_ml'],$row['firstclick'],$row['latestclick'],$fwdid,$messageid));
-    }
-    $uml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d and userid = %d',
-      $GLOBALS['tables']['linktrack_uml_click'],$messageid,$fwdid,$userid));
-    
-    if (empty($uml['messageid'])) {
-      Sql_Query(sprintf('insert into %s set firstclick = "%s",latestclick = "%s",clicked = %d, forwardid = %d,messageid = %d,userid = %d',
-        $GLOBALS['tables']['linktrack_uml_click'],$row['firstclick'],$row['latestclick'],$row['clicked'] - 1,$fwdid,$messageid,$userid));
-    } 
-    Sql_Query(sprintf('update %s set clicked = clicked + 1, firstclick = "%s", latestclick = "%s" where forwardid = %d and messageid = %d and userid = %d', $GLOBALS['tables']['linktrack_uml_click'],$row['firstclick'],$row['latestclick'],$fwdid,$messageid,$userid));
-    
-    if ($msgtype == 'H') {
-      Sql_Query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d and userid = %d',
-        $GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
-    } elseif ($msgtype == 'T') {
-      Sql_Query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d and userid = %d',
-        $GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
+    $result = Sql_Query(sprintf(
+        'select data, count(*) as count
+        from %s 
+        where name = "Message Type" and linkid = %d
+        group by data',
+        $GLOBALS['tables']['linktrack_userclick'], $row['linkid']
+    ));
+
+    while ($ucRow = Sql_Fetch_Array($result)) {
+        $count = $ucRow['count'];
+
+        if ($ucRow['data'] == 'HTML') {
+          $updateFormatClicked = ", htmlclicked = htmlclicked + $count";
+          $setFormatClicked = ", htmlclicked = $count";
+        } elseif ($ucRow['data'] == 'Text') {
+          $updateFormatClicked = ", textclicked = textclicked + $count";
+          $setFormatClicked = ", textclicked = $count";
+        } else {
+          $updateFormatClicked = '';
+          $setFormatClicked = '';
+        }
+
+        Sql_Query(sprintf(
+          'update %s 
+          set clicked = clicked + %d %s,
+          firstclick = COALESCE(LEAST(firstclick, "%s"), "%s"),
+          latestclick = COALESCE(GREATEST(latestclick, "%s"), "%s")
+          where forwardid = %d and messageid = %d',
+          $GLOBALS['tables']['linktrack_ml'], $count, $updateFormatClicked,
+          $row['firstclick'], $row['firstclick'], $row['latestclick'], $row['latestclick'], $fwdid, $messageid
+        ));
+
+        Sql_Query(sprintf(
+          'insert into %s 
+          set forwardid = %d, messageid = %d, userid = %d,
+          firstclick = "%s", latestclick = "%s", 
+          clicked = %d %s
+          ON DUPLICATE KEY UPDATE clicked = clicked + %d %s',
+          $GLOBALS['tables']['linktrack_uml_click'], $fwdid, $messageid, $userid,
+          $row['firstclick'], $row['latestclick'],
+          $count, $setFormatClicked, $count, $updateFormatClicked
+        ));
     }
   }
 
