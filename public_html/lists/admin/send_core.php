@@ -389,7 +389,10 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   // OK, the message has been saved, now check to see if we need to send a test message
   if ($sendtest) {
 
-    $sendtestresult = "<hr/>";
+    $sendtestresult = "<r/>";
+    if (empty($_SESSION['lasttestsent'])) {
+      $_SESSION['lasttestsent'] = 0;
+    }
     
     $delay = time() - $_SESSION['lasttestsent'];
     if ($delay < SENDTEST_THROTTLE) {
