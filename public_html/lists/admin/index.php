@@ -126,6 +126,7 @@ if ($_GET['page'] == 'logout') {
   $_SESSION["adminloggedin"] = "";
   $_SESSION["logindetails"] = "";
   session_destroy();
+  Redirect('home');
 }
 
 ## send a header for IE
