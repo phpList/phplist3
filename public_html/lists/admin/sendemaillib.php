@@ -457,7 +457,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
     # convert html message
 #    preg_match_all('/<a href="?([^> "]*)"?([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
-    preg_match_all('/<a(.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
+    preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
 
     # to process the Yahoo webpage with base href and link like <a href=link> we'd need this one
 #    preg_match_all('/<a href=([^> ]*)([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
@@ -583,7 +583,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   ## if we're not tracking clicks, we should add Google tracking here
   ## otherwise, we can add it when redirecting on the click
   if (!CLICKTRACK && !empty($cached[$messageid]['google_track'])) { 
-    preg_match_all('/<a(.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
+    preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
     for($i=0; $i<count($links[2]); $i++){
       $link = cleanUrl($links[2][$i]);
       $link = str_replace('"','',$link);  
