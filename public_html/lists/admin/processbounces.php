@@ -380,6 +380,11 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
         $userdata = Sql_Fetch_Array_Query("select * from {$tables["user"]} where id = ".$row['user']);
       }
       $report_linkroot = $GLOBALS['admin_scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
+
+      Sql_Query(sprintf('update %s set count = count + 1 where id = %d',
+        $GLOBALS['tables']['bounceregex'],$rule['id']));
+      Sql_Query(sprintf('insert ignore into %s (regex,bounce) values(%d,%d)',
+        $GLOBALS['tables']['bounceregex_bounce'],$rule['id'],$row['bounce']));
       
       switch ($rule['action']) {
         case 'deleteuser':
@@ -439,10 +444,6 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           deleteBounce($row['bounce']);
           break;
       }
-      Sql_Query(sprintf('update %s set count = count + 1 where id = %d',
-        $GLOBALS['tables']['bounceregex'],$rule['id']));
-      Sql_Query(sprintf('insert ignore into %s (regex,bounce) values(%d,%d)',
-        $GLOBALS['tables']['bounceregex_bounce'],$rule['id'],$row['bounce']));
 
       $matched++;
     } else {
