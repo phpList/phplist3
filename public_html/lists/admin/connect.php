@@ -26,6 +26,9 @@ include_once dirname(__FILE__)."/commonlib/lib/maillib.php";
 if (!isset ($_GET["pi"]))
   $_GET["pi"] = "";
 
+$GLOBALS["mail_error"] = '';
+$GLOBALS["mail_error_count"]=0;
+
 # make sure magic quotes are on. Try to switch it on, this may fail
 ini_set("magic_quotes_gpc","on");
 
