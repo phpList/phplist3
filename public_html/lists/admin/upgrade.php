@@ -472,8 +472,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
     if ($num[0] > 0) {
       print '<p class="information">'.$GLOBALS['I18N']->get('The clicktracking system has changed').'</p>';
-      printf($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]);
-      print PageLink2("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'));
+      printf($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]).' ';
+      print PageLinkButton("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'));
     }
         
     if ($GLOBALS['commandline']) {
