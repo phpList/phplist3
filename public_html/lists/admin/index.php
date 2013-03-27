@@ -118,7 +118,7 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables["config"],1)) {
     $plugin->activate();
   }
 }
-if ($_GET['page'] == 'logout') {
+if (!empty($_GET['page']) && $_GET['page'] == 'logout') {
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->logout();
   }
