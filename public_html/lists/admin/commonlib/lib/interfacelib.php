@@ -380,13 +380,13 @@ class WebblerListing {
 #     $html = $this->index();
 
     $html .= $this->listingStart();
+    if (!empty($this->insideNav)) {
+      $html .= sprintf('<tr><td colspan="%d">'.$this->insideNav.'</td></tr>',sizeof($this->columns)+1);
+    }
     if (!$this->suppressHeader) {
       $html .= $this->listingHeader();
     }
 
-    if (!empty($this->insideNav)) {
-      $html .= $this->insideNav;
-    }
 #    global $float_menu;
 #    $float_menu .= "<a style=\"display: block;\" href=\"#".htmlspecialchars($this->title)."\">$this->title</a>";
     if ($this->sort) {
