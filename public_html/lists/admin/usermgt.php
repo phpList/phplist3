@@ -30,13 +30,13 @@ if (!empty($attributehtml)) {
 
 $html .= '<li id="reconcileusers">'.PageLink2("reconcileusers",$GLOBALS['I18N']->get('Reconcile Subscribers')).'</li>';
 $html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('Check for Subscribers')).'</li>';
-$html .= '<li id="massunconfirm">'.PageLink2("massunconfirm",$GLOBALS['I18N']->get('mass unconfirm users')).'</li>';
-$html .= '<li id="massremove">'.PageLink2("massremove",$GLOBALS['I18N']->get('mass remove users')).'</li>';
-$html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('verify subscribers')).'</li>';
+$html .= '<li id="massunconfirm">'.PageLink2("massunconfirm",$GLOBALS['I18N']->get('Bulk unconfirm subscribers')).'</li>';
+$html .= '<li id="massremove">'.PageLink2("massremove",$GLOBALS['I18N']->get('Bulk remove subscribers')).'</li>';
+$html .= '<li id="usercheck">'.PageLink2("usercheck",$GLOBALS['I18N']->get('Verify subscribers')).'</li>';
 if (ALLOW_IMPORT) {
-  $html .= '<li id="import">'.PageLink2("import",$GLOBALS['I18N']->get('import')).'</li>';
+  $html .= '<li id="import">'.PageLink2("import",$GLOBALS['I18N']->get('Import subscribers')).'</li>';
 }
-$html .= '<li id="export">'.PageLink2("export",$GLOBALS['I18N']->get('export')).'</li>';
+$html .= '<li id="export">'.PageLink2("export",$GLOBALS['I18N']->get('Export subscribers')).'</li>';
 $html .= '</ul>';
 
 $p = new UIPanel($GLOBALS['I18N']->get('subscriber management functions'),$html);
