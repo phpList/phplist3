@@ -13,11 +13,11 @@ $defaultheader = '</head><body>';
 $defaultfooter = '</body></html>';
 
 
-if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendheader.php')) {
-	$defaultheader = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendheader.php');
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendheader.php')) {
+	$defaultheader = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendheader.php');
 }
-if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendfooter.php')) {
-	$defaultfooter = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'frontendfooter.php');
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php')) {
+	$defaultfooter = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php');
 }
 
 if (isset ($_SERVER['HTTP_HOST'])) {
