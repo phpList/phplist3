@@ -23,13 +23,14 @@ if (!empty($_POST['unsubscribe'])) {
 
   }
   printf($GLOBALS['I18N']->get('All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>'),$count,$unsubbed,$blacklisted);
+  print PageLinkButton('massunconfirm',s('Add more'));
   return;
 }
 ?>
 
 <form method="post" action="">
-<h3><?php echo $GLOBALS['I18N']->get('Mass unconfirm email addresses')?></h3>
-<?php echo $GLOBALS['I18N']->get('Check to also add the emails to the blacklist')?>  <input type="checkbox" name="blacklist" value="1"></br/>
+<h3><?php echo $GLOBALS['I18N']->get('Manage suppression list')?></h3>
+<?php echo $GLOBALS['I18N']->get('Make suppression permanent')?>  <input type="checkbox" name="blacklist" value="1" checked="checked" /></br />
 <p class="information"><?php echo $GLOBALS['I18N']->get('Paste the emails to mark unconfirmed in this box, and click continue')?></p>
 <p class="submit"><input type="submit" name="go" value="<?php echo $GLOBALS['I18N']->get('Continue')?>"></p><br/>
 <textarea name="unsubscribe" rows="30" cols="40"></textarea>

@@ -36,6 +36,7 @@ if (isset($_POST['unsubscribe'])) {
     }
   }
   printf($GLOBALS['I18N']->get('All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found'),$count,$blacklisted,$deleted,$notfound);
+  print PageLinkButton('massremove',s('Remove more'));
   return;
 }
 ?>
