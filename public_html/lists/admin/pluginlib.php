@@ -56,7 +56,7 @@ foreach ($pluginFiles as $file) {
     if (!class_exists($className)) {
       include_once $file;
       if (class_exists($className)) {
-        eval("\$pluginInstance = new ". $className ."();");
+        $pluginInstance = new $className();
         if ($pluginInstance->enabled) {
           ## remember the first plugin that says it can provide the editor
           ## the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
@@ -68,7 +68,7 @@ foreach ($pluginFiles as $file) {
           dbg( $className .' disabled');
         }
       } else {
-        logEvent('Error initiliasing plugin'. $className);
+        Error('initialisation of plugin '. $className.' failed');
       }
       #print "$className = ".$pluginInstance->name."<br/>";
     }
