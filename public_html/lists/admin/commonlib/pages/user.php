@@ -178,7 +178,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
        if (is_array($_POST["groups"])) {
          foreach ($_POST["groups"] as $group) {
            Sql_Query(sprintf('insert into user_group (userid,groupid) values(%d,%d)',$id,$group));
-           $feedback .= "<br/>".$GLOBALS['I18N']->get('User added to group').' '.groupName($group);
+           $feedback .= "<br/>".$GLOBALS['I18N']->get('Subscriber added to group').' '.groupName($group);
          }
        }
      } elseif ($usegroups) {
@@ -188,7 +188,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
        
        if (!empty($newgrouptype) && !empty($newgroup)) {
          Sql_Query(sprintf('insert into user_group (userid,groupid,type) values(%d,%d,%d)',$id,$newgroup,$newgrouptype));
-         $feedback .= "<br/>".$GLOBALS['I18N']->get('User added to group').' '.groupName($newgroup);
+         $feedback .= "<br/>".$GLOBALS['I18N']->get('Subscriber added to group').' '.groupName($newgroup);
        } 
        ## make sure they're in the everyone group
        Sql_Query(sprintf('insert ignore into user_group (userid,groupid,type) values(%d,%d,0)',$id,getEveryoneGroupID()));
