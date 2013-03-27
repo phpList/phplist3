@@ -18,11 +18,11 @@ if (isset($_POST['unsubscribe'])) {
     $count++;
     set_time_limit(600);
     $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$GLOBALS['tables']['user'],$email));
+    if (!empty($_POST['blacklist'])) {
+      $blacklisted++;
+      addUserToBlackList($email,$GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
+    }
     if ($userid[0]) {
-      if (!empty($_POST['blacklist'])) {
-        $blacklisted++;
-        addUserToBlackList($email,$GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
-      }
       deleteUser($userid[0]);
       $deleted++;
     } else {
