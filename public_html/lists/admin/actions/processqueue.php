@@ -225,15 +225,15 @@ function my_shutdown () {
     $reload++;
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
       if ($sent + 10 < $GLOBALS["original_num_per_batch"]) {
-        sleep(10); // wait 10 seconds
         output($GLOBALS['I18N']->get('Less than batch size were sent, so reloading imminently'),1,'progress');
-        $delaytime = 10000;
+        $delaytime = 10;
       } else {
+        // we should actually want batch perion minus time already spent. 
+        // might be nice to calculate that at some point
         output(sprintf($GLOBALS['I18N']->get('Waiting for %d seconds before reloading'),$batch_period),1,'progress');
-        $delaytime = $batch_period * 1000;
+        $delaytime = $batch_period;
       }
-      //output("Do not reload this page yourself, because the next batch would fail");
-      usleep($delaytime);
+      sleep($delaytime);
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d";
       </script>',$reload,$sent,$notsent);
