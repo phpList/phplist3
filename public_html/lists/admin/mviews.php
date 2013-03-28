@@ -142,13 +142,14 @@ if (isset($start) && $start > 0) {
   $limit = "limit 0,".MAX_USER_PP;
 }
 
-/*
+
 ## hmm, this needs more work, as it'll run out of memory, because it's building the entire
 ## listing before pushing it out. 
+## would be best to not have a limit, but putting one to avoid that
 if ($download) {
-  $limit = '';
+  $limit = ' limit 100000';
 }
-*/
+
 
 if ($id) {
   $url_keep = '&amp;id='.$id;
