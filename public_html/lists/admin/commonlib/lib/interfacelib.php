@@ -381,7 +381,7 @@ class WebblerListing {
 
     $html .= $this->listingStart();
     if (!empty($this->insideNav)) {
-      $html .= sprintf('<tr><td colspan="%d">'.$this->insideNav.'</td></tr>',sizeof($this->columns)+1);
+      $html .= sprintf('<tr><td colspan="%d">%s</td></tr>',sizeof($this->columns)+1,$this->insideNav);
     }
     if (!$this->suppressHeader) {
       $html .= $this->listingHeader();
@@ -978,14 +978,17 @@ class pageInfo {
 
   function fetchInfoContent($include) {
     ## pages to not allow hiding the info for
-    if (in_array($include,array('login.php','logout.php','community.php'))) {
+    if (in_array($include,array('login.php','logout.php'))) {
       $this->addhide = false;
     }
     ## import has too much in the info and needs replacing
     if (in_array($include,array('import.php'))) {
       return '';
     }
-    
+    ## community should not show in the global help, but main page
+    if (in_array($include,array('community.php'))) {
+      return '';
+    }    
     $this->noteid = substr(md5(basename($include,'.php')),0,15);
     $this->page = $this->noteid;
     $buffer = ob_get_contents();
