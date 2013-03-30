@@ -73,7 +73,7 @@ if ($total > MAX_USER_PP) {
   $result = Sql_Query($query);
 }
 
-printf("<a href=\"javascript:deleteRec2('%s','%s');\">%s</a> 
+/*printf("<a href=\"javascript:deleteRec2('%s','%s');\">%s</a> 
    <a href=\"javascript:deleteRec2('%s','%s');\">%s</a>",
    $GLOBALS['I18N']->get('Are you sure you want to delete all events older than 2 months?'),
    PageURL2("eventlog","Delete","start=$start&amp;action=deleteprocessed"),
@@ -82,11 +82,24 @@ printf("<a href=\"javascript:deleteRec2('%s','%s');\">%s</a>
    $GLOBALS['I18N']->get('Are you sure you want to delete all events matching this filter?'),
    PageURL2("eventlog","Delete","start=$start&amp;action=deleteall$find_url"),
    $GLOBALS['I18N']->get('Delete all'));
+*/
+
+  $buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
+  $buttons->addButton(
+    new ConfirmButton(
+   $GLOBALS['I18N']->get('Are you sure you want to delete all events older than 2 months?'),
+   PageURL2("eventlog","Delete","start=$start&amp;action=deleteprocessed"),
+   $GLOBALS['I18N']->get('Delete all (&gt; 2 months old)')));
+  $buttons->addButton(
+    new ConfirmButton(
+   $GLOBALS['I18N']->get('Are you sure you want to delete all events matching this filter?'),
+   PageURL2("eventlog","Delete","start=$start&amp;action=deleteall$find_url"),
+   $GLOBALS['I18N']->get('Delete all')));
+     print $buttons->show();
 
    if (!Sql_Num_Rows($result)) {
      print '<p class="information">' . $GLOBALS['I18N']->get('No events available') . '</p>';
    }
-print '<br/><br/>';
 printf('<form method="get" action="">
 <input type="hidden" name="page" value="eventlog" />
 <input type="hidden" name="start" value="%d" />
@@ -103,12 +116,13 @@ $ls = new WebblerListing($GLOBALS['I18N']->get('Events'));
 
 while ($event = Sql_fetch_array($result)) {
   $ls->addElement($event["id"]);
-  $ls->addColumn($event["id"],$GLOBALS['I18N']->get('del'),
-    sprintf('<a href="javascript:deleteRec(\'%s\');">%s</a>',
-      PageURL2("eventlog","delete","start=$start&amp;delete=".$event["id"]),$GLOBALS['I18N']->get('del')));
-  $ls->addColumn($event["id"],$GLOBALS['I18N']->get('page'),$event["page"]);
+  $ls->setClass($event["id"],'row1');
+
+//  $ls->addColumn($event["id"],$GLOBALS['I18N']->get('page'),$event["page"]);
   $ls->addColumn($event["id"],$GLOBALS['I18N']->get('date'),$event["entered"]);
   $ls->addColumn($event["id"],$GLOBALS['I18N']->get('message'),strip_tags($event["entry"]));
+  $delete_url = sprintf('<a href="javascript:deleteRec(\'%s\');" class="del" >%s</a>',PageURL2("eventlog","delete","start=$start&amp;delete=".$event["id"]),$GLOBALS['I18N']->get('del'));
+  $ls->addRow($event['id'],'<div class="listingsmall">'.$GLOBALS['I18N']->get('page').': '.$event["page"].'</div>','<div class="fright">'.$delete_url.'&nbsp;&nbsp;</div>');
 }
 print $ls->display();
 
