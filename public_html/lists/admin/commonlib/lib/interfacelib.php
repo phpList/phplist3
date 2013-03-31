@@ -1103,7 +1103,7 @@ class confirmButton extends button {
     $this->linktext = $linktext;
     $this->js = '
     <script type="text/javascript">
-    $("#confirm'.$GLOBALS['confirmButtonCount'].'").data("confirmText", "'.htmlspecialchars(strip_tags($confirmationtext)).'");
+    $("#confirm'.$GLOBALS['confirmButtonCount'].'").click(function(){ if (confirm("'.htmlspecialchars(strip_tags($confirmationtext)).'")){window.location="'.$link.'"};});
     </script>';
     
     $this->title = $title;
