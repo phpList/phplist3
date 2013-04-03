@@ -40,8 +40,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     if (VERBOSE) output('Using cached message');
   }
   if (VERBOSE) {
-    output($GLOBALS['I18N']->get('sendingmessage').' '.$messageid.' '.$GLOBALS['I18N']->get('withsubject').' '.
-      $cached[$messageid]["subject"].' '.$GLOBALS['I18N']->get('to').' '.$email);
+    output(s('Sending message %d with subject %s to %s',$messageid,$cached[$messageid]["subject"],$email));
   }
   
   ## at this stage we don't know whether the content is HTML or text, it's just content
@@ -877,7 +876,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         "text_encoding" => TEXTEMAIL_ENCODING)
       );
 
-
   if (!TEST) {
     if ($hash != 'forwarded' || !sizeof($forwardedby)) {
       $fromname = $cached[$messageid]["fromname"];
@@ -1313,7 +1311,6 @@ function precacheMessage($messageid,$forwardContent = 0) {
       $cached[$messageid]["replytoname"] = $message["replyto"] . "@$domain";
     }
   }
-
   
   $cached[$messageid]["fromname"] = $message["fromname"];
   $cached[$messageid]["fromemail"] = $message["fromemail"];
@@ -1415,13 +1412,23 @@ exit;
   if (is_array($GLOBALS["default_config"])) {
     foreach($GLOBALS["default_config"] as $key => $val) {
       if (is_array($val)) {
-        $cached[$messageid]['content'] = str_replace("[$key]",getConfig($key),$cached[$messageid]['content']);
-        $cached[$messageid]["textcontent"] = str_replace("[$key]",getConfig($key),$cached[$messageid]["textcontent"]);
+        $cached[$messageid]['content'] = str_ireplace("[$key]",getConfig($key),$cached[$messageid]['content']);
+        $cached[$messageid]["textcontent"] = str_ireplace("[$key]",getConfig($key),$cached[$messageid]["textcontent"]);
+        $cached[$messageid]["textfooter"] = str_ireplace("[$key]",getConfig($key),$cached[$messageid]['textfooter']);
+        $cached[$messageid]["htmlfooter"] = str_ireplace("[$key]",getConfig($key),$cached[$messageid]['htmlfooter']);
       }
     }
   }
   if (VERBOSE && $GLOBALS['getspeedstats']) {
     output('parse config end');
+  }
+  foreach($message as $key => $val) {
+    if (!is_array($val)) {
+      $cached[$messageid]['content'] = str_ireplace("[$key]",$val,$cached[$messageid]['content']);
+      $cached[$messageid]["textcontent"] = str_ireplace("[$key]",$val,$cached[$messageid]["textcontent"]);
+      $cached[$messageid]["textfooter"] = str_ireplace("[$key]",$val,$cached[$messageid]['textfooter']);
+      $cached[$messageid]["htmlfooter"] = str_ireplace("[$key]",$val,$cached[$messageid]['htmlfooter']);
+    }
   }
   if (preg_match("/##LISTOWNER=(.*)/",$cached[$messageid]['content'],$regs)) {
     $cached[$messageid]['listowner'] = $regs[1];
