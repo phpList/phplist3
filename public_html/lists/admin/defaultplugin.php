@@ -123,6 +123,11 @@ class phplistPlugin {
     # Return i18n Language Dir so that main page content can be extended
     return null;
   }
+  
+  function pageTitle($page) {
+    if (isset($this->pageTitles[$page])) return s($this->pageTitles[$page]);
+    return $this->name.' : '.$page;
+  }
 
   function writeConfig($name, $value) {
     #  write a value to the general config to be retrieved at a later stage
