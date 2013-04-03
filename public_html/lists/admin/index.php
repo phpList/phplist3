@@ -222,8 +222,16 @@ if (!$GLOBALS["admin_auth_module"]) {
   $GLOBALS['require_login'] = 0;
 }
 
-$page_title = NAME;
-@include_once dirname(__FILE__)."/lan/".$_SESSION['adminlanguage']['iso']."/pagetitles.php";
+
+if (!empty($_GET['pi']) && isset($GLOBALS['plugins'][$_GET['pi']])) {
+  $page_title = $GLOBALS['plugins'][$_GET['pi']]->pageTitle($page);
+} 
+if (empty($page_title)) {
+  @include_once dirname(__FILE__)."/lan/".$_SESSION['adminlanguage']['iso']."/pagetitles.php";
+}
+if (empty($page_title)) {
+  $page_title = NAME;
+}
 
 // These two meta tags are included on page-top.php
 // print '<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />';           // HTTP/1.1
@@ -524,7 +532,7 @@ if (checkAccess($page,"") || $page == 'about') {
     $menu = $plugin->adminmenu(); 
     if (is_file($plugin->coderoot . $include)) {
       include ($plugin->coderoot . $include);
-    } elseif ($include == 'main.php') {
+    } elseif ($include == 'main.php' || $_GET['page'] == 'home') {
       print '<h3>'.$plugin->name.'</h3><ul>';
       foreach ($menu as $page => $desc) {
         print '<li>'.PageLink2($page,$desc).'</li>';
