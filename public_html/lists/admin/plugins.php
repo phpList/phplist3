@@ -2,19 +2,31 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 #$_POST['pluginurl'] = '';
 
+$pluginDestination = PLUGIN_ROOTDIR;
+$pluginInfo = array();
+
 if (!empty($_POST['pluginurl'])) {
-  //if (!verifyToken()) {
-    //print Error(s('Invalid security token, please reload the page and try again'));
-    //return;
-  //}
+  if (!verifyToken()) {
+    print Error(s('Invalid security token, please reload the page and try again'));
+    return;
+  }
   
   $packageurl = $_POST['pluginurl'];
+  
   ## verify the url against known locations, and require it to be "zip".
-  //if (!preg_match('/^https?:\/\/github\.com\/.*\.zip$/i',$packageurl)) {
-    //print Error(s('Invalid download URL, please reload the page and try again'));
-    //return;
-  //}
+  ## let's hope Github keeps this structure for a while
+  if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/([\w]+)\.zip$~i',$packageurl,$regs)) {
+    print Error(s('Invalid download URL, please reload the page and try again'));
+    return;
+  } else {
+    $developer = $regs[1];
+    $project_name = $regs[2];
+    $branch = $regs[3];
+  }
   print '<h3>'.s('Fetching plugin').'</h3>';
+  
+  print '<h2>'.s('Developer').' '.$developer.'</h2>';
+  print '<h2>'.s('Project').' '.$project_name.'</h2>';
   
   $packagefile = file_get_contents($packageurl);
   $filename = basename($packageurl);
@@ -48,21 +60,41 @@ if (!empty($_POST['pluginurl'])) {
       $dir_prefix = $regs[1];
     }
   }
-  var_dump($extractList);
-  var_dump($dir_prefix);
+  //var_dump($extractList);
+  //var_dump($dir_prefix);
   @mkdir($GLOBALS['tmpdir'].'/phpListPluginInstall',0755);
-  $destination = PLUGIN_ROOTDIR;
 #  $destination = $GLOBALS['tmpdir'].'/phpListPluginDestination';
-  @mkdir($destination,0755);
-  if (is_writable($destination)) {
+  @mkdir($pluginDestination,0755);
+  if (is_writable($pluginDestination)) {
     if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall',$extractList)) {
       $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
       while ($dirEntry = readdir($extractedDir)) {
         if (!preg_match('/^\./',$dirEntry)) {
-          print $dirEntry .'<br/>';
+          print $dirEntry;
+          if (preg_match('/^([\w]+)\.php$/',$dirEntry,$regs)) {
+            $pluginInfo[$regs[1]] = array(
+              'installUrl' => $packageurl,
+              'developer' => $developer,
+              'projectName' => $project_name,
+              'installDate' => time(),
+            );
+          }
+          
+          if (file_exists($pluginDestination.'/'.$dirEntry)) {
+            print ' overwriting existing ';
+          } else {
+            print ' create new';
+          }
+          var_dump($pluginInfo);
+            
+          print '<br/>';
           @rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
-            $destination.'/'.$dirEntry);
+            $pluginDestination.'/'.$dirEntry);
         }  
+      }
+      foreach ($pluginInfo as $plugin => $pluginDetails) {
+        print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
+        file_put_contents($pluginDestination.'/'.$plugin.'.info.txt',serialize($pluginDetails));
       }
       ## clean up
       delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
@@ -105,10 +137,25 @@ if (!is_writable(PLUGIN_ROOTDIR)) {
 $ls = new WebblerListing(s('Installed plugins'));
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+  $pluginDetails = array();
+  if (is_file($pluginDestination.'/'.$pluginname.'.info.txt')) {
+    $pluginDetails = unserialize(file_get_contents($pluginDestination.'/'.$pluginname.'.info.txt'));
+  }
+  
   $ls->addElement($pluginname);
   $ls->addColumn($pluginname,s('name'),$plugin->name);
+  $ls->addRow($pluginname,s('description'),$plugin->description);
+  $ls->addColumn($pluginname,s('version'),$plugin->version);
+  if (!empty($pluginDetails['installDate'])) {
+    $ls->addColumn($pluginname,s('installed'),date('Y-m-d',$pluginDetails['installDate']));
+  }
+  if (!empty($pluginDetails['installUrl'])) {
+    $ls->addRow($pluginname,s('installUrl'),$pluginDetails['installUrl']);
+  }
+  if (!empty($pluginDetails['developer'])) {
+    $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
+  }
   $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
-  
 }
 
 print $ls->display();
