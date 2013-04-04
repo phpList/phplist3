@@ -104,6 +104,11 @@ while (list ($key, $val) = each($DBstruct["user"])) {
     $skip_system_attributes[strtolower($key)] = $colname;
   }
 }
+
+## handle terminology change (from user to subscriber)
+$system_attributes['send this user html emails'] = $system_attributes['send this subscriber html emails'];
+$system_attributes_nicename['send this user html emails'] = $system_attributes_nicename['send this subscriber html emails'];
+
 ## allow mapping a column to a comma separated list of group names
 $system_attributes['groupmapping'] = 'Group Membership';
 if (isset($GLOBALS['config']['usergroup_types'])) {
@@ -449,8 +454,8 @@ if (!empty($_SESSION["test_import"])) {
   print '<h3>';
   printf($GLOBALS['I18N']->get('%d lines will be imported'), $total);
   print '</h3>';
-  print '<p class="button">' . PageLink2($_GET["page"] . '&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')) . '</p>';
-  print '<p class="button"><h3>' . $GLOBALS['I18N']->get('Test Output') . '</h3></p>';
+  print '<p>' . PageLinkButton($_GET["page"] . '&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')) . '</p>';
+  print '<h3>' . $GLOBALS['I18N']->get('Test Output') . '</h3>';
 #  dbg($_SESSION["import_attribute"]);
 }
 
@@ -844,7 +849,7 @@ if (sizeof($email_list)) {
           $result = Sql_query($query, 1);
           # if the affected rows is 2, the user was already subscribed
           $addition = $addition || Sql_Affected_Rows() == 1;
-          $listoflists .= "  * " . $_SESSION["listname"][$key] . "\n";
+          $listoflists .= "  * " . listName($key)."\n";# $_SESSION["listname"][$key] . "\n";
         }
         if ($addition)
           $count["list_add"]++;
@@ -935,7 +940,7 @@ if (sizeof($email_list)) {
     printf($GLOBALS['I18N']->get('Test output<br/>If the output looks ok, click %s to submit for real') . '<br/><br/>', PageLink2($_GET["page"] . '&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')));
   }
 
-  print '<p class="button">' . PageLink2($_GET["page"], $GLOBALS['I18N']->get('Import some more emails')).'</p>';
+  print '<p>' . PageLink2($_GET["page"], $GLOBALS['I18N']->get('Import some more emails')).'</p>';
 
   return;
 }
@@ -946,30 +951,41 @@ if (sizeof($email_list)) {
 <?php print formStart('enctype="multipart/form-data" name="import"');?>
 <?php
 
-
+/*
 if (Sql_Table_Exists($tables["list"])) {
+*/
   if (isset($_GET['list'])) {
     $subselect .= sprintf( ' and id= %d',$_GET['list']);
   }
   
   $result = Sql_query("SELECT id,name FROM " . $tables["list"] . " $subselect ORDER BY listorder");
   $c = 0;
-  if (Sql_Affected_Rows() == 1) {
+  $some = Sql_Affected_Rows();
+  
+  if ($some == 1) {
     $row = Sql_fetch_array($result);
     printf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="lists[%d]" value="%d">%s <b>%s</b>', $c, stripslashes($row["name"]), $c, $row["id"], $GLOBALS['I18N']->get('Adding users to list'), stripslashes($row["name"]));
   } else {
     print '<p class="information">' . $GLOBALS['I18N']->get('Select the lists to add the emails to') . '</p>';
+/*
     while ($row = Sql_fetch_array($result)) {
       printf('<li><input type="hidden" name="listname[%d]" value="%s"><input type="checkbox" name="lists[%d]" value="%d">%s', $c, stripslashes($row["name"]), $c, $row["id"], stripslashes($row["name"]));
       $some = 1;
       $c++;
     }
+*/
 
     if (!$some) {
       echo $GLOBALS['I18N']->get('No lists available') . ' ' . PageLink2("editlist", $GLOBALS['I18N']->get('Add a list'));
+    } else {
+      print listSelectHTML('','lists',$subselect,s('Select the lists to add the emails to'));
     }
   }
+/*
 }
+*/
+
+
 
 if (defined('IN_WEBBLER') && Sql_Table_Exists("groups")) {
   $result = Sql_query("SELECT id,name FROM groups ORDER BY listorder");
@@ -1015,7 +1031,7 @@ if (defined('IN_WEBBLER') && Sql_Table_Exists("groups")) {
 printf($GLOBALS['I18N']->get('phpList will not process files larger than %dMB'),IMPORT_FILESIZE);?>
 </td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Field Delimiter')?>:</td><td><input type="text" name="import_field_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is TAB')?>)</td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter')?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break')?>)</td></tr>
+<!--tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter')?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break')?>)</td></tr-->
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Test output')?>:</td><td><input type="checkbox" name="import_test" value="yes" checked="checked" /></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Show Warnings", you will get warnings for invalid records. Warnings will only be shown if you check "Test Output". They will be ignored when actually importing. ')?></td></tr>
