@@ -5,11 +5,10 @@ DirectoryIndex index.php
 Order allow,deny
 deny from all
 </FilesMatch>
-<FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php)$">
+<FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php|connector.php)$">
 Order allow,deny
 allow from all
 </FilesMatch>
-#php_flag magic_quotes_gpc on
 
 # if you want more than this for attachments, you can increase these values
 # but you really, really should consider uploading them somewhere
