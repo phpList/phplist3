@@ -8,7 +8,7 @@ if (preg_match('/Rev: (\d+)/','$Rev$',$match)) {
 }
 
 if (!defined('VERSION')) {
-  if (is_dir(dirname(__FILE__).'/.svn')) {
+  if (is_dir(dirname(__FILE__).'/../../../.svn')) {
     define("VERSION",$version.'-dev');
     define('DEVVERSION',true);
   } else {
@@ -897,12 +897,12 @@ function topMenu() {
 
   $topmenu = '';
   $topmenu .= '<div id="menuTop">';
-
+  if (!DEVVERSION) {
+    unset($GLOBALS['pagecategories']['develop']);
+  }
   
   foreach ($GLOBALS['pagecategories'] as $category => $categoryDetails) {
-    if (
-      $category == 'hide' ||
-      ($category == 'develop' && DEVVERSION)
+    if ($category == 'hide'
       ## hmm, this also suppresses the "dashboard" item
  #     || count($categoryDetails['menulinks']) == 0
       ) 
