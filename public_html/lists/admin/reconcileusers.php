@@ -386,7 +386,9 @@ $totalunconfirmed = $totalres[0];
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 
-print '<div class="actionresult">'.$action_result .'</div>';
+if (!empty($action_result)) {
+  print '<div class="actionresult">'.$action_result .'</div>';
+}
 
 print '<p class="information"><b>'.$total." ".$GLOBALS['I18N']->get('subscribers')."</b>";
 print $find ? " ".$GLOBALS['I18N']->get("found"): " ".$GLOBALS['I18N']->get("in the database");
