@@ -1759,10 +1759,10 @@ function simplePaging($baseurl,$start,$total,$numpp,$itemname = '') {
 ## 22934 - new code
   return '<div class="paging">
     <p class="range">'.$listing.'</p><div class="controls">
-    <a title="'.$GLOBALS['I18N']->get('First Page').'" href="'.PageUrl2($baseurl."&amp;start=0").'">&lt;&lt;</a>
-    <a title="'.$GLOBALS['I18N']->get('Previous').'" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',max(0,$start-$numpp))).'">&lt;</a>
-    <a title="'.$GLOBALS['I18N']->get('Next').'" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',min($total,$start+$numpp))).'">&gt;</a>
-    <a title="'.$GLOBALS['I18N']->get('Last Page').'" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',$total-$numpp)).'">&gt;&gt;</a>
+    <a title="'.$GLOBALS['I18N']->get('First Page').'" class="first" href="'.PageUrl2($baseurl."&amp;start=0").'"></a>
+    <a title="'.$GLOBALS['I18N']->get('Previous').'" class="previous" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',max(0,$start-$numpp))).'"></a>
+    <a title="'.$GLOBALS['I18N']->get('Next').'" class="next" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',min($total,$start+$numpp))).'"></a>
+    <a title="'.$GLOBALS['I18N']->get('Last Page').'" class="last" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',$total-$numpp)).'"></a>
     </div></div>
   ';
 
