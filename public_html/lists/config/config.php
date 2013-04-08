@@ -542,8 +542,9 @@ define("PHPMAILERHOST",'');
 # define('PHPMAILERBLASTHOST','livesmtp.mydomain.com');
 # define('PHPMAILERBLASTPORT',25);
 
-# to use SSL/TLS set this to y
-# define("PHPMAILER_SECURE",'y');
+# to use SSL/TLS when sending set this value
+# it can either be "ssl" or "tls", nothing else
+# define("PHPMAILER_SECURE",'ssl');
 
 ## Smtp Timeout
 ## If you use SMTP for sending, you can set the timeout of the SMTP connection
