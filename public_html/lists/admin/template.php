@@ -248,7 +248,7 @@ if ($id) {
   if ($GLOBALS['editorplugin']) {
     print $GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('content', stripslashes($data["template"])) .'</div>';
   } else {
-    print '<textarea name="content" id="content" cols="65" rows="20">';
+    print '<textarea name="content" id="template" cols="65" rows="20">';
     print stripslashes(htmlspecialchars($data["template"]));
     print '</textarea>';
   }
