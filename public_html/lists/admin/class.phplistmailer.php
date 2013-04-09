@@ -78,7 +78,7 @@ class PHPlistMailer extends PHPMailer {
       $this->inBlast = $inBlast;
       ### hmm, would be good to sort this out differently, but it'll work for now
       ## don't send test message using the blast server
-      if ($_GET['page'] == 'send') {
+      if (isset($_GET['page']) && $_GET['page'] == 'send') {
         $this->inBlast = false;
       }
 
