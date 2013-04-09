@@ -375,6 +375,11 @@ function sendMailPhpMailer ($to,$subject,$message) {
   $mail->add_text($textmessage);
   # 0008549: message envelope not passed to php mailer,
   $mail->Sender = $GLOBALS["message_envelope"];
+  
+  ## always add the List-Unsubscribe header
+  $removeurl = getConfig("unsubscribeurl");
+  $sep = strpos($removeurl,'?') === false ? '?':'&';
+  $mail->addCustomHeader("List-Unsubscribe: <".$removeurl.$sep.'email='.$to."&jo=1>");
 
   return $mail->compatSend("", $destinationemail, $fromname, $fromemail, $subject);
 }
