@@ -505,22 +505,29 @@ if (!$done) {
     $tabs = new WebblerTabs();
     $tabbaseurl = preg_replace('/&tab=[^&]+/','',$baseurl);
     $tabs->addTab($GLOBALS['I18N']->get("Content"),$tabbaseurl.'&amp;tab=Content');
+    $counttabs=1;
     if (USE_MANUAL_TEXT_PART) {
       $tabs->addTab($GLOBALS['I18N']->get("Text"),$tabbaseurl.'&amp;tab=Text');
+    $counttabs++;
     }
     if (FORWARD_ALTERNATIVE_CONTENT) {
       $tabs->addTab($GLOBALS['I18N']->get("Forward"),$tabbaseurl.'&amp;tab=Forward');
+    $counttabs++;
     }
     $tabs->addTab($GLOBALS['I18N']->get("Format"),$tabbaseurl.'&amp;tab=Format');
+    $counttabs++;
     if (ALLOW_ATTACHMENTS) {
       $tabs->addTab($GLOBALS['I18N']->get("Attach"),$tabbaseurl.'&amp;tab=Attach');
+    $counttabs++;
     }
     $tabs->addTab($GLOBALS['I18N']->get("Scheduling"),$tabbaseurl.'&amp;tab=Scheduling');
+    $counttabs++;
 #    if (USE_RSS) {
   #      $tabs->addTab("RSS",$baseurl.'&amp;tab=RSS');
 #    }
 #    $tabs->addTab($GLOBALS['I18N']->get("Criteria"),$tabbaseurl.'&amp;tab=Criteria');
     $tabs->addTab($GLOBALS['I18N']->get("Lists"),$tabbaseurl.'&amp;tab=Lists');
+    $counttabs++;
 #    $tabs->addTab("Review and Send",$baseurl.'&amp;tab=Review');
 
     if ($_GET["tab"]) {
@@ -542,11 +549,13 @@ if (!$done) {
         $plugintabname = substr(strip_tags($plugin->sendMessageTabTitle()),0,10);
         $plugintabs[$plugintabname] = $plugintab;
         $tabs->addTab($GLOBALS['I18N']->get($plugintabname),"$tabbaseurl&amp;tab=".urlencode($plugintabname));
+        $counttabs++;
       }
     }
 
     ## this one always last
     $tabs->addTab($GLOBALS['I18N']->get("Finish"),$tabbaseurl.'&amp;tab=Finish');
+    $counttabs++;
 
   # print $tabs->display();
   }
@@ -989,6 +998,9 @@ if (!$done) {
   ## the button to actually send the campagin
   $send_content .= $placeinqueue;
 
+print '<div class="sendtabs_container">';
+
+
   $tabs->setListClass('sendcampaign');
   $tabs->setId('sendtabs');
 #  $tabs->addPrevNext();
@@ -1023,6 +1035,44 @@ if (!$done) {
   }
 }
 
+print "<script type='text/javascript'>\n".
+"$(document).ready(function() {
+    var counttab = ".$counttabs.";
+    if(matchMedia('only screen and (max-width: 467px)').matches){ tabs=2; }
+    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3;}
+    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4;}
+    else{ tabs=6; if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
+    $('#sendtabs').jCarouselLite({
+        btnNext: '.nexttab',
+        btnPrev: '.prevtab',
+        circular: false,
+        visible: tabs,
+        auto: null,
+        speed:100,
+        scroll:1
+    });
+});
+$(window).resize(function(){
+    var counttab = ".$counttabs.";
+    if(matchMedia('only screen and (max-width: 467px)').matches){ tabs=2; $('.nexttab').removeClass('disabled'); }
+    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3; $('.nexttab').removeClass('disabled');}
+    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4; $('.nexttab').removeClass('disabled');}
+    else{ tabs=6;if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
+    $('#sendtabs').jCarouselLite({
+        btnNext: '.nexttab',
+        btnPrev: '.prevtab',
+        circular: false,
+        visible: tabs,
+        auto: null,
+        speed:100,
+        scroll:1
+    });
+});
+</script>";
+
+print '<img src="ui/dressprow/images/prevtab.png" id="prev" class="prevtab disabled" />';
+print '<img src="ui/dressprow/images/nexttab.png" id="next" class="nexttab" />';
+print '</div>';
 $savecaption = $GLOBALS['I18N']->get('Save as Draft');
 
 ## if all is there, we can enable the send button
