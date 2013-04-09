@@ -763,9 +763,10 @@ function unsubscribePage($id) {
 
     if (!$userid) {
       #0013076: Blacklisting posibility for unknown users
-      if ( $blacklistRequest && $email) {
+      if ( $blacklistRequest && !empty($email)) {
         addUserToBlacklist($email,$_POST['unsubscribereason']);
-        addSubscriberStatistics('forwardblacklist',1);
+        addSubscriberStatistics('blacklist',1);
+        $res .= '<h3>'.$GLOBALS["strUnsubscribedNoConfirm"] ."</h3>";
       } else {       
         $res .= $GLOBALS["strNoListsFound"];#'Error: '.$GLOBALS["strUserNotFound"];
         logEvent("Request to unsubscribe non-existent user: ".substr($email,0,150));
