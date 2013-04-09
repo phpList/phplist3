@@ -781,7 +781,7 @@ function contextMenu() {
       unset($GLOBALS['context_menu']['categoryheader']);
     }
   } elseif (!empty($_GET['pi'])) {
-    if (method_exists($GLOBALS['plugins'][$_GET['pi']],'adminmenu')) {
+    if (isset($GLOBALS['plugins'][$_GET['pi']]) && method_exists($GLOBALS['plugins'][$_GET['pi']],'adminmenu')) {
       $GLOBALS['context_menu']['categoryheader'] =  $GLOBALS['plugins'][$_GET['pi']]->name;
       $GLOBALS['context_menu'] = $GLOBALS['plugins'][$_GET['pi']]->adminMenu();
     }
