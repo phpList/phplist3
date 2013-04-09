@@ -1038,7 +1038,7 @@ print '<div class="sendtabs_container">';
 print "<script type='text/javascript'>\n".
 "$(document).ready(function() {
     var counttab = ".$counttabs.";
-    if(matchMedia('only screen and (max-width: 467px)').matches){ tabs=2; }
+    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; }
     else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3;}
     else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4;}
     else{ tabs=6; if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
@@ -1054,7 +1054,7 @@ print "<script type='text/javascript'>\n".
 });
 $(window).resize(function(){
     var counttab = ".$counttabs.";
-    if(matchMedia('only screen and (max-width: 467px)').matches){ tabs=2; $('.nexttab').removeClass('disabled'); }
+    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; $('.nexttab').removeClass('disabled'); }
     else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3; $('.nexttab').removeClass('disabled');}
     else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4; $('.nexttab').removeClass('disabled');}
     else{ tabs=6;if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
