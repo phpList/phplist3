@@ -716,7 +716,7 @@ function unsubscribePage($id) {
     
     #0013076: Blacklisting posibility for unknown users
     # Set flag for blacklisting 
-    $blacklistRequest = $_GET['p'] == 'blacklist';
+    $blacklistRequest = $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend';
     
     # only proceed when user has confirm the form 
     if ($blacklistRequest && is_email($email) ) {
