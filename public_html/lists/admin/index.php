@@ -527,7 +527,7 @@ if (checkAccess($page,"") || $page == 'about') {
       }
     }
   #  print "End of inclusion<br/>";
-  } elseif ($_GET['pi'] && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
+  } elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
     $plugin = $GLOBALS["plugins"][$_GET["pi"]];
     $menu = $plugin->adminmenu(); 
     if (is_file($plugin->coderoot . $include)) {
