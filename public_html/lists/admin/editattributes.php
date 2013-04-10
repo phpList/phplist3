@@ -37,7 +37,7 @@ switch ($data['type']) {
 <div class="content">
 <h3 id="attribute-name"><?php echo $data["name"]?></h3>
 <div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('add new'),"id=$id&amp;action=new")?> 
-  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('Are you sure you want to delete all records?');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('delete all'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('DelAll');?></a>
+  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('Are you sure you want to delete all records?');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('delete all'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('Delete all');?></a>
 </div>
 <hr/>
 <?php echo formStart(' class="editattributesAdd" ')?>
@@ -84,7 +84,7 @@ function giveAlternative($table,$delete,$attributeid) {
   print "</select>";
   printf('<input type="hidden" name="delete" value="%d" />',$delete);
   printf('<input type="hidden" name="id" value="%d" />',$attributeid);
-  printf('<input class="submit" type="submit" name="deleteandreplace" value="%s" /><hr class="line" />',$GLOBALS['I18N']->get('Delete and Replace'));
+  printf('<input class="submit" type="submit" name="deleteandreplace" value="%s" /><hr class="line" />',$GLOBALS['I18N']->get('Delete and replace'));
 }
 
 function deleteItem($table,$attributeid,$delete) {
@@ -112,9 +112,9 @@ function deleteItem($table,$attributeid,$delete) {
     $result = Sql_Query("update $tables[user_attribute] set value = $replace where value = $delete");
     $result = Sql_query("delete from $table where id = $delete");
   } else {
-    print $GLOBALS["I18N"]->get("cannotdelete");
+    print $GLOBALS["I18N"]->get("Cannot delete");
     print " <b>$val</b><br />";
-    print $GLOBALS["I18N"]->get("dependentrecords");
+    print $GLOBALS["I18N"]->get("The following subscriber(s) are dependent on this value<br />Update the subscriber profiles to not use this attribute value and try again");
 
     for ($i=0;$i<sizeof($dependencies);$i++) {
       print PageLink2("user",$GLOBALS["I18N"]->get("user")." ".$dependencies[$i],"id=$dependencies[$i]")."<br />\n";
@@ -156,9 +156,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "new") {
   // ??
   ?>
 
-  <p><?php echo $GLOBALS["I18N"]->get("addnew")." ".$data["name"].', '.$GLOBALS["I18N"]->get("oneperline") ?></p>
+  <p><?php echo $GLOBALS["I18N"]->get("Add new")." ".$data["name"].', '.$GLOBALS["I18N"]->get("one per line") ?></p>
   <textarea name="itemlist" rows="20" cols="50"></textarea>
-  <input class="submit" type="submit" name="addnew" value="<?php echo $GLOBALS["I18N"]->get("addnew")." ".$data["name"] ?>" /><br />
+  <input class="submit" type="submit" name="addnew" value="<?php echo $GLOBALS["I18N"]->get("Add new")." ".$data["name"] ?>" /><br />
   <hr />
 <?php
 }
@@ -166,7 +166,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "new") {
 $rs = Sql_query("select * from $table order by listorder, name");
 $num = Sql_Num_Rows($rs);
 if ($num < 100 && $num > 25)
-  printf('<input class="submit" type="submit" name="action" value="%s" /><br /><br />',$GLOBALS["I18N"]->get("changeorder"));
+  printf('<input class="submit" type="submit" name="action" value="%s" /><br /><br />',$GLOBALS["I18N"]->get("Change order"));
 
 while ($row = Sql_Fetch_array($rs)) {
   printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
@@ -175,7 +175,7 @@ while ($row = Sql_Fetch_array($rs)) {
   printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? '('.$GLOBALS['I18N']->get('default').')':"");
 }
 if ($num && $num < 100)
-  printf('<br /><input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("changeorder"));
+  printf('<br /><input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("Change order"));
 
 ?>
 </form>
