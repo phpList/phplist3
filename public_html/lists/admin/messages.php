@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
       $result = Sql_query(sprintf('update %s set status = "suspended" where (status = "inprocess" or status = "submitted") %s',$tables["message"],$ownerselect_and));
       $suc6 = Sql_Affected_Rows();
       if ($suc6)
-        $action_result .=  "... $suc6".$GLOBALS['I18N']->get("Done");
+        $action_result .=  "... $suc6 ".$GLOBALS['I18N']->get("Done");
       else
         $action_result .=  "... ".$GLOBALS['I18N']->get("Failed");
       $action_result .= '<br /><hr /><br />';
@@ -175,7 +175,7 @@ if (isset($_GET['action'])) {
       $result = Sql_query(sprintf('update %s set status = "sent" where (status = "suspended") %s',$tables["message"],$markSent,$ownerselect_and));
       $suc6 = Sql_Affected_Rows();
       if ($suc6)
-        $action_result .=  "... $suc6".$GLOBALS['I18N']->get("Done");
+        $action_result .=  "... $suc6 ".$GLOBALS['I18N']->get("Done");
       else
         $action_result .=  "... ".$GLOBALS['I18N']->get("Failed");
       $action_result .=  '<br /><hr /><br />';
