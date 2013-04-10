@@ -449,6 +449,9 @@ function sendAdminCopy($subject,$message,$lists = array()) {
 
 function safeImageName($name) {
   $name = "image".str_replace(".","DOT",$name);
+  $name = str_replace("(","BRO",$name);
+  $name = str_replace(")","BRC",$name);
+  $name = str_replace(" ","SPC",$name);
   $name = str_replace("-","DASH",$name);
   $name = str_replace("_","US",$name);
   $name = str_replace("/","SLASH",$name);
@@ -524,6 +527,7 @@ function previewTemplate($id,$adminid = 0,$text = "", $footer = "") {
     $template = str_ireplace("[FOOTER]",$footer,$template);
   }
   $template = preg_replace("#\[CONTENT\]#",$text,$template);
+  $template = str_ireplace("[SUBJECT]",'SUBJECT',$template);
   $template = str_ireplace("[UNSUBSCRIBE]",sprintf('<a href="%s">%s</a>',getConfig("unsubscribeurl"),$GLOBALS["strThisLink"]),$template);
   #0013076: Blacklisting posibility for unknown users
   $template = str_ireplace("[BLACKLIST]",sprintf('<a href="%s">%s</a>',getConfig("blacklisturl"),$GLOBALS["strThisLink"]),$template);
