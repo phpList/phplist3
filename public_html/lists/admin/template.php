@@ -11,6 +11,7 @@ if (!empty($_FILES['file_template']) && is_uploaded_file($_FILES['file_template'
 } else {
   $content = '';
 }
+$sendtestresult = '';
 $testtarget = getConfig('admin_address');
 $systemTemplateID = getConfig('systemmessagetemplate');
 
@@ -70,9 +71,9 @@ $checkfulllinks = !empty($_POST['checkfulllinks']) ? 1 : 0;
 $baseurl = '';
 
 if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
-  if (!$id)
+  if (!$id) {
     $msg = $GLOBALS['I18N']->get('No such template');
-  else {
+  } else {
     $content_req = Sql_Fetch_Row_Query("select template from {$tables["template"]} where id = $id");
     $images = getTemplateImages($content_req[0]);
     if (sizeof($images)) {
@@ -83,11 +84,12 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
         $image->uploadImage($key,$id);
       }
       $msg = $GLOBALS['I18N']->get('Images stored');
-    } else
+    } else {
       $msg = $GLOBALS['I18N']->get('No images found');
+    }
   }
-  print '<p class="information">'.$msg.'</p>';
-  return;
+  print '<p class="actionresult">'.$msg.'</p>';
+  $msg = '';
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { ## let's save when sending a test
   $templateok = 1;
   $title = removeXss($_POST['title']);
@@ -99,7 +101,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       foreach ($images as $key => $val) {
         if (!preg_match("#^https?://#i",$key)) {
           if ($checkfullimages) {
-            print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('"not full URL')."<br/>\n";
+            $actionresult .= $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('"not full URL')."<br/>\n";
             $templateok = 0;
            }
         } else {
@@ -107,12 +109,12 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
             if ($cantestremoteimages) {
               $fp = @fopen($key,"r");
               if (!$fp) {
-                print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
+                $actionresult .=  $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
                 $templateok = 0;
               }
               @fclose($fp);
             } else {
-              print $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('cannot check, "allow_url_fopen" disabled in PHP settings')."<br/>\n";
+              $actionresult .=  $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('cannot check, "allow_url_fopen" disabled in PHP settings')."<br/>\n";
             }
           }
         }
@@ -122,14 +124,14 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $links = getTemplateLinks($content);
       foreach ($links as $key => $val) {
         if (!preg_match("#^https?://#i",$val) && !preg_match("#^mailto:#i",$val)) {
-           print $GLOBALS['I18N']->get('Not a full URL').": $val<br/>\n";
+           $actionresult .=  $GLOBALS['I18N']->get('Not a full URL').": $val<br/>\n";
            $templateok = 0;
          }
       }
     }
   } else {
-    if (!$title) print $GLOBALS['I18N']->get('No Title')."<br/>";
-    else print $GLOBALS['I18N']->get('Template does not contain the [CONTENT] placeholder')."<br/>";
+    if (!$title) $actionresult .=  $GLOBALS['I18N']->get('No Title')."<br/>";
+    else $actionresult .=  $GLOBALS['I18N']->get('Template does not contain the [CONTENT] placeholder')."<br/>";
     $templateok = 0;
   }
   if ($templateok) {
@@ -173,7 +175,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
   #    return;
     }
   } else {
-    print '<p class="information">'.$GLOBALS['I18N']->get('Some errors were found, template NOT saved!').'</p>';
+    $actionresult .=  $GLOBALS['I18N']->get('Some errors were found, template NOT saved!');
     $data["title"] = $title;
     $data["template"] = $content;
   }
@@ -188,12 +190,27 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       foreach ($targetEmails as $email) {
         if (validateEmail($email)) {
           $testtarget .= $email.', ';
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Request for confirmation" to').' '.$email.'</p>';
-          sendMail ($email,getConfig('subscribesubject'),getConfig('subscribemessage'));
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Welcome" to').' '.$email.'</p>';
-          sendMail ($email,getConfig('confirmationsubject'),getConfig('confirmationmessage'));
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Sending test "Unsubscribe confirmation" to').' '.$email.'</p>';
-          sendMail ($email,getConfig('unsubscribesubject'),getConfig('unsubscribemessage'));
+          $actionresult .= $GLOBALS['I18N']->get('Sending test "Request for confirmation" to').' '.$email.'  ';
+          if (sendMail ($email,getConfig('subscribesubject'),getConfig('subscribemessage'))) {
+            $actionresult .= s('OK');
+          } else {
+            $actionresult .= s('FAILED');
+          }
+          $actionresult .= '<br/>';
+          $actionresult .= $GLOBALS['I18N']->get('Sending test "Welcome" to').' '.$email.'  ';
+          if (sendMail ($email,getConfig('confirmationsubject'),getConfig('confirmationmessage'))) {
+            $actionresult .= s('OK');
+          } else {
+            $actionresult .= s('FAILED');
+          }
+          $actionresult .= '<br/>';
+          $actionresult .= $GLOBALS['I18N']->get('Sending test "Unsubscribe confirmation" to').' '.$email.'  ';
+          if (sendMail ($email,getConfig('unsubscribesubject'),getConfig('unsubscribemessage'))) {
+            $actionresult .= s('OK');
+          } else {
+            $actionresult .= s('FAILED');
+          }
+            
         } elseif (trim($email) != '') {
           $actionresult .= '<p>'.$GLOBALS['I18N']->get('Error sending test messages to').' '.$email.'</p>';
         }
@@ -205,10 +222,12 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $testtarget = getConfig('admin_address');
     }
     $testtarget = preg_replace('/, $/','',$testtarget);
-    print '<div class="actionresult">'.$actionresult.'</div>';
   }
 
   
+}
+if (!empty($actionresult)) {
+  print '<div class="actionresult">'.$actionresult.'</div>';
 }
 
 if ($id) {
