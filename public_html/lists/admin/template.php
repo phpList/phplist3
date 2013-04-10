@@ -15,18 +15,6 @@ $sendtestresult = '';
 $testtarget = getConfig('admin_address');
 $systemTemplateID = getConfig('systemmessagetemplate');
 
-if (file_exists("./FCKeditor/fckeditor.php") && USEFCK) {
-  include("./FCKeditor/fckeditor.php") ;
-
-  // Create the editor object here so we can check to see if *it* wants us to use it (this
-  // does a browser check, etc.
-  $oFCKeditor = new FCKeditor('content') ;
-  $usefck = $oFCKeditor->IsCompatible();
-  unset($oFCKeditor); // This object is *very* short-lived.  Thankfully, it's also light-weight
-} else {
-  $usefck = 0;
-}
-
 if (isset($_REQUEST['id'])) {
   $id = sprintf('%d',$_REQUEST['id']);
 } else {
@@ -47,8 +35,9 @@ function getTemplateImages($content) {
                   'swf'  => 'application/x-shockwave-flash'
                   );
   // Build the list of image extensions
-  while(list($key,) = each($image_types))
+  while(list($key,) = each($image_types)) {
     $extensions[] = $key;
+  }
   preg_match_all('/"([^"]+\.('.implode('|', $extensions).'))"/Ui', stripslashes($content), $images);
   while (list($key,$val) = each ($images[1])) {
     if (isset($html_images[$val])) {
@@ -76,6 +65,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
   } else {
     $content_req = Sql_Fetch_Row_Query("select template from {$tables["template"]} where id = $id");
     $images = getTemplateImages($content_req[0]);
+
     if (sizeof($images)) {
       include "class.image.inc";
       $image = new imageUpload();
@@ -88,14 +78,19 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $msg = $GLOBALS['I18N']->get('No images found');
     }
   }
-  print '<p class="actionresult">'.$msg.'</p>';
-  $msg = '';
+  $_SESSION['action_result'] = $msg.'<br/>'.s('Template saved and ready for use in campaigns');
+  Redirect('templates');
+  return;
+  //print '<p class="actionresult">'.$msg.'</p>';
+  //$msg = '';
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { ## let's save when sending a test
   $templateok = 1;
   $title = removeXss($_POST['title']);
   if ($title && strpos($content,"[CONTENT]") !== false) {
     $images = getTemplateImages($content);
-
+    
+ //   var_dump($images);
+    
     $cantestremoteimages = ini_get('allow_url_fopen');
     if (($checkfullimages || $checkimagesexist) && sizeof($images)) {
       foreach ($images as $key => $val) {
@@ -149,7 +144,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $tables["templateimage"],$id,"image/png","powerphplist.png",
       $newpoweredimage,
       70,30));
-    print '<p class="information">'.$GLOBALS['I18N']->get('Template saved').'</p>';
+    $actionresult .= '<p class="information">'.$GLOBALS['I18N']->get('Template saved').'</p>';
 
     if (sizeof($images)) {
       include dirname(__FILE__) . "/class.image.inc";
@@ -233,6 +228,10 @@ if (!empty($actionresult)) {
 if ($id) {
   $req = Sql_Query("select * from {$tables["template"]} where id = $id");
   $data = Sql_Fetch_Array($req);
+  ## keep POSTED data, even if not saved
+  if (!empty($_POST['content'])) {
+    $data['template'] = $content;
+  }
 } else {
   $data = array();
   $data["title"] = '';
