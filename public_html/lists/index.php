@@ -49,7 +49,7 @@ if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {
 }
 
 include_once dirname(__FILE__)."/admin/languages.php";
-require_once dirname(__FILE__)."/admin/defaultconfig.inc";
+require_once dirname(__FILE__)."/admin/defaultconfig.php";
 require_once dirname(__FILE__).'/admin/connect.php';
 include_once dirname(__FILE__)."/admin/lib.php";
 $I18N = new phplist_I18N();
