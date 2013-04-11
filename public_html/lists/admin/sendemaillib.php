@@ -198,7 +198,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     }
     $html['footer'] = $text['footer'];
   }
-  
+
 /*
   We request you retain the signature below in your emails including the links.
   This not only gives respect to the large amount of time given freely
@@ -1409,7 +1409,10 @@ exit;
   if (VERBOSE && $GLOBALS['getspeedstats']) {
     output('parse config start');
   }
-  if (is_array($GLOBALS["default_config"])) {
+  
+/*
+ * this is not a good idea, as it'll replace eg "unsubscribeurl" with a general one instead of personalised
+ *   if (is_array($GLOBALS["default_config"])) {
     foreach($GLOBALS["default_config"] as $key => $val) {
       if (is_array($val)) {
         $cached[$messageid]['content'] = str_ireplace("[$key]",getConfig($key),$cached[$messageid]['content']);
@@ -1419,6 +1422,7 @@ exit;
       }
     }
   }
+  */
   if (VERBOSE && $GLOBALS['getspeedstats']) {
     output('parse config end');
   }
