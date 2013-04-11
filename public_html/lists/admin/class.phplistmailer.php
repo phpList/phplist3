@@ -7,8 +7,8 @@ if (defined('PHPMAILER_PATH')) {
 }
 
 if (!class_exists('PHPmailer')) {
- # require_once dirname(__FILE__).'/PHPMailer_v5.1/class.phpmailer.php';
-  require_once dirname(__FILE__).'/PHPMailer_5.2.1/class.phpmailer.php';
+ //https://github.com/Synchro/PHPMailer/tags
+  require_once dirname(__FILE__).'/PHPMailer-5.2.5/class.phpmailer.php';
 }
 
 class PHPlistMailer extends PHPMailer {
@@ -34,6 +34,8 @@ class PHPlistMailer extends PHPMailer {
     public $LE              = "\n";
     public $Hello = '';
     public $timeStamp = '';
+    public $TextEncoding      = '7bit';
+    
 
     function PHPlistMailer($messageid,$email,$inBlast = true,$exceptions = false) {
       parent::__construct($exceptions);
@@ -387,12 +389,15 @@ class PHPlistMailer extends PHPMailer {
        * to phpMailer
        */
 
+      $cid = md5(uniqid(time()));
       if (method_exists($this,'AddEmbeddedImageString')) {
-        $cid = md5(uniqid(time()));
         $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
+      } elseif (method_exists($this,'AddStringEmbeddedImage')) {
+        ## PHPMailer 5.2.5 and up renamed the method
+        ## https://github.com/Synchro/PHPMailer/issues/42#issuecomment-16217354
+        $this->AddStringEmbeddedImage(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
       } elseif (isset($this->attachment) && is_array($this->attachment)) {
         // Append to $attachment array
-        $cid = md5(uniqid(time()));
         $cur = count($this->attachment);
         $this->attachment[$cur][0] = base64_decode($contents);
         $this->attachment[$cur][1] = '';#$filename;
