@@ -17,13 +17,13 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
       if ($id) {
         Sql_Query("select id from ".$GLOBALS['tables']["list"]. $subselect . " and id = $id");
         if (!Sql_Affected_Rows()) {
-          Fatal_Error($GLOBALS['I18N']->get('You do not have enough priviliges to view this page'));
+          Error($GLOBALS['I18N']->get('You do not have enough priviliges to view this page'));
           return;
         }
       } else {
         $numlists = Sql_Fetch_Row_query("select count(*) from {$GLOBALS['tables']['list']} $subselect");
         if (!($numlists[0] < MAXLIST)) {
-          Fatal_Error($GLOBALS['I18N']->get('You cannot create a new list because you have reached maximum number of lists.'));
+          Error($GLOBALS['I18N']->get('You cannot create a new list because you have reached maximum number of lists.'));
           return;
         }
       }
