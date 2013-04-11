@@ -101,7 +101,7 @@ require_once dirname(__FILE__).'/'.$GLOBALS["database_module"];
 require_once dirname(__FILE__)."/../texts/english.inc";
 include_once dirname(__FILE__)."/../texts/".$GLOBALS["language_module"];
 include_once dirname(__FILE__)."/languages.php";
-require_once dirname(__FILE__)."/defaultconfig.inc";
+require_once dirname(__FILE__)."/defaultconfig.php";
 
 require_once dirname(__FILE__).'/connect.php';
 include_once dirname(__FILE__)."/lib.php";
