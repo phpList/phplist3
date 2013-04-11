@@ -31,6 +31,19 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   $plugin->processQueueStart();
 }
 
+## let's make sure all subscribers have a uniqid
+## only when on CL
+if ($GLOBALS['commandline']) {
+  $req = Sql_Query(sprintf('select id from %s where uniqid is NULL or uniqid = ""',$GLOBALS["tables"]["user"]));
+  $num = Sql_Affected_Rows();
+  if ($num) {
+    cl_output('Giving a Unique ID to '. $num.' subscribers, this may take a while');
+    while ($row = Sql_Fetch_Row($req)) {
+      Sql_query(sprintf('update %s set uniqid = "%s" where id = %d',$GLOBALS["tables"]["user"],getUniqID(),$row[0]));
+    }
+  }
+}
+
 $num_per_batch = 0;
 $batch_period = 0;
 $script_stage = 0; # start
@@ -507,7 +520,7 @@ while ($message = Sql_fetch_array($messages)) {
     if (empty($reload)) {
       ### Hmm, this is probably incredibly confusing. It won't finish then
       if (VERBOSE) {
-        output(sprintf($GLOBALS['I18N']->get('sending of this campaign will finish in %s'),secs2time($secondsTogo)));
+        output(sprintf($GLOBALS['I18N']->get('sending of this campaign will stop, if it is still going in %s'),secs2time($secondsTogo)));
       }
     }
   }
