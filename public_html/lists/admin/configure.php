@@ -10,6 +10,13 @@ if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
   require "setup.php";
 }
 */
+
+if (isset($_GET['resetdefault']) && $_GET['resetdefault'] == 'yes') {
+  Sql_Query(sprintf('delete from %s where editable',$GLOBALS['tables']['config']));
+  $_SESSION['action_result'] = s('The settings have been reset to the phpList default');
+  Redirect('configure');
+}
+
 if (empty($_REQUEST['id'])) {
   $id = '';
 } else {
@@ -19,7 +26,14 @@ if (empty($_REQUEST['id'])) {
     return;
   }
 }
+#print '<div class="actions">'.PageLinkButton('configure&resetdefault=yes',s('Reset to default')).'</div>';
 
+$button = new ConfirmButton(
+   s('Are you sure you want to reset the configuration to the default?'),
+   PageURL2("configure","reset","resetdefault=yes"),
+   s('Reset to default'));
+ 
+print $button->show();   
 print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
 
 $configCategories = array();
