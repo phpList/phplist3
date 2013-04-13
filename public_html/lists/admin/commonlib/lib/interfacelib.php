@@ -1099,7 +1099,7 @@ class confirmButton extends button {
     if (!isset($GLOBALS['confirmButtonCount'])) $GLOBALS['confirmButtonCount'] = 0;
     $GLOBALS['confirmButtonCount']++;
     $this->linkhtml = ' class="confirm" id="confirm'.$GLOBALS['confirmButtonCount'].'"';
-    $this->link = $link;
+    $this->link = '#';
     $this->linktext = $linktext;
     $this->js = '
     <script type="text/javascript">
