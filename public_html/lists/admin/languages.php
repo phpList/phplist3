@@ -271,6 +271,11 @@ class phplist_I18N {
      * if eg language is "nl" it won't find it. It'll need to be "nl_NL";
      * also the Ubuntu system needs to have the language installed, even if phpList has it
      * it won't find it, if it's not on the system
+     * 
+     * So, to e.g. get "nl" gettext support in phpList (on ubuntu, but presumably other linuxes), you'd have to do
+     * cd /usr/shares/locales
+     * ./install-language-pack nl_NL
+     * dpkg-reconfigure locales
      *
      * but when you use "nl_NL", the language .mo can still be in "nl".
      * However, it needs "nl/LC_MESSAGES/phplist.mo s, put a symlink LC_MESSAGES to itself
@@ -439,7 +444,8 @@ $lan = array(
       }
     }
 
-    ## next try gettext
+    ## next try gettext, although before that works, it requires loads of setting up
+    ## but who knows
     if ($this->hasGettext) {
       $gettext = $this->gettext($text);
       if (!empty($gettext)) {
