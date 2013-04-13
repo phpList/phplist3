@@ -64,17 +64,17 @@ print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list')
   $buttons->addButton(
     new ConfirmButton(
       $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months') . "?",
-      PageURL2("$baseurl&amp;action=deleteunidentified"),
+      PageURL2("$baseurl&action=deleteunidentified"),
       $GLOBALS['I18N']->get('delete all unidentified (&gt; 2 months old)')));
   $buttons->addButton(
     new ConfirmButton(
       $GLOBALS['I18N']->get('are you sure you want to delete all bounces older than 2 months') . "?",
-      PageURL2("$baseurl&amp;action=deleteprocessed"),
+      PageURL2("$baseurl&action=deleteprocessed"),
       $GLOBALS['I18N']->get('delete all processed (&gt; 2 months old)')));
   $buttons->addButton(
     new ConfirmButton(
       $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . "?",
-      PageURL2("$baseurl&amp;action=deleteall"),
+      PageURL2("$baseurl&action=deleteall"),
       $GLOBALS['I18N']->get('Delete all')));
  if (ALLOW_DELETEBOUNCE) {
   print $buttons->show();

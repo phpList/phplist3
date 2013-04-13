@@ -78,12 +78,12 @@ if ($total > MAX_USER_PP) {
   $buttons->addButton(
     new ConfirmButton(
    $GLOBALS['I18N']->get('Are you sure you want to delete all events older than 2 months?'),
-   PageURL2("eventlog","Delete","start=$start&amp;action=deleteprocessed"),
+   PageURL2("eventlog","Delete","start=$start&action=deleteprocessed"),
    $GLOBALS['I18N']->get('Delete all (&gt; 2 months old)')));
   $buttons->addButton(
     new ConfirmButton(
    $GLOBALS['I18N']->get('Are you sure you want to delete all events matching this filter?'),
-   PageURL2("eventlog","Delete","start=$start&amp;action=deleteall$find_url"),
+   PageURL2("eventlog","Delete","start=$start&action=deleteall$find_url"),
    $GLOBALS['I18N']->get('Delete all')));
      print $buttons->show();
 
