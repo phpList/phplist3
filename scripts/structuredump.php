@@ -4,7 +4,7 @@
 
 define('PHPLISTINIT',1);
 
-include "trunk/public_html/lists/admin/structure.php";
+include "public_html/lists/admin/structure.php";
 
 foreach ($DBstruct as $table => $tStruct) {
   foreach ($tStruct as $column => $cStruct) {
