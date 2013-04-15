@@ -6,8 +6,8 @@ $actionresult = '';
 
 if (!empty($_FILES['file_template']) && is_uploaded_file($_FILES['file_template']['tmp_name'])) {
   $content = file_get_contents($_FILES['file_template']['tmp_name']);
-} elseif (isset($_POST['content'])) {
-  $content = $_POST['content'];
+} elseif (isset($_POST['template'])) {
+  $content = $_POST['template'];
 } else {
   $content = '';
 }
@@ -229,7 +229,7 @@ if ($id) {
   $req = Sql_Query("select * from {$tables["template"]} where id = $id");
   $data = Sql_Fetch_Array($req);
   ## keep POSTED data, even if not saved
-  if (!empty($_POST['content'])) {
+  if (!empty($_POST['template'])) {
     $data['template'] = $content;
   }
 } else {
@@ -264,9 +264,9 @@ if ($id) {
 
 <?php
   if ($GLOBALS['editorplugin']) {
-    print $GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('content', stripslashes($data["template"])) .'</div>';
+    print $GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('template', stripslashes($data["template"])) .'</div>';
   } else {
-    print '<textarea name="content" id="template" cols="65" rows="20">';
+    print '<textarea name="template" id="template" cols="65" rows="20">';
     print stripslashes(htmlspecialchars($data["template"]));
     print '</textarea>';
   }
