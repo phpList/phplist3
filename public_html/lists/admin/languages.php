@@ -556,3 +556,26 @@ function s($text) {
   return $translation;
 }
 
+function parsePo($translationUpdate) {
+  $translation_lines = explode("\n",$translationUpdate);
+  $original = '';
+  $translation = '';
+  $translations = array();
+  foreach ($translation_lines as $line) {
+    if (preg_match('/^msgid "(.*)"/',$line,$regs)) {
+      $original = $regs[1];
+    } elseif (preg_match('/^msgstr "(.*)"/',$line,$regs)) {
+    #  $status .= '<br/>'.$original.' '.$regs[1];
+      $translation = $regs[1];
+    } elseif (preg_match('/"(.*)"/',$line,$regs)) {# && !empty($translation)) {
+      ## wrapped to multiple lines
+      $translation .= $regs[1];
+    } elseif (preg_match('/^#/',$line) || preg_match('/^\s+$/',$line)) {
+      $original = $translation = '';
+    }
+    if (!empty($original) && !empty($translation)) {
+      $translations[$original] = $translation;
+    }
+  }
+  return $translations;
+}
