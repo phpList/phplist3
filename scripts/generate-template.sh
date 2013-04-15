@@ -8,9 +8,7 @@ reportto=$1
 [ "$reportto" ] || reportto=root@localhost 
 
 if [ "$svnup" ]; then
-  cd trunk
   svn up
-  cd ..
 fi
 
 [ -d public_html ] || exit; ## needs to run from phplist root
