@@ -222,20 +222,12 @@ if (!$GLOBALS["admin_auth_module"]) {
   $GLOBALS['require_login'] = 0;
 }
 
-
 if (!empty($_GET['pi']) && isset($GLOBALS['plugins'][$_GET['pi']])) {
   $page_title = $GLOBALS['plugins'][$_GET['pi']]->pageTitle($page);
-} 
-if (empty($page_title)) {
-  @include_once dirname(__FILE__)."/lan/".$_SESSION['adminlanguage']['iso']."/pagetitles.php";
-}
-if (empty($page_title)) {
-  $page_title = NAME;
+} else {
+  $page_title = $GLOBALS['I18N']->pageTitle($page);
 }
 
-// These two meta tags are included on page-top.php
-// print '<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />';           // HTTP/1.1
-// print '<meta http-equiv="Pragma" content="no-cache" />';           // HTTP/1.1
 print "<title>".NAME." :: ";
 if (isset($GLOBALS["installation_name"])) {
   print $GLOBALS["installation_name"] .' :: ';
@@ -339,7 +331,7 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
            <select name="setlanguage" onchange="document.languageswitchform.submit()">';
     $lancount = 0;
     foreach ($GLOBALS['LANGUAGES'] as $iso => $rec) {
-      if (is_dir(dirname(__FILE__).'/lan/'.$iso)) {
+      if (is_dir(dirname(__FILE__).'/locale/'.$iso)) {
         $languageswitcher .= sprintf('
                  <option value="%s" %s>%s</option>',$iso,$_SESSION['adminlanguage']['iso'] == $iso ? 'selected="selected"':'',$rec[0]);
         $lancount++;
