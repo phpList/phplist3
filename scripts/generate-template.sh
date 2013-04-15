@@ -22,8 +22,7 @@ echo '' > messages.po # xgettext needs that file, and we need it empty
 php scripts/structuredump.php > public_html/databasestructure.php
 
 find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
-
-msgmerge -N phplist.pot messages.po > phplist-new.pot 2>/dev/null
+msgmerge -N public_html/lists/admin/locale/templates/phplist.pot messages.po > phplist-new.pot 2>/dev/null
 
 diff phplist-new.pot phplist.pot > diff${now}
 if [ -s "diff${now}" ]; then
