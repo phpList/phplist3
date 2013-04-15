@@ -13,11 +13,18 @@ if [ "$svnup" ]; then
   cd ..
 fi
 
+[ -d public_html ] || exit; ## needs to run from phplist root
+
 now=$(date +%Y%m%d%H%M)
 
 ## from http://www.lxg.de/code/playing-with-xgettext
 echo '' > messages.po # xgettext needs that file, and we need it empty
-find . -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
+
+## the structure.php file has texts that cannot be found this way.
+php scripts/structuredump.php > public_html/databasestructure.php
+
+find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
+
 msgmerge -N phplist.pot messages.po > phplist-new.pot 2>/dev/null
 
 diff phplist-new.pot phplist.pot > diff${now}
@@ -31,5 +38,5 @@ if [ -s "diff${now}" ]; then
   rm -f diff${now} /tmp/message$$
   mv -f phplist-new.pot phplist.pot
 fi
-rm -f messages.po phplist-new.pot diff{$now}
+rm -f messages.po phplist-new.pot diff${now} public_html/databasestructure.php
 
