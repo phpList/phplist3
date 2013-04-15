@@ -49,10 +49,10 @@ if (DB_TRANSLATION) {
 }
 
 ## pick up languages from the lan directory
-$landir = dirname(__FILE__).'/lan/';
+$landir = dirname(__FILE__).'/locale/';
 $d = opendir($landir);
 while ($lancode = readdir($d)) {
-#  print "<br/>".$dir;
+#  print "<br/>".$lancode;
   if (!in_array($landir,array_keys($LANGUAGES)) && is_dir($landir.'/'.$lancode) && is_file($landir.'/'.$lancode.'/language_info')) {
     $lan_info = file_get_contents($landir.'/'.$lancode.'/language_info');
     $lines = explode("\n",$lan_info);
@@ -73,6 +73,7 @@ while ($lancode = readdir($d)) {
 #    print '<br/>'.$landir.'/'.$lancode;
   }
 }
+#var_dump($LANGUAGES);
 
 function lanSort($a,$b) {
   return strcmp(strtolower($a[0]),strtolower($b[0]));
@@ -196,7 +197,7 @@ class phplist_I18N {
 
 
   function phplist_I18N() {
-    $this->basedir = dirname(__FILE__).'/lan/';
+    $this->basedir = dirname(__FILE__).'/locale/';
     if (isset($_SESSION['adminlanguage']) && is_dir($this->basedir.$_SESSION['adminlanguage']['iso'])) {
       $this->language = $_SESSION['adminlanguage']['iso'];
     } else {
@@ -273,7 +274,7 @@ class phplist_I18N {
      * it won't find it, if it's not on the system
      * 
      * So, to e.g. get "nl" gettext support in phpList (on ubuntu, but presumably other linuxes), you'd have to do
-     * cd /usr/shares/locales
+     * cd /usr/share/locales
      * ./install-language-pack nl_NL
      * dpkg-reconfigure locales
      *
@@ -327,12 +328,19 @@ class phplist_I18N {
       }
     }
     $page_title = '';
-    if (is_file(dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php')) {
+    if (is_file(dirname(__FILE__).'/locale/'.$this->language.'/pagetitles.php')) {
+      include dirname(__FILE__).'/locale/'.$this->language.'/pagetitles.php';
+    } elseif (is_file(dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php')) {
       include dirname(__FILE__).'/lan/'.$this->language.'/pagetitles.php';
     }
     if (preg_match('/pi=([\w]+)/',$page,$regs)) {
       ## @@TODO call plugin to ask for title
-      $title = $regs[1];
+      if (isset($GLOBALS['plugins'][$regs[1]])) {
+        $title = $GLOBALS['plugins'][$regs[1]]->pageTitle($page);
+      } else {
+        $title = $regs[1].' - '.$page;
+      }
+
     } elseif (!empty($page_title)) {
       $title = $page_title;
     } else {
