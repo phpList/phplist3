@@ -331,11 +331,11 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
            <select name="setlanguage" onchange="document.languageswitchform.submit()">';
     $lancount = 0;
     foreach ($GLOBALS['LANGUAGES'] as $iso => $rec) {
-      if (is_dir(dirname(__FILE__).'/locale/'.$iso)) {
+    #  if (is_dir(dirname(__FILE__).'/locale/'.$iso)) {
         $languageswitcher .= sprintf('
                  <option value="%s" %s>%s</option>',$iso,$_SESSION['adminlanguage']['iso'] == $iso ? 'selected="selected"':'',$rec[0]);
         $lancount++;
-      }
+    #  }
     }
     $languageswitcher .= '
             </select>

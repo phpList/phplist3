@@ -7,7 +7,8 @@ http://www.w3.org/International/O-charset-lang.html
 
 */
 ## this array is now automatically build from the file system using the
-## language_info file in each subdirectory of /lan/
+## language_info file in each subdirectory of /locale/
+## and further on, from the XML data of the translation site
 $LANGUAGES = array(
 "nl"=> array("Dutch ","UTF-8"," UTF-8, windows-1252 "),
 "de" => array("Deutsch ","UTF-8","UTF-8, windows-1252 "),
@@ -16,37 +17,11 @@ $LANGUAGES = array(
 #"fa" => array('Persian','utf-8','utf-8'),
 "fr"=>array("fran&ccedil;ais ","UTF-8","UTF-8, windows-1252 "),
 "pl"=>array("Polish ","UTF-8","UTF-8"),
-"pt-br"=>array("portugu&ecirc;s ","UTF-8","UTF-8, windows-1252"),
-"zh-tw" => array("Traditional Chinese","utf-8","utf-8"),
-'cn' => array('Simplified Chinese',"utf-8","utf-8"),
+"pt_BR"=>array("portugu&ecirc;s ","UTF-8","UTF-8, windows-1252"),
+"zh_TW" => array("Traditional Chinese","utf-8","utf-8"),
+'zh_CN' => array('Simplified Chinese',"utf-8","utf-8"),
 "vi" => array("Vietnamese","utf-8","utf-8"),
 );
-
-$lanDBstruct = array(
-  'language' => array(
-    'iso' => array('varchar(10)',''),
-    'name' => array('varchar(255)',''),
-    'charset' => array('varchar(100)',''),
-  ),
-  'translation' => array(
-    'tag' => array('varchar(255) not null','Tag for translation'),
-    'page' => array('varchar(100) not null','Page it is used'),
-    'lan' => array('varchar(10) not null','Language ISO'),
-    'translation' => array('text','Translated text'),
-    'index_1' => array('tagidx (tag)',''),
-    'index_2' => array('pageidx (page)',''),
-    'index_3' => array('lanidx (lan)',''),
-  ),
-);
-
-if (DB_TRANSLATION) {
-  $GLOBALS['tables']['translation'] = $GLOBALS['table_prefix'].'translation';
-  $GLOBALS['tables']['language'] = $GLOBALS['table_prefix'].'language';
-  if (!Sql_Table_Exists('phplist_translation')) {
-    Sql_Create_Table($GLOBALS['tables']['translation'],$lanDBstruct['translation']);
-    Sql_Create_Table($GLOBALS['tables']['language'],$lanDBstruct['language']);
-  }
-}
 
 ## pick up languages from the lan directory
 $landir = dirname(__FILE__).'/locale/';
@@ -73,20 +48,17 @@ while ($lancode = readdir($d)) {
 #    print '<br/>'.$landir.'/'.$lancode;
   }
 }
-#var_dump($LANGUAGES);
+## pick up other languages from DB
+$req = Sql_Query(sprintf('select lan,translation from %s where 
+  original = "language-name" and lan not in ("%s")',$GLOBALS['tables']['i18n'], join('","',array_keys($LANGUAGES))));
+while ($row = Sql_Fetch_Assoc($req)) {
+  $LANGUAGES[$row['lan']] = array($row['translation'],'UTF-8','UTF-8',$row['lan']);
+}
 
 function lanSort($a,$b) {
   return strcmp(strtolower($a[0]),strtolower($b[0]));
 }
 uasort($LANGUAGES,"lanSort");
-
-#ksort($LANGUAGES);
-if (DB_TRANSLATION) {
-  foreach ($LANGUAGES as $lancode => $laninfo) {
-    Sql_Query(sprintf('insert ignore into %s (iso,name,charset) values("%s","%s","%s")',
-      $GLOBALS['tables']['language'],$lancode,$laninfo[0],$laninfo[1]));
-  }
-}
 #var_dump($LANGUAGES);
 
 if (!empty($GLOBALS["SessionTableName"])) {
@@ -100,6 +72,7 @@ if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($L
     "iso" => $_POST['setlanguage'],
     "charset" => $LANGUAGES[$_POST['setlanguage']][1],
   );
+#  var_dump($_SESSION['adminlanguage'] );
 }
 
 /*
@@ -195,10 +168,10 @@ class phplist_I18N {
   private $hasDB = false;
   private $lan = array();
 
-
   function phplist_I18N() {
     $this->basedir = dirname(__FILE__).'/locale/';
-    if (isset($_SESSION['adminlanguage']) && is_dir($this->basedir.$_SESSION['adminlanguage']['iso'])) {
+  #  if (isset($_SESSION['adminlanguage']) && is_dir($this->basedir.$_SESSION['adminlanguage']['iso'])) {
+    if (isset($_SESSION['adminlanguage']) && isset($GLOBALS['LANGUAGES'][$_SESSION['adminlanguage']['iso']])) {
       $this->language = $_SESSION['adminlanguage']['iso'];
     } else {
 #      logEvent('Invalid language '.$_SESSION['adminlanguage']['iso']);
@@ -505,6 +478,8 @@ $lan = array(
     if (empty($translation)) {
       $translation = $this->getTranslation($text,$page,$this->basedir);
     }
+  
+ #   print $this->language.' '.$text.' '.$translation. '<br/>';
   
     # spelling mistake, retry with old spelling
     if ($text == 'over threshold, user marked unconfirmed' && empty($translation)) {
