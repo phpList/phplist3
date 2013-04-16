@@ -1733,7 +1733,7 @@ function simplePaging($baseurl,$start,$total,$numpp,$itemname = '') {
     $text = $GLOBALS['I18N']->get("Listing %d to %d");
   }
   if ($start > 0) {
-    $listing = sprintf($text,$start,$end,$total).' '.$itemname;
+    $listing = sprintf($text,$start+1,$end,$total).' '.$itemname;
   } else {
     $listing =  sprintf($text,1,$end,$total).' '.$itemname;
     $start = 0;
