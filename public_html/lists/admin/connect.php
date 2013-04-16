@@ -93,19 +93,6 @@ if (!isset($usertable_prefix)) {
   $usertable_prefix = $table_prefix;
 }
 
-include_once dirname(__FILE__)."/structure.php";
-
-$tables = array();
-foreach ($GLOBALS["DBstructuser"] as $tablename => $tablecolumns) {
-  $tables[$tablename] =  $usertable_prefix . $tablename;
-};
-foreach ($GLOBALS["DBstructphplist"] as $tablename => $tablecolumns) {
-  $tables[$tablename] =  $table_prefix . $tablename;
-};
-# unset the struct arrays, DBStruct and tables globals remain for the rest of the program
-unset($GLOBALS["DBstructuser"]);
-unset($GLOBALS["DBstructphplist"]);
-
 $commandlinePluginPages = array();
 $commandlinePlugins = array();
 if (sizeof($GLOBALS["plugins"])) {

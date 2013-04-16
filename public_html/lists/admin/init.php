@@ -57,6 +57,20 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
     $GLOBALS['ui'] = 'orange';
   }
 }
+
+include_once dirname(__FILE__)."/structure.php";
+
+$tables = array();
+foreach ($GLOBALS["DBstructuser"] as $tablename => $tablecolumns) {
+  $tables[$tablename] =  $usertable_prefix . $tablename;
+};
+foreach ($GLOBALS["DBstructphplist"] as $tablename => $tablecolumns) {
+  $tables[$tablename] =  $table_prefix . $tablename;
+};
+# unset the struct arrays, DBStruct and tables globals remain for the rest of the program
+unset($GLOBALS["DBstructuser"]);
+unset($GLOBALS["DBstructphplist"]);
+
 $GLOBALS['adodb_inc_file'] = $adodb_inc_file;
 $GLOBALS['show_dev_errors'] = $show_dev_errors;
 $magic_quotes = ini_get('magic_quotes_gpc');
