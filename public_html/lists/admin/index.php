@@ -392,9 +392,11 @@ if ($GLOBALS["require_login"] && $page != "login") {
   }
 }
 
-print '<noscript>';
- Info(s('phpList will work without Javascript, but it will be easier to use if you switch it on.'));
-print '</noscript>';
+if (!$GLOBALS["commandline"]) {
+  print '<noscript>';
+   Info(s('phpList will work without Javascript, but it will be easier to use if you switch it on.'));
+  print '</noscript>';
+}
 
 if (!$ajax && $page != "login") {
   if (strpos(VERSION,"dev") && !TEST) {#
