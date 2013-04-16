@@ -38,6 +38,13 @@ foreach ($LU->translation as $lan) {
   } else {
     $lastupdated = date('Y-m-d',$lastupdated);
   }
+
+  $count = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where lan = "%s" and original = "language-name"',$tables['i18n'],$lan->iso));
+  if ($count[0] == 0) {
+    ## insert a dummy translation entry, so to record the language
+#    print '<h1>'.$count[0].'</h1>';
+    Sql_Query(sprintf('insert into %s (lan,original,translation) values("%s","%s","%s")',$tables['i18n'],$lan->iso,'language-name',$lan->name));
+  }
   
   if ($lan->iso == $_SESSION['adminlanguage']['iso']) {
     printf ('<li><strong>%s %s: %s, %s: %s</strong></li>',$updateLink,s('Last updated'),$lastupdated,s('Last modified'),date('Y-m-d',(int)$lan->lastmodified));
