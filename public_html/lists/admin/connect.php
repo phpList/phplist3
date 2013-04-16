@@ -591,13 +591,13 @@ $GLOBALS['pagecategories'] = array(
   'develop' => array(
       'toplink' => 'develop',
       'pages' => array(
-        'checki18n',
+     #   'checki18n',
         'stresstest',
         'subscriberstats',
         'tests',
       ),
       'menulinks' => array(
-        'checki18n',
+     #   'checki18n',
         'stresstest',
         'subscriberstats',
         'tests',
