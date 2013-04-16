@@ -11,7 +11,7 @@ if (!empty($_POST['pluginurl'])) {
     return;
   }
   
-  $packageurl = $_POST['pluginurl'];
+  $packageurl = trim($_POST['pluginurl']);
   
   ## verify the url against known locations, and require it to be "zip".
   ## let's hope Github keeps this structure for a while
