@@ -643,13 +643,13 @@ $GLOBALS['pagecategories'] = array(
         'about',
         'community',
         'home',
-        'translate',
+     #   'translate',
         'vote'
       ),
       'menulinks' => array(
         'about',
         'community',
-        'translate',
+    #    'translate',
         'home',
       ),
   ),
