@@ -492,9 +492,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $masked = "H|$linkid|$messageid|".$userdata['id'] ^ XORmask;
         $masked = urlencode(base64_encode($masked));
         if (!CLICKTRACK_LINKMAP) {
-          $newlink = sprintf('<a%shref="%s://%s/lt.php?id=%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked,$links[3][$i],$links[4][$i]);
+          $newlink = sprintf('<a %shref="%s://%s/lt.php?id=%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked,$links[3][$i],$links[4][$i]);
         } else {
-          $newlink = sprintf('<a%shref="%s://%s%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.CLICKTRACK_LINKMAP,$masked,$links[3][$i],$links[4][$i]);
+          $newlink = sprintf('<a %shref="%s://%s%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.CLICKTRACK_LINKMAP,$masked,$links[3][$i],$links[4][$i]);
         }
         $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
       }
@@ -600,7 +600,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $newurl = $link.'?'.$trackingcode;
       }
    #   print $link. ' '.$newurl.' <br/>';
-      $newlink = sprintf('<a%shref="%s" %s>%s</a>',$links[1][$i],$newurl,$links[3][$i],$links[4][$i]);
+      $newlink = sprintf('<a %shref="%s" %s>%s</a>',$links[1][$i],$newurl,$links[3][$i],$links[4][$i]);
       $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
     }
     
