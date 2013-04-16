@@ -421,7 +421,7 @@ if (!$ajax && $page != "login") {
     (!isset($_GET['page']) || 
     ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))) {
       ## avoid error on uninitialised DB
-      if (Sql_Table_exists('message')) {
+      if (Sql_Table_exists($tables['message'])) {
         $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',$tables['message']));
         if ($queued_count[0]) {
           $link = PageLinkButton('processqueue',s('Process the queue'));
