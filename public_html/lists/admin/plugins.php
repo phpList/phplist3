@@ -122,7 +122,7 @@ if (!class_exists('ZipArchive')) {
   return;
 }
 
-if (!is_writable(PLUGIN_ROOTDIR)) {
+if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
   Warn(s('The plugin root directory is not writable, please install plugins manually'));
 } else {
   print '<h3>'.s('Install a new plugin').'</h3>';
