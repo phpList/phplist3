@@ -5,6 +5,7 @@
  * it is called after config, so that constants not defined in config can be set here
  * it cannot use the DB contents, as the DB connection hasn't been established yet
  */
+define('PHPLISTINIT',true);
 
 # record the start time(usec) of script
 $now =  gettimeofday();
@@ -146,7 +147,6 @@ if (!defined('ENCRYPTION_ALGO')) {
 ## remember the length of a hashed string
 $hash_length = strlen(hash(ENCRYPTION_ALGO,'some text'));
 
-define('PHPLISTINIT',true);
 if (!defined("PHPMAILER")) define("PHPMAILER",1);
 if (!defined('WARN_ABOUT_PHP_SETTINGS')) define('WARN_ABOUT_PHP_SETTINGS',1);
 if (!defined('NUMATTACHMENTS')) define('NUMATTACHMENTS',1);

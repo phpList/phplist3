@@ -6,7 +6,7 @@
  # will be added to $DBstructphplist.
 #######################################################################
 
-require_once dirname(__FILE__).'/accesscheck.php';
+if (!defined('PHPLISTINIT')) die(); ## avoid direct access
 
 ## don't remove spaces
 if (!defined  (  'STRUCTUREVERSION'  )) {
@@ -532,4 +532,3 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
     
     $DBstruct = $DBstructuser  + $DBstructphplist; # order of tables is essential for smooth upgrade
 
-?>
