@@ -392,6 +392,10 @@ if ($GLOBALS["require_login"] && $page != "login") {
   }
 }
 
+print '<noscript>';
+ Info(s('phpList will work without Javascript, but it will be easier to use if you switch it on.'));
+print '</noscript>';
+
 if (!$ajax && $page != "login") {
   if (strpos(VERSION,"dev") && !TEST) {#
     if ($GLOBALS["developer_email"]) {
@@ -416,7 +420,7 @@ if (!$ajax && $page != "login") {
     Warn($GLOBALS['I18N']->get('The attachment repository does not exist or is not writable'));
   }
 
-  if (MANUALLY_PROCESS_QUEUE && 
+  if (MANUALLY_PROCESS_QUEUE && empty($_GET['pi']) &&
     ## hmm, how many more pages to not show this?
     (!isset($_GET['page']) || 
     ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))) {
