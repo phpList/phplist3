@@ -48,23 +48,36 @@ foreach ($pluginRootDirs as $pluginRootDir) {
   }
 }
 #var_dump($pluginFiles);exit;
-
+$disabled_plugins = unserialize(getConfig('plugins_disabled'));
+if (is_array($disabled_plugins)) {
+  foreach ($disabled_plugins as $pl => $plstate) {
+    if (!empty($plstate)) {
+      $GLOBALS['plugins_disabled'][] = $pl;
+    }
+  }
+}
 
 foreach ($pluginFiles as $file) {
   list($className,$ext) = explode(".",basename($file));
-  if (preg_match("/[\w]+/",$className) && !in_array($className,$GLOBALS['plugins_disabled'])) {
+  if (preg_match("/[\w]+/",$className)) {# && !in_array($className,$GLOBALS['plugins_disabled'])) {
     if (!class_exists($className)) {
       include_once $file;
       if (class_exists($className)) {
         $pluginInstance = new $className();
-        if ($pluginInstance->enabled) {
+     #   print "Instance $className<br/>";
+        ## bit of a duplication of plugins, but $GLOBALS['plugins'] should only contain active ones
+        ## using "allplugins" allow listing them, and switch on/off in the plugins page
+        $GLOBALS["allplugins"][$className] = $pluginInstance;
+        if (!in_array($className,$GLOBALS['plugins_disabled'])) {
+          $GLOBALS["plugins"][$className] = $pluginInstance;
           ## remember the first plugin that says it can provide the editor
           ## the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
           if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance,'editor')) {
             $GLOBALS['editorplugin'] = $className;
           }
-          $GLOBALS["plugins"][$className] = $pluginInstance;
+          $GLOBALS["plugins"][$className]->enabled = true;
         } else {
+          $GLOBALS["allplugins"][$className]->enabled = false;
           dbg( $className .' disabled');
         }
       } else {

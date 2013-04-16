@@ -2,6 +2,11 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 #$_POST['pluginurl'] = '';
 
+## handle non-JS ajax
+if (isset($_GET['disable']) || isset($_GET['enable'])) {
+  include "actions/plugins.php";
+}
+
 $pluginDestination = PLUGIN_ROOTDIR;
 $pluginInfo = array();
 
@@ -136,7 +141,7 @@ if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
 
 $ls = new WebblerListing(s('Installed plugins'));
 
-foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $pluginDetails = array();
   if (is_file($pluginDestination.'/'.$pluginname.'.info.txt')) {
     $pluginDetails = unserialize(file_get_contents($pluginDestination.'/'.$pluginname.'.info.txt'));
@@ -155,7 +160,9 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   if (!empty($pluginDetails['developer'])) {
     $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
   }
-  $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
+  $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
+    PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
+    PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
 }
 
 print $ls->display();
