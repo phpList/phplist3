@@ -210,10 +210,9 @@ function sqllog($msg,$logfile = "") {
 }
 
 function Sql_Verbose_Query($query,$ignore = 0) {
-  if (preg_match("/dev/",VERSION)) {
+  if (isset($GLOBALS['developer_email'])) {
     print "<b>$query</b><br>\n";
   }
-  dbg($query);
   flush();
   if (!empty($GLOBALS["commandline"])) {
     ob_end_clean();
