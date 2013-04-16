@@ -28,7 +28,7 @@ foreach ($LU->translation as $lan) {
   } else {
     $lan_name = $lan->name;
   }
-  if ($lan->lastmodified > $lastupdated) {
+  if ($lan->iso == $_SESSION['adminlanguage']['iso'] && $lan->lastmodified > $lastupdated) {
     $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso,$lan_name);
   } else {
     $updateLink = $lan_name;
@@ -39,6 +39,10 @@ foreach ($LU->translation as $lan) {
     $lastupdated = date('Y-m-d',$lastupdated);
   }
   
-  printf ('<li>%s %s: %s, %s: %s</li>',$updateLink,s('Last updated'),$lastupdated,s('Last modified'),date('Y-m-d',(int)$lan->lastmodified));
+  if ($lan->iso == $_SESSION['adminlanguage']['iso']) {
+    printf ('<li><strong>%s %s: %s, %s: %s</strong></li>',$updateLink,s('Last updated'),$lastupdated,s('Last modified'),date('Y-m-d',(int)$lan->lastmodified));
+  } else {
+    printf ('<li>%s %s: %s, %s: %s</li>',$updateLink,s('Last updated'),$lastupdated,s('Last modified'),date('Y-m-d',(int)$lan->lastmodified));
+  }
 }
 print '</ul>';
