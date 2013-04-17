@@ -1715,12 +1715,12 @@ msgstr ""
 
 #: public_html/lists/admin/connect.php:1710
 msgid "Previous"
-msgstr ""
+msgstr "anterior"
 
 #: public_html/lists/admin/connect.php:1711
 #, fuzzy
 msgid "Next"
-msgstr "texto"
+msgstr "siguiente"
 
 #: public_html/lists/admin/connect.php:1712
 msgid "Last Page"
