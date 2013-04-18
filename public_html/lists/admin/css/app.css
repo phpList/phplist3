@@ -101,6 +101,11 @@ font-size: 12px;
 */
 #testpanel input[type="text"]{width: 90%; }
 
+.openhelpimage {
+  text-align: center;
+  padding-top: 120px;
+}
+
 .error{
   border:3px solid;
   margin:0px 20px 20px;

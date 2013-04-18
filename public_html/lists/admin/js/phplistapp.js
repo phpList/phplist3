@@ -50,6 +50,7 @@ function openHelpDialog(url) {
     show: 'blind',
     hide: 'explode'
   });
+  $("#dialog").html('<div class="openhelpimage">'+busyImage+'</div>');
   var destpage = urlParameter('page',url);
   url = url.replace(/page=/,'origpage=');
   $("#dialog").load(url+'&ajaxed=true&page=pageaction&action='+destpage);
