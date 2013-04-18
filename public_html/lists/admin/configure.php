@@ -30,7 +30,7 @@ if (empty($_REQUEST['id'])) {
 
 $button = new ConfirmButton(
    s('Are you sure you want to reset the configuration to the default?'),
-   PageURL2("configure","reset","resetdefault=yes"),
+   PageURL2("configure&resetdefault=yes","reset",""),
    s('Reset to default'));
  
 print $button->show();   
