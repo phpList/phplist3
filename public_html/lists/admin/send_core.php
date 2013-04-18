@@ -1038,10 +1038,14 @@ print '<div class="sendtabs_container">';
 print "<script type='text/javascript'>\n".
 "$(document).ready(function() {
     var counttab = ".$counttabs.";
-    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; }
-    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3;}
-    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4;}
-    else{ tabs=6; if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
+    var currenttab = $('.current').attr('id');
+    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; starttab=currenttab-2;  }
+    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3; starttab=currenttab-3;}
+    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4; starttab=currenttab-4;}
+    else{ tabs=6; starttab=currenttab-6; if ( counttab < 7 ){ $('.nexttab').addClass('disabled'); } }
+    if ( starttab < 1 ){ starttab=0; $('.prevtab').addClass('disabled'); }
+    if ( currenttab>=counttab ){ $('.nexttab').addClass('disabled'); }
+
     $('#sendtabs').jCarouselLite({
         btnNext: '.nexttab',
         btnPrev: '.prevtab',
@@ -1049,15 +1053,19 @@ print "<script type='text/javascript'>\n".
         visible: tabs,
         auto: null,
         speed:100,
-        scroll:1
+        scroll:1,
+        start: starttab
     });
 });
 $(window).resize(function(){
     var counttab = ".$counttabs.";
-    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; $('.nexttab').removeClass('disabled'); }
-    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3; $('.nexttab').removeClass('disabled');}
-    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4; $('.nexttab').removeClass('disabled');}
-    else{ tabs=6;if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
+    var currenttab = $('.current').attr('id');
+    if(matchMedia('only screen and (max-width: 480px)').matches){ tabs=2; $('.nexttab').removeClass('disabled'); starttab=currenttab-2;}
+    else if(matchMedia('only screen and (max-width: 767px)').matches){ tabs=3; $('.nexttab').removeClass('disabled'); starttab=currenttab-3;}
+    else if(matchMedia('only screen and (max-width: 967px)').matches){ tabs=4; $('.nexttab').removeClass('disabled'); starttab=currenttab-4;}
+    else{ tabs=6; starttab=currenttab-6; if ( counttab < 7){ $('.nexttab').addClass('disabled'); } }
+    if ( starttab < 1 ){ starttab=0; $('.prevtab').addClass('disabled'); }
+    if ( currenttab>=counttab ){ $('.nexttab').addClass('disabled'); }
     $('#sendtabs').jCarouselLite({
         btnNext: '.nexttab',
         btnPrev: '.prevtab',
@@ -1065,12 +1073,14 @@ $(window).resize(function(){
         visible: tabs,
         auto: null,
         speed:100,
-        scroll:1
+        scroll:1,
+        start: starttab
     });
 });
+
 </script>";
 
-print '<img src="ui/dressprow/images/prevtab.png" id="prev" class="prevtab disabled" />';
+print '<img src="ui/dressprow/images/prevtab.png" id="prev" class="prevtab" />';
 print '<img src="ui/dressprow/images/nexttab.png" id="next" class="nexttab" />';
 print '</div>';
 $savecaption = $GLOBALS['I18N']->get('Save as Draft');

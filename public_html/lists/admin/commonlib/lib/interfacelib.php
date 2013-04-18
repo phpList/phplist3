@@ -927,7 +927,7 @@ class WebblerTabs {
       if (strtolower(strip_tags($tab)) == $this->current) {
         $this->previous = $previous;
         $gotcurrent = true;
-        $html .= '<li class="current">';
+        $html .= '<li class="current" id="'.$count.'">';
       } else {
         if ($gotcurrent && empty($this->next)) {
           $this->next = $tab;
