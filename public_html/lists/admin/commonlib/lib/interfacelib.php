@@ -157,7 +157,7 @@ class WebblerListing {
     return $res;
   }
 
-  function addRow($name,$row_name,$value,$url="",$align="") {
+  function addRow($name,$row_name,$value,$url="",$align="",$class="") {
     if (!isset($name))
       return;
     $this->elements[$name]["rows"]["$row_name"] = array(
@@ -165,6 +165,7 @@ class WebblerListing {
       "value" => $value,
       "url" => $url,
       "align"=> $align,
+      "class"=> $class,
     );
   }
 
@@ -192,8 +193,8 @@ class WebblerListing {
     $this->buttonduplicate = 1;
   }
 
-  function listingStart() {
-    return '<table cellpadding="0" cellspacing="0" border="0" width="100%">';
+  function listingStart($class="") {
+    return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="listing '.$class.'">';
   }
 
   function listingHeader() {
@@ -271,17 +272,17 @@ class WebblerListing {
         $align = 'left';
       }
       if (!empty($row["url"])) {
-        $html .= sprintf('<tr><td class="listingrowname">
+        $html .= sprintf('<tr class="rowelement %s"><td class="listingrowname">
           <span class="listingrowname"><a href="%s" class="listinghdname" title="%s">%s</a></span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>',$row["url"],htmlspecialchars($row["name"]),$row["name"],$align,sizeof($this->columns),$align,$value);
+          </td></tr>',$row["class"],$row["url"],htmlspecialchars($row["name"]),$row["name"],$align,sizeof($this->columns),$align,$value);
       } else {
-        $html .= sprintf('<tr><td class="listingrowname">
+        $html .= sprintf('<tr class="rowelement %s"><td class="listingrowname">
           <span class="listingrowname">%s</span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>',$row["name"],$align,sizeof($this->columns),$align,$value);
+          </td></tr>',$row["class"],$row["name"],$align,sizeof($this->columns),$align,$value);
       }
     }
     if (!$this->suppressGreenline) {
@@ -372,14 +373,14 @@ class WebblerListing {
     $this->initialstate = "none";
   }
 
-  function display($add_index = 0) {
+  function display($add_index = 0, $class = "") {
     $html = "";
     if (!sizeof($this->elements))
       return "";
 #   if ($add_index)
 #     $html = $this->index();
 
-    $html .= $this->listingStart();
+    $html .= $this->listingStart($class);
     if (!empty($this->insideNav)) {
       $html .= sprintf('<tr><td colspan="%d">%s</td></tr>',sizeof($this->columns)+1,$this->insideNav);
     }
@@ -449,8 +450,8 @@ class WebblerListing {
 
 class WebblerListing2 extends WebblerListing {
 
-  function listingStart() {
-    return '<div class="listing">';
+  function listingStart($class="") {
+    return '<div class="listing '.$class.'">';
   }
 
   function listingHeader() {

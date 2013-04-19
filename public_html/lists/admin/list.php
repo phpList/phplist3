@@ -195,7 +195,7 @@ while ($row = Sql_fetch_array($result)) {
 
   $element = '<!-- '.$row['id'].'-->'.stripslashes($row['name']);
   $ls->addElement($element,PageUrl2("editlist&amp;id=".$row["id"]));
-  $ls->setClass($element,'row1');
+  $ls->setClass($element,'rows row1');
   $ls->addColumn($element,
     $GLOBALS['I18N']->get('Members'),
     PageLink2("members",'<span class="membercount">'.$members.'</span>',"id=".$row["id"]).' '.PageLinkDialog('importsimple&list='.$row["id"],'+'));
@@ -220,8 +220,8 @@ while ($row = Sql_fetch_array($result)) {
     sprintf('<input type="text" name="listorder[%d]" value="%d" size="3" class="listorder" />',$row['id'],$row['listorder']));
 
   $delete_url = sprintf('<a href="javascript:deleteRec2(\'%s\',\'%s\');" class="button" title="%s">%s</a>',$GLOBALS['I18N']->get('Are you sure you want to delete this list?'),PageURL2("list&delete=".$row["id"]),$GLOBALS['I18N']->get('delete this list'),$GLOBALS['I18N']->get('delete'));
-
-  $ls->addRow($element,'',$delete_url.PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')));
+  $ls->addRow($element,'',$delete_url.PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')),'','','actions nodrag');
+  
 
 
   $some = 1;
@@ -231,7 +231,7 @@ $ls->addSubmitButton('update',$GLOBALS['I18N']->get('Save Changes'));
 if (!$some) {
   echo $GLOBALS['I18N']->get('No lists, use Add List to add one');
 }  else {
-  print $ls->display();
+  print $ls->display('','draggable');
 }
 /*
   echo '<table class="x" border="0">
