@@ -116,7 +116,12 @@ if (empty($id)) {
       }
       if (!in_array($configItem,$GLOBALS['noteditableconfig'])) {
         $some = 1;
-        $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b><a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a></div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$_SESSION['adminlanguage']['iso'],$configItem);
+        
+        $resourceLink = sprintf('<a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a>',$_SESSION['adminlanguage']['iso'],$configItem);
+        ## disable this until the resources wiki is organised properly
+        $resourceLink = '';
+        
+        $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable">%s</a> <b>%s</b> %s</div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit'),$default_config[$configItem]['description'],$resourceLink);
         $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
         if ($alternate == 1) {
           $alternate = 2;
