@@ -22,7 +22,7 @@ if (!empty($_GET['delete'])) {
   Redirect('plugins');
 }
 
-if (!empty($_POST['pluginurl'])) {
+if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
   if (!verifyToken()) {
     print Error(s('Invalid security token, please reload the page and try again'));
     return;
@@ -134,13 +134,11 @@ if (!empty($_POST['pluginurl'])) {
   return;
 }
 
-if (!class_exists('ZipArchive')) {
-  Warn(s('PHP has no <a href="http://php.net/zip">Zip capability</a>, cannot continue'));
-  return;
-}
 
 if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
   Info(s('The plugin root directory is not writable, please install plugins manually'));
+} elseif (!class_exists('ZipArchive')) {
+  Info(s('PHP has no <a href="http://php.net/zip">Zip capability</a>. This is required to allow installation from a remote URL'));
 } else {
   print '<h3>'.s('Install a new plugin').'</h3>';
   print '<p><a class="resourceslink" href="http://resources.phplist.com/plugins/" title="'.s('Find plugins').'" target="_blank">'.s('Find plugins').'</a></p>';
@@ -181,7 +179,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     $ls->addColumn($pluginname,s('delete'),'<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname. '\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
   }
   
-  if (!empty($pluginDetails['installUrl'])) {
+  if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {
     $updateForm = formStart();
     $updateForm .= '<input type="hidden" name="pluginurl" value="'.$pluginDetails['installUrl'].'"/>
         <button type="submit" name="update" title="'.s('update this plugin').'">'.s('update').'</button></form>';
