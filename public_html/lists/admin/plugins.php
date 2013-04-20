@@ -10,6 +10,18 @@ if (isset($_GET['disable']) || isset($_GET['enable'])) {
 $pluginDestination = PLUGIN_ROOTDIR;
 $pluginInfo = array();
 
+if (!empty($_GET['delete'])) {
+  $pluginname = preg_replace('/[^\w_-]/','',$_GET['delete']);
+  if (is_file($pluginDestination.'/'.$pluginname.'.info.txt')) {
+    $pluginDetails = unserialize(file_get_contents($pluginDestination.'/'.$pluginname.'.info.txt'));
+    unlink($pluginDestination.'/'.$pluginname.'.info.txt');
+    delFsTree($pluginDestination.'/'.$pluginname);
+    unlink($pluginDestination.'/'.$pluginname.'.php');
+    $_SESSION['action_result'] = s('The plugin '.$pluginname.' was removed');
+  }
+  Redirect('plugins');
+}
+
 if (!empty($_POST['pluginurl'])) {
   if (!verifyToken()) {
     print Error(s('Invalid security token, please reload the page and try again'));
@@ -86,11 +98,11 @@ if (!empty($_POST['pluginurl'])) {
           }
           
           if (file_exists($pluginDestination.'/'.$dirEntry)) {
-            print ' overwriting existing ';
+            print s(' updating existing plugin');
           } else {
-            print ' create new';
+            print s(' new plugin');
           }
-          var_dump($pluginInfo);
+   #       var_dump($pluginInfo);
             
           print '<br/>';
           @rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
@@ -98,7 +110,7 @@ if (!empty($_POST['pluginurl'])) {
         }  
       }
       foreach ($pluginInfo as $plugin => $pluginDetails) {
-        print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
+      #  print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
         file_put_contents($pluginDestination.'/'.$plugin.'.info.txt',serialize($pluginDetails));
       }
       ## clean up
@@ -128,15 +140,16 @@ if (!class_exists('ZipArchive')) {
 }
 
 if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
-  Warn(s('The plugin root directory is not writable, please install plugins manually'));
+  Info(s('The plugin root directory is not writable, please install plugins manually'));
 } else {
   print '<h3>'.s('Install a new plugin').'</h3>';
+  print '<p><a class="resourceslink" href="http://resources.phplist.com/plugins/" title="'.s('Find plugins').'" target="_blank">'.s('Find plugins').'</a></p>';
   print formStart();
   print '<fieldset>
       <label for="pluginurl">'.s('Plugin package URL').'</label>
       <div type="field"><input type="text" id="pluginurl" name="pluginurl" /></div>
       <button type="submit" name="download">'.s('Install plugin').'</button>
-      </fieldset>';
+      </fieldset></form>';
 }
 
 $ls = new WebblerListing(s('Installed plugins'));
@@ -163,6 +176,18 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
     PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
     PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
+  if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
+    ## we can only delete the ones that were installed from the interface
+    $ls->addColumn($pluginname,s('delete'),'<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname. '\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
+  }
+  
+  if (!empty($pluginDetails['installUrl'])) {
+    $updateForm = formStart();
+    $updateForm .= '<input type="hidden" name="pluginurl" value="'.$pluginDetails['installUrl'].'"/>
+        <button type="submit" name="update" title="'.s('update this plugin').'">'.s('update').'</button></form>';
+    $ls->addColumn($pluginname,s('update'),$updateForm);
+  }
+
 }
 
 print $ls->display();
