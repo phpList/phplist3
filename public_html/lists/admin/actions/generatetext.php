@@ -16,13 +16,16 @@ if (preg_match('/\[URL:(.+)\]/',$messagedata['message'],$regs)) {
 setMessageData($msgid,'textmessage',$textversion);
 
 ## convert to feedback in the textarea
+## @@FIXME this fails when the text is large
 $textversion = trim($textversion);
-$textversion = htmlspecialchars($textversion);
 $textversion = preg_replace("/\n/","\\n",$textversion);
+$textversion = preg_replace("/\r/","",$textversion);
+$textversion = htmlentities($textversion);
 
 $status =  '<script type="text/javascript">
 
 $("#textmessage").html("'.$textversion.'");
+//$("#textmessage").load("./?page=pageaction&action=messagedata&field=textmessage&id='.$msgid.'");
 $("#generatetextversion").hide();
 
 </script>
