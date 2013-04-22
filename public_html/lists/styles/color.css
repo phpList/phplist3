@@ -1,0 +1,31 @@
+/* start file: /lists/styles/color.css   */
+
+
+body                            { background-color:#FFF; background-image: url("../images/page_bk_nomenu.png"); color:#666}
+.panel                          { border-color: #666;}
+.panel .content                 { background-color:#F2F2F2}
+h3                              { color:#333}
+a                               { color:#666}
+a:hover                         { color:#000}
+#footer                         { background-color:#FFF; background-image:url('../images/footer_bk.png')}
+#mainContent table              { background:#DDD; border-color:#CCC}
+textarea                        { background:#FFF; border-color:#DDD; color:#666;}
+select                          { border-color:#DDD; background-color:#FFF; color:#666;}
+
+input[type="text"], 
+input[type="password"]          { border-color:#CCC; color:#333; }
+
+input[type="submit"],   
+p.button a, a.button            { border-color:#BBB #AAA #AAA #BBB; background:url("../images/bg-button.gif") repeat-x 0 0 #DDD; color:#333;}
+
+input:hover[type="submit"], 
+a:hover.button, p.button a:hover{ border-color:#F90 !important; color:#000;}
+
+a[href="./?p=subscribe"],
+a[href="./?p=unsubscribe"]        { background-color:#FFF; border-color:#999;}
+
+a[href="./?p=subscribe"]:hover,
+a[href="./?p=unsubscribe"]:hover  { background-color:#FFF; border-color:#F90;}
+
+
+/* end file: /lists/styles/color.css   */
