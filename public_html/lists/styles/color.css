@@ -22,9 +22,11 @@ input:hover[type="submit"],
 a:hover.button, p.button a:hover{ border-color:#F90 !important; color:#000;}
 
 a[href="./?p=subscribe"],
+a[href="./?p=subscribe&id=1"],
 a[href="./?p=unsubscribe"]        { background-color:#FFF; border-color:#999;}
 
 a[href="./?p=subscribe"]:hover,
+a[href="./?p=subscribe&id=1"]:hover,
 a[href="./?p=unsubscribe"]:hover  { background-color:#FFF; border-color:#F90;}
 
 

@@ -53,7 +53,10 @@ body                    { text-align:center; background-position:top left; backg
 
 .poweredby                  { clear:both; padding-top:20px; }
 p.poweredby a               { border:0; background: none;}
+
+a[href="./?p=subscribe&id=1"],
 a[href="./?p=subscribe"]    { font-size:18px; width:auto; background:url('../images/subscribe.png') no-repeat 10px 8px; padding:10px 10px 5px 50px; line-height: 30px; border-width:1px; border-style:solid; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; float:left; margin-right:20px; margin-top:10px;} 
+
 a[href="./?p=unsubscribe"]  { font-size:18px; width:auto; background:url('../images/unsubscribe.png') no-repeat 10px 8px; padding:10px 10px 5px 50px; line-height: 30px;  border-width:1px; border-style:solid; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; float:left; margin-right:20px; margin-top:10px;}
 
 /* ---------------- branding ---------------- */
