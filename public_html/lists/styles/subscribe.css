@@ -25,7 +25,7 @@ table                                       { border-collapse:collapse; border-s
 html *                  {font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
 body                    { text-align:center;}
 a                       { text-decoration:none}
-h3                      { font-size:30px; font-weight:normal;margin-bottom:20px;}
+h3                      { font-size:30px; font-weight:normal;margin:20px 0px;line-height:30px}
 p                       { font-size:12px; margin:.75em 0}
 li,table,form           { font-size:12px }
 .error                  { font-size:13px;padding:3px; font-variant: small-caps;}
@@ -51,13 +51,12 @@ body                    { text-align:center; background-position:top left; backg
 .note, .adminmessage,
 .missing                    { position:relative; background:url("../images/info-icon.png") no-repeat scroll 15px 11px #FFFECD; border:1px solid #FFDE9F; color:#855230; margin:15px 0; padding:1em 30px 1em 50px; font-size:12px }
 
-.poweredby                  { clear:both; padding-top:20px; }
+.poweredby                  { clear:both; padding-top:10px; }
 p.poweredby a               { border:0; background: none;}
+p.poweredby a:hover         { background:none; border:0;}
 
-a[href="./?p=subscribe&id=1"],
-a[href="./?p=subscribe"]    { font-size:18px; width:auto; background:url('../images/subscribe.png') no-repeat 10px 8px; padding:10px 10px 5px 50px; line-height: 30px; border-width:1px; border-style:solid; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; float:left; margin-right:20px; margin-top:10px;} 
-
-a[href="./?p=unsubscribe"]  { font-size:18px; width:auto; background:url('../images/unsubscribe.png') no-repeat 10px 8px; padding:10px 10px 5px 50px; line-height: 30px;  border-width:1px; border-style:solid; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; float:left; margin-right:20px; margin-top:10px;}
+p a                         {font-size:16px; }
+p a[href='./?p=unsubscribe']{float:right; font-size:12px; margin-top:50px}
 
 /* ---------------- branding ---------------- */
 
