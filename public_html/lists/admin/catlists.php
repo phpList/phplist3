@@ -26,11 +26,20 @@ $subselect .= '(category is null or category = "")';
 $categories = listCategories();
 
 if (!sizeof($categories)) {
-  print '<p>'.s('No list categories have been defined').'</p>';
-  print '<p>'.s('Once you have set up a few categories, come back to this page to classify your lists with your categories.').'</p>';
-  print '<p>'.PageLinkButton('configure&id=list_categories',$I18N->get('Configure Categories')).'</p>';
-  print '<br/>';
-  return;
+  ## try to fetch them from existing lists
+  $req = Sql_Query(sprintf('select distinct category from %s where category != "" ',$tables['list']));
+  while ($row = Sql_Fetch_Row($req)) {
+    array_push($categories,$row[0]);
+  }
+  if (!sizeof($categories)) {
+    print '<p>'.s('No list categories have been defined').'</p>';
+    print '<p>'.s('Once you have set up a few categories, come back to this page to classify your lists with your categories.').'</p>';
+    print '<p>'.PageLinkButton('configure&id=list_categories',$I18N->get('Configure Categories')).'</p>';
+    print '<br/>';
+    return;
+  } else {
+    saveConfig('list_categories',join(',',$categories));
+  }
 }
 
 if (!empty($_POST['category']) && is_array($_POST['category'])) {
