@@ -548,9 +548,9 @@ while ($user = Sql_Fetch_Row($userid_req)) {
       $msgokay = 1; #DT 051105 - escaping loop if message received okay
     }
   }
-  if ($usercnt % 10 == 0) {
-    output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
-    output("$usercnt ".$GLOBALS['I18N']->get("of")." $total ".$GLOBALS['I18N']->get("users processed"),1);
+  if ($usercnt % 5 == 0) {
+#    output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
+    cl_progress(s('processed %d out of %d subscribers',$usercnt, $total),1);
   }
   $usercnt++;
   flush();
@@ -559,8 +559,8 @@ if (!$GLOBALS["commandline"]) {
   print '<script language="Javascript" type="text/javascript"> finish(); </script>';
 }
 
-output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
-output("$total ".$GLOBALS['I18N']->get("users processed"));
+#output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
+output("\n".s('total of %d subscribers processed',$total). '                            ');
 
 $report = '';
 
