@@ -375,7 +375,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
   print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   # update the system pages
-  include_once dirname(__FILE__).'/defaultconfig.inc';
+  include_once dirname(__FILE__).'/defaultconfig.php';
 
   /* the task table can be ignored now
 
