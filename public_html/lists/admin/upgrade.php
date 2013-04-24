@@ -466,7 +466,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     # mark now to be the last time we checked for an update
     Sql_Query(sprintf('replace into %s (item,value,editable) values("updatelastcheck",current_timestamp,0)',
       $tables["config"]));
-    Info("Success");
+    Info(s('Success'),1);
     
 ##  check for old click track data
     $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
