@@ -42,7 +42,10 @@ if ($id != "website" && $id != "domain") {
 if ($configItem['type'] == "textarea") {
   printf('<textarea name="values[%s]" rows=25 cols=55>%s</textarea>',
     $id,htmlspecialchars(stripslashes($value)));
-} else if ($configItem['type'] == "text" || $configItem['type'] == "url") {
+} else if (
+  $configItem['type'] == "text" || $configItem['type'] == "url" || 
+  $configItem['type'] == "email" || $configItem['type'] == "emaillist" 
+  ) {
   printf('<input type="text" name="values[%s]" size="70" value="%s" />',
   $id,htmlspecialchars(stripslashes($value)));
 } else if ($configItem['type'] == "integer") {

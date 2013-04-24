@@ -170,6 +170,23 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
       if ($value < $configInfo['min']) $value = $configInfo['min'];
       if ($value > $configInfo['max']) $value = $configInfo['max'];
       break;
+    case 'email':
+      if (!is_email($value)) {
+        ## hmm, this is displayed only later
+        #$_SESSION['action_result'] = s('Invalid value for email address');
+        $value = '';
+      }
+      break;
+    case 'emaillist':
+      $valid = array();
+      $emails = explode(',',$value);
+      foreach ($emails as $email) {
+        if (is_email($email)) {
+          $valid[] = $email;
+        }
+      }
+      $value = join(',',$valid);
+      break;
   }
   ## reset to default if not set, and required
   if (empty($configInfo['allowempty']) && empty($value)) {
@@ -194,7 +211,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
 
   You can configure your PoweredBy options in your config file
 
-  Michiel Dethmers, phpList Ltd 2001-2012
+  Michiel Dethmers, phpList Ltd 2001-2013
 */
 if (DEVVERSION)
   $v = "dev";

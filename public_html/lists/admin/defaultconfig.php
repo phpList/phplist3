@@ -66,7 +66,7 @@ $default_config = array (
 "admin_address" => array (
  'value' => 'webmaster@[DOMAIN]',
  'description' => s("Person in charge of this system (one email address)"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => false,
   'category'=> 'general',
 ),
@@ -84,8 +84,8 @@ $default_config = array (
   # admin addresses are other people who receive copies of subscriptions
 "admin_addresses" => array (
   'value' => '',
-  'description' => s("List of people to CC in system emails (separate by commas)"),
-  'type' => "text",
+  'description' => s("List of email addresses to CC in system messages (separate by commas)"),
+  'type' => "emaillist",
   'allowempty' => true,
   'category'=> 'reporting',
 ),
@@ -99,14 +99,14 @@ $default_config = array (
 "notifystart_default" => array(
   'value' => '',
   'description' => s("Default for 'address to alert when sending starts'"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => true,
   'category'=> 'campaign',
 ),
 "notifyend_default" => array(
   'value' => '',
   'description' => s("Default for 'address to alert when sending finishes'"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => true,
   'category'=> 'campaign',
 ),
@@ -121,7 +121,7 @@ $default_config = array (
 "report_address" => array (
   'value' => 'listreports@[DOMAIN]',
   'description' => s("Who gets the reports (email address, separate multiple emails with a comma)"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => true,
   'category'=> 'reporting',
 ),
@@ -130,7 +130,7 @@ $default_config = array (
 "message_from_address" => array (
   'value' => "noreply@[DOMAIN]",
   'description' => s("From email address for system messages"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => 0,
   'category'=> 'transactional',
 ),
@@ -147,7 +147,7 @@ $default_config = array (
 "message_replyto_address" => array (
   'value' => "noreply@[DOMAIN]",
   'description' => s("Reply-to email address for system messages"),
-  'type' => "text",
+  'type' => "email",
   'allowempty' => 0,
   'category'=> 'transactional',
 ),
