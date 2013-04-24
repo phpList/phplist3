@@ -49,10 +49,12 @@ while ($lancode = readdir($d)) {
   }
 }
 ## pick up other languages from DB
-$req = Sql_Query(sprintf('select lan,translation from %s where 
-  original = "language-name" and lan not in ("%s")',$GLOBALS['tables']['i18n'], join('","',array_keys($LANGUAGES))));
-while ($row = Sql_Fetch_Assoc($req)) {
-  $LANGUAGES[$row['lan']] = array($row['translation'],'UTF-8','UTF-8',$row['lan']);
+if (Sql_table_exists('i18n')) {
+  $req = Sql_Query(sprintf('select lan,translation from %s where 
+    original = "language-name" and lan not in ("%s")',$GLOBALS['tables']['i18n'], join('","',array_keys($LANGUAGES))));
+  while ($row = Sql_Fetch_Assoc($req)) {
+    $LANGUAGES[$row['lan']] = array($row['translation'],'UTF-8','UTF-8',$row['lan']);
+  }
 }
 
 function lanSort($a,$b) {
