@@ -152,6 +152,8 @@ if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
 
 $ls = new WebblerListing(s('Installed plugins'));
 
+if (empty($GLOBALS['allplugins'])) return;
+
 foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $pluginDetails = array();
   if (is_file($pluginDestination.'/'.$pluginname.'.info.txt')) {
