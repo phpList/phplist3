@@ -510,7 +510,8 @@ while ($user = Sql_Fetch_Row($userid_req)) {
   }*/
   #$alive = 1;$removed = 0; DT 051105
   $cnt=0;
-  $alive = 1;$removed = 0; $msgokay=0;
+  $alive = 1;
+  $removed = $msgokay = $unconfirmed = 0;
         #while ($alive && !$removed && $bounce = Sql_Fetch_Array($msg_req)) { DT 051105
   while ($alive && !$removed && !$msgokay && $bounce = Sql_Fetch_Array($msg_req)) {
 
@@ -523,19 +524,23 @@ while ($user = Sql_Fetch_Row($userid_req)) {
     if (sprintf('%d',$bounce["bounce"]) == $bounce["bounce"]) {
       $cnt++;
       if ($cnt >= $bounce_unsubscribe_threshold) {
-        $removed = 1;
-        output(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
-        $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
-        logEvent(s('User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed',$userurl,$cnt,$bounce_unsubscribe_threshold));
-        $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
-        addUserHistory($emailreq[0],s('Auto Unconfirmed'),s('Subscriber auto unconfirmed for %d consecutive bounces',$cnt));
-        Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',$tables["user"],$user[0]));
-        if (BLACKLIST_EMAIL_ON_BOUNCE && $cnt > BLACKLIST_EMAIL_ON_BOUNCE) {
+        if (!$unsubscribed) {
+          output(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
+          $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
+          logEvent(s('User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed',$userurl,$cnt,$bounce_unsubscribe_threshold));
+          $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
+          addUserHistory($emailreq[0],s('Auto Unconfirmed'),s('Subscriber auto unconfirmed for %d consecutive bounces',$cnt));
+          Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',$tables["user"],$user[0]));
+          $email_req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d',$tables["user"],$user[0]));
+          $unsubscribed_users .= $email_req[0]."\t\t($cnt)\t\t". $GLOBALS['scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&amp;id='.$user[0]. "\n";
+          $unsubscribed = 1;
+        }
+        if (BLACKLIST_EMAIL_ON_BOUNCE && $cnt >= BLACKLIST_EMAIL_ON_BOUNCE) {
+          $removed = 1;
           #0012262: blacklist email when email bounces
+          cl_output(s('%d consecutive bounces, threshold reached, blacklisting subscriber',$cnt));
           addEmailToBlackList($emailreq, s('%d consecutive bounces, threshold reached',$cnt));
         }
-        $email_req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d',$tables["user"],$user[0]));
-        $unsubscribed_users .= $email_req[0]."\t\t($cnt)\t\t". $GLOBALS['scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&amp;id='.$user[0]. "\n";
       }
     } elseif ($bounce["bounce"] == "") {
       #$cnt = 0; DT 051105
