@@ -41,7 +41,7 @@ $GLOBALS["language_module"] = basename($GLOBALS["language_module"]);
 require_once dirname(__FILE__).'/admin/'.$GLOBALS["database_module"];
 
 # load default english and language
-require_once dirname(__FILE__)."/texts/english.inc";
+include_once dirname(__FILE__)."/texts/english.inc";
 include_once dirname(__FILE__)."/texts/".$GLOBALS["language_module"];
 # Allow customisation per installation
 if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {

@@ -98,7 +98,7 @@ if (!$GLOBALS["commandline"] && isset($GLOBALS["developer_email"]) && $_SERVER['
 # load all required files
 require_once dirname(__FILE__).'/init.php';
 require_once dirname(__FILE__).'/'.$GLOBALS["database_module"];
-require_once dirname(__FILE__)."/../texts/english.inc";
+include_once dirname(__FILE__)."/../texts/english.inc";
 include_once dirname(__FILE__)."/../texts/".$GLOBALS["language_module"];
 include_once dirname(__FILE__)."/languages.php";
 require_once dirname(__FILE__)."/defaultconfig.php";
