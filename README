@@ -1,12 +1,12 @@
 
-Readme for PHPlist
+phpList
 
-For more information go to http://tincan.co.uk/phplist
+Open source newsletter manager
+http://www.phplist.com
 
 ###############
 
-PHPlist, Mailinglist system using PHP and Mysql
-Copyright (C) 2000,2001,2002,2003,2004,2005 Michiel Dethmers, tincan ltd
+Copyright (C) 2000-2013 Michiel Dethmers, phpList ltd
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,33 +25,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 ##############
 
-What is PHPlist
-PHPlist is a set of PHP pages that implement a simple mailinglist system.
+What is phpList
+
+phpList is a set of PHP pages that implement a simple mailinglist system.
 It uses Mysql for storing the information.
 
 ###
 
 Particular aspects of the system are:
 
-= Posting to the mailinglist is via a webpage. It is therefore more a kind of "announcements"
-list system than an actual email mailinglist.
+= Posting to the mailinglist is via a webpage. It is therefore more a kind of "announcements" list system than an actual email mailinglist.
 = It is designed to be able to deal with a very large amount of email addresses.
-= Users can sign up to multiple lists. If a message is sent to multiple lists,
-they will only receive one copy of the email and not as many as the number of lists they
-are subscribed to.
-= Geographical information. If people sign up, they can identify the geographical
-location they're in and when sending an email you can determine which
-locations need to receive the message.
-= Personalised emails. You can specify "variables" in your emails, which will at send time
-be replaced by the appropriate values for the person who receives the email.
+= Users can sign up to multiple lists. If a message is sent to multiple lists, they will only receive one copy of the email and not as many as the number of lists they are subscribed to.
+= Geographical information. If people sign up, they can identify the geographical location they're in and when sending an email you can determine which locations need to receive the message.
+= Personalised emails. You can specify "variables" in your emails, which will at send time be replaced by the appropriate values for the person who receives the email.
 
 ###
 
 Requirements
-To use PHPlist you need a webserver which supports PHP version 4, a Mysql database and possibly
-Perl with the Mysql modules installed.
-
-Recommended version of PHP is version 4.3 or higher.
+To use phpList you need a webserver which supports PHP version 5, a Mysql database.
 
 Installation
 - See file: INSTALLATION
@@ -71,11 +63,4 @@ In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
 
-You receive this software free of charge. The only thing that I would ask is to keep the copyright
-on the files intact and to keep the link and the image to PHPlist.com in your pages. That's not too much to
-ask is it? Thanks.
 
-Any contributions in other Database calls and translations are very welcome. Send your contribution to
-phplist@tincan.co.uk.
-
-Comments, questions and suggestions: phplist@tincan.co.uk
