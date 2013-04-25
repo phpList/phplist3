@@ -32,7 +32,8 @@ WORDWRAP_HTML
 
 ALWAYS_ADD_USERTRACK - not sure was mentioned before
 default jump-off to 1 and always add usertrack to 1
-
+jo=1 in header List-Unsubscribe
 
 RFC_DIRECT_DELIVERY - super experimental
-SESSIONNAME - set the name of the cookie
+
+BLACKLIST_EMAIL_ON_BOUNCE
