@@ -132,9 +132,9 @@ define("MAXLIST",1);
 
 # if you use commandline, you will need to identify the users who are allowed to run
 # the script. See README.commandline for more info
-$commandline_users = array("admin");
+# $commandline_users = array("admin");
 # or you can use the following to disable the check (take off the # in front of the line)
-# $commandline_users = array();
+$commandline_users = array();
 
 ## silent resubscribe
 # when someone signs up with an email address already in the database, 
