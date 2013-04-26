@@ -1,0 +1,18 @@
+[submodule "public_html/lists/texts"]
+	path = public_html/lists/texts
+	owner = public_html/lists
+	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/texts
+	revision = 3639
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
+[submodule "public_html/lists/texts/texts"]
+	path = public_html/lists/texts/texts
+	owner = public_html/lists/texts
+	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/texts
+	revision = 3639
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
