@@ -360,11 +360,12 @@ if ($page != '' && $page != 'install') {
 $pageinfo = new pageInfo();
 $pageinfo->fetchInfoContent($include);
 
-if (!$ajax) {
-  include 'ui/'.$GLOBALS['ui']."/header.inc";
-} elseif (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
+if (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
   include 'ui/'.$GLOBALS['ui']."/mainmenu.php";
 }  
+if (!$ajax) {
+  include 'ui/'.$GLOBALS['ui']."/header.inc";
+} 
 
 if (!$ajax) {
   print '<h4 class="pagetitle">'.strtolower($page_title).'</h4>';
