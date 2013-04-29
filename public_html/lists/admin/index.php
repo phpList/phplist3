@@ -187,13 +187,6 @@ if ($GLOBALS["commandline"]) {
   }
 }
 
-/*
-# fix for old PHP versions, although not failsafe :-(
-if (!isset($_POST) && isset($HTTP_POST_VARS)) {
-  include_once dirname(__FILE__) ."/commonlib/lib/oldphp_vars.php";
-}
-*/
-
 if (!isset($_GET['page'])) {
   $page = $GLOBALS['homepage'];
 } else {
