@@ -453,7 +453,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   Sql_Query('alter table '.$tables['message'].' change column textmessage textmessage longtext');
   Sql_Query('alter table '.$tables['message'].' change column message message longtext');
   Sql_Query('alter table '.$tables['messagedata'].' change column data data longtext');
-  Sql_Query('alter table '.$tables['bounce'].' add index statusidx (status(20))');
+  Sql_Query('alter table '.$tables['bounce'].' add index statusidx (status(20))',1);
 
   ## fetch the list of TLDs, if possible
   if (defined('TLD_AUTH_LIST')) {
