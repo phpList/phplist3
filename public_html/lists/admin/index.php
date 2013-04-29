@@ -484,7 +484,7 @@ if (preg_match("#(.*?)/admin?$#i",$this_doc,$regs)) {
 
 clearstatcache();
 if (checkAccess($page,"") || $page == 'about') {
-  if (!$_GET['pi'] && (is_file($include) || is_link($include))) {
+  if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
     # check whether there is a language file to include
     if (is_file("lan/".$_SESSION['adminlanguage']['iso']."/".$include)) {
       include "lan/".$_SESSION['adminlanguage']['iso']."/".$include;
