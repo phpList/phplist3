@@ -10,28 +10,39 @@ $_POST = removeXss($_POST);
 $_REQUEST = removeXss($_REQUEST);
 $_COOKIE = removeXss($_COOKIE);
 
-if ($_SERVER["ConfigFile"] && is_file($_SERVER["ConfigFile"])) {
+if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
   include $_SERVER["ConfigFile"];
 } elseif (is_file("config/config.php")) {
-  include "config/config.php";
+  include 'config/config.php';
 } else {
   print "Error, cannot find config file\n";
   exit;
 }
-#error_reporting($er);
+
 require_once dirname(__FILE__).'/admin/init.php';
 if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
   error_reporting(E_ALL);
+  ini_set('show_errors','on');
 } else {
   error_reporting(0);
 }
 
+$GLOBALS["database_module"] = basename($GLOBALS["database_module"]);
+$GLOBALS["language_module"] = basename($GLOBALS["language_module"]);
+
 require_once dirname(__FILE__).'/admin/'.$GLOBALS["database_module"];
-require_once dirname(__FILE__)."/texts/english.inc";
-include_once dirname(__FILE__)."/texts/".$GLOBALS["language_module"];
+
+# load default english and language
+include_once dirname(__FILE__)."/texts/english.inc";
+# Allow customisation per installation
+if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {
+  include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"];
+}
+
 include_once dirname(__FILE__)."/admin/languages.php";
-require_once dirname(__FILE__)."/admin/defaultconfig.inc";
+require_once dirname(__FILE__)."/admin/defaultconfig.php";
 require_once dirname(__FILE__).'/admin/connect.php';
+include_once dirname(__FILE__)."/admin/lib.php";
 
 if (!empty($_GET["u"]) && !empty($_GET["m"])) {
   $_GET['u'] = preg_replace('/\W/','',$_GET['u']);
