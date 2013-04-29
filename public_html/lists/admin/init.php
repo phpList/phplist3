@@ -177,7 +177,7 @@ if (!defined("USE_LIST_EXCLUDE")) define("USE_LIST_EXCLUDE",0);
 if (!defined("WARN_SAVECHANGES")) define("WARN_SAVECHANGES",1);
 if (!defined("STACKED_ATTRIBUTE_SELECTION")) define("STACKED_ATTRIBUTE_SELECTION",0);
 if (!defined("REMOTE_URL_REFETCH_TIMEOUT")) define('REMOTE_URL_REFETCH_TIMEOUT',3600);
-if (!defined('CLICKTRACK')) define('CLICKTRACK',0);
+if (!defined('CLICKTRACK')) define('CLICKTRACK',1);
 if (!defined('CLICKTRACK_SHOWDETAIL')) define('CLICKTRACK_SHOWDETAIL',0);
 if (!defined('USETINYMCEMESG')) define('USETINYMCEMESG',0);
 if (!defined('USETINYMCETEMPL')) define('USETINYMCETEMPL',0);
