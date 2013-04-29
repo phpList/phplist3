@@ -53,7 +53,7 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
       $thisversion = preg_replace("/[^\.\d]/","",$thisversion);
       if (!versionCompare($thisversion,$latestversion)) {
         print '<div class="newversion">';
-        print $GLOBALS['I18N']->get('A new version of PHPlist is available!');
+        print $GLOBALS['I18N']->get('A new version of phpList is available!');
         print '<br/>';
         print '<br/>'.$GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
         print '<br/>'.$GLOBALS['I18N']->get('Your version').': <b>'.$thisversion.'</b>';
@@ -81,7 +81,7 @@ if (checkAccess("setup") && !$_GET["pi"]) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('Continue Configuration');
     $ls->addElement($element,PageURL2("setup"));
-    $ls->addColumn($element,"&nbsp;",PageLink2($GLOBALS['I18N']->get('Continue the Configuration process of phpList','setup')));
+    $ls->addColumn($element,"&nbsp;",PageLinkClass('setup',$GLOBALS['I18N']->get('Continue the Configuration process of phpList'),'','hometext'));
     $ls->setClass($element,"config-link");
   }
 }
