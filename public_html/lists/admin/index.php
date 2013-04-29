@@ -313,7 +313,7 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
   }
 }
 if ($page == 'login') {
-  $_GET['pi'] = '';
+  unset($_GET['pi']);
 }
 
 if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
