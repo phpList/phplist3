@@ -61,14 +61,17 @@ if (!empty($_GET["u"]) && !empty($_GET["m"])) {
 if ($userid) {
   $query
   = ' update %s set viewed = current_timestamp'
-  . ' where messageid = ? and userid = ?';
+  . ' where messageid = ? and userid = ? and status = "sent"';
   $query = sprintf($query, $GLOBALS['tables']['usermessage']);
+  
   Sql_Query_Params($query, array($messageid,$userid ));
-  $query
-  = ' update %s set viewed = viewed + 1'
-  . ' where id = ?';
-  $query = sprintf($query, $GLOBALS['tables']['message']);
-  Sql_Query_Params($query, array($messageid));
+  if (Sql_Affected_Rows()) {
+    $query
+    = ' update %s set viewed = viewed + 1'
+    . ' where id = ?';
+    $query = sprintf($query, $GLOBALS['tables']['message']);
+    Sql_Query_Params($query, array($messageid));
+  }
 }
 
 @ob_end_clean();
