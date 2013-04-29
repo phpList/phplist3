@@ -31,16 +31,16 @@ if (!empty($link)) {
   $html .= '</td></tr>';
 }
 
-$link = PageLink2("admin&amp;id=1",$GLOBALS['I18N']->get('Go there'));
+$link = PageLink2("admin&amp;id=1",s('Go there'));
 if (!empty($link) && $GLOBALS["require_login"]) {
-  $html .= '<tr><td>'.$GLOBALS['I18N']->get('Change Admin Password').' </td>
+  $html .= '<tr><td>'.s('Change admin password').' </td>
   <td>'.$link.'</td><td>';
   $query
   = " select password"
   . " from ${tables['admin']}"
   . " where loginname = 'admin'";
   $curpwd = Sql_Fetch_Row_Query($query);
-  if ($curpwd[0] != "phplist") {
+  if ($curpwd[0] != "phplist" && $curpwd[0] != encryptPass('phplist')) {
     $html .= $GLOBALS["img_tick"];
   } else {
     $alldone = 0;  
@@ -69,8 +69,8 @@ if (!empty($link)) {
   $html .= '</td></tr>';
 }
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('Configure Attributes').'</td>
-<td>'.PageLink2("attributes",$GLOBALS['I18N']->get('Go there')).'</td><td>';
+$html .= '<tr><td>'.s('Configure attributes').'</td>
+<td>'.PageLink2("attributes",s('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["attribute"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -81,8 +81,8 @@ if (Sql_Affected_Rows()) {
 
 $html .= '</td></tr>';
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('Create Lists').'</td>
-<td>'.PageLink2("list",$GLOBALS['I18N']->get('Go there')).'</td><td>';
+$html .= '<tr><td>'.s('Create public lists').'</td>
+<td>'.PageLink2("list",s('Go there')).'</td><td>';
 $req = Sql_Query("select * from ${tables['list']} where active <> 0");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -92,8 +92,8 @@ if (Sql_Affected_Rows()) {
 }
 $html .= '</td></tr>';
 
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('Create Subscribe Pages').'</td>
-<td>'.PageLink2("spage",$GLOBALS['I18N']->get('Go there')).'</td><td>';
+$html .= '<tr><td>'.s('Create a subscribe page').'</td>
+<td>'.PageLink2("spage",s('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["subscribepage"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -103,8 +103,8 @@ if (Sql_Affected_Rows()) {
 }
 
 $html .= '</td></tr>';
-$html .= '<tr><td>'.$GLOBALS['I18N']->get('Add some subscribers').'</td>
-<td>'.PageLink2("import",$GLOBALS['I18N']->get('Go there')).'</td><td>';
+$html .= '<tr><td>'.s('Add some subscribers').'</td>
+<td>'.PageLink2("import",s('Go there')).'</td><td>';
 $req = Sql_Query("select * from {$tables["user"]}");
 if (Sql_Affected_Rows()) {
   $html .= $GLOBALS["img_tick"];
@@ -118,7 +118,7 @@ $html .= '</td></tr>';
 $html .= '</table>';
 
 if ($alldone) {
-  $html .= Info($GLOBALS['I18N']->get('Congratulations, phpList is set up, you are ready to start mailing')).'<br/>'.PageLinkActionButton('send',$GLOBALS['I18N']->get('Start a message campaign'));
+  $html .= Info($GLOBALS['I18N']->get('Congratulations, phpList is set up, you are ready to start mailing'),1).'<br/>'.PageLinkActionButton('send',s('Start a message campaign'));
   unset($_SESSION['firstinstall']);
 }
 
