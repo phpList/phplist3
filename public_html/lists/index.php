@@ -1,7 +1,7 @@
 <?php
 
 ob_start();
-//$er = error_reporting(0); 
+//$er = error_reporting(0);
 require_once dirname(__FILE__) .'/admin/commonlib/lib/unregister_globals.php';
 require_once dirname(__FILE__) .'/admin/commonlib/lib/magic_quotes.php';
 
@@ -22,7 +22,7 @@ if (isset($_GET['uid'])) {
 if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
   include $_SERVER["ConfigFile"];
 } elseif (is_file("config/config.php")) {
-  include "config/config.php";
+  include 'config/config.php';
 } else {
   print "Error, cannot find config file\n";
   exit;
@@ -30,7 +30,8 @@ if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
 
 require_once dirname(__FILE__).'/admin/init.php';
 if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
-  error_reporting(E_ALL & ~E_NOTICE);
+  error_reporting(E_ALL);
+  ini_set('show_errors','on');
 } else {
   error_reporting(0);
 }
@@ -42,7 +43,6 @@ require_once dirname(__FILE__).'/admin/'.$GLOBALS["database_module"];
 
 # load default english and language
 include_once dirname(__FILE__)."/texts/english.inc";
-include_once dirname(__FILE__)."/texts/".$GLOBALS["language_module"];
 # Allow customisation per installation
 if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {
   include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"];
@@ -52,6 +52,7 @@ include_once dirname(__FILE__)."/admin/languages.php";
 require_once dirname(__FILE__)."/admin/defaultconfig.php";
 require_once dirname(__FILE__).'/admin/connect.php';
 include_once dirname(__FILE__)."/admin/lib.php";
+
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
 
@@ -61,7 +62,7 @@ if (!empty($GLOBALS["SessionTableName"])) {
 @session_start(); # it may have been started already in languages
 
 if (!isset($_POST) && isset($HTTP_POST_VARS)) {
-  require "admin/commonlib/lib/oldphp_vars.php";
+  require 'admin/commonlib/lib/oldphp_vars.php';
 }
 
 if (isset($_GET['id'])) {
@@ -120,7 +121,7 @@ if (isset($_GET['uid']) && $_GET["uid"]) {
   }
 }
 
-if (isset($_REQUEST['id']) && $_REQUEST["id"]){
+if (isset($_REQUEST['id']) && $_REQUEST["id"]) {
   $id = sprintf('%d',$_REQUEST["id"]);
 }
 # make sure the subscribe page still exists
@@ -155,7 +156,7 @@ if ($login_required && empty($_SESSION["userloggedin"])) {
   $canlogin = 0;
   if (!empty($_POST["login"])) {
     # login button pushed, let's check formdata
-    
+
     if (empty($_POST["email"])) {
       $msg = $strEnterEmail;
     } elseif (empty($_POST["password"])) {
@@ -164,10 +165,10 @@ if ($login_required && empty($_SESSION["userloggedin"])) {
       if (ENCRYPTPASSWORD) {
         $encP = encryptPass($_POST["password"]);
         $canlogin = false;
-        $canlogin = 
-          !empty($encP) && 
-          !empty($_POST['password']) && 
-          !empty($emailcheck) && 
+        $canlogin =
+          !empty($encP) &&
+          !empty($_POST['password']) &&
+          !empty($emailcheck) &&
           $encP == $userpassword && $_POST["email"] == $emailcheck;
   #      print $_POST['password'].' '.$encP.' '.$userpassword.' '.$canlogin; exit;
       } else {
@@ -195,7 +196,7 @@ if ($login_required && empty($_SESSION["userloggedin"])) {
     $msg = $strEnterPassword;
   }
 } else {
-  # Logged into session or login not required 
+  # Logged into session or login not required
   $canlogin = 1;
 }
 
@@ -222,7 +223,7 @@ if ($id) {
       include_once $_SERVER['DOCUMENT_ROOT'].'/'.basename($pagedata['language_file']);
     }
   }
-}    
+}
 
 /*
   We request you retain the inclusion of pagetop below. This will add invisible
@@ -241,7 +242,7 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
   if ($id) {
     switch ($_GET["p"]) {
       case "subscribe":
-        $success = require "admin/subscribelib2.php";
+        $success = require 'admin/subscribelib2.php';
         if ($success != 2) {
           print SubscribePage($id);
         }
@@ -255,8 +256,8 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
           $_POST['list'][$listid] = 'signup';
         }
         $_POST['htmlemail'] = 1; ## @@ should actually be taken from the subscribe page data
-      
-        $success = require "admin/subscribelib2.php";
+
+        $success = require 'admin/subscribelib2.php';
         $result = ob_get_contents();
         ob_end_clean();
         if (stripos($result,$GLOBALS['strEmailConfirmation']) !== FALSE ||
@@ -275,13 +276,13 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
         break;
       case "preferences":
         if (!isset($_GET["id"]) || !$_GET['id']) $_GET["id"] = $id;
-        $success = require "admin/subscribelib2.php";
+        $success = require 'admin/subscribelib2.php';
         if (!$userid) {
 #          print "Userid not set".$_SESSION["userid"];
           print sendPersonalLocationPage($id);
         } elseif (ASKFORPASSWORD && $userpassword && !$canlogin) {
           print LoginPage($id,$userid,$emailcheck);
-        } elseif ($success != 3) { 
+        } elseif ($success != 3) {
           print PreferencesPage($id,$userid);
         }
         break;
@@ -326,7 +327,8 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
   print $pagedata["footer"];
 }
 
-function LoginPage($id,$userid,$email = "",$msg = "") {
+function LoginPage($id,$userid,$email = "",$msg = "")
+{
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $html = '<title>'.$GLOBALS["strLoginTitle"].'</title>';
   $html .= $GLOBALS['pagedata']["header"];
@@ -349,7 +351,7 @@ function LoginPage($id,$userid,$email = "",$msg = "") {
 
     $forgotPassBody = $GLOBALS["strForgotPasswordEmailBody"];
     $forgotPassBody = str_replace("\n",'%0D%0A',$forgotPassBody);
-   
+
     $html .= sprintf('<a href="mailto:%s?subject=%s&body=%s
     ">%s</a>',getConfig("admin_address"),$GLOBALS["strForgotPassword"],$forgotPassBody,$GLOBALS["strForgotPassword"]);
   } else {
@@ -359,10 +361,12 @@ function LoginPage($id,$userid,$email = "",$msg = "") {
     <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>';
   $html .= '</form>'.$GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
+
   return $html;
 }
 
-function sendPersonalLocationPage($id) {
+function sendPersonalLocationPage($id)
+{
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $html = '<title>'.$GLOBALS["strPreferencesTitle"].'</title>';
   $html .= $GLOBALS['pagedata']["header"];
@@ -384,10 +388,12 @@ function sendPersonalLocationPage($id) {
     <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>';
   $html .= '</form>'.$GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
+
   return $html;
 }
 
-function preferencesPage($id,$userid) {
+function preferencesPage($id,$userid)
+{
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $selected_lists = explode(',',$GLOBALS['pagedata']["lists"]);
   $html = '<title>'.$GLOBALS["strPreferencesTitle"].'</title>';
@@ -403,30 +409,33 @@ function preferencesPage($id,$userid) {
 var fieldstocheck = new Array();
     fieldnames = new Array();
 
-function checkform() {
+function checkform()
+{
   for (i=0;i<fieldstocheck.length;i++) {
     if (eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].value") == "") {
       alert("'.$GLOBALS["strPleaseEnter"].' "+fieldnames[i]);
       eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].focus()");
+
       return false;
     }
   }
 ';
-if ($GLOBALS['pagedata']['emaildoubleentry']=='yes')
-{
+if ($GLOBALS['pagedata']['emaildoubleentry']=='yes') {
 $html .='
-  if(! compareEmail())
-  {
+  if (! compareEmail()) {
     alert("Email addresses you entered do not match");
+
     return false;
   }';
 }
 
 $html .='
+
   return true;
 }
 
-function addFieldToCheck(value,name) {
+function addFieldToCheck(value,name)
+{
   fieldstocheck[fieldstocheck.length] = value;
   fieldnames[fieldnames.length] = name;
 }
@@ -443,7 +452,7 @@ function compareEmail()
   $html .= ListAttributes($attributes,$attributedata,$GLOBALS['pagedata']["htmlchoice"],$userid,$GLOBALS['pagedata']['emaildoubleentry']);
   $html .= '</table>';
 
-//obsolete, moved to rssmanager plugin 
+//obsolete, moved to rssmanager plugin
 //  if (ENABLE_RSS) {
 //    $html .= rssOptions($data,$userid);
 //   }
@@ -463,10 +472,12 @@ function compareEmail()
     <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>
   '.$GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
+
   return $html;
 }
 
-function subscribePage($id) {
+function subscribePage($id)
+{
 #  return subscribePage2($id);
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $selected_lists = explode(',',$GLOBALS['pagedata']["lists"]);
@@ -480,20 +491,22 @@ function subscribePage($id) {
 
 <script language="Javascript" type="text/javascript">
 
-function checkform() {
+function checkform()
+{
   for (i=0;i<fieldstocheck.length;i++) {
     if (eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].type") == "checkbox") {
       if (document.subscribeform.elements[fieldstocheck[i]].checked) {
       } else {
         alert("'.$GLOBALS["strPleaseEnter"].' "+fieldnames[i]);
         eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].focus()");
+
         return false;
       }
-    }
-    else {
+    } else {
       if (eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].value") == "") {
         alert("'.$GLOBALS["strPleaseEnter"].' "+fieldnames[i]);
         eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].focus()");
+
         return false;
       }
     }
@@ -504,29 +517,31 @@ function checkform() {
     }
   }
   ';
-if ($GLOBALS['pagedata']['emaildoubleentry']=='yes')
-{
+if ($GLOBALS['pagedata']['emaildoubleentry']=='yes') {
 $html .='
-  if(! compareEmail())
-  {
+  if (! compareEmail()) {
     alert("'.str_replace('"','\"',$GLOBALS["strEmailsNoMatch"]).'");
+
     return false;
   }';
 }
 
 $html .='
+
   return true;
 }
 
 var fieldstocheck = new Array();
 var fieldnames = new Array();
-function addFieldToCheck(value,name) {
+function addFieldToCheck(value,name)
+{
   fieldstocheck[fieldstocheck.length] = value;
   fieldnames[fieldnames.length] = name;
 }
 var groupstocheck = new Array();
 var groupnames = new Array();
-function addGroupToCheck(value,name) {
+function addGroupToCheck(value,name)
+{
   groupstocheck[groupstocheck.length] = value;
   groupnames[groupnames.length] = name;
 }
@@ -535,7 +550,8 @@ function compareEmail()
 {
   return (document.subscribeform.elements["email"].value == document.subscribeform.elements["emailconfirm"].value);
 }
-function checkGroup(name,value) {
+function checkGroup(name,value)
+{
   option = -1;
   for (i=0;i<document.subscribeform.elements[name].length;i++) {
     if (document.subscribeform.elements[name][i].checked) {
@@ -544,8 +560,10 @@ function checkGroup(name,value) {
   }
   if (option == -1) {
     alert ("'.$GLOBALS["strPleaseEnter"].' "+value);
+
     return false;
   }
+
   return true;
 }
 
@@ -575,7 +593,7 @@ function checkGroup(name,value) {
   $html .= ListAttributes($attributes,$attributedata,$GLOBALS['pagedata']["htmlchoice"],0,$GLOBALS['pagedata']['emaildoubleentry']);
   $html .= '</table>';
 
-//obsolete, moved to rssmanager plugin 
+//obsolete, moved to rssmanager plugin
 //  if (ENABLE_RSS) { // replaced bij display
 //    $html .= rssOptions($data);
 //   }
@@ -598,10 +616,12 @@ function checkGroup(name,value) {
     <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>
   '.$GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
+
   return $html;
 }
 
-function confirmPage($id) {
+function confirmPage($id)
+{
   global $tables, $envelope;
   if (!$_GET["uid"]) {
     FileNotFound();
@@ -658,11 +678,13 @@ function confirmPage($id) {
   $res .= $html;
   $res .= "<p>".$GLOBALS["PoweredBy"].'</p>';
   $res .= $GLOBALS['pagedata']["footer"];
+
   return $res;
 }
 
 /* unfinished
-function subscribePage2($id) {
+function subscribePage2($id)
+{
   list($attributes,$attributedata) = PageAttributes($GLOBALS['pagedata']);
   $selected_lists = explode(',',$GLOBALS['pagedata']["lists"]);
   $html = '<title>'.$GLOBALS["strSubscribeTitle"].'</title>';
@@ -685,20 +707,22 @@ function subscribePage2($id) {
     <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>
   '.$GLOBALS["PoweredBy"];
   $html .= '</div>';## id=phplistform
+
   return $html;
 }
 */
 
-function unsubscribePage($id) {
+function unsubscribePage($id)
+{
   global $tables;
   $email = '';
   $userid = 0;
   $msg = '';
   ## for unsubscribe, don't validate host
-  $GLOBALS["check_for_host"] = 0;  
-  $res = '<title>'.$GLOBALS["strUnsubscribeTitle"].'</title>'."\n";  
+  $GLOBALS["check_for_host"] = 0;
+  $res = '<title>'.$GLOBALS["strUnsubscribeTitle"].'</title>'."\n";
   $res .= $GLOBALS['pagedata']["header"];
-  if (isset($_GET["uid"])){
+  if (isset($_GET["uid"])) {
     $query = sprintf('select id,email,blacklisted from %s where uniqid = ?', $tables['user']);
     $req = Sql_Query_Params($query, array($_GET['uid']) );
     $userdata = Sql_Fetch_Array($req);
@@ -713,12 +737,12 @@ function unsubscribePage($id) {
     if (!validateEmail($email)) {
       $email = '';
     }
-    
+
     #0013076: Blacklisting posibility for unknown users
-    # Set flag for blacklisting 
+    # Set flag for blacklisting
     $blacklistRequest = $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend';
-    
-    # only proceed when user has confirm the form 
+
+    # only proceed when user has confirm the form
     if ($blacklistRequest && is_email($email) ) {
       $_POST["unsubscribe"] = 1;
       $_POST["unsubscribereason"] = 'Forwarded receiver requested blacklist';
@@ -749,7 +773,7 @@ function unsubscribePage($id) {
     #0013076: Blacklisting posibility for unknown users
       // It would be better to do this above, where the email is set for the other cases.
       // But to prevent vulnerabilities let's keep it here for now. [bas]
-    if ( !$blacklistRequest ) {
+    if (!$blacklistRequest) {
 
       $query
       = ' select id, email'
@@ -767,7 +791,7 @@ function unsubscribePage($id) {
         addUserToBlacklist($email,$_POST['unsubscribereason']);
         addSubscriberStatistics('blacklist',1);
         $res .= '<h3>'.$GLOBALS["strUnsubscribedNoConfirm"] ."</h3>";
-      } else {       
+      } else {
         $res .= $GLOBALS["strNoListsFound"];#'Error: '.$GLOBALS["strUserNotFound"];
         logEvent("Request to unsubscribe non-existent user: ".substr($email,0,150));
       }
@@ -802,8 +826,9 @@ function unsubscribePage($id) {
     //}
     $res .= $GLOBALS["PoweredBy"].'</p>';
     $res .= $GLOBALS['pagedata']["footer"];
+
     return $res;
-  } elseif ( isset($_POST["unsubscribe"]) && !is_email($email) && !empty($email))  {
+  } elseif ( isset($_POST["unsubscribe"]) && !is_email($email) && !empty($email)) {
     $msg = '<span class="error">'.$GLOBALS["strEnterEmail"]."</span><br>";
   }
 
@@ -819,6 +844,7 @@ function unsubscribePage($id) {
     $res .= '<input type="submit" name="unsubscribe" value="'.$GLOBALS['strContinue'].'"></form>';
     $res .= $GLOBALS["PoweredBy"];
     $res .= $GLOBALS['pagedata']["footer"];
+
     return $res;
   }
 
@@ -850,14 +876,14 @@ function unsubscribePage($id) {
 
   if (!$some) {
     #0013076: Blacklisting posibility for unknown users
-    if ( ! $blacklistRequest ) {
+    if (! $blacklistRequest) {
       $res .= "<b>".$GLOBALS["strNoListsFound"]."</b></ul>";
     }
     $res .= '<p><input type=submit value="'.$GLOBALS["strUnsubscribe"].'">';
   } else {
     if ($blacklistRequest) {
       $res .= $GLOBALS["strExplainBlacklist"];
-    } elseif (!UNSUBSCRIBE_JUMPOFF) {      
+    } elseif (!UNSUBSCRIBE_JUMPOFF) {
       list($r,$c) = explode(",",getConfig("textarea_dimensions"));
       if (!$r) $r = 5;
       if (!$c) $c = 65;
@@ -869,32 +895,35 @@ function unsubscribePage($id) {
   $res .= '</form>';
   $res .= '<p>'.$GLOBALS["PoweredBy"].'</p>';
   $res .= $GLOBALS['pagedata']["footer"];
+
   return $res;
 }
 
 ########################################
 if (!function_exists("htmlspecialchars_decode")) {
-   function htmlspecialchars_decode($string, $quote_style = ENT_COMPAT) {
+   function htmlspecialchars_decode($string, $quote_style = ENT_COMPAT)
+   {
        return strtr($string, array_flip(get_html_translation_table(HTML_SPECIALCHARS, $quote_style)));
    }
 }
-function forwardPage($id) {
+function forwardPage($id)
+{
   global $tables, $envelope;
   $ok = true;
   $subtitle = '';
   $info = '';
   $html = '';
   $form = '';
-  
+
   ## Check requirements
-  
+
   # user
   if (!isset($_REQUEST["uid"]) || !$_REQUEST['uid']) {
     FileNotFound();
   }
 
   $firstpage = 1; ## is this the initial page or a followup
-  
+
   # forward addresses
   $forwardemail = '';
   if (isset($_REQUEST['email']) && !empty($_REQUEST['email'])) {
@@ -905,25 +934,25 @@ function forwardPage($id) {
     $emails = explode("\n",$forwardemail);
     $emails = trimArray($emails);
     $forwardemail = implode("\n", $emails);
-    #0011860: forward to friend, multiple emails 
+    #0011860: forward to friend, multiple emails
     $emailCount = $forwardPeriodCount[0];
-    foreach ( $emails as $index => $email) {
+    foreach ($emails as $index => $email) {
       $emails[$index] = trim($email);
-      if( is_email($email) ) {
+      if ( is_email($email) ) {
         $emailCount++;
       } else {
         $info .= sprintf('<BR />' . $GLOBALS['strForwardInvalidEmail'], $email);
         $ok = false;
       }
     }
-    if ( $emailCount > FORWARD_EMAIL_COUNT ) {
+    if ($emailCount > FORWARD_EMAIL_COUNT) {
       $info.= '<BR />' . $GLOBALS["strForwardCountReached"];
       $ok = false;
-    } 
-  } else {  
+    }
+  } else {
     $ok = false;
   }
-  
+
   # message
   $mid = 0;
   if (isset($_REQUEST['mid'])) {
@@ -949,32 +978,32 @@ function forwardPage($id) {
       FileNotFound('<br/><i>'.$GLOBALS['I18N']->get('When testing the phpList forward functionality, you need to be logged in as an administrator.').'</i><br/>');
     }
   }
-  
+
   #0011996: forward to friend - personal message
   # text cannot be longer than max, to prevent very long text with only linefeeds total cannot be longer than twice max
   if (FORWARD_PERSONAL_NOTE_SIZE && isset($_REQUEST['personalNote']) ) {
       if (strlen(strip_newlines($_REQUEST['personalNote'])) > FORWARD_PERSONAL_NOTE_SIZE || strlen($_REQUEST['personalNote']) > FORWARD_PERSONAL_NOTE_SIZE  * 2  ) {
-        $info .= '<BR />' . $GLOBALS['strForwardNoteLimitReached'];            
+        $info .= '<BR />' . $GLOBALS['strForwardNoteLimitReached'];
         $ok = false;
       }
     $personalNote = strip_tags(htmlspecialchars_decode(stripslashes($_REQUEST['personalNote'])));
     $userdata['personalNote'] = $personalNote;
   }
-  
+
   if ($userdata["id"] && $mid) {
-    if ($ok && count($emails)) { ## All is well, send it 
+    if ($ok && count($emails)) { ## All is well, send it
       require_once 'admin/sendemaillib.php';
-      
+
       #0013845 Lead Ref Scheme
       if (FORWARD_FRIEND_COUNT_ATTRIBUTE) {
         $iCountFriends = getAttributeIDbyName(FORWARD_FRIEND_COUNT_ATTRIBUTE);
       } else {
         $iCountFriends = 0;
       }
-      if($iCountFriends) {
+      if ($iCountFriends) {
         $nFriends = intval(UserAttributeValue($userdata['id'], $iCountFriends));
       }
-      
+
       ## remember the lists for this message in order to notify only those admins
       ## that own them
       $messagelists = array();
@@ -983,8 +1012,8 @@ function forwardPage($id) {
         array_push($messagelists,$row[0]);
       }
 
-      foreach ( $emails as $index => $email) {
-        #0011860: forward to friend, multiple emails 
+      foreach ($emails as $index => $email) {
+        #0011860: forward to friend, multiple emails
         $done = Sql_Fetch_Array_Query(sprintf('select user,status,time from %s where forward = "%s" and message = %d',
         $tables['user_message_forward'],$email,$mid));
         $info .= '<BR />' . $email . ': ';
@@ -1017,12 +1046,12 @@ function forwardPage($id) {
           }
         }
       } # foreach friend
-      if( $iCountFriends ) {
-        saveUserAttribute($userdata['id'], $iCountFriends, 
+      if ($iCountFriends) {
+        saveUserAttribute($userdata['id'], $iCountFriends,
           array('name' => FORWARD_FRIEND_COUNT_ATTRIBUTE, 'value' => $nFriends));
       }
     } #ok & emails
-        
+
   } else { # no valid sender
     logEvent("Forward request from invalid user ID: ".substr($_REQUEST["uid"],0,150));
     $info .= '<BR />' . $GLOBALS["strForwardFailInfo"];
@@ -1043,7 +1072,7 @@ function forwardPage($id) {
   $form .= sprintf('<input type=hidden name="uid" value="%s">',$userdata['uniqid']);
   $form .= sprintf('<input type=hidden name="p" value="forward">');
   if (!$ok) {
-    #0011860: forward to friend, multiple emails 
+    #0011860: forward to friend, multiple emails
     if (FORWARD_EMAIL_COUNT == 1) {
       $form .= '<br /><h2>' .$GLOBALS['strForwardEnterEmail'] . '</h2>';
       $form .= sprintf('<input type=text name="email" value="%s" size=50 class="attributeinput">',$forwardemail);
@@ -1053,7 +1082,7 @@ function forwardPage($id) {
     }
 
     #0011996: forward to friend - personal message
-    if (FORWARD_PERSONAL_NOTE_SIZE ) {
+    if (FORWARD_PERSONAL_NOTE_SIZE) {
       $form .= sprintf('<h2>' . $GLOBALS['strForwardPersonalNote'] . '</h2>', FORWARD_PERSONAL_NOTE_SIZE);
       $cols=50;
       $rows=min(10,ceil(FORWARD_PERSONAL_NOTE_SIZE / 40));
@@ -1100,6 +1129,6 @@ function forwardPage($id) {
     $res .= $GLOBALS['pagedata']["footer"];
   }
 ### END MICHIEL
+
   return $res;
 }
-?>
