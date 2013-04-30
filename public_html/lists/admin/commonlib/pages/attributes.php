@@ -21,9 +21,9 @@ if (isset($_POST["action"])) {
       if (!$id && isset($_POST["name"][0]) && $_POST["name"][0] != "") {
         # it is a new one
         $lc_name = getNewAttributeTablename($_POST["name"][0]);        
-        if ($lc_name == "email") { print Warn($GLOBALS['I18N']->get('Email is a system attribute')); }
+        if ($lc_name == "email") { print Warn(s('Email is a system attribute')); }
 
-        #print "New attribute: ".$_POST["name"][0]."<br/>";
+        #print "New attribute: ".$lc_name."<br/>";
         if ( empty($_POST["required"][0]) ) {
           $nRequired = 0;        
         } else {
@@ -31,7 +31,7 @@ if (isset($_POST["action"])) {
         }
         
         $query = sprintf('insert into %s (name,type,listorder,default_value,required,tablename) values("%s","%s",%d,"%s",%d,"%s")',
-        $tables["attribute"],addslashes($_POST["name"][0]),$_POST["type"][0],$_POST["listorder"][0],addslashes($_POST["default"][0]), $nRequired,$lc_name);
+        $tables["attribute"],sql_escape($_POST["name"][0]),sql_escape($_POST["type"][0]),$_POST["listorder"][0],sql_escape($_POST["default"][0]), $nRequired,$lc_name);
         Sql_Query($query);
         $insertid = Sql_Insert_id();
         # text boxes and hidden fields do not have their own table
@@ -69,7 +69,7 @@ if (isset($_POST["action"])) {
         if ($_POST["type"][$id] != $existingtype)
         switch ($existingtype) {
           case "textline":case "hidden":case "date":
-          	 print "Converting ".$_POST["name"][$id]." from $existingtype to ".$_POST["type"][$id]."<br/>";
+          	 print s('Converting %s from %s to %s',htmlentities($_POST["name"][$id]),$existingtype,htmlentities($_POST["type"][$id]))."<br/>";
              switch ($_POST["type"][$id]) {
             	case "radio":
               case "checkboxgroup":
@@ -106,7 +106,7 @@ if (isset($_POST["action"])) {
             break;
           case "radio":case "select": case "checkbox":
             if ($_POST["type"][$id] != "date" && $_POST["type"][$id] != "hidden" && $_POST["type"][$id] != "textline") break;
-          	print "Converting ".$_POST["name"][$id]." from $existingtype to ".$_POST["type"][$id]."<br/>";
+          	print s('Converting %s from %s to %s',htmlentities($_POST["name"][$id]),$existingtype,htmlentities($_POST["type"][$id]))."<br/>";
             # we are turning a radio,select or checkbox into a hidden or textline field
             $valuereq = Sql_Query("select id,name from $table_prefix"."listattr_$req[1]");
             while ($row = Sql_Fetch_Row($valuereq))
@@ -115,7 +115,7 @@ if (isset($_POST["action"])) {
             break;
           case "checkboxgroup":
             if ($_POST["type"][$id] == "hidden" || $_POST["type"][$id] == "textline") {
-		         	 print $GLOBALS['I18N']->get('Converting')." ".$_POST["name"][$id]." ".$GLOBALS['I18N']->get('from')." $existingtype ".$GLOBALS['I18N']->get('to')." ".$_POST["type"][$id]."<br/>";
+          	 print s('Converting %s from %s to %s',htmlentities($_POST["name"][$id]),$existingtype,htmlentities($_POST["type"][$id]))."<br/>";
             	# we are changing a checkbox group into a hidden or textline
               # take the first value!
               $valuereq = Sql_Query("select id,name from $table_prefix"."listattr_$req[1]");
@@ -138,7 +138,7 @@ if (isset($_POST["action"])) {
           $nRequired = $_POST["required"][$id];        
         }
         $query = sprintf('update %s set name = "%s" ,type = "%s" ,listorder = %d,default_value = "%s" ,required = %d where id = %d',
-          $tables["attribute"],addslashes($_POST["name"][$id]),$_POST["type"][$id],$_POST["listorder"][$id],$_POST["default"][$id],$nRequired,$id);
+          $tables["attribute"],sql_escape($_POST["name"][$id]),sql_escape($_POST["type"][$id]),$_POST["listorder"][$id],sql_escape($_POST["default"][$id]),$nRequired,$id);
         Sql_Query($query);
         # save keywordlib seperately in case the DB hasn't been upgraded
         if ((defined('IN_WEBBLER') && IN_WEBBLER)  || (defined('WEBBLER') && WEBBLER)){
@@ -154,6 +154,7 @@ if (isset($_POST["action"])) {
   if (isset($_POST["tagaction"]['delete'])) {
     while (list($k,$id) = each ($_POST["tag"])) {
       # check for dependencies
+      $id = sprintf('%d',$id);
       if ($formtable_exists) {
         $req = Sql_Query("select * from formfield where attribute = $id");
         $candelete = !Sql_Affected_Rows();
@@ -161,7 +162,7 @@ if (isset($_POST["action"])) {
         $candelete = 1;
       }
       if ($candelete) {
-        print $GLOBALS['I18N']->get('deleting')." $id<br/>";
+        print s('deleting')." $id<br/>";
         $row = Sql_Fetch_Row_Query("select tablename,type from {$tables['attribute']} where id = $id");
         Sql_Query("drop table if exists $table_prefix"."listattr_$row[0]");
         Sql_Query("delete from {$tables['attribute']} where id = $id");
@@ -177,12 +178,13 @@ if (isset($_POST["action"])) {
  	} elseif (isset($_POST["tagaction"]['merge'])) {
     $first = array_shift($_POST["tag"]);
     $firstdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["attribute"],$first));
+    $first = $firstdata['id'];
     if (!sizeof($_POST["tag"])) {
-    	print Error($GLOBALS['I18N']->get('cannot merge just one attribute'));
+    	print Error(s('cannot merge just one attribute'));
     } else {
     	$cbg_initiated = 0;
     	foreach ($_POST["tag"] as $attid) {
-      	print $GLOBALS['I18N']->get('Merging')." $attid ".$GLOBALS['I18N']->get('into')." $first<br/>";
+      	print s('Merging %s into %d',htmlspecialchars($attid),htmlspecialchars($first)).'<br/>';
         
 		    $attdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["attribute"],$attid));
         if ($attdata["type"] != $firstdata["type"]) {
@@ -337,9 +339,9 @@ while ($row = Sql_Fetch_array($res)) {
   print '</h3><div class="label check"><label>'.$GLOBALS['I18N']->get('Tag').'
   <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></label></div>';
     
-  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Name').':</label> </div>
+  print '<div class="label"><label>'.s('Name').':</label> </div>
   <div class="field"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["name"])).'" size="40" /></div>';
-  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Type').': </label></div>
+  print '<div class="label"><label>'.s('Type').': </label></div>
   <!--<input type="hidden" name="type['.$row["id"].']" value="'.$row["type"].'">'.$row["type"].'-->';
 
   print '<div class="field"><select name="type['.$row["id"].']" onchange="warn();">';
@@ -377,7 +379,7 @@ while ($row = Sql_Fetch_array($res)) {
   print  '/></label></div>';
   print '</div>';
  } 
- printf('<input class ="submit" type="submit" name="action" value="%s" />',$GLOBALS['I18N']->get('Save Changes'));
+ printf('<input class ="submit" type="submit" name="action" value="%s" />',s('Save Changes'));
 
 print '<br/><br/>
 <script language="Javascript" src="js/jslib.js" type="text/javascript"></script>';
@@ -392,23 +394,23 @@ if ($c) {
 print '<div id="new-attribute">
 <a name="new"></a>
 <h3>'.$GLOBALS['I18N']->get('Add new Attribute').':</h3>
-<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Name').': </label></div>
+<div class="label"><label class="label">'.s('Name').': </label></div>
 <div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
-<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Type').': </label></div>
+<div class="label"><label class="label">'.s('Type').': </label></div>
 <div class="field"><select name="type[0]">';
 foreach($types as $key => $val) {
   printf('     <option value="%s" %s>%s</option>',$val,"",$GLOBALS['I18N']->get($val));
 }
 print'
 </select></div>
-<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Default Value').': </label></div>
+<div class="label"><label class="label">'.s('Default Value').': </label></div>
 <div class="field"><input type="text" name="default[0]" value="" size="40" /></div>
-<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Order of Listing').': </label></div>
+<div class="label"><label class="label">'.s('Order of Listing').': </label></div>
 <div class="field"><input type="text" name="listorder[0]" value="" size="5" /></div>
-<div class="label"><label class="label">'.$GLOBALS['I18N']->get('Is this attribute required?').': </label></div>
+<div class="label"><label class="label">'.s('Is this attribute required?').': </label></div>
 <div class="field"><input type="checkbox" name="required[0]" value="1" checked="checked" /></div>
 
-<div class="field"><input class="submit" type="submit" name="action" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></div>
+<div class="field"><input class="submit" type="submit" name="action" value="'.s('Save Changes').'" /></div>
 </div>
 </form>
 </div></div>

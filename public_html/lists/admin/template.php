@@ -135,7 +135,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $id = Sql_Insert_Id($tables['template'], 'id');
     }
     Sql_Query(sprintf('update %s set title = "%s",template = "%s" where id = %d',
-       $tables["template"],$title,addslashes($content),$id));
+       $tables["template"],$title,sql_escape($content),$id));
     Sql_Query(sprintf('select * from %s where filename = "%s" and template = %d',
       $tables["templateimage"],"powerphplist.png",$id));
     if (!Sql_Affected_Rows())
@@ -144,7 +144,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $tables["templateimage"],$id,"image/png","powerphplist.png",
       $newpoweredimage,
       70,30));
-    $actionresult .= '<p class="information">'.$GLOBALS['I18N']->get('Template saved').'</p>';
+    $actionresult .= '<p class="information">'.s('Template saved').'</p>';
 
     if (sizeof($images)) {
       include dirname(__FILE__) . "/class.image.inc";
@@ -207,7 +207,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
           }
             
         } elseif (trim($email) != '') {
-          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Error sending test messages to').' '.$email.'</p>';
+          $actionresult .= '<p>'.$GLOBALS['I18N']->get('Error sending test messages to').' '.htmlspecialchars($email).'</p>';
         }
       }
     } else {
@@ -253,10 +253,10 @@ if ($id) {
   <td><input type="text" name="title" value="<?php echo stripslashes(htmlspecialchars($data["title"]))?>" size="30" /></td>
 </tr>
 <tr>
-  <td colspan="2"><?php echo $GLOBALS['I18N']->get('Content of the template.')?><br /><?php echo $GLOBALS['I18N']->get('The content should at least have <b>[CONTENT]</b> somewhere.')?><br/><?php echo $GLOBALS['I18N']->get('You can upload a template file or paste the text in the box below'); ?></td>
+  <td colspan="2"><?php echo s('Content of the template.')?><br /><?php echo s('The content should at least have <b>[CONTENT]</b> somewhere.')?><br/><?php echo s('You can upload a template file or paste the text in the box below'); ?></td>
 </tr>
 <tr>
-  <td><?php echo $GLOBALS['I18N']->get('Template file.')?></td>
+  <td><?php echo s('Template file.')?></td>
     <td><input type="file" name="file_template" /></td>
     </tr>
 <tr>
@@ -299,7 +299,7 @@ if ($id) {
 <?php  $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     '.$sendtestresult .'
     <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
-    <input type="text" name="testtarget" size="40" value="'.$testtarget.'"/><br />%s
+    <input type="text" name="testtarget" size="40" value="'.htmlspecialchars($testtarget).'"/><br />%s
     </div>',
     $GLOBALS['I18N']->get('Send test message'),$GLOBALS['I18N']->get('to email addresses'),
     $GLOBALS['I18N']->get('(comma separate addresses - all must be existing subscribers)'));

@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('PHPLISTINIT')) exit;
+
 $id = sprintf('%d',isset($_GET["id"]) ? $_GET['id']:0);
 $delete = sprintf('%d',isset($_GET['delete']) ? $_GET["delete"]:0);
 $date = new Date();

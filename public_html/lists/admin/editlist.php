@@ -45,7 +45,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
 }
 
 if ($id) {
-  echo "<br />".PageLinkButton("members",$GLOBALS['I18N']->get('Members of this list'),"id=$id");
+  echo "<br />".PageLinkButton("members",s('Members of this list'),"id=$id");
 }
 echo "<hr />";
 if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
@@ -88,17 +88,16 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   }
   if (!$id) {
     $id = Sql_Insert_Id($GLOBALS['tables']['list'], 'id');
-    ## allow plugins to save their fields
-    foreach ($GLOBALS['plugins'] as $plugin) {
-      $result = $result && $plugin->processEditList($id);
-    }
 
-    $_SESSION['action_result'] = $GLOBALS['I18N']->get('New List added') . ": $id";
+    $_SESSION['action_result'] = s('New list added') . ": $id";
     $_SESSION['newlistid'] = $id;
   }
-
+  ## allow plugins to save their fields
+  foreach ($GLOBALS['plugins'] as $plugin) {
+    $result = $result && $plugin->processEditList($id);
+  }
   if ($_GET['page'] == 'editlist') {
-    $_SESSION['action_result'] = '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,$GLOBALS['I18N']->get('Add some subscribers')).'</div>';
+    $_SESSION['action_result'] = '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,s('Add some subscribers')).'</div>';
   }
   print $_SESSION['action_result'];
   unset($_SESSION['action_result']);

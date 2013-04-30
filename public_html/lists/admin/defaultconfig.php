@@ -632,58 +632,6 @@ Thank you.
 
 );
 
-/*
-//if (defined("ENABLE_RSS") && ENABLE_RSS) { //@B@ Has to move to plugin!
-  $default_config["rssthreshold"] = array (
-    4,
-    "Minimum amount of items to send in an RSS feed",
-    "text"
-  );
-  $default_config["rsstexttemplate"] = array (
-    '
-      [title]
-      [description]
-      URL: [link]
-      ',
-    "Template for text item in RSS feeds",
-    "textarea"
-  );
-  $default_config["rsshtmltemplate"] = array (
-    '<br/>
-      <a href="[link]"><b>[title]</b></a><br/>
-      <p class="information">[description]</p>
-      <hr/>
-      ',
-    "Template for HTML item in RSS feeds",
-    "textarea"
-  );
-  $default_config["rssthreshold"] = array (
-    4,
-    "Minimum amount of items to send in an RSS feed",
-    "text"
-  );
-  $default_config["rssmax"] = array (
-    30,
-    "Maximum amount of items to send in an RSS feed",
-    "text"
-  );
-  $default_config["rsstextseparatortemplate"] = array (
-    '**** [listname] ******
-    
-      ',
-    "Template for separator between feeds in RSS feeds (text)",
-    "textarea"
-  );
-  $default_config["rsshtmlseparatortemplate"] = array (
-    '<br/>
-      <h3>[listname]</h3>
-      ',
-    "Template for separator between feeds in RSS feeds (HTML)",
-    "textarea"
-  );
-*/
-//}
-
 
 ########## certainly do not edit after this #########
 

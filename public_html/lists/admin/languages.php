@@ -69,10 +69,12 @@ if (!empty($GLOBALS["SessionTableName"])) {
 @session_start();
 
 if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($LANGUAGES[$_POST['setlanguage']])) {
+  ## just in case
+  $setlanguage = preg_replace('/[^\w_-]+/','',$_POST['setlanguage']);
   $_SESSION['adminlanguage'] = array(
-    "info" => $_POST['setlanguage'],
-    "iso" => $_POST['setlanguage'],
-    "charset" => $LANGUAGES[$_POST['setlanguage']][1],
+    "info" => $setlanguage,
+    "iso" => $setlanguage,
+    "charset" => $LANGUAGES[$setlanguage][1],
   );
 #  var_dump($_SESSION['adminlanguage'] );
 }
