@@ -7,6 +7,9 @@
     <td class="poweredby" valign="top">
       Powered by <a href="http://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION?> <a href="http://www.phplist.com" target="_blank"><br/><br/>
       <img src="../images/power-phplist.png" alt="" width="70" height="30" border="0" /></a>
+      <p>&nbsp;</p>
+      <p><?php echo s('Certified Secure by ')?><a href="https://www.httpcs.com/" title="Web Vulnerability Scanner" target="_blank"><img src="images/LogoCertifiedHTTPCS.png" height="20" width="100" border="0" alt="Certified Secure by HTTPCS, Web Vulnerability Scanner" title="Certified Secure by HTTPCS, Web Vulnerability Scanner" /></a> 
+       </p>
     </td>
     <td class="top">
     phplist is licensed with the <a href="http://www.gnu.org/copyleft" target="_blank">GNU Public License (GPL)</a>.<br/>
