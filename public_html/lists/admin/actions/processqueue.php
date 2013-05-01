@@ -668,7 +668,7 @@ while ($message = Sql_fetch_array($messages)) {
       output($GLOBALS['I18N']->get('looking for users who can be excluded from this mailing'));
     }
     if (count($msgdata['excludelist'])) {
-/*
+
       $query
       = " select userid"
       . " from ". $GLOBALS['tables']['listuser']
@@ -678,17 +678,10 @@ while ($message = Sql_fetch_array($messages)) {
       }
       $req = Sql_Query($query);
       while ($row = Sql_Fetch_Row($req)) {
-        array_push($skipusers,$row[0]);
+        Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $row[0], 'messageid' => $messageid, 'status' => "excluded"), array('userid', 'messageid'), false);
       }
-*/
-      $exclusion = sprintf(' and listuser.listid not in (%s)',join(',',$msgdata['excludelist']));
     }
-/*
-    if (sizeof($skipusers))
-      $exclusion .= " and listuser.userid not in (".join(",",$skipusers).")";
-*/
   }
-#  Sql_Query_Params(sprintf('delete from %s where messageid = ? and status = "active"',$tables['usermessage']), array($messageid));
 
 /*
   ## 8478
