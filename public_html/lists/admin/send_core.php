@@ -402,7 +402,6 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       $sendtestresult .= s('You can send a test mail once every %d seconds',SENDTEST_THROTTLE)."<br/>";
       $emailaddresses = array();
     } else {
-       $_SESSION['lasttestsent'] = time();
       // Let's send test messages to everyone that was specified in the
       if ($messagedata["testtarget"] == "") {
         $sendtestresult .= $GLOBALS['I18N']->get("No target email addresses listed for testing.")."<br/>";
@@ -458,6 +457,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           $sendtestresult .= $GLOBALS['I18N']->get('success');
         }
         $sendtestresult .= '<br/>';
+        $_SESSION['lasttestsent'] = time();
       } else {
         $sendtestresult .= $GLOBALS['I18N']->get("Email address not found to send test message.").": $address";
         $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s" class="button ajaxable">%s</a></div>',$baseurl,urlencode($address),$GLOBALS['I18N']->get("add"));
