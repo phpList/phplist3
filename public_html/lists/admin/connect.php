@@ -1046,7 +1046,7 @@ function PageLinkActionButton($name,$desc="",$url="",$extraclass = '',$title = '
   ## as PageLink2, but add the option to ajax it in a popover window
   $link = PageLink2($name,$desc,$url);
   if ($link) {
-    $link = str_replace('<a ','<a class="action-button '.$extraclass.'"',$link);
+    $link = str_replace('<a ','<a class="action-button '.$extraclass.'" ',$link);
     $link .= '';
   }
   return $link;
