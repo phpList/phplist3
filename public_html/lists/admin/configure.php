@@ -28,13 +28,16 @@ if (empty($_REQUEST['id'])) {
 }
 #print '<div class="actions">'.PageLinkButton('configure&resetdefault=yes',s('Reset to default')).'</div>';
 
-$button = new ConfirmButton(
-   s('Are you sure you want to reset the configuration to the default?'),
-   PageURL2("configure&resetdefault=yes","reset",""),
-   s('Reset to default'));
- 
-print $button->show();   
-print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
+if (empty($_GET['id'])) {
+    ## @@TODO might be an idea to allow reset on an "id" as well
+    $button = new ConfirmButton(
+       s('Are you sure you want to reset the configuration to the default?'),
+       PageURL2("configure&resetdefault=yes","reset",""),
+       s('Reset to default'));
+     
+    print $button->show();
+    print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
+}
 
 $configCategories = array();
 $configTypes = array();
