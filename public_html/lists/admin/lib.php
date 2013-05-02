@@ -439,13 +439,16 @@ function sendAdminCopy($subject,$message,$lists = array()) {
     }
     if (!sizeof($mails)) {
       $admin_mail = getConfig("admin_address");
-      $mails = explode(",",getConfig("admin_addresses"));
+
+      if ($c = getConfig("admin_addresses")) {
+        $mails = explode(",", $c);
+      }
       array_push($mails,$admin_mail);
     }
     $sent = array();
     foreach ($mails as $admin_mail) {
       $admin_mail = trim($admin_mail);
-      if ( !isset($sent[$admin_mail]) && isset($admin_mail) ) {
+      if ( !isset($sent[$admin_mail]) && !empty($admin_mail) ) {
         sendMail($admin_mail,$subject,$message,system_messageheaders($admin_mail));
         logEvent('Sending admin copy to '.$admin_mail);
         $sent[$admin_mail] = 1;
