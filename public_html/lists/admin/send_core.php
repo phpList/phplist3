@@ -932,7 +932,7 @@ if (!$done) {
     <div class="campaignTracking">
     <label for"cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
     </div>',
-     Help("googletrack").' '.$GLOBALS['I18N']->get('add Google tracking code'),
+     Help("googletrack").' '.s('add Google Analytics tracking code'),
      !empty($messagedata['google_track']) ? 'checked="checked"':'');
    
   $show_lists = 0;
