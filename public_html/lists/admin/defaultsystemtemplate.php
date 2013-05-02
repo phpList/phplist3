@@ -5,35 +5,13 @@
 
 print '<h2>Default system template</h2>';
 
-$template = ' <div id="container" style="margin: 0 20px; min-width: 920px">
-      <div id="wrapper" style="padding: 20px; background-color: #FFFFFF">
-        <div id="mainContent" style="margin-right: 390px; min-height: 400px">
-          <div class="panel" style="position: relative;
-border: 6px solid #5DAEE1; 
-margin-bottom: 20px;
-background-color: #5DAEE1; 
--moz-border-radius:6px; 
--webkit-border-radius:6px; 
-border-radius:6px;
--moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
--webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
-">
-            <div class="content" style="padding: 5px; 
--moz-border-radius:3px; 
--webkit-border-radius:3px; 
-border-radius:3px;
-background-color: #F2F2F2
-">
-              <h3 style="display: block; background-color: #5DAEE1; color: #FFF; margin: 0; padding: 3px 5px 10px 5px; line-height: 1.2; font-size: 18px; letter-spacing: 0; text-transform:capitalize;">[SUBJECT]</h3>
-              [CONTENT]
-              [SIGNATURE]
-            </div>
-          </div>
-        </div>
-      </div>
+$template = '<div style="margin:0; text-align:center; width:100%; background:#EEE;min-width:240px;height:100%;"><br />
+    <div style="width:96%;margin:0 auto; border-top:6px solid #369;border-bottom: 6px solid #369;background:#DEF;" >
+        <h3 style="margin-top:5px;background-color:#69C; font-weight:normal; color:#FFF; text-align:center; margin-bottom:5px; padding:10px; line-height:1.2; font-size:21px; text-transform:capitalize;">[SUBJECT]</h3>
+        <div style="text-align:justify;background:#FFF;padding:20px; border-top:2px solid #369;min-height:200px;font-size:13px; border-bottom:2px solid #369;">[CONTENT]<div style="clear:both"></div></div>
+        <div style="clear:both;background:#69C;font-weight:normal; padding:10px;color:#CCC;text-align:center;font-size:14px;margin:5px 0px">[FOOTER]<br/>[SIGNATURE]</div>
     </div>
-';
+<br /></div>';
 
 $exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "System Template"',$GLOBALS['tables']['template']));
 if ($exists[0]) {
