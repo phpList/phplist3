@@ -523,11 +523,22 @@ function previewTemplate($id,$adminid = 0,$text = "", $footer = "") {
       $template = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att["name"]))."\]#",$att["value"],$template);
     }
   }
+  if (empty($footer)) {
+    $footer = getConfig('messagefooter');
+  }
+  
   if ($footer) {
     $template = str_ireplace("[FOOTER]",$footer,$template);
   }
   $template = preg_replace("#\[CONTENT\]#",$text,$template);
-  $template = str_ireplace("[SUBJECT]",'SUBJECT',$template);
+  $fromemail = getConfig('campaignfrom_default');
+  if (empty($fromemail)) {
+    $fromemail = 'user@server.com';
+  }
+  $template = str_ireplace("[FROMEMAIL]",$fromemail,$template);
+  $template = str_ireplace("[EMAIL]",'recipient@destination.com',$template);
+  
+  $template = str_ireplace("[SUBJECT]",s('This is the Newsletter Subject'),$template);
   $template = str_ireplace("[UNSUBSCRIBE]",sprintf('<a href="%s">%s</a>',getConfig("unsubscribeurl"),$GLOBALS["strThisLink"]),$template);
   #0013076: Blacklisting posibility for unknown users
   $template = str_ireplace("[BLACKLIST]",sprintf('<a href="%s">%s</a>',getConfig("blacklisturl"),$GLOBALS["strThisLink"]),$template);
