@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
 } else {
   $id = 0;
 }
-if (isset($_GET['delete'])) {
+if (ALLOW_DELETEBOUNCE && isset($_GET['delete'])) {
   $delete = sprintf('%d',$_GET["delete"]);
 } else {
   $delete = 0;
