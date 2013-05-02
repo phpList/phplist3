@@ -85,6 +85,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
   if (is_writable($pluginDestination)) {
     if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall',$extractList)) {
       $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
+      $installOk = false;
       while ($dirEntry = readdir($extractedDir)) {
         if (!preg_match('/^\./',$dirEntry)) {
           print $dirEntry;
@@ -97,16 +98,25 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
             );
           }
           
+          $bu_dir = time();
           if (file_exists($pluginDestination.'/'.$dirEntry)) {
             print s(' updating existing plugin');
+            @rename($pluginDestination.'/'.$dirEntry,
+              $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
           } else {
             print s(' new plugin');
           }
    #       var_dump($pluginInfo);
             
           print '<br/>';
-          @rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
-            $pluginDestination.'/'.$dirEntry);
+          if (rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
+            $pluginDestination.'/'.$dirEntry)) {
+              delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
+              $installOk = true;
+          } elseif (is_dir($pluginDestination.'/'.$dirEntry.'.'.$bu_dir)) {
+            ## try to place old one back
+            @rename($pluginDestination.'/'.$dirEntry.'.'.$bu_dir,$pluginDestination.'/'.$dirEntry);
+          }
         }  
       }
       foreach ($pluginInfo as $plugin => $pluginDetails) {
@@ -116,7 +126,11 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
       ## clean up
       delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
       
-      print s('Plugin installed successfully');
+      if ($installOk) {
+        print s('Plugin installed successfully');
+      } else {
+        print s('Error installing plugin');
+      }
       $zip->close();   
       print '<hr/>'.PageLinkButton('plugins',s('Continue'));
       return;
