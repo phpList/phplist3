@@ -859,18 +859,17 @@ while ($message = Sql_fetch_array($messages)) {
       if ($script_stage < 4)
         $script_stage = 4; # we know a subscriber to send to
       $someusers = 1;
-      $users = Sql_query("select id,email,uniqid,htmlemail,rssfrequency,confirmed,blacklisted,disabled from {$tables['user']} where id = $userid");
+      $users = Sql_query("select id,email,uniqid,htmlemail,confirmed,blacklisted,disabled from {$tables['user']} where id = $userid");
 
       # pick the first one (rather historical from before email was unique)
-      $user = Sql_fetch_array($users); 
-      if ($user[5] && is_email($user[1])) {
-        $userid = $user[0];    # id of the subscriber
-        $useremail = $user[1]; # email of the subscriber
-        $userhash = $user[2];  # unique string of the user
-        $htmlpref = $user[3];  # preference for HTML emails
-//        $rssfrequency = $user[4];
-        $confirmed = $user[5] && !$user[7]; ## 7 = disabled flag 
-        $blacklisted = $user[6];
+      $user = Sql_fetch_Assoc($users); 
+      if ($user['confirmed'] && is_email($user['email'])) {
+        $userid = $user['id'];    # id of the subscriber
+        $useremail = $user['email']; # email of the subscriber
+        $userhash = $user['uniqid'];  # unique string of the user
+        $htmlpref = $user['htmlemail'];  # preference for HTML emails
+        $confirmed = $user['confirmed'] && !$user['disabled']; ## 7 = disabled flag 
+        $blacklisted = $user['blacklisted'];
 
         $cansend = !$blacklisted && $confirmed;
 /*
@@ -880,10 +879,16 @@ while ($message = Sql_fetch_array($messages)) {
 
       reset($GLOBALS['plugins']);
       while ($cansend && $plugin = current($GLOBALS['plugins']) ) {
+        if (VERBOSE) {
+          cl_output('Checking plugin '. $plugin->name());
+        }
         $cansend = $plugin->canSend($msgdata, $user);
         if (!$cansend) {
           $failure_reason .= 'Sending blocked by plugin '.$plugin->name;
           $counters['send blocked by '.$plugin->name]++;
+          if (VERBOSE) {
+            cl_output('Sending blocked by plugin '.$plugin->name);
+          }
         }
 
         next($GLOBALS['plugins']);
@@ -1070,19 +1075,20 @@ while ($message = Sql_fetch_array($messages)) {
         ## this is quite old as well, with the preselection that avoids unconfirmed users
         # it is unlikely this is every processed.
 
-        if (!$user[5] || $user[7]) {
+        if (!$user['confirmed'] || $user['disabled']) {
           if (VERBOSE)
-            output($GLOBALS['I18N']->get('Unconfirmed user').': '."$userid $user[1], $user[0]");
+            output($GLOBALS['I18N']->get('Unconfirmed user').': '.$userid.' '. $user['email'].' '.  $user['id']);
           $unconfirmed++;
           # when running from commandline we mark it as sent, otherwise we might get
           # stuck when using batch processing
          # if ($GLOBALS["commandline"]) {
             $um = Sql_query("replace into {$tables['usermessage']} (entered,userid,messageid,status) values(current_timestamp,$userid,$messageid,\"unconfirmed user\")");
          # }
-        } elseif ($user[1] || $user[0]) {
-          if (VERBOSE)
-            output("Invalid email: $user[1], $user[0]");
-          logEvent("Invalid email, userid $user[0], email $user[1]");
+        } elseif ($user['email'] || $user['id']) {
+          if (VERBOSE) {
+            output(s('Invalid email').': ' . $user['email'].' '.  $user['id']);
+          }
+          logEvent(s('Invalid email').': userid  '. $user['id'].'  email '. $user['email']);
           # mark it as sent anyway
           if ($userid)
             $um = Sql_query("replace into {$tables['usermessage']} (entered,userid,messageid,status) values(current_timestamp,$userid,$messageid,\"invalid email\")");
