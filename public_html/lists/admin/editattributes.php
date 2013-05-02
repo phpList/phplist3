@@ -36,8 +36,19 @@ switch ($data['type']) {
 <div class="panel"><div class="header"></div><!-- ENDOF .header -->
 <div class="content">
 <h3 id="attribute-name"><?php echo $data["name"]?></h3>
-<div class="actions"><?php echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('add new'),"id=$id&amp;action=new")?> 
-  <a href="javascript:deleteRec2('<?php echo $GLOBALS['I18N']->get('Are you sure you want to delete all records?');?>','<?php echo PageURL2("editattributes",$GLOBALS['I18N']->get('delete all'),"id=$id&amp;deleteall=yes")?>');"><?php echo $GLOBALS['I18N']->get('Delete all');?></a>
+<div class="actions">
+<?php
+ print PageLinkButton("attributes",s('Back to attributes'),"");
+
+ if (!isset($_GET['action']) || $_GET['action'] != 'new') echo PageLinkButton("editattributes",$GLOBALS['I18N']->get('add new'),"id=$id&amp;action=new");
+
+  $button = new ConfirmButton(
+     s('Are you sure you want to delete all values?'),
+     PageURL2("editattributes",s('delete all'),"id=$id&amp;deleteall=yes"),
+     s('Delete all'));
+   
+  print $button->show();
+?>
 </div>
 <hr/>
 <?php echo formStart(' class="editattributesAdd" ')?>
