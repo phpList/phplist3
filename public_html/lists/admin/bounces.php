@@ -15,7 +15,7 @@ if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
   print ActionResult($result);
 }
 
-if (isset($_GET['action']) && $_GET['action']) {
+if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
     case "deleteunidentified":
       Sql_Query(sprintf('delete from %s where status = "unidentified bounce" and `date` < date_sub(now(),interval 2 month)',$tables["bounce"]));
@@ -54,6 +54,7 @@ if ($total > MAX_USER_PP) {
   $query = sprintf("select * from %s where status != ? order by date desc limit $limit offset $offset", $tables['bounce']);
   $result = Sql_Query_Params($query, array('unidentified bounce'));
 } else {
+  $paging = '';
   $query = sprintf('select * from %s where status != ? order by date desc', $tables['bounce']);
   $result = Sql_Query_Params($query, array('unidentified bounce'));
 }
@@ -76,9 +77,9 @@ print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list')
       $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . "?",
       PageURL2("$baseurl&action=deleteall"),
       $GLOBALS['I18N']->get('Delete all')));
- if (ALLOW_DELETEBOUNCE) {
-  print $buttons->show();
-}
+  if (ALLOW_DELETEBOUNCE) {
+    print $buttons->show();
+  }
 print '</div>';
 
 if (!Sql_Num_Rows($result)) {
