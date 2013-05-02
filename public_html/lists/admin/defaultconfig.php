@@ -509,9 +509,9 @@ $default_config = array (
   
     <div class="footer" style="text-align:left; font-size: 75%;">
       <p>This message was sent to [EMAIL] by [FROMEMAIL]</p>
-      <p>To forward this message, please do not use the forward button of your email application, because this message was made specifically for you only. Instead use the <a href="[FORWARDURL]">forward page</a> in our newsletter system.</p>
-      <p>To change your details and to choose which lists to be subscribed to, visit your personal <a href="[PREFERENCESURL]">preferences page</a></p>
-      <p>Or you can <a href="[UNSUBSCRIBEURL]">Opt out completely</a> from all future mailings.</p>
+      <p>To forward this message, please do not use the forward button of your email application, because this message was made specifically for you only. Instead use the <a href="[FORWARDURL]">forward page</a> in our newsletter system.<br/>
+      To change your details and to choose which lists to be subscribed to, visit your personal <a href="[PREFERENCESURL]">preferences page</a><br/>
+      Or you can <a href="[UNSUBSCRIBEURL]">opt-out completely</a> from all future mailings.</p>
     </div>
 
   ',
