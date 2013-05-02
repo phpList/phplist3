@@ -1,3 +1,21 @@
+[submodule "public_html/lists/admin/info"]
+	path = public_html/lists/admin/help
+	owner = public_html/lists/admin
+	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/info
+	revision = 3710
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
+[submodule "public_html/lists/admin/lan"]
+	path = public_html/lists/admin/help
+	owner = public_html/lists/admin
+	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/lan
+	revision = 3710
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
 [submodule "public_html/lists/admin/help"]
 	path = public_html/lists/admin/help
 	owner = public_html/lists/admin
