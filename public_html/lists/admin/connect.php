@@ -1087,6 +1087,9 @@ function PageURL2($name,$desc = "",$url="",$no_plugin = false) {
 #function ListofLists($messagedata,$fieldname,$subselect) {
 function ListofLists($current,$fieldname,$subselect) {
   $categoryhtml = array();
+  ## add a hidden field, so that all checkboxes can be unchecked while keeping the field in POST to process it
+  $categoryhtml['unselect'] = '<input type="hidden" name="'.$fieldname.'[unselect]" value="1" />';
+  
   $categoryhtml['selected'] = '';
   $categoryhtml['all'] = '
   <li><input type="checkbox" name="'.$fieldname.'[all]"';
