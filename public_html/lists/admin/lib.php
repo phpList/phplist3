@@ -1401,7 +1401,10 @@ function pad_right($str,$len) {
 }
 
 function delFsTree($dir) {
-  if (empty($dir) || !is_dir($dir)) return false;
+  if (empty($dir)) return false;
+  if (!is_dir($dir) && is_file($dir)) {
+    return unlink($dir); ## delete file
+  }
   $files = array_diff(scandir($dir), array('.','..'));
   foreach ($files as $file) {
     (is_dir("$dir/$file")) ? delFsTree("$dir/$file") : unlink("$dir/$file");
