@@ -34,6 +34,8 @@ if (!empty($_REQUEST['firstinstall']) && empty($_REQUEST['adminemail'])) {
   return;
 } 
 
+#var_dump($GLOBALS['plugins']);exit;
+
 print "<h3>".$GLOBALS['I18N']->get("Creating tables")."</h3><br />\n";
 while (list($table, $val) = each($DBstruct)) {
   if ($force) {
@@ -106,7 +108,15 @@ while (list($table, $val) = each($DBstruct)) {
       echo "... ".$GLOBALS['I18N']->get("failed")."<br />\n";
   }
 }
-#
+
+## initialise plugins that are already here
+foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
+  print s('Initialise plugin').' '.$pluginName.'<br/>';
+  if (method_exists($plugin,'initialise')) {
+    $plugin->initialise();
+  }
+  SaveConfig(md5('plugin-'.$pluginName.'-initialised'),time(),0);
+}
 
 if ($success) {
   # mark the database to be our current version
