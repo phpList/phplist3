@@ -176,6 +176,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   
   $ls->addElement($pluginname);
   $ls->addColumn($pluginname,s('name'),$plugin->name);
+  $ls->setClass($pluginname, 'row1');
   $ls->addRow($pluginname,s('description'),$plugin->description);
   $ls->addColumn($pluginname,s('version'),$plugin->version);
   if (!empty($pluginDetails['installDate'])) {
