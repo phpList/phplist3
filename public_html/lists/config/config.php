@@ -658,6 +658,11 @@ define("EXPORT_EXCEL",0);
 # open_basedir set to allow access to this directory. Linux users can leave it as it is.
 # this directory is used for all kinds of things, mostly uploading of files (like in
 # import), creating PDFs and more
+
+# On Linux based systems, it will be good to make sure this directory is on the same
+# filesystem as your phpList installation. In some systems, renaming files or directories
+# across filesystems fails.
+
 $tmpdir = '/tmp';
 
 # if you are on Windoze, and/or you are not using apache, in effect when you are getting
