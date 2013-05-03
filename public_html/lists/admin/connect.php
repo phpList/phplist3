@@ -152,8 +152,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   if (empty($_SESSION['hasconf'])) return;
   if ($value == "false" || $value == "no") {
     $value = 0;
-  } else
-    if ($value == "true" || $value == "yes") {
+  } elseif ($value == "true" || $value == "yes") {
     $value = 1;
   }
   if (isset($GLOBALS['default_config'][$item])) {
@@ -161,6 +160,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   } else {
     $configInfo = array(
       'type' => 'unknown',
+      'allowempty' => true,
       'value' => '',
     );
   }
@@ -200,6 +200,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   unset($_SESSION['config']);
   ## and refresh the config immediately https://mantis.phplist.com/view.php?id=16693
   unset($GLOBALS['config']); 
+  
   return Sql_Replace( $tables["config"], array('item'=>$item, 'value'=>$value, 'editable'=>$editable), 'item');
 }
 
