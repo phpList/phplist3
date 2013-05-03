@@ -172,36 +172,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         "index_1" => array("emailidx (email)",""),
         "index_2" => array("emailnameidx (email,name)",""),
     ),
-    "rssitem" => array(
-        "id" => array("integer not null primary key auto_increment","ID"),
-        "title" => array("varchar(100) not null","Title"),
-        "link" => array("varchar(100) not null","Link"),
-        "source" => array("varchar(255)",""),
-        "list" => array("integer not null",""),
-        "index_1" => array("titlelinkidx (title,link)",""),
-        "index_2" => array("titleidx (title)",""),
-        "index_3" => array("listidx (list)",""),
-        "added" => array("datetime",""),
-        "processed" => array("mediumint unsigned default 0", "Number Processed"),
-        "astext" => array("integer default 0","Sent as text"),
-        "ashtml" => array("integer default 0","Sent as HTML"),
-    ),
-    "rssitem_data" => array(
-        "itemid" => array("integer not null","rss item id"),
-        "tag" => array("varchar(100) not null",""),
-        "primary key" => array("(itemid,tag)",""),
-        "data" => array("text","")
-    ),
-    "rssitem_user" => array(
-        "itemid" => array("integer not null","rss item id"),
-        "userid" => array("integer not null","subscriber id"),
-        "entered" => array("timestamp", "Entered"),
-        "primary key" => array("(itemid,userid)","")
-    ),
-    "user_rss" => array(
-        "userid" => array("integer not null primary key","subscriber id"),
-        "last" => array("datetime", "Last time this subscriber was sent something")
-    ),
+
     "message_attachment" => array( # attachments for a message
         "id" => array("integer not null primary key auto_increment","ID"),
         "messageid" => array("integer not null","Message ID"),
@@ -524,11 +495,5 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
   
   );
 
-    if (!empty($GLOBALS["plugins"]) && sizeof($GLOBALS["plugins"])) {
-      foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
-        $DBstructphplist = array_merge($DBstructphplist, $plugin->DBstruct);
-      }
-    }
-    
-    $DBstruct = $DBstructuser  + $DBstructphplist; # order of tables is essential for smooth upgrade
+  $DBstruct = $DBstructuser  + $DBstructphplist; # order of tables is essential for smooth upgrade
 
