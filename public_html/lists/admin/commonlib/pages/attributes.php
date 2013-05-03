@@ -31,7 +31,7 @@ if (isset($_POST["action"])) {
         }
         
         $query = sprintf('insert into %s (name,type,listorder,default_value,required,tablename) values("%s","%s",%d,"%s",%d,"%s")',
-        $tables["attribute"],sql_escape($_POST["name"][0]),sql_escape($_POST["type"][0]),$_POST["listorder"][0],sql_escape($_POST["default"][0]), $nRequired,$lc_name);
+        $tables["attribute"],sql_escape(strip_tags($_POST["name"][0])),sql_escape($_POST["type"][0]),$_POST["listorder"][0],sql_escape($_POST["default"][0]), $nRequired,$lc_name);
         Sql_Query($query);
         $insertid = Sql_Insert_id();
         # text boxes and hidden fields do not have their own table
@@ -138,7 +138,7 @@ if (isset($_POST["action"])) {
           $nRequired = $_POST["required"][$id];        
         }
         $query = sprintf('update %s set name = "%s" ,type = "%s" ,listorder = %d,default_value = "%s" ,required = %d where id = %d',
-          $tables["attribute"],sql_escape($_POST["name"][$id]),sql_escape($_POST["type"][$id]),$_POST["listorder"][$id],sql_escape($_POST["default"][$id]),$nRequired,$id);
+          $tables["attribute"],sql_escape(strip_tags($_POST["name"][$id])),sql_escape($_POST["type"][$id]),$_POST["listorder"][$id],sql_escape($_POST["default"][$id]),$nRequired,$id);
         Sql_Query($query);
         # save keywordlib seperately in case the DB hasn't been upgraded
         if ((defined('IN_WEBBLER') && IN_WEBBLER)  || (defined('WEBBLER') && WEBBLER)){
@@ -340,7 +340,7 @@ while ($row = Sql_Fetch_array($res)) {
   <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></label></div>';
     
   print '<div class="label"><label>'.s('Name').':</label> </div>
-  <div class="field"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["name"])).'" size="40" /></div>';
+  <div class="field"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes(strip_tags($row["name"]))).'" size="40" /></div>';
   print '<div class="label"><label>'.s('Type').': </label></div>
   <!--<input type="hidden" name="type['.$row["id"].']" value="'.$row["type"].'">'.$row["type"].'-->';
 

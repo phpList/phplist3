@@ -236,7 +236,7 @@ while ($row = Sql_Fetch_Array($req)) {
   $res = Sql_Query("select id,name,tablename,type from {$tables['attribute']} order by listorder");
   $attributes = array();
   while ($row = Sql_fetch_array($res)) {
-    printf ("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ',$row["id"],stripslashes($row["name"]));
+    printf ("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ',$row["id"],stripslashes(htmlspecialchars($row["name"])));
   }
 
 ?>
