@@ -13,10 +13,10 @@
 # send them to me, and I can include them in next versions. 
 # That will save others in collecting the information.
 #
-Provinces-NL:Provincies van Nederland
+NLProvincies:Provincies van Nederland
 Drenthe
 Flevoland
-Frysl‚n
+Frysl√¢n
 Gelderland
 Groningen
 Limburg
