@@ -43,6 +43,13 @@ $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 $GLOBALS['language_module'] = $language_module;
 $GLOBALS['database_module'] = $database_module;
 
+if (!isset($table_prefix)) {
+  $table_prefix = '';
+}
+if (!isset($usertable_prefix)) {
+  $usertable_prefix = '';
+}
+
 /* this can probably go */
 if (isset($GLOBALS['design'])) {
   $GLOBALS['ui'] = $GLOBALS['design'];
