@@ -121,6 +121,14 @@ if ($success) {
   . ' values'
   . '   (?, ?, current_timestamp, ?, ?)';
   $result = Sql_Query_Params($stmt, array('test', $info, '0', '1'));
+  # add public newsletter list
+  $info = s("Sign up to our newsletter");
+  $stmt
+  = ' insert into ' . $tables['list']
+  . '   (name, description, entered, active, owner)'
+  . ' values'
+  . '   (?, ?, current_timestamp, ?, ?)';
+  $result = Sql_Query_Params($stmt, array('newsletter', $info, '1', '1'));
   $body = '
     Version: '.VERSION."\r\n".
    ' Url: '.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."\r\n";
