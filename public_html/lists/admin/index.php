@@ -556,7 +556,7 @@ $finished = $now["sec"] * 1000000 + $now["usec"];
 $elapsed = $finished - $GLOBALS["pagestats"]["time_start"];
 $elapsed = ($elapsed / 1000000);
 
-  print "\n\n".'<!--';
+print "\n\n".'<!--';
 if (!empty($GLOBALS['developer_email'])) {
   print '<br clear="all" />';
   print $GLOBALS["pagestats"]["number_of_queries"]." db queries in $elapsed seconds";
