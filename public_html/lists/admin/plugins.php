@@ -86,6 +86,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall',$extractList)) {
       $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
       $installOk = false;
+      $pluginsForUpgrade = array();
       while ($dirEntry = readdir($extractedDir)) {
         if (!preg_match('/^\./',$dirEntry)) {
           print $dirEntry;
@@ -100,11 +101,14 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
           
           $bu_dir = time();
           if (file_exists($pluginDestination.'/'.$dirEntry)) {
-            print s(' updating existing plugin');
+            print ' '.s('updating existing plugin');
+            if (preg_match('/(.*)\.php$/',$dirEntry,$regs)) {
+              $pluginsForUpgrade[] = $regs[1];
+            }
             @rename($pluginDestination.'/'.$dirEntry,
               $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
           } else {
-            print s(' new plugin');
+            print ' '.s('new plugin');
           }
    #       var_dump($pluginInfo);
             
@@ -127,6 +131,8 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
       delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
       
       if ($installOk) {
+        upgradePlugins($pluginsForUpgrade);
+        
         print s('Plugin installed successfully');
       } else {
         print s('Error installing plugin');
@@ -170,7 +176,8 @@ if (empty($GLOBALS['allplugins'])) return;
 
 foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $pluginDetails = array();
-  if (is_file($pluginDestination.'/'.$pluginname.'.info.txt')) {
+  $refl = new ReflectionObject($plugin);
+  if (is_file(dirname($refl->getFileName()).'/'.$pluginname.'.info.txt')) {
     $pluginDetails = unserialize(file_get_contents($pluginDestination.'/'.$pluginname.'.info.txt'));
   }
   
@@ -191,6 +198,10 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
     PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
     PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
+  if (DEVVERSION) {
+    $ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
+      PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
+  }
   if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
     ## we can only delete the ones that were installed from the interface
     $ls->addColumn($pluginname,s('delete'),'<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname. '\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
