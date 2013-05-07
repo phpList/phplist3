@@ -39,7 +39,7 @@ $error_exist= 0;
 
 
 if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
-  if (!verifyToken()) {
+  if (0 && !verifyToken()) {
     print Error($GLOBALS['I18N']->get('Invalid security token, please reload the page and try again'));
     return;
   }
@@ -195,21 +195,36 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
        ## make sure they're in the everyone group
        Sql_Query(sprintf('insert ignore into user_group (userid,groupid,type) values(%d,%d,0)',$id,getEveryoneGroupID()));
      }
+      
+      $new_lists = array_values($_POST['subscribe']);
+      $new_subscriptions = array();
+      array_shift($new_lists );// remove dummy
+      foreach ($new_lists as $list) {
+        $listID = sprintf('%d',$list);
+        $new_subscriptions[$listID] = listName($listID);
+      }
+      
+      $subscribed_to = array_diff_assoc($new_subscriptions, $old_listmembership);
+      $unsubscribed_from = array_diff_assoc($old_listmembership,$new_subscriptions);
        
      # submitting page now saves everything, so check is not necessary
      if ($subselect == "") {
-       Sql_Query("delete from {$tables["listuser"]} where userid = $id");
-     } else {
+       foreach ($unsubscribed_from as $listId => $listName) {
+         Sql_Query(sprintf('delete from %s where userid = %d and listid = %d',$tables["listuser"],$id,$listId));
+         $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'),$listName);
+      }
+     } elseif (sizeof($unsubscribed_from)) {
        # only unsubscribe from the lists of this admin
-       $req = Sql_Query("select id from {$tables["list"]} $subselect_where");
+       $req = Sql_Query("select id,name from {$tables["list"]} $subselect_where and id in (".join(",",array_keys($unsubscribed_from)).")");
        while ($row = Sql_Fetch_Row($req)) {
          Sql_Query("delete from {$tables["listuser"]} where userid = $id and listid = $row[0]");
+         $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'),$row[1]);
        }
      }
-     if (isset($_POST["subscribe"]) && is_array($_POST["subscribe"])) {
-       foreach ($_POST["subscribe"] as $ind => $lst) {
-         Sql_Query("insert into {$tables["listuser"]} (userid,listid) values($id,$lst)");
-         $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'),ListName($lst));
+     if (sizeof($subscribed_to)) {
+       foreach ($subscribed_to as $listID => $listName) {
+         Sql_Query("insert into {$tables["listuser"]} (userid,listid,entered,modified) values($id,$listID,now(),now())");
+         $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'),$listName);
        }
        $feedback .= "<br/>";
      }
@@ -225,40 +240,14 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
         }
      }
      if (!$history_entry) {
-       $history_entry = "\nNo data changed";
+       $history_entry = "\nNo data changed\n";
      }
 
-     # check lists
-     $listmembership = array();
-     $req = Sql_Query("select * from {$tables["listuser"]} where userid = $id");
-
-     while ($row = Sql_Fetch_Array($req)) {
-       $listmembership[$row["listid"]] = listName($row["listid"]);
+     foreach ($subscribed_to as $key => $desc) {
+       $history_entry .= "Subscribed to $desc\n";
      }
-
-     # i'll do this once I can test it on a 4.3 server
-     #if (function_exists("array_diff_assoc")) {
-     if (0) {
-       # it requires 4.3
-       $subscribed_to = array_diff_assoc($listmembership, $old_listmembership);
-       $unsubscribed_from = array_diff_assoc($old_listmembership,$listmembership);
-       foreach ($subscribed_to as $key => $desc) {
-         $history_entry .= "Subscribed to $desc\n";
-       }
-       foreach ($unsubscribed_to as $key => $desc) {
-         $history_entry .= "Unsubscribed from $desc\n";
-       }
-     } else {
-       $history_entry .= "\nList subscriptions:\n";
-       foreach ($old_listmembership as $key => $val) {
-         $history_entry .= "Was subscribed to: $val\n";
-       }
-       foreach ($listmembership as $key => $val) {
-         $history_entry .= "Is now subscribed to: $val\n";
-       }
-       if (!sizeof($listmembership)) {
-         $history_entry .= "Not subscribed to any lists\n";
-       }
+     foreach ($unsubscribed_from as $key => $desc) {
+       $history_entry .= "Unsubscribed from $desc\n";
      }
    
      addUserHistory($email,"Update by ".adminName($_SESSION["logindetails"]["id"]),$history_entry);
@@ -457,6 +446,8 @@ if ($id) {
   }
 
   $mailinglistsHTML .= "<h3>".$GLOBALS['I18N']->get('Mailinglist membership').":</h3>";
+  // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
+  $mailinglistsHTML .= '<input type="hidden" name="subscribe[]" value="-1" />';
   $mailinglistsHTML .= '<table class="userListing" border="1"><tr>';
   $req = Sql_Query("select * from {$tables["list"]} $subselect_where order by listorder,name");
   $c = 0;
