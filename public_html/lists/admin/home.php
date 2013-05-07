@@ -62,7 +62,7 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
         print '<a href="http://www.phplist.com/download">'.$GLOBALS['I18N']->get('Download').'</a></div>';
       }
     }
-    $values = array('item'=>"'updatelastcheck'", 'value'=>'current_timestamp', 'editable'=>'0');
+    $values = array('item'=>"updatelastcheck", 'value'=>'current_timestamp', 'editable'=>'0');
     Sql_Replace($tables['config'], $values, 'item', false);
   }
 }
