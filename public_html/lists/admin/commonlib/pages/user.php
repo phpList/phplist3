@@ -92,7 +92,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
            $a = $b = '';
          }
          if (strpos($a,"sys") === false && $val[1]) {
-           if ($key == "password" && ENCRYPTPASSWORD) {
+           if ($key == "password") {
              if (!empty($_POST[$key])){
                Sql_Query("update {$tables["user"]} set $key = \"".encryptPass($_POST[$key])."\" where id = $id");
              }
