@@ -137,13 +137,6 @@ if (checkAccess("users")) {
   $ls->addColumn($element,"&nbsp;",PageLinkClass('users',$GLOBALS['I18N']->get('List all Users'),'','hometext'));
     $ls->setClass($element,"list-users");
 }
-if (checkAccess("reconcileusers")) {
-  $some = 1;
-  $element = $GLOBALS['I18N']->get('reconcileusers');
-  $ls->addElement($element,PageURL2("reconcileusers"));
-  $ls->addColumn($element,"&nbsp;",PageLinkClass('reconcile',$GLOBALS['I18N']->get('Reconcile the User Database'),'','hometext'));
-  $ls->setClass($element,"reconcileusers");
-}
 if (ALLOW_IMPORT && checkAccess("import") && !$_GET["pi"]) {
   $some = 1;
   $element = $GLOBALS['I18N']->get('import');
@@ -157,6 +150,13 @@ if (checkAccess("export") && !$_GET["pi"]) {
   $ls->addElement($element,PageURL2("export"));
   $ls->addColumn($element,"&nbsp;",PageLinkClass('export',$GLOBALS['I18N']->get('Export Users'),'','hometext'));
   $ls->setClass($element,"export-users");
+}
+if (checkAccess("reconcileusers")) {
+  $some = 1;
+  $element = $GLOBALS['I18N']->get('reconcileusers');
+  $ls->addElement($element,PageURL2("reconcileusers"));
+  $ls->addColumn($element,"&nbsp;",PageLinkClass('reconcile',$GLOBALS['I18N']->get('Reconcile the User Database'),'','hometext'));
+  $ls->setClass($element,"reconcileusers");
 }
 if ($some) {
   print '<h3><a name="list">'.$GLOBALS['I18N']->get('List and user functions').'</a></h3>';
