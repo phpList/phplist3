@@ -432,7 +432,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
       foreach ($dbtables as $dbtable) {
         set_time_limit(600);
         output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable.'<br/>');
-        Sql_Verbose_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
+        Sql_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
       }
 
       foreach ($dbcolumns as $dbcolumn) {
@@ -467,6 +467,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     Sql_Query(sprintf('replace into %s (item,value,editable) values("updatelastcheck",current_timestamp,0)',
       $tables["config"]));
     Info(s('Success'),1);
+    
+    upgradePlugins(array_keys($GLOBALS['plugins']));
     
 ##  check for old click track data
     $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
