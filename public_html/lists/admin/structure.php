@@ -91,14 +91,14 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         "index_1" => array("nameidx (name)",""),
         "index_2" => array("listorderidx (listorder)",""),
     ),
-    "listrss" => array( # rss details for a RSS source of a list, obsolete...
-        "listid" => array("integer not null","List ID"),
-        "type" => array("varchar(255) not null","Type of this entry"),
-        "entered" => array("datetime not null",""),
-        "info" => array("text",""),
-        "index_1" => array("listididx (listid)",""),
-        "index_2" => array("enteredidx (entered)",""),
-    ),
+    //"listrss" => array( # rss details for a RSS source of a list, obsolete...
+        //"listid" => array("integer not null","List ID"),
+        //"type" => array("varchar(255) not null","Type of this entry"),
+        //"entered" => array("datetime not null",""),
+        //"info" => array("text",""),
+        //"index_1" => array("listididx (listid)",""),
+        //"index_2" => array("enteredidx (entered)",""),
+    //),
     "listuser" => array ( # user subscription to a list
         "userid" => array("integer not null","Subscriber ID"),
         "listid" => array("integer not null","List ID"),
