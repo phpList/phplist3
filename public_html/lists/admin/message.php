@@ -44,6 +44,14 @@ if (!empty($_POST['resend']) && is_array($_POST['list'])) {
   }
   Sql_Query("update $tables[message] set status = \"submitted\" where id = $id");
   $_SESSION['action_result'] = $GLOBALS['I18N']->get('campaign requeued');
+  $messagedata = loadMessageData($id);
+  $finishSending = mktime($messagedata['finishsending']['hour'],$messagedata['finishsending']['minute'],0,
+    $messagedata['finishsending']['month'],$messagedata['finishsending']['day'],$messagedata['finishsending']['year']);
+  if ($finishSending < time()) {
+    $_SESSION['action_result'] .= '<br />'.s('This campaign is scheduled to stop sending in the past. No mails will be sent.');
+    $_SESSION['action_result'] .= '<br />'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling'));
+  }
+  
   Redirect('messages&tab=active');
   exit;  
 }

@@ -128,10 +128,18 @@ if (isset($_GET['resend'])) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->messageReQueued($resend);
     }
+    $messagedata = loadMessageData($resend);
+    $finishSending = mktime($messagedata['finishsending']['hour'],$messagedata['finishsending']['minute'],0,
+      $messagedata['finishsending']['month'],$messagedata['finishsending']['day'],$messagedata['finishsending']['year']);
+    if ($finishSending < time()) {
+      $action_result .= '<br />'.s('This campaign is scheduled to stop sending in the past. No mails will be sent.');
+      $action_result .= '<br />'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling'));
+    }
+    
   } else {
     $action_result .=  "... ".$GLOBALS['I18N']->get("failed");
   }
-  $action_result .=  '<br /><hr /><br />';
+  $action_result .=  '<br />';
 }
 
 if (isset($_GET['suspend'])) {
