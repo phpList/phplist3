@@ -97,7 +97,7 @@ $commandlinePluginPages = array();
 $commandlinePlugins = array();
 if (sizeof($GLOBALS["plugins"])) {
   foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
-    $cl_pages = $plugin->commandlinePages;
+    $cl_pages = $plugin->commandlinePluginPages;
     if (sizeof($cl_pages)) {
       $commandlinePlugins[] = $pluginName;
       $commandlinePluginPages[$pluginName] = $cl_pages;
@@ -852,8 +852,10 @@ function recentlyVisited() {
           $urlparams = array();
           $pairs = explode('&',$visitedpage);
           foreach ($pairs as $pair) {
-            list($var,$val) = explode('=',$pair);
-            $urlparams[$var] = $val;
+            if (strpos($pair,'=')) {
+              list($var,$val) = explode('=',$pair);
+              $urlparams[$var] = $val;
+            }
           }
           ## pass on ID
           if (isset($urlparams['id'])) {

@@ -28,7 +28,7 @@ class phplistPlugin {
   public $DBstruct= array ();
   # These files can be called from the commandline
   # This should hold an array per file: filename (without .php) => path relative to admin/
-  public $commandlinePages = array();
+  public $commandlinePluginPages = array();
   
   public $configArray = array();
 
@@ -44,6 +44,8 @@ class phplistPlugin {
    * which returns the HTML for the editor.
    */
   public $editorProvider = false;
+  
+  public $tables = array(); // will hold tablename -> real table mapping
   
   /* array of pages in this plugin to add to the main menu
    * 
@@ -85,6 +87,9 @@ class phplistPlugin {
    * use the "activate" function instead
    * that way you can use processDBerror to handle DB errors
    */
+  function __construct() {
+    $this->phplistplugin();
+  }
 
   function phplistplugin() {
     # constructor
@@ -105,7 +110,61 @@ class phplistPlugin {
         $GLOBALS['default_config'][$item] = $itemDetails;
       }
     }
+    $this->version = $this->getVersion();
+    ## map table names
+    $me = new ReflectionObject($this);
+    foreach ($this->DBstruct as $table => $structure) {
+      $this->tables[$table] = $GLOBALS['table_prefix'].$me->getName().'_'.$table;
+    }
+  }
+  
+  function getVersion() {
+    $version = array();
+    $me = new ReflectionObject($this);
     
+    ## interesting trick from Dokuwiki inc/infoutils.php
+    if(is_dir(dirname($me->getFileName()).'/../.git')) {
+        $version['type'] = 'Git';
+        $version['date'] = 'unknown';
+
+        $inventory = dirname($me->getFileName()).'/../.git/logs/HEAD';
+        if(is_file($inventory)){
+            $sz   = filesize($inventory);
+            $seek = max(0,$sz-2000); // read from back of the file
+            $fh   = fopen($inventory,'rb');
+            fseek($fh,$seek);
+            $chunk = fread($fh,2000);
+            fclose($fh);
+            $chunk = trim($chunk);
+            $chunk = @array_pop(explode("\n",$chunk));   //last log line
+            $chunk = @array_shift(explode("\t",$chunk)); //strip commit msg
+            $chunk = explode(" ",$chunk);
+            array_pop($chunk); //strip timezone
+            $date = date('Y-m-d',array_pop($chunk));
+            if($date) $version['date'] = $date;
+        }
+        return $version['type']. ' - ' .$version['date'];
+    } 
+    return $this->version;
+  }
+  
+  function initialise() {
+    global $table_prefix;
+    $me = new ReflectionObject($this);
+    $plugin_initialised = getConfig(md5('plugin-'.$me->getName().'-initialised'));
+    if (empty($plugin_initialised)) {
+      foreach ($this->DBstruct as $table => $structure) {
+        if (!Sql_Table_exists( $table_prefix.$me->getName().'_'.$table) ) {
+       #  print s('Creating table').' '.$table . '<br/>';
+          Sql_Create_Table($table_prefix.$me->getName().'_'.$table, $structure);
+        }
+      }
+      saveConfig(md5('plugin-'.$me->getName().'-initialised'),time(),0);
+    }
+  }
+  
+  function upgrade($previous) {
+    return true;
   }
   
   function activate() {
