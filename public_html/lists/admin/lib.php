@@ -887,14 +887,7 @@ function expandURL($url) {
 
 function testUrl($url) {
   $code = 500;
-  if ($GLOBALS['has_pear_http_request']) {
-    @require_once "HTTP/Request.php";
-    $headreq = new HTTP_Request($url,$request_parameters);
-    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
-    if (!PEAR::isError($headreq->sendRequest(false))) {
-      $code = $headreq->getResponseCode();
-    }
-  } elseif ($GLOBALS['has_curl']) {
+  if ($GLOBALS['has_curl']) {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_TIMEOUT, 10);
@@ -907,8 +900,14 @@ function testUrl($url) {
     curl_setopt($curl,CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
     $raw_result = curl_exec($curl);
     $code = curl_getinfo($curl,CURLINFO_HTTP_CODE);
-  }
-    
+  } elseif ($GLOBALS['has_pear_http_request']) {
+    @require_once "HTTP/Request.php";
+    $headreq = new HTTP_Request($url,$request_parameters);
+    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+    if (!PEAR::isError($headreq->sendRequest(false))) {
+      $code = $headreq->getResponseCode();
+    }
+  } 
   return $code;
 }
 
@@ -974,13 +973,13 @@ function fetchUrl($url,$userdata = array()) {
   $cache = getPageCache($url,$lastmodified);
   if (!$cache) {
     ## @#TODO, make it work with Request2
-    if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+    if (function_exists('curl_init')) {
+      $content = fetchUrlCurl($url,$request_parameters);
+    } elseif (0 && $GLOBALS['has_pear_http_request'] == 2) {
       @require_once "HTTP/Request2.php";
     } elseif ($GLOBALS['has_pear_http_request']) {
       @require_once "HTTP/Request.php";
       $content = fetchUrlPear($url,$request_parameters);
-    } elseif (function_exists('curl_init')) {
-      $content = fetchUrlCurl($url,$request_parameters);
     } else {
       return false;
     }
