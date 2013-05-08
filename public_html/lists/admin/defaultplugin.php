@@ -187,6 +187,14 @@ class phplistPlugin {
     if (isset($this->pageTitles[$page])) return s($this->pageTitles[$page]);
     return $this->name.' : '.$page;
   }
+  
+  /** deleteSent - wipe DB entries marking a campaign sent for subscribers
+   * 
+   * this is used in DEV mode only
+   */
+  
+  function deleteSent() {
+  }
 
   function writeConfig($name, $value) {
     #  write a value to the general config to be retrieved at a later stage
