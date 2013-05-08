@@ -1012,7 +1012,7 @@ function fetchUrlCurl($url,$request_parameters) {
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true); 
-    curl_setopt($curl,CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
+    curl_setopt($curl, CURLOPT_USERAGENT,'phplist v'.VERSION.'c (http://www.phplist.com)');
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl,CURLINFO_HTTP_CODE);
     curl_close($curl);
@@ -1024,10 +1024,10 @@ function fetchUrlPear($url,$request_parameters) {
   
   if (0 && $GLOBALS['has_pear_http_request'] == 2) {
     $headreq = new HTTP_Request2($url,$request_parameters);
-    $headreq->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+    $headreq->setHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
   } else {
     $headreq = new HTTP_Request($url,$request_parameters);
-    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
   }
   if (!PEAR::isError($headreq->sendRequest(false))) {
     $code = $headreq->getResponseCode();
@@ -1044,10 +1044,10 @@ function fetchUrlPear($url,$request_parameters) {
     $request_parameters['method'] = 'GET';
     if (0 && $GLOBALS['has_pear_http_request'] == 2) {
       $req = new HTTP_Request2($url,$request_parameters);
-      $req->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+      $req->setHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
     } else {
       $req = new HTTP_Request($url,$request_parameters);
-      $req->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+      $req->addHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
     }
     logEvent('Fetching '.$url);
     if (VERBOSE && function_exists('output')) {
