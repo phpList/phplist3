@@ -62,7 +62,7 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
   if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
     $GLOBALS['ui'] = 'dressprow';
   } else {
-    $GLOBALS['ui'] = 'orange';
+    $GLOBALS['ui'] = 'default';
   }
 }
 
