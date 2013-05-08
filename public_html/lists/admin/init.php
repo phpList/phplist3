@@ -283,6 +283,8 @@ if (0 && class_exists('HTTP_Request2')) {
   @include_once "HTTP/Request.php";
   $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
 }
+$GLOBALS['has_curl'] = function_exists('curl_init');
+$GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_curl'];
 
 $GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
 

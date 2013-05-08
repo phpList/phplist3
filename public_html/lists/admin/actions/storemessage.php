@@ -13,7 +13,7 @@ if (isset($_REQUEST['sendmethod']) && $_REQUEST['sendmethod'] == 'inputhere') {
 }
 
 if (!empty($_REQUEST['sendurl'])) {
-  if (!$GLOBALS["has_pear_http_request"]) {
+  if (!$GLOBALS["can_fetchUrl"]) {
     print Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
   } else {
     ## hard overwrite the message content, wipe all that was there.

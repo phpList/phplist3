@@ -13,10 +13,8 @@ $url = expandURL($_GET['url']);
 
 $isOk = true;
 
-$headreq = new HTTP_Request($url,$request_parameters);
-$headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
-if (!PEAR::isError($headreq->sendRequest(false))) {
-  $code = $headreq->getResponseCode();
+if ($GLOBALS['can_fetchUrl']) {
+  $code = testUrl($url);
   if ($code != 200) {
     if (!empty($url_append)) {
       $status = $GLOBALS['I18N']->get('Error fetching URL').' '.$GLOBALS['I18N']->get('Check your "remoteurl_append" setting.');

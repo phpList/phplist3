@@ -234,8 +234,8 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 #    print $query;
 #    print "Message ID: $id";
     #    exit;
-    if (!$GLOBALS["has_pear_http_request"] && preg_match("/\[URL:/i",$_POST["message"])) {
-      print Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
+    if (!$GLOBALS["can_fetchUrl"] && preg_match("/\[URL:/i",$_POST["message"])) {
+      print $GLOBALS["can_fetchUrl"].Warn(s('You are trying to send a remote URL, but PEAR::HTTP_Request or CURL is not available, so this will fail'));
     }
 
 # we want to create a join on tables as follows, in order to find users who have their attributes to the values chosen
@@ -633,7 +633,7 @@ if (!$done) {
     <input type="text" name="fromfield"
    value="'.htmlentities($utf8_from,ENT_QUOTES,'UTF-8').'" size="60" /></div>';
    
-   if ($GLOBALS['has_pear_http_request']) {
+   if ($GLOBALS['can_fetchUrl']) {
       $maincontent .= sprintf('
       
       <div id="contentchoice" class="field">

@@ -885,23 +885,40 @@ function expandURL($url) {
   return $url;
 }
 
+function testUrl($url) {
+  $code = 500;
+  if ($GLOBALS['has_pear_http_request']) {
+    @require_once "HTTP/Request.php";
+    $headreq = new HTTP_Request($url,$request_parameters);
+    $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+    if (!PEAR::isError($headreq->sendRequest(false))) {
+      $code = $headreq->getResponseCode();
+    }
+  } elseif ($GLOBALS['has_curl']) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); 
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true); 
+    curl_setopt($curl,CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
+    $raw_result = curl_exec($curl);
+    $code = curl_getinfo($curl,CURLINFO_HTTP_CODE);
+  }
+    
+  return $code;
+}
+
 function fetchUrl($url,$userdata = array()) {
+
+  $content = '';
 
   ## fix the Editor replacing & with &amp;
   $url = str_ireplace('&amp;','&',$url);
   
-  
-  ## @#TODO, make it work with Request2
-  if (0 && $GLOBALS['has_pear_http_request'] == 2) {
-    @require_once "HTTP/Request2.php";
-  } elseif ($GLOBALS['has_pear_http_request']) {
-    @require_once "HTTP/Request.php";
-  } else {
-  #  print Error('HTTP/Request not available, cannot continue');
-    ## @@TODO, should simply try using fopen, that is quite likely to work
-  
-    return false;
-  }
  # logEvent("Fetching $url");
   if (sizeof($userdata)) {
     foreach ($userdata as $key => $val) {
@@ -949,6 +966,61 @@ function fetchUrl($url,$userdata = array()) {
   );
 
   $remote_charset = 'UTF-8';
+  ## relying on the last modified header doesn't work for many pages
+  ## use current time instead
+  ## see http://mantis.phplist.com/view.php?id=7684
+#    $lastmodified = strtotime($header["last-modified"]);
+  $lastmodified = time();
+  $cache = getPageCache($url,$lastmodified);
+  if (!$cache) {
+    ## @#TODO, make it work with Request2
+    if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+      @require_once "HTTP/Request2.php";
+    } elseif ($GLOBALS['has_pear_http_request']) {
+      @require_once "HTTP/Request.php";
+      $content = fetchUrlPear($url,$request_parameters);
+    } elseif (function_exists('curl_init')) {
+      $content = fetchUrlCurl($url,$request_parameters);
+    } else {
+      return false;
+    }
+  } else {
+    logEvent($url.' was cached in database');
+    $content = $cache;
+  }
+  
+  if (!empty($content)) {
+    $content = addAbsoluteResources($content,$url);
+    logEvent('Fetching '.$url.' success');
+    setPageCache($url,$lastmodified,$content);
+  
+    $GLOBALS['urlcache'][$url] = array(
+      'fetched' => time(),
+      'content' => $content,
+    );
+  }
+  return $content;
+}
+
+function fetchUrlCurl($url,$request_parameters) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_TIMEOUT, $request_parameters['timeout']);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); 
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true); 
+    curl_setopt($curl,CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
+    $raw_result = curl_exec($curl);
+    $status = curl_getinfo($curl,CURLINFO_HTTP_CODE);
+    curl_close($curl);
+#    var_dump($status); exit;
+    return $raw_result;
+}
+
+function fetchUrlPear($url,$request_parameters) {
   
   if (0 && $GLOBALS['has_pear_http_request'] == 2) {
     $headreq = new HTTP_Request2($url,$request_parameters);
@@ -969,51 +1041,34 @@ function fetchUrl($url,$userdata = array()) {
       $remote_charset = strtoupper($regs[1]);
     }
 
-    ## relying on the last modified header doesn't work for many pages
-    ## use current time instead
-    ## see http://mantis.phplist.com/view.php?id=7684
-#    $lastmodified = strtotime($header["last-modified"]);
-    $lastmodified = time();
-    $cache = getPageCache($url,$lastmodified);
-    if (!$cache) {
-      $request_parameters['method'] = 'GET';
-      if (0 && $GLOBALS['has_pear_http_request'] == 2) {
-        $req = new HTTP_Request2($url,$request_parameters);
-        $req->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
-      } else {
-        $req = new HTTP_Request($url,$request_parameters);
-        $req->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
-      }
-      logEvent('Fetching '.$url);
-      if (VERBOSE && function_exists('output')) {
-        output('Fetching remote: '.$url);
-      }
-      if (!PEAR::isError($req->sendRequest(true))) {
-        $content = $req->getResponseBody();
-
-        if ($remote_charset != 'UTF-8' && function_exists('iconv')) {
-          $content = iconv($remote_charset,'UTF-8//TRANSLIT',$content);
-        }
-        
-        $content = addAbsoluteResources($content,$url);
-        logEvent('Fetching '.$url.' success');
-        setPageCache($url,$lastmodified,$content);
-      } else {
-        logEvent('Fetching '.$url.' failed on GET '.$req->getResponseCode());
-        return 0;
-      }
+    $request_parameters['method'] = 'GET';
+    if (0 && $GLOBALS['has_pear_http_request'] == 2) {
+      $req = new HTTP_Request2($url,$request_parameters);
+      $req->setHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
     } else {
-      logEvent($url.' was cached in database');
-      $content = $cache;
+      $req = new HTTP_Request($url,$request_parameters);
+      $req->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
+    }
+    logEvent('Fetching '.$url);
+    if (VERBOSE && function_exists('output')) {
+      output('Fetching remote: '.$url);
+    }
+    if (!PEAR::isError($req->sendRequest(true))) {
+      $content = $req->getResponseBody();
+
+      if ($remote_charset != 'UTF-8' && function_exists('iconv')) {
+        $content = iconv($remote_charset,'UTF-8//TRANSLIT',$content);
+      }
+      
+    } else {
+      logEvent('Fetching '.$url.' failed on GET '.$req->getResponseCode());
+      return 0;
     }
   } else {
     logEvent('Fetching '.$url.' failed on HEAD');
     return 0;
   }
-  $GLOBALS['urlcache'][$url] = array(
-    'fetched' => time(),
-    'content' => $content,
-  );
+  
   return $content;
 }
 
