@@ -677,6 +677,9 @@ class phplistPlugin {
     # 200710 Bas
     return true;
   }
+  
+  function processSpamComplaint($email,$date) {
+  }
 
   ############################################################
   # Subscribe page
