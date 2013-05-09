@@ -12,7 +12,7 @@ if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
 */
 
 if (isset($_GET['resetdefault']) && $_GET['resetdefault'] == 'yes') {
-  Sql_Query(sprintf('delete from %s where editable',$GLOBALS['tables']['config']));
+  Sql_Query(sprintf('delete from %s where editable and item in ("%s")',$GLOBALS['tables']['config'],join('","',array_keys($default_config))));
   $_SESSION['action_result'] = s('The settings have been reset to the phpList default');
   Redirect('configure');
 }
