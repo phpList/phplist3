@@ -125,25 +125,32 @@ print '</div>';
 print '<div id="bounces">';
 print $bouncels->display();
 print '</div>';
+print '<div id="subscription">';
 
 if (isBlackListed($user["email"])) {
-  print "<h3>" . $GLOBALS['I18N']->get('user is Blacklisted since') . " ";
+  print "<h3>" . $GLOBALS['I18N']->get('subscriber is blacklisted since') . " ";
   $blacklist_info = Sql_Fetch_Array_Query(sprintf('select * from %s where email = "%s"',
     $tables["user_blacklist"],$user["email"]));
   print $blacklist_info["added"]."</h3><br/>";
   print '';
-  print "<a class='button' href=\"javascript:deleteRec2('" . htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this user from the blacklist')) . "?\\n"
-  . htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this user')) . "','./?page=userhistory&unblacklist={$user["id"]}&id={$user["id"]}')\">
-  " . $GLOBALS['I18N']->get('remove User from Blacklist') . "</a>".'<br/><br/>';
 
-  $ls = new WebblerListing($GLOBALS['I18N']->get('Blacklist Info'));
+  $isSpamReport = false;
+  $ls = new WebblerListing($GLOBALS['I18N']->get('Blacklist info'));
   $req = Sql_Query(sprintf('select * from %s where email = "%s"',
     $tables["user_blacklist_data"],$user["email"]));
   while ($row = Sql_Fetch_Array($req)) {
     $ls->addElement($row["name"]);
+    $isSpamReport = $isSpamReport || $row['data'] == 'blacklisted due to spam complaints';
     $ls->addColumn($row["name"],$GLOBALS['I18N']->get('value'),stripslashes($row["data"]));
   }
   print $ls->display();
+  if ($isSpamReport) {
+    print "<a class='button' href=\"javascript:deleteRec2('" . htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this subscriber from the blacklist')) . "?\\n"
+    . htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this subscriber')) . "','./?page=userhistory&unblacklist={$user["id"]}&id={$user["id"]}')\">
+    " . $GLOBALS['I18N']->get('remove subscriber from blacklist') . "</a>".'<br/>';
+  } else {
+    print '<h3>'.s('For this subscriber to be removed from the blacklist, you need to ask them to re-subscribe using the phpList subscribe page').'</h3>';
+  }
 }
 
 
@@ -161,7 +168,6 @@ while ($row = Sql_Fetch_Array($req)) {
   $ls->addRow($row["id"],"<div class='gray'>".$GLOBALS['I18N']->get('info').": </div>","<div class='tleft'>".nl2br($row["systeminfo"])."</div>");
 }
 
-print '<div id="subscription">';
 print $ls->display();
 print '</div>';
 print '</div>'; ## end of tabbed
