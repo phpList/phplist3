@@ -47,16 +47,23 @@ foreach ($pluginRootDirs as $pluginRootDir) {
     closedir($dh);
   }
 }
+
+$auto_enable_plugins = array();
+if (isset($GLOBALS['plugins_autoenable'])) {
+  $auto_enable_plugins = $GLOBALS['plugins_autoenable'];
+}
+
 #var_dump($pluginFiles);exit;
 $disabled_plugins = unserialize(getConfig('plugins_disabled'));
 if (is_array($disabled_plugins)) {
   foreach ($disabled_plugins as $pl => $plstate) {
-    if (!empty($plstate)) {
+    if (!empty($plstate) && !in_array($pl,$auto_enable_plugins)) {
       $GLOBALS['plugins_disabled'][] = $pl;
     }
   }
 }
-#var_dump($GLOBALS['plugins_disabled']);
+
+#var_dump($GLOBALS['plugins_disabled']);exit;
 foreach ($pluginFiles as $file) {
   list($className,$ext) = explode(".",basename($file));
   if (preg_match("/[\w]+/",$className)) {# && !in_array($className,$GLOBALS['plugins_disabled'])) {
@@ -78,6 +85,9 @@ foreach ($pluginFiles as $file) {
      #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
           $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
           if (!empty($plugin_initialised)) {
+            $GLOBALS["plugins"][$className]->enabled = true;
+          } elseif (in_array($className,$auto_enable_plugins)) {
+            $GLOBALS["plugins"][$className]->initialise();
             $GLOBALS["plugins"][$className]->enabled = true;
           } else {
             $GLOBALS["plugins"][$className]->enabled = false;
