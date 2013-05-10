@@ -136,12 +136,17 @@ header('X-UA-Compatible: IE=Edge');
 header('X-Robots-Tag: noindex');
 
 if (!$ajax && !$GLOBALS["commandline"]) {
-  include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
+  if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minified.php')) {
+    include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minified.php';
+  } else {
+    include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
+  }
 }
 
 if (isset($GLOBALS['pageheader'])) {
   foreach ($GLOBALS['pageheader'] as $sHeaderItem => $sHtml ) {
     print '<!--'.$sHeaderItem.'-->'.$sHtml;
+    
     print "\n";
   }
 } 
@@ -358,7 +363,11 @@ if (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
   include 'ui/'.$GLOBALS['ui']."/mainmenu.php";
 }  
 if (!$ajax) {
-  include 'ui/'.$GLOBALS['ui']."/header.inc";
+  if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/header_minified.inc')) {
+    include 'ui/'.$GLOBALS['ui']."/header_minified.inc";
+  } else {
+    include 'ui/'.$GLOBALS['ui']."/header.inc";
+  }
 } 
 
 if (!$ajax) {
@@ -584,7 +593,12 @@ if ($ajax || (isset($GLOBALS["commandline"]) && $GLOBALS["commandline"])) {
   if (!$GLOBALS['compression_used']) {
     @ob_end_flush();
   }
-  include_once 'ui/'.$GLOBALS['ui']."/footer.inc";
+
+  if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/footer_minified.inc')) {
+    include_once 'ui/'.$GLOBALS['ui']."/footer_minified.inc";
+  } else {
+    include_once 'ui/'.$GLOBALS['ui']."/footer.inc";
+  }
 }
 
 function parseCline() {

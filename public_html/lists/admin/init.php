@@ -353,6 +353,9 @@ if (!isset($GLOBALS["message_envelope"])) $GLOBALS["message_envelope"] = '';
 
 if (!isset($GLOBALS['pageheader']) || !is_array($GLOBALS['pageheader'])) $GLOBALS['pageheader'] = array();
 
+## experimental, use minified JS and CSS
+if (!defined('USE_MINIFIED_ASSETS')) define('USE_MINIFIED_ASSETS',false);
+
 ## set up a memcached global object, and test it
 if (defined('MEMCACHED')) {
   include_once dirname(__FILE__).'/class.memcached.php';
