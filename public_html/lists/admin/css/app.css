@@ -142,6 +142,28 @@ font-weight: bold
 .hidden {
   display: none;
 }
+div.plugindetails > div.detail  {
+  align: left;
+  text-align: left;
+  width: 100%;
+  padding: 10 10 10 10;
+  margin: 2 5 5 5;
+}
+
+div.plugindetails > div.detail > span.label {
+  text-align: left;
+  margin: 15px 0;
+  padding: 1em 1em 1em 2px;
+  font-size: 12px;
+  font-weight: bold
+}
+
+div.plugindetails > div.detail > span.value {
+  text-align: left;
+  margin: 15px 0;
+  padding: 1em 1em 1em 2px;
+  font-size: 12px;
+}
 
 #generatetextversion {
   float: right;
