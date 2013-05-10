@@ -182,25 +182,47 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   }
   
   $ls->addElement($pluginname);
-  $ls->addColumn($pluginname,s('name'),$plugin->name);
   $ls->setClass($pluginname, 'row1');
-  $ls->addRow($pluginname,s('description'),$plugin->description);
-  $ls->addColumn($pluginname,s('version'),$plugin->version);
+ # $ls->addColumn($pluginname,s('name'),$plugin->name);
+ 
+  
+  $details = '<div class="plugindetails">';  
+  $details .= '<div class="detail"><span class="label">'.s('name').'</span>';
+  $details .= '<span class="value">'.$plugin->name. '</span></div>';
+  $details .= '<div class="detail"><span class="label">'.s('version').'</span>';
+  $details .= '<span class="value">'.$plugin->version. '</span></div>';
+  $details .= '<div class="detail"><span class="label">'.s('description').'</span>';
+  $details .= '<span class="value">'.$plugin->description. '</span></div>';
+  
+#  $ls->addRow($pluginname,s('description'),$plugin->description);
+ # $ls->addColumn($pluginname,s('version'),$plugin->version);
   if (!empty($pluginDetails['installDate'])) {
-    $ls->addColumn($pluginname,s('installed'),date('Y-m-d',$pluginDetails['installDate']));
+  #  $ls->addColumn($pluginname,s('installed'),date('Y-m-d',$pluginDetails['installDate']));
+    $details .= '<div class="detail"><span class="label">'.s('installed').'</span>';
+    $details .= '<span class="value">'.date('Y-m-d',$pluginDetails['installDate']). '</span></div>';
   }
   if (!empty($pluginDetails['installUrl'])) {
-    $ls->addRow($pluginname,s('installUrl'),$pluginDetails['installUrl']);
+ #   $ls->addRow($pluginname,s('installation Url'),$pluginDetails['installUrl']);
+    $details .= '<div class="detail"><span class="label">'.s('installation Url').'</span>';
+    $details .= '<span class="value">'.$pluginDetails['installUrl']. '</span></div>';
   }
   if (!empty($pluginDetails['developer'])) {
-    $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
+ #   $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
+    $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
+    $details .= '<span class="value">'.$pluginDetails['developer']. '</span></div>';
   }
   $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
     PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
     PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
   if (DEVVERSION) {
-    $ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
-      PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
+    //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
+      //PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
+    if ($plugin->enabled) {
+      $details .= '<div class="detail"><span class="label">'.s('initialise').'</span>';
+      $details .= '<span class="value">';
+      $details .= PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise'));
+      $details .= '</span></div>';
+    }
   }
   if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
     ## we can only delete the ones that were installed from the interface
@@ -213,6 +235,9 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         <button type="submit" name="update" title="'.s('update this plugin').'">'.s('update').'</button></form>';
     $ls->addColumn($pluginname,s('update'),$updateForm);
   }
+  $details .= '</div>';
+  $ls->addRow($pluginname,s('details'),$details);
+  
 
 }
 
