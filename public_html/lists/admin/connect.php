@@ -44,7 +44,7 @@ $GLOBALS["img_view"] = '<span class="view">View</span>';
 $checkboxgroup_storesize = 1; # this will allow 10000 options for checkboxes
 
 # identify pages that can be run on commandline
-$commandline_pages = array('send','processqueueforked','processqueue','processbounces','import','upgrade','convertstats','reindex','blacklistemail','systemstats'); // ,'getrss' //Obsolete by rssmanager plugin
+$commandline_pages = array('send','processqueueforked','processqueue','processbounces','import','upgrade','convertstats','reindex','blacklistemail','systemstats','converttoutf8'); 
 
 if (isset($message_envelope)) {
   $envelope = "-f$message_envelope";
