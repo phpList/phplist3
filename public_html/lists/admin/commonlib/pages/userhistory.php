@@ -143,14 +143,19 @@ if (isBlackListed($user["email"])) {
     $isSpamReport = $isSpamReport || $row['data'] == 'blacklisted due to spam complaints';
     $ls->addColumn($row["name"],$GLOBALS['I18N']->get('value'),stripslashes($row["data"]));
   }
-  print $ls->display();
-  if ($isSpamReport) {
-    print "<a class='button' href=\"javascript:deleteRec2('" . htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this subscriber from the blacklist')) . "?\\n"
-    . htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this subscriber')) . "','./?page=userhistory&unblacklist={$user["id"]}&id={$user["id"]}')\">
-    " . $GLOBALS['I18N']->get('remove subscriber from blacklist') . "</a>".'<br/>';
+  $ls->addElement('<!-- remove -->');
+  if (!$isSpamReport) {
+    $button = new ConfirmButton(
+       htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this subscriber from the blacklist')) . "?\\n".htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this subscriber')),
+       PageURL2("userhistory&unblacklist={$user["id"]}&id={$user["id"]}","button",s('remove subscriber from blacklist')),
+       s('remove subscriber from blacklist'));
+     
+    $ls->addRow('<!-- remove -->',s('remove'),$button->show());
+
   } else {
-    print '<h3>'.s('For this subscriber to be removed from the blacklist, you need to ask them to re-subscribe using the phpList subscribe page').'</h3>';
+    $ls->addRow('<!-- remove -->',s('remove'),s('For this subscriber to be removed from the blacklist, you need to ask them to re-subscribe using the phpList subscribe page'));    
   }
+  print $ls->display();
 }
 
 
