@@ -1,0 +1,8 @@
+
+## minify the JS and CSS
+
+## go to lists/admin
+# run "mince" (http://code.google.com/p/mince/)
+# requires csstidy and jsmin
+
+## check that the CSS and JS from "pagetop" and "header" are in .minceconf
