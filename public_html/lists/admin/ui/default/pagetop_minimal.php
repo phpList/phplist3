@@ -31,7 +31,6 @@
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.1.all.min.js"></script>
 <script type="text/javascript" src="js/jquery.tools.scrollable.js"></script>
-<script language="Javascript" type="text/javascript" src="js/jslib.js"></script>
 <script language="Javascript" type="text/javascript" src="js/phplistapp.js"></script>
 <link rel="stylesheet" href="css/reset.css" />
 <link rel="stylesheet" href="css/appminimal.css" />
