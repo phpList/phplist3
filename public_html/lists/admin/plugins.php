@@ -45,111 +45,116 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
   print '<h2>'.s('Developer').' '.$developer.'</h2>';
   print '<h2>'.s('Project').' '.$project_name.'</h2>';
   
-  $packagefile = file_get_contents($packageurl);
-  $filename = basename($packageurl);
+  $filename = '';
+  $packagefile = fetchUrl($packageurl);
+  if (!$packagefile) {
+    print Error(s('Unable to download plugin package, check your connection'));
+  } else {
+    
+    $filename = basename($packageurl);
 
-  file_put_contents($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename,$packagefile);
-  print '<h3>'.s('Installing plugin').'</h3>';
+    file_put_contents($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename,$packagefile);
+    print '<h3>'.s('Installing plugin').'</h3>';
+  }
   $zip = new ZipArchive;
-  if ($zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename)) {
-  
-  /* the zip may have a variety of directory structures, as Github seems to add at least one for the "branch" of 
-   * the project and then the developer has some more. 
-   * We look for a directory called "plugins" and place it's contents in the plugins folder.
-   */
-  
- 
-#  var_dump($zip);
-  //echo "numFiles: " . $zip->numFiles . "\n";
-  //echo "status: " . $zip->status  . "\n";
-  //echo "statusSys: " . $zip->statusSys . "\n";
-  //echo "filename: " . $zip->filename . "\n";
-  //echo "comment: " . $zip->comment . "\n";  
-  
-  $extractList = array();
-  $dir_prefix = '';
-  for ($i=0; $i<$zip->numFiles;$i++) {
-#      echo "index: $i<br/>\n";
-#    var_dump($zip->statIndex($i));
-    $zipItem = $zip->statIndex($i);
-    if (preg_match('~^([^/]+)/plugins/~',$zipItem['name'],$regs)) {
-      array_push($extractList,$zipItem['name']);
-      $dir_prefix = $regs[1];
+  if (!empty($filename) && $zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename)) {
+    
+    /* the zip may have a variety of directory structures, as Github seems to add at least one for the "branch" of 
+     * the project and then the developer has some more. 
+     * We look for a directory called "plugins" and place it's contents in the plugins folder.
+     */
+    
+   
+  #  var_dump($zip);
+    //echo "numFiles: " . $zip->numFiles . "\n";
+    //echo "status: " . $zip->status  . "\n";
+    //echo "statusSys: " . $zip->statusSys . "\n";
+    //echo "filename: " . $zip->filename . "\n";
+    //echo "comment: " . $zip->comment . "\n";  
+    
+    $extractList = array();
+    $dir_prefix = '';
+    for ($i=0; $i<$zip->numFiles;$i++) {
+  #      echo "index: $i<br/>\n";
+  #    var_dump($zip->statIndex($i));
+      $zipItem = $zip->statIndex($i);
+      if (preg_match('~^([^/]+)/plugins/~',$zipItem['name'],$regs)) {
+        array_push($extractList,$zipItem['name']);
+        $dir_prefix = $regs[1];
+      }
     }
-  }
-  //var_dump($extractList);
-  //var_dump($dir_prefix);
-  @mkdir($GLOBALS['tmpdir'].'/phpListPluginInstall',0755);
-#  $destination = $GLOBALS['tmpdir'].'/phpListPluginDestination';
-  @mkdir($pluginDestination,0755);
-  if (is_writable($pluginDestination)) {
-    if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall',$extractList)) {
-      $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
-      $installOk = false;
-      $pluginsForUpgrade = array();
-      while ($dirEntry = readdir($extractedDir)) {
-        if (!preg_match('/^\./',$dirEntry)) {
-          print $dirEntry;
-          if (preg_match('/^([\w]+)\.php$/',$dirEntry,$regs)) {
-            $pluginInfo[$regs[1]] = array(
-              'installUrl' => $packageurl,
-              'developer' => $developer,
-              'projectName' => $project_name,
-              'installDate' => time(),
-            );
-          }
-          
-          $bu_dir = time();
-          if (file_exists($pluginDestination.'/'.$dirEntry)) {
-            print ' '.s('updating existing plugin');
-            if (preg_match('/(.*)\.php$/',$dirEntry,$regs)) {
-              $pluginsForUpgrade[] = $regs[1];
+    //var_dump($extractList);
+    //var_dump($dir_prefix);
+    @mkdir($GLOBALS['tmpdir'].'/phpListPluginInstall',0755);
+  #  $destination = $GLOBALS['tmpdir'].'/phpListPluginDestination';
+    @mkdir($pluginDestination,0755);
+    if (is_writable($pluginDestination)) {
+      if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall',$extractList)) {
+        $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
+        $installOk = false;
+        $pluginsForUpgrade = array();
+        while ($dirEntry = readdir($extractedDir)) {
+          if (!preg_match('/^\./',$dirEntry)) {
+            print $dirEntry;
+            if (preg_match('/^([\w]+)\.php$/',$dirEntry,$regs)) {
+              $pluginInfo[$regs[1]] = array(
+                'installUrl' => $packageurl,
+                'developer' => $developer,
+                'projectName' => $project_name,
+                'installDate' => time(),
+              );
             }
-            @rename($pluginDestination.'/'.$dirEntry,
-              $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
-          } else {
-            print ' '.s('new plugin');
-          }
-   #       var_dump($pluginInfo);
             
-          print '<br/>';
-          if (rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
-            $pluginDestination.'/'.$dirEntry)) {
-              delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
-              $installOk = true;
-          } elseif (is_dir($pluginDestination.'/'.$dirEntry.'.'.$bu_dir)) {
-            ## try to place old one back
-            @rename($pluginDestination.'/'.$dirEntry.'.'.$bu_dir,$pluginDestination.'/'.$dirEntry);
-          }
-        }  
-      }
-      foreach ($pluginInfo as $plugin => $pluginDetails) {
-      #  print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
-        file_put_contents($pluginDestination.'/'.$plugin.'.info.txt',serialize($pluginDetails));
-      }
-      ## clean up
-      delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
-      
-      if ($installOk) {
-        upgradePlugins($pluginsForUpgrade);
+            $bu_dir = time();
+            if (file_exists($pluginDestination.'/'.$dirEntry)) {
+              print ' '.s('updating existing plugin');
+              if (preg_match('/(.*)\.php$/',$dirEntry,$regs)) {
+                $pluginsForUpgrade[] = $regs[1];
+              }
+              @rename($pluginDestination.'/'.$dirEntry,
+                $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
+            } else {
+              print ' '.s('new plugin');
+            }
+     #       var_dump($pluginInfo);
+              
+            print '<br/>';
+            if (rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
+              $pluginDestination.'/'.$dirEntry)) {
+                delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
+                $installOk = true;
+            } elseif (is_dir($pluginDestination.'/'.$dirEntry.'.'.$bu_dir)) {
+              ## try to place old one back
+              @rename($pluginDestination.'/'.$dirEntry.'.'.$bu_dir,$pluginDestination.'/'.$dirEntry);
+            }
+          }  
+        }
+        foreach ($pluginInfo as $plugin => $pluginDetails) {
+        #  print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
+          file_put_contents($pluginDestination.'/'.$plugin.'.info.txt',serialize($pluginDetails));
+        }
+        ## clean up
+        delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
         
-        print s('Plugin installed successfully');
-      } else {
-        print s('Error installing plugin');
+        if ($installOk) {
+          upgradePlugins($pluginsForUpgrade);
+          
+          print s('Plugin installed successfully');
+        } else {
+          print s('Error installing plugin');
+        }
+        $zip->close();   
+        print '<hr/>'.PageLinkButton('plugins',s('Continue'));
+        return;
       }
-      $zip->close();   
-      print '<hr/>'.PageLinkButton('plugins',s('Continue'));
-      return;
+    } else {
+      Error(s('Plugin directory is not writable'));
     }
-  } else {
-    Error(s('Plugin directory is not writable'));
-  }
-  } else {
-    Error(s('Invalid plugin package'));
+  //} else {
+    //Error(s('Invalid plugin package'));
   }
 
   print s('Plugin installation failed');
-  $zip->close();   
   print '<hr/>'.PageLinkButton('plugins',s('Continue'));
   return;
 }
