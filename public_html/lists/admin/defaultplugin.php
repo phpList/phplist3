@@ -664,6 +664,7 @@ class phplistPlugin {
     # 200711 Bas
     return null;
   }
+  
   function displayEditList($list) {
     # purpose: return tablerows with list attributes for this list
     # Currently used in list.php

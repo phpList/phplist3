@@ -586,7 +586,7 @@ if (isset($GLOBALS["statslog"])) {
 }
   print '-->';
 
-if ($ajax || (isset($GLOBALS["commandline"]) && $GLOBALS["commandline"])) {
+if ($ajax || !empty($GLOBALS["commandline"])) {
   @ob_clean();
   exit;
 } elseif (!isset($_GET["omitall"])) {
@@ -600,6 +600,14 @@ if ($ajax || (isset($GLOBALS["commandline"]) && $GLOBALS["commandline"])) {
     include_once 'ui/'.$GLOBALS['ui']."/footer.inc";
   }
 }
+if (isset($GLOBALS['pagefooter'])) {
+  foreach ($GLOBALS['pagefooter'] as $sFooterItem => $sHtml ) {
+    print '<!--'.$sFooterItem.'-->'.$sHtml;
+    
+    print "\n";
+  }
+} 
+print '</body></html>';
 
 function parseCline() {
   $res = array();
