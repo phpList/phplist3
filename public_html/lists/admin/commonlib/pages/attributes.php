@@ -381,9 +381,6 @@ while ($row = Sql_Fetch_array($res)) {
  } 
  printf('<input class ="submit" type="submit" name="action" value="%s" />',s('Save Changes'));
 
-print '<br/><br/>
-<script language="Javascript" src="js/jslib.js" type="text/javascript"></script>';
-
 if ($c) {
   printf('<i>%s: </i><br/>',$GLOBALS['I18N']->get('With TAGGED attributes'));
   printf('<span class="buttonGroup"><input class="submit" type="submit" name="tagaction[delete]" value="%s" />&nbsp;

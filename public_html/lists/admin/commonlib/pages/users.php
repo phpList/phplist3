@@ -1,6 +1,3 @@
-
-<script language="Javascript" src="js/jslib.js" type="text/javascript"></script>
-
 <?php
 
 $filterpanel = $countpanel = $paging = '';

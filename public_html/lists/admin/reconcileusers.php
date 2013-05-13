@@ -1,5 +1,4 @@
 <div id="progressbar"></div>
-<script language="Javascript" src="js/jslib.js" type="text/javascript"></script>
 <hr/>
 
 <?php

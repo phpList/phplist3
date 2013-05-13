@@ -1,7 +1,5 @@
 <?php
 
-print '<script language="Javascript" type="text/javascript" src="js/jslib.js"></script>';
-
 if (!$_GET["id"]) {
   Fatal_Error($GLOBALS['I18N']->get('no such User'));
   return;
