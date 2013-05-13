@@ -20,21 +20,23 @@ if (isset($cline['d'])) {
   $date = $cline['d'];
 }
 
-if (empty($email) && !empty($uid)) {
-  $emailQ = Sql_Fetch_Row_Query(sprintf('select email from %s where uniqid = "%s"',$GLOBALS['tables']['user'],Sql_escape($uid)));
-  $email = $emailQ[0];
-  if (empty($email)) {
-    cl_output('FAIL'); exit;
-  }
+$emailQ = Sql_Fetch_Row_Query(sprintf('select email from %s where uniqid = "%s" or email = "%s"',$GLOBALS['tables']['user'],sql_escape($uid),sql_escape($email)));
+$emailDB = $emailQ[0];
+
+if (empty($emailDB)) {
+  cl_output('FAIL'); exit;
 }
 
-if (isBlackListed($email)) {
+if (isBlackListed($emailDB)) {
+  ## do this anyway, just to be sure
+  Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"',$GLOBALS['tables']['user'],$emailDB));
   cl_output('OK');
   exit;
 }
 ## do this immediately
-Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"',$GLOBALS['tables']['user'],$email));
+Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"',$GLOBALS['tables']['user'],$emailDB));
 
-addEmailToBlackList($email,'blacklisted due to spam complaints',$date);
-cl_output('OK '.$email);
+addEmailToBlackList($emailDB,'blacklisted due to spam complaints',$date);
+cl_output('OK '.$emailDB);
+
 exit;
