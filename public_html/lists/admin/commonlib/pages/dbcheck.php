@@ -6,6 +6,8 @@
 $ls = new WebblerListing("Database Structure");
 while (list($table, $tablename) = each($GLOBALS["tables"])) {
   $createlink = '';
+  $indexes = $uniques = $engine = $category = '';
+  
   $ls->addElement($table);
   if ($table != $tablename) {
     $ls->addColumn($table,"real name",$tablename);
@@ -62,7 +64,6 @@ while (list($table, $tablename) = each($GLOBALS["tables"])) {
   } else {
     $haserror = true;
     unset($tls);
-    $indexes = $uniques = $engine = $category = '';
     $createlink = PageUrl2('pageaction&action=createtable&table='.urlencode($table));
   }
   if (!$haserror) {
