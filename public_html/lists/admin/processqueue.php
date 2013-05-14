@@ -32,7 +32,7 @@ print '
       <div id="processqueuecontrols">';
       print '<a href="#" id="stopqueue" class="button">'.s('stop processing').'</a>';
       print '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.s('resume processing').'</a>';
-      print '<div id="progressmeter"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
+      print '<div id="progressmeterold"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
 print '</div>
     </div>
     <div id="processqueueoutput">

@@ -324,9 +324,10 @@ $.fn.updateProgress = function() {
   } else {
     perc = parseInt((overallSent / overallTotal) * 100);
   }
-  $("#progress").width(perc * 5);
-  $("#progress").html(perc + '%');
+//  $("#progress").width(perc * 5);
+//  $("#progress").html(perc + '%');
   $("#progresscount").html(overallSent + ' / '+ overallTotal);
+  $("#progressbar" ).progressbar({value: +perc});
 };
 
 
