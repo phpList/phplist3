@@ -7,6 +7,9 @@ $ajax = isset($_GET['ajaxed']);
 
 if ($ajax) {
   @ob_end_clean();
+  if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
+    include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
+  }
 }
 $status = $GLOBALS['I18N']->get('Failed');
 if (!empty($_GET['action'])) {

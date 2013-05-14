@@ -23,10 +23,6 @@ if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
   $reload = 0;
 }
 
-if (is_file('ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
-  include 'ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
-}
-
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   $plugin->processQueueStart();
 }
