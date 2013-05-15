@@ -503,7 +503,7 @@ function getTranslationUpdates() {
   $LU = false;
   $lan_update = fetchUrl(TRANSLATIONS_XML);
   if (!empty($lan_update)) {
-    $LU = simplexml_load_string($lan_update);
+    $LU = @simplexml_load_string($lan_update);
   }
   return $LU;
 }
