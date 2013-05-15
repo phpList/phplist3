@@ -1,14 +1,22 @@
 <?php
 
-## convert DB to UTF-8
-
 $isUTF8 = getConfig('UTF8converted');
+
+## convert DB to UTF-8
+if (!$GLOBALS['commandline']) {
+  ob_end_flush();
+  # make sure the browser doesn't buffer it
+  for ($i = 0; $i< 10000; $i++)  {
+    print ' '."\n";
+  }
+}
+cl_output(s("Converting DB to use UTF-8, please wait"));
 
 if (empty($isUTF8)) {
   
   set_time_limit(5000);
   
-  print "Converting DB to use UTF-8, please wait<br/>";
+  print s("Converting DB to use UTF-8, please wait")."<br/>";
   ## convert to UTF8
   $dbname = $GLOBALS["database_name"];
   if (!empty($dbname)) {
@@ -33,12 +41,16 @@ if (empty($isUTF8)) {
     cl_output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait'));
     foreach ($dbtables as $dbtable) {
       set_time_limit(600);
+      print($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable)."<br/>";
+      flush();
       cl_output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable);
       Sql_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
     }
 
     foreach ($dbcolumns as $dbcolumn) {
       set_time_limit(600);
+      print($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']). '<br/>';
+      flush();
       cl_output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']);
       Sql_Query(sprintf('alter table %s change column %s %s %s character set utf8',
         $dbcolumn['TABLE_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_TYPE']),1);
@@ -46,11 +58,12 @@ if (empty($isUTF8)) {
     cl_output($GLOBALS['I18N']->get('upgrade to UTF-8, done'));
     saveConfig('UTF8converted',date('Y-m-d H:i'),0);
   } else {
-    print "Unable to determine the name of the database to convert";
+    print s("Unable to determine the name of the database to convert");
   }
 } else {
-  print "The DB was already converted to UTF-8 on ".$isUTF8;
+  print s("The DB was already converted to UTF-8 on ").$isUTF8;
+  cl_output(s("The DB was already converted to UTF-8 on ").$isUTF8);
 }
 
-print "All Done";
+print "<br/>".s("All Done");
 
