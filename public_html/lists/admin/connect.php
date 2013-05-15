@@ -1191,6 +1191,7 @@ function getSelectedLists($fieldname) {
   if (!empty($_POST['addnewlist'])) {
     include "editlist.php";
     $lists[$_SESSION['newlistid']] = $_SESSION['newlistid'];
+    return $lists;
   }
   if (!isset($_POST[$fieldname])) return array();
   if (!empty($_POST[$fieldname]['all'])) {
