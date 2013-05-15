@@ -309,7 +309,9 @@ function allDone() {
 
 var overallTotal = 0;
 var overallSent = 0;
-$.fn.updateProgress = function() {
+
+/* this one keeps track of the total between multiple processqueue runs */
+$.fn.updateSendProgress = function() {
   var args = arguments[0].split(',') || {}; //  arguments
   var total = parseInt(args[1]);
   // fix the total first time
@@ -318,16 +320,23 @@ $.fn.updateProgress = function() {
   if (done > 0) {
     overallSent += done;
   }
+  updateProgress(overallTotal,overallDone);
+}
+
+$.fn.updateProgress = function() {  
+  var args = arguments[0].split(',') || {}; //  arguments
+  var total = parseInt(args[1]);
+  var done = parseInt(args[0]);
+  
   var perc;
-  if (overallTotal == 0) {
+  if (total == 0) {
     perc = 0;
   } else {
-    perc = parseInt((overallSent / overallTotal) * 100);
+    perc = parseInt((done / total) * 100);
   }
-//  $("#progress").width(perc * 5);
-//  $("#progress").html(perc + '%');
-  $("#progresscount").html(overallSent + ' / '+ overallTotal);
-  $("#progressbar" ).progressbar({value: +perc});
+  $("#progresscount").html(done + ' / '+ total);
+  $("#progresscount").show();
+  $("#progressbar" ).progressbar({max: 100, value: +perc});
 };
 
 

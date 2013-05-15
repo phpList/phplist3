@@ -8,7 +8,7 @@ if (!ALLOW_IMPORT) {
   return;
 }
 
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
+#print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 
 ignore_user_abort();
 set_time_limit(500);
@@ -30,8 +30,16 @@ if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"])) {
 }
 
 $import_lists = getSelectedLists('importlists');
-
+$_POST['importlists'] = $import_lists;
+//var_dump($_POST);
+//var_dump($import_lists);
+//exit;
 if(isset($_REQUEST['import'])) {
+  
+  //if (!verifyToken()) {
+    //print Error(s('Invalid token'));
+    //return;
+  //}
 
   $test_import = (isset($_POST["import_test"]) && $_POST["import_test"] == "yes");
 
@@ -60,7 +68,11 @@ if(isset($_REQUEST['import'])) {
     return;
   }
   $notify = $_POST["notify"];
-  $throttle_import = $_POST["throttle_import"];
+  if (isset($_POST["throttle_import"])) {
+    $throttle_import = sprintf('%d',$_POST["throttle_import"]);
+  } else {
+    $throttle_import = 0;
+  }
 
   if ($_FILES["import_file"] && filesize($_FILES["import_file"]['tmp_name']) > 10) {
     $newfile = $GLOBALS['tmpdir'].'/import'. $GLOBALS['installation_name'].time();
@@ -114,7 +126,7 @@ if(isset($_REQUEST['import'])) {
 
   if (sizeof($email_list) > 300 && !$test_import) {
     # this is a possibly a time consuming process, so lets show a progress bar
-    print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
+  #  print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
     flush();
     # increase the memory to make sure we are not running out
     ini_set("memory_limit","16M");
@@ -140,171 +152,15 @@ if(isset($_REQUEST['import'])) {
 
   // Do import
   } else {
-    $count_email_add = 0;
-    $count_email_exist = 0;
-    $count_list_add = 0;
-    $additional_emails = 0;
-    $some = 0;
-    $num_lists = sizeof($import_lists);
-    $todo = sizeof($user_list);
-    $done = 0;
-    if ($hasinfo) {
-      # we need to add an info attribute if it does not exist
-      $req = Sql_Query("select id from ".$tables["attribute"]." where name = \"info\"");
-      if (!Sql_Affected_Rows()) {
-        # it did not exist
-        Sql_Query(sprintf('insert into %s (name,type,listorder,default_value,required,tablename)
-         values("info","textline",0,"",0,"info")', $tables["attribute"]));
-      }
-    }
-
-    # which attributes were chosen, apply to all users
-    $res = Sql_Query("select * from ".$tables["attribute"]);
-    $attributes = array();
-    while ($row = Sql_Fetch_Array($res)) {
-      $fieldname = "attribute" .$row["id"];
-      if (isset($_POST[$fieldname])) {
-        if (is_array($_POST[$fieldname])) {
-          $attributes[$row["id"]] = join(',',$_POST[$fieldname]);
-        } else {
-          $attributes[$row["id"]] = $_POST[$fieldname];
-        }
-      } else {
-        $attributes[$row["id"]] = '';
-      }
-    }
-
-    while (list($email,$data) = each ($user_list)) {
-      ## a lot of spreadsheet include those annoying quotes
-      $email = str_replace('"', '', $email);      
-      $done++;
-      if ($done % 50 ==0) {
-        print "$done/$todo<br/>";
-        flush();
-      }
-      if(strlen($email) > 4) {
-        $email = addslashes($email);
-        // Annoying hack => Much too time consuming. Solution => Set email in users to UNIQUE()
-        $result = Sql_query("SELECT id,uniqid FROM ".$tables["user"]." WHERE email = '$email'");
-        if (Sql_affected_rows()) {
-          // Email exist, remember some values to add them to the lists
-          $user = Sql_fetch_array($result);
-          $userid = $user["id"];
-          $uniqid = $user["uniqid"];
-          $history_entry = $GLOBALS['I18N']->get('Import of existing subscriber');
-          $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["user"],$userid));
-          $old_data = array_merge($old_data,getUserAttributeValues('',$userid));
-          # and membership of lists
-          $req = Sql_Query("select * from {$tables["listuser"]} where userid = $userid");
-          while ($row = Sql_Fetch_Array($req)) {
-            $old_listmembership[$row["listid"]] = listName($row["listid"]);
-          }
-          $count_email_exist++;
-        } else {
-
-          // Email does not exist
-
-          // Create unique number
-          mt_srand((double)microtime()*1000000);
-          $randval = mt_rand();
-          include_once dirname(__FILE__)."/commonlib/lib/userlib.php";
-          $uniqid = getUniqid();
-
-          $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail) values("%s",current_timestamp,%d,"%s","%s")',
-          $tables["user"],$email,$notify != "yes",$uniqid,isset($_POST['htmlemail']) ? '1':'0');
-          $result = Sql_query($query);
-          $userid = Sql_Insert_Id($tables['user'], 'id');
-
-          $count_email_add++;
-          $some = 1;
-          $history_entry = $GLOBALS['I18N']->get('Import of new subscriber');
-
-          # add the attributes for this user
-          foreach($attributes as $attr => $value) {
-            if (is_array($value)) {
-              $value = join(',',$value);
-            }
-            Sql_query(sprintf('replace into %s (attributeid,userid,value) values("%s","%s","%s")',
-              $tables["user_attribute"],$attr,$userid,addslashes($value)));
-          }
-        }
-
-        #add this user to the lists identified
-        $addition = 0;
-        $listoflists = "";
-        foreach($import_lists as $key => $listid) {
-          $query = "replace INTO ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
-          $result = Sql_query($query);
-          # if the affected rows is 2, the user was already subscribed
-          $addition = $addition || Sql_Affected_Rows() == 1;
-          if (!empty($_POST['listname'][$key])) {
-            $listoflists .= "  * ".$_POST['listname'][$key]."\n";
-          }
-        }
-        if ($addition) {
-          $additional_emails++;
-        }
-
-        $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage",$userid));
-        if (!TEST && $notify == "yes" && $addition) {
-          sendMail($email, getConfig("subscribesubject"), $subscribemessage,system_messageheaders(),$envelope);
-          if ($throttle_import) {
-            sleep($throttle_import);
-          }
-        }
-        # history stuff
-        $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$tables["user"],$userid));
-        $current_data = array_merge($current_data,getUserAttributeValues('',$userid));
-        foreach ($current_data as $key => $val) {
-          if (!is_numeric($key))
-            if ($old_data[$key] != $val && $key != "modified") {
-            $history_entry .= "$key = $val\nchanged from $old_data[$key]\n";
-          }
-        }
-        if (!$history_entry) {
-          $history_entry = "\n".$GLOBALS['I18N']->get('No data changed');
-        }
-        # check lists
-        $req = Sql_Query("select * from {$tables["listuser"]} where userid = $userid");
-        while ($row = Sql_Fetch_Array($req)) {
-          $listmembership[$row["listid"]] = listName($row["listid"]);
-        }
-        $history_entry .= "\n".$GLOBALS['I18N']->get('List subscriptions:')."\n";
-        foreach ($old_listmembership as $key => $val) {
-          $history_entry .= $GLOBALS['I18N']->get('Was subscribed to:')." $val\n";
-        }
-        foreach ($listmembership as $key => $val) {
-          $history_entry .= $GLOBALS['I18N']->get('Is now subscribed to:')." $val\n";
-        }
-        if (!sizeof($listmembership)) {
-          $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists')."\n";
-        }
-
-        addUserHistory($email,$GLOBALS['I18N']->get('Import by ').adminName(),$history_entry);
-
-      }; // end if
-    }; // end while
-
-    print '<script language="Javascript" type="text/javascript"> finish(); </script>';
-    # lets be gramatically correct :-)
-    $displists = ($num_lists == 1) ? $GLOBALS['I18N']->get('list'): $GLOBALS['I18N']->get('lists');
-    $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new email was'): $GLOBALS['I18N']->get('new emails were');
-    $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email was'): $GLOBALS['I18N']->get('emails were');
-
-    if ($count_email_exist) {
-      $report .= "<br/>$count_email_exist ".$GLOBALS['I18N']->get('emails existed in the database');
-    }
-    if(!$some && !$additional_emails) {
-      $report .= "<br/>".$GLOBALS['I18N']->get('All the emails already exist in the database.');
-    } else {
-      $report .= "<br/>$count_email_add $dispemail ".$GLOBALS['I18N']->get('succesfully imported to the database and added to')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed to the')." $displists";
-    }
-    print ActionResult($report);
-    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-      $plugin->importReport($report);
-    }
+    
+    file_put_contents($newfile.'.data',serialize($_POST));
+    
+    print '<h3>'.s('Importing %d subscribers to %d lists, please wait',sizeof($email_list),sizeof($import_lists)).'</h3>';
+    print $GLOBALS['img_busy'];
+    print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
+    print '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).'" scrolling="no" height="50"></iframe>';
   }; // end else
-  print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
+ # print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
 
 
 } else {
@@ -332,7 +188,7 @@ if (Sql_Affected_Rows() == 1) {
   $row = Sql_fetch_array($result);
   printf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.$GLOBALS['I18N']->get('adding_users').' <b>%s</b>',$c,stripslashes($row["name"]),$c,$row["id"],stripslashes($row["name"]));
 } else {
-  print '<p class="button">'.$GLOBALS['I18N']->get('select_lists').'</p>';
+  print '<h3>'.s('Select the lists to add the emails to').'</h3>';
   print ListSelectHTML($import_lists,'importlists',$subselect);
 }
 
@@ -349,6 +205,8 @@ function addFieldToCheck(value,name) {
 }
 
 </script>
+<div class="panel">
+  <div class="content">
 <table class="import1" border="1">
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute "Info" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document.'); ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('File containing emails:'); ?></td><td><input type="file" name="import_file"></td></tr>
@@ -365,6 +223,7 @@ print ListAllAttributes();
 
 <tr><td><p class="input"><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('import'); ?>"></p></td><td>&nbsp;</td></tr>
 </table>
+</div></div>
 </form>
 <?php } ?>
 

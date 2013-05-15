@@ -288,7 +288,7 @@ function finish ($flag,$message,$script_stage) {
     output($GLOBALS['I18N']->get('Finished this run'),1,'progress');
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
-      parentJQuery("#progressmeter").updateProgress("'.$GLOBALS['sent'].','.$counters['total_users_for_message '.$messageid].'");
+      parentJQuery("#progressmeter").updateSendProgress("'.$GLOBALS['sent'].','.$counters['total_users_for_message '.$messageid].'");
       </script>';
     
     
