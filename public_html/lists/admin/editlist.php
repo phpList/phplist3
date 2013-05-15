@@ -47,7 +47,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
 if ($id) {
   echo "<br />".PageLinkButton("members",s('Members of this list'),"id=$id");
 }
-echo "<hr />";
+
 if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   if ($GLOBALS["require_login"] && !isSuperUser()) {
     $owner = $_SESSION["logindetails"]["id"];
@@ -96,10 +96,10 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   foreach ($GLOBALS['plugins'] as $plugin) {
     $result = $result && $plugin->processEditList($id);
   }
+  print '<div class="actionresult">'.$_SESSION['action_result'].'</div>';
   if ($_GET['page'] == 'editlist') {
-    $_SESSION['action_result'] = '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,s('Add some subscribers')).'</div>';
+    print '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,s('Add some subscribers')).'</div>';
   }
-  print $_SESSION['action_result'];
   unset($_SESSION['action_result']);
   return;
   ## doing this, the action result disappears, which we don't want
