@@ -1,4 +1,5 @@
 <?php
+if (!defined('PHPLISTINIT')) exit;
 
 if (!$_GET["id"]) {
   Fatal_Error($GLOBALS['I18N']->get('no such User'));

@@ -1,9 +1,9 @@
-
-<h3>Database Check</h3>
-
 <?php
+if (!defined('PHPLISTINIT')) exit;
 
-$ls = new WebblerListing("Database Structure");
+print '<h3>'.s('Database structure check').'</h3>';
+
+$ls = new WebblerListing(s('Database structure'));
 while (list($table, $tablename) = each($GLOBALS["tables"])) {
   $createlink = '';
   $indexes = $uniques = $engine = $category = '';

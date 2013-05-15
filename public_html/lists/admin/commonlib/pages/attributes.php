@@ -1,4 +1,5 @@
 <?php
+if (!defined('PHPLISTINIT')) exit;
 
 $types = array('textline','checkbox','checkboxgroup','radio','select',"hidden","textarea","date");
 if ((defined('IN_WEBBLER') && IN_WEBBLER)  || (defined('WEBBLER') && WEBBLER)){

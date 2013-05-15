@@ -1,4 +1,5 @@
 <?php
+if (!defined('PHPLISTINIT')) exit;
 
 $filterpanel = $countpanel = $paging = '';
 
