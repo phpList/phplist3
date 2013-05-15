@@ -39,6 +39,7 @@ $GLOBALS["img_cross"] = '<img src="images/cross.gif" alt="No" />';
 $GLOBALS["img_tick"] = '<span class="yes">Yes</span>';
 $GLOBALS["img_cross"] = '<span class="no">No</span>';
 $GLOBALS["img_view"] = '<span class="view">View</span>';
+$GLOBALS['img_busy'] = '<img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait" id="busyimage" />';
 
 # if keys need expanding with 0-s
 $checkboxgroup_storesize = 1; # this will allow 10000 options for checkboxes
@@ -1091,11 +1092,11 @@ function PageURL2($name,$desc = "",$url="",$no_plugin = false) {
 function ListofLists($current,$fieldname,$subselect) {
   $categoryhtml = array();
   ## add a hidden field, so that all checkboxes can be unchecked while keeping the field in POST to process it
-  $categoryhtml['unselect'] = '<input type="hidden" name="'.$fieldname.'[unselect]" value="1" />';
+ # $categoryhtml['unselect'] = '<input type="hidden" name="'.$fieldname.'[unselect]" value="1" />';
   
   $categoryhtml['selected'] = '';
   $categoryhtml['all'] = '
-  <li><input type="checkbox" name="'.$fieldname.'[all]"';
+  <li><input type="hidden" name="'.$fieldname.'[unselect]" value="-1" /><input type="checkbox" name="'.$fieldname.'[all]"';
   if (!empty($current["all"])) {
     $categoryhtml['all'] .= "checked";
   }
@@ -1133,7 +1134,7 @@ function ListofLists($current,$fieldname,$subselect) {
     if (isset($current[$list["id"]]) && $current[$list["id"]]) {
       $categoryhtml[$list['category']] .= "checked";
     }
-    $categoryhtml[$list['category']] .= " />".stripslashes($list["name"]);
+    $categoryhtml[$list['category']] .= " />".htmlspecialchars(stripslashes($list["name"]));
     if ($list["active"]) {
       $categoryhtml[$list['category']] .= ' (<span class="activelist">'.$GLOBALS['I18N']->get('Public list').'</span>)';
     } else {
@@ -1154,7 +1155,6 @@ function ListofLists($current,$fieldname,$subselect) {
 function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
   $categoryhtml = ListofLists($current,$fieldname,$subselect);
 
-#  var_dump($categoryhtml);
   $tabno = 1;
   $listindex = $listhtml = '';
   $some = sizeof($categoryhtml);
@@ -1165,10 +1165,10 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
  #   array_unshift($categoryhtml,$alltab);
   }
   
-  if ($some) {
+  if ($some > 0) {
     foreach ($categoryhtml as $category => $content) {
       if ($category == 'all') $category = '@';
-      if ($some == 1) { ## don't show tabs, when there's just one
+      if ($some > 1) { ## don't show tabs, when there's just one
         $listindex .= sprintf('<li><a href="#%s%d">%s</a></li>',$fieldname,$tabno,$category);
       }
       $listhtml .= sprintf('<div id="%s%d"><ul>%s</ul></div>',$fieldname,$tabno,$content);
@@ -1176,10 +1176,9 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
     }
   }
 
-#var_dump($listindex);
   $html = '<div class="tabbed"><ul>'.$listindex.'</ul>';
   $html .= $listhtml;
-  $html .= '</div>'; ## close tabbed
+  $html .= '</div><!-- end of tabbed -->'; ## close tabbed
 
   if (!$some) {
     $html = $GLOBALS['I18N']->get('There are no lists available');
@@ -1188,28 +1187,35 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
 }
 
 function getSelectedLists($fieldname) {
+  $lists = array();
   if (!empty($_POST['addnewlist'])) {
     include "editlist.php";
-    $_POST[$fieldname][$_SESSION['newlistid']] = $_SESSION['newlistid'];
+    $lists[$_SESSION['newlistid']] = $_SESSION['newlistid'];
   }
   if (!isset($_POST[$fieldname])) return array();
   if (!empty($_POST[$fieldname]['all'])) {
     ## load all lists
-    $_POST[$fieldname] = array();
     $req = Sql_Query(sprintf('select id from %s',$GLOBALS['tables']['list']));
     while ($row = Sql_Fetch_Row($req)) {
-      $_POST[$fieldname][$row[0]] = $row[0];
+      $lists[$row[0]] = $row[0];
     }
   } elseif (!empty($_POST[$fieldname]['allactive'])) {
     ## load all active lists
-    $_POST[$fieldname] = array();
     $req = Sql_Query(sprintf('select id from %s where active',$GLOBALS['tables']['list']));
     while ($row = Sql_Fetch_Row($req)) {
-      $_POST[$fieldname][$row[0]] = $row[0];
+      $lists[$row[0]] = $row[0];
+    }
+  } else {
+    ## verify the lists are actually allowed
+    $req = Sql_Query(sprintf('select id from %s',$GLOBALS['tables']['list']));
+    while ($row = Sql_Fetch_Row($req)) {
+      if (in_array($row[0],$_POST[$fieldname])) {
+        $lists[$row[0]] = $row[0];
+      }
     }
   }
 
-  return $_POST[$fieldname];
+  return $lists;
 }
 
 function Redirect($page) {
