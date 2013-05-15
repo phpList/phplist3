@@ -1,4 +1,5 @@
 <?php
+if (!defined('PHPLISTINIT')) exit;
 
 print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 
@@ -91,7 +92,7 @@ require $GLOBALS["coderoot"] . "structure.php";
 
 ## identify system values from the database structure
 $system_attributes = array ();
-reset($DBstruct["user"]);
+reset($DBstruct['user']);
 while (list ($key, $val) = each($DBstruct["user"])) {
   if (strpos( $val[1],"sys") === false && is_array($val)) {
     $system_attributes[strtolower($key)] = $val[1];  ## allow columns like "htmlemail" and "foreignkey"
@@ -106,7 +107,7 @@ while (list ($key, $val) = each($DBstruct["user"])) {
 }
 
 ## handle terminology change (from user to subscriber)
-$system_attributes['send this user html emails'] = $system_attributes['send this subscriber html emails'];
+$system_attributes['send this user html emails'] = $system_attributes_nicename['send this subscriber html emails'];
 $system_attributes_nicename['send this user html emails'] = $system_attributes_nicename['send this subscriber html emails'];
 
 ## allow mapping a column to a comma separated list of group names
