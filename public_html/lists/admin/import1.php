@@ -36,10 +36,10 @@ $_POST['importlists'] = $import_lists;
 //exit;
 if(isset($_REQUEST['import'])) {
   
-  //if (!verifyToken()) {
-    //print Error(s('Invalid token'));
-    //return;
-  //}
+  if (!verifyToken()) {
+    print Error(s('Invalid security token, please reload the page and try again'));
+    return;
+  }
 
   $test_import = (isset($_POST["import_test"]) && $_POST["import_test"] == "yes");
 
