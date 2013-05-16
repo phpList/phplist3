@@ -956,10 +956,8 @@ function fetchUrl($url,$userdata = array()) {
 #    logEvent($url.' is not cached in database '.$timeout.' '. $dbcache_lastmodified." ".time());
   }
 
-  # add a small timeout, although the biggest timeout will exist in doing the DNS lookup,
-  # so it won't make too much of a difference
   $request_parameters = array(
-    'timeout' => 10,
+    'timeout' => 600,
     'allowRedirects' => 1,
     'method' => 'HEAD',
   );
