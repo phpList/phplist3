@@ -35,7 +35,7 @@ if (empty($_GET['id'])) {
        PageURL2("configure&resetdefault=yes","reset",""),
        s('Reset to default'));
      
-    print $button->show();
+    print '<div class="fright">'.$button->show(). '</div>';
     print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),1);
 }
 
