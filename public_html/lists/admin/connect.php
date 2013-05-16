@@ -1247,6 +1247,21 @@ function formatBytes ($value) {
     return sprintf('%dBytes',$value);
 }
 
+function phpcfgsize2bytes($val) {
+  $val = trim($val);
+  $last = strtolower($val{strlen($val)-1});
+  switch($last) {
+    case 'g':
+        $val *= 1024;
+    case 'm':
+        $val *= 1024;
+    case 'k':
+        $val *= 1024;
+  }
+  return $val;
+}
+
+
 function Help($topic, $text = '?') {
   return sprintf('<a href="help/?topic=%s" class="helpdialog" target="_blank">%s</a>', $topic, $text);
 }
