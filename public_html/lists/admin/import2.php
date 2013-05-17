@@ -7,5 +7,3 @@ if (!ALLOW_IMPORT) {
 }
 
 require dirname(__FILE__).'/commonlib/pages/importcsv.php';
-
-?>
