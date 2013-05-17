@@ -66,7 +66,7 @@ print formStart(' class="configForm" ');
 reset($default_config);
 if (!empty($_REQUEST['save'])) {
   if (!verifyToken()) {
-    print Error($GLOBALS['I18N']->get('No Access'));
+    print Error(s('Invalid security token, please reload the page and try again'));
     return;
   }
   $info = $default_config[$id];
