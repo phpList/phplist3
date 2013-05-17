@@ -306,11 +306,12 @@ if (isset($id)) {
 }
 if ($access == "view") return;
 ?>
-<hr/>
+<div class="panel">
+  <h3><?php print s('Actions')?></h3>
 <div class="content"><table class="membersProcess">
 <tr><td><h3><?php echo $GLOBALS['I18N']->get('What to do with "Tagged" users')?>:</h3>
 <h6><?php echo $GLOBALS['I18N']->get('This will only process the users in this page that have the "Tag" checkbox checked')?></h6></td></tr>
-<tr><td><input type="radio" name="tagaction" value="delete" /> <?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)</td></tr>
+<tr><td><input type="radio" name="tagaction" value="delete" /> <?php echo $GLOBALS['I18N']->get('Delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)</td></tr>
 <?php
 $html = '';
 $res = Sql_Query("select id,name from {$tables["list"]} $subselect");
@@ -330,12 +331,11 @@ if ($html) {
   </select></div></td></tr>
   <tr><td><input type="radio" name="tagaction" value="nothing" checked="checked" /><?php echo $GLOBALS['I18N']->get('Nothing')?> </td></tr>
 <?php } ?>
-<tr><td><hr/></td></tr>
 <tr><td><h3><?php echo $GLOBALS['I18N']->get('What to do with all users')?></h3>
         <h6><?php echo $GLOBALS['I18N']->get('This will process all users on this list')?></h6>
 </td></tr>
 <tr><td>
-    <input type="radio" name="tagaction_all" value="delete" /> <?php echo $GLOBALS['I18N']->get('delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)
+    <input type="radio" name="tagaction_all" value="delete" /> <?php echo $GLOBALS['I18N']->get('Delete')?> (<?php echo $GLOBALS['I18N']->get('from this list')?>)
 </td></tr>
 <?php if ($html) { ?>
   <tr><td><div class="fleft"><input type="radio" name="tagaction_all" value="move" /> <?php echo $GLOBALS['I18N']->get('Move').' '.$GLOBALS['I18N']->get('to')?></div>
@@ -346,10 +346,9 @@ if ($html) {
   <div class="fleft"><select name="copydestination_all">
   <?php echo $html ?>
   </select></div></td></tr>
-  <tr><td><?php echo $GLOBALS['I18N']->get('Nothing')?> <input type="radio" name="tagaction_all"  value="nothing" checked="checked" /></td></tr>
+  <tr><td><input type="radio" name="tagaction_all"  value="nothing" checked="checked" /> <?php echo $GLOBALS['I18N']->get('Nothing')?></td></tr>
 <?php } ?>
-<tr><td><hr/></td></tr>
 <tr><td><input class="action-button" type="submit" name="processtags" value="<?php echo $GLOBALS['I18N']->get('do it')?>" /></td></tr>
 </table>
-</div>
+</div></div>
 </form>
