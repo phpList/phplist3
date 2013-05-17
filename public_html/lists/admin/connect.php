@@ -392,10 +392,15 @@ function Error($msg) {
   if (is_array($_POST) && sizeof($_POST)) {
     $GLOBALS["mail_error"] .= "\nPost vars:\n";
     while (list($key,$val) = each ($_POST)) {
-      if ($key != "password")
-        $GLOBALS["mail_error"] .= $key . "=" . $val . "\n";
-      else
+      if ($key != "password") {
+        if (is_array($val)) {
+          $GLOBALS["mail_error"] .= $key . "=" . serialize($val) . "\n";
+        } else {
+          $GLOBALS["mail_error"] .= $key . "=" . $val . "\n";
+        }
+      } else {
         $GLOBALS["mail_error"] .= "password=********\n";
+      }
     }
   }
 }
