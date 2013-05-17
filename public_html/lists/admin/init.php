@@ -295,9 +295,17 @@ if (function_exists('stripos')) {
   define('PHP5',0);
 }
 
+$system_tmpdir = ini_get("upload_tmp_dir");
+if (!isset ($GLOBALS["tmpdir"]) && !empty ($system_tmpdir)) {
+  $GLOBALS["tmpdir"] = $system_tmpdir;
+}
 if (!isset($GLOBALS['tmpdir'])) {
   $GLOBALS['tmpdir'] = '/tmp';
 }
+if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"]) && !empty ($system_tmpdir)) {
+  $GLOBALS["tmpdir"] = $system_tmpdir;
+}
+
 if (!isset($pageroot)) {
   $pageroot = '/lists';
   $GLOBALS['pageroot'] = '/lists'; 
