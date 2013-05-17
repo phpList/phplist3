@@ -181,6 +181,7 @@
         $history_entry = "\n".$GLOBALS['I18N']->get('No data changed');
       }
       # check lists
+      $listmembership = array();
       $req = Sql_Query("select * from {$tables["listuser"]} where userid = $userid");
       while ($row = Sql_Fetch_Array($req)) {
         $listmembership[$row["listid"]] = listName($row["listid"]);
