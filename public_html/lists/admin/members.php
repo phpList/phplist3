@@ -56,8 +56,8 @@ if (!empty($_POST['importcontent'])) {
 }
 
 if (isset($_REQUEST["processtags"]) && $access != "view") {
-  print $GLOBALS['I18N']->get("Processing")." .... <br/>";
-  if ($_POST["tagaction"] && is_array($_POST["user"])) {
+  $msg = $GLOBALS['I18N']->get("Processing")." .... <br/>";
+  if (isset($_POST["tagaction"]) && !empty($_POST["user"]) && is_array($_POST["user"])) {
     switch ($_POST["tagaction"]) {
       case "move":
         $cnt = 0;
@@ -124,7 +124,7 @@ if (isset($_REQUEST["processtags"]) && $access != "view") {
       default: # do nothing
     }
   }
-  print $msg.'<br/>';
+  print '<div class="actionresult">'.$msg.'</div>';
 }
 if (isset($_POST["add"])) {
   if ($_POST["new"]) {
