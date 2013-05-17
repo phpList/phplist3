@@ -134,6 +134,13 @@ if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
 if (!defined('SILENT_RESUBSCRIBE')) define('SILENT_RESUBSCRIBE',true);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
 if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",1);
+
+if (ASKFORPASSWORD && defined("ENCRYPTPASSWORD") && ENCRYPTPASSWORD) {
+  ##https://mantis.phplist.com/view.php?id=16787
+  # passwords are encrypted, so we need to stick to md5 to keep working
+  define('ENCRYPTION_ALGO','md5');
+}
+
 if (ASKFORPASSWORD && !defined("ENCRYPTPASSWORD")) {
   ## we now always encrypt
   define('ENCRYPTPASSWORD',1);
