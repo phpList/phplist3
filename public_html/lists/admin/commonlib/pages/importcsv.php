@@ -366,7 +366,7 @@ if (!empty($_SESSION["import_file"])) {
 ### show summary
 if (!empty($_SESSION["test_import"])) {
   if (!isset ($_SESSION["systemindex"]["email"])) {
-    Fatal_Error($GLOBALS['I18N']->get('Cannot find column with email, you need to map at least one column to "Email" '));
+    Fatal_Error($GLOBALS['I18N']->get('Cannot find column with email, you need to map at least one column to "Email"'));
     return;
   }
   $ls = new WebblerListing($GLOBALS['I18N']->get('Summary'));
