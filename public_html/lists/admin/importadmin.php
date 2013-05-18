@@ -5,10 +5,7 @@ print '<script language="Javascript" src="js/progressbar.js" type="text/javascri
 
 ignore_user_abort();
 set_time_limit(500);
-?>
-<p class="information">
 
-<?php
 ob_end_flush();
 if(!empty($_POST['import'])) {
 
@@ -110,6 +107,9 @@ if(!empty($_POST['import'])) {
   // Parse the lines into records
   $c = 1;$invalid_email_count = 0;
 
+  print '<h3>'.s('Import administrators, please wait').'</h3>';
+  flush();
+
   foreach ($email_list as $line) {
     $values = explode($import_field_delimiter,$line);
     $email = clean($values[$emailindex]);
@@ -144,7 +144,7 @@ if(!empty($_POST['import'])) {
   // View test output of emails
   if($test_import) {
   	
-    print $GLOBALS['I18N']->get('Test output:There should only be ONE email per line.If the output looks ok, go Back to resubmit for real');
+    print $GLOBALS['I18N']->get('Test output: There should only be ONE email per line.If the output looks ok, go Back to resubmit for real').'<br/><br/>';
     $i = 1;
     while (list($email,$data) = each ($user_list)) {
       $email = trim($email);
@@ -191,7 +191,7 @@ if(!empty($_POST['import'])) {
             values("%s","%s","%s",current_timestamp,"%s","%s",0,0,"%s")',
             $tables["admin"],sql_escape($email),sql_escape($loginname),
             normalize($loginname),adminName($_SESSION["logindetails"]["id"]),
-            $data["password"],sql_escape(serialize($privs)));
+            encryptPass($data["password"]),sql_escape(serialize($privs)));
           $result = Sql_query($query);
           $adminid = Sql_Insert_Id($tables['admin'], 'id');
           $count_email_add++;
@@ -246,27 +246,20 @@ if(!empty($_POST['import'])) {
             $GLOBALS['I18N']->get('List for')." $loginname",
             $adminid));
           }
-        # copy permissions from the default set
-        $req = Sql_Query(sprintf('select * from %s where adminid = 0',$tables["admin_task"]));
-        while ($task = Sql_Fetch_Array($req))
-          Sql_Query(sprintf('insert into %s (adminid,taskid,level)
-            values(%d,%d,%d)',$tables["admin_task"],
-            $adminid,$task["taskid"],$task["level"]));
-
       }; // end if
     }; // end while
 
     print '<script language="Javascript" type="text/javascript"> finish(); </script>';
     # let's be grammatically correct :-) '
-    $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new email was')." ": $GLOBALS['I18N']->get('new emails were')." ";
+    $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new administrator was')." ": $GLOBALS['I18N']->get('new administrators were')." ";
 
     if(!$some) {
-      print "<br/>".$GLOBALS['I18N']->get("All the emails already exist in the database");
+      print "<br/>".$GLOBALS['I18N']->get("All the administrators already exist in the database");
     } else {
       print "$count_email_add $dispemail ".$GLOBALS['I18N']->get("succesfully imported to the database and added to the system.")."<br/>";
     }
   }; // end else
-  print '<p class="button">'.PageLink2("importadmin",$GLOBALS['I18N']->get("Import some more emails"));
+  print PageLinkButton("importadmin",$GLOBALS['I18N']->get("Import some more administrators"));
 
 
 } else {
@@ -284,7 +277,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
 
 ?>
 </ul>
-
+<div class="panel"><div class="content">
 <table class="importadmin" border="1">
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: email, loginname, password. Any other columns will be added as admin attributes.  Warning: the file needs to be plain text. Do not upload binary files like a Word Document.   ')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('File containing emails')?>:</td><td><input type="file" name="import_file"></td></tr>
@@ -305,8 +298,8 @@ print '<div id="privileges">
 print '</td></tr>';
 print '</td></tr>';
 ?>
-<tr><td><p class="submit"><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('Do Import')?>"></p></td><td>&nbsp;</td></tr>
+<tr><td><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('Do Import')?>"></td><td>&nbsp;</td></tr>
 </table>
+</div></div>
 <?php } ?>
 
-</p>
