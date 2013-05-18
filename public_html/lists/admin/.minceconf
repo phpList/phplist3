@@ -8,6 +8,7 @@ combine:
     - ui/dressprow/css/layout.css
     - ui/dressprow/css/skeleton.css
     - ui/dressprow/css/style.css
+    - ui/dressprow/css/gray.css
   ui/dressprow/js/all.js:
     - js/jquery-1.7.1.min.js
     - js/jquery-ui-1.8.1.all.min.js
