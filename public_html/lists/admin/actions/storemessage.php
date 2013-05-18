@@ -20,11 +20,15 @@ if (!empty($_REQUEST['sendurl'])) {
     ## check there's a protocol
     ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
 
-    if (!preg_match('/^https?:\/\//i',$_REQUEST['sendurl']) && !preg_match('/testcampaign/i',$_REQUEST['sendurl'])) {
-      $_REQUEST['sendurl'] = 'http://'.$_REQUEST['sendurl'];
-    }
+    if ($_REQUEST['sendurl'] == 'e.g. http://www.phplist.com/testcampaign.html') {
+      $_REQUEST['sendurl'] = '';
+    } else {
+      if (!preg_match('/^https?:\/\//i',$_REQUEST['sendurl']) && !preg_match('/testcampaign/i',$_REQUEST['sendurl'])) {
+        $_REQUEST['sendurl'] = 'http://'.$_REQUEST['sendurl'];
+      }
     
-    $_REQUEST["message"] = '[URL:'.$_REQUEST['sendurl'].']';
+      $_REQUEST["message"] = '[URL:'.$_REQUEST['sendurl'].']';
+    }
   }
 } 
 
