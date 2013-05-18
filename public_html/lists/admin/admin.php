@@ -78,7 +78,7 @@ if (!empty($_POST["change"])) {
       print sendAdminPasswordToken($id);
     ## check for password changes
     } elseif (isset($_POST['password'])) {
-      Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
+    #  Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
     }
     if (isset($_POST["attribute"]) && is_array($_POST["attribute"])) {
       while (list($key,$val) = each ($_POST["attribute"])) {
@@ -117,20 +117,25 @@ if (!empty($_GET["delete"])) {
   print "<br /><hr/><br />\n";
 }
 
+print '<div class="panel">';
+
 if ($id) {
-  print $GLOBALS['I18N']->get('Edit Administrator').': ';
+  print '<h3>'.$GLOBALS['I18N']->get('Edit Administrator').': ';
   $result = Sql_query("SELECT * FROM {$tables["admin"]} where id = $id");
   $data = sql_fetch_assoc($result);
-  print $data["loginname"];
+  print $data["loginname"]. '</h3>';
   if ($data["id"] != $_SESSION["logindetails"]["id"] && $accesslevel == "all")
-    printf( "<br /><li><a href=\"javascript:deleteRec('%s');\">Delete</a> %s\n",PageURL2("admin","","delete=$id"),$data["loginname"]);
+    printf( "<br /><a href=\"javascript:deleteRec('%s');\">Delete</a> %s\n",PageURL2("admin","","delete=$id"),$data["loginname"]);
 } else {
   $data = array();
-  print $GLOBALS['I18N']->get('Add a new Administrator');
+  print '<h3>'.$GLOBALS['I18N']->get('Add a new Administrator').'</h3>';
 }
-print "<br/>";
+
+print '<div class="content">';
 #var_dump($data);
-print '<p class="details">'.$GLOBALS['I18N']->get('Admin Details').':</p>'.formStart(' class="adminAdd"');
+
+
+print formStart(' class="adminAdd"');
 printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">',$id);
 
 if (isset($data['privileges'])) {
@@ -244,6 +249,9 @@ print '</td></tr>';
 
 print '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr></table>';
 
+
+print '</div>'; # content
+print '</div>'; # panel
 
 print "</form>";
 
