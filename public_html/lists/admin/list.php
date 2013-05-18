@@ -152,11 +152,23 @@ $query
 . ' order by listorder '.$limit;
 
 $result = Sql_query($query);
-$ls = new WebblerListing($GLOBALS['I18N']->get('Lists'));
+$numlists = Sql_Affected_Rows($result);
 
-$numlists = Sql_Affected_Rows();
+$ls = new WebblerListing(s('Lists'));
+
 if ($numlists > 15) {
-  Info($GLOBALS['I18N']->get('You seem to have quite a lot of lists, do you want to organise them in categories? ').' '.PageLinkButton('catlists',$GLOBALS['I18N']->get('Great idea!')));
+  Info(s('You seem to have quite a lot of lists, do you want to organise them in categories? ').' '.PageLinkButton('catlists',$GLOBALS['I18N']->get('Great idea!')));
+
+  /* @@TODO add paging when there are loads of lists, because otherwise the page is very slow
+  $limit = ' limit 50';
+  $query
+  = ' select *'
+  . ' from ' . $tables['list']
+  . $subselect
+  . ' order by listorder '.$limit;
+  $result = Sql_query($query);
+  */
+
 }
 
 while ($row = Sql_fetch_array($result)) {
