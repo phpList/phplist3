@@ -1,20 +1,11 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-#Variable initialisation to avoid PHP notices.
-if (isset($_GET['start']))
-	$start = (int) $_GET['start'];
-else
-	$start = 0;
 if (isset($_GET['remember_find']))
 	$remember_find = (string) $_GET['remember_find'];
 else
 	$remember_find = '';
-if (isset($_GET['find']))
-	$find = (int) $_GET['find'];
-else
-	$find = 0;
-	
+
 $external = $require_login && $GLOBALS["admin_auth_module"] != 'phplist_auth.inc';
 $start = isset($_GET['start']) ? sprintf('%d',$_GET['start']):0;
 $listid = isset($_GET['id']) ? sprintf('%d',$_GET['id']): 0;
@@ -79,31 +70,25 @@ if ($external) {
 
 print '<p class="info">'.$total . ' '.$GLOBALS['I18N']->get('Administrators');
 print $find ? ' '.$GLOBALS['I18N']->get('found').'</p>': '</p>';
+
+$paging = '';
 if ($total > MAX_USER_PP) {
+  $paging = simplePaging("admins$remember_find",$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get("Administrators"));
+}
+$limit = '';
+if ($total > MAX_USER_PP) {
+
   if (isset($start) && $start) {
-    $listing = $GLOBALS['I18N']->get('Listing admin')." $start ".$GLOBALS['I18N']->get('to'). ' '. ($start + MAX_USER_PP);
     $limit = "limit $start,".MAX_USER_PP;
   } else {
-    $listing = $GLOBALS['I18N']->get('Listing admin 1 to 50');
     $limit = "limit 0,50";
     $start = 0;
   }
-  printf ('<table class="adminsListing" border="1"><tr><td colspan="4" align="center">%s</td></tr><tr><td>%s</td><td>%s</td><td>
-          %s</td><td>%s</td></tr></table><hr/>',
-          $listing,
-          PageLink2("admins","&lt;&lt;","start=0"),
-          PageLink2("admins","&lt;",sprintf('start=%d',max(0,$start-MAX_USER_PP))),
-          PageLink2("admins","&gt;",sprintf('start=%d',min($total-MAX_USER_PP,$start+MAX_USER_PP))),
-          PageLink2("admins","&gt;&gt;",sprintf('start=%d',$total-MAX_USER_PP)));
-  if ($find)
-    $result = Sql_query("SELECT id,loginname,email FROM ".$tables["admin"]." where loginname like \"%$find%\" or email like \"%$find%\" order by loginname $limit");
-  else
-    $result = Sql_query("SELECT id,loginname,email FROM ".$tables["admin"]." order by loginname $limit");
+}
+if ($find) {
+  $result = Sql_query("SELECT id,loginname,email FROM ".$tables["admin"]." where loginname like \"%".sql_escape($find)."%\" or email like \"%".sql_escape($find)."%\" order by loginname $limit");
 } else {
-  if ($find)
-    $result = Sql_query("select id,loginname,email from ".$tables["admin"]." where loginname like \"%$find%\" or email like \"%$find%\" order by loginname");
-  else
-    $result = Sql_query("select id,loginname,email from ".$tables["admin"]." order by loginname");
+  $result = Sql_query("SELECT id,loginname,email FROM ".$tables["admin"]." order by loginname $limit");
 }
 
 ?>
@@ -113,9 +98,8 @@ if ($total > MAX_USER_PP) {
 </form></td></tr></table>
 <?php
 $ls = new WebblerListing($GLOBALS['I18N']->get('Administrators'));
+$ls->usePanel($paging);
 while ($admin = Sql_fetch_array($result)) {
-  if ($find)
-    $remember_find = "&amp;find=".urlencode($find);
   $delete_url = sprintf("<a href=\"javascript:deleteRec('%s');\">" . $GLOBALS['I18N']->get('del') . "</a>",PageURL2("admins","Delete","start=$start&amp;delete=".$admin["id"]));
   $ls->addElement($admin["loginname"],PageUrl2("admin",$GLOBALS['I18N']->get('Show'),"start=$start&amp;id=".$admin["id"].$remember_find));
   if (!$external && $admin['id'] != $_SESSION['logindetails']['id'])
