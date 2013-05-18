@@ -152,6 +152,13 @@ if ($success) {
   if (ENCRYPT_ADMIN_PASSWORDS && !empty($adminid)) {
     print sendAdminPasswordToken($adminid);
   }
+  # make sure the 0 template has the powered by image
+  $query
+  = ' insert into %s'
+  . '   (template, mimetype, filename, data, width, height)'
+  . ' values (0, ?, ?, ?, ?, ?)';
+  $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
+  Sql_Query_Params($query, array('image/png', 'powerphplist.png', $newpoweredimage, 70, 30));
   print '<p>'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</p>";
 } else {
  print ('<div class="initialiseOptions"><ul><li>'.$GLOBALS['I18N']->get("Maybe you want to")." ".PageLinkButton("upgrade",$GLOBALS['I18N']->get("Upgrade")).' '.$GLOBALS['I18N']->get("instead?").'</li>

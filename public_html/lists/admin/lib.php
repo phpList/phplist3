@@ -521,6 +521,27 @@ function previewTemplate($id,$adminid = 0,$text = "", $footer = "") {
   } else {
     $more = '';
   }
+  $poweredImageId = 0;
+  # make sure the 0 template has the powered by image
+  $query
+  = ' select id'
+  . ' from %s'
+  . ' where filename = ?'
+  . '   and template = 0';
+  $query = sprintf($query, $GLOBALS['tables']['templateimage']);
+  $rs = Sql_Query_Params($query, array('powerphplist.png'));
+  if (!Sql_Num_Rows($rs)) {
+    $query
+    = ' insert into %s'
+    . '   (template, mimetype, filename, data, width, height)'
+    . ' values (0, ?, ?, ?, ?, ?)';
+    $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
+    Sql_Query_Params($query, array('image/png', 'powerphplist.png', $GLOBALS['newpoweredimage'], 70, 30));
+    $poweredImageId = Sql_Insert_Id();
+  } else {
+    $row = Sql_Fetch_Row($rs);
+    $poweredImageId = $row[0];
+  }
   $tmpl = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',$tables["template"],$id));
   $template = stripslashes($tmpl[0]);
   $img_req = Sql_Query(sprintf('select id,filename from %s where template = %d order by filename desc',$tables["templateimage"],$id));
@@ -554,7 +575,7 @@ function previewTemplate($id,$adminid = 0,$text = "", $footer = "") {
   $template = str_ireplace("[BLACKLIST]",sprintf('<a href="%s">%s</a>',getConfig("blacklisturl"),$GLOBALS["strThisLink"]),$template);
   $template = str_ireplace("[PREFERENCES]",sprintf('<a href="%s">%s</a>',getConfig("preferencesurl"),$GLOBALS["strThisLink"]),$template);
   if (!EMAILTEXTCREDITS) {
-    $template = str_ireplace("[SIGNATURE]",$GLOBALS["PoweredByImage"],$template);
+    $template = str_ireplace("[SIGNATURE]",'<img src="?page=image&amp;id='.$poweredImageId.'" width="70" height="30" />',$template);
   } else {
     $template = str_ireplace("[SIGNATURE]",$GLOBALS["PoweredByText"],$template);
   }
