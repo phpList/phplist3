@@ -654,7 +654,7 @@ if (!$done) {
         <input type=text name="sendurl" id="remoteurlinput"
        value="'.$messagedata['sendurl'].'" size="60" /> <span id="remoteurlstatus"></span></div>';
       if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
-        $maincontent .= '<script type="text/javascript">$("#remoteurl").hide();</script>';
+        $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
       }
    }
 
@@ -816,7 +816,7 @@ if (!$done) {
   ';
   
   if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'inputhere') {
-    $maincontent .= '<script type="text/javascript">$("#messagecontent").hide()</script>';
+    $GLOBALS['pagefooter']['hidemessagecontent'] = '<script type="text/javascript">$("#messagecontent").hide()</script>';
   }
   $maincontent .= $tmp;
   $forwardcontent .= $tmp;
@@ -1035,7 +1035,7 @@ print '<div class="sendtabs_container">';
   }
 }
 
-print "<script type='text/javascript'>\n".
+$GLOBALS['pagefooter']['sendtabs'] = "<script type='text/javascript'>\n".
 "$(document).ready(function() {
     var counttab = ".$counttabs.";
     var currenttab = $('.current').attr('id');
@@ -1080,21 +1080,21 @@ $(window).resize(function(){
 
 </script>";
 
-print '<img src="ui/dressprow/images/prevtab.png" id="prev" class="prevtab" />';
-print '<img src="ui/dressprow/images/nexttab.png" id="next" class="nexttab" />';
+print '<img src="ui/'.$GLOBALS['ui'].'/images/prevtab.png" id="prev" class="prevtab" />';
+print '<img src="ui/'.$GLOBALS['ui'].'/images/nexttab.png" id="next" class="nexttab" />';
 print '</div>';
 $savecaption = $GLOBALS['I18N']->get('Save as Draft');
 
 ## if all is there, we can enable the send button
 $allReady = true;
-$panelcontent .= '<script type="text/javascript">
+$GLOBALS['pagefooter']['addtoqueue'] = '<script type="text/javascript">
 $("#addtoqueue").html("");
 </script>';
 
 $testValue = trim($messagedata['subject']);
 if (empty($testValue) || $testValue == '(no subject)') {
   $allReady = false;
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('subject missing').'</div>\');
   </script>';
 }
@@ -1103,26 +1103,26 @@ $testValue2 = trim($messagedata['sendurl']);
 
 if (empty($testValue) && (empty($testValue2) || $testValue2 == 'e.g. http://www.phplist.com/testcampaign.html')) {
   $allReady = false;
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('message content missing').'</div>\');
   </script>';
 } 
 $testValue = trim($messagedata['fromfield']);
 if (empty($testValue)) {
   $allReady = false;
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('From missing').'</div>\');
   </script>';
 } 
 if (empty($messagedata['targetlist'])) {
   $allReady = false;
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('destination lists missing').'</div>\');
   </script>';
 }
 if ($hasClickTrackLinks && BLOCK_PASTED_CLICKTRACKLINKS) {
   $allReady = false;
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.s('Content contains click track links.').'</div>\');
   </script>';
 }
@@ -1133,18 +1133,18 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   if ($pluginerror) {
     $allReady = false;
     $pluginerror = preg_replace("/\n/","",$pluginerror);
-    $panelcontent .= '<script type="text/javascript">
+    $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
     $("#addtoqueue").append(\'<div class="missing">'.$pluginerror.'</div>\');
     </script>';
   }
 }
 
 if ($allReady) {
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars($GLOBALS['I18N']->get('Send Campaign')).'">\');
   </script>';
 } else {
-  $panelcontent .= '<script type="text/javascript">
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="error">'.$GLOBALS['I18N']->get('Some required information is missing. The send button will be enabled when this is resolved.').'</div>\');
 //  $("#addtoqueue").append(\'<button class="submit" type="submit" name="save" id="addtoqueuebutton" disabled="disabled">'.$GLOBALS['I18N']->get('Send Campaign').'</button>\');
   </script>';
