@@ -22,7 +22,7 @@ close(F);
 open F,">testimport-admin.txt";
 print F "email\tloginname\tpassword\n";
 $start = 20;
-$num = 10000;
+$num = 100;
 for ($i=$start;$i<$start+$num;$i++) {
   $pass = `pwgen -1`;
   chomp($pass);
