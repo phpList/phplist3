@@ -17,10 +17,10 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
         (name,type,listorder,default_value,required,tablename)
         values("%s","%s",%d,"%s",%d,"%s")',
         $tables["adminattribute"],
-        addslashes($_POST["name"][0]),
-        $_POST["type"][0],
+        sql_escape($_POST["name"][0]),
+        sql_escape($_POST["type"][0]),
         $_POST["listorder"][0],
-        addslashes($_POST["default"][0]),$_POST["required"][0],$lc_name);
+        sql_escape($_POST["default"][0]),$_POST["required"][0],$lc_name);
         Sql_Query($query);
         $insertid = Sql_Insert_Id($tables['adminattribute'], 'id');
 
@@ -48,7 +48,7 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
         # it is a change
         $query = sprintf('update %s set name = "%s" ,listorder = %d,default_value = "%s" ,required = %d where id = %d',
         $tables["adminattribute"],sql_escape($_POST["name"][$id]),
-        $_POST["listorder"][$id],sql_escape($_POST["default"][$id]),$_POST["required"][$id],$id);
+        $_POST["listorder"][$id],sql_escape($_POST["default"][$id]),isset($_POST["required"][$id]),$id);
         Sql_Query($query);
       }
     }
@@ -70,11 +70,14 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
 <?php
 print formStart(' class="adminattributesListing" ');
 $res = Sql_Query("select * from {$tables['adminattribute']} order by listorder");
-if (Sql_Num_Rows($res))
-  print $GLOBALS['I18N']->get('Existing attributes:');
-else {
-  print $GLOBALS['I18N']->get('No Attributes have been defined yet');
+if (Sql_Num_Rows($res)) {
+  $title = $GLOBALS['I18N']->get('Existing attributes:');
+} else {
+  $title = $GLOBALS['I18N']->get('No Attributes have been defined yet');
 }
+
+print '<div class="panel"><h3>'.$title . '</h3><div class="content">';
+
 while ($row = Sql_Fetch_array($res)) {
   ?>
   <table class="attributeSet" border="1">
@@ -102,7 +105,7 @@ while (list($key,$val) = each($types)) {
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Default Value:'); ?> </td><td colspan="2"><input type="text" name="default[0]" value="" size="40" /></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Order of Listing:'); ?> </td><td><input type="text" name="listorder[0]" value="" size="5" /></td>
 <td><?php echo $GLOBALS['I18N']->get('Is this attribute required?:'); ?> </td><td><input type="checkbox" name="required[0]" value="1" checked="checked"></td></tr>
-</table><hr/>
-
+</table>
+</div></div>
 <input class="submit" type="submit" name="action" value="<?php echo $GLOBALS['I18N']->get('Save Changes'); ?>">
 </form>
