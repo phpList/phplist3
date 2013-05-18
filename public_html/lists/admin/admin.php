@@ -193,7 +193,7 @@ while (list ($key,$val) = each ($struct)) {
 		print('</td></tr>'."\n");
       }
   } elseif (!empty($val[1]) && !strpos($key,'_')) {
-      printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,stripslashes($data[$key]));
+      printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars(stripslashes($data[$key])));
   }
 }
 $res = Sql_Query("select
