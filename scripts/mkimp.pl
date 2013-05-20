@@ -20,13 +20,13 @@ for ($i=$start;$i<$start+$num;$i++) {
 close(F);
 
 open F,">testimport-admin.txt";
-print F "email\tloginname\tpassword\n";
+print F "email\tloginname\tpassword\tFirst Name\tLast Name\n";
 $start = 20;
 $num = 100;
 for ($i=$start;$i<$start+$num;$i++) {
   $pass = `pwgen -1`;
   chomp($pass);
-  print F "$i\@reallynonexistentdomain.com\tTest Admin $i\t$pass\n";
+  print F "$i\@reallynonexistentdomain.com\tTest Admin $i\t$pass\tTest admin First Name $i\tTest admin Last name$i\n";
 }
 close(F);
 
