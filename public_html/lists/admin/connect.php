@@ -839,7 +839,7 @@ function recentlyVisited() {
   if (empty($_SESSION['adminloggedin'])) return '';
   if (isset($_SESSION['browsetrail']) && is_array($_SESSION['browsetrail'])) {
     $shade = 0;
-    $html .= '<h3>'.$GLOBALS['I18N']->get('Recently Visited').'</h3><ul class="recentlyvisited">';
+    $html .= '<h3>'.$GLOBALS['I18N']->get('Recently visited').'</h3><ul class="recentlyvisited">';
     $browsetrail = array_unique($_SESSION['browsetrail']);
     $browsetrail = array_reverse($browsetrail);
     $browsetaildone = array();
@@ -937,7 +937,7 @@ function topMenu() {
     if (!empty($categoryDetails['toplink'])) {
       $categoryurl = PageUrl2($categoryDetails['toplink'],'','',true);
       if ($categoryurl) {
-        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->get($category).'">'.$GLOBALS['I18N']->get($category).'</a>'.$thismenu.'</li></ul>';
+        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->get($category).'">'.ucfirst($GLOBALS['I18N']->get($category)).'</a>'.$thismenu.'</li></ul>';
       } else {
         $topmenu .=  '<ul><li><span>'.$GLOBALS['I18N']->get($category).$categoryurl.'</span>'.$thismenu.'</li></ul>';
       }
