@@ -24,6 +24,22 @@ if (defined("IN_WEBBLER") && is_object($GLOBALS["config"]["plugins"]["phplist"])
 include_once dirname(__FILE__).'/class.phplistmailer.php';
 $usephpmailer = 1;  
 
+$GLOBALS['bounceruleactions'] = array(
+  'deleteuser' => $GLOBALS['I18N']->get('delete user'),
+  'unconfirmuser' => $GLOBALS['I18N']->get('unconfirm user'),
+  'blacklistuser' => $GLOBALS['I18N']->get('blacklist user'),
+  'deleteuserandbounce' => $GLOBALS['I18N']->get('delete user and bounce'),
+  'unconfirmuseranddeletebounce' => $GLOBALS['I18N']->get('unconfirm user and delete bounce'),
+  'blacklistuseranddeletebounce' => $GLOBALS['I18N']->get('blacklist user and delete bounce'),
+  'deletebounce' => $GLOBALS['I18N']->get('delete bounce'),
+);
+
+if( !isset($GLOBALS["developer_email"]) ) {
+  ini_set('error_append_string','phpList version '.VERSION);
+  ini_set('error_prepend_string','<p class="error">Sorry a software error occurred:<br/>
+    Please <a href="http://mantis.phplist.com">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
+}
+
 function listName($id) {
   global $tables;
   $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d',$tables["list"],$id));
