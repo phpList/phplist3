@@ -30,21 +30,26 @@ $order = ' order by entered desc, id desc';
 if (isset($_GET['delete']) && $_GET['delete']) {
   # delete the index in delete
   $delete = sprintf('%d',$_GET['delete']);
-  print $GLOBALS['I18N']->get('Deleting') . ' ' . $delete . "..\n";
+  $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleting') . ' ' . $delete . "..\n";
   if ($require_login && !isSuperUser()) {
   } else {
     Sql_query(sprintf('delete from %s where id = %d',$tables['eventlog'],$delete));
   }
-  print '..' . $GLOBALS['I18N']->get('Done') . "<br /><hr/><br />\n";
+  $_SESSION['action_result'] .= $GLOBALS['I18N']->get('Done');
+  Redirect('eventlog');
 }
 
 if (isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
     case 'deleteprocessed':
       Sql_Query(sprintf('delete from %s where date_add(entered,interval 2 month) < current_timestamp',$tables["eventlog"]));
+      $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleted all entries older than 2 months') ;
+      Redirect('eventlog'.$find_url);
       break;
     case 'deleteall':
       Sql_Query(sprintf('delete from %s %s',$tables["eventlog"],$where));
+      $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleted all entries') ;
+      Redirect('eventlog'.$find_url);
       break;
   }
 }
