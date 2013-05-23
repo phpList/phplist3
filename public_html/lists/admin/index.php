@@ -322,6 +322,13 @@ if ($page == 'login') {
   unset($_GET['pi']);
 }
 
+##  force to login page, if an Ajax call is made without being logged in
+if ($ajax && empty($_SESSION['adminloggedin'])) {
+  $_SESSION['action_result'] = s('Your session timed out, please login again');
+  print '<script type="text/javascript">top.location = "./?page=home";</script>';
+  exit;
+}
+
 if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
     $languageswitcher = '
  <div id="languageswitcher">
