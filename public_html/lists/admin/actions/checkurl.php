@@ -12,6 +12,7 @@ if (empty($_GET['url'])) return;
 $url = expandURL($_GET['url']);
 
 $isOk = true;
+$code = -1;
 
 if ($GLOBALS['can_fetchUrl']) {
   $code = testUrl($url);
@@ -29,7 +30,7 @@ if ($GLOBALS['can_fetchUrl']) {
 }
 
 if ($isOk) {
-  $status = '<span class="pass">'.$GLOBALS['I18N']->get('URL is valid').'</span>';
+  $status = '<span class="pass">'.s('URL is valid').'</span>';
 } else {
   $status = '<span class="fail">'.$status.'</span>';
 }
