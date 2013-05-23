@@ -523,7 +523,7 @@ class phplistPlugin {
    * @return null
    */
 
-  function processSendStats($sent,$invalid,$failed_sent,$unconfirmed) {
+  function processSendStats($sent = 0,$invalid = 0,$failed_sent = 0,$unconfirmed = 0,$counters = array()) {
     return;
   }
 
