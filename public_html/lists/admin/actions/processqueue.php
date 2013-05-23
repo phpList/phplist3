@@ -775,7 +775,7 @@ while ($message = Sql_fetch_array($messages)) {
     $counters['total_users_for_message '.$messageid] = Sql_Num_Rows($userids);
   }
 
-  if ($num_per_batch) {
+  if ($num_per_batch > 0) {
     ## in case of sending multiple campaigns, reduce batch with "sent"
     $num_per_batch -= $sent;
     
