@@ -1,32 +1,3 @@
-
-
-<script language="Javascript" type="text/javascript">
-  function updateStatus(id,content) {
-    var el = document.getElementById("messagestatus"+id);
-    el.innerHTML = content;
-  }
-
-  function statusError(id) {
-    var el = document.getElementById("messagestatus"+id);
-    el.innerHTML = "Unable to fetch progress";
-  }
-
-  function fetchProgress(id) {
-    var req = new AjaxRequest();
-    AjaxRequest.get(
-      {
-        'id': id
-        ,'url':'./?page=msgstatus'
-        ,'onSuccess':function(req){ updateStatus(id,req.responseText) }
-        ,'onError':function(req){ statusError(); }
-      }
-    );
-  }
-
-</script>
-
-
-
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
@@ -288,11 +259,7 @@ if ($total) {
     include 'actions/msgstatus.php';
     $statusdiv .= $status;
     $statusdiv .= '</div>';
-    $statusdiv .= '
-    <script type="text/javascript">
-      messageStatusUpdate('.$msg['id'].');
-    </script>
-    ';
+    $GLOBALS['pagefooter']['statusupdate'.$msg['id']] = '<script type="text/javascript">messageStatusUpdate('.$msg['id'].');</script>';
     if ($msg['status'] == 'sent') {
       $statusdiv = $GLOBALS['I18N']->get("Sent").": ".$msg['sent'];
     }
