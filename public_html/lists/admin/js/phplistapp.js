@@ -4,9 +4,10 @@
  *
  */
 
+/* these can be "overwritten" by the UI */
 var busyImage = '<img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait" />';
-var menuArrowImage = 'ui/lite/images/menuarrow.png';
-var menuArrowActiveImagesrc = 'ui/lite/images/menuarrow_active.png';
+var menuArrowImage = 'ui/dressprow/images/menuarrow.png';
+var menuArrowActiveImagesrc = 'ui/dressprow/images/menuarrow_active.png';
 
 function urlParameter( name, link) {
   name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -19,10 +20,13 @@ function urlParameter( name, link) {
     return results[1];
 }
 
+
+var statusUpdateCount = 0;
 function messageStatusUpdate(msgid) {
    $('#messagestatus'+msgid).load('./?page=pageaction&ajaxed=true&action=msgstatus&id='+msgid,"",function() {
    });
-   setTimeout("messageStatusUpdate("+msgid+")",5000);
+   top.statusUpdateCount += 1; // slow down updates to avoid clogging up the system
+   setTimeout("messageStatusUpdate("+msgid+")",statusUpdateCount * 8000);
 }
 
 function getServerTime() {
