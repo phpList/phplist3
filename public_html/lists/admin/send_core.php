@@ -458,9 +458,9 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           $sendtestresult .= $GLOBALS['I18N']->get('failed');
         } else {
           $sendtestresult .= $GLOBALS['I18N']->get('success');
+          $_SESSION['lasttestsent'] = time();
         }
         $sendtestresult .= '<br/>';
-        $_SESSION['lasttestsent'] = time();
       } else {
         $sendtestresult .= $GLOBALS['I18N']->get("Email address not found to send test message.").": $address";
         $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s" class="button ajaxable">%s</a></div>',$baseurl,urlencode($address),$GLOBALS['I18N']->get("add"));
