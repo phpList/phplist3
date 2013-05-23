@@ -220,7 +220,7 @@ function my_shutdown () {
   }
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    $plugin->processSendStats($sent,$invalid,$failed_sent,$unconfirmed);
+    $plugin->processSendStats($sent,$invalid,$failed_sent,$unconfirmed,$counters);
   }
 
   flushClickTrackCache();
@@ -1005,11 +1005,11 @@ while ($message = Sql_fetch_array($messages)) {
                output($GLOBALS['I18N']->get('Failed sending to').' '. $useremail);
                logEvent("Failed sending message $messageid to $useremail");
              }
-             # make sure it's not because it's an invalid email
+             # make sure it's not because it's an underdeliverable email
              # unconfirm this user, so they're not included next time
              if (!$throttled && !validateEmail($useremail)) {
                $unconfirmed++;
-               $counters['email address invalidated']++;               
+               $counters['email address invalidated']++;
                logEvent("invalid email $useremail user marked unconfirmed");
                Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"',
                  $GLOBALS['tables']['user'],$useremail));
@@ -1082,12 +1082,16 @@ while ($message = Sql_fetch_array($messages)) {
          # }
         } elseif ($user['email'] || $user['id']) {
           if (VERBOSE) {
-            output(s('Invalid email').': ' . $user['email'].' '.  $user['id']);
+            output(s('Invalid email address').': ' . $user['email'].' '.  $user['id']);
           }
-          logEvent(s('Invalid email').': userid  '. $user['id'].'  email '. $user['email']);
+          logEvent(s('Invalid email address').': userid  '. $user['id'].'  email '. $user['email']);
           # mark it as sent anyway
-          if ($userid)
-            $um = Sql_query("replace into {$tables['usermessage']} (entered,userid,messageid,status) values(current_timestamp,$userid,$messageid,\"invalid email\")");
+          if ($user['id']) {
+            $um = Sql_query(sprintf('replace into %s (entered,userid,messageid,status) values(current_timestamp,%d,%d,"invalid email")',$tables['usermessage'],$userid,$messageid) );
+            Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
+              $GLOBALS['tables']['user'],$user['id']));
+            addUserHistory($user['email'],s('Subscriber marked unconfirmed for invalid email address',s('Marked unconfirmed while sending campaign %d',$messageid)));
+          }
           $invalid++;
         }
       }
