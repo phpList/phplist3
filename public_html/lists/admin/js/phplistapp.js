@@ -20,13 +20,21 @@ function urlParameter( name, link) {
     return results[1];
 }
 
-
-var statusUpdateCount = 0;
+var updateMessages = new Array();
+var updateLock = false;
+function messagesStatusUpdate() {
+  if (updateLock) return;
+  updateLock = true;
+  for (var i = 0; i < updateMessages.length; i++) {
+    messageStatusUpdate(updateMessages[i]);
+  }  
+  updateLock = false;
+}
+  
 function messageStatusUpdate(msgid) {
-   $('#messagestatus'+msgid).load('./?page=pageaction&ajaxed=true&action=msgstatus&id='+msgid,"",function() {
-   });
-   top.statusUpdateCount += 1; // slow down updates to avoid clogging up the system
-   setTimeout("messageStatusUpdate("+msgid+")",statusUpdateCount * 8000);
+   if (msgid) {
+      $('#messagestatus'+msgid).load('./?page=pageaction&ajaxed=true&action=msgstatus&id='+msgid,"",function() {});
+   } 
 }
 
 function getServerTime() {

@@ -259,7 +259,9 @@ if ($total) {
     include 'actions/msgstatus.php';
     $statusdiv .= $status;
     $statusdiv .= '</div>';
-    $GLOBALS['pagefooter']['statusupdate'.$msg['id']] = '<script type="text/javascript">messageStatusUpdate('.$msg['id'].');</script>';
+    $GLOBALS['pagefooter']['statusupdate'.$msg['id']] = '<script type="text/javascript">
+      updateMessages.push('.$msg['id'].');</script>';
+    $GLOBALS['pagefooter']['statusupdate'] = '<script type="text/javascript">window.setInterval("messagesStatusUpdate()",5000);</script>';
     if ($msg['status'] == 'sent') {
       $statusdiv = $GLOBALS['I18N']->get("Sent").": ".$msg['sent'];
     }
