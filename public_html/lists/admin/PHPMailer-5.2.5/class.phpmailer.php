@@ -1100,10 +1100,10 @@ class PHPMailer {
           }
         }
         $index++;
+      }
         if (!$connection) {
           throw new phpmailerException($this->Lang('connect_host'));
         }
-      }
     } catch (phpmailerException $e) {
       $this->smtp->Reset();
       if ($this->exceptions) {
