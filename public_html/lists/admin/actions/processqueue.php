@@ -775,7 +775,7 @@ while ($message = Sql_fetch_array($messages)) {
     $counters['total_users_for_message '.$messageid] = Sql_Num_Rows($userids);
   }
 
-  if ($num_per_batch > 0) {
+  if (MAILQUEUE_BATCH_SIZE) {
     ## in case of sending multiple campaigns, reduce batch with "sent"
     $num_per_batch -= $sent;
     
@@ -794,7 +794,7 @@ while ($message = Sql_fetch_array($messages)) {
     }
     $affrows = Sql_Num_Rows($userids);
     output($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows,0,'progress');
-  }
+  } 
 
   while ($userdata = Sql_Fetch_Row($userids)) {
     $counters['processed_users_for_message '.$messageid]++;
