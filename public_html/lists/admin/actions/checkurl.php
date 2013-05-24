@@ -32,5 +32,5 @@ if ($GLOBALS['can_fetchUrl']) {
 if ($isOk) {
   $status = '<span class="pass">'.s('URL is valid').'</span>';
 } else {
-  $status = '<span class="fail">'.$status.'</span>';
+  $status = '<span class="fail">'.$status.'. '.s('Please verify that the URL entered is correct.').'</span>';
 }
