@@ -329,8 +329,8 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
   if (!empty($id) && !$send) {
     if ($savedraft) {
-      $_SESSION['action_result'] = $GLOBALS['I18N']->get("saved");
-      Header('Location: ./?page=messages&type=draft');
+      $_SESSION['action_result'] = s("Campaign saved as draft");
+      Header('Location: ./?page=messages&tab=draft');
       exit;
     }
   } else {
@@ -654,7 +654,7 @@ if (!$done) {
       
       $maincontent .= '
       <div id="remoteurl" class="field"><label for="sendurl">'.$GLOBALS['I18N']->get("Send a Webpage - URL").Help("sendurl").'</label>'.'
-        <input type=text name="sendurl" id="remoteurlinput"
+        <input type="text" name="sendurl" id="remoteurlinput"
        value="'.$messagedata['sendurl'].'" size="60" /> <span id="remoteurlstatus"></span></div>';
       if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
         $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
@@ -1086,7 +1086,6 @@ $(window).resize(function(){
 print '<img src="ui/'.$GLOBALS['ui'].'/images/prevtab.png" id="prev" class="prevtab" />';
 print '<img src="ui/'.$GLOBALS['ui'].'/images/nexttab.png" id="next" class="nexttab" />';
 print '</div>';
-$savecaption = $GLOBALS['I18N']->get('Save as Draft');
 
 ## if all is there, we can enable the send button
 $allReady = true;
@@ -1168,9 +1167,9 @@ if ($allReady) {
 }
 
 $saveDraftButton = '<div class="sendSubmit">
-    <input class="submit" type="submit" name="savedraft" value="'.$savecaption.'"/>
+    <input class="submit" type="submit" name="savedraft" value="'.s('Save as draft').'"/>
     <input type="hidden" name="id" value="'.$id.'"/>
-    <input type="hidden" name="status" value="'.$messagedata["status"].'"/></div>
+    <input type="hidden" name="status" value="draft"/></div>
 ';
 
   $testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'),$sendtest_content);
