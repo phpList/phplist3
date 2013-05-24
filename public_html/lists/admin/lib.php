@@ -626,7 +626,7 @@ function system_messageHeaders($useremail = "") {
 }
 
 function logEvent($msg) {
-
+  
   $logged = false;
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $logged = $logged || $plugin->logEvent($msg);
@@ -907,8 +907,10 @@ function expandURL($url) {
 }
 
 function testUrl($url) {
+  if (VERBOSE) logEvent('Checking '.$url);
   $code = 500;
   if ($GLOBALS['has_curl']) {
+    if (VERBOSE) logEvent('Checking curl ');
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_TIMEOUT, 10);
@@ -918,10 +920,11 @@ function testUrl($url) {
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true); 
-    curl_setopt($curl,CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
+    curl_setopt($curl, CURLOPT_USERAGENT,'phplist v'.VERSION.' (http://www.phplist.com)');
     $raw_result = curl_exec($curl);
     $code = curl_getinfo($curl,CURLINFO_HTTP_CODE);
   } elseif ($GLOBALS['has_pear_http_request']) {
+    if (VERBOSE) logEvent('Checking PEAR ');
     @require_once "HTTP/Request.php";
     $headreq = new HTTP_Request($url,$request_parameters);
     $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
@@ -929,6 +932,7 @@ function testUrl($url) {
       $code = $headreq->getResponseCode();
     }
   } 
+  if (VERBOSE) logEvent('Checking '.$url.' => '.$code);
   return $code;
 }
 
@@ -1003,7 +1007,7 @@ function fetchUrl($url,$userdata = array()) {
       return false;
     }
   } else {
-    logEvent($url.' was cached in database');
+    if (VERBOSE) logEvent($url.' was cached in database');
     $content = $cache;
   }
   
@@ -1021,6 +1025,7 @@ function fetchUrl($url,$userdata = array()) {
 }
 
 function fetchUrlCurl($url,$request_parameters) {
+    if (VERBOSE) logEvent($url.' fetching with curl ');
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_TIMEOUT, $request_parameters['timeout']);
@@ -1034,11 +1039,13 @@ function fetchUrlCurl($url,$request_parameters) {
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl,CURLINFO_HTTP_CODE);
     curl_close($curl);
+    if (VERBOSE) logEvent('fetched '.$url.' status '.$status);
 #    var_dump($status); exit;
     return $raw_result;
 }
 
 function fetchUrlPear($url,$request_parameters) {
+  if (VERBOSE) logEvent($url.' fetching with PEAR');
   
   if (0 && $GLOBALS['has_pear_http_request'] == 2) {
     $headreq = new HTTP_Request2($url,$request_parameters);

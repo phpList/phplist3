@@ -119,4 +119,3 @@ while ($event = Sql_fetch_array($result)) {
 }
 print $ls->display();
 
-?>
