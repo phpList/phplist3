@@ -8,6 +8,10 @@ $success = 1;
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
 if (!empty($_REQUEST['firstinstall']) && empty($_REQUEST['adminemail'])) {
+  print '<noscript>';
+  print '<div class="error">'.s('To install phpList, you need to enable Javascript').'</div>';
+  print '</noscript>';
+  
   print '<form method="post" action="">';
   print '<input type="hidden" name="firstinstall" value="1" />';
   print '<input type="hidden" name="page" value="initialise" />';
