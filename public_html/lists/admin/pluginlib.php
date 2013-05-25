@@ -138,6 +138,18 @@ function upgradePlugins($toUpgrade) {
   }
 }
 
+$commandlinePluginPages = array();
+$commandlinePlugins = array();
+if (sizeof($GLOBALS["plugins"])) {
+  foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
+    $cl_pages = $plugin->commandlinePluginPages;
+    if (sizeof($cl_pages)) {
+      $commandlinePlugins[] = $pluginName;
+      $commandlinePluginPages[$pluginName] = $cl_pages;
+    }
+  }
+}
+
 /*
   * central function to call a method on all plugins
   * not sure to go down this route yet, MD 201212

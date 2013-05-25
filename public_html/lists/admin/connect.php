@@ -94,18 +94,6 @@ if (!isset($usertable_prefix)) {
   $usertable_prefix = $table_prefix;
 }
 
-$commandlinePluginPages = array();
-$commandlinePlugins = array();
-if (sizeof($GLOBALS["plugins"])) {
-  foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
-    $cl_pages = $plugin->commandlinePluginPages;
-    if (sizeof($cl_pages)) {
-      $commandlinePlugins[] = $pluginName;
-      $commandlinePluginPages[$pluginName] = $cl_pages;
-    }
-  }
-}
-
 $domain = getConfig("domain");
 $website = getConfig("website");
 if (!$domain) {
