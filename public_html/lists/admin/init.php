@@ -398,7 +398,6 @@ $counters = array(
   'batch_total' => 0,
   'sendemail returned false' => 0,
   'send blocked by domain throttle' => 0,
-  'send blocked by domain throttle' => 0,
 );
 
 $GLOBALS['disallowpages'] = array();
