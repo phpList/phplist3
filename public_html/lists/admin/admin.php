@@ -95,7 +95,7 @@ if (!empty($_POST["change"])) {
     Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s", privileges = "%s" where id = %d',
       $GLOBALS['tables']["admin"],adminName($_SESSION["logindetails"]["id"]),sql_escape(serialize($privs)),$id));
 
-    print '<br/>'.$GLOBALS['I18N']->get('Changes saved');
+    print $GLOBALS['I18N']->get('Changes saved');
     print '</div>';
   } else {
     Error($GLOBALS['I18N']->get('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
