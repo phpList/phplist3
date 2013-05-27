@@ -53,6 +53,8 @@ $req = Sql_Query(sprintf('select * from %s %s',$tables['list'],$subselect));
 
 if (!Sql_Affected_Rows()) {
   print Info(s('All lists have already been assigned a category'),true);
+} else {
+  print '<div class="fright">'.PageLinkButton('configure&id=list_categories',$I18N->get('Configure Categories')).'</div>';
 }
 
 $ls = new WebblerListing(s('Categorise lists'));
