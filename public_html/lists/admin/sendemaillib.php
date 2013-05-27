@@ -375,12 +375,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   # make sure to only include usertrack once, otherwise the stats would go silly
   $htmlmessage = str_ireplace('[USERTRACK]','',$htmlmessage);
 
-  if (!empty($cached[$messageid]['listowner'])) {
-    $att_req = Sql_Query("select name,value from {$GLOBALS["tables"]["adminattribute"]},{$GLOBALS["tables"]["admin_attribute"]} where {$GLOBALS["tables"]["adminattribute"]}.id = {$GLOBALS["tables"]["admin_attribute"]}.adminattributeid and {$GLOBALS["tables"]["admin_attribute"]}.adminid = ".$cached[$messageid]['listowner']);
-    while ($att = Sql_Fetch_Array($att_req)) {
-      $htmlmessage = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att["name"]))."\]#",$att["value"],$htmlmessage);
-    }
-  }
   $html['subject'] = $cached[$messageid]["subject"];
   $text['subject'] = $cached[$messageid]["subject"];
   
@@ -1383,7 +1377,7 @@ function precacheMessage($messageid,$forwardContent = 0) {
       }
     }
     
-    if (VERBOSE && $GLOBALS['getspeedstats']) {
+    if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
       output('fetch URL end');
     }
 /*
@@ -1405,7 +1399,7 @@ exit;
 }
 */
 
-  if (VERBOSE && $GLOBALS['getspeedstats']) {
+  if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
     output('parse config start');
   }
   
@@ -1422,7 +1416,7 @@ exit;
     }
   }
   */
-  if (VERBOSE && $GLOBALS['getspeedstats']) {
+  if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
     output('parse config end');
   }
   foreach($message as $key => $val) {
@@ -1440,6 +1434,13 @@ exit;
     $cached[$messageid]['listowner'] = 0;
   }
 
+  if (!empty($cached[$messageid]['listowner'])) {
+    $att_req = Sql_Query("select name,value from {$GLOBALS["tables"]["adminattribute"]},{$GLOBALS["tables"]["admin_attribute"]} where {$GLOBALS["tables"]["adminattribute"]}.id = {$GLOBALS["tables"]["admin_attribute"]}.adminattributeid and {$GLOBALS["tables"]["admin_attribute"]}.adminid = ".$cached[$messageid]['listowner']);
+    while ($att = Sql_Fetch_Array($att_req)) {
+      $cached[$messageid]['content'] = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att["name"]))."\]#",$att["value"],$cached[$messageid]['content']);
+    }
+  }
+  
   $baseurl = $GLOBALS['website'];
   if (defined('UPLOADIMAGES_DIR') && UPLOADIMAGES_DIR) {
     ## escape subdirectories, otherwise this renders empty
