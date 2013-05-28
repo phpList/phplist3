@@ -71,6 +71,19 @@ function openHelpDialog(url) {
   });
 }
 
+function initialiseTranslation(text) {
+  $("#dialog").dialog({
+    minHeight: 400,
+    width: 600,
+    modal: true,
+    show: 'blind',
+    hide: 'explode'
+  });
+  $("#dialog").html('<div class="openhelpimage">'+text+'<br/>'+busyImage+'</div>');
+  $("#dialog").load('./?ajaxed=true&page=pageaction&action=initlanguage');
+}
+
+
 function totalSentUpdate(msgid) {
    $('#totalsent'+msgid).load('./?page=pageaction&ajaxed=true&action=msgsent&id='+msgid,"",function() {
    });

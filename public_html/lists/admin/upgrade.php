@@ -355,6 +355,9 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   ## add index on bounces, but ignore the error
   Sql_Query("create index statusindex on {$tables["user_attribute"]} (status(10))",1);  
   Sql_Query("create index message_lookup using btree on {$tables["user_message_bounce"]} (message)",1);   
+  
+  ## just in case it isn't there
+  Sql_Query('alter table '.$tables["i18n"].' add unique lanorigunq (lan(10),original(200))',1);
     
   ## mantis issue 9001, make sure that the "repeat" column in the messages table is renamed to repeatinterval
   # to avoid a name clash with Mysql 5.
@@ -376,31 +379,6 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   # update the system pages
   include_once dirname(__FILE__).'/defaultconfig.php';
-
-  /* the task table can be ignored now
-
-  $reverse_accesscodes = array_flip($GLOBALS['access_levels']);
-  foreach ($system_pages as $type => $pages) {
-    foreach ($pages as $page => $default) {
-      Sql_Query(sprintf('insert ignore into %s (page,type) values("%s","%s")',
-        $tables["task"],$page,$type));
-      $newtask = Sql_Insert_Id($tables['task'], 'id');
-      if ($newtask) {
-        # it's a new page, set the standard default
-        Sql_Query(sprintf('insert into %s (adminid,taskid,level) values(0,%d,%d)',
-          $GLOBALS['tables']['admin_task'],$newtask,$reverse_accesscodes[$default]));
-      }
-    }
-  }
-  
-  
-  # correct some strange access entries that have sneaked in
-  $req = Sql_Query(sprintf('select id from %s where page = "all" or page = "none"',$GLOBALS['tables']['task']));
-  while ($row = Sql_Fetch_Row($req)) {
-    Sql_Query(sprintf('delete from %s where taskid = %d',$GLOBALS['tables']['admin_task'],$row[0]));
-  }
-  Sql_Query(sprintf('delete from %s where page = "all" or page = "none"',$GLOBALS['tables']['task']));
-  */
 
   ## remember whether we've done this, to avoid doing it every time
   ## even thought that's not such a big deal

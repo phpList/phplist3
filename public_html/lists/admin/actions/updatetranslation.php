@@ -21,15 +21,10 @@ foreach ($LU->translation as $update) {
     $translations = parsePo($translationUpdate);
   }
 }
-#  $status = $lan;
 
 $status = '';
 if (sizeof($translations)) {
-  foreach ($translations as $orig => $trans) {
-    $status .= $orig .' =&gt; '.$trans.'<br/>';
-    Sql_Replace($GLOBALS['tables']['i18n'],array('lan' => $lan,'original' => $orig,'translation' => $trans),'');
-  }
-  saveConfig('lastlanguageupdate-'.$lan,time(),0);
+  $I18N->updateDBtranslations($translations,time());
   $status = sprintf(s('updated %d language terms'),sizeof($translations));
 } else {
   $status = Error(s('Network error updating language, please try again later'));

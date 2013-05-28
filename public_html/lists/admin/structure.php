@@ -467,10 +467,11 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         "expires" => array('datetime not null',''),
       ),
       "i18n" => array (
-        "lan" => array('varchar(255) not null','Language ISO'),
+        "lan" => array('varchar(10) not null','Language ISO'),
         "original" => array('text not null','Original string'),
         "translation" => array('text not null','Translated string'),
-        "index_1" => array('lanorigidx (lan(50),original(200))','index'),
+        "index_1" => array('lanorigidx (lan(10),original(200))','index'),
+        'unique_1' => array('lanorigunq (lan(10),original(200))','unique'),
       ),
         
   /*    "translation" => array(
