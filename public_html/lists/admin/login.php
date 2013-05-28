@@ -65,12 +65,7 @@ function deleteOldTokens(){
     $admin = $adminData[0];
     if ($p1 == $p2 && !empty($admin)) {
       #Database update.
-      if (ENCRYPT_ADMIN_PASSWORDS) {
-        $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], md5($p1), $admin);
-      }
-      else {
-        $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], sql_escape($p1), $admin);
-      }
+      $SQLquery=sprintf("update %s set password='%s', passwordchanged=now() where loginname = '%s';", $GLOBALS['tables']['admin'], encryptPass($p1), $admin);
  ##     print $SQLquery;
       $query = Sql_Query($SQLquery);
       print $GLOBALS['I18N']->get('Your password was changed succesfully').'<br/>';
