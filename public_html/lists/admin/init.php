@@ -138,7 +138,11 @@ if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",1);
 if (ASKFORPASSWORD && defined("ENCRYPTPASSWORD") && ENCRYPTPASSWORD) {
   ##https://mantis.phplist.com/view.php?id=16787
   # passwords are encrypted, so we need to stick to md5 to keep working
-  define('ENCRYPTION_ALGO','md5');
+  
+  ## we also need some "update" mechanism to handle an algo change
+  if (!defined('ENCRYPTION_ALGO')) {
+    define('ENCRYPTION_ALGO','md5');
+  }
 }
 
 if (ASKFORPASSWORD && !defined("ENCRYPTPASSWORD")) {
@@ -147,7 +151,9 @@ if (ASKFORPASSWORD && !defined("ENCRYPTPASSWORD")) {
 }
 if (!defined("ENCRYPTPASSWORD")) {
   ## old method to encrypt, used to be with md5, keep like this for backward compat.
-  define('ENCRYPTION_ALGO','md5');
+  if (!defined('ENCRYPTION_ALGO')) {
+    define('ENCRYPTION_ALGO','md5');
+  }
 #  define("ENCRYPTPASSWORD",0);
 }
 
