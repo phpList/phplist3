@@ -7,6 +7,15 @@
 	fetch = :refs/remotes/git-svn
 	remote = svn
 	type = dir
+[submodule "public_html/lists/admin/ui/dressprow"]
+	path = public_html/lists/admin/ui/dressprow
+	owner = public_html/lists/admin/ui
+	url = https://svn.code.sf.net/p/lite-template/code
+	revision = 232
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
 [submodule "public_html/lists/admin/info"]
 	path = public_html/lists/admin/info
 	owner = public_html/lists/admin
