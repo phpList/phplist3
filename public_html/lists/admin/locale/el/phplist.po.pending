@@ -390,3 +390,11 @@ msgid ""
 "_: suggested by nobody [-8275263586599547542]\n"
 "No file was specified. Maybe the file is too big?"
 msgstr "Δεν ορίστηκε αρχείο. Ίσως το αρχείο είναι πολύ μεγάλο"
+
+#: public_html/lists/index.php:947
+msgid ""
+"_: suggested by nobody [192184798]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"Όταν δοκιμάζετε την λειτουργία προώθησης του phpList, θα πρέπει να είστε "
+"συνδεδεμενος ως διαχειριστής."
