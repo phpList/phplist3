@@ -131,10 +131,12 @@ $msg = "";
 
 if (!empty($_POST["sendpersonallocation"])) {
   if (isset($_POST['email']) && $_POST["email"]) {
-    $uid = Sql_Fetch_Row_Query(sprintf('select uniqid,email,id from %s where email = "%s"',
-      $tables["user"],$_POST["email"]));
-    if ($uid[0]) {
-      sendMail ($uid[1],getConfig("personallocation_subject"),getUserConfig("personallocation_message",$uid[2]),system_messageheaders(),$GLOBALS["envelope"]);
+    $uid = Sql_Fetch_Assoc_Query(sprintf('select uniqid,email,id,blacklisted from %s where email = "%s"',
+      $tables["user"],sql_escape($_POST["email"])));
+    if ($uid['blacklisted']) {
+      $msg .= $GLOBALS["strYouAreBlacklisted"];
+    } elseif ($uid['uniqid']) {
+      sendMail ($uid['email'],getConfig("personallocation_subject"),getUserConfig("personallocation_message",$uid['id']),system_messageheaders(),$GLOBALS["envelope"]);
       $msg = $GLOBALS["strPersonalLocationSent"];
       addSubscriberStatistics('personal location sent',1);
     } else {
