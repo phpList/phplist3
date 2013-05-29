@@ -20,10 +20,9 @@
     </ul>
     <h3><?php echo $GLOBALS['I18N']->get('Contributors')?></h3>
     <ul>
+      <li><a href="http://www.dcameron.me.uk/phplist">Duncan Cameron</a>, Forum Moderator, QA Engineer</li>
       <li>H2B2, Forum Moderator, Mantis Manager</li>
       <li><a href="http://dragonrider.co.uk/phplist">Dragonrider</a>, Forum Moderator</li>
-      <li><a href="http://www.dcameron.me.uk/phplist">Duncan Cameron</a>, Forum Moderator</li>
-      
     </ul>
     <h3><?php echo $GLOBALS['I18N']->get('Design')?>:</h3>
     <ul>
@@ -40,10 +39,9 @@
       <li>Pascal Van Hecke</li>
     </ul>
     <h3><?php echo $GLOBALS['I18N']->get('Translations') ?></h3>
-    <ul>
-      <li><a href="http://www.babels.org" target="_blank">Babels</a></li>
-      <?php echo $GLOBALS['I18N']->get('credits for this translation') ?>
-    </ul>
+    <p><?php echo s('The translations are provided by the phpList community (that includes you :-) )')?></p>
+    <p><?php echo s('The <a href="http://translate.phplist.com/" target="translate">translation site</a> runs <a href="http://translate.sourceforge.net/" target="pootle">Pootle</a> an Open Source translation tool, provided by <a href="http://translatehouse.org" target="translatehouse">Translate House</a>')?></p>
+    <h3><?php echo $GLOBALS['I18N']->get('Acknowledgements') ?></h3>
     <p>
         <?php echo $GLOBALS['I18N']->get('The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions.')?>
     </p>
@@ -51,7 +49,7 @@
     <ul>
       <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
-      <li>the <a href="https://code.google.com/a/apache-extras.org/p/phpmailer/" target="_blank">phpmailer</a> class </li>
+      <li>the <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">phpmailer</a> class </li>
       <li>the <a href="http://jquery.com">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
     </ul>
     </td>
