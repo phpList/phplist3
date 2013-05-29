@@ -20,7 +20,7 @@ setMessageData($msgid,'textmessage',$textversion);
 $textversion = trim($textversion);
 $textversion = preg_replace("/\n/","\\n",$textversion);
 $textversion = preg_replace("/\r/","",$textversion);
-$textversion = htmlentities($textversion);
+$textversion = htmlentities($textversion,ENT_QUOTES,'UTF-8');
 
 $status =  '<script type="text/javascript">
 
