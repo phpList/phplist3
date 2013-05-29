@@ -451,7 +451,7 @@ $lan = array(
       if (!empty($db_trans)) {
         return $this->formatText($db_trans);
       } elseif (is_file(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po')) {
-        if (function_exists('getConfig')) {
+       if (function_exists('getConfig')) {
           $lastUpdate = getConfig('lastlanguageupdate-'.$this->language);
           $thisUpdate = filemtime(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po');
           if ($thisUpdate > $lastUpdate && !empty($_SESSION['adminloggedin'])) {
