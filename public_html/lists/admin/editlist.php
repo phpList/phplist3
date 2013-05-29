@@ -91,6 +91,8 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
 
     $_SESSION['action_result'] = s('New list added') . ": $id";
     $_SESSION['newlistid'] = $id;
+  } else {
+    $_SESSION['action_result'] = s('Changes saved');
   }
   ## allow plugins to save their fields
   foreach ($GLOBALS['plugins'] as $plugin) {
