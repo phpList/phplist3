@@ -337,22 +337,25 @@ var overallSent = 0;
 
 /* this one keeps track of the total between multiple processqueue runs */
 $.fn.updateSendProgress = function() {
-  var args = arguments[0].split(',') || {}; //  arguments
+  var args = arguments[0].split(',') || {}; 
   var total = parseInt(args[1]);
-  // fix the total first time
-  if (total > overallTotal) {    overallTotal = total;  } else {    total = overallTotal;  }
   var done = parseInt(args[0]);
+  if (total > overallTotal) {    overallTotal = total;  } else {    total = overallTotal;  }
   if (done > 0) {
     overallSent += done;
   }
-  updateProgress(overallTotal,overallDone);
+  $.fn.updateProgress(overallSent,overallTotal);
 }
 
-$.fn.updateProgress = function() {  
-  var args = arguments[0].split(',') || {}; //  arguments
-  var total = parseInt(args[1]);
-  var done = parseInt(args[0]);
-  
+$.fn.updateProgress = function() {
+  if ($.isNumeric(arguments[0])) {
+    var total = parseInt(arguments[1]);
+    var done = parseInt(arguments[0]);
+  } else {
+    var args = arguments[0].split(',') || {}; 
+    var total = parseInt(args[1]);
+    var done = parseInt(args[0]);
+  }
   var perc;
   if (total == 0) {
     perc = 0;
