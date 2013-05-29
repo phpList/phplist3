@@ -340,6 +340,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
         Sql_Create_Table($tables["admin_password_request"],$DBstruct["admin_password_request"],1);
         Sql_Create_Table($tables["admintoken"],$DBstruct["admintoken"],1);
         Sql_Create_Table($tables["i18n"],$DBstruct["i18n"],1);
+        unset($_SESSION['hasI18Ntable']);
         $req = Sql_Query(sprintf('select loginname,password from %s where length(password) < %d',$GLOBALS['tables']['admin'],$GLOBALS['hash_length']));
         while ($row = Sql_Fetch_Assoc($req)) {
           $encryptedPassDB =  hash(ENCRYPTION_ALGO,$row['password']);
