@@ -1,12 +1,3 @@
-[submodule "public_html/lists/admin/help"]
-	path = public_html/lists/admin/help
-	owner = public_html/lists/admin
-	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/help
-	revision = 3710
-	branch = /
-	fetch = :refs/remotes/git-svn
-	remote = svn
-	type = dir
 [submodule "public_html/lists/admin/ui/dressprow"]
 	path = public_html/lists/admin/ui/dressprow
 	owner = public_html/lists/admin/ui
@@ -39,6 +30,15 @@
 	owner = public_html/lists
 	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/texts
 	revision = 3639
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
+[submodule "public_html/lists/admin/help"]
+	path = public_html/lists/admin/help
+	owner = public_html/lists/admin
+	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/help
+	revision = 3710
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
