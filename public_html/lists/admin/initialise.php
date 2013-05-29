@@ -94,7 +94,7 @@ while (list($table, $val) = each($DBstruct)) {
           $tables["admin"],"admin","admin",$adminemail,encryptPass($adminpass),1));
 
         ## let's add them as a subscriber as well
-        addNewUser($adminemail,$adminpass);
+        $userid = addNewUser($adminemail,$adminpass);
         /* to send the token at the end, doesn't work yet
         $adminid = Sql_Insert_Id();
         */
@@ -126,7 +126,7 @@ if ($success) {
   # mark the database to be our current version
   Sql_Replace($tables['config'], array('item' => 'version', 'value' => VERSION, 'editable' => 0), 'item');
   # mark now to be the last time we checked for an update
-  Sql_Replace($tables['config'], array('item' => "'updatelastcheck'", 'value' => 'current_timestamp', 'editable' => '0'), 'item', false);
+  Sql_Replace($tables['config'], array('item' => "updatelastcheck", 'value' => 'current_timestamp', 'editable' => '0'), 'item', false);
   # add a testlist
   $info = $GLOBALS['I18N']->get("List for testing.");
   $stmt
@@ -143,6 +143,11 @@ if ($success) {
   . ' values'
   . '   (?, ?, current_timestamp, ?, ?)';
   $result = Sql_Query_Params($stmt, array('newsletter', $info, '1', '1'));
+  
+  ## add the admin to the lists
+  Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],1,$userid));
+  Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],2,$userid));
+ 
   $body = '
     Version: '.VERSION."\r\n".
    ' Url: '.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."\r\n";
@@ -164,6 +169,13 @@ if ($success) {
   $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
   Sql_Query_Params($query, array('image/png', 'powerphplist.png', $newpoweredimage, 70, 30));
   print '<p>'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</p>";
+
+  unset($_SESSION['hasI18Ntable']);
+  ## load language files
+  # this is too slow
+  #  $GLOBALS['I18N']->initFSTranslations();
+
+
 } else {
  print ('<div class="initialiseOptions"><ul><li>'.$GLOBALS['I18N']->get("Maybe you want to")." ".PageLinkButton("upgrade",$GLOBALS['I18N']->get("Upgrade")).' '.$GLOBALS['I18N']->get("instead?").'</li>
     <li>'.PageLinkButton("initialise",$GLOBALS['I18N']->get("Force Initialisation"),"force=yes").' '.$GLOBALS['I18N']->get("(will erase all data!)").' '."</li></ul></div>\n");
