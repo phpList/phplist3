@@ -455,6 +455,7 @@ $lan = array(
           $lastUpdate = getConfig('lastlanguageupdate-'.$this->language);
           $thisUpdate = filemtime(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po');
           if ($thisUpdate > $lastUpdate && !empty($_SESSION['adminloggedin'])) {
+            ## we can't translate this, as it'll be recursive
             $GLOBALS['pagefooter']['transupdate'] = '<script type="text/javascript">initialiseTranslation("Initialising phpList in your language, please wait.");</script>';
           }
         }
