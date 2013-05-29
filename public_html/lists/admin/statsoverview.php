@@ -57,29 +57,6 @@ if (!$id) {
 #  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
   print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
 
-  /* broken Adodb conversion by Brian_252 */
-/*  $timerange = ' and msg.entered + interval \'6 months\' > current_timestamp';
-  #$timerange = '';
-
-  // TODO Use join syntax.
-  $query
-  = ' select msg.owner, msg.id as messageid'
-  . '   , count(um.viewed) as views'
-  . '   , count(um.status) as total'
-  . '   , subject'
-  . '   , to_char(sent, \'dd Mon YYYY\') as sent'
-  . '   , bouncecount as bounced'
-  . ' from %s um, %s msg'
-  . ' where um.messageid = msg.id'
-  . ' %s'
-  . ' %s'
-  . ' group by msg.id, msg.owner, subject, sent, bounced, msg.entered'
-  . ' order by msg.entered desc'
-  . ' limit 10';
-  $query = sprintf($query, $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['message'], $and, $timerange);
-  $params = array_merge(array(), $and_params);
-  $req = Sql_Query_Params($query, $params);*/
-
   $timerange = ' and msg.entered > date_sub(current_timestamp,interval 12 month)';
   #$timerange = '';
   $limit = ' limit 10';
