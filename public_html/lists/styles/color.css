@@ -21,6 +21,7 @@ p.button a, a.button            { border-color:#BBB #AAA #AAA #BBB; background:u
 input:hover[type="submit"], 
 a:hover.button, p.button a:hover{ border-color:#F90 !important; color:#000;}
 
+#logo a:hover {  color:#aaa; }
 
 
 /* end file: /lists/styles/color.css   */

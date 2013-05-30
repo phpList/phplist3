@@ -58,11 +58,6 @@ p.poweredby a:hover         { background:none; border:0;}
 p a                         {font-size:16px; }
 p a[href='./?p=unsubscribe']{float:right; font-size:12px; margin-top:50px}
 
-/* ---------------- branding ---------------- */
-
-#logo a                 { position:relative; background:transparent url('../images/branding.png') no-repeat scroll left top; display:block; float:left; margin:6px 0 0 16px; height:55px; width:340px; text-indent:-9999px; overflow:hidden}
-#logo a:hover           { zoom:1; opacity:.85; filter:alpha(opacity=85);}
-
 
 /* ---------------- Table Styles ---------------- */
 
@@ -86,5 +81,10 @@ input:hover[type="submit"],
 a:hover.button, p.button a:hover    { cursor:pointer; text-decoration:none;}
 
 span.required, div.required         { color:red; }
+
+/* =---------------- Top Logo ----------*/
+
+#logo { margin-top:5px; font-size:48px; }
+
 
 /* end file:/lists/styles/subscribe.css   */
