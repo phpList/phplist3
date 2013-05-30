@@ -17,7 +17,7 @@ if (Sql_Table_exists($tables["config"],1)) {
   Info($GLOBALS['I18N']->get('Database has not been initialised').', '.
   $GLOBALS['I18N']->get('go to').' '.
   PageLink2("initialise&firstinstall=1",$GLOBALS['I18N']->get('Initialise Database')). ' '.
-  $GLOBALS['I18N']->get('to continue'));
+  $GLOBALS['I18N']->get('to continue'),1);
   $GLOBALS["firsttime"] = 1;
   $_SESSION["firstinstall"] = 1;
   return;
