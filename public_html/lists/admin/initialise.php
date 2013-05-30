@@ -5,17 +5,31 @@ include dirname(__FILE__).'/structure.php';
 @ob_end_flush();
 
 $success = 1;
+if (!isset($_REQUEST['adminname'])) $_REQUEST['adminname'] = '';
+if (!isset($_REQUEST['orgname'])) $_REQUEST['orgname'] = '';
+if (!isset($_REQUEST['adminpassword'])) $_REQUEST['adminpassword'] = '';
+if (!isset($_REQUEST['adminemail'])) $_REQUEST['adminemail'] = '';
+if (isset($_REQUEST['adminemail']) && !is_email($_REQUEST['adminemail'])) {
+  $_REQUEST['adminemail'] = '';
+}
+  
+
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
-if (!empty($_REQUEST['firstinstall']) && empty($_REQUEST['adminemail'])) {
+if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strlen($_REQUEST['adminpassword']) < 8)) {
   print '<noscript>';
   print '<div class="error">'.s('To install phpList, you need to enable Javascript').'</div>';
   print '</noscript>';
   
-  print '<form method="post" action="">';
-  print '<input type="hidden" name="firstinstall" value="1" />';
+  print '<form method="post" action="" class="configForm">';
+  print '<fieldset><legend>'.s('phpList initialisation').' </legend>
+    <input type="hidden" name="firstinstall" value="1" />';
   print '<input type="hidden" name="page" value="initialise" />';
-  print '<p>'.$GLOBALS['I18N']->get('Please enter your email address.').'</p>';
+  print '<label for="adminname">'.$GLOBALS['I18N']->get('Please enter your name.').'</label>';
+  print '<div class="field"><input type="text" name="adminname" class="error missing" value="'.htmlspecialchars($_REQUEST['adminname']).'" /></div>';
+  print '<label for="orgname">'.$GLOBALS['I18N']->get('The name of your organisation').'</label>';
+  print '<input type="text" name="orgname" value="'.htmlspecialchars($_REQUEST['orgname']).'" />';
+  print '<label for="adminemail">'.$GLOBALS['I18N']->get('Please enter your email address.').'</label>';
 
   /* would be nice to do this, but needs more work
   if (ENCRYPT_ADMIN_PASSWORDS) {
@@ -23,18 +37,12 @@ if (!empty($_REQUEST['firstinstall']) && empty($_REQUEST['adminemail'])) {
     print '<p>'.$GLOBALS['I18N']->get('The initial <i>login name</i> will be' ).' "admin"'.'</p>';
   }
   */
-  print '<input type="text" name="adminemail" value="" size="25" /><br/>';
-  /*
-  if (!ENCRYPT_ADMIN_PASSWORDS) {
-    */
-    print '<p>'.$GLOBALS['I18N']->get('The initial <i>login name</i> will be' ).' "admin"'.'</p>';
-    print '<p>'.$GLOBALS['I18N']->get('Please enter the password you want to use for this account.').' ('.$GLOBALS['I18N']->get('minimum of 8 characters.').')</p>';
-    print '<input type="text" name="adminpassword" value="" size="25" id="initialadminpassword" /><br/><br/>';
-/*
-  } 
-*/
+  print '<input type="text" name="adminemail" value="'.htmlspecialchars($_REQUEST['adminemail']).'" />';
+  print $GLOBALS['I18N']->get('The initial <i>login name</i> will be' ).' "admin"'.'<br/>';
+  print '<label for="adminpassword">'.$GLOBALS['I18N']->get('Please enter the password you want to use for this account.').' ('.$GLOBALS['I18N']->get('minimum of 8 characters.').')</label>';
+  print '<input type="text" name="adminpassword" value="" id="initialadminpassword" /><br/><br/>';
   print '<input type="submit" value="'.$GLOBALS['I18N']->get('Continue').'" id="initialisecontinue" disabled="disabled" />';
-  print '</form>';
+  print '</fieldset></form>';
   return;
 } 
 
@@ -124,9 +132,19 @@ foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
 
 if ($success) {
   # mark the database to be our current version
-  Sql_Replace($tables['config'], array('item' => 'version', 'value' => VERSION, 'editable' => 0), 'item');
+  SaveConfig('version',VERSION,0);
   # mark now to be the last time we checked for an update
   Sql_Replace($tables['config'], array('item' => "updatelastcheck", 'value' => 'current_timestamp', 'editable' => '0'), 'item', false);
+  SaveConfig('admin_address',$_REQUEST['adminemail'],1);
+  SaveConfig('message_from_name',strip_tags($_REQUEST['adminname']),1);
+  if (!empty($_REQUEST['orgname'])) {
+    SaveConfig('organisation_name',strip_tags($_REQUEST['orgname']),1);
+  } elseif (!empty($_REQUEST['adminname'])) {
+    SaveConfig('organisation_name',strip_tags($_REQUEST['adminname']),1);
+  } else {
+    SaveConfig('organisation_name',strip_tags($_REQUEST['adminemail']),1);
+  }
+ 
   # add a testlist
   $info = $GLOBALS['I18N']->get("List for testing.");
   $stmt
