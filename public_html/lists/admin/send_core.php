@@ -133,8 +133,8 @@ if (preg_match("/\n|\r/",$messagedata["forwardsubject"])) {
 ## it seems people are pasting the results of test messages back in the editor, which would duplicate
 ## tracking
 
-$hasClickTrackLinks = preg_match('/lt\.php\?id=\w{22}/',$messagedata["message"],$regs) ||
-(CLICKTRACK_LINKMAP && preg_match('#'.CLICKTRACK_LINKMAP.'/\w{22}#',$messagedata['message']));
+$hasClickTrackLinks = preg_match('/lt\.php\?id=[\w%]{22}/',$messagedata["message"],$regs) || preg_match('/lt\.php\?id=[\w%]{16}/',$messagedata["message"],$regs) ||
+(CLICKTRACK_LINKMAP && (preg_match('#'.CLICKTRACK_LINKMAP.'/[\w%]{22}#',$messagedata['message']) || preg_match('#'.CLICKTRACK_LINKMAP.'/[\w%]{16}#',$messagedata['message'])));
 
 if ($hasClickTrackLinks) {
   print Error(s('You should not paste the results of a test message back into the editor<br/>This will break the click-track statistics, and overload the server.'));
