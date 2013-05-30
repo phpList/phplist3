@@ -70,6 +70,14 @@ $default_config = array (
   'allowempty' => false,
   'category'=> 'general',
 ),
+  # name of the organisation
+"organisation_name" => array (
+ 'value' => '',
+ 'description' => s("Name of the organisation"),
+  'type' => "text",
+  'allowempty' => true,
+  'category'=> 'general',
+),
 
   # how often to check for new versions of PHPlist
 "check_new_version" => array (
@@ -704,9 +712,13 @@ if (!function_exists("getconfig")) {
         }
 			}
 		}
-		$value = preg_replace('/\[DOMAIN\]/i', $domain, $value);
-		$value = preg_replace('/\[WEBSITE\]/i', $website, $value);
-		$value = preg_replace('/<\?=VERSION\?>/i', VERSION, $value);
+		$value = str_replace('[WEBSITE]', $website, $value);
+		$value = str_replace('[DOMAIN]', $domain, $value);
+        if (isset($GLOBALS['organisation_name'])) {
+           $value = str_replace('[ORGANISATION_NAME]', $GLOBALS['organisation_name'], $value);
+        } 
+		$value = str_replace('<?=VERSION?>', VERSION, $value);
+    
 		if (isset ($default_config[$item]['type'])) {
 			$type = $default_config[$item]['type'];
 		} else {
