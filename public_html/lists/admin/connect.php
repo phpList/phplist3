@@ -28,6 +28,22 @@ if (!isset ($_GET["pi"]))
 
 $GLOBALS["mail_error"] = '';
 $GLOBALS["mail_error_count"]=0;
+$GLOBALS['organisation_name'] = getConfig('organisation_name');
+$domain = getConfig("domain");
+$website = getConfig("website");
+if (!$domain) {
+  $domain = $_SERVER['SERVER_NAME'];
+}
+if (!$website) {
+  $website = $_SERVER['SERVER_NAME'];
+}
+
+$xormask = getConfig('xormask');
+if (!$xormask) {
+  $xormask = md5(uniqid(rand(), true));
+  SaveConfig("xormask",$xormask,0,1);
+}
+define('XORmask',$xormask);
 
 # make sure magic quotes are on. Try to switch it on, this may fail
 ini_set("magic_quotes_gpc","on");
@@ -94,21 +110,6 @@ if (!isset($usertable_prefix)) {
   $usertable_prefix = $table_prefix;
 }
 
-$domain = getConfig("domain");
-$website = getConfig("website");
-if (!$domain) {
-  $domain = $_SERVER['SERVER_NAME'];
-}
-if (!$website) {
-  $website = $_SERVER['SERVER_NAME'];
-}
-
-$xormask = getConfig('xormask');
-if (!$xormask) {
-  $xormask = md5(uniqid(rand(), true));
-  SaveConfig("xormask",$xormask,0,1);
-}
-define('XORmask',$xormask);
 
 /* set session name, without revealing version
   * but with version included, so that upgrading works more smoothly
@@ -208,11 +209,11 @@ if (DEVVERSION)
 else
   $v = VERSION;
 if (REGISTER) {
-  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website" ><img src="http://powered.phplist.com/images/'.$v.'/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0" /></a></p>';
+  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com/poweredby?utm_source=download'.$v.'&utm_medium=poweredhostedimg&utm_campaign=phpList" title="visit the phpList website" ><img src="http://powered.phplist.com/images/'.$v.'/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0" /></a></p>';
 } else {
-  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com" title="visit the phpList website"><img src="images/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0"/></a></p>';
+  $PoweredByImage = '<p class="poweredby"><a href="http://www.phplist.com/poweredby?utm_source=download'.$v.'&utm_medium=poweredlocalimg&utm_campaign=phpList" title="visit the phpList website"><img src="images/power-phplist.png" width="70" height="30" title="powered by phpList version '.$v.', &copy; phpList ltd" alt="powered by phpList '.$v.', &copy; phpList ltd" border="0"/></a></p>';
 }
-$PoweredByText = '<div style="clear: both; font-family: arial, verdana, sans-serif; font-size: 8px; font-variant: small-caps; font-weight: normal; padding: 2px; padding-left:10px;padding-top:20px;">powered by <a href="http://www.phplist.com" target="_blank">phplist</a> v ' . $v . ', &copy; <a href="http://www.phplist.com/poweredby" target="_blank">phpList ltd</a></div>';
+$PoweredByText = '<div style="clear: both; font-family: arial, verdana, sans-serif; font-size: 8px; font-variant: small-caps; font-weight: normal; padding: 2px; padding-left:10px;padding-top:20px;">powered by <a href="http://www.phplist.com/poweredby?utm_source=download'.$v.'&utm_medium=poweredtxt&utm_campaign=phpList" target="_blank" title="powered by phpList version '.$v.', &copy; phpList ltd">phpList</a></div>';
 
 if (!TEST && REGISTER) {
   if (!PAGETEXTCREDITS) {
@@ -713,7 +714,7 @@ $main_menu = array(
   );
 
 function contextMenu() {
-  if (isset ($GLOBALS["firsttime"])) {
+  if (isset ($GLOBALS["firsttime"]) || (isset($_GET['page']) && $_GET['page'] == 'initialise')) {
     return;
   }
   if (!CLICKTRACK) {
