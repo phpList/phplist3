@@ -57,7 +57,7 @@ if (!empty($link)) {
   $query
   = " select value"
   . " from ${tables['config']}"
-  . " where item = 'admin_address'";
+  . " where item = 'subscribeurl'";
   $data = Sql_Fetch_Row_Query($query);
   if ($data[0]) {
     $html .= $GLOBALS["img_tick"];
