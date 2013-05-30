@@ -91,11 +91,7 @@ if (!empty($_REQUEST['save'])) {
       print '<div class="actionresult">'.s('Changes Saved').'</div>';
       unset($id);
     }
-    
-    if (!empty($_SESSION['firstinstall'])) {
-      print PageLink2('setup',$GLOBALS['I18N']->get('Continue phpList configuration'));
-    }
-    
+        
 #    Redirect("configure");
 #    exit;
   }
