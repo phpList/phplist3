@@ -34,8 +34,8 @@ else
 #  print $id.' '.$value . " ".$website . " ".$domain.'<br/>';
 
 if ($id != "website" && $id != "domain") {
-  $value = str_replace($domain,'[DOMAIN]', $value);
-  $value = str_replace($website,'[WEBSITE]', $value);
+  $value = str_replace($GLOBALS['website'],'[WEBSITE]', $value);
+  $value = str_replace($GLOBALS['domain'],'[DOMAIN]', $value);
 }
 
 #  print "VALUE:".$value . '<br/>';
