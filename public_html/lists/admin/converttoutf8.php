@@ -10,6 +10,37 @@ if (!$GLOBALS['commandline']) {
     print ' '."\n";
   }
 }
+
+## check diskspace. this operation duplicates the space required.
+$maxsize = 0;
+$req = Sql_Query('select (data_length+index_length) tablesize 
+  from information_schema.tables
+  where table_schema="'.$GLOBALS['database_name']. '"');
+
+while ($row = Sql_Fetch_Assoc($req)) {
+  if ($row['tablesize'] > $maxsize) {
+    $maxsize = $row['tablesize'];
+  }
+}
+$maxsize = (int) $maxsize;
+$avail = disk_free_space('/'); ## we have no idea where MySql stores the data, so this is only a crude check and warning.
+
+$maxsize = (int)($maxsize * 1.2); ## add another 20%
+
+$require_confirmation = !isset($_GET['force']) || $_GET['force'] != 'yes';
+
+if ($maxsize > $avail && $require_confirmation) {
+  print '<div class="error">'.s('Converting to UTF-8 requires sufficient diskspace on your system.'). '<br/>';
+  print s('The maximum table size in your system is %s and space available on the root filesystem is %s, which means %s is required.',formatBytes($maxsize),formatBytes($avail),formatBytes($maxsize - $avail));
+  print ' '.s('This is not a problem if your Database server is on a different filesystem. Click the button to continue.');
+  
+  print ' '.s('Otherwise, free up some diskspace and try again');
+  print '<br/>'.PageLinkButton('converttoutf8&force=yes',s('Confirm UTF8 conversion'));
+  
+  print '</div>';
+  return;
+} 
+
 cl_output(s("Converting DB to use UTF-8, please wait"));
 
 if (empty($isUTF8)) {
@@ -61,8 +92,8 @@ if (empty($isUTF8)) {
     print s("Unable to determine the name of the database to convert");
   }
 } else {
-  print s("The DB was already converted to UTF-8 on ").$isUTF8;
-  cl_output(s("The DB was already converted to UTF-8 on ").$isUTF8);
+  print s("The DB was already converted to UTF-8 on").' '.$isUTF8;
+  cl_output(s("The DB was already converted to UTF-8 on").' '.$isUTF8);
 }
 
 print "<br/>".s("All Done");
