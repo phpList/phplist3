@@ -116,7 +116,7 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
   if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     $accept_lan = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
   } else {
-    $accept_lan = array('en'); # @@@ maybe make configurable?
+    $accept_lan = array($GLOBALS['default_system_language']); 
   }
   $detectlan = '';
 
@@ -144,7 +144,7 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
     }
   }
   if (!$detectlan) {
-    $detectlan = 'en';
+    $detectlan = $GLOBALS['default_system_language'];
   }
 
   $_SESSION['adminlanguage'] = array(
@@ -174,15 +174,14 @@ class phplist_I18N {
 
   function phplist_I18N() {
     $this->basedir = dirname(__FILE__).'/locale/';
-  #  if (isset($_SESSION['adminlanguage']) && is_dir($this->basedir.$_SESSION['adminlanguage']['iso'])) {
+    $this->defaultlanguage = $GLOBALS['default_system_language'];
+    $this->language = $GLOBALS['default_system_language'];
+    
     if (isset($_SESSION['adminlanguage']) && isset($GLOBALS['LANGUAGES'][$_SESSION['adminlanguage']['iso']])) {
       $this->language = $_SESSION['adminlanguage']['iso'];
     } else {
-#      logEvent('Invalid language '.$_SESSION['adminlanguage']['iso']);
-#      print "Not set or found: ".$_SESSION['adminlanguage']['iso'];
       unset($_SESSION['adminlanguage']);
-      $this->language = 'en';
-#      exit;
+      $this->language = $GLOBALS['default_system_language'];
     }
     if (function_exists('gettext')) {
       $this->hasGettext = true;
@@ -348,6 +347,10 @@ class phplist_I18N {
 #    return '<span class="translateabletext">'.str_replace("\n","",$text).'</span>';
     return str_replace("\n","",$text);
   }
+
+  /** 
+   * obsolete 
+   */
 
   function missingText($text) {
     if (isset($GLOBALS["developer_email"])) {

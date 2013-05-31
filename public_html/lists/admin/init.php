@@ -43,6 +43,12 @@ $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 $GLOBALS['language_module'] = $language_module;
 $GLOBALS['database_module'] = $database_module;
 
+## this is mostly useful when using commandline, and the language is not detected
+## with the browser
+if (!isset($GLOBALS['default_system_language'])) {
+  $GLOBALS['default_system_language'] = 'en';
+}
+
 if (!isset($table_prefix)) {
   $table_prefix = '';
 }
