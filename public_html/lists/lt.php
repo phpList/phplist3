@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$er = error_reporting(0); # some ppl have warnings on
+$er = error_reporting(0); 
 require_once dirname(__FILE__) .'/admin/commonlib/lib/unregister_globals.php';
 require_once dirname(__FILE__) .'/admin/commonlib/lib/magic_quotes.php';
 
