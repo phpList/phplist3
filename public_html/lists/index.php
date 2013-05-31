@@ -747,7 +747,7 @@ function unsubscribePage($id)
     # only proceed when user has confirm the form
     if ($blacklistRequest && is_email($email) ) {
       $_POST["unsubscribe"] = 1;
-      $_POST["unsubscribereason"] = 'Forwarded receiver requested blacklist';
+      $_POST["unsubscribereason"] = s('Forwarded receiver requested blacklist');
     }
   }
   if (UNSUBSCRIBE_JUMPOFF || !empty($_GET['jo'])) {
@@ -755,9 +755,9 @@ function unsubscribePage($id)
     $_REQUEST["email"] = $email;
     if (!empty($_GET['jo'])) {
       $blacklistRequest = true;
-      $_POST["unsubscribereason"] = '"Jump off" used by subscriber, reason not requested';
+      $_POST["unsubscribereason"] = s('"Jump off" used by subscriber, reason not requested');
     } else {
-      $_POST["unsubscribereason"] = '"Jump off" set, reason not requested';
+      $_POST["unsubscribereason"] = s('"Jump off" set, reason not requested');
     }
   }
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -1032,14 +1032,14 @@ function forwardPage($id)
 
             if (sendEmail($mid,$email,'forwarded',$userdata['htmlemail'],array(),$userdata)) {
               $info .= $GLOBALS["strForwardSuccessInfo"];
-              sendAdminCopy("Message Forwarded",$userdata["email"] . " has forwarded a message $mid to $email",$messagelists);
+              sendAdminCopy(s("Message Forwarded"),s('%s has forwarded message %d to %s',$userdata["email"], $mid,$email),$messagelists);
               Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
                  values(%d,%d,"%s","sent",now())',
                 $tables['user_message_forward'],$userdata['id'],$mid,$email));
               if( $iCountFriends ) $nFriends++;
             } else {
               $info .= $GLOBALS["strForwardFailInfo"];
-              sendAdminCopy("Message Forwarded",$userdata["email"] . " tried forwarding a message $mid to $email but failed",$messagelists);
+              sendAdminCopy(s("Message Forwarded"),s('%s tried forwarding message %d to %s but failed',$userdata["email"],$mid,$email),$messagelists);
               Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
                 values(%d,%d,"%s","failed",now())',
                 $tables['user_message_forward'],$userdata['id'],$mid,$email));
@@ -1055,7 +1055,7 @@ function forwardPage($id)
     } #ok & emails
 
   } else { # no valid sender
-    logEvent("Forward request from invalid user ID: ".substr($_REQUEST["uid"],0,150));
+    logEvent(s('Forward request from invalid user ID: %s',substr($_REQUEST["uid"],0,150)));
     $info .= '<BR />' . $GLOBALS["strForwardFailInfo"];
     $ok = false;
   }
