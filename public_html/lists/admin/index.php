@@ -274,28 +274,14 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
       }
     }
   #If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
-  } elseif (ENCRYPT_ADMIN_PASSWORDS && isset($_REQUEST["forgotpassword"])){
+  } elseif (isset($_REQUEST["forgotpassword"])) {
   	  $adminId = $GLOBALS["admin_auth"]->adminIdForEmail($_REQUEST['forgotpassword']);
       if($adminId){
       	$msg = sendAdminPasswordToken($adminId);
       } else {
-      	$msg = $GLOBALS['I18N']->get('cannotsendpassword');
+      	$msg = $GLOBALS['I18N']->get('Failed sending a change password token');
       }
       $page = "login";
-  } elseif (isset($_REQUEST["forgotpassword"])) {
-    $pass = '';
-    if (is_email($_REQUEST["forgotpassword"])) {
-      $pass = $GLOBALS["admin_auth"]->getPassword($_REQUEST["forgotpassword"]);
-    } 
-    if ($pass) {
-      sendMail ($_REQUEST["forgotpassword"],$GLOBALS['I18N']->get('Your password for phplist'),"\n\n".$GLOBALS['I18N']->get('Your password is')." $pass");
-      $msg = $GLOBALS['I18N']->get('Your password has been sent by email');
-      logEvent(sprintf($GLOBALS['I18N']->get('successful password request from %s for %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["forgotpassword"]));
-    } else {
-      $msg = $GLOBALS['I18N']->get('Unable to send the password');
-      logEvent(sprintf($GLOBALS['I18N']->get('failed password request from %s for %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["forgotpassword"]));
-    }
-    $page = "login";
   } elseif (!isset($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]) {
     #$msg = 'Not logged in';
     $page = "login";
