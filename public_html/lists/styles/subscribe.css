@@ -87,4 +87,10 @@ span.required, div.required         { color:red; }
 #logo { margin-top:5px; font-size:48px; }
 
 
+/* =---------------- small screens ----------*/
+
+@media only screen and (max-width: 767px) {
+        .fixed #mainContent {margin:0 5px}
+    }
+
 /* end file:/lists/styles/subscribe.css   */
