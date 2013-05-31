@@ -19,12 +19,6 @@ if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
 }
 
 require_once dirname(__FILE__).'/admin/init.php';
-if (isset($GLOBALS["developer_email"]) && $GLOBALS['show_dev_errors']) {
-  error_reporting(E_ALL);
-  ini_set('show_errors','on');
-} else {
-  error_reporting(0);
-}
 
 $GLOBALS["database_module"] = basename($GLOBALS["database_module"]);
 $GLOBALS["language_module"] = basename($GLOBALS["language_module"]);

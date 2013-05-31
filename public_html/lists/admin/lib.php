@@ -2,7 +2,6 @@
 require_once dirname(__FILE__)."/accesscheck.php";
 # library used for plugging into the webbler, instead of "connect"
 # depricated and should be removed
-#error_reporting(63);
 include_once dirname(__FILE__).'/class.phplistmailer.php';
 
 $domain = getConfig("domain");

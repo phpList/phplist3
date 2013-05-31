@@ -260,7 +260,6 @@ function processMbox ($file) {
 }
 
 function processMessages($link,$max = 3000) {
-  #error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
   global $bounce_mailbox_purge_unprocessed,$bounce_mailbox_purge;
   $num = imap_num_msg($link);
   output( $num . " ".$GLOBALS['I18N']->get("bounces to fetch from the mailbox")."\n");

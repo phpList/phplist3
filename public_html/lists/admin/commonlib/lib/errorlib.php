@@ -183,7 +183,6 @@ function LogError($error) {
 function Debug($msg) {
 	global $config;
  # if (!$config["debug"])
-#		$er = error_reporting(0);
   if (ini_get("safe_mode"))
   	return;
   if (!$config["debug"])
@@ -201,7 +200,6 @@ function Debug($msg) {
   } else {
   #  Fatal_Error("Debugging not configured properly");
   }
-#  error_reporting($er);
 }
 
 if(!function_exists('dbg')) {
@@ -219,7 +217,6 @@ if(!function_exists('dbg')) {
   	# whats the point of a user handler when it only
     # passes notices. unfortunaltey other errors dont get passed
     # so this wont be called too often
- #		if (!($errno & error_reporting())) return;
  # 	dbg("User error: $errno, $errmsg");
     global $config;
     $time=date("d M Y H:i:s");

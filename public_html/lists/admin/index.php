@@ -82,19 +82,6 @@ $GLOBALS["pagestats"] = array();
 $GLOBALS["pagestats"]["time_start"] = $now["sec"] * 1000000 + $now["usec"];
 $GLOBALS["pagestats"]["number_of_queries"] = 0;
 
-if (!$GLOBALS["commandline"] && isset($GLOBALS["developer_email"]) && $_SERVER['HTTP_HOST'] != 'dev.phplist.com' && !empty($GLOBALS['show_dev_errors'])) {
-#  error_reporting(E_ALL & ~E_NOTICE);
-  ## in developer mode, show all errors and force "registered globals off"
-  error_reporting(E_ALL);
-  ini_set('display_errors',1);
-  foreach ($_REQUEST as $key => $val) {
-    unset($$key);
-  }
-} else {
-#  error_reporting($er);
-  error_reporting(0);
-}
-
 # load all required files
 require_once dirname(__FILE__).'/init.php';
 require_once dirname(__FILE__).'/'.$GLOBALS["database_module"];
