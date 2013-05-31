@@ -1,7 +1,3 @@
-
-<div align="center">
-<table class="upgradeMain"><tr><td>
-
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
@@ -386,14 +382,27 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   $isUTF8 = getConfig('UTF8converted');
 
   if (empty($isUTF8)) {
+    $maxsize = 0;
+    $req = Sql_Query('select (data_length+index_length) tablesize 
+      from information_schema.tables
+      where table_schema="'.$GLOBALS['database_name']. '"');
+
+    while ($row = Sql_Fetch_Assoc($req)) {
+      if ($row['tablesize'] > $maxsize) {
+        $maxsize = $row['tablesize'];
+      }
+    }
+    $maxsize = (int) $maxsize;
+    $avail = disk_free_space('/'); ## we have no idea where MySql stores the data, so this is only a crude check and warning.
+    $maxsize = (int)($maxsize * 1.2); ## add another 20%
+    
     ## convert to UTF8
     $dbname = $GLOBALS["database_name"];
-    if (!empty($dbname)) {
+    if ($maxsize < $avail && !empty($dbname)) {
       ## the conversion complains about a key length
       Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
 
-      Sql_Query('use information_schema');
-      $req = Sql_Query('select * from columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
+      $req = Sql_Query('select * from information_schema.columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
 
       $dbcolumns = array();
       $dbtables = array();
@@ -409,7 +418,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
       output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait').'<br/>');
       foreach ($dbtables as $dbtable) {
-        set_time_limit(600);
+        set_time_limit(3600);
         output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable.'<br/>');
         Sql_Query(sprintf('alter table %s default charset utf8',$dbtable),1);
       }
@@ -421,8 +430,13 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
           $dbcolumn['TABLE_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_NAME'],$dbcolumn['COLUMN_TYPE']),1);
       }
       output($GLOBALS['I18N']->get('upgrade to UTF-8, done').'<br/>');
+      saveConfig('UTF8converted',date('Y-m-d H:i'),0);
+    } else {
+      print '<div class="error">'.s('Database requires converting to UTF-8.').'<br/>';
+      print s('However, there is too little diskspace for this conversion').'<br/>';
+      print s('Please do a manual conversion.').' '.PageLinkButton('converttoutf8',s('Run manual conversion to UTF8'));
+      print '</div>';
     }
-    saveConfig('UTF8converted',date('Y-m-d H:i'),0);
   }
 
   ## 2.11.7 and up
@@ -453,8 +467,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
     if ($num[0] > 0) {
       print '<p class="information">'.$GLOBALS['I18N']->get('The clicktracking system has changed').'</p>';
-      printf($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]).' ';
-      print PageLinkButton("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'));
+      printf ($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]).' ';
+      print ' '.PageLinkButton("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'));
     }
         
     if ($GLOBALS['commandline']) {
@@ -471,14 +485,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 } else {
 
 ?>
-<p class="information">Your database requires upgrading, please make sure to create a backup of your database first.</p>
+<p class="information"><?php print s('Your database requires upgrading, please make sure to create a backup of your database first.')?></p>
 
-<p class="information">When you're ready click <?php echo PageLink2("upgrade","Here","doit=yes")?>. Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once you've started it.</p>
+<p class="information"><?php print s('When you are ready click %s Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once it started.',PageLinkButton("upgrade&doit=yes",s('Upgrade')))?></p>
 <?php }
 
-if (!$GLOBALS['commandline']) {
-  print '</td></tr></table></div>';
-}  
-
-@ob_end_flush();
-?>
