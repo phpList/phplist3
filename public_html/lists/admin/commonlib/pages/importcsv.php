@@ -185,7 +185,6 @@ if (!empty($_SESSION["import_file"])) {
       }
     };
   */
-  #  error_reporting(E_ALL);
   // Split file/emails into array
   $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
   output(sprintf('..' . $GLOBALS['I18N']->get('ok, %d lines') . '</p>', sizeof($email_list)));

@@ -821,6 +821,4 @@ define("FORWARD_ALTERNATIVE_CONTENT",0);
 #$adodb_inc_file = '/usr/share/php/adodb/adodb.inc.php';
 $adodb_driver = 'mysql';  // not really a site variable
 
-# if you want more trouble, make this 63 (very unlikely you will like the result)
-$error_level = error_reporting(0);
 

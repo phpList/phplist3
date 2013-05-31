@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-error_reporting(E_ALL);
 ## some kind of attempt to make a test suite for certain elements of phplist
 
 print '<h3>'.$GLOBALS['I18N']->get('phplist test suite').'</h3>';
