@@ -43,6 +43,9 @@ require_once dirname(__FILE__).'/admin/'.$GLOBALS["database_module"];
 
 # load default english and language
 include_once dirname(__FILE__)."/texts/english.inc";
+if (is_file(dirname(__FILE__).'/texts/'.$GLOBALS["language_module"])) {
+  include_once dirname(__FILE__).'/texts/'.$GLOBALS["language_module"];
+}
 # Allow customisation per installation
 if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"])) {
   include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS["language_module"];
@@ -232,9 +235,9 @@ if ($id) {
   additional information to your public pages.
   This not only gives respect to the large amount of time given freely
   by the developers  but also helps build interest, traffic and use of
-  PHPlist, which is beneficial to it's future development.
+  phpList, which is beneficial to it's future development.
 
-  Michiel Dethmers, phpList Ltd 2000-2012
+  Michiel Dethmers, phpList Ltd 2000-2013
 */
 include 'admin/ui/'.$GLOBALS['ui'].'/publicpagetop.php';
 
@@ -573,23 +576,11 @@ function checkGroup(name,value)
   $html .= formStart('name="subscribeform"');
   # @@@ update
   if (isset($_SESSION["adminloggedin"]) && $_SESSION["adminloggedin"]) {
-/*
-    $html .= '<style type="text/css">
-      div.adminmessage {
-        width: 100%;
-        border: 2px dashed #000000;
-        padding: 10px;
-        margin-bottom: 15px;
-        background-color: #E7BE8F;
-
-      }
-      </style>';
-*/
-    $html .= '<div class="adminmessage"><p><b>You are logged in as administrator ('.$_SESSION["logindetails"]["adminname"].') of this phplist system</b></p>';
-    $html .= '<p>You are therefore offered the following choice, which your users will not see when they load this page.</p>';
-    $html .= '<p><a href="'.$GLOBALS['adminpages'].'" class="button">Go back to admin area</a></p>';
-    $html .= '<p><b>Please choose</b>: <br/><input type=radio name="makeconfirmed" value="1"> Make this user confirmed immediately
-      <br/><input type=radio name="makeconfirmed" value="0" checked> Send this user a request for confirmation email </p></div>';
+    $html .= '<div class="adminmessage"><p><b>'.s('You are logged in as administrator (%s) of this phpList system',$_SESSION["logindetails"]["adminname"]).'</b></p>';
+    $html .= '<p>'.s('You are therefore offered the following choice, which your subscribers will not see when they load this page.').'</p>';
+    $html .= '<p><a href="'.$GLOBALS['adminpages'].'" class="button">'.s('Go back to admin area').'</a></p>';
+    $html .= '<p><b>'.s('Please choose').'</b>: <br/><input type=radio name="makeconfirmed" value="1"> '.s('Make this subscriber confirmed immediately').'
+      <br/><input type=radio name="makeconfirmed" value="0" checked> '.s('Send this subscriber a request for confirmation email').' </p></div>';
   }
   $html .= '<table border=0>';
   $html .= ListAttributes($attributes,$attributedata,$GLOBALS['pagedata']["htmlchoice"],0,$GLOBALS['pagedata']['emaildoubleentry']);
