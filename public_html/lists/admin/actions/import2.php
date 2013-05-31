@@ -457,29 +457,29 @@ if (sizeof($email_list)) {
 
   $report = "";
   if (empty($some) && !$count["list_add"]) {
-    $report .= '<br/>' . $GLOBALS['I18N']->get('All the emails already exist in the database and are member of the lists');
+    $report .=  $GLOBALS['I18N']->get('All the emails already exist in the database and are member of the lists').'<br/>';
   } else {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails succesfully imported to the database and added to %d lists.'), $count["email_add"], $num_lists);
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d emails subscribed to the lists'), $count["list_add"]);
+    $report .= sprintf($GLOBALS['I18N']->get('%s emails succesfully imported to the database and added to %d lists.'), $count["email_add"], $num_lists).'<br/>';
+    $report .= sprintf($GLOBALS['I18N']->get('%d emails subscribed to the lists'), $count["list_add"]).'<br/>';
     if ($count["exist"]) {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails already existed in the database'), $count["exist"]);
+      $report .= sprintf($GLOBALS['I18N']->get('%s emails already existed in the database'), $count["exist"]).'<br/>';
     }
   }
   if ($count["invalid_email"]) {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d Invalid Emails found.'), $count["invalid_email"]);
+    $report .= sprintf($GLOBALS['I18N']->get('%d Invalid Emails found.'), $count["invalid_email"]).'<br/>';
     if (!$_SESSION["omit_invalid"]) {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"]);
+      $report .= sprintf($GLOBALS['I18N']->get('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"]).'<br/>';
     } else {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were deleted. Check your source and reimport the data. Duplicates will be identified.'));
+      $report .= sprintf($GLOBALS['I18N']->get('These records were deleted. Check your source and reimport the data. Duplicates will be identified.')).'<br/>';
     }
   }
   if ($count["duplicate"]) {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d duplicate emails found.'), $count["duplicate"]);
+    $report .= sprintf($GLOBALS['I18N']->get('%d duplicate emails found.'), $count["duplicate"]).'<br/>';
   }
   if ($_SESSION["overwrite"] == "yes") {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]);
+    $report .= sprintf($GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]).'<br/>';
   }
-  $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]);
+  $report .= sprintf($GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]).'<br/>';
   if (!$GLOBALS['commandline']) {
     print $report;
     if (function_exists('sendmail')) {
