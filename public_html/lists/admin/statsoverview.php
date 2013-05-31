@@ -66,7 +66,9 @@ if (!$id) {
     $limit = ' limit '.$start. ', 10';
   }
 
-  $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg where um.messageid = msg.id and um.status = "sent" %s %s
+  $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, 
+    count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,
+    bouncecount as bounced from %s um,%s msg where um.messageid = msg.id and um.status = "sent" %s %s
     group by msg.id order by msg.entered desc',
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$subselect,$timerange);
   $req = Sql_Query($query);
@@ -140,6 +142,7 @@ $query
 . ' where um.messageid = ?'
 . '   and um.messageid = msg.id'
 . '   and um.viewed is not null'
+. '   and um.status = "sent"'
 . '%s'
 . ' group by userid';
 $query = sprintf($query, $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['message'], $and);

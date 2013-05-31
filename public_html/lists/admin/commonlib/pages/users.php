@@ -438,7 +438,7 @@ if ($result)
 
 
     if (in_array("messages", $columns)) {
-      $msgs = Sql_query("SELECT count(*) FROM " . $tables["usermessage"] . " where userid = " . $user["id"]);
+      $msgs = Sql_query("SELECT count(*) FROM " . $tables["usermessage"] . " where userid = " . $user["id"]. ' and status = "sent"');
       $nummsgs = Sql_fetch_row($msgs);
       $ls_msgs=$GLOBALS['I18N']->get('msgs').":&nbsp;".$nummsgs[0];
     }    

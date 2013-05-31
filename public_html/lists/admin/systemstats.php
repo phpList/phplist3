@@ -29,16 +29,16 @@ $systemstats = array(
   ),
   array(
     'name' => 'Sent Messages by month',
-    'query' => sprintf('select count(entered) as num,year(entered) as year,month(entered) month from %s group by year(entered), month(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
+    'query' => sprintf('select count(entered) as num,year(entered) as year,month(entered) month from %s where status = "sent" group by year(entered), month(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
   ),
   array(
     'name' => 'Sent Messages by year',
-    'query' => sprintf('select count(entered) as num,year(entered) as year from %s group by year(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
+    'query' => sprintf('select count(entered) as num,year(entered) as year from %s where status = "sent" group by year(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
     'range' => 'year',
   ),
   array(
     'name' => 'Opened Messages',
-    'query' => sprintf('select count(entered) as num,year(entered) as year,month(entered) month from %s where viewed is not null group by year(entered), month(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
+    'query' => sprintf('select count(entered) as num,year(entered) as year,month(entered) month from %s where viewed is not null and status = "sent" group by year(entered), month(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
   ),
   array(
     'name' => 'Campaigns',

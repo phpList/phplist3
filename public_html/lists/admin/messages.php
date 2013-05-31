@@ -239,7 +239,7 @@ if ($total) {
     
     $ls->addElement($listingelement,$editlink);
     $ls->setClass($listingelement,'row1');
-    $uniqueviews = Sql_Fetch_Row_Query("select count(userid) from {$tables["usermessage"]} where viewed is not null and messageid = ".$msg["id"]);
+    $uniqueviews = Sql_Fetch_Row_Query("select count(userid) from {$tables["usermessage"]} where viewed is not null and status = 'sent' and messageid = ".$msg["id"]);
 
     $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables["linktrack_ml"]} where messageid = ".$msg["id"]);
 #    $clicks = array(0);

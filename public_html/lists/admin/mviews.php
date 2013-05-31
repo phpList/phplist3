@@ -57,7 +57,7 @@ if (!$id) {
 
   $req = Sql_Query(sprintf('select msg.id as messageid,count(um.viewed) as views, count(um.status) as total,
     subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg
-    where um.messageid = msg.id %s %s
+    where um.messageid = msg.id and um.status = "sent" %s %s
     group by msg.id order by msg.entered desc limit 10',
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$subselect,$timerange));
   if (!Sql_Affected_Rows()) {
@@ -86,8 +86,8 @@ if (!$id) {
 */
   }
   if ($addcomparison) {
-    $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um', $GLOBALS['tables']['usermessage']));
-    $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um', $GLOBALS['tables']['usermessage']));
+    $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
+    $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
     $overall = $GLOBALS['I18N']->get('Comparison to other admins');
     $ls->addElement($overall);
     $ls->addColumn($overall,$GLOBALS['I18N']->get('views'),$viewed['viewed']);
@@ -165,7 +165,7 @@ if ($total) {
 $req = Sql_Query(sprintf('select userid,email,um.entered as sent,min(um.viewed) as firstview,
     max(um.viewed) as lastview, count(um.viewed) as viewcount,
     abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime
-    from %s um, %s user, %s msg where um.messageid = %d and um.messageid = msg.id and um.userid = user.id and um.viewed is not null %s
+    from %s um, %s user, %s msg where um.messageid = %d and um.messageid = msg.id and um.userid = user.id and um.status = "sent" and um.viewed is not null %s
     group by userid %s',
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['user'],$GLOBALS['tables']['message'],$id,$subselect,$limit));
 
