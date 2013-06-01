@@ -245,31 +245,29 @@ function formStart($additional="") {
         "p",
         "page"
         ) as $key) {
-      $val = $_REQUEST[$key];
-      if ($val)
-  $html .= sprintf('<input type="hidden" name="%s" value="%s" />', $key, $val);
+          $val = $_REQUEST[$key];
+        if ($val) {
+          $html .= sprintf('<input type="hidden" name="%s" value="%s" />', $key, htmlspecialchars($val));
+        }
     }
-  } else
+  } else {
     $html = sprintf('<form method="post" action="" %s>',$additional);
-/*    $html = sprintf('<form method=post action="./" %s>
-    %s',$additional,isset($page) ?
-    '<input type="hidden" name="page" value="'.$page.'" />':(
-    isset($p)?'<input type="hidden" name="p" value="'.$p.'" />':"")
-    );
-*/
-
-  ## create the token table, if necessary
-  if (! Sql_Check_For_Table('admintoken')) {
-    createTable('admintoken');
   }
-  $key = md5(time().mt_rand(0,10000));
-  Sql_Query(sprintf('insert into %s (adminid,value,entered,expires) values(%d,"%s",%d,date_add(now(),interval 1 hour))',
-    $GLOBALS['tables']['admintoken'],$_SESSION['logindetails']['id'],$key,time()),1);
-  $html .= sprintf('<input type="hidden" name="formtoken" value="%s" />',$key);
 
-  ## keep the token table empty
-  Sql_Query(sprintf('delete from %s where expires < now()',
-    $GLOBALS['tables']['admintoken']),1);
+  if (!empty($_SESSION['logindetails']['id'])) {
+    ## create the token table, if necessary
+    if (! Sql_Check_For_Table('admintoken')) {
+      createTable('admintoken');
+    }
+    $key = md5(time().mt_rand(0,10000));
+    Sql_Query(sprintf('insert into %s (adminid,value,entered,expires) values(%d,"%s",%d,date_add(now(),interval 1 hour))',
+      $GLOBALS['tables']['admintoken'],$_SESSION['logindetails']['id'],$key,time()),1);
+    $html .= sprintf('<input type="hidden" name="formtoken" value="%s" />',$key);
+
+    ## keep the token table empty
+    Sql_Query(sprintf('delete from %s where expires < now()',
+      $GLOBALS['tables']['admintoken']),1);
+  }
   
 	return $html;
 }
