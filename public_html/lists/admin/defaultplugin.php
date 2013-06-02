@@ -289,6 +289,10 @@ class phplistPlugin {
     # return snippet for the Subscribe page
     return '';
   }
+  
+  function validateSubscriptionPage($pageData) {
+    return;
+  }
 
   function parseThankyou($pageid= 0, $userid= 0, $text= "") {
     # parse the text of the thankyou page
