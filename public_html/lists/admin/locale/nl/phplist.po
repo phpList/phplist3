@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 14:20-0300\n"
-"PO-Revision-Date: 2013-05-28 17:17+0000\n"
-"Last-Translator: Michiel <michiel@phplist.com>\n"
+"POT-Creation-Date: 2013-06-03 13:30+0000\n"
+"PO-Revision-Date: 2013-06-03 17:02+0000\n"
+"Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -12,13 +12,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
-"X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SearchPath-1: admin/actions\n"
 "X-Poedit-SearchPath-2: admin/commonlib/pages\n"
+"X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-POOTLE-MTIME: 1369761422.0\n"
+"X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
+"X-POOTLE-MTIME: 1370278962.0\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
 #: public_html/lists/admin/massremove.php:8
@@ -60,13 +60,13 @@ msgstr ""
 
 #: public_html/lists/admin/massunconfirm.php:35
 #: public_html/lists/admin/commonlib/pages/importcsv.php:43
-#: public_html/lists/admin/commonlib/pages/importcsv.php:350
+#: public_html/lists/admin/commonlib/pages/importcsv.php:349
 #: public_html/lists/admin/commonlib/pages/user.php:284
 #: public_html/lists/admin/commonlib/pages/user.php:343
-#: public_html/lists/admin/initialise.php:32
+#: public_html/lists/admin/initialise.php:44
 #: public_html/lists/admin/massremove.php:49
-#: public_html/lists/admin/login.php:77 public_html/lists/admin/login.php:105
-#: public_html/lists/admin/login.php:113 public_html/lists/admin/login.php:125
+#: public_html/lists/admin/login.php:72 public_html/lists/admin/login.php:100
+#: public_html/lists/admin/login.php:108 public_html/lists/admin/login.php:120
 #: public_html/lists/admin/plugins.php:147
 #: public_html/lists/admin/plugins.php:158
 #: public_html/lists/admin/import3.php:264
@@ -118,26 +118,26 @@ msgstr "Kan geen POP3 verbinding maken met"
 msgid "Cannot open mailbox file"
 msgstr "Kan mailbox bestand niet openen"
 
-#: public_html/lists/admin/processbounces.php:266
+#: public_html/lists/admin/processbounces.php:265
 msgid "bounces to fetch from the mailbox"
 msgstr "bounces te ontvangen van de mailbox"
 
-#: public_html/lists/admin/processbounces.php:267
+#: public_html/lists/admin/processbounces.php:266
 #: public_html/lists/admin/readtestmail.php:223
 msgid "Please do not interrupt this process"
 msgstr "Verstoor deze verwerking aub niet"
 
-#: public_html/lists/admin/processbounces.php:268
+#: public_html/lists/admin/processbounces.php:267
 msgid "bounces to process"
 msgstr "bounces naar verwerking"
 
-#: public_html/lists/admin/processbounces.php:270
+#: public_html/lists/admin/processbounces.php:269
 #: public_html/lists/admin/readtestmail.php:225
 msgid "Processing first"
 msgstr "Verwerken van de eerste"
 
+#: public_html/lists/admin/processbounces.php:269
 #: public_html/lists/admin/processbounces.php:270
-#: public_html/lists/admin/processbounces.php:271
 #: public_html/lists/admin/home.php:289 public_html/lists/admin/bounces.php:53
 #: public_html/lists/admin/bounces.php:89
 #: public_html/lists/admin/reconcileusers.php:191
@@ -145,121 +145,121 @@ msgstr "Verwerken van de eerste"
 msgid "bounces"
 msgstr "Bounces"
 
-#: public_html/lists/admin/processbounces.php:271
+#: public_html/lists/admin/processbounces.php:270
 msgid "processing first"
 msgstr "verwerken van eerste"
 
-#: public_html/lists/admin/processbounces.php:275
+#: public_html/lists/admin/processbounces.php:274
 msgid "Running in test mode, not deleting messages from mailbox"
 msgstr ""
 "De testmode is actief, er zullen geen berichten uit de mailbox worden "
 "verwijderd"
 
-#: public_html/lists/admin/processbounces.php:277
+#: public_html/lists/admin/processbounces.php:276
 msgid "Processed messages will be deleted from mailbox"
 msgstr "Verwerkte berichten zullen worden verwijderd uit de mailbox"
 
-#: public_html/lists/admin/processbounces.php:293
-#: public_html/lists/admin/processbounces.php:299
+#: public_html/lists/admin/processbounces.php:292
+#: public_html/lists/admin/processbounces.php:298
 #: public_html/lists/admin/readtestmail.php:248
 #: public_html/lists/admin/readtestmail.php:253
 msgid "Deleting message"
 msgstr "Verwijderen van bericht"
 
-#: public_html/lists/admin/processbounces.php:306
+#: public_html/lists/admin/processbounces.php:305
 #: public_html/lists/admin/readtestmail.php:260
 msgid "Closing mailbox, and purging messages"
 msgstr "Het sluiten van de mailbox en het zuiveren van de berichten"
 
-#: public_html/lists/admin/processbounces.php:315
+#: public_html/lists/admin/processbounces.php:314
 #: public_html/lists/admin/readtestmail.php:274
 msgid "IMAP is not included in your PHP installation, cannot continue"
 msgstr "In jouw PHP configuratie is geen IMAP opgenomen, kan niet verder gaan"
 
-#: public_html/lists/admin/processbounces.php:316
+#: public_html/lists/admin/processbounces.php:315
 #: public_html/lists/admin/readtestmail.php:275
 msgid "Check out"
 msgstr "Raadpleeg"
 
-#: public_html/lists/admin/processbounces.php:322
+#: public_html/lists/admin/processbounces.php:321
 msgid "Bounce mechanism not properly configured"
 msgstr "Bounce mechanisme niet goed geconfigureerd"
 
-#: public_html/lists/admin/processbounces.php:347
+#: public_html/lists/admin/processbounces.php:346
 msgid "bounce_protocol not supported"
 msgstr "bounce_protocol wordt niet ondersteund"
 
-#: public_html/lists/admin/processbounces.php:354
+#: public_html/lists/admin/processbounces.php:353
 msgid "Processing bounces based on active bounce rules"
 msgstr "Verwerken van bounces gebaseerd op actieve bounce regels"
 
-#: public_html/lists/admin/processbounces.php:372
+#: public_html/lists/admin/processbounces.php:371
 #: public_html/lists/admin/actions/processqueue.php:831
 #: public_html/lists/admin/generatebouncerules.php:48
 msgid "Process Killed by other process"
 msgstr "Verwerking gestopt door een andere verwerking"
 
-#: public_html/lists/admin/processbounces.php:403
-#: public_html/lists/admin/processbounces.php:532
+#: public_html/lists/admin/processbounces.php:402
+#: public_html/lists/admin/processbounces.php:531
 msgid "Auto Unconfirmed"
 msgstr "Automatisch onbevestigd"
 
-#: public_html/lists/admin/processbounces.php:403
-#: public_html/lists/admin/processbounces.php:420
+#: public_html/lists/admin/processbounces.php:402
+#: public_html/lists/admin/processbounces.php:419
 msgid "Subscriber auto unconfirmed for"
 msgstr "Abonnee automatisch onbevestigd door"
 
-#: public_html/lists/admin/processbounces.php:403
-#: public_html/lists/admin/processbounces.php:420
-#: public_html/lists/admin/processbounces.php:426
-#: public_html/lists/admin/processbounces.php:430
-#: public_html/lists/admin/processbounces.php:435
-#: public_html/lists/admin/processbounces.php:439
+#: public_html/lists/admin/processbounces.php:402
+#: public_html/lists/admin/processbounces.php:419
+#: public_html/lists/admin/processbounces.php:425
+#: public_html/lists/admin/processbounces.php:429
+#: public_html/lists/admin/processbounces.php:434
+#: public_html/lists/admin/processbounces.php:438
 msgid "bounce rule"
 msgstr "bounce regel"
 
-#: public_html/lists/admin/processbounces.php:420
+#: public_html/lists/admin/processbounces.php:419
 msgid "Auto unconfirmed"
 msgstr "Automatisch onbevestigd"
 
-#: public_html/lists/admin/processbounces.php:426
-#: public_html/lists/admin/processbounces.php:435
+#: public_html/lists/admin/processbounces.php:425
+#: public_html/lists/admin/processbounces.php:434
 msgid "Auto Blacklisted"
 msgstr "Automatisch op de zwarte lijst geplaatst"
 
-#: public_html/lists/admin/processbounces.php:426
-#: public_html/lists/admin/processbounces.php:435
+#: public_html/lists/admin/processbounces.php:425
+#: public_html/lists/admin/processbounces.php:434
 msgid "User auto blacklisted for"
 msgstr "Abonnee automatisch aan de zwarte lijst toegevoegd voor"
 
-#: public_html/lists/admin/processbounces.php:430
-#: public_html/lists/admin/processbounces.php:439
+#: public_html/lists/admin/processbounces.php:429
+#: public_html/lists/admin/processbounces.php:438
 msgid "Auto Unsubscribed"
 msgstr "Auto Uitschrijven"
 
-#: public_html/lists/admin/processbounces.php:430
-#: public_html/lists/admin/processbounces.php:439
+#: public_html/lists/admin/processbounces.php:429
+#: public_html/lists/admin/processbounces.php:438
 msgid "User auto unsubscribed for"
 msgstr "Abonnee is automatisch uitgeschreven voor"
 
-#: public_html/lists/admin/processbounces.php:453
+#: public_html/lists/admin/processbounces.php:452
 msgid "bounces processed by advanced processing"
 msgstr "bounces verwerkt door geavanceerd verwerken"
 
-#: public_html/lists/admin/processbounces.php:454
+#: public_html/lists/admin/processbounces.php:453
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 "bounces waren niet overeenkomend voor de geavanceerde verwerkings regels"
 
-#: public_html/lists/admin/processbounces.php:458
+#: public_html/lists/admin/processbounces.php:457
 msgid "Identifying consecutive bounces"
 msgstr "Identificeren van opeenvolgende bounces"
 
-#: public_html/lists/admin/processbounces.php:472
+#: public_html/lists/admin/processbounces.php:471
 msgid "Nothing to do"
 msgstr "Niets te doen"
 
-#: public_html/lists/admin/processbounces.php:530
+#: public_html/lists/admin/processbounces.php:529
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
@@ -268,41 +268,41 @@ msgstr ""
 "Abonnee (url:%s) heeft opeenvolgende bounces (%d) hoger dan drempel waarde ("
 "%d). De abonnee is gemarkeerd als onbevestigd."
 
-#: public_html/lists/admin/processbounces.php:532
+#: public_html/lists/admin/processbounces.php:531
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr "Abonnee auto onbevestigd door %d opeenvolgende bounces"
 
-#: public_html/lists/admin/processbounces.php:541
+#: public_html/lists/admin/processbounces.php:540
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 "%d opeenvolgende bounces, limiet bereikt, abonnee geblokkeerd voor versturen"
 
-#: public_html/lists/admin/processbounces.php:542
+#: public_html/lists/admin/processbounces.php:541
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr "%d opeenvolgende bounces, drempelwaarde bereikt"
 
-#: public_html/lists/admin/processbounces.php:553
+#: public_html/lists/admin/processbounces.php:552
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr "Verwerkt %d van %d abonnees"
 
-#: public_html/lists/admin/processbounces.php:563
+#: public_html/lists/admin/processbounces.php:562
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr "totaal van %d abonnees verwerkt"
 
-#: public_html/lists/admin/processbounces.php:568
+#: public_html/lists/admin/processbounces.php:567
 msgid "Report:"
 msgstr "Rapport:"
 
-#: public_html/lists/admin/processbounces.php:572
+#: public_html/lists/admin/processbounces.php:571
 msgid "Report of advanced bounce processing:"
 msgstr "Rapport van geavanceerde bounce verwerking:"
 
-#: public_html/lists/admin/processbounces.php:575
+#: public_html/lists/admin/processbounces.php:574
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
@@ -392,117 +392,117 @@ msgstr ""
 msgid "Reading emails from file ... "
 msgstr "Emails van bestand lezen... "
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:191
+#: public_html/lists/admin/commonlib/pages/importcsv.php:190
 #: public_html/lists/admin/actions/import2.php:27
 #, php-format
 msgid "ok, %d lines"
 msgstr "ok, %d lines"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:322
+#: public_html/lists/admin/commonlib/pages/importcsv.php:321
 msgid "Create new one"
 msgstr "Maak een nieuwe aan"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:323
-#: public_html/lists/admin/commonlib/pages/importcsv.php:384
+#: public_html/lists/admin/commonlib/pages/importcsv.php:322
+#: public_html/lists/admin/commonlib/pages/importcsv.php:383
 msgid "Skip Column"
 msgstr "Sla kolom over"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:331
+#: public_html/lists/admin/commonlib/pages/importcsv.php:330
 msgid "Import Attributes"
 msgstr "Importeer Attributen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:346
+#: public_html/lists/admin/commonlib/pages/importcsv.php:345
 msgid "select"
 msgstr "selecteer"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:351
+#: public_html/lists/admin/commonlib/pages/importcsv.php:350
 msgid "Please identify the target of the following unknown columns"
 msgstr "Identificeer aub het doel van de volgende onbekende kolommen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:369
+#: public_html/lists/admin/commonlib/pages/importcsv.php:368
 msgid ""
 "Cannot find column with email, you need to map at least one column to \"Email"
 "\""
 msgstr ""
-"Er is geen kolom met \"email adres\" aangegeven. Je moet tenminste één kolom "
-"aan \"email\" koppelen."
+"Er bestaat geen kolom voor emailadressen. Je moet tenminste één kolom aan "
+"\"email\" koppelen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:372
+#: public_html/lists/admin/commonlib/pages/importcsv.php:371
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:375
-#: public_html/lists/admin/commonlib/pages/importcsv.php:382
-#: public_html/lists/admin/commonlib/pages/importcsv.php:384
-#: public_html/lists/admin/commonlib/pages/importcsv.php:386
-#: public_html/lists/admin/commonlib/pages/importcsv.php:388
-#: public_html/lists/admin/commonlib/pages/importcsv.php:390
+#: public_html/lists/admin/commonlib/pages/importcsv.php:374
+#: public_html/lists/admin/commonlib/pages/importcsv.php:381
+#: public_html/lists/admin/commonlib/pages/importcsv.php:383
+#: public_html/lists/admin/commonlib/pages/importcsv.php:385
+#: public_html/lists/admin/commonlib/pages/importcsv.php:387
+#: public_html/lists/admin/commonlib/pages/importcsv.php:389
 msgid "maps to"
 msgstr "mapt naar"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:382
+#: public_html/lists/admin/commonlib/pages/importcsv.php:381
 msgid "Create new Attribute"
 msgstr "Maak nieuw Attribuut"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:390
+#: public_html/lists/admin/commonlib/pages/importcsv.php:389
 msgid "none"
 msgstr "geen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:401
+#: public_html/lists/admin/commonlib/pages/importcsv.php:400
 #, php-format
 msgid "%d lines will be imported"
 msgstr "%d lijnen zullen worden geimporteerd"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:403
-#: public_html/lists/admin/commonlib/pages/importcsv.php:575
+#: public_html/lists/admin/commonlib/pages/importcsv.php:402
+#: public_html/lists/admin/commonlib/pages/importcsv.php:574
 msgid "Confirm Import"
 msgstr "Bevestig Importatie"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:404
+#: public_html/lists/admin/commonlib/pages/importcsv.php:403
 msgid "Test Output"
 msgstr "Test Uitvoer"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:407
+#: public_html/lists/admin/commonlib/pages/importcsv.php:406
 #: public_html/lists/admin/import1.php:158
 #, php-format
 msgid "Importing %d subscribers to %d lists, please wait"
 msgstr "Importeren van %d abonnees aan %d lijsten. Even geduld."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:491
+#: public_html/lists/admin/commonlib/pages/importcsv.php:490
 #: public_html/lists/admin/importadmin.php:122
 #: public_html/lists/admin/actions/import2.php:95
 msgid "Record has no email"
 msgstr "Record heeft geen email"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:494
+#: public_html/lists/admin/commonlib/pages/importcsv.php:493
 #: public_html/lists/admin/importadmin.php:123
 #: public_html/lists/admin/actions/import2.php:98
 msgid "Invalid Email"
 msgstr "Ongeldige Email"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:543
+#: public_html/lists/admin/commonlib/pages/importcsv.php:542
 #: public_html/lists/admin/actions/import2.php:147
 msgid "clear value"
 msgstr "wis waarde"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:553
+#: public_html/lists/admin/commonlib/pages/importcsv.php:552
 #: public_html/lists/admin/actions/import2.php:157
 msgid "New Attribute"
 msgstr "Nieuw Attribuut"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:556
+#: public_html/lists/admin/commonlib/pages/importcsv.php:555
 #: public_html/lists/admin/actions/import2.php:161
 msgid "Skip value"
 msgstr "Sla waarde over"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:575
+#: public_html/lists/admin/commonlib/pages/importcsv.php:574
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr ""
 "Test uitvoer<br/>Als de uitvoer er goed uitziet, klik %s om voor echt voor "
 "te leggen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:577
+#: public_html/lists/admin/commonlib/pages/importcsv.php:576
 #: public_html/lists/admin/actions/import1.php:219
 #: public_html/lists/admin/actions/import2.php:497
 #: public_html/lists/admin/import3.php:493
@@ -510,41 +510,41 @@ msgstr ""
 msgid "Import some more emails"
 msgstr "Importeer nog enkele emails"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:601
+#: public_html/lists/admin/commonlib/pages/importcsv.php:600
 #: public_html/lists/admin/import3.php:229
 msgid "Adding users to list"
 msgstr "Abonnees toevoegen aan lijst"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:603
-#: public_html/lists/admin/commonlib/pages/importcsv.php:618
+#: public_html/lists/admin/commonlib/pages/importcsv.php:602
+#: public_html/lists/admin/commonlib/pages/importcsv.php:617
 #: public_html/lists/admin/import1.php:191
 #: public_html/lists/admin/import3.php:224
 #: public_html/lists/admin/importsimple.php:132
 msgid "Select the lists to add the emails to"
 msgstr "Selecteer de lijsten waar de emails in moeten komen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:613
+#: public_html/lists/admin/commonlib/pages/importcsv.php:612
 #: public_html/lists/admin/import4.php:42
 #: public_html/lists/admin/import3.php:40
 msgid "No lists available"
 msgstr "Geen lijsten beschikbaar"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:613
+#: public_html/lists/admin/commonlib/pages/importcsv.php:612
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
 #: public_html/lists/admin/list.php:271 public_html/lists/admin/import3.php:40
-#: public_html/lists/admin/connect.php:1106
+#: public_html/lists/admin/connect.php:1107
 msgid "Add a list"
 msgstr "Voeg een lijst toe"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:635
+#: public_html/lists/admin/commonlib/pages/importcsv.php:634
 msgid "Select the groups to add the users to"
 msgstr "Selecteer de groepen waarin de abonnees moeten komen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:638
+#: public_html/lists/admin/commonlib/pages/importcsv.php:637
 msgid "automatically added"
 msgstr "automatisch toegevoegd"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:663
+#: public_html/lists/admin/commonlib/pages/importcsv.php:662
 msgid ""
 "The file you upload will need to have the attributes of the records on    "
 "the first line.     Make sure that the email column is called \"email\" and "
@@ -572,12 +572,12 @@ msgstr ""
 "key is 100. Belangrijk: het bestand moet bestaan uit platte tekst. Upload "
 "geen binaire bestanden als Word documenten."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:665
+#: public_html/lists/admin/commonlib/pages/importcsv.php:664
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
 msgstr "Bestand dat emails bevat"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:667
+#: public_html/lists/admin/commonlib/pages/importcsv.php:666
 #, php-format
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
@@ -586,32 +586,32 @@ msgstr ""
 "De volgende limieten staan op je server<br/>Maximale data dat naar de server "
 "kan worden verstuurd: %s<br/>Maximale grootte van een bestand: %s"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:668
+#: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #, php-format
 msgid "phpList will not process files larger than %dMB"
 msgstr "phplist kan geen bestanden groter dan %dMB verwerken"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:669
 #: public_html/lists/admin/importadmin.php:301
 msgid "Field Delimiter"
 msgstr "Veld Afbakening"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:669
 #: public_html/lists/admin/importadmin.php:301
 msgid "default is TAB"
 msgstr "(standaard is TAB)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:671
+#: public_html/lists/admin/commonlib/pages/importcsv.php:670
 #: public_html/lists/admin/importadmin.php:302
 msgid "Record Delimiter"
 msgstr "Record Afbakening"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:671
+#: public_html/lists/admin/commonlib/pages/importcsv.php:670
 #: public_html/lists/admin/importadmin.php:302
 msgid "default is line break"
 msgstr "(standaar is nieuwe regel)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:672
+#: public_html/lists/admin/commonlib/pages/importcsv.php:671
 #: public_html/lists/admin/import1.php:213
 #: public_html/lists/admin/importadmin.php:303
 msgid ""
@@ -626,12 +626,12 @@ msgstr ""
 "correcte formaat heeft. Als je dat doet worden alleen de eerste 50 regels "
 "vertoond."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:673
+#: public_html/lists/admin/commonlib/pages/importcsv.php:672
 #: public_html/lists/admin/importadmin.php:304
 msgid "Test output"
 msgstr "Test uitvoer"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:674
+#: public_html/lists/admin/commonlib/pages/importcsv.php:673
 msgid ""
 "If you check \"Show Warnings\", you will get warnings for invalid records. "
 "Warnings will only be shown if you check \"Test Output\". They will be "
@@ -642,11 +642,11 @@ msgstr ""
 "\"Test Output\" aanvinkt. De inschrijvingen zullen worden overgeslagen bij het "
 "daadwerkelijke importeren."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:675
+#: public_html/lists/admin/commonlib/pages/importcsv.php:674
 msgid "Show Warnings"
 msgstr "Toon Waarschuwingen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:676
+#: public_html/lists/admin/commonlib/pages/importcsv.php:675
 msgid ""
 "If you check \"Omit Invalid\", invalid records will not be added. Invalid "
 "records are records without an email. Any other attributes will be added "
@@ -659,11 +659,11 @@ msgstr ""
 "worden toegevoegd, bijvoorbeeld als een land niet wordt gevonden, zal deze "
 "worden toegevoegd aan de lijst met landen."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:677
+#: public_html/lists/admin/commonlib/pages/importcsv.php:676
 msgid "Omit Invalid"
 msgstr "Ongeldige inschrijvingen weglaten"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:678
+#: public_html/lists/admin/commonlib/pages/importcsv.php:677
 msgid ""
 "Assign Invalid will be used to create an email for subscribers with an "
 "invalid email address. You can use values between [ and ] to make up a value "
@@ -681,11 +681,11 @@ msgstr ""
 "achternaam bevat. De waarde [number] kan worden gebruikt om toe te voegen "
 "aan het nummer om de volgorde te bepalen voor het importeren."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:680
+#: public_html/lists/admin/commonlib/pages/importcsv.php:679
 msgid "Assign Invalid"
 msgstr "Ongeldige inschrijvingen opslaan"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:681
+#: public_html/lists/admin/commonlib/pages/importcsv.php:680
 msgid ""
 "If you check \"Overwrite Existing\", information about a subscriber in the "
 "database will be replaced by the imported information. Subscribers are "
@@ -696,14 +696,14 @@ msgstr ""
 "Abonnees worden vergeleken aan de hand van email adres of buitenlandse "
 "sleutel."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:682
+#: public_html/lists/admin/commonlib/pages/importcsv.php:681
 #: public_html/lists/admin/import3.php:240
 #: public_html/lists/admin/import3.php:241
 msgid "Overwrite Existing"
 msgstr "Overschrijf bestaand"
 
 # Weet niet goed wat ik met de rare reeks tekens aanmoet, en heb dus maar zo laten staan...
-#: public_html/lists/admin/commonlib/pages/importcsv.php:683
+#: public_html/lists/admin/commonlib/pages/importcsv.php:682
 msgid ""
 "If you check \"Retain Old Email\", a conflict of two emails being the same "
 "will keep the old one and add \"duplicate\" to the new one. If you don&quot;"
@@ -716,11 +716,11 @@ msgstr ""
 "don&quot;t aanvinkt, dan zal de oude email worden aangemerkt als "
 "\"duplicaat\" en worden toegevoegd aan de nieuwe."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:684
+#: public_html/lists/admin/commonlib/pages/importcsv.php:683
 msgid "Retain Old User Email"
 msgstr "Behoud Oude abonnee Email"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:689
+#: public_html/lists/admin/commonlib/pages/importcsv.php:688
 #: public_html/lists/admin/import1.php:215
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
@@ -732,17 +732,17 @@ msgstr ""
 "link te klikken. Dat is de aanbevolen manier, want dan worden incorrecte "
 "adressen eruit gehaald."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:690
+#: public_html/lists/admin/commonlib/pages/importcsv.php:689
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr "Verzend&nbsp;Notificatie&nbsp;email"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:690
+#: public_html/lists/admin/commonlib/pages/importcsv.php:689
 #: public_html/lists/admin/import1.php:216
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
 msgstr "Onmiddelijk bevestigen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:691
+#: public_html/lists/admin/commonlib/pages/importcsv.php:690
 #: public_html/lists/admin/import1.php:217
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
@@ -751,17 +751,17 @@ msgstr ""
 "Als je een notificatie stuurt, dan kan je hier een vertraging voor tussen de "
 "berichten aangeven"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:692
+#: public_html/lists/admin/commonlib/pages/importcsv.php:691
 #: public_html/lists/admin/import1.php:218
 msgid "Notification throttle"
 msgstr "Vertraging tussen de notificaties"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:692
+#: public_html/lists/admin/commonlib/pages/importcsv.php:691
 #: public_html/lists/admin/import1.php:218
 msgid "(default is nothing, will send as fast as it can)"
 msgstr "(standaard is niets, zo snel mogelijk versturen)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:694
+#: public_html/lists/admin/commonlib/pages/importcsv.php:693
 msgid "Import"
 msgstr "Importeer"
 
@@ -808,8 +808,9 @@ msgstr "Abonnee is toegevoegd aan lijst %s"
 
 #: public_html/lists/admin/commonlib/pages/user.php:259
 #: public_html/lists/admin/admin.php:98
+#: public_html/lists/admin/editlist.php:95
 msgid "Changes saved"
-msgstr "Wijzigingen opgeslaan"
+msgstr "Wijzigingen opgeslagen"
 
 #: public_html/lists/admin/commonlib/pages/user.php:266
 #: public_html/lists/admin/admin.php:108
@@ -989,12 +990,12 @@ msgstr "kliks"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:93
 #: public_html/lists/admin/actions/msgstatus.php:66
-#: public_html/lists/admin/statsoverview.php:118
-#: public_html/lists/admin/statsoverview.php:220
+#: public_html/lists/admin/statsoverview.php:97
+#: public_html/lists/admin/statsoverview.php:200
 #: public_html/lists/admin/uclicks.php:104
 #: public_html/lists/admin/msgstatus.php:28
 #: public_html/lists/admin/mviews.php:77
-#: public_html/lists/admin/mviews.php:198
+#: public_html/lists/admin/mviews.php:184
 #: public_html/lists/admin/messages.php:45
 msgid "sent"
 msgstr "verzonden"
@@ -1005,8 +1006,8 @@ msgstr "bekeken"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:96
 #: public_html/lists/admin/commonlib/pages/userhistory.php:108
-#: public_html/lists/admin/statsoverview.php:227
-#: public_html/lists/admin/mviews.php:205
+#: public_html/lists/admin/statsoverview.php:207
+#: public_html/lists/admin/mviews.php:191
 msgid "responsetime"
 msgstr "responsetime"
 
@@ -1081,7 +1082,7 @@ msgid "ip"
 msgstr "ip"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:169
-#: public_html/lists/admin/statsoverview.php:124
+#: public_html/lists/admin/statsoverview.php:103
 #: public_html/lists/admin/bounces.php:112
 #: public_html/lists/admin/mviews.php:73 public_html/lists/admin/mviews.php:75
 #: public_html/lists/admin/eventlog.php:115
@@ -1174,8 +1175,8 @@ msgstr "Ga"
 
 #: public_html/lists/admin/commonlib/pages/users.php:321
 #: public_html/lists/admin/commonlib/pages/users.php:325
-#: public_html/lists/admin/statsoverview.php:176
-#: public_html/lists/admin/statsoverview.php:179
+#: public_html/lists/admin/statsoverview.php:156
+#: public_html/lists/admin/statsoverview.php:159
 #: public_html/lists/admin/mviews.php:136
 #: public_html/lists/admin/mviews.php:140
 #, php-format
@@ -1234,7 +1235,7 @@ msgid "msgs"
 msgstr "bericht"
 
 #: public_html/lists/admin/commonlib/pages/users.php:467
-#: public_html/lists/admin/statsoverview.php:119
+#: public_html/lists/admin/statsoverview.php:98
 msgid "bncs"
 msgstr "bncs"
 
@@ -1304,7 +1305,7 @@ msgstr "Er zijn nog geen attributen gemaakt"
 #: public_html/lists/admin/import4.php:170
 #: public_html/lists/admin/import4.php:180
 #: public_html/lists/admin/spageedit.php:283
-#: public_html/lists/admin/connect.php:1708
+#: public_html/lists/admin/connect.php:1709
 msgid "Attribute"
 msgstr "Attribuut"
 
@@ -1323,8 +1324,8 @@ msgstr "Vink"
 #: public_html/lists/admin/commonlib/pages/attributes.php:343
 #: public_html/lists/admin/commonlib/pages/attributes.php:395
 #: public_html/lists/admin/spageedit.php:286
-#: public_html/lists/admin/login.php:121
-#: public_html/lists/admin/catlists.php:63
+#: public_html/lists/admin/login.php:116
+#: public_html/lists/admin/catlists.php:65
 msgid "Name"
 msgstr "Naam"
 
@@ -1391,7 +1392,7 @@ msgid "sort by %s"
 msgstr "sorteer op %s"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:869
-#: public_html/lists/admin/connect.php:1789
+#: public_html/lists/admin/connect.php:1790
 msgid "Previous"
 msgstr "Vorige"
 
@@ -1400,7 +1401,7 @@ msgid "Back"
 msgstr "Terug"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:903
-#: public_html/lists/admin/connect.php:1790
+#: public_html/lists/admin/connect.php:1791
 msgid "Next"
 msgstr "Volgende"
 
@@ -1435,7 +1436,7 @@ msgid "list"
 msgstr "lijst"
 
 #: public_html/lists/admin/listbounces.php:19
-#: public_html/lists/admin/msgbounces.php:14
+#: public_html/lists/admin/msgbounces.php:13
 msgid "# bounced"
 msgstr "aantal bounced"
 
@@ -1456,13 +1457,13 @@ msgid "Bounces on"
 msgstr "bounces op"
 
 #: public_html/lists/admin/listbounces.php:92
-#: public_html/lists/admin/msgbounces.php:69
+#: public_html/lists/admin/msgbounces.php:68
 #: public_html/lists/admin/usercheck.php:20
 msgid "email"
 msgstr "email"
 
 #: public_html/lists/admin/listbounces.php:93
-#: public_html/lists/admin/msgbounces.php:70
+#: public_html/lists/admin/msgbounces.php:69
 msgid "# bounces"
 msgstr "aantal bounces"
 
@@ -1593,8 +1594,8 @@ msgstr ""
 #: public_html/lists/admin/importadmin.php:146
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
 msgstr ""
-"Test uitvoer<br/>Als de uitvoer er goed uitziet, ga terug om voor echt voor "
-"te leggen"
+"Test uitvoer: Als het bericht er goed uitziet, ga dan terug om het bericht "
+"te verzenden "
 
 #: public_html/lists/admin/importadmin.php:153
 msgid "password"
@@ -1638,7 +1639,7 @@ msgstr "Informatie was bijgewerkt van de importering"
 
 #: public_html/lists/admin/importadmin.php:276
 msgid "succesfully imported to the database and added to the system."
-msgstr "succesvol geimporteerd in de database en toegevoegd aan het systeem."
+msgstr "succesvol geïmporteerd in de database en toegevoegd aan het systeem."
 
 #: public_html/lists/admin/importadmin.php:279
 msgid "Import some more administrators"
@@ -1780,13 +1781,13 @@ msgstr ""
 "Het ophalen van de talenlijst is mislukt. Controlleer uw verbinding of "
 "probeer het opnieuw."
 
-#: public_html/lists/admin/actions/updatetranslation.php:33
+#: public_html/lists/admin/actions/updatetranslation.php:28
 #, php-format
 #, php-format, php-format
 msgid "updated %d language terms"
 msgstr "%d termen zijn bijgewerkt"
 
-#: public_html/lists/admin/actions/updatetranslation.php:35
+#: public_html/lists/admin/actions/updatetranslation.php:30
 msgid "Network error updating language, please try again later"
 msgstr ""
 "Netwerk probleem bij het ophalen van de vertalingen, probeer het later nog "
@@ -1930,7 +1931,7 @@ msgstr "nog te verwerken"
 
 #: public_html/lists/admin/actions/msgstatus.php:70
 #: public_html/lists/admin/bounces.php:101
-#: public_html/lists/admin/bounces.php:109 public_html/lists/admin/lib.php:501
+#: public_html/lists/admin/bounces.php:109 public_html/lists/admin/lib.php:500
 msgid "Unknown"
 msgstr "ongekend"
 
@@ -2168,9 +2169,9 @@ msgid ""
 "Your webserver is running in safe_mode. Please keep this window open. It may "
 "reload several times to make sure all messages are sent."
 msgstr ""
-"Uw webserver werkt in \"veilige modus\". Laat dit venster open. Het kan "
-"verschillende malen opnieuw laden om er zeker van te zijn dat alle berichten "
-"verstuurd zijn."
+"Uw webserver functioneert momenteel in de veilige modus. Laat dit venster "
+"open. Het kan verschillende malen opnieuw laden om er zeker van te zijn dat "
+"alle berichten verstuurd zijn."
 
 #: public_html/lists/admin/actions/processqueue.php:481
 msgid "Reports will be sent by email to"
@@ -2455,11 +2456,11 @@ msgstr "en meer, %d in totaal"
 msgid "Sending message %d with subject %s to %s"
 msgstr "Versturen van bericht %d met onderwerp %s naar %s"
 
-#: public_html/lists/admin/sendemaillib.php:718
+#: public_html/lists/admin/sendemaillib.php:712
 msgid "sendingtextonlyto"
 msgstr "versturen van alleen tekst naar"
 
-#: public_html/lists/admin/sendemaillib.php:902
+#: public_html/lists/admin/sendemaillib.php:896
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr "Fout bij versturen van bericht %d (%d/%d) aan %s (%s)"
@@ -2497,77 +2498,118 @@ msgstr "Laatste keer bijgewerkt"
 #: public_html/lists/admin/updatetranslation.php:50
 #: public_html/lists/admin/updatetranslation.php:52
 msgid "Last modified"
-msgstr "Laatste keer veranderd"
+msgstr "laatste keer veranderd"
 
 #: public_html/lists/admin/defaultplugin.php:250
 msgid "choose"
 msgstr "maak een keuze"
 
-#: public_html/lists/admin/upgrade.php:38
+#: public_html/lists/admin/upgrade.php:34
 msgid "Your database version"
 msgstr "De huidige database versie"
 
-#: public_html/lists/admin/upgrade.php:40
+#: public_html/lists/admin/upgrade.php:36
 msgid ""
 "Your database is already the correct version, there is no need to upgrade"
 msgstr ""
 "De database heeft de juiste versie, er is geen reden om een upgrade uit te "
 "voeren"
 
-#: public_html/lists/admin/upgrade.php:64
+#: public_html/lists/admin/upgrade.php:60
 msgid "Please wait, upgrading your database, do not interrupt"
 msgstr "Bezig met upgraden van de database, onderbreek dit niet"
 
-#: public_html/lists/admin/upgrade.php:431
-#: public_html/lists/admin/converttoutf8.php:41
+#: public_html/lists/admin/upgrade.php:419
+#: public_html/lists/admin/converttoutf8.php:72
 msgid "Upgrading the database to use UTF-8, please wait"
 msgstr "Upgrade van de database om UTF-8 te gebruiken, wacht tot het klaar is"
 
-#: public_html/lists/admin/upgrade.php:434
-#: public_html/lists/admin/converttoutf8.php:44
-#: public_html/lists/admin/converttoutf8.php:46
+#: public_html/lists/admin/upgrade.php:422
+#: public_html/lists/admin/converttoutf8.php:75
+#: public_html/lists/admin/converttoutf8.php:77
 msgid "Upgrading table "
 msgstr "Upgrade van tabel "
 
-#: public_html/lists/admin/upgrade.php:440
-#: public_html/lists/admin/converttoutf8.php:52
-#: public_html/lists/admin/converttoutf8.php:54
+#: public_html/lists/admin/upgrade.php:428
+#: public_html/lists/admin/converttoutf8.php:83
+#: public_html/lists/admin/converttoutf8.php:85
 msgid "Upgrading column "
 msgstr "Upgrade van kolom"
 
-#: public_html/lists/admin/upgrade.php:444
-#: public_html/lists/admin/converttoutf8.php:58
+#: public_html/lists/admin/upgrade.php:432
+#: public_html/lists/admin/converttoutf8.php:89
 msgid "upgrade to UTF-8, done"
 msgstr "Upgrade naar UTF-8 is klaar"
 
-#: public_html/lists/admin/upgrade.php:469
-#: public_html/lists/admin/initialise.php:145
+#: public_html/lists/admin/upgrade.php:435
+msgid "Database requires converting to UTF-8."
+msgstr "Het databestand vereist conversie naar UTF-8"
+
+#: public_html/lists/admin/upgrade.php:436
+msgid "However, there is too little diskspace for this conversion"
+msgstr "Maar er is te weinig schijfruimte voor deze conversie."
+
+#: public_html/lists/admin/upgrade.php:437
+msgid "Please do a manual conversion."
+msgstr "Voer een handmatige conversie uit."
+
+#: public_html/lists/admin/upgrade.php:437
+msgid "Run manual conversion to UTF8"
+msgstr "Voer een handmatige conversie naar UTF-8 uit"
+
+#: public_html/lists/admin/upgrade.php:462
+#: public_html/lists/admin/initialise.php:172
 msgid "Success"
 msgstr "Gelukt"
 
-#: public_html/lists/admin/upgrade.php:476
+#: public_html/lists/admin/upgrade.php:469
 #: public_html/lists/admin/statsmgt.php:15
 msgid "The clicktracking system has changed"
 msgstr "Het systeem voor het traceren van kliks is veranderd."
 
-#: public_html/lists/admin/upgrade.php:477
+#: public_html/lists/admin/upgrade.php:470
 #: public_html/lists/admin/statsmgt.php:16
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr "Je hebt nog %s in de oude database tabel"
 
-#: public_html/lists/admin/upgrade.php:478
+#: public_html/lists/admin/upgrade.php:471
 #: public_html/lists/admin/statsmgt.php:17
 msgid "Convert Old data to new"
 msgstr "Converteer oud data naar nieuwe"
 
-#: public_html/lists/admin/upgrade.php:482
+#: public_html/lists/admin/upgrade.php:475
 msgid "Upgrade successful"
 msgstr "Upgrade voltooid"
 
-#: public_html/lists/admin/upgrade.php:488
+#: public_html/lists/admin/upgrade.php:481
 msgid "Upgrade failed"
 msgstr "Upgrade mislukt"
+
+#: public_html/lists/admin/upgrade.php:488
+msgid ""
+"Your database requires upgrading, please make sure to create a backup of "
+"your database first."
+msgstr ""
+"Jouw databestand moet worden bijgewerkt, maak eerst een backup van het "
+"databestand."
+
+#: public_html/lists/admin/upgrade.php:490
+#: public_html/lists/admin/initialise.php:198
+#: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:362
+msgid "Upgrade"
+msgstr "Upgraden"
+
+#: public_html/lists/admin/upgrade.php:490
+#, php-format
+msgid ""
+"When you are ready click %s Depending on the size of your database, this may "
+"take quite a while. Please make sure not to interrupt the process, once it "
+"started."
+msgstr ""
+"Als je daarmee klaar bent klik op %s Afhankelijk van de grootte van het "
+"databestand kan de conversie even duren. Zorg er voor dat het proces niet "
+"wordt onderbroken als het eenmaal is begonnen."
 
 #: public_html/lists/admin/import.php:33
 msgid "Please choose one of the import methods below"
@@ -2617,75 +2659,75 @@ msgstr "zaterdag"
 
 #: public_html/lists/admin/date.php:25
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "January"
 msgstr "Januari"
 
 #: public_html/lists/admin/date.php:26
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "February"
 msgstr "Februari"
 
 #: public_html/lists/admin/date.php:27
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "March"
 msgstr "Maart"
 
 #: public_html/lists/admin/date.php:28
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "April"
 msgstr "April"
 
 #: public_html/lists/admin/date.php:29
 #: public_html/lists/admin/systemstats.php:10
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1383
 #: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "May"
 msgstr "Mei"
 
 #: public_html/lists/admin/date.php:30
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "June"
 msgstr "Juni"
 
 #: public_html/lists/admin/date.php:31
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "July"
 msgstr "Juli"
 
 #: public_html/lists/admin/date.php:32
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "August"
 msgstr "Augustus"
 
 #: public_html/lists/admin/date.php:33
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "September"
 msgstr "September"
 
 #: public_html/lists/admin/date.php:34
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "October"
 msgstr "Oktober"
 
 #: public_html/lists/admin/date.php:35
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "November"
 msgstr "November"
 
 #: public_html/lists/admin/date.php:36
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1383
+#: public_html/lists/admin/connect.php:1384
 msgid "December"
 msgstr "December"
 
@@ -2751,7 +2793,7 @@ msgstr "orde"
 #: public_html/lists/admin/send_core.php:872
 #: public_html/lists/admin/admins.php:103
 #: public_html/lists/admin/eventlog.php:117
-#: public_html/lists/admin/spage.php:45 public_html/lists/admin/send.php:104
+#: public_html/lists/admin/spage.php:45 public_html/lists/admin/send.php:103
 msgid "del"
 msgstr "wis"
 
@@ -2825,7 +2867,7 @@ msgid "Create a subscribe page"
 msgstr "Maak een inschrijf pagina"
 
 #: public_html/lists/admin/setup.php:106
-#: public_html/lists/admin/editlist.php:101
+#: public_html/lists/admin/editlist.php:103
 msgid "Add some subscribers"
 msgstr "Voeg abonnees toe"
 
@@ -2868,86 +2910,60 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr "Om overbelasting te voorkomen zal dit 10000 regels per keer bewerken."
 
-#: public_html/lists/admin/index.php:251
+#: public_html/lists/admin/index.php:238
 msgid "Admin Authentication initialisation failure"
 msgstr "Beheerder authenticatie initialisatie mislukt"
 
-#: public_html/lists/admin/index.php:260
+#: public_html/lists/admin/index.php:247
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr "ongeldige login van %s, probeerde in te loggen als %s"
 
-#: public_html/lists/admin/index.php:282
-msgid "cannotsendpassword"
-msgstr "Kan wachtwoord niet versturen"
+#: public_html/lists/admin/index.php:269
+msgid "Failed sending a change password token"
+msgstr "Het is niet gelukt een token te sturen om het wachtwoord te wijzigen"
 
-#: public_html/lists/admin/index.php:291
-msgid "Your password for phplist"
-msgstr "Je wachtwoord voor phpList"
-
-#: public_html/lists/admin/index.php:291
-msgid "Your password is"
-msgstr "Je wachtwoord is"
-
-#: public_html/lists/admin/index.php:292
-msgid "Your password has been sent by email"
-msgstr "Je wachtwoord is verstuurd per email"
-
-#: public_html/lists/admin/index.php:293
-#, php-format
-msgid "successful password request from %s for %s"
-msgstr "succesvol wachtwoordverzoek van %s voor %s"
-
-#: public_html/lists/admin/index.php:295
-msgid "Unable to send the password"
-msgstr "Het versturen van het wachtwoord is mislukt"
-
-#: public_html/lists/admin/index.php:296
-#, php-format
-msgid "failed password request from %s for %s"
-msgstr "wachtwoordverzoek mislukt van %s voor %s"
-
-#: public_html/lists/admin/index.php:303
+#: public_html/lists/admin/index.php:276
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr "login ip incorrect van %s voor %s (was %s)"
 
-#: public_html/lists/admin/index.php:304
+#: public_html/lists/admin/index.php:277
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
-"Je IP adres is veranderd. For veiligheids redenen ben je uitgelogd. Probeer "
-"het nog eens."
+"Je IP adres is veranderd. Om veiligheidsredenen ben je uitgelogd. Meld je "
+"opnieuw aan."
 
-#: public_html/lists/admin/index.php:311
+#: public_html/lists/admin/index.php:284
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr "foute login van %s voor %s (fout %s)"
 
-#: public_html/lists/admin/index.php:327
+#: public_html/lists/admin/index.php:300
 msgid "Your session timed out, please login again"
 msgstr "Uw sessie is verlopen, gelieve opnieuw in te loggen"
 
-#: public_html/lists/admin/index.php:386
+#: public_html/lists/admin/index.php:359
 msgid "goodbye"
 msgstr "Tot ziens"
 
-#: public_html/lists/admin/index.php:390
+#: public_html/lists/admin/index.php:363
 msgid "good morning"
 msgstr "goede morgen"
 
-#: public_html/lists/admin/index.php:392
+#: public_html/lists/admin/index.php:365
 msgid "good afternoon"
 msgstr "goede middag"
 
-#: public_html/lists/admin/index.php:394
+#: public_html/lists/admin/index.php:367
 msgid "good evening"
 msgstr "goede avond"
 
-#: public_html/lists/admin/index.php:401 public_html/lists/admin/home.php:82
+#: public_html/lists/admin/index.php:374 public_html/lists/admin/home.php:82
 msgid "Continue Configuration"
 msgstr "Doorgaan met configuratie"
 
-#: public_html/lists/admin/index.php:408
+#: public_html/lists/admin/index.php:381
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
@@ -2955,24 +2971,24 @@ msgstr ""
 "phpList kan werken zonder Javascript, maar zal eenvoudiger zijn om mee te "
 "werken als je het aan zet."
 
-#: public_html/lists/admin/index.php:421
+#: public_html/lists/admin/index.php:394
 #: public_html/lists/admin/processqueue.php:20
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 "De testmode is actief, er kunnen geen emails verzonden worden. Controleer "
 "het config bestand."
 
-#: public_html/lists/admin/index.php:424
+#: public_html/lists/admin/index.php:397
 msgid "phpList requires PHP version 5.1.2 or higher"
 msgstr "phpList werkt alleen met PHP versie 5.1.2 of hoger"
 
-#: public_html/lists/admin/index.php:427
+#: public_html/lists/admin/index.php:400
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 "Je probeert RSS te gebruiken, maar er is geen XML functionaliteit in de PHP "
 "versie"
 
-#: public_html/lists/admin/index.php:431
+#: public_html/lists/admin/index.php:404
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
@@ -2980,30 +2996,30 @@ msgstr ""
 "open_basedir restricties gevonden, en dat is waarschijnlijk de oorzaak van "
 "de volgende waarschuwing."
 
-#: public_html/lists/admin/index.php:433
+#: public_html/lists/admin/index.php:406
 msgid "The attachment repository does not exist or is not writable"
 msgstr "De aanhangsel opbergplaats bestaat niet, of kan niet geschreven worden"
 
-#: public_html/lists/admin/index.php:444
+#: public_html/lists/admin/index.php:417
 msgid "Process the queue"
 msgstr "Verwerk de wachtrij"
 
-#: public_html/lists/admin/index.php:445
+#: public_html/lists/admin/index.php:418
 msgid "View the queue"
 msgstr "Bekijk de wachtrij"
 
-#: public_html/lists/admin/index.php:447
+#: public_html/lists/admin/index.php:420
 #, php-format
 msgid "You have %s message(s) waiting to be sent"
 msgstr "Er staan %s bericht(en) klaar om verzonden te worden"
 
-#: public_html/lists/admin/index.php:491
+#: public_html/lists/admin/index.php:464
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 "Je probeert PDF conversie te gebruiken, maar de FPDF library is niet "
 "geladen."
 
-#: public_html/lists/admin/index.php:499
+#: public_html/lists/admin/index.php:472
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
@@ -3011,19 +3027,19 @@ msgstr ""
 "De \"pageroot\" in je instellingen komt niet overeen met de huidige locatie. "
 "Controleer je configuratie bestand."
 
-#: public_html/lists/admin/index.php:551
+#: public_html/lists/admin/index.php:524
 msgid "Sorry this page was not found in the plugin"
 msgstr "Sorry, deze pagina bestaat niet in de plugin"
 
-#: public_html/lists/admin/index.php:556
+#: public_html/lists/admin/index.php:529
 msgid "Sorry, that module does not exist"
 msgstr "Helaas, de module bestaat niet"
 
-#: public_html/lists/admin/index.php:562
+#: public_html/lists/admin/index.php:535
 msgid "Sorry, not implemented yet"
 msgstr "Sorry, nog niet geïmplementeerd"
 
-#: public_html/lists/admin/index.php:566
+#: public_html/lists/admin/index.php:539
 #: public_html/lists/admin/send_core.php:105
 msgid "Access Denied"
 msgstr "Toegang geblokeerd"
@@ -3222,7 +3238,7 @@ msgstr "Een bericht invullen ajb"
 
 #: public_html/lists/admin/send_core.php:381
 msgid "Please enter a subject"
-msgstr "Een onderwerp invullen ajb"
+msgstr "Vul een onderwerp in"
 
 #: public_html/lists/admin/send_core.php:383
 msgid "Error: you can use an attribute in one rule only"
@@ -3251,8 +3267,8 @@ msgid "Sent test mail to"
 msgstr "Verzend testbericht naar"
 
 #: public_html/lists/admin/send_core.php:458
-#: public_html/lists/admin/initialise.php:67
-#: public_html/lists/admin/initialise.php:108
+#: public_html/lists/admin/initialise.php:79
+#: public_html/lists/admin/initialise.php:120
 #: public_html/lists/admin/import3.php:344
 #: public_html/lists/admin/messages.php:82
 #: public_html/lists/admin/messages.php:111
@@ -3312,7 +3328,7 @@ msgstr "Wat is bericht voorbereiden"
 
 #: public_html/lists/admin/send_core.php:632
 #: public_html/lists/admin/send_core.php:667
-#: public_html/lists/admin/statsoverview.php:151
+#: public_html/lists/admin/statsoverview.php:130
 #: public_html/lists/admin/spageedit.php:254
 #: public_html/lists/admin/spageedit.php:261
 #: public_html/lists/admin/mviews.php:117
@@ -3606,45 +3622,45 @@ msgstr "Bewaar als concept"
 msgid "You do not have access to this page"
 msgstr "U heeft geen toegang tot deze pagina"
 
-#: public_html/lists/admin/statsoverview.php:105
+#: public_html/lists/admin/statsoverview.php:84
 #: public_html/lists/admin/mviews.php:64
 #: public_html/lists/admin/mclicks.php:55
 msgid "There are currently no messages to view"
 msgstr "Er zijn momenteel geen berichten te bekijken"
 
-#: public_html/lists/admin/statsoverview.php:108
+#: public_html/lists/admin/statsoverview.php:87
 msgid "Campaigns in the last year"
 msgstr "Berichten in het afgelopen jaar"
 
-#: public_html/lists/admin/statsoverview.php:120
+#: public_html/lists/admin/statsoverview.php:99
 msgid "fwds"
 msgstr "doorgest"
 
-#: public_html/lists/admin/statsoverview.php:121
-#: public_html/lists/admin/statsoverview.php:131
-#: public_html/lists/admin/statsoverview.php:224
+#: public_html/lists/admin/statsoverview.php:100
+#: public_html/lists/admin/statsoverview.php:110
+#: public_html/lists/admin/statsoverview.php:204
 #: public_html/lists/admin/mviews.php:79 public_html/lists/admin/mviews.php:93
-#: public_html/lists/admin/mviews.php:202
+#: public_html/lists/admin/mviews.php:188
 msgid "views"
 msgstr "bekeken"
 
-#: public_html/lists/admin/statsoverview.php:123
-#: public_html/lists/admin/statsoverview.php:133
+#: public_html/lists/admin/statsoverview.php:102
+#: public_html/lists/admin/statsoverview.php:112
 #: public_html/lists/admin/mviews.php:81 public_html/lists/admin/mviews.php:95
 msgid "rate"
 msgstr "rate"
 
-#: public_html/lists/admin/statsoverview.php:129
+#: public_html/lists/admin/statsoverview.php:108
 #: public_html/lists/admin/mviews.php:91
 msgid "Comparison to other admins"
 msgstr "Vergelijking met andere admins"
 
-#: public_html/lists/admin/statsoverview.php:145
+#: public_html/lists/admin/statsoverview.php:124
 #: public_html/lists/admin/mviews.php:114
 msgid "View Details for a Message"
 msgstr "Bekijk Details voor een Bericht"
 
-#: public_html/lists/admin/statsoverview.php:152
+#: public_html/lists/admin/statsoverview.php:131
 #: public_html/lists/admin/mviews.php:118
 #: public_html/lists/admin/messages.php:255
 #: public_html/lists/admin/mclicks.php:111
@@ -3652,9 +3668,9 @@ msgstr "Bekijk Details voor een Bericht"
 #: public_html/lists/admin/userclicks.php:79
 #: public_html/lists/admin/userclicks.php:95
 msgid "Entered"
-msgstr "Ingegaan"
+msgstr "Gemaakt"
 
-#: public_html/lists/admin/statsoverview.php:153
+#: public_html/lists/admin/statsoverview.php:132
 #: public_html/lists/admin/mviews.php:119
 #: public_html/lists/admin/messages.php:266
 #: public_html/lists/admin/mclicks.php:112
@@ -3664,29 +3680,29 @@ msgstr "Ingegaan"
 msgid "Sent"
 msgstr "verzonden"
 
-#: public_html/lists/admin/statsoverview.php:157
+#: public_html/lists/admin/statsoverview.php:136
 #: public_html/lists/admin/mviews.php:126
 msgid "Message Open Statistics"
 msgstr "Message Open Statistics"
 
-#: public_html/lists/admin/statsoverview.php:187
+#: public_html/lists/admin/statsoverview.php:167
 #: public_html/lists/admin/mviews.php:161
 msgid "Entries"
 msgstr "Entries"
 
-#: public_html/lists/admin/statsoverview.php:222
-#: public_html/lists/admin/statsoverview.php:226
-#: public_html/lists/admin/mviews.php:200
-#: public_html/lists/admin/mviews.php:204
+#: public_html/lists/admin/statsoverview.php:202
+#: public_html/lists/admin/statsoverview.php:206
+#: public_html/lists/admin/mviews.php:186
+#: public_html/lists/admin/mviews.php:190
 msgid "firstview"
 msgstr "firstview"
 
-#: public_html/lists/admin/statsoverview.php:223
-#: public_html/lists/admin/mviews.php:201
+#: public_html/lists/admin/statsoverview.php:203
+#: public_html/lists/admin/mviews.php:187
 msgid "lastview"
 msgstr "lastview"
 
-#: public_html/lists/admin/statsoverview.php:227
+#: public_html/lists/admin/statsoverview.php:207
 msgid "sec"
 msgstr "sec"
 
@@ -3764,56 +3780,72 @@ msgstr "unieke klik graad"
 msgid "total"
 msgstr "totaal"
 
-#: public_html/lists/admin/initialise.php:14
+#: public_html/lists/admin/initialise.php:21
+msgid "To install phpList, you need to enable Javascript"
+msgstr "Om phpList te installeren moet je Javascript kunnen gebruiken"
+
+#: public_html/lists/admin/initialise.php:25
+msgid "phpList initialisation"
+msgstr "phpList initialiseren"
+
+#: public_html/lists/admin/initialise.php:28
+msgid "Please enter your name."
+msgstr "Voer je naam in"
+
+#: public_html/lists/admin/initialise.php:30
+msgid "The name of your organisation"
+msgstr "Voer de naam van je organisatie in"
+
+#: public_html/lists/admin/initialise.php:32
 msgid "Please enter your email address."
 msgstr "Wat is je email adres"
 
-#: public_html/lists/admin/initialise.php:26
+#: public_html/lists/admin/initialise.php:41
 msgid "The initial <i>login name</i> will be"
 msgstr "In eerste instantie zal <i>login name</i> zijn"
 
-#: public_html/lists/admin/initialise.php:27
+#: public_html/lists/admin/initialise.php:42
 msgid "Please enter the password you want to use for this account."
 msgstr "Voeg het wachtwoord in dat je wilt gebruiken voor dit profiel"
 
-#: public_html/lists/admin/initialise.php:27
+#: public_html/lists/admin/initialise.php:42
 msgid "minimum of 8 characters."
 msgstr "minstens 8 letters of nummers"
 
-#: public_html/lists/admin/initialise.php:39
+#: public_html/lists/admin/initialise.php:51
 msgid "Creating tables"
 msgstr "Tabellen aanmaken"
 
-#: public_html/lists/admin/initialise.php:64
+#: public_html/lists/admin/initialise.php:76
 msgid "Initialising table"
 msgstr "Tabel initialiseren"
 
-#: public_html/lists/admin/initialise.php:66
+#: public_html/lists/admin/initialise.php:78
 msgid "Table already exists"
 msgstr "Tabel bestaat reeds"
 
-#: public_html/lists/admin/initialise.php:105
+#: public_html/lists/admin/initialise.php:117
 #: public_html/lists/admin/import3.php:342
 msgid "ok"
 msgstr "ok"
 
-#: public_html/lists/admin/initialise.php:114
+#: public_html/lists/admin/initialise.php:126
 msgid "Initialise plugin"
 msgstr "Initialiseer plugin"
 
-#: public_html/lists/admin/initialise.php:127
+#: public_html/lists/admin/initialise.php:149
 msgid "List for testing."
 msgstr "Test-lijst."
 
-#: public_html/lists/admin/initialise.php:135
+#: public_html/lists/admin/initialise.php:157
 msgid "Sign up to our newsletter"
 msgstr "Schrijf je in om de nieuwsbrief te ontvangen"
 
-#: public_html/lists/admin/initialise.php:145
+#: public_html/lists/admin/initialise.php:172
 msgid "Tell us about it"
 msgstr "Vertel ons over dit"
 
-#: public_html/lists/admin/initialise.php:147
+#: public_html/lists/admin/initialise.php:174
 msgid ""
 "Please make sure to read the file README.security that can be found in the "
 "zip file."
@@ -3821,15 +3853,15 @@ msgstr ""
 "Zorg er aub voor dat je het bestand README.security, dat je vind in het zip "
 "bestand, leest."
 
-#: public_html/lists/admin/initialise.php:149
+#: public_html/lists/admin/initialise.php:176
 msgid "Please make sure to"
 msgstr "Zorg er aub voor om"
 
-#: public_html/lists/admin/initialise.php:150
+#: public_html/lists/admin/initialise.php:177
 msgid "subscribe to the announcements list"
 msgstr "je in te schrijven bij de aankondigingen-lijst"
 
-#: public_html/lists/admin/initialise.php:151
+#: public_html/lists/admin/initialise.php:178
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
@@ -3839,32 +3871,27 @@ msgstr ""
 "uitkomt. Soms worden er veiligheids problemen opgelost en dit zorgt ervoor "
 "dat updaten belangrijk is. Verkeer in de lijst is zeer laag."
 
-#: public_html/lists/admin/initialise.php:162
+#: public_html/lists/admin/initialise.php:189
 msgid "Continue with"
 msgstr "Verder gaan met"
 
-#: public_html/lists/admin/initialise.php:162
+#: public_html/lists/admin/initialise.php:189
 msgid "phpList Setup"
 msgstr "phpList configuratie"
 
-#: public_html/lists/admin/initialise.php:164
+#: public_html/lists/admin/initialise.php:198
 msgid "Maybe you want to"
 msgstr "Misschien wilt u"
 
-#: public_html/lists/admin/initialise.php:164
-#: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:362
-msgid "Upgrade"
-msgstr "Upgraden"
-
-#: public_html/lists/admin/initialise.php:164
+#: public_html/lists/admin/initialise.php:198
 msgid "instead?"
 msgstr "in plaats daarvan"
 
-#: public_html/lists/admin/initialise.php:165
+#: public_html/lists/admin/initialise.php:199
 msgid "Force Initialisation"
 msgstr "Installatie forceren"
 
-#: public_html/lists/admin/initialise.php:165
+#: public_html/lists/admin/initialise.php:199
 msgid "(will erase all data!)"
 msgstr "(wist alle bestaande informatie)"
 
@@ -3960,7 +3987,7 @@ msgstr "Bekijk statistieken"
 
 #: public_html/lists/admin/home.php:118
 msgid "Main"
-msgstr "Hoofd pagina"
+msgstr "Startpagina"
 
 #: public_html/lists/admin/home.php:128
 msgid "Manage Lists"
@@ -4105,7 +4132,7 @@ msgid "Process the Message Queue"
 msgstr "Verwerk de wachtrij"
 
 #: public_html/lists/admin/home.php:277
-#: public_html/lists/admin/connect.php:443
+#: public_html/lists/admin/connect.php:444
 msgid "warning"
 msgstr "waarschuwing"
 
@@ -4134,7 +4161,7 @@ msgstr "bekijk bounces"
 msgid "Message Functions"
 msgstr "Bericht functies"
 
-#: public_html/lists/admin/home.php:343 public_html/lists/admin/about.php:62
+#: public_html/lists/admin/home.php:343 public_html/lists/admin/about.php:60
 msgid "Plugins"
 msgstr "Plugins"
 
@@ -4221,15 +4248,11 @@ msgstr "kan niet leeg zijn"
 msgid "Changes Saved"
 msgstr "Wijzigingen opgeslagen"
 
-#: public_html/lists/admin/configure.php:96
-msgid "Continue phpList configuration"
-msgstr "Ga door met configuratie van phpList"
-
-#: public_html/lists/admin/configure.php:110
+#: public_html/lists/admin/configure.php:106
 msgid "settings"
 msgstr "instellingen"
 
-#: public_html/lists/admin/configure.php:127
+#: public_html/lists/admin/configure.php:123
 #: public_html/lists/admin/spage.php:44
 msgid "edit"
 msgstr "bewerk"
@@ -4331,7 +4354,7 @@ msgstr "Mogelijke acties:"
 #: public_html/lists/admin/bounce.php:145
 #: public_html/lists/admin/templates.php:34
 msgid "ID"
-msgstr "ID"
+msgstr "Nummer"
 
 #: public_html/lists/admin/bounce.php:146
 msgid "Date"
@@ -4390,23 +4413,54 @@ msgstr ""
 msgid "Check your INBOX to see if all worked ok"
 msgstr "Bekijk je postbus on te zien of het allemaal goed ging"
 
-#: public_html/lists/admin/converttoutf8.php:13
-#: public_html/lists/admin/converttoutf8.php:19
+#: public_html/lists/admin/converttoutf8.php:33
+msgid "Converting to UTF-8 requires sufficient diskspace on your system."
+msgstr ""
+"Om bij te kunnen werken naar UTF-8 is er voldoende schijfruimte op het "
+"systeem nodig."
+
+#: public_html/lists/admin/converttoutf8.php:34
+#, php-format
+msgid ""
+"The maximum table size in your system is %s and space available on the root "
+"filesystem is %s, which means %s is required."
+msgstr ""
+"De maximale tabelgrootte in je systeem is %s en de ruimte op de schijf is %"
+"s, wat betekent dat %s nodig is."
+
+#: public_html/lists/admin/converttoutf8.php:35
+msgid ""
+"This is not a problem if your Database server is on a different filesystem. "
+"Click the button to continue."
+msgstr ""
+"Dit is geen probleem als je database server op een ander bestandssysteem "
+"werkt. Klik op de knop om verder te gaan."
+
+#: public_html/lists/admin/converttoutf8.php:37
+msgid "Otherwise, free up some diskspace and try again"
+msgstr "Anders, maak schijfruimte vrij en probeer het nog eens."
+
+#: public_html/lists/admin/converttoutf8.php:38
+msgid "Confirm UTF8 conversion"
+msgstr "Bevestig UTF-8 conversie"
+
+#: public_html/lists/admin/converttoutf8.php:44
+#: public_html/lists/admin/converttoutf8.php:50
 msgid "Converting DB to use UTF-8, please wait"
 msgstr "De database instellen om UTF-8 te kunnen gebruiken, even wachten svp"
 
-#: public_html/lists/admin/converttoutf8.php:61
+#: public_html/lists/admin/converttoutf8.php:92
 msgid "Unable to determine the name of the database to convert"
 msgstr ""
 "Het is niet mogelijk om de naam van de database die moet worden "
 "geconverteerd te determineren"
 
-#: public_html/lists/admin/converttoutf8.php:64
-#: public_html/lists/admin/converttoutf8.php:65
-msgid "The DB was already converted to UTF-8 on "
+#: public_html/lists/admin/converttoutf8.php:95
+#: public_html/lists/admin/converttoutf8.php:96
+msgid "The DB was already converted to UTF-8 on"
 msgstr "De database was reeds geconverteerd naar UTF-8 op"
 
-#: public_html/lists/admin/converttoutf8.php:68
+#: public_html/lists/admin/converttoutf8.php:99
 msgid "All Done"
 msgstr "Klaar"
 
@@ -4422,27 +4476,48 @@ msgstr "Ontwikkelaars"
 msgid "Contributors"
 msgstr "Bijdragen"
 
-#: public_html/lists/admin/about.php:28
+#: public_html/lists/admin/about.php:27
 msgid "Design"
 msgstr "Grafisch ontwerp"
 
-#: public_html/lists/admin/about.php:32
+#: public_html/lists/admin/about.php:31
 msgid "Design implementation"
 msgstr "Ontwerp implementatie"
 
-#: public_html/lists/admin/about.php:37
+#: public_html/lists/admin/about.php:36
 msgid "Documentation"
 msgstr "Documentatie"
 
-#: public_html/lists/admin/about.php:42
+#: public_html/lists/admin/about.php:41
 msgid "Translations"
 msgstr "Vertalingen"
 
-#: public_html/lists/admin/about.php:45
-msgid "credits for this translation"
-msgstr "SaWey"
+#: public_html/lists/admin/about.php:42
+msgid ""
+"The translations are provided by the phpList community (that includes "
+"you :-) )"
+msgstr ""
+"De vertalingen zijn vervaardigd door de phpList gemeenschap (daar hoor jij "
+"ook bij :-))"
 
-#: public_html/lists/admin/about.php:48
+#: public_html/lists/admin/about.php:43
+msgid ""
+"The <a href=\"http://translate.phplist.com/\" target=\"translate"
+"\">translation site</a> runs <a href=\"http://translate.sourceforge.net/\" "
+"target=\"pootle\">Pootle</a> an Open Source translation tool, provided by <a "
+"href=\"http://translatehouse.org\" target=\"translatehouse\">Translate "
+"House</a>"
+msgstr ""
+"De <a href=\"http://translate.phplist.com/\" target=\"translate\">vertaal "
+"website</a> werkt met een <a href=\"http://translate.sourceforge.net/\" "
+"target=\"pootle\">Pootle</a> Open Source vertaalinstrument, geleverd door <a "
+"href=\"http://translatehouse.org\" target=\"translatehouse\">Translate House</a>"
+
+#: public_html/lists/admin/about.php:44
+msgid "Acknowledgements"
+msgstr "Dankwoord"
+
+#: public_html/lists/admin/about.php:46
 msgid ""
 "The developers wish to thank the many contributors to this system, who have "
 "helped out with bug reports, suggestions, donations, feature requests, "
@@ -4452,7 +4527,7 @@ msgstr ""
 "bugs rapporteren, voorstellen maken, doneren, nieuwigheden verzoeken, "
 "sponsoring, vertalingen en vele andere bijdragen."
 
-#: public_html/lists/admin/about.php:50
+#: public_html/lists/admin/about.php:48
 msgid "Portions of the system include"
 msgstr "Gedeelten van het systeem omvatten"
 
@@ -4512,7 +4587,7 @@ msgid "Add a new Administrator"
 msgstr "Voeg een nieuwe beheerder toe"
 
 #: public_html/lists/admin/admin.php:171 public_html/lists/admin/admin.php:179
-#: public_html/lists/admin/login.php:123
+#: public_html/lists/admin/login.php:118
 #: public_html/lists/admin/import3.php:214
 msgid "Password"
 msgstr "Wachtwoord"
@@ -4531,7 +4606,7 @@ msgstr "Herinnering sturen?"
 
 #: public_html/lists/admin/admin.php:183
 msgid "Login Name"
-msgstr "Login Naam"
+msgstr "Login naam"
 
 #: public_html/lists/admin/members.php:18
 #: public_html/lists/admin/members.php:29
@@ -4633,7 +4708,8 @@ msgstr "Wat te doen met \"gemarkeerde\" abonnees"
 msgid ""
 "This will only process the users in this page that have the \"Tag\" checkbox "
 "checked"
-msgstr "Hiermee verwerk je abonnees die de box aangevinkt hebben in deze pagina"
+msgstr ""
+"Hiermee verwerk je abonnees die de \"box\" aangevinkt hebben in deze pagina"
 
 #: public_html/lists/admin/members.php:314
 #: public_html/lists/admin/members.php:338
@@ -4720,7 +4796,7 @@ msgid "System Message"
 msgstr "Systeem bericht"
 
 #: public_html/lists/admin/bounces.php:103
-#: public_html/lists/admin/msgbounces.php:11
+#: public_html/lists/admin/msgbounces.php:10
 #: public_html/lists/admin/eventlog.php:116
 #: public_html/lists/admin/userclicks.php:136
 msgid "message"
@@ -4738,62 +4814,66 @@ msgstr "Domein voor email adressen"
 msgid "Person in charge of this system (one email address)"
 msgstr "Email adres van hoofdbeheerder van dit systeem"
 
-#: public_html/lists/admin/defaultconfig.php:77
+#: public_html/lists/admin/defaultconfig.php:76
+msgid "Name of the organisation"
+msgstr "Naam van de organisatie"
+
+#: public_html/lists/admin/defaultconfig.php:85
 msgid "How often do you want to check for a new version of phplist (days)"
 msgstr ""
 "Hoe vaak wil je controleren of er een nieuwe versie van phpList is (in "
 "dagen)"
 
-#: public_html/lists/admin/defaultconfig.php:87
+#: public_html/lists/admin/defaultconfig.php:95
 msgid "List of email addresses to CC in system messages (separate by commas)"
 msgstr ""
 "Lijst van e-mailadressen als kopie (CC) in systeemberichten (gescheiden door "
 "komma's)"
 
-#: public_html/lists/admin/defaultconfig.php:94
+#: public_html/lists/admin/defaultconfig.php:102
 msgid "Default for 'From:' in a campaign"
 msgstr "Standaardwaarde voor het 'Van' veld bij het maken van een nieuw bericht"
 
-#: public_html/lists/admin/defaultconfig.php:101
+#: public_html/lists/admin/defaultconfig.php:109
 msgid "Default for 'address to alert when sending starts'"
 msgstr ""
 "Standaard voor 'e-mailadres waar een waarschuwing naar toe moet worden "
 "verzonden als het verzenden start'."
 
-#: public_html/lists/admin/defaultconfig.php:108
+#: public_html/lists/admin/defaultconfig.php:116
 msgid "Default for 'address to alert when sending finishes'"
 msgstr ""
 "Standaard voor 'e-mailadres waar een waarschuwing naar toe moet worden "
 "verzonden als het verzenden gereed is'. "
 
-#: public_html/lists/admin/defaultconfig.php:115
+#: public_html/lists/admin/defaultconfig.php:123
 msgid "Always add Google tracking code to campaigns"
 msgstr "Voeg altijd een Google Tracking Code toe aan campagnes."
 
-#: public_html/lists/admin/defaultconfig.php:123
+#: public_html/lists/admin/defaultconfig.php:131
 msgid ""
 "Who gets the reports (email address, separate multiple emails with a comma)"
 msgstr ""
 "Wie de rapporten ontvangt (e-mailadres, scheid meerdere e-mailadressen met "
 "een komma)"
 
-#: public_html/lists/admin/defaultconfig.php:132
+#: public_html/lists/admin/defaultconfig.php:140
 msgid "From email address for system messages"
 msgstr "Het e-mailadres van de afzender voor systeemberichten."
 
-#: public_html/lists/admin/defaultconfig.php:139
+#: public_html/lists/admin/defaultconfig.php:147
 msgid "Webmaster"
 msgstr "Beheerder"
 
-#: public_html/lists/admin/defaultconfig.php:140
+#: public_html/lists/admin/defaultconfig.php:148
 msgid "Name for system messages"
 msgstr "Naam voor systeemberichten"
 
-#: public_html/lists/admin/defaultconfig.php:149
+#: public_html/lists/admin/defaultconfig.php:157
 msgid "Reply-to email address for system messages"
 msgstr "Antwoord-naar email adres voor systeem berichten"
 
-#: public_html/lists/admin/defaultconfig.php:159
+#: public_html/lists/admin/defaultconfig.php:167
 msgid ""
 "If there is only one visible list, should it be hidden in the page and "
 "automatically subscribe users who sign up (0/1)"
@@ -4801,62 +4881,62 @@ msgstr ""
 "Als er slechts één zichtbare lijst is, moet het dan worden verborgen in de "
 "pagina zodat abonnees automatisch worden aangemeld op deze lijst (0/1)"
 
-#: public_html/lists/admin/defaultconfig.php:169
+#: public_html/lists/admin/defaultconfig.php:177
 msgid "Categories for lists. Separate with commas."
 msgstr "Categorieën voor lijsten. Meerdere afscheiden met een comma."
 
-#: public_html/lists/admin/defaultconfig.php:178
+#: public_html/lists/admin/defaultconfig.php:186
 msgid "Width of a textline field (numerical)"
 msgstr "Breedte van een tekst regel veld (nummer)"
 
-#: public_html/lists/admin/defaultconfig.php:188
+#: public_html/lists/admin/defaultconfig.php:196
 msgid "Dimensions of a textarea field (rows,columns)"
 msgstr "Afmeting van een tekst veld (rijen, kolommen)"
 
-#: public_html/lists/admin/defaultconfig.php:197
+#: public_html/lists/admin/defaultconfig.php:205
 msgid ""
 "Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"
 msgstr ""
 "Krijgt de administator notificaties van inschrijving, verandering van "
 "details en uitschrijving (0/1)"
 
-#: public_html/lists/admin/defaultconfig.php:206
+#: public_html/lists/admin/defaultconfig.php:214
 msgid "The default subscribe page when there are multiple"
 msgstr "De standaard inschrijf pagina, als er meerdere zijn"
 
-#: public_html/lists/admin/defaultconfig.php:217
+#: public_html/lists/admin/defaultconfig.php:225
 msgid "The default HTML template to use when sending a message"
 msgstr "Het standaard HTML sjabloon voor het versturen van een bericht"
 
-#: public_html/lists/admin/defaultconfig.php:226
+#: public_html/lists/admin/defaultconfig.php:234
 msgid "The HTML wrapper template for system messages"
 msgstr "Het HTML sjabloon voor systeem berichten"
 
-#: public_html/lists/admin/defaultconfig.php:240
+#: public_html/lists/admin/defaultconfig.php:248
 msgid "URL where subscribers can sign up"
 msgstr "URL waar abonnees kunnen inschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:249
+#: public_html/lists/admin/defaultconfig.php:257
 msgid "URL where subscribers can unsubscribe"
 msgstr "URL waar abonnees kunnen uitschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:259
+#: public_html/lists/admin/defaultconfig.php:267
 msgid "URL where unknown users can unsubscribe (do-not-send-list)"
 msgstr "URL waar iedereen zich kan uitschrijven (stuur me niets lijst)"
 
-#: public_html/lists/admin/defaultconfig.php:268
+#: public_html/lists/admin/defaultconfig.php:276
 msgid "URL where subscribers have to confirm their subscription"
 msgstr "URL waar abonnees de inschrijving moeten bevestigen"
 
-#: public_html/lists/admin/defaultconfig.php:277
+#: public_html/lists/admin/defaultconfig.php:285
 msgid "URL where subscribers can update their details"
 msgstr "URL waar abonnees hun informatie kunnen veranderen"
 
-#: public_html/lists/admin/defaultconfig.php:286
+#: public_html/lists/admin/defaultconfig.php:294
 msgid "URL for forwarding messages"
 msgstr "URL om een bericht door te sturen"
 
-#: public_html/lists/admin/defaultconfig.php:293
+#: public_html/lists/admin/defaultconfig.php:301
 msgid ""
 "<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an "
 "email to confirm your subscription. Please click the link in the email to "
@@ -4866,41 +4946,41 @@ msgstr ""
 "bericht per email om dit te bevestigen. Klik op de link in het bericht om de "
 "bevestiging te voltooien.</p>"
 
-#: public_html/lists/admin/defaultconfig.php:294
+#: public_html/lists/admin/defaultconfig.php:302
 msgid "Text to display when subscription with an AJAX request was successful"
 msgstr "Tekst die wordt gebruilkt als een AJAX inschrijving gelukt is"
 
-#: public_html/lists/admin/defaultconfig.php:306
+#: public_html/lists/admin/defaultconfig.php:314
 msgid "Request for confirmation"
 msgstr "Verzoek om bevestiging"
 
-#: public_html/lists/admin/defaultconfig.php:307
+#: public_html/lists/admin/defaultconfig.php:315
 msgid "Subject of the message subscribers receive when they sign up"
 msgstr ""
-"Onderwerk van het bericht dat abonnees ontvangen als ze zich inschrijven"
+"Onderwerp van het bericht dat abonnees ontvangen als ze zich inschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:336
+#: public_html/lists/admin/defaultconfig.php:344
 msgid "Message subscribers receive when they sign up"
 msgstr "Bericht dat abonnees ontvangen als ze zich inschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:344
+#: public_html/lists/admin/defaultconfig.php:352
 msgid "Goodbye from our Newsletter"
 msgstr "Tot ziens van onze nieuwsbrief"
 
-#: public_html/lists/admin/defaultconfig.php:345
+#: public_html/lists/admin/defaultconfig.php:353
 msgid "Subject of the message subscribers receive when they unsubscribe"
 msgstr ""
 "Onderwerp van het bericht dat abonnees ontvangen als ze zich uitschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:368
+#: public_html/lists/admin/defaultconfig.php:376
 msgid "Message subscribers receive when they unsubscribe"
 msgstr "Bericht dat abonnees ontvangen als ze zich uitschrijven"
 
-#: public_html/lists/admin/defaultconfig.php:376
+#: public_html/lists/admin/defaultconfig.php:384
 msgid "Welcome to our Newsletter"
 msgstr "Welkom bij onze nieuwsbrief"
 
-#: public_html/lists/admin/defaultconfig.php:377
+#: public_html/lists/admin/defaultconfig.php:385
 msgid ""
 "Subject of the message subscribers receive after confirming their email "
 "address"
@@ -4908,15 +4988,15 @@ msgstr ""
 "Onderwerp van het bericht dat abonnees ontvangen als ze hun inschrijving "
 "hebben bevestigd"
 
-#: public_html/lists/admin/defaultconfig.php:400
+#: public_html/lists/admin/defaultconfig.php:408
 msgid "Message subscribers receive after confirming their email address"
 msgstr "Bericht dat abonnees ontvangen als ze hun inschrijving hebben bevestigd"
 
-#: public_html/lists/admin/defaultconfig.php:408
+#: public_html/lists/admin/defaultconfig.php:416
 msgid "[notify] Change of List-Membership details"
 msgstr "Verandering van abonnee informatie"
 
-#: public_html/lists/admin/defaultconfig.php:409
+#: public_html/lists/admin/defaultconfig.php:417
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
@@ -4924,11 +5004,11 @@ msgstr ""
 "Onderwerp van het bericht dat abonnees ontvangen als ze hun informatie "
 "veranderen"
 
-#: public_html/lists/admin/defaultconfig.php:441
+#: public_html/lists/admin/defaultconfig.php:449
 msgid "Message subscribers receive when they have changed their details"
 msgstr "Bericht dat abonnees ontvangen als ze hun informatie veranderen"
 
-#: public_html/lists/admin/defaultconfig.php:458
+#: public_html/lists/admin/defaultconfig.php:466
 msgid ""
 "Part of the message that is sent to their new email address when subscribers "
 "change their information, and the email address has changed"
@@ -4936,7 +5016,7 @@ msgstr ""
 "Deel van het bericht dat wordt verstuurd naar het nieuwe adres, als abonnees "
 "hun informatie veranderen, en hun email adres hebben veranderd"
 
-#: public_html/lists/admin/defaultconfig.php:475
+#: public_html/lists/admin/defaultconfig.php:483
 msgid ""
 "Part of the message that is sent to their old email address when subscribers "
 "change their information, and the email address has changed"
@@ -4944,66 +5024,66 @@ msgstr ""
 "Deel van het bericht dat wordt verstuurd naar het oude adres, als abonnees "
 "hun informatie veranderen, en hun email adres hebben veranderd"
 
-#: public_html/lists/admin/defaultconfig.php:482
+#: public_html/lists/admin/defaultconfig.php:490
 msgid "Your personal location"
 msgstr "Uw persoonlijke web adres"
 
-#: public_html/lists/admin/defaultconfig.php:483
+#: public_html/lists/admin/defaultconfig.php:491
 msgid "Subject of message when subscribers request their personal location"
 msgstr ""
 "Onderwerp van het bericht dat wordt verstuurd als abonnees hun persoonlijke "
 "locatie opvragen"
 
-#: public_html/lists/admin/defaultconfig.php:501
+#: public_html/lists/admin/defaultconfig.php:509
 msgid "Message when subscribers request their personal location"
 msgstr ""
 "Bericht dat wordt verstuurd als abonnees hun persoonlijke locatie opvragen"
 
-#: public_html/lists/admin/defaultconfig.php:518
+#: public_html/lists/admin/defaultconfig.php:526
 msgid "Default footer for sending a campaign"
 msgstr "Standaard bericht aan de onderzijde (footer) van het bericht."
 
-#: public_html/lists/admin/defaultconfig.php:533
+#: public_html/lists/admin/defaultconfig.php:541
 msgid "Footer used when a message has been forwarded"
 msgstr ""
 "De tekst die aan de onderzijde van een bericht (footer) wordt geplaatst als "
 "een bericht wordt doorgestuurd."
 
-#: public_html/lists/admin/defaultconfig.php:541
+#: public_html/lists/admin/defaultconfig.php:549
 msgid "Header of public pages."
 msgstr "Tekst aan de bovenzijde van een bericht (header) bij openbare pagina's."
 
-#: public_html/lists/admin/defaultconfig.php:549
+#: public_html/lists/admin/defaultconfig.php:557
 msgid "Footer of public pages"
 msgstr "Tekst aan de onderzijde van een bericht (footer) bij openbare pagina's."
 
-#: public_html/lists/admin/defaultconfig.php:578
+#: public_html/lists/admin/defaultconfig.php:586
 msgid "Message to send when they request their personal location"
 msgstr "Bericht dat wordt verzonden als de locatie wordt opgevraagd."
 
-#: public_html/lists/admin/defaultconfig.php:586
+#: public_html/lists/admin/defaultconfig.php:594
 msgid "String to always append to remote URL when using send-a-webpage"
 msgstr ""
 "String die altijd moet worden toegepast als URL als er een webpagina wordt "
 "verzonden."
 
-#: public_html/lists/admin/defaultconfig.php:594
+#: public_html/lists/admin/defaultconfig.php:602
 msgid "Width for Wordwrap of Text messages"
 msgstr "Breedte voor Wordwrap of tekst berichten"
 
-#: public_html/lists/admin/defaultconfig.php:602
+#: public_html/lists/admin/defaultconfig.php:610
 msgid "CSS for HTML messages without a template"
 msgstr "CSS voor HTML-berichten zonder sjabloon"
 
-#: public_html/lists/admin/defaultconfig.php:610
+#: public_html/lists/admin/defaultconfig.php:618
 msgid "Domains that only accept text emails, one per line"
 msgstr "Domeinen welke alleen tekst-berichten ontvangen, één per regel"
 
-#: public_html/lists/admin/defaultconfig.php:618
+#: public_html/lists/admin/defaultconfig.php:626
 msgid "last time TLDs were fetched"
 msgstr "De laatste keer dat TLD's werden aangebracht "
 
-#: public_html/lists/admin/defaultconfig.php:626
+#: public_html/lists/admin/defaultconfig.php:634
 msgid "Top level domains"
 msgstr "Top level domeinen"
 
@@ -5011,23 +5091,23 @@ msgstr "Top level domeinen"
 msgid "Back to edit template"
 msgstr "Terug naar sjabloon bewerken"
 
-#: public_html/lists/admin/tests.php:7
+#: public_html/lists/admin/tests.php:6
 msgid "phplist test suite"
 msgstr "phplist test systeem"
 
-#: public_html/lists/admin/tests.php:40
+#: public_html/lists/admin/tests.php:39
 msgid "Test passed"
 msgstr "test gelukt"
 
-#: public_html/lists/admin/tests.php:42
+#: public_html/lists/admin/tests.php:41
 msgid "Test failed"
 msgstr "test ging fout"
 
-#: public_html/lists/admin/tests.php:47
+#: public_html/lists/admin/tests.php:46
 msgid "Tests available"
 msgstr "beschikbare tests"
 
-#: public_html/lists/admin/tests.php:52
+#: public_html/lists/admin/tests.php:51
 msgid "Purpose"
 msgstr "Doel"
 
@@ -5077,15 +5157,15 @@ msgid ""
 "You have already defined bounce rules in your system.      Be careful with "
 "generating new ones, because these may interfere with the ones that exist."
 msgstr ""
-"Je hebt al bounce regels vastgelegd op je systeem. Let op bij het creëren "
-"van nieuwe regels, omdat deze kunnen conflicteren met de reeds bestaande "
+"Je hebt al bounce regels gedefinieerd in het programma. Let op bij het "
+"creëren van nieuwe regels dat ze niet conflicteren met de reeds bestaande "
 "regels."
 
 #: public_html/lists/admin/bouncemgt.php:20
 msgid "Generate Bounce Rules"
 msgstr "Genereer Bounce Regels"
 
-#: public_html/lists/admin/languages.php:490
+#: public_html/lists/admin/languages.php:527
 msgid "over treshold, user marked unconfirmed"
 msgstr "over drempel, abonnee gemarkeerd als niet bevestigd"
 
@@ -5235,7 +5315,7 @@ msgstr "Versie op afstand heeft"
 
 #: public_html/lists/admin/import4.php:110
 msgid "No users to copy, is the prefix correct?"
-msgstr "Geen abonnees om te kopiëren, klopt de \"prefix\" wel?"
+msgstr "Geen abonnees om te kopiëren, klopt de prefix wel?"
 
 #: public_html/lists/admin/import4.php:118
 msgid "Copying lists"
@@ -5392,14 +5472,14 @@ msgstr "Selecteer de lijst die je wilt aanbieden"
 
 #: public_html/lists/admin/spageedit.php:323
 msgid "You can only select \"public\" lists for subscribe pages."
-msgstr "U kunt hier alleen publieke lijsten selecteren."
+msgstr "U kunt hier alleen openbare lijsten selecteren."
 
 #: public_html/lists/admin/spageedit.php:327
 msgid "No lists available, please create one first"
 msgstr "Geen lijsten beshikbaar, maak er eerst een aub"
 
 #: public_html/lists/admin/spageedit.php:338
-#: public_html/lists/admin/editlist.php:139
+#: public_html/lists/admin/editlist.php:141
 msgid "Owner"
 msgstr "Eigenaar"
 
@@ -5413,7 +5493,7 @@ msgstr "Opslaan en Deactiveren"
 
 #: public_html/lists/admin/login.php:5
 msgid "default login is"
-msgstr "De standaard login is"
+msgstr "De standaard loginnaam is"
 
 #: public_html/lists/admin/login.php:5
 msgid "with password"
@@ -5435,27 +5515,27 @@ msgstr "Vul je email adres in"
 msgid "Send password"
 msgstr "Verzend wachtwoord"
 
-#: public_html/lists/admin/login.php:76
+#: public_html/lists/admin/login.php:71
 msgid "Your password was changed succesfully"
 msgstr "Jouw wachtwoord is gewijzigd"
 
-#: public_html/lists/admin/login.php:82
+#: public_html/lists/admin/login.php:77
 msgid "The passwords you entered are not the same."
 msgstr "De wachtwoorden komen niet overeen"
 
-#: public_html/lists/admin/login.php:94
+#: public_html/lists/admin/login.php:89
 msgid "You have requested a password update"
 msgstr "Je hebt een wijziging van het wachtwoord aangevraagd"
 
-#: public_html/lists/admin/login.php:101 public_html/lists/admin/lib.php:248
+#: public_html/lists/admin/login.php:96 public_html/lists/admin/lib.php:247
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: public_html/lists/admin/login.php:103
+#: public_html/lists/admin/login.php:98
 msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: public_html/lists/admin/login.php:110
+#: public_html/lists/admin/login.php:105
 msgid ""
 "Unknown token or time expired (More than 24 hrs. passed since the "
 "notification email was sent)"
@@ -5463,20 +5543,20 @@ msgstr ""
 "Onbekende token, of de tijd om het te gebruiken is voorbij. Je hebt 24 uur "
 "de tijd om het token in de notificatie email te gebruiken."
 
-#: public_html/lists/admin/msgbounces.php:9
+#: public_html/lists/admin/msgbounces.php:8
 msgid "Choose a message"
 msgstr "Kies een bericht"
 
-#: public_html/lists/admin/msgbounces.php:13
+#: public_html/lists/admin/msgbounces.php:12
 msgid "subject"
 msgstr "onderwerp"
 
-#: public_html/lists/admin/msgbounces.php:28
+#: public_html/lists/admin/msgbounces.php:27
 #, php-format
 msgid "Listing %s to %s"
 msgstr "Lijst van %s tot %s"
 
-#: public_html/lists/admin/msgbounces.php:30
+#: public_html/lists/admin/msgbounces.php:29
 msgid " Total"
 msgstr " Totaal"
 
@@ -5564,7 +5644,7 @@ msgid ""
 "To be written. In the meantime you can <a href=\"http://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
-"Moet nog worden ingevuld. Tot dan kun je de  <a "
+"Moet nog worden ingevuld. Tot dan kun je de <a "
 "href=\"http://www.phplist.com/support\">phpList website bezoeken</a>"
 
 #: public_html/lists/admin/community.php:31
@@ -5646,7 +5726,7 @@ msgid ""
 "PHP has no <a href=\"http://php.net/zip\">Zip capability</a>. This is "
 "required to allow installation from a remote URL"
 msgstr ""
-"Php heeft geen  <a href=\"http://php.net/zip\">mogelijkheden om te "
+"PHP heeft geen <a href=\"http://php.net/zip\">mogelijkheden om te "
 "comprimeren</a>. Dit is een vereiste om een installatie van een URL buiten "
 "dit domein toe te staan."
 
@@ -5723,51 +5803,51 @@ msgstr "bijwerken"
 msgid "details"
 msgstr "details"
 
-#: public_html/lists/admin/lib.php:28
+#: public_html/lists/admin/lib.php:27
 msgid "delete user"
 msgstr "verwijder abonnee"
 
-#: public_html/lists/admin/lib.php:29
+#: public_html/lists/admin/lib.php:28
 msgid "unconfirm user"
 msgstr "de-bevestig abonnee"
 
-#: public_html/lists/admin/lib.php:30
+#: public_html/lists/admin/lib.php:29
 msgid "blacklist user"
 msgstr "plaats abonnee op de zwarte lijst"
 
-#: public_html/lists/admin/lib.php:31
+#: public_html/lists/admin/lib.php:30
 msgid "delete user and bounce"
 msgstr "verwijder abonnee en bounce"
 
-#: public_html/lists/admin/lib.php:32
+#: public_html/lists/admin/lib.php:31
 msgid "unconfirm user and delete bounce"
 msgstr "de-bevestig abonnee en verwijder bounce"
 
-#: public_html/lists/admin/lib.php:33
+#: public_html/lists/admin/lib.php:32
 msgid "blacklist user and delete bounce"
 msgstr "plaats abonnee op de zwarte lijst en verwijder bounce"
 
-#: public_html/lists/admin/lib.php:34
+#: public_html/lists/admin/lib.php:33
 msgid "delete bounce"
 msgstr "verwijder bounce"
 
-#: public_html/lists/admin/lib.php:46
+#: public_html/lists/admin/lib.php:45
 msgid "Unnamed List"
 msgstr "Lijst zonder naam"
 
-#: public_html/lists/admin/lib.php:243
+#: public_html/lists/admin/lib.php:242
 msgid "Hello"
 msgstr "Hallo"
 
-#: public_html/lists/admin/lib.php:244
+#: public_html/lists/admin/lib.php:243
 msgid "You have requested a new password for phpList."
 msgstr "Je hebt een nieuw wachtwoord aangevraagd voor phpList."
 
-#: public_html/lists/admin/lib.php:245
+#: public_html/lists/admin/lib.php:244
 msgid "To enter a new one, please visit the following link:"
 msgstr "Bezoek deze pagina om een nieuwe in te voeren:"
 
-#: public_html/lists/admin/lib.php:247
+#: public_html/lists/admin/lib.php:246
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
@@ -5775,28 +5855,32 @@ msgstr ""
 "Je hebt 24 uur om je wachtwoord te veranderen. Daarna is het token niet meer "
 "geldig."
 
-#: public_html/lists/admin/lib.php:249
+#: public_html/lists/admin/lib.php:248
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 "Een verzoek ter verandering van het wachtwoord is gestuurd naar het email "
 "adres van het account."
 
-#: public_html/lists/admin/lib.php:251
+#: public_html/lists/admin/lib.php:250
 msgid "Error sending password change token"
 msgstr ""
 "Er was een probleem bij het versturen van het bericht om het wachtwoord te "
 "veranderen."
 
-#: public_html/lists/admin/lib.php:512
+#: public_html/lists/admin/lib.php:452
+msgid "Sending admin copy to"
+msgstr "Bezig een beheerder kopie te verzenden naar"
+
+#: public_html/lists/admin/lib.php:511
 msgid "very little time"
 msgstr "zeer weinig tijd"
 
-#: public_html/lists/admin/lib.php:572
+#: public_html/lists/admin/lib.php:571
 msgid "This is the Newsletter Subject"
 msgstr "Dit is het onderwerp van de nieuwsbrief"
 
-#: public_html/lists/admin/lib.php:707
+#: public_html/lists/admin/lib.php:706
 #, php-format
 #, php-format,
 msgid ""
@@ -5805,31 +5889,31 @@ msgid ""
 msgstr ""
 "Deze pagina wordt reeds verwerkt, laaste activiteit was %s seconden geleden."
 
-#: public_html/lists/admin/lib.php:710
+#: public_html/lists/admin/lib.php:709
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 "Commandline wordt uitgevoerd, huidige actie gestaakt. Bij de volgende actie "
 "zal duidelijk worden wat er gedaan moet worden."
 
-#: public_html/lists/admin/lib.php:713
+#: public_html/lists/admin/lib.php:712
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "Microslaapje van 20s, Annuleren = quit"
 
-#: public_html/lists/admin/lib.php:721
+#: public_html/lists/admin/lib.php:720
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 "We hebben te lang gewacht, Ik gok dat het andere process nog steeds goed "
 "draait"
 
-#: public_html/lists/admin/list.php:44 public_html/lists/admin/catlists.php:58
+#: public_html/lists/admin/list.php:44 public_html/lists/admin/catlists.php:60
 msgid "Categorise lists"
 msgstr "Categoriseer lijsten"
 
 #: public_html/lists/admin/list.php:87 public_html/lists/admin/list.php:97
 #: public_html/lists/admin/list.php:119 public_html/lists/admin/list.php:127
-#: public_html/lists/admin/connect.php:1116
+#: public_html/lists/admin/connect.php:1117
 msgid "Uncategorised"
 msgstr "Zonder categorie"
 
@@ -5861,11 +5945,11 @@ msgstr "Verwijder deze lijst"
 
 #: public_html/lists/admin/list.php:235
 msgid "start a new campaign targetting this list"
-msgstr "Begin een nieuw bericht naar deze lijst"
+msgstr "Maak een nieuw bericht voor deze lijst"
 
 #: public_html/lists/admin/list.php:244
 msgid "No lists, use Add List to add one"
-msgstr "Geen lijsten. Gebruik \"voeg toe\" om er één te maken."
+msgstr "Geen lijsten. Gebruik de knop \"voeg toe\" om er één te maken."
 
 #: public_html/lists/admin/import3.php:21
 msgid "Import emails from IMAP folders"
@@ -6192,57 +6276,57 @@ msgid "in progress"
 msgstr "vorderend"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Jan"
 msgstr "Jan"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Feb"
 msgstr "Feb"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Mar"
 msgstr "Mar"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Apr"
 msgstr "Apr"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Jun"
 msgstr "Jun"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Jul"
 msgstr "Jul"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Aug"
 msgstr "Aug"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Sep"
 msgstr "Sep"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Oct"
 msgstr "Okt"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Nov"
 msgstr "Nov"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1385
 msgid "Dec"
 msgstr "Dec"
 
@@ -6272,7 +6356,7 @@ msgstr "Unieke index <b>%s</b> toevoegen aan %s<br/>"
 
 #: public_html/lists/admin/messages.php:40
 msgid "Start a new campaign"
-msgstr "Begin een nieuw bericht"
+msgstr "Maak een nieuw bericht"
 
 #: public_html/lists/admin/messages.php:47
 msgid "draft"
@@ -6479,7 +6563,7 @@ msgstr "Verwijderd"
 
 #: public_html/lists/admin/spage.php:38
 msgid "subscribe pages"
-msgstr "Inschrijf Pagina&acute;s"
+msgstr "Inschrijf pagina"
 
 #: public_html/lists/admin/spage.php:43
 msgid "title"
@@ -6538,19 +6622,19 @@ msgstr "Alle abonnees van lijst %s markeren als bevestigd"
 #: public_html/lists/admin/reconcileusers.php:221
 #: public_html/lists/admin/reconcileusers.php:228
 msgid "subscribers apply"
-msgstr "Abonnees aanmelden"
+msgstr "abonnees aangemeld"
 
 #: public_html/lists/admin/reconcileusers.php:151
 msgid "Creating UniqID for all subscribers who do not have one"
-msgstr "Creëren van unieke ID voor alle abonnees die er geen hebben"
+msgstr "Creeër een uniek nummer voor alle abonnees die er geen hebben"
 
 #: public_html/lists/admin/reconcileusers.php:158
 msgid "Marking all subscribers to receive HTML"
-msgstr "Alle abonnees markeren om email met HTML-opmaak te ontvangen"
+msgstr "Alle abonnees markeren om e-mail met HTML-opmaak te ontvangen"
 
 #: public_html/lists/admin/reconcileusers.php:164
 msgid "Marking all subscribers to receive text"
-msgstr "Alle abonnees markeren om email met tekstopmaak te ontvangen"
+msgstr "Alle abonnees markeren om e-mail met tekstopmaak te ontvangen"
 
 #: public_html/lists/admin/reconcileusers.php:170
 msgid "Deleting subscribers who are not on any list"
@@ -6637,11 +6721,11 @@ msgstr "-Alle-"
 
 #: public_html/lists/admin/reconcileusers.php:424
 msgid "Mark all subscribers to receive HTML"
-msgstr "Alle abonnees markeren om HTML te ontvangen"
+msgstr "Alle abonnees markeren om e-mail met HTML-opmaak te ontvangen"
 
 #: public_html/lists/admin/reconcileusers.php:425
 msgid "Mark all subscribers to receive text"
-msgstr "Alle abonnees markeren om tekst te ontvangen"
+msgstr "Alle abonnees markeren om e-mail met tekst-opmaak te ontvangen"
 
 #: public_html/lists/admin/reconcileusers.php:437
 #, php-format
@@ -6703,41 +6787,41 @@ msgstr "Leden van deze lijst"
 msgid "New list added"
 msgstr "Nieuwe lijst toegevoegd"
 
-#: public_html/lists/admin/editlist.php:130
+#: public_html/lists/admin/editlist.php:132
 msgid "List name"
 msgstr "Naam van de lijst"
 
-#: public_html/lists/admin/editlist.php:132
+#: public_html/lists/admin/editlist.php:134
 msgid "Public list (listed on the frontend)"
 msgstr "Publieke lijst (zichtbaar op de web pagina)"
 
-#: public_html/lists/admin/editlist.php:133
+#: public_html/lists/admin/editlist.php:135
 msgid "Order for listing"
 msgstr "Volgorde voor vermelding"
 
-#: public_html/lists/admin/editlist.php:151
-#: public_html/lists/admin/catlists.php:71
+#: public_html/lists/admin/editlist.php:153
+#: public_html/lists/admin/catlists.php:73
 msgid "Category"
 msgstr "Category"
 
-#: public_html/lists/admin/editlist.php:153
-#: public_html/lists/admin/catlists.php:65
+#: public_html/lists/admin/editlist.php:155
+#: public_html/lists/admin/catlists.php:67
 msgid "choose category"
 msgstr "kies categorie"
 
-#: public_html/lists/admin/editlist.php:167
+#: public_html/lists/admin/editlist.php:169
 msgid "List Description"
 msgstr "Beschrijving van de lijst"
 
-#: public_html/lists/admin/editlist.php:170
+#: public_html/lists/admin/editlist.php:172
 msgid "Save"
 msgstr "Sla op"
 
-#: public_html/lists/admin/editlist.php:171
+#: public_html/lists/admin/editlist.php:173
 msgid "Cancel"
 msgstr "Annuleer"
 
-#: public_html/lists/admin/editlist.php:171
+#: public_html/lists/admin/editlist.php:173
 msgid "Do not save, and go back to the lists"
 msgstr "Niet bewaren, en terug naar de lijsten"
 
@@ -6754,6 +6838,7 @@ msgstr ""
 "je bestaande lijsten met die categorieën te classificeren."
 
 #: public_html/lists/admin/catlists.php:37
+#: public_html/lists/admin/catlists.php:57
 msgid "Configure Categories"
 msgstr "Maak categorieën"
 
@@ -6765,7 +6850,7 @@ msgstr "Categorieën bewaard"
 msgid "All lists have already been assigned a category"
 msgstr "Alle lijsten hebben al een categorie"
 
-#: public_html/lists/admin/catlists.php:74
+#: public_html/lists/admin/catlists.php:76
 msgid "save"
 msgstr "opslaan"
 
@@ -6867,152 +6952,151 @@ msgstr "Vink dit om incorrecte adressen over te slaan"
 msgid "Import emails"
 msgstr "Importeer"
 
-#: public_html/lists/admin/connect.php:376
+#: public_html/lists/admin/connect.php:377
 msgid "error"
 msgstr "fout"
 
-#: public_html/lists/admin/connect.php:421
-#: public_html/lists/admin/connect.php:425
+#: public_html/lists/admin/connect.php:422
+#: public_html/lists/admin/connect.php:426
 msgid "fatalerror"
 msgstr "Fatale fout"
 
-#: public_html/lists/admin/connect.php:738
+#: public_html/lists/admin/connect.php:739
 msgid "Main Page"
-msgstr "hoofdpagina"
+msgstr "Startpagina"
 
-#: public_html/lists/admin/connect.php:738
+#: public_html/lists/admin/connect.php:739
 msgid "about"
 msgstr "Over"
 
-#: public_html/lists/admin/connect.php:803
+#: public_html/lists/admin/connect.php:804
 msgid "In this section"
 msgstr "In deze sectie"
 
-#: public_html/lists/admin/connect.php:830
-#, fuzzy
+#: public_html/lists/admin/connect.php:831
 msgid "Recently visited"
 msgstr "Recent bezocht"
 
-#: public_html/lists/admin/connect.php:1096
+#: public_html/lists/admin/connect.php:1097
 msgid "All Lists"
 msgstr "Alle lijsten"
 
-#: public_html/lists/admin/connect.php:1102
+#: public_html/lists/admin/connect.php:1103
 msgid "All Active Lists"
 msgstr "Alle actieve lijsten"
 
-#: public_html/lists/admin/connect.php:1132
+#: public_html/lists/admin/connect.php:1133
 msgid "Public list"
 msgstr "Publieke lijst"
 
-#: public_html/lists/admin/connect.php:1134
+#: public_html/lists/admin/connect.php:1135
 msgid "Private list"
 msgstr "Privé lijst"
 
-#: public_html/lists/admin/connect.php:1177
+#: public_html/lists/admin/connect.php:1178
 msgid "There are no lists available"
 msgstr "Er zijn geen lijsten beschikbaar"
 
-#: public_html/lists/admin/connect.php:1690
+#: public_html/lists/admin/connect.php:1691
 msgid "years"
 msgstr "jaren"
 
-#: public_html/lists/admin/connect.php:1693
+#: public_html/lists/admin/connect.php:1694
 msgid "days"
 msgstr "dagen"
 
-#: public_html/lists/admin/connect.php:1696
+#: public_html/lists/admin/connect.php:1697
 msgid "hours"
 msgstr "uren"
 
-#: public_html/lists/admin/connect.php:1699
+#: public_html/lists/admin/connect.php:1700
 msgid "mins"
 msgstr "minuten"
 
-#: public_html/lists/admin/connect.php:1702
+#: public_html/lists/admin/connect.php:1703
 msgid "secs"
 msgstr "seconden"
 
-#: public_html/lists/admin/connect.php:1708
+#: public_html/lists/admin/connect.php:1709
 msgid "Placeholder"
 msgstr "Plaatshouder"
 
-#: public_html/lists/admin/connect.php:1770
+#: public_html/lists/admin/connect.php:1771
 #, php-format
 msgid "Listing %d to %d of %d"
-msgstr "Laten zien van %d tot %d uit %d"
+msgstr "Berichten %d tot %d van %d stuks"
 
-#: public_html/lists/admin/connect.php:1772
+#: public_html/lists/admin/connect.php:1773
 #, php-format
 #, php-format,
 msgid "Listing %d to %d"
 msgstr "Lijst van %d tot %d"
 
-#: public_html/lists/admin/connect.php:1788
+#: public_html/lists/admin/connect.php:1789
 msgid "First Page"
 msgstr "Eerste pagina"
 
-#: public_html/lists/admin/connect.php:1791
+#: public_html/lists/admin/connect.php:1792
 msgid "Last Page"
 msgstr "Laatste pagina"
 
-#: public_html/lists/admin/send.php:81
+#: public_html/lists/admin/send.php:80
 msgid "All draft campaigns deleted"
 msgstr "Alle concept campagnes verwijderd"
 
-#: public_html/lists/admin/send.php:82
+#: public_html/lists/admin/send.php:81
 msgid "campaigns deleted"
 msgstr "campagnes verwijderd"
 
-#: public_html/lists/admin/send.php:85
+#: public_html/lists/admin/send.php:84
 msgid "campaign deleted"
 msgstr "campagne verwijderd"
 
-#: public_html/lists/admin/send.php:86
+#: public_html/lists/admin/send.php:85
 msgid "Campaign deleted"
 msgstr "Campagne verwijderd"
 
-#: public_html/lists/admin/send.php:93
+#: public_html/lists/admin/send.php:92
 msgid "start a new message"
-msgstr "Begin een nieuw bericht"
+msgstr "Maak een nieuw bericht"
 
-#: public_html/lists/admin/send.php:94
+#: public_html/lists/admin/send.php:93
 msgid "Choose an existing draft message to work on"
 msgstr "Kies een bestaand concept bericht om te bewerken"
 
-#: public_html/lists/admin/send.php:95
+#: public_html/lists/admin/send.php:94
 msgid "Draft messages"
 msgstr "Concept berichten"
 
-#: public_html/lists/admin/send.php:102
+#: public_html/lists/admin/send.php:101
 msgid "entered"
 msgstr "gestart"
 
-#: public_html/lists/admin/send.php:103
+#: public_html/lists/admin/send.php:102
 msgid "age"
 msgstr "oud"
 
-#: public_html/lists/admin/send.php:106
+#: public_html/lists/admin/send.php:105
 #: public_html/lists/admin/editattributes.php:47
 msgid "delete all"
 msgstr "Verwijder alles"
 
-#: public_html/lists/admin/send.php:132
+#: public_html/lists/admin/send.php:131
 msgid "Please select the lists you want to send your campaign to"
 msgstr "Kies de lijsten waar je het bericht naar wilt verzenden"
 
-#: public_html/lists/admin/send.php:140
+#: public_html/lists/admin/send.php:139
 msgid "Please select the lists you want to exclude from this campaign"
 msgstr ""
 "Kies de lijsten die je wilt gebruiken om abonnees van uit te sluiten voor "
 "dit bericht"
 
-#: public_html/lists/admin/send.php:145
+#: public_html/lists/admin/send.php:144
 msgid ""
 "The campaign will go to users who are a member of the lists above,     "
 "unless they are a member of one of the lists you select here."
 msgstr ""
-"Het bericht zal  naar gebruikers gaan die lid zijn van de bovenstaande "
+"Het bericht zal naar gebruikers gaan die lid zijn van de bovenstaande "
 "lijsten, tenzij ze lid zijn van een lijst die je hier selecteert."
 
 #: public_html/lists/admin/readtestmail.php:49
@@ -7151,7 +7235,7 @@ msgstr "Bericht standaard waarde"
 
 #: public_html/lists/admin/templates.php:43
 msgid "System"
-msgstr "Systeem"
+msgstr "Programma"
 
 #: public_html/lists/admin/templates.php:51
 msgid "Add new Template"
@@ -7185,7 +7269,7 @@ msgstr "Afbeelding"
 
 #: public_html/lists/admin/template.php:99
 msgid "\"not full URL"
-msgstr "Geen volledige URL"
+msgstr "\"geen volledige URL"
 
 #: public_html/lists/admin/template.php:107
 msgid "does not exist"
@@ -7327,7 +7411,52 @@ msgstr "Verstuur test bericht"
 msgid "to email addresses"
 msgstr "aan de volgende emailadressen"
 
-#: public_html/lists/index.php:978
+#: public_html/lists/index.php:573
+#, php-format
+msgid "You are logged in as administrator (%s) of this phpList system"
+msgstr "Je bent aangemeld als beheerder (%s) van phpList"
+
+#: public_html/lists/index.php:574
+msgid ""
+"You are therefore offered the following choice, which your subscribers will "
+"not see when they load this page."
+msgstr ""
+"Daarom word je de volgende keuze voor gelegd, die jouw abonnees niet zien "
+"als ze deze pagina bezoeken."
+
+#: public_html/lists/index.php:575
+msgid "Go back to admin area"
+msgstr "Ga terug naar de beheerpagina"
+
+#: public_html/lists/index.php:576
+msgid "Please choose"
+msgstr "Kies"
+
+#: public_html/lists/index.php:576
+msgid "Make this subscriber confirmed immediately"
+msgstr "Deze abonnee meteen inschrijven als bevestigd"
+
+#: public_html/lists/index.php:577
+msgid "Send this subscriber a request for confirmation email"
+msgstr ""
+"Stuur deze abonnee een e-mail met het verzoek om de inschrijving te "
+"bevestigen"
+
+#: public_html/lists/index.php:735
+msgid "Forwarded receiver requested blacklist"
+msgstr ""
+"De ontvanger aan wie een bericht was doorgestuurd wil aan de Zwarte lijst "
+"worden toegevoegd"
+
+#: public_html/lists/index.php:743
+msgid "\"Jump off\" used by subscriber, reason not requested"
+msgstr "\"Jump off\" gebruikt door abonnee, geen reden gegeven"
+
+#: public_html/lists/index.php:745
+msgid "\"Jump off\" set, reason not requested"
+msgstr "\"Jump off\" set, een reden is niet gegeven"
+
+#: public_html/lists/index.php:965
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
@@ -7335,11 +7464,32 @@ msgstr ""
 "Als je de functionaliteit van het doorsturen wilt uitproberen, dan moet je "
 "zijn ingelogd als beheerder."
 
+#: public_html/lists/index.php:1020 public_html/lists/index.php:1027
+msgid "Message Forwarded"
+msgstr "Bericht doorgestuurd"
+
+#: public_html/lists/index.php:1020
+#, php-format
+msgid "%s has forwarded message %d to %s"
+msgstr "%s heeft het bericht %d doorgestuurd naar %s"
+
+#: public_html/lists/index.php:1027
+#, php-format
+msgid "%s tried forwarding message %d to %s but failed"
+msgstr ""
+"%s heeft geprobeerd het bericht %d door te sturen naar %s maar is daarin "
+"niet geslaagd "
+
+#: public_html/lists/index.php:1043
+#, php-format
+msgid "Forward request from invalid user ID: %s"
+msgstr "Verzoek om door te sturen door een ongeldige gebruiker: %s"
+
 msgid "pagetitle:home"
-msgstr "Hoofd pagina"
+msgstr "Startpagina"
 
 msgid "pagetitle:setup"
-msgstr "Configuratie opties"
+msgstr "Configureer mogelijkheden"
 
 msgid "pagetitle:about"
 msgstr "Over phpList"
@@ -7351,7 +7501,7 @@ msgid "pagetitle:stresstest"
 msgstr "Test onder stress"
 
 msgid "pagetitle:list"
-msgstr "Abonnee lijsten"
+msgstr "Lijsten"
 
 msgid "pagetitle:catlists"
 msgstr "Categoriseer lijsten"
@@ -7372,184 +7522,216 @@ msgid "pagetitle:import4"
 msgstr "Importeer van een andere database"
 
 msgid "pagetitle:import3"
-msgstr ""
+msgstr "Importeer van een IMAP folder"
 
 msgid "pagetitle:import2"
-msgstr ""
+msgstr "Importeer van een CSV bestand"
 
 msgid "pagetitle:import1"
-msgstr ""
+msgstr "Importeer van een bestand"
 
 msgid "pagetitle:import"
-msgstr ""
+msgstr "Importeren"
 
 msgid "pagetitle:export"
-msgstr ""
+msgstr "Exporteren"
 
 msgid "pagetitle:initialise"
-msgstr ""
+msgstr "Initialiseer"
 
 msgid "pagetitle:send"
-msgstr ""
+msgstr "Verzend een bericht"
 
 msgid "pagetitle:preparesend"
-msgstr ""
+msgstr "Bereid het verzenden voor"
 
 msgid "pagetitle:sendprepared"
-msgstr ""
+msgstr "Klaar om te verzenden"
 
 msgid "pagetitle:members"
-msgstr ""
+msgstr "Abonnees"
 
 msgid "pagetitle:users"
-msgstr ""
+msgstr "Zoeken en toevoegen"
 
 msgid "pagetitle:reconcileusers"
-msgstr ""
+msgstr "reconcile gebruikers?"
 
 msgid "pagetitle:user"
-msgstr ""
+msgstr "Gebruikers"
 
 msgid "pagetitle:userhistory"
-msgstr ""
+msgstr "Gebruikersgescheidenis"
 
 msgid "pagetitle:messages"
-msgstr ""
+msgstr "Berichtenoverzicht"
 
 msgid "pagetitle:message"
-msgstr ""
+msgstr "Bericht"
 
 msgid "pagetitle:processqueue"
-msgstr ""
+msgstr "Berichten wachtrij"
 
 msgid "pagetitle:defaults"
-msgstr ""
+msgstr "Standaard"
 
 msgid "pagetitle:upgrade"
-msgstr ""
+msgstr "Upgrade"
 
 msgid "pagetitle:templates"
-msgstr ""
+msgstr "Sjablonen"
 
 msgid "pagetitle:template"
-msgstr ""
+msgstr "Sjabloon"
 
 msgid "pagetitle:viewtemplate"
-msgstr ""
+msgstr "Bekijk sjabloon"
 
 msgid "pagetitle:configure"
-msgstr ""
+msgstr "Instellen"
 
 msgid "pagetitle:admin"
-msgstr ""
+msgstr "Beheerder"
 
 msgid "pagetitle:admins"
-msgstr ""
+msgstr "Beheerders"
 
 msgid "pagetitle:adminattributes"
-msgstr ""
+msgstr "Beheer gereedschappen"
 
 msgid "pagetitle:processbounces"
-msgstr ""
+msgstr "Process bounces?"
 
 msgid "pagetitle:bounces"
-msgstr ""
+msgstr "Bonces?"
 
 msgid "pagetitle:bounce"
-msgstr ""
+msgstr "Terugkaatsen"
 
 msgid "pagetitle:spageedit"
-msgstr ""
+msgstr "Pagina bewerken"
 
 msgid "pagetitle:spage"
-msgstr ""
+msgstr "pagina"
 
 msgid "pagetitle:eventlog"
-msgstr ""
+msgstr "Gebeurtenissenlogboek"
 
 msgid "pagetitle:getrss"
-msgstr ""
+msgstr "RSS"
 
 msgid "pagetitle:viewrss"
-msgstr ""
+msgstr "Bekijk RSS"
 
 msgid "pagetitle:community"
-msgstr ""
+msgstr "phpList gemeenschap"
 
 msgid "pagetitle:vote"
-msgstr ""
+msgstr "Stem"
 
 msgid "pagetitle:login"
-msgstr ""
+msgstr "Aanmelden"
 
 msgid "pagetitle:logout"
-msgstr ""
+msgstr "Afmelden"
 
 msgid "pagetitle:mclicks"
-msgstr ""
+msgstr "mclicks?"
 
 msgid "pagetitle:uclicks"
-msgstr ""
+msgstr "Url statistieken"
 
 msgid "pagetitle:massunconfirm"
-msgstr ""
+msgstr "Grote hoeveelheden niet bevestigde abonnees?"
 
 msgid "pagetitle:massremove"
-msgstr ""
+msgstr "Grote hoeveelheden abonnees verwijderen"
 
 msgid "pagetitle:usermgt"
-msgstr ""
+msgstr "Beheer functies"
 
 msgid "pagetitle:bouncemgt"
-msgstr ""
+msgstr "Beheer bounces"
 
 msgid "pagetitle:domainstats"
-msgstr ""
+msgstr "Domein statistieken"
 
 msgid "pagetitle:mviews"
-msgstr ""
+msgstr "Bekijk open statistieken"
 
 msgid "pagetitle:statsmgt"
-msgstr ""
+msgstr "statsmgt?"
 
 msgid "pagetitle:statsoverview"
-msgstr ""
+msgstr "Overzicht van statistieken"
 
 msgid "pagetitle:subscriberstats"
-msgstr ""
+msgstr "Abonnee statistieken"
 
 msgid "pagetitle:dbcheck"
-msgstr ""
+msgstr "Controle database"
 
 msgid "pagetitle:importadmin"
-msgstr ""
+msgstr "Importeer administrators"
 
 msgid "pagetitle:dbadmin"
-msgstr ""
+msgstr "dbadmin?"
 
 msgid "pagetitle:usercheck"
-msgstr ""
+msgstr "Controleer gebruikers"
 
 msgid "pagetitle:listbounces"
-msgstr ""
+msgstr "Lijst bounces?"
 
 msgid "pagetitle:bouncerules"
-msgstr ""
+msgstr "Bounce regels?"
 
 msgid "pagetitle:checkbouncerules"
-msgstr ""
+msgstr "Controleer bounce regels?"
 
 msgid "pagetitle:translate"
-msgstr ""
+msgstr "Vertaling"
 
 msgid "pagetitle:ajaxform"
-msgstr ""
+msgstr "?"
 
 msgid "pagetitle:updatetranslation"
-msgstr ""
+msgstr "Vertaling bijwerken"
 
 msgid "pagetitle:reindex"
-msgstr ""
+msgstr "Opnieuw indexeren"
+
+#~ msgid "cannotsendpassword"
+#~ msgstr "Kan wachtwoord niet versturen"
+
+#~ msgid "Your password for phplist"
+#~ msgstr "Je wachtwoord voor phpList"
+
+#~ msgid "Your password is"
+#~ msgstr "Je wachtwoord is"
+
+#~ msgid "Your password has been sent by email"
+#~ msgstr "Je wachtwoord is verstuurd per email"
+
+#, php-format
+#~ msgid "successful password request from %s for %s"
+#~ msgstr "succesvol wachtwoordverzoek van %s voor %s"
+
+#~ msgid "Unable to send the password"
+#~ msgstr "Het versturen van het wachtwoord is mislukt"
+
+#, php-format
+#~ msgid "failed password request from %s for %s"
+#~ msgstr "wachtwoordverzoek mislukt van %s voor %s"
+
+#~ msgid "Continue phpList configuration"
+#~ msgstr "Ga door met configuratie van phpList"
+
+#~ msgid "The DB was already converted to UTF-8 on "
+#~ msgstr "De database was reeds geconverteerd naar UTF-8 op"
+
+#~ msgid "credits for this translation"
+#~ msgstr "SaWey"
 
 #~ msgid ""
 #~ "Cannot find column with email, you need to map at least one column to \"Email"
