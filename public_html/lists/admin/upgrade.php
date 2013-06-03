@@ -353,8 +353,11 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   Sql_Query("create index statusindex on {$tables["user_attribute"]} (status(10))",1);  
   Sql_Query("create index message_lookup using btree on {$tables["user_message_bounce"]} (message)",1);   
   
-  ## just in case it isn't there
-  Sql_Query('alter table '.$tables["i18n"].' add unique lanorigunq (lan(10),original(200))',1);
+  ## add index to i18n to avoid duplicate translations
+  ## alter ignore doesn't seem to work on InnoDB: http://bugs.mysql.com/bug.php?id=40344
+  # do convert to MyIsam first @@Mysql Specific code !
+  Sql_Query('alter table '.$tables["i18n"].' engine MyIsam',1 );
+  Sql_Query('alter ignore table '.$tables["i18n"].' add unique lanorigunq (lan(10),original(200))',1);
     
   ## mantis issue 9001, make sure that the "repeat" column in the messages table is renamed to repeatinterval
   # to avoid a name clash with Mysql 5.
