@@ -983,7 +983,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       } else {
         $pi = "";
       }
-      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,strip_tags($title),strtolower($desc));
+      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,strip_tags($title),ucfirst(strtolower($desc)));
     }
   } else
     return "";
