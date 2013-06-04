@@ -297,7 +297,7 @@ class phplist_I18N {
   function databaseTranslation($text) {
     if (!$this->hasDB) return '';
     $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
-      sql_escape($text),$this->language),1);
+      sql_escape(trim($text)),$this->language),1);
     return $tr[0];
   }
 
@@ -598,7 +598,7 @@ function parsePo($translationUpdate) {
       $flagOrig = $flagTrans = false;
     }
     if (!empty($original) && !empty($translation)) {
-      $translations[$original] = $translation;
+      $translations[trim($original)] = trim($translation);
     }
   }
   return $translations;
