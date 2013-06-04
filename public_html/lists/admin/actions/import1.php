@@ -120,7 +120,6 @@
         // Email does not exist
 
         // Create unique number
-        mt_srand((double)microtime()*1000000);
         $randval = mt_rand();
         $uniqid = getUniqid();
         $old_listmembership = array();
