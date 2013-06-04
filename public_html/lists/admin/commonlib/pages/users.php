@@ -316,7 +316,7 @@ $find_url .= "&amp;sortby=$sortby&amp;sortorder=$sortorder&amp;unconfirmed=$unco
 
 $listing = '';
 $dolist = 1;
-if ($total > MAX_USER_PP) {
+if (true || $total > MAX_USER_PP) {
   if (isset ($start) && $start) {
     $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), $start, $start +MAX_USER_PP);
     $limit = "limit $start," . MAX_USER_PP;
@@ -346,7 +346,7 @@ if ($total > MAX_USER_PP) {
     $paging = simplePaging("users".$find_url,$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('Subscribers'));
     $result = Sql_query("$listquery $order $limit");
   } else {
-    print Info($GLOBALS['I18N']->get('too many subscribers, use a search query to list some'),1);
+#    print Info($GLOBALS['I18N']->get('too many subscribers, use a search query to list some'),1);
     $result = 0;
   }
 } else {
