@@ -12,40 +12,40 @@
        </p>
     </td>
     <td class="top">
-    phplist is licensed with the <a href="http://www.gnu.org/copyleft" target="_blank">GNU Public License (GPL)</a>.<br/>
+    <?php echo s('phpList is licensed with the %sGNU Public License (GPL)%s','<a href="http://www.gnu.org/copyleft" target="_blank">','</a>')?>.<br/>
     Copyright &copy; 2000-<?php echo date('Y')?> <a href="http://phplist.com" target="_blank">phpList Ltd.</a><br/><br/>
-    <h3><?php echo $GLOBALS['I18N']->get('Developers')?>:</h3>
+    <h3><?php echo s('Developers')?>:</h3>
     <ul>
       <li>Michiel Dethmers, phpList Ltd</li>
     </ul>
-    <h3><?php echo $GLOBALS['I18N']->get('Contributors')?></h3>
+    <h3><?php echo s('Contributors')?></h3>
     <ul>
       <li><a href="http://www.dcameron.me.uk/phplist">Duncan Cameron</a>, Forum Moderator, QA Engineer</li>
       <li>H2B2, Forum Moderator, Mantis Manager</li>
       <li><a href="http://dragonrider.co.uk/phplist">Dragonrider</a>, Forum Moderator</li>
     </ul>
-    <h3><?php echo $GLOBALS['I18N']->get('Design')?>:</h3>
+    <h3><?php echo s('Design')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
     </ul>
-    <h3><?php echo $GLOBALS['I18N']->get('Design implementation')?>:</h3>
+    <h3><?php echo s('Design implementation')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
     <li><a href="http://www.marielazarate.com.ar">Mariela Zárate</a></li>
     </ul>
-    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo $GLOBALS['I18N']->get('Documentation')?></a></h3>
+    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo s('Documentation')?></a></h3>
     <ul>
       <li>Yan Brailowsky</li>
       <li>Pascal Van Hecke</li>
     </ul>
-    <h3><?php echo $GLOBALS['I18N']->get('Translations') ?></h3>
+    <h3><?php echo s('Translations') ?></h3>
     <p><?php echo s('The translations are provided by the phpList community (that includes you :-) )')?></p>
     <p><?php echo s('The <a href="http://translate.phplist.com/" target="translate">translation site</a> runs <a href="http://translate.sourceforge.net/" target="pootle">Pootle</a> an Open Source translation tool, provided by <a href="http://translatehouse.org" target="translatehouse">Translate House</a>')?></p>
-    <h3><?php echo $GLOBALS['I18N']->get('Acknowledgements') ?></h3>
+    <h3><?php echo s('Acknowledgements') ?></h3>
     <p>
-        <?php echo $GLOBALS['I18N']->get('The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions.')?>
+        <?php echo s('The developers wish to thank the many contributors to this system, who have helped out with bug reports, suggestions, donations, feature requests, sponsoring, translations and many other contributions.')?>
     </p>
-    <b><?php echo $GLOBALS['I18N']->get('Portions of the system include')?></b>
+    <b><?php echo s('Portions of the system include')?></b>
     <ul>
       <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
