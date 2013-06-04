@@ -34,7 +34,7 @@ if (!isset($messagedata['sampletime'])) { ## take a "sample" of the send speed, 
 }
 
 if ($sent > 0 && $totaltime > 0) {
-  $msgperhour = (3600/$totaltime) * $sent;
+  $msgperhour = (int)(3600/$totaltime) * $sent;
   $secpermsg = $totaltime / $sent;
   $timeleft = ($num_users - $sent) * $secpermsg;
   $eta = date('D j M H:i',time()+$timeleft);
