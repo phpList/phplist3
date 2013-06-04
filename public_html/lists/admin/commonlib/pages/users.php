@@ -80,6 +80,7 @@ $system_findby = array (
   "email",
   "foreignkey"
 );
+
 if ($findby && $find && !in_array($findby, $system_findby)) {
   $find_url = '&amp;find=' . urlencode($find) . "&amp;findby=" . urlencode($findby);
   $findatt = Sql_Fetch_Array_Query("select id,tablename,type,name from {$tables["attribute"]} where id = $findby");
@@ -119,6 +120,10 @@ if ($require_login && !isSuperUser()) {
     case "owner" :
       $table_list = $tables["user"] . ',' . $tables["listuser"] . ',' . $tables["list"] . $findtables;
       $subselect = "{$tables["user"]}.id = {$tables["listuser"]}.userid and {$tables["listuser"]}.listid = {$tables["list"]}.id and {$tables["list"]}.owner = " . $_SESSION["logindetails"]["id"];
+      if ($unconfirmed)
+        $subselect .= ' and !confirmed ';
+      if ($blacklisted)
+        $subselect .= ' and blacklisted ';
       if ($find) {
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,confirmed from " . $table_list . " where $subselect and $findbyselect";
         $count = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " where $subselect and $findbyselect");
@@ -128,22 +133,18 @@ if ($require_login && !isSuperUser()) {
         $count = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " WHERE $subselect");
         $unconfirmedcount = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " WHERE !confirmed and $subselect");
       }
-      if ($unconfirmed)
-        $listquery .= ' and !confirmed ';
-      if ($blacklisted)
-        $listquery .= ' and blacklisted ';
       break;
     case "all" :
     case "view" :
       $table_list = $tables["user"] . $findtables;
       if ($find) {
+        if ($unconfirmed)
+          $findbyselect .= ' and !confirmed ';
+        if ($blacklisted)
+          $findbyselect .= ' and blacklisted ';
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list . " where $findbyselect";
         $count = Sql_query("SELECT count(*) FROM " . $table_list . " where $findbyselect");
         $unconfirmedcount = Sql_query("SELECT count(*) FROM " . $table_list . " where !confirmed && $findbyselect");
-        if ($unconfirmed)
-          $listquery .= ' and !confirmed ';
-        if ($blacklisted)
-          $listquery .= ' and blacklisted ';
       } else {
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list;
         $count = Sql_query("SELECT count(*) FROM " . $table_list);
@@ -162,31 +163,31 @@ if ($require_login && !isSuperUser()) {
   ## is superuser
   $table_list = $tables["user"] . $findtables;
   if ($find) {
+    if ($unconfirmed)
+      $findbyselect .= ' and !confirmed ';
+    if ($blacklisted)
+      $findbyselect .= ' and blacklisted ';
     $listquery = "select {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list . " where $findbyselect";
     $count = Sql_query("SELECT count(*) FROM " . $table_list . " where $findbyselect");
     $unconfirmedcount = Sql_query("SELECT count(*) FROM " . $table_list . " where !confirmed and $findbyselect");
-    if ($unconfirmed)
-      $listquery .= ' and !confirmed ';
-    if ($blacklisted)
-      $listquery .= ' and blacklisted ';
   } else {
-    $listquery = "select {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list;
-    $count = Sql_query("SELECT count(*) FROM " . $table_list);
-    $unconfirmedcount = Sql_query("SELECT count(*) FROM " . $table_list . " where !confirmed");
-
+    $subselect = '';
     if ($unconfirmed || $blacklisted) {
-      $listquery .= ' where ';
+      $subselect = ' where ';
       if ($unconfirmed && $blacklisted) {
-        $listquery .= ' !confirmed and blacklisted ';
-      }
-      elseif ($unconfirmed) {
-        $listquery .= ' !confirmed ';
+        $subselect .= ' !confirmed and blacklisted ';
+      } elseif ($unconfirmed) {
+        $subselect .= ' !confirmed ';
       } else {
-        $listquery .= ' blacklisted';
+        $subselect .= ' blacklisted';
       }
     } else {
       $searchdone = 0;
     }
+    $listquery = "select {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list. ' '.$subselect;
+    $count = Sql_query("SELECT count(*) FROM " . $table_list. ' '.$subselect);
+    $unconfirmedcount = Sql_query("SELECT count(*) FROM " . $table_list . " where !confirmed");
+
   }
   $delete_message = '<br />' . $GLOBALS['I18N']->get('Delete will delete user and all listmemberships') . '<br />';
 }
@@ -195,6 +196,10 @@ $totalres = Sql_fetch_Row($unconfirmedcount);
 $totalunconfirmed = $totalres[0];
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
+
+if ($start > $total) {
+  $start = 0;
+}
 
 if (!empty($delete) && isSuperUser()) {
   # delete the index in delete
@@ -210,10 +215,8 @@ if (!empty($delete) && isSuperUser()) {
   $_SESSION['action_result'] = $action_result;
   Redirect("users$previous_search");
 } elseif (!empty($delete)) {
-  print ActionResult($GLOBALS['I18N']->get('Sorry, only super users can delete users'));
+  print ActionResult(s('Sorry, only super users can delete users'));
 }
-
-#ob_end_flush();
 
 if (isset ($add)) {
   if (isset ($new)) {
@@ -227,23 +230,6 @@ if (isset ($add)) {
 }
 
 $countpanel .= sprintf($GLOBALS['I18N']->get('%s users in total'), $total);
-/*
-if ($find && !$findby && !$total) { # a search for an email has been done and not found
-  print "<hr/><h4>" . $GLOBALS['I18N']->get('Add this user') . "</h4>";
-  $req = Sql_Query(sprintf('select * from %s where active', $tables["subscribepage"]));
-  if (Sql_Affected_Rows()) {
-    print $GLOBALS['I18N']->get('Click on a link to use the corresponding public subscribe page to add this user:');
-    while ($row = Sql_Fetch_Array($req)) {
-      printf('<p><a href="%s&amp;id=%d&amp;email=%s">%s</a></p>', getConfig("subscribeurl"), $row["id"], $find, $row["title"]);
-    }
-  } else {
-    print $GLOBALS['I18N']->get('Click this link to use the public subscribe page to add this user:');
-    printf('<p><a href="%s&amp;email=%s">%s</a></p>', getConfig("subscribeurl"), $find, $GLOBALS["strSubscribeTitle"]);
-  }
-  print '<hr/>';
-}
-*/
-
 $countpanel .= "<br/>" . $GLOBALS['I18N']->get('Users marked <span class="highlight">red</span> are unconfirmed') . " ($totalunconfirmed)<br/>";
 
 $url = getenv("REQUEST_URI");
@@ -330,19 +316,7 @@ if (true || $total > MAX_USER_PP) {
       $dolist = 0;
     }
   }
-  #  if ($_GET["unconfirmed"])
-  #     $find_url .= "&unconfirmed=".$_GET["unconfirmed"];
   if ($dolist) {
-/*
-    printf('<table class="usersListing" border="1">
-<tr><td colspan="4" align="center">%s</td></tr>
-<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>
-</table></p><hr/>', $listing, 
-           PageLink2("users", "&lt;&lt;", 'start=0'. $find_url), 
-           PageLink2("users", "&lt;", sprintf('start=%d', max(0, $start -MAX_USER_PP)).$find_url), 
-           PageLink2("users", "&gt;", sprintf('start=%d', min($total-MAX_USER_PP, $start +MAX_USER_PP)).$find_url), 
-           PageLink2("users", "&gt;&gt;", sprintf('start=%d', $total -MAX_USER_PP).$find_url));
-*/
     $paging = simplePaging("users".$find_url,$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('Subscribers'));
     $result = Sql_query("$listquery $order $limit");
   } else {
@@ -376,7 +350,7 @@ while ($row = Sql_Fetch_Array($att_req)) {
   $filterpanel .= sprintf('<option value="%d" %s>%s</option>', $row["id"], $row["id"] == $findby ? 'selected="selected"' : '', substr($row["name"], 0, 20));
 }
 
-$filterpanel .= '</select><input class="submit" type="submit" value="Go" />&nbsp;&nbsp;<a href="./?page=users&amp;find=NULL" class="reset">'. $GLOBALS['I18N']->get('reset').'</a>';
+$filterpanel .= '</select><input class="submit" type="submit" value="'. s('Go'). '" />&nbsp;&nbsp;<a href="./?page=users&amp;find=NULL" class="reset">'. s('reset').'</a>';
 $filterpanel .= '</form></div>';
 //$filterpanel .= '<tr><td colspan="4"></td></tr>
 //</table>';
@@ -397,7 +371,7 @@ $some = 0;
 
 $ls = new WebblerListing("users");
 $ls->usePanel($paging);
-if ($result)
+if ($result) {
   while ($user = Sql_fetch_array($result)) {
     $some = 1;
     $ls->addElement($user["email"], PageURL2("user&amp;start=$start&amp;id=" . $user["id"] . $find_url));
@@ -442,17 +416,6 @@ if ($result)
       $nummsgs = Sql_fetch_row($msgs);
       $ls_msgs=$GLOBALS['I18N']->get('msgs').":&nbsp;".$nummsgs[0];
     }    
-//obsolete, moved to rssmanager plugin 
-//    if (ENABLE_RSS && in_array("rss", $columns)) {
-//      $rss = Sql_query("SELECT count(*) FROM " . $tables["rssitem_user"] . " where userid = " . $user["id"]);
-//      $nummsgs = Sql_fetch_row($rss);
-//      $ls->addColumn($user["email"], $GLOBALS['I18N']->get('rss'), $nummsgs[0]);
-//      if (isset ($user["rssfrequency"]))
-//        $ls->addColumn($user["email"], $GLOBALS['I18N']->get('rss freq'), $user["rssfrequency"]);
-//      $last = Sql_Fetch_Row_Query("select last from {$tables["user_rss"]} where userid = " . $user["id"]);
-//      if ($last[0])
-//        $ls->addColumn($user["email"], $GLOBALS['I18N']->get('last sent'), $last[0]);
-//    }
 
     ### allow plugins to add columns
     if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins'])) {
@@ -469,11 +432,9 @@ if ($result)
     $ls->addRow($user["email"],"<div class='listinghdname gray'>".$ls_msgs."<br />".$ls_bncs."</div>",$ls_del.'&nbsp;'.$ls_confirmed);
 
   }
-print $ls->display();
-if (!$some && !$total) {
-  $p = new UIPanel($GLOBALS['I18N']->get('no results'),$GLOBALS['I18N']->get('No users apply'));
-  print $p->display();
+  print $ls->display();
+  if (!$some && !$total) {
+    $p = new UIPanel($GLOBALS['I18N']->get('no results'),$GLOBALS['I18N']->get('No users apply'));
+    print $p->display();
+  }
 }
-?>
-
-
