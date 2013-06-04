@@ -103,11 +103,10 @@ if (sizeof($email_list)) {
 
     //print ("<pre>" . var_dump($_SESSION["import_attribute"]) . "</pre>"); // debug
     //    dbg('_SESSION["import_attribute"',$_SESSION["import_attribute"]); //debug
-
-    if (sizeof($values) != (sizeof($_SESSION["import_attribute"]) + sizeof($system_attributes)) && !empty($_SESSION['test_import']) && !empty($_SESSION["show_warnings"]))
+    if (sizeof($values) != (sizeof($_SESSION["import_attribute"]) + sizeof($system_attributes) - sizeof($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION["show_warnings"]))
       Warn("Record has more values than header indicated (" .
       sizeof($values) . "!=" .
-       (sizeof($_SESSION["import_attribute"]) + sizeof($system_attributes)) .
+       (sizeof($_SESSION["import_attribute"]) + sizeof($system_attributes) - sizeof($unused_systemattr)) .
       "), this may cause trouble: $index");
     if (!$invalid || ($invalid && $_SESSION["omit_invalid"] != "yes")) {
       $user["systemvalues"] = $system_values;
