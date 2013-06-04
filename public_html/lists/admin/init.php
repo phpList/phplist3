@@ -390,6 +390,7 @@ if (!isset($GLOBALS["message_envelope"])) $GLOBALS["message_envelope"] = '';
 
 if (!isset($GLOBALS['pageheader']) || !is_array($GLOBALS['pageheader'])) $GLOBALS['pageheader'] = array();
 if (!isset($GLOBALS['pagefooter']) || !is_array($GLOBALS['pagefooter'])) $GLOBALS['pagefooter'] = array();
+if (!isset($GLOBALS['check_for_host'])) $GLOBALS['check_for_host'] = 0;
 
 ## experimental, use minified JS and CSS
 if (!defined('USE_MINIFIED_ASSETS')) define('USE_MINIFIED_ASSETS',false);
