@@ -355,7 +355,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   
   ## add index to i18n to avoid duplicate translations
   ## alter ignore doesn't seem to work on InnoDB: http://bugs.mysql.com/bug.php?id=40344
-  # do convert to MyIsam first @@Mysql Specific code !
+  # convert to MyIsam first @@Mysql Specific code !
   Sql_Query('alter table '.$tables["i18n"].' engine MyIsam',1 );
   Sql_Query('alter ignore table '.$tables["i18n"].' add unique lanorigunq (lan(10),original(200))',1);
     
