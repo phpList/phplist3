@@ -35,31 +35,23 @@ if ($access != "all") {
 }
 
 $usegroups = Sql_Table_exists("groups") && Sql_Table_exists('user_group');
-$error_exist= 0;
-
+$error_exist = 0;
 
 if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
-  if (0 && !verifyToken()) {
+  if (!verifyToken()) {
     print Error($GLOBALS['I18N']->get('Invalid security token, please reload the page and try again'));
     return;
   }
-  if (isset($_POST['email'])) {
-    ## let's not validate here, an admin can add anything as an email, if they like
-    $email = $_POST['email'];
+  if (isset($_POST['email']) && !empty($_POST['email'])) {
+    ## let's not validate here, an admin can add anything as an email, if they like, well, except for HTML
+    $email = strip_tags($_POST['email']);
   } else {
     $email = '';
   }
 
-/*
-  if (empty($_POST['password']) && !$id) {
-    print $GLOBALS['I18N']->get('Error adding empty password, please check that the password is complete');
-    $error_exist = 1;
-  }
-*/
-
-  if (!$error_exist){
+  if (!$error_exist && !empty($email)){
      if (!$id) {
-       $id = addNewUser($_POST['email']);
+       $id = addNewUser($email);
        $newuser = 1;
      }
    
@@ -263,7 +255,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
    
    if (isset($delete) && $delete && $access != "view") {
      # delete the index in delete
-     print $GLOBALS['I18N']->get('Deleting')." $delete ..\n";
+     $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleting')." $delete ..\n";
      if ($require_login && !isSuperUser()) {
        $lists = Sql_query("SELECT listid FROM {$tables["listuser"]},{$tables["list"]} where userid = ".$delete." and $tables[listuser].listid = $tables[list].id $subselect ");
        while ($lst = Sql_fetch_array($lists))
@@ -271,7 +263,8 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      } else {
        deleteUser($delete);
      }
-     print '..'.$GLOBALS['I18N']->get('Done')."<br /><hr/><br />\n";
+     $_SESSION['action_result'] .= '..'.$GLOBALS['I18N']->get('Done')."\n";
+     Redirect('user');
    }
    
    if ($usegroups && !empty($GLOBALS['config']['usergroup_types']) && $access != "view") {
