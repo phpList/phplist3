@@ -250,9 +250,7 @@ function my_shutdown () {
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d";
       </script>',$reload,$sent,$notsent);
-//      output($GLOBALS['I18N']->get(($processed < $counters['total_users_for_message'])?'Reload required':''));
     }
-  #  print '<script language="Javascript" type="text/javascript">alert(document.location)</script>';
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->messageQueueFinished();
@@ -264,7 +262,7 @@ function my_shutdown () {
       </script>';
     
   } else {
-    output($GLOBALS['I18N']->get('Script finished, but not all messages have been sent yet.'));
+    output(s('Script finished, but not all messages have been sent yet.'));
   }
   if (empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
     include_once "footer.inc";
@@ -280,12 +278,12 @@ register_shutdown_function("my_shutdown");
 function finish ($flag,$message,$script_stage) {
   global $nothingtodo,$counters,$messageid;
   if ($flag == "error") {
-    $subject = "Maillist Errors";
+    $subject = s("Maillist errors");
   } elseif ($flag == "info") {
-    $subject = "Maillist Processing info";
+    $subject = s("Maillist Processing info");
   }
   if (!$nothingtodo) {
-    output($GLOBALS['I18N']->get('Finished this run'),1,'progress');
+    output(s('Finished this run'),1,'progress');
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       parentJQuery("#progressmeter").updateSendProgress("'.$GLOBALS['sent'].','.$counters['total_users_for_message '.$messageid].'");
@@ -304,8 +302,6 @@ function ProcessError ($message) {
   global $report;
   $report .= $message;
   output( "Error: $message");
-#  finish("error",$message);
-#  include "footer.inc";
   exit;
 }
 
@@ -401,26 +397,26 @@ if (empty($reload)) { ## only show on first load
     output($ISPrestrictions);
   }
   if (is_file($ISPlockfile)) {
-    ProcessError($GLOBALS['I18N']->get('Processing has been suspended by your ISP, please try again later'),1);
+    ProcessError(s('Processing has been suspended by your ISP, please try again later'),1);
   }
 }
 
 if ($num_per_batch > 0) {
   if ($safemode) {
-    output($GLOBALS['I18N']->get('In safe mode, batches are set to a maximum of 100'));
+    output(s('In safe mode, batches are set to a maximum of 100'));
   }
   if ($original_num_per_batch != $num_per_batch) {
     if (empty($reload)) {
-      output($GLOBALS['I18N']->get('Sending in batches of').' '.$original_num_per_batch.' '. $GLOBALS['I18N']->get('emails'),0);
+      output(s('Sending in batches of %d messages',$original_num_per_batch),0);
     }
     $diff = $original_num_per_batch - $num_per_batch;
     if ($diff < 0) $diff = 0;
-    output($GLOBALS['I18N']->get('This batch will be').' '. $num_per_batch.' '.$GLOBALS['I18N']->get('emails, because in the last').' '. $batch_period.' '.$GLOBALS['I18N']->get('seconds').' '. $diff.' '.$GLOBALS['I18N']->get('emails were sent'),0,'progress');
+    output(s('This batch will be %d emails, because in the last %d seconds %d emails were sent',$num_per_batch,$batch_period, $diff),0,'progress');
   } else {
-    output($GLOBALS['I18N']->get('Sending in batches of').' '. $num_per_batch.' '.$GLOBALS['I18N']->get('emails'),0,'progress');
+    output(s('Sending in batches of %d emails',$num_per_batch),0,'progress');
   }
 } elseif ($num_per_batch < 0) {
-  output($GLOBALS['I18N']->get('In the last').' '. $batch_period .' '.$GLOBALS['I18N']->get('seconds more emails were sent')." ($recently_sent[0]) ".$GLOBALS['I18N']->get('than is currently allowed per batch')." ($original_num_per_batch).",0,'progress');
+  output(s('In the last %d seconds more emails were sent (%d) than is currently allowed per batch (%d)', $batch_period,$recently_sent[0],$original_num_per_batch),0,'progress');
   $processed = 0;
   $script_stage = 5;
   $GLOBALS["wait"] = $batch_period;
@@ -428,12 +424,9 @@ if ($num_per_batch > 0) {
 }
 $counters['batch_total'] = $num_per_batch;
 
-//$rss_content_threshold = sprintf('%d',getConfig("rssthreshold")); // obsolete, moved to rssmanager plugin
 if (0 && $reload) {
-#  output("Reload count: $reload");
-#  output("Total processed: ".$reload * $num_per_batch);
-  output($GLOBALS['I18N']->get('Sent in last run').": $lastsent",0,'progress');
-  output($GLOBALS['I18N']->get('Skipped in last run').": $lastskipped",0,'progress');
+  output(s('Sent in last run').": $lastsent",0,'progress');
+  output(s('Skipped in last run').": $lastskipped",0,'progress');
 }
 
 $script_stage = 1; # we are active
