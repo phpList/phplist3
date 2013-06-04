@@ -75,7 +75,7 @@ if (!empty($_POST["change"])) {
     }
     if (ENCRYPT_ADMIN_PASSWORDS && !empty($_POST['updatepassword'])){
       //Send token email.
-      print sendAdminPasswordToken($id);
+      print sendAdminPasswordToken($id). '<br/>';
     ## check for password changes
     } elseif (isset($_POST['password'])) {
     #  Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");

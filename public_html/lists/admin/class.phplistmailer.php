@@ -124,9 +124,6 @@ class PHPlistMailer extends PHPMailer {
         }
         $this->Mailer = "smtp";
       } else {
-        # logEvent('Sending via mail');
-        # $this->Mailer = "mail";
-        # $this->IsSendmail();
          $this->isMail();
       }
 

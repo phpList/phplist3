@@ -436,6 +436,8 @@ function sendAdminCopy($subject,$message,$lists = array()) {
         array_push($mails,$row['email']);
       }
     }
+    ## hmm, do we want to be exclusive? Either listadmin or main ones
+    ## could do all instead
     if (!sizeof($mails)) {
       $admin_mail = getConfig("admin_address");
 
