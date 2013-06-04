@@ -37,7 +37,7 @@ if (!Sql_Table_exists($GLOBALS['tables']['linktrack_forward']) ||
 !Sql_Table_exists($GLOBALS['tables']['linktrack_ml']) ||
 !Sql_Table_exists($GLOBALS['tables']['linktrack_uml_click'])
 ) {
-  output("creating tables");
+  output(s("creating tables"));
   Sql_Drop_Table($GLOBALS['tables']['linktrack_forward']);
   Sql_Drop_Table($GLOBALS['tables']['linktrack_ml']);
   Sql_Drop_Table($GLOBALS['tables']['linktrack_uml_click']);
@@ -45,16 +45,19 @@ if (!Sql_Table_exists($GLOBALS['tables']['linktrack_forward']) ||
   Sql_Create_Table($GLOBALS['tables']['linktrack_ml'],$DBstruct['linktrack_ml']);
   Sql_Create_Table($GLOBALS['tables']['linktrack_forward'],$DBstruct['linktrack_forward']);
   Sql_Create_Table($GLOBALS['tables']['linktrack_uml_click'],$DBstruct['linktrack_uml_click']);
-  output("creating tables done");
+  output(s("creating tables done"));
 }
 
 $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
-output("$num[0] entries still to convert");
+output(s("%d entries still to convert",$num[0]).'<br/>');
 
 $c = 0;
-output("converting data<br/>");
 $req = Sql_Query(sprintf('select * from %s limit 10000',$GLOBALS['tables']['linktrack']));
 $total = Sql_Affected_Rows();
+if ($total) {
+  output(s("converting data")."<br/>");
+}
+
 while ($row = Sql_Fetch_Array($req)) {
   $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"',$GLOBALS['tables']['linktrack_forward'],$row['url']));
   if (!$exists[0]) {
