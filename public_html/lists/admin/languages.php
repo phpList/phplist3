@@ -336,7 +336,7 @@ class phplist_I18N {
 
   function formatText($text) {
     # we've decided to spell phplist with uc L
-    $text = str_ireplace('PHPlist','phpList',$text);
+    $text = str_ireplace('phplist','phpList',$text);
 
     if (isset($GLOBALS["developer_email"])) {
       if (!empty($_SESSION['show_translation_colours'])) {
