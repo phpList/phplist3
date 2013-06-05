@@ -87,7 +87,7 @@ if (isset($_GET['uid']) && $_GET["uid"]) {
   $userid = $req[1];
   $userpassword = $req[2];
   $emailcheck = $req[3];
-} elseif ($_GET['p'] == 'subscribe' || $_GET['p'] == 'unsubscribe' || $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend') {
+} elseif (isset($_GET['p']) && ($_GET['p'] == 'subscribe' || $_GET['p'] == 'unsubscribe' || $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend')) {
   if (isset($_GET["email"])) {
     $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where email = "%s"',
       $tables["user"],$_GET["email"]));
