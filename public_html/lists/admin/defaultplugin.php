@@ -1,13 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/accesscheck.php';
 
-# Typical call
-//foreach ($GLOBALS['plugins'] as $plugin) {
-//  if ($plugin->enabled) {
-//    $html .= $plugin->addSnippet();
-//  }
-//}
-
 class phplistPlugin {
   ############################################################
   # Registration & Config
