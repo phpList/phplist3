@@ -431,19 +431,25 @@ $lan = array(
     }
   }
   
-  function initFSTranslations() {
-    $translations = parsePO(file_get_contents(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po'));
-    $time = filemtime(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po');
-    $this->updateDBtranslations($translations,$time);
+  function initFSTranslations($language = '') {
+    if (empty($language)) {
+      $language = $this->language;
+    }
+    $translations = parsePO(file_get_contents(dirname(__FILE__).'/locale/'.$language.'/phplist.po'));
+    $time = filemtime(dirname(__FILE__).'/locale/'.$language.'/phplist.po');
+    $this->updateDBtranslations($translations,$time,$language);
   }
   
-  function updateDBtranslations($translations,$time) {
+  function updateDBtranslations($translations,$time,$language = '') {
+    if (empty($language)) {
+      $language = $this->language;
+    }
     if (sizeof($translations)) {
       foreach ($translations as $orig => $trans) {
-        Sql_Replace($GLOBALS['tables']['i18n'],array('lan' => $this->language,'original' => $orig,'translation' => $trans),'');
+        Sql_Replace($GLOBALS['tables']['i18n'],array('lan' => $language,'original' => $orig,'translation' => $trans),'');
       }
     }
-    saveConfig('lastlanguageupdate-'.$this->language,$time,0);
+    saveConfig('lastlanguageupdate-'.$language,$time,0);
   }
   
   function getTranslation($text,$page,$basedir) {
