@@ -171,6 +171,16 @@ if (sizeof($email_list)) {
         print '<blockquote>' . $html . '</blockquote><hr />';
       }
     } else {
+      $cnt++;
+      if ($cnt % 5 == 0) {
+        print '<script type="text/javascript">
+        var parentJQuery = window.parent.jQuery;
+        parentJQuery("#progressbar").updateProgress("'.$cnt.','.$total.'");
+        </script>';      
+        flush();
+      }
+
+	if (!$invalid || ($invalid && $_SESSION["omit_invalid"] != "yes")) {
       # do import
       ## create new attributes
       foreach ($_SESSION["import_attribute"] as $column => $item) {
@@ -185,16 +195,14 @@ if (sizeof($email_list)) {
         }
       }
       $new = 0;
-      $cnt++;
+/*      $cnt++;
       if ($cnt % 5 == 0) {
         print '<script type="text/javascript">
         var parentJQuery = window.parent.jQuery;
         parentJQuery("#progressbar").updateProgress("'.$cnt.','.$total.'");
         </script>';      
         flush();
-#        output("<br/>$cnt/$total");
-#        flush();
-      }
+      }*/
       if (!empty($user["systemvalues"]["foreignkey"])) {
         dbg('Importing on FK '.$user["systemvalues"]["foreignkey"].' email :'.$user["systemvalues"]["email"]);
         $result = Sql_query(sprintf('select id,uniqid from %s where foreignkey = "%s"', $tables["user"], $user["systemvalues"]["foreignkey"]));
@@ -448,6 +456,7 @@ if (sizeof($email_list)) {
           $count["group_add"]++;
         }
       }
+	}
     } // end else
     if ($_SESSION["test_import"] && $c > 50)
       break;
@@ -456,29 +465,29 @@ if (sizeof($email_list)) {
 
   $report = "";
   if (empty($some) && !$count["list_add"]) {
-    $report .=  $GLOBALS['I18N']->get('All the emails already exist in the database and are member of the lists').'<br/>';
+    $report .= '<br/>' . $GLOBALS['I18N']->get('All the emails already exist in the database and are member of the lists');
   } else {
-    $report .= sprintf($GLOBALS['I18N']->get('%s emails succesfully imported to the database and added to %d lists.'), $count["email_add"], $num_lists).'<br/>';
-    $report .= sprintf($GLOBALS['I18N']->get('%d emails subscribed to the lists'), $count["list_add"]).'<br/>';
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails succesfully imported to the database and added to %d lists.'), $count["email_add"], $num_lists);
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d emails subscribed to the lists'), $count["list_add"]);
     if ($count["exist"]) {
-      $report .= sprintf($GLOBALS['I18N']->get('%s emails already existed in the database'), $count["exist"]).'<br/>';
+      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails already existed in the database'), $count["exist"]);
     }
   }
   if ($count["invalid_email"]) {
-    $report .= sprintf($GLOBALS['I18N']->get('%d Invalid Emails found.'), $count["invalid_email"]).'<br/>';
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d Invalid Emails found.'), $count["invalid_email"]);
     if (!$_SESSION["omit_invalid"]) {
-      $report .= sprintf($GLOBALS['I18N']->get('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"]).'<br/>';
+      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"]);
     } else {
-      $report .= sprintf($GLOBALS['I18N']->get('These records were deleted. Check your source and reimport the data. Duplicates will be identified.')).'<br/>';
+      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were deleted. Check your source and reimport the data. Duplicates will be identified.'));
     }
   }
   if ($count["duplicate"]) {
-    $report .= sprintf($GLOBALS['I18N']->get('%d duplicate emails found.'), $count["duplicate"]).'<br/>';
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d duplicate emails found.'), $count["duplicate"]);
   }
   if ($_SESSION["overwrite"] == "yes") {
-    $report .= sprintf($GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]).'<br/>';
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]);
   }
-  $report .= sprintf($GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]).'<br/>';
+  $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]);
   if (!$GLOBALS['commandline']) {
     print $report;
     if (function_exists('sendmail')) {
