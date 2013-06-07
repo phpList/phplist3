@@ -275,7 +275,7 @@ function Sql_Table_exists($table,$refresh = 0) {
     $_SESSION["dbtables"] = array();
 
     # need to improve this. http://bugs.mysql.com/bug.php?id=19588    
-    $req = Sql_Query("show tables");
+    $req = Sql_Query('select table_name from information_schema.tables where table_schema = "'.$GLOBALS['database_name'].'"');
     while ($row = Sql_Fetch_Row($req)) {
       array_push($_SESSION["dbtables"],$row[0]);
     }
@@ -358,4 +358,3 @@ function Sql_Set_Search_Path($searchpath) {
   return;
 }
 
-?>
