@@ -227,35 +227,35 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      foreach ($current_data as $key => $val) {
        if (!is_numeric($key))
        if (isset($old_data[$key]) && $old_data[$key] != $val && $key != "modified") {
-         if ($old_data[$key] == '') $old_data[$key] = '(no data)';
-         $history_entry .= "$key = $val\nchanged from $old_data[$key]\n";
+         if ($old_data[$key] == '') $old_data[$key] = s('(no data)');
+         $history_entry .= "$key = $val\n".s('changed from'). " $old_data[$key]\n";
         }
      }
      if (!$history_entry) {
-       $history_entry = "\nNo data changed\n";
+       $history_entry = "\n"s('No data changed')."\n";
      }
 
      foreach ($subscribed_to as $key => $desc) {
-       $history_entry .= "Subscribed to $desc\n";
+       $history_entry .= s("Subscribed to %s",$desc)."\n";
      }
      foreach ($unsubscribed_from as $key => $desc) {
-       $history_entry .= "Unsubscribed from $desc\n";
+       $history_entry .= s("Unsubscribed from %s",$desc)."\n";
      }
    
-     addUserHistory($email,"Update by ".adminName($_SESSION["logindetails"]["id"]),$history_entry);
+     addUserHistory($email,s("Update by %s",adminName($_SESSION["logindetails"]["id"])),$history_entry);
      if (!empty($newuser)) {
        Redirect("user&id=$id");
        exit;
      }
 
-     Info($GLOBALS['I18N']->get('Changes saved').$feedback);
+     Info(s('Changes saved').$feedback);
   }
   /************ END <whitout_error IF block>  (start in line 71) **********************/
 }
    
    if (isset($delete) && $delete && $access != "view") {
      # delete the index in delete
-     $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleting')." $delete ..\n";
+     $_SESSION['action_result'] = s('Deleting')." $delete ..\n";
      if ($require_login && !isSuperUser()) {
        $lists = Sql_query("SELECT listid FROM {$tables["listuser"]},{$tables["list"]} where userid = ".$delete." and $tables[listuser].listid = $tables[list].id $subselect ");
        while ($lst = Sql_fetch_array($lists))
@@ -263,7 +263,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      } else {
        deleteUser($delete);
      }
-     $_SESSION['action_result'] .= '..'.$GLOBALS['I18N']->get('Done')."\n";
+     $_SESSION['action_result'] .= '..'.s('Done')."\n";
      Redirect('user');
    }
    
@@ -287,7 +287,7 @@ if ($id) {
   $result = Sql_query(sprintf('select * from %s where id = %d', $tables["user"],$id));
 
   if (!Sql_Affected_Rows()) {
-    Fatal_Error($GLOBALS['I18N']->get('No such subscriber'));
+    Fatal_Error(s('No such subscriber'));
     return;
   }
 
@@ -305,9 +305,6 @@ if ($id) {
   if (empty($returnurl)) { $returnurl = ''; }
 
   print '<div class="actions">';
-  //printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
-         //'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
-  //printf('&nbsp;&nbsp;<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
   print '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id",$GLOBALS['I18N']->get('History'));
   if (!empty($GLOBALS['config']['plugins']) && is_array($GLOBALS['config']['plugins'])) {
     foreach ($GLOBALS['config']['plugins'] as $pluginName => $plugin) {
@@ -339,213 +336,207 @@ if ($id) {
   }
 }
 
-  #print '<h3>'.$GLOBALS['I18N']->get('Subscriber details')."</h3>";
-  print formStart('enctype="multipart/form-data"');
-  if ( empty ($list) ) { $list = ''; }
-  print '<input type="hidden" name="list" value="'.$list.'" /><input type="hidden" name="id" value="'.$id.'" />';
-  if ( empty ($returnpage) ) { $returnpage = ''; }
-  if ( empty ($returnoption) ) { $returnoption = ''; }
-  print '<input type="hidden" name="returnpage" value="'.$returnpage.'" /><input type="hidden" name="returnoption" value="'.$returnoption.'" />';
+print formStart('enctype="multipart/form-data"');
+if ( empty ($list) ) { $list = ''; }
+print '<input type="hidden" name="list" value="'.$list.'" /><input type="hidden" name="id" value="'.$id.'" />';
+if ( empty ($returnpage) ) { $returnpage = ''; }
+if ( empty ($returnoption) ) { $returnoption = ''; }
+print '<input type="hidden" name="returnpage" value="'.$returnpage.'" /><input type="hidden" name="returnoption" value="'.$returnoption.'" />';
 
-  reset($struct);
+reset($struct);
 
-  $userdetailsHTML = $mailinglistsHTML = $groupsHTML =  '';
-  $userdetailsHTML .= '<table class="userAdd" border="1">';
+$userdetailsHTML = $mailinglistsHTML = $groupsHTML =  '';
+$userdetailsHTML .= '<table class="userAdd" border="1">';
 
 
-  while (list ($key,$val) = each ($struct)) {
-    @list($a,$b) = explode(":",$val[1]);
+while (list ($key,$val) = each ($struct)) {
+  @list($a,$b) = explode(":",$val[1]);
 
-    if (!isset($user[$key]))
-    $user[$key] = "";
+  if (!isset($user[$key]))
+  $user[$key] = "";
 
-    if ($key == "confirmed") {
-      if (!$require_login || ($require_login && isSuperUser())) {
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars($user[$key]));
-      } else {
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$b,$user[$key]);
-      }
-    } elseif ($key == "password") {
-      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
-    }
-    /*
-    } elseif ($key == "password" && ENCRYPTPASSWORD) {
-      $userdetailsHTML .= sprintf('<tr><td>%s (%s)</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get('encrypted'),$val[1],$key,"");
-    */
-    elseif ($key == "blacklisted") {
-      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),isBlackListed($user['email']));
+  if ($key == "confirmed") {
+    if (!$require_login || ($require_login && isSuperUser())) {
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars($user[$key]));
     } else {
-      if (!strpos($key,'_')) {
-        if (strpos($a,"sys") !== false)
-          $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$user[$key]);
-        elseif ($val[1])
-          $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars($user[$key]));
-      }
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$b,$user[$key]);
+    }
+  } elseif ($key == "password") {
+    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
+  } elseif ($key == "blacklisted") {
+    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),isBlackListed($user['email']));
+  } else {
+    if (!strpos($key,'_')) {
+      if (strpos($a,"sys") !== false)
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$user[$key]);
+      elseif ($val[1])
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars($user[$key]));
     }
   }
+}
 
-  if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATTRIBUTES')) {
-    $res = Sql_Query("select * from $tables[attribute] order by listorder");
+if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATTRIBUTES')) {
+  $res = Sql_Query("select * from $tables[attribute] order by listorder");
 
-    while ($row = Sql_fetch_array($res)) {
-      if (!empty($id)) {
-         $val_req = Sql_Fetch_Row_Query("select value from $tables[user_attribute] where userid = $id and attributeid = $row[id]");
-         $row["value"] = $val_req[0];
-      } elseif (!empty($_POST["attribute"][$row["id"]])) {
-         $row["value"] = $_POST["attribute"][$row["id"]];
-      } else {
-        $row['value'] = '';
-      }
-
-      if ($row["type"] == "date") {
-        $userdetailsHTML .= sprintf('<input class="attributeinput" type="hidden" name="dateattribute[%d]" value="%s" />',$row["id"],$row["name"]);
-        $novalue = trim($row["value"]) == "" ? "checked":"";
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s<!--%s--></td><td>%s&nbsp; Not set: <input type="checkbox" name="%s_novalue" %s /></td></tr>'."\n",stripslashes($row["name"]),$row["value"],$date->showInput($row["name"],"",$row["value"]),normalize(stripslashes($row["name"])),$novalue);
-      } elseif ($row["type"] == "checkbox") {
-        $checked = $row["value"] == "on" ? 'checked="checked"':'';
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[%d]" value="%d" />
-                          <input class="attributeinput" type="checkbox" name="attribute[%d]" value="on" %s />
-                </td></tr>'."\n",stripslashes($row["name"]),$row["id"],$row["id"],$row["id"],$checked);
-      } elseif ($row["type"] == "checkboxgroup") {
-        $userdetailsHTML .= sprintf ('
-             <tr><td valign="top" class="dataname">%s</td><td>%s</td>
-             </tr>',stripslashes($row["name"]),UserAttributeValueCbGroup($id,$row["id"]));
-      } elseif ($row["type"] == "textarea") {
-        $userdetailsHTML .= sprintf ('
-             <tr><td valign="top" class="dataname">%s</td><td><textarea name="attribute[%d]" rows="10" cols="40" class="wrap virtual">%s</textarea></td>
-             </tr>',stripslashes($row["name"]),$row["id"],htmlspecialchars(stripslashes($row["value"])));
-      } elseif ($row["type"] == "avatar") {
-        $userdetailsHTML .= sprintf ('<tr><td valign="top" class="dataname">%s</td><td>',stripslashes($row["name"]));
-        if ($row['value']) {
-          $userdetailsHTML .= sprintf('<img src="./?page=avatar&amp;user=%d&amp;avatar=%s" /><br/>',$id,$row['id']);
-        }
-        $userdetailsHTML .= sprintf ('<input type="file" name="attribute[%d]" /><br/>MAX: %d Kbytes</td>
-             </tr>',$row["id"],MAX_AVATAR_SIZE/1024);
-      } else {
-      if ($row["type"] != "textline" && $row["type"] != "hidden")
-        $userdetailsHTML .= sprintf ("<tr><td class='dataname'>%s</td><td>%s</td></tr>\n",stripslashes($row["name"]),UserAttributeValueSelect($id,$row["id"]));
-      else
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
-      }
-    }
-  }
-
-  if ($access != "view")
-  $userdetailsHTML .=  '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
-  $userdetailsHTML .= '</table>';
-
-  if (isBlackListed($user["email"])) {
-     $userdetailsHTML .= '<h3>'.$GLOBALS['I18N']->get('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
-  }
-
-  $mailinglistsHTML .= "<h3>".$GLOBALS['I18N']->get('Mailinglist membership').":</h3>";
-  // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
-  $mailinglistsHTML .= '<input type="hidden" name="subscribe[]" value="-1" />';
-  $mailinglistsHTML .= '<table class="userListing" border="1"><tr>';
-  $req = Sql_Query("select * from {$tables["list"]} $subselect_where order by listorder,name");
-  $c = 0;
-  while ($row = Sql_Fetch_Array($req)) {
-    $c++;
-    if ($c % 1 == 0)
-      $mailinglistsHTML .= '</tr><tr>';
-    if (in_array($row["id"],$subscribed)) {
-      $bgcol = '#F7E7C2';
-      $subs = 'checked="checked"';
+  while ($row = Sql_fetch_array($res)) {
+    if (!empty($id)) {
+       $val_req = Sql_Fetch_Row_Query("select value from $tables[user_attribute] where userid = $id and attributeid = $row[id]");
+       $row["value"] = $val_req[0];
+    } elseif (!empty($_POST["attribute"][$row["id"]])) {
+       $row["value"] = $_POST["attribute"][$row["id"]];
     } else {
-      $bgcol = '#ffffff';
-      $subs = "";
+      $row['value'] = '';
     }
-    $mailinglistsHTML .=sprintf ('<td class="tdcheck" bgcolor="%s"><input type="checkbox" name="subscribe[]" value="%d" %s /> %s</td>',
-      $bgcol,$row["id"],$subs,stripslashes($row["name"]));
+
+    if ($row["type"] == "date") {
+      $userdetailsHTML .= sprintf('<input class="attributeinput" type="hidden" name="dateattribute[%d]" value="%s" />',$row["id"],$row["name"]);
+      $novalue = trim($row["value"]) == "" ? "checked":"";
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s<!--%s--></td><td>%s&nbsp; Not set: <input type="checkbox" name="%s_novalue" %s /></td></tr>'."\n",stripslashes($row["name"]),$row["value"],$date->showInput($row["name"],"",$row["value"]),normalize(stripslashes($row["name"])),$novalue);
+    } elseif ($row["type"] == "checkbox") {
+      $checked = $row["value"] == "on" ? 'checked="checked"':'';
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[%d]" value="%d" />
+                        <input class="attributeinput" type="checkbox" name="attribute[%d]" value="on" %s />
+              </td></tr>'."\n",stripslashes($row["name"]),$row["id"],$row["id"],$row["id"],$checked);
+    } elseif ($row["type"] == "checkboxgroup") {
+      $userdetailsHTML .= sprintf ('
+           <tr><td valign="top" class="dataname">%s</td><td>%s</td>
+           </tr>',stripslashes($row["name"]),UserAttributeValueCbGroup($id,$row["id"]));
+    } elseif ($row["type"] == "textarea") {
+      $userdetailsHTML .= sprintf ('
+           <tr><td valign="top" class="dataname">%s</td><td><textarea name="attribute[%d]" rows="10" cols="40" class="wrap virtual">%s</textarea></td>
+           </tr>',stripslashes($row["name"]),$row["id"],htmlspecialchars(stripslashes($row["value"])));
+    } elseif ($row["type"] == "avatar") {
+      $userdetailsHTML .= sprintf ('<tr><td valign="top" class="dataname">%s</td><td>',stripslashes($row["name"]));
+      if ($row['value']) {
+        $userdetailsHTML .= sprintf('<img src="./?page=avatar&amp;user=%d&amp;avatar=%s" /><br/>',$id,$row['id']);
+      }
+      $userdetailsHTML .= sprintf ('<input type="file" name="attribute[%d]" /><br/>MAX: %d Kbytes</td>
+           </tr>',$row["id"],MAX_AVATAR_SIZE/1024);
+    } else {
+    if ($row["type"] != "textline" && $row["type"] != "hidden")
+      $userdetailsHTML .= sprintf ("<tr><td class='dataname'>%s</td><td>%s</td></tr>\n",stripslashes($row["name"]),UserAttributeValueSelect($id,$row["id"]));
+    else
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
+    }
   }
-  $mailinglistsHTML .= '</tr>';
-  if ($access != "view")
-    $mailinglistsHTML .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+}
 
-  $mailinglistsHTML .= '</table>';
+if ($access != "view")
+$userdetailsHTML .=  '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+$userdetailsHTML .= '</table>';
 
-  if ($usegroups) {
-    $groupsHTML  .= "<h3>".$GLOBALS['I18N']->get('Group Membership').":</h3>";
-    $groupsHTML  .= '<table class="userGroup" border="1">';
-    $groupsHTML  .= '<tr><td colspan="2"><hr width="50%" /></td></tr>
-  <tr><td colspan="2">'.$GLOBALS['I18N']->get('Please select the groups this subscriber is a member of').'</td></tr>
-  <tr><td colspan="2">';
+if (isBlackListed($user["email"])) {
+   $userdetailsHTML .= '<h3>'.s('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
+}
+
+$mailinglistsHTML .= "<h3>".$GLOBALS['I18N']->get('Mailinglist membership').":</h3>";
+// a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
+$mailinglistsHTML .= '<input type="hidden" name="subscribe[]" value="-1" />';
+$mailinglistsHTML .= '<table class="userListing" border="1"><tr>';
+$req = Sql_Query("select * from {$tables["list"]} $subselect_where order by listorder,name");
+$c = 0;
+while ($row = Sql_Fetch_Array($req)) {
+  $c++;
+  if ($c % 1 == 0)
+    $mailinglistsHTML .= '</tr><tr>';
+  if (in_array($row["id"],$subscribed)) {
+    $bgcol = '#F7E7C2';
+    $subs = 'checked="checked"';
+  } else {
+    $bgcol = '#ffffff';
+    $subs = "";
+  }
+  $mailinglistsHTML .=sprintf ('<td class="tdcheck" bgcolor="%s"><input type="checkbox" name="subscribe[]" value="%d" %s /> %s</td>',
+    $bgcol,$row["id"],$subs,stripslashes($row["name"]));
+}
+$mailinglistsHTML .= '</tr>';
+if ($access != "view")
+  $mailinglistsHTML .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+
+$mailinglistsHTML .= '</table>';
+
+if ($usegroups) {
+  $groupsHTML  .= "<h3>".$GLOBALS['I18N']->get('Group Membership').":</h3>";
+  $groupsHTML  .= '<table class="userGroup" border="1">';
+  $groupsHTML  .= '<tr><td colspan="2"><hr width="50%" /></td></tr>
+<tr><td colspan="2">'.$GLOBALS['I18N']->get('Please select the groups this subscriber is a member of').'</td></tr>
+<tr><td colspan="2">';
+  
+  if (empty($GLOBALS['config']['usergroup_types'])) {
     
-    if (empty($GLOBALS['config']['usergroup_types'])) {
-      
-      ## old method, list of checkboxes
+    ## old method, list of checkboxes
+  
+    $selected_groups = array();
+    if ($id) {
+      $req = Sql_Query("select groupid from user_group where userid = $id");
+      while ($row = Sql_Fetch_Row($req))
+        array_push($selected_groups,$row[0]);
+    }
+
+    $req = Sql_Query("select * from groups");
+    $c = 1;
+    while ($row = Sql_Fetch_array($req)) {
+      if ($row["name"] != "Everyone") {
+        $groupsHTML  .= sprintf ('<i>%s</i><input type="checkbox" name="groups[]" value="%d" %s />&nbsp;&nbsp;',
+        $row["name"],$row["id"],in_array($row["id"],$selected_groups)?'checked="checked"':''
+            );
+      } else {
+        $groupsHTML  .=sprintf ('<b>%s</b>&nbsp;&nbsp;<input type="hidden" name="groups[]" value="%d" />',
+        $row["name"],$row["id"]
+            );
+      }
+      if ($c % 5 == 0)
+        $groupsHTML  .= "<br/>";
+      $c++;
+    }
+  } else {
+    $current_groups = array();
+    if ($id) {
+      $req = Sql_Query("select groupid,type from user_group where userid = $id");
+      $groupsHTML  .= '<ol>';
+      while ($row = Sql_Fetch_Assoc($req)) {
+        ## the config needs to start real types with 1, type index 0 will be considered no-value
+        $membership_type = $GLOBALS['config']['usergroup_types'][$row['type']];
+        if (empty($membership_type) || empty($row['type'])) {
+          # $membership_type = 'undefined'; an entry "undefined of everyone" was showing in the backend
+          continue;
+        }
+        $groupname = groupName($row['groupid']);
+        $deleteLink = '';
+        if (strtolower($groupname) != 'everyone') {
+          $deleteLink =  PageLink2('user&amp;id='.$id.'&amp;delgroup='.$row['groupid'].'&amp;deltype='.$row['type'],'del');
+        }
+        $groupsHTML  .=sprintf('<li><strong>%s</strong> of <i>%s</i> %s</li>',$membership_type,$groupname,$deleteLink);
+      }
+      $groupsHTML  .= '</ol>';
+    }
+
+    $req = Sql_Query('select * from groups where name != "everyone"');
+    $c = 1;
     
-      $selected_groups = array();
-      if ($id) {
-        $req = Sql_Query("select groupid from user_group where userid = $id");
-        while ($row = Sql_Fetch_Row($req))
-          array_push($selected_groups,$row[0]);
-      }
+    while ($row = Sql_Fetch_array($req)) {
+      $groups[$row['id']] = $row['name'];
+    }
+    
+    $groupsHTML  .= '<hr/>Add new group membership:<br/><br/>';
+    $groupsHTML  .= '<select name="newgrouptype">';
+    foreach ($GLOBALS['config']['usergroup_types'] as $key => $val) {
+      $groupsHTML  .=sprintf ('    <option value="%d">%s</option>',$key,$val);
+    }
+    $groupsHTML  .= '</select>';
+    $groupsHTML  .= ' of ';
+    $groupsHTML  .= '<select name="newgroup">';
+    foreach ($groups as $key => $val) {
+      $groupsHTML  .=sprintf ('<option value="%d">%s</option>',$key,$val);
+    }
+    $groupsHTML  .= '</select>';
+  }  
 
-      $req = Sql_Query("select * from groups");
-      $c = 1;
-      while ($row = Sql_Fetch_array($req)) {
-        if ($row["name"] != "Everyone") {
-          $groupsHTML  .= sprintf ('<i>%s</i><input type="checkbox" name="groups[]" value="%d" %s />&nbsp;&nbsp;',
-          $row["name"],$row["id"],in_array($row["id"],$selected_groups)?'checked="checked"':''
-              );
-        } else {
-          $groupsHTML  .=sprintf ('<b>%s</b>&nbsp;&nbsp;<input type="hidden" name="groups[]" value="%d" />',
-          $row["name"],$row["id"]
-              );
-        }
-        if ($c % 5 == 0)
-          $groupsHTML  .= "<br/>";
-        $c++;
-      }
-    } else {
-      $current_groups = array();
-      if ($id) {
-        $req = Sql_Query("select groupid,type from user_group where userid = $id");
-        $groupsHTML  .= '<ol>';
-        while ($row = Sql_Fetch_Assoc($req)) {
-          ## the config needs to start real types with 1, type index 0 will be considered no-value
-          $membership_type = $GLOBALS['config']['usergroup_types'][$row['type']];
-          if (empty($membership_type) || empty($row['type'])) {
-            # $membership_type = 'undefined'; an entry "undefined of everyone" was showing in the backend
-            continue;
-          }
-          $groupname = groupName($row['groupid']);
-          $deleteLink = '';
-          if (strtolower($groupname) != 'everyone') {
-            $deleteLink =  PageLink2('user&amp;id='.$id.'&amp;delgroup='.$row['groupid'].'&amp;deltype='.$row['type'],'del');
-          }
-          $groupsHTML  .=sprintf('<li><strong>%s</strong> of <i>%s</i> %s</li>',$membership_type,$groupname,$deleteLink);
-        }
-        $groupsHTML  .= '</ol>';
-      }
-
-      $req = Sql_Query('select * from groups where name != "everyone"');
-      $c = 1;
-      
-      while ($row = Sql_Fetch_array($req)) {
-        $groups[$row['id']] = $row['name'];
-      }
-      
-      $groupsHTML  .= '<hr/>Add new group membership:<br/><br/>';
-      $groupsHTML  .= '<select name="newgrouptype">';
-      foreach ($GLOBALS['config']['usergroup_types'] as $key => $val) {
-        $groupsHTML  .=sprintf ('    <option value="%d">%s</option>',$key,$val);
-      }
-      $groupsHTML  .= '</select>';
-      $groupsHTML  .= ' of ';
-      $groupsHTML  .= '<select name="newgroup">';
-      foreach ($groups as $key => $val) {
-        $groupsHTML  .=sprintf ('<option value="%d">%s</option>',$key,$val);
-      }
-      $groupsHTML  .= '</select>';
-    }  
-
-    $groupsHTML  .= '</td></tr>';
-    if ($access != "view")
-      $groupsHTML  .= '<tr><td><input type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save changes').'" /></td></tr>';
-    $groupsHTML  .= '</table>';
-  }
+  $groupsHTML  .= '</td></tr>';
+  if ($access != "view")
+    $groupsHTML  .= '<tr><td><input type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save changes').'" /></td></tr>';
+  $groupsHTML  .= '</table>';
+}
 
 print '<div class="tabbed">';
 print '<ul>';
