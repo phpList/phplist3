@@ -3,6 +3,8 @@ if (!defined('PHPLISTINIT')) exit;
 
 print '<h3>'.s('Database structure check').'</h3>';
 
+unset($_SESSION["dbtables"]);
+
 $ls = new WebblerListing(s('Database structure'));
 while (list($table, $tablename) = each($GLOBALS["tables"])) {
   $createlink = '';
