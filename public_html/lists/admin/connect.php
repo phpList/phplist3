@@ -705,8 +705,8 @@ $main_menu = array(
 );
 */
   $GLOBALS['context_menu'] = array(
-    "home" => 'Main Page',
-    "community" => 'Help',
+    "home" => 'home',
+    "community" => 'help',
     "about" =>  'about',
     "logout" => "logout",
   );
