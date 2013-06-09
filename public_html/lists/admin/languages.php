@@ -357,7 +357,7 @@ class phplist_I18N {
       if (isset($_GET['page'])) {
         $page = $_GET["page"];
       } else {
-        $page = 'main page';
+        $page = 'home';
       }
       $pl = $prefix = '';
       if (!empty($_GET['pi'])) {
@@ -371,6 +371,8 @@ class phplist_I18N {
       Undefined text reference in page '.$page.'
 
       '.$text;
+
+      $page = preg_replace('/\W/','',$page);
 
       #sendMail($GLOBALS["developer_email"],"phplist dev, missing text",$msg);
       $line = "'".str_replace("'","\'",$text)."' => '".str_replace("'","\'",$text)."',";
