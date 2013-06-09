@@ -231,8 +231,12 @@ while ($row = Sql_fetch_array($result)) {
     $GLOBALS['I18N']->get('Order'),
     sprintf('<input type="text" name="listorder[%d]" value="%d" size="3" class="listorder" />',$row['id'],$row['listorder']));
 
-  $delete_url = sprintf('<a href="javascript:deleteRec2(\'%s\',\'%s\');" class="button" title="%s">%s</a>',$GLOBALS['I18N']->get('Are you sure you want to delete this list?'),PageURL2("list&delete=".$row["id"]),$GLOBALS['I18N']->get('delete this list'),$GLOBALS['I18N']->get('delete'));
-  $ls->addRow($element,'',$delete_url.PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')),'','','actions nodrag');
+  $deletebutton = new ConfirmButton(
+     s('Are you sure you want to delete this list?'),
+     PageURL2("list&delete=".$row["id"]),
+     s('delete this list'));
+   
+  $ls->addRow($element,'',$deletebutton->show().PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')),'','','actions nodrag');
   
 
 
