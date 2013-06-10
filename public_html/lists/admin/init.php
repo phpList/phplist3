@@ -341,6 +341,8 @@ if (!isset($pageroot)) {
 }
 ## as the "admin" in adminpages is hardcoded, don't put it in the config file
 $adminpages = $GLOBALS['pageroot'].'/admin';
+## remove possibly duplicated // at the beginning
+$adminpages = preg_replace('~^//~','/',$adminpages);
 
 if (!isset($table_prefix)) {
   $table_prefix = 'phplist_';
