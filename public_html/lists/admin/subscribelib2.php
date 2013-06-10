@@ -82,7 +82,7 @@ if (sizeof($required)) {
     }
   }
 } else {
-  $missing = ''; // http://en.wikipedia.org/wiki/Invariant_(computer_science)
+  $missing = ''; 
 }
 
 #
@@ -120,10 +120,21 @@ if (!empty($_POST['VerificationCodeX'])) {
     foreach ($_SERVER as $key => $val) {
       $msg .= "\n".'HTTP Server Data: '.htmlentities($key)."\n".'================='."\nValue: ".htmlentities($val)."\n".'=============='."\n\n";
     }
-    sendAdminCopy("phplist Spam blocked","\n".$msg);
+    sendAdminCopy(s('phplist Spam blocked'),"\n".$msg);
   }
   unset($msg);
   return;
+}
+
+foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+#  dbg($plugin->name);
+  if ($plugin->enabled) {
+    $pluginResult = $plugin->validateSubscriptionPage($subscribepagedata);
+    if (!empty($pluginResult)) {
+      $allthere = 0;
+      break;
+    }
+  }
 }
 
 if (!isset($_POST['passwordreq'])) $_POST['passwordreq'] = '';
@@ -136,7 +147,7 @@ if ($allthere && ASKFORPASSWORD && ($_POST["passwordreq"] || $_POST["password"])
   }
   if ($_POST["email"]) {
     $curpwd = Sql_Fetch_Row_Query(sprintf('select password from %s where email = "%s"',
-      $GLOBALS["tables"]["user"],$_POST["email"]));
+      $GLOBALS["tables"]["user"],sql_escape($_POST["email"])));
 
     if ($curpwd[0] && $_POST["password"] != $curpwd[0]) {
       $missing = $GLOBALS["strInvalidPassword"];
@@ -144,7 +155,7 @@ if ($allthere && ASKFORPASSWORD && ($_POST["passwordreq"] || $_POST["password"])
   }
 }
 
-if (isset($_POST["email"]) && $check_for_host) {
+if (isset($_POST["email"]) && !empty($GLOBALS['check_for_host'])) {
   list($username,$domaincheck) = explode('@',$_POST["email"]);
 #  $mxhosts = array();
 #  $validhost = getmxrr ($domaincheck,$mxhosts);
@@ -175,8 +186,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
 
    if (isset($_POST['rssfrequency'])) {
       $rssfrequency = validateRssFrequency($_POST['rssfrequency']);
-   }
-   else {
+   } else {
       $rssfrequency = '';
    }
    if (!Sql_affected_rows()) {
@@ -237,6 +247,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
 
    # subscribe to the lists
    $lists = '';
+   $subscriptions = array(); ## used to keep track of which admins to alert 
 
    if (isset($_POST['list']) && is_array($_POST["list"])) {
       while(list($key,$val)= each($_POST["list"])) {
@@ -245,7 +256,8 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
             if (!empty($key)) {
               $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS["tables"]["listuser"],$userid,$key));
               $lists .= "\n  * ".listname($key);
-
+              $subscriptions[] = $key;
+              
               addSubscriberStatistics('subscribe',1,$key);
             } else {
               ## hack attempt...
@@ -661,6 +673,8 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
   $msg = '<div class="error missing">'.$strEnterEmail.'</div><br/>';
 } elseif ((isset($_POST["subscribe"]) || isset($_POST["update"])) && !$validhost) {
   $msg = '<div class="error missing">'.$strInvalidHostInEmail.'</div><br/>';
+} elseif ((isset($_POST["subscribe"]) || isset($_POST["update"])) && $pluginResult) {
+  $msg = '<div class="error missing">'.$pluginResult.'</div><br/>';
 } elseif ((isset($_POST["subscribe"]) || isset($_POST["update"])) && $missing) {
   $msg = '<div class="error missing">'."$strValuesMissing: $missing".'</div><br/>';
 } elseif ((isset($_POST["subscribe"]) || isset($_POST["update"])) && !isset($_POST["list"]) && !ALLOW_NON_LIST_SUBSCRIBE) {
@@ -677,11 +691,11 @@ function ListAvailableLists($userid = 0,$lists_to_show = "") {
     $list = '';
   }
   $subselect = "";$listset = array();
+  $subscribed = array();
 
   $showlists = explode(",",$lists_to_show);
   if (PREFERENCEPAGE_SHOW_PRIVATE_LISTS && !empty($userid)) {
     ## merge with the subscribed lists, regardless of public state
-    $subscribed = array();
     $req = Sql_Query(sprintf('select listid from %s where userid = %d',$tables['listuser'],$userid));
     while ($row = Sql_Fetch_Row($req)) {
       $subscribed[] = $row[0];
