@@ -369,7 +369,7 @@ print '</div>';
 
 $some = 0;
 
-$ls = new WebblerListing("users");
+$ls = new WebblerListing(s("users"));
 $ls->usePanel($paging);
 if ($result) {
   while ($user = Sql_fetch_array($result)) {
