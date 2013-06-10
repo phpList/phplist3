@@ -796,8 +796,8 @@ function unsubscribePage($id)
       addUserToBlacklist($email,nl2br(strip_tags($_POST['unsubscribereason'])));
 
       addUserHistory($email,"Unsubscription","Unsubscribed from $lists");
-      $unsubscribemessage = str_replace("[LISTS]", $lists,getUserConfig("unsubscribemessage",$userid));
-      sendMail($email, getConfig("unsubscribesubject"), stripslashes($unsubscribemessage), system_messageheaders($email));
+      $unsubscribemessage = str_replace("[LISTS]", $lists,getUserConfig("unsubscribemessage:$id",$userid));
+      sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage), system_messageheaders($email));
       $reason = $_POST["unsubscribereason"] ? "Reason given:\n".stripslashes($_POST["unsubscribereason"]):"No Reason given";
       sendAdminCopy("List unsubscription",$email . " has unsubscribed\n$reason",$subscriptions);
       addSubscriberStatistics('unsubscription',1);
