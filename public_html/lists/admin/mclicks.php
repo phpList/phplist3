@@ -132,15 +132,7 @@ while ($row = Sql_Fetch_Array($req)) {
   }
 #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
 
-  $url = $row['url'];
-  $url = str_replace('http://','',$url);
-  if (strlen($url) > 50) {
-    $display = substr($url,0,20).'...'.substr($url,-25);
-  } else {
-    $display = $url;
-  }
-
-  $element = sprintf('<div title="%s" ondblclick="alert(\'%s\');">%s</div>',htmlspecialchars($row['url']),htmlspecialchars($row['url']),$display);
+  $element = shortenTextDisplay($row['url']);
   $ls->addElement($element);
   $ls->setClass($element,'row1');
   $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));

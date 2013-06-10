@@ -46,10 +46,11 @@ if (!$id) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Available URLs'));
   while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
-    $ls->addElement($row['url'],PageURL2('uclicks&amp;id='.$row['id']));
-    $ls->addColumn($row['url'],$GLOBALS['I18N']->get('msgs'),$row['msgs']);
-    $ls->addColumn($row['url'],$GLOBALS['I18N']->get('last clicked'),formatDateTime($row['lastclicked'],1));
-    $ls->addColumn($row['url'],$GLOBALS['I18N']->get('clicks'),$row['numclicks']);
+    $element = shortenTextDisplay($row['url']);
+    $ls->addElement($element,PageURL2('uclicks&amp;id='.$row['id']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('msgs'),$row['msgs']);
+    $ls->addColumn($element,$GLOBALS['I18N']->get('last clicked'),formatDateTime($row['lastclicked'],1));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['numclicks']);
   }
   if ($download) {
     ob_end_clean();

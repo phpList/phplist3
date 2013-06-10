@@ -1455,6 +1455,16 @@ function listCategories() {
   return $aConfiguredListCategories;
 }
 
+function shortenTextDisplay($text) {
+  $text = str_replace('http://','',$text);
+  if (strlen($text) > 20) {
+    $display = substr($text,0,10).' ... '.substr($text,-5);
+  } else {
+    $display = $text;
+  }
+  return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
+}
+
 if (!function_exists('getnicebacktrace')) {
 function getNiceBackTrace( $bTrace = false ) {
   $sTrace = '';
