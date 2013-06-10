@@ -105,8 +105,8 @@ if (Sql_Affected_Rows()) {
 $html .= '</td></tr>';
 $html .= '<tr><td>'.s('Add some subscribers').'</td>
 <td>'.PageLink2("import",s('Go there')).'</td><td>';
-$req = Sql_Query("select * from {$tables["user"]}");
-if (Sql_Affected_Rows()) {
+$req = Sql_Fetch_Row_Query("select count(*) from {$tables["user"]}");
+if ($req[0] > 2) {
   $html .= $GLOBALS["img_tick"];
 } else {
   $alldone = 0;  
