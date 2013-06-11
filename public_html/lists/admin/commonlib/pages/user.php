@@ -232,7 +232,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
         }
      }
      if (!$history_entry) {
-       $history_entry = "\n"s('No data changed')."\n";
+       $history_entry = "\n".s('No data changed')."\n";
      }
 
      foreach ($subscribed_to as $key => $desc) {
