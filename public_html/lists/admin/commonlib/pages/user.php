@@ -243,12 +243,12 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      }
    
      addUserHistory($email,s("Update by %s",adminName($_SESSION["logindetails"]["id"])),$history_entry);
-     if (!empty($newuser)) {
-       Redirect("user&id=$id");
-       exit;
+     if (empty($newuser)) {
+       $_SESSION['action_result'] = s('Changes saved').$feedback;
      }
+     Redirect("user&id=$id");
+     exit;
 
-     Info(s('Changes saved').$feedback);
   }
   /************ END <whitout_error IF block>  (start in line 71) **********************/
 }
@@ -357,9 +357,9 @@ while (list ($key,$val) = each ($struct)) {
 
   if ($key == "confirmed") {
     if (!$require_login || ($require_login && isSuperUser())) {
-      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars($user[$key]));
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",$GLOBALS['I18N']->get($b),$key,htmlspecialchars(stripslashes($user[$key])));
     } else {
-      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$b,$user[$key]);
+      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$b,stripslashes($user[$key]));
     }
   } elseif ($key == "password") {
     $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
@@ -368,9 +368,9 @@ while (list ($key,$val) = each ($struct)) {
   } else {
     if (!strpos($key,'_')) {
       if (strpos($a,"sys") !== false)
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),$user[$key]);
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),stripslashes($user[$key]));
       elseif ($val[1])
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars($user[$key]));
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$GLOBALS['I18N']->get($val[1]),$key,htmlspecialchars(stripslashes($user[$key])));
     }
   }
 }
