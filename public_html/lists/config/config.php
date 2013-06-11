@@ -397,6 +397,11 @@ Miscellaneous
 
 */
 
+## default system language
+# set the default system language. If the language cannot be detected, it will fall back to 
+# this one. It has to be the "ISO code" of the language.
+# to find what languages are available here, check out http://translate.phplist.com/
+$default_system_language = 'en';
 
 ## use Precedence
 # according to the email standards, the Precedence header is outdated, and should not be used
