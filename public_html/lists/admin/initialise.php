@@ -12,7 +12,6 @@ if (!isset($_REQUEST['adminemail'])) $_REQUEST['adminemail'] = '';
 if (isset($_REQUEST['adminemail']) && !is_email($_REQUEST['adminemail'])) {
   $_REQUEST['adminemail'] = '';
 }
-  
 
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
@@ -21,15 +20,23 @@ if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strl
   print '<div class="error">'.s('To install phpList, you need to enable Javascript').'</div>';
   print '</noscript>';
   
+  if ($_SESSION['adminlanguage']['iso'] != $GLOBALS['default_system_language'] && 
+    in_array($_SESSION['adminlanguage']['iso'],array_keys($GLOBALS['LANGUAGES']))) {
+      print '<div class="info error">'.s('The default system language is different from your browser language.').'<br/>';
+      print s('You can set <pre>$default_system_language = "%s";</pre> in your config file, to use your language as the fallback language.',$_SESSION['adminlanguage']['iso']).'<br/>';
+      print s('It is best to do this before initialising the database.');
+      print '</div>';
+  }
+
   print '<form method="post" action="" class="configForm">';
   print '<fieldset><legend>'.s('phpList initialisation').' </legend>
     <input type="hidden" name="firstinstall" value="1" />';
   print '<input type="hidden" name="page" value="initialise" />';
-  print '<label for="adminname">'.$GLOBALS['I18N']->get('Please enter your name.').'</label>';
+  print '<label for="adminname">'.s('Please enter your name.').'</label>';
   print '<div class="field"><input type="text" name="adminname" class="error missing" value="'.htmlspecialchars($_REQUEST['adminname']).'" /></div>';
-  print '<label for="orgname">'.$GLOBALS['I18N']->get('The name of your organisation').'</label>';
+  print '<label for="orgname">'.s('The name of your organisation').'</label>';
   print '<input type="text" name="orgname" value="'.htmlspecialchars($_REQUEST['orgname']).'" />';
-  print '<label for="adminemail">'.$GLOBALS['I18N']->get('Please enter your email address.').'</label>';
+  print '<label for="adminemail">'.s('Please enter your email address.').'</label>';
 
   /* would be nice to do this, but needs more work
   if (ENCRYPT_ADMIN_PASSWORDS) {
@@ -38,17 +45,17 @@ if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strl
   }
   */
   print '<input type="text" name="adminemail" value="'.htmlspecialchars($_REQUEST['adminemail']).'" />';
-  print $GLOBALS['I18N']->get('The initial <i>login name</i> will be' ).' "admin"'.'<br/>';
-  print '<label for="adminpassword">'.$GLOBALS['I18N']->get('Please enter the password you want to use for this account.').' ('.$GLOBALS['I18N']->get('minimum of 8 characters.').')</label>';
+  print s('The initial <i>login name</i> will be' ).' "admin"'.'<br/>';
+  print '<label for="adminpassword">'.s('Please enter the password you want to use for this account.').' ('.$GLOBALS['I18N']->get('minimum of 8 characters.').')</label>';
   print '<input type="text" name="adminpassword" value="" id="initialadminpassword" /><br/><br/>';
-  print '<input type="submit" value="'.$GLOBALS['I18N']->get('Continue').'" id="initialisecontinue" disabled="disabled" />';
+  print '<input type="submit" value="'.s('Continue').'" id="initialisecontinue" disabled="disabled" />';
   print '</fieldset></form>';
   return;
 } 
 
 #var_dump($GLOBALS['plugins']);exit;
 
-print "<h3>".$GLOBALS['I18N']->get("Creating tables")."</h3><br />\n";
+print "<h3>".s("Creating tables")."</h3><br />\n";
 while (list($table, $val) = each($DBstruct)) {
   if ($force) {
     if ($table == "attribute") {
@@ -73,10 +80,10 @@ while (list($table, $val) = each($DBstruct)) {
   $query .= "\n) default character set utf8";
 
   # submit it to the database
-  echo $GLOBALS['I18N']->get("Initialising table")." <b>$table</b>";
+  echo s("Initialising table")." <b>$table</b>";
   if (!$force && Sql_Table_Exists($tables[$table])) {
-    Error( $GLOBALS['I18N']->get("Table already exists").'<br />');
-    echo "... ".$GLOBALS['I18N']->get("failed")."<br />\n";
+    Error( s("Table already exists").'<br />');
+    echo "... ".s("failed")."<br />\n";
     $success = 0;
   } else {
     $res = Sql_Query($query,0);
@@ -114,10 +121,10 @@ while (list($table, $val) = each($DBstruct)) {
         }
       }
 
-      echo "... ".$GLOBALS['I18N']->get("ok")."<br />\n";
+      echo "... ".s("ok")."<br />\n";
     }
     else
-      echo "... ".$GLOBALS['I18N']->get("failed")."<br />\n";
+      echo "... ".s("failed")."<br />\n";
   }
 }
 
@@ -195,8 +202,8 @@ if ($success) {
 
 
 } else {
- print ('<div class="initialiseOptions"><ul><li>'.$GLOBALS['I18N']->get("Maybe you want to")." ".PageLinkButton("upgrade",$GLOBALS['I18N']->get("Upgrade")).' '.$GLOBALS['I18N']->get("instead?").'</li>
-    <li>'.PageLinkButton("initialise",$GLOBALS['I18N']->get("Force Initialisation"),"force=yes").' '.$GLOBALS['I18N']->get("(will erase all data!)").' '."</li></ul></div>\n");
+ print ('<div class="initialiseOptions"><ul><li>'.s("Maybe you want to")." ".PageLinkButton("upgrade",s("Upgrade")).' '.s("instead?").'</li>
+    <li>'.PageLinkButton("initialise",s("Force Initialisation"),"force=yes").' '.s("(will erase all data!)").' '."</li></ul></div>\n");
 }
 /*
 if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
