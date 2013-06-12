@@ -3,11 +3,14 @@
 if (!$GLOBALS["commandline"]) {
   @ob_end_flush();
   print '<p class="information">'.$GLOBALS['I18N']->get('Hint: this page also works from commandline').'</p>';
+  $limit = 10000;
 } else {
   @ob_end_clean();
   print ClineSignature();
   ## when on cl, doit immediately
   $_GET['doit'] = 'yes';
+  ## on commandline handle more
+  $limit = 50000;
   ob_start();
 }
 
@@ -52,7 +55,7 @@ $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables'][
 output(s("%d entries still to convert",$num[0]).'<br/>');
 
 $c = 0;
-$req = Sql_Query(sprintf('select * from %s limit 10000',$GLOBALS['tables']['linktrack']));
+$req = Sql_Query(sprintf('select * from %s limit %d',$GLOBALS['tables']['linktrack'],$limit));
 $total = Sql_Affected_Rows();
 if ($total) {
   output(s("converting data")."<br/>");
@@ -140,8 +143,9 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 set_time_limit(6000);
 
-output ($GLOBALS['I18N']->get('All done, optimizing table to recover space').'<br/>');
+output ($GLOBALS['I18N']->get('Optimizing table to recover space').'.<br/>');
 Sql_Query(sprintf('optimize table %s',$GLOBALS['tables']['linktrack']));
+output ($GLOBALS['I18N']->get('Finished').'.<br/>');
 
 if (!$GLOBALS['commandline']) {
   print PageLink2('convertstats',$GLOBALS['I18N']->get('Convert some more'));
