@@ -2,20 +2,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-06 05:00+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: phpList <info@phplist.com>\n"
+"POT-Creation-Date: 2013-06-11 05:00+0000\n"
+"PO-Revision-Date: 2013-06-10 04:41+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-1: admin/actions\n"
 "X-Poedit-SearchPath-2: admin/commonlib/pages\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
+"X-POOTLE-MTIME: 1370839269.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -54,8 +56,8 @@ msgstr ""
 #: public_html/lists/admin/massunconfirm.php:35
 #: public_html/lists/admin/commonlib/pages/importcsv.php:43
 #: public_html/lists/admin/commonlib/pages/importcsv.php:349
-#: public_html/lists/admin/commonlib/pages/user.php:284
-#: public_html/lists/admin/commonlib/pages/user.php:343
+#: public_html/lists/admin/commonlib/pages/user.php:277
+#: public_html/lists/admin/commonlib/pages/user.php:333
 #: public_html/lists/admin/initialise.php:44
 #: public_html/lists/admin/massremove.php:49
 #: public_html/lists/admin/login.php:72 public_html/lists/admin/login.php:100
@@ -69,6 +71,7 @@ msgid "Continue"
 msgstr "Weiter"
 
 #: public_html/lists/admin/processbounces.php:7
+#: public_html/lists/admin/initlanguages.php:6
 #: public_html/lists/admin/readtestmail.php:28
 msgid "This page can only be called from the commandline"
 msgstr "Diese Seite kann nur aus der Kommandozeile heraus aufgerufen werden."
@@ -189,7 +192,7 @@ msgid "Processing bounces based on active bounce rules"
 msgstr "Verarbeite Retouren gem&auml;ss den aktuellen Regeln."
 
 #: public_html/lists/admin/processbounces.php:371
-#: public_html/lists/admin/actions/processqueue.php:831
+#: public_html/lists/admin/actions/processqueue.php:824
 #: public_html/lists/admin/generatebouncerules.php:48
 msgid "Process Killed by other process"
 msgstr "Der Prozess wurde durch einen anderen Prozess beendet."
@@ -332,7 +335,7 @@ msgid "Reset Import session"
 msgstr "Import-Session zur&uuml;cksetzen"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:57
-#: public_html/lists/admin/commonlib/pages/user.php:43
+#: public_html/lists/admin/commonlib/pages/user.php:42
 #: public_html/lists/admin/import1.php:40
 #: public_html/lists/admin/configure.php:69
 #: public_html/lists/admin/plugins.php:27
@@ -442,7 +445,7 @@ msgid "%d lines will be imported"
 msgstr "%d Zeilen werden importiert werden"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:402
-#: public_html/lists/admin/commonlib/pages/importcsv.php:574
+#: public_html/lists/admin/commonlib/pages/importcsv.php:571
 msgid "Confirm Import"
 msgstr "Import best&auml;tigen"
 
@@ -468,43 +471,43 @@ msgstr "Der Datensatz enth&auml;lt keine E-Mail-Adresse."
 msgid "Invalid Email"
 msgstr "Ung&uuml;ltige E-Mail-Adresse"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:542
-#: public_html/lists/admin/actions/import2.php:147
+#: public_html/lists/admin/commonlib/pages/importcsv.php:539
+#: public_html/lists/admin/actions/import2.php:146
 msgid "clear value"
 msgstr "Wert l&ouml;schen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:552
-#: public_html/lists/admin/actions/import2.php:157
+#: public_html/lists/admin/commonlib/pages/importcsv.php:549
+#: public_html/lists/admin/actions/import2.php:156
 msgid "New Attribute"
 msgstr "Neues Attribut"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:555
-#: public_html/lists/admin/actions/import2.php:161
+#: public_html/lists/admin/commonlib/pages/importcsv.php:552
+#: public_html/lists/admin/actions/import2.php:160
 msgid "Skip value"
 msgstr "Wert &uuml;berspringen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:574
+#: public_html/lists/admin/commonlib/pages/importcsv.php:571
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr ""
 "Test-Durchlauf<br/>Wenn die Ausgabe korrekt ist, dann klicken Sie %s "
 "f&uuml;r einen echten Import."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:576
-#: public_html/lists/admin/actions/import1.php:219
-#: public_html/lists/admin/actions/import2.php:497
+#: public_html/lists/admin/commonlib/pages/importcsv.php:573
+#: public_html/lists/admin/actions/import1.php:218
+#: public_html/lists/admin/actions/import2.php:505
 #: public_html/lists/admin/import3.php:493
 #: public_html/lists/admin/importsimple.php:90
 msgid "Import some more emails"
 msgstr "Importiere weitere E-Mail-Adressen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:600
+#: public_html/lists/admin/commonlib/pages/importcsv.php:597
 #: public_html/lists/admin/import3.php:229
 msgid "Adding users to list"
 msgstr "Benutzer werden zur Liste hinzugef&uuml;gt"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:602
-#: public_html/lists/admin/commonlib/pages/importcsv.php:617
+#: public_html/lists/admin/commonlib/pages/importcsv.php:599
+#: public_html/lists/admin/commonlib/pages/importcsv.php:614
 #: public_html/lists/admin/import1.php:191
 #: public_html/lists/admin/import3.php:224
 #: public_html/lists/admin/importsimple.php:132
@@ -513,30 +516,30 @@ msgstr ""
 "<br /><b>Listen, zu denen die E-Mail-Adressen hinzugef&uuml;gt werden "
 "sollen</b>"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:612
+#: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/import4.php:42
 #: public_html/lists/admin/import3.php:40
 msgid "No lists available"
 msgstr "Keine Listen verf&uuml;gbar"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:612
+#: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
 #: public_html/lists/admin/list.php:271 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1107
 msgid "Add a list"
 msgstr "Neue Liste"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:634
+#: public_html/lists/admin/commonlib/pages/importcsv.php:631
 msgid "Select the groups to add the users to"
 msgstr ""
 "W&auml;hlen Sie die Gruppen, zu denen Sie die Benutzer hinzuf&uuml;gen "
 "wollen."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:637
+#: public_html/lists/admin/commonlib/pages/importcsv.php:634
 msgid "automatically added"
 msgstr "Automatisch hinzugef&uuml;gt"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:662
+#: public_html/lists/admin/commonlib/pages/importcsv.php:659
 msgid ""
 "The file you upload will need to have the attributes of the records on    "
 "the first line.     Make sure that the email column is called \"email\" and "
@@ -552,46 +555,46 @@ msgid ""
 "Document.     "
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:664
+#: public_html/lists/admin/commonlib/pages/importcsv.php:661
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
 msgstr "Textdatei mit Administratoren"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:666
+#: public_html/lists/admin/commonlib/pages/importcsv.php:663
 #, php-format
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:667
+#: public_html/lists/admin/commonlib/pages/importcsv.php:664
 #, php-format
 msgid "phpList will not process files larger than %dMB"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:669
+#: public_html/lists/admin/commonlib/pages/importcsv.php:666
 #: public_html/lists/admin/importadmin.php:301
 msgid "Field Delimiter"
 msgstr "Feld-Trennzeichen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:669
+#: public_html/lists/admin/commonlib/pages/importcsv.php:666
 #: public_html/lists/admin/importadmin.php:301
 #, fuzzy
 msgid "default is TAB"
 msgstr "(Standard: TAB)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #: public_html/lists/admin/importadmin.php:302
 msgid "Record Delimiter"
 msgstr "Datensatz-Trennzeichen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #: public_html/lists/admin/importadmin.php:302
 #, fuzzy
 msgid "default is line break"
 msgstr "(Standard: Zeilenschaltung)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:671
+#: public_html/lists/admin/commonlib/pages/importcsv.php:668
 #: public_html/lists/admin/import1.php:213
 #: public_html/lists/admin/importadmin.php:303
 msgid ""
@@ -601,23 +604,23 @@ msgid ""
 "show the first 50 records."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:672
+#: public_html/lists/admin/commonlib/pages/importcsv.php:669
 #: public_html/lists/admin/importadmin.php:304
 msgid "Test output"
 msgstr "Test-Durchlauf"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:673
+#: public_html/lists/admin/commonlib/pages/importcsv.php:670
 msgid ""
 "If you check \"Show Warnings\", you will get warnings for invalid records. "
 "Warnings will only be shown if you check \"Test Output\". They will be "
 "ignored when actually importing. "
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:674
+#: public_html/lists/admin/commonlib/pages/importcsv.php:671
 msgid "Show Warnings"
 msgstr "Warnungen anzeigen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:675
+#: public_html/lists/admin/commonlib/pages/importcsv.php:672
 msgid ""
 "If you check \"Omit Invalid\", invalid records will not be added. Invalid "
 "records are records without an email. Any other attributes will be added "
@@ -625,11 +628,11 @@ msgid ""
 "to the list of countries."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:676
+#: public_html/lists/admin/commonlib/pages/importcsv.php:673
 msgid "Omit Invalid"
 msgstr "Ung&uuml;ltige &uuml;berspringen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:677
+#: public_html/lists/admin/commonlib/pages/importcsv.php:674
 msgid ""
 "Assign Invalid will be used to create an email for subscribers with an "
 "invalid email address. You can use values between [ and ] to make up a value "
@@ -640,11 +643,11 @@ msgid ""
 "sequence number for importing."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:679
+#: public_html/lists/admin/commonlib/pages/importcsv.php:676
 msgid "Assign Invalid"
 msgstr "Fehlende E-Mail-Adresse setzen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:680
+#: public_html/lists/admin/commonlib/pages/importcsv.php:677
 #, fuzzy
 msgid ""
 "If you check \"Overwrite Existing\", information about a subscriber in the "
@@ -655,13 +658,13 @@ msgstr ""
 "den importierten Daten zu &uuml;berschreiben.  \tAbonnenten werden &uuml;ber "
 "ihre E-Mail-Adresse identifiziert."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:681
+#: public_html/lists/admin/commonlib/pages/importcsv.php:678
 #: public_html/lists/admin/import3.php:240
 #: public_html/lists/admin/import3.php:241
 msgid "Overwrite Existing"
 msgstr "Bestehende &uuml;berschreiben"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:682
+#: public_html/lists/admin/commonlib/pages/importcsv.php:679
 msgid ""
 "If you check \"Retain Old Email\", a conflict of two emails being the same "
 "will keep the old one and add \"duplicate\" to the new one. If you don&quot;"
@@ -669,11 +672,11 @@ msgid ""
 "precedence."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:683
+#: public_html/lists/admin/commonlib/pages/importcsv.php:680
 msgid "Retain Old User Email"
 msgstr "Alte E-Mail-Adresse erhalten"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:688
+#: public_html/lists/admin/commonlib/pages/importcsv.php:685
 #: public_html/lists/admin/import1.php:215
 #, fuzzy
 msgid ""
@@ -686,34 +689,34 @@ msgstr ""
 "empfohlen, denn so k&ouml;nnen ung&uuml;ltige E-Mail-Adressen identifiziert "
 "werden."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:689
+#: public_html/lists/admin/commonlib/pages/importcsv.php:686
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr "Best&auml;tigungsanfrage senden"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:689
+#: public_html/lists/admin/commonlib/pages/importcsv.php:686
 #: public_html/lists/admin/import1.php:216
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
 msgstr "Sofort auf \"best&auml;tigt\" setzen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:690
+#: public_html/lists/admin/commonlib/pages/importcsv.php:687
 #: public_html/lists/admin/import1.php:217
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:691
+#: public_html/lists/admin/commonlib/pages/importcsv.php:688
 #: public_html/lists/admin/import1.php:218
 msgid "Notification throttle"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:691
+#: public_html/lists/admin/commonlib/pages/importcsv.php:688
 #: public_html/lists/admin/import1.php:218
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:693
+#: public_html/lists/admin/commonlib/pages/importcsv.php:690
 msgid "Import"
 msgstr "Importieren"
 
@@ -731,40 +734,70 @@ msgid "Delete will remove subscriber from the list"
 msgstr "Der L&ouml;schbefehl l&ouml;scht die Abonnenten von der Liste."
 
 #: public_html/lists/admin/commonlib/pages/user.php:34
+#, fuzzy
 msgid "Delete will remove subscriber from the system"
-msgstr ""
+msgstr "Der L&ouml;schbefehl l&ouml;scht die Abonnenten von der Liste."
 
-#: public_html/lists/admin/commonlib/pages/user.php:67
+#: public_html/lists/admin/commonlib/pages/user.php:59
 msgid "Error adding subscriber, please check that the subscriber exists"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:125
+#: public_html/lists/admin/commonlib/pages/user.php:117
 msgid "Uploaded avatar file too big"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:183
-#: public_html/lists/admin/commonlib/pages/user.php:193
+#: public_html/lists/admin/commonlib/pages/user.php:175
+#: public_html/lists/admin/commonlib/pages/user.php:185
 msgid "Subscriber added to group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:214
-#: public_html/lists/admin/commonlib/pages/user.php:221
+#: public_html/lists/admin/commonlib/pages/user.php:206
+#: public_html/lists/admin/commonlib/pages/user.php:213
 #, php-format
 msgid "Subscriber removed from list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:227
+#: public_html/lists/admin/commonlib/pages/user.php:219
 #, php-format
 msgid "Subscriber added to list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:259
+#: public_html/lists/admin/commonlib/pages/user.php:230
+msgid "(no data)"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:231
+msgid "changed from"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:235
+#: public_html/lists/admin/actions/import1.php:180
+msgid "No data changed"
+msgstr "Es wurden keine Benutzerdaten ge&auml;ndert."
+
+#: public_html/lists/admin/commonlib/pages/user.php:239
+#, php-format
+#, fuzzy, php-format
+msgid "Subscribed to %s"
+msgstr "Abonniert auf"
+
+#: public_html/lists/admin/commonlib/pages/user.php:242
+#, php-format
+msgid "Unsubscribed from %s"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:245
+#, php-format
+msgid "Update by %s"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:251
 #: public_html/lists/admin/admin.php:98
 #: public_html/lists/admin/editlist.php:95
 msgid "Changes saved"
 msgstr "&Auml;nderungen gespeichert"
 
-#: public_html/lists/admin/commonlib/pages/user.php:266
+#: public_html/lists/admin/commonlib/pages/user.php:258
 #: public_html/lists/admin/admin.php:108
 #: public_html/lists/admin/members.php:202
 #: public_html/lists/admin/admins.php:29 public_html/lists/admin/list.php:61
@@ -774,8 +807,8 @@ msgstr "&Auml;nderungen gespeichert"
 msgid "Deleting"
 msgstr "L&ouml;sche"
 
-#: public_html/lists/admin/commonlib/pages/user.php:274
-#: public_html/lists/admin/commonlib/pages/users.php:204
+#: public_html/lists/admin/commonlib/pages/user.php:266
+#: public_html/lists/admin/commonlib/pages/users.php:209
 #: public_html/lists/admin/admin.php:113
 #: public_html/lists/admin/members.php:208
 #: public_html/lists/admin/import4.php:358
@@ -792,32 +825,44 @@ msgstr "L&ouml;sche"
 msgid "Done"
 msgstr "Abgeschlossen"
 
-#: public_html/lists/admin/commonlib/pages/user.php:283
+#: public_html/lists/admin/commonlib/pages/user.php:276
 msgid "Subscriber removed from group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:297
+#: public_html/lists/admin/commonlib/pages/user.php:290
 msgid "No such subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:310
+#: public_html/lists/admin/commonlib/pages/user.php:303
 msgid "No Lists"
 msgstr "Keine Listen"
 
-#: public_html/lists/admin/commonlib/pages/user.php:318
+#: public_html/lists/admin/commonlib/pages/user.php:308
 msgid "History"
 msgstr "History"
 
-#: public_html/lists/admin/commonlib/pages/user.php:339
+#: public_html/lists/admin/commonlib/pages/user.php:317
+#: public_html/lists/admin/commonlib/pages/userhistory.php:49
+#: public_html/lists/admin/bouncerules.php:103
+#: public_html/lists/admin/plugins.php:234
+#: public_html/lists/admin/list.php:234
+#: public_html/lists/admin/messages.php:360
+#: public_html/lists/admin/editattributes.php:183
+#: public_html/lists/admin/templates.php:35
+#: public_html/lists/admin/templates.php:36
+msgid "delete"
+msgstr "L&ouml;schen"
+
+#: public_html/lists/admin/commonlib/pages/user.php:329
 msgid "Add a new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:342
+#: public_html/lists/admin/commonlib/pages/user.php:332
 msgid "Email address"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:441
-#: public_html/lists/admin/commonlib/pages/user.php:470
+#: public_html/lists/admin/commonlib/pages/user.php:425
+#: public_html/lists/admin/commonlib/pages/user.php:454
 #: public_html/lists/admin/commonlib/pages/attributes.php:383
 #: public_html/lists/admin/commonlib/pages/attributes.php:411
 #: public_html/lists/admin/bouncerule.php:49
@@ -831,43 +876,44 @@ msgstr ""
 msgid "Save Changes"
 msgstr "Speichern"
 
-#: public_html/lists/admin/commonlib/pages/user.php:445
+#: public_html/lists/admin/commonlib/pages/user.php:429
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:448
+#: public_html/lists/admin/commonlib/pages/user.php:432
 #, fuzzy
 msgid "Mailinglist membership"
 msgstr "<br />Abonnierte Listen"
 
-#: public_html/lists/admin/commonlib/pages/user.php:475
+#: public_html/lists/admin/commonlib/pages/user.php:459
 msgid "Group Membership"
 msgstr "Gruppenmitgliedschaft"
 
-#: public_html/lists/admin/commonlib/pages/user.php:478
+#: public_html/lists/admin/commonlib/pages/user.php:462
 #, fuzzy
 msgid "Please select the groups this subscriber is a member of"
 msgstr "Bitte w&auml;hlen Sie die Gruppen, deren Mitglied der Abonnent ist."
 
-#: public_html/lists/admin/commonlib/pages/user.php:553
+#: public_html/lists/admin/commonlib/pages/user.php:537
 #, fuzzy
 msgid "Save changes"
 msgstr "Speichern"
 
-#: public_html/lists/admin/commonlib/pages/user.php:559
+#: public_html/lists/admin/commonlib/pages/user.php:543
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
+#, fuzzy
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
-#: public_html/lists/admin/commonlib/pages/user.php:560
+#: public_html/lists/admin/commonlib/pages/user.php:544
 #: public_html/lists/admin/send_core.php:532
 #: public_html/lists/admin/list.php:145 public_html/lists/admin/list.php:157
 #, fuzzy
 msgid "Lists"
 msgstr "Listen"
 
-#: public_html/lists/admin/commonlib/pages/user.php:573
+#: public_html/lists/admin/commonlib/pages/user.php:557
 msgid "Groups"
 msgstr ""
 
@@ -889,17 +935,6 @@ msgstr ""
 #: public_html/lists/admin/editattributes.php:131
 msgid "user"
 msgstr "Benutzername"
-
-#: public_html/lists/admin/commonlib/pages/userhistory.php:49
-#: public_html/lists/admin/bouncerules.php:103
-#: public_html/lists/admin/plugins.php:234
-#: public_html/lists/admin/list.php:234
-#: public_html/lists/admin/messages.php:360
-#: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/templates.php:35
-#: public_html/lists/admin/templates.php:36
-msgid "delete"
-msgstr "L&ouml;schen"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:53
 #: public_html/lists/admin/commonlib/pages/userhistory.php:116
@@ -986,8 +1021,9 @@ msgid "Subscription"
 msgstr "Beschreibung"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:130
+#, fuzzy
 msgid "subscriber is blacklisted since"
-msgstr ""
+msgstr "Abonnent steht auf der Blacklist seit"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:137
 msgid "Blacklist info"
@@ -998,17 +1034,24 @@ msgid "value"
 msgstr "Wert"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:148
+#, fuzzy
 msgid "are you sure you want to delete this subscriber from the blacklist"
 msgstr ""
+"Sind Sie sicher, dass Sie diesen Abonnenten von der Blacklist l&ouml;schen "
+"wollen"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:148
+#, fuzzy
 msgid "it should only be done with explicit permission from this subscriber"
 msgstr ""
+"Sie sollten dies nur mit ausdr&uuml;cklicher Zustimmung dieses Abonnenten "
+"tun"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:149
 #: public_html/lists/admin/commonlib/pages/userhistory.php:150
+#, fuzzy
 msgid "remove subscriber from blacklist"
-msgstr ""
+msgstr "Abonnente von Blacklist l&ouml;schen"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:152
 #: public_html/lists/admin/commonlib/pages/userhistory.php:155
@@ -1054,81 +1097,84 @@ msgid "info"
 msgstr "Information"
 
 #: public_html/lists/admin/commonlib/pages/dbcheck.php:4
+#, fuzzy
 msgid "Database structure check"
-msgstr ""
+msgstr "Datenbank-Struktur &uuml;berpr&uuml;fen"
 
-#: public_html/lists/admin/commonlib/pages/dbcheck.php:6
+#: public_html/lists/admin/commonlib/pages/dbcheck.php:8
+#, fuzzy
 msgid "Database structure"
-msgstr ""
+msgstr "Datenbank-Struktur &uuml;berpr&uuml;fen"
 
-#: public_html/lists/admin/commonlib/pages/users.php:153
-#: public_html/lists/admin/commonlib/pages/users.php:191
+#: public_html/lists/admin/commonlib/pages/users.php:154
+#: public_html/lists/admin/commonlib/pages/users.php:192
 #: public_html/lists/admin/reconcileusers.php:365
 msgid "Delete will delete user and all listmemberships"
 msgstr ""
 "Der L&ouml;schbefehl l&ouml;scht den Abonnenten und alle seine "
 "Listenabonnemente"
 
-#: public_html/lists/admin/commonlib/pages/users.php:157
+#: public_html/lists/admin/commonlib/pages/users.php:158
 msgid "Your privileges for this page are insufficient"
 msgstr "Sie haben keine Zugriffsberechtigung f&uuml;r diese Seite."
 
-#: public_html/lists/admin/commonlib/pages/users.php:160
+#: public_html/lists/admin/commonlib/pages/users.php:161
 msgid "Delete will delete user from the list"
 msgstr "Der L&ouml;schbefehl l&ouml;scht die Abonnenten von der Liste."
 
-#: public_html/lists/admin/commonlib/pages/users.php:201
+#: public_html/lists/admin/commonlib/pages/users.php:206
 #: public_html/lists/admin/commonlib/pages/attributes.php:166
 #: public_html/lists/admin/bounces.php:9
 msgid "deleting"
 msgstr "L&ouml;sche"
 
-#: public_html/lists/admin/commonlib/pages/users.php:213
+#: public_html/lists/admin/commonlib/pages/users.php:218
 msgid "Sorry, only super users can delete users"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:226
+#: public_html/lists/admin/commonlib/pages/users.php:229
 #: public_html/lists/admin/members.php:197
 msgid "User added"
 msgstr "Abonnent hinzugef&uuml;gt"
 
-#: public_html/lists/admin/commonlib/pages/users.php:229
+#: public_html/lists/admin/commonlib/pages/users.php:232
 #, php-format
 msgid "%s users in total"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:247
+#: public_html/lists/admin/commonlib/pages/users.php:233
 msgid "Users marked <span class=\"highlight\">red</span> are unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:275
+#: public_html/lists/admin/commonlib/pages/users.php:261
 msgid "Show only unconfirmed users"
 msgstr "Nur unbest&auml;tigte Abonnenten"
 
-#: public_html/lists/admin/commonlib/pages/users.php:277
+#: public_html/lists/admin/commonlib/pages/users.php:263
 msgid "Show only blacklisted users"
 msgstr "Nur Abonnenten auf Blacklist"
 
-#: public_html/lists/admin/commonlib/pages/users.php:300
+#: public_html/lists/admin/commonlib/pages/users.php:286
 msgid "Sort by"
 msgstr "Sortierung"
 
-#: public_html/lists/admin/commonlib/pages/users.php:301
+#: public_html/lists/admin/commonlib/pages/users.php:287
 #: public_html/lists/admin/send_core.php:864
 msgid "desc"
 msgstr "absteigend"
 
-#: public_html/lists/admin/commonlib/pages/users.php:302
+#: public_html/lists/admin/commonlib/pages/users.php:288
 msgid "asc"
 msgstr "aufsteigend"
 
-#: public_html/lists/admin/commonlib/pages/users.php:303
+#: public_html/lists/admin/commonlib/pages/users.php:289
+#: public_html/lists/admin/commonlib/pages/users.php:353
 #: public_html/lists/admin/admins.php:97
 msgid "Go"
 msgstr "Anzeigen"
 
-#: public_html/lists/admin/commonlib/pages/users.php:321
-#: public_html/lists/admin/commonlib/pages/users.php:325
+#: public_html/lists/admin/commonlib/pages/users.php:307
+#: public_html/lists/admin/commonlib/pages/users.php:311
 #: public_html/lists/admin/statsoverview.php:156
 #: public_html/lists/admin/statsoverview.php:159
 #: public_html/lists/admin/mviews.php:136
@@ -1137,67 +1183,63 @@ msgstr "Anzeigen"
 msgid "Listing user %d to %d"
 msgstr "Abonnenten %d bis %d"
 
-#: public_html/lists/admin/commonlib/pages/users.php:346
+#: public_html/lists/admin/commonlib/pages/users.php:320
 #: public_html/lists/admin/mclicks.php:113
 msgid "Subscribers"
 msgstr "Abonnenten"
 
-#: public_html/lists/admin/commonlib/pages/users.php:349
-msgid "too many subscribers, use a search query to list some"
-msgstr ""
-
-#: public_html/lists/admin/commonlib/pages/users.php:360
+#: public_html/lists/admin/commonlib/pages/users.php:334
 msgid "Find a user"
 msgstr "Abonnenten suchen"
 
-#: public_html/lists/admin/commonlib/pages/users.php:369
+#: public_html/lists/admin/commonlib/pages/users.php:343
 #: public_html/lists/admin/usercheck.php:40
 msgid "Email"
 msgstr "E-Mail-Adresse"
 
-#: public_html/lists/admin/commonlib/pages/users.php:372
+#: public_html/lists/admin/commonlib/pages/users.php:346
 #: public_html/lists/admin/usercheck.php:39
 msgid "Foreign Key"
 msgstr "Fremdschl&uuml;ssel"
 
-#: public_html/lists/admin/commonlib/pages/users.php:379
+#: public_html/lists/admin/commonlib/pages/users.php:353
 msgid "reset"
 msgstr "Zur&uuml;cksetzen"
 
-#: public_html/lists/admin/commonlib/pages/users.php:387
+#: public_html/lists/admin/commonlib/pages/users.php:361
 msgid "Find subscribers"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:392
+#: public_html/lists/admin/commonlib/pages/users.php:366
 msgid "Download all users as CSV file"
 msgstr "Abonnenten exportieren"
 
-#: public_html/lists/admin/commonlib/pages/users.php:393
+#: public_html/lists/admin/commonlib/pages/users.php:367
 msgid "Add a User"
 msgstr "Neuer Abonnent"
 
-#: public_html/lists/admin/commonlib/pages/users.php:436
-#: public_html/lists/admin/actions/import1.php:206
+#: public_html/lists/admin/commonlib/pages/users.php:410
+#: public_html/lists/admin/actions/import1.php:205
 #: public_html/lists/admin/import4.php:115
 #: public_html/lists/admin/import3.php:472
 msgid "lists"
 msgstr "Listen"
 
-#: public_html/lists/admin/commonlib/pages/users.php:443
+#: public_html/lists/admin/commonlib/pages/users.php:417
 #: public_html/lists/admin/uclicks.php:50
 msgid "msgs"
 msgstr "Nachr."
 
-#: public_html/lists/admin/commonlib/pages/users.php:467
+#: public_html/lists/admin/commonlib/pages/users.php:430
 #: public_html/lists/admin/statsoverview.php:98
 msgid "bncs"
 msgstr "Retouren"
 
-#: public_html/lists/admin/commonlib/pages/users.php:474
+#: public_html/lists/admin/commonlib/pages/users.php:437
 msgid "no results"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/users.php:474
+#: public_html/lists/admin/commonlib/pages/users.php:437
 msgid "No users apply"
 msgstr "Keine Abonnenten gefunden"
 
@@ -1385,7 +1427,7 @@ msgid "Choose a list"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:16
-#: public_html/lists/admin/actions/import1.php:206
+#: public_html/lists/admin/actions/import1.php:205
 #: public_html/lists/admin/import4.php:134
 #: public_html/lists/admin/import4.php:145 public_html/lists/admin/list.php:61
 #: public_html/lists/admin/import3.php:472
@@ -1543,8 +1585,11 @@ msgstr ""
 "kann Probleme verursachen."
 
 #: public_html/lists/admin/importadmin.php:146
+#, fuzzy
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
 msgstr ""
+"Test-Durchlauf<br/>Wenn die Ausgabe korrekt ist, dann klicken Sie %s "
+"f&uuml;r einen echten Import."
 
 #: public_html/lists/admin/importadmin.php:153
 msgid "password"
@@ -1579,8 +1624,9 @@ msgid "new administrators were"
 msgstr ""
 
 #: public_html/lists/admin/importadmin.php:273
+#, fuzzy
 msgid "All the administrators already exist in the database"
-msgstr ""
+msgstr "Alle E-Mail-Adressen existieren bereits in der Datenbank."
 
 #: public_html/lists/admin/importadmin.php:274
 msgid "Information has been updated from the import"
@@ -1655,69 +1701,66 @@ msgstr ""
 msgid "Import of existing subscriber"
 msgstr "Import eines bestehenden Benutzers"
 
-#: public_html/lists/admin/actions/import1.php:135
+#: public_html/lists/admin/actions/import1.php:134
 msgid "Import of new subscriber"
 msgstr "Import eines neuen Benutzers"
 
-#: public_html/lists/admin/actions/import1.php:181
-msgid "No data changed"
-msgstr "Es wurden keine Benutzerdaten ge&auml;ndert."
-
-#: public_html/lists/admin/actions/import1.php:189
+#: public_html/lists/admin/actions/import1.php:188
 msgid "List subscriptions:"
 msgstr "Zeige Abonnemente:"
 
-#: public_html/lists/admin/actions/import1.php:191
+#: public_html/lists/admin/actions/import1.php:190
 msgid "Was subscribed to:"
 msgstr "War abonniert auf:"
 
-#: public_html/lists/admin/actions/import1.php:194
+#: public_html/lists/admin/actions/import1.php:193
 msgid "Is now subscribed to:"
 msgstr "Ist nun abonniert auf:"
 
-#: public_html/lists/admin/actions/import1.php:197
+#: public_html/lists/admin/actions/import1.php:196
 msgid "Not subscribed to any lists"
 msgstr "Auf keine Liste abonniert"
 
-#: public_html/lists/admin/actions/import1.php:200
+#: public_html/lists/admin/actions/import1.php:199
 msgid "Import by "
 msgstr "Import von "
 
-#: public_html/lists/admin/actions/import1.php:207
+#: public_html/lists/admin/actions/import1.php:206
 #: public_html/lists/admin/import3.php:473
 msgid "new email was"
 msgstr "Die neue E-Mail-Adresse war"
 
-#: public_html/lists/admin/actions/import1.php:207
+#: public_html/lists/admin/actions/import1.php:206
 #: public_html/lists/admin/import3.php:473
 msgid "new emails were"
 msgstr "Die neuen E-Mail-Adressen waren"
 
-#: public_html/lists/admin/actions/import1.php:208
+#: public_html/lists/admin/actions/import1.php:207
 #: public_html/lists/admin/import3.php:474
 msgid "email was"
 msgstr "Die E-Mail-Adresse war"
 
-#: public_html/lists/admin/actions/import1.php:208
+#: public_html/lists/admin/actions/import1.php:207
 #: public_html/lists/admin/import3.php:474
 msgid "emails were"
 msgstr "Die E-Mail-Adressen waren"
 
-#: public_html/lists/admin/actions/import1.php:211
+#: public_html/lists/admin/actions/import1.php:210
 #, php-format
+#, fuzzy, php-format
 msgid "%d emails already existed in the database"
-msgstr ""
+msgstr "%s E-Mail-Adressen existierten bereits in der Datenbank."
 
-#: public_html/lists/admin/actions/import1.php:214
+#: public_html/lists/admin/actions/import1.php:213
 msgid "All the emails already exist in the database."
 msgstr "Alle E-Mail-Adresse existierten bereits in der Datenbank."
 
-#: public_html/lists/admin/actions/import1.php:216
+#: public_html/lists/admin/actions/import1.php:215
 #: public_html/lists/admin/import3.php:479
 msgid "succesfully imported to the database and added to"
 msgstr "Erfolgreich in die Datenbank importiert und hinzugef&uuml;gt zu"
 
-#: public_html/lists/admin/actions/import1.php:216
+#: public_html/lists/admin/actions/import1.php:215
 #: public_html/lists/admin/import3.php:479
 msgid "subscribed to the"
 msgstr "Abonniert auf"
@@ -1738,57 +1781,57 @@ msgstr ""
 msgid "Network error updating language, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:215
-#: public_html/lists/admin/actions/import2.php:225
-#: public_html/lists/admin/actions/import2.php:226
+#: public_html/lists/admin/actions/import2.php:222
+#: public_html/lists/admin/actions/import2.php:232
+#: public_html/lists/admin/actions/import2.php:233
 msgid "duplicate"
 msgstr "Duplikat"
 
-#: public_html/lists/admin/actions/import2.php:225
-#: public_html/lists/admin/actions/import2.php:260
+#: public_html/lists/admin/actions/import2.php:232
+#: public_html/lists/admin/actions/import2.php:267
 msgid "Duplicate Email"
 msgstr "doppelte E-Mail-Adresse"
 
-#: public_html/lists/admin/actions/import2.php:225
+#: public_html/lists/admin/actions/import2.php:232
 msgid " user imported as "
 msgstr " Benutzer importiert als "
 
-#: public_html/lists/admin/actions/import2.php:460
+#: public_html/lists/admin/actions/import2.php:468
 msgid ""
 "All the emails already exist in the database and are member of the lists"
 msgstr ""
 "Alle E-Mail-Adressen existieren bereits in der Datenbank und sind abonniert "
 "auf die Listen"
 
-#: public_html/lists/admin/actions/import2.php:462
+#: public_html/lists/admin/actions/import2.php:470
 #, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
 msgstr ""
 "%s E-Mail-Adressen wurden erfolgreich in die Datenbank importiert und zu %d "
 "Listen hinzugef&uuml;gt."
 
-#: public_html/lists/admin/actions/import2.php:463
+#: public_html/lists/admin/actions/import2.php:471
 #, php-format
 msgid "%d emails subscribed to the lists"
 msgstr "%d E-Mail-Adressen wurden auf die Listen abonniert."
 
-#: public_html/lists/admin/actions/import2.php:465
+#: public_html/lists/admin/actions/import2.php:473
 #, php-format
 msgid "%s emails already existed in the database"
 msgstr "%s E-Mail-Adressen existierten bereits in der Datenbank."
 
-#: public_html/lists/admin/actions/import2.php:469
+#: public_html/lists/admin/actions/import2.php:477
 #, php-format
 msgid "%d Invalid Emails found."
 msgstr "%d E-Mail-Adressen waren ung&uuml;ltig."
 
-#: public_html/lists/admin/actions/import2.php:471
+#: public_html/lists/admin/actions/import2.php:479
 msgid "These records were added, but the email has been made up from "
 msgstr ""
 "Diese Datens&auml;tze wurden zwar hinzugef&uuml;gt, aber die E-Mail-Adresse "
 "wurde generiert aus "
 
-#: public_html/lists/admin/actions/import2.php:473
+#: public_html/lists/admin/actions/import2.php:481
 #: public_html/lists/admin/import3.php:487
 msgid ""
 "These records were deleted. Check your source and reimport the data. "
@@ -1797,22 +1840,25 @@ msgstr ""
 "Diese Datens&auml;tze wurden gel&ouml;scht. &Uuml;berpr&uuml;fen Sie die "
 "Quelle und importieren Sie die Daten erneut. Duplikate werden erkannt."
 
-#: public_html/lists/admin/actions/import2.php:477
+#: public_html/lists/admin/actions/import2.php:485
 #, php-format
 msgid "%d duplicate emails found."
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:480
+#: public_html/lists/admin/actions/import2.php:488
 #, php-format
 msgid "Subscriber data was updated for %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:482
+#: public_html/lists/admin/actions/import2.php:490
 #, php-format
+#, fuzzy, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
 msgstr ""
+"%d Benutzer wurden aufgrund eines Fremdschl&uuml;ssels zugewiesen, %d "
+"aufgrund der E-Mail-Adresse."
 
-#: public_html/lists/admin/actions/import2.php:486
+#: public_html/lists/admin/actions/import2.php:494
 #: public_html/lists/admin/importsimple.php:94
 msgid "phplist Import Results"
 msgstr "PHPlist Import-Ergebnis"
@@ -1856,7 +1902,7 @@ msgid "Adding email address failed"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:45
-#: public_html/lists/admin/actions/processqueue.php:1139
+#: public_html/lists/admin/actions/processqueue.php:1132
 msgid "unknown"
 msgstr "Unbekannt"
 
@@ -1879,7 +1925,7 @@ msgstr "Noch zu bearbeiten"
 
 #: public_html/lists/admin/actions/msgstatus.php:70
 #: public_html/lists/admin/bounces.php:101
-#: public_html/lists/admin/bounces.php:109 public_html/lists/admin/lib.php:500
+#: public_html/lists/admin/bounces.php:109 public_html/lists/admin/lib.php:502
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -1960,7 +2006,6 @@ msgid "messages sent in"
 msgstr "Nachrichten versandt in"
 
 #: public_html/lists/admin/actions/processqueue.php:208
-#: public_html/lists/admin/actions/processqueue.php:418
 msgid "seconds"
 msgstr "Sekunden"
 
@@ -1994,33 +2039,41 @@ msgstr ""
 msgid "Waiting for %d seconds before reloading"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:260
+#: public_html/lists/admin/actions/processqueue.php:258
 msgid "Finished, All done"
 msgstr "Verarbeitung abgeschlossen"
 
-#: public_html/lists/admin/actions/processqueue.php:267
+#: public_html/lists/admin/actions/processqueue.php:265
 msgid "Script finished, but not all messages have been sent yet."
 msgstr ""
 "Das Skript wurde abgeschlossen, es wurden aber noch nicht alle Mails "
 "versendet."
 
-#: public_html/lists/admin/actions/processqueue.php:288
+#: public_html/lists/admin/actions/processqueue.php:281
+msgid "Maillist errors"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:283
+msgid "Maillist Processing info"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:286
 msgid "Finished this run"
 msgstr "AusfÜhrung beendet"
 
-#: public_html/lists/admin/actions/processqueue.php:367
-#: public_html/lists/admin/actions/processqueue.php:369
+#: public_html/lists/admin/actions/processqueue.php:363
+#: public_html/lists/admin/actions/processqueue.php:365
 msgid "(test)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:367
-#: public_html/lists/admin/actions/processqueue.php:369
+#: public_html/lists/admin/actions/processqueue.php:363
+#: public_html/lists/admin/actions/processqueue.php:365
 msgid "Would have sent"
 msgstr "Hätte versendet"
 
-#: public_html/lists/admin/actions/processqueue.php:367
-#: public_html/lists/admin/actions/processqueue.php:369
-#: public_html/lists/admin/actions/processqueue.php:954
+#: public_html/lists/admin/actions/processqueue.php:363
+#: public_html/lists/admin/actions/processqueue.php:365
+#: public_html/lists/admin/actions/processqueue.php:947
 #: public_html/lists/admin/members.php:324
 #: public_html/lists/admin/members.php:328
 #: public_html/lists/admin/members.php:341
@@ -2028,188 +2081,178 @@ msgstr "Hätte versendet"
 msgid "to"
 msgstr "bis"
 
-#: public_html/lists/admin/actions/processqueue.php:382
+#: public_html/lists/admin/actions/processqueue.php:378
 msgid "Started"
 msgstr "Verarbeitung gestartet"
 
-#: public_html/lists/admin/actions/processqueue.php:384
+#: public_html/lists/admin/actions/processqueue.php:380
 msgid "Time now "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:395
+#: public_html/lists/admin/actions/processqueue.php:391
 msgid "Unable get lock for processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:396
+#: public_html/lists/admin/actions/processqueue.php:392
 msgid "Error processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:404
+#: public_html/lists/admin/actions/processqueue.php:400
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr ""
 "Der Betreiber Ihres Servers hat die Verarbeitung unterbrochen. Bitte "
 "versuchen Sie es später nochmals."
 
-#: public_html/lists/admin/actions/processqueue.php:410
+#: public_html/lists/admin/actions/processqueue.php:406
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr "Im Sicherheits-Modus werden Batch-Aufgaben auf maximal 100 gesetzt."
 
-#: public_html/lists/admin/actions/processqueue.php:414
-#: public_html/lists/admin/actions/processqueue.php:420
-msgid "Sending in batches of"
-msgstr "Versand in Batches von"
+#: public_html/lists/admin/actions/processqueue.php:410
+#, php-format
+msgid "Sending in batches of %d messages"
+msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:414
-#: public_html/lists/admin/actions/processqueue.php:420
-msgid "emails"
-msgstr "E-Mails"
+#, php-format
+msgid ""
+"This batch will be %d emails, because in the last %d seconds %d emails were "
+"sent"
+msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:418
-msgid "This batch will be"
-msgstr "Dieser Batch enthält"
+#: public_html/lists/admin/actions/processqueue.php:416
+#, php-format
+msgid "Sending in batches of %d emails"
+msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:418
-msgid "emails, because in the last"
-msgstr "E-Mails, weil im vorangehenden"
+#: public_html/lists/admin/actions/processqueue.php:419
+#, php-format
+msgid ""
+"In the last %d seconds more emails were sent (%d) than is currently allowed "
+"per batch (%d)"
+msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:418
-msgid "emails were sent"
-msgstr "E-Mails versendet wurden."
-
-#: public_html/lists/admin/actions/processqueue.php:423
-msgid "In the last"
-msgstr "Während der letzten"
-
-#: public_html/lists/admin/actions/processqueue.php:423
-msgid "seconds more emails were sent"
-msgstr "Sekunden wurden mehre E-Mails versendet"
-
-#: public_html/lists/admin/actions/processqueue.php:423
-msgid "than is currently allowed per batch"
-msgstr "als derzeit pro Batch erlaubt sind."
-
-#: public_html/lists/admin/actions/processqueue.php:435
+#: public_html/lists/admin/actions/processqueue.php:428
 msgid "Sent in last run"
 msgstr "Im letzten Durchgang versendet"
 
-#: public_html/lists/admin/actions/processqueue.php:436
+#: public_html/lists/admin/actions/processqueue.php:429
 msgid "Skipped in last run"
 msgstr "Im letzten Durchgang übersprungen"
 
-#: public_html/lists/admin/actions/processqueue.php:474
+#: public_html/lists/admin/actions/processqueue.php:467
 msgid "Processing has started,"
 msgstr "Anzahl pendente Nachrichten:"
 
-#: public_html/lists/admin/actions/processqueue.php:474
+#: public_html/lists/admin/actions/processqueue.php:467
 msgid "message(s) to process."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:479
+#: public_html/lists/admin/actions/processqueue.php:472
 msgid ""
 "Please leave this window open. You have batch processing enabled, so it will "
 "reload several times to send the messages. Reports will be sent by email to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:481
+#: public_html/lists/admin/actions/processqueue.php:474
 msgid ""
 "Your webserver is running in safe_mode. Please keep this window open. It may "
 "reload several times to make sure all messages are sent."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:481
+#: public_html/lists/admin/actions/processqueue.php:474
 msgid "Reports will be sent by email to"
 msgstr "Berichte werden per E-Mail an folgende Adresse verschickt:"
 
-#: public_html/lists/admin/actions/processqueue.php:519
+#: public_html/lists/admin/actions/processqueue.php:512
 #, php-format
 msgid "sending of this campaign will stop, if it is still going in %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:532
+#: public_html/lists/admin/actions/processqueue.php:525
 msgid "Error loading message, please check the eventlog for details"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:547
+#: public_html/lists/admin/actions/processqueue.php:540
 msgid "Campaign started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:548
+#: public_html/lists/admin/actions/processqueue.php:541
 #, php-format
 #, php-format, fuzzy
 msgid "phplist has started sending the campaign with subject %s"
 msgstr "Versand der Nachricht mit Betreff %s gestartet"
 
-#: public_html/lists/admin/actions/processqueue.php:549
+#: public_html/lists/admin/actions/processqueue.php:542
 #, php-format
 #, php-format, fuzzy
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr "Um den Stand des Versands zu sehen gehen Sie zu %s"
 
-#: public_html/lists/admin/actions/processqueue.php:556
+#: public_html/lists/admin/actions/processqueue.php:549
 msgid "Processing message"
 msgstr "Verarbeite Nachricht"
 
-#: public_html/lists/admin/actions/processqueue.php:579
+#: public_html/lists/admin/actions/processqueue.php:572
 msgid "Looking for users"
 msgstr "Suche Empfänger"
 
-#: public_html/lists/admin/actions/processqueue.php:598
+#: public_html/lists/admin/actions/processqueue.php:591
 msgid "users apply for attributes, now checking lists"
 msgstr "users apply for attributes, now checking lists"
 
-#: public_html/lists/admin/actions/processqueue.php:609
+#: public_html/lists/admin/actions/processqueue.php:602
 msgid "No users apply for attributes"
 msgstr "No users apply for attributes"
 
-#: public_html/lists/admin/actions/processqueue.php:664
+#: public_html/lists/admin/actions/processqueue.php:657
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 "Überprüfe auf Empfänger die von der Verarbeitung ausgeschlossen werden "
 "können"
 
-#: public_html/lists/admin/actions/processqueue.php:754
+#: public_html/lists/admin/actions/processqueue.php:747
 msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:758
+#: public_html/lists/admin/actions/processqueue.php:751
 msgid "Found them"
 msgstr "Gefunden"
 
-#: public_html/lists/admin/actions/processqueue.php:758
+#: public_html/lists/admin/actions/processqueue.php:751
 msgid "to process"
 msgstr "Empfänger"
 
-#: public_html/lists/admin/actions/processqueue.php:792
+#: public_html/lists/admin/actions/processqueue.php:785
 msgid "No users to process for this batch"
 msgstr "Keine Empfänger für diesen Batch"
 
-#: public_html/lists/admin/actions/processqueue.php:796
+#: public_html/lists/admin/actions/processqueue.php:789
 msgid "Processing batch of "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:803
+#: public_html/lists/admin/actions/processqueue.php:796
 msgid "batch limit reached"
 msgstr "Batch-Limit wurde erreicht"
 
-#: public_html/lists/admin/actions/processqueue.php:823
+#: public_html/lists/admin/actions/processqueue.php:816
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:828
+#: public_html/lists/admin/actions/processqueue.php:821
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:837
+#: public_html/lists/admin/actions/processqueue.php:830
 msgid "Message I was working on has disappeared"
 msgstr "Die zu verarbeitende Nachricht ist verschwunden"
 
-#: public_html/lists/admin/actions/processqueue.php:839
+#: public_html/lists/admin/actions/processqueue.php:832
 msgid "Sending of this message has been suspended"
 msgstr "Versand dieser Nachricht wurde aufgeschoben"
 
-#: public_html/lists/admin/actions/processqueue.php:919
+#: public_html/lists/admin/actions/processqueue.php:912
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
@@ -2218,96 +2261,96 @@ msgstr ""
 "Mehr als 10 Sendeversuche an %s wurden blockiert wegen Domain-Beschränkung "
 "(Domain Throttling)"
 
-#: public_html/lists/admin/actions/processqueue.php:920
-#: public_html/lists/admin/actions/processqueue.php:922
+#: public_html/lists/admin/actions/processqueue.php:913
+#: public_html/lists/admin/actions/processqueue.php:915
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 "Benutze zusätzliche Verzögerung um Fehlschläge wegen Domain-Beschränkung "
 "(Domain Throttling) zu reduzieren."
 
-#: public_html/lists/admin/actions/processqueue.php:931
+#: public_html/lists/admin/actions/processqueue.php:924
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr "%s ist derzeit über dem Throttle-Limit von %d pro %d Sekunden"
 
-#: public_html/lists/admin/actions/processqueue.php:954
+#: public_html/lists/admin/actions/processqueue.php:947
 msgid "Sending"
 msgstr "Sende"
 
-#: public_html/lists/admin/actions/processqueue.php:962
-#: public_html/lists/admin/actions/processqueue.php:1179
+#: public_html/lists/admin/actions/processqueue.php:955
+#: public_html/lists/admin/actions/processqueue.php:1172
 msgid "It took"
 msgstr "Versand dauerte"
 
-#: public_html/lists/admin/actions/processqueue.php:962
+#: public_html/lists/admin/actions/processqueue.php:955
 msgid "seconds to send"
 msgstr "Sekunden um zu senden"
 
-#: public_html/lists/admin/actions/processqueue.php:1005
+#: public_html/lists/admin/actions/processqueue.php:998
 msgid "Failed sending to"
 msgstr "Versand fehlgeschlagen an"
 
-#: public_html/lists/admin/actions/processqueue.php:1046
+#: public_html/lists/admin/actions/processqueue.php:1039
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1057
+#: public_html/lists/admin/actions/processqueue.php:1050
 msgid "not sending to "
 msgstr "kein Versand an "
 
-#: public_html/lists/admin/actions/processqueue.php:1076
+#: public_html/lists/admin/actions/processqueue.php:1069
 msgid "Unconfirmed user"
 msgstr "Unbestätigter Empfänger"
 
-#: public_html/lists/admin/actions/processqueue.php:1085
-#: public_html/lists/admin/actions/processqueue.php:1087
+#: public_html/lists/admin/actions/processqueue.php:1078
+#: public_html/lists/admin/actions/processqueue.php:1080
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1093
+#: public_html/lists/admin/actions/processqueue.php:1086
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1093
+#: public_html/lists/admin/actions/processqueue.php:1086
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1110
+#: public_html/lists/admin/actions/processqueue.php:1103
 msgid "Not sending to"
 msgstr "Kein Versand an"
 
-#: public_html/lists/admin/actions/processqueue.php:1110
+#: public_html/lists/admin/actions/processqueue.php:1103
 msgid "already sent"
 msgstr "bereits versendet"
 
-#: public_html/lists/admin/actions/processqueue.php:1152
+#: public_html/lists/admin/actions/processqueue.php:1145
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1157
+#: public_html/lists/admin/actions/processqueue.php:1150
 msgid "Hmmm, No users found to send to"
 msgstr "Keine Empfänger gefunden"
 
-#: public_html/lists/admin/actions/processqueue.php:1165
+#: public_html/lists/admin/actions/processqueue.php:1158
 msgid "Message Campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1166
+#: public_html/lists/admin/actions/processqueue.php:1159
 #, php-format
 #, php-format, fuzzy
 msgid "phplist has finished sending the campaign with subject %s"
 msgstr "Versand der Nachricht mit Betreff %s abgeschlossen"
 
-#: public_html/lists/admin/actions/processqueue.php:1167
+#: public_html/lists/admin/actions/processqueue.php:1160
 #, php-format
 #, fuzzy
 msgid "to view the results of this campaign, go to http://%s"
 msgstr "Um den Stand des Versands zu sehen gehen Sie zu %s"
 
-#: public_html/lists/admin/actions/processqueue.php:1179
+#: public_html/lists/admin/actions/processqueue.php:1172
 msgid "to send this message"
 msgstr ""
 
@@ -2401,8 +2444,9 @@ msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
 #: public_html/lists/admin/user.php:59
+#, fuzzy
 msgid "Delete will remove subscriber from the database"
-msgstr ""
+msgstr "Der L&ouml;schbefehl l&ouml;scht die Abonnenten von der Liste."
 
 #: public_html/lists/admin/defaultsystemtemplate.php:18
 msgid "The default system template already exists"
@@ -2452,86 +2496,86 @@ msgstr ""
 msgid "Please wait, upgrading your database, do not interrupt"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:419
+#: public_html/lists/admin/upgrade.php:422
 #: public_html/lists/admin/converttoutf8.php:72
 msgid "Upgrading the database to use UTF-8, please wait"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:422
+#: public_html/lists/admin/upgrade.php:425
 #: public_html/lists/admin/converttoutf8.php:75
 #: public_html/lists/admin/converttoutf8.php:77
 msgid "Upgrading table "
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:428
+#: public_html/lists/admin/upgrade.php:431
 #: public_html/lists/admin/converttoutf8.php:83
 #: public_html/lists/admin/converttoutf8.php:85
 msgid "Upgrading column "
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:432
+#: public_html/lists/admin/upgrade.php:435
 #: public_html/lists/admin/converttoutf8.php:89
 msgid "upgrade to UTF-8, done"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:435
+#: public_html/lists/admin/upgrade.php:438
 msgid "Database requires converting to UTF-8."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:436
+#: public_html/lists/admin/upgrade.php:439
 msgid "However, there is too little diskspace for this conversion"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:437
+#: public_html/lists/admin/upgrade.php:440
 msgid "Please do a manual conversion."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:437
+#: public_html/lists/admin/upgrade.php:440
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:462
+#: public_html/lists/admin/upgrade.php:465
 #: public_html/lists/admin/initialise.php:172
 msgid "Success"
 msgstr "Erfolg"
 
-#: public_html/lists/admin/upgrade.php:469
+#: public_html/lists/admin/upgrade.php:472
 #: public_html/lists/admin/statsmgt.php:15
 msgid "The clicktracking system has changed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:470
+#: public_html/lists/admin/upgrade.php:473
 #: public_html/lists/admin/statsmgt.php:16
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:471
+#: public_html/lists/admin/upgrade.php:474
 #: public_html/lists/admin/statsmgt.php:17
 msgid "Convert Old data to new"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:475
+#: public_html/lists/admin/upgrade.php:478
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:481
+#: public_html/lists/admin/upgrade.php:484
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:488
+#: public_html/lists/admin/upgrade.php:491
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:490
+#: public_html/lists/admin/upgrade.php:493
 #: public_html/lists/admin/initialise.php:198
 #: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:362
 msgid "Upgrade"
 msgstr "Datenbank-Upgrade"
 
-#: public_html/lists/admin/upgrade.php:490
+#: public_html/lists/admin/upgrade.php:493
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -2775,24 +2819,27 @@ msgid "Initialise Database"
 msgstr "Initialisiere Datenbank"
 
 #: public_html/lists/admin/setup.php:36
+#, fuzzy
 msgid "Change admin password"
-msgstr ""
+msgstr "Administrator-Passwort &auml;ndern"
 
 #: public_html/lists/admin/setup.php:55
 msgid "Verify Settings"
 msgstr ""
 
 #: public_html/lists/admin/setup.php:72
+#, fuzzy
 msgid "Configure attributes"
-msgstr ""
+msgstr "Attribute f&uuml;r Abonnenten konfigurieren"
 
 #: public_html/lists/admin/setup.php:84
 msgid "Create public lists"
 msgstr ""
 
 #: public_html/lists/admin/setup.php:95
+#, fuzzy
 msgid "Create a subscribe page"
-msgstr ""
+msgstr "Anmeldeseiten anlegen"
 
 #: public_html/lists/admin/setup.php:106
 #: public_html/lists/admin/editlist.php:103
@@ -3665,8 +3712,9 @@ msgstr "Unique Clicks"
 
 #: public_html/lists/admin/uclicks.php:112
 #: public_html/lists/admin/uclicks.php:125
+#, fuzzy
 msgid "unique click rate"
-msgstr ""
+msgstr "Unique Clickrate"
 
 #: public_html/lists/admin/uclicks.php:117
 #: public_html/lists/admin/uclicks.php:118
@@ -3831,8 +3879,9 @@ msgid "to continue"
 msgstr "um fortzufahen"
 
 #: public_html/lists/admin/home.php:56
+#, fuzzy
 msgid "A new version of phpList is available!"
-msgstr ""
+msgstr "Eine neue Version von PHPlist is verf&uuml;gbar!"
 
 #: public_html/lists/admin/home.php:58
 msgid ""
@@ -4034,7 +4083,7 @@ msgid "Process the Message Queue"
 msgstr ""
 
 #: public_html/lists/admin/home.php:277
-#: public_html/lists/admin/connect.php:444
+#: public_html/lists/admin/connect.php:442
 msgid "warning"
 msgstr ""
 
@@ -4126,8 +4175,9 @@ msgid "Are you sure you want to reset the configuration to the default?"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:36
+#, fuzzy
 msgid "Reset to default"
-msgstr ""
+msgstr "Auf Standard zur&uuml;cksetzen"
 
 #: public_html/lists/admin/configure.php:39
 msgid ""
@@ -4350,6 +4400,11 @@ msgstr ""
 msgid "Certified Secure by "
 msgstr ""
 
+#: public_html/lists/admin/about.php:15
+#, php-format
+msgid "phpList is licensed with the %sGNU Public License (GPL)%s"
+msgstr ""
+
 #: public_html/lists/admin/about.php:17
 msgid "Developers"
 msgstr "Entwicklung"
@@ -4570,8 +4625,9 @@ msgid "Members"
 msgstr "Abonnenten"
 
 #: public_html/lists/admin/members.php:310
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "Aktion"
 
 #: public_html/lists/admin/members.php:312
 #, fuzzy
@@ -4815,24 +4871,28 @@ msgid "Request for confirmation"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:315
+#, fuzzy
 msgid "Subject of the message subscribers receive when they sign up"
-msgstr ""
+msgstr "Nachricht nach erfolgter Anmeldung"
 
 #: public_html/lists/admin/defaultconfig.php:344
+#, fuzzy
 msgid "Message subscribers receive when they sign up"
-msgstr ""
+msgstr "Nachricht nach erfolgter Anmeldung"
 
 #: public_html/lists/admin/defaultconfig.php:352
 msgid "Goodbye from our Newsletter"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:353
+#, fuzzy
 msgid "Subject of the message subscribers receive when they unsubscribe"
-msgstr ""
+msgstr "Nachricht nach erfolgter Anmeldung"
 
 #: public_html/lists/admin/defaultconfig.php:376
+#, fuzzy
 msgid "Message subscribers receive when they unsubscribe"
-msgstr ""
+msgstr "Nachricht nach erfolgter Anmeldung"
 
 #: public_html/lists/admin/defaultconfig.php:384
 msgid "Welcome to our Newsletter"
@@ -4853,10 +4913,11 @@ msgid "[notify] Change of List-Membership details"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:417
+#, fuzzy
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
-msgstr ""
+msgstr "Nachricht nach erfolgter Anmeldung"
 
 #: public_html/lists/admin/defaultconfig.php:449
 msgid "Message subscribers receive when they have changed their details"
@@ -5004,7 +5065,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr "Regeln f&uuml;r unzustellbare Mails generieren"
 
-#: public_html/lists/admin/languages.php:527
+#: public_html/lists/admin/languages.php:533
 msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
@@ -5495,6 +5556,14 @@ msgid ""
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
 
+#: public_html/lists/admin/initlanguages.php:23
+msgid "Initialising language"
+msgstr ""
+
+#: public_html/lists/admin/initlanguages.php:26
+msgid "Up to date"
+msgstr ""
+
 #: public_html/lists/admin/plugins.php:20
 msgid "The plugin "
 msgstr ""
@@ -5508,8 +5577,9 @@ msgid "Fetching plugin"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:45
+#, fuzzy
 msgid "Developer"
-msgstr ""
+msgstr "Entwicklung"
 
 #: public_html/lists/admin/plugins.php:46
 msgid "Project"
@@ -5587,8 +5657,9 @@ msgid "version"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:199
+#, fuzzy
 msgid "description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: public_html/lists/admin/plugins.php:206
 msgid "installed"
@@ -5599,8 +5670,9 @@ msgid "installation Url"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:216
+#, fuzzy
 msgid "developer"
-msgstr ""
+msgstr "Entwicklung"
 
 #: public_html/lists/admin/plugins.php:219
 msgid "enabled"
@@ -5628,8 +5700,9 @@ msgid "update"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:244
+#, fuzzy
 msgid "details"
-msgstr ""
+msgstr "Details"
 
 #: public_html/lists/admin/lib.php:27
 msgid "delete user"
@@ -5692,19 +5765,19 @@ msgstr ""
 msgid "Error sending password change token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:452
+#: public_html/lists/admin/lib.php:454
 msgid "Sending admin copy to"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:511
+#: public_html/lists/admin/lib.php:513
 msgid "very little time"
 msgstr "sehr wenig Zeit"
 
-#: public_html/lists/admin/lib.php:571
+#: public_html/lists/admin/lib.php:573
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:706
+#: public_html/lists/admin/lib.php:708
 #, php-format
 #, php-format, fuzzy
 msgid ""
@@ -5712,16 +5785,16 @@ msgid ""
 "ago"
 msgstr "F&uuml;r diese Seite l&auml;uft bereits ein aktiver Prozess."
 
-#: public_html/lists/admin/lib.php:709
+#: public_html/lists/admin/lib.php:711
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:712
+#: public_html/lists/admin/lib.php:714
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "Pausiere w&auml;hrend 20 Sekunden, beenden durch Abbruch"
 
-#: public_html/lists/admin/lib.php:720
+#: public_html/lists/admin/lib.php:722
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
@@ -6317,11 +6390,30 @@ msgstr "Seite"
 msgid "Hint: this page also works from commandline"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:140
+#: public_html/lists/admin/convertstats.php:40
+#, fuzzy
+msgid "creating tables"
+msgstr "Erzeuge Tabellen"
+
+#: public_html/lists/admin/convertstats.php:48
+#, fuzzy
+msgid "creating tables done"
+msgstr "Erzeuge Tabellen"
+
+#: public_html/lists/admin/convertstats.php:52
+#, php-format
+msgid "%d entries still to convert"
+msgstr ""
+
+#: public_html/lists/admin/convertstats.php:58
+msgid "converting data"
+msgstr ""
+
+#: public_html/lists/admin/convertstats.php:143
 msgid "All done, optimizing table to recover space"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:144
+#: public_html/lists/admin/convertstats.php:147
 msgid "Convert some more"
 msgstr ""
 
@@ -6403,13 +6495,15 @@ msgid "unable to find original email"
 msgstr "Urspr&uuml;ngliche E-Mail-Adresse nicht gefunden"
 
 #: public_html/lists/admin/reconcileusers.php:140
+#, fuzzy
 msgid "Marking all subscribers confirmed"
-msgstr ""
+msgstr "Alle Abonnenten als best&auml;tigt markieren"
 
 #: public_html/lists/admin/reconcileusers.php:143
 #, php-format
+#, fuzzy, php-format
 msgid "Marking all subscribers on list %s confirmed"
-msgstr ""
+msgstr "Alle Abonnenten als best&auml;tigt markieren"
 
 #: public_html/lists/admin/reconcileusers.php:148
 #: public_html/lists/admin/reconcileusers.php:154
@@ -6425,32 +6519,43 @@ msgid "subscribers apply"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:151
+#, fuzzy
 msgid "Creating UniqID for all subscribers who do not have one"
 msgstr ""
+"Erzeuge eindeutige ID f&uuml;r alle Abonnenten, welche keine solche besitzen"
 
 #: public_html/lists/admin/reconcileusers.php:158
+#, fuzzy
 msgid "Marking all subscribers to receive HTML"
-msgstr ""
+msgstr "Mail-Format f&uuml;r alle Abonnenten auf HTML gesetzt"
 
 #: public_html/lists/admin/reconcileusers.php:164
+#, fuzzy
 msgid "Marking all subscribers to receive text"
-msgstr ""
+msgstr "Mail-Format f&uuml;r alle Abonnenten auf Text gesetzt"
 
 #: public_html/lists/admin/reconcileusers.php:170
+#, fuzzy
 msgid "Deleting subscribers who are not on any list"
-msgstr ""
+msgstr "L&ouml;sche alle Adressen, die f&uuml;r keine Liste abonniert sind"
 
 #: public_html/lists/admin/reconcileusers.php:181
+#, fuzzy
 msgid "Moving subscribers who are not on any list to"
 msgstr ""
+"Weise alle Adressen, die f&uuml;r keine Liste abonniert sind, folgender "
+"Liste zu:"
 
 #: public_html/lists/admin/reconcileusers.php:191
+#, fuzzy
 msgid "Deleting subscribers with more than"
-msgstr ""
+msgstr "Adressen mit mehr als"
 
 #: public_html/lists/admin/reconcileusers.php:203
+#, fuzzy
 msgid "Resending request for confirmation to subscribers who signed up after"
 msgstr ""
+"Erneute Best&auml;tigungsanfrage senden an Abonnenten mit Anmeldedatum von"
 
 #: public_html/lists/admin/reconcileusers.php:203
 #: public_html/lists/admin/reconcileusers.php:215
@@ -6458,8 +6563,9 @@ msgid "and before"
 msgstr "bis"
 
 #: public_html/lists/admin/reconcileusers.php:215
+#, fuzzy
 msgid "Deleting unconfirmed subscribers who signed up after"
-msgstr ""
+msgstr "Unbest&auml;tigte Abonnenten l&ouml;schen mit Anmeldedatum von"
 
 #: public_html/lists/admin/reconcileusers.php:225
 msgid "Trying to merge duplicates"
@@ -6470,28 +6576,33 @@ msgid "Don't know how to"
 msgstr "Weiss nicht wie"
 
 #: public_html/lists/admin/reconcileusers.php:266
+#, fuzzy
 msgid "Trying to fix subscribers with an invalid email"
-msgstr ""
+msgstr "Versuche Abonnenten mit ung&uuml;ltiger E-Mail-Adresse zu korrigieren"
 
 #: public_html/lists/admin/reconcileusers.php:286
 msgid "subscribers fixed"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:286
+#, fuzzy
 msgid "subscribers could not be fixed"
-msgstr ""
+msgstr "Abonnenten konnten nicht bereinigt werden"
 
 #: public_html/lists/admin/reconcileusers.php:288
+#, fuzzy
 msgid "Deleting subscribers with an invalid email"
-msgstr ""
+msgstr "L&ouml;sche Abonnenten mit ung&uuml;ltiger E-Mail-Adresse"
 
 #: public_html/lists/admin/reconcileusers.php:299
 msgid "subscribers deleted"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:301
+#, fuzzy
 msgid "Marking subscribers with an invalid email as unconfirmed"
 msgstr ""
+"Markiere Abonnenten mit ung&uuml;ltiger E-Mail-Adresse als unbest&auml;tigt"
 
 #: public_html/lists/admin/reconcileusers.php:312
 msgid "subscribers updated"
@@ -6529,8 +6640,9 @@ msgstr "Mail-Format f&uuml;r alle Abonnenten auf Text gesetzt"
 
 #: public_html/lists/admin/reconcileusers.php:437
 #, php-format
+#, fuzzy, php-format
 msgid "Mark all subscribers on list %s confirmed"
-msgstr ""
+msgstr "Alle Abonnenten als best&auml;tigt markieren"
 
 #: public_html/lists/admin/reconcileusers.php:440
 #: public_html/lists/admin/reconcileusers.php:452
@@ -6545,8 +6657,9 @@ msgid "To move all subscribers who are not subscribed to any list to %s"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:459
+#, fuzzy
 msgid "To delete all subscribers with more than"
-msgstr ""
+msgstr "Alle Abonnenten mit mehr als "
 
 #: public_html/lists/admin/reconcileusers.php:469
 msgid ""
@@ -6648,8 +6761,9 @@ msgid "save"
 msgstr "Speichern"
 
 #: public_html/lists/admin/importlib.php:82
+#, fuzzy
 msgid "Invalid email"
-msgstr ""
+msgstr "Ung&uuml;ltige E-Mail-Adresse"
 
 #: public_html/lists/admin/defaults.php:39
 msgid "Loading"
@@ -6745,28 +6859,28 @@ msgstr ""
 msgid "Import emails"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:377
+#: public_html/lists/admin/connect.php:375
 msgid "error"
 msgstr "Fehler"
 
-#: public_html/lists/admin/connect.php:422
-#: public_html/lists/admin/connect.php:426
+#: public_html/lists/admin/connect.php:420
+#: public_html/lists/admin/connect.php:424
 msgid "fatalerror"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:739
+#: public_html/lists/admin/connect.php:737
 msgid "Main Page"
 msgstr "Hauptseite"
 
-#: public_html/lists/admin/connect.php:739
+#: public_html/lists/admin/connect.php:737
 msgid "about"
 msgstr "&Uuml;ber"
 
-#: public_html/lists/admin/connect.php:804
+#: public_html/lists/admin/connect.php:802
 msgid "In this section"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:831
+#: public_html/lists/admin/connect.php:829
 msgid "Recently visited"
 msgstr ""
 
@@ -6984,8 +7098,9 @@ msgid "Delete and replace"
 msgstr ""
 
 #: public_html/lists/admin/editattributes.php:126
+#, fuzzy
 msgid "Cannot delete"
-msgstr ""
+msgstr "Kann nicht l&ouml;schen "
 
 #: public_html/lists/admin/editattributes.php:128
 msgid ""
@@ -7003,17 +7118,20 @@ msgstr ""
 
 #: public_html/lists/admin/editattributes.php:170
 #: public_html/lists/admin/editattributes.php:172
+#, fuzzy
 msgid "Add new"
-msgstr ""
+msgstr "Neues anlegen"
 
 #: public_html/lists/admin/editattributes.php:170
+#, fuzzy
 msgid "one per line"
-msgstr ""
+msgstr "1 pro Zeile"
 
 #: public_html/lists/admin/editattributes.php:180
 #: public_html/lists/admin/editattributes.php:189
+#, fuzzy
 msgid "Change order"
-msgstr ""
+msgstr "Reihenfolge &auml;ndern"
 
 #: public_html/lists/admin/templates.php:25
 msgid "No template have been defined"
@@ -7481,6 +7599,30 @@ msgstr ""
 
 msgid "pagetitle:reindex"
 msgstr ""
+
+#~ msgid "Sending in batches of"
+#~ msgstr "Versand in Batches von"
+
+#~ msgid "emails"
+#~ msgstr "E-Mails"
+
+#~ msgid "This batch will be"
+#~ msgstr "Dieser Batch enthält"
+
+#~ msgid "emails, because in the last"
+#~ msgstr "E-Mails, weil im vorangehenden"
+
+#~ msgid "emails were sent"
+#~ msgstr "E-Mails versendet wurden."
+
+#~ msgid "In the last"
+#~ msgstr "Während der letzten"
+
+#~ msgid "seconds more emails were sent"
+#~ msgstr "Sekunden wurden mehre E-Mails versendet"
+
+#~ msgid "than is currently allowed per batch"
+#~ msgstr "als derzeit pro Batch erlaubt sind."
 
 #, php-format
 #~ msgid "successful password request from %s for %s"
