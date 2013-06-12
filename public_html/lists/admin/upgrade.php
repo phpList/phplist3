@@ -487,9 +487,9 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
 } else {
 
-?>
-<p class="information"><?php print s('Your database requires upgrading, please make sure to create a backup of your database first.')?></p>
+  print '<p>'.s('Your database requires upgrading, please make sure to create a backup of your database first.').'</p>';
+  print '<p>'.s('If you have a large database, make sure you have sufficient diskspace available for upgrade.').'</p>';
+  print '<p>'.s('When you are ready click %s Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once it started.',PageLinkButton("upgrade&doit=yes",s('Upgrade'))).'</p>';
 
-<p class="information"><?php print s('When you are ready click %s Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once it started.',PageLinkButton("upgrade&doit=yes",s('Upgrade')))?></p>
-<?php }
+}
 
