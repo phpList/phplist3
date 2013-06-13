@@ -1104,10 +1104,24 @@ function releaseLock($processid) {
   Sql_query("delete from {$tables["sendprocess"]} where id = $processid");
 }
 
+function parseQueryString($str) {
+    if (empty($str)) return array();
+    $op = array();
+    $pairs = explode("&", $str);
+    foreach ($pairs as $pair) {
+      if (strpos($pair,'=') !== false) {
+        list($k, $v) = array_map("urldecode", explode("=", $pair));
+        $op[$k] = $v;
+      } else {
+        $op[$pair] = '';
+      }
+    }
+    return $op;
+} 
+
 function cleanUrl($url,$disallowed_params = array('PHPSESSID')) {
   $parsed = @parse_url($url);
   $params = array();
-
   if (empty($parsed['query'])) {
     $parsed['query'] = '';
   }
@@ -1115,7 +1129,7 @@ function cleanUrl($url,$disallowed_params = array('PHPSESSID')) {
   if (strpos($parsed['query'],'&amp;')) {
     $pairs = explode('&amp;',$parsed['query']);
     foreach ($pairs as $pair) {
-      if (strpos($pair,'=') !== FALSE) {
+      if (strpos($pair,'=') !== false) {
         list($key,$val) = explode('=',$pair);
         $params[$key] = $val;
       } else {
@@ -1123,7 +1137,9 @@ function cleanUrl($url,$disallowed_params = array('PHPSESSID')) {
       }
     }
   } else {
-    parse_str($parsed['query'],$params);
+    ## parse_str turns . into _ which is wrong
+#    parse_str($parsed['query'],$params);
+    $params= parseQueryString($parsed['query']);
   }
   $uri = !empty($parsed['scheme']) ? $parsed['scheme'].':'.((strtolower($parsed['scheme']) == 'mailto') ? '':'//'): '';
   $uri .= !empty($parsed['user']) ? $parsed['user'].(!empty($parsed['pass'])? ':'.$parsed['pass']:'').'@':'';
@@ -1132,10 +1148,9 @@ function cleanUrl($url,$disallowed_params = array('PHPSESSID')) {
   $uri .= !empty($parsed['path']) ? $parsed['path'] : '';
 #  $uri .= $parsed['query'] ? '?'.$parsed['query'] : '';
   $query = '';
-
   foreach ($params as $key => $val) {
     if (!in_array($key,$disallowed_params)) {
-      //0008980: Link Conversion for Click Tracking. no = will be added if val is empty.
+      //0008980: Link Conversion for Click Tracking. no = will be added if key is empty.
       $query .= $key . ( $val != "" ? '=' . $val . '&' : '&' );
     }
   }
