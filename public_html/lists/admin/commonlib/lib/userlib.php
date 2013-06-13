@@ -342,14 +342,18 @@ function userName() {
   return rtrim($res);
 }
 
-function isBlackListed($email = "") {
+function isBlackListed($email = "",$immediate = true) {
   if (!$email) return 0;
   if (!Sql_Table_exists($GLOBALS["tables"]["user_blacklist"])) return 0;
-  $gracetime = sprintf('%d',$GLOBALS["blacklist_gracetime"]);
-  if (!$gracetime || $gracetime > 15 || $gracetime < 0) {
-    $gracetime = 5;
+  if (!$immediate) {
+    # allow 5 minutes to send the last message acknowledging unsubscription
+    $gracetime = sprintf('%d',$GLOBALS["blacklist_gracetime"]);
+    if (!$gracetime || $gracetime > 15 || $gracetime < 0) {
+      $gracetime = 5;
+    }
+  } else {
+    $gracetime = 0;
   }
-  # allow 5 minutes to send the last message acknowledging unsubscription
   $req = Sql_Query(sprintf('select * from %s where email = "%s" and date_add(added,interval %d minute) < now()',
     $GLOBALS["tables"]["user_blacklist"],sql_escape($email),$gracetime));
   return Sql_Affected_Rows();
