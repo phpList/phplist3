@@ -364,7 +364,13 @@ while (list ($key,$val) = each ($struct)) {
   } elseif ($key == "password") {
     $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
   } elseif ($key == "blacklisted") {
-    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',$GLOBALS['I18N']->get($b),isBlackListed($user['email']));
+    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s',$GLOBALS['I18N']->get($b),isBlackListed($user['email'])?s('Yes'):s('No'));
+    
+    if (!isBlackListed($user['email'])) {
+      $userdetailsHTML .= '<span class="fright button">'.PageLinkAjax('user&blacklist=1&id='.$user['id'],s('Add to blacklist')).'</span>';
+    }
+    $userdetailsHTML .= '</td></tr>';
+    
   } else {
     if (!strpos($key,'_')) {
       if (strpos($a,"sys") !== false)
@@ -540,8 +546,8 @@ if ($usegroups) {
 
 print '<div class="tabbed">';
 print '<ul>';
-print '<li><a href="#details">'.$GLOBALS['I18N']->get('Details').'</a></li>';
-print '<li><a href="#lists">'.$GLOBALS['I18N']->get('Lists').'</a></li>';
+print '<li><a href="#details">'.ucfirst($GLOBALS['I18N']->get('Details')).'</a></li>';
+print '<li><a href="#lists">'.ucfirst($GLOBALS['I18N']->get('Lists')).'</a></li>';
 if ($usegroups) {
   print '<li><a href="#groups">Groups</a></li>';
 }
