@@ -258,17 +258,18 @@ if (isset($id)) {
   $ls = new WebblerListing($GLOBALS['I18N']->get("Members"));
   $ls->usePanel($paging);
   while ($user = Sql_fetch_array($result)) {
-    $ls->addElement($user["email"],PageUrl2("user&amp;id=".$user["id"]));
-    $ls->setClass($user["email"],'row1');
+    $element = shortenTextDisplay($user["email"]);
+    $ls->addElement($element ,PageUrl2("user&amp;id=".$user["id"]));
+    $ls->setClass($element ,'row1');
     $ls_delete="";
     if ($access != "view"){
        $ls_delete=sprintf('<a title="'.$GLOBALS['I18N']->get('Delete').'" class="del" href="javascript:deleteRec(\'%s\');"></a>',
        PageURL2("members","","start=$start&id=$id&delete=".$user["id"]));
     }
-    $ls->addRow($user["email"],'',$user["confirmed"]?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
+    $ls->addRow($element ,'',$user["confirmed"]?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
 
     if ($access != "view")
-    $ls->addColumn($user["email"],$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
+    $ls->addColumn($element ,$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
 /*
     $query
     = ' select count(*)'
@@ -285,7 +286,7 @@ if (isset($id)) {
 
     ## allow plugins to add columns
     foreach ($GLOBALS['plugins'] as $plugin) {
-      $plugin->displayUsers($user,  $user['email'], $ls);
+      $plugin->displayUsers($user,  $element , $ls);
     }
 
     if (sizeof($columns)) {
@@ -297,7 +298,7 @@ if (isset($id)) {
 
       foreach ($columns as $column) {
         if (isset($attributes[$column]) && $attributes[$column]) {
-          $ls->addColumn($user["email"],$column,$attributes[$column]);
+          $ls->addColumn($element ,$column,$attributes[$column]);
         }
       }
     }

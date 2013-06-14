@@ -46,7 +46,7 @@ if (!$id) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Available URLs'));
   while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
-    $element = shortenTextDisplay($row['url']);
+    $element = shortenTextDisplay($row['url'],15);
     $ls->addElement($element,PageURL2('uclicks&amp;id='.$row['id']));
     $ls->addColumn($element,$GLOBALS['I18N']->get('msgs'),$row['msgs']);
     $ls->addColumn($element,$GLOBALS['I18N']->get('last clicked'),formatDateTime($row['lastclicked'],1));
@@ -87,10 +87,14 @@ $summary['uniqueclicks'] = 0;
 
 while ($row = Sql_Fetch_Array($req)) {
   $msgsubj = Sql_Fetch_Row_query(sprintf('select subject from %s where id = %d',$GLOBALS['tables']['message'],$row['messageid']));
-  $element = $GLOBALS['I18N']->get('msg').' '.$row['messageid'].': '.substr($msgsubj[0],0,25). '...';
+
+  $element = shortenTextDisplay($msgsubj[0],30);
+#  $element = $GLOBALS['I18N']->get('msg').' '.$row['messageid'].': '.substr($msgsubj[0],0,25). '...';
 #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
 #  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
 #    $GLOBALS['tables']['linktrack'],$id,$row['url']));
+
+
 
   if (CLICKTRACK_SHOWDETAIL) {
     $uniqueclicks = Sql_Fetch_Array_Query(sprintf('select count(distinct userid) as users from %s

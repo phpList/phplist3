@@ -124,13 +124,13 @@ $summary['totalclicks'] = 0;
 while ($row = Sql_Fetch_Array($req)) {
 #  print $row['email'] . "<br/>";
   if (!$userid) {
-    $element = $row['email'];
+    $element = shortenTextDisplay($row['email']);
     $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element,'row1');
   } else {
 #    $link = substr($row['url'],0,50);
 #    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
-    $element = substr($row['url'],0,50);
+    $element = shortenTextDisplay($row['url']);
     $ls->addElement($element,PageUrl2('uclicks&amp;id='.$row['forwardid']));
     $ls->setClass($element,'row1');
     $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],' '.$row['messageid']));
