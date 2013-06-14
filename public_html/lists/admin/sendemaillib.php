@@ -471,7 +471,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $linktext = strip_tags($linktext);
       $looksLikePhishing = stripos($linktext,'https://') !== false || stripos($linktext,'http://') !== false;
       
-      if (!$looksLikePhishing && (preg_match('/^http|ftp/',$link) || preg_match('/^http|ftp/',$urlbase)) && $link != 'http://www.phplist.com' && !strpos($link,$clicktrack_root)) {
+      if (!$looksLikePhishing && (preg_match('/^http|ftp/',$link) || preg_match('/^http|ftp/',$urlbase)) && (stripos($link, 'www.phplist.com') !== 0) && !strpos($link,$clicktrack_root)) {
         # take off personal uids
         $url = cleanUrl($link,array('PHPSESSID','uid'));
 
@@ -517,7 +517,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $link = substr($link,0,-1);
       }
       $linkid = 0;
-      if (preg_match('/^http|ftp/',$link) && $link != 'http://www.phplist.com' && !strpos($link,$clicktrack_root)) {
+      if (preg_match('/^http|ftp/',$link) && (stripos($link, 'www.phplist.com') !== 0) && !strpos($link,$clicktrack_root)) {
         $url = cleanUrl($link,array('PHPSESSID','uid'));
         $req = Sql_Query(sprintf('insert ignore into %s (messageid,userid,url,forward)
           values(%d,%d,"%s","%s")',$GLOBALS['tables']['linktrack'],$messageid,$userdata['id'],$url,$link));
@@ -553,7 +553,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       }
   
       $linkid = 0;
-      if (preg_match('/^http|ftp/',$link) && $link != 'http://www.phplist.com') {# && !strpos($link,$clicktrack_root)) {
+      if (preg_match('/^http|ftp/',$link) && (stripos($link, 'www.phplist.com') !== 0) ) {# && !strpos($link,$clicktrack_root)) {
         $url = cleanUrl($link,array('PHPSESSID','uid'));
 
         $linkid = clickTrackLinkId($messageid,$userdata['id'],$url,$link);
@@ -617,7 +617,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $link = substr($link,0,-1);
       }
   
-      if (preg_match('/^http|ftp/',$link) && $link != 'http://www.phplist.com' ) {# && !strpos($link,$clicktrack_root)) {
+      if (preg_match('/^http|ftp/',$link) && (stripos($link, 'www.phplist.com') !== 0)  ) {# && !strpos($link,$clicktrack_root)) {
         $url = cleanUrl($link,array('PHPSESSID','uid'));
         $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=textemail&utm_campaign='.urlencode($cached[$messageid]["subject"]);
         ## take off existing tracking code, if found
