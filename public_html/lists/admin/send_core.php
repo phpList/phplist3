@@ -937,6 +937,15 @@ if (!$done) {
     </div>',
      Help("googletrack").' '.s('add Google Analytics tracking code'),
      !empty($messagedata['google_track']) ? 'checked="checked"':'');
+
+
+  ## @@TODO, maybe add a check on "sent" for this campaign and suppress this once it's over a threshold
+  $send_content .= sprintf('
+    <div class="resetStatistics">
+    <label for"cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
+    </div>',
+     Help("resetstats").' '.s('Reset click statistics'),
+     !empty($messagedata['resetstats']) ? 'checked="checked"':'');
    
   $show_lists = 0;
 
