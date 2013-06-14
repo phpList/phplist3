@@ -1488,10 +1488,15 @@ function listCategories() {
   return $aConfiguredListCategories;
 }
 
-function shortenTextDisplay($text) {
+function shortenTextDisplay($text,$max = 30) {
   $text = str_replace('http://','',$text);
-  if (strlen($text) > 20) {
-    $display = substr($text,0,10).' ... '.substr($text,-5);
+  if (strlen($text) > $max) {
+    if ($max < 30) {
+      $display = substr($text,0,$max - 4).' ... ';
+    } else {
+      $display = substr($text,0,20).' ... '.substr($text,-10);
+    }
+      
   } else {
     $display = $text;
   }
