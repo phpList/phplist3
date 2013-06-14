@@ -111,11 +111,11 @@ if ($num) {
 
 print '<div class="tabbed">';
 print '<ul>';
-print '<li><a href="#messages">'.$GLOBALS['I18N']->get('Campaigns').'</a></li>';
+print '<li><a href="#messages">'.ucfirst($GLOBALS['I18N']->get('Campaigns')).'</a></li>';
 if (count($bounces)) {
-  print '<li><a href="#bounces">'.$GLOBALS['I18N']->get('Bounces').'</a></li>';
+  print '<li><a href="#bounces">'.ucfirst($GLOBALS['I18N']->get('Bounces')).'</a></li>';
 }  
-print '<li><a href="#subscription">'.$GLOBALS['I18N']->get('Subscription').'</a></li>';
+print '<li><a href="#subscription">'.ucfirst($GLOBALS['I18N']->get('Subscription')).'</a></li>';
 print '</ul>';
 
 print '<div id="messages">';
