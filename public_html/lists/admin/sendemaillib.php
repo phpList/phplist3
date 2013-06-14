@@ -484,7 +484,12 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $linkid = clickTrackLinkId($messageid,$userdata['id'],$url,$link);
 
         $masked = "H|$linkid|$messageid|".$userdata['id'] ^ XORmask;
-        $masked = urlencode(base64_encode($masked));
+        $masked = base64_encode($masked);
+        ## 15254- the encoding adds one or two extraneous = signs, take them off
+        $masked = preg_replace('/=$/','',$masked);
+        $masked = preg_replace('/=$/','',$masked);
+        $masked = urlencode($masked);
+
         if (!CLICKTRACK_LINKMAP) {
           $newlink = sprintf('<a %shref="%s://%s/lt.php?id=%s" %s>%s</a>',$links[1][$i],$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked,$links[3][$i],$links[4][$i]);
         } else {
@@ -493,7 +498,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
       }
     }
-
+    
     # convert Text message
     # first find occurances of our top domain, to avoid replacing them later
 
@@ -554,7 +559,11 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $linkid = clickTrackLinkId($messageid,$userdata['id'],$url,$link);
 
         $masked = "T|$linkid|$messageid|".$userdata['id'] ^ XORmask;
-        $masked = urlencode(base64_encode($masked));
+        $masked = base64_encode($masked);
+        ## 15254- the encoding adds one or two extraneous = signs, take them off
+        $masked = preg_replace('/=$/','',$masked);
+        $masked = preg_replace('/=$/','',$masked);
+        $masked = urlencode($masked);
         if (!CLICKTRACK_LINKMAP) {
           $newlinks[$linkid] = sprintf('%s://%s/lt.php?id=%s',$GLOBALS["public_scheme"],$website.$GLOBALS["pageroot"],$masked);
         } else {
