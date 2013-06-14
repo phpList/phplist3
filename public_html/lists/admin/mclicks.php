@@ -112,7 +112,7 @@ print '<table class="mclicksDetails">
 <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Sent to').'<td><td>'.$totalusers[0].' '.$GLOBALS['I18N']->get('Subscribers').'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Clicks').'<td><td>'.$totalclicked[0].'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Click Rate').'<td><td>'.$perc.$GLOBALS['I18N']->get('perc').'</td></tr>
+<tr><td>'.$GLOBALS['I18N']->get('Click Rate').'<td><td>'.$perc.' %</td></tr>
 </table><hr/>';
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Message Click Statistics'));
