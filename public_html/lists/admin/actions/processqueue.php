@@ -493,11 +493,15 @@ while ($message = Sql_fetch_array($messages)) {
   
   if (!empty($getspeedstats)) output('start send '.$messageid);
   
-//  $rssmessage = $message["rsstemplate"]; // obsolete, moved to rssmanager plugin
-
   $msgdata = loadMessageData($messageid);
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->campaignStarted($msgdata);
+  }
+  
+  if (!empty($msgdata['resetstats'])) {
+    resetMessageStatistics($msgdata['id']);
+    ## make sure to reset the resetstats flag, so it doesn't clear it every run
+    setMessageData($msgdata['id'],'resetstats',0);
   }
 
   ## check the end date of the campaign
