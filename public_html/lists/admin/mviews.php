@@ -67,7 +67,11 @@ if (!$id) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
   while ($row = Sql_Fetch_Array($req)) {
   #  $element = $row['messageid'].' '.substr($row['subject'],0,50);
-    $element = shortenTextDisplay($row['subject'],30);
+    if (!$download) {
+      $element = shortenTextDisplay($row['subject'],30);
+    } else {
+      $element = $row['subject'];
+    }
     $ls->addElement($element,PageUrl2('mviews&amp;id='.$row['messageid']));
     $ls->setClass($element,'row1');
     if (!empty($row['sent'])) {
@@ -112,7 +116,7 @@ if ($download) {
 }  
 print '<p>'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,$GLOBALS['I18N']->get('Download as CSV file')).'</p>';
 
-print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
+#print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
 print '<table class="mviewsDetails">
 <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
@@ -124,7 +128,7 @@ if ($download) {
   header('Content-disposition:  attachment; filename="phpList Message open statistics for '.$messagedata['subject'].'.csv"');
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Message Open Statistics'));
+$ls = new WebblerListing(ucfirst($GLOBALS['I18N']->get('Open statistics')));
 
 $req = Sql_Query(sprintf('select um.userid
     from %s um,%s msg where um.messageid = %d and um.messageid = msg.id and um.viewed is not null %s
@@ -177,10 +181,10 @@ while ($row = Sql_Fetch_Array($req)) {
   if ($download) {
     ## with download, the 50 per page limit is not there.
     set_time_limit(60);
+    $element = $row['email'];
+  } else {
+    $element = shortenTextDisplay($row['email'],15);
   }
-  
- # $element = '<!--'.$row['userid'].'-->'.$row['email'];
-  $element = shortenTextDisplay($row['email'],15);
   $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
   $ls->setClass($element,'row1');
   $ls->addRow($element,'<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.formatDateTime($row['sent'],1).'</div>','');
@@ -199,4 +203,3 @@ if ($download) {
 } else {
   print $ls->display();
 }
-?>
