@@ -15,8 +15,9 @@ DONE - change admin permission system to be similar to phosted, but keep listown
 8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
 9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
 10. add system to manage versioning of translation of "info" and "help"
+-> dokuwiki
 
--> dokuwiki or wordpress (or other? )
+11. move frontend translations into translation system
 
 downloadable themes and plugins
 theme changing
@@ -50,4 +51,9 @@ DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can
 - use DKIM capabilities of phpMailer
 - integration with other OSS projects
 - recode frontend to work like webbler templating
+- namespacing files
+- PDO
 
+- extend phpListPlugin class into several smaller ones that each handle certain aspects
+- class autoloader
+- language detection at the front, and redirection to the related pages
