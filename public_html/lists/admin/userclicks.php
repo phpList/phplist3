@@ -59,7 +59,7 @@ if ($userid) {
 
 if ($fwdid && $msgid) {
   print '<h3>'.$GLOBALS['I18N']->get('User Click Details for a URL in a message');
-  print ' ' .PageLink2('uclicks&amp;id='.$fwdid,$urldata['url']);
+  print ' ' .strtolower(PageLink2('uclicks&amp;id='.$fwdid,$urldata['url']));
   print '</h3>';
   print '<table class="userclicksDetails">
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
