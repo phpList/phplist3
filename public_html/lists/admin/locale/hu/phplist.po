@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 05:06+0000\n"
+"POT-Creation-Date: 2013-06-17 05:06+0000\n"
 "PO-Revision-Date: 2012-03-04 22:35+0200\n"
 "Last-Translator: szabolcs <szabolcs@maxweb.hu>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -59,7 +59,7 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/importcsv.php:349
 #: public_html/lists/admin/commonlib/pages/user.php:277
 #: public_html/lists/admin/commonlib/pages/user.php:333
-#: public_html/lists/admin/initialise.php:44
+#: public_html/lists/admin/initialise.php:51
 #: public_html/lists/admin/massremove.php:49
 #: public_html/lists/admin/login.php:72 public_html/lists/admin/login.php:100
 #: public_html/lists/admin/login.php:108 public_html/lists/admin/login.php:120
@@ -191,7 +191,7 @@ msgid "Processing bounces based on active bounce rules"
 msgstr "Visszapattanók feldolgozása az aktív visszapattanási szabályok alapján"
 
 #: public_html/lists/admin/processbounces.php:371
-#: public_html/lists/admin/actions/processqueue.php:824
+#: public_html/lists/admin/actions/processqueue.php:828
 #: public_html/lists/admin/generatebouncerules.php:48
 msgid "Process Killed by other process"
 msgstr "A folyamatot leállította egy másik folyamat"
@@ -516,7 +516,7 @@ msgstr "Nincsenek listák"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
-#: public_html/lists/admin/list.php:271 public_html/lists/admin/import3.php:40
+#: public_html/lists/admin/list.php:275 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1107
 msgid "Add a list"
 msgstr "Lista hozzáadása"
@@ -780,7 +780,7 @@ msgstr ""
 msgid "Update by %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:251
+#: public_html/lists/admin/commonlib/pages/user.php:247
 #: public_html/lists/admin/admin.php:98
 #: public_html/lists/admin/editlist.php:95
 msgid "Changes saved"
@@ -834,7 +834,6 @@ msgstr "Előzmények"
 #: public_html/lists/admin/commonlib/pages/userhistory.php:49
 #: public_html/lists/admin/bouncerules.php:103
 #: public_html/lists/admin/plugins.php:234
-#: public_html/lists/admin/list.php:234
 #: public_html/lists/admin/messages.php:360
 #: public_html/lists/admin/editattributes.php:183
 #: public_html/lists/admin/templates.php:35
@@ -850,8 +849,26 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:425
-#: public_html/lists/admin/commonlib/pages/user.php:454
+#: public_html/lists/admin/commonlib/pages/user.php:367
+#: public_html/lists/admin/actions/configure.php:61
+#: public_html/lists/admin/bouncerule.php:18
+#: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:191
+msgid "Yes"
+msgstr "Igen"
+
+#: public_html/lists/admin/commonlib/pages/user.php:367
+#: public_html/lists/admin/actions/configure.php:68
+#: public_html/lists/admin/bouncerule.php:19
+#: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:192
+msgid "No"
+msgstr "S.sz."
+
+#: public_html/lists/admin/commonlib/pages/user.php:370
+msgid "Add to blacklist"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:431
+#: public_html/lists/admin/commonlib/pages/user.php:460
 #: public_html/lists/admin/commonlib/pages/attributes.php:383
 #: public_html/lists/admin/commonlib/pages/attributes.php:411
 #: public_html/lists/admin/bouncerule.php:49
@@ -859,49 +876,49 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/admin.php:250
-#: public_html/lists/admin/spageedit.php:347
-#: public_html/lists/admin/list.php:241
+#: public_html/lists/admin/spageedit.php:331
+#: public_html/lists/admin/list.php:245
 #: public_html/lists/admin/template.php:295
 msgid "Save Changes"
 msgstr "Módosítások mentése"
 
-#: public_html/lists/admin/commonlib/pages/user.php:429
+#: public_html/lists/admin/commonlib/pages/user.php:435
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:432
+#: public_html/lists/admin/commonlib/pages/user.php:438
 #, fuzzy
 msgid "Mailinglist membership"
 msgstr "Levelező lista tagság"
 
-#: public_html/lists/admin/commonlib/pages/user.php:459
+#: public_html/lists/admin/commonlib/pages/user.php:465
 msgid "Group Membership"
 msgstr "Csoporttagság"
 
-#: public_html/lists/admin/commonlib/pages/user.php:462
+#: public_html/lists/admin/commonlib/pages/user.php:468
 #, fuzzy
 msgid "Please select the groups this subscriber is a member of"
 msgstr "Válassza ki, hogy mely csoportoknak a tagja ez a felhasználó"
 
-#: public_html/lists/admin/commonlib/pages/user.php:537
+#: public_html/lists/admin/commonlib/pages/user.php:543
 #, fuzzy
 msgid "Save changes"
 msgstr "Módosítások mentése"
 
-#: public_html/lists/admin/commonlib/pages/user.php:543
+#: public_html/lists/admin/commonlib/pages/user.php:549
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
 msgid "Details"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:544
+#: public_html/lists/admin/commonlib/pages/user.php:550
 #: public_html/lists/admin/send_core.php:532
 #: public_html/lists/admin/list.php:145 public_html/lists/admin/list.php:157
 #, fuzzy
 msgid "Lists"
 msgstr "listák"
 
-#: public_html/lists/admin/commonlib/pages/user.php:557
+#: public_html/lists/admin/commonlib/pages/user.php:563
 msgid "Groups"
 msgstr ""
 
@@ -937,7 +954,6 @@ msgid "view"
 msgstr "nézet"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:61
-#: public_html/lists/admin/uclicks.php:89
 msgid "msg"
 msgstr "üz."
 
@@ -955,11 +971,11 @@ msgstr "üzenet került elküldésre ennek a felhasználónak"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:86
 #: public_html/lists/admin/commonlib/pages/userhistory.php:89
-#: public_html/lists/admin/uclicks.php:52
-#: public_html/lists/admin/uclicks.php:105
-#: public_html/lists/admin/uclicks.php:119
-#: public_html/lists/admin/mclicks.php:149
-#: public_html/lists/admin/mclicks.php:165
+#: public_html/lists/admin/uclicks.php:53
+#: public_html/lists/admin/uclicks.php:110
+#: public_html/lists/admin/uclicks.php:124
+#: public_html/lists/admin/mclicks.php:141
+#: public_html/lists/admin/mclicks.php:157
 #: public_html/lists/admin/userclicks.php:149
 #: public_html/lists/admin/userclicks.php:159
 msgid "clicks"
@@ -969,10 +985,10 @@ msgstr "kattintások"
 #: public_html/lists/admin/actions/msgstatus.php:66
 #: public_html/lists/admin/statsoverview.php:97
 #: public_html/lists/admin/statsoverview.php:200
-#: public_html/lists/admin/uclicks.php:104
+#: public_html/lists/admin/uclicks.php:109
 #: public_html/lists/admin/msgstatus.php:28
-#: public_html/lists/admin/mviews.php:77
-#: public_html/lists/admin/mviews.php:184
+#: public_html/lists/admin/mviews.php:78
+#: public_html/lists/admin/mviews.php:186
 #: public_html/lists/admin/messages.php:45
 msgid "sent"
 msgstr "elküldve"
@@ -984,7 +1000,7 @@ msgstr "megtekintve"
 #: public_html/lists/admin/commonlib/pages/userhistory.php:96
 #: public_html/lists/admin/commonlib/pages/userhistory.php:108
 #: public_html/lists/admin/statsoverview.php:207
-#: public_html/lists/admin/mviews.php:191
+#: public_html/lists/admin/mviews.php:193
 msgid "responsetime"
 msgstr "válaszidő"
 
@@ -1059,7 +1075,7 @@ msgstr "ip"
 #: public_html/lists/admin/commonlib/pages/userhistory.php:169
 #: public_html/lists/admin/statsoverview.php:103
 #: public_html/lists/admin/bounces.php:112
-#: public_html/lists/admin/mviews.php:73 public_html/lists/admin/mviews.php:75
+#: public_html/lists/admin/mviews.php:74 public_html/lists/admin/mviews.php:76
 #: public_html/lists/admin/eventlog.php:115
 msgid "date"
 msgstr "dátum"
@@ -1153,8 +1169,8 @@ msgstr "Indítás"
 #: public_html/lists/admin/commonlib/pages/users.php:311
 #: public_html/lists/admin/statsoverview.php:156
 #: public_html/lists/admin/statsoverview.php:159
-#: public_html/lists/admin/mviews.php:136
-#: public_html/lists/admin/mviews.php:140
+#: public_html/lists/admin/mviews.php:137
+#: public_html/lists/admin/mviews.php:141
 #, php-format
 msgid "Listing user %d to %d"
 msgstr "Felhasználó listázása, %d - %d"
@@ -1194,6 +1210,12 @@ msgstr "Az összes felhasználó letöltése CSV fájlként"
 msgid "Add a User"
 msgstr "Felhasználó hozzáadása"
 
+#: public_html/lists/admin/commonlib/pages/users.php:372
+#: public_html/lists/admin/home.php:135
+#: public_html/lists/admin/import4.php:108
+msgid "users"
+msgstr "felhasználók"
+
 #: public_html/lists/admin/commonlib/pages/users.php:410
 #: public_html/lists/admin/actions/import1.php:205
 #: public_html/lists/admin/import4.php:115
@@ -1202,7 +1224,7 @@ msgid "lists"
 msgstr "listák"
 
 #: public_html/lists/admin/commonlib/pages/users.php:417
-#: public_html/lists/admin/uclicks.php:50
+#: public_html/lists/admin/uclicks.php:51
 msgid "msgs"
 msgstr "üz"
 
@@ -1276,7 +1298,7 @@ msgstr "Még nem került sor tulajdonságok meghatározására<br/>"
 #: public_html/lists/admin/commonlib/pages/attributes.php:334
 #: public_html/lists/admin/import4.php:170
 #: public_html/lists/admin/import4.php:180
-#: public_html/lists/admin/spageedit.php:283
+#: public_html/lists/admin/spageedit.php:276
 #: public_html/lists/admin/connect.php:1709
 msgid "Attribute"
 msgstr "Tulajdonság"
@@ -1295,7 +1317,7 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:343
 #: public_html/lists/admin/commonlib/pages/attributes.php:395
-#: public_html/lists/admin/spageedit.php:286
+#: public_html/lists/admin/spageedit.php:278
 #: public_html/lists/admin/login.php:116
 #: public_html/lists/admin/catlists.php:65
 msgid "Name"
@@ -1305,7 +1327,7 @@ msgstr "Név"
 #: public_html/lists/admin/commonlib/pages/attributes.php:397
 #: public_html/lists/admin/adminattributes.php:86
 #: public_html/lists/admin/adminattributes.php:97
-#: public_html/lists/admin/spageedit.php:287
+#: public_html/lists/admin/spageedit.php:279
 msgid "Type"
 msgstr "Típus:"
 
@@ -1319,13 +1341,13 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:374
 #: public_html/lists/admin/commonlib/pages/attributes.php:404
-#: public_html/lists/admin/spageedit.php:288
+#: public_html/lists/admin/spageedit.php:280
 msgid "Default Value"
 msgstr "Alapértelmezett érték"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:376
 #: public_html/lists/admin/commonlib/pages/attributes.php:406
-#: public_html/lists/admin/spageedit.php:289
+#: public_html/lists/admin/spageedit.php:281
 msgid "Order of Listing"
 msgstr "Listázási sorrend"
 
@@ -1339,9 +1361,9 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:389
 #: public_html/lists/admin/adminattributes.php:84
-#: public_html/lists/admin/members.php:265
-#: public_html/lists/admin/members.php:314
-#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:266
+#: public_html/lists/admin/members.php:315
+#: public_html/lists/admin/members.php:339
 msgid "Delete"
 msgstr "Törlés"
 
@@ -1355,8 +1377,26 @@ msgid "Add new Attribute"
 msgstr "Új tulajdonság hozzáadása:"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:408
-#: public_html/lists/admin/spageedit.php:290
+#: public_html/lists/admin/spageedit.php:282
 msgid "Is this attribute required?"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/lib/userlib.php:377
+#, php-format
+msgid "Removed from blacklist by %s"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/lib/userlib.php:379
+msgid "Removed from blacklist"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/lib/userlib.php:411
+msgid "Added to blacklist"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/lib/userlib.php:411
+#, php-format
+msgid "Added to blacklist for reason %s"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:213
@@ -1736,6 +1776,11 @@ msgstr "importálása sikerült az adatbázisba és hozzáadva"
 msgid "subscribed to the"
 msgstr "megrendelte a(z)"
 
+#: public_html/lists/admin/actions/user.php:16
+#, php-format
+msgid "Manually blacklisted by %s"
+msgstr ""
+
 #: public_html/lists/admin/actions/updatetranslation.php:12
 #: public_html/lists/admin/updatetranslation.php:17
 msgid ""
@@ -1839,18 +1884,6 @@ msgstr "Érvénytelen kérés"
 msgid "Editing"
 msgstr "Szerkesztés"
 
-#: public_html/lists/admin/actions/configure.php:61
-#: public_html/lists/admin/bouncerule.php:18
-#: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:191
-msgid "Yes"
-msgstr "Igen"
-
-#: public_html/lists/admin/actions/configure.php:68
-#: public_html/lists/admin/bouncerule.php:19
-#: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:192
-msgid "No"
-msgstr "S.sz."
-
 #: public_html/lists/admin/actions/configure.php:72
 msgid "Don't know how to handle type "
 msgstr ""
@@ -1868,7 +1901,7 @@ msgid "Adding email address failed"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:45
-#: public_html/lists/admin/actions/processqueue.php:1132
+#: public_html/lists/admin/actions/processqueue.php:1136
 msgid "unknown"
 msgstr "Ismeretlen"
 
@@ -2039,11 +2072,11 @@ msgstr "El lett volna küldve"
 
 #: public_html/lists/admin/actions/processqueue.php:363
 #: public_html/lists/admin/actions/processqueue.php:365
-#: public_html/lists/admin/actions/processqueue.php:947
-#: public_html/lists/admin/members.php:324
-#: public_html/lists/admin/members.php:328
-#: public_html/lists/admin/members.php:341
-#: public_html/lists/admin/members.php:345
+#: public_html/lists/admin/actions/processqueue.php:951
+#: public_html/lists/admin/members.php:325
+#: public_html/lists/admin/members.php:329
+#: public_html/lists/admin/members.php:342
+#: public_html/lists/admin/members.php:346
 msgid "to"
 msgstr "to"
 
@@ -2134,98 +2167,98 @@ msgstr ""
 msgid "Reports will be sent by email to"
 msgstr "A jelentések e-mailben kerülnek elküldésre a következőnek:"
 
-#: public_html/lists/admin/actions/processqueue.php:512
+#: public_html/lists/admin/actions/processqueue.php:516
 #, php-format
 msgid "sending of this campaign will stop, if it is still going in %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:525
+#: public_html/lists/admin/actions/processqueue.php:529
 msgid "Error loading message, please check the eventlog for details"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:540
+#: public_html/lists/admin/actions/processqueue.php:544
 msgid "Campaign started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:541
+#: public_html/lists/admin/actions/processqueue.php:545
 #, php-format
 #, php-format, fuzzy
 msgid "phplist has started sending the campaign with subject %s"
 msgstr "A phplist megkezdte a(z) %s tárgyú üzenet küldését"
 
-#: public_html/lists/admin/actions/processqueue.php:542
+#: public_html/lists/admin/actions/processqueue.php:546
 #, php-format
 #, php-format, fuzzy
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr "ezen üzenet haladásának megtekintéséhez menjen %s"
 
-#: public_html/lists/admin/actions/processqueue.php:549
+#: public_html/lists/admin/actions/processqueue.php:553
 msgid "Processing message"
 msgstr "Feldolgozandó üzenet:"
 
-#: public_html/lists/admin/actions/processqueue.php:572
+#: public_html/lists/admin/actions/processqueue.php:576
 msgid "Looking for users"
 msgstr "Felhasználók keresése"
 
-#: public_html/lists/admin/actions/processqueue.php:591
+#: public_html/lists/admin/actions/processqueue.php:595
 msgid "users apply for attributes, now checking lists"
 msgstr ""
 "a felhasználók alkalmazása a tulajdonságokra, most a listák ellenőrzése van "
 "folyamatban"
 
-#: public_html/lists/admin/actions/processqueue.php:602
+#: public_html/lists/admin/actions/processqueue.php:606
 msgid "No users apply for attributes"
 msgstr "Egy felhasználó sem érvényes a tulajdonságokra"
 
-#: public_html/lists/admin/actions/processqueue.php:657
+#: public_html/lists/admin/actions/processqueue.php:661
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 "felhasználók keresése, akik kizárhatók ebből a várólista feldolgozási "
 "lefuttatásból"
 
-#: public_html/lists/admin/actions/processqueue.php:747
+#: public_html/lists/admin/actions/processqueue.php:751
 msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:751
+#: public_html/lists/admin/actions/processqueue.php:755
 msgid "Found them"
 msgstr "Találtak"
 
-#: public_html/lists/admin/actions/processqueue.php:751
+#: public_html/lists/admin/actions/processqueue.php:755
 msgid "to process"
 msgstr "feldolgozandó"
 
-#: public_html/lists/admin/actions/processqueue.php:785
+#: public_html/lists/admin/actions/processqueue.php:789
 msgid "No users to process for this batch"
 msgstr "Nincsenek ehhez a köteghez feldolgozandó felhasználók"
 
-#: public_html/lists/admin/actions/processqueue.php:789
+#: public_html/lists/admin/actions/processqueue.php:793
 msgid "Processing batch of "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:796
+#: public_html/lists/admin/actions/processqueue.php:800
 msgid "batch limit reached"
 msgstr "elérkezett a köteg korlátozása"
 
-#: public_html/lists/admin/actions/processqueue.php:816
+#: public_html/lists/admin/actions/processqueue.php:820
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:821
+#: public_html/lists/admin/actions/processqueue.php:825
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:830
+#: public_html/lists/admin/actions/processqueue.php:834
 msgid "Message I was working on has disappeared"
 msgstr "Az üzenet, melyen dolgoztam, eltűnt"
 
-#: public_html/lists/admin/actions/processqueue.php:832
+#: public_html/lists/admin/actions/processqueue.php:836
 msgid "Sending of this message has been suspended"
 msgstr "Az üzenet küldése felfüggesztésre került"
 
-#: public_html/lists/admin/actions/processqueue.php:912
+#: public_html/lists/admin/actions/processqueue.php:916
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
@@ -2234,94 +2267,94 @@ msgstr ""
 "Több, mint 10 kísérlet történt a(z) %s címre történő küldéshez, mely "
 "tartományszabályozáshoz került blokkolásra."
 
-#: public_html/lists/admin/actions/processqueue.php:913
-#: public_html/lists/admin/actions/processqueue.php:915
+#: public_html/lists/admin/actions/processqueue.php:917
+#: public_html/lists/admin/actions/processqueue.php:919
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr "További késleltetés bevezetése a szabályozási hibák csökkentése végett"
 
-#: public_html/lists/admin/actions/processqueue.php:924
+#: public_html/lists/admin/actions/processqueue.php:928
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr "%s jelenleg a(z) %d per %d másodperc szabályozási korlátozás fölött van"
 
-#: public_html/lists/admin/actions/processqueue.php:947
+#: public_html/lists/admin/actions/processqueue.php:951
 msgid "Sending"
 msgstr "Küldés"
 
-#: public_html/lists/admin/actions/processqueue.php:955
-#: public_html/lists/admin/actions/processqueue.php:1172
+#: public_html/lists/admin/actions/processqueue.php:959
+#: public_html/lists/admin/actions/processqueue.php:1176
 msgid "It took"
 msgstr "Az üzenet küldéséhez"
 
-#: public_html/lists/admin/actions/processqueue.php:955
+#: public_html/lists/admin/actions/processqueue.php:959
 msgid "seconds to send"
 msgstr "másodpercre volt szükség"
 
-#: public_html/lists/admin/actions/processqueue.php:998
+#: public_html/lists/admin/actions/processqueue.php:1002
 msgid "Failed sending to"
 msgstr "A küldés nem sikerült a következőnek"
 
-#: public_html/lists/admin/actions/processqueue.php:1039
+#: public_html/lists/admin/actions/processqueue.php:1043
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1050
+#: public_html/lists/admin/actions/processqueue.php:1054
 msgid "not sending to "
 msgstr "nem küld a következő címre "
 
-#: public_html/lists/admin/actions/processqueue.php:1069
+#: public_html/lists/admin/actions/processqueue.php:1073
 msgid "Unconfirmed user"
 msgstr "Nem visszaigazolt felhasználó"
 
-#: public_html/lists/admin/actions/processqueue.php:1078
-#: public_html/lists/admin/actions/processqueue.php:1080
+#: public_html/lists/admin/actions/processqueue.php:1082
+#: public_html/lists/admin/actions/processqueue.php:1084
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1086
+#: public_html/lists/admin/actions/processqueue.php:1090
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1086
+#: public_html/lists/admin/actions/processqueue.php:1090
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1103
+#: public_html/lists/admin/actions/processqueue.php:1107
 msgid "Not sending to"
 msgstr "Nem küldendő a következőnek:"
 
-#: public_html/lists/admin/actions/processqueue.php:1103
+#: public_html/lists/admin/actions/processqueue.php:1107
 msgid "already sent"
 msgstr "már elküldve"
 
-#: public_html/lists/admin/actions/processqueue.php:1145
+#: public_html/lists/admin/actions/processqueue.php:1149
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1150
+#: public_html/lists/admin/actions/processqueue.php:1154
 msgid "Hmmm, No users found to send to"
 msgstr "Hmmm. Nem találhatók felhasználók, akiknek küldhető"
 
-#: public_html/lists/admin/actions/processqueue.php:1158
+#: public_html/lists/admin/actions/processqueue.php:1162
 msgid "Message Campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1159
+#: public_html/lists/admin/actions/processqueue.php:1163
 #, php-format
 #, php-format, fuzzy
 msgid "phplist has finished sending the campaign with subject %s"
 msgstr "A phplist befejezte a(z) %s tárgyú üzenet küldését"
 
-#: public_html/lists/admin/actions/processqueue.php:1160
+#: public_html/lists/admin/actions/processqueue.php:1164
 #, php-format
 #, fuzzy
 msgid "to view the results of this campaign, go to http://%s"
 msgstr "ezen üzenet haladásának megtekintéséhez menjen %s"
 
-#: public_html/lists/admin/actions/processqueue.php:1172
+#: public_html/lists/admin/actions/processqueue.php:1176
 msgid "to send this message"
 msgstr "volt szükség"
 
@@ -2405,11 +2438,11 @@ msgstr "és több, összesen %d"
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:712
+#: public_html/lists/admin/sendemaillib.php:721
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:896
+#: public_html/lists/admin/sendemaillib.php:905
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
@@ -2449,7 +2482,7 @@ msgstr ""
 msgid "Last modified"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:250
+#: public_html/lists/admin/defaultplugin.php:243
 msgid "choose"
 msgstr ""
 
@@ -2505,7 +2538,7 @@ msgid "Run manual conversion to UTF8"
 msgstr ""
 
 #: public_html/lists/admin/upgrade.php:465
-#: public_html/lists/admin/initialise.php:172
+#: public_html/lists/admin/initialise.php:179
 msgid "Success"
 msgstr "Siker"
 
@@ -2533,19 +2566,25 @@ msgstr ""
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:491
+#: public_html/lists/admin/upgrade.php:490
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:493
-#: public_html/lists/admin/initialise.php:198
+#: public_html/lists/admin/upgrade.php:491
+msgid ""
+"If you have a large database, make sure you have sufficient diskspace "
+"available for upgrade."
+msgstr ""
+
+#: public_html/lists/admin/upgrade.php:492
+#: public_html/lists/admin/initialise.php:205
 #: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:362
 msgid "Upgrade"
 msgstr "frissíteni akar"
 
-#: public_html/lists/admin/upgrade.php:493
+#: public_html/lists/admin/upgrade.php:492
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -2721,7 +2760,7 @@ msgid "#bncs"
 msgstr "#vptnk"
 
 #: public_html/lists/admin/bouncerules.php:96
-#: public_html/lists/admin/members.php:271
+#: public_html/lists/admin/members.php:272
 msgid "tag"
 msgstr "címke"
 
@@ -2972,10 +3011,10 @@ msgstr ""
 
 #: public_html/lists/admin/domainstats.php:18
 #: public_html/lists/admin/statsoverview.php:58
-#: public_html/lists/admin/uclicks.php:60
-#: public_html/lists/admin/uclicks.php:68
+#: public_html/lists/admin/uclicks.php:61
+#: public_html/lists/admin/uclicks.php:69
 #: public_html/lists/admin/mviews.php:53
-#: public_html/lists/admin/mviews.php:112
+#: public_html/lists/admin/mviews.php:113
 #: public_html/lists/admin/mclicks.php:88
 msgid "Download as CSV file"
 msgstr ""
@@ -2991,7 +3030,6 @@ msgstr "visszaigazolt"
 #: public_html/lists/admin/domainstats.php:29
 #: public_html/lists/admin/domainstats.php:42
 #: public_html/lists/admin/domainstats.php:46
-#: public_html/lists/admin/mclicks.php:115
 msgid "perc"
 msgstr ""
 
@@ -3066,8 +3104,8 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/send_core.php:1160
-#: public_html/lists/admin/send_core.php:1165
+#: public_html/lists/admin/send_core.php:1169
+#: public_html/lists/admin/send_core.php:1174
 msgid "Send Campaign"
 msgstr ""
 
@@ -3112,14 +3150,14 @@ msgid "Campaign added"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:354
-#: public_html/lists/admin/send_core.php:1129
+#: public_html/lists/admin/send_core.php:1138
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:355
-#: public_html/lists/admin/send_core.php:1129
+#: public_html/lists/admin/send_core.php:1138
 #: public_html/lists/admin/message.php:49
 #: public_html/lists/admin/messages.php:107
 msgid "Review Scheduling"
@@ -3185,8 +3223,8 @@ msgid "Sent test mail to"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:458
-#: public_html/lists/admin/initialise.php:79
-#: public_html/lists/admin/initialise.php:120
+#: public_html/lists/admin/initialise.php:86
+#: public_html/lists/admin/initialise.php:127
 #: public_html/lists/admin/import3.php:344
 #: public_html/lists/admin/messages.php:82
 #: public_html/lists/admin/messages.php:111
@@ -3248,9 +3286,10 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:632
 #: public_html/lists/admin/send_core.php:667
 #: public_html/lists/admin/statsoverview.php:130
-#: public_html/lists/admin/spageedit.php:254
-#: public_html/lists/admin/spageedit.php:261
-#: public_html/lists/admin/mviews.php:117
+#: public_html/lists/admin/spageedit.php:235
+#: public_html/lists/admin/spageedit.php:242
+#: public_html/lists/admin/spageedit.php:249
+#: public_html/lists/admin/mviews.php:118
 #: public_html/lists/admin/mclicks.php:110
 #: public_html/lists/admin/userclicks.php:65
 #: public_html/lists/admin/userclicks.php:78
@@ -3351,14 +3390,14 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:749
 #: public_html/lists/admin/messages.php:325
 #: public_html/lists/admin/mclicks.php:78
-#: public_html/lists/admin/mclicks.php:150
+#: public_html/lists/admin/mclicks.php:142
 msgid "html"
 msgstr "html"
 
 #: public_html/lists/admin/send_core.php:752
 #: public_html/lists/admin/messages.php:325
 #: public_html/lists/admin/mclicks.php:78
-#: public_html/lists/admin/mclicks.php:151
+#: public_html/lists/admin/mclicks.php:143
 #: public_html/lists/admin/userclicks.php:151
 msgid "text"
 msgstr "szöveg"
@@ -3380,7 +3419,7 @@ msgid "generate from HTML"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:836
-#: public_html/lists/admin/spageedit.php:208
+#: public_html/lists/admin/spageedit.php:184
 msgid "Footer"
 msgstr "Lábléc"
 
@@ -3446,7 +3485,7 @@ msgid "Description of attachment"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:915
-#: public_html/lists/admin/send_core.php:1175
+#: public_html/lists/admin/send_core.php:1184
 #: public_html/lists/admin/template.php:306
 msgid "Send Test"
 msgstr ""
@@ -3477,51 +3516,55 @@ msgstr "értesítés e-mailben az üzenet küldésének befejezésekor"
 msgid "add Google Analytics tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:945
+#: public_html/lists/admin/send_core.php:947
+msgid "Reset click statistics"
+msgstr ""
+
+#: public_html/lists/admin/send_core.php:954
 msgid "Estimated size of HTML email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:948
+#: public_html/lists/admin/send_core.php:957
 msgid "Estimated size of text email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:990
+#: public_html/lists/admin/send_core.php:999
 msgid "Estimated size of mailout"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:993
+#: public_html/lists/admin/send_core.php:1002
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1100
+#: public_html/lists/admin/send_core.php:1109
 msgid "subject missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1109
+#: public_html/lists/admin/send_core.php:1118
 msgid "message content missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1116
+#: public_html/lists/admin/send_core.php:1125
 msgid "From missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1136
+#: public_html/lists/admin/send_core.php:1145
 msgid "destination lists missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1142
+#: public_html/lists/admin/send_core.php:1151
 msgid "Content contains click track links."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1164
+#: public_html/lists/admin/send_core.php:1173
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1170
+#: public_html/lists/admin/send_core.php:1179
 msgid "Save as draft"
 msgstr ""
 
@@ -3552,29 +3595,29 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:100
 #: public_html/lists/admin/statsoverview.php:110
 #: public_html/lists/admin/statsoverview.php:204
-#: public_html/lists/admin/mviews.php:79 public_html/lists/admin/mviews.php:93
-#: public_html/lists/admin/mviews.php:188
+#: public_html/lists/admin/mviews.php:80 public_html/lists/admin/mviews.php:94
+#: public_html/lists/admin/mviews.php:190
 msgid "views"
 msgstr "nézetek"
 
 #: public_html/lists/admin/statsoverview.php:102
 #: public_html/lists/admin/statsoverview.php:112
-#: public_html/lists/admin/mviews.php:81 public_html/lists/admin/mviews.php:95
+#: public_html/lists/admin/mviews.php:82 public_html/lists/admin/mviews.php:96
 msgid "rate"
 msgstr "értékelés"
 
 #: public_html/lists/admin/statsoverview.php:108
-#: public_html/lists/admin/mviews.php:91
+#: public_html/lists/admin/mviews.php:92
 msgid "Comparison to other admins"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:124
-#: public_html/lists/admin/mviews.php:114
+#: public_html/lists/admin/mviews.php:115
 msgid "View Details for a Message"
 msgstr "Üzenet adatainak megtekintése"
 
 #: public_html/lists/admin/statsoverview.php:131
-#: public_html/lists/admin/mviews.php:118
+#: public_html/lists/admin/mviews.php:119
 #: public_html/lists/admin/messages.php:255
 #: public_html/lists/admin/mclicks.php:111
 #: public_html/lists/admin/userclicks.php:66
@@ -3584,7 +3627,7 @@ msgid "Entered"
 msgstr "Tagság kezdete"
 
 #: public_html/lists/admin/statsoverview.php:132
-#: public_html/lists/admin/mviews.php:119
+#: public_html/lists/admin/mviews.php:120
 #: public_html/lists/admin/messages.php:266
 #: public_html/lists/admin/mclicks.php:112
 #: public_html/lists/admin/userclicks.php:67
@@ -3594,24 +3637,24 @@ msgid "Sent"
 msgstr "Elküldve"
 
 #: public_html/lists/admin/statsoverview.php:136
-#: public_html/lists/admin/mviews.php:126
+#: public_html/lists/admin/mviews.php:127
 msgid "Message Open Statistics"
 msgstr "Üzenetmegnyitási statisztika"
 
 #: public_html/lists/admin/statsoverview.php:167
-#: public_html/lists/admin/mviews.php:161
+#: public_html/lists/admin/mviews.php:162
 msgid "Entries"
 msgstr "Bejegyzések"
 
 #: public_html/lists/admin/statsoverview.php:202
 #: public_html/lists/admin/statsoverview.php:206
-#: public_html/lists/admin/mviews.php:186
-#: public_html/lists/admin/mviews.php:190
+#: public_html/lists/admin/mviews.php:188
+#: public_html/lists/admin/mviews.php:192
 msgid "firstview"
 msgstr "első nézet"
 
 #: public_html/lists/admin/statsoverview.php:203
-#: public_html/lists/admin/mviews.php:187
+#: public_html/lists/admin/mviews.php:189
 msgid "lastview"
 msgstr "utolsó nézet"
 
@@ -3623,69 +3666,69 @@ msgstr "mp."
 msgid "Available URLs"
 msgstr "Létező URL-címek"
 
-#: public_html/lists/admin/uclicks.php:51
+#: public_html/lists/admin/uclicks.php:52
 msgid "last clicked"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:59
+#: public_html/lists/admin/uclicks.php:60
 msgid "Select URL to view"
 msgstr "Válassza ki a megtekintendő URL-címet"
 
-#: public_html/lists/admin/uclicks.php:63
+#: public_html/lists/admin/uclicks.php:64
 msgid "There are currently no statistics available"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:70
+#: public_html/lists/admin/uclicks.php:71
 msgid "URL Click Statistics"
 msgstr "URL-cím kattintási statisztikája"
 
-#: public_html/lists/admin/uclicks.php:74
+#: public_html/lists/admin/uclicks.php:75
 msgid "Click Details for a URL"
 msgstr "Egy URL-cím kattintási adatai"
 
-#: public_html/lists/admin/uclicks.php:102
-#: public_html/lists/admin/mclicks.php:146
+#: public_html/lists/admin/uclicks.php:107
+#: public_html/lists/admin/mclicks.php:138
 #: public_html/lists/admin/userclicks.php:147
 msgid "firstclick"
 msgstr "első kattintás"
 
-#: public_html/lists/admin/uclicks.php:103
-#: public_html/lists/admin/mclicks.php:147
+#: public_html/lists/admin/uclicks.php:108
+#: public_html/lists/admin/mclicks.php:139
 #: public_html/lists/admin/userclicks.php:148
 msgid "latestclick"
 msgstr "utolsó kattintás"
 
-#: public_html/lists/admin/uclicks.php:105
-#: public_html/lists/admin/mclicks.php:149
+#: public_html/lists/admin/uclicks.php:110
+#: public_html/lists/admin/mclicks.php:141
 msgid "view users"
 msgstr "felhasználók megtekintése"
 
-#: public_html/lists/admin/uclicks.php:107
-#: public_html/lists/admin/uclicks.php:121
+#: public_html/lists/admin/uclicks.php:112
+#: public_html/lists/admin/uclicks.php:126
 #: public_html/lists/admin/mclicks.php:73
-#: public_html/lists/admin/mclicks.php:153
-#: public_html/lists/admin/mclicks.php:167
+#: public_html/lists/admin/mclicks.php:145
+#: public_html/lists/admin/mclicks.php:159
 msgid "clickrate"
 msgstr "Kattintási arány"
 
-#: public_html/lists/admin/uclicks.php:110
-#: public_html/lists/admin/uclicks.php:123
-#: public_html/lists/admin/mclicks.php:155
-#: public_html/lists/admin/mclicks.php:169
+#: public_html/lists/admin/uclicks.php:115
+#: public_html/lists/admin/uclicks.php:128
+#: public_html/lists/admin/mclicks.php:147
+#: public_html/lists/admin/mclicks.php:161
 msgid "unique clicks"
 msgstr "egyedi kattintás"
 
-#: public_html/lists/admin/uclicks.php:112
-#: public_html/lists/admin/uclicks.php:125
+#: public_html/lists/admin/uclicks.php:117
+#: public_html/lists/admin/uclicks.php:130
 msgid "unique click rate"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:117
-#: public_html/lists/admin/uclicks.php:118
-#: public_html/lists/admin/uclicks.php:119
-#: public_html/lists/admin/uclicks.php:121
+#: public_html/lists/admin/uclicks.php:122
 #: public_html/lists/admin/uclicks.php:123
-#: public_html/lists/admin/uclicks.php:125
+#: public_html/lists/admin/uclicks.php:124
+#: public_html/lists/admin/uclicks.php:126
+#: public_html/lists/admin/uclicks.php:128
+#: public_html/lists/admin/uclicks.php:130
 #: public_html/lists/admin/messages.php:325
 #: public_html/lists/admin/userclicks.php:157
 #: public_html/lists/admin/userclicks.php:158
@@ -3693,72 +3736,87 @@ msgstr ""
 msgid "total"
 msgstr "összes"
 
-#: public_html/lists/admin/initialise.php:21
+#: public_html/lists/admin/initialise.php:20
 msgid "To install phpList, you need to enable Javascript"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:25
-msgid "phpList initialisation"
+msgid "The default system language is different from your browser language."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:28
-msgid "Please enter your name."
+#: public_html/lists/admin/initialise.php:26
+#, php-format
+msgid ""
+"You can set <pre>$default_system_language = \"%s\";</pre> in your config "
+"file, to use your language as the fallback language."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:30
-msgid "The name of your organisation"
+#: public_html/lists/admin/initialise.php:27
+msgid "It is best to do this before initialising the database."
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:32
+msgid "phpList initialisation"
+msgstr ""
+
+#: public_html/lists/admin/initialise.php:35
+msgid "Please enter your name."
+msgstr ""
+
+#: public_html/lists/admin/initialise.php:37
+msgid "The name of your organisation"
+msgstr ""
+
+#: public_html/lists/admin/initialise.php:39
 msgid "Please enter your email address."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:41
+#: public_html/lists/admin/initialise.php:48
 msgid "The initial <i>login name</i> will be"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:42
+#: public_html/lists/admin/initialise.php:49
 msgid "Please enter the password you want to use for this account."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:42
+#: public_html/lists/admin/initialise.php:49
 msgid "minimum of 8 characters."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:51
+#: public_html/lists/admin/initialise.php:58
 msgid "Creating tables"
 msgstr "Táblák létrehozása"
 
-#: public_html/lists/admin/initialise.php:76
+#: public_html/lists/admin/initialise.php:83
 msgid "Initialising table"
 msgstr "Tábla inicializálása"
 
-#: public_html/lists/admin/initialise.php:78
+#: public_html/lists/admin/initialise.php:85
 msgid "Table already exists"
 msgstr "A tábla már létezik"
 
-#: public_html/lists/admin/initialise.php:117
+#: public_html/lists/admin/initialise.php:124
 #: public_html/lists/admin/import3.php:342
 msgid "ok"
 msgstr "ok"
 
-#: public_html/lists/admin/initialise.php:126
+#: public_html/lists/admin/initialise.php:133
 msgid "Initialise plugin"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:149
+#: public_html/lists/admin/initialise.php:156
 msgid "List for testing."
 msgstr "Lista teszteléshez."
 
-#: public_html/lists/admin/initialise.php:157
+#: public_html/lists/admin/initialise.php:164
 msgid "Sign up to our newsletter"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:172
+#: public_html/lists/admin/initialise.php:179
 msgid "Tell us about it"
 msgstr "Meséljen nekünk róla"
 
-#: public_html/lists/admin/initialise.php:174
+#: public_html/lists/admin/initialise.php:181
 msgid ""
 "Please make sure to read the file README.security that can be found in the "
 "zip file."
@@ -3766,15 +3824,15 @@ msgstr ""
 "Győződjön meg róla, hogy elolvasta-e a zip fájlban található README.security "
 "fájlt."
 
-#: public_html/lists/admin/initialise.php:176
+#: public_html/lists/admin/initialise.php:183
 msgid "Please make sure to"
 msgstr "Győződjön meg róla,"
 
-#: public_html/lists/admin/initialise.php:177
+#: public_html/lists/admin/initialise.php:184
 msgid "subscribe to the announcements list"
 msgstr "hogy feliratkozott-e a közleménylistára,"
 
-#: public_html/lists/admin/initialise.php:178
+#: public_html/lists/admin/initialise.php:185
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
@@ -3784,27 +3842,27 @@ msgstr ""
 "találnak biztonsági hibákat, melyek fontossá teszik a frissítést. Nagyon "
 "alacsony a listán a forgalom."
 
-#: public_html/lists/admin/initialise.php:189
+#: public_html/lists/admin/initialise.php:196
 msgid "Continue with"
 msgstr "A PHPlist telepítésének"
 
-#: public_html/lists/admin/initialise.php:189
+#: public_html/lists/admin/initialise.php:196
 msgid "phpList Setup"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:198
+#: public_html/lists/admin/initialise.php:205
 msgid "Maybe you want to"
 msgstr "Esetleg"
 
-#: public_html/lists/admin/initialise.php:198
+#: public_html/lists/admin/initialise.php:205
 msgid "instead?"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:199
+#: public_html/lists/admin/initialise.php:206
 msgid "Force Initialisation"
 msgstr "Inicializálás kényszerítése"
 
-#: public_html/lists/admin/initialise.php:199
+#: public_html/lists/admin/initialise.php:206
 msgid "(will erase all data!)"
 msgstr ""
 
@@ -3911,11 +3969,6 @@ msgstr ""
 msgid "View, edit and add lists, that your subscribers can sign up to"
 msgstr ""
 
-#: public_html/lists/admin/home.php:135
-#: public_html/lists/admin/import4.php:108
-msgid "users"
-msgstr "felhasználók"
-
 #: public_html/lists/admin/home.php:137
 msgid "List all Users"
 msgstr "Az összes felhasználó listája"
@@ -3997,7 +4050,7 @@ msgstr ""
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:235 public_html/lists/admin/list.php:235
+#: public_html/lists/admin/home.php:235 public_html/lists/admin/list.php:239
 msgid "send"
 msgstr "küldés"
 
@@ -4160,6 +4213,10 @@ msgid "settings"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:123
+msgid "edit this value"
+msgstr ""
+
+#: public_html/lists/admin/configure.php:123
 #: public_html/lists/admin/spage.php:44
 msgid "edit"
 msgstr "módosítás"
@@ -4268,7 +4325,7 @@ msgid "Comment"
 msgstr "Megjegyzés"
 
 #: public_html/lists/admin/bounce.php:150
-#: public_html/lists/admin/spageedit.php:205
+#: public_html/lists/admin/spageedit.php:181
 msgid "Header"
 msgstr "Fejléc"
 
@@ -4590,50 +4647,50 @@ msgstr "Az oldalon lévő összes felhasználó címkézése"
 msgid "Members"
 msgstr "Tagok"
 
-#: public_html/lists/admin/members.php:310
+#: public_html/lists/admin/members.php:311
 msgid "Actions"
 msgstr ""
 
-#: public_html/lists/admin/members.php:312
+#: public_html/lists/admin/members.php:313
 #, fuzzy
 msgid "What to do with \"Tagged\" users"
 msgstr "Mi a teendő az összes felhasználóval"
 
-#: public_html/lists/admin/members.php:313
+#: public_html/lists/admin/members.php:314
 msgid ""
 "This will only process the users in this page that have the \"Tag\" checkbox "
 "checked"
 msgstr ""
 
-#: public_html/lists/admin/members.php:314
-#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:315
+#: public_html/lists/admin/members.php:339
 msgid "from this list"
 msgstr "erről a listáról"
 
-#: public_html/lists/admin/members.php:324
-#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:325
+#: public_html/lists/admin/members.php:342
 msgid "Move"
 msgstr "Áthelyezés"
 
-#: public_html/lists/admin/members.php:328
-#: public_html/lists/admin/members.php:345
+#: public_html/lists/admin/members.php:329
+#: public_html/lists/admin/members.php:346
 msgid "Copy"
 msgstr "Másolás"
 
-#: public_html/lists/admin/members.php:332
-#: public_html/lists/admin/members.php:349
+#: public_html/lists/admin/members.php:333
+#: public_html/lists/admin/members.php:350
 msgid "Nothing"
 msgstr "Semmi"
 
-#: public_html/lists/admin/members.php:334
+#: public_html/lists/admin/members.php:335
 msgid "What to do with all users"
 msgstr "Mi a teendő az összes felhasználóval"
 
-#: public_html/lists/admin/members.php:335
+#: public_html/lists/admin/members.php:336
 msgid "This will process all users on this list"
 msgstr "A listán lévő összes felhasználót fogja feldolgozni"
 
-#: public_html/lists/admin/members.php:351
+#: public_html/lists/admin/members.php:352
 msgid "do it"
 msgstr "csináld"
 
@@ -5021,7 +5078,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr "Visszapattanók szabályainak generálása"
 
-#: public_html/lists/admin/languages.php:533
+#: public_html/lists/admin/languages.php:535
 msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
@@ -5222,129 +5279,139 @@ msgstr "és"
 msgid "existing users"
 msgstr "létező felhasználók"
 
-#: public_html/lists/admin/spageedit.php:120
+#: public_html/lists/admin/spageedit.php:87
+msgid "Subscribe page information saved"
+msgstr ""
+
+#: public_html/lists/admin/spageedit.php:96
 msgid "Title of this set of lists"
 msgstr "A listacsoport címe"
 
-#: public_html/lists/admin/spageedit.php:134
+#: public_html/lists/admin/spageedit.php:112
 msgid "Please indicate how often you want to receive messages"
 msgstr "Kérjük, jelezze, hogy milyen gyakran kívánja megkapni a tájékoztatókat"
 
-#: public_html/lists/admin/spageedit.php:173
+#: public_html/lists/admin/spageedit.php:148
 msgid "General Information"
 msgstr "Általános információk"
 
-#: public_html/lists/admin/spageedit.php:176
+#: public_html/lists/admin/spageedit.php:152
 msgid "Title"
 msgstr "Cím"
 
-#: public_html/lists/admin/spageedit.php:192
+#: public_html/lists/admin/spageedit.php:168
 #: public_html/lists/admin/spage.php:55
 #: public_html/lists/admin/editattributes.php:186
 msgid "default"
 msgstr "alapértelmezett"
 
-#: public_html/lists/admin/spageedit.php:199
+#: public_html/lists/admin/spageedit.php:175
 msgid "Language file to use"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:202
+#: public_html/lists/admin/spageedit.php:178
 msgid "Intro"
 msgstr "Bevezető"
 
-#: public_html/lists/admin/spageedit.php:211
+#: public_html/lists/admin/spageedit.php:187
 msgid "Thank you page"
 msgstr "Köszönő oldal"
 
-#: public_html/lists/admin/spageedit.php:214
+#: public_html/lists/admin/spageedit.php:190
 msgid "Text for Button"
 msgstr "Gombfelirat"
 
-#: public_html/lists/admin/spageedit.php:216
+#: public_html/lists/admin/spageedit.php:192
 msgid "HTML Email choice"
 msgstr "HTML e-mail választása"
 
-#: public_html/lists/admin/spageedit.php:220
+#: public_html/lists/admin/spageedit.php:196
 msgid "Don't offer choice, default to <b>text</b>"
 msgstr "Nincs választási lehetőség, alapértelmezés a <b>szöveg</b>"
 
-#: public_html/lists/admin/spageedit.php:224
+#: public_html/lists/admin/spageedit.php:200
 msgid "Don't offer choice, default to <b>HTML</b>"
 msgstr "Nincs választási lehetőség, alapértelmezés a <b>HTML</b>"
 
-#: public_html/lists/admin/spageedit.php:228
+#: public_html/lists/admin/spageedit.php:204
 msgid "Offer checkbox for text"
 msgstr "Jelölőnégyzet ajánlása a szöveghez"
 
-#: public_html/lists/admin/spageedit.php:232
+#: public_html/lists/admin/spageedit.php:208
 msgid "Offer checkbox for HTML"
 msgstr "Jelölőnégyzet ajánlása a HTML-hez"
 
-#: public_html/lists/admin/spageedit.php:236
+#: public_html/lists/admin/spageedit.php:212
 msgid "Radio buttons, default to text"
 msgstr "Választógombok, alapértelmezett a szöveg"
 
-#: public_html/lists/admin/spageedit.php:240
+#: public_html/lists/admin/spageedit.php:216
 msgid "Radio buttons, default to HTML"
 msgstr "Választógombok, alapértelmezett a HTML"
 
-#: public_html/lists/admin/spageedit.php:243
+#: public_html/lists/admin/spageedit.php:218
 msgid "Display Email confirmation"
 msgstr "E-mail cím visszaigazolásának megjelenítése"
 
-#: public_html/lists/admin/spageedit.php:246
+#: public_html/lists/admin/spageedit.php:221
 msgid "Display email confirmation"
 msgstr "E-mail cím visszaigazolásának megjelenítése"
 
-#: public_html/lists/admin/spageedit.php:249
+#: public_html/lists/admin/spageedit.php:224
 msgid "Don't display email confirmation"
 msgstr "Nem jelenik meg az e-mail cím visszaigazolása"
 
-#: public_html/lists/admin/spageedit.php:252
+#: public_html/lists/admin/spageedit.php:230
+msgid "Transaction messages"
+msgstr ""
+
+#: public_html/lists/admin/spageedit.php:233
 msgid "Message they receive when they subscribe"
 msgstr "A feliratkozáskor kapott üzenet"
 
-#: public_html/lists/admin/spageedit.php:257
-#: public_html/lists/admin/spageedit.php:264
+#: public_html/lists/admin/spageedit.php:238
+#: public_html/lists/admin/spageedit.php:245
+#: public_html/lists/admin/spageedit.php:252
 msgid "Message"
 msgstr "Üzenet"
 
-#: public_html/lists/admin/spageedit.php:259
+#: public_html/lists/admin/spageedit.php:240
 msgid "Message they receive when they confirm their subscription"
 msgstr "A feliratkozás visszaigazolásakor kapott üzenet"
 
-#: public_html/lists/admin/spageedit.php:266
+#: public_html/lists/admin/spageedit.php:247
+msgid "Message they receive when they unsubscribe"
+msgstr ""
+
+#: public_html/lists/admin/spageedit.php:259
 msgid "Select the attributes to use"
 msgstr "Válassza ki a felhasználandó tulajdonságokat"
 
-#: public_html/lists/admin/spageedit.php:284
+#: public_html/lists/admin/spageedit.php:277
 msgid "Check this box to use this attribute in the page"
 msgstr "Jelölje be ezt a jelölőnégyzetet a tulajdonság használatához az oldalon"
 
-#: public_html/lists/admin/spageedit.php:323
+#: public_html/lists/admin/spageedit.php:296
+#, php-format
+msgid "Information needed for %s"
+msgstr ""
+
+#: public_html/lists/admin/spageedit.php:301
 msgid "Select the lists to offer"
 msgstr "Válassza ki a felajánlandó listákat"
 
-#: public_html/lists/admin/spageedit.php:323
+#: public_html/lists/admin/spageedit.php:303
 msgid "You can only select \"public\" lists for subscribe pages."
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:327
+#: public_html/lists/admin/spageedit.php:306
 msgid "No lists available, please create one first"
 msgstr "Nincsenek listák, előbb készítsen egyet"
 
-#: public_html/lists/admin/spageedit.php:338
+#: public_html/lists/admin/spageedit.php:322
 #: public_html/lists/admin/editlist.php:141
 msgid "Owner"
 msgstr "Tulajdonos"
-
-#: public_html/lists/admin/spageedit.php:348
-msgid "Save and Activate"
-msgstr "Mentés és aktiválás"
-
-#: public_html/lists/admin/spageedit.php:349
-msgid "Save and Deactivate"
-msgstr "Mentés és inaktiválás"
 
 #: public_html/lists/admin/login.php:5
 msgid "default login is"
@@ -5776,19 +5843,19 @@ msgstr ""
 msgid "Order"
 msgstr "Sorrend"
 
-#: public_html/lists/admin/list.php:234
+#: public_html/lists/admin/list.php:235
 msgid "Are you sure you want to delete this list?"
 msgstr ""
 
-#: public_html/lists/admin/list.php:234
+#: public_html/lists/admin/list.php:237
 msgid "delete this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:235
+#: public_html/lists/admin/list.php:239
 msgid "start a new campaign targetting this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:244
+#: public_html/lists/admin/list.php:248
 msgid "No lists, use Add List to add one"
 msgstr ""
 
@@ -6101,7 +6168,7 @@ msgstr ""
 msgid "Available Messages"
 msgstr "Létező üzenetek"
 
-#: public_html/lists/admin/mviews.php:75
+#: public_html/lists/admin/mviews.php:76
 msgid "in progress"
 msgstr ""
 
@@ -6326,28 +6393,32 @@ msgstr "oldal"
 msgid "Hint: this page also works from commandline"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:40
+#: public_html/lists/admin/convertstats.php:43
 msgid "creating tables"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:48
+#: public_html/lists/admin/convertstats.php:51
 msgid "creating tables done"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:52
+#: public_html/lists/admin/convertstats.php:55
 #, php-format
 msgid "%d entries still to convert"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:58
+#: public_html/lists/admin/convertstats.php:61
 msgid "converting data"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:143
-msgid "All done, optimizing table to recover space"
+#: public_html/lists/admin/convertstats.php:146
+msgid "Optimizing table to recover space"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:147
+#: public_html/lists/admin/convertstats.php:148
+msgid "Finished"
+msgstr ""
+
+#: public_html/lists/admin/convertstats.php:151
 msgid "Convert some more"
 msgstr ""
 
@@ -6372,13 +6443,17 @@ msgid ""
 "--------------------------------------------------------------------------------  "
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:327
+#: public_html/lists/admin/subscribelib2.php:123
+msgid "phplist Spam blocked"
+msgstr ""
+
+#: public_html/lists/admin/subscribelib2.php:339
 msgid "Email is blacklisted, so request for confirmation has been sent."
 msgstr ""
 "A felhasználó feketelistán van, ezért elküldésre került neki a visszaigazoló "
 "e-mail."
 
-#: public_html/lists/admin/subscribelib2.php:328
+#: public_html/lists/admin/subscribelib2.php:340
 msgid "If user confirms subscription, they will be removed from the blacklist."
 msgstr ""
 "Ha a felhasználó visszaigazolja a megrendelését, akkor eltávolításra kerül a "
@@ -6719,8 +6794,8 @@ msgstr "Kattintási arány"
 msgid "Message Click Statistics"
 msgstr "Üzenet-kattintási statisztika"
 
-#: public_html/lists/admin/mclicks.php:157
-#: public_html/lists/admin/mclicks.php:171
+#: public_html/lists/admin/mclicks.php:149
+#: public_html/lists/admin/mclicks.php:163
 msgid "unique clickrate"
 msgstr "egyedi kattintási arány"
 
@@ -7508,6 +7583,12 @@ msgstr ""
 
 msgid "pagetitle:reindex"
 msgstr ""
+
+#~ msgid "Save and Activate"
+#~ msgstr "Mentés és aktiválás"
+
+#~ msgid "Save and Deactivate"
+#~ msgstr "Mentés és inaktiválás"
 
 #~ msgid "Sending in batches of"
 #~ msgstr "Küldés kötegekben of"
