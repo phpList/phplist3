@@ -114,7 +114,9 @@ if ($download) {
   header('Content-type: text/csv');
   ob_start();
 }  
-print '<p>'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,$GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+if (empty($start)) {
+  print '<p>'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,$GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+}
 
 #print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
