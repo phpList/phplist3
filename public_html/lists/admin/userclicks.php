@@ -113,7 +113,7 @@ if ($fwdid && $msgid) {
 $req = Sql_Query($query);
 $total = Sql_Num_Rows($req);
 if ($total > 100) {
-  print simplePaging('userclicks&msgid='.$msgid.'&fwdid='.$fwdid.'&userid='.$userid,$start,$total,100);
+  print simplePaging('userclicks&msgid='.$msgid.'&fwdid='.$fwdid.'&userid='.$userid,$start,$total,100, s('Subscribers'));
 
   $limit = ' limit '.$start.', 100';
   $req = Sql_Query($query.' '.$limit);
@@ -154,8 +154,9 @@ while ($row = Sql_Fetch_Array($req)) {
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
   $summary['totalclicks'] += $row['clicked'];
 }
-$ls->addElement($GLOBALS['I18N']->get('total'));
-$ls->setClass($GLOBALS['I18N']->get('total'),'rowtotal');
-$ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
+
+## adding a total doesn't make sense if we're not listing everything, it'll only do the total of the page
+//$ls->addElement($GLOBALS['I18N']->get('total'));
+//$ls->setClass($GLOBALS['I18N']->get('total'),'rowtotal');
+//$ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
 print $ls->display();
-?>
