@@ -8,6 +8,12 @@ if (isset($_GET['id'])) {
 } else {
   $id = 0;
 }
+$start = 0;
+$limit = ' limit 10';
+if (isset($_GET['start'])) {
+  $start = sprintf('%d',$_GET['start']);
+  $limit = ' limit '.$start. ', 10';
+}
 
 $addcomparison = 0;
 $access = accessLevel('statsoverview');
@@ -53,18 +59,15 @@ if ($download) {
   ob_start();
 }  
 
-if (!$id) {
+//if (!$id) {
 #  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
-  print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+  
+  if (empty($start)) {
+    print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+  }
 
   $timerange = ' and msg.entered > date_sub(current_timestamp,interval 12 month)';
   #$timerange = '';
-  $limit = ' limit 10';
-  $start = 0;
-  if (isset($_GET['start'])) {
-    $start = sprintf('%d',$_GET['start']);
-    $limit = ' limit '.$start. ', 10';
-  }
 
   $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, 
     count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,
@@ -98,7 +101,7 @@ if (!$id) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('bncs'),$row['bounced']);
     $ls->addColumn($element,$GLOBALS['I18N']->get('fwds'),sprintf('%d',$fwded[0]));
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['views'],$row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']):'');
-    $perc = sprintf('%0.2f',($row['views'] / $row['total'] * 100));
+    $perc = sprintf('%0.2f',($row['views'] / ($row['total'] - $row['bounced']) * 100));
     $ls->addRow($element,'',"<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('rate').": ".$perc.' %'."</div>".
                             "<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('date').": ".$row['sent']."</div>");
   }
@@ -118,7 +121,10 @@ if (!$id) {
 
   print $ls->display();
   return;
-}
+//}
+
+return;
+// looks like below is no longer in use
 
 
 print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
@@ -150,7 +156,6 @@ $params = array_merge(array($id), $and_params);
 $req = Sql_Query_Params($query, $params);
 
 $total = Sql_Affected_Rows();
-$start = sprintf('%d',$_GET['start']);
 $offset = 0;
 if (isset($start) && $start > 0) {
   $listing = sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),$start,$start + MAX_USER_PP);
@@ -208,4 +213,3 @@ while ($row = Sql_Fetch_Array($req)) {
   }
 }
 print $ls->display();
-?>
