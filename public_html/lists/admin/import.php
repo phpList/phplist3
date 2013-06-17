@@ -34,9 +34,9 @@ print '<p><h3>'.$GLOBALS['I18N']->get('Please choose one of the import methods b
 
 print '<ul>';
 
-print '<li>'.PageLink2('importsimple',$GLOBALS['I18N']->get('copy and paste list of emails')).'</li>';
-print '<li>'.PageLink2('import1',$GLOBALS['I18N']->get('import by uploading a file with emails')).'</li>';
-print '<li>'.PageLink2('import2',$GLOBALS['I18N']->get('import by uploading a CSV file with emails and additional data')).'</li>';
+print '<li class="dashboard_button" id="copy_paste">'.PageLink2('importsimple',$GLOBALS['I18N']->get('copy and paste list of emails')).'</li>';
+print '<li class="dashboard_button" id="import_list">'.PageLink2('import1',$GLOBALS['I18N']->get('import by uploading a file with emails')).'</li>';
+print '<li class="dashboard_button" id="import_csv">'.PageLink2('import2',$GLOBALS['I18N']->get('import by uploading a CSV file with emails and additional data')).'</li>';
 
 foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
   if (!empty($plugin->importPage)) {

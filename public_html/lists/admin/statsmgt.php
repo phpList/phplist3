@@ -1,21 +1,21 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-$spb ='<div>';
-$spe = '</div>';
+print '<ul class="dashboard_button">';
 
-print $spb.PageLink2("statsoverview",$GLOBALS['I18N']->get('Overview')).$spe;
-print $spb.PageLink2("uclicks",$GLOBALS['I18N']->get('View Clicks by URL')).$spe;
-print $spb.PageLink2("mclicks",$GLOBALS['I18N']->get('View Clicks by Message')).$spe;
-print $spb.PageLink2("mviews",$GLOBALS['I18N']->get('View Opens by Message')).$spe;
-print $spb.PageLink2("domainstats",$GLOBALS['I18N']->get('Domain Statistics')).$spe;
-
+print "<li class='statistics'>".PageLink2("statsoverview",$GLOBALS['I18N']->get('Overview'))."</li>";
+print "<li class='statistics'>".PageLink2("uclicks",$GLOBALS['I18N']->get('View Clicks by URL'))."</li>";
+print "<li class='statistics'>".PageLink2("mclicks",$GLOBALS['I18N']->get('View Clicks by Message'))."</li>";
+print "<li class='statistics'>".PageLink2("mviews",$GLOBALS['I18N']->get('View Opens by Message'))."</li>";
+print "<li class='statistics'>".PageLink2("domainstats",$GLOBALS['I18N']->get('Domain Statistics'))."</li>";
+print '</ul>';
 $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
 if ($num[0] > 0) {
   print '<p class="information">'.$GLOBALS['I18N']->get('The clicktracking system has changed').'</p>';
   printf($GLOBALS['I18N']->get('You have %s entries in the old statistics table'),$num[0]);
-  print $spb.PageLink2("convertstats",$GLOBALS['I18N']->get('Convert Old data to new')).$spe;
+  print "<div class='clear'></div><div class='button'>".PageLink2("convertstats",$GLOBALS['I18N']->get('Convert Old data to new'))."</div>";
   print '<p class="information">'.$GLOBALS['I18N']->get('To avoid overloading the system, this will convert 10000 records at a time').'</p>';
 }
+
 
 ?>

@@ -27,8 +27,8 @@ $pages = array(
   'converttoutf8',
 );
 
-print '<ul>';
+print '<ul class="dashboard_button">';
 foreach ($pages as $page) {
-  print '<li>'.PageLink2($page,$page).'</li>';
+  print '<li class="configuration">'.PageLink2($page,$page).'</li>';
 }
 print '</ul>';
