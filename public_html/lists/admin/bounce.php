@@ -125,7 +125,7 @@ if ($id) {
   $actionpanel .= '<input type="hidden" name=id value="'.$id.'" />';
   $actionpanel .= '<table class="bounceActions">';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
-  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'<br />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td><td><input type="text" name="amount" value="1" size="5" /></td></tr>';
+  $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'<br />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td><td><input type="text" name="amount" value="0" size="5" /></td></tr>';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Mark subscriber as unconfirmed').'<br />'.$GLOBALS['I18N']->get('(so you can resend the request for confirmation)').' </td><td><input type="checkbox" name="unconfirm" value="1" /></td></tr>';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Set subscriber to receive text instead of HTML').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Delete subscriber').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
