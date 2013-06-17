@@ -120,7 +120,7 @@ if ($id) {
   $newruleform .= '</table></form>';
 
   $actionpanel = '';
-  $actionpanel .= '<form method="get">';
+  $actionpanel .= '<form method="get" action="">';
   $actionpanel .= '<input type="hidden" name=page value="'.$page.'" />';
   $actionpanel .= '<input type="hidden" name=id value="'.$id.'" />';
   $actionpanel .= '<table class="bounceActions">';
