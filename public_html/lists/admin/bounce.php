@@ -144,7 +144,19 @@ if ($id) {
   $transfer_encoding = '';
   if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i',$bounce["header"],$regs)) {
     $transfer_encoding = strtolower($regs[1]);
+  } elseif (0 && preg_match('/Content-Type: multipart\/mixed;\s+boundary="([^"]+)"/im',$bounce['header'],$regs)) {
+    ## @TODO, this needs more work, but probably easier to find a class that can 
+    ## split is all into itś parts
+#    print "BOUNDARY: ". $regs[1];
+    $multi_part_boundary = $regs[1];
+    $parts = explode($multi_part_boundary,$bounce["data"]);
+    var_dump($parts);
+    if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i',$bounce["data"],$regs)) {
+ #     var_dump($regs);
+ #     $transfer_encoding = strtolower($regs[1]);
+    }
   }
+    
   switch ($transfer_encoding) {
     case 'quoted-printable':
       $bounceBody = imap_qprint($bounce["data"]);break;
