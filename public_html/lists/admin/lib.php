@@ -720,7 +720,7 @@ function getPageLock($force = 0) {
     if ($waited > 10) {
       # we have waited 10 cycles, abort and quit script
       output($GLOBALS['I18N']->get('We have been waiting too long, I guess the other process is still going ok'));
-      exit;
+      return false;
     }
     $query
     = ' select current_timestamp - modified as age, id'
