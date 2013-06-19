@@ -21,7 +21,9 @@ print '<script language="Javascript" type="text/javascript"> yposition = 10;docu
 # lets not do this unless we do some locking first
 $abort = ignore_user_abort(1);
 $process_id = getPageLock();
-
+if (empty($process_id)) {
+  return;
+}
 $req = Sql_Fetch_Row_query(sprintf('select count(*) from %s ',$GLOBALS['tables']['bounce']));
 $total = $req[0];
 if (isset($_GET['s'])) {

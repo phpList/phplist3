@@ -15,6 +15,9 @@ if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
 } else {
   $send_process_id = getPageLock();
 }
+if (empty($send_process_id)) {
+  return;
+}
 #cl_output('page locked on '.$send_process_id);
 
 if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
