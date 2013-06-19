@@ -486,6 +486,11 @@ function cleanEmail ($value) {
   $value = preg_replace("/\r/","",$value);
   $value = preg_replace("/\n/","",$value);
   $value = preg_replace('/"/',"&quot;",$value);
+  $value = preg_replace('/^mailto:/i','',$value);
+  $value = str_replace('(','',$value);
+  $value = str_replace(')','',$value);
+  $value = preg_replace('/\.$/','',$value);
+  
   ## these are allowed in emails
 //  $value = preg_replace("/'/","&rsquo;",$value);
   $value = preg_replace("/`/","&lsquo;",$value);
