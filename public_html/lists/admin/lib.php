@@ -1493,6 +1493,15 @@ function listCategories() {
   return $aConfiguredListCategories;
 }
 
+/*
+ * shortenTextDisplay
+ * 
+ * mostly used for columns in listings to retrict the width, particularly on mobile devices
+ * it will show the full text as the title tip but restrict the size of the output
+ * 
+ * will also place a space after / and @ to facilitate wrapping in the browser
+ */
+
 function shortenTextDisplay($text,$max = 30) {
   $text = str_replace('http://','',$text);
   if (strlen($text) > $max) {
@@ -1505,6 +1514,9 @@ function shortenTextDisplay($text,$max = 30) {
   } else {
     $display = $text;
   }
+  $display = str_replace('/','/ ',$display);
+  $display = str_replace('@','@ ',$display);
+  
   return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
 }
 
