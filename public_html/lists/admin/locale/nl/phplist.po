@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-17 05:08+0000\n"
-"PO-Revision-Date: 2013-06-16 11:34+0000\n"
+"PO-Revision-Date: 2013-06-17 19:32+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1371382482.0\n"
+"X-POOTLE-MTIME: 1371497577.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2928,7 +2928,7 @@ msgstr "Verifieer instellingen"
 
 #: public_html/lists/admin/setup.php:72
 msgid "Configure attributes"
-msgstr "Configureer attributen"
+msgstr "Abonnee velden toevoegen en bewerken"
 
 #: public_html/lists/admin/setup.php:84
 msgid "Create public lists"
@@ -3285,7 +3285,7 @@ msgstr "Bericht in de wachtrij geplaatst"
 #: public_html/lists/admin/send_core.php:363
 #: public_html/lists/admin/home.php:272
 msgid "processqueue"
-msgstr "verwerk wachtrij"
+msgstr "Verwerk wachtrij"
 
 #: public_html/lists/admin/send_core.php:365
 msgid "view progress"
@@ -4140,11 +4140,11 @@ msgstr "Attributen"
 
 #: public_html/lists/admin/home.php:180
 msgid "Configure Attributes"
-msgstr "Configureer attributen"
+msgstr "Abonnee velden toevoegen en bewerken"
 
 #: public_html/lists/admin/home.php:187
 msgid "Control values for"
-msgstr "Controleer waarden voor"
+msgstr "Bekijk en bewerk de velden van "
 
 #: public_html/lists/admin/home.php:195
 msgid "spage"
@@ -4152,11 +4152,11 @@ msgstr "Inschrijf pagina's"
 
 #: public_html/lists/admin/home.php:197
 msgid "Configure Subscribe Pages"
-msgstr "Beheer inschrijf pagina's"
+msgstr "Bekijk, bewerk en voeg nieuwe inschrijf pagina's toe"
 
 #: public_html/lists/admin/home.php:202
 msgid "Configuration Functions"
-msgstr "Configuratie functies"
+msgstr "Instellingen"
 
 #: public_html/lists/admin/home.php:212
 msgid "admins"
@@ -4168,23 +4168,23 @@ msgstr "Bewerk, verwijder en voeg nieuwe beheerders toe"
 
 #: public_html/lists/admin/home.php:219
 msgid "adminattributes"
-msgstr "Beheerder attributen"
+msgstr "Beheerdersvelden"
 
 #: public_html/lists/admin/home.php:221
 msgid "Configure Attributes for administrators"
-msgstr "Configureer attributen voor beheerders"
+msgstr "Voeg nieuwe velden voor beheerders toe en bewerk bestaande velden"
 
 #: public_html/lists/admin/home.php:225
 msgid "Administrator Functions"
-msgstr "Beheerders functies"
+msgstr "Beheerders"
 
 #: public_html/lists/admin/home.php:235 public_html/lists/admin/list.php:239
 msgid "send"
-msgstr "Verzend"
+msgstr "Verzenden"
 
 #: public_html/lists/admin/home.php:237
 msgid "Send a Message"
-msgstr "Berichten versturen"
+msgstr "Maak een nieuw bericht of ga verder met een concept"
 
 #: public_html/lists/admin/home.php:243
 msgid "preparesend"
@@ -4204,11 +4204,11 @@ msgstr "Verstuur een voorbereid bericht"
 
 #: public_html/lists/admin/home.php:258
 msgid "templates"
-msgstr "sjablonen"
+msgstr "Sjablonen"
 
 #: public_html/lists/admin/home.php:260
 msgid "Configure Templates"
-msgstr "Configureer Sjablonen"
+msgstr "Maak een nieuw sjabloon of pas een bestaand sjabloon aan"
 
 #: public_html/lists/admin/home.php:265
 #: public_html/lists/admin/import3.php:148
@@ -4219,11 +4219,13 @@ msgstr "Berichten"
 
 #: public_html/lists/admin/home.php:267
 msgid "List all Messages"
-msgstr "Geef een overzicht van alle berichten"
+msgstr "Een overzicht van alle verzonden-, te verzenden- en concept berichten"
 
 #: public_html/lists/admin/home.php:274
 msgid "Process the Message Queue"
-msgstr "Verwerk de wachtrij"
+msgstr ""
+"Verwerk de berichten die in de wachtrij zijn geplaatst om te worden "
+"verzonden"
 
 #: public_html/lists/admin/home.php:277
 #: public_html/lists/admin/connect.php:442
@@ -4249,11 +4251,11 @@ msgstr "Verwerk teruggekaatste e-mail"
 #: public_html/lists/admin/home.php:291
 #: public_html/lists/admin/bouncemgt.php:8
 msgid "View Bounces"
-msgstr "bekijk teruggekaatste e-mail"
+msgstr "bekijk en verwijder teruggekaatste e-mail"
 
 #: public_html/lists/admin/home.php:295
 msgid "Message Functions"
-msgstr "Bericht functies"
+msgstr "Berichten"
 
 #: public_html/lists/admin/home.php:343 public_html/lists/admin/about.php:60
 msgid "Plugins"
@@ -4265,7 +4267,7 @@ msgstr "Installatie"
 
 #: public_html/lists/admin/home.php:355
 msgid "Setup "
-msgstr "Installatie van phplist"
+msgstr "Status van"
 
 #: public_html/lists/admin/home.php:360
 msgid "upgrade"
@@ -4285,7 +4287,7 @@ msgstr "Logboek"
 
 #: public_html/lists/admin/home.php:377
 msgid "View the eventlog"
-msgstr "Bekijk het logboek"
+msgstr "Bekijk het overzicht van gebeurtenissen"
 
 #: public_html/lists/admin/home.php:382
 msgid "admin"
@@ -4297,7 +4299,7 @@ msgstr "Verander je eigen details (bijv wachtwoord)"
 
 #: public_html/lists/admin/home.php:388
 msgid "System Functions"
-msgstr "Systeem opties"
+msgstr "Programma"
 
 #: public_html/lists/admin/help/index.php:63
 msgid ""
@@ -7645,13 +7647,13 @@ msgid "pagetitle:home"
 msgstr "Startpagina"
 
 msgid "pagetitle:setup"
-msgstr "Configureer mogelijkheden"
+msgstr "Status van phpList"
 
 msgid "pagetitle:about"
 msgstr "Over phpList"
 
 msgid "pagetitle:attributes"
-msgstr "Configureer attributen"
+msgstr "Abonnee velden toevoegen en bewerken"
 
 msgid "pagetitle:stresstest"
 msgstr "Test onder stress"
@@ -7726,7 +7728,7 @@ msgid "pagetitle:message"
 msgstr "Bericht"
 
 msgid "pagetitle:processqueue"
-msgstr "verzend de wachtrij"
+msgstr "Verwerk de wachtrij"
 
 msgid "pagetitle:defaults"
 msgstr "Standaard"
@@ -7753,7 +7755,7 @@ msgid "pagetitle:admins"
 msgstr "Beheerders"
 
 msgid "pagetitle:adminattributes"
-msgstr "Beheer gereedschappen"
+msgstr "Beheerdersvelden"
 
 msgid "pagetitle:processbounces"
 msgstr "Process teruggekaatste e-mail?"
@@ -7771,7 +7773,7 @@ msgid "pagetitle:spage"
 msgstr "Inschrijf pagina's"
 
 msgid "pagetitle:eventlog"
-msgstr "Gebeurtenissenlogboek"
+msgstr "Logboek"
 
 msgid "pagetitle:getrss"
 msgstr "RSS"
@@ -7792,10 +7794,10 @@ msgid "pagetitle:logout"
 msgstr "Afmelden"
 
 msgid "pagetitle:mclicks"
-msgstr "Campagne click statistieken"
+msgstr "Bekeken berichten"
 
 msgid "pagetitle:uclicks"
-msgstr "Url statistieken"
+msgstr "Aangeklikte berichten"
 
 msgid "pagetitle:massunconfirm"
 msgstr "Markeren als niet bevestigd"
@@ -7810,10 +7812,10 @@ msgid "pagetitle:bouncemgt"
 msgstr "Beheer teruggekaatste e-mail"
 
 msgid "pagetitle:domainstats"
-msgstr "Domein statistieken"
+msgstr "Bezochte domeinen"
 
 msgid "pagetitle:mviews"
-msgstr "Bekijk open statistieken"
+msgstr "Verzonden berichten"
 
 msgid "pagetitle:statsmgt"
 msgstr "statsmgt?"
