@@ -51,6 +51,11 @@ if (!Sql_Table_exists($GLOBALS['tables']['linktrack_forward']) ||
   output(s("creating tables done"));
 }
 
+$process_id = getPageLock();
+if (empty($process_id)) {
+  return;
+}
+
 $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
 output(s("%d entries still to convert",$num[0]).'<br/>');
 
@@ -62,6 +67,13 @@ if ($total) {
 }
 
 while ($row = Sql_Fetch_Array($req)) {
+  if (checkLock($process_id)) {
+    keepLock($process_id);
+  } else {
+    output(s('processing cancelled'));
+    break;
+  }
+  
   $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"',$GLOBALS['tables']['linktrack_forward'],$row['url']));
   if (!$exists[0]) {
     $personalise = preg_match('/uid=/',$row['forward']);
@@ -150,4 +162,6 @@ output ($GLOBALS['I18N']->get('Finished').'.<br/>');
 if (!$GLOBALS['commandline']) {
   print PageLink2('convertstats',$GLOBALS['I18N']->get('Convert some more'));
 }
+releaseLock($process_id);
+
 return;
