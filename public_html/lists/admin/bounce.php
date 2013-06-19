@@ -48,7 +48,7 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
       $actionresult .= "$useremail => ".$GLOBALS['I18N']->get('Not Found')."<br />";
     }
   }
-  if (isset($userid) && $amount) {
+  if (!empty($userid) && $amount) {
     Sql_Query(sprintf('update %s set bouncecount = bouncecount + %d where id = %d',
       $tables["user"],$amount,$userid));
      if (Sql_Affected_Rows()) {
@@ -58,19 +58,19 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
     }
   }
 
-  if ($userid && $unconfirm) {
+  if (!empty($userid) && $unconfirm) {
     Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
       $tables["user"],$userid));
      $actionresult .= sprintf($GLOBALS['I18N']->get('Made subscriber %s unconfirmed')."<br />", $userid);
   }
 
-  if ($userid && $maketext) {
+  if (!empty($userid) && $maketext) {
     Sql_Query(sprintf('update %s set htmlemail = 0 where id = %d',
       $tables["user"],$userid));
      $actionresult .= sprintf($GLOBALS['I18N']->get('Made subscriber %d to receive text')."<br />", $userid);
   }
 
-  if ($userid && $deleteuser) {
+  if (!empty($userid) && $deleteuser) {
     deleteUser($userid);
     $actionresult .= sprintf($GLOBALS['I18N']->get('Deleted subscriber %d')."<br />", $userid);
   }
@@ -140,6 +140,21 @@ if ($id) {
   
   $p = new UIPanel($GLOBALS['I18N']->get('Possible Actions:'),$actionpanel);
   print $p->display();
+   
+  $transfer_encoding = '';
+  if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i',$bounce["header"],$regs)) {
+    $transfer_encoding = strtolower($regs[1]);
+  }
+  switch ($transfer_encoding) {
+    case 'quoted-printable':
+      $bounceBody = imap_qprint($bounce["data"]);break;
+    case 'base64': 
+      $bounceBody = imap_base64($bounce['data']);break;
+    case '7bit':
+    case '8bit':
+    default:
+      $bounceBody = $bounce['data'];
+  }
   
   $bouncedetail = sprintf ('
   <div class="fleft"><div class="label">'.$GLOBALS['I18N']->get('ID').'</div><div class="content">%d</div></div>
@@ -150,7 +165,7 @@ if ($id) {
   <div class="label">'.$GLOBALS['I18N']->get('Header').'</div><div class="content">%s</div><br />
   <div class="label">'.$GLOBALS['I18N']->get('Body').'</div><div class="content">%s</div>',$id,
   $bounce["date"],$bounce["status"],$bounce["comment"],
-  nl2br(htmlspecialchars($bounce["header"])),nl2br(htmlspecialchars($bounce["data"])));
+  nl2br(htmlspecialchars($bounce["header"])),nl2br(htmlspecialchars($bounceBody)));
 #   print '<tr><td colspan="2"><p class="submit"><input type="submit" name=change value="Save Changes"></p>';
 
   $p = new UIPanel(s('Bounce Details'),$bouncedetail);
