@@ -36,9 +36,10 @@ if (!isset($checkinterval)) {
 }
 if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   $query
-  = ' select cast(value as date) + \'%d days\' < current_timestamp as needscheck'
+  = ' select date_add(value, interval %d day) < current_timestamp as needscheck'
   . ' from %s'
   . ' where item = ?';
+  ##https://mantis.phplist.com/view.php?id=16815
   $query = sprintf( $query, $checkinterval, $tables["config"] );
   $req = Sql_Query_Params($query, array('updatelastcheck'));
   $needscheck = Sql_Fetch_Row($req);
