@@ -126,6 +126,9 @@ if (defined('PUBLIC_PROTOCOL')) {
 if (!isset($bounce_protocol)) {
   $bounce_protocol = 'pop';
 }
+if (!isset($bounce_unsubscribe_threshold)) {
+  $bounce_unsubscribe_threshold = 3;
+}
 ## spelling mistake in earlier version, make sure to set it correctly
 if (!isset($bounce_unsubscribe_threshold) && isset($bounce_unsubscribe_treshold)) {
   $bounce_unsubscribe_threshold = $bounce_unsubscribe_treshold;
