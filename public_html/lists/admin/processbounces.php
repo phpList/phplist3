@@ -32,8 +32,9 @@ function finish ($flag,$message) {
   } elseif ($flag == "info") {
     $subject = $GLOBALS['I18N']->get("Bounce Processing info");
   }
-  if (!TEST && $message)
+  if (!TEST && $message) {
     sendReport($subject,$message);
+  }
 }
 
 function ProcessError ($message) {
@@ -47,9 +48,6 @@ function processbounces_shutdown() {
   releaseLock($process_id);
  # $report .= "Connection status:".connection_status();
   finish('info',$report);
-  if (!$GLOBALS["commandline"]) {
-    include_once dirname(__FILE__).'/footer.inc';
-  }
 }
 
 function output ($message,$reset = 0) {
@@ -86,60 +84,119 @@ function output ($message,$reset = 0) {
   flush();
 }
 
-function processBounce ($link,$num,$header) {
-  global $tables;
-  $headerinfo = imap_headerinfo($link,$num);
-
-  $body= imap_body ($link,$num);
-  $msgid = 0;$user = 0;
-  preg_match ("/X-MessageId: (.*)/i",$body,$match);
-  if (is_array($match) && isset($match[1]))
-    $msgid= trim($match[1]);
+function findMessageId($text) {
+  $msgid = 0;
+  preg_match ("/X-MessageId: (.*)\R/iU",$text,$match);
+  if (is_array($match) && isset($match[1])) {
+    $msgid = trim($match[1]);
+  }
   if (!$msgid) {
     # older versions use X-Message
-    preg_match ("/X-Message: (.*)/i",$body,$match);
-    if (is_array($match) && isset($match[1]))
-      $msgid= trim($match[1]);
+    preg_match ("/X-Message: (.*)\R/iU",$text,$match);
+    if (is_array($match) && isset($match[1])) {
+      $msgid = trim($match[1]);
+    }
   }
+  return $msgid;
+}
 
-  preg_match ("/X-ListMember: (.*)/i",$body,$match);
-  if (is_array($match) && isset($match[1]))
+function findUserID($text) {
+  global $tables;
+  $userid = 0;
+  $user = '';
+  preg_match ("/X-ListMember: (.*)\R/iU",$text,$match);
+  if (is_array($match) && isset($match[1])) {
     $user = trim($match[1]);
-  if (!$user) {
+  }
+  if (empty($user)) {
     # older version use X-User
-    preg_match ("/X-User: (.*)/i",$body,$match);
-    if (is_array($match) && isset($match[1]))
+    preg_match ("/X-User: (.*)\R/iU",$text,$match);
+    if (is_array($match) && isset($match[1])) {
       $user = trim($match[1]);
+    }
   }
 
   # some versions used the email to identify the users, some the userid and others the uniqid
   # use backward compatible way to find user
-  if (preg_match ("/.*@.*/i",$user,$match)) {
-    $userid_req = Sql_Fetch_Row_Query("select id from {$tables["user"]} where email = \"$user\"");
-    if (VERBOSE)
-      output("UID".$userid_req[0]." MSGID".$msgid);
+  if (strpos($user,'@') !== false) {
+    $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$tables["user"],sql_escape($user)));
     $userid = $userid_req[0];
   } elseif (preg_match("/^\d$/",$user)) {
     $userid = $user;
-    if (VERBOSE)
-      output( "UID".$userid." MSGID".$msgid);
-  } elseif ($user) {
-    $userid_req = Sql_Fetch_Row_Query("select id from {$tables["user"]} where uniqid = \"$user\"");
-    if (VERBOSE)
-      output( "UID".$userid_req[0]." MSGID".$msgid);
+  } elseif (!empty($user)) {
+    $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',$tables["user"],sql_escape($user)));
     $userid = $userid_req[0];
-  } else {
-    $userid = '';
   }
+  
+  ### if we didn't find any, parse anything looking like an email address and check if it's a subscriber.
+  ## this is probably fairly time consuming, but as the process is only done once every so often
+  ## that should not be too bad
+  
+  preg_match_all('/[\S]+@[\S\.]+/',$text,$regs);
+  foreach ($regs[0] as $match) {
+    $email = cleanEmail($match);
+    $useridQ = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$tables['user'],sql_escape($email)));
+    if (!empty($useridQ[0])) {
+      $userid = $useridQ[0]; 
+      break;
+    }
+  }
+  
+  return $userid;
+}  
+
+function decodeBody($header,$body) {
+  $transfer_encoding = '';
+  if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i',$header,$regs)) {
+    $transfer_encoding = strtolower($regs[1]);
+  }
+  switch ($transfer_encoding) {
+    case 'quoted-printable':
+      $decoded_body = @imap_qprint($body);break;
+    case 'base64': 
+      $decoded_body = @imap_base64($body);break;
+    case '7bit':
+    case '8bit':
+    default:
+     # $body = $body;
+  }
+  if (!empty($decoded_body)) {
+    return $decoded_body;
+  } else {
+    return $body;
+  }
+}
+
+function processImapBounce ($link,$num,$header) {
+  global $tables;
+  $headerinfo = imap_headerinfo($link,$num);
+  $bounceDate = @strtotime($headerinfo->date);
+  $body = imap_body ($link,$num);
+  $body = decodeBody($header,$body);
+ 
+  $msgid = findMessageId($body);
+  $userid = findUserID($body);
+  if (VERBOSE) {
+    output("UID".$userid." MSGID".$msgid);
+  }
+
   Sql_Query(sprintf('insert into %s (date,header,data)
     values("%s","%s","%s")',
     $tables["bounce"],
-    date("Y-m-d H:i",@strtotime($headerinfo->date)),
+    date("Y-m-d H:i",$bounceDate),
     addslashes($header),
     addslashes($body)));
 
   $bounceid = Sql_Insert_Id($tables['bounce'], 'id');
-  if ($msgid == "systemmessage" && $userid) {
+  
+  return processBounceData($bounceid,$msgid,$userid);
+}
+ 
+function processBounceData($bounceid,$msgid,$userid) {
+  global $tables;
+  $useremailQ = Sql_fetch_row_query(sprintf('select email from %s where id = %d',$tables['user'],$userid));
+  $useremail = $useremailQ[0];
+  if ($msgid === "systemmessage" && !empty($userid)) {
     Sql_Query(sprintf('update %s
       set status = "bounced system message",
       comment = "%s marked unconfirmed"
@@ -147,7 +204,7 @@ function processBounce ($link,$num,$header) {
       $tables["bounce"],
       $userid,$bounceid));
      logEvent("$userid ".$GLOBALS['I18N']->get("system message bounced, user marked unconfirmed"));
-     addUserHistory($user,$GLOBALS['I18N']->get("Bounced system message"),"
+     addUserHistory($useremail,$GLOBALS['I18N']->get("Bounced system message"),"
     <br/>".$GLOBALS['I18N']->get("User marked unconfirmed")."
     <br/><a href=\"./?page=bounce&amp;id=$bounceid\">".$GLOBALS['I18N']->get("View Bounce")."</a>
 
@@ -157,7 +214,7 @@ function processBounce ($link,$num,$header) {
       where id = %d',
       $tables["user"],
       $userid));
-  } elseif ($msgid && $userid) {
+  } elseif (!empty($msgid) && !empty($userid)) {
     Sql_Query(sprintf('update %s
       set status = "bounced list message %d",
       comment = "%s bouncecount increased"
@@ -285,7 +342,7 @@ function processMessages($link,$max = 3000) {
       output($x . " done",1);
     print "\n";
     flush();
-    $processed = processBounce($link,$x,$header);
+    $processed = processImapBounce($link,$x,$header);
     if ($processed) {
       if (!TEST && $bounce_mailbox_purge) {
         if (VERBOSE)
@@ -317,24 +374,23 @@ if (!function_exists('imap_open')) {
   return;
 }
 
-if (!$bounce_mailbox && (!$bounce_mailbox_host || !$bounce_mailbox_user || !$bounce_mailbox_password)) {
+if (empty($bounce_mailbox) && (empty($bounce_mailbox_host) || empty($bounce_mailbox_user) || empty($bounce_mailbox_password))) {
   Error($GLOBALS['I18N']->get("Bounce mechanism not properly configured"));
   return;
 }
 
 print '<script language="Javascript" type="text/javascript"> yposition = 10;document.write(progressmeter); start();</script>';
 print prepareOutput();
-# make sure the browser doesn't buffer it
-for ($i = 0; $i< 10000; $i++)  {
-  print ' '."\n";
-}
-
+flushBrowser();
 
 # lets not do this unless we do some locking first
 register_shutdown_function('processbounces_shutdown');
 $abort = ignore_user_abort(1);
 $process_id = getPageLock();
-
+if (empty($process_id)) {
+  return;
+}
+$download_report = '';
 switch ($bounce_protocol) {
   case "pop":
     $download_report =  processPop ($bounce_mailbox_host,$bounce_mailbox_user,$bounce_mailbox_password);
@@ -348,6 +404,34 @@ switch ($bounce_protocol) {
 }
 
 # now we have filled database with all available bounces
+
+## reprocess the unidentified ones, as the bounce detection has improved, so it might catch more
+
+cl_output('reprocessing');
+$reparsed = $count = 0;
+$reidentified = 0;
+$req = Sql_Query(sprintf('select * from %s where status = "unidentified bounce"',$tables['bounce']));
+$total = Sql_Affected_Rows();
+cl_output(s('%d bounces to reprocess',$total));
+while ($bounce = Sql_Fetch_Assoc($req)) {
+  $count++;
+  if ($count % 25 == 0) {
+    cl_progress(s('%d out of %d processed',$count,$total));
+  }
+  $bounceBody = decodeBody($bounce['header'],$bounce['data']);
+  $userid = findUserID($bounceBody);
+  $messageid = findMessageId($bounceBody);
+  if (!empty($userid) || !empty($messageid)) {
+    $reparsed++;
+    if (processBounceData($bounce['id'],$messageid,$userid)) {
+      $reidentified++;
+    }
+  }
+}
+cl_output(s('%d out of %d processed',$count,$total));
+if (VERBOSE) {
+  output(s('%d bounces were re-processed and %d bounces were re-identified',$reparsed,$reidentified));
+}
 $advanced_report = '';
 if (USE_ADVANCED_BOUNCEHANDLING) {
   output($GLOBALS['I18N']->get('Processing bounces based on active bounce rules'));
@@ -510,15 +594,16 @@ while ($user = Sql_Fetch_Row($userid_req)) {
   #$alive = 1;$removed = 0; DT 051105
   $cnt=0;
   $alive = 1;
-  $removed = $msgokay = $unconfirmed = 0;
+  $removed = $msgokay = $unconfirmed = $unsubscribed = 0;
         #while ($alive && !$removed && $bounce = Sql_Fetch_Array($msg_req)) { DT 051105
   while ($alive && !$removed && !$msgokay && $bounce = Sql_Fetch_Array($msg_req)) {
 
     $alive = checkLock($process_id);
-    if ($alive)
+    if ($alive) {
       keepLock($process_id);
-    else
+    } else {
       ProcessError("Process Killed by other process");
+    }
 
     if (sprintf('%d',$bounce["bounce"]) == $bounce["bounce"]) {
       $cnt++;
@@ -538,7 +623,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
           $removed = 1;
           #0012262: blacklist email when email bounces
           cl_output(s('%d consecutive bounces, threshold reached, blacklisting subscriber',$cnt));
-          addEmailToBlackList($emailreq, s('%d consecutive bounces, threshold reached',$cnt));
+          addEmailToBlackList($emailreq[0], s('%d consecutive bounces, threshold reached',$cnt));
         }
       }
     } elseif ($bounce["bounce"] == "") {
@@ -583,5 +668,3 @@ if ($unsubscribed_users) {
 # IMAP errors following when Notices are on are a PHP bug
 # http://bugs.php.net/bug.php?id=7207
 
-
-?>
