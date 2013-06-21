@@ -328,24 +328,25 @@ else {
   print '<p class="information">'.$GLOBALS['I18N']->get('No Attributes have been defined yet').'</p>';
 }
 $c= 0;
+    print '<div class="accordion">';	
 while ($row = Sql_Fetch_array($res)) {
 	$c++;
-  print '<div class="attributesForms"><h3>'.
-  $GLOBALS['I18N']->get('Attribute').': '. $row["id"];
+  print '<h3><a name="'. $row["id"].'">'.
+  $GLOBALS['I18N']->get('Attribute').': '. $row["id"].' '.htmlspecialchars(stripslashes(strip_tags($row["name"])));
   if ($formtable_exists) {
     sql_query("select * from formfield where attribute = ".$row["id"]);
     print "  (".$GLOBALS['I18N']->get('used in').' '.Sql_affected_rows().' '.$GLOBALS['I18N']->get('forms').')';
   }
     
-  print '</h3><div class="label check"><label>'.$GLOBALS['I18N']->get('Tag').'
-  <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></label></div>';
+  print '</a></h3><div><label>'.$GLOBALS['I18N']->get('Tag').'
+  <input type="checkbox" name="tag['.$c.']" value="'.$row["id"].'" /></label>';
     
-  print '<div class="label"><label>'.s('Name').':</label> </div>
-  <div class="field"><input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes(strip_tags($row["name"]))).'" size="40" /></div>';
-  print '<div class="label"><label>'.s('Type').': </label></div>
+  print '<label>'.s('Name').':</label>
+  <input type="text" name="name['.$row["id"].']" value="'.htmlspecialchars(stripslashes(strip_tags($row["name"]))).'" size="40" />';
+  print '<label>'.s('Type').': </label>
   <!--<input type="hidden" name="type['.$row["id"].']" value="'.$row["type"].'">'.$row["type"].'-->';
 
-  print '<div class="field"><select name="type['.$row["id"].']" onchange="warn();">';
+  print '<select name="type['.$row["id"].']" onchange="warn();">';
   foreach($types as $key => $val) {
     printf('<option value="%s" %s>%s</option>',$val,$val == $row["type"] ? 'selected="selected"': '',$GLOBALS['I18N']->get($val));
   }
@@ -355,7 +356,7 @@ while ($row = Sql_Fetch_array($res)) {
   if ((defined('IN_WEBBLER') && IN_WEBBLER) || (defined('WEBBLER') && WEBBLER) ) {
     if ($row['type'] == 'select' || $row['type'] == 'radio' || $row['type'] == 'checkboxgroup') {
       print ' '.$I18N->get('authoritative list') .'&nbsp;';
-      printf('<div class="field"><select name="keywordlib[%d]"><option value="">-- select</option>',$row['id']);
+      printf('<select name="keywordlib[%d]"><option value="">-- select</option>',$row['id']);
       $req = Sql_Query(sprintf('select id,name from keywordlib order by listorder,name'));
       while ($kwlib = Sql_Fetch_Array($req)) {
         printf('<option value="%d" %s>%s</option>',$kwlib['id'],$row['keywordlib'] == $kwlib['id'] ? 'selected="selected"':'',htmlspecialchars($kwlib['name']));
@@ -370,26 +371,24 @@ while ($row = Sql_Fetch_array($res)) {
     }
   }
 
-  print '</div>';
-  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Default Value').':</label> </div>
-  <div class="field"><input type="text" name="default['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["default_value"])).'" size="40" /></div>';
-  print '<div class="label"><label>'.$GLOBALS['I18N']->get('Order of Listing').':</label> </div>
-  <div class="field"><input type="text" name="listorder['.$row["id"].']" value="'.$row["listorder"].'" size="5" /></div>';
-  print '<div class="label check"><label>'.$GLOBALS['I18N']->get('Is this attribute required ?').'<input type="checkbox" name="required['.$row["id"].']" value="1" ';
+  print '<label>'.$GLOBALS['I18N']->get('Default Value').':</label>
+  <input type="text" name="default['.$row["id"].']" value="'.htmlspecialchars(stripslashes($row["default_value"])).'" size="40" />';
+  print '<label>'.$GLOBALS['I18N']->get('Order of Listing').':</label>
+  <input type="text" name="listorder['.$row["id"].']" value="'.$row["listorder"].'" size="5" />';
+  print '<label>'.$GLOBALS['I18N']->get('Is this attribute required ?').'<input type="checkbox" name="required['.$row["id"].']" value="1" ';
   print $row["required"] ? 'checked="checked"': '';
-  print  '/></label></div>';
-  print '</div>';
+  print  '/></label>';
+  print  '</div>';
  } 
- printf('<input class ="submit" type="submit" name="action" value="%s" />',s('Save Changes'));
-
+print '</div><br /><!--close accordion-->';
+ printf('<input class="submit" type="submit" name="action" value="%s" /> ',s('Save Changes'));
 if ($c) {
-  printf('<i>%s: </i><br/>',$GLOBALS['I18N']->get('With TAGGED attributes'));
-  printf('<span class="buttonGroup"><input class="submit" type="submit" name="tagaction[delete]" value="%s" />&nbsp;
-  <input class="submit" type="submit" name="tagaction[merge]" value="%s" /> &nbsp;&nbsp;%s<br/>
-  </span><hr/>',$GLOBALS['I18N']->get('Delete'),$GLOBALS['I18N']->get('Merge'),Help("mergeattributes"));
+  printf('<span class="buttonGroup"><input class="submit" type="submit" name="tagaction[delete]" value="%s" /> 
+  <input class="submit" type="submit" name="tagaction[merge]" value="%s" />%s
+  </span>',$GLOBALS['I18N']->get('Delete tagged attributes'),$GLOBALS['I18N']->get('Merge tagged attributes'),Help("mergeattributes"));
 }
 
-print '<div id="new-attribute">
+print '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
 <h3>'.$GLOBALS['I18N']->get('Add new Attribute').':</h3>
 <div class="label"><label class="label">'.s('Name').': </label></div>
