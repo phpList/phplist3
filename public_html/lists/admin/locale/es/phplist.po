@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-17 05:03+0000\n"
+"POT-Creation-Date: 2013-06-20 05:01+0000\n"
 "PO-Revision-Date: 2013-06-07 19:10+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -3559,8 +3559,9 @@ msgid "add Google Analytics tracking code"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:947
+#, fuzzy
 msgid "Reset click statistics"
-msgstr ""
+msgstr "Estad&iacute;sticas de cliscks de usuario"
 
 #: public_html/lists/admin/send_core.php:954
 msgid "Estimated size of HTML email"
@@ -5442,8 +5443,9 @@ msgid "Message they receive when they confirm their subscription"
 msgstr "Mensaje que reciben al confirmar su inscripci&oacute;n"
 
 #: public_html/lists/admin/spageedit.php:247
+#, fuzzy
 msgid "Message they receive when they unsubscribe"
-msgstr ""
+msgstr "Mensaje que reciben al inscribirse"
 
 #: public_html/lists/admin/spageedit.php:259
 msgid "Select the attributes to use"
@@ -6497,8 +6499,9 @@ msgid "Optimizing table to recover space"
 msgstr ""
 
 #: public_html/lists/admin/convertstats.php:148
+#, fuzzy
 msgid "Finished"
-msgstr ""
+msgstr "Finalizar"
 
 #: public_html/lists/admin/convertstats.php:151
 msgid "Convert some more"

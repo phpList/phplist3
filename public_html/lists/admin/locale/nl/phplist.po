@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-17 05:08+0000\n"
-"PO-Revision-Date: 2013-06-17 19:32+0000\n"
+"POT-Creation-Date: 2013-06-20 05:07+0000\n"
+"PO-Revision-Date: 2013-06-19 09:55+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1371497577.0\n"
+"X-POOTLE-MTIME: 1371635739.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2576,8 +2576,8 @@ msgstr "De huidige database versie"
 msgid ""
 "Your database is already the correct version, there is no need to upgrade"
 msgstr ""
-"De database heeft de juiste versie, er is geen reden om een upgrade uit te "
-"voeren"
+"De database heeft de juiste versie, er is geen reden om de database bij te "
+"werken"
 
 #: public_html/lists/admin/upgrade.php:60
 msgid "Please wait, upgrading your database, do not interrupt"
@@ -2916,7 +2916,7 @@ msgstr "Wijzig"
 
 #: public_html/lists/admin/setup.php:21 public_html/lists/admin/home.php:19
 msgid "Initialise Database"
-msgstr "Initialiseer Database"
+msgstr "Database tabellen aanmaken"
 
 #: public_html/lists/admin/setup.php:36
 msgid "Change admin password"
@@ -4136,7 +4136,7 @@ msgstr "Configureer"
 
 #: public_html/lists/admin/home.php:178
 msgid "attributes"
-msgstr "Attributen"
+msgstr "Abonnee velden"
 
 #: public_html/lists/admin/home.php:180
 msgid "Configure Attributes"
@@ -4267,7 +4267,7 @@ msgstr "Installatie"
 
 #: public_html/lists/admin/home.php:355
 msgid "Setup "
-msgstr "Status van"
+msgstr "Status"
 
 #: public_html/lists/admin/home.php:360
 msgid "upgrade"
@@ -6039,7 +6039,7 @@ msgstr ""
 
 #: public_html/lists/admin/list.php:44 public_html/lists/admin/catlists.php:60
 msgid "Categorise lists"
-msgstr "Categoriseer verzendlijsten"
+msgstr "Verzendlijsten categoriseren"
 
 #: public_html/lists/admin/list.php:87 public_html/lists/admin/list.php:97
 #: public_html/lists/admin/list.php:119 public_html/lists/admin/list.php:127
@@ -7662,7 +7662,7 @@ msgid "pagetitle:list"
 msgstr "Verzendlijsten"
 
 msgid "pagetitle:catlists"
-msgstr "Categoriseer verzendlijsten"
+msgstr "Verzendlijsten categoriseren"
 
 msgid "pagetitle:editattributes"
 msgstr "Bewerk attributen"
@@ -7695,7 +7695,7 @@ msgid "pagetitle:export"
 msgstr "Exporteren"
 
 msgid "pagetitle:initialise"
-msgstr "Initialiseer"
+msgstr "Database tabellen aanmaken"
 
 msgid "pagetitle:send"
 msgstr "Verzenden"
@@ -7728,13 +7728,13 @@ msgid "pagetitle:message"
 msgstr "Bericht"
 
 msgid "pagetitle:processqueue"
-msgstr "Verwerk de wachtrij"
+msgstr "Wachtrij verwerken"
 
 msgid "pagetitle:defaults"
 msgstr "Standaard"
 
 msgid "pagetitle:upgrade"
-msgstr "Upgrade"
+msgstr "Database versie bijwerken"
 
 msgid "pagetitle:templates"
 msgstr "Sjablonen"
@@ -7752,13 +7752,13 @@ msgid "pagetitle:admin"
 msgstr "Beheerder"
 
 msgid "pagetitle:admins"
-msgstr "Beheerders"
+msgstr "Beheerdersoverzicht"
 
 msgid "pagetitle:adminattributes"
 msgstr "Beheerdersvelden"
 
 msgid "pagetitle:processbounces"
-msgstr "Process teruggekaatste e-mail?"
+msgstr "Teruggekaatste e-mail analyseren"
 
 msgid "pagetitle:bounces"
 msgstr "Teruggekaatste e-mail "
@@ -7770,7 +7770,7 @@ msgid "pagetitle:spageedit"
 msgstr "Inschrijf pagina bewerken"
 
 msgid "pagetitle:spage"
-msgstr "Inschrijf pagina's"
+msgstr "Abonnee inschrijf pagina's"
 
 msgid "pagetitle:eventlog"
 msgstr "Logboek"
@@ -7830,7 +7830,7 @@ msgid "pagetitle:dbcheck"
 msgstr "Database controle"
 
 msgid "pagetitle:importadmin"
-msgstr "Importeer beheerders"
+msgstr "Beheerders importeren"
 
 msgid "pagetitle:dbadmin"
 msgstr "dbadmin?"
@@ -7845,7 +7845,7 @@ msgid "pagetitle:bouncerules"
 msgstr "Teruggekaatste e-mail regels"
 
 msgid "pagetitle:checkbouncerules"
-msgstr "Controleer teruggekaatste e-mail regels?"
+msgstr "Analyseer regels teruggekaatste e-mail"
 
 msgid "pagetitle:translate"
 msgstr "Vertaling"
@@ -7857,7 +7857,7 @@ msgid "pagetitle:updatetranslation"
 msgstr "Vertaling bijwerken"
 
 msgid "pagetitle:reindex"
-msgstr "Opnieuw indexeren"
+msgstr "Database opnieuw indexeren"
 
 #~ msgid "Save and Activate"
 #~ msgstr "Opslaan en Activeren"
