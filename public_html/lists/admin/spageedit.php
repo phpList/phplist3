@@ -258,10 +258,12 @@ print $transactionHTML;
 
 $attributesHTML = '<h3><a name="attributes">'.$GLOBALS['I18N']->get('Select the attributes to use').'</a></h3>';
 $attributesHTML .= '<div>';
+$hasAttributes = false;
 
 $req = Sql_Query(sprintf('select * from %s order by listorder',$tables["attribute"]));
 $checked = array();
 while ($row = Sql_Fetch_Array($req)) {
+  $hasAttributes = true;
   if (isset($attributedata[$row["id"]]) && is_array($attributedata[$row["id"]])) {
     $checked[$row["id"]] = "checked";
     $bgcol = '#F7E7C2';
@@ -287,7 +289,9 @@ while ($row = Sql_Fetch_Array($req)) {
 
 $attributesHTML .= '</div>';
 
-print $attributesHTML;
+if ($hasAttributes) {
+  print $attributesHTML;
+}
 
 ### allow plugins to add tabs
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -315,16 +319,27 @@ print $listsHTML;
 print '</div>'; // accordion
 
 
+$ownerHTML = $singleOwner = '';
+$adminCount = 0;
 if ($GLOBALS["require_login"] && (isSuperUser() || accessLevel("spageedit") == "all")) {
   if (!isset($data['owner'])) {
     $data['owner'] = 0;
   }
-  print '<br/>'.$GLOBALS['I18N']->get('Owner').': <select name="owner">';
+  $ownerHTML .= '<br/>'.$GLOBALS['I18N']->get('Owner').': <select name="owner">';
   $admins = $GLOBALS["admin_auth"]->listAdmins();
+  $adminCount = sizeof($admins);
   foreach ($admins as $adminid => $adminname) {
-    printf ('<option value="%d" %s>%s</option>',$adminid,$adminid == $data['owner']? 'selected="selected"':'',$adminname);
+    $singleOwner = '<input type="hidden" name="owner" value="'.$adminid.'" />';
+    $ownerHTML .= sprintf ('<option value="%d" %s>%s</option>',$adminid,$adminid == $data['owner']? 'selected="selected"':'',$adminname);
   }
-  print '</select>';
+  $ownerHTML .= '</select>';
+  
+  if ($adminCount > 1) {
+    print $ownerHTML;
+  } else {
+    print $singleOwner;
+  }
+  
 }
 
 print '
