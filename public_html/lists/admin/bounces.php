@@ -123,7 +123,7 @@ $ls->usePanel($paging);
 while ($bounce = Sql_fetch_array($result)) {
 #@@@ not sure about these ones - bounced list message
   $element = $bounce["id"];
-  $ls->addElement($element,PageUrl2("bounce&amp;id=".$bounce["id"]));
+  $ls->addElement($element,PageUrl2('bounce&type='.$status.'&id='.$bounce["id"]));
   if (preg_match("#bounced list message ([\d]+)#",$bounce["status"],$regs)) {
     $messageid = sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
   } elseif ($bounce["status"] == "bounced system message") {

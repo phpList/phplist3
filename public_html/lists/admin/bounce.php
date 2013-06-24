@@ -18,8 +18,22 @@ $useremail = isset($_GET["useremail"]) && is_email($_GET["useremail"]) ? $_GET["
 $deletebounce = isset($_GET["deletebounce"]); #BUGFIX #15286 - nickyoung
 $amount = isset($_GET["amount"]) ? sprintf('%d',$_GET["amount"]) : ''; #BUGFIX #15286 - CS2 
 $unconfirm = isset($_GET["unconfirm"]); #BUGFIX #15286 - CS2 
-$maketext = isset($_GET["maketext"]); #BUGFIX #15286 - CS2 
+$maketext = isset($_GET["maketext"]); #BUGFIX #15286 - CS2
 $deleteuser = isset($_GET["deleteuser"]);  #BUGFIX #15286 - CS2 
+
+$type = '';
+if (isset($_GET['type'])) {
+  switch ($_GET['type']) {
+    case 'unidentified':
+      $type = 'unidentified';
+      break;
+    case 'processed':
+    default:
+      $type = 'processed';
+      break;
+  }
+}
+
 if (!$id && !$delete) {
   Fatal_Error($GLOBALS['I18N']->get('No such record'));
   exit;
@@ -80,7 +94,18 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
     deleteBounce($id);
     $actionresult .= $GLOBALS['I18N']->get('..Done, loading next bounce..')."<br /><hr/><br />\n";
     $actionresult .= PageLink2("bounces",$GLOBALS['I18N']->get('Back to the list of bounces'));
-    $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d',$tables["bounce"],$id));
+    switch ($type) {
+      case 'unidentified':
+        $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d and status = "unidentified bounce"',$tables["bounce"],$id));
+        break;
+    case 'processed':
+        $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d and status != "unidentified bounce"',$tables["bounce"],$id));
+        break;
+    default:
+        $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d',$tables["bounce"],$id));
+        break;
+    }
+   
     $id = $next[0];
     if (!$id) {
       $next = Sql_Fetch_Row_query(sprintf('select id from %s order by id desc limit 0,5',$tables["bounce"],$id));
@@ -121,8 +146,9 @@ if ($id) {
 
   $actionpanel = '';
   $actionpanel .= '<form method="get" action="">';
-  $actionpanel .= '<input type="hidden" name=page value="'.$page.'" />';
-  $actionpanel .= '<input type="hidden" name=id value="'.$id.'" />';
+  $actionpanel .= '<input type="hidden" name="page" value="'.$page.'" />';
+  $actionpanel .= '<input type="hidden" name="id" value="'.$id.'" />';
+  $actionpanel .= '<input type="hidden" name="type" value="'.$type.'" />';
   $actionpanel .= '<table class="bounceActions">';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
   $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'<br />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td><td><input type="text" name="amount" value="0" size="5" /></td></tr>';
