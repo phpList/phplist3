@@ -714,9 +714,6 @@ if (!function_exists("getconfig")) {
 		}
 		$value = str_replace('[WEBSITE]', $website, $value);
 		$value = str_replace('[DOMAIN]', $domain, $value);
-        if (isset($GLOBALS['organisation_name'])) {
-           $value = str_replace('[ORGANISATION_NAME]', $GLOBALS['organisation_name'], $value);
-        } 
 		$value = str_replace('<?=VERSION?>', VERSION, $value);
     
 		if (isset ($default_config[$item]['type'])) {
