@@ -15,6 +15,27 @@ if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
   print ActionResult($result);
 }
 
+$tabs = new WebblerTabs();
+$tabs->addTab(s("processed"),PageUrl2("bounces&amp;tab=processed"),'processed');
+$tabs->addTab(s("unidentified"),PageUrl2("bounces&amp;tab=unidentified"),'unidentified');
+if (!empty($_GET['tab'])) {
+  $tabs->setCurrent($_GET["tab"]);
+} else {
+  $_GET['tab'] = 'processed';
+  $tabs->setCurrent('processed');
+}
+switch ($_GET['tab']) {
+  case 'unidentified':
+    $status_compare = '=';
+    $status = 'unidentified';
+    break;
+  case 'processed':
+  default:
+    $status_compare = '!=';
+    $status = 'processed';
+    break;
+}  
+
 if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
     case "deleteunidentified":
@@ -35,7 +56,7 @@ if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
 }
 
 # view bounces
-$count = Sql_Query(sprintf('select count(*) from %s where status != "unidentified bounce"',$tables["bounce"]));
+$count = Sql_Query(sprintf('select count(*) from %s where status '.$status_compare. ' "unidentified bounce"',$tables["bounce"]));
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 $find_url = '';
@@ -50,43 +71,53 @@ $baseurl = "bounces&amp;start=$start";
 if ($total > MAX_USER_PP) {
   $limit = MAX_USER_PP;
 
-  $paging = simplePaging("bounces",$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('bounces') );
-  $query = sprintf("select * from %s where status != ? order by date desc limit $limit offset $offset", $tables['bounce']);
+  $paging = simplePaging("bounces",$start,$total,MAX_USER_PP,$status . ' '.$GLOBALS['I18N']->get('bounces') );
+  $query = sprintf("select * from %s where status $status_compare ? order by date desc limit $limit offset $offset", $tables['bounce']);
   $result = Sql_Query_Params($query, array('unidentified bounce'));
 } else {
   $paging = '';
-  $query = sprintf('select * from %s where status != ? order by date desc', $tables['bounce']);
+  $query = sprintf('select * from %s where status '.$status_compare. ' ? order by date desc', $tables['bounce']);
   $result = Sql_Query_Params($query, array('unidentified bounce'));
 }
 
 print '<div class="actions">';
 print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list'));
-  $buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
-  $buttons->addButton(
-    new ConfirmButton(
-      $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months') . "?",
-      PageURL2("$baseurl&action=deleteunidentified"),
-      $GLOBALS['I18N']->get('delete all unidentified (&gt; 2 months old)')));
-  $buttons->addButton(
-    new ConfirmButton(
-      $GLOBALS['I18N']->get('are you sure you want to delete all bounces older than 2 months') . "?",
-      PageURL2("$baseurl&action=deleteprocessed"),
-      $GLOBALS['I18N']->get('delete all processed (&gt; 2 months old)')));
-  $buttons->addButton(
-    new ConfirmButton(
-      $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . "?",
-      PageURL2("$baseurl&action=deleteall"),
-      $GLOBALS['I18N']->get('Delete all')));
-  if (ALLOW_DELETEBOUNCE) {
-    print $buttons->show();
-  }
+$buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
+$buttons->addButton(
+  new ConfirmButton(
+    $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months') . "?",
+    PageURL2("$baseurl&action=deleteunidentified"),
+    $GLOBALS['I18N']->get('delete all unidentified (&gt; 2 months old)')));
+$buttons->addButton(
+  new ConfirmButton(
+    $GLOBALS['I18N']->get('are you sure you want to delete all bounces older than 2 months') . "?",
+    PageURL2("$baseurl&action=deleteprocessed"),
+    $GLOBALS['I18N']->get('delete all processed (&gt; 2 months old)')));
+$buttons->addButton(
+  new ConfirmButton(
+    $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . "?",
+    PageURL2("$baseurl&action=deleteall"),
+    $GLOBALS['I18N']->get('Delete all')));
+if (ALLOW_DELETEBOUNCE) {
+  print $buttons->show();
+}
+
+print $tabs->display();
 print '</div>';
 
 if (!Sql_Num_Rows($result)) {
-  print '<p class="information">' . $GLOBALS['I18N']->get('no unprocessed bounces available') . "</p>";
+  switch ($status) {
+    case 'unidentified':
+      print '<p class="information">' . $GLOBALS['I18N']->get('no unprocessed bounces available') . "</p>";
+      break;
+    case 'processed':
+      print '<p class="information">' . $GLOBALS['I18N']->get('no processed bounces available') . "</p>";
+      break;
+
+    }
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('bounces'));
+$ls = new WebblerListing($status . ' '.s('bounces'));
 $ls->usePanel($paging);
 #print '<table class="bouncesListing"><tr><td></td><td>' . $GLOBALS['I18N']->get('message') . "</td><td>" . $GLOBALS['I18N']->get('user') . "</td><td>" . $GLOBALS['I18N']->get('date') . "</td></tr>";
 while ($bounce = Sql_fetch_array($result)) {
@@ -100,6 +131,13 @@ while ($bounce = Sql_fetch_array($result)) {
   } else {
     $messageid = $GLOBALS['I18N']->get('Unknown');
   }
+  
+/*  if (preg_match('/Action: delayed\s+Status: 4\.4\.7/im',$bounce["data"])) {
+    $ls->addColumn($element,'delayed',$GLOBALS['img_tick']);
+  } else {
+    $ls->addColumn($element,'delayed',$GLOBALS['img_cross']);
+  }
+*/
   $ls->addColumn($element,$GLOBALS['I18N']->get('message'),$messageid);
   if (preg_match("#([\d]+) bouncecount increased#",$bounce["comment"],$regs)) {
     $userid = sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
