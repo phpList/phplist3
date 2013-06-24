@@ -459,7 +459,11 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   ## for some reason there are some config entries marked non-editable, that should be
   include_once dirname(__FILE__).'/defaultconfig.php';
   foreach ($default_config as $configItem => $configDetails) {
-    Sql_Query(sprintf('update %s set editable = 1 where item = "%s"',$tables['config'],$configItem));
+    if (empty($configDetails['hidden'])) {
+      Sql_Query(sprintf('update %s set editable = 1 where item = "%s"',$tables['config'],$configItem));
+    } else {
+      Sql_Query(sprintf('update %s set editable = 0 where item = "%s"',$tables['config'],$configItem));
+    }
   }
   
   ## replace old header and footer with the new one
