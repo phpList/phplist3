@@ -455,7 +455,13 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   if (defined('TLD_AUTH_LIST')) {
     refreshTlds();
   }
-
+  
+  ## for some reason there are some config entries marked non-editable, that should be
+  include_once dirname(__FILE__).'/defaultconfig.php';
+  foreach ($default_config as $configItem => $configDetails) {
+    Sql_Query(sprintf('update %s set editable = 1 where item = "%s"',$tables['config'],$configItem));
+  }
+  
   # mark the database to be our current version
   if ($success) {
     SaveConfig("version",VERSION,0);
