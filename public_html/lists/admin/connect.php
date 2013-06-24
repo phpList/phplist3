@@ -28,30 +28,26 @@ if (!isset ($_GET["pi"]))
 
 $GLOBALS["mail_error"] = '';
 $GLOBALS["mail_error_count"]=0;
-$GLOBALS['organisation_name'] = getConfig('organisation_name');
+$organisation_name = getConfig('organisation_name');
 $domain = getConfig("domain");
 $website = getConfig("website");
-if (!$domain) {
+if (empty($domain)) {
   $domain = $_SERVER['SERVER_NAME'];
 }
-if (!$website) {
+if (empty($website)) {
   $website = $_SERVER['SERVER_NAME'];
+}
+if (empty($organisation_name)) {
+  $organisation_name = $_SERVER['SERVER_NAME'];
 }
 
 $xormask = getConfig('xormask');
-if (!$xormask) {
+if (empty($xormask)) {
   $xormask = md5(uniqid(rand(), true));
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
 
-# make sure magic quotes are on. Try to switch it on, this may fail
-ini_set("magic_quotes_gpc","on");
-
-/* ##22933
-$GLOBALS["img_tick"] = '<img src="images/tick.gif" alt="Yes" />';
-$GLOBALS["img_cross"] = '<img src="images/cross.gif" alt="No" />';
-*/
 $GLOBALS["img_tick"] = '<span class="yes">Yes</span>';
 $GLOBALS["img_cross"] = '<span class="no">No</span>';
 $GLOBALS["img_view"] = '<span class="view">View</span>';
@@ -1331,13 +1327,14 @@ function PageData($id) {
     $data['intro'] = $GLOBALS['strSubscribeInfo'];
     $data['emaildoubleentry'] = 'yes';
     $data['thankyoupage'] = '';
-//    $data['rssdefault'] = 'daily'; //Leftover from the preplugin era, to be moved to plugin somehow
-//    $data['rssintro'] = $GLOBALS['I18N']->get('Please indicate how often you want to receive messages'); //Leftover from the preplugin era, to be moved to plugin somehow
-//    $data['rss'] = join(',',array_keys($GLOBALS['rssfrequencies'])); //Leftover from the preplugin era, to be moved to plugin somehow
+    foreach ($data as $key => $val) {
+      $data[$key] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $val);
+    }
     return $data;
   }
   while ($row = Sql_Fetch_Array($req)) {
     $data[$row["name"]] = preg_replace('/<\?=VERSION\?>/i', VERSION, $row["data"]);
+    $data[$row["name"]] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $row["data"]);
   }
 
   if (!isset ($data['lists']))
