@@ -97,15 +97,22 @@ if (isset($_GET["doit"]) && (($GLOBALS["require_login"] && isSuperUser()) || !$G
     switch ($type) {
       case 'unidentified':
         $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d and status = "unidentified bounce"',$tables["bounce"],$id));
+        $id = $next[0];
+        if (!$id) {
+          $next = Sql_Fetch_Row_query(sprintf('select id from %s where status = "unidentified bounce" order by id desc limit 0,5',$tables["bounce"],$id));
+        }
         break;
     case 'processed':
         $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d and status != "unidentified bounce"',$tables["bounce"],$id));
+        $id = $next[0];
+        if (!$id) {
+          $next = Sql_Fetch_Row_query(sprintf('select id from %s where status != "unidentified bounce" order by id desc limit 0,5',$tables["bounce"],$id));
+        }
         break;
     default:
         $next = Sql_Fetch_Row_query(sprintf('select id from %s where id > %d',$tables["bounce"],$id));
         break;
     }
-   
     $id = $next[0];
     if (!$id) {
       $next = Sql_Fetch_Row_query(sprintf('select id from %s order by id desc limit 0,5',$tables["bounce"],$id));
