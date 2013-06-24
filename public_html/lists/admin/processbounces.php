@@ -179,6 +179,13 @@ function processImapBounce ($link,$num,$header) {
   if (VERBOSE) {
     output("UID".$userid." MSGID".$msgid);
   }
+  
+  ## @TODO add call to plugins to determine what to do.
+  # for now, quick hack to zap MsExchange Delayed messages
+  if (preg_match('/Action: delayed\s+Status: 4\.4\.7/im',$body)) {
+    ## just say we did something, when actually we didn't
+    return true;
+  }
 
   Sql_Query(sprintf('insert into %s (date,header,data)
     values("%s","%s","%s")',
