@@ -253,6 +253,16 @@ $(document).ready(function() {
       $("#initialisecontinue").removeAttr('disabled');
     }
   });
+  $("#initialiseform").submit(function() {
+    $("#dialog").dialog({
+      minHeight: 400,
+      width: 600,
+      modal: true,
+      show: 'blind',
+      hide: 'explode'
+    });
+    $("#dialog").html('<div class="openhelpimage">Initialising phpList, please wait.<br/>'+busyImage+'</div>');
+  });
   
   // export page
   $("input:radio[name=column]").change(function() {

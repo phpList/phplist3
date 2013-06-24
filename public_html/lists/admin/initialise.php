@@ -28,7 +28,7 @@ if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strl
       print '</div>';
   }
 
-  print '<form method="post" action="" class="configForm">';
+  print '<form method="post" action="" class="configForm" id="initialiseform">';
   print '<fieldset><legend>'.s('phpList initialisation').' </legend>
     <input type="hidden" name="firstinstall" value="1" />';
   print '<input type="hidden" name="page" value="initialise" />';
@@ -38,12 +38,6 @@ if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strl
   print '<input type="text" name="orgname" value="'.htmlspecialchars($_REQUEST['orgname']).'" />';
   print '<label for="adminemail">'.s('Please enter your email address.').'</label>';
 
-  /* would be nice to do this, but needs more work
-  if (ENCRYPT_ADMIN_PASSWORDS) {
-    print '<p>'.$GLOBALS['I18N']->get('After Database initialisation, you will receive an email with a token to set your login password.').'</p>';
-    print '<p>'.$GLOBALS['I18N']->get('The initial <i>login name</i> will be' ).' "admin"'.'</p>';
-  }
-  */
   print '<input type="text" name="adminemail" value="'.htmlspecialchars($_REQUEST['adminemail']).'" />';
   print s('The initial <i>login name</i> will be' ).' "admin"'.'<br/>';
   print '<label for="adminpassword">'.s('Please enter the password you want to use for this account.').' ('.$GLOBALS['I18N']->get('minimum of 8 characters.').')</label>';
@@ -196,21 +190,11 @@ if ($success) {
   print '<p>'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</p>";
 
   unset($_SESSION['hasI18Ntable']);
+
   ## load language files
   # this is too slow
-  #  $GLOBALS['I18N']->initFSTranslations();
-
-
+  $GLOBALS['I18N']->initFSTranslations();
 } else {
  print ('<div class="initialiseOptions"><ul><li>'.s("Maybe you want to")." ".PageLinkButton("upgrade",s("Upgrade")).' '.s("instead?").'</li>
     <li>'.PageLinkButton("initialise",s("Force Initialisation"),"force=yes").' '.s("(will erase all data!)").' '."</li></ul></div>\n");
 }
-/*
-if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
-  $_SESSION["firstinstall"] = 1;
-  print "<p class=".">".$GLOBALS['I18N']->get("Checklist for Installation")."</p>";
-  require "setup.php";
-}
-*/
-
-?>
