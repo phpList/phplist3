@@ -131,7 +131,14 @@ if (empty($list['category'])) {
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <div class="label"><label for="listname"><?php echo $GLOBALS['I18N']->get('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname" value="<?php echo  htmlspecialchars(StripSlashes($list["name"]))?>" /></div>
-<div class="field"><input type="checkbox" name="active" value="1" <?php echo $list["active"] ? 'checked="checked"' : ''; ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
+
+<div class="field"><input type="checkbox" name="active" value="1"
+<?php 
+
+echo $list["active"] ? 'checked="checked"' : '';
+if (listUsedInSubscribePage($id)) print ' disabled="disabled" ';
+
+ ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
 <div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
 <div class="field"><input type="text" name="listorder" value="<?php echo $list["listorder"] ?>" class="listorder" /></div>
 <?php if ($GLOBALS["require_login"] && (isSuperUser() || accessLevel("editlist") == "all")) {

@@ -215,8 +215,8 @@ while ($row = Sql_fetch_array($result)) {
     $GLOBALS['I18N']->get('Bounces'),
     PageLink2("listbounces",'<span class="bouncecount">'.$bounces.'</span>',"id=".$row["id"]));#.' '.PageLink2('listbounces&id='.$row["id"],$GLOBALS['I18N']->get('view'))
   $ls->addColumn($element,
-    $GLOBALS['I18N']->get('Public'),sprintf('<input type="checkbox" name="active[%d]" value="1" %s />',$row["id"],
-  $row["active"] ? 'checked="checked"' : ''));
+    $GLOBALS['I18N']->get('Public'),sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />',$row["id"],
+  $row["active"] ? 'checked="checked"' : '',listUsedInSubscribePage($row["id"]) ? ' disabled="disabled" ':''));
 /*  $owner = adminName($row['owner']);
   if (!empty($owner)) {
     $ls->addColumn($element,

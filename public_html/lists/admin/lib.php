@@ -611,6 +611,18 @@ function listOwner($listid = 0) {
   return $req[0];
 }
 
+function listUsedInSubscribePage($listid = 0) {
+  if (empty($listid)) return false;
+  $used = false;
+  $req = Sql_Query(sprintf('select data from %s where name = "lists"',$GLOBALS['tables']['subscribepage_data']));
+  while ($row = Sql_Fetch_Assoc($req)) {
+    $lists = explode(',',$row['data']);
+    $used = $used || in_array($listid,$lists);
+    if ($used) return true;
+  }
+  return $used;
+}
+
 function system_messageHeaders($useremail = "") {
   $from_address = getConfig("message_from_address");
   $from_name = getConfig("message_from_name");
@@ -1385,15 +1397,6 @@ function strip_newlines( $str, $placeholder = '' ) {
   $str = str_replace(chr(13), $placeholder , $str);
   return $str;
 }
-
-// Moved to subscribelib2, since itś only used there
-//function validaterssFrequency($freq = '') {
-//  if (!$freq) return '';
-//  if (in_array($freq,array_keys($GLOBALS['rssfrequencies']))) {
-//    return $freq;
-//  }
-//  return '';
-//}
 
 function parseDate($strdate, $format = 'Y-m-d') {
 	# parse a string date into a date
