@@ -462,6 +462,20 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     Sql_Query(sprintf('update %s set editable = 1 where item = "%s"',$tables['config'],$configItem));
   }
   
+  ## replace old header and footer with the new one
+  ## but only if there are untouched from the default, which seems fairly common
+  $oldPH = file_get_contents(dirname(__FILE__).'/ui/old_public_header.inc');
+  $oldPH2 = preg_replace("/\n/","\r\n",$oldPH); ## version with \r\n instead of \n
+  
+  $oldPF = file_get_contents(dirname(__FILE__).'/ui/old_public_footer.inc');
+  $oldPF2 = preg_replace("/\n/","\r\n",$oldPF); ## version with \r\n instead of \n
+  Sql_Query(sprintf('update %s set value = "%s" where item = "pageheader" and (value = "%s" or value = "%s")',$tables['config'],sql_escape($defaultheader),addslashes($oldPH),addslashes($oldPH2)));
+  Sql_Query(sprintf('update %s set value = "%s" where item = "pagefooter" and (value = "%s" or value = "%s")',$tables['config'],sql_escape($defaultfooter),addslashes($oldPF),addslashes($oldPF2)));
+
+  ## and the same for subscribe pages
+  Sql_Query(sprintf('update %s set data = "%s" where name = "header" and (data = "%s" or data = "%s")',$tables['subscribepage_data'],sql_escape($defaultheader),addslashes($oldPH),addslashes($oldPH2)));
+  Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and (data = "%s" or data = "%s")',$tables['subscribepage_data'],sql_escape($defaultfooter),addslashes($oldPF),addslashes($oldPF2)));
+
   # mark the database to be our current version
   if ($success) {
     SaveConfig("version",VERSION,0);
