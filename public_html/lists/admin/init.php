@@ -32,6 +32,8 @@ if (function_exists('iconv_set_encoding')) {
 if (function_exists('mb_internal_encoding')) {
   mb_internal_encoding("UTF-8");
 }
+#magic quotes are deprecated, so try to switch off if possible
+ini_set("magic_quotes_gpc","off");
 
 $IsCommandlinePlugin = '';
 $zlib_compression = ini_get('zlib.output_compression');
