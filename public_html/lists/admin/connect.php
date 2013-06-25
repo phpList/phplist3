@@ -1613,7 +1613,7 @@ function formatDateTime ($datetime,$short = 0) {
 }
 
 function cl_output($message) {
-  if ($GLOBALS["commandline"]) {
+  if (!empty($GLOBALS["commandline"])) {
     @ob_end_clean();
     print $GLOBALS['installation_name'].' - '.strip_tags($message) . "\n";
     @ob_start();
