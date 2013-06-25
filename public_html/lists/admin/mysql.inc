@@ -68,7 +68,7 @@ function Sql_Error ($dbconnection,$errno = 0) {
 */
     return '<div id="dberror">Database error '. $errno.' while doing query '.$GLOBALS['lastquery']. ' ' .$msg.'</div>';
   } else {
-    print 'Database error '.$errno.' while doing query '.$GLOBALS['lastquery']. ' ' .$msg."\n";
+    cl_output('Database error '.$errno.' while doing query '.$GLOBALS['lastquery']. ' ' .$msg);
   }
     if (function_exists("logevent")) {
       logevent("Database error: $msg");
@@ -148,8 +148,10 @@ function Sql_Query($query,$ignore = 0) {
   $GLOBALS["pagestats"]["number_of_queries"]++;
   $result = mysql_query($query,$GLOBALS["database_connection"]);
   if (!$ignore) {
-    if (Sql_Check_Error($GLOBALS["database_connection"]))
+    if (Sql_Check_Error($GLOBALS["database_connection"])) {
       dbg("Sql error in $query");
+      cl_output('Sql error '. $query);
+    }
   }
   if (isset($GLOBALS["developer_email"])) {
     # log time queries take
