@@ -433,7 +433,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       $address = trim($address);
       if (empty($address)) continue;
       $query
-      = ' select id, email, uniqid, htmlemail, rssfrequency, confirmed'
+      = ' select id, email, uniqid, htmlemail, confirmed'
       . ' from %s'
       . ' where email = ?';
       $query = sprintf($query, $tables['user']);
@@ -786,17 +786,6 @@ if (!$done) {
     $formatting_content .= '</select></div>';
   }
   $formatting_content .= '</div>';
-
-//obsolete, moved to rssmanager plugin
-//  if (ENABLE_RSS) {
-//    $rss_content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get("If you want to use this message as the template for sending RSS feeds     select the frequency it should be used for and use [RSS] in your message to indicate where the list of items needs to go.").'
-//    </td></tr>';
-//    $rss_content .= '<tr><td colspan="2"><input type="radio" name="rsstemplate" value="none"/>'.$GLOBALS['I18N']->get("none").' ';
-//    foreach ($rssfrequencies as $key => $val) {
-//      $rss_content .= sprintf('<input type="radio" name="rsstemplate" value="%s" %s/>%s ',$key,$_POST["rsstemplate"] == $key ? "checked":"",$val);
-//    }
-//    $rss_content .= '</td></tr>';
-//  }
 
   #0013076: different content when forwarding 'to a friend'
   $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.s("Compose Message").Help("message").'</label> ';

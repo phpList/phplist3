@@ -17,14 +17,6 @@ if (!$id && $_GET["page"] != "import1") {
 require_once dirname(__FILE__)."/date.php";
 $date = new Date();
 
-function validateRssFrequency($freq = '') {
-  if (empty($freq) || empty($GLOBALS['rssfrequencies'])) return '';
-  if (in_array($freq,array_keys($GLOBALS['rssfrequencies']))) {
-    return $freq;
-  }
-  return '';
-}
-
 ## Check if input is complete
 $allthere = 1;
 $subscribepagedata = PageData($id);
@@ -170,10 +162,9 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
    $history_entry = '';
    # make sure to save the correct data
    if ($subscribepagedata["htmlchoice"] == "checkfortext" && empty($_POST["textemail"])) {
-      $htmlemail = 1;
-   }
-   else {
-      $htmlemail = isset($_POST["htmlemail"]) && $_POST["htmlemail"];
+     $htmlemail = 1;
+   } else {
+     $htmlemail = !empty($_POST["htmlemail"]);
    }
 
    # now check whether this user already exists.
@@ -182,19 +173,12 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
       $email = $regs[1];
    }
 
-   $result = Sql_query("select * from {$GLOBALS["tables"]["user"]} where email = \"$email\"");
-
-   if (isset($_POST['rssfrequency'])) {
-      $rssfrequency = validateRssFrequency($_POST['rssfrequency']);
-   } else {
-      $rssfrequency = '';
-   }
+   $result = Sql_query(sprintf('select * from %s where email = "%s"',$GLOBALS["tables"]["user"],sql_escape($email)));
    if (!Sql_affected_rows()) {
-      # they do not exist, so add them
-      $query = sprintf('insert into %s (email,entered,uniqid,confirmed,
-      htmlemail,subscribepage,rssfrequency) values("%s",current_timestamp,"%s",0,%d,%d,"%s")',
-    $GLOBALS["tables"]["user"],addslashes($email),getUniqid(),$htmlemail,$id,
-    $rssfrequency);
+    # they do not exist, so add them
+    $query = sprintf('insert into %s (email,entered,uniqid,confirmed,
+    htmlemail,subscribepage) values("%s",current_timestamp,"%s",0,%d,%d)',
+    $GLOBALS["tables"]["user"],sql_escape($email),getUniqid(),$htmlemail,$id);
     $result = Sql_query($query);
     $userid = Sql_Insert_Id($GLOBALS['tables']['user'], 'id');
     addSubscriberStatistics('total users',1);
@@ -229,7 +213,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
     $old_data = array_merge($old_data,getUserAttributeValues('',$userid));
     $history_entry = 'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
 
-    $query = sprintf('update %s set email = "%s",htmlemail = %d,subscribepage = %d,rssfrequency = "%s" where id = %d',$GLOBALS["tables"]["user"],addslashes($email),$htmlemail,$id,$rssfrequency,$userid);
+    $query = sprintf('update %s set email = "%s",htmlemail = %d,subscribepage = %d where id = %d',$GLOBALS["tables"]["user"],addslashes($email),$htmlemail,$id,$userid);
     $result = Sql_query($query);
   }
 
@@ -358,8 +342,10 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
 
    $user_att = getUserAttributeValues($email);
 
-   while (list($att_name,$att_value) = each ($user_att)) {
-     $thankyoupage = str_ireplace("[".$att_name."]",$att_value,$thankyoupage);
+   if (sizeof($user_att)) {
+     while (list($att_name,$att_value) = each ($user_att)) {
+       $thankyoupage = str_ireplace("[".$att_name."]",$att_value,$thankyoupage);
+     }
    }
 
 
@@ -493,15 +479,14 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
   }
 
   # We want all these to be set, albeit to empty string
-  foreach ( array('rssfrequency', 'htmlemail') as $sUnsubscribeFormVar ) {
+  foreach ( array('htmlemail') as $sUnsubscribeFormVar ) {
 	  if ( !isset($_POST[$sUnsubscribeFormVar]) ) {
 	    $_POST[$sUnsubscribeFormVar] = '';
 	  }
   }
 
-  $rssfrequency = validateRssFrequency( $_POST['rssfrequency'] );
-  $query = sprintf('update %s set email = "%s", %s htmlemail = %d, rssfrequency = "%s" where id = %d',
-    $GLOBALS["tables"]["user"],addslashes($_POST["email"]),$storepassword,$_POST["htmlemail"],$rssfrequency,$userid);
+  $query = sprintf('update %s set email = "%s", %s htmlemail = %d where id = %d',
+    $GLOBALS["tables"]["user"],addslashes($_POST["email"]),$storepassword,$_POST["htmlemail"],$userid);
  #print $query;
   $result = Sql_query($query);
   if ($data["email"] != $email) {
@@ -542,7 +527,7 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
     $lists = "No Lists";
 
   # We want all these to be set, albeit to empty string
-  foreach ( array('datachange', 'rssfrequency', 'htmlemail', 'information_changed', 'emailchanged') as $sUnsubscribeVar ) {
+  foreach ( array('datachange', 'htmlemail', 'information_changed', 'emailchanged') as $sUnsubscribeVar ) {
   	if ( !isset( ${$sUnsubscribeVar} ) ) {
     	${$sUnsubscribeVar} = '';
     }
@@ -553,10 +538,6 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
     && $subscribepagedata["htmlchoice"] != "htmlonly") {
     $datachange .= "$strSendHTML : ";
     $datachange .= $_POST["htmlemail"] ? "$strYes\n":"$strNo\n";
-  }
-  $rssfrequency = validateRssFrequency($_POST['rssfrequency']);
-  if ($rssfrequency) {
-    $datachange .= "$strFrequency : ".$rssfrequency."\n";
   }
 
   # remember the users attributes
@@ -1296,39 +1277,4 @@ function ListAllAttributes() {
   return ListAttributes($attributes,$attributedata,"checkforhtml");
 }
 
-//obsolete, moved to rssmanager plugin 
-//function rssOptions($data,$userid = 0) {
-//  global $rssfrequencies,$tables;
-//  if ($userid) {
-//    $current = Sql_Fetch_Row_Query("select rssfrequency from {$GLOBALS["tables"]["user"]} where id = $userid");
-//    $default = $current[0];
-//  } else {
-//    $default = '';
-//  }
-//  if (!$default || !in_array($default,array_keys($rssfrequencies))) {
-//    $default = $data["rssdefault"];
-//  }
-//
-//  $html = '\n<table class="x">';
-//  $html .= '<tr><td>'.$data["rssintro"].'</td></tr>';
-//  $html .= '<tr><td>';
-//  $options = explode(",",$data["rss"]);
-//  if (!in_array($data["rssdefault"],$options)) {
-//    array_push($options,$data["rssdefault"]);
-//  }
-//  if (sizeof($options) == 1) {
-//    return sprintf('<input type="hidden" name="rssfrequency" value="%s" />',$options[0]);
-//  }
-//
-//  foreach ($options as $freq) {
-//    if ($freq) {
-//      $html .= sprintf('<input type=radio name="rssfrequency" value="%s" %s />&nbsp;%s&nbsp;',
-//        $freq,$freq == $default ? 'checked="checked"':'',$rssfrequencies[$freq]);
-//    }
-//  }
-//  $html .= '</td></tr></table>';
-//  if ($data["rssintro"])
-//    return $html;
-//}
 
-?>

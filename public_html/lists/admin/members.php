@@ -234,7 +234,6 @@ if (isset($id)) {
 
       $paging = simplePaging("members&amp;id=".$id,$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('subscribers'));
   }
-//  $result = Sql_query("SELECT $tables[user].id,email,confirmed,rssfrequency FROM // so plugins can use all fields
   $query
   = ' select u.*'
   . " from %s lu"

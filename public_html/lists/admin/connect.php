@@ -115,14 +115,6 @@ if (!isset($usertable_prefix)) {
  * is not known yet, so we can't read xormask from the DB yet*/
 #ini_set('session.name','phpList-'.$GLOBALS['installation_name'].VERSION | $xormask);
 
-//obsolete, moved to rssmanager plugin
-//$GLOBALS['rssfrequencies'] = array(
-//#  "hourly" => $strHourly, # to be added at some other point
-//  "daily" => $strDaily,
-//  "weekly" => $strWeekly,
-//  "monthly" => $strMonthly
-//);
-
 $redfont = "";
 $efont = "";
 $GLOBALS["coderoot"] = dirname(__FILE__).'/';

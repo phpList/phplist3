@@ -109,7 +109,7 @@ if ($findby && $find && !in_array($findby, $system_findby)) {
   $findtables = '';
   $findbyselect = sprintf(' %s like "%%%s%%"', $findby, $find);
   ;
-  $findfield = $tables["user"] . ".bouncecount," . $tables["user"] . ".rssfrequency," . $tables["user"] . ".foreignkey";
+  $findfield = $tables["user"] . ".bouncecount," . $tables["user"] . ".foreignkey";
   $findfieldname = "Email";
   $find_url = '&amp;find=' . urlencode($find);
 }
