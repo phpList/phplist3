@@ -58,9 +58,7 @@ function openHelpDialog(url) {
   $("#dialog").dialog({
     minHeight: 400,
     width: 600,
-    modal: true,
-    show: 'blind',
-    hide: 'explode'
+    modal: true
   });
   $("#dialog").html('<div class="openhelpimage">'+busyImage+'</div>');
   var destpage = urlParameter('page',url);
@@ -75,9 +73,7 @@ function initialiseTranslation(text) {
   $("#dialog").dialog({
     minHeight: 400,
     width: 600,
-    modal: true,
-    show: 'blind',
-    hide: 'explode'
+    modal: true
   });
   $("#dialog").html('<div class="openhelpimage">'+text+'<br/>'+busyImage+'</div>');
   $("#dialog").load('./?ajaxed=true&page=pageaction&action=initlanguage');
@@ -257,9 +253,7 @@ $(document).ready(function() {
     $("#dialog").dialog({
       minHeight: 400,
       width: 600,
-      modal: true,
-      show: 'blind',
-      hide: 'explode'
+      modal: true
     });
     $("#dialog").html('<div class="openhelpimage">Initialising phpList, please wait.<br/>'+busyImage+'</div>');
   });
