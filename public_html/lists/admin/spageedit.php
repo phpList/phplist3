@@ -38,7 +38,7 @@ if (isset($_POST["save"])) {
   Sql_Query(sprintf('delete from %s where id = %d',$tables["subscribepage_data"],$id));
   foreach (array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry") as $item) {
     Sql_Query(sprintf('insert into %s (name,id,data) values("%s",%d,"%s")',
-      $tables["subscribepage_data"],$item,$id,sql_escape($_POST[$item])));
+      $tables["subscribepage_data"],$item,$id,$_POST[$item]));
   }
 
   foreach (array("subscribesubject","subscribemessage","confirmationsubject","confirmationmessage","unsubscribesubject","unsubscribemessage") as $item) {
