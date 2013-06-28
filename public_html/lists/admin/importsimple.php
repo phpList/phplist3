@@ -24,6 +24,7 @@ if (!empty($_POST['importcontent'])) {
   $count['duplicate'] = 0;
   $count['processed'] = 0;
   $count['invalid'] = 0;
+  $count['foundonblacklist'] = 0;
   
   $total = count($lines);
   foreach ($lines as $line) {
@@ -56,10 +57,16 @@ if (!empty($_POST['importcontent'])) {
         $count['imported']++;
         addUserHistory($line,$GLOBALS['I18N']->get('import_by').' '.adminName(),'');
       }
-
-      foreach($selected_lists as $k => $listid) {
-        $query = "replace into ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
-        $result = Sql_query($query);
+      
+      ## do not add them to the list(s) when blacklisted
+      $isBlackListed = isBlackListed($line);
+      if (!$isBlackListed) {
+        foreach($selected_lists as $k => $listid) {
+          $query = "replace into ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
+          $result = Sql_query($query);
+        }
+      } else {
+        $count['foundonblacklist']++;
       }
     } else {
       $count['invalid']++;
@@ -72,9 +79,12 @@ if (!empty($_POST['importcontent'])) {
     }
   }
   $report = sprintf($GLOBALS['I18N']->get('%d lines processed')."\n",$count['processed']);
-  $report .= sprintf($GLOBALS['I18N']->get('%d emails imported')."\n",$count['imported']);
+  $report .= sprintf($GLOBALS['I18N']->get('%d email imported')."\n",$count['imported']);
   $report .= sprintf($GLOBALS['I18N']->get('%d duplicates')."\n",$count['duplicate']);
   $report .= sprintf($GLOBALS['I18N']->get('%d invalidated')."\n",$count['invalid']);
+  if ($count['foundonblacklist']) {
+    $report .= sprintf($GLOBALS['I18N']->get('%d addresses were blacklisted and have not been subscribed to the list')."\n",$count['foundonblacklist']);
+  }
 
   print ActionResult(nl2br($report));
 

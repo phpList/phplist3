@@ -143,20 +143,23 @@
         }
       }
 
-      #add this user to the lists identified
+      #add this user to the lists identified, execpt when found in the blacklist
       $addition = 0;
       $listoflists = "";
-      foreach($importdata['importlists'] as $key => $listid) {
-        $query = "replace INTO ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
-        $result = Sql_query($query);
-        # if the affected rows is 2, the user was already subscribed
-        $addition = $addition || Sql_Affected_Rows() == 1;
-        if (!empty($importdata['listname'][$key])) {
-          $listoflists .= "  * ".$importdata['listname'][$key]."\n";
+      $isBlackListed = isBlackListed($email);
+      if (!$isBlackListed) {
+        foreach($importdata['importlists'] as $key => $listid) {
+          $query = "replace INTO ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
+          $result = Sql_query($query);
+          # if the affected rows is 2, the user was already subscribed
+          $addition = $addition || Sql_Affected_Rows() == 1;
+          if (!empty($importdata['listname'][$key])) {
+            $listoflists .= "  * ".$importdata['listname'][$key]."\n";
+          }
         }
-      }
-      if ($addition) {
-        $additional_emails++;
+        if ($addition) {
+          $additional_emails++;
+        }
       }
 
       $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage",$userid));
@@ -228,7 +231,7 @@
   @unlink($GLOBALS['tmpdir'].'/'.$file);
   @unlink($GLOBALS['tmpdir'].'/'.$file.'.data');
   
-  print ActionResult($report);
+#  print ActionResult($report);
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->importReport($report);
   }

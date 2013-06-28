@@ -60,6 +60,7 @@ if (sizeof($email_list)) {
   $count["exist"] = 0;
   $count["list_add"] = 0;
   $count["group_add"] = 0;
+  $count['foundblacklisted'] = 0;
   $c = 1;
   $count["invalid_email"] = 0;
   $num_lists = sizeof($_SESSION["lists"]);
@@ -408,8 +409,9 @@ if (sizeof($email_list)) {
         addUserHistory($user["systemvalues"]["email"], "Import by " . adminName(), $history_entry);
       }
 
-      #add this user to the lists identified
-      if (is_array($_SESSION["lists"])) {
+      #add this user to the lists identified, except when they are blacklisted
+      $isBlackListed = isBlackListed($user["systemvalues"]["email"]);
+      if (!$isBlackListed && is_array($_SESSION["lists"])) {
         reset($_SESSION["lists"]);
         $addition = 0;
         $listoflists = "";
@@ -420,8 +422,9 @@ if (sizeof($email_list)) {
           $addition = $addition || Sql_Affected_Rows() == 1;
           $listoflists .= "  * " . listName($key)."\n";# $_SESSION["listname"][$key] . "\n";
         }
-        if ($addition)
+        if ($addition) {
           $count["list_add"]++;
+        }
         if (!TEST && $_SESSION["notify"] == "yes" && $addition) {
           $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage", $userid));
           if (function_exists('sendmail')) {
@@ -431,6 +434,8 @@ if (sizeof($email_list)) {
             }
           }
         }
+      } elseif ($isBlackListed) {
+        $count['foundblacklisted']++;
       }
       if (!is_array($_SESSION["groups"])) {
         $groups = array ();
@@ -486,6 +491,9 @@ if (sizeof($email_list)) {
   }
   if ($_SESSION["overwrite"] == "yes") {
     $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]);
+  }
+  if ($count['foundblacklisted']) {
+    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails were on the blacklist and have not been added to the lists'), $count["foundblacklisted"]);
   }
   $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]);
   if (!$GLOBALS['commandline']) {
