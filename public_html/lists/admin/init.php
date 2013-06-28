@@ -160,6 +160,7 @@ if (!defined("ASKFORPASSWORD")) define("ASKFORPASSWORD",0);
 if (!defined('SILENT_RESUBSCRIBE')) define('SILENT_RESUBSCRIBE',true);
 if (!defined("UNSUBSCRIBE_REQUIRES_PASSWORD")) define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
 if (!defined("UNSUBSCRIBE_JUMPOFF")) define("UNSUBSCRIBE_JUMPOFF",1);
+if (!defined("SHOW_UNSUBSCRIBELINK")) define("SHOW_UNSUBSCRIBELINK",true);
 
 if (ASKFORPASSWORD && defined("ENCRYPTPASSWORD") && ENCRYPTPASSWORD) {
   ##https://mantis.phplist.com/view.php?id=16787

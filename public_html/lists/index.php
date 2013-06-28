@@ -596,12 +596,15 @@ function checkGroup(name,value)
   if (empty($GLOBALS['pagedata']['button'])) {
     $GLOBALS['pagedata']['button'] = $GLOBALS['strSubmit'];
   }
-  if (USE_SPAM_BLOCK)
+  if (USE_SPAM_BLOCK) {
     $html .= '<div style="display:none"><input type="text" name="VerificationCodeX" value="" size="20"></div>';
+  }
   $html .= '<p><input type=submit name="subscribe" value="'.$GLOBALS['pagedata']["button"].'" onClick="return checkform();"></p>
-    </form><br/><br/>
-    <p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>
-  '.$GLOBALS["PoweredBy"];
+    </form><br/><br/>';
+  if (SHOW_UNSUBSCRIBELINK) {
+    $html .= '<p><a href="'.getConfig("unsubscribeurl").'&id='.$id.'">'.$GLOBALS["strUnsubscribe"].'</a></p>';
+  }
+  $html .= $GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
 
   return $html;
