@@ -62,10 +62,10 @@ if (!isset($GLOBALS['default_system_language'])) {
 }
 
 if (!isset($table_prefix)) {
-  $table_prefix = '';
+  $table_prefix = 'phplist_';
 }
 if (!isset($usertable_prefix)) {
-  $usertable_prefix = '';
+  $usertable_prefix = 'phplist_user_';
 }
 
 /* this can probably go */
@@ -251,6 +251,7 @@ if (!defined('USE_LOCAL_SPOOL')) define('USE_LOCAL_SPOOL',0);
 if (!defined('SEND_LISTADMIN_COPY')) define('SEND_LISTADMIN_COPY',true);
 if (!defined('EMAIL_ADDRESS_VALIDATION_LEVEL')) define('EMAIL_ADDRESS_VALIDATION_LEVEL',3);
 if (!defined('BLACKLIST_EMAIL_ON_BOUNCE')) define('BLACKLIST_EMAIL_ON_BOUNCE',5);
+if (!defined('UNBLACKLIST_IN_PROFILE')) define('UNBLACKLIST_IN_PROFILE',false);
 if (!defined('MANUALLY_PROCESS_BOUNCES')) define('MANUALLY_PROCESS_BOUNCES',1);
 if (!defined('ENCRYPT_ADMIN_PASSWORDS')) define('ENCRYPT_ADMIN_PASSWORDS',1);
 if (!defined('PASSWORD_CHANGE_TIMEFRAME')) define('PASSWORD_CHANGE_TIMEFRAME','1 day');

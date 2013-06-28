@@ -368,6 +368,8 @@ while (list ($key,$val) = each ($struct)) {
     
     if (!isBlackListed($user['email'])) {
       $userdetailsHTML .= '<span class="fright button">'.PageLinkAjax('user&blacklist=1&id='.$user['id'],s('Add to blacklist')).'</span>';
+    } elseif (UNBLACKLIST_IN_PROFILE) {
+      $userdetailsHTML .= '<span class="fright button">'.PageLinkAjax('user&unblacklist=1&id='.$user['id'],s('Remove from blacklist')).'</span>';
     }
     $userdetailsHTML .= '</td></tr>';
     
