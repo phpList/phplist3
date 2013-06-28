@@ -91,7 +91,6 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
     
  //   var_dump($images);
     
-    $cantestremoteimages = ini_get('allow_url_fopen');
     if (($checkfullimages || $checkimagesexist) && sizeof($images)) {
       foreach ($images as $key => $val) {
         if (!preg_match("#^https?://#i",$key)) {
@@ -101,15 +100,10 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
            }
         } else {
           if ($checkimagesexist) {
-            if ($cantestremoteimages) {
-              $fp = @fopen($key,"r");
-              if (!$fp) {
-                $actionresult .=  $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
-                $templateok = 0;
-              }
-              @fclose($fp);
-            } else {
-              $actionresult .=  $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('cannot check, "allow_url_fopen" disabled in PHP settings')."<br/>\n";
+            $imageFound = testUrl($key);
+            if ($imageFound != 200) {
+              $actionresult .=  $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
+              $templateok = 0;
             }
           }
         }
@@ -156,8 +150,18 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       ksort($images);
       reset($images);
       while (list($key,$val) = each ($images)) {
-        printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',$key,$val);
-        print $image->showInput($key,$val,$id);
+        $key = trim($key);
+        if (preg_match('~^http://~i',$key)) {
+          $missingImage = true;
+          $imageFound = testUrl($key);
+          if ($imageFound != 200) {
+            printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',$key,$val);
+            print $image->showInput($key,$val,$id);
+          }
+        } else {
+          printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',$key,$val);
+          print $image->showInput($key,$val,$id);
+        }
       }
 
       print '<input type="hidden" name="id" value="'.$id.'" /><input type="hidden" name="action" value="addimages" />
@@ -286,11 +290,13 @@ if ($id) {
   <td><?php echo $GLOBALS['I18N']->get('Check that all images have a full URL')?></td>
   <td><input type="checkbox" name="checkfullimages" <?php echo $checkfullimages?'checked="checked"':''?> /></td>
 </tr>
+
+<?php if ($GLOBALS['can_fetchUrl']) { ?>
 <tr>
   <td><?php echo $GLOBALS['I18N']->get('Check that all external images exist')?></td>
   <td><input type="checkbox" name="checkimagesexist" <?php echo $checkimagesexist?'checked="checked"':''?> /></td>
 </tr>
-
+<?php } ?>
 <tr>
   <td colspan="2"><input class="submit" type="submit" name="save" value="<?php echo $GLOBALS['I18N']->get('Save Changes')?>" /></td>
 </tr>
