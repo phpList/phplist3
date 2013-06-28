@@ -298,6 +298,14 @@ class phplist_I18N {
     if (!$this->hasDB) return '';
     $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
       sql_escape(trim($text)),$this->language),1);
+    if (empty($tr[0])) {
+      $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
+        sql_escape($text),$this->language),1);
+    }
+    if (empty($tr[0])) {
+      $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
+        sql_escape(str_replace('"','\"',$text)),$this->language),1);
+    }
     return $tr[0];
   }
 
