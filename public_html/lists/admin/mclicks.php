@@ -150,8 +150,8 @@ while ($row = Sql_Fetch_Array($req)) {
   }
   $ls->addElement($element,PageURL2('uclicks&id='.$row['forwardid']));
   $ls->setClass($element,'row1');
-  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
+#  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
+#  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
   $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
   //$ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$id.'&amp;fwdid='.$row['forwardid']).'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>');
   //$perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
@@ -162,9 +162,17 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
     
+    $moreInfo1 = '
+      <div class="content listingsmall fright gray">'.s('html').': '.$row['htmlclicked'].'</div>'.'
+      <div class="content listingsmall fright gray">'.s('text').': '.$row['textclicked'].'</div>'.'
+    ';
+    $moreInfo2 = '
+      <div class="content listingsmall fright gray">'.s('firstclick').': '.formatDateTime($row['firstclick']).'</div>'.'
+      <div class="content listingsmall fright gray">'.s('latestclick').': '.$row['latestclick'].'</div>'.'
+    ';
+    
     ## @@TODO the totals for HTML+text will now not match the total clicks
-    $ls->addRow($element,'<div class="fright gray"><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div>'.
-                       '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>','');
+    $ls->addRow($element,$moreInfo1,$moreInfo2);
 #  }
   $summary['totalclicks'] += $row['clicked'];
   $summary['totalsent'] += $row['total'];
