@@ -142,6 +142,10 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
       'value' => '',
     );
   }
+  ## to validate we need the actual values
+  $value = str_ireplace('[domain]',$GLOBALS['domain'],$value);
+  $value = str_ireplace('[website]',$GLOBALS['website'],$value);
+  
   switch ($configInfo['type']) {
     case 'integer':
       $value = sprintf('%d',$value);
@@ -151,19 +155,31 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
     case 'email':
       if (!is_email($value)) {
         ## hmm, this is displayed only later
-        #$_SESSION['action_result'] = s('Invalid value for email address');
+       # $_SESSION['action_result'] = s('Invalid value for email address');
+        return $configInfo['description'].': '.s('Invalid value for email address');
         $value = '';
       }
       break;
     case 'emaillist':
       $valid = array();
+      $hasError = false;
       $emails = explode(',',$value);
       foreach ($emails as $email) {
         if (is_email($email)) {
           $valid[] = $email;
+        } else {
+          $hasError = true;
         }
       }
       $value = join(',',$valid);
+/*
+ * hmm, not sure this is good or bad for UX
+ * 
+  */
+      if ($hasError) {
+        return $configInfo['description'].': '.s('Invalid value for email address');
+      }
+
       break;
   }
   ## reset to default if not set, and required
@@ -179,7 +195,8 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   ## and refresh the config immediately https://mantis.phplist.com/view.php?id=16693
   unset($GLOBALS['config']); 
   
-  return Sql_Replace( $tables["config"], array('item'=>$item, 'value'=>$value, 'editable'=>$editable), 'item');
+  Sql_Replace( $tables["config"], array('item'=>$item, 'value'=>$value, 'editable'=>$editable), 'item');
+  return false; ## true indicates error, and which one
 }
 
 /*
@@ -1024,7 +1041,7 @@ function PageLinkClass($name,$desc="",$url="",$class = '',$title = '') {
   return $link;
 }
 
-function PageLinkButton($name,$desc="",$url="",$extraclass = '',$title = '') {
+function PageLinkButton($name,$desc = '', $url = '',$extraclass = '',$title = '') {
   return PageLinkClass($name,$desc,$url,'button '.$extraclass,$title);
 }
 

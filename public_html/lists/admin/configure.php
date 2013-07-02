@@ -80,18 +80,20 @@ if (!empty($_REQUEST['save'])) {
           $value = str_replace("[WEBSITE]","",$value);
         }
         if (empty($value) && !$info['allowempty']) {
-          Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
-          $haserror = 1;
+      #    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
+          $haserror = $info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty');
         } else {
-          SaveConfig($id,$value);
+          $haserror = SaveConfig($id,$value);
         }
       }
     }
     if (!$haserror) {
-      print '<div class="actionresult">'.s('Changes Saved').'</div>';
+      print '<div class="actionresult">'.s('Changes saved').'</div>';
       unset($id);
-    }
-        
+    } else {
+      print '<div class="actionresult error">'.$haserror.'<br/>'.s('Changes not saved').'</div>';
+      unset($id);
+    }    
 #    Redirect("configure");
 #    exit;
   }
