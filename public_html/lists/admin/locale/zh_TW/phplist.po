@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 05:12+0000\n"
+"POT-Creation-Date: 2013-07-03 05:13+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -56,7 +56,7 @@ msgstr "貼上希望標示為未確認的信箱，接著點選繼續"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:349
 #: public_html/lists/admin/commonlib/pages/user.php:277
 #: public_html/lists/admin/commonlib/pages/user.php:333
-#: public_html/lists/admin/initialise.php:51
+#: public_html/lists/admin/initialise.php:45
 #: public_html/lists/admin/massremove.php:49
 #: public_html/lists/admin/login.php:72 public_html/lists/admin/login.php:100
 #: public_html/lists/admin/login.php:108 public_html/lists/admin/login.php:120
@@ -82,231 +82,231 @@ msgstr "退信處理錯誤"
 msgid "Bounce Processing info"
 msgstr "退信處理訊息"
 
-#: public_html/lists/admin/processbounces.php:206
+#: public_html/lists/admin/processbounces.php:213
 msgid "system message bounced, user marked unconfirmed"
 msgstr "系統退信產生，使用者標示為未確認"
 
-#: public_html/lists/admin/processbounces.php:207
+#: public_html/lists/admin/processbounces.php:214
 msgid "Bounced system message"
 msgstr "系統退信"
 
-#: public_html/lists/admin/processbounces.php:208
+#: public_html/lists/admin/processbounces.php:215
 msgid "User marked unconfirmed"
 msgstr "使用者標示為未確認"
 
-#: public_html/lists/admin/processbounces.php:209
+#: public_html/lists/admin/processbounces.php:216
 msgid "View Bounce"
 msgstr "瀏覽退信"
 
-#: public_html/lists/admin/processbounces.php:258
+#: public_html/lists/admin/processbounces.php:284
 msgid "system message bounced, but unknown user"
 msgstr "系統退回信件，但是沒有符合的使用者"
 
-#: public_html/lists/admin/processbounces.php:298
+#: public_html/lists/admin/processbounces.php:324
 #: public_html/lists/admin/readtestmail.php:196
 msgid "Cannot create POP3 connection to"
 msgstr "無法建立 POP3 連線於"
 
-#: public_html/lists/admin/processbounces.php:313
+#: public_html/lists/admin/processbounces.php:339
 #: public_html/lists/admin/readtestmail.php:211
 msgid "Cannot open mailbox file"
 msgstr "無法開啟郵件檔案"
 
-#: public_html/lists/admin/processbounces.php:322
+#: public_html/lists/admin/processbounces.php:348
 msgid "bounces to fetch from the mailbox"
 msgstr "封退信於信箱"
 
-#: public_html/lists/admin/processbounces.php:323
+#: public_html/lists/admin/processbounces.php:349
 #: public_html/lists/admin/readtestmail.php:223
 msgid "Please do not interrupt this process"
 msgstr "請不要中斷這個處理程序"
 
-#: public_html/lists/admin/processbounces.php:324
+#: public_html/lists/admin/processbounces.php:350
 msgid "bounces to process"
 msgstr "封退信待處理"
 
-#: public_html/lists/admin/processbounces.php:326
+#: public_html/lists/admin/processbounces.php:352
 #: public_html/lists/admin/readtestmail.php:225
 msgid "Processing first"
 msgstr "處理第一"
 
-#: public_html/lists/admin/processbounces.php:326
-#: public_html/lists/admin/processbounces.php:327
-#: public_html/lists/admin/home.php:290 public_html/lists/admin/bounces.php:53
-#: public_html/lists/admin/bounces.php:89
+#: public_html/lists/admin/processbounces.php:352
+#: public_html/lists/admin/processbounces.php:353
+#: public_html/lists/admin/home.php:290 public_html/lists/admin/bounces.php:74
+#: public_html/lists/admin/bounces.php:120
 #: public_html/lists/admin/reconcileusers.php:191
 #: public_html/lists/admin/reconcileusers.php:468
 msgid "bounces"
 msgstr "封退信"
 
-#: public_html/lists/admin/processbounces.php:327
+#: public_html/lists/admin/processbounces.php:353
 msgid "processing first"
 msgstr "處理第一封"
 
-#: public_html/lists/admin/processbounces.php:331
+#: public_html/lists/admin/processbounces.php:357
 msgid "Running in test mode, not deleting messages from mailbox"
 msgstr "目前在測試模式中，無法從信箱刪除信件"
 
-#: public_html/lists/admin/processbounces.php:333
+#: public_html/lists/admin/processbounces.php:359
 msgid "Processed messages will be deleted from mailbox"
 msgstr "處理的信件將會從信箱刪除"
 
-#: public_html/lists/admin/processbounces.php:349
-#: public_html/lists/admin/processbounces.php:355
+#: public_html/lists/admin/processbounces.php:375
+#: public_html/lists/admin/processbounces.php:381
 #: public_html/lists/admin/readtestmail.php:248
 #: public_html/lists/admin/readtestmail.php:253
 msgid "Deleting message"
 msgstr "刪除信件中"
 
-#: public_html/lists/admin/processbounces.php:362
+#: public_html/lists/admin/processbounces.php:388
 #: public_html/lists/admin/readtestmail.php:260
 msgid "Closing mailbox, and purging messages"
 msgstr "關閉信箱並且清除信件"
 
-#: public_html/lists/admin/processbounces.php:371
+#: public_html/lists/admin/processbounces.php:397
 #: public_html/lists/admin/readtestmail.php:274
 msgid "IMAP is not included in your PHP installation, cannot continue"
 msgstr "您的 PHP 不支援 IMAP ，無法繼續"
 
-#: public_html/lists/admin/processbounces.php:372
+#: public_html/lists/admin/processbounces.php:398
 #: public_html/lists/admin/readtestmail.php:275
 msgid "Check out"
 msgstr "簽出"
 
-#: public_html/lists/admin/processbounces.php:378
+#: public_html/lists/admin/processbounces.php:404
 msgid "Bounce mechanism not properly configured"
 msgstr "退信機制也許還沒設定"
 
-#: public_html/lists/admin/processbounces.php:402
+#: public_html/lists/admin/processbounces.php:428
 msgid "bounce_protocol not supported"
 msgstr "不支援 bounce_protocol"
 
-#: public_html/lists/admin/processbounces.php:415
+#: public_html/lists/admin/processbounces.php:441
 #, php-format
 msgid "%d bounces to reprocess"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:419
-#: public_html/lists/admin/processbounces.php:431
+#: public_html/lists/admin/processbounces.php:445
+#: public_html/lists/admin/processbounces.php:457
 #, php-format
 msgid "%d out of %d processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:433
+#: public_html/lists/admin/processbounces.php:459
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:437
+#: public_html/lists/admin/processbounces.php:463
 msgid "Processing bounces based on active bounce rules"
 msgstr "透過啟用中的退信規則處理退信"
 
-#: public_html/lists/admin/processbounces.php:455
+#: public_html/lists/admin/processbounces.php:481
 #: public_html/lists/admin/actions/processqueue.php:831
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr "處理程序被其他程序中止"
 
-#: public_html/lists/admin/processbounces.php:486
-#: public_html/lists/admin/processbounces.php:616
+#: public_html/lists/admin/processbounces.php:512
+#: public_html/lists/admin/processbounces.php:642
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:486
-#: public_html/lists/admin/processbounces.php:503
+#: public_html/lists/admin/processbounces.php:512
+#: public_html/lists/admin/processbounces.php:529
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:486
-#: public_html/lists/admin/processbounces.php:503
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:513
-#: public_html/lists/admin/processbounces.php:518
-#: public_html/lists/admin/processbounces.php:522
+#: public_html/lists/admin/processbounces.php:512
+#: public_html/lists/admin/processbounces.php:529
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:539
+#: public_html/lists/admin/processbounces.php:544
+#: public_html/lists/admin/processbounces.php:548
 msgid "bounce rule"
 msgstr "退信規則"
 
-#: public_html/lists/admin/processbounces.php:503
+#: public_html/lists/admin/processbounces.php:529
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:518
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:544
 msgid "Auto Blacklisted"
 msgstr "自動列為黑名單"
 
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:518
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:544
 msgid "User auto blacklisted for"
 msgstr "使用者自動被列為黑名單於"
 
-#: public_html/lists/admin/processbounces.php:513
-#: public_html/lists/admin/processbounces.php:522
+#: public_html/lists/admin/processbounces.php:539
+#: public_html/lists/admin/processbounces.php:548
 msgid "Auto Unsubscribed"
 msgstr "自動取消訂閱"
 
-#: public_html/lists/admin/processbounces.php:513
-#: public_html/lists/admin/processbounces.php:522
+#: public_html/lists/admin/processbounces.php:539
+#: public_html/lists/admin/processbounces.php:548
 msgid "User auto unsubscribed for"
 msgstr "使用者自動取消訂閱於"
 
-#: public_html/lists/admin/processbounces.php:536
+#: public_html/lists/admin/processbounces.php:562
 msgid "bounces processed by advanced processing"
 msgstr "封退信經由進階處理程序處理"
 
-#: public_html/lists/admin/processbounces.php:537
+#: public_html/lists/admin/processbounces.php:563
 msgid "bounces were not matched by advanced processing rules"
 msgstr "封退信不符合進階處理規則"
 
-#: public_html/lists/admin/processbounces.php:541
+#: public_html/lists/admin/processbounces.php:567
 msgid "Identifying consecutive bounces"
 msgstr "辨識連續性退信"
 
-#: public_html/lists/admin/processbounces.php:555
+#: public_html/lists/admin/processbounces.php:581
 msgid "Nothing to do"
 msgstr "沒有動作"
 
-#: public_html/lists/admin/processbounces.php:614
+#: public_html/lists/admin/processbounces.php:640
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:616
+#: public_html/lists/admin/processbounces.php:642
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:625
+#: public_html/lists/admin/processbounces.php:651
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:626
+#: public_html/lists/admin/processbounces.php:652
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:637
+#: public_html/lists/admin/processbounces.php:663
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:647
+#: public_html/lists/admin/processbounces.php:673
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:652
+#: public_html/lists/admin/processbounces.php:678
 msgid "Report:"
 msgstr "報表："
 
-#: public_html/lists/admin/processbounces.php:656
+#: public_html/lists/admin/processbounces.php:682
 msgid "Report of advanced bounce processing:"
 msgstr "進階退信處理報表："
 
-#: public_html/lists/admin/processbounces.php:659
+#: public_html/lists/admin/processbounces.php:685
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
@@ -460,28 +460,28 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:490
 #: public_html/lists/admin/importadmin.php:122
-#: public_html/lists/admin/actions/import2.php:95
+#: public_html/lists/admin/actions/import2.php:96
 msgid "Record has no email"
 msgstr "沒有email"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:493
 #: public_html/lists/admin/importadmin.php:123
-#: public_html/lists/admin/actions/import2.php:98
+#: public_html/lists/admin/actions/import2.php:99
 msgid "Invalid Email"
 msgstr "錯誤的email"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:539
-#: public_html/lists/admin/actions/import2.php:146
+#: public_html/lists/admin/actions/import2.php:147
 msgid "clear value"
 msgstr "清除資料"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:549
-#: public_html/lists/admin/actions/import2.php:156
+#: public_html/lists/admin/actions/import2.php:157
 msgid "New Attribute"
 msgstr "新增屬性"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:552
-#: public_html/lists/admin/actions/import2.php:160
+#: public_html/lists/admin/actions/import2.php:161
 msgid "Skip value"
 msgstr "忽略數值"
 
@@ -491,10 +491,10 @@ msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr "測試輸出 <br/>如果輸出資料看來沒問題，點選  %s 來正式送出資料"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:573
-#: public_html/lists/admin/actions/import1.php:218
-#: public_html/lists/admin/actions/import2.php:505
+#: public_html/lists/admin/actions/import1.php:221
+#: public_html/lists/admin/actions/import2.php:513
 #: public_html/lists/admin/import3.php:493
-#: public_html/lists/admin/importsimple.php:90
+#: public_html/lists/admin/importsimple.php:100
 msgid "Import some more emails"
 msgstr "匯入更多 emails"
 
@@ -507,7 +507,7 @@ msgstr "新增使用者到電子報中"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:614
 #: public_html/lists/admin/import1.php:191
 #: public_html/lists/admin/import3.php:224
-#: public_html/lists/admin/importsimple.php:132
+#: public_html/lists/admin/importsimple.php:142
 msgid "Select the lists to add the emails to"
 msgstr "選擇要訂閱的電子報"
 
@@ -520,7 +520,7 @@ msgstr "沒有電子報"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
 #: public_html/lists/admin/list.php:275 public_html/lists/admin/import3.php:40
-#: public_html/lists/admin/connect.php:1107
+#: public_html/lists/admin/connect.php:1095
 msgid "Add a list"
 msgstr "新增電子報"
 
@@ -755,7 +755,7 @@ msgid "changed from"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:235
-#: public_html/lists/admin/actions/import1.php:180
+#: public_html/lists/admin/actions/import1.php:183
 msgid "No data changed"
 msgstr "沒有資料異動"
 
@@ -829,8 +829,8 @@ msgstr "存取記錄"
 #: public_html/lists/admin/bouncerules.php:103
 #: public_html/lists/admin/plugins.php:234
 #: public_html/lists/admin/messages.php:360
+#: public_html/lists/admin/spage.php:57
 #: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/templates.php:35
 #: public_html/lists/admin/templates.php:36
 msgid "delete"
 msgstr "刪除"
@@ -861,8 +861,12 @@ msgstr "無"
 msgid "Add to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:431
-#: public_html/lists/admin/commonlib/pages/user.php:460
+#: public_html/lists/admin/commonlib/pages/user.php:372
+msgid "Remove from blacklist"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/user.php:433
+#: public_html/lists/admin/commonlib/pages/user.php:462
 #: public_html/lists/admin/commonlib/pages/attributes.php:384
 #: public_html/lists/admin/commonlib/pages/attributes.php:410
 #: public_html/lists/admin/bouncerule.php:49
@@ -870,49 +874,49 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/admin.php:250
-#: public_html/lists/admin/spageedit.php:331
+#: public_html/lists/admin/spageedit.php:346
 #: public_html/lists/admin/list.php:245
-#: public_html/lists/admin/template.php:295
+#: public_html/lists/admin/template.php:301
 msgid "Save Changes"
 msgstr "儲存"
 
-#: public_html/lists/admin/commonlib/pages/user.php:435
+#: public_html/lists/admin/commonlib/pages/user.php:437
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:438
+#: public_html/lists/admin/commonlib/pages/user.php:440
 #, fuzzy
 msgid "Mailinglist membership"
 msgstr "電子報會員"
 
-#: public_html/lists/admin/commonlib/pages/user.php:465
+#: public_html/lists/admin/commonlib/pages/user.php:467
 msgid "Group Membership"
 msgstr "會員群組"
 
-#: public_html/lists/admin/commonlib/pages/user.php:468
+#: public_html/lists/admin/commonlib/pages/user.php:470
 #, fuzzy
 msgid "Please select the groups this subscriber is a member of"
 msgstr "請選擇這個使用者要歸類的群組"
 
-#: public_html/lists/admin/commonlib/pages/user.php:543
+#: public_html/lists/admin/commonlib/pages/user.php:545
 #, fuzzy
 msgid "Save changes"
 msgstr "儲存"
 
-#: public_html/lists/admin/commonlib/pages/user.php:549
+#: public_html/lists/admin/commonlib/pages/user.php:551
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
 msgid "Details"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:550
+#: public_html/lists/admin/commonlib/pages/user.php:552
 #: public_html/lists/admin/send_core.php:532
 #: public_html/lists/admin/list.php:145 public_html/lists/admin/list.php:157
 #, fuzzy
 msgid "Lists"
 msgstr "電子報"
 
-#: public_html/lists/admin/commonlib/pages/user.php:563
+#: public_html/lists/admin/commonlib/pages/user.php:565
 msgid "Groups"
 msgstr ""
 
@@ -927,7 +931,7 @@ msgid ""
 msgstr "您只能夠瀏覽這個頁面，無法做任何修改"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:42
-#: public_html/lists/admin/bounces.php:111
+#: public_html/lists/admin/bounces.php:149
 #: public_html/lists/admin/import4.php:55
 #: public_html/lists/admin/editattributes.php:131
 msgid "user"
@@ -941,7 +945,7 @@ msgstr "退信"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:60
 #: public_html/lists/admin/commonlib/pages/userhistory.php:80
-#: public_html/lists/admin/spage.php:46
+#: public_html/lists/admin/spage.php:57
 msgid "view"
 msgstr "瀏覽"
 
@@ -1066,7 +1070,7 @@ msgstr "ip"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:169
 #: public_html/lists/admin/statsoverview.php:106
-#: public_html/lists/admin/bounces.php:112
+#: public_html/lists/admin/bounces.php:150
 #: public_html/lists/admin/mviews.php:78 public_html/lists/admin/mviews.php:80
 #: public_html/lists/admin/eventlog.php:115
 msgid "date"
@@ -1143,7 +1147,7 @@ msgid "Sort by"
 msgstr "排序"
 
 #: public_html/lists/admin/commonlib/pages/users.php:287
-#: public_html/lists/admin/send_core.php:864
+#: public_html/lists/admin/send_core.php:853
 msgid "desc"
 msgstr "降冪"
 
@@ -1210,7 +1214,7 @@ msgid "users"
 msgstr "使用者"
 
 #: public_html/lists/admin/commonlib/pages/users.php:410
-#: public_html/lists/admin/actions/import1.php:205
+#: public_html/lists/admin/actions/import1.php:208
 #: public_html/lists/admin/import4.php:115
 #: public_html/lists/admin/import3.php:472
 msgid "lists"
@@ -1291,8 +1295,8 @@ msgstr "目前尚未定義任何欄位<br/>"
 #: public_html/lists/admin/commonlib/pages/attributes.php:335
 #: public_html/lists/admin/import4.php:170
 #: public_html/lists/admin/import4.php:180
-#: public_html/lists/admin/spageedit.php:276
-#: public_html/lists/admin/connect.php:1709
+#: public_html/lists/admin/spageedit.php:278
+#: public_html/lists/admin/connect.php:1698
 msgid "Attribute"
 msgstr "屬性"
 
@@ -1310,7 +1314,7 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:344
 #: public_html/lists/admin/commonlib/pages/attributes.php:394
-#: public_html/lists/admin/spageedit.php:278
+#: public_html/lists/admin/spageedit.php:280
 #: public_html/lists/admin/login.php:116
 #: public_html/lists/admin/catlists.php:65
 msgid "Name"
@@ -1320,7 +1324,7 @@ msgstr "名稱"
 #: public_html/lists/admin/commonlib/pages/attributes.php:396
 #: public_html/lists/admin/adminattributes.php:86
 #: public_html/lists/admin/adminattributes.php:97
-#: public_html/lists/admin/spageedit.php:279
+#: public_html/lists/admin/spageedit.php:281
 msgid "Type"
 msgstr "類型："
 
@@ -1334,13 +1338,13 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:374
 #: public_html/lists/admin/commonlib/pages/attributes.php:403
-#: public_html/lists/admin/spageedit.php:280
+#: public_html/lists/admin/spageedit.php:282
 msgid "Default Value"
 msgstr "預設值"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:376
 #: public_html/lists/admin/commonlib/pages/attributes.php:405
-#: public_html/lists/admin/spageedit.php:281
+#: public_html/lists/admin/spageedit.php:283
 msgid "Order of Listing"
 msgstr "順序"
 
@@ -1362,24 +1366,24 @@ msgid "Add new Attribute"
 msgstr "新增欄位："
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:407
-#: public_html/lists/admin/spageedit.php:282
+#: public_html/lists/admin/spageedit.php:284
 msgid "Is this attribute required?"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/lib/userlib.php:377
+#: public_html/lists/admin/commonlib/lib/userlib.php:376
 #, php-format
 msgid "Removed from blacklist by %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/lib/userlib.php:379
+#: public_html/lists/admin/commonlib/lib/userlib.php:378
 msgid "Removed from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/lib/userlib.php:411
+#: public_html/lists/admin/commonlib/lib/userlib.php:410
 msgid "Added to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/lib/userlib.php:411
+#: public_html/lists/admin/commonlib/lib/userlib.php:410
 #, php-format
 msgid "Added to blacklist for reason %s"
 msgstr ""
@@ -1390,7 +1394,7 @@ msgid "sort by %s"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:869
-#: public_html/lists/admin/connect.php:1790
+#: public_html/lists/admin/connect.php:1779
 msgid "Previous"
 msgstr ""
 
@@ -1400,7 +1404,7 @@ msgid "Back"
 msgstr "回到"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:903
-#: public_html/lists/admin/connect.php:1791
+#: public_html/lists/admin/connect.php:1780
 #, fuzzy
 msgid "Next"
 msgstr "文字"
@@ -1428,7 +1432,7 @@ msgid "Choose a list"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:16
-#: public_html/lists/admin/actions/import1.php:205
+#: public_html/lists/admin/actions/import1.php:208
 #: public_html/lists/admin/import4.php:134
 #: public_html/lists/admin/import4.php:145 public_html/lists/admin/list.php:61
 #: public_html/lists/admin/import3.php:472
@@ -1691,61 +1695,61 @@ msgstr "匯入存在的使用者"
 msgid "Import of new subscriber"
 msgstr "匯入新使用者"
 
-#: public_html/lists/admin/actions/import1.php:188
+#: public_html/lists/admin/actions/import1.php:191
 msgid "List subscriptions:"
 msgstr "訂閱的電子報："
 
-#: public_html/lists/admin/actions/import1.php:190
+#: public_html/lists/admin/actions/import1.php:193
 msgid "Was subscribed to:"
 msgstr "訂閱了："
 
-#: public_html/lists/admin/actions/import1.php:193
+#: public_html/lists/admin/actions/import1.php:196
 msgid "Is now subscribed to:"
 msgstr "現在訂閱："
 
-#: public_html/lists/admin/actions/import1.php:196
+#: public_html/lists/admin/actions/import1.php:199
 msgid "Not subscribed to any lists"
 msgstr "沒有訂閱任何電子報"
 
-#: public_html/lists/admin/actions/import1.php:199
+#: public_html/lists/admin/actions/import1.php:202
 msgid "Import by "
 msgstr "匯入自"
 
-#: public_html/lists/admin/actions/import1.php:206
+#: public_html/lists/admin/actions/import1.php:209
 #: public_html/lists/admin/import3.php:473
 msgid "new email was"
 msgstr "新 email 是"
 
-#: public_html/lists/admin/actions/import1.php:206
+#: public_html/lists/admin/actions/import1.php:209
 #: public_html/lists/admin/import3.php:473
 msgid "new emails were"
 msgstr "新 email 是"
 
-#: public_html/lists/admin/actions/import1.php:207
+#: public_html/lists/admin/actions/import1.php:210
 #: public_html/lists/admin/import3.php:474
 msgid "email was"
 msgstr "email 是"
 
-#: public_html/lists/admin/actions/import1.php:207
+#: public_html/lists/admin/actions/import1.php:210
 #: public_html/lists/admin/import3.php:474
 msgid "emails were"
 msgstr "email 是"
 
-#: public_html/lists/admin/actions/import1.php:210
+#: public_html/lists/admin/actions/import1.php:213
 #, php-format
 msgid "%d emails already existed in the database"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:213
+#: public_html/lists/admin/actions/import1.php:216
 msgid "All the emails already exist in the database."
 msgstr "所有信箱都已經存在於資料庫。"
 
-#: public_html/lists/admin/actions/import1.php:215
+#: public_html/lists/admin/actions/import1.php:218
 #: public_html/lists/admin/import3.php:479
 msgid "succesfully imported to the database and added to"
 msgstr "成功匯入資料庫並且新增到"
 
-#: public_html/lists/admin/actions/import1.php:215
+#: public_html/lists/admin/actions/import1.php:218
 #: public_html/lists/admin/import3.php:479
 msgid "subscribed to the"
 msgstr "訂閱"
@@ -1771,74 +1775,79 @@ msgstr ""
 msgid "Network error updating language, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:222
-#: public_html/lists/admin/actions/import2.php:232
+#: public_html/lists/admin/actions/import2.php:223
 #: public_html/lists/admin/actions/import2.php:233
+#: public_html/lists/admin/actions/import2.php:234
 msgid "duplicate"
 msgstr "重複"
 
-#: public_html/lists/admin/actions/import2.php:232
-#: public_html/lists/admin/actions/import2.php:267
+#: public_html/lists/admin/actions/import2.php:233
+#: public_html/lists/admin/actions/import2.php:268
 msgid "Duplicate Email"
 msgstr "重複的電子郵件"
 
-#: public_html/lists/admin/actions/import2.php:232
+#: public_html/lists/admin/actions/import2.php:233
 msgid " user imported as "
 msgstr " 使用者匯入於"
 
-#: public_html/lists/admin/actions/import2.php:468
+#: public_html/lists/admin/actions/import2.php:473
 msgid ""
 "All the emails already exist in the database and are member of the lists"
 msgstr "所有的電子郵件都已經存在，而且也訂閱了這個電子報"
 
-#: public_html/lists/admin/actions/import2.php:470
+#: public_html/lists/admin/actions/import2.php:475
 #, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
 msgstr "%s 個電子郵件成功匯入到資料庫，並且訂閱了電子報 %d 。"
 
-#: public_html/lists/admin/actions/import2.php:471
+#: public_html/lists/admin/actions/import2.php:476
 #, php-format
 msgid "%d emails subscribed to the lists"
 msgstr "%d 的電子郵件訂閱了這個電子報"
 
-#: public_html/lists/admin/actions/import2.php:473
+#: public_html/lists/admin/actions/import2.php:478
 #, php-format
 msgid "%s emails already existed in the database"
 msgstr "%s 個電子郵件已經存在於資料庫中"
 
-#: public_html/lists/admin/actions/import2.php:477
+#: public_html/lists/admin/actions/import2.php:482
 #, php-format
 msgid "%d Invalid Emails found."
 msgstr "%d 個錯誤的電子郵件"
 
-#: public_html/lists/admin/actions/import2.php:479
+#: public_html/lists/admin/actions/import2.php:484
 msgid "These records were added, but the email has been made up from "
 msgstr "這些記錄新增了，但是電子郵件已經被建立於"
 
-#: public_html/lists/admin/actions/import2.php:481
+#: public_html/lists/admin/actions/import2.php:486
 #: public_html/lists/admin/import3.php:487
 msgid ""
 "These records were deleted. Check your source and reimport the data. "
 "Duplicates will be identified."
 msgstr "這些資料刪除了，檢查您的資料來源後重新匯入，重複資料會被挑出"
 
-#: public_html/lists/admin/actions/import2.php:485
+#: public_html/lists/admin/actions/import2.php:490
 #, php-format
 msgid "%d duplicate emails found."
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:488
+#: public_html/lists/admin/actions/import2.php:493
 #, php-format
 msgid "Subscriber data was updated for %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:490
+#: public_html/lists/admin/actions/import2.php:496
+#, php-format
+msgid "%s emails were on the blacklist and have not been added to the lists"
+msgstr ""
+
+#: public_html/lists/admin/actions/import2.php:498
 #, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
 msgstr ""
 
-#: public_html/lists/admin/actions/import2.php:494
-#: public_html/lists/admin/importsimple.php:94
+#: public_html/lists/admin/actions/import2.php:502
+#: public_html/lists/admin/importsimple.php:104
 msgid "phplist Import Results"
 msgstr "匯入結果"
 
@@ -1891,8 +1900,8 @@ msgid "still to process"
 msgstr "繼續處理"
 
 #: public_html/lists/admin/actions/msgstatus.php:70
-#: public_html/lists/admin/bounces.php:101
-#: public_html/lists/admin/bounces.php:109 public_html/lists/admin/lib.php:507
+#: public_html/lists/admin/bounces.php:132
+#: public_html/lists/admin/bounces.php:147 public_html/lists/admin/lib.php:507
 msgid "Unknown"
 msgstr "未知"
 
@@ -2039,10 +2048,10 @@ msgstr "將不會寄出"
 #: public_html/lists/admin/actions/processqueue.php:366
 #: public_html/lists/admin/actions/processqueue.php:368
 #: public_html/lists/admin/actions/processqueue.php:954
-#: public_html/lists/admin/members.php:325
-#: public_html/lists/admin/members.php:329
-#: public_html/lists/admin/members.php:342
-#: public_html/lists/admin/members.php:346
+#: public_html/lists/admin/members.php:324
+#: public_html/lists/admin/members.php:328
+#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:345
 msgid "to"
 msgstr "到"
 
@@ -2342,7 +2351,7 @@ msgstr "回到退信規則列表"
 
 #: public_html/lists/admin/bouncerule.php:32
 #: public_html/lists/admin/bouncerules.php:116
-#: public_html/lists/admin/bounce.php:111
+#: public_html/lists/admin/bounce.php:143
 msgid "Regular Expression"
 msgstr "樣式比對"
 
@@ -2352,13 +2361,13 @@ msgstr "建立者"
 
 #: public_html/lists/admin/bouncerule.php:35
 #: public_html/lists/admin/bouncerules.php:117
-#: public_html/lists/admin/bounce.php:112
+#: public_html/lists/admin/bounce.php:144
 #: public_html/lists/admin/messages.php:370
 msgid "Action"
 msgstr "操作"
 
 #: public_html/lists/admin/bouncerule.php:40
-#: public_html/lists/admin/bounce.php:174
+#: public_html/lists/admin/bounce.php:207
 #: public_html/lists/admin/messages.php:268
 msgid "Status"
 msgstr "狀態"
@@ -2369,7 +2378,7 @@ msgstr "選擇狀態"
 
 #: public_html/lists/admin/bouncerule.php:48
 #: public_html/lists/admin/bouncerules.php:123
-#: public_html/lists/admin/bounce.php:118
+#: public_html/lists/admin/bounce.php:150
 msgid "Memo for this rule"
 msgstr "這個規則的備註"
 
@@ -2490,54 +2499,54 @@ msgstr ""
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:465
-#: public_html/lists/admin/initialise.php:179
+#: public_html/lists/admin/upgrade.php:489
+#: public_html/lists/admin/initialise.php:173
 msgid "Success"
 msgstr "成功"
 
-#: public_html/lists/admin/upgrade.php:472
+#: public_html/lists/admin/upgrade.php:496
 #: public_html/lists/admin/statsmgt.php:14
 msgid "The clicktracking system has changed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:473
+#: public_html/lists/admin/upgrade.php:497
 #: public_html/lists/admin/statsmgt.php:15
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:474
+#: public_html/lists/admin/upgrade.php:498
 #: public_html/lists/admin/statsmgt.php:16
 msgid "Convert Old data to new"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:478
+#: public_html/lists/admin/upgrade.php:502
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:484
+#: public_html/lists/admin/upgrade.php:508
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:490
+#: public_html/lists/admin/upgrade.php:514
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:491
+#: public_html/lists/admin/upgrade.php:515
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:492
-#: public_html/lists/admin/initialise.php:205
+#: public_html/lists/admin/upgrade.php:516
+#: public_html/lists/admin/initialise.php:198
 #: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:363
 msgid "Upgrade"
 msgstr "升級"
 
-#: public_html/lists/admin/upgrade.php:492
+#: public_html/lists/admin/upgrade.php:516
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -2591,75 +2600,75 @@ msgstr "星期六"
 
 #: public_html/lists/admin/date.php:25
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "January"
 msgstr "一月"
 
 #: public_html/lists/admin/date.php:26
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "February"
 msgstr "二月"
 
 #: public_html/lists/admin/date.php:27
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "March"
 msgstr "三月"
 
 #: public_html/lists/admin/date.php:28
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "April"
 msgstr "四月"
 
 #: public_html/lists/admin/date.php:29
 #: public_html/lists/admin/systemstats.php:10
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1384
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1373
+#: public_html/lists/admin/connect.php:1374
 msgid "May"
 msgstr "5"
 
 #: public_html/lists/admin/date.php:30
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "June"
 msgstr "六月"
 
 #: public_html/lists/admin/date.php:31
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "July"
 msgstr "七月"
 
 #: public_html/lists/admin/date.php:32
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "August"
 msgstr "八月"
 
 #: public_html/lists/admin/date.php:33
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "September"
 msgstr "九月"
 
 #: public_html/lists/admin/date.php:34
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "October"
 msgstr "十月"
 
 #: public_html/lists/admin/date.php:35
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "November"
 msgstr "十一月"
 
 #: public_html/lists/admin/date.php:36
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1384
+#: public_html/lists/admin/connect.php:1373
 msgid "December"
 msgstr "十二月"
 
@@ -2675,7 +2684,7 @@ msgstr "%s 規則的數量： %d"
 #: public_html/lists/admin/bouncerules.php:60
 #: public_html/lists/admin/bouncerules.php:65
 #: public_html/lists/admin/messages.php:46
-#: public_html/lists/admin/spage.php:47
+#: public_html/lists/admin/spage.php:57
 msgid "active"
 msgstr "啟用"
 
@@ -2713,7 +2722,7 @@ msgid "#bncs"
 msgstr "#退信"
 
 #: public_html/lists/admin/bouncerules.php:96
-#: public_html/lists/admin/members.php:272
+#: public_html/lists/admin/members.php:271
 msgid "tag"
 msgstr "標籤"
 
@@ -2722,10 +2731,10 @@ msgid "order"
 msgstr "順序"
 
 #: public_html/lists/admin/bouncerules.php:98
-#: public_html/lists/admin/send_core.php:872
+#: public_html/lists/admin/send_core.php:861
 #: public_html/lists/admin/admins.php:103
 #: public_html/lists/admin/eventlog.php:117
-#: public_html/lists/admin/spage.php:45 public_html/lists/admin/send.php:103
+#: public_html/lists/admin/spage.php:57 public_html/lists/admin/send.php:103
 msgid "del"
 msgstr "刪除"
 
@@ -2746,7 +2755,7 @@ msgid "add a new rule"
 msgstr "新增規則"
 
 #: public_html/lists/admin/bouncerules.php:124
-#: public_html/lists/admin/bounce.php:119
+#: public_html/lists/admin/bounce.php:151
 msgid "Add new Rule"
 msgstr "新增規則"
 
@@ -3027,9 +3036,9 @@ msgid "Attribute:"
 msgstr "欄位："
 
 #: public_html/lists/admin/adminattributes.php:84
-#: public_html/lists/admin/members.php:266
-#: public_html/lists/admin/members.php:315
-#: public_html/lists/admin/members.php:339
+#: public_html/lists/admin/members.php:265
+#: public_html/lists/admin/members.php:314
+#: public_html/lists/admin/members.php:338
 msgid "Delete"
 msgstr "刪除"
 
@@ -3062,8 +3071,8 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/send_core.php:1169
-#: public_html/lists/admin/send_core.php:1174
+#: public_html/lists/admin/send_core.php:1158
+#: public_html/lists/admin/send_core.php:1163
 msgid "Send Campaign"
 msgstr ""
 
@@ -3108,14 +3117,14 @@ msgid "Campaign added"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:354
-#: public_html/lists/admin/send_core.php:1138
+#: public_html/lists/admin/send_core.php:1127
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:355
-#: public_html/lists/admin/send_core.php:1138
+#: public_html/lists/admin/send_core.php:1127
 #: public_html/lists/admin/message.php:49
 #: public_html/lists/admin/messages.php:107
 msgid "Review Scheduling"
@@ -3181,8 +3190,8 @@ msgid "Sent test mail to"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:458
-#: public_html/lists/admin/initialise.php:86
-#: public_html/lists/admin/initialise.php:127
+#: public_html/lists/admin/initialise.php:80
+#: public_html/lists/admin/initialise.php:121
 #: public_html/lists/admin/import3.php:344
 #: public_html/lists/admin/messages.php:82
 #: public_html/lists/admin/messages.php:111
@@ -3264,8 +3273,8 @@ msgid "Send a Webpage"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:645
-#: public_html/lists/admin/send_core.php:802
-#: public_html/lists/admin/send_core.php:803
+#: public_html/lists/admin/send_core.php:791
+#: public_html/lists/admin/send_core.php:792
 msgid "Compose Message"
 msgstr ""
 
@@ -3368,161 +3377,161 @@ msgstr ""
 msgid "select one"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:829
+#: public_html/lists/admin/send_core.php:818
 msgid "Plain text version of message"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:830
+#: public_html/lists/admin/send_core.php:819
 msgid "generate from HTML"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:836
+#: public_html/lists/admin/send_core.php:825
 #: public_html/lists/admin/spageedit.php:184
 msgid "Footer"
 msgstr "頁尾"
 
-#: public_html/lists/admin/send_core.php:838
+#: public_html/lists/admin/send_core.php:827
 msgid "forwardfooter"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:845
+#: public_html/lists/admin/send_core.php:834
 msgid "Add attachments to your campaign"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:847
+#: public_html/lists/admin/send_core.php:836
 msgid "The upload has the following limits set by the server"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:848
+#: public_html/lists/admin/send_core.php:837
 msgid "Maximum size of total data being sent to the server"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:849
+#: public_html/lists/admin/send_core.php:838
 msgid "Maximum size of each individual file"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:859
+#: public_html/lists/admin/send_core.php:848
 msgid "Current Attachments"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:863
+#: public_html/lists/admin/send_core.php:852
 msgid "filename"
 msgstr "檔案名稱"
 
-#: public_html/lists/admin/send_core.php:865
+#: public_html/lists/admin/send_core.php:854
 msgid "size"
 msgstr "大小"
 
-#: public_html/lists/admin/send_core.php:868
-#: public_html/lists/admin/send_core.php:870
+#: public_html/lists/admin/send_core.php:857
+#: public_html/lists/admin/send_core.php:859
 msgid "file"
 msgstr "檔案"
 
-#: public_html/lists/admin/send_core.php:874
+#: public_html/lists/admin/send_core.php:863
 msgid "delchecked"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:878
+#: public_html/lists/admin/send_core.php:867
 msgid "New Attachment"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:878
+#: public_html/lists/admin/send_core.php:867
 msgid "Add (and save)"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:880
+#: public_html/lists/admin/send_core.php:869
 msgid "or"
 msgstr "或"
 
-#: public_html/lists/admin/send_core.php:880
+#: public_html/lists/admin/send_core.php:869
 msgid "Path to file on server"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:883
+#: public_html/lists/admin/send_core.php:872
 msgid "Description of attachment"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:915
-#: public_html/lists/admin/send_core.php:1184
-#: public_html/lists/admin/template.php:306
+#: public_html/lists/admin/send_core.php:904
+#: public_html/lists/admin/send_core.php:1173
+#: public_html/lists/admin/template.php:312
 msgid "Send Test"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:915
+#: public_html/lists/admin/send_core.php:904
 msgid " to email address(es)"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:916
-#: public_html/lists/admin/template.php:305
+#: public_html/lists/admin/send_core.php:905
+#: public_html/lists/admin/template.php:311
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:929
+#: public_html/lists/admin/send_core.php:918
 msgid "email to alert when sending of this message starts"
 msgstr "這封信開始寄送時發送訊息提醒"
 
-#: public_html/lists/admin/send_core.php:930
-#: public_html/lists/admin/send_core.php:932
+#: public_html/lists/admin/send_core.php:919
+#: public_html/lists/admin/send_core.php:921
 msgid "separate multiple with a comma"
 msgstr "多個項目請用逗點分隔"
 
-#: public_html/lists/admin/send_core.php:931
+#: public_html/lists/admin/send_core.php:920
 msgid "email to alert when sending of this message has finished"
 msgstr "這封信完成寄送時發送訊息提醒"
 
-#: public_html/lists/admin/send_core.php:938
+#: public_html/lists/admin/send_core.php:927
 msgid "add Google Analytics tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:947
+#: public_html/lists/admin/send_core.php:936
 msgid "Reset click statistics"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:954
+#: public_html/lists/admin/send_core.php:943
 msgid "Estimated size of HTML email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:957
+#: public_html/lists/admin/send_core.php:946
 msgid "Estimated size of text email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:999
+#: public_html/lists/admin/send_core.php:988
 msgid "Estimated size of mailout"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1002
+#: public_html/lists/admin/send_core.php:991
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1109
+#: public_html/lists/admin/send_core.php:1098
 msgid "subject missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1118
+#: public_html/lists/admin/send_core.php:1107
 msgid "message content missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1125
+#: public_html/lists/admin/send_core.php:1114
 msgid "From missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1145
+#: public_html/lists/admin/send_core.php:1134
 msgid "destination lists missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1151
+#: public_html/lists/admin/send_core.php:1140
 msgid "Content contains click track links."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1173
+#: public_html/lists/admin/send_core.php:1162
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1179
+#: public_html/lists/admin/send_core.php:1168
 msgid "Save as draft"
 msgstr ""
 
@@ -3708,93 +3717,93 @@ msgstr ""
 msgid "Please enter your email address."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:48
+#: public_html/lists/admin/initialise.php:42
 msgid "The initial <i>login name</i> will be"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:49
+#: public_html/lists/admin/initialise.php:43
 msgid "Please enter the password you want to use for this account."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:49
+#: public_html/lists/admin/initialise.php:43
 msgid "minimum of 8 characters."
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:58
+#: public_html/lists/admin/initialise.php:52
 msgid "Creating tables"
 msgstr "建立資料表中"
 
-#: public_html/lists/admin/initialise.php:83
+#: public_html/lists/admin/initialise.php:77
 msgid "Initialising table"
 msgstr "組態資料表中"
 
-#: public_html/lists/admin/initialise.php:85
+#: public_html/lists/admin/initialise.php:79
 msgid "Table already exists"
 msgstr "資料表已經存在"
 
-#: public_html/lists/admin/initialise.php:124
+#: public_html/lists/admin/initialise.php:118
 #: public_html/lists/admin/import3.php:342
 msgid "ok"
 msgstr "完成"
 
-#: public_html/lists/admin/initialise.php:133
+#: public_html/lists/admin/initialise.php:127
 msgid "Initialise plugin"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:156
+#: public_html/lists/admin/initialise.php:150
 msgid "List for testing."
 msgstr "測試列表"
 
-#: public_html/lists/admin/initialise.php:164
+#: public_html/lists/admin/initialise.php:158
 msgid "Sign up to our newsletter"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:179
+#: public_html/lists/admin/initialise.php:173
 msgid "Tell us about it"
 msgstr "回報問題"
 
-#: public_html/lists/admin/initialise.php:181
+#: public_html/lists/admin/initialise.php:175
 msgid ""
 "Please make sure to read the file README.security that can be found in the "
 "zip file."
 msgstr "請記得閱讀 README.security 檔案中的說明，解壓縮後就可以找到"
 
-#: public_html/lists/admin/initialise.php:183
+#: public_html/lists/admin/initialise.php:177
 msgid "Please make sure to"
 msgstr "請記得"
 
-#: public_html/lists/admin/initialise.php:184
+#: public_html/lists/admin/initialise.php:178
 msgid "subscribe to the announcements list"
 msgstr "訂閱我們的公告電子報"
 
-#: public_html/lists/admin/initialise.php:185
+#: public_html/lists/admin/initialise.php:179
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr "可以確認您是否更新到最新版本，有時候會出現安全性漏洞需要升級，我們寄送信件的頻率並不高。"
 
-#: public_html/lists/admin/initialise.php:196
+#: public_html/lists/admin/initialise.php:190
 msgid "Continue with"
 msgstr "繼續"
 
-#: public_html/lists/admin/initialise.php:196
+#: public_html/lists/admin/initialise.php:190
 msgid "phpList Setup"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:205
+#: public_html/lists/admin/initialise.php:198
 msgid "Maybe you want to"
 msgstr "也許您想要"
 
-#: public_html/lists/admin/initialise.php:205
+#: public_html/lists/admin/initialise.php:198
 msgid "instead?"
 msgstr ""
 
-#: public_html/lists/admin/initialise.php:206
+#: public_html/lists/admin/initialise.php:199
 msgid "Force Initialisation"
 msgstr "強制組態"
 
-#: public_html/lists/admin/initialise.php:206
+#: public_html/lists/admin/initialise.php:199
 msgid "(will erase all data!)"
 msgstr ""
 
@@ -3859,7 +3868,7 @@ msgid "Continue the Configuration process of phpList"
 msgstr ""
 
 #: public_html/lists/admin/home.php:91
-#: public_html/lists/admin/importsimple.php:89
+#: public_html/lists/admin/importsimple.php:99
 msgid "Send a campaign"
 msgstr ""
 
@@ -4028,7 +4037,7 @@ msgid "Process the Message Queue"
 msgstr ""
 
 #: public_html/lists/admin/home.php:278
-#: public_html/lists/admin/connect.php:442
+#: public_html/lists/admin/connect.php:430
 msgid "warning"
 msgstr ""
 
@@ -4145,130 +4154,130 @@ msgid "edit this value"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:123
-#: public_html/lists/admin/spage.php:44
+#: public_html/lists/admin/spage.php:57
 msgid "edit"
 msgstr "編輯"
 
-#: public_html/lists/admin/bounce.php:24
+#: public_html/lists/admin/bounce.php:38
 msgid "No such record"
 msgstr "沒有記錄"
 
-#: public_html/lists/admin/bounce.php:39 public_html/lists/admin/bounce.php:82
+#: public_html/lists/admin/bounce.php:53 public_html/lists/admin/bounce.php:96
 msgid "Back to the list of bounces"
 msgstr "回到退信清單"
 
-#: public_html/lists/admin/bounce.php:48
+#: public_html/lists/admin/bounce.php:62
 msgid "Not Found"
 msgstr "找不到<br/>"
 
-#: public_html/lists/admin/bounce.php:55 public_html/lists/admin/bounce.php:57
+#: public_html/lists/admin/bounce.php:69 public_html/lists/admin/bounce.php:71
 #, php-format
 msgid "Added %s to bouncecount for subscriber %s"
 msgstr "新增 %s 到 %s 的退信指數<br/>"
 
-#: public_html/lists/admin/bounce.php:64
+#: public_html/lists/admin/bounce.php:78
 #, php-format
 msgid "Made subscriber %s unconfirmed"
 msgstr "讓使用者 %s 狀態變成未確認<br/>"
 
-#: public_html/lists/admin/bounce.php:70
+#: public_html/lists/admin/bounce.php:84
 #, php-format
 #, php-format, fuzzy
 msgid "Made subscriber %d to receive text"
 msgstr "讓使用者 %s 訂閱純文字版本<br/>"
 
-#: public_html/lists/admin/bounce.php:75
+#: public_html/lists/admin/bounce.php:89
 #, php-format
 #, php-format, fuzzy
 msgid "Deleted subscriber %d"
 msgstr "刪除使用者 %s<br/>"
 
-#: public_html/lists/admin/bounce.php:79
+#: public_html/lists/admin/bounce.php:93
 #, php-format
 #, php-format, fuzzy
 msgid "Deleting bounce %d .. "
 msgstr "刪除退信中 %s .."
 
-#: public_html/lists/admin/bounce.php:81
+#: public_html/lists/admin/bounce.php:95
 msgid "..Done, loading next bounce.."
 msgstr "..完成，讀取下一封退信.."
 
-#: public_html/lists/admin/bounce.php:97
+#: public_html/lists/admin/bounce.php:129
 msgid "This bounce no longer exists in the database."
 msgstr ""
 
-#: public_html/lists/admin/bounce.php:127
+#: public_html/lists/admin/bounce.php:160
 msgid "For subscriber with email"
 msgstr "給使用者信箱"
 
-#: public_html/lists/admin/bounce.php:128
+#: public_html/lists/admin/bounce.php:161
 msgid "Increase bouncecount with"
 msgstr "增加退信指數於"
 
-#: public_html/lists/admin/bounce.php:128
+#: public_html/lists/admin/bounce.php:161
 msgid "(use negative numbers to decrease)"
 msgstr ""
 
-#: public_html/lists/admin/bounce.php:129
+#: public_html/lists/admin/bounce.php:162
 msgid "Mark subscriber as unconfirmed"
 msgstr "讓使用者狀態變成未確認"
 
-#: public_html/lists/admin/bounce.php:129
+#: public_html/lists/admin/bounce.php:162
 msgid "(so you can resend the request for confirmation)"
 msgstr ""
 
-#: public_html/lists/admin/bounce.php:130
+#: public_html/lists/admin/bounce.php:163
 msgid "Set subscriber to receive text instead of HTML"
 msgstr "設定使用者訂閱純文字版本"
 
-#: public_html/lists/admin/bounce.php:131
+#: public_html/lists/admin/bounce.php:164
 msgid "Delete subscriber"
 msgstr "刪除使用者"
 
-#: public_html/lists/admin/bounce.php:133
+#: public_html/lists/admin/bounce.php:166
 msgid "Delete this bounce and go to the next"
 msgstr "刪除這封退信並且讀取下一封"
 
-#: public_html/lists/admin/bounce.php:135
+#: public_html/lists/admin/bounce.php:168
 msgid "Do the above"
 msgstr "執行"
 
-#: public_html/lists/admin/bounce.php:138
+#: public_html/lists/admin/bounce.php:171
 msgid "Create New Rule based on this bounce"
 msgstr "以這封退信建立新規則"
 
-#: public_html/lists/admin/bounce.php:141
+#: public_html/lists/admin/bounce.php:174
 msgid "Possible Actions:"
 msgstr "動作："
 
-#: public_html/lists/admin/bounce.php:172
-#: public_html/lists/admin/templates.php:34
+#: public_html/lists/admin/bounce.php:205
+#: public_html/lists/admin/templates.php:35
 msgid "ID"
 msgstr "ID"
 
-#: public_html/lists/admin/bounce.php:173
+#: public_html/lists/admin/bounce.php:206
 msgid "Date"
 msgstr "日期"
 
-#: public_html/lists/admin/bounce.php:176
+#: public_html/lists/admin/bounce.php:209
 msgid "Comment"
 msgstr "意見"
 
-#: public_html/lists/admin/bounce.php:177
+#: public_html/lists/admin/bounce.php:210
 #: public_html/lists/admin/spageedit.php:181
 msgid "Header"
 msgstr "頁首"
 
-#: public_html/lists/admin/bounce.php:178
+#: public_html/lists/admin/bounce.php:211
 msgid "Body"
 msgstr "內容"
 
-#: public_html/lists/admin/bounce.php:183
+#: public_html/lists/admin/bounce.php:216
 #, fuzzy
 msgid "Bounce Details"
 msgstr "退信細節："
 
-#: public_html/lists/admin/bounce.php:187
+#: public_html/lists/admin/bounce.php:220
 msgid "New Rule"
 msgstr ""
 
@@ -4282,9 +4291,9 @@ msgstr ""
 
 #: public_html/lists/admin/tests/sendpage.php:27
 #: public_html/lists/admin/tests/sendpage.php:31
-#: public_html/lists/admin/template.php:190
-#: public_html/lists/admin/template.php:197
-#: public_html/lists/admin/template.php:204
+#: public_html/lists/admin/template.php:194
+#: public_html/lists/admin/template.php:201
+#: public_html/lists/admin/template.php:208
 msgid "OK"
 msgstr "完成"
 
@@ -4561,59 +4570,59 @@ msgstr "列出使用者 %d 到 %d"
 msgid "subscribers"
 msgstr "使用者"
 
-#: public_html/lists/admin/members.php:253
+#: public_html/lists/admin/members.php:252
 msgid "Tag all users in this page"
 msgstr "選取這個頁面的所有使用者"
 
-#: public_html/lists/admin/members.php:258
+#: public_html/lists/admin/members.php:257
 #: public_html/lists/admin/list.php:212
 msgid "Members"
 msgstr "會員"
 
-#: public_html/lists/admin/members.php:311
+#: public_html/lists/admin/members.php:310
 msgid "Actions"
 msgstr ""
 
-#: public_html/lists/admin/members.php:313
+#: public_html/lists/admin/members.php:312
 #, fuzzy
 msgid "What to do with \"Tagged\" users"
 msgstr "要對所有使用者進行什麼動作"
 
-#: public_html/lists/admin/members.php:314
+#: public_html/lists/admin/members.php:313
 msgid ""
 "This will only process the users in this page that have the \"Tag\" checkbox "
 "checked"
 msgstr ""
 
-#: public_html/lists/admin/members.php:315
-#: public_html/lists/admin/members.php:339
+#: public_html/lists/admin/members.php:314
+#: public_html/lists/admin/members.php:338
 msgid "from this list"
 msgstr "自這個電子報"
 
-#: public_html/lists/admin/members.php:325
-#: public_html/lists/admin/members.php:342
+#: public_html/lists/admin/members.php:324
+#: public_html/lists/admin/members.php:341
 msgid "Move"
 msgstr "移動"
 
-#: public_html/lists/admin/members.php:329
-#: public_html/lists/admin/members.php:346
+#: public_html/lists/admin/members.php:328
+#: public_html/lists/admin/members.php:345
 msgid "Copy"
 msgstr "複製"
 
-#: public_html/lists/admin/members.php:333
-#: public_html/lists/admin/members.php:350
+#: public_html/lists/admin/members.php:332
+#: public_html/lists/admin/members.php:349
 msgid "Nothing"
 msgstr "無"
 
-#: public_html/lists/admin/members.php:335
+#: public_html/lists/admin/members.php:334
 msgid "What to do with all users"
 msgstr "要對所有使用者進行什麼動作"
 
-#: public_html/lists/admin/members.php:336
+#: public_html/lists/admin/members.php:335
 msgid "This will process all users on this list"
 msgstr "這會影響本電子報的所有訂閱者"
 
-#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:351
 msgid "do it"
 msgstr "執行"
 
@@ -4628,46 +4637,58 @@ msgstr ""
 msgid "done"
 msgstr "完成"
 
-#: public_html/lists/admin/bounces.php:63
+#: public_html/lists/admin/bounces.php:19
+msgid "processed"
+msgstr ""
+
+#: public_html/lists/admin/bounces.php:20
+msgid "unidentified"
+msgstr ""
+
+#: public_html/lists/admin/bounces.php:84
 msgid "view bounces by list"
 msgstr ""
 
-#: public_html/lists/admin/bounces.php:67
+#: public_html/lists/admin/bounces.php:88
 msgid ""
 "are you sure you want to delete all unidentified bounces older than 2 months"
 msgstr "您確定要刪除所有超過兩個月未處理的退信"
 
-#: public_html/lists/admin/bounces.php:69
+#: public_html/lists/admin/bounces.php:90
 msgid "delete all unidentified (&gt; 2 months old)"
 msgstr ""
 
-#: public_html/lists/admin/bounces.php:72
+#: public_html/lists/admin/bounces.php:93
 msgid "are you sure you want to delete all bounces older than 2 months"
 msgstr "您確定要刪除兩個月前的所有退信"
 
-#: public_html/lists/admin/bounces.php:74
+#: public_html/lists/admin/bounces.php:95
 msgid "delete all processed (&gt; 2 months old)"
 msgstr ""
 
-#: public_html/lists/admin/bounces.php:77
+#: public_html/lists/admin/bounces.php:98
 msgid "are you sure you want to delete all bounces"
 msgstr ""
 
-#: public_html/lists/admin/bounces.php:79
+#: public_html/lists/admin/bounces.php:100
 #: public_html/lists/admin/eventlog.php:92
 #: public_html/lists/admin/editattributes.php:48
 msgid "Delete all"
 msgstr "全部刪除"
 
-#: public_html/lists/admin/bounces.php:86
+#: public_html/lists/admin/bounces.php:111
 msgid "no unprocessed bounces available"
 msgstr "沒有未處理退信"
 
-#: public_html/lists/admin/bounces.php:99
+#: public_html/lists/admin/bounces.php:114
+msgid "no processed bounces available"
+msgstr ""
+
+#: public_html/lists/admin/bounces.php:130
 msgid "System Message"
 msgstr ""
 
-#: public_html/lists/admin/bounces.php:103
+#: public_html/lists/admin/bounces.php:141
 #: public_html/lists/admin/msgbounces.php:10
 #: public_html/lists/admin/eventlog.php:116
 #: public_html/lists/admin/userclicks.php:136
@@ -4996,7 +5017,7 @@ msgstr "您已經在系統中定義了退信規則，\r    新增規則時請小
 msgid "Generate Bounce Rules"
 msgstr "產生退信規則"
 
-#: public_html/lists/admin/languages.php:535
+#: public_html/lists/admin/languages.php:543
 msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
@@ -5215,7 +5236,7 @@ msgid "Title"
 msgstr "標題"
 
 #: public_html/lists/admin/spageedit.php:168
-#: public_html/lists/admin/spage.php:55
+#: public_html/lists/admin/spage.php:52
 #: public_html/lists/admin/editattributes.php:186
 #, fuzzy
 msgid "default"
@@ -5303,29 +5324,29 @@ msgstr ""
 msgid "Select the attributes to use"
 msgstr "選擇要使用的屬性"
 
-#: public_html/lists/admin/spageedit.php:277
+#: public_html/lists/admin/spageedit.php:279
 msgid "Check this box to use this attribute in the page"
 msgstr "勾選要在訂閱頁面使用的屬性"
 
-#: public_html/lists/admin/spageedit.php:296
+#: public_html/lists/admin/spageedit.php:300
 #, php-format
 msgid "Information needed for %s"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:301
+#: public_html/lists/admin/spageedit.php:305
 msgid "Select the lists to offer"
 msgstr "選擇要提供的電子報"
 
-#: public_html/lists/admin/spageedit.php:303
+#: public_html/lists/admin/spageedit.php:307
 msgid "You can only select \"public\" lists for subscribe pages."
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:306
+#: public_html/lists/admin/spageedit.php:310
 msgid "No lists available, please create one first"
 msgstr "沒有任何電子報，請先建立"
 
-#: public_html/lists/admin/spageedit.php:322
-#: public_html/lists/admin/editlist.php:141
+#: public_html/lists/admin/spageedit.php:328
+#: public_html/lists/admin/editlist.php:148
 msgid "Owner"
 msgstr "擁有者"
 
@@ -5708,7 +5729,7 @@ msgstr "一會兒"
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:713
+#: public_html/lists/admin/lib.php:725
 #, php-format
 #, php-format, fuzzy
 msgid ""
@@ -5716,16 +5737,16 @@ msgid ""
 "ago"
 msgstr "這個頁面有一個處理程序還在進行中"
 
-#: public_html/lists/admin/lib.php:716
+#: public_html/lists/admin/lib.php:728
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:719
+#: public_html/lists/admin/lib.php:731
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "靜止20秒，終止時會關閉"
 
-#: public_html/lists/admin/lib.php:727
+#: public_html/lists/admin/lib.php:739
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr "等太久了，我猜其他的程序完成了"
@@ -5736,7 +5757,7 @@ msgstr ""
 
 #: public_html/lists/admin/list.php:87 public_html/lists/admin/list.php:97
 #: public_html/lists/admin/list.php:119 public_html/lists/admin/list.php:127
-#: public_html/lists/admin/connect.php:1117
+#: public_html/lists/admin/connect.php:1105
 msgid "Uncategorised"
 msgstr ""
 
@@ -6042,30 +6063,26 @@ msgid "Reconcile Subscribers"
 msgstr "大量修改使用者"
 
 #: public_html/lists/admin/usermgt.php:32
-msgid "Check for Subscribers"
-msgstr "檢查使用者"
-
-#: public_html/lists/admin/usermgt.php:33
-msgid "Bulk unconfirm subscribers"
+msgid "Suppression list"
 msgstr ""
 
-#: public_html/lists/admin/usermgt.php:34
+#: public_html/lists/admin/usermgt.php:33
 msgid "Bulk remove subscribers"
 msgstr ""
 
-#: public_html/lists/admin/usermgt.php:35
+#: public_html/lists/admin/usermgt.php:34
 msgid "Verify subscribers"
 msgstr ""
 
-#: public_html/lists/admin/usermgt.php:37
+#: public_html/lists/admin/usermgt.php:36
 msgid "Import subscribers"
 msgstr ""
 
-#: public_html/lists/admin/usermgt.php:39
+#: public_html/lists/admin/usermgt.php:38
 msgid "Export subscribers"
 msgstr ""
 
-#: public_html/lists/admin/usermgt.php:42
+#: public_html/lists/admin/usermgt.php:41
 msgid "subscriber management functions"
 msgstr ""
 
@@ -6083,57 +6100,57 @@ msgid "Open statistics"
 msgstr ""
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Jan"
 msgstr "1"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Feb"
 msgstr "2"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Mar"
 msgstr "3"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Apr"
 msgstr "4"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Jun"
 msgstr "6"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Jul"
 msgstr "7"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Aug"
 msgstr "8"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Sep"
 msgstr "9"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Oct"
 msgstr "10"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Nov"
 msgstr "11"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1385
+#: public_html/lists/admin/connect.php:1374
 msgid "Dec"
 msgstr "12"
 
@@ -6242,7 +6259,6 @@ msgid "Edit"
 msgstr "編輯"
 
 #: public_html/lists/admin/messages.php:364
-#: public_html/lists/admin/templates.php:40
 msgid "View"
 msgstr "瀏覽"
 
@@ -6337,7 +6353,7 @@ msgstr ""
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:103
+#: public_html/lists/admin/subscribelib2.php:95
 msgid ""
 "\n"
 "-------------------------------------------------------------------------------- \n"
@@ -6358,15 +6374,15 @@ msgid ""
 "--------------------------------------------------------------------------------  "
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:123
+#: public_html/lists/admin/subscribelib2.php:115
 msgid "phplist Spam blocked"
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:339
+#: public_html/lists/admin/subscribelib2.php:323
 msgid "Email is blacklisted, so request for confirmation has been sent."
 msgstr "帳號在黑名單中，確認訊息已經寄出"
 
-#: public_html/lists/admin/subscribelib2.php:340
+#: public_html/lists/admin/subscribelib2.php:324
 msgid "If user confirms subscription, they will be removed from the blacklist."
 msgstr "如果使用者透過信件確認，他們將會自黑名單中移除"
 
@@ -6378,23 +6394,19 @@ msgstr "已刪除"
 msgid "subscribe pages"
 msgstr "訂閱頁面"
 
-#: public_html/lists/admin/spage.php:43
+#: public_html/lists/admin/spage.php:44
 msgid "title"
 msgstr "標題"
 
-#: public_html/lists/admin/spage.php:47
-msgid "status"
-msgstr "狀態"
-
-#: public_html/lists/admin/spage.php:47
-msgid "not active"
-msgstr "停用"
-
-#: public_html/lists/admin/spage.php:49
+#: public_html/lists/admin/spage.php:46
 msgid "owner"
 msgstr "擁有者"
 
-#: public_html/lists/admin/spage.php:62
+#: public_html/lists/admin/spage.php:57
+msgid "not active"
+msgstr "停用"
+
+#: public_html/lists/admin/spage.php:60
 msgid "Add a new one"
 msgstr "新增一個"
 
@@ -6597,37 +6609,37 @@ msgstr ""
 msgid "List name"
 msgstr "電子報名稱"
 
-#: public_html/lists/admin/editlist.php:134
+#: public_html/lists/admin/editlist.php:141
 msgid "Public list (listed on the frontend)"
 msgstr ""
 
-#: public_html/lists/admin/editlist.php:135
+#: public_html/lists/admin/editlist.php:142
 msgid "Order for listing"
 msgstr "電子報順序"
 
-#: public_html/lists/admin/editlist.php:153
+#: public_html/lists/admin/editlist.php:160
 #: public_html/lists/admin/catlists.php:73
 msgid "Category"
 msgstr ""
 
-#: public_html/lists/admin/editlist.php:155
+#: public_html/lists/admin/editlist.php:162
 #: public_html/lists/admin/catlists.php:67
 msgid "choose category"
 msgstr ""
 
-#: public_html/lists/admin/editlist.php:169
+#: public_html/lists/admin/editlist.php:176
 msgid "List Description"
 msgstr "電子報介紹"
 
-#: public_html/lists/admin/editlist.php:172
+#: public_html/lists/admin/editlist.php:179
 msgid "Save"
 msgstr "儲存"
 
-#: public_html/lists/admin/editlist.php:173
+#: public_html/lists/admin/editlist.php:180
 msgid "Cancel"
 msgstr ""
 
-#: public_html/lists/admin/editlist.php:173
+#: public_html/lists/admin/editlist.php:180
 msgid "Do not save, and go back to the lists"
 msgstr ""
 
@@ -6711,139 +6723,144 @@ msgstr "點閱率"
 msgid "Message Click Statistics"
 msgstr "信件點閱統計"
 
-#: public_html/lists/admin/importsimple.php:57
+#: public_html/lists/admin/importsimple.php:58
 msgid "import_by"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:70
+#: public_html/lists/admin/importsimple.php:77
 #, fuzzy
 msgid "Imported"
 msgstr "匯入"
 
-#: public_html/lists/admin/importsimple.php:74
+#: public_html/lists/admin/importsimple.php:81
 #, php-format
 msgid "%d lines processed"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:75
+#: public_html/lists/admin/importsimple.php:82
 #, php-format
-msgid "%d emails imported"
+msgid "%d email imported"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:76
+#: public_html/lists/admin/importsimple.php:83
 #, php-format
 msgid "%d duplicates"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:77
+#: public_html/lists/admin/importsimple.php:84
 #, php-format
 msgid "%d invalidated"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:130
+#: public_html/lists/admin/importsimple.php:86
+#, php-format
+msgid "%d addresses were blacklisted and have not been subscribed to the list"
+msgstr ""
+
+#: public_html/lists/admin/importsimple.php:140
 msgid "Adding subscribers"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:138
+#: public_html/lists/admin/importsimple.php:148
 msgid ""
 "Please enter the emails to import, one per line, in the box below and click "
 "\"Import Emails\""
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:141
+#: public_html/lists/admin/importsimple.php:151
 msgid "Check to skip emails that are not valid"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:142
+#: public_html/lists/admin/importsimple.php:152
 msgid "Import emails"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:375
+#: public_html/lists/admin/connect.php:363
 msgid "error"
 msgstr "錯誤"
 
-#: public_html/lists/admin/connect.php:420
-#: public_html/lists/admin/connect.php:424
+#: public_html/lists/admin/connect.php:408
+#: public_html/lists/admin/connect.php:412
 msgid "fatalerror"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:737
+#: public_html/lists/admin/connect.php:725
 msgid "Main Page"
 msgstr "首頁"
 
-#: public_html/lists/admin/connect.php:737
+#: public_html/lists/admin/connect.php:725
 msgid "about"
 msgstr "關於"
 
-#: public_html/lists/admin/connect.php:802
+#: public_html/lists/admin/connect.php:790
 msgid "In this section"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:829
+#: public_html/lists/admin/connect.php:817
 msgid "Recently visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1097
+#: public_html/lists/admin/connect.php:1085
 msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1103
+#: public_html/lists/admin/connect.php:1091
 msgid "All Active Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1133
+#: public_html/lists/admin/connect.php:1121
 msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1135
+#: public_html/lists/admin/connect.php:1123
 msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1178
+#: public_html/lists/admin/connect.php:1166
 msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1691
+#: public_html/lists/admin/connect.php:1680
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1694
+#: public_html/lists/admin/connect.php:1683
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1697
+#: public_html/lists/admin/connect.php:1686
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1700
+#: public_html/lists/admin/connect.php:1689
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1703
+#: public_html/lists/admin/connect.php:1692
 #, fuzzy
 msgid "secs"
 msgstr "秒"
 
-#: public_html/lists/admin/connect.php:1709
+#: public_html/lists/admin/connect.php:1698
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1771
+#: public_html/lists/admin/connect.php:1760
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1773
+#: public_html/lists/admin/connect.php:1762
 #, php-format
 #, php-format, fuzzy
 msgid "Listing %d to %d"
 msgstr "列出使用者 %d 到 %d"
 
-#: public_html/lists/admin/connect.php:1789
+#: public_html/lists/admin/connect.php:1778
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1792
+#: public_html/lists/admin/connect.php:1781
 msgid "Last Page"
 msgstr ""
 
@@ -7065,145 +7082,142 @@ msgstr "沒有圖片"
 msgid "Template saved and ready for use in campaigns"
 msgstr ""
 
-#: public_html/lists/admin/template.php:99
-#: public_html/lists/admin/template.php:107
-#: public_html/lists/admin/template.php:112
+#: public_html/lists/admin/template.php:98
+#: public_html/lists/admin/template.php:105
 msgid "Image"
 msgstr "圖片"
 
-#: public_html/lists/admin/template.php:99
+#: public_html/lists/admin/template.php:98
 msgid "\"not full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:107
+#: public_html/lists/admin/template.php:105
 msgid "does not exist"
 msgstr "不存在"
 
-#: public_html/lists/admin/template.php:112
-msgid "cannot check, \"allow_url_fopen\" disabled in PHP settings"
-msgstr ""
-
-#: public_html/lists/admin/template.php:122
+#: public_html/lists/admin/template.php:116
 msgid "Not a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:128
+#: public_html/lists/admin/template.php:122
 msgid "No Title"
 msgstr "沒有標題"
 
-#: public_html/lists/admin/template.php:129
+#: public_html/lists/admin/template.php:123
 msgid "Template does not contain the [CONTENT] placeholder"
 msgstr ""
 
-#: public_html/lists/admin/template.php:147
+#: public_html/lists/admin/template.php:141
 msgid "Template saved"
 msgstr "樣版儲存了"
 
-#: public_html/lists/admin/template.php:152
+#: public_html/lists/admin/template.php:146
 msgid "Images"
 msgstr "圖片"
 
-#: public_html/lists/admin/template.php:152
+#: public_html/lists/admin/template.php:146
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr "下面是您在樣版中使用到的圖片，如果任何圖片有問題，請記得重新上傳到資料庫。"
 
-#: public_html/lists/admin/template.php:153
+#: public_html/lists/admin/template.php:147
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:159
+#: public_html/lists/admin/template.php:158
+#: public_html/lists/admin/template.php:162
 msgid "Image name:"
 msgstr "圖片名稱："
 
-#: public_html/lists/admin/template.php:159
+#: public_html/lists/admin/template.php:158
+#: public_html/lists/admin/template.php:162
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:164
+#: public_html/lists/admin/template.php:168
 msgid "Save Images"
 msgstr "儲存圖片"
 
-#: public_html/lists/admin/template.php:168
+#: public_html/lists/admin/template.php:172
 msgid "Template does not contain local images"
 msgstr "樣版不包含本機圖片"
 
-#: public_html/lists/admin/template.php:173
+#: public_html/lists/admin/template.php:177
 msgid "Some errors were found, template NOT saved!"
 msgstr "發生錯誤，樣版未儲存！"
 
-#: public_html/lists/admin/template.php:182
+#: public_html/lists/admin/template.php:186
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:188
+#: public_html/lists/admin/template.php:192
 msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:192
-#: public_html/lists/admin/template.php:199
-#: public_html/lists/admin/template.php:206
+#: public_html/lists/admin/template.php:196
+#: public_html/lists/admin/template.php:203
+#: public_html/lists/admin/template.php:210
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:195
+#: public_html/lists/admin/template.php:199
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:202
+#: public_html/lists/admin/template.php:206
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:210
+#: public_html/lists/admin/template.php:214
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:244
+#: public_html/lists/admin/template.php:248
 msgid "List of Templates"
 msgstr "樣版列表"
 
-#: public_html/lists/admin/template.php:252
+#: public_html/lists/admin/template.php:256
 msgid "Title of this template"
 msgstr "這個樣版的標題"
 
-#: public_html/lists/admin/template.php:256
+#: public_html/lists/admin/template.php:260
 msgid "Content of the template."
 msgstr "這個樣版的內容"
 
-#: public_html/lists/admin/template.php:256
+#: public_html/lists/admin/template.php:260
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:256
+#: public_html/lists/admin/template.php:260
 msgid "You can upload a template file or paste the text in the box below"
 msgstr "您可以上傳樣板檔案或是透過下面表單貼上"
 
-#: public_html/lists/admin/template.php:259
+#: public_html/lists/admin/template.php:263
 msgid "Template file."
 msgstr "樣板檔案"
 
-#: public_html/lists/admin/template.php:282
+#: public_html/lists/admin/template.php:286
 msgid "Check that all links have a full URL"
 msgstr "檢查所有連結網址是否完整"
 
-#: public_html/lists/admin/template.php:286
+#: public_html/lists/admin/template.php:290
 msgid "Check that all images have a full URL"
 msgstr "檢查所有圖片網址是否完整"
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:296
 msgid "Check that all external images exist"
 msgstr "檢查所有外部圖片是否存在"
 
-#: public_html/lists/admin/template.php:304
+#: public_html/lists/admin/template.php:310
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:304
+#: public_html/lists/admin/template.php:310
 msgid "to email addresses"
 msgstr ""
 
@@ -7234,39 +7248,39 @@ msgstr ""
 msgid "Send this subscriber a request for confirmation email"
 msgstr ""
 
-#: public_html/lists/index.php:735
+#: public_html/lists/index.php:738
 msgid "Forwarded receiver requested blacklist"
 msgstr ""
 
-#: public_html/lists/index.php:743
+#: public_html/lists/index.php:746
 msgid "\"Jump off\" used by subscriber, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:745
+#: public_html/lists/index.php:748
 msgid "\"Jump off\" set, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:965
+#: public_html/lists/index.php:968
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
 msgstr ""
 
-#: public_html/lists/index.php:1020 public_html/lists/index.php:1027
+#: public_html/lists/index.php:1023 public_html/lists/index.php:1030
 msgid "Message Forwarded"
 msgstr ""
 
-#: public_html/lists/index.php:1020
+#: public_html/lists/index.php:1023
 #, php-format
 msgid "%s has forwarded message %d to %s"
 msgstr ""
 
-#: public_html/lists/index.php:1027
+#: public_html/lists/index.php:1030
 #, php-format
 msgid "%s tried forwarding message %d to %s but failed"
 msgstr ""
 
-#: public_html/lists/index.php:1043
+#: public_html/lists/index.php:1046
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
@@ -7486,6 +7500,12 @@ msgstr ""
 
 msgid "pagetitle:reindex"
 msgstr ""
+
+#~ msgid "Check for Subscribers"
+#~ msgstr "檢查使用者"
+
+#~ msgid "status"
+#~ msgstr "狀態"
 
 #~ msgid "unique clicks"
 #~ msgstr "不重複點閱次數"
