@@ -17,8 +17,19 @@ combine:
     - ui/dressprow/js/jquery.tablednd.js
     - ui/dressprow/js/phplist.js
     - ui/dressprow/js/jcarousellite_1.0.1.min.js
+  ui/dressprow-ph/css/all.css:
+    - css/reset.css
+    - css/jquery-ui-1.8.1.all.css
+    - css/app.css
+    - css/menu.css
+    - ui/dressprow/css/base.css
+    - ui/dressprow/css/layout.css
+    - ui/dressprow/css/skeleton.css
+    - ui/dressprow/css/style.css
+    - ui/dressprow-ph/css/blue.css
+    - ui/dressprow-ph/css/style.css
 minify: 
   - ui/dressprow/css/all.css
+  - ui/dressprow-ph/css/all.css
   - ui/dressprow/js/all.js
- 
 
