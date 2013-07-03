@@ -364,7 +364,7 @@ PageURL2("messages$url_keep","","delete=".$msg["id"]));
     $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"]).'</span>';
 
     if ($clicks[0] && CLICKTRACK) {
-      $actionbuttons .= '<span class="stats">'.PageLinkButton("mclicks",$GLOBALS['I18N']->get("click stats"),"id=".$msg["id"]).'</span>';
+      $actionbuttons .= '<span class="stats">'.PageLinkButton("statsoverview",$GLOBALS['I18N']->get("statistics"),"id=".$msg["id"]).'</span>';
     }
 
     $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
