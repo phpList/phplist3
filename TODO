@@ -53,6 +53,8 @@ DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can
 - recode frontend to work like webbler templating
 - namespacing files
 - PDO
+- sharing of bounce rules
+- handle "delayed" messages better (ie drop them)
 
 - extend phpListPlugin class into several smaller ones that each handle certain aspects
 - class autoloader
