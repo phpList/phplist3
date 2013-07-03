@@ -30,8 +30,8 @@ print '
     <div class="wrapper">
       <div id="spinner"></div>
       <div id="processqueuecontrols">';
-      print '<a href="#" id="stopqueue" class="button">'.s('stop processing').'</a>';
-      print '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.s('resume processing').'</a>';
+      print '<a href="#" id="stopqueue" class="button">'.snbr('stop processing').'</a>';
+      print '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.snbr('resume processing').'</a>';
       print '<div id="progressmeterold"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
 print '</div>
     </div>

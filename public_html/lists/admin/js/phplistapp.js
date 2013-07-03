@@ -328,8 +328,11 @@ $(document).ready(function() {
 
 });
 
-function allDone() {
-  $("#processqueueoutput").html('All done');
+function allDone(text) {
+  if (!text) {
+    text = 'All done';
+  }
+  $("#processqueueoutput").html('<span class="info" style="padding: 40px">'+text+'</span>');
   $("#spinner").html('&nbsp;');    
   $("#stopqueue").hide();    
   $("#resumequeue").show();

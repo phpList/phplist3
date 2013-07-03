@@ -588,6 +588,19 @@ function s($text) {
   return $translation;
 }
 
+/** 
+ * function snbr
+ * similar to function s, but without overloading params
+ * will return the translated text with spaces turned to &nbsp; so that they won't wrap
+ * mostly useful for buttons
+ */
+function snbr($text) {
+  $trans = s($text);
+  $trans = str_replace(' ','&nbsp;',$trans);
+  return $trans;
+}
+  
+
 function parsePo($translationUpdate) {
   $translation_lines = explode("\n",$translationUpdate);
   $original = '';
