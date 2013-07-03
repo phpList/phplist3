@@ -40,11 +40,8 @@ $ls = new WebblerListing($GLOBALS['I18N']->get('subscribe pages'));
 $req = Sql_Query(sprintf('select * from %s %s order by title',$tables["subscribepage"],$subselect));
 while ($p = Sql_Fetch_Array($req)) {
   $ls->addElement($p["id"]);
+  $ls->setClass($p["id"],'row1');
   $ls->addColumn($p["id"],$GLOBALS['I18N']->get('title'),$p["title"]);
-  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('edit'),sprintf('<a href="%s&amp;id=%d">%s</a>',PageURL2("spageedit",""),$p["id"],$GLOBALS['I18N']->get('edit')));
-  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('del'),sprintf('<a href="javascript:deleteRec(\'%s\');">%s</a>',PageURL2("spage","","delete=".$p["id"]),$GLOBALS['I18N']->get('del')));
-  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('view'),sprintf('<a href="%s&amp;id=%d">%s</a>',getConfig("subscribeurl"),$p["id"],$GLOBALS['I18N']->get('view')));
-  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('status'),$p["active"]? $GLOBALS['I18N']->get('active'):$GLOBALS['I18N']->get('not active'));
   if (($require_login && isSuperUser()) || !$require_login) {
     $ls->addColumn($p["id"],$GLOBALS['I18N']->get('owner'),adminName($p["owner"]));
     if ($p["id"] == $default) {
@@ -57,6 +54,7 @@ while ($p = Sql_Fetch_Array($req)) {
     $adminname = "";
     $isdefault = "";
   }
+  $ls->addRow($p["id"],$p["active"]? '<span class="yes" title="'.$GLOBALS['I18N']->get('active').'"></span>':'<span class="no" title="'.$GLOBALS['I18N']->get('not active').'"></span>',sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('edit').'">%s</a></span>',PageURL2("spageedit",""),$p["id"],$GLOBALS['I18N']->get('edit')).sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a></span>',PageURL2("spage","","delete=".$p["id"]),$GLOBALS['I18N']->get('del')).sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',getConfig("subscribeurl"),$p["id"],$GLOBALS['I18N']->get('view')));
 }
 print $ls->display();
 print '<p class="button">'.PageLink2("spageedit",$GLOBALS['I18N']->get('Add a new one')).'</p>';
