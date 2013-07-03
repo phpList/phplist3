@@ -59,8 +59,8 @@ if ($download) {
   ob_start();
 }  
 
-//if (!$id) {
-#  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
+if (!$id) {
+  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
   
   if (empty($start)) {
     print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
@@ -90,11 +90,11 @@ if ($download) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Campaigns in the last year'));
   $ls->usePanel($paging);
   while ($row = Sql_Fetch_Array($req)) {
-    $element = $row['messageid'].' '.substr($row['subject'],0,50);
+    $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($row['subject'],30);
 
     $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',$GLOBALS['tables']['user_message_forward'],$row['messageid']));
     
-    $ls->addElement($element,PageURL2('mviews&amp;id='.$row['messageid']));#,PageURL2('message&amp;id='.$row['messageid']));
+    $ls->addElement($element,PageURL2('statsoverview&amp;id='.$row['messageid']));#,PageURL2('message&amp;id='.$row['messageid']));
     $ls->setClass($element,'row1');
  #   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
     $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
@@ -102,10 +102,13 @@ if ($download) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('fwds'),sprintf('%d',$fwded[0]));
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['views'],$row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']):'');
     $perc = sprintf('%0.2f',($row['views'] / ($row['total'] - $row['bounced']) * 100));
+    
+    
     $ls->addRow($element,'',"<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('rate').": ".$perc.' %'."</div>".
                             "<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('date').": ".$row['sent']."</div>");
   }
-  if ($addcomparison) {
+  ## needs reviewing
+  if (false && $addcomparison) {
     $total = Sql_Fetch_Array_Query(sprintf('select count(entered) as total from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
     $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um where um.status = "sent"', $GLOBALS['tables']['usermessage']));
     $overall = $GLOBALS['I18N']->get('Comparison to other admins');
@@ -121,95 +124,84 @@ if ($download) {
 
   print $ls->display();
   return;
-//}
-
-return;
-// looks like below is no longer in use
-
-
-print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
-$query = "select * from ${tables['message']} where id = ? $and";
-$params = array_merge(array($id), $and_params);
-$rs = Sql_Query_Params($query, $params);
-$messagedata = Sql_Fetch_Array($rs);
-print '<table class="statsDetail">
-<tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
-</table><hr/>';
-
-
-$ls = new WebblerListing($GLOBALS['I18N']->get('Message Open Statistics'));
-
-// TODO Use join syntax.
-$query
-= ' select um.userid'
-. ' from %s um, %s msg'
-. ' where um.messageid = ?'
-. '   and um.messageid = msg.id'
-. '   and um.viewed is not null'
-. '   and um.status = "sent"'
-. '%s'
-. ' group by userid';
-$query = sprintf($query, $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['message'], $and);
-$params = array_merge(array($id), $and_params);
-$req = Sql_Query_Params($query, $params);
-
-$total = Sql_Affected_Rows();
-$offset = 0;
-if (isset($start) && $start > 0) {
-  $listing = sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),$start,$start + MAX_USER_PP);
-  $offset = $start;
-} else {
-  $listing =  sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),1,MAX_USER_PP);
-  $start = 0;
-}
-if ($id) {
-  $url_keep = '&amp;id='.$id;
-} else {
-  $url_keep = '';
-}
-print $total. " ".$GLOBALS['I18N']->get("Entries")."</p>";
-if ($total) {
-  printf ('<table class="statsListing" border="1"><tr><td colspan="4" align="center">%s</td></tr><tr><td>%s</td><td>%s</td><td>
-          %s</td><td>%s</td></tr></table><hr/>',
-          $listing,
-          PageLink2("mviews$url_keep","&lt;&lt;","start=0"),
-          PageLink2("mviews$url_keep","&lt;",sprintf('start=%d',max(0,$start-MAX_USER_PP))),
-          PageLink2("mviews$url_keep","&gt;",sprintf('start=%d',min($total,$start+MAX_USER_PP))),
-          PageLink2("mviews$url_keep","&gt;&gt;",sprintf('start=%d',$total-MAX_USER_PP)));
 }
 
-// BUG here with unix_timestamp.
-// TODO Use join syntax.
-$query
-= 'select userid, email, um.entered as sent, min(um.viewed) as firstview'
-. '  , max(um.viewed) as lastview, count(um.viewed) as viewcount'
-. '  , abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime'
-. 'from %s um, %s user, %s msg'
-. 'where um.messageid = ?'
-. ' and um.messageid = msg.id'
-. ' and um.userid = user.id'
-. ' and um.viewed is not null'
-. '%s'
-. ' group by userid'
-. ' limit ' . MAX_USER_PP
-. ' offset ?';
-$query = sprintf($query, $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['user'], $GLOBALS['tables']['message'], $and);
-$params = array_merge(array($id), $and_params, array($offset));
-$req = Sql_Query_Params($query, $params);
-$summary = array();
-while ($row = Sql_Fetch_Array($req)) {
-  $element = '<!--'.$row['userid'].'-->'.$row['email'];
-  $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),formatDateTime($row['sent']));
-  if ($row['viewcount'] > 1) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('lastview'),formatDateTime($row['lastview']));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['viewcount']);
-  } else {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('firstview'),formatDateTime($row['firstview'],1));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('responsetime'),$row['responsetime'].' '.$GLOBALS['I18N']->get('sec'));
+#print '<h3>'.$GLOBALS['I18N']->get('Campaign statistics').'</h3>';
+print PageLinkButton('statsoverview',s('View all campaigns'));
+
+$messagedata = loadMessageData($id);
+//var_dump($messagedata);
+print '<h3>'.$messagedata['subject']. '</h3>';
+
+$ls = new WebblerListing('');
+
+$element = ucfirst(s('Subject'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',shortenTextDisplay($messagedata['subject'],30));
+
+$element = ucfirst(s('Date entered'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$messagedata['entered']);
+
+$element = ucfirst(s('Date sent'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$messagedata['sent']);
+
+$element = ucfirst(s('Sent as HTML'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$messagedata['astextandhtml']);
+
+$element = ucfirst(s('Sent as text'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$messagedata['astext']);
+
+$totalSent = 0;
+$sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where messageid = %d group by status',$tables['usermessage'],$id));
+while ($row = Sql_Fetch_Assoc($sentQ)) {
+  $element = ucfirst($row['status']);
+  $ls->addElement($element);
+  $ls->addColumn($element,'&nbsp;',$row['num']);
+  if ($row['status'] == 'sent') {
+    $totalSent = $row['num'];
   }
 }
+/*
+$element = ucfirst(s('Bounced'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$messagedata['bouncecount']);
+*/
+
+$bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct user) from %s where message = %d',$tables['user_message_bounce'],$id));
+$element = ucfirst(s('Bounced'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$bounced[0]);
+$totalBounced = $bounced[0];
+
+$viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent" and viewed is not null',$tables['usermessage'],$id));
+$element = ucfirst(s('Opened'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',PageLink2('mviews&id='.$id,$viewed[0]));
+
+$perc = sprintf('%0.2f',$viewed[0] / ($totalSent - $totalBounced) * 100);
+$element = ucfirst(s('% Opened'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$perc);
+
+$clicked = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',$tables['linktrack_uml_click'],$id));
+$element = ucfirst(s('Clicked'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',PageLink2('mclicks&id='.$id,$clicked[0]));
+
+$perc = sprintf('%0.2f',$clicked[0] / ($totalSent - $totalBounced) * 100);
+$element = ucfirst(s('% Clicked'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$perc);
+
+$fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',$GLOBALS['tables']['user_message_forward'],$id));
+$element = ucfirst(s('Forwarded'));
+$ls->addElement($element);
+$ls->addColumn($element,'&nbsp;',$fwded[0]);
+
 print $ls->display();
+
+
