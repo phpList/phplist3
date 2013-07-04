@@ -89,7 +89,7 @@ array_push($aListCategories,s('Uncategorised'));
 if (sizeof($aListCategories)) {
   if (isset($_GET['tab']) && in_array($_GET['tab'],$aListCategories)) {
     $current = $_GET['tab'];
-  } elseif (isset($_SESSION['last_list_category'])) {
+  } elseif (isset($_SESSION['last_list_category']) && in_array($_SESSION['last_list_category'],$aListCategories)) {
     $current = $_SESSION['last_list_category'];
   } else {
     $current = '';
