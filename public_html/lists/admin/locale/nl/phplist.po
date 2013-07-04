@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 05:07+0000\n"
-"PO-Revision-Date: 2013-07-02 18:46+0000\n"
+"POT-Creation-Date: 2013-07-04 05:08+0000\n"
+"PO-Revision-Date: 2013-07-04 04:41+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1372790810.0\n"
+"X-POOTLE-MTIME: 1372912878.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2942,38 +2942,37 @@ msgstr "Database tabellen aanmaken"
 
 #: public_html/lists/admin/setup.php:36
 msgid "Change admin password"
-msgstr "Wijzig wachtwoord van de beheerder"
+msgstr "Wachtwoord van de beheerder gewijzigd"
 
 #: public_html/lists/admin/setup.php:55
 msgid "Verify Settings"
-msgstr "Verifieer instellingen"
+msgstr "Instellingen aangepast"
 
 #: public_html/lists/admin/setup.php:72
 msgid "Configure attributes"
-msgstr "Abonnee velden toevoegen en bewerken"
+msgstr "Abonnee velden toegevoegd en bewerkt"
 
 #: public_html/lists/admin/setup.php:84
 msgid "Create public lists"
-msgstr "Maak een nieuwe verzendlijst"
+msgstr "Verzendlijst gemaakt"
 
 #: public_html/lists/admin/setup.php:95
 msgid "Create a subscribe page"
-msgstr "Maak een inschrijf pagina"
+msgstr "Inschrijf pagina gemaakt"
 
 #: public_html/lists/admin/setup.php:106
 #: public_html/lists/admin/editlist.php:103
 msgid "Add some subscribers"
-msgstr "Voeg abonnees toe"
+msgstr "Abonnees toegevoegd"
 
 #: public_html/lists/admin/setup.php:121
 msgid "Congratulations, phpList is set up, you are ready to start mailing"
 msgstr ""
-"Gefeliciteerd, phpList is helemaal klaar, en je kunt nu een bericht "
-"versturen."
+"Gefeliciteerd, phpList is klaar voor gebruik. Je kunt berichten versturen."
 
 #: public_html/lists/admin/setup.php:121
 msgid "Start a message campaign"
-msgstr "Begin een bericht"
+msgstr "Maak een bericht"
 
 #: public_html/lists/admin/setup.php:125
 msgid "configuration steps"
@@ -5870,7 +5869,7 @@ msgstr "De installatie van de plugin is mislukt"
 msgid ""
 "The plugin root directory is not writable, please install plugins manually"
 msgstr ""
-"De plugin basis-map (root) is niet beschrijfbaar, installeer de plugin "
+"De plugin basismap (root) is niet beschrijfbaar, installeer nieuwe plugins "
 "handmatig."
 
 #: public_html/lists/admin/plugins.php:166
@@ -6762,7 +6761,7 @@ msgstr "niet actief"
 
 #: public_html/lists/admin/spage.php:60
 msgid "Add a new one"
-msgstr "Voeg een nieuwe toe"
+msgstr "Voeg een nieuwe inschrijf pagina toe"
 
 #: public_html/lists/admin/reconcileusers.php:47
 msgid "Resending confirmation request to"
@@ -6981,7 +6980,7 @@ msgstr "Volgorde voor vermelding"
 #: public_html/lists/admin/editlist.php:160
 #: public_html/lists/admin/catlists.php:73
 msgid "Category"
-msgstr "Category"
+msgstr "Categorie"
 
 #: public_html/lists/admin/editlist.php:162
 #: public_html/lists/admin/catlists.php:67
