@@ -180,7 +180,7 @@ $totalBounced = $bounced[0];
 $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent" and viewed is not null',$tables['usermessage'],$id));
 $element = ucfirst(s('Opened'));
 $ls->addElement($element);
-$ls->addColumn($element,'&nbsp;',PageLink2('mviews&id='.$id,$viewed[0]));
+$ls->addColumn($element,'&nbsp;',!empty($viewed[0]) ? PageLink2('mviews&id='.$id,$viewed[0]): '0');
 
 $perc = sprintf('%0.2f',$viewed[0] / ($totalSent - $totalBounced) * 100);
 $element = ucfirst(s('% Opened'));
@@ -190,7 +190,7 @@ $ls->addColumn($element,'&nbsp;',$perc);
 $clicked = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',$tables['linktrack_uml_click'],$id));
 $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
-$ls->addColumn($element,'&nbsp;',PageLink2('mclicks&id='.$id,$clicked[0]));
+$ls->addColumn($element,'&nbsp;',!empty($clicked[0]) ? PageLink2('mclicks&id='.$id,$clicked[0]): '0');
 
 $perc = sprintf('%0.2f',$clicked[0] / ($totalSent - $totalBounced) * 100);
 $element = ucfirst(s('% Clicked'));
