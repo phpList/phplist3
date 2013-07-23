@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-04 05:08+0000\n"
-"PO-Revision-Date: 2013-07-04 04:41+0000\n"
+"PO-Revision-Date: 2013-07-04 18:48+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1372912878.0\n"
+"X-POOTLE-MTIME: 1372963736.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2938,7 +2938,7 @@ msgstr "Wijzig"
 
 #: public_html/lists/admin/setup.php:21 public_html/lists/admin/home.php:19
 msgid "Initialise Database"
-msgstr "Database tabellen aanmaken"
+msgstr "Database tabellen aangemaakt"
 
 #: public_html/lists/admin/setup.php:36
 msgid "Change admin password"
