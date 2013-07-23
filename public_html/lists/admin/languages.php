@@ -342,6 +342,20 @@ class phplist_I18N {
     return $title;
   }
 
+  function pageTitleHover($page) {
+    $hoverText = '';
+    $dbTitle = $this->databaseTranslation('pagetitlehover:'.$page);
+    if ($dbTitle) {
+      $hoverText = $dbTitle;
+    } else {
+      $hoverText = $this->pageTitle($page);
+    }
+    if (!empty($hoverText)) {
+      return $hoverText;
+    } 
+    return '';
+  }
+
   function formatText($text) {
     # we've decided to spell phplist with uc L
     $text = str_ireplace('phplist','phpList',$text);

@@ -91,8 +91,6 @@ $(document).ready(function() {
     $(this).parents('.note').hide();
   });
 
-  //$(".paging").scrollable();
-
   $(".configurelink").click(function() {
    // alert(this.href);
     $("#configurecontent").load('./?page=ajaxcall&action=test');

@@ -485,14 +485,7 @@ function ActionResult($msg) {
 }
 
 function pageTitle($page) {
-  $page_title = '';
-  include dirname(__FILE__).'/lan/'.$_SESSION['adminlanguage']['iso'].'/pagetitles.php';
-  if (!empty($page_title)) {
-    $title = $page_title;
-  } else {
-    $title = $page;
-  }
-  return $title;
+  return $GLOBALS['I18N']->pageTitle($page);
 }
 
 $GLOBALS['pagecategories'] = array(
@@ -865,8 +858,9 @@ function recentlyVisited() {
           }
           
           $title = $GLOBALS['I18N']->pageTitle($p);
+          $titlehover = $GLOBALS['I18N']->pageTitleHover($p);
           if (!empty($p) && !empty($title) && !in_array($url,$browsetaildone)) {
-            $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).'" title="'.htmlspecialchars($title).'"><!--'.$pageid.'-->'.$title.'</a></li>';
+            $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).'" title="'.htmlspecialchars($titlehover).'"><!--'.$pageid.'-->'.$title.'</a></li>';
             $shade = !$shade;
             $browsetaildone[] = $url;
           }
@@ -929,7 +923,7 @@ function topMenu() {
     if (!empty($categoryDetails['toplink'])) {
       $categoryurl = PageUrl2($categoryDetails['toplink'],'','',true);
       if ($categoryurl) {
-        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->get($category).'">'.ucfirst($GLOBALS['I18N']->get($category)).'</a>'.$thismenu.'</li></ul>';
+        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->pageTitleHover($category).'">'.ucfirst($GLOBALS['I18N']->get($category)).'</a>'.$thismenu.'</li></ul>';
       } else {
         $topmenu .=  '<ul><li><span>'.$GLOBALS['I18N']->get($category).$categoryurl.'</span>'.$thismenu.'</li></ul>';
       }
@@ -975,7 +969,10 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
     $desc = $name;
   }
   if (empty($title)) {
-    $title = $desc;
+    $title = $GLOBALS['I18N']->pageTitleHover($name);
+    if (empty($title)) {
+      $title = $desc;
+    }
   }
   
   if ($access == "owner" || $access == "all" || $access == "view") {
@@ -990,7 +987,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       }
       $linktext = ucfirst(strtolower($desc));
       $linktext = str_ireplace('phplist','phpList',$linktext);
-      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,strip_tags($title),$linktext);
+      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,htmlspecialchars($title),$linktext);
     }
   } else
     return "";
