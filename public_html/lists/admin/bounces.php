@@ -108,10 +108,10 @@ print '</div>';
 if (!Sql_Num_Rows($result)) {
   switch ($status) {
     case 'unidentified':
-      print '<p class="information">' . $GLOBALS['I18N']->get('no unprocessed bounces available') . "</p>";
+      print '<p class="information">' . s('no unidentified bounces available') . "</p>";
       break;
     case 'processed':
-      print '<p class="information">' . $GLOBALS['I18N']->get('no processed bounces available') . "</p>";
+      print '<p class="information">' . s('no processed bounces available') . "</p>";
       break;
 
     }
@@ -119,7 +119,6 @@ if (!Sql_Num_Rows($result)) {
 
 $ls = new WebblerListing($status . ' '.s('bounces'));
 $ls->usePanel($paging);
-#print '<table class="bouncesListing"><tr><td></td><td>' . $GLOBALS['I18N']->get('message') . "</td><td>" . $GLOBALS['I18N']->get('user') . "</td><td>" . $GLOBALS['I18N']->get('date') . "</td></tr>";
 while ($bounce = Sql_fetch_array($result)) {
 #@@@ not sure about these ones - bounced list message
   $element = $bounce["id"];
