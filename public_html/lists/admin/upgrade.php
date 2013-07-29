@@ -457,7 +457,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   }
   
   ## changed terminology
-  Sql_Query(sprintf('update % set status = "invalid email address" where status = "invalid email"',$tables['usermessage']));
+  Sql_Query(sprintf('update %s set status = "invalid email address" where status = "invalid email"',$tables['usermessage']));
   
   ## for some reason there are some config entries marked non-editable, that should be
   include_once dirname(__FILE__).'/defaultconfig.php';
@@ -483,6 +483,25 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   Sql_Query(sprintf('update %s set data = "%s" where name = "header" and (data = "%s" or data = "%s")',$tables['subscribepage_data'],sql_escape($defaultheader),addslashes($oldPH),addslashes($oldPH2)));
   Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and (data = "%s" or data = "%s")',$tables['subscribepage_data'],sql_escape($defaultfooter),addslashes($oldPF),addslashes($oldPF2)));
 
+  if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc')) {
+    $oldPH = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc');
+    $oldPH2 = preg_replace("/\n/","\r\n",$oldPH); ## version with \r\n instead of \n
+    $oldPF = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_footer.inc');
+    $oldPF2 = preg_replace("/\n/","\r\n",$oldPF); ## version with \r\n instead of \n
+    $currentPH = getConfig('pageheader');
+    $currentPF = getConfig('pagefooter');
+   
+    if (($currentPH == $oldPH2 || $currentPH . "\r\n" == $oldPH2) && !empty($defaultheader)) {
+      SaveConfig('pageheader',$defaultheader,1);
+      Sql_Query(sprintf('update %s set data = "%s" where name = "header" and data = "%s"',$tables['subscribepage_data'],sql_escape($defaultheader),addslashes($currentPH)));
+      ## only try to change footer when header has changed
+      if ($currentPF == $oldPF2 && !empty($defaultfooter)) {
+        SaveConfig('pagefooter',$defaultfooter,1);
+        Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and data = "%s"',$tables['subscribepage_data'],sql_escape($defaultfooter),addslashes($currentPF)));
+      }
+    }
+  }
+  
   # mark the database to be our current version
   if ($success) {
     SaveConfig("version",VERSION,0);
