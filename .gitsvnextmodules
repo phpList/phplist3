@@ -2,7 +2,7 @@
 	path = public_html/lists/admin/ui/dressprow
 	owner = public_html/lists/admin/ui
 	url = https://svn.code.sf.net/p/lite-template/code
-	revision = 232
+	revision = HEAD
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
@@ -11,7 +11,7 @@
 	path = public_html/lists/admin/info
 	owner = public_html/lists/admin
 	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/info
-	revision = 3710
+	revision = HEAD
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
@@ -20,7 +20,7 @@
 	path = public_html/lists/admin/lan
 	owner = public_html/lists/admin
 	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/lan
-	revision = 3710
+	revision = HEAD
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
@@ -29,7 +29,7 @@
 	path = public_html/lists/texts
 	owner = public_html/lists
 	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/texts
-	revision = 3639
+	revision = HEAD
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
@@ -38,7 +38,7 @@
 	path = public_html/lists/admin/help
 	owner = public_html/lists/admin
 	url = https://svn.code.sf.net/p/phplist/code/branches/languages-utf8/help
-	revision = 3710
+	revision = HEAD
 	branch = /
 	fetch = :refs/remotes/git-svn
 	remote = svn
