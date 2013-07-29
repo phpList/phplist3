@@ -4,6 +4,7 @@ if (!defined('PHPLISTINIT')) exit;
 print '<h3>'.s('Database structure check').'</h3>';
 
 unset($_SESSION["dbtables"]);
+$pass = true;
 
 $ls = new WebblerListing(s('Database structure'));
 while (list($table, $tablename) = each($GLOBALS["tables"])) {
@@ -72,6 +73,7 @@ while (list($table, $tablename) = each($GLOBALS["tables"])) {
     $tls->collapse();
     $ls->addColumn($table,"ok",$GLOBALS["img_tick"]);
   } else {
+    $pass = false;
     $ls->addColumn($table,"ok",$GLOBALS["img_cross"]);
   }
   if (!empty($indexes)) {
@@ -94,4 +96,8 @@ while (list($table, $tablename) = each($GLOBALS["tables"])) {
     
 }
 print $ls->display();
-
+if ($pass) {
+  cl_output('PASS');
+} else {
+  cl_output('FAIL');
+}
