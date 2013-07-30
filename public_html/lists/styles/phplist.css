@@ -1,229 +1,821 @@
-body {
-scrollbar-base-color: #DEDEB6; 
 
-scrollbar-face-color: #CCCC99;; 
-scrollbar-track-color: #DEDEB6; 
-scrollbar-arrow-color: #000000;
+
+/* phpList Hosted - Main Style Sheet / 1.0 - Last Updated 17th September 2010  */
+
+/* =------------------------------------------------------------------------
+Global Reset
+----------*/
+
+html, body, div, span, applet, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
+a, abbr, acronym, address, big, cite, code, 
+del, dfn, em, font, img, ins, kbd, q, s, samp, 
+small, strike, strong, sub, sup, tt, var, 
+b, u, i, center, 
+dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td {margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent}
+body{line-height:1}
+ol, ul{list-style:none}
+blockquote, q{quotes:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse; border-spacing:0}
+
+/* =------------------------------------------------------------------------
+Clearfix
+----------*/
+
+.clearfix:after {content:"."; display:block; height:0; clear: both; visibility: hidden}
+
+.clearfix {display: inline-block}
+
+
+/* =-----------------------------------------------------------------------
+Typography
+----------*/
+
+/* font size in PX because of legacy markup + nested element issues */
+
+body {font:62.5%/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif; text-align: center; color:#666}
+
+a {color:#666; text-decoration:none}
+a:hover {color:#000}
+
+#mainContent a {}
+#mainContent a:hover {text-decoration: underline}
+
+#mainContent .announcements .content a {border-bottom: 1px dotted #000; color: #3B4114}
+#mainContent .announcements .content a:hover {border-bottom: 1px solid #000; text-decoration: none}
+
+h1, h2, .pagetitle {font-size: 24px; line-height: 1.6; letter-spacing:-1px; font-weight: normal}
+
+.pagetitle {
+color: #4f8cb1;
+display:block;
+font-size:28px;
+font-weight:normal;
+letter-spacing:-1px;
+line-height:1.2;
+margin-bottom:10px;
+padding:0 0 5px;
 }
 
-a:link {
-div#menutable div#menuheader {
-  position:absolute;
-  width: 50px;
-  color: white;
-  text-align: center;
-  padding:2px 0px 2px 0px;
-  background-color: #ff9900;
-  border: 1px solid black;
+h3 {font-size: 21px; font-weight: normal; line-height: 1.6}
+
+h4 {font-size: 18px; font-weight: normal; line-height: 1}
+
+#secondaryNav h2, #secondaryNav h3, #secondaryNav h4 {font-size: 18px; font-weight: normal; line-height: 1; letter-spacing: 0}
+
+h5 {font-size: 12px; font-weight: bold; line-height: 1.5}
+
+p {font-size: 12px; margin: .75em 0}
+
+p {font-size: 12px; margin: .75em 0}
+li {font-size: 12px}
+table {font-size: 12px}
+form {font-size: 12px}
+
+/* = legacy markup */
+hr {display: none}
+#secondaryNav li h3 {margin-top: 18px}
+
+.news p, .news li {font-size: 14px}
+
+/* Restore bullet points for text based content in lists */
+.ui-tabs-panel ol, 
+.ui-tabs-panel ul {margin-left: 20px}
+.ui-tabs-panel li {margin: 1em 0}
+.ui-tabs-panel ul li {list-style-type: disc}
+.ui-tabs-panel ol li {list-style-type: decimal}
+
+/* =-----------------------------------------------------------------------
+Clearing
+----------*/
+
+.clearfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden}
+.clearfix{display:inline-block}
+.clear{clear:both}
+
+/* =-----------------------------------------------------------------------
+Layout
+----------*/
+
+html, body {text-align:left; background:#f7f6f7 url("../images/page_bk.png") top left repeat-x}
+body.fixed {text-align:center; background: #FFF url("../images/page_bk_nomenu.png") top left repeat-x}
+
+#container {margin: 0 20px; min-width: 920px}
+.fixed #container {width: 920px; text-align:left; margin: 0 auto}
+
+#header {height: 106px; width: 100%}
+
+#wrapper {padding: 20px; background-color: #FFFFFF}
+
+#mainContent {margin-right: 390px; min-height: 400px}
+.fixed #mainContent{margin: 0 80px}
+
+#secondaryNav {float: right; width: 350px; margin: 0 0 10px 0}
+
+#footer {clear: both; background: #fff url(../images/footer_bk.png) top left repeat-x}
+
+#footerframe {text-align: left; margin: 0 40px; min-height: 100px}
+.fixed #footerframe {width: 920px; margin: 0 auto}
+
+#footer ul {float: left; margin: 1.5em 0}
+
+#footer ul li {float: left; margin-right: 10px}
+
+/* =-----------------------------------------------------------------------
+Styles
+----------*/
+
+.panel {
+position: relative;
+border: 6px solid #5DAEE1; 
+margin-bottom: 20px;
+background-color: #5DAEE1; 
+-moz-border-radius:6px; 
+-webkit-border-radius:6px; 
+border-radius:6px;
+-moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
 }
 
+.panel.announcements {border-color: #C0D341}
 
-}
-a:active {
-	font-size: 11px; color: #ff6600; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;
-}
-a:visited {
-	font-size: 11px; color: #ff6600; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;
-}
-a:hover {
-   min-height:400px;
-	text-decoration: underline;
-}
-p {
-	font-weight: normal; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;
-}
-td {
-	font-weight: normal; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;
-}
+.panel .header {padding: 3px 5px 10px 5px; background-color: #5DAEE1; height: 21px}
 
-ol {font-weight: normal; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
+/* Panel Paging */
 
-.disclist li {list-style-type : circle; padding: 5px;}
+.panel .paging {position: relative; margin: 0 0 5px 0; width: 100%; background-color: #5193BB; color:rgba(255, 255, 255, 0.6)}
 
-h1 {font-weight: bold; font-size: 12px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
+.panel .paging a {border-color: #FFF; color: #FFF; background: transparent} /* fallback styling */
+.panel .paging a[title] {position: relative; display: block; float: left; border: none; padding: 0; width: 28px; height: 26px; text-indent: -9999px; overflow: hidden}
 
-h2 {font-weight: bold; font-size: 11px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
+.panel .paging a[title="First Page"] {background: transparent url("../images/icons-paging.png") no-repeat -1px 0}
+.panel .paging a[title="First Page"]:hover {background-position: -1px -27px }
+.panel .paging a[title="Previous"] {background: transparent url("../images/icons-paging.png") no-repeat -28px 0}
+.panel .paging a[title="Previous"]:hover {background-position: -28px -27px }
+.panel .paging a[title="Next"] {background: transparent url("../images/icons-paging.png") no-repeat -56px 0}
+.panel .paging a[title="Next"]:hover {background-position: -56px -27px }
+.panel .paging a[title="Last Page"] {background: transparent url("../images/icons-paging.png") no-repeat -84px 0}
+.panel .paging a[title="Last Page"]:hover {background-position: -84px -27px }
 
-h3 {font-weight: bold; font-size: 12px; color: #666666; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; margin:0px; padding:0px;}
+.panel .paging .summary, 
+.panel .paging p.range {margin:0 0 0 4px; padding: 5px; width: 50%; font-size: 18px; line-height: 1.2}
 
-   margin: 0px;
-hr {width : 100%; height : 1px; color: #ff9900; size:1px;}
+.panel .controls {position: absolute; top: 2px; right: 2px}
 
-.leaftitle {font-weight: bold; font-size: 16px; color: #ff9900; font-style: normal; font-family: verdana, sans-serif; text-decoration: none;}
+/* Paging */
 
-.title {font-weight: bold; font-size: 11px; color: #999966; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; padding-left:5px;}
+.paging {margin: .75em 0; width:100%}
 
-.phphead,
-a:active.phphead,
-a:link.phphead,
-a:hover.phphead,
-a:visited.phphead {font-size: 14px; color: #000000; font-style: normal; font-family: verdana, sans-serif; text-decoration: none; padding-left:20px;}
-
-.menulinkleft {margin : 0px; padding : 0px;}
-.menulinkleft a:link, 
-.menulinkleft a:active, 
-.menulinkleft a:visited {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #F9F9F9; font-weight: normal; display : block; text-align : left; text-decoration : none; padding-left: 5px;line-height : 15px;border-top: 2px white solid;}
-.menulinkleft a:hover {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #EBEBEB; font-weight: normal; display : block; text-align : left; text-decoration : none;}
-
-
-.menutable {background-color : white; border-left : 1px black solid; border-right : 1px black solid; display : block; width : 132px;}
-
-
-.menuhd {font-family: verdana, sans-serif;font-size : 11px; color : black;background-color : #CCCC99; font-weight: normal; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : left; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
-
-.bottom {font-family: verdana, sans-serif;font-size : 10px; font-weight : bold; padding: 2px; padding-left:20px;}
-.input {font-family: verdana, sans-serif;font-size : 10px; font-weight : normal;}
-
-.searchBoxinput {font-family: verdana, sans-serif;font-size : 11px; font-weight : normal; margin : 0px; padding : 0px;color : #000000;border: 1px #999966 solid; padding-left:2px; height:15px; width:110px;}
-
-.dropdown {font-family: verdana, sans-serif;font-size : 11px; font-weight : normal; margin : 0px; padding : 0px;color : #000000;border: 1px #999966 solid; padding-left:5px; height:15px; width:250px;}
-
-.addbutton {font-family: verdana, sans-serif;font-size : 11px; font-weight : normal; margin : 0px; padding : 0px;color : #000000;border: 1px #999966 solid; height:15px; width:120px;}
-
-.submitsearch {font-family: verdana, sans-serif;font-size : 11px; font-weight : normal; margin : 0px; padding : 0px;background-color: #DEDEB6;color : #000000; border:1px #CCCC99 solid; height:15px;}
-
-.menufill {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #CCCC99; font-weight: normal; text-align : left; text-decoration : none; padding: 0px;border-top: 1px white solid; border-bottom: 1px white solid; padding-left: 5px;}
-
-.rightmenufill {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #CCCC99; font-weight: normal; text-align : left; text-decoration : none; padding: 0px;border-top: 1px white solid; border-bottom: 1px white solid; padding-left: 5px;}
-
-.branchhd {font-family: verdana, sans-serif;font-size : 11px; color : black;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : left; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
-
-.branchaction {font-family: verdana, sans-serif;font-size : 11px; color : black;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : right; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
-
-.branchaction2 {font-family: verdana, sans-serif;font-size : 11px; color : black;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : left; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
-
-.listorder {font-family: verdana, sans-serif;font-size : 10px; color : black; padding:0px; width:20px;}
-
-.delete {font-family: verdana, sans-serif;font-size : 11px; color : red;background-color : #DEDEB6; font-weight: bold; border-top: 1px black solid;  border-bottom: 1px black solid;display : block; text-align : right; text-decoration : none; padding: 2px;vertical-align : top; padding-left : 3px;}
-
-a.deletelink,
-a:link.deletelink,
-a:active.deletelink,
-a:visited.deletelink  {font-family: verdana, sans-serif;font-size : 12px; color : red; font-weight: bold; text-align : right; text-decoration : none;}
-a:hover.deletelink {color: #666633;}
-
-a.branches {padding :2px;}
-a:link.branches,
-a:active.branches,
-a:visited.branches  {font-family: verdana, sans-serif;font-size : 11px; color : #999966;background-color : #ffffff; font-weight: bold; text-align : middle; text-decoration : none; display:block;}
-a:hover.branches {color: #666633;}
-
-a.buttonpublish {border: 1px #999966 solid; padding :2px;}
-a:link.buttonpublish,
-a:active.buttonpublish,
-a:visited.buttonpublish  {font-family: verdana, sans-serif;font-size : 11px; color : #999966;background-color : #ffffff; font-weight: bold; text-align : middle; text-decoration : none;}
-a:hover.buttonpublish 
-
-a.menuhelp {color : #000000;}
-a:link.menuhelp,
-a:active.menuhelp,
-a:visited.menuhelp  {font-family: verdana, sans-serif;font-size : 11px; color : #999933;background-color : #CCCC99; font-weight: normal; text-align : right; text-decoration : none; padding: 0px;}
-a:hover.menuhelp {font-family: verdana, sans-serif;font-size : 11px; color : #000000;background-color : #CCCC99; font-weight: normal; text-align : right; text-decoration : none; padding: 0px;}
-
-a:link.urhere,
-a:active.urhere,
-a:visited.urhere  {font-family: verdana, sans-serif; font-size : 10px; color : black; font-weight: normal; text-align : left; text-decoration : none;}
-a:hover.urhere  {font-family: verdana, sans-serif; font-size : 10px; color : #666666; font-weight: normal; text-align : left; text-decoration : none;}
-
-.webblermenu {font-family: verdana, sans-serif; font-size : 11px; color : white; font-weight: normal; text-align : left; text-decoration : none; padding :5px; background-color : #ff9900; border: 1px solid black;}
-
-a:link.powered,
-a:active.powered,
-a:visited.powered  {font-family: verdana, sans-serif; font-size : 10px; color : #666666;font-weight: bold; text-align : left; text-decoration : none; padding: 2px;}
-a:hover.powered {color : #7D7B7B;}
-
- .email  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : bold;
-	font-style : normal;
-	color : blue;
-	text-decoration : none;
+.paging a {
+border-color: #BBBBBB #AAAAAA #AAAAAA #BBBBBB;
+border-style: solid;
+border-width: 1px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+padding: 3px 6px;
+background:url("../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
+color: #333333;
+font-size: 14px; 
+line-height: 1;
+font-family: Helvetica, Arial, sans-serif;
+text-transform: capitalize;
+display: inline-block
 }
 
-.address  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : black;
-	text-decoration : none;
+/* */
+
+
+.panel .content {padding: 5px; 
+-moz-border-radius:3px; 
+-webkit-border-radius:3px; 
+border-radius:3px;
+background-color: #F2F2F2
 }
 
-a.url  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : bold;
-	font-style : normal;
-	color : black;
-	text-decoration : none;
+.panel table {background-color: #F2F2F2}
+
+.panel h2, .panel h3, .panel h4 {display: block; background-color: #5DAEE1; color: #FFF; margin: 0; padding: 3px 5px 10px 5px; line-height: 1.2; font-size: 18px; letter-spacing: 0; text-transform:capitalize;}
+.panel .header h2, .panel .header h3, .panel .header h4 {padding: 0}
+
+.panel.announcements h2 {background-color: #C0D341}
+
+.panel .content h2, .panel .content h3, .panel .content h4 {padding: 3px 5px; background-color: #5193BB}
+
+.panel.announcements .content h2,
+.panel.announcements .content h3 {background-color: #C0D341}
+
+.panel .feed {padding-right: 40px; background: #5DAEE1 url("../images/icon-panel-feed.png") no-repeat right center}
+
+.panel h2 span.account {position: relative; top: -4px; right: -4px;  float: right; padding: 4px 8px; background-color: rgba(0,0,0,.2); color: rgba(255,255,255,.6); -moz-border-radius: 4px; }
+
+.panel .footer {margin-top: 6px; position: relative; width: 100%; height: 40px}
+
+.panel .nav li a, 
+.panel .contextmenu li a {display: block; border-bottom: 1px solid #5AA7D4; padding: 5px 0; font-size: 14px}
+
+.panel .step-nav {position: absolute; top: 0; right: 0}
+
+/* query why we need to position this here? */
+#testpanel {position: absolute; right: 40px; top: 550px; width:338px}
+
+.panel .step-nav a {
+-moz-border-radius: 3px 3px 3px 3px;
+color: #FFFFFF;
+display: inline-block;
+font-size: 18px;
+margin: 0 0 0 4px;
+padding: 3px 8px 3px;
+line-height: 1.2;
+text-shadow: 1px 1px 2px #333;
+background-color: #45738F;
 }
 
-.listitem  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : black;
-	text-decoration : none;
+.panel .step-nav a[href=""] {color: rgba(255,255,255,.4); text-shadow: none}
+
+.panel .step-nav a.next {background: #45738F url("../images/icon-next.png") no-repeat right center; padding-right: 25px}
+
+.panel .step-nav a:hover {text-decoration: none!important; background-color: #000}
+
+.panel .link-left {
+background:url("../images/link-left.png") no-repeat scroll right center transparent;
+display:block;
+height:80px;
+left:-46px;
+position:absolute;
+top:10px;
+width:40px;
 }
 
-.attributename  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : black;
-	text-decoration : none;
+/* */
+
+#warning {
+position: fixed;
+width: 100%;
+background: url("../images/warning-icon.png") no-repeat scroll left center #FFFFE1;
+border: 1px solid #D6D8D6;
+font-family :Arial,Helvetica,sans-serif;
+font-size: 1.2em;
+padding: 15px 15px 15px 45px;
+width: 100%;
+opacity: .95
 }
 
-.attributeinput  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : black;
-	text-decoration : none;
+.info, .note, .missing, .adminmessage {
+position: relative;
+-moz-border-radius: 5px;
+-webkit-border-radius:5px;
+background:url("../images/info-icon.png") no-repeat scroll 15px 11px #FFFECD;
+border:1px solid #FFDE9F;
+color: #855230;
+margin: 15px 0;
+padding: 1em 30px 1em 50px;
+font-size: 12px
 }
 
-.required {
-	font-weight : normal;
-	font-style : normal;
-	color : red;
-	text-decoration : none;
+.tip {
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+background:url("../images/tip-icon.png") no-repeat scroll 15px 11px #FFFECD;
+border:1px solid #FFDE9F;
+color: #855230;
+margin: 15px 0;
+padding: 1em 1em 1em 50px;
+font-size: 1.2em
 }
 
-.missing {
-	font-size : 14px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : bold;
-	font-style : normal;
-	color : red;
+.actionresult, .result {
+background:url("../images/icon-action-tick.png") no-repeat scroll 15px 11px #FFFECD;
+color: #855230;
+margin: 15px 0;
+padding: 1em 1em 1em 50px;
+font-size: 12px;
+font-weight: bold
 }
 
-.error  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : red;
-	text-decoration : none;
+/* hide element when there's no content */
+.actionresult:empty,
+.result:empty {display: none}
+
+.note .ajaxable.hide {position: absolute; top: 3px; right: 3px; display: block; background: transparent url("../images/icon-note-close.png") no-repeat top left; text-indent: -9999px; overflow: hidden; width: 20px; height: 18px}
+
+/* ---------------- branding ---------------- */
+
+#logo a {position: relative; background:transparent url(../images/branding.png) no-repeat scroll left top; display:block; float:left; margin:6px 0 0 16px; height:55px; width: 340px; text-indent: -9999px; overflow: hidden}
+
+#logo a:hover {opacity: .85}
+
+/* ---------------- Main Navigation / Adminbar ---------------- */
+
+#rack-functions, #menuTop {display:block; float:left; width:100%}
+
+#rack-functions {margin: 0 0 8px 0}
+#rack-functions .functions {display: block; float:right; margin: 17px 0 0 0}
+#rack-functions .functions ul li {display:block; float:left; -moz-border-radius:10px; -webkit-border-radius: 10px; border: 2px solid white; padding: 2px 15px; margin: 0 10px 0 0}
+#rack-functions .functions ul li a {color: #fff; text-shadow: 1px 1px 2px #000; font-size: 1.4em}
+#rack-functions .functions ul li.login {background: #C0D341}
+#rack-functions .functions ul li.login:hover {background: #88BF33}
+#rack-functions .functions ul li.signup {background: #B43939}
+#rack-functions .functions ul li.signup:hover {background:red}
+
+#rack-functions .functions .pp_logged_in {border: 0; font-size: 1.2em; color: #fff; text-align: right; }
+#rack-functions .functions .pp_logged_in a {font-size: 1em;}
+
+#rack-functions .functions .user-status {display: block; float: left;margin: 0;}
+#rack-functions .functions .user-status span.name {font-weight: bold;}
+#rack-functions .functions .user-status span.status {margin-left: 10px;}
+#rack-functions .functions .user-status span.feedback {margin-left: 10px; padding: 2px; background-color: yellow;}
+
+#languageswitcher {margin: 1.5em 0 .75em 0}
+
+/* Main Menu with dropdowns */
+
+#menuTop {/*background-color: #5AA7D4*/}
+
+#menuTop ul {float:left}
+
+#menuTop ul li {position:relative; float:left; line-height :1.3em}
+
+#menuTop ul li a {display: block; padding: 7.5px 20px; color: #fff; text-shadow: 1px 1px 2px #666; text-transform: capitalize; font-size:18px; line-height: 1.2}
+
+
+#menuTop ul li:hover a,
+#menuTop ul li:active a {background:url(../images/nav_on.png) no-repeat scroll left top}
+
+#menuTop li ul {display: none; position:absolute; top:100%; left :0; z-index: 999999; width: 200px}
+
+#menuTop li:hover ul,
+#menuTop li:active ul {display: block}
+
+#menuTop ul li li {border-bottom: 1px solid #CCCCCC; width: 280px; font-size: 12px}
+
+#menuTop ul li:hover li a,
+#menuTop ul li:active li a {background-color: #2C2C2C; background-image: none; padding: .75em 1.5em; text-shadow: none;  font-size: 12px}
+
+#menuTop ul li li a:hover {background-color: #666666}
+
+/* ---------------- Table Styles ---------------- */
+
+#mainContent table {width: 100%; border: 1px solid #e5e5e5}
+#mainContent table td {background: #e5e5e5;  }
+
+#mainContent table th {width: 180px; font-weight: bold; padding: .3em}
+/*=check */
+#mainContent table .listingname {padding: 0.3em; font-size: 14px; font-weight: bold; color: #56A3D2}
+/*=endcheck */
+
+/* Functions */
+
+div.actions {margin: 10px 0}
+
+div.actions input {margin: 0}
+
+div.actions {
+padding:10px 0;
+position:relative;
+border-bottom:1px solid #CCCCCC;
 }
 
-.info  {
-	font-size : 12px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : normal;
-	font-style : normal;
-	color : magenta;
-	text-decoration : none;
+div.actions a {display: inline-block; margin: 0}
+
+/* ---------------- Tabbed Interface ---------------- */
+
+
+#webblertabs, #sendtabs {display: inline-block}
+
+
+#webblertabs ul li a {
+display: block; 
+background: #5ba8d5; 
+opacity: .4;
+padding: 5px 10px;
+margin: 0; 
+-moz-border-radius-topleft: 3px; 
+-moz-border-radius-topright: 3px; 
+border: 1px solid #f2f2f2; 
+-webkit-border-top-left-radius: 3px; 
+-webkit-border-top-right-radius: 3px;
+color: #FFF;
+min-width: 80px; /*changed to min-width so this size is adaptable for longer tabs */
 }
 
-.botbar  {
-	font-size : 11px;
-	font-family : Arial, Helvetica, sans-serif;
-	font-weight : bold;
-	font-style : normal;
-	color : white;
-	text-decoration : none;
+#webblertabs ul,
+#sendtabs ul {float: left; margin: 0 10px; padding: 0}
+
+#webblertabs ul li,
+#sendtabs ul li {
+float: left;
+margin-right: 5px;
 }
+
+#webblertabs ul li.current a,
+#sendtabs ul li.current a {opacity: 1}
+
+span.tabno {display: block; font-size: 22px; font-weight: bold; line-height: 1; padding: 4px 4px 0 4px; color: rgba(255,255,255,.8)}
+span.title {display: block; color: #FFF; padding:0 4px 4px; width: auto!important}
+
+#sendtabs ul li a {
+display:block; 
+background: #5ba8d5; 
+opacity: .4;
+width: 80px;
+-moz-border-radius-topleft: 3px; 
+-moz-border-radius-topright: 3px; 
+border: 1px solid #f2f2f2; 
+-webkit-border-top-left-radius: 3px; 
+-webkit-border-top-right-radius: 3px;
+font-size: 12px;
+}
+
+#webblertabs ul li a:hover,
+#sendtabs ul li a:hover,
+#sendtabs ul li a:hover span {text-decoration: none; opacity: 1}
+
+/* =-----------------------------------------------------------------------
+Form Elements
+----------*/
+
+#mainContent form {}
+
+#mainContent form.listListing {border: none} /* css to style form which doesn't require formatting! */
+
+#mainContent form p span.required {color: red}
+
+/* generic form controls */
+
+label, .label, h3.ui-accordion-header {display: block; color: #56A3D2; font-weight: bold; font-size: 14px; margin: 0; padding: 0}
+/*  h3.ui-accordion-header styles up an additional label element created by jquery-ui */
+/* inline lable class for radio select options */
+label.inline, .label.inline {display: inline; font-weight: normal; color: #333}
+
+div.field {margin: 0 0 .75em; border-bottom: dotted 1px #ccc; padding-bottom: .75em}
+
+input[type="text"],
+input[type="password"] {
+margin: 5px 0; 
+padding: 6px; 
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+font-size: 14px; 
+border: 2px solid #CCCCCC;
+color: #333333;
+width: 300px !important;
+}
+
+/* =check */
+input.listorder {font-size: 8px; padding: 0px; width: 30%}
+/* END check */
+
+textarea {
+background: #fff; 
+padding: 5px; 
+border: 1px solid #ddd; 
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+font-size: 1em; 
+color: #666;
+border: 2px solid #CCCCCC;
+width: 80%;
+font-size: 14px; 
+}
+
+/* =check (At the moment the styling of <select> is not consistent with <input> styles)*/
+select {
+margin: 0 2px 0 0;
+padding: 2px 1px 2px 5px;
+background: #FFFFFF none repeat scroll 0 0; border:1px solid #DDDDDD;
+color: #666666;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 1.2em;
+}
+/* END check */
+
+/* Generic Form Buttons */
+
+input[type="submit"],
+button,
+p.button a,
+a.button,
+a[title="edit"],
+a[title="delete"],
+a[href$="NULL"],
+a[href*="javascript"],
+p.delete a {
+position:relative; /* check */
+margin: 5px 0; 
+border-color: #BBBBBB #AAAAAA #AAAAAA #BBBBBB;
+border-style: solid;
+border-width: 1px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+padding: 3px 6px;
+background:url("../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
+color: #333333;
+font-size: 14px; 
+line-height: 1;
+font-family: Helvetica, Arial, sans-serif;
+text-transform: capitalize;
+}
+
+/*p.button a:first-child {border-right: 0}*/
+
+input:hover[type="submit"],
+a:hover.button,
+p.button a:hover,
+a:hover[title="edit"],
+a:hover[title="delete"],
+p.delete a:hover {
+cursor:pointer; /* important for any clickable/pressable element */
+border-color:#9cf !important;
+color:#000;
+text-decoration: none!important;
+}
+
+/*=check *Needs checking/further testing */
+td.listingelement a.button {display:inline-block} /* text transform is buggy unless the buttons have a 'display' property of 'block / or 'inline-block' */
+/* END check */
+
+/* pill classes only needed if using pill style buttons ( LEFT | CENTER | RIGHT ) */
+
+button.pill-r,
+a.button.pill-r {
+-webkit-border-top-left-radius: 0;
+-moz-border-radius-topleft: 0;
+border-top-left-radius: 0;
+-webkit-border-bottom-left-radius: 0;
+-moz-border-radius-bottomleft: 0;
+border-bottom-left-radius: 0;
+}
+
+button.pill-c,
+a.button.pill-c {
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+}
+
+button.pill-l,
+a.button.pill-l {
+-webkit-border-top-right-radius: 0;
+-moz-border-radius-topright: 0;
+border-top-right-radius: 0;
+-webkit-border-bottom-right-radius: 0;
+-moz-border-radius-bottomright: 0;
+border-bottom-right-radius: 0;
+}
+
+/* Highlighted Form Buttons (Blue Text) */
+
+p.button a {
+text-transform: capitalize; 
+color: #003d5c;
+}
+
+/* Drop Buttons (combined functions) */
+
+.dropButton {
+display:inline;
+position:relative; /* check */
+margin: 5px 0; 
+border-color: #BBBBBB #AAAAAA #AAAAAA #BBBBBB;
+border-style: solid;
+border-width: 1px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+padding: 3px 6px;
+background:url("../images/bg-button.gif") repeat-x 0 0 #DDDDDD;
+color: #333333;
+font-size: 14px; 
+font-family: Helvetica, Arial, sans-serif;
+text-transform: capitalize;
+text-decoration: none!important
+}
+
+.dropButton img.arrow {
+position: relative; padding: 0 0 0 .75em; top: .2em;
+}
+
+.dropButton a:hover {text-decoration: none!important}
+
+.button img {
+padding:0 0 0 7px;
+}
+
+.dropButton .submenu {
+background: none repeat scroll 0 0 #F9F9F9;
+border-color: #BBBBBB #BBBBBB #AAAAAA #AAAAAA;
+border-style: solid;
+border-width: 1px;
+display: none;
+left:-1px;
+top: 100%;
+padding:4px;
+position:absolute;
+z-index:100;
+}
+.dropButton .submenu.wide {width: 200%}
+
+.dropButton .submenu a {
+border-bottom: 1px solid #CCCCCC;
+display: block;
+font-family: Arial,Helvetica,sans-serif;
+font-size:12px;
+padding: 4px;
+}
+
+/* action-button */
+
+a.action-button,
+button.action-button,
+input.action-button {
+display: inline-block;
+background: #5ba8d5 url("../images/icon-actionbutton.png") right center no-repeat; 
+padding: 10px 40px 10px 15px;
+-moz-border-radius:3px; 
+-webkit-border-radius:3px; 
+border-radius:6px;
+-moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+box-shadow: 1px 1px 8px rgba(0, 0, 0, .2);
+font-size: 22px;
+color: #FFF;
+text-shadow:1px 1px 2px #666666;
+}
+
+a.action-button:hover,
+button.action-button:hover,
+input.action-button:hover {text-decoration: none!important; background-color: #3377a6; color: #FFF}
+
+/* */
+
+
+/* -------------- Capitalise Text - legact system fix ------------------ */
+
+.missing,
+.sendNotify {text-transform: capitalize}
+
+/* -------------- Icons --------------------- */
+
+span.yes {
+background:url("../images/icon-tick.png") no-repeat scroll center center transparent;
+display:block;
+height:18px;
+position:relative;
+text-indent:-9999px;
+width:18px;
+}
+
+span.no {
+background:url("../images/icon-cross.png") no-repeat scroll center center transparent;
+display:block;
+height:18px;
+position:relative;
+text-indent:-9999px;
+width:18px;
+}
+
+span.view {
+background: url("../images/view-icon.png") no-repeat scroll center center transparent;
+display: block;
+height: 18px;
+position: relative;
+text-indent: -9999px;
+width: 18px
+}
+
+a.helpdialog {
+background: url("../images/icon-help.png") no-repeat scroll center center transparent;
+display: inline-block;
+height: 18px;
+position: relative;
+text-indent: -9999px;
+width: 18px;
+margin: 0 5px;
+}
+
+h3 a.helpdialog {float: left; top:7.5px; width:18px}
+
+
+#mainContent .configEdit {background: #e5e5e5; border-top: 1px solid #f5f5f5; margin: 0 0 20px 0; padding: 20px 0 0}
+
+#mainContent .configEdit b, #mainContent .configEditing b {padding: 0.3em 0 !important; display: block}
+
+#mainContent .configEditing {background: #e5e5e5}
+#mainContent .configcontent {margin-bottom: 20px}
+
+/* =check */
+
+#mainContent table.usersFind td {padding: 10px}
+#mainContent table.usersForm form{width: 230px}
+
+#mainContent #languageswitch form {border: 0; background: #f2f2f2; position: relative; top: -55px; left: 300px; width: 257px; padding: 10px !important; border: 1px solid #f2f2f2; -moz-border-radius: 3px; float: right}
+#mainContent #languageswitch form select{font-size: 14px !important; float: left }
+
+#mainContent table.about td{background: #fff; border: 1px solid #fff; padding: 5px 5px 5px 0}
+#mainContent table.about td.abouthead{display: none}
+
+#mainContent .query a {font-weight: bold; background: #B43939; padding: 0 3px; -moz-border-radius: 3px; border: 1px solid #B43939; font-size: 11px; color: #fff}
+#mainContent .query a:hover {background: red; border: 1px solid red}
+
+/* */
+
+#dashboardcampaign,
+#dashboardsubscribers,
+#dashboardstatistics {
+display: inline
+}
+
+.inline {
+  display: inline;
+}
+
+.stats p {font-size: 14px; border-bottom: 1px dotted #333; margin:0; padding:4px 0}
+.title {display: inline-block; width: 300px;}
+strong.title {font-weight: bold; color: #45738F}
+.total {display: inline-block; font-weight: bold}
+strong.total {color: #45738F; font-size: 28px}
+
+/* dashboard feedback */
+
+.news {
+position: relative;
+border-bottom:1px solid #CCC;
+margin:1em;
+padding:0 0 1em;
+font-size: 12px
+}
+
+#mainContent .news a.ajaxable.hide {position: absolute; top: 4px; right: 4px; display: block; border: none; background: transparent url("../images/icon-news-close.png") no-repeat top left; text-indent: -9999px; overflow: hidden; width: 20px; height: 18px}
+#mainContent .news a.ajaxable.hide:hover {text-decoration: none}
+
+/* Listing (Alternate Listing element when not using a <table> eg. List View (to emphahise member values) */
+
+.listing {float: left; width: 100%; border: 1px solid #E5E5E5; margin-bottom: 5px}
+
+/* Listing header */
+.listing .header {position: relative; display:block; color:#FFFFFF; font-size:18px; letter-spacing:0; line-height:1.2; margin:0; padding:3px 5px 10px; background: #003D5C url("../images/fade-darkblue.png") no-repeat bottom left}
+
+.listing .header input[type="text"] {position: absolute; right: 5px; top: 5px; border:1px solid #CCCCCC;
+color:#333333; font-size:14px; margin:0; padding:2px 4px; width:25px}
+
+.listing .header a {color: #FFF}
+
+/* Listing Content */
+.listing .column {position: relative; float: left; width: 130px; height: 45px; padding: 5px; background-color: #4A8BB4}
+
+/*alternate specific column colours for certain pages*/
+.listing .column + .column {background-color: #a4c5d9}
+.listing .column + .column  + .column{background-color: #d2e2ec}
+
+.listing .column a {color:#FFF}
+.listing .column a.button {color:#333333; margin:0; position:absolute; right:5px; top:5px;}
+
+.listing .header a:hover {color: #CCCCCC} 
+.listing .column a:hover, 
+.listing .column a:hover .label {text-decoration: none!important; color: #003D5C} 
+
+.listing .column .value {font-size: 22px; font-weight: bold; line-height: 1; margin-bottom: .375em}
+.listing .column .label {color:#FFFFFF; font-size:12px;}
+
+.listing .content {float: left; padding: 5px; max-width:240px;}
+.listing .content p {margin-top: 0}
+
+.listing .column .label {color:#FFFFFF; font-size:12px;}
+
+.listing .column.settings .title {display: inline; font-size: 12px; font-weight: bold; color: #000; padding: 0}
+.listing .column.settings .label, 
+.listing .column.settings label {font-size: 12px; color: #333}
+
+span.membercount {
+  float: left;
+  width: 50%;
+  background-color: #a4c5d9;
+  color: #003D5C;
+}
+
+span.bouncecount {
+  float: left;
+  width: 50%;
+  background-color: #a4c5d9;
+  color: #003D5C;
+}
+
+/* Pop-up panel > Remove panel Formatting */
+
+.ui-dialog .panel {
+position: relative;
+border: none; margin: 0; background-color: #FFF; 
+-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+.ui-dialog .panel .header {display: none}
+.ui-dialog .panel .content {padding: 0; background-color:#FFFFFF}
+
+span.required {color: red}
+div.required {color: red}
+
