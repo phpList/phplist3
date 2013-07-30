@@ -172,7 +172,8 @@ $(document).ready(function() {
 
   if ($.fn.tabs) {
     $(".tabbed").tabs({
-      ajaxOptions: {
+      //http://jqueryui.com/upgrade-guide/1.9/#deprecated-ajaxoptions-and-cache-options-added-beforeload-event
+        ajaxOptions: {
         error: function(xhr, status, index, anchor) {
           $(anchor.hash).html("Error fetching page");
         }
