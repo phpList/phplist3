@@ -7,7 +7,7 @@
  */
 define('PHPLISTINIT',true);
 
-if (!$GLOBALS["commandline"] && isset($GLOBALS["developer_email"]) && $_SERVER['HTTP_HOST'] != 'dev.phplist.com' && !empty($GLOBALS['show_dev_errors'])) {
+if (empty($GLOBALS["commandline"]) && isset($GLOBALS["developer_email"]) && $_SERVER['HTTP_HOST'] != 'dev.phplist.com' && !empty($GLOBALS['show_dev_errors'])) {
   error_reporting(E_ALL);
   ini_set('display_errors',1);
   foreach ($_REQUEST as $key => $val) {
