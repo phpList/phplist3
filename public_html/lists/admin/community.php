@@ -9,6 +9,7 @@
     <li><a href="#opensource"><?php print s('Open Source')?></a></li>
     <li><a href="#gethelp"><?php print s('How to get help')?></a></li>
     <li><a href="#helpout"><?php print s('How to help out')?></a></li>
+    <li><a href="#hosted">phpList Hosted</a></li>
   </ul>
   
 <div id="opensource">
@@ -31,9 +32,7 @@
 <h3><?php print s('Help out with phpList')?></h3>
 <p><?php print s('To be written. In the meantime you can <a href="http://www.phplist.com/developers">visit the developers section on the phpList website</a>')?></p>
 </div>
-
+<div id="hosted">  
+<iframe src="http://www.phplist.com/hosted.html" scrolling="no" style="margin: 0; width: 100%; height: 750px;"></iframe>
 </div>
-
-<?php
-# include('info/'.$_SESSION['adminlanguage']['iso'].'/community.php'); 
-?>
+</div>
