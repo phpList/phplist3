@@ -345,26 +345,26 @@ if ($total) {
 
     $actionbuttons = '';
     if ($msg['status'] == 'inprocess' || $msg['status'] == 'submitted') {
-      $actionbuttons .= '<span class="suspend">'.PageLinkButton('messages&suspend='.$msg['id'],$GLOBALS['I18N']->get('Suspend')).'</span>';
+      $actionbuttons .= '<span class="suspend">'.PageLinkButton('messages&suspend='.$msg['id'],$GLOBALS['I18N']->get('Suspend'), '', '', s('Suspend')).'</span>';
     } elseif ($msg['status'] != 'draft') {
-      $actionbuttons .= '<span class="resend">'.PageLinkButton("messages",$GLOBALS['I18N']->get("Requeue"),"resend=".$msg["id"]).'</span>';
+      $actionbuttons .= '<span class="resend">'.PageLinkButton("messages",$GLOBALS['I18N']->get("Requeue"),"resend=".$msg["id"], '', s('Requeue')).'</span>';
     }
     #0012081: Add new 'Mark as sent' button
     if ($msg['status'] == 'suspended') {
-      $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent')).'</span>';
-      $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"]).'</span>'; 
+      $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent'), '', '', s('Mark sent')).'</span>';
+      $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
     }
     
     if ($msg['status'] == 'draft') {
       ## only draft messages should be deletable, the rest isn't
       $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',
 PageURL2("messages$url_keep","","delete=".$msg["id"]));
-      $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"]).'</span>'; 
+      $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
     }
-    $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"]).'</span>';
+    $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"], '', s('View')).'</span>';
 
     if ($clicks[0] && CLICKTRACK) {
-      $actionbuttons .= '<span class="stats">'.PageLinkButton("statsoverview",$GLOBALS['I18N']->get("statistics"),"id=".$msg["id"]).'</span>';
+      $actionbuttons .= '<span class="stats">'.PageLinkButton("statsoverview",$GLOBALS['I18N']->get("statistics"),"id=".$msg["id"], '', s('Statistics')).'</span>';
     }
 
     $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
