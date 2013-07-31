@@ -1,0 +1,34 @@
+# list of attributes that may be useful
+# format of this file: anything with a # symbol is ignored
+# first line without # will be the name of this "attribute"
+# anything else will be values to use
+# if you have any useful contributions like this for PHPlist, send them to me,
+# and I can include them in next versions. That will save others in collecting
+# the information
+#
+# Date: 30-05-2013
+# Source: http://www.istat.it/it/archivio/6789
+# Author: Gabriele Lauricella
+# Title: Elenco delle regioni italiane
+# 
+ITRegioni:IT - Regioni Italiane
+Piemonte
+Valle d'Aosta
+Lombardia
+Trentino-Alto Adige
+Veneto
+Friuli-Venezia Giulia
+Liguria
+Emilia-Romagna
+Toscana
+Umbria
+Marche
+Lazio
+Abruzzo
+Molise
+Campania
+Puglia
+Basilicata
+Calabria
+Sicilia
+Sardegna
