@@ -59,7 +59,7 @@ if ($message['status'] != 'inprocess') {
   }
   
   if ($message['status'] != 'submitted' && $message['status'] != 'draft') {
-    $html .= '<br/>'.PageLinkButton("messages",$GLOBALS['I18N']->get("requeue"),"resend=".$message["id"]);
+    $html .= '<br/>'.PageLinkButton("messages",$GLOBALS['I18N']->get("requeue"),"resend=".$message["id"], '', s('Requeue'));
   }
   if (!empty($messagedata['to process'])) {
     $html .= '<br/>'.$messagedata['to process'].' '.$GLOBALS['I18N']->get('still to process').'<br/>'.
