@@ -1182,6 +1182,7 @@ function parsePlaceHolders($content,$array = array()) {
   foreach ($array as $key => $val) {
     $array[strtoupper($key)] = $val;
     $array[htmlentities(strtoupper($key),ENT_QUOTES,'UTF-8')] = $val;
+    $array[str_ireplace(' ','&nbsp;',strtoupper($key))] = $val;
   }
 
   foreach ($array as $key => $val) {
