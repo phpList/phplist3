@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-29 05:02+0000\n"
-"PO-Revision-Date: 2013-07-23 20:14+0000\n"
+"POT-Creation-Date: 2013-08-05 17:37+0000\n"
+"PO-Revision-Date: 2013-08-05 21:38+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1374610443.0\n"
+"X-POOTLE-MTIME: 1375738732.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -534,7 +534,7 @@ msgstr "No lists available"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
 #: public_html/lists/admin/list.php:275 public_html/lists/admin/import3.php:40
-#: public_html/lists/admin/connect.php:1109
+#: public_html/lists/admin/connect.php:1121
 msgid "Add a list"
 msgstr "Add a list"
 
@@ -1345,7 +1345,7 @@ msgstr "No attributes have been defined yet"
 #: public_html/lists/admin/import4.php:170
 #: public_html/lists/admin/import4.php:180
 #: public_html/lists/admin/spageedit.php:278
-#: public_html/lists/admin/connect.php:1712
+#: public_html/lists/admin/connect.php:1724
 msgid "Attribute"
 msgstr "Attribute"
 
@@ -1442,7 +1442,7 @@ msgid "sort by %s"
 msgstr "sort by %s"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:869
-#: public_html/lists/admin/connect.php:1793
+#: public_html/lists/admin/connect.php:1805
 msgid "Previous"
 msgstr "Previous"
 
@@ -1451,7 +1451,7 @@ msgid "Back"
 msgstr "Back"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:903
-#: public_html/lists/admin/connect.php:1794
+#: public_html/lists/admin/connect.php:1806
 msgid "Next"
 msgstr "Next"
 
@@ -1953,6 +1953,11 @@ msgstr "%s left until embargo"
 #: public_html/lists/admin/msgstatus.php:14
 msgid "requeue"
 msgstr "requeue"
+
+#: public_html/lists/admin/actions/msgstatus.php:62
+#: public_html/lists/admin/messages.php:350
+msgid "Requeue"
+msgstr "Requeue"
 
 #: public_html/lists/admin/actions/msgstatus.php:65
 #: public_html/lists/admin/actions/msgstatus.php:75
@@ -2583,36 +2588,36 @@ msgstr "Please do a manual conversion."
 msgid "Run manual conversion to UTF8"
 msgstr "Run manual conversion to UTF8"
 
-#: public_html/lists/admin/upgrade.php:492
+#: public_html/lists/admin/upgrade.php:511
 #: public_html/lists/admin/initialise.php:173
 msgid "Success"
 msgstr "Success"
 
-#: public_html/lists/admin/upgrade.php:499
+#: public_html/lists/admin/upgrade.php:518
 #: public_html/lists/admin/statsmgt.php:14
 msgid "The clicktracking system has changed"
 msgstr "The clicktracking system has changed"
 
-#: public_html/lists/admin/upgrade.php:500
+#: public_html/lists/admin/upgrade.php:519
 #: public_html/lists/admin/statsmgt.php:15
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr "You have %s entries in the old statistics table"
 
-#: public_html/lists/admin/upgrade.php:501
+#: public_html/lists/admin/upgrade.php:520
 #: public_html/lists/admin/statsmgt.php:16
 msgid "Convert Old data to new"
 msgstr "Convert old data to new"
 
-#: public_html/lists/admin/upgrade.php:505
+#: public_html/lists/admin/upgrade.php:524
 msgid "Upgrade successful"
 msgstr "Upgrade successful"
 
-#: public_html/lists/admin/upgrade.php:511
+#: public_html/lists/admin/upgrade.php:530
 msgid "Upgrade failed"
 msgstr "Upgrade failed"
 
-#: public_html/lists/admin/upgrade.php:517
+#: public_html/lists/admin/upgrade.php:536
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
@@ -2620,7 +2625,7 @@ msgstr ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 
-#: public_html/lists/admin/upgrade.php:518
+#: public_html/lists/admin/upgrade.php:537
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
@@ -2628,13 +2633,13 @@ msgstr ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 
-#: public_html/lists/admin/upgrade.php:519
+#: public_html/lists/admin/upgrade.php:538
 #: public_html/lists/admin/initialise.php:198
 #: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:363
 msgid "Upgrade"
 msgstr "Upgrade"
 
-#: public_html/lists/admin/upgrade.php:519
+#: public_html/lists/admin/upgrade.php:538
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -2691,75 +2696,75 @@ msgstr "Saturday"
 
 #: public_html/lists/admin/date.php:25
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "January"
 msgstr "January"
 
 #: public_html/lists/admin/date.php:26
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "February"
 msgstr "February"
 
 #: public_html/lists/admin/date.php:27
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "March"
 msgstr "March"
 
 #: public_html/lists/admin/date.php:28
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "April"
 msgstr "April"
 
 #: public_html/lists/admin/date.php:29
 #: public_html/lists/admin/systemstats.php:10
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1387
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1400
 msgid "May"
 msgstr "May"
 
 #: public_html/lists/admin/date.php:30
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "June"
 msgstr "June"
 
 #: public_html/lists/admin/date.php:31
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "July"
 msgstr "July"
 
 #: public_html/lists/admin/date.php:32
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "August"
 msgstr "August"
 
 #: public_html/lists/admin/date.php:33
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "September"
 msgstr "September"
 
 #: public_html/lists/admin/date.php:34
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "October"
 msgstr "October"
 
 #: public_html/lists/admin/date.php:35
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "November"
 msgstr "November"
 
 #: public_html/lists/admin/date.php:36
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1387
+#: public_html/lists/admin/connect.php:1399
 msgid "December"
 msgstr "December"
 
@@ -3164,6 +3169,7 @@ msgid "Add a new Attribute:"
 msgstr "Add a new attribute:"
 
 #: public_html/lists/admin/subscriberstats.php:6
+#: public_html/lists/admin/messages.php:367
 msgid "Statistics"
 msgstr "Statistics"
 
@@ -4153,7 +4159,7 @@ msgid "Process the Message Queue"
 msgstr "Process the Queue"
 
 #: public_html/lists/admin/home.php:278
-#: public_html/lists/admin/connect.php:447
+#: public_html/lists/admin/connect.php:459
 msgid "warning"
 msgstr "Warning"
 
@@ -5505,7 +5511,7 @@ msgid "No lists available, please create one first"
 msgstr "No lists available, please create one first"
 
 #: public_html/lists/admin/spageedit.php:328
-#: public_html/lists/admin/editlist.php:148
+#: public_html/lists/admin/editlist.php:150
 msgid "Owner"
 msgstr "Owner"
 
@@ -5633,31 +5639,31 @@ msgstr "How to get help"
 msgid "How to help out"
 msgstr "How to help out"
 
-#: public_html/lists/admin/community.php:15
+#: public_html/lists/admin/community.php:16
 msgid "phpList is Open Source software"
 msgstr "phpList is Open Source software"
 
-#: public_html/lists/admin/community.php:16
-msgid ""
-"The concept behind open source is collaboration. A loosely organised network "
-"of many contributors where the whole is greater than the sum of its parts."
-msgstr ""
-"The concept behind open source is collaboration. A loosely organised network "
-"of many contributors where the whole is greater than the sum of its parts."
-
 #: public_html/lists/admin/community.php:17
 msgid ""
+"The concept behind open source is collaboration. A loosely organised network "
+"of many contributors where the whole is greater than the sum of its parts."
+msgstr ""
+"The concept behind open source is collaboration. A loosely organised network "
+"of many contributors where the whole is greater than the sum of its parts."
+
+#: public_html/lists/admin/community.php:18
+msgid ""
 "If you are interested to know more about Open Source, you can visit the "
 "links below"
 msgstr ""
 "If you are interested to know more about Open Source, you can visit the "
 "links below"
 
-#: public_html/lists/admin/community.php:26
+#: public_html/lists/admin/community.php:27
 msgid "Get help with phpList"
 msgstr "Get help with phpList"
 
-#: public_html/lists/admin/community.php:27
+#: public_html/lists/admin/community.php:28
 msgid ""
 "To be written. In the meantime you can <a href=\"http://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
@@ -5666,11 +5672,11 @@ msgstr ""
 "href=\"http://www.phplist.com/support\">visit the support section on the "
 "phpList website</a>"
 
-#: public_html/lists/admin/community.php:31
+#: public_html/lists/admin/community.php:32
 msgid "Help out with phpList"
 msgstr "Help out with phpList"
 
-#: public_html/lists/admin/community.php:32
+#: public_html/lists/admin/community.php:33
 msgid ""
 "To be written. In the meantime you can <a href=\"http://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
@@ -5932,7 +5938,7 @@ msgstr "Categorise lists"
 
 #: public_html/lists/admin/list.php:87 public_html/lists/admin/list.php:97
 #: public_html/lists/admin/list.php:119 public_html/lists/admin/list.php:127
-#: public_html/lists/admin/connect.php:1119
+#: public_html/lists/admin/connect.php:1131
 msgid "Uncategorised"
 msgstr "Uncategorised"
 
@@ -6327,57 +6333,57 @@ msgid "lastview"
 msgstr "lastview"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Jan"
 msgstr "Jan"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Feb"
 msgstr "Feb"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Mar"
 msgstr "Mar"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Apr"
 msgstr "Apr"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Jun"
 msgstr "Jun"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Jul"
 msgstr "Jul"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Aug"
 msgstr "Aug"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Sep"
 msgstr "Sep"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Oct"
 msgstr "Oct"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Nov"
 msgstr "Nov"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1388
+#: public_html/lists/admin/connect.php:1400
 msgid "Dec"
 msgstr "Dec"
 
@@ -6466,13 +6472,13 @@ msgstr "both"
 msgid "Suspend"
 msgstr "Suspend"
 
-#: public_html/lists/admin/messages.php:350
-msgid "Requeue"
-msgstr "Requeue"
-
 #: public_html/lists/admin/messages.php:354
 msgid "Mark&nbsp;sent"
 msgstr "Mark&nbsp;sent"
+
+#: public_html/lists/admin/messages.php:354
+msgid "Mark sent"
+msgstr "Mark sent"
 
 #: public_html/lists/admin/messages.php:355
 #: public_html/lists/admin/messages.php:362
@@ -6862,29 +6868,29 @@ msgstr "Public list (listed on the frontend)"
 msgid "Order for listing"
 msgstr "Order for listing"
 
-#: public_html/lists/admin/editlist.php:160
+#: public_html/lists/admin/editlist.php:164
 #: public_html/lists/admin/catlists.php:73
 msgid "Category"
 msgstr "Category"
 
-#: public_html/lists/admin/editlist.php:162
+#: public_html/lists/admin/editlist.php:166
 #: public_html/lists/admin/catlists.php:67
 msgid "choose category"
 msgstr "Choose category"
 
-#: public_html/lists/admin/editlist.php:176
+#: public_html/lists/admin/editlist.php:180
 msgid "List Description"
 msgstr "List Description"
 
-#: public_html/lists/admin/editlist.php:179
+#: public_html/lists/admin/editlist.php:183
 msgid "Save"
 msgstr "Save"
 
-#: public_html/lists/admin/editlist.php:180
+#: public_html/lists/admin/editlist.php:184
 msgid "Cancel"
 msgstr "Cancel"
 
-#: public_html/lists/admin/editlist.php:180
+#: public_html/lists/admin/editlist.php:184
 msgid "Do not save, and go back to the lists"
 msgstr "Do not save, and go back to the lists"
 
@@ -7030,87 +7036,91 @@ msgstr "Invalid value for email address"
 msgid "error"
 msgstr "Error"
 
-#: public_html/lists/admin/connect.php:425
 #: public_html/lists/admin/connect.php:429
+#: public_html/lists/admin/connect.php:433
 msgid "fatalerror"
 msgstr "Fatal error"
 
-#: public_html/lists/admin/connect.php:735
+#: public_html/lists/admin/connect.php:453
+msgid "Documentation about this error"
+msgstr "Documentation about this error"
+
+#: public_html/lists/admin/connect.php:747
 msgid "Main Page"
 msgstr "Dashboard"
 
-#: public_html/lists/admin/connect.php:735
+#: public_html/lists/admin/connect.php:747
 msgid "about"
 msgstr "about"
 
-#: public_html/lists/admin/connect.php:800
+#: public_html/lists/admin/connect.php:812
 msgid "In this section"
 msgstr "In this section"
 
-#: public_html/lists/admin/connect.php:827
+#: public_html/lists/admin/connect.php:839
 msgid "Recently visited"
 msgstr "Recently Visited"
 
-#: public_html/lists/admin/connect.php:1099
+#: public_html/lists/admin/connect.php:1111
 msgid "All Lists"
 msgstr "All Lists"
 
-#: public_html/lists/admin/connect.php:1105
+#: public_html/lists/admin/connect.php:1117
 msgid "All Active Lists"
 msgstr "All Active Lists"
 
-#: public_html/lists/admin/connect.php:1135
+#: public_html/lists/admin/connect.php:1147
 msgid "Public list"
 msgstr "Public list"
 
-#: public_html/lists/admin/connect.php:1137
+#: public_html/lists/admin/connect.php:1149
 msgid "Private list"
 msgstr "Private list"
 
-#: public_html/lists/admin/connect.php:1180
+#: public_html/lists/admin/connect.php:1192
 msgid "There are no lists available"
 msgstr "There are no lists available"
 
-#: public_html/lists/admin/connect.php:1694
+#: public_html/lists/admin/connect.php:1706
 msgid "years"
 msgstr "years"
 
-#: public_html/lists/admin/connect.php:1697
+#: public_html/lists/admin/connect.php:1709
 msgid "days"
 msgstr "days"
 
-#: public_html/lists/admin/connect.php:1700
+#: public_html/lists/admin/connect.php:1712
 msgid "hours"
 msgstr "hours"
 
-#: public_html/lists/admin/connect.php:1703
+#: public_html/lists/admin/connect.php:1715
 msgid "mins"
 msgstr "minutes"
 
-#: public_html/lists/admin/connect.php:1706
+#: public_html/lists/admin/connect.php:1718
 msgid "secs"
 msgstr "seconds"
 
-#: public_html/lists/admin/connect.php:1712
+#: public_html/lists/admin/connect.php:1724
 msgid "Placeholder"
 msgstr "Placeholder"
 
-#: public_html/lists/admin/connect.php:1774
+#: public_html/lists/admin/connect.php:1786
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr "Listing %d to %d of %d"
 
-#: public_html/lists/admin/connect.php:1776
+#: public_html/lists/admin/connect.php:1788
 #, php-format
 #, php-format, php-format
 msgid "Listing %d to %d"
 msgstr "Listing %d to %d"
 
-#: public_html/lists/admin/connect.php:1792
+#: public_html/lists/admin/connect.php:1804
 msgid "First Page"
 msgstr "First Page"
 
-#: public_html/lists/admin/connect.php:1795
+#: public_html/lists/admin/connect.php:1807
 msgid "Last Page"
 msgstr "Last Page"
 
@@ -7760,6 +7770,1705 @@ msgstr "Update translations"
 
 msgid "pagetitle:reindex"
 msgstr "Rebuild DB indexes"
+
+msgid "pagetitle:config"
+msgstr "Settings"
+
+msgid "pagetitle:info"
+msgstr "System info"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:converttoutf8"
+msgstr "Convert to UTF8"
+
+msgid "pagetitlehover:home"
+msgstr "To go the dashboard page"
+
+msgid "pagetitlehover:setup"
+msgstr "List of things to do to configure phpList correctly"
+
+msgid "pagetitlehover:about"
+msgstr "More information about the phpList application"
+
+msgid "pagetitlehover:attributes"
+msgstr "Create, edit and change attributes for subscribers"
+
+msgid "pagetitlehover:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitlehover:list"
+msgstr "Lists that subscribers can sign up to"
+
+msgid "pagetitlehover:catlists"
+msgstr "Organise the subscriber lists in categories"
+
+msgid "pagetitlehover:editattributes"
+msgstr "Edit the details for an attribute"
+
+msgid "pagetitlehover:editlist"
+msgstr "Change the details for a list"
+
+msgid "pagetitlehover:checki18n"
+msgstr "Verify the existing translations"
+
+msgid "pagetitlehover:importsimple"
+msgstr ""
+"Import subscribers by copying them from a document and pasting them into "
+"phpLIst"
+
+msgid "pagetitlehover:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitlehover:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitlehover:import2"
+msgstr ""
+"Import subscribers from a file containing their email and additional "
+"information"
+
+msgid "pagetitlehover:import1"
+msgstr "Import subscribers by uploading a plan-text file with email addresses"
+
+msgid "pagetitlehover:import"
+msgstr "Import subscribers into the database"
+
+msgid "pagetitlehover:export"
+msgstr "Download subscribers in the system"
+
+msgid "pagetitlehover:initialise"
+msgstr "Create all the database tables required for phpList to work correctly"
+
+msgid "pagetitlehover:send"
+msgstr "Create a campaign to send out to your subscribers"
+
+msgid "pagetitlehover:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitlehover:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitlehover:members"
+msgstr "View the subscribers who are member of a list"
+
+msgid "pagetitlehover:users"
+msgstr "Search subscribers in the system"
+
+msgid "pagetitlehover:reconcileusers"
+msgstr "Several functions to clean up the database of subscribers"
+
+msgid "pagetitlehover:user"
+msgstr "View the details of a subscriber"
+
+msgid "pagetitlehover:userhistory"
+msgstr "View the history of the profile  of a subscriber"
+
+msgid "pagetitlehover:messages"
+msgstr "View the list of campaigns"
+
+msgid "pagetitlehover:message"
+msgstr "View details for a campaign"
+
+msgid "pagetitlehover:processqueue"
+msgstr "Send the queued campaigns"
+
+msgid "pagetitlehover:defaults"
+msgstr "Choose from some common attributes provided by the phpList community"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:templates"
+msgstr ""
+"View and manage campaign templates, that are used to send out HTML emails"
+
+msgid "pagetitlehover:template"
+msgstr "Add or edit a campaign template"
+
+msgid "pagetitlehover:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitlehover:configure"
+msgstr "Change the settings that control how phpList behaves"
+
+msgid "pagetitlehover:admin"
+msgstr ""
+"Edit or add an administrator who can login to phpList to manage aspects of "
+"the system"
+
+msgid "pagetitlehover:admins"
+msgstr ""
+"View, edit and add administrators who have access to all or part of the "
+"phpList system"
+
+msgid "pagetitlehover:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitlehover:processbounces"
+msgstr "Fetch the bounced emails from the bounce mailbox and process them"
+
+msgid "pagetitlehover:bounces"
+msgstr "View the bounced emails in the system"
+
+msgid "pagetitlehover:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitlehover:spageedit"
+msgstr "Edit a page your subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:spage"
+msgstr ""
+"View and edit the pages that subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:eventlog"
+msgstr "View some interesting events that have happened in phpList "
+
+msgid "pagetitlehover:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitlehover:viewrss"
+msgstr "View RSS items"
+
+#, fuzzy
+msgid "pagetitlehover:community"
+msgstr "Help"
+
+msgid "pagetitlehover:vote"
+msgstr "Vote for phpList on sites around the world"
+
+msgid "pagetitlehover:login"
+msgstr "Login"
+
+msgid "pagetitlehover:logout"
+msgstr "Log out"
+
+msgid "pagetitlehover:mclicks"
+msgstr "Statistics of subscribers who clicked on links in the campaigns"
+
+msgid "pagetitlehover:uclicks"
+msgstr ""
+"Statistics for URLs that were sent out across all campaigns, listed by URL"
+
+msgid "pagetitlehover:massunconfirm"
+msgstr "Manage the list of subscribers who should NOT be sent emails"
+
+msgid "pagetitlehover:massremove"
+msgstr "Remove subscribers from the system. "
+
+msgid "pagetitlehover:usermgt"
+msgstr "Common functions to manage the subscribers"
+
+msgid "pagetitlehover:bouncemgt"
+msgstr "Manage messages that were returned due to delivery errors"
+
+msgid "pagetitlehover:domainstats"
+msgstr "Statistics of domains of the subscribers in the system"
+
+msgid "pagetitlehover:mviews"
+msgstr "View who opened the campaigns that were sent out"
+
+msgid "pagetitlehover:statsmgt"
+msgstr "List of common statistics functions in phpList"
+
+msgid "pagetitlehover:statsoverview"
+msgstr "Summary of statistics of the last view campaigns sent out"
+
+msgid "pagetitlehover:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitlehover:dbcheck"
+msgstr ""
+"Verify that the current database structure is correct for the current "
+"version of the code"
+
+msgid "pagetitlehover:importadmin"
+msgstr ""
+"Import administrators who have access to all or some parts of the system"
+
+msgid "pagetitlehover:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitlehover:usercheck"
+msgstr ""
+"Copy and paste a list of emails and verify that they exist in the system, "
+"without adding them"
+
+msgid "pagetitlehover:listbounces"
+msgstr "View bounced emails per subscriber list"
+
+msgid "pagetitlehover:bouncerules"
+msgstr "Manage the rules that determine what to do with bounced emails"
+
+msgid "pagetitlehover:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitlehover:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitlehover:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitlehover:updatetranslation"
+msgstr "Fetch the latest translation from the community translation system"
+
+msgid "pagetitlehover:reindex"
+msgstr "Rebuild database indexes to speed up database queries"
+
+msgid "pagetitlehover:config"
+msgstr "Configuration functions"
+
+msgid "pagetitlehover:info"
+msgstr "System information, useful for developers and more technical people"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:converttoutf8"
+msgstr ""
+"Check and action upgrade of the phpList database to use UTF8, which allows "
+"the use of special characters"
+
+msgid "pagetitle:home"
+msgstr "Dashboard"
+
+msgid "pagetitle:setup"
+msgstr "Configuration"
+
+msgid "pagetitle:about"
+msgstr "About phpList"
+
+msgid "pagetitle:attributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitle:list"
+msgstr "Subscriber lists"
+
+msgid "pagetitle:catlists"
+msgstr "Categorise lists"
+
+msgid "pagetitle:editattributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:editlist"
+msgstr "Edit a list"
+
+msgid "pagetitle:checki18n"
+msgstr "Check that translations exist"
+
+msgid "pagetitle:importsimple"
+msgstr "Import subscribers by copy-and-paste"
+
+msgid "pagetitle:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitle:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitle:import2"
+msgstr "Import subscribers from CSV file"
+
+msgid "pagetitle:import1"
+msgstr "Import subscribers from text file"
+
+msgid "pagetitle:import"
+msgstr "Import emails"
+
+msgid "pagetitle:export"
+msgstr "Export subscribers"
+
+msgid "pagetitle:initialise"
+msgstr "Initialise the database"
+
+msgid "pagetitle:send"
+msgstr "Send a campaign"
+
+msgid "pagetitle:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitle:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitle:members"
+msgstr "List membership"
+
+msgid "pagetitle:users"
+msgstr "Search subscribers"
+
+msgid "pagetitle:reconcileusers"
+msgstr "Reconcile subscribers"
+
+msgid "pagetitle:user"
+msgstr "Details of a subscriber"
+
+msgid "pagetitle:userhistory"
+msgstr "History of a subscriber"
+
+msgid "pagetitle:messages"
+msgstr "List of campaigns"
+
+msgid "pagetitle:message"
+msgstr "View a campaign"
+
+msgid "pagetitle:processqueue"
+msgstr "Send the queue"
+
+msgid "pagetitle:defaults"
+msgstr "Some default attribute values"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:templates"
+msgstr "Manage campaign templates"
+
+msgid "pagetitle:template"
+msgstr "Add or edit a template"
+
+msgid "pagetitle:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitle:configure"
+msgstr "Settings"
+
+msgid "pagetitle:admin"
+msgstr "Edit or add an administrator"
+
+msgid "pagetitle:admins"
+msgstr "Manage administrators"
+
+msgid "pagetitle:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitle:processbounces"
+msgstr "Process bounces"
+
+msgid "pagetitle:bounces"
+msgstr "View bounces"
+
+msgid "pagetitle:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitle:spageedit"
+msgstr "Edit a subscribe page"
+
+msgid "pagetitle:spage"
+msgstr "Subscribe pages"
+
+msgid "pagetitle:eventlog"
+msgstr "Log of events"
+
+msgid "pagetitle:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitle:viewrss"
+msgstr "View RSS items"
+
+msgid "pagetitle:community"
+msgstr "Help"
+
+msgid "pagetitle:vote"
+msgstr "Vote for phpList"
+
+msgid "pagetitle:login"
+msgstr "Login"
+
+msgid "pagetitle:logout"
+msgstr "Log out"
+
+msgid "pagetitle:mclicks"
+msgstr "Campaign click statistics"
+
+msgid "pagetitle:uclicks"
+msgstr "URL click statistics"
+
+msgid "pagetitle:massunconfirm"
+msgstr "Suppression list"
+
+msgid "pagetitle:massremove"
+msgstr "Remove subscribers"
+
+msgid "pagetitle:usermgt"
+msgstr "Manage subscribers"
+
+msgid "pagetitle:bouncemgt"
+msgstr "Manage bounces"
+
+msgid "pagetitle:domainstats"
+msgstr "Domain statistics"
+
+msgid "pagetitle:mviews"
+msgstr "View opens"
+
+msgid "pagetitle:statsmgt"
+msgstr "Manage statistics"
+
+msgid "pagetitle:statsoverview"
+msgstr "Statistics overview"
+
+msgid "pagetitle:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitle:dbcheck"
+msgstr "Verify the DB structure"
+
+msgid "pagetitle:importadmin"
+msgstr "Import administrators"
+
+msgid "pagetitle:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitle:usercheck"
+msgstr "Verify that subscribers exist"
+
+msgid "pagetitle:listbounces"
+msgstr "View bounces per list"
+
+msgid "pagetitle:bouncerules"
+msgstr "Bounce rules"
+
+msgid "pagetitle:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitle:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitle:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitle:updatetranslation"
+msgstr "Update translations"
+
+msgid "pagetitle:reindex"
+msgstr "Rebuild DB indexes"
+
+msgid "pagetitle:config"
+msgstr "Settings"
+
+msgid "pagetitle:info"
+msgstr "System info"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:converttoutf8"
+msgstr "Convert to UTF8"
+
+msgid "pagetitlehover:home"
+msgstr "To go the dashboard page"
+
+msgid "pagetitlehover:setup"
+msgstr "List of things to do to configure phpList correctly"
+
+msgid "pagetitlehover:about"
+msgstr "More information about the phpList application"
+
+msgid "pagetitlehover:attributes"
+msgstr "Create, edit and change attributes for subscribers"
+
+msgid "pagetitlehover:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitlehover:list"
+msgstr "Lists that subscribers can sign up to"
+
+msgid "pagetitlehover:catlists"
+msgstr "Organise the subscriber lists in categories"
+
+msgid "pagetitlehover:editattributes"
+msgstr "Edit the details for an attribute"
+
+msgid "pagetitlehover:editlist"
+msgstr "Change the details for a list"
+
+msgid "pagetitlehover:checki18n"
+msgstr "Verify the existing translations"
+
+msgid "pagetitlehover:importsimple"
+msgstr ""
+"Import subscribers by copying them from a document and pasting them into "
+"phpLIst"
+
+msgid "pagetitlehover:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitlehover:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitlehover:import2"
+msgstr ""
+"Import subscribers from a file containing their email and additional "
+"information"
+
+msgid "pagetitlehover:import1"
+msgstr "Import subscribers by uploading a plan-text file with email addresses"
+
+msgid "pagetitlehover:import"
+msgstr "Import subscribers into the database"
+
+msgid "pagetitlehover:export"
+msgstr "Download subscribers in the system"
+
+msgid "pagetitlehover:initialise"
+msgstr "Create all the database tables required for phpList to work correctly"
+
+msgid "pagetitlehover:send"
+msgstr "Create a campaign to send out to your subscribers"
+
+msgid "pagetitlehover:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitlehover:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitlehover:members"
+msgstr "View the subscribers who are member of a list"
+
+msgid "pagetitlehover:users"
+msgstr "Search subscribers in the system"
+
+msgid "pagetitlehover:reconcileusers"
+msgstr "Several functions to clean up the database of subscribers"
+
+msgid "pagetitlehover:user"
+msgstr "View the details of a subscriber"
+
+msgid "pagetitlehover:userhistory"
+msgstr "View the history of the profile  of a subscriber"
+
+msgid "pagetitlehover:messages"
+msgstr "View the list of campaigns"
+
+msgid "pagetitlehover:message"
+msgstr "View details for a campaign"
+
+msgid "pagetitlehover:processqueue"
+msgstr "Send the queued campaigns"
+
+msgid "pagetitlehover:defaults"
+msgstr "Choose from some common attributes provided by the phpList community"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:templates"
+msgstr ""
+"View and manage campaign templates, that are used to send out HTML emails"
+
+msgid "pagetitlehover:template"
+msgstr "Add or edit a campaign template"
+
+msgid "pagetitlehover:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitlehover:configure"
+msgstr "Change the settings that control how phpList behaves"
+
+msgid "pagetitlehover:admin"
+msgstr ""
+"Edit or add an administrator who can login to phpList to manage aspects of "
+"the system"
+
+msgid "pagetitlehover:admins"
+msgstr ""
+"View, edit and add administrators who have access to all or part of the "
+"phpList system"
+
+msgid "pagetitlehover:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitlehover:processbounces"
+msgstr "Fetch the bounced emails from the bounce mailbox and process them"
+
+msgid "pagetitlehover:bounces"
+msgstr "View the bounced emails in the system"
+
+msgid "pagetitlehover:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitlehover:spageedit"
+msgstr "Edit a page your subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:spage"
+msgstr ""
+"View and edit the pages that subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:eventlog"
+msgstr "View some interesting events that have happened in phpList "
+
+msgid "pagetitlehover:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitlehover:viewrss"
+msgstr "View RSS items"
+
+#, fuzzy
+msgid "pagetitlehover:community"
+msgstr "Help"
+
+msgid "pagetitlehover:vote"
+msgstr "Vote for phpList on sites around the world"
+
+msgid "pagetitlehover:login"
+msgstr "Login"
+
+msgid "pagetitlehover:logout"
+msgstr "Log out"
+
+msgid "pagetitlehover:mclicks"
+msgstr "Statistics of subscribers who clicked on links in the campaigns"
+
+msgid "pagetitlehover:uclicks"
+msgstr ""
+"Statistics for URLs that were sent out across all campaigns, listed by URL"
+
+msgid "pagetitlehover:massunconfirm"
+msgstr "Manage the list of subscribers who should NOT be sent emails"
+
+msgid "pagetitlehover:massremove"
+msgstr "Remove subscribers from the system. "
+
+msgid "pagetitlehover:usermgt"
+msgstr "Common functions to manage the subscribers"
+
+msgid "pagetitlehover:bouncemgt"
+msgstr "Manage messages that were returned due to delivery errors"
+
+msgid "pagetitlehover:domainstats"
+msgstr "Statistics of domains of the subscribers in the system"
+
+msgid "pagetitlehover:mviews"
+msgstr "View who opened the campaigns that were sent out"
+
+msgid "pagetitlehover:statsmgt"
+msgstr "List of common statistics functions in phpList"
+
+msgid "pagetitlehover:statsoverview"
+msgstr "Summary of statistics of the last view campaigns sent out"
+
+msgid "pagetitlehover:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitlehover:dbcheck"
+msgstr ""
+"Verify that the current database structure is correct for the current "
+"version of the code"
+
+msgid "pagetitlehover:importadmin"
+msgstr ""
+"Import administrators who have access to all or some parts of the system"
+
+msgid "pagetitlehover:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitlehover:usercheck"
+msgstr ""
+"Copy and paste a list of emails and verify that they exist in the system, "
+"without adding them"
+
+msgid "pagetitlehover:listbounces"
+msgstr "View bounced emails per subscriber list"
+
+msgid "pagetitlehover:bouncerules"
+msgstr "Manage the rules that determine what to do with bounced emails"
+
+msgid "pagetitlehover:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitlehover:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitlehover:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitlehover:updatetranslation"
+msgstr "Fetch the latest translation from the community translation system"
+
+msgid "pagetitlehover:reindex"
+msgstr "Rebuild database indexes to speed up database queries"
+
+msgid "pagetitlehover:config"
+msgstr "Configuration functions"
+
+msgid "pagetitlehover:info"
+msgstr "System information, useful for developers and more technical people"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:converttoutf8"
+msgstr ""
+"Check and action upgrade of the phpList database to use UTF8, which allows "
+"the use of special characters"
+
+msgid "pagetitle:home"
+msgstr "Dashboard"
+
+msgid "pagetitle:setup"
+msgstr "Configuration"
+
+msgid "pagetitle:about"
+msgstr "About phpList"
+
+msgid "pagetitle:attributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitle:list"
+msgstr "Subscriber lists"
+
+msgid "pagetitle:catlists"
+msgstr "Categorise lists"
+
+msgid "pagetitle:editattributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:editlist"
+msgstr "Edit a list"
+
+msgid "pagetitle:checki18n"
+msgstr "Check that translations exist"
+
+msgid "pagetitle:importsimple"
+msgstr "Import subscribers by copy-and-paste"
+
+msgid "pagetitle:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitle:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitle:import2"
+msgstr "Import subscribers from CSV file"
+
+msgid "pagetitle:import1"
+msgstr "Import subscribers from text file"
+
+msgid "pagetitle:import"
+msgstr "Import emails"
+
+msgid "pagetitle:export"
+msgstr "Export subscribers"
+
+msgid "pagetitle:initialise"
+msgstr "Initialise the database"
+
+msgid "pagetitle:send"
+msgstr "Send a campaign"
+
+msgid "pagetitle:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitle:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitle:members"
+msgstr "List membership"
+
+msgid "pagetitle:users"
+msgstr "Search subscribers"
+
+msgid "pagetitle:reconcileusers"
+msgstr "Reconcile subscribers"
+
+msgid "pagetitle:user"
+msgstr "Details of a subscriber"
+
+msgid "pagetitle:userhistory"
+msgstr "History of a subscriber"
+
+msgid "pagetitle:messages"
+msgstr "List of campaigns"
+
+msgid "pagetitle:message"
+msgstr "View a campaign"
+
+msgid "pagetitle:processqueue"
+msgstr "Send the queue"
+
+msgid "pagetitle:defaults"
+msgstr "Some default attribute values"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:templates"
+msgstr "Manage campaign templates"
+
+msgid "pagetitle:template"
+msgstr "Add or edit a template"
+
+msgid "pagetitle:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitle:configure"
+msgstr "Settings"
+
+msgid "pagetitle:admin"
+msgstr "Edit or add an administrator"
+
+msgid "pagetitle:admins"
+msgstr "Manage administrators"
+
+msgid "pagetitle:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitle:processbounces"
+msgstr "Process bounces"
+
+msgid "pagetitle:bounces"
+msgstr "View bounces"
+
+msgid "pagetitle:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitle:spageedit"
+msgstr "Edit a subscribe page"
+
+msgid "pagetitle:spage"
+msgstr "Subscribe pages"
+
+msgid "pagetitle:eventlog"
+msgstr "Log of events"
+
+msgid "pagetitle:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitle:viewrss"
+msgstr "View RSS items"
+
+msgid "pagetitle:community"
+msgstr "Help"
+
+msgid "pagetitle:vote"
+msgstr "Vote for phpList"
+
+msgid "pagetitle:login"
+msgstr "Login"
+
+msgid "pagetitle:logout"
+msgstr "Log out"
+
+msgid "pagetitle:mclicks"
+msgstr "Campaign click statistics"
+
+msgid "pagetitle:uclicks"
+msgstr "URL click statistics"
+
+msgid "pagetitle:massunconfirm"
+msgstr "Suppression list"
+
+msgid "pagetitle:massremove"
+msgstr "Remove subscribers"
+
+msgid "pagetitle:usermgt"
+msgstr "Manage subscribers"
+
+msgid "pagetitle:bouncemgt"
+msgstr "Manage bounces"
+
+msgid "pagetitle:domainstats"
+msgstr "Domain statistics"
+
+msgid "pagetitle:mviews"
+msgstr "View opens"
+
+msgid "pagetitle:statsmgt"
+msgstr "Manage statistics"
+
+msgid "pagetitle:statsoverview"
+msgstr "Statistics overview"
+
+msgid "pagetitle:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitle:dbcheck"
+msgstr "Verify the DB structure"
+
+msgid "pagetitle:importadmin"
+msgstr "Import administrators"
+
+msgid "pagetitle:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitle:usercheck"
+msgstr "Verify that subscribers exist"
+
+msgid "pagetitle:listbounces"
+msgstr "View bounces per list"
+
+msgid "pagetitle:bouncerules"
+msgstr "Bounce rules"
+
+msgid "pagetitle:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitle:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitle:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitle:updatetranslation"
+msgstr "Update translations"
+
+msgid "pagetitle:reindex"
+msgstr "Rebuild DB indexes"
+
+msgid "pagetitle:config"
+msgstr "Settings"
+
+msgid "pagetitle:info"
+msgstr "System info"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:converttoutf8"
+msgstr "Convert to UTF8"
+
+msgid "pagetitlehover:home"
+msgstr "To go the dashboard page"
+
+msgid "pagetitlehover:setup"
+msgstr "List of things to do to configure phpList correctly"
+
+msgid "pagetitlehover:about"
+msgstr "More information about the phpList application"
+
+msgid "pagetitlehover:attributes"
+msgstr "Create, edit and change attributes for subscribers"
+
+msgid "pagetitlehover:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitlehover:list"
+msgstr "Lists that subscribers can sign up to"
+
+msgid "pagetitlehover:catlists"
+msgstr "Organise the subscriber lists in categories"
+
+msgid "pagetitlehover:editattributes"
+msgstr "Edit the details for an attribute"
+
+msgid "pagetitlehover:editlist"
+msgstr "Change the details for a list"
+
+msgid "pagetitlehover:checki18n"
+msgstr "Verify the existing translations"
+
+msgid "pagetitlehover:importsimple"
+msgstr ""
+"Import subscribers by copying them from a document and pasting them into "
+"phpLIst"
+
+msgid "pagetitlehover:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitlehover:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitlehover:import2"
+msgstr ""
+"Import subscribers from a file containing their email and additional "
+"information"
+
+msgid "pagetitlehover:import1"
+msgstr "Import subscribers by uploading a plan-text file with email addresses"
+
+msgid "pagetitlehover:import"
+msgstr "Import subscribers into the database"
+
+msgid "pagetitlehover:export"
+msgstr "Download subscribers in the system"
+
+msgid "pagetitlehover:initialise"
+msgstr "Create all the database tables required for phpList to work correctly"
+
+msgid "pagetitlehover:send"
+msgstr "Create a campaign to send out to your subscribers"
+
+msgid "pagetitlehover:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitlehover:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitlehover:members"
+msgstr "View the subscribers who are member of a list"
+
+msgid "pagetitlehover:users"
+msgstr "Search subscribers in the system"
+
+msgid "pagetitlehover:reconcileusers"
+msgstr "Several functions to clean up the database of subscribers"
+
+msgid "pagetitlehover:user"
+msgstr "View the details of a subscriber"
+
+msgid "pagetitlehover:userhistory"
+msgstr "View the history of the profile  of a subscriber"
+
+msgid "pagetitlehover:messages"
+msgstr "View the list of campaigns"
+
+msgid "pagetitlehover:message"
+msgstr "View details for a campaign"
+
+msgid "pagetitlehover:processqueue"
+msgstr "Send the queued campaigns"
+
+msgid "pagetitlehover:defaults"
+msgstr "Choose from some common attributes provided by the phpList community"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:templates"
+msgstr ""
+"View and manage campaign templates, that are used to send out HTML emails"
+
+msgid "pagetitlehover:template"
+msgstr "Add or edit a campaign template"
+
+msgid "pagetitlehover:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitlehover:configure"
+msgstr "Change the settings that control how phpList behaves"
+
+msgid "pagetitlehover:admin"
+msgstr ""
+"Edit or add an administrator who can login to phpList to manage aspects of "
+"the system"
+
+msgid "pagetitlehover:admins"
+msgstr ""
+"View, edit and add administrators who have access to all or part of the "
+"phpList system"
+
+msgid "pagetitlehover:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitlehover:processbounces"
+msgstr "Fetch the bounced emails from the bounce mailbox and process them"
+
+msgid "pagetitlehover:bounces"
+msgstr "View the bounced emails in the system"
+
+msgid "pagetitlehover:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitlehover:spageedit"
+msgstr "Edit a page your subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:spage"
+msgstr ""
+"View and edit the pages that subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:eventlog"
+msgstr "View some interesting events that have happened in phpList "
+
+msgid "pagetitlehover:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitlehover:viewrss"
+msgstr "View RSS items"
+
+#, fuzzy
+msgid "pagetitlehover:community"
+msgstr "Help"
+
+msgid "pagetitlehover:vote"
+msgstr "Vote for phpList on sites around the world"
+
+msgid "pagetitlehover:login"
+msgstr "Login"
+
+msgid "pagetitlehover:logout"
+msgstr "Log out"
+
+msgid "pagetitlehover:mclicks"
+msgstr "Statistics of subscribers who clicked on links in the campaigns"
+
+msgid "pagetitlehover:uclicks"
+msgstr ""
+"Statistics for URLs that were sent out across all campaigns, listed by URL"
+
+msgid "pagetitlehover:massunconfirm"
+msgstr "Manage the list of subscribers who should NOT be sent emails"
+
+msgid "pagetitlehover:massremove"
+msgstr "Remove subscribers from the system. "
+
+msgid "pagetitlehover:usermgt"
+msgstr "Common functions to manage the subscribers"
+
+msgid "pagetitlehover:bouncemgt"
+msgstr "Manage messages that were returned due to delivery errors"
+
+msgid "pagetitlehover:domainstats"
+msgstr "Statistics of domains of the subscribers in the system"
+
+msgid "pagetitlehover:mviews"
+msgstr "View who opened the campaigns that were sent out"
+
+msgid "pagetitlehover:statsmgt"
+msgstr "List of common statistics functions in phpList"
+
+msgid "pagetitlehover:statsoverview"
+msgstr "Summary of statistics of the last view campaigns sent out"
+
+msgid "pagetitlehover:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitlehover:dbcheck"
+msgstr ""
+"Verify that the current database structure is correct for the current "
+"version of the code"
+
+msgid "pagetitlehover:importadmin"
+msgstr ""
+"Import administrators who have access to all or some parts of the system"
+
+msgid "pagetitlehover:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitlehover:usercheck"
+msgstr ""
+"Copy and paste a list of emails and verify that they exist in the system, "
+"without adding them"
+
+msgid "pagetitlehover:listbounces"
+msgstr "View bounced emails per subscriber list"
+
+msgid "pagetitlehover:bouncerules"
+msgstr "Manage the rules that determine what to do with bounced emails"
+
+msgid "pagetitlehover:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitlehover:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitlehover:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitlehover:updatetranslation"
+msgstr "Fetch the latest translation from the community translation system"
+
+msgid "pagetitlehover:reindex"
+msgstr "Rebuild database indexes to speed up database queries"
+
+msgid "pagetitlehover:config"
+msgstr "Configuration functions"
+
+msgid "pagetitlehover:info"
+msgstr "System information, useful for developers and more technical people"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:converttoutf8"
+msgstr ""
+"Check and action upgrade of the phpList database to use UTF8, which allows "
+"the use of special characters"
+
+msgid "pagetitle:home"
+msgstr "Dashboard"
+
+msgid "pagetitle:setup"
+msgstr "Configuration"
+
+msgid "pagetitle:about"
+msgstr "About phpList"
+
+msgid "pagetitle:attributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitle:list"
+msgstr "Subscriber lists"
+
+msgid "pagetitle:catlists"
+msgstr "Categorise lists"
+
+msgid "pagetitle:editattributes"
+msgstr "Configure attributes"
+
+msgid "pagetitle:editlist"
+msgstr "Edit a list"
+
+msgid "pagetitle:checki18n"
+msgstr "Check that translations exist"
+
+msgid "pagetitle:importsimple"
+msgstr "Import subscribers by copy-and-paste"
+
+msgid "pagetitle:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitle:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitle:import2"
+msgstr "Import subscribers from CSV file"
+
+msgid "pagetitle:import1"
+msgstr "Import subscribers from text file"
+
+msgid "pagetitle:import"
+msgstr "Import emails"
+
+msgid "pagetitle:export"
+msgstr "Export subscribers"
+
+msgid "pagetitle:initialise"
+msgstr "Initialise the database"
+
+msgid "pagetitle:send"
+msgstr "Send a campaign"
+
+msgid "pagetitle:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitle:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitle:members"
+msgstr "List membership"
+
+msgid "pagetitle:users"
+msgstr "Search subscribers"
+
+msgid "pagetitle:reconcileusers"
+msgstr "Reconcile subscribers"
+
+msgid "pagetitle:user"
+msgstr "Details of a subscriber"
+
+msgid "pagetitle:userhistory"
+msgstr "History of a subscriber"
+
+msgid "pagetitle:messages"
+msgstr "List of campaigns"
+
+msgid "pagetitle:message"
+msgstr "View a campaign"
+
+msgid "pagetitle:processqueue"
+msgstr "Send the queue"
+
+msgid "pagetitle:defaults"
+msgstr "Some default attribute values"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:templates"
+msgstr "Manage campaign templates"
+
+msgid "pagetitle:template"
+msgstr "Add or edit a template"
+
+msgid "pagetitle:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitle:configure"
+msgstr "Settings"
+
+msgid "pagetitle:admin"
+msgstr "Edit or add an administrator"
+
+msgid "pagetitle:admins"
+msgstr "Manage administrators"
+
+msgid "pagetitle:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitle:processbounces"
+msgstr "Process bounces"
+
+msgid "pagetitle:bounces"
+msgstr "View bounces"
+
+msgid "pagetitle:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitle:spageedit"
+msgstr "Edit a subscribe page"
+
+msgid "pagetitle:spage"
+msgstr "Subscribe pages"
+
+msgid "pagetitle:eventlog"
+msgstr "Log of events"
+
+msgid "pagetitle:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitle:viewrss"
+msgstr "View RSS items"
+
+msgid "pagetitle:community"
+msgstr "Help"
+
+msgid "pagetitle:vote"
+msgstr "Vote for phpList"
+
+msgid "pagetitle:login"
+msgstr "Login"
+
+msgid "pagetitle:logout"
+msgstr "Log out"
+
+msgid "pagetitle:mclicks"
+msgstr "Campaign click statistics"
+
+msgid "pagetitle:uclicks"
+msgstr "URL click statistics"
+
+msgid "pagetitle:massunconfirm"
+msgstr "Suppression list"
+
+msgid "pagetitle:massremove"
+msgstr "Remove subscribers"
+
+msgid "pagetitle:usermgt"
+msgstr "Manage subscribers"
+
+msgid "pagetitle:bouncemgt"
+msgstr "Manage bounces"
+
+msgid "pagetitle:domainstats"
+msgstr "Domain statistics"
+
+msgid "pagetitle:mviews"
+msgstr "View opens"
+
+msgid "pagetitle:statsmgt"
+msgstr "Manage statistics"
+
+msgid "pagetitle:statsoverview"
+msgstr "Statistics overview"
+
+msgid "pagetitle:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitle:dbcheck"
+msgstr "Verify the DB structure"
+
+msgid "pagetitle:importadmin"
+msgstr "Import administrators"
+
+msgid "pagetitle:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitle:usercheck"
+msgstr "Verify that subscribers exist"
+
+msgid "pagetitle:listbounces"
+msgstr "View bounces per list"
+
+msgid "pagetitle:bouncerules"
+msgstr "Bounce rules"
+
+msgid "pagetitle:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitle:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitle:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitle:updatetranslation"
+msgstr "Update translations"
+
+msgid "pagetitle:reindex"
+msgstr "Rebuild DB indexes"
+
+msgid "pagetitle:config"
+msgstr "Settings"
+
+msgid "pagetitle:info"
+msgstr "System info"
+
+msgid "pagetitle:upgrade"
+msgstr "Upgrade phpList"
+
+msgid "pagetitle:converttoutf8"
+msgstr "Convert to UTF8"
+
+msgid "pagetitlehover:home"
+msgstr "Go to the dashboard page"
+
+msgid "pagetitlehover:setup"
+msgstr "List of things to do to configure phpList correctly"
+
+msgid "pagetitlehover:about"
+msgstr "More information about the phpList application"
+
+msgid "pagetitlehover:attributes"
+msgstr "Create, edit and change attributes for subscribers"
+
+msgid "pagetitlehover:stresstest"
+msgstr "Stress test"
+
+msgid "pagetitlehover:list"
+msgstr "Lists that subscribers can sign up to"
+
+msgid "pagetitlehover:catlists"
+msgstr "Organise the subscriber lists in categories"
+
+msgid "pagetitlehover:editattributes"
+msgstr "Edit the details for an attribute"
+
+msgid "pagetitlehover:editlist"
+msgstr "Change the details for a list"
+
+msgid "pagetitlehover:checki18n"
+msgstr "Verify the existing translations"
+
+msgid "pagetitlehover:importsimple"
+msgstr ""
+"Import subscribers by copying them from a document and pasting them into "
+"phpLIst"
+
+msgid "pagetitlehover:import4"
+msgstr "Import subscribers from a remote database"
+
+msgid "pagetitlehover:import3"
+msgstr "Import subscribers from IMAP"
+
+msgid "pagetitlehover:import2"
+msgstr ""
+"Import subscribers from a file containing their email and additional "
+"information"
+
+msgid "pagetitlehover:import1"
+msgstr "Import subscribers by uploading a plan-text file with email addresses"
+
+msgid "pagetitlehover:import"
+msgstr "Import subscribers into the database"
+
+msgid "pagetitlehover:export"
+msgstr "Download subscribers in the system"
+
+msgid "pagetitlehover:initialise"
+msgstr "Create all the database tables required for phpList to work correctly"
+
+msgid "pagetitlehover:send"
+msgstr "Create a campaign to send out to your subscribers"
+
+msgid "pagetitlehover:preparesend"
+msgstr "Prepare a message for sending"
+
+msgid "pagetitlehover:sendprepared"
+msgstr "Send a prepared message"
+
+msgid "pagetitlehover:members"
+msgstr "View the subscribers who are member of a list"
+
+msgid "pagetitlehover:users"
+msgstr "Search subscribers in the system"
+
+msgid "pagetitlehover:reconcileusers"
+msgstr "Several functions to clean up the database of subscribers"
+
+msgid "pagetitlehover:user"
+msgstr "View the details of a subscriber"
+
+msgid "pagetitlehover:userhistory"
+msgstr "View the history of the profile  of a subscriber"
+
+msgid "pagetitlehover:messages"
+msgstr "View the list of campaigns"
+
+msgid "pagetitlehover:message"
+msgstr "View details for a campaign"
+
+msgid "pagetitlehover:processqueue"
+msgstr "Send the queued campaigns"
+
+msgid "pagetitlehover:defaults"
+msgstr "Choose from some common attributes provided by the phpList community"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:templates"
+msgstr ""
+"View and manage campaign templates, that are used to send out HTML emails"
+
+msgid "pagetitlehover:template"
+msgstr "Add or edit a campaign template"
+
+msgid "pagetitlehover:viewtemplate"
+msgstr "Template preview"
+
+msgid "pagetitlehover:configure"
+msgstr "Change the settings that control how phpList behaves"
+
+msgid "pagetitlehover:admin"
+msgstr ""
+"Edit or add an administrator who can login to phpList to manage aspects of "
+"the system"
+
+msgid "pagetitlehover:admins"
+msgstr ""
+"View, edit and add administrators who have access to all or part of the "
+"phpList system"
+
+msgid "pagetitlehover:adminattributes"
+msgstr "Configure administrator attributes"
+
+msgid "pagetitlehover:processbounces"
+msgstr "Fetch the bounced emails from the bounce mailbox and process them"
+
+msgid "pagetitlehover:bounces"
+msgstr "View the bounced emails in the system"
+
+msgid "pagetitlehover:bounce"
+msgstr "View a bounce"
+
+msgid "pagetitlehover:spageedit"
+msgstr "Edit a page your subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:spage"
+msgstr ""
+"View and edit the pages that subscribers can use to sign up to the system"
+
+msgid "pagetitlehover:eventlog"
+msgstr "View some interesting events that have happened in phpList "
+
+msgid "pagetitlehover:getrss"
+msgstr "Retrieve RSS feeds"
+
+msgid "pagetitlehover:viewrss"
+msgstr "View RSS items"
+
+msgid "pagetitlehover:community"
+msgstr "How to get help and how to help out with phpList"
+
+msgid "pagetitlehover:vote"
+msgstr "Vote for phpList on sites around the world"
+
+msgid "pagetitlehover:login"
+msgstr "Login"
+
+msgid "pagetitlehover:logout"
+msgstr "Log out"
+
+msgid "pagetitlehover:mclicks"
+msgstr "Statistics of subscribers who clicked on links in the campaigns"
+
+msgid "pagetitlehover:uclicks"
+msgstr ""
+"Statistics for URLs that were sent out across all campaigns, listed by URL"
+
+msgid "pagetitlehover:massunconfirm"
+msgstr "Manage the list of subscribers who should NOT be sent emails"
+
+msgid "pagetitlehover:massremove"
+msgstr "Remove subscribers from the system. "
+
+msgid "pagetitlehover:usermgt"
+msgstr "Common functions to manage the subscribers"
+
+msgid "pagetitlehover:bouncemgt"
+msgstr "Manage messages that were returned due to delivery errors"
+
+msgid "pagetitlehover:domainstats"
+msgstr "Statistics of domains of the subscribers in the system"
+
+msgid "pagetitlehover:mviews"
+msgstr "View who opened the campaigns that were sent out"
+
+msgid "pagetitlehover:statsmgt"
+msgstr "List of common statistics functions in phpList"
+
+msgid "pagetitlehover:statsoverview"
+msgstr "Summary of statistics of the last few campaigns sent out"
+
+msgid "pagetitlehover:subscriberstats"
+msgstr "Subscriber statistics"
+
+msgid "pagetitlehover:dbcheck"
+msgstr ""
+"Verify that the current database structure is correct for the current "
+"version of the code"
+
+msgid "pagetitlehover:importadmin"
+msgstr ""
+"Import administrators who have access to all or some parts of the system"
+
+msgid "pagetitlehover:dbadmin"
+msgstr "DB management"
+
+msgid "pagetitlehover:usercheck"
+msgstr ""
+"Copy and paste a list of emails and verify that they exist in the system, "
+"without adding them"
+
+msgid "pagetitlehover:listbounces"
+msgstr "View bounced emails per subscriber list"
+
+msgid "pagetitlehover:bouncerules"
+msgstr "Manage the rules that determine what to do with bounced emails"
+
+msgid "pagetitlehover:checkbouncerules"
+msgstr "Check bounce rules"
+
+msgid "pagetitlehover:translate"
+msgstr "Translate phpList"
+
+msgid "pagetitlehover:ajaxform"
+msgstr "Ajax integration"
+
+msgid "pagetitlehover:updatetranslation"
+msgstr "Fetch the latest translation from the community translation system"
+
+msgid "pagetitlehover:reindex"
+msgstr "Rebuild database indexes to speed up database queries"
+
+msgid "pagetitlehover:config"
+msgstr "Configuration functions"
+
+msgid "pagetitlehover:info"
+msgstr "System information, useful for developers and more technical people"
+
+msgid "pagetitlehover:upgrade"
+msgstr ""
+"Upgrade the phpList database to be in line with the current version of the "
+"code"
+
+msgid "pagetitlehover:converttoutf8"
+msgstr ""
+"Check and action upgrade of the phpList database to use UTF8, which allows "
+"the use of special characters"
 
 #~ msgid "invalid emails"
 #~ msgstr "invalid emails"
