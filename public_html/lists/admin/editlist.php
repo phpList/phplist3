@@ -145,12 +145,16 @@ if (listUsedInSubscribePage($id)) print ' disabled="disabled" ';
   if (empty($list["owner"])) {
     $list["owner"] = $_SESSION["logindetails"]["id"];
   }
-  print '<div class="label"><label for="owner">' . $GLOBALS['I18N']->get('Owner') . '</label></div><div class="field"><select name="owner">';
   $admins = $GLOBALS["admin_auth"]->listAdmins();
-  foreach ($admins as $adminid => $adminname) {
-    printf ('    <option value="%d" %s>%s</option>',$adminid,$adminid == $list["owner"]? 'selected="selected"':'',$adminname);
+  if (sizeof($admins) > 1) {
+    print '<div class="label"><label for="owner">' . $GLOBALS['I18N']->get('Owner') . '</label></div><div class="field"><select name="owner">';
+    foreach ($admins as $adminid => $adminname) {
+      printf ('    <option value="%d" %s>%s</option>',$adminid,$adminid == $list["owner"]? 'selected="selected"':'',$adminname);
+    }
+    print '</select></div>';
+  } else {
+    print '<input type="hidden" name="owner" value="'.$_SESSION["logindetails"]["id"].'" />';
   }
-  print '</select></div>';
 } else {
   print '<input type="hidden" name="owner" value="'.$_SESSION["logindetails"]["id"].'" />';
 }
