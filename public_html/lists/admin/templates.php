@@ -29,11 +29,13 @@ $systemtemplate = getConfig('systemmessagetemplate');
 print formStart('name="templates" class="templatesEdit" ');
 $ls = new WebblerListing($GLOBALS['I18N']->get("Existing templates"));
 while ($row = Sql_fetch_Array($req)) {
+  $img_template = '<img src="images/no-image-template.gif" />';
+  if(file_exists('templates/'.$row['id'].'.jpg')){ $img_template = '<img src="templates/'.$row['id'].'.jpg" />';}
   $element = $row['title'];
   $ls->addElement($element,PageUrl2('template&amp;id='.$row['id']));
   $ls->setClass($element,'row1');
   $ls->addColumn($element,$GLOBALS['I18N']->get('ID'),$row['id']);
-  $ls->addRow($element,'','<span class="button">'.PageLinkDialogOnly("viewtemplate&amp;id=".$row["id"],$GLOBALS['img_view']).'</span>'.sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a>',PageUrl2("templates","","delete=".$row["id"]),$GLOBALS['I18N']->get('delete')));
+  $ls->addRow($element,$img_template,'<span class="button">'.PageLinkDialogOnly("viewtemplate&amp;id=".$row["id"],$GLOBALS['img_view']).'</span>'.sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a>',PageUrl2("templates","","delete=".$row["id"]),$GLOBALS['I18N']->get('delete')));
 #  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
 #    $GLOBALS['tables']['templateimage'],$row['id']));
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('# imgs'),$imgcount[0]);
