@@ -268,7 +268,7 @@ $(document).ready(function() {
   
   $("#processexport").click(function() {
     // for export, refresh underlying page, to get a new security token
-    setTimeout("refreshExport()",2000);
+    setTimeout("refreshExport()",10000);
   })
 
   //fade out 'actionresult' user feedback
