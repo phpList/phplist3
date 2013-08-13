@@ -115,6 +115,14 @@ if (empty($id)) {
       } else {
         $value = $default_config[$configItem]['value'];
       }
+      $displayValue = $value;
+      if ($default_config[$configItem]['type'] == 'boolean') {
+        if ($value) {
+          $displayValue = s('Yes');
+        } else {
+          $displayValue = s('No');
+        }
+      }
       if (!in_array($configItem,$GLOBALS['noteditableconfig'])) {
         $some = 1;
         
@@ -123,7 +131,7 @@ if (empty($id)) {
         $resourceLink = '';
         
         $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit this value'),s('edit'),$default_config[$configItem]['description'],$resourceLink);
-        $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($value))));
+        $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($displayValue))));
         if ($alternate == 1) {
           $alternate = 2;
         } else {

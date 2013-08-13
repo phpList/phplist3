@@ -80,9 +80,13 @@ function setMessageData($msgid,$name,$value) {
 }
 
 function loadMessageData($msgid) {
-  $default_from = getConfig('message_from_address');
-  if (empty($default_from)) {
-    $default_from = getConfig('admin_address');
+  $default = array(
+    'from' => getConfig('message_from_address'),
+    ## can add some more from below
+    'google_track' => getConfig('always_add_googletracking'),
+  );
+  if (empty($default['from'])) {
+    $default['from'] = getConfig('admin_address');
   }
    
   if (!isset($GLOBALS['MD']) || !is_array($GLOBALS['MD'])) {
@@ -124,7 +128,7 @@ function loadMessageData($msgid) {
     'testtarget' => '',
     'notify_start' =>  getConfig("notifystart_default"),
     'notify_end' =>  getConfig("notifyend_default"),
-    'google_track' => getConfig('always_add_googletracking') == 'true',
+    'google_track' => $default['google_track'] == 'true' || $default['google_track'] === true || $default['google_track'] == '1',
     'excludelist' => array(),
   );
   if (is_array($prevMsgData)) {
@@ -189,9 +193,9 @@ function loadMessageData($msgid) {
     # if there is a space, we need to add the email
     $messagedata["fromname"] = $messagedata["fromfield"];
   #  $cached[$messageid]["fromemail"] = "listmaster@$domain";
-    $messagedata["fromemail"] = $default_from;
+    $messagedata["fromemail"] = $default['from'];
   } else {
-    $messagedata["fromemail"] = $default_from;
+    $messagedata["fromemail"] = $default['from'];
     $messagedata["fromname"] = $messagedata["fromfield"] ;
   }
   $messagedata["fromname"] = trim($messagedata["fromname"]);
@@ -426,7 +430,8 @@ function sendMailDirect($destinationemail, $subject, $message) {
 
 function sendAdminCopy($subject,$message,$lists = array()) {
   $sendcopy = getConfig("send_admin_copies");
-  if ($sendcopy == "true") {
+  var_dump($sendcopy);exit;
+  if ($sendcopy) {
     $lists = cleanArray($lists);
     $mails = array();
     if (sizeof($lists) && SEND_LISTADMIN_COPY) {

@@ -128,11 +128,6 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
     $_SESSION['hasconf'] = Sql_Table_Exists($tables["config"]);
   } 
   if (empty($_SESSION['hasconf'])) return;
-  if ($value == "false" || $value == "no") {
-    $value = 0;
-  } elseif ($value == "true" || $value == "yes") {
-    $value = 1;
-  }
   if (isset($GLOBALS['default_config'][$item])) {
     $configInfo = $GLOBALS['default_config'][$item];
   } else {
@@ -147,6 +142,13 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   $value = str_ireplace('[website]',$GLOBALS['website'],$value);
   
   switch ($configInfo['type']) {
+    case 'boolean':
+      if ($value == "false" || $value == "no") {
+        $value = 0;
+      } elseif ($value == "true" || $value == "yes") {
+        $value = 1;
+      }
+      break;
     case 'integer':
       $value = sprintf('%d',$value);
       if ($value < $configInfo['min']) $value = $configInfo['min'];
@@ -372,12 +374,16 @@ function clineUsage($line = "") {
   exit;
 }
 
-function Error($msg) {
+function Error($msg,$documentationURL = '') {
   if ($GLOBALS["commandline"]) {
     clineError($msg);
     return;
   }
-  print '<div class="error">'.$GLOBALS["I18N"]->get("error").": $msg </div>";
+  print '<div class="error">'.$GLOBALS["I18N"]->get("error").": $msg ";
+  if (!empty($documentationURL)) {
+     print resourceLink($documentationURL);
+  }
+  print '</div>';
 
   $GLOBALS["mail_error"] .= 'Error: '.$msg."\n";
   $GLOBALS["mail_error_count"]++;
@@ -419,17 +425,21 @@ function join_clean($sep,$array) {
   return join($sep,$arr2);
 }
 
-function Fatal_Error($msg) {
+function Fatal_Error($msg,$documentationURL = '') {
   if ($GLOBALS['commandline']) {
     @ob_end_clean();
     print "\n".$GLOBALS["I18N"]->get("fatalerror").": ".strip_tags($msg)."\n";
     @ob_start();
   } else {
     if (isset($GLOBALS['I18N']) && is_object($GLOBALS['I18N'])) {
-      print '<div align="center" class="error">'.$GLOBALS["I18N"]->get("fatalerror").": $msg </div>";
+      print '<div align="center" class="error">'.$GLOBALS["I18N"]->get("fatalerror").": $msg ";
     } else {
-      print '<div align="center" class="error">'."Fatal Error: $msg </div>";
+      print '<div align="center" class="error">'."Fatal Error: $msg ";
     }
+    if (!empty($documentationURL)) {
+      print resourceLink($documentationURL);
+    }
+    print '</div>';
 
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->processError($msg);
@@ -439,6 +449,10 @@ function Fatal_Error($msg) {
  # include "footer.inc";
  # exit;
   return 0;
+}
+
+function resourceLink($url) {
+  return ' <span class="resourcelink"><a href="'.$url.'" title="'.s('Documentation about this error').'" target="_blank" class="resourcelink">'.snbr('More information').'</a></span>';
 }
 
 function Warn($msg) {

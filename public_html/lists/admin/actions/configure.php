@@ -54,14 +54,14 @@ if ($configItem['type'] == "textarea") {
 } else if ($configItem['type'] == "boolean") {
   printf ('<select name="values[%s]">',$id);
   print '<option value="true" ';
-  if ($value == 'true') {
+  if ($value === true || $value == "true" || $value == 1) {
     print 'selected="selected"';
   }
   print '>';
   print $GLOBALS['I18N']->get('Yes') ;
   print '  </option>';
   print '<option value="false" ';
-  if ($value == 'false') {
+  if ($value === false || $value == "false" || $value == 0) {
     print 'selected="selected"';
   }
   print '>';
