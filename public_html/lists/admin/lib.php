@@ -430,7 +430,6 @@ function sendMailDirect($destinationemail, $subject, $message) {
 
 function sendAdminCopy($subject,$message,$lists = array()) {
   $sendcopy = getConfig("send_admin_copies");
-  var_dump($sendcopy);exit;
   if ($sendcopy) {
     $lists = cleanArray($lists);
     $mails = array();
