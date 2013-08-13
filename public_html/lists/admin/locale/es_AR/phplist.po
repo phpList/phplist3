@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-05 17:39+0000\n"
+"POT-Creation-Date: 2013-08-13 05:04+0000\n"
 "PO-Revision-Date: 2013-08-05 22:18+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -906,7 +906,7 @@ msgstr "Historia"
 #: public_html/lists/admin/messages.php:360
 #: public_html/lists/admin/spage.php:57
 #: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/templates.php:36
+#: public_html/lists/admin/templates.php:38
 msgid "delete"
 msgstr "eliminar"
 
@@ -4450,7 +4450,7 @@ msgid "Possible Actions:"
 msgstr "Acciones Posibles:"
 
 #: public_html/lists/admin/bounce.php:205
-#: public_html/lists/admin/templates.php:35
+#: public_html/lists/admin/templates.php:37
 msgid "ID"
 msgstr "ID"
 
@@ -5267,7 +5267,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr "Crear normas para rebotes"
 
-#: public_html/lists/admin/languages.php:557
+#: public_html/lists/admin/languages.php:561
 #, fuzzy
 msgid "over treshold, user marked unconfirmed"
 msgstr "sobre el umbral, el usuario es marcado como no confirmado"
@@ -5469,6 +5469,686 @@ msgstr "y"
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
 msgstr "usuarios existentes"
+
+#: public_html/lists/admin/pagetitles.php:5
+msgid "pagetitle:home"
+msgstr "inicio"
+
+#: public_html/lists/admin/pagetitles.php:7
+msgid "pagetitle:setup"
+msgstr "Instalación"
+
+#: public_html/lists/admin/pagetitles.php:9
+msgid "pagetitle:about"
+msgstr "acerca de phpList"
+
+#: public_html/lists/admin/pagetitles.php:11
+msgid "pagetitle:attributes"
+msgstr "atributos"
+
+#: public_html/lists/admin/pagetitles.php:13
+msgid "pagetitle:stresstest"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:15
+msgid "pagetitle:list"
+msgstr "Por lista"
+
+#: public_html/lists/admin/pagetitles.php:17
+msgid "pagetitle:catlists"
+msgstr "categorizar listas"
+
+#: public_html/lists/admin/pagetitles.php:19
+msgid "pagetitle:editattributes"
+msgstr "editar atributos"
+
+#: public_html/lists/admin/pagetitles.php:21
+msgid "pagetitle:editlist"
+msgstr "editar lista"
+
+#: public_html/lists/admin/pagetitles.php:23
+msgid "pagetitle:checki18n"
+msgstr "comprobar i18n"
+
+#: public_html/lists/admin/pagetitles.php:25
+msgid "pagetitle:importsimple"
+msgstr "importación directa"
+
+#: public_html/lists/admin/pagetitles.php:27
+msgid "pagetitle:import4"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:29
+msgid "pagetitle:import3"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:31
+msgid "pagetitle:import2"
+msgstr "importar desde csv"
+
+#: public_html/lists/admin/pagetitles.php:33
+msgid "pagetitle:import1"
+msgstr "importar desde un archivo"
+
+#: public_html/lists/admin/pagetitles.php:35
+msgid "pagetitle:import"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:37
+msgid "pagetitle:export"
+msgstr "exportar"
+
+#: public_html/lists/admin/pagetitles.php:39
+msgid "pagetitle:initialise"
+msgstr "inicializar"
+
+#: public_html/lists/admin/pagetitles.php:41
+msgid "pagetitle:send"
+msgstr "enviar"
+
+#: public_html/lists/admin/pagetitles.php:43
+msgid "pagetitle:preparesend"
+msgstr "preparar para enviar"
+
+#: public_html/lists/admin/pagetitles.php:45
+msgid "pagetitle:sendprepared"
+msgstr "enviar preparados"
+
+#: public_html/lists/admin/pagetitles.php:47
+msgid "pagetitle:members"
+msgstr "miembros"
+
+#: public_html/lists/admin/pagetitles.php:49
+msgid "pagetitle:users"
+msgstr "usuarios"
+
+#: public_html/lists/admin/pagetitles.php:51
+msgid "pagetitle:reconcileusers"
+msgstr "conciliar usuarios"
+
+#: public_html/lists/admin/pagetitles.php:53
+msgid "pagetitle:user"
+msgstr "usuario"
+
+#: public_html/lists/admin/pagetitles.php:55
+msgid "pagetitle:userhistory"
+msgstr "historial de usuario"
+
+#: public_html/lists/admin/pagetitles.php:57
+msgid "pagetitle:messages"
+msgstr "mensajes"
+
+#: public_html/lists/admin/pagetitles.php:59
+msgid "pagetitle:message"
+msgstr "mensaje"
+
+#: public_html/lists/admin/pagetitles.php:61
+msgid "pagetitle:processqueue"
+msgstr "procesar cola"
+
+#: public_html/lists/admin/pagetitles.php:63
+msgid "pagetitle:defaults"
+msgstr "valores por defecto"
+
+#: public_html/lists/admin/pagetitles.php:65
+#: public_html/lists/admin/pagetitles.php:153
+msgid "pagetitle:upgrade"
+msgstr "actualizar"
+
+#: public_html/lists/admin/pagetitles.php:67
+msgid "pagetitle:templates"
+msgstr "plantillas"
+
+#: public_html/lists/admin/pagetitles.php:69
+msgid "pagetitle:template"
+msgstr "plantilla"
+
+#: public_html/lists/admin/pagetitles.php:71
+msgid "pagetitle:viewtemplate"
+msgstr "ver plantilla"
+
+#: public_html/lists/admin/pagetitles.php:73
+msgid "pagetitle:configure"
+msgstr "configurar"
+
+#: public_html/lists/admin/pagetitles.php:75
+msgid "pagetitle:admin"
+msgstr "administrador"
+
+#: public_html/lists/admin/pagetitles.php:77
+msgid "pagetitle:admins"
+msgstr "administradores"
+
+#: public_html/lists/admin/pagetitles.php:79
+msgid "pagetitle:adminattributes"
+msgstr "atributos de administradores"
+
+#: public_html/lists/admin/pagetitles.php:81
+msgid "pagetitle:processbounces"
+msgstr "procesar rebotes"
+
+#: public_html/lists/admin/pagetitles.php:83
+msgid "pagetitle:bounces"
+msgstr "rebotes"
+
+#: public_html/lists/admin/pagetitles.php:85
+msgid "pagetitle:bounce"
+msgstr "rebote"
+
+#: public_html/lists/admin/pagetitles.php:87
+msgid "pagetitle:spageedit"
+msgstr "editar página de suscripción"
+
+#: public_html/lists/admin/pagetitles.php:89
+msgid "pagetitle:spage"
+msgstr "página de suscripción"
+
+#: public_html/lists/admin/pagetitles.php:91
+msgid "pagetitle:eventlog"
+msgstr "registro de eventos"
+
+#: public_html/lists/admin/pagetitles.php:93
+msgid "pagetitle:getrss"
+msgstr "levantar rss"
+
+#: public_html/lists/admin/pagetitles.php:95
+msgid "pagetitle:viewrss"
+msgstr "ver rss"
+
+#: public_html/lists/admin/pagetitles.php:97
+msgid "pagetitle:community"
+msgstr "comunidad"
+
+#: public_html/lists/admin/pagetitles.php:99
+#, fuzzy
+msgid "pagetitle:vote"
+msgstr "votar"
+
+#: public_html/lists/admin/pagetitles.php:101
+msgid "pagetitle:login"
+msgstr "ingresar"
+
+#: public_html/lists/admin/pagetitles.php:103
+msgid "pagetitle:logout"
+msgstr "salir"
+
+#: public_html/lists/admin/pagetitles.php:105
+msgid "pagetitle:mclicks"
+msgstr "mensajes cliqueados"
+
+#: public_html/lists/admin/pagetitles.php:107
+msgid "pagetitle:uclicks"
+msgstr "urls cliqueadas"
+
+#: public_html/lists/admin/pagetitles.php:109
+msgid "pagetitle:massunconfirm"
+msgstr "desuscbribir masivamente"
+
+#: public_html/lists/admin/pagetitles.php:111
+msgid "pagetitle:massremove"
+msgstr "eliminar masivamente"
+
+#: public_html/lists/admin/pagetitles.php:113
+msgid "pagetitle:usermgt"
+msgstr "administrar usuarios"
+
+#: public_html/lists/admin/pagetitles.php:115
+msgid "pagetitle:bouncemgt"
+msgstr "administrar rebotes"
+
+#: public_html/lists/admin/pagetitles.php:117
+msgid "pagetitle:domainstats"
+msgstr "estadísticas de dominio"
+
+#: public_html/lists/admin/pagetitles.php:119
+msgid "pagetitle:mviews"
+msgstr "mensajes vistos"
+
+#: public_html/lists/admin/pagetitles.php:121
+msgid "pagetitle:statsmgt"
+msgstr "estadísticas"
+
+#: public_html/lists/admin/pagetitles.php:123
+msgid "pagetitle:statsoverview"
+msgstr "estadísticas generales"
+
+#: public_html/lists/admin/pagetitles.php:125
+msgid "pagetitle:subscriberstats"
+msgstr "estadísticas de suscriptor"
+
+#: public_html/lists/admin/pagetitles.php:127
+msgid "pagetitle:dbcheck"
+msgstr "comprobar base de datos"
+
+#: public_html/lists/admin/pagetitles.php:129
+msgid "pagetitle:importadmin"
+msgstr "importar administrador"
+
+#: public_html/lists/admin/pagetitles.php:131
+msgid "pagetitle:dbadmin"
+msgstr "administrador de base de datos"
+
+#: public_html/lists/admin/pagetitles.php:133
+msgid "pagetitle:usercheck"
+msgstr "comprobar usuario"
+
+#: public_html/lists/admin/pagetitles.php:135
+msgid "pagetitle:listbounces"
+msgstr "rebotes por lista"
+
+#: public_html/lists/admin/pagetitles.php:137
+msgid "pagetitle:bouncerules"
+msgstr "reglas de rebote"
+
+#: public_html/lists/admin/pagetitles.php:139
+msgid "pagetitle:checkbouncerules"
+msgstr "comprobar reglas de rebote"
+
+#: public_html/lists/admin/pagetitles.php:141
+msgid "pagetitle:translate"
+msgstr "traducir"
+
+#: public_html/lists/admin/pagetitles.php:143
+#, fuzzy
+msgid "pagetitle:ajaxform"
+msgstr "forlumario ajax"
+
+#: public_html/lists/admin/pagetitles.php:145
+msgid "pagetitle:updatetranslation"
+msgstr "actualizar traducción"
+
+#: public_html/lists/admin/pagetitles.php:147
+msgid "pagetitle:reindex"
+msgstr "reindexar"
+
+#: public_html/lists/admin/pagetitles.php:149
+#, fuzzy
+msgid "pagetitle:config"
+msgstr "configurar"
+
+#: public_html/lists/admin/pagetitles.php:151
+#, fuzzy
+msgid "pagetitle:info"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:155
+msgid "pagetitle:converttoutf8"
+msgstr "Convertir a utf8"
+
+#: public_html/lists/admin/pagetitles.php:157
+#, fuzzy
+msgid "pagetitlehover:home"
+msgstr "rebote"
+
+#: public_html/lists/admin/pagetitles.php:159
+#, fuzzy
+msgid "pagetitlehover:setup"
+msgstr "Instalación"
+
+#: public_html/lists/admin/pagetitles.php:161
+#, fuzzy
+msgid "pagetitlehover:about"
+msgstr "acerca de phpList"
+
+#: public_html/lists/admin/pagetitles.php:163
+#, fuzzy
+msgid "pagetitlehover:attributes"
+msgstr "atributos"
+
+#: public_html/lists/admin/pagetitles.php:165
+#, fuzzy
+msgid "pagetitlehover:stresstest"
+msgstr "mensajes"
+
+#: public_html/lists/admin/pagetitles.php:167
+#, fuzzy
+msgid "pagetitlehover:list"
+msgstr "categorizar listas"
+
+#: public_html/lists/admin/pagetitles.php:169
+#, fuzzy
+msgid "pagetitlehover:catlists"
+msgstr "categorizar listas"
+
+#: public_html/lists/admin/pagetitles.php:171
+#, fuzzy
+msgid "pagetitlehover:editattributes"
+msgstr "editar atributos"
+
+#: public_html/lists/admin/pagetitles.php:173
+#, fuzzy
+msgid "pagetitlehover:editlist"
+msgstr "editar lista"
+
+#: public_html/lists/admin/pagetitles.php:175
+#, fuzzy
+msgid "pagetitlehover:checki18n"
+msgstr "comprobar i18n"
+
+#: public_html/lists/admin/pagetitles.php:177
+#, fuzzy
+msgid "pagetitlehover:importsimple"
+msgstr "importación directa"
+
+#: public_html/lists/admin/pagetitles.php:179
+#, fuzzy
+msgid "pagetitlehover:import4"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:181
+#, fuzzy
+msgid "pagetitlehover:import3"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:183
+#, fuzzy
+msgid "pagetitlehover:import2"
+msgstr "importar desde csv"
+
+#: public_html/lists/admin/pagetitles.php:185
+#, fuzzy
+msgid "pagetitlehover:import1"
+msgstr "importar desde un archivo"
+
+#: public_html/lists/admin/pagetitles.php:187
+#, fuzzy
+msgid "pagetitlehover:import"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:189
+#, fuzzy
+msgid "pagetitlehover:export"
+msgstr "exportar"
+
+#: public_html/lists/admin/pagetitles.php:191
+#, fuzzy
+msgid "pagetitlehover:initialise"
+msgstr "inicializar"
+
+#: public_html/lists/admin/pagetitles.php:193
+#, fuzzy
+msgid "pagetitlehover:send"
+msgstr "Instalación"
+
+#: public_html/lists/admin/pagetitles.php:195
+#, fuzzy
+msgid "pagetitlehover:preparesend"
+msgstr "preparar para enviar"
+
+#: public_html/lists/admin/pagetitles.php:197
+#, fuzzy
+msgid "pagetitlehover:sendprepared"
+msgstr "enviar preparados"
+
+#: public_html/lists/admin/pagetitles.php:199
+#, fuzzy
+msgid "pagetitlehover:members"
+msgstr "miembros"
+
+#: public_html/lists/admin/pagetitles.php:201
+#, fuzzy
+msgid "pagetitlehover:users"
+msgstr "usuarios"
+
+#: public_html/lists/admin/pagetitles.php:203
+#, fuzzy
+msgid "pagetitlehover:reconcileusers"
+msgstr "conciliar usuarios"
+
+#: public_html/lists/admin/pagetitles.php:205
+#, fuzzy
+msgid "pagetitlehover:user"
+msgstr "usuarios"
+
+#: public_html/lists/admin/pagetitles.php:207
+#, fuzzy
+msgid "pagetitlehover:userhistory"
+msgstr "historial de usuario"
+
+#: public_html/lists/admin/pagetitles.php:209
+#, fuzzy
+msgid "pagetitlehover:messages"
+msgstr "mensajes"
+
+#: public_html/lists/admin/pagetitles.php:211
+#, fuzzy
+msgid "pagetitlehover:message"
+msgstr "mensaje"
+
+#: public_html/lists/admin/pagetitles.php:213
+#, fuzzy
+msgid "pagetitlehover:processqueue"
+msgstr "procesar cola"
+
+#: public_html/lists/admin/pagetitles.php:215
+#, fuzzy
+msgid "pagetitlehover:defaults"
+msgstr "valores por defecto"
+
+#: public_html/lists/admin/pagetitles.php:217
+#: public_html/lists/admin/pagetitles.php:305
+#, fuzzy
+msgid "pagetitlehover:upgrade"
+msgstr "actualizar"
+
+#: public_html/lists/admin/pagetitles.php:219
+#, fuzzy
+msgid "pagetitlehover:templates"
+msgstr "plantillas"
+
+#: public_html/lists/admin/pagetitles.php:221
+#, fuzzy
+msgid "pagetitlehover:template"
+msgstr "plantilla"
+
+#: public_html/lists/admin/pagetitles.php:223
+#, fuzzy
+msgid "pagetitlehover:viewtemplate"
+msgstr "ver plantilla"
+
+#: public_html/lists/admin/pagetitles.php:225
+#, fuzzy
+msgid "pagetitlehover:configure"
+msgstr "configurar"
+
+#: public_html/lists/admin/pagetitles.php:227
+#, fuzzy
+msgid "pagetitlehover:admin"
+msgstr "administrador"
+
+#: public_html/lists/admin/pagetitles.php:229
+#, fuzzy
+msgid "pagetitlehover:admins"
+msgstr "administradores"
+
+#: public_html/lists/admin/pagetitles.php:231
+#, fuzzy
+msgid "pagetitlehover:adminattributes"
+msgstr "atributos de administradores"
+
+#: public_html/lists/admin/pagetitles.php:233
+#, fuzzy
+msgid "pagetitlehover:processbounces"
+msgstr "procesar rebotes"
+
+#: public_html/lists/admin/pagetitles.php:235
+#, fuzzy
+msgid "pagetitlehover:bounces"
+msgstr "rebotes"
+
+#: public_html/lists/admin/pagetitles.php:237
+#, fuzzy
+msgid "pagetitlehover:bounce"
+msgstr "rebote"
+
+#: public_html/lists/admin/pagetitles.php:239
+#, fuzzy
+msgid "pagetitlehover:spageedit"
+msgstr "editar página de suscripción"
+
+#: public_html/lists/admin/pagetitles.php:241
+#, fuzzy
+msgid "pagetitlehover:spage"
+msgstr "página de suscripción"
+
+#: public_html/lists/admin/pagetitles.php:243
+#, fuzzy
+msgid "pagetitlehover:eventlog"
+msgstr "registro de eventos"
+
+#: public_html/lists/admin/pagetitles.php:245
+#, fuzzy
+msgid "pagetitlehover:getrss"
+msgstr "levantar rss"
+
+#: public_html/lists/admin/pagetitles.php:247
+#, fuzzy
+msgid "pagetitlehover:viewrss"
+msgstr "ver rss"
+
+#: public_html/lists/admin/pagetitles.php:249
+#, fuzzy
+msgid "pagetitlehover:community"
+msgstr "comunidad"
+
+#: public_html/lists/admin/pagetitles.php:251
+#, fuzzy
+msgid "pagetitlehover:vote"
+msgstr "rebote"
+
+#: public_html/lists/admin/pagetitles.php:253
+#, fuzzy
+msgid "pagetitlehover:login"
+msgstr "ingresar"
+
+#: public_html/lists/admin/pagetitles.php:255
+#, fuzzy
+msgid "pagetitlehover:logout"
+msgstr "salir"
+
+#: public_html/lists/admin/pagetitles.php:257
+#, fuzzy
+msgid "pagetitlehover:mclicks"
+msgstr "mensajes cliqueados"
+
+#: public_html/lists/admin/pagetitles.php:259
+#, fuzzy
+msgid "pagetitlehover:uclicks"
+msgstr "urls cliqueadas"
+
+#: public_html/lists/admin/pagetitles.php:261
+#, fuzzy
+msgid "pagetitlehover:massunconfirm"
+msgstr "desuscbribir masivamente"
+
+#: public_html/lists/admin/pagetitles.php:263
+#, fuzzy
+msgid "pagetitlehover:massremove"
+msgstr "eliminar masivamente"
+
+#: public_html/lists/admin/pagetitles.php:265
+#, fuzzy
+msgid "pagetitlehover:usermgt"
+msgstr "administrar usuarios"
+
+#: public_html/lists/admin/pagetitles.php:267
+#, fuzzy
+msgid "pagetitlehover:bouncemgt"
+msgstr "administrar rebotes"
+
+#: public_html/lists/admin/pagetitles.php:269
+#, fuzzy
+msgid "pagetitlehover:domainstats"
+msgstr "estadísticas de dominio"
+
+#: public_html/lists/admin/pagetitles.php:271
+#, fuzzy
+msgid "pagetitlehover:mviews"
+msgstr "mensajes vistos"
+
+#: public_html/lists/admin/pagetitles.php:273
+#, fuzzy
+msgid "pagetitlehover:statsmgt"
+msgstr "estadísticas"
+
+#: public_html/lists/admin/pagetitles.php:275
+#, fuzzy
+msgid "pagetitlehover:statsoverview"
+msgstr "estadísticas generales"
+
+#: public_html/lists/admin/pagetitles.php:277
+#, fuzzy
+msgid "pagetitlehover:subscriberstats"
+msgstr "estadísticas de suscriptor"
+
+#: public_html/lists/admin/pagetitles.php:279
+#, fuzzy
+msgid "pagetitlehover:dbcheck"
+msgstr "comprobar base de datos"
+
+#: public_html/lists/admin/pagetitles.php:281
+#, fuzzy
+msgid "pagetitlehover:importadmin"
+msgstr "importar administrador"
+
+#: public_html/lists/admin/pagetitles.php:283
+#, fuzzy
+msgid "pagetitlehover:dbadmin"
+msgstr "administrador de base de datos"
+
+#: public_html/lists/admin/pagetitles.php:285
+#, fuzzy
+msgid "pagetitlehover:usercheck"
+msgstr "comprobar usuario"
+
+#: public_html/lists/admin/pagetitles.php:287
+#, fuzzy
+msgid "pagetitlehover:listbounces"
+msgstr "rebotes por lista"
+
+#: public_html/lists/admin/pagetitles.php:289
+#, fuzzy
+msgid "pagetitlehover:bouncerules"
+msgstr "reglas de rebote"
+
+#: public_html/lists/admin/pagetitles.php:291
+#, fuzzy
+msgid "pagetitlehover:checkbouncerules"
+msgstr "comprobar reglas de rebote"
+
+#: public_html/lists/admin/pagetitles.php:293
+#, fuzzy
+msgid "pagetitlehover:translate"
+msgstr "traducir"
+
+#: public_html/lists/admin/pagetitles.php:295
+#, fuzzy
+msgid "pagetitlehover:ajaxform"
+msgstr "forlumario ajax"
+
+#: public_html/lists/admin/pagetitles.php:297
+#, fuzzy
+msgid "pagetitlehover:updatetranslation"
+msgstr "actualizar traducción"
+
+#: public_html/lists/admin/pagetitles.php:299
+#, fuzzy
+msgid "pagetitlehover:reindex"
+msgstr "reindexar"
+
+#: public_html/lists/admin/pagetitles.php:301
+#, fuzzy
+msgid "pagetitlehover:config"
+msgstr "configurar"
+
+#: public_html/lists/admin/pagetitles.php:303
+#, fuzzy
+msgid "pagetitlehover:info"
+msgstr "Importar"
+
+#: public_html/lists/admin/pagetitles.php:307
+msgid "pagetitlehover:converttoutf8"
+msgstr "Convertir a utf8"
 
 #: public_html/lists/admin/spageedit.php:87
 msgid "Subscribe page information saved"
@@ -6509,7 +7189,7 @@ msgstr "Añadiendo índice único <b>%s</b> a %s</li>"
 msgid "Adding unique index <b>%s</b> to %s<br/>"
 msgstr "Añadiendo índice único <b>%s</b> a %s<br/>"
 
-#: public_html/lists/admin/messages.php:40
+#: public_html/lists/admin/messages.php:40 public_html/lists/admin/send.php:92
 #, fuzzy
 msgid "Start a new campaign"
 msgstr "Iniciar una campaña"
@@ -7416,19 +8096,19 @@ msgstr "No se ha definido ninguna plantilla"
 msgid "Existing templates"
 msgstr "Plantillas existentes"
 
-#: public_html/lists/admin/templates.php:41
+#: public_html/lists/admin/templates.php:43
 msgid "Campaign Default"
 msgstr "Campaña por defecto"
 
-#: public_html/lists/admin/templates.php:43
+#: public_html/lists/admin/templates.php:45
 msgid "System"
 msgstr "Sistema"
 
-#: public_html/lists/admin/templates.php:51
+#: public_html/lists/admin/templates.php:53
 msgid "Add new Template"
 msgstr "A&ntilde;adir plantilla"
 
-#: public_html/lists/admin/templates.php:55
+#: public_html/lists/admin/templates.php:57
 msgid "Add default system template"
 msgstr "Añadir plantilla predeterminada del sistema"
 
@@ -7659,2122 +8339,6 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
-
-msgid "pagetitle:home"
-msgstr "inicio"
-
-msgid "pagetitle:setup"
-msgstr "Instalación"
-
-msgid "pagetitle:about"
-msgstr "acerca de phpList"
-
-msgid "pagetitle:attributes"
-msgstr "atributos"
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr "Por lista"
-
-msgid "pagetitle:catlists"
-msgstr "categorizar listas"
-
-msgid "pagetitle:editattributes"
-msgstr "editar atributos"
-
-msgid "pagetitle:editlist"
-msgstr "editar lista"
-
-msgid "pagetitle:checki18n"
-msgstr "comprobar i18n"
-
-msgid "pagetitle:importsimple"
-msgstr "importación directa"
-
-msgid "pagetitle:import4"
-msgstr "Importar"
-
-msgid "pagetitle:import3"
-msgstr "Importar"
-
-msgid "pagetitle:import2"
-msgstr "importar desde csv"
-
-msgid "pagetitle:import1"
-msgstr "importar desde un archivo"
-
-msgid "pagetitle:import"
-msgstr "Importar"
-
-msgid "pagetitle:export"
-msgstr "exportar"
-
-msgid "pagetitle:initialise"
-msgstr "inicializar"
-
-msgid "pagetitle:send"
-msgstr "enviar"
-
-msgid "pagetitle:preparesend"
-msgstr "preparar para enviar"
-
-msgid "pagetitle:sendprepared"
-msgstr "enviar preparados"
-
-msgid "pagetitle:members"
-msgstr "miembros"
-
-msgid "pagetitle:users"
-msgstr "usuarios"
-
-msgid "pagetitle:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitle:user"
-msgstr "usuario"
-
-msgid "pagetitle:userhistory"
-msgstr "historial de usuario"
-
-msgid "pagetitle:messages"
-msgstr "mensajes"
-
-msgid "pagetitle:message"
-msgstr "mensaje"
-
-msgid "pagetitle:processqueue"
-msgstr "procesar cola"
-
-msgid "pagetitle:defaults"
-msgstr "valores por defecto"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:templates"
-msgstr "plantillas"
-
-msgid "pagetitle:template"
-msgstr "plantilla"
-
-msgid "pagetitle:viewtemplate"
-msgstr "ver plantilla"
-
-msgid "pagetitle:configure"
-msgstr "configurar"
-
-msgid "pagetitle:admin"
-msgstr "administrador"
-
-msgid "pagetitle:admins"
-msgstr "administradores"
-
-msgid "pagetitle:adminattributes"
-msgstr "atributos de administradores"
-
-msgid "pagetitle:processbounces"
-msgstr "procesar rebotes"
-
-msgid "pagetitle:bounces"
-msgstr "rebotes"
-
-msgid "pagetitle:bounce"
-msgstr "rebote"
-
-msgid "pagetitle:spageedit"
-msgstr "editar página de suscripción"
-
-msgid "pagetitle:spage"
-msgstr "página de suscripción"
-
-msgid "pagetitle:eventlog"
-msgstr "registro de eventos"
-
-msgid "pagetitle:getrss"
-msgstr "levantar rss"
-
-msgid "pagetitle:viewrss"
-msgstr "ver rss"
-
-msgid "pagetitle:community"
-msgstr "comunidad"
-
-#, fuzzy
-msgid "pagetitle:vote"
-msgstr "votar"
-
-msgid "pagetitle:login"
-msgstr "ingresar"
-
-msgid "pagetitle:logout"
-msgstr "salir"
-
-msgid "pagetitle:mclicks"
-msgstr "mensajes cliqueados"
-
-msgid "pagetitle:uclicks"
-msgstr "urls cliqueadas"
-
-msgid "pagetitle:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-msgid "pagetitle:massremove"
-msgstr "eliminar masivamente"
-
-msgid "pagetitle:usermgt"
-msgstr "administrar usuarios"
-
-msgid "pagetitle:bouncemgt"
-msgstr "administrar rebotes"
-
-msgid "pagetitle:domainstats"
-msgstr "estadísticas de dominio"
-
-msgid "pagetitle:mviews"
-msgstr "mensajes vistos"
-
-msgid "pagetitle:statsmgt"
-msgstr "estadísticas"
-
-msgid "pagetitle:statsoverview"
-msgstr "estadísticas generales"
-
-msgid "pagetitle:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-msgid "pagetitle:dbcheck"
-msgstr "comprobar base de datos"
-
-msgid "pagetitle:importadmin"
-msgstr "importar administrador"
-
-msgid "pagetitle:dbadmin"
-msgstr "administrador de base de datos"
-
-msgid "pagetitle:usercheck"
-msgstr "comprobar usuario"
-
-msgid "pagetitle:listbounces"
-msgstr "rebotes por lista"
-
-msgid "pagetitle:bouncerules"
-msgstr "reglas de rebote"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-msgid "pagetitle:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitle:ajaxform"
-msgstr "forlumario ajax"
-
-msgid "pagetitle:updatetranslation"
-msgstr "actualizar traducción"
-
-msgid "pagetitle:reindex"
-msgstr "reindexar"
-
-#, fuzzy
-msgid "pagetitle:config"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitle:info"
-msgstr "Importar"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:setup"
-msgstr "Instalación"
-
-#, fuzzy
-msgid "pagetitlehover:about"
-msgstr "acerca de phpList"
-
-#, fuzzy
-msgid "pagetitlehover:attributes"
-msgstr "atributos"
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:catlists"
-msgstr "categorizar listas"
-
-#, fuzzy
-msgid "pagetitlehover:editattributes"
-msgstr "editar atributos"
-
-#, fuzzy
-msgid "pagetitlehover:editlist"
-msgstr "editar lista"
-
-#, fuzzy
-msgid "pagetitlehover:checki18n"
-msgstr "comprobar i18n"
-
-#, fuzzy
-msgid "pagetitlehover:importsimple"
-msgstr "importación directa"
-
-#, fuzzy
-msgid "pagetitlehover:import4"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import3"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import2"
-msgstr "importar desde csv"
-
-#, fuzzy
-msgid "pagetitlehover:import1"
-msgstr "importar desde un archivo"
-
-#, fuzzy
-msgid "pagetitlehover:import"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:export"
-msgstr "exportar"
-
-#, fuzzy
-msgid "pagetitlehover:initialise"
-msgstr "inicializar"
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:preparesend"
-msgstr "preparar para enviar"
-
-#, fuzzy
-msgid "pagetitlehover:sendprepared"
-msgstr "enviar preparados"
-
-#, fuzzy
-msgid "pagetitlehover:members"
-msgstr "miembros"
-
-#, fuzzy
-msgid "pagetitlehover:users"
-msgstr "usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:userhistory"
-msgstr "historial de usuario"
-
-#, fuzzy
-msgid "pagetitlehover:messages"
-msgstr "mensajes"
-
-#, fuzzy
-msgid "pagetitlehover:message"
-msgstr "mensaje"
-
-#, fuzzy
-msgid "pagetitlehover:processqueue"
-msgstr "procesar cola"
-
-#, fuzzy
-msgid "pagetitlehover:defaults"
-msgstr "valores por defecto"
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-#, fuzzy
-msgid "pagetitlehover:templates"
-msgstr "plantillas"
-
-#, fuzzy
-msgid "pagetitlehover:template"
-msgstr "plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:viewtemplate"
-msgstr "ver plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:configure"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitlehover:admin"
-msgstr "administrador"
-
-#, fuzzy
-msgid "pagetitlehover:admins"
-msgstr "administradores"
-
-#, fuzzy
-msgid "pagetitlehover:adminattributes"
-msgstr "atributos de administradores"
-
-#, fuzzy
-msgid "pagetitlehover:processbounces"
-msgstr "procesar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounces"
-msgstr "rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounce"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:spageedit"
-msgstr "editar página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:spage"
-msgstr "página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:eventlog"
-msgstr "registro de eventos"
-
-#, fuzzy
-msgid "pagetitlehover:getrss"
-msgstr "levantar rss"
-
-#, fuzzy
-msgid "pagetitlehover:viewrss"
-msgstr "ver rss"
-
-#, fuzzy
-msgid "pagetitlehover:community"
-msgstr "comunidad"
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:login"
-msgstr "ingresar"
-
-#, fuzzy
-msgid "pagetitlehover:logout"
-msgstr "salir"
-
-#, fuzzy
-msgid "pagetitlehover:mclicks"
-msgstr "mensajes cliqueados"
-
-#, fuzzy
-msgid "pagetitlehover:uclicks"
-msgstr "urls cliqueadas"
-
-#, fuzzy
-msgid "pagetitlehover:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:massremove"
-msgstr "eliminar masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:usermgt"
-msgstr "administrar usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:bouncemgt"
-msgstr "administrar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:domainstats"
-msgstr "estadísticas de dominio"
-
-#, fuzzy
-msgid "pagetitlehover:mviews"
-msgstr "mensajes vistos"
-
-#, fuzzy
-msgid "pagetitlehover:statsmgt"
-msgstr "estadísticas"
-
-#, fuzzy
-msgid "pagetitlehover:statsoverview"
-msgstr "estadísticas generales"
-
-#, fuzzy
-msgid "pagetitlehover:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-#, fuzzy
-msgid "pagetitlehover:dbcheck"
-msgstr "comprobar base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:importadmin"
-msgstr "importar administrador"
-
-#, fuzzy
-msgid "pagetitlehover:dbadmin"
-msgstr "administrador de base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:usercheck"
-msgstr "comprobar usuario"
-
-#, fuzzy
-msgid "pagetitlehover:listbounces"
-msgstr "rebotes por lista"
-
-#, fuzzy
-msgid "pagetitlehover:bouncerules"
-msgstr "reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitlehover:ajaxform"
-msgstr "forlumario ajax"
-
-#, fuzzy
-msgid "pagetitlehover:updatetranslation"
-msgstr "actualizar traducción"
-
-#, fuzzy
-msgid "pagetitlehover:reindex"
-msgstr "reindexar"
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "inicio"
-
-msgid "pagetitle:setup"
-msgstr "Instalación"
-
-msgid "pagetitle:about"
-msgstr "acerca de phpList"
-
-msgid "pagetitle:attributes"
-msgstr "atributos"
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr "Por lista"
-
-msgid "pagetitle:catlists"
-msgstr "categorizar listas"
-
-msgid "pagetitle:editattributes"
-msgstr "editar atributos"
-
-msgid "pagetitle:editlist"
-msgstr "editar lista"
-
-msgid "pagetitle:checki18n"
-msgstr "comprobar i18n"
-
-msgid "pagetitle:importsimple"
-msgstr "importación directa"
-
-msgid "pagetitle:import4"
-msgstr "Importar"
-
-msgid "pagetitle:import3"
-msgstr "Importar"
-
-msgid "pagetitle:import2"
-msgstr "importar desde csv"
-
-msgid "pagetitle:import1"
-msgstr "importar desde un archivo"
-
-msgid "pagetitle:import"
-msgstr "Importar"
-
-msgid "pagetitle:export"
-msgstr "exportar"
-
-msgid "pagetitle:initialise"
-msgstr "inicializar"
-
-msgid "pagetitle:send"
-msgstr "enviar"
-
-msgid "pagetitle:preparesend"
-msgstr "preparar para enviar"
-
-msgid "pagetitle:sendprepared"
-msgstr "enviar preparados"
-
-msgid "pagetitle:members"
-msgstr "miembros"
-
-msgid "pagetitle:users"
-msgstr "usuarios"
-
-msgid "pagetitle:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitle:user"
-msgstr "usuario"
-
-msgid "pagetitle:userhistory"
-msgstr "historial de usuario"
-
-msgid "pagetitle:messages"
-msgstr "mensajes"
-
-msgid "pagetitle:message"
-msgstr "mensaje"
-
-msgid "pagetitle:processqueue"
-msgstr "procesar cola"
-
-msgid "pagetitle:defaults"
-msgstr "valores por defecto"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:templates"
-msgstr "plantillas"
-
-msgid "pagetitle:template"
-msgstr "plantilla"
-
-msgid "pagetitle:viewtemplate"
-msgstr "ver plantilla"
-
-msgid "pagetitle:configure"
-msgstr "configurar"
-
-msgid "pagetitle:admin"
-msgstr "administrador"
-
-msgid "pagetitle:admins"
-msgstr "administradores"
-
-msgid "pagetitle:adminattributes"
-msgstr "atributos de administradores"
-
-msgid "pagetitle:processbounces"
-msgstr "procesar rebotes"
-
-msgid "pagetitle:bounces"
-msgstr "rebotes"
-
-msgid "pagetitle:bounce"
-msgstr "rebote"
-
-msgid "pagetitle:spageedit"
-msgstr "editar página de suscripción"
-
-msgid "pagetitle:spage"
-msgstr "página de suscripción"
-
-msgid "pagetitle:eventlog"
-msgstr "registro de eventos"
-
-msgid "pagetitle:getrss"
-msgstr "levantar rss"
-
-msgid "pagetitle:viewrss"
-msgstr "ver rss"
-
-msgid "pagetitle:community"
-msgstr "comunidad"
-
-#, fuzzy
-msgid "pagetitle:vote"
-msgstr "votar"
-
-msgid "pagetitle:login"
-msgstr "ingresar"
-
-msgid "pagetitle:logout"
-msgstr "salir"
-
-msgid "pagetitle:mclicks"
-msgstr "mensajes cliqueados"
-
-msgid "pagetitle:uclicks"
-msgstr "urls cliqueadas"
-
-msgid "pagetitle:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-msgid "pagetitle:massremove"
-msgstr "eliminar masivamente"
-
-msgid "pagetitle:usermgt"
-msgstr "administrar usuarios"
-
-msgid "pagetitle:bouncemgt"
-msgstr "administrar rebotes"
-
-msgid "pagetitle:domainstats"
-msgstr "estadísticas de dominio"
-
-msgid "pagetitle:mviews"
-msgstr "mensajes vistos"
-
-msgid "pagetitle:statsmgt"
-msgstr "estadísticas"
-
-msgid "pagetitle:statsoverview"
-msgstr "estadísticas generales"
-
-msgid "pagetitle:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-msgid "pagetitle:dbcheck"
-msgstr "comprobar base de datos"
-
-msgid "pagetitle:importadmin"
-msgstr "importar administrador"
-
-msgid "pagetitle:dbadmin"
-msgstr "administrador de base de datos"
-
-msgid "pagetitle:usercheck"
-msgstr "comprobar usuario"
-
-msgid "pagetitle:listbounces"
-msgstr "rebotes por lista"
-
-msgid "pagetitle:bouncerules"
-msgstr "reglas de rebote"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-msgid "pagetitle:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitle:ajaxform"
-msgstr "forlumario ajax"
-
-msgid "pagetitle:updatetranslation"
-msgstr "actualizar traducción"
-
-msgid "pagetitle:reindex"
-msgstr "reindexar"
-
-#, fuzzy
-msgid "pagetitle:config"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitle:info"
-msgstr "Importar"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:setup"
-msgstr "Instalación"
-
-#, fuzzy
-msgid "pagetitlehover:about"
-msgstr "acerca de phpList"
-
-#, fuzzy
-msgid "pagetitlehover:attributes"
-msgstr "atributos"
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:catlists"
-msgstr "categorizar listas"
-
-#, fuzzy
-msgid "pagetitlehover:editattributes"
-msgstr "editar atributos"
-
-#, fuzzy
-msgid "pagetitlehover:editlist"
-msgstr "editar lista"
-
-#, fuzzy
-msgid "pagetitlehover:checki18n"
-msgstr "comprobar i18n"
-
-#, fuzzy
-msgid "pagetitlehover:importsimple"
-msgstr "importación directa"
-
-#, fuzzy
-msgid "pagetitlehover:import4"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import3"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import2"
-msgstr "importar desde csv"
-
-#, fuzzy
-msgid "pagetitlehover:import1"
-msgstr "importar desde un archivo"
-
-#, fuzzy
-msgid "pagetitlehover:import"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:export"
-msgstr "exportar"
-
-#, fuzzy
-msgid "pagetitlehover:initialise"
-msgstr "inicializar"
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:preparesend"
-msgstr "preparar para enviar"
-
-#, fuzzy
-msgid "pagetitlehover:sendprepared"
-msgstr "enviar preparados"
-
-#, fuzzy
-msgid "pagetitlehover:members"
-msgstr "miembros"
-
-#, fuzzy
-msgid "pagetitlehover:users"
-msgstr "usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:userhistory"
-msgstr "historial de usuario"
-
-#, fuzzy
-msgid "pagetitlehover:messages"
-msgstr "mensajes"
-
-#, fuzzy
-msgid "pagetitlehover:message"
-msgstr "mensaje"
-
-#, fuzzy
-msgid "pagetitlehover:processqueue"
-msgstr "procesar cola"
-
-#, fuzzy
-msgid "pagetitlehover:defaults"
-msgstr "valores por defecto"
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-#, fuzzy
-msgid "pagetitlehover:templates"
-msgstr "plantillas"
-
-#, fuzzy
-msgid "pagetitlehover:template"
-msgstr "plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:viewtemplate"
-msgstr "ver plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:configure"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitlehover:admin"
-msgstr "administrador"
-
-#, fuzzy
-msgid "pagetitlehover:admins"
-msgstr "administradores"
-
-#, fuzzy
-msgid "pagetitlehover:adminattributes"
-msgstr "atributos de administradores"
-
-#, fuzzy
-msgid "pagetitlehover:processbounces"
-msgstr "procesar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounces"
-msgstr "rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounce"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:spageedit"
-msgstr "editar página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:spage"
-msgstr "página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:eventlog"
-msgstr "registro de eventos"
-
-#, fuzzy
-msgid "pagetitlehover:getrss"
-msgstr "levantar rss"
-
-#, fuzzy
-msgid "pagetitlehover:viewrss"
-msgstr "ver rss"
-
-#, fuzzy
-msgid "pagetitlehover:community"
-msgstr "comunidad"
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:login"
-msgstr "ingresar"
-
-#, fuzzy
-msgid "pagetitlehover:logout"
-msgstr "salir"
-
-#, fuzzy
-msgid "pagetitlehover:mclicks"
-msgstr "mensajes cliqueados"
-
-#, fuzzy
-msgid "pagetitlehover:uclicks"
-msgstr "urls cliqueadas"
-
-#, fuzzy
-msgid "pagetitlehover:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:massremove"
-msgstr "eliminar masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:usermgt"
-msgstr "administrar usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:bouncemgt"
-msgstr "administrar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:domainstats"
-msgstr "estadísticas de dominio"
-
-#, fuzzy
-msgid "pagetitlehover:mviews"
-msgstr "mensajes vistos"
-
-#, fuzzy
-msgid "pagetitlehover:statsmgt"
-msgstr "estadísticas"
-
-#, fuzzy
-msgid "pagetitlehover:statsoverview"
-msgstr "estadísticas generales"
-
-#, fuzzy
-msgid "pagetitlehover:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-#, fuzzy
-msgid "pagetitlehover:dbcheck"
-msgstr "comprobar base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:importadmin"
-msgstr "importar administrador"
-
-#, fuzzy
-msgid "pagetitlehover:dbadmin"
-msgstr "administrador de base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:usercheck"
-msgstr "comprobar usuario"
-
-#, fuzzy
-msgid "pagetitlehover:listbounces"
-msgstr "rebotes por lista"
-
-#, fuzzy
-msgid "pagetitlehover:bouncerules"
-msgstr "reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitlehover:ajaxform"
-msgstr "forlumario ajax"
-
-#, fuzzy
-msgid "pagetitlehover:updatetranslation"
-msgstr "actualizar traducción"
-
-#, fuzzy
-msgid "pagetitlehover:reindex"
-msgstr "reindexar"
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "inicio"
-
-msgid "pagetitle:setup"
-msgstr "Instalación"
-
-msgid "pagetitle:about"
-msgstr "acerca de phpList"
-
-msgid "pagetitle:attributes"
-msgstr "atributos"
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr "Por lista"
-
-msgid "pagetitle:catlists"
-msgstr "categorizar listas"
-
-msgid "pagetitle:editattributes"
-msgstr "editar atributos"
-
-msgid "pagetitle:editlist"
-msgstr "editar lista"
-
-msgid "pagetitle:checki18n"
-msgstr "comprobar i18n"
-
-msgid "pagetitle:importsimple"
-msgstr "importación directa"
-
-msgid "pagetitle:import4"
-msgstr "Importar"
-
-msgid "pagetitle:import3"
-msgstr "Importar"
-
-msgid "pagetitle:import2"
-msgstr "importar desde csv"
-
-msgid "pagetitle:import1"
-msgstr "importar desde un archivo"
-
-msgid "pagetitle:import"
-msgstr "Importar"
-
-msgid "pagetitle:export"
-msgstr "exportar"
-
-msgid "pagetitle:initialise"
-msgstr "inicializar"
-
-msgid "pagetitle:send"
-msgstr "enviar"
-
-msgid "pagetitle:preparesend"
-msgstr "preparar para enviar"
-
-msgid "pagetitle:sendprepared"
-msgstr "enviar preparados"
-
-msgid "pagetitle:members"
-msgstr "miembros"
-
-msgid "pagetitle:users"
-msgstr "usuarios"
-
-msgid "pagetitle:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitle:user"
-msgstr "usuario"
-
-msgid "pagetitle:userhistory"
-msgstr "historial de usuario"
-
-msgid "pagetitle:messages"
-msgstr "mensajes"
-
-msgid "pagetitle:message"
-msgstr "mensaje"
-
-msgid "pagetitle:processqueue"
-msgstr "procesar cola"
-
-msgid "pagetitle:defaults"
-msgstr "valores por defecto"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:templates"
-msgstr "plantillas"
-
-msgid "pagetitle:template"
-msgstr "plantilla"
-
-msgid "pagetitle:viewtemplate"
-msgstr "ver plantilla"
-
-msgid "pagetitle:configure"
-msgstr "configurar"
-
-msgid "pagetitle:admin"
-msgstr "administrador"
-
-msgid "pagetitle:admins"
-msgstr "administradores"
-
-msgid "pagetitle:adminattributes"
-msgstr "atributos de administradores"
-
-msgid "pagetitle:processbounces"
-msgstr "procesar rebotes"
-
-msgid "pagetitle:bounces"
-msgstr "rebotes"
-
-msgid "pagetitle:bounce"
-msgstr "rebote"
-
-msgid "pagetitle:spageedit"
-msgstr "editar página de suscripción"
-
-msgid "pagetitle:spage"
-msgstr "página de suscripción"
-
-msgid "pagetitle:eventlog"
-msgstr "registro de eventos"
-
-msgid "pagetitle:getrss"
-msgstr "levantar rss"
-
-msgid "pagetitle:viewrss"
-msgstr "ver rss"
-
-msgid "pagetitle:community"
-msgstr "comunidad"
-
-#, fuzzy
-msgid "pagetitle:vote"
-msgstr "votar"
-
-msgid "pagetitle:login"
-msgstr "ingresar"
-
-msgid "pagetitle:logout"
-msgstr "salir"
-
-msgid "pagetitle:mclicks"
-msgstr "mensajes cliqueados"
-
-msgid "pagetitle:uclicks"
-msgstr "urls cliqueadas"
-
-msgid "pagetitle:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-msgid "pagetitle:massremove"
-msgstr "eliminar masivamente"
-
-msgid "pagetitle:usermgt"
-msgstr "administrar usuarios"
-
-msgid "pagetitle:bouncemgt"
-msgstr "administrar rebotes"
-
-msgid "pagetitle:domainstats"
-msgstr "estadísticas de dominio"
-
-msgid "pagetitle:mviews"
-msgstr "mensajes vistos"
-
-msgid "pagetitle:statsmgt"
-msgstr "estadísticas"
-
-msgid "pagetitle:statsoverview"
-msgstr "estadísticas generales"
-
-msgid "pagetitle:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-msgid "pagetitle:dbcheck"
-msgstr "comprobar base de datos"
-
-msgid "pagetitle:importadmin"
-msgstr "importar administrador"
-
-msgid "pagetitle:dbadmin"
-msgstr "administrador de base de datos"
-
-msgid "pagetitle:usercheck"
-msgstr "comprobar usuario"
-
-msgid "pagetitle:listbounces"
-msgstr "rebotes por lista"
-
-msgid "pagetitle:bouncerules"
-msgstr "reglas de rebote"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-msgid "pagetitle:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitle:ajaxform"
-msgstr "forlumario ajax"
-
-msgid "pagetitle:updatetranslation"
-msgstr "actualizar traducción"
-
-msgid "pagetitle:reindex"
-msgstr "reindexar"
-
-#, fuzzy
-msgid "pagetitle:config"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitle:info"
-msgstr "Importar"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:setup"
-msgstr "Instalación"
-
-#, fuzzy
-msgid "pagetitlehover:about"
-msgstr "acerca de phpList"
-
-#, fuzzy
-msgid "pagetitlehover:attributes"
-msgstr "atributos"
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:catlists"
-msgstr "categorizar listas"
-
-#, fuzzy
-msgid "pagetitlehover:editattributes"
-msgstr "editar atributos"
-
-#, fuzzy
-msgid "pagetitlehover:editlist"
-msgstr "editar lista"
-
-#, fuzzy
-msgid "pagetitlehover:checki18n"
-msgstr "comprobar i18n"
-
-#, fuzzy
-msgid "pagetitlehover:importsimple"
-msgstr "importación directa"
-
-#, fuzzy
-msgid "pagetitlehover:import4"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import3"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import2"
-msgstr "importar desde csv"
-
-#, fuzzy
-msgid "pagetitlehover:import1"
-msgstr "importar desde un archivo"
-
-#, fuzzy
-msgid "pagetitlehover:import"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:export"
-msgstr "exportar"
-
-#, fuzzy
-msgid "pagetitlehover:initialise"
-msgstr "inicializar"
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:preparesend"
-msgstr "preparar para enviar"
-
-#, fuzzy
-msgid "pagetitlehover:sendprepared"
-msgstr "enviar preparados"
-
-#, fuzzy
-msgid "pagetitlehover:members"
-msgstr "miembros"
-
-#, fuzzy
-msgid "pagetitlehover:users"
-msgstr "usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:userhistory"
-msgstr "historial de usuario"
-
-#, fuzzy
-msgid "pagetitlehover:messages"
-msgstr "mensajes"
-
-#, fuzzy
-msgid "pagetitlehover:message"
-msgstr "mensaje"
-
-#, fuzzy
-msgid "pagetitlehover:processqueue"
-msgstr "procesar cola"
-
-#, fuzzy
-msgid "pagetitlehover:defaults"
-msgstr "valores por defecto"
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-#, fuzzy
-msgid "pagetitlehover:templates"
-msgstr "plantillas"
-
-#, fuzzy
-msgid "pagetitlehover:template"
-msgstr "plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:viewtemplate"
-msgstr "ver plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:configure"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitlehover:admin"
-msgstr "administrador"
-
-#, fuzzy
-msgid "pagetitlehover:admins"
-msgstr "administradores"
-
-#, fuzzy
-msgid "pagetitlehover:adminattributes"
-msgstr "atributos de administradores"
-
-#, fuzzy
-msgid "pagetitlehover:processbounces"
-msgstr "procesar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounces"
-msgstr "rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounce"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:spageedit"
-msgstr "editar página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:spage"
-msgstr "página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:eventlog"
-msgstr "registro de eventos"
-
-#, fuzzy
-msgid "pagetitlehover:getrss"
-msgstr "levantar rss"
-
-#, fuzzy
-msgid "pagetitlehover:viewrss"
-msgstr "ver rss"
-
-#, fuzzy
-msgid "pagetitlehover:community"
-msgstr "comunidad"
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:login"
-msgstr "ingresar"
-
-#, fuzzy
-msgid "pagetitlehover:logout"
-msgstr "salir"
-
-#, fuzzy
-msgid "pagetitlehover:mclicks"
-msgstr "mensajes cliqueados"
-
-#, fuzzy
-msgid "pagetitlehover:uclicks"
-msgstr "urls cliqueadas"
-
-#, fuzzy
-msgid "pagetitlehover:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:massremove"
-msgstr "eliminar masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:usermgt"
-msgstr "administrar usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:bouncemgt"
-msgstr "administrar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:domainstats"
-msgstr "estadísticas de dominio"
-
-#, fuzzy
-msgid "pagetitlehover:mviews"
-msgstr "mensajes vistos"
-
-#, fuzzy
-msgid "pagetitlehover:statsmgt"
-msgstr "estadísticas"
-
-#, fuzzy
-msgid "pagetitlehover:statsoverview"
-msgstr "estadísticas generales"
-
-#, fuzzy
-msgid "pagetitlehover:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-#, fuzzy
-msgid "pagetitlehover:dbcheck"
-msgstr "comprobar base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:importadmin"
-msgstr "importar administrador"
-
-#, fuzzy
-msgid "pagetitlehover:dbadmin"
-msgstr "administrador de base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:usercheck"
-msgstr "comprobar usuario"
-
-#, fuzzy
-msgid "pagetitlehover:listbounces"
-msgstr "rebotes por lista"
-
-#, fuzzy
-msgid "pagetitlehover:bouncerules"
-msgstr "reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitlehover:ajaxform"
-msgstr "forlumario ajax"
-
-#, fuzzy
-msgid "pagetitlehover:updatetranslation"
-msgstr "actualizar traducción"
-
-#, fuzzy
-msgid "pagetitlehover:reindex"
-msgstr "reindexar"
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "inicio"
-
-msgid "pagetitle:setup"
-msgstr "Instalación"
-
-msgid "pagetitle:about"
-msgstr "acerca de phpList"
-
-msgid "pagetitle:attributes"
-msgstr "atributos"
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr "Por lista"
-
-msgid "pagetitle:catlists"
-msgstr "categorizar listas"
-
-msgid "pagetitle:editattributes"
-msgstr "editar atributos"
-
-msgid "pagetitle:editlist"
-msgstr "editar lista"
-
-msgid "pagetitle:checki18n"
-msgstr "comprobar i18n"
-
-msgid "pagetitle:importsimple"
-msgstr "importación directa"
-
-msgid "pagetitle:import4"
-msgstr "Importar"
-
-msgid "pagetitle:import3"
-msgstr "Importar"
-
-msgid "pagetitle:import2"
-msgstr "importar desde csv"
-
-msgid "pagetitle:import1"
-msgstr "importar desde un archivo"
-
-msgid "pagetitle:import"
-msgstr "Importar"
-
-msgid "pagetitle:export"
-msgstr "exportar"
-
-msgid "pagetitle:initialise"
-msgstr "inicializar"
-
-msgid "pagetitle:send"
-msgstr "enviar"
-
-msgid "pagetitle:preparesend"
-msgstr "preparar para enviar"
-
-msgid "pagetitle:sendprepared"
-msgstr "enviar preparados"
-
-msgid "pagetitle:members"
-msgstr "miembros"
-
-msgid "pagetitle:users"
-msgstr "usuarios"
-
-msgid "pagetitle:reconcileusers"
-msgstr "conciliar usuarios"
-
-msgid "pagetitle:user"
-msgstr "usuario"
-
-msgid "pagetitle:userhistory"
-msgstr "historial de usuario"
-
-msgid "pagetitle:messages"
-msgstr "mensajes"
-
-msgid "pagetitle:message"
-msgstr "mensaje"
-
-msgid "pagetitle:processqueue"
-msgstr "procesar cola"
-
-msgid "pagetitle:defaults"
-msgstr "valores por defecto"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:templates"
-msgstr "plantillas"
-
-msgid "pagetitle:template"
-msgstr "plantilla"
-
-msgid "pagetitle:viewtemplate"
-msgstr "ver plantilla"
-
-msgid "pagetitle:configure"
-msgstr "configurar"
-
-msgid "pagetitle:admin"
-msgstr "administrador"
-
-msgid "pagetitle:admins"
-msgstr "administradores"
-
-msgid "pagetitle:adminattributes"
-msgstr "atributos de administradores"
-
-msgid "pagetitle:processbounces"
-msgstr "procesar rebotes"
-
-msgid "pagetitle:bounces"
-msgstr "rebotes"
-
-msgid "pagetitle:bounce"
-msgstr "rebote"
-
-msgid "pagetitle:spageedit"
-msgstr "editar página de suscripción"
-
-msgid "pagetitle:spage"
-msgstr "página de suscripción"
-
-msgid "pagetitle:eventlog"
-msgstr "registro de eventos"
-
-msgid "pagetitle:getrss"
-msgstr "levantar rss"
-
-msgid "pagetitle:viewrss"
-msgstr "ver rss"
-
-msgid "pagetitle:community"
-msgstr "comunidad"
-
-#, fuzzy
-msgid "pagetitle:vote"
-msgstr "votar"
-
-msgid "pagetitle:login"
-msgstr "ingresar"
-
-msgid "pagetitle:logout"
-msgstr "salir"
-
-msgid "pagetitle:mclicks"
-msgstr "mensajes cliqueados"
-
-msgid "pagetitle:uclicks"
-msgstr "urls cliqueadas"
-
-msgid "pagetitle:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-msgid "pagetitle:massremove"
-msgstr "eliminar masivamente"
-
-msgid "pagetitle:usermgt"
-msgstr "administrar usuarios"
-
-msgid "pagetitle:bouncemgt"
-msgstr "administrar rebotes"
-
-msgid "pagetitle:domainstats"
-msgstr "estadísticas de dominio"
-
-msgid "pagetitle:mviews"
-msgstr "mensajes vistos"
-
-msgid "pagetitle:statsmgt"
-msgstr "estadísticas"
-
-msgid "pagetitle:statsoverview"
-msgstr "estadísticas generales"
-
-msgid "pagetitle:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-msgid "pagetitle:dbcheck"
-msgstr "comprobar base de datos"
-
-msgid "pagetitle:importadmin"
-msgstr "importar administrador"
-
-msgid "pagetitle:dbadmin"
-msgstr "administrador de base de datos"
-
-msgid "pagetitle:usercheck"
-msgstr "comprobar usuario"
-
-msgid "pagetitle:listbounces"
-msgstr "rebotes por lista"
-
-msgid "pagetitle:bouncerules"
-msgstr "reglas de rebote"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-msgid "pagetitle:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitle:ajaxform"
-msgstr "forlumario ajax"
-
-msgid "pagetitle:updatetranslation"
-msgstr "actualizar traducción"
-
-msgid "pagetitle:reindex"
-msgstr "reindexar"
-
-#, fuzzy
-msgid "pagetitle:config"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitle:info"
-msgstr "Importar"
-
-msgid "pagetitle:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitle:converttoutf8"
-msgstr "Convertir a utf8"
-
-#, fuzzy
-msgid "pagetitlehover:home"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:setup"
-msgstr "Instalación"
-
-#, fuzzy
-msgid "pagetitlehover:about"
-msgstr "acerca de phpList"
-
-#, fuzzy
-msgid "pagetitlehover:attributes"
-msgstr "atributos"
-
-#, fuzzy
-msgid "pagetitlehover:stresstest"
-msgstr "mensajes"
-
-#, fuzzy
-msgid "pagetitlehover:list"
-msgstr "categorizar listas"
-
-#, fuzzy
-msgid "pagetitlehover:catlists"
-msgstr "categorizar listas"
-
-#, fuzzy
-msgid "pagetitlehover:editattributes"
-msgstr "editar atributos"
-
-#, fuzzy
-msgid "pagetitlehover:editlist"
-msgstr "editar lista"
-
-#, fuzzy
-msgid "pagetitlehover:checki18n"
-msgstr "comprobar i18n"
-
-#, fuzzy
-msgid "pagetitlehover:importsimple"
-msgstr "importación directa"
-
-#, fuzzy
-msgid "pagetitlehover:import4"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import3"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:import2"
-msgstr "importar desde csv"
-
-#, fuzzy
-msgid "pagetitlehover:import1"
-msgstr "importar desde un archivo"
-
-#, fuzzy
-msgid "pagetitlehover:import"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:export"
-msgstr "exportar"
-
-#, fuzzy
-msgid "pagetitlehover:initialise"
-msgstr "inicializar"
-
-#, fuzzy
-msgid "pagetitlehover:send"
-msgstr "Instalación"
-
-#, fuzzy
-msgid "pagetitlehover:preparesend"
-msgstr "preparar para enviar"
-
-#, fuzzy
-msgid "pagetitlehover:sendprepared"
-msgstr "enviar preparados"
-
-#, fuzzy
-msgid "pagetitlehover:members"
-msgstr "miembros"
-
-#, fuzzy
-msgid "pagetitlehover:users"
-msgstr "usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:reconcileusers"
-msgstr "conciliar usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:user"
-msgstr "usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:userhistory"
-msgstr "historial de usuario"
-
-#, fuzzy
-msgid "pagetitlehover:messages"
-msgstr "mensajes"
-
-#, fuzzy
-msgid "pagetitlehover:message"
-msgstr "mensaje"
-
-#, fuzzy
-msgid "pagetitlehover:processqueue"
-msgstr "procesar cola"
-
-#, fuzzy
-msgid "pagetitlehover:defaults"
-msgstr "valores por defecto"
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-#, fuzzy
-msgid "pagetitlehover:templates"
-msgstr "plantillas"
-
-#, fuzzy
-msgid "pagetitlehover:template"
-msgstr "plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:viewtemplate"
-msgstr "ver plantilla"
-
-#, fuzzy
-msgid "pagetitlehover:configure"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitlehover:admin"
-msgstr "administrador"
-
-#, fuzzy
-msgid "pagetitlehover:admins"
-msgstr "administradores"
-
-#, fuzzy
-msgid "pagetitlehover:adminattributes"
-msgstr "atributos de administradores"
-
-#, fuzzy
-msgid "pagetitlehover:processbounces"
-msgstr "procesar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounces"
-msgstr "rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:bounce"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:spageedit"
-msgstr "editar página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:spage"
-msgstr "página de suscripción"
-
-#, fuzzy
-msgid "pagetitlehover:eventlog"
-msgstr "registro de eventos"
-
-#, fuzzy
-msgid "pagetitlehover:getrss"
-msgstr "levantar rss"
-
-#, fuzzy
-msgid "pagetitlehover:viewrss"
-msgstr "ver rss"
-
-#, fuzzy
-msgid "pagetitlehover:community"
-msgstr "comunidad"
-
-#, fuzzy
-msgid "pagetitlehover:vote"
-msgstr "rebote"
-
-#, fuzzy
-msgid "pagetitlehover:login"
-msgstr "ingresar"
-
-#, fuzzy
-msgid "pagetitlehover:logout"
-msgstr "salir"
-
-#, fuzzy
-msgid "pagetitlehover:mclicks"
-msgstr "mensajes cliqueados"
-
-#, fuzzy
-msgid "pagetitlehover:uclicks"
-msgstr "urls cliqueadas"
-
-#, fuzzy
-msgid "pagetitlehover:massunconfirm"
-msgstr "desuscbribir masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:massremove"
-msgstr "eliminar masivamente"
-
-#, fuzzy
-msgid "pagetitlehover:usermgt"
-msgstr "administrar usuarios"
-
-#, fuzzy
-msgid "pagetitlehover:bouncemgt"
-msgstr "administrar rebotes"
-
-#, fuzzy
-msgid "pagetitlehover:domainstats"
-msgstr "estadísticas de dominio"
-
-#, fuzzy
-msgid "pagetitlehover:mviews"
-msgstr "mensajes vistos"
-
-#, fuzzy
-msgid "pagetitlehover:statsmgt"
-msgstr "estadísticas"
-
-#, fuzzy
-msgid "pagetitlehover:statsoverview"
-msgstr "estadísticas generales"
-
-#, fuzzy
-msgid "pagetitlehover:subscriberstats"
-msgstr "estadísticas de suscriptor"
-
-#, fuzzy
-msgid "pagetitlehover:dbcheck"
-msgstr "comprobar base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:importadmin"
-msgstr "importar administrador"
-
-#, fuzzy
-msgid "pagetitlehover:dbadmin"
-msgstr "administrador de base de datos"
-
-#, fuzzy
-msgid "pagetitlehover:usercheck"
-msgstr "comprobar usuario"
-
-#, fuzzy
-msgid "pagetitlehover:listbounces"
-msgstr "rebotes por lista"
-
-#, fuzzy
-msgid "pagetitlehover:bouncerules"
-msgstr "reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:checkbouncerules"
-msgstr "comprobar reglas de rebote"
-
-#, fuzzy
-msgid "pagetitlehover:translate"
-msgstr "traducir"
-
-#, fuzzy
-msgid "pagetitlehover:ajaxform"
-msgstr "forlumario ajax"
-
-#, fuzzy
-msgid "pagetitlehover:updatetranslation"
-msgstr "actualizar traducción"
-
-#, fuzzy
-msgid "pagetitlehover:reindex"
-msgstr "reindexar"
-
-#, fuzzy
-msgid "pagetitlehover:config"
-msgstr "configurar"
-
-#, fuzzy
-msgid "pagetitlehover:info"
-msgstr "Importar"
-
-#, fuzzy
-msgid "pagetitlehover:upgrade"
-msgstr "actualizar"
-
-msgid "pagetitlehover:converttoutf8"
-msgstr "Convertir a utf8"
 
 #~ msgid "invalid emails"
 #~ msgstr "correos no válidos"

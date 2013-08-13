@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-05 17:44+0000\n"
+"POT-Creation-Date: 2013-08-13 05:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -822,7 +822,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:360
 #: public_html/lists/admin/spage.php:57
 #: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/templates.php:36
+#: public_html/lists/admin/templates.php:38
 msgid "delete"
 msgstr ""
 
@@ -4221,7 +4221,7 @@ msgid "Possible Actions:"
 msgstr ""
 
 #: public_html/lists/admin/bounce.php:205
-#: public_html/lists/admin/templates.php:35
+#: public_html/lists/admin/templates.php:37
 msgid "ID"
 msgstr ""
 
@@ -4973,7 +4973,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr ""
 
-#: public_html/lists/admin/languages.php:557
+#: public_html/lists/admin/languages.php:561
 msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
@@ -5168,6 +5168,608 @@ msgstr ""
 
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:5
+msgid "pagetitle:home"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:7
+msgid "pagetitle:setup"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:9
+msgid "pagetitle:about"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:11
+msgid "pagetitle:attributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:13
+msgid "pagetitle:stresstest"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:15
+msgid "pagetitle:list"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:17
+msgid "pagetitle:catlists"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:19
+msgid "pagetitle:editattributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:21
+msgid "pagetitle:editlist"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:23
+msgid "pagetitle:checki18n"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:25
+msgid "pagetitle:importsimple"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:27
+msgid "pagetitle:import4"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:29
+msgid "pagetitle:import3"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:31
+msgid "pagetitle:import2"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:33
+msgid "pagetitle:import1"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:35
+msgid "pagetitle:import"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:37
+msgid "pagetitle:export"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:39
+msgid "pagetitle:initialise"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:41
+msgid "pagetitle:send"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:43
+msgid "pagetitle:preparesend"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:45
+msgid "pagetitle:sendprepared"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:47
+msgid "pagetitle:members"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:49
+msgid "pagetitle:users"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:51
+msgid "pagetitle:reconcileusers"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:53
+msgid "pagetitle:user"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:55
+msgid "pagetitle:userhistory"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:57
+msgid "pagetitle:messages"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:59
+msgid "pagetitle:message"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:61
+msgid "pagetitle:processqueue"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:63
+msgid "pagetitle:defaults"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:65
+#: public_html/lists/admin/pagetitles.php:153
+msgid "pagetitle:upgrade"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:67
+msgid "pagetitle:templates"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:69
+msgid "pagetitle:template"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:71
+msgid "pagetitle:viewtemplate"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:73
+msgid "pagetitle:configure"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:75
+msgid "pagetitle:admin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:77
+msgid "pagetitle:admins"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:79
+msgid "pagetitle:adminattributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:81
+msgid "pagetitle:processbounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:83
+msgid "pagetitle:bounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:85
+msgid "pagetitle:bounce"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:87
+msgid "pagetitle:spageedit"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:89
+msgid "pagetitle:spage"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:91
+msgid "pagetitle:eventlog"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:93
+msgid "pagetitle:getrss"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:95
+msgid "pagetitle:viewrss"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:97
+msgid "pagetitle:community"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:99
+msgid "pagetitle:vote"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:101
+msgid "pagetitle:login"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:103
+msgid "pagetitle:logout"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:105
+msgid "pagetitle:mclicks"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:107
+msgid "pagetitle:uclicks"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:109
+msgid "pagetitle:massunconfirm"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:111
+msgid "pagetitle:massremove"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:113
+msgid "pagetitle:usermgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:115
+msgid "pagetitle:bouncemgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:117
+msgid "pagetitle:domainstats"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:119
+msgid "pagetitle:mviews"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:121
+msgid "pagetitle:statsmgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:123
+msgid "pagetitle:statsoverview"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:125
+msgid "pagetitle:subscriberstats"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:127
+msgid "pagetitle:dbcheck"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:129
+msgid "pagetitle:importadmin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:131
+msgid "pagetitle:dbadmin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:133
+msgid "pagetitle:usercheck"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:135
+msgid "pagetitle:listbounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:137
+msgid "pagetitle:bouncerules"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:139
+msgid "pagetitle:checkbouncerules"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:141
+msgid "pagetitle:translate"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:143
+msgid "pagetitle:ajaxform"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:145
+msgid "pagetitle:updatetranslation"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:147
+msgid "pagetitle:reindex"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:149
+msgid "pagetitle:config"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:151
+msgid "pagetitle:info"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:155
+msgid "pagetitle:converttoutf8"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:157
+msgid "pagetitlehover:home"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:159
+msgid "pagetitlehover:setup"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:161
+msgid "pagetitlehover:about"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:163
+msgid "pagetitlehover:attributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:165
+msgid "pagetitlehover:stresstest"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:167
+msgid "pagetitlehover:list"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:169
+msgid "pagetitlehover:catlists"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:171
+msgid "pagetitlehover:editattributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:173
+msgid "pagetitlehover:editlist"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:175
+msgid "pagetitlehover:checki18n"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:177
+msgid "pagetitlehover:importsimple"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:179
+msgid "pagetitlehover:import4"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:181
+msgid "pagetitlehover:import3"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:183
+msgid "pagetitlehover:import2"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:185
+msgid "pagetitlehover:import1"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:187
+msgid "pagetitlehover:import"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:189
+msgid "pagetitlehover:export"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:191
+msgid "pagetitlehover:initialise"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:193
+msgid "pagetitlehover:send"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:195
+msgid "pagetitlehover:preparesend"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:197
+msgid "pagetitlehover:sendprepared"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:199
+msgid "pagetitlehover:members"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:201
+msgid "pagetitlehover:users"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:203
+msgid "pagetitlehover:reconcileusers"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:205
+msgid "pagetitlehover:user"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:207
+msgid "pagetitlehover:userhistory"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:209
+msgid "pagetitlehover:messages"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:211
+msgid "pagetitlehover:message"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:213
+msgid "pagetitlehover:processqueue"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:215
+msgid "pagetitlehover:defaults"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:217
+#: public_html/lists/admin/pagetitles.php:305
+msgid "pagetitlehover:upgrade"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:219
+msgid "pagetitlehover:templates"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:221
+msgid "pagetitlehover:template"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:223
+msgid "pagetitlehover:viewtemplate"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:225
+msgid "pagetitlehover:configure"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:227
+msgid "pagetitlehover:admin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:229
+msgid "pagetitlehover:admins"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:231
+msgid "pagetitlehover:adminattributes"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:233
+msgid "pagetitlehover:processbounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:235
+msgid "pagetitlehover:bounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:237
+msgid "pagetitlehover:bounce"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:239
+msgid "pagetitlehover:spageedit"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:241
+msgid "pagetitlehover:spage"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:243
+msgid "pagetitlehover:eventlog"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:245
+msgid "pagetitlehover:getrss"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:247
+msgid "pagetitlehover:viewrss"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:249
+msgid "pagetitlehover:community"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:251
+msgid "pagetitlehover:vote"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:253
+msgid "pagetitlehover:login"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:255
+msgid "pagetitlehover:logout"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:257
+msgid "pagetitlehover:mclicks"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:259
+msgid "pagetitlehover:uclicks"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:261
+msgid "pagetitlehover:massunconfirm"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:263
+msgid "pagetitlehover:massremove"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:265
+msgid "pagetitlehover:usermgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:267
+msgid "pagetitlehover:bouncemgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:269
+msgid "pagetitlehover:domainstats"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:271
+msgid "pagetitlehover:mviews"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:273
+msgid "pagetitlehover:statsmgt"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:275
+msgid "pagetitlehover:statsoverview"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:277
+msgid "pagetitlehover:subscriberstats"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:279
+msgid "pagetitlehover:dbcheck"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:281
+msgid "pagetitlehover:importadmin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:283
+msgid "pagetitlehover:dbadmin"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:285
+msgid "pagetitlehover:usercheck"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:287
+msgid "pagetitlehover:listbounces"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:289
+msgid "pagetitlehover:bouncerules"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:291
+msgid "pagetitlehover:checkbouncerules"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:293
+msgid "pagetitlehover:translate"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:295
+msgid "pagetitlehover:ajaxform"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:297
+msgid "pagetitlehover:updatetranslation"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:299
+msgid "pagetitlehover:reindex"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:301
+msgid "pagetitlehover:config"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:303
+msgid "pagetitlehover:info"
+msgstr ""
+
+#: public_html/lists/admin/pagetitles.php:307
+msgid "pagetitlehover:converttoutf8"
 msgstr ""
 
 #: public_html/lists/admin/spageedit.php:87
@@ -6156,7 +6758,7 @@ msgstr ""
 msgid "Adding unique index <b>%s</b> to %s<br/>"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:40
+#: public_html/lists/admin/messages.php:40 public_html/lists/admin/send.php:92
 msgid "Start a new campaign"
 msgstr ""
 
@@ -7020,19 +7622,19 @@ msgstr ""
 msgid "Existing templates"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:41
+#: public_html/lists/admin/templates.php:43
 msgid "Campaign Default"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:43
+#: public_html/lists/admin/templates.php:45
 msgid "System"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:51
+#: public_html/lists/admin/templates.php:53
 msgid "Add new Template"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:55
+#: public_html/lists/admin/templates.php:57
 msgid "Add default system template"
 msgstr ""
 
@@ -7253,1830 +7855,6 @@ msgstr ""
 #: public_html/lists/index.php:1046
 #, php-format
 msgid "Forward request from invalid user ID: %s"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr ""
-
-msgid "pagetitle:setup"
-msgstr ""
-
-msgid "pagetitle:about"
-msgstr ""
-
-msgid "pagetitle:attributes"
-msgstr ""
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr ""
-
-msgid "pagetitle:catlists"
-msgstr ""
-
-msgid "pagetitle:editattributes"
-msgstr ""
-
-msgid "pagetitle:editlist"
-msgstr ""
-
-msgid "pagetitle:checki18n"
-msgstr ""
-
-msgid "pagetitle:importsimple"
-msgstr ""
-
-msgid "pagetitle:import4"
-msgstr ""
-
-msgid "pagetitle:import3"
-msgstr ""
-
-msgid "pagetitle:import2"
-msgstr ""
-
-msgid "pagetitle:import1"
-msgstr ""
-
-msgid "pagetitle:import"
-msgstr ""
-
-msgid "pagetitle:export"
-msgstr ""
-
-msgid "pagetitle:initialise"
-msgstr ""
-
-msgid "pagetitle:send"
-msgstr ""
-
-msgid "pagetitle:preparesend"
-msgstr ""
-
-msgid "pagetitle:sendprepared"
-msgstr ""
-
-msgid "pagetitle:members"
-msgstr ""
-
-msgid "pagetitle:users"
-msgstr ""
-
-msgid "pagetitle:reconcileusers"
-msgstr ""
-
-msgid "pagetitle:user"
-msgstr ""
-
-msgid "pagetitle:userhistory"
-msgstr ""
-
-msgid "pagetitle:messages"
-msgstr ""
-
-msgid "pagetitle:message"
-msgstr ""
-
-msgid "pagetitle:processqueue"
-msgstr ""
-
-msgid "pagetitle:defaults"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:templates"
-msgstr ""
-
-msgid "pagetitle:template"
-msgstr ""
-
-msgid "pagetitle:viewtemplate"
-msgstr ""
-
-msgid "pagetitle:configure"
-msgstr ""
-
-msgid "pagetitle:admin"
-msgstr ""
-
-msgid "pagetitle:admins"
-msgstr ""
-
-msgid "pagetitle:adminattributes"
-msgstr ""
-
-msgid "pagetitle:processbounces"
-msgstr ""
-
-msgid "pagetitle:bounces"
-msgstr ""
-
-msgid "pagetitle:bounce"
-msgstr ""
-
-msgid "pagetitle:spageedit"
-msgstr ""
-
-msgid "pagetitle:spage"
-msgstr ""
-
-msgid "pagetitle:eventlog"
-msgstr ""
-
-msgid "pagetitle:getrss"
-msgstr ""
-
-msgid "pagetitle:viewrss"
-msgstr ""
-
-msgid "pagetitle:community"
-msgstr ""
-
-msgid "pagetitle:vote"
-msgstr ""
-
-msgid "pagetitle:login"
-msgstr ""
-
-msgid "pagetitle:logout"
-msgstr ""
-
-msgid "pagetitle:mclicks"
-msgstr ""
-
-msgid "pagetitle:uclicks"
-msgstr ""
-
-msgid "pagetitle:massunconfirm"
-msgstr ""
-
-msgid "pagetitle:massremove"
-msgstr ""
-
-msgid "pagetitle:usermgt"
-msgstr ""
-
-msgid "pagetitle:bouncemgt"
-msgstr ""
-
-msgid "pagetitle:domainstats"
-msgstr ""
-
-msgid "pagetitle:mviews"
-msgstr ""
-
-msgid "pagetitle:statsmgt"
-msgstr ""
-
-msgid "pagetitle:statsoverview"
-msgstr ""
-
-msgid "pagetitle:subscriberstats"
-msgstr ""
-
-msgid "pagetitle:dbcheck"
-msgstr ""
-
-msgid "pagetitle:importadmin"
-msgstr ""
-
-msgid "pagetitle:dbadmin"
-msgstr ""
-
-msgid "pagetitle:usercheck"
-msgstr ""
-
-msgid "pagetitle:listbounces"
-msgstr ""
-
-msgid "pagetitle:bouncerules"
-msgstr ""
-
-msgid "pagetitle:checkbouncerules"
-msgstr ""
-
-msgid "pagetitle:translate"
-msgstr ""
-
-msgid "pagetitle:ajaxform"
-msgstr ""
-
-msgid "pagetitle:updatetranslation"
-msgstr ""
-
-msgid "pagetitle:reindex"
-msgstr ""
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr ""
-
-msgid "pagetitle:setup"
-msgstr ""
-
-msgid "pagetitle:about"
-msgstr ""
-
-msgid "pagetitle:attributes"
-msgstr ""
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr ""
-
-msgid "pagetitle:catlists"
-msgstr ""
-
-msgid "pagetitle:editattributes"
-msgstr ""
-
-msgid "pagetitle:editlist"
-msgstr ""
-
-msgid "pagetitle:checki18n"
-msgstr ""
-
-msgid "pagetitle:importsimple"
-msgstr ""
-
-msgid "pagetitle:import4"
-msgstr ""
-
-msgid "pagetitle:import3"
-msgstr ""
-
-msgid "pagetitle:import2"
-msgstr ""
-
-msgid "pagetitle:import1"
-msgstr ""
-
-msgid "pagetitle:import"
-msgstr ""
-
-msgid "pagetitle:export"
-msgstr ""
-
-msgid "pagetitle:initialise"
-msgstr ""
-
-msgid "pagetitle:send"
-msgstr ""
-
-msgid "pagetitle:preparesend"
-msgstr ""
-
-msgid "pagetitle:sendprepared"
-msgstr ""
-
-msgid "pagetitle:members"
-msgstr ""
-
-msgid "pagetitle:users"
-msgstr ""
-
-msgid "pagetitle:reconcileusers"
-msgstr ""
-
-msgid "pagetitle:user"
-msgstr ""
-
-msgid "pagetitle:userhistory"
-msgstr ""
-
-msgid "pagetitle:messages"
-msgstr ""
-
-msgid "pagetitle:message"
-msgstr ""
-
-msgid "pagetitle:processqueue"
-msgstr ""
-
-msgid "pagetitle:defaults"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:templates"
-msgstr ""
-
-msgid "pagetitle:template"
-msgstr ""
-
-msgid "pagetitle:viewtemplate"
-msgstr ""
-
-msgid "pagetitle:configure"
-msgstr ""
-
-msgid "pagetitle:admin"
-msgstr ""
-
-msgid "pagetitle:admins"
-msgstr ""
-
-msgid "pagetitle:adminattributes"
-msgstr ""
-
-msgid "pagetitle:processbounces"
-msgstr ""
-
-msgid "pagetitle:bounces"
-msgstr ""
-
-msgid "pagetitle:bounce"
-msgstr ""
-
-msgid "pagetitle:spageedit"
-msgstr ""
-
-msgid "pagetitle:spage"
-msgstr ""
-
-msgid "pagetitle:eventlog"
-msgstr ""
-
-msgid "pagetitle:getrss"
-msgstr ""
-
-msgid "pagetitle:viewrss"
-msgstr ""
-
-msgid "pagetitle:community"
-msgstr ""
-
-msgid "pagetitle:vote"
-msgstr ""
-
-msgid "pagetitle:login"
-msgstr ""
-
-msgid "pagetitle:logout"
-msgstr ""
-
-msgid "pagetitle:mclicks"
-msgstr ""
-
-msgid "pagetitle:uclicks"
-msgstr ""
-
-msgid "pagetitle:massunconfirm"
-msgstr ""
-
-msgid "pagetitle:massremove"
-msgstr ""
-
-msgid "pagetitle:usermgt"
-msgstr ""
-
-msgid "pagetitle:bouncemgt"
-msgstr ""
-
-msgid "pagetitle:domainstats"
-msgstr ""
-
-msgid "pagetitle:mviews"
-msgstr ""
-
-msgid "pagetitle:statsmgt"
-msgstr ""
-
-msgid "pagetitle:statsoverview"
-msgstr ""
-
-msgid "pagetitle:subscriberstats"
-msgstr ""
-
-msgid "pagetitle:dbcheck"
-msgstr ""
-
-msgid "pagetitle:importadmin"
-msgstr ""
-
-msgid "pagetitle:dbadmin"
-msgstr ""
-
-msgid "pagetitle:usercheck"
-msgstr ""
-
-msgid "pagetitle:listbounces"
-msgstr ""
-
-msgid "pagetitle:bouncerules"
-msgstr ""
-
-msgid "pagetitle:checkbouncerules"
-msgstr ""
-
-msgid "pagetitle:translate"
-msgstr ""
-
-msgid "pagetitle:ajaxform"
-msgstr ""
-
-msgid "pagetitle:updatetranslation"
-msgstr ""
-
-msgid "pagetitle:reindex"
-msgstr ""
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr ""
-
-msgid "pagetitle:setup"
-msgstr ""
-
-msgid "pagetitle:about"
-msgstr ""
-
-msgid "pagetitle:attributes"
-msgstr ""
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr ""
-
-msgid "pagetitle:catlists"
-msgstr ""
-
-msgid "pagetitle:editattributes"
-msgstr ""
-
-msgid "pagetitle:editlist"
-msgstr ""
-
-msgid "pagetitle:checki18n"
-msgstr ""
-
-msgid "pagetitle:importsimple"
-msgstr ""
-
-msgid "pagetitle:import4"
-msgstr ""
-
-msgid "pagetitle:import3"
-msgstr ""
-
-msgid "pagetitle:import2"
-msgstr ""
-
-msgid "pagetitle:import1"
-msgstr ""
-
-msgid "pagetitle:import"
-msgstr ""
-
-msgid "pagetitle:export"
-msgstr ""
-
-msgid "pagetitle:initialise"
-msgstr ""
-
-msgid "pagetitle:send"
-msgstr ""
-
-msgid "pagetitle:preparesend"
-msgstr ""
-
-msgid "pagetitle:sendprepared"
-msgstr ""
-
-msgid "pagetitle:members"
-msgstr ""
-
-msgid "pagetitle:users"
-msgstr ""
-
-msgid "pagetitle:reconcileusers"
-msgstr ""
-
-msgid "pagetitle:user"
-msgstr ""
-
-msgid "pagetitle:userhistory"
-msgstr ""
-
-msgid "pagetitle:messages"
-msgstr ""
-
-msgid "pagetitle:message"
-msgstr ""
-
-msgid "pagetitle:processqueue"
-msgstr ""
-
-msgid "pagetitle:defaults"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:templates"
-msgstr ""
-
-msgid "pagetitle:template"
-msgstr ""
-
-msgid "pagetitle:viewtemplate"
-msgstr ""
-
-msgid "pagetitle:configure"
-msgstr ""
-
-msgid "pagetitle:admin"
-msgstr ""
-
-msgid "pagetitle:admins"
-msgstr ""
-
-msgid "pagetitle:adminattributes"
-msgstr ""
-
-msgid "pagetitle:processbounces"
-msgstr ""
-
-msgid "pagetitle:bounces"
-msgstr ""
-
-msgid "pagetitle:bounce"
-msgstr ""
-
-msgid "pagetitle:spageedit"
-msgstr ""
-
-msgid "pagetitle:spage"
-msgstr ""
-
-msgid "pagetitle:eventlog"
-msgstr ""
-
-msgid "pagetitle:getrss"
-msgstr ""
-
-msgid "pagetitle:viewrss"
-msgstr ""
-
-msgid "pagetitle:community"
-msgstr ""
-
-msgid "pagetitle:vote"
-msgstr ""
-
-msgid "pagetitle:login"
-msgstr ""
-
-msgid "pagetitle:logout"
-msgstr ""
-
-msgid "pagetitle:mclicks"
-msgstr ""
-
-msgid "pagetitle:uclicks"
-msgstr ""
-
-msgid "pagetitle:massunconfirm"
-msgstr ""
-
-msgid "pagetitle:massremove"
-msgstr ""
-
-msgid "pagetitle:usermgt"
-msgstr ""
-
-msgid "pagetitle:bouncemgt"
-msgstr ""
-
-msgid "pagetitle:domainstats"
-msgstr ""
-
-msgid "pagetitle:mviews"
-msgstr ""
-
-msgid "pagetitle:statsmgt"
-msgstr ""
-
-msgid "pagetitle:statsoverview"
-msgstr ""
-
-msgid "pagetitle:subscriberstats"
-msgstr ""
-
-msgid "pagetitle:dbcheck"
-msgstr ""
-
-msgid "pagetitle:importadmin"
-msgstr ""
-
-msgid "pagetitle:dbadmin"
-msgstr ""
-
-msgid "pagetitle:usercheck"
-msgstr ""
-
-msgid "pagetitle:listbounces"
-msgstr ""
-
-msgid "pagetitle:bouncerules"
-msgstr ""
-
-msgid "pagetitle:checkbouncerules"
-msgstr ""
-
-msgid "pagetitle:translate"
-msgstr ""
-
-msgid "pagetitle:ajaxform"
-msgstr ""
-
-msgid "pagetitle:updatetranslation"
-msgstr ""
-
-msgid "pagetitle:reindex"
-msgstr ""
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr ""
-
-msgid "pagetitle:setup"
-msgstr ""
-
-msgid "pagetitle:about"
-msgstr ""
-
-msgid "pagetitle:attributes"
-msgstr ""
-
-msgid "pagetitle:stresstest"
-msgstr ""
-
-msgid "pagetitle:list"
-msgstr ""
-
-msgid "pagetitle:catlists"
-msgstr ""
-
-msgid "pagetitle:editattributes"
-msgstr ""
-
-msgid "pagetitle:editlist"
-msgstr ""
-
-msgid "pagetitle:checki18n"
-msgstr ""
-
-msgid "pagetitle:importsimple"
-msgstr ""
-
-msgid "pagetitle:import4"
-msgstr ""
-
-msgid "pagetitle:import3"
-msgstr ""
-
-msgid "pagetitle:import2"
-msgstr ""
-
-msgid "pagetitle:import1"
-msgstr ""
-
-msgid "pagetitle:import"
-msgstr ""
-
-msgid "pagetitle:export"
-msgstr ""
-
-msgid "pagetitle:initialise"
-msgstr ""
-
-msgid "pagetitle:send"
-msgstr ""
-
-msgid "pagetitle:preparesend"
-msgstr ""
-
-msgid "pagetitle:sendprepared"
-msgstr ""
-
-msgid "pagetitle:members"
-msgstr ""
-
-msgid "pagetitle:users"
-msgstr ""
-
-msgid "pagetitle:reconcileusers"
-msgstr ""
-
-msgid "pagetitle:user"
-msgstr ""
-
-msgid "pagetitle:userhistory"
-msgstr ""
-
-msgid "pagetitle:messages"
-msgstr ""
-
-msgid "pagetitle:message"
-msgstr ""
-
-msgid "pagetitle:processqueue"
-msgstr ""
-
-msgid "pagetitle:defaults"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:templates"
-msgstr ""
-
-msgid "pagetitle:template"
-msgstr ""
-
-msgid "pagetitle:viewtemplate"
-msgstr ""
-
-msgid "pagetitle:configure"
-msgstr ""
-
-msgid "pagetitle:admin"
-msgstr ""
-
-msgid "pagetitle:admins"
-msgstr ""
-
-msgid "pagetitle:adminattributes"
-msgstr ""
-
-msgid "pagetitle:processbounces"
-msgstr ""
-
-msgid "pagetitle:bounces"
-msgstr ""
-
-msgid "pagetitle:bounce"
-msgstr ""
-
-msgid "pagetitle:spageedit"
-msgstr ""
-
-msgid "pagetitle:spage"
-msgstr ""
-
-msgid "pagetitle:eventlog"
-msgstr ""
-
-msgid "pagetitle:getrss"
-msgstr ""
-
-msgid "pagetitle:viewrss"
-msgstr ""
-
-msgid "pagetitle:community"
-msgstr ""
-
-msgid "pagetitle:vote"
-msgstr ""
-
-msgid "pagetitle:login"
-msgstr ""
-
-msgid "pagetitle:logout"
-msgstr ""
-
-msgid "pagetitle:mclicks"
-msgstr ""
-
-msgid "pagetitle:uclicks"
-msgstr ""
-
-msgid "pagetitle:massunconfirm"
-msgstr ""
-
-msgid "pagetitle:massremove"
-msgstr ""
-
-msgid "pagetitle:usermgt"
-msgstr ""
-
-msgid "pagetitle:bouncemgt"
-msgstr ""
-
-msgid "pagetitle:domainstats"
-msgstr ""
-
-msgid "pagetitle:mviews"
-msgstr ""
-
-msgid "pagetitle:statsmgt"
-msgstr ""
-
-msgid "pagetitle:statsoverview"
-msgstr ""
-
-msgid "pagetitle:subscriberstats"
-msgstr ""
-
-msgid "pagetitle:dbcheck"
-msgstr ""
-
-msgid "pagetitle:importadmin"
-msgstr ""
-
-msgid "pagetitle:dbadmin"
-msgstr ""
-
-msgid "pagetitle:usercheck"
-msgstr ""
-
-msgid "pagetitle:listbounces"
-msgstr ""
-
-msgid "pagetitle:bouncerules"
-msgstr ""
-
-msgid "pagetitle:checkbouncerules"
-msgstr ""
-
-msgid "pagetitle:translate"
-msgstr ""
-
-msgid "pagetitle:ajaxform"
-msgstr ""
-
-msgid "pagetitle:updatetranslation"
-msgstr ""
-
-msgid "pagetitle:reindex"
-msgstr ""
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr ""
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
 msgstr ""
 
 #~ msgid "Hello World"

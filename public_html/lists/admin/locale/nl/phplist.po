@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-05 17:43+0000\n"
-"PO-Revision-Date: 2013-08-04 06:58+0000\n"
+"POT-Creation-Date: 2013-08-13 05:09+0000\n"
+"PO-Revision-Date: 2013-08-08 11:23+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1375599497.0\n"
+"X-POOTLE-MTIME: 1375960988.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -912,7 +912,7 @@ msgstr "Geschiedenis"
 #: public_html/lists/admin/messages.php:360
 #: public_html/lists/admin/spage.php:57
 #: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/templates.php:36
+#: public_html/lists/admin/templates.php:38
 msgid "delete"
 msgstr "verwijder"
 
@@ -3643,14 +3643,14 @@ msgstr "Verstuur een testbericht"
 
 #: public_html/lists/admin/send_core.php:904
 msgid " to email address(es)"
-msgstr " naar adressen"
+msgstr " naar het volgende e-mail adres of adressen"
 
 #: public_html/lists/admin/send_core.php:905
 #: public_html/lists/admin/template.php:311
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
-"(Plaats een komma tussen meerdere e-mail adressen. Alle e-mail adressen "
-"moeten bestaande abonnees zijn)"
+"Plaats een komma tussen meerdere e-mail adressen. Alle ingevoerde e-mail "
+"adressen moeten van bestaande abonnees zijn."
 
 #: public_html/lists/admin/send_core.php:918
 msgid "email to alert when sending of this message starts"
@@ -4466,7 +4466,7 @@ msgid "Possible Actions:"
 msgstr "Mogelijke acties:"
 
 #: public_html/lists/admin/bounce.php:205
-#: public_html/lists/admin/templates.php:35
+#: public_html/lists/admin/templates.php:37
 msgid "ID"
 msgstr "Nummer"
 
@@ -5298,7 +5298,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr "Maak regels voor teruggekaatste e-mail"
 
-#: public_html/lists/admin/languages.php:557
+#: public_html/lists/admin/languages.php:561
 msgid "over treshold, user marked unconfirmed"
 msgstr "over drempel, abonnee gemarkeerd als niet bevestigd"
 
@@ -5502,6 +5502,608 @@ msgstr "en"
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
 msgstr "bestaande abonnees"
+
+#: public_html/lists/admin/pagetitles.php:5
+msgid "pagetitle:home"
+msgstr "Startpagina"
+
+#: public_html/lists/admin/pagetitles.php:7
+msgid "pagetitle:setup"
+msgstr "Status van phpList"
+
+#: public_html/lists/admin/pagetitles.php:9
+msgid "pagetitle:about"
+msgstr "Over phpList"
+
+#: public_html/lists/admin/pagetitles.php:11
+msgid "pagetitle:attributes"
+msgstr "Abonnee velden toevoegen en bewerken"
+
+#: public_html/lists/admin/pagetitles.php:13
+msgid "pagetitle:stresstest"
+msgstr "Test onder stress"
+
+#: public_html/lists/admin/pagetitles.php:15
+msgid "pagetitle:list"
+msgstr "Verzendlijsten"
+
+#: public_html/lists/admin/pagetitles.php:17
+msgid "pagetitle:catlists"
+msgstr "Verzendlijsten categoriseren"
+
+#: public_html/lists/admin/pagetitles.php:19
+msgid "pagetitle:editattributes"
+msgstr "Bewerk velden"
+
+#: public_html/lists/admin/pagetitles.php:21
+msgid "pagetitle:editlist"
+msgstr "Bewerk een verzendlijst"
+
+#: public_html/lists/admin/pagetitles.php:23
+msgid "pagetitle:checki18n"
+msgstr "Controleer vertalingen"
+
+#: public_html/lists/admin/pagetitles.php:25
+msgid "pagetitle:importsimple"
+msgstr "Importeer met kopiëren en plakken"
+
+#: public_html/lists/admin/pagetitles.php:27
+msgid "pagetitle:import4"
+msgstr "Importeer abonnees uit een andere database"
+
+#: public_html/lists/admin/pagetitles.php:29
+msgid "pagetitle:import3"
+msgstr "Importeer abonnees uit een IMAP folder"
+
+#: public_html/lists/admin/pagetitles.php:31
+msgid "pagetitle:import2"
+msgstr "Importeer abonnees uit een CSV bestand"
+
+#: public_html/lists/admin/pagetitles.php:33
+msgid "pagetitle:import1"
+msgstr "Importeer een bestand"
+
+#: public_html/lists/admin/pagetitles.php:35
+msgid "pagetitle:import"
+msgstr "Importeren"
+
+#: public_html/lists/admin/pagetitles.php:37
+msgid "pagetitle:export"
+msgstr "Exporteren"
+
+#: public_html/lists/admin/pagetitles.php:39
+msgid "pagetitle:initialise"
+msgstr "Database tabellen aanmaken"
+
+#: public_html/lists/admin/pagetitles.php:41
+msgid "pagetitle:send"
+msgstr "Verzenden"
+
+#: public_html/lists/admin/pagetitles.php:43
+msgid "pagetitle:preparesend"
+msgstr "Bereid het verzenden voor"
+
+#: public_html/lists/admin/pagetitles.php:45
+msgid "pagetitle:sendprepared"
+msgstr "Klaar om te verzenden"
+
+#: public_html/lists/admin/pagetitles.php:47
+msgid "pagetitle:members"
+msgstr "Abonnees"
+
+#: public_html/lists/admin/pagetitles.php:49
+msgid "pagetitle:users"
+msgstr "Zoeken en toevoegen"
+
+#: public_html/lists/admin/pagetitles.php:51
+msgid "pagetitle:reconcileusers"
+msgstr "Aanpassen en opschonen"
+
+#: public_html/lists/admin/pagetitles.php:53
+msgid "pagetitle:user"
+msgstr "Gebruikers"
+
+#: public_html/lists/admin/pagetitles.php:55
+msgid "pagetitle:userhistory"
+msgstr "Gebruikersgescheidenis"
+
+#: public_html/lists/admin/pagetitles.php:57
+msgid "pagetitle:messages"
+msgstr "Overzicht"
+
+#: public_html/lists/admin/pagetitles.php:59
+msgid "pagetitle:message"
+msgstr "Bericht"
+
+#: public_html/lists/admin/pagetitles.php:61
+msgid "pagetitle:processqueue"
+msgstr "Wachtrij verwerken"
+
+#: public_html/lists/admin/pagetitles.php:63
+msgid "pagetitle:defaults"
+msgstr "Standaard"
+
+#: public_html/lists/admin/pagetitles.php:65
+#: public_html/lists/admin/pagetitles.php:153
+msgid "pagetitle:upgrade"
+msgstr "Database versie bijwerken"
+
+#: public_html/lists/admin/pagetitles.php:67
+msgid "pagetitle:templates"
+msgstr "Sjablonen"
+
+#: public_html/lists/admin/pagetitles.php:69
+msgid "pagetitle:template"
+msgstr "Sjabloon"
+
+#: public_html/lists/admin/pagetitles.php:71
+msgid "pagetitle:viewtemplate"
+msgstr "Bekijk sjabloon"
+
+#: public_html/lists/admin/pagetitles.php:73
+msgid "pagetitle:configure"
+msgstr "Instellingen"
+
+#: public_html/lists/admin/pagetitles.php:75
+msgid "pagetitle:admin"
+msgstr "Beheerder"
+
+#: public_html/lists/admin/pagetitles.php:77
+msgid "pagetitle:admins"
+msgstr "Beheerdersoverzicht"
+
+#: public_html/lists/admin/pagetitles.php:79
+msgid "pagetitle:adminattributes"
+msgstr "Beheerdersvelden"
+
+#: public_html/lists/admin/pagetitles.php:81
+msgid "pagetitle:processbounces"
+msgstr "Teruggekaatste e-mail analyseren"
+
+#: public_html/lists/admin/pagetitles.php:83
+msgid "pagetitle:bounces"
+msgstr "Teruggekaatste e-mail "
+
+#: public_html/lists/admin/pagetitles.php:85
+msgid "pagetitle:bounce"
+msgstr "Terugkaatsen"
+
+#: public_html/lists/admin/pagetitles.php:87
+msgid "pagetitle:spageedit"
+msgstr "Inschrijf pagina bewerken"
+
+#: public_html/lists/admin/pagetitles.php:89
+msgid "pagetitle:spage"
+msgstr "Abonnee inschrijf pagina's"
+
+#: public_html/lists/admin/pagetitles.php:91
+msgid "pagetitle:eventlog"
+msgstr "Logboek"
+
+#: public_html/lists/admin/pagetitles.php:93
+msgid "pagetitle:getrss"
+msgstr "RSS"
+
+#: public_html/lists/admin/pagetitles.php:95
+msgid "pagetitle:viewrss"
+msgstr "Bekijk RSS"
+
+#: public_html/lists/admin/pagetitles.php:97
+msgid "pagetitle:community"
+msgstr "phpList gemeenschap"
+
+#: public_html/lists/admin/pagetitles.php:99
+msgid "pagetitle:vote"
+msgstr "Stem"
+
+#: public_html/lists/admin/pagetitles.php:101
+msgid "pagetitle:login"
+msgstr "Aanmelden"
+
+#: public_html/lists/admin/pagetitles.php:103
+msgid "pagetitle:logout"
+msgstr "Afmelden"
+
+#: public_html/lists/admin/pagetitles.php:105
+msgid "pagetitle:mclicks"
+msgstr "Bekeken berichten"
+
+#: public_html/lists/admin/pagetitles.php:107
+msgid "pagetitle:uclicks"
+msgstr "Aangeklikte berichten"
+
+#: public_html/lists/admin/pagetitles.php:109
+msgid "pagetitle:massunconfirm"
+msgstr "Markeren als niet bevestigd"
+
+#: public_html/lists/admin/pagetitles.php:111
+msgid "pagetitle:massremove"
+msgstr "Grote hoeveelheden abonnees verwijderen"
+
+#: public_html/lists/admin/pagetitles.php:113
+msgid "pagetitle:usermgt"
+msgstr "Beheer functies"
+
+#: public_html/lists/admin/pagetitles.php:115
+msgid "pagetitle:bouncemgt"
+msgstr "Beheer teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:117
+msgid "pagetitle:domainstats"
+msgstr "Bezochte domeinen"
+
+#: public_html/lists/admin/pagetitles.php:119
+msgid "pagetitle:mviews"
+msgstr "Verzonden berichten"
+
+#: public_html/lists/admin/pagetitles.php:121
+msgid "pagetitle:statsmgt"
+msgstr "statsmgt?"
+
+#: public_html/lists/admin/pagetitles.php:123
+msgid "pagetitle:statsoverview"
+msgstr "Overzicht"
+
+#: public_html/lists/admin/pagetitles.php:125
+msgid "pagetitle:subscriberstats"
+msgstr "Abonnee statistieken"
+
+#: public_html/lists/admin/pagetitles.php:127
+msgid "pagetitle:dbcheck"
+msgstr "Database controle"
+
+#: public_html/lists/admin/pagetitles.php:129
+msgid "pagetitle:importadmin"
+msgstr "Beheerders importeren"
+
+#: public_html/lists/admin/pagetitles.php:131
+msgid "pagetitle:dbadmin"
+msgstr "dbadmin?"
+
+#: public_html/lists/admin/pagetitles.php:133
+msgid "pagetitle:usercheck"
+msgstr "Controleer gebruikers"
+
+#: public_html/lists/admin/pagetitles.php:135
+msgid "pagetitle:listbounces"
+msgstr "Teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:137
+msgid "pagetitle:bouncerules"
+msgstr "Teruggekaatste e-mail regels"
+
+#: public_html/lists/admin/pagetitles.php:139
+msgid "pagetitle:checkbouncerules"
+msgstr "Analyseer regels teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:141
+msgid "pagetitle:translate"
+msgstr "Vertaling"
+
+#: public_html/lists/admin/pagetitles.php:143
+msgid "pagetitle:ajaxform"
+msgstr "?"
+
+#: public_html/lists/admin/pagetitles.php:145
+msgid "pagetitle:updatetranslation"
+msgstr "Vertaling bijwerken"
+
+#: public_html/lists/admin/pagetitles.php:147
+msgid "pagetitle:reindex"
+msgstr "Database opnieuw indexeren"
+
+#: public_html/lists/admin/pagetitles.php:149
+msgid "pagetitle:config"
+msgstr "Instellingen"
+
+#: public_html/lists/admin/pagetitles.php:151
+msgid "pagetitle:info"
+msgstr "Importeren"
+
+#: public_html/lists/admin/pagetitles.php:155
+msgid "pagetitle:converttoutf8"
+msgstr "Converttoutf8"
+
+#: public_html/lists/admin/pagetitles.php:157
+msgid "pagetitlehover:home"
+msgstr "Ga naar de Startpagina"
+
+#: public_html/lists/admin/pagetitles.php:159
+msgid "pagetitlehover:setup"
+msgstr "Ga naar de instellingen van het programma"
+
+#: public_html/lists/admin/pagetitles.php:161
+msgid "pagetitlehover:about"
+msgstr "Over phpList: versie ontwikkelaars, vertalers en dankwoord"
+
+#: public_html/lists/admin/pagetitles.php:163
+msgid "pagetitlehover:attributes"
+msgstr "Land- en bedrijfspecifieke abonnee velden toevoegen en bewerken"
+
+#: public_html/lists/admin/pagetitles.php:165
+msgid "pagetitlehover:stresstest"
+msgstr "Test onder stress"
+
+#: public_html/lists/admin/pagetitles.php:167
+msgid "pagetitlehover:list"
+msgstr "Verzendlijsten aanmaken en bewerken"
+
+#: public_html/lists/admin/pagetitles.php:169
+msgid "pagetitlehover:catlists"
+msgstr "Verzendlijsten categoriseren"
+
+#: public_html/lists/admin/pagetitles.php:171
+msgid "pagetitlehover:editattributes"
+msgstr "Bewerk velden"
+
+#: public_html/lists/admin/pagetitles.php:173
+msgid "pagetitlehover:editlist"
+msgstr "Bewerk een verzendlijst"
+
+#: public_html/lists/admin/pagetitles.php:175
+msgid "pagetitlehover:checki18n"
+msgstr "Controleer vertalingen"
+
+#: public_html/lists/admin/pagetitles.php:177
+msgid "pagetitlehover:importsimple"
+msgstr "Importeer met kopiëren en plakken"
+
+#: public_html/lists/admin/pagetitles.php:179
+msgid "pagetitlehover:import4"
+msgstr "Importeer abonnees uit een andere database"
+
+#: public_html/lists/admin/pagetitles.php:181
+msgid "pagetitlehover:import3"
+msgstr "Importeer abonnees uit een IMAP folder"
+
+#: public_html/lists/admin/pagetitles.php:183
+msgid "pagetitlehover:import2"
+msgstr "Importeer abonnees uit een CSV bestand"
+
+#: public_html/lists/admin/pagetitles.php:185
+msgid "pagetitlehover:import1"
+msgstr "Importeer een bestand"
+
+#: public_html/lists/admin/pagetitles.php:187
+msgid "pagetitlehover:import"
+msgstr "Importeren"
+
+#: public_html/lists/admin/pagetitles.php:189
+msgid "pagetitlehover:export"
+msgstr "Exporteren"
+
+#: public_html/lists/admin/pagetitles.php:191
+msgid "pagetitlehover:initialise"
+msgstr "Database tabellen aanmaken"
+
+#: public_html/lists/admin/pagetitles.php:193
+msgid "pagetitlehover:send"
+msgstr "Verzenden"
+
+#: public_html/lists/admin/pagetitles.php:195
+msgid "pagetitlehover:preparesend"
+msgstr "Bereid het verzenden voor"
+
+#: public_html/lists/admin/pagetitles.php:197
+msgid "pagetitlehover:sendprepared"
+msgstr "Klaar om te verzenden"
+
+#: public_html/lists/admin/pagetitles.php:199
+msgid "pagetitlehover:members"
+msgstr "Abonnees"
+
+#: public_html/lists/admin/pagetitles.php:201
+msgid "pagetitlehover:users"
+msgstr "Zoeken en toevoegen"
+
+#: public_html/lists/admin/pagetitles.php:203
+msgid "pagetitlehover:reconcileusers"
+msgstr "Aanpassen en opschonen"
+
+#: public_html/lists/admin/pagetitles.php:205
+msgid "pagetitlehover:user"
+msgstr "Zoeken en toevoegen"
+
+#: public_html/lists/admin/pagetitles.php:207
+msgid "pagetitlehover:userhistory"
+msgstr "Gebruikersgescheidenis"
+
+#: public_html/lists/admin/pagetitles.php:209
+msgid "pagetitlehover:messages"
+msgstr "Berichten"
+
+#: public_html/lists/admin/pagetitles.php:211
+msgid "pagetitlehover:message"
+msgstr "Bericht"
+
+#: public_html/lists/admin/pagetitles.php:213
+msgid "pagetitlehover:processqueue"
+msgstr "Wachtrij verwerken"
+
+#: public_html/lists/admin/pagetitles.php:215
+msgid "pagetitlehover:defaults"
+msgstr "Standaard"
+
+#: public_html/lists/admin/pagetitles.php:217
+#: public_html/lists/admin/pagetitles.php:305
+msgid "pagetitlehover:upgrade"
+msgstr "Database versie bijwerken"
+
+#: public_html/lists/admin/pagetitles.php:219
+msgid "pagetitlehover:templates"
+msgstr "Sjablonen"
+
+#: public_html/lists/admin/pagetitles.php:221
+msgid "pagetitlehover:template"
+msgstr "Sjabloon"
+
+#: public_html/lists/admin/pagetitles.php:223
+msgid "pagetitlehover:viewtemplate"
+msgstr "Bekijk sjabloon"
+
+#: public_html/lists/admin/pagetitles.php:225
+msgid "pagetitlehover:configure"
+msgstr "Instellingen"
+
+#: public_html/lists/admin/pagetitles.php:227
+msgid "pagetitlehover:admin"
+msgstr "Beheerder"
+
+#: public_html/lists/admin/pagetitles.php:229
+msgid "pagetitlehover:admins"
+msgstr "Beheerdersoverzicht"
+
+#: public_html/lists/admin/pagetitles.php:231
+msgid "pagetitlehover:adminattributes"
+msgstr "Beheerdersvelden"
+
+#: public_html/lists/admin/pagetitles.php:233
+msgid "pagetitlehover:processbounces"
+msgstr "Teruggekaatste e-mail analyseren"
+
+#: public_html/lists/admin/pagetitles.php:235
+msgid "pagetitlehover:bounces"
+msgstr "Teruggekaatste e-mail "
+
+#: public_html/lists/admin/pagetitles.php:237
+msgid "pagetitlehover:bounce"
+msgstr "Terugkaatsen"
+
+#: public_html/lists/admin/pagetitles.php:239
+msgid "pagetitlehover:spageedit"
+msgstr "Inschrijf pagina bewerken"
+
+#: public_html/lists/admin/pagetitles.php:241
+msgid "pagetitlehover:spage"
+msgstr "Abonnee inschrijf pagina's"
+
+#: public_html/lists/admin/pagetitles.php:243
+msgid "pagetitlehover:eventlog"
+msgstr "Logboek"
+
+#: public_html/lists/admin/pagetitles.php:245
+msgid "pagetitlehover:getrss"
+msgstr "RSS"
+
+#: public_html/lists/admin/pagetitles.php:247
+msgid "pagetitlehover:viewrss"
+msgstr "Bekijk RSS"
+
+#: public_html/lists/admin/pagetitles.php:249
+msgid "pagetitlehover:community"
+msgstr "phpList gemeenschap"
+
+#: public_html/lists/admin/pagetitles.php:251
+msgid "pagetitlehover:vote"
+msgstr "Terugkaatsen"
+
+#: public_html/lists/admin/pagetitles.php:253
+msgid "pagetitlehover:login"
+msgstr "Aanmelden"
+
+#: public_html/lists/admin/pagetitles.php:255
+msgid "pagetitlehover:logout"
+msgstr "Afmelden"
+
+#: public_html/lists/admin/pagetitles.php:257
+msgid "pagetitlehover:mclicks"
+msgstr "Bekeken berichten"
+
+#: public_html/lists/admin/pagetitles.php:259
+msgid "pagetitlehover:uclicks"
+msgstr "Aangeklikte berichten"
+
+#: public_html/lists/admin/pagetitles.php:261
+msgid "pagetitlehover:massunconfirm"
+msgstr "Markeren als niet bevestigd"
+
+#: public_html/lists/admin/pagetitles.php:263
+msgid "pagetitlehover:massremove"
+msgstr "Grote hoeveelheden abonnees verwijderen"
+
+#: public_html/lists/admin/pagetitles.php:265
+msgid "pagetitlehover:usermgt"
+msgstr "Beheer functies"
+
+#: public_html/lists/admin/pagetitles.php:267
+msgid "pagetitlehover:bouncemgt"
+msgstr "Beheer teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:269
+msgid "pagetitlehover:domainstats"
+msgstr "Bezochte domeinen"
+
+#: public_html/lists/admin/pagetitles.php:271
+msgid "pagetitlehover:mviews"
+msgstr "Verzonden berichten"
+
+#: public_html/lists/admin/pagetitles.php:273
+msgid "pagetitlehover:statsmgt"
+msgstr "statsmgt?"
+
+#: public_html/lists/admin/pagetitles.php:275
+msgid "pagetitlehover:statsoverview"
+msgstr "Overzicht"
+
+#: public_html/lists/admin/pagetitles.php:277
+msgid "pagetitlehover:subscriberstats"
+msgstr "Abonnee statistieken"
+
+#: public_html/lists/admin/pagetitles.php:279
+msgid "pagetitlehover:dbcheck"
+msgstr "Database controle"
+
+#: public_html/lists/admin/pagetitles.php:281
+msgid "pagetitlehover:importadmin"
+msgstr "Beheerders importeren"
+
+#: public_html/lists/admin/pagetitles.php:283
+msgid "pagetitlehover:dbadmin"
+msgstr "dbadmin?"
+
+#: public_html/lists/admin/pagetitles.php:285
+msgid "pagetitlehover:usercheck"
+msgstr "Controleer gebruikers"
+
+#: public_html/lists/admin/pagetitles.php:287
+msgid "pagetitlehover:listbounces"
+msgstr "Teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:289
+msgid "pagetitlehover:bouncerules"
+msgstr "Teruggekaatste e-mail regels"
+
+#: public_html/lists/admin/pagetitles.php:291
+msgid "pagetitlehover:checkbouncerules"
+msgstr "Analyseer regels teruggekaatste e-mail"
+
+#: public_html/lists/admin/pagetitles.php:293
+msgid "pagetitlehover:translate"
+msgstr "Vertaling"
+
+#: public_html/lists/admin/pagetitles.php:295
+msgid "pagetitlehover:ajaxform"
+msgstr "?"
+
+#: public_html/lists/admin/pagetitles.php:297
+msgid "pagetitlehover:updatetranslation"
+msgstr "Vertaling bijwerken"
+
+#: public_html/lists/admin/pagetitles.php:299
+msgid "pagetitlehover:reindex"
+msgstr "Database opnieuw indexeren"
+
+#: public_html/lists/admin/pagetitles.php:301
+msgid "pagetitlehover:config"
+msgstr "Instellingen"
+
+#: public_html/lists/admin/pagetitles.php:303
+msgid "pagetitlehover:info"
+msgstr "Importeren"
+
+#: public_html/lists/admin/pagetitles.php:307
+msgid "pagetitlehover:converttoutf8"
+msgstr "?"
 
 #: public_html/lists/admin/spageedit.php:87
 msgid "Subscribe page information saved"
@@ -6545,7 +7147,7 @@ msgstr "Unieke index <b>%s</b> toevoegen aan %s</li>"
 msgid "Adding unique index <b>%s</b> to %s<br/>"
 msgstr "Unieke index <b>%s</b> toevoegen aan %s<br/>"
 
-#: public_html/lists/admin/messages.php:40
+#: public_html/lists/admin/messages.php:40 public_html/lists/admin/send.php:92
 msgid "Start a new campaign"
 msgstr "Maak een nieuw bericht"
 
@@ -6612,7 +7214,7 @@ msgstr "Markeer verstuurd"
 
 #: public_html/lists/admin/messages.php:354
 msgid "Mark sent"
-msgstr ""
+msgstr "Markering is verzonden"
 
 #: public_html/lists/admin/messages.php:355
 #: public_html/lists/admin/messages.php:362
@@ -7187,7 +7789,7 @@ msgstr "Fatale fout"
 
 #: public_html/lists/admin/connect.php:453
 msgid "Documentation about this error"
-msgstr ""
+msgstr "Documentatie over deze fout"
 
 #: public_html/lists/admin/connect.php:747
 msgid "Main Page"
@@ -7458,19 +8060,19 @@ msgstr "Geen sjabloon vastgelegd"
 msgid "Existing templates"
 msgstr "Bestaande sjablonen"
 
-#: public_html/lists/admin/templates.php:41
+#: public_html/lists/admin/templates.php:43
 msgid "Campaign Default"
 msgstr "Standaard bericht"
 
-#: public_html/lists/admin/templates.php:43
+#: public_html/lists/admin/templates.php:45
 msgid "System"
 msgstr "Programma"
 
-#: public_html/lists/admin/templates.php:51
+#: public_html/lists/admin/templates.php:53
 msgid "Add new Template"
 msgstr "Nieuw sjabloon toevoegen"
 
-#: public_html/lists/admin/templates.php:55
+#: public_html/lists/admin/templates.php:57
 msgid "Add default system template"
 msgstr "Voeg standaard systeem sjabloon toe"
 
@@ -7710,1830 +8312,6 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr "Verzoek om door te sturen door een ongeldige gebruiker: %s"
-
-msgid "pagetitle:home"
-msgstr "Startpagina"
-
-msgid "pagetitle:setup"
-msgstr "Status van phpList"
-
-msgid "pagetitle:about"
-msgstr "Over phpList"
-
-msgid "pagetitle:attributes"
-msgstr "Abonnee velden toevoegen en bewerken"
-
-msgid "pagetitle:stresstest"
-msgstr "Test onder stress"
-
-msgid "pagetitle:list"
-msgstr "Verzendlijsten"
-
-msgid "pagetitle:catlists"
-msgstr "Verzendlijsten categoriseren"
-
-msgid "pagetitle:editattributes"
-msgstr "Bewerk velden"
-
-msgid "pagetitle:editlist"
-msgstr "Bewerk een verzendlijst"
-
-msgid "pagetitle:checki18n"
-msgstr "Controleer vertalingen"
-
-msgid "pagetitle:importsimple"
-msgstr "Importeer met kopiëren en plakken"
-
-msgid "pagetitle:import4"
-msgstr "Importeer abonnees uit een andere database"
-
-msgid "pagetitle:import3"
-msgstr "Importeer abonnees uit een IMAP folder"
-
-msgid "pagetitle:import2"
-msgstr "Importeer abonnees uit een CSV bestand"
-
-msgid "pagetitle:import1"
-msgstr "Importeer een bestand"
-
-msgid "pagetitle:import"
-msgstr "Importeren"
-
-msgid "pagetitle:export"
-msgstr "Exporteren"
-
-msgid "pagetitle:initialise"
-msgstr "Database tabellen aanmaken"
-
-msgid "pagetitle:send"
-msgstr "Verzenden"
-
-msgid "pagetitle:preparesend"
-msgstr "Bereid het verzenden voor"
-
-msgid "pagetitle:sendprepared"
-msgstr "Klaar om te verzenden"
-
-msgid "pagetitle:members"
-msgstr "Abonnees"
-
-msgid "pagetitle:users"
-msgstr "Zoeken en toevoegen"
-
-msgid "pagetitle:reconcileusers"
-msgstr "Aanpassen en opschonen"
-
-msgid "pagetitle:user"
-msgstr "Gebruikers"
-
-msgid "pagetitle:userhistory"
-msgstr "Gebruikersgescheidenis"
-
-msgid "pagetitle:messages"
-msgstr "Overzicht"
-
-msgid "pagetitle:message"
-msgstr "Bericht"
-
-msgid "pagetitle:processqueue"
-msgstr "Wachtrij verwerken"
-
-msgid "pagetitle:defaults"
-msgstr "Standaard"
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:templates"
-msgstr "Sjablonen"
-
-msgid "pagetitle:template"
-msgstr "Sjabloon"
-
-msgid "pagetitle:viewtemplate"
-msgstr "Bekijk sjabloon"
-
-msgid "pagetitle:configure"
-msgstr "Instellingen"
-
-msgid "pagetitle:admin"
-msgstr "Beheerder"
-
-msgid "pagetitle:admins"
-msgstr "Beheerdersoverzicht"
-
-msgid "pagetitle:adminattributes"
-msgstr "Beheerdersvelden"
-
-msgid "pagetitle:processbounces"
-msgstr "Teruggekaatste e-mail analyseren"
-
-msgid "pagetitle:bounces"
-msgstr "Teruggekaatste e-mail "
-
-msgid "pagetitle:bounce"
-msgstr "Terugkaatsen"
-
-msgid "pagetitle:spageedit"
-msgstr "Inschrijf pagina bewerken"
-
-msgid "pagetitle:spage"
-msgstr "Abonnee inschrijf pagina's"
-
-msgid "pagetitle:eventlog"
-msgstr "Logboek"
-
-msgid "pagetitle:getrss"
-msgstr "RSS"
-
-msgid "pagetitle:viewrss"
-msgstr "Bekijk RSS"
-
-msgid "pagetitle:community"
-msgstr "phpList gemeenschap"
-
-msgid "pagetitle:vote"
-msgstr "Stem"
-
-msgid "pagetitle:login"
-msgstr "Aanmelden"
-
-msgid "pagetitle:logout"
-msgstr "Afmelden"
-
-msgid "pagetitle:mclicks"
-msgstr "Bekeken berichten"
-
-msgid "pagetitle:uclicks"
-msgstr "Aangeklikte berichten"
-
-msgid "pagetitle:massunconfirm"
-msgstr "Markeren als niet bevestigd"
-
-msgid "pagetitle:massremove"
-msgstr "Grote hoeveelheden abonnees verwijderen"
-
-msgid "pagetitle:usermgt"
-msgstr "Beheer functies"
-
-msgid "pagetitle:bouncemgt"
-msgstr "Beheer teruggekaatste e-mail"
-
-msgid "pagetitle:domainstats"
-msgstr "Bezochte domeinen"
-
-msgid "pagetitle:mviews"
-msgstr "Verzonden berichten"
-
-msgid "pagetitle:statsmgt"
-msgstr "statsmgt?"
-
-msgid "pagetitle:statsoverview"
-msgstr "Overzicht"
-
-msgid "pagetitle:subscriberstats"
-msgstr "Abonnee statistieken"
-
-msgid "pagetitle:dbcheck"
-msgstr "Database controle"
-
-msgid "pagetitle:importadmin"
-msgstr "Beheerders importeren"
-
-msgid "pagetitle:dbadmin"
-msgstr "dbadmin?"
-
-msgid "pagetitle:usercheck"
-msgstr "Controleer gebruikers"
-
-msgid "pagetitle:listbounces"
-msgstr "Teruggekaatste e-mail"
-
-msgid "pagetitle:bouncerules"
-msgstr "Teruggekaatste e-mail regels"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "Analyseer regels teruggekaatste e-mail"
-
-msgid "pagetitle:translate"
-msgstr "Vertaling"
-
-msgid "pagetitle:ajaxform"
-msgstr "?"
-
-msgid "pagetitle:updatetranslation"
-msgstr "Vertaling bijwerken"
-
-msgid "pagetitle:reindex"
-msgstr "Database opnieuw indexeren"
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "Startpagina"
-
-msgid "pagetitle:setup"
-msgstr "Status van phpList"
-
-msgid "pagetitle:about"
-msgstr "Over phpList"
-
-msgid "pagetitle:attributes"
-msgstr "Abonnee velden toevoegen en bewerken"
-
-msgid "pagetitle:stresstest"
-msgstr "Test onder stress"
-
-msgid "pagetitle:list"
-msgstr "Verzendlijsten"
-
-msgid "pagetitle:catlists"
-msgstr "Verzendlijsten categoriseren"
-
-msgid "pagetitle:editattributes"
-msgstr "Bewerk velden"
-
-msgid "pagetitle:editlist"
-msgstr "Bewerk een verzendlijst"
-
-msgid "pagetitle:checki18n"
-msgstr "Controleer vertalingen"
-
-msgid "pagetitle:importsimple"
-msgstr "Importeer met kopiëren en plakken"
-
-msgid "pagetitle:import4"
-msgstr "Importeer abonnees uit een andere database"
-
-msgid "pagetitle:import3"
-msgstr "Importeer abonnees uit een IMAP folder"
-
-msgid "pagetitle:import2"
-msgstr "Importeer abonnees uit een CSV bestand"
-
-msgid "pagetitle:import1"
-msgstr "Importeer een bestand"
-
-msgid "pagetitle:import"
-msgstr "Importeren"
-
-msgid "pagetitle:export"
-msgstr "Exporteren"
-
-msgid "pagetitle:initialise"
-msgstr "Database tabellen aanmaken"
-
-msgid "pagetitle:send"
-msgstr "Verzenden"
-
-msgid "pagetitle:preparesend"
-msgstr "Bereid het verzenden voor"
-
-msgid "pagetitle:sendprepared"
-msgstr "Klaar om te verzenden"
-
-msgid "pagetitle:members"
-msgstr "Abonnees"
-
-msgid "pagetitle:users"
-msgstr "Zoeken en toevoegen"
-
-msgid "pagetitle:reconcileusers"
-msgstr "Aanpassen en opschonen"
-
-msgid "pagetitle:user"
-msgstr "Gebruikers"
-
-msgid "pagetitle:userhistory"
-msgstr "Gebruikersgescheidenis"
-
-msgid "pagetitle:messages"
-msgstr "Overzicht"
-
-msgid "pagetitle:message"
-msgstr "Bericht"
-
-msgid "pagetitle:processqueue"
-msgstr "Wachtrij verwerken"
-
-msgid "pagetitle:defaults"
-msgstr "Standaard"
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:templates"
-msgstr "Sjablonen"
-
-msgid "pagetitle:template"
-msgstr "Sjabloon"
-
-msgid "pagetitle:viewtemplate"
-msgstr "Bekijk sjabloon"
-
-msgid "pagetitle:configure"
-msgstr "Instellingen"
-
-msgid "pagetitle:admin"
-msgstr "Beheerder"
-
-msgid "pagetitle:admins"
-msgstr "Beheerdersoverzicht"
-
-msgid "pagetitle:adminattributes"
-msgstr "Beheerdersvelden"
-
-msgid "pagetitle:processbounces"
-msgstr "Teruggekaatste e-mail analyseren"
-
-msgid "pagetitle:bounces"
-msgstr "Teruggekaatste e-mail "
-
-msgid "pagetitle:bounce"
-msgstr "Terugkaatsen"
-
-msgid "pagetitle:spageedit"
-msgstr "Inschrijf pagina bewerken"
-
-msgid "pagetitle:spage"
-msgstr "Abonnee inschrijf pagina's"
-
-msgid "pagetitle:eventlog"
-msgstr "Logboek"
-
-msgid "pagetitle:getrss"
-msgstr "RSS"
-
-msgid "pagetitle:viewrss"
-msgstr "Bekijk RSS"
-
-msgid "pagetitle:community"
-msgstr "phpList gemeenschap"
-
-msgid "pagetitle:vote"
-msgstr "Stem"
-
-msgid "pagetitle:login"
-msgstr "Aanmelden"
-
-msgid "pagetitle:logout"
-msgstr "Afmelden"
-
-msgid "pagetitle:mclicks"
-msgstr "Bekeken berichten"
-
-msgid "pagetitle:uclicks"
-msgstr "Aangeklikte berichten"
-
-msgid "pagetitle:massunconfirm"
-msgstr "Markeren als niet bevestigd"
-
-msgid "pagetitle:massremove"
-msgstr "Grote hoeveelheden abonnees verwijderen"
-
-msgid "pagetitle:usermgt"
-msgstr "Beheer functies"
-
-msgid "pagetitle:bouncemgt"
-msgstr "Beheer teruggekaatste e-mail"
-
-msgid "pagetitle:domainstats"
-msgstr "Bezochte domeinen"
-
-msgid "pagetitle:mviews"
-msgstr "Verzonden berichten"
-
-msgid "pagetitle:statsmgt"
-msgstr "statsmgt?"
-
-msgid "pagetitle:statsoverview"
-msgstr "Overzicht"
-
-msgid "pagetitle:subscriberstats"
-msgstr "Abonnee statistieken"
-
-msgid "pagetitle:dbcheck"
-msgstr "Database controle"
-
-msgid "pagetitle:importadmin"
-msgstr "Beheerders importeren"
-
-msgid "pagetitle:dbadmin"
-msgstr "dbadmin?"
-
-msgid "pagetitle:usercheck"
-msgstr "Controleer gebruikers"
-
-msgid "pagetitle:listbounces"
-msgstr "Teruggekaatste e-mail"
-
-msgid "pagetitle:bouncerules"
-msgstr "Teruggekaatste e-mail regels"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "Analyseer regels teruggekaatste e-mail"
-
-msgid "pagetitle:translate"
-msgstr "Vertaling"
-
-msgid "pagetitle:ajaxform"
-msgstr "?"
-
-msgid "pagetitle:updatetranslation"
-msgstr "Vertaling bijwerken"
-
-msgid "pagetitle:reindex"
-msgstr "Database opnieuw indexeren"
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "Startpagina"
-
-msgid "pagetitle:setup"
-msgstr "Status van phpList"
-
-msgid "pagetitle:about"
-msgstr "Over phpList"
-
-msgid "pagetitle:attributes"
-msgstr "Abonnee velden toevoegen en bewerken"
-
-msgid "pagetitle:stresstest"
-msgstr "Test onder stress"
-
-msgid "pagetitle:list"
-msgstr "Verzendlijsten"
-
-msgid "pagetitle:catlists"
-msgstr "Verzendlijsten categoriseren"
-
-msgid "pagetitle:editattributes"
-msgstr "Bewerk velden"
-
-msgid "pagetitle:editlist"
-msgstr "Bewerk een verzendlijst"
-
-msgid "pagetitle:checki18n"
-msgstr "Controleer vertalingen"
-
-msgid "pagetitle:importsimple"
-msgstr "Importeer met kopiëren en plakken"
-
-msgid "pagetitle:import4"
-msgstr "Importeer abonnees uit een andere database"
-
-msgid "pagetitle:import3"
-msgstr "Importeer abonnees uit een IMAP folder"
-
-msgid "pagetitle:import2"
-msgstr "Importeer abonnees uit een CSV bestand"
-
-msgid "pagetitle:import1"
-msgstr "Importeer een bestand"
-
-msgid "pagetitle:import"
-msgstr "Importeren"
-
-msgid "pagetitle:export"
-msgstr "Exporteren"
-
-msgid "pagetitle:initialise"
-msgstr "Database tabellen aanmaken"
-
-msgid "pagetitle:send"
-msgstr "Verzenden"
-
-msgid "pagetitle:preparesend"
-msgstr "Bereid het verzenden voor"
-
-msgid "pagetitle:sendprepared"
-msgstr "Klaar om te verzenden"
-
-msgid "pagetitle:members"
-msgstr "Abonnees"
-
-msgid "pagetitle:users"
-msgstr "Zoeken en toevoegen"
-
-msgid "pagetitle:reconcileusers"
-msgstr "Aanpassen en opschonen"
-
-msgid "pagetitle:user"
-msgstr "Gebruikers"
-
-msgid "pagetitle:userhistory"
-msgstr "Gebruikersgescheidenis"
-
-msgid "pagetitle:messages"
-msgstr "Overzicht"
-
-msgid "pagetitle:message"
-msgstr "Bericht"
-
-msgid "pagetitle:processqueue"
-msgstr "Wachtrij verwerken"
-
-msgid "pagetitle:defaults"
-msgstr "Standaard"
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:templates"
-msgstr "Sjablonen"
-
-msgid "pagetitle:template"
-msgstr "Sjabloon"
-
-msgid "pagetitle:viewtemplate"
-msgstr "Bekijk sjabloon"
-
-msgid "pagetitle:configure"
-msgstr "Instellingen"
-
-msgid "pagetitle:admin"
-msgstr "Beheerder"
-
-msgid "pagetitle:admins"
-msgstr "Beheerdersoverzicht"
-
-msgid "pagetitle:adminattributes"
-msgstr "Beheerdersvelden"
-
-msgid "pagetitle:processbounces"
-msgstr "Teruggekaatste e-mail analyseren"
-
-msgid "pagetitle:bounces"
-msgstr "Teruggekaatste e-mail "
-
-msgid "pagetitle:bounce"
-msgstr "Terugkaatsen"
-
-msgid "pagetitle:spageedit"
-msgstr "Inschrijf pagina bewerken"
-
-msgid "pagetitle:spage"
-msgstr "Abonnee inschrijf pagina's"
-
-msgid "pagetitle:eventlog"
-msgstr "Logboek"
-
-msgid "pagetitle:getrss"
-msgstr "RSS"
-
-msgid "pagetitle:viewrss"
-msgstr "Bekijk RSS"
-
-msgid "pagetitle:community"
-msgstr "phpList gemeenschap"
-
-msgid "pagetitle:vote"
-msgstr "Stem"
-
-msgid "pagetitle:login"
-msgstr "Aanmelden"
-
-msgid "pagetitle:logout"
-msgstr "Afmelden"
-
-msgid "pagetitle:mclicks"
-msgstr "Bekeken berichten"
-
-msgid "pagetitle:uclicks"
-msgstr "Aangeklikte berichten"
-
-msgid "pagetitle:massunconfirm"
-msgstr "Markeren als niet bevestigd"
-
-msgid "pagetitle:massremove"
-msgstr "Grote hoeveelheden abonnees verwijderen"
-
-msgid "pagetitle:usermgt"
-msgstr "Beheer functies"
-
-msgid "pagetitle:bouncemgt"
-msgstr "Beheer teruggekaatste e-mail"
-
-msgid "pagetitle:domainstats"
-msgstr "Bezochte domeinen"
-
-msgid "pagetitle:mviews"
-msgstr "Verzonden berichten"
-
-msgid "pagetitle:statsmgt"
-msgstr "statsmgt?"
-
-msgid "pagetitle:statsoverview"
-msgstr "Overzicht"
-
-msgid "pagetitle:subscriberstats"
-msgstr "Abonnee statistieken"
-
-msgid "pagetitle:dbcheck"
-msgstr "Database controle"
-
-msgid "pagetitle:importadmin"
-msgstr "Beheerders importeren"
-
-msgid "pagetitle:dbadmin"
-msgstr "dbadmin?"
-
-msgid "pagetitle:usercheck"
-msgstr "Controleer gebruikers"
-
-msgid "pagetitle:listbounces"
-msgstr "Teruggekaatste e-mail"
-
-msgid "pagetitle:bouncerules"
-msgstr "Teruggekaatste e-mail regels"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "Analyseer regels teruggekaatste e-mail"
-
-msgid "pagetitle:translate"
-msgstr "Vertaling"
-
-msgid "pagetitle:ajaxform"
-msgstr "?"
-
-msgid "pagetitle:updatetranslation"
-msgstr "Vertaling bijwerken"
-
-msgid "pagetitle:reindex"
-msgstr "Database opnieuw indexeren"
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
-
-msgid "pagetitle:home"
-msgstr "Startpagina"
-
-msgid "pagetitle:setup"
-msgstr "Status van phpList"
-
-msgid "pagetitle:about"
-msgstr "Over phpList"
-
-msgid "pagetitle:attributes"
-msgstr "Abonnee velden toevoegen en bewerken"
-
-msgid "pagetitle:stresstest"
-msgstr "Test onder stress"
-
-msgid "pagetitle:list"
-msgstr "Verzendlijsten"
-
-msgid "pagetitle:catlists"
-msgstr "Verzendlijsten categoriseren"
-
-msgid "pagetitle:editattributes"
-msgstr "Bewerk velden"
-
-msgid "pagetitle:editlist"
-msgstr "Bewerk een verzendlijst"
-
-msgid "pagetitle:checki18n"
-msgstr "Controleer vertalingen"
-
-msgid "pagetitle:importsimple"
-msgstr "Importeer met kopiëren en plakken"
-
-msgid "pagetitle:import4"
-msgstr "Importeer abonnees uit een andere database"
-
-msgid "pagetitle:import3"
-msgstr "Importeer abonnees uit een IMAP folder"
-
-msgid "pagetitle:import2"
-msgstr "Importeer abonnees uit een CSV bestand"
-
-msgid "pagetitle:import1"
-msgstr "Importeer een bestand"
-
-msgid "pagetitle:import"
-msgstr "Importeren"
-
-msgid "pagetitle:export"
-msgstr "Exporteren"
-
-msgid "pagetitle:initialise"
-msgstr "Database tabellen aanmaken"
-
-msgid "pagetitle:send"
-msgstr "Verzenden"
-
-msgid "pagetitle:preparesend"
-msgstr "Bereid het verzenden voor"
-
-msgid "pagetitle:sendprepared"
-msgstr "Klaar om te verzenden"
-
-msgid "pagetitle:members"
-msgstr "Abonnees"
-
-msgid "pagetitle:users"
-msgstr "Zoeken en toevoegen"
-
-msgid "pagetitle:reconcileusers"
-msgstr "Aanpassen en opschonen"
-
-msgid "pagetitle:user"
-msgstr "Gebruikers"
-
-msgid "pagetitle:userhistory"
-msgstr "Gebruikersgescheidenis"
-
-msgid "pagetitle:messages"
-msgstr "Overzicht"
-
-msgid "pagetitle:message"
-msgstr "Bericht"
-
-msgid "pagetitle:processqueue"
-msgstr "Wachtrij verwerken"
-
-msgid "pagetitle:defaults"
-msgstr "Standaard"
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:templates"
-msgstr "Sjablonen"
-
-msgid "pagetitle:template"
-msgstr "Sjabloon"
-
-msgid "pagetitle:viewtemplate"
-msgstr "Bekijk sjabloon"
-
-msgid "pagetitle:configure"
-msgstr "Instellingen"
-
-msgid "pagetitle:admin"
-msgstr "Beheerder"
-
-msgid "pagetitle:admins"
-msgstr "Beheerdersoverzicht"
-
-msgid "pagetitle:adminattributes"
-msgstr "Beheerdersvelden"
-
-msgid "pagetitle:processbounces"
-msgstr "Teruggekaatste e-mail analyseren"
-
-msgid "pagetitle:bounces"
-msgstr "Teruggekaatste e-mail "
-
-msgid "pagetitle:bounce"
-msgstr "Terugkaatsen"
-
-msgid "pagetitle:spageedit"
-msgstr "Inschrijf pagina bewerken"
-
-msgid "pagetitle:spage"
-msgstr "Abonnee inschrijf pagina's"
-
-msgid "pagetitle:eventlog"
-msgstr "Logboek"
-
-msgid "pagetitle:getrss"
-msgstr "RSS"
-
-msgid "pagetitle:viewrss"
-msgstr "Bekijk RSS"
-
-msgid "pagetitle:community"
-msgstr "phpList gemeenschap"
-
-msgid "pagetitle:vote"
-msgstr "Stem"
-
-msgid "pagetitle:login"
-msgstr "Aanmelden"
-
-msgid "pagetitle:logout"
-msgstr "Afmelden"
-
-msgid "pagetitle:mclicks"
-msgstr "Bekeken berichten"
-
-msgid "pagetitle:uclicks"
-msgstr "Aangeklikte berichten"
-
-msgid "pagetitle:massunconfirm"
-msgstr "Markeren als niet bevestigd"
-
-msgid "pagetitle:massremove"
-msgstr "Grote hoeveelheden abonnees verwijderen"
-
-msgid "pagetitle:usermgt"
-msgstr "Beheer functies"
-
-msgid "pagetitle:bouncemgt"
-msgstr "Beheer teruggekaatste e-mail"
-
-msgid "pagetitle:domainstats"
-msgstr "Bezochte domeinen"
-
-msgid "pagetitle:mviews"
-msgstr "Verzonden berichten"
-
-msgid "pagetitle:statsmgt"
-msgstr "statsmgt?"
-
-msgid "pagetitle:statsoverview"
-msgstr "Overzicht"
-
-msgid "pagetitle:subscriberstats"
-msgstr "Abonnee statistieken"
-
-msgid "pagetitle:dbcheck"
-msgstr "Database controle"
-
-msgid "pagetitle:importadmin"
-msgstr "Beheerders importeren"
-
-msgid "pagetitle:dbadmin"
-msgstr "dbadmin?"
-
-msgid "pagetitle:usercheck"
-msgstr "Controleer gebruikers"
-
-msgid "pagetitle:listbounces"
-msgstr "Teruggekaatste e-mail"
-
-msgid "pagetitle:bouncerules"
-msgstr "Teruggekaatste e-mail regels"
-
-msgid "pagetitle:checkbouncerules"
-msgstr "Analyseer regels teruggekaatste e-mail"
-
-msgid "pagetitle:translate"
-msgstr "Vertaling"
-
-msgid "pagetitle:ajaxform"
-msgstr "?"
-
-msgid "pagetitle:updatetranslation"
-msgstr "Vertaling bijwerken"
-
-msgid "pagetitle:reindex"
-msgstr "Database opnieuw indexeren"
-
-msgid "pagetitle:config"
-msgstr ""
-
-msgid "pagetitle:info"
-msgstr ""
-
-msgid "pagetitle:upgrade"
-msgstr "Database versie bijwerken"
-
-msgid "pagetitle:converttoutf8"
-msgstr ""
-
-msgid "pagetitlehover:home"
-msgstr ""
-
-msgid "pagetitlehover:setup"
-msgstr ""
-
-msgid "pagetitlehover:about"
-msgstr ""
-
-msgid "pagetitlehover:attributes"
-msgstr ""
-
-msgid "pagetitlehover:stresstest"
-msgstr ""
-
-msgid "pagetitlehover:list"
-msgstr ""
-
-msgid "pagetitlehover:catlists"
-msgstr ""
-
-msgid "pagetitlehover:editattributes"
-msgstr ""
-
-msgid "pagetitlehover:editlist"
-msgstr ""
-
-msgid "pagetitlehover:checki18n"
-msgstr ""
-
-msgid "pagetitlehover:importsimple"
-msgstr ""
-
-msgid "pagetitlehover:import4"
-msgstr ""
-
-msgid "pagetitlehover:import3"
-msgstr ""
-
-msgid "pagetitlehover:import2"
-msgstr ""
-
-msgid "pagetitlehover:import1"
-msgstr ""
-
-msgid "pagetitlehover:import"
-msgstr ""
-
-msgid "pagetitlehover:export"
-msgstr ""
-
-msgid "pagetitlehover:initialise"
-msgstr ""
-
-msgid "pagetitlehover:send"
-msgstr ""
-
-msgid "pagetitlehover:preparesend"
-msgstr ""
-
-msgid "pagetitlehover:sendprepared"
-msgstr ""
-
-msgid "pagetitlehover:members"
-msgstr ""
-
-msgid "pagetitlehover:users"
-msgstr ""
-
-msgid "pagetitlehover:reconcileusers"
-msgstr ""
-
-msgid "pagetitlehover:user"
-msgstr ""
-
-msgid "pagetitlehover:userhistory"
-msgstr ""
-
-msgid "pagetitlehover:messages"
-msgstr ""
-
-msgid "pagetitlehover:message"
-msgstr ""
-
-msgid "pagetitlehover:processqueue"
-msgstr ""
-
-msgid "pagetitlehover:defaults"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:templates"
-msgstr ""
-
-msgid "pagetitlehover:template"
-msgstr ""
-
-msgid "pagetitlehover:viewtemplate"
-msgstr ""
-
-msgid "pagetitlehover:configure"
-msgstr ""
-
-msgid "pagetitlehover:admin"
-msgstr ""
-
-msgid "pagetitlehover:admins"
-msgstr ""
-
-msgid "pagetitlehover:adminattributes"
-msgstr ""
-
-msgid "pagetitlehover:processbounces"
-msgstr ""
-
-msgid "pagetitlehover:bounces"
-msgstr ""
-
-msgid "pagetitlehover:bounce"
-msgstr ""
-
-msgid "pagetitlehover:spageedit"
-msgstr ""
-
-msgid "pagetitlehover:spage"
-msgstr ""
-
-msgid "pagetitlehover:eventlog"
-msgstr ""
-
-msgid "pagetitlehover:getrss"
-msgstr ""
-
-msgid "pagetitlehover:viewrss"
-msgstr ""
-
-msgid "pagetitlehover:community"
-msgstr ""
-
-msgid "pagetitlehover:vote"
-msgstr ""
-
-msgid "pagetitlehover:login"
-msgstr ""
-
-msgid "pagetitlehover:logout"
-msgstr ""
-
-msgid "pagetitlehover:mclicks"
-msgstr ""
-
-msgid "pagetitlehover:uclicks"
-msgstr ""
-
-msgid "pagetitlehover:massunconfirm"
-msgstr ""
-
-msgid "pagetitlehover:massremove"
-msgstr ""
-
-msgid "pagetitlehover:usermgt"
-msgstr ""
-
-msgid "pagetitlehover:bouncemgt"
-msgstr ""
-
-msgid "pagetitlehover:domainstats"
-msgstr ""
-
-msgid "pagetitlehover:mviews"
-msgstr ""
-
-msgid "pagetitlehover:statsmgt"
-msgstr ""
-
-msgid "pagetitlehover:statsoverview"
-msgstr ""
-
-msgid "pagetitlehover:subscriberstats"
-msgstr ""
-
-msgid "pagetitlehover:dbcheck"
-msgstr ""
-
-msgid "pagetitlehover:importadmin"
-msgstr ""
-
-msgid "pagetitlehover:dbadmin"
-msgstr ""
-
-msgid "pagetitlehover:usercheck"
-msgstr ""
-
-msgid "pagetitlehover:listbounces"
-msgstr ""
-
-msgid "pagetitlehover:bouncerules"
-msgstr ""
-
-msgid "pagetitlehover:checkbouncerules"
-msgstr ""
-
-msgid "pagetitlehover:translate"
-msgstr ""
-
-msgid "pagetitlehover:ajaxform"
-msgstr ""
-
-msgid "pagetitlehover:updatetranslation"
-msgstr ""
-
-msgid "pagetitlehover:reindex"
-msgstr ""
-
-msgid "pagetitlehover:config"
-msgstr ""
-
-msgid "pagetitlehover:info"
-msgstr ""
-
-msgid "pagetitlehover:upgrade"
-msgstr ""
-
-msgid "pagetitlehover:converttoutf8"
-msgstr ""
 
 #~ msgid "invalid emails"
 #~ msgstr "ongeldige e-mail adressen"
