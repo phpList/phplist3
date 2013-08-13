@@ -728,10 +728,10 @@ if (!function_exists("getconfig")) {
 			} elseif ($value == "1") {
 				$value = "true";
 			}
-      ## somehow this still turns into 0/1 when passed on
-      $value = (bool) $value == "true";
-      
+      ## cast to bool
+      $value = $value == "true";
 		}
+
 		# if this is a subpage item, and no value was found get the global one
 		if (!$value && strpos( $item,":") !== false) {
 			list ($a, $b) = explode(":", $item);
