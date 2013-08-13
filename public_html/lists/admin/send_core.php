@@ -137,7 +137,7 @@ $hasClickTrackLinks = preg_match('/lt\.php\?id=[\w%]{22}/',$messagedata["message
 (CLICKTRACK_LINKMAP && (preg_match('#'.CLICKTRACK_LINKMAP.'/[\w%]{22}#',$messagedata['message']) || preg_match('#'.CLICKTRACK_LINKMAP.'/[\w%]{16}#',$messagedata['message'])));
 
 if ($hasClickTrackLinks) {
-  print Error(s('You should not paste the results of a test message back into the editor<br/>This will break the click-track statistics, and overload the server.'));
+  print Error(s('You should not paste the results of a test message back into the editor<br/>This will break the click-track statistics, and overload the server.'), 'http://resources.phplist.com/documentation/errors/pasteclicktrack');
 }
 // If the variable isn't filled in, then the input fields don't default to the
 // values selected.  Need to fill it in so a post will correctly display.
@@ -927,7 +927,6 @@ if (!$done) {
      Help("googletrack").' '.s('add Google Analytics tracking code'),
      !empty($messagedata['google_track']) ? 'checked="checked"':'');
 
-
   ## @@TODO, maybe add a check on "sent" for this campaign and suppress this once it's over a threshold
   $send_content .= sprintf('
     <div class="resetStatistics">
@@ -1137,7 +1136,7 @@ if (empty($messagedata['targetlist'])) {
 if ($hasClickTrackLinks && BLOCK_PASTED_CLICKTRACKLINKS) {
   $allReady = false;
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
-  $("#addtoqueue").append(\'<div class="missing">'.s('Content contains click track links.').'</div>\');
+  $("#addtoqueue").append(\'<div class="missing">'.s('Content contains click track links.').resourceLink('http://resources.phplist.com/documentation/errors/pasteclicktrack').'</div>\');
   </script>';
 }
  
