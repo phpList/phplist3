@@ -54,7 +54,7 @@ if (!empty ($_GET["reset"]) && $_GET["reset"] == "yes") {
 }
 if (isset ($_POST["import"])) {
   if (!verifyToken()) {
-    print Error(s('Invalid security token, please reload the page and try again'));
+    print Error(s('Invalid security token, please reload the page and try again', 'http://resources.phplist.com/documentation/errors/securitytoken'));
     return;
   }
   
@@ -365,7 +365,7 @@ if (!empty($_SESSION["import_file"])) {
 ### show summary
 if (!empty($_SESSION["test_import"])) {
   if (!isset ($_SESSION["systemindex"]["email"])) {
-    Fatal_Error($GLOBALS['I18N']->get('Cannot find column with email, you need to map at least one column to "Email"'));
+    Fatal_Error($GLOBALS['I18N']->get('Cannot find column with email, you need to map at least one column to "Email"'),'http://resources.phplist.com/documentation/errors/importemailmapping');
     return;
   }
   $ls = new WebblerListing($GLOBALS['I18N']->get('Summary'));
