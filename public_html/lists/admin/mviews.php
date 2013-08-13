@@ -53,7 +53,7 @@ if (!$id) {
   print '<p>'.PageLinkButton('mviews&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</p>';
 #  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
   $timerange = ' and msg.entered  > date_sub(current_timestamp,interval 12 month)';
-#  $timerange = '';
+  $timerange = '';
 
   $req = Sql_Query(sprintf('select msg.id as messageid,count(um.viewed) as views, count(um.status) as total,
     subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg
