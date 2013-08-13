@@ -26,17 +26,19 @@ find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --
 msgmerge -N $current messages.po > phplist-new.pot 2>/dev/null
 
 diff phplist-new.pot $current > diff${now}
-if [ -s "diff${now}" ]; then
+fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
+
+if [ -s "diff2${now}" ]; then
   exec > /tmp/message$$
   echo These are this weeks changes in the language template file
   echo They will show up in http://translation.phplist.com as untranslated
   echo Please update your translations, thanks 
   echo
-  fgrep '< msgid' diff${now} | sed s/'< msgid'//
+  cat diff2${now}
 
   mail -s "phpList language changes" $reportto < /tmp/message$$ 
-  rm -f diff${now} /tmp/message$$
-  mv -f phplist-new.pot phplist.pot
+  rm -f diff${now} diff2${now} /tmp/message$$
 fi
+mv -f phplist-new.pot phplist.pot
 rm -f messages.po phplist-new.pot diff${now} public_html/databasestructure.php
 
