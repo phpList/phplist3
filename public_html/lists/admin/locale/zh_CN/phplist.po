@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 05:14+0000\n"
+"POT-Creation-Date: 2013-08-19 05:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: phpList <info@phplist.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -54,8 +54,8 @@ msgstr "貼上希望標示為未確認的信箱，接著點選繼續"
 #: public_html/lists/admin/massunconfirm.php:35
 #: public_html/lists/admin/commonlib/pages/importcsv.php:43
 #: public_html/lists/admin/commonlib/pages/importcsv.php:349
-#: public_html/lists/admin/commonlib/pages/user.php:277
-#: public_html/lists/admin/commonlib/pages/user.php:333
+#: public_html/lists/admin/commonlib/pages/user.php:278
+#: public_html/lists/admin/commonlib/pages/user.php:334
 #: public_html/lists/admin/initialise.php:45
 #: public_html/lists/admin/massremove.php:49
 #: public_html/lists/admin/login.php:72 public_html/lists/admin/login.php:100
@@ -132,7 +132,7 @@ msgstr "处理第一"
 
 #: public_html/lists/admin/processbounces.php:352
 #: public_html/lists/admin/processbounces.php:353
-#: public_html/lists/admin/home.php:290 public_html/lists/admin/bounces.php:74
+#: public_html/lists/admin/home.php:297 public_html/lists/admin/bounces.php:74
 #: public_html/lists/admin/bounces.php:120
 #: public_html/lists/admin/reconcileusers.php:191
 #: public_html/lists/admin/reconcileusers.php:468
@@ -520,7 +520,7 @@ msgstr "没有电子报"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:49 public_html/lists/admin/list.php:53
 #: public_html/lists/admin/list.php:275 public_html/lists/admin/import3.php:40
-#: public_html/lists/admin/connect.php:1121
+#: public_html/lists/admin/connect.php:1123
 msgid "Add a list"
 msgstr "新增电子报"
 
@@ -721,67 +721,67 @@ msgstr "这将会从电子报中删除使用者"
 msgid "Delete will remove subscriber from the system"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:59
+#: public_html/lists/admin/commonlib/pages/user.php:60
 #, fuzzy
 msgid "Error adding subscriber, please check that the subscriber exists"
 msgstr "新增使用者错误，请检查这个使用者是否已经存在"
 
-#: public_html/lists/admin/commonlib/pages/user.php:117
+#: public_html/lists/admin/commonlib/pages/user.php:118
 msgid "Uploaded avatar file too big"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:175
-#: public_html/lists/admin/commonlib/pages/user.php:185
+#: public_html/lists/admin/commonlib/pages/user.php:176
+#: public_html/lists/admin/commonlib/pages/user.php:186
 msgid "Subscriber added to group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:206
-#: public_html/lists/admin/commonlib/pages/user.php:213
+#: public_html/lists/admin/commonlib/pages/user.php:207
+#: public_html/lists/admin/commonlib/pages/user.php:214
 #, php-format
 msgid "Subscriber removed from list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:219
+#: public_html/lists/admin/commonlib/pages/user.php:220
 #, php-format
 msgid "Subscriber added to list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:230
+#: public_html/lists/admin/commonlib/pages/user.php:231
 msgid "(no data)"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:231
+#: public_html/lists/admin/commonlib/pages/user.php:232
 msgid "changed from"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:235
+#: public_html/lists/admin/commonlib/pages/user.php:236
 #: public_html/lists/admin/actions/import1.php:183
 msgid "No data changed"
 msgstr "没有资料异动"
 
-#: public_html/lists/admin/commonlib/pages/user.php:239
+#: public_html/lists/admin/commonlib/pages/user.php:240
 #, php-format
 msgid "Subscribed to %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:242
+#: public_html/lists/admin/commonlib/pages/user.php:243
 #, php-format
 msgid "Unsubscribed from %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:245
+#: public_html/lists/admin/commonlib/pages/user.php:246
 #, php-format
 msgid "Update by %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:247
+#: public_html/lists/admin/commonlib/pages/user.php:248
 #: public_html/lists/admin/configure.php:91
 #: public_html/lists/admin/admin.php:98
 #: public_html/lists/admin/editlist.php:95
 msgid "Changes saved"
 msgstr "异动储存了"
 
-#: public_html/lists/admin/commonlib/pages/user.php:258
+#: public_html/lists/admin/commonlib/pages/user.php:259
 #: public_html/lists/admin/admin.php:108
 #: public_html/lists/admin/members.php:202
 #: public_html/lists/admin/admins.php:29 public_html/lists/admin/list.php:61
@@ -791,7 +791,7 @@ msgstr "异动储存了"
 msgid "Deleting"
 msgstr "删除中"
 
-#: public_html/lists/admin/commonlib/pages/user.php:266
+#: public_html/lists/admin/commonlib/pages/user.php:267
 #: public_html/lists/admin/commonlib/pages/users.php:209
 #: public_html/lists/admin/admin.php:113
 #: public_html/lists/admin/members.php:208
@@ -809,23 +809,23 @@ msgstr "删除中"
 msgid "Done"
 msgstr "完成"
 
-#: public_html/lists/admin/commonlib/pages/user.php:276
+#: public_html/lists/admin/commonlib/pages/user.php:277
 msgid "Subscriber removed from group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:290
+#: public_html/lists/admin/commonlib/pages/user.php:291
 msgid "No such subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:303
+#: public_html/lists/admin/commonlib/pages/user.php:304
 msgid "No Lists"
 msgstr "没有电子报"
 
-#: public_html/lists/admin/commonlib/pages/user.php:308
+#: public_html/lists/admin/commonlib/pages/user.php:309
 msgid "History"
 msgstr "存取记录"
 
-#: public_html/lists/admin/commonlib/pages/user.php:317
+#: public_html/lists/admin/commonlib/pages/user.php:318
 #: public_html/lists/admin/commonlib/pages/userhistory.php:49
 #: public_html/lists/admin/bouncerules.php:103
 #: public_html/lists/admin/plugins.php:234
@@ -836,38 +836,40 @@ msgstr "存取记录"
 msgid "delete"
 msgstr "删除"
 
-#: public_html/lists/admin/commonlib/pages/user.php:329
+#: public_html/lists/admin/commonlib/pages/user.php:330
 msgid "Add a new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:332
+#: public_html/lists/admin/commonlib/pages/user.php:333
 msgid "Email address"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:367
+#: public_html/lists/admin/commonlib/pages/user.php:368
 #: public_html/lists/admin/actions/configure.php:61
 #: public_html/lists/admin/bouncerule.php:18
+#: public_html/lists/admin/configure.php:121
 #: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:191
 msgid "Yes"
 msgstr "是"
 
-#: public_html/lists/admin/commonlib/pages/user.php:367
+#: public_html/lists/admin/commonlib/pages/user.php:368
 #: public_html/lists/admin/actions/configure.php:68
 #: public_html/lists/admin/bouncerule.php:19
+#: public_html/lists/admin/configure.php:123
 #: public_html/lists/admin/admin.php:174 public_html/lists/admin/admin.php:192
 msgid "No"
 msgstr "无"
 
-#: public_html/lists/admin/commonlib/pages/user.php:370
+#: public_html/lists/admin/commonlib/pages/user.php:371
 msgid "Add to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:372
+#: public_html/lists/admin/commonlib/pages/user.php:373
 msgid "Remove from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:433
-#: public_html/lists/admin/commonlib/pages/user.php:462
+#: public_html/lists/admin/commonlib/pages/user.php:434
+#: public_html/lists/admin/commonlib/pages/user.php:463
 #: public_html/lists/admin/commonlib/pages/attributes.php:384
 #: public_html/lists/admin/commonlib/pages/attributes.php:410
 #: public_html/lists/admin/bouncerule.php:49
@@ -881,43 +883,43 @@ msgstr ""
 msgid "Save Changes"
 msgstr "储存"
 
-#: public_html/lists/admin/commonlib/pages/user.php:437
+#: public_html/lists/admin/commonlib/pages/user.php:438
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:440
+#: public_html/lists/admin/commonlib/pages/user.php:441
 #, fuzzy
 msgid "Mailinglist membership"
 msgstr "电子报会员"
 
-#: public_html/lists/admin/commonlib/pages/user.php:467
+#: public_html/lists/admin/commonlib/pages/user.php:468
 msgid "Group Membership"
 msgstr "会员群组"
 
-#: public_html/lists/admin/commonlib/pages/user.php:470
+#: public_html/lists/admin/commonlib/pages/user.php:471
 #, fuzzy
 msgid "Please select the groups this subscriber is a member of"
 msgstr "请选择这个使用者要归类的群组"
 
-#: public_html/lists/admin/commonlib/pages/user.php:545
+#: public_html/lists/admin/commonlib/pages/user.php:546
 #, fuzzy
 msgid "Save changes"
 msgstr "储存"
 
-#: public_html/lists/admin/commonlib/pages/user.php:551
+#: public_html/lists/admin/commonlib/pages/user.php:552
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
 msgid "Details"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:552
+#: public_html/lists/admin/commonlib/pages/user.php:553
 #: public_html/lists/admin/send_core.php:532
 #: public_html/lists/admin/list.php:145 public_html/lists/admin/list.php:157
 #, fuzzy
 msgid "Lists"
 msgstr "订阅人列表"
 
-#: public_html/lists/admin/commonlib/pages/user.php:565
+#: public_html/lists/admin/commonlib/pages/user.php:566
 msgid "Groups"
 msgstr ""
 
@@ -1205,7 +1207,7 @@ msgid "Add a User"
 msgstr "新增使用者"
 
 #: public_html/lists/admin/commonlib/pages/users.php:372
-#: public_html/lists/admin/home.php:136
+#: public_html/lists/admin/home.php:143
 #: public_html/lists/admin/import4.php:108
 msgid "users"
 msgstr "使用者"
@@ -1293,7 +1295,7 @@ msgstr "目前尚未定义任何栏位<br/>"
 #: public_html/lists/admin/import4.php:170
 #: public_html/lists/admin/import4.php:180
 #: public_html/lists/admin/spageedit.php:278
-#: public_html/lists/admin/connect.php:1724
+#: public_html/lists/admin/connect.php:1726
 msgid "Attribute"
 msgstr "属性"
 
@@ -1391,7 +1393,7 @@ msgid "sort by %s"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:869
-#: public_html/lists/admin/connect.php:1805
+#: public_html/lists/admin/connect.php:1807
 msgid "Previous"
 msgstr ""
 
@@ -1401,7 +1403,7 @@ msgid "Back"
 msgstr "回到"
 
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:903
-#: public_html/lists/admin/connect.php:1806
+#: public_html/lists/admin/connect.php:1808
 #, fuzzy
 msgid "Next"
 msgstr "文字"
@@ -1533,7 +1535,7 @@ msgid "Send Notification email"
 msgstr "发送&nbsp;通知&nbsp;信函&nbsp;"
 
 #: public_html/lists/admin/import1.php:224
-#: public_html/lists/admin/home.php:143
+#: public_html/lists/admin/home.php:150
 msgid "import"
 msgstr "汇入"
 
@@ -1667,7 +1669,7 @@ msgid "Send Campaigns"
 msgstr ""
 
 #: public_html/lists/admin/importadmin.php:312
-#: public_html/lists/admin/home.php:112 public_html/lists/admin/admin.php:245
+#: public_html/lists/admin/home.php:119 public_html/lists/admin/admin.php:245
 msgid "View Statistics"
 msgstr ""
 
@@ -1903,7 +1905,7 @@ msgstr "继续处理"
 
 #: public_html/lists/admin/actions/msgstatus.php:70
 #: public_html/lists/admin/bounces.php:131
-#: public_html/lists/admin/bounces.php:146 public_html/lists/admin/lib.php:507
+#: public_html/lists/admin/bounces.php:146 public_html/lists/admin/lib.php:511
 msgid "Unknown"
 msgstr "未知"
 
@@ -2506,54 +2508,54 @@ msgstr ""
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:511
+#: public_html/lists/admin/upgrade.php:514
 #: public_html/lists/admin/initialise.php:173
 msgid "Success"
 msgstr "成功"
 
-#: public_html/lists/admin/upgrade.php:518
+#: public_html/lists/admin/upgrade.php:521
 #: public_html/lists/admin/statsmgt.php:14
 msgid "The clicktracking system has changed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:519
+#: public_html/lists/admin/upgrade.php:522
 #: public_html/lists/admin/statsmgt.php:15
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:520
+#: public_html/lists/admin/upgrade.php:523
 #: public_html/lists/admin/statsmgt.php:16
 msgid "Convert Old data to new"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:524
+#: public_html/lists/admin/upgrade.php:527
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:530
+#: public_html/lists/admin/upgrade.php:533
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:536
+#: public_html/lists/admin/upgrade.php:539
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:537
+#: public_html/lists/admin/upgrade.php:540
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:538
+#: public_html/lists/admin/upgrade.php:541
 #: public_html/lists/admin/initialise.php:198
-#: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:363
+#: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:370
 msgid "Upgrade"
 msgstr "升级"
 
-#: public_html/lists/admin/upgrade.php:538
+#: public_html/lists/admin/upgrade.php:541
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -2607,75 +2609,75 @@ msgstr "星期六"
 
 #: public_html/lists/admin/date.php:25
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "January"
 msgstr "一月"
 
 #: public_html/lists/admin/date.php:26
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "February"
 msgstr "二月"
 
 #: public_html/lists/admin/date.php:27
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "March"
 msgstr "三月"
 
 #: public_html/lists/admin/date.php:28
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "April"
 msgstr "四月"
 
 #: public_html/lists/admin/date.php:29
 #: public_html/lists/admin/systemstats.php:10
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1399
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1401
+#: public_html/lists/admin/connect.php:1402
 msgid "May"
 msgstr "5"
 
 #: public_html/lists/admin/date.php:30
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "June"
 msgstr "六月"
 
 #: public_html/lists/admin/date.php:31
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "July"
 msgstr "七月"
 
 #: public_html/lists/admin/date.php:32
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "August"
 msgstr "八月"
 
 #: public_html/lists/admin/date.php:33
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "September"
 msgstr "九月"
 
 #: public_html/lists/admin/date.php:34
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "October"
 msgstr "十月"
 
 #: public_html/lists/admin/date.php:35
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "November"
 msgstr "十一月"
 
 #: public_html/lists/admin/date.php:36
 #: public_html/lists/admin/systemstats.php:10
-#: public_html/lists/admin/connect.php:1399
+#: public_html/lists/admin/connect.php:1401
 msgid "December"
 msgstr "十二月"
 
@@ -2903,7 +2905,7 @@ msgstr ""
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:374 public_html/lists/admin/home.php:83
+#: public_html/lists/admin/index.php:374 public_html/lists/admin/home.php:90
 msgid "Continue Configuration"
 msgstr ""
 
@@ -3079,8 +3081,8 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/send_core.php:1158
-#: public_html/lists/admin/send_core.php:1163
+#: public_html/lists/admin/send_core.php:1157
+#: public_html/lists/admin/send_core.php:1162
 msgid "Send Campaign"
 msgstr ""
 
@@ -3125,14 +3127,14 @@ msgid "Campaign added"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:354
-#: public_html/lists/admin/send_core.php:1127
+#: public_html/lists/admin/send_core.php:1126
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:355
-#: public_html/lists/admin/send_core.php:1127
+#: public_html/lists/admin/send_core.php:1126
 #: public_html/lists/admin/message.php:49
 #: public_html/lists/admin/messages.php:107
 msgid "Review Scheduling"
@@ -3143,7 +3145,7 @@ msgid "Campaign queued"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:363
-#: public_html/lists/admin/home.php:273
+#: public_html/lists/admin/home.php:280
 msgid "processqueue"
 msgstr "处理队列"
 
@@ -3460,7 +3462,7 @@ msgid "Description of attachment"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:904
-#: public_html/lists/admin/send_core.php:1173
+#: public_html/lists/admin/send_core.php:1172
 #: public_html/lists/admin/template.php:312
 msgid "Send Test"
 msgstr ""
@@ -3491,55 +3493,55 @@ msgstr "这封信完成发送时发送讯息提醒"
 msgid "add Google Analytics tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:936
+#: public_html/lists/admin/send_core.php:935
 msgid "Reset click statistics"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:943
+#: public_html/lists/admin/send_core.php:942
 msgid "Estimated size of HTML email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:946
+#: public_html/lists/admin/send_core.php:945
 msgid "Estimated size of text email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:988
+#: public_html/lists/admin/send_core.php:987
 msgid "Estimated size of mailout"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:991
+#: public_html/lists/admin/send_core.php:990
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1098
+#: public_html/lists/admin/send_core.php:1097
 msgid "subject missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1107
+#: public_html/lists/admin/send_core.php:1106
 msgid "message content missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1114
+#: public_html/lists/admin/send_core.php:1113
 msgid "From missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1134
+#: public_html/lists/admin/send_core.php:1133
 msgid "destination lists missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1140
+#: public_html/lists/admin/send_core.php:1139
 msgid "Content contains click track links."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1162
+#: public_html/lists/admin/send_core.php:1161
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1168
+#: public_html/lists/admin/send_core.php:1167
 msgid "Save as draft"
 msgstr ""
 
@@ -3829,7 +3831,7 @@ msgstr "错误"
 msgid "Your database is out of date, please make sure to upgrade"
 msgstr "您的资料库太旧了，请进行升级"
 
-#: public_html/lists/admin/home.php:10 public_html/lists/admin/home.php:60
+#: public_html/lists/admin/home.php:10 public_html/lists/admin/home.php:67
 msgid "Your version"
 msgstr "您的版本"
 
@@ -3849,270 +3851,278 @@ msgstr "到"
 msgid "to continue"
 msgstr "继续"
 
-#: public_html/lists/admin/home.php:57
+#: public_html/lists/admin/home.php:64
 msgid "A new version of phpList is available!"
 msgstr ""
 
-#: public_html/lists/admin/home.php:59
+#: public_html/lists/admin/home.php:66
 msgid ""
 "The new version may have fixed security issues,<br/>so it is recommended to "
 "upgrade as soon as possible"
 msgstr "新版本也许修正了一些安全性错误，<br/>建议您尽快升级"
 
-#: public_html/lists/admin/home.php:61
+#: public_html/lists/admin/home.php:68
 msgid "Latest version"
 msgstr "最新版本"
 
-#: public_html/lists/admin/home.php:62
+#: public_html/lists/admin/home.php:69
+msgid "Read what has changed in the new version"
+msgstr ""
+
+#: public_html/lists/admin/home.php:69
 msgid "View what has changed"
 msgstr "浏览异动项目"
 
-#: public_html/lists/admin/home.php:63
+#: public_html/lists/admin/home.php:70
+msgid "Download the new version"
+msgstr ""
+
+#: public_html/lists/admin/home.php:70
 msgid "Download"
 msgstr "下载"
 
-#: public_html/lists/admin/home.php:85
+#: public_html/lists/admin/home.php:92
 msgid "Continue the Configuration process of phpList"
 msgstr ""
 
-#: public_html/lists/admin/home.php:91
+#: public_html/lists/admin/home.php:98
 #: public_html/lists/admin/importsimple.php:99
 msgid "Send a campaign"
 msgstr ""
 
-#: public_html/lists/admin/home.php:93
+#: public_html/lists/admin/home.php:100
 msgid "Start or continue a campaign"
 msgstr ""
 
-#: public_html/lists/admin/home.php:98
+#: public_html/lists/admin/home.php:105
 msgid "Manage Campaigns"
 msgstr ""
 
-#: public_html/lists/admin/home.php:100
+#: public_html/lists/admin/home.php:107
 msgid "View current campaigns"
 msgstr ""
 
-#: public_html/lists/admin/home.php:105
+#: public_html/lists/admin/home.php:112
 msgid "Manage Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:107
+#: public_html/lists/admin/home.php:114
 msgid "Search, edit and add Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:114
+#: public_html/lists/admin/home.php:121
 msgid "View statistics"
 msgstr ""
 
-#: public_html/lists/admin/home.php:119
+#: public_html/lists/admin/home.php:126
 msgid "Main"
 msgstr ""
 
-#: public_html/lists/admin/home.php:129
+#: public_html/lists/admin/home.php:136
 msgid "Manage Lists"
 msgstr ""
 
-#: public_html/lists/admin/home.php:131
+#: public_html/lists/admin/home.php:138
 msgid "View, edit and add lists, that your subscribers can sign up to"
 msgstr ""
 
-#: public_html/lists/admin/home.php:138
+#: public_html/lists/admin/home.php:145
 msgid "List all Users"
 msgstr "列出所有使用者"
 
-#: public_html/lists/admin/home.php:145
+#: public_html/lists/admin/home.php:152
 msgid "Import Users"
 msgstr "汇入使用者"
 
-#: public_html/lists/admin/home.php:150
+#: public_html/lists/admin/home.php:157
 msgid "export"
 msgstr "汇出"
 
-#: public_html/lists/admin/home.php:152
+#: public_html/lists/admin/home.php:159
 msgid "Export Users"
 msgstr "汇出使用者"
 
-#: public_html/lists/admin/home.php:157
+#: public_html/lists/admin/home.php:164
 msgid "reconcileusers"
 msgstr "批量更新使用者"
 
-#: public_html/lists/admin/home.php:159
+#: public_html/lists/admin/home.php:166
 msgid "Reconcile the User Database"
 msgstr ""
 
-#: public_html/lists/admin/home.php:163
+#: public_html/lists/admin/home.php:170
 msgid "List and user functions"
 msgstr "电子报与使用者功能"
 
-#: public_html/lists/admin/home.php:172
+#: public_html/lists/admin/home.php:179
 msgid "configure"
 msgstr "设定"
 
-#: public_html/lists/admin/home.php:174
+#: public_html/lists/admin/home.php:181
 #, fuzzy
 msgid "Configure"
 msgstr "设定"
 
-#: public_html/lists/admin/home.php:179
+#: public_html/lists/admin/home.php:186
 msgid "attributes"
 msgstr "栏位"
 
-#: public_html/lists/admin/home.php:181
+#: public_html/lists/admin/home.php:188
 msgid "Configure Attributes"
 msgstr "设定栏位"
 
-#: public_html/lists/admin/home.php:188
+#: public_html/lists/admin/home.php:195
 msgid "Control values for"
 msgstr "控制值于"
 
-#: public_html/lists/admin/home.php:196
+#: public_html/lists/admin/home.php:203
 msgid "spage"
 msgstr "订阅页面"
 
-#: public_html/lists/admin/home.php:198
+#: public_html/lists/admin/home.php:205
 msgid "Configure Subscribe Pages"
 msgstr ""
 
-#: public_html/lists/admin/home.php:203
+#: public_html/lists/admin/home.php:210
 msgid "Configuration Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:213
+#: public_html/lists/admin/home.php:220
 msgid "admins"
 msgstr "管理者"
 
-#: public_html/lists/admin/home.php:215
+#: public_html/lists/admin/home.php:222
 msgid "Add, edit and remove Administrators"
 msgstr "新增、编辑与移除管理员"
 
-#: public_html/lists/admin/home.php:220
+#: public_html/lists/admin/home.php:227
 msgid "adminattributes"
 msgstr "管理者栏位"
 
-#: public_html/lists/admin/home.php:222
+#: public_html/lists/admin/home.php:229
 msgid "Configure Attributes for administrators"
 msgstr ""
 
-#: public_html/lists/admin/home.php:226
+#: public_html/lists/admin/home.php:233
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:236 public_html/lists/admin/list.php:239
+#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:239
 msgid "send"
 msgstr "发送"
 
-#: public_html/lists/admin/home.php:238
+#: public_html/lists/admin/home.php:245
 msgid "Send a Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:244
+#: public_html/lists/admin/home.php:251
 msgid "preparesend"
 msgstr "草稿"
 
-#: public_html/lists/admin/home.php:246
+#: public_html/lists/admin/home.php:253
 msgid "Prepare a Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:251
+#: public_html/lists/admin/home.php:258
 msgid "sendprepared"
 msgstr "发送准备"
 
-#: public_html/lists/admin/home.php:253
+#: public_html/lists/admin/home.php:260
 msgid "Send a Prepared Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:259
+#: public_html/lists/admin/home.php:266
 msgid "templates"
 msgstr "模板"
 
-#: public_html/lists/admin/home.php:261
+#: public_html/lists/admin/home.php:268
 msgid "Configure Templates"
 msgstr "设定模板"
 
-#: public_html/lists/admin/home.php:266
+#: public_html/lists/admin/home.php:273
 #: public_html/lists/admin/import3.php:148
 #: public_html/lists/admin/import3.php:350
 #: public_html/lists/admin/messages.php:227
 msgid "messages"
 msgstr "讯息"
 
-#: public_html/lists/admin/home.php:268
+#: public_html/lists/admin/home.php:275
 msgid "List all Messages"
 msgstr "列出所有电子报"
 
-#: public_html/lists/admin/home.php:275
+#: public_html/lists/admin/home.php:282
 msgid "Process the Message Queue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:278
-#: public_html/lists/admin/connect.php:459
+#: public_html/lists/admin/home.php:285
+#: public_html/lists/admin/connect.php:461
 msgid "warning"
 msgstr ""
 
-#: public_html/lists/admin/home.php:278
+#: public_html/lists/admin/home.php:285
 msgid ""
 "You have set TEST in config.php to 1, so it will only show what would be sent"
 msgstr "您在 config.php 中将TEST设定为 1，所以显示的资料都不会寄出"
 
-#: public_html/lists/admin/home.php:283
+#: public_html/lists/admin/home.php:290
 msgid "processbounces"
 msgstr "处理退信"
 
-#: public_html/lists/admin/home.php:285
+#: public_html/lists/admin/home.php:292
 #: public_html/lists/admin/bouncemgt.php:12
 msgid "Process Bounces"
 msgstr "处理退信"
 
-#: public_html/lists/admin/home.php:292
+#: public_html/lists/admin/home.php:299
 #: public_html/lists/admin/bouncemgt.php:8
 msgid "View Bounces"
 msgstr "浏览退信"
 
-#: public_html/lists/admin/home.php:296
+#: public_html/lists/admin/home.php:303
 msgid "Message Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:344 public_html/lists/admin/about.php:60
+#: public_html/lists/admin/home.php:351 public_html/lists/admin/about.php:60
 msgid "Plugins"
 msgstr "外挂"
 
-#: public_html/lists/admin/home.php:354
+#: public_html/lists/admin/home.php:361
 msgid "setup"
 msgstr "安装"
 
-#: public_html/lists/admin/home.php:356
+#: public_html/lists/admin/home.php:363
 msgid "Setup "
 msgstr "安装"
 
-#: public_html/lists/admin/home.php:361
+#: public_html/lists/admin/home.php:368
 msgid "upgrade"
 msgstr "升级"
 
-#: public_html/lists/admin/home.php:368
+#: public_html/lists/admin/home.php:375
 msgid "dbcheck"
 msgstr "检查资料库"
 
-#: public_html/lists/admin/home.php:370
+#: public_html/lists/admin/home.php:377
 msgid "Check Database structure"
 msgstr "检查资料库结构"
 
-#: public_html/lists/admin/home.php:376
+#: public_html/lists/admin/home.php:383
 msgid "eventlog"
 msgstr "事件记录"
 
-#: public_html/lists/admin/home.php:378
+#: public_html/lists/admin/home.php:385
 msgid "View the eventlog"
 msgstr "浏览事件记录"
 
-#: public_html/lists/admin/home.php:383
+#: public_html/lists/admin/home.php:390
 msgid "admin"
 msgstr "管理"
 
-#: public_html/lists/admin/home.php:385
+#: public_html/lists/admin/home.php:392
 msgid "Change your details (e.g. password)"
 msgstr ""
 
-#: public_html/lists/admin/home.php:389
+#: public_html/lists/admin/home.php:396
 msgid "System Functions"
 msgstr "系统功能"
 
@@ -4156,11 +4166,11 @@ msgstr ""
 msgid "settings"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:125
+#: public_html/lists/admin/configure.php:133
 msgid "edit this value"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:125
+#: public_html/lists/admin/configure.php:133
 #: public_html/lists/admin/spage.php:57
 msgid "edit"
 msgstr "编辑"
@@ -5989,7 +5999,7 @@ msgstr ""
 msgid "You have requested a password update"
 msgstr ""
 
-#: public_html/lists/admin/login.php:96 public_html/lists/admin/lib.php:247
+#: public_html/lists/admin/login.php:96 public_html/lists/admin/lib.php:251
 #, fuzzy
 msgid "New password"
 msgstr "找回密码"
@@ -6291,46 +6301,46 @@ msgstr "删除退信"
 msgid "Unnamed List"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:242
+#: public_html/lists/admin/lib.php:246
 msgid "Hello"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:243
+#: public_html/lists/admin/lib.php:247
 msgid "You have requested a new password for phpList."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:244
+#: public_html/lists/admin/lib.php:248
 msgid "To enter a new one, please visit the following link:"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:246
+#: public_html/lists/admin/lib.php:250
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:248
+#: public_html/lists/admin/lib.php:252
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:250
+#: public_html/lists/admin/lib.php:254
 msgid "Error sending password change token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:454
+#: public_html/lists/admin/lib.php:458
 msgid "Sending admin copy to"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:518
+#: public_html/lists/admin/lib.php:522
 msgid "very little time"
 msgstr "一会儿"
 
-#: public_html/lists/admin/lib.php:578
+#: public_html/lists/admin/lib.php:582
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:725
+#: public_html/lists/admin/lib.php:729
 #, php-format
 #, php-format, fuzzy
 msgid ""
@@ -6338,16 +6348,16 @@ msgid ""
 "ago"
 msgstr "这个页面有一个处理程序还在进行中"
 
-#: public_html/lists/admin/lib.php:728
+#: public_html/lists/admin/lib.php:732
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:731
+#: public_html/lists/admin/lib.php:735
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "静止20秒，终止时会关闭"
 
-#: public_html/lists/admin/lib.php:739
+#: public_html/lists/admin/lib.php:743
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr "等太久了，我猜其他的程序完成了"
@@ -6358,7 +6368,7 @@ msgstr ""
 
 #: public_html/lists/admin/list.php:87 public_html/lists/admin/list.php:97
 #: public_html/lists/admin/list.php:119 public_html/lists/admin/list.php:127
-#: public_html/lists/admin/connect.php:1131
+#: public_html/lists/admin/connect.php:1133
 msgid "Uncategorised"
 msgstr ""
 
@@ -6732,57 +6742,57 @@ msgid "lastview"
 msgstr "最新一次"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Jan"
 msgstr "1"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Feb"
 msgstr "2"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Mar"
 msgstr "3"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Apr"
 msgstr "4"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Jun"
 msgstr "6"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Jul"
 msgstr "7"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Aug"
 msgstr "8"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Sep"
 msgstr "9"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Oct"
 msgstr "10"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Nov"
 msgstr "11"
 
 #: public_html/lists/admin/systemstats.php:11
-#: public_html/lists/admin/connect.php:1400
+#: public_html/lists/admin/connect.php:1402
 msgid "Dec"
 msgstr "12"
 
@@ -7402,101 +7412,101 @@ msgstr ""
 msgid "Import emails"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:159
-#: public_html/lists/admin/connect.php:180
+#: public_html/lists/admin/connect.php:161
+#: public_html/lists/admin/connect.php:182
 msgid "Invalid value for email address"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:380
+#: public_html/lists/admin/connect.php:382
 msgid "error"
 msgstr "错误"
 
-#: public_html/lists/admin/connect.php:429
-#: public_html/lists/admin/connect.php:433
+#: public_html/lists/admin/connect.php:431
+#: public_html/lists/admin/connect.php:435
 msgid "fatalerror"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:453
+#: public_html/lists/admin/connect.php:455
 msgid "Documentation about this error"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:747
+#: public_html/lists/admin/connect.php:749
 msgid "Main Page"
 msgstr "首页"
 
-#: public_html/lists/admin/connect.php:747
+#: public_html/lists/admin/connect.php:749
 msgid "about"
 msgstr "关于"
 
-#: public_html/lists/admin/connect.php:812
+#: public_html/lists/admin/connect.php:814
 msgid "In this section"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:839
+#: public_html/lists/admin/connect.php:841
 msgid "Recently visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1111
+#: public_html/lists/admin/connect.php:1113
 msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1117
+#: public_html/lists/admin/connect.php:1119
 msgid "All Active Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1147
+#: public_html/lists/admin/connect.php:1149
 msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1149
+#: public_html/lists/admin/connect.php:1151
 msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1192
+#: public_html/lists/admin/connect.php:1194
 msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1706
+#: public_html/lists/admin/connect.php:1708
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1709
+#: public_html/lists/admin/connect.php:1711
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1712
+#: public_html/lists/admin/connect.php:1714
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1715
+#: public_html/lists/admin/connect.php:1717
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1718
+#: public_html/lists/admin/connect.php:1720
 #, fuzzy
 msgid "secs"
 msgstr "秒"
 
-#: public_html/lists/admin/connect.php:1724
+#: public_html/lists/admin/connect.php:1726
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1786
+#: public_html/lists/admin/connect.php:1788
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1788
+#: public_html/lists/admin/connect.php:1790
 #, php-format
 #, php-format, fuzzy
 msgid "Listing %d to %d"
 msgstr "列出使用者 %d 到 %d"
 
-#: public_html/lists/admin/connect.php:1804
+#: public_html/lists/admin/connect.php:1806
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1807
+#: public_html/lists/admin/connect.php:1809
 msgid "Last Page"
 msgstr ""
 
