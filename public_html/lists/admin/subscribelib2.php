@@ -723,7 +723,7 @@ function ListAvailableLists($userid = 0,$lists_to_show = "") {
   if (!$some) {
     global $strNotAvailable;
     return '<p class="information">'.$strNotAvailable.'</p>';
-  } elseif ($some == 1 && $hidesinglelist == "true") {
+  } elseif ($some == 1 && ($hidesinglelist == "true" || $hidesinglelist === true || $hidesinglelist === "1")) {
     return $singlelisthtml;
   } else {
     global $strPleaseSelect;
