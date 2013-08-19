@@ -52,7 +52,8 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
   if (!$error_exist && !empty($email)){
      if (!$id) {
        $id = addNewUser($email);
-       $newuser = 1;
+       Redirect("user&id=$id");
+       exit;
      }
    
      if (!$id) {
