@@ -56,11 +56,14 @@ if (empty($process_id)) {
   return;
 }
 
-$num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
+## only convert up to a week ago.
+$lastweek = date('Y-m-d',time() - 24 * 7 * 3600);
+cl_output(sprintf('select count(*) from %s lt, %s m where lt.messageid = m.id and m.entered < "%s"',$GLOBALS['tables']['linktrack'],$GLOBALS['tables']['message'],$lastweek));
+$num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s lt, %s m where lt.messageid = m.id and m.entered < "%s"',$GLOBALS['tables']['linktrack'],$GLOBALS['tables']['message'],$lastweek));
 output(s("%d entries still to convert",$num[0]).'<br/>');
 
 $c = 0;
-$req = Sql_Query(sprintf('select * from %s limit %d',$GLOBALS['tables']['linktrack'],$limit));
+$req = Sql_Query(sprintf('select lt.* from %s lt, %s m where lt.messageid = m.id and m.entered < "%s" limit %d',$GLOBALS['tables']['linktrack'],$GLOBALS['tables']['message'],$lastweek,$limit));
 $total = Sql_Affected_Rows();
 if ($total) {
   output(s("converting data")."<br/>");
