@@ -52,7 +52,7 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   if ($GLOBALS["require_login"] && !isSuperUser()) {
     $owner = $_SESSION["logindetails"]["id"];
   }
-  if (!isset($_POST["active"])) $_POST["active"] = 0;
+  if (!isset($_POST["active"])) $_POST["active"] = listUsedInSubscribePage($id);
   $_POST['listname'] = removeXss($_POST['listname']);
   ## prefix isn't used any more
   $_POST['prefix'] = '';
