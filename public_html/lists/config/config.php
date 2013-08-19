@@ -431,7 +431,7 @@ define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
 # in some cases, strange newlines appear in the HTML source of campaigns
 # If that's happening to you, you may want to set this one
 # check https://mantis.phplist.com/view.php?id=15603 for more info
-# define('WORDWRAP_HTML',60)
+# define('WORDWRAP_HTML',60);
 
 
 # year ranges. If you use dates, by default the drop down for year will be from
