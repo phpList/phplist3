@@ -10,7 +10,7 @@ for dynamic content of messages (ie automated retrieval of some webpage)
 
 For now (version 2.7.x), it's only use will be to work in conjunction with file system
 attachments.
-If you want PHPlist to send you some file from the server at a regular interval, 
+If you want phpList to send you some file from the server at a regular interval, 
 the filesystem attachment will be refreshed at the moment of sending the (first) message.
 
 *Exclusion of times and dates*

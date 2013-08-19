@@ -1,7 +1,7 @@
 <?php
 # class to become plugin for the webbler http://demo.tincan.co.uk
 # this file is not used in the standalone version
-
+define('PHPLISTINIT',true);
 class phplist extends DefaultPlugin {
   var $DBstructure = array();
   var $tables = array();
@@ -26,7 +26,7 @@ class phplist extends DefaultPlugin {
       }
       $this->table_prefix = $table_prefix;
     }
-    include dirname(__FILE__).'/'.$this->coderoot()."/structure.php";
+    include_once dirname(__FILE__).'/public_html/lists/admin/init.php';
     $this->DBstructure = $GLOBALS['DBstruct'];
 
     $this->tables = array(
@@ -95,9 +95,9 @@ class phplist extends DefaultPlugin {
     $_SESSION["logindetails"] = $_SESSION["me"];
 
     $libs = array(
-      dirname(__FILE__)."/public_html/lists/admin/init.php",
+   //   dirname(__FILE__)."/public_html/lists/admin/init.php",
       dirname(__FILE__)."/public_html/lists/admin/lib.php",
-      dirname(__FILE__)."/public_html/lists/admin/defaultconfig.inc",
+      dirname(__FILE__)."/public_html/lists/admin/defaultconfig.php",
       dirname(__FILE__)."/public_html/lists/texts/english.inc");
     if (!empty($_SERVER['ConfigFile'])) {
       array_unshift($libs,$_SERVER['ConfigFile']);

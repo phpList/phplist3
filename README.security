@@ -3,27 +3,26 @@ Security issues around PHPlist.
 
 November 2003
 
-As any open source application, PHPlist can be thoroughly investigated by anyone who may
+As any open source application, phpList can be thoroughly investigated by anyone who may
 want to use it as a method to gain entry into a system they should not be able to get
-access to. Even though the most care has been taken by the developers of PHPlist to avoid
+access to. Even though the most care has been taken by the developers of phpList to avoid
 this, there is no warranty that this may not happen.
 
-As such, in the past, PHPlist has been used for this purpose, and from this we have learned
+As such, in the past, phpList has been used for this purpose, and from this we have learned
 a few things. This document tries to outline as many efforts that can be taken as currently
 known in order to make sure that your system is not compromised.
 
 Some of these issues may not be available to all of you, as it depends on the way you have
-hosted your PHPlist installation. It will not be necessary to use all of them, but using as
+hosted your phpList installation. It will not be necessary to use all of them, but using as
 many as you can possibly achieve will increase the security of your system.
 
 
-1. Subscribe to the announcements mailinglist. You do this by sending an email to 
-phplist-announce-subscribe@tincan.co.uk. This is very important, because any new vulnerability
-that is found will (hopefully) be reported to the developers, in which case we will release
-a fix as soon as we can. We will then us the mailinglist to tell everyone about this, so it 
-is the primary source of information about new vulnerabilities. 
+1. Subscribe to the announcements mailinglist. You can sign up at http://announce.hosted.phplist.com/
+This is very important, because any new vulnerability that is found will (hopefully) be reported to 
+the developers, in which case we will release a fix as soon as we can. We will then use the mailinglist to
+tell everyone about this, so it is the primary source of information about new vulnerabilities. 
 
-2. Make sure the .htaccess files in the different directories of PHPlist (particularly "admin",
+2. Make sure the .htaccess files in the different directories of phpList (particularly "admin",
 "commonlib" and others, are active. Some server settings do not allow overriding some of the 
 Apache directives we have put in there, which means the files are not parsed.
 
@@ -36,17 +35,17 @@ available.
 
 3. Add a password to your admin directory. You can use the example "htaccess" file and copy the
 contents into the .htaccess file that is in the admin directory.
-If you still want to use the "admin" system of your PHPlist installation, this would mean your
-admins have to first enter into the system with a general password and then as a PHPlist admin.
+If you still want to use the "admin" system of your phpList installation, this would mean your
+admins have to first enter into the system with a general password and then as a phpList admin.
 
 4. Set "register globals" to be "off" in your php.ini file.
 
 5. Run the website as an apache user who has no other permissions on your server, particularly
 no write permissions in any of the documents of your website.
 
-6. Change the admin password as soon as you have installed PHPlist.
+6. Change the admin password as soon as you have installed phpList.
 
-7. Run your PHPlist installation on a server that has a firewall installed that only allows
+7. Run your phpList installation on a server that has a firewall installed that only allows
 the necessary services to be served.
 
 

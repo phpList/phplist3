@@ -2,30 +2,24 @@
 phpList, wishlist and future plans, not in order of priority
 these issues are "general outline", details handled in mantis
 
-1. update ckeditor - https://mantis.phplist.com/view.php?id=15414
-DONE - change admin permission system to be similar to phosted, but keep listownership
-3. make reconcile page have plugin capacity and move loads of stuff to plugins
+make reconcile page have plugin capacity and move loads of stuff to plugins
+finish RSS manager plugin
+translate system messages: https://mantis.phplist.com/view.php?id=16594
+re-request confirmation via campaign -> "invite mode"
 
-4. finish RSS manager plugin
-5. build user selection/segmentation plugin to mimic the 2.10 segmentation system
-
-6. translate system messages: https://mantis.phplist.com/view.php?id=16594
-7. re-request confirmation via campaign -> "invite mode"
-
-8. error handling and debugging https://mantis.phplist.com/view.php?id=12740
-9. session handling and login related: https://mantis.phplist.com/view.php?id=15029
-10. add system to manage versioning of translation of "info" and "help"
+add system to manage versioning of translation of "info" and "help"
 -> dokuwiki
 
-11. move frontend translations into translation system
+move frontend translations into translation system
 
-downloadable themes and plugins
-theme changing
-
-DONE test and finish queue prepare
+downloadable templates and plugins
+template "Gallery" and sharing
+reorganise code particularly the "libraries"
 
 12. subscriber management
 https://mantis.phplist.com/view.php?id=12801 and related
+
+plugin dependencies: Plugin A requires Plugin B (+version) so installing A also installs B
 
 - auto responder 
 - Invitation mode, send to unconfirmed subscribers, but require [CONFIRMATIONURL] placeholder
@@ -41,7 +35,7 @@ https://mantis.phplist.com/view.php?id=12801 and related
   A searchable archive of the lists, to use via the web
 - Allowing running processes to be viewed and killed
 - "preview" of messages to send, so you can check whether the layout is ok
-- make system multilingual and allow user to choose language
+- make system multilingual and allow subscriber to choose language
 - placeholder parsing in subscribe, confirm and unsubscribe messages
 - system messages identifiable for bounces and process them
 DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can arrive, and give error when it can't
