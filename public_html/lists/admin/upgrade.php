@@ -508,6 +508,9 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     # mark now to be the last time we checked for an update
     Sql_Query(sprintf('replace into %s (item,value,editable) values("updatelastcheck",current_timestamp,0)',
       $tables["config"]));
+    ## also clear any possible value for "updateavailable"
+    Sql_Query(sprintf('delete from %s where item = "updateavailable"',$tables["config"]));
+    
     Info(s('Success'),1);
     
     upgradePlugins(array_keys($GLOBALS['plugins']));

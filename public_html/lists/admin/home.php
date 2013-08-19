@@ -34,6 +34,9 @@ $checkinterval = sprintf('%d',getConfig("check_new_version"));
 if (!isset($checkinterval)) {
   $checkinterval = 7;
 }
+
+$showUpdateAvail = !empty($_GET['showupdate']); ## just to check the design
+
 if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   $query
   = ' select date_add(value, interval %d day) < current_timestamp as needscheck'
@@ -43,7 +46,7 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   $query = sprintf( $query, $checkinterval, $tables["config"] );
   $req = Sql_Query_Params($query, array('updatelastcheck'));
   $needscheck = Sql_Fetch_Row($req);
-  if ($needscheck[0]) {
+  if ($showUpdateAvail || $needscheck[0]) {
     @ini_set("user_agent",NAME." (phplist version ".VERSION.")");
     @ini_set("default_socket_timeout",5);
     if ($fp = @fopen ("http://www.phplist.com/files/LATESTVERSION","r")) {
@@ -52,15 +55,19 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
       @fclose($fp);
       $thisversion = VERSION;
       $thisversion = preg_replace("/[^\.\d]/","",$thisversion);
-      if (!versionCompare($thisversion,$latestversion)) {
-        print '<div class="newversion">';
+      if ($showUpdateAvail || !versionCompare($thisversion,$latestversion)) {
+        ## remember this, so we can remind about the update, without the need to check the phplist site (@@TODO, implement that....)
+        $values = array('item'=>"updateavailable", 'value'=>$latestversion, 'editable'=>'0');
+        Sql_Replace($tables['config'], $values, 'item', false);
+
+        print '<div class="newversion note">';
         print $GLOBALS['I18N']->get('A new version of phpList is available!');
         print '<br/>';
         print '<br/>'.$GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
         print '<br/>'.$GLOBALS['I18N']->get('Your version').': <b>'.$thisversion.'</b>';
         print '<br/>'.$GLOBALS['I18N']->get('Latest version').': <b>'.$latestversion.'</b><br/>  ';
-        print '<a href="http://mantis.phplist.com/changelog_page.php">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
-        print '<a href="http://www.phplist.com/download">'.$GLOBALS['I18N']->get('Download').'</a></div>';
+        print '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
+        print '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
       }
     }
     $values = array('item'=>"updatelastcheck", 'value'=>'current_timestamp', 'editable'=>'0');
