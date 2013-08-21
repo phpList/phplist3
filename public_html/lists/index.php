@@ -203,8 +203,8 @@ if (!$id) {
   # find the default one:
   $id = getConfig("defaultsubscribepage");
   # fix the true/false issue
-  if ($id == "true" || $id) $id = 1;
-  if ($id == "false" || !$id) $id = 0;
+  if ($id == "true") $id = 1;
+  if ($id == "false") $id = 0;
   if (!$id) {
     # pick a first
     $req = Sql_Fetch_row_Query(sprintf('select ID from %s where active',$tables["subscribepage"]));
