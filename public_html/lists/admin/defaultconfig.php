@@ -129,7 +129,7 @@ $default_config = array (
 "report_address" => array (
   'value' => 'listreports@[DOMAIN]',
   'description' => s("Who gets the reports (email address, separate multiple emails with a comma)"),
-  'type' => "email",
+  'type' => "emaillist",
   'allowempty' => true,
   'category'=> 'reporting',
 ),
