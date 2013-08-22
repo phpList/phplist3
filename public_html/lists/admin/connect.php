@@ -1001,7 +1001,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       }
       $linktext = ucfirst(strtolower($desc));
       $linktext = str_ireplace('phplist','phpList',$linktext);
-      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,htmlspecialchars($title),$linktext);
+      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,htmlspecialchars(strip_tags($title)),$linktext);
     }
   } else
     return "";
