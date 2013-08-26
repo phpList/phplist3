@@ -182,6 +182,11 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   $text["preferences"] = sprintf('%s%suid=%s',$url,$sep,$hash);
   $html["preferencesurl"] = sprintf('%s%suid=%s',$url,htmlspecialchars($sep),$hash);
   $text["preferencesurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+
+  $url = getConfig("confirmationurl");$sep = strpos($url,'?') === false ? '?':'&';
+  $html["confirmationurl"] = sprintf('%s%suid=%s',$url,htmlspecialchars($sep),$hash);
+  $text["confirmationurl"] = sprintf('%s%suid=%s',$url,$sep,$hash);
+
   #historical, not sure it's still used
   $html["userid"] = $hash;
   $text["userid"] = $hash;
@@ -902,6 +907,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     
     if (!$mail->compatSend("", $destinationemail, $fromname, $fromemail, $subject)) {
 #    if (!$mail->send(array($destinationemail),'spool')) {
+      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+        $plugin->processSendFailed($messageid, $userdata, $isTestMail);
+      }
       output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
         $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail));
       logEvent("Error sending message $messageid to $email ($destinationemail)");
@@ -917,7 +925,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       }
       $sqlCount = $GLOBALS["pagestats"]["number_of_queries"] - $sqlCountStart;
       if ($getspeedstats) output('It took '.$sqlCount.'  queries to send this message');
-#exit;
+      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+        $plugin->processSendSuccess($messageid, $userdata, $isTestMail);
+      }
    #   logEvent("Sent message $messageid to $email ($destinationemail)");
       return 1;
     }
