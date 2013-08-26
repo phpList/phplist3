@@ -265,7 +265,7 @@ if (isset($id)) {
        $ls_delete=sprintf('<a title="'.$GLOBALS['I18N']->get('Delete').'" class="del" href="javascript:deleteRec(\'%s\');"></a>',
        PageURL2("members","","start=$start&id=$id&delete=".$user["id"]));
     }
-    $ls->addRow($element ,'',$user["confirmed"]?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
+    $ls->addRow($element ,'',($user["confirmed"] && !$user["blacklisted"])?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
 
     if ($access != "view")
     $ls->addColumn($element ,$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
