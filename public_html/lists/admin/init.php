@@ -97,7 +97,6 @@ foreach ($GLOBALS["DBstructphplist"] as $tablename => $tablecolumns) {
 unset($GLOBALS["DBstructuser"]);
 unset($GLOBALS["DBstructphplist"]);
 
-$GLOBALS['adodb_inc_file'] = $adodb_inc_file;
 $GLOBALS['show_dev_errors'] = $show_dev_errors;
 $magic_quotes = ini_get('magic_quotes_gpc');
 if ($magic_quotes == 'off' || empty($magic_quotes)) {
@@ -346,6 +345,9 @@ if (!isset($GLOBALS['tmpdir'])) {
 if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"]) && !empty ($system_tmpdir)) {
   $GLOBALS["tmpdir"] = $system_tmpdir;
 }
+if (!isset($attachment_repository)) {
+  $attachment_repository = $tmpdir;
+}
 
 if (!isset($pageroot)) {
   $pageroot = '/lists';
@@ -355,13 +357,6 @@ if (!isset($pageroot)) {
 $adminpages = $GLOBALS['pageroot'].'/admin';
 ## remove possibly duplicated // at the beginning
 $adminpages = preg_replace('~^//~','/',$adminpages);
-
-if (!isset($table_prefix)) {
-  $table_prefix = 'phplist_';
-}
-if (!isset($usertable_prefix)) {
-  $usertable_prefix = 'phplist_user_';
-}
 
 if (!isset($systemroot)) {
   $systemroot = dirname(__FILE__);
