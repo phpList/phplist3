@@ -507,6 +507,35 @@ class phplistPlugin {
     # 200710 Bas
     return true;
   }
+  
+  
+  /**
+   * processSendSuccess
+   * 
+   * called when sending of this messageid to this subscriber was successful
+   * 
+   * @param messageid integer 
+   * @param userdata array
+   * @param isTest boolean, true when testmessage
+   * @return null
+   */
+  
+  function processSendSuccess($messageid, $userdata, $isTest = false) {
+  }
+  
+  /**
+   * processSendFailed
+   * 
+   * called when sending of this messageid to this subscriber failed
+   * 
+   * @param messageid integer 
+   * @param userdata array
+   * @param isTest boolean, true when testmessage
+   * @return null
+   */
+  function processSendFailed($messageid, $userdata, $isTest = false) {
+  }
+  
 
   /*
    * processSendStats
