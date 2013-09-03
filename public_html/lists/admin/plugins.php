@@ -46,7 +46,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
   print '<h2>'.s('Project').' '.$project_name.'</h2>';
   
   $filename = '';
-  $packagefile = fetchUrl($packageurl);
+  $packagefile = file_get_contents($packageurl);
   if (!$packagefile) {
     print Error(s('Unable to download plugin package, check your connection'));
   } else {
