@@ -114,7 +114,7 @@ function deleteOldTokens(){
   echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
   echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
   echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
-  echo "    <tr><td><input type=\"text\" name=\"login\" value=\"\" size=\"30\" /></td></tr>";
+  echo "    <tr><td><input type=\"text\" name=\"login\" value=\"\" size=\"30\"  autofocus=\"autofocus\" /></td></tr>";
   echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Password').":</span></td></tr>";
   echo "    <tr><td><input type=\"password\" name=\"password\" value=\"\" size=\"30\" /></td></tr>";
   echo "    <tr><td><input class=\"submit\" type=\"submit\" name=\"process\" value=\"".$GLOBALS['I18N']->get('Continue')."\" /></td></tr>";
