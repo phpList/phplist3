@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:01+0000\n"
-"PO-Revision-Date: 2013-08-05 21:38+0000\n"
+"POT-Creation-Date: 2013-08-31 05:01+0000\n"
+"PO-Revision-Date: 2013-08-26 21:36+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1375738732.0\n"
+"X-POOTLE-MTIME: 1377553016.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -3982,7 +3982,7 @@ msgstr "Latest version"
 
 #: public_html/lists/admin/home.php:69
 msgid "Read what has changed in the new version"
-msgstr ""
+msgstr "Read what has changed in the new version"
 
 #: public_html/lists/admin/home.php:69
 msgid "View what has changed"
@@ -3990,7 +3990,7 @@ msgstr "View what has changed"
 
 #: public_html/lists/admin/home.php:70
 msgid "Download the new version"
-msgstr ""
+msgstr "Download the new version"
 
 #: public_html/lists/admin/home.php:70
 msgid "Download"
@@ -7186,28 +7186,28 @@ msgstr "creating tables"
 msgid "creating tables done"
 msgstr "creating tables done"
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr "%d entries still to convert"
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr "converting data"
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr "processing cancelled"
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr "Optimizing table to recover space"
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 msgid "Finished"
 msgstr "Finished"
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr "Convert some more"
 

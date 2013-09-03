@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:05+0000\n"
-"PO-Revision-Date: 2013-07-31 13:53+0000\n"
+"POT-Creation-Date: 2013-08-31 05:04+0000\n"
+"PO-Revision-Date: 2013-08-29 15:08+0000\n"
 "Last-Translator: Julien <julien.lusson@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1375278821.0\n"
+"X-POOTLE-MTIME: 1377788900.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -80,7 +80,7 @@ msgstr "Cette page ne peut être appelée que en ligne de commande"
 
 #: public_html/lists/admin/processbounces.php:31
 msgid "Bounce processing error"
-msgstr "Erreur dans le traitement des adresses de courriel rejetées"
+msgstr "Erreur dans le traitement des adresses électroniques rejetées"
 
 #: public_html/lists/admin/processbounces.php:33
 msgid "Bounce Processing info"
@@ -381,7 +381,7 @@ msgstr "Remettre &agrave; z&eacute;ro la session Import"
 #: public_html/lists/admin/plugins.php:27
 msgid "Invalid security token, please reload the page and try again"
 msgstr ""
-"Code de sécurité invalide, veuillez actualiser la page et essayer de nouveau"
+"Jeton de sécurité invalide, veuillez actualiser la page et essayer à nouveau"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:65
 #: public_html/lists/admin/import1.php:51
@@ -423,7 +423,7 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/importcsv.php:156
 #: public_html/lists/admin/actions/import2.php:7
 msgid "Reading emails from file ... "
-msgstr "Lecture des emails du fichier ... "
+msgstr "Lecture des adresses électroniques du fichier … "
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:190
 #: public_html/lists/admin/actions/import2.php:27
@@ -505,13 +505,13 @@ msgstr "Import de %d abonnés à %d listes, veuillez patienter"
 #: public_html/lists/admin/importadmin.php:122
 #: public_html/lists/admin/actions/import2.php:96
 msgid "Record has no email"
-msgstr "L&rsquo;entr&eacute;e n&rsquo;a pas d&rsquo;email"
+msgstr "L&rsquo;entr&eacute;e n&rsquo;a pas d&rsquo;adresse électronique"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:493
 #: public_html/lists/admin/importadmin.php:123
 #: public_html/lists/admin/actions/import2.php:99
 msgid "Invalid Email"
-msgstr "Email Invalide"
+msgstr "Adresse électronique invalide"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:539
 #: public_html/lists/admin/actions/import2.php:147
@@ -541,7 +541,7 @@ msgstr ""
 #: public_html/lists/admin/import3.php:493
 #: public_html/lists/admin/importsimple.php:100
 msgid "Import some more emails"
-msgstr "Importer d&rsquo;autres adresses de courriel"
+msgstr "Importer d&rsquo;autres adresses électroniques"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:597
 #: public_html/lists/admin/import3.php:229
@@ -555,7 +555,8 @@ msgstr "Ajout d&rsquo;utilisateurs &agrave; la liste"
 #: public_html/lists/admin/importsimple.php:142
 msgid "Select the lists to add the emails to"
 msgstr ""
-"S&eacute;lectionnez les listes auxquelles vous voulez ajouter les emails"
+"S&eacute;lectionnez les listes auxquelles vous voulez ajouter les adresses "
+"électroniques"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/import4.php:42
@@ -594,23 +595,23 @@ msgid ""
 "Document.     "
 msgstr ""
 "Le fichier que vous envoyez doit avoir les attributs sur la première ligne. "
-"Assurez-vous que la colonne contenant l’adresse de courriel soit nommée "
-"\"email\" et non \"courriel\" ou \"Adresse email\". La casse des caracatères n'est "
-"pas pris en compte. Si bous appellez une colonne \"Foreign Key\", elle sera "
-"utilisée pour synchroniser une base externe et la base de phpList. Cete clé "
+"Assurez-vous que la colonne contenant l’adresse électronique soit nommée "
+"\"email\" et non \"courriel\" ou \"Adresse email\". La casse des caractères n'est "
+"pas pris en compte. Si vous appelez une colonne \"Foreign Key\", elle sera "
+"utilisée pour synchroniser une base externe et la base de phpList. Cette clé "
 "étrangère est prioritaire lors du contrôle des doublons et de l'existence "
 "d'un nouvel abonné. Cela ralentit le processus d’importation. Si vous "
-"l'utilisez, vous pouvez utiliser des enregistrements sans adresse de "
-"courriel., mais une \"Invalid Email\" sera créé. Vous pourrez ensuite "
-"recherchez cette valeur pour trouver ce type d’enregistrements. La taille "
-"maximum de la clé étrangère est de 100 caractères.        Attention : le "
-"fichier doit au format texte, n’envoyez pas de fichier binaire tel que ceux "
-"produit par une suite Office."
+"l'utilisez, vous pouvez utiliser des enregistrements sans électronique, mais "
+"une \"Invalid Email\" sera créé. Vous pourrez ensuite rechercher cette valeur "
+"pour trouver ce type d’enregistrements. La taille maximum de la clé "
+"étrangère est de 100 caractères.        Attention : le fichier doit au "
+"format texte brut, n’envoyez pas de fichier binaire tel que ceux produit par "
+"un traitement de texte."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:661
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
-msgstr "Fichier contenant les emails"
+msgstr "Fichier contenant les adresses électroniques"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:663
 #, php-format
@@ -706,11 +707,11 @@ msgid ""
 "first name and last name. The value [number] can be used to insert the "
 "sequence number for importing."
 msgstr ""
-"Attributs utiliser pour les abonnés sans adresse de courriel valide. Vous "
+"Attributs utiliser pour les abonnés sans adresse électronique valide. Vous "
 "pouvez utiliser des valeurs entre [ et ] pour créer des adresses de courriel "
 "correspondantes. Par exemple, si vous importer un fichier avec les colonnes "
 "\"prénom\" et \"nom\", vous pouvez utiliser \"[prénom][nom]\" pour créer "
-"automatiquement une adresse de courriel avec le prénom et le nom. La valeur "
+"automatiquement une adresse électronique avec le prénom et le nom. La valeur "
 "[number] peut être utilisée pour ajouter une énumération numérique "
 "automatiquement."
 
@@ -726,7 +727,7 @@ msgid ""
 msgstr ""
 "Si vous cochez \"Écraser les valeurs existantes\" les informations concernant "
 "un utilisateur de la base de données sera remplacé par les données "
-"importées. Les utilisateurs sont identifiés par leur adresse de courriel."
+"importées. Les utilisateurs sont identifiés par leur adresse électronique."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:678
 #: public_html/lists/admin/import3.php:240
@@ -745,11 +746,11 @@ msgstr ""
 "Si vous cocher \"Conserver les adresses de courriel\", un conflit en cas "
 "d’adresse en double conserveras l’ancienne information et ajouteras "
 "\"duplicate\" à la nouvelle. Si vous ne le cochez pas, l’ancienne information "
-"sera marque \"duplicate\" et la nouvelle prendras la priorité."
+"sera marque \"duplicate\" et la nouvelle prendra la priorité."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:680
 msgid "Retain Old User Email"
-msgstr "Garder ancien email utilisateur"
+msgstr "Garder l'ancienne adresse électronique de l'utilisateur"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:685
 #: public_html/lists/admin/import1.php:215
@@ -760,18 +761,20 @@ msgid ""
 msgstr ""
 "Si vous choisissez \"Envoyer un message de confirmation\" les abonné(e)s que "
 "vous ajoutez recevrons un message pour confirmer leur inscription. Ceci est "
-"recommandé pour valider les adresses de courriel et identifier les mauvaises "
-"adresses."
+"recommandé pour valider les adresses électroniques et identifier les "
+"mauvaises adresses."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:686
 msgid "Send&nbsp;Notification&nbsp;email"
-msgstr "Envoyer email de&nbsp;Notification&nbsp;"
+msgstr "Envoyer&nbsp;un&nbsp;message&nbsp;de&nbsp;notification&nbsp;"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:686
 #: public_html/lists/admin/import1.php:216
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
-msgstr "Confirmer d&rsquo;office"
+msgstr ""
+"Si vous envoyez un message de confirmation aux abonné(e)s, vous pouvez "
+"vouloir ajouter un délai entre les messages"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:687
 #: public_html/lists/admin/import1.php:217
@@ -936,7 +939,7 @@ msgstr "Ajouter un nouvel abonné"
 
 #: public_html/lists/admin/commonlib/pages/user.php:333
 msgid "Email address"
-msgstr "Adresse de courriel"
+msgstr "Adresse électronique"
 
 #: public_html/lists/admin/commonlib/pages/user.php:368
 #: public_html/lists/admin/actions/configure.php:61
@@ -1609,7 +1612,7 @@ msgstr "R&eacute;sultat test :"
 
 #: public_html/lists/admin/import1.php:137
 msgid "There should only be ONE email per line."
-msgstr "Il ne doit y avoir qu'UNE seule adresse de courriel par ligne."
+msgstr "Il ne doit y avoir qu'UNE seule adresse électronique par ligne."
 
 #: public_html/lists/admin/import1.php:137
 msgid "If the output looks ok, go"
@@ -1636,14 +1639,14 @@ msgid ""
 "like a Word Document."
 msgstr ""
 "Le fichier que vous envoyez doit contenir les adresses de courriel que vous "
-"souhaitez ajouter à ces listes. Toutes les informations après l'adresse de "
-"courriel sera ajoutée dans un champ \"Info\" de l'abonné(e). Vous pouvez "
+"souhaitez ajouter à ces listes. Toutes les informations après l'adresse "
+"électronique sera ajoutée dans un champ \"Info\" de l'abonné(e). Vous pouvez "
 "spécifier les autres attributs ci-dessous. Attention : le fichier doit être "
 "en texte, n'envoyez pas de fichier binaire tel un Document Word."
 
 #: public_html/lists/admin/import1.php:212
 msgid "File containing emails:"
-msgstr "Fichier qui contient les adresses de courriel:"
+msgstr "Fichier qui contient les adresses électroniques :"
 
 #: public_html/lists/admin/import1.php:216
 msgid "Send Notification email"
@@ -1686,7 +1689,7 @@ msgstr "Ce nom est déjà pris"
 #: public_html/lists/admin/importadmin.php:95
 msgid "Cannot find the email in the header"
 msgstr ""
-"L&rsquo;email n&rsquo;a pas pu &ecirc;tre trouv&eacute; dans "
+"L&rsquo;adresse électronique n&rsquo;a pas pu &ecirc;tre trouv&eacute; dans "
 "l&rsquo;ent&ecirc;te"
 
 #: public_html/lists/admin/importadmin.php:97
@@ -1727,7 +1730,9 @@ msgstr "connexion"
 
 #: public_html/lists/admin/importadmin.php:179
 msgid "Empty loginname, using email:"
-msgstr "Identifiant de connexion vide, l&rsquo;email est utilis&eacute;:"
+msgstr ""
+"Identifiant de connexion vide, l&rsquo;adresse électronique est "
+"utilis&eacute;:"
 
 #: public_html/lists/admin/importadmin.php:230
 msgid "Value"
@@ -1779,11 +1784,10 @@ msgid ""
 msgstr ""
 "   Le fichier que vous allez téléverser devra contenir les administrateurs "
 "que vous souhaitez ajouter au système. Les colonnes doivent avoir les "
-"entêtes suivantes (en anglais): <b>email</b>, <b>loginname</b> (identifiant "
-"de connexion), <b>password</b> (mot de passe). Toute autre colonne sera "
-"ajoutée aux attributs des administrateurs.  <b>Attention</b>: le fichier "
-"doit être au format texte brut.  Ne téléversez pas de fichier binaire comme "
-"un Document Word.   "
+"entêtes suivantes (en anglais): \"email\", \"loginname\" (identifiant de "
+"connexion), \"password\" (mot de passe). Toute autre colonne sera ajoutée aux "
+"attributs des administrateurs.  Attention : le fichier doit être au format "
+"texte brut. Ne téléversez pas de fichier binaire comme un document Word.   "
 
 #: public_html/lists/admin/importadmin.php:305
 msgid ""
@@ -1859,12 +1863,12 @@ msgstr "Importation faite par "
 #: public_html/lists/admin/actions/import1.php:209
 #: public_html/lists/admin/import3.php:473
 msgid "new email was"
-msgstr "nouvel adresse de courriel &eacute;tait"
+msgstr "la nouvelle adresse électronique était"
 
 #: public_html/lists/admin/actions/import1.php:209
 #: public_html/lists/admin/import3.php:473
 msgid "new emails were"
-msgstr "nouvelles adresses de courriel &eacute;taient"
+msgstr "les nouvelles adresses électronique étaient"
 
 #: public_html/lists/admin/actions/import1.php:210
 #: public_html/lists/admin/import3.php:474
@@ -1874,7 +1878,7 @@ msgstr "l'adresse de courriel &eacute;tait"
 #: public_html/lists/admin/actions/import1.php:210
 #: public_html/lists/admin/import3.php:474
 msgid "emails were"
-msgstr "les adresses de courriel &eacute;taient"
+msgstr "les adresses électroniques étaient"
 
 #: public_html/lists/admin/actions/import1.php:213
 #, php-format
@@ -1934,7 +1938,7 @@ msgstr "double"
 #: public_html/lists/admin/actions/import2.php:233
 #: public_html/lists/admin/actions/import2.php:268
 msgid "Duplicate Email"
-msgstr "Email en double"
+msgstr "Adresse électronique en double"
 
 #: public_html/lists/admin/actions/import2.php:233
 msgid " user imported as "
@@ -1944,36 +1948,41 @@ msgstr " utilisateur import&eacute; sous "
 msgid ""
 "All the emails already exist in the database and are member of the lists"
 msgstr ""
-"Tous les emails existent d&eacute;j&agrave; dans la base de donn&eacute;es "
-"et sont inscrits sur les listes"
+"Toutes les adresses électroniques existent déjà dans la base de donnés et "
+"sont abonnés aux listes"
 
 #: public_html/lists/admin/actions/import2.php:475
 #, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
 msgstr ""
-"%s emails ont &eacute;t&eacute; import&eacute;s avec succ&egrave;s dans la "
-"base de donn&eacute;es et ajout&eacute;s &agrave; %d listes."
+"%s adresses électroniques ont &eacute;t&eacute; import&eacute;es avec "
+"succ&egrave;s dans la base de donn&eacute;es et ajout&eacute;es &agrave; %d "
+"listes."
 
 #: public_html/lists/admin/actions/import2.php:476
 #, php-format
 msgid "%d emails subscribed to the lists"
-msgstr "%d emails inscrits aux listes"
+msgstr "%d adresses électroniques inscrites aux listes"
 
 #: public_html/lists/admin/actions/import2.php:478
 #, php-format
 msgid "%s emails already existed in the database"
-msgstr "%s emails existaient d&eacute;j&agrave; dans la base de donn&eacute;es"
+msgstr ""
+"%s adresses électroniques existaient d&eacute;j&agrave; dans la base de "
+"donn&eacute;es"
 
 #: public_html/lists/admin/actions/import2.php:482
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr "%d Emails non valides ont &eacute;t&eacute; trouv&eacute;s."
+msgstr ""
+"%d adresses électroniques invalides ont &eacute;t&eacute; trouv&eacute;es."
 
 #: public_html/lists/admin/actions/import2.php:484
 msgid "These records were added, but the email has been made up from "
 msgstr ""
-"Ces donn&eacute;es ont &eacute;t&eacute; ajout&eacute;es, mais l&rsquo;email "
-"a &eacute;t&eacute; invent&eacute; &agrave; partir de "
+"Ces donn&eacute;es ont &eacute;t&eacute; ajout&eacute;es, mais "
+"l&rsquo;adresse électronique a &eacute;t&eacute; invent&eacute; &agrave; "
+"partir de "
 
 #: public_html/lists/admin/actions/import2.php:486
 #: public_html/lists/admin/import3.php:487
@@ -1989,7 +1998,7 @@ msgstr ""
 #, php-format
 #, php-format, php-format
 msgid "%d duplicate emails found."
-msgstr "%d adresses de courriel en doublon."
+msgstr "%d adresses électroniques en doublon."
 
 #: public_html/lists/admin/actions/import2.php:493
 #, php-format
@@ -2297,11 +2306,11 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:432
 msgid "Sent in last run"
-msgstr "Emails envoy&eacute;s dans le dernier envoi"
+msgstr "Messages envoy&eacute;s dans le dernier envoi"
 
 #: public_html/lists/admin/actions/processqueue.php:433
 msgid "Skipped in last run"
-msgstr "Emails saut&eacute;s dans le dernier envoi"
+msgstr "Messages saut&eacute;s dans le dernier envoi"
 
 #: public_html/lists/admin/actions/processqueue.php:471
 msgid "Processing has started,"
@@ -2331,7 +2340,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:478
 msgid "Reports will be sent by email to"
-msgstr "Les rapports seront envoy&eacute;s par email &agrave;"
+msgstr "Les rapports seront envoy&eacute;s par courriel &agrave;"
 
 #: public_html/lists/admin/actions/processqueue.php:520
 #, php-format
@@ -2488,7 +2497,7 @@ msgstr "Utilisateur non-confirm&eacute;"
 #: public_html/lists/admin/actions/processqueue.php:1086
 #: public_html/lists/admin/actions/processqueue.php:1088
 msgid "Invalid email address"
-msgstr "Adresse de courriel non valide"
+msgstr "Adresse électronique non valide"
 
 #: public_html/lists/admin/actions/processqueue.php:1094
 #, php-format
@@ -2789,17 +2798,17 @@ msgstr "Veuillez choisir l&rsquo;une des méthodes d'importation ci-dessous."
 
 #: public_html/lists/admin/import.php:37
 msgid "copy and paste list of emails"
-msgstr "copier et coller une liste d&rsquo;adresses de courriel"
+msgstr "copier et coller une liste d&rsquo;adresses électronique"
 
 #: public_html/lists/admin/import.php:38
 msgid "import by uploading a file with emails"
-msgstr "importer en envoyant un fichier avec des adresses de courriel"
+msgstr "importer en envoyant un fichier avec des adresses électroniques"
 
 #: public_html/lists/admin/import.php:39
 msgid "import by uploading a CSV file with emails and additional data"
 msgstr ""
-"importer en envoyant un fichier CSV avec des adresses de courriel et "
-"informations suppémentaires"
+"importer en envoyant un fichier CSV avec des adresses électroniques et "
+"informations supplémentaires"
 
 #: public_html/lists/admin/date.php:16
 msgid "Sunday"
@@ -3153,7 +3162,7 @@ msgstr ""
 #: public_html/lists/admin/processqueue.php:20
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
-"Vous &ecirc;tes en mode TEST, aucun email ne sera envoy&eacute;.  "
+"Vous &ecirc;tes en mode TEST, aucun courriel ne sera envoy&eacute;.  "
 "V&eacute;rifiez votre fichier de configuration."
 
 #: public_html/lists/admin/index.php:397
@@ -3233,7 +3242,7 @@ msgstr "Télécharger en tant que fichier CSV"
 
 #: public_html/lists/admin/domainstats.php:22
 msgid "Top 50 domains with more than 5 emails"
-msgstr "Les 50 premiers domaines internet avec plus de 5 adresses email"
+msgstr "Les 50 premiers domaines internet avec plus de 5 adresses électroniques"
 
 #: public_html/lists/admin/domainstats.php:27
 msgid "confirmed"
@@ -3447,7 +3456,7 @@ msgstr "Vous pouvez envoyer un message test à chaque %d secondes"
 
 #: public_html/lists/admin/send_core.php:410
 msgid "No target email addresses listed for testing."
-msgstr "Aucune adresse de courriel n'a été spécifiée pour effectuer le test."
+msgstr "Aucune adresse électronique n'a été spécifiée pour effectuer le test."
 
 #: public_html/lists/admin/send_core.php:427
 #, php-format
@@ -3577,7 +3586,7 @@ msgstr "Renouveler les envois tous les"
 
 #: public_html/lists/admin/send_core.php:697
 msgid "no repetition"
-msgstr "aucune repetition"
+msgstr "aucune répétition"
 
 #: public_html/lists/admin/send_core.php:700
 #: public_html/lists/admin/send_core.php:729
@@ -3727,13 +3736,13 @@ msgstr "Tester - envoyer un message de test"
 
 #: public_html/lists/admin/send_core.php:904
 msgid " to email address(es)"
-msgstr " à l'/aux adresse(s) de courriel"
+msgstr " à l'/aux adresse(s) électronique(s)"
 
 #: public_html/lists/admin/send_core.php:905
 #: public_html/lists/admin/template.php:311
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
-"(adresses de courriel séparées par une virgule - chacune doit appartenir à "
+"(adresses électroniques séparées par une virgule - chacune doit appartenir à "
 "un(e) destinataire existant(e))"
 
 #: public_html/lists/admin/send_core.php:918
@@ -3750,8 +3759,7 @@ msgstr "s&eacute;parer les adresses avec une virgule"
 #: public_html/lists/admin/send_core.php:920
 msgid "email to alert when sending of this message has finished"
 msgstr ""
-"adresse de courriel &agrave; qui annoncer la fin de l&rsquo;envoi de ce "
-"message"
+"adresse électronique à qui annoncer la fin de l&rsquo;envoi de ce message"
 
 #: public_html/lists/admin/send_core.php:927
 msgid "add Google Analytics tracking code"
@@ -3996,7 +4004,7 @@ msgstr "Le nom de votre organisation"
 
 #: public_html/lists/admin/initialise.php:39
 msgid "Please enter your email address."
-msgstr "Veuillez entrer votre adresse de courriel"
+msgstr "Veuillez entrer votre adresse électronique"
 
 #: public_html/lists/admin/initialise.php:42
 msgid "The initial <i>login name</i> will be"
@@ -4066,12 +4074,11 @@ msgid ""
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr ""
-"pour &ecirc;tre s&ucirc;r d&rsquo;&ecirc;tre &agrave; jour lorsqu&rsquo;une "
-"nouvelle version de PHPlist est disponible. Parfois, d&rsquo;importantes "
-"failles de s&eacute;curit&eacute; sont d&eacute;couvertes qui font "
-"qu&rsquo;il est important de faire une mise &agrave; jour. La "
-"quantit&eacute; d&rsquo;emails envoy&eacute;s sur cette liste est "
-"tr&egrave;s r&eacute;duite."
+"pour &ecirc;tre s&ucirc;r d&rsquo;&ecirc;tre &agrave; jour lorsque de "
+"nouvelles versions sortent. Parfois, d&rsquo;importantes failles de "
+"s&eacute;curit&eacute; sont d&eacute;couvertes qui font qu&rsquo;il est "
+"important de faire une mise &agrave; jour. La quantit&eacute; d&rsquo;e "
+"messages envoy&eacute;s sur cette liste est tr&egrave;s r&eacute;duite."
 
 #: public_html/lists/admin/initialise.php:190
 msgid "Continue with"
@@ -4151,7 +4158,7 @@ msgstr "La derni&egrave;re version"
 
 #: public_html/lists/admin/home.php:69
 msgid "Read what has changed in the new version"
-msgstr ""
+msgstr "Lire ce qui a changé dans la nouvelle version"
 
 #: public_html/lists/admin/home.php:69
 msgid "View what has changed"
@@ -4159,7 +4166,7 @@ msgstr "Voir ce qui a chang&eacute;"
 
 #: public_html/lists/admin/home.php:70
 msgid "Download the new version"
-msgstr ""
+msgstr "Télécharger la nouvelle version"
 
 #: public_html/lists/admin/home.php:70
 msgid "Download"
@@ -4371,7 +4378,7 @@ msgstr "Messages de fonctions"
 
 #: public_html/lists/admin/home.php:351 public_html/lists/admin/about.php:60
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Greffons"
 
 #: public_html/lists/admin/home.php:361
 msgid "setup"
@@ -4407,7 +4414,7 @@ msgstr "admin"
 
 #: public_html/lists/admin/home.php:392
 msgid "Change your details (e.g. password)"
-msgstr "Modifier vos détails (ex: mot de passe)"
+msgstr "Modifier vos détails (ex : mot de passe)"
 
 #: public_html/lists/admin/home.php:396
 msgid "System Functions"
@@ -4519,7 +4526,7 @@ msgstr "Ce retour n&rsquo;existe plus dans la base de données"
 
 #: public_html/lists/admin/bounce.php:160
 msgid "For subscriber with email"
-msgstr "Pour les abonné(e)s avec adresse de courriel"
+msgstr "Pour les abonné(e)s avec adresse électronique"
 
 #: public_html/lists/admin/bounce.php:161
 msgid "Increase bouncecount with"
@@ -4755,9 +4762,9 @@ msgid ""
 "All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails "
 "deleted<br/>%d emails not found"
 msgstr ""
-"Tout est effectué, %d courriels traités<br/>%d courriels mis sur liste des "
-"envois bloqués<br/>%d courriels supprimés<br/>%d adresses courriels non "
-"trouvées"
+"Tout est effectué, %d adresses électroniques traitées<br/>%d adresses "
+"électroniques mises sur liste noire<br/>%d adresses électroniques "
+"supprimées<br/>%d adresses électroniques non trouvées"
 
 #: public_html/lists/admin/massremove.php:39
 msgid "Remove more"
@@ -4765,18 +4772,18 @@ msgstr "Retirer plus"
 
 #: public_html/lists/admin/massremove.php:45
 msgid "Mass remove email addresses"
-msgstr "Suppression d&rsquo;adresse de courriel en masse."
+msgstr "Suppression en masse d&rsquo;adresses électroniques"
 
 #: public_html/lists/admin/massremove.php:47
 msgid "Check to also add the emails to the blacklist"
 msgstr ""
-"Cocher pour ajouter les adresses de courriel de la liste \"envois interdits\""
+"Cocher pour également ajouter les adresses électroniques à la liste noire"
 
 #: public_html/lists/admin/massremove.php:48
 msgid "Paste the emails to remove in this box, and click continue"
 msgstr ""
-"Copier les adresses de courriel dans le cadre en vue de leur suppression, et "
-"cliquer sur continuer"
+"Collez les adresses électroniques à supprimer dans ce cadre et cliquez sur "
+"continuer"
 
 #: public_html/lists/admin/admin.php:6
 msgid "List of Administrators"
@@ -4819,7 +4826,7 @@ msgstr "cach&eacute;"
 
 #: public_html/lists/admin/admin.php:172
 msgid "Update it?"
-msgstr "Effectuer la mise à jour ?"
+msgstr "Mettre à jour ?"
 
 # Peut être enregistrer.
 #: public_html/lists/admin/admin.php:172
@@ -4885,7 +4892,8 @@ msgstr "Utilisateur trouvé, cliquer sur Ajouter pour ajouter cet utilisateur"
 #: public_html/lists/admin/members.php:140
 msgid "No user found with that email"
 msgstr ""
-"Aucun utilisateur avec cet email n&rsquo;a &eacute;t&eacute; trouv&eacute;"
+"Aucun utilisateur avec cette adresse électronique n&rsquo;a "
+"&eacute;t&eacute; trouv&eacute;"
 
 #: public_html/lists/admin/members.php:157
 msgid "add user"
@@ -4909,7 +4917,7 @@ msgstr "Affichage des utilisateurs de 1 &agrave; 50"
 #: public_html/lists/admin/members.php:235
 #: public_html/lists/admin/reconcileusers.php:392
 msgid "subscribers"
-msgstr "inscrits"
+msgstr "abonnés"
 
 #: public_html/lists/admin/members.php:252
 msgid "Tag all users in this page"
@@ -5050,7 +5058,7 @@ msgstr "Nom de domaine de votre serveur (pour les courriels)"
 
 #: public_html/lists/admin/defaultconfig.php:68
 msgid "Person in charge of this system (one email address)"
-msgstr "Personne responsable de ce système (une adresse courriel)"
+msgstr "Personne responsable de ce système (une adresse électronique)"
 
 #: public_html/lists/admin/defaultconfig.php:76
 msgid "Name of the organisation"
@@ -5088,12 +5096,12 @@ msgstr "Toujours ajouter le code de suivi Google aux campagnes"
 msgid ""
 "Who gets the reports (email address, separate multiple emails with a comma)"
 msgstr ""
-"Qui reçoit les rapports (adresse email, plusieurs emails séparés par une "
-"virgule)"
+"Qui reçoit les rapports (adresse électronique, séparez les adresses "
+"multiples par une virgule)"
 
 #: public_html/lists/admin/defaultconfig.php:140
 msgid "From email address for system messages"
-msgstr "Adresse courriel de provenance pour les messages système"
+msgstr "Adresse électronique de provenance pour les messages systèmes"
 
 #: public_html/lists/admin/defaultconfig.php:147
 msgid "Webmaster"
@@ -5230,7 +5238,7 @@ msgstr ""
 msgid "Message subscribers receive after confirming their email address"
 msgstr ""
 "Message que les abonnés reçoivent après confirmation de leur adresse "
-"courriel"
+"électronique"
 
 #: public_html/lists/admin/defaultconfig.php:416
 msgid "[notify] Change of List-Membership details"
@@ -5253,16 +5261,16 @@ msgid ""
 "Part of the message that is sent to their new email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
-"Partie du message qui est envoyé à leur nouvelle adresse e-mail lorsque des "
-"abonnés modifient leur profil, et que l'adresse courriel a changé"
+"Partie du message qui est envoyé à leur nouvelle adresse lorsque des abonnés "
+"modifient leur profil, et que l'adresse électronique a changé"
 
 #: public_html/lists/admin/defaultconfig.php:483
 msgid ""
 "Part of the message that is sent to their old email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
-"Partie du message qui est envoyé à leur ancienne adresse e-mail lorsque des "
-"abonnés modifient leur profil, et que l'adresse courriel a changé"
+"Partie du message qui est envoyé à leur ancienne adresse lorsque des abonnés "
+"modifient leur profil, et que l'adresse électronique a changé"
 
 #: public_html/lists/admin/defaultconfig.php:490
 msgid "Your personal location"
@@ -5403,7 +5411,7 @@ msgstr "supérieur au seuil, l&rsquo;utilisateur est marqué comme non confirmé
 #: public_html/lists/admin/export.php:73
 msgid "Invalid security token. Please reload the page and try again."
 msgstr ""
-"Code de sécurité invalide. Veuillez actualiser la page et tester une "
+"Jeton de sécurité invalide. Veuillez actualiser la page et tester une "
 "nouvelle fois."
 
 #: public_html/lists/admin/export.php:91
@@ -5437,7 +5445,7 @@ msgstr "N'importe quand"
 
 #: public_html/lists/admin/export.php:207
 msgid "When they signed up"
-msgstr "Quand ils se sont inscrits"
+msgstr "Quand ils se sont abonnés"
 
 #: public_html/lists/admin/export.php:208
 msgid "When the record was changed"
@@ -5449,7 +5457,7 @@ msgstr "Basé sur l'historique des modifications de leurs informations"
 
 #: public_html/lists/admin/export.php:210
 msgid "When they subscribed to"
-msgstr "Quand ils se sont inscrits"
+msgstr "Quand ils s'y sont abonnés"
 
 #: public_html/lists/admin/export.php:220
 msgid "Date From:"
@@ -5481,7 +5489,7 @@ msgstr "Serveur:"
 
 #: public_html/lists/admin/import4.php:56
 msgid "Password:"
-msgstr "Mot de passe:"
+msgstr "Mot de passe :"
 
 #: public_html/lists/admin/import4.php:57
 msgid "Database Name:"
@@ -5607,610 +5615,613 @@ msgstr "utilisateurs d&eacute;j&agrave; existants"
 
 #: public_html/lists/admin/pagetitles.php:5
 msgid "pagetitle:home"
-msgstr "pagetitle:Acceuil"
+msgstr "accueil"
 
 #: public_html/lists/admin/pagetitles.php:7
 msgid "pagetitle:setup"
-msgstr "pagetitle:configuration"
+msgstr "Configuration"
 
 #: public_html/lists/admin/pagetitles.php:9
 msgid "pagetitle:about"
-msgstr "pagetitle:à propos"
+msgstr "à propos"
 
 #: public_html/lists/admin/pagetitles.php:11
 msgid "pagetitle:attributes"
-msgstr "pagetitle:attributs"
+msgstr "attributs"
 
 #: public_html/lists/admin/pagetitles.php:13
 msgid "pagetitle:stresstest"
-msgstr "pagetitle:stresstest"
+msgstr "test de résistance"
 
 #: public_html/lists/admin/pagetitles.php:15
 msgid "pagetitle:list"
-msgstr "pagetitle:liste"
+msgstr "liste(s)"
 
 #: public_html/lists/admin/pagetitles.php:17
 msgid "pagetitle:catlists"
-msgstr "pagetitle:catlistes"
+msgstr "catégories de listes"
 
 #: public_html/lists/admin/pagetitles.php:19
 msgid "pagetitle:editattributes"
-msgstr "pagetitle:editattributs"
+msgstr "modification des attributs"
 
 #: public_html/lists/admin/pagetitles.php:21
 msgid "pagetitle:editlist"
-msgstr "pagetitle:editliste"
+msgstr "modifier la liste"
 
 #: public_html/lists/admin/pagetitles.php:23
 msgid "pagetitle:checki18n"
-msgstr "pagetitle:verifi18n"
+msgstr "vérifier que les traductions existent"
 
 #: public_html/lists/admin/pagetitles.php:25
 msgid "pagetitle:importsimple"
-msgstr "pagetitle:importsimple"
+msgstr "importer des abonnés par copier-coller"
 
 #: public_html/lists/admin/pagetitles.php:27
 msgid "pagetitle:import4"
-msgstr "pagetitle:import4"
+msgstr "importer des abonnés à partir d'une base de données distante"
 
 #: public_html/lists/admin/pagetitles.php:29
 msgid "pagetitle:import3"
-msgstr "pagetitle:import3"
+msgstr "importer des abonnés à partir d'IMAP"
 
 #: public_html/lists/admin/pagetitles.php:31
 msgid "pagetitle:import2"
-msgstr "pagetitle:import2"
+msgstr "importer des abonnés à partir d'un fichier csv"
 
 #: public_html/lists/admin/pagetitles.php:33
 msgid "pagetitle:import1"
-msgstr "pagetitle:import1"
+msgstr "importer des abonnés à partir d'un fichier texte"
 
 #: public_html/lists/admin/pagetitles.php:35
 msgid "pagetitle:import"
-msgstr "pagetitle:importe"
+msgstr "importer des adresses électroniques"
 
 #: public_html/lists/admin/pagetitles.php:37
 msgid "pagetitle:export"
-msgstr "pagetitle:exporte"
+msgstr "exporter des abonnés"
 
 #: public_html/lists/admin/pagetitles.php:39
 msgid "pagetitle:initialise"
-msgstr "pagetitle:initialise"
+msgstr "initialiser la base de données"
 
 #: public_html/lists/admin/pagetitles.php:41
 msgid "pagetitle:send"
-msgstr "pagetitle:envoi"
+msgstr "Envoyer une campagne"
 
 #: public_html/lists/admin/pagetitles.php:43
 msgid "pagetitle:preparesend"
-msgstr "pagetitle:préparation des envois"
+msgstr "préparer un message pour envoi"
 
 #: public_html/lists/admin/pagetitles.php:45
 msgid "pagetitle:sendprepared"
-msgstr "pagetitle:Envoi des message préparés"
+msgstr "envoyer un message préparé"
 
 #: public_html/lists/admin/pagetitles.php:47
 msgid "pagetitle:members"
-msgstr "pagetitle:Destinataires"
+msgstr "listes des abonnés"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:49
 msgid "pagetitle:users"
-msgstr ""
+msgstr "rechercher des abonnés"
 
 #: public_html/lists/admin/pagetitles.php:51
 msgid "pagetitle:reconcileusers"
-msgstr ""
+msgstr "concilier les abonnés"
 
 # Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:53
-#, fuzzy
 msgid "pagetitle:user"
-msgstr "pagetitle:envoi"
+msgstr "détails d'un abonné"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:55
 msgid "pagetitle:userhistory"
-msgstr ""
+msgstr "Historique d'un abonné"
 
 #: public_html/lists/admin/pagetitles.php:57
 msgid "pagetitle:messages"
-msgstr ""
+msgstr "liste des campagnes"
 
 #: public_html/lists/admin/pagetitles.php:59
 msgid "pagetitle:message"
-msgstr ""
+msgstr "voir une campagne"
 
 #: public_html/lists/admin/pagetitles.php:61
 msgid "pagetitle:processqueue"
-msgstr ""
+msgstr "envoyer la file d'attente"
 
 #: public_html/lists/admin/pagetitles.php:63
 msgid "pagetitle:defaults"
-msgstr ""
+msgstr "quelques attributs par défaut"
 
 #: public_html/lists/admin/pagetitles.php:65
 #: public_html/lists/admin/pagetitles.php:153
 msgid "pagetitle:upgrade"
-msgstr "pagetitle:miseajour"
+msgstr "mettre à jour phpList"
 
 #: public_html/lists/admin/pagetitles.php:67
 msgid "pagetitle:templates"
-msgstr "pagetitle:gabarits"
+msgstr "gérer les habillages de campagne"
 
 #: public_html/lists/admin/pagetitles.php:69
 msgid "pagetitle:template"
-msgstr "pagetitle:gabarit"
+msgstr "ajouter ou modifier un habillage"
 
 #: public_html/lists/admin/pagetitles.php:71
 msgid "pagetitle:viewtemplate"
-msgstr "pagetitle:voirgabarit"
+msgstr "prévisualisation de l'habillage"
 
 #: public_html/lists/admin/pagetitles.php:73
 msgid "pagetitle:configure"
-msgstr "pagetitle:configure"
+msgstr "réglages"
 
 #: public_html/lists/admin/pagetitles.php:75
 msgid "pagetitle:admin"
-msgstr "pagetitle:admin"
+msgstr "modifier ou ajouter un administrateur"
 
 #: public_html/lists/admin/pagetitles.php:77
 msgid "pagetitle:admins"
-msgstr "pagetitle:admins"
+msgstr "gérer les administrateurs"
 
 #: public_html/lists/admin/pagetitles.php:79
 msgid "pagetitle:adminattributes"
-msgstr "pagetitle:adminattributs"
+msgstr "configurer les attributs des administrateurs"
 
 #: public_html/lists/admin/pagetitles.php:81
 msgid "pagetitle:processbounces"
-msgstr ""
+msgstr "traiter les rebonds"
 
 #: public_html/lists/admin/pagetitles.php:83
 msgid "pagetitle:bounces"
-msgstr ""
+msgstr "voir les rebonds"
 
 #: public_html/lists/admin/pagetitles.php:85
 msgid "pagetitle:bounce"
-msgstr ""
+msgstr "détails d'un rebond"
 
 #: public_html/lists/admin/pagetitles.php:87
 msgid "pagetitle:spageedit"
-msgstr ""
+msgstr "modifier une page d'abonnement"
 
 #: public_html/lists/admin/pagetitles.php:89
 msgid "pagetitle:spage"
-msgstr ""
+msgstr "pages d'abonnement"
 
 #: public_html/lists/admin/pagetitles.php:91
 msgid "pagetitle:eventlog"
-msgstr ""
+msgstr "historique d'événements"
 
 #: public_html/lists/admin/pagetitles.php:93
 msgid "pagetitle:getrss"
-msgstr ""
+msgstr "récupération de flux RSS"
 
 #: public_html/lists/admin/pagetitles.php:95
 msgid "pagetitle:viewrss"
-msgstr ""
+msgstr "voir un élément RSS"
 
 #: public_html/lists/admin/pagetitles.php:97
 msgid "pagetitle:community"
-msgstr ""
+msgstr "aide"
 
 #: public_html/lists/admin/pagetitles.php:99
 msgid "pagetitle:vote"
-msgstr ""
+msgstr "voter pour phpList"
 
 #: public_html/lists/admin/pagetitles.php:101
 msgid "pagetitle:login"
-msgstr ""
+msgstr "identification"
 
 #: public_html/lists/admin/pagetitles.php:103
 msgid "pagetitle:logout"
-msgstr ""
+msgstr "déconnexion"
 
 #: public_html/lists/admin/pagetitles.php:105
 msgid "pagetitle:mclicks"
-msgstr ""
+msgstr "statistiques des clicks des campagnes"
 
 #: public_html/lists/admin/pagetitles.php:107
 msgid "pagetitle:uclicks"
-msgstr ""
+msgstr "statistiques des liens cliqués"
 
 #: public_html/lists/admin/pagetitles.php:109
 msgid "pagetitle:massunconfirm"
-msgstr ""
+msgstr "liste de suppression"
 
 #: public_html/lists/admin/pagetitles.php:111
 msgid "pagetitle:massremove"
-msgstr ""
+msgstr "suppression d'abonnés"
 
 #: public_html/lists/admin/pagetitles.php:113
-#, fuzzy
 msgid "pagetitle:usermgt"
-msgstr "pagetitle:envoi"
+msgstr "gérer les abonnés"
 
 #: public_html/lists/admin/pagetitles.php:115
 msgid "pagetitle:bouncemgt"
-msgstr ""
+msgstr "gérer les rebonds"
 
 #: public_html/lists/admin/pagetitles.php:117
 msgid "pagetitle:domainstats"
-msgstr ""
+msgstr "statistiques du domaine"
 
 #: public_html/lists/admin/pagetitles.php:119
-#, fuzzy
 msgid "pagetitle:mviews"
-msgstr "pagetitle:envoi"
+msgstr "voir les ouvertures"
 
 #: public_html/lists/admin/pagetitles.php:121
 msgid "pagetitle:statsmgt"
-msgstr ""
+msgstr "gérer les statistiques"
 
 #: public_html/lists/admin/pagetitles.php:123
 msgid "pagetitle:statsoverview"
-msgstr ""
+msgstr "résumé des statistiques"
 
 #: public_html/lists/admin/pagetitles.php:125
 msgid "pagetitle:subscriberstats"
-msgstr ""
+msgstr "statistiques de l'abonné"
 
 #: public_html/lists/admin/pagetitles.php:127
 msgid "pagetitle:dbcheck"
-msgstr ""
+msgstr "vérifier la structure de la base de données"
 
 #: public_html/lists/admin/pagetitles.php:129
-#, fuzzy
 msgid "pagetitle:importadmin"
-msgstr "pagetitle:importsimple"
+msgstr "importer des administrateurs"
 
 #: public_html/lists/admin/pagetitles.php:131
 msgid "pagetitle:dbadmin"
-msgstr ""
+msgstr "gérer la base de données"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:133
 msgid "pagetitle:usercheck"
-msgstr ""
+msgstr "vérifier que les abonnés existent"
 
 #: public_html/lists/admin/pagetitles.php:135
 msgid "pagetitle:listbounces"
-msgstr ""
+msgstr "voir les rebonds par liste"
 
 #: public_html/lists/admin/pagetitles.php:137
 msgid "pagetitle:bouncerules"
-msgstr ""
+msgstr "règles pour les rebonds"
 
 #: public_html/lists/admin/pagetitles.php:139
 msgid "pagetitle:checkbouncerules"
-msgstr ""
+msgstr "vérifier les règles pour les rebonds"
 
 #: public_html/lists/admin/pagetitles.php:141
 msgid "pagetitle:translate"
-msgstr ""
+msgstr "traduire phpList"
 
 #: public_html/lists/admin/pagetitles.php:143
 msgid "pagetitle:ajaxform"
-msgstr ""
+msgstr "intégration AJAX"
 
 #: public_html/lists/admin/pagetitles.php:145
 msgid "pagetitle:updatetranslation"
-msgstr ""
+msgstr "mettre à jour les traductions"
 
 #: public_html/lists/admin/pagetitles.php:147
 msgid "pagetitle:reindex"
-msgstr ""
+msgstr "reconstruire les index de la base de données"
 
 #: public_html/lists/admin/pagetitles.php:149
 msgid "pagetitle:config"
-msgstr ""
+msgstr "réglages"
 
 #: public_html/lists/admin/pagetitles.php:151
 msgid "pagetitle:info"
-msgstr ""
+msgstr "informations système"
 
 #: public_html/lists/admin/pagetitles.php:155
 msgid "pagetitle:converttoutf8"
-msgstr ""
+msgstr "conversion en UTF-8"
 
 #: public_html/lists/admin/pagetitles.php:157
 msgid "pagetitlehover:home"
-msgstr ""
+msgstr "pagetitlehover:home"
 
 #: public_html/lists/admin/pagetitles.php:159
 msgid "pagetitlehover:setup"
-msgstr ""
+msgstr "pagetitlehover:setup"
 
 #: public_html/lists/admin/pagetitles.php:161
 msgid "pagetitlehover:about"
-msgstr ""
+msgstr "pagetitlehover:about"
 
 #: public_html/lists/admin/pagetitles.php:163
 msgid "pagetitlehover:attributes"
-msgstr ""
+msgstr "pagetitlehover:attributes"
 
 #: public_html/lists/admin/pagetitles.php:165
 msgid "pagetitlehover:stresstest"
-msgstr ""
+msgstr "pagetitlehover:stresstest"
 
 #: public_html/lists/admin/pagetitles.php:167
 msgid "pagetitlehover:list"
-msgstr ""
+msgstr "pagetitlehover:list"
 
 #: public_html/lists/admin/pagetitles.php:169
 msgid "pagetitlehover:catlists"
-msgstr ""
+msgstr "pagetitlehover:catlists"
 
 #: public_html/lists/admin/pagetitles.php:171
 msgid "pagetitlehover:editattributes"
-msgstr ""
+msgstr "pagetitlehover:editattributes"
 
 #: public_html/lists/admin/pagetitles.php:173
 msgid "pagetitlehover:editlist"
-msgstr ""
+msgstr "pagetitlehover:editlist"
 
 #: public_html/lists/admin/pagetitles.php:175
 msgid "pagetitlehover:checki18n"
-msgstr ""
+msgstr "pagetitlehover:checki18n"
 
 #: public_html/lists/admin/pagetitles.php:177
 msgid "pagetitlehover:importsimple"
-msgstr ""
+msgstr "pagetitlehover:importsimple"
 
 #: public_html/lists/admin/pagetitles.php:179
 msgid "pagetitlehover:import4"
-msgstr ""
+msgstr "pagetitlehover:import4"
 
 #: public_html/lists/admin/pagetitles.php:181
 msgid "pagetitlehover:import3"
-msgstr ""
+msgstr "pagetitlehover:import3"
 
 #: public_html/lists/admin/pagetitles.php:183
 msgid "pagetitlehover:import2"
-msgstr ""
+msgstr "pagetitlehover:import2"
 
 #: public_html/lists/admin/pagetitles.php:185
 msgid "pagetitlehover:import1"
-msgstr ""
+msgstr "pagetitlehover:import1"
 
 #: public_html/lists/admin/pagetitles.php:187
 msgid "pagetitlehover:import"
-msgstr ""
+msgstr "pagetitlehover:import"
 
 #: public_html/lists/admin/pagetitles.php:189
 msgid "pagetitlehover:export"
-msgstr ""
+msgstr "pagetitlehover:export"
 
 #: public_html/lists/admin/pagetitles.php:191
 msgid "pagetitlehover:initialise"
-msgstr ""
+msgstr "pagetitlehover:initialise"
 
 #: public_html/lists/admin/pagetitles.php:193
 msgid "pagetitlehover:send"
-msgstr ""
+msgstr "pagetitlehover:send"
 
 #: public_html/lists/admin/pagetitles.php:195
 msgid "pagetitlehover:preparesend"
-msgstr ""
+msgstr "pagetitlehover:preparesend"
 
 #: public_html/lists/admin/pagetitles.php:197
 msgid "pagetitlehover:sendprepared"
-msgstr ""
+msgstr "pagetitlehover:sendprepared"
 
 #: public_html/lists/admin/pagetitles.php:199
 msgid "pagetitlehover:members"
-msgstr ""
+msgstr "pagetitlehover:members"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:201
 msgid "pagetitlehover:users"
-msgstr ""
+msgstr "pagetitlehover:users"
 
 #: public_html/lists/admin/pagetitles.php:203
 msgid "pagetitlehover:reconcileusers"
-msgstr ""
+msgstr "pagetitlehover:reconcileusers"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:205
 msgid "pagetitlehover:user"
-msgstr ""
+msgstr "pagetitlehover:user"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:207
 msgid "pagetitlehover:userhistory"
-msgstr ""
+msgstr "pagetitlehover:userhistory"
 
 #: public_html/lists/admin/pagetitles.php:209
 msgid "pagetitlehover:messages"
-msgstr ""
+msgstr "pagetitlehover:messages"
 
 #: public_html/lists/admin/pagetitles.php:211
 msgid "pagetitlehover:message"
-msgstr ""
+msgstr "pagetitlehover:message"
 
 #: public_html/lists/admin/pagetitles.php:213
 msgid "pagetitlehover:processqueue"
-msgstr ""
+msgstr "pagetitlehover:processqueue"
 
 #: public_html/lists/admin/pagetitles.php:215
 msgid "pagetitlehover:defaults"
-msgstr ""
+msgstr "pagetitlehover:defaults"
 
 #: public_html/lists/admin/pagetitles.php:217
 #: public_html/lists/admin/pagetitles.php:305
 msgid "pagetitlehover:upgrade"
-msgstr ""
+msgstr "pagetitlehover:upgrade"
 
 #: public_html/lists/admin/pagetitles.php:219
 msgid "pagetitlehover:templates"
-msgstr ""
+msgstr "pagetitlehover:templates"
 
 #: public_html/lists/admin/pagetitles.php:221
 msgid "pagetitlehover:template"
-msgstr ""
+msgstr "pagetitlehover:template"
 
 #: public_html/lists/admin/pagetitles.php:223
 msgid "pagetitlehover:viewtemplate"
-msgstr ""
+msgstr "pagetitlehover:viewtemplate"
 
 #: public_html/lists/admin/pagetitles.php:225
 msgid "pagetitlehover:configure"
-msgstr ""
+msgstr "pagetitlehover:configure"
 
 #: public_html/lists/admin/pagetitles.php:227
 msgid "pagetitlehover:admin"
-msgstr ""
+msgstr "pagetitlehover:admin"
 
 #: public_html/lists/admin/pagetitles.php:229
 msgid "pagetitlehover:admins"
-msgstr ""
+msgstr "pagetitlehover:admins"
 
 #: public_html/lists/admin/pagetitles.php:231
 msgid "pagetitlehover:adminattributes"
-msgstr ""
+msgstr "pagetitlehover:adminattributes"
 
 #: public_html/lists/admin/pagetitles.php:233
 msgid "pagetitlehover:processbounces"
-msgstr ""
+msgstr "pagetitlehover:processbounces"
 
 #: public_html/lists/admin/pagetitles.php:235
 msgid "pagetitlehover:bounces"
-msgstr ""
+msgstr "pagetitlehover:bounces"
 
 #: public_html/lists/admin/pagetitles.php:237
 msgid "pagetitlehover:bounce"
-msgstr ""
+msgstr "pagetitlehover:bounce"
 
 #: public_html/lists/admin/pagetitles.php:239
 msgid "pagetitlehover:spageedit"
-msgstr ""
+msgstr "pagetitlehover:spageedit"
 
 #: public_html/lists/admin/pagetitles.php:241
 msgid "pagetitlehover:spage"
-msgstr ""
+msgstr "pagetitlehover:spage"
 
 #: public_html/lists/admin/pagetitles.php:243
 msgid "pagetitlehover:eventlog"
-msgstr ""
+msgstr "pagetitlehover:eventlog"
 
 #: public_html/lists/admin/pagetitles.php:245
 msgid "pagetitlehover:getrss"
-msgstr ""
+msgstr "pagetitlehover:getrss"
 
 #: public_html/lists/admin/pagetitles.php:247
 msgid "pagetitlehover:viewrss"
-msgstr ""
+msgstr "pagetitlehover:viewrss"
 
 #: public_html/lists/admin/pagetitles.php:249
 msgid "pagetitlehover:community"
-msgstr ""
+msgstr "pagetitlehover:community"
 
 #: public_html/lists/admin/pagetitles.php:251
 msgid "pagetitlehover:vote"
-msgstr ""
+msgstr "pagetitlehover:vote"
 
 #: public_html/lists/admin/pagetitles.php:253
 msgid "pagetitlehover:login"
-msgstr ""
+msgstr "pagetitlehover:login"
 
 #: public_html/lists/admin/pagetitles.php:255
 msgid "pagetitlehover:logout"
-msgstr ""
+msgstr "pagetitlehover:logout"
 
 #: public_html/lists/admin/pagetitles.php:257
 msgid "pagetitlehover:mclicks"
-msgstr ""
+msgstr "pagetitlehover:mclicks"
 
 #: public_html/lists/admin/pagetitles.php:259
 msgid "pagetitlehover:uclicks"
-msgstr ""
+msgstr "pagetitlehover:uclicks"
 
 #: public_html/lists/admin/pagetitles.php:261
 msgid "pagetitlehover:massunconfirm"
-msgstr ""
+msgstr "pagetitlehover:massunconfirm"
 
 #: public_html/lists/admin/pagetitles.php:263
 msgid "pagetitlehover:massremove"
-msgstr ""
+msgstr "pagetitlehover:massremove"
 
 #: public_html/lists/admin/pagetitles.php:265
 msgid "pagetitlehover:usermgt"
-msgstr ""
+msgstr "pagetitlehover:usermgt"
 
 #: public_html/lists/admin/pagetitles.php:267
 msgid "pagetitlehover:bouncemgt"
-msgstr ""
+msgstr "pagetitlehover:bouncemgt"
 
 #: public_html/lists/admin/pagetitles.php:269
 msgid "pagetitlehover:domainstats"
-msgstr ""
+msgstr "pagetitlehover:domainstats"
 
 #: public_html/lists/admin/pagetitles.php:271
 msgid "pagetitlehover:mviews"
-msgstr ""
+msgstr "pagetitlehover:mviews"
 
 #: public_html/lists/admin/pagetitles.php:273
 msgid "pagetitlehover:statsmgt"
-msgstr ""
+msgstr "pagetitlehover:statsmgt"
 
 #: public_html/lists/admin/pagetitles.php:275
 msgid "pagetitlehover:statsoverview"
-msgstr ""
+msgstr "pagetitlehover:statsoverview"
 
 #: public_html/lists/admin/pagetitles.php:277
 msgid "pagetitlehover:subscriberstats"
-msgstr ""
+msgstr "pagetitlehover:subscriberstats"
 
 #: public_html/lists/admin/pagetitles.php:279
 msgid "pagetitlehover:dbcheck"
-msgstr ""
+msgstr "pagetitlehover:dbcheck"
 
 #: public_html/lists/admin/pagetitles.php:281
 msgid "pagetitlehover:importadmin"
-msgstr ""
+msgstr "pagetitlehover:importadmin"
 
 #: public_html/lists/admin/pagetitles.php:283
 msgid "pagetitlehover:dbadmin"
-msgstr ""
+msgstr "pagetitlehover:dbadmin"
 
+# Ne doit pas être traduis
 #: public_html/lists/admin/pagetitles.php:285
 msgid "pagetitlehover:usercheck"
-msgstr ""
+msgstr "pagetitlehover:usercheck"
 
 #: public_html/lists/admin/pagetitles.php:287
 msgid "pagetitlehover:listbounces"
-msgstr ""
+msgstr "pagetitlehover:listbounces"
 
 #: public_html/lists/admin/pagetitles.php:289
 msgid "pagetitlehover:bouncerules"
-msgstr ""
+msgstr "pagetitlehover:bouncerules"
 
 #: public_html/lists/admin/pagetitles.php:291
 msgid "pagetitlehover:checkbouncerules"
-msgstr ""
+msgstr "pagetitlehover:checkbouncerules"
 
 #: public_html/lists/admin/pagetitles.php:293
 msgid "pagetitlehover:translate"
-msgstr ""
+msgstr "pagetitlehover:translate"
 
 #: public_html/lists/admin/pagetitles.php:295
 msgid "pagetitlehover:ajaxform"
-msgstr ""
+msgstr "pagetitlehover:ajaxform"
 
 #: public_html/lists/admin/pagetitles.php:297
 msgid "pagetitlehover:updatetranslation"
-msgstr ""
+msgstr "pagetitlehover:updatetranslation"
 
 #: public_html/lists/admin/pagetitles.php:299
 msgid "pagetitlehover:reindex"
-msgstr ""
+msgstr "pagetitlehover:reindex"
 
 #: public_html/lists/admin/pagetitles.php:301
 msgid "pagetitlehover:config"
-msgstr ""
+msgstr "pagetitlehover:config"
 
 #: public_html/lists/admin/pagetitles.php:303
 msgid "pagetitlehover:info"
-msgstr ""
+msgstr "pagetitlehover:info"
 
 #: public_html/lists/admin/pagetitles.php:307
 msgid "pagetitlehover:converttoutf8"
-msgstr ""
+msgstr "pagetitlehover:converttoutf8"
 
 #: public_html/lists/admin/spageedit.php:87
 msgid "Subscribe page information saved"
@@ -6258,7 +6269,7 @@ msgstr "Texte sur le bouton &agrave; cliquer"
 
 #: public_html/lists/admin/spageedit.php:192
 msgid "HTML Email choice"
-msgstr "Choix d&rsquo;email au format HTML"
+msgstr "Message au format HTML"
 
 #: public_html/lists/admin/spageedit.php:196
 msgid "Don't offer choice, default to <b>text</b>"
@@ -6286,15 +6297,15 @@ msgstr "Boutons radio, avec format HTML par d&eacute;faut"
 
 #: public_html/lists/admin/spageedit.php:218
 msgid "Display Email confirmation"
-msgstr "Afficher la confirmation par email"
+msgstr "Afficher la confirmation par courriel"
 
 #: public_html/lists/admin/spageedit.php:221
 msgid "Display email confirmation"
-msgstr "Afficher la confirmation par email"
+msgstr "Afficher la confirmation par courriel"
 
 #: public_html/lists/admin/spageedit.php:224
 msgid "Don't display email confirmation"
-msgstr "Ne pas afficher d&rsquo;email de confirmation"
+msgstr "Ne pas afficher la confirmation par courriel"
 
 #: public_html/lists/admin/spageedit.php:230
 msgid "Transaction messages"
@@ -6377,7 +6388,7 @@ msgstr "Mot de passe oublié ?"
 
 #: public_html/lists/admin/login.php:42
 msgid "Enter your email address"
-msgstr "Entrer votre adresse de courriel"
+msgstr "Entrer votre adresse électronique"
 
 #: public_html/lists/admin/login.php:43
 msgid "Send password"
@@ -6389,7 +6400,7 @@ msgstr "Votre mot de passe à était modifié avec succès"
 
 #: public_html/lists/admin/login.php:77
 msgid "The passwords you entered are not the same."
-msgstr "Les mots de passe que vous avez entré ne correspondent pas"
+msgstr "Les mots de passe que vous avez entrés ne correspondent pas"
 
 #: public_html/lists/admin/login.php:89
 msgid "You have requested a password update"
@@ -6408,8 +6419,8 @@ msgid ""
 "Unknown token or time expired (More than 24 hrs. passed since the "
 "notification email was sent)"
 msgstr ""
-"Code inconnu ou délais expiré (Plus de 24 heures sont passées depuis que le "
-"message de notification à était envoyé)."
+"Jeton inconnu ou délai expiré (Plus de 24 heures sont passées depuis que le "
+"message de notification a été envoyé)."
 
 #: public_html/lists/admin/msgbounces.php:8
 msgid "Choose a message"
@@ -6598,15 +6609,15 @@ msgid ""
 "The plugin root directory is not writable, please install plugins manually"
 msgstr ""
 "Le répertoire racine des module d'extension interdit l'écriture, svp "
-"installer les plugins manuellement"
+"installer les greffons manuellement"
 
 #: public_html/lists/admin/plugins.php:166
 msgid ""
 "PHP has no <a href=\"http://php.net/zip\">Zip capability</a>. This is "
 "required to allow installation from a remote URL"
 msgstr ""
-"PHP n'a pas de <a href=\"http://ca1.php.net/manual/fr/book.zip.php\">support "
-"Zip</a>. Ce qui est requis pour l'installation à partir d'une URL distante"
+"PHP n'a pas de <a href=\"http://php.net/zip\">support Zip</a>. Ce qui est "
+"requis pour l'installation à partir d'une URL distante"
 
 #: public_html/lists/admin/plugins.php:168
 msgid "Install a new plugin"
@@ -6614,7 +6625,7 @@ msgstr "Installer un nouveau module d'extension"
 
 #: public_html/lists/admin/plugins.php:169
 msgid "Find plugins"
-msgstr "Trouver des modules d'extension"
+msgstr "Trouver des greffons"
 
 #: public_html/lists/admin/plugins.php:172
 msgid "Plugin package URL"
@@ -6626,7 +6637,7 @@ msgstr "Installer plugin"
 
 #: public_html/lists/admin/plugins.php:178
 msgid "Installed plugins"
-msgstr "Plugins installés"
+msgstr "Greffons installés"
 
 #: public_html/lists/admin/plugins.php:195
 msgid "name"
@@ -6734,19 +6745,19 @@ msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 msgstr ""
-"Il vous reste 24h pour changer votre mot de passe. Après ce délais, le code "
+"Il vous reste 24h pour changer votre mot de passe. Après ce délai, le jeton "
 "sera invalide."
 
 #: public_html/lists/admin/lib.php:252
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
-"Un code de renouvellement de mot de passe a était envoyé à l&rsquo;adresse "
-"de courriel correspondante."
+"Un jeton de renouvellement de mot de passe a été envoyé à l&rsquo;adresse "
+"électronique correspondante."
 
 #: public_html/lists/admin/lib.php:254
 msgid "Error sending password change token"
-msgstr "L&rsquo;envoi du code de renouvellement de mot de passe a échoué."
+msgstr "L&rsquo;envoi du jeton de renouvellement de mot de passe a échoué."
 
 #: public_html/lists/admin/lib.php:458
 msgid "Sending admin copy to"
@@ -6836,7 +6847,7 @@ msgstr "Pas de liste, utiliser Ajouter une liste"
 
 #: public_html/lists/admin/import3.php:21
 msgid "Import emails from IMAP folders"
-msgstr "Importer des emails de r&eacute;pertoires IMAP"
+msgstr "Importer des adresses électroniques de dossiers IMAP"
 
 #: public_html/lists/admin/import3.php:142
 #: public_html/lists/admin/import3.php:173
@@ -6884,7 +6895,7 @@ msgid ""
 msgstr ""
 "l&rsquo;information concernant un utilisateur dans la base de donn&eacute;es "
 "sera remplac&eacute; par les donn&eacute;es import&eacute;es.  Les "
-"utilisateurs sont identifi&eacute;s par leur adresse email."
+"utilisateurs sont identifi&eacute;s par leur adresse électronique."
 
 #: public_html/lists/admin/import3.php:242
 #: public_html/lists/admin/import3.php:243
@@ -6896,8 +6907,8 @@ msgid ""
 "addresses that do not have a real name will be ignored. Otherwise all emails "
 "will be imported."
 msgstr ""
-"les adresses qui ne sont pas valides seront ignor&eacute;es.  Tous les "
-"autres emails seront import&eacute;s."
+"les adresses qui ne possèdes un nom réel seront ignor&eacute;es.  Sinon, "
+"toutes les adresses électroniques seront import&eacute;s."
 
 #: public_html/lists/admin/import3.php:244
 msgid "If you choose"
@@ -6905,7 +6916,7 @@ msgstr "Si vous s&eacute;lectionnez"
 
 #: public_html/lists/admin/import3.php:244
 msgid "send notification email"
-msgstr "envoyer email de notification"
+msgstr "envoyer message de notification"
 
 #: public_html/lists/admin/import3.php:244
 msgid ""
@@ -6913,14 +6924,14 @@ msgid ""
 "subscription to which they will have to reply. This is recommended, because "
 "it will identify invalid emails."
 msgstr ""
-"les utilisateurs que vous ajoutez vont recevoir un email de confirmation "
+"les utilisateurs que vous ajoutez vont recevoir un courriel de confirmation "
 "d&rsquo;inscription auquel il leur faudra r&eacute;pondre.  Cette option est "
 "recommand&eacute;e, car elle vous permet d&rsquo;identifier les emails non "
 "valides."
 
 #: public_html/lists/admin/import3.php:245
 msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
-msgstr "Envoyer&nbsp;Email&nbsp;de&nbsp;Notification&nbsp;"
+msgstr "Envoyer&nbsp;courriel&nbsp;de&nbsp;Notification&nbsp;"
 
 #: public_html/lists/admin/import3.php:246
 msgid ""
@@ -6973,30 +6984,31 @@ msgstr "r&eacute;pertoires et"
 
 #: public_html/lists/admin/import3.php:351
 msgid "unique emails found"
-msgstr "emails diff&eacute;rents trouv&eacute;s"
+msgstr "adresses électroniques diff&eacute;rentes trouv&eacute;es"
 
 #: public_html/lists/admin/import3.php:477
 msgid "All the emails already exist in the database and are members of the"
 msgstr ""
-"Tous les emails sont d&eacute;j&agrave; dans la base de donn&eacute;es et "
-"sont membres de "
+"Toutes les adresses électroniques sont d&eacute;j&agrave; dans la base de "
+"donn&eacute;es et sont membres de "
 
 #: public_html/lists/admin/import3.php:481
 msgid "emails already existed in the database"
-msgstr "emails d&eacute;j&agrave; dans la base de donn&eacute;es"
+msgstr ""
+"adresses électroniques d&eacute;j&agrave; dans la base de donn&eacute;es"
 
 #: public_html/lists/admin/import3.php:483
 msgid "Invalid Emails found."
-msgstr "Emails Non Valides trouv&eacute;s."
+msgstr "Adresses électroniques invalides trouv&eacute;es."
 
 #: public_html/lists/admin/import3.php:485
 msgid ""
 "These records were added, but the email has been made up. You can find them "
 "by doing a search on"
 msgstr ""
-"Ces donn&eacute;es ont &eacute;t&eacute; ajout&eacute;es, mais l&rsquo;email "
-"a &eacute;t&eacute; invent&eacute;.  Vous pouvez les retrouver en faisant "
-"une recherche sur"
+"Ces donn&eacute;es ont &eacute;t&eacute; ajout&eacute;es, mais "
+"l&rsquo;adresse électronique a &eacute;t&eacute; invent&eacute;e.  Vous "
+"pouvez les retrouver en faisant une recherche sur"
 
 #: public_html/lists/admin/import3.php:491
 msgid "No emails found"
@@ -7094,11 +7106,11 @@ msgstr "Renvoyer"
 
 #: public_html/lists/admin/usercheck.php:6
 msgid "Existing subscribers"
-msgstr "Inscrits existants"
+msgstr "Abonnés existants"
 
 #: public_html/lists/admin/usercheck.php:7
 msgid "Non existing subscribers "
-msgstr "Inscrits non existants"
+msgstr "Abonnés inexistants"
 
 #: public_html/lists/admin/usercheck.php:21
 msgid "key"
@@ -7342,7 +7354,7 @@ msgstr "Marqué envoyé"
 
 #: public_html/lists/admin/messages.php:354
 msgid "Mark sent"
-msgstr ""
+msgstr "Marquer comme envoyé"
 
 #: public_html/lists/admin/messages.php:355
 #: public_html/lists/admin/messages.php:362
@@ -7422,28 +7434,28 @@ msgstr "création des tables"
 msgid "creating tables done"
 msgstr "cr&eacute;ation des tables terminé"
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr "Il reste %d entrées à convertir"
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr "conversion des données"
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr "traitement annulé"
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr "Optimisation de la table pour récupérer de l'espace  "
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 msgid "Finished"
 msgstr "Terminé"
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr "En convertir quelques un de plus"
 
@@ -7598,7 +7610,7 @@ msgstr "Suppression des utilisateurs qui ont plus de"
 #: public_html/lists/admin/reconcileusers.php:203
 msgid "Resending request for confirmation to subscribers who signed up after"
 msgstr ""
-"Renvoi de la demande de confirmation aux utilisateurs qui se sont inscrits "
+"Renvoi de la demande de confirmation aux utilisateurs qui se sont abonnés "
 "après le"
 
 #: public_html/lists/admin/reconcileusers.php:203
@@ -7608,8 +7620,7 @@ msgstr "et avant le"
 
 #: public_html/lists/admin/reconcileusers.php:215
 msgid "Deleting unconfirmed subscribers who signed up after"
-msgstr ""
-"Suppression des utilisateurs non-confirmés qui se sont inscrits après le"
+msgstr "Suppression des utilisateurs non-confirmés qui se sont abonnés après le"
 
 #: public_html/lists/admin/reconcileusers.php:225
 msgid "Trying to merge duplicates"
@@ -7879,7 +7890,7 @@ msgstr "%d lignes traitées"
 #, php-format
 #, php-format, php-format
 msgid "%d email imported"
-msgstr "%d adresses de courriel importées"
+msgstr "%d adresses électroniques importées"
 
 #: public_html/lists/admin/importsimple.php:83
 #, php-format
@@ -7907,16 +7918,16 @@ msgid ""
 "Please enter the emails to import, one per line, in the box below and click "
 "\"Import Emails\""
 msgstr ""
-"Veuillez entrer les adresses de courriel à importer, une par ligne dans le "
+"Veuillez entrer les adresses électroniques à importer, une par ligne dans le "
 "champs ci-dessous, puis cliquez sur \"importer les adresses\""
 
 #: public_html/lists/admin/importsimple.php:151
 msgid "Check to skip emails that are not valid"
-msgstr "Cocher pour passer les adresses de courriel invalide"
+msgstr "Cocher pour passer les adresses électroniques invalides"
 
 #: public_html/lists/admin/importsimple.php:152
 msgid "Import emails"
-msgstr "Import des adresses de courriel"
+msgstr "Importer des adresses électroniques"
 
 #: public_html/lists/admin/connect.php:161
 #: public_html/lists/admin/connect.php:182
@@ -7934,7 +7945,7 @@ msgstr "erreur fatale"
 
 #: public_html/lists/admin/connect.php:455
 msgid "Documentation about this error"
-msgstr ""
+msgstr "Documentation à propos de cette erreur"
 
 #: public_html/lists/admin/connect.php:749
 msgid "Main Page"

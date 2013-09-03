@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:03+0000\n"
-"PO-Revision-Date: 2013-08-05 20:40+0000\n"
-"Last-Translator: Mariela <marielazarate@gmail.com>\n"
+"POT-Creation-Date: 2013-08-31 05:03+0000\n"
+"PO-Revision-Date: 2013-08-26 21:38+0000\n"
+"Last-Translator: Joel <turquestan@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1375735221.0\n"
+"X-POOTLE-MTIME: 1377553098.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -1408,7 +1408,7 @@ msgstr "Tipo:"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:358
 msgid "authoritative list"
-msgstr ""
+msgstr "lista oficial"
 
 #: public_html/lists/admin/commonlib/pages/attributes.php:370
 msgid "edit values"
@@ -7348,28 +7348,28 @@ msgstr "creando tablas"
 msgid "creating tables done"
 msgstr "creación de tablas completada"
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr "%d entradas faltan convertir"
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr "convirtiendo datos"
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr "procesamiento cancelado"
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr "Optimizando tabla para recuperar espacio"
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 msgid "Finished"
 msgstr "Finalizado"
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr "Convertir algo más"
 

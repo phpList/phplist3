@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:07+0000\n"
-"PO-Revision-Date: 2013-08-18 19:47+0000\n"
+"POT-Creation-Date: 2013-08-31 05:08+0000\n"
+"PO-Revision-Date: 2013-08-31 05:29+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1376855251.0\n"
+"X-POOTLE-MTIME: 1377926995.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -619,7 +619,7 @@ msgstr "Veldscheidingsteken"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:666
 #: public_html/lists/admin/importadmin.php:301
 msgid "default is TAB"
-msgstr "(standaard is TAB)"
+msgstr "standaard is TAB"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #: public_html/lists/admin/importadmin.php:302
@@ -1621,7 +1621,7 @@ msgstr "Verzend notificatie e-mail bericht"
 #: public_html/lists/admin/import1.php:224
 #: public_html/lists/admin/home.php:150
 msgid "import"
-msgstr "Abonnees importeren"
+msgstr "Importeren"
 
 #: public_html/lists/admin/importadmin.php:14
 msgid "File is either to large or does not exist."
@@ -2720,17 +2720,17 @@ msgstr "Selecteer een methode om te importeren uit de verzendlijst hieronder"
 
 #: public_html/lists/admin/import.php:37
 msgid "copy and paste list of emails"
-msgstr "Het kopieren en plakken van een verzendlijst met e-mailadressen"
+msgstr "Het kopieren en plakken van een lijst met e-mail adressen"
 
 #: public_html/lists/admin/import.php:38
 msgid "import by uploading a file with emails"
-msgstr "Het importeren van een bestand met e-mailadressen"
+msgstr "Het importeren van een bestand met e-mail adressen"
 
 #: public_html/lists/admin/import.php:39
 msgid "import by uploading a CSV file with emails and additional data"
 msgstr ""
-"Het importeren van een CSV bestand met e-mailadressen en andere informatie "
-"over de abonnees (bijvoorbeeld voornaam en achternaam)"
+"Het importeren van een CSV bestand met e-mail adressen en andere informatie "
+"over abonnees (bijvoorbeeld voornaam en achternaam)"
 
 #: public_html/lists/admin/date.php:16
 msgid "Sunday"
@@ -4049,15 +4049,16 @@ msgstr "Om verder te gaan"
 
 #: public_html/lists/admin/home.php:64
 msgid "A new version of phpList is available!"
-msgstr "Een nieuwe versie van phpList is beschikbaar!"
+msgstr "Een nieuwe versie van phpList is beschikbaar."
 
 #: public_html/lists/admin/home.php:66
 msgid ""
 "The new version may have fixed security issues,<br/>so it is recommended to "
 "upgrade as soon as possible"
 msgstr ""
-"De nieuwe versie kan veiligheidszaken hebben opgelost,<br/>Het is dus "
-"aangeraden om zo snel mogelijk te upgraden"
+"De nieuwe versie kan veiligheidsproblemen hebben opgelost,<br/>het is dus "
+"belangrijk om de huidige versie zo snel mogelijk bij te werken met de nieuwe "
+"versie."
 
 #: public_html/lists/admin/home.php:68
 msgid "Latest version"
@@ -4069,7 +4070,7 @@ msgstr "Lees hier wat er is veranderd in de nieuwe versie"
 
 #: public_html/lists/admin/home.php:69
 msgid "View what has changed"
-msgstr "Bekijk wat er is verandert"
+msgstr "Bekijk de wijzigingen"
 
 #: public_html/lists/admin/home.php:70
 msgid "Download the new version"
@@ -4098,7 +4099,7 @@ msgstr "Berichten overzicht"
 
 #: public_html/lists/admin/home.php:107
 msgid "View current campaigns"
-msgstr "Bekijk concepten, te verzenden en verzonden berichten"
+msgstr "Bekijk en bewerk concept-, te verzenden- en verzonden berichten"
 
 #: public_html/lists/admin/home.php:112
 msgid "Manage Subscribers"
@@ -4106,11 +4107,11 @@ msgstr "Abonnees zoeken en toevoegen"
 
 #: public_html/lists/admin/home.php:114
 msgid "Search, edit and add Subscribers"
-msgstr "Abonnees zoeken, veranderen en toevoegen"
+msgstr "Abonnees zoeken en toevoegen"
 
 #: public_html/lists/admin/home.php:121
 msgid "View statistics"
-msgstr "Statistieken overzicht"
+msgstr "Overzicht van bericht statistieken"
 
 #: public_html/lists/admin/home.php:126
 msgid "Main"
@@ -4122,7 +4123,7 @@ msgstr "Abonnee verzendlijsten"
 
 #: public_html/lists/admin/home.php:138
 msgid "View, edit and add lists, that your subscribers can sign up to"
-msgstr "Verzendlijsten bekijken, veranderen en toevoegen"
+msgstr "Verzendlijsten toevoegen, bewerken en verijderen"
 
 #: public_html/lists/admin/home.php:145
 msgid "List all Users"
@@ -4146,11 +4147,11 @@ msgstr "Abonnees aanpassen en opschonen"
 
 #: public_html/lists/admin/home.php:166
 msgid "Reconcile the User Database"
-msgstr "Abonnees aanpassen en opschonen"
+msgstr "Abonnee gegevens aanpassen en opschonen"
 
 #: public_html/lists/admin/home.php:170
 msgid "List and user functions"
-msgstr "Abonnee en verzendlijst funkties"
+msgstr "Abonnee en verzendlijst functies"
 
 #: public_html/lists/admin/home.php:179
 msgid "configure"
@@ -4245,7 +4246,7 @@ msgstr "Berichten"
 
 #: public_html/lists/admin/home.php:275
 msgid "List all Messages"
-msgstr "Een overzicht van alle verzonden-, te verzenden- en concept berichten"
+msgstr "Bekijk en bewerk concept-, te verzenden- en verzonden berichten"
 
 #: public_html/lists/admin/home.php:282
 msgid "Process the Message Queue"
@@ -5377,7 +5378,7 @@ msgstr "Kies de kolommen die moeten worden geëxporteerd"
 
 #: public_html/lists/admin/export.php:244
 msgid "Export"
-msgstr "Exporteer"
+msgstr "Exporteren"
 
 #: public_html/lists/admin/import4.php:42
 msgid "add_list"
@@ -5557,7 +5558,7 @@ msgstr "Controleer vertalingen"
 
 #: public_html/lists/admin/pagetitles.php:25
 msgid "pagetitle:importsimple"
-msgstr "Importeer met kopiëren en plakken"
+msgstr "Importeer abonnees met kopiëren en plakken"
 
 #: public_html/lists/admin/pagetitles.php:27
 msgid "pagetitle:import4"
@@ -5838,7 +5839,7 @@ msgstr "Test onder stress"
 
 #: public_html/lists/admin/pagetitles.php:167
 msgid "pagetitlehover:list"
-msgstr "Verzendlijsten aanmaken en bewerken"
+msgstr "Verzendlijsten toevoegen, bewerken en verwijderen"
 
 #: public_html/lists/admin/pagetitles.php:169
 msgid "pagetitlehover:catlists"
@@ -5878,11 +5879,11 @@ msgstr "Importeer een bestand"
 
 #: public_html/lists/admin/pagetitles.php:187
 msgid "pagetitlehover:import"
-msgstr "Importeren"
+msgstr "Abonnees importeren"
 
 #: public_html/lists/admin/pagetitles.php:189
 msgid "pagetitlehover:export"
-msgstr "Exporteren"
+msgstr "Abonnees exporteren"
 
 #: public_html/lists/admin/pagetitles.php:191
 msgid "pagetitlehover:initialise"
@@ -5890,7 +5891,7 @@ msgstr "Database tabellen aanmaken"
 
 #: public_html/lists/admin/pagetitles.php:193
 msgid "pagetitlehover:send"
-msgstr "Verzenden"
+msgstr "Een nieuw bericht maken of een bestaand bericht bewerken"
 
 #: public_html/lists/admin/pagetitles.php:195
 msgid "pagetitlehover:preparesend"
@@ -5906,15 +5907,15 @@ msgstr "Abonnees"
 
 #: public_html/lists/admin/pagetitles.php:201
 msgid "pagetitlehover:users"
-msgstr "Zoeken en toevoegen"
+msgstr "Abonnees zoeken en toevoegen"
 
 #: public_html/lists/admin/pagetitles.php:203
 msgid "pagetitlehover:reconcileusers"
-msgstr "Aanpassen en opschonen"
+msgstr "Abonnee gegevens aanpassen en opschonen"
 
 #: public_html/lists/admin/pagetitles.php:205
 msgid "pagetitlehover:user"
-msgstr "Zoeken en toevoegen"
+msgstr "Abonnees zoeken en toevoegen"
 
 #: public_html/lists/admin/pagetitles.php:207
 msgid "pagetitlehover:userhistory"
@@ -5922,7 +5923,7 @@ msgstr "Gebruikersgescheidenis"
 
 #: public_html/lists/admin/pagetitles.php:209
 msgid "pagetitlehover:messages"
-msgstr "Berichten"
+msgstr "Bekijk en bewerk concepten, te verzenden en verzonden berichten"
 
 #: public_html/lists/admin/pagetitles.php:211
 msgid "pagetitlehover:message"
@@ -5943,7 +5944,7 @@ msgstr "Database versie bijwerken"
 
 #: public_html/lists/admin/pagetitles.php:219
 msgid "pagetitlehover:templates"
-msgstr "Sjablonen"
+msgstr "Sjablonen aanmaken, bewerken en verwijderen"
 
 #: public_html/lists/admin/pagetitles.php:221
 msgid "pagetitlehover:template"
@@ -6027,7 +6028,7 @@ msgstr "Aangeklikte berichten"
 
 #: public_html/lists/admin/pagetitles.php:261
 msgid "pagetitlehover:massunconfirm"
-msgstr "Markeren als niet bevestigd"
+msgstr "Abonnees markeren als niet bevestigd"
 
 #: public_html/lists/admin/pagetitles.php:263
 msgid "pagetitlehover:massremove"
@@ -6035,7 +6036,7 @@ msgstr "Grote hoeveelheden abonnees verwijderen"
 
 #: public_html/lists/admin/pagetitles.php:265
 msgid "pagetitlehover:usermgt"
-msgstr "Beheer functies"
+msgstr "Alle mogelijkheden om abonnee gegevens te bewerken"
 
 #: public_html/lists/admin/pagetitles.php:267
 msgid "pagetitlehover:bouncemgt"
@@ -7010,7 +7011,7 @@ msgstr "Bewerk de veldwaarden"
 
 #: public_html/lists/admin/usermgt.php:31
 msgid "Reconcile Subscribers"
-msgstr "Herwerk abonnees"
+msgstr "Abonnee gegevens aanpassen en opschonen"
 
 #: public_html/lists/admin/usermgt.php:32
 msgid "Suppression list"
@@ -7304,28 +7305,28 @@ msgstr "Tabellen aanmaken"
 msgid "creating tables done"
 msgstr "Tabellen zijn aangemaakt"
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr "%d onderdelen moeten nog worden geconverteerd"
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr "data aan het converteren"
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr "Bewerken geannuleerd"
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr "Tabel optimaliseren om ruimte te maken"
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 msgid "Finished"
 msgstr "Afgerond"
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr "Converteer meer"
 
@@ -7774,8 +7775,8 @@ msgid ""
 "Please enter the emails to import, one per line, in the box below and click "
 "\"Import Emails\""
 msgstr ""
-"Vul de adressen voor import hier in, één per regel, en klik de knop "
-"\"Importeer\""
+"Voer de e-mail adressen die moeten worden geïmporteerd hieronder in, één per "
+"regel, en klik de knop \"Importeer\""
 
 #: public_html/lists/admin/importsimple.php:151
 msgid "Check to skip emails that are not valid"

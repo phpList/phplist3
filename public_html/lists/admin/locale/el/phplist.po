@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:00+0000\n"
+"POT-Creation-Date: 2013-08-31 05:01+0000\n"
 "PO-Revision-Date: 2012-05-18 18:49+0200\n"
 "Last-Translator: Kostas <kostas@creativecollective.gr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6914,28 +6914,28 @@ msgstr ""
 msgid "creating tables done"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 msgid "Finished"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr ""
 

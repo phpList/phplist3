@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 05:02+0000\n"
-"PO-Revision-Date: 2013-07-31 21:36+0000\n"
+"POT-Creation-Date: 2013-08-31 05:02+0000\n"
+"PO-Revision-Date: 2013-07-31 21:01+0000\n"
 "Last-Translator: Mariela <marielazarate@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1375306582.0\n"
+"X-POOTLE-MTIME: 1375304499.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -5368,8 +5368,9 @@ msgid "pagetitle:attributes"
 msgstr "atributos"
 
 #: public_html/lists/admin/pagetitles.php:13
+#, fuzzy
 msgid "pagetitle:stresstest"
-msgstr ""
+msgstr "mensajes"
 
 #: public_html/lists/admin/pagetitles.php:15
 msgid "pagetitle:list"
@@ -5646,313 +5647,389 @@ msgid "pagetitle:reindex"
 msgstr "reindexar"
 
 #: public_html/lists/admin/pagetitles.php:149
+#, fuzzy
 msgid "pagetitle:config"
-msgstr ""
+msgstr "configurar"
 
 #: public_html/lists/admin/pagetitles.php:151
+#, fuzzy
 msgid "pagetitle:info"
-msgstr ""
+msgstr "importar"
 
 #: public_html/lists/admin/pagetitles.php:155
 msgid "pagetitle:converttoutf8"
 msgstr ""
 
 #: public_html/lists/admin/pagetitles.php:157
+#, fuzzy
 msgid "pagetitlehover:home"
-msgstr ""
+msgstr "rebote"
 
 #: public_html/lists/admin/pagetitles.php:159
+#, fuzzy
 msgid "pagetitlehover:setup"
-msgstr ""
+msgstr "Instalación"
 
 #: public_html/lists/admin/pagetitles.php:161
+#, fuzzy
 msgid "pagetitlehover:about"
-msgstr ""
+msgstr "acerca de phpList"
 
 #: public_html/lists/admin/pagetitles.php:163
+#, fuzzy
 msgid "pagetitlehover:attributes"
-msgstr ""
+msgstr "atributos"
 
 #: public_html/lists/admin/pagetitles.php:165
+#, fuzzy
 msgid "pagetitlehover:stresstest"
-msgstr ""
+msgstr "mensajes"
 
 #: public_html/lists/admin/pagetitles.php:167
+#, fuzzy
 msgid "pagetitlehover:list"
-msgstr ""
+msgstr "categorizar listas"
 
 #: public_html/lists/admin/pagetitles.php:169
+#, fuzzy
 msgid "pagetitlehover:catlists"
-msgstr ""
+msgstr "categorizar listas"
 
 #: public_html/lists/admin/pagetitles.php:171
+#, fuzzy
 msgid "pagetitlehover:editattributes"
-msgstr ""
+msgstr "editar atributos"
 
 #: public_html/lists/admin/pagetitles.php:173
+#, fuzzy
 msgid "pagetitlehover:editlist"
-msgstr ""
+msgstr "editar lista"
 
 #: public_html/lists/admin/pagetitles.php:175
+#, fuzzy
 msgid "pagetitlehover:checki18n"
-msgstr ""
+msgstr "comprobar i18n"
 
 #: public_html/lists/admin/pagetitles.php:177
+#, fuzzy
 msgid "pagetitlehover:importsimple"
-msgstr ""
+msgstr "importación directa"
 
 #: public_html/lists/admin/pagetitles.php:179
+#, fuzzy
 msgid "pagetitlehover:import4"
-msgstr ""
+msgstr "importar"
 
 #: public_html/lists/admin/pagetitles.php:181
+#, fuzzy
 msgid "pagetitlehover:import3"
-msgstr ""
+msgstr "importar"
 
 #: public_html/lists/admin/pagetitles.php:183
+#, fuzzy
 msgid "pagetitlehover:import2"
-msgstr ""
+msgstr "importar desde csv"
 
 #: public_html/lists/admin/pagetitles.php:185
+#, fuzzy
 msgid "pagetitlehover:import1"
-msgstr ""
+msgstr "importar desde un archivo"
 
 #: public_html/lists/admin/pagetitles.php:187
+#, fuzzy
 msgid "pagetitlehover:import"
-msgstr ""
+msgstr "importar"
 
 #: public_html/lists/admin/pagetitles.php:189
+#, fuzzy
 msgid "pagetitlehover:export"
-msgstr ""
+msgstr "exportar"
 
 #: public_html/lists/admin/pagetitles.php:191
+#, fuzzy
 msgid "pagetitlehover:initialise"
-msgstr ""
+msgstr "inicializar"
 
 #: public_html/lists/admin/pagetitles.php:193
+#, fuzzy
 msgid "pagetitlehover:send"
-msgstr ""
+msgstr "Instalación"
 
 #: public_html/lists/admin/pagetitles.php:195
+#, fuzzy
 msgid "pagetitlehover:preparesend"
-msgstr ""
+msgstr "preparar para enviar"
 
 #: public_html/lists/admin/pagetitles.php:197
+#, fuzzy
 msgid "pagetitlehover:sendprepared"
-msgstr ""
+msgstr "enviar preparados"
 
 #: public_html/lists/admin/pagetitles.php:199
+#, fuzzy
 msgid "pagetitlehover:members"
-msgstr ""
+msgstr "miembros"
 
 #: public_html/lists/admin/pagetitles.php:201
+#, fuzzy
 msgid "pagetitlehover:users"
-msgstr ""
+msgstr "usuarios"
 
 #: public_html/lists/admin/pagetitles.php:203
+#, fuzzy
 msgid "pagetitlehover:reconcileusers"
-msgstr ""
+msgstr "conciliar usuarios"
 
 #: public_html/lists/admin/pagetitles.php:205
+#, fuzzy
 msgid "pagetitlehover:user"
-msgstr ""
+msgstr "usuarios"
 
 #: public_html/lists/admin/pagetitles.php:207
+#, fuzzy
 msgid "pagetitlehover:userhistory"
-msgstr ""
+msgstr "historial de usuario"
 
 #: public_html/lists/admin/pagetitles.php:209
+#, fuzzy
 msgid "pagetitlehover:messages"
-msgstr ""
+msgstr "mensajes"
 
 #: public_html/lists/admin/pagetitles.php:211
+#, fuzzy
 msgid "pagetitlehover:message"
-msgstr ""
+msgstr "mensaje"
 
 #: public_html/lists/admin/pagetitles.php:213
+#, fuzzy
 msgid "pagetitlehover:processqueue"
-msgstr ""
+msgstr "procesar cola"
 
 #: public_html/lists/admin/pagetitles.php:215
+#, fuzzy
 msgid "pagetitlehover:defaults"
-msgstr ""
+msgstr "valores por defecto"
 
 #: public_html/lists/admin/pagetitles.php:217
 #: public_html/lists/admin/pagetitles.php:305
+#, fuzzy
 msgid "pagetitlehover:upgrade"
-msgstr ""
+msgstr "actualizar"
 
 #: public_html/lists/admin/pagetitles.php:219
+#, fuzzy
 msgid "pagetitlehover:templates"
-msgstr ""
+msgstr "plantillas"
 
 #: public_html/lists/admin/pagetitles.php:221
+#, fuzzy
 msgid "pagetitlehover:template"
-msgstr ""
+msgstr "plantilla"
 
 #: public_html/lists/admin/pagetitles.php:223
+#, fuzzy
 msgid "pagetitlehover:viewtemplate"
-msgstr ""
+msgstr "ver plantilla"
 
 #: public_html/lists/admin/pagetitles.php:225
+#, fuzzy
 msgid "pagetitlehover:configure"
-msgstr ""
+msgstr "configurar"
 
 #: public_html/lists/admin/pagetitles.php:227
+#, fuzzy
 msgid "pagetitlehover:admin"
-msgstr ""
+msgstr "administrador"
 
 #: public_html/lists/admin/pagetitles.php:229
+#, fuzzy
 msgid "pagetitlehover:admins"
-msgstr ""
+msgstr "administradores"
 
 #: public_html/lists/admin/pagetitles.php:231
+#, fuzzy
 msgid "pagetitlehover:adminattributes"
-msgstr ""
+msgstr "atributos de administradores"
 
 #: public_html/lists/admin/pagetitles.php:233
+#, fuzzy
 msgid "pagetitlehover:processbounces"
-msgstr ""
+msgstr "procesar rebotes"
 
 #: public_html/lists/admin/pagetitles.php:235
+#, fuzzy
 msgid "pagetitlehover:bounces"
-msgstr ""
+msgstr "rebotes"
 
 #: public_html/lists/admin/pagetitles.php:237
+#, fuzzy
 msgid "pagetitlehover:bounce"
-msgstr ""
+msgstr "rebote"
 
 #: public_html/lists/admin/pagetitles.php:239
+#, fuzzy
 msgid "pagetitlehover:spageedit"
-msgstr ""
+msgstr "editar página de suscripción"
 
 #: public_html/lists/admin/pagetitles.php:241
+#, fuzzy
 msgid "pagetitlehover:spage"
-msgstr ""
+msgstr "página de suscripción"
 
 #: public_html/lists/admin/pagetitles.php:243
+#, fuzzy
 msgid "pagetitlehover:eventlog"
-msgstr ""
+msgstr "registro de eventos"
 
 #: public_html/lists/admin/pagetitles.php:245
+#, fuzzy
 msgid "pagetitlehover:getrss"
-msgstr ""
+msgstr "levantar rss"
 
 #: public_html/lists/admin/pagetitles.php:247
+#, fuzzy
 msgid "pagetitlehover:viewrss"
-msgstr ""
+msgstr "ver rss"
 
 #: public_html/lists/admin/pagetitles.php:249
+#, fuzzy
 msgid "pagetitlehover:community"
-msgstr ""
+msgstr "comunidad"
 
 #: public_html/lists/admin/pagetitles.php:251
+#, fuzzy
 msgid "pagetitlehover:vote"
-msgstr ""
+msgstr "rebote"
 
 #: public_html/lists/admin/pagetitles.php:253
+#, fuzzy
 msgid "pagetitlehover:login"
-msgstr ""
+msgstr "ingresar"
 
 #: public_html/lists/admin/pagetitles.php:255
+#, fuzzy
 msgid "pagetitlehover:logout"
-msgstr ""
+msgstr "salir"
 
 #: public_html/lists/admin/pagetitles.php:257
+#, fuzzy
 msgid "pagetitlehover:mclicks"
-msgstr ""
+msgstr "mensajes cliqueados"
 
 #: public_html/lists/admin/pagetitles.php:259
+#, fuzzy
 msgid "pagetitlehover:uclicks"
-msgstr ""
+msgstr "urls cliqueadas"
 
 #: public_html/lists/admin/pagetitles.php:261
+#, fuzzy
 msgid "pagetitlehover:massunconfirm"
-msgstr ""
+msgstr "desuscbribir masivamente"
 
 #: public_html/lists/admin/pagetitles.php:263
+#, fuzzy
 msgid "pagetitlehover:massremove"
-msgstr ""
+msgstr "eliminar masivamente"
 
 #: public_html/lists/admin/pagetitles.php:265
+#, fuzzy
 msgid "pagetitlehover:usermgt"
-msgstr ""
+msgstr "administrar usuarios"
 
 #: public_html/lists/admin/pagetitles.php:267
+#, fuzzy
 msgid "pagetitlehover:bouncemgt"
-msgstr ""
+msgstr "administrar rebotes"
 
 #: public_html/lists/admin/pagetitles.php:269
+#, fuzzy
 msgid "pagetitlehover:domainstats"
-msgstr ""
+msgstr "estadísticas de dominio"
 
 #: public_html/lists/admin/pagetitles.php:271
+#, fuzzy
 msgid "pagetitlehover:mviews"
-msgstr ""
+msgstr "mensajes vistos"
 
 #: public_html/lists/admin/pagetitles.php:273
+#, fuzzy
 msgid "pagetitlehover:statsmgt"
-msgstr ""
+msgstr "estadísticas"
 
 #: public_html/lists/admin/pagetitles.php:275
+#, fuzzy
 msgid "pagetitlehover:statsoverview"
-msgstr ""
+msgstr "estadísticas generales"
 
 #: public_html/lists/admin/pagetitles.php:277
+#, fuzzy
 msgid "pagetitlehover:subscriberstats"
-msgstr ""
+msgstr "estadísticas de suscriptor"
 
 #: public_html/lists/admin/pagetitles.php:279
+#, fuzzy
 msgid "pagetitlehover:dbcheck"
-msgstr ""
+msgstr "comprobar base de datos"
 
 #: public_html/lists/admin/pagetitles.php:281
+#, fuzzy
 msgid "pagetitlehover:importadmin"
-msgstr ""
+msgstr "importar administrador"
 
 #: public_html/lists/admin/pagetitles.php:283
+#, fuzzy
 msgid "pagetitlehover:dbadmin"
-msgstr ""
+msgstr "administrador de base de datos"
 
 #: public_html/lists/admin/pagetitles.php:285
+#, fuzzy
 msgid "pagetitlehover:usercheck"
-msgstr ""
+msgstr "comprobar usuario"
 
 #: public_html/lists/admin/pagetitles.php:287
+#, fuzzy
 msgid "pagetitlehover:listbounces"
-msgstr ""
+msgstr "rebotes por lista"
 
 #: public_html/lists/admin/pagetitles.php:289
+#, fuzzy
 msgid "pagetitlehover:bouncerules"
-msgstr ""
+msgstr "reglas de rebote"
 
 #: public_html/lists/admin/pagetitles.php:291
+#, fuzzy
 msgid "pagetitlehover:checkbouncerules"
-msgstr ""
+msgstr "comprobar reglas de rebote"
 
 #: public_html/lists/admin/pagetitles.php:293
+#, fuzzy
 msgid "pagetitlehover:translate"
-msgstr ""
+msgstr "traducir"
 
 #: public_html/lists/admin/pagetitles.php:295
+#, fuzzy
 msgid "pagetitlehover:ajaxform"
-msgstr ""
+msgstr "forlumario ajax"
 
 #: public_html/lists/admin/pagetitles.php:297
+#, fuzzy
 msgid "pagetitlehover:updatetranslation"
-msgstr ""
+msgstr "actualizar traducción"
 
 #: public_html/lists/admin/pagetitles.php:299
+#, fuzzy
 msgid "pagetitlehover:reindex"
-msgstr ""
+msgstr "reindexar"
 
 #: public_html/lists/admin/pagetitles.php:301
+#, fuzzy
 msgid "pagetitlehover:config"
-msgstr ""
+msgstr "configurar"
 
 #: public_html/lists/admin/pagetitles.php:303
+#, fuzzy
 msgid "pagetitlehover:info"
-msgstr ""
+msgstr "importar"
 
 #: public_html/lists/admin/pagetitles.php:307
 msgid "pagetitlehover:converttoutf8"
@@ -7124,29 +7201,29 @@ msgstr "Creando tablas"
 msgid "creating tables done"
 msgstr "Creando tablas"
 
-#: public_html/lists/admin/convertstats.php:60
+#: public_html/lists/admin/convertstats.php:63
 #, php-format
 msgid "%d entries still to convert"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:66
+#: public_html/lists/admin/convertstats.php:69
 msgid "converting data"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:73
+#: public_html/lists/admin/convertstats.php:76
 msgid "processing cancelled"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:158
+#: public_html/lists/admin/convertstats.php:161
 msgid "Optimizing table to recover space"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:160
+#: public_html/lists/admin/convertstats.php:163
 #, fuzzy
 msgid "Finished"
 msgstr "Finalizar"
 
-#: public_html/lists/admin/convertstats.php:163
+#: public_html/lists/admin/convertstats.php:166
 msgid "Convert some more"
 msgstr ""
 
