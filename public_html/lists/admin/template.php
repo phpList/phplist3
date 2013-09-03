@@ -151,7 +151,7 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       reset($images);
       while (list($key,$val) = each ($images)) {
         $key = trim($key);
-        if (preg_match('~^http://~i',$key)) {
+        if (preg_match('~^https?://~i',$key)) {
           $missingImage = true;
           $imageFound = testUrl($key);
           if ($imageFound != 200) {
