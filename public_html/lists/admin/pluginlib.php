@@ -18,6 +18,11 @@ include_once dirname(__FILE__). "/defaultplugin.php";
 $pluginFiles = array();
 
 foreach ($pluginRootDirs as $pluginRootDir) {
+  ## try to expand to subdir of the admin dir
+  if (!is_dir($pluginRootDir) && !empty($pluginRootDir)) {
+    $pluginRootDir = dirname(__FILE__).'/'.$pluginRootDir;
+  }
+  
 #  print '<h3>'.$pluginRootDir.'</h3>';
   if (is_dir($pluginRootDir)) {
     $dh = opendir($pluginRootDir);
