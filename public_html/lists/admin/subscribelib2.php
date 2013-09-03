@@ -263,14 +263,14 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
       if ( !array_key_exists( $fieldname, $_POST) ) continue; 
       $value = $_POST[$fieldname];
   #    if ($value != "") {
-        if (is_array($value)) {
+        if ($row["type"] == "date") {
+          $value = $date->getDate($fieldname);
+        } elseif (is_array($value)) {
           $newval = array();
           foreach ($value as $val) {
             array_push($newval,sprintf('%0'.$checkboxgroup_storesize.'d',$val));
           }
           $value = join(",",$newval);
-        } elseif ($row["type"] == "date") {
-          $value = $date->getDate($fieldname);
         } elseif ($row['type'] != 'textarea') {
           if (preg_match("/(.*)\n/U",$value,$regs)) {
             $value = $regs[1];
@@ -548,14 +548,14 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
       $fieldname = "attribute" .$attribute["id"];
       $value = $_POST[$fieldname];
       $replace = 1;#isset($_POST[$fieldname]);
-      if (is_array($value)) {
+      if ($attribute["type"] == "date") {
+        $value = $date->getDate($fieldname);
+      } elseif (is_array($value)) {
         $values = array();
         foreach ($value as $val) {
           array_push($values,sprintf('%0'.$checkboxgroup_storesize.'d',$val));
         }
         $value = join(",",$values);
-      } elseif ($attribute["type"] == "date") {
-        $value = $date->getDate($fieldname);
       } elseif ($row['type'] != 'textarea') {
         if (preg_match("/(.*)\n/U",$value,$regs)) {
           $value = $regs[1];
