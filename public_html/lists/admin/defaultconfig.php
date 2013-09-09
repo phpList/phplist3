@@ -162,9 +162,10 @@ $default_config = array (
 
   # if there is only one visible list, do we hide it and automatically
   # subscribe users who sign up
+  ## not sure why you would not want this :-) maybe it should not be an option at all
 "hide_single_list" => array (
   'value' => "1",
-  'description' => s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up (0/1)"),
+  'description' => s("If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up"),
   'type' => "boolean",
   'allowempty' => true,
   'category'=> 'subscription-ui',
@@ -202,7 +203,7 @@ $default_config = array (
   # send copies of subscribe, update unsubscribe messages to the administrator
 "send_admin_copies" => array (
   'value' => "0",
-  'description' => s("Does the admin get copies of subscribe, update and unsubscribe messages (0/1)"),
+  'description' => s("Send notifications about subscribe, update and unsubscribe"),
   'type' => "boolean",
   'allowempty' => true,
   'category'=> 'reporting',
@@ -640,7 +641,6 @@ Thank you.
 
 );
 
-
 ########## certainly do not edit after this #########
 
 $redfont = "";
@@ -707,7 +707,7 @@ if (!function_exists("getconfig")) {
 			} else {
 				$row = Sql_Fetch_Row($req);
 				$value = $row[0];
-        if ($row[1] == 0) {
+        if (!empty($default_config[$item]['hidden'])) {
           $GLOBALS['noteditableconfig'][] = $item;
         }
 			}
