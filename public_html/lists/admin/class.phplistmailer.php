@@ -255,12 +255,11 @@ class PHPlistMailer extends PHPMailer {
           }
         }
         if(!parent::Send()) {
-          #echo "Message was not sent <p class="x">";
-          logEvent("Error sending email to ".$to_addr);
+          logEvent(s('Error sending email to %s',$to_addr).' '.$this->ErrorInfo);
           return 0;
         }#
       } else {
-        logEvent('Error sending email to '.$to_addr);
+        logEvent(s('Error, empty message-body sending email to %s',$to_addr));
         return 0;
       }
       return 1;
