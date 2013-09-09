@@ -111,6 +111,8 @@ if (empty($GLOBALS['language_module'])) {
 if (empty($GLOBALS['database_module'])) {
   $GLOBALS['database_module'] = 'mysql.inc';
 }
+$database_connection_compression = false;
+$database_connection_ssl = false;
 
 ## @@ would be nice to move this to the config file at some point
 # http://mantis.phplist.com/view.php?id=15521
