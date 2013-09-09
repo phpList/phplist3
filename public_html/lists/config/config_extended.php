@@ -30,6 +30,12 @@ $database_user = "phplist";
 # and what password do we use
 $database_password = 'phplist';
 
+# enable database connection compression
+$database_connection_compression = false;
+
+# force database connection to use SSL
+$database_connection_ssl = false;
+
 # if you use multiple installations of phpList you can set this to
 # something to identify this one. it will be prepended to email report
 # subjects
