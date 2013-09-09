@@ -44,6 +44,10 @@ if ($sent > 0 && $totaltime > 0) {
   $timeleft = 0;
   $eta = $GLOBALS['I18N']->get('unknown');
 }
+
+## 16850 - convert to string, to avoid an SQL error
+$msgperhour = "$msgperhour ";
+
 setMessageData($id,'ETA',$eta);
 setMessageData($id,'msg/hr',$msgperhour);
 
