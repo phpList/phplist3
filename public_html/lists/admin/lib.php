@@ -726,13 +726,13 @@ function getPageLock($force = 0) {
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
     } elseif ((int)$count >= (int)$max) {
    #   cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
-      output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
+      output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']),0);
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
         cl_output($GLOBALS['I18N']->get('Running commandline, quitting. We\'ll find out what to do in the next run.'));
         exit;
       }
-      output ($GLOBALS['I18N']->get('Sleeping for 20 seconds, aborting will quit'));
+      output ($GLOBALS['I18N']->get('Sleeping for 20 seconds, aborting will quit'),0);
       flush();
       $abort = ignore_user_abort(0);
       sleep(20);
@@ -740,7 +740,7 @@ function getPageLock($force = 0) {
     $waited++;
     if ($waited > 10) {
       # we have waited 10 cycles, abort and quit script
-      output($GLOBALS['I18N']->get('We have been waiting too long, I guess the other process is still going ok'));
+      output($GLOBALS['I18N']->get('We have been waiting too long, I guess the other process is still going ok'),0);
       return false;
     }
     $query
