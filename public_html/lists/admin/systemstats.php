@@ -28,6 +28,10 @@ $systemstats = array(
     'collate' => true,
   ),
   array(
+    'name' => 'Current Subscribers',
+    'query' => sprintf('select count(id) as num,year(now()) year,month(now()) month from %s',$GLOBALS['tables']['user']),
+  ),
+  array(
     'name' => 'Sent Messages by month',
     'query' => sprintf('select count(entered) as num,year(entered) as year,month(entered) month from %s where status = "sent" group by year(entered), month(entered) order by entered desc',$GLOBALS['tables']['usermessage']),
   ),
