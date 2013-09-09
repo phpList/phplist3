@@ -8,7 +8,7 @@ if (preg_match('/Rev: (\d+)/','$Rev$',$match)) {
 }
 
 if (!defined('VERSION')) {
-  if (is_dir(dirname(__FILE__).'/../../../.svn')) {
+  if (!ini_get('open_basedir') && is_dir(dirname(__FILE__).'/../../../.svn')) {
     define("VERSION",$version.'-dev');
     define('DEVVERSION',true);
   } else {
