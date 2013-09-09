@@ -610,16 +610,19 @@ function checkGroup(name,value)
   return $html;
 }
 
-function confirmPage($id)
-{
+function confirmPage($id) {
   global $tables, $envelope;
   if (!$_GET["uid"]) {
     FileNotFound();
   }
-  $req = Sql_Query("select * from {$tables["user"]} where uniqid = \"".$_GET["uid"]."\"");
+  $req = Sql_Query(sprintf('select * from %s where uniqid = "%s"',$tables["user"],sql_escape($_GET["uid"])));
   $userdata = Sql_Fetch_Array($req);
   if ($userdata["id"]) {
     $blacklisted = isBlackListed($userdata["email"]);
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+      $plugin->subscriberConfirmation($id,$userdata);
+    }
+        
     $html = '<ul>';
     $lists = '';
     Sql_Query("update {$tables["user"]} set confirmed = 1,blacklisted = 0 where id = ".$userdata["id"]);
@@ -640,7 +643,7 @@ function confirmPage($id)
     $html .= '</ul>';
     if ($blacklisted) {
       unBlackList($userdata['id']);
-      addUserHistory($userdata["email"],"Confirmation","User removed from Blacklist for manual confirmation of subscription");
+      addUserHistory($userdata["email"],"Confirmation",s("Subscriber removed from Blacklist for manual confirmation of subscription"));
     }
     addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
 
@@ -650,7 +653,7 @@ function confirmPage($id)
       sendMail($userdata["email"], getConfig("confirmationsubject:$id"), $confirmationmessage,system_messageheaders(),$envelope);
       $adminmessage = $userdata["email"] . " has confirmed their subscription";
       if ($blacklisted) {
-        $adminmessage .= "\nUser has been removed from blacklist";
+        $adminmessage .= "\n\n".s("Subscriber has been removed from blacklist");
       }
       sendAdminCopy("List confirmation",$adminmessage,$subscriptions);
       addSubscriberStatistics('confirmation',1);
