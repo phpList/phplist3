@@ -876,14 +876,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
 #  print htmlspecialchars($htmlmessage);exit;
 
-  $mail->build_message(
-      array(
-        "html_charset" => $cached[$messageid]["html_charset"],
-        "html_encoding" => HTMLEMAIL_ENCODING,
-        "text_charset" => $cached[$messageid]["text_charset"],
-        "text_encoding" => TEXTEMAIL_ENCODING)
-      );
-
   if (!TEST) {
     if ($hash != 'forwarded' || !sizeof($forwardedby)) {
       $fromname = $cached[$messageid]["fromname"];
@@ -911,8 +903,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         $plugin->processSendFailed($messageid, $userdata, $isTestMail);
       }
       output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
-        $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail));
-      logEvent("Error sending message $messageid to $email ($destinationemail)");
+        $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail),0);
       return 0;
     } else {
       ## only save the estimated size of the message when sending a test message
