@@ -101,6 +101,7 @@ class phplistPlugin {
     if (isset($this->settings)) {
       foreach ($this->settings as $item => $itemDetails) {
         $GLOBALS['default_config'][$item] = $itemDetails;
+        $GLOBALS['default_config'][$item]['hidden'] = false;
       }
     }
     $this->version = $this->getVersion();
@@ -296,6 +297,10 @@ class phplistPlugin {
     # returns parsed text
     return $text;
   }
+  
+  function subscriberConfirmation($subscribepageID,$userdata = array()) {
+    
+  } 
   
   ############################################################
   # Messages
