@@ -99,6 +99,7 @@ if (isset($_GET['resend'])) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->messageReQueued($resend);
     }
+    Sql_Query(sprintf('delete from %s where id = %d and (name = "start_notified" or name = "end_notified")',$tables['messagedata'],$resend));
     $messagedata = loadMessageData($resend);
     $finishSending = mktime($messagedata['finishsending']['hour'],$messagedata['finishsending']['minute'],0,
       $messagedata['finishsending']['month'],$messagedata['finishsending']['day'],$messagedata['finishsending']['year']);
