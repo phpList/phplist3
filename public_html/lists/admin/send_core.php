@@ -891,10 +891,6 @@ if (!$done) {
     $messagedata["testtarget"] = $GLOBALS["developer_email"];
   }
 
-  if (empty($messagedata['testtarget'])) {
-    $messagedata['testtarget'] = $_SESSION['logininfo']['email'];
-  }
-
   // Display the HTML for the "Send Test" button, and the input field for the email addresses
   $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     %s
