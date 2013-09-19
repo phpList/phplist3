@@ -15,6 +15,7 @@ $actionresult = '';
 if (isset($_POST['listorder']) && is_array($_POST['listorder']))
   while (list($key,$val) = each ($_POST['listorder'])) {
     $active = empty($_POST['active'][$key]) ? '0' : '1';
+    $active = $active || listUsedInSubscribePage($key);
     $query
     = ' update %s'
     . ' set listorder = ?, active = ?'
@@ -173,37 +174,23 @@ if ($numlists > 15) {
 
 while ($row = Sql_fetch_array($result)) {
   
-  /*
-   * this is rather demanding with quite a few lists/subscribers
-   * find a better way
-   */
-  
+  ## we only consider confirmed and not blacklisted subscribers members of a list
   $query
-  = ' select count(*)'
+  = ' select count(u.id) as num'
   . ' from ' . $tables['listuser']
-  . ' where listid = ?';
-  $rsc = Sql_Query_Params($query, array($row["id"]));
-  $membercount = Sql_Fetch_Row($rsc);
-    $members = $membercount[0];
-
-/*
-  $query = sprintf('
-  select count(distinct userid) as bouncecount from %s listuser,
-  %s umb where listuser.userid = umb.user and listuser.listid = ? ',
-  $GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$row['id'])
-
-  print $query;
-*/
-  $bouncecount =
-    Sql_Fetch_Row_Query(sprintf('select count(distinct userid) as bouncecount from %s listuser, %s umb where listuser.userid = umb.user and listuser.listid = %s ',$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$row['id']));
-    $bounces = $bouncecount[0];
-
+  . ' lu, '.$tables['user'].' u where u.id = lu.userid and listid = ? 
+    and u.confirmed and !u.blacklisted ';
+  $req = Sql_Query_Params($query, array($row["id"]));
+  $membercount = Sql_Fetch_Assoc($req);
+  
+  $members = $membercount['num'];
   $desc = stripslashes($row['description']);
 
-  ## allow plugins to add columns
-  foreach ($GLOBALS['plugins'] as $plugin) {
-    $desc = $plugin->displayLists($row) . $desc;
-  }
+  //## allow plugins to add columns
+  // @@@ TODO review this
+  //foreach ($GLOBALS['plugins'] as $plugin) {
+    //$desc = $plugin->displayLists($row) . $desc;
+  //}
 
   $element = '<!-- '.$row['id'].'-->'.stripslashes($row['name']);
   $ls->addElement($element,PageUrl2("editlist&amp;id=".$row["id"]));
@@ -211,9 +198,7 @@ while ($row = Sql_fetch_array($result)) {
   $ls->addColumn($element,
     $GLOBALS['I18N']->get('Members'),
     PageLink2("members",'<span class="membercount">'.$members.'</span>',"id=".$row["id"]).' '.PageLinkDialog('importsimple&list='.$row["id"],'+'));
-  $ls->addColumn($element,
-    $GLOBALS['I18N']->get('Bounces'),
-    PageLink2("listbounces",'<span class="bouncecount">'.$bounces.'</span>',"id=".$row["id"]));#.' '.PageLink2('listbounces&id='.$row["id"],$GLOBALS['I18N']->get('view'))
+    
   $ls->addColumn($element,
     $GLOBALS['I18N']->get('Public'),sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />',$row["id"],
   $row["active"] ? 'checked="checked"' : '',listUsedInSubscribePage($row["id"]) ? ' disabled="disabled" ':''));
@@ -236,9 +221,11 @@ while ($row = Sql_fetch_array($result)) {
      PageURL2("list&delete=".$row["id"]),
      s('delete this list'));
    
-  $ls->addRow($element,'',$deletebutton->show().PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')),'','','actions nodrag');
-  
-
+  $ls->addRow($element,'',$deletebutton->show().
+    PageLinkButton('send&new=1&list='.$row['id'],
+    $GLOBALS['I18N']->get('send'),'','',
+    $GLOBALS['I18N']->get('start a new campaign targetting this list'))
+    ,'','','actions nodrag');
 
   $some = 1;
 }
