@@ -508,12 +508,9 @@ class PHPlistMailer extends PHPMailer {
 
       $messageheader = preg_replace('/'.$this->LE.'$/','',$messageheader);
       $messageheader .= $this->LE."Subject: ".$this->EncodeHeader($this->Subject).$this->LE;
-/*
-      print nl2br(htmlspecialchars($messageheader));
 
-      exit;
-*/
-   
+      #print nl2br(htmlspecialchars($messageheader));      exit;
+
       $date = date('r');
       $aws_signature = base64_encode(hash_hmac('sha256',$date,AWS_SECRETKEY,true));
       
@@ -589,6 +586,12 @@ class PHPlistMailer extends PHPMailer {
 
     function MailSend($header, $body) {
       $this->mailsize = strlen($header.$body);
+      if (empty($GLOBALS['developer_email'])) {
+        $header .= "To: ".$this->destinationemail.$this->LE;
+      } else {
+        $header .= 'X-Originally-To: '.$this->destinationemail.$this->LE;
+        $header .= 'To: '.$GLOBALS['developer_email']. $this->LE;
+      }
 
       ## use Amazon, if set up
       if (USE_AMAZONSES) {
@@ -603,13 +606,6 @@ class PHPlistMailer extends PHPMailer {
         ## if local spool is not set, send the normal way
         return parent::MailSend($header,$body);
       }
-      if (empty($GLOBALS['developer_email'])) {
-        $header .= "To: ".$this->destinationemail.$this->LE;
-      } else {
-        $header .= 'X-Originally-To: '.$this->destinationemail.$this->LE;
-        $header .= 'To: '.$GLOBALS['developer_email'].$this->LE;
-      }
-      $header .= "Subject: ".$this->EncodeHeader($this->Subject).$this->LE;
       $fname = tempnam(USE_LOCAL_SPOOL,'msg');
       file_put_contents($fname,$header."\n".$body);
       file_put_contents($fname.'.S',$this->Sender);
