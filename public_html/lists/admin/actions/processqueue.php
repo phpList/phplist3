@@ -326,6 +326,7 @@ function output ($message,$logit = 1,$target = 'summary') {
   }
   if (!empty($GLOBALS["commandline"])) {
     cl_output(strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')');
+    $infostring = "[". date("D j M Y H:i",time()) . "] [CL]";
   } else {
     $infostring = "[". date("D j M Y H:i",time()) . "] [" . $_SERVER["REMOTE_ADDR"] ."]";
     #print "$infostring $message<br/>\n";
@@ -338,7 +339,9 @@ function output ($message,$logit = 1,$target = 'summary') {
       $line = preg_replace("/&rsquo;/","'",$line);
       //Decode HTML chars
       $line = html_entity_decode($line,ENT_QUOTES,'UTF-8');
+      
       print "\n".'<div class="output shade'.$shadecount.'">'.$line.'</div>';
+      $line = str_replace("'", "\'", $line); // #16880 - avoid JS error
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       parentJQuery("#processqueue'.$target.'").append(\'<div class="output shade'.$shadecount.'">'.$line.'</div>\');
