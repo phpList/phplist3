@@ -26,8 +26,8 @@ combine:
     - ui/dressprow/css/layout.css
     - ui/dressprow/css/skeleton.css
     - ui/dressprow/css/style.css
-    - ui/dressprow-ph/css/blue.css
     - ui/dressprow-ph/css/style.css
+    - ui/dressprow-ph/css/blue.css
 minify: 
   - ui/dressprow/css/all.css
   - ui/dressprow-ph/css/all.css
