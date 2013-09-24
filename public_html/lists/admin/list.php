@@ -193,11 +193,10 @@ while ($row = Sql_fetch_array($result)) {
   //}
 
   $element = '<!-- '.$row['id'].'-->'.stripslashes($row['name']);
-  $ls->addElement($element,PageUrl2("editlist&amp;id=".$row["id"]));
+  $ls->addElement($element);
   $ls->setClass($element,'rows row1');
   $ls->addColumn($element,
-    $GLOBALS['I18N']->get('Members'),
-    PageLink2("members",'<span class="membercount">'.$members.'</span>',"id=".$row["id"]).' '.PageLinkDialog('importsimple&list='.$row["id"],'+'));
+    $GLOBALS['I18N']->get('Members'),'<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$members. '</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id='.$row["id"].'" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
     
   $ls->addColumn($element,
     $GLOBALS['I18N']->get('Public'),sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />',$row["id"],
@@ -221,10 +220,9 @@ while ($row = Sql_fetch_array($result)) {
      PageURL2("list&delete=".$row["id"]),
      s('delete this list'));
    
-  $ls->addRow($element,'',$deletebutton->show().
-    PageLinkButton('send&new=1&list='.$row['id'],
-    $GLOBALS['I18N']->get('send'),'','',
-    $GLOBALS['I18N']->get('start a new campaign targetting this list'))
+  $ls->addRow($element,'','<span class="edit-list"><a class="button" href="?page=editlist&amp;id='.$row["id"].'" title="'.$GLOBALS['I18N']->get('Edit this list').'"></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')).'</span>'.
+    '<span class="add_member">'.PageLinkDialogOnly('importsimple&list='.$row["id"],$GLOBALS['I18N']->get('Add Members')).'</span>'.
+    '<span class="delete">'.$deletebutton->show().'</span>'
     ,'','','actions nodrag');
 
   $some = 1;
