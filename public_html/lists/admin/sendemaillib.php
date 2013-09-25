@@ -190,6 +190,20 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   #historical, not sure it's still used
   $html["userid"] = $hash;
   $text["userid"] = $hash;
+  
+  # some "natural" placeholders are not correctly rendered
+  $html['website'] = $GLOBALS['website']; # Your website's address, e.g. www.yourdomain.com
+  $text['website'] = $GLOBALS['website'];
+  $html['domain'] = $GLOBALS['domain'];   # Your domain, e.g. yourdomain.com
+  $text['domain'] = $GLOBALS['domain'];
+  /* do they need to be filled as well?
+  $html['userdata'] = '';                 # The user's data and preferences
+  $text['userdata'] = '';
+  $html['listowner'] = '';                # The name of the admin who 'owns' the list (***remark: still needs verification)
+  $text['listowner'] = '';
+  $html['confirmationurl'] = '';          # The URL with user's UID used for confirmation request email
+  $text['confirmationurl'] = '';
+  */
 
   if ($hash != 'forwarded') {
     $text['footer'] = $cached[$messageid]["textfooter"];
