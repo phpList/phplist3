@@ -310,7 +310,7 @@ if (!defined('SESSIONNAME')) define('SESSIONNAME','phpList'.$GLOBALS['installati
 ## this doesn't yet work with the FCKEditor
 #ini_set('session.name',str_replace(' ','',SESSIONNAME));
 
-define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
+if (!defined('USE_AMAZONSES')) define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
 
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
