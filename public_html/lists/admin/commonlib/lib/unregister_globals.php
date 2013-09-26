@@ -10,6 +10,11 @@
 function unregister_GLOBALS() {
     if ( !ini_get('register_globals') )
         return;
+        
+    ## https://mantis.phplist.com/view.php?id=16882
+    ## no need to do this on commandline
+    if (php_sapi_name() == "cli") 
+      return;
 
     if ( isset($_REQUEST['GLOBALS']) )
         die('GLOBALS overwrite attempt detected');
