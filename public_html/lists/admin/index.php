@@ -42,24 +42,16 @@ if (php_sapi_name() == "cli") {
 $configfile = '';
 
 if (isset($_SERVER["ConfigFile"]) && is_file($_SERVER["ConfigFile"])) {
-  #print '<!-- using (server)'.$_SERVER["ConfigFile"].'-->'."\n";
    $configfile = $_SERVER["ConfigFile"];
 } elseif (isset($cline["c"]) && is_file($cline["c"])) {
-  #print '<!-- using (cline)'.$cline["c"].' -->'."\n";
   $configfile = $cline["c"];
-# obsolete, set Config in Linux environment, use -c /path/to/config instead
-/*} elseif (isset($_ENV["CONFIG"]) && is_file($_ENV["CONFIG"]) && filesize($_ENV["CONFIG"]) > 1) {
-#  print '<!-- using '.$_ENV["CONFIG"].'-->'."\n";
-  include $_ENV["CONFIG"];*/
 } elseif (is_file(dirname(__FILE__).'/../config/config.php')) {
-#  print '<!-- using (common)../config/config.php -->'."\n";
    $configfile = "../config/config.php";
 } else {
   $configfile = "../config/config.php";
 }
 
 if (is_file($configfile) && filesize($configfile) > 20) {
-#  print '<!-- using config '.$configfile.'-->';
   include $configfile;
 } elseif ($GLOBALS["commandline"]) {
   print 'Cannot find config file'."\n";
