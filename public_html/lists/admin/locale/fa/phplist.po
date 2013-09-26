@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 05:04+0000\n"
+"POT-Creation-Date: 2013-09-26 05:04+0000\n"
 "PO-Revision-Date: 2012-09-01 09:10+0000\n"
 "Last-Translator: mindfree <admin@mindfree.ir>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -217,7 +217,7 @@ msgid "Processing bounces based on active bounce rules"
 msgstr "پردازش برگشتی ها بر پایه قانونهای برگشت فعال"
 
 #: public_html/lists/admin/processbounces.php:489
-#: public_html/lists/admin/actions/processqueue.php:833
+#: public_html/lists/admin/actions/processqueue.php:835
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr "پردازش توسط پردازش دیگری متوقف شد"
@@ -550,7 +550,7 @@ msgstr "فهرستی موجود نیست"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:50 public_html/lists/admin/list.php:54
-#: public_html/lists/admin/list.php:262 public_html/lists/admin/import3.php:40
+#: public_html/lists/admin/list.php:260 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1123
 msgid "Add a list"
 msgstr "افزودن یک فهرست"
@@ -923,7 +923,7 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/admin.php:250
 #: public_html/lists/admin/spageedit.php:346
-#: public_html/lists/admin/list.php:232
+#: public_html/lists/admin/list.php:230
 #: public_html/lists/admin/template.php:301
 msgid "Save Changes"
 msgstr "دخیره تغییرات"
@@ -1939,7 +1939,7 @@ msgid "Adding email address failed"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:45
-#: public_html/lists/admin/actions/processqueue.php:1141
+#: public_html/lists/admin/actions/processqueue.php:1143
 msgid "unknown"
 msgstr "ناشناخته"
 
@@ -2112,19 +2112,19 @@ msgstr "آزمون پردازش اطلاعات"
 msgid "Finished this run"
 msgstr "این اجرا پایان یافت"
 
-#: public_html/lists/admin/actions/processqueue.php:368
 #: public_html/lists/admin/actions/processqueue.php:370
+#: public_html/lists/admin/actions/processqueue.php:372
 msgid "(test)"
 msgstr "(آزمایشی)"
 
-#: public_html/lists/admin/actions/processqueue.php:368
 #: public_html/lists/admin/actions/processqueue.php:370
+#: public_html/lists/admin/actions/processqueue.php:372
 msgid "Would have sent"
 msgstr "فرستاده شده"
 
-#: public_html/lists/admin/actions/processqueue.php:368
 #: public_html/lists/admin/actions/processqueue.php:370
-#: public_html/lists/admin/actions/processqueue.php:956
+#: public_html/lists/admin/actions/processqueue.php:372
+#: public_html/lists/admin/actions/processqueue.php:958
 #: public_html/lists/admin/members.php:327
 #: public_html/lists/admin/members.php:331
 #: public_html/lists/admin/members.php:344
@@ -2132,71 +2132,71 @@ msgstr "فرستاده شده"
 msgid "to"
 msgstr "تا"
 
-#: public_html/lists/admin/actions/processqueue.php:383
+#: public_html/lists/admin/actions/processqueue.php:385
 msgid "Started"
 msgstr "آغاز شده"
 
-#: public_html/lists/admin/actions/processqueue.php:385
+#: public_html/lists/admin/actions/processqueue.php:387
 msgid "Time now "
 msgstr "همین لحظه"
 
-#: public_html/lists/admin/actions/processqueue.php:396
+#: public_html/lists/admin/actions/processqueue.php:398
 msgid "Unable get lock for processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:397
+#: public_html/lists/admin/actions/processqueue.php:399
 msgid "Error processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:405
+#: public_html/lists/admin/actions/processqueue.php:407
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr "پردازش توسط میزبان شما متوقف شده است، لطفا بعداً دوباره سعی کنی"
 
-#: public_html/lists/admin/actions/processqueue.php:411
+#: public_html/lists/admin/actions/processqueue.php:413
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr "در حالت امن، تنظیم دسته ها به بیشینه 100 تایی"
 
-#: public_html/lists/admin/actions/processqueue.php:415
+#: public_html/lists/admin/actions/processqueue.php:417
 #, php-format
 msgid "Sending in batches of %d messages"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:419
+#: public_html/lists/admin/actions/processqueue.php:421
 #, php-format
 msgid ""
 "This batch will be %d emails, because in the last %d seconds %d emails were "
 "sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:421
+#: public_html/lists/admin/actions/processqueue.php:423
 #, php-format
 msgid "Sending in batches of %d emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:424
+#: public_html/lists/admin/actions/processqueue.php:426
 #, php-format
 msgid ""
 "In the last %d seconds more emails were sent (%d) than is currently allowed "
 "per batch (%d)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:433
+#: public_html/lists/admin/actions/processqueue.php:435
 msgid "Sent in last run"
 msgstr "در آخرین اجرا فرستاده شد"
 
-#: public_html/lists/admin/actions/processqueue.php:434
+#: public_html/lists/admin/actions/processqueue.php:436
 msgid "Skipped in last run"
 msgstr "در آخرین اجرا رد شد"
 
-#: public_html/lists/admin/actions/processqueue.php:472
+#: public_html/lists/admin/actions/processqueue.php:474
 msgid "Processing has started,"
 msgstr "پردازش آغاز شد،"
 
-#: public_html/lists/admin/actions/processqueue.php:472
+#: public_html/lists/admin/actions/processqueue.php:474
 msgid "message(s) to process."
 msgstr "پیام (های) در انتظار پردازش"
 
-#: public_html/lists/admin/actions/processqueue.php:477
+#: public_html/lists/admin/actions/processqueue.php:479
 msgid ""
 "Please leave this window open. You have batch processing enabled, so it will "
 "reload several times to send the messages. Reports will be sent by email to"
@@ -2205,7 +2205,7 @@ msgstr ""
 "این پنجره چند بار بارگذاری مجدد میشود تا پیامها را بفرستد. گزارش کار ایمیل "
 "میشود به"
 
-#: public_html/lists/admin/actions/processqueue.php:479
+#: public_html/lists/admin/actions/processqueue.php:481
 msgid ""
 "Your webserver is running in safe_mode. Please keep this window open. It may "
 "reload several times to make sure all messages are sent."
@@ -2213,98 +2213,98 @@ msgstr ""
 "سرور وب شما در حالت \"safe_mode\" است. لطفا این پنجره را باز نگه دارید. ممکن "
 "است چند بار بارگذاری شود تا اطمینان حاصل شود که همه پیامها فرستاده شده اند."
 
-#: public_html/lists/admin/actions/processqueue.php:479
+#: public_html/lists/admin/actions/processqueue.php:481
 msgid "Reports will be sent by email to"
 msgstr "گزارشها ایمیل میشوند به"
 
-#: public_html/lists/admin/actions/processqueue.php:521
+#: public_html/lists/admin/actions/processqueue.php:523
 #, php-format
 msgid "sending of this campaign will stop, if it is still going in %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:534
+#: public_html/lists/admin/actions/processqueue.php:536
 msgid "Error loading message, please check the eventlog for details"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:549
+#: public_html/lists/admin/actions/processqueue.php:551
 msgid "Campaign started"
 msgstr "پیام ها آغاز شدند"
 
-#: public_html/lists/admin/actions/processqueue.php:550
+#: public_html/lists/admin/actions/processqueue.php:552
 #, php-format
 #, php-format,
 msgid "phplist has started sending the campaign with subject %s"
 msgstr "ارسال پیام با عنوان s% توسط phplist آغاز شد"
 
-#: public_html/lists/admin/actions/processqueue.php:551
+#: public_html/lists/admin/actions/processqueue.php:553
 #, php-format
 #, php-format,
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr "برای مشاهده پردازش پیام به آدرس http://%s بروید"
 
-#: public_html/lists/admin/actions/processqueue.php:558
+#: public_html/lists/admin/actions/processqueue.php:560
 msgid "Processing message"
 msgstr "پردازش پیام"
 
-#: public_html/lists/admin/actions/processqueue.php:581
+#: public_html/lists/admin/actions/processqueue.php:583
 msgid "Looking for users"
 msgstr "جستجوی کاربرها"
 
-#: public_html/lists/admin/actions/processqueue.php:600
+#: public_html/lists/admin/actions/processqueue.php:602
 msgid "users apply for attributes, now checking lists"
 msgstr "کاربرها برای ویژگی اعما ل شده اند، اکنون بررسی فهرستها"
 
-#: public_html/lists/admin/actions/processqueue.php:611
+#: public_html/lists/admin/actions/processqueue.php:613
 msgid "No users apply for attributes"
 msgstr "کاربری برای ویژگیها اعمال نکرده است"
 
-#: public_html/lists/admin/actions/processqueue.php:666
+#: public_html/lists/admin/actions/processqueue.php:668
 msgid "looking for users who can be excluded from this mailing"
 msgstr "جستجوی کاربرهایی که میتوان از این صف پردازش کنار گذاشته شوند."
 
-#: public_html/lists/admin/actions/processqueue.php:756
+#: public_html/lists/admin/actions/processqueue.php:758
 msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr "هشدار،یافتن مشترکین ارسال کننده زمان زیادی طول کشید"
 
-#: public_html/lists/admin/actions/processqueue.php:760
+#: public_html/lists/admin/actions/processqueue.php:762
 msgid "Found them"
 msgstr "پیدا شد"
 
-#: public_html/lists/admin/actions/processqueue.php:760
+#: public_html/lists/admin/actions/processqueue.php:762
 msgid "to process"
 msgstr "برای پردازش"
 
-#: public_html/lists/admin/actions/processqueue.php:794
+#: public_html/lists/admin/actions/processqueue.php:796
 msgid "No users to process for this batch"
 msgstr "کاربری برای پردازش در این دسته وجود ندارد"
 
-#: public_html/lists/admin/actions/processqueue.php:798
+#: public_html/lists/admin/actions/processqueue.php:800
 msgid "Processing batch of "
 msgstr "پردازش دسته ای از "
 
-#: public_html/lists/admin/actions/processqueue.php:805
+#: public_html/lists/admin/actions/processqueue.php:807
 msgid "batch limit reached"
 msgstr "بیشینه تعداد دسته"
 
-#: public_html/lists/admin/actions/processqueue.php:825
+#: public_html/lists/admin/actions/processqueue.php:827
 msgid "queue processing time has exceeded max processing time "
 msgstr "زمان ماندن در صف پردازش از بیشترین زمان پردازش بیشتر است"
 
-#: public_html/lists/admin/actions/processqueue.php:830
+#: public_html/lists/admin/actions/processqueue.php:832
 msgid "Campaign sending timed out, is past date to process until"
 msgstr "زمان ارسال پیام پایان یافت"
 
-#: public_html/lists/admin/actions/processqueue.php:839
+#: public_html/lists/admin/actions/processqueue.php:841
 msgid "Message I was working on has disappeared"
 msgstr "پیامی که بر رویش کار میکردم ناپدید شده است"
 
-#: public_html/lists/admin/actions/processqueue.php:841
+#: public_html/lists/admin/actions/processqueue.php:843
 msgid "Sending of this message has been suspended"
 msgstr "فرستادن این پیام متوقف شده است"
 
-#: public_html/lists/admin/actions/processqueue.php:921
+#: public_html/lists/admin/actions/processqueue.php:923
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
@@ -2313,93 +2313,93 @@ msgstr ""
 "تا کنون بیش از 10 بار سعی شده است تا برای %s فرستاده شود ولی به دلیل وجود "
 "گلوگاه دامنه بسته شده است."
 
-#: public_html/lists/admin/actions/processqueue.php:922
 #: public_html/lists/admin/actions/processqueue.php:924
+#: public_html/lists/admin/actions/processqueue.php:926
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr "افزودن تاخیر اضافی برای کاهش اشکال گلوگاهی"
 
-#: public_html/lists/admin/actions/processqueue.php:933
+#: public_html/lists/admin/actions/processqueue.php:935
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr "هم اکنون %s بیشتر از حد گلوگاهی %d بر %d ثانیه است"
 
-#: public_html/lists/admin/actions/processqueue.php:956
+#: public_html/lists/admin/actions/processqueue.php:958
 msgid "Sending"
 msgstr "در حال فرستادن"
 
-#: public_html/lists/admin/actions/processqueue.php:964
-#: public_html/lists/admin/actions/processqueue.php:1181
+#: public_html/lists/admin/actions/processqueue.php:966
+#: public_html/lists/admin/actions/processqueue.php:1183
 msgid "It took"
 msgstr "فرستادن این پیام"
 
-#: public_html/lists/admin/actions/processqueue.php:964
+#: public_html/lists/admin/actions/processqueue.php:966
 msgid "seconds to send"
 msgstr "ثانیه طول کشید"
 
-#: public_html/lists/admin/actions/processqueue.php:1007
+#: public_html/lists/admin/actions/processqueue.php:1009
 msgid "Failed sending to"
 msgstr "فرستادن ناموفق بود برای"
 
-#: public_html/lists/admin/actions/processqueue.php:1048
+#: public_html/lists/admin/actions/processqueue.php:1050
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr " %.1f ثانیه برای دیدن هر پیام در s% ثانیه"
 
-#: public_html/lists/admin/actions/processqueue.php:1059
+#: public_html/lists/admin/actions/processqueue.php:1061
 msgid "not sending to "
 msgstr "عدم ارسال برای "
 
-#: public_html/lists/admin/actions/processqueue.php:1078
+#: public_html/lists/admin/actions/processqueue.php:1080
 msgid "Unconfirmed user"
 msgstr "کاربر تایید نشده"
 
-#: public_html/lists/admin/actions/processqueue.php:1087
 #: public_html/lists/admin/actions/processqueue.php:1089
+#: public_html/lists/admin/actions/processqueue.php:1091
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1095
+#: public_html/lists/admin/actions/processqueue.php:1097
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1095
+#: public_html/lists/admin/actions/processqueue.php:1097
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1112
+#: public_html/lists/admin/actions/processqueue.php:1114
 msgid "Not sending to"
 msgstr "فرستاده نمیشود برای"
 
-#: public_html/lists/admin/actions/processqueue.php:1112
+#: public_html/lists/admin/actions/processqueue.php:1114
 msgid "already sent"
 msgstr "قبلا فرستاده شده"
 
-#: public_html/lists/admin/actions/processqueue.php:1154
+#: public_html/lists/admin/actions/processqueue.php:1156
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1159
+#: public_html/lists/admin/actions/processqueue.php:1161
 msgid "Hmmm, No users found to send to"
 msgstr "کاربری پیدا نشد تا برایش فرستاده شود"
 
-#: public_html/lists/admin/actions/processqueue.php:1167
+#: public_html/lists/admin/actions/processqueue.php:1169
 msgid "Message campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1168
+#: public_html/lists/admin/actions/processqueue.php:1170
 #, php-format
 #, fuzzy, php-format
 msgid "phpList has finished sending the campaign with subject %s"
 msgstr "ارسال پیام با عنوان s% توسط phplist آغاز شد"
 
-#: public_html/lists/admin/actions/processqueue.php:1169
+#: public_html/lists/admin/actions/processqueue.php:1171
 #, php-format
 msgid "to view the results of this campaign, go to http://%s"
 msgstr "برای مشاهده نتایج پیام به آدرس http://%s بروید"
 
-#: public_html/lists/admin/actions/processqueue.php:1181
+#: public_html/lists/admin/actions/processqueue.php:1183
 msgid "to send this message"
 msgstr "طول کشید"
 
@@ -2937,124 +2937,124 @@ msgid ""
 msgstr ""
 "برای جلوگیری از اضافه بار، این سیستم 10000 مورد را در یک زمان تبدیل میکند"
 
-#: public_html/lists/admin/index.php:238
+#: public_html/lists/admin/index.php:230
 msgid "Admin Authentication initialisation failure"
 msgstr "عملیات شناسایی مدیر شکست خورد"
 
-#: public_html/lists/admin/index.php:247
+#: public_html/lists/admin/index.php:239
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr "ورود نامعتبر از %s، سعی برای ورود با نام %s"
 
-#: public_html/lists/admin/index.php:269
+#: public_html/lists/admin/index.php:261
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:276
+#: public_html/lists/admin/index.php:268
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr "IP ورود نامعتبر از s% برای s%"
 
-#: public_html/lists/admin/index.php:277
+#: public_html/lists/admin/index.php:269
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr "آدرس IP شما تغییر کرده برای امنیت مجددا وارد شوید"
 
-#: public_html/lists/admin/index.php:284
+#: public_html/lists/admin/index.php:276
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr "ورود ناموفق از s% برای s%"
 
-#: public_html/lists/admin/index.php:300
+#: public_html/lists/admin/index.php:292
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:359
+#: public_html/lists/admin/index.php:351
 msgid "goodbye"
 msgstr "بدرود"
 
-#: public_html/lists/admin/index.php:363
+#: public_html/lists/admin/index.php:355
 msgid "good morning"
 msgstr "صبح بخیر"
 
-#: public_html/lists/admin/index.php:365
+#: public_html/lists/admin/index.php:357
 msgid "good afternoon"
 msgstr "بعد از ظهر بخیر"
 
-#: public_html/lists/admin/index.php:367
+#: public_html/lists/admin/index.php:359
 msgid "good evening"
 msgstr "عصر بخیر"
 
-#: public_html/lists/admin/index.php:374 public_html/lists/admin/home.php:90
+#: public_html/lists/admin/index.php:366 public_html/lists/admin/home.php:90
 msgid "Continue Configuration"
 msgstr "ادامه تنظیمات"
 
-#: public_html/lists/admin/index.php:381
+#: public_html/lists/admin/index.php:373
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:394
+#: public_html/lists/admin/index.php:386
 #: public_html/lists/admin/processqueue.php:20
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 "اجرا در مد آزمایشی، ایمیلی فرستاده نخواهد شد. پرونده پیکربندی را بررسی کنید."
 
-#: public_html/lists/admin/index.php:397
+#: public_html/lists/admin/index.php:389
 #, fuzzy
 msgid "phpList requires PHP version 5.1.2 or higher"
 msgstr "این برنامه به PHP نسخه 5.0.0 یا بالاتر نیاز دارد"
 
-#: public_html/lists/admin/index.php:400
+#: public_html/lists/admin/index.php:392
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr "شما میخواهید از RSS استفاده کنید اما در PHP فایل XML وجود ندارد"
 
-#: public_html/lists/admin/index.php:404
+#: public_html/lists/admin/index.php:396
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr "محدودیت open_basedir اتفاق افتاد که باعث هشدار بعدی نیز خواهد شد"
 
-#: public_html/lists/admin/index.php:406
+#: public_html/lists/admin/index.php:398
 msgid "The attachment repository does not exist or is not writable"
 msgstr "منبع فایل ضمیمه موجود نبوده یا قابل ویرایش نیست"
 
-#: public_html/lists/admin/index.php:417
+#: public_html/lists/admin/index.php:409
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:418
+#: public_html/lists/admin/index.php:410
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:420
+#: public_html/lists/admin/index.php:412
 #, php-format
 msgid "You have %s message(s) waiting to be sent"
 msgstr ""
 
-#: public_html/lists/admin/index.php:464
+#: public_html/lists/admin/index.php:456
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr "شما میخواهید بدون بارگذاری FPDF از فایل PDF استفاده کنید"
 
-#: public_html/lists/admin/index.php:472
+#: public_html/lists/admin/index.php:464
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr "مسیر صفحه اصلی در نرم افزار با مسیر فعلی در تنظیمات همخوانی ندارد"
 
-#: public_html/lists/admin/index.php:524
+#: public_html/lists/admin/index.php:516
 msgid "Sorry this page was not found in the plugin"
 msgstr "متاسفانه این صفحه در پلاگین یافت نمیشود"
 
-#: public_html/lists/admin/index.php:529
+#: public_html/lists/admin/index.php:521
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:535
+#: public_html/lists/admin/index.php:527
 msgid "Sorry, not implemented yet"
 msgstr "متاسفانه هنوز اجرا نشده است"
 
-#: public_html/lists/admin/index.php:539
+#: public_html/lists/admin/index.php:531
 #: public_html/lists/admin/send_core.php:105
 msgid "Access Denied"
 msgstr "امکان دسترسی وجود ندارد"
@@ -3161,8 +3161,8 @@ msgid "Statistics"
 msgstr "آمار"
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/send_core.php:1157
-#: public_html/lists/admin/send_core.php:1162
+#: public_html/lists/admin/send_core.php:1153
+#: public_html/lists/admin/send_core.php:1158
 msgid "Send Campaign"
 msgstr "ارسال عملیات"
 
@@ -3209,14 +3209,14 @@ msgid "Campaign added"
 msgstr "عملیات افزوده شده"
 
 #: public_html/lists/admin/send_core.php:354
-#: public_html/lists/admin/send_core.php:1126
+#: public_html/lists/admin/send_core.php:1122
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:355
-#: public_html/lists/admin/send_core.php:1126
+#: public_html/lists/admin/send_core.php:1122
 #: public_html/lists/admin/message.php:49
 #: public_html/lists/admin/messages.php:108
 msgid "Review Scheduling"
@@ -3541,88 +3541,88 @@ msgstr "مسیر فایل در سرور"
 msgid "Description of attachment"
 msgstr "توضیحات ضمیمه"
 
-#: public_html/lists/admin/send_core.php:904
-#: public_html/lists/admin/send_core.php:1172
+#: public_html/lists/admin/send_core.php:900
+#: public_html/lists/admin/send_core.php:1168
 #: public_html/lists/admin/template.php:312
 msgid "Send Test"
 msgstr "ارسال آزمایشی"
 
-#: public_html/lists/admin/send_core.php:904
+#: public_html/lists/admin/send_core.php:900
 msgid " to email address(es)"
 msgstr "  به ایمیل آدرس(ها)"
 
-#: public_html/lists/admin/send_core.php:905
+#: public_html/lists/admin/send_core.php:901
 #: public_html/lists/admin/template.php:311
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr "(آدرس ها با کاما جدا میشوند - که همگی باید دارای اشتراک باشند)"
 
-#: public_html/lists/admin/send_core.php:918
+#: public_html/lists/admin/send_core.php:914
 msgid "email to alert when sending of this message starts"
 msgstr "ایمیل برای گزارش آغاز ارسال این پیام"
 
-#: public_html/lists/admin/send_core.php:919
-#: public_html/lists/admin/send_core.php:921
+#: public_html/lists/admin/send_core.php:915
+#: public_html/lists/admin/send_core.php:917
 msgid "separate multiple with a comma"
 msgstr "ایمیلها را با کاما از هم جدا کنید"
 
-#: public_html/lists/admin/send_core.php:920
+#: public_html/lists/admin/send_core.php:916
 msgid "email to alert when sending of this message has finished"
 msgstr "ایمیل برای ارسال اعلامیه پایان ارسال این پیام"
 
-#: public_html/lists/admin/send_core.php:927
+#: public_html/lists/admin/send_core.php:923
 msgid "add Google Analytics tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:935
+#: public_html/lists/admin/send_core.php:931
 #, fuzzy
 msgid "Reset click statistics"
 msgstr "آمار کلیک کاربر"
 
-#: public_html/lists/admin/send_core.php:942
+#: public_html/lists/admin/send_core.php:938
 msgid "Estimated size of HTML email"
 msgstr "برآورد اندازه ایمیل HTML"
 
-#: public_html/lists/admin/send_core.php:945
+#: public_html/lists/admin/send_core.php:941
 msgid "Estimated size of text email"
 msgstr "برآورد اندازه ایمیل متنی"
 
-#: public_html/lists/admin/send_core.php:987
+#: public_html/lists/admin/send_core.php:983
 msgid "Estimated size of mailout"
 msgstr "برآورد اندازه ایمیل خروجی"
 
-#: public_html/lists/admin/send_core.php:990
+#: public_html/lists/admin/send_core.php:986
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr "تقریبا d% کاربران ایمیل HTML و تعداد s% کاربران ایمیل متنی دریافت کردند"
 
-#: public_html/lists/admin/send_core.php:1097
+#: public_html/lists/admin/send_core.php:1093
 msgid "subject missing"
 msgstr "بدون عنوان"
 
-#: public_html/lists/admin/send_core.php:1106
+#: public_html/lists/admin/send_core.php:1102
 msgid "message content missing"
 msgstr "بدون متن پیام"
 
-#: public_html/lists/admin/send_core.php:1113
+#: public_html/lists/admin/send_core.php:1109
 msgid "From missing"
 msgstr "بدون فرستنده"
 
-#: public_html/lists/admin/send_core.php:1133
+#: public_html/lists/admin/send_core.php:1129
 msgid "destination lists missing"
 msgstr "بدون فهرست گیرنده"
 
-#: public_html/lists/admin/send_core.php:1139
+#: public_html/lists/admin/send_core.php:1135
 msgid "Content contains click track links."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1161
+#: public_html/lists/admin/send_core.php:1157
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
 msgstr "برخی اطلاعات وارد نشده است دکمه ارسال پس از رفع این مشکل فعال میشود"
 
-#: public_html/lists/admin/send_core.php:1167
+#: public_html/lists/admin/send_core.php:1163
 msgid "Save as draft"
 msgstr ""
 
@@ -4093,7 +4093,7 @@ msgstr "تنظیمات ویژگی ها برای مدیران"
 msgid "Administrator Functions"
 msgstr "توابع مدیران"
 
-#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:226
+#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:223
 msgid "send"
 msgstr "ارسال"
 
@@ -6485,27 +6485,39 @@ msgstr "به نظر میرسد تعدادی فهرست دارید آیا میخ�
 msgid "Great idea!"
 msgstr "ایده جالب!"
 
-#: public_html/lists/admin/list.php:203
+#: public_html/lists/admin/list.php:199
+msgid "View Members"
+msgstr ""
+
+#: public_html/lists/admin/list.php:202
 msgid "Public"
 msgstr "عمومی"
 
-#: public_html/lists/admin/list.php:216
+#: public_html/lists/admin/list.php:215
 msgid "Order"
 msgstr "ترتیب"
 
-#: public_html/lists/admin/list.php:220
+#: public_html/lists/admin/list.php:219
 msgid "Are you sure you want to delete this list?"
 msgstr "آیا از حذف این فهرست مطمئن هستید؟"
 
-#: public_html/lists/admin/list.php:222
+#: public_html/lists/admin/list.php:221
 msgid "delete this list"
 msgstr "حذف این فهرست"
 
-#: public_html/lists/admin/list.php:227
+#: public_html/lists/admin/list.php:223
+msgid "Edit this list"
+msgstr ""
+
+#: public_html/lists/admin/list.php:223
 msgid "start a new campaign targetting this list"
 msgstr "آغاز یک عملیات جدید برای فهرست مورد نظر"
 
-#: public_html/lists/admin/list.php:235
+#: public_html/lists/admin/list.php:224
+msgid "Add Members"
+msgstr ""
+
+#: public_html/lists/admin/list.php:233
 msgid "No lists, use Add List to add one"
 msgstr "فهرستی وجود ندارد، برای ایجاد از گزینه افزودن استفاده کنید"
 
