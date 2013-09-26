@@ -175,17 +175,31 @@ if ($numlists > 15) {
 while ($row = Sql_fetch_array($result)) {
   
   ## we only consider confirmed and not blacklisted subscribers members of a list
+  ## we assume "confirmed" to be 1 or 0, so that the sum gives the total confirmed
+  ## could be incorrect, as 1000 is also "true" but will be ok (saves a few queries)
+  
+  ## same with blacklisted, but we're disregarding that for now, because blacklisted subscribers should not 
+  ## be on the list at all. 
+  ## @@TODO increase accuracy, without adding loads of queries.
   $query
-  = ' select count(u.id) as num'
+  = ' select count(u.id) as total,'
+  . ' sum(u.confirmed) as confirmed, '
+  . ' sum(u.blacklisted) as blacklisted '
   . ' from ' . $tables['listuser']
-  . ' lu, '.$tables['user'].' u where u.id = lu.userid and listid = ? 
-    and u.confirmed and !u.blacklisted ';
+  . ' lu, '.$tables['user'].' u where u.id = lu.userid and listid = ? ';
+  
   $req = Sql_Query_Params($query, array($row["id"]));
   $membercount = Sql_Fetch_Assoc($req);
   
-  $members = $membercount['num'];
+  $members = $membercount['confirmed'];
+  $unconfirmedMembers = (int)($membercount['total'] - $members);
   $desc = stripslashes($row['description']);
-
+  if ($unconfirmedMembers > 0) {
+    $membersDisplay = '<span class="memberCount">'.$members.'</span> <span class="unconfirmedCount">('.$unconfirmedMembers. ')</span>';
+  } else {
+    $membersDisplay = '<span class="memberCount">'.$members.'</span>';
+  }
+ 
   //## allow plugins to add columns
   // @@@ TODO review this
   //foreach ($GLOBALS['plugins'] as $plugin) {
@@ -196,7 +210,7 @@ while ($row = Sql_fetch_array($result)) {
   $ls->addElement($element);
   $ls->setClass($element,'rows row1');
   $ls->addColumn($element,
-    $GLOBALS['I18N']->get('Members'),'<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$members. '</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id='.$row["id"].'" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
+    $GLOBALS['I18N']->get('Members'),'<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$membersDisplay. '</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id='.$row["id"].'" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
     
   $ls->addColumn($element,
     $GLOBALS['I18N']->get('Public'),sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />',$row["id"],
