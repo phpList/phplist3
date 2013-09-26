@@ -352,7 +352,7 @@ function output ($message,$logit = 1,$target = 'summary') {
         print '  ';
         if ($i % 100 == 0) print "\n";
       }
-      ob_flush();
+      @ob_flush();
       flush();
     }
     flush();
