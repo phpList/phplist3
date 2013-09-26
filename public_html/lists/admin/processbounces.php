@@ -371,16 +371,18 @@ function processMessages($link,$max = 3000) {
     $processed = processImapBounce($link,$x,$header);
     if ($processed) {
       if (!TEST && $bounce_mailbox_purge) {
-        if (VERBOSE)
-        output( $GLOBALS['I18N']->get("Deleting message")." $x");
+        if (VERBOSE) output( $GLOBALS['I18N']->get("Deleting message")." $x");
         imap_delete($link,$x);
-       }
+      } elseif (VERBOSE) {
+        output(s("Not deleting processed message")." $x $bounce_mailbox_purge");
+      }
     } else {
       if (!TEST && $bounce_mailbox_purge_unprocessed) {
-        if (VERBOSE)
-          output( $GLOBALS['I18N']->get("Deleting message")." $x");
+        if (VERBOSE) output( $GLOBALS['I18N']->get("Deleting message")." $x");
         imap_delete($link,$x);
-       }
+      } elseif (VERBOSE) {
+        output(s("Not deleting unprocessed message")." $x");
+      }
     }
     flush();
   }
@@ -412,7 +414,13 @@ flushBrowser();
 # lets not do this unless we do some locking first
 register_shutdown_function('processbounces_shutdown');
 $abort = ignore_user_abort(1);
-$process_id = getPageLock();
+if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
+  # force set, so kill other processes
+  cl_output('Force set, killing other send processes');
+  $process_id = getPageLock(1);
+} else {
+  $process_id = getPageLock();
+}
 if (empty($process_id)) {
   return;
 }
