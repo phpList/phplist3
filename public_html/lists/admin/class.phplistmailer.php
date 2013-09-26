@@ -40,7 +40,7 @@ class PHPlistMailer extends PHPMailer {
     function PHPlistMailer($messageid,$email,$inBlast = true,$exceptions = false) {
       parent::__construct($exceptions);
       parent::SetLanguage('en', dirname(__FILE__) . '/phpmailer/language/');
-      $this->addCustomHeader("X-Mailer: phpList v".VERSION);
+      $this->addCustomHeader("X-phpList-version: ".VERSION);
       $this->addCustomHeader("X-MessageID: $messageid");
       $this->addCustomHeader("X-ListMember: $email");
 
@@ -533,7 +533,7 @@ class PHPlistMailer extends PHPMailer {
 */
  #     print '<hr/>Rawmessage '.nl2br(htmlspecialchars($messageheader. $this->LE. $this->LE.$messagebody));
 
-      $rawmessage = base64_encode($messageheader. $this->LE.$messagebody);
+      $rawmessage = base64_encode($messageheader. $this->LE.$this->LE.$messagebody);
   #   $rawmessage = str_replace('=','',$rawmessage);
 
       $requestdata = array(
