@@ -365,9 +365,9 @@ while (list ($key,$val) = each ($struct)) {
   } elseif ($key == "password") {
     $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",$val[1],$key,"");
   } elseif ($key == "blacklisted") {
-    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s',$GLOBALS['I18N']->get($b),isBlackListed($user['email'])?s('Yes'):s('No'));
+    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s',$GLOBALS['I18N']->get($b),$user[$key] || isBlackListed($user['email'])?s('Yes'):s('No'));
     
-    if (!isBlackListed($user['email'])) {
+    if (!($user[$key] || isBlackListed($user['email']))) {
       $userdetailsHTML .= '<span class="fright button">'.PageLinkAjax('user&blacklist=1&id='.$user['id'],s('Add to blacklist')).'</span>';
     } elseif (UNBLACKLIST_IN_PROFILE) {
       $userdetailsHTML .= '<span class="fright button">'.PageLinkAjax('user&unblacklist=1&id='.$user['id'],s('Remove from blacklist')).'</span>';
