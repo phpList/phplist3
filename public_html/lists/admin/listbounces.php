@@ -59,7 +59,7 @@ if ($total) {
 }
 
 
-print '<p>'.$total. " ".$GLOBALS['I18N']->get(" bounces to list ").listName($listid)."</p>";
+print '<p>'.s('%d bounces to list %s',$total,listName($listid))."</p>";
 
 $start = empty($_GET['start']) ? 0 : sprintf('%d',$_GET['start']);
 if ($total > $numpp && !$download) {
