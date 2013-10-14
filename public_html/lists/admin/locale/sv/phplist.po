@@ -2,21 +2,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 05:14+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: phpList <info@phplist.com>\n"
+"POT-Creation-Date: 2013-10-01 05:14+0000\n"
+"PO-Revision-Date: 2013-10-01 10:21+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-1: admin/actions\n"
 "X-Poedit-SearchPath-2: admin/commonlib/pages\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
+"X-POOTLE-MTIME: 1380622894.0\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
 #: public_html/lists/admin/massremove.php:8
@@ -192,9 +194,9 @@ msgid "bounce_protocol not supported"
 msgstr "bounce_protocol stöds ej"
 
 #: public_html/lists/admin/processbounces.php:449
-#, php-format
+#, fuzzy, php-format
 msgid "%d bounces to reprocess"
-msgstr ""
+msgstr "avvisade utskick att bearbeta"
 
 #: public_html/lists/admin/processbounces.php:453
 #: public_html/lists/admin/processbounces.php:465
@@ -546,7 +548,7 @@ msgstr "Inga listor finns tillgängliga"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:50 public_html/lists/admin/list.php:54
-#: public_html/lists/admin/list.php:260 public_html/lists/admin/import3.php:40
+#: public_html/lists/admin/list.php:274 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1123
 msgid "Add a list"
 msgstr "Lägg till en lista"
@@ -752,8 +754,9 @@ msgid "Delete will remove subscriber from the list"
 msgstr "&quot;ta bort&quot; kommer ta bort medlemmen från listan"
 
 #: public_html/lists/admin/commonlib/pages/user.php:34
+#, fuzzy
 msgid "Delete will remove subscriber from the system"
-msgstr ""
+msgstr "&quot;ta bort&quot; kommer ta bort medlemmen från listan"
 
 #: public_html/lists/admin/commonlib/pages/user.php:60
 #, fuzzy
@@ -794,9 +797,9 @@ msgid "No data changed"
 msgstr "Ingen medlemsdata förändrades"
 
 #: public_html/lists/admin/commonlib/pages/user.php:240
-#, php-format
+#, fuzzy, php-format
 msgid "Subscribed to %s"
-msgstr ""
+msgstr "prenumererade på"
 
 #: public_html/lists/admin/commonlib/pages/user.php:243
 #, php-format
@@ -816,10 +819,8 @@ msgid "Changes saved"
 msgstr "Förändringar sparade"
 
 #: public_html/lists/admin/commonlib/pages/user.php:259
-#: public_html/lists/admin/admin.php:108
-#: public_html/lists/admin/members.php:203
-#: public_html/lists/admin/admins.php:29 public_html/lists/admin/list.php:62
-#: public_html/lists/admin/messages.php:77
+#: public_html/lists/admin/admin.php:108 public_html/lists/admin/admins.php:29
+#: public_html/lists/admin/list.php:62 public_html/lists/admin/messages.php:77
 #: public_html/lists/admin/eventlog.php:33
 #: public_html/lists/admin/templates.php:7
 msgid "Deleting"
@@ -828,7 +829,7 @@ msgstr "Tar bort"
 #: public_html/lists/admin/commonlib/pages/user.php:267
 #: public_html/lists/admin/commonlib/pages/users.php:209
 #: public_html/lists/admin/admin.php:113
-#: public_html/lists/admin/members.php:209
+#: public_html/lists/admin/members.php:217
 #: public_html/lists/admin/import4.php:358
 #: public_html/lists/admin/admins.php:33 public_html/lists/admin/list.php:69
 #: public_html/lists/admin/messages.php:80
@@ -912,7 +913,7 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/admin.php:250
 #: public_html/lists/admin/spageedit.php:346
-#: public_html/lists/admin/list.php:230
+#: public_html/lists/admin/list.php:244
 #: public_html/lists/admin/template.php:301
 msgid "Save Changes"
 msgstr "Spara förändringar"
@@ -943,8 +944,9 @@ msgstr "Spara förändringar"
 
 #: public_html/lists/admin/commonlib/pages/user.php:552
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
+#, fuzzy
 msgid "Details"
-msgstr ""
+msgstr "detalj"
 
 #: public_html/lists/admin/commonlib/pages/user.php:553
 #: public_html/lists/admin/send_core.php:532
@@ -1125,12 +1127,14 @@ msgid "info"
 msgstr "information"
 
 #: public_html/lists/admin/commonlib/pages/dbcheck.php:4
+#, fuzzy
 msgid "Database structure check"
-msgstr ""
+msgstr "Kolla databasstrukturen"
 
 #: public_html/lists/admin/commonlib/pages/dbcheck.php:9
+#, fuzzy
 msgid "Database structure"
-msgstr ""
+msgstr "Kolla databasstrukturen"
 
 #: public_html/lists/admin/commonlib/pages/users.php:154
 #: public_html/lists/admin/commonlib/pages/users.php:192
@@ -1157,7 +1161,7 @@ msgid "Sorry, only super users can delete users"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/users.php:229
-#: public_html/lists/admin/members.php:198
+#: public_html/lists/admin/members.php:206
 msgid "User added"
 msgstr "Medlem tillagd"
 
@@ -1230,8 +1234,9 @@ msgid "reset"
 msgstr "återställ"
 
 #: public_html/lists/admin/commonlib/pages/users.php:361
+#, fuzzy
 msgid "Find subscribers"
-msgstr ""
+msgstr "medlemmar"
 
 #: public_html/lists/admin/commonlib/pages/users.php:366
 msgid "Download all users as CSV file"
@@ -1625,8 +1630,11 @@ msgid "Record has more values than header indicated, this may cause trouble"
 msgstr "Posten har fler värden än filhuvudet indikerar. Detta kan skapa problem"
 
 #: public_html/lists/admin/importadmin.php:146
+#, fuzzy
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
 msgstr ""
+"Testutmatning<br/>Om utmatningen ser ok ut, klicka på %s för att lägga till "
+"den på riktigt"
 
 #: public_html/lists/admin/importadmin.php:153
 msgid "password"
@@ -1661,8 +1669,9 @@ msgid "new administrators were"
 msgstr ""
 
 #: public_html/lists/admin/importadmin.php:273
+#, fuzzy
 msgid "All the administrators already exist in the database"
-msgstr ""
+msgstr "Alla e-postadresser finns redan i databasen."
 
 #: public_html/lists/admin/importadmin.php:274
 msgid "Information has been updated from the import"
@@ -1780,9 +1789,9 @@ msgid "emails were"
 msgstr "e-postadresser blev"
 
 #: public_html/lists/admin/actions/import1.php:213
-#, php-format
+#, fuzzy, php-format
 msgid "%d emails already existed in the database"
-msgstr ""
+msgstr "%s e-postadresser fanns redan i databasen"
 
 #: public_html/lists/admin/actions/import1.php:216
 msgid "All the emails already exist in the database."
@@ -1978,7 +1987,7 @@ msgstr ""
 #: public_html/lists/admin/actions/msgstatus.php:107
 #: public_html/lists/admin/actions/msgstatus.php:112
 #: public_html/lists/admin/msgstatus.php:29
-#: public_html/lists/admin/members.php:59
+#: public_html/lists/admin/members.php:67
 #: public_html/lists/admin/import3.php:145
 msgid "Processing"
 msgstr "Bearbetar"
@@ -2106,10 +2115,10 @@ msgstr "Skulle ha sänts"
 #: public_html/lists/admin/actions/processqueue.php:370
 #: public_html/lists/admin/actions/processqueue.php:372
 #: public_html/lists/admin/actions/processqueue.php:958
-#: public_html/lists/admin/members.php:327
-#: public_html/lists/admin/members.php:331
-#: public_html/lists/admin/members.php:344
 #: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:365
+#: public_html/lists/admin/members.php:369
 msgid "to"
 msgstr "till"
 
@@ -2373,9 +2382,9 @@ msgid "Message campaign finished"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1170
-#, php-format
+#, fuzzy, php-format
 msgid "phpList has finished sending the campaign with subject %s"
-msgstr ""
+msgstr "phplist har börjat sända utskicket med ämne %s"
 
 #: public_html/lists/admin/actions/processqueue.php:1171
 #, php-format
@@ -2467,18 +2476,19 @@ msgstr "och fler, totalt %d"
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:726
+#: public_html/lists/admin/sendemaillib.php:731
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:905
+#: public_html/lists/admin/sendemaillib.php:910
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
 #: public_html/lists/admin/user.php:59
+#, fuzzy
 msgid "Delete will remove subscriber from the database"
-msgstr ""
+msgstr "&quot;ta bort&quot; kommer ta bort medlemmen från listan"
 
 #: public_html/lists/admin/defaultsystemtemplate.php:18
 msgid "The default system template already exists"
@@ -2789,7 +2799,7 @@ msgid "#bncs"
 msgstr "#bncs"
 
 #: public_html/lists/admin/bouncerules.php:96
-#: public_html/lists/admin/members.php:274
+#: public_html/lists/admin/members.php:295
 msgid "tag"
 msgstr "tagg"
 
@@ -2863,8 +2873,9 @@ msgid "Verify Settings"
 msgstr ""
 
 #: public_html/lists/admin/setup.php:72
+#, fuzzy
 msgid "Configure attributes"
-msgstr ""
+msgstr "Konfigurera attribut"
 
 #: public_html/lists/admin/setup.php:84
 msgid "Create public lists"
@@ -3051,6 +3062,7 @@ msgid "Top 50 domains with more than 5 emails"
 msgstr "Topp 50-domäner med fler än fem e-postadresser"
 
 #: public_html/lists/admin/domainstats.php:27
+#: public_html/lists/admin/members.php:261
 msgid "confirmed"
 msgstr "bekr."
 
@@ -3061,6 +3073,7 @@ msgid "perc"
 msgstr ""
 
 #: public_html/lists/admin/domainstats.php:40
+#: public_html/lists/admin/members.php:262
 #, fuzzy
 msgid "unconfirmed"
 msgstr "bekr."
@@ -3103,9 +3116,9 @@ msgid "Attribute:"
 msgstr "Attribut:"
 
 #: public_html/lists/admin/adminattributes.php:84
-#: public_html/lists/admin/members.php:268
-#: public_html/lists/admin/members.php:317
-#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:289
+#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:362
 msgid "Delete"
 msgstr "Ta bort"
 
@@ -3555,8 +3568,9 @@ msgid "add Google Analytics tracking code"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:931
+#, fuzzy
 msgid "Reset click statistics"
-msgstr ""
+msgstr "Medlemsklickstatistik"
 
 #: public_html/lists/admin/send_core.php:938
 msgid "Estimated size of HTML email"
@@ -4073,7 +4087,7 @@ msgstr ""
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:223
+#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:237
 msgid "send"
 msgstr "sänd"
 
@@ -4227,8 +4241,9 @@ msgid "cannot be empty"
 msgstr "får inte vara tomt"
 
 #: public_html/lists/admin/configure.php:94
+#, fuzzy
 msgid "Changes not saved"
-msgstr ""
+msgstr "Förändringar sparade"
 
 #: public_html/lists/admin/configure.php:108
 msgid "settings"
@@ -4576,142 +4591,155 @@ msgstr ""
 msgid "Login Name"
 msgstr "Inloggningsnamn"
 
-#: public_html/lists/admin/members.php:18
-#: public_html/lists/admin/members.php:29
+#: public_html/lists/admin/members.php:26
+#: public_html/lists/admin/members.php:37
 #: public_html/lists/admin/editlist.php:20
 #: public_html/lists/admin/editlist.php:39
 msgid "You do not have enough priviliges to view this page"
 msgstr "Du har inte tillräckliga privilegier för att se den här sidan"
 
-#: public_html/lists/admin/members.php:38
+#: public_html/lists/admin/members.php:46
 msgid "Add a user"
 msgstr "Lägg till en medlem (ange e-postadress)"
 
-#: public_html/lists/admin/members.php:39
-#: public_html/lists/admin/members.php:136
+#: public_html/lists/admin/members.php:47
+#: public_html/lists/admin/members.php:144
 #: public_html/lists/admin/defaults.php:89
 msgid "Add"
 msgstr "Lägg till"
 
-#: public_html/lists/admin/members.php:44
+#: public_html/lists/admin/members.php:52
 msgid "Members of"
 msgstr "Medlemmar i"
 
-#: public_html/lists/admin/members.php:46
+#: public_html/lists/admin/members.php:54
 msgid "edit list details"
 msgstr ""
 
-#: public_html/lists/admin/members.php:47
+#: public_html/lists/admin/members.php:55
 msgid "Download subscribers"
 msgstr ""
 
-#: public_html/lists/admin/members.php:48
+#: public_html/lists/admin/members.php:56
 msgid "Import Subscribers to this list"
 msgstr ""
 
-#: public_html/lists/admin/members.php:70
-#: public_html/lists/admin/members.php:111
+#: public_html/lists/admin/members.php:78
+#: public_html/lists/admin/members.php:119
 msgid "subscribers were moved to"
 msgstr ""
 
-#: public_html/lists/admin/members.php:79
-#: public_html/lists/admin/members.php:119
+#: public_html/lists/admin/members.php:87
+#: public_html/lists/admin/members.php:127
 msgid "subscribers were copied to"
 msgstr ""
 
-#: public_html/lists/admin/members.php:88
-#: public_html/lists/admin/members.php:123
+#: public_html/lists/admin/members.php:96
+#: public_html/lists/admin/members.php:131
 msgid "subscribers were deleted from this list"
 msgstr ""
 
-#: public_html/lists/admin/members.php:134
+#: public_html/lists/admin/members.php:142
 msgid "Users found, click add to add this user"
 msgstr ""
 "medlemmar hittades, klicka på &quot;Lägg till&quot; för att lägga till den "
 "här medlemmen"
 
-#: public_html/lists/admin/members.php:141
+#: public_html/lists/admin/members.php:149
 msgid "No user found with that email"
 msgstr "Ingen medlem hittades med den e-postadressen"
 
-#: public_html/lists/admin/members.php:158
+#: public_html/lists/admin/members.php:166
 msgid "add user"
 msgstr "Lägg till medlem"
 
-#: public_html/lists/admin/members.php:168
+#: public_html/lists/admin/members.php:176
 msgid "Inserting user"
 msgstr "Infogar medlem"
 
-#: public_html/lists/admin/members.php:230
+#: public_html/lists/admin/members.php:211
+#, php-format
+msgid "Removing %d from this list "
+msgstr ""
+
+#: public_html/lists/admin/members.php:238
 #, php-format
 #, php-format, fuzzy
 msgid "Listing subscriber %d to %d"
 msgstr "Listar medlemmar %d till %d"
 
-#: public_html/lists/admin/members.php:233
+#: public_html/lists/admin/members.php:241
 #, fuzzy
 msgid "Listing subscriber 1 to 50"
 msgstr "Listar medlemmar %d till %d"
 
-#: public_html/lists/admin/members.php:237
+#: public_html/lists/admin/members.php:245
 #: public_html/lists/admin/reconcileusers.php:392
 #, fuzzy
 msgid "subscribers"
 msgstr "medlemmar"
 
-#: public_html/lists/admin/members.php:255
+#: public_html/lists/admin/members.php:270
+#, fuzzy, php-format
+msgid "%d subscribers"
+msgstr "medlemmar"
+
+#: public_html/lists/admin/members.php:276
 msgid "Tag all users in this page"
 msgstr "Kryssa för alla medlemmar på den här sidan"
 
-#: public_html/lists/admin/members.php:260
-#: public_html/lists/admin/list.php:199
+#: public_html/lists/admin/members.php:281
+#: public_html/lists/admin/list.php:213
 msgid "Members"
 msgstr "Medlemmar"
 
-#: public_html/lists/admin/members.php:313
+#: public_html/lists/admin/members.php:334
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "Handling"
 
-#: public_html/lists/admin/members.php:315
+#: public_html/lists/admin/members.php:336
 #, fuzzy
 msgid "What to do with \"Tagged\" users"
 msgstr "Att göra med alla medlemmar"
 
-#: public_html/lists/admin/members.php:316
+#: public_html/lists/admin/members.php:337
 msgid ""
 "This will only process the users in this page that have the \"Tag\" checkbox "
 "checked"
 msgstr ""
 
-#: public_html/lists/admin/members.php:317
-#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:362
 msgid "from this list"
 msgstr "från den här listan"
 
-#: public_html/lists/admin/members.php:327
-#: public_html/lists/admin/members.php:344
+#: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:365
 msgid "Move"
 msgstr "Flytta"
 
-#: public_html/lists/admin/members.php:331
-#: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:369
 msgid "Copy"
 msgstr "Kopiera"
 
-#: public_html/lists/admin/members.php:335
-#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:356
+#: public_html/lists/admin/members.php:373
 msgid "Nothing"
 msgstr "Ingenting"
 
-#: public_html/lists/admin/members.php:337
-msgid "What to do with all users"
+#: public_html/lists/admin/members.php:358
+#, fuzzy
+msgid "What to do with all subscribers"
 msgstr "Att göra med alla medlemmar"
 
-#: public_html/lists/admin/members.php:338
-msgid "This will process all users on this list"
-msgstr "Detta gör att alla medlemmar på den här listan kommer påverkas"
+#: public_html/lists/admin/members.php:359
+msgid ""
+"This will process all subscribers on this list, confirmed and unconfirmed"
+msgstr ""
 
-#: public_html/lists/admin/members.php:354
+#: public_html/lists/admin/members.php:375
 msgid "do it"
 msgstr "gör det"
 
@@ -4727,8 +4755,9 @@ msgid "done"
 msgstr "färdig"
 
 #: public_html/lists/admin/bounces.php:19
+#, fuzzy
 msgid "processed"
-msgstr ""
+msgstr "Bearbetade"
 
 #: public_html/lists/admin/bounces.php:20
 msgid "unidentified"
@@ -4923,24 +4952,28 @@ msgid "Request for confirmation"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:316
+#, fuzzy
 msgid "Subject of the message subscribers receive when they sign up"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/defaultconfig.php:345
+#, fuzzy
 msgid "Message subscribers receive when they sign up"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/defaultconfig.php:353
 msgid "Goodbye from our Newsletter"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:354
+#, fuzzy
 msgid "Subject of the message subscribers receive when they unsubscribe"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/defaultconfig.php:377
+#, fuzzy
 msgid "Message subscribers receive when they unsubscribe"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/defaultconfig.php:385
 msgid "Welcome to our Newsletter"
@@ -4961,10 +4994,11 @@ msgid "[notify] Change of List-Membership details"
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:418
+#, fuzzy
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/defaultconfig.php:450
 msgid "Message subscribers receive when they have changed their details"
@@ -6006,8 +6040,9 @@ msgid "Message they receive when they confirm their subscription"
 msgstr "Meddelande sommedlemmar får efter de bekräftat sin anmälan"
 
 #: public_html/lists/admin/spageedit.php:247
+#, fuzzy
 msgid "Message they receive when they unsubscribe"
-msgstr ""
+msgstr "Meddelande som medlemmar får efter de anmält sig"
 
 #: public_html/lists/admin/spageedit.php:259
 msgid "Select the attributes to use"
@@ -6224,8 +6259,9 @@ msgid "Fetching plugin"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:45
+#, fuzzy
 msgid "Developer"
-msgstr ""
+msgstr "Utvecklare"
 
 #: public_html/lists/admin/plugins.php:46
 msgid "Project"
@@ -6303,8 +6339,9 @@ msgid "version"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:199
+#, fuzzy
 msgid "description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: public_html/lists/admin/plugins.php:206
 msgid "installed"
@@ -6315,8 +6352,9 @@ msgid "installation Url"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:216
+#, fuzzy
 msgid "developer"
-msgstr ""
+msgstr "Utvecklare"
 
 #: public_html/lists/admin/plugins.php:219
 msgid "enabled"
@@ -6344,8 +6382,9 @@ msgid "update"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:244
+#, fuzzy
 msgid "details"
-msgstr ""
+msgstr "detalj"
 
 #: public_html/lists/admin/lib.php:27
 msgid "delete user"
@@ -6462,39 +6501,39 @@ msgstr ""
 msgid "Great idea!"
 msgstr ""
 
-#: public_html/lists/admin/list.php:199
+#: public_html/lists/admin/list.php:213
 msgid "View Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:202
+#: public_html/lists/admin/list.php:216
 msgid "Public"
 msgstr ""
 
-#: public_html/lists/admin/list.php:215
+#: public_html/lists/admin/list.php:229
 msgid "Order"
 msgstr "Ordning"
 
-#: public_html/lists/admin/list.php:219
+#: public_html/lists/admin/list.php:233
 msgid "Are you sure you want to delete this list?"
 msgstr ""
 
-#: public_html/lists/admin/list.php:221
+#: public_html/lists/admin/list.php:235
 msgid "delete this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:223
+#: public_html/lists/admin/list.php:237
 msgid "Edit this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:223
+#: public_html/lists/admin/list.php:237
 msgid "start a new campaign targetting this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:224
+#: public_html/lists/admin/list.php:238
 msgid "Add Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:233
+#: public_html/lists/admin/list.php:247
 msgid "No lists, use Add List to add one"
 msgstr ""
 
@@ -7001,8 +7040,9 @@ msgid "View"
 msgstr "Visa"
 
 #: public_html/lists/admin/messages.php:368
+#, fuzzy
 msgid "statistics"
-msgstr ""
+msgstr "Statistics"
 
 #: public_html/lists/admin/messages.php:386
 msgid "Suspend All"
@@ -7061,12 +7101,14 @@ msgid "Hint: this page also works from commandline"
 msgstr ""
 
 #: public_html/lists/admin/convertstats.php:43
+#, fuzzy
 msgid "creating tables"
-msgstr ""
+msgstr "Skapar tabeller"
 
 #: public_html/lists/admin/convertstats.php:51
+#, fuzzy
 msgid "creating tables done"
-msgstr ""
+msgstr "Skapar tabeller"
 
 #: public_html/lists/admin/convertstats.php:63
 #, php-format
@@ -7168,13 +7210,14 @@ msgid "unable to find original email"
 msgstr "kunde inte hitta ursprungligt e-post"
 
 #: public_html/lists/admin/reconcileusers.php:140
+#, fuzzy
 msgid "Marking all subscribers confirmed"
-msgstr ""
+msgstr "Markerar alla medlemmar på listan %s som bekräftade"
 
 #: public_html/lists/admin/reconcileusers.php:143
-#, php-format
+#, fuzzy, php-format
 msgid "Marking all subscribers on list %s confirmed"
-msgstr ""
+msgstr "Markerar alla medlemmar på listan %s som bekräftade"
 
 #: public_html/lists/admin/reconcileusers.php:148
 #: public_html/lists/admin/reconcileusers.php:154
@@ -7194,12 +7237,14 @@ msgid "Creating UniqID for all subscribers who do not have one"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:158
+#, fuzzy
 msgid "Marking all subscribers to receive HTML"
-msgstr ""
+msgstr "Markerar alla medlemmar som HTML-mottagare"
 
 #: public_html/lists/admin/reconcileusers.php:164
+#, fuzzy
 msgid "Marking all subscribers to receive text"
-msgstr ""
+msgstr "Markerar alla medlemmar som textmottagare"
 
 #: public_html/lists/admin/reconcileusers.php:170
 msgid "Deleting subscribers who are not on any list"
@@ -7414,8 +7459,9 @@ msgid "save"
 msgstr "Spara"
 
 #: public_html/lists/admin/importlib.php:82
+#, fuzzy
 msgid "Invalid email"
-msgstr ""
+msgstr "Ogiltig e-postadress"
 
 #: public_html/lists/admin/defaults.php:39
 msgid "Loading"
@@ -7500,8 +7546,9 @@ msgid "%d addresses were blacklisted and have not been subscribed to the list"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:140
+#, fuzzy
 msgid "Adding subscribers"
-msgstr ""
+msgstr "medlemmar"
 
 #: public_html/lists/admin/importsimple.php:148
 msgid ""
@@ -7783,8 +7830,9 @@ msgstr ""
 
 #: public_html/lists/admin/editattributes.php:170
 #: public_html/lists/admin/editattributes.php:172
+#, fuzzy
 msgid "Add new"
-msgstr ""
+msgstr "lägg till ny"
 
 #: public_html/lists/admin/editattributes.php:170
 msgid "one per line"
@@ -8048,6 +8096,12 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
+
+#~ msgid "What to do with all users"
+#~ msgstr "Att göra med alla medlemmar"
+
+#~ msgid "This will process all users on this list"
+#~ msgstr "Detta gör att alla medlemmar på den här listan kommer påverkas"
 
 #~ msgid "Add a new one"
 #~ msgstr "Lägg till en ny"

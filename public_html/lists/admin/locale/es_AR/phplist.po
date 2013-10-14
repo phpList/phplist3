@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 05:03+0000\n"
+"POT-Creation-Date: 2013-10-01 05:03+0000\n"
 "PO-Revision-Date: 2013-08-26 21:38+0000\n"
 "Last-Translator: Joel <turquestan@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
@@ -568,7 +568,7 @@ msgstr "No hay listas disponibles"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:50 public_html/lists/admin/list.php:54
-#: public_html/lists/admin/list.php:260 public_html/lists/admin/import3.php:40
+#: public_html/lists/admin/list.php:274 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1123
 msgid "Add a list"
 msgstr "Añadir una lista"
@@ -874,10 +874,8 @@ msgid "Changes saved"
 msgstr "Cambios salvados"
 
 #: public_html/lists/admin/commonlib/pages/user.php:259
-#: public_html/lists/admin/admin.php:108
-#: public_html/lists/admin/members.php:203
-#: public_html/lists/admin/admins.php:29 public_html/lists/admin/list.php:62
-#: public_html/lists/admin/messages.php:77
+#: public_html/lists/admin/admin.php:108 public_html/lists/admin/admins.php:29
+#: public_html/lists/admin/list.php:62 public_html/lists/admin/messages.php:77
 #: public_html/lists/admin/eventlog.php:33
 #: public_html/lists/admin/templates.php:7
 msgid "Deleting"
@@ -886,7 +884,7 @@ msgstr "Eliminando"
 #: public_html/lists/admin/commonlib/pages/user.php:267
 #: public_html/lists/admin/commonlib/pages/users.php:209
 #: public_html/lists/admin/admin.php:113
-#: public_html/lists/admin/members.php:209
+#: public_html/lists/admin/members.php:217
 #: public_html/lists/admin/import4.php:358
 #: public_html/lists/admin/admins.php:33 public_html/lists/admin/list.php:69
 #: public_html/lists/admin/messages.php:80
@@ -970,7 +968,7 @@ msgstr "Eliminar de la lista negra"
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/admin.php:250
 #: public_html/lists/admin/spageedit.php:346
-#: public_html/lists/admin/list.php:230
+#: public_html/lists/admin/list.php:244
 #: public_html/lists/admin/template.php:301
 msgid "Save Changes"
 msgstr "Guardar cambios"
@@ -1214,7 +1212,7 @@ msgid "Sorry, only super users can delete users"
 msgstr "Lo siento, solo los super-usuarios pueden eliminar usuarios"
 
 #: public_html/lists/admin/commonlib/pages/users.php:229
-#: public_html/lists/admin/members.php:198
+#: public_html/lists/admin/members.php:206
 msgid "User added"
 msgstr "Se a&ntilde;adi&oacute; al usuario"
 
@@ -2058,7 +2056,7 @@ msgstr "Realizar los envíos que están en cola"
 #: public_html/lists/admin/actions/msgstatus.php:107
 #: public_html/lists/admin/actions/msgstatus.php:112
 #: public_html/lists/admin/msgstatus.php:29
-#: public_html/lists/admin/members.php:59
+#: public_html/lists/admin/members.php:67
 #: public_html/lists/admin/import3.php:145
 msgid "Processing"
 msgstr "Procesando"
@@ -2191,10 +2189,10 @@ msgstr "Habr&iacute;a enviado"
 #: public_html/lists/admin/actions/processqueue.php:370
 #: public_html/lists/admin/actions/processqueue.php:372
 #: public_html/lists/admin/actions/processqueue.php:958
-#: public_html/lists/admin/members.php:327
-#: public_html/lists/admin/members.php:331
-#: public_html/lists/admin/members.php:344
 #: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:365
+#: public_html/lists/admin/members.php:369
 msgid "to"
 msgstr "a"
 
@@ -2572,11 +2570,11 @@ msgstr "y m&aacute;s, %d en total"
 msgid "Sending message %d with subject %s to %s"
 msgstr "Enviando mensaje %d con asunto %s a %s"
 
-#: public_html/lists/admin/sendemaillib.php:726
+#: public_html/lists/admin/sendemaillib.php:731
 msgid "sendingtextonlyto"
 msgstr "enviando sólo texto a"
 
-#: public_html/lists/admin/sendemaillib.php:905
+#: public_html/lists/admin/sendemaillib.php:910
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr "Error enviando mensaje %d (%d/%d) a %s (%s)"
@@ -2903,7 +2901,7 @@ msgid "#bncs"
 msgstr "#rebts"
 
 #: public_html/lists/admin/bouncerules.php:96
-#: public_html/lists/admin/members.php:274
+#: public_html/lists/admin/members.php:295
 msgid "tag"
 msgstr "seleccionar"
 
@@ -3174,6 +3172,7 @@ msgid "Top 50 domains with more than 5 emails"
 msgstr "Los primeros 50 dominios con más de 5 correos"
 
 #: public_html/lists/admin/domainstats.php:27
+#: public_html/lists/admin/members.php:261
 msgid "confirmed"
 msgstr "confirmado"
 
@@ -3184,6 +3183,7 @@ msgid "perc"
 msgstr ""
 
 #: public_html/lists/admin/domainstats.php:40
+#: public_html/lists/admin/members.php:262
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
@@ -3225,9 +3225,9 @@ msgid "Attribute:"
 msgstr "Atributo:"
 
 #: public_html/lists/admin/adminattributes.php:84
-#: public_html/lists/admin/members.php:268
-#: public_html/lists/admin/members.php:317
-#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:289
+#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:362
 msgid "Delete"
 msgstr "Borrar"
 
@@ -4208,7 +4208,7 @@ msgstr "Configurar Atributos para administradores"
 msgid "Administrator Functions"
 msgstr "Funciones del Administrador"
 
-#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:223
+#: public_html/lists/admin/home.php:243 public_html/lists/admin/list.php:237
 msgid "send"
 msgstr "enviar"
 
@@ -4735,104 +4735,114 @@ msgstr "¿Recordarlo?"
 msgid "Login Name"
 msgstr "Nombre de usuario"
 
-#: public_html/lists/admin/members.php:18
-#: public_html/lists/admin/members.php:29
+#: public_html/lists/admin/members.php:26
+#: public_html/lists/admin/members.php:37
 #: public_html/lists/admin/editlist.php:20
 #: public_html/lists/admin/editlist.php:39
 msgid "You do not have enough priviliges to view this page"
 msgstr "No tiene sufucientes privilegios para ver esta p&aacute;gina"
 
-#: public_html/lists/admin/members.php:38
+#: public_html/lists/admin/members.php:46
 msgid "Add a user"
 msgstr "A&ntilde;adir un usuario"
 
-#: public_html/lists/admin/members.php:39
-#: public_html/lists/admin/members.php:136
+#: public_html/lists/admin/members.php:47
+#: public_html/lists/admin/members.php:144
 #: public_html/lists/admin/defaults.php:89
 msgid "Add"
 msgstr "A&ntilde;adir"
 
-#: public_html/lists/admin/members.php:44
+#: public_html/lists/admin/members.php:52
 msgid "Members of"
 msgstr "Miembros de"
 
-#: public_html/lists/admin/members.php:46
+#: public_html/lists/admin/members.php:54
 msgid "edit list details"
 msgstr "editar detalles de la lista"
 
-#: public_html/lists/admin/members.php:47
+#: public_html/lists/admin/members.php:55
 msgid "Download subscribers"
 msgstr "Descargar suscriptores"
 
-#: public_html/lists/admin/members.php:48
+#: public_html/lists/admin/members.php:56
 msgid "Import Subscribers to this list"
 msgstr "Importar Suscriptores a esta lista"
 
-#: public_html/lists/admin/members.php:70
-#: public_html/lists/admin/members.php:111
+#: public_html/lists/admin/members.php:78
+#: public_html/lists/admin/members.php:119
 msgid "subscribers were moved to"
 msgstr "los suscriptores fueron movidos a"
 
-#: public_html/lists/admin/members.php:79
-#: public_html/lists/admin/members.php:119
+#: public_html/lists/admin/members.php:87
+#: public_html/lists/admin/members.php:127
 msgid "subscribers were copied to"
 msgstr "los suscriptores fueron copiados a"
 
-#: public_html/lists/admin/members.php:88
-#: public_html/lists/admin/members.php:123
+#: public_html/lists/admin/members.php:96
+#: public_html/lists/admin/members.php:131
 msgid "subscribers were deleted from this list"
 msgstr "los suscriptores fueron eliminados de esta lista"
 
-#: public_html/lists/admin/members.php:134
+#: public_html/lists/admin/members.php:142
 msgid "Users found, click add to add this user"
 msgstr ""
 "Se han encontrado  usuarios. Haga click para a&ntilde;adir a este usuario."
 
-#: public_html/lists/admin/members.php:141
+#: public_html/lists/admin/members.php:149
 msgid "No user found with that email"
 msgstr "No se ha encontrado ningún usuario con ese correo"
 
-#: public_html/lists/admin/members.php:158
+#: public_html/lists/admin/members.php:166
 msgid "add user"
 msgstr "Añadir usuario"
 
-#: public_html/lists/admin/members.php:168
+#: public_html/lists/admin/members.php:176
 msgid "Inserting user"
 msgstr "Insertando usuario"
 
-#: public_html/lists/admin/members.php:230
+#: public_html/lists/admin/members.php:211
+#, php-format
+msgid "Removing %d from this list "
+msgstr ""
+
+#: public_html/lists/admin/members.php:238
 #, php-format
 #, php-format, php-format
 msgid "Listing subscriber %d to %d"
 msgstr "Listando suscriptores del %d al %d"
 
-#: public_html/lists/admin/members.php:233
+#: public_html/lists/admin/members.php:241
 msgid "Listing subscriber 1 to 50"
 msgstr "Mostrando suscriptores del 1 al 50"
 
-#: public_html/lists/admin/members.php:237
+#: public_html/lists/admin/members.php:245
 #: public_html/lists/admin/reconcileusers.php:392
 msgid "subscribers"
 msgstr "suscriptores"
 
-#: public_html/lists/admin/members.php:255
+#: public_html/lists/admin/members.php:270
+#, php-format
+msgid "%d subscribers"
+msgstr ""
+
+#: public_html/lists/admin/members.php:276
 msgid "Tag all users in this page"
 msgstr "Seleccionar a todos los usuarios  enumerados en esta p&aacute;gina"
 
-#: public_html/lists/admin/members.php:260
-#: public_html/lists/admin/list.php:199
+#: public_html/lists/admin/members.php:281
+#: public_html/lists/admin/list.php:213
 msgid "Members"
 msgstr "Miembros"
 
-#: public_html/lists/admin/members.php:313
+#: public_html/lists/admin/members.php:334
 msgid "Actions"
 msgstr "Acciones"
 
-#: public_html/lists/admin/members.php:315
+#: public_html/lists/admin/members.php:336
 msgid "What to do with \"Tagged\" users"
 msgstr "Qué hacer con los usuarios \"Marcados\""
 
-#: public_html/lists/admin/members.php:316
+#: public_html/lists/admin/members.php:337
 #, fuzzy
 msgid ""
 "This will only process the users in this page that have the \"Tag\" checkbox "
@@ -4841,35 +4851,36 @@ msgstr ""
 "Esto sólo procesará los usuarios de esta página que tengan seleccionado el "
 "item \"Marcar\""
 
-#: public_html/lists/admin/members.php:317
-#: public_html/lists/admin/members.php:341
+#: public_html/lists/admin/members.php:338
+#: public_html/lists/admin/members.php:362
 msgid "from this list"
 msgstr "de esta lista"
 
-#: public_html/lists/admin/members.php:327
-#: public_html/lists/admin/members.php:344
+#: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:365
 msgid "Move"
 msgstr "Mover"
 
-#: public_html/lists/admin/members.php:331
-#: public_html/lists/admin/members.php:348
+#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:369
 msgid "Copy"
 msgstr "Copiar"
 
-#: public_html/lists/admin/members.php:335
-#: public_html/lists/admin/members.php:352
+#: public_html/lists/admin/members.php:356
+#: public_html/lists/admin/members.php:373
 msgid "Nothing"
 msgstr "Nada"
 
-#: public_html/lists/admin/members.php:337
-msgid "What to do with all users"
-msgstr "Qué hacer con todos los usuarios"
+#: public_html/lists/admin/members.php:358
+msgid "What to do with all subscribers"
+msgstr ""
 
-#: public_html/lists/admin/members.php:338
-msgid "This will process all users on this list"
-msgstr "Esto afectar&aacute;  a todos los usuarios de esta lista"
+#: public_html/lists/admin/members.php:359
+msgid ""
+"This will process all subscribers on this list, confirmed and unconfirmed"
+msgstr ""
 
-#: public_html/lists/admin/members.php:354
+#: public_html/lists/admin/members.php:375
 msgid "do it"
 msgstr "ejecutar"
 
@@ -6755,39 +6766,39 @@ msgstr "¿Parece que tiene muchas listas, quiere organizarlas en categorías? "
 msgid "Great idea!"
 msgstr "¡Gran idea!"
 
-#: public_html/lists/admin/list.php:199
+#: public_html/lists/admin/list.php:213
 msgid "View Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:202
+#: public_html/lists/admin/list.php:216
 msgid "Public"
 msgstr "Pública"
 
-#: public_html/lists/admin/list.php:215
+#: public_html/lists/admin/list.php:229
 msgid "Order"
 msgstr "Orden"
 
-#: public_html/lists/admin/list.php:219
+#: public_html/lists/admin/list.php:233
 msgid "Are you sure you want to delete this list?"
 msgstr "¿Seguro que desea eliminar esta lista?"
 
-#: public_html/lists/admin/list.php:221
+#: public_html/lists/admin/list.php:235
 msgid "delete this list"
 msgstr "eliminar esta lista"
 
-#: public_html/lists/admin/list.php:223
+#: public_html/lists/admin/list.php:237
 msgid "Edit this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:223
+#: public_html/lists/admin/list.php:237
 msgid "start a new campaign targetting this list"
 msgstr "comenzar una nueva campaña dirigida a esta lista"
 
-#: public_html/lists/admin/list.php:224
+#: public_html/lists/admin/list.php:238
 msgid "Add Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:233
+#: public_html/lists/admin/list.php:247
 msgid "No lists, use Add List to add one"
 msgstr "No hay listas, utilice Añadir Lista para agregar una"
 
@@ -8384,6 +8395,12 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
+
+#~ msgid "What to do with all users"
+#~ msgstr "Qué hacer con todos los usuarios"
+
+#~ msgid "This will process all users on this list"
+#~ msgstr "Esto afectar&aacute;  a todos los usuarios de esta lista"
 
 #~ msgid ""
 #~ "If there is only one visible list, should it be hidden in the page and "
