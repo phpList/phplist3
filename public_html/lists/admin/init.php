@@ -259,7 +259,7 @@ if (!defined('ALWAYS_ADD_USERTRACK')) define('ALWAYS_ADD_USERTRACK',1);
 if (!defined('MERGE_DUPLICATES_DELETE_DUPLICATE')) define('MERGE_DUPLICATES_DELETE_DUPLICATE',1);
 if (!defined('USE_PERSONALISED_REMOTEURLS')) define('USE_PERSONALISED_REMOTEURLS',1);
 if (!defined('USE_LOCAL_SPOOL')) define('USE_LOCAL_SPOOL',0);
-if (!defined('SEND_LISTADMIN_COPY')) define('SEND_LISTADMIN_COPY',true);
+if (!defined('SEND_LISTADMIN_COPY')) define('SEND_LISTADMIN_COPY',false);
 if (!defined('EMAIL_ADDRESS_VALIDATION_LEVEL')) define('EMAIL_ADDRESS_VALIDATION_LEVEL',3);
 if (!defined('BLACKLIST_EMAIL_ON_BOUNCE')) define('BLACKLIST_EMAIL_ON_BOUNCE',5);
 if (!defined('UNBLACKLIST_IN_PROFILE')) define('UNBLACKLIST_IN_PROFILE',false);
@@ -284,6 +284,7 @@ if (!defined('ADD_EMAIL_THROTTLE')) define('ADD_EMAIL_THROTTLE',1); ## seconds b
 if (!defined('SENDTEST_THROTTLE')) define('SENDTEST_THROTTLE',1); ## seconds between send test
 if (!defined('SENDTEST_MAX')) define('SENDTEST_MAX',999); ## max number of emails in a send test
 if (!defined('MAX_PROCESSQUEUE_TIME')) define('MAX_PROCESSQUEUE_TIME',99999);
+if (!defined('LANGUAGE_AUTO_UPDATE')) define('LANGUAGE_AUTO_UPDATE',true);
 
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
