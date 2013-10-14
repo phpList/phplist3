@@ -54,4 +54,16 @@ if ($download) {
 
 print $ls->display();
 
-?>
+print '<br /><br />';
+
+$req = Sql_Query(sprintf('select lcase(substring_index(email,"@",1)) as preat,count(email) as num from %s where confirmed group by preat order by num desc limit 25',$GLOBALS['tables']['user']));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Top 25 pre-@ of email addresses'));
+while ($row = Sql_Fetch_Array($req)) {
+  if ($row['num'] > 10) {
+    $ls->addElement($row['preat']);
+    $ls->addColumn($row['preat'],s('amount'),$row['num']);
+    $perc = sprintf('%0.2f',$row['num'] / $total * 100);
+    $ls->addColumn($row['preat'],$GLOBALS['I18N']->get('perc'),$perc);
+  }
+}
+print $ls->display();
