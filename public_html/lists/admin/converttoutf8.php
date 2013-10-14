@@ -11,6 +11,10 @@ if (!$GLOBALS['commandline']) {
   }
 }
 
+if (isset($cline['f'])) { ## force
+  unset($isUTF8);
+}
+
 ## check diskspace. this operation duplicates the space required.
 $maxsize = 0;
 $req = Sql_Query('select (data_length+index_length) tablesize 
