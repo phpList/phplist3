@@ -26,7 +26,7 @@ print '<p>'.PageLink2('bouncerules'.$hash,$GLOBALS['I18N']->get('back to list of
 $data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
   $GLOBALS['tables']['bounceregex'],$id));
 
-print '<form method=post>';
+print formStart();
 print '<table>';
 printf('<tr><td>%s</td><td><input type=text name="regex" size=30 value="%s"></td></tr>',
   $GLOBALS['I18N']->get('Regular Expression'),htmlspecialchars($data['regex']));

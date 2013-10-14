@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_GET['type']) && $_GET['type'] == 'candidate') {
   $type = 'candidate';
-  $url = '&amp;type=candidate';
+  $url = '&type=candidate';
 } else {
   $type = 'active';
 }
@@ -110,7 +110,7 @@ if ($some) {
   print '</form>';
 }
 print '<hr/>';
-print '<p class="button">'.$GLOBALS['I18N']->get('add a new rule').'</p>';
+print '<h3>'.$GLOBALS['I18N']->get('add a new rule').'</h3>';
 print '<form method=post>';
 print '<table class="bouncerulesAction">';
 printf('<tr><td>%s</td><td><input type=text name="newrule" size=30></td></tr>',$GLOBALS['I18N']->get('Regular Expression'));
