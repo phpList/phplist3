@@ -320,6 +320,8 @@ class phplist_I18N {
     $page_title = '';
     $dbTitle = $this->databaseTranslation('pagetitle:'.$page);
     if ($dbTitle) {
+      ## quite a few translators keep the pagetitle: in the translation
+      $dbTitle = str_ireplace('pagetitle:','',$dbTitle);
       $page_title = $dbTitle;
     } elseif (is_file(dirname(__FILE__).'/locale/'.$this->language.'/pagetitles.php')) {
       include dirname(__FILE__).'/locale/'.$this->language.'/pagetitles.php';
@@ -346,6 +348,7 @@ class phplist_I18N {
     $hoverText = '';
     $dbTitle = $this->databaseTranslation('pagetitlehover:'.$page);
     if ($dbTitle) {
+      $dbTitle = str_ireplace('pagetitlehover:','',$dbTitle);
       $hoverText = $dbTitle;
     } else {
       $hoverText = $this->pageTitle($page);
@@ -491,7 +494,7 @@ $lan = array(
        if (function_exists('getConfig')) {
           $lastUpdate = getConfig('lastlanguageupdate-'.$this->language);
           $thisUpdate = filemtime(dirname(__FILE__).'/locale/'.$this->language.'/phplist.po');
-          if ($thisUpdate > $lastUpdate && !empty($_SESSION['adminloggedin'])) {
+          if (LANGUAGE_AUTO_UPDATE && $thisUpdate > $lastUpdate && !empty($_SESSION['adminloggedin'])) {
             ## we can't translate this, as it'll be recursive
             $GLOBALS['pagefooter']['transupdate'] = '<script type="text/javascript">initialiseTranslation("Initialising phpList in your language, please wait.");</script>';
           }
