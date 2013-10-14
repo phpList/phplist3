@@ -187,7 +187,6 @@ $(document).ready(function() {
       this.value = "";
     }
   })
-  
   $("#remoteurlinput").blur(function() {
     if (this.value == "") {
       this.value = "e.g. http://www.phplist.com/testcampaign.html";
@@ -196,6 +195,17 @@ $(document).ready(function() {
     $("#remoteurlstatus").html(busyImage);
     $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url="+this.value);
   });
+  $("#filtertext").focus(function() {
+    if (this.value == ' --- filter --- ') {
+      this.value = "";
+    }
+  })
+  $("#filtertext").blur(function() {
+    if (this.value == "") {
+      this.value = " --- filter --- ";
+      return;
+    }
+  });  
 
   $("input:radio[name=sendmethod]").change(function() {
     if (this.value == "remoteurl") {
