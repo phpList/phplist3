@@ -681,6 +681,7 @@ printf($GLOBALS['I18N']->get('phpList will not process files larger than %dMB'),
 
 <?php
 ## we should not allow sending this, but run it through process queue instead
+## https://mantis.phplist.com/view.php?id=16898
 ?>
 <!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.')?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Send&nbsp;Notification&nbsp;email')?>&nbsp;<input type="radio" name="notify" value="yes" /></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately')?>&nbsp;<input type="radio" name="notify" value="no" checked="checked"/></td></tr>
