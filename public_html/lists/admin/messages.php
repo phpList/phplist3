@@ -6,6 +6,18 @@ $subselect = $where = '';
 $action_result = '';
 $access = accessLevel('messages');
 
+$messageSortOptions = array(
+  'default' => s('Sort by'),
+  'subjectasc' => s('Subject'). ' - '.s('Ascending'),
+  'subjectdesc' => s('Subject'). ' - '.s('Descending'),
+  'enteredasc' => s('Entered'). ' - '.s('Ascending'),
+  'entereddesc' => s('Entered'). ' - '.s('Descending'),
+  'embargoasc' => s('Embargo'). ' - '.s('Ascending'),
+  'embargodesc' => s('Embargo'). ' - '.s('Descending'),
+  'sentasc' => s('Sent'). ' - '.s('Ascending'),
+  'sentdesc' => s('Sent'). ' - '.s('Descending'),
+);  
+
 if( !$GLOBALS["require_login"] || $_SESSION["logindetails"]['superuser'] || $access == 'all'){
   $ownerselect_and = '';
   $ownerselect_where = '';
@@ -19,6 +31,32 @@ if (isset($_GET['start'])) {
   unset($start);
 }
 
+if (!isset($_SESSION['messagefilter'])) {
+  $_SESSION['messagefilter'] = '';
+}
+if (!empty($_POST['clear'])) {
+  $_SESSION['messagefilter'] = '';
+  $_SESSION['messagesortby'] = '';
+  $_SESSION['messagenumpp'] = MAX_MSG_PP;
+  unset($_POST['filter']);
+  unset($_POST['numPP']); 
+  unset($_POST['sortBy']);
+}
+if (isset($_POST['filter'])) {
+  $_SESSION['messagefilter'] = removeXSS($_POST['filter']);
+  if ($_SESSION['messagefilter'] == ' --- filter --- ') {
+    $_SESSION['messagefilter'] = '';
+  }
+}
+if (!isset($_SESSION['messagenumpp'])) {
+  $_SESSION['messagenumpp'] = MAX_MSG_PP;
+}
+if (isset($_POST['numPP'])) {
+  $_SESSION['messagenumpp'] = sprintf('%d',$_POST['numPP']);
+  if ($_SESSION['messagenumpp'] <= 0) {
+    $_SESSION['messagenumpp'] = MAX_MSG_PP;
+  }
+}
 # remember last one listed
 if (!isset($_GET["tab"]) && !empty($_SESSION["lastmessagetype"])) {
   $_GET["tab"] = $_SESSION["lastmessagetype"];
@@ -26,15 +64,14 @@ if (!isset($_GET["tab"]) && !empty($_SESSION["lastmessagetype"])) {
   $_SESSION["lastmessagetype"] = $_GET["tab"];
 }
 
-#print '<p class="x">'.PageLink2("messages&type=sent","Sent Messages").'&nbsp;&nbsp;&nbsp;';
-#print PageLink2("messages&type=draft","Draft Messages").'&nbsp;&nbsp;&nbsp;';
-#print PageLink2("messages&type=queue","Queued Messages").'&nbsp;&nbsp;&nbsp;';
-#print PageLink2("messages&type=stat","Static Messages").'&nbsp;&nbsp;&nbsp;';
-//obsolete, moved to rssmanager plugin
-#if (ENABLE_RSS) {
-#  print PageLink2("messages&type=rss","rss Messages").'&nbsp;&nbsp;&nbsp;';
-#}
-#print '</p>';
+if (!isset($_SESSION['messagesortby'])) {
+  $_SESSION['messagesortby'] = '';
+}
+if (isset($_POST['sortBy'])) {
+  if (in_array($_POST['sortBy'],array_keys($messageSortOptions))) {
+    $_SESSION['messagesortby'] = $_POST['sortBy'];
+  }
+}
 
 print '<div class="actions"><div class="fright">';
 print PageLinkActionButton('send&amp;new=1',$GLOBALS['I18N']->get('Start a new campaign'));
@@ -61,6 +98,35 @@ if (!empty($_GET['tab'])) {
 }
 
 print $tabs->display();
+
+$filterDisplay = $_SESSION['messagefilter'];
+if ($filterDisplay == '') {
+  $filterDisplay = ' --- filter --- ';
+}
+print '<div id="messagefilter" class="filterdiv fright">';
+print formStart(' id="messagefilterform" ');
+print '<div><input type="text" name="filter" value="'.htmlspecialchars($filterDisplay).'" id="filtertext" />';
+
+print '<select name="numPP" class="numppOptions">';
+foreach (array(5,10,15,20,50,100) as $numppOption) {
+  if ($numppOption == $_SESSION['messagenumpp']) {
+    print '<option selected="selected">'. $numppOption. '</option>';
+  } else {
+    print '<option>'. $numppOption. '</option>';
+  }
+}
+print '</select>';
+print '<select name="sortBy" class="sortby">';
+foreach ($messageSortOptions as $sortOption => $sortOptionLabel) {
+  if ($sortOption == $_SESSION['messagesortby']) {
+    print '<option selected="selected" value="'.$sortOption.'">'. $sortOptionLabel. '</option>';
+  } else {
+    print '<option value="'.$sortOption.'">'. $sortOptionLabel. '</option>';
+  }
+}
+print '</select>';
+print '<button type="submit" name="go" id="filterbutton" >'.s('Go').'</button> <button type="submit" name="clear" id="filterclearbutton" value="1">'.s('Clear').'</button></div>';
+print '</form></div>';
 
 ### Process 'Action' requests
 if (!empty($_GET["delete"])) {
@@ -201,18 +267,36 @@ switch ($_GET["tab"]) {
     break;
 }
 
+if (!empty($_SESSION['messagefilter'])) {
+  $cond[] = ' subject like "%'.sql_escape($_SESSION['messagefilter']).'%" ';
+}
+
 ### Query messages from db
 if ($GLOBALS['require_login'] && !$_SESSION['logindetails']['superuser'] || $access != 'all') {
   $cond[] = ' owner = ' . $_SESSION['logindetails']['id'];
 }
 $where = ' where ' . join(' and ', $cond);
 
-$req = Sql_query('select count(*) from ' . $tables['message']. $where);
+$sortBySql = 'order by entered desc';
+switch ($_SESSION['messagesortby']) {
+  case 'sentasc': $sortBySql = 'order by sent asc'; break;
+  case 'sentdesc': $sortBySql = 'order by sent desc'; break;
+  case 'subjectasc': $sortBySql = 'order by subject asc'; break;
+  case 'subjectdesc': $sortBySql = 'order by subject desc'; break;
+  case 'enteredasc': $sortBySql = 'order by entered asc'; break;
+  case 'entereddesc': $sortBySql = 'order by entered desc'; break;
+  case 'embargoasc': $sortBySql = 'order by embargo asc'; break;
+  case 'embargodesc': $sortBySql = 'order by embargo desc'; break;
+  default: 
+    $sortBySql = 'order by embargo desc, entered desc';
+}
+
+$req = Sql_query('select count(*) from ' . $tables['message']. $where .' '.$sortBySql);
 $total_req = Sql_Fetch_Row($req);
 $total = $total_req[0];
 
 ## Browse buttons table
-$limit = MAX_MSG_PP;
+$limit = $_SESSION['messagenumpp'];
 $offset = 0;
 if (isset($start) && $start > 0) {
   $offset = $start;
@@ -221,16 +305,16 @@ if (isset($start) && $start > 0) {
 }
 
 $paging = '';
-if ($total > MAX_MSG_PP) {
-  $paging = simplePaging("messages$url_keep",$start,$total,MAX_MSG_PP,$GLOBALS['I18N']->get("Campaigns"));
+if ($total > $_SESSION['messagenumpp']) {
+  $paging = simplePaging("messages$url_keep",$start,$total,$_SESSION['messagenumpp'],$GLOBALS['I18N']->get("Campaigns"));
 }
   
-$ls = new WebblerListing($I18N->get('messages'));
+$ls = new WebblerListing(s('Campaigns'));
 $ls->usePanel($paging);
 
 ## messages table
 if ($total) {
-  $result = Sql_query("SELECT * FROM ".$tables["message"]." $where order by status,entered desc limit $limit offset $offset");
+  $result = Sql_query("SELECT * FROM ".$tables["message"]." $where $sortBySql limit $limit offset $offset");
   while ($msg = Sql_fetch_array($result)) {
     $editlink = '';
     $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($msg["subject"]);
@@ -386,9 +470,5 @@ if ($total > 5 && $_GET['tab'] == 'active') {
   print PageLinkButton("messages",$GLOBALS['I18N']->get("Suspend All"),"action=suspall");
   print PageLinkButton("messages",$GLOBALS['I18N']->get("Mark All Sent"),"action=markallsent");
 }
-
-
-?>
-
 
 
