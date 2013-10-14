@@ -104,6 +104,8 @@ while (list($table, $val) = each($DBstruct)) {
 
         ## let's add them as a subscriber as well
         $userid = addNewUser($adminemail,$adminpass);
+        Sql_Query(sprintf('update %s set confirmed = 1 where id = %d',$tables['user'],$userid));
+        
         /* to send the token at the end, doesn't work yet
         $adminid = Sql_Insert_Id();
         */
@@ -120,6 +122,10 @@ while (list($table, $val) = each($DBstruct)) {
     else
       echo "... ".s("failed")."<br />\n";
   }
+}
+#https://mantis.phplist.com/view.php?id=16879 make sure the new settings are saved
+if ($success) {
+  $_SESSION['hasconf'] = true;
 }
 
 ## initialise plugins that are already here
