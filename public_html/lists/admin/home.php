@@ -2,10 +2,11 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 ob_end_flush();
 $upgrade_required = 0;
+$canUpgrade = checkAccess("upgrade");
 
 if (Sql_Table_exists($tables["config"],1)) {
   $dbversion = getConfig("version");
-  if ($dbversion != VERSION && !defined("IN_WEBBLER")&& !defined("WEBBLER")) {
+  if ($dbversion != VERSION && $canUpgrade) {
     Error($GLOBALS['I18N']->get('Your database is out of date, please make sure to upgrade').'<br/>'.
      $GLOBALS['I18N']->get('Your version').' : '.$dbversion.'<br/>'.
      $GLOBALS['I18N']->get('phplist version').' : '.VERSION.
@@ -23,9 +24,6 @@ if (Sql_Table_exists($tables["config"],1)) {
   return;
 }
 
-// if (WARN_ABOUT_PHP_SETTINGS && (version_compare('4.3.11',PHP_VERSION)>0 || version_compare('5.0.4',PHP_VERSION)>0))
-//   Warn($GLOBALS['I18N']->get('globalvulnwarning'));
-
 ## trigger this somewhere else?
 refreshTlds();
 
@@ -36,8 +34,12 @@ if (!isset($checkinterval)) {
 }
 
 $showUpdateAvail = !empty($_GET['showupdate']); ## just to check the design
+$thisversion = VERSION;
+$thisversion = preg_replace("/[^\.\d]/","",$thisversion);
+$latestversion = getConfig('updateavailable');
+$showUpdateAvail = $showUpdateAvail || (!empty($latestversion) && !versionCompare($thisversion,$latestversion));
 
-if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
+if (!$showUpdateAvail && $checkinterval) {
   $query
   = ' select date_add(value, interval %d day) < current_timestamp as needscheck'
   . ' from %s'
@@ -46,28 +48,18 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   $query = sprintf( $query, $checkinterval, $tables["config"] );
   $req = Sql_Query_Params($query, array('updatelastcheck'));
   $needscheck = Sql_Fetch_Row($req);
-  if ($showUpdateAvail || $needscheck[0]) {
+  if ($needscheck[0] != "0") {
     @ini_set("user_agent",NAME." (phplist version ".VERSION.")");
     @ini_set("default_socket_timeout",5);
     if ($fp = @fopen ("http://www.phplist.com/files/LATESTVERSION","r")) {
       $latestversion = fgets ($fp);
       $latestversion = preg_replace("/[^\.\d]/","",$latestversion);
       @fclose($fp);
-      $thisversion = VERSION;
-      $thisversion = preg_replace("/[^\.\d]/","",$thisversion);
-      if ($showUpdateAvail || !versionCompare($thisversion,$latestversion)) {
-        ## remember this, so we can remind about the update, without the need to check the phplist site (@@TODO, implement that....)
-        $values = array('item'=>"updateavailable", 'value'=>$latestversion, 'editable'=>'0');
+      if (!versionCompare($thisversion,$latestversion)) {
+        ## remember this, so we can remind about the update, without the need to check the phplist site
+        $values = array('item'=>"updateavailable", 'value'=> $latestversion, 'editable'=>'0');
         Sql_Replace($tables['config'], $values, 'item', false);
-
-        print '<div class="newversion note">';
-        print $GLOBALS['I18N']->get('A new version of phpList is available!');
-        print '<br/>';
-        print '<br/>'.$GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
-        print '<br/>'.$GLOBALS['I18N']->get('Your version').': <b>'.$thisversion.'</b>';
-        print '<br/>'.$GLOBALS['I18N']->get('Latest version').': <b>'.$latestversion.'</b><br/>  ';
-        print '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
-        print '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
+        $showUpdateAvail = true;
       }
     }
     $values = array('item'=>"updatelastcheck", 'value'=>'current_timestamp', 'editable'=>'0');
@@ -75,10 +67,16 @@ if ($checkinterval && !defined('IN_WEBBLER') && !defined('WEBBLER')) {
   }
 }
 
-?>
-
-<?php
-#$ls = new WebblerListing("System Functions");
+if ($showUpdateAvail) {
+  print '<div class="newversion note">';
+  print $GLOBALS['I18N']->get('A new version of phpList is available!');
+  print '<br/>';
+  print '<br/>'.$GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
+  print '<br/>'.$GLOBALS['I18N']->get('Your version').': <b>'.$thisversion.'</b>';
+  print '<br/>'.$GLOBALS['I18N']->get('Latest version').': <b>'.$latestversion.'</b><br/>  ';
+  print '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
+  print '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version'). '" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
+}
 
 print '<div class="accordion">';
 
