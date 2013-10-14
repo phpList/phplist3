@@ -586,15 +586,12 @@ class PHPlistMailer extends PHPMailer {
 
     function MailSend($header, $body) {
       $this->mailsize = strlen($header.$body);
-      if (empty($GLOBALS['developer_email'])) {
-        $header .= "To: ".$this->destinationemail.$this->LE;
-      } else {
-        $header .= 'X-Originally-To: '.$this->destinationemail.$this->LE;
-        $header .= 'To: '.$GLOBALS['developer_email']. $this->LE;
-      }
 
-      ## use Amazon, if set up
+      ## use Amazon, if set up, @@TODO redo with latest PHPMailer
+      ## https://github.com/PHPMailer/PHPMailer/commit/57b183bf6a203cb69231bc3a235a00905feff75b
+      
       if (USE_AMAZONSES) {
+        $header .= "To: ".$this->destinationemail.$this->LE;
         return $this->AmazonSESSend($header,$body);
       }
 
