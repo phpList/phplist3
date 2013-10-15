@@ -41,8 +41,9 @@ while ($lancode = readdir($d)) {
       }
     }
     if (!isset($lan['gettext'])) $lan['gettext'] = $lancode;
+    if (!isset($lan['dir'])) $lan['dir'] = 'ltr';
     if (!empty($lan['name']) && !empty($lan['charset'])) {
-      $LANGUAGES[$lancode] = array($lan['name'],$lan['charset'],$lan['charset'],$lan['gettext']);
+      $LANGUAGES[$lancode] = array($lan['name'],$lan['charset'],$lan['charset'],$lan['gettext'],$lan['dir']);
     }
     
 #    print '<br/>'.$landir.'/'.$lancode;
@@ -75,6 +76,7 @@ if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($L
     "info" => $setlanguage,
     "iso" => $setlanguage,
     "charset" => $LANGUAGES[$setlanguage][1],
+    "dir" => $LANGUAGES[$setlanguage][4],
   );
 #  var_dump($_SESSION['adminlanguage'] );
 }
@@ -151,7 +153,7 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
     "info" => $detectlan,
     "iso" => $detectlan,
     "charset" => $LANGUAGES[$detectlan][1],
-  );
+    "dir" => $LANGUAGES[$setlanguage][4],  );
 }
 
 ## this interferes with the frontend if an admin is logged in. 
@@ -168,6 +170,7 @@ class phplist_I18N {
   public $defaultlanguage = 'en';
   public $language = 'en';
   public $basedir = '';
+  public $dir = 'ltr';
   private $hasGettext = false;
   private $hasDB = false;
   private $lan = array();
@@ -179,6 +182,7 @@ class phplist_I18N {
     
     if (isset($_SESSION['adminlanguage']) && isset($GLOBALS['LANGUAGES'][$_SESSION['adminlanguage']['iso']])) {
       $this->language = $_SESSION['adminlanguage']['iso'];
+      $this->dir = $_SESSION['adminlanguage']['dir'];
     } else {
       unset($_SESSION['adminlanguage']);
       $this->language = $GLOBALS['default_system_language'];
