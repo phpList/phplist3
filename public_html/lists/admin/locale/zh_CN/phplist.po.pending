@@ -1,0 +1,260 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-28 03:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/index.php:926
+msgid ""
+"_: suggested by admin [-8485240321749499912]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr "測試 phpList轉發功能時，你必須以管理員身份登錄。"
+
+#: public_html/lists/index.php:927
+msgid ""
+"_: suggested by Zach [2485557640305536718]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr "在测试phpList转发功能时，您需要先以管理员权限帐号登陆。"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by Zach [6237893605413419526]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "没有指定文件。或者文件太大？"
+
+#: public_html/lists/admin/import1.php:353
+msgid ""
+"_: suggested by Zach [4193382192442454025]\n"
+"The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute \"Info\" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document."
+msgstr ""
+"在你上传的文件当中，需要包含你想加入这些列表的email地址。email地址后面的所有信息会被添加为属性，作为订阅者的“信息”属性。你可以标注下面这些订"
+"阅者的其他属性。警告：必须使用纯文本文件。不要上传类似Word文档的二进制文件。"
+
+#: public_html/lists/admin/import1.php:355
+msgid ""
+"_: suggested by Zach [-7267661334469587041]\n"
+"If you check \"Test Output\", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records."
+msgstr ""
+"如果你勾选“测试输出”，你将在屏幕上获得解析出来的邮件清单，同时数据库不会被填入这些信息。这是检查你的文件格式是否正确的一种有效办法。它只显示开始的50"
+"条记录。"
+
+#: public_html/lists/admin/import1.php:357
+msgid ""
+"_: suggested by Zach [8202431747320417795]\n"
+"If you choose \"send notification email\" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
+msgstr ""
+"如果您选择 \"发送email通知\" ，您添加的订阅者会收到一封email，通过回复确认进行订阅。推荐使用这个方法，它能够识别无效的email邮箱。"
+
+#: public_html/lists/admin/import1.php:359
+msgid ""
+"_: suggested by Zach [1614830417206515744]\n"
+"If you are going to send notification to users, you may want to add a little delay between messages"
+msgstr "当您计划给用户发送邮件通知时，您可能希望在发送信息过程中加一些间隔时间。"
+
+#: public_html/lists/admin/import1.php:360
+msgid ""
+"_: suggested by Zach [4948816467226924984]\n"
+"Notification throttle"
+msgstr "通知信息调速阀"
+
+#: public_html/lists/admin/import1.php:360
+msgid ""
+"_: suggested by Zach [8731937487142366185]\n"
+"(default is nothing, will send as fast as it can)"
+msgstr "(默认为空，将尽快发送)"
+
+#: public_html/lists/admin/purgerss.php:29
+msgid ""
+"_: suggested by Zach [-7927302818315802981]\n"
+"All entries that are older than the number of days you enter will be purged."
+msgstr "所有在你输入天数之前的旧资料将被清除掉。"
+
+#: public_html/lists/admin/adminattributes.php:86
+#: public_html/lists/admin/adminattributes.php:104
+msgid ""
+"_: suggested by Zach [5657052334740857364]\n"
+"Is this attribute required?:"
+msgstr "是否需要这个属性？"
+
+#: public_html/lists/admin/send_core.php:137
+msgid ""
+"_: suggested by Zach [-8711210434460762992]\n"
+"Access Denied"
+msgstr "拒绝访问"
+
+#: public_html/lists/admin/send_core.php:144
+#: public_html/lists/admin/send_core.php:1113
+#: public_html/lists/admin/send_core.php:1118
+msgid ""
+"_: suggested by Zach [4754209074426705942]\n"
+"Send Campaign"
+msgstr "发送广告活动"
+
+#: public_html/lists/admin/send_core.php:172
+msgid ""
+"_: suggested by Zach [-2652565196820378865]\n"
+"You should not paste the results of a test email back into the editor"
+msgstr "您不可以将测试邮件的结果粘贴回编辑器"
+
+#: public_html/lists/admin/send_core.php:172
+msgid ""
+"_: suggested by Zach [-4546368499084974073]\n"
+"This will break the click track statistics."
+msgstr "这会中止点击轨迹统计"
+
+#: public_html/lists/admin/subscriberstats.php:6
+msgid ""
+"_: suggested by nobody [4157336952580410750]\n"
+"Statistics"
+msgstr "统计"
+
+#: public_html/lists/index.php:947
+msgid ""
+"_: suggested by nobody [-1654916841]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"fmcnKP  <a href=\"http://izrlxhhgmdua.com/\">izrlxhhgmdua</a>, "
+"[url=http://pqcqcklwwwhz.com/]pqcqcklwwwhz[/url], "
+"[link=http://clqfkyhjapip.com/]clqfkyhjapip[/link], http://vxecyudfgbvs.com/"
+
+#: public_html/lists/admin/upgrade.php:38
+msgid ""
+"_: suggested by nobody [1335111638]\n"
+"Your database version"
+msgstr "你的数据库版本"
+
+#: public_html/lists/admin/upgrade.php:40
+msgid ""
+"_: suggested by nobody [1575652765]\n"
+"Your database is already the correct version, there is no need to upgrade"
+msgstr "你的数据库已经是正确的版本，不需要升级"
+
+#: public_html/lists/admin/upgrade.php:424
+msgid ""
+"_: suggested by nobody [1134070793]\n"
+"Upgrading the database to use UTF-8, please wait"
+msgstr "正在升级数据库到UTF-8格式，请稍等"
+
+#: public_html/lists/admin/upgrade.php:427
+msgid ""
+"_: suggested by nobody [1315534687]\n"
+"Upgrading table "
+msgstr "升级数据表中"
+
+#: public_html/lists/admin/upgrade.php:433
+msgid ""
+"_: suggested by nobody [-2116043259]\n"
+"Upgrading column "
+msgstr "升级数据库栏目中"
+
+#: public_html/lists/admin/upgrade.php:437
+msgid ""
+"_: suggested by nobody [-804606030]\n"
+"upgrade to UTF-8, done"
+msgstr "成功升级到UTF-8格式"
+
+#: public_html/lists/admin/upgrade.php:464
+msgid ""
+"_: suggested by nobody [1890588809]\n"
+"Upgrade successful"
+msgstr "升级成功"
+
+#: public_html/lists/admin/upgrade.php:437
+msgid ""
+"_: suggested by nobody [-1890822902]\n"
+"upgrade to UTF-8, done"
+msgstr "升级到UTF-8格式，完成"
+
+#: public_html/lists/admin/upgrade.php:470
+msgid ""
+"_: suggested by nobody [-465304940]\n"
+"Upgrade failed"
+msgstr "升级失败"
+
+#: public_html/lists/admin/login.php:5
+msgid ""
+"_: suggested by nobody [1795123325]\n"
+"default login is"
+msgstr "默认登录用户是"
+
+#: public_html/lists/admin/login.php:25
+msgid ""
+"_: suggested by nobody [928972550]\n"
+"In order to login, you need to enable cookies in your browser"
+msgstr "您需要启用浏览器的 cookies 功能才能登录"
+
+#: public_html/lists/admin/login.php:34
+msgid ""
+"_: suggested by nobody [-2045757509]\n"
+"Enter your email address"
+msgstr "输入您的邮箱地址"
+
+#: public_html/lists/admin/login.php:67
+msgid ""
+"_: suggested by nobody [770389970]\n"
+"Your password was changed succesfully"
+msgstr "您的密码已经成功更改"
+
+#: public_html/lists/admin/login.php:68
+#: public_html/lists/admin/login.php:96
+#: public_html/lists/admin/login.php:104
+#: public_html/lists/admin/login.php:116
+msgid ""
+"_: suggested by nobody [585304602]\n"
+"Continue"
+msgstr "继续"
+
+#: public_html/lists/admin/login.php:73
+msgid ""
+"_: suggested by nobody [-1304388191]\n"
+"The passwords you entered are not the same."
+msgstr "您输入的密码不一致"
+
+#: public_html/lists/admin/login.php:85
+msgid ""
+"_: suggested by nobody [-258418076]\n"
+"You have requested a password update"
+msgstr "您请求修改密码"
+
+#: public_html/lists/admin/login.php:92
+msgid ""
+"_: suggested by nobody [297809408]\n"
+"New password"
+msgstr "新密码"
+
+#: public_html/lists/admin/login.php:94
+msgid ""
+"_: suggested by nobody [-1583841247]\n"
+"Confirm password"
+msgstr "确认密码"
+
+#: public_html/lists/admin/login.php:101
+msgid ""
+"_: suggested by nobody [82079943]\n"
+"Unknown token or time expired (More than 24 hrs. passed since the notification email was sent)"
+msgstr "未知链接或是链接已过期。（自邮件发送时间起已经超过了24小时）"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:276
+msgid ""
+"_: suggested by nobody [1052607781]\n"
+"Return to database manager"
+msgstr "回到数据库管理界面"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:192
+msgid ""
+"_: suggested by nobody [-295661983]\n"
+"History of "
+msgstr "历史记录"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:192
+msgid ""
+"_: suggested by nobody [-701006969]\n"
+"messages deleted"
+msgstr "信息已删除"

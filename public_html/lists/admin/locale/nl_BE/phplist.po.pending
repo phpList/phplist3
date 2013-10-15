@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-24 11:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/index.php:927
+msgid ""
+"_: suggested by evenepoel [279134001620995891]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"Om de doorstuurfunctionaliteit van phpList te testen, moet u aangemeld zijn "
+"als een beheerder"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by evenepoel [-239735086019173318]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "Er werd geen bestand gespecifieerd, misschien is het bestand te groot?"
+
+#: public_html/lists/admin/import1.php:353
+msgid ""
+"_: suggested by evenepoel [-4304398474798025842]\n"
+"The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute \"Info\" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document."
+msgstr ""
+"Het bestand dat u oplaadt moet de emailadressen bevatten die u wil toevoegen "
+"aan deze lijsten. Alles na het emailadres zal toegevoegd worden als "
+"attribuur \"Info\" van de inschrijver. U kan de rest van de attributen van "
+"deze inschrijvers hieronder specifieren. Opgelet: het bestand moet platte "
+"tekst zijn, u mag geen binary bestanden zoals Worddocumenten opladen. "

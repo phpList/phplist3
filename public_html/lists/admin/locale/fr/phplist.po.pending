@@ -1,0 +1,1487 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-24 17:05+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/admin/send_core.php:691
+msgid ""
+"_: suggested by nobody [-3380779541349225633]\n"
+"fortnight"
+msgstr "Quinzaine"
+
+#: public_html/lists/admin/send_core.php:695
+msgid ""
+"_: suggested by nobody [-816709951623751379]\n"
+"four weeks"
+msgstr "mensuel (4 semaines)"
+
+#: public_html/lists/admin/editattributes.php:40
+msgid ""
+"_: suggested by nobody [2696000740766762065]\n"
+"Are you sure you want to delete all records?"
+msgstr "Êtes vous sûr de vouloir supprimer tous les enregistrements ?"
+
+#: public_html/lists/admin/processqueue.php:179
+msgid ""
+"_: suggested by nobody [4454954578405298466]\n"
+"emails failed (will retry later)"
+msgstr "courriels échoués (réessayer plus tard)"
+
+#: public_html/lists/admin/processqueue.php:462
+#, php-format, 
+msgid ""
+"_: suggested by nobody [-3074324345615975065]\n"
+"sending of this campaign will finish in %s"
+msgstr "l'envoi de ce message sera terminé dans %s"
+
+#: public_html/lists/admin/processqueue.php:476
+msgid ""
+"_: suggested by nobody [-6929845979708849615]\n"
+"Campaign started"
+msgstr "Message ajouté"
+
+#: public_html/lists/admin/processqueue.php:732
+msgid ""
+"_: suggested by nobody [-2237684565358723870]\n"
+"Campaign sending timed out, is past date to process until"
+msgstr "Délais dépassé pour l'envoi du message, traitement reporté jusque "
+
+#: public_html/lists/admin/uclicks.php:51
+msgid ""
+"_: suggested by Lenine [-7669159538866695582]\n"
+"last clicked"
+msgstr "dernier clique"
+
+#: public_html/lists/admin/processqueue.php:341
+msgid ""
+"_: suggested by Lenine [-7049667047366121365]\n"
+"Time now "
+msgstr "Heure actuelle "
+
+#: public_html/lists/admin/processqueue.php:462
+#, php-format, 
+msgid ""
+"_: suggested by Lenine [4599106853422865213]\n"
+"sending of this campaign will finish in %s"
+msgstr "L'envoi de cette campagne sera terminé dans %s"
+
+#: public_html/lists/admin/processqueue.php:476
+msgid ""
+"_: suggested by Lenine [2665489457376243473]\n"
+"Campaign started"
+msgstr "Campagne démarée"
+
+#: public_html/lists/admin/processqueue.php:476
+msgid ""
+"_: suggested by Lenine [-1724691194250127888]\n"
+"Campaign started"
+msgstr "Campagne démarrée"
+
+#: public_html/lists/admin/processqueue.php:478
+#, php-format
+#, php-format, 
+msgid ""
+"_: suggested by Lenine [1428376223252039933]\n"
+"to view the progress of this campaign, go to http://%s"
+msgstr ""
+"Pour afficher la progression de cette campagne d'envoi, aller à http://%s"
+
+#: public_html/lists/admin/processqueue.php:672
+msgid ""
+"_: suggested by Lenine [-4954185749042949314]\n"
+"Warning, finding the subscribers to send out to takes a long time, consider changing to commandline sending"
+msgstr ""
+"Attention, trouver les abonnés peut prendre un certain temps, l’exécution de "
+"l'envoi en ligne de commande est recommandé."
+
+#: public_html/lists/admin/processqueue.php:732
+msgid ""
+"_: suggested by Lenine [8849882648216667568]\n"
+"Campaign sending timed out, is past date to process until"
+msgstr ""
+"Délais dépassé pour l'envoi de la campagne, traitement reporté jusqu'à  "
+
+#: public_html/lists/admin/processqueue.php:1053
+msgid ""
+"_: suggested by Lenine [-6882715357387119944]\n"
+"Message Campaign finished"
+msgstr "Campagne terminée"
+
+#: public_html/lists/admin/messages.php:70
+msgid ""
+"_: suggested by Lenine [-2374759180086030318]\n"
+"Start a new campaign"
+msgstr "Commencer une nouvelle campagne"
+
+#: public_html/lists/admin/messages.php:165
+msgid ""
+"_: suggested by Lenine [2872678891558630415]\n"
+"Suspending all"
+msgstr "Suspendre tout"
+
+#: public_html/lists/admin/messages.php:394
+msgid ""
+"_: suggested by Lenine [2872678891558630415]\n"
+"Suspend All"
+msgstr "Suspendre tout"
+
+#: public_html/lists/admin/tests/sendpage.php:14
+msgid ""
+"_: suggested by Lenine [-6912621715989319108]\n"
+"Test email not set "
+msgstr "Adresse de test non définie"
+
+# Vérifier situation
+#: public_html/lists/admin/commonlib/pages/user.php:56
+msgid ""
+"_: suggested by Lenine [5434343842356876199]\n"
+"Error adding empty password, please check that the password is complete"
+msgstr "Mot de passe vide. Vérifiez que vous avez remplis ce champ."
+
+# Vérifier si avantar ou autre
+#: public_html/lists/admin/commonlib/pages/user.php:125
+msgid ""
+"_: suggested by Lenine [7503191340675029735]\n"
+"Uploaded avatar file too big"
+msgstr "La taille de l'avatar envoyé est trop grand"
+
+# Pas beau, pas clair
+#: public_html/lists/admin/commonlib/pages/users.php:349
+msgid ""
+"_: suggested by Lenine [-1043975275972580372]\n"
+"too many subscribers, use a search query to list some"
+msgstr ""
+"Trop d'abonnés, limiter le résultat avec un critère de recherche plus fin"
+
+#: public_html/lists/admin/commonlib/pages/users.php:387
+msgid ""
+"_: suggested by Lenine [8893756373467563181]\n"
+"Find subscribers"
+msgstr "Rechercher des abonnés"
+
+# Bof
+#: public_html/lists/admin/commonlib/pages/attributes.php:286
+msgid ""
+"_: suggested by Lenine [-4834261494569659093]\n"
+"Sorry, merging of checkbox groups is not implemented yet"
+msgstr ""
+"Désolé, la fusion des groupes de cases à cocher n'est pas encore disponible"
+
+#: public_html/lists/admin/commonlib/pages/attributes.php:323
+msgid ""
+"_: suggested by Lenine [-7480149152772525054]\n"
+"Existing attributes"
+msgstr "Attributs existants"
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:41
+#, php-format
+#, php-format, 
+msgid ""
+"_: suggested by Lenine [8304197736677571314]\n"
+"The temporary directory for uploading (%s) is not writable, so import will fail"
+msgstr ""
+"Le dossier temporaire pour l'envoi des fichiers n'est pas accessible en "
+"&eacute;criture. Il est impossible d'importer."
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:1023
+msgid ""
+"_: suggested by Lenine [1253345199667715017]\n"
+"If you check \"Omit Invalid\", invalid records will not be added. Invalid records are records without an email. Any other attributes will be added automatically, ie if the country of a record is not found, it will be added to the list of countries."
+msgstr ""
+"Si vous cocher \"Omettre non valides\", les enregistrements sans courriel (non "
+"valide) ne seront pas ajoutés. Tous les autres attributs seront "
+"automatiquement ajoutés. Par exemple si un pays n'est pas trouvé, il sera "
+"ajouté à la liste des pays."
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:1025
+msgid ""
+"_: suggested by Lenine [681073637492492740]\n"
+"Assign Invalid will be used to create an email for subscribers with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column \"First Name\" and one called \"Last Name\", you can use \"[first name] [last name]\" to construct a new value for the email for this subscriber containing their first name and last name. The value [number] can be used to insert the sequence number for importing."
+msgstr ""
+"Assigner non valides permet d'attribuer une adresse email aux abonnés n'en "
+"n'ayant pas. Vous pouvez indiquer des champs entre [ et ] pour la "
+"construction de l'adresse. Par exemple, si le fichier à importer contiens "
+"les colonnes \"nom\" et \"prenom\", vous pouvez utiliser \"[prenom][nom]\" pour "
+"construire une adresse contenant le nom et le prénom. Le champ [number] "
+"permet d’insérer le numéro d'enregistrement."
+
+#: public_html/lists/admin/commonlib/lib/interfacelib.php:212
+#, php-format
+msgid ""
+"_: suggested by Lenine [8206311996005804733]\n"
+"sort by %s"
+msgstr "Trier par %s"
+
+#: public_html/lists/admin/commonlib/lib/interfacelib.php:1033
+msgid ""
+"_: suggested by Lenine [7019264302777387977]\n"
+"Close this box"
+msgstr "Fermer cette boite"
+
+#: public_html/lists/admin/plugins2/rssmanager.php:175
+msgid ""
+"_: suggested by Lenine [-6754542484629494249]\n"
+"No RSS"
+msgstr "Pas de RSS"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:266
+msgid ""
+"_: suggested by Lenine [4695992434285486310]\n"
+"Your campaign does not contain an unsubscribe link. Please add [UNSUBSCRIBE] or [UNSUBSCRIBEURL] to the footer or content of the campaign"
+msgstr ""
+"Votre campagne ne contient pas de lien de désinscription. Merci d'ajouter "
+"les balises  [UNSUBSCRIBE] ou [UNSUBSCRIBEURL] dans le corps ou le pied de "
+"page de votre campagne."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:284
+#, php-format
+msgid ""
+"_: suggested by Lenine [7593102807647696473]\n"
+"The \"From email address\" for this campaign has already been validated. %scontinue%s"
+msgstr ""
+"L'adresse émail de l'expéditeur de cette campagne a déjà été vérifiée. %"
+"sContinuer%s"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:292
+#, php-format
+msgid ""
+"_: suggested by Lenine [4234748598662532125]\n"
+"Unrecognised code, please %stry again%s. Did you check your INBOX? When copying the code from the verification message you receive, make sure not to include spaces. Also, if you requested the code to be resent, only the last one will be valid."
+msgstr ""
+"Code non reconnu, merci de %sréessayer%s. Avez vous vérifier votre boîte aux "
+"lettre ? Veillez à ne pas inclure d'espace quand vous copiez le code de "
+"validation depuis le message de vérification. D'autre part, si vous avez "
+"demandé le renvoi du code, c'est le dernier qui sera uniquement pris en "
+"compte."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:301
+msgid ""
+"_: suggested by Lenine [-7852130829257964943]\n"
+"Verification message has been resent. Please note, only the last code sent will be valid."
+msgstr ""
+"Message de vérification réexpédié. Attention, seul le dernier code envoyé "
+"est valable."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:358
+msgid ""
+"_: suggested by Lenine [-8589976105787554709]\n"
+"Address verification required"
+msgstr "Vérification d'adresse requise"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:359
+msgid ""
+"_: suggested by Lenine [2167251139559640032]\n"
+"\n"
+"      This is the fist time you use the email address ("
+msgstr ""
+"\n"
+"      C'est la première fois que vous utilisez cette adresse ("
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:373
+msgid ""
+"_: suggested by Lenine [-6275042879461862628]\n"
+"If you did not receive the verification message, you can"
+msgstr "Si vous n'avez pas reçu le message de vérification, vous pouvez"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:373
+msgid ""
+"_: suggested by Lenine [-3787618057146153341]\n"
+"resend verification email"
+msgstr "Renvoyer l’émail de vérification"
+
+#: public_html/lists/admin/plugins2/segmentation.php:28
+msgid ""
+"_: suggested by Lenine [-5199969358340895168]\n"
+"calculating"
+msgstr "Calcul en cours"
+
+#: public_html/lists/admin/plugins2/segmentation.php:33
+#, php-format
+#, php-format, 
+msgid ""
+"_: suggested by Lenine [-8345159610647845514]\n"
+"%d users apply"
+msgstr "%d utilisateurs correspondant"
+
+#: public_html/lists/admin/plugins2/segmentation.php:42
+#: public_html/lists/admin/plugins2/segmentation.php:47
+msgid ""
+"_: suggested by Lenine [7393136894483413489]\n"
+"calculate"
+msgstr "Calculer"
+
+#: public_html/lists/admin/plugins2/segmentation.php:44
+msgid ""
+"_: suggested by Lenine [-5289974673171785890]\n"
+"reload"
+msgstr "Recharger"
+
+#: public_html/lists/admin/plugins2/segmentation.php:48
+msgid ""
+"_: suggested by Lenine [-4547947657094523757]\n"
+"refresh"
+msgstr "Rafraichir"
+
+#: public_html/lists/admin/plugins2/keymanager.php:375
+msgid ""
+"_: suggested by Lenine [4819167909675694681]\n"
+"Do not send it"
+msgstr "Ne pas envoyer"
+
+#: public_html/lists/admin/plugins2/keymgr/main.php:17
+#: public_html/lists/admin/plugins2/keymgr/main.php:19
+msgid ""
+"_: suggested by Lenine [1654727638919055461]\n"
+"Keys"
+msgstr "Clés"
+
+#: public_html/lists/admin/plugins2/keymgr/main.php:37
+msgid ""
+"_: suggested by Lenine [-7076700858710368577]\n"
+"Expired"
+msgstr "Expiré"
+
+#: public_html/lists/admin/plugins2/keymgr/initialise.php:5
+msgid ""
+"_: suggested by Lenine [-3819800211569637397]\n"
+"Error initialising key manager"
+msgstr "Erreur d'initialisation du gestionnaire de clés"
+
+#: public_html/lists/admin/plugins2/keymgr/initialise.php:9
+msgid ""
+"_: suggested by Lenine [7796017241023367108]\n"
+"Initialising Key Manager"
+msgstr "Initialisation du gestionnaire de clés"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:13
+msgid ""
+"_: suggested by Lenine [8165235182849209704]\n"
+"Key fingerprint"
+msgstr "Empreinte de clé"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:15
+msgid ""
+"_: suggested by Lenine [-219310315196355799]\n"
+"key successfully imported"
+msgstr "Clé importée avec succès"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:18
+msgid ""
+"_: suggested by Lenine [-8659155066992934415]\n"
+"secret key successfully imported"
+msgstr "Clé secrète importée avec succès"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:24
+msgid ""
+"_: suggested by Lenine [-2574257671057525452]\n"
+"Error adding key"
+msgstr "Erreur lors de l'ajout de clé"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:29
+msgid ""
+"_: suggested by Lenine [-8400257891148690421]\n"
+"If you want to add a key for signing, you can paste both Public and Private keys in the box in one go"
+msgstr ""
+"Si vous souhaitez ajouter une clé pour la signature, vous pouvez coller à la "
+"fois la clé publique et la clé privée dans la zone de texte."
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:32
+msgid ""
+"_: suggested by Lenine [-7424211239337591336]\n"
+"Add new key"
+msgstr "Ajouter une nouvelle clé"
+
+#: public_html/lists/admin/plugins2/keymgr/header.php:3
+msgid ""
+"_: suggested by Lenine [-529735830534385620]\n"
+"PGP key manager for phplist"
+msgstr "Gestionnaire de clé PGP pour phplist"
+
+#: public_html/lists/admin/plugins2/keymgr/header.php:6
+msgid ""
+"_: suggested by Lenine [-8362950023242043919]\n"
+"This plugin requires PHP 5"
+msgstr "Ce composant nécessite PHP 5 "
+
+#: public_html/lists/admin/plugins2/keymgr/header.php:11
+msgid ""
+"_: suggested by Lenine [-6880798561188081113]\n"
+"This plugin requires the <a href=\"http://pecl.php.net/package/gnupg\">pecl::gnupg</a> extension"
+msgstr ""
+"Ce composant nécessite l'extension PHP <a "
+"href=\"http://pecl.php.net/package/gnupg\">pecl::gnupg</a>"
+
+#: public_html/lists/admin/plugins2/keymgr/header.php:12
+msgid ""
+"_: suggested by Lenine [1886198965097974875]\n"
+"Hint"
+msgstr "Astuce"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:9
+msgid ""
+"_: suggested by Lenine [-4702214894504582109]\n"
+"Encrypting with key"
+msgstr "Chiffrement avec la clé "
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:11
+msgid ""
+"_: suggested by Lenine [-455246409247184378]\n"
+"Encrypted text"
+msgstr "Texte chiffré"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:15
+msgid ""
+"_: suggested by Lenine [5279185400437120480]\n"
+"Encryption failed"
+msgstr "Chiffrement échoué"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:24
+msgid ""
+"_: suggested by Lenine [-1289758119569623645]\n"
+"Type some text to encrypt"
+msgstr "Saisissez du texte à chiffrer"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:25
+msgid ""
+"_: suggested by Lenine [-6702136896483472526]\n"
+"Select email to encrypt for"
+msgstr "Choisissez l'émail "
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:14
+msgid ""
+"_: suggested by Lenine [-3630956428072057393]\n"
+"Synchronising keys"
+msgstr "Synchroniser les clés"
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:18
+msgid ""
+"_: suggested by Lenine [10112060751091268]\n"
+"Ok"
+msgstr "Ok"
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:23
+msgid ""
+"_: suggested by Lenine [9600057675086700]\n"
+"Not OK"
+msgstr "KO"
+
+#: public_html/lists/admin/editattributes.php:39
+msgid ""
+"_: suggested by Lenine [8928893359530744838]\n"
+"add new"
+msgstr "Ajouter un nouveau"
+
+#: public_html/lists/admin/catlists.php:65
+msgid ""
+"_: suggested by nobody [656073946]\n"
+"save"
+msgstr "enregistr&eacute;"
+
+#: public_html/lists/admin/import4.php:76
+msgid ""
+"_: suggested by nobody [-2067286407]\n"
+"If you check \"Overwrite Existing\", information about a user in the database will be replaced by the imported information. Users are matched by email."
+msgstr ""
+"Si vous coch&eacute; &ldquote;Ecraser l existant&rdquo;, l&rsquo;information "
+"concernant un utilisateur dans la base de donn&eacute;es sera "
+"remplac&eacute; par les donn&eacute;es import&eacute;es.  Les utilisateurs "
+"sont identifi&eacute;s par leur adresse email."
+
+#: public_html/lists/admin/uclicks.php:51
+msgid ""
+"_: suggested by nobody [-2016364486]\n"
+"last clicked"
+msgstr "dernier cliqu&eacute;"
+
+#: public_html/lists/admin/readtestmail.php:301
+msgid ""
+"_: suggested by nobody [-4790391]\n"
+"test_protocol not supported"
+msgstr "Le protocole de test n&rsquo;est pas support&eacute;"
+
+#: public_html/lists/admin/admin.php:99
+msgid ""
+"_: suggested by nobody [-1497727253]\n"
+"Error adding new admin, login name and/or email not inserted, email not valid or admin already exists"
+msgstr ""
+"Erreur lors de l&rsquo;ajout du nouvel admin, nom de login et/ou email non "
+"ins&eacute;r&eacute;, email non valide ou l&rsquo;admin existe "
+"d&eacute;j&agrave;"
+
+#: public_html/lists/admin/admin.php:235
+msgid ""
+"_: suggested by nobody [-1560057325]\n"
+"Privileges"
+msgstr "Privil&egrave;s"
+
+#: public_html/lists/admin/admin.php:236
+msgid ""
+"_: suggested by nobody [189030542]\n"
+"Manage subscribers"
+msgstr "G&eacute;rer les abonn&eacute;s"
+
+#: public_html/lists/admin/importsimple.php:138
+msgid ""
+"_: suggested by nobody [-1736663046]\n"
+"Please enter the emails to import, one per line, in the box below and click \"Import Emails\""
+msgstr ""
+"Veuillez entrer les adresses de courriel &agrave; importer, une par ligne, "
+"dans le champs ci dessous, puis cliquer sur \"importer les adresses\""
+
+#: public_html/lists/admin/bounce.php:70
+#, php-format, 
+msgid ""
+"_: suggested by nobody [890769008]\n"
+"Made subscriber %d to receive text"
+msgstr "Passer l&rsquo;abonn&eacute; %s en r&eacute;ception de message texte"
+
+#: public_html/lists/admin/bounce.php:75
+#, php-format, 
+msgid ""
+"_: suggested by nobody [1213326728]\n"
+"Deleted subscriber %d"
+msgstr "Abonn&eacute; %s supprim&eacute;"
+
+#: public_html/lists/admin/bounce.php:79
+#, php-format, 
+msgid ""
+"_: suggested by nobody [126011904]\n"
+"Deleting bounce %d .. "
+msgstr "Suppression du retour %d ..."
+
+#: public_html/lists/admin/connect.php:770
+msgid ""
+"_: suggested by nobody [-1943985606]\n"
+"In this section"
+msgstr "Dans cette section"
+
+#: public_html/lists/admin/connect.php:1629
+msgid ""
+"_: suggested by nobody [-1565301767]\n"
+"Placeholder"
+msgstr "Esapce r&eacute;serv&eacute;"
+
+#: public_html/lists/admin/connect.php:1629
+msgid ""
+"_: suggested by nobody [1331834603]\n"
+"Placeholder"
+msgstr "Espace r&eacute;serv&eacute;"
+
+#: public_html/lists/admin/updatetranslation.php:17
+msgid ""
+"_: suggested by nobody [1701140125]\n"
+"Unable to fetch list of languages, please check your network or try again later"
+msgstr ""
+"Impossible de r&eacute;cup&eacute;rer la liste des langues, v&eacute;rifiez "
+"votre r&eacute;seau ou r&eacute;essayez plus tard"
+
+#: public_html/lists/admin/processqueue.php:23
+msgid ""
+"_: suggested by nobody [-994198718]\n"
+"This page requires Javascript to be enabled."
+msgstr "Cette page n&eacute;cessite l&rsquo;activation de Javascript."
+
+#: public_html/lists/admin/processqueue.php:28
+msgid ""
+"_: suggested by nobody [-1132456697]\n"
+"Processing queued campaigns"
+msgstr "Traitement des campagnes en file d&rsquo;attente"
+
+#: public_html/lists/admin/processqueue.php:33
+msgid ""
+"_: suggested by nobody [-1281640371]\n"
+"stop processing"
+msgstr "arr&ecirc;t du traitement"
+
+#: public_html/lists/admin/processqueue.php:34
+msgid ""
+"_: suggested by nobody [-1527234495]\n"
+"resume processing"
+msgstr "reprise du traitement"
+
+#: public_html/lists/admin/processbounces.php:528
+#, php-format
+msgid ""
+"_: suggested by nobody [-1118656137]\n"
+"User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed"
+msgstr ""
+"L&rsquo;utilisateur (url:% s) a (% d) rebonds consécutifs au-dessus du seuil "
+"(% d), l'utilisateur est marqué non confirmée"
+
+#: public_html/lists/admin/sendemaillib.php:900
+#, php-format
+msgid ""
+"_: suggested by nobody [263083883]\n"
+"Error sending message %d (%d/%d) to %s (%s) "
+msgstr "Erreur lors de l&rsquo;envoi du message %d (%d%d) &agrave; %s (%s) "
+
+#: public_html/lists/admin/lib.php:663
+#, php-format, 
+msgid ""
+"_: suggested by nobody [-1666462574]\n"
+"A process for this page is already running and it was still alive %s seconds ago"
+msgstr ""
+"Un processus est d&eacute;j&agrave; en cours de traitement pour cette page "
+"et il est encore en cours pour %s secondes"
+
+#: public_html/lists/admin/send_core.php:641
+msgid ""
+"_: suggested by nobody [-117929002]\n"
+"phpList operates in the time zone "
+msgstr "phplist fonctionne dans le fuseau horaire"
+
+#: public_html/lists/admin/send_core.php:1044
+msgid ""
+"_: suggested by nobody [-2052436654]\n"
+"Content contains click track links."
+msgstr "Le contenu contient des liens vers le suivi des clics"
+
+#: public_html/lists/admin/index.php:388
+msgid ""
+"_: suggested by nobody [1060060279]\n"
+"phpList requires PHP version 5.1.2 or higher"
+msgstr "phplist n&eacute;cessite la version PHP 5.1.2 ou sup&eacute;rieur"
+
+#: public_html/lists/admin/index.php:408
+msgid ""
+"_: suggested by nobody [-659151306]\n"
+"Process the queue"
+msgstr "Traitement de la file d&rsquo;attente"
+
+#: public_html/lists/admin/index.php:409
+msgid ""
+"_: suggested by nobody [-223860929]\n"
+"View the queue"
+msgstr "Afficher la file d&rsquo;attente"
+
+#: public_html/lists/admin/index.php:411
+#, php-format
+msgid ""
+"_: suggested by nobody [984689294]\n"
+"You have %s message(s) waiting to be sent"
+msgstr "Vous avez %s message(s) en attente d'envoi"
+
+#: public_html/lists/admin/plugins/rssmanager.php:104
+msgid ""
+"_: suggested by nobody [2087306773]\n"
+"Initialise rssmanager"
+msgstr "Initialiser le gestionnaire RSS"
+
+# Situation ?
+#: public_html/lists/admin/commonlib/pages/attributes.php:24
+msgid ""
+"_: suggested by nobody [1179502014]\n"
+"Email is a system attribute"
+msgstr "L&rsquo;adresse de courriel est un attribut syst&egrave;me"
+
+# Bof
+#: public_html/lists/admin/commonlib/pages/attributes.php:286
+msgid ""
+"_: suggested by nobody [-565760746]\n"
+"Sorry, merging of checkbox groups is not implemented yet"
+msgstr ""
+"D&eacute;sol&eacute;, la fusion des groupes de cases &agrave; cocher "
+"n&rsquo;est pas encore impl&eacute;ment&eacute;e"
+
+#: public_html/lists/admin/commonlib/pages/user.php:32
+msgid ""
+"_: suggested by nobody [-1621677473]\n"
+"Delete will remove subscriber from the system"
+msgstr "Supprimer retirera l&rsquo;abonn&eacute; du syst&egrave;me"
+
+#: public_html/lists/admin/commonlib/pages/user.php:41
+msgid ""
+"_: suggested by nobody [-209503245]\n"
+"Invalid security token, please reload the page and try again"
+msgstr ""
+"Code de s&eacute;curit&eacute; invalide. Veuillez actualiser la page et "
+"tester une nouvelle fois."
+
+#: public_html/lists/admin/commonlib/pages/user.php:454
+msgid ""
+"_: suggested by nobody [-776703698]\n"
+"Subscriber is blacklisted. No emails will be sent to this email address."
+msgstr ""
+"L&rsquo;abonné est sur ​​la liste noire. Aucun email ne sera envoy&eacute "
+"&agrave; cette adresse email"
+
+#: public_html/lists/admin/commonlib/pages/user.php:457
+msgid ""
+"_: suggested by nobody [-1326118538]\n"
+"Mailinglist membership"
+msgstr "Liste de diffusion des membres"
+
+# Pas beau, pas clair
+#: public_html/lists/admin/commonlib/pages/users.php:351
+msgid ""
+"_: suggested by nobody [772101155]\n"
+"too many subscribers, use a search query to list some"
+msgstr ""
+"trop d'abonnés, utiliser une requête de recherche pour en lister quelques un"
+
+#: public_html/lists/admin/commonlib/pages/users.php:389
+msgid ""
+"_: suggested by nobody [587302670]\n"
+"Find subscribers"
+msgstr "Trouver des abonnés"
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:41
+#, php-format
+#, php-format, 
+msgid ""
+"_: suggested by nobody [125744669]\n"
+"The temporary directory for uploading (%s) is not writable, so import will fail"
+msgstr ""
+"Le dossier temporaire (%s) pour l'envoi des fichiers n'est pas disponible en "
+"&eacute;criture. Il est impossible d'importer."
+
+#: public_html/lists/admin/actions/processqueue.php:111
+msgid ""
+"_: suggested by nobody [-685680490]\n"
+"Maximum time for queue processing"
+msgstr "Temps maximum pour le traitement de la file d'attente"
+
+#: public_html/lists/admin/actions/processqueue.php:191
+msgid ""
+"_: suggested by nobody [1841097568]\n"
+"Calculating"
+msgstr "calcul en cours"
+
+#: public_html/lists/admin/actions/processqueue.php:199
+msgid ""
+"_: suggested by nobody [61651387]\n"
+"emails failed (will retry later)"
+msgstr "courriels échoués (retentera plus tard)"
+
+#: public_html/lists/admin/actions/processqueue.php:206
+#, php-format, 
+msgid ""
+"_: suggested by nobody [1628824114]\n"
+"%d emails unconfirmed (not sent)"
+msgstr "%d courriels non confirmés (pas envoyés)"
+
+#: public_html/lists/admin/actions/processqueue.php:382
+msgid ""
+"_: suggested by nobody [906860926]\n"
+"Unable get lock for processing"
+msgstr "Impossible d&rsquo;obtenir un verrou pour le traitement"
+
+#: public_html/lists/admin/actions/processqueue.php:383
+msgid ""
+"_: suggested by nobody [-712056424]\n"
+"Error processing"
+msgstr "erreur lors du traitement"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:135
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+msgid ""
+"_: suggested by nobody [874842252]\n"
+"Set up monthly payments"
+msgstr "Mettre en place des versements mensuels"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid ""
+"_: suggested by nobody [-1414128077]\n"
+"Monthly limit reached"
+msgstr "Limite mensuelle atteinte"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+msgid ""
+"_: suggested by nobody [285169649]\n"
+"To continue sending"
+msgstr "Pour continuer à envoyer"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:394
+msgid ""
+"_: suggested by nobody [-1598162771]\n"
+"resend verification email"
+msgstr "Renvoyer l'email de vérification"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:216
+msgid ""
+"_: suggested by nobody [-1196563448]\n"
+"Delete RSS History of Tagged Users"
+msgstr "Supprimer l'historique RSS des utilisateurs marqués"
+
+#: public_html/lists/admin/catlists.php:65
+msgid ""
+"_: suggested by nobody [-2121447143]\n"
+"save"
+msgstr "enregistrer"
+
+#: public_html/lists/admin/uclicks.php:51
+msgid ""
+"_: suggested by nobody [1208832750]\n"
+"last clicked"
+msgstr "dernier cliqué"
+
+#: public_html/lists/admin/readtestmail.php:222
+msgid ""
+"_: suggested by nobody [-1708655358]\n"
+"mails in mailbox"
+msgstr "Nombre de message dans la boite de courrier"
+
+#: public_html/lists/admin/readtestmail.php:301
+msgid ""
+"_: suggested by nobody [1053537756]\n"
+"test_protocol not supported"
+msgstr "Le protocole de test n\\'est pas supporté"
+
+#: public_html/lists/admin/admin.php:237
+msgid ""
+"_: suggested by nobody [915374750]\n"
+"Send Campaigns"
+msgstr "Envoyer les campagnes"
+
+#: public_html/lists/admin/admin.php:239
+msgid ""
+"_: suggested by nobody [-329093471]\n"
+"Change Settings"
+msgstr "Modifier les options"
+
+#: public_html/lists/admin/bounce.php:159
+msgid ""
+"_: suggested by nobody [1063597080]\n"
+"New Rule"
+msgstr "Nouvelle règle"
+
+#: public_html/lists/admin/readtestmail.php:49
+msgid ""
+"_: suggested by nobody [489426106]\n"
+"test processing error"
+msgstr "erreurs du traitement test"
+
+#: public_html/lists/admin/readtestmail.php:49
+msgid ""
+"_: suggested by nobody [-1716179540]\n"
+"test processing error"
+msgstr "Test de traitement"
+
+#: public_html/lists/index.php:947
+msgid ""
+"_: suggested by nobody [-728599862]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"Pour vérifier que Phplist effectue correctement les envois, vous devez être "
+"connecté en tant qu'administrateur."
+
+#: public_html/lists/admin/upgrade.php:40
+msgid ""
+"_: suggested by nobody [-1264785441]\n"
+"Your database is already the correct version, there is no need to upgrade"
+msgstr ""
+"La base de données possède déjà la bonne version, pas besoin de mise à jour"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:213
+msgid ""
+"_: suggested by nobody [1364873205]\n"
+"RSS history of "
+msgstr "Historique RSS de"
+
+#: public_html/lists/admin/readtestmail.php:49
+msgid ""
+"_: suggested by JacquesD [2102547926]\n"
+"test processing error"
+msgstr "Test des erreurs de traitement"
+
+#: public_html/lists/admin/spageedit.php:323
+msgid ""
+"_: suggested by JacquesD [-1169524066]\n"
+"You can only select \"public\" lists for subscribe pages."
+msgstr ""
+"Vous ne pouvez choisir que des listes \"public\" pour les pages d'abonnement"
+
+#: public_html/lists/admin/spageedit.php:323
+msgid ""
+"_: suggested by JacquesD [1569897682]\n"
+"You can only select \"public\" lists for subscribe pages."
+msgstr ""
+"Vous ne pouvez choisir que des listes \"public\" pour les pages d'inscription"
+
+#: public_html/lists/admin/subscribelib2.php:103
+msgid ""
+"_: suggested by JacquesD [1760096679]\n"
+"\n"
+"-------------------------------------------------------------------------------- \n"
+"    This is a notification of a possible spam attack to your phplist subscribe page.\n"
+"    The data submitted has been copied below, so you can check whether this was actually the case.\n"
+"    The submitted data has been converted into non-html characters, for security reasons.\n"
+"    If you want to stop receiving this message, set \n"
+"    \n"
+"     define(\"NOTIFY_SPAM\",0);  \n"
+"     \n"
+"     in your phplist config file.  \n"
+"     \n"
+"     This subscriber has NOT been added to the database. \n"
+"     If there is an error, you will need to  add them manually.\n"
+"--------------------------------------------------------------------------------  "
+msgstr ""
+"\n"
+"----------------------------------------------------------------------------"
+"---- \n"
+"Ceci est un avertissement d'attaque de spam envers votre page d'inscription "
+"phplist.\n"
+"Les données soumises ont été copié ci-dessous, il vous sera ainsi possible "
+"de vérifier si tel est le cas.\n"
+"Les données envoyées ont été converties en caractères non html par mesure de "
+"sécurité.\n"
+"Si vous souhaitez ne plus recevoir ce type de message, configurez\n"
+"\n"
+"défine (\"NOTIFY_SPAM\",0); \n"
+"\n"
+"dans votre fichier de configuration.\n"
+"\n"
+"Ce destinataire n'a pas été ajouté à votre base de données.\n"
+" Si c'est une erreur, il vous faudra ... faire l'ajout manuellement.\n"
+"----------------------------------------------------------------------------"
+"----"
+
+#: public_html/lists/admin/export.php:91
+#, php-format, 
+msgid ""
+"_: suggested by JacquesD [1736248515]\n"
+"phpList Export on %s from %s to %s (%s).csv"
+msgstr "PHPList exporte %s de %s a %s (%s).csv "
+
+#: public_html/lists/admin/export.php:206
+msgid ""
+"_: suggested by JacquesD [1253419473]\n"
+"Any date"
+msgstr "Toute date"
+
+#: public_html/lists/admin/processbounces.php:398
+#: public_html/lists/admin/processbounces.php:530
+msgid ""
+"_: suggested by JacquesD [1440910724]\n"
+"Auto Unconfirmed"
+msgstr "Auto non confirmé"
+
+#: public_html/lists/admin/processbounces.php:398
+#: public_html/lists/admin/processbounces.php:415
+msgid ""
+"_: suggested by JacquesD [1160131524]\n"
+"Subscriber auto unconfirmed for"
+msgstr "Abonné non confirmé automatiquement à cause de"
+
+#: public_html/lists/admin/processbounces.php:415
+msgid ""
+"_: suggested by JacquesD [1440910724]\n"
+"Auto unconfirmed"
+msgstr "Auto non confirmé"
+
+#: public_html/lists/admin/processbounces.php:528
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-119710207]\n"
+"User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed"
+msgstr ""
+"L&rsquo;utilisateur (url:% s) a (% d) rebonds consécutifs au-dessus du seuil "
+"(% d), l'utilisateur est marqué non confirmé"
+
+#: public_html/lists/admin/processbounces.php:530
+#, php-format
+msgid ""
+"_: suggested by JacquesD [1035432767]\n"
+"Subscriber auto unconfirmed for %d consecutive bounces"
+msgstr "Abonné auto non confirmé à cause de %d retours consécutifs"
+
+#: public_html/lists/admin/processbounces.php:534
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-1006476725]\n"
+"%d consecutive bounces, threshold reached"
+msgstr "%d retours consécutifs, seuil atteint"
+
+#: public_html/lists/admin/lib.php:663
+#, php-format, 
+msgid ""
+"_: suggested by JacquesD [-726176803]\n"
+"A process for this page is already running and it was still alive %s seconds ago"
+msgstr ""
+"Un processus est d&eacute;j&agrave; en cours de traitement pour cette page, "
+"et il était encore en cours il y a %s secondes"
+
+#: public_html/lists/admin/configure.php:23
+msgid ""
+"_: suggested by JacquesD [-546771214]\n"
+"You can edit all of the values in this page, and click the \"save changes\" button once to save all the changes you made."
+msgstr ""
+"Vous pouvez éditer toute les valeurs de cette page, puis cliquer surle "
+"bouton  \"save changes\" pour enregistrer toute vos modifications."
+
+#: public_html/lists/admin/messages.php:70
+msgid ""
+"_: suggested by JacquesD [-118091615]\n"
+"Start a new campaign"
+msgstr "Débuterr une nouvelle campagne"
+
+#: public_html/lists/admin/messages.php:70
+msgid ""
+"_: suggested by JacquesD [1442755610]\n"
+"Start a new campaign"
+msgstr "Débuter une nouvelle campagne"
+
+#: public_html/lists/admin/messages.php:315
+msgid ""
+"_: suggested by JacquesD [151564866]\n"
+"Results"
+msgstr "Résultats"
+
+#: public_html/lists/admin/send_core.php:351
+msgid ""
+"_: suggested by JacquesD [-560697068]\n"
+"This campaign is scheduled to stop sending in the past. No mails will be sent."
+msgstr ""
+"Cette campagne est prévue pour s'arrêter dans le passé. Aucun courrier ne "
+"sera envoyé."
+
+#: public_html/lists/admin/send_core.php:352
+msgid ""
+"_: suggested by JacquesD [-781360946]\n"
+"Review Scheduling"
+msgstr "Révision de la cédule"
+
+#: public_html/lists/admin/plugins/rssmanager.php:70
+msgid ""
+"_: suggested by JacquesD [-1921381819]\n"
+"noxml"
+msgstr "pasxml"
+
+#: public_html/lists/admin/plugins/rssmanager.php:101
+msgid ""
+"_: suggested by JacquesD [-747743586]\n"
+"Purge RSS items"
+msgstr "Purge des items RSS"
+
+#: public_html/lists/admin/plugins/rssmanager.php:171
+msgid ""
+"_: suggested by JacquesD [1900766482]\n"
+"rssintro"
+msgstr "introrss"
+
+#: public_html/lists/admin/plugins/rssmanager.php:353
+msgid ""
+"_: suggested by JacquesD [-741067551]\n"
+"(View Items)"
+msgstr "(Voir items)"
+
+#: public_html/lists/admin/commonlib/pages/user.php:41
+msgid ""
+"_: suggested by JacquesD [1898949256]\n"
+"Invalid security token, please reload the page and try again"
+msgstr ""
+"Code de sécurité invalide. Veuillez actualiser la page et essayer de nouveau"
+
+#: public_html/lists/admin/commonlib/pages/user.php:65
+msgid ""
+"_: suggested by JacquesD [-771087164]\n"
+"Error adding subscriber, please check that the subscriber exists"
+msgstr "Erreur lors de l'ajout de l'utilisateur, vérifiez que cet abonné existe"
+
+#: public_html/lists/admin/commonlib/pages/user.php:210
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-440004684]\n"
+"Subscriber added to list %s"
+msgstr "Abonné ajouté à la liste %s"
+
+#: public_html/lists/admin/commonlib/pages/user.php:306
+msgid ""
+"_: suggested by JacquesD [1758344616]\n"
+"No such subscriber"
+msgstr "Abonné non trouvé"
+
+#: public_html/lists/admin/commonlib/pages/user.php:348
+msgid ""
+"_: suggested by JacquesD [1932361275]\n"
+"Add a new subscriber"
+msgstr "Ajouter un nouvel abonné"
+
+#: public_html/lists/admin/commonlib/pages/user.php:351
+msgid ""
+"_: suggested by JacquesD [1149305194]\n"
+"Email address"
+msgstr "Adresse courriel"
+
+#: public_html/lists/admin/commonlib/pages/user.php:454
+msgid ""
+"_: suggested by JacquesD [549974520]\n"
+"Subscriber is blacklisted. No emails will be sent to this email address."
+msgstr ""
+"L&rsquo;abonné est sur ​​la liste noire. Aucun email ne sera envoy&eacute "
+"&agrave; cette adresse courrier"
+
+#: public_html/lists/admin/commonlib/pages/user.php:457
+msgid ""
+"_: suggested by JacquesD [-1033065529]\n"
+"Mailinglist membership"
+msgstr "membres des listes"
+
+#: public_html/lists/admin/commonlib/pages/user.php:485
+msgid ""
+"_: suggested by JacquesD [103002985]\n"
+"Please select the groups this subscriber is a member of"
+msgstr "Sélectionnez les groupes auxquels cet utilisateur appartient"
+
+# Pas beau, pas clair
+#: public_html/lists/admin/commonlib/pages/users.php:351
+msgid ""
+"_: suggested by JacquesD [2128293070]\n"
+"too many subscribers, use a search query to list some"
+msgstr "Trop d'abonnés, limiter le résultat avec un critère de recherche"
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:41
+#, php-format
+#, php-format, 
+msgid ""
+"_: suggested by JacquesD [-1096488713]\n"
+"The temporary directory for uploading (%s) is not writable, so import will fail"
+msgstr ""
+"Le dossier temporaire pour l'envoi de (%s) n'est pas disponible en écriture. "
+"I'importation échouera"
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:139
+msgid ""
+"_: suggested by JacquesD [208570112]\n"
+"No file was specified. Maybe the file is too big? "
+msgstr ""
+"Aucun fichier n'a été spécifié. Le fichier est peut-&ecirc;tre trop "
+"volumineux ?"
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:1023
+msgid ""
+"_: suggested by JacquesD [-1298467422]\n"
+"If you check \"Omit Invalid\", invalid records will not be added. Invalid records are records without an email. Any other attributes will be added automatically, ie if the country of a record is not found, it will be added to the list of countries."
+msgstr ""
+"Si vous cocher \"Omettre non valides\", les enregistrements invalides (sans "
+"adresse courriel) ne seront pas ajoutés. Tous les autres attributs seront "
+"automatiquement ajoutés. Par exemple si un pays n'est pas trouvé, il sera "
+"ajouté à la liste des pays."
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:1025
+msgid ""
+"_: suggested by JacquesD [1407631911]\n"
+"Assign Invalid will be used to create an email for subscribers with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column \"First Name\" and one called \"Last Name\", you can use \"[first name] [last name]\" to construct a new value for the email for this subscriber containing their first name and last name. The value [number] can be used to insert the sequence number for importing."
+msgstr ""
+"Assigner non valides permet de créer une adresse email aux abonnés ayant une "
+"adresse invalide. Vous pouvez indiquer des valeurs entre [ et ] pour la "
+"construction d'une adresse. Par exemple, si le fichier à importer contiens "
+"les colonnes \"nom\" et \"prenom\", vous pouvez utiliser \"[prenom] [nom]\" pour "
+"construire une adresse contenant leur nom et prénom. Le champ [number] "
+"permet d’insérer le numéro d'enregistrement."
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:1030
+msgid ""
+"_: suggested by JacquesD [-1666415508]\n"
+"If you check \"Retain Old Email\", a conflict of two emails being the same will keep the old one and add \"duplicate\" to the new one. If you don&quot;t check it, the old one will get \"duplicate\" and the new one will take precedence."
+msgstr ""
+"Si vous cocher \"Conserver l'ancienne adresse\", un conflit entre deux "
+"adresses identiques conservera l'ancienne adresse et ajoutera \"dupliquée\" à "
+"la nouvelle. Si vous ne cochez pas cette case, l'ancienne adresse sera "
+"marquée \"dupliquée\" et la nouvelle adresse aura priorité."
+
+#: public_html/lists/admin/commonlib/lib/interfacelib.php:212
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-1407996228]\n"
+"sort by %s"
+msgstr "Trié par %s"
+
+#: public_html/lists/admin/commonlib/lib/interfacelib.php:1038
+msgid ""
+"_: suggested by JacquesD [-1389117106]\n"
+"Close this box"
+msgstr "Fermer cette fenêtre"
+
+#: public_html/lists/admin/actions/updatetranslation.php:52
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-984786161]\n"
+"updated %d langague terms"
+msgstr "%d mots mis à jour"
+
+#: public_html/lists/admin/actions/processqueue.php:191
+msgid ""
+"_: suggested by JacquesD [1361890880]\n"
+"Calculating"
+msgstr "Calcul en cours"
+
+#: public_html/lists/admin/actions/processqueue.php:383
+msgid ""
+"_: suggested by JacquesD [712653944]\n"
+"Error processing"
+msgstr "Erreur lors du traitement"
+
+#: public_html/lists/admin/actions/processqueue.php:519
+msgid ""
+"_: suggested by JacquesD [772149264]\n"
+"Error loading message, please check the eventlog for details"
+msgstr ""
+"Erreur de chargement du message, voir le fichier d'historique pour plus de "
+"détails"
+
+#: public_html/lists/admin/actions/processqueue.php:1131
+#, php-format
+msgid ""
+"_: suggested by JacquesD [1252033273]\n"
+"Processed %d out of %d subscribers"
+msgstr "Traité %d abonnés sur %d"
+
+#: public_html/lists/admin/actions/msgstatus.php:101
+msgid ""
+"_: suggested by JacquesD [-1572830660]\n"
+"Send the queue"
+msgstr "Envoyer la file d'attente"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:135
+msgid ""
+"_: suggested by JacquesD [1170566629]\n"
+"To continue sending now"
+msgstr "Pour continuer l'envoi maintenant"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:135
+#: public_html/lists/admin/plugins2/phplisthosted.php:142
+msgid ""
+"_: suggested by JacquesD [1984970844]\n"
+"Set up monthly payments"
+msgstr "Configurer les versements mensuels"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid ""
+"_: suggested by JacquesD [1915777248]\n"
+"your limit, to ensure this campaign goes out."
+msgstr "votre limite, pour vous assurer que cette campagne soit envoyée."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:287
+msgid ""
+"_: suggested by JacquesD [238987879]\n"
+"Your campaign does not contain an unsubscribe link. Please add [UNSUBSCRIBE] or [UNSUBSCRIBEURL] to the footer or content of the campaign"
+msgstr ""
+"Votre campagne ne contient pas de lien de désinscription. Merci d'ajouter "
+"les balises [UNSUBSCRIBE] ou [UNSUBSCRIBEURL] dans le corps ou le pied de "
+"page de votre campagne."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:313
+#, php-format
+msgid ""
+"_: suggested by JacquesD [1366950823]\n"
+"Unrecognised code, please %stry again%s. Did you check your INBOX? When copying the code from the verification message you receive, make sure not to include spaces. Also, if you requested the code to be resent, only the last one will be valid."
+msgstr ""
+"Code non reconnu, merci de %sréessayer%s. Avez vous vérifié votre boîte de "
+"réception? Veillez à ne pas inclure d'espace quand vous copiez le code de "
+"validation depuis le message de vérification. D'autre part, si vous avez "
+"redemandé l'envoi du code, c'est uniquement ce dernier qui sera pris en "
+"compte."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:322
+msgid ""
+"_: suggested by JacquesD [-1692742976]\n"
+"Verification message has been resent. Please note, only the last code sent will be valid."
+msgstr ""
+"Message de vérification réexpédié. Attention, seul le dernier code envoyé "
+"est valide."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:380
+msgid ""
+"_: suggested by JacquesD [19967766]\n"
+"\n"
+"      This is the fist time you use the email address ("
+msgstr ""
+"\n"
+"C'est la première fois que vous utilisez cette adresse ("
+
+#: public_html/lists/admin/plugins2/segmentation.php:42
+#: public_html/lists/admin/plugins2/segmentation.php:47
+msgid ""
+"_: suggested by JacquesD [-1561541422]\n"
+"calculate"
+msgstr "Calcul"
+
+#: public_html/lists/admin/plugins2/segmentation.php:66
+msgid ""
+"_: suggested by JacquesD [1779785918]\n"
+"criteriaexplanation"
+msgstr "explicationcritere"
+
+#: public_html/lists/admin/plugins2/segmentation.php:73
+msgid ""
+"_: suggested by JacquesD [-1724493110]\n"
+"usethisone"
+msgstr "utiliserceluici"
+
+#: public_html/lists/admin/plugins2/segmentation.php:118
+msgid ""
+"_: suggested by JacquesD [-539168642]\n"
+"nocriteria"
+msgstr "aucuncritere"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:21
+msgid ""
+"_: suggested by JacquesD [-522535621]\n"
+"key is a new user"
+msgstr "La clé correspond a un nouvel utilisateur"
+
+#: public_html/lists/admin/plugins2/keymgr/add.php:24
+msgid ""
+"_: suggested by JacquesD [50995974]\n"
+"Error adding key"
+msgstr "Erreur lors de l'ajout de la clé"
+
+#: public_html/lists/admin/plugins2/keymgr/header.php:6
+msgid ""
+"_: suggested by JacquesD [-86254504]\n"
+"This plugin requires PHP 5"
+msgstr "Ce composant nécessite PHP 5"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:9
+msgid ""
+"_: suggested by JacquesD [431134046]\n"
+"Encrypting with key"
+msgstr "Chiffrement avec la clé"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:15
+msgid ""
+"_: suggested by JacquesD [-2146304400]\n"
+"Encryption failed"
+msgstr "Échec du chiffrement"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:24
+msgid ""
+"_: suggested by JacquesD [972263589]\n"
+"Type some text to encrypt"
+msgstr "Saisissez du texte à encrypter"
+
+#: public_html/lists/admin/plugins2/keymgr/encrypt.php:25
+msgid ""
+"_: suggested by JacquesD [-1429658305]\n"
+"Select email to encrypt for"
+msgstr "Choisissez l'email à encrypter"
+
+#: public_html/lists/admin/plugins2/keymgr/main.php:37
+#: public_html/lists/admin/plugins2/keymgr/main.php:39
+#: public_html/lists/admin/plugins2/keymgr/main.php:42
+msgid ""
+"_: suggested by JacquesD [-2105286957]\n"
+"expires"
+msgstr "expire"
+
+#: public_html/lists/admin/plugins2/keymgr/sign.php:9
+msgid ""
+"_: suggested by JacquesD [-874154378]\n"
+"Signing with key"
+msgstr "Signer avec clé"
+
+#: public_html/lists/admin/plugins2/keymgr/sign.php:11
+msgid ""
+"_: suggested by JacquesD [772634477]\n"
+"Signed text"
+msgstr "Texte signé"
+
+#: public_html/lists/admin/plugins2/keymgr/sign.php:15
+msgid ""
+"_: suggested by JacquesD [1327395311]\n"
+"Signing failed, make sure you uploaded your secret key, and typed the correct passphrase"
+msgstr ""
+"Échec de signature, assurez-vous de téléverser votre clé secrète et de "
+"fournir la phrase mot de passe approprié"
+
+#: public_html/lists/admin/plugins2/keymgr/sign.php:24
+msgid ""
+"_: suggested by JacquesD [354982721]\n"
+"Type some text to sign"
+msgstr "Entrer du texte à signer"
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:23
+msgid ""
+"_: suggested by JacquesD [-190789472]\n"
+"Not OK"
+msgstr "Pas Ok"
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:24
+msgid ""
+"_: suggested by JacquesD [842852889]\n"
+"Please choose the attribute that holds the Public Key for users in the configure page"
+msgstr ""
+"SVP, choisissez dans la page de configuration l'attribut qui contiendra la "
+"Clé Publique"
+
+#: public_html/lists/admin/plugins2/keymgr/sync.php:28
+#, php-format
+msgid ""
+"_: suggested by JacquesD [-1744631323]\n"
+"<b>%d keys</b> in the database<br/>%d unique emails"
+msgstr "<b>%d clés</b> dans la base de donnée<br/>%d courriels uniques"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:174
+msgid ""
+"_: suggested by JacquesD [-788429190]\n"
+"Delete Tagged Users"
+msgstr "Effacer les utilisateurs marqués"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:193
+msgid ""
+"_: suggested by JacquesD [1445309235]\n"
+"messages apply"
+msgstr "appliquer messages"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:195
+msgid ""
+"_: suggested by JacquesD [-1441147181]\n"
+"Delete History of Tagged Messages"
+msgstr "Effacer l'historique des messages marqués"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:213
+msgid ""
+"_: suggested by JacquesD [-1416030635]\n"
+"RSS history of "
+msgstr "historique RSS de"
+
+#: public_html/lists/admin/connect.php:1629
+msgid ""
+"_: suggested by JacquesD [-133411195]\n"
+"Placeholder"
+msgstr "Espace réservée"
+
+#: public_html/lists/admin/user.php:59
+msgid ""
+"_: suggested by JacquesD [-292559358]\n"
+"Delete will remove subscriber from the database"
+msgstr "La suppression retirera l'abonné de la base de donnée"
+
+#: public_html/lists/admin/lib.php:666
+msgid ""
+"_: suggested by JacquesD [1086424707]\n"
+"Running commandline, quitting. We'll find out what to do in the next run."
+msgstr ""
+"Exécution de la ligne de commande, sortie. Nous trouverons ce qui doit être "
+"fait lors de la prochaine exécution."
+
+#: public_html/lists/admin/send_core.php:140
+msgid ""
+"_: suggested by JacquesD [-2030157665]\n"
+"You should not paste the results of a test message back into the editor<br/>This will break the click-track statistics, and overload the server."
+msgstr ""
+"Vous ne devez pas coller les résultats d'un message de test dans "
+"l'éditeur<br/>Ceci pourrait corrompre vos statistiques de suivi des clics et "
+"surcharger le serveur."
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid ""
+"_: suggested by JacquesD [337980336]\n"
+"Top-up your monthly limit"
+msgstr "Augmenter votre limite mensuelle"
+
+#: public_html/lists/admin/plugins2/phplisthosted.php:144
+msgid ""
+"_: suggested by JacquesD [-1340746295]\n"
+"Top-up"
+msgstr "Augmenter"

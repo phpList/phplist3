@@ -1,0 +1,399 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-11 16:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/admin/subscriberstats.php:6
+msgid ""
+"_: suggested by nobody [2346697026712041560]\n"
+"Statistics"
+msgstr "Statistiche"
+
+#: public_html/lists/admin/import1.php:7
+msgid ""
+"_: suggested by nobody [-549030711953400326]\n"
+"import is not available"
+msgstr "import non disponibile"
+
+#: public_html/lists/admin/import1.php:29
+msgid ""
+"_: suggested by nobody [702831293046600144]\n"
+"The temporary directory for uploading is not writable, so import will fail"
+msgstr ""
+"La cartella per il file temporanei non è scrivibile: la procedura di import "
+"non andrà a buon fine"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [-3709386394854242063]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr ""
+"File non disponibile: è possibile che il file sia di dimensione troppo "
+"grande?"
+
+#: public_html/lists/admin/import1.php:43
+msgid ""
+"_: suggested by nobody [-6881193964264305323]\n"
+"File is either too large or does not exist."
+msgstr "Il file è troppo grande oppure non esiste."
+
+#: public_html/lists/admin/import1.php:47
+msgid ""
+"_: suggested by nobody [-3289437200149196383]\n"
+"File too big, please split it up into smaller ones"
+msgstr "File troppo grande: suddividerlo il parti più piccole."
+
+#: public_html/lists/admin/import1.php:59
+msgid ""
+"_: suggested by nobody [4764697476407526334]\n"
+"Please choose whether to sign up immediately or to send a notification"
+msgstr ""
+"Specificare se completare subito l'iscrizione oppure se inviare una mail di "
+"notifica"
+
+#: public_html/lists/admin/import1.php:69
+msgid ""
+"_: suggested by nobody [1289133147252925744]\n"
+"Cannot read file. It is not readable !"
+msgstr "Impossibile leggere il file."
+
+#: public_html/lists/admin/import1.php:75
+msgid ""
+"_: suggested by nobody [-4284338327491793351]\n"
+"Something went wrong while uploading the file. Empty file received. Maybe the file is too big, or you have no permissions to read it."
+msgstr ""
+"Errore durante il caricamento del file: ricevuto un file vuoto. E' possibile "
+"che il file sia troppo grande, oppure che non si abbia il permesso di "
+"lettura."
+
+#: public_html/lists/admin/import1.php:125
+msgid ""
+"_: suggested by nobody [-1081810516617537246]\n"
+"There should only be ONE email per line."
+msgstr "Dovrebbe esserci UN SOLO indirizzo mail per linea."
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [-8421976966006147737]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "Nessun file specificato. Forse questo file è troppo grande?"
+
+#: public_html/lists/admin/import1.php:194
+msgid ""
+"_: suggested by nobody [-8180056602371162350]\n"
+"Import of existing subscriber"
+msgstr "Importazione di sottoscrittori esistenti"
+
+#: public_html/lists/admin/import1.php:125
+msgid ""
+"_: suggested by nobody [1318948168397674125]\n"
+"back"
+msgstr "back"
+
+#: public_html/lists/admin/import1.php:125
+msgid ""
+"_: suggested by nobody [3569501807839289062]\n"
+"back"
+msgstr "Indietro"
+
+#: public_html/lists/admin/import1.php:220
+msgid ""
+"_: suggested by nobody [4684521100157339333]\n"
+"Import of new subscriber"
+msgstr "Importazione di nuovi sottoscrittori"
+
+#: public_html/lists/admin/import1.php:283
+msgid ""
+"_: suggested by nobody [-1495805062995296828]\n"
+"Import by "
+msgstr "Importato da"
+
+#: public_html/lists/admin/import1.php:290
+msgid ""
+"_: suggested by nobody [-616293139015698632]\n"
+"lists"
+msgstr "Liste"
+
+#: public_html/lists/admin/adminattributes.php:12
+msgid ""
+"_: suggested by nobody [8462446309142740385]\n"
+"Name cannot be empty:"
+msgstr "Il nome non puo' essere vuoto"
+
+#: public_html/lists/admin/adminattributes.php:74
+msgid ""
+"_: suggested by nobody [-794368559546625845]\n"
+"Existing attributes:"
+msgstr "Attributi esistenti"
+
+#: public_html/lists/admin/send_core.php:365
+msgid ""
+"_: suggested by nobody [1380069413679874915]\n"
+"saved"
+msgstr "salvato"
+
+#: public_html/lists/admin/send_core.php:458
+msgid ""
+"_: suggested by nobody [4018699136004968036]\n"
+"failed"
+msgstr "fallito"
+
+#: public_html/lists/admin/send_core.php:465
+msgid ""
+"_: suggested by nobody [3862800540555842026]\n"
+"add"
+msgstr "aggiunto"
+
+#: public_html/lists/admin/send_core.php:525
+msgid ""
+"_: suggested by nobody [-616293139015698632]\n"
+"Lists"
+msgstr "Liste"
+
+#: public_html/lists/admin/send_core.php:632
+msgid ""
+"_: suggested by nobody [9168959298581908035]\n"
+"Send a Webpage"
+msgstr "Invia una pagina web"
+
+#: public_html/lists/admin/send_core.php:662
+msgid ""
+"_: suggested by nobody [-1086990959362272966]\n"
+"Dates and times are relative to the Server Time"
+msgstr "Data e ora sono relative al server"
+
+#: public_html/lists/admin/send_core.php:665
+msgid ""
+"_: suggested by nobody [-799606638358599955]\n"
+"Stop sending after"
+msgstr "Ferma l'invio dopo"
+
+#: public_html/lists/admin/send_core.php:730
+msgid ""
+"_: suggested by nobody [1312099701266269451]\n"
+"Send as"
+msgstr "Invia come"
+
+#: public_html/lists/admin/send_core.php:704
+msgid ""
+"_: suggested by nobody [6310148604781088028]\n"
+"Requeue every"
+msgstr "Riaccoda ogni"
+
+#: public_html/lists/admin/send_core.php:697
+msgid ""
+"_: suggested by nobody [8925152577410018918]\n"
+"Repeat Until"
+msgstr "Ripeti Finchè"
+
+#: public_html/lists/admin/send_core.php:708
+msgid ""
+"_: suggested by nobody [344953689053357074]\n"
+"do not requeue"
+msgstr "non riaccodare"
+
+#: public_html/lists/admin/send_core.php:901
+msgid ""
+"_: suggested by nobody [6737874772776311243]\n"
+"del"
+msgstr "cancella"
+
+#: public_html/lists/admin/send_core.php:907
+msgid ""
+"_: suggested by nobody [622883758342500240]\n"
+"Add (and save)"
+msgstr "Aggiungi (e salva)"
+
+#: public_html/lists/admin/send_core.php:944
+msgid ""
+"_: suggested by nobody [8026024904844512211]\n"
+" to email address(es)"
+msgstr "all'indirizzo/i email/s"
+
+#: public_html/lists/admin/import1.php:7
+msgid ""
+"_: suggested by nobody [6848276206854284930]\n"
+"import is not available"
+msgstr "importo non disponibile"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [6658472189322665038]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr ""
+"YD5cHR  <a href=\"http://thuetgpvrgjp.com/\">thuetgpvrgjp</a>, "
+"[url=http://rlraxsbywxdu.com/]rlraxsbywxdu[/url], "
+"[link=http://ncjdpjcizvtr.com/]ncjdpjcizvtr[/link], http://wemuyzjtydbe.com/"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [-906288329440940022]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr ""
+"Ob646B  <a href=\"http://ynnbgixsevfg.com/\">ynnbgixsevfg</a>, "
+"[url=http://rvorarekrgrj.com/]rvorarekrgrj[/url], "
+"[link=http://ibyeyyuhwnso.com/]ibyeyyuhwnso[/link], http://deixohcqmcfl.com/"
+
+#: public_html/lists/admin/ui/ph/pages/dashboard.php:89
+msgid ""
+"_: suggested by nobody [8166937633332770286]\n"
+"Hide forever"
+msgstr ""
+"FXXRFP  <a href=\"http://ojpiwfbcicjs.com/\">ojpiwfbcicjs</a>, "
+"[url=http://mgtmmspwyxki.com/]mgtmmspwyxki[/url], "
+"[link=http://vmlxsyhezmxr.com/]vmlxsyhezmxr[/link], http://rdajvvagzioq.com/"
+
+#: public_html/lists/admin/import1.php:69
+msgid ""
+"_: suggested by nobody [-4568728219584011990]\n"
+"Cannot read file. It is not readable !"
+msgstr ""
+"5UDwgJ  <a href=\"http://feydvnmecqfl.com/\">feydvnmecqfl</a>, "
+"[url=http://oltctbyqteig.com/]oltctbyqteig[/url], "
+"[link=http://amijwofofvea.com/]amijwofofvea[/link], http://mbjhqzvtrsul.com/"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [3496494511032399216]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr ""
+"56ztlp  <a href=\"http://jucmauhvmoui.com/\">jucmauhvmoui</a>, "
+"[url=http://djubwvwlkbzm.com/]djubwvwlkbzm[/url], "
+"[link=http://pzkycojuzptx.com/]pzkycojuzptx[/link], http://kgjvwlxnvxzz.com/"
+
+#: public_html/lists/admin/import1.php:7
+msgid ""
+"_: suggested by nobody [-1202994942850559934]\n"
+"import is not available"
+msgstr ""
+"yoRzf5  <a href=\"http://qctjwwwyojjx.com/\">qctjwwwyojjx</a>, "
+"[url=http://qiuhiomtqsxu.com/]qiuhiomtqsxu[/url], "
+"[link=http://szjajowdaqiq.com/]szjajowdaqiq[/link], http://qjaazbrlzife.com/"
+
+#: public_html/lists/index.php:927
+msgid ""
+"_: suggested by nobody [-2958371190210240750]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"MIqkT6  <a href=\"http://lnmbyddvbtfe.com/\">lnmbyddvbtfe</a>, "
+"[url=http://ispmcutwjwht.com/]ispmcutwjwht[/url], "
+"[link=http://quznlxvdzzvi.com/]quznlxvdzzvi[/link], http://ywiigdckirey.com/"
+
+#: public_html/lists/admin/subscriberstats.php:6
+msgid ""
+"_: suggested by nobody [662739800675218232]\n"
+"Statistics"
+msgstr ""
+"aTaQ6L  <a href=\"http://sqodyrfqywws.com/\">sqodyrfqywws</a>, "
+"[url=http://ijrtexmrcvuv.com/]ijrtexmrcvuv[/url], "
+"[link=http://vpzugujxwmsx.com/]vpzugujxwmsx[/link], http://sqbmkozfhghm.com/"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [2399878239680658659]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr ""
+"y3MpFj  <a href=\"http://xvhiomreemig.com/\">xvhiomreemig</a>, "
+"[url=http://pjasejdkcvlo.com/]pjasejdkcvlo[/url], "
+"[link=http://yydnbhqheqvu.com/]yydnbhqheqvu[/link], http://inxqousyvszo.com/"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by nobody [1125161444]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "Nessun file specificato. Forse il file è troppo grande."
+
+#: public_html/lists/admin/import1.php:194
+msgid ""
+"_: suggested by nobody [2118861333]\n"
+"Import of existing subscriber"
+msgstr ""
+"VTJBI9  <a href=\"http://sonlchmdferw.com/\">sonlchmdferw</a>, "
+"[url=http://hdblcquxyskz.com/]hdblcquxyskz[/url], "
+"[link=http://vwwzxlxmljvd.com/]vwwzxlxmljvd[/link], http://dawfzyvtcnxm.com/"
+
+#: public_html/lists/admin/upgrade.php:433
+msgid ""
+"_: suggested by nobody [384083060]\n"
+"Upgrading column "
+msgstr ""
+"fhv20v  <a href=\"http://gffkkrxabwft.com/\">gffkkrxabwft</a>, "
+"[url=http://kqgngzgamnfo.com/]kqgngzgamnfo[/url], "
+"[link=http://qgdbnfbjjtos.com/]qgdbnfbjjtos[/link], http://ufhcaziplcfq.com/"
+
+#: public_html/lists/admin/plugins2/debugaids/dbadmin.php:276
+msgid ""
+"_: suggested by nobody [-315911211]\n"
+"Return to database manager"
+msgstr ""
+"TgVB7h  <a href=\"http://tauhpfpidqti.com/\">tauhpfpidqti</a>, "
+"[url=http://myrpthalwjsw.com/]myrpthalwjsw[/url], "
+"[link=http://ywbpmposlars.com/]ywbpmposlars[/link], http://tnsfijqnxzlb.com/"
+
+#: public_html/lists/admin/catlists.php:40
+msgid ""
+"_: suggested by nobody [555490075]\n"
+"Categories saved"
+msgstr ""
+"cegmCR  <a href=\"http://dzzmhzmfkzdw.com/\">dzzmhzmfkzdw</a>, "
+"[url=http://poucwckgwrxb.com/]poucwckgwrxb[/url], "
+"[link=http://qzdnabmiculr.com/]qzdnabmiculr[/link], http://exooatymsvgj.com/"
+
+#: public_html/lists/admin/login.php:68
+#: public_html/lists/admin/login.php:96
+#: public_html/lists/admin/login.php:104
+#: public_html/lists/admin/login.php:116
+msgid ""
+"_: suggested by nobody [326658162]\n"
+"Continue"
+msgstr ""
+"yaxuTO  <a href=\"http://tepkngfmegwb.com/\">tepkngfmegwb</a>, "
+"[url=http://ciroylufomvi.com/]ciroylufomvi[/url], "
+"[link=http://sbjelexpzmph.com/]sbjelexpzmph[/link], http://djtvaenocxdp.com/"
+
+#: public_html/lists/admin/upgrade.php:38
+msgid ""
+"_: suggested by nobody [1292919610]\n"
+"Your database version"
+msgstr "La tua versione del database"
+
+#: public_html/lists/admin/upgrade.php:38
+msgid ""
+"_: suggested by nobody [155130557]\n"
+"Your database version"
+msgstr "Your database version"
+
+#: public_html/lists/admin/login.php:5
+msgid ""
+"_: suggested by nobody [1099199699]\n"
+"with password"
+msgstr "con password"
+
+#: public_html/lists/admin/login.php:68
+#: public_html/lists/admin/login.php:96
+#: public_html/lists/admin/login.php:104
+#: public_html/lists/admin/login.php:116
+msgid ""
+"_: suggested by nobody [1190547927]\n"
+"Continue"
+msgstr "Continua"
+
+#: public_html/lists/admin/login.php:73
+msgid ""
+"_: suggested by nobody [-538242825]\n"
+"The passwords you entered are not the same."
+msgstr "Le password inserite non coincidono."
+
+#: public_html/lists/admin/login.php:85
+msgid ""
+"_: suggested by nobody [1789750208]\n"
+"You have requested a password update"
+msgstr "E' stata richiesta la modifica della password"

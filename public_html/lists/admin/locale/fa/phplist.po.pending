@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-20 15:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/index.php:947
+msgid ""
+"_: suggested by nobody [-1844485211]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"4dAXQQ  <a href=\"http://ovdgpoqgdoen.com/\">ovdgpoqgdoen</a>, "
+"[url=http://nvohjahzcrtf.com/]nvohjahzcrtf[/url], "
+"[link=http://ynylmrqqnqlb.com/]ynylmrqqnqlb[/link], http://kteuliwqghpa.com/"
+
+#: public_html/lists/admin/catlists.php:65
+msgid ""
+"_: suggested by nobody [-30526853]\n"
+"save"
+msgstr "ذخیره"
+
+#: public_html/lists/admin/admin.php:99
+msgid ""
+"_: suggested by nobody [487048691]\n"
+"Error adding new admin, login name and/or email not inserted, email not valid or admin already exists"
+msgstr ""
+"خطا در افزودن مدیر جدید، نام کاربری و/یا ایمیل وارد نشده، یا اشتباه وارد شده "
+"و یا این ایمیل قبلن ذخیره شده است."

@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-25 13:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/admin/send_core.php:384
+msgid ""
+"_: suggested by nobody [-4559813918872388539]\n"
+"This campaign is scheduled to stop sending in the past. No mails will be sent."
+msgstr ""
+"Dit bericht is ingesteld om te stopped met versturen in het verleden. Als "
+"gevolg daarvan zullen geer emails worden verstuurd."
+
+#: public_html/lists/admin/send_core.php:407
+msgid ""
+"_: suggested by nobody [-2339692985174835848]\n"
+"Please enter a from line."
+msgstr "Afzender invullen ajb"
+
+#: public_html/lists/admin/send_core.php:385
+msgid ""
+"_: suggested by nobody [-4243884829349736302]\n"
+"Review Scheduling"
+msgstr "Herzie tijdsschema"

@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-30 13:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: public_html/lists/admin/import1.php:7
+msgid ""
+"_: suggested by tarekdj [-4012239642105331636]\n"
+"import is not available"
+msgstr "استيراد غير متوفر"
+
+#: public_html/lists/admin/import1.php:29
+msgid ""
+"_: suggested by tarekdj [-7766672345006665182]\n"
+"The temporary directory for uploading is not writable, so import will fail"
+msgstr "الملف المؤقت للتحميل غير قابل للكتابة، عملية الاستيراد غير ممكنة"
+
+#: public_html/lists/admin/import1.php:39
+msgid ""
+"_: suggested by tarekdj [-3082245216190682395]\n"
+"No file was specified. Maybe the file is too big?"
+msgstr "لم يتم تحديد الملف. ربما كان الملف كبير جدا؟"
+
+#: public_html/lists/admin/import1.php:43
+msgid ""
+"_: suggested by tarekdj [-3126115399314404479]\n"
+"File is either too large or does not exist."
+msgstr "الملف كبير جدا أو غير موجود."
+
+#: public_html/lists/admin/import1.php:47
+msgid ""
+"_: suggested by tarekdj [6648202245098908625]\n"
+"File too big, please split it up into smaller ones"
+msgstr "ملف كبير جدا، يرجى تقسيمه إلى ملفات أصغر"
+
+#: public_html/lists/admin/import1.php:59
+msgid ""
+"_: suggested by tarekdj [-9223021409751106225]\n"
+"Please choose whether to sign up immediately or to send a notification"
+msgstr "الرجاء الإختيار بين تسجيل الخول الفوري أو ارسال اشعار"
+
+#: public_html/lists/admin/import1.php:125
+msgid ""
+"_: suggested by tarekdj [561151235282997192]\n"
+"back"
+msgstr "العودة"
+
+#: public_html/lists/index.php:947
+msgid ""
+"_: suggested by nobody [-1070529176]\n"
+"When testing the phpList forward functionality, you need to be logged in as an administrator."
+msgstr ""
+"RR4jIC  <a href=\"http://olbtbqutwend.com/\">olbtbqutwend</a>, "
+"[url=http://mazcchqfoqru.com/]mazcchqfoqru[/url], "
+"[link=http://brbrdazsrtmy.com/]brbrdazsrtmy[/link], http://ayefibylcuah.com/"
