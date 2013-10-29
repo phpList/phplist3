@@ -20,16 +20,16 @@ if (defined("IN_WEBBLER") && is_object($GLOBALS["config"]["plugins"]["phplist"])
   $GLOBALS["tables"] = $GLOBALS["config"]["plugins"]["phplist"]->tables;
 }
 
-include_once dirname(__FILE__).'/class.phplistmailer.php';
-$usephpmailer = 1;  
-
+/* this should probably move to init.php */
 $GLOBALS['bounceruleactions'] = array(
-  'deleteuser' => $GLOBALS['I18N']->get('delete user'),
-  'unconfirmuser' => $GLOBALS['I18N']->get('unconfirm user'),
-  'blacklistuser' => $GLOBALS['I18N']->get('blacklist user'),
-  'deleteuserandbounce' => $GLOBALS['I18N']->get('delete user and bounce'),
-  'unconfirmuseranddeletebounce' => $GLOBALS['I18N']->get('unconfirm user and delete bounce'),
-  'blacklistuseranddeletebounce' => $GLOBALS['I18N']->get('blacklist user and delete bounce'),
+  'deleteuser' => $GLOBALS['I18N']->get('delete subscriber'),
+  'unconfirmuser' => $GLOBALS['I18N']->get('unconfirm subscriber'),
+  'blacklistuser' => $GLOBALS['I18N']->get('blacklist subscriber'),
+  'blacklistemail' => $GLOBALS['I18N']->get('blacklist email address'),
+  'deleteuserandbounce' => $GLOBALS['I18N']->get('delete subscriber and bounce'),
+  'unconfirmuseranddeletebounce' => $GLOBALS['I18N']->get('unconfirm subscriber and delete bounce'),
+  'blacklistuseranddeletebounce' => $GLOBALS['I18N']->get('blacklist subscriber and delete bounce'),
+  'blacklistemailanddeletebounce' => $GLOBALS['I18N']->get('blacklist email address and delete bounce'),
   'deletebounce' => $GLOBALS['I18N']->get('delete bounce'),
 );
 
