@@ -153,7 +153,8 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
     "info" => $detectlan,
     "iso" => $detectlan,
     "charset" => $LANGUAGES[$detectlan][1],
-    "dir" => $LANGUAGES[$setlanguage][4],  );
+    "dir" => $LANGUAGES[$detectlan][4],
+  );
 }
 
 ## this interferes with the frontend if an admin is logged in. 
