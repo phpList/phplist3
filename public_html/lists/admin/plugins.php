@@ -178,6 +178,7 @@ if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
 $ls = new WebblerListing(s('Installed plugins'));
 
 if (empty($GLOBALS['allplugins'])) return;
+ksort($GLOBALS['allplugins'], SORT_FLAG_CASE | SORT_STRING);
 
 foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $pluginDetails = array();
