@@ -26,6 +26,7 @@ if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
   $reload = 0;
 }
 
+## this one sends a notification to plugins that processing has started
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
   $plugin->processQueueStart();
 }
@@ -399,6 +400,17 @@ if (!$send_process_id) {
   $status = s('Error processing');
   return;
 }
+
+## ask plugins if processing is allowed at all
+foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+#  cl_output('Asking '.$pluginname);
+  if (!$plugin->allowProcessQueue()) {
+    output(s('Processing blocked by plugin %s',$pluginname));
+    finish('info',s('Processing blocked by plugin %s',$pluginname));
+    exit;
+  }
+}
+
 if (empty($reload)) { ## only show on first load
   if (!empty($ISPrestrictions)) {
     output($ISPrestrictions);
