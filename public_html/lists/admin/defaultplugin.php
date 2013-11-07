@@ -604,6 +604,16 @@ class phplistPlugin {
    */
   function processQueueStart() {
   }
+  
+  /* allowProcessQueue
+   * called at the beginning of processQueue
+   * if this returns anything but "true" processing will be cancelled
+   * @param none
+   * @return bool
+   */
+  function allowProcessQueue() {
+    return true;
+  }
 
   /*
    * campaignStarted
