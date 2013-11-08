@@ -119,7 +119,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
      #       var_dump($pluginInfo);
               
             print '<br/>';
-            if (rename($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
+            if (copy_recursive($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
               $pluginDestination.'/'.$dirEntry)) {
                 delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
                 $installOk = true;
