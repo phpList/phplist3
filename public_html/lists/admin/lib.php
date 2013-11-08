@@ -1521,8 +1521,8 @@ function shortenTextDisplay($text,$max = 30) {
   } else {
     $display = $text;
   }
-  $display = str_replace('/','/ ',$display);
-  $display = str_replace('@','@ ',$display);
+  $display = str_replace('/','/&#x200b;',$display);
+  $display = str_replace('@','@&#x200b;',$display);
   
   return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
 }
