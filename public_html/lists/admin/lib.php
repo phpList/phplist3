@@ -1521,8 +1521,8 @@ function shortenTextDisplay($text,$max = 30) {
   } else {
     $display = $text;
   }
-  $display = str_replace('/','/ ',$display);
-  $display = str_replace('@','@ ',$display);
+  $display = str_replace('/','/&#x200b;',$display);
+  $display = str_replace('@','@&#x200b;',$display);
   
   return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
 }
@@ -1574,4 +1574,28 @@ function delFsTree($dir) {
     (is_dir("$dir/$file")) ? delFsTree("$dir/$file") : unlink("$dir/$file");
   }
   return rmdir($dir);
+}
+
+function copy_recursive($source, $dest)
+{
+    if (is_dir($source))  {
+        mkdir($dest);
+
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+        foreach ($iterator as $item) {
+            if ($item->isDir()) {
+                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            } else {
+                if (!copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    return copy($source, $dest);
 }
