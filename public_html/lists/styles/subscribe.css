@@ -23,7 +23,6 @@ table                                       { border-collapse:collapse; border-s
 /* =------------- Typography ----------*/
 
 html *                  {font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
-body                    { text-align:center;}
 a                       { text-decoration:none}
 h3                      { font-size:18px; font-weight:normal;margin:20px 0px;line-height:30px}
 p                       { font-size:12px; margin:.75em 0}
@@ -33,12 +32,12 @@ input,textarea, select  { font-size:14px;}
 
 /* =-----------------Layout ----------*/
 
-body                    { text-align:center; background-position:top left; background-repeat: repeat-x;}
-#container              { max-width:920px;min-width:300px; text-align:left; margin:0 auto}
+body                    { background-position:top left; background-repeat: repeat-x;}
+#container              { max-width:920px;min-width:300px; margin:0 auto}
 #header                 { height:106px; width:100%}
 .fixed #mainContent     { margin:0 30px}
 #footer                 { clear:both; background-position:top left; background-repeat:repeat-x}
-#footerframe            { text-align:left; margin:0 40px; min-height:100px}
+#footerframe            { margin:0 40px; min-height:100px}
 #footer ul              { float:left; margin:1.5em 0}
 #footer ul li           { float:left; margin-right:10px}
 
@@ -62,8 +61,7 @@ p a[href='./?p=unsubscribe']{float:right; font-size:12px; margin-top:50px}
 /* ---------------- Table Styles ---------------- */
 
 #mainContent table                      { width:100%; border-width:10px; border-style:solid;}
-#mainContent table td                   { padding:5px 10px; margin:1px; text-align:right;}
-#mainContent table td.attributeinput    { text-align:left;}
+#mainContent table td                   { padding:5px 10px; margin:1px;}
 
 
 /* =---------------- Form Elements ----------*/
