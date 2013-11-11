@@ -80,7 +80,7 @@ if ($num) {
     $ls->addElement($msg["messageid"],PageURL2("message",$GLOBALS['I18N']->get('view'),"id=".$msg["messageid"]));
     if (defined('CLICKTRACK') && CLICKTRACK) {
       $clicksreq = Sql_Fetch_Row_Query(sprintf('select sum(clicked) as numclicks from %s where userid = %s and messageid = %s',
-        $GLOBALS['tables']['linktrack'],$user['id'],$msg['messageid']));
+        $GLOBALS['tables']['linktrack_uml_click'],$user['id'],$msg['messageid']));
       $clicks = sprintf('%d',$clicksreq[0]);
       if ($clicks) {
         $ls->addColumn($msg["messageid"],$GLOBALS['I18N']->get('clicks'),
