@@ -509,7 +509,8 @@ function is_email($email) {
       preg_match('/-@/',$email) ||
       preg_match('/\.@/',$email) ||
       preg_match('/^\./',$email) ||
-      preg_match('/^\-/',$email)
+      preg_match('/^\-/',$email) ||
+      strpos($email, '\\') === 0
     ) {
     return 0;
   }
