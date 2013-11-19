@@ -1582,10 +1582,13 @@ function copy_recursive($source, $dest)
         mkdir($dest);
 
         $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+            new RecursiveDirectoryIterator($source),
             RecursiveIteratorIterator::SELF_FIRST
         );
         foreach ($iterator as $item) {
+            if ($item->getBasename() == '..' || $item->getBasename() == '.') {
+                continue;
+            }
             if ($item->isDir()) {
                 mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             } else {
