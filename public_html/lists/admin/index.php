@@ -503,18 +503,24 @@ if (checkAccess($page,"") || $page == 'about') {
   #  print "End of inclusion<br/>";
   } elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
     $plugin = $GLOBALS["plugins"][$_GET["pi"]];
-    $menu = $plugin->adminmenu(); 
-    if (is_file($plugin->coderoot . $include)) {
-      include ($plugin->coderoot . $include);
-    } elseif ($include == 'main.php' || $_GET['page'] == 'home') {
-      print '<h3>'.$plugin->name.'</h3><ul>';
-      foreach ($menu as $page => $desc) {
-        print '<li>'.PageLink2($page,$desc).'</li>';
-      }
-      print '</ul>';
-    } elseif ($page != 'login') {
-      print '<br/>'."$page -&gt; ".$I18N->get('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
+    if ($_SESSION['privileges'] && $_SESSION['privileges'][$plugin->rightsRequired] === false) {
+      Error($GLOBALS['I18N']->get('Access Denied'));
+    } else if (!is_string($plugin->rightsRequired) && !$_SESSION["logindetails"]["superuser"] && ($plugin->dontRequireSuperuser !== true || is_null($plugin->dontRequireSuperuser))) {
+      Error($GLOBALS['I18N']->get('Access Denied'));
+    } else {
+      $menu = $plugin->adminmenu(); 
+      if (is_file($plugin->coderoot . $include)) {
+        include ($plugin->coderoot . $include);
+      } elseif ($include == 'main.php' || $_GET['page'] == 'home') {
+        print '<h3>'.$plugin->name.'</h3><ul>';
+        foreach ($menu as $page => $desc) {
+          print '<li>'.PageLink2($page,$desc).'</li>';
+        }
+        print '</ul>';
+      } elseif ($page != 'login') {
+        print '<br/>'."$page -&gt; ".$I18N->get('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
       #print $plugin->coderoot . "$include";
+      }
     }
   } else {
     if ($GLOBALS["commandline"]) {
