@@ -1,9 +1,12 @@
 <?php
 
-$id = 0;
-if (!empty($_GET['id'])) {
-  $id = sprintf('%d',$_GET['id']);
-} 
+if(!$GLOBALS["commandline"]) {
+  $id = 0;
+  if (!empty($_GET['id'])) {
+    $id = sprintf('%d',$_GET['id']);
+  } 
+}
+
 if (!$id) {
   return;
 }

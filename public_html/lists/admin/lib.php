@@ -136,7 +136,14 @@ function loadMessageData($msgid) {
       $messagedata[$key] = $val;
     }
   }
-  
+
+  if ($GLOBALS["commandline"] && $_GET["page"] == "send") {
+    $messagedata["fromfield"] = $_POST["from"];
+    $messagedata["subject"] = $_POST["subject"];
+    $messagedata["message"] = $_POST["message"];
+    $messagedata["targetlist"] = $_POST["targetlist"];
+  }
+
   $msgdata_req = Sql_Query(sprintf('select * from %s where id = %d',
     $GLOBALS['tables']['messagedata'],$msgid));
   while ($row = Sql_Fetch_Assoc($msgdata_req)) {
