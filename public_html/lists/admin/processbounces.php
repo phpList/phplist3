@@ -701,19 +701,15 @@ output("\n".s('total of %d subscribers processed',$total). '                    
 
 $report = '';
 
-if ($download_report) {
-  $report .= $GLOBALS['I18N']->get("Report:")."\n$download_report\n";
-}
-
 if ($advanced_report) {
   $report .= $GLOBALS['I18N']->get('Report of advanced bounce processing:')."\n$advanced_report\n";
 }
 if ($unsubscribed_users) {
   $report .= "\n".$GLOBALS['I18N']->get("Below are users who have been marked unconfirmed. The in () is the number of consecutive bounces.")."\n";
   $report .= "\n$unsubscribed_users";
-} else {
-  # don't send a report email, if only some bounces were downloaded, but no users unsubscribed.
-  $report = '';
+}
+if ($report) {
+  $report = $GLOBALS['I18N']->get("Report:") . "\n$download_report\n" . $report;
 }
 # shutdown will take care of reporting
 #finish("info",$report);
