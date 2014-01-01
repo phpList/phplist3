@@ -141,8 +141,7 @@ function loadMessageData($msgid) {
     $GLOBALS['tables']['messagedata'],$msgid));
   while ($row = Sql_Fetch_Assoc($msgdata_req)) {
     if (strpos($row['data'],'SER:') === 0) {
-      $data = substr($row['data'],4);
-      $data = @unserialize(stripslashes($data));
+      $data = stripSlashesArray(unserialize(substr($row['data'], 4)));
     } else {
       $data = stripslashes($row['data']);
     }

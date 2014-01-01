@@ -11,6 +11,18 @@ function addSlashesArray($array) {
   }
   return $array;
 }
+
+function removeSlashes(&$value, $key)
+{
+  $value = stripslashes($value);
+}
+
+function stripSlashesArray($array)
+{
+  array_walk_recursive($array, 'removeSlashes');
+  return $array;
+}
+
 if (!ini_get("magic_quotes_gpc") || ini_get("magic_quotes_gpc") == "off") {
   $_POST = addSlashesArray($_POST);
   $_GET = addSlashesArray($_GET);
