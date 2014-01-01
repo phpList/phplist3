@@ -521,7 +521,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           addSubscriberStatistics('auto unsubscribe',1);
           break;
         case 'deleteuserandbounce':
-          logEvent('User '.$row['user'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
+          logEvent('User '.$userdata['email'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
           $advanced_report .= 'User '.$userdata['email'].' deleted by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
