@@ -20,7 +20,7 @@ if (isset($cline['d'])) {
   $date = $cline['d'];
 }
 
-$emailQ = Sql_Fetch_Row_Query(sprintf('select email from %s where uniqid = "%s" or email = "%s"',$GLOBALS['tables']['user'],sql_escape($uid),sql_escape($email)));
+$emailQ = Sql_Fetch_Row_Query(sprintf('select email from %s where uniqid = "%s" or email = "%s"  order by email desc',$GLOBALS['tables']['user'],sql_escape($uid),sql_escape($email)));
 $emailDB = $emailQ[0];
 
 if (empty($emailDB)) {
