@@ -999,7 +999,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       } else {
         $pi = "";
       }
-      $linktext = ucfirst(strtolower($desc));
+      $linktext = $desc;
       $linktext = str_ireplace('phplist','phpList',$linktext);
       return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,htmlspecialchars(strip_tags($title)),$linktext);
     }
@@ -1034,7 +1034,7 @@ function PageLinkAjax ($name,$desc="",$url="",$extraclass = '') {
   ## as PageLink2, but add the option to ajax it in a popover window
   $link = PageLink2($name,$desc,$url);
   if ($link) {
-    $link = str_replace('<a ','<a class="ajaxable '.$extraclass.'"',$link);
+    $link = str_replace('<a ','<a class="ajaxable '.$extraclass.'" ',$link);
     $link .= '';
   }
   return $link;
