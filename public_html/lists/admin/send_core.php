@@ -300,10 +300,11 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           }
 
           # do a final check
-          if (filesize($GLOBALS["attachment_repository"]."/".$newfile))
-            print Info($GLOBALS['I18N']->get("addingattachment")." ".$att_cnt . " .. ok");
-          else
-            print Info($GLOBALS['I18N']->get("addingattachment")." ".$att_cnt." .. failed");
+          if (filesize($GLOBALS["attachment_repository"]."/".$newfile)) {
+            print Info(s('Attachment %d succesfully added',$att_cnt));
+          } else {
+            print Info(s('Adding attachment %d failed',$att_cnt));
+          }
         } else {
           print Warn($GLOBALS['I18N']->get("Uploaded file not properly received, empty file"));
         }
@@ -316,7 +317,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         $attachmentid = Sql_Insert_Id($tables['attachment'], 'id');
         Sql_query(sprintf('insert into %s (messageid,attachmentid) values(%d,%d)',
         $tables["message_attachment"],$id,$attachmentid));
-        print Info($GLOBALS['I18N']->get("addingattachment")." ".$att_cnt. " mime: $type");
+        print Info(s("Adding attachment")." ".$att_cnt. " mime: $type");
       }
     }
   }
