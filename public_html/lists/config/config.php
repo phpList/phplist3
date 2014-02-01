@@ -9,6 +9,7 @@
 * If you are interested in tweaking more options, check out the config_extended.php file
 * or visit http://resources.phplist.com/system/config
 * 
+* ** NOTE: To use options from config_extended.php, you need to copy them to this file **
 * 
 ==============================================================================================================
 
