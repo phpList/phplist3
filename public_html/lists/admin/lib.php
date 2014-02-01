@@ -1358,19 +1358,9 @@ function flushClickTrackCache() {
 }
 
 function resetMessageStatistics($messageid = 0) {
-  ## remove the "forward" entries, but only if they are for one (this) message
-  $delete = array();
-  $req = Sql_Query(sprintf('select forwardid from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$messageid));
-  while ($fwdid = Sql_Fetch_Row($req)) {
-    $count = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where id = %d',$GLOBALS['tables']['linktrack_forward'],$fwdid[0]));
-    if ($count[0] < 2) {
-      $delete[] = $fwdid[0];
-    }
-  }
-  if (sizeof($delete)) {
-    Sql_Query(sprintf('delete from %s where id in (%s)',$GLOBALS['tables']['linktrack_forward'],join(',',$delete)));
-  }
+  ## remove the record of the links in the message, actual clicks of links, and the users sent to
   
+  Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_ml'],$messageid));
   Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$messageid));
   Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['usermessage'],$messageid));
 }
