@@ -86,16 +86,9 @@ function output ($message,$reset = 0) {
 
 function findMessageId($text) {
   $msgid = 0;
-  preg_match ("/X-MessageId: (.*)\R/iU",$text,$match);
-  if (is_array($match) && isset($match[1])) {
+
+  if (preg_match ('/(?:X-MessageId|X-Message): (.*)\r\n/iU', $text, $match)) {
     $msgid = trim($match[1]);
-  }
-  if (!$msgid) {
-    # older versions use X-Message
-    preg_match ("/X-Message: (.*)\R/iU",$text,$match);
-    if (is_array($match) && isset($match[1])) {
-      $msgid = trim($match[1]);
-    }
   }
   return $msgid;
 }
@@ -104,16 +97,9 @@ function findUserID($text) {
   global $tables;
   $userid = 0;
   $user = '';
-  preg_match ("/X-ListMember: (.*)\R/iU",$text,$match);
-  if (is_array($match) && isset($match[1])) {
+
+  if (preg_match ('/(?:X-ListMember|X-User): (.*)\r\n/iU', $text, $match)) {
     $user = trim($match[1]);
-  }
-  if (empty($user)) {
-    # older version use X-User
-    preg_match ("/X-User: (.*)\R/iU",$text,$match);
-    if (is_array($match) && isset($match[1])) {
-      $user = trim($match[1]);
-    }
   }
 
   # some versions used the email to identify the users, some the userid and others the uniqid
@@ -132,13 +118,16 @@ function findUserID($text) {
   ## this is probably fairly time consuming, but as the process is only done once every so often
   ## that should not be too bad
   
-  preg_match_all('/[\S]+@[\S\.]+/',$text,$regs);
-  foreach ($regs[0] as $match) {
-    $email = cleanEmail($match);
-    $useridQ = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$tables['user'],sql_escape($email)));
-    if (!empty($useridQ[0])) {
-      $userid = $useridQ[0]; 
-      break;
+  if (!$userid) {
+    preg_match_all('/[\S]+@[\S\.]+/',$text,$regs);
+
+    foreach ($regs[0] as $match) {
+      $email = cleanEmail($match);
+      $useridQ = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$tables['user'],sql_escape($email)));
+      if (!empty($useridQ[0])) {
+        $userid = $useridQ[0]; 
+        break;
+      }
     }
   }
   
