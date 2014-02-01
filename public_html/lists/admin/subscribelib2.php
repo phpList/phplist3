@@ -944,9 +944,10 @@ $html .= sprintf('
           $output[$attr["id"]] .= "</select>";
           break;
         case "checkboxgroup":
-          $output[$attr["id"]] .= sprintf("\n".'<tr><td colspan="2"><div class="%s">%s</div>',$attr["required"] ? 'required' : 'attributename',stripslashes($attr["name"]));
+          $output[$attr["id"]] .= sprintf("\n".'<tr><td><div class="%s">%s</div>',$attr["required"] ? 'required' : 'attributename',stripslashes($attr["name"]));
           $values_request = Sql_Query("select * from $table_prefix"."listattr_".$attr["tablename"]." order by listorder,name");
-          $output[$attr["id"]] .= sprintf('</td></tr>');
+          $output[$attr["id"]] .= sprintf('</td>');
+		  $first_td = 0;
           while ($value = Sql_Fetch_array($values_request)) {
           	$selected = '';
             if (is_array($_POST[$fieldname])) {
@@ -955,9 +956,17 @@ $html .= sprintf('
               $selection = explode(",",$data[$attr["id"]]);
               $selected = in_array($value["id"],$selection) ? 'checked="checked"':'';
             }
-            $output[$attr["id"]] .= sprintf('<tr><td colspan="2" class="attributeinput"><input type="checkbox" name="%s[]"  class="attributeinput" value="%s" %s /> %s</td></tr>',
-              $fieldname, $value["id"], $selected, stripslashes( $value["name"]) );
+			if($first_td == 0) {
+		        $output[$attr["id"]] .= sprintf('<td class="attributeinput"><input type="checkbox" name="%s[]"  class="attributeinput" value="%s" %s /> %s</td>',
+		          $fieldname, $value["id"], $selected, stripslashes( $value["name"]) );
+				$output[$attr["id"]] .= sprintf('</tr>');
+			} else {
+				$output[$attr["id"]] .= sprintf('<tr><td><div></div></td><td class="attributeinput"><input type="checkbox" name="%s[]"  class="attributeinput" value="%s" %s /> %s</td></tr>',
+		          $fieldname, $value["id"], $selected, stripslashes( $value["name"]) );
+			}
+			++$first_td;
           }
+		  $first_td = 0;
           break;
         case "textline":
           $output[$attr["id"]] .= sprintf("\n".'<tr><td><div class="%s">%s</div>',$attr["required"] ? 'required' : 'attributename',$attr["name"]);
