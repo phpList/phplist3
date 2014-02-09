@@ -59,6 +59,7 @@ switch ($page) {
   case 'domainstats': $page_title = 'Domain-Statistik'; break;
   case 'usermgt': $page_title = 'Abonnentenverwaltung'; break;
   case 'usercheck': $page_title = 'Abonnenten pr&uuml;fen'; break;
-  case 'purgerss': $page_title = 'RSS-Meldungen l&ouml;schen';break;
+	case 'purgerss': $page_title = 'RSS-Meldungen l&ouml;schen';break;
+	case 'updatetranslation': $page_title = 'Übersetzung neu laden';break;
 }
 ?>
