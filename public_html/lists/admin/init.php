@@ -86,7 +86,9 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
 
 include_once dirname(__FILE__)."/structure.php";
 
-$tables = array();
+if (!isset($tables)) {
+  $tables = array();
+}
 foreach ($GLOBALS["DBstructuser"] as $tablename => $tablecolumns) {
   $tables[$tablename] =  $usertable_prefix . $tablename;
 };
