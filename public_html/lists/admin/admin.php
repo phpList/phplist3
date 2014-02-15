@@ -45,8 +45,8 @@ if (!empty($_POST["change"])) {
         $totalres = Sql_fetch_Row($result);
         $total = $totalres[0]; 
         if (!$total) {
-          Sql_Query(sprintf('insert into %s (loginname,namelc,created) values("%s","%s",current_timestamp)',
-            $tables["admin"],strtolower(normalize($_POST["loginname"])),strtolower(normalize($_POST["loginname"]))));
+          Sql_Query(sprintf('insert into %s (loginname,namelc,password,created) values("%s","%s","%s",current_timestamp)',
+            $tables["admin"],strtolower(normalize($_POST["loginname"])),strtolower(normalize($_POST["loginname"])),encryptPass(md5(rand(0,1000)))));
           $id = Sql_Insert_Id($tables['admin'], 'id');
         } else {
           $id = 0;
