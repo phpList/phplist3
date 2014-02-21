@@ -892,15 +892,15 @@ function recentlyVisited() {
 function topMenu() {
   if (empty($_SESSION["logindetails"])) return '';
   
-  if (sizeof($GLOBALS["plugins"])) {
-    foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
-        //if (isset($GLOBALS['pagecategories']['plugins'])) {
-          //array_push($GLOBALS['pagecategories']['plugins']['menulinks'],'main&pi='.$pluginName);
-        //}
-      $menulinks = $plugin->topMenuLinks;
-      foreach ($menulinks as $link => $linkDetails) {
-        if (isset($GLOBALS['pagecategories'][$linkDetails['category']])) {
-          if ($_SESSION["logindetails"]['superuser'] || $plugin->rightsRequired) {
+  if ($_SESSION["logindetails"]['superuser']) { // we don't have a system yet to distinguish access to plugins
+    if (sizeof($GLOBALS["plugins"])) {
+      foreach ($GLOBALS["plugins"] as $pluginName => $plugin) {
+          //if (isset($GLOBALS['pagecategories']['plugins'])) {
+            //array_push($GLOBALS['pagecategories']['plugins']['menulinks'],'main&pi='.$pluginName);
+          //}
+        $menulinks = $plugin->topMenuLinks;
+        foreach ($menulinks as $link => $linkDetails) {
+          if (isset($GLOBALS['pagecategories'][$linkDetails['category']])) {
             array_push($GLOBALS['pagecategories'][$linkDetails['category']]['menulinks'],$link.'&pi='.$pluginName);
           }
         }
