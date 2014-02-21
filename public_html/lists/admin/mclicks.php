@@ -115,7 +115,7 @@ if (($totalusers[0] - $totalbounced[0]) > 0) {
 print '<table class="mclicksDetails">
 <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
+<tr><td>'.$GLOBALS['I18N']->get('Date sent').'<td><td>'.$messagedata['sent'].'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Sent to').'<td><td>'.$totalusers[0].' '.$GLOBALS['I18N']->get('Subscribers').'</td></tr>';
 if ($totalusers[0] > 0) {
   print '<tr><td>'.$GLOBALS['I18N']->get('Bounced').'<td><td>'.$totalbounced[0].' (';
@@ -123,10 +123,10 @@ if ($totalusers[0] > 0) {
   print '%)</td></tr>';
 }
 print '<tr><td>'.$GLOBALS['I18N']->get('Clicks').'<td><td>'.$totalclicked[0].'</td></tr>
-<tr><td>'.$GLOBALS['I18N']->get('Click Rate').'<td><td>'.$clickperc.' %</td></tr>
+<tr><td>'.$GLOBALS['I18N']->get('Click rate').'<td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Message Click Statistics'));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Campaign click statistics'));
 
 $req = Sql_Query(sprintf('select url,firstclick,date_format(latestclick,
   "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, %s forward  where ml.messageid = %d and ml.forwardid = forward.id',$GLOBALS['tables']['linktrack_ml'],$GLOBALS['tables']['linktrack_forward'],$id));
@@ -152,13 +152,16 @@ while ($row = Sql_Fetch_Array($req)) {
   $ls->setClass($element,'row1');
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
+
+## set is confusing, as it is total links sent, not total users sent, https://mantis.phplist.com/view.php?id=17057
+## remove
+ # $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$row['total']);
   //$ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$id.'&amp;fwdid='.$row['forwardid']).'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>');
   //$perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
   //$ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 #  if (CLICKTRACK_SHOWDETAIL) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$uniqueclicks['users']);
-    $perc = sprintf('%0.2f',($uniqueclicks['users'] / $row['total'] * 100));
+    $perc = sprintf('%0.2f',($uniqueclicks['users'] / $totalusers[0] * 100));
     $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
     
@@ -184,7 +187,7 @@ $ls->setClass('total','rowtotal');
 //$ls->addColumn('total',$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 #if (CLICKTRACK_SHOWDETAIL) {
   $ls->addColumn('total',$GLOBALS['I18N']->get('clicks'),$summary['uniqueclicks']);
-  $perc = sprintf('%0.2f',($summary['uniqueclicks'] / $summary['totalsent'] * 100));
+  $perc = sprintf('%0.2f',($summary['uniqueclicks'] / $totalusers[0] * 100));
   $ls->addColumn('total',$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 #}
 print $ls->display();
