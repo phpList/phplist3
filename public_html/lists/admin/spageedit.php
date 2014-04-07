@@ -1,4 +1,3 @@
-<form method="post" action="">
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
@@ -22,6 +21,10 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST["save"])) {
+  if (!verifyToken()) {
+    print Error(s('Invalid security token, please reload the page and try again'));
+    return;
+  }
   $owner = $_POST["owner"];
   $title = removeXss($_POST['title']);
 
@@ -90,6 +93,7 @@ if (isset($_POST["save"])) {
   Redirect("spage");
 }
 @ob_end_flush();
+print formStart(' class="spageEdit" ');
 
 ## initialise values from defaults
 $data = array();
@@ -346,6 +350,4 @@ print '
 <input class="submit" type="submit" name="save" value="'.$GLOBALS['I18N']->get('Save Changes').'" />
 
 </form>';
-
-?>
 
