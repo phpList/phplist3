@@ -777,12 +777,16 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
               "application/pdf");
           }
         }
-        addAttachments($messageid,$mail,"HTML");
+        if (!addAttachments($messageid,$mail,"HTML")) {
+          return 0;
+        }
       } else {
         if (!$isTestMail) 
           Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
         $mail->add_text($textmessage);
-        addAttachments($messageid,$mail,"text");
+        if (!addAttachments($messageid,$mail,"text")) {
+          return 0;
+        }
       }
       break;
     case "text and PDF":
@@ -816,12 +820,16 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
               "application/pdf");
           }
         }
-        addAttachments($messageid,$mail,"HTML");
+        if (!addAttachments($messageid,$mail,"HTML")) {
+          return 0;
+        }
       } else {
         if (!$isTestMail) 
           Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
         $mail->add_text($textmessage);
-        addAttachments($messageid,$mail,"text");
+        if (!addAttachments($messageid,$mail,"text")) {
+          return 0;
+        }
       }
       break;
     case "text":
@@ -832,7 +840,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       if (!$isTestMail) 
         Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
       $mail->add_text($textmessage);
-      addAttachments($messageid,$mail,"text");
+      if (!addAttachments($messageid,$mail,"text")) {
+        return 0;
+      }
       break;
     case "both":
     case "text and HTML":
@@ -864,7 +874,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
             $htmlmessage = wordwrap($htmlmessage, WORDWRAP_HTML, "\r\n");
           }
           $mail->add_html($htmlmessage,$textmessage,$cached[$messageid]["templateid"]);
-          addAttachments($messageid,$mail,"HTML");
+          if (!addAttachments($messageid,$mail,"HTML")) {
+            return 0;
+          }
         } else {
           if (!$isTestMail) 
             Sql_Query("update {$GLOBALS["tables"]["message"]} set astext = astext + 1 where id = $messageid");
@@ -874,7 +886,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
           $mail->add_text($textmessage);
 #          $mail->setText($textmessage);
 #          $mail->Encoding = TEXTEMAIL_ENCODING;
-          addAttachments($messageid,$mail,"text");
+          if (!addAttachments($messageid,$mail,"text")) {
+            return 0;
+          }
         }
       } 
       break;
@@ -933,12 +947,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
 function addAttachments($msgid,&$mail,$type) {
   global $attachment_repository,$website;
+  $hasError = false;
   if (ALLOW_ATTACHMENTS) {
     $req = Sql_Query("select * from {$GLOBALS["tables"]["message_attachment"]},{$GLOBALS["tables"]["attachment"]}
       where {$GLOBALS["tables"]["message_attachment"]}.attachmentid = {$GLOBALS["tables"]["attachment"]}.id and
       {$GLOBALS["tables"]["message_attachment"]}.messageid = $msgid");
     if (!Sql_Affected_Rows())
-      return;
+      return true;
     if ($type == "text") {
       $mail->append_text($GLOBALS["strAttachmentIntro"]."\n");
     }
@@ -980,20 +995,24 @@ function addAttachments($msgid,&$mail,$type) {
                 # now this one could be sent many times, so send only once per run
                 if (!isset($GLOBALS[$att["remotefile"]."_warned"])) {
                   logEvent("Unable to make a copy of attachment ".$att["remotefile"]." in repository");
-                  $msg = "Error, when trying to send message $msgid the filesystem attachment
-                    ".$att["remotefile"]." could not be copied to the repository. Check for permissions.";
-                  sendMail(getConfig("report_address"),"Mail list error",$msg,"");
+                  $msg = s("Error, when trying to send campaign %d the attachment (%s) could not be copied to the repository. Check for permissions.",$msgid,$att["remotefile"]);
+                  sendMail(getConfig("report_address"),s("phpList system error"),$msg,"");
                   $GLOBALS[$att["remotefile"]."_warned"] = time();
                 }
               }
             } else {
-              logEvent("failed to open attachment ".$att["remotefile"]." to add to message $msgid ");
+              logEvent(s("failed to open attachment (%s) to add to campaign %d".$att["remotefile"],$msgid));
+              $hasError = true;
             }
           } else {
-            logEvent("Attachment ".$att["remotefile"]." does not exist");
-            $msg = "Error, when trying to send message $msgid the attachment
-              ".$att["remotefile"]." could not be found";
-            sendMail(getConfig("report_address"),"Mail list error",$msg,"");
+            ## as above, avoid sending it many times
+            if (!isset($GLOBALS[$att["remotefile"]."_warned"])) {
+              logEvent(s("Attachment %s does not exist",$att["remotefile"]));
+              $msg = s("Error, when trying to send campaign %d the attachment (%s) could not be found in the repository",$msgid,$att["remotefile"]);
+              sendMail(getConfig("report_address"),s("phpList system error"),$msg,"");
+              $GLOBALS[$att["remotefile"]."_warned"] = time();
+            }
+            $hasError = true;
           }
            break;
 
@@ -1004,6 +1023,7 @@ function addAttachments($msgid,&$mail,$type) {
       }
     }
   }
+  return !$hasError;
 }
 
 function createPDF($text) {
