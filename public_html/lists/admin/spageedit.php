@@ -314,7 +314,7 @@ if (!Sql_Affected_Rows())
   $listsHTML .= $GLOBALS['I18N']->get('No lists available, please create one first');
 while ($row = Sql_Fetch_Array($req)) {
   $listsHTML .= sprintf ('<label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label><div>%s</div>',
-    $row["id"],$row["id"],in_array($row["id"],$selected_lists)?'checked="checked"':'',stripslashes($row["name"]),stripslashes($row["description"]));
+    $row["id"],$row["id"],in_array($row["id"],$selected_lists)?'checked="checked"':'',stripslashes($row["name"]),htmlspecialchars(stripslashes($row["description"])));
 }
 
 $listsHTML .=  '</div>';
