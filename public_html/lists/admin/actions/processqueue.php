@@ -1155,7 +1155,7 @@ while ($message = Sql_fetch_array($messages)) {
       $eta = $GLOBALS['I18N']->get('unknown');
     }
     setMessageData($messageid,'ETA',$eta);
-    setMessageData($messageid,'msg/hr',$msgperhour);
+    setMessageData($messageid,'msg/hr',"$msgperhour");
     
     cl_progress('sent '.$sent.' ETA '.$eta.' sending '.sprintf('%d',$msgperhour).' msg/hr');
     
