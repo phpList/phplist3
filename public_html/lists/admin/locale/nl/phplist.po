@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-14 05:08+0000\n"
-"PO-Revision-Date: 2013-10-07 19:30+0000\n"
+"POT-Creation-Date: 2014-04-13 05:11+0000\n"
+"PO-Revision-Date: 2014-04-01 19:11+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1381174246.0\n"
+"X-POOTLE-MTIME: 1396379479.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -222,13 +222,13 @@ msgstr ""
 "Verwerken van teruggekaatste e-mail berichten gebaseerd op actieve regels"
 
 #: public_html/lists/admin/processbounces.php:489
-#: public_html/lists/admin/actions/processqueue.php:835
+#: public_html/lists/admin/actions/processqueue.php:847
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr "Verwerking gestopt door een andere verwerking"
 
 #: public_html/lists/admin/processbounces.php:520
-#: public_html/lists/admin/processbounces.php:650
+#: public_html/lists/admin/processbounces.php:669
 msgid "Auto Unconfirmed"
 msgstr "Automatisch onbevestigd"
 
@@ -243,6 +243,10 @@ msgstr "Abonnee automatisch onbevestigd door"
 #: public_html/lists/admin/processbounces.php:547
 #: public_html/lists/admin/processbounces.php:552
 #: public_html/lists/admin/processbounces.php:556
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:566
+#: public_html/lists/admin/processbounces.php:571
+#: public_html/lists/admin/processbounces.php:575
 msgid "bounce rule"
 msgstr "teruggekaatste e-mail berichten regel"
 
@@ -252,43 +256,57 @@ msgstr "Automatisch onbevestigd"
 
 #: public_html/lists/admin/processbounces.php:543
 #: public_html/lists/admin/processbounces.php:552
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:571
 msgid "Auto Blacklisted"
 msgstr "Automatisch op de Zwarte lijst geplaatst"
 
 #: public_html/lists/admin/processbounces.php:543
 #: public_html/lists/admin/processbounces.php:552
+#: public_html/lists/admin/processbounces.php:571
 msgid "User auto blacklisted for"
 msgstr "Abonnee automatisch aan de Zwarte lijst toegevoegd voor"
 
 #: public_html/lists/admin/processbounces.php:547
 #: public_html/lists/admin/processbounces.php:556
+#: public_html/lists/admin/processbounces.php:566
+#: public_html/lists/admin/processbounces.php:575
 msgid "Auto Unsubscribed"
 msgstr "Auto Uitschrijven"
 
 #: public_html/lists/admin/processbounces.php:547
 #: public_html/lists/admin/processbounces.php:556
+#: public_html/lists/admin/processbounces.php:575
 msgid "User auto unsubscribed for"
 msgstr "Abonnee is automatisch uitgeschreven voor"
 
-#: public_html/lists/admin/processbounces.php:570
+#: public_html/lists/admin/processbounces.php:562
+msgid "email auto blacklisted for"
+msgstr "e-mail adres automatisch aan de Zwarte lijst toegevoegd voor"
+
+#: public_html/lists/admin/processbounces.php:566
+msgid "email auto unsubscribed for"
+msgstr "e-mail adres is automatisch uitgeschreven voor"
+
+#: public_html/lists/admin/processbounces.php:589
 msgid "bounces processed by advanced processing"
 msgstr "teruggekaatste e-mail berichten verwerkt op geavanceerde wijze"
 
-#: public_html/lists/admin/processbounces.php:571
+#: public_html/lists/admin/processbounces.php:590
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 "teruggekaatste e-mail berichten kwamen niet in aanmerking voor geavanceerde "
 "verwerking"
 
-#: public_html/lists/admin/processbounces.php:575
+#: public_html/lists/admin/processbounces.php:594
 msgid "Identifying consecutive bounces"
 msgstr "Identificeren van opeenvolgende teruggekaatste e-mail berichten"
 
-#: public_html/lists/admin/processbounces.php:589
+#: public_html/lists/admin/processbounces.php:608
 msgid "Nothing to do"
 msgstr "Niets te doen"
 
-#: public_html/lists/admin/processbounces.php:648
+#: public_html/lists/admin/processbounces.php:667
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
@@ -297,44 +315,44 @@ msgstr ""
 "Abonnee (url:%s) heeft opeenvolgende teruggekaatste e-mail berichten (%d) "
 "hoger dan drempel waarde (%d). De abonnee is gemarkeerd als onbevestigd."
 
-#: public_html/lists/admin/processbounces.php:650
+#: public_html/lists/admin/processbounces.php:669
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 "Abonnee auto onbevestigd door %d opeenvolgende teruggekaatste e-mail "
 "berichten"
 
-#: public_html/lists/admin/processbounces.php:659
+#: public_html/lists/admin/processbounces.php:678
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 "%d opeenvolgende teruggekaatste e-mail berichten. De limiet is hiermee "
 "bereikt en de abonnee is op de Zwarte lijst geplaatst"
 
-#: public_html/lists/admin/processbounces.php:660
+#: public_html/lists/admin/processbounces.php:679
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr "%d opeenvolgende teruggekaatste e-mail berichten, drempelwaarde bereikt"
 
-#: public_html/lists/admin/processbounces.php:671
+#: public_html/lists/admin/processbounces.php:690
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr "Verwerkt %d van %d abonnees"
 
-#: public_html/lists/admin/processbounces.php:681
+#: public_html/lists/admin/processbounces.php:700
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr "totaal van %d abonnees verwerkt"
 
-#: public_html/lists/admin/processbounces.php:686
+#: public_html/lists/admin/processbounces.php:705
 msgid "Report:"
 msgstr "Rapport:"
 
-#: public_html/lists/admin/processbounces.php:690
+#: public_html/lists/admin/processbounces.php:709
 msgid "Report of advanced bounce processing:"
 msgstr "Rapport van geavanceerde teruggekaatste e-mail berichten verwerking:"
 
-#: public_html/lists/admin/processbounces.php:693
+#: public_html/lists/admin/processbounces.php:712
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
@@ -763,7 +781,7 @@ msgstr ""
 msgid "Retain Old User Email"
 msgstr "Behoud het reeds bestaande abonnee e-mail adres"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:685
+#: public_html/lists/admin/commonlib/pages/importcsv.php:686
 #: public_html/lists/admin/import1.php:215
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
@@ -775,17 +793,17 @@ msgstr ""
 "op een link te klikken. Dat is de aanbevolen manier, want dan worden "
 "incorrecte e-mail adressen eruit gehaald."
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:686
+#: public_html/lists/admin/commonlib/pages/importcsv.php:687
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr "Verzend&nbsp;Notificatie&nbsp;email"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:686
+#: public_html/lists/admin/commonlib/pages/importcsv.php:687
 #: public_html/lists/admin/import1.php:216
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
 msgstr "Onmiddelijk bevestigen"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:687
+#: public_html/lists/admin/commonlib/pages/importcsv.php:688
 #: public_html/lists/admin/import1.php:217
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
@@ -794,17 +812,17 @@ msgstr ""
 "Als je een notificatie stuurt, dan kan je hier een vertraging voor tussen de "
 "berichten aangeven"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:688
+#: public_html/lists/admin/commonlib/pages/importcsv.php:689
 #: public_html/lists/admin/import1.php:218
 msgid "Notification throttle"
 msgstr "Vertraging tussen de notificaties"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:688
+#: public_html/lists/admin/commonlib/pages/importcsv.php:689
 #: public_html/lists/admin/import1.php:218
 msgid "(default is nothing, will send as fast as it can)"
 msgstr "(standaard is niets, zo snel mogelijk versturen)"
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:690
+#: public_html/lists/admin/commonlib/pages/importcsv.php:691
 msgid "Import"
 msgstr "Importeer"
 
@@ -930,7 +948,7 @@ msgstr "Geschiedenis"
 #: public_html/lists/admin/commonlib/pages/user.php:318
 #: public_html/lists/admin/commonlib/pages/userhistory.php:49
 #: public_html/lists/admin/bouncerules.php:103
-#: public_html/lists/admin/plugins.php:234
+#: public_html/lists/admin/plugins.php:235
 #: public_html/lists/admin/messages.php:445
 #: public_html/lists/admin/spage.php:68
 #: public_html/lists/admin/editattributes.php:183
@@ -1014,7 +1032,7 @@ msgid "Details"
 msgstr "Gegevens"
 
 #: public_html/lists/admin/commonlib/pages/user.php:553
-#: public_html/lists/admin/send_core.php:532
+#: public_html/lists/admin/send_core.php:533
 #: public_html/lists/admin/list.php:146 public_html/lists/admin/list.php:158
 msgid "Lists"
 msgstr "Verzendijsten"
@@ -1082,7 +1100,7 @@ msgstr "kliks"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:93
 #: public_html/lists/admin/actions/msgstatus.php:70
-#: public_html/lists/admin/statsoverview.php:100
+#: public_html/lists/admin/statsoverview.php:98
 #: public_html/lists/admin/uclicks.php:117
 #: public_html/lists/admin/msgstatus.php:28
 #: public_html/lists/admin/mviews.php:83
@@ -1116,7 +1134,7 @@ msgstr "gemiddelde"
 #: public_html/lists/admin/messages.php:309
 #: public_html/lists/admin/messages.php:312
 msgid "Campaigns"
-msgstr "berichten"
+msgstr "Berichten"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:118
 msgid "Subscription"
@@ -1173,7 +1191,7 @@ msgid "ip"
 msgstr "ip-adres"
 
 #: public_html/lists/admin/commonlib/pages/userhistory.php:169
-#: public_html/lists/admin/statsoverview.php:108
+#: public_html/lists/admin/statsoverview.php:106
 #: public_html/lists/admin/bounces.php:149
 #: public_html/lists/admin/mviews.php:79 public_html/lists/admin/mviews.php:81
 #: public_html/lists/admin/eventlog.php:115
@@ -1232,7 +1250,7 @@ msgstr "Abonnee toegevoegd"
 #: public_html/lists/admin/commonlib/pages/users.php:232
 #, php-format
 msgid "%s users in total"
-msgstr "%s abonnees in totaal"
+msgstr "Totaal %s abonnees"
 
 #: public_html/lists/admin/commonlib/pages/users.php:233
 msgid "Users marked <span class=\"highlight\">red</span> are unconfirmed"
@@ -1252,7 +1270,7 @@ msgid "Sort by"
 msgstr "Sorteer op"
 
 #: public_html/lists/admin/commonlib/pages/users.php:287
-#: public_html/lists/admin/send_core.php:853
+#: public_html/lists/admin/send_core.php:854
 msgid "desc"
 msgstr "aflopend"
 
@@ -1330,7 +1348,7 @@ msgid "msgs"
 msgstr "bericht"
 
 #: public_html/lists/admin/commonlib/pages/users.php:430
-#: public_html/lists/admin/statsoverview.php:101
+#: public_html/lists/admin/statsoverview.php:99
 msgid "bncs"
 msgstr "bncs"
 
@@ -2016,7 +2034,7 @@ msgid "Adding email address failed"
 msgstr "Toevoegen van adres mislukt"
 
 #: public_html/lists/admin/actions/msgstatus.php:45
-#: public_html/lists/admin/actions/processqueue.php:1143
+#: public_html/lists/admin/actions/processqueue.php:1155
 msgid "unknown"
 msgstr "Onbekend"
 
@@ -2043,7 +2061,7 @@ msgstr "nog te verwerken"
 
 #: public_html/lists/admin/actions/msgstatus.php:74
 #: public_html/lists/admin/bounces.php:131
-#: public_html/lists/admin/bounces.php:146 public_html/lists/admin/lib.php:511
+#: public_html/lists/admin/bounces.php:146 public_html/lists/admin/lib.php:510
 msgid "Unknown"
 msgstr "ongekend"
 
@@ -2079,7 +2097,7 @@ msgid "ETA"
 msgstr "ETA"
 
 #: public_html/lists/admin/actions/msgstatus.php:112
-#: public_html/lists/admin/actions/processqueue.php:211
+#: public_html/lists/admin/actions/processqueue.php:212
 #: public_html/lists/admin/msgstatus.php:29
 msgid "msgs/hr"
 msgstr "berichten/u"
@@ -2097,108 +2115,110 @@ msgstr ""
 msgid "Sample Newsletter Content"
 msgstr "Voorbeeld van inhoud voor een nieuwsbrief"
 
-#: public_html/lists/admin/actions/processqueue.php:65
+#: public_html/lists/admin/actions/processqueue.php:66
 msgid "The following restrictions have been set by your ISP:"
 msgstr "De volgende beperkingen zijn geplaatst door jou ISP:"
 
-#: public_html/lists/admin/actions/processqueue.php:127
+#: public_html/lists/admin/actions/processqueue.php:128
 msgid "Maximum time for queue processing"
 msgstr "Maximale tijd voor het verwerken van een wachtrij"
 
-#: public_html/lists/admin/actions/processqueue.php:149
+#: public_html/lists/admin/actions/processqueue.php:150
 msgid "Running in safe mode"
 msgstr "De veilige modus is actief"
 
-#: public_html/lists/admin/actions/processqueue.php:195
+#: public_html/lists/admin/actions/processqueue.php:196
 msgid "Script stage"
 msgstr "Stadium van het script"
 
-#: public_html/lists/admin/actions/processqueue.php:199
+#: public_html/lists/admin/actions/processqueue.php:200
 msgid "Finished, Nothing to do"
 msgstr "Klaar, Niets te doen"
 
-#: public_html/lists/admin/actions/processqueue.php:207
+#: public_html/lists/admin/actions/processqueue.php:208
 msgid "Calculating"
 msgstr "Berekenen"
 
-#: public_html/lists/admin/actions/processqueue.php:210
+#: public_html/lists/admin/actions/processqueue.php:211
 msgid "messages sent in"
 msgstr "Berichten verzonden in"
 
-#: public_html/lists/admin/actions/processqueue.php:211
+#: public_html/lists/admin/actions/processqueue.php:212
 msgid "seconds"
 msgstr "seconden"
 
-#: public_html/lists/admin/actions/processqueue.php:213
+#: public_html/lists/admin/actions/processqueue.php:214
 #, php-format
 msgid "%d invalid email addresses"
 msgstr "%d niet geldige e-mail adressen"
 
-#: public_html/lists/admin/actions/processqueue.php:216
+#: public_html/lists/admin/actions/processqueue.php:217
 #, php-format
 msgid "%d failed (will retry later)"
 msgstr "%d mislukt (zal later opnieuw proberen te verzenden)"
 
-#: public_html/lists/admin/actions/processqueue.php:223
+#: public_html/lists/admin/actions/processqueue.php:224
 #, php-format
 #, php-format,
 msgid "%d emails unconfirmed (not sent)"
 msgstr "%d onbevestigde adressen (niet verzonden)"
 
-#: public_html/lists/admin/actions/processqueue.php:235
+#: public_html/lists/admin/actions/processqueue.php:236
 msgid "Warning: script never reached stage 5"
 msgstr "Opgelet: script heeft nooit stage 5 bereikt"
 
-#: public_html/lists/admin/actions/processqueue.php:235
+#: public_html/lists/admin/actions/processqueue.php:236
 msgid "This may be caused by a too slow or too busy server"
 msgstr "Dit kan de veroorzaakt zijn door een te trage of te drukke server"
 
-#: public_html/lists/admin/actions/processqueue.php:241
+#: public_html/lists/admin/actions/processqueue.php:242
 msgid "Less than batch size were sent, so reloading imminently"
-msgstr "Minder dan de partijgrootte werd verzonden, dus dringend opnieuw laden"
+msgstr ""
+"De verzonden hoeveelheid berichten was minder groot dan 10000, de pagina "
+"wordt daarom meteen ververst."
 
-#: public_html/lists/admin/actions/processqueue.php:246
+#: public_html/lists/admin/actions/processqueue.php:247
 #, php-format
 msgid "Waiting for %d seconds before reloading"
 msgstr "Wachten voor %d seconden na opnieuw laden"
 
-#: public_html/lists/admin/actions/processqueue.php:262
+#: public_html/lists/admin/actions/processqueue.php:263
 msgid "Finished, All done"
 msgstr "Klaar, alles gedaan"
 
-#: public_html/lists/admin/actions/processqueue.php:265
+#: public_html/lists/admin/actions/processqueue.php:266
 msgid "All done"
 msgstr "Klaar"
 
-#: public_html/lists/admin/actions/processqueue.php:269
+#: public_html/lists/admin/actions/processqueue.php:270
 msgid "Script finished, but not all messages have been sent yet."
 msgstr "Script klaar maar niet alle berichten zijn reeds verzonden."
 
-#: public_html/lists/admin/actions/processqueue.php:285
+#: public_html/lists/admin/actions/processqueue.php:286
 msgid "Maillist errors"
 msgstr "Lijst fouten"
 
-#: public_html/lists/admin/actions/processqueue.php:287
+#: public_html/lists/admin/actions/processqueue.php:288
 msgid "Maillist Processing info"
 msgstr "Lijst proces informatie"
 
-#: public_html/lists/admin/actions/processqueue.php:290
+#: public_html/lists/admin/actions/processqueue.php:291
 msgid "Finished this run"
 msgstr "Klaar met deze fase"
 
-#: public_html/lists/admin/actions/processqueue.php:370
-#: public_html/lists/admin/actions/processqueue.php:372
+#: public_html/lists/admin/actions/processqueue.php:371
+#: public_html/lists/admin/actions/processqueue.php:373
 msgid "(test)"
 msgstr "(test)"
 
-#: public_html/lists/admin/actions/processqueue.php:370
-#: public_html/lists/admin/actions/processqueue.php:372
+#: public_html/lists/admin/actions/processqueue.php:371
+#: public_html/lists/admin/actions/processqueue.php:373
 msgid "Would have sent"
 msgstr "Zou verzonden worden"
 
-#: public_html/lists/admin/actions/processqueue.php:370
-#: public_html/lists/admin/actions/processqueue.php:372
-#: public_html/lists/admin/actions/processqueue.php:958
+#: public_html/lists/admin/actions/processqueue.php:371
+#: public_html/lists/admin/actions/processqueue.php:373
+#: public_html/lists/admin/actions/processqueue.php:970
 #: public_html/lists/admin/members.php:348
 #: public_html/lists/admin/members.php:352
 #: public_html/lists/admin/members.php:365
@@ -2206,36 +2226,42 @@ msgstr "Zou verzonden worden"
 msgid "to"
 msgstr "naar"
 
-#: public_html/lists/admin/actions/processqueue.php:385
+#: public_html/lists/admin/actions/processqueue.php:386
 msgid "Started"
 msgstr "Gestart"
 
-#: public_html/lists/admin/actions/processqueue.php:387
+#: public_html/lists/admin/actions/processqueue.php:388
 msgid "Time now "
 msgstr "Huidige tijd (nu)"
 
-#: public_html/lists/admin/actions/processqueue.php:398
+#: public_html/lists/admin/actions/processqueue.php:399
 msgid "Unable get lock for processing"
 msgstr "Wachtrij kon niet worden geblokkeerd"
 
-#: public_html/lists/admin/actions/processqueue.php:399
+#: public_html/lists/admin/actions/processqueue.php:400
 msgid "Error processing"
 msgstr "Fout bij verwerken"
 
-#: public_html/lists/admin/actions/processqueue.php:407
+#: public_html/lists/admin/actions/processqueue.php:408
+#: public_html/lists/admin/actions/processqueue.php:409
+#, php-format
+msgid "Processing blocked by plugin %s"
+msgstr "Het verwerken wordt geblokkeerd door plugin %s"
+
+#: public_html/lists/admin/actions/processqueue.php:419
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr "Het verwerken is uitgesteld door uw ISP, probeer het later opnieuw"
 
-#: public_html/lists/admin/actions/processqueue.php:413
+#: public_html/lists/admin/actions/processqueue.php:425
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr "In veilige modus worden partijen op een maximum van 100 geplaatst"
 
-#: public_html/lists/admin/actions/processqueue.php:417
+#: public_html/lists/admin/actions/processqueue.php:429
 #, php-format
 msgid "Sending in batches of %d messages"
 msgstr "Aan het verzenden in groepen van %d berichten"
 
-#: public_html/lists/admin/actions/processqueue.php:421
+#: public_html/lists/admin/actions/processqueue.php:433
 #, php-format
 msgid ""
 "This batch will be %d emails, because in the last %d seconds %d emails were "
@@ -2244,12 +2270,12 @@ msgstr ""
 "Deze groep is %d e-mail berichten groot, omdat er in de laatste %d seconden "
 "%d e-mail berichten werden verzonden"
 
-#: public_html/lists/admin/actions/processqueue.php:423
+#: public_html/lists/admin/actions/processqueue.php:435
 #, php-format
 msgid "Sending in batches of %d emails"
 msgstr "Aan het verzenden in groepen van %d e-mail berichten"
 
-#: public_html/lists/admin/actions/processqueue.php:426
+#: public_html/lists/admin/actions/processqueue.php:438
 #, php-format
 msgid ""
 "In the last %d seconds more emails were sent (%d) than is currently allowed "
@@ -2258,32 +2284,32 @@ msgstr ""
 "Er zijn in de laatste %d seconden meer e-mail berichten verzonden (%d) dan "
 "per groep toegestaan is (%d)"
 
-#: public_html/lists/admin/actions/processqueue.php:435
+#: public_html/lists/admin/actions/processqueue.php:447
 msgid "Sent in last run"
 msgstr "Verzonden in laatste fase"
 
-#: public_html/lists/admin/actions/processqueue.php:436
+#: public_html/lists/admin/actions/processqueue.php:448
 msgid "Skipped in last run"
 msgstr "Overgeslaan in laatste fase"
 
-#: public_html/lists/admin/actions/processqueue.php:474
+#: public_html/lists/admin/actions/processqueue.php:486
 msgid "Processing has started,"
 msgstr "Het verwerken van de berichten is begonnen,"
 
-#: public_html/lists/admin/actions/processqueue.php:474
+#: public_html/lists/admin/actions/processqueue.php:486
 msgid "message(s) to process."
 msgstr "bericht(en) om te verwerken."
 
-#: public_html/lists/admin/actions/processqueue.php:479
+#: public_html/lists/admin/actions/processqueue.php:491
 msgid ""
 "Please leave this window open. You have batch processing enabled, so it will "
 "reload several times to send the messages. Reports will be sent by email to"
 msgstr ""
 "Laat dit venster open. Je hebt het verzenden per batch ingeschakeld, dus het "
 "venster zal verschillende malen opnieuw laden om het bericht te zenden. Een "
-"rappaort zal worden verzonden per e-mail bericht naar"
+"rapport zal per e-mail bericht worden verzonden naar"
 
-#: public_html/lists/admin/actions/processqueue.php:481
+#: public_html/lists/admin/actions/processqueue.php:493
 msgid ""
 "Your webserver is running in safe_mode. Please keep this window open. It may "
 "reload several times to make sure all messages are sent."
@@ -2292,64 +2318,64 @@ msgstr ""
 "open. Het kan verschillende malen opnieuw laden om er zeker van te zijn dat "
 "alle berichten verstuurd zijn."
 
-#: public_html/lists/admin/actions/processqueue.php:481
+#: public_html/lists/admin/actions/processqueue.php:493
 msgid "Reports will be sent by email to"
 msgstr "Rapporten zullen worden verzonden naar"
 
-#: public_html/lists/admin/actions/processqueue.php:523
+#: public_html/lists/admin/actions/processqueue.php:535
 #, php-format
 msgid "sending of this campaign will stop, if it is still going in %s"
 msgstr ""
 "Het versturen van dit bericht zal ophouden, als het nog steeds gaande is, "
 "over %s"
 
-#: public_html/lists/admin/actions/processqueue.php:536
+#: public_html/lists/admin/actions/processqueue.php:548
 msgid "Error loading message, please check the eventlog for details"
 msgstr ""
 "Er was een fout bij het laden van dit bericht, bekijk het logboek voor "
 "details"
 
-#: public_html/lists/admin/actions/processqueue.php:551
+#: public_html/lists/admin/actions/processqueue.php:563
 msgid "Campaign started"
 msgstr "Bericht begonnen"
 
-#: public_html/lists/admin/actions/processqueue.php:552
+#: public_html/lists/admin/actions/processqueue.php:564
 #, php-format
 #, php-format,
 msgid "phplist has started sending the campaign with subject %s"
 msgstr "phplist is begonnen met het verzenden van het bericht met onderwerp %s"
 
-#: public_html/lists/admin/actions/processqueue.php:553
+#: public_html/lists/admin/actions/processqueue.php:565
 #, php-format
 #, php-format,
 msgid "to view the progress of this campaign, go to http://%s"
 msgstr "Om de voortgang van dit bericht te bekijken, ga naar http://%s"
 
-#: public_html/lists/admin/actions/processqueue.php:560
+#: public_html/lists/admin/actions/processqueue.php:572
 msgid "Processing message"
 msgstr "Verwerken van bericht"
 
-#: public_html/lists/admin/actions/processqueue.php:583
+#: public_html/lists/admin/actions/processqueue.php:595
 msgid "Looking for users"
 msgstr "Zoeken naar abonnees"
 
-#: public_html/lists/admin/actions/processqueue.php:602
+#: public_html/lists/admin/actions/processqueue.php:614
 msgid "users apply for attributes, now checking lists"
 msgstr ""
 "abonnees komen overeen met de velden, nu de verzendlijst aan het "
 "controleren."
 
-#: public_html/lists/admin/actions/processqueue.php:613
+#: public_html/lists/admin/actions/processqueue.php:625
 msgid "No users apply for attributes"
 msgstr "Er zijn geen abonnees die overeen komen met de velden"
 
-#: public_html/lists/admin/actions/processqueue.php:668
+#: public_html/lists/admin/actions/processqueue.php:680
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 "Zoeken naar abonnees die kunnen worden uitgesloten van deze verwerkingsrij "
 "fase"
 
-#: public_html/lists/admin/actions/processqueue.php:758
+#: public_html/lists/admin/actions/processqueue.php:770
 msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
@@ -2357,45 +2383,45 @@ msgstr ""
 "Waarschuwing. Het zoeken naar abonnees duurt lang. Het is beter om het van "
 "de commandline te versturen."
 
-#: public_html/lists/admin/actions/processqueue.php:762
+#: public_html/lists/admin/actions/processqueue.php:774
 msgid "Found them"
 msgstr "Gevonden"
 
-#: public_html/lists/admin/actions/processqueue.php:762
+#: public_html/lists/admin/actions/processqueue.php:774
 msgid "to process"
 msgstr "naar verwerking"
 
-#: public_html/lists/admin/actions/processqueue.php:796
+#: public_html/lists/admin/actions/processqueue.php:808
 msgid "No users to process for this batch"
 msgstr "Geen abonnees te verwerken voor deze partij"
 
-#: public_html/lists/admin/actions/processqueue.php:800
+#: public_html/lists/admin/actions/processqueue.php:812
 msgid "Processing batch of "
 msgstr "Verwerken batch van "
 
-#: public_html/lists/admin/actions/processqueue.php:807
+#: public_html/lists/admin/actions/processqueue.php:819
 msgid "batch limit reached"
 msgstr "partij limiet bereikt"
 
-#: public_html/lists/admin/actions/processqueue.php:827
+#: public_html/lists/admin/actions/processqueue.php:839
 msgid "queue processing time has exceeded max processing time "
 msgstr "Het verwerken duurt langer dan de maximale toegestane tijd"
 
-#: public_html/lists/admin/actions/processqueue.php:832
+#: public_html/lists/admin/actions/processqueue.php:844
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 "Het versturen van dit bericht is verlopen. De datum om te versturen tot is "
 "in het verleden."
 
-#: public_html/lists/admin/actions/processqueue.php:841
+#: public_html/lists/admin/actions/processqueue.php:853
 msgid "Message I was working on has disappeared"
 msgstr "Het bericht waar ik mee aan het werken was is verdwenen"
 
-#: public_html/lists/admin/actions/processqueue.php:843
+#: public_html/lists/admin/actions/processqueue.php:855
 msgid "Sending of this message has been suspended"
 msgstr "Verzenden van dit bericht is uitgesteld"
 
-#: public_html/lists/admin/actions/processqueue.php:923
+#: public_html/lists/admin/actions/processqueue.php:935
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
@@ -2404,94 +2430,94 @@ msgstr ""
 "Er zijn meer dan 10 pogingen ondernomen om %s te verzeden, deze werden "
 "geblokkeerd voor domain throttling."
 
-#: public_html/lists/admin/actions/processqueue.php:924
-#: public_html/lists/admin/actions/processqueue.php:926
+#: public_html/lists/admin/actions/processqueue.php:936
+#: public_html/lists/admin/actions/processqueue.php:938
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr "Instellen van extra vertraging om throttle fouten te verminderen"
 
-#: public_html/lists/admin/actions/processqueue.php:935
+#: public_html/lists/admin/actions/processqueue.php:947
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr "%s is momenteel over de throttle limiet van %d per %d seconden"
 
-#: public_html/lists/admin/actions/processqueue.php:958
+#: public_html/lists/admin/actions/processqueue.php:970
 msgid "Sending"
 msgstr "Verzenden"
 
-#: public_html/lists/admin/actions/processqueue.php:966
-#: public_html/lists/admin/actions/processqueue.php:1183
+#: public_html/lists/admin/actions/processqueue.php:978
+#: public_html/lists/admin/actions/processqueue.php:1195
 msgid "It took"
 msgstr "Het duurde"
 
-#: public_html/lists/admin/actions/processqueue.php:966
+#: public_html/lists/admin/actions/processqueue.php:978
 msgid "seconds to send"
 msgstr "seconden om te verzenden"
 
-#: public_html/lists/admin/actions/processqueue.php:1009
+#: public_html/lists/admin/actions/processqueue.php:1021
 msgid "Failed sending to"
 msgstr "Mislukt om te zenden naar"
 
-#: public_html/lists/admin/actions/processqueue.php:1050
+#: public_html/lists/admin/actions/processqueue.php:1062
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 "wachtende voor %.1f seconden om het doel van %s seconden per bericht te "
 "halen"
 
-#: public_html/lists/admin/actions/processqueue.php:1061
+#: public_html/lists/admin/actions/processqueue.php:1073
 msgid "not sending to "
 msgstr "niet verzenden naar "
 
-#: public_html/lists/admin/actions/processqueue.php:1080
+#: public_html/lists/admin/actions/processqueue.php:1092
 msgid "Unconfirmed user"
 msgstr "Onbevestigde abonnee"
 
-#: public_html/lists/admin/actions/processqueue.php:1089
-#: public_html/lists/admin/actions/processqueue.php:1091
+#: public_html/lists/admin/actions/processqueue.php:1101
+#: public_html/lists/admin/actions/processqueue.php:1103
 msgid "Invalid email address"
 msgstr "Niet geldig e-mail adres"
 
-#: public_html/lists/admin/actions/processqueue.php:1097
+#: public_html/lists/admin/actions/processqueue.php:1109
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr "Gemarkeerd als niet bevestigd tijdens het versturen van bericht %d"
 
-#: public_html/lists/admin/actions/processqueue.php:1097
+#: public_html/lists/admin/actions/processqueue.php:1109
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr "Abonnee onbevestigd gemaakt vanwege een niet geldig e-mail adres"
 
-#: public_html/lists/admin/actions/processqueue.php:1114
+#: public_html/lists/admin/actions/processqueue.php:1126
 msgid "Not sending to"
 msgstr "Niet aan het verzenden naar"
 
-#: public_html/lists/admin/actions/processqueue.php:1114
+#: public_html/lists/admin/actions/processqueue.php:1126
 msgid "already sent"
 msgstr "Reeds verzonden"
 
-#: public_html/lists/admin/actions/processqueue.php:1156
+#: public_html/lists/admin/actions/processqueue.php:1168
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr "Verwerkt %d van %d abonnees"
 
-#: public_html/lists/admin/actions/processqueue.php:1161
+#: public_html/lists/admin/actions/processqueue.php:1173
 msgid "Hmmm, No users found to send to"
 msgstr "Hmmm, Geen abonnees gevonden om naar te zenden"
 
-#: public_html/lists/admin/actions/processqueue.php:1169
+#: public_html/lists/admin/actions/processqueue.php:1181
 msgid "Message campaign finished"
 msgstr "De berichten zijn verzonden"
 
-#: public_html/lists/admin/actions/processqueue.php:1170
+#: public_html/lists/admin/actions/processqueue.php:1182
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
 msgstr "phpList is klaar met het verzenden van het bericht met onderwerp %s"
 
-#: public_html/lists/admin/actions/processqueue.php:1171
+#: public_html/lists/admin/actions/processqueue.php:1183
 #, php-format
 msgid "to view the results of this campaign, go to http://%s"
 msgstr "Om de resultaten van dit bericht te bekijken, ga naar http://%s"
 
-#: public_html/lists/admin/actions/processqueue.php:1183
+#: public_html/lists/admin/actions/processqueue.php:1195
 msgid "to send this message"
 msgstr "om dit bericht te zenden"
 
@@ -2592,7 +2618,7 @@ msgstr "Verwijderen zal de abonnee uit de database verwijderen"
 
 #: public_html/lists/admin/defaultsystemtemplate.php:18
 msgid "The default system template already exists"
-msgstr "De standaard systeem sjabloon bestaat reeds"
+msgstr "Het standaard systeem sjabloon bestaat reeds"
 
 #: public_html/lists/admin/defaultsystemtemplate.php:19
 #: public_html/lists/admin/defaultsystemtemplate.php:26
@@ -2686,7 +2712,7 @@ msgstr "Klaar"
 #: public_html/lists/admin/upgrade.php:521
 #: public_html/lists/admin/statsmgt.php:14
 msgid "The clicktracking system has changed"
-msgstr "Het systeem voor het traceren van kliks is veranderd."
+msgstr "Het systeem voor het traceren van klikken is veranderd."
 
 #: public_html/lists/admin/upgrade.php:522
 #: public_html/lists/admin/statsmgt.php:15
@@ -2919,7 +2945,7 @@ msgid "order"
 msgstr "orde"
 
 #: public_html/lists/admin/bouncerules.php:98
-#: public_html/lists/admin/send_core.php:861
+#: public_html/lists/admin/send_core.php:862
 #: public_html/lists/admin/admins.php:103
 #: public_html/lists/admin/eventlog.php:117
 #: public_html/lists/admin/spage.php:69 public_html/lists/admin/send.php:103
@@ -3020,24 +3046,26 @@ msgstr "Overzicht van berichten van het afgelopen jaar"
 
 #: public_html/lists/admin/statsmgt.php:7
 msgid "View Clicks by URL"
-msgstr "Bekijk kliks per URL"
+msgstr "Bekijk klikken per URL"
 
 #: public_html/lists/admin/statsmgt.php:8
 msgid "View Clicks by Message"
-msgstr "Bekijk kliks per bericht"
+msgstr "Bekijk klikken per bericht"
 
 #: public_html/lists/admin/statsmgt.php:9
 msgid "View Opens by Message"
-msgstr "Bekijk het aantal malen een bericht is geopend"
+msgstr "Bekijk hoe vaak een bericht werd gelezen"
 
 #: public_html/lists/admin/statsmgt.php:10
 msgid "Domain Statistics"
-msgstr "Domein Statistieken"
+msgstr "Overzicht van de domeinen waaraan e-mail berichten werden verzonden"
 
 #: public_html/lists/admin/statsmgt.php:17
 msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
-msgstr "Om overbelasting te voorkomen zal dit 10000 regels per keer bewerken."
+msgstr ""
+"Om overbelasting te voorkomen zullen er 10000 regels per keer worden "
+"geconverteerd."
 
 #: public_html/lists/admin/index.php:230
 msgid "Admin Authentication initialisation failure"
@@ -3156,25 +3184,26 @@ msgstr ""
 "De \"pageroot\" in je instellingen komt niet overeen met de huidige locatie. "
 "Controleer je configuratie bestand."
 
-#: public_html/lists/admin/index.php:516
-msgid "Sorry this page was not found in the plugin"
-msgstr "Sorry, deze pagina bestaat niet in de plugin"
-
-#: public_html/lists/admin/index.php:521
-msgid "Sorry, that module does not exist"
-msgstr "Helaas, de module bestaat niet"
-
-#: public_html/lists/admin/index.php:527
-msgid "Sorry, not implemented yet"
-msgstr "Sorry, nog niet geïmplementeerd"
-
-#: public_html/lists/admin/index.php:531
+#: public_html/lists/admin/index.php:507 public_html/lists/admin/index.php:509
+#: public_html/lists/admin/index.php:537
 #: public_html/lists/admin/send_core.php:105
 msgid "Access Denied"
 msgstr "Toegang geblokeerd"
 
+#: public_html/lists/admin/index.php:521
+msgid "Sorry this page was not found in the plugin"
+msgstr "Sorry, deze pagina bestaat niet in de plugin"
+
+#: public_html/lists/admin/index.php:527
+msgid "Sorry, that module does not exist"
+msgstr "Helaas, de module bestaat niet"
+
+#: public_html/lists/admin/index.php:533
+msgid "Sorry, not implemented yet"
+msgstr "Sorry, nog niet geïmplementeerd"
+
 #: public_html/lists/admin/domainstats.php:18
-#: public_html/lists/admin/statsoverview.php:66
+#: public_html/lists/admin/statsoverview.php:64
 #: public_html/lists/admin/uclicks.php:65
 #: public_html/lists/admin/uclicks.php:73
 #: public_html/lists/admin/mviews.php:53
@@ -3286,8 +3315,8 @@ msgid "Statistics"
 msgstr "Statistieken"
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/send_core.php:1153
-#: public_html/lists/admin/send_core.php:1158
+#: public_html/lists/admin/send_core.php:1154
+#: public_html/lists/admin/send_core.php:1159
 msgid "Send Campaign"
 msgstr "Verstuur bericht"
 
@@ -3321,25 +3350,33 @@ msgid "Mime Type is longer than 255 characters, this is trouble"
 msgstr "De Mime Type is langer dan 255 karakters, dit veroorzaakt problemen."
 
 #: public_html/lists/admin/send_core.php:304
-#: public_html/lists/admin/send_core.php:306
-#: public_html/lists/admin/send_core.php:319
-msgid "addingattachment"
-msgstr "bijlage toevoegen"
+#, php-format
+msgid "Attachment %d succesfully added"
+msgstr "Bijlage %d succesvol toegevoegd"
 
-#: public_html/lists/admin/send_core.php:308
+#: public_html/lists/admin/send_core.php:306
+#, php-format
+msgid "Adding attachment %d failed"
+msgstr "Toevoegen van bijlage %d is mislukt"
+
+#: public_html/lists/admin/send_core.php:309
 msgid "Uploaded file not properly received, empty file"
 msgstr "Het bestand is niet goed ontvangen, leeg bestand"
 
-#: public_html/lists/admin/send_core.php:332
+#: public_html/lists/admin/send_core.php:320
+msgid "Adding attachment"
+msgstr "Bijlage toevoegen"
+
+#: public_html/lists/admin/send_core.php:333
 msgid "Campaign saved as draft"
 msgstr "Bericht bewaard als concept"
 
-#: public_html/lists/admin/send_core.php:338
+#: public_html/lists/admin/send_core.php:339
 msgid "Campaign added"
 msgstr "Bericht toegevoegd"
 
-#: public_html/lists/admin/send_core.php:354
-#: public_html/lists/admin/send_core.php:1122
+#: public_html/lists/admin/send_core.php:355
+#: public_html/lists/admin/send_core.php:1123
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
@@ -3347,74 +3384,74 @@ msgstr ""
 "Dit bericht is ingesteld om niet te worden verstuurd voor een bepaalde tijd. "
 "Als gevolg daarvan zullen op dit moment geen berichten worden verstuurd."
 
-#: public_html/lists/admin/send_core.php:355
-#: public_html/lists/admin/send_core.php:1122
+#: public_html/lists/admin/send_core.php:356
+#: public_html/lists/admin/send_core.php:1123
 #: public_html/lists/admin/message.php:49
 #: public_html/lists/admin/messages.php:174
 msgid "Review Scheduling"
 msgstr "Herzie tijdsschema"
 
-#: public_html/lists/admin/send_core.php:358
+#: public_html/lists/admin/send_core.php:359
 msgid "Campaign queued"
 msgstr "Bericht in de wachtrij geplaatst"
 
-#: public_html/lists/admin/send_core.php:363
+#: public_html/lists/admin/send_core.php:364
 #: public_html/lists/admin/home.php:278
 msgid "processqueue"
 msgstr "Verwerk wachtrij"
 
-#: public_html/lists/admin/send_core.php:365
+#: public_html/lists/admin/send_core.php:366
 msgid "view progress"
 msgstr "bekijk voortgang"
 
-#: public_html/lists/admin/send_core.php:373
+#: public_html/lists/admin/send_core.php:374
 msgid "Sorry, you used invalid characters in the Subject field."
 msgstr "Je hebt ongeldige karakters gebruikt in het onderwerp veld."
 
-#: public_html/lists/admin/send_core.php:375
+#: public_html/lists/admin/send_core.php:376
 msgid "Sorry, you used invalid characters in the From field."
 msgstr "Je hebt verkeerde karakters gebruikt in het veld voor zender"
 
-#: public_html/lists/admin/send_core.php:377
+#: public_html/lists/admin/send_core.php:378
 msgid "Please enter a from line."
 msgstr "Vul een afzender in"
 
-#: public_html/lists/admin/send_core.php:379
+#: public_html/lists/admin/send_core.php:380
 msgid "Please enter a message"
 msgstr "Een bericht invullen ajb"
 
-#: public_html/lists/admin/send_core.php:381
+#: public_html/lists/admin/send_core.php:382
 msgid "Please enter a subject"
 msgstr "Vul een onderwerp in"
 
-#: public_html/lists/admin/send_core.php:383
+#: public_html/lists/admin/send_core.php:384
 msgid "Error: you can use an attribute in one rule only"
 msgstr "Je kunt een veld slechts in één regel gebruiken"
 
-#: public_html/lists/admin/send_core.php:385
+#: public_html/lists/admin/send_core.php:386
 msgid "Please select the list(s) to send the campaign to"
 msgstr ""
 "Selecteer de verzendlijst(en) waar het bericht naartoe moet worden verstuurd"
 
-#: public_html/lists/admin/send_core.php:405
+#: public_html/lists/admin/send_core.php:406
 #, php-format
 msgid "You can send a test mail once every %d seconds"
 msgstr "U kunt slechts iedere %d seconden een test bericht versturen"
 
-#: public_html/lists/admin/send_core.php:410
+#: public_html/lists/admin/send_core.php:411
 msgid "No target email addresses listed for testing."
 msgstr "Geen doel adres gevonden voor de test"
 
-#: public_html/lists/admin/send_core.php:427
+#: public_html/lists/admin/send_core.php:428
 #, php-format
 msgid "There is a maximum of %d test emails allowed"
 msgstr "Er is een maximum van %d test e-mail berichten per keer"
 
-#: public_html/lists/admin/send_core.php:456
+#: public_html/lists/admin/send_core.php:457
 msgid "Sent test mail to"
 msgstr "Het verzenden van een test bericht naar"
 
-#: public_html/lists/admin/send_core.php:458
+#: public_html/lists/admin/send_core.php:459
 #: public_html/lists/admin/initialise.php:80
 #: public_html/lists/admin/initialise.php:123
 #: public_html/lists/admin/import3.php:344
@@ -3424,59 +3461,59 @@ msgstr "Het verzenden van een test bericht naar"
 msgid "failed"
 msgstr "mislukt"
 
-#: public_html/lists/admin/send_core.php:460
+#: public_html/lists/admin/send_core.php:461
 msgid "success"
-msgstr "Gelukt"
+msgstr "is gelukt"
 
-#: public_html/lists/admin/send_core.php:465
+#: public_html/lists/admin/send_core.php:466
 msgid "Email address not found to send test message."
 msgstr "E-mailadres voor testbericht niet gevonden"
 
-#: public_html/lists/admin/send_core.php:466
+#: public_html/lists/admin/send_core.php:467
 msgid "add"
 msgstr "voeg toe"
 
-#: public_html/lists/admin/send_core.php:482
+#: public_html/lists/admin/send_core.php:483
 msgid "Removed Attachment "
 msgstr "Aanhangsel verwijderd"
 
-#: public_html/lists/admin/send_core.php:510
-#: public_html/lists/admin/send_core.php:539
-#: public_html/lists/admin/send_core.php:643
+#: public_html/lists/admin/send_core.php:511
+#: public_html/lists/admin/send_core.php:540
+#: public_html/lists/admin/send_core.php:644
 msgid "Content"
 msgstr "Inhoud"
 
-#: public_html/lists/admin/send_core.php:513
+#: public_html/lists/admin/send_core.php:514
 msgid "Text"
 msgstr "Tekst"
 
-#: public_html/lists/admin/send_core.php:517
+#: public_html/lists/admin/send_core.php:518
 msgid "Forward"
 msgstr "Stuur door"
 
-#: public_html/lists/admin/send_core.php:520
+#: public_html/lists/admin/send_core.php:521
 msgid "Format"
 msgstr "Formaat"
 
-#: public_html/lists/admin/send_core.php:523
+#: public_html/lists/admin/send_core.php:524
 msgid "Attach"
 msgstr "Bijlage"
 
-#: public_html/lists/admin/send_core.php:526
+#: public_html/lists/admin/send_core.php:527
 msgid "Scheduling"
 msgstr "Tijdsschema"
 
-#: public_html/lists/admin/send_core.php:560
+#: public_html/lists/admin/send_core.php:561
 msgid "Finish"
 msgstr "Afronden"
 
-#: public_html/lists/admin/send_core.php:591
+#: public_html/lists/admin/send_core.php:592
 msgid "What is prepare a message"
 msgstr "Wat is bericht voorbereiden"
 
-#: public_html/lists/admin/send_core.php:632
-#: public_html/lists/admin/send_core.php:667
-#: public_html/lists/admin/statsoverview.php:138
+#: public_html/lists/admin/send_core.php:633
+#: public_html/lists/admin/send_core.php:668
+#: public_html/lists/admin/statsoverview.php:136
 #: public_html/lists/admin/spageedit.php:235
 #: public_html/lists/admin/spageedit.php:242
 #: public_html/lists/admin/spageedit.php:249
@@ -3490,248 +3527,248 @@ msgstr "Wat is bericht voorbereiden"
 msgid "Subject"
 msgstr "Onderwerp"
 
-#: public_html/lists/admin/send_core.php:635
+#: public_html/lists/admin/send_core.php:636
 msgid "From Line"
 msgstr "Afzender"
 
-#: public_html/lists/admin/send_core.php:644
+#: public_html/lists/admin/send_core.php:645
 msgid "Send a Webpage"
 msgstr "Verstuur een web pagina"
 
-#: public_html/lists/admin/send_core.php:645
-#: public_html/lists/admin/send_core.php:791
+#: public_html/lists/admin/send_core.php:646
 #: public_html/lists/admin/send_core.php:792
+#: public_html/lists/admin/send_core.php:793
 msgid "Compose Message"
 msgstr "Schrijf bericht"
 
-#: public_html/lists/admin/send_core.php:656
+#: public_html/lists/admin/send_core.php:657
 msgid "Send a Webpage - URL"
 msgstr "Verstuur een bericht met de inhoud uit een website - URL"
 
-#: public_html/lists/admin/send_core.php:675
+#: public_html/lists/admin/send_core.php:676
 msgid "phpList operates in the time zone "
 msgstr "phpList werkt in de tijdzone"
 
-#: public_html/lists/admin/send_core.php:678
+#: public_html/lists/admin/send_core.php:679
 msgid "Dates and times are relative to the Server Time"
 msgstr "De datum en tijd zijn afgeleid van de server "
 
-#: public_html/lists/admin/send_core.php:678
+#: public_html/lists/admin/send_core.php:679
 msgid "Current Server Time is"
 msgstr "De huidige server tijd is"
 
-#: public_html/lists/admin/send_core.php:681
+#: public_html/lists/admin/send_core.php:682
 msgid "Embargoed Until"
 msgstr "Versturen na"
 
-#: public_html/lists/admin/send_core.php:683
+#: public_html/lists/admin/send_core.php:684
 msgid "Stop sending after"
 msgstr "Stop het versturen na"
 
-#: public_html/lists/admin/send_core.php:693
+#: public_html/lists/admin/send_core.php:694
 msgid "Repeat campaign every"
 msgstr "Bericht herhalen per"
 
-#: public_html/lists/admin/send_core.php:697
+#: public_html/lists/admin/send_core.php:698
 msgid "no repetition"
 msgstr "geen herhaling"
 
-#: public_html/lists/admin/send_core.php:700
-#: public_html/lists/admin/send_core.php:729
+#: public_html/lists/admin/send_core.php:701
+#: public_html/lists/admin/send_core.php:730
 msgid "hour"
 msgstr "uur"
 
-#: public_html/lists/admin/send_core.php:703
-#: public_html/lists/admin/send_core.php:732
+#: public_html/lists/admin/send_core.php:704
+#: public_html/lists/admin/send_core.php:733
 msgid "day"
 msgstr "dag"
 
-#: public_html/lists/admin/send_core.php:706
-#: public_html/lists/admin/send_core.php:735
+#: public_html/lists/admin/send_core.php:707
+#: public_html/lists/admin/send_core.php:736
 msgid "week"
 msgstr "week"
 
-#: public_html/lists/admin/send_core.php:709
+#: public_html/lists/admin/send_core.php:710
 msgid "fortnight"
 msgstr "twee weken"
 
-#: public_html/lists/admin/send_core.php:713
+#: public_html/lists/admin/send_core.php:714
 msgid "four weeks"
 msgstr "vier weken"
 
-#: public_html/lists/admin/send_core.php:715
+#: public_html/lists/admin/send_core.php:716
 msgid "Repeat Until"
 msgstr "Herhaal tot"
 
-#: public_html/lists/admin/send_core.php:722
+#: public_html/lists/admin/send_core.php:723
 msgid "Requeue every"
 msgstr "Opnieuw versturen iedere "
 
-#: public_html/lists/admin/send_core.php:726
+#: public_html/lists/admin/send_core.php:727
 msgid "do not requeue"
 msgstr "niet opnieuw versturen"
 
-#: public_html/lists/admin/send_core.php:738
+#: public_html/lists/admin/send_core.php:739
 msgid "Requeue Until"
 msgstr "Opnieuw versturen tot "
 
-#: public_html/lists/admin/send_core.php:748
+#: public_html/lists/admin/send_core.php:749
 msgid "Send as"
 msgstr "Vestuur als"
 
-#: public_html/lists/admin/send_core.php:749
+#: public_html/lists/admin/send_core.php:750
 #: public_html/lists/admin/messages.php:410
 #: public_html/lists/admin/mclicks.php:83
 #: public_html/lists/admin/mclicks.php:166
 msgid "html"
 msgstr "html"
 
-#: public_html/lists/admin/send_core.php:752
+#: public_html/lists/admin/send_core.php:753
 #: public_html/lists/admin/messages.php:410
 #: public_html/lists/admin/mclicks.php:83
 #: public_html/lists/admin/mclicks.php:167
 #: public_html/lists/admin/userclicks.php:151
 msgid "text"
-msgstr "tekst"
+msgstr "Tekst"
 
-#: public_html/lists/admin/send_core.php:778
+#: public_html/lists/admin/send_core.php:779
 msgid "Use Template"
 msgstr "Gebruik sjabloon"
 
-#: public_html/lists/admin/send_core.php:779
+#: public_html/lists/admin/send_core.php:780
 msgid "select one"
 msgstr "selecteer"
 
-#: public_html/lists/admin/send_core.php:818
+#: public_html/lists/admin/send_core.php:819
 msgid "Plain text version of message"
 msgstr "Gewone tekst versie van bericht"
 
-#: public_html/lists/admin/send_core.php:819
+#: public_html/lists/admin/send_core.php:820
 msgid "generate from HTML"
 msgstr "genereer van HTML"
 
-#: public_html/lists/admin/send_core.php:825
+#: public_html/lists/admin/send_core.php:826
 #: public_html/lists/admin/spageedit.php:184
 msgid "Footer"
 msgstr "Voettekst"
 
-#: public_html/lists/admin/send_core.php:827
+#: public_html/lists/admin/send_core.php:828
 msgid "forwardfooter"
 msgstr "Verstuur voettekst door"
 
-#: public_html/lists/admin/send_core.php:834
+#: public_html/lists/admin/send_core.php:835
 msgid "Add attachments to your campaign"
 msgstr "Voeg een bijlage toe aan het bericht"
 
-#: public_html/lists/admin/send_core.php:836
+#: public_html/lists/admin/send_core.php:837
 msgid "The upload has the following limits set by the server"
 msgstr ""
 "De volgende limieten zijn van toepassing bij het opladen van aanhangsels"
 
-#: public_html/lists/admin/send_core.php:837
+#: public_html/lists/admin/send_core.php:838
 msgid "Maximum size of total data being sent to the server"
 msgstr "Totale grootte van alle data die naar de server wordt verstuurd"
 
-#: public_html/lists/admin/send_core.php:838
+#: public_html/lists/admin/send_core.php:839
 msgid "Maximum size of each individual file"
 msgstr "Maximale grootte van ieder bestand"
 
-#: public_html/lists/admin/send_core.php:848
+#: public_html/lists/admin/send_core.php:849
 msgid "Current Attachments"
 msgstr "Huidige aanhangsels"
 
-#: public_html/lists/admin/send_core.php:852
+#: public_html/lists/admin/send_core.php:853
 msgid "filename"
 msgstr "bestandsnaam"
 
-#: public_html/lists/admin/send_core.php:854
+#: public_html/lists/admin/send_core.php:855
 msgid "size"
 msgstr "grootte"
 
-#: public_html/lists/admin/send_core.php:857
-#: public_html/lists/admin/send_core.php:859
+#: public_html/lists/admin/send_core.php:858
+#: public_html/lists/admin/send_core.php:860
 msgid "file"
 msgstr "bestand"
 
-#: public_html/lists/admin/send_core.php:863
+#: public_html/lists/admin/send_core.php:864
 msgid "delchecked"
 msgstr "wis geselecteerde"
 
-#: public_html/lists/admin/send_core.php:867
+#: public_html/lists/admin/send_core.php:868
 msgid "New Attachment"
 msgstr "Nieuw aanhangsel"
 
-#: public_html/lists/admin/send_core.php:867
+#: public_html/lists/admin/send_core.php:868
 msgid "Add (and save)"
 msgstr "Voeg toe (en bewaar bericht)"
 
-#: public_html/lists/admin/send_core.php:869
+#: public_html/lists/admin/send_core.php:870
 msgid "or"
 msgstr "of"
 
-#: public_html/lists/admin/send_core.php:869
+#: public_html/lists/admin/send_core.php:870
 msgid "Path to file on server"
 msgstr "Pad naar bestand op de server"
 
-#: public_html/lists/admin/send_core.php:872
+#: public_html/lists/admin/send_core.php:873
 msgid "Description of attachment"
 msgstr "Beschrijving van aanhangsel"
 
-#: public_html/lists/admin/send_core.php:900
-#: public_html/lists/admin/send_core.php:1168
+#: public_html/lists/admin/send_core.php:901
+#: public_html/lists/admin/send_core.php:1169
 #: public_html/lists/admin/template.php:312
 msgid "Send Test"
 msgstr "Verstuur een testbericht"
 
-#: public_html/lists/admin/send_core.php:900
+#: public_html/lists/admin/send_core.php:901
 msgid " to email address(es)"
 msgstr " naar het volgende e-mail adres of adressen"
 
-#: public_html/lists/admin/send_core.php:901
+#: public_html/lists/admin/send_core.php:902
 #: public_html/lists/admin/template.php:311
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 "Plaats een komma tussen meerdere e-mail adressen. Alle ingevoerde e-mail "
 "adressen moeten van bestaande abonnees zijn."
 
-#: public_html/lists/admin/send_core.php:914
+#: public_html/lists/admin/send_core.php:915
 msgid "email to alert when sending of this message starts"
 msgstr ""
 "E-mail adres waaraan bij het begin van verzending een melding wordt "
 "verzonden."
 
-#: public_html/lists/admin/send_core.php:915
-#: public_html/lists/admin/send_core.php:917
+#: public_html/lists/admin/send_core.php:916
+#: public_html/lists/admin/send_core.php:918
 msgid "separate multiple with a comma"
 msgstr "Scheid meerdere e-mail adressen met een komma."
 
-#: public_html/lists/admin/send_core.php:916
+#: public_html/lists/admin/send_core.php:917
 msgid "email to alert when sending of this message has finished"
 msgstr ""
 "E-mail adres waaraan bij het vooltooien van een verzendingeen melding wordt "
 "verzonden."
 
-#: public_html/lists/admin/send_core.php:923
+#: public_html/lists/admin/send_core.php:924
 msgid "add Google Analytics tracking code"
 msgstr "voeg een Google Analytics volgcode toe"
 
-#: public_html/lists/admin/send_core.php:931
+#: public_html/lists/admin/send_core.php:932
 msgid "Reset click statistics"
 msgstr "Zet de klik statistieken terug op nul"
 
-#: public_html/lists/admin/send_core.php:938
+#: public_html/lists/admin/send_core.php:939
 msgid "Estimated size of HTML email"
 msgstr "Geschatte grootte van het HTML bericht"
 
-#: public_html/lists/admin/send_core.php:941
+#: public_html/lists/admin/send_core.php:942
 msgid "Estimated size of text email"
 msgstr "Geschatte grootte van het tekst bericht"
 
-#: public_html/lists/admin/send_core.php:983
+#: public_html/lists/admin/send_core.php:984
 msgid "Estimated size of mailout"
 msgstr "Geschatte grootte van totale verzending"
 
-#: public_html/lists/admin/send_core.php:986
+#: public_html/lists/admin/send_core.php:987
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
@@ -3739,27 +3776,27 @@ msgstr ""
 "Ongeveer %d abonnees voor het ontvangen van de  HTML versie van het bericht "
 "en %s abonnees voor het ontvangen van de tekst versie van het bericht"
 
-#: public_html/lists/admin/send_core.php:1093
+#: public_html/lists/admin/send_core.php:1094
 msgid "subject missing"
 msgstr "Geen onderwerp "
 
-#: public_html/lists/admin/send_core.php:1102
+#: public_html/lists/admin/send_core.php:1103
 msgid "message content missing"
 msgstr "geen berichtinhoud ingevoerd"
 
-#: public_html/lists/admin/send_core.php:1109
+#: public_html/lists/admin/send_core.php:1110
 msgid "From missing"
 msgstr "Geen verzender van het bericht"
 
-#: public_html/lists/admin/send_core.php:1129
+#: public_html/lists/admin/send_core.php:1130
 msgid "destination lists missing"
 msgstr "Geen verzendlijsten geselecteerd"
 
-#: public_html/lists/admin/send_core.php:1135
+#: public_html/lists/admin/send_core.php:1136
 msgid "Content contains click track links."
 msgstr "Inhoud bevat traceer links"
 
-#: public_html/lists/admin/send_core.php:1157
+#: public_html/lists/admin/send_core.php:1158
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
@@ -3767,12 +3804,12 @@ msgstr ""
 "Enkele verplichte velden zijn leeg. De verstuur knop wordt aktief als dit is "
 "opgelost."
 
-#: public_html/lists/admin/send_core.php:1163
+#: public_html/lists/admin/send_core.php:1164
 msgid "Save as draft"
 msgstr "Bewaar als concept"
 
-#: public_html/lists/admin/statsoverview.php:34
-#: public_html/lists/admin/statsoverview.php:46
+#: public_html/lists/admin/statsoverview.php:33
+#: public_html/lists/admin/statsoverview.php:44
 #: public_html/lists/admin/uclicks.php:26
 #: public_html/lists/admin/mviews.php:26 public_html/lists/admin/mviews.php:38
 #: public_html/lists/admin/mclicks.php:20
@@ -3781,86 +3818,86 @@ msgstr "Bewaar als concept"
 msgid "You do not have access to this page"
 msgstr "U heeft geen toegang tot deze pagina"
 
-#: public_html/lists/admin/statsoverview.php:63
+#: public_html/lists/admin/statsoverview.php:61
 msgid "Select Message to view"
 msgstr "Selecteer het bericht dat je wilt bekijken"
 
-#: public_html/lists/admin/statsoverview.php:87
+#: public_html/lists/admin/statsoverview.php:85
 #: public_html/lists/admin/mviews.php:64
 #: public_html/lists/admin/mclicks.php:55
 msgid "There are currently no messages to view"
 msgstr "Er zijn momenteel geen berichten te bekijken"
 
-#: public_html/lists/admin/statsoverview.php:90
+#: public_html/lists/admin/statsoverview.php:88
 msgid "Campaigns in the last year"
 msgstr "Berichten van het afgelopen jaar"
 
-#: public_html/lists/admin/statsoverview.php:102
+#: public_html/lists/admin/statsoverview.php:100
 msgid "fwds"
 msgstr "doorgestuurd"
 
-#: public_html/lists/admin/statsoverview.php:103
-#: public_html/lists/admin/statsoverview.php:116
+#: public_html/lists/admin/statsoverview.php:101
+#: public_html/lists/admin/statsoverview.php:114
 #: public_html/lists/admin/mviews.php:85 public_html/lists/admin/mviews.php:99
 #: public_html/lists/admin/mviews.php:197
 msgid "views"
 msgstr "bekeken"
 
-#: public_html/lists/admin/statsoverview.php:107
-#: public_html/lists/admin/statsoverview.php:118
+#: public_html/lists/admin/statsoverview.php:105
+#: public_html/lists/admin/statsoverview.php:116
 #: public_html/lists/admin/mviews.php:87
 #: public_html/lists/admin/mviews.php:101
 msgid "rate"
 msgstr "percentage"
 
-#: public_html/lists/admin/statsoverview.php:114
+#: public_html/lists/admin/statsoverview.php:112
 #: public_html/lists/admin/mviews.php:97
 msgid "Comparison to other admins"
 msgstr "Vergelijking met andere admins"
 
-#: public_html/lists/admin/statsoverview.php:130
+#: public_html/lists/admin/statsoverview.php:128
 msgid "View all campaigns"
 msgstr "Bekijk alle berichten"
 
-#: public_html/lists/admin/statsoverview.php:142
+#: public_html/lists/admin/statsoverview.php:140
 msgid "Date entered"
 msgstr "Datum van invoer"
 
-#: public_html/lists/admin/statsoverview.php:146
+#: public_html/lists/admin/statsoverview.php:144
 msgid "Date sent"
 msgstr "Datum van verzending"
 
-#: public_html/lists/admin/statsoverview.php:150
+#: public_html/lists/admin/statsoverview.php:148
 msgid "Sent as HTML"
 msgstr "Verzonden in HTML-opmaak"
 
-#: public_html/lists/admin/statsoverview.php:154
+#: public_html/lists/admin/statsoverview.php:152
 msgid "Sent as text"
 msgstr "Verzonden met tekst-opmaak"
 
-#: public_html/lists/admin/statsoverview.php:175
+#: public_html/lists/admin/statsoverview.php:173
 #: public_html/lists/admin/messages.php:373
 #: public_html/lists/admin/mclicks.php:121
 msgid "Bounced"
 msgstr "Teruggekaatst"
 
-#: public_html/lists/admin/statsoverview.php:181
+#: public_html/lists/admin/statsoverview.php:179
 msgid "Opened"
 msgstr "Bekeken"
 
-#: public_html/lists/admin/statsoverview.php:186
+#: public_html/lists/admin/statsoverview.php:184
 msgid "% Opened"
 msgstr "% bekeken"
 
-#: public_html/lists/admin/statsoverview.php:191
+#: public_html/lists/admin/statsoverview.php:189
 msgid "Clicked"
 msgstr "URL bezocht"
 
-#: public_html/lists/admin/statsoverview.php:196
+#: public_html/lists/admin/statsoverview.php:194
 msgid "% Clicked"
 msgstr "% URL bezocht"
 
-#: public_html/lists/admin/statsoverview.php:201
+#: public_html/lists/admin/statsoverview.php:199
 msgid "Forwarded"
 msgstr "Doorgestuurd"
 
@@ -3902,7 +3939,7 @@ msgstr "laatste klik"
 
 #: public_html/lists/admin/uclicks.php:123
 msgid "view users"
-msgstr "bekijk abonnees"
+msgstr "Bekijk een overzicht van de abonnees die deze url hebben bezocht"
 
 #: public_html/lists/admin/uclicks.php:125
 #: public_html/lists/admin/uclicks.php:138
@@ -4955,12 +4992,12 @@ msgstr "Bekijk teruggekaatste e-mail berichten per verzendlijst"
 msgid ""
 "are you sure you want to delete all unidentified bounces older than 2 months"
 msgstr ""
-"ben je er zeker van dat je alle niet geïdentificeerde teruggekaatste e-mail "
+"ben je er zeker van dat je alle niet herkende teruggekaatste e-mail "
 "berichten ouder dan 2 maanden wilt verwijderen"
 
 #: public_html/lists/admin/bounces.php:90
 msgid "delete all unidentified (&gt; 2 months old)"
-msgstr "Verwijder alles meer dan 2 maanden oud"
+msgstr "Verwijder alle niet herkende berichten die ouder zijn dan 2 maanden"
 
 #: public_html/lists/admin/bounces.php:93
 msgid "are you sure you want to delete all bounces older than 2 months"
@@ -4970,7 +5007,7 @@ msgstr ""
 
 #: public_html/lists/admin/bounces.php:95
 msgid "delete all processed (&gt; 2 months old)"
-msgstr "Verwijder alle verwerkte (meer dan 2 maanden oud)"
+msgstr "Verwijder alle herkende berichten van ouder dan 2 maanden"
 
 #: public_html/lists/admin/bounces.php:98
 msgid "are you sure you want to delete all bounces"
@@ -4981,7 +5018,7 @@ msgstr ""
 #: public_html/lists/admin/eventlog.php:92
 #: public_html/lists/admin/editattributes.php:48
 msgid "Delete all"
-msgstr "Verwijder alles"
+msgstr "Verwijder alle berichten"
 
 #: public_html/lists/admin/bounces.php:111
 msgid "no unidentified bounces available"
@@ -5368,7 +5405,7 @@ msgstr ""
 msgid "Generate Bounce Rules"
 msgstr "Maak regels voor teruggekaatste e-mail berichten"
 
-#: public_html/lists/admin/languages.php:561
+#: public_html/lists/admin/languages.php:569
 msgid "over treshold, user marked unconfirmed"
 msgstr "over drempel, abonnee gemarkeerd als niet bevestigd"
 
@@ -5776,11 +5813,11 @@ msgstr "Afmelden"
 
 #: public_html/lists/admin/pagetitles.php:105
 msgid "pagetitle:mclicks"
-msgstr "Bekeken berichten"
+msgstr "Klikken per bericht"
 
 #: public_html/lists/admin/pagetitles.php:107
 msgid "pagetitle:uclicks"
-msgstr "Bezochte url's"
+msgstr "Klikken per url"
 
 #: public_html/lists/admin/pagetitles.php:109
 msgid "pagetitle:massunconfirm"
@@ -5804,7 +5841,7 @@ msgstr "Overzicht domeinen e-mail adressen"
 
 #: public_html/lists/admin/pagetitles.php:119
 msgid "pagetitle:mviews"
-msgstr "Verzonden berichten"
+msgstr "Alle berichten"
 
 #: public_html/lists/admin/pagetitles.php:121
 msgid "pagetitle:statsmgt"
@@ -5812,7 +5849,7 @@ msgstr "statsmgt?"
 
 #: public_html/lists/admin/pagetitles.php:123
 msgid "pagetitle:statsoverview"
-msgstr "Afgelopen jaar"
+msgstr "Berichten afgelopen jaar"
 
 #: public_html/lists/admin/pagetitles.php:125
 msgid "pagetitle:subscriberstats"
@@ -6351,7 +6388,7 @@ msgstr "De wachtwoorden komen niet overeen"
 msgid "You have requested a password update"
 msgstr "Je hebt een wijziging van het wachtwoord aangevraagd"
 
-#: public_html/lists/admin/login.php:96 public_html/lists/admin/lib.php:251
+#: public_html/lists/admin/login.php:96 public_html/lists/admin/lib.php:250
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
@@ -6582,86 +6619,96 @@ msgstr "Installeer plugin"
 msgid "Installed plugins"
 msgstr "Geïnstalleerde plugins"
 
-#: public_html/lists/admin/plugins.php:195
+#: public_html/lists/admin/plugins.php:196
 msgid "name"
 msgstr "Naam"
 
-#: public_html/lists/admin/plugins.php:197
+#: public_html/lists/admin/plugins.php:198
 msgid "version"
 msgstr "versie"
 
-#: public_html/lists/admin/plugins.php:199
+#: public_html/lists/admin/plugins.php:200
 msgid "description"
 msgstr "Omschrijving"
 
-#: public_html/lists/admin/plugins.php:206
+#: public_html/lists/admin/plugins.php:207
 msgid "installed"
 msgstr "geïnstalleerd"
 
-#: public_html/lists/admin/plugins.php:211
+#: public_html/lists/admin/plugins.php:212
 msgid "installation Url"
 msgstr "Installatie URL"
 
-#: public_html/lists/admin/plugins.php:216
+#: public_html/lists/admin/plugins.php:217
 msgid "developer"
 msgstr "Ontwikkelaar"
 
-#: public_html/lists/admin/plugins.php:219
+#: public_html/lists/admin/plugins.php:220
 msgid "enabled"
 msgstr "aan"
 
-#: public_html/lists/admin/plugins.php:226
+#: public_html/lists/admin/plugins.php:227
 msgid "initialise"
 msgstr "initialiseer"
 
-#: public_html/lists/admin/plugins.php:228
+#: public_html/lists/admin/plugins.php:229
 msgid "Initialise"
 msgstr "Initialiseer"
 
-#: public_html/lists/admin/plugins.php:234
+#: public_html/lists/admin/plugins.php:235
 msgid "delete this plugin"
 msgstr "verwijder deze plugin"
 
-#: public_html/lists/admin/plugins.php:240
+#: public_html/lists/admin/plugins.php:241
 msgid "update this plugin"
 msgstr "werk deze plugin bij"
 
-#: public_html/lists/admin/plugins.php:240
 #: public_html/lists/admin/plugins.php:241
+#: public_html/lists/admin/plugins.php:242
 msgid "update"
 msgstr "bijwerken"
 
-#: public_html/lists/admin/plugins.php:244
+#: public_html/lists/admin/plugins.php:245
 msgid "details"
 msgstr "details"
 
+#: public_html/lists/admin/lib.php:25
+msgid "delete subscriber"
+msgstr "Verwijder abonnee"
+
+#: public_html/lists/admin/lib.php:26
+msgid "unconfirm subscriber"
+msgstr "Markeer de abonnee als niet bevestigd"
+
 #: public_html/lists/admin/lib.php:27
-msgid "delete user"
-msgstr "verwijder abonnee"
+msgid "blacklist subscriber"
+msgstr "Voeg de abonnee toe aan de Zwarte lijst"
 
 #: public_html/lists/admin/lib.php:28
-msgid "unconfirm user"
-msgstr "de-bevestig abonnee"
+msgid "blacklist email address"
+msgstr "Voeg het e-mail adres toe aan de Zwarte lijst"
 
 #: public_html/lists/admin/lib.php:29
-msgid "blacklist user"
-msgstr "plaats abonnee op de Zwarte lijst"
-
-#: public_html/lists/admin/lib.php:30
-msgid "delete user and bounce"
+msgid "delete subscriber and bounce"
 msgstr "verwijder abonnee en teruggekaatste e-mail berichten"
 
-#: public_html/lists/admin/lib.php:31
-msgid "unconfirm user and delete bounce"
+#: public_html/lists/admin/lib.php:30
+msgid "unconfirm subscriber and delete bounce"
 msgstr ""
 "markeer de abonnee als niet bevestigd en verwijder teruggekaatste e-mail "
 "berichten"
 
-#: public_html/lists/admin/lib.php:32
-msgid "blacklist user and delete bounce"
+#: public_html/lists/admin/lib.php:31
+msgid "blacklist subscriber and delete bounce"
 msgstr ""
-"plaats de abonnee op de Zwarte lijst en verwijder de teruggekaatste e-mail "
-"berichten"
+"voeg de abonnee toe aan de Zwarte lijst en verwijder de teruggekaatste "
+"e-mail berichten"
+
+#: public_html/lists/admin/lib.php:32
+msgid "blacklist email address and delete bounce"
+msgstr ""
+"voeg het e-mail adres toe aan de Zwarte lijst en verwijder teruggekaatste "
+"e-mail berichten"
 
 #: public_html/lists/admin/lib.php:33
 msgid "delete bounce"
@@ -6671,19 +6718,19 @@ msgstr "verwijder teruggekaatste e-mail berichten"
 msgid "Unnamed List"
 msgstr "Verzendlijst zonder naam"
 
-#: public_html/lists/admin/lib.php:246
+#: public_html/lists/admin/lib.php:245
 msgid "Hello"
 msgstr "Hallo"
 
-#: public_html/lists/admin/lib.php:247
+#: public_html/lists/admin/lib.php:246
 msgid "You have requested a new password for phpList."
 msgstr "Je hebt een nieuw wachtwoord aangevraagd voor phpList."
 
-#: public_html/lists/admin/lib.php:248
+#: public_html/lists/admin/lib.php:247
 msgid "To enter a new one, please visit the following link:"
 msgstr "Bezoek deze pagina om een nieuwe in te voeren:"
 
-#: public_html/lists/admin/lib.php:250
+#: public_html/lists/admin/lib.php:249
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
@@ -6691,32 +6738,32 @@ msgstr ""
 "Je hebt 24 uur om je wachtwoord te veranderen. Daarna is het token niet meer "
 "geldig."
 
-#: public_html/lists/admin/lib.php:252
+#: public_html/lists/admin/lib.php:251
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 "Een verzoek ter verandering van het wachtwoord is naar het ons bekende "
 "e-mail adres verzonden."
 
-#: public_html/lists/admin/lib.php:254
+#: public_html/lists/admin/lib.php:253
 msgid "Error sending password change token"
 msgstr ""
 "Er was een probleem bij het versturen van het bericht om het wachtwoord te "
 "veranderen."
 
-#: public_html/lists/admin/lib.php:458
+#: public_html/lists/admin/lib.php:457
 msgid "Sending admin copy to"
 msgstr "Bezig een beheerder kopie te verzenden naar"
 
-#: public_html/lists/admin/lib.php:522
+#: public_html/lists/admin/lib.php:521
 msgid "very little time"
 msgstr "zeer weinig tijd"
 
-#: public_html/lists/admin/lib.php:582
+#: public_html/lists/admin/lib.php:581
 msgid "This is the Newsletter Subject"
 msgstr "Dit is het onderwerp van de nieuwsbrief"
 
-#: public_html/lists/admin/lib.php:729
+#: public_html/lists/admin/lib.php:728
 #, php-format
 #, php-format,
 msgid ""
@@ -6725,18 +6772,18 @@ msgid ""
 msgstr ""
 "Deze pagina wordt reeds verwerkt, laaste activiteit was %s seconden geleden."
 
-#: public_html/lists/admin/lib.php:732
+#: public_html/lists/admin/lib.php:731
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 "Commandline wordt uitgevoerd, huidige actie gestaakt. Bij de volgende actie "
 "zal duidelijk worden wat er gedaan moet worden."
 
-#: public_html/lists/admin/lib.php:735
+#: public_html/lists/admin/lib.php:734
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "Microslaapje van 20s, Annuleren = quit"
 
-#: public_html/lists/admin/lib.php:743
+#: public_html/lists/admin/lib.php:742
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
@@ -6765,7 +6812,7 @@ msgstr "Ja, goed idee!"
 
 #: public_html/lists/admin/list.php:213
 msgid "View Members"
-msgstr "Bekijk abonnees"
+msgstr "Bekijk een overzicht van abonnees ingeschreven bij deze verzendlijst"
 
 #: public_html/lists/admin/list.php:216
 msgid "Public"
@@ -7298,16 +7345,16 @@ msgstr "Bekeken"
 
 #: public_html/lists/admin/messages.php:367
 msgid "Unique Views"
-msgstr "Uniek aantal keer bekeken"
+msgstr "Aantal unieke keren bekeken"
 
 #: public_html/lists/admin/messages.php:370
 #: public_html/lists/admin/mclicks.php:125
 msgid "Clicks"
-msgstr "Kliks"
+msgstr "Klikken"
 
 #: public_html/lists/admin/messages.php:388
 msgid "Time to send"
-msgstr "Tijd om te zenden"
+msgstr "Verzonden in"
 
 #: public_html/lists/admin/messages.php:418
 msgid "PDF"
@@ -7356,7 +7403,7 @@ msgstr "Alle gebeurtenissen van 2 maanden en ouder zijn verwijderd."
 
 #: public_html/lists/admin/eventlog.php:51
 msgid "Deleted all entries"
-msgstr "Alle entries verwijderd"
+msgstr "Alle berichten verwijderd"
 
 #: public_html/lists/admin/eventlog.php:62
 #: public_html/lists/admin/eventlog.php:108
@@ -7707,7 +7754,7 @@ msgstr ""
 
 #: public_html/lists/admin/editlist.php:48
 msgid "Members of this list"
-msgstr "Abonnees van deze verzendlijst"
+msgstr "Abonnees ingeschreven bij deze verzendlijst"
 
 #: public_html/lists/admin/editlist.php:92
 msgid "New list added"
@@ -7719,7 +7766,7 @@ msgstr "Naam van de verzendlijst"
 
 #: public_html/lists/admin/editlist.php:141
 msgid "Public list (listed on the frontend)"
-msgstr "Publieke verzendlijst (zichtbaar op de web pagina)"
+msgstr "Openbare verzendlijst (als keuze zichtbaar voor abonnees)"
 
 #: public_html/lists/admin/editlist.php:142
 msgid "Order for listing"
@@ -7778,7 +7825,7 @@ msgstr "Alle verzendlijsten zijn toegewezen aan een categorie"
 
 #: public_html/lists/admin/catlists.php:76
 msgid "save"
-msgstr "opslaan"
+msgstr "Opslaan"
 
 #: public_html/lists/admin/importlib.php:82
 msgid "Invalid email"
@@ -7803,7 +7850,7 @@ msgstr "koppelingen"
 
 #: public_html/lists/admin/mclicks.php:77
 msgid "user clicks"
-msgstr "abonnee kliks"
+msgstr "abonnee klikken"
 
 #: public_html/lists/admin/mclicks.php:78
 #: public_html/lists/admin/mclicks.php:162
@@ -7813,7 +7860,7 @@ msgstr "klikpercentage"
 
 #: public_html/lists/admin/mclicks.php:80
 msgid "total clicks"
-msgstr "totale kliks"
+msgstr "totaal aantal klikken"
 
 #: public_html/lists/admin/mclicks.php:105
 msgid "Click Details for a Message"
@@ -7930,7 +7977,7 @@ msgstr "Alle actieve verzendlijsten"
 
 #: public_html/lists/admin/connect.php:1149
 msgid "Public list"
-msgstr "Publieke verzendlijst"
+msgstr "Openbare verzendlijst"
 
 #: public_html/lists/admin/connect.php:1151
 msgid "Private list"
@@ -8179,7 +8226,7 @@ msgstr "Standaard bericht"
 
 #: public_html/lists/admin/templates.php:45
 msgid "System"
-msgstr "Programma"
+msgstr "Systeem"
 
 #: public_html/lists/admin/templates.php:53
 msgid "Add new Template"
@@ -8271,7 +8318,7 @@ msgstr "%d keer gebruikt"
 
 #: public_html/lists/admin/template.php:168
 msgid "Save Images"
-msgstr "Afbeeldingen Opslaan"
+msgstr "Afbeeldingen opslaan"
 
 #: public_html/lists/admin/template.php:172
 msgid "Template does not contain local images"
@@ -8313,11 +8360,11 @@ msgstr "Overzicht van sjablonen"
 
 #: public_html/lists/admin/template.php:256
 msgid "Title of this template"
-msgstr "Titel van dit sjabloon"
+msgstr "Titel van de sjabloon"
 
 #: public_html/lists/admin/template.php:260
 msgid "Content of the template."
-msgstr "Inhoud van dit sjabloon."
+msgstr "Inhoud van de sjabloon."
 
 #: public_html/lists/admin/template.php:260
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
@@ -8326,7 +8373,7 @@ msgstr "De inhoud moet minstens ergens <b>[CONTENT]</b> bevatten."
 #: public_html/lists/admin/template.php:260
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
-"U kunt een sjabloon bestand uploaden of plakken in het tekstveld onderaan"
+"U kunt een sjabloon bestand uploaden of tekst plakken in het veld hieronder"
 
 #: public_html/lists/admin/template.php:263
 msgid "Template file."
@@ -8436,6 +8483,31 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr "Verzoek om door te sturen door een ongeldige abonnee: %s"
+
+#~ msgid "addingattachment"
+#~ msgstr "bijlage toevoegen"
+
+#~ msgid "delete user"
+#~ msgstr "verwijder abonnee"
+
+#~ msgid "unconfirm user"
+#~ msgstr "de-bevestig abonnee"
+
+#~ msgid "blacklist user"
+#~ msgstr "plaats abonnee op de Zwarte lijst"
+
+#~ msgid "delete user and bounce"
+#~ msgstr "verwijder abonnee en teruggekaatste e-mail berichten"
+
+#~ msgid "unconfirm user and delete bounce"
+#~ msgstr ""
+#~ "markeer de abonnee als niet bevestigd en verwijder teruggekaatste e-mail "
+#~ "berichten"
+
+#~ msgid "blacklist user and delete bounce"
+#~ msgstr ""
+#~ "plaats de abonnee op de Zwarte lijst en verwijder de teruggekaatste e-mail "
+#~ "berichten"
 
 #~ msgid "What to do with all users"
 #~ msgstr "Wat te doen met alle abonnees"

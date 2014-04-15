@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-02 05:02+0000\n"
-"PO-Revision-Date: 2014-01-30 13:01+0000\n"
-"Last-Translator: Malte <malte@von-scheven.net>\n"
+"POT-Creation-Date: 2014-04-13 05:03+0000\n"
+"PO-Revision-Date: 2014-04-07 09:38+0000\n"
+"Last-Translator: Guido <hornig@actxc.de>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1391086864.0\n"
+"X-POOTLE-MTIME: 1396863536.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -28,7 +28,7 @@ msgstr "Entschuldigung, diese Seite kann nur von Super-Admins benutzt werden."
 #: public_html/lists/admin/massunconfirm.php:21
 #: public_html/lists/admin/massremove.php:23
 msgid "Blacklisted by"
-msgstr "Auf die Blacklist gesetzt von"
+msgstr "Gesperrt von "
 
 #: public_html/lists/admin/massunconfirm.php:25
 #, php-format
@@ -3374,19 +3374,18 @@ msgstr "MIME-Type ist länger als 255 Zeichen, das gibt Probleme"
 #: public_html/lists/admin/send_core.php:304
 #, php-format
 msgid "Attachment %d succesfully added"
-msgstr ""
+msgstr "Anhang %d erfolgreich hinzugefügt"
 
 #: public_html/lists/admin/send_core.php:306
 #, php-format
 msgid "Adding attachment %d failed"
-msgstr ""
+msgstr "Hinzufügen des Anhangs %d fehlgeschlagen"
 
 #: public_html/lists/admin/send_core.php:309
 msgid "Uploaded file not properly received, empty file"
 msgstr "Hochgeladene Datei nicht korrekt erhalten, Datei ist leer"
 
 #: public_html/lists/admin/send_core.php:320
-#, fuzzy
 msgid "Adding attachment"
 msgstr "Anhang hinzufügen"
 
@@ -4380,8 +4379,7 @@ msgstr "Nicht zustellbare Mails verarbeiten"
 msgid "Message Functions"
 msgstr "Nachrichten-Funktionen"
 
-#: public_html/lists/admin/home.php:349 
-#: public_html/lists/admin/about.php:60
+#: public_html/lists/admin/home.php:349 public_html/lists/admin/about.php:60
 msgid "Plugins"
 msgstr "Plug-Ins"
 
@@ -7130,7 +7128,7 @@ msgstr "Abonnenten suchen"
 
 #: public_html/lists/admin/usermgt.php:9
 msgid "manage subscriber attributes"
-msgstr "Abonnenten Eigenschaften bearbeiten"
+msgstr "Abonnenten-Attribute bearbeiten"
 
 #: public_html/lists/admin/usermgt.php:28
 msgid "edit values for attributes"
@@ -8486,18 +8484,6 @@ msgstr ""
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr "Weiterleitungs-Anfrage von ungültiger User-ID %s"
-
-#: public_html/lists/config:10
-msgid "config"
-msgstr "Konfiguration"
-
-#: 
-msgid "statistics"
-msgstr "Statistiken"
-
-#: public_html/lists/admin/pagetitles.php:7
-msgid "pagetitle:plugins"
-msgstr "Plug-Ins"
 
 #~ msgid "addingattachment"
 #~ msgstr "Anhang hinzufügen"
