@@ -9,10 +9,10 @@ if (!function_exists("mysql_connect")) {
 }
 
 function Sql_Connect($host,$user,$password,$database) {
-  if ($host && $user)
-    $compress = (empty($GLOBALS['database_connection_compression'])) ? 0 : MYSQL_CLIENT_COMPRESS;
-    $secure   = (empty($GLOBALS['database_connection_ssl'])) ? 0 : MYSQL_CLIENT_SSL;
+  $compress = (empty($GLOBALS['database_connection_compression'])) ? 0 : MYSQL_CLIENT_COMPRESS;
+  $secure   = (empty($GLOBALS['database_connection_ssl'])) ? 0 : MYSQL_CLIENT_SSL;
 
+  if ($host && $user)
     $db = mysql_connect($host, $user, $password, false, $compress | $secure);
   $errno = mysql_errno();
   if (!$errno) {
