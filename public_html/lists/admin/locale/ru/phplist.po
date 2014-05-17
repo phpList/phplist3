@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:14+0000\n"
-"PO-Revision-Date: 2014-04-12 07:44+0000\n"
+"POT-Creation-Date: 2014-05-11 05:13+0000\n"
+"PO-Revision-Date: 2014-05-06 13:33+0000\n"
 "Last-Translator: Nikita <tinman321@gmail.com>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1397288696.0\n"
+"X-POOTLE-MTIME: 1399383232.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2497,7 +2497,7 @@ msgstr "phpList закончил отправку рассылки с темой
 #, php-format
 #, php-format, php-format
 msgid "to view the results of this campaign, go to http://%s"
-msgstr "Посмотреть результаты рассылки, можно по ссылке<br />http://%s"
+msgstr "<br />Посмотреть результаты рассылки, можно по ссылке<br />http://%s"
 
 #: public_html/lists/admin/actions/processqueue.php:1195
 msgid "to send this message"
@@ -3353,8 +3353,8 @@ msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
-"Отправка кампании запланирована, письма не будут рассылаться до истечения "
-"срока запрета на отправку."
+"Письма не будут отправлены, т.к. запланирована остановка рассылки до момента "
+"истечения запрета."
 
 #: public_html/lists/admin/send_core.php:356
 #: public_html/lists/admin/send_core.php:1123
@@ -5159,7 +5159,7 @@ msgstr "Письмо, которое будет отправлено после 
 
 #: public_html/lists/admin/defaultconfig.php:417
 msgid "[notify] Change of List-Membership details"
-msgstr "[уведомить] Изменить данные участия в списках рассылок"
+msgstr "[Уведомление] Изменения учётных данных"
 
 #: public_html/lists/admin/defaultconfig.php:418
 msgid ""
@@ -5710,11 +5710,11 @@ msgstr "Голосовать за PHPlist"
 
 #: public_html/lists/admin/pagetitles.php:101
 msgid "pagetitle:login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: public_html/lists/admin/pagetitles.php:103
 msgid "pagetitle:logout"
-msgstr "Выход"
+msgstr "Выйти"
 
 #: public_html/lists/admin/pagetitles.php:105
 msgid "pagetitle:mclicks"
@@ -6017,7 +6017,7 @@ msgstr "Страница авторизации"
 
 #: public_html/lists/admin/pagetitles.php:255
 msgid "pagetitlehover:logout"
-msgstr "Выход"
+msgstr "Выйти из системы"
 
 #: public_html/lists/admin/pagetitles.php:257
 msgid "pagetitlehover:mclicks"
@@ -6267,7 +6267,7 @@ msgstr "Для авторизации вам необходимо включит
 
 #: public_html/lists/admin/login.php:41
 msgid "Forgot password"
-msgstr "Забыли пароль"
+msgstr "Забыли пароль?"
 
 #: public_html/lists/admin/login.php:42
 msgid "Enter your email address"
@@ -6523,7 +6523,7 @@ msgstr "Установленные модули"
 
 #: public_html/lists/admin/plugins.php:196
 msgid "name"
-msgstr "Название"
+msgstr "Имя"
 
 #: public_html/lists/admin/plugins.php:198
 msgid "version"
@@ -6617,15 +6617,15 @@ msgstr "Безымянный список"
 
 #: public_html/lists/admin/lib.php:245
 msgid "Hello"
-msgstr "Привет"
+msgstr "Добрый день"
 
 #: public_html/lists/admin/lib.php:246
 msgid "You have requested a new password for phpList."
-msgstr "От Вас получен запрос на получение нового пароля для phpList."
+msgstr "От Вас получен запрос на назначение нового пароля для phpList."
 
 #: public_html/lists/admin/lib.php:247
 msgid "To enter a new one, please visit the following link:"
-msgstr "Чтобы ввести новый, перейдите по следующей ссылке:"
+msgstr "Чтобы задать новый пароль, перейдите по следующей ссылке:"
 
 #: public_html/lists/admin/lib.php:249
 msgid ""

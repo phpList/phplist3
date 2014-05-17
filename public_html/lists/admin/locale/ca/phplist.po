@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:00+0000\n"
-"PO-Revision-Date: 2013-12-22 13:48+0000\n"
+"POT-Creation-Date: 2014-05-11 05:00+0000\n"
+"PO-Revision-Date: 2014-04-16 19:24+0000\n"
 "Last-Translator: Palisandro David <djpaliobcn@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1387720082.0\n"
+"X-POOTLE-MTIME: 1397676283.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -274,7 +274,6 @@ msgid "User auto unsubscribed for"
 msgstr "Usuari donat de baixa automàticament per"
 
 #: public_html/lists/admin/processbounces.php:562
-#, fuzzy
 msgid "email auto blacklisted for"
 msgstr "correu afegit automàticament a la llista negra per"
 
@@ -504,7 +503,7 @@ msgstr "Confirma Importació"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:403
 msgid "Test Output"
-msgstr ""
+msgstr "Prova sortida"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:406
 #: public_html/lists/admin/import1.php:158
@@ -571,22 +570,22 @@ msgstr "Selecciona la llista on afegir els correus"
 #: public_html/lists/admin/import4.php:42
 #: public_html/lists/admin/import3.php:40
 msgid "No lists available"
-msgstr ""
+msgstr "No hi han llistes disponibles"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/list.php:50 public_html/lists/admin/list.php:54
 #: public_html/lists/admin/list.php:274 public_html/lists/admin/import3.php:40
 #: public_html/lists/admin/connect.php:1123
 msgid "Add a list"
-msgstr ""
+msgstr "Afegeix llista"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:631
 msgid "Select the groups to add the users to"
-msgstr ""
+msgstr "Selecciona els grups als que afegir els usuaris"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:634
 msgid "automatically added"
-msgstr ""
+msgstr "afegit automàticament"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:659
 msgid ""
@@ -603,11 +602,22 @@ msgid ""
 "file needs to be plain text. Do not upload binary files like a Word "
 "Document.     "
 msgstr ""
+"L'arxiu que acabes de pujar necessita els atributs dels registres a la "
+"primera línia. Assegura't de que la columna dels correus es diu \"email\" i no "
+"quelcom com \"e-mail\" o \"Direcció de correu\". No discriminen les majúscules. "
+"Si te una columna anomenada \"Foreign Key\", aquesta s'utilitzarà per "
+"sincronitzar la base de dades externa amb la de phpList. La clau externa "
+"tindrà preferència per actualitzar el subscriptor existent. Això farà més "
+"lent el procés d'importació. Si utilitzes la clau externa permetrà afegir "
+"usuaris sense correu i es marcarà com a Correu invàlid. Aleshores podeu "
+"filtrar per Correu invàlids per trobar registres erronis. La mida màxima de "
+"la clau externa es de 100. Important: el fitxer ha de ser de text pla, no un "
+"llistat binari tipus word, excel."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:661
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
-msgstr ""
+msgstr "El fitxer conté correus"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:663
 #, php-format
@@ -615,11 +625,13 @@ msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
 msgstr ""
+"Els següents límits estan fixats per el vostre servidor:<br/>Mida màxima "
+"total del enviament: %s <br/>Mida màxima de cada arxiu: %s"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:664
 #, php-format
 msgid "phpList will not process files larger than %dMB"
-msgstr ""
+msgstr "phpList no processarà arxius més grans de %dMB"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:666
 #: public_html/lists/admin/importadmin.php:301
@@ -779,8 +791,9 @@ msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:691
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "importa"
 
 #: public_html/lists/admin/commonlib/pages/user.php:21
 msgid ""
@@ -879,12 +892,14 @@ msgstr ""
 #: public_html/lists/admin/eventlog.php:38
 #: public_html/lists/admin/reconcileusers.php:379
 #: public_html/lists/admin/templates.php:10
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "cap"
 
 #: public_html/lists/admin/commonlib/pages/user.php:277
+#, fuzzy
 msgid "Subscriber removed from group"
-msgstr ""
+msgstr "Subscriptor eliminat de la llista %s"
 
 #: public_html/lists/admin/commonlib/pages/user.php:291
 msgid "No such subscriber"
@@ -976,19 +991,22 @@ msgid "Please select the groups this subscriber is a member of"
 msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/user.php:546
+#, fuzzy
 msgid "Save changes"
-msgstr ""
+msgstr "Desa els canvis"
 
 #: public_html/lists/admin/commonlib/pages/user.php:552
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
+#, fuzzy
 msgid "Details"
-msgstr ""
+msgstr "detall"
 
 #: public_html/lists/admin/commonlib/pages/user.php:553
 #: public_html/lists/admin/send_core.php:533
 #: public_html/lists/admin/list.php:146 public_html/lists/admin/list.php:158
+#, fuzzy
 msgid "Lists"
-msgstr ""
+msgstr "llista"
 
 #: public_html/lists/admin/commonlib/pages/user.php:566
 msgid "Groups"
@@ -1269,8 +1287,9 @@ msgid "reset"
 msgstr "re-inicia"
 
 #: public_html/lists/admin/commonlib/pages/users.php:361
+#, fuzzy
 msgid "Find subscribers"
-msgstr ""
+msgstr "Subscriptors"
 
 #: public_html/lists/admin/commonlib/pages/users.php:366
 msgid "Download all users as CSV file"
@@ -1290,13 +1309,15 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:208
 #: public_html/lists/admin/import4.php:115
 #: public_html/lists/admin/import3.php:472
+#, fuzzy
 msgid "lists"
-msgstr ""
+msgstr "llista"
 
 #: public_html/lists/admin/commonlib/pages/users.php:417
 #: public_html/lists/admin/uclicks.php:55
+#, fuzzy
 msgid "msgs"
-msgstr ""
+msgstr "missatge"
 
 #: public_html/lists/admin/commonlib/pages/users.php:430
 #: public_html/lists/admin/statsoverview.php:99
@@ -1565,13 +1586,15 @@ msgid "No file was specified. Maybe the file is too big?"
 msgstr "No s'ha especificat cap fitxer. Potser és massa gran?"
 
 #: public_html/lists/admin/import1.php:81
+#, fuzzy
 msgid "Cannot read file. It is not readable !"
-msgstr ""
+msgstr "No es pot llegir %s. El fitxer no és llegible !"
 
 #: public_html/lists/admin/import1.php:137
 #: public_html/lists/admin/import1.php:214
+#, fuzzy
 msgid "Test output:"
-msgstr ""
+msgstr "Prova sortida"
 
 #: public_html/lists/admin/import1.php:137
 msgid "There should only be ONE email per line."
@@ -1663,8 +1686,11 @@ msgid "Record has more values than header indicated, this may cause trouble"
 msgstr ""
 
 #: public_html/lists/admin/importadmin.php:146
+#, fuzzy
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
 msgstr ""
+"Prova de sortida<br />Si el resultat sembla correcte, clica %s per enviar-ho "
+"realment"
 
 #: public_html/lists/admin/importadmin.php:153
 msgid "password"
@@ -1879,8 +1905,9 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:475
 #, php-format
+#, fuzzy, php-format
 msgid "%s emails succesfully imported to the database and added to %d lists."
-msgstr ""
+msgstr "importació de base de dades e i incorporació al sistema satisfactòria."
 
 #: public_html/lists/admin/actions/import2.php:476
 #, php-format
@@ -1949,8 +1976,9 @@ msgid "Don't know how to handle type "
 msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:74
+#, fuzzy
 msgid "save changes"
-msgstr ""
+msgstr "Desa els canvis"
 
 #: public_html/lists/admin/actions/addemail.php:13
 msgid "Email address added"
@@ -1962,8 +1990,9 @@ msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:45
 #: public_html/lists/admin/actions/processqueue.php:1155
+#, fuzzy
 msgid "unknown"
-msgstr ""
+msgstr "Desconegut"
 
 #: public_html/lists/admin/actions/msgstatus.php:59
 #, php-format
@@ -2076,8 +2105,9 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:214
 #, php-format
+#, fuzzy, php-format
 msgid "%d invalid email addresses"
-msgstr ""
+msgstr "L'adreça de correu no és vàlida"
 
 #: public_html/lists/admin/actions/processqueue.php:217
 #, php-format
@@ -2822,8 +2852,9 @@ msgid "expression"
 msgstr ""
 
 #: public_html/lists/admin/bouncerules.php:91
+#, fuzzy
 msgid "action"
-msgstr ""
+msgstr "Acció"
 
 #: public_html/lists/admin/bouncerules.php:94
 msgid "#bncs"
@@ -2851,8 +2882,9 @@ msgid "with tagged rules: "
 msgstr ""
 
 #: public_html/lists/admin/bouncerules.php:105
+#, fuzzy
 msgid "make active"
-msgstr ""
+msgstr "desactiva"
 
 #: public_html/lists/admin/bouncerules.php:107
 msgid "make inactive"
@@ -2917,8 +2949,9 @@ msgstr ""
 
 #: public_html/lists/admin/setup.php:106
 #: public_html/lists/admin/editlist.php:103
+#, fuzzy
 msgid "Add some subscribers"
-msgstr ""
+msgstr "Afegeix nou subscriptor"
 
 #: public_html/lists/admin/setup.php:121
 msgid "Congratulations, phpList is set up, you are ready to start mailing"
@@ -3144,12 +3177,14 @@ msgstr ""
 
 #: public_html/lists/admin/adminattributes.php:12
 #: public_html/lists/admin/defaults.php:43
+#, fuzzy
 msgid "Name cannot be empty:"
-msgstr ""
+msgstr "El nom no pot estar buit."
 
 #: public_html/lists/admin/adminattributes.php:74
+#, fuzzy
 msgid "Existing attributes:"
-msgstr ""
+msgstr "Atributs existents"
 
 #: public_html/lists/admin/adminattributes.php:84
 msgid "Attribute:"
@@ -3174,17 +3209,20 @@ msgstr ""
 
 #: public_html/lists/admin/adminattributes.php:88
 #: public_html/lists/admin/adminattributes.php:106
+#, fuzzy
 msgid "Order of Listing:"
-msgstr ""
+msgstr "Ordre de llista"
 
 #: public_html/lists/admin/adminattributes.php:89
 #: public_html/lists/admin/adminattributes.php:107
+#, fuzzy
 msgid "Is this attribute required?:"
-msgstr ""
+msgstr "És obligatori aquest atribut?"
 
 #: public_html/lists/admin/adminattributes.php:94
+#, fuzzy
 msgid "Add a new Attribute:"
-msgstr ""
+msgstr "Afegeix Atribut"
 
 #: public_html/lists/admin/subscriberstats.php:6
 #: public_html/lists/admin/messages.php:452
@@ -3703,8 +3741,9 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:116
 #: public_html/lists/admin/mviews.php:87
 #: public_html/lists/admin/mviews.php:101
+#, fuzzy
 msgid "rate"
-msgstr ""
+msgstr "data"
 
 #: public_html/lists/admin/statsoverview.php:112
 #: public_html/lists/admin/mviews.php:97
@@ -4021,8 +4060,9 @@ msgid "View current campaigns"
 msgstr ""
 
 #: public_html/lists/admin/home.php:110
+#, fuzzy
 msgid "Manage Subscribers"
-msgstr ""
+msgstr "Administra subscriptors"
 
 #: public_html/lists/admin/home.php:112
 msgid "Search, edit and add Subscribers"
@@ -4125,8 +4165,9 @@ msgid "Administrator Functions"
 msgstr ""
 
 #: public_html/lists/admin/home.php:241 public_html/lists/admin/list.php:237
+#, fuzzy
 msgid "send"
-msgstr ""
+msgstr "enviat"
 
 #: public_html/lists/admin/home.php:243
 msgid "Send a Message"
@@ -4159,8 +4200,9 @@ msgstr ""
 #: public_html/lists/admin/home.php:271
 #: public_html/lists/admin/import3.php:148
 #: public_html/lists/admin/import3.php:350
+#, fuzzy
 msgid "messages"
-msgstr ""
+msgstr "Missatges"
 
 #: public_html/lists/admin/home.php:273
 msgid "List all Messages"
@@ -4220,8 +4262,9 @@ msgid "dbcheck"
 msgstr ""
 
 #: public_html/lists/admin/home.php:375
+#, fuzzy
 msgid "Check Database structure"
-msgstr ""
+msgstr "Estructura de dades"
 
 #: public_html/lists/admin/home.php:381
 msgid "eventlog"
@@ -4272,8 +4315,9 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/configure.php:84
+#, fuzzy
 msgid "cannot be empty"
-msgstr ""
+msgstr "El nom no pot estar buit."
 
 #: public_html/lists/admin/configure.php:94
 msgid "Changes not saved"
@@ -4387,8 +4431,9 @@ msgid "ID"
 msgstr ""
 
 #: public_html/lists/admin/bounce.php:206
+#, fuzzy
 msgid "Date"
-msgstr ""
+msgstr "data"
 
 #: public_html/lists/admin/bounce.php:209
 msgid "Comment"
@@ -4481,8 +4526,9 @@ msgid "The DB was already converted to UTF-8 on"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:103
+#, fuzzy
 msgid "All Done"
-msgstr ""
+msgstr "Això és tot"
 
 #: public_html/lists/admin/about.php:11
 msgid "Certified Secure by "
@@ -4692,22 +4738,26 @@ msgstr ""
 
 #: public_html/lists/admin/members.php:238
 #, php-format
+#, fuzzy, php-format
 msgid "Listing subscriber %d to %d"
-msgstr ""
+msgstr "Llistar usuaris de %d a %d"
 
 #: public_html/lists/admin/members.php:241
+#, fuzzy
 msgid "Listing subscriber 1 to 50"
-msgstr ""
+msgstr "Llistar usuaris de %d a %d"
 
 #: public_html/lists/admin/members.php:245
 #: public_html/lists/admin/reconcileusers.php:392
+#, fuzzy
 msgid "subscribers"
-msgstr ""
+msgstr "Subscriptors"
 
 #: public_html/lists/admin/members.php:270
 #, php-format
+#, fuzzy, php-format
 msgid "%d subscribers"
-msgstr ""
+msgstr "Subscriptors"
 
 #: public_html/lists/admin/members.php:276
 msgid "Tag all users in this page"
@@ -4719,8 +4769,9 @@ msgid "Members"
 msgstr ""
 
 #: public_html/lists/admin/members.php:334
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "Acció"
 
 #: public_html/lists/admin/members.php:336
 msgid "What to do with \"Tagged\" users"
@@ -4773,8 +4824,9 @@ msgstr ""
 #: public_html/lists/admin/import3.php:161
 #: public_html/lists/admin/import3.php:399
 #: public_html/lists/admin/defaults.php:67
+#, fuzzy
 msgid "done"
-msgstr ""
+msgstr "cap"
 
 #: public_html/lists/admin/bounces.php:19
 msgid "processed"
@@ -4831,8 +4883,9 @@ msgstr ""
 #: public_html/lists/admin/msgbounces.php:10
 #: public_html/lists/admin/eventlog.php:116
 #: public_html/lists/admin/userclicks.php:136
+#, fuzzy
 msgid "message"
-msgstr ""
+msgstr "Missatges"
 
 #: public_html/lists/admin/defaultconfig.php:50
 msgid "Website address (without http://)"
@@ -5152,8 +5205,9 @@ msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
 #: public_html/lists/admin/export.php:73
+#, fuzzy
 msgid "Invalid security token. Please reload the page and try again."
-msgstr ""
+msgstr "Clau de seguretat invalida, recarrega la pàgina i torna-ho a provar "
 
 #: public_html/lists/admin/export.php:91
 #, php-format
@@ -5262,8 +5316,9 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/import4.php:77
+#, fuzzy
 msgid "Overwrite Existing:"
-msgstr ""
+msgstr "Sobre-escriure Existents"
 
 #: public_html/lists/admin/import4.php:78
 #, fuzzy
@@ -6040,8 +6095,9 @@ msgstr ""
 #: public_html/lists/admin/spageedit.php:238
 #: public_html/lists/admin/spageedit.php:245
 #: public_html/lists/admin/spageedit.php:252
+#, fuzzy
 msgid "Message"
-msgstr ""
+msgstr "Missatges"
 
 #: public_html/lists/admin/spageedit.php:240
 msgid "Message they receive when they confirm their subscription"
@@ -6141,8 +6197,9 @@ msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:27
 #, php-format
+#, fuzzy, php-format
 msgid "Listing %s to %s"
-msgstr ""
+msgstr "Llistar usuaris de %d a %d"
 
 #: public_html/lists/admin/msgbounces.php:29
 msgid " Total"
@@ -6252,8 +6309,9 @@ msgid "The plugin "
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:36
+#, fuzzy
 msgid "Invalid download URL, please reload the page and try again"
-msgstr ""
+msgstr "Clau de seguretat invalida, recarrega la pàgina i torna-ho a provar "
 
 #: public_html/lists/admin/plugins.php:43
 msgid "Fetching plugin"
@@ -6380,8 +6438,9 @@ msgid "update"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:245
+#, fuzzy
 msgid "details"
-msgstr ""
+msgstr "detall"
 
 #: public_html/lists/admin/lib.php:25
 msgid "delete subscriber"
@@ -6602,8 +6661,9 @@ msgid "If you choose"
 msgstr ""
 
 #: public_html/lists/admin/import3.php:244
+#, fuzzy
 msgid "send notification email"
-msgstr ""
+msgstr "Envia correu de Notificació"
 
 #: public_html/lists/admin/import3.php:244
 msgid ""
@@ -6638,8 +6698,9 @@ msgstr ""
 
 #: public_html/lists/admin/import3.php:250
 #: public_html/lists/admin/import3.php:258
+#, fuzzy
 msgid "Create Attribute"
-msgstr ""
+msgstr "Crea un nou atribut"
 
 #: public_html/lists/admin/import3.php:257
 msgid "Attribute two"
@@ -6670,12 +6731,14 @@ msgid "All the emails already exist in the database and are members of the"
 msgstr ""
 
 #: public_html/lists/admin/import3.php:481
+#, fuzzy
 msgid "emails already existed in the database"
-msgstr ""
+msgstr "%d dels correus ja existien a la base de dades"
 
 #: public_html/lists/admin/import3.php:483
+#, fuzzy
 msgid "Invalid Emails found."
-msgstr ""
+msgstr "Trobats %d Correus Invàlids"
 
 #: public_html/lists/admin/import3.php:485
 msgid ""
@@ -6684,8 +6747,9 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/import3.php:491
+#, fuzzy
 msgid "No emails found"
-msgstr ""
+msgstr "No s'han trobat detalls"
 
 #: public_html/lists/admin/message.php:6
 msgid "Please select a message to display"
@@ -6771,12 +6835,14 @@ msgid "Resend"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:6
+#, fuzzy
 msgid "Existing subscribers"
-msgstr ""
+msgstr "Afegeix nou subscriptor"
 
 #: public_html/lists/admin/usercheck.php:7
+#, fuzzy
 msgid "Non existing subscribers "
-msgstr ""
+msgstr "Afegeix nou subscriptor"
 
 #: public_html/lists/admin/usercheck.php:21
 msgid "key"
@@ -6858,8 +6924,9 @@ msgstr ""
 #: public_html/lists/admin/userclicks.php:67
 #: public_html/lists/admin/userclicks.php:80
 #: public_html/lists/admin/userclicks.php:96
+#, fuzzy
 msgid "Sent"
-msgstr ""
+msgstr "enviat"
 
 #: public_html/lists/admin/mviews.php:134
 msgid "Open statistics"
@@ -6934,8 +7001,9 @@ msgid "Dec"
 msgstr ""
 
 #: public_html/lists/admin/reindex.php:17
+#, fuzzy
 msgid "processing "
-msgstr ""
+msgstr "Processant"
 
 #: public_html/lists/admin/reindex.php:20
 #, php-format
@@ -7013,8 +7081,9 @@ msgid "Marking all as sent "
 msgstr ""
 
 #: public_html/lists/admin/messages.php:366
+#, fuzzy
 msgid "Viewed"
-msgstr ""
+msgstr "vist"
 
 #: public_html/lists/admin/messages.php:367
 msgid "Unique Views"
@@ -7022,8 +7091,9 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:370
 #: public_html/lists/admin/mclicks.php:125
+#, fuzzy
 msgid "Clicks"
-msgstr ""
+msgstr "clics"
 
 #: public_html/lists/admin/messages.php:388
 msgid "Time to send"
@@ -7202,8 +7272,9 @@ msgid "not active"
 msgstr ""
 
 #: public_html/lists/admin/spage.php:74
+#, fuzzy
 msgid "Add a new subscribe page"
-msgstr ""
+msgstr "Afegeix nou subscriptor"
 
 #: public_html/lists/admin/reconcileusers.php:47
 msgid "Resending confirmation request to"
@@ -7407,8 +7478,9 @@ msgid "Public list (listed on the frontend)"
 msgstr ""
 
 #: public_html/lists/admin/editlist.php:142
+#, fuzzy
 msgid "Order for listing"
-msgstr ""
+msgstr "Ordre de llista"
 
 #: public_html/lists/admin/editlist.php:164
 #: public_html/lists/admin/catlists.php:73
@@ -7464,8 +7536,9 @@ msgid "save"
 msgstr ""
 
 #: public_html/lists/admin/importlib.php:82
+#, fuzzy
 msgid "Invalid email"
-msgstr ""
+msgstr "Correu invàlid"
 
 #: public_html/lists/admin/defaults.php:39
 msgid "Loading"
@@ -7519,8 +7592,9 @@ msgid "import_by"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:77
+#, fuzzy
 msgid "Imported"
-msgstr ""
+msgstr "importa"
 
 #: public_html/lists/admin/importsimple.php:81
 #, php-format
@@ -7548,8 +7622,9 @@ msgid "%d addresses were blacklisted and have not been subscribed to the list"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:140
+#, fuzzy
 msgid "Adding subscribers"
-msgstr ""
+msgstr "Afegeix nou subscriptor"
 
 #: public_html/lists/admin/importsimple.php:148
 msgid ""
@@ -7650,8 +7725,9 @@ msgstr ""
 
 #: public_html/lists/admin/connect.php:1790
 #, php-format
+#, fuzzy, php-format
 msgid "Listing %d to %d"
-msgstr ""
+msgstr "Llistar usuaris de %d a %d"
 
 #: public_html/lists/admin/connect.php:1806
 msgid "First Page"
@@ -7717,12 +7793,14 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/readtestmail.php:49
+#, fuzzy
 msgid "test processing error"
-msgstr ""
+msgstr "Informació de Processament de la Llista "
 
 #: public_html/lists/admin/readtestmail.php:52
+#, fuzzy
 msgid "test Processing info"
-msgstr ""
+msgstr "Informació de Processament de la Llista "
 
 #: public_html/lists/admin/readtestmail.php:222
 msgid "mails in mailbox"
@@ -7733,12 +7811,14 @@ msgid "tests"
 msgstr ""
 
 #: public_html/lists/admin/readtestmail.php:301
+#, fuzzy
 msgid "test_protocol not supported"
-msgstr ""
+msgstr "protocol de rebots no suportat"
 
 #: public_html/lists/admin/userclicks.php:28
+#, fuzzy
 msgid "Invalid Request"
-msgstr ""
+msgstr "sol·licitud invàlida"
 
 #: public_html/lists/admin/userclicks.php:47
 msgid "User Click Statistics"
@@ -7869,8 +7949,9 @@ msgid "Images stored"
 msgstr ""
 
 #: public_html/lists/admin/template.php:78
+#, fuzzy
 msgid "No images found"
-msgstr ""
+msgstr "No s'han trobat detalls"
 
 #: public_html/lists/admin/template.php:81
 msgid "Template saved and ready for use in campaigns"
@@ -7934,8 +8015,9 @@ msgid "%d times used"
 msgstr ""
 
 #: public_html/lists/admin/template.php:168
+#, fuzzy
 msgid "Save Images"
-msgstr ""
+msgstr "Desa els canvis"
 
 #: public_html/lists/admin/template.php:172
 msgid "Template does not contain local images"

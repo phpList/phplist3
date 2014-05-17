@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:03+0000\n"
-"PO-Revision-Date: 2014-04-07 09:38+0000\n"
+"POT-Creation-Date: 2014-05-11 05:02+0000\n"
+"PO-Revision-Date: 2014-04-15 17:10+0000\n"
 "Last-Translator: Guido <hornig@actxc.de>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1396863536.0\n"
+"X-POOTLE-MTIME: 1397581838.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -2924,7 +2924,7 @@ msgstr "Anzahl %s Regeln: %d"
 #: public_html/lists/admin/messages.php:83
 #: public_html/lists/admin/spage.php:64 public_html/lists/admin/spage.php:65
 msgid "active"
-msgstr "Aktive Regeln"
+msgstr "Aktiv"
 
 #: public_html/lists/admin/bouncerules.php:61
 #: public_html/lists/admin/bouncerules.php:63
@@ -3387,7 +3387,7 @@ msgstr "Hochgeladene Datei nicht korrekt erhalten, Datei ist leer"
 
 #: public_html/lists/admin/send_core.php:320
 msgid "Adding attachment"
-msgstr "Anhang hinzufügen"
+msgstr "Anhang wird hinzugefügt"
 
 #: public_html/lists/admin/send_core.php:333
 msgid "Campaign saved as draft"
@@ -6724,19 +6724,20 @@ msgstr "Hallo"
 
 #: public_html/lists/admin/lib.php:246
 msgid "You have requested a new password for phpList."
-msgstr "Sie haben ein neues Passwort für phpList angefordert"
+msgstr "Sie haben ein neues Passwort für phpList angefordert."
 
 #: public_html/lists/admin/lib.php:247
 msgid "To enter a new one, please visit the following link:"
-msgstr "Um einen neuen einzugeben, besuchen Sie bitte den folgenden Link:"
+msgstr ""
+"Um ein neues Passwort einzugeben, besuchen Sie bitte den folgenden Link:"
 
 #: public_html/lists/admin/lib.php:249
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 msgstr ""
-"Sie haben 24 Stunden Zeit, Ihr Passwort zu ändern. Danach wird der Token "
-"ungültig."
+"Sie haben 24 Stunden Zeit, Ihr Passwort zu ändern. Danach wird der Link mit "
+"diesem Token ungültig."
 
 #: public_html/lists/admin/lib.php:251
 msgid ""

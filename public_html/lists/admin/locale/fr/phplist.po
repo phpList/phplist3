@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:07+0000\n"
-"PO-Revision-Date: 2013-12-01 15:45+0000\n"
-"Last-Translator: Jacques <jacques.desroches@meteoduquebec.com>\n"
+"POT-Creation-Date: 2014-05-11 05:06+0000\n"
+"PO-Revision-Date: 2014-04-17 07:44+0000\n"
+"Last-Translator: Shnoulle <courriel@shnoulle.net>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1385912741.0\n"
+"X-POOTLE-MTIME: 1397720661.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -36,8 +36,8 @@ msgid ""
 "All done, %d emails processed, %d emails marked unconfirmed, %d emails "
 "blacklisted<br/>"
 msgstr ""
-"Terminé, %d messages traités, %d adresses courriel marqué non confirmée, %d "
-"adresses mises sur liste noire<br />"
+"Terminé, %d messages traités, %d adresses de courriel marquées non "
+"confirmées, %d adresses mises sur liste noire<br />"
 
 #: public_html/lists/admin/massunconfirm.php:26
 msgid "Add more"
@@ -95,7 +95,7 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:214
 msgid "Bounced system message"
-msgstr "Messages système rejetés"
+msgstr "Messages système de rejet"
 
 #: public_html/lists/admin/processbounces.php:215
 msgid "User marked unconfirmed"
@@ -199,7 +199,7 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:436
 msgid "bounce_protocol not supported"
-msgstr "bounce_protocol n'est pas installé"
+msgstr "Le protocole de rejet (bounce_protocol) n’est pas installé"
 
 #: public_html/lists/admin/processbounces.php:449
 #, php-format
@@ -275,13 +275,13 @@ msgstr "Utilisateur automatiquement mis sur liste noir pour"
 #: public_html/lists/admin/processbounces.php:566
 #: public_html/lists/admin/processbounces.php:575
 msgid "Auto Unsubscribed"
-msgstr "Auto Désinscrit"
+msgstr "Désabonné automatique"
 
 #: public_html/lists/admin/processbounces.php:547
 #: public_html/lists/admin/processbounces.php:556
 #: public_html/lists/admin/processbounces.php:575
 msgid "User auto unsubscribed for"
-msgstr "L'utilisateur a été auto désinscrit suite à"
+msgstr "L’utilisateur a été désabonné automatiquement suite à"
 
 #: public_html/lists/admin/processbounces.php:562
 msgid "email auto blacklisted for"
@@ -401,7 +401,7 @@ msgstr "Voulez-vous vraiment réinitialiser l’importation en cours ?"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:50
 msgid "Reset Import session"
-msgstr "Remettre à zéro la session Import"
+msgstr "Remettre à zéro la session d’importation"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:57
 #: public_html/lists/admin/commonlib/pages/user.php:42
@@ -431,13 +431,13 @@ msgstr "Le fichier est trop volumineux, divisez-le en morceaux plus petits"
 #: public_html/lists/admin/import1.php:67
 msgid "Please choose whether to sign up immediately or to send a notification"
 msgstr ""
-"Choisissez si vous souhaitez effectuer l'inscription immédiatement ou "
+"Choisissez si vous souhaitez effectuer l’inscription immédiatement ou "
 "envoyer le message de confirmation"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:107
 #, php-format
 msgid "Cannot read %s. file is not readable !"
-msgstr "Lecture de %s impossible. Le fichier n'est pas lisible !"
+msgstr "Lecture de %s impossible. Le fichier n’est pas lisible !"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:112
 #: public_html/lists/admin/import1.php:87
@@ -467,7 +467,7 @@ msgstr "Créer nouveau"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:322
 #: public_html/lists/admin/commonlib/pages/importcsv.php:383
 msgid "Skip Column"
-msgstr "Sauter Colonne"
+msgstr "Ignorer colonne"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:330
 msgid "Import Attributes"
@@ -534,13 +534,13 @@ msgstr "Import de %d abonnés à %d listes, veuillez patienter"
 #: public_html/lists/admin/importadmin.php:122
 #: public_html/lists/admin/actions/import2.php:96
 msgid "Record has no email"
-msgstr "L'entrée n'a pas d'adresse électronique"
+msgstr "L’entrée n’a pas d’adresse de courriel"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:493
 #: public_html/lists/admin/importadmin.php:123
 #: public_html/lists/admin/actions/import2.php:99
 msgid "Invalid Email"
-msgstr "Adresse électronique invalide"
+msgstr "Adresse de courriel invalide"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:539
 #: public_html/lists/admin/actions/import2.php:147
@@ -561,8 +561,8 @@ msgstr "Sauter valeur"
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr ""
-"Résultat test<br/>Si le résultat vous semble correct, cliquez %s pour "
-"effectuer l'opération définitive"
+"Résultat du test<br/>Si le résultat vous semble correct, cliquez %s pour "
+"effectuer l’opération définitive"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:573
 #: public_html/lists/admin/actions/import1.php:221
@@ -570,12 +570,12 @@ msgstr ""
 #: public_html/lists/admin/import3.php:493
 #: public_html/lists/admin/importsimple.php:100
 msgid "Import some more emails"
-msgstr "Importer d'autres adresses électroniques"
+msgstr "Importer d’autres adresses de courriel"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:597
 #: public_html/lists/admin/import3.php:229
 msgid "Adding users to list"
-msgstr "Ajout d'utilisateurs à la liste"
+msgstr "Ajout d’utilisateurs à la liste"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:599
 #: public_html/lists/admin/commonlib/pages/importcsv.php:614
@@ -584,8 +584,8 @@ msgstr "Ajout d'utilisateurs à la liste"
 #: public_html/lists/admin/importsimple.php:142
 msgid "Select the lists to add the emails to"
 msgstr ""
-"Sélectionnez les listes auxquelles vous voulez ajouter les adresses "
-"électroniques"
+"Sélectionnez les listes auxquelles vous voulez ajouter les adresses de "
+"courriels"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:609
 #: public_html/lists/admin/import4.php:42
@@ -628,19 +628,19 @@ msgstr ""
 "\"email\" et non \"courriel\" ou \"Adresse email\". La casse des caractères n'est "
 "pas pris en compte. Si vous appelez une colonne \"Foreign Key\", elle sera "
 "utilisée pour synchroniser une base externe et la base de phpList. Cette clé "
-"étrangère est prioritaire lors du contrôle des doublons et de l'existence "
-"d'un nouvel abonné. Cela ralentit le processus d’importation. Si vous "
-"l'utilisez, vous pouvez utiliser des enregistrements sans électronique, mais "
-"une \"Invalid Email\" sera créé. Vous pourrez ensuite rechercher cette valeur "
-"pour trouver ce type d’enregistrements. La taille maximum de la clé "
-"étrangère est de 100 caractères.        Attention : le fichier doit au "
-"format texte brut, n’envoyez pas de fichier binaire tel que ceux produit par "
-"un traitement de texte."
+"étrangère est prioritaire lors du contrôle des doublons et de l’existence "
+"d’un nouvel abonné. Cela ralentit le processus d’importation. Si vous "
+"l’utilisez, vous pouvez utiliser des enregistrements sans adresse de "
+"courriel, mais une \"Invalid Email\" sera créé. Vous pourrez ensuite "
+"rechercher cette valeur pour trouver ce type d’enregistrements. La taille "
+"maximum de la clé étrangère est de 100 caractères.        Attention : le "
+"fichier doit être au format texte brut, n’envoyez pas de fichier binaire tel "
+"que ceux produit par un traitement de texte."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:661
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
-msgstr "Fichier contenant les adresses électroniques"
+msgstr "Fichier contenant les adresses de courriels"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:663
 #, php-format
@@ -670,12 +670,12 @@ msgstr "par défaut TAB"
 #: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #: public_html/lists/admin/importadmin.php:302
 msgid "Record Delimiter"
-msgstr "Séparateur des Entrées"
+msgstr "Séparateur des entrées"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:667
 #: public_html/lists/admin/importadmin.php:302
 msgid "default is line break"
-msgstr "par défaut retour à la ligne"
+msgstr "par défaut : retour à la ligne"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:668
 #: public_html/lists/admin/import1.php:213
@@ -724,7 +724,7 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:673
 msgid "Omit Invalid"
-msgstr "Omettre Invalide"
+msgstr "Omission Invalide"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:674
 msgid ""
@@ -746,7 +746,7 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:676
 msgid "Assign Invalid"
-msgstr "Assigner non valides"
+msgstr "Attribuer non valides"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:677
 msgid ""
@@ -779,7 +779,7 @@ msgstr ""
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:680
 msgid "Retain Old User Email"
-msgstr "Garder l'ancienne adresse électronique de l'utilisateur"
+msgstr "Garder l’ancienne adresse de courriel de l’utilisateur"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:686
 #: public_html/lists/admin/import1.php:215
@@ -790,7 +790,7 @@ msgid ""
 msgstr ""
 "Si vous choisissez \"Envoyer un message de confirmation\" les abonné(e)s que "
 "vous ajoutez recevrons un message pour confirmer leur inscription. Ceci est "
-"recommandé pour valider les adresses électroniques et identifier les "
+"recommandé pour valider les adresses de courriels et identifier les "
 "mauvaises adresses."
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:687
@@ -801,7 +801,7 @@ msgstr "Envoyer&nbsp;un&nbsp;message&nbsp;de&nbsp;notification"
 #: public_html/lists/admin/import1.php:216
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
-msgstr "Mettre confirmé immédiatement"
+msgstr "Passer en confirmé immédiatement"
 
 #: public_html/lists/admin/commonlib/pages/importcsv.php:688
 #: public_html/lists/admin/import1.php:217
@@ -3377,21 +3377,20 @@ msgstr "Le Mime Type dépasse 255 caractères, ce n'est pas recommandé"
 #: public_html/lists/admin/send_core.php:304
 #, php-format
 msgid "Attachment %d succesfully added"
-msgstr ""
+msgstr "Pièce jointe %d ajoutée avec succès"
 
 #: public_html/lists/admin/send_core.php:306
 #, php-format
 msgid "Adding attachment %d failed"
-msgstr ""
+msgstr "Erreur lors de l’ajout de la pièce jointe %d"
 
 #: public_html/lists/admin/send_core.php:309
 msgid "Uploaded file not properly received, empty file"
 msgstr "Le fichier n'a pas été correctement reçus: fichier vide"
 
 #: public_html/lists/admin/send_core.php:320
-#, fuzzy
 msgid "Adding attachment"
-msgstr "ajoutpiecejointe"
+msgstr "Ajouter une pièce jointe"
 
 #: public_html/lists/admin/send_core.php:333
 msgid "Campaign saved as draft"

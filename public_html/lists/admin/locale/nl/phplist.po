@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpList 2.11.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:11+0000\n"
-"PO-Revision-Date: 2014-04-01 19:11+0000\n"
+"POT-Creation-Date: 2014-05-11 05:09+0000\n"
+"PO-Revision-Date: 2014-05-12 05:51+0000\n"
 "Last-Translator: Henk <hj.van.dijk@home.nl>\n"
 "Language-Team: phpList <info@phplist.com>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1396379479.0\n"
+"X-POOTLE-MTIME: 1399873868.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -183,7 +183,9 @@ msgstr "Het sluiten van de mailbox en het zuiveren van de berichten"
 #: public_html/lists/admin/processbounces.php:399
 #: public_html/lists/admin/readtestmail.php:274
 msgid "IMAP is not included in your PHP installation, cannot continue"
-msgstr "In jouw PHP configuratie is geen IMAP opgenomen, kan niet verder gaan"
+msgstr ""
+"In de PHP configuratie is geen IMAP opgenomen, het proces kan niet worden "
+"voltooid"
 
 #: public_html/lists/admin/processbounces.php:400
 #: public_html/lists/admin/readtestmail.php:275
@@ -2664,29 +2666,29 @@ msgstr ""
 
 #: public_html/lists/admin/upgrade.php:60
 msgid "Please wait, upgrading your database, do not interrupt"
-msgstr "Bezig met upgraden van de database, onderbreek dit niet"
+msgstr "Bezig met bijwerken van de database, onderbreek dit proces niet"
 
 #: public_html/lists/admin/upgrade.php:422
 #: public_html/lists/admin/converttoutf8.php:76
 msgid "Upgrading the database to use UTF-8, please wait"
-msgstr "Upgrade van de database om UTF-8 te gebruiken, wacht tot het klaar is"
+msgstr "De database bijwerken om UTF-8 te gebruiken, wacht tot het klaar is"
 
 #: public_html/lists/admin/upgrade.php:425
 #: public_html/lists/admin/converttoutf8.php:79
 #: public_html/lists/admin/converttoutf8.php:81
 msgid "Upgrading table "
-msgstr "Upgrade van tabel "
+msgstr "Tabel bijwerken"
 
 #: public_html/lists/admin/upgrade.php:431
 #: public_html/lists/admin/converttoutf8.php:87
 #: public_html/lists/admin/converttoutf8.php:89
 msgid "Upgrading column "
-msgstr "Upgrade van kolom"
+msgstr "Kolom bijwerken"
 
 #: public_html/lists/admin/upgrade.php:435
 #: public_html/lists/admin/converttoutf8.php:93
 msgid "upgrade to UTF-8, done"
-msgstr "Upgrade naar UTF-8 is klaar"
+msgstr "Bijwerken naar UTF-8 is gelukt"
 
 #: public_html/lists/admin/upgrade.php:438
 msgid "Database requires converting to UTF-8."
@@ -2727,18 +2729,18 @@ msgstr "Converteer oud data naar nieuwe"
 
 #: public_html/lists/admin/upgrade.php:527
 msgid "Upgrade successful"
-msgstr "Upgrade voltooid"
+msgstr "Bijwerken gelukt"
 
 #: public_html/lists/admin/upgrade.php:533
 msgid "Upgrade failed"
-msgstr "Upgrade mislukt"
+msgstr "Bijwerken mislukt"
 
 #: public_html/lists/admin/upgrade.php:539
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
-"Jouw databestand moet worden bijgewerkt, maak eerst een backup van het "
+"Het databestand moet worden bijgewerkt, maak eerst een backup van het "
 "databestand."
 
 #: public_html/lists/admin/upgrade.php:540
@@ -2753,7 +2755,7 @@ msgstr ""
 #: public_html/lists/admin/initialise.php:204
 #: public_html/lists/admin/home.php:13 public_html/lists/admin/home.php:368
 msgid "Upgrade"
-msgstr "Upgraden"
+msgstr "Bijwerken"
 
 #: public_html/lists/admin/upgrade.php:541
 #, php-format
@@ -3463,7 +3465,7 @@ msgstr "mislukt"
 
 #: public_html/lists/admin/send_core.php:461
 msgid "success"
-msgstr "is gelukt"
+msgstr "Klaar"
 
 #: public_html/lists/admin/send_core.php:466
 msgid "Email address not found to send test message."
@@ -4101,16 +4103,16 @@ msgstr "mislukt"
 #: public_html/lists/admin/home.php:10
 msgid "Your database is out of date, please make sure to upgrade"
 msgstr ""
-"De database inrichting is niet meer actueel, werk deze eerst bij (upgrade) "
-"voordat je verder gaat"
+"De database structuur is niet meer actueel, werk deze eerst bij voordat je "
+"verder gaat"
 
 #: public_html/lists/admin/home.php:11 public_html/lists/admin/home.php:75
 msgid "Your version"
-msgstr "De huidige versie"
+msgstr "Huidige versie"
 
 #: public_html/lists/admin/home.php:12
 msgid "phplist version"
-msgstr "phplist versie"
+msgstr "Versie phpList"
 
 #: public_html/lists/admin/home.php:18
 msgid "Database has not been initialised"
@@ -4373,7 +4375,7 @@ msgstr "Status"
 
 #: public_html/lists/admin/home.php:366
 msgid "upgrade"
-msgstr "upgrade"
+msgstr "Bijwerken"
 
 #: public_html/lists/admin/home.php:373
 msgid "dbcheck"
@@ -5045,7 +5047,7 @@ msgstr "Website adres (zonder http://)"
 
 #: public_html/lists/admin/defaultconfig.php:59
 msgid "Domain Name of your server (for email)"
-msgstr "Domeinnaam van jouw server (voor het e-mail adres)"
+msgstr "Domeinnaam van de server (voor het e-mail adres)"
 
 #: public_html/lists/admin/defaultconfig.php:68
 msgid "Person in charge of this system (one email address)"
@@ -6362,7 +6364,7 @@ msgstr "met als wachtwoord"
 
 #: public_html/lists/admin/login.php:33
 msgid "In order to login, you need to enable cookies in your browser"
-msgstr "Om in te loggen moet jouw browser cookies accepteren"
+msgstr "Om in te loggen moet de browser cookies accepteren"
 
 #: public_html/lists/admin/login.php:41
 msgid "Forgot password"
@@ -6378,7 +6380,7 @@ msgstr "Verzend wachtwoord"
 
 #: public_html/lists/admin/login.php:71
 msgid "Your password was changed succesfully"
-msgstr "Jouw wachtwoord is gewijzigd"
+msgstr "Het wachtwoord is gewijzigd"
 
 #: public_html/lists/admin/login.php:77
 msgid "The passwords you entered are not the same."
@@ -8073,7 +8075,9 @@ msgstr "Verwijder alles"
 
 #: public_html/lists/admin/send.php:131
 msgid "Please select the lists you want to send your campaign to"
-msgstr "Kies de verzendlijsten waar je het bericht naartoe wilt verzenden"
+msgstr ""
+"Kies één of meerdere verzendlijsten waar het bericht naartoe moet worden "
+"verzonden"
 
 #: public_html/lists/admin/send.php:139
 msgid "Please select the lists you want to exclude from this campaign"

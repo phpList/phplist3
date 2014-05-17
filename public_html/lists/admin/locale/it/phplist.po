@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-13 05:09+0000\n"
-"PO-Revision-Date: 2014-03-05 18:25+0000\n"
-"Last-Translator: Gabriele <gab.lau@gmail.com>\n"
+"POT-Creation-Date: 2014-05-11 05:07+0000\n"
+"PO-Revision-Date: 2014-04-30 08:04+0000\n"
+"Last-Translator: fabrisys <fabrisis@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SearchPath-0: public_html\n"
 "X-Poedit-Basepath: /home/michiel/svn/phplist/translate/phplist\n"
-"X-POOTLE-MTIME: 1394043947.0\n"
+"X-POOTLE-MTIME: 1398845083.0\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;get;s\n"
 
 #: public_html/lists/admin/massunconfirm.php:5
@@ -174,7 +174,7 @@ msgstr "Nessuna eliminazione del messaggio che non è stato elaborato"
 #: public_html/lists/admin/processbounces.php:390
 #: public_html/lists/admin/readtestmail.php:260
 msgid "Closing mailbox, and purging messages"
-msgstr "Protocollo dei respinti (bounce_protocol) non supportato"
+msgstr "Disconnessione dalla mailbox e rimozione messaggi"
 
 #: public_html/lists/admin/processbounces.php:399
 #: public_html/lists/admin/readtestmail.php:274
