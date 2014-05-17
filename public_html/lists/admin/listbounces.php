@@ -8,7 +8,7 @@ $download = isset($_GET['type']) && $_GET['type'] == 'dl';
 if (!$listid) {
   $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s listuser,
     %s umb, %s lm where listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 50',$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage']));
+    order by listuser.listid limit 150',$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage']));
   $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
   $some = 0;
   while ($row = Sql_Fetch_Array($req)) {
