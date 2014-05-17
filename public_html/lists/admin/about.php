@@ -27,6 +27,7 @@
     <h3><?php echo s('Design')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
+    <li><a href="http://www.behance.net/pradil">Alfredo Marco Pradil</a></li>
     </ul>
     <h3><?php echo s('Design implementation')?>:</h3>
     <ul>
