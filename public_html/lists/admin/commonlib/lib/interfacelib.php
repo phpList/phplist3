@@ -173,7 +173,7 @@ class WebblerListing {
     $this->addElement($name);
     $this->addColumn($name,"value",
       sprintf('<input type="text" name="%s" value="%s" size="40" class="listinginput" />',
-      strtolower($name),$value));
+      mb_strtolower($name),$value));
   }
 
   function addButton($name,$url) {
@@ -203,7 +203,7 @@ class WebblerListing {
       $tophelp = $this->help;
     }
     $html = '<tr valign="top">';
-    $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',str_replace(" ","_",htmlspecialchars(strtolower($this->title))),$tophelp,$this->title);
+    $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',str_replace(" ","_",htmlspecialchars(mb_strtolower($this->title))),$tophelp,$this->title);
     $c = 1;
     foreach ($this->columns as $column => $columnname) {
       if ($c == sizeof($this->columns)) {
@@ -465,7 +465,7 @@ class WebblerListing2 extends WebblerListing {
       $tophelp = $this->help;
     }
     $html = '<tr valign="top">';
-    $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',str_replace(" ","_",htmlspecialchars(strtolower($this->title))),$tophelp,$this->title);
+    $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',str_replace(" ","_",htmlspecialchars(mb_strtolower($this->title))),$tophelp,$this->title);
     $c = 1;
     foreach ($this->columns as $column => $columnname) {
       if ($c == sizeof($this->columns)) {
@@ -653,13 +653,13 @@ class DomTab {
         <ul class="domtabs">
         ';
     foreach ($this->tabs as $title => $content) {
-      $html .= sprintf('<li><a href="#%s" title="%s">%s</a></li>',$this->domtabcluster.urlencode(strtolower($title)),htmlspecialchars($title),$title);
+      $html .= sprintf('<li><a href="#%s" title="%s">%s</a></li>',$this->domtabcluster.urlencode(mb_strtolower($title)),htmlspecialchars($title),$title);
     }
     $html .= '</ul>';
 
     foreach ($this->tabs as $title => $content) {
       $html .= '<div style="display: none;">';
-      $html .= sprintf('<h4><a name="%s" id="%s"><span class="hide">%s</span></a></h4>',$this->domtabcluster.strtolower($title),$this->domtabcluster.urlencode(strtolower($title)),$title);
+      $html .= sprintf('<h4><a name="%s" id="%s"><span class="hide">%s</span></a></h4>',$this->domtabcluster.mb_strtolower($title),$this->domtabcluster.urlencode(strtolower($title)),$title);
       $html .= $content;
       $html .= '</div>';
     }
@@ -861,7 +861,7 @@ class WebblerTabs {
   }
 
   function setCurrent($name) {
-    $this->current = strtolower($name);
+    $this->current = mb_strtolower($name);
   }
 
   function previousLink() {
@@ -925,7 +925,7 @@ class WebblerTabs {
     $count = 0;
     foreach ($this->tabs as $tab => $url) {
       $count++;
-      if (strtolower(strip_tags($tab)) == $this->current) {
+      if (mb_strtolower(strip_tags($tab)) == $this->current) {
         $this->previous = $previous;
         $gotcurrent = true;
         $html .= '<li class="current" id="'.$count.'">';

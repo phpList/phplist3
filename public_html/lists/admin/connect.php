@@ -734,7 +734,7 @@ function contextMenu() {
   $spb = '<li class="shade0">';
 #  $spb = '<li class="shade2">';
   $spe = '</li>';
-  $nm = strtolower(NAME);
+  $nm = mb_strtolower(NAME);
   if ($nm != "phplist") {
     $GLOBALS["context_menu"]["community"] = "";
   }
@@ -1075,7 +1075,7 @@ function SidebarLink($name,$desc,$url="") {
       return '<!-- '.$desc.'-->';
     elseif ($name == "processbounces" && !MANUALLY_PROCESS_BOUNCES) return '<!-- ' . $desc . '-->';
     else
-      return sprintf('<a href="./?page=%s%s" target="phplistwindow">%s</a>',$name,$url,strtolower($desc));
+      return sprintf('<a href="./?page=%s%s" target="phplistwindow">%s</a>',$name,$url,mb_strtolower($desc));
   } else
     return "\n<!--$name disabled $access -->\n";
 #    return "\n$name disabled $access\n";
@@ -1259,7 +1259,7 @@ function formatBytes ($value) {
 
 function phpcfgsize2bytes($val) {
   $val = trim($val);
-  $last = strtolower($val{strlen($val)-1});
+  $last = mb_strtolower($val{strlen($val)-1});
   switch($last) {
     case 'g':
         $val *= 1024;
