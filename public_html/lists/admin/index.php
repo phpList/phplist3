@@ -343,7 +343,7 @@ if (!$ajax) {
 } 
 
 if (!$ajax) {
-  print '<h4 class="pagetitle">'.strtolower($page_title).'</h4>';
+  print '<h4 class="pagetitle">'.mb_strtolower($page_title).'</h4>';
 }
 
 if ($GLOBALS["require_login"] && $page != "login") {
@@ -589,7 +589,7 @@ function parseCline() {
       $par = substr($clinearg,1,1);
       $clinearg = substr($clinearg,2,strlen($clinearg));
      # $res[$par] = "";
-      $cur = strtolower($par);
+      $cur = mb_strtolower($par);
       $res[$cur] .= $clinearg;
      } elseif ($cur) {
       if ($res[$cur])
