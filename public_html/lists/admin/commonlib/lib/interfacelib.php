@@ -1039,7 +1039,16 @@ class pageInfo {
     
     $html = '<div class="note '.$this->noteid.'">';
     if ($this->addhide) {
-      $html .= '<a href="./?page='.$GLOBALS['page'].'&amp;action=hidenote&amp;note='.$this->noteid.'" class="hide ajaxable" title="'.$GLOBALS['I18N']->get('Close this box').'" />'.$GLOBALS['I18N']->get('Hide').'</a>';
+      $html .= 
+      '<a href="./?page='
+      .$GLOBALS['page']
+      .'&amp;action=hidenote&amp;note='
+      .$this->noteid
+      .'" class="hide ajaxable" title="'
+      .$GLOBALS['I18N']->get('Close this box')
+      .'">'
+      .$GLOBALS['I18N']->get('Hide')
+      .'</a>';
     }
     $html .= $this->infocontent;
     $html  .= '</div>'; ## end of info div
