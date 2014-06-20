@@ -1,0 +1,9 @@
+[submodule "public_html/lists/texts"]
+	path = public_html/lists/texts
+	url = https://github.com/phpList/phplist-lan-texts.git
+[submodule "public_html/lists/admin/help"]
+	path = public_html/lists/admin/help
+	url = https://github.com/phpList/phplist-lan-help.git
+[submodule "public_html/lists/admin/info"]
+	path = public_html/lists/admin/info
+	url = https://github.com/phpList/phplist-lan-info.git
