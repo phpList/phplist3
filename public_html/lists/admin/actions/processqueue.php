@@ -1106,7 +1106,11 @@ while ($message = Sql_fetch_array($messages)) {
             $um = Sql_query(sprintf('replace into %s (entered,userid,messageid,status) values(current_timestamp,%d,%d,"invalid email address")',$tables['usermessage'],$userid,$messageid) );
             Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
               $GLOBALS['tables']['user'],$user['id']));
-            addUserHistory($user['email'],s('Subscriber marked unconfirmed for invalid email address',s('Marked unconfirmed while sending campaign %d',$messageid)));
+            addUserHistory(
+                $user['email'],
+                s('Subscriber marked unconfirmed for invalid email address'),
+                s('Marked unconfirmed while sending campaign %d',$messageid)
+            );
           }
           $invalid++;
         }
