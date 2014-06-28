@@ -419,6 +419,8 @@ if (!isset($GLOBALS['check_for_host'])) $GLOBALS['check_for_host'] = 0;
 if (!defined('USE_MINIFIED_ASSETS')) define('USE_MINIFIED_ASSETS',false);
 
 ## set up a memcached global object, and test it
+$GLOBALS['MC'] = null;
+
 if (defined('MEMCACHED')) {
   include_once dirname(__FILE__).'/class.memcached.php';
   if (class_exists('phpListMC')) {
