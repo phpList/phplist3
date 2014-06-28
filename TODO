@@ -34,6 +34,7 @@ plugin dependencies: Plugin A requires Plugin B (+version) so installing A also 
 - List Archive entry
   A searchable archive of the lists, to use via the web
 - Allowing running processes to be viewed and killed
+- guide the composition process more, and block actions on time, to avoid rushing out a newsletter too quickly and making mistakes.
 - "preview" of messages to send, so you can check whether the layout is ok
 - make system multilingual and allow subscriber to choose language
 - placeholder parsing in subscribe, confirm and unsubscribe messages
