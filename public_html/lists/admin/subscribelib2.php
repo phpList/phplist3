@@ -556,7 +556,7 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
           array_push($values,sprintf('%0'.$checkboxgroup_storesize.'d',$val));
         }
         $value = join(",",$values);
-      } elseif ($row['type'] != 'textarea') {
+      } elseif ($attribute['type'] != 'textarea') {
         if (preg_match("/(.*)\n/U",$value,$regs)) {
           $value = $regs[1];
         }
