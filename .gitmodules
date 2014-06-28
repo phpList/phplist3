@@ -7,3 +7,6 @@
 [submodule "public_html/lists/admin/info"]
 	path = public_html/lists/admin/info
 	url = https://github.com/phpList/phplist-lan-info.git
+[submodule "public_html/lists/admin/ui/dressprow"]
+	path = public_html/lists/admin/ui/dressprow
+	url = https://github.com/phpList/phplist-ui-dressprow.git
