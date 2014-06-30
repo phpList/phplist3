@@ -159,7 +159,7 @@ if (isBlackListed($user["email"])) {
 
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Subscription History'));
-$req = Sql_Query(sprintf('select * from %s where userid = %d order by date desc',$tables["user_history"],$user["id"]));
+$req = Sql_Query(sprintf('select * from %s where userid = %d order by id desc',$tables["user_history"],$user["id"]));
 if (!Sql_Affected_Rows())
   print $GLOBALS['I18N']->get('no details found');
 while ($row = Sql_Fetch_Array($req)) {
