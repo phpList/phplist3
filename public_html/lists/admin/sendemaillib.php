@@ -1296,8 +1296,8 @@ function parseText($text) {
 }
 
 function addHTMLFooter($message,$footer) {
-  if (preg_match('#</body>#imUx',$message)) {
-    $message = preg_replace('#</body>#',$footer.'</body>',$message);
+  if (preg_match('#</body>#i',$message)) {
+    $message = preg_replace('#</body>#i',$footer.'</body>',$message);
   } else {
     $message .= $footer;
   }
