@@ -614,6 +614,16 @@ class phplistPlugin {
   function allowProcessQueue() {
     return true;
   }
+  
+  /* sendtestAllowed 
+   * called when trying to send a test email
+   * return false is sending a test email is not allowed
+   * @param array messagedata 
+   * @return bool;
+   */
+  function sendTestAllowed($messagedata) {
+    return true;
+  }
 
   /*
    * campaignStarted
