@@ -398,12 +398,28 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       $_SESSION['lasttestsent'] = 0;
     }
     
+    $sendtestAllowed = true;
+    ## check with plugins that sending a test is allowed
+    reset($GLOBALS['plugins']);
+    while ($sendtestAllowed && $plugin = current($GLOBALS['plugins']) ) {
+      $sendtestAllowed = $plugin->sendTestAllowed($messagedata);
+      if (!$sendtestAllowed) {
+        if (VERBOSE) {
+          cl_output('Sending test blocked by plugin '.$plugin->name);
+        }
+      }
+      next($GLOBALS['plugins']);
+    } 
+    
     $delay = time() - $_SESSION['lasttestsent'];
     if ($delay < SENDTEST_THROTTLE) {
       foreach ($GLOBALS['plugins'] as $plname => $plugin) {
         $plugin->processError('Send test throttled on '.$delay);
       }
       $sendtestresult .= s('You can send a test mail once every %d seconds',SENDTEST_THROTTLE)."<br/>";
+      $emailaddresses = array();
+    } elseif (!$sendtestAllowed) {
+      $sendtestresult .= s('Sending test mails is currently not available')."<br/>";
       $emailaddresses = array();
     } else {
       // Let's send test messages to everyone that was specified in the
