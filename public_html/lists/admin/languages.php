@@ -298,9 +298,41 @@ class phplist_I18N {
     $gt = gettext($text);
     if ($gt && $gt != $text) return $gt;
   }
+  
+  function getCachedTranslation($text) {
+    if (!is_array($_SESSION['translations'])) {
+      return false;
+    }
+    if (isset($_SESSION['translations'][$text])) {
+      $age = time() - $_SESSION['translations'][$text]['ts'];
+      if ($age < 3600) { ## timeout after a while
+        return $_SESSION['translations'][$text]['trans'];
+      } else {
+        unset($_SESSION['translations'][$text]);
+      }
+    }
+  }
+
+  function setCachedTranslation($text,$translation) {
+    if (!is_array($_SESSION['translations'])) {
+      $_SESSION['translations'] = array();
+    }
+    $_SESSION['translations'][$text] = array(
+      'trans' => $translation,
+      'ts' => time(),
+    );
+  }
+  
+  function resetCache() {
+    unset($_SESSION['translations']);
+  }
 
   function databaseTranslation($text) {
     if (!$this->hasDB) return '';
+    if ($cache = $this->getCachedTranslation($text)) {
+      return $cache;
+    }
+
     $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
       sql_escape(trim($text)),$this->language),1);
     if (empty($tr[0])) {
@@ -311,6 +343,7 @@ class phplist_I18N {
       $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
         sql_escape(str_replace('"','\"',$text)),$this->language),1);
     }
+    $this->setCachedTranslation($text,stripslashes($tr[0]));
     return stripslashes($tr[0]);
   }
 
@@ -485,6 +518,7 @@ $lan = array(
         Sql_Replace($GLOBALS['tables']['i18n'],array('lan' => $language,'original' => $orig,'translation' => $trans),'');
       }
     }
+    $this->resetCache();
     saveConfig('lastlanguageupdate-'.$language,$time,0);
   }
   
