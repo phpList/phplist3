@@ -22,7 +22,11 @@ class phplistPlugin {
   # These files can be called from the commandline
   # This should hold an array per file: filename (without .php) => path relative to admin/
   public $commandlinePluginPages = array();
-  
+
+  # An array of page names that can be called as public pages, e.g. www.mysite.com/lists/?pi=myplugin&p=mypage
+  # The page name is the file name without .php. The files must be in the $coderoot directory
+  public $publicPages = array();
+
   public $configArray = array();
 
   public $importTabTitle = ''; ## title of the tab for the import page
