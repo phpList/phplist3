@@ -300,7 +300,7 @@ class phplist_I18N {
   }
   
   function getCachedTranslation($text) {
-    if (!is_array($_SESSION['translations'])) {
+    if (!isset($_SESSION['translations']) || !is_array($_SESSION['translations'])) {
       return false;
     }
     if (isset($_SESSION['translations'][$text])) {
@@ -314,7 +314,7 @@ class phplist_I18N {
   }
 
   function setCachedTranslation($text,$translation) {
-    if (!is_array($_SESSION['translations'])) {
+    if (!isset($_SESSION['translations']) || !is_array($_SESSION['translations'])) {
       $_SESSION['translations'] = array();
     }
     $_SESSION['translations'][$text] = array(
