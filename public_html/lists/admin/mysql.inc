@@ -13,7 +13,7 @@ function Sql_Connect($host,$user,$password,$database) {
   $secure   = (empty($GLOBALS['database_connection_ssl'])) ? 0 : MYSQL_CLIENT_SSL;
 
   if ($host && $user)
-    $db = mysql_connect($host, $user, $password, false, $compress | $secure);
+    $db = @mysql_connect($host, $user, $password, false, $compress | $secure);
   $errno = mysql_errno();
   if (!$errno) {
     $res = mysql_select_db($database,$db);
