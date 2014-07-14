@@ -237,7 +237,7 @@ include 'admin/ui/'.$GLOBALS['ui'].'/publicpagetop.php';
 
 if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
   print LoginPage($id,$userid,$emailcheck,$msg);
-} elseif (isset($_GET['pi'])) {
+} elseif (!empty($_GET['pi'])) {
 
   if (isset($plugins[$_GET['pi']])) {
     $plugin = $plugins[$_GET['pi']];
