@@ -129,6 +129,12 @@ print PageLinkButton('statsoverview',s('View all campaigns'));
 
 $messagedata = loadMessageData($id);
 //var_dump($messagedata);
+
+if (empty($messagedata['subject'])) {
+  Error(s('Campaign not found'));
+  return;
+}
+
 print '<h3>'.$messagedata['subject']. '</h3>';
 
 $ls = new WebblerListing('');
