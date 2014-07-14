@@ -315,6 +315,7 @@ if (!defined('SESSIONNAME')) define('SESSIONNAME','phpList'.$GLOBALS['installati
 
 if (!defined('USE_AMAZONSES')) define('USE_AMAZONSES',defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
 if (!defined('AWS_POSTURL')) define('AWS_POSTURL','https://email.us-east-1.amazonaws.com/');
+if (!defined('PHPLIST_POWEREDBY_URLROOT')) define('PHPLIST_POWEREDBY_URLROOT','http://powered.phplist.com/images');
 
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
   $allowed_referrers = array();
