@@ -237,25 +237,20 @@ include 'admin/ui/'.$GLOBALS['ui'].'/publicpagetop.php';
 
 if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
   print LoginPage($id,$userid,$emailcheck,$msg);
-} elseif (!empty($_GET['pi'])) {
+} elseif (!empty($_GET['pi']) && isset($plugins[$_GET['pi']])) {
+  $plugin = $plugins[$_GET['pi']];
 
-  if (isset($plugins[$_GET['pi']])) {
-    $plugin = $plugins[$_GET['pi']];
+  if (!empty($_GET['p']) && in_array($_GET['p'], $plugin->publicPages)) {
+    $page = $_GET['p'];
 
-    if (!empty($_GET['p']) && in_array($_GET['p'], $plugin->publicPages)) {
-      $page = $_GET['p'];
-
-      if (is_file($include = $plugin->coderoot . $page . '.php')) {
-        require $include;
-      } else {
-        FileNotFound();
-      }
+    if (is_file($include = $plugin->coderoot . $page . '.php')) {
+      require $include;
     } else {
       FileNotFound();
     }
   } else {
     FileNotFound();
-  }       
+  }
 } elseif (isset($_GET['p']) && preg_match("/(\w+)/",$_GET["p"],$regs)) {
   if ($id) {
     switch ($_GET["p"]) {
