@@ -622,6 +622,9 @@ function getTranslationUpdates() {
 }
 
 $I18N = new phplist_I18N();
+if (!empty($setlanguage)) {
+  $I18N->resetCache();
+}
 
 /* add a shortcut that seems common in other apps 
  * function s($text)
