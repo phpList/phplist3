@@ -16,10 +16,6 @@ if (isset($_POST['systemtemplate'])) {
   saveConfig('systemmessagetemplate',sprintf('%d',$_POST['systemtemplate']));
 }
 
-?>
-
-<?php
-
 $req = Sql_Query("select * from {$tables["template"]} order by listorder");
 if (!Sql_Affected_Rows())
   print '<p class="information">'.$GLOBALS['I18N']->get("No template have been defined").'</p>';
@@ -29,7 +25,7 @@ $systemtemplate = getConfig('systemmessagetemplate');
 print formStart('name="templates" class="templatesEdit" ');
 $ls = new WebblerListing($GLOBALS['I18N']->get("Existing templates"));
 while ($row = Sql_fetch_Array($req)) {
-  $img_template = '<img src="images/no-image-template.gif" />';
+  $img_template = '<img src="images/no-image-template.png" />';
   if(file_exists('templates/'.$row['id'].'.jpg')){ $img_template = '<img src="templates/'.$row['id'].'.jpg" />';}
   $element = $row['title'];
   $ls->addElement($element,PageUrl2('template&amp;id='.$row['id']));
@@ -57,5 +53,3 @@ if (empty($exists[0])) {
   print '<p class="button">'.PageLink2("defaultsystemtemplate",$GLOBALS['I18N']->get('Add default system template'))."</p>";
 }
 
-
-?>
