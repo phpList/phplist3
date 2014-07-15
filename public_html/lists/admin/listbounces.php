@@ -86,11 +86,11 @@ while ($row = Sql_Fetch_Array($req)) {
     $GLOBALS['tables']['user'],$row['userid']));
   if ($download) {
     print $userdata['email']."\n";
+  } else {
+    $ls->addElement($row['userid'],PageUrl2('user&amp;id='.$row['userid']));
+    $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('email'),$userdata['email']);
+    $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('# bounces'),$row['numbounces']);
   }
-
-  $ls->addElement($row['userid'],PageUrl2('user&amp;id='.$row['userid']));
-  $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('email'),$userdata['email']);
-  $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('# bounces'),$row['numbounces']);
 }
 if (!$download) {
   print $ls->display();
