@@ -58,14 +58,14 @@ if ($download) {
 }  
 
 if (!$id) {
-  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
+ # print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
   
   if (empty($start)) {
     print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
   }
 
   $timerange = ' and msg.entered > date_sub(current_timestamp,interval 12 month)';
-  #$timerange = '';
+  $timerange = '';
 
   $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, 
     count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,
@@ -85,7 +85,7 @@ if (!$id) {
     print '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
   }
 
-  $ls = new WebblerListing($GLOBALS['I18N']->get('Campaigns in the last year'));
+  $ls = new WebblerListing('');
   $ls->usePanel($paging);
   while ($row = Sql_Fetch_Array($req)) {
     $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($row['subject'],30);
