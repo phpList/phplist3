@@ -291,7 +291,7 @@ if (sizeof($email_list)) {
         $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
         $history_entry = $GLOBALS['scheme'] . '://' . getConfig("website") . $GLOBALS["adminpages"] . '/?page=user&id=' . $userid . "\n\n";
         foreach ($user["systemvalues"] as $column => $value) {
-          if (!empty($column) && !empty($value)) {
+          if (!empty($column)) { # && !empty($value)) {
             if ($column == 'groupmapping' || strpos($column,'grouptype_') === 0) {
               ## specifically request this group, so that it doesn't interfere with the "groups" which are the ones 
               ## submitted in the form
