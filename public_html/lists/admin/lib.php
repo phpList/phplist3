@@ -1016,10 +1016,10 @@ function fetchUrl($url,$userdata = array()) {
   $lastmodified = time();
   $cache = getPageCache($url,$lastmodified);
   if (!$cache) {
-    ## @#TODO, make it work with Request2
     if (function_exists('curl_init')) {
       $content = fetchUrlCurl($url,$request_parameters);
     } elseif (0 && $GLOBALS['has_pear_http_request'] == 2) {
+      ## @#TODO, make it work with Request2
       @require_once "HTTP/Request2.php";
     } elseif ($GLOBALS['has_pear_http_request']) {
       @require_once "HTTP/Request.php";
