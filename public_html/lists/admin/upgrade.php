@@ -535,6 +535,12 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   }
 
 } else {
+  
+  if ($GLOBALS['database_module'] == 'mysqli.inc') {
+    print Warn(s('Please edit your config file and change "mysql.inc" to "mysqli.inc" to avoid future PHP incompatibility').
+    resourceLink('http://resources.phplist.com/system/mysql-mysqli-update')
+    );
+  }
 
   print '<p>'.s('Your database requires upgrading, please make sure to create a backup of your database first.').'</p>';
   print '<p>'.s('If you have a large database, make sure you have sufficient diskspace available for upgrade.').'</p>';

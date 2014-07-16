@@ -110,8 +110,8 @@ if ($magic_quotes == 'off' || empty($magic_quotes)) {
 if (empty($GLOBALS['language_module'])) {
   $GLOBALS['language_module'] = 'english.inc';
 }
-if (empty($GLOBALS['database_module'])) {
-  $GLOBALS['database_module'] = 'mysql.inc';
+if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__).'/'.$GLOBALS['database_module'])) {
+  $GLOBALS['database_module'] = 'mysqli.inc';
 }
 if (!isset($database_connection_compression))
   $database_connection_compression = false;
