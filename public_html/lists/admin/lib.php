@@ -59,6 +59,8 @@ function setMessageData($msgid,$name,$value) {
           $result  =  Sql_query("insert ignore into ".$GLOBALS['tables']["listmessage"]."  (messageid,listid,entered) values($msgid,$listid,current_timestamp)");
         }
       }
+      ## once we used "all" to set all, unset it, to avoid confusion trying to unselect lists
+      unset($value['all']);
     } else {
       foreach($value as $listid => $val) {
         $query
