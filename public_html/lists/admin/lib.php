@@ -210,10 +210,10 @@ function loadMessageData($msgid) {
   }
   
   if (!empty($messagedata['targetlist']['unselect'])) {
-    unset($messagedata['targetlist']['unselect']);
+    $messagedata['targetlist']['unselect'] = NULL;
   }
   if (!empty($messagedata['excludelist']['unselect'])) {
-    unset($messagedata['excludelist']['unselect']);
+    $messagedata['excludelist']['unselect'] = NULL;
   }
 
   $GLOBALS['MD'][$msgid] = $messagedata;
