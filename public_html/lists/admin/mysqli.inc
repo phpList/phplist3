@@ -71,6 +71,9 @@ function Sql_has_error ($dbconnection) {
 
 function Sql_Error ($dbconnection,$errno = 0) {
   $msg = mysqli_error($dbconnection);
+  if (!isset($GLOBALS['lastquery'])) {
+    $GLOBALS['lastquery'] = "";
+  }
   if (empty($GLOBALS['commandline'])) {
 /*
     output('DB error'.$errno);
@@ -127,7 +130,7 @@ function Sql_Query($query,$ignore = 0) {
   }
   if (isset($GLOBALS["developer_email"])) {
 
-  sqllog($query,'/tmp/queries.log');
+    sqllog($query,'/tmp/queries.log');
   
   # time queries to see how slow they are, so they can
     # be optimized
@@ -148,12 +151,11 @@ function Sql_Query($query,$ignore = 0) {
     }
   }
   
- # dbg($query);
   $GLOBALS["pagestats"]["number_of_queries"]++;
   $result = mysqli_query($GLOBALS['database_connection'],$query);
   if (!$ignore) {
     if (Sql_Check_Error($GLOBALS["database_connection"])) {
-      dbg("Sql error in $query");
+#      dbg("Sql error in $query");
       cl_output('Sql error '. $query);
     }
   }
@@ -178,21 +180,17 @@ function Sql_Close() {
 }
 
 function Sql_Query_Params($query,$params,$ignore = 0) {
-#  dbg($query);
-#  dbg($params);
-
   if (!is_array($params)) $params = Array($params);
 
   foreach ($params as $index => $par) {
     $qmark = strpos  ( $query  , '?');
     if ($qmark === FALSE) {
-      dbg("Error, more parameters than placeholders");
+      # dbg("Error, more parameters than placeholders");
     } else {
       ## first replace the ? with some other placeholder, in case the parameters contain ? themselves
       $query = substr($query,0,$qmark).'"PARAM'.$index.'MARAP"'.substr($query,$qmark+1);
     }
   }
-#  dbg($query);
 
   foreach ($params as $index => $par) {
     if (is_numeric($par)) {
@@ -202,8 +200,6 @@ function Sql_Query_Params($query,$params,$ignore = 0) {
     }
   }
 
-#  dbg($query);
-#  print $query."<br/>";
   return Sql_Query($query,$ignore);
 }
 
