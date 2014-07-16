@@ -160,6 +160,10 @@ if (!empty($_SESSION["import_file"])) {
   }
   $email_list = file_get_contents($_SESSION["import_file"]);
   flush();
+  
+  if (!isset($_SESSION['import_attribute'])) {
+    $_SESSION['import_attribute'] = array();
+  }
   // Clean up email file
   $email_list = trim($email_list);
   $email_list = str_replace("\r", "\n", $email_list);
