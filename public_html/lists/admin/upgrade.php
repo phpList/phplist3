@@ -471,10 +471,10 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   
   ## replace old header and footer with the new one
   ## but only if there are untouched from the default, which seems fairly common
-  $oldPH = file_get_contents(dirname(__FILE__).'/ui/old_public_header.inc');
+  $oldPH = @file_get_contents(dirname(__FILE__).'/ui/old_public_header.inc');
   $oldPH2 = preg_replace("/\n/","\r\n",$oldPH); ## version with \r\n instead of \n
   
-  $oldPF = file_get_contents(dirname(__FILE__).'/ui/old_public_footer.inc');
+  $oldPF = @file_get_contents(dirname(__FILE__).'/ui/old_public_footer.inc');
   $oldPF2 = preg_replace("/\n/","\r\n",$oldPF); ## version with \r\n instead of \n
   Sql_Query(sprintf('update %s set value = "%s" where item = "pageheader" and (value = "%s" or value = "%s")',$tables['config'],sql_escape($defaultheader),addslashes($oldPH),addslashes($oldPH2)));
   Sql_Query(sprintf('update %s set value = "%s" where item = "pagefooter" and (value = "%s" or value = "%s")',$tables['config'],sql_escape($defaultfooter),addslashes($oldPF),addslashes($oldPF2)));
@@ -536,7 +536,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
 } else {
   
-  if ($GLOBALS['database_module'] == 'mysqli.inc') {
+  if ($GLOBALS['database_module'] == 'mysql.inc') {
     print Warn(s('Please edit your config file and change "mysql.inc" to "mysqli.inc" to avoid future PHP incompatibility').
     resourceLink('http://resources.phplist.com/system/mysql-mysqli-update')
     );
