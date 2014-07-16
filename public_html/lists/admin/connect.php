@@ -204,7 +204,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
 
   You can configure your PoweredBy options in your config file
 
-  Michiel Dethmers, phpList Ltd 2001-2013
+  Michiel Dethmers, phpList Ltd 2001-2014
 */
 if (DEVVERSION)
   $v = "dev";
@@ -830,13 +830,25 @@ function contextMenu() {
 
 function recentlyVisited() {
   $html = '';
+  if (!isset($_SESSION['browsetrail']) || !is_array($_SESSION['browsetrail'])) {
+    $_SESSION['browsetrail'] = array();
+  }
   if (empty($_SESSION['adminloggedin'])) return '';
   if (isset($_SESSION['browsetrail']) && is_array($_SESSION['browsetrail'])) {
+    
+    if (!empty($_COOKIE['browsetrail'])) {
+#      if (!in_array($_COOKIE['browsetrail'],$_SESSION['browsetrail'])) {
+        array_unshift($_SESSION['browsetrail'],$_COOKIE['browsetrail']);
+#      }
+    }
+
     $shade = 0;
     $html .= '<h3>'.$GLOBALS['I18N']->get('Recently visited').'</h3><ul class="recentlyvisited">';
     $browsetrail = array_unique($_SESSION['browsetrail']);
-    $browsetrail = array_reverse($browsetrail);
+   
+#    $browsetrail = array_reverse($browsetrail);
     $browsetaildone = array();
+    $num = 0;
     foreach ($browsetrail as $pageid => $visitedpage) {
       if (strpos($visitedpage,'SEP')) { ## old method, store page title in cookie. However, that breaks on multibyte languages
         list($pageurl,$pagetitle) = explode('SEP',$visitedpage);
@@ -865,20 +877,29 @@ function recentlyVisited() {
           if (!empty($urlparams['id'])) {
             $url .= '&id='.$urlparams['id'];
           }
-          
-          $title = $GLOBALS['I18N']->pageTitle($p);
-          $titlehover = $GLOBALS['I18N']->pageTitleHover($p);
+          ## check for plugin
+          if (isset($urlparams['pi']) && isset($GLOBALS['plugins'][$urlparams['pi']])) {
+            $url .= '&pi='.$urlparams['pi'];
+            $title = $GLOBALS['plugins'][$urlparams['pi']]->pageTitle($p);
+            $titlehover = $GLOBALS['plugins'][$urlparams['pi']]->pageTitleHover($p);
+          } else {
+            unset($urlparams['pi']);
+            $title = $GLOBALS['I18N']->pageTitle($p);
+            $titlehover = $GLOBALS['I18N']->pageTitleHover($p);
+          }
           if (!empty($p) && !empty($title) && !in_array($url,$browsetaildone)) {
             $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).'" title="'.htmlspecialchars($titlehover).'"><!--'.$pageid.'-->'.$title.'</a></li>';
             $shade = !$shade;
             $browsetaildone[] = $url;
+            $num++;
           }
         }
       }
+      if ($num >= 6) break;
     }
    
     $html .= '</ul>';
-    $_SESSION['browsetrail'] = array_slice($_SESSION['browsetrail'],0,6);
+    $_SESSION['browsetrail'] = array_slice($_SESSION['browsetrail'],0,20);
   }
   return $html;
 }

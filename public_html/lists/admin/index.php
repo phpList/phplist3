@@ -443,15 +443,6 @@ if (USEFCK) {
 }
 */
 
-if (!empty($_COOKIE['browsetrail'])) {
-  if (!isset($_SESSION['browsetrail']) || !is_array($_SESSION['browsetrail'])) {
-    $_SESSION['browsetrail'] = array();
-  }
-  if (!in_array($_COOKIE['browsetrail'],$_SESSION['browsetrail'])) {
-    $_SESSION['browsetrail'][] = $_COOKIE['browsetrail'];
-  }
-}
-
 if (defined("USE_PDF") && USE_PDF && !defined('FPDF_VERSION')) {
   Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
 }

@@ -185,7 +185,12 @@ class phplistPlugin {
     if (isset($this->pageTitles[$page])) return s($this->pageTitles[$page]);
     return $this->name.' : '.$page;
   }
-  
+ 
+  function pageTitleHover($page) {
+    if (isset($this->pageTitleHover[$page])) return s($this->pageTitleHover[$page]);
+    return $this->name.' : '.$page;
+  }
+   
   /** deleteSent - wipe DB entries marking a campaign sent for subscribers
    * 
    * this is used in DEV mode only
