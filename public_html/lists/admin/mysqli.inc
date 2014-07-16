@@ -237,7 +237,10 @@ function Sql_Fetch_Assoc($dbresult) {
 }
 
 function Sql_Fetch_Row($dbresult) {
-  return mysqli_fetch_row($dbresult);
+  if ($dbresult) {
+    return mysqli_fetch_row($dbresult);
+  } 
+  return false;
 }
 
 function Sql_Fetch_Row_Query($query,$ignore = 0) {
