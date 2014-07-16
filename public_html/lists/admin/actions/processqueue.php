@@ -991,7 +991,7 @@ while ($message = Sql_fetch_array($messages)) {
               list($mailbox,$domainname) = explode('@',$useremail);
               if ($domainthrottle[$domainname]['interval'] != $interval) {
                 $domainthrottle[$domainname]['interval'] = $interval;
-                $domainthrottle[$domainname]['sent'] = 0;
+                $domainthrottle[$domainname]['sent'] = 1;
               } else {
                 $domainthrottle[$domainname]['sent']++;
               }
