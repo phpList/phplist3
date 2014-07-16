@@ -32,6 +32,14 @@ $dbversion = getConfig("version");
 if (!$dbversion)
   $dbversion = "Older than 1.4.1";
 output( '<p class="information">'.$GLOBALS['I18N']->get('Your database version').': '.$dbversion.'</p>');
+
+if ($GLOBALS['database_module'] == 'mysql.inc') {
+  print Warn(s('Please edit your config file and change "mysql.inc" to "mysqli.inc" to avoid future PHP incompatibility').
+  resourceLink('http://resources.phplist.com/system/mysql-mysqli-update')
+  );
+}
+
+
 if ($dbversion == VERSION)
   output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
 else 
@@ -536,12 +544,6 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
 } else {
   
-  if ($GLOBALS['database_module'] == 'mysql.inc') {
-    print Warn(s('Please edit your config file and change "mysql.inc" to "mysqli.inc" to avoid future PHP incompatibility').
-    resourceLink('http://resources.phplist.com/system/mysql-mysqli-update')
-    );
-  }
-
   print '<p>'.s('Your database requires upgrading, please make sure to create a backup of your database first.').'</p>';
   print '<p>'.s('If you have a large database, make sure you have sufficient diskspace available for upgrade.').'</p>';
   print '<p>'.s('When you are ready click %s Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once it started.',PageLinkButton("upgrade&doit=yes",s('Upgrade'))).'</p>';
