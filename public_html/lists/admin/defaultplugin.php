@@ -313,12 +313,14 @@ class phplistPlugin {
   
   ############################################################
   # Messages
+  
+  /* displayMessages
+   *  obsolete
+   * @return string
+   */
 
-  function displayMessages($msg, &$status) {
-    # purpose: add or change status display of a message
-    # Should become more uniform like the other display functions, using the webblerlist
-    # 200711 Bas
-    return null;
+  function displayMessages($msg, $status = "") {
+    return "";
   }
   
   ############################################################

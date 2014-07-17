@@ -455,12 +455,6 @@ PageURL2("messages$url_keep","","delete=".$msg["id"]));
     $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
 
 
-    ## allow plugins to add information
-    foreach ($GLOBALS['plugins'] as $plugin) {
-      if (method_exists($plugin,'displayMessages')) {
-        $plugin->displayMessages($msg, $status);
-      }
-    }
   }
 }
 
