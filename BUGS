@@ -1,12 +1,11 @@
-PHPlist Bug Policy
+phpList Bug Policy
 
 If you think you have found a bug,
 
-- Make sure you have the latest version of PHPlist.  Check our public
-  website at http://www.phplist.com/.  While the PHPlist website may not
-  always list the latest version, this directory will.
+- Make sure you have the latest version of phpList.  Check our public
+  website at https://www.phplist.com/download. 
 
-- Go to http://mantis.phplist.com/ and check whether someone else has
+- Go to https://mantis.phplist.com/ and search whether someone else has
   already reported the same thing. If so, add your comments, and anything that can
   be helpful to find and fix the bug to the existing report.
 
@@ -15,13 +14,13 @@ If you think you have found a bug,
   - Write a clear report (the button saying "Report Issue" in the top menu).
     Please select what the bug is in regards to (category), how often it
     occurs (reproducibility), how serious it is (severity), how urgent it is
-    that this bug be fixed (priority) and the release of PHPlist being used
+    that this bug be fixed (priority) and the release of phpList being used
     (product version).  In the summary field give a few words explaining the
     bug and what page it is on, then in the description field please write:
 
     * Your browser version & OS
     * Your server platform (Windows, Linux, etc)
-    * Your PHP version (lists/info.php will help)
+    * Your PHP version (lists/admin/info.php will help)
     * Your MySQL version
     * What the error message states
     * What happened to cause the error
@@ -31,5 +30,5 @@ If you think you have found a bug,
   you filed one.
   
 Thanks in advance for taking the time.  Contributions are very much appreciated, 
-and will help to make PHPlist a solid and useful application for everyone.
+and will help to make phpList a solid and useful application for everyone.
 
