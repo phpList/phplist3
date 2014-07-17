@@ -319,7 +319,7 @@ class phplistPlugin {
    * @return string
    */
 
-  function displayMessages($msg, $status = "") {
+  function displayMessages($msg, &$status) {
     return "";
   }
   
