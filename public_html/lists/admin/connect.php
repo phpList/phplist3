@@ -42,6 +42,9 @@ if (empty($xormask)) {
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
+if (!isset($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
+}
 
 $GLOBALS["img_tick"] = '<span class="yes">Yes</span>';
 $GLOBALS["img_cross"] = '<span class="no">No</span>';
@@ -1015,12 +1018,18 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       } else {
         $pi = "";
       }
+      
+      if (!empty($_SESSION['csrf_token'])) {
+        $token = '&tk='.$_SESSION['csrf_token'];
+      } else {
+        $token = '';
+      }
       $linktext = $desc;
       $linktext = str_ireplace('phplist','phpList',$linktext);
-      return sprintf('<a href="./?page=%s%s%s" title="%s">%s</a>',$name,$url,$pi,htmlspecialchars(strip_tags($title)),$linktext);
+      return sprintf('<a href="./?page=%s%s%s%s" title="%s">%s</a>',$name,$url,$pi,$token,htmlspecialchars(strip_tags($title)),$linktext);
     }
-  } else
-    return "";
+  } 
+  return "";
 #    return "\n<!--$name disabled $access -->\n";
 #    return "\n$name disabled $access\n";
 }
