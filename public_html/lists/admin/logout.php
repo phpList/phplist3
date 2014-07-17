@@ -8,5 +8,3 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 $_SESSION["adminloggedin"] = "";
 $_SESSION["logindetails"] = "";
 session_destroy();
-?>
-

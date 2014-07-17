@@ -45,6 +45,10 @@ define('XORmask',$xormask);
 if (!isset($_SESSION['csrf_token'])) {
   $_SESSION['csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
 }
+if (isset($_SESSION['lastactivity'])) {
+  $_SESSION['session_age'] = time() - $_SESSION['lastactivity'];
+}
+$_SESSION['lastactivity'] = time();
 
 $GLOBALS["img_tick"] = '<span class="yes">Yes</span>';
 $GLOBALS["img_cross"] = '<span class="no">No</span>';

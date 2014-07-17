@@ -287,6 +287,13 @@ if ($page == 'login') {
   unset($_GET['pi']);
 }
 
+if (!empty($_SESSION['session_age']) && $_SESSION['session_age'] > SESSION_TIMEOUT) {
+  $_SESSION["adminloggedin"] = "";
+  $_SESSION["logindetails"] = "";
+  $page = "login";
+  $msg = s('Your session timed out, please log in again');
+} 
+
 ##  force to login page, if an Ajax call is made without being logged in
 if ($ajax && empty($_SESSION['adminloggedin'])) {
   $_SESSION['action_result'] = s('Your session timed out, please login again');
