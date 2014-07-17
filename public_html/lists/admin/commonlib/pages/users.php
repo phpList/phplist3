@@ -126,12 +126,12 @@ if ($require_login && !isSuperUser()) {
         $subselect .= ' and blacklisted ';
       if ($find) {
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,confirmed from " . $table_list . " where $subselect and $findbyselect";
-        $count = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " where $subselect and $findbyselect");
-        $unconfirmedcount = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " where $subselect and !confirmed and $findbyselect");
+        $count = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " where $subselect and $findbyselect");
+        $unconfirmedcount = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " where $subselect and !confirmed and $findbyselect");
       } else {
         $listquery = "SELECT DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,confirmed FROM " . $table_list . " WHERE $subselect";
-        $count = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " WHERE $subselect");
-        $unconfirmedcount = Sql_query("SELECT count({$tables["user"]}.id) FROM " . $table_list . " WHERE !confirmed and $subselect");
+        $count = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " WHERE $subselect");
+        $unconfirmedcount = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " WHERE !confirmed and $subselect");
       }
       break;
     case "all" :
