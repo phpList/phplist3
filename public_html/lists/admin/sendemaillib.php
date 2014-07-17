@@ -1469,7 +1469,12 @@ exit;
   if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
     output('parse config end');
   }
-  foreach($message as $key => $val) {
+  
+
+  ## ##17233 not that many fields are actually useful, so don't blatantly use all
+#  foreach($message as $key => $val) {
+  foreach (array('subject','id') as $key) {
+    $val = $message[$key];
     if (!is_array($val)) {
       $cached[$messageid]['content'] = str_ireplace("[$key]",$val,$cached[$messageid]['content']);
       $cached[$messageid]["textcontent"] = str_ireplace("[$key]",$val,$cached[$messageid]["textcontent"]);
