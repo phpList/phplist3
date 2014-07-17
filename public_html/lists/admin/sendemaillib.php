@@ -115,7 +115,17 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         #      $remote_content = includeStyles($remote_content);
 
         if ($remote_content) {
-          $content = str_replace($regs[0],$remote_content,$content);
+          ## @TODO, work out a nice way to do this: ##17197
+          ## collecting different remote URLS only works if they do not have html and body tags. 
+          ## but if we strip them here, that might affect specially crafted ones, eg <body class="xx">
+          if (0) {
+            $remote_content = preg_replace('/<html[^>]*>/','',$remote_content);
+            $remote_content = preg_replace('/<body[^>]*>/','',$remote_content);
+            $remote_content = preg_replace('/<\/html[^>]*>/','',$remote_content);
+            $remote_content = preg_replace('/<\/body[^>]*>/','',$remote_content);
+          }
+          
+          $content = str_replace($regs[0],'<!--'.$url.'-->'.$remote_content,$content);
           $cached[$messageid]["htmlformatted"] = strip_tags($content) != $content;
         } else {
           logEvent("Error fetching URL: $regs[1] to send to $email");
