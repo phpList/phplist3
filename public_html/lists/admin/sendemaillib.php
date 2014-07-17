@@ -1406,6 +1406,10 @@ function precacheMessage($messageid,$forwardContent = 0) {
         $cached[$messageid]['content'] = str_replace($regs[0],$remote_content,$cached[$messageid]['content']);
       #  $cached[$messageid]['content'] = $remote_content;
         $cached[$messageid]["htmlformatted"] = strip_tags($remote_content) != $remote_content;
+
+        ## 17086 - disregard any template settings when we have a valid remote URL
+        $cached[$messageid]["template"] = NULL;
+        $cached[$messageid]["templateid"] = NULL;
       } else {
         #print Error(s('unable to fetch web page for sending'));
         logEvent("Error fetching URL: ".$message['sendurl']. ' cannot proceed');
