@@ -211,11 +211,11 @@ function loadMessageData($msgid) {
     $messagedata["fromname"] = $messagedata["fromemail"];
   }
   
-  if (!empty($messagedata['targetlist']['unselect'])) {
-    $messagedata['targetlist']['unselect'] = NULL;
+  if (isset($messagedata['targetlist']['unselect'])) {
+    unset($messagedata['targetlist']['unselect']);
   }
-  if (!empty($messagedata['excludelist']['unselect'])) {
-    $messagedata['excludelist']['unselect'] = NULL;
+  if (isset($messagedata['excludelist']['unselect'])) {
+    unset($messagedata['excludelist']['unselect']);
   }
 
   $GLOBALS['MD'][$msgid] = $messagedata;
