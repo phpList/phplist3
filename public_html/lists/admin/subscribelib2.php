@@ -456,7 +456,7 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
   # read the current values to compare changes
   $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',$GLOBALS["tables"]["user"],$userid));
   $old_data = array_merge($old_data,getUserAttributeValues('',$userid));
-  $history_entry = 'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+  $history_entry = '';#'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
 
   if (ASKFORPASSWORD && $_POST["password"]) {
     if (ENCRYPTPASSWORD) {
@@ -617,17 +617,12 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
         $ok = 0;
       }
     } else {
-      if ( $_GET["p"] == "preferences" ) {
-        #0013134: turn off the confirmation email when an existing subscriber changes preference.
+      if ( sendMail($email, getConfig("updatesubject"), $message, system_messageheaders($email),$envelope)) {
         $ok = 1;
-      } else { 
-        if ( sendMail($email, getConfig("updatesubject"), $message, system_messageheaders($email),$envelope)) {
-          $ok = 1;
-          sendAdminCopy("Lists information changed","\n".$data["email"] . " has changed their information\n\n$history_entry",$subscriptions);
-          addUserHistory($email,"Change",$history_entry);
-        } else {
-          $ok = 0;
-        }
+        sendAdminCopy("Lists information changed","\n".$data["email"] . " has changed their information\n\n$history_entry",$subscriptions);
+        addUserHistory($email,"Change",$history_entry);
+      } else {
+        $ok = 0;
       }
     }
   } else {
