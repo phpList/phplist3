@@ -238,6 +238,15 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       print $GLOBALS["can_fetchUrl"].Warn(s('You are trying to send a remote URL, but PEAR::HTTP_Request or CURL is not available, so this will fail'));
     }
 
+    if ($GLOBALS["commandline"]) {
+      if (isset($_POST["targetlist"]) && is_array($_POST["targetlist"])) {
+        Sql_query("delete from {$tables["listmessage"]} where messageid = $id");
+        foreach($_POST["targetlist"] as $listid => $val) {
+          $result = Sql_query("insert ignore into {$tables["listmessage"]} (messageid,listid,entered) values($id,$listid,now())");
+        }
+      }
+    }
+    
 # we want to create a join on tables as follows, in order to find users who have their attributes to the values chosen
 # (independent of their list membership).
 # select
