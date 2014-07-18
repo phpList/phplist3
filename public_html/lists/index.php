@@ -620,7 +620,7 @@ function checkGroup(name,value)
   }
   $html .= $GLOBALS["PoweredBy"];
   $html .= $GLOBALS['pagedata']["footer"];
-
+  unset($_SESSION['subscriberConfirmed']);
   return $html;
 }
 
