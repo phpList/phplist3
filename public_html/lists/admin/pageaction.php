@@ -11,7 +11,10 @@ if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
     print s('Error, incorrect session token');
     exit;
   }
-}
+} elseif (isset($_SESSION['csrf_token'])) {
+  print s('Error, incorrect session token');
+  exit;
+}  
 
 if ($ajax) {
   @ob_end_clean();
