@@ -1465,8 +1465,7 @@ function addCsrfGetToken() {
   if (!empty($_SESSION['csrf_token'])) {
     return '&tk='.$_SESSION['csrf_token'];
   }
-]
-
+}
 
 function refreshTlds($force = 0) {
   ## fetch list of Tlds and store in DB
