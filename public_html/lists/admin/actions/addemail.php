@@ -3,6 +3,7 @@
 if (empty($_SESSION['last_addemail'])) {
   $_SESSION['last_addemail'] = 0;
 }
+verifyCsrfGetToken();
 
 if (!empty($_GET['email'])) {
   $delay = time() - $_SESSION['last_addemail'];

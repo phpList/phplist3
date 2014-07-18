@@ -489,7 +489,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         $sendtestresult .= '<br/>';
       } else {
         $sendtestresult .= $GLOBALS['I18N']->get("Email address not found to send test message.").": $address";
-        $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s" class="button ajaxable">%s</a></div>',$baseurl,urlencode($address),$GLOBALS['I18N']->get("add"));
+        $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s%s" class="button ajaxable">%s</a></div>',$baseurl,urlencode($address),addCsrfGetToken(),$GLOBALS['I18N']->get("add"));
       }
     }
     $sendtestresult .= "<hr/>";
