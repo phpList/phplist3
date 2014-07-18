@@ -193,10 +193,11 @@ function AttributeValue($table,$value) {
     $res = Sql_Query(sprintf('select name from %slistattr_%s where id = %d',
     $table_prefix,$table,$value));
     $row = Sql_Fetch_row($res);
+    return $row[0];
   } else {
 #    return "Invalid Attribute Index";
   }
-  return $row[0];
+  return "";
 }
 
 function existUserID($id = 0) {
