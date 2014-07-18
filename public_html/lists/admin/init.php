@@ -209,6 +209,7 @@ $hash_length = strlen(hash(ENCRYPTION_ALGO,'some text'));
 if (!defined("PHPMAILER")) define("PHPMAILER",1);
 if (!defined('WARN_ABOUT_PHP_SETTINGS')) define('WARN_ABOUT_PHP_SETTINGS',1);
 if (!defined('NUMATTACHMENTS')) define('NUMATTACHMENTS',1);
+if (!defined('PLUGIN_ROOTDIR')) define('PLUGIN_ROOTDIR','plugins'); ##17270 - this will point to the plugins subdir of admin
 if (!defined('PLUGIN_ROOTDIRS')) define('PLUGIN_ROOTDIRS','');
 if (!defined('PHPMAILERHOST')) define("PHPMAILERHOST",'');
 if (!defined("MANUALLY_PROCESS_QUEUE")) define("MANUALLY_PROCESS_QUEUE",1);
