@@ -211,7 +211,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
 
     $userid = $old_data["id"];
     $old_data = array_merge($old_data,getUserAttributeValues('',$userid));
-    $history_entry = 'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+    $history_entry = '';#http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
 
     $query = sprintf('update %s set email = "%s",htmlemail = %d,subscribepage = %d where id = %d',$GLOBALS["tables"]["user"],addslashes($email),$htmlemail,$id,$userid);
     $result = Sql_query($query);
@@ -546,7 +546,11 @@ elseif (isset($_POST["update"]) && $_POST["update"] && is_email($_POST["email"])
     $res = Sql_Query("select * from ".$GLOBALS["tables"]["attribute"] ." where id in ($attids)");
     while ($attribute = Sql_Fetch_Array($res)) {
       $fieldname = "attribute" .$attribute["id"];
-      $value = $_POST[$fieldname];
+      if (isset($_POST[$fieldname])) {
+        $value = $_POST[$fieldname]; ## is being sanitised below, depending on attribute type
+      } else {
+        $value = "";
+      }
       $replace = 1;#isset($_POST[$fieldname]);
       if ($attribute["type"] == "date") {
         $value = $date->getDate($fieldname);
