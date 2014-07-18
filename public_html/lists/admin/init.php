@@ -287,7 +287,7 @@ if (!defined('SENDTEST_THROTTLE')) define('SENDTEST_THROTTLE',1); ## seconds bet
 if (!defined('SENDTEST_MAX')) define('SENDTEST_MAX',999); ## max number of emails in a send test
 if (!defined('MAX_PROCESSQUEUE_TIME')) define('MAX_PROCESSQUEUE_TIME',99999);
 if (!defined('LANGUAGE_AUTO_UPDATE')) define('LANGUAGE_AUTO_UPDATE',true);
-if (!defined('SESSION_TIMEOUT')) define('SESSION_TIMEOUT',300);
+if (!defined('SESSION_TIMEOUT')) define('SESSION_TIMEOUT',1800);
 
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
