@@ -7,6 +7,7 @@
 # the information
 Country:Countries in the world
 Afghanistan
+Akrotiri
 Albania
 Algeria
 American Samoa
@@ -18,13 +19,15 @@ Antigua and Barbuda
 Argentina
 Armenia
 Aruba
+Ashmore and Cartier Islands
 Australia
 Austria
-Azerbaidjan
-Bahamas
+Azerbaijan
+Bahamas, The
 Bahrain
 Bangladesh
 Barbados
+Bassas da India
 Belarus
 Belgium
 Belize
@@ -32,14 +35,16 @@ Benin
 Bermuda
 Bhutan
 Bolivia
-Bosnia-Herzegovina
+Bosnia and Herzegovina
 Botswana
 Bouvet Island
 Brazil
 British Indian Ocean Territory
-Brunei Darussalam
+British Virgin Islands
+Brunei
 Bulgaria
 Burkina Faso
+Burma
 Burundi
 Cambodia
 Cameroon
@@ -51,21 +56,25 @@ Chad
 Chile
 China
 Christmas Island
+Clipperton Island
 Cocos (Keeling) Islands
 Colombia
 Comoros
-Congo
+Congo, Democratic Republic of the
+Congo, Republic of the
 Cook Islands
+Coral Sea Islands
 Costa Rica
+Cote d'Ivoire
 Croatia
 Cuba
 Cyprus
 Czech Republic
 Denmark
+Dhekelia
 Djibouti
 Dominica
 Dominican Republic
-East Timor
 Ecuador
 Egypt
 El Salvador
@@ -73,32 +82,36 @@ Equatorial Guinea
 Eritrea
 Estonia
 Ethiopia
-Falkland Islands
+Europa Island
+Falkland Islands (Islas Malvinas)
 Faroe Islands
 Fiji
 Finland
 France
-France (European Territory)
-French Guyana
-French Southern Territories
+French Guiana
+French Polynesia
+French Southern and Antarctic Lands
 Gabon
-Gambia
+Gambia, The
+Gaza Strip
 Georgia
 Germany
 Ghana
 Gibraltar
-Great Britain
+Glorioso Islands
 Greece
 Greenland
 Grenada
-Guadeloupe (French)
-Guam (USA)
+Guadeloupe
+Guam
 Guatemala
+Guernsey
 Guinea
-Guinea Bissau
+Guinea-Bissau
 Guyana
 Haiti
-Heard and McDonald Islands
+Heard Island and McDonald Islands
+Holy See (Vatican City)
 Honduras
 Hong Kong
 Hungary
@@ -108,15 +121,20 @@ Indonesia
 Iran
 Iraq
 Ireland
+Isle of Man
 Israel
 Italy
-Ivory Coast (Cote D`Ivoire)
 Jamaica
+Jan Mayen
 Japan
+Jersey
 Jordan
+Juan de Nova Island
 Kazakhstan
 Kenya
 Kiribati
+Korea, North
+Korea, South
 Kuwait
 Kyrgyzstan
 Laos
@@ -137,33 +155,31 @@ Maldives
 Mali
 Malta
 Marshall Islands
-Martinique (French)
+Martinique
 Mauritania
 Mauritius
 Mayotte
 Mexico
-Micronesia
-Moldavia
+Micronesia, Federated States of
+Moldova
 Monaco
 Mongolia
 Montserrat
 Morocco
 Mozambique
-Myanmar
 Namibia
 Nauru
+Navassa Island
 Nepal
 Netherlands
 Netherlands Antilles
-Neutral Zone
-New Caledonia (French)
+New Caledonia
 New Zealand
 Nicaragua
 Niger
 Nigeria
 Niue
 Norfolk Island
-North Korea
 Northern Mariana Islands
 Norway
 Oman
@@ -171,56 +187,59 @@ Pakistan
 Palau
 Panama
 Papua New Guinea
+Paracel Islands
 Paraguay
 Peru
 Philippines
-Pitcairn Island
+Pitcairn Islands
 Poland
-Polynesia (French)
 Portugal
 Puerto Rico
 Qatar
-Reunion (French)
+Reunion
 Romania
-Russian Federation
+Russia
 Rwanda
-S. Georgia & S. Sandwich Isls.
 Saint Helena
-Saint Kitts & Nevis Anguilla
+Saint Kitts and Nevis
 Saint Lucia
 Saint Pierre and Miquelon
-Saint Tome and Principe
-Saint Vincent & Grenadines
+Saint Vincent and the Grenadines
 Samoa
 San Marino
+Sao Tome and Principe
 Saudi Arabia
 Senegal
+Serbia and Montenegro
 Seychelles
 Sierra Leone
 Singapore
-Slovak Republic
+Slovakia
 Slovenia
 Solomon Islands
 Somalia
 South Africa
-South Korea
+South Georgia and the South Sandwich Islands
 Spain
+Spratly Islands
 Sri Lanka
 Sudan
 Suriname
-Svalbard and Jan Mayen Islands
+Svalbard
 Swaziland
 Sweden
 Switzerland
 Syria
-Tadjikistan
 Taiwan
+Tajikistan
 Tanzania
 Thailand
+Timor-Leste
 Togo
 Tokelau
 Tonga
 Trinidad and Tobago
+Tromelin Island
 Tunisia
 Turkey
 Turkmenistan
@@ -231,19 +250,18 @@ Ukraine
 United Arab Emirates
 United Kingdom
 United States
-USA Minor Outlying Islands
 Uruguay
 Uzbekistan
 Vanuatu
-Vatican City State
 Venezuela
 Vietnam
-Virgin Islands (British)
-Virgin Islands (USA)
-Wallis and Futuna Islands
+Virgin Islands
+Wake Island
+Wallis and Futuna
+West Bank
 Western Sahara
 Yemen
-Zaire
 Zambia
-Zimbabwe
+Zimbabwe 
+
 
