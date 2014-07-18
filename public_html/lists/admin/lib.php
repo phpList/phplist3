@@ -456,7 +456,7 @@ function sendAdminCopy($subject,$message,$lists = array()) {
       $admin_mail = trim($admin_mail);
       if ( !isset($sent[$admin_mail]) && !empty($admin_mail) ) {
         sendMail($admin_mail,$subject,$message,system_messageheaders($admin_mail));
-        logEvent(s('Sending admin copy to').' '.$admin_mail);
+     //   logEvent(s('Sending admin copy to').' '.$admin_mail);
         $sent[$admin_mail] = 1;
        }
      }
