@@ -947,6 +947,13 @@ if (!$done) {
     </div>',
      Help("resetstats").' '.s('Reset click statistics'),
      !empty($messagedata['resetstats']) ? 'checked="checked"':'');
+
+  $send_content .= sprintf('
+    <div class="isTestCampaign">
+    <label for"cb[istestcampaign]">%s</label><input type="hidden" name="cb[istestcampaign]" value="1" /><input type="checkbox" name="istestcampaign" id="istestcampaign" value="1" %s />
+    </div>',
+     Help("istestcampaign").' '.s('This is a test campaign'),
+     !empty($messagedata['istestcampaign']) ? 'checked="checked"':'');
    
   $show_lists = 0;
 

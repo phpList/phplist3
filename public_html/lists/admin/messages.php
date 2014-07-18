@@ -440,7 +440,7 @@ if ($total) {
       $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
     }
     
-    if ($msg['status'] == 'draft') {
+    if ($msg['status'] == 'draft' || !empty($messagedata['istestcampaign'])) {
       ## only draft messages should be deletable, the rest isn't
       $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',
 PageURL2("messages$url_keep","","delete=".$msg["id"]));
