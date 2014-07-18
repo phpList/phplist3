@@ -38,7 +38,7 @@ print '</div>
     <div id="processqueueoutput">
       <div id="processqueuesummary"></div>
       <div id="processqueueprogress"></div>
-      <iframe id="processqueueiframe" src="./?page=pageaction&action=processqueue&ajaxed=true" scrolling="no"></iframe>
+      <iframe id="processqueueiframe" src="./?page=pageaction&action=processqueue&ajaxed=true'.addCsrfGetToken().'" scrolling="no"></iframe>
     </div>
   </div>
 </div>';

@@ -1,4 +1,5 @@
 <?php
+verifyCsrfGetToken();
 
 require_once dirname(__FILE__).'/../accesscheck.php';
 require_once dirname(__FILE__) .'/../sendemaillib.php';
@@ -249,12 +250,12 @@ function my_shutdown () {
       }
       sleep($delaytime);
       printf( '<script type="text/javascript">
-        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d";
-      </script>',$reload,$sent,$notsent);
+        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
+      </script>',$reload,$sent,$notsent,addCsrfGetToken());
     } else {
       printf( '<script type="text/javascript">
-        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d";
-      </script>',$reload,$sent,$notsent);
+        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
+      </script>',$reload,$sent,$notsent,addCsrfGetToken());
     }
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
