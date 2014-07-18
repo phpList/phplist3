@@ -1,4 +1,5 @@
 <?php
+verifyCsrfGetToken();
 
 # generate text content
 $msgid = sprintf('%d',$_GET['id']);
