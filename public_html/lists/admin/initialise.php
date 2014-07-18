@@ -173,11 +173,14 @@ if ($success) {
   Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],1,$userid));
   Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],2,$userid));
  
+  $uri = $_SERVER['REQUEST_URI'];
+  $uri = str_replace('?'.$_SERVER['QUERY_STRING'],'',$uri);
+ 
   $body = '
     Version: '.VERSION."\r\n"
     .' Url: '
     .$_SERVER['SERVER_NAME']
-    .$_SERVER['REQUEST_URI']
+    .$uri
     ."\r\n";
   printf('<p class="information">'
     .$GLOBALS['I18N']->get('Success')
