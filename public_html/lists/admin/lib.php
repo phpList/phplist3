@@ -1448,6 +1448,26 @@ function verifyToken() {
   return true;
 }
 
+## verify the session token on ajaxed GET requests
+function verifyCsrfGetToken() {
+  if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
+    if ($_GET['tk'] != $_SESSION['csrf_token']) {
+      print s('Error, incorrect session token');
+      exit;
+    }
+  } elseif (isset($_SESSION['csrf_token'])) {
+    print s('Error, incorrect session token');
+    exit;
+  }  
+}
+
+function addCsrfGetToken() {
+  if (!empty($_SESSION['csrf_token'])) {
+    return '&tk='.$_SESSION['csrf_token'];
+  }
+]
+
+
 function refreshTlds($force = 0) {
   ## fetch list of Tlds and store in DB
   $lastDone = getConfig('tld_last_sync');

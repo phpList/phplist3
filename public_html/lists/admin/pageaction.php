@@ -5,17 +5,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 $ajax = isset($_GET['ajaxed']);
 
-## verify the token
-if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
-  if ($_GET['tk'] != $_SESSION['csrf_token']) {
-    print s('Error, incorrect session token');
-    exit;
-  }
-} elseif (isset($_SESSION['csrf_token'])) {
-  print s('Error, incorrect session token');
-  exit;
-}  
-
 if ($ajax) {
   @ob_end_clean();
   if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
