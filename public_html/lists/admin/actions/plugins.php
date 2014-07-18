@@ -1,4 +1,5 @@
 <?php
+verifyCsrfGetToken();
 
 $status = 'FAIL';
 $disabled_plugins = unserialize(getConfig('plugins_disabled'));
