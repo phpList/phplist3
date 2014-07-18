@@ -251,11 +251,11 @@ function my_shutdown () {
       sleep($delaytime);
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-      </script>',$reload,$sent,$notsent,addCsrfGetToken());
+      </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
     } else {
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-      </script>',$reload,$sent,$notsent,addCsrfGetToken());
+      </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
     }
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {

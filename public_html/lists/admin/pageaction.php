@@ -32,5 +32,6 @@ if (0 && !empty($GLOBALS['developer_email'])) {
 }
 
 if ($ajax) {
+  print '</body></html>';
   exit;  
 }
