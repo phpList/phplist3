@@ -659,19 +659,23 @@ function confirmPage($id) {
       unBlackList($userdata['id']);
       addUserHistory($userdata["email"],"Confirmation",s("Subscriber removed from Blacklist for manual confirmation of subscription"));
     }
-    addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
+    
+    if (empty($_SESSION['subscriberConfirmed'])) {
+      addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
 
-    $confirmationmessage = str_ireplace('[LISTS]', $lists, getUserConfig("confirmationmessage:$id",$userdata["id"]));
+      $confirmationmessage = str_ireplace('[LISTS]', $lists, getUserConfig("confirmationmessage:$id",$userdata["id"]));
 
-    if (!TEST) {
-      sendMail($userdata["email"], getConfig("confirmationsubject:$id"), $confirmationmessage,system_messageheaders(),$envelope);
-      $adminmessage = $userdata["email"] . " has confirmed their subscription";
-      if ($blacklisted) {
-        $adminmessage .= "\n\n".s("Subscriber has been removed from blacklist");
+      if (!TEST) {
+        sendMail($userdata["email"], getConfig("confirmationsubject:$id"), $confirmationmessage,system_messageheaders(),$envelope);
+        $adminmessage = $userdata["email"] . " has confirmed their subscription";
+        if ($blacklisted) {
+          $adminmessage .= "\n\n".s("Subscriber has been removed from blacklist");
+        }
+        sendAdminCopy("List confirmation",$adminmessage,$subscriptions);
+        addSubscriberStatistics('confirmation',1);
       }
-      sendAdminCopy("List confirmation",$adminmessage,$subscriptions);
-      addSubscriberStatistics('confirmation',1);
     }
+    $_SESSION['subscriberConfirmed'] = time();
     $info = $GLOBALS["strConfirmInfo"];
   } else {
     logEvent("Request for confirmation for invalid user ID: ".substr($_GET["uid"],0,150));
