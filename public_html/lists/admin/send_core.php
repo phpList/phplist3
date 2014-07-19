@@ -499,19 +499,20 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   if (ALLOW_ATTACHMENTS) {
     // Delete Attachment button hit...
     $deleteattachments = $_POST["deleteattachments"];
-    foreach($deleteattachments as $attid)
-    {
+    foreach($deleteattachments as $attid) {
+      $attDetails = Sql_fetch_assoc_query(sprintf('select filename from %s where id = %d',$tables["attachment"],$attid));
+      $phys_file = $GLOBALS["attachment_repository"]."/".$attDetails["filename"];
+      $fileParts = pathinfo($phys_file);
+      $phys_file2 = $GLOBALS["attachment_repository"]."/".$fileParts['filename']; ## to remove the file created by tempnam
+      
+      @unlink($phys_file);
+      @unlink($phys_file2);
+      
       $result = Sql_Query(sprintf("delete from %s where id = %d and messageid = %d",
         $tables["message_attachment"],
         $attid,
         $id));
       print Info($GLOBALS['I18N']->get("Removed Attachment "));
-      // NOTE THAT THIS DOESN'T ACTUALLY DELETE THE ATTACHMENT FROM THE DATABASE, OR
-      // FROM THE FILE SYSTEM - IT ONLY REMOVES THE MESSAGE / ATTACHMENT LINK.  THIS
-      // SHOULD PROBABLY BE CORRECTED, BUT I (Pete Ness) AM NOT SURE WHAT OTHER IMPACTS
-      // THIS MAY HAVE.
-      // (My thoughts on this are to check for any orphaned attachment records and if
-      //  there are any, to remove it from the disk and then delete it from the database).
     }
   }
 }
@@ -886,7 +887,7 @@ if (!$done) {
         }
         $ls->addColumn($row["id"],$GLOBALS['I18N']->get('del'),sprintf('<input type="checkbox" name="deleteattachments[]" value="%s"/>',$row["linkid"]));
       }
-      $ls->addButton($GLOBALS['I18N']->get('delchecked'),"javascript:document.sendmessageform.submit()");
+      $ls->addButton(s('Delete checked'),"javascript:document.sendmessageform.submit()");
       $att_content .= '<div>'.$ls->display().'</div>';
     }
     for ($att_cnt = 1;$att_cnt <= NUMATTACHMENTS;$att_cnt++) {
