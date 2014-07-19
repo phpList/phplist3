@@ -63,12 +63,14 @@ function setMessageData($msgid,$name,$value) {
       unset($value['all']);
     } else {
       foreach($value as $listid => $val) {
-        $query
-        = ' insert into ' . $GLOBALS['tables']["listmessage"]
-        . '    (messageid,listid,entered)'
-        . ' values'
-        . '    (?, ?, current_timestamp)';
-        $result = Sql_Query_Params($query, array($msgid, $listid));
+        if ($listid != 'unselect') { ## see #16940 - ignore a list called "unselect" which is there to allow unselecting all
+          $query
+          = ' insert into ' . $GLOBALS['tables']["listmessage"]
+          . '    (messageid,listid,entered)'
+          . ' values'
+          . '    (?, ?, current_timestamp)';
+          $result = Sql_Query_Params($query, array($msgid, $listid));
+        }
       }
     }
   }
