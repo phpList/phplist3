@@ -1121,7 +1121,7 @@ function PageURL2($name,$desc = "",$url="",$no_plugin = false) {
     } else {
       $pi = "";
     }
-    return sprintf('./?page=%s%s%s',$name,$url,$pi);
+    return sprintf('./?page=%s%s%s%s',$name,$url,$pi,addCsrfGetToken());
   } else {
     return '';
   }
