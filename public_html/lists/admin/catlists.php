@@ -62,7 +62,7 @@ $aListCategories = listCategories();
 if (sizeof($aListCategories)) {
   while ($row = Sql_Fetch_Assoc($req)) {
     $ls->addELement($row['id']);
-    $ls->addColumn($row['id'],$GLOBALS['I18N']->get('Name'),$row['name']);
+    $ls->addColumn($row['id'],$GLOBALS['I18N']->get('Name'),stripslashes($row['name']));
     $catselect = '<select name="category['.$row['id'].']">';
     $catselect .= '<option value="">-- '.s('choose category').'</option>';
     foreach ($aListCategories as $category) {

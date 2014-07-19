@@ -127,14 +127,14 @@ if (!Sql_Num_Rows($result))
   $content .= '<tr><td colspan="2">' . $GLOBALS['I18N']->get('None yet') . '</td></tr>';
 while ($lst = Sql_fetch_array($result)) {
   array_push($lists_done,$lst['id']);
-  $content .= sprintf ('<tr><td>%d</td><td>%s</td></tr>',$lst['id'],$lst['name']);
+  $content .= sprintf ('<tr><td>%d</td><td>%s</td></tr>',$lst['id'],stripslashes($lst['name']));
 }
 
 if ($msgdata['excludelist']) {
   $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('Except when they were also member of these lists') . ':</h4></td></tr>';
   $result = Sql_Query(sprintf('select l.name, l.id from %s l where id in (%s)',$tables['list'],join(',',$msgdata['excludelist'])));
   while ($lst = Sql_fetch_array($result)) {
-    $content .= sprintf ('<tr><td>%d</td><td>%s</td></tr>',$lst['id'],$lst['name']);
+    $content .= sprintf ('<tr><td>%d</td><td>%s</td></tr>',$lst['id'],stripslashes($lst['name']));
   }
 }
 $content .= '</table>';
