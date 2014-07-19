@@ -155,10 +155,19 @@ if (!empty($messagedata['google_track'])) {
   if (strpos($url,'utm_medium') !== false) {
     $url = preg_replace('/utm_(\w+)\=[^&]+/','',$url);
   }
-  if (strpos($url,'?')) {
-    $url = $url.'&'.$trackingcode;
+  ## 16894 make sure to keep the fragment value at the end of the URL
+  if (strpos($url,'#')) {
+    list($tmplink,$fragment) = explode('#',$url);
+    $url = $tmplink;
+    unset($tmplink);
+    $fragment = '#'.$fragment;
   } else {
-    $url = $url.'?'.$trackingcode;
+    $fragment = '';
+  }
+  if (strpos($url,'?')) {
+    $url = $url.'&'.$trackingcode.$fragment;
+  } else {
+    $url = $url.'?'.$trackingcode.$fragment;
   }
 }
 

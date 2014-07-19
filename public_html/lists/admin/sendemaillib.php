@@ -611,16 +611,25 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $link = str_replace('"','',$link);  
       ## http://www.google.com/support/analytics/bin/answer.py?hl=en&answer=55578
 
-      $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=HTMLemail&utm_campaign='.urlencode($cached[$messageid]["subject"]);
+      $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=HTML&utm_campaign='.urlencode($cached[$messageid]["subject"]);
       ## take off existing tracking code, if found
       if (strpos($link,'utm_medium') !== false) {
         $link = preg_replace('/utm_(\w+)\=[^&]+&/U','',$link);
       }
+      ## 16894 make sure to keep the fragment value at the end of the URL
+      if (strpos($link,'#')) {
+        list($tmplink,$fragment) = explode('#',$link);
+        $link = $tmplink;
+        unset($tmplink);
+        $fragment = '#'.$fragment;
+      } else {
+        $fragment = '';
+      }
         
       if (strpos($link,'?')) {
-        $newurl = $link.'&'.$trackingcode;
+        $newurl = $link.'&'.$trackingcode.$fragment;
       } else {
-        $newurl = $link.'?'.$trackingcode;
+        $newurl = $link.'?'.$trackingcode.$fragment;
       }
    #   print $link. ' '.$newurl.' <br/>';
       $newlink = sprintf('<a %shref="%s" %s>%s</a>',$links[1][$i],$newurl,$links[3][$i],$links[4][$i]);
@@ -639,15 +648,24 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   
       if (preg_match('/^http|ftp/',$link) && (stripos($link, 'www.phplist.com') !== 0)  ) {# && !strpos($link,$clicktrack_root)) {
         $url = cleanUrl($link,array('PHPSESSID','uid'));
-        $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=textemail&utm_campaign='.urlencode($cached[$messageid]["subject"]);
+        $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=text&utm_campaign='.urlencode($cached[$messageid]["subject"]);
         ## take off existing tracking code, if found
         if (strpos($link,'utm_medium') !== false) {
           $link = preg_replace('/utm_(\w+)\=[^&]+/','',$link);
         }
-        if (strpos($link,'?')) {
-          $newurl = $link.'&'.$trackingcode;
+        ## 16894 make sure to keep the fragment value at the end of the URL
+        if (strpos($link,'#')) {
+          list($tmplink,$fragment) = explode('#',$link);
+          $link = $tmplink;
+          unset($tmplink);
+          $fragment = '#'.$fragment;
         } else {
-          $newurl = $link.'?'.$trackingcode;
+          $fragment = '';
+        }
+        if (strpos($link,'?')) {
+          $newurl = $link.'&'.$trackingcode.$fragment;
+        } else {
+          $newurl = $link.'?'.$trackingcode.$fragment;
         }
 
         $newlinks[$i] = $newurl;
