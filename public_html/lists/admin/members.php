@@ -206,6 +206,7 @@ if (isset($_REQUEST["doadd"])) {
   print "<br />".$GLOBALS['I18N']->get("User added")."<br />";
 }
 if (isset($_REQUEST["delete"])) {
+  verifyCsrfGetToken();
   $delete = sprintf('%d',$_REQUEST["delete"]);
   # single delete the index in delete
   $_SESSION['action_result'] = s("Removing %d from this list ",$delete). " ..\n";
