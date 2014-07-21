@@ -130,6 +130,7 @@ print '</form></div>';
 
 ### Process 'Action' requests
 if (!empty($_GET["delete"])) {
+  verifyCsrfGetToken();
   $todelete = array();
   if ($_GET["delete"] == "draft") {
     $req = Sql_Query(sprintf('select id from %s where status = "draft" and (subject = "" or subject = "(no subject)") %s',$GLOBALS['tables']["message"],$ownerselect_and));
@@ -152,6 +153,7 @@ if (!empty($_GET["delete"])) {
 }
 
 if (isset($_GET['resend'])) {
+  verifyCsrfGetToken();
   $resend = sprintf('%d',$_GET['resend']);
   # requeue the message in $resend
   $action_result .=  $GLOBALS['I18N']->get("Requeuing")." $resend ..";
@@ -181,6 +183,7 @@ if (isset($_GET['resend'])) {
 }
 
 if (isset($_GET['suspend'])) {
+  verifyCsrfGetToken();
   $suspend = sprintf('%d',$_GET['suspend']);
   $action_result .=  $GLOBALS['I18N']->get('Suspending')." $suspend ..";
   $result = Sql_query(sprintf('update %s set status = "suspended" where id = %d and (status = "inprocess" or status = "submitted") %s',$tables["message"],$suspend,$ownerselect_and));
@@ -193,6 +196,7 @@ if (isset($_GET['suspend'])) {
 }
 #0012081: Add new 'Mark as sent' button
 if (isset($_GET['markSent'])) {
+  verifyCsrfGetToken();
   $markSent = sprintf('%d',$_GET['markSent']);
   $action_result .=  $GLOBALS['I18N']->get('Marking as sent ')." $markSent ..";
   $result = Sql_query(sprintf('update %s set status = "sent" where id = %d and (status = "suspended") %s',$tables["message"],$markSent,$ownerselect_and));
@@ -205,6 +209,7 @@ if (isset($_GET['markSent'])) {
 }
 
 if (isset($_GET['action'])) {
+  verifyCsrfGetToken();
   switch ($_GET['action']) {
     case 'suspall':
       $action_result .=  $GLOBALS['I18N']->get('Suspending all')." ..";
@@ -442,8 +447,14 @@ if ($total) {
     
     if ($msg['status'] == 'draft' || !empty($messagedata['istestcampaign'])) {
       ## only draft messages should be deletable, the rest isn't
-      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',
-PageURL2("messages$url_keep","","delete=".$msg["id"]));
+
+    $deletebutton = new ConfirmButton(
+       s('Are you sure you want to delete this campaign?'),
+       PageURL2("messages$url_keep&delete=".$msg["id"]),
+       s('delete this campaign'));
+
+#      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
+      $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
       $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
     }
     $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"], '', s('View')).'</span>';
