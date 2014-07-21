@@ -510,6 +510,14 @@ define('USE_REPETITION',0);
 # set this one to 0
 define('LANGUAGE_SWITCH',1);
 
+## error 404 page
+## custom "File not found".
+## in several places, phpList may generate a "file not found" page. If you want to provide your own design for this
+## page, you can set this here. This needs to be a file that is in your webserver document root
+## eg /home/youraccount/public_html/404.html
+## the contents are displayed "as-is", so it will not run any PHP code in the file.
+define('ERROR404PAGE','404.html');
+
 
 /*
 
