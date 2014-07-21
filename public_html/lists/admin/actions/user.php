@@ -1,6 +1,7 @@
 <?php
 
 if (!defined('PHPLISTINIT')) die();
+verifyCsrfGetToken();
 
 if (isset($_GET['id'])) {
   $userid = sprintf('%d',$_GET['id']);
