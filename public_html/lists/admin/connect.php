@@ -1455,7 +1455,7 @@ $newpoweredimage = 'iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAYAAACRIVbWAAAABHNCSVQICAgI
 function FileNotFound($msg = '') {
   ob_end_clean();
   header("HTTP/1.0 404 File Not Found");
-  if (defined('ERROR404PAGE') && is_file($_SERVER['DOCUMENT_ROOT'].'/'.ERROR404PAGE) {
+  if (defined('ERROR404PAGE') && is_file($_SERVER['DOCUMENT_ROOT'].'/'.ERROR404PAGE)) {
     print file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.ERROR404PAGE);
     exit;
   }
