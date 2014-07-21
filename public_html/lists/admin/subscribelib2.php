@@ -918,8 +918,8 @@ $html .= sprintf('
               $checked = $data[$attr["id"]] == $value["id"] ? 'checked="checked"':'';
             else
               $checked = $attr["default_value"] == $value["name"] ? 'checked="checked"':'';
-            $output[$attr["id"]] .= sprintf('&nbsp;%s&nbsp;<input type="radio"  class="attributeinput" name="%s" value="%s" %s />',
-              $value["name"],$fieldname,$value["id"],$checked);
+            $output[$attr["id"]] .= sprintf('<input type="radio"  class="attributeinput" name="%s" value="%s" %s />&nbsp;%s&nbsp;',
+              $fieldname,$value["id"],$checked,$value["name"]);
           }
           if ($attr["required"])
             $output[$attr["id"]] .= sprintf('<script language="Javascript" type="text/javascript">addGroupToCheck("%s","%s");</script>',$fieldname,$attr["name"]);
