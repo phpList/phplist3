@@ -57,6 +57,7 @@ if ($GLOBALS['require_login'] && !isSuperUser()) {
 print '</div>';
 
 if (isset($_GET['delete'])) {
+  verifyCsrfGetToken();
   $delete = sprintf('%d',$_GET['delete']);
   # delete the index in delete
   $actionresult = $GLOBALS['I18N']->get('Deleting') . ' '.$GLOBALS['I18N']->get('list')." $delete ..\n";
@@ -235,7 +236,7 @@ while ($row = Sql_fetch_array($result)) {
      s('delete this list'));
    
   $ls->addRow($element,'','<span class="edit-list"><a class="button" href="?page=editlist&amp;id='.$row["id"].'" title="'.$GLOBALS['I18N']->get('Edit this list').'"></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list='.$row['id'],$GLOBALS['I18N']->get('send'),'','',$GLOBALS['I18N']->get('start a new campaign targetting this list')).'</span>'.
-    '<span class="add_member">'.PageLinkDialogOnly('importsimple&list='.$row["id"],$GLOBALS['I18N']->get('Add Members')).'</span>'.
+    '<span class="add_member">'.PageLinkDialogOnly('importsimple&list='.$row["id"],s('Add Members')).'</span>'.
     '<span class="delete">'.$deletebutton->show().'</span>'
     ,'','','actions nodrag');
 
