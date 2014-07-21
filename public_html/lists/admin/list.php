@@ -196,7 +196,7 @@ while ($row = Sql_fetch_array($result)) {
   $unconfirmedMembers = (int)($membercount['total'] - $members);
   $desc = stripslashes($row['description']);
   if ($unconfirmedMembers > 0) {
-    $membersDisplay = '<span class="memberCount">'.$members.'</span> <span class="unconfirmedCount">('.$unconfirmedMembers. ')</span>';
+    $membersDisplay = '<span class="memberCount" title="'.s('Confirmed members').'">'.$members.'</span> <span class="unconfirmedCount" title="'.s('Unconfirmed members').'">('.$unconfirmedMembers. ')</span>';
   } else {
     $membersDisplay = '<span class="memberCount">'.$members.'</span>';
   }
