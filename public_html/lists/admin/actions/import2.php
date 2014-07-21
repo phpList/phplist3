@@ -172,7 +172,6 @@ if (sizeof($email_list)) {
         print '<blockquote>' . $html . '</blockquote><hr />';
       }
     } else {
-      $cnt++;
       if ($cnt % 5 == 0) {
         print '<script type="text/javascript">
         var parentJQuery = window.parent.jQuery;
@@ -180,6 +179,7 @@ if (sizeof($email_list)) {
         </script>';      
         flush();
       }
+      $cnt++;
 
 	if (!$invalid || ($invalid && $_SESSION["omit_invalid"] != "yes")) {
       # do import
