@@ -973,8 +973,17 @@ while ($message = Sql_fetch_array($messages)) {
               $counters['batch_count']++;
               $success = sendEmail($messageid,$useremail,$userhash,$htmlpref); // $rssitems Obsolete by rssmanager plugin
               if (!$success) {
+                $counters['sendemail returned false total']++;
                 $counters['sendemail returned false']++;
+              } else {
+                $counters['sendemail returned false'] = 0;
               }
+              if ($counters['sendemail returned false'] > 10) {
+                foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+                  $plugin->processError(s('Warning: a lot of errors while sending campaign %d',$messageid));
+                }
+              }
+
               if (VERBOSE) {
                 output($GLOBALS['I18N']->get('It took').' '.$emailSentTimer->elapsed(1).' '.$GLOBALS['I18N']->get('seconds to send'));
               }
