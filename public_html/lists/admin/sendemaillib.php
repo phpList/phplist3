@@ -944,31 +944,52 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $destinationemail = $GLOBALS['developer_email'];
     }
     
+    $sendOK = false;
+   
     if (!$mail->compatSend("", $destinationemail, $fromname, $fromemail, $subject)) {
-#    if (!$mail->send(array($destinationemail),'spool')) {
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->processSendFailed($messageid, $userdata, $isTestMail);
       }
       output(sprintf(s('Error sending message %d (%d/%d) to %s (%s) '),
         $messageid,$counters['batch_count'],$counters['batch_total'],$email,$destinationemail),0);
-      return 0;
     } else {
-      ## only save the estimated size of the message when sending a test message
-      if ($getspeedstats) output('send End '.$GLOBALS['processqueue_timer']->interval(1));
-      if (!isset($GLOBALS['send_process_id'])) {
-        if (!empty($mail->mailsize)) {
-          $name = $htmlpref ? 'htmlsize' : 'textsize';
-          Sql_Replace($GLOBALS['tables']['messagedata'], array('id' => $messageid, 'name' => $name, 'data' => $mail->mailsize), array('name', 'id'));
-        }
-      }
-      $sqlCount = $GLOBALS["pagestats"]["number_of_queries"] - $sqlCountStart;
-      if ($getspeedstats) output('It took '.$sqlCount.'  queries to send this message');
+      $sendOK = true;
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->processSendSuccess($messageid, $userdata, $isTestMail);
       }
-   #   logEvent("Sent message $messageid to $email ($destinationemail)");
-      return 1;
     }
+    if ($getspeedstats) output('send End '.$GLOBALS['processqueue_timer']->interval(1));
+    if (!empty($mail->mailsize)) {
+      $sizename = $htmlpref ? 'htmlsize' : 'textsize';
+      if (empty($cached[$messageid][$sizename])) {
+        Sql_Replace($GLOBALS['tables']['messagedata'], array('id' => $messageid, 'name' => $sizename, 'data' => $mail->mailsize), array('name', 'id'));
+        $cached[$messageid][$sizename] = $mail->mailsize;
+        if (isset($cached[$messageid]['htmlsize'])) {
+          output(sprintf(s('Size of HTML email: %s ',formatBytes($cached[$messageid]['htmlsize']))),0,'progress');
+        }
+        if (isset($cached[$messageid]['textsize'])) {
+          output(sprintf(s('Size of Text email: %s ',formatBytes($cached[$messageid]['textsize']))),0,'progress');
+        }
+      }
+    }
+    if (defined('MAX_MAILSIZE') && ($cached[$messageid]['htmlsize'] > MAX_MAILSIZE || $cached[$messageid]['textsize'] > MAX_MAILSIZE)) {
+      logEvent(s('Message too large (%s is over %s), suspending',$cached[$messageid]['htmlsize'],MAX_MAILSIZE));
+      if ($isTestMail) {
+        $_SESSION['action_result'] = s('Warning: the final message exceeds the sending limit, this campaign will fail sending. Reduce the size by removing attachments or images');
+      } else {
+        Sql_Query(sprintf('update %s set status = "suspended" where id = %d',$GLOBALS['tables']['message'],$messageid));
+        logEvent(s('Campaign %d suspended. Message too large',$messageid));
+        foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+          $plugin->processError(s('Campaign %d suspended, message too large',$messageid));
+        }
+      }
+    }
+    
+    $sqlCount = $GLOBALS["pagestats"]["number_of_queries"] - $sqlCountStart;
+    if ($getspeedstats) output('It took '.$sqlCount.'  queries to send this message');
+
+    return $sendOK;
+
   }
   return 0;
 }
@@ -976,6 +997,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 function addAttachments($msgid,&$mail,$type) {
   global $attachment_repository,$website;
   $hasError = false;
+  $totalSize = 0;
+  $memlimit = phpcfgsize2bytes(ini_get('memory_limit'));
+    
   if (ALLOW_ATTACHMENTS) {
     $req = Sql_Query("select * from {$GLOBALS["tables"]["message_attachment"]},{$GLOBALS["tables"]["attachment"]}
       where {$GLOBALS["tables"]["message_attachment"]}.attachmentid = {$GLOBALS["tables"]["attachment"]}.id and
@@ -987,6 +1011,14 @@ function addAttachments($msgid,&$mail,$type) {
     }
 
     while ($att = Sql_Fetch_array($req)) {
+      $totalSize += $att['size'];
+      if ($memlimit > 0 && (3 * $totalSize) > $memlimit) {  ## the 3 is roughly the size increase to encode the string
+     #   $_SESSION['action_result'] = s('Insufficient memory to add attachment');
+        logEvent(s("Insufficient memory to add attachment to campaign %d %d - %d",$msgid,$totalSize,$memlimit));
+        $hasError = true;
+      }
+      
+      if (!$hasError)
       switch ($type) {
         case "HTML":
           if (is_file($GLOBALS["attachment_repository"]."/".$att["filename"]) && filesize($GLOBALS["attachment_repository"]."/".$att["filename"])) {
@@ -1029,7 +1061,7 @@ function addAttachments($msgid,&$mail,$type) {
                 }
               }
             } else {
-              logEvent(s("failed to open attachment (%s) to add to campaign %d".$att["remotefile"],$msgid));
+              logEvent(s("failed to open attachment (%s) to add to campaign %d",$att["remotefile"],$msgid));
               $hasError = true;
             }
           } else {
@@ -1051,6 +1083,19 @@ function addAttachments($msgid,&$mail,$type) {
       }
     }
   }
+  
+  ## keep track of an error count, when sending the queue
+  if ($GLOBALS['counters']['add attachment error'] > 20) {
+    Sql_Query(sprintf('update %s set status = "suspended" where id = %d',$GLOBALS['tables']['message'],$msgid));
+    logEvent(s('Campaign %d suspended for too many errors with attachments',$msgid));
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+      $plugin->processError(s('Campaign %d suspended for too many errors with attachments',$msgid));
+    }
+  }
+  if ($hasError) {
+    $GLOBALS['counters']['add attachment error']++;
+  }
+  
   return !$hasError;
 }
 
