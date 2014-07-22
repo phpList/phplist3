@@ -443,9 +443,7 @@ if ($total) {
     if ($msg['status'] == 'suspended') {
       $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent'), '', '', s('Mark sent')).'</span>';
       $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
-    }
-    
-    if ($msg['status'] == 'draft' || !empty($messagedata['istestcampaign'])) {
+    } elseif ($msg['status'] == 'draft' || !empty($messagedata['istestcampaign'])) {
       ## only draft messages should be deletable, the rest isn't
 
     $deletebutton = new ConfirmButton(
