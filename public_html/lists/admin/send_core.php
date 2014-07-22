@@ -873,12 +873,13 @@ if (!$done) {
 
 
       $ls = new WebblerListing($GLOBALS['I18N']->get('Current Attachments'));
-
+      $totalSize = 0;
       while ($row = Sql_fetch_array($result)) {
         $ls->addElement($row["id"]);
         $ls->addColumn($row["id"],$GLOBALS['I18N']->get('filename'),$row["remotefile"]);
         $ls->addColumn($row["id"],$GLOBALS['I18N']->get('desc'),$row["description"]);
-        $ls->addColumn($row["id"],$GLOBALS['I18N']->get('size'),$row["size"]);
+        $ls->addColumn($row["id"],$GLOBALS['I18N']->get('size'),formatBytes($row["size"]));
+        $totalSize += $row["size"];
         $phys_file = $GLOBALS["attachment_repository"]."/".$row["filename"];
         if (is_file($phys_file) && filesize($phys_file)) {
           $ls->addColumn($row["id"],$GLOBALS['I18N']->get('file'),$GLOBALS["img_tick"]);
@@ -890,6 +891,10 @@ if (!$done) {
       $ls->addButton(s('Delete checked'),"javascript:document.sendmessageform.submit()");
       $att_content .= '<div>'.$ls->display().'</div>';
     }
+    if (defined('MAX_MAILSIZE') && 3 * $totalSize > MAX_MAILSIZE) {  ## the 3 is roughly the size increase to encode the string
+      $att_content .= Warn(s('The total size of attachments is very large. Sending this campaign may fail.'));
+    }
+    
     for ($att_cnt = 1;$att_cnt <= NUMATTACHMENTS;$att_cnt++) {
       $att_content .= sprintf  ('<div>%s</div><div><input type="file" name="attachment%d"/>&nbsp;&nbsp;<input class="submit" type="submit" name="save" value="%s"/></div>',$GLOBALS['I18N']->get('New Attachment'),$att_cnt,$GLOBALS['I18N']->get('Add (and save)'));
       if (FILESYSTEM_ATTACHMENTS) {
