@@ -289,7 +289,7 @@ if (!defined('SENDTEST_MAX')) define('SENDTEST_MAX',999); ## max number of email
 if (!defined('MAX_PROCESSQUEUE_TIME')) define('MAX_PROCESSQUEUE_TIME',99999);
 if (!defined('LANGUAGE_AUTO_UPDATE')) define('LANGUAGE_AUTO_UPDATE',true);
 if (!defined('SESSION_TIMEOUT')) define('SESSION_TIMEOUT',1800);
-
+if (!defined('MAX_MAILSIZE')) define('MAX_MAILSIZE',209715200); // in bytes, 200Mb
 if (!defined('INTERFACELIB')) define('INTERFACELIB',1);
 if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
   define('PHPMAILERBLASTHOST',PHPMAILERHOST);
@@ -447,8 +447,10 @@ $counters = array(
   'num_users_for_message' => 0,
   'batch_count' => 0,
   'batch_total' => 0,
-  'sendemail returned false' => 0,
+  'sendemail returned false total' => 0,
   'send blocked by domain throttle' => 0,
+  'add attachment error' => 0,
+  'sendemail returned false' => 0,
 );
 
 $GLOBALS['disallowpages'] = array();
