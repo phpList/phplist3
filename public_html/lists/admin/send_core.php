@@ -892,7 +892,7 @@ if (!$done) {
       $att_content .= '<div>'.$ls->display().'</div>';
     }
     if (defined('MAX_MAILSIZE') && 3 * $totalSize > MAX_MAILSIZE) {  ## the 3 is roughly the size increase to encode the string
-      $att_content .= Warn(s('The total size of attachments is very large. Sending this campaign may fail.'));
+      $att_content .= Warn(s('The total size of attachments is very large. Sending this campaign may fail due to resource limits.'));
     }
     
     for ($att_cnt = 1;$att_cnt <= NUMATTACHMENTS;$att_cnt++) {
