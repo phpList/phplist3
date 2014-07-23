@@ -182,6 +182,17 @@ $(document).ready(function() {
     $(".tabbed1").tabs();
   }
   
+  $("#subjectinput").focus(function() {
+    if (this.value == '(no subject)') {
+      this.value = "";
+    }
+  })
+  $("#subjectinput").blur(function() {
+    if (this.value == "") {
+      this.value = "(no subject)";
+      return;
+    }
+  });
   $("#remoteurlinput").focus(function() {
     if (this.value == 'e.g. http://www.phplist.com/testcampaign.html') {
       this.value = "";

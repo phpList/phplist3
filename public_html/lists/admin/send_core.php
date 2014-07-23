@@ -657,7 +657,7 @@ if (!$done) {
 
   $maincontent .= '
   <div class="field"><label for="subject">'.$GLOBALS['I18N']->get("Subject").Help("subject").'</label>'.
-  '<input type="text" name="subject"
+  '<input type="text" name="subject"  id="subjectinput"
     value="'.htmlentities($utf8_subject,ENT_QUOTES,'UTF-8').'" size="60" /></div>
   <div class="field"><label for="fromfield">'.$GLOBALS['I18N']->get("From Line").Help("from").'</label>'.'
     <input type="text" name="fromfield"
