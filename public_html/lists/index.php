@@ -919,20 +919,45 @@ if (!function_exists("htmlspecialchars_decode")) {
 }
 function forwardPage($id)
 {
-  global $tables, $envelope;
+  global $tables;
   $ok = true;
   $subtitle = '';
   $info = '';
   $html = '';
   $form = '';
+  $personalNote = '';
 
   ## Check requirements
+  # message
+  $mid = 0;
+  if (isset($_REQUEST['mid'])) {
+    $mid = sprintf('%d',$_REQUEST['mid']);
+    $req = Sql_Query(sprintf('select * from %s where id = %d',$tables["message"],$mid));
+    $messagedata = Sql_Fetch_Array($req);
+    $mid = $messagedata['id'];
+    if ($mid) {
+      $subtitle = $GLOBALS['strForwardSubtitle'].' '.stripslashes($messagedata['subject']);
+    }
+  } #mid set
 
   # user
   if (!isset($_REQUEST["uid"]) || !$_REQUEST['uid']) {
     FileNotFound();
   }
-
+  
+  ## get userdata
+  $req = Sql_Query(sprintf('select * from %s where uniqid = "%s"',$tables["user"],sql_escape($_REQUEST["uid"])));
+  $userdata = Sql_Fetch_Array($req);
+  ## verify that this subscriber actually received this message to forward, otherwise they're not allowed
+  $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
+    $GLOBALS['tables']['usermessage'],$userdata['id'],$mid));
+  if (empty($userdata['id']) || $allowed[0] != $userdata['id']) {
+    ## when sending a test email as an admin, the entry isn't there yet
+    if (empty($_SESSION['adminloggedin']) || $_SESSION['adminloggedin'] != $_SERVER['REMOTE_ADDR']) {
+      FileNotFound('<br/><i>'.$GLOBALS['I18N']->get('When testing the phpList forward functionality, you need to be logged in as an administrator.').'</i><br/>');
+    }
+  }
+  
   $firstpage = 1; ## is this the initial page or a followup
 
   # forward addresses
@@ -952,42 +977,16 @@ function forwardPage($id)
       if ( is_email($email) ) {
         $emailCount++;
       } else {
-        $info .= sprintf('<BR />' . $GLOBALS['strForwardInvalidEmail'], $email);
+        $info .= sprintf('<br />' . $GLOBALS['strForwardInvalidEmail'], $email);
         $ok = false;
       }
     }
     if ($emailCount > FORWARD_EMAIL_COUNT) {
-      $info.= '<BR />' . $GLOBALS["strForwardCountReached"];
+      $info.= '<br />' . $GLOBALS["strForwardCountReached"];
       $ok = false;
     }
   } else {
     $ok = false;
-  }
-
-  # message
-  $mid = 0;
-  if (isset($_REQUEST['mid'])) {
-    $mid = sprintf('%d',$_REQUEST['mid']);
-    $req = Sql_Query(sprintf('select * from %s where id = %d',$tables["message"],$mid));
-    $messagedata = Sql_Fetch_Array($req);
-    $mid = $messagedata['id'];
-    if ($mid) {
-      $subtitle = $GLOBALS['strForwardSubtitle'].' '.stripslashes($messagedata['subject']);
-    }
-  } #mid set
-
-  ## get userdata
-  $req = Sql_Query(sprintf('select * from %s where uniqid = "%s"',$tables["user"],sql_escape($_REQUEST["uid"])));
-  $userdata = Sql_Fetch_Array($req);
-
-  ## verify that this subscriber actually received this message to forward, otherwise they're not allowed
-  $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
-    $GLOBALS['tables']['usermessage'],$userdata['id'],$mid));
-  if (empty($userdata['id']) || $allowed[0] != $userdata['id']) {
-    ## when sending a test email as an admin, the entry isn't there yet
-    if (empty($_SESSION['adminloggedin']) || $_SESSION['adminloggedin'] != $_SERVER['REMOTE_ADDR']) {
-      FileNotFound('<br/><i>'.$GLOBALS['I18N']->get('When testing the phpList forward functionality, you need to be logged in as an administrator.').'</i><br/>');
-    }
   }
 
   #0011996: forward to friend - personal message
@@ -1007,7 +1006,7 @@ function forwardPage($id)
 
       #0013845 Lead Ref Scheme
       if (FORWARD_FRIEND_COUNT_ATTRIBUTE) {
-        $iCountFriends = getAttributeIDbyName(FORWARD_FRIEND_COUNT_ATTRIBUTE);
+        $iCountFriends = FORWARD_FRIEND_COUNT_ATTRIBUTE;
       } else {
         $iCountFriends = 0;
       }
@@ -1027,7 +1026,7 @@ function forwardPage($id)
         #0011860: forward to friend, multiple emails
         $done = Sql_Fetch_Array_Query(sprintf('select user,status,time from %s where forward = "%s" and message = %d',
         $tables['user_message_forward'],$email,$mid));
-        $info .= '<BR />' . $email . ': ';
+        $info .= '<br />' . $email . ': ';
         if ($done['status'] === 'sent') {
           $info .= $GLOBALS['strForwardAlreadyDone'];
         } elseif (isBlackListed($email)) {
@@ -1132,7 +1131,7 @@ function forwardPage($id)
     $res .= '<h3>'.$subtitle.'</h3>';
     if ($ok) {
       $res .= '<h4>'.$info.'</h4>';
-    } else {
+    } elseif (!empty($info)) {
       $res .= '<div class="error missing">'.$info.'</div>';
     }
     $res .= $form;
