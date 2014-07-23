@@ -141,7 +141,7 @@ function loadMessageData($msgid) {
     }
   }
 
-  if ($GLOBALS["commandline"] && $_GET["page"] == "send") {
+  if (!empty($GLOBALS["commandline"]) && $_GET["page"] == "send") {
     $messagedata["fromfield"] = $_POST["from"];
     $messagedata["subject"] = $_POST["subject"];
     $messagedata["message"] = $_POST["message"];
