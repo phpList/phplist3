@@ -972,7 +972,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         }
       }
     }
-    if (defined('MAX_MAILSIZE') && ($cached[$messageid]['htmlsize'] > MAX_MAILSIZE || $cached[$messageid]['textsize'] > MAX_MAILSIZE)) {
+    if (defined('MAX_MAILSIZE') && $cached[$messageid]['htmlsize'] > MAX_MAILSIZE) {
       logEvent(s('Message too large (%s is over %s), suspending',$cached[$messageid]['htmlsize'],MAX_MAILSIZE));
       if ($isTestMail) {
         $_SESSION['action_result'] = s('Warning: the final message exceeds the sending limit, this campaign will fail sending. Reduce the size by removing attachments or images');
@@ -1536,7 +1536,7 @@ exit;
 
   ## ##17233 not that many fields are actually useful, so don't blatantly use all
 #  foreach($message as $key => $val) {
-  foreach (array('subject','id') as $key) {
+  foreach (array('subject','id', 'fromname','fromemail') as $key) {
     $val = $message[$key];
     if (!is_array($val)) {
       $cached[$messageid]['content'] = str_ireplace("[$key]",$val,$cached[$messageid]['content']);
