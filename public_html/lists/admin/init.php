@@ -381,6 +381,7 @@ if (!isset($systemroot)) {
 if (!defined('FORWARD_ALTERNATIVE_CONTENT')) define('FORWARD_ALTERNATIVE_CONTENT',0);
 if (!defined('KEEPFORWARDERATTRIBUTES')) define('KEEPFORWARDERATTRIBUTES',0);
 if (!defined('FORWARD_EMAIL_COUNT') ) define('FORWARD_EMAIL_COUNT',1);
+if (!defined('FORWARD_FRIEND_COUNT_ATTRIBUTE')) define('FORWARD_FRIEND_COUNT_ATTRIBUTE',0);
 ## when click track links are detected, block sending
 ## if false, will only show warning. For now defaulting to false, but may change that later
 if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) define('BLOCK_PASTED_CLICKTRACKLINKS',false);
@@ -389,8 +390,8 @@ if (FORWARD_EMAIL_COUNT < 1) {
   print 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
   exit;
 }
-# allows FORWARD_EMAIL_COUNT forwards per user per period in mysql interval terms default one day
-if (!defined('FORWARD_EMAIL_PERIOD') ) define('FORWARD_EMAIL_PERIOD', '1 day');
+# allows FORWARD_EMAIL_COUNT forwards per user per period in mysql interval terms
+if (!defined('FORWARD_EMAIL_PERIOD') ) define('FORWARD_EMAIL_PERIOD', '1 minute');
 if (!defined('FORWARD_PERSONAL_NOTE_SIZE')) define('FORWARD_PERSONAL_NOTE_SIZE',0);
 if (!defined('EMBEDUPLOADIMAGES')) define('EMBEDUPLOADIMAGES',0);
 if (!defined('IMPORT_FILESIZE')) define('IMPORT_FILESIZE',5);
