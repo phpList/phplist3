@@ -1007,6 +1007,7 @@ while ($message = Sql_fetch_array($messages)) {
               }
             }
             $sent++;
+            $counters['sent_users_for_message '.$messageid]++;
             $um = Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $userid, 'messageid' => $messageid, 'status' => "sent"), array('userid', 'messageid'), false);
 
 //obsolete, moved to rssmanager plugin 
@@ -1181,7 +1182,7 @@ while ($message = Sql_fetch_array($messages)) {
   $processed = $notsent + $sent + $invalid + $unconfirmed + $cannotsend + $failed_sent;
   output(s('Processed %d out of %d subscribers',$counters['processed_users_for_message '.$messageid],$counters['total_users_for_message '.$messageid]),1,'progress');
 
-  if ($counters['total_users_for_message '.$messageid] - $sent <= 0 || $stopSending) {
+  if ($counters['total_users_for_message '.$messageid] - $counters['sent_users_for_message '.$messageid] <= 0 || $stopSending) {
     # this message is done
     if (!$someusers)
       output($GLOBALS['I18N']->get('Hmmm, No users found to send to'),1,'progress');
