@@ -255,6 +255,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
 }
    
    if (isset($delete) && $delete && $access != "view") {
+     verifyCsrfGetToken();
      # delete the index in delete
      $_SESSION['action_result'] = s('Deleting')." $delete ..\n";
      if ($require_login && !isSuperUser()) {
@@ -262,6 +263,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
        while ($lst = Sql_fetch_array($lists))
          Sql_query("delete from {$tables["listuser"]} where userid = $delete and listid = $lst[0]");
      } else {
+       ## this action is no longer visible, but can stay here.
        deleteUser($delete);
      }
      $_SESSION['action_result'] .= '..'.s('Done')."\n";
@@ -313,9 +315,13 @@ if ($id) {
     }
   }
 
-  if ($access != "view")
-  printf(" <a class=\"delete button\" href=\"javascript:deleteRec('%s');\">%s</a> %s<h3>%s</h3>",
-         PageURL2("user","","delete=$id&amp;$returnurl"),ucfirst(s('delete')),"<div class='note fright'>".$delete_message."</div>",htmlspecialchars($user["email"]));
+  if ($access == "all") {
+    $delete = new ConfirmButton(
+       htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
+       PageURL2("user&delete=$id&amp;$returnurl".addCsrfGetToken(),"button",s('remove subscriber')),
+       s('remove subscriber'));
+    print $delete->show();
+  }
 
   print '</div>';
 } else {

@@ -45,9 +45,14 @@ print '<div class="actions">';
   //'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
 //printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
 print PageLinkButton("user&amp;id=$id",$GLOBALS['I18N']->get('Details'));
-if ($access != "view")
-printf( "<a class=\"delete button\" href=\"javascript:deleteRec('%s');\">" . $GLOBALS['I18N']->get('delete') . "</a>",
-  PageURL2("user","","delete=$id"));
+if ($access == "all") {
+  $delete = new ConfirmButton(
+     htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
+     PageURL2("user&delete=$id&amp;".addCsrfGetToken(),"button",s('remove subscriber')),
+     s('remove subscriber'));
+  print $delete->show();
+}
+
 print '</div>';
 
 $bouncels = new WebblerListing($GLOBALS['I18N']->get('Bounces'));
