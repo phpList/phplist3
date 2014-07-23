@@ -123,7 +123,7 @@ function getAttributeIDbyName ($sName) {
   # Can also be used as 'isAttribute'
 
   if(empty($sName)) return 0;
-  global $usertable_prefix;
+  global $usertable_prefix, $tables;
   # workaround for integration webbler/phplist
   if (!isset($usertable_prefix)) {
     $usertable_prefix = '';
