@@ -79,7 +79,16 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
   print '<div class="actions">';
   print '<p>'.PageLinkButton('send&amp;id='.$id,$GLOBALS['I18N']->get('Edit this message')).'</p>';
   print '</div>';
-}
+} else {
+  print '<div class="actions">';
+  
+  $editbutton = new ConfirmButton(
+     s('Editing an active or finished campaign will place it back in the draft queue, continue?'),
+     PageURL2('send&id='.$id),
+     s('Edit campaign'));
+  print $editbutton->show();
+  print '</div>';
+}  
 
 $content = '<table class="messageView">';
 ## optimise this, use msgdata above
