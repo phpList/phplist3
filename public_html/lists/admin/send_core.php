@@ -1154,13 +1154,19 @@ $finishSending = mktime($messagedata['finishsending']['hour'],$messagedata['fini
   $messagedata['finishsending']['month'],$messagedata['finishsending']['day'],$messagedata['finishsending']['year']);
 $embargoTime = mktime($messagedata['embargo']['hour'],$messagedata['embargo']['minute'],0,
   $messagedata['embargo']['month'],$messagedata['embargo']['day'],$messagedata['embargo']['year']);
-  
+$currentTime = time();
+
 if ($finishSending < $embargoTime) { 
   $allReady = false;
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.s('This campaign is scheduled to stop sending before the embargo time. No mails will be sent.').'<br/>'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling')).'</div>\');
   </script>';  
-}
+} elseif ($finishSending < $currentTime) {
+  $allReady = false;
+  $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
+  $("#addtoqueue").append(\'<div class="missing">'.s('This campaign is scheduled to stop sending in the past. No mails will be sent.').'<br/>'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling')).'</div>\');
+  </script>';  
+}  
 
 if (empty($messagedata['targetlist'])) {
   $allReady = false;
