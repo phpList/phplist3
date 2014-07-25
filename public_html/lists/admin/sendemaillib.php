@@ -972,7 +972,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
         }
       }
     }
-    if (defined('MAX_MAILSIZE') && $cached[$messageid]['htmlsize'] > MAX_MAILSIZE) {
+    if (defined('MAX_MAILSIZE') && isset($cached[$messageid]['htmlsize']) && $cached[$messageid]['htmlsize'] > MAX_MAILSIZE) {
       logEvent(s('Message too large (%s is over %s), suspending',$cached[$messageid]['htmlsize'],MAX_MAILSIZE));
       if ($isTestMail) {
         $_SESSION['action_result'] = s('Warning: the final message exceeds the sending limit, this campaign will fail sending. Reduce the size by removing attachments or images');
