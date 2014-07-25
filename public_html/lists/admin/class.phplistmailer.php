@@ -88,11 +88,6 @@ class PHPlistMailer extends PHPMailer {
         $this->Helo = getConfig("website");
         $this->Host = PHPMAILERBLASTHOST;
         $this->Port = PHPMAILERBLASTPORT;
-        // check if we've a SERVER_NAME, if not we're on CLI and need to set Hostname
-        // as we want the Message-ID to not contain localhost.localdomain
-        if (!empty($_SERVER['SERVER_NAME'])) {
-          $this->Hostname = getConfig("domain");
-        }
         if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
@@ -107,11 +102,6 @@ class PHPlistMailer extends PHPMailer {
         //logEvent('Sending email via '.PHPMAILERHOST);
         $this->Helo = getConfig("website");
         $this->Host = PHPMAILERTESTHOST;
-        // check if we've a SERVER_NAME, if not we're on CLI and need to set Hostname
-        // as we want the Message-ID to not contain localhost.localdomain
-        if (!empty($_SERVER['SERVER_NAME'])) {
-          $this->Hostname = getConfig("domain");
-        }
         if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
@@ -126,11 +116,6 @@ class PHPlistMailer extends PHPMailer {
         //logEvent('Sending email via '.PHPMAILERHOST);
         $this->Helo = getConfig("website");
         $this->Host = PHPMAILERHOST;
-        // check if we've a SERVER_NAME, if not we're on CLI and need to set Hostname
-        // as we want the Message-ID to not contain localhost.localdomain
-        if (!empty($_SERVER['SERVER_NAME'])) {
-          $this->Hostname = getConfig("domain");
-        }
         if ( isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
           $this->Username = $GLOBALS['phpmailer_smtpuser'];
@@ -140,6 +125,9 @@ class PHPlistMailer extends PHPMailer {
         $this->Mailer = "smtp";
       } else {
          $this->isMail();
+      }
+      if (empty($_SERVER['SERVER_NAME']) || empty($this->Hostname)) {
+        $this->Hostname = getConfig("domain");
       }
 
       if (defined('PHPMAILER_SECURE') && PHPMAILER_SECURE) {
