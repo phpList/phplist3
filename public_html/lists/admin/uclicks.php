@@ -120,7 +120,7 @@ while ($row = Sql_Fetch_Array($req)) {
 # $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
   $summary['totalsent'] += $row['total'];
 #  if (CLICKTRACK_SHOWDETAIL) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$uniqueclicks['users'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id.'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>'));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$uniqueclicks['users'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id). '" title="'.s('view subscribers who clicked').'"></a></span>');
     $perc = sprintf('%0.2f',($uniqueclicks['users'] / $row['total'] * 100));
     $ls->addColumn($element,$GLOBALS['I18N']->get('click rate'),$perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
