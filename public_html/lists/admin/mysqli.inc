@@ -180,6 +180,13 @@ function Sql_Close() {
 }
 
 function Sql_Query_Params($query,$params,$ignore = 0) {
+  if (empty($GLOBALS['database_connection'])) {
+    $GLOBALS['database_connection'] = Sql_Connect(
+      $GLOBALS['database_host'],
+      $GLOBALS['database_user'],
+      $GLOBALS['database_password'],
+      $GLOBALS['database_name']);
+  }
   if (!is_array($params)) $params = Array($params);
 
   foreach ($params as $index => $par) {
