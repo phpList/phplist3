@@ -511,8 +511,8 @@ if (checkAccess($page,"") || $page == 'about') {
       }
       print '</ul>';
     } elseif ($page != 'login') {
-      print '<br/>'."$page -&gt; ".$I18N->get('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
-      #print $plugin->coderoot . "$include";
+      print '<br/>'."$page -&gt; ".s('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
+      cl_output("$page -> ".s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include");
     }
   } else {
     if ($GLOBALS["commandline"]) {
