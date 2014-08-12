@@ -267,6 +267,8 @@ $(document).ready(function() {
   $("#initialadminpassword").keyup(function() {
     if (this.value.length >= 8) {
       $("#initialisecontinue").removeAttr('disabled');
+    } else if (this.value.length < 8) {
+      $("#initialisecontinue").attr('disabled', 'disabled');
     }
   });
   $("#initialiseform").submit(function() {
