@@ -17,15 +17,15 @@ if (preg_match('/\[URL:(.+)\]/',$messagedata['message'],$regs)) {
 setMessageData($msgid,'textmessage',$textversion);
 
 ## convert to feedback in the textarea
-## @@FIXME this fails when the text is large
+## @@FIXME this fails when the text is large, or contains £
 $textversion = trim($textversion);
 $textversion = preg_replace("/\n/","\\n",$textversion);
 $textversion = preg_replace("/\r/","",$textversion);
-$textversion = htmlentities($textversion,ENT_QUOTES,'UTF-8');
+$textversion = htmlentities($textversion,ENT_IGNORE,'UTF-8',true);
 
 $status =  '<script type="text/javascript">
 
-$("#textmessage").html("'.$textversion.'");
+$("#textmessage").html("'.str_replace('"','&quot;',$textversion).'");
 //$("#textmessage").load("./?page=pageaction&action=messagedata&field=textmessage&id='.$msgid.'");
 $("#generatetextversion").hide();
 
