@@ -753,63 +753,67 @@ if (!function_exists("getconfig")) {
 }
 
 function getUserConfig($item, $userid = 0) {
-	global $default_config, $tables, $domain, $website;
-	$hasconf = Sql_Table_Exists($tables["config"]);
-	$value = '';
-	if ($hasconf) {
-		$query = 'select value,editable from ' . $tables['config'] . ' where item = ?';
-		$req = Sql_Query_Params($query, array($item));
-		if (!Sql_Num_Rows($req)) {
-		  if ( array_key_exists($item, $default_config) ) { 
-		    $value = $default_config[$item]['value'];
-	    }
+  global $default_config, $tables, $domain, $website;
+  $hasconf = Sql_Table_Exists($tables["config"]);
+  $value = '';
+
+  if ($hasconf) {
+    $query = 'select value,editable from ' . $tables['config'] . ' where item = ?';
+    $req = Sql_Query_Params($query, array($item));
+
+    if (!Sql_Num_Rows($req)) {
+      if ( array_key_exists($item, $default_config) ) { 
+        $value = $default_config[$item]['value'];
+      }
     } else {
-			$row = Sql_fetch_Row($req);
-			$value = $row[0];
+      $row = Sql_fetch_Row($req);
+      $value = $row[0];
+
       if ($row[1] == 0) {
         $GLOBALS['noteditableconfig'][] = $item;
       }
-		}
-	}
-	# if this is a subpage item, and no value was found get the global one
-	if (!$value && strpos( $item,":") !== false) {
-		list ($a, $b) = explode(":", $item);
-		$value = getUserConfig($a, $userid);
-	}
+    }
+  }
+  # if this is a subpage item, and no value was found get the global one
+  if (!$value && strpos( $item,":") !== false) {
+    list ($a, $b) = explode(":", $item);
+    $value = getUserConfig($a, $userid);
+  }
+
   if ($userid) {
     $query = 'select uniqid, email from ' . $tables['user'] . ' where id = ?';
     $rs = Sql_Query_Params($query, array($userid));
     $user_req = Sql_Fetch_Row($rs);
     $uniqid = $user_req[0];
     $email = $user_req[1];
-		# parse for placeholders
-		# do some backwards compatibility:
-		# hmm, reverted back to old system
+    # parse for placeholders
+    # do some backwards compatibility:
+    # hmm, reverted back to old system
 
     $url = getConfig("unsubscribeurl");
     $sep = strpos($url,'?') !== false ? '&' : '?';
     $value = str_ireplace('[UNSUBSCRIBEURL]', $url . $sep . 'uid=' . $uniqid, $value);
-		$url = getConfig("confirmationurl");
+    $url = getConfig("confirmationurl");
     $sep = strpos($url,'?') !== false ? '&' : '?';
-		$value = str_ireplace('[CONFIRMATIONURL]', $url . $sep . 'uid=' . $uniqid, $value);
-		$url = getConfig("preferencesurl");
+    $value = str_ireplace('[CONFIRMATIONURL]', $url . $sep . 'uid=' . $uniqid, $value);
+    $url = getConfig("preferencesurl");
     $sep = strpos($url,'?') !== false ? '&' : '?';
-		$value = str_ireplace('[PREFERENCESURL]', $url . $sep . 'uid=' . $uniqid, $value);
+    $value = str_ireplace('[PREFERENCESURL]', $url . $sep . 'uid=' . $uniqid, $value);
     $value = str_ireplace('[EMAIL]', $email, $value);
 
     $value = parsePlaceHolders($value, getUserAttributeValues($email));
-	}
-	$value = str_ireplace('[SUBSCRIBEURL]', getConfig("subscribeurl"), $value);
-	$value = preg_replace('/\[DOMAIN\]/i', $domain, $value); #@ID Should be done only in one place. Combine getConfig and this one?
-	$value = preg_replace('/\[WEBSITE\]/i', $website, $value);
+  }
+  $value = str_ireplace('[SUBSCRIBEURL]', getConfig("subscribeurl"), $value);
+  $value = preg_replace('/\[DOMAIN\]/i', $domain, $value); #@ID Should be done only in one place. Combine getConfig and this one?
+  $value = preg_replace('/\[WEBSITE\]/i', $website, $value);
 
-	if ($value == "0") {
-		$value = "false";
-	}
-	elseif ($value == "1") {
-		$value = "true";
-	}
-	return $value;
+  if ($value == "0") {
+    $value = "false";
+  }
+  elseif ($value == "1") {
+    $value = "true";
+  }
+  return $value;
 }
 
 $access_levels = array (
