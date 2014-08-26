@@ -776,11 +776,12 @@ function getUserConfig($item, $userid = 0) {
 		list ($a, $b) = explode(":", $item);
 		$value = getUserConfig($a, $userid);
 	}
-	if ($userid) {
-		$query = 'select uniqid from ' . $tables['user'] . ' where id = ?';
-		$rs = Sql_Query_Params($query, array($userid));
-		$user_req = Sql_Fetch_Row($rs);
-		$uniqid = $user_req[0];
+  if ($userid) {
+    $query = 'select uniqid, email from ' . $tables['user'] . ' where id = ?';
+    $rs = Sql_Query_Params($query, array($userid));
+    $user_req = Sql_Fetch_Row($rs);
+    $uniqid = $user_req[0];
+    $email = $user_req[1];
 		# parse for placeholders
 		# do some backwards compatibility:
 		# hmm, reverted back to old system
@@ -794,10 +795,14 @@ function getUserConfig($item, $userid = 0) {
 		$url = getConfig("preferencesurl");
     $sep = strpos($url,'?') !== false ? '&' : '?';
 		$value = str_ireplace('[PREFERENCESURL]', $url . $sep . 'uid=' . $uniqid, $value);
+    $value = str_ireplace('[EMAIL]', $email, $value);
+
+    $value = parsePlaceHolders($value, getUserAttributeValues($email));
 	}
 	$value = str_ireplace('[SUBSCRIBEURL]', getConfig("subscribeurl"), $value);
 	$value = preg_replace('/\[DOMAIN\]/i', $domain, $value); #@ID Should be done only in one place. Combine getConfig and this one?
 	$value = preg_replace('/\[WEBSITE\]/i', $website, $value);
+
 	if ($value == "0") {
 		$value = "false";
 	}
