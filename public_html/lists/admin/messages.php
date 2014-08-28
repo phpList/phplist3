@@ -97,7 +97,9 @@ if (!empty($_GET['tab'])) {
   $tabs->setCurrent('sent');
 }
 
+print '<div class="minitabs">';
 print $tabs->display();
+print '</div>';
 
 $filterDisplay = $_SESSION['messagefilter'];
 if ($filterDisplay == '') {
