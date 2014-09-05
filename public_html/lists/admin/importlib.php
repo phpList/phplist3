@@ -16,7 +16,7 @@ function output($msg) {
   }
 }
 
-function parsePlaceHolders($templ, $data) {
+function parseImportPlaceHolders($templ, $data) {
   $retval = $templ;
   foreach ($data as $key => $val) {
     $key = strtoupper($key);

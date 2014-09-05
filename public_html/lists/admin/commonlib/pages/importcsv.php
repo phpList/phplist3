@@ -518,7 +518,7 @@ if (sizeof($email_list)) {
     } else {
       # Warn("Omitting invalid one: $email");
     }
-    $user["systemvalues"]["email"] = parsePlaceHolders($system_values["email"], array_merge($replace, $system_values, array (
+    $user["systemvalues"]["email"] = parseImportPlaceHolders($system_values["email"], array_merge($replace, $system_values, array (
       "number" => $c
     )));
     $user["systemvalues"]["email"] = cleanEmail($user["systemvalues"]["email"]);
