@@ -247,7 +247,8 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
         "passhash" => sha1($_REQUEST["password"]),
       );
       ##16692 - make sure admin permissions apply at first login
-      $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]);      
+      $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]); 
+      unset($_SESSION['session_age']);
       if (!empty($_POST["page"])) {
         $page = preg_replace('/\W+/','',$_POST["page"]);
       }
