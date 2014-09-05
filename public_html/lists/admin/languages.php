@@ -329,6 +329,7 @@ class phplist_I18N {
 
   function databaseTranslation($text) {
     if (!$this->hasDB) return '';
+    if (empty($GLOBALS['database_connection'])) return '';
     if ($cache = $this->getCachedTranslation($text)) {
       return $cache;
     }
