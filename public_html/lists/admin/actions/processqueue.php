@@ -1,5 +1,7 @@
 <?php
-verifyCsrfGetToken();
+## temporarily remove this check, to make sure processing the queue with a remote call continues to work
+## https://mantis.phplist.com/view.php?id=17316
+#verifyCsrfGetToken();
 
 require_once dirname(__FILE__).'/../accesscheck.php';
 require_once dirname(__FILE__) .'/../sendemaillib.php';
