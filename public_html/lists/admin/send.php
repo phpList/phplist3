@@ -69,6 +69,9 @@ if ($GLOBALS["commandline"]) {
 }
 ob_start();
 
+
+print '<div id="autosave"></div>';
+
 ### check for draft messages
 
 if (!$GLOBALS["commandline"]) {

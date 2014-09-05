@@ -43,6 +43,12 @@ function getServerTime() {
    setTimeout("getServerTime()",60100); // just over a minute
 }
 
+function autoSave() {
+  // in the future, do an auto-save, for now, we want to keep the session alive
+  $("#autosave").load('./?page=pageaction&ajaxed=true&action=keepalive');
+}
+
+
 function refreshCriteriaList() {
   var id = urlParameter('id',document.location);
   $("#existingCriteria").html(busyImage);
@@ -236,7 +242,7 @@ $(document).ready(function() {
       return false;
     }
   });
-
+  
   $("#criteriaSelect").change(function() {
     var val = $("#criteriaSelect").val();
     var operator = '';
@@ -312,6 +318,9 @@ $(document).ready(function() {
 
   var docurl = document.location.search;
   document.cookie="browsetrail="+escape(docurl);
+
+ // setTimeout("autoSave();",60000); // once a minute should suffice
+  setTimeout("autoSave();",500); // for testing
 
 /* future dev
   $("#listinvalid").load("./?page=pageaction&action=listinvalid&ajaxed=true",function() {
