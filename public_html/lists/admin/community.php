@@ -33,6 +33,13 @@
 <p><?php print s('To be written. In the meantime you can <a href="http://www.phplist.com/developers">visit the developers section on the phpList website</a>')?></p>
 </div>
 <div id="hosted">  
-<iframe src="http://www.phplist.com/hosted.html" scrolling="no" style="margin: 0; width: 100%; height: 750px;"></iframe>
+<!--iframe src="https://www.phplist.com/hosted.html" scrolling="no" style="margin: 0; width: 100%; height: 750px;"></iframe-->
+<?php 
+## using an IFRAME doesn't work any longer in FF.
+$contents = file_get_contents('https://www.phplist.com/hosted.html');
+print $contents;
+?>
+
+
 </div>
 </div>
