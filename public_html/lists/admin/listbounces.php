@@ -1,14 +1,44 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
+$access = accessLevel("listbounces");
 
 $listid = empty($_GET['id']) ? 0 : sprintf('%d',$_GET['id']);
 $download = isset($_GET['type']) && $_GET['type'] == 'dl';
+$isowner_and = '';
+$isowner_where = '';
 
+switch ($access) {
+  case "owner":
+    $subselect = " where owner = ".$_SESSION["logindetails"]["id"];
+    if ($listid) {
+      $query = "select id from " . $tables['list'] . $subselect . " and id = ?";
+      $rs = Sql_Query_Params($query, array($listid));
+      if (!Sql_Num_Rows($rs)) {
+        Fatal_Error($GLOBALS['I18N']->get("You do not have enough priviliges to view this page"));
+        return;
+      }
+    }
+    $isowner_and = sprintf(" list.owner = %d and ", $_SESSION["logindetails"]["id"]);
+    $isowner_where = sprintf(" where list.owner = %d ", $_SESSION["logindetails"]["id"]);
+    break;
+  case "all":
+  case "view":
+    break;
+  case "none":
+  default:
+    if ($listid) {
+      Fatal_Error($GLOBALS['I18N']->get("You do not have enough priviliges to view this page"));
+      $isowner_and = sprintf(" list.owner = 0 and ");
+      $isowner_where = sprintf(" where list.owner = 0 ");
+      return;
+    }
+    break;
+}
 if (!$listid) {
-  $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s listuser,
-    %s umb, %s lm where listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 150',$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage']));
+  $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s list, %s listuser,
+    %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
+    order by listuser.listid limit 150',$GLOBALS['tables']['list'],$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage'], $isowner_and));
   $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
   $some = 0;
   while ($row = Sql_Fetch_Array($req)) {
@@ -23,11 +53,8 @@ if (!$listid) {
   } else {
     print '<p>'.$GLOBALS['I18N']->get('None found').'</p>';
   }
-
-    
   return;
 }
-
 
 $query
 = ' select lu.userid, count(umb.bounce) as numbounces'
@@ -48,7 +75,7 @@ $limit = '';
 $numpp = 150;
 
 $selectOtherlist = new buttonGroup(new Button(PageUrl2('listbounces'),$GLOBALS['I18N']->get('Select another list')));
-$lists = Sql_Query(sprintf('select id,name from %s order by listorder',$tables['list']));
+$lists = Sql_Query(sprintf('select id,name from %s list %s order by listorder',$tables['list'], $isowner_where));
 while ($list = Sql_Fetch_Assoc($lists)) {
   $selectOtherlist->addButton(new Button(PageUrl2('listbounces').'&amp;id='.$list['id'],htmlspecialchars($list['name'])));
 }
