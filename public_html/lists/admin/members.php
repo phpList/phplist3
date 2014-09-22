@@ -267,7 +267,10 @@ if (isset($id)) {
     $_GET['tab'] = 'confirmed';
     $tabs->setCurrent('confirmed');
   }
+  print "<div class='minitabs'>\n";
   print $tabs->display();
+  print "</div>\n";
+
   print "<p>".s('%d subscribers',$total).'</p>';
   
   print formStart(' name="users" class="membersProcess" ');

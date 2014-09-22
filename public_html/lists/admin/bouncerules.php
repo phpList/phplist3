@@ -64,7 +64,9 @@ if ($type == 'candidate') {
 } else {
   $tabs->setCurrent($GLOBALS['I18N']->get('active'));
 }
+print "<p><div class='minitabs'>\n";
 print $tabs->display();
+print "</div></p>\n";
 
 $some = 1;
 $req = Sql_Query(sprintf('select * from %s where status = "%s" order by listorder,regex',$GLOBALS['tables']['bounceregex'],$type));

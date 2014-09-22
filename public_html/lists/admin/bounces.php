@@ -80,8 +80,6 @@ if ($total > MAX_USER_PP) {
   $result = Sql_Query_Params($query, array('unidentified bounce'));
 }
 
-print '<div class="actions">';
-print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list'));
 $buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
 $buttons->addButton(
   new ConfirmButton(
@@ -102,8 +100,15 @@ if (ALLOW_DELETEBOUNCE) {
   print $buttons->show();
 }
 
+
+print "<div class='actions'>\n";
+print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list'));
+
+print "<div class='minitabs'>\n";
 print $tabs->display();
-print '</div>';
+print "</div>\n";
+
+print "</div><!-- .actions div-->\n";
 
 if (!Sql_Num_Rows($result)) {
   switch ($status) {
