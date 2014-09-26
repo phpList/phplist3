@@ -10,7 +10,7 @@ $(document).ready(function() {
     var emailaddress = $("#emailaddress").val();
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     var subscribeaddress = this.action;
-    ajaxaddress = subscribeaddress.replace(/subscribe/,'asubscribe');
+    var ajaxaddress = subscribeaddress.replace(/subscribe/,'asubscribe');
     $('#phplistsubscriberesult').html('<img src="'+waitimg.src+'" width="'+waitimg.width+'" height="'+waitimg.height+'" border="0" alt="Please wait" title="powered by phpList, www.phplist.com" />');
 
     if(emailReg.test(emailaddress)) {
