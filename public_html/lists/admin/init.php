@@ -273,7 +273,7 @@ if (!defined('MAX_SENDPROCESSES')) define('MAX_SENDPROCESSES',1);
 if (!defined('MAXLIST')) define('MAXLIST',1);
 if (!defined('SENDPROCESS_SERVERNAME')) define('SENDPROCESS_SERVERNAME','localhost');
 if (!defined('CHECK_REFERRER')) define('CHECK_REFERRER',true);
-# if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/phpmailer/class.phpmailer.php');
+# if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
 if (!defined('DB_TRANSLATION')) define('DB_TRANSLATION',0);
 if (!defined('MAX_PROCESS_MESSAGE')) define('MAX_PROCESS_MESSAGE',5); ## how many campaigns to work on at the same time

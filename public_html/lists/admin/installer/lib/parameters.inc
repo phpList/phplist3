@@ -1547,7 +1547,7 @@ $advanced3_def[8]["html-entity"] = "boolean";
 $advanced3_def[8]["html-group"] = "PHPMAILER features";
 $advanced3_def[8]["appl_description"] = "You want to use PHPMailer class?";
 $advanced3_def[8]["file_description"] = "
-# If you want to use the PHPMailer class from phpmailer.sourceforge.net, set the following
+# If you want to use the PHPMailer class from https://github.com/PHPMailer/PHPMailer, set the following
 # to 1. If you tend to send out html emails, it is recommended to do so.\n";
 
 $advanced3_def[9]["name"] = "PHPMAILERHOST";
