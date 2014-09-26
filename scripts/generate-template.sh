@@ -23,7 +23,7 @@ echo '' > messages.po # xgettext needs that file, and we need it empty
 php scripts/structuredump.php > public_html/databasestructure.php
 
 find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
-msgmerge -N $current messages.po > phplist-new.pot 2>/dev/null
+msgmerge -qN $current messages.po > phplist-new.pot
 
 diff phplist-new.pot $current > diff${now}
 fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
