@@ -2,7 +2,6 @@
 
 ## script to generate the language gettext template.po from the source code
 
-svnup=$3
 reportto=$1
 current=$2
 
@@ -12,10 +11,6 @@ current=$2
 }
 
 [ "$reportto" ] || reportto=root@localhost 
-
-if [ "$svnup" ]; then
-  svn up
-fi
 
 [ -d public_html ] || exit; ## needs to run from phplist root
 
