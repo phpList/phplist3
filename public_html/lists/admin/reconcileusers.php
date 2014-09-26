@@ -4,6 +4,11 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+if (!isSuperUser()) {
+  print $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
+  return;
+}
+
 if (!is_object("date")) {
   include_once dirname(__FILE__). "/date.php";
 }
