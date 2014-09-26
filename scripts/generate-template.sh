@@ -5,10 +5,10 @@ reportto=$1
 current=$2
 set -e
 
-[ ! -s "$current" ] && [ -f $current ] || {
-  echo Usage: $0 [reportto] [currentfile] [optional: do svn-up]
+if [ -z "$current" -o ! -f "$current" ]; then
+  echo "Usage: $0 <currentfile>"
   exit 1;
-}
+fi
 
 [ "$reportto" ] || reportto=root@localhost 
 
