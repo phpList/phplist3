@@ -1,18 +1,18 @@
 #!/bin/bash
-
 ## script to generate the language gettext template.po from the source code
 
 reportto=$1
 current=$2
+set -e
 
 [ ! -s "$current" ] && [ -f $current ] || {
   echo Usage: $0 [reportto] [currentfile] [optional: do svn-up]
-  exit;
+  exit 1;
 }
 
 [ "$reportto" ] || reportto=root@localhost 
 
-[ -d public_html ] || exit; ## needs to run from phplist root
+[ -d public_html ] || exit 1; ## needs to run from phplist root
 
 now=$(date +%Y%m%d%H%M)
 
