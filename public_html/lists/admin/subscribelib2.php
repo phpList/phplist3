@@ -311,7 +311,7 @@ if (isset($_POST["subscribe"]) && is_email($_POST["email"]) && $listsok && $allt
    print '<title>'.$GLOBALS["strSubscribeTitle"].'</title>';
    print $subscribepagedata["header"];
 
-   if (isset($_SESSION["adminloggedin"]) && $_SESSION["adminloggedin"]) {
+   if (isset($_SESSION["adminloggedin"]) && $_SESSION["adminloggedin"] && !(isset($_GET['p']) && $_GET['p'] == 'asubscribe')) {
       print '<p class="information"><b>You are logged in as '.$_SESSION["logindetails"]["adminname"].'</b></p>';
       print '<p><a href="'.$adminpages.'" class="button">Back to the main admin page</a></p>';
 
