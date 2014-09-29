@@ -10,7 +10,7 @@ if [ -z "$current" -o ! -f "$current" ]; then
   exit 1;
 fi
 
-[ "$reportto" ] || reportto=root@localhost 
+[ "$reportto" ] || reportto=root@localhost
 
 [ -d public_html ] || exit 1; ## needs to run from phplist root
 
@@ -36,7 +36,7 @@ if [ -s "diff2${now}" ]; then
   echo
   cat diff2${now}
 
-  mail -s "phpList language changes" $reportto < /tmp/message$$ 
+  mail -s "phpList language changes" $reportto < /tmp/message$$
   rm -f diff${now} diff2${now} /tmp/message$$
 fi
 mv -f phplist-new.pot phplist.pot
