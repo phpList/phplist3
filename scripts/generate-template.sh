@@ -1,5 +1,9 @@
 #!/bin/bash
-## script to generate the language gettext template.po from the source code
+# script to generate the language gettext template.po from the source code
+# $1: current phplist.pot file
+# $2: mail where to report the diff between the new and old template
+#
+# The new template is created on the current dir and named "phplist.pot"
 
 reportto=$2
 current=$1
