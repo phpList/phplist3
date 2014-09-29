@@ -22,7 +22,7 @@ function mail_template_diff() {
 	# TODO: Check if there is a way to make this even simpler ?
 	now=$(date +%Y%m%d%H%M)
 
-	diff phplist-new.pot $current > diff${now}
+	diff phplist-new.pot $current > diff${now} || true
 	fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
 
 	if [ -s "diff2${now}" ]; then
