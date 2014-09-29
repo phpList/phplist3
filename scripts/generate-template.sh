@@ -34,8 +34,9 @@ function mail_template_diff() {
 		cat diff2${now}
 
 		mail -s "phpList language changes" $reportto < /tmp/message$$
-		rm -f diff${now} diff2${now} /tmp/message$$
 	fi
+
+	rm -f diff${now} diff2${now} /tmp/message$$
 }
 
 ## from http://www.lxg.de/code/playing-with-xgettext
