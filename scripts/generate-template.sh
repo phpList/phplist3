@@ -1,8 +1,8 @@
 #!/bin/bash
 ## script to generate the language gettext template.po from the source code
 
-reportto=$1
-current=$2
+reportto=$2
+current=$1
 set -e
 
 if [ -z "$current" -o ! -f "$current" ]; then
