@@ -19,24 +19,22 @@ fi
 [ -d public_html ] || exit 1; ## needs to run from phplist root
 
 function mail_template_diff() {
-	# TODO: Check if there is a way to make this even simpler ?
-	now=$(date +%Y%m%d%H%M)
 
-	diff phplist-new.pot $current > diff${now} || true
-	fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
+	cp phplist.pot "$current"
+	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v "^.msgid ""$" || true)
 
-	if [ -s "diff2${now}" ]; then
-		exec > /tmp/message$$
-		echo These are this weeks changes in the language template file
-		echo They will show up in https://translate.phplist.com as untranslated
-		echo Please update your translations, thanks
-		echo
-		cat diff2${now}
+	if [ -n "$diff" ]; then
+		mail -s "phpList language changes" $reportto << EOF
+These are this weeks changes in the language template file
+They will show up in https://translate.phplist.com as untranslated
+Please update your translations, thanks
 
-		mail -s "phpList language changes" $reportto < /tmp/message$$
+$diff
+EOF
 	fi
 
-	rm -f diff${now} diff2${now} /tmp/message$$
+	# Revert the cp we just did, so the diff is empty again
+	git checkout "$current"
 }
 
 ## from http://www.lxg.de/code/playing-with-xgettext
@@ -48,8 +46,7 @@ php scripts/structuredump.php > public_html/databasestructure.php
 find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
 msgmerge -qN $current messages.po > phplist-new.pot
 
-mail_template_diff
-
 mv -f phplist-new.pot phplist.pot
 rm -f messages.po phplist-new.pot public_html/databasestructure.php
 
+mail_template_diff
