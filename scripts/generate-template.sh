@@ -1,25 +1,43 @@
 #!/bin/bash
+# script to generate the language gettext template.po from the source code
+# $1: current phplist.pot file
+# $2: mail where to report the diff between the new and old template
+#
+# The new template is created on the current dir and named "phplist.pot"
 
-## script to generate the language gettext template.po from the source code
+reportto=$2
+current=$1
+set -e
 
-svnup=$3
-reportto=$1
-current=$2
-
-[ ! -s "$current" ] && [ -f $current ] || {
-  echo Usage: $0 [reportto] [currentfile] [optional: do svn-up]
-  exit;
-}
-
-[ "$reportto" ] || reportto=root@localhost 
-
-if [ "$svnup" ]; then
-  svn up
+if [ -z "$current" -o ! -f "$current" ]; then
+  echo "Usage: $0 <currentfile>"
+  exit 1;
 fi
 
-[ -d public_html ] || exit; ## needs to run from phplist root
+[ "$reportto" ] || reportto=root@localhost
 
-now=$(date +%Y%m%d%H%M)
+[ -d public_html ] || exit 1; ## needs to run from phplist root
+
+function mail_template_diff() {
+	# TODO: Check if there is a way to make this even simpler ?
+	now=$(date +%Y%m%d%H%M)
+
+	diff phplist-new.pot $current > diff${now} || true
+	fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
+
+	if [ -s "diff2${now}" ]; then
+		exec > /tmp/message$$
+		echo These are this weeks changes in the language template file
+		echo They will show up in http://translation.phplist.com as untranslated
+		echo Please update your translations, thanks
+		echo
+		cat diff2${now}
+
+		mail -s "phpList language changes" $reportto < /tmp/message$$
+	fi
+
+	rm -f diff${now} diff2${now} /tmp/message$$
+}
 
 ## from http://www.lxg.de/code/playing-with-xgettext
 echo '' > messages.po # xgettext needs that file, and we need it empty
@@ -28,22 +46,10 @@ echo '' > messages.po # xgettext needs that file, and we need it empty
 php scripts/structuredump.php > public_html/databasestructure.php
 
 find public_html -type f -iname "*.php" | xgettext --omit-header --keyword=__ --keyword=_e --keyword=s --keyword=get -j -f -
-msgmerge -N $current messages.po > phplist-new.pot 2>/dev/null
+msgmerge -qN $current messages.po > phplist-new.pot
 
-diff phplist-new.pot $current > diff${now}
-fgrep '< msgid' diff${now} | sed s/'< msgid'// > diff2${now}
+mail_template_diff
 
-if [ -s "diff2${now}" ]; then
-  exec > /tmp/message$$
-  echo These are this weeks changes in the language template file
-  echo They will show up in http://translation.phplist.com as untranslated
-  echo Please update your translations, thanks 
-  echo
-  cat diff2${now}
-
-  mail -s "phpList language changes" $reportto < /tmp/message$$ 
-  rm -f diff${now} diff2${now} /tmp/message$$
-fi
 mv -f phplist-new.pot phplist.pot
-rm -f messages.po phplist-new.pot diff${now} diff2${now} public_html/databasestructure.php
+rm -f messages.po phplist-new.pot public_html/databasestructure.php
 
