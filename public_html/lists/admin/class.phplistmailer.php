@@ -1,14 +1,12 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-if (defined('PHPMAILER_PATH')) {
-  #require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php';
-  require_once PHPMAILER_PATH;
-}
-
-if (!class_exists('PHPmailer')) {
- //https://github.com/Synchro/PHPMailer/tags
-  require_once dirname(__FILE__).'/PHPMailer-5.2.5/class.phpmailer.php';
+if (defined('PHPMAILER_PATH') and PHPMAILER_PATH != '') {
+    #require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php'
+    require_once PHPMAILER_PATH;
+} else {
+    //https://github.com/PHPMailer/PHPMailer
+    require_once dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php';
 }
 
 class PHPlistMailer extends PHPMailer {
@@ -34,12 +32,10 @@ class PHPlistMailer extends PHPMailer {
     public $LE              = "\n";
     public $Hello = '';
     public $timeStamp = '';
-    public $TextEncoding      = '7bit';
-    
 
     function PHPlistMailer($messageid,$email,$inBlast = true,$exceptions = false) {
       parent::__construct($exceptions);
-      parent::SetLanguage('en', dirname(__FILE__) . '/phpmailer/language/');
+      parent::SetLanguage('en', dirname(__FILE__) . '/PHPMailer/language/');
       $this->addCustomHeader("X-phpList-version: ".VERSION);
       $this->addCustomHeader("X-MessageID: $messageid");
       $this->addCustomHeader("X-ListMember: $email");
@@ -180,7 +176,6 @@ class PHPlistMailer extends PHPMailer {
     }
 
     function add_text($text) {
-      $this->TextEncoding = TEXTEMAIL_ENCODING;
       if (!$this->Body) {
         $this->IsHTML(false);
         $this->Body = html_entity_decode($text ,ENT_QUOTES, 'UTF-8' ); #$text;
@@ -270,7 +265,6 @@ class PHPlistMailer extends PHPMailer {
 
     function Send() {
       if(!parent::Send()) {
-        logEvent("Error sending email to ".$to_addr);
         return 0;
       }
       return 1;
@@ -301,6 +295,7 @@ class PHPlistMailer extends PHPMailer {
       $templateid = sprintf('%d',$templateid);
         
       // Build the list of image extensions
+      $extensions = array();
       while(list($key,) = each($this->image_types)) {
         $extensions[] = $key;
       }
@@ -393,7 +388,7 @@ class PHPlistMailer extends PHPMailer {
         $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
       } elseif (method_exists($this,'AddStringEmbeddedImage')) {
         ## PHPMailer 5.2.5 and up renamed the method
-        ## https://github.com/Synchro/PHPMailer/issues/42#issuecomment-16217354
+        ## https://github.com/PHPMailer/PHPMailer/issues/42#issuecomment-16217354
         $this->AddStringEmbeddedImage(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
       } elseif (isset($this->attachment) && is_array($this->attachment)) {
         // Append to $attachment array
