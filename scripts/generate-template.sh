@@ -28,7 +28,7 @@ function mail_template_diff() {
 	if [ -s "diff2${now}" ]; then
 		exec > /tmp/message$$
 		echo These are this weeks changes in the language template file
-		echo They will show up in http://translation.phplist.com as untranslated
+		echo They will show up in https://translate.phplist.com as untranslated
 		echo Please update your translations, thanks
 		echo
 		cat diff2${now}
