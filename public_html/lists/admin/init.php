@@ -271,6 +271,7 @@ if (!defined('ENCRYPT_ADMIN_PASSWORDS')) define('ENCRYPT_ADMIN_PASSWORDS',1);
 if (!defined('PASSWORD_CHANGE_TIMEFRAME')) define('PASSWORD_CHANGE_TIMEFRAME','1 day');
 if (!defined('MAX_SENDPROCESSES')) define('MAX_SENDPROCESSES',1);
 if (!defined('MAXLIST')) define('MAXLIST',1);
+if (!defined('SHOW_LIST_OFALL_SUBSCRIBERS')) define('SHOW_LIST_OFALL_SUBSCRIBERS',false);
 if (!defined('SENDPROCESS_SERVERNAME')) define('SENDPROCESS_SERVERNAME','localhost');
 if (!defined('CHECK_REFERRER')) define('CHECK_REFERRER',true);
 # if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');

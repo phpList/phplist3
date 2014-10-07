@@ -8,7 +8,7 @@ switch ($page) {
   case 'list': $page_title = 'Subscriber lists';break;
   case 'catlists': $page_title = 'Categorise lists';break;
   case 'editattributes': $page_title = 'Configure attributes';break;
-  case 'editlist': $page_title = 'Edit a list';break;
+  case 'editlist': $page_title = 'Edit or add a list';break;
   case 'checki18n': $page_title = 'Check that translations exist';break;
   case 'importsimple': $page_title = 'Import subscribers by cut-and-paste';break;
   case 'import4': $page_title = 'Import subscribers from a remote database';break;

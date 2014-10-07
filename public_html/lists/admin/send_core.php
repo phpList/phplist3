@@ -59,7 +59,14 @@ if (!$id) {
   $id = Sql_Insert_Id($GLOBALS['tables']['message'], 'id');
 
   if (isset($_GET['list'])) {
-    $addlists = explode(',',$_GET['list']);
+    if ($_GET['list'] == 'all') {
+      $req = Sql_Query('select id from '.$tables['list']);
+      while ($row = Sql_Fetch_Row($req)) {
+        $addlists[] = $row[0];
+      }
+    } else {
+      $addlists = explode(',',$_GET['list']);
+    }
     $addlists = cleanArray($addlists);
     foreach ($addlists as $listid) {
       $query = "replace into %s (messageid,listid,entered) values(?,?,current_timestamp)";

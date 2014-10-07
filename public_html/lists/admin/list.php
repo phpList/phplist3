@@ -158,6 +158,50 @@ $numlists = Sql_Affected_Rows($result);
 
 $ls = new WebblerListing(s('Lists'));
 
+/** Always Show a "list" of all subscribers 
+ * https://mantis.phplist.com/view.php?id=17433
+ * many users are confused when they have more subscribers than members of lists
+ * this will avoid that confusion
+ * we can only do this for superusers of course
+ * */
+if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
+
+  $query
+  = ' select count(u.id) as total,'
+  . ' sum(u.confirmed) as confirmed, '
+  . ' sum(u.blacklisted) as blacklisted '
+  . ' from '.$tables['user'].' u';
+
+  $req = Sql_Query($query);
+  $membercount = Sql_Fetch_Assoc($req);
+    
+  $members = $membercount['confirmed'];
+  $unconfirmedMembers = (int)($membercount['total'] - $members);
+  $desc = s('All subscribers');
+  if ($unconfirmedMembers > 0) {
+    $membersDisplay = '<span class="memberCount" title="'.s('Confirmed members').'">'.$members.'</span> <span class="unconfirmedCount" title="'.s('Unconfirmed members').'">('.$unconfirmedMembers. ')</span>';
+  } else {
+    $membersDisplay = '<span class="memberCount">'.$members.'</span>';
+  }
+
+  $element = '<!-- '.$row['id'].'-->'.s('All subscribers');
+  $ls->addElement($element);
+  $ls->setClass($element,'rows row1');
+  $ls->addColumn($element,
+    $GLOBALS['I18N']->get('Members'),'<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$membersDisplay. '</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id=all" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
+    
+
+  $deletebutton = new ConfirmButton(
+     s('This is a system list. You cannot delete it.'),
+     PageURL2("list"),
+     s('delete this list'));
+   
+  $ls->addRow($element,'','<span class="edit-list"><a class="button" href="?page=editlist" title=""></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list=all',$GLOBALS['I18N']->get('send'),'','',s('start a new campaign targetting all lists')).'</span>'.
+    '<span class="add_member">'.PageLink2('import',s('Add Members')).'</span>'.
+    '<span class="delete">'.$deletebutton->show().'</span>'
+    ,'','','actions nodrag');
+}
+
 if ($numlists > 15) {
   Info(s('You seem to have quite a lot of lists, do you want to organise them in categories? ').' '.PageLinkButton('catlists',$GLOBALS['I18N']->get('Great idea!')));
 

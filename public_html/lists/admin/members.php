@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 $access = accessLevel("members");
+
 if (isset($_REQUEST['id'])) {
   $id = sprintf('%d',$_REQUEST["id"]);
 } else $id = 0;
@@ -15,6 +16,7 @@ if (isset($_GET["tab"]) && $_GET["tab"] == 'unconfirmed') {
   $pagingKeep = 'tab=confirmed';
   $confirmedSelection = ' u.confirmed and !u.blacklisted';
 }
+$listAll = false;
 
 switch ($access) {
   case "owner":
@@ -40,6 +42,7 @@ switch ($access) {
     $subselect = " where id = 0";
     break;
 }
+
 function addUserForm ($listid) {
 //nizar 'value'
   $html = formStart(' class="membersAdd" ').'<input type="hidden" name="listid" value="'.$listid.'" />
@@ -48,6 +51,7 @@ function addUserForm ($listid) {
   </form>';
   return $html;
 }
+
 if (!empty($id)) {
   print "<h3>".$GLOBALS['I18N']->get("Members of")." ".ListName($id)."</h3>";
   print '<div class="actions">';
@@ -56,7 +60,12 @@ if (!empty($id)) {
   echo PageLinkDialog("importsimple&amp;list=$id",$GLOBALS['I18N']->get("Import Subscribers to this list"),'','pill-r');
   print '</div>';
 } else {
-  Redirect('list');
+  if ($_REQUEST["id"] != 'all') {
+    Redirect('list');
+  } else {
+    $id = 'all';
+    $listAll = true;
+  }
 }
 
 if (!empty($_POST['importcontent'])) {
@@ -135,6 +144,7 @@ if (isset($_REQUEST["processtags"]) && $access != "view") {
   }
   print '<div class="actionresult">'.$msg.'</div>';
 }
+
 if (isset($_POST["add"])) {
   if ($_POST["new"]) {
     $result = Sql_query(sprintf('select * from %s where email = "%s"',$tables["user"],$_POST["new"]));
@@ -218,17 +228,23 @@ if (isset($_REQUEST["delete"])) {
   $_SESSION['action_result'] .= "... ".$GLOBALS['I18N']->get("Done")."<br />\n";
   Redirect("members&$pagingKeep&id=$id");
 }
-if (isset($id)) {
+if (!empty($id) || $listAll) {
   
-  $query
-  = ' select count(*)'
-  . ' from %s lu'
-  . '    join %s u'
-  . '       on lu.userid = u.id'
-  . ' where lu.listid = ? '
-  . ' and '.$confirmedSelection;
-  $query = sprintf($query, $tables['listuser'], $tables['user']);
-  $result = Sql_Query_Params($query, array($id));
+  if (!$listAll) {
+    $query
+    = ' select count(*)'
+    . ' from %s lu'
+    . '    join %s u'
+    . '       on lu.userid = u.id'
+    . ' where lu.listid = ? '
+    . ' and '.$confirmedSelection;
+    $query = sprintf($query, $tables['listuser'], $tables['user']);
+    $result = Sql_Query_Params($query, array($id));
+  } else {
+    $query = 'select count(*) from '.$tables['user']
+        . ' u where '.$confirmedSelection;
+    $result = Sql_Query($query);
+  }
   $row = Sql_Fetch_row($result);
   $total = $row[0];
   $offset = $start;
@@ -245,19 +261,29 @@ if (isset($id)) {
 
       $paging = simplePaging("members&$pagingKeep&amp;id=".$id,$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('subscribers'));
   }
-  $query
-  = ' select u.*'
-  . " from %s lu"
-  . "    join %s u"
-  . '       on lu.userid = u.id'
-  . ' where lu.listid = ?'
-  . ' and '.$confirmedSelection
-  . ' order by confirmed desc, email'
-  . ' limit ' . MAX_USER_PP . ' offset ' . $offset;
-// TODO Consider using a subselect.  select user where uid in select uid from list
-  $query=sprintf($query, $tables['listuser'], $tables['user'] );
-  $result = Sql_Query_Params($query, array($id));
-  
+  if (!$listAll) {
+    $query
+    = ' select u.*'
+    . " from %s lu"
+    . "    join %s u"
+    . '       on lu.userid = u.id'
+    . ' where lu.listid = ?'
+    . ' and '.$confirmedSelection
+    . ' limit ' . MAX_USER_PP . ' offset ' . $offset;
+  // TODO Consider using a subselect.  select user where uid in select uid from list
+    $query=sprintf($query, $tables['listuser'], $tables['user'] );
+    $result = Sql_Query_Params($query, array($id));
+  } else {
+    $query
+    = ' select u.*'
+    . " from %s u"
+    . ' where '.$confirmedSelection
+    . ' limit ' . MAX_USER_PP . ' offset ' . $offset;
+  // TODO Consider using a subselect.  select user where uid in select uid from list
+    $query=sprintf($query, $tables['user'] );
+    $result = Sql_Query_Params($query, array($id));
+  }
+   
   $tabs = new WebblerTabs();
   $tabs->addTab(s("confirmed"),PageUrl2("members&id=".$id),'confirmed');
   $tabs->addTab(s("unconfirmed"),PageUrl2("members&tab=unconfirmed&id=".$id),'unconfirmed');
@@ -275,10 +301,10 @@ if (isset($id)) {
   
   print formStart(' name="users" class="membersProcess" ');
   printf('<input type="hidden" name="id" value="%d" />',$id);
-  ?>
 
-  <input type="checkbox" name="checkall" class="checkallcheckboxes" /><?php echo $GLOBALS['I18N']->get("Tag all users in this page");?>
-  <?php
+  if (!$listAll) {
+    print '<input type="checkbox" name="checkall" class="checkallcheckboxes" />'. $GLOBALS['I18N']->get("Tag all users in this page") ;
+  }
   $columns = array();
   $columns = explode(',',getConfig('membership_columns'));
  # $columns = array('country','Lastname');
@@ -295,8 +321,12 @@ if (isset($id)) {
     }
     $ls->addRow($element ,'',($user["confirmed"] && !$user["blacklisted"])?$ls_delete.$GLOBALS["img_tick"]:$ls_delete.$GLOBALS["img_cross"]);
 
-    if ($access != "view")
-    $ls->addColumn($element ,$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
+    if ($access != "view" && !$listAll) {
+      $ls->addColumn($element ,$GLOBALS['I18N']->get("tag"),sprintf('<input type="checkbox" name="user[%d]" value="1" />',$user["id"]));
+    } else {
+      $ls->addColumn($element ,'&nbsp;','',$user["id"]);
+    }
+      
 /*
     $query
     = ' select count(*)'
@@ -333,6 +363,8 @@ if (isset($id)) {
   print $ls->display();
 }
 if ($access == "view") return;
+if ($listAll) return;
+
 ?>
 <div class="panel">
   <h3><?php print s('Actions')?></h3>
