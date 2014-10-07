@@ -139,8 +139,22 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       $newpoweredimage,
       70,30));
     $actionresult .= '<p class="information">'.s('Template saved').'</p>';
+    
+    ## ##17419 don't prompt for remote images that exist
+    $missingImages = array();
+    while (list($key,$val) = each ($images)) {
+      $key = trim($key);
+      if (preg_match('~^https?://~i',$key)) {
+        $imageFound = testUrl($key);
+        if (!$imageFound) {
+          $missingImages[$key] = $val;
+        }
+      } else {
+        $missingImages[$key] = $val;
+      }
+    }
 
-    if (sizeof($images)) {
+    if (sizeof($missingImages)) {
       include dirname(__FILE__) . "/class.image.inc";
       $image = new imageUpload();
       print "<h3>".$GLOBALS['I18N']->get('Images').'</h3><p class="information">'.$GLOBALS['I18N']->get('Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.')."</p>";
