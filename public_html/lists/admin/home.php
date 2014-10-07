@@ -51,7 +51,7 @@ if (!$showUpdateAvail && $checkinterval) {
   if ($needscheck[0] != "0") {
     @ini_set("user_agent",NAME." (phplist version ".VERSION.")");
     @ini_set("default_socket_timeout",5);
-    if ($fp = @fopen ("http://www.phplist.com/files/LATESTVERSION","r")) {
+    if ($fp = @fopen ("https://www.phplist.com/files/LATESTVERSION","r")) {
       $latestversion = fgets ($fp);
       $latestversion = preg_replace("/[^\.\d]/","",$latestversion);
       @fclose($fp);
