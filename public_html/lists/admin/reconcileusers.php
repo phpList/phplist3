@@ -290,18 +290,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
         }
         print $fixed." ".$GLOBALS['I18N']->get('subscribers fixed')."<br/>".$notfixed." ".$GLOBALS['I18N']->get("subscribers could not be fixed")."<br/>".$list."\n";
       } elseif (isset($_GET["option"]) && $_GET["option"] == "deleteinvalidemail") {
-        Info($GLOBALS['I18N']->get("Deleting subscribers with an invalid email"));
-        flush();
-        $req = Sql_Query("select id,email from {$tables["user"]}");
-        $c=0;
-        while ($row = Sql_Fetch_Array($req)) {
-          set_time_limit(60);
-          if (!is_email($row["email"])) {
-            $c++;
-            deleteUser($row["id"]);
-          }
-        }
-        print $c." ".$GLOBALS['I18N']->get("subscribers deleted")."<br/>\n";
+        include 'actions/reconcileusers.php';
       } elseif (isset($_GET["option"]) && $_GET["option"] == "markinvalidunconfirmed") {
         Info($GLOBALS['I18N']->get("Marking subscribers with an invalid email as unconfirmed"));
         flush();
@@ -425,7 +414,6 @@ print '<ul class="reconcile">';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=invalidemail",$GLOBALS['I18N']->get("Find users who have an invalid email")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=adduniqid",$GLOBALS['I18N']->get("Make sure that all users have a UniqID")).'</li>';
 #echo '<li>'.PageLinkButton("reconcileusers&amp;option=markinvalidunconfirmed",$GLOBALS['I18N']->get("Mark all users with an invalid email as unconfirmed")).'</li>';
-#echo '<li>'.PageLinkButton("reconcileusers&amp;option=deleteinvalidemail",$GLOBALS['I18N']->get("Delete users who have an invalid email")).'</li>';
 echo '<li>'.PageLinkButton("reconcileusers&amp;option=markallhtml",$GLOBALS['I18N']->get("Mark all subscribers to receive HTML")).'</li>';
 echo '<li>'.PageLinkButton("reconcileusers&amp;option=markalltext",$GLOBALS['I18N']->get("Mark all subscribers to receive text")).'</li>';
 #echo '<li>'.$GLOBALS['I18N']->get('To try to (automatically)').' '. PageLinkButton("reconcileusers&amp;option=fixinvalidemail",$GLOBALS['I18N']->get("Fix emails for users who have an invalid email")).'</li>';
@@ -472,6 +460,15 @@ print '</ul>';
   <option>50</option>
 </select> <?php echo $GLOBALS['I18N']->get('bounces')?> <input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
 <p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a subscriber, not consecutive bounces')?></p>
+
+<hr/>
+
+<div id="deleteinvalid">
+<?php print PageLinkAjax("reconcileusers&amp;option=deleteinvalidemail",$GLOBALS['I18N']->get("Delete subscribers who have an invalid email address"),'','button');
+?>
+</div>
+
+
 
 <?php 
 /*
