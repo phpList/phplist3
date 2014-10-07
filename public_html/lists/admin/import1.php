@@ -61,6 +61,14 @@ if(isset($_REQUEST['import'])) {
     return;
   }
 */
+
+  ## disallow some extensions. Won't avoid all problems, but will help with the most common ones.
+  $extension = strtolower(pathinfo($_FILES["import_file"]["name"], PATHINFO_EXTENSION));
+  if (in_array($extension, array('xls','ods'))) {
+    Fatal_Error(s('Please upload a plain text file only. You cannot use a spreadsheet. You can only upload a plain text file with one email address per line.'));
+    return;
+  }
+
   # don't send notification, but use processqueue instead
   $_POST['notify'] = 'no'; 
   if (!$_POST["notify"] && !$test_import) {
@@ -211,7 +219,7 @@ function addFieldToCheck(value,name) {
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('The file you upload will need to contain the emails you want to add to these lists. Anything after the email will be added as attribute "Info" of the Subscriber. You can specify the rest of the attributes of these subscribers below. Warning: the file needs to be plain text. Do not upload binary files like a Word Document.'); ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('File containing emails:'); ?></td><td><input type="file" name="import_file"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.'); ?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Test output:'); ?></td><td><input type="checkbox" name="import_test" value="yes"></td></tr>
+<tr><td><?php echo $GLOBALS['I18N']->get('Test output:'); ?></td><td><input type="checkbox" name="import_test" value="yes" checked="checked" /></td></tr>
 <!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.'); ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Send Notification email'); ?><input type="radio" name="notify" value="yes"></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately'); ?><input type="radio" name="notify" value="no"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you are going to send notification to users, you may want to add a little delay between messages')?></td></tr>
