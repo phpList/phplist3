@@ -40,9 +40,12 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
 }
 
 
-if ($dbversion == VERSION)
+if ($dbversion == VERSION) {
   output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
-else 
+  
+  print '<p>'.PageLinkAjax('upgrade&update=tlds',s('update Top Level Domains'),'','button').'</p>';
+  
+} else 
 
 if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   $success = 1;
@@ -461,7 +464,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
 
   ## fetch the list of TLDs, if possible
   if (defined('TLD_AUTH_LIST')) {
-    refreshTlds();
+    refreshTlds(true);
   }
   
   ## changed terminology
