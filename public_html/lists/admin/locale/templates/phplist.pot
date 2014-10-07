@@ -325,7 +325,7 @@ msgid "List all Users"
 msgstr ""
 
 #: public_html/lists/admin/home.php:148
-#: public_html/lists/admin/import1.php:224
+#: public_html/lists/admin/import1.php:232
 msgid "import"
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr ""
 #: public_html/lists/admin/processbounces.php:341
 #: public_html/lists/admin/processbounces.php:342
 #: public_html/lists/admin/reconcileusers.php:196
-#: public_html/lists/admin/reconcileusers.php:473
+#: public_html/lists/admin/reconcileusers.php:461
 #: public_html/lists/admin/bounces.php:74
 #: public_html/lists/admin/bounces.php:125
 msgid "bounces"
@@ -566,7 +566,7 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/userhistory.php:98
 #: public_html/lists/admin/uclicks.php:117
 #: public_html/lists/admin/mviews.php:83
-#: public_html/lists/admin/mviews.php:193
+#: public_html/lists/admin/mviews.php:193 public_html/databasestructure.php:63
 msgid "sent"
 msgstr ""
 
@@ -629,7 +629,7 @@ msgstr ""
 #: public_html/lists/admin/connect.php:1152
 #: public_html/lists/admin/list.php:50 public_html/lists/admin/list.php:54
 #: public_html/lists/admin/list.php:275
-#: public_html/lists/admin/commonlib/pages/importcsv.php:613
+#: public_html/lists/admin/commonlib/pages/importcsv.php:620
 #: public_html/lists/admin/import3.php:40
 msgid "Add a list"
 msgstr ""
@@ -905,7 +905,7 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/user.php:280
 #: public_html/lists/admin/commonlib/pages/user.php:340
 #: public_html/lists/admin/commonlib/pages/importcsv.php:43
-#: public_html/lists/admin/commonlib/pages/importcsv.php:353
+#: public_html/lists/admin/commonlib/pages/importcsv.php:360
 #: public_html/lists/admin/import3.php:264
 #: public_html/lists/admin/initialise.php:45
 msgid "Continue"
@@ -1218,10 +1218,12 @@ msgid "Date sent"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:154
+#: public_html/databasestructure.php:69
 msgid "Sent as HTML"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:158
+#: public_html/databasestructure.php:68
 msgid "Sent as text"
 msgstr ""
 
@@ -1345,7 +1347,7 @@ msgid "import is not available"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:42
-#: public_html/lists/admin/commonlib/pages/importcsv.php:613
+#: public_html/lists/admin/commonlib/pages/importcsv.php:620
 #: public_html/lists/admin/import3.php:40
 msgid "No lists available"
 msgstr ""
@@ -1483,7 +1485,7 @@ msgid "Error, no local list defined for"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:358
-#: public_html/lists/admin/reconcileusers.php:384
+#: public_html/lists/admin/reconcileusers.php:373
 #: public_html/lists/admin/templates.php:10
 #: public_html/lists/admin/members.php:218
 #: public_html/lists/admin/messages.php:149
@@ -1928,103 +1930,99 @@ msgstr ""
 msgid "subscribers could not be fixed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:293
-msgid "Deleting subscribers with an invalid email"
-msgstr ""
-
-#: public_html/lists/admin/reconcileusers.php:304
-msgid "subscribers deleted"
-msgstr ""
-
-#: public_html/lists/admin/reconcileusers.php:306
+#: public_html/lists/admin/reconcileusers.php:295
 msgid "Marking subscribers with an invalid email as unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:317
+#: public_html/lists/admin/reconcileusers.php:306
 msgid "subscribers updated"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:319
+#: public_html/lists/admin/reconcileusers.php:308
 msgid "Cleaning some user tables of invalid entries"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:324
-#: public_html/lists/admin/reconcileusers.php:331
-#: public_html/lists/admin/reconcileusers.php:338
-#: public_html/lists/admin/reconcileusers.php:345
-#: public_html/lists/admin/reconcileusers.php:352
+#: public_html/lists/admin/reconcileusers.php:313
+#: public_html/lists/admin/reconcileusers.php:320
+#: public_html/lists/admin/reconcileusers.php:327
+#: public_html/lists/admin/reconcileusers.php:334
+#: public_html/lists/admin/reconcileusers.php:341
 msgid "entries apply"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:370
+#: public_html/lists/admin/reconcileusers.php:359
 #: public_html/lists/admin/commonlib/pages/users.php:154
 #: public_html/lists/admin/commonlib/pages/users.php:192
 msgid "Delete will delete user and all listmemberships"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:397
+#: public_html/lists/admin/reconcileusers.php:386
 #: public_html/lists/admin/members.php:246
 msgid "subscribers"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:398
+#: public_html/lists/admin/reconcileusers.php:387
 #: public_html/lists/admin/admins.php:72
 msgid "found"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:398
+#: public_html/lists/admin/reconcileusers.php:387
 msgid "in the database"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:415
+#: public_html/lists/admin/reconcileusers.php:404
 msgid "-All-"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:429
+#: public_html/lists/admin/reconcileusers.php:417
 msgid "Mark all subscribers to receive HTML"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:430
+#: public_html/lists/admin/reconcileusers.php:418
 msgid "Mark all subscribers to receive text"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:442
+#: public_html/lists/admin/reconcileusers.php:430
 #, php-format
 msgid "Mark all subscribers on list %s confirmed"
 msgstr ""
 
+#: public_html/lists/admin/reconcileusers.php:433
 #: public_html/lists/admin/reconcileusers.php:445
-#: public_html/lists/admin/reconcileusers.php:457
-#: public_html/lists/admin/reconcileusers.php:473
-#: public_html/lists/admin/reconcileusers.php:503
+#: public_html/lists/admin/reconcileusers.php:461
+#: public_html/lists/admin/reconcileusers.php:500
 msgid "Click here"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:454
+#: public_html/lists/admin/reconcileusers.php:442
 #, php-format
 msgid "To move all subscribers who are not subscribed to any list to %s"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:464
+#: public_html/lists/admin/reconcileusers.php:452
 msgid "To delete all subscribers with more than"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:474
+#: public_html/lists/admin/reconcileusers.php:462
 msgid ""
 "Note: this will use the total count of bounces on a subscriber, not "
 "consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:497
+#: public_html/lists/admin/reconcileusers.php:467
+msgid "Delete subscribers who have an invalid email address"
+msgstr ""
+
+#: public_html/lists/admin/reconcileusers.php:494
 msgid ""
 "To delete subscribers who signed up and have not confirmed their subscription"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:498
+#: public_html/lists/admin/reconcileusers.php:495
 msgid "Date they signed up after"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:499
+#: public_html/lists/admin/reconcileusers.php:496
 msgid "Date they signed up before"
 msgstr ""
 
@@ -2073,117 +2071,117 @@ msgstr ""
 msgid "Template saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:146
+#: public_html/lists/admin/template.php:160
 msgid "Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:146
+#: public_html/lists/admin/template.php:160
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
 
-#: public_html/lists/admin/template.php:147
+#: public_html/lists/admin/template.php:161
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:158
-#: public_html/lists/admin/template.php:162
+#: public_html/lists/admin/template.php:172
+#: public_html/lists/admin/template.php:176
 msgid "Image name:"
 msgstr ""
 
-#: public_html/lists/admin/template.php:158
-#: public_html/lists/admin/template.php:162
+#: public_html/lists/admin/template.php:172
+#: public_html/lists/admin/template.php:176
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:168
+#: public_html/lists/admin/template.php:182
 msgid "Save Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:172
+#: public_html/lists/admin/template.php:186
 msgid "Template does not contain local images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:177
+#: public_html/lists/admin/template.php:191
 msgid "Some errors were found, template NOT saved!"
 msgstr ""
 
-#: public_html/lists/admin/template.php:186
+#: public_html/lists/admin/template.php:200
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:192
+#: public_html/lists/admin/template.php:206
 msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:194
-#: public_html/lists/admin/template.php:201
 #: public_html/lists/admin/template.php:208
+#: public_html/lists/admin/template.php:215
+#: public_html/lists/admin/template.php:222
 #: public_html/lists/admin/tests/sendpage.php:27
 #: public_html/lists/admin/tests/sendpage.php:31
 msgid "OK"
 msgstr ""
 
-#: public_html/lists/admin/template.php:196
-#: public_html/lists/admin/template.php:203
 #: public_html/lists/admin/template.php:210
+#: public_html/lists/admin/template.php:217
+#: public_html/lists/admin/template.php:224
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:199
+#: public_html/lists/admin/template.php:213
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:206
+#: public_html/lists/admin/template.php:220
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:214
+#: public_html/lists/admin/template.php:228
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:248
+#: public_html/lists/admin/template.php:262
 msgid "List of Templates"
 msgstr ""
 
-#: public_html/lists/admin/template.php:256
+#: public_html/lists/admin/template.php:270
 msgid "Title of this template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:260
+#: public_html/lists/admin/template.php:274
 msgid "Content of the template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:260
+#: public_html/lists/admin/template.php:274
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:260
+#: public_html/lists/admin/template.php:274
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
 
-#: public_html/lists/admin/template.php:263
+#: public_html/lists/admin/template.php:277
 msgid "Template file."
 msgstr ""
 
-#: public_html/lists/admin/template.php:286
+#: public_html/lists/admin/template.php:300
 msgid "Check that all links have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:304
 msgid "Check that all images have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:296
+#: public_html/lists/admin/template.php:310
 msgid "Check that all external images exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:301
+#: public_html/lists/admin/template.php:315
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/list.php:245
@@ -2198,20 +2196,20 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: public_html/lists/admin/template.php:310
+#: public_html/lists/admin/template.php:324
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:310
+#: public_html/lists/admin/template.php:324
 msgid "to email addresses"
 msgstr ""
 
-#: public_html/lists/admin/template.php:311
+#: public_html/lists/admin/template.php:325
 #: public_html/lists/admin/send_core.php:933
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/template.php:312
+#: public_html/lists/admin/template.php:326
 #: public_html/lists/admin/send_core.php:932
 #: public_html/lists/admin/send_core.php:1215
 msgid "Send Test"
@@ -2466,6 +2464,7 @@ msgid "message"
 msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:12
+#: public_html/databasestructure.php:47
 msgid "subject"
 msgstr ""
 
@@ -2733,13 +2732,15 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/attributes.php:344
 #: public_html/lists/admin/commonlib/pages/attributes.php:394
 #: public_html/lists/admin/spageedit.php:284
-#: public_html/lists/admin/catlists.php:65
+#: public_html/lists/admin/catlists.php:65 public_html/databasestructure.php:2
+#: public_html/databasestructure.php:32 public_html/databasestructure.php:141
 msgid "Name"
 msgstr ""
 
 #: public_html/lists/admin/login.php:118
 #: public_html/lists/admin/import3.php:214
 #: public_html/lists/admin/admin.php:171 public_html/lists/admin/admin.php:179
+#: public_html/databasestructure.php:23 public_html/databasestructure.php:136
 msgid "Password"
 msgstr ""
 
@@ -2789,7 +2790,10 @@ msgstr ""
 #: public_html/lists/admin/userclicks.php:79
 #: public_html/lists/admin/userclicks.php:95
 #: public_html/lists/admin/mclicks.php:117
-#: public_html/lists/admin/mviews.php:126
+#: public_html/lists/admin/mviews.php:126 public_html/databasestructure.php:17
+#: public_html/databasestructure.php:34 public_html/databasestructure.php:44
+#: public_html/databasestructure.php:54 public_html/databasestructure.php:83
+#: public_html/databasestructure.php:98
 msgid "Entered"
 msgstr ""
 
@@ -2881,7 +2885,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:360
 #: public_html/lists/admin/bouncerule.php:40
-#: public_html/lists/admin/bounce.php:207
+#: public_html/lists/admin/bounce.php:207 public_html/databasestructure.php:61
 msgid "Status"
 msgstr ""
 
@@ -3455,6 +3459,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:885
 #: public_html/lists/admin/send_core.php:887
+#: public_html/databasestructure.php:91
 msgid "file"
 msgstr ""
 
@@ -3587,11 +3592,14 @@ msgstr ""
 
 #: public_html/lists/admin/usercheck.php:39
 #: public_html/lists/admin/commonlib/pages/users.php:346
+#: public_html/databasestructure.php:27 public_html/databasestructure.php:28
 msgid "Foreign Key"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:40
 #: public_html/lists/admin/commonlib/pages/users.php:343
+#: public_html/databasestructure.php:12 public_html/databasestructure.php:85
+#: public_html/databasestructure.php:87 public_html/databasestructure.php:132
 msgid "Email"
 msgstr ""
 
@@ -3634,6 +3642,7 @@ msgid "No attachments"
 msgstr ""
 
 #: public_html/lists/admin/message.php:123
+#: public_html/databasestructure.php:111
 msgid "Filename"
 msgstr ""
 
@@ -3642,10 +3651,12 @@ msgid "Size"
 msgstr ""
 
 #: public_html/lists/admin/message.php:125
+#: public_html/databasestructure.php:110
 msgid "Mime Type"
 msgstr ""
 
 #: public_html/lists/admin/message.php:126
+#: public_html/databasestructure.php:33 public_html/databasestructure.php:94
 msgid "Description"
 msgstr ""
 
@@ -3708,6 +3719,14 @@ msgstr ""
 msgid "Send the queue"
 msgstr ""
 
+#: public_html/lists/admin/actions/reconcileusers.php:7
+msgid "Deleting subscribers with an invalid email"
+msgstr ""
+
+#: public_html/lists/admin/actions/reconcileusers.php:19
+msgid "subscribers deleted"
+msgstr ""
+
 #: public_html/lists/admin/actions/configure.php:26
 msgid "Editing"
 msgstr ""
@@ -3721,40 +3740,40 @@ msgid "save changes"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:7
-#: public_html/lists/admin/commonlib/pages/importcsv.php:156
+#: public_html/lists/admin/commonlib/pages/importcsv.php:163
 msgid "Reading emails from file ... "
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:27
-#: public_html/lists/admin/commonlib/pages/importcsv.php:194
+#: public_html/lists/admin/commonlib/pages/importcsv.php:201
 #, php-format
 msgid "ok, %d lines"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:96
-#: public_html/lists/admin/commonlib/pages/importcsv.php:494
+#: public_html/lists/admin/commonlib/pages/importcsv.php:501
 #: public_html/lists/admin/importadmin.php:122
 msgid "Record has no email"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:99
-#: public_html/lists/admin/commonlib/pages/importcsv.php:497
+#: public_html/lists/admin/commonlib/pages/importcsv.php:504
 #: public_html/lists/admin/importadmin.php:123
 msgid "Invalid Email"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:147
-#: public_html/lists/admin/commonlib/pages/importcsv.php:543
+#: public_html/lists/admin/commonlib/pages/importcsv.php:550
 msgid "clear value"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:157
-#: public_html/lists/admin/commonlib/pages/importcsv.php:553
+#: public_html/lists/admin/commonlib/pages/importcsv.php:560
 msgid "New Attribute"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:161
-#: public_html/lists/admin/commonlib/pages/importcsv.php:556
+#: public_html/lists/admin/commonlib/pages/importcsv.php:563
 msgid "Skip value"
 msgstr ""
 
@@ -3836,7 +3855,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:513
 #: public_html/lists/admin/actions/import1.php:221
-#: public_html/lists/admin/commonlib/pages/importcsv.php:577
+#: public_html/lists/admin/commonlib/pages/importcsv.php:584
 #: public_html/lists/admin/import3.php:493
 #: public_html/lists/admin/importsimple.php:100
 msgid "Import some more emails"
@@ -4872,123 +4891,129 @@ msgstr ""
 msgid "No file was specified. Maybe the file is too big? "
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:78
+#: public_html/lists/admin/commonlib/pages/importcsv.php:76
+msgid ""
+"Please upload a plain text file only. You cannot use a spreadsheet. You need "
+"to export the data from the spreadsheet into a TAB delimited text file"
+msgstr ""
+
+#: public_html/lists/admin/commonlib/pages/importcsv.php:85
 #: public_html/lists/admin/import1.php:55
 msgid "File too big, please split it up into smaller ones"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:91
-#: public_html/lists/admin/import1.php:67
+#: public_html/lists/admin/commonlib/pages/importcsv.php:98
+#: public_html/lists/admin/import1.php:75
 msgid "Please choose whether to sign up immediately or to send a notification"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:107
+#: public_html/lists/admin/commonlib/pages/importcsv.php:114
 #, php-format
 msgid "Cannot read %s. file is not readable !"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:112
-#: public_html/lists/admin/import1.php:87
+#: public_html/lists/admin/commonlib/pages/importcsv.php:119
+#: public_html/lists/admin/import1.php:95
 msgid ""
 "Something went wrong while uploading the file. Empty file received. Maybe "
 "the file is too big, or you have no permissions to read it."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:325
+#: public_html/lists/admin/commonlib/pages/importcsv.php:332
 msgid "Create new one"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:326
-#: public_html/lists/admin/commonlib/pages/importcsv.php:387
+#: public_html/lists/admin/commonlib/pages/importcsv.php:333
+#: public_html/lists/admin/commonlib/pages/importcsv.php:394
 msgid "Skip Column"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:334
+#: public_html/lists/admin/commonlib/pages/importcsv.php:341
 msgid "Import Attributes"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:349
+#: public_html/lists/admin/commonlib/pages/importcsv.php:356
 msgid "select"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:354
+#: public_html/lists/admin/commonlib/pages/importcsv.php:361
 msgid "Please identify the target of the following unknown columns"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:372
+#: public_html/lists/admin/commonlib/pages/importcsv.php:379
 msgid ""
 "Cannot find column with email, you need to map at least one column to \"Email"
 "\""
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:375
+#: public_html/lists/admin/commonlib/pages/importcsv.php:382
 msgid "Summary"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:378
 #: public_html/lists/admin/commonlib/pages/importcsv.php:385
-#: public_html/lists/admin/commonlib/pages/importcsv.php:387
-#: public_html/lists/admin/commonlib/pages/importcsv.php:389
-#: public_html/lists/admin/commonlib/pages/importcsv.php:391
-#: public_html/lists/admin/commonlib/pages/importcsv.php:393
+#: public_html/lists/admin/commonlib/pages/importcsv.php:392
+#: public_html/lists/admin/commonlib/pages/importcsv.php:394
+#: public_html/lists/admin/commonlib/pages/importcsv.php:396
+#: public_html/lists/admin/commonlib/pages/importcsv.php:398
+#: public_html/lists/admin/commonlib/pages/importcsv.php:400
 msgid "maps to"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:385
+#: public_html/lists/admin/commonlib/pages/importcsv.php:392
 msgid "Create new Attribute"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:393
+#: public_html/lists/admin/commonlib/pages/importcsv.php:400
 msgid "none"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:404
+#: public_html/lists/admin/commonlib/pages/importcsv.php:411
 #, php-format
 msgid "%d lines will be imported"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:406
-#: public_html/lists/admin/commonlib/pages/importcsv.php:575
+#: public_html/lists/admin/commonlib/pages/importcsv.php:413
+#: public_html/lists/admin/commonlib/pages/importcsv.php:582
 msgid "Confirm Import"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:407
+#: public_html/lists/admin/commonlib/pages/importcsv.php:414
 msgid "Test Output"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:410
-#: public_html/lists/admin/import1.php:158
+#: public_html/lists/admin/commonlib/pages/importcsv.php:417
+#: public_html/lists/admin/import1.php:166
 #, php-format
 msgid "Importing %d subscribers to %d lists, please wait"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:575
+#: public_html/lists/admin/commonlib/pages/importcsv.php:582
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:601
+#: public_html/lists/admin/commonlib/pages/importcsv.php:608
 #: public_html/lists/admin/import3.php:229
 msgid "Adding users to list"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:603
-#: public_html/lists/admin/commonlib/pages/importcsv.php:618
-#: public_html/lists/admin/import1.php:191
+#: public_html/lists/admin/commonlib/pages/importcsv.php:610
+#: public_html/lists/admin/commonlib/pages/importcsv.php:625
+#: public_html/lists/admin/import1.php:199
 #: public_html/lists/admin/import3.php:224
 #: public_html/lists/admin/importsimple.php:142
 msgid "Select the lists to add the emails to"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:635
+#: public_html/lists/admin/commonlib/pages/importcsv.php:642
 msgid "Select the groups to add the users to"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:638
+#: public_html/lists/admin/commonlib/pages/importcsv.php:645
 msgid "automatically added"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:663
+#: public_html/lists/admin/commonlib/pages/importcsv.php:670
 msgid ""
 "The file you upload will need to have the attributes of the records on    "
 "the first line.     Make sure that the email column is called \"email\" and "
@@ -5004,45 +5029,45 @@ msgid ""
 "Document.     "
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:665
+#: public_html/lists/admin/commonlib/pages/importcsv.php:672
 #: public_html/lists/admin/importadmin.php:300
 msgid "File containing emails"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:667
+#: public_html/lists/admin/commonlib/pages/importcsv.php:674
 #, php-format
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:668
+#: public_html/lists/admin/commonlib/pages/importcsv.php:675
 #, php-format
 msgid "phpList will not process files larger than %dMB"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:677
 #: public_html/lists/admin/importadmin.php:301
 msgid "Field Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:670
+#: public_html/lists/admin/commonlib/pages/importcsv.php:677
 #: public_html/lists/admin/importadmin.php:301
 msgid "default is TAB"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:671
+#: public_html/lists/admin/commonlib/pages/importcsv.php:678
 #: public_html/lists/admin/importadmin.php:302
 msgid "Record Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:671
+#: public_html/lists/admin/commonlib/pages/importcsv.php:678
 #: public_html/lists/admin/importadmin.php:302
 msgid "default is line break"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:672
-#: public_html/lists/admin/import1.php:213
+#: public_html/lists/admin/commonlib/pages/importcsv.php:679
+#: public_html/lists/admin/import1.php:221
 #: public_html/lists/admin/importadmin.php:303
 msgid ""
 "If you check \"Test Output\", you will get the list of parsed emails on "
@@ -5051,23 +5076,23 @@ msgid ""
 "show the first 50 records."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:673
+#: public_html/lists/admin/commonlib/pages/importcsv.php:680
 #: public_html/lists/admin/importadmin.php:304
 msgid "Test output"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:674
+#: public_html/lists/admin/commonlib/pages/importcsv.php:681
 msgid ""
 "If you check \"Show Warnings\", you will get warnings for invalid records. "
 "Warnings will only be shown if you check \"Test Output\". They will be "
 "ignored when actually importing. "
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:675
+#: public_html/lists/admin/commonlib/pages/importcsv.php:682
 msgid "Show Warnings"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:676
+#: public_html/lists/admin/commonlib/pages/importcsv.php:683
 msgid ""
 "If you check \"Omit Invalid\", invalid records will not be added. Invalid "
 "records are records without an email. Any other attributes will be added "
@@ -5075,11 +5100,11 @@ msgid ""
 "to the list of countries."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:677
+#: public_html/lists/admin/commonlib/pages/importcsv.php:684
 msgid "Omit Invalid"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:678
+#: public_html/lists/admin/commonlib/pages/importcsv.php:685
 msgid ""
 "Assign Invalid will be used to create an email for subscribers with an "
 "invalid email address. You can use values between [ and ] to make up a value "
@@ -5090,24 +5115,24 @@ msgid ""
 "sequence number for importing."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:680
+#: public_html/lists/admin/commonlib/pages/importcsv.php:687
 msgid "Assign Invalid"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:681
+#: public_html/lists/admin/commonlib/pages/importcsv.php:688
 msgid ""
 "If you check \"Overwrite Existing\", information about a subscriber in the "
 "database will be replaced by the imported information. Subscribers are "
 "matched by email or foreign key."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:682
+#: public_html/lists/admin/commonlib/pages/importcsv.php:689
 #: public_html/lists/admin/import3.php:240
 #: public_html/lists/admin/import3.php:241
 msgid "Overwrite Existing"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:683
+#: public_html/lists/admin/commonlib/pages/importcsv.php:690
 msgid ""
 "If you check \"Retain Old Email\", a conflict of two emails being the same "
 "will keep the old one and add \"duplicate\" to the new one. If you don&quot;"
@@ -5115,46 +5140,46 @@ msgid ""
 "precedence."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:684
+#: public_html/lists/admin/commonlib/pages/importcsv.php:691
 msgid "Retain Old User Email"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:690
-#: public_html/lists/admin/import1.php:215
+#: public_html/lists/admin/commonlib/pages/importcsv.php:697
+#: public_html/lists/admin/import1.php:223
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
 "will be sent the request for confirmation of subscription to which they will "
 "have to reply. This is recommended, because it will identify invalid emails."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:691
+#: public_html/lists/admin/commonlib/pages/importcsv.php:698
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:691
-#: public_html/lists/admin/import1.php:216
+#: public_html/lists/admin/commonlib/pages/importcsv.php:698
+#: public_html/lists/admin/import1.php:224
 #: public_html/lists/admin/import3.php:245
 msgid "Make confirmed immediately"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:692
-#: public_html/lists/admin/import1.php:217
+#: public_html/lists/admin/commonlib/pages/importcsv.php:699
+#: public_html/lists/admin/import1.php:225
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:693
-#: public_html/lists/admin/import1.php:218
+#: public_html/lists/admin/commonlib/pages/importcsv.php:700
+#: public_html/lists/admin/import1.php:226
 msgid "Notification throttle"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:693
-#: public_html/lists/admin/import1.php:218
+#: public_html/lists/admin/commonlib/pages/importcsv.php:700
+#: public_html/lists/admin/import1.php:226
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/importcsv.php:695
+#: public_html/lists/admin/commonlib/pages/importcsv.php:702
 msgid "Import"
 msgstr ""
 
@@ -5378,36 +5403,42 @@ msgstr ""
 msgid "No file was specified. Maybe the file is too big?"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:81
+#: public_html/lists/admin/import1.php:68
+msgid ""
+"Please upload a plain text file only. You cannot use a spreadsheet. You can "
+"only upload a plain text file with one email address per line."
+msgstr ""
+
+#: public_html/lists/admin/import1.php:89
 msgid "Cannot read file. It is not readable !"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:137
-#: public_html/lists/admin/import1.php:214
+#: public_html/lists/admin/import1.php:145
+#: public_html/lists/admin/import1.php:222
 msgid "Test output:"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:137
+#: public_html/lists/admin/import1.php:145
 msgid "There should only be ONE email per line."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:137
+#: public_html/lists/admin/import1.php:145
 msgid "If the output looks ok, go"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:137
+#: public_html/lists/admin/import1.php:145
 msgid "back"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:137
+#: public_html/lists/admin/import1.php:145
 msgid " to resubmit for real"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:189
+#: public_html/lists/admin/import1.php:197
 msgid "adding_users"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:211
+#: public_html/lists/admin/import1.php:219
 msgid ""
 "The file you upload will need to contain the emails you want to add to these "
 "lists. Anything after the email will be added as attribute \"Info\" of the "
@@ -5416,11 +5447,11 @@ msgid ""
 "like a Word Document."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:212
+#: public_html/lists/admin/import1.php:220
 msgid "File containing emails:"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:216
+#: public_html/lists/admin/import1.php:224
 msgid "Send Notification email"
 msgstr ""
 
@@ -6011,6 +6042,7 @@ msgstr ""
 
 #: public_html/lists/admin/admin.php:242
 #: public_html/lists/admin/importadmin.php:309
+#: public_html/databasestructure.php:140
 msgid "Privileges"
 msgstr ""
 
@@ -6874,6 +6906,7 @@ msgid "Empty loginname, using email:"
 msgstr ""
 
 #: public_html/lists/admin/importadmin.php:230
+#: public_html/databasestructure.php:127
 msgid "Value"
 msgstr ""
 
@@ -7356,6 +7389,7 @@ msgid "General Information"
 msgstr ""
 
 #: public_html/lists/admin/spageedit.php:156
+#: public_html/databasestructure.php:107 public_html/databasestructure.php:154
 msgid "Title"
 msgstr ""
 
@@ -7426,6 +7460,7 @@ msgstr ""
 #: public_html/lists/admin/spageedit.php:242
 #: public_html/lists/admin/spageedit.php:249
 #: public_html/lists/admin/spageedit.php:256
+#: public_html/databasestructure.php:51
 msgid "Message"
 msgstr ""
 
@@ -7508,4 +7543,531 @@ msgstr ""
 
 #: public_html/lists/admin/mviews.php:196
 msgid "lastview"
+msgstr ""
+
+#: public_html/databasestructure.php:3 public_html/databasestructure.php:142
+msgid "Type of attribute"
+msgstr ""
+
+#: public_html/databasestructure.php:4 public_html/databasestructure.php:143
+msgid "order of listing"
+msgstr ""
+
+#: public_html/databasestructure.php:5 public_html/databasestructure.php:144
+msgid "Default value"
+msgstr ""
+
+#: public_html/databasestructure.php:6
+msgid "Required for subscriber to fill out"
+msgstr ""
+
+#: public_html/databasestructure.php:7 public_html/databasestructure.php:146
+msgid "Name of table with values"
+msgstr ""
+
+#: public_html/databasestructure.php:8
+msgid "attribute"
+msgstr ""
+
+#: public_html/databasestructure.php:9
+msgid "subscriber id"
+msgstr ""
+
+#: public_html/databasestructure.php:10
+msgid "Value of this attribute for this subscriber"
+msgstr ""
+
+#: public_html/databasestructure.php:11 public_html/databasestructure.php:150
+msgid "PKey"
+msgstr ""
+
+#: public_html/databasestructure.php:13
+msgid "Is this subscriber confirmed"
+msgstr ""
+
+#: public_html/databasestructure.php:14
+msgid "Is this subscriber blacklisted"
+msgstr ""
+
+#: public_html/databasestructure.php:15
+msgid "Did this subscriber manually confirm"
+msgstr ""
+
+#: public_html/databasestructure.php:16
+msgid "Number of bounces"
+msgstr ""
+
+#: public_html/databasestructure.php:18
+msgid "Last Modified"
+msgstr ""
+
+#: public_html/databasestructure.php:19
+msgid "Unique ID"
+msgstr ""
+
+#: public_html/databasestructure.php:20
+msgid "Send this subscriber HTML emails"
+msgstr ""
+
+#: public_html/databasestructure.php:21
+msgid "Which page was used to subscribe"
+msgstr ""
+
+#: public_html/databasestructure.php:22
+msgid "RSS Frequency"
+msgstr ""
+
+#: public_html/databasestructure.php:24 public_html/databasestructure.php:137
+msgid "Last time password was changed"
+msgstr ""
+
+#: public_html/databasestructure.php:25 public_html/databasestructure.php:139
+msgid "Is this account disabled?"
+msgstr ""
+
+#: public_html/databasestructure.php:26
+msgid "Additional data"
+msgstr ""
+
+#: public_html/databasestructure.php:29
+msgid "History Summary"
+msgstr ""
+
+#: public_html/databasestructure.php:30
+msgid "History Detail"
+msgstr ""
+
+#: public_html/databasestructure.php:31
+msgid "System Information"
+msgstr ""
+
+#: public_html/databasestructure.php:35
+msgid "Order of listing"
+msgstr ""
+
+#: public_html/databasestructure.php:36
+msgid "Subject prefix"
+msgstr ""
+
+#: public_html/databasestructure.php:37
+msgid "Rss Feed"
+msgstr ""
+
+#: public_html/databasestructure.php:38 public_html/databasestructure.php:45
+#: public_html/databasestructure.php:55 public_html/databasestructure.php:84
+#: public_html/databasestructure.php:103
+msgid "Modified"
+msgstr ""
+
+#: public_html/databasestructure.php:39
+msgid "Active"
+msgstr ""
+
+#: public_html/databasestructure.php:40
+msgid "Admin who is owner of this list"
+msgstr ""
+
+#: public_html/databasestructure.php:41
+msgid "List category"
+msgstr ""
+
+#: public_html/databasestructure.php:42
+msgid "Subscriber ID"
+msgstr ""
+
+#: public_html/databasestructure.php:43 public_html/databasestructure.php:82
+msgid "List ID"
+msgstr ""
+
+#: public_html/databasestructure.php:46
+msgid "Primary Key"
+msgstr ""
+
+#: public_html/databasestructure.php:48
+msgid "from"
+msgstr ""
+
+#: public_html/databasestructure.php:49
+msgid "tofield"
+msgstr ""
+
+#: public_html/databasestructure.php:50
+msgid "reply-to"
+msgstr ""
+
+#: public_html/databasestructure.php:52
+msgid "Text version of Message"
+msgstr ""
+
+#: public_html/databasestructure.php:53
+msgid "Footer for a message"
+msgstr ""
+
+#: public_html/databasestructure.php:56
+msgid "Time to send message"
+msgstr ""
+
+#: public_html/databasestructure.php:57
+msgid "Number of seconds to repeat the message"
+msgstr ""
+
+#: public_html/databasestructure.php:58
+msgid "Final time to stop repetition"
+msgstr ""
+
+#: public_html/databasestructure.php:59
+msgid "Number of seconds to requeue the message"
+msgstr ""
+
+#: public_html/databasestructure.php:60
+msgid "Final time to stop requeueing"
+msgstr ""
+
+#: public_html/databasestructure.php:62
+msgid "query to select the subscribers for this message"
+msgstr ""
+
+#: public_html/databasestructure.php:64
+msgid "Is this message HTML formatted"
+msgstr ""
+
+#: public_html/databasestructure.php:65
+msgid "Format to send this message in"
+msgstr ""
+
+#: public_html/databasestructure.php:66
+msgid "Template to use"
+msgstr ""
+
+#: public_html/databasestructure.php:67
+msgid "Number Processed"
+msgstr ""
+
+#: public_html/databasestructure.php:70
+msgid "Sent as Text and HTML"
+msgstr ""
+
+#: public_html/databasestructure.php:71
+msgid "Sent as PDF"
+msgstr ""
+
+#: public_html/databasestructure.php:72
+msgid "Sent as Text and PDF"
+msgstr ""
+
+#: public_html/databasestructure.php:73
+msgid "Was the message viewed"
+msgstr ""
+
+#: public_html/databasestructure.php:74
+msgid "How many bounces on this message"
+msgstr ""
+
+#: public_html/databasestructure.php:75
+msgid "When did sending of this message start"
+msgstr ""
+
+#: public_html/databasestructure.php:76
+msgid "if used as a RSS template, what frequency"
+msgstr ""
+
+#: public_html/databasestructure.php:77
+msgid "Admin who is owner"
+msgstr ""
+
+#: public_html/databasestructure.php:78 public_html/databasestructure.php:156
+msgid "Name of field"
+msgstr ""
+
+#: public_html/databasestructure.php:79 public_html/databasestructure.php:81
+#: public_html/databasestructure.php:89 public_html/databasestructure.php:96
+#: public_html/databasestructure.php:119 public_html/databasestructure.php:123
+#: public_html/databasestructure.php:160 public_html/databasestructure.php:167
+#: public_html/databasestructure.php:175
+msgid "Message ID"
+msgstr ""
+
+#: public_html/databasestructure.php:80
+msgid "Data"
+msgstr ""
+
+#: public_html/databasestructure.php:86
+msgid "When added to blacklist"
+msgstr ""
+
+#: public_html/databasestructure.php:88
+msgid "Name of Dataitem"
+msgstr ""
+
+#: public_html/databasestructure.php:90
+msgid "Attachment ID"
+msgstr ""
+
+#: public_html/databasestructure.php:92
+msgid "The original location on the uploader machine"
+msgstr ""
+
+#: public_html/databasestructure.php:93
+msgid "The type of attachment"
+msgstr ""
+
+#: public_html/databasestructure.php:95
+msgid "Size of the file"
+msgstr ""
+
+#: public_html/databasestructure.php:97 public_html/databasestructure.php:118
+#: public_html/databasestructure.php:122 public_html/databasestructure.php:161
+#: public_html/databasestructure.php:176
+msgid "subscriber ID"
+msgstr ""
+
+#: public_html/databasestructure.php:99
+msgid "When viewed"
+msgstr ""
+
+#: public_html/databasestructure.php:100
+msgid "Status of message"
+msgstr ""
+
+#: public_html/databasestructure.php:101
+msgid "Primary key"
+msgstr ""
+
+#: public_html/databasestructure.php:102
+msgid "Start Time"
+msgstr ""
+
+#: public_html/databasestructure.php:104
+msgid "Is this process still alive?"
+msgstr ""
+
+#: public_html/databasestructure.php:105
+msgid "IP Address of who started it"
+msgstr ""
+
+#: public_html/databasestructure.php:106
+msgid "The page that this process runs in"
+msgstr ""
+
+#: public_html/databasestructure.php:108
+msgid "The template"
+msgstr ""
+
+#: public_html/databasestructure.php:109
+msgid "id of template"
+msgstr ""
+
+#: public_html/databasestructure.php:112
+msgid "The image"
+msgstr ""
+
+#: public_html/databasestructure.php:113
+msgid "Date received"
+msgstr ""
+
+#: public_html/databasestructure.php:114
+msgid "Header of bounce"
+msgstr ""
+
+#: public_html/databasestructure.php:115
+msgid "The bounce"
+msgstr ""
+
+#: public_html/databasestructure.php:116
+msgid "Status of this bounce"
+msgstr ""
+
+#: public_html/databasestructure.php:117
+msgid "System Comment"
+msgstr ""
+
+#: public_html/databasestructure.php:120
+msgid "Bounce ID"
+msgstr ""
+
+#: public_html/databasestructure.php:121
+msgid "When did it bounce"
+msgstr ""
+
+#: public_html/databasestructure.php:124
+msgid "Forward email"
+msgstr ""
+
+#: public_html/databasestructure.php:125
+msgid "Status of forward"
+msgstr ""
+
+#: public_html/databasestructure.php:126
+msgid "When was it forwarded"
+msgstr ""
+
+#: public_html/databasestructure.php:128
+msgid "Editable?"
+msgstr ""
+
+#: public_html/databasestructure.php:129
+msgid "Type of data"
+msgstr ""
+
+#: public_html/databasestructure.php:130
+msgid "Login Name (max 25 chars)"
+msgstr ""
+
+#: public_html/databasestructure.php:131
+msgid "Normalised loginname"
+msgstr ""
+
+#: public_html/databasestructure.php:133
+msgid "Time Created"
+msgstr ""
+
+#: public_html/databasestructure.php:134
+msgid "Time modified"
+msgstr ""
+
+#: public_html/databasestructure.php:135
+msgid "Modified by"
+msgstr ""
+
+#: public_html/databasestructure.php:138
+msgid "Is this admin Super Admin?"
+msgstr ""
+
+#: public_html/databasestructure.php:145
+msgid "Required"
+msgstr ""
+
+#: public_html/databasestructure.php:147
+msgid "attribute number"
+msgstr ""
+
+#: public_html/databasestructure.php:148
+msgid "id of admin"
+msgstr ""
+
+#: public_html/databasestructure.php:149
+msgid "Value of this attribute for this admin"
+msgstr ""
+
+#: public_html/databasestructure.php:151
+msgid "When the password change request was made"
+msgstr ""
+
+#: public_html/databasestructure.php:152
+msgid "Admin's Id"
+msgstr ""
+
+#: public_html/databasestructure.php:153
+msgid "Key"
+msgstr ""
+
+#: public_html/databasestructure.php:155
+msgid "Admin who is owner of this page"
+msgstr ""
+
+#: public_html/databasestructure.php:157
+msgid "data"
+msgstr ""
+
+#: public_html/databasestructure.php:158
+msgid "page this log was for"
+msgstr ""
+
+#: public_html/databasestructure.php:159
+msgid "Link ID"
+msgstr ""
+
+#: public_html/databasestructure.php:162 public_html/databasestructure.php:184
+msgid "URL to log"
+msgstr ""
+
+#: public_html/databasestructure.php:163
+msgid "URL to forward to"
+msgstr ""
+
+#: public_html/databasestructure.php:164 public_html/databasestructure.php:169
+#: public_html/databasestructure.php:178
+msgid "When first clicked"
+msgstr ""
+
+#: public_html/databasestructure.php:165 public_html/databasestructure.php:170
+#: public_html/databasestructure.php:179
+msgid "When last clicked"
+msgstr ""
+
+#: public_html/databasestructure.php:166 public_html/databasestructure.php:172
+#: public_html/databasestructure.php:180
+msgid "Number of clicks"
+msgstr ""
+
+#: public_html/databasestructure.php:168 public_html/databasestructure.php:177
+msgid "ID in forward table"
+msgstr ""
+
+#: public_html/databasestructure.php:171
+msgid "Number of times this link has been sent to subscribers for this message"
+msgstr ""
+
+#: public_html/databasestructure.php:173 public_html/databasestructure.php:181
+msgid "Number of clicks from HTML emails"
+msgstr ""
+
+#: public_html/databasestructure.php:174 public_html/databasestructure.php:182
+msgid "Number of clicks from text emails"
+msgstr ""
+
+#: public_html/databasestructure.php:183
+msgid "forward ID"
+msgstr ""
+
+#: public_html/databasestructure.php:185
+msgid "Forward adding the UID?"
+msgstr ""
+
+#: public_html/databasestructure.php:186
+msgid "URL should be unique"
+msgstr ""
+
+#: public_html/databasestructure.php:187
+msgid "Name of data"
+msgstr ""
+
+#: public_html/databasestructure.php:188
+msgid "date in unix format"
+msgstr ""
+
+#: public_html/databasestructure.php:189
+msgid "Regex"
+msgstr ""
+
+#: public_html/databasestructure.php:190
+msgid "Action on rule"
+msgstr ""
+
+#: public_html/databasestructure.php:191
+msgid "Count of matching bounces on this rule"
+msgstr ""
+
+#: public_html/databasestructure.php:192
+msgid "Related regex"
+msgstr ""
+
+#: public_html/databasestructure.php:193
+msgid "Related bounce"
+msgstr ""
+
+#: public_html/databasestructure.php:194
+msgid "adminid"
+msgstr ""
+
+#: public_html/databasestructure.php:195
+msgid "Language ISO"
+msgstr ""
+
+#: public_html/databasestructure.php:196
+msgid "Original string"
+msgstr ""
+
+#: public_html/databasestructure.php:197
+msgid "Translated string"
 msgstr ""
