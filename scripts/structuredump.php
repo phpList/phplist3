@@ -5,6 +5,7 @@
 define('PHPLISTINIT',1);
 
 include "public_html/lists/admin/structure.php";
+print '<?php '.PHP_EOL;
 
 foreach ($DBstruct as $table => $tStruct) {
   foreach ($tStruct as $column => $cStruct) {
@@ -17,7 +18,7 @@ foreach ($DBstruct as $table => $tStruct) {
     $val = preg_replace('/^id$/i','',$val);
 
     if (!empty($val)) {
-      print 'get("'.$val .'")'."\n";
+      print 'get("'.$val .'")'.PHP_EOL;
     }
   }
 }
