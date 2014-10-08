@@ -661,6 +661,9 @@ function confirmPage($id) {
     }
     
     if (empty($_SESSION['subscriberConfirmed'])) {
+      $_SESSION['subscriberConfirmed'] = array();
+    }
+    if (empty($_SESSION['subscriberConfirmed'][$userdata["email"]])) {
       addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
 
       $confirmationmessage = str_ireplace('[LISTS]', $lists, getUserConfig("confirmationmessage:$id",$userdata["id"]));
@@ -675,7 +678,7 @@ function confirmPage($id) {
         addSubscriberStatistics('confirmation',1);
       }
     }
-    $_SESSION['subscriberConfirmed'] = time();
+    $_SESSION['subscriberConfirmed'][$userdata["email"]] = time();
     $info = $GLOBALS["strConfirmInfo"];
   } else {
     logEvent("Request for confirmation for invalid user ID: ".substr($_GET["uid"],0,150));
