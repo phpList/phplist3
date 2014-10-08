@@ -69,8 +69,12 @@ function HTML2Text($text) {
   while (preg_match("/\n\s*\n\s*\n/",$text)) {
     $text = preg_replace("/\n\s*\n\s*\n/","\n\n",$text);
   }
-  $text = wordwrap($text,70);
-
+  $ww = (int) getConfig("wordwrap");
+  if (!$ww) {
+    $ww = 70;
+  }
+  
+  $text = wordwrap($text,$ww);
   return $text;
 }
 
