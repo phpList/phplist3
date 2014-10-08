@@ -10,7 +10,7 @@ if ($id) {
   $row = Sql_fetch_array($res);
 }
 
-if ($row["data"]) {
+if (!empty($row["data"])) {
   if ($row["mimetype"]) {
     Header("Content-type: ".$row["mimetype"]);
   } else {
@@ -22,5 +22,3 @@ if ($row["data"]) {
   print base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAALGPC/xhBQAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0gQCEx05cqKA8gAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII=');
 }
 
-exit;
-?>
