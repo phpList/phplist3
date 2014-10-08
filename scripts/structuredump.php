@@ -30,6 +30,7 @@ $pagetitles = array(
 'attributes',
 'stresstest', 
 'list', 
+'config',
 'catlists', 
 'editattributes',
 'editlist', 
