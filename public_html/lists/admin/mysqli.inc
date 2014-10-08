@@ -344,7 +344,7 @@ function Sql_create_Table ($table,$structure) {
 
 function Sql_Drop_Table($table) {
 #  print '<br/>DROP '.$table;
-  return mysqli_query('drop table if exists '.$table);
+  return mysqli_query($GLOBALS['database_connection'],'drop table if exists '.$table);
 }
 
 function sql_escape($text) {
