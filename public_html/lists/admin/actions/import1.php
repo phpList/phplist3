@@ -87,7 +87,6 @@
     ## a lot of spreadsheet include those annoying quotes
     $email = str_replace('"', '', $email);      
     set_time_limit(60);
-    $done++;
     if ($done % 50 == 0) {
     #  print "$done / $todo<br/>";
       print '<script type="text/javascript">
@@ -96,6 +95,7 @@
       </script>';      
       flush();
     }
+    $done++;
     if (strlen($email) > 4) {
       $email = addslashes($email);
       // Annoying hack => Much too time consuming. Solution => Set email in users to UNIQUE()
