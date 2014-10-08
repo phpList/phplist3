@@ -39,7 +39,6 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
   );
 }
 
-
 if ($dbversion == VERSION) {
   output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
   
@@ -513,6 +512,9 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     }
   }
   
+  ## #17328 - remove list categories with quotes
+  Sql_Query(sprintf("update %s set category = replace(category,\"\\\\'\",\" \")",$tables['list']));
+
   # mark the database to be our current version
   if ($success) {
     SaveConfig("version",VERSION,0);

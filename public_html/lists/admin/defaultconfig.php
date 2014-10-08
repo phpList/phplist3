@@ -678,15 +678,7 @@ if (!function_exists("getconfig")) {
     } else {
       $hasconf = $_SESSION['hasconf'];
     }
-		# correct old methods for finding public urls
-		# @@@@ hmm maybe need to revert this
-		/*
-		if ($item == "forwardurl" || $item == "subscribeurl" || $item == "unsubscribeurl" || $item == "confirmationurl" || $item == "preferencesurl") {
-		  $toget = 'public_baseurl';
-		} else {
-		  $toget = $item;
-		}
-		*/
+
 		$toget = $item;
 		$value = '';
 		if ($hasconf) {
@@ -731,6 +723,11 @@ if (!function_exists("getconfig")) {
       ## cast to bool
       $value = $value == "true";
 		}
+    
+    ## disallow single quotes in listcategories
+    if ($item == 'list_categories') {
+      $value = str_replace("'"," ",$value);
+    }
 
 		# if this is a subpage item, and no value was found get the global one
 		if (!$value && strpos( $item,":") !== false) {
