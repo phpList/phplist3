@@ -15,7 +15,21 @@ if (isset($_REQUEST['adminemail']) && !is_email($_REQUEST['adminemail'])) {
 
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
-if (!empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strlen($_REQUEST['adminpassword']) < 8)) {
+if ($force) {
+  while (list($table, $val) = each($DBstruct)) {
+    if ($table == "attribute") {
+      $req = Sql_Query("select tablename from {$tables["attribute"]}");
+      while ($row = Sql_Fetch_Row($req))
+        Sql_Drop_Table($table_prefix . 'listattr_' . $row[0]);
+    }
+    Sql_Drop_Table($tables[$table]);
+  }
+  session_destroy();
+  Redirect('initialise&firstinstall=1');
+  exit;
+}
+
+if (empty($_SESSION['hasconf']) && !empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strlen($_REQUEST['adminpassword']) < 8)) {
   print '<noscript>';
   print '<div class="error">'.s('To install phpList, you need to enable Javascript').'</div>';
   print '</noscript>';
@@ -187,15 +201,19 @@ if ($success) {
     .': <a class="button" href="mailto:info@phplist.com?subject=Successful installation of phplist&amp;body=%s">'
     .$GLOBALS['I18N']->get('Tell us about it')
     .'</a>. </p>', $body);
-  printf('<p class="information">
-    '.$GLOBALS['I18N']->get("Please make sure to read the file README.security that can be found in the zip file.").'</p>');
-  printf('<p class="information">'
-    .$GLOBALS['I18N']->get("Please make sure to")
-    .'<a href="http://announce.hosted.phplist.com"> '
-    .$GLOBALS['I18N']->get("subscribe to the announcements list")
-    ."</a> "
-    .$GLOBALS['I18N']->get("to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low.")
-    .' </p>');
+  //printf('<p class="information">
+    //'.$GLOBALS['I18N']->get("Please make sure to read the file README.security that can be found in the zip file.").'</p>');
+  print '<p class="information">'
+    .'<h3>'.s("Sign up to receive news and updates about phpList ").'</h3>'
+    .s("to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low.").
+'<script type="text/javascript">var pleaseEnter = "'.strip_tags($_REQUEST['adminemail']).'";</script> '.   
+'<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script> 
+<script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script> 
+<div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform"> 
+<input type="text" name="email" value="" id="emailaddress" /> 
+<button type="submit" id="phplistsubscribe">'.s('Subscribe').'</button> </form>'
+    .' </p>';
+
   if (ENCRYPT_ADMIN_PASSWORDS && !empty($adminid)) {
     print sendAdminPasswordToken($adminid);
   }
@@ -206,7 +224,7 @@ if ($success) {
   . ' values (0, ?, ?, ?, ?, ?)';
   $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
   Sql_Query_Params($query, array('image/png', 'powerphplist.png', $newpoweredimage, 70, 30));
-  print '<p>'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</p>";
+  print '<div id="continuesetup" style="display:none;">'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</div>";
 
   unset($_SESSION['hasI18Ntable']);
 
