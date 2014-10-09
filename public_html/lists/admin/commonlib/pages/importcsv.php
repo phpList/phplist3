@@ -43,14 +43,14 @@ if (!empty ($_GET["reset"]) && $_GET["reset"] == "yes") {
   print PageLinkButton('import2', s('Continue'));
   return;
 } else {
-  if ((!empty($_SESSION["import_file"]) || !empty($_SESSION["test_import"])) && (!isset($_GET['confirm']) || $_GET['confirm'] != 'yes')) {
+ # if ((!empty($_SESSION["import_file"]) || !empty($_SESSION["test_import"])) && (!isset($_GET['confirm']) || $_GET['confirm'] != 'yes')) {
     $button = new ConfirmButton(
        s('Are you sure you want to reset the import session?'),
        PageURL2("import2&reset=yes","reset",""),
        s('Reset Import session'));
      
     print '<div class="fright">'.$button->show(). '</div>';
-  }
+ # }
 }
 if (isset ($_POST["import"])) {
   if (!verifyToken()) {
