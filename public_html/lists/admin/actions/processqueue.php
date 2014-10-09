@@ -475,7 +475,7 @@ $query
 = " select id"
 . " from ${tables['message']}"
 . " where status not in ('draft', 'sent', 'prepared', 'suspended')"
-. "   and embargo < current_timestamp"
+. "   and embargo <= current_timestamp"
 . " order by entered ".$messagelimit;
 if (VERBOSE) {
   output($query);
