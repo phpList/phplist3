@@ -8,15 +8,9 @@ if (!ALLOW_IMPORT) {
   return;
 }
 
-#print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
-
 ignore_user_abort();
 set_time_limit(500);
 ob_end_flush();
-?>
-<p class="information">
-
-<?php
 
 if (!isset($GLOBALS["tmpdir"])) {
   $GLOBALS["tmpdir"] = ini_get("upload_tmp_dir");
@@ -31,9 +25,7 @@ if (!is_dir($GLOBALS["tmpdir"]) || !is_writable($GLOBALS["tmpdir"])) {
 
 $import_lists = getSelectedLists('importlists');
 $_POST['importlists'] = $import_lists;
-//var_dump($_POST);
-//var_dump($import_lists);
-//exit;
+
 if(isset($_REQUEST['import'])) {
   
   if (!verifyToken()) {
@@ -55,12 +47,6 @@ if(isset($_REQUEST['import'])) {
     Fatal_Error($GLOBALS['I18N']->get('File too big, please split it up into smaller ones'));
     return;
   }
-/*
-  if( !preg_match("/^[0-9A-Za-z_\.\-\/\s \(\)]+$/", $_FILES["import_file"]["name"]) ) {
-    Fatal_Error($GLOBALS['I18N']->get('Use of wrong characters: ').$_FILES["import_file"]["name"]);
-    return;
-  }
-*/
 
   ## disallow some extensions. Won't avoid all problems, but will help with the most common ones.
   $extension = strtolower(pathinfo($_FILES["import_file"]["name"], PATHINFO_EXTENSION));
@@ -172,11 +158,9 @@ if(isset($_REQUEST['import'])) {
 
 
 } else {
-?>
 
-
-<?php echo FormStart(' enctype="multipart/form-data" name="import"')?>
-<?php
+  echo FormStart(' enctype="multipart/form-data" name="import"');
+   
 if ($GLOBALS["require_login"] && !isSuperUser()) {
   $access = accessLevel("import1");
   switch ($access) {
