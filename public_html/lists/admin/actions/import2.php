@@ -3,6 +3,7 @@
 require dirname(__FILE__) . "/../structure.php";
 require dirname(__FILE__). '/../importlib.php';
 
+@ob_end_flush();
 $status = 'FAIL';
 output('<p class="information">' . $GLOBALS['I18N']->get('Reading emails from file ... '));
 flush();
