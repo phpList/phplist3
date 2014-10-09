@@ -85,8 +85,8 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
   //$msg = '';
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { ## let's save when sending a test
   $templateok = 1;
-  $title = removeXss($_POST['title']);
-  if ($title && strpos($content,"[CONTENT]") !== false) {
+  $title = $_POST['title'];
+  if (!empty($title) && strpos($content,"[CONTENT]") !== false) {
     $images = getTemplateImages($content);
     
  //   var_dump($images);
@@ -125,11 +125,11 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
   }
   if ($templateok) {
     if (!$id) {
-      Sql_Query("insert into {$tables["template"]} (title) values(\"$title\")");
+      Sql_Query(sprintf('insert into %s (title) values("%s")',$tables['template'],sql_escape($title)));
       $id = Sql_Insert_Id($tables['template'], 'id');
     }
     Sql_Query(sprintf('update %s set title = "%s",template = "%s" where id = %d',
-       $tables["template"],$title,sql_escape($content),$id));
+       $tables["template"],sql_escape($title),sql_escape($content),$id));
     Sql_Query(sprintf('select * from %s where filename = "%s" and template = %d',
       $tables["templateimage"],"powerphplist.png",$id));
     if (!Sql_Affected_Rows())

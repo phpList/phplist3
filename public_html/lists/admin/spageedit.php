@@ -25,23 +25,23 @@ if (isset($_POST["save"])) {
     print Error(s('Invalid security token, please reload the page and try again'));
     return;
   }
-  $owner = $_POST["owner"];
-  $title = removeXss($_POST['title']);
+  $owner = (int)$_POST["owner"];
+  $title = $_POST['title']; ## danger, make sure to escape 
 
   if (!$owner)
     $owner = $_SESSION['logindetails']['id'];
   if ($id) {
     Sql_Query(sprintf('update %s set title = "%s",owner = %d where id = %d',
-      $tables["subscribepage"],$title,$owner,$id));
+      $tables["subscribepage"],sql_escape($title),$owner,$id));
    } else {
     Sql_Query(sprintf('insert into %s (title,owner) values("%s",%d)',
-      $tables["subscribepage"],$title,$owner));
+      $tables["subscribepage"],sql_escape($title),$owner));
      $id = Sql_Insert_Id($tables['subscribepage'], 'id');
   }
   Sql_Query(sprintf('delete from %s where id = %d',$tables["subscribepage_data"],$id));
   foreach (array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry") as $item) {
     Sql_Query(sprintf('insert into %s (name,id,data) values("%s",%d,"%s")',
-      $tables["subscribepage_data"],$item,$id,$_POST[$item]));
+      $tables["subscribepage_data"],$item,$id,sql_escape($_POST[$item])));
   }
 
   foreach (array("subscribesubject","subscribemessage","confirmationsubject","confirmationmessage","unsubscribesubject","unsubscribemessage") as $item) {
@@ -97,7 +97,7 @@ print formStart(' class="spageEdit" ');
 
 ## initialise values from defaults
 $data = array();
-$data["title"] = $GLOBALS['I18N']->get('Title of this set of lists');
+$data["title"] = $GLOBALS['I18N']->get('Subscribe to our newsletter');
 $data["button"] = $strSubmit;
 $data["intro"] = $strSubscribeInfo;
 $data['language_file'] = '';#$GLOBALS['language_module'];

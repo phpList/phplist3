@@ -53,7 +53,6 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
     $owner = $_SESSION["logindetails"]["id"];
   }
   if (!isset($_POST["active"])) $_POST["active"] = listUsedInSubscribePage($id);
-  $_POST['listname'] = removeXss($_POST['listname']);
   ## prefix isn't used any more
   $_POST['prefix'] = '';
   
@@ -130,7 +129,7 @@ if (empty($list['category'])) {
 <?php echo formStart(' class="editlistSave" ')?>
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <div class="label"><label for="listname"><?php echo $GLOBALS['I18N']->get('List name'); ?>:</label></div>
-<div class="field"><input type="text" name="listname" value="<?php echo  htmlspecialchars(StripSlashes($list["name"]))?>" /></div>
+<div class="field"><input type="text" name="listname" value="<?php echo  htmlspecialchars(stripslashes($list["name"]))?>" /></div>
 
 <div class="field"><input type="checkbox" name="active" value="1"
 <?php 
