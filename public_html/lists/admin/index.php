@@ -288,7 +288,7 @@ if ($page == 'login') {
   unset($_GET['pi']);
 }
 
-if (!empty($_SESSION['session_age']) && $_SESSION['session_age'] > SESSION_TIMEOUT) {
+if (!empty($_SESSION["adminloggedin"]) && !empty($_SESSION['session_age']) && $_SESSION['session_age'] > SESSION_TIMEOUT) {
   $_SESSION["adminloggedin"] = "";
   $_SESSION["logindetails"] = "";
   $page = "login";
@@ -302,7 +302,8 @@ if ($ajax && empty($_SESSION['adminloggedin'])) {
   exit;
 }
 
-if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax) {
+$languageswitcher = '';
+if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinstall']) && empty($_GET['firstinstall'])) {
     $languageswitcher = '
  <div id="languageswitcher">
        <form name="languageswitchform" method="post" action="">';
