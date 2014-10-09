@@ -19,8 +19,9 @@ class phplistPlugin {
   public $configvars = array ();
   # config var    array( type, name [array values]));
   public $DBstruct= array ();
+  
   # These files can be called from the commandline
-  # This should hold an array per file: filename (without .php) => path relative to admin/
+  # The variable holds an array of page names, (the file name without .php) and the files must be in the $coderoot directory.
   public $commandlinePluginPages = array();
 
   # An array of page names that can be called as public pages, e.g. www.mysite.com/lists/?pi=myplugin&p=mypage
