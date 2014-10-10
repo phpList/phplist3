@@ -97,6 +97,12 @@ if (!empty($_REQUEST['save'])) {
 #    Redirect("configure");
 #    exit;
   }
+  $item = $_REQUEST['save'];
+  $item = str_replace('item_','',$item);
+  if (in_array($item,array_keys($default_config))) {
+    Redirect("configure#item_".$item);
+    exit;
+  } 
 }
 
 if (empty($id)) {
@@ -130,7 +136,7 @@ if (empty($id)) {
         ## disable this until the resources wiki is organised properly
         $resourceLink = '';
         
-        $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',$alternate,PageURL2("configure","","id=$configItem"),s('edit this value'),s('edit'),$default_config[$configItem]['description'],$resourceLink);
+        $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',$alternate,$configItem,PageURL2("configure","","id=$configItem"),s('edit this value'),s('edit'),$default_config[$configItem]['description'],$resourceLink);
         $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($displayValue))));
         if ($alternate == 1) {
           $alternate = 2;
