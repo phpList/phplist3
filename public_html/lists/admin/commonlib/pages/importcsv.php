@@ -54,7 +54,7 @@ if (!empty ($_GET["reset"]) && $_GET["reset"] == "yes") {
 }
 if (isset ($_POST["import"])) {
   if (!verifyToken()) {
-    print Error(s('Invalid security token, please reload the page and try again', 'http://resources.phplist.com/documentation/errors/securitytoken'));
+    print Error(s('Invalid security token, please reload the page and try again'), 'http://resources.phplist.com/documentation/errors/securitytoken');
     return;
   }
   
@@ -417,7 +417,7 @@ if (!empty($_SESSION["test_import"])) {
   print '<h3>'.s('Importing %d subscribers to %d lists, please wait',sizeof($email_list),sizeof($_SESSION['lists'])).'</h3>';
   print $GLOBALS['img_busy'];
   print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-  print '<br/> <iframe id="import2" src="./?page=pageaction&action=import2&ajaxed=true" scrolling="no" height="5" width="100"></iframe>';
+  print '<br/> <iframe id="import2" src="./?page=pageaction&action=import2&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="5" width="100"></iframe>';
   return;
 }  
 

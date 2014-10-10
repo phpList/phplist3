@@ -1,4 +1,5 @@
 <?php
+  verifyCsrfGetToken();
   @ob_end_flush();
 
   $file = $_GET['file'];

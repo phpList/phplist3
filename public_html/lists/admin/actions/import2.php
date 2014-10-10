@@ -1,4 +1,5 @@
 <?php
+verifyCsrfGetToken();
 
 require dirname(__FILE__) . "/../structure.php";
 require dirname(__FILE__). '/../importlib.php';

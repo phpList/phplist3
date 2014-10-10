@@ -152,7 +152,7 @@ if(isset($_REQUEST['import'])) {
     print '<h3>'.s('Importing %d subscribers to %d lists, please wait',sizeof($email_list),sizeof($import_lists)).'</h3>';
     print $GLOBALS['img_busy'];
     print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-    print '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).'" scrolling="no" height="50"></iframe>';
+    print '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
   }; // end else
  # print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
 
