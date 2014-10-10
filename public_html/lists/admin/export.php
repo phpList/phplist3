@@ -5,24 +5,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 include dirname(__FILE__) .'/date.php';
 
-function quoteEnclosed($value,$col_delim = "\t",$row_delim = "\n") {
-  $enclose = 0;
-  if (strpos($value,'"') !== false) {
-    $value = str_replace('"','""',$value);
-    $enclose = 1;
-  }
-  if (strpos($value,$col_delim) !== false) {
-    $enclose = 1;
-  }
-  if (strpos($value,$row_delim) !== false) {
-    $enclose = 1;
-  }
-  if ($enclose) {
-    $value = '"'.$value .'"';
-  }
-  return $value;
-}
-
 $fromdate = '';
 $todate = '';
 $from = new date("from");
@@ -73,126 +55,19 @@ if (isset($_POST['processexport'])) {
     print Error($GLOBALS['I18N']->get('Invalid security token. Please reload the page and try again.'));
     return;
   }
-  if ($_POST['column'] == 'nodate') {
-    ## fetch dates as min and max from user table
-    if ($list) {
-      $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s where listid = %d %s',$querytables,$list,$subselect));
-    } else {
-      $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s ',$querytables));
-    }
-
-    $fromdate = $dates[0];
-    $todate = $dates[1];
-  } else {
-    $fromdate = $from->getDate("from");
-    $todate =  $to->getDate("to");
-  }
-  if ($list) {
-    $filename = sprintf($GLOBALS['I18N']->get('phpList Export on %s from %s to %s (%s).csv'),ListName($list),$fromdate,$todate,date("Y-M-d"));
-  } else {
-    $filename = sprintf($GLOBALS['I18N']->get('phpList Export from %s to %s (%s).csv'),$fromdate,$todate,date("Y-M-d"));
-  }
-  ob_end_clean();
-  $filename = trim(strip_tags($filename));
-
- # header("Content-type: text/plain");
-  header("Content-type: ".$GLOBALS["export_mimetype"].'; charset=UTF-8');
-  header("Content-disposition:  attachment; filename=\"$filename\"");
-  $col_delim = "\t";
-  if (EXPORT_EXCEL) {
-    $col_delim = ",";
-  }
-  $row_delim = "\n";
-
-  if (is_array($_POST['cols'])) {
-    while (list ($key,$val) = each ($DBstruct["user"])) {
-      if (in_array($key,$_POST['cols'])) {
-        if (strpos($val[1],"sys") === false) {
-          print $val[1].$col_delim;
-        } elseif (preg_match("/sysexp:(.*)/",$val[1],$regs)) {
-          if ($regs[1] == 'ID') { # avoid freak Excel bug: http://mantis.phplist.com/view.php?id=15526
-            $regs[1] = 'id';
-          }
-          print $regs[1].$col_delim;
-        }
-      }
-    }
-   }
-  $attributes = array();
-  if (is_array($_POST['attrs'])) {
-    $res = Sql_Query("select id,name,type from {$tables['attribute']}");
-    while ($row = Sql_fetch_array($res)) {
-      if (in_array($row["id"],$_POST['attrs'])) {
-        print trim(stripslashes($row["name"])) .$col_delim;
-        array_push($attributes,array("id"=>$row["id"],"type"=>$row["type"]));
-      }
-    }
-  }
-  $exporthistory = 0;
-  if ($_POST['column'] == 'listentered') {
-    $column = 'listuser.entered';
-  } elseif ($_POST['column'] == 'historyentry') {
-    $column = 'user_history.date';
-    $querytables .= ', '.$GLOBALS['tables']['user_history'].' user_history ';
-    $subselect .= ' and user_history.userid = user.id and user_history.summary = "Profile edit"';
-    print 'IP' .$col_delim;
-    print 'Change Summary' .$col_delim;
-    print 'Change Detail' .$col_delim;
-    $exporthistory = 1;
-  } else {
-    switch ($_POST['column']) {
-      case 'entered':$column = 'user.entered';break;
-      default: $column = 'user.modified';break;
-    }
-  }
-  if ($list) {
-    $result = Sql_query(sprintf('select * from
-      %s where user.id = listuser.userid and listuser.listid = %d and %s >= "%s 00:00:00" and %s  <= "%s 23:59:59" %s
-      ',$querytables,$list,$column,$fromdate,$column,$todate,$subselect)
-      );
-  } else {
-    $result = Sql_query(sprintf('
-      select * from %s where %s >= "%s 00:00:00" and %s  <= "%s 23:59:59" %s',
-      $querytables,$column,$fromdate,$column,$todate,$subselect));
-  }
-
-  print $GLOBALS['I18N']->get('List Membership').$row_delim;
-
-# print Sql_Affected_Rows()." users apply<br/>";
-#return;
-  while ($user = Sql_fetch_array($result)) {
-    ## re-verify the blacklist status
-    if (empty($user['blacklisted']) && isBlackListed($user['email'])) {
-      $user['blacklisted'] = 1;
-      Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"',$GLOBALS['tables']["user"],$user['email']));
-    }
-    
-    set_time_limit(500);
-    reset($_POST['cols']);
-    while (list ($key,$val) = each ($_POST['cols']))
-      print strtr($user[$val],$col_delim,",").$col_delim;
-    reset($attributes);
-    while (list($key,$val) = each ($attributes)) {
-      $value = UserAttributeValue($user["id"],$val["id"]);
-      print quoteEnclosed($value,$col_delim,$row_delim).$col_delim;
-    }
-    if ($exporthistory) {
-      print quoteEnclosed($user['ip'],$col_delim,$row_delim).$col_delim;
-      print quoteEnclosed($user['summary'],$col_delim,$row_delim).$col_delim;
-      print quoteEnclosed($user['detail'],$col_delim,$row_delim).$col_delim;
-    }
-
-    $lists = Sql_query("select listid,name from
-      {$tables['listuser']},{$tables['list']} where userid = ".$user["id"]." and
-      {$tables['listuser']}.listid = {$tables['list']}.id $listselect_and");
-    if (!Sql_Affected_rows($lists))
-      print "No Lists";
-    while ($list = Sql_fetch_array($lists)) {
-      print stripslashes($list["name"])." ";
-    }
-    print $row_delim;
-  }
-  exit;
+  $_SESSION['export'] = array();
+  $_SESSION['export']['column'] = $_POST['column'];
+  $_SESSION['export']['cols'] = $_POST['cols'];
+  $_SESSION['export']['attrs'] = $_POST['attrs'];
+  $_SESSION['export']['fromdate'] = $from->getDate("from");
+  $_SESSION['export']['todate'] =  $to->getDate("to");
+  $_SESSION['export']['list'] = $list;
+  
+  print '<p>'.s('Processing export, this may take a while. Please wait').'</p>';
+  print $GLOBALS['img_busy'];
+  print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
+  print '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
+  return;
 }
 
 if ($list) {

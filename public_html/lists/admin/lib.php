@@ -1655,3 +1655,20 @@ function parsePlaceHolders($content,$array = array()) {
   return $content;
 }
 
+function quoteEnclosed($value,$col_delim = "\t",$row_delim = "\n") {
+  $enclose = 0;
+  if (strpos($value,'"') !== false) {
+    $value = str_replace('"','""',$value);
+    $enclose = 1;
+  }
+  if (strpos($value,$col_delim) !== false) {
+    $enclose = 1;
+  }
+  if (strpos($value,$row_delim) !== false) {
+    $enclose = 1;
+  }
+  if ($enclose) {
+    $value = '"'.$value .'"';
+  }
+  return $value;
+}
