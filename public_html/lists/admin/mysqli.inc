@@ -348,7 +348,12 @@ function Sql_Drop_Table($table) {
 }
 
 function sql_escape($text) {
-  return mysqli_real_escape_string($GLOBALS['database_connection'],$text);
+  if (!empty($GLOBALS['database_connection'])) {
+    return mysqli_real_escape_string($GLOBALS['database_connection'],$text);
+  } else {
+    ## better than returning $text. This is very much in the beginning when the DB connection hasn't been created yet.
+    return '';
+  }
 }
 
 function Sql_Replace ($table,$values,$pk) {
