@@ -300,9 +300,20 @@ function finish ($flag,$message,$script_stage) {
     
   } 
   if (!TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
+    $reportSent = false;
+    
+    ## @@TODO work out a way to deal with the order of processing the plugins
+    ## as that can make a difference here.
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-      $plugin->sendReport($subject,$message);
+      if (!$reportSent) {
+        $reportSent = $plugin->sendReport($subject,$message);
+      }
     }
+    if (!$reportSent) {
+      ## fall back to the central one
+      sendReport($subject,$message);
+    }
+      
   }
 }
 
@@ -486,14 +497,18 @@ if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_con
 
 if ($num_messages) {
   if (empty($reload)) {
-    output($GLOBALS['I18N']->get('Processing has started,').' '.$num_messages.' '.$GLOBALS['I18N']->get('message(s) to process.'));
+    output($GLOBALS['I18N']->get('Processing has started,'));
+    if ($num_messages == 1) {
+      output(s('One campaign to process.'));
+    } else {
+      output(s('%d campaigns to process.',$num_messages));
+    }
   }
   clearPageCache();
   if (!$GLOBALS["commandline"] && empty($reload)) {
-    if (!$safemode) {
-      output($GLOBALS['I18N']->get('Please leave this window open. You have batch processing enabled, so it will reload several times to send the messages. Reports will be sent by email to').' '.getConfig("report_address"));
-    } else {
-      output($GLOBALS['I18N']->get('Your webserver is running in safe_mode. Please keep this window open. It may reload several times to make sure all messages are sent.').' '.$GLOBALS['I18N']->get('Reports will be sent by email to').' '.getConfig("report_address"));
+    output(s('Please leave this window open.').' '.s('phpList will process your queue until all messages have been sent.').' '.s('This may take a while'));
+    if (SEND_QUEUE_PROCESSING_REPORT) {
+      output(s('Report of processing will be sent by email'));
     }
   }
 }
