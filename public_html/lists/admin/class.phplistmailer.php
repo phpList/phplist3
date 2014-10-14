@@ -165,9 +165,14 @@ class PHPlistMailer extends PHPMailer {
       } else {
         $ip_domain = gethostbyaddr($ip_address);
       }
+      if ( $ip_domain != $ip_address ) {
+        $from = "$ip_domain [$ip_address]";
+      } else {
+        $from = "[$ip_address]";
+      }
       $hostname = $_SERVER["HTTP_HOST"];
       $request_time = date('r',$_SERVER['REQUEST_TIME']);
-      $sTimeStamp = "from $ip_domain [$ip_address] by $hostname with HTTP; $request_time";
+      $sTimeStamp = "from $from by $hostname with HTTP; $request_time";
       $this->addTimeStamp($sTimeStamp);
     }
 
