@@ -248,7 +248,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
         if ($todo && $req)
         while ($user = Sql_Fetch_Array($req)) {
           if ($c % 10 == 0) {
-            print "<br/>$c/$total<br/>\n";
+            print "<br/>$c/$total\n";
             flush();
           }
           set_time_limit(60);
