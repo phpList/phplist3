@@ -311,6 +311,7 @@ function finish ($flag,$message,$script_stage) {
     }
     if (!$reportSent) {
       ## fall back to the central one
+      $message .= "\n\n".s('To stop receiving these reports read:').' https://resources.phplist.com/system/config/send_queue_processing_report'. "\n\n";
       sendReport($subject,$message);
     }
       
