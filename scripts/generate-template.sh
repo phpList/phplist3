@@ -21,7 +21,7 @@ fi
 function mail_template_diff() {
 
 	cp phplist.pot "$current"
-	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' || true)
+	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
 
 	if [ -n "$diff" ]; then
 		mail -s "phpList language changes" $reportto << EOF
