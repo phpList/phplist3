@@ -276,7 +276,11 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
         if (stripos($result,$GLOBALS['strEmailConfirmation']) !== FALSE ||
           stripos($result,$pagedata["thankyoupage"]) !== FALSE
         ) {
-          $confirmation = getConfig('ajax_subscribeconfirmation');
+          if (!empty($pagedata['ajax_subscribeconfirmation'])) {
+            $confirmation = $pagedata['ajax_subscribeconfirmation'];
+          } else {
+            $confirmation = getConfig("ajax_subscribeconfirmation");
+          }
           if (empty($confirmation)) {
             print 'OK';
           } else {

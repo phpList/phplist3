@@ -39,7 +39,7 @@ if (isset($_POST["save"])) {
      $id = Sql_Insert_Id($tables['subscribepage'], 'id');
   }
   Sql_Query(sprintf('delete from %s where id = %d',$tables["subscribepage_data"],$id));
-  foreach (array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry") as $item) {
+  foreach (array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry",'ajax_subscribeconfirmation') as $item) {
     Sql_Query(sprintf('insert into %s (name,id,data) values("%s",%d,"%s")',
       $tables["subscribepage_data"],$item,$id,sql_escape($_POST[$item])));
   }
@@ -104,6 +104,7 @@ $data['language_file'] = '';#$GLOBALS['language_module'];
 $data["header"] = getConfig("pageheader");
 $data["footer"] = getConfig("pagefooter");
 $data["thankyoupage"] = '<h3>'.$GLOBALS["strThanks"].'</h3>'."\n". $GLOBALS["strEmailConfirmation"];
+$data["ajax_subscribeconfirmation"] = getConfig("ajax_subscribeconfirmation");
 $data["subscribemessage"] = getConfig("subscribemessage");
 $data["subscribesubject"] = getConfig("subscribesubject");
 $data["confirmationmessage"] = getConfig("confirmationmessage");
@@ -190,6 +191,11 @@ $generalinfoHTML .=  sprintf('<label for="footer">%s</label><textarea name="foot
 $generalinfoHTML .=  sprintf('<label for="thankyoupage">%s</label><textarea name="thankyoupage" cols="60" rows="10" class="virtual">%s</textarea>',
   $GLOBALS['I18N']->get('Thank you page'),
   htmlspecialchars(stripslashes($data["thankyoupage"])));
+
+$generalinfoHTML .= sprintf('<label for="ajax_subscribeconfirmation">%s</label><textarea name="ajax_subscribeconfirmation" cols="60" rows="10" class="virtual">%s</textarea>',
+  s("Text to display when subscription with an AJAX request was successful"),
+  htmlspecialchars(stripslashes($data["ajax_subscribeconfirmation"])));
+  
 $generalinfoHTML .=  sprintf('<label for="button">%s</label><input type="text" name="button" value="%s" size="60" />',
   $GLOBALS['I18N']->get('Text for Button'),
   htmlspecialchars($data["button"]));
@@ -255,6 +261,7 @@ $transactionHTML .= sprintf('<label for="unsubscribesubject">%s</label><input ty
 $transactionHTML .= sprintf('<label for="unsubscribemessage">%s</label><textarea name="unsubscribemessage" cols="60" rows="10" class="virtual">%s</textarea>',
   $GLOBALS['I18N']->get('Message'),
   htmlspecialchars(stripslashes($data["unsubscribemessage"])));
+
 
 $transactionHTML .= '</div>';
   
