@@ -573,9 +573,10 @@ class phplistPlugin {
   /* sendReport
    * @param string $subject
    * @param string $message
-   * @return null
+   * @return bool -> true if report has been processed and dealt with
    */
   function sendReport ($subject,$message) {
+    return false;
   }
 
   /* sendError
