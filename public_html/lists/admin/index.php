@@ -56,14 +56,12 @@ if (is_file($configfile) && filesize($configfile) > 20) {
 } elseif ($GLOBALS["commandline"]) {
   print 'Cannot find config file'."\n";
 } else {
-  $GLOBALS['installer'] = 1;
-  include(dirname(__FILE__).'/install.php');
+  print '<h3>Cannot find config file, please check permissions</h3>';
   exit;
 }
 $ajax = isset($_GET['ajaxed']);
 
 if (!isset($database_host) || !isset($database_user) || !isset($database_password) || !isset($database_name)) {
- # print $GLOBALS['I18N']->get('Database details incomplete, please check your config file');
   print 'Database details incomplete, please check your config file';
   exit;
 }
