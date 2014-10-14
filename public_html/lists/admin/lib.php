@@ -1465,9 +1465,10 @@ function verifyCsrfGetToken() {
 }
 
 function addCsrfGetToken() {
-  if (!empty($_SESSION['csrf_token'])) {
-    return '&tk='.$_SESSION['csrf_token'];
-  }
+  if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
+  }  
+  return '&tk='.$_SESSION['csrf_token'];
 }
 
 function refreshTlds($force = 0) {

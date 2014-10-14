@@ -42,7 +42,7 @@ if (empty($xormask)) {
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
-if (!isset($_SESSION['csrf_token'])) {
+if (empty($_SESSION['csrf_token'])) {
   $_SESSION['csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
 }
 if (isset($_SESSION['lastactivity'])) {
