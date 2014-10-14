@@ -296,6 +296,8 @@ function checkAccess($page) {
   return 1;
 }
 
+
+//@@TODO centralise the reporting and who gets what
 function sendReport($subject,$message) {
   $report_addresses = explode(",",getConfig("report_address"));
   foreach ($report_addresses as $address) {
