@@ -5,8 +5,10 @@
 #
 # The new template is created on the current dir and named "phplist.pot"
 
-reportto=$2
 current=$1
+reportto=$2
+from_envelope=$3
+from_realn=$4
 set -e
 
 if [ -z "$current" -o ! -f "$current" ]; then
@@ -20,11 +22,19 @@ fi
 
 function mail_template_diff() {
 
+	if [ -z "$from_envelope" -o -z "$from_realn" ]; then
+		echo "Not from configured, skipping sending mail"
+		return
+	fi
+
 	cp phplist.pot "$current"
 	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
 
 	if [ -n "$diff" ]; then
-		mail -s "phpList language changes" $reportto << EOF
+		sendmail -f $from_envelope -F "$from_realn" $reportto << EOF
+Subject: phpList language changes
+To: $reportto
+
 These are this weeks changes in the language template file
 They will show up in https://translate.phplist.com as untranslated
 Please update your translations, thanks
