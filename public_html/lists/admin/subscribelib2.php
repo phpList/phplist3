@@ -929,12 +929,17 @@ $html .= sprintf('
           $values_request = Sql_Query("select * from $table_prefix"."listattr_".$attr["tablename"]." order by listorder,name");
           $output[$attr["id"]] .= sprintf('</td><td class="attributeinput"><!--%d--><select name="%s" class="attributeinput">',$data[$attr["id"]],$fieldname);
           while ($value = Sql_Fetch_array($values_request)) {
-            if (!empty($_POST[$fieldname]))
+            if (!empty($_POST[$fieldname])) {
               $selected = $_POST[$fieldname] == $value["id"] ? 'selected="selected"' : '';
-            elseif ($data[$attr["id"]])
+            } elseif ($data[$attr["id"]]) {
               $selected = $data[$attr["id"]] == $value["id"] ? 'selected="selected"':'';
-            else
-              $selected = $attr["default_value"] == $value["name"] ? 'selected="selected"':'';
+            } elseif (!empty($attr["default_value"])) {
+              $selected = strtolower($attr["default_value"]) == strtolower($value["name"]) ? 'selected="selected"':'';
+            } elseif (strtolower($attr['name']) == 'country' && !empty($_SERVER['GEOIP_COUNTRY_NAME'])) {
+              $selected = strtolower($_SERVER['GEOIP_COUNTRY_NAME']) == strtolower($value["name"]) ? 'selected="selected"':'';
+            } else {
+              $selected = '';
+            }
             if (preg_match('/^'.preg_quote(EMPTY_VALUE_PREFIX).'/i',$value['name'])) {
               $value['id'] = '';
             }
