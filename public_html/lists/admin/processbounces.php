@@ -243,13 +243,15 @@ function processBounceData($bounceid,$msgid,$userid) {
         set user = %d, message = %d, bounce = %d',
         $tables["user_message_bounce"],
         $userid,$msgid,$bounceid));
+        
+      ## we cannot translate this text
       Sql_Query(sprintf('update %s
-        set status = "bounced list message %d",
-        comment = "duplicate bounce for %d"
+        set status = "duplicate bounce for %d",
+        comment = "duplicate bounce for subscriber %d on message %d"
         where id = %d',
         $tables["bounce"],
-        $msgid,
-        $userid,$bounceid));
+        $userid,
+        $userid,$msgid,$bounceid));
     }
   } elseif ($userid) {
     Sql_Query(sprintf('update %s
@@ -601,12 +603,23 @@ $unsubscribed_users = "";
 while ($user = Sql_Fetch_Row($userid_req)) {
   keepLock($process_id);
   set_time_limit(600);
-  $msg_req = Sql_Query(sprintf('select * from
-    %s um left join %s umb on (um.messageid = umb.message and userid = user)
-    where userid = %d and um.status = "sent"
+  //$msg_req = Sql_Query(sprintf('select * from
+    //%s um left join %s umb on (um.messageid = umb.message and userid = user)
+    //where userid = %d and um.status = "sent"
+    //order by entered desc',
+    //$tables["usermessage"],$tables["user_message_bounce"],
+    //$user[0]));
+    
+  ## 17361 - update of the above query, to include the bounce table and to exclude duplicate bounces  
+  $msg_req = Sql_Query(sprintf('select umb.*,um.*,b.status from %s um left join %s umb on (um.messageid = umb.message and userid = user)
+    left join %s b on umb.bounce = b.id 
+    where userid = %d and um.status = "sent" 
+      and bounce is not null and 
+      viewed is null and b.status not like "duplicate%%" and b.comment not like "duplicate%%"
     order by entered desc',
-    $tables["usermessage"],$tables["user_message_bounce"],
+    $tables["usermessage"],$tables["user_message_bounce"],$tables["bounce"],
     $user[0]));
+      
 /*  $cnt = 0;
   $alive = 1;$removed = 0;
   while ($alive && !$removed && $bounce = Sql_Fetch_Array($msg_req)) {
