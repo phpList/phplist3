@@ -343,12 +343,17 @@ class phplistPlugin {
     return '';
   }
 
+  /** sendMessageTabSave
+   * 
+   * called before a campaign is being saved. All data will be saved by phpList, 
+   * but you can capture it here and save it elsewhere if you need to
+   * 
+   * @param messageid integer: id of the campaign
+   * @param messagedata array: associative array with all data
+   * @return null 
+   */
+
   function sendMessageTabSave($messageid= 0, $data= array ()){
-    ## add a tab to the "Send a Message page" for options to be set in the plugin
-    # parameters: 
-    #    messageid = ID of the message being saved (should always be > 0)
-    #    messagedata = associative array of all data from the db for this message
-    # returns: HTML code to communicate the result to the user
     return '';
   }
 
