@@ -129,10 +129,10 @@ if ($list) {
     $querytables,$column,$fromdate,$column,$todate,$subselect));
 }
 
-fwrite($exportfile, $GLOBALS['I18N']->get('List Membership').$row_delim);
-
 $todo = Sql_Affected_Rows();
 $done = 0;
+
+fwrite($exportfile, $GLOBALS['I18N']->get('List Membership').$row_delim);
 
 while ($user = Sql_fetch_array($result)) {
   ## re-verify the blacklist status
