@@ -211,7 +211,7 @@ if ($success) {
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script> 
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform"> 
 <input type="text" name="email" value="" id="emailaddress" /> 
-<button type="submit" id="phplistsubscribe">'.s('Subscribe').'</button> </form>'
+<button type="submit" id="phplistsubscribe">'.s('Subscribe').'</button> <button id="phplistnotsubscribe" class="fright">'.s('Do not subscribe').'</button></form>'
     .' </p>';
 
   if (ENCRYPT_ADMIN_PASSWORDS && !empty($adminid)) {
@@ -224,7 +224,7 @@ if ($success) {
   . ' values (0, ?, ?, ?, ?, ?)';
   $query = sprintf($query, $GLOBALS["tables"]["templateimage"]);
   Sql_Query_Params($query, array('image/png', 'powerphplist.png', $newpoweredimage, 70, 30));
-  print '<div id="continuesetup" style="display:none;">'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</div>";
+  print '<div id="continuesetup" style="display:none;" class="fleft">'.$GLOBALS['I18N']->get("Continue with")." ".PageLinkButton("setup",$GLOBALS['I18N']->get("phpList Setup"))."</div>";
 
   unset($_SESSION['hasI18Ntable']);
 

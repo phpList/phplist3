@@ -28,6 +28,7 @@ $(document).ready(function() {
             .hide()
             .fadeIn(1500);
             $("#phplistsubscribeform").hide();
+            $("#phplistnotsubscribe").hide();
             $("#continuesetup").show().fadeIn(2000);
             document.cookie = "phplistsubscribed=yes";
           }
@@ -58,8 +59,14 @@ $(document).ready(function() {
   var cookie = document.cookie;
   if (cookie.indexOf('phplistsubscribed=yes')>=0) {
     $("#phplistsubscribeform").html(thanksForSubscribing);
+    $("#phplistnotsubscribe").hide();
     $("#continuesetup").show().fadeIn(2000);
   }
+  $("#phplistnotsubscribe").click(function() {
+    $("#phplistsubscribeform").html('<h3>Not subscribed</h3>');
+    $("#phplistnotsubscribe").hide();
+    $("#continuesetup").show().fadeIn(2000);
+  })
     
 });
 
