@@ -82,6 +82,7 @@ while ($row = sql_Fetch_array($req)) {
         $rule = preg_replace('/\(.*\)/U','.*',$rule);
         $rule = preg_replace('/\<.*\>/U','.*',$rule);
         $rule = preg_replace('/\[.*\]/U','.*',$rule);
+        $rule = preg_replace('/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/','\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $rule); ## replace IPs with their regex
         $rule = str_replace('?','.',$rule);
         $rule = str_replace('/','.',$rule);
         $rule = str_replace('"','.',$rule);
