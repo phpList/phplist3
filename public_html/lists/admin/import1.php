@@ -50,7 +50,7 @@ if(isset($_REQUEST['import'])) {
 
   ## disallow some extensions. Won't avoid all problems, but will help with the most common ones.
   $extension = strtolower(pathinfo($_FILES["import_file"]["name"], PATHINFO_EXTENSION));
-  if (in_array($extension, array('xls','ods'))) {
+  if (in_array($extension, array('xls','ods','ots','fods', 'xlsx', 'xlt' , 'dif', 'dbf', 'html', 'slk'))) {
     Fatal_Error(s('Please upload a plain text file only. You cannot use a spreadsheet. You can only upload a plain text file with one email address per line.'));
     return;
   }
