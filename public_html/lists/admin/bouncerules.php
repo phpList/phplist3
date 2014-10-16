@@ -44,7 +44,7 @@ if (isset($_GET['del']) && $_GET['del']) {
 
 if (isset($_POST['newrule']) && $_POST['newrule']) {
   Sql_Query(sprintf('insert into %s (regex,action,comment,admin,status) values("%s","%s","%s",%d,"active")',
-    $GLOBALS['tables']['bounceregex'],$_POST['newrule'],$_POST['action'],$_POST['comment'],$_SESSION['logindetails']['id']),1);
+    $GLOBALS['tables']['bounceregex'],sql_escape($_POST['newrule']),sql_escape($_POST['action']),sql_escape($_POST['comment']),$_SESSION['logindetails']['id']),1);
   $num = Sql_Affected_Rows();
   if ($num < 0) {
     print '<p class="information">'.$GLOBALS['I18N']->get('That rule exists already').'</p>';
@@ -90,7 +90,7 @@ while ($row = Sql_Fetch_Array($req)) {
     }
   }
   
-  $ls->addColumn($element,$GLOBALS['I18N']->get('expression'),'<a name="'.$row['id'].'"></a>'.htmlspecialchars($row['regex']));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('expression'),'<a name="'.$row['id'].'"></a>'.shortenTextDisplay($row['regex'],50));
   $ls->addColumn($element,$GLOBALS['I18N']->get('action'),$GLOBALS['bounceruleactions'][$row['action']]);
 #  $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where regex = %d',$GLOBALS['tables']['bounceregex_bounce'],$row['id']));
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$num[0]);
