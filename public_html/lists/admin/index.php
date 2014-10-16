@@ -3,7 +3,7 @@
 @ob_start();
 $er = error_reporting(0);
 # check for commandline and cli version
-if (!isset($_SERVER["SERVER_NAME"]) && !PHP_SAPI == "cli") {
+if (!isset($_SERVER["SERVER_NAME"]) && PHP_SAPI != "cli") {
   print "Warning: commandline only works well with the cli version of PHP";
 }
 
@@ -15,7 +15,9 @@ require_once dirname(__FILE__) .'/commonlib/lib/unregister_globals.php';
 require_once dirname(__FILE__) .'/commonlib/lib/magic_quotes.php';
 
 # setup commandline
-if (php_sapi_name() == "cli") {
+#if (php_sapi_name() == "cli") {
+## 17355 - change the way CL is detected, using the way Drupal does it.
+if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_numeric($_SERVER['argc']) && $_SERVER['argc'] > 0))) {
   for ($i=0; $i<$_SERVER['argc']; $i++) {
     $my_args = array();
     if (preg_match("/(.*)=(.*)/",$_SERVER['argv'][$i], $my_args)) {
