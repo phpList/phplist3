@@ -7,6 +7,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'candidate') {
   $url = '&type=candidate';
 } else {
   $type = 'active';
+  $url = '&type=active';
 }
 
 if (isset($_POST['tagaction']) && isset($_POST['tagged']) && is_array($_POST['tagged']) && sizeof($_POST['tagged'])) {
@@ -95,18 +96,18 @@ while ($row = Sql_Fetch_Array($req)) {
 #  $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$num[0]);
   $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$row['count']);
 
-  $ls->addColumn($element,$GLOBALS['I18N']->get('tag'),sprintf('<input type=checkbox name="tagged[%d]" value="%d">',$row['id'],$row['listorder']));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('order'),sprintf('<input type=text name="listorder[%d]" value="%d" size=3>',$row['id'],$row['listorder']));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('del'),PageLink2('bouncerules&del='.$row['id'],$GLOBALS['I18N']->get('del')));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('tag'),sprintf('<input type="checkbox" name="tagged[%d]" value="%d">',$row['id'],$row['listorder']));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('order'),sprintf('<input type="text" name="listorder[%d]" value="%d" size=3>',$row['id'],$row['listorder']));
+  $ls->addColumn($element,$GLOBALS['I18N']->get('del'),PageLink2('bouncerules&del='.$row['id'].$url,$GLOBALS['I18N']->get('del')));
 }
 print $ls->display();
 if ($some) {
   print '<p class="information">'.$GLOBALS['I18N']->get('with tagged rules: ').' ';
-  printf('<b>%s</b> <input type=checkbox name="tagaction" value="delete"><br/>',$GLOBALS['I18N']->get('delete'));
+  printf('<b>%s</b> <input type="checkbox" name="tagaction" value="delete"><br/>',$GLOBALS['I18N']->get('delete'));
   if ($type == 'candidate') {
-    printf('<b>%s</b> <input type=checkbox name="tagaction" value="activate"><br/>',$GLOBALS['I18N']->get('make active'));
+    printf('<b>%s</b> <input type="checkbox" name="tagaction" value="activate"><br/>',$GLOBALS['I18N']->get('make active'));
   } else {
-    printf('<b>%s</b> <input type=checkbox name="tagaction" value="deactivate"><br/>',$GLOBALS['I18N']->get('make inactive'));
+    printf('<b>%s</b> <input type="checkbox" name="tagaction" value="deactivate"><br/>',$GLOBALS['I18N']->get('make inactive'));
   }
   print ' <p class="submit"><input type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Save Changes').'"></p>';
   print '</form>';
