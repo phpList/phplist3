@@ -173,7 +173,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:896
 #: public_html/lists/admin/eventlog.php:117
 #: public_html/lists/admin/admins.php:103
-#: public_html/lists/admin/bouncerules.php:100
+#: public_html/lists/admin/bouncerules.php:101
 msgid "del"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: public_html/lists/admin/home.php:88 public_html/lists/admin/index.php:373
+#: public_html/lists/admin/home.php:88 public_html/lists/admin/index.php:375
 msgid "Continue Configuration"
 msgstr ""
 
@@ -477,8 +477,8 @@ msgid "Process Bounces"
 msgstr ""
 
 #: public_html/lists/admin/home.php:295
-#: public_html/lists/admin/processbounces.php:341
-#: public_html/lists/admin/processbounces.php:342
+#: public_html/lists/admin/processbounces.php:343
+#: public_html/lists/admin/processbounces.php:344
 #: public_html/lists/admin/reconcileusers.php:196
 #: public_html/lists/admin/reconcileusers.php:461
 #: public_html/lists/admin/bounces.php:74
@@ -991,7 +991,7 @@ msgstr ""
 #: public_html/lists/admin/templates.php:34
 #: public_html/lists/admin/spage.php:68
 #: public_html/lists/admin/editattributes.php:183
-#: public_html/lists/admin/bouncerules.php:105
+#: public_html/lists/admin/bouncerules.php:106
 msgid "delete"
 msgstr ""
 
@@ -1592,234 +1592,234 @@ msgstr ""
 msgid "View Bounce"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:273
+#: public_html/lists/admin/processbounces.php:275
 msgid "system message bounced, but unknown user"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:313
+#: public_html/lists/admin/processbounces.php:315
 #: public_html/lists/admin/readtestmail.php:196
 msgid "Cannot create POP3 connection to"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:328
+#: public_html/lists/admin/processbounces.php:330
 #: public_html/lists/admin/readtestmail.php:211
 msgid "Cannot open mailbox file"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:337
+#: public_html/lists/admin/processbounces.php:339
 msgid "bounces to fetch from the mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:338
+#: public_html/lists/admin/processbounces.php:340
 #: public_html/lists/admin/readtestmail.php:223
 msgid "Please do not interrupt this process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:339
+#: public_html/lists/admin/processbounces.php:341
 msgid "bounces to process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:341
+#: public_html/lists/admin/processbounces.php:343
 #: public_html/lists/admin/readtestmail.php:225
 msgid "Processing first"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:342
+#: public_html/lists/admin/processbounces.php:344
 msgid "processing first"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:346
+#: public_html/lists/admin/processbounces.php:348
 msgid "Running in test mode, not deleting messages from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:348
+#: public_html/lists/admin/processbounces.php:350
 msgid "Processed messages will be deleted from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:363
-#: public_html/lists/admin/processbounces.php:370
+#: public_html/lists/admin/processbounces.php:365
+#: public_html/lists/admin/processbounces.php:372
 #: public_html/lists/admin/readtestmail.php:248
 #: public_html/lists/admin/readtestmail.php:253
 msgid "Deleting message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:366
+#: public_html/lists/admin/processbounces.php:368
 msgid "Not deleting processed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:373
+#: public_html/lists/admin/processbounces.php:375
 msgid "Not deleting unprocessed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:379
+#: public_html/lists/admin/processbounces.php:381
 #: public_html/lists/admin/readtestmail.php:260
 msgid "Closing mailbox, and purging messages"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:388
+#: public_html/lists/admin/processbounces.php:390
 #: public_html/lists/admin/readtestmail.php:274
 msgid "IMAP is not included in your PHP installation, cannot continue"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:389
+#: public_html/lists/admin/processbounces.php:391
 #: public_html/lists/admin/readtestmail.php:275
 msgid "Check out"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:395
+#: public_html/lists/admin/processbounces.php:397
 msgid "Bounce mechanism not properly configured"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:425
+#: public_html/lists/admin/processbounces.php:427
 msgid "bounce_protocol not supported"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:438
+#: public_html/lists/admin/processbounces.php:440
 #, php-format
 msgid "%d bounces to reprocess"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:442
-#: public_html/lists/admin/processbounces.php:454
+#: public_html/lists/admin/processbounces.php:444
+#: public_html/lists/admin/processbounces.php:456
 #, php-format
 msgid "%d out of %d processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:456
+#: public_html/lists/admin/processbounces.php:458
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:460
+#: public_html/lists/admin/processbounces.php:462
 msgid "Processing bounces based on active bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:478
+#: public_html/lists/admin/processbounces.php:480
 #: public_html/lists/admin/actions/processqueue.php:866
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:658
+#: public_html/lists/admin/processbounces.php:511
+#: public_html/lists/admin/processbounces.php:671
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:526
+#: public_html/lists/admin/processbounces.php:511
+#: public_html/lists/admin/processbounces.php:528
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:509
-#: public_html/lists/admin/processbounces.php:526
-#: public_html/lists/admin/processbounces.php:532
-#: public_html/lists/admin/processbounces.php:536
-#: public_html/lists/admin/processbounces.php:541
-#: public_html/lists/admin/processbounces.php:545
-#: public_html/lists/admin/processbounces.php:551
-#: public_html/lists/admin/processbounces.php:555
-#: public_html/lists/admin/processbounces.php:560
-#: public_html/lists/admin/processbounces.php:564
+#: public_html/lists/admin/processbounces.php:511
+#: public_html/lists/admin/processbounces.php:528
+#: public_html/lists/admin/processbounces.php:534
+#: public_html/lists/admin/processbounces.php:538
+#: public_html/lists/admin/processbounces.php:543
+#: public_html/lists/admin/processbounces.php:547
+#: public_html/lists/admin/processbounces.php:553
+#: public_html/lists/admin/processbounces.php:557
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:566
 msgid "bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:526
+#: public_html/lists/admin/processbounces.php:528
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:532
-#: public_html/lists/admin/processbounces.php:541
-#: public_html/lists/admin/processbounces.php:551
-#: public_html/lists/admin/processbounces.php:560
+#: public_html/lists/admin/processbounces.php:534
+#: public_html/lists/admin/processbounces.php:543
+#: public_html/lists/admin/processbounces.php:553
+#: public_html/lists/admin/processbounces.php:562
 msgid "Auto Blacklisted"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:532
-#: public_html/lists/admin/processbounces.php:541
-#: public_html/lists/admin/processbounces.php:560
+#: public_html/lists/admin/processbounces.php:534
+#: public_html/lists/admin/processbounces.php:543
+#: public_html/lists/admin/processbounces.php:562
 msgid "User auto blacklisted for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:536
-#: public_html/lists/admin/processbounces.php:545
-#: public_html/lists/admin/processbounces.php:555
-#: public_html/lists/admin/processbounces.php:564
+#: public_html/lists/admin/processbounces.php:538
+#: public_html/lists/admin/processbounces.php:547
+#: public_html/lists/admin/processbounces.php:557
+#: public_html/lists/admin/processbounces.php:566
 msgid "Auto Unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:536
-#: public_html/lists/admin/processbounces.php:545
-#: public_html/lists/admin/processbounces.php:564
+#: public_html/lists/admin/processbounces.php:538
+#: public_html/lists/admin/processbounces.php:547
+#: public_html/lists/admin/processbounces.php:566
 msgid "User auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:551
+#: public_html/lists/admin/processbounces.php:553
 msgid "email auto blacklisted for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:555
+#: public_html/lists/admin/processbounces.php:557
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:578
+#: public_html/lists/admin/processbounces.php:580
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:579
+#: public_html/lists/admin/processbounces.php:581
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:583
+#: public_html/lists/admin/processbounces.php:585
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:597
+#: public_html/lists/admin/processbounces.php:599
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:656
+#: public_html/lists/admin/processbounces.php:669
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:658
+#: public_html/lists/admin/processbounces.php:671
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:667
+#: public_html/lists/admin/processbounces.php:680
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:668
+#: public_html/lists/admin/processbounces.php:681
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:679
+#: public_html/lists/admin/processbounces.php:692
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:689
+#: public_html/lists/admin/processbounces.php:702
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:694
+#: public_html/lists/admin/processbounces.php:707
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:697
+#: public_html/lists/admin/processbounces.php:710
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:701
+#: public_html/lists/admin/processbounces.php:714
 msgid "Report:"
 msgstr ""
 
@@ -2192,7 +2192,7 @@ msgstr ""
 #: public_html/lists/admin/commonlib/pages/attributes.php:410
 #: public_html/lists/admin/bouncerule.php:49
 #: public_html/lists/admin/admin.php:258
-#: public_html/lists/admin/bouncerules.php:111
+#: public_html/lists/admin/bouncerules.php:112
 #: public_html/lists/admin/spageedit.php:357
 msgid "Save Changes"
 msgstr ""
@@ -2579,7 +2579,7 @@ msgid "Members"
 msgstr ""
 
 #: public_html/lists/admin/members.php:325
-#: public_html/lists/admin/bouncerules.php:98
+#: public_html/lists/admin/bouncerules.php:99
 msgid "tag"
 msgstr ""
 
@@ -2664,8 +2664,8 @@ msgstr ""
 
 #: public_html/lists/admin/spage.php:64 public_html/lists/admin/spage.php:65
 #: public_html/lists/admin/messages.php:83
-#: public_html/lists/admin/bouncerules.php:60
-#: public_html/lists/admin/bouncerules.php:65
+#: public_html/lists/admin/bouncerules.php:61
+#: public_html/lists/admin/bouncerules.php:66
 msgid "active"
 msgstr ""
 
@@ -2984,7 +2984,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:466
 #: public_html/lists/admin/bouncerule.php:35
 #: public_html/lists/admin/bounce.php:144
-#: public_html/lists/admin/bouncerules.php:119
+#: public_html/lists/admin/bouncerules.php:120
 msgid "Action"
 msgstr ""
 
@@ -3132,7 +3132,7 @@ msgid "All Done"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:112
-#: public_html/lists/admin/index.php:529
+#: public_html/lists/admin/index.php:531
 msgid "Access Denied"
 msgstr ""
 
@@ -3974,7 +3974,7 @@ msgstr ""
 msgid "phpList Export from %s to %s (%s).csv"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:132
+#: public_html/lists/admin/actions/export.php:135
 msgid "List Membership"
 msgstr ""
 
@@ -5657,19 +5657,19 @@ msgstr ""
 msgid "Process Next Batch"
 msgstr ""
 
-#: public_html/lists/admin/generatebouncerules.php:133
+#: public_html/lists/admin/generatebouncerules.php:134
 msgid "Hmm, duplicate entry, "
 msgstr ""
 
-#: public_html/lists/admin/generatebouncerules.php:145
+#: public_html/lists/admin/generatebouncerules.php:146
 msgid "new rules found"
 msgstr ""
 
-#: public_html/lists/admin/generatebouncerules.php:146
+#: public_html/lists/admin/generatebouncerules.php:147
 msgid "bounces not matched"
 msgstr ""
 
-#: public_html/lists/admin/generatebouncerules.php:147
+#: public_html/lists/admin/generatebouncerules.php:148
 msgid "bounces matched to existing rules"
 msgstr ""
 
@@ -5912,7 +5912,7 @@ msgstr ""
 
 #: public_html/lists/admin/bouncerule.php:32
 #: public_html/lists/admin/bounce.php:143
-#: public_html/lists/admin/bouncerules.php:118
+#: public_html/lists/admin/bouncerules.php:119
 msgid "Regular Expression"
 msgstr ""
 
@@ -5926,7 +5926,7 @@ msgstr ""
 
 #: public_html/lists/admin/bouncerule.php:48
 #: public_html/lists/admin/bounce.php:150
-#: public_html/lists/admin/bouncerules.php:125
+#: public_html/lists/admin/bouncerules.php:126
 msgid "Memo for this rule"
 msgstr ""
 
@@ -6241,7 +6241,7 @@ msgid "This bounce no longer exists in the database."
 msgstr ""
 
 #: public_html/lists/admin/bounce.php:151
-#: public_html/lists/admin/bouncerules.php:126
+#: public_html/lists/admin/bouncerules.php:127
 msgid "Add new Rule"
 msgstr ""
 
@@ -6700,6 +6700,10 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
+#: public_html/lists/admin/initialise.php:214
+msgid "Do not subscribe"
+msgstr ""
+
 #: public_html/lists/admin/initialise.php:227
 msgid "Continue with"
 msgstr ""
@@ -6761,118 +6765,118 @@ msgstr ""
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/index.php:228
+#: public_html/lists/admin/index.php:230
 msgid "Admin Authentication initialisation failure"
 msgstr ""
 
-#: public_html/lists/admin/index.php:237
+#: public_html/lists/admin/index.php:239
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
 
-#: public_html/lists/admin/index.php:260
+#: public_html/lists/admin/index.php:262
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:267
+#: public_html/lists/admin/index.php:269
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:268
+#: public_html/lists/admin/index.php:270
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:275
+#: public_html/lists/admin/index.php:277
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:293
+#: public_html/lists/admin/index.php:295
 msgid "Your session timed out, please log in again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:298
+#: public_html/lists/admin/index.php:300
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:358
+#: public_html/lists/admin/index.php:360
 msgid "goodbye"
 msgstr ""
 
-#: public_html/lists/admin/index.php:362
+#: public_html/lists/admin/index.php:364
 msgid "good morning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:364
+#: public_html/lists/admin/index.php:366
 msgid "good afternoon"
 msgstr ""
 
-#: public_html/lists/admin/index.php:366
+#: public_html/lists/admin/index.php:368
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:380
+#: public_html/lists/admin/index.php:382
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:393
+#: public_html/lists/admin/index.php:395
 #: public_html/lists/admin/processqueue.php:20
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:396
+#: public_html/lists/admin/index.php:398
 msgid "phpList requires PHP version 5.1.2 or higher"
 msgstr ""
 
-#: public_html/lists/admin/index.php:399
+#: public_html/lists/admin/index.php:401
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:403
+#: public_html/lists/admin/index.php:405
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:405
+#: public_html/lists/admin/index.php:407
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:416
+#: public_html/lists/admin/index.php:418
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:417
+#: public_html/lists/admin/index.php:419
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:419
+#: public_html/lists/admin/index.php:421
 #, php-format
 msgid "You have %s message(s) waiting to be sent"
 msgstr ""
 
-#: public_html/lists/admin/index.php:454
+#: public_html/lists/admin/index.php:456
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:462
+#: public_html/lists/admin/index.php:464
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:514 public_html/lists/admin/index.php:515
+#: public_html/lists/admin/index.php:516 public_html/lists/admin/index.php:517
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:519
+#: public_html/lists/admin/index.php:521
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:527
 msgid "Sorry, not implemented yet"
 msgstr ""
 
@@ -7140,65 +7144,65 @@ msgstr ""
 msgid "Processing queued campaigns"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:49
+#: public_html/lists/admin/bouncerules.php:50
 msgid "That rule exists already"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:56
+#: public_html/lists/admin/bouncerules.php:57
 #, php-format
 msgid "Number of %s rules: %d"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:61
-#: public_html/lists/admin/bouncerules.php:63
+#: public_html/lists/admin/bouncerules.php:62
+#: public_html/lists/admin/bouncerules.php:64
 msgid "candidate"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:73
+#: public_html/lists/admin/bouncerules.php:74
 msgid "Bounce Regular Expressions"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:75
+#: public_html/lists/admin/bouncerules.php:76
 msgid "No Rules found"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:82
+#: public_html/lists/admin/bouncerules.php:83
 msgid "rule"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:88
+#: public_html/lists/admin/bouncerules.php:89
 msgid "match"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:92
+#: public_html/lists/admin/bouncerules.php:93
 msgid "expression"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:93
+#: public_html/lists/admin/bouncerules.php:94
 msgid "action"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:96
+#: public_html/lists/admin/bouncerules.php:97
 msgid "#bncs"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:99
+#: public_html/lists/admin/bouncerules.php:100
 msgid "order"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:104
+#: public_html/lists/admin/bouncerules.php:105
 msgid "with tagged rules: "
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:107
+#: public_html/lists/admin/bouncerules.php:108
 msgid "make active"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:109
+#: public_html/lists/admin/bouncerules.php:110
 msgid "make inactive"
 msgstr ""
 
-#: public_html/lists/admin/bouncerules.php:115
+#: public_html/lists/admin/bouncerules.php:116
 msgid "add a new rule"
 msgstr ""
 
