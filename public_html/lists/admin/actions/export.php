@@ -3,6 +3,8 @@
 verifyCsrfGetToken();
 
 $access = accessLevel('export');
+$list = $_SESSION['export']['list'];
+
 switch ($access) {
   case 'owner':
     $querytables = $GLOBALS['tables']['list'].' list ,'.$GLOBALS['tables']['user'].' user ,'.$GLOBALS['tables']['listuser'].' listuser ';
@@ -30,7 +32,6 @@ switch ($access) {
     break;
 }
 
-$list = $_SESSION['export']['list'];
 $exportfileName = tempnam($GLOBALS['tmpdir'],$GLOBALS['installation_name'].'-export'.time());
 $exportfile = fopen($exportfileName,'w');
 
