@@ -83,14 +83,21 @@ print formStart();
 <input type="radio" name="column" value="modified" /> <?php echo $GLOBALS['I18N']->get('When the record was changed');?><br/>
 <input type="radio" name="column" value="historyentry" /> <?php echo $GLOBALS['I18N']->get('Based on changelog');?><br/>
 <input type="radio" name="column" value="listentered" /> <?php echo $GLOBALS['I18N']->get('When they subscribed to');?> 
-<select name="list">
+
+
 <?php
-$req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$listselect_where));
-while ($row = Sql_Fetch_Array($req)) {
-  printf ('<option value=%d>%s</option>',$row['id'],$row['name']);
+if (empty($list)) { 
+  print '<select name="list">';
+  $req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$listselect_where));
+  while ($row = Sql_Fetch_Array($req)) {
+    printf ('<option value="%d">%s</option>',$row['id'],$row['name']);
+  }
+  print '</select>';
+} else {
+  printf('<input type="hidden" name="list" value="%d" />',$list);
+  print '<strong>'.listName($list).'</strong><br/><br/>';
 }
 ?>
-</select>
 <div id="exportdates">
 <?php echo $GLOBALS['I18N']->get('Date From:');?> <?php echo $from->showInput("","",$fromdate);?>
 <?php echo $GLOBALS['I18N']->get('Date To:');?>  <?php echo $to->showInput("","",$todate);?>
