@@ -1384,10 +1384,14 @@ function PageData($id) {
     return $data;
   }
   while ($row = Sql_Fetch_Array($req)) {
-    $data[$row["name"]] = preg_replace('/<\?=VERSION\?>/i', VERSION, $row["data"]);
-    $data[$row["name"]] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $row["data"]);
+    if (in_array($row['name'],array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry",'ajax_subscribeconfirmation'))) { 
+      $data[$row['name']] = stripslashes($row['data']);
+    } else {
+      $data[$row['name']] = $row['data'];
+    }
+    $data[$row["name"]] = preg_replace('/<\?=VERSION\?>/i', VERSION, $data[$row['name']]);
+    $data[$row["name"]] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $data[$row['name']]);
   }
-
   if (!isset ($data['lists']))
     $data['lists'] = '';
   if (!isset ($data['emaildoubleentry']))
