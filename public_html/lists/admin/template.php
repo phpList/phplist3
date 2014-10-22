@@ -183,8 +183,12 @@ if (!empty($_POST['action']) && $_POST['action'] == "addimages") {
       if (empty($_POST['sendtest'])) return;
   #    return;
     } else {
-      print '<p class="information">'.$GLOBALS['I18N']->get('Template does not contain local images')."</p>";
-      if (empty($_POST['sendtest'])) return;
+      $_SESSION['action_result'] = s('Template was successfully saved');
+#      print '<p class="information">'.$GLOBALS['I18N']->get('Template does not contain local images')."</p>";
+      if (empty($_POST['sendtest'])) {
+        Redirect('templates');
+        return;
+      }
   #    return;
     }
   } else {
