@@ -3,12 +3,13 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 print formStart('class="listListing"');
 $some = 0;
-if (isset($_GET['s'])) {
-  $s = sprintf('%d',$_GET['s']);
+if (isset($_GET['start'])) {
+  $s = sprintf('%d',$_GET['start']);
 } else {
   $s = 0;
 }
 $baseurl = './?page=list';
+$paging = '';
 
 $actionresult = '';
 
@@ -145,7 +146,12 @@ if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['ta
 }
 
 print '<p class="total">'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
-$limit = '';
+if ($total > 50 && empty($_SESSION['showalllists'])) {
+  $paging = simplePaging("list",$s,$total,10,'&nbsp;');
+  $limit = " limit $s,10";
+} else {
+  $limit = '';
+}
 
 $query
 = ' select *'
@@ -157,6 +163,7 @@ $result = Sql_query($query);
 $numlists = Sql_Affected_Rows($result);
 
 $ls = new WebblerListing(s('Lists'));
+$ls->usePanel($paging);
 
 /** Always Show a "list" of all subscribers 
  * https://mantis.phplist.com/view.php?id=17433
