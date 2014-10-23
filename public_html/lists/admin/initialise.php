@@ -203,16 +203,7 @@ if ($success) {
     .'</a>. </p>', $body);
   //printf('<p class="information">
     //'.$GLOBALS['I18N']->get("Please make sure to read the file README.security that can be found in the zip file.").'</p>');
-  print '<p class="information">'
-    .'<h3>'.s("Sign up to receive news and updates about phpList ").'</h3>'
-    .s("to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low.").
-'<script type="text/javascript">var pleaseEnter = "'.strip_tags($_REQUEST['adminemail']).'";</script> '.   
-'<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script> 
-<script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script> 
-<div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform"> 
-<input type="text" name="email" value="" id="emailaddress" /> 
-<button type="submit" id="phplistsubscribe">'.s('Subscribe').'</button> <button id="phplistnotsubscribe" class="fright">'.s('Do not subscribe').'</button></form>'
-    .' </p>';
+  print subscribeToAnnouncementsForm($_REQUEST['adminemail']);
 
   if (ENCRYPT_ADMIN_PASSWORDS && !empty($adminid)) {
     print sendAdminPasswordToken($adminid);

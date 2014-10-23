@@ -43,6 +43,9 @@ if ($dbversion == VERSION) {
   output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
   
   print '<p>'.PageLinkAjax('upgrade&update=tlds',s('update Top Level Domains'),'','button').'</p>';
+
+  print subscribeToAnnouncementsForm();
+
   
 } else 
 
@@ -527,6 +530,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
     Info(s('Success'),1);
     
     upgradePlugins(array_keys($GLOBALS['plugins']));
+
+    print subscribeToAnnouncementsForm();
     
 ##  check for old click track data
     $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s',$GLOBALS['tables']['linktrack']));
@@ -548,10 +553,8 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   }
 
 } else {
-  
   print '<p>'.s('Your database requires upgrading, please make sure to create a backup of your database first.').'</p>';
   print '<p>'.s('If you have a large database, make sure you have sufficient diskspace available for upgrade.').'</p>';
   print '<p>'.s('When you are ready click %s Depending on the size of your database, this may take quite a while. Please make sure not to interrupt the process, once it started.',PageLinkButton("upgrade&doit=yes",s('Upgrade'))).'</p>';
-
 }
 
