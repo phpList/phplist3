@@ -606,3 +606,10 @@ function parseCline() {
   return $res;
 }
 
+/* no idea why it wouldn't be there (no dependencies are mentioned on php.net/mb_strtolower), but
+ * found a system missing it. We need it from the start */
+if (!function_exists('mb_strtolower')) {
+  function mb_strtolower($string) {
+    return strtolower($string);
+  }
+}
