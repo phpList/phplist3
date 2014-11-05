@@ -1141,13 +1141,13 @@ function ListofLists($current,$fieldname,$subselect) {
   if (!empty($current["all"])) {
     $categoryhtml['all'] .= "checked";
   }
-  $categoryhtml['all'].= ' />'.$GLOBALS['I18N']->get('All Lists').'</li>';
+  $categoryhtml['all'].= ' />'.s('All Lists').'</li>';
 
   $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
   if (!empty($current["allactive"])) {
     $categoryhtml['all'] .= 'checked="checked"';
   }
-  $categoryhtml['all'] .= ' />'.$GLOBALS['I18N']->get('All Active Lists').'</li>';
+  $categoryhtml['all'] .= ' />'.s('All Public Lists').'</li>';
 
   ## need a better way to suppress this
   if ($_GET['page'] != 'send') {
