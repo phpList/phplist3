@@ -624,7 +624,7 @@ msgid "All Lists"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:1150
-msgid "All Active Lists"
+msgid "All Public Lists"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:1154
