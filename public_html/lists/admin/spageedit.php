@@ -63,7 +63,9 @@ if (isset($_POST["save"])) {
       ## rather crude sanitisation
       //      $default = preg_replace('/[^\w -\.]+/','',$default);
       // use unicode matching to keep non-ascii letters
-      $default = preg_replace('/[^\p{L} -\.]+/u','',$default);
+      if (!is_numeric($default)) { ## https://mantis.phplist.com/view.php?id=17532
+        $default = preg_replace('/[^\p{L} -\.]+/u','',$default);
+      }
       $order = sprintf('%d',$_POST['attr_listorder'][$att]);
       $required = !empty($_POST['attr_required'][$att]);
 //END BUGFIX 15285 - note 50677 (part 1)     
