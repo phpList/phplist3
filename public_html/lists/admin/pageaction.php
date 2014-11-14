@@ -7,6 +7,7 @@ $ajax = isset($_GET['ajaxed']);
 
 if ($ajax) {
   @ob_end_clean();
+  @ob_start();
   if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php')) {
     include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
   }
