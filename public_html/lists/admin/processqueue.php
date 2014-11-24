@@ -42,9 +42,9 @@ if (isset($_GET['pqchoice'])) {
   }
 }
 
-print '<pre>';
-var_dump($_SERVER);
-print '</pre>';
+//print '<pre>';
+//var_dump($_SERVER);
+//print '</pre>';
 
 $pqChoice = getConfig('pqchoice');
 if (empty($pqChoice)) {
