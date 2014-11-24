@@ -1014,8 +1014,11 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
     }
   }
   
+  $pqChoice = getConfig('pqchoice');
+  $hideProcessQueue = !MANUALLY_PROCESS_QUEUE || $pqChoice == 'phplistdotcom';
+  
   if ($access == "owner" || $access == "all" || $access == "view") {
-    if ($name == "processqueue" && !MANUALLY_PROCESS_QUEUE)
+    if ($name == "processqueue" && $hideProcessQueue)
       return "";#'<!-- '.$desc.'-->';
     elseif ($name == "processbounces" && !MANUALLY_PROCESS_BOUNCES) return ""; #'<!-- '.$desc.'-->';
     else {

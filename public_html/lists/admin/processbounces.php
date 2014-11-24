@@ -1,11 +1,30 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
+$inRemoteCall = false;
 
 if (!$GLOBALS["commandline"]) {
   ob_end_flush();
   if (!MANUALLY_PROCESS_BOUNCES) {
     print $GLOBALS['I18N']->get("This page can only be called from the commandline");
     return;
+  }
+  if (isset($_GET['login']) || isset($_GET['password'])) {
+    print Error(s('Remote processing of the queue is now handled with a processing secret'));
+    return;
+  }
+  $inRemoteCall = false;
+
+  if (isset($_GET['secret'])) {
+    $ourSecret = getConfig('remote_processing_secret');
+    if ($ourSecret != $_GET['secret']) {
+      print Error(s('Incorrect processing secret'));
+      return;
+    } else {
+      $inRemoteCall = true;
+    }
+  } else {
+    ## we're in a normal session, so the csrf token should work
+    verifyCsrfGetToken();
   }
 } else {
   ob_end_clean();

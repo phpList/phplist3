@@ -3,6 +3,25 @@
 ## https://mantis.phplist.com/view.php?id=17316
 #verifyCsrfGetToken();
 
+if (isset($_GET['login']) || isset($_GET['password'])) {
+  print Error(s('Remote processing of the queue is now handled with a processing secret'));
+  return;
+}
+$inRemoteCall = false;
+
+if (isset($_GET['secret'])) {
+  $ourSecret = getConfig('remote_processing_secret');
+  if ($ourSecret != $_GET['secret']) {
+    print Error(s('Incorrect processing secret'));
+    return;
+  } else {
+    $inRemoteCall = true;
+  }
+} else {
+  ## we're in a normal session, so the csrf token should work
+  verifyCsrfGetToken();
+}
+
 require_once dirname(__FILE__).'/../accesscheck.php';
 require_once dirname(__FILE__) .'/../sendemaillib.php';
 
@@ -210,9 +229,10 @@ function my_shutdown () {
   } else {
     $msgperhour = s('Calculating');
   }
-  if ($sent)
+  if ($sent) {
     output(sprintf('%d %s %01.2f %s (%d %s)',$sent,$GLOBALS['I18N']->get('messages sent in'),
       $totaltime,$GLOBALS['I18N']->get('seconds'),$msgperhour,$GLOBALS['I18N']->get('msgs/hr')),$sent,'progress');
+  }
   if ($invalid) {
     output(s('%d invalid email addresses',$invalid),1,'progress');
   }
@@ -251,29 +271,33 @@ function my_shutdown () {
         $delaytime = $batch_period;
       }
       sleep($delaytime);
+    }
+    if (!$GLOBALS['inRemoteCall']) {
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
       </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
     } else {
-      printf( '<script type="text/javascript">
-        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-      </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
+      print $sent;
     }
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->messageQueueFinished();
     }
     output($GLOBALS['I18N']->get('Finished, All done'),0);
+    if (!$GLOBALS['inRemoteCall']) {
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       window.parent.allDone("'.s('All done').'");
       </script>';
+    } else {
+      print "Finished";
+    }
     
   } else {
     output(s('Script finished, but not all messages have been sent yet.'));
   }
   if (empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
-    include_once "footer.inc";
+    return;
   } elseif (!empty($GLOBALS['commandline'])) {
     @ob_end_clean();
   }
@@ -343,6 +367,12 @@ function output ($message,$logit = 1,$target = 'summary') {
   if (!empty($GLOBALS["commandline"])) {
     cl_output(strip_tags($message).' ['.$GLOBALS['processqueue_timer']->interval(1).'] ('.$GLOBALS["pagestats"]["number_of_queries"].')');
     $infostring = "[". date("D j M Y H:i",time()) . "] [CL]";
+  } elseif ($GLOBALS['inRemoteCall']) {
+    ## with a remote call we suppress output
+    @ob_end_clean();
+    $infostring = '';
+    $message = '';
+    @ob_start();
   } else {
     $infostring = "[". date("D j M Y H:i",time()) . "] [" . $_SERVER["REMOTE_ADDR"] ."]";
     #print "$infostring $message<br/>\n";
@@ -375,8 +405,9 @@ function output ($message,$logit = 1,$target = 'summary') {
   }
 
   $report .= "\n$infostring $message";
-  if ($logit)
+  if ($logit) {
     logEvent($message);
+  }
   flush();
 }
 

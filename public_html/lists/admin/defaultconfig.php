@@ -89,6 +89,14 @@ $default_config = array (
   'category'=> 'security',
 ),
 
+  ## remote processing secret
+"remote_processing_secret" => array (
+ 'value' =>  substr(md5(uniqid(mt_rand(), true)),rand(0,10),rand(10,20)),
+ 'description' => s("Secret for remote processing"),
+  'type' => "text",
+  'category'=> 'security',
+),
+
   # admin addresses are other people who receive copies of subscriptions
 "admin_addresses" => array (
   'value' => '',
