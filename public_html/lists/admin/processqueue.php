@@ -2,7 +2,6 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!$GLOBALS["commandline"]) {
-  @ob_end_flush();
   if (!MANUALLY_PROCESS_QUEUE) {
     print "This page can only be called from the commandline";
     return;
