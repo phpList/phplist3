@@ -314,14 +314,12 @@ function finish ($flag,$message,$script_stage) {
   } elseif ($flag == "info") {
     $subject = s("Maillist Processing info");
   }
-  if (!$nothingtodo) {
+  if (!$nothingtodo && !$GLOBALS['inRemoteCall']) {
     output(s('Finished this run'),1,'progress');
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       parentJQuery("#progressmeter").updateSendProgress("'.$GLOBALS['sent'].','.$counters['total_users_for_message '.$messageid].'");
       </script>';
-    
-    
   } 
   if (!TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
     $reportSent = false;
