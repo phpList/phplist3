@@ -216,7 +216,7 @@ function my_shutdown () {
   global $script_stage,$reload;
 #  output( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
   output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0,'progress');
-  global $counters,$report,$send_process_id,$tables,$nothingtodo,$invalid,$processed,$failed_sent,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period,$counters;
+  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$failed_sent,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period;
   $some = $processed; #$sent;# || $invalid || $notsent;
   if (!$some) {
     output($GLOBALS['I18N']->get('Finished, Nothing to do'),0,'progress');
@@ -233,8 +233,8 @@ function my_shutdown () {
     output(sprintf('%d %s %01.2f %s (%d %s)',$sent,$GLOBALS['I18N']->get('messages sent in'),
       $totaltime,$GLOBALS['I18N']->get('seconds'),$msgperhour,$GLOBALS['I18N']->get('msgs/hr')),$sent,'progress');
   }
-  if ($invalid) {
-    output(s('%d invalid email addresses',$invalid),1,'progress');
+  if ($counters['invalid']) {
+    output(s('%d invalid email addresses',$counters['invalid']),1,'progress');
   }
   if ($failed_sent) {
     output(s('%d failed (will retry later)',$failed_sent),1,'progress');
@@ -248,7 +248,7 @@ function my_shutdown () {
   }
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    $plugin->processSendStats($sent,$invalid,$failed_sent,$unconfirmed,$counters);
+    $plugin->processSendStats($sent,$counters['invalid'],$failed_sent,$unconfirmed,$counters);
   }
 
   flushClickTrackCache();
@@ -277,7 +277,7 @@ function my_shutdown () {
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
       </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
     } else {
-      print $sent;
+      print json_encode($counters);
     }
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -290,7 +290,7 @@ function my_shutdown () {
       window.parent.allDone("'.s('All done').'");
       </script>';
     } else {
-      print "Finished";
+      print json_encode($counters);
     }
     
   } else {
@@ -493,7 +493,7 @@ if (0 && $reload) {
 }
 
 $script_stage = 1; # we are active
-$notsent = $sent = $invalid = $unconfirmed = $cannotsend = 0;
+$notsent = $sent = $counters['invalid'] = $unconfirmed = $cannotsend = 0;
 
 ## check for messages that need requeuing
 $req = Sql_Query(sprintf('select id,requeueinterval,embargo < now() as inthepast from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
@@ -1170,7 +1170,7 @@ while ($message = Sql_fetch_array($messages)) {
                 s('Marked unconfirmed while sending campaign %d',$messageid)
             );
           }
-          $invalid++;
+          $counters['invalid']++;
         }
       }
     } else {
@@ -1189,10 +1189,10 @@ while ($message = Sql_fetch_array($messages)) {
       }
     }
     $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");
-    $processed = $notsent + $sent + $invalid + $unconfirmed + $cannotsend + $failed_sent;
+    $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $failed_sent;
     #if ($processed % 10 == 0) {
     if (0) {
-      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$invalid.' U'.$unconfirmed.' C'.$cannotsend.' F'.$failed_sent);
+      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$failed_sent);
       $rn = $reload * $num_per_batch;
       output('P '.$processed .' N'. $counters['total_users_for_message '.$messageid] .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
     }
@@ -1226,7 +1226,7 @@ while ($message = Sql_fetch_array($messages)) {
   #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
     if (!empty($getspeedstats)) output('end process user '."\n".'-----------------------------------'."\n".$userid);  
   }
-  $processed = $notsent + $sent + $invalid + $unconfirmed + $cannotsend + $failed_sent;
+  $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $failed_sent;
   output(s('Processed %d out of %d subscribers',$counters['processed_users_for_message '.$messageid],$counters['total_users_for_message '.$messageid]),1,'progress');
 
   if ($counters['total_users_for_message '.$messageid] - $counters['sent_users_for_message '.$messageid] <= 0 || $stopSending) {
