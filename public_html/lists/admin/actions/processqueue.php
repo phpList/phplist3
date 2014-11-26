@@ -216,8 +216,8 @@ function my_shutdown () {
   global $script_stage,$reload;
 #  output( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
   output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0,'progress');
-  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$failed_sent,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period;
-  $some = $processed; #$sent;# || $invalid || $notsent;
+  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period;
+  $some = $processed; #$sent;# ||  $notsent;
   if (!$some) {
     output($GLOBALS['I18N']->get('Finished, Nothing to do'),0,'progress');
     $nothingtodo = 1;
@@ -236,8 +236,8 @@ function my_shutdown () {
   if ($counters['invalid']) {
     output(s('%d invalid email addresses',$counters['invalid']),1,'progress');
   }
-  if ($failed_sent) {
-    output(s('%d failed (will retry later)',$failed_sent),1,'progress');
+  if ($counters['failed_sent']) {
+    output(s('%d failed (will retry later)',$counters['failed_sent']),1,'progress');
     foreach ($counters as $label => $value) {
     #  output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)),1,'progress');
       cl_output(sprintf('%d %s',$value,$GLOBALS['I18N']->get($label)));
@@ -248,7 +248,7 @@ function my_shutdown () {
   }
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    $plugin->processSendStats($sent,$counters['invalid'],$failed_sent,$unconfirmed,$counters);
+    $plugin->processSendStats($sent,$counters['invalid'],$counters['failed_sent'],$unconfirmed,$counters);
   }
 
   flushClickTrackCache();
@@ -486,6 +486,8 @@ if ($num_per_batch > 0) {
   return;
 }
 $counters['batch_total'] = $num_per_batch;
+$counters['failed_sent'] = 0;
+$counters['invalid'] = 0;
 
 if (0 && $reload) {
   output(s('Sent in last run').": $lastsent",0,'progress');
@@ -493,7 +495,7 @@ if (0 && $reload) {
 }
 
 $script_stage = 1; # we are active
-$notsent = $sent = $counters['invalid'] = $unconfirmed = $cannotsend = 0;
+$notsent = $sent = $unconfirmed = $cannotsend = 0;
 
 ## check for messages that need requeuing
 $req = Sql_Query(sprintf('select id,requeueinterval,embargo < now() as inthepast from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
@@ -551,12 +553,12 @@ if (!isset($num_per_batch)) {
 
 while ($message = Sql_fetch_array($messages)) {
   $counters['campaign']++;
-  $failed_sent = 0;
   $throttlecount = 0;
 
   $messageid = $message["id"];
   $counters['total_users_for_message '.$messageid] = 0;
   $counters['processed_users_for_message '.$messageid] = 0;
+  $counters['failed_sent_for_message '.$messageid] = 0;
   
   if (!empty($getspeedstats)) output('start send '.$messageid);
   
@@ -1067,7 +1069,8 @@ while ($message = Sql_fetch_array($messages)) {
 //
 //              }
            } else {
-             $failed_sent++;
+             $counters['failed_sent']++;
+             $counters['failed_sent_for_message '.$messageid]++;
              ## need to check this, the entry shouldn't be there in the first place, so no need to delete it
              ## might be a cause for duplicated emails
              if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
@@ -1189,10 +1192,10 @@ while ($message = Sql_fetch_array($messages)) {
       }
     }
     $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");
-    $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $failed_sent;
+    $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
     #if ($processed % 10 == 0) {
     if (0) {
-      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$failed_sent);
+      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$counters['failed_sent']);
       $rn = $reload * $num_per_batch;
       output('P '.$processed .' N'. $counters['total_users_for_message '.$messageid] .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
     }
@@ -1226,14 +1229,14 @@ while ($message = Sql_fetch_array($messages)) {
   #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
     if (!empty($getspeedstats)) output('end process user '."\n".'-----------------------------------'."\n".$userid);  
   }
-  $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $failed_sent;
+  $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
   output(s('Processed %d out of %d subscribers',$counters['processed_users_for_message '.$messageid],$counters['total_users_for_message '.$messageid]),1,'progress');
 
   if ($counters['total_users_for_message '.$messageid] - $counters['sent_users_for_message '.$messageid] <= 0 || $stopSending) {
     # this message is done
     if (!$someusers)
       output($GLOBALS['I18N']->get('Hmmm, No users found to send to'),1,'progress');
-    if (!$failed_sent) {
+    if (!$counters['failed_sent']) {
       repeatMessage($messageid);
       $status = Sql_query(sprintf('update %s set status = "sent",sent = current_timestamp where id = %d',$GLOBALS['tables']['message'],$messageid));
             
