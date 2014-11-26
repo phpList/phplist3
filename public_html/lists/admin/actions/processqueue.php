@@ -216,8 +216,8 @@ function my_shutdown () {
   global $script_stage,$reload;
 #  output( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
   output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0,'progress');
-  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$sent,$unconfirmed,$num_per_batch,$batch_period;
-  $some = $processed; #$sent;# ||  $notsent;
+  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$unconfirmed,$num_per_batch,$batch_period;
+  $some = $processed; 
   if (!$some) {
     output($GLOBALS['I18N']->get('Finished, Nothing to do'),0,'progress');
     $nothingtodo = 1;
@@ -225,13 +225,13 @@ function my_shutdown () {
 
   $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
   if ($totaltime > 0) {
-    $msgperhour = (3600/$totaltime) * $sent;
+    $msgperhour = (3600/$totaltime) * $counters['sent'];
   } else {
     $msgperhour = s('Calculating');
   }
-  if ($sent) {
-    output(sprintf('%d %s %01.2f %s (%d %s)',$sent,$GLOBALS['I18N']->get('messages sent in'),
-      $totaltime,$GLOBALS['I18N']->get('seconds'),$msgperhour,$GLOBALS['I18N']->get('msgs/hr')),$sent,'progress');
+  if ($counters['sent']) {
+    output(sprintf('%d %s %01.2f %s (%d %s)',$counters['sent'],$GLOBALS['I18N']->get('messages sent in'),
+      $totaltime,$GLOBALS['I18N']->get('seconds'),$msgperhour,$GLOBALS['I18N']->get('msgs/hr')),$counters['sent'],'progress');
   }
   if ($counters['invalid']) {
     output(s('%d invalid email addresses',$counters['invalid']),1,'progress');
@@ -248,7 +248,7 @@ function my_shutdown () {
   }
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    $plugin->processSendStats($sent,$counters['invalid'],$counters['failed_sent'],$unconfirmed,$counters);
+    $plugin->processSendStats($counters['sent'],$counters['invalid'],$counters['failed_sent'],$unconfirmed,$counters);
   }
 
   flushClickTrackCache();
@@ -261,7 +261,7 @@ function my_shutdown () {
     # if the script timed out in stage 5, reload the page to continue with the rest
     $reload++;
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
-      if ($sent + 10 < $GLOBALS["original_num_per_batch"]) {
+      if ($counters['sent'] + 10 < $GLOBALS["original_num_per_batch"]) {
         output($GLOBALS['I18N']->get('Less than batch size were sent, so reloading imminently'),1,'progress');
         $delaytime = 10;
       } else {
@@ -275,7 +275,7 @@ function my_shutdown () {
     if (!$GLOBALS['inRemoteCall']) {
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-      </script></body></html>',$reload,$sent,$notsent,addCsrfGetToken());
+      </script></body></html>',$reload,$counters['sent'],$notsent,addCsrfGetToken());
     } else {
       print json_encode($counters);
     }
@@ -318,7 +318,7 @@ function finish ($flag,$message,$script_stage) {
     output(s('Finished this run'),1,'progress');
       print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
-      parentJQuery("#progressmeter").updateSendProgress("'.$GLOBALS['sent'].','.$counters['total_users_for_message '.$messageid].'");
+      parentJQuery("#progressmeter").updateSendProgress("'.$counters['sent'].','.$counters['total_users_for_message '.$messageid].'");
       </script>';
   } 
   if (!TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
@@ -488,6 +488,7 @@ if ($num_per_batch > 0) {
 $counters['batch_total'] = $num_per_batch;
 $counters['failed_sent'] = 0;
 $counters['invalid'] = 0;
+$counters['sent'] = 0;
 
 if (0 && $reload) {
   output(s('Sent in last run').": $lastsent",0,'progress');
@@ -495,7 +496,7 @@ if (0 && $reload) {
 }
 
 $script_stage = 1; # we are active
-$notsent = $sent = $unconfirmed = $cannotsend = 0;
+$notsent = $unconfirmed = $cannotsend = 0;
 
 ## check for messages that need requeuing
 $req = Sql_Query(sprintf('select id,requeueinterval,embargo < now() as inthepast from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
@@ -843,7 +844,7 @@ while ($message = Sql_fetch_array($messages)) {
 
   if (MAILQUEUE_BATCH_SIZE) {
     ## in case of sending multiple campaigns, reduce batch with "sent"
-    $num_per_batch -= $sent;
+    $num_per_batch -= $counters['sent'];
     
     # send in batches of $num_per_batch users
     $batch_total = $counters['total_users_for_message '.$messageid];
@@ -865,8 +866,8 @@ while ($message = Sql_fetch_array($messages)) {
   while ($userdata = Sql_Fetch_Row($userids)) {
     $counters['processed_users_for_message '.$messageid]++;
     $failure_reason = '';
-    if ($num_per_batch && $sent >= $num_per_batch) {
-      output($GLOBALS['I18N']->get('batch limit reached').": $sent ($num_per_batch)",1,'progress');
+    if ($num_per_batch && $counters['sent'] >= $num_per_batch) {
+      output(s('batch limit reached').": ".$counters['sent']." ($num_per_batch)",1,'progress');
       $GLOBALS["wait"] = $batch_period;
       return;
     }
@@ -885,7 +886,7 @@ while ($message = Sql_fetch_array($messages)) {
 
     ## check for max-process-queue-time
     $elapsed = $GLOBALS['processqueue_timer']->elapsed(1);
-    if ($maxProcessQueueTime && $elapsed > $maxProcessQueueTime && $sent > 0) {
+    if ($maxProcessQueueTime && $elapsed > $maxProcessQueueTime && $counters['sent'] > 0) {
       cl_output($GLOBALS['I18N']->get('queue processing time has exceeded max processing time ').$maxProcessQueueTime);
       break;
     } elseif ($alive && !$stopSending) {
@@ -1055,7 +1056,7 @@ while ($message = Sql_fetch_array($messages)) {
                 $domainthrottle[$domainname]['sent']++;
               }
             }
-            $sent++;
+            $counters['sent']++;
             $counters['sent_users_for_message '.$messageid]++;
             $um = Sql_Replace($tables['usermessage'], array('entered' => 'current_timestamp', 'userid' => $userid, 'messageid' => $messageid, 'status' => "sent"), array('userid', 'messageid'), false);
 
@@ -1098,7 +1099,7 @@ while ($message = Sql_fetch_array($messages)) {
            }
            if (isset($running_throttle_delay)) {
              sleep($running_throttle_delay);
-             if ($sent % 5 == 0) {
+             if ($counters['sent'] % 5 == 0) {
                # retry running faster after some more messages, to see if that helps
                unset($running_throttle_delay);
              }
@@ -1106,14 +1107,13 @@ while ($message = Sql_fetch_array($messages)) {
              usleep(MAILQUEUE_THROTTLE * 1000000);
            } elseif (MAILQUEUE_BATCH_SIZE && MAILQUEUE_AUTOTHROTTLE) {
              $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
-             $msgperhour = (3600/$totaltime) * $sent;
+             $msgperhour = (3600/$totaltime) * $counters['sent'];
              $msgpersec = $msgperhour / 3600;
              
              ##11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
-           #  $secpermsg = $totaltime / $sent;
-             $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $sent;
+           #  $secpermsg = $totaltime / $counters['sent'];
+             $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $counters['sent'];
              $delay = $target - $totaltime;
-#             output("Sent: $sent mph $msgperhour mps $msgpersec secpm $secpermsg target $target actual $actual d $delay");
 
              if ($delay > 0) {
                if (VERBOSE) {
@@ -1192,10 +1192,10 @@ while ($message = Sql_fetch_array($messages)) {
       }
     }
     $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");
-    $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
+    $processed = $notsent + $counters['sent'] + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
     #if ($processed % 10 == 0) {
     if (0) {
-      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$sent.' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$counters['failed_sent']);
+      output('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$counters['sent'].' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$counters['failed_sent']);
       $rn = $reload * $num_per_batch;
       output('P '.$processed .' N'. $counters['total_users_for_message '.$messageid] .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
     }
@@ -1208,10 +1208,10 @@ while ($message = Sql_fetch_array($messages)) {
      
     
     $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
-    if ($sent > 0) {
-      $msgperhour = (3600/$totaltime) * $sent;
-      $secpermsg = $totaltime / $sent;
-      $timeleft = ($counters['total_users_for_message '.$messageid] - $sent) * $secpermsg;
+    if ($counters['sent'] > 0) {
+      $msgperhour = (3600/$totaltime) * $counters['sent'];
+      $secpermsg = $totaltime / $counters['sent'];
+      $timeleft = ($counters['total_users_for_message '.$messageid] - $counters['sent']) * $secpermsg;
       $eta = date('D j M H:i',time()+$timeleft);
     } else {
       $msgperhour = 0;
@@ -1222,14 +1222,14 @@ while ($message = Sql_fetch_array($messages)) {
     setMessageData($messageid,'ETA',$eta);
     setMessageData($messageid,'msg/hr',"$msgperhour");
     
-    cl_progress('sent '.$sent.' ETA '.$eta.' sending '.sprintf('%d',$msgperhour).' msg/hr');
+    cl_progress('sent '.$counters['sent'].' ETA '.$eta.' sending '.sprintf('%d',$msgperhour).' msg/hr');
     
-    setMessageData($messageid,'to process',$counters['total_users_for_message '.$messageid] - $sent);
+    setMessageData($messageid,'to process',$counters['total_users_for_message '.$messageid] - $counters['sent']);
     setMessageData($messageid,'last msg sent',time());
   #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
     if (!empty($getspeedstats)) output('end process user '."\n".'-----------------------------------'."\n".$userid);  
   }
-  $processed = $notsent + $sent + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
+  $processed = $notsent + $counters['sent'] + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
   output(s('Processed %d out of %d subscribers',$counters['processed_users_for_message '.$messageid],$counters['total_users_for_message '.$messageid]),1,'progress');
 
   if ($counters['total_users_for_message '.$messageid] - $counters['sent_users_for_message '.$messageid] <= 0 || $stopSending) {
