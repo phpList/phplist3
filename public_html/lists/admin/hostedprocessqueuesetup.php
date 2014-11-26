@@ -5,10 +5,10 @@ if (!empty($_POST['apikey'])) {
     print Error($GLOBALS['I18N']->get('No Access'));
     return;
   }
-  $check = file_get_contents(PQAPI_URL.'&cmd=verifykey&key='.$_POST['apikey']);
+  $check = file_get_contents(PQAPI_URL.'&cmd=verifykey&key='.trim($_POST['apikey']));
   $check = trim($check);
   if (strpos($check,'KEYPASS') !== false) {
-    SaveConfig('PQAPIkey',str_replace('"','',strip_tags($_POST['apikey'])),0);
+    SaveConfig('PQAPIkey',trim(str_replace('"','',strip_tags($_POST['apikey']))),0);
     SaveConfig('pqchoice','phplistdotcom',0);
     $_SESSION['action_result'] = s('Settings were saved successfully');
     Redirect('hostedprocessqueuesetup');
