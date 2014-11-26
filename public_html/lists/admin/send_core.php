@@ -376,27 +376,8 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->messageQueued($id);
       }
-      $pqChoice = getConfig('pqchoice');
-      if ($pqChoice == 'phplistdotcom') {
-        $activated = file_get_contents(PQAPI_URL.'&cmd=start&key='.getConfig('PQAPIkey').'&s='.urlencode(getConfig('remote_processing_secret')).'&u='.base64_encode($_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['REQUEST_URI'])));
-        if ($activated == 'OK') {
-          print '<h3>'.s('Remote queue processing has been initiated successfully').'</h3>';
-          print '<p>'.PageLinkButton("messages&tab=active",$GLOBALS['I18N']->get("view progress")).'</p>';
-        } elseif ($activated == 'KEYFAIL' || $activated == 'NAC') {
-          print '<h3>'. s('Error activating remote queue processing').'</h3>';
-          if ($activated == 'KEYFAIL') {
-            print s('The API key is incorrect');
-          } elseif ($activated == 'NAC') {
-            print s('The phpList.com server is unable to reach your phpList installation');
-          } else {
-            print s('Unknown error');
-          }
-          print '<p><a href="./?page=hostedprocessqueuesetup" class="button">'.s('Change settings').'</a></p>';
-          print '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
-        } else {
-          print '<h3>'.s('Error activating remote queue processing').'</h3>';
-          print '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
-        }
+      if (getConfig('pqchoice') == 'phplistdotcom') {
+        print activateRemoteQueue();
       } elseif (MANUALLY_PROCESS_QUEUE) {
         print '<p>'.PageLinkButton("processqueue",$GLOBALS['I18N']->get("processqueue")).'</p>';
       } else {
