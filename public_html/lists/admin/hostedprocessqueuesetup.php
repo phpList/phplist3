@@ -10,8 +10,8 @@ if (!empty($_POST['apikey'])) {
   if (strpos($check,'KEYPASS') !== false) {
     SaveConfig('PQAPIkey',trim(str_replace('"','',strip_tags($_POST['apikey']))),0);
     SaveConfig('pqchoice','phplistdotcom',0);
-    $_SESSION['action_result'] = s('Settings were saved successfully');
-    Redirect('hostedprocessqueuesetup');
+    $_SESSION['action_result'] = s('Remote queue processing settings were saved successfully');
+    Redirect('messages&tab=active');
   } else {
     $_SESSION['action_result'] = s('Error, the API key is incorrect');
     Redirect('hostedprocessqueuesetup');
