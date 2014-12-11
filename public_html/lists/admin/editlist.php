@@ -99,7 +99,7 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   }
   print '<div class="actionresult">'.$_SESSION['action_result'].'</div>';
   if ($_GET['page'] == 'editlist') {
-    print '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,s('Add some subscribers')).'</div>';
+    print '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,s('Add some subscribers')).' '.PageLinkButton('editlist',s('Add another list')).'</div>';
   }
   unset($_SESSION['action_result']);
   return;
