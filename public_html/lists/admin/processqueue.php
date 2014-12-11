@@ -51,12 +51,15 @@ if (empty($pqChoice)) {
   
   print '<strong>The options are:</strong>';
   print '<h4>1. Use the service from phpList.com</h4>
+      <p>The service has a free trial and low cost.</p>
       <p><strong>Advantage</strong>: No need to keep your computer switched on and your browser open. <strong>Sending will happen automatically</strong>.</p>
-      <p><strong>Disadvantage</strong>: No complete control over when the queue is processed.</p>
+      <p><strong>Disadvantage</strong>: We can\'t think of any <img src="../images/smiley/wink_smile.gif" />.</p>
       <a href="./?page=hostedprocessqueuesetup" class="button">'.s('Set up using the service').'</a>
+      <p><i>You can change your mind at any time.</i></p>
       <p>OR</p>
+      <p></p>
       <h4> 2. Run the queue manually in your browser</h4>
-      <p><strong>Advantage</strong>: No external dependency, no additional cost, send when you want to.</p>
+      <p><strong>Advantage</strong>: No external dependency, no additional cost.</p>
       <p><strong>Disadvantage</strong>: The need to keep your computer running until everything has been sent.</p>
       <a href="./?page=processqueue&pqchoice=local" class="button">'.s('Use local processing').'</a>
   ';
