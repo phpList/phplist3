@@ -277,7 +277,7 @@ function my_shutdown () {
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
       </script></body></html>',$reload,$counters['sent'],$notsent,addCsrfGetToken());
     } else {
-      print json_encode($counters);
+      print outputCounters();
     }
   }  elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -290,9 +290,8 @@ function my_shutdown () {
       window.parent.allDone("'.s('All done').'");
       </script>';
     } else {
-      print json_encode($counters);
+      print outputCounters();
     }
-    
   } else {
     output(s('Script finished, but not all messages have been sent yet.'));
   }
@@ -407,6 +406,21 @@ function output ($message,$logit = 1,$target = 'summary') {
     logEvent($message);
   }
   flush();
+}
+
+function outputCounters() {
+  global $counters;
+  $result = '';
+  if (!function_exists('json_encode')) { // only PHP5.2.0 and up
+    return json_encode($counters);
+  } else {
+    ## keep track of which php versions we need to continue to support 
+    $counters['PHPVERSION'] = phpversion();
+    foreach ($counters as $key => $val) {
+      $result .= $key.'='.$val.';';
+    }
+    return $result;
+  }
 }
 
 function sendEmailTest ($messageid,$email) {
@@ -1276,4 +1290,3 @@ while ($message = Sql_fetch_array($messages)) {
 if (!$num_messages)
   $script_stage = 6; # we are done
 # shutdown will take care of reporting  
-?>
