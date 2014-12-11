@@ -173,7 +173,8 @@ if (sizeof($email_list)) {
       if ($html) {
         print '<blockquote>' . $html . '</blockquote><hr />';
       }
-    } else {
+    } else { // not test
+      @ob_end_flush();
       if ($cnt % 5 == 0) {
         print '<script type="text/javascript">
         var parentJQuery = window.parent.jQuery;
@@ -183,288 +184,280 @@ if (sizeof($email_list)) {
       }
       $cnt++;
 
-	if (!$invalid || ($invalid && $_SESSION["omit_invalid"] != "yes")) {
-      # do import
-      ## create new attributes
-      foreach ($_SESSION["import_attribute"] as $column => $item) {
-        if ($item["record"] == "new") {
-          Sql_Query(sprintf('insert into %s (name,type) values("%s","textline")', $tables["attribute"], addslashes($column)));
-          $attid = Sql_Insert_id();
-          Sql_Query(sprintf('update %s set tablename = "attr%d" where id = %d', $tables["attribute"], $attid, $attid));
-          Sql_Query("create table " . $GLOBALS["table_prefix"] . "listattr_attr" . $attid . "
-                      (id integer not null primary key auto_increment, name varchar(255) unique,
-                      listorder integer default 0)");
-          $_SESSION["import_attribute"][$column]["record"] = $attid;
-        }
-      }
-      $new = 0;
-/*      $cnt++;
-      if ($cnt % 5 == 0) {
-        print '<script type="text/javascript">
-        var parentJQuery = window.parent.jQuery;
-        parentJQuery("#progressbar").updateProgress("'.$cnt.','.$total.'");
-        </script>';      
-        flush();
-      }*/
-      if (!empty($user["systemvalues"]["foreignkey"])) {
-        dbg('Importing on FK '.$user["systemvalues"]["foreignkey"].' email :'.$user["systemvalues"]["email"]);
-        $result = Sql_query(sprintf('select id,uniqid from %s where foreignkey = "%s"', $tables["user"], $user["systemvalues"]["foreignkey"]));
-        # print "<br/>Using foreign key for matching: ".$user["systemvalues"]["foreign key"];
-        $count["fkeymatch"]++;
-        $exists = Sql_Affected_Rows();
-        $existing_user = Sql_fetch_array($result);
-        # check whether the email will clash
-        $clashcheck = Sql_Fetch_Row_Query(sprintf('select id from %s
-                  where email = "%s"', $tables["user"], $user["systemvalues"]["email"]));
-        if ($clashcheck[0] != $existing_user["id"]) {
-          $count['duplicate']++;
-          $notduplicate = 0;
-          $c = 0;
-          while (!$notduplicate) {
-            $c++;
-            $req = Sql_Query(sprintf('select id from %s where email = "%s"', $tables["user"], $GLOBALS['I18N']->get('duplicate') .
-            "$c " . $user["systemvalues"]["email"]));
-            $notduplicate = !Sql_Affected_Rows();
-          }
-          if (!$_SESSION["retainold"]) {
-            Sql_Query(sprintf('update %s set email = "%s" where email = "%s"', $tables["user"], "duplicate$c " .
-            $user["systemvalues"]["email"], $user["systemvalues"]["email"]));
-            addUserHistory("duplicate$c " . $user["systemvalues"]["email"], "Duplication clash ", ' User marked duplicate email after clash with imported record');
-          } else {
-            if ($_SESSION["show_warnings"])
-              print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"] . $GLOBALS['I18N']->get(' user imported as ') . '&quot;' . $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"] . "&quot;");
-            $user["systemvalues"]["email"] = $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"];
+      if (!$invalid || ($invalid && $_SESSION["omit_invalid"] != "yes")) {
+        # do import
+        ## create new attributes
+        foreach ($_SESSION["import_attribute"] as $column => $item) {
+          if ($item["record"] == "new") {
+            Sql_Query(sprintf('insert into %s (name,type) values("%s","textline")', $tables["attribute"], addslashes($column)));
+            $attid = Sql_Insert_id();
+            Sql_Query(sprintf('update %s set tablename = "attr%d" where id = %d', $tables["attribute"], $attid, $attid));
+            Sql_Query("create table " . $GLOBALS["table_prefix"] . "listattr_attr" . $attid . "
+                        (id integer not null primary key auto_increment, name varchar(255) unique,
+                        listorder integer default 0)");
+            $_SESSION["import_attribute"][$column]["record"] = $attid;
           }
         }
-      } else {
-        dbg('Importing on email '.$user["systemvalues"]["email"]);
-        $result = Sql_query(sprintf('select id,uniqid from %s where email = "%s"', $tables["user"], $user["systemvalues"]["email"]));
-        # print "<br/>Using email for matching: ".$user["systemvalues"]["email"];
-        $count["emailmatch"]++;
-        $exists = Sql_Affected_Rows();
-        $existing_user = Sql_fetch_array($result);
-      }
-      if ($exists) {
-        // User exist, remember some values to add them to the lists
-        $count["exist"]++;
-        $userid = $existing_user["id"];
-        $uniqid = $existing_user["uniqid"];
-      } else {
-        // user does not exist
-        $new = 1;
-        // Create unique number
-        mt_srand((double) microtime() * 1000000);
-        $randval = mt_rand();
-        # this is very time consuming when importing loads of users as it does a lookup
-        # needs speeding up if possible
-        $uniqid = getUniqid();
-        $confirmed = $_SESSION["notify"] != "yes" && !preg_match("/Invalid Email/i", $index);
-
-        $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail)
-                  values("%s",now(),%d,"%s",1)', $tables["user"], $user["systemvalues"]["email"], $confirmed, $uniqid);
-        $result = Sql_query($query, 1);
-        $userid = Sql_insert_id();
-        if (!$userid) {
-          # no id returned, so it must have been a duplicate entry
-          if ($_SESSION["show_warnings"])
-            print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"]);
-          $c = 0;
-          while (!$userid) {
-            $c++;
-            $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail)
-                          values("%s",now(),%d,"%s",1)', $tables["user"], $user["systemvalues"]["email"] .
-            " ($c)", 0, $uniqid);
-            $result = Sql_query($query, 1);
-            $userid = Sql_insert_id();
-          }
-          $user["systemvalues"]["email"] = $user["systemvalues"]["email"] . " ($c)";
-        }
-
-        $count["email_add"]++;
-        $some = 1;
-      }
-
-      reset($_SESSION["import_attribute"]);
-   #   var_dump($_SESSION);exit;
-      if ($new || (!$new && $_SESSION["overwrite"] == "yes")) {
-        $query = "";
-        $count["dataupdate"]++;
-        $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables["user"], $userid));
-        $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-        $history_entry = $GLOBALS['scheme'] . '://' . getConfig("website") . $GLOBALS["adminpages"] . '/?page=user&id=' . $userid . "\n\n";
-        foreach ($user["systemvalues"] as $column => $value) {
-          if (!empty($column)) { # && !empty($value)) {
-            if ($column == 'groupmapping' || strpos($column,'grouptype_') === 0) {
-              ## specifically request this group, so that it doesn't interfere with the "groups" which are the ones 
-              ## submitted in the form
-              
-              if (strpos($column,'grouptype_') === 0) {
-                list($tmp,$type) = explode('_',$column);
-              } else {
-                $type = $_SESSION['grouptype'];
-              }
-              $type = sprintf('%d',$type);
-              ## verify the type is set
-              if (!in_array($type,array_keys($GLOBALS['config']['usergroup_types']))) {
-                Warn('Invalid group membership type'.$type);
-                dbg($type,'Type not found');
-              }
-              
-              $columnGroups = explode(',',$value);
-              foreach ($columnGroups as $sGroup) {
-                $sGroup = trim($sGroup);
-                $groupIdReq = Sql_Fetch_Row_Query(sprintf('select id from groups where name = "%s"',$sGroup));
-                if (empty($groupIdReq[0])) {
-                  Sql_Query(sprintf('insert into groups (name) values("%s")',$sGroup));
-                  Warn("Group $sGroup added");
-                  $groupIdReq[0] = Sql_Insert_id();
-                }
-                dbg('Adding to group '.$sGroup.' with type '.$GLOBALS['config']['usergroup_types'][$type]);
-                ## @@ this may cause problems on not-upgraded DBs
-                Sql_Query(sprintf('replace into user_group (userid,groupid,type) values(%d,%d,%d)',$userid,$groupIdReq[0],$type));
-              } 
+        $new = 0;
+        if (!empty($user["systemvalues"]["foreignkey"])) {
+ //         dbg('Importing on FK '.$user["systemvalues"]["foreignkey"].' email :'.$user["systemvalues"]["email"]);
+          $result = Sql_query(sprintf('select id,uniqid from %s where foreignkey = "%s"', $tables["user"], $user["systemvalues"]["foreignkey"]));
+          # print "<br/>Using foreign key for matching: ".$user["systemvalues"]["foreign key"];
+          $count["fkeymatch"]++;
+          $exists = Sql_Affected_Rows();
+          $existing_user = Sql_fetch_array($result);
+          # check whether the email will clash
+          $clashcheck = Sql_Fetch_Row_Query(sprintf('select id from %s
+                    where email = "%s"', $tables["user"], $user["systemvalues"]["email"]));
+          if ($clashcheck[0] != $existing_user["id"]) {
+            $count['duplicate']++;
+            $notduplicate = 0;
+            $c = 0;
+            while (!$notduplicate) {
+              $c++;
+              $req = Sql_Query(sprintf('select id from %s where email = "%s"', $tables["user"], $GLOBALS['I18N']->get('duplicate') .
+              "$c " . $user["systemvalues"]["email"]));
+              $notduplicate = !Sql_Affected_Rows();
+            }
+            if (!$_SESSION["retainold"]) {
+              Sql_Query(sprintf('update %s set email = "%s" where email = "%s"', $tables["user"], "duplicate$c " .
+              $user["systemvalues"]["email"], $user["systemvalues"]["email"]));
+              addUserHistory("duplicate$c " . $user["systemvalues"]["email"], "Duplication clash ", ' User marked duplicate email after clash with imported record');
             } else {
-              $query .= sprintf('%s = "%s",', $column, $value);
+              if ($_SESSION["show_warnings"])
+                print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"] . $GLOBALS['I18N']->get(' user imported as ') . '&quot;' . $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"] . "&quot;");
+              $user["systemvalues"]["email"] = $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"];
             }
           }
+        } else {
+          dbg('Importing on email '.$user["systemvalues"]["email"]);
+          $result = Sql_query(sprintf('select id,uniqid from %s where email = "%s"', $tables["user"], $user["systemvalues"]["email"]));
+          # print "<br/>Using email for matching: ".$user["systemvalues"]["email"];
+          $count["emailmatch"]++;
+          $exists = Sql_Affected_Rows();
+          $existing_user = Sql_fetch_array($result);
         }
-        if ($query) {
-          $query = substr($query, 0, -1);
-          # this may cause a duplicate error on email, so add ignore
-          Sql_Query("update ignore {$tables["user"]} set $query where id = $userid");
+        if ($exists) {
+          // User exist, remember some values to add them to the lists
+          $count["exist"]++;
+          $userid = $existing_user["id"];
+          $uniqid = $existing_user["uniqid"];
+        } else {
+          // user does not exist
+          $new = 1;
+          // Create unique number
+          mt_srand((double) microtime() * 1000000);
+          $randval = mt_rand();
+          # this is very time consuming when importing loads of users as it does a lookup
+          # needs speeding up if possible
+          $uniqid = getUniqid();
+          $confirmed = $_SESSION["notify"] != "yes" && !preg_match("/Invalid Email/i", $index);
+
+          $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail)
+                    values("%s",now(),%d,"%s",1)', $tables["user"], $user["systemvalues"]["email"], $confirmed, $uniqid);
+          $result = Sql_query($query, 1);
+          $userid = Sql_insert_id();
+          if (!$userid) {
+            # no id returned, so it must have been a duplicate entry
+            if ($_SESSION["show_warnings"])
+              print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"]);
+            $c = 0;
+            while (!$userid) {
+              $c++;
+              $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail)
+                            values("%s",now(),%d,"%s",1)', $tables["user"], $user["systemvalues"]["email"] .
+              " ($c)", 0, $uniqid);
+              $result = Sql_query($query, 1);
+              $userid = Sql_insert_id();
+            }
+            $user["systemvalues"]["email"] = $user["systemvalues"]["email"] . " ($c)";
+          }
+
+          $count["email_add"]++;
+          $some = 1;
         }
-        foreach ($_SESSION["import_attribute"] as $item) {
-          if (isset ($user[$item["index"]]) && is_numeric($item['record']) && strpos($item['record'],'grouptype_') !== 0) {
-            $attribute_index = $item["record"];
-            $uservalue = $user[$item["index"]];
-            # check whether this is a textline or a selectable item
-            $att = Sql_Fetch_Row_Query("select type,tablename,name from " . $tables["attribute"] . " where id = $attribute_index"); ////
-            switch ($att[0]) {
-              case "select" :
-              case "radio" :
-                $val = Sql_Query("select id from $table_prefix" . "listattr_$att[1] where name = \"$uservalue\"");
-                # if we do not have this value add it
-                if (!Sql_Affected_Rows()) {
-                  Sql_Query("insert into $table_prefix" . "listattr_$att[1] (name) values(\"$uservalue\")");
-                  Warn("Value $uservalue added to attribute $att[2]");
-                  $user_att_value = Sql_Insert_Id();
+
+        reset($_SESSION["import_attribute"]);
+     #   var_dump($_SESSION);exit;
+        if ($new || (!$new && $_SESSION["overwrite"] == "yes")) {
+          $query = "";
+          $count["dataupdate"]++;
+          $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables["user"], $userid));
+          $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
+          $history_entry = $GLOBALS['scheme'] . '://' . getConfig("website") . $GLOBALS["adminpages"] . '/?page=user&id=' . $userid . "\n\n";
+          foreach ($user["systemvalues"] as $column => $value) {
+            if (!empty($column)) { # && !empty($value)) {
+              if ($column == 'groupmapping' || strpos($column,'grouptype_') === 0) {
+                ## specifically request this group, so that it doesn't interfere with the "groups" which are the ones 
+                ## submitted in the form
+                
+                if (strpos($column,'grouptype_') === 0) {
+                  list($tmp,$type) = explode('_',$column);
                 } else {
-                  $d = Sql_Fetch_Row($val);
-                  $user_att_value = $d[0];
+                  $type = $_SESSION['grouptype'];
                 }
-                break;
-              case "checkboxgroup":
-                $values = explode(',',$uservalue);
-                $valueIds = array();
-                foreach ($values as $importValue) {
-                  $val = Sql_Query("select id from $table_prefix" . "listattr_$att[1] where name = \"$importValue\"");
+                $type = sprintf('%d',$type);
+                ## verify the type is set
+                if (!in_array($type,array_keys($GLOBALS['config']['usergroup_types']))) {
+                  Warn('Invalid group membership type'.$type);
+                  dbg($type,'Type not found');
+                }
+                
+                $columnGroups = explode(',',$value);
+                foreach ($columnGroups as $sGroup) {
+                  $sGroup = trim($sGroup);
+                  $groupIdReq = Sql_Fetch_Row_Query(sprintf('select id from groups where name = "%s"',$sGroup));
+                  if (empty($groupIdReq[0])) {
+                    Sql_Query(sprintf('insert into groups (name) values("%s")',$sGroup));
+                    Warn("Group $sGroup added");
+                    $groupIdReq[0] = Sql_Insert_id();
+                  }
+                  dbg('Adding to group '.$sGroup.' with type '.$GLOBALS['config']['usergroup_types'][$type]);
+                  ## @@ this may cause problems on not-upgraded DBs
+                  Sql_Query(sprintf('replace into user_group (userid,groupid,type) values(%d,%d,%d)',$userid,$groupIdReq[0],$type));
+                } 
+              } else {
+                $query .= sprintf('%s = "%s",', $column, $value);
+              }
+            }
+          }
+          if ($query) {
+            $query = substr($query, 0, -1);
+            # this may cause a duplicate error on email, so add ignore
+            Sql_Query("update ignore {$tables["user"]} set $query where id = $userid");
+          }
+          foreach ($_SESSION["import_attribute"] as $item) {
+            if (isset ($user[$item["index"]]) && is_numeric($item['record']) && strpos($item['record'],'grouptype_') !== 0) {
+              $attribute_index = $item["record"];
+              $uservalue = $user[$item["index"]];
+              # check whether this is a textline or a selectable item
+              $att = Sql_Fetch_Row_Query("select type,tablename,name from " . $tables["attribute"] . " where id = $attribute_index"); ////
+              switch ($att[0]) {
+                case "select" :
+                case "radio" :
+                  $val = Sql_Query("select id from $table_prefix" . "listattr_$att[1] where name = \"$uservalue\"");
                   # if we do not have this value add it
                   if (!Sql_Affected_Rows()) {
-                    Sql_Query("insert into $table_prefix" . "listattr_$att[1] (name) values(\"$importValue\")");
-                    Warn("Value $importValue added to attribute $att[2]");
-                    $valueIds[] = Sql_Insert_Id();
+                    Sql_Query("insert into $table_prefix" . "listattr_$att[1] (name) values(\"$uservalue\")");
+                    Warn("Value $uservalue added to attribute $att[2]");
+                    $user_att_value = Sql_Insert_Id();
                   } else {
                     $d = Sql_Fetch_Row($val);
-                    $valueIds[] = $d[0];
+                    $user_att_value = $d[0];
                   }
-                }
-                $user_att_value = join(',',$valueIds);
-                break;
-              case "checkbox" :
-                $uservalue = trim($uservalue);
-                #print $uservalue;exit;
-                if (!empty($uservalue) && $uservalue != "off")
-                  $user_att_value = "on";
-                else
-                  $user_att_value = "";
-                break;
-              case "date" :
-#                $user_att_value = parseDate($uservalue);
-                $user_att_value = $uservalue;
-                break;
-              default :
-                $user_att_value = $uservalue;
-                break;
-            }
+                  break;
+                case "checkboxgroup":
+                  $values = explode(',',$uservalue);
+                  $valueIds = array();
+                  foreach ($values as $importValue) {
+                    $val = Sql_Query("select id from $table_prefix" . "listattr_$att[1] where name = \"$importValue\"");
+                    # if we do not have this value add it
+                    if (!Sql_Affected_Rows()) {
+                      Sql_Query("insert into $table_prefix" . "listattr_$att[1] (name) values(\"$importValue\")");
+                      Warn("Value $importValue added to attribute $att[2]");
+                      $valueIds[] = Sql_Insert_Id();
+                    } else {
+                      $d = Sql_Fetch_Row($val);
+                      $valueIds[] = $d[0];
+                    }
+                  }
+                  $user_att_value = join(',',$valueIds);
+                  break;
+                case "checkbox" :
+                  $uservalue = trim($uservalue);
+                  #print $uservalue;exit;
+                  if (!empty($uservalue) && $uservalue != "off")
+                    $user_att_value = "on";
+                  else
+                    $user_att_value = "";
+                  break;
+                case "date" :
+  #                $user_att_value = parseDate($uservalue);
+                  $user_att_value = $uservalue;
+                  break;
+                default :
+                  $user_att_value = $uservalue;
+                  break;
+              }
 
-            Sql_query(sprintf('replace into %s (attributeid,userid,value) values(%d,%d,"%s")', $tables["user_attribute"], $attribute_index, $userid, $user_att_value));
-          } else {
-            if ($item["record"] != "skip") {
-              # add an empty entry if none existed
-              Sql_Query(sprintf('insert ignore into %s (attributeid,userid,value) values(%d,%d,"")', $tables["user_attribute"], $item["record"], $userid));
+              Sql_query(sprintf('replace into %s (attributeid,userid,value) values(%d,%d,"%s")', $tables["user_attribute"], $attribute_index, $userid, $user_att_value));
+            } else {
+              if ($item["record"] != "skip") {
+                # add an empty entry if none existed
+                Sql_Query(sprintf('insert ignore into %s (attributeid,userid,value) values(%d,%d,"")', $tables["user_attribute"], $item["record"], $userid));
+              }
             }
           }
-        }
-        $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables["user"], $userid));
-        $current_data = array_merge($current_data, getUserAttributeValues('', $userid));
-        $information_changed = 0;
-        foreach ($current_data as $key => $val) {
-          if (!is_numeric($key))
-            if (isset($old_data[$key]) && $old_data[$key] != $val && $old_data[$key] && $key != "password" && $key != "modified") {
-              $information_changed = 1;
-              $history_entry .= "$key = $val\n*changed* from $old_data[$key]\n";
-            }
-        }
-        if (!$information_changed) {
-          $history_entry .= "\nNo user details changed";
-        }
-        addUserHistory($user["systemvalues"]["email"], "Import by " . adminName(), $history_entry);
-      }
-
-      #add this user to the lists identified, except when they are blacklisted
-      $isBlackListed = isBlackListed($user["systemvalues"]["email"]);
-      if (!$isBlackListed && is_array($_SESSION["lists"])) {
-        reset($_SESSION["lists"]);
-        $addition = 0;
-        $listoflists = "";
-        while (list ($key, $listid) = each($_SESSION["lists"])) {
-          $query = "replace INTO " . $tables["listuser"] . " (userid,listid,entered) values($userid,$listid,now())";
-          $result = Sql_query($query, 1);
-          # if the affected rows is 2, the user was already subscribed
-          $addition = $addition || Sql_Affected_Rows() == 1;
-          $listoflists .= "  * " . listName($key)."\n";# $_SESSION["listname"][$key] . "\n";
-        }
-        if ($addition) {
-          $count["list_add"]++;
-        }
-        if (!TEST && $_SESSION["notify"] == "yes" && $addition) {
-          $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage", $userid));
-          if (function_exists('sendmail')) {
-            sendMail($user["systemvalues"]["email"], getConfig("subscribesubject"), $subscribemessage, system_messageheaders(), $envelope);
-            if (isset ($_SESSION["throttle_import"])) {
-              sleep($_SESSION["throttle_import"]);
-            }
+          $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables["user"], $userid));
+          $current_data = array_merge($current_data, getUserAttributeValues('', $userid));
+          $information_changed = 0;
+          foreach ($current_data as $key => $val) {
+            if (!is_numeric($key))
+              if (isset($old_data[$key]) && $old_data[$key] != $val && $old_data[$key] && $key != "password" && $key != "modified") {
+                $information_changed = 1;
+                $history_entry .= "$key = $val\n*changed* from $old_data[$key]\n";
+              }
           }
+          if (!$information_changed) {
+            $history_entry .= "\nNo user details changed";
+          }
+          addUserHistory($user["systemvalues"]["email"], "Import by " . adminName(), $history_entry);
         }
-      } elseif ($isBlackListed) {
-        $count['foundblacklisted']++;
-      }
-      if (!is_array($_SESSION["groups"])) {
-        $groups = array ();
-      } else {
-        $groups = $_SESSION["groups"];
-      }
-      if (isset ($everyone_groupid) && !in_array($everyone_groupid, $groups)) {
-        array_push($groups, $everyone_groupid);
-      }
-      if (defined('IN_WEBBLER') && is_array($groups)) {
-        #add this user to the groups identified
-        reset($groups);
-        $groupaddition = 0;
-        while (list ($key, $groupid) = each($groups)) {
-          if ($groupid) {
-            $query = sprintf('replace INTO user_group (userid,groupid,type) values(%d,%d,%d)',$userid,$groupid,$_SESSION['grouptype']);
-            $result = Sql_query($query);
+
+        #add this user to the lists identified, except when they are blacklisted
+        $isBlackListed = isBlackListed($user["systemvalues"]["email"]);
+        if (!$isBlackListed && is_array($_SESSION["lists"])) {
+          reset($_SESSION["lists"]);
+          $addition = 0;
+          $listoflists = "";
+          while (list ($key, $listid) = each($_SESSION["lists"])) {
+            $query = "replace INTO " . $tables["listuser"] . " (userid,listid,entered) values($userid,$listid,now())";
+            $result = Sql_query($query, 1);
             # if the affected rows is 2, the user was already subscribed
-            $groupaddition = $groupaddition || Sql_Affected_Rows() == 1;
+            $addition = $addition || Sql_Affected_Rows() == 1;
+            $listoflists .= "  * " . listName($key)."\n";# $_SESSION["listname"][$key] . "\n";
+          }
+          if ($addition) {
+            $count["list_add"]++;
+          }
+          if (!TEST && $_SESSION["notify"] == "yes" && $addition) {
+            $subscribemessage = str_replace('[LISTS]', $listoflists, getUserConfig("subscribemessage", $userid));
+            if (function_exists('sendmail')) {
+              sendMail($user["systemvalues"]["email"], getConfig("subscribesubject"), $subscribemessage, system_messageheaders(), $envelope);
+              if (isset ($_SESSION["throttle_import"])) {
+                sleep($_SESSION["throttle_import"]);
+              }
+            }
+          }
+        } elseif ($isBlackListed) {
+          $count['foundblacklisted']++;
+        }
+        if (!is_array($_SESSION["groups"])) {
+          $groups = array ();
+        } else {
+          $groups = $_SESSION["groups"];
+        }
+        if (isset ($everyone_groupid) && !in_array($everyone_groupid, $groups)) {
+          array_push($groups, $everyone_groupid);
+        }
+        if (defined('IN_WEBBLER') && is_array($groups)) {
+          #add this user to the groups identified
+          reset($groups);
+          $groupaddition = 0;
+          while (list ($key, $groupid) = each($groups)) {
+            if ($groupid) {
+              $query = sprintf('replace INTO user_group (userid,groupid,type) values(%d,%d,%d)',$userid,$groupid,$_SESSION['grouptype']);
+              $result = Sql_query($query);
+              # if the affected rows is 2, the user was already subscribed
+              $groupaddition = $groupaddition || Sql_Affected_Rows() == 1;
+            }
+          }
+          if ($groupaddition) {
+            $count["group_add"]++;
           }
         }
-        if ($groupaddition) {
-          $count["group_add"]++;
-        }
       }
-	}
-    } // end else
+    } // end else not test
     if ($_SESSION["test_import"] && $c > 50)
       break;
   }
