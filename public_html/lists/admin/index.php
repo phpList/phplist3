@@ -212,7 +212,7 @@ if (isset($GLOBALS["installation_name"])) {
 }
 print "$page_title</title>";
 
-if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
+if (!empty($GLOBALS["require_login"])) {
   if ($GLOBALS["admin_auth_module"] && is_file("auth/".$GLOBALS["admin_auth_module"])) {
     require_once "auth/".$GLOBALS["admin_auth_module"];
   } elseif ($GLOBALS["admin_auth_module"] && is_file($GLOBALS["admin_auth_module"])) {
@@ -262,6 +262,23 @@ if (isset($GLOBALS["require_login"]) && $GLOBALS["require_login"]) {
       	$msg = $GLOBALS['I18N']->get('Failed sending a change password token');
       }
       $page = "login";
+  } elseif (!empty($_GET['secret']) && ($_GET['page'] == 'processbounces' || $_GET['page'] == 'processqueue' || $_GET['page'] == 'processcron')) {
+    ## remote processing call
+    $ourSecret = getConfig('remote_processing_secret');
+    if ($ourSecret != $_GET['secret']) {
+      @ob_end_clean();
+      print 'Error'.': '.s('Incorrect processing secret');
+      exit;
+    }
+    
+    $_SESSION["adminloggedin"] = $_SERVER["REMOTE_ADDR"];
+    $_SESSION["logindetails"] = array(
+      "adminname" => 'remotecall',
+      "id" => 0,
+      "superuser" => 0,
+      "passhash" => 'xxxx',
+    );
+
   } elseif (!isset($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]) {
     #$msg = 'Not logged in';
     $page = "login";

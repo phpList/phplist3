@@ -1674,6 +1674,30 @@ function quoteEnclosed($value,$col_delim = "\t",$row_delim = "\n") {
   return $value;
 }
 
+function activateRemoteQueue() {
+  $result = '';
+  $activated = file_get_contents(PQAPI_URL.'&cmd=start&key='.getConfig('PQAPIkey').'&s='.urlencode(getConfig('remote_processing_secret')).'&u='.base64_encode($_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['REQUEST_URI'])));
+  if ($activated == 'OK') {
+    $result .= '<h3>'.s('Remote queue processing has been activated successfully').'</h3>';
+    $result .= '<p>'.PageLinkButton("messages&tab=active",$GLOBALS['I18N']->get("view progress")).'</p>';
+  } elseif ($activated == 'KEYFAIL' || $activated == 'NAC') {
+    $result .= '<h3>'. s('Error activating remote queue processing').'</h3>';
+    if ($activated == 'KEYFAIL') {
+      $result .= s('The API key is incorrect');
+    } elseif ($activated == 'NAC') {
+      $result .= s('The phpList.com server is unable to reach your phpList installation');
+    } else {
+      $result .= s('Unknown error');
+    }
+    $result .= '<p><a href="./?page=hostedprocessqueuesetup" class="button">'.s('Change settings').'</a></p>';
+    $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
+  } else {
+    $result .= '<h3>'.s('Error activating remote queue processing').'</h3>';
+    $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
+  }
+  return $result;
+}
+
 function subscribeToAnnouncementsForm($emailAddress = "") {
   if (!is_email($emailAddress) && isset($_SESSION['logindetails']['id'])) {
     $emailAddress = $GLOBALS["admin_auth"]->adminEmail($_SESSION['logindetails']['id']);

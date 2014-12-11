@@ -376,7 +376,9 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->messageQueued($id);
       }
-      if (MANUALLY_PROCESS_QUEUE) {
+      if (getConfig('pqchoice') == 'phplistdotcom') {
+        print activateRemoteQueue();
+      } elseif (MANUALLY_PROCESS_QUEUE) {
         print '<p>'.PageLinkButton("processqueue",$GLOBALS['I18N']->get("processqueue")).'</p>';
       } else {
         print '<p>'.PageLinkButton("messages&tab=active",$GLOBALS['I18N']->get("view progress")).'</p>';

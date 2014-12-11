@@ -162,8 +162,9 @@ if (isset($_GET['resend'])) {
   $result = Sql_Query("update ${tables['message']} set status = 'submitted', sendstart = null where id = $resend");
   $suc6 = Sql_Affected_Rows();
   # only send it again to users, if we are testing, otherwise only to new users
-  if (TEST)
+  if (TEST) {
     $result = Sql_query("delete from ${tables['usermessage']} where messageid = $resend");
+  }
   if ($suc6) {
     $action_result .=  "... ".$GLOBALS['I18N']->get("Done");
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -176,6 +177,9 @@ if (isset($_GET['resend'])) {
     if ($finishSending < time()) {
       $action_result .= '<br />'.s('This campaign is scheduled to stop sending in the past. No mails will be sent.');
       $action_result .= '<br />'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling'));
+    }
+    if (getConfig('pqchoice') == 'phplistdotcom') {
+      $action_result .= activateRemoteQueue();
     }
     
   } else {
