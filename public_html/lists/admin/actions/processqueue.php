@@ -59,7 +59,7 @@ if ($GLOBALS['commandline']) {
   $req = Sql_Query(sprintf('select id from %s where uniqid is NULL or uniqid = ""',$GLOBALS["tables"]["user"]));
   $num = Sql_Affected_Rows();
   if ($num) {
-    cl_output('Giving a Unique ID to '. $num.' subscribers, this may take a while');
+    cl_output(s('Giving a Unique ID to %d subscribers, this may take a while', $num));
     while ($row = Sql_Fetch_Row($req)) {
       Sql_query(sprintf('update %s set uniqid = "%s" where id = %d',$GLOBALS["tables"]["user"],getUniqID(),$row[0]));
     }

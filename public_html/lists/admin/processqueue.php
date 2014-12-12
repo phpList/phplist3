@@ -60,7 +60,7 @@ if (empty($pqChoice)) {
       <p></p>
       <h4> 2. Run the queue manually in your browser</h4>
       <p><strong>Advantage</strong>: No external dependency, no additional cost.</p>
-      <p><strong>Disadvantage</strong>: The need to keep your computer running until everything has been sent.</p>
+      <p><strong>Disadvantage</strong>: The need to keep your computer running, and your browser open, until everything has been sent.</p>
       <a href="./?page=processqueue&pqchoice=local" class="button">'.s('Use local processing').'</a>
   ';
 }
