@@ -411,7 +411,7 @@ function output ($message,$logit = 1,$target = 'summary') {
 function outputCounters() {
   global $counters;
   $result = '';
-  if (!function_exists('json_encode')) { // only PHP5.2.0 and up
+  if (function_exists('json_encode')) { // only PHP5.2.0 and up
     return json_encode($counters);
   } else {
     ## keep track of which php versions we need to continue to support 
