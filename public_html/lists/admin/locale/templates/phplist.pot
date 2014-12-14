@@ -545,7 +545,6 @@ msgid "requeue"
 msgstr ""
 
 #: public_html/lists/admin/msgstatus.php:18
-#: public_html/lists/admin/actions/msgstatus.php:104
 msgid "Stalled"
 msgstr ""
 
@@ -581,7 +580,7 @@ msgstr ""
 
 #: public_html/lists/admin/msgstatus.php:29
 #: public_html/lists/admin/actions/msgstatus.php:112
-#: public_html/lists/admin/actions/processqueue.php:234
+#: public_html/lists/admin/actions/processqueue.php:237
 msgid "msgs/hr"
 msgstr ""
 
@@ -2705,8 +2704,8 @@ msgstr ""
 #: public_html/lists/admin/members.php:388
 #: public_html/lists/admin/members.php:401
 #: public_html/lists/admin/members.php:405
-#: public_html/lists/admin/actions/processqueue.php:429
 #: public_html/lists/admin/actions/processqueue.php:431
+#: public_html/lists/admin/actions/processqueue.php:433
 #: public_html/lists/admin/actions/processqueue.php:1035
 msgid "to"
 msgstr ""
@@ -3806,6 +3805,10 @@ msgstr ""
 msgid "next batch of %s in %s"
 msgstr ""
 
+#: public_html/lists/admin/actions/msgstatus.php:104
+msgid "Waiting"
+msgstr ""
+
 #: public_html/lists/admin/actions/msgstatus.php:105
 msgid "Send the queue"
 msgstr ""
@@ -4069,7 +4072,7 @@ msgid "List Membership"
 msgstr ""
 
 #: public_html/lists/admin/actions/export.php:184
-#: public_html/lists/admin/actions/processqueue.php:290
+#: public_html/lists/admin/actions/processqueue.php:292
 msgid "All done"
 msgstr ""
 
@@ -4081,197 +4084,197 @@ msgstr ""
 msgid "Adding email address failed"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:62
+#: public_html/lists/admin/actions/processqueue.php:41
+msgid "Unable get lock for processing"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:42
+msgid "Error processing"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:65
 #, php-format
 msgid "Giving a Unique ID to %d subscribers, this may take a while"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:88
+#: public_html/lists/admin/actions/processqueue.php:91
 msgid "The following restrictions have been set by your ISP:"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:150
+#: public_html/lists/admin/actions/processqueue.php:152
 msgid "Maximum time for queue processing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:172
+#: public_html/lists/admin/actions/processqueue.php:174
 msgid "Running in safe mode"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:218
+#: public_html/lists/admin/actions/processqueue.php:220
 msgid "Script stage"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:222
+#: public_html/lists/admin/actions/processqueue.php:225
 msgid "Finished, Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:230
+#: public_html/lists/admin/actions/processqueue.php:233
 msgid "Calculating"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:233
+#: public_html/lists/admin/actions/processqueue.php:236
 msgid "messages sent in"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:234
-msgid "seconds"
-msgstr ""
-
 #: public_html/lists/admin/actions/processqueue.php:237
-#, php-format
-msgid "%d invalid email addresses"
+msgid "seconds"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:240
 #, php-format
+msgid "%d invalid email addresses"
+msgstr ""
+
+#: public_html/lists/admin/actions/processqueue.php:243
+#, php-format
 msgid "%d failed (will retry later)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:247
+#: public_html/lists/admin/actions/processqueue.php:250
 #, php-format
 msgid "%d emails unconfirmed (not sent)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:259
+#: public_html/lists/admin/actions/processqueue.php:262
 msgid "Warning: script never reached stage 5"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:259
+#: public_html/lists/admin/actions/processqueue.php:262
 msgid "This may be caused by a too slow or too busy server"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:265
+#: public_html/lists/admin/actions/processqueue.php:268
 msgid "Less than batch size were sent, so reloading imminently"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:270
+#: public_html/lists/admin/actions/processqueue.php:273
 #, php-format
 msgid "Waiting for %d seconds before reloading"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:286
+#: public_html/lists/admin/actions/processqueue.php:288
 msgid "Finished, All done"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:296
+#: public_html/lists/admin/actions/processqueue.php:298
 msgid "Script finished, but not all messages have been sent yet."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:312
+#: public_html/lists/admin/actions/processqueue.php:314
 msgid "Maillist errors"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:314
+#: public_html/lists/admin/actions/processqueue.php:316
 msgid "Maillist Processing info"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:317
+#: public_html/lists/admin/actions/processqueue.php:319
 msgid "Finished this run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:335
+#: public_html/lists/admin/actions/processqueue.php:337
 msgid "To stop receiving these reports read:"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:429
 #: public_html/lists/admin/actions/processqueue.php:431
+#: public_html/lists/admin/actions/processqueue.php:433
 msgid "(test)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:429
 #: public_html/lists/admin/actions/processqueue.php:431
+#: public_html/lists/admin/actions/processqueue.php:433
 msgid "Would have sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:444
+#: public_html/lists/admin/actions/processqueue.php:446
 msgid "Started"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:446
+#: public_html/lists/admin/actions/processqueue.php:448
 msgid "Time now "
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:457
-msgid "Unable get lock for processing"
-msgstr ""
-
 #: public_html/lists/admin/actions/processqueue.php:458
-msgid "Error processing"
-msgstr ""
-
-#: public_html/lists/admin/actions/processqueue.php:466
-#: public_html/lists/admin/actions/processqueue.php:467
 #, php-format
 msgid "Processing blocked by plugin %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:477
+#: public_html/lists/admin/actions/processqueue.php:468
 msgid "Processing has been suspended by your ISP, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:483
+#: public_html/lists/admin/actions/processqueue.php:474
 msgid "In safe mode, batches are set to a maximum of 100"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:487
+#: public_html/lists/admin/actions/processqueue.php:478
 #, php-format
 msgid "Sending in batches of %d messages"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:491
+#: public_html/lists/admin/actions/processqueue.php:482
 #, php-format
 msgid ""
 "This batch will be %d emails, because in the last %d seconds %d emails were "
 "sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:493
+#: public_html/lists/admin/actions/processqueue.php:484
 #, php-format
 msgid "Sending in batches of %d emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:496
+#: public_html/lists/admin/actions/processqueue.php:487
 #, php-format
 msgid ""
 "In the last %d seconds more emails were sent (%d) than is currently allowed "
 "per batch (%d)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:508
+#: public_html/lists/admin/actions/processqueue.php:499
 msgid "Sent in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:509
+#: public_html/lists/admin/actions/processqueue.php:500
 msgid "Skipped in last run"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:547
+#: public_html/lists/admin/actions/processqueue.php:538
 msgid "Processing has started,"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:549
+#: public_html/lists/admin/actions/processqueue.php:540
 msgid "One campaign to process."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:551
+#: public_html/lists/admin/actions/processqueue.php:542
 #, php-format
 msgid "%d campaigns to process."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:556
+#: public_html/lists/admin/actions/processqueue.php:547
 msgid "Please leave this window open."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:556
+#: public_html/lists/admin/actions/processqueue.php:547
 msgid "phpList will process your queue until all messages have been sent."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:556
+#: public_html/lists/admin/actions/processqueue.php:547
 msgid "This may take a while"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:558
+#: public_html/lists/admin/actions/processqueue.php:549
 msgid "Report of processing will be sent by email"
 msgstr ""
 
