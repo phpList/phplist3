@@ -30,7 +30,7 @@ $processqueue_timer = new timer();
 $domainthrottle = array();
 # check for other processes running
 
-if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
+if ((!empty($GLOBALS['commandline']) && isset($cline['f'])) || $inRemoteCall) {
   # force set, so kill other processes
   cl_output('Force set, killing other send processes');
   $send_process_id = getPageLock(1);
@@ -38,8 +38,11 @@ if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
   $send_process_id = getPageLock();
 }
 if (empty($send_process_id)) {
+  output(s('Unable get lock for processing'));
+  $status = s('Error processing');
   return;
 }
+
 #cl_output('page locked on '.$send_process_id);
 
 if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
