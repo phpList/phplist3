@@ -221,6 +221,7 @@ function my_shutdown () {
   output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0,'progress');
   global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$unconfirmed,$num_per_batch,$batch_period;
   $some = $processed; 
+  $delaytime = 0;
   if (!$some) {
     output($GLOBALS['I18N']->get('Finished, Nothing to do'),0,'progress');
     $nothingtodo = 1;
@@ -266,16 +267,15 @@ function my_shutdown () {
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
       if ($counters['sent'] + 10 < $GLOBALS["original_num_per_batch"]) {
         output($GLOBALS['I18N']->get('Less than batch size were sent, so reloading imminently'),1,'progress');
-        $delaytime = 10;
+        $counters['delaysend'] = 10;
       } else {
-        // we should actually want batch perion minus time already spent. 
-        // might be nice to calculate that at some point
-        output(sprintf($GLOBALS['I18N']->get('Waiting for %d seconds before reloading'),$batch_period),1,'progress');
-        $delaytime = $batch_period;
+        $counters['delaysend'] = (int)($batch_period - $totaltime); 
+        $delaytime = 30; ## actually with the iframe we can reload fairly quickly
+        output(s('Waiting for %d seconds before reloading',$delaytime),1,'progress');
       }
-      sleep($delaytime);
     }
     if (!$GLOBALS['inRemoteCall']) {
+      sleep($delaytime);
       printf( '<script type="text/javascript">
         document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
       </script></body></html>',$reload,$counters['sent'],$notsent,addCsrfGetToken());
