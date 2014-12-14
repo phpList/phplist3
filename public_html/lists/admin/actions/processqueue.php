@@ -450,17 +450,6 @@ if (empty($reload)) { ## only show on first load
 }
 #output('Will process for a maximum of '.$maxProcessQueueTime.' seconds '.MAX_PROCESSQUEUE_TIME);
 
-# check for other processes running
-if (empty($send_process_id)) {
-  $send_process_id = getPageLock();
-}
-
-if (!$send_process_id) {
-  output(s('Unable get lock for processing'));
-  $status = s('Error processing');
-  return;
-}
-
 ## ask plugins if processing is allowed at all
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 #  cl_output('Asking '.$pluginname);
