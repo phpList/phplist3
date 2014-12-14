@@ -532,8 +532,8 @@ if (VERBOSE) {
 $messages = Sql_query($query);
 $num_messages = Sql_Num_Rows($messages);
 if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
-
 if ($num_messages) {
+  $counters['status'] = $num_messages;
   if (empty($reload)) {
     output($GLOBALS['I18N']->get('Processing has started,'));
     if ($num_messages == 1) {
@@ -549,6 +549,15 @@ if ($num_messages) {
       output(s('Report of processing will be sent by email'));
     }
   }
+} else {
+  ## check for a future embargo, to be able to report when it expires.
+  $future = Sql_Fetch_Assoc_Query('select unix_timestamp(embargo) - unix_timestamp(current_timestamp) as waittime '
+    . " from ${tables['message']}"
+    . " where status not in ('draft', 'sent', 'prepared', 'suspended')"
+    . " and embargo > current_timestamp"
+    . " order by embargo asc limit 1");
+  $counters['status'] = 'embargo';
+  $counters['delaysend'] = $future['waittime'];
 }
 
 $script_stage = 2; # we know the messages to process
