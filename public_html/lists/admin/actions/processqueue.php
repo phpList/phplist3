@@ -99,7 +99,6 @@ if ($fp = @fopen("/etc/phplist.conf","r")) {
     }
   }
 }
-
 if (MAILQUEUE_BATCH_SIZE) {
   if ($maxbatch > 0) {
     $num_per_batch = min(MAILQUEUE_BATCH_SIZE,$maxbatch);
@@ -323,7 +322,7 @@ function finish ($flag,$message,$script_stage) {
       parentJQuery("#progressmeter").updateSendProgress("'.$counters['sent'].','.$counters['total_users_for_message '.$messageid].'");
       </script>';
   } 
-  if (!TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
+  if (!$GLOBALS['inRemoteCall'] && !TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
     $reportSent = false;
     
     ## @@TODO work out a way to deal with the order of processing the plugins
