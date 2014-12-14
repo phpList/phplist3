@@ -101,7 +101,7 @@ if ($message['status'] != 'inprocess') {
       
     } elseif ($msgperhour <= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
       if (MANUALLY_PROCESS_QUEUE) {
-        $html .= $GLOBALS['I18N']->get('Stalled');
+        $html .= $GLOBALS['I18N']->get('Waiting');
         $html .= PageLinkButton('processqueue',s('Send the queue'));
       } else {
         $html .= $GLOBALS['I18N']->get('Processing'); 
