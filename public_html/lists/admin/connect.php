@@ -1640,6 +1640,9 @@ function repeatMessage($msgid) {
   logEvent("Message $msgid was successfully rescheduled as message $newid");
   ## remember we duplicated, in order to avoid doing it again (eg when requeuing)
   setMessageData($msgid,'repeatedid',$newid);
+  if (getConfig('pqchoice') == 'phplistdotcom') {
+     activateRemoteQueue();
+  }
 }
 
 function versionCompare($thisversion,$latestversion) {
