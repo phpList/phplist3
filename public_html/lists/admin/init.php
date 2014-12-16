@@ -454,6 +454,7 @@ $counters = array(
   'send blocked by domain throttle' => 0,
   'add attachment error' => 0,
   'sendemail returned false' => 0,
+  'sentastest' => 0,
 );
 
 $GLOBALS['disallowpages'] = array();

@@ -1056,6 +1056,9 @@ while ($message = Sql_fetch_array($messages)) {
             }
           } else {
             $success = sendEmailTest($messageid,$useremail);
+            $counters['sentastest']++;
+            $counters['batch_count']++;
+            setMessageData($messageid,'sentastest',$counters['sentastest']);
           }
 
           #############################

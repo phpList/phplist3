@@ -134,6 +134,7 @@ function loadMessageData($msgid) {
     'notify_end' =>  getConfig("notifyend_default"),
     'google_track' => $default['google_track'] == 'true' || $default['google_track'] === true || $default['google_track'] == '1',
     'excludelist' => array(),
+    'sentastest' => 0,
   );
   if (is_array($prevMsgData)) {
     foreach ($prevMsgData as $key => $val) {

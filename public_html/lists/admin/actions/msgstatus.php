@@ -11,7 +11,8 @@ $totalsent = $messagedata['astext'] +
   $messagedata['ashtml'] + 
   $messagedata['astextandhtml'] + 
   $messagedata['aspdf'] + 
-  $messagedata['astextandpdf'];
+  $messagedata['astextandpdf'] + 
+  $messagedata['sentastest'];
   
 $num_users = 0;
 if (isset($messagedata['to process'])) {
