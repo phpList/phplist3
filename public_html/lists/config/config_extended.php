@@ -701,7 +701,7 @@ $tmpdir = '/tmp';
 # select the database module to use
 # anyone wanting to submit other database modules is
 # very welcome!
-$database_module = "mysql.inc";
+$database_module = "mysqli.inc";
 
 # you can store sessions in the database instead of the default place by assigning
 # a tablename to this value. The table will be created and will not use any prefixes
