@@ -977,8 +977,9 @@ function topMenu() {
 ### hmm, these really should become objects
 function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
   $plugin = '';
-  if ($url)
+  if ($url) {
     $url = "&amp;".$url;
+  }
 
   if (in_array($name,$GLOBALS['disallowpages'])) return '';
   if (strpos($name,'&') !== false) {

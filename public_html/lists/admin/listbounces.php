@@ -111,12 +111,14 @@ $ls->noShader();
 while ($row = Sql_Fetch_Array($req)) {
   $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
     $GLOBALS['tables']['user'],$row['userid']));
-  if ($download) {
-    print $userdata['email']."\n";
-  } else {
-    $ls->addElement($row['userid'],PageUrl2('user&amp;id='.$row['userid']));
-    $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('email'),$userdata['email']);
-    $ls->addColumn($row['userid'],$GLOBALS['I18N']->get('# bounces'),$row['numbounces']);
+  if (!empty($userdata['email'])) {
+    if ($download) {
+      print $userdata['email']."\n";
+    } else {
+      $ls->addElement($row['userid'],PageUrl2('user&amp;id='.$row['userid']));
+      $ls->addColumn($row['userid'],s('address'),$userdata['email']);
+      $ls->addColumn($row['userid'],s('# bounces'),PageLink2('userhistory&id='.$row['userid'],$row['numbounces']));
+    }
   }
 }
 if (!$download) {
