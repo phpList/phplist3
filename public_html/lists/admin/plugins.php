@@ -57,7 +57,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     print '<h3>'.s('Installing plugin').'</h3>';
   }
   $zip = new ZipArchive;
-  if (!empty($filename) && $zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename)) {
+  if (!empty($filename) && $zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename) === TRUE) {
     
     /* the zip may have a variety of directory structures, as Github seems to add at least one for the "branch" of 
      * the project and then the developer has some more. 
