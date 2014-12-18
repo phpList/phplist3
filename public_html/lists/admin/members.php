@@ -145,6 +145,10 @@ if (isset($_REQUEST["processtags"]) && $access != "view") {
   print '<div class="actionresult">'.$msg.'</div>';
 }
 
+if ($listAll) {
+  print '<p>'.s('The "list of all subscribers" is not a real list, but it gives you access to all subscribers in your system. There may be more subscribers in your system than are members of your lists.').'</p>';
+}
+
 if (isset($_POST["add"])) {
   if ($_POST["new"]) {
     $result = Sql_query(sprintf('select * from %s where email = "%s"',$tables["user"],$_POST["new"]));
