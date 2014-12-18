@@ -57,7 +57,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     print '<h3>'.s('Installing plugin').'</h3>';
   }
   $zip = new ZipArchive;
-  if (!empty($filename) && $zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename)) {
+  if (!empty($filename) && is_resource($zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename))) {
     
     /* the zip may have a variety of directory structures, as Github seems to add at least one for the "branch" of 
      * the project and then the developer has some more. 
@@ -150,8 +150,8 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     } else {
       Error(s('Plugin directory is not writable'));
     }
-  //} else {
-    //Error(s('Invalid plugin package'));
+  } else {
+    Error(s('Invalid plugin package'));
   }
 
   print s('Plugin installation failed');
