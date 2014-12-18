@@ -104,7 +104,8 @@ if (empty($list)) {
 </div>
 
 
-<?php echo $GLOBALS['I18N']->get('Select the columns to include in the export');?>
+<?php echo s('Select the columns to include in the export');?>
+<div><input type="checkbox" name="selectallcheckbox" id="selectallcheckbox" checked="checked" /><label for="selectallcheckbox"><?php echo s('Select all')?> </label></div>
 
 <?php
   $cols = array();
