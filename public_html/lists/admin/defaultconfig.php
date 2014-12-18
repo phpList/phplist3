@@ -186,7 +186,7 @@ $default_config = array (
   'description' => s("Categories for lists. Separate with commas."),
   'type' => "text",
   'allowempty' => true,
-  'category'=> 'segmentation',
+  'category'=> 'list-organisation',
 ),
 
   # width of a textline field
