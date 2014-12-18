@@ -830,7 +830,7 @@ $html .= sprintf('
       break;
     case "checkfortext":
       if (!isset($htmlemail))
-        $htmlemail = 0;
+        $htmlemail = 1;
       $html .= sprintf('<tr><td colspan="2">
       <span class="attributeinput">
       <input type="checkbox" name="textemail" value="1" %s /></span>
@@ -866,7 +866,7 @@ $html .= sprintf('
     case "checkforhtml":
     default:
       if (!isset($htmlemail))
-        $htmlemail = 0;
+        $htmlemail = 1;
       $html .= sprintf('<tr><td colspan="2">
         <span class="attributeinput"><input type="checkbox" name="htmlemail" value="1" %s /></span>
         <span class="attributename">%s</span></td></tr>',$htmlemail ? 'checked="checked"':'',$strPreferHTMLEmail);
