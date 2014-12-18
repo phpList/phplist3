@@ -394,7 +394,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
   # make sure to only include usertrack once, otherwise the stats would go silly
   $htmlmessage = str_ireplace('[USERTRACK]','',$htmlmessage);
-
+  $textmessage = str_ireplace('[USERTRACK]','',$textmessage);
+   
   $html['subject'] = $cached[$messageid]["subject"];
   $text['subject'] = $cached[$messageid]["subject"];
   
