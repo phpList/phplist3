@@ -172,7 +172,7 @@ while ($user = Sql_fetch_array($result)) {
     fwrite($exportfile, "No Lists");
   }
   while ($list = Sql_fetch_array($lists)) {
-    fwrite($exportfile, stripslashes($list["name"])." ");
+    fwrite($exportfile, stripslashes($list["name"])."; ");
   }
   fwrite($exportfile, $row_delim);
 }
