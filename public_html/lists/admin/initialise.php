@@ -156,10 +156,20 @@ if ($success) {
   SaveConfig('version',VERSION,0);
   # mark now to be the last time we checked for an update
   Sql_Replace($tables['config'], array('item' => "updatelastcheck", 'value' => 'current_timestamp', 'editable' => '0'), 'item', false);
-  SaveConfig('admin_address',$_REQUEST['adminemail'],1);
+  SaveConfig('admin_address',$adminemail,1);
   SaveConfig('message_from_name',strip_tags($_REQUEST['adminname']),1);
+  SaveConfig('campaignfrom_default',"$adminemail ".strip_tags($_REQUEST['adminname']));
+  SaveConfig('notifystart_default',$adminemail);
+  SaveConfig('notifyend_default',$adminemail);
+  SaveConfig('report_address',$adminemail);
+  SaveConfig('message_from_address',$adminemail);
+  SaveConfig('message_from_name',strip_tags($_REQUEST['adminname']));
+  SaveConfig('message_replyto_address',$adminemail);
+  
   if (!empty($_REQUEST['orgname'])) {
     SaveConfig('organisation_name',strip_tags($_REQUEST['orgname']),1);
+    SaveConfig('campaignfrom_default',"$adminemail ".strip_tags($_REQUEST['orgname']));
+    SaveConfig('message_from_name',strip_tags($_REQUEST['orgname']));
   } elseif (!empty($_REQUEST['adminname'])) {
     SaveConfig('organisation_name',strip_tags($_REQUEST['adminname']),1);
   } else {
