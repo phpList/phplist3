@@ -507,7 +507,7 @@ if (checkAccess($page,"") || $page == 'about') {
         unset($_SESSION['action_result']);
       }
 
-      if ($GLOBALS['commandline']) {
+      if ($GLOBALS['commandline'] || !empty($_GET['secret'])) {
         @ob_end_clean();
         @ob_start();
       }
@@ -575,8 +575,8 @@ if (isset($GLOBALS["statslog"])) {
 }
   print '-->';
 
-if ($ajax || !empty($GLOBALS["commandline"])) {
-  @ob_clean();
+if (!empty($GLOBALS['inRemoteCall']) || $ajax || !empty($GLOBALS["commandline"])) {
+  @ob_end_clean();
   exit;
 } elseif (!isset($_GET["omitall"])) {
   if (!$GLOBALS['compression_used']) {
