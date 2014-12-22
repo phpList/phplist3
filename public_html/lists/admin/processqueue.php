@@ -12,7 +12,6 @@ if (!$GLOBALS["commandline"]) {
       print 'ACK';
       exit;
     }
-    @ob_start();
     include dirname(__FILE__).'/actions/processqueue.php';
     return;
   }
