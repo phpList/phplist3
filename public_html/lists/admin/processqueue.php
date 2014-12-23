@@ -40,12 +40,7 @@ if (isset($_GET['pqchoice'])) {
   }
 }
 
-//print '<pre>';
-//var_dump($_SERVER);
-//print '</pre>';
-
-//$pqChoice = getConfig('pqchoice');
-$pqChoice = 'local'; ## the remote processing is not entirely ready yet
+$pqChoice = getConfig('pqchoice');
 
 if (empty($pqChoice)) {
   print '<h3>'.s('To send your queue, you can now use the phpList Hosted service').'</h3>';
