@@ -6,6 +6,7 @@ if (!$id) {
 }
 $message = Sql_Fetch_Assoc_Query(sprintf('select *,unix_timestamp(embargo) - unix_timestamp(now()) as secstowait from %s where id = %d',$GLOBALS['tables']['message'],$id));
 $messagedata = loadMessageData($id);
+$pqchoice = getConfig('pqchoice');
 
 $totalsent = $messagedata['astext'] + 
   $messagedata['ashtml'] + 
@@ -96,14 +97,18 @@ if ($message['status'] != 'inprocess') {
       foreach ($GLOBALS['plugins'] as $plname => $plugin) {
         $html .= $plugin->messageStatusLimitReached($recently_sent[0]);
       }
-      $nextbatch = Sql_Fetch_Row_Query(sprintf('select current_timestamp,date_add(entered,interval %d second) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
-        MAILQUEUE_BATCH_PERIOD,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
+      $nextbatch = Sql_Fetch_Row_Query(sprintf('select current_timestamp,date_add(entered,interval %d second) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent" order by entered desc limit 1',
+        MAILQUEUE_BATCH_PERIOD + 60,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
       $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
       
     } elseif ($msgperhour <= 0 || $active > MESSAGE_SENDSTATUS_INACTIVETHRESHOLD) {
       if (MANUALLY_PROCESS_QUEUE) {
         $html .= $GLOBALS['I18N']->get('Waiting');
-        $html .= PageLinkButton('processqueue',s('Send the queue'));
+        if ($pqchoice == 'local') {
+          $html .= PageLinkButton('processqueue',s('Send the queue'));
+        } else {
+          $html .= '<a href="https://www.phplist.com/myaccount" target="_blank" class="button">'.s('Check status'). '</a>';
+        }
       } else {
         $html .= $GLOBALS['I18N']->get('Processing'); 
       }
