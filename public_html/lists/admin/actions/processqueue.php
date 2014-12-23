@@ -209,15 +209,10 @@ $report = "";
 $nothingtodo = 0;
 $cached = array(); # cache the message from the database to avoid reloading it every time
 
-//obsolete, moved to rssmanager plugin 
-//if (ENABLE_RSS) {
-//  require_once dirname(__FILE__) .'/plugins/rssmanager/rsslib.php';
-//}
-
 function my_shutdown () {
   global $script_stage,$reload;
 #  output( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
-  output( $GLOBALS['I18N']->get('Script stage').': '.$script_stage,0,'progress');
+  output( s('Script stage').': '.$script_stage,0,'progress');
   global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$unconfirmed,$num_per_batch,$batch_period;
   $some = $processed; 
   $delaytime = 0;
@@ -260,7 +255,7 @@ function my_shutdown () {
   finish("info",$report,$script_stage);
   if ($script_stage < 5 && !$nothingtodo) {
     output ($GLOBALS['I18N']->get('Warning: script never reached stage 5')."\n".$GLOBALS['I18N']->get('This may be caused by a too slow or too busy server')." \n");
-  } elseif( $script_stage == 5 && (!$nothingtodo || isset($GLOBALS["wait"])))  {
+  } elseif ($script_stage == 5 && (!$nothingtodo || isset($GLOBALS["wait"])))  {
     # if the script timed out in stage 5, reload the page to continue with the rest
     $reload++;
     if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
@@ -273,33 +268,35 @@ function my_shutdown () {
         output(s('Waiting for %d seconds before reloading',$delaytime),1,'progress');
       }
     }
-    if (!$GLOBALS['inRemoteCall']) {
+    $counters['delaysend'] = (int)($batch_period - $totaltime); 
+    if (empty($GLOBALS['inRemoteCall']) && empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
       sleep($delaytime);
       printf( '<script type="text/javascript">
-        document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-      </script></body></html>',$reload,$counters['sent'],$notsent,addCsrfGetToken());
-    } else {
-      print outputCounters();
+          document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
+        </script></body></html>',$reload,$counters['sent'],$notsent,addCsrfGetToken());
     }
-  }  elseif ($script_stage == 6 || $nothingtodo) {
+  } elseif ($script_stage == 6 || $nothingtodo) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->messageQueueFinished();
     }
     output($GLOBALS['I18N']->get('Finished, All done'),0);
-    if (!$GLOBALS['inRemoteCall']) {
-      print '<script type="text/javascript">
+    print '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       window.parent.allDone("'.s('All done').'");
       </script>';
-    } else {
-      print outputCounters();
-    }
   } else {
     output(s('Script finished, but not all messages have been sent yet.'));
   }
-  if (empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
+  if (!empty($GLOBALS['inRemoteCall'])) {
+    ob_end_clean();
+    $counters['hello'] = 'world';
+    print outputCounters();
+    @ob_start();
+  }
+  
+  if (empty($GLOBALS['inRemoteCall']) && empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
     return;
-  } elseif (!empty($GLOBALS['commandline'])) {
+  } elseif (!empty($GLOBALS['inRemoteCall']) || !empty($GLOBALS['commandline'])) {
     @ob_end_clean();
   }
   exit;
@@ -372,6 +369,7 @@ function output ($message,$logit = 1,$target = 'summary') {
     $infostring = '';
     $message = '';
     @ob_start();
+    return;
   } else {
     $infostring = "[". date("D j M Y H:i",time()) . "] [" . $_SERVER["REMOTE_ADDR"] ."]";
     #print "$infostring $message<br/>\n";
@@ -397,8 +395,6 @@ function output ($message,$logit = 1,$target = 'summary') {
         print '  ';
         if ($i % 100 == 0) print "\n";
       }
-      @ob_flush();
-      flush();
     }
     flush();
   }
@@ -917,6 +913,7 @@ while ($message = Sql_fetch_array($messages)) {
     if (!$status['id']) {
       ProcessError($GLOBALS['I18N']->get('Message I was working on has disappeared'));
     } elseif ($status['status'] != 'inprocess') {
+      $script_stage = 6;
       ProcessError($GLOBALS['I18N']->get('Sending of this message has been suspended'));
     }
     flush();
