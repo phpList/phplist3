@@ -202,6 +202,16 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
             $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
             $todo = "deleteUser";
             break;
+          case "blacklist":
+            $action_result .= $GLOBALS['I18N']->get("Blacklisting subscribers with more than")." ".$num." ".$GLOBALS['I18N']->get('bounces');
+            $req = Sql_Query(sprintf('select id from %s
+              where bouncecount > %d',
+              $tables["user"],$num
+            ));
+            $total = Sql_Affected_Rows();
+            $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply')."<br/>";
+            $todo = "addUserToBlackListID";
+            break;
           case "resendconfirm":
             $fromval = $from->getDate("from");
             $toval = $from->getDate("to");
@@ -459,6 +469,21 @@ print '</ul>';
   <option>20</option>
   <option>50</option>
 </select> <?php echo $GLOBALS['I18N']->get('bounces')?> <input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
+
+<form method="get">
+<input type="hidden" name="page" value="reconcileusers" />
+<input type="hidden" name="option" value="blacklist" />
+<p class="information"><?php echo $GLOBALS['I18N']->get('To blacklist all subscribers with more than')?>
+<select name="num">
+  <option>1</option>
+  <option>2</option>
+  <option selected="selected">5</option>
+  <option>10</option>
+  <option>15</option>
+  <option>20</option>
+  <option>50</option>
+</select> <?php echo $GLOBALS['I18N']->get('bounces')?> <input class="button" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
+
 <p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a subscriber, not consecutive bounces')?></p>
 
 <hr/>

@@ -388,6 +388,14 @@ function addUserToBlackList($email,$reason = '') {
   addEmailToBlackList($email,$reason);
 }
 
+function addUserToBlackListID($id,$reason = '') {
+	Sql_Query(sprintf('update %s set blacklisted = 1 where id = %s',
+	$GLOBALS['tables']["user"],$id));
+	#0012262: blacklist only email when email bounces. (not users): Function split so email can be blacklisted without blacklisting user
+	$email = Sql_Fetch_Row_Query("select email from {$GLOBALS["tables"]["user"]} where id = $id");
+	addEmailToBlackList($email[0],$reason);
+}
+
 function addEmailToBlackList($email,$reason = '',$date = '') {
   if (empty($date)) {
     $sqldate = 'now()';
