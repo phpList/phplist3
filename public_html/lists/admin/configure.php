@@ -49,14 +49,14 @@ foreach ($default_config as $item => $details) {
   if (empty($details['type'])) {
     $details['type'] = 'undefined';
   }
-  if (!isset($configCategories[$details['category']])) {
-    $configCategories[$details['category']] = array();
+  if (!isset($configCategories[strtolower($details['category'])])) {
+    $configCategories[strtolower($details['category'])] = array();
   }
   if (!isset($configTypes[$details['type']])) {
     $configTypes[$details['type']] = array();
   }
   $configTypes[$details['type']][] = $item;
-  $configCategories[$details['category']][] = $item;
+  $configCategories[strtolower($details['category'])][] = $item;
 }
 #var_dump($configCategories);
 #var_dump($configTypes);
@@ -134,7 +134,7 @@ if (empty($id)) {
         
         $resourceLink = sprintf('<a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a>',$_SESSION['adminlanguage']['iso'],$configItem);
         ## disable this until the resources wiki is organised properly
-        $resourceLink = '';
+       $resourceLink = '';
         
         $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',$alternate,$configItem,PageURL2("configure","","id=$configItem"),s('edit this value'),s('edit'),$default_config[$configItem]['description'],$resourceLink);
         $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>',$configItem,nl2br(htmlspecialchars(stripslashes($displayValue))));
