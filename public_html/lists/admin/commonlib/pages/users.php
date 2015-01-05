@@ -69,6 +69,11 @@ $findby = $_SESSION["userlistfilter"]["findby"];
 if (!$findby) {
   $findby = "email";
 }
+$findtables = '';
+$findbyselect = "";
+$findfield = "";
+$findfieldname = "";
+$find_url = '';
 
 # hmm interesting, if they select a findby but not a find, use the Sql wildcard:
 if ($findby && !$find)
@@ -83,13 +88,13 @@ $system_findby = array (
 
 if ($findby && $find && !in_array($findby, $system_findby)) {
   $find_url = '&amp;find=' . urlencode($find) . "&amp;findby=" . urlencode($findby);
-  $findatt = Sql_Fetch_Array_Query("select id,tablename,type,name from {$tables["attribute"]} where id = $findby");
+  $findatt = Sql_Fetch_Array_Query(sprintf('select id,tablename,type,name from %s where id = %d',$tables["attribute"],$findby));
   switch ($findatt["type"]) {
     case "textline" :
     case "hidden" :
       $findtables = ',' . $tables["user_attribute"];
       $findbyselect = sprintf(' %s.userid = %s.id and
-              %s.attributeid = %d and %s.value like "%%%s%%"', $tables["user_attribute"], $tables["user"], $tables["user_attribute"], $findby, $tables["user_attribute"], $find);
+              %s.attributeid = %d and %s.value like "%%%s%%"', $tables["user_attribute"], $tables["user"], $tables["user_attribute"], $findby, $tables["user_attribute"], sql_escape($find));
       $findfield = $tables["user_attribute"] . ".value as display, " . $tables["user"] . ".bouncecount";
       $findfieldname = $findatt["name"];
       break;
@@ -100,15 +105,14 @@ if ($findby && $find && !in_array($findby, $system_findby)) {
               %s.attributeid = %d and %s.value = %s.id and
               %s.name like "%%%s%%"', $tables["user_attribute"], $tables["user"], $tables["user_attribute"], $findby, $tables["user_attribute"], $table_prefix .
       'listattr_' . $findatt["tablename"], $table_prefix .
-      'listattr_' . $findatt["tablename"], $find);
+      'listattr_' . $findatt["tablename"], sql_escape($find));
       $findfield = $table_prefix . 'listattr_' . $findatt["tablename"] . ".name as display, " . $tables["user"] . ".bouncecount";
       $findfieldname = $findatt["name"];
       break;
   }
 } else {
   $findtables = '';
-  $findbyselect = sprintf(' %s like "%%%s%%"', $findby, $find);
-  ;
+  $findbyselect = sprintf(' %s like "%%%s%%"', $findby, sql_escape($find));
   $findfield = $tables["user"] . ".bouncecount," . $tables["user"] . ".foreignkey";
   $findfieldname = "Email";
   $find_url = '&amp;find=' . urlencode($find);
@@ -120,11 +124,13 @@ if ($require_login && !isSuperUser()) {
     case "owner" :
       $table_list = $tables["user"] . ',' . $tables["listuser"] . ',' . $tables["list"] . $findtables;
       $subselect = "{$tables["user"]}.id = {$tables["listuser"]}.userid and {$tables["listuser"]}.listid = {$tables["list"]}.id and {$tables["list"]}.owner = " . $_SESSION["logindetails"]["id"];
-      if ($unconfirmed)
+      if ($unconfirmed) {
         $subselect .= ' and !confirmed ';
-      if ($blacklisted)
+      }
+      if ($blacklisted) {
         $subselect .= ' and blacklisted ';
-      if ($find) {
+      }
+      if ($find && $findbyselect) {
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,confirmed from " . $table_list . " where $subselect and $findbyselect";
         $count = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " where $subselect and $findbyselect");
         $unconfirmedcount = Sql_query("SELECT count(distinct {$tables["user"]}.id) FROM " . $table_list . " where $subselect and !confirmed and $findbyselect");
@@ -137,11 +143,13 @@ if ($require_login && !isSuperUser()) {
     case "all" :
     case "view" :
       $table_list = $tables["user"] . $findtables;
-      if ($find) {
-        if ($unconfirmed)
+      if ($find && $findbyselect) {
+        if ($unconfirmed) {
           $findbyselect .= ' and !confirmed ';
-        if ($blacklisted)
+        }
+        if ($blacklisted) {
           $findbyselect .= ' and blacklisted ';
+        }
         $listquery = "select DISTINCT {$tables["user"]}.email,{$tables["user"]}.id,$findfield,{$tables["user"]}.confirmed from " . $table_list . " where $findbyselect";
         $count = Sql_query("SELECT count(*) FROM " . $table_list . " where $findbyselect");
         $unconfirmedcount = Sql_query("SELECT count(*) FROM " . $table_list . " where !confirmed && $findbyselect");
@@ -162,7 +170,7 @@ if ($require_login && !isSuperUser()) {
 } else {
   ## is superuser
   $table_list = $tables["user"] . $findtables;
-  if ($find) {
+  if ($find && $findbyselect) {
     if ($unconfirmed)
       $findbyselect .= ' and !confirmed ';
     if ($blacklisted)
