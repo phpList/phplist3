@@ -40,7 +40,11 @@ if (isset($_GET['pqchoice'])) {
   }
 }
 
-$pqChoice = getConfig('pqchoice');
+if (SHOW_PQCHOICE) {
+  $pqChoice = getConfig('pqchoice');
+} else {
+  $pqChoice = 'local';
+}
 
 if (empty($pqChoice)) {
   print '<h3>'.s('To send your queue, you can now use the phpList Hosted service').'</h3>';
@@ -82,7 +86,9 @@ if ($pqChoice == 'local') {
     </div>
   </div>';
   
-  print s('Using local processing'). ' <p><a href="./?page=processqueue&pqchoice=reset" class="button">'.s('Reset').'</a></p>';
+  if (SHOW_PQCHOICE) {
+    print s('Using local processing'). ' <p><a href="./?page=processqueue&pqchoice=reset" class="button">'.s('Reset').'</a></p>';
+  }
   
 } elseif ($pqChoice == 'phplistdotcom') {
   print '<h3>'.s('To send your queue, you use the service from phpList.com').'</h3>';
