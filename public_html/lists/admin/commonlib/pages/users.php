@@ -118,6 +118,10 @@ if ($findby && $find && !in_array($findby, $system_findby)) {
   $find_url = '&amp;find=' . urlencode($find);
 }
 
+if (empty($findfield)) {
+  $findfield = "email";
+}
+
 if ($require_login && !isSuperUser()) {
   $access = accessLevel("users");
   switch ($access) {
