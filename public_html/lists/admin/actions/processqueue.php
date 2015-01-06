@@ -289,7 +289,6 @@ function my_shutdown () {
   }
   if (!empty($GLOBALS['inRemoteCall'])) {
     ob_end_clean();
-    $counters['hello'] = 'world';
     print outputCounters();
     @ob_start();
   }
