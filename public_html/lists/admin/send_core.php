@@ -708,7 +708,7 @@ if (!$done) {
   $scheduling_content = '<div id="schedulecontent">';
   if (defined('SYSTEM_TIMEZONE')) {
     $scheduling_content .= '
-    <div class="field">'.s('phpList operates in the time zone ').SYSTEM_TIMEZONE.'</div>';
+    <div class="field">'.s('phpList operates in the time zone "%s"',SYSTEM_TIMEZONE).'</div>';
   } else {
     $scheduling_content .= '
     <div class="field">'.s('Dates and times are relative to the Server Time').'<br/>'.s('Current Server Time is').' <span id="servertime">'.$currentTime[0].'</span>'.'</div>';
