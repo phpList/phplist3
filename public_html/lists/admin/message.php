@@ -162,13 +162,15 @@ $result = Sql_query("SELECT * FROM $tables[list] $subselect");
 while ($row = Sql_fetch_array($result)) {
   if (!in_array($row['id'],$lists_done)) {
     $messlis .= '<li><input type="checkbox" name="list[' . $row["id"] . ']" value="signup" ';
-    if (isset($_POST['list'][$row["id"]]) && $_POST['list'][$row["id"]] == 'signup')
+    if (isset($_POST['list'][$row["id"]]) && $_POST['list'][$row["id"]] == 'signup') {
       $messlis .= 'checked="checked"';
+    }
     $messlis .= " />".$row['name'];
-    if ($row["active"])
-      $messlis .= ' (' . $GLOBALS['I18N']->get('List is Active') . ')';
-    else
-      $messlis .= ' (' . $GLOBALS['I18N']->get('List is not Active') . ')';
+    if ($row["active"]) {
+      $messlis .= ' (' . $GLOBALS['I18N']->get('Public list') . ')';
+    } else {
+      $messlis .= ' (' . $GLOBALS['I18N']->get('Private list') . ')';
+    }
     $some = 1;
     $messlis .= '</li>';
   }
