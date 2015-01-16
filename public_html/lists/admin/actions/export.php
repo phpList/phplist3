@@ -38,9 +38,9 @@ $exportfile = fopen($exportfileName,'w');
 if ($_SESSION['export']['column'] == 'nodate') {
   ## fetch dates as min and max from user table
   if ($list) {
-    $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s where listid = %d %s',$querytables,$list,$subselect));
+    $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s where listid = %d %s',$querytables,$list,$subselect));
   } else {
-    $dates = Sql_Fetch_Row_Query(sprintf('select min(date(user.modified)),max(date(user.modified)) from %s ',$querytables));
+    $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s ',$querytables));
   }
 
   $fromdate = $dates[0];
