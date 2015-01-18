@@ -641,10 +641,12 @@ msgid "Uncategorised"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:1184
+#: public_html/lists/admin/message.php:170
 msgid "Public list"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:1186
+#: public_html/lists/admin/message.php:172
 msgid "Private list"
 msgstr ""
 
@@ -3445,7 +3447,8 @@ msgid "Send a Webpage - URL"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:711
-msgid "phpList operates in the time zone "
+#, php-format
+msgid "phpList operates in the time zone \"%s\""
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:714
@@ -3794,21 +3797,13 @@ msgstr ""
 msgid "Send this (same) message to (a) new list(s)"
 msgstr ""
 
-#: public_html/lists/admin/message.php:169
-msgid "List is Active"
-msgstr ""
-
-#: public_html/lists/admin/message.php:171
-msgid "List is not Active"
-msgstr ""
-
-#: public_html/lists/admin/message.php:178
+#: public_html/lists/admin/message.php:180
 msgid ""
 "<b>Note:</b> this message has already been sent to all lists. To resend it "
 "to new users use the \"Requeue\" function."
 msgstr ""
 
-#: public_html/lists/admin/message.php:180
+#: public_html/lists/admin/message.php:182
 msgid "Resend"
 msgstr ""
 
