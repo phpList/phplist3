@@ -24,28 +24,26 @@ if (isset($_REQUEST['list'])) {
 $access = accessLevel('export');
 switch ($access) {
   case 'owner':
-    $querytables = $GLOBALS['tables']['list'].' list ,'.$GLOBALS['tables']['user'].' user ,'.$GLOBALS['tables']['listuser'].' listuser ';
-    $subselect = ' and listuser.listid = list.id and listuser.userid = user.id and list.owner = ' . $_SESSION['logindetails']['id'];
+    $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '. $GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
+                                                   ' INNER JOIN '.$GLOBALS['tables']['user'].' user ON listuser.userid = user.id';
+    $subselect = ' and list.owner = ' . $_SESSION['logindetails']['id'];
     $listselect_where = ' where owner = ' . $_SESSION['logindetails']['id'];
-    $listselect_and = ' and owner = ' . $_SESSION['logindetails']['id'];
     break;
   case 'all':
     if ($list) {
-      $querytables = $GLOBALS['tables']['user'].' user'.', '.$GLOBALS['tables']['listuser'].' listuser';
-      $subselect = ' and listuser.userid = user.id ';
+      $querytables = $GLOBALS['tables']['user'].' user'.', '.$GLOBALS['tables']['listuser'].' listuser ON user.id = listuser.userid';
+      $subselect = '';
     } else {
       $querytables = $GLOBALS['tables']['user'].' user';
       $subselect = '';
     }
     $listselect_where = '';
-    $listselect_and = '';
     break;
   case 'none':
   default:
     $querytables = $GLOBALS['tables']['user'].' user';
     $subselect = ' and user.id = 0';
     $listselect_where = ' where owner = 0';
-    $listselect_and = ' and owner = 0';
     break;
 }
 
