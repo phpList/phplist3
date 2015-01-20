@@ -15,7 +15,7 @@ switch ($access) {
       $query = "select id from " . $tables['list'] . $subselect . " and id = ?";
       $rs = Sql_Query_Params($query, array($listid));
       if (!Sql_Num_Rows($rs)) {
-        Fatal_Error($GLOBALS['I18N']->get("You do not have enough priviliges to view this page"));
+        Fatal_Error($GLOBALS['I18N']->get("You do not have enough privileges to view this page"));
         return;
       }
     }
@@ -28,7 +28,7 @@ switch ($access) {
   case "none":
   default:
     if ($listid) {
-      Fatal_Error($GLOBALS['I18N']->get("You do not have enough priviliges to view this page"));
+      Fatal_Error($GLOBALS['I18N']->get("You do not have enough privileges to view this page"));
       $isowner_and = sprintf(" list.owner = 0 and ");
       $isowner_where = sprintf(" where list.owner = 0 ");
       return;
