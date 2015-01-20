@@ -17,7 +17,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
       if ($id) {
         Sql_Query("select id from ".$GLOBALS['tables']["list"]. $subselect . " and id = $id");
         if (!Sql_Affected_Rows()) {
-          Error($GLOBALS['I18N']->get('You do not have enough priviliges to view this page'));
+          Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
           return;
         }
       } else {
@@ -36,7 +36,7 @@ if ($GLOBALS["require_login"] && !isSuperUser()) {
     default:
       $subselect_and = " and owner = -1";
       if ($id) {
-        Fatal_Error($GLOBALS['I18N']->get('You do not have enough priviliges to view this page'));
+        Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
         return;
       }
       $subselect = " where id = 0";
