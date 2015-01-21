@@ -129,7 +129,9 @@ if (sizeof($aListCategories)) {
   } else {
     $tabs->setCurrent(s('Uncategorised'));
   }
-  print $tabs->display();
+  if (sizeof($aListCategories) > 1) {
+    print $tabs->display();
+  }
 }
 $countquery
 = ' select *'
