@@ -81,7 +81,7 @@ msgstr ""
 #: public_html/lists/admin/members.php:39
 #: public_html/lists/admin/editlist.php:20
 #: public_html/lists/admin/editlist.php:39
-msgid "You do not have enough priviliges to view this page"
+msgid "You do not have enough privileges to view this page"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:42
@@ -403,8 +403,8 @@ msgstr ""
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:241 public_html/lists/admin/list.php:206
-#: public_html/lists/admin/list.php:289
+#: public_html/lists/admin/home.php:241 public_html/lists/admin/list.php:208
+#: public_html/lists/admin/list.php:291
 msgid "send"
 msgstr ""
 
@@ -628,7 +628,7 @@ msgstr ""
 
 #: public_html/lists/admin/connect.php:1158
 #: public_html/lists/admin/list.php:51 public_html/lists/admin/list.php:55
-#: public_html/lists/admin/list.php:326
+#: public_html/lists/admin/list.php:328
 #: public_html/lists/admin/commonlib/pages/importcsv.php:620
 #: public_html/lists/admin/import3.php:40
 msgid "Add a list"
@@ -2264,7 +2264,7 @@ msgstr ""
 #: public_html/lists/admin/template.php:319
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
-#: public_html/lists/admin/list.php:296
+#: public_html/lists/admin/list.php:298
 #: public_html/lists/admin/commonlib/pages/user.php:440
 #: public_html/lists/admin/commonlib/pages/user.php:469
 #: public_html/lists/admin/commonlib/pages/attributes.php:384
@@ -2695,7 +2695,7 @@ msgid "Tag all users in this page"
 msgstr ""
 
 #: public_html/lists/admin/members.php:315
-#: public_html/lists/admin/list.php:198 public_html/lists/admin/list.php:265
+#: public_html/lists/admin/list.php:200 public_html/lists/admin/list.php:267
 msgid "Members"
 msgstr ""
 
@@ -3415,7 +3415,7 @@ msgid "Scheduling"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:568
-#: public_html/lists/admin/list.php:148 public_html/lists/admin/list.php:165
+#: public_html/lists/admin/list.php:150 public_html/lists/admin/list.php:167
 #: public_html/lists/admin/commonlib/pages/user.php:559
 msgid "Lists"
 msgstr ""
@@ -4082,21 +4082,21 @@ msgstr ""
 msgid "Network error updating language, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:53
+#: public_html/lists/admin/actions/export.php:56
 #, php-format
 msgid "phpList Export on %s from %s to %s (%s).csv"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:55
+#: public_html/lists/admin/actions/export.php:58
 #, php-format
 msgid "phpList Export from %s to %s (%s).csv"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:136
+#: public_html/lists/admin/actions/export.php:139
 msgid "List Membership"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:184
+#: public_html/lists/admin/actions/export.php:187
 #: public_html/lists/admin/actions/processqueue.php:285
 msgid "All done"
 msgstr ""
@@ -4619,69 +4619,69 @@ msgstr ""
 msgid "Categorise lists"
 msgstr ""
 
-#: public_html/lists/admin/list.php:187 public_html/lists/admin/list.php:194
+#: public_html/lists/admin/list.php:189 public_html/lists/admin/list.php:196
 msgid "All subscribers"
 msgstr ""
 
-#: public_html/lists/admin/list.php:189 public_html/lists/admin/list.php:250
+#: public_html/lists/admin/list.php:191 public_html/lists/admin/list.php:252
 msgid "Confirmed members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:189 public_html/lists/admin/list.php:250
+#: public_html/lists/admin/list.php:191 public_html/lists/admin/list.php:252
 msgid "Unconfirmed members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:198 public_html/lists/admin/list.php:265
+#: public_html/lists/admin/list.php:200 public_html/lists/admin/list.php:267
 msgid "View Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:202
+#: public_html/lists/admin/list.php:204
 msgid "This is a system list. You cannot delete it."
 msgstr ""
 
-#: public_html/lists/admin/list.php:204 public_html/lists/admin/list.php:287
+#: public_html/lists/admin/list.php:206 public_html/lists/admin/list.php:289
 msgid "delete this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:206
+#: public_html/lists/admin/list.php:208
 msgid "start a new campaign targetting all lists"
 msgstr ""
 
-#: public_html/lists/admin/list.php:207 public_html/lists/admin/list.php:290
+#: public_html/lists/admin/list.php:209 public_html/lists/admin/list.php:292
 msgid "Add Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:213
+#: public_html/lists/admin/list.php:215
 msgid ""
 "You seem to have quite a lot of lists, do you want to organise them in "
 "categories? "
 msgstr ""
 
-#: public_html/lists/admin/list.php:213
+#: public_html/lists/admin/list.php:215
 msgid "Great idea!"
 msgstr ""
 
-#: public_html/lists/admin/list.php:268
+#: public_html/lists/admin/list.php:270
 msgid "Public"
 msgstr ""
 
-#: public_html/lists/admin/list.php:281
+#: public_html/lists/admin/list.php:283
 msgid "Order"
 msgstr ""
 
-#: public_html/lists/admin/list.php:285
+#: public_html/lists/admin/list.php:287
 msgid "Are you sure you want to delete this list?"
 msgstr ""
 
-#: public_html/lists/admin/list.php:289
+#: public_html/lists/admin/list.php:291
 msgid "Edit this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:289
+#: public_html/lists/admin/list.php:291
 msgid "start a new campaign targetting this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:299
+#: public_html/lists/admin/list.php:301
 msgid "No lists, use Add List to add one"
 msgstr ""
 
@@ -5889,64 +5889,64 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: public_html/lists/admin/export.php:55
+#: public_html/lists/admin/export.php:53
 msgid "Invalid security token. Please reload the page and try again."
 msgstr ""
 
-#: public_html/lists/admin/export.php:66
+#: public_html/lists/admin/export.php:64
 msgid "Processing export, this may take a while. Please wait"
 msgstr ""
 
-#: public_html/lists/admin/export.php:74
+#: public_html/lists/admin/export.php:72
 #, php-format
 msgid "Export subscribers on %s"
 msgstr ""
 
-#: public_html/lists/admin/export.php:80
+#: public_html/lists/admin/export.php:78
 msgid "What date needs to be used:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:81
+#: public_html/lists/admin/export.php:79
 msgid "Any date"
 msgstr ""
 
-#: public_html/lists/admin/export.php:81
+#: public_html/lists/admin/export.php:79
 msgid "Export all subscribers"
 msgstr ""
 
-#: public_html/lists/admin/export.php:82
+#: public_html/lists/admin/export.php:80
 msgid "When they signed up"
 msgstr ""
 
-#: public_html/lists/admin/export.php:83
+#: public_html/lists/admin/export.php:81
 msgid "When the record was changed"
 msgstr ""
 
-#: public_html/lists/admin/export.php:84
+#: public_html/lists/admin/export.php:82
 msgid "Based on changelog"
 msgstr ""
 
-#: public_html/lists/admin/export.php:85
+#: public_html/lists/admin/export.php:83
 msgid "When they subscribed to"
 msgstr ""
 
-#: public_html/lists/admin/export.php:102
+#: public_html/lists/admin/export.php:100
 msgid "Date From:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:103
+#: public_html/lists/admin/export.php:101
 msgid "Date To:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:107
+#: public_html/lists/admin/export.php:105
 msgid "Select the columns to include in the export"
 msgstr ""
 
-#: public_html/lists/admin/export.php:108
+#: public_html/lists/admin/export.php:106
 msgid "Select all"
 msgstr ""
 
-#: public_html/lists/admin/export.php:127
+#: public_html/lists/admin/export.php:125
 msgid "Export"
 msgstr ""
 
