@@ -333,7 +333,7 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
       $rs = Sql_Query_Params($query, array($row['id']));
       $intro = Sql_Fetch_Row($rs);
       print $intro[0];
-      printf('<p><a href="./?p=subscribe&id=%d">%s</a></p>',$row["id"],$row["title"]);
+      printf('<p><a href="./?p=subscribe&id=%d">%s</a></p>',$row["id"],stripslashes($row["title"]));
      }
   } else {
     printf('<p><a href="./?p=subscribe">%s</a></p>',$strSubscribeTitle);

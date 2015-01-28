@@ -48,7 +48,7 @@ $req = Sql_Query(sprintf('select * from %s %s order by title',$tables["subscribe
 while ($p = Sql_Fetch_Array($req)) {
   $ls->addElement($p["id"]);
   $ls->setClass($p["id"],'row1');
-  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('title'),$p["title"]);
+  $ls->addColumn($p["id"],$GLOBALS['I18N']->get('title'),stripslashes($p["title"]));
   if (($require_login && isSuperUser()) || !$require_login) {
     $ls->addColumn($p["id"],$GLOBALS['I18N']->get('owner'),adminName($p["owner"]));
     if ($p["id"] == $default) {
