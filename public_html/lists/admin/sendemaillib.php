@@ -612,7 +612,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $link = str_replace('"','',$link);  
       ## http://www.google.com/support/analytics/bin/answer.py?hl=en&answer=55578
 
-      $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=HTML&utm_campaign='.urlencode($cached[$messageid]["subject"]);
+      $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=HTML&utm_campaign='.urlencode($cached[$messageid]["subject"]);
       ## take off existing tracking code, if found
       if (strpos($link,'utm_medium') !== false) {
         $link = preg_replace('/utm_(\w+)\=[^&]+&/U','',$link);
@@ -649,7 +649,8 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   
       if (preg_match('/^http|ftp/',$link) && (stripos($link, 'www.phplist.com') !== 0)  ) {# && !strpos($link,$clicktrack_root)) {
         $url = cleanUrl($link,array('PHPSESSID','uid'));
-        $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=text&utm_campaign='.urlencode($cached[$messageid]["subject"]);
+        //@alpha1: maybe source should be message id?
+        $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=text&utm_campaign='.urlencode($cached[$messageid]["subject"]);
         ## take off existing tracking code, if found
         if (strpos($link,'utm_medium') !== false) {
           $link = preg_replace('/utm_(\w+)\=[^&]+/','',$link);
