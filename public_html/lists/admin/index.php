@@ -166,7 +166,8 @@ if ($GLOBALS["commandline"]) {
   if (CHECK_REFERRER && isset($_SERVER['HTTP_REFERER'])) {
     ## do a crude check on referrer. Won't solve everything, as it can be faked, but shouldn't hurt
     $ref = parse_url($_SERVER['HTTP_REFERER']);
-    if ($ref['host'] != $_SERVER['HTTP_HOST'] && !in_array($ref['host'],$allowed_referrers)) {
+    list($http_host, $http_port) = explode(':', $_SERVER['HTTP_HOST']);
+    if ($ref['host'] != $http_host && !in_array($ref['host'],$allowed_referrers)) {
       print 'Access denied';exit;
     }
   }
