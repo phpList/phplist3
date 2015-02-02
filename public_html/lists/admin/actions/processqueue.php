@@ -269,7 +269,7 @@ function my_shutdown () {
       }
     }
     $counters['delaysend'] = (int)($batch_period - $totaltime); 
-    if (empty($GLOBALS['inRemoteCall']) && empty($GLOBALS['commandline']) && empty($_GET['ajaxed'])) {
+    if (empty($GLOBALS['inRemoteCall']) && empty($GLOBALS['commandline'])) {
       sleep($delaytime);
       printf( '<script type="text/javascript">
           document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
