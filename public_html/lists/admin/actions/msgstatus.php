@@ -106,7 +106,7 @@ if ($message['status'] != 'inprocess') {
         $html .= $GLOBALS['I18N']->get('Waiting');
         if ($pqchoice == 'local') {
           $html .= PageLinkButton('processqueue',s('Send the queue'));
-        } else {
+        } elseif ($pqchoice == 'phplistdotcom') {
           $html .= '<a href="https://www.phplist.com/myaccount" target="_blank" class="button">'.s('Check status'). '</a>';
         }
       } else {
