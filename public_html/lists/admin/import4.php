@@ -100,10 +100,8 @@ if (!$_POST["remote_host"] ||
   );
   print $GLOBALS['I18N']->get('Getting data from ').htmlentities($_POST["remote_database"])."@".htmlentities($_POST["remote_host"])."<br/>";
 
-  $query = "select value from {$remote_tables["config"]} where item = ?";
-  $rs = Sql_Query_Params($query, array('version'));
-  $version = Sql_Fetch_Row($rs);
-  print $GLOBALS['I18N']->get('Remote version is')." $version[0]<br/>\n";
+  $version = Sql_Fetch_Row_Query("select value from {$remote_tables["config"]} where item = \"version\"");
+  print $GLOBALS['I18N']->get('remote_version')." $version[0]<br/>\n";
   $usercnt = Sql_Fetch_Row_Query("select count(*) from {$remote_tables["user"]}");
   print $GLOBALS['I18N']->get('Remote version has')." $usercnt[0] ".$GLOBALS['I18N']->get('users')."<br/>";
   if (!$usercnt[0]) {
@@ -126,15 +124,12 @@ if (!$_POST["remote_host"] ||
 
   connectLocal();
   foreach ($remote_lists as $list) {
-    $query = sprintf('select id from %s where name = ?', $tables["list"]);
-    $rs = Sql_Query_Params($query, array($list["name"]));
-    $localid_req = Sql_Fetch_Row($rs);
+    $localid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where name = "%s"',
+      $tables["list"],$list["name"]));
     if ($localid_req[0]) {
       $listmap[$list["id"]] = $localid_req[0];
        print $GLOBALS['I18N']->get('list').' '.$list["name"] .$GLOBALS['I18N']->get('exists locally')." <br/>\n";
     } elseif ($_POST["copyremotelists"]) {
-      # BUG  This query is probably busted.  As they say in math,
-      # this one is left as an exercise for the reader.
       $query = "";
       foreach ($DBstruct["list"] as $colname => $colspec) {
         if ($colname != "id" && $colname != "index" && $colname != "unique" && $colname != "primary key") {
@@ -144,7 +139,7 @@ if (!$_POST["remote_host"] ||
       $query = substr($query,0,-1);
        print $GLOBALS['I18N']->get('list')." ".$list["name"] .$GLOBALS['I18N']->get('created locally')." <br/>\n";
       Sql_Query("insert into {$tables["list"]} set $query");
-      $listmap[$list["id"]] = Sql_Insert_Id($tables['list'], 'id');
+      $listmap[$list["id"]] = Sql_Insert_id();
     } else {
        print $GLOBALS['I18N']->get('Remote list')." ".$list["name"] .$GLOBALS['I18N']->get('not created')." <br/>\n";
     }
@@ -162,9 +157,8 @@ if (!$_POST["remote_host"] ||
 
   connectLocal();
   foreach ($remote_atts as $att) {
-    $query = sprintf('select id from %s where name = ?', $tables["attribute"]);
-    $rs = Sql_Query_Params($query, array($att["name"]));
-    $localid_req = Sql_Fetch_Row($rs);
+    $localid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where name = "%s"',
+      $tables["attribute"],stripslashes($att["name"])));
     if ($localid_req[0]) {
       $attributemap[$att["id"]] = $localid_req[0];
        print $GLOBALS['I18N']->get('Attribute')." ".$att["name"] .$GLOBALS['I18N']->get('exists locally')." <br/>\n";
@@ -172,14 +166,13 @@ if (!$_POST["remote_host"] ||
       $query = "";
       foreach ($DBstruct["attribute"] as $colname => $colspec) {
         if ($colname != "id" && $colname != "index" && $colname != "unique" && $colname != "primary key") {
-          # BUG              here V
           $query .= sprintf('%s = "%s",',$colname,addslashes($att[$colname]));
          }
        }
       $query = substr($query,0,-1);#
        print $GLOBALS['I18N']->get('Attribute')." ".$att["name"].$GLOBALS['I18N']->get('created locally')." <br/>\n";
       Sql_Query("insert into {$tables["attribute"]} set $query");
-      $attributemap[$att["id"]] = Sql_Insert_Id($tables['attribute'], 'id');
+      $attributemap[$att["id"]] = Sql_Insert_id();
       if ($att["type"] == "select" || $att["type"] == "radio" || $att["type"] == "checkboxgroup") {
         $query = "create table if not exists $table_prefix"."listattr_".$att["tablename"]."
         (id integer not null primary key auto_increment,
@@ -193,9 +186,8 @@ if (!$_POST["remote_host"] ||
         }
         connectLocal();
         foreach ($values as $value) {
-          # Do they all have the same primary key?
-          $tn = $table_prefix . 'listattr_' . $att['tablename'];
-          Sql_Replace($tn, array('name' => $value['name'], 'id' => $value['id'], 'listorder' => $value['listorder']), array('id'));
+          Sql_Query(sprintf('replace into %slistattr_%s (name,id,listorder)
+            values("%s",%d,"%s")',$table_prefix,$att["tablename"],addslashes($value["name"]),$value["id"],$value["listorder"]));
         }
       }
     }
@@ -209,7 +201,7 @@ if (!$_POST["remote_host"] ||
   while ($usercnt < $totalusers) {
     set_time_limit(60);
     connectRemote();
-    $req = Sql_Query("select * from {$remote_tables["user"]} limit 1 offset $usercnt");
+    $req = Sql_Query("select * from {$remote_tables["user"]} limit $usercnt,1");
     $user = Sql_Fetch_Array($req);
     $usercnt++;
     $new = 0;
@@ -218,15 +210,13 @@ if (!$_POST["remote_host"] ||
       flush();
     }
     connectLocal();
-    $query = sprintf('select id from %s where email = ?', $tables["user"]);
-    $rs = Sql_Query_Params($query, array($user['email']));
-    $exists = Sql_Fetch_Row($rs);
+    $query = "";
+    $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$tables["user"],$user["email"]));
     if ($exists[0]) {
       $existcnt++;
   #    print $user["email"] .$GLOBALS['I18N']->get('exists locally')." ..";
       if ($_POST["overwrite"]) {
   #      print " .. ".$GLOBALS['I18N']->get('overwriting local data')."<br/>";
-        # BUG
         $query = "replace into ".$tables["user"] . " set id = ".$exists[0].", ";
       } else {
   #      print " .. ".$GLOBALS['I18N']->get('keeping local data')."<br/>";
@@ -246,29 +236,27 @@ if (!$_POST["remote_host"] ||
        }
       $query = substr($query,0,-1);
       #print $query . "<br/>";
-      Sql_Query($query);
-      $userid = Sql_Insert_Id($tables['user'], 'id');
+      Sql_Query("$query");
+      $userid = Sql_Insert_id();
     }
     if ($userid && $_POST["markhtml"]) {
-      $query = "update {$tables["user"]} set htmlemail = 1 where id = ?";
-      Sql_Query_Params($query, array($userid));
+      Sql_Query("update {$tables["user"]} set htmlemail = 1 where id = $userid");
     }
 
     if ($new || (!$new && $_POST["overwrite"])) {
       # now check for attributes and list membership
       connectRemote();
       $useratt = array();
-      $query = "select * from {$remote_tables["user_attribute"]} ua, {$remote_tables["attribute"]} a where ua.attributeid = a.id and ua.userid = ?";
-      $req = Sql_Query_Params($query, array($user[0]));
+      $req = Sql_Query("select * from {$remote_tables["user_attribute"]},
+        {$remote_tables["attribute"]} where {$remote_tables["user_attribute"]}.attributeid =
+        {$remote_tables["attribute"]}.id and {$remote_tables["user_attribute"]}.userid = $user[0]");
       while ($att = Sql_Fetch_Array($req)) {
         $value = "";
         switch ($att["type"]) {
           case "select":
           case "radio":
-            $query = sprintf('select name from %slistattr_%s where id = ?',
-              sql_escape($_POST['remote_prefix']), $att['tablename']);
-            $rs = Sql_Query_Params($query, array($att['value']));
-            $valreq = Sql_Fetch_Row($rs);
+            $valreq = Sql_Fetch_Row_Query(sprintf('select name from %slistattr_%s where id = %d',
+              $_POST["remote_prefix"],$att["tablename"],$att["value"]));
             $value = $valreq[0];
             break;
           case "checkboxgroup":
@@ -285,8 +273,9 @@ if (!$_POST["remote_host"] ||
       $userlists = array();
       $userlists = array_merge($_POST["lists"],$userlists);
       if ($_POST["copyremotelists"]) {
-        $query = "select * from {$remote_tables["listuser"]} lu, {$remote_tables["list"]} l where lu.listid = l.id and lu.userid = ?";
-        $req = Sql_Query_Params($query, array($user[0]));
+        $req = Sql_Query("select * from {$remote_tables["listuser"]},
+          {$remote_tables["list"]} where {$remote_tables["listuser"]}.listid =
+          {$remote_tables["list"]}.id and {$remote_tables["listuser"]}.userid = $user[0]");
         while ($list = Sql_Fetch_Array($req)) {
         #  print $list["name"]."<br/>";
           array_push($userlists,$list);
@@ -298,20 +287,16 @@ if (!$_POST["remote_host"] ||
         if (!localattid) {
           print $GLOBALS['I18N']->get('Error, no mapped attribute for')." ".$att["name"]."<br/>";
         } else {
-          $query = "select tablename from {$tables["attribute"]} where id = ?";
-          $rs = Sql_Query_Params($query, array($localattid));
-          $tname = Sql_Fetch_Row($rs);
+          $tname = Sql_Fetch_Row_Query("select tablename from {$tables["attribute"]} where id = $localattid");
           switch ($att["type"]) {
             case "select":
             case "radio":
-              $query = sprintf('select id from %slistattr_%s where name = ?', $table_prefix,$tname[0]);
-              $rs = Sql_Query_Params($query, array($att["displayvalue"]));
-              $valueid = Sql_Fetch_Row($rs);
+              $valueid = Sql_Fetch_Row_Query(sprintf('select id from %slistattr_%s where name = "%s"',
+                $table_prefix,$tname[0],$att["displayvalue"]));
               if (!$valueid[0]) {
-                $tn = $table_prefix . 'listattr_' . $tname[0];
-                $query = sprintf('insert into %s set name = ?', $tn);
-                Sql_Query_Params($query, array($att["displayvalue"]));
-                $att["value"] = Sql_Insert_Id($tn, 'id');
+                Sql_Query(sprintf('insert into %slistattr_%s set name = "%s"',
+                $table_prefix,$tname[0],$att["displayvalue"]));
+                $att["value"] = Sql_Insert_id();
               } else {
                 $att["value"] = $valueid[0];
               }
@@ -321,15 +306,12 @@ if (!$_POST["remote_host"] ||
               array_pop($vals);
               $att["value"] = "";
               foreach ($vals as $val) {
-                $query = sprintf('select id from %slistattr_%s where name = ?',
-                  $table_prefix, $tname[0]);
-                $rs = Sql_Query_Params($query, array($val));
-                $valueid = Sql_Fetch_Row($rs);
+                $valueid = Sql_Fetch_Row_Query(sprintf('select id from %slistattr_%s where name = "%s"',
+                  $table_prefix,$tname[0],$val));
                 if (!$valueid[0]) {
-                  $tn = $table_prefix . 'listattr_' . $tname[0];
-                  $query = sprintf('insert into %s set name = ?', $tn);
-                  Sql_Query_Params($query, array($val));
-                  $att["value"] .= Sql_Insert_Id($tn, 'id').',';
+                  Sql_Query(sprintf('insert into %slistattr_%s set name = "%s"',
+                  $table_prefix,$tname[0],$val));
+                  $att["value"] .= Sql_Insert_id().',';
                 } else {
                   $att["value"] .= $valueid[0].",";
                 }
@@ -338,7 +320,9 @@ if (!$_POST["remote_host"] ||
               break;
           }
           if ($att["value"]) {
-            Sql_Replace($tables["user_attribute"], array('attributeid' => $localattid, 'userid' => $userid, 'value' => $att['value']), array('attributeid', 'userid'));
+            Sql_Query(sprintf('replace into %s set
+              attributeid = %d, userid = %d, value = "%s"',
+              $tables["user_attribute"],$localattid,$userid,addslashes($att["value"])));
           }
         }
       }
@@ -346,7 +330,8 @@ if (!$_POST["remote_host"] ||
     if (is_array($userlists))
     foreach ($userlists as $list) {
       if ($listmap[$list["listid"]]) {
-        Sql_Replace($tables["listuser"], array('listid' => $listmap[$list["listid"]], 'userid' => $userid), array('userid', 'listid'));
+        Sql_Query(sprintf('replace into %s (listid,userid) values(%d,%d)',
+          $tables["listuser"],$listmap[$list["listid"]],$userid));
        } else {
         print $GLOBALS['I18N']->get('Error, no local list defined for')." ".$list["name"]."<br/>";
       }

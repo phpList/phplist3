@@ -179,41 +179,6 @@ function Sql_Query($query,$ignore = 0) {
   return $result;
 }
 
-function Sql_Close() {
-  mysql_close($GLOBALS["database_connection"]);
-  unset($GLOBALS["database_connection"]);
-}
-
-function Sql_Query_Params($query,$params,$ignore = 0) {
-#  dbg($query);
-#  dbg($params);
-
-  if (!is_array($params)) $params = Array($params);
-
-  foreach ($params as $index => $par) {
-    $qmark = strpos  ( $query  , '?');
-    if ($qmark === FALSE) {
-      dbg("Error, more parameters than placeholders");
-    } else {
-      ## first replace the ? with some other placeholder, in case the parameters contain ? themselves
-      $query = substr($query,0,$qmark).'"PARAM'.$index.'MARAP"'.substr($query,$qmark+1);
-    }
-  }
-#  dbg($query);
-
-  foreach ($params as $index => $par) {
-    if (is_numeric($par)) {
-      $query = str_replace('"PARAM'.$index.'MARAP"',sql_escape($par),$query);
-    } else {
-      $query = str_replace('PARAM'.$index.'MARAP',sql_escape($par),$query);
-    }
-  }
-
-#  dbg($query);
-#  print $query."<br/>";
-  return Sql_Query($query,$ignore);
-}
-
 function sqllog($msg,$logfile = "") {
   if (!$logfile) return;
   $fp = @fopen($logfile,"a");
@@ -270,7 +235,7 @@ function Sql_Num_Rows($result = "") {
   return mysql_num_rows($result);
 }
 
-function Sql_Insert_Id() {
+function Sql_Insert_id() {
   return mysql_insert_id($GLOBALS["database_connection"]);
 }
 
@@ -343,31 +308,7 @@ function Sql_create_Table ($table,$structure) {
   unset($_SESSION["dbtables"]);
 }
 
-function Sql_Drop_Table($table) {
-#  print '<br/>DROP '.$table;
-  return mysql_query('drop table if exists '.$table);
-}
-
 function sql_escape($text) {
   return mysql_real_escape_string($text);
-}
-
-function Sql_Replace ($table,$values,$pk) {
-
-  $query = ' replace into '.$table.' set ';
-  foreach ($values as $key => $val) {
-    if (is_numeric($val) || $val == 'current_timestamp') {
-      $query .= ' '.$key .'= '.sql_escape($val).',';
-    } else {
-      $query .= ' '.$key .'="'.sql_escape($val).'",';
-    }
-  }
-  $query = substr($query,0,-1);
- # output($query);
-  return Sql_Query($query);
-}
-
-function Sql_Set_Search_Path($searchpath) {
-  return;
 }
 

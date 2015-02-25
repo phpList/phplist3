@@ -130,7 +130,7 @@ class imageUpload {
        $tables["templateimage"],$templateid,
        $originalname,$type,$width,$height,base64_encode($contents))
     );
-      return Sql_Insert_Id($tables['templateimage'], 'id');
+      return Sql_insert_id();
     } elseif (trim($keep) == "yes") {
       # do nothing...
     }

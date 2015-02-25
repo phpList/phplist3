@@ -67,13 +67,6 @@ if (isset($message_envelope)) {
   
 include_once dirname(__FILE__)."/pluginlib.php";
 
-/*
-$database_schema = '';
-$database_connection = Sql_Connect($database_host,$database_user,$database_password,$database_name);
-Sql_Set_Search_Path($database_schema);
-*/
-
-
 ## this needs more testing, and docs on how to set the Timezones in the DB
 if (defined('SYSTEM_TIMEZONE')) {
 #  print('set time_zone = "'.SYSTEM_TIMEZONE.'"<br/>');
@@ -199,7 +192,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
   ## and refresh the config immediately https://mantis.phplist.com/view.php?id=16693
   unset($GLOBALS['config']); 
   
-  Sql_Replace( $tables["config"], array('item'=>$item, 'value'=>$value, 'editable'=>$editable), 'item');
+  Sql_Query(sprintf('replace into %s set item = "%s", value = "%s", editable = %d',$tables["config"],sql_escape($item),sql_escape($value),$editable));
   return false; ## true indicates error, and which one
 }
 
@@ -1352,7 +1345,7 @@ function dbg($variable, $description = 'Value', $nestingLevel = 0) {
 function PageData($id) {
   global $tables;
   $req = Sql_Query(sprintf('select * from %s where id = %d',$tables["subscribepage_data"],$id));
-  if (!Sql_Num_Rows($req)) {
+  if (!Sql_Affected_Rows()) {
     $data = array();
     $data["header"] = getConfig("pageheader");
     $data["footer"] = getConfig("pagefooter");
@@ -1551,13 +1544,9 @@ function repeatMessage($msgid) {
   if (!$msgdata["id"] || !$msgdata["repeatinterval"]) return;
 
   # copy the new message
-  $query
-  = ' insert into ' . $GLOBALS['tables']['message']
-  . '    (entered)'
-  . ' values'
-  . '    (current_timestamp)';
-  Sql_Query($query);
-  $newid = Sql_Insert_Id($GLOBALS['tables']['message'], 'id');
+  Sql_Query(sprintf('
+    insert into %s (entered) values(now())',$GLOBALS["tables"]["message"]));
+  $newid = Sql_Insert_id();
   require dirname(__FILE__).'/structure.php';
   if (!is_array($DBstruct["message"])) {
     logEvent("Error including structure when trying to duplicate message $msgid");
@@ -1584,8 +1573,8 @@ function repeatMessage($msgid) {
       $loopcnt++;
       $msgdata = Sql_Fetch_Array_Query(
           sprintf('select *,date_add(embargo,interval %d minute) as newembargo,
-            date_add(current_timestamp,interval %d minute) as newembargo2, date_add(embargo,interval %d minute) > current_timestamp as isfuture
-            from %s where id = %d and repeatuntil > current_timestamp',$repeatinterval,$repeatinterval,$repeatinterval,
+            date_add(now(),interval %d minute) as newembargo2, date_add(embargo,interval %d minute) > now() as isfuture
+            from %s where id = %d and repeatuntil > now()',$repeatinterval,$repeatinterval,$repeatinterval,
             $GLOBALS["tables"]["message"],$msgid));
       if ($loopcnt > 15) {
         logEvent("Unable to find new embargo date too many exclusions? for message $msgid");
@@ -1614,7 +1603,7 @@ function repeatMessage($msgid) {
   # lists
   $req = Sql_Query(sprintf('select listid from %s where messageid = %d',$GLOBALS["tables"]["listmessage"],$msgid));
   while ($row = Sql_Fetch_Row($req)) {
-    Sql_Query(sprintf('insert into %s (messageid,listid,entered) values(%d,%d,current_timestamp)',
+    Sql_Query(sprintf('insert into %s (messageid,listid,entered) values(%d,%d,now())',
       $GLOBALS["tables"]["listmessage"],$newid,$row[0]));
   }
 
@@ -1634,7 +1623,7 @@ function repeatMessage($msgid) {
       values("%s","%s","%s","%s",%d)',
       $GLOBALS["tables"]["attachment"],addslashes($row["filename"]),addslashes($row["remotefile"]),
       addslashes($row["mimetype"]),addslashes($row["description"]),$row["size"]));
-    $attid = Sql_Insert_Id($GLOBALS['tables']['attachment'], 'id');
+    $attid = Sql_Insert_id();
     Sql_Query(sprintf('insert into %s (messageid,attachmentid) values(%d,%d)',
       $GLOBALS["tables"]["message_attachment"],$newid,$attid));
   }

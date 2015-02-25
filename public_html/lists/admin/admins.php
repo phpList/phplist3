@@ -39,10 +39,10 @@ if (!$external) {
   
   if (isset($add)) {
     if (isset($new)) {
-      $query = "insert into ".$tables["admin"]." (email,entered) values(\"$new\",current_timestamp)";
+      $query = "insert into ".$tables["admin"]." (email,entered) values(\"$new\",now())";
       $result = Sql_query($query);
-      $userid = Sql_Insert_Id($tables['admin'], 'id');
-      $query = "insert into ".$tables["listuser"]." (userid,listid,entered) values($userid,$id,current_timestamp)";
+      $userid = Sql_insert_id();
+      $query = "insert into ".$tables["listuser"]." (userid,listid,entered) values($userid,$id,now())";
       $result = Sql_query($query);
     }
     echo '<br/>'.$GLOBALS['I18N']->get('Admin added').'<br/>';

@@ -35,8 +35,8 @@ if (isset($_POST["save"])) {
       $tables["subscribepage"],sql_escape($title),$owner,$id));
    } else {
     Sql_Query(sprintf('insert into %s (title,owner) values("%s",%d)',
-      $tables["subscribepage"],sql_escape($title),$owner));
-     $id = Sql_Insert_Id($tables['subscribepage'], 'id');
+      $tables["subscribepage"],$title,$owner));
+     $id = Sql_Insert_id();
   }
   Sql_Query(sprintf('delete from %s where id = %d',$tables["subscribepage_data"],$id));
   foreach (array("title","language_file","intro","header","footer","thankyoupage","button","htmlchoice","emaildoubleentry",'ajax_subscribeconfirmation') as $item) {

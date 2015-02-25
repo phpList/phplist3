@@ -90,14 +90,14 @@ if ($message['status'] != 'inprocess') {
   if (empty($pluginhtml)) {
     ## not sure this calculation is accurate
   #  $html .= $GLOBALS['I18N']->get('sent').': '.$totalsent.'<br/>';
-    $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent"',
+    $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(now(),interval %d second) and status = "sent"',
       $tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
     if (MAILQUEUE_BATCH_PERIOD && MAILQUEUE_BATCH_SIZE && $recently_sent[0] >= MAILQUEUE_BATCH_SIZE) {
       $html .= '<h4>'.$GLOBALS['I18N']->get('limit reached').'</h4>';
       foreach ($GLOBALS['plugins'] as $plname => $plugin) {
         $html .= $plugin->messageStatusLimitReached($recently_sent[0]);
       }
-      $nextbatch = Sql_Fetch_Row_Query(sprintf('select current_timestamp,date_add(entered,interval %d second) from %s where entered > date_sub(current_timestamp,interval %d second) and status = "sent" order by entered desc limit 1',
+      $nextbatch = Sql_Fetch_Row_Query(sprintf('select now(),date_add(entered,interval %d second) from %s where entered > date_sub(now(),interval %d second) and status = "sent" order by entered desc limit 1',
         MAILQUEUE_BATCH_PERIOD + 60,$tables["usermessage"],MAILQUEUE_BATCH_PERIOD));
       $html .= '<p>'.sprintf($GLOBALS['I18N']->get('next batch of %s in %s'),MAILQUEUE_BATCH_SIZE,timeDiff($nextbatch[0],$nextbatch[1])).'</p>';
       

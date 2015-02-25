@@ -40,31 +40,13 @@ include_once dirname(__FILE__)."/admin/lib.php";
 
 if (!empty($_GET["u"]) && !empty($_GET["m"])) {
   $_GET['u'] = preg_replace('/\W/','',$_GET['u']);
-  $query = sprintf('select id from %s where uniqid = ?', $GLOBALS['tables']['user']);
-  $rs = Sql_Query_Params($query, array($_GET['u']));
-  $useridrow = Sql_Fetch_Row($rs);
-  $userid = $useridrow[0];
-  $messageid = sprintf('%d',$_GET['m']);
-} elseif (!empty($_GET['x'])) {
-  ## new method, that also tracks forward-opens, not active yet.
-  $track = base64_decode($_GET['x']);
-  $track = $track ^ XORmask;
-  @list($userhash,$messageid,$userid) = explode('|',$track);
-}
-
-if ($userid) {
-  $query
-  = ' update %s set viewed = current_timestamp'
-  . ' where messageid = ? and userid = ? and status = "sent"';
-  $query = sprintf($query, $GLOBALS['tables']['usermessage']);
-  
-  Sql_Query_Params($query, array($messageid,$userid ));
-  if (Sql_Affected_Rows()) {
-    $query
-    = ' update %s set viewed = viewed + 1'
-    . ' where id = ?';
-    $query = sprintf($query, $GLOBALS['tables']['message']);
-    Sql_Query_Params($query, array($messageid));
+  $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',
+    $GLOBALS["tables"]["user"],$_GET["u"]));
+  if ($userid[0]) {
+    Sql_Query(sprintf('update %s set viewed = now() where messageid = %d and userid = %d',
+      $GLOBALS["tables"]["usermessage"],$_GET["m"],$userid[0]));
+    Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d',
+      $GLOBALS["tables"]["message"],$_GET["m"]));
   }
 }
 

@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $msgid = empty($_GET['id']) ? 0 : sprintf('%d',$_GET['id']);
 
 if (!$msgid) {
-  $req = Sql_Query(sprintf('select message.id as messageid,message.subject,count(distinct user) as numusers from %s message, %s umb where message.id = umb.message and date_add(message.entered,interval 3 month) > current_timestamp group by message.id order by message.entered desc',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce']));
+  $req = Sql_Query(sprintf('select message.id as messageid,message.subject,count(distinct user) as numusers from %s message, %s umb where message.id = umb.message and date_add(message.entered,interval 3 month) > now() group by message.id order by message.entered desc',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce']));
   $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a message'));
   while ($row = Sql_Fetch_Array($req)) {
     $element = $GLOBALS['I18N']->get('message').' '.$row['messageid'];
@@ -16,7 +16,7 @@ if (!$msgid) {
   return;
 }
 
-$req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > current_timestamp group by umb.user order by message.entered desc',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce'],$msgid));
+$req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > now() group by umb.user order by message.entered desc',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce'],$msgid));
 $total = Sql_Affected_Rows();
 $limit = '';
 $numpp = 150;
@@ -34,7 +34,7 @@ if ($total > 500 && $_GET['type'] != 'dl') {
           PageLink2('msgbounces&amp;id='.$msgid,"&lt;",sprintf('s=%d',max(0,$s-$numpp))),
           PageLink2('msgbounces&amp;id='.$msgid,"&gt;",sprintf('s=%d',min($total,$s+$numpp))),
           PageLink2('msgbounces&amp;id='.$msgid,"&gt;&gt;",sprintf('s=%d',$total-$numpp)));
-  $req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > current_timestamp group by umb.user order by message.entered desc %s',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce'],$msgid,$limit));
+  $req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > now() group by umb.user order by message.entered desc %s',$GLOBALS['tables']['message'],$GLOBALS['tables']['user_message_bounce'],$msgid,$limit));
 }
 
 print '<p class="button">'.PageLink2('msgbounces','Select another message');

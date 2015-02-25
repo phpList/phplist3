@@ -159,7 +159,7 @@ class phplist extends DefaultPlugin {
 //   }
 
   function addUserToList($userid,$listid) {
-    $lv_result = Sql_Query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,current_timestamp)',
+    Sql_Query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
       $this->tables["listuser"],$userid,$listid));
 
     return Sql_Affected_Rows();
@@ -182,17 +182,17 @@ class phplist extends DefaultPlugin {
     ## don't touch the password if it's empty
     if (!empty($password)) {
       $passwordchange = sprintf('password = "%s",
-      passwordchanged = current_timestamp,',$password);
+      passwordchanged = now(),',$password);
     } else {
       $passwordchange = '';
     }
     
     Sql_Query(sprintf('insert into user set email = "%s",
-      entered = current_timestamp,%s disabled = 0,
+      entered = now(),password = "%s",
+      passwordchanged = now(),disabled = 0,
       uniqid = "%s",htmlemail = 1
-      ', $email,$passwordchange,getUniqid()),1);
-            
-    $id = Sql_Insert_Id('user', 'id');
+      ', $email,$password,getUniqid()),1);
+    $id = Sql_Insert_Id();
     if (is_array($_SESSION["userdata"])) {
       saveUserByID($id,$_SESSION["userdata"]);
     }

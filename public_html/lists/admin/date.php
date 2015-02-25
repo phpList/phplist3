@@ -1,5 +1,5 @@
 <?php
-//require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 
 if (!defined("IN_WEBBLER") && !defined("WEBBLER")) {

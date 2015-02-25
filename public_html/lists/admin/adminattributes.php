@@ -22,7 +22,7 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
         $_POST["listorder"][0],
         sql_escape($_POST["default"][0]),$_POST["required"][0],$lc_name);
         Sql_Query($query);
-        $insertid = Sql_Insert_Id($tables['adminattribute'], 'id');
+        $insertid = Sql_Insert_id();
 
         # text boxes and hidden fields do not have their own table
         if ($_POST["type"][$id] != "textline" && $_POST["type"][$id] != "hidden") {
@@ -57,7 +57,7 @@ if (isset($_POST["action"]) && $_POST["action"] == $GLOBALS['I18N']->get('Save C
       $res = Sql_Query("select tablename,type from {$tables['adminattribute']} where id = $id");
       $row = Sql_Fetch_Row($res);
       if ($row[1] != "hidden" && $row[1] != "textline")
-        Sql_Drop_Table($table_prefix . 'adminattr_' . $row[0]);
+        Sql_Query("drop table $table_prefix"."adminattr_$row[0]");
       Sql_Query("delete from {$tables['adminattribute']} where id = $id");
       # delete all admin attributes as well
       Sql_Query("delete from {$tables['admin_attribute']} where adminattributeid = $id");

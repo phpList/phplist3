@@ -113,22 +113,12 @@ while ($row = sql_Fetch_array($req)) {
             default:
               $action = 'unconfirmuseranddeletebounce';break;
           }
-          $query
-          = ' insert into %s'
-          . '    (regex, action, comment, status)'
-          . ' values'
-          . '    (?, ?, ?, ?)';
-          $query = sprintf($query, $GLOBALS['tables']['bounceregex']);
-          Sql_Query_Params($query, array( trim($rule), $action, 'Auto Created from bounce ' . $row['id'] . "\n line: " . $line, 'candidate'));
-          $regexid = Sql_Insert_Id($GLOBALS['tables']['bounceregex'], 'id');
+          Sql_Query(sprintf('insert into %s (regex,action,comment,status) values("%s","%s","%s","candidate")',
+            $GLOBALS['tables']['bounceregex'],addslashes(trim($rule)),$action,'Auto Created from bounce '.$row['id']."\n".' line: '.addslashes($line)),1);
+          $regexid = sql_insert_id();
           if ($regexid) { # most likely duplicate entry if no value
-            $query
-            = ' insert into %s'
-            . '    (regex, bounce)'
-            . ' values'
-            . '    (?, ?)';
-            $query = sprintf($query, $GLOBALS['tables']['bounceregex_bounce']);
-            Sql_Query_Params($query, array($regexid, $row['id']));
+            Sql_Query(sprintf('insert into %s (regex,bounce) values(%d,%d)',
+              $GLOBALS['tables']['bounceregex_bounce'],$regexid,$row['id']),1);
           } else {
 #            print matchedBounceRule($row['data']);
             print $GLOBALS['I18N']->get('Hmm, duplicate entry, ').' '.$row['id']." $code $rule<br/>";

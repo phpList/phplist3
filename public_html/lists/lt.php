@@ -50,10 +50,9 @@ $track = $track ^ XORmask;
 $userid = sprintf('%d',$userid);
 $fwdid = sprintf('%d',$fwdid);
 $messageid = sprintf('%d',$messageid);
-
-$query = sprintf('select * from %s where id = ?', $GLOBALS['tables']['linktrack_forward']);
-$rs = Sql_Query_Params($query, array($fwdid));
-$linkdata = Sql_Fetch_array($rs);
+/*$linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
+  $GLOBALS['tables']['linktrack'],$linkid,$userid,$messageid));*/
+$linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d',$GLOBALS['tables']['linktrack_forward'],$fwdid));
 
 if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
   ## try the old table to avoid breaking links
@@ -77,66 +76,54 @@ $trackingcode = '';
 #print "$track<br/>";
 #print "User $userid, Mess $messageid, Link $linkid";
 
-$query = sprintf('select * from %s where messageid = ? and forwardid = ?', $GLOBALS['tables']['linktrack_ml']);
-$rs = Sql_Query_Params($query, array($messageid, $fwdid));
-$ml = Sql_Fetch_Array($rs);
+$ml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d',
+  $GLOBALS['tables']['linktrack_ml'],$messageid,$fwdid));
 
 if (empty($ml['firstclick'])) {
-  $query = sprintf('update %s set firstclick = current_timestamp, latestclick = current_timestamp, clicked = clicked + 1 where forwardid = ? and messageid = ?', $GLOBALS['tables']['linktrack_ml']);
-  Sql_Query_Params($query, array($fwdid, $messageid));
+  Sql_query(sprintf('update %s set firstclick = now(),latestclick = now(),clicked = clicked + 1 where forwardid = %d and messageid = %d',
+    $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
 } else {
-  $query = sprintf('update %s set clicked = clicked + 1, latestclick = current_timestamp where forwardid = ? and messageid = ?', $GLOBALS['tables']['linktrack_ml']);
-  Sql_Query_Params($query, array($fwdid, $messageid));
+  Sql_query(sprintf('update %s set clicked = clicked + 1, latestclick = now() where forwardid = %d and messageid = %d',
+  $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
 }
 
 if ($msgtype == 'H') {
-  $query = sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = ? and messageid = ?', $GLOBALS['tables']['linktrack_ml']);
-  Sql_Query_Params($query, array($fwdid, $messageid));
-  $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=HTMLemail&utm_campaign='.urlencode($messagedata["subject"]);
+  Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d',
+    $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
 } elseif ($msgtype == 'T') {
-  $query = sprintf('update %s set textclicked = textclicked + 1 where forwardid = ? and messageid = ?', $GLOBALS['tables']['linktrack_ml']);
-  Sql_Query_Params($query, array($fwdid, $messageid));
-  $trackingcode = 'utm_source=emailcampaign'.$messageid.'&utm_medium=phpList&utm_content=textemail&utm_campaign='.urlencode($messagedata["subject"]);
-} 
-
-$query = sprintf('select viewed from %s where messageid = ? and userid = ?', $GLOBALS['tables']['usermessage']);
-$rs = Sql_Query_Params($query, array($messageid, $userid));
-$viewed = Sql_Fetch_Row($rs);
+  Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
+    $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
+}
+   
+$viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
+  $GLOBALS['tables']['usermessage'], $messageid, $userid));
 if (!$viewed[0]) {
-  $query = sprintf('update %s set viewed = current_timestamp where messageid = ? and userid = ?', $GLOBALS['tables']['usermessage']);
-  Sql_Query_Params($query, array($messageid, $userid));
-  $query = sprintf('update %s set viewed = viewed + 1 where id = ?', $GLOBALS['tables']['message']);
-  Sql_Query_Params($query, array($messageid));
+  Sql_Query(sprintf('update %s set viewed = now() where messageid = %d and userid = %d', 
+    $GLOBALS['tables']['usermessage'], $messageid, $userid));
+  Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d', 
+    $GLOBALS['tables']['message'], $messageid));
 }
 
-$query = sprintf('select * from %s where messageid = ? and forwardid = ? and userid = ?', $GLOBALS['tables']['linktrack_uml_click']);
-$rs = Sql_Query_Params($query, array($messageid, $fwdid, $userid));
-$uml = Sql_Fetch_Array($rs);
+$uml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d and userid = %d',
+  $GLOBALS['tables']['linktrack_uml_click'],$messageid,$fwdid,$userid));
 
 if (empty($uml['firstclick'])) {
-  $query
-  = ' insert into ' . $GLOBALS['tables']['linktrack_uml_click']
-  . '    (firstclick, forwardid, messageid, userid)'
-  . ' values'
-  . '    (current_timestamp, ?, ?, ?)';
-  Sql_Query_Params($query, array($fwdid, $messageid, $userid));
-}
-$query = sprintf('update %s set clicked = clicked + 1, latestclick = current_timestamp where forwardid = ? and messageid = ? and userid = ?', $GLOBALS['tables']['linktrack_uml_click']);
-Sql_Query_Params($query, array($fwdid, $messageid, $userid));
+  Sql_query(sprintf('insert into %s set firstclick = now(), forwardid = %d, messageid = %d, userid = %d',
+    $GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
+} 
+Sql_query(sprintf('update %s set clicked = clicked + 1, latestclick = now() where forwardid = %d and messageid = %d and userid = %d',$GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
 
 if ($msgtype == 'H') {
-  $query = sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = ? and messageid = ? and userid = ?', $GLOBALS['tables']['linktrack_uml_click']);
-  Sql_Query_Params($query, array($fwdid, $messageid, $userid));
+  Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d and userid = %d',
+    $GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
 } elseif ($msgtype == 'T') {
-  $query = sprintf('update %s set textclicked = textclicked + 1 where forwardid = ? and messageid = ? and userid = ?', $GLOBALS['tables']['linktrack_uml_click']);
-  Sql_Query_Params($query, array($fwdid, $messageid, $userid));
+  Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d and userid = %d',
+    $GLOBALS['tables']['linktrack_uml_click'],$fwdid,$messageid,$userid));
 }
 
 $url = $linkdata['url'];
 if ($linkdata['personalise']) {
-  $query = sprintf('select uniqid from %s where id = ?', $GLOBALS['tables']['user']);
-  $rs = Sql_Query_Params($query, array($userid));
-  $uid = Sql_Fetch_Row($rs);
+  $uid = Sql_Fetch_Row_Query(sprintf('select uniqid from %s where id = %d',$GLOBALS['tables']['user'],$userid));
   if ($uid[0]) {
     if (strpos($url,'?')) {
       $url .= '&uid='.$uid[0];

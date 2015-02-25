@@ -26,9 +26,7 @@ switch ($access) {
   case 'owner':
     $ownership = sprintf(' and owner = %d ', $_SESSION['logindetails']['id']);
     if ($id) {
-      $query = sprintf('select owner from %s where id = ? and owner = ?', $GLOBALS['tables']['message']);
-      $rs = Sql_Query_Params($query, array($id, $_SESSION['logindetails']['id']));
-      $allow = Sql_Fetch_Row($rs);
+      $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s',$GLOBALS['tables']['message'],$id,$ownership));
       if ($allow[0] != $_SESSION["logindetails"]["id"]) {
         print $GLOBALS['I18N']->get('You do not have access to this page');
         return;
@@ -64,7 +62,7 @@ if (!$id) {
     print '<div class="actions">'.PageLinkButton('statsoverview&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
   }
 
-  $timerange = ' and msg.entered > date_sub(current_timestamp,interval 12 month)';
+  $timerange = ' and msg.entered > date_sub(now(),interval 12 month)';
   $timerange = '';
 
   $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, 

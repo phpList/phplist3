@@ -342,11 +342,6 @@ function Sql_create_Table ($table,$structure) {
   unset($_SESSION["dbtables"]);
 }
 
-function Sql_Drop_Table($table) {
-#  print '<br/>DROP '.$table;
-  return mysqli_query($GLOBALS['database_connection'],'drop table if exists '.$table);
-}
-
 function sql_escape($text) {
   if (!empty($GLOBALS['database_connection'])) {
     return mysqli_real_escape_string($GLOBALS['database_connection'],$text);
@@ -356,22 +351,4 @@ function sql_escape($text) {
   }
 }
 
-function Sql_Replace ($table,$values,$pk) {
-
-  $query = ' replace into '.$table.' set ';
-  foreach ($values as $key => $val) {
-    if (is_numeric($val) || $val == 'current_timestamp') {
-      $query .= ' '.$key .'= '.sql_escape($val).',';
-    } else {
-      $query .= ' '.$key .'="'.sql_escape($val).'",';
-    }
-  }
-  $query = substr($query,0,-1);
- # output($query);
-  return Sql_Query($query);
-}
-
-function Sql_Set_Search_Path($searchpath) {
-  return;
-}
 

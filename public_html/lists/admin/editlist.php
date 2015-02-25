@@ -64,29 +64,22 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   }
 
   if ($id) {
-    $query
-    = ' update %s'
-    . ' set name = ?, description = ?, active = ?,'
-    . '     listorder = ?, prefix = ?, owner = ?, category = ?'
-    . ' where id = ?';
-    $query = sprintf($query, $GLOBALS['tables']['list']);
-    $result = Sql_Query_Params($query, array($_POST['listname'],
-       $_POST['description'], $_POST['active'], $_POST['listorder'],
-       $_POST['prefix'], $_POST['owner'], $category, $id));
+    $query = sprintf('update %s set name="%s",description="%s",
+    active=%d,listorder=%d,prefix = "%s", owner = %d
+    where id=%d',$tables["list"],sql_escape($_POST["listname"]),
+    sql_escape($_POST["description"]),$_POST["active"],$_POST["listorder"],
+    $_POST["prefix"],$_POST["owner"],$id);
   } else {
-    $query
-    = ' insert into %s'
-    . '    (name, description, entered, listorder, owner, prefix, active, category)'
-    . ' values'
-    . '    (?, ?, current_timestamp, ?, ?, ?, ?, ?)';
-    $query = sprintf($query, $GLOBALS['tables']['list']);
-#  print $query;
-    $result = Sql_Query_Params($query, array($_POST['listname'],
-       $_POST['description'], $_POST['listorder'], $_POST['owner'],
-       $_POST['prefix'], $_POST['active'], $category));
+    $query = sprintf('insert into %s
+      (name,description,entered,listorder,owner,prefix,active)
+      values("%s","%s",now(),%d,%d,"%s",%d)',
+      $tables["list"],sql_escape($_POST["listname"]),sql_escape($_POST["description"]),
+      $_POST["listorder"],$_POST["owner"],sql_escape($_POST["prefix"]),$_POST["active"]);
   }
+#  print $query;
+  $result = Sql_Query($query);
   if (!$id) {
-    $id = Sql_Insert_Id($GLOBALS['tables']['list'], 'id');
+    $id = sql_insert_id();
 
     $_SESSION['action_result'] = s('New list added') . ": $id";
     $_SESSION['newlistid'] = $id;

@@ -18,7 +18,7 @@ $totalsent = $message['astext'] +
 */
 $status = '';
 #$status = 'select count(userid) as num,status from '.$GLOBALS['tables']['usermessage'].' where messageid = '.$id.'  group by status<br/>';
-$req = Sql_Query_Params('select count(userid) as num,status from '.$GLOBALS['tables']['usermessage'].' where messageid = ? group by status',array($id));
+$req = Sql_Query(sprintf('select count(userid) as num,status from '.$GLOBALS['tables']['usermessage'].' where messageid = %d group by status',$id));
 while ($row = Sql_Fetch_Assoc($req)) {
   if (!empty($row['num'])) {
     $status .= $row['status'].' '.$row['num'].'<br/>';

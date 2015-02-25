@@ -42,7 +42,7 @@ if (isset($_GET['delete']) && $_GET['delete']) {
 if (isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
     case 'deleteprocessed':
-      Sql_Query(sprintf('delete from %s where date_add(entered,interval 2 month) < current_timestamp',$tables["eventlog"]));
+      Sql_Query(sprintf('delete from %s where date_add(entered,interval 2 month) < now()',$tables["eventlog"]));
       $_SESSION['action_result'] = $GLOBALS['I18N']->get('Deleted all entries older than 2 months') ;
       Redirect('eventlog'.$find_url);
       break;
@@ -68,14 +68,9 @@ if ($total > MAX_USER_PP) {
     $start = 0;
   }
   print simplePaging("eventlog$find_url",$start,$total,MAX_USER_PP);
-
-  $query = 'select * from %s %s order by entered desc, id desc %s';
-  $query = sprintf($query, $tables['eventlog'], $where, $limit);
-  $result = Sql_query($query);
+  $result = Sql_query(sprintf('select * from %s %s order by entered desc, id desc %s', $tables['eventlog'], $where, $limit));
 } else {
-  $query = 'select * from %s %s order by entered desc, id desc';
-  $query = sprintf($query, $tables['eventlog'], $where);
-  $result = Sql_Query($query);
+  $result = Sql_Query(sprintf('select * from %s %s order by entered desc, id desc',$tables["eventlog"],$where));
 }
 
 
@@ -92,7 +87,7 @@ if ($total > MAX_USER_PP) {
    $GLOBALS['I18N']->get('Delete all')));
      print $buttons->show();
 
-   if (!Sql_Num_Rows($result)) {
+   if (!Sql_Affected_Rows()) {
      print '<p class="information">' . $GLOBALS['I18N']->get('No events available') . '</p>';
    }
 printf('<form method="get" action="">

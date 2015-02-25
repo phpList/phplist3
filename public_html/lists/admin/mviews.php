@@ -52,14 +52,14 @@ if (!$id) {
   }  
   print '<p>'.PageLinkButton('mviews&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</p>';
 #  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
-  $timerange = ' and msg.entered  > date_sub(current_timestamp,interval 12 month)';
+  $timerange = ' and msg.entered  > date_sub(now(),interval 12 month)';
   $timerange = '';
+  $limit = 'limit 10';
 
   $req = Sql_Query(sprintf('select msg.id as messageid,count(um.viewed) as views, count(um.status) as total,
     subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg
     where um.messageid = msg.id and um.status = "sent" %s %s
-    group by msg.id order by msg.entered desc limit 50',
-    $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$subselect,$timerange));
+    group by msg.id order by msg.entered desc limit 50',$GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$subselect,$timerange));
   if (!Sql_Affected_Rows()) {
     print '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
   }
@@ -138,14 +138,14 @@ $req = Sql_Query(sprintf('select um.userid
     group by userid',
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$id,$subselect));
 
-$total = Sql_Num_Rows($req);
-$offset = 0;
+$total = Sql_Affected_Rows();
+$start = sprintf('%d',$_GET['start']);
 if (isset($start) && $start > 0) {
   $listing = sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),$start,$start + MAX_USER_PP);
-  $offset = $start;
   $limit = "limit $start,".MAX_USER_PP;
 } else {
   $listing =  sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),1,MAX_USER_PP);
+  $limit = "limit 0,".MAX_USER_PP;
   $start = 0;
   $limit = "limit 0,".MAX_USER_PP;
 }

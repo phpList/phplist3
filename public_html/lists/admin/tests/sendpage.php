@@ -18,9 +18,9 @@ class sendpage extends phplistTest {
     ## insert an HTML page as a message
     Sql_Query(sprintf('insert into %s
       (subject,fromfield,message,footer,entered,status,sendformat)
-      values("phplist test sendpage","test","[URL:http://www.phplist.com]","Unsubscribe link: [UNSUBSCRIBE]",current_timestamp,"test","text and HTML")',$GLOBALS['tables']['message']));
+      values("phplist test sendpage","test","[URL:http://www.phplist.com]","Unsubscribe link: [UNSUBSCRIBE]",now(),"test","text and HTML")',$GLOBALS['tables']['message']));
     require_once dirname(__FILE__).'/../sendemaillib2.php';
-    $testmsg = Sql_Insert_Id($GLOBALS['tables']['message'], 'id');
+    $testmsg = Sql_Insert_id();
     print $GLOBALS['I18N']->get('Sending HTML version to ').$this->userdata['email'];
     $suc6 = 0;
     $suc6 = sendEmail ($testmsg,$this->userdata['email'],$this->userdata['uniqid'],1);

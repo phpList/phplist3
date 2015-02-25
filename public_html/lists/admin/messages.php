@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 
-$subselect = $where = '';
+$subselect = $whereClause = '';
 $action_result = '';
 $access = accessLevel('messages');
 
@@ -163,7 +163,7 @@ if (isset($_GET['resend'])) {
   $suc6 = Sql_Affected_Rows();
   # only send it again to users, if we are testing, otherwise only to new users
   if (TEST) {
-    $result = Sql_query("delete from ${tables['usermessage']} where messageid = $resend");
+    $result = Sql_query(sprintf('delete from %s where messageid = %d',$tables['usermessage'],$resend));
   }
   if ($suc6) {
     $action_result .=  "... ".$GLOBALS['I18N']->get("Done");
@@ -247,46 +247,42 @@ if (isset($_GET['action'])) {
     exit;
   }
 
-$cond = array();
+$where = array();
 ### Switch tab
 switch ($_GET["tab"]) {
   case "queued":
 #    $subselect = ' status in ("submitted") and (rsstemplate is NULL or rsstemplate = "") ';
-    $cond[] = " status in ('submitted', 'suspended') ";
+    $where[] = " status in ('submitted', 'suspended') ";
     $url_keep = '&amp;tab=queued';
     break;
   case "static":
-    $cond[] = " status in ('prepared') ";
+    $where[] = " status in ('prepared') ";
     $url_keep = '&amp;tab=static';
     break;
-#  case "rss":
-#    $subselect = ' rsstemplate != ""';
-#    $url_keep = '&amp;tab=sent';
-#    break;
   case "draft":
-    $cond[] = " status in ('draft') ";
+    $where[] = " status in ('draft') ";
     $url_keep = '&amp;tab=draft';
     break;
   case "active":
-    $cond[] = " status in ('inprocess','submitted', 'suspended') ";
+    $where[] = " status in ('inprocess','submitted', 'suspended') ";
     $url_keep = '&amp;tab=active';
     break;
   case "sent":
   default:
-    $cond[] = " status in ('sent') ";
+    $where[] = " status in ('sent') ";
     $url_keep = '&amp;tab=sent';
     break;
 }
 
 if (!empty($_SESSION['messagefilter'])) {
-  $cond[] = ' subject like "%'.sql_escape($_SESSION['messagefilter']).'%" ';
+  $where[] = ' subject like "%'.sql_escape($_SESSION['messagefilter']).'%" ';
 }
 
 ### Query messages from db
 if ($GLOBALS['require_login'] && !$_SESSION['logindetails']['superuser'] || $access != 'all') {
-  $cond[] = ' owner = ' . $_SESSION['logindetails']['id'];
+  $where[] = ' owner = ' . $_SESSION['logindetails']['id'];
 }
-$where = ' where ' . join(' and ', $cond);
+$whereClause = ' where ' . join(' and ', $where);
 
 $sortBySql = 'order by entered desc';
 switch ($_SESSION['messagesortby']) {
@@ -302,17 +298,17 @@ switch ($_SESSION['messagesortby']) {
     $sortBySql = 'order by embargo desc, entered desc';
 }
 
-$req = Sql_query('select count(*) from ' . $tables['message']. $where .' '.$sortBySql);
+$req = Sql_query('select count(*) from ' . $tables['message']. $whereClause .' '.$sortBySql);
 $total_req = Sql_Fetch_Row($req);
 $total = $total_req[0];
 
 ## Browse buttons table
 $limit = $_SESSION['messagenumpp'];
-$offset = 0;
+$offset = 0 ;
 if (isset($start) && $start > 0) {
-  $offset = $start;
+    $offset = $start;
 } else {
-  $start = 0;
+    $start = 0;
 }
 
 $paging = '';
@@ -325,7 +321,7 @@ $ls->usePanel($paging);
 
 ## messages table
 if ($total) {
-  $result = Sql_query("SELECT * FROM ".$tables["message"]." $where $sortBySql limit $limit offset $offset");
+  $result = Sql_query("SELECT * FROM ".$tables["message"]." $whereClause $sortBySql limit $limit offset $offset");
   while ($msg = Sql_fetch_array($result)) {
     $editlink = '';
     $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($msg["subject"]);

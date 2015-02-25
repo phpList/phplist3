@@ -47,7 +47,7 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     $query = sprintf('insert into %s (name,type,required,tablename) values("%s","%s",%d,"%s")',
     $tables["attribute"],addslashes($name),"select",1,$lc_name);
     Sql_Query($query);
-    $insertid = Sql_Insert_Id($tables['attribute'], 'id');
+    $insertid = Sql_Insert_id();
 
     $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
     Sql_Query($query);

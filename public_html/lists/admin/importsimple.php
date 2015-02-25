@@ -62,7 +62,7 @@ if (!empty($_POST['importcontent'])) {
       $isBlackListed = isBlackListed($line);
       if (!$isBlackListed) {
         foreach($selected_lists as $k => $listid) {
-          $query = "replace into ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
+          $query = "replace into ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,now())";
           $result = Sql_query($query);
         }
       } else {

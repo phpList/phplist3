@@ -40,10 +40,10 @@ if (!Sql_Table_exists($GLOBALS['tables']['linktrack_forward']) ||
 !Sql_Table_exists($GLOBALS['tables']['linktrack_ml']) ||
 !Sql_Table_exists($GLOBALS['tables']['linktrack_uml_click'])
 ) {
-  output(s("creating tables"));
-  Sql_Drop_Table($GLOBALS['tables']['linktrack_forward']);
-  Sql_Drop_Table($GLOBALS['tables']['linktrack_ml']);
-  Sql_Drop_Table($GLOBALS['tables']['linktrack_uml_click']);
+  output("creating tables");
+  Sql_Query('drop table '.$GLOBALS['tables']['linktrack_forward']);
+  Sql_Query('drop table '.$GLOBALS['tables']['linktrack_ml']);
+  Sql_Query('drop table '.$GLOBALS['tables']['linktrack_uml_click']);
   
   Sql_Create_Table($GLOBALS['tables']['linktrack_ml'],$DBstruct['linktrack_ml']);
   Sql_Create_Table($GLOBALS['tables']['linktrack_forward'],$DBstruct['linktrack_forward']);
@@ -81,7 +81,7 @@ while ($row = Sql_Fetch_Array($req)) {
   if (!$exists[0]) {
     $personalise = preg_match('/uid=/',$row['forward']);
     Sql_Query(sprintf('insert into %s (url,personalise) values("%s",%d)',$GLOBALS['tables']['linktrack_forward'],$row['url'],$personalise));
-    $fwdid = Sql_Insert_Id($GLOBALS['tables']['linktrack_forward'], 'id');
+    $fwdid = Sql_Insert_id();
   } else {
     $fwdid = $exists[0];
   }

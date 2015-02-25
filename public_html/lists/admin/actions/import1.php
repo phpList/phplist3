@@ -125,7 +125,7 @@
         $uniqid = getUniqid();
         $old_listmembership = array();
 
-        $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail) values("%s",current_timestamp,%d,"%s","%s")',
+        $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail) values("%s",now(),%d,"%s","%s")',
         $tables["user"],$email,$importdata['notify'] != "yes",$uniqid,isset($importdata['htmlemail']) ? '1':'0');
         $result = Sql_query($query);
         $userid = Sql_Insert_Id($tables['user'], 'id');
@@ -150,7 +150,7 @@
       $isBlackListed = isBlackListed($email);
       if (!$isBlackListed) {
         foreach($importdata['importlists'] as $key => $listid) {
-          $query = "replace INTO ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,current_timestamp)";
+          $query = "replace INTO ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,now())";
           $result = Sql_query($query);
           # if the affected rows is 2, the user was already subscribed
           $addition = $addition || Sql_Affected_Rows() == 1;

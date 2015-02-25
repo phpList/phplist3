@@ -202,7 +202,7 @@ function processImapBounce ($link,$num,$header) {
     addslashes($header),
     addslashes($body)));
 
-  $bounceid = Sql_Insert_Id($tables['bounce'], 'id');
+  $bounceid = Sql_Insert_Id();
   
   return processBounceData($bounceid,$msgid,$userid);
 }

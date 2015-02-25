@@ -1,4 +1,5 @@
 <?php
+
 require_once dirname(__FILE__).'/accesscheck.php';
 $access = accessLevel("members");
 
@@ -20,11 +21,9 @@ $listAll = false;
 
 switch ($access) {
   case "owner":
-    $subselect = " where owner = ".$_SESSION["logindetails"]["id"];
     if ($id) {
-      $query = "select id from " . $tables['list'] . $subselect . " and id = ?";
-      $rs = Sql_Query_Params($query, array($id));
-      if (!Sql_Num_Rows($rs)) {
+      $rs = Sql_Query(sprintf('select id from ' . $tables['list'] . ' where owner = %d and id = %d',$_SESSION["logindetails"]["id"],$id));
+      if (!Sql_Affected_Rows()) {
         Fatal_Error($GLOBALS['I18N']->get("You do not have enough privileges to view this page"));
         return;
       }
@@ -114,8 +113,7 @@ if (isset($_REQUEST["processtags"]) && $access != "view") {
      * even though the page lists only confirmed subscribers, the action
      * on "all subscribers" should include the non-confirmed ones
      */
-    $query = sprintf('select userid from %s where listid = ?', $tables['listuser']);
-    $req = Sql_Query_Params($query, array($id));
+    $req = Sql_Query(sprintf('select userid from %s where listid = %d',$tables["listuser"],$id));
     switch ($_POST["tagaction_all"]) {
       case "move":
         $cnt = 0;
@@ -186,7 +184,6 @@ if (isset($_POST["add"])) {
 if (isset($_REQUEST["doadd"])) {
   if ($_POST["action"] == "insert") {
     $email = trim($_POST["email"]);
-    #TODO validate email address.
     print $GLOBALS['I18N']->get("Inserting user")." $email";
     $result = Sql_query(sprintf('
       insert into %s (email,entered,confirmed,htmlemail,uniqid)
@@ -208,42 +205,30 @@ if (isset($_REQUEST["doadd"])) {
         }
         $value = join(",",$newval);
       }
-      $res1 = Sql_Replace($tables['user_attribute'], array('attributeid' => $row['id'], 'userid' => $userid, 'value' => $value), 'id');
+      Sql_Query(sprintf('replace into %s (attributeid,userid,value) values("%s","%s","%s")',
+        $tables["user_attribute"],$row["id"],$userid,$value));
     }
   } else {
-    $res2 = Sql_Replace($tables['listuser'], array('userid' => "'" . $_REQUEST['doadd'] . "'", 'listid' => $id, 'entered' => 'current_timestamp'), array('userid', 'listid'), false);
+    $query = "replace into $tables[listuser] (userid,listid,entered)
+ values({$_REQUEST["doadd"]},$id,now())";
+    $result = Sql_query($query);
   }
-
-  if ($database_module == 'adodb.inc')
-  Sql_Commit_Transaction();
-
-  print "<br />".$GLOBALS['I18N']->get("User added")."<br />";
+  echo "<br /><font color=red size=+2>".$GLOBALS['I18N']->get("User added")."</font><br />";
 }
 if (isset($_REQUEST["delete"])) {
   verifyCsrfGetToken();
   $delete = sprintf('%d',$_REQUEST["delete"]);
   # single delete the index in delete
   $_SESSION['action_result'] = s("Removing %d from this list ",$delete). " ..\n";
-  $query
-  = ' delete from ' . $tables['listuser']
-  . ' where listid = ?'
-  . '   and userid = ?';
-  $result = Sql_Query_Params($query, array($id, $delete));
+  $result = Sql_Query(sprintf('delete from %s where listid = %d and userid = %d',$tables['listuser'],$id, $delete));
   $_SESSION['action_result'] .= "... ".$GLOBALS['I18N']->get("Done")."<br />\n";
   Redirect("members&$pagingKeep&id=$id");
 }
 if (!empty($id) || $listAll) {
   
   if (!$listAll) {
-    $query
-    = ' select count(*)'
-    . ' from %s lu'
-    . '    join %s u'
-    . '       on lu.userid = u.id'
-    . ' where lu.listid = ? '
-    . ' and '.$confirmedSelection;
-    $query = sprintf($query, $tables['listuser'], $tables['user']);
-    $result = Sql_Query_Params($query, array($id));
+    $query = sprintf(' select count(*) from %s lu join %s u on lu.userid = u.id where lu.listid = %d and '.$confirmedSelection, $tables['listuser'], $tables['user'],$id);
+    $result = Sql_Query($query);
   } else {
     $query = 'select count(*) from '.$tables['user']
         . ' u where '.$confirmedSelection;
@@ -266,26 +251,10 @@ if (!empty($id) || $listAll) {
       $paging = simplePaging("members&$pagingKeep&amp;id=".$id,$start,$total,MAX_USER_PP,$GLOBALS['I18N']->get('subscribers'));
   }
   if (!$listAll) {
-    $query
-    = ' select u.*'
-    . " from %s lu"
-    . "    join %s u"
-    . '       on lu.userid = u.id'
-    . ' where lu.listid = ?'
-    . ' and '.$confirmedSelection
-    . ' limit ' . MAX_USER_PP . ' offset ' . $offset;
-  // TODO Consider using a subselect.  select user where uid in select uid from list
-    $query=sprintf($query, $tables['listuser'], $tables['user'] );
-    $result = Sql_Query_Params($query, array($id));
+    $result = Sql_Query(sprintf('select u.* from %s lu join %s u on lu.userid = u.id where lu.listid = %d and '.$confirmedSelection.' limit %d offset %d' ,$tables['listuser'], $tables['user'], $id, MAX_USER_PP, $offset));
   } else {
-    $query
-    = ' select u.*'
-    . " from %s u"
-    . ' where '.$confirmedSelection
-    . ' limit ' . MAX_USER_PP . ' offset ' . $offset;
-  // TODO Consider using a subselect.  select user where uid in select uid from list
-    $query=sprintf($query, $tables['user'] );
-    $result = Sql_Query_Params($query, array($id));
+    $query=sprintf(' select u.* from %s u where '.$confirmedSelection. ' limit %d offset %d', $tables['user'],MAX_USER_PP,$offset);
+    $result = Sql_Query($query);
   }
    
   $tabs = new WebblerTabs();
@@ -331,20 +300,6 @@ if (!empty($id) || $listAll) {
       $ls->addColumn($element ,'&nbsp;','',$user["id"]);
     }
       
-/*
-    $query
-    = ' select count(*)'
-    . ' from %s lm, %s um'
-    . ' where lm.messageid = um.messageid'
-    . '   and lm.listid = ?'
-    . '   and um.userid = ?';
-    // TODO: Could left join with above query.
-    $query = sprintf($query, $tables['listmessage'], $tables['usermessage']);
-    $rs = Sql_Query_Params($query, array($id, $user['id']));
-    $msgcount = Sql_Fetch_Row($rs);
-    $ls->addColumn($user["email"],$GLOBALS['I18N']->get("# msgs"),$msgcount[0]);
-*/
-
     ## allow plugins to add columns
     foreach ($GLOBALS['plugins'] as $plugin) {
       $plugin->displayUsers($user,  $element , $ls);

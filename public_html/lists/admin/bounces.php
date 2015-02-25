@@ -39,10 +39,10 @@ switch ($_GET['tab']) {
 if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
     case "deleteunidentified":
-      Sql_Query(sprintf('delete from %s where status = "unidentified bounce" and `date` < date_sub(now(),interval 2 month)',$tables["bounce"]));
+      Sql_Query(sprintf('delete from %s where comment = "unidentified bounce" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
       break;
     case "deleteprocessed":
-      Sql_Query(sprintf('delete from %s where comment != "not processed" and `date` < date_sub(now(),interval 2 month)',$tables["bounce"]));
+      Sql_Query(sprintf('delete from %s where comment != "not processed" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
       break;
     case "deleteall":
       Sql_Query(sprintf('delete from %s',$tables["bounce"]));
@@ -67,17 +67,16 @@ if (isset($_GET['start'])) {
 }
 $offset = $start;
 $baseurl = "bounces&amp;start=$start";
+$limit = MAX_USER_PP;
 
 if ($total > MAX_USER_PP) {
-  $limit = MAX_USER_PP;
-
   $paging = simplePaging("bounces",$start,$total,MAX_USER_PP,$status . ' '.$GLOBALS['I18N']->get('bounces') );
-  $query = sprintf("select * from %s where status $status_compare ? order by date desc limit $limit offset $offset", $tables['bounce']);
-  $result = Sql_Query_Params($query, array('unidentified bounce'));
+  $query = sprintf('select * from %s where status %s "unidentified bounce" order by date desc limit %s offset %s', $tables['bounce']. $status_compare, $limit,$offset);
+  $result = Sql_Query($query);
 } else {
   $paging = '';
-  $query = sprintf('select * from %s where status '.$status_compare. ' ? order by date desc', $tables['bounce']);
-  $result = Sql_Query_Params($query, array('unidentified bounce'));
+  $query = sprintf('select * from %s where status '.$status_compare. ' "unidentified bounce" order by date desc', $tables['bounce']);
+  $result = Sql_Query($query);
 }
 
 $buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
@@ -167,4 +166,3 @@ while ($bounce = Sql_fetch_array($result)) {
 }
 #print "</table>";
 print $ls->display();
-?>
