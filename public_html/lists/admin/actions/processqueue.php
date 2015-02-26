@@ -515,12 +515,7 @@ if (defined('MAX_PROCESS_MESSAGE')) {
   $messagelimit = sprintf(' limit %d ',MAX_PROCESS_MESSAGE);
 }
 
-$query
-= " select id"
-. " from ${tables['message']}"
-. " where status not in ('draft', 'sent', 'prepared', 'suspended')"
-. "   and embargo <= now()"
-. " order by entered ".$messagelimit;
+$query = " select id from ${tables['message']} where status not in ('draft', 'sent', 'prepared', 'suspended') and embargo <= now() order by entered ".$messagelimit;
 if (VERBOSE) {
   output($query);
 }
@@ -833,8 +828,8 @@ while ($message = Sql_fetch_array($messages)) {
       Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"todo")', $tables['usermessage'],$userid,$messageid));
     }
     ## rerun the initial query, in order to continue as normal
-    $$query = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid);
-    $userids = Sql_Query($$query);
+    $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid);
+    $userids = Sql_Query($query);
     $counters['total_users_for_message '.$messageid] = Sql_Affected_Rows();
   }
 
