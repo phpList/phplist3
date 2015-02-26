@@ -780,7 +780,7 @@ while ($message = Sql_fetch_array($messages)) {
     $query = sprintf('select distinct u.id from %s as listuser
       cross join %s as u ON u.id = listuser.userid
       cross join %s as listmessage ON listuser.listid = listmessage.listid
-      left join %s as um  ON (um.messageid = ? and um.userid = listuser.userid)
+      left join %s as um ON (um.messageid = %d and um.userid = listuser.userid)
       where 
       listmessage.messageid = %d
       and listmessage.listid = listuser.listid
@@ -805,7 +805,8 @@ while ($message = Sql_fetch_array($messages)) {
   if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
 
   # now we have all our users to send the message to
-  $counters['total_users_for_message '.$messageid] = Sql_Num_Rows($userids);
+  $counters['total_users_for_message '.$messageid] = Sql_Affected_Rows();
+  
   if ($skipped >= 10000) {
     $counters['total_users_for_message '.$messageid] -= $skipped;
   }
@@ -832,8 +833,8 @@ while ($message = Sql_fetch_array($messages)) {
       Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"todo")', $tables['usermessage'],$userid,$messageid));
     }
     ## rerun the initial query, in order to continue as normal
-    $useridQuery = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid);
-    $userids = Sql_Query($useridQuery);
+    $$query = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid);
+    $userids = Sql_Query($$query);
     $counters['total_users_for_message '.$messageid] = Sql_Affected_Rows();
   }
 
@@ -844,11 +845,11 @@ while ($message = Sql_fetch_array($messages)) {
     # send in batches of $num_per_batch users
     $batch_total = $counters['total_users_for_message '.$messageid];
     if ($num_per_batch > 0) {
-      $useridQuery .= sprintf(' limit 0,%d',$num_per_batch);
+      $query .= sprintf(' limit 0,%d',$num_per_batch);
       if (VERBOSE) {
-        output($num_per_batch .'  query -> '.$useridQuery);
+        output($num_per_batch .'  query -> '.$query);
       }
-      $userids = Sql_Query($useridQuery);
+      $userids = Sql_Query($query);
       if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
     } else {
       output($GLOBALS['I18N']->get('No users to process for this batch'),0,'progress');
