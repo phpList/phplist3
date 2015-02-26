@@ -676,6 +676,7 @@ function getPageLock($force = 0) {
   if ($thispage == 'pageaction') {
     $thispage = $_GET['action'];
   }
+  $thispage = preg_replace('/\W/','',$thispage);
 #  cl_output('getting pagelock '.$thispage);
 #  ob_end_flush();
   
@@ -692,10 +693,10 @@ function getPageLock($force = 0) {
   
   ## allow killing other processes
   if ($force) {
-    Sql_query("delete from ".$tables["sendprocess"]." where page = \"$thispage\" ");
+    Sql_query('delete from '.$tables["sendprocess"].' where page = "'.sql_escape($thispage).'"');
   }
 
-  $running_req = Sql_query("select now() - modified,id from ".$tables["sendprocess"]." where page = \"$thispage\" and alive order by started desc");
+  $running_req = Sql_query(sprintf('select now() - modified,id from %s where page = "%s" and alive order by started desc',$tables["sendprocess"],sql_escape($thispage)));
   $running_res = Sql_Fetch_row($running_req);
   $waited = 0;
  # while ($running_res['age'] && $count >= $max) { # a process is already running
