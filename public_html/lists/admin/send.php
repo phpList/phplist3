@@ -136,40 +136,8 @@ $list_content = '
 <h3><a name="lists">'.$GLOBALS['I18N']->get('Please select the lists you want to send your campaign to').':</a></h3>
 ';
 
-  if (isset($_POST["targetlist"]["all"]) && $_POST["targetlist"]["all"])
-    $list_content .= "checked";
-$list_content .= '>'.$GLOBALS['I18N']->get('alllists').'</li>';
 
-$list_content .= '<li><input type=checkbox name="targetlist[allactive]"
-';
-  if (isset($_POST["targetlist"]["allactive"]) && $_POST["targetlist"]["allactive"])
-    $list_content .= "checked";
-$list_content .= '>'.$GLOBALS['I18N']->get('All Active Lists').'</li>';
-
-$result = Sql_query("SELECT * FROM $tables[list] $subselect");
-while ($row = Sql_fetch_array($result)) {
-  # check whether this message has been marked to send to a list (when editing)
-  $checked = 0;
-  if ($_GET["id"]) {
-    $sendtolist = Sql_Query(sprintf('select * from %s where
-      messageid = %d and listid = %d',$tables["listmessage"],$_GET["id"],$row["id"]));
-    $checked = Sql_Affected_Rows();
-  }
-  $list_content .= sprintf('<li><input type=checkbox name="targetlist[%d]" value="%d" ',$row["id"],$row["id"]);
-  if ($checked || (isset($_POST["targetlist"][$row["id"]]) && $_POST["targetlist"][$row["id"]]))
-    $list_content .= "checked";
-  $list_content .= ">".stripslashes($row["name"]);
-  if ($row["active"])
-    $list_content .= ' (<font color=red>'.$GLOBALS['I18N']->get('listactive').'</font>)';
-  else
-    $list_content .= ' (<font color=red>'.$GLOBALS['I18N']->get('listnotactive').'</font>)';
-
-  $desc = nl2br(stripslashes($row["description"]));
-
-  $list_content .= "<br>$desc</li>";
-  $some = 1;
-}
-$list_content .= '</ul>';
+$list_content .= listSelectHTML($messagedata['targetlist'],'targetlist',$subselect);
 
 if (USE_LIST_EXCLUDE) {
   $list_content .= '

@@ -181,81 +181,61 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     $resultMsg = $plugin->sendMessageTabSave($id,$messagedata);
   }
 
-  if (!$htmlformatted  && strip_tags($_POST["message"]) !=  $_POST["message"]) {
-    $errormsg = '<span  class="error">'.$GLOBALS['I18N']->get("htmlusedwarning").'</span>';
+  if (!$htmlformatted  && strip_tags($messagedata["message"]) != $messagedata["message"]) {
+    $errormsg = '<span  class="error">'.$GLOBALS['I18N']->get("Warning: You indicated the content was not HTML, but there were  some HTML  tags in it. This  may  cause  errors").'</span>';
   }
+    
+    $result = Sql_Query(
+      sprintf('update %s  set 
+        subject = "%s", fromfield = "%s", tofield = "%s",
+        replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s", 
+        message = "%s", textmessage = "%s", footer = "%s", status = "%s",
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d', $tables["message"], 
+           sql_escape($messagedata['subject'])
+         , sql_escape($messagedata['fromfield'])
+         , sql_escape($messagedata['tofield'])
+         , sql_escape($messagedata['replyto'])
+         , sprintf('%04d-%02d-%02d %02d:%02d',
+            $messagedata['embargo']['year'],$messagedata['embargo']['month'],$messagedata['embargo']['day'],
+            $messagedata['embargo']['hour'],$messagedata['embargo']['minute'])
+         , $messagedata['repeatinterval']
+         , sprintf('%04d-%02d-%02d %02d:%02d',
+            $messagedata["repeatuntil"]['year'],$messagedata["repeatuntil"]['month'],$messagedata["repeatuntil"]['day'],
+            $messagedata["repeatuntil"]['hour'],$messagedata["repeatuntil"]['minute'])
+         , sql_escape($messagedata["message"])
+         , sql_escape($messagedata["textmessage"])
+         , sql_escape($messagedata["footer"])
+         , sql_escape($messagedata['status'])
+         , $htmlformatted ? '1' : '0'
+         , $messagedata["sendformat"]
+         , sql_escape($messagedata["template"])
+         , $id
+      )
+    );
 
-  $query = sprintf('update %s  set  '.
-      'subject = "%s", '.
-      'fromfield = "%s", '.
-      'tofield = "%s", '.
-      'replyto = "%s", '.
-      'embargo = "%s", '.
-      'repeatinterval  =  %d,  '.
-      'repeatuntil = "%s", '.
-      'message = "%s", '.
-      'textmessage = "%s", '.
-      'footer  =  "%s",  '.
-      'status = "%s", '.
-      'htmlformatted = %d, '.
-      'sendformat  =  "%s",  '.
-      'template  =  %d  '.
-      'where id  =  %d',
-      $tables["message"],
-      sql_escape($_POST['subject']),
-      sql_escape($_POST['fromfield']),
-      sql_escape($_POST["tofield"]),
-      sql_escape($_POST["replyto"]),
-      $_POST["embargo"],
-      $_POST["repeatinterval"],
-      $_POST["repeatuntil"],
-      sql_escape($_POST["message"]),
-      sql_escape($_POST["textmessage"]),
-      sql_escape($_POST["footer"]),
-      $status,
-      $htmlformatted,
-      sql_escape($_POST["sendformat"]),
-      $_POST["template"],
-      $id);
-#    print $query;
-    $result  =  Sql_query($query);
-    $messageid = $id;
+    ## do this seperately, so that the above query doesn't fail when the DB hasn't been upgraded
+    $result = Sql_Query(
+      sprintf('update %s set requeueinterval = "%s", requeueuntil = "%s" where id = %d', $tables["message"], 
+        $messagedata['requeueinterval']
+      , sprintf('%04d-%02d-%02d %02d:%02d',
+        $messagedata['requeueuntil']['year'],$messagedata['requeueuntil']['month'],$messagedata['requeueuntil']['day'],
+        $messagedata['requeueuntil']['hour'],$messagedata['requeueuntil']['minute']),$id
+      )
+    );
+
 #    print "Message ID: $id";
     #    exit;
     if (!$GLOBALS["can_fetchUrl"] && preg_match("/\[URL:/i",$_POST["message"])) {
       print $GLOBALS["can_fetchUrl"].Warn(s('You are trying to send a remote URL, but PEAR::HTTP_Request or CURL is not available, so this will fail'));
     }
 
-  // More  "Insert  only"  stuff  here (no need  to change  it on  an edit!)
-  if (isset($_POST["targetlist"]) && is_array($_POST["targetlist"]))  {
-    Sql_query("delete from {$tables["listmessage"]} where messageid = $messageid");
-    if ( (isset($_POST["targetlist"]["all"]) && $_POST["targetlist"]["all"] == "on") ||
-      (isset($_POST["targetlist"]["allactive"]) && $_POST["targetlist"]["allactive"] == "on")
-      )
-    {
-      $res = Sql_query("select * from  $tables[list] $subselect");
-      while($row = Sql_fetch_array($res))  {
-        $listid  =  $row["id"];
-        if ($row["active"] || $_POST["targetlist"]["all"] == "on")  {
-          $result  =  Sql_query("insert ignore into $tables[listmessage]  (messageid,listid,entered) values($messageid,$listid,now())");
+    if ($GLOBALS["commandline"]) {
+      if (isset($_POST["targetlist"]) && is_array($_POST["targetlist"])) {
+        Sql_query("delete from {$tables["listmessage"]} where messageid = $id");
+        foreach($_POST["targetlist"] as $listid => $val) {
+          $result = Sql_query("insert ignore into {$tables["listmessage"]} (messageid,listid,entered) values($id,$listid,now())");
         }
       }
-    } else {
-      foreach($_POST["targetlist"] as $listid => $val) {
-        $result = Sql_query("insert ignore into $tables[listmessage]  (messageid,listid,entered) values($messageid,$listid,now())");
-      }
-    }
-  } else {
-    #  mark this  message  as listmessage for list  0
-    $result  =  Sql_query("insert ignore into $tables[listmessage]  (messageid,listid,entered) values($messageid,0,now())");
-  }
-  if (USE_LIST_EXCLUDE) {
-    if (isset($_POST["excludelist"]) && is_array($_POST["excludelist"])) {
-      $exclude = join(",",$_POST["excludelist"]);
-      Sql_Query(sprintf('replace into %s (name,id,data) values("excludelist",%d,"%s")',$tables["messagedata"],$messageid,$exclude));
-    } else {
-      Sql_Query(sprintf('replace into %s (name,id,data) values("excludelist",%d,"%s")',$tables["messagedata"],$messageid,0));
-    }
     }
     
 # we want to create a join on tables as follows, in order to find users who have their attributes to the values chosen
@@ -470,6 +450,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
     foreach ($emailaddresses as $address) {
       $address = trim($address);
+      if (empty($address)) continue;
       $result = Sql_query(sprintf('select id,email,uniqid,htmlemail,rssfrequency,confirmed from %s where email = "%s"',$tables["user"],$address));
                                                                                                           //Leftover from the preplugin era
       if ($user = Sql_fetch_array($result)) {

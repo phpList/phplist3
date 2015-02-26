@@ -5,7 +5,7 @@ require_once dirname(__FILE__).'/../accesscheck.php';
 class admin_auth {
 
   function validateLogin($login,$password) {
-    $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'], $login);
+    $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'], sql_escape($login));
     $req = Sql_Query($query);
     $admindata = Sql_Fetch_Assoc($req);
     $encryptedPass = hash(ENCRYPTION_ALGO,$password);
@@ -14,7 +14,7 @@ class admin_auth {
     if(strlen($passwordDB)<$GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
       #Encrypt the actual DB password before performing the validation below.
       $encryptedPassDB =  hash(ENCRYPTION_ALGO,$passwordDB);
-      $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'], $encryptedPassDB,$login);
+      $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'], $encryptedPassDB,sql_escape($login));
       $passwordDB = $encryptedPassDB;
       $req = Sql_Query($query);
     } 
@@ -31,7 +31,7 @@ class admin_auth {
 
   function getPassword($email) {
     $email = preg_replace("/[;,\"\']/","",$email);
-    $req = Sql_Query('select email,password,loginname from '.$GLOBALS["tables"]["admin"].' where email = "'.$email.'"');
+    $req = Sql_Query('select email,password,loginname from '.$GLOBALS["tables"]["admin"].' where email = "'.sql_escape($email).'"');
     if (Sql_Affected_Rows()) {
       $row = Sql_Fetch_Row($req);
       return $row[1];
@@ -41,9 +41,9 @@ class admin_auth {
   function validateAccount($id) {
     /* can only do this after upgrade, which means
      * that the first login will always fail
-     */
+    */
     
-    $query = sprintf('select id, disabled,password from %s where id = "%s"', $GLOBALS['tables']['admin'], $id);;
+    $query = sprintf('select id, disabled,password from %s where id = %d', $GLOBALS['tables']['admin'], $id);
     $data = Sql_Fetch_Row_Query($query);
     if (!$data[0]) {
       return array(0,s("No such account"));

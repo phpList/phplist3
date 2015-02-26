@@ -188,10 +188,9 @@ class phplist extends DefaultPlugin {
     }
     
     Sql_Query(sprintf('insert into user set email = "%s",
-      entered = now(),password = "%s",
-      passwordchanged = now(),disabled = 0,
+      entered = now(),%s disabled = 0,
       uniqid = "%s",htmlemail = 1
-      ', $email,$password,getUniqid()),1);
+      ', $email,$passwordchange,getUniqid()),1);
     $id = Sql_Insert_Id();
     if (is_array($_SESSION["userdata"])) {
       saveUserByID($id,$_SESSION["userdata"]);

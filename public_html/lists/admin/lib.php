@@ -1154,7 +1154,7 @@ function adminName($id = 0) {
     return $GLOBALS["admin_auth"]->adminName($id);
   }
   $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
-  return $req[0] ? $req[0] : "<font color=red>Nobody</font>";
+  return $req[0] ? $req[0] : "Nobody";
 }
 
 if (!function_exists("dbg")) {

@@ -92,7 +92,7 @@ if (isset($_GET['uid']) && $_GET["uid"]) {
   $emailcheck = $req[3];
 } elseif (isset($_REQUEST["unsubscribeemail"])) {
   $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where email = "%s"',
-    $tables["user"],$_REQUEST["unsubscribeemail"]));
+    $tables["user"],sql_escape($_REQUEST["unsubscribeemail"])));
   $id = $req[0];
   $userid = $req[1];
   $userpassword = $req[2];
@@ -736,12 +736,11 @@ function unsubscribePage($id) {
   $res = '<title>'.$GLOBALS["strUnsubscribeTitle"].'</title>'."\n";
   $res .= $GLOBALS['pagedata']["header"];
   if (isset($_GET["uid"])) {
-    $req = Sql_Query("select * from $tables[user] where uniqid = \"".$_GET["uid"]."\"");
-    $userdata = Sql_Fetch_Array($req);
+    $userdata = Sql_Fetch_Array_Query(sprintf('select email,id,blacklisted from %s where uniqid = "%s"',$tables['user'],sql_escape($_GET["uid"])));
     $email = $userdata["email"];
     $userid = $userdata['id'];
     $isBlackListed =  $userdata['blacklisted'] != "0";
-    $blacklistRequest = false; //invariant
+    $blacklistRequest = false; 
   } else {
     if (isset($_REQUEST['email'])) {
       $email = $_REQUEST['email'];
@@ -770,16 +769,27 @@ function unsubscribePage($id) {
       $_POST["unsubscribereason"] = s('"Jump off" set, reason not requested');
     }
   }
-
-  if (isset($_POST["unsubscribe"]) && (isset($_POST["email"]) || isset($_POST["unsubscribeemail"])) && isset($_POST["unsubscribereason"])) {
-    if (isset($_POST["email"])) {
-      $email = trim($_POST["email"]);
-    } else {
-      $email = $_POST["unsubscribeemail"];
+  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+#    print $pluginname.'<br/>';
+    if ($plugin->unsubscribePage($email)) {
+      return;
     }
-    $query = Sql_Fetch_Row_Query("select id,email from {$tables["user"]} where email = \"$email\"");
-    $userid = $query[0];
-    $email = $query[1];
+  }
+
+  if ( !empty($email) && isset($_POST['unsubscribe']) &&
+    isset($_REQUEST['email']) && isset($_POST['unsubscribereason'])) {
+
+    ## all conditions met, do the unsubscribe
+
+    #0013076: Blacklisting posibility for unknown users
+      // It would be better to do this above, where the email is set for the other cases.
+      // But to prevent vulnerabilities let's keep it here for now. [bas]
+    if (!$blacklistRequest) {
+      $query = Sql_Fetch_Row_Query(sprintf('select id,email from %s where email = "%s"',$tables["user"],sql_escape($email));
+      $userid = $query[0];
+      $email = $query[1];
+    }
+
     if (!$userid) {
       #0013076: Blacklisting posibility for unknown users
       if ( $blacklistRequest && !empty($email)) {
@@ -797,7 +807,7 @@ function unsubscribePage($id) {
         array_push($subscriptions,$row[0]);
       }
 
-      $result = Sql_query("delete from {$tables["listuser"]} where userid = \"$userid\"");
+      $result = Sql_query(sprintf('delete from %s where userid = %d',$tables["listuser"],$userid));
       $lists = "  * ".$GLOBALS["strAllMailinglists"]."\n";
       # add user to blacklist
       addUserToBlacklist($email,nl2br(strip_tags($_POST['unsubscribereason'])));
@@ -842,7 +852,9 @@ function unsubscribePage($id) {
     return $res;
   }
 
-  $current = Sql_Fetch_Array_query("SELECT list.id as listid,user.uniqid as userhash, user.password as password FROM $tables[list] as list,$tables[listuser] as listuser,$tables[user] as user where list.id = listuser.listid and user.id = listuser.userid and user.email = \"$email\"");
+  $current = Sql_Fetch_Array_query(sprintf('select list.id as listid,user.uniqid as userhash, user.password as password
+    from %s as list,%s as listuser,%s as user where list.id = listuser.listid and user.id = listuser.userid and user.email = "%s"',
+    $tables['list'],$tables['listuser'],$tables['user'],sql_escape($email));
   $some = $current["listid"];
   if (ASKFORPASSWORD && !empty($user['password'])) {
     # it is safe to link to the preferences page, because it will still ask for
@@ -989,30 +1001,48 @@ function forwardPage($id)
         $nFriends = intval(UserAttributeValue($userdata['id'], $iCountFriends));
       }
 
+      ## remember the lists for this message in order to notify only those admins
+      ## that own them
       $messagelists = array();
       $messagelistsreq = Sql_Query(sprintf('select listid from %s where messageid = %d',$GLOBALS['tables']['listmessage'],$mid));
       while ($row = Sql_Fetch_Row($messagelistsreq)) {
         array_push($messagelists,$row[0]);
       }
 
-      if (!TEST) {
-        # forward the message
-        require 'admin/sendemaillib.php';
-        # sendEmail will take care of blacklisting
-        if (sendEmail($mid,$forwardemail,'forwarded',$userdata['htmlemail'],array(),$userdata)) {
-          $info = $GLOBALS["strForwardSuccessInfo"];
-          sendAdminCopy("Message Forwarded",$userdata["email"] . " has forwarded a message $mid to $forwardemail",$messagelists);
-          Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
-            values(%d,%d,"%s","sent",now())',
-            $tables['user_message_forward'],$userdata['id'],$mid,$forwardemail));
+      foreach ($emails as $index => $email) {
+        #0011860: forward to friend, multiple emails
+        $done = Sql_Fetch_Array_Query(sprintf('select user,status,time from %s where forward = "%s" and message = %d',
+        $tables['user_message_forward'],$email,$mid));
+        $info .= '<br />' . $email . ': ';
+        if ($done['status'] === 'sent') {
+          $info .= $GLOBALS['strForwardAlreadyDone'];
+        } elseif (isBlackListed($email)) {
+          $info .= $GLOBALS['strForwardBlacklistedEmail'];
         } else {
-          $info = $GLOBALS["strForwardFailInfo"];
-          sendAdminCopy("Message Forwarded",$userdata["email"] . " tried forwarding a message $mid to $forwardemail but failed",$messagelists);
-          Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
-            values(%d,%d,"%s","failed",now())',
-            $tables['user_message_forward'],$userdata['id'],$mid,$forwardemail));
+          if (!TEST) {
+            # forward the message
+            # sendEmail will take care of blacklisting
+
+### CHECK $email vs $forwardemail
+
+            if (sendEmail($mid,$email,'forwarded',$userdata['htmlemail'],array(),$userdata)) {
+              $info .= $GLOBALS["strForwardSuccessInfo"];
+              sendAdminCopy(s("Message Forwarded"),s('%s has forwarded message %d to %s',$userdata["email"], $mid,$email),$messagelists);
+              Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
+                 values(%d,%d,"%s","sent",now())',
+                $tables['user_message_forward'],$userdata['id'],$mid,$email));
+              if( $iCountFriends ) $nFriends++;
+            } else {
+              $info .= $GLOBALS["strForwardFailInfo"];
+              sendAdminCopy(s("Message Forwarded"),s('%s tried forwarding message %d to %s but failed',$userdata["email"],$mid,$email),$messagelists);
+              Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
+                values(%d,%d,"%s","failed",now())',
+                $tables['user_message_forward'],$userdata['id'],$mid,$email));
+                $ok = false;
+            }
+          }
         }
-      }
+      } # foreach friend
       if ($iCountFriends) {
         saveUserAttribute($userdata['id'], $iCountFriends,
           array('name' => FORWARD_FRIEND_COUNT_ATTRIBUTE, 'value' => $nFriends));

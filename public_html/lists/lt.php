@@ -50,8 +50,7 @@ $track = $track ^ XORmask;
 $userid = sprintf('%d',$userid);
 $fwdid = sprintf('%d',$fwdid);
 $messageid = sprintf('%d',$messageid);
-/*$linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
-  $GLOBALS['tables']['linktrack'],$linkid,$userid,$messageid));*/
+
 $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d',$GLOBALS['tables']['linktrack_forward'],$fwdid));
 
 if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
