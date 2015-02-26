@@ -520,8 +520,7 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   if ($success) {
     SaveConfig("version",VERSION,0);
     # mark now to be the last time we checked for an update
-    Sql_Query(sprintf('replace into %s (item,value,editable) values("updatelastcheck",now(),0)',
-      $tables["config"]));
+    SaveConfig('updatelastcheck',date("Y-m-d H:i:s",time()),0,true);
     ## also clear any possible value for "updateavailable"
     Sql_Query(sprintf('delete from %s where item = "updateavailable"',$tables["config"]));
     

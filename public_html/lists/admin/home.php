@@ -53,11 +53,12 @@ if (!$showUpdateAvail && $checkinterval) {
       @fclose($fp);
       if (!versionCompare($thisversion,$latestversion)) {
         ## remember this, so we can remind about the update, without the need to check the phplist site
+        ## hmmm, this causes it to be "stuck" on the last version checked
         SaveConfig("updateavailable",$latestversion,0,true);
         $showUpdateAvail = true;
       }
     }
-    SaveConfig("updatelastcheck",time(),0,true);
+    SaveConfig("updatelastcheck",date("Y-m-d H:i:s",time()),0,true);
   }
 }
 
