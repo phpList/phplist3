@@ -773,8 +773,8 @@ while ($message = Sql_fetch_array($messages)) {
     }
 
     $query = sprintf('select distinct u.id from %s as listuser
-      cross join %s as u ON u.id = listuser.userid
-      cross join %s as listmessage ON listuser.listid = listmessage.listid
+      inner join %s as u ON u.id = listuser.userid
+      inner join %s as listmessage ON listuser.listid = listmessage.listid
       left join %s as um ON (um.messageid = %d and um.userid = listuser.userid)
       where 
       listmessage.messageid = %d
