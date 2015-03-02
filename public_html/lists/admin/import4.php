@@ -101,7 +101,7 @@ if (!$_POST["remote_host"] ||
   print $GLOBALS['I18N']->get('Getting data from ').htmlentities($_POST["remote_database"])."@".htmlentities($_POST["remote_host"])."<br/>";
 
   $version = Sql_Fetch_Row_Query("select value from {$remote_tables["config"]} where item = \"version\"");
-  print $GLOBALS['I18N']->get('remote_version')." $version[0]<br/>\n";
+  print $GLOBALS['I18N']->get('Remote version is')." $version[0]<br/>\n";
   $usercnt = Sql_Fetch_Row_Query("select count(*) from {$remote_tables["user"]}");
   print $GLOBALS['I18N']->get('Remote version has')." $usercnt[0] ".$GLOBALS['I18N']->get('users')."<br/>";
   if (!$usercnt[0]) {

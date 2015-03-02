@@ -790,8 +790,8 @@ if (!$done) {
 
   $req = Sql_Query("select id,title from {$tables["template"]} order by listorder");
   if (Sql_affected_Rows()) {
-    $formatting_content .= '<tr><td>'.Help("usetemplate").' '.$GLOBALS['I18N']->get("usetemplate").': </td>
-      <td><select name="template"><option value=0>-- '.$GLOBALS['I18N']->get("selectone").'</option>';
+    $formatting_content .= '<tr><td>'.Help("usetemplate").' '.$GLOBALS['I18N']->get("Use Template").': </td>
+      <td><select name="template"><option value=0>-- '.$GLOBALS['I18N']->get("select one").'</option>';
     $req = Sql_Query("select id,title from {$tables["template"]} order by listorder");
     while ($row = Sql_Fetch_Array($req)) {
       if ($row["title"]) {
