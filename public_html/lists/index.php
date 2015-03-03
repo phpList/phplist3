@@ -852,7 +852,7 @@ function unsubscribePage($id) {
 
   $current = Sql_Fetch_Array_query(sprintf('select list.id as listid,user.uniqid as userhash, user.password as password
     from %s as list,%s as listuser,%s as user where list.id = listuser.listid and user.id = listuser.userid and user.email = "%s"',
-    $tables['list'],$tables['listuser'],$tables['user'],sql_escape($email));
+    $tables['list'],$tables['listuser'],$tables['user'],sql_escape($email)));
   $some = $current["listid"];
   if (ASKFORPASSWORD && !empty($user['password'])) {
     # it is safe to link to the preferences page, because it will still ask for
