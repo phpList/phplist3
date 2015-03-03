@@ -630,50 +630,48 @@ function confirmPage($id) {
     $html = '<ul>';
     $lists = '';
     $currently = Sql_Fetch_Assoc_Query("select confirmed from {$tables["user"]} where id = ".$userdata["id"]);
+    $blacklisted = isBlackListed($userdata["email"]);
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+      $plugin->subscriberConfirmation($id,$userdata);
+    }
+    Sql_Query("update {$tables["user"]} set confirmed = 1,blacklisted = 0 where id = ".$userdata["id"]);
+    # just in case the DB is not updated, should be merged with the above later
+    Sql_Query("update {$tables["user"]} set optedin = 1 where id = ".$userdata["id"],1);
+
+    $subscriptions = array();
+    $req = Sql_Query(sprintf('select list.id,name,description from %s list, %s listuser where listuser.userid = %d and listuser.listid = list.id and list.active',$tables['list'],$tables['listuser'],$userdata['id']));
+    if (!Sql_Affected_Rows()) {
+      $lists = "\n * ".$GLOBALS["strNoLists"];
+      $html .= '<li>'.$GLOBALS["strNoLists"].'</li>';
+    }
+    while ($row = Sql_fetch_array($req)) {
+      array_push($subscriptions,$row['id']);
+      $lists .= "\n *".stripslashes($row["name"]);
+      $html .= '<li class="list">'.stripslashes($row["name"]).'<div class="listdescription">'.stripslashes($row["description"]).'</div></li>';
+    }
+    $html .= '</ul>';
+    if ($blacklisted) {
+      unBlackList($userdata['id']);
+      addUserHistory($userdata["email"],"Confirmation",s("Subscriber removed from Blacklist for manual confirmation of subscription"));
+    }
+    
+    if (empty($_SESSION['subscriberConfirmed'])) {
+      $_SESSION['subscriberConfirmed'] = array();
+    }
     ## 17513 - don't process confirmation if the subscriber is already confirmed
-    if (empty($currently['confirmed'])) {
-      $blacklisted = isBlackListed($userdata["email"]);
-      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-        $plugin->subscriberConfirmation($id,$userdata);
-      }
-      Sql_Query("update {$tables["user"]} set confirmed = 1,blacklisted = 0 where id = ".$userdata["id"]);
-      # just in case the DB is not updated, should be merged with the above later
-      Sql_Query("update {$tables["user"]} set optedin = 1 where id = ".$userdata["id"],1);
+    if (empty($currently['confirmed']) && empty($_SESSION['subscriberConfirmed'][$userdata["email"]])) {
+      addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
 
-      $subscriptions = array();
-      $req = Sql_Query(sprintf('select list.id,name,description from %s list, %s listuser where listuser.userid = %d and listuser.listid = list.id and list.active',$tables['list'],$tables['listuser'],$userdata['id']));
-      if (!Sql_Affected_Rows()) {
-        $lists = "\n * ".$GLOBALS["strNoLists"];
-        $html .= '<li>'.$GLOBALS["strNoLists"].'</li>';
-      }
-      while ($row = Sql_fetch_array($req)) {
-        array_push($subscriptions,$row['id']);
-        $lists .= "\n *".stripslashes($row["name"]);
-        $html .= '<li class="list">'.stripslashes($row["name"]).'<div class="listdescription">'.stripslashes($row["description"]).'</div></li>';
-      }
-      $html .= '</ul>';
-      if ($blacklisted) {
-        unBlackList($userdata['id']);
-        addUserHistory($userdata["email"],"Confirmation",s("Subscriber removed from Blacklist for manual confirmation of subscription"));
-      }
-      
-      if (empty($_SESSION['subscriberConfirmed'])) {
-        $_SESSION['subscriberConfirmed'] = array();
-      }
-      if (empty($_SESSION['subscriberConfirmed'][$userdata["email"]])) {
-        addUserHistory($userdata["email"],"Confirmation","Lists: $lists");
+      $confirmationmessage = str_ireplace('[LISTS]', $lists, getUserConfig("confirmationmessage:$id",$userdata["id"]));
 
-        $confirmationmessage = str_ireplace('[LISTS]', $lists, getUserConfig("confirmationmessage:$id",$userdata["id"]));
-
-        if (!TEST) {
-          sendMail($userdata["email"], getConfig("confirmationsubject:$id"), $confirmationmessage,system_messageheaders(),$envelope);
-          $adminmessage = $userdata["email"] . " has confirmed their subscription";
-          if ($blacklisted) {
-            $adminmessage .= "\n\n".s("Subscriber has been removed from blacklist");
-          }
-          sendAdminCopy("List confirmation",$adminmessage,$subscriptions);
-          addSubscriberStatistics('confirmation',1);
+      if (!TEST) {
+        sendMail($userdata["email"], getConfig("confirmationsubject:$id"), $confirmationmessage,system_messageheaders(),$envelope);
+        $adminmessage = $userdata["email"] . " has confirmed their subscription";
+        if ($blacklisted) {
+          $adminmessage .= "\n\n".s("Subscriber has been removed from blacklist");
         }
+        sendAdminCopy("List confirmation",$adminmessage,$subscriptions);
+        addSubscriberStatistics('confirmation',1);
       }
     } else {
       $html = $GLOBALS['strAlreadyConfirmed'];
