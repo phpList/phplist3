@@ -783,7 +783,7 @@ function unsubscribePage($id) {
       // It would be better to do this above, where the email is set for the other cases.
       // But to prevent vulnerabilities let's keep it here for now. [bas]
     if (!$blacklistRequest) {
-      $query = Sql_Fetch_Row_Query(sprintf('select id,email from %s where email = "%s"',$tables["user"],sql_escape($email));
+      $query = Sql_Fetch_Row_Query(sprintf('select id,email from %s where email = "%s"',$tables["user"],sql_escape($email)));
       $userid = $query[0];
       $email = $query[1];
     }
