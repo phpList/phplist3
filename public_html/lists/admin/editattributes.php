@@ -42,7 +42,7 @@ switch ($data['type']) {
 
   $button = new ConfirmButton(
      s('Are you sure you want to delete all values?'),
-     PageURL2("editattributes",s('delete all'),"id=$id&amp;deleteall=yes"),
+     PageURL2("editattributes&id=$id&deleteall=yes",s('delete all')),
      s('Delete all'));
    
   print $button->show();
@@ -142,8 +142,10 @@ function deleteItem($table,$attributeid,$delete) {
 }
 
 if (isset($_GET["delete"])) {
+  if (!verifyToken()) {  print Error(s('No Access'));  return; }
   deleteItem($table,$id,sprintf('%d',$_GET["delete"]));
 } elseif(isset($_GET["deleteall"])) {
+  if (!verifyToken()) {  print Error(s('No Access'));  return; }
   $count = 0;
   $errcount = 0;
   $res = Sql_Query("select id from $table");
