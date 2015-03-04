@@ -1174,9 +1174,9 @@ function ListofLists($current,$fieldname,$subselect) {
     }
     $categoryhtml[$list['category']] .= " />".htmlspecialchars(stripslashes($list["name"]));
     if ($list["active"]) {
-      $categoryhtml[$list['category']] .= ' (<span class="activelist">'.$GLOBALS['I18N']->get('Public list').'</span>)';
+      $categoryhtml[$list['category']] .= ' <span class="activelist">'.$GLOBALS['I18N']->get('Public list').'</span>';
     } else {
-      $categoryhtml[$list['category']] .= ' (<span class="inactivelist">'.$GLOBALS['I18N']->get('Private list').'</span>)';
+      $categoryhtml[$list['category']] .= ' <span class="inactivelist">'.$GLOBALS['I18N']->get('Private list').'</span>';
     }
 
     if (!empty($list["description"])) {
