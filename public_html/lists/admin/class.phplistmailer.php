@@ -388,7 +388,8 @@ class PHPlistMailer extends PHPMailer {
        * to phpMailer
        */
 
-      $cid = md5(uniqid(time()));
+      #$cid = md5(uniqid(time()));
+      $cid = md5(mt_rand().$name.uniqid(time(), TRUE)); ##17603 better random CID value on Windows
       if (method_exists($this,'AddEmbeddedImageString')) {
         $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
       } elseif (method_exists($this,'AddStringEmbeddedImage')) {
