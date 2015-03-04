@@ -33,7 +33,7 @@ function getUniqid($table = "") {
     else
       $table = "user";
   }
-  $id = md5(uniqid(mt_rand()));
+  $id = md5(mt_rand().uniqid(time(), TRUE)); ##17603 better random CID value on Windows
   
   /* this doesn't scale very well, do this offline
   # make sure it is really unique
