@@ -506,6 +506,9 @@ while ($msg = Sql_Fetch_Assoc($req)) {
   } else {
     Sql_query(sprintf('update %s set status = "submitted",sendstart = null, embargo = date_add(embargo,interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
   }
+  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+    $plugin->messageReQueued($msg['id']);
+  }
   ## @@@ need to update message data as well
 }
 
