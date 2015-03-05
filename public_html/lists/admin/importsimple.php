@@ -66,8 +66,8 @@ if (!empty($_POST['importcontent'])) {
       ## do not add them to the list(s) when blacklisted
       $isBlackListed = isBlackListed($line);
       if (!$isBlackListed) {
+        $count['addedtolist']++;
         foreach($selected_lists as $k => $listid) {
-          $count['addedtolist']++;
           $query = "replace into ".$tables["listuser"]." (userid,listid,entered) values($userid,$listid,now())";
           $result = Sql_query($query);
         }
