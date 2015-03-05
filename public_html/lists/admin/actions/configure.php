@@ -71,4 +71,4 @@ if ($configItem['type'] == "textarea") {
 } else {
   print s('Don\'t know how to handle type '.$configItem['type']);
 }
-print '<input type="hidden" name="save" value="item_'.$id.'" /><input class="submit" type="submit" name="savebutton" value="' . $GLOBALS['I18N']->get('save changes') . '" /></div>';
+print '<input type="hidden" name="save" value="item_'.$id.'" /><button class="submit" type="submit" name="savebutton">' . s('save changes') . '</button> <button id="dontsavebutton" type="reset">' . s('cancel changes') . '</button></div>';
