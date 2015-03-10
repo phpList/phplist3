@@ -1,5 +1,5 @@
 
-PHPlist upgrade.
+phpList upgrade process.
 
 How to upgrade from any previous version to the latest version
 
@@ -37,8 +37,3 @@ Step 5. Click the link in this page.
 
 This process may take quite a while if your database is large. Don't interrupt it.
 
-That should be it.
-
-I have put things to be aware of between upgrades of different versions in the
-NEWS file. Please read this file, to make sure you know everything there is 
-to know before you upgrade.
