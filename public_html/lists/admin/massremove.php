@@ -12,7 +12,7 @@ if (!$_SESSION['logindetails']['superuser']) {
 if (isset($_POST['unsubscribe'])) {
   $emails = explode("\n",trim($_POST['unsubscribe']));
   $total = sizeof($emails);
-  $count = $notfound = $deleted = $blacklisted = 0;
+  $count = $notfound = $deleted = $blacklisted = $notDeleted = 0;
   foreach ($emails as $email) {
     $email = trim($email);
     $count++;
@@ -22,9 +22,13 @@ if (isset($_POST['unsubscribe'])) {
       $blacklisted++;
       addUserToBlackList($email,$GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
     }
-    if ($userid[0]) {
+    $campaignCount = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where userid = %d',$GLOBALS['tables']['usermessage'],$userid[0]));
+    
+    if ($userid[0] && empty($campaignCount[0])) {
       deleteUser($userid[0]);
       $deleted++;
+    } elseif (!empty($campaignCount[0])) {
+      $notDeleted++;
     } else {
       $notfound++;
     }
@@ -35,8 +39,9 @@ if (isset($_POST['unsubscribe'])) {
       }
     }
   }
-  printf($GLOBALS['I18N']->get('All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found'),$count,$blacklisted,$deleted,$notfound);
-  print PageLinkButton('massremove',s('Remove more'));
+  print s('All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found',$count,$blacklisted,$deleted,$notfound);
+  print '<br/>'.s('%d subscribers could not be deleted, because they have already received campaigns',$notDeleted);
+  print '<br/>'.PageLinkButton('massremove',s('Remove more'));
   return;
 }
 ?>
