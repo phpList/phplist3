@@ -7,7 +7,7 @@
 
 # Reporting an Issue
 
-You can report and issue here in Github, or use our legacy issue tracker at https://mantis.phplist.com
+You can report and issue here in Github, or use our issue tracker at https://mantis.phplist.com
 At this stage (March 2015), most issues are in Mantis, and it may be best to check around to see if your issue has been reported before.
 
 Please follow the guidelines below when creating an issue so that your issue can be more promptly resolved:
