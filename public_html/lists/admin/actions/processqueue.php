@@ -499,13 +499,21 @@ $script_stage = 1; # we are active
 $notsent = $unconfirmed = $cannotsend = 0;
 
 ## check for messages that need requeuing
-$req = Sql_Query(sprintf('select id,requeueinterval,embargo < now() as inthepast from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
+
+$req = Sql_Query(sprintf('select id from %s where requeueinterval > 0 and requeueuntil > now() and status = "sent"',$tables['message']));
+
 while ($msg = Sql_Fetch_Assoc($req)) {
-  if ($msg['inthepast']) {
-    Sql_query(sprintf('update %s set status = "submitted",sendstart = null, embargo = date_add(now(),interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
-  } else {
-    Sql_query(sprintf('update %s set status = "submitted",sendstart = null, embargo = date_add(embargo,interval %d minute) where id = %d',$GLOBALS['tables']['message'],$msg['requeueinterval'],$msg['id']));
-  }
+  Sql_query(sprintf(
+      'UPDATE %s
+      SET status = "submitted",
+      sendstart = null,
+      embargo = embargo + 
+        INTERVAL (FLOOR(TIMESTAMPDIFF(MINUTE, embargo, GREATEST(embargo, NOW())) / requeueinterval) + 1) * requeueinterval MINUTE
+      WHERE id = %d',
+      $GLOBALS['tables']['message'],
+      $msg['id']
+  ));
+
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->messageReQueued($msg['id']);
   }
