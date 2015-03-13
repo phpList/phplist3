@@ -17,17 +17,21 @@ if (empty($GLOBALS["commandline"]) && isset($GLOBALS["developer_email"]) && $_SE
   error_reporting(0);
 }
 
+// Set the timezone based on value from config file
+date_default_timezone_set($timezone);
+
 # record the start time(usec) of script
 $now =  gettimeofday();
 $GLOBALS["pagestats"] = array();
 $GLOBALS["pagestats"]["time_start"] = $now["sec"] * 1000000 + $now["usec"];
 $GLOBALS["pagestats"]["number_of_queries"] = 0;
 
-if (function_exists('iconv_set_encoding')) {
-  iconv_set_encoding("input_encoding", "UTF-8");
-  iconv_set_encoding("internal_encoding", "UTF-8");
-  iconv_set_encoding("output_encoding", "UTF-8");
-}
+// Commented out to prevent PHP 5.6 depreciation warnings
+// if (function_exists('iconv_set_encoding')) {
+//   iconv_set_encoding("input_encoding", "UTF-8");
+//   iconv_set_encoding("internal_encoding", "UTF-8");
+//   iconv_set_encoding("output_encoding", "UTF-8");
+// }
 
 if (function_exists('mb_internal_encoding')) {
   mb_internal_encoding("UTF-8");
@@ -71,7 +75,7 @@ if (!isset($usertable_prefix)) {
 /* this can probably go */
 if (isset($GLOBALS['design'])) {
   $GLOBALS['ui'] = $GLOBALS['design'];
-#@todo 
+#@todo
 #  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
 
@@ -179,7 +183,7 @@ if (!defined("SHOW_UNSUBSCRIBELINK")) define("SHOW_UNSUBSCRIBELINK",true);
 if (ASKFORPASSWORD && defined("ENCRYPTPASSWORD") && ENCRYPTPASSWORD) {
   ##https://mantis.phplist.com/view.php?id=16787
   # passwords are encrypted, so we need to stick to md5 to keep working
-  
+
   ## we also need some "update" mechanism to handle an algo change
   if (!defined('ENCRYPTION_ALGO')) {
     define('ENCRYPTION_ALGO','md5');
@@ -225,10 +229,10 @@ if (!defined("FCKIMAGES_DIR")) define("FCKIMAGES_DIR","uploadimages");
 if (!defined('UPLOADIMAGES_DIR')) define('UPLOADIMAGES_DIR','images');
 if (!defined("USE_MANUAL_TEXT_PART")) define("USE_MANUAL_TEXT_PART",0);
 if (!defined("ALLOW_NON_LIST_SUBSCRIBE")) define("ALLOW_NON_LIST_SUBSCRIBE",0);
-if (!defined("MAILQUEUE_BATCH_SIZE")) define("MAILQUEUE_BATCH_SIZE",1000); 
-if (!defined("MAILQUEUE_BATCH_PERIOD")) define("MAILQUEUE_BATCH_PERIOD",30); 
-if (!defined('MAILQUEUE_THROTTLE')) define('MAILQUEUE_THROTTLE',0); 
-if (!defined('MAILQUEUE_AUTOTHROTTLE')) define('MAILQUEUE_AUTOTHROTTLE',0); 
+if (!defined("MAILQUEUE_BATCH_SIZE")) define("MAILQUEUE_BATCH_SIZE",1000);
+if (!defined("MAILQUEUE_BATCH_PERIOD")) define("MAILQUEUE_BATCH_PERIOD",30);
+if (!defined('MAILQUEUE_THROTTLE')) define('MAILQUEUE_THROTTLE',0);
+if (!defined('MAILQUEUE_AUTOTHROTTLE')) define('MAILQUEUE_AUTOTHROTTLE',0);
 if (!defined("NAME")) define("NAME",'phpList');
 if (!defined("USE_OUTLOOK_OPTIMIZED_HTML")) define("USE_OUTLOOK_OPTIMIZED_HTML",0);
 if (!defined("EXPORT_EXCEL")) define("EXPORT_EXCEL",0);
@@ -371,7 +375,7 @@ if (!isset($attachment_repository)) {
 
 if (!isset($pageroot)) {
   $pageroot = '/lists';
-  $GLOBALS['pageroot'] = '/lists'; 
+  $GLOBALS['pageroot'] = '/lists';
 }
 ## as the "admin" in adminpages is hardcoded, don't put it in the config file
 $adminpages = $GLOBALS['pageroot'].'/admin';
@@ -434,7 +438,7 @@ if (defined('MEMCACHED')) {
     $GLOBALS['MC'] = new phpListMC();
     list($mc_server,$mc_port) = explode(':',MEMCACHED);
     $MC->addServer($mc_server,$mc_port);
-    
+
     /* check that the MC connection is ok
     $MC->add('Hello','World');
     $test = $MC->get('Hello');
@@ -443,7 +447,7 @@ if (defined('MEMCACHED')) {
     }
     */
   }
-} 
+}
 
 ## global counters array to keep track of things
 $counters = array(
@@ -482,7 +486,7 @@ $system_pages = array (
 		"purgerss" => "none",
 		"setup" => "none",
 		"dbcheck" => "none",
-		
+
 	),
 	"list" => array (
 		"list" => "owner",
@@ -502,7 +506,7 @@ $system_pages = array (
 		"import" => "none",
 		"export" => "none",
 		"massunconfirm" => "none",
-		
+
 	),
 	"message" => array (
 		"message" => "owner",
@@ -521,12 +525,10 @@ $system_pages = array (
 		'userclicks' => 'owner',
 		'mviews' => 'owner',
 		'statsoverview' => 'owner',
-		
+
 	),
 	"admin" => array (
 		"admins" => "none",
 		"admin" => "owner"
 	)
 );
-
-
