@@ -128,16 +128,17 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
        }
      }
    
-     if (isset($_POST['dateattribute']) && is_array($_POST["dateattribute"]))
-     foreach ($_POST["dateattribute"] as $attid => $attname) {
-       if (isset($_POST[normalize($attname).'_novalue'])) {
-         $value = "";
-       } else {
-         $value = $date->getDate($attname);
-       }
-       Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-         values(%d,%d,"%s")',$tables["user_attribute"],$id,$attid,$value));
-     }
+     if (isset($_POST['dateattribute']) && is_array($_POST["dateattribute"])) {
+       foreach ($_POST["dateattribute"] as $attid => $fields) {
+         if (isset($fields['novalue'])) {
+           $value = "";
+         } else {
+           $value = sprintf('%04d-%02d-%02d', $fields["year"], $fields["month"], $fields["day"]);
+         }
+         Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+           values(%d,%d,"%s")',$tables["user_attribute"],$id,$attid,$value));
+        }
+      }
 
      if (isset($_POST['cbattribute']) && is_array($_POST['cbattribute'])) {
        while (list($key,$val) = each ($_POST['cbattribute'])) {
@@ -404,9 +405,17 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
     }
 
     if ($row["type"] == "date") {
-      $userdetailsHTML .= sprintf('<input class="attributeinput" type="hidden" name="dateattribute[%d]" value="%s" />',$row["id"],$row["name"]);
+      $namePrefix = sprintf('dateattribute[%d]', $row['id']);
       $novalue = trim($row["value"]) == "" ? "checked":"";
-      $userdetailsHTML .= sprintf('<tr><td class="dataname">%s<!--%s--></td><td>%s&nbsp; Not set: <input type="checkbox" name="%s_novalue" %s /></td></tr>'."\n",stripslashes($row["name"]),$row["value"],$date->showInput($row["name"],"",$row["value"]),normalize(stripslashes($row["name"])),$novalue);
+      $userdetailsHTML .= sprintf(
+        '<tr><td class="dataname">%s<!--%s--></td>
+        <td>%s&nbsp; Not set: <input type="checkbox" name="%s[novalue]" %s /></td></tr>'."\n",
+        stripslashes($row["name"]),
+        $row["value"],
+        $date->showInput($namePrefix, "", $row["value"]),
+        $namePrefix,
+        $novalue
+      );
     } elseif ($row["type"] == "checkbox") {
       $checked = $row["value"] == "on" ? 'checked="checked"':'';
       $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[%d]" value="%d" />
