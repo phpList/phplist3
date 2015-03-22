@@ -783,27 +783,27 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1744
+#: public_html/lists/admin/connect.php:1755
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1747
+#: public_html/lists/admin/connect.php:1758
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1750
+#: public_html/lists/admin/connect.php:1761
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1753
+#: public_html/lists/admin/connect.php:1764
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1756
+#: public_html/lists/admin/connect.php:1767
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1762
+#: public_html/lists/admin/connect.php:1773
 #: public_html/lists/admin/import4.php:164
 #: public_html/lists/admin/import4.php:173
 #: public_html/lists/admin/commonlib/pages/attributes.php:335
@@ -811,35 +811,35 @@ msgstr ""
 msgid "Attribute"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1762
+#: public_html/lists/admin/connect.php:1773
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1824
+#: public_html/lists/admin/connect.php:1835
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1826
+#: public_html/lists/admin/connect.php:1837
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1842
+#: public_html/lists/admin/connect.php:1853
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1843
+#: public_html/lists/admin/connect.php:1854
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:869
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1844
+#: public_html/lists/admin/connect.php:1855
 #: public_html/lists/admin/commonlib/lib/interfacelib.php:903
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1845
+#: public_html/lists/admin/connect.php:1856
 msgid "Last Page"
 msgstr ""
 
@@ -904,8 +904,8 @@ msgstr ""
 #: public_html/lists/admin/usercheck.php:42
 #: public_html/lists/admin/usercheck.php:44
 #: public_html/lists/admin/massunconfirm.php:35
-#: public_html/lists/admin/commonlib/pages/user.php:280
-#: public_html/lists/admin/commonlib/pages/user.php:340
+#: public_html/lists/admin/commonlib/pages/user.php:281
+#: public_html/lists/admin/commonlib/pages/user.php:341
 #: public_html/lists/admin/commonlib/pages/importcsv.php:43
 #: public_html/lists/admin/commonlib/pages/importcsv.php:360
 #: public_html/lists/admin/import3.php:264
@@ -1554,7 +1554,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:225
 #: public_html/lists/admin/messages.php:235
 #: public_html/lists/admin/eventlog.php:38 public_html/lists/admin/list.php:68
-#: public_html/lists/admin/commonlib/pages/user.php:269
+#: public_html/lists/admin/commonlib/pages/user.php:270
 #: public_html/lists/admin/commonlib/pages/users.php:221
 #: public_html/lists/admin/admins.php:33 public_html/lists/admin/admin.php:121
 msgid "Done"
@@ -2265,8 +2265,8 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
 #: public_html/lists/admin/list.php:284
-#: public_html/lists/admin/commonlib/pages/user.php:440
-#: public_html/lists/admin/commonlib/pages/user.php:469
+#: public_html/lists/admin/commonlib/pages/user.php:449
+#: public_html/lists/admin/commonlib/pages/user.php:478
 #: public_html/lists/admin/commonlib/pages/attributes.php:384
 #: public_html/lists/admin/commonlib/pages/attributes.php:410
 #: public_html/lists/admin/bouncerule.php:49
@@ -2307,7 +2307,7 @@ msgstr ""
 #: public_html/lists/admin/templates.php:7
 #: public_html/lists/admin/messages.php:146
 #: public_html/lists/admin/eventlog.php:33 public_html/lists/admin/list.php:61
-#: public_html/lists/admin/commonlib/pages/user.php:260
+#: public_html/lists/admin/commonlib/pages/user.php:261
 #: public_html/lists/admin/admins.php:29 public_html/lists/admin/admin.php:117
 msgid "Deleting"
 msgstr ""
@@ -2432,7 +2432,7 @@ msgid "cannot be empty"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:91
-#: public_html/lists/admin/commonlib/pages/user.php:248
+#: public_html/lists/admin/commonlib/pages/user.php:249
 #: public_html/lists/admin/admin.php:107
 #: public_html/lists/admin/editlist.php:87
 msgid "Changes saved"
@@ -2448,7 +2448,7 @@ msgstr ""
 
 #: public_html/lists/admin/configure.php:127
 #: public_html/lists/admin/actions/configure.php:61
-#: public_html/lists/admin/commonlib/pages/user.php:374
+#: public_html/lists/admin/commonlib/pages/user.php:375
 #: public_html/lists/admin/bouncerule.php:18
 #: public_html/lists/admin/admin.php:182 public_html/lists/admin/admin.php:199
 msgid "Yes"
@@ -2456,7 +2456,7 @@ msgstr ""
 
 #: public_html/lists/admin/configure.php:129
 #: public_html/lists/admin/actions/configure.php:68
-#: public_html/lists/admin/commonlib/pages/user.php:374
+#: public_html/lists/admin/commonlib/pages/user.php:375
 #: public_html/lists/admin/bouncerule.php:19
 #: public_html/lists/admin/admin.php:182 public_html/lists/admin/admin.php:200
 msgid "No"
@@ -3425,7 +3425,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:547
 #: public_html/lists/admin/list.php:147 public_html/lists/admin/list.php:158
-#: public_html/lists/admin/commonlib/pages/user.php:559
+#: public_html/lists/admin/commonlib/pages/user.php:568
 msgid "Lists"
 msgstr ""
 
@@ -4011,7 +4011,7 @@ msgid "Import of new subscriber"
 msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:184
-#: public_html/lists/admin/commonlib/pages/user.php:236
+#: public_html/lists/admin/commonlib/pages/user.php:237
 msgid "No data changed"
 msgstr ""
 
@@ -4733,116 +4733,116 @@ msgstr ""
 msgid "Uploaded avatar file too big"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:176
-#: public_html/lists/admin/commonlib/pages/user.php:186
+#: public_html/lists/admin/commonlib/pages/user.php:177
+#: public_html/lists/admin/commonlib/pages/user.php:187
 msgid "Subscriber added to group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:207
-#: public_html/lists/admin/commonlib/pages/user.php:214
+#: public_html/lists/admin/commonlib/pages/user.php:208
+#: public_html/lists/admin/commonlib/pages/user.php:215
 #, php-format
 msgid "Subscriber removed from list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:220
+#: public_html/lists/admin/commonlib/pages/user.php:221
 #, php-format
 msgid "Subscriber added to list %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:231
+#: public_html/lists/admin/commonlib/pages/user.php:232
 msgid "(no data)"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:232
+#: public_html/lists/admin/commonlib/pages/user.php:233
 msgid "changed from"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:240
+#: public_html/lists/admin/commonlib/pages/user.php:241
 #, php-format
 msgid "Subscribed to %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:243
+#: public_html/lists/admin/commonlib/pages/user.php:244
 #, php-format
 msgid "Unsubscribed from %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:246
+#: public_html/lists/admin/commonlib/pages/user.php:247
 #, php-format
 msgid "Update by %s"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:279
+#: public_html/lists/admin/commonlib/pages/user.php:280
 msgid "Subscriber removed from group"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:293
+#: public_html/lists/admin/commonlib/pages/user.php:294
 msgid "No such subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:306
+#: public_html/lists/admin/commonlib/pages/user.php:307
 msgid "No Lists"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:311
+#: public_html/lists/admin/commonlib/pages/user.php:312
 msgid "History"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:320
+#: public_html/lists/admin/commonlib/pages/user.php:321
 #: public_html/lists/admin/commonlib/pages/userhistory.php:50
 msgid "Are you sure you want to remove this subscriber from the system."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:321
 #: public_html/lists/admin/commonlib/pages/user.php:322
+#: public_html/lists/admin/commonlib/pages/user.php:323
 #: public_html/lists/admin/commonlib/pages/userhistory.php:51
 #: public_html/lists/admin/commonlib/pages/userhistory.php:52
 msgid "remove subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:336
+#: public_html/lists/admin/commonlib/pages/user.php:337
 msgid "Add a new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:339
+#: public_html/lists/admin/commonlib/pages/user.php:340
 msgid "Email address"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:377
+#: public_html/lists/admin/commonlib/pages/user.php:378
 msgid "Add to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:379
+#: public_html/lists/admin/commonlib/pages/user.php:380
 msgid "Remove from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:444
+#: public_html/lists/admin/commonlib/pages/user.php:453
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:447
+#: public_html/lists/admin/commonlib/pages/user.php:456
 msgid "Mailinglist membership"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:474
+#: public_html/lists/admin/commonlib/pages/user.php:483
 msgid "Group Membership"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:477
+#: public_html/lists/admin/commonlib/pages/user.php:486
 msgid "Please select the groups this subscriber is a member of"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:552
+#: public_html/lists/admin/commonlib/pages/user.php:561
 msgid "Save changes"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:558
+#: public_html/lists/admin/commonlib/pages/user.php:567
 #: public_html/lists/admin/commonlib/pages/userhistory.php:47
 msgid "Details"
 msgstr ""
 
-#: public_html/lists/admin/commonlib/pages/user.php:572
+#: public_html/lists/admin/commonlib/pages/user.php:581
 msgid "Groups"
 msgstr ""
 
