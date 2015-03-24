@@ -550,7 +550,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           break;
         case 'blacklistuser':
           logEvent('User '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
-          addUserToBlacklist($userdata['email'],$GLOBALS['I18N']->get("Auto Blacklisted"),$GLOBALS['I18N']->get("User auto blacklisted for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addUserToBlacklist($userdata['email'],s('Subscriber auto blacklisted  by bounce rule',$rule['id']));
           $advanced_report .= 'User '.$userdata['email'].' blacklisted by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
@@ -559,7 +559,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           break;
         case 'blacklistuseranddeletebounce':
           logEvent('User '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
-          addUserToBlacklist($userdata['email'],$GLOBALS['I18N']->get("Auto Blacklisted"),$GLOBALS['I18N']->get("User auto blacklisted for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addUserToBlacklist($userdata['email'],s('Subscriber auto blacklisted by bounce rule %d',$rule['id']));
           $advanced_report .= 'User '.$userdata['email'].' blacklisted by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
@@ -569,7 +569,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           break;
         case 'blacklistemail':
           logEvent('email '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
-          addEmailToBlackList($userdata['email'],$GLOBALS['I18N']->get("Auto Blacklisted"),$GLOBALS['I18N']->get("email auto blacklisted for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addEmailToBlackList($userdata['email'],s('Email address auto blacklisted by bounce rule %d', $rule['id']));
           $advanced_report .= 'email '.$userdata['email'].' blacklisted by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
@@ -578,7 +578,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
           break;
         case 'blacklistemailanddeletebounce':
           logEvent('email '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],$rule['id']));
-          addEmailToBlackList($userdata['email'],$GLOBALS['I18N']->get("Auto Blacklisted"),$GLOBALS['I18N']->get("User auto blacklisted for")." ".$GLOBALS['I18N']->get("bounce rule").' '.$rule['id']);
+          addEmailToBlackList($userdata['email'],s('Email address auto blacklisted by bounce rule %d',$rule['id']));
           $advanced_report .= 'email '.$userdata['email'].' blacklisted by bounce rule '.$rule['id']."\n";
           $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id']."\n";
           $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id']."\n";
