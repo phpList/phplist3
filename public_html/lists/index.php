@@ -317,7 +317,7 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
   }
 } else {
   print '<title>'.$GLOBALS["strSubscribeTitle"].'</title>';
-  print $data["header"];
+  print $pagedata["header"];
   $req = Sql_Query(sprintf('select * from %s where active',$tables["subscribepage"]));
   if (Sql_Affected_Rows()) {
     while ($row = Sql_Fetch_Array($req)) {
