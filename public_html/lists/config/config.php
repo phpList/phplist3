@@ -107,3 +107,7 @@ $bounce_mailbox_purge_unprocessed = 1;
 # how many bounces in a row need to have occurred for a user to be marked unconfirmed
 $bounce_unsubscribe_threshold = 5;
 
+# choose the encryption method for password
+# check the extended config for more info
+# in most cases, it is fine to leave this as it is
+define("ENCRYPTION_ALGO",'sha256');
