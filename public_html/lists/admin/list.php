@@ -200,6 +200,7 @@ if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
     '<span class="add_member">'.PageLink2('import',s('Add Members')).'</span>'.
     '<span class="delete">'.$deletebutton->show().'</span>'
     ,'','','actions nodrag');
+  $some = 1;
 }
 
 if ($numlists > 15) {
