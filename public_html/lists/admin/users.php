@@ -246,8 +246,8 @@ if (isset ($add)) {
   echo ActionResult($GLOBALS['I18N']->get('User added'));
 }
 
-$countpanel .= sprintf($GLOBALS['I18N']->get('%s users in total'), $total);
-$countpanel .= "<br/>" . $GLOBALS['I18N']->get('Users marked <span class="highlight">red</span> are unconfirmed') . " ($totalunconfirmed)<br/>";
+$countpanel .= s('%s subscribers in total', $total);
+$countpanel .= "<br/>" . s('Subscribers with a red icon are either unconfirmed or blacklisted or both') . " ($totalunconfirmed)<br/>";
 
 $url = getenv("REQUEST_URI");
 if ($unconfirmed) {
