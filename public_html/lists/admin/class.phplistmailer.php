@@ -481,12 +481,14 @@ class PHPlistMailer extends PHPMailer {
     ## end addition
 
     function image_exists($templateid,$filename) {
+      if (basename($filename) == 'powerphplist.png') $templateid = 0;
       $req = Sql_Query(sprintf('select * from %s where template = %d and (filename = "%s" or filename = "%s")',
         $GLOBALS["tables"]["templateimage"],$templateid,$filename,basename($filename)));
       return Sql_Affected_Rows();
     }
 
      function get_template_image($templateid,$filename){
+      if (basename($filename) == 'powerphplist.png') $templateid = 0;
       $req = Sql_Fetch_Row_Query(sprintf('select data from %s where template = %d and (filename = "%s" or filename = "%s")',
         $GLOBALS["tables"]["templateimage"],$templateid,$filename,basename($filename)));
       return $req[0];
