@@ -14,8 +14,8 @@ if (!defined('VERSION')) {
   define(   'DEVVERSION'    ,false);
 }
 
-require_once dirname(__FILE__)."/commonlib/lib/userlib.php";
-include_once dirname(__FILE__)."/commonlib/lib/maillib.php";
+require_once dirname(__FILE__)."/inc/userlib.php";
+include_once dirname(__FILE__)."/inc/maillib.php";
 
 # set some variables
 if (!isset ($_GET["pi"]))

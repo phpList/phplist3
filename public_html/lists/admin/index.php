@@ -92,11 +92,7 @@ require_once dirname(__FILE__)."/defaultconfig.php";
 
 require_once dirname(__FILE__).'/connect.php';
 include_once dirname(__FILE__)."/lib.php";
-if (INTERFACELIB == 2 && is_file(dirname(__FILE__).'/interfacelib.php')) {
-  require_once dirname(__FILE__)."/interfacelib.php";
-} else {
-  require_once dirname(__FILE__)."/commonlib/lib/interfacelib.php";
-}
+require_once dirname(__FILE__)."/inc/interfacelib.php";
 
 if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables["config"],1)) {
   $_SESSION['hasconf'] = true;
