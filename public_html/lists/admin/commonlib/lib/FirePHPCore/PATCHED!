@@ -1,9 +1,0 @@
-Around line 661 the following was changed:
-
-- $meta['file'] = isset($trace[$i]['file'])?$this->_escapeTraceFile($trace[$i+]['file']):'';
-- $meta['line'] = isset($trace[$i]['line'])?$trace[$i]['line']:'';
-
-+ $meta['file'] = isset($trace[$i+$this->options['LineNumbersSkipNested']]['file'])?$this->_escapeTraceFile($trace[$i+$this->options['LineNumbersSkipNested']]['file']):'';
-+ $meta['line'] = isset($trace[$i+$this->options['LineNumbersSkipNested']]['line'])?$trace[$i+$this->options['LineNumbersSkipNested']]['line']:'';
-
-options 'LineNumbersSkipNested' should be set to '1' to show who was calling the function that was calling firePHP
