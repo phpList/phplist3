@@ -11,8 +11,8 @@ if (isset($_REQUEST['_SERVER'])) { exit; }
 $cline = array();
 $GLOBALS['commandline'] = 0;
 
-require_once dirname(__FILE__) .'/commonlib/lib/unregister_globals.php';
-require_once dirname(__FILE__) .'/commonlib/lib/magic_quotes.php';
+require_once dirname(__FILE__) .'/inc/unregister_globals.php';
+require_once dirname(__FILE__) .'/inc/magic_quotes.php';
 
 /* no idea why it wouldn't be there (no dependencies are mentioned on php.net/mb_strtolower), but
  * found a system missing it. We need it from the start */
@@ -630,5 +630,11 @@ function parseCline() {
   }
   ob_start();*/
   return $res;
+}
+
+$included_files = get_included_files();
+
+foreach ($included_files as $filename) {
+    echo "$filename<br/>\n";
 }
 
