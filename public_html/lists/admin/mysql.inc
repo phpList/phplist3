@@ -239,10 +239,6 @@ function Sql_Insert_id() {
   return mysql_insert_id($GLOBALS["database_connection"]);
 }
 
-function Sql_Result($result,$index,$column) {
-  return mysql_result($result,$index,$column);
-}
-
 function Sql_Free_Result($dbresult) {
   mysql_free_result($dbresult);
 };
