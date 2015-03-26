@@ -220,18 +220,14 @@ while ($row = Sql_fetch_array($res)) {
     $row['value'] = '';
   }
 
-  if ($row["type"] == "checkbox") {
+  if ($row["type"] == "checkbox") { // admins can only have hidden or textline
     $checked_index_req = Sql_Fetch_Row_Query("select id from $table_prefix"."adminattr_".$row["tablename"]." where name = \"Checked\"");
     $checked_index = $checked_index_req[0];
     $checked = $checked_index == $row["value"]?'checked="checked"':'';
     printf('<tr><td>%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[]" value="%d" />
 <input class="attributeinput" type="checkbox" name="attribute[%d]" value="Checked" %s /></td></tr>'."\n",$row["name"],$row["id"],$row["id"],$checked);
   } else {
-    if ($row["type"] != "textline" && $row["type"] != "hidden") {
-      printf ("<tr><td>%s</td><td>%s</td></tr>\n",$row["name"],AttributeValueSelect($row["id"],$row["tablename"],$row["value"],"adminattr"));
-    } else {
-      printf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
-    }
+    printf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",$row["name"],$row["id"],htmlspecialchars(stripslashes($row["value"])));
   }
 }
 
