@@ -1067,10 +1067,6 @@ function saveUserAttribute($userid,$attid,$data) {
         if (!empty($_FILES[$formfield]['name']) && !empty($_FILES[$formfield]['tmp_name'])) {
           $tmpnam = $_FILES[$formfield]['tmp_name'];
           move_uploaded_file($tmpnam,'/tmp/avatar'.$userid.'.jpg');
-
-          if (function_exists('resizeImageFile')) {
-            resizeImageFile('/tmp/avatar'.$userid.'.jpg',250,1);
-          }
           $size = filesize('/tmp/avatar'.$userid.'.jpg');
 #          dbg('New size: '.$size);
           if ($size < MAX_AVATAR_SIZE) {
