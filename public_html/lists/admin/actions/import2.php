@@ -2,7 +2,7 @@
 verifyCsrfGetToken();
 
 require dirname(__FILE__) . "/../structure.php";
-require dirname(__FILE__). '/../importlib.php';
+require dirname(__FILE__). '/../inc/importlib.php';
 
 @ob_end_flush();
 $status = 'FAIL';
