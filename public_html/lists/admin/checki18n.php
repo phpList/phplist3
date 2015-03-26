@@ -88,6 +88,5 @@ function selectAll() {
 print '<textarea name="content" rows="50" cols="60">';
 */
 checkI18NDir(dirname(__FILE__));
-checkI18NDir(dirname(__FILE__).'/commonlib/pages/');
 #print '</textarea>';
 print '</form>';

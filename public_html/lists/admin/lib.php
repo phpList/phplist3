@@ -749,8 +749,6 @@ function checkLock($processid) {
   return $row[0];
 }
 
-// function addAbsoluteResources() moved to commonlib/maillib.php
-
 function getPageCache($url,$lastmodified = 0) {
   $req = Sql_Fetch_Row_Query(sprintf('select content from %s where url = "%s" and lastmodified >= %d',$GLOBALS["tables"]["urlcache"],$url,$lastmodified));
   return $req[0];

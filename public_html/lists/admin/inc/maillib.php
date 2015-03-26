@@ -1,9 +1,7 @@
 <?php
 /**
  * library with mail functions
- * 
- * this file is shared between the webbler and PHPlist via commonlib
- * 
+
  * @package Common
  * @subpackage maillib 
  */

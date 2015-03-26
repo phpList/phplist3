@@ -1117,8 +1117,6 @@ function createPDF($text) {
   return $fname;
 }
 
-//function replaceChars() Moved to commonlib
-
 function mailto2href($text) {
   # converts <mailto:blabla> link to <a href="blabla"> links
   #~Bas 0008857
@@ -1210,8 +1208,6 @@ function encodeLinks($text) {
   }
   return $text;
 }
-
-//function stripHTML() Moved to commonlib
 
 function clickTrackLinkId($messageid,$userid,$url,$link) {
   global $cached;

@@ -11,7 +11,7 @@
   $importdata = unserialize(file_get_contents($GLOBALS['tmpdir'].'/'.$file.'.data'));
   
   $email_list = file_get_contents($GLOBALS['tmpdir'].'/'.$file);
-  include_once dirname(__FILE__)."/../commonlib/lib/userlib.php";
+  include_once dirname(__FILE__)."/../inc/userlib.php";
 
   // Clean up email file
   $email_list = trim($email_list);
