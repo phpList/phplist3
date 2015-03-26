@@ -68,7 +68,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
       $retval = sql_query(sprintf('update %s SET data = "%s", lastactive = UNIX_TIMESTAMP(NOW()) where sessionid = "%s"',
 $SessionTableName,$val,$SessionID));
       if (sql_affected_rows() < 0) {
-        logError("unable to update session data for session $SessionID");
         sendError("unable to update session data for session $SessionID");
       }
     }

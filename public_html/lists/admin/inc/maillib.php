@@ -161,24 +161,3 @@ function addAbsoluteResources($text,$url) {
   return $text;
 }
 
-/**
- * Retrieve a URL and send the contents as an HTML email
- * 
- * @param string $sTo
- * @param string $sFrom
- * @param string $sSubject
- * @param string $sUrl
- * @return boolean Succes / failure
- */
-function mailURL( $sTo, $sFrom, $sSubject, $sUrl ) {
-  if ( $sHtmlBody = file_get_contents($sUrl) ) {
-  	$sHtmlBody = addAbsoluteResources( $sHtmlBody, sprintf( 'http://%s/', $_SERVER['HTTP_HOST']) );
-    $sTextBody = HTML2Text( $sHtmlBody );
-    return htmlEmail( $sTo, $sFrom, $sSubject, $sTextBody, '', $sFrom, $sHtmlBody);     
-  } else {
-    Error( "URL $sUrl could not be opened" );
-    return false;
-  }
-}
-
-?>

@@ -90,7 +90,7 @@ if (defined('SYSTEM_TIMEZONE')) {
 #  print "Time now: ".date('Y-m-d H:i:s').'<br/>';
 }
 
-if (!empty($GLOBALS["SessionTableName"])) {
+if (!empty($GLOBALS["SessionTableName"])) { // rather undocumented feature, but seems to be used by some
   include_once dirname(__FILE__)."/sessionlib.php";
 }
 
