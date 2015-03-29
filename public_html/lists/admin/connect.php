@@ -1558,8 +1558,12 @@ function repeatMessage($msgid) {
         $GLOBALS["tables"]["message"],$column,addslashes($msgdata[$column]),$newid));
      }
   }
-  $req = Sql_Query(sprintf('select * from %s where id = %d',
-    $GLOBALS['tables']['messagedata'],$msgid));
+  $req = Sql_Query(sprintf(
+    "SELECT *
+    FROM %s
+    WHERE id = %d AND name NOT IN ('id')",
+    $GLOBALS['tables']['messagedata'],$msgid
+  ));
   while ($row = Sql_Fetch_Array($req)) {
     setMessageData($newid,$row['name'],$row['data']);
   }
