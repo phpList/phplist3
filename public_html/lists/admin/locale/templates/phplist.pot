@@ -786,27 +786,27 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1755
+#: public_html/lists/admin/connect.php:1759
 msgid "years"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1758
+#: public_html/lists/admin/connect.php:1762
 msgid "days"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1761
+#: public_html/lists/admin/connect.php:1765
 msgid "hours"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1764
+#: public_html/lists/admin/connect.php:1768
 msgid "mins"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1767
+#: public_html/lists/admin/connect.php:1771
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1773
+#: public_html/lists/admin/connect.php:1777
 #: public_html/lists/admin/import4.php:164
 #: public_html/lists/admin/import4.php:173
 #: public_html/lists/admin/attributes.php:336
@@ -814,35 +814,35 @@ msgstr ""
 msgid "Attribute"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1773
+#: public_html/lists/admin/connect.php:1777
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1835
+#: public_html/lists/admin/connect.php:1839
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1837
+#: public_html/lists/admin/connect.php:1841
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1853
+#: public_html/lists/admin/connect.php:1857
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1854
+#: public_html/lists/admin/connect.php:1858
 #: public_html/lists/admin/inc/interfacelib.php:722
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1855
+#: public_html/lists/admin/connect.php:1859
 #: public_html/lists/admin/inc/interfacelib.php:756
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1856
+#: public_html/lists/admin/connect.php:1860
 msgid "Last Page"
 msgstr ""
 
