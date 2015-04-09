@@ -660,16 +660,6 @@ define("PLUGIN_ROOTDIR","plugins");
 # your website document root)
 $attachment_repository = '/tmp';
 
-# if you want to be able to send your messages as PDF attachments, you need to install
-# FPDF (http://www.fpdf.org) and set these variables accordingly
-
-# define('FPDF_FONTPATH','/home/pdf/font/');
-# require('fpdf.php');
-# define("USE_PDF",1);
-# $pdf_font = 'Times';
-# $pdf_fontstyle = '';
-# $pdf_fontsize = 14;
-
 # the mime type for the export files. You can try changing this to
 # application/vnd.ms-excel to make it open automatically in excel
 # or text/tsv
@@ -779,24 +769,6 @@ define('MESSAGEQUEUE_PREPARE',0);
 # or
 #$admin_auth_module = '/usr/local/etc/auth.inc';
 
-# stacked attribute selection
-# this is a new method of making a selection of attributes to send your messages to
-# to start with, it doesn't seem to work very well in Internet Explorer, but it works fine
-# using Mozilla, Firefox, Opera (haven't tried any other browsers)
-# so if you use IE, you may not want to try this.
-
-# stacked attribute selection allows you to continuously add a selection of attributes
-# to your message. This is quite a bit more powerful than the old method, but it can also
-# cause very complex queries to be constructed that may take too long to calculate
-# If you want to try this, set the value to 1, and give us feedback on how it's going
-
-# if you want to use dates for attribute selections, you need to use this one
-
-
-## this functionality has been dropped from the core phpList system, but will be added
-## using plugin functionality. 
-define("STACKED_ATTRIBUTE_SELECTION",0);
-
 
 # Public protocol
 # phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
@@ -813,7 +785,6 @@ define("STACKED_ATTRIBUTE_SELECTION",0);
 # mail systems
 # if you use this, you will need to teach your system regularly about patterns in new bounces
 define('USE_ADVANCED_BOUNCEHANDLING',0);
-
 
 # When forwarding ('to a friend') the message will be using the attributes of the destination email by default.
 # This often means the message gets stripped of al its attributes. 
@@ -837,15 +808,4 @@ define("FORWARD_PERSONAL_NOTE_SIZE",0);
 # Allow admin to enter a different message that will be sent when forwarding 'to a friend'
 # This will show an extra tab in the message dialog. 
 define("FORWARD_ALTERNATIVE_CONTENT",0);
-
-# there is now support for the use of ADOdb http://php.weblogs.com/ADODB
-# this is still experimental, and any findings should be reported in the
-# bugtracker
-# in order to use it, define the following settings:
-#$database_module = 'adodb.inc';
-#$adodb_inc_file = '/path/to/adodb_inc.php';
-#$adodb_driver = 'mysql';
-#$adodb_inc_file = '/usr/share/php/adodb/adodb.inc.php';
-$adodb_driver = 'mysql';  // not really a site variable
-
 
