@@ -1215,11 +1215,11 @@ function clickTrackLinkId($messageid,$userid,$url,$link) {
   if (!isset($cached['linktracksent']) || !is_array($cached['linktracksent'])) $cached['linktracksent'] = array();
   if (!isset($cached['linktrack'][$link])) {
     $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"',
-      $GLOBALS['tables']['linktrack_forward'],addslashes($url)));
+      $GLOBALS['tables']['linktrack_forward'],sql_escape($url)));
     if (!$exists[0]) {
       $personalise = preg_match('/uid=/',$link);
       Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d',
-        $GLOBALS['tables']['linktrack_forward'],addslashes($url),$personalise));
+        $GLOBALS['tables']['linktrack_forward'],sql_escape($url),$personalise));
       $fwdid = Sql_Insert_id();
     } else {
       $fwdid = $exists[0];
