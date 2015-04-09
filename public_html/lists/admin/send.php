@@ -84,6 +84,7 @@ if (!$GLOBALS["commandline"]) {
       $_SESSION['action_result'] = $GLOBALS['I18N']->get('All draft campaigns deleted');
       print Info($GLOBALS['I18N']->get('campaigns deleted'));
     } else {
+      verifyCsrfGetToken();
       deleteMessage(sprintf('%d',$_GET['delete']));
       print Info($GLOBALS['I18N']->get('campaign deleted'));
       $_SESSION['action_result'] = $GLOBALS['I18N']->get('Campaign deleted');
