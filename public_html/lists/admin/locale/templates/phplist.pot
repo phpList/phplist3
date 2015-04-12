@@ -131,39 +131,39 @@ msgstr ""
 msgid "campaigns deleted"
 msgstr ""
 
-#: public_html/lists/admin/send.php:88
+#: public_html/lists/admin/send.php:89
 msgid "campaign deleted"
 msgstr ""
 
-#: public_html/lists/admin/send.php:89
+#: public_html/lists/admin/send.php:90
 msgid "Campaign deleted"
 msgstr ""
 
-#: public_html/lists/admin/send.php:96
+#: public_html/lists/admin/send.php:97
 msgid "start a new message"
 msgstr ""
 
-#: public_html/lists/admin/send.php:96 public_html/lists/admin/messages.php:77
+#: public_html/lists/admin/send.php:97 public_html/lists/admin/messages.php:77
 msgid "Start a new campaign"
 msgstr ""
 
-#: public_html/lists/admin/send.php:97
+#: public_html/lists/admin/send.php:98
 msgid "Choose an existing draft message to work on"
 msgstr ""
 
-#: public_html/lists/admin/send.php:98
+#: public_html/lists/admin/send.php:99
 msgid "Draft messages"
 msgstr ""
 
-#: public_html/lists/admin/send.php:105
+#: public_html/lists/admin/send.php:106
 msgid "entered"
 msgstr ""
 
-#: public_html/lists/admin/send.php:106
+#: public_html/lists/admin/send.php:107
 msgid "age"
 msgstr ""
 
-#: public_html/lists/admin/send.php:107 public_html/lists/admin/spage.php:69
+#: public_html/lists/admin/send.php:108 public_html/lists/admin/spage.php:69
 #: public_html/lists/admin/send_core.php:877
 #: public_html/lists/admin/eventlog.php:112
 #: public_html/lists/admin/admins.php:103
@@ -171,20 +171,20 @@ msgstr ""
 msgid "del"
 msgstr ""
 
-#: public_html/lists/admin/send.php:109
+#: public_html/lists/admin/send.php:110
 #: public_html/lists/admin/editattributes.php:45
 msgid "delete all"
 msgstr ""
 
-#: public_html/lists/admin/send.php:136
+#: public_html/lists/admin/send.php:137
 msgid "Please select the lists you want to send your campaign to"
 msgstr ""
 
-#: public_html/lists/admin/send.php:144
+#: public_html/lists/admin/send.php:145
 msgid "Please select the lists you want to exclude from this campaign"
 msgstr ""
 
-#: public_html/lists/admin/send.php:149
+#: public_html/lists/admin/send.php:150
 msgid ""
 "The campaign will go to users who are a member of the lists above,     "
 "unless they are a member of one of the lists you select here."
