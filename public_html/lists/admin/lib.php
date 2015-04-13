@@ -1389,6 +1389,7 @@ function verifyToken() {
 
 ## verify the session token on ajaxed GET requests
 function verifyCsrfGetToken() {
+  if (!defined('PHPLISTINIT')) die();
   if ($GLOBALS['commandline']) return true;
   if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
     if ($_GET['tk'] != $_SESSION['csrf_token']) {
