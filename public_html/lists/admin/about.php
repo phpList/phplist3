@@ -20,19 +20,19 @@
     </ul>
     <h3><?php echo s('Contributors')?></h3>
     <ul>
-      <li><a href="http://www.dcameron.me.uk/phplist">Duncan Cameron</a>, Forum Moderator, QA Engineer</li>
+      <li><a href="http://www.dcameron.me.uk/phplist" target="_blank">Duncan Cameron</a>, Forum Moderator, QA Engineer</li>
       <li>H2B2, Forum Moderator, Mantis Manager</li>
-      <li><a href="http://dragonrider.co.uk/phplist">Dragonrider</a>, Forum Moderator</li>
+      <li><a href="http://dragonrider.co.uk/phplist" target="_blank">Dragonrider</a>, Forum Moderator</li>
     </ul>
     <h3><?php echo s('Design')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
-    <li><a href="http://www.behance.net/pradil">Alfredo Marco Pradil</a></li>
+    <li><a href="http://alfredomarcopradil.com/" target="_blank">Alfredo Marco Pradil</a></li>
     </ul>
     <h3><?php echo s('Design implementation')?>:</h3>
     <ul>
     <li>Tarek Djebali</li>
-    <li><a href="http://mariela.harpo-web.com">Mariela Zárate</a></li>
+    <li><a href="http://mariela.harpo-web.com" target="_blank">Mariela Zárate</a></li>
     </ul>
     <h3><a href="http://docs.phplist.com" target="_blank"><?php echo s('Documentation')?></a></h3>
     <ul>
@@ -51,7 +51,7 @@
       <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
       <li>the <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">phpmailer</a> class </li>
-      <li>the <a href="http://jquery.com">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
+      <li>the <a href="http://jquery.com" target="_blank">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
     </ul>
     </td>
     </tr>
