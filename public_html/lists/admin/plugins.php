@@ -199,6 +199,11 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   $details .= '<span class="value">'.$plugin->version. '</span></div>';
   $details .= '<div class="detail"><span class="label">'.s('description').'</span>';
   $details .= '<span class="value">'.$plugin->description. '</span></div>';
+  if (!empty($GLOBALS['developer_email'])) {
+    ## show the origin of the plugin, as many may exist
+    $details .= '<div class="detail"><span class="label">'.s('origin').'</span>';
+    $details .= '<span class="value">'.$plugin->origin. '</span></div>';
+  }
   
 #  $ls->addRow($pluginname,s('description'),$plugin->description);
  # $ls->addColumn($pluginname,s('version'),$plugin->version);
