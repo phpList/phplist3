@@ -2,8 +2,8 @@
 ob_start();
 $er = error_reporting(0); 
 
-require_once dirname(__FILE__) .'/admin/commonlib/lib/unregister_globals.php';
-require_once dirname(__FILE__) .'/admin/commonlib/lib/magic_quotes.php';
+require_once dirname(__FILE__) .'/admin/inc/unregister_globals.php';
+require_once dirname(__FILE__) .'/admin/inc/magic_quotes.php';
 ## none of our parameters can contain html for now
 $_GET = removeXss($_GET);
 $_POST = removeXss($_POST);
