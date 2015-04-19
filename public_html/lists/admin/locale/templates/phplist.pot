@@ -969,31 +969,35 @@ msgstr ""
 msgid "description"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:207
-msgid "installed"
+#: public_html/lists/admin/plugins.php:204
+msgid "origin"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:212
-msgid "installation Url"
+msgid "installed"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:217
+msgid "installation Url"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:222
 msgid "developer"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:220
+#: public_html/lists/admin/plugins.php:225
 msgid "enabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:227
+#: public_html/lists/admin/plugins.php:232
 msgid "initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:229
+#: public_html/lists/admin/plugins.php:234
 msgid "Initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:235
+#: public_html/lists/admin/plugins.php:240
 #: public_html/lists/admin/templates.php:34
 #: public_html/lists/admin/spage.php:68
 #: public_html/lists/admin/editattributes.php:183
@@ -1001,20 +1005,20 @@ msgstr ""
 msgid "delete"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:235
+#: public_html/lists/admin/plugins.php:240
 msgid "delete this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:241
+#: public_html/lists/admin/plugins.php:246
 msgid "update this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:241
-#: public_html/lists/admin/plugins.php:242
+#: public_html/lists/admin/plugins.php:246
+#: public_html/lists/admin/plugins.php:247
 msgid "update"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:245
+#: public_html/lists/admin/plugins.php:250
 msgid "details"
 msgstr ""
 
@@ -1125,60 +1129,60 @@ msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1395 public_html/lists/admin/lib.php:1399
+#: public_html/lists/admin/lib.php:1396 public_html/lists/admin/lib.php:1400
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1618
+#: public_html/lists/admin/lib.php:1619
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1619
+#: public_html/lists/admin/lib.php:1620
 #: public_html/lists/admin/send_core.php:368
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1621 public_html/lists/admin/lib.php:1632
+#: public_html/lists/admin/lib.php:1622 public_html/lists/admin/lib.php:1633
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1623
+#: public_html/lists/admin/lib.php:1624
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1625
+#: public_html/lists/admin/lib.php:1626
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1627
+#: public_html/lists/admin/lib.php:1628
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1629
+#: public_html/lists/admin/lib.php:1630
 #: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1630 public_html/lists/admin/lib.php:1633
+#: public_html/lists/admin/lib.php:1631 public_html/lists/admin/lib.php:1634
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1644
+#: public_html/lists/admin/lib.php:1645
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1645
+#: public_html/lists/admin/lib.php:1646
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1651
+#: public_html/lists/admin/lib.php:1652
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1651
+#: public_html/lists/admin/lib.php:1652
 msgid "Do not subscribe"
 msgstr ""
 
@@ -6824,7 +6828,7 @@ msgstr ""
 msgid "Sorry, not implemented yet"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:254
+#: public_html/lists/admin/defaultplugin.php:255
 msgid "choose"
 msgstr ""
 
