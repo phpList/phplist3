@@ -76,6 +76,19 @@ class phplistPlugin {
     
   public $pageTitles = array();
   
+  /* dependency check
+   * 
+   * provides tests to run to determine whether this plugin can be used
+   * example:
+   *    array(
+   *        'description of dependency' => 'tests that evals true or false',
+   *    )
+   */
+   public $dependencyCheck = array(
+//        'description of dependency' => 'true',
+      'phpList version' => 'VERSION >= "3.0.10";',
+   );
+  
   function name() {
     return $this->name;
   }
