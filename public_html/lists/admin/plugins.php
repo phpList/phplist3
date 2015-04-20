@@ -222,9 +222,11 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
     $details .= '<span class="value">'.$pluginDetails['developer']. '</span></div>';
   }
-  $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
+  if (pluginCanEnable($pluginname)) {
+    $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
     PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
     PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
+  }
   if (DEVVERSION) {
     //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
       //PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
@@ -238,6 +240,11 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
     ## we can only delete the ones that were installed from the interface
     $ls->addColumn($pluginname,s('delete'),'<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname. '\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
+  }
+  
+  if (!pluginCanEnable($pluginname)) {
+    $details .= '<div class="detail"><span class="label">'.s('Dependency check').'</span>';
+    $details .= '<span class="value">'.s('Plugin can not be enabled, because it fails a dependency check'). '</span></div>';
   }
   
   if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {
