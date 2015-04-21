@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-if (TEST && strpos($_SERVER['HTTP_HOST'],'phplist.com') !== false) {
+if (TEST && strpos($_SERVER['HTTP_HOST'],'phplist.org') !== false) {
   print Info($GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist").'.';
 }
 
