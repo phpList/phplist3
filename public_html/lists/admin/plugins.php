@@ -244,7 +244,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
   
   if (!pluginCanEnable($pluginname)) {
     $details .= '<div class="detail"><span class="label">'.s('Dependency check').'</span>';
-    $details .= '<span class="value">'.s('Plugin can not be enabled, because it fails a dependency check'). '</span></div>';
+    $details .= '<span class="value">'.s('Plugin can not be enabled, because it fails a dependency check - '). $plugin->dependencyFailure . '</span></div>';
   }
   
   if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {

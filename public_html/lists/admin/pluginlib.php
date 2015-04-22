@@ -172,25 +172,20 @@ function pluginsCall($method) {
 }
 
 function pluginCanEnable($plugin) {
-  $canEnable = true;
-  if (isset($GLOBALS['allplugins'][$plugin])) {
-    if (sizeof($GLOBALS['allplugins'][$plugin]->dependencyCheck)) {
-      $dependencyPasses = true;
-      foreach ($GLOBALS['allplugins'][$plugin]->dependencyCheck as $dependenyDesc => $dependencyCheck) {
-        eval("\$dependencyPasses = $dependencyCheck;");
-        if (!$dependencyPasses) {
-          $GLOBALS['allplugins'][$plugin]->dependencyFailure = $dependenyDesc;
-        }
-        $canEnable = $canEnable && $dependencyPasses;
-      }
+  global $allplugins;
+
+  $canEnable = false;
+
+  if (isset($allplugins[$plugin])) {
+    $dependencies = $allplugins[$plugin]->dependencyCheck();
+    $dependencyDesc = array_search(false, $dependencies);
+
+    if ($dependencyDesc === false) {
+        $canEnable = true;        
+    } else {
+        $allplugins[$plugin]->dependencyFailure = $dependencyDesc;
     }
   }
-  //if ($canEnable) {
-    //print "plugin can be enabled<br/>";
-  //} else {
-    //print "plugin can not be enabled<br/>";
-  //}
   return $canEnable;
 }
-
 
