@@ -78,17 +78,19 @@ class phplistPlugin {
   
   /* dependency check
    * 
-   * provides tests to run to determine whether this plugin can be used
+   * provides tests to determine whether this plugin can be used
    * example:
    *    array(
-   *        'description of dependency' => 'tests that evals true or false',
+   *        'description of dependency' => condition for plugin to be enabled
    *    )
    */
-   public $dependencyCheck = array(
-//        'description of dependency' => 'true',
-      'phpList version' => 'VERSION >= "3.0.10";',
-   );
-  
+  function dependencyCheck()
+  {
+      return array(
+        'phpList version' => version_compare(VERSION, '3.0.12') >= 0
+      );
+  }
+
   function name() {
     return $this->name;
   }
