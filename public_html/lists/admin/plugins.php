@@ -222,6 +222,10 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
     $details .= '<span class="value">'.$pluginDetails['developer']. '</span></div>';
   }
+  if (!empty($plugin->documentationUrl)) {
+      $details .= '<div class="detail"><span class="label">'.s('More information').'</span>';
+      $details .= '<span class="value"><a href="'.$plugin->documentationUrl. '" target="moreinfoplugin">'.s('Documentation Page'). '</a></span></div>';
+  }
   if (pluginCanEnable($pluginname)) {
     $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
     PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
