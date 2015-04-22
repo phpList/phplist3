@@ -339,6 +339,13 @@ function Sql_create_Table ($table,$structure) {
 }
 
 function sql_escape($text) {
+  if (empty($GLOBALS['database_connection'])) {
+    $GLOBALS['database_connection'] = Sql_Connect(
+      $GLOBALS['database_host'],
+      $GLOBALS['database_user'],
+      $GLOBALS['database_password'],
+      $GLOBALS['database_name']);
+  }
   if (!empty($GLOBALS['database_connection'])) {
     return mysqli_real_escape_string($GLOBALS['database_connection'],$text);
   } else {
