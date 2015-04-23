@@ -9,7 +9,7 @@ if (isset($_GET['disable'])) {
     $disabled_plugins[$_GET['disable']] = 1;
   }
   saveConfig('plugins_disabled',serialize($disabled_plugins),0);
-  $status = $GLOBALS['img_cross'];
+  $status = $GLOBALS['img_cross'].'<script type="text/javascript">document.location = document.location; </script>';
 } elseif (isset($_GET['enable'])) {
   if (pluginCanEnable($_GET['enable'])) {
     if (isset($disabled_plugins[$_GET['enable']])) {
@@ -20,7 +20,7 @@ if (isset($_GET['disable'])) {
     }
   #  var_dump($disabled_plugins);
     saveConfig('plugins_disabled',serialize($disabled_plugins),0);
-    $status = $GLOBALS['img_tick'];
+    $status = $GLOBALS['img_tick'].'<script type="text/javascript">document.location = document.location; </script>';
   }
 } elseif (isset($_GET['initialise'])) {
   if (isset($GLOBALS['plugins'][$_GET['initialise']])) {
