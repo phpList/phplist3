@@ -381,6 +381,9 @@ $adminpages = preg_replace('~^//~','/',$adminpages);
 if (!isset($systemroot)) {
   $systemroot = dirname(__FILE__);
 }
+if (!isset($documentRoot)) {
+  $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+}
 if (!defined('FORWARD_ALTERNATIVE_CONTENT')) define('FORWARD_ALTERNATIVE_CONTENT',0);
 if (!defined('KEEPFORWARDERATTRIBUTES')) define('KEEPFORWARDERATTRIBUTES',0);
 if (!defined('FORWARD_EMAIL_COUNT') ) define('FORWARD_EMAIL_COUNT',1);
