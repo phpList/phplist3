@@ -10,7 +10,6 @@ function my_shutdown () {
   $res = Sql_query("select count(*) from $tables[user]");
   $row = Sql_fetch_row($res);
 
-  print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   print '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Done. Now there are '.$row[0].' users in the database";</script>'."\n";
  # register_shutdown_function("");
   exit;
@@ -18,7 +17,6 @@ function my_shutdown () {
 
 register_shutdown_function("my_shutdown");
 
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 ignore_user_abort(1);
 ?>
 
@@ -35,7 +33,6 @@ function fill($prefix,$listid) {
   $row = Sql_fetch_row($res);
   if ($row[0] > 50000) {
     error("Hmm, I think 50 thousand users is quite enough for a test<br/>This machine does need to do other things you know.");
-    print '<script language="Javascript" type="text/javascript">finish();</script>';
     print '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Done. Now there are '.$row[0].' users in the database";</script>'."\n";
     return 0;
   }
@@ -59,7 +56,6 @@ function fill($prefix,$listid) {
   }
   $total = $total_attr * $total_val;
   if (!$total) {
-    print '<script language="Javascript" type="text/javascript"> finish(); </script>';
     Fatal_Error("Can only do stress test when some attributes exist");
     return 0;
   }
@@ -94,7 +90,6 @@ function fill($prefix,$listid) {
 
 print formStart(' class="testOutput" ').'<input type="text" name="output" size=45></form>';
 print '<p class="button">'.PageLink2("stresstest","Erase Test information","eraseall=yes").' (may take a while)';
-print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
 
 ob_end_flush();
 flush();

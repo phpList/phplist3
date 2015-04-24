@@ -1,8 +1,6 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
-
 ignore_user_abort();
 set_time_limit(500);
 
@@ -54,7 +52,6 @@ if(!empty($_POST['import'])) {
   $email_list = explode("\n",$email_list);
   if (sizeof($email_list) > 300 && !$test_import) {
     # this is a possibly a time consuming process, so let's show a progress bar
-    print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
     flush();
     # increase the memory to make sure we're not running out
     ini_set("memory_limit","16M");
@@ -263,7 +260,6 @@ if(!empty($_POST['import'])) {
       }; // end if
     }; // end while
 
-    print '<script language="Javascript" type="text/javascript"> finish(); </script>';
     # let's be grammatically correct :-) '
     $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new administrator was')." ": $GLOBALS['I18N']->get('new administrators were')." ";
 

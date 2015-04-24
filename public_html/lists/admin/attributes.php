@@ -15,10 +15,8 @@ $formtable_exists = Sql_Table_exists("formfield");
 #}
 #return;
 print '<div class="panel"><div class="header"></div><div class="content">';
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 if (isset($_POST["action"])) {
   if (isset($_POST["name"])) {
-    print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';flush();
     while (list($id,$val) = each ($_POST["name"])) {
       if (!$id && isset($_POST["name"][0]) && $_POST["name"][0] != "") {
         # it is a new one
@@ -149,7 +147,6 @@ if (isset($_POST["action"])) {
         }
       }
     }
-    print '<script language="Javascript" type="text/javascript"> finish();</script>';flush();
   }
 } elseif (isset($_POST["tagaction"]) && is_array($_POST["tag"])) {
 	ksort($_POST["tag"]);

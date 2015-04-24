@@ -1,6 +1,5 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 flush();
 
 #$limit = '';
@@ -15,8 +14,6 @@ function output($message) {
   print $message . "<br/>\n";
   flush();
 }
-
-print '<script language="Javascript" type="text/javascript"> yposition = 10;document.write(progressmeter); start();</script>';
 
 # lets not do this unless we do some locking first
 $abort = ignore_user_abort(1);
@@ -141,10 +138,7 @@ if ($next) {
 }
 print '</ul>';
 
-print '<script language="Javascript" type="text/javascript"> finish(); </script>';
 releaseLock($process_id);
 
 return;
 
-
-?>

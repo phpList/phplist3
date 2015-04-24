@@ -66,10 +66,6 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   @ob_end_flush();
   @ob_start();
 
-  print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
-  print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
-  # upgrade depending on old version
-
   output( '<p class="information">'.$GLOBALS['I18N']->get('Please wait, upgrading your database, do not interrupt').'</p>');
 
   flush();
@@ -387,7 +383,6 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   Sql_Query(sprintf('update %s set data = "%s",width=70,height=30 where filename = "powerphplist.png"',
     $tables["templateimage"],$newpoweredimage));
 
-  print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   # update the system pages
   include_once dirname(__FILE__).'/defaultconfig.php';
 

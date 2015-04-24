@@ -32,7 +32,6 @@ if (!$GLOBALS["commandline"]) {
   ob_start();
 }
 
-print '<script language="Javascript" src="js/progressbar.js" type="text/javascript"></script>';
 flush();
 $outputdone =0;
 function prepareOutput() {
@@ -400,7 +399,6 @@ function processMessages($link,$max = 3000) {
   output($GLOBALS['I18N']->get("Closing mailbox, and purging messages"));
   set_time_limit(60 * $num);
   imap_close($link);
-#  print '<script language="Javascript" type="text/javascript"> finish(); </script>';
   if ($num)
     return $report;
 }
@@ -417,7 +415,6 @@ if (empty($bounce_mailbox) && (empty($bounce_mailbox_host) || empty($bounce_mail
   return;
 }
 
-print '<script language="Javascript" type="text/javascript"> yposition = 10;document.write(progressmeter); start();</script>';
 print prepareOutput();
 flushBrowser();
 
@@ -712,9 +709,6 @@ while ($user = Sql_Fetch_Row($userid_req)) {
   }
   $usercnt++;
   flush();
-}
-if (!$GLOBALS["commandline"]) {
-  print '<script language="Javascript" type="text/javascript"> finish(); </script>';
 }
 
 #output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
