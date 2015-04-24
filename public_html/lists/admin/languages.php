@@ -516,7 +516,11 @@ $lan = array(
     }
     if (sizeof($translations)) {
       foreach ($translations as $orig => $trans) {
-        Sql_Query('replace into '.$GLOBALS['tables']['i18n'].' set lan = "'.$language. '", set original = "'.$orig.'",set translation = "'. $trans. '');
+        Sql_Query('replace into '.$GLOBALS['tables']['i18n'].' (lan, original, translation) VALUES ('
+                  .'"'.$language.'",'
+                  .'"'.$orig.'",'
+                  .'"'.$trans.'"'
+                 .')');
       }
     }
     $this->resetCache();
