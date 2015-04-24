@@ -1009,7 +1009,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
   }
   
   $pqChoice = getConfig('pqchoice');
-  $hideProcessQueue = !MANUALLY_PROCESS_QUEUE || $pqChoice == 'phplistdotcom';
+  $hideProcessQueue = !MANUALLY_PROCESS_QUEUE;
   
   if ($access == "owner" || $access == "all" || $access == "view") {
     if ($name == "processqueue" && $hideProcessQueue)
