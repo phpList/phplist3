@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('PHPLISTINIT') && !isset($GLOBALS["installer"])) {
+if (!defined('PHPLISTINIT')) {
 #	print backtrace();
   print "Invalid Request";
   exit;
