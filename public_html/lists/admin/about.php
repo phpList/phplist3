@@ -12,7 +12,7 @@
        </p>
     </td>
     <td class="top">
-    <?php echo s('phpList is licensed with the %sGNU Public License (GPL)%s','<a href="http://www.gnu.org/copyleft" target="_blank">','</a>')?>.<br/>
+    <?php echo s('phpList is licensed with the %sGNU Affero Public License (AGPL)%s','<a href="http://www.gnu.org/licenses/agpl.html" target="_blank">','</a>')?>.<br/>
     Copyright &copy; 2000-<?php echo date('Y')?> <a href="http://phplist.com" target="_blank">phpList Ltd.</a><br/><br/>
     <h3><?php echo s('Developers')?>:</h3>
     <ul>
@@ -21,17 +21,16 @@
     <h3><?php echo s('Contributors')?></h3>
     <ul>
       <li><a href="http://www.dcameron.me.uk/phplist" target="_blank">Duncan Cameron</a>, Forum Moderator, QA Engineer</li>
-      <li>H2B2, Forum Moderator, Mantis Manager</li>
       <li><a href="http://dragonrider.co.uk/phplist" target="_blank">Dragonrider</a>, Forum Moderator</li>
     </ul>
     <h3><?php echo s('Design')?>:</h3>
     <ul>
-    <li>Tarek Djebali</li>
+    <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
     <li><a href="http://alfredomarcopradil.com/" target="_blank">Alfredo Marco Pradil</a></li>
     </ul>
     <h3><?php echo s('Design implementation')?>:</h3>
     <ul>
-    <li>Tarek Djebali</li>
+    <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
     <li><a href="http://mariela.harpo-web.com" target="_blank">Mariela Zárate</a></li>
     </ul>
     <h3><a href="http://docs.phplist.com" target="_blank"><?php echo s('Documentation')?></a></h3>
