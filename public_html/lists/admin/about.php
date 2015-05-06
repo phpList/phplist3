@@ -5,7 +5,7 @@
   </tr>
   <tr>
     <td class="poweredby" valign="top">
-      Powered by <a href="http://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION?> <a href="http://www.phplist.com" target="_blank"><br/><br/>
+      Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION?> <a href="https://www.phplist.com" target="_blank"><br/><br/>
       <img src="../images/power-phplist.png" alt="" width="70" height="30" border="0" /></a>
       <p>&nbsp;</p>
       <p><?php echo s('Certified Secure by ')?><a href="https://www.httpcs.com/" title="Web Vulnerability Scanner" target="_blank"><img src="images/LogoCertifiedHTTPCS.png" height="20" width="100" border="0" alt="Certified Secure by HTTPCS, Web Vulnerability Scanner" title="Certified Secure by HTTPCS, Web Vulnerability Scanner" /></a> 
@@ -33,10 +33,9 @@
     <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
     <li><a href="http://mariela.harpo-web.com" target="_blank">Mariela Zárate</a></li>
     </ul>
-    <h3><a href="http://docs.phplist.com" target="_blank"><?php echo s('Documentation')?></a></h3>
+    <h3><a href="https://www.phplist.org/manual/" target="_blank"><?php echo s('Manual')?></a></h3>
     <ul>
-      <li>Yan Brailowsky</li>
-      <li>Pascal Van Hecke</li>
+      <li>The phpList <a href="https://www.phplist.org/documentation/">Community Documentation Team</a></li>
     </ul>
     <h3><?php echo s('Translations') ?></h3>
     <p><?php echo s('The translations are provided by the phpList community (that includes you :-) )')?></p>
@@ -47,7 +46,7 @@
     </p>
     <b><?php echo s('Portions of the system include')?></b>
     <ul>
-      <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="http://phplist.com" target="_blank">Michiel Dethmers</a></li>
+      <li><a href="http://www.webbler.net" target="_blank">Webbler</a> code, by <a href="https://phplist.com" target="_blank">Michiel Dethmers</a></li>
       <li><a href="http://www.fckeditor.net/" target="_blank">FCKeditor</a>, by Frederico Caldeira Knabben and team</li>
       <li>the <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">phpmailer</a> class </li>
       <li>the <a href="http://jquery.com" target="_blank">jQuery</a> Javascript library</li> by the <a href="http://jquery.org/team">jQuery Team</a>
