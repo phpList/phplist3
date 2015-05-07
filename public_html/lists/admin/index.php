@@ -455,7 +455,7 @@ if (isset($_GET['page']) && $_GET['page'] == 'about') {
 }
 print $pageinfo->show();
 
-if (!empty($_GET['action']) && $_GET['page'] != 'pageaction') {
+if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION["adminloggedin"])) {
   $action = basename($_GET['action']);
   if (is_file(dirname(__FILE__).'/actions/'.$action.'.php')) {
     $status = '';
