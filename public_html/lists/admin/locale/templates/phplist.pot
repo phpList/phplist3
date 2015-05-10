@@ -491,7 +491,7 @@ msgstr ""
 msgid "Message Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:344 public_html/lists/admin/about.php:60
+#: public_html/lists/admin/home.php:344 public_html/lists/admin/about.php:59
 msgid "Plugins"
 msgstr ""
 
@@ -5630,20 +5630,20 @@ msgid "Design implementation"
 msgstr ""
 
 #: public_html/lists/admin/about.php:36
-msgid "Documentation"
+msgid "Manual"
 msgstr ""
 
-#: public_html/lists/admin/about.php:41
+#: public_html/lists/admin/about.php:40
 msgid "Translations"
 msgstr ""
 
-#: public_html/lists/admin/about.php:42
+#: public_html/lists/admin/about.php:41
 msgid ""
 "The translations are provided by the phpList community (that includes "
 "you :-) )"
 msgstr ""
 
-#: public_html/lists/admin/about.php:43
+#: public_html/lists/admin/about.php:42
 msgid ""
 "The <a href=\"http://translate.phplist.com/\" target=\"translate"
 "\">translation site</a> runs <a href=\"http://translate.sourceforge.net/\" "
@@ -5652,18 +5652,18 @@ msgid ""
 "House</a>"
 msgstr ""
 
-#: public_html/lists/admin/about.php:44
+#: public_html/lists/admin/about.php:43
 msgid "Acknowledgements"
 msgstr ""
 
-#: public_html/lists/admin/about.php:46
+#: public_html/lists/admin/about.php:45
 msgid ""
 "The developers wish to thank the many contributors to this system, who have "
 "helped out with bug reports, suggestions, donations, feature requests, "
 "sponsoring, translations and many other contributions."
 msgstr ""
 
-#: public_html/lists/admin/about.php:48
+#: public_html/lists/admin/about.php:47
 msgid "Portions of the system include"
 msgstr ""
 
