@@ -58,8 +58,7 @@ if (empty($isUTF8)) {
     ## the conversion complains about a key length
     Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
 
-    Sql_Query('use information_schema');
-    $req = Sql_Query('select * from columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
+    $req = Sql_Query('select * from information_schema.columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
 
     $dbcolumns = array();
     $dbtables = array();
@@ -70,9 +69,7 @@ if (empty($isUTF8)) {
         $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
       }
     }
-
-    Sql_Query('use '.$dbname);
-
+    
     cl_output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait'));
     foreach ($dbtables as $dbtable) {
       set_time_limit(600);
