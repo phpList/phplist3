@@ -383,13 +383,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
   if (ALWAYS_ADD_USERTRACK) {
     if (stripos($htmlmessage,'</body>')) {
-      $htmlmessage = str_replace('</body>','<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" /></body>',$htmlmessage);
+      $htmlmessage = str_replace('</body>','<img alt="" src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" /></body>',$htmlmessage);
     } else {
-      $htmlmessage .= '<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />';
+      $htmlmessage .= '<img alt="" src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />';
     }
   } else {
     ## can't use str_replace or str_ireplace, because those replace all, and we only want to replace one
-    $htmlmessage = preg_replace( '/\[USERTRACK\]/i','<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />',$htmlmessage,1);
+    $htmlmessage = preg_replace( '/\[USERTRACK\]/i','<img alt="" src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS["pageroot"].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />',$htmlmessage,1);
   }
   # make sure to only include usertrack once, otherwise the stats would go silly
   $htmlmessage = str_ireplace('[USERTRACK]','',$htmlmessage);
