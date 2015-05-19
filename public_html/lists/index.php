@@ -437,6 +437,13 @@ $html .='
 }
 
 $html .='
+  if (! checkEmail()) {
+    alert("Email addresses you entered is not valid");
+
+    return false;
+  }';
+
+$html .='
 
   return true;
 }
@@ -452,6 +459,11 @@ function compareEmail()
   return (document.subscribeform.elements["email"].value == document.subscribeform.elements["emailconfirm"].value);
 }
 
+function checkEmail()
+{
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(document.subscribeform.elements["email"].value);
+}
 
 </script>';
   $html .= formStart('name="subscribeform"');
@@ -534,6 +546,13 @@ $html .='
 }
 
 $html .='
+  if (! checkEmail()) {
+    alert("'.str_replace('"','\"',$GLOBALS["strEmailNotValid"]).'");
+
+    return false;
+  }';
+
+$html .='
 
   return true;
 }
@@ -557,6 +576,13 @@ function compareEmail()
 {
   return (document.subscribeform.elements["email"].value == document.subscribeform.elements["emailconfirm"].value);
 }
+
+function checkEmail()
+{
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(document.subscribeform.elements["email"].value);
+}
+
 function checkGroup(name,value)
 {
   option = -1;
