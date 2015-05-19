@@ -18,16 +18,14 @@ if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
 $tabs = new WebblerTabs();
 $tabs->addTab(s("processed"),PageUrl2("bounces&amp;tab=processed"),'processed');
 $tabs->addTab(s("unidentified"),PageUrl2("bounces&amp;tab=unidentified"),'unidentified');
-if (!empty($_GET['tab'])) {
-  $tabs->setCurrent($_GET["tab"]);
-} else {
-  $_GET['tab'] = 'processed';
-  $tabs->setCurrent('processed');
-}
+
+if (!isset($_GET['tab'])) $_GET['tab'] = 'processed';
+$currentTab = 'processed';
 switch ($_GET['tab']) {
   case 'unidentified':
     $status_compare = '=';
     $status = 'unidentified';
+    $currentTab = 'unidentified';
     break;
   case 'processed':
   default:
@@ -35,6 +33,7 @@ switch ($_GET['tab']) {
     $status = 'processed';
     break;
 }  
+$tabs->setCurrent($currentTab);
 
 if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
   switch($_GET['action']) {
@@ -66,12 +65,12 @@ if (isset($_GET['start'])) {
   $start = 0;
 }
 $offset = $start;
-$baseurl = "bounces&amp;start=$start";
+$baseurl = "bounces&amp;start=$start&amp;tab=$currentTab";
 $limit = MAX_USER_PP;
 
 if ($total > MAX_USER_PP) {
-  $paging = simplePaging("bounces",$start,$total,MAX_USER_PP,$status . ' '.$GLOBALS['I18N']->get('bounces') );
-  $query = sprintf('select * from %s where status %s "unidentified bounce" order by date desc limit %s offset %s', $tables['bounce']. $status_compare, $limit,$offset);
+  $paging = simplePaging("bounces&amp;tab=$currentTab",$start,$total,MAX_USER_PP,$status . ' '.$GLOBALS['I18N']->get('bounces') );
+  $query = sprintf('select * from %s where status %s "unidentified bounce" order by date desc limit %s offset %s', $tables['bounce'], $status_compare, $limit,$offset);
   $result = Sql_Query($query);
 } else {
   $paging = '';
