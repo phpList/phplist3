@@ -5,8 +5,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $result = '';
 
 if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
-  # delete the index in delete
-  $result .= $GLOBALS['I18N']->get('deleting').' '.$_REQUEST['delete']."..\n";
+  $result .= s('deleting bounce %d',$_REQUEST['delete'])."..\n";
   if ($GLOBALS["require_login"] && !isSuperUser()) {
   } else {
     deleteBounce($_REQUEST['delete']);
@@ -16,8 +15,8 @@ if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
 }
 
 $tabs = new WebblerTabs();
-$tabs->addTab(s("processed"),PageUrl2("bounces&amp;tab=processed"),'processed');
-$tabs->addTab(s("unidentified"),PageUrl2("bounces&amp;tab=unidentified"),'unidentified');
+$tabs->addTab(s("processed"),PageUrl2("bounces&tab=processed"),'processed');
+$tabs->addTab(s("unidentified"),PageUrl2("bounces&tab=unidentified"),'unidentified');
 
 if (!isset($_GET['tab'])) $_GET['tab'] = 'processed';
 $currentTab = 'processed';
@@ -36,21 +35,27 @@ switch ($_GET['tab']) {
 $tabs->setCurrent($currentTab);
 
 if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
+  verifyCsrfGetToken();
   switch($_GET['action']) {
     case "deleteunidentified":
-      Sql_Query(sprintf('delete from %s where comment = "unidentified bounce" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
+      $req = Sql_Query(sprintf('delete from %s where comment = "unidentified bounce" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
+      $count = Sql_Num_Rows($req);
+      $actionresult = s('%d unidentified bounces older than 2 months have been deleted',$count);
       break;
     case "deleteprocessed":
-      Sql_Query(sprintf('delete from %s where comment != "not processed" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
+      $req = Sql_Query(sprintf('delete from %s where comment != "not processed" and date_add(date,interval 2 month) < now()',$tables["bounce"]));
+      $count = Sql_Num_Rows($req);
+      $actionresult = s('%d processed bounces older than 2 months have been deleted',$count);
       break;
     case "deleteall":
-      Sql_Query(sprintf('delete from %s',$tables["bounce"]));
+      Sql_Query(sprintf('truncate %s',$tables["bounce"]));
+      $actionresult = s('All bounces have been deleted');
       break;
     case "reset":
       Sql_Query(sprintf('update %s set bouncecount = 0',$tables["user"]));
       Sql_Query(sprintf('update %s set bouncecount = 0',$tables["message"]));
-      Sql_Query(sprintf('delete from %s',$tables["bounce"]));
-      Sql_Query(sprintf('delete from %s',$tables["user_message_bounce"]));
+      Sql_Query(sprintf('truncate %s',$tables["bounce"]));
+      Sql_Query(sprintf('truncate %s',$tables["user_message_bounce"]));
    }
 }
 
@@ -65,8 +70,14 @@ if (isset($_GET['start'])) {
   $start = 0;
 }
 $offset = $start;
-$baseurl = "bounces&amp;start=$start&amp;tab=$currentTab";
+$baseurl = "bounces&start=$start&tab=$currentTab";
 $limit = MAX_USER_PP;
+if (!empty($actionresult)) {
+  $_SESSION['action_result'] = $actionresult;
+  Header('Location: ./?page='.$baseurl);
+  exit;
+#  print '<div id="actionresult" class="result">'.$actionresult .'</div>';
+}
 
 if ($total > MAX_USER_PP) {
   $paging = simplePaging("bounces&amp;tab=$currentTab",$start,$total,MAX_USER_PP,$status . ' '.$GLOBALS['I18N']->get('bounces') );
@@ -78,7 +89,7 @@ if ($total > MAX_USER_PP) {
   $result = Sql_Query($query);
 }
 
-$buttons = new ButtonGroup(new Button(PageURL2("bounces"),'delete'));
+$buttons = new ButtonGroup(new Button(PageURL2("bounces"),s('delete')));
 $buttons->addButton(
   new ConfirmButton(
     $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months') . "?",
@@ -94,18 +105,16 @@ $buttons->addButton(
     $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . "?",
     PageURL2("$baseurl&action=deleteall"),
     $GLOBALS['I18N']->get('Delete all')));
-if (ALLOW_DELETEBOUNCE) {
-  print $buttons->show();
-}
-
 
 print "<div class='actions'>\n";
-print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list'));
-
 print "<div class='minitabs'>\n";
 print $tabs->display();
 print "</div>\n";
 
+print PageLinkButton('listbounces',$GLOBALS['I18N']->get('view bounces by list'));
+if (ALLOW_DELETEBOUNCE) {
+  print '<div class="fright">'.$buttons->show(). '</div>';
+}
 print "</div><!-- .actions div-->\n";
 
 if (!Sql_Num_Rows($result)) {
@@ -120,7 +129,7 @@ if (!Sql_Num_Rows($result)) {
     }
 }
 
-$ls = new WebblerListing($status . ' '.s('bounces'));
+$ls = new WebblerListing(s($status) . ' '.s('bounces'));
 $ls->usePanel($paging);
 while ($bounce = Sql_fetch_array($result)) {
 #@@@ not sure about these ones - bounced list message
