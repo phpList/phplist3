@@ -73,6 +73,11 @@ function setMessageData($msgid,$name,$value) {
   if (is_array($value) || is_object($value)) {
     $value = 'SER:'.serialize($value);
   }
+  if ($name == 'footer') {
+    // strip HTML comments
+    $value = preg_replace('/<!--.*-->/','',$value);// this is ungreedy 
+  }
+  
   Sql_Query(sprintf('replace into %s set id = %d,name = "%s", data = "%s"',
     $GLOBALS['tables']['messagedata'],$msgid,addslashes($name),addslashes($value)));
 #  print "setting $name for $msgid to $value";
