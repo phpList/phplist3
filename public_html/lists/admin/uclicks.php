@@ -76,8 +76,8 @@ $ls = new WebblerListing($GLOBALS['I18N']->get('URL Click Statistics'));
 
 $urldata = Sql_Fetch_Array_Query(sprintf('select url from %s where id = %d',
   $GLOBALS['tables']['linktrack_forward'],$id));
-print '<h3>'.$GLOBALS['I18N']->get('Click Details for a URL').' <b>'.$urldata['url'].'</b></h3><br/>';
-
+print '<h3>'.$GLOBALS['I18N']->get('Click details for a URL').' <b>'.$urldata['url'].'</b></h3><br/>';
+print PageLinkButton('userclicks&fwdid='.$id,s('View subscribers'));
 if ($download) {
   header('Content-disposition:  attachment; filename="phpList URL click statistics for '.$urldata['url'].'.csv"');
 }

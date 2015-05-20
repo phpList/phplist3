@@ -80,7 +80,7 @@ if (!$id) {
   }
 
   if (!Sql_Affected_Rows()) {
-    print '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
+    print '<p class="information">'.$GLOBALS['I18N']->get('There are currently no campaigns to view').'</p>';
   }
 
   $ls = new WebblerListing('');
@@ -99,6 +99,8 @@ if (!$id) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('views'),$row['views'],$row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']):'');
     $perc = sprintf('%0.2f',($row['views'] / ($row['total'] - $row['bounced']) * 100));
     
+    $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$row['messageid']));
+    $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$totalclicked[0],$totalclicked[0] ? PageURL2('mclicks&id='.$row['messageid']):'');
     
     $ls->addRow($element,'',"<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('rate').": ".$perc.' %'."</div>".
                             "<div class='content listingsmall fright gray'>".$GLOBALS['I18N']->get('date').": ".$row['sent']."</div>");

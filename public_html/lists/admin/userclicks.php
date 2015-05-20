@@ -42,9 +42,20 @@ switch ($access) {
     break;
 }
 
+$download = !empty($_GET['dl']);
+$downloadContent = '';
+
+if ($download) {
+  ob_end_clean();
+#  header("Content-type: text/plain");
+  header('Content-type: text/csv');
+  header('Content-disposition:  attachment; filename="phpList click statistics.csv"');
+  ob_start();
+}  
+
 #$limit = ' limit 100';
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('User Click Statistics'));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Click statistics'));
 
 if ($fwdid) {
   $urldata = Sql_Fetch_Array_Query(sprintf('select url from %s where id = %d',
@@ -58,49 +69,57 @@ if ($userid) {
 }
 
 if ($fwdid && $msgid) {
-  print '<h3>'.$GLOBALS['I18N']->get('User Click Details for a URL in a message');
+  print '<h3>'.$GLOBALS['I18N']->get('Subscriber clicks for a URL in a campaign');
   print ' ' .strtolower(PageLink2('uclicks&amp;id='.$fwdid,$urldata['url']));
   print '</h3>';
+  $downloadContent = s('Subscribers who clicked on URL "%s" in the campaign with subject "%s", sent %s',$urldata['url'],$messagedata['subject'],$messagedata['sent']).PHP_EOL;
   print '<table class="userclicksDetails">
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
-  </table><hr/>';
+  </table>';
+  print '<div class="fright">'.PageLinkButton('userclicks&fwdid='.$fwdid.'&msgid='.$msgid.'&dl=1',s('Download subscribers')).'</div>';
   $query = sprintf('select htmlclicked, textclicked, user.email,user.id as userid,firstclick,date_format(latestclick,
     "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
     and uml_click.forwardid = %d and uml_click.messageid = %d
     and uml_click.clicked',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],$fwdid,$msgid);
 } elseif ($userid && $msgid) {
-  print '<h3>'.$GLOBALS['I18N']->get('User Click Details for a message').'</h3>';
-  print $GLOBALS['I18N']->get('User').' '.PageLink2('user&amp;id='.$userid,$userdata['email']);
+  print '<h3>'.$GLOBALS['I18N']->get('Subscriber clicks on a campaign').'</h3>';
+  print s('Subscriber').' '.PageLink2('user&amp;id='.$userid,$userdata['email']);
   print '</h3>';
   print '<table class="userclickDetails">
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
-  </table><hr/>';
+  </table>';
   $query = sprintf('select htmlclicked, textclicked,user.email,user.id as userid,firstclick,date_format(latestclick,
     "%%e %%b %%Y %%H:%%i") as latestclick,clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
     and uml_click.userid = %d and uml_click.messageid = %d and forward.id = uml_click.forwardid',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],$GLOBALS['tables']['linktrack_forward'], $userid,$msgid);
 } elseif ($fwdid) {
-  print '<h3>'.$GLOBALS['I18N']->get('User Click Details for a URL').' <b>'.$urldata['url'].'</b></h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Subscribers who clicked a URL').' <b>'.$urldata['url'].'</b></h3>';
+  $downloadContent = s('Subscribers who clicked on the URL "%s" across all campaigns',$urldata['url']).PHP_EOL;
+  print '<div class="fright">'.PageLinkButton('userclicks&fwdid='.$fwdid.'&dl=1',s('Download subscribers')).'</div>';
   $query = sprintf('select user.email, user.id as userid,firstclick,date_format(latestclick,
     "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
     and uml_click.forwardid = %d group by uml_click.userid',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],
     $fwdid);
 } elseif ($msgid) {
-  print '<h3>'.$GLOBALS['I18N']->get('User Click Details for a Message').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Subscribers who clicked a campaign').'</h3>';
   print '<table class="userclickDetails">
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
-  </table><hr/>';
-  $query = sprintf('select user.email,user.id as userid,firstclick,date_format(latestclick,
+  </table>';
+  $downloadContent = s('Subscribers who clicked on campaign with subject "%s", sent %s',$messagedata['subject'],$messagedata['sent']).PHP_EOL;
+  print '<div class="fright">'.PageLinkButton('userclicks&msgid='.$msgid.'&dl=1',s('Download subscribers')).'</div>';
+  $query = sprintf('select distinct user.email,user.id as userid,firstclick,date_format(latestclick,
     "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
     and uml_click.messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],
     $msgid);
 } elseif ($userid) {
-  print '<h3>'.$GLOBALS['I18N']->get('User Click Details').'</h3>';
+  print '<h3>'.$GLOBALS['I18N']->get('Clicks of a subscriber').'</h3>';
+  print s('Subscriber').' '.PageLink2('user&amp;id='.$userid,$userdata['email']);
+  
   $query = sprintf('select sum(htmlclicked) as htmlclicked,sum(textclicked) as textclicked,user.email,user.id as userid,min(firstclick) as firstclick,date_format(max(latestclick),
     "%%e %%b %%Y %%H:%%i") as latestclick,sum(clicked) as clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
     and uml_click.userid = %d and forward.id = uml_click.forwardid group by url',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],$GLOBALS['tables']['linktrack_forward'],
@@ -112,7 +131,7 @@ if ($fwdid && $msgid) {
 
 $req = Sql_Query($query);
 $total = Sql_Num_Rows($req);
-if ($total > 100) {
+if ($total > 100 && !$download) {
   print simplePaging('userclicks&msgid='.$msgid.'&fwdid='.$fwdid.'&userid='.$userid,$start,$total,100, s('Subscribers'));
 
   $limit = ' limit '.$start.', 100';
@@ -123,40 +142,56 @@ $summary = array();
 $summary['totalclicks'] = 0;
 while ($row = Sql_Fetch_Array($req)) {
 #  print $row['email'] . "<br/>";
-  if (!$userid) {
-    $element = shortenTextDisplay($row['email']);
-    $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
-    $ls->setClass($element,'row1');
+  if ($download) {
+    $downloadContent .= $row['email']. PHP_EOL;
   } else {
-#    $link = substr($row['url'],0,50);
-#    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
-    $element = shortenTextDisplay($row['url']);
-    $ls->addElement($element,PageUrl2('uclicks&amp;id='.$row['forwardid']));
-    $ls->setClass($element,'row1');
-    $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],' '.$row['messageid']));
+      if (!$userid) {
+        $element = shortenTextDisplay($row['email']);
+        $ls->addElement($element,PageUrl2('userhistory&amp;id='.$row['userid']));
+        $ls->setClass($element,'row1');
+      } else {
+    #    $link = substr($row['url'],0,50);
+    #    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
+        $element = shortenTextDisplay($row['url']);
+        $ls->addElement($element,PageUrl2('uclicks&amp;id='.$row['forwardid']));
+        $ls->setClass($element,'row1');
+        $ls->addColumn($element,$GLOBALS['I18N']->get('message'),PageLink2('mclicks&amp;id='.$row['messageid'],' '.$row['messageid']));
+      }
+    #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
+    #  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
+    #    $GLOBALS['tables']['linktrack'],$id,$row['url']));
+    #  $totalsent = Sql_Fetch_Array_Query(sprintf('select count(*) as total from %s where url = "%s"',
+    #    $GLOBALS['tables']['linktrack'],$urldata['url']));
+      $ls_userid = "";
+      if (!$userid) {
+        $ls_userid='<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;userid='.$row['userid']).'" title="'.$GLOBALS['I18N']->get('view user').'"></a></span>';
+      }
+      if (!empty($row['userid'])) {
+        $userStatus = Sql_Fetch_Assoc_Query(sprintf('select blacklisted,confirmed from %s where id = %d',$GLOBALS['tables']['user'],$row['userid']));
+        $ls->addColumn($element,s('Status'),$userStatus['confirmed'] && empty($userStatus['blacklisted']) ? $GLOBALS['img_tick']:$GLOBALS['img_cross']);
+      }
+      $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
+      $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
+      $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].$ls_userid);
+      if (!empty($row['htmlclicked']) && !empty($row['textclicked'])) {
+          $ls->addRow($element,'<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('HTML').': '.$row['htmlclicked'].'</div>'.
+                               '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>','');
+      }
+    #  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$total['total']);
+    #  $perc = sprintf('%0.2f',($row['numclicks'] / $totalsent['total'] * 100));
+    #  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
+      $summary['totalclicks'] += $row['clicked'];
   }
-#  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
-#  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
-#    $GLOBALS['tables']['linktrack'],$id,$row['url']));
-#  $totalsent = Sql_Fetch_Array_Query(sprintf('select count(*) as total from %s where url = "%s"',
-#    $GLOBALS['tables']['linktrack'],$urldata['url']));
-  $ls_userid = "";
-  if (!$userid) {
-    $ls_userid='<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;userid='.$row['userid']).'" title="'.$GLOBALS['I18N']->get('view user').'"></a></span>';
-  }
-  $ls->addColumn($element,$GLOBALS['I18N']->get('firstclick'),formatDateTime($row['firstclick'],1));
-  $ls->addColumn($element,$GLOBALS['I18N']->get('latestclick'),$row['latestclick']);
-  $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].$ls_userid);
-  $ls->addRow($element,'<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('HTML').': '.$row['htmlclicked'].'</div>'.
-                       '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>','');
-#  $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$total['total']);
-#  $perc = sprintf('%0.2f',($row['numclicks'] / $totalsent['total'] * 100));
-#  $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
-  $summary['totalclicks'] += $row['clicked'];
 }
 
 ## adding a total doesn't make sense if we're not listing everything, it'll only do the total of the page
 //$ls->addElement($GLOBALS['I18N']->get('total'));
 //$ls->setClass($GLOBALS['I18N']->get('total'),'rowtotal');
 //$ls->addColumn($GLOBALS['I18N']->get('total'),$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
-print $ls->display();
+if (!$download) {
+  print $ls->display();
+} else {
+  ob_end_clean();
+  print $downloadContent;
+  exit;
+}

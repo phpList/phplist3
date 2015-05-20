@@ -77,7 +77,7 @@ if (!$id) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('user clicks'),$totalclicked[0]);
     $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$clickrate);
     
-    $ls->addColumn($element,$GLOBALS['I18N']->get('total clicks'),$row['totalclicks']);
+    $ls->addColumn($element,$GLOBALS['I18N']->get('total clicks'),PageLink2('userclicks&msgid='.$row['messageid'],$row['totalclicks']));
 #    $ls->addColumn($element,$GLOBALS['I18N']->get('total'),$row['total']);
 #    $ls->addColumn($element,$GLOBALS['I18N']->get('users'),$row['users']);
     $ls->addRow($element,'','<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>');
@@ -122,7 +122,7 @@ if ($totalusers[0] > 0) {
   print sprintf('%0.2f',($totalbounced[0] / $totalusers[0] * 100));
   print '%)</td></tr>';
 }
-print '<tr><td>'.$GLOBALS['I18N']->get('Clicks').'<td><td>'.$totalclicked[0].'</td></tr>
+print '<tr><td>'.$GLOBALS['I18N']->get('Clicks').'<td><td>'.$totalclicked[0].' '.PageLinkButton('userclicks&msgid='.$id,s('View subscribers')).'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Click rate').'<td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
