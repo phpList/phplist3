@@ -702,6 +702,7 @@ function getPageLock($force = 0) {
   }
 
   $running_req = Sql_query(sprintf('select now() - modified,id from %s where page = "%s" and alive order by started desc',$tables["sendprocess"],sql_escape($thispage)));
+  $count = Sql_Num_Rows($running_req);
   $running_res = Sql_Fetch_row($running_req);
   $waited = 0;
  # while ($running_res['age'] && $count >= $max) { # a process is already running
@@ -731,9 +732,15 @@ function getPageLock($force = 0) {
       return false;
     }
     $running_req = Sql_query("select now() - modified,id from ".$tables["sendprocess"]." where page = \"$thispage\" and alive order by started desc");
+    $count = Sql_Num_Rows($running_req);
     $running_res = Sql_Fetch_row($running_req);
   }
-  $res = Sql_query('insert into '.$tables["sendprocess"].' (started,page,alive,ipaddress) values(now(),"'.$thispage.'",1,"'.getenv("REMOTE_ADDR").'")');
+  if (!empty($GLOBALS['commandline'])) {
+    $processIdentifier = SENDPROCESS_SERVERNAME.':'.getmypid();
+  } else {
+    $processIdentifier = $_SERVER['REMOTE_ADDR'];
+  }
+  $res = Sql_query('insert into '.$tables["sendprocess"].' (started,page,alive,ipaddress) values(now(),"'.$thispage.'",1,"'.$processIdentifier.'")');
   $send_process_id = Sql_Insert_Id();
   $abort = ignore_user_abort(1);
 #  cl_output('Got pagelock '.$send_process_id );
