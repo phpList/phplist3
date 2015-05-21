@@ -381,7 +381,7 @@ print $panel->display();
 #if (($require_login && isSuperUser()) || !$require_login)
 print '<div class="actions">';
 print '<div id="add-csv-button">' . PageLinkButton("dlusers", $GLOBALS['I18N']->get('Download all users as CSV file'), "nocache=" . uniqid("")) . '</div>' ;
-print '<div id="add-user-button">' . PageLinkButton("user", $GLOBALS['I18N']->get('Add a User')) . '</div>' ;
+print '<div id="add-user-button">' . PageLinkButton("adduser", $GLOBALS['I18N']->get('Add a User')) . '</div>' ;
 print '</div>';
 
 $some = 0;

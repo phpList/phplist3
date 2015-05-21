@@ -24,6 +24,7 @@ switch ($page) {
   case 'members': $page_title = 'List membership';break;
   case 'users': $page_title = 'Search subscribers';break;
   case 'reconcileusers': $page_title = 'Reconcile subscribers';break;
+  case 'adduser': $page_title = 'Add a new subscriber';break;
   case 'user': $page_title = 'Details of a subscriber';break;
   case 'userhistory': $page_title = 'History of a subscriber';break;
   case 'messages': $page_title = 'List of campaigns';break;

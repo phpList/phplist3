@@ -525,9 +525,11 @@ $GLOBALS['pagecategories'] = array(
         'usercheck',
         'userhistory',
         'user',
+        'adduser',
       ),
      'menulinks' => array(
         'users',
+        'adduser',
         'usermgt',
         'list',
         'import',
