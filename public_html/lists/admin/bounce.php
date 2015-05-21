@@ -167,9 +167,9 @@ if ($id) {
   }
   $actionpanel .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Do the above').'" /></td></tr>';
   $actionpanel .= "</table></form>";
-  if (USE_ADVANCED_BOUNCEHANDLING) {
+ # if (USE_ADVANCED_BOUNCEHANDLING) {
     $actionpanel .= '<p class="button"><a href="#newrule">'.$GLOBALS['I18N']->get('Create New Rule based on this bounce').'</a></p>';
-  }
+ # }
   
   $p = new UIPanel($GLOBALS['I18N']->get('Possible Actions:'),$actionpanel);
   print $p->display();
@@ -216,9 +216,9 @@ if ($id) {
   $p = new UIPanel(s('Bounce Details'),$bouncedetail);
   print $p->display();
   
-  if (USE_ADVANCED_BOUNCEHANDLING) {
+ # if (USE_ADVANCED_BOUNCEHANDLING) {
     $p = new UIPanel(s('New Rule').'<a name="newrule"></a>',$newruleform);
     print $p->display();
-  }
+ # }
 }
 

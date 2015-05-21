@@ -474,7 +474,7 @@ if (VERBOSE) {
   output(s('%d bounces were re-processed and %d bounces were re-identified',$reparsed,$reidentified));
 }
 $advanced_report = '';
-if (USE_ADVANCED_BOUNCEHANDLING) {
+#if (USE_ADVANCED_BOUNCEHANDLING) {
   output($GLOBALS['I18N']->get('Processing bounces based on active bounce rules'));
   $bouncerules = loadBounceRules();
   $matched = 0;
@@ -595,7 +595,7 @@ if (USE_ADVANCED_BOUNCEHANDLING) {
   }
   output($matched.' '.$GLOBALS['I18N']->get('bounces processed by advanced processing'));
   output($notmatched.' '.$GLOBALS['I18N']->get('bounces were not matched by advanced processing rules'));
-}
+#}
 
 # have a look who should be flagged as unconfirmed
 output($GLOBALS['I18N']->get("Identifying consecutive bounces"));

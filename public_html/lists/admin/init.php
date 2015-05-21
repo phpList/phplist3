@@ -250,7 +250,7 @@ if (!defined('DOMAIN_BATCH_SIZE')) define('DOMAIN_BATCH_SIZE',1);
 if (!defined('DOMAIN_BATCH_PERIOD')) define('DOMAIN_BATCH_PERIOD',120);
 if (!defined('DOMAIN_AUTO_THROTTLE')) define('DOMAIN_AUTO_THROTTLE',0);
 if (!defined('LANGUAGE_SWITCH')) define('LANGUAGE_SWITCH',1);
-if (!defined('USE_ADVANCED_BOUNCEHANDLING')) define('USE_ADVANCED_BOUNCEHANDLING',0);
+#if (!defined('USE_ADVANCED_BOUNCEHANDLING')) define('USE_ADVANCED_BOUNCEHANDLING',1);
 if (!defined('DATE_START_YEAR')) define('DATE_START_YEAR',1900);
 if (!defined('DATE_END_YEAR')) define('DATE_END_YEAR',0);
 if (!defined('ALLOW_IMPORT')) define('ALLOW_IMPORT',1);

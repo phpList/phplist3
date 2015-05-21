@@ -598,7 +598,7 @@ $GLOBALS['pagecategories'] = array(
         'updatetranslation',
       ),
       'menulinks' => array(
-        'bounces',
+   #     'bounces',
         'updatetranslation',
         'dbcheck',
         'eventlog',
@@ -606,7 +606,7 @@ $GLOBALS['pagecategories'] = array(
         'upgrade',
         'bouncemgt',
         'processqueue',
-        'processbounces',
+   #     'processbounces',
         'reindex',
       ),
   ),
@@ -737,12 +737,12 @@ function contextMenu() {
   if ($nm != "phplist") {
     $GLOBALS["context_menu"]["community"] = "";
   }
-  if (USE_ADVANCED_BOUNCEHANDLING) {
+ # if (USE_ADVANCED_BOUNCEHANDLING) {
     $GLOBALS["context_menu"]["bounces"] = "";
     $GLOBALS["context_menu"]["processbounces"] = "";
-  } else {
-    $GLOBALS["context_menu"]["bouncemgt"] = '';
-  }
+ # } else {
+ #   $GLOBALS["context_menu"]["bouncemgt"] = '';
+ # }
 
   if ($GLOBALS["require_login"] && (!isset ($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]))
     return '<ul class="contextmenu">'.$spb . PageLink2('home', $GLOBALS["I18N"]->get('Main Page')) . '<br />' . $spe . $spb . PageLink2('about', $GLOBALS["I18N"]->get('about') . ' phplist') . '<br />' . $spe.'</ul>';
