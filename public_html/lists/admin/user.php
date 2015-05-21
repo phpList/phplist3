@@ -54,12 +54,6 @@ switch ($access) {
     $subselect_where = " where ".$tables["list"].".owner = 0";break;
 }
 
-function groupName($id) {
-  if (!$id) return;
-  $data = Sql_Fetch_Array_Query("select * from groups where id = $id");
-  return $data["name"];
-}
-
 require dirname(__FILE__).'/structure.php';
 
 $struct = $DBstruct["user"];
@@ -94,7 +88,6 @@ switch ($access) {
     $subselect_where = " where ".$tables["list"].".owner = 0";break;
 }
 
-$usegroups = Sql_Table_exists("groups") && Sql_Table_exists('user_group');
 $error_exist = 0;
 
 if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
@@ -228,27 +221,6 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
            values(%d,%d,"%s")',$tables["user_attribute"],$id,$val,$value));
        }
      }
-     if ($usegroups && empty($GLOBALS['config']['usergroup_types'])) {
-       ## old method, using checkboxes
-       Sql_Query("delete from user_group where userid = $id");
-       if (is_array($_POST["groups"])) {
-         foreach ($_POST["groups"] as $group) {
-           Sql_Query(sprintf('insert into user_group (userid,groupid) values(%d,%d)',$id,$group));
-           $feedback .= "<br/>".$GLOBALS['I18N']->get('Subscriber added to group').' '.groupName($group);
-         }
-       }
-     } elseif ($usegroups) {
-       ## new method, allowing a group membership type
-       $newgrouptype = sprintf('%d',$_POST['newgrouptype']);
-       $newgroup = sprintf('%d',$_POST['newgroup']);
-       
-       if (!empty($newgrouptype) && !empty($newgroup)) {
-         Sql_Query(sprintf('insert into user_group (userid,groupid,type) values(%d,%d,%d)',$id,$newgroup,$newgrouptype));
-         $feedback .= "<br/>".$GLOBALS['I18N']->get('Subscriber added to group').' '.groupName($newgroup);
-       } 
-       ## make sure they're in the everyone group
-       Sql_Query(sprintf('insert ignore into user_group (userid,groupid,type) values(%d,%d,0)',$id,getEveryoneGroupID()));
-     }
       
       $new_lists = array_values($_POST['subscribe']);
       $new_subscriptions = array();
@@ -331,18 +303,6 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      Redirect('user');
    }
    
-   if ($usegroups && !empty($GLOBALS['config']['usergroup_types']) && $access != "view") {
-     ## check for deletion of group membership
-     $delgroup = sprintf('%d',$_GET['delgroup']);
-     $delgrouptype = sprintf('%d',$_GET['deltype']);
-     if (!empty($delgroup)) {# && !empty($delgrouptype)) {
-       Sql_Query(sprintf('delete from user_group where userid = %d and groupid = %d and type = %d',$id,$delgroup,$delgrouptype));
-       print "<br/>".$GLOBALS['I18N']->get('Subscriber removed from group').' '.groupName($delgroup).' ';
-       print PageLink2('user&amp;id='.$id,$GLOBALS['I18N']->get('Continue'));
-       return;
-     }
-   }
-
 
 /********* NORMAL FORM DISPLAY ***********/
 $membership = "";
@@ -411,7 +371,7 @@ print '<input type="hidden" name="returnpage" value="'.$returnpage.'" /><input t
 
 reset($struct);
 
-$userdetailsHTML = $mailinglistsHTML = $groupsHTML =  '';
+$userdetailsHTML = $mailinglistsHTML =  '';
 $userdetailsHTML .= '<table class="userAdd" border="1">';
 
 
@@ -537,96 +497,11 @@ if ($access != "view")
 
 $mailinglistsHTML .= '</table>';
 
-if ($usegroups) {
-  $groupsHTML  .= "<h3>".$GLOBALS['I18N']->get('Group Membership').":</h3>";
-  $groupsHTML  .= '<table class="userGroup" border="1">';
-  $groupsHTML  .= '<tr><td colspan="2"><hr width="50%" /></td></tr>
-<tr><td colspan="2">'.$GLOBALS['I18N']->get('Please select the groups this subscriber is a member of').'</td></tr>
-<tr><td colspan="2">';
-  
-  if (empty($GLOBALS['config']['usergroup_types'])) {
-    
-    ## old method, list of checkboxes
-  
-    $selected_groups = array();
-    if ($id) {
-      $req = Sql_Query("select groupid from user_group where userid = $id");
-      while ($row = Sql_Fetch_Row($req))
-        array_push($selected_groups,$row[0]);
-    }
-
-    $req = Sql_Query("select * from groups");
-    $c = 1;
-    while ($row = Sql_Fetch_array($req)) {
-      if ($row["name"] != "Everyone") {
-        $groupsHTML  .= sprintf ('<i>%s</i><input type="checkbox" name="groups[]" value="%d" %s />&nbsp;&nbsp;',
-        $row["name"],$row["id"],in_array($row["id"],$selected_groups)?'checked="checked"':''
-            );
-      } else {
-        $groupsHTML  .=sprintf ('<b>%s</b>&nbsp;&nbsp;<input type="hidden" name="groups[]" value="%d" />',
-        $row["name"],$row["id"]
-            );
-      }
-      if ($c % 5 == 0)
-        $groupsHTML  .= "<br/>";
-      $c++;
-    }
-  } else {
-    $current_groups = array();
-    if ($id) {
-      $req = Sql_Query("select groupid,type from user_group where userid = $id");
-      $groupsHTML  .= '<ol>';
-      while ($row = Sql_Fetch_Assoc($req)) {
-        ## the config needs to start real types with 1, type index 0 will be considered no-value
-        $membership_type = $GLOBALS['config']['usergroup_types'][$row['type']];
-        if (empty($membership_type) || empty($row['type'])) {
-          # $membership_type = 'undefined'; an entry "undefined of everyone" was showing in the backend
-          continue;
-        }
-        $groupname = groupName($row['groupid']);
-        $deleteLink = '';
-        if (strtolower($groupname) != 'everyone') {
-          $deleteLink =  PageLink2('user&amp;id='.$id.'&amp;delgroup='.$row['groupid'].'&amp;deltype='.$row['type'],'del');
-        }
-        $groupsHTML  .=sprintf('<li><strong>%s</strong> of <i>%s</i> %s</li>',$membership_type,$groupname,$deleteLink);
-      }
-      $groupsHTML  .= '</ol>';
-    }
-
-    $req = Sql_Query('select * from groups where name != "everyone"');
-    $c = 1;
-    
-    while ($row = Sql_Fetch_array($req)) {
-      $groups[$row['id']] = $row['name'];
-    }
-    
-    $groupsHTML  .= '<hr/>Add new group membership:<br/><br/>';
-    $groupsHTML  .= '<select name="newgrouptype">';
-    foreach ($GLOBALS['config']['usergroup_types'] as $key => $val) {
-      $groupsHTML  .=sprintf ('    <option value="%d">%s</option>',$key,$val);
-    }
-    $groupsHTML  .= '</select>';
-    $groupsHTML  .= ' of ';
-    $groupsHTML  .= '<select name="newgroup">';
-    foreach ($groups as $key => $val) {
-      $groupsHTML  .=sprintf ('<option value="%d">%s</option>',$key,$val);
-    }
-    $groupsHTML  .= '</select>';
-  }  
-
-  $groupsHTML  .= '</td></tr>';
-  if ($access != "view")
-    $groupsHTML  .= '<tr><td><input type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save changes').'" /></td></tr>';
-  $groupsHTML  .= '</table>';
-}
-
 print '<div class="tabbed">';
 print '<ul>';
 print '<li><a href="#details">'.ucfirst($GLOBALS['I18N']->get('Details')).'</a></li>';
 print '<li><a href="#lists">'.ucfirst($GLOBALS['I18N']->get('Lists')).'</a></li>';
-if ($usegroups) {
-  print '<li><a href="#groups">Groups</a></li>';
-}
+
 print '</ul>';
 
 $p = new UIPanel('',$userdetailsHTML);
@@ -635,10 +510,6 @@ print '<div id="details">'.$p->display().'</div>';
 $p = new UIPanel('',$mailinglistsHTML);
 print '<div id="lists">'.$p->display().'</div>';
 
-if ($usegroups) {
-  $p = new UIPanel($GLOBALS['I18N']->get('Groups'),$groupsHTML);
-  print '<div id="groups">'.$p->display().'</div>';
-}
 print '</div>'; ## end of tabbed
 
 
