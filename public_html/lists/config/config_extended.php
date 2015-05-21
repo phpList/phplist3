@@ -416,11 +416,6 @@ $default_system_language = 'en';
 # see also https://mantis.phplist.com/view.php?id=16688
 #define('USE_PRECEDENCE_HEADER',false);
 
-# the number of criterias you want to be able to select when sending a message.
-# Useful is is to make it the same as the number of selectable attributes you enter in the
-# system, but that is up to you (selectable = select, radio or checkbox)
-define ("NUMCRITERIAS",2);
-
 # if you do not require users to actually sign up to lists, but only want to
 # use the subscribe page as a kind of registration system, you can set this to 1 and
 # users will not receive an error when they do not check a list to subscribe to
