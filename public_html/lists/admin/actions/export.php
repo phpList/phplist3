@@ -53,9 +53,9 @@ if ($_SESSION['export']['column'] == 'nodate') {
   $todate = $_SESSION['export']['todate'];
 }
 if ($list) {
-  $filename = sprintf($GLOBALS['I18N']->get('phpList Export on %s from %s to %s (%s).csv'),ListName($list),$fromdate,$todate,date("Y-M-d"));
+  $filename = s('phpList Export on %s from %s to %s (%s).csv',ListName($list),$fromdate,$todate,date("Y-M-d"));
 } else {
-  $filename = sprintf($GLOBALS['I18N']->get('phpList Export from %s to %s (%s).csv'),$fromdate,$todate,date("Y-M-d"));
+  $filename = s('phpList Export from %s to %s (%s).csv',$fromdate,$todate,date("Y-M-d"));
 }
 ob_end_clean();
 $filename = trim(strip_tags($filename));
