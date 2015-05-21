@@ -53,11 +53,6 @@ switch ($access) {
     $subselect = " and ".$tables["list"].".id = 0";
     $subselect_where = " where ".$tables["list"].".owner = 0";break;
 }
-if ($access == "all") {
-  $delete_message = '<br />'.s('Delete will remove subscriber from the list').'<br />';
-} else {
-  $delete_message = '<br />'.s('Delete will remove subscriber from the database').'<br />';
-}
 
 function groupName($id) {
   if (!$id) return;
@@ -70,15 +65,6 @@ require dirname(__FILE__).'/structure.php';
 $struct = $DBstruct["user"];
 
 $more = '';
-
-if (!empty($_REQUEST['returnpage'])) {
-  $returnpage = preg_replace('/\W/','',$_REQUEST['returnpage']);
-  if (isset($_REQUEST['returnoption'])) {
-    $more = "&amp;option=".preg_replace('/\W/','',$_GET['returnoption']);
-  }
-  echo "<br/>".PageLink2("$returnpage$more","Return to $returnpage");
-  $returnurl = "returnpage=$returnpage&returnoption=$returnoption";
-}
 
 if (!defined('PHPLISTINIT')) exit;
 
@@ -106,12 +92,6 @@ switch ($access) {
   default:
     $subselect = " and ".$tables["list"].".id = 0";
     $subselect_where = " where ".$tables["list"].".owner = 0";break;
-}
-
-if ($access != "all") {
-  $delete_message =$GLOBALS['I18N']->get('Delete will remove subscriber from the list');
-} else {
-  $delete_message = $GLOBALS['I18N']->get('Delete will remove subscriber from the system');
 }
 
 $usegroups = Sql_Table_exists("groups") && Sql_Table_exists('user_group');
@@ -386,8 +366,6 @@ if ($id) {
   if (!$membership)
   $membership = $GLOBALS['I18N']->get('No Lists');
 
-  if (empty($returnurl)) { $returnurl = ''; }
-
   print '<div class="actions">';
   print '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id",$GLOBALS['I18N']->get('History'));
   if (!empty($GLOBALS['config']['plugins']) && is_array($GLOBALS['config']['plugins'])) {
@@ -399,7 +377,7 @@ if ($id) {
   if ($access == "all") {
     $delete = new ConfirmButton(
        htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
-       PageURL2("user&delete=$id&amp;$returnurl".addCsrfGetToken(),"button",s('remove subscriber')),
+       PageURL2("user&delete=$id".addCsrfGetToken(),"button",s('remove subscriber')),
        s('remove subscriber'));
     print $delete->show();
   }
