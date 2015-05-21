@@ -1777,7 +1777,7 @@ function listPlaceHolders() {
   $html = '<table border="1"><tr><td><strong>'.s('Attribute').'</strong></td><td><strong>'.s('Placeholder').'</strong></td></tr>';
   $req = Sql_query('select name from '.$GLOBALS['tables']["attribute"].' order by listorder');
   while ($row = Sql_Fetch_Row($req))
-    if (strlen($row[0]) < 20) {
+    if (strlen($row[0]) <= 30) {
       $html .= sprintf ('<tr><td>%s</td><td>[%s]</td></tr>',$row[0],strtoupper(cleanAttributeName($row[0])));
     }
   $html .= '</table>';  

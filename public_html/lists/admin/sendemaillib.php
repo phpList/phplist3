@@ -62,9 +62,9 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
   foreach ($user_att_values as $key => $val) {
     $newkey = cleanAttributeName($key);
-    ## in the help, we only list attributes with "strlen < 20"
+    ## in the help, we only list attributes with "strlen <= 30"
     unset($user_att_values[$key]);
-    if (strlen($key) < 20) {
+    if (strlen($key) <= 30) {
       $user_att_values[$newkey] = $val;
     }
   }
