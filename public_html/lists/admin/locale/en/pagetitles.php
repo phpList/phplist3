@@ -53,7 +53,7 @@ switch ($page) {
   case 'logout': $page_title = 'Log out';break;
   case 'mclicks': $page_title = 'Campaign click statistics'; break;
   case 'uclicks': $page_title = 'URL click statistics'; break;
-  case 'massunconfirm': $page_title = 'Suppression list';break;
+  case 'suppressionlist': $page_title = 'Suppression list';break;
   case 'massremove': $page_title = 'Remove subscribers'; break;
   case 'usermgt': $page_title = 'Manage subscribers'; break;
   case 'bouncemgt': $page_title = 'Manage bounces'; break;
