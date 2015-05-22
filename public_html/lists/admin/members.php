@@ -65,6 +65,9 @@ if (!empty($id)) {
     $id = 'all';
     $listAll = true;
   }
+  print '<div class="actions">';
+  echo PageLinkButton("export&list=all",$GLOBALS['I18N']->get("Download subscribers"),'','pill-c');
+  print '</div>';
 }
 
 if (!empty($_POST['importcontent'])) {

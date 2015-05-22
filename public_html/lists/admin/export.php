@@ -73,14 +73,19 @@ if ($list) {
 }
 
 print formStart();
+$checked = 'entered';
+if (isset($_GET['list']) && $_GET['list'] == 'all') {
+  $checked = 'nodate';
+}
+
 ?>
 
 <?php echo $GLOBALS['I18N']->get('What date needs to be used:');?><br/>
-<input type="radio" name="column" value="nodate" /> <?php echo s('Any date');?> (<?php echo s('Export all subscribers');?>)<br/>
-<input type="radio" name="column" value="entered" checked="checked" /> <?php echo s('When they signed up');?><br/>
-<input type="radio" name="column" value="modified" /> <?php echo s('When the record was changed');?><br/>
-<input type="radio" name="column" value="historyentry" /> <?php echo s('Based on changelog');?><br/>
-<input type="radio" name="column" value="listentered" /> <?php echo s('When they subscribed to');?> 
+<input type="radio" name="column" value="nodate" <?php echo $checked == 'nodate' ? ' checked="checked"' : ''?> /> <?php echo s('Any date');?> (<?php echo s('Export all subscribers');?>)<br/>
+<input type="radio" name="column" value="entered" <?php echo $checked == 'entered' ? ' checked="checked"' : ''?>/> <?php echo s('When they signed up');?><br/>
+<input type="radio" name="column" value="modified" <?php echo $checked == 'modified' ? ' checked="checked"' : ''?>/> <?php echo s('When the record was changed');?><br/>
+<input type="radio" name="column" value="historyentry" <?php echo $checked == 'historyentry' ? ' checked="checked"' : ''?>/> <?php echo s('Based on changelog');?><br/>
+<input type="radio" name="column" value="listentered" <?php echo $checked == 'listentered' ? ' checked="checked"' : ''?>/> <?php echo s('When they subscribed to');?> 
 
 
 <?php
@@ -124,3 +129,8 @@ if (empty($list)) {
 
 <p class="submit"><input type="submit" name="processexport" id="processexport" value="<?php echo $GLOBALS['I18N']->get('Export'); ?>"></p></form>
 
+<?php
+
+if ($checked == 'nodate') {
+  print '<script type="text/javascript">$("#exportdates").hide();</script>';
+}
