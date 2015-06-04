@@ -12,6 +12,8 @@ ob_start();
 
 $locale_root = dirname(__FILE__).'/locale/';
 
+$force = isset($cline['f']);
+
 if (is_dir($locale_root)) {
   $dir = opendir($locale_root);
   while ($lan = readdir($dir)) {
@@ -19,7 +21,7 @@ if (is_dir($locale_root)) {
       cl_output($lan);
       $lastUpdate = getConfig('lastlanguageupdate-'.$lan);
       $thisUpdate = filemtime($locale_root.'/'.$lan.'/phplist.po');
-      if ($thisUpdate > $lastUpdate) {
+      if ($force || $thisUpdate > $lastUpdate) {
         cl_output(s('Initialising language').' '.$lan);
         $GLOBALS['I18N']->initFSTranslations($lan);
       } else {
