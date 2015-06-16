@@ -701,9 +701,9 @@ function getPageLock($force = 0) {
     Sql_query('delete from '.$tables["sendprocess"].' where page = "'.sql_escape($thispage).'"');
   }
 
-  $running_req = Sql_query(sprintf('select now() - modified,id from %s where page = "%s" and alive order by started desc',$tables["sendprocess"],sql_escape($thispage)));
+  $running_req = Sql_query(sprintf('select now() - modified as age,id from %s where page = "%s" and alive order by started desc',$tables["sendprocess"],sql_escape($thispage)));
   $count = Sql_Num_Rows($running_req);
-  $running_res = Sql_Fetch_row($running_req);
+  $running_res = Sql_Fetch_Assoc($running_req);
   $waited = 0;
  # while ($running_res['age'] && $count >= $max) { # a process is already running
   while ($count >= $max) { # don't check age, as it may be 0
@@ -714,7 +714,7 @@ function getPageLock($force = 0) {
       Sql_query("update {$tables["sendprocess"]} set alive = 0 where id = ".$running_res['id']);
     } elseif ((int)$count >= (int)$max) {
    #   cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
-      output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']),0);
+      output (s('A process for this page is already running and it was still alive %d seconds ago',$running_res['age']),0);
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
         cl_output($GLOBALS['I18N']->get('Running commandline, quitting. We\'ll find out what to do in the next run.'));
