@@ -1214,8 +1214,29 @@ function clickTrackLinkId($messageid,$userid,$url,$link) {
   if (!isset($cached['linktrack']) || !is_array($cached['linktrack'])) $cached['linktrack'] = array();
   if (!isset($cached['linktracksent']) || !is_array($cached['linktracksent'])) $cached['linktracksent'] = array();
   if (!isset($cached['linktrack'][$link])) {
+    /**
+     * we cannot handle URLs longer than 255 characters. 
+     * to handle that, take out the substr below and change the DB:
+     * 
+     * alter table phplist_linktrack_forward drop index urlunique;
+     * alter table phplist_linktrack_forward drop index urlindex; 
+     * alter table phplist_linktrack_forward change url url text; 
+     * alter table phplist_linktrack_forward add index urlunique (url(300)); 
+     * alter table phplist_linktrack_forward add index urlindex (url (300)); 
+     * 
+     * with 300 being the new limit. Then also change the substr-255 to substr-300
+     * 
+     * or to change back again:
+     * 
+     * alter table phplist_linktrack_forward drop index urlunique;
+     * alter table phplist_linktrack_forward drop index urlindex; 
+     * alter table phplist_linktrack_forward change url url varchar(255); 
+     * alter table phplist_linktrack_forward add index urlunique (url); 
+     * alter table phplist_linktrack_forward add index (url); 
+     * */
+      
     $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"',
-      $GLOBALS['tables']['linktrack_forward'],sql_escape($url)));
+      $GLOBALS['tables']['linktrack_forward'],sql_escape(substr($url,0,255))));
     if (!$exists[0]) {
       $personalise = preg_match('/uid=/',$link);
       Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d',
