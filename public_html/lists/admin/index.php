@@ -528,7 +528,7 @@ if (checkAccess($page,"") || $page == 'about') {
     $menu = $plugin->adminmenu(); 
     if (is_file($plugin->coderoot . $include)) {
       include ($plugin->coderoot . $include);
-    } elseif ($include == 'main.php' || $_GET['page'] == 'home') {
+    } elseif ($include == 'main.php' || $page == 'home') {
       print '<h3>'.$plugin->name.'</h3><ul>';
       foreach ($menu as $page => $desc) {
         print '<li>'.PageLink2($page,$desc).'</li>';
