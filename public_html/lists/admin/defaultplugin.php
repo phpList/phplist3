@@ -799,6 +799,15 @@ class phplistPlugin {
     # purpose: show content for this plugin on the import page
     return '';
   }
+  
+  /*
+   * validateEmailAddress
+   * @param string $emailaddress
+   * @return bool true if email address is correct
+   */
+   function validateEmailAddress($emailAddress) {
+      return true;
+   } 
 
   ######################################
   # Static functions to manage the collection of plugins

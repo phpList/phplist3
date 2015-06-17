@@ -656,7 +656,12 @@ function validateEmail($email) {
   } else {
     $validhost = 1;
   }
-  return $validhost && is_email($email);
+  $pluginValidated = true;
+  foreach ($GLOBALS['plugins'] as $plName => $plugin) {
+    $pluginValidated = $pluginValidated && $plugin->validateEmailAddress($email);
+  }
+  
+  return $pluginValidated && $validhost && is_email($email);
 }
 
 function validMod10($no) {
