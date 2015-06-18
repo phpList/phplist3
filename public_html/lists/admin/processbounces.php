@@ -44,7 +44,7 @@ function prepareOutput() {
 
 $report = "";
 ## some general functions
-function finish ($flag,$message) {
+function finishBounceProcessing ($flag,$message) {
   if ($flag == "error") {
     $subject = $GLOBALS['I18N']->get("Bounce processing error");
   } elseif ($flag == "info") {
@@ -55,9 +55,9 @@ function finish ($flag,$message) {
   }
 }
 
-function ProcessError ($message) {
-  output( "$message");
-  finish('error',$message);
+function bounceProcessError ($message) {
+  outputProcessBounce( "$message");
+  finishBounceProcessing('error',$message);
   exit;
 }
 
@@ -65,10 +65,10 @@ function processbounces_shutdown() {
   global $report,$process_id;
   releaseLock($process_id);
  # $report .= "Connection status:".connection_status();
-  finish('info',$report);
+  finishBounceProcessing('info',$report);
 }
 
-function output ($message,$reset = 0) {
+function outputProcessBounce ($message,$reset = 0) {
   $infostring = "[". date("D j M Y H:i",time()) . "] [" . getenv("REMOTE_HOST") ."] [" . getenv("REMOTE_ADDR") ."]";
   #print "$infostring $message<br/>\n";
   $message = preg_replace("/\n/",'',$message);
@@ -184,7 +184,7 @@ function processImapBounce ($link,$num,$header) {
   $msgid = findMessageId($body);
   $userid = findUserID($body);
   if (VERBOSE) {
-    output("UID".$userid." MSGID".$msgid);
+    outputProcessBounce("UID".$userid." MSGID".$msgid);
   }
   
   ## @TODO add call to plugins to determine what to do.
@@ -330,7 +330,7 @@ function processPop ($server,$user,$password) {
   }
 
   if (!$link) {
-    output($GLOBALS['I18N']->get("Cannot create POP3 connection to")." $server: ".imap_last_error());
+    outputProcessBounce($GLOBALS['I18N']->get("Cannot create POP3 connection to")." $server: ".imap_last_error());
     return;
   }
   return processMessages($link,100000);
@@ -345,7 +345,7 @@ function processMbox ($file) {
     $link=imap_open($file,"","");
   }
   if (!$link) {
-    output($GLOBALS['I18N']->get("Cannot open mailbox file")." ".imap_last_error());
+    outputProcessBounce($GLOBALS['I18N']->get("Cannot open mailbox file")." ".imap_last_error());
     return;
   }
   return processMessages($link,100000);
@@ -354,8 +354,8 @@ function processMbox ($file) {
 function processMessages($link,$max = 3000) {
   global $bounce_mailbox_purge_unprocessed,$bounce_mailbox_purge;
   $num = imap_num_msg($link);
-  output( $num . " ".$GLOBALS['I18N']->get("bounces to fetch from the mailbox")."\n");
-  output( $GLOBALS['I18N']->get("Please do not interrupt this process")."\n");
+  outputProcessBounce( $num . " ".$GLOBALS['I18N']->get("bounces to fetch from the mailbox")."\n");
+  outputProcessBounce( $GLOBALS['I18N']->get("Please do not interrupt this process")."\n");
   $report = $num . " ".$GLOBALS['I18N']->get("bounces to process")."\n";
   if ($num > $max) {
     print $GLOBALS['I18N']->get("Processing first")." $max ".$GLOBALS['I18N']->get("bounces")."<br/>";
@@ -373,30 +373,30 @@ function processMessages($link,$max = 3000) {
     set_time_limit(60);
     $header = imap_fetchheader($link,$x);
     if ($x % 25 == 0)
-  #    output( $x . " ". nl2br($header));
-      output($x . " done",1);
+  #    outputProcessBounce( $x . " ". nl2br($header));
+      outputProcessBounce($x . " done",1);
     print "\n";
     flush();
     $processed = processImapBounce($link,$x,$header);
     if ($processed) {
       if (!TEST && $bounce_mailbox_purge) {
-        if (VERBOSE) output( $GLOBALS['I18N']->get("Deleting message")." $x");
+        if (VERBOSE) outputProcessBounce( $GLOBALS['I18N']->get("Deleting message")." $x");
         imap_delete($link,$x);
       } elseif (VERBOSE) {
-        output(s("Not deleting processed message")." $x $bounce_mailbox_purge");
+        outputProcessBounce(s("Not deleting processed message")." $x $bounce_mailbox_purge");
       }
     } else {
       if (!TEST && $bounce_mailbox_purge_unprocessed) {
-        if (VERBOSE) output( $GLOBALS['I18N']->get("Deleting message")." $x");
+        if (VERBOSE) outputProcessBounce( $GLOBALS['I18N']->get("Deleting message")." $x");
         imap_delete($link,$x);
       } elseif (VERBOSE) {
-        output(s("Not deleting unprocessed message")." $x");
+        outputProcessBounce(s("Not deleting unprocessed message")." $x");
       }
     }
     flush();
   }
   flush();
-  output($GLOBALS['I18N']->get("Closing mailbox, and purging messages"));
+  outputProcessBounce($GLOBALS['I18N']->get("Closing mailbox, and purging messages"));
   set_time_limit(60 * $num);
   imap_close($link);
   if ($num)
@@ -471,11 +471,11 @@ while ($bounce = Sql_Fetch_Assoc($req)) {
 }
 cl_output(s('%d out of %d processed',$count,$total));
 if (VERBOSE) {
-  output(s('%d bounces were re-processed and %d bounces were re-identified',$reparsed,$reidentified));
+  outputProcessBounce(s('%d bounces were re-processed and %d bounces were re-identified',$reparsed,$reidentified));
 }
 $advanced_report = '';
 #if (USE_ADVANCED_BOUNCEHANDLING) {
-  output($GLOBALS['I18N']->get('Processing bounces based on active bounce rules'));
+  outputProcessBounce($GLOBALS['I18N']->get('Processing bounces based on active bounce rules'));
   $bouncerules = loadBounceRules();
   $matched = 0;
   $notmatched = 0;
@@ -493,11 +493,11 @@ $advanced_report = '';
     if ($alive)
       keepLock($process_id);
     else
-      ProcessError($GLOBALS['I18N']->get("Process Killed by other process"));
-#    output('User '.$row['user']);
+      bounceProcessError($GLOBALS['I18N']->get("Process Killed by other process"));
+#    outputProcessBounce('User '.$row['user']);
     $rule = matchBounceRules($row['data'],$bouncerules);
-#    output('Action '.$rule['action']);
-#    output('Rule'.$rule['id']);
+#    outputProcessBounce('Action '.$rule['action']);
+#    outputProcessBounce('Rule'.$rule['id']);
     $userdata = array();
     if ($rule && is_array($rule)) {
       if ($row['user']) {
@@ -593,12 +593,12 @@ $advanced_report = '';
       $notmatched++;
     }
   }
-  output($matched.' '.$GLOBALS['I18N']->get('bounces processed by advanced processing'));
-  output($notmatched.' '.$GLOBALS['I18N']->get('bounces were not matched by advanced processing rules'));
+  outputProcessBounce($matched.' '.$GLOBALS['I18N']->get('bounces processed by advanced processing'));
+  outputProcessBounce($notmatched.' '.$GLOBALS['I18N']->get('bounces were not matched by advanced processing rules'));
 #}
 
 # have a look who should be flagged as unconfirmed
-output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
+outputProcessBounce($GLOBALS['I18N']->get("Identifying consecutive bounces"));
 
 # we only need users who are confirmed at the moment
 $userid_req = Sql_query(sprintf('select distinct %s.user from %s,%s
@@ -612,7 +612,7 @@ $userid_req = Sql_query(sprintf('select distinct %s.user from %s,%s
 ));
 $total = Sql_Affected_Rows();
 if (!$total)
-  output($GLOBALS['I18N']->get("Nothing to do"));
+  outputProcessBounce($GLOBALS['I18N']->get("Nothing to do"));
 
 $usercnt = 0;
 $unsubscribed_users = "";
@@ -641,12 +641,12 @@ while ($user = Sql_Fetch_Row($userid_req)) {
     if ($alive)
       keepLock($process_id);
     else
-      ProcessError($GLOBALS['I18N']->get("Process Killed by other process"));
+      bounceProcessError($GLOBALS['I18N']->get("Process Killed by other process"));
     if (sprintf('%d',$bounce["bounce"]) == $bounce["bounce"]) {
       $cnt++;
       if ($cnt >= $bounce_unsubscribe_threshold) {
         $removed = 1;
-        output(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
+        outputProcessBounce(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
         $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
         logEvent($GLOBALS['I18N']->get("User")." $userurl ".$GLOBALS['I18N']->get("has consecutive bounces")." ($cnt) ".$GLOBALS['I18N']->get("over threshold, user marked unconfirmed"));
         $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
@@ -671,7 +671,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
     if ($alive) {
       keepLock($process_id);
     } else {
-      ProcessError("Process Killed by other process");
+      bounceProcessError("Process Killed by other process");
     }
 
     if (stripos($bounce['status'],'duplicate') === false && stripos($bounce['comment'],'duplicate') === false) {
@@ -679,7 +679,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
         $cnt++;
         if ($cnt >= $bounce_unsubscribe_threshold) {
           if (!$unsubscribed) {
-            output(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
+            outputProcessBounce(sprintf('unsubscribing %d -> %d bounces',$user[0],$cnt));
             $userurl = PageLink2("user&amp;id=$user[0]",$user[0]);
             logEvent(s('User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked unconfirmed',$userurl,$cnt,$bounce_unsubscribe_threshold));
             $emailreq = Sql_Fetch_Row_Query("select email from {$tables["user"]} where id = $user[0]");
@@ -704,15 +704,15 @@ while ($user = Sql_Fetch_Row($userid_req)) {
     }
   }
   if ($usercnt % 5 == 0) {
-#    output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
+#    outputProcessBounce($GLOBALS['I18N']->get("Identifying consecutive bounces"));
     cl_progress(s('processed %d out of %d subscribers',$usercnt, $total),1);
   }
   $usercnt++;
   flush();
 }
 
-#output($GLOBALS['I18N']->get("Identifying consecutive bounces"));
-output("\n".s('total of %d subscribers processed',$total). '                            ');
+#outputProcessBounce($GLOBALS['I18N']->get("Identifying consecutive bounces"));
+outputProcessBounce("\n".s('total of %d subscribers processed',$total). '                            ');
 
 $report = '';
 
