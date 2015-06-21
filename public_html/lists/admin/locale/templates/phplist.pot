@@ -1128,7 +1128,7 @@ msgstr ""
 #: public_html/lists/admin/lib.php:717
 #, php-format
 msgid ""
-"A process for this page is already running and it was still alive %s seconds "
+"A process for this page is already running and it was still alive %d seconds "
 "ago"
 msgstr ""
 
@@ -1790,130 +1790,135 @@ msgstr ""
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:478
+#: public_html/lists/admin/processbounces.php:479
 msgid "Processing bounces based on active bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:496
-#: public_html/lists/admin/actions/processqueue.php:900
+#: public_html/lists/admin/processbounces.php:493
+#, php-format
+msgid "processed %d out of %d bounces for advanced bounce rules"
+msgstr ""
+
+#: public_html/lists/admin/processbounces.php:502
+#: public_html/lists/admin/actions/processqueue.php:893
 #: public_html/lists/admin/generatebouncerules.php:47
 msgid "Process Killed by other process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:527
-#: public_html/lists/admin/processbounces.php:686
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:695
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:527
-#: public_html/lists/admin/processbounces.php:544
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:552
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:527
-#: public_html/lists/admin/processbounces.php:544
-#: public_html/lists/admin/processbounces.php:554
-#: public_html/lists/admin/processbounces.php:563
-#: public_html/lists/admin/processbounces.php:573
-#: public_html/lists/admin/processbounces.php:582
+#: public_html/lists/admin/processbounces.php:535
+#: public_html/lists/admin/processbounces.php:552
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:571
+#: public_html/lists/admin/processbounces.php:581
+#: public_html/lists/admin/processbounces.php:590
 msgid "bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:544
+#: public_html/lists/admin/processbounces.php:552
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:550
+#: public_html/lists/admin/processbounces.php:558
 msgid "Subscriber auto blacklisted  by bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:554
-#: public_html/lists/admin/processbounces.php:563
-#: public_html/lists/admin/processbounces.php:573
-#: public_html/lists/admin/processbounces.php:582
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:571
+#: public_html/lists/admin/processbounces.php:581
+#: public_html/lists/admin/processbounces.php:590
 msgid "Auto Unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:554
-#: public_html/lists/admin/processbounces.php:563
-#: public_html/lists/admin/processbounces.php:582
+#: public_html/lists/admin/processbounces.php:562
+#: public_html/lists/admin/processbounces.php:571
+#: public_html/lists/admin/processbounces.php:590
 msgid "User auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:559
+#: public_html/lists/admin/processbounces.php:567
 #, php-format
 msgid "Subscriber auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:569
-#: public_html/lists/admin/processbounces.php:578
+#: public_html/lists/admin/processbounces.php:577
+#: public_html/lists/admin/processbounces.php:586
 #, php-format
 msgid "Email address auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:573
+#: public_html/lists/admin/processbounces.php:581
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:596
+#: public_html/lists/admin/processbounces.php:605
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:597
+#: public_html/lists/admin/processbounces.php:606
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:601
+#: public_html/lists/admin/processbounces.php:610
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:615
+#: public_html/lists/admin/processbounces.php:624
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:684
+#: public_html/lists/admin/processbounces.php:693
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:686
+#: public_html/lists/admin/processbounces.php:695
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:695
+#: public_html/lists/admin/processbounces.php:704
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:696
+#: public_html/lists/admin/processbounces.php:705
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:708
+#: public_html/lists/admin/processbounces.php:717
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:715
+#: public_html/lists/admin/processbounces.php:724
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:720
+#: public_html/lists/admin/processbounces.php:729
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:723
+#: public_html/lists/admin/processbounces.php:732
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:727
+#: public_html/lists/admin/processbounces.php:736
 msgid "Report:"
 msgstr ""
 
@@ -2768,7 +2773,7 @@ msgstr ""
 #: public_html/lists/admin/members.php:367
 #: public_html/lists/admin/actions/processqueue.php:426
 #: public_html/lists/admin/actions/processqueue.php:428
-#: public_html/lists/admin/actions/processqueue.php:1025
+#: public_html/lists/admin/actions/processqueue.php:1018
 msgid "to"
 msgstr ""
 
@@ -3865,7 +3870,7 @@ msgid "Resend"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:47
-#: public_html/lists/admin/actions/processqueue.php:1227
+#: public_html/lists/admin/actions/processqueue.php:1220
 msgid "unknown"
 msgstr ""
 
@@ -4392,162 +4397,162 @@ msgstr ""
 msgid "Processing message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:653
+#: public_html/lists/admin/actions/processqueue.php:646
 msgid "Looking for users"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:672
+#: public_html/lists/admin/actions/processqueue.php:665
 msgid "users apply for attributes, now checking lists"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:683
+#: public_html/lists/admin/actions/processqueue.php:676
 msgid "No users apply for attributes"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:735
+#: public_html/lists/admin/actions/processqueue.php:728
 msgid "looking for users who can be excluded from this mailing"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:823
+#: public_html/lists/admin/actions/processqueue.php:816
 msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:827
+#: public_html/lists/admin/actions/processqueue.php:820
 msgid "Found them"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:827
+#: public_html/lists/admin/actions/processqueue.php:820
 msgid "to process"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:861
+#: public_html/lists/admin/actions/processqueue.php:854
 msgid "No users to process for this batch"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:865
+#: public_html/lists/admin/actions/processqueue.php:858
 msgid "Processing batch of "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:872
+#: public_html/lists/admin/actions/processqueue.php:865
 msgid "batch limit reached"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:892
+#: public_html/lists/admin/actions/processqueue.php:885
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:897
+#: public_html/lists/admin/actions/processqueue.php:890
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:906
+#: public_html/lists/admin/actions/processqueue.php:899
 msgid "Message I was working on has disappeared"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:909
+#: public_html/lists/admin/actions/processqueue.php:902
 msgid "Sending of this message has been suspended"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:990
+#: public_html/lists/admin/actions/processqueue.php:983
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
 "for domain throttling."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:991
-#: public_html/lists/admin/actions/processqueue.php:993
+#: public_html/lists/admin/actions/processqueue.php:984
+#: public_html/lists/admin/actions/processqueue.php:986
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1002
+#: public_html/lists/admin/actions/processqueue.php:995
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1025
+#: public_html/lists/admin/actions/processqueue.php:1018
 msgid "Sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1037
+#: public_html/lists/admin/actions/processqueue.php:1030
 #, php-format
 msgid "Warning: a lot of errors while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1042
-#: public_html/lists/admin/actions/processqueue.php:1263
+#: public_html/lists/admin/actions/processqueue.php:1035
+#: public_html/lists/admin/actions/processqueue.php:1256
 msgid "It took"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1042
+#: public_html/lists/admin/actions/processqueue.php:1035
 msgid "seconds to send"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1090
+#: public_html/lists/admin/actions/processqueue.php:1083
 msgid "Failed sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1130
+#: public_html/lists/admin/actions/processqueue.php:1123
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1141
+#: public_html/lists/admin/actions/processqueue.php:1134
 msgid "not sending to "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1160
+#: public_html/lists/admin/actions/processqueue.php:1153
 msgid "Unconfirmed user"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1169
-#: public_html/lists/admin/actions/processqueue.php:1171
+#: public_html/lists/admin/actions/processqueue.php:1162
+#: public_html/lists/admin/actions/processqueue.php:1164
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1179
+#: public_html/lists/admin/actions/processqueue.php:1172
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1180
+#: public_html/lists/admin/actions/processqueue.php:1173
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1198
+#: public_html/lists/admin/actions/processqueue.php:1191
 msgid "Not sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1198
+#: public_html/lists/admin/actions/processqueue.php:1191
 msgid "already sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1240
+#: public_html/lists/admin/actions/processqueue.php:1233
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1245
+#: public_html/lists/admin/actions/processqueue.php:1238
 msgid "Hmmm, No users found to send to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1253
+#: public_html/lists/admin/actions/processqueue.php:1246
 msgid "Message campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1254
+#: public_html/lists/admin/actions/processqueue.php:1247
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1255
+#: public_html/lists/admin/actions/processqueue.php:1248
 #, php-format
 msgid "to view the results of this campaign, go to http://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1263
+#: public_html/lists/admin/actions/processqueue.php:1256
 msgid "to send this message"
 msgstr ""
 
@@ -4974,11 +4979,11 @@ msgstr ""
 msgid "page"
 msgstr ""
 
-#: public_html/lists/admin/initlanguages.php:23
+#: public_html/lists/admin/initlanguages.php:25
 msgid "Initialising language"
 msgstr ""
 
-#: public_html/lists/admin/initlanguages.php:26
+#: public_html/lists/admin/initlanguages.php:28
 msgid "Up to date"
 msgstr ""
 
