@@ -37,12 +37,12 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
   $cline = parseCLine();
   $dir = dirname($_SERVER["SCRIPT_FILENAME"]);
   chdir($dir);
-  
+
   if (!is_file($cline['c'])) {
     print "Cannot find config file\n";
     exit;
   }
-  
+
 } else {
   $GLOBALS["commandline"] = 0;
   header("Cache-Control: no-cache, must-revalidate");           // HTTP/1.1
@@ -129,10 +129,10 @@ if (!$ajax && !$GLOBALS["commandline"]) {
 if (isset($GLOBALS['pageheader'])) {
   foreach ($GLOBALS['pageheader'] as $sHeaderItem => $sHtml ) {
     print '<!--'.$sHeaderItem.'-->'.$sHtml;
-    
+
     print "\n";
   }
-} 
+}
 
 if ($GLOBALS["commandline"]) {
   if (!isset($_SERVER["USER"]) && sizeof($GLOBALS["commandline_users"])) {
@@ -170,8 +170,7 @@ if ($GLOBALS["commandline"]) {
   if (CHECK_REFERRER && isset($_SERVER['HTTP_REFERER'])) {
     ## do a crude check on referrer. Won't solve everything, as it can be faked, but shouldn't hurt
     $ref = parse_url($_SERVER['HTTP_REFERER']);
-    $parts = explode(':', $_SERVER['HTTP_HOST']);
-    if ($ref['host'] != $parts[0] && !in_array($ref['host'],$allowed_referrers)) {
+    if ($ref['host'] != $_SERVER['HTTP_HOST'] && !in_array($ref['host'],$allowed_referrers)) {
       print 'Access denied';exit;
     }
   }
@@ -235,15 +234,33 @@ if (!empty($GLOBALS["require_login"])) {
     print Fatal_Error($GLOBALS['I18N']->get('Admin Authentication initialisation failure'));
     return;
   }
-  if ((!isset($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]) && isset($_REQUEST["login"]) && isset($_REQUEST["password"]) && !empty($_REQUEST["password"])) {
+  // check if a login is being attempted
+  if (
+    (
+      // if admin session not set
+      !isset($_SESSION["adminloggedin"])
+      || !$_SESSION["adminloggedin"]
+    )
+    // and if username and password were submitted
+    && isset($_REQUEST["login"])
+    && isset($_REQUEST["password"])
+    && !empty($_REQUEST["password"])
+  ) {
+      // validate the submitted credentials
     $loginresult = $GLOBALS["admin_auth"]->validateLogin($_REQUEST["login"],$_REQUEST["password"]);
+    // if login failed
     if (!$loginresult[0]) {
+      // clear the vars storing login credentials
       $_SESSION["adminloggedin"] = "";
       $_SESSION["logindetails"] = "";
       $page = "login";
+      // log the failed attempt
       logEvent(sprintf($GLOBALS['I18N']->get('invalid login from %s, tried logging in as %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["login"]));
+      // set the message to be displayed to user
       $msg = $loginresult[1];
     } else {
+      // if login was successful
+      // save user details to session
       $_SESSION["adminloggedin"] = $_SERVER["REMOTE_ADDR"];
       $_SESSION["logindetails"] = array(
         "adminname" => $_REQUEST["login"],
@@ -252,7 +269,7 @@ if (!empty($GLOBALS["require_login"])) {
         "passhash" => sha1($_REQUEST["password"]),
       );
       ##16692 - make sure admin permissions apply at first login
-      $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]); 
+      $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]);
       unset($_SESSION['session_age']);
       if (!empty($_POST["page"])) {
         $page = preg_replace('/\W+/','',$_POST["page"]);
@@ -275,7 +292,7 @@ if (!empty($GLOBALS["require_login"])) {
       print 'Error'.': '.s('Incorrect processing secret');
       exit;
     }
-    
+
     $_SESSION["adminloggedin"] = $_SERVER["REMOTE_ADDR"];
     $_SESSION["logindetails"] = array(
       "adminname" => 'remotecall',
@@ -315,7 +332,7 @@ if (!empty($_SESSION["adminloggedin"]) && !empty($_SESSION['session_age']) && $_
   $_SESSION["logindetails"] = "";
   $page = "login";
   $msg = s('Your session timed out, please log in again');
-} 
+}
 
 ##  force to login page, if an Ajax call is made without being logged in
 if ($ajax && empty($_SESSION['adminloggedin'])) {
@@ -364,14 +381,14 @@ $pageinfo->fetchInfoContent($include);
 
 if (is_file('ui/'.$GLOBALS['ui']."/mainmenu.php")) {
   include 'ui/'.$GLOBALS['ui']."/mainmenu.php";
-}  
+}
 if (!$ajax) {
   if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/header_minified.inc')) {
     include 'ui/'.$GLOBALS['ui']."/header_minified.inc";
   } else {
     include 'ui/'.$GLOBALS['ui']."/header.inc";
   }
-} 
+}
 
 if (!$ajax) {
   print '<h4 class="pagetitle">'.mb_strtolower($page_title).'</h4>';
@@ -431,7 +448,7 @@ if (!$ajax && $page != "login") {
 
   if (MANUALLY_PROCESS_QUEUE && isSuperUser() && empty($_GET['pi']) &&
     ## hmm, how many more pages to not show this?
-    (!isset($_GET['page']) || 
+    (!isset($_GET['page']) ||
     ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))) {
       ## avoid error on uninitialised DB
       if (Sql_Table_exists($tables['message'])) {
@@ -445,7 +462,7 @@ if (!$ajax && $page != "login") {
         }
     }
   }
-  
+
 }
 
 # always allow access to the about page
@@ -525,7 +542,7 @@ if (checkAccess($page,"") || $page == 'about') {
   #  print "End of inclusion<br/>";
   } elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
     $plugin = $GLOBALS["plugins"][$_GET["pi"]];
-    $menu = $plugin->adminmenu(); 
+    $menu = $plugin->adminmenu();
     if (is_file($plugin->coderoot . $include)) {
       include ($plugin->coderoot . $include);
     } elseif ($include == 'main.php' || $page == 'home') {
@@ -571,7 +588,7 @@ if (!empty($GLOBALS['developer_email'])) {
     $memory_usage = 'Cannot determine with this PHP version';
   }
   print '<br/>Memory usage: '.$memory_usage;
-}  
+}
 
 if (isset($GLOBALS["statslog"])) {
   if ($fp = @fopen($GLOBALS["statslog"],"a")) {
@@ -597,10 +614,10 @@ if (!empty($GLOBALS['inRemoteCall']) || $ajax || !empty($GLOBALS["commandline"])
 if (isset($GLOBALS['pagefooter'])) {
   foreach ($GLOBALS['pagefooter'] as $sFooterItem => $sHtml ) {
     print '<!--'.$sFooterItem.'-->'.$sHtml;
-    
+
     print "\n";
   }
-} 
+}
 print '</body></html>';
 
 function parseCline() {
