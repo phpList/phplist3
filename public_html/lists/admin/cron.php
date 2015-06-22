@@ -1,0 +1,73 @@
+<?php
+require_once dirname(__FILE__).'/accesscheck.php';
+
+/*
+ * 
+ * page to handle any cron-related activity. Instead of having multiple cron entries, this
+ * one page should be called to do the tasks. It should be called as often as possible, eg once every 5 minutes
+ * or even once a minute.
+ * 
+ * For now, the configuration is manually, there is no UI for it yet. Plugins can register their own cron activities.
+ * TODO, work with eg https://github.com/mtdowling/cron-expression
+ * 
+ */
+
+if (!$GLOBALS["commandline"]) {
+  print "This page can only be called from the commandline";
+  return;
+}
+   
+print ClineSignature();
+
+$cronJobs = array(
+
+    # at a later stage, these should be added
+    # for now, that involves conflicts, as they all use similar function names in the files. (eg output and finish)
+    # also page locking needs changing, as it's the same page (cron) for all of them
+    # so, for now, we only handle plugin Cron Jobs
+    
+    //array(
+    //    'plugin' => '',
+    //    'page' => 'processqueue',
+    //    'frequency'  => 1,    // once a minute
+    //),
+    //array(
+        //'plugin' => '',
+        //'page' => 'processbounces',
+        //'frequency' => 1440, // once a day
+    //),
+);
+
+foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+    $pluginJobs = $plugin->cronJobs();
+    foreach ($pluginJobs as $job) {
+        $cronJobs[] = array(
+            'plugin' => $pluginname,
+            'page' => $job['page'],
+            'frequency' => $job['frequency'],
+        );
+    }
+}
+
+$now = time();
+foreach ($cronJobs as $cronJob) {
+    $cronID = $cronJob['plugin']. '|'.$cronJob['page'];
+    $lastrun = getConfig(md5($cronID));
+    if (empty($lastrun) || ($now - $lastrun > $cronJob['frequency'] * 60)) {
+        cl_output('Need to run '.$cronJob['plugin'] . ' - '.$cronJob['page']);
+        $cronJob['page'] = basename($cronJob['page'],'.php');
+        if (isset($GLOBALS['plugins'][$cronJob['plugin']]) && is_file($GLOBALS['plugins'][$cronJob['plugin']]->coderoot . $cronJob['page'].'.php')) {
+             include_once $GLOBALS['plugins'][$cronJob['plugin']]->coderoot . $cronJob['page'].'.php';
+        } elseif (empty($cronJob['plugin']) && is_file(__DIR__.'/'.$cronJob['page'].'.php')) {
+             include_once __DIR__.'/'.$cronJob['page'].'.php';
+        }
+        SaveConfig(md5($cronID),time(),0);
+    } else {
+        if (VERBOSE) {
+            $nextRun = ($lastrun + $cronJob['frequency'] * 60) - $now;
+            cl_output('Will run '.$cronJob['plugin'] . ' - '.$cronJob['page']. ' in'.secs2time($nextRun));
+        }
+    }
+}
+#var_dump($cronJobs);
+
