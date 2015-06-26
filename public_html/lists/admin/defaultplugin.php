@@ -119,12 +119,6 @@ class phplistPlugin {
     }
     $this->importTabTitle = $this->name;
     $this->system_root = dirname(__FILE__);
-    if (isset($this->settings)) {
-      foreach ($this->settings as $item => $itemDetails) {
-        $GLOBALS['default_config'][$item] = $itemDetails;
-        $GLOBALS['default_config'][$item]['hidden'] = false;
-      }
-    }
     $this->version = $this->getVersion();
     ## map table names
     $me = new ReflectionObject($this);
@@ -185,6 +179,12 @@ class phplistPlugin {
   function activate() {
     # Startup code, all other objects are constructed 
     # returns success or failure, false means we cannot start
+    if (isset($this->settings)) {
+      foreach ($this->settings as $item => $itemDetails) {
+        $GLOBALS['default_config'][$item] = $itemDetails;
+        $GLOBALS['default_config'][$item]['hidden'] = false;
+      }
+    }
   }
     
   function displayAbout() {
