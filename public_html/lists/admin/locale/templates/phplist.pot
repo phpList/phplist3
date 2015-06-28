@@ -3315,7 +3315,7 @@ msgid "All Done"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:107
-#: public_html/lists/admin/index.php:553
+#: public_html/lists/admin/index.php:526
 msgid "Access Denied"
 msgstr ""
 
@@ -6837,15 +6837,15 @@ msgid ""
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:538 public_html/lists/admin/index.php:539
+#: public_html/lists/admin/index.php:541 public_html/lists/admin/index.php:542
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:543
+#: public_html/lists/admin/index.php:546
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:549
+#: public_html/lists/admin/index.php:552
 msgid "Sorry, not implemented yet"
 msgstr ""
 
