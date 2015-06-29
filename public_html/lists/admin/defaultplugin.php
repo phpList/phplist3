@@ -719,6 +719,30 @@ class phplistPlugin {
   function logout() {
     return '';
   }
+    /**
+   * cronJobs
+   * @param null
+   * @return array of cronjobs to call for this plugin
+   * 
+   * eg
+   * array(
+   *    array( // cronJob1
+   *     'page' => 'pagetocall',
+   *     'frequency' => (int) minutes, // how often to call
+   *    ),
+   *    ...
+   *    ...
+   *    array( // cronJobN
+   *     'page' => 'anotherpagetocall',
+   *     'frequency' => (int) minutes, // how often to call
+   *    ),
+   * );
+   * 
+   */
+  
+  function cronJobs() {
+    return array();
+  }
 
   ############################################################
   # User
