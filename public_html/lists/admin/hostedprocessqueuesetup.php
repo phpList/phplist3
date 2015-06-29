@@ -1,19 +1,31 @@
 <?php
 
+$fopenAllowed = !empty(ini_get('allow_url_fopen'));
+
 if (!empty($_POST['apikey'])) {
   if (!verifyToken()) { 
     print Error($GLOBALS['I18N']->get('No Access'));
     return;
   }
-  $check = file_get_contents(PQAPI_URL.'&cmd=verifykey&key='.trim($_POST['apikey']));
+  $streamContext = stream_context_create(array('http'=>  // even though we use https, this has to be http
+        array(
+            'timeout' => 10, // this should be fast, so let's not wait too long
+        )
+  ));
+  
+  $check = @file_get_contents(PQAPI_URL.'&cmd=verifykey&key='.trim($_POST['apikey']),false,$streamContext);
   $check = trim($check);
-  if (strpos($check,'KEYPASS') !== false) {
+  if (!empty($check) && strpos($check,'KEYPASS') !== false) {
     SaveConfig('PQAPIkey',trim(str_replace('"','',strip_tags($_POST['apikey']))),0);
     SaveConfig('pqchoice','phplistdotcom',0);
     $_SESSION['action_result'] = s('Remote queue processing settings were saved successfully');
     Redirect('messages&tab=active');
   } else {
-    $_SESSION['action_result'] = s('Error, the API key is incorrect');
+    if (!empty($http_response_header[0]) && strpos($http_response_header[0],'200 OK') !== false) {
+        $_SESSION['action_result'] = s('Error, the API key is incorrect');
+    } else {
+        $_SESSION['action_result'] = s('Error, unable to connect to the phpList.com server for checking. Please verify that your webserver is able to connect to https://pqapi.phplist.com'). '<br/><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Use local processing instead').'</a>';
+    }
     Redirect('hostedprocessqueuesetup');
   }
 }
@@ -21,7 +33,14 @@ if (!empty($_POST['apikey'])) {
 $existingKey = getConfig('PQAPIkey');
 
 print '<h2>'.s('Process the queue using the service from phpList.com').'</h2>';
-print '<p>'.s('This is only possible if your phpList installation is not behind a firewall').'</p>';
+
+if ($fopenAllowed) {
+    print '<p>'.s('This is only possible if your phpList installation is not behind a firewall').'</p>';
+} else {
+    print '<p>'.s('Your PHP settings do not allow this functionality. Please set "allow_url_fopen" in your php.ini to be "on" to continue.').'</p>';
+    print '  <a href="./?page=processqueue&pqchoice=local" class="button">'.s('Use local processing instead').'</a>';
+    return;
+}    
 print formStart();
 
 print '<h3>Step 1. Create an account on phpList.com </h3>';
