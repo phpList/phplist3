@@ -325,7 +325,14 @@ if ($total) {
   while ($msg = Sql_fetch_array($result)) {
     $editlink = '';
     $messagedata = loadMessageData($msg['id']);
-    $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($messagedata["campaigntitle"]);
+    if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+        $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($messagedata["campaigntitle"]). '<br/><strong>'.stripslashes($messagedata["subject"]).'</strong>';
+    } else {
+        $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($messagedata["subject"]);
+    }
+    
+    
+ #   $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($messagedata["campaigntitle"]);
     if ($msg['status'] == 'draft') {
       $editlink = PageUrl2("send&id=".$msg["id"]);
     }
