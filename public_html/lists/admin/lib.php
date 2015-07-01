@@ -239,7 +239,10 @@ function loadMessageData($msgid) {
           $messagedata['campaigntitle'] = '(no title)';
       }
   }
-
+  ## copy subject to title
+  if ($messagedata['campaigntitle'] == '(no title)' && $messagedata['subject'] != '(no subject)') {
+      $messagedata['campaigntitle'] = $messagedata['subject'];
+  }
   $GLOBALS['MD'][$msgid] = $messagedata;
 #  var_dump($messagedata);
   return $messagedata;
