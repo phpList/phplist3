@@ -324,7 +324,8 @@ if ($total) {
   $result = Sql_query("SELECT * FROM ".$tables["message"]." $whereClause $sortBySql limit $limit offset $offset");
   while ($msg = Sql_fetch_array($result)) {
     $editlink = '';
-    $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($msg["subject"]);
+    $messagedata = loadMessageData($msg['id']);
+    $listingelement = '<!--'.$msg['id'].'-->'.stripslashes($messagedata["campaigntitle"]);
     if ($msg['status'] == 'draft') {
       $editlink = PageUrl2("send&id=".$msg["id"]);
     }
@@ -336,7 +337,6 @@ if ($total) {
     $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables["linktrack_ml"]} where messageid = ".$msg["id"]);
 #    $clicks = array(0);
 
-    $messagedata = loadMessageData($msg['id']);
 
 /*
     foreach ($messagedata as $key => $val) {

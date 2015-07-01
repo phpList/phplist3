@@ -47,7 +47,7 @@ if (!$id) {
   $defaulttemplate = getConfig('defaultmessagetemplate');
   $defaultfooter = getConfig('messagefooter');
   Sql_Query(sprintf('insert into %s (subject, status, entered, sendformat, embargo, repeatuntil, owner, template, tofield, replyto,footer) 
-    values("(no subject)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s" )',
+    values("(no title)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s" )',
     $GLOBALS['tables']['message'],
     $_SESSION['logindetails']['id'],
     $defaulttemplate,sql_escape($defaultfooter)));
@@ -191,7 +191,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s", 
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
         htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d', $tables["message"], 
-           sql_escape($messagedata['subject'])
+           sql_escape($messagedata['campaigntitle']) // we store the title in the subject field. Better would be to rename the DB column, but this will do for now
          , sql_escape($messagedata['fromfield'])
          , sql_escape($messagedata['tofield'])
          , sql_escape($messagedata['replyto'])
@@ -636,6 +636,10 @@ if (!$done) {
 // custom code - start
   $utf8_subject = $messagedata['subject'];
   $utf8_from = $messagedata['fromfield'];
+  if (empty($utf8_subject)) $utf8_subject = '(no subject)';
+  if (empty($messagedata['campaigntitle'])) {
+      $messagedata['campaigntitle'] = $utf8_subject;
+  }
 /*
   if (0 && strcasecmp($GLOBALS['strCharSet'], 'utf-8') <> 0) {
      $utf8_subject = iconv($GLOBALS['strCharSet'],'UTF-8',$utf8_subject);
@@ -644,7 +648,10 @@ if (!$done) {
 */
 
   $maincontent .= '
-  <div class="field"><label for="subject">'.$GLOBALS['I18N']->get("Subject").Help("subject").'</label>'.
+  <div class="field"><label for="campaigntitle">'.s("Campaign Title").Help("campaigntitle").'</label>'.
+  '<input type="text" name="campaigntitle"  id="campaigntitleinput"
+    value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" /></div>
+  <div class="field"><label for="subject">'.s("Campaign subject").Help("subject").'</label>'.
   '<input type="text" name="subject"  id="subjectinput"
     value="'.htmlentities($utf8_subject,ENT_QUOTES,'UTF-8').'" size="60" /></div>
   <div class="field"><label for="fromfield">'.$GLOBALS['I18N']->get("From Line").Help("from").'</label>'.'

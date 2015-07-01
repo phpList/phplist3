@@ -149,6 +149,9 @@ function loadMessageData($msgid) {
     $messagedata["message"] = $_POST["message"];
     $messagedata["targetlist"] = $_POST["targetlist"];
   }
+  if ($messagedata["subject"] == '(no title)') {
+      $messagedata["subject"] = '(no subject)';
+  }
 
   $msgdata_req = Sql_Query(sprintf('select * from %s where id = %d',
     $GLOBALS['tables']['messagedata'],$msgid));
@@ -227,6 +230,14 @@ function loadMessageData($msgid) {
   }
   if (isset($messagedata['excludelist']['unselect'])) {
     unset($messagedata['excludelist']['unselect']);
+  }
+  
+  if (empty($messagedata['campaigntitle'])) {
+      if ($messagedata['subject'] != '(no subject)') {
+          $messagedata['campaigntitle'] = $messagedata['subject'];
+      } else {
+          $messagedata['campaigntitle'] = '(no title)';
+      }
   }
 
   $GLOBALS['MD'][$msgid] = $messagedata;

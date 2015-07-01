@@ -461,6 +461,14 @@ $counters = array(
   'sentastest' => 0,
 );
 
+$repetitionLabels = array (
+    60 => 'hour',  // can't use s() here yet
+    1440 => 'day',
+    10080 => 'week',
+    20160 => 'fortnight',
+    40320 => 'four weeks',
+);
+
 $GLOBALS['disallowpages'] = array();
 # list of pages and categorisation in the system
 ## old version
