@@ -648,9 +648,6 @@ if (!$done) {
 */
 
   $maincontent .= '
-  <div class="field"><label for="campaigntitle">'.s("Campaign Title").Help("campaigntitle").'</label>'.
-  '<input type="text" name="campaigntitle"  id="campaigntitleinput"
-    value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" /></div>
   <div class="field"><label for="subject">'.s("Campaign subject").Help("subject").'</label>'.
   '<input type="text" name="subject"  id="subjectinput"
     value="'.htmlentities($utf8_subject,ENT_QUOTES,'UTF-8').'" size="60" /></div>
@@ -1027,6 +1024,13 @@ if (!$done) {
 
   ## the button to actually send the campagin
   $send_content .= $placeinqueue;
+  
+  $titleInput = '<label for="campaigntitle">'.s("Campaign Title").Help("campaigntitle").'</label>'.
+  '<input type="text" name="campaigntitle"  id="campaigntitleinput"
+    value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" />';
+  #$titlepanel = new UIPanel('',$titleInput); // in a panel is too heavy
+  #print $titlepanel->display();
+  print $titleInput.'<br/>';
 
 print '<div class="sendtabs_container">';
 
