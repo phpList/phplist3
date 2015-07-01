@@ -1,4 +1,5 @@
 <?php
+
 require_once dirname(__FILE__).'/accesscheck.php';
 
 /*
@@ -17,7 +18,7 @@ if (!$GLOBALS["commandline"]) {
   return;
 }
    
-print ClineSignature();
+cl_output(ClineSignature());
 
 $cronJobs = array(
 
@@ -40,6 +41,7 @@ $cronJobs = array(
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginJobs = $plugin->cronJobs();
+   # cl_output($pluginname.' has '.sizeof($pluginJobs).' jobs');
     foreach ($pluginJobs as $job) {
         $cronJobs[] = array(
             'plugin' => $pluginname,
@@ -49,6 +51,11 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     }
 }
 
+if (!sizeof($cronJobs)) {
+    cl_output(s('Nothing to do'));
+}
+
+$maxNextRun = 0;
 $now = time();
 foreach ($cronJobs as $cronJob) {
     $cronID = $cronJob['plugin']. '|'.$cronJob['page'];
@@ -63,11 +70,16 @@ foreach ($cronJobs as $cronJob) {
         }
         SaveConfig(md5($cronID),time(),0);
     } else {
+        $nextRun = ($lastrun + $cronJob['frequency'] * 60) - $now;
+        if ($nextRun > $maxNextRun) {
+            $maxNextRun = $nextRun;
+        }
         if (VERBOSE) {
-            $nextRun = ($lastrun + $cronJob['frequency'] * 60) - $now;
             cl_output('Will run '.$cronJob['plugin'] . ' - '.$cronJob['page']. ' in'.secs2time($nextRun));
         }
     }
 }
+## tell how soon we need to run again, so that the calling system can relax a bit
+cl_output("DELAYUNTIL=".(int)($now + $maxNextRun));
 #var_dump($cronJobs);
 

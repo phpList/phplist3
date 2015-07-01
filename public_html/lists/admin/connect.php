@@ -59,7 +59,7 @@ $GLOBALS['img_busy'] = '<img src="images/busy.gif" with="34" height="34" border=
 $checkboxgroup_storesize = 1; # this will allow 10000 options for checkboxes
 
 # identify pages that can be run on commandline
-$commandline_pages = array('dbcheck','send','processqueueforked','processqueue','processbounces','import','upgrade','convertstats','reindex','blacklistemail','systemstats','converttoutf8','initlanguages'); 
+$commandline_pages = array('dbcheck','send','processqueueforked','processqueue','processbounces','import','upgrade','convertstats','reindex','blacklistemail','systemstats','converttoutf8','initlanguages', 'cron'); 
 
 if (isset($message_envelope)) {
   $envelope = "-f$message_envelope";
