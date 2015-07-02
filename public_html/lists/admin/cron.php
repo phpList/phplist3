@@ -53,6 +53,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 
 if (!sizeof($cronJobs)) {
     cl_output(s('Nothing to do'));
+    exit;
 }
 
 $maxNextRun = 0;
@@ -80,6 +81,8 @@ foreach ($cronJobs as $cronJob) {
     }
 }
 ## tell how soon we need to run again, so that the calling system can relax a bit
-cl_output("DELAYUNTIL=".(int)($now + $maxNextRun));
+if ($maxNextRun > 0) {
+    cl_output("DELAYUNTIL=".(int)($now + $maxNextRun));
+}
 #var_dump($cronJobs);
 
