@@ -274,10 +274,15 @@ function formStart($additional="") {
 	return $html;
 }
 
-function checkAccess($page) {
-  global $tables;
-  if (!$GLOBALS["commandline"] && isset($GLOBALS['disallowpages']) && in_array($page,$GLOBALS['disallowpages'])) {
-    return 0;
+function checkAccess($page,$pluginName = '') {
+  if (empty($pluginName)) {
+      if (!$GLOBALS["commandline"] && isset($GLOBALS['disallowpages']) && in_array($page,$GLOBALS['disallowpages'])) {
+        return 0;
+      }
+  } else {
+      if (!$GLOBALS["commandline"] && isset($GLOBALS['disallowpages']) && in_array($page.'&pi='.$pluginName,$GLOBALS['disallowpages'])) {
+        return 0;
+      }
   }
   
 /*

@@ -523,34 +523,38 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
       }
     }
   } else {
-    Error($GLOBALS['I18N']->get('Access Denied'));
+    Error(s('Access Denied'));
   }
 #  print "End of inclusion<br/>";
 } elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
   $plugin = $GLOBALS["plugins"][$_GET["pi"]];
   $menu = $plugin->adminmenu(); 
-  if (is_file($plugin->coderoot . $include)) {
-    include ($plugin->coderoot . $include);
-  } elseif ($include == 'main.php' || $page == 'home') {
-    print '<h3>'.$plugin->name.'</h3><ul>';
-    foreach ($menu as $page => $desc) {
-      print '<li>'.PageLink2($page,$desc).'</li>';
+  if (checkAccess($page,$_GET['pi'])) {
+      if (is_file($plugin->coderoot . $include)) {
+        include ($plugin->coderoot . $include);
+      } elseif ($include == 'main.php' || $page == 'home') {
+        print '<h3>'.$plugin->name.'</h3><ul>';
+        foreach ($menu as $page => $desc) {
+          print '<li>'.PageLink2($page,$desc).'</li>';
+        }
+        print '</ul>';
+      } elseif ($page != 'login') {
+        print '<br/>'."$page -&gt; ".s('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
+        cl_output("$page -> ".s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include"); 
+      }
+  } else {
+    Error(s('Access Denied'));
+  }
+} else {
+    if ($GLOBALS["commandline"]) {
+        clineError(s('Sorry, that module does not exist'));
+        exit;
     }
-    print '</ul>';
-  } elseif ($page != 'login') {
-    print '<br/>'."$page -&gt; ".s('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
-    cl_output("$page -> ".s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include"); 
-  }
-  } else {
-  if ($GLOBALS["commandline"]) {
-    clineError(s('Sorry, that module does not exist'));
-    exit;
-  }
-  if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
-    include ('ui/'.$GLOBALS['ui'].'/pages/'.$include);
-  } else {
-    print "$page -&gt; ".$GLOBALS['I18N']->get('Sorry, not implemented yet');
-  }
+    if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
+        include ('ui/'.$GLOBALS['ui'].'/pages/'.$include);
+    } else {
+        print "$page -&gt; ".$GLOBALS['I18N']->get('Sorry, not implemented yet');
+    }
 }
 
 # some debugging stuff
