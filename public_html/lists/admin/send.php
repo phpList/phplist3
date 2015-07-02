@@ -162,6 +162,9 @@ $panelcontent .= $saveDraftButton;
 $panel = new UIPanel($tabs->tabTitle(),$panelcontent,$tabs->prevNextNav());
 print $panel->display();
 
+if (isset($metaPanel)) {
+    print $metaPanel->display();
+}
 
 if (isset($testpanel)) {
   print $testpanel->display();

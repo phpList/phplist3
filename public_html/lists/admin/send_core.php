@@ -1025,15 +1025,7 @@ if (!$done) {
   ## the button to actually send the campagin
   $send_content .= $placeinqueue;
   
-  $titleInput = '<label for="campaigntitle">'.s("Campaign Title").Help("campaigntitle").'</label>'.
-  '<input type="text" name="campaigntitle"  id="campaigntitleinput"
-    value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" />';
-  #$titlepanel = new UIPanel('',$titleInput); // in a panel is too heavy
-  #print $titlepanel->display();
-  print $titleInput.'<br/>';
-
 print '<div class="sendtabs_container">';
-
 
   $tabs->setListClass('sendcampaign');
   $tabs->setId('sendtabs');
@@ -1210,6 +1202,11 @@ $saveDraftButton = '<div class="sendSubmit">
     <input type="hidden" name="id" value="'.$id.'"/>
     <input type="hidden" name="status" value="draft"/></div>
 ';
+
+  $titleInput = '<label for="campaigntitle">'.s("Campaign Title").Help("campaigntitle").'</label>'.
+  '<input type="text" name="campaigntitle"  id="campaigntitleinput"
+    value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" />';
+  $metaPanel = new UIPanel(s('Meta data'),$titleInput); 
 
   $testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'),$sendtest_content);
   $testpanel->setID('testpanel');
