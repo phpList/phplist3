@@ -235,20 +235,25 @@ function getUserAttributeValues($email = '', $id = 0, $bIndexWithShortnames = fa
     $userid = Sql_Fetch_Row_Query("select id from {$usertable} where email = \"$email\"");
     $id = $userid[0];
   }
-  if (!$id) return;
-  $att_req = Sql_Query(sprintf('select
-    %s.name,%s.id from %s,%s
-    where %s.userid = %s and %s.id = %s.attributeid',
-    $att_table,
-    $att_table,
-    $user_att_table,
-    $att_table,
-    $user_att_table,
-    $id,
-    $att_table,
-    $user_att_table
-  ));
-
+  if (!$id) return $result;
+  /* https://mantis.phplist.org/view.php?id=17708
+   * instead of only returning the attributes for which a subscriber has a value
+   * return all attributes
+   */
+  //$att_req = Sql_Query(sprintf('select
+    //%s.name,%s.id from %s,%s
+    //where %s.userid = %s and %s.id = %s.attributeid',
+    //$att_table,
+    //$att_table,
+    //$user_att_table,
+    //$att_table,
+    //$user_att_table,
+    //$id,
+    //$att_table,
+    //$user_att_table
+  //));
+  
+  $att_req = Sql_Query(sprintf('select id,name from %s',$att_table));
   while ($att = Sql_fetch_array($att_req)) {
     if ( $bIndexWithShortnames ) {
       $result['attribute' . $att['id']] = UserAttributeValue($id,$att["id"]);
