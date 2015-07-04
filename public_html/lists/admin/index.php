@@ -155,12 +155,14 @@ if ($GLOBALS["commandline"]) {
     } elseif (isset($cline['p'])) {
       $_GET['page'] = $cline['p'];
     }
+    cl_processtitle('core-'.$_GET['page']);
   } elseif ($cline['p'] && $IsCommandlinePlugin) {
     if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],$commandlinePluginPages[$cline['m']])) {
       clineError($cline['p']." does not process commandline");
     } elseif (isset($cline['p'])) {
       $_GET['page'] = $cline['p'];
       $_GET['pi'] = $cline['m'];
+      cl_processtitle($_GET['pi'].'-'.$_GET['page']);
     }
   } else {
     clineUsage(" [other parameters]");

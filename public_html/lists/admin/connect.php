@@ -1690,6 +1690,11 @@ function formatDateTime ($datetime,$short = 0) {
   return formatDate($date,$short). " ".formatTime($time,$short);
 }
 
+function cl_processtitle($title) {
+    $title = preg_replace('/[^\w-]/','',$title);
+    cli_set_process_title ('phpList:'.$GLOBALS['installation_name'].':'.$title ) ;
+}
+
 function cl_output($message) {
   if (!empty($GLOBALS["commandline"])) {
     @ob_end_clean();
