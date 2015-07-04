@@ -2,10 +2,6 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!$GLOBALS["commandline"]) {
-  if (!MANUALLY_PROCESS_QUEUE) {
-    print "This page can only be called from the commandline";
-    return;
-  }
   if (!empty($_GET['secret'])) {
     if (isset($_GET['ack']) && $_GET['ack'] == 1) {
       @ob_end_clean();
@@ -13,6 +9,10 @@ if (!$GLOBALS["commandline"]) {
       exit;
     }
     include dirname(__FILE__).'/actions/processqueue.php';
+    return;
+  }
+  if (!MANUALLY_PROCESS_QUEUE) {
+    print "This page can only be called from the commandline";
     return;
   }
     
