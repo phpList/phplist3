@@ -1695,7 +1695,11 @@ function formatDateTime ($datetime,$short = 0) {
 
 function cl_processtitle($title) {
     $title = preg_replace('/[^\w-]/','',$title);
-    cli_set_process_title ('phpList:'.$GLOBALS['installation_name'].':'.$title ) ;
+    if (function_exists('cli_set_process_title')) { // PHP5.5 and up
+        cli_set_process_title ('phpList:'.$GLOBALS['installation_name'].':'.$title ) ;
+    } elseif (function_exists('setproctitle')) { // pecl extension
+        setproctitle ('phpList:'.$GLOBALS['installation_name'].':'.$title ) ;
+    }
 }
 
 function cl_output($message) {
