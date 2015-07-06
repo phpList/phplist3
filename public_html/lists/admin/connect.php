@@ -1397,7 +1397,7 @@ function PageData($id) {
     $data[$row["name"]] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $data[$row['name']]);
     $data[$row["name"]] = str_ireplace('[website]', $GLOBALS['website'], $data[$row['name']]);
     $data[$row["name"]] = str_ireplace('[website]', $GLOBALS['domain'], $data[$row['name']]);
-    @@ TODO, add call to plugins here? 
+    //@@ TODO, add call to plugins here? 
   }
   if (!isset ($data['lists']))
     $data['lists'] = '';
