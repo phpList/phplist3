@@ -9,9 +9,6 @@ if (!isset($_REQUEST['adminname'])) $_REQUEST['adminname'] = '';
 if (!isset($_REQUEST['orgname'])) $_REQUEST['orgname'] = '';
 if (!isset($_REQUEST['adminpassword'])) $_REQUEST['adminpassword'] = '';
 if (!isset($_REQUEST['adminemail'])) $_REQUEST['adminemail'] = '';
-if (isset($_REQUEST['adminemail']) && !is_email($_REQUEST['adminemail'])) {
-  $_REQUEST['adminemail'] = '';
-}
 
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
