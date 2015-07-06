@@ -761,9 +761,11 @@ function contextMenu() {
       $subselect = " where id = 0";
       break;
   }
-  if (TEST && REGISTER)
-    $pixel = '<img src="http://powered.phplist.com/images/pixel.gif" width="1" height="1" alt="" />';
-  else
+  if (TEST && REGISTER) {
+    # bth rainhail.com 7.1.2015 remove hard-code of http to fix secure/non-secure error
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $pixel = '<img src="'.$protocol.'powered.phplist.com/images/pixel.gif" width="1" height="1" alt="" />';
+  } else
     $pixel = "";
   global $tables;
   $html = "";
