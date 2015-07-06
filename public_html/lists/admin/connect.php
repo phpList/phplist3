@@ -897,7 +897,7 @@ function recentlyVisited() {
             $titlehover = $GLOBALS['I18N']->pageTitleHover($p);
           }
           if (!empty($p) && !empty($title) && !in_array($url,$browsetaildone)) {
-            $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).'" title="'.htmlspecialchars($titlehover).'"><!--'.$pageid.'-->'.$title.'</a></li>';
+            $html .= '<li class="shade'.$shade.'"><a href="./?'.htmlspecialchars($url).addCsrfGetToken().'" title="'.htmlspecialchars($titlehover).'"><!--'.$pageid.'-->'.$title.'</a></li>';
             $shade = !$shade;
             $browsetaildone[] = $url;
             $num++;
