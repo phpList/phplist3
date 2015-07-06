@@ -33,7 +33,7 @@ switch ($data['type']) {
 ?>
 <div class="panel"><div class="header"></div><!-- ENDOF .header -->
 <div class="content">
-<h3 id="attribute-name"><?php echo $data["name"]?></h3>
+<h3 id="attribute-name"><?php echo htmlspecialchars(stripslashes($data["name"]))?></h3>
 <div class="actions">
 <?php
  print PageLinkButton("attributes",s('Back to attributes'),"");
@@ -167,9 +167,9 @@ if (isset($_GET["action"]) && $_GET["action"] == "new") {
   // ??
   ?>
 
-  <p><?php echo $GLOBALS["I18N"]->get("Add new")." ".$data["name"].', '.$GLOBALS["I18N"]->get("one per line") ?></p>
+  <p><?php echo $GLOBALS["I18N"]->get("Add new")." ".htmlspecialchars(stripslashes($data["name"])).', '.$GLOBALS["I18N"]->get("one per line") ?></p>
   <textarea name="itemlist" rows="20" cols="50"></textarea>
-  <input class="submit" type="submit" name="addnew" value="<?php echo $GLOBALS["I18N"]->get("Add new")." ".$data["name"] ?>" /><br />
+  <input class="submit" type="submit" name="addnew" value="<?php echo $GLOBALS["I18N"]->get("Add new")." ".htmlspecialchars(stripslashes($data["name"])) ?>" /><br />
   <hr />
 <?php
 }
