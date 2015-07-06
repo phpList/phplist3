@@ -460,6 +460,14 @@ define('EMPTY_VALUE_PREFIX','--');
 # the From for system messages
 define('USE_ADMIN_DETAILS_FOR_MESSAGES',1);
 
+# attribute value reorder limit
+# for selectable attributes, like "select" and "radio" you can manage the order of the values
+# by adding a number for each of them. After a certain number of values, this will disappear
+# and it will automatically order alphabetically. This "certain number" is controlled here
+# and it defaults to 100
+# if you want to use this, uncomment this line and change the value
+# define('ATTRIBUTEVALUE_REORDER_LIMIT',100);
+
 # test emails
 # if you send a test email, phplist will by default send you two emails, one in HTML format
 # and the other in Text format. If you set this to 1, you can override this behaviour

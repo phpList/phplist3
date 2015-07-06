@@ -176,16 +176,16 @@ if (isset($_GET["action"]) && $_GET["action"] == "new") {
 
 $req = Sql_query("SELECT * FROM $table order by listorder,name");
 $num = Sql_Affected_Rows();
-if ($num < 100 && $num > 25)
+if ($num < ATTRIBUTEVALUE_REORDER_LIMIT && $num > 25)
   printf('<input class="submit" type="submit" name="action" value="%s" /><br /><br />',$GLOBALS["I18N"]->get("Change order"));
 
 while ($row = Sql_Fetch_array($req)) {
   printf( '<div class="row-value"><span class="delete"><a href="javascript:deleteRec(\'%s\');">'.$GLOBALS['I18N']->get('delete').'</a></span>',PageURL2("editattributes","","id=$id&amp;delete=".$row["id"]));
-  if ($num < 100)
+  if ($num < ATTRIBUTEVALUE_REORDER_LIMIT)
     printf(' <input type="text" name="listorder[%d]" value="%s" size="5" class="listorder" />',$row["id"],$row["listorder"]);
   printf(' %s %s </div>', $row["name"],($row["name"] == $data["default_value"]) ? '('.$GLOBALS['I18N']->get('default').')':"");
 }
-if ($num && $num < 100)
+if ($num && $num < ATTRIBUTEVALUE_REORDER_LIMIT)
   printf('<br /><input class="submit" type="submit" name="action" value="%s" />',$GLOBALS["I18N"]->get("Change order"));
 
 ?>
