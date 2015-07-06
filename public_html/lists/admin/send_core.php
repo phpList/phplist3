@@ -1186,7 +1186,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 
 if ($allReady) {
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
-  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars($GLOBALS['I18N']->get('Send Campaign')).'">\');
+  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars(s('Place Campaign in Queue for Sending')).'">\');
   </script>';
 } else {
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
