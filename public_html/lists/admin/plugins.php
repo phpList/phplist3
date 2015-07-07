@@ -227,9 +227,12 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
       $details .= '<span class="value"><a href="'.$plugin->documentationUrl. '" target="moreinfoplugin">'.s('Documentation Page'). '</a></span></div>';
   }
   if (pluginCanEnable($pluginname)) {
-    $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? 
-    PageLinkAjax('plugins&disable='.$pluginname,$GLOBALS['img_tick']) : 
-    PageLinkAjax('plugins&enable='.$pluginname,$GLOBALS['img_cross']));
+      $ls->addColumn($pluginname,s('enabled'),$plugin->enabled ? $GLOBALS['img_tick']:$GLOBALS['img_cross']);
+      $ls->addColumn($pluginname,s('action'),$plugin->enabled ? 
+        PageLinkAjax('plugins&disable='.$pluginname,'<button>Disable</button>') : 
+        PageLinkAjax('plugins&enable='.$pluginname,'<button>Enable</button>'));
+  } else {
+      $ls->addColumn($pluginname,s('enabled'),$GLOBALS['img_cross']);
   }
   if (DEVVERSION) {
     //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
@@ -245,10 +248,14 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     ## we can only delete the ones that were installed from the interface
     $ls->addColumn($pluginname,s('delete'),'<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname. '\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
   }
-  
   if (!pluginCanEnable($pluginname)) {
     $details .= '<div class="detail"><span class="label">'.s('Dependency check').'</span>';
-    $details .= '<span class="value">'.s('Plugin can not be enabled, because it fails a dependency check - '). $plugin->dependencyFailure . '</span></div>';
+    
+    if ($plugin->dependencyFailure == 'No other editor enabled') {
+        $details .= '<span class="value">'.s('Plugin can not be enabled, because "%s" is enabled.',$GLOBALS['editorplugin']).'</span></div>';
+    } else {
+        $details .= '<span class="value">'.s('Plugin can not be enabled.'). '<br/>'.s('Failure on system requirement <strong>%s</strong>',$plugin->dependencyFailure). '</span></div>';
+    }
   }
   
   if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {
