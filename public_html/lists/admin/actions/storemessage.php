@@ -46,7 +46,7 @@ if (isset($_REQUEST['cb']) && is_array($_REQUEST['cb'])) {
   }
 }
 ## remember all data entered
-foreach ($_REQUEST as $key => $val) {
+foreach ($_POST as $key => $val) { //#17566 - we are only interested in POST data, not all in REQUEST
 /*
   print $key .' '.$val;
 */
