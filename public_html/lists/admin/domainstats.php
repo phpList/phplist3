@@ -15,13 +15,13 @@ if ($download) {
   ob_start();
 }  
 
-print '<div class="actions">'.PageLinkButton('domainstats&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
-
+$some = 0;
 $confirmed = array();
 $req = Sql_Query(sprintf('select lcase(substring_index(email,"@",-1)) as domain,count(email) as num from %s where confirmed group by domain order by num desc limit 50',$GLOBALS['tables']['user']));
 $ls = new WebblerListing($GLOBALS['I18N']->get('Top 50 domains with more than 5 emails'));
 while ($row = Sql_Fetch_Array($req)) {
   if ($row['num'] > 5) {
+    $some = 1;
     $ls->addElement($row['domain']);
     $confirmed[$row['domain']] = $row['num'];
     $ls->addColumn($row['domain'],$GLOBALS['I18N']->get('confirmed'),$row['num']);
@@ -30,6 +30,13 @@ while ($row = Sql_Fetch_Array($req)) {
 
   }
 }
+
+if ($some) {
+  print '<div class="actions">'.PageLinkButton('domainstats&dl=true',$GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+} else {
+  print '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';
+}
+
 $req = Sql_Query(sprintf('select lcase(substring_index(email,"@",-1)) as domain,count(email) as num from %s where !confirmed group by domain order by num desc limit 50',$GLOBALS['tables']['user']));
 while ($row = Sql_Fetch_Array($req)) {
 /*  if (!in_array($confirmed,$row['domain'])) {
