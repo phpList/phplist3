@@ -430,6 +430,8 @@ if (sizeof($email_list)) {
             }
           }
         } elseif ($isBlackListed) {
+          ## mark blacklisted, just in case ##17288
+          Sql_Query(sprintf('update %s set blacklisted = 1 where id = %d', $tables["user"], $userid));
           $count['foundblacklisted']++;
         }
         if (!is_array($_SESSION["groups"])) {
@@ -465,32 +467,32 @@ if (sizeof($email_list)) {
 
   $report = "";
   if (empty($some) && !$count["list_add"]) {
-    $report .= '<br/>' . $GLOBALS['I18N']->get('All the emails already exist in the database and are member of the lists');
+    $report .= '<br/>' . s('All the emails already exist in the database and are member of the lists');
   } else {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails succesfully imported to the database and added to %d lists.'), $count["email_add"], $num_lists);
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d emails subscribed to the lists'), $count["list_add"]);
+    $report .= '<br/>' . s('%d emails succesfully imported to the database and added to %d lists.', $count["email_add"], $num_lists);
+    $report .= '<br/>' . s('%d emails subscribed to the lists', $count["list_add"]);
     if ($count["exist"]) {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails already existed in the database'), $count["exist"]);
+      $report .= '<br/>' . s('%d emails already existed in the database', $count["exist"]);
     }
   }
   if ($count["invalid_email"]) {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d Invalid Emails found.'), $count["invalid_email"]);
+    $report .= '<br/>' . s('%d Invalid Emails found.', $count["invalid_email"]);
     if (!$_SESSION["omit_invalid"]) {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"]);
+      $report .= '<br/>' . s('These records were added, but the email has been made up from ') . $_SESSION["assign_invalid"];
     } else {
-      $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('These records were deleted. Check your source and reimport the data. Duplicates will be identified.'));
+      $report .= '<br/>' . s('These records were deleted. Check your source and reimport the data. Duplicates will be identified.');
     }
   }
   if ($count["duplicate"]) {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d duplicate emails found.'), $count["duplicate"]);
+    $report .= '<br/>' . s('%d duplicate emails found.', $count["duplicate"]);
   }
   if ($_SESSION["overwrite"] == "yes") {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('Subscriber data was updated for %d subscribers'), $count["dataupdate"]);
+    $report .= '<br/>' . s('Subscriber data was updated for %d subscribers', $count["dataupdate"]);
   }
   if ($count['foundblacklisted']) {
-    $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%s emails were on the blacklist and have not been added to the lists'), $count["foundblacklisted"]);
+    $report .= '<br/>' . s('%d emails were on the blacklist and have not been added to the lists', $count["foundblacklisted"]);
   }
-  $report .= sprintf('<br/>' . $GLOBALS['I18N']->get('%d subscribers were matched by foreign key, %d by email'), $count["fkeymatch"], $count["emailmatch"]);
+  $report .= '<br/>' . s('%d subscribers were matched by foreign key, %d by email', $count["fkeymatch"], $count["emailmatch"]);
   if (!$GLOBALS['commandline']) {
     print $report;
     if (function_exists('sendmail')) {

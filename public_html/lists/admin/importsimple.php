@@ -72,6 +72,8 @@ if (!empty($_POST['importcontent'])) {
           $result = Sql_query($query);
         }
       } else {
+        ## mark blacklisted, just in case ##17288
+        Sql_Query(sprintf('update %s set blacklisted = 1 where id = %d', $tables["user"], $userid));
         $count['foundonblacklist']++;
       }
     } else {
