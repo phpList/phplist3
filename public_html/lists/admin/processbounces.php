@@ -503,7 +503,7 @@ if (sizeof($bouncerules)) {
     #    cl_output(memory_get_usage());
 
     #    outputProcessBounce('User '.$row['user']);
-        $rule = matchBounceRules($row['data'],$bouncerules);
+        $rule = matchBounceRules($row['header']."\n\n".$row['data'],$bouncerules);
     #    outputProcessBounce('Action '.$rule['action']);
     #    outputProcessBounce('Rule'.$rule['id']);
         $userdata = array();
