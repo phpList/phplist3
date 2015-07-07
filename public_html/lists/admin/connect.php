@@ -767,7 +767,7 @@ function contextMenu() {
       break;
   }
   if (TEST && REGISTER)
-    $pixel = '<img src="http://powered.phplist.com/images/pixel.gif" width="1" height="1" alt="" />';
+    $pixel = '<img src="https://d3u7tsw7cvar0t.cloudfront.net/images/pixel.gif" width="1" height="1" alt="" />';
   else
     $pixel = "";
   global $tables;
@@ -1155,10 +1155,10 @@ function ListofLists($current,$fieldname,$subselect) {
 
   ## need a better way to suppress this
   if ($_GET['page'] != 'send') {
-    $categoryhtml['all'] .= '<li>'.PageLinkDialog('addlist',$GLOBALS['I18N']->get('Add a list')).'</li>';
+    $categoryhtml['all'] .= '<li>'.PageLinkDialog('addlist',s('Add a list')).'</li>';
   }
-
-  $result = Sql_query('select * from '.$GLOBALS['tables']['list']. $subselect.' order by category, name');
+  
+  $result = Sql_query('select * from '.$GLOBALS['tables']['list']. $subselect.' order by category, name ');
   $numLists = Sql_Affected_Rows();
   while ($list = Sql_fetch_array($result)) {
     if (empty($list['category'])) {
@@ -1181,9 +1181,9 @@ function ListofLists($current,$fieldname,$subselect) {
     }
     $categoryhtml[$list['category']] .= " />".htmlspecialchars(stripslashes($list["name"]));
     if ($list["active"]) {
-      $categoryhtml[$list['category']] .= ' <span class="activelist">'.$GLOBALS['I18N']->get('Public list').'</span>';
+      $categoryhtml[$list['category']] .= ' <span class="activelist">'.s('Public list').'</span>';
     } else {
-      $categoryhtml[$list['category']] .= ' <span class="inactivelist">'.$GLOBALS['I18N']->get('Private list').'</span>';
+      $categoryhtml[$list['category']] .= ' <span class="inactivelist">'.s('Private list').'</span>';
     }
 
     if (!empty($list["description"])) {
@@ -1226,7 +1226,7 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
   $html .= '</div><!-- end of tabbed -->'; ## close tabbed
 
   if (!$some) {
-    $html = $GLOBALS['I18N']->get('There are no lists available');
+    $html = s('There are no lists available');
   }
   return $html;
 }
