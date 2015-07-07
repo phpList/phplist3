@@ -139,7 +139,6 @@ $req = Sql_Query(sprintf('select um.userid
     $GLOBALS['tables']['usermessage'],$GLOBALS['tables']['message'],$id,$subselect));
 
 $total = Sql_Affected_Rows();
-$start = sprintf('%d',$_GET['start']);
 if (isset($start) && $start > 0) {
   $listing = sprintf($GLOBALS['I18N']->get("Listing user %d to %d"),$start,$start + MAX_USER_PP);
   $limit = "limit $start,".MAX_USER_PP;
