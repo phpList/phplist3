@@ -72,7 +72,7 @@ print "</div></p>\n";
 $some = 1;
 $req = Sql_Query(sprintf('select * from %s where status = "%s" order by listorder,regex',$GLOBALS['tables']['bounceregex'],$type));
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounce Regular Expressions'));
-if (!Sql_Affected_Rows()) {
+if (!Sql_Num_Rows($req)) {
   print $GLOBALS['I18N']->get('No Rules found');
   $some = 0;
 } else {
