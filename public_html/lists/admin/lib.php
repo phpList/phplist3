@@ -1414,7 +1414,7 @@ function verifyToken() {
 }
 
 ## verify the session token on ajaxed GET requests
-function verifyCsrfGetToken() {
+function verifyCsrfGetToken($enforce = 1) { // enforce=0 allows checking "if exist"
   if (!defined('PHPLISTINIT')) die();
   if ($GLOBALS['commandline']) return true;
   if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
@@ -1422,7 +1422,7 @@ function verifyCsrfGetToken() {
       print s('Error, incorrect session token');
       exit;
     }
-  } elseif (isset($_SESSION['csrf_token'])) {
+  } elseif ($enforce && isset($_SESSION['csrf_token'])) {
     print s('Error, incorrect session token');
     exit;
   }  
