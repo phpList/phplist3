@@ -78,9 +78,11 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
 
   if (stripos($content,"[LISTS]") !== false) {
     $listsarr = array();
-    $req = Sql_Query(sprintf('select list.name from %s as list,%s as listuser where list.id = listuser.listid and listuser.userid = %d',$GLOBALS["tables"]["list"],$GLOBALS["tables"]["listuser"],$userdata["id"]));
-    while ($row = Sql_Fetch_Row($req)) {
-      array_push($listsarr,$row[0]);
+    $req = Sql_Query(sprintf('select list.name,list.active from %s as list,%s as listuser where list.id = listuser.listid and listuser.userid = %d',$GLOBALS["tables"]["list"],$GLOBALS["tables"]["listuser"],$userdata["id"]));
+    while ($row = Sql_Fetch_Assoc($req)) {
+      if ($row['active'] || PREFERENCEPAGE_SHOW_PRIVATE_LISTS) {
+        array_push($listsarr,stripslashes($row['name']));
+      }
     }
     if (!empty($listsarr)) {
       $html['lists'] = join('<br/>',$listsarr);
