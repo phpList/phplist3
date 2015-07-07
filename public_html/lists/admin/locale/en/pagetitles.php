@@ -68,6 +68,7 @@ switch ($page) {
   case 'usercheck': $page_title = 'Subscriber verification';break;
   case 'listbounces': $page_title = 'Bounces per list';break;
   case 'bouncerules': $page_title = 'Bounce rules';break;
+  case 'bouncerule': $page_title = 'Bounce rule';break;
   case 'checkbouncerules': $page_title = 'Check bounce rules';break;
   case 'translate': $page_title = 'Translate phpList';break;
   case 'ajaxform': $page_title = 'Ajax integration';break;
