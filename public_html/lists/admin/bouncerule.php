@@ -9,6 +9,23 @@ if (isset($_GET['id'])) {
   $id = 0;
 }
 
+if (isset($_GET['action']) && $_GET['action'] == 'next') {
+    if (isset($_GET['del'])) {
+        Sql_Query(sprintf('delete from %s where id = %d',$GLOBALS['tables']['bounceregex'],$_GET['del']));
+    } elseif (isset($_GET['activate'])) {
+        Sql_Query(sprintf('update %s set status = "active" where id = %d',$GLOBALS['tables']['bounceregex'],$_GET['activate']));
+    } else {
+        Redirect('bouncerules');
+    }
+    $next = Sql_Fetch_Row_Query(sprintf('select id from %s where status = "candidate"',$GLOBALS['tables']['bounceregex']));
+    if (!empty($next[0])) {
+        Redirect('bouncerule&id='.$next[0]);
+    } else {
+        $_SESSION['action_result'] = s('No more candidate rules');
+        Redirect('bouncerules');
+    }
+}
+
 if (isset($_POST['save']) && $_POST['save']) {
   Sql_Query(sprintf('update %s set regex = "%s",action="%s", comment="%s",status = "%s" where id= %d',
     $GLOBALS['tables']['bounceregex'],trim($_POST['regex']),sql_escape($_POST['action']),sql_escape($_POST['comment']),sql_escape($_POST['status']),$_GET['id']),1);
@@ -22,9 +39,14 @@ if (isset($_POST['save']) && $_POST['save']) {
   Redirect('bouncerules'.$hash);
 }
 
-print '<p>'.PageLink2('bouncerules'.$hash,$GLOBALS['I18N']->get('back to list of bounce rules')).'</p>';
+print '<p>'.PageLinkButton('bouncerules'.$hash,$GLOBALS['I18N']->get('back to list of bounce rules')).'</p>';
 $data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
   $GLOBALS['tables']['bounceregex'],$id));
+
+print '<div class="actions">';
+print PageLinkButton('bouncerule',s('delete and next'),'del='.$id.'&action=next','',s('delete this rule and go to the next candidate'));
+print PageLinkButton('bouncerule',s('activate and next'),'activate='.$id.'&action=next','',s('activate this rule and go to the next candidate'));
+print '</div>';
 
 print formStart();
 print '<table>';
