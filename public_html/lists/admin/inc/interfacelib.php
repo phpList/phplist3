@@ -879,7 +879,7 @@ class pageInfo {
   
   function show() {
     $html = '';
-    if ($this->ajaxed || !empty($_SESSION['suppressinfo'][$this->noteid])) {
+    if ($this->ajaxed || ($this->addhide && !empty($_SESSION['suppressinfo'][$this->noteid]))) {
       return '';
     }
     if (empty($this->infocontent)) return '';
@@ -887,7 +887,9 @@ class pageInfo {
       if (!isset($_SESSION['suppressinfo']) || !is_array($_SESSION['suppressinfo'])) {
         $_SESSION['suppressinfo'] = array();
       }
-      $_SESSION['suppressinfo'][$this->noteid] = 'hide';
+      if ($this->addhide) {
+        $_SESSION['suppressinfo'][$this->noteid] = 'hide';
+      }
     }
     
     $html = '<div class="note '.$this->noteid.'">';
