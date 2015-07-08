@@ -16,12 +16,16 @@ switch ($access) {
 }
 print formStart('name="categoryedit"');
 
-if (!empty($subselect)) {
-  $subselect .= ' and ';
-} else {  
-  $subselect .= ' where ';
+if (!isset($_GET['show']) || $_GET['show'] != 'all') {
+    if (!empty($subselect)) {
+      $subselect .= ' and ';
+    } else {  
+      $subselect .= ' where ';
+    }
+    $subselect .= '(category is null or category = "")';
+} else {
+    $subselect = 'where true ';
 }
-$subselect .= '(category is null or category = "")';
 
 $categories = listCategories();
 
@@ -34,7 +38,7 @@ if (!sizeof($categories)) {
   if (!sizeof($categories)) {
     print '<p>'.s('No list categories have been defined').'</p>';
     print '<p>'.s('Once you have set up a few categories, come back to this page to classify your lists with your categories.').'</p>';
-    print '<p>'.PageLinkButton('configure&id=list_categories',$I18N->get('Configure Categories')).'</p>';
+    print '<p>'.PageLinkButton('configure&id=list_categories&ret=catlists',$I18N->get('Configure Categories')).'</p>';
     print '<br/>';
     return;
   } else {
@@ -46,16 +50,22 @@ if (!empty($_POST['category']) && is_array($_POST['category'])) {
   foreach ($_POST['category'] as $key => $val) {
     Sql_Query(sprintf('update %s set category = "%s" %s and id = %d ',$tables['list'],sql_escape($val),$subselect,$key));
   }
-  print Info($I18N->get('Categories saved'));
+  if (isset($_GET['show']) && $_GET['show'] == 'all') {
+    $_SESSION['action_result'] = s('Category assignments saved');
+    Redirect('list');
+  } else {
+    Info(s('Categories saved'),true);
+  }
 }
 
 $req = Sql_Query(sprintf('select * from %s %s',$tables['list'],$subselect));
 
 if (!Sql_Affected_Rows()) {
-  print Info(s('All lists have already been assigned a category'),true);
-} else {
-  print '<div class="fright">'.PageLinkButton('configure&id=list_categories',$I18N->get('Configure Categories')).'</div>';
+  Info(s('All lists have already been assigned a category').'<br/>'.PageLinkButton('list',s('Back')),true);
 }
+
+print '<div class="fright">'.PageLinkButton('catlists&show=all',s('Re-edit all lists')).'</div>';
+print '<div class="fright">'.PageLinkButton('configure&id=list_categories&ret=catlists',$I18N->get('Configure Categories')).'</div>';
 
 $ls = new WebblerListing(s('Categorise lists'));
 $aListCategories = listCategories();
