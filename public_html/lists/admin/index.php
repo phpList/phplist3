@@ -220,7 +220,7 @@ print "$page_title</title>";
 
 if (!empty($GLOBALS["require_login"])) {
   #bth 7.1.2015 to support x-forwarded-for
-  $remoteAddr = getIp();
+  $remoteAddr = getClientIP();
   if ($GLOBALS["admin_auth_module"] && is_file("auth/".$GLOBALS["admin_auth_module"])) {
     require_once "auth/".$GLOBALS["admin_auth_module"];
   } elseif ($GLOBALS["admin_auth_module"] && is_file($GLOBALS["admin_auth_module"])) {

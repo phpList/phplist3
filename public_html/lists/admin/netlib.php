@@ -1,7 +1,7 @@
 <?php
 #bth rainhail.com 7.1.2015 added to support proxys passing along the client IP
 #https://www.chriswiegman.com/2014/05/getting-correct-ip-address-php/
-function getIp() {
+function getClientIP() {
 	if ( function_exists( 'apache_request_headers' ) ) {
 		$headers = apache_request_headers();
     #logEvent("apache_request_headers");
