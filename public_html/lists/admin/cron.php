@@ -47,6 +47,8 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             'plugin' => $pluginname,
             'page' => $job['page'],
             'frequency' => $job['frequency'],
+            ## @@ TODO extend it for eg a method to call on the plugin
+            #'method' => 'method to call';
         );
     }
 }
