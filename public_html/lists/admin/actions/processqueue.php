@@ -69,7 +69,7 @@ if ($GLOBALS['commandline']) {
   }
 }
 
-$num_per_batch = 0;
+$counters['num_per_batch'] = 0;
 $batch_period = 0;
 $script_stage = 0; # start
 $someusers = $skipped = 0;
@@ -101,13 +101,13 @@ if ($fp = @fopen("/etc/phplist.conf","r")) {
 }
 if (MAILQUEUE_BATCH_SIZE) {
   if ($maxbatch > 0) {
-    $num_per_batch = min(MAILQUEUE_BATCH_SIZE,$maxbatch);
+    $counters['num_per_batch'] = min(MAILQUEUE_BATCH_SIZE,$maxbatch);
   } else {
-    $num_per_batch = sprintf('%d',MAILQUEUE_BATCH_SIZE);
+    $counters['num_per_batch'] = sprintf('%d',MAILQUEUE_BATCH_SIZE);
   }
 } else {
   if ($maxbatch > 0) {
-    $num_per_batch = $maxbatch;
+    $counters['num_per_batch'] = $maxbatch;
   }
 }
 
@@ -125,15 +125,15 @@ if (MAILQUEUE_BATCH_PERIOD) {
  * ISP restrictions, instead limit webpage processing by time (below)
  * 
 if (empty($GLOBALS['commandline'])) {
-  $num_per_batch = min($num_per_batch,100);
+  $counters['num_per_batch'] = min($counters['num_per_batch'],100);
   $batch_period = max($batch_period,1);
 } elseif (isset($cline['m'])) {
   $cl_num_per_batch = sprintf('%d',$cline['m']);
   ## don't block when the param is not a number
   if (!empty($cl_num_per_batch)) {
-    $num_per_batch = $cl_num_per_batch;
+    $counters['num_per_batch'] = $cl_num_per_batch;
   }
-  cl_output("Batch set with commandline to $num_per_batch");
+  cl_output("Batch set with commandline to ".$counters['num_per_batch']);
 }
 */
 $maxProcessQueueTime = 0;
@@ -143,8 +143,8 @@ if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
 # in-page processing force to a minute max, and make sure there's a batch size
 if (empty($GLOBALS['commandline'])) {
   $maxProcessQueueTime = min($maxProcessQueueTime,60);
-  if ($num_per_batch <= 0) {
-    $num_per_batch = 10000;
+  if ($counters['num_per_batch'] <= 0) {
+    $counters['num_per_batch'] = 10000;
   }
 }
 
@@ -153,29 +153,29 @@ if (VERBOSE && $maxProcessQueueTime) {
 }
 
 if (isset($cline['m'])) {
-  cl_output('Max to send is '.$cline['m'].' num per batch is '.$num_per_batch);
+  cl_output('Max to send is '.$cline['m'].' num per batch is '.$counters['num_per_batch']);
   $clinemax = (int)$cline['m'];
   ## slow down just before max
   if ($clinemax < 20) {
-    $num_per_batch = min(2,$clinemax,$num_per_batch);
+    $counters['num_per_batch'] = min(2,$clinemax,$counters['num_per_batch']);
   } elseif ($clinemax < 200) {
-    $num_per_batch = min(20,$clinemax,$num_per_batch);
+    $counters['num_per_batch'] = min(20,$clinemax,$counters['num_per_batch']);
   } else {
-    $num_per_batch = min($clinemax,$num_per_batch);
+    $counters['num_per_batch'] = min($clinemax,$counters['num_per_batch']);
   }
-  cl_output('Max to send is '.$cline['m'].' setting num per batch to '.$num_per_batch);
+  cl_output('Max to send is '.$cline['m'].' setting num per batch to '.$counters['num_per_batch']);
 }
 
 $safemode = 0;
 if (ini_get("safe_mode")) {
   # keep an eye on timeouts
   $safemode = 1;
-  $num_per_batch = min(100,$num_per_batch);
+  $counters['num_per_batch'] = min(100,$counters['num_per_batch']);
   print $GLOBALS['I18N']->get('Running in safe mode').'<br/>';
 }
 
-$original_num_per_batch = $num_per_batch;
-if ($num_per_batch && $batch_period) {
+$original_num_per_batch = $counters['num_per_batch'];
+if ($counters['num_per_batch'] && $batch_period) {
   # check how many were sent in the last batch period and take off that
   # amount from this batch
 /*
@@ -185,11 +185,11 @@ if ($num_per_batch && $batch_period) {
   $recently_sent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where entered > date_sub(now(),interval %d second) and status = "sent"',
     $tables["usermessage"],$batch_period));
   cl_output('Recently sent : '.$recently_sent[0]);
-  $num_per_batch -= $recently_sent[0];
+  $counters['num_per_batch'] -= $recently_sent[0];
 
   # if this ends up being 0 or less, don't send anything at all
-  if ($num_per_batch == 0) {
-    $num_per_batch = -1;
+  if ($counters['num_per_batch'] == 0) {
+    $counters['num_per_batch'] = -1;
   }
 }
 # output some stuff to make sure it's not buffered in the browser
@@ -213,7 +213,7 @@ function my_shutdown () {
   global $script_stage,$reload;
 #  processQueueOutput( "Script status: ".connection_status(),0); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
   processQueueOutput( s('Script stage').': '.$script_stage,0,'progress');
-  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$unconfirmed,$num_per_batch,$batch_period;
+  global $counters,$report,$send_process_id,$tables,$nothingtodo,$processed,$notsent,$unconfirmed,$batch_period;
   $some = $processed; 
   $delaytime = 0;
   if (!$some) {
@@ -258,7 +258,7 @@ function my_shutdown () {
   } elseif ($script_stage == 5 && (!$nothingtodo || isset($GLOBALS["wait"])))  {
     # if the script timed out in stage 5, reload the page to continue with the rest
     $reload++;
-    if (!$GLOBALS["commandline"] && $num_per_batch && $batch_period) {
+    if (!$GLOBALS["commandline"] && $counters['num_per_batch'] && $batch_period) {
       if ($counters['sent'] + 10 < $GLOBALS["original_num_per_batch"]) {
         processQueueOutput($GLOBALS['I18N']->get('Less than batch size were sent, so reloading imminently'),1,'progress');
         $counters['delaysend'] = 10;
@@ -464,28 +464,28 @@ if (empty($reload)) { ## only show on first load
   }
 }
 
-if ($num_per_batch > 0) {
+if ($counters['num_per_batch'] > 0) {
   if ($safemode) {
     processQueueOutput(s('In safe mode, batches are set to a maximum of 100'));
   }
-  if ($original_num_per_batch != $num_per_batch) {
+  if ($original_num_per_batch != $counters['num_per_batch']) {
     if (empty($reload)) {
       processQueueOutput(s('Sending in batches of %d messages',$original_num_per_batch),0);
     }
-    $diff = $original_num_per_batch - $num_per_batch;
+    $diff = $original_num_per_batch - $counters['num_per_batch'];
     if ($diff < 0) $diff = 0;
-    processQueueOutput(s('This batch will be %d emails, because in the last %d seconds %d emails were sent',$num_per_batch,$batch_period, $diff),0,'progress');
+    processQueueOutput(s('This batch will be %d emails, because in the last %d seconds %d emails were sent',$counters['num_per_batch'],$batch_period, $diff),0,'progress');
   } else {
-    processQueueOutput(s('Sending in batches of %d emails',$num_per_batch),0,'progress');
+    processQueueOutput(s('Sending in batches of %d emails',$counters['num_per_batch']),0,'progress');
   }
-} elseif ($num_per_batch < 0) {
+} elseif ($counters['num_per_batch'] < 0) {
   processQueueOutput(s('In the last %d seconds more emails were sent (%d) than is currently allowed per batch (%d)', $batch_period,$recently_sent[0],$original_num_per_batch),0,'progress');
   $processed = 0;
   $script_stage = 5;
   $GLOBALS["wait"] = $batch_period;
   return;
 }
-$counters['batch_total'] = $num_per_batch;
+$counters['batch_total'] = $counters['num_per_batch'];
 $counters['failed_sent'] = 0;
 $counters['invalid'] = 0;
 $counters['sent'] = 0;
@@ -563,8 +563,8 @@ if ($num_messages) {
 
 $script_stage = 2; # we know the messages to process
 #include_once "footer.inc";
-if (!isset($num_per_batch)) {
-  $num_per_batch = 1000000;
+if (!isset($counters['num_per_batch'])) {
+  $counters['num_per_batch'] = 1000000;
 }
 
 while ($message = Sql_fetch_array($messages)) {
@@ -843,10 +843,10 @@ while ($message = Sql_fetch_array($messages)) {
     
     # send in batches of $num_per_batch users
     $batch_total = $counters['total_users_for_message '.$messageid];
-    if ($num_per_batch > 0) {
-      $query .= sprintf(' limit 0,%d',$num_per_batch);
+    if ($counters['num_per_batch'] > 0) {
+      $query .= sprintf(' limit 0,%d',$counters['num_per_batch']);
       if (VERBOSE) {
-        processQueueOutput($num_per_batch .'  query -> '.$query);
+        processQueueOutput($counters['num_per_batch'] .'  query -> '.$query);
       }
       $userids = Sql_Query($query);
       if (Sql_Has_Error($database_connection)) {  ProcessError(Sql_Error($database_connection)); }
@@ -861,8 +861,8 @@ while ($message = Sql_fetch_array($messages)) {
   while ($userdata = Sql_Fetch_Row($userids)) {
     $counters['processed_users_for_message '.$messageid]++;
     $failure_reason = '';
-    if ($num_per_batch && $counters['sent'] >= $num_per_batch) {
-      processQueueOutput(s('batch limit reached').": ".$counters['sent']." ($num_per_batch)",1,'progress');
+    if ($counters['num_per_batch'] && $counters['sent'] >= $counters['num_per_batch']) {
+      processQueueOutput(s('batch limit reached').": ".$counters['sent']." (".$counters['num_per_batch'].")",1,'progress');
       $GLOBALS["wait"] = $batch_period;
       return;
     }
@@ -1196,8 +1196,8 @@ while ($message = Sql_fetch_array($messages)) {
     #if ($processed % 10 == 0) {
     if (0) {
       processQueueOutput('AR'.$affrows.' N '.$counters['total_users_for_message '.$messageid].' P'.$processed.' S'.$counters['sent'].' N'.$notsent.' I'.$counters['invalid'].' U'.$unconfirmed.' C'.$cannotsend.' F'.$counters['failed_sent']);
-      $rn = $reload * $num_per_batch;
-      processQueueOutput('P '.$processed .' N'. $counters['total_users_for_message '.$messageid] .' NB'.$num_per_batch .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
+      $rn = $reload * $counters['num_per_batch'];
+      processQueueOutput('P '.$processed .' N'. $counters['total_users_for_message '.$messageid] .' NB'.$counters['num_per_batch'] .' BT'.$batch_total .' R'.$reload.' RN'.$rn);
     }
     /* 
      * don't calculate this here, but in the "msgstatus" instead, so that
