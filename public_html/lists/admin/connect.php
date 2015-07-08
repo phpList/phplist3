@@ -962,7 +962,7 @@ function topMenu() {
     if (!empty($categoryDetails['toplink'])) {
       $categoryurl = PageUrl2($categoryDetails['toplink'],'','',true);
       if ($categoryurl) {
-        $topmenu .=  '<ul><li><a href="'.$categoryurl.addCsrfGetToken().'" title="'.$GLOBALS['I18N']->pageTitleHover($category).'">'.ucfirst($GLOBALS['I18N']->get($category)).'</a>'.$thismenu.'</li></ul>';
+        $topmenu .=  '<ul><li><a href="'.$categoryurl.'" title="'.$GLOBALS['I18N']->pageTitleHover($category).'">'.ucfirst($GLOBALS['I18N']->get($category)).'</a>'.$thismenu.'</li></ul>';
       } else {
         $topmenu .=  '<ul><li><span>'.$GLOBALS['I18N']->get($category).$categoryurl.'</span>'.$thismenu.'</li></ul>';
       }
