@@ -92,6 +92,7 @@ require_once dirname(__FILE__)."/defaultconfig.php";
 
 require_once dirname(__FILE__).'/connect.php';
 include_once dirname(__FILE__)."/lib.php";
+require_once dirname(__FILE__)."/netlib.php";
 require_once dirname(__FILE__)."/inc/interfacelib.php";
 
 // do a loose check, if the token is there, it needs to be valid.
@@ -223,6 +224,8 @@ if (isset($GLOBALS["installation_name"])) {
 print "$page_title</title>";
 
 if (!empty($GLOBALS["require_login"])) {
+  #bth 7.1.2015 to support x-forwarded-for
+  $remoteAddr = getClientIP();
   if ($GLOBALS["admin_auth_module"] && is_file("auth/".$GLOBALS["admin_auth_module"])) {
     require_once "auth/".$GLOBALS["admin_auth_module"];
   } elseif ($GLOBALS["admin_auth_module"] && is_file($GLOBALS["admin_auth_module"])) {
@@ -246,10 +249,10 @@ if (!empty($GLOBALS["require_login"])) {
       $_SESSION["adminloggedin"] = "";
       $_SESSION["logindetails"] = "";
       $page = "login";
-      logEvent(sprintf($GLOBALS['I18N']->get('invalid login from %s, tried logging in as %s'),$_SERVER['REMOTE_ADDR'],$_REQUEST["login"]));
+      logEvent(sprintf($GLOBALS['I18N']->get('invalid login from %s, tried logging in as %s'),$remoteAddr,$_REQUEST["login"]));
       $msg = $loginresult[1];
     } else {
-      $_SESSION["adminloggedin"] = $_SERVER["REMOTE_ADDR"];
+      $_SESSION["adminloggedin"] = $remoteAddr;
       $_SESSION["logindetails"] = array(
         "adminname" => $_REQUEST["login"],
         "id" => $loginresult[0],
@@ -281,7 +284,7 @@ if (!empty($GLOBALS["require_login"])) {
       exit;
     }
     
-    $_SESSION["adminloggedin"] = $_SERVER["REMOTE_ADDR"];
+    $_SESSION["adminloggedin"] = $remoteAddr;
     $_SESSION["logindetails"] = array(
       "adminname" => 'remotecall',
       "id" => 0,
@@ -292,8 +295,8 @@ if (!empty($GLOBALS["require_login"])) {
   } elseif (!isset($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"]) {
     #$msg = 'Not logged in';
     $page = "login";
-  } elseif (CHECK_SESSIONIP && $_SESSION["adminloggedin"] && $_SESSION["adminloggedin"] != $_SERVER["REMOTE_ADDR"]) {
-    logEvent(sprintf($GLOBALS['I18N']->get('login ip invalid from %s for %s (was %s)'),$_SERVER['REMOTE_ADDR'],$_SESSION["logindetails"]['adminname'],$_SESSION["adminloggedin"]));
+  } elseif (CHECK_SESSIONIP && $_SESSION["adminloggedin"] && $_SESSION["adminloggedin"] != $remoteAddr) {
+    logEvent(sprintf($GLOBALS['I18N']->get('login ip invalid from %s for %s (was %s)'),$remoteAddr,$_SESSION["logindetails"]['adminname'],$_SESSION["adminloggedin"]));
     $msg = $GLOBALS['I18N']->get('Your IP address has changed. For security reasons, please login again');
     $_SESSION["adminloggedin"] = "";
     $_SESSION["logindetails"] = "";
@@ -301,7 +304,7 @@ if (!empty($GLOBALS["require_login"])) {
   } elseif ($_SESSION["adminloggedin"] && $_SESSION["logindetails"]) {
     $validate = $GLOBALS["admin_auth"]->validateAccount($_SESSION["logindetails"]["id"]);
     if (!$validate[0]) {
-      logEvent(sprintf($GLOBALS['I18N']->get('invalidated login from %s for %s (error %s)'),$_SERVER['REMOTE_ADDR'],$_SESSION["logindetails"]['adminname'],$validate[1]));
+      logEvent(sprintf($GLOBALS['I18N']->get('invalidated login from %s for %s (error %s)'),$remoteAddr,$_SESSION["logindetails"]['adminname'],$validate[1]));
       $_SESSION["adminloggedin"] = "";
       $_SESSION["logindetails"] = "";
       $page = "login";
