@@ -5,4 +5,3 @@ if (!function_exists("checkAccess")) {
   exit;
 }
 
-?>

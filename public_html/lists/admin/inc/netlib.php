@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__).'/accesscheck.php';
+
 #bth rainhail.com 7.1.2015 added to support proxys passing along the client IP
 #https://www.chriswiegman.com/2014/05/getting-correct-ip-address-php/
 function getClientIP() {
