@@ -75,6 +75,7 @@ if (sizeof($aListCategories)) {
     $ls->addColumn($row['id'],$GLOBALS['I18N']->get('Name'),stripslashes($row['name']));
     $catselect = '<select name="category['.$row['id'].']">';
     $catselect .= '<option value="">-- '.s('choose category').'</option>';
+    $catselect .= '<option value="">-- '.s('none').'</option>';
     foreach ($aListCategories as $category) {
       $category = trim($category);
       $catselect .= sprintf('<option value="%s" %s>%s</option>',$category,$category == $row['category'] ? 'selected="selected"':'',$category);
