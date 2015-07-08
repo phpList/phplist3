@@ -136,7 +136,7 @@ while ($bounce = Sql_fetch_array($result)) {
   $element = $bounce["id"];
   $ls->addElement($element,PageUrl2('bounce&type='.$status.'&id='.$bounce["id"]));
   if (preg_match("#bounced list message ([\d]+)#",$bounce["status"],$regs)) {
-    $messageid = PageLink2('message&id='.$regs[1],campaignTitle($regs[1]));#sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+    $messageid = PageLink2('message&id='.$regs[1],shortenTextDisplay(campaignTitle($regs[1]),30));#sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
   } elseif ($bounce["status"] == "bounced system message") {
     $messageid = $GLOBALS['I18N']->get('System Message');
   } else {
