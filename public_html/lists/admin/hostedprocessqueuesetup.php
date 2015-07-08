@@ -1,6 +1,6 @@
 <?php
 
-$fopenAllowed = !empty(ini_get('allow_url_fopen'));
+$fopenAllowed = ini_get('allow_url_fopen');
 
 if (!empty($_POST['apikey'])) {
   if (!verifyToken()) { 
