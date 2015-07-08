@@ -200,6 +200,9 @@ if ($id) {
     default:
       $bounceBody = $bounce['data'];
   }
+  if (!empty($_SESSION['hidebounceheader'])) {
+      $bounce['header'] = '';
+  }
   
   $bouncedetail = sprintf ('
   <div class="fleft"><div class="label">'.$GLOBALS['I18N']->get('ID').'</div><div class="content">%d</div></div>
@@ -207,7 +210,7 @@ if ($id) {
   <div class="fleft"><div class="label">'.$GLOBALS['I18N']->get('Status').'</div><div class="content">%s</div></div>
   <div class="clear"></div><br />
   <div class="label">'.$GLOBALS['I18N']->get('Comment').'</div><div class="content">%s</div><br />
-  <div class="label">'.$GLOBALS['I18N']->get('Header').'</div><div class="content">%s</div><br />
+  <div class="label">'.$GLOBALS['I18N']->get('Header').'</div>'.'<div class="content">'.PageLinkAjax('bounce&hideheader=1','Close','','hide').'%s</div><br />
   <div class="label">'.$GLOBALS['I18N']->get('Body').'</div><div class="content">%s</div>',$id,
   $bounce["date"],$bounce["status"],$bounce["comment"],
   nl2br(htmlspecialchars($bounce["header"])),nl2br(htmlspecialchars($bounceBody)));
