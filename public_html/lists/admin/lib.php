@@ -248,6 +248,17 @@ function loadMessageData($msgid) {
   return $messagedata;
 }
 
+function campaignTitle($id) {
+  $campaignTitle = Sql_Fetch_Assoc_Query(sprintf('select data as title from %s where name = "subject" and id = %d',$GLOBALS['tables']['messagedata'],$id));
+  if (empty($campaignTitle['title'])) {
+    $campaignTitle = Sql_Fetch_Assoc_Query(sprintf('select subject as title from %s where id = %d',$GLOBALS['tables']['message'],$id));
+  }
+  if (empty($campaignTitle['title'])) {
+      $campaignTitle['title'] = $id;
+  }
+  return stripslashes($campaignTitle['title']);
+}
+
 #Send email with a random encrypted token.
 function sendAdminPasswordToken ($adminId){
   #Retrieve the admin login name.

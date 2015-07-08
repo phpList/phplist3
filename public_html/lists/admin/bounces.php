@@ -136,7 +136,7 @@ while ($bounce = Sql_fetch_array($result)) {
   $element = $bounce["id"];
   $ls->addElement($element,PageUrl2('bounce&type='.$status.'&id='.$bounce["id"]));
   if (preg_match("#bounced list message ([\d]+)#",$bounce["status"],$regs)) {
-    $messageid = sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+    $messageid = PageLink2('message&id='.$regs[1],campaignTitle($regs[1]));#sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
   } elseif ($bounce["status"] == "bounced system message") {
     $messageid = $GLOBALS['I18N']->get('System Message');
   } else {
@@ -149,11 +149,12 @@ while ($bounce = Sql_fetch_array($result)) {
     $ls->addColumn($element,'delayed',$GLOBALS['img_cross']);
   }
 */
-  $ls->addColumn($element,$GLOBALS['I18N']->get('message'),$messageid);
+  $ls->addColumn($element,s('Campaign'),$messageid);
+  
   if (preg_match("#([\d]+) bouncecount increased#",$bounce["comment"],$regs)) {
-    $userid = sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+    $userid = PageLink2('user&id='.$regs[1],$regs[1]);#sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
   } elseif (preg_match("#([\d]+) marked unconfirmed#",$bounce["comment"],$regs)) {
-    $userid = sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+    $userid = PageLink2('user&id='.$regs[1],$regs[1]);#sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
   } else {
     $userid = $GLOBALS['I18N']->get('Unknown');
   }
