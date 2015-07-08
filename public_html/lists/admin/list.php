@@ -145,7 +145,7 @@ if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['ta
 }
 
 print '<p class="total">'.$total .' '. $GLOBALS['I18N']->get('Lists').'</p>';
-if ($total > 50 && empty($_SESSION['showalllists'])) {
+if ($total > 30 && empty($_SESSION['showalllists'])) {
   $paging = simplePaging("list",$s,$total,10,'&nbsp;');
   $limit = " limit $s,10";
 } else {
