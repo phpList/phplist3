@@ -92,7 +92,7 @@ require_once dirname(__FILE__)."/defaultconfig.php";
 
 require_once dirname(__FILE__).'/connect.php';
 include_once dirname(__FILE__)."/lib.php";
-require_once dirname(__FILE__)."/netlib.php";
+require_once dirname(__FILE__)."/inc/netlib.php";
 require_once dirname(__FILE__)."/inc/interfacelib.php";
 
 // do a loose check, if the token is there, it needs to be valid.
