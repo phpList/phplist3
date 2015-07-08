@@ -572,7 +572,17 @@ while ($message = Sql_fetch_array($messages)) {
   $throttlecount = 0;
 
   $messageid = $message["id"];
+  $counters['sent_users_for_message '.$messageid] = 0;
   $counters['total_users_for_message '.$messageid] = 0;
+  if (PROCESSCAMPAIGNS_PARALLEL) {
+    $counters['max_users_for_message '.$messageid] = (int)$counters['num_per_batch'] / $num_messages; ## not entirely correct if a campaign has less left 
+    if (VERBOSE) {
+        cl_output(s('Maximum for campaign %d is %d',$messageid,$counters['max_users_for_message '.$messageid]));
+    }
+  } else {
+    $counters['max_users_for_message '.$messageid] = $counters['num_per_batch'];
+  }
+
   $counters['processed_users_for_message '.$messageid] = 0;
   $counters['failed_sent_for_message '.$messageid] = 0;
   
@@ -839,9 +849,9 @@ while ($message = Sql_fetch_array($messages)) {
 
   if (MAILQUEUE_BATCH_SIZE) {
     ## in case of sending multiple campaigns, reduce batch with "sent"
-    $num_per_batch -= $counters['sent'];
+   # $counters['num_per_batch'] -= $counters['sent'];
     
-    # send in batches of $num_per_batch users
+    # send in batches of $counters['num_per_batch'] users
     $batch_total = $counters['total_users_for_message '.$messageid];
     if ($counters['num_per_batch'] > 0) {
       $query .= sprintf(' limit 0,%d',$counters['num_per_batch']);
@@ -857,9 +867,18 @@ while ($message = Sql_fetch_array($messages)) {
     $affrows = Sql_Affected_Rows();
     processQueueOutput($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows,0,'progress');
   } 
-
+  
   while ($userdata = Sql_Fetch_Row($userids)) {
+    $userid = $userdata[0];    # id of the user
     $counters['processed_users_for_message '.$messageid]++;
+    
+    if ($counters['processed_users_for_message '.$messageid] > $counters['max_users_for_message '.$messageid]) {
+        if (VERBOSE) {
+            cl_output(s('Over limit for this campaign: %d is more than %d',$counters['processed_users_for_message '.$messageid],$counters['max_users_for_message '.$messageid]));
+        }
+        break;
+    }
+    
     $failure_reason = '';
     if ($counters['num_per_batch'] && $counters['sent'] >= $counters['num_per_batch']) {
       processQueueOutput(s('batch limit reached').": ".$counters['sent']." (".$counters['num_per_batch'].")",1,'progress');
@@ -867,7 +886,6 @@ while ($message = Sql_fetch_array($messages)) {
       return;
     }
     
-    $userid = $userdata[0];    # id of the user
     if (!empty($getspeedstats)) processQueueOutput('-----------------------------------'."\n".'start process user '.$userid);  
     $some = 1;
     set_time_limit(120);
@@ -1188,7 +1206,7 @@ while ($message = Sql_fetch_array($messages)) {
       $um = Sql_Fetch_Row($um);
       $notsent++;
       if (VERBOSE) {
-        processQueueOutput($GLOBALS['I18N']->get('Not sending to').' '. $userdata[0].', '.$GLOBALS['I18N']->get('already sent').' '.$um[0]);
+        processQueueOutput($GLOBALS['I18N']->get('Not sending to').' '. $userid.', '.$GLOBALS['I18N']->get('already sent').' '.$um[0]);
       }
     }
     $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");

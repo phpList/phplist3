@@ -215,6 +215,7 @@ if (!defined('PLUGIN_ROOTDIR')) define('PLUGIN_ROOTDIR','plugins'); ##17270 - th
 if (!defined('PLUGIN_ROOTDIRS')) define('PLUGIN_ROOTDIRS','');
 if (!defined('PHPMAILERHOST')) define("PHPMAILERHOST",'');
 if (!defined("MANUALLY_PROCESS_QUEUE")) define("MANUALLY_PROCESS_QUEUE",1);
+if (!defined("PROCESSCAMPAIGNS_PARALLEL")) define("PROCESSCAMPAIGNS_PARALLEL",false);
 if (!defined("CHECK_SESSIONIP")) define("CHECK_SESSIONIP",1);
 if (!defined("FILESYSTEM_ATTACHMENTS")) define("FILESYSTEM_ATTACHMENTS",0);
 if (!defined("MIMETYPES_FILE")) define("MIMETYPES_FILE","/etc/mime.types");
@@ -460,6 +461,10 @@ $counters = array(
   'add attachment error' => 0,
   'sendemail returned false' => 0,
   'sentastest' => 0,
+  'invalid' => 0,
+  'failed_sent' => 0,
+  'sent'=> 0,
+  'num_per_batch' => 0,
 );
 
 $repetitionLabels = array (

@@ -338,6 +338,11 @@ define ("MANUALLY_PROCESS_QUEUE",1);
 # if there are multiple messages in the queue, set a maximum to work on
 define('MAX_PROCESS_MESSAGE',999);
 
+# process parallel
+# if there are multiple messages in the queue, divide the max batch across them
+# instead of sending them one by one.
+#define('PROCESSCAMPAIGNS_PARALLEL',true);
+
 # define the amount of emails you want to send per period. If 0, batch processing
 # is disabled and messages are sent out as fast as possible
 define("MAILQUEUE_BATCH_SIZE",0); 
