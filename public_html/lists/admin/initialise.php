@@ -174,8 +174,17 @@ if ($success) {
   }
  
   # add a testlist
-  $info = $GLOBALS['I18N']->get("List for testing.");
+  $info = $GLOBALS['I18N']->get("List for testing");
   $result = Sql_query("insert into {$tables["list"]} (name,description,entered,active,owner) values(\"test\",\"$info\",now(),0,1)");
+  $info = s("Sign up to our newsletter");
+  $result = Sql_query("insert into {$tables["list"]} (name,description,entered,active,owner) values(\"newsletter\",\"$info\",now(),1,1)");
+    
+  ## add the admin to the lists
+  Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],1,$userid));
+  Sql_Query(sprintf('insert into %s (listid, userid, entered) values(%d,%d,now())',$tables['listuser'],2,$userid));
+ 
+  $uri = $_SERVER['REQUEST_URI'];
+  $uri = str_replace('?'.$_SERVER['QUERY_STRING'],'',$uri);
   $body = '
     Version: '.VERSION."\r\n"
     .' Url: '
