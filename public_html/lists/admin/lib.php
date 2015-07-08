@@ -1419,11 +1419,13 @@ function verifyCsrfGetToken($enforce = 1) { // enforce=0 allows checking "if exi
   if ($GLOBALS['commandline']) return true;
   if (isset($_GET['tk']) && isset($_SESSION['csrf_token'])) {
     if ($_GET['tk'] != $_SESSION['csrf_token']) {
-      print s('Error, incorrect session token');
+      $_SESSION['logout_error'] = s('Error, incorrect session token');
+      Redirect('logout&err=1');
       exit;
     }
   } elseif ($enforce && isset($_SESSION['csrf_token'])) {
-    print s('Error, incorrect session token');
+    $_SESSION['logout_error'] = s('Error, incorrect session token');
+    Redirect('logout&err=1');
     exit;
   }  
 }
