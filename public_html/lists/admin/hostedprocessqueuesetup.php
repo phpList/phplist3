@@ -18,7 +18,12 @@ if (!empty($_POST['apikey'])) {
   if (!empty($check) && strpos($check,'KEYPASS') !== false) {
     SaveConfig('PQAPIkey',trim(str_replace('"','',strip_tags($_POST['apikey']))),0);
     SaveConfig('pqchoice','phplistdotcom',0);
+    ## if we have active campaigns, start them now
     $_SESSION['action_result'] = s('Remote queue processing settings were saved successfully');
+    $count = Sql_Fetch_Row_Query(sprintf("select count(*) from %s where status not in ('draft', 'sent', 'prepared', 'suspended') and embargo <= now()", $tables['message']));
+    if ($count[0] > 0) {
+       $_SESSION['action_result'] .= '<br/>'.activateRemoteQueue();
+    }
     Redirect('messages&tab=active');
   } else {
     if (!empty($http_response_header[0]) && strpos($http_response_header[0],'200 OK') !== false) {
