@@ -105,19 +105,19 @@ if (MAILQUEUE_BATCH_SIZE) {
   } else {
     $counters['num_per_batch'] = sprintf('%d',MAILQUEUE_BATCH_SIZE);
   }
+  if (MAILQUEUE_BATCH_PERIOD) {
+    if ($minbatchperiod > 0) {
+      $batch_period = max(MAILQUEUE_BATCH_PERIOD,$minbatchperiod);
+    } else {
+      $batch_period = MAILQUEUE_BATCH_PERIOD;
+    }
+  }
 } else {
   if ($maxbatch > 0) {
     $counters['num_per_batch'] = $maxbatch;
   }
 }
 
-if (MAILQUEUE_BATCH_PERIOD) {
-  if ($minbatchperiod > 0) {
-    $batch_period = max(MAILQUEUE_BATCH_PERIOD,$minbatchperiod);
-  } else {
-    $batch_period = MAILQUEUE_BATCH_PERIOD;
-  }
-}
 
 ## force batch processing in small batches when called from the web interface
 /*
