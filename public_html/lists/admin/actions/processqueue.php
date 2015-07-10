@@ -16,6 +16,13 @@ if (isset($_GET['secret'])) {
     return;
   } else {
     $inRemoteCall = true;
+    ## check that we actually still want remote queue processing
+    $pqChoice = getConfig('pqchoice');
+    if ($pqChoice != 'phplistdotcom') {
+        $counters['campaigns'] = 0;
+        print outputCounters();
+        exit;
+    }
   }
 } else {
   ## we're in a normal session, so the csrf token should work
