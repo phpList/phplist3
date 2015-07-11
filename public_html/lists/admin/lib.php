@@ -742,6 +742,7 @@ function getPageLock($force = 0) {
       output (s('A process for this page is already running and it was still alive %d seconds ago',$running_res['age']),0);
       sleep(1); # to log the messages in the correct order
       if ($GLOBALS["commandline"]) {
+        cl_output (s('A process for this page is already running and it was still alive %d seconds ago',$running_res['age']),0);
         cl_output($GLOBALS['I18N']->get('Running commandline, quitting. We\'ll find out what to do in the next run.'));
         exit;
       }
