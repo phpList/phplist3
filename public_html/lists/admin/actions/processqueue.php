@@ -777,7 +777,8 @@ while ($message = Sql_fetch_array($messages)) {
     $user_attribute_query);*/
   $queued = 0;
   if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
-    $queued_count = Sql_Query(sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid));
+    $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messageid);
+    $queued_count = Sql_Query($query);
     $queued = Sql_Affected_Rows();
   # if (VERBOSE) {
       cl_output('found pre-queued subscribers '.$queued,0,'progress');
