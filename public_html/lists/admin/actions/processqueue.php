@@ -570,8 +570,8 @@ if ($num_messages) {
 
 $script_stage = 2; # we know the messages to process
 #include_once "footer.inc";
-if (!isset($counters['num_per_batch'])) {
-  $counters['num_per_batch'] = 1000000;
+if (empty($counters['num_per_batch'])) {
+  $counters['num_per_batch'] = 10000000;
 }
 
 while ($message = Sql_fetch_array($messages)) {
