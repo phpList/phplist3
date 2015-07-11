@@ -23,7 +23,7 @@ if (!empty($_POST['unsubscribe'])) {
 
   }
   printf($GLOBALS['I18N']->get('All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>'),$count,$unsubbed,$blacklisted);
-  print PageLinkButton('massunconfirm',s('Add more'));
+  print PageLinkButton('suppressionlist',s('Add more'));
   return;
 }
 ?>
