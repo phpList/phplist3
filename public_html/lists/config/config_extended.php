@@ -341,6 +341,8 @@ define('MAX_PROCESS_MESSAGE',999);
 # process parallel
 # if there are multiple messages in the queue, divide the max batch across them
 # instead of sending them one by one.
+# this only works if you use batch processing. It will divide the batch between the 
+# campaigns that need sending.
 #define('PROCESSCAMPAIGNS_PARALLEL',true);
 
 # define the amount of emails you want to send per period. If 0, batch processing
