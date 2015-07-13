@@ -1264,13 +1264,19 @@ function getSelectedLists($fieldname) {
   return $lists;
 }
 
-function Redirect($page) {
-  if (!empty($_SERVER['HTTP_HOST'])) {
-    $website = $_SERVER['HTTP_HOST'];
+function hostName() {
+  if (HTTP_HOST) {
+    return HTTP_HOST;
+  } elseif (!empty($_SERVER['HTTP_HOST'])) {
+    return $_SERVER['HTTP_HOST'];
   } else {
     ## could check SERVER_NAME as well
-    $website = getConfig("website");
+    return getConfig("website");
   }
+}
+
+function Redirect($page) {
+  $website = hostName();
   Header("Location: ".$GLOBALS['admin_scheme']."://".$website.$GLOBALS["adminpages"]."/?page=$page");
   exit;
 }
@@ -1723,7 +1729,7 @@ function phplist_shutdown () {
   $status = connection_status();
   if ($GLOBALS["mail_error_count"]) {
    $message = "Some errors occurred in the phpList Mailinglist System\n"
-    ."URL: {$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}\n"
+    ."URL: ".$GLOBALS['admin_scheme']."://".hostName()."{$_SERVER['REQUEST_URI']}\n"
     ."Error message(s):\n\n"
 
     .$GLOBALS["mail_error"];

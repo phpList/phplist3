@@ -749,6 +749,10 @@ define("EMAIL_ADDRESS_VALIDATION_LEVEL",2);
 
 # define('SYSTEM_TIMEZONE','Europe/London');
 
+# HTTP_HOST
+# In some systems (eg behind load balancing proxies) you may need to set the HOST to be something else
+# then the system identifies. If you do, you can set it here. 
+#define('HTTP_HOST','your.website.com');
 
 # list exclude will add the option to send a message to users who are on a list
 # except when they are on another list.

@@ -129,6 +129,9 @@ if (defined('PUBLIC_PROTOCOL')) {
 } else {
   $GLOBALS['public_scheme'] = $GLOBALS['scheme'];
 }
+if (!defined('HTTP_HOST')) { // allow overriding of _SERVER['HTTP_HOST']
+    define('HTTP_HOST',false); // but default to not, and take that value
+}
 
 if (!isset($bounce_protocol)) {
   $bounce_protocol = 'pop';
@@ -327,7 +330,7 @@ if (!defined('PHPLIST_POWEREDBY_URLROOT')) define('PHPLIST_POWEREDBY_URLROOT','h
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
   $allowed_referrers = array();
 }
-if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN','http://'.$_SERVER['HTTP_HOST']);
+if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN','http://'.hostName());
 
 if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',false);
 #https://mantis.phplist.com/view.php?id=15603

@@ -170,7 +170,7 @@ class PHPlistMailer extends PHPMailer {
       } else {
         $from = "[$ip_address]";
       }
-      $hostname = $_SERVER["HTTP_HOST"];
+      $hostname = hostName();
       $request_time = date('r',$_SERVER['REQUEST_TIME']);
       $sTimeStamp = "from $from by $hostname with HTTP; $request_time";
       $this->addTimeStamp($sTimeStamp);
