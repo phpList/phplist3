@@ -23,8 +23,8 @@ if (!empty($_POST['sendurl'])) {
     ## check there's a protocol
     ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
 
-    if ($_REQUEST['sendurl'] == 'e.g. http://www.phplist.com/testcampaign.html') {
-      $_REQUEST['sendurl'] = '';
+    if ($_POST['sendurl'] == 'e.g. http://www.phplist.com/testcampaign.html') {
+      $_POST['sendurl'] = '';
     } else {
       if (!preg_match('/^https?:\/\//i',$_POST['sendurl']) && !preg_match('/testcampaign/i',$_POST['sendurl'])) {
         $_POST['sendurl'] = 'http://'.$_POST['sendurl'];
