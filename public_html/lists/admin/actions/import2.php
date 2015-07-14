@@ -207,26 +207,35 @@ if (sizeof($email_list)) {
           $exists = Sql_Affected_Rows();
           $existing_user = Sql_fetch_array($result);
           # check whether the email will clash
-          $clashcheck = Sql_Fetch_Row_Query(sprintf('select id from %s
+          $clashcheck = Sql_Fetch_Array_Query(sprintf('select id,foreignkey,uniqid from %s
                     where email = "%s"', $tables["user"], $user["systemvalues"]["email"]));
-          if ($clashcheck[0] != $existing_user["id"]) {
-            $count['duplicate']++;
-            $notduplicate = 0;
-            $c = 0;
-            while (!$notduplicate) {
-              $c++;
-              $req = Sql_Query(sprintf('select id from %s where email = "%s"', $tables["user"], $GLOBALS['I18N']->get('duplicate') .
-              "$c " . $user["systemvalues"]["email"]));
-              $notduplicate = !Sql_Affected_Rows();
-            }
-            if (!$_SESSION["retainold"]) {
-              Sql_Query(sprintf('update %s set email = "%s" where email = "%s"', $tables["user"], "duplicate$c " .
-              $user["systemvalues"]["email"], $user["systemvalues"]["email"]));
-              addUserHistory("duplicate$c " . $user["systemvalues"]["email"], "Duplication clash ", ' User marked duplicate email after clash with imported record');
+          if ($clashcheck['id'] != $existing_user["id"]) {
+            #https://mantis.phplist.org/view.php?id=17752 
+            # if the existing record does not have an FK, we treat it as an update, matched on email
+            if (empty($clashcheck['foreignkey'])) {
+              $count["emailmatch"]++;
+              $count["fkeymatch"]--;
+              $exists = 1;
+              $existing_user = $clashcheck;
             } else {
-              if ($_SESSION["show_warnings"])
-                print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"] . $GLOBALS['I18N']->get(' user imported as ') . '&quot;' . $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"] . "&quot;");
-              $user["systemvalues"]["email"] = $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"];
+              $count['duplicate']++;
+              $notduplicate = 0;
+              $c = 0;
+              while (!$notduplicate) {
+               $c++;
+                $req = Sql_Query(sprintf('select id from %s where email = "%s"', $tables["user"], $GLOBALS['I18N']->get('duplicate') .
+                "$c " . $user["systemvalues"]["email"]));
+                $notduplicate = !Sql_Affected_Rows();
+              }
+              if (!$_SESSION["retainold"]) {
+                Sql_Query(sprintf('update %s set email = "%s" where email = "%s"', $tables["user"], "duplicate$c " .
+                $user["systemvalues"]["email"], $user["systemvalues"]["email"]));
+                addUserHistory("duplicate$c " . $user["systemvalues"]["email"], "Duplication clash ", ' User marked duplicate email after clash with imported record');
+              } else {
+                if ($_SESSION["show_warnings"])
+                  print Warn($GLOBALS['I18N']->get('Duplicate Email') . ' ' . $user["systemvalues"]["email"] . $GLOBALS['I18N']->get(' user imported as ') . '&quot;' . $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"] . "&quot;");
+                $user["systemvalues"]["email"] = $GLOBALS['I18N']->get('duplicate') . "$c " . $user["systemvalues"]["email"];
+              }
             }
           }
         } else {
