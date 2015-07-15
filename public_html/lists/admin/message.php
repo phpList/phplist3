@@ -86,9 +86,11 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 
 $content = '<table class="messageView">';
 
-foreach (array('entered','subject','fromfield','message','textmessage','footer') as $field ) {
-  $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s($field),nl2br(stripslashes($msgdata[$field])));
-}
+$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('entered'),stripslashes($msgdata['entered']));
+$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('fromfield'),stripslashes($msgdata['fromfield']));
+$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('message'),stripslashes($msgdata['message']));
+$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('textmessage'),nl2br(stripslashes($msgdata['textmessage'])));
+$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('footer'),stripslashes($msgdata['footer']));
 
 $finishSending = mktime($msgdata['finishsending']['hour'],$msgdata['finishsending']['minute'],0,
     $msgdata['finishsending']['month'],$msgdata['finishsending']['day'],$msgdata['finishsending']['year']);
