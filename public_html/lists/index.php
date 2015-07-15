@@ -828,7 +828,8 @@ function unsubscribePage($id) {
         array_push($subscriptions,$row[0]);
       }
 
-      $result = Sql_query(sprintf('delete from %s where userid = %d',$tables["listuser"],$userid));
+      ## 17753 - do not actually remove the list-membership when unsubscribing
+   #   $result = Sql_query(sprintf('delete from %s where userid = %d',$tables["listuser"],$userid));
       $lists = "  * ".$GLOBALS["strAllMailinglists"]."\n";
       # add user to blacklist
       addUserToBlacklist($email,nl2br(strip_tags($_POST['unsubscribereason'])));
