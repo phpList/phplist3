@@ -1030,7 +1030,7 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
       }
       
       if (!empty($_SESSION['csrf_token'])) {
-        $token = '&tk='.$_SESSION['csrf_token'];
+        $token = '&amp;tk='.$_SESSION['csrf_token'];
       } else {
         $token = '';
       }
