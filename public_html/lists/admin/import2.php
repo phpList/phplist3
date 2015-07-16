@@ -20,9 +20,6 @@ $illegal_cha = array (
 $email_list = array ();
 $attributes = array();
 
-if (!isset ($GLOBALS['scheme'])) {
-  $GLOBALS['scheme'] = 'http';
-}
 if (!isset($everyone_groupid)) {
   $everyone_groupid = -1;
 }

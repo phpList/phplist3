@@ -253,7 +253,7 @@ $default_config = array (
 
   # the location of your subscribe script
 "subscribeurl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
   'description' => s("URL where subscribers can sign up"),
   'type' => "url",
   'allowempty' => 0,
@@ -262,7 +262,7 @@ $default_config = array (
 
   # the location of your unsubscribe script:
 "unsubscribeurl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
   'description' => s("URL where subscribers can unsubscribe"),
   'type' => "url",
   'allowempty' => 0,
@@ -272,7 +272,7 @@ $default_config = array (
   #0013076: Blacklisting posibility for unknown users
   # the location of your blacklist script:
 "blacklisturl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
   'description' => s("URL where unknown users can unsubscribe (do-not-send-list)"),
   'type' => "url",
   'allowempty' => 0,
@@ -281,7 +281,7 @@ $default_config = array (
 
 # the location of your confirm script:
 "confirmationurl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
   'description' => s("URL where subscribers have to confirm their subscription"),
   'type' => "text",
   'allowempty' => 0,
@@ -290,7 +290,7 @@ $default_config = array (
 
   # url to change their preferences
 "preferencesurl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
   'description' => s("URL where subscribers can update their details"),
   'type' => "text",
   'allowempty' => 0,
@@ -299,7 +299,7 @@ $default_config = array (
 
   # url to change their preferences
 "forwardurl" => array (
-  'value' => $GLOBALS['scheme'] . "://[WEBSITE]$pageroot/?p=forward",
+  'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=forward",
   'description' => s("URL for forwarding messages"),
   'type' => "text",
   'allowempty' => 0,

@@ -123,7 +123,11 @@ if (!isset($database_connection_ssl))
 ## set it on the fly, although that will probably only work with Apache
 ## we need to save this in the DB, so that it'll work on commandline
 $GLOBALS['scheme'] = (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) ? 'https' : 'http';
-$GLOBALS['admin_scheme'] = $GLOBALS['scheme'];
+if (defined('ADMIN_PROTOCOL')) {
+   $GLOBALS['admin_scheme'] = ADMIN_PROTOCOL;
+} else {
+    $GLOBALS['admin_scheme'] = $GLOBALS['scheme'];
+}
 if (defined('PUBLIC_PROTOCOL')) {
   $GLOBALS['public_scheme'] = PUBLIC_PROTOCOL;
 } else {

@@ -1654,7 +1654,7 @@ function quoteEnclosed($value,$col_delim = "\t",$row_delim = "\n") {
 
 function activateRemoteQueue() {
   $result = '';
-  $activated = file_get_contents(PQAPI_URL.'&cmd=start&key='.getConfig('PQAPIkey').'&s='.urlencode(getConfig('remote_processing_secret')).'&u='.base64_encode($_SERVER['REQUEST_SCHEME'].'://'.hostName().dirname($_SERVER['REQUEST_URI'])));
+  $activated = file_get_contents(PQAPI_URL.'&cmd=start&key='.getConfig('PQAPIkey').'&s='.urlencode(getConfig('remote_processing_secret')).'&u='.base64_encode($GLOBALS['admin_scheme'].'://'.hostName().dirname($_SERVER['REQUEST_URI'])));
   if ($activated == 'OK') {
     $result .= '<h3>'.s('Remote queue processing has been activated successfully').'</h3>';
     $result .= '<p>'.PageLinkButton("messages&tab=active",$GLOBALS['I18N']->get("view progress")).'</p>';

@@ -784,6 +784,7 @@ define('MESSAGEQUEUE_PREPARE',0);
 #$admin_auth_module = '/usr/local/etc/auth.inc';
 
 
+
 # Public protocol
 # phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
 # tracking images
@@ -791,6 +792,10 @@ define('MESSAGEQUEUE_PREPARE',0);
 # see also https://mantis.phplist.com/view.php?id=16611
 #define('PUBLIC_PROTOCOL','http');
 
+# Admin protocol
+# similar to the above, if you need to force the admin pages on either http or https (eg when behind a 
+# proxy that prevents proper auto-detection), you can set it here
+#define('ADMIN_PROTOCOL','https');
 
 # advanced bounce processing
 # with advanced bounce handling you are able to define regular expressions that match bounces and the

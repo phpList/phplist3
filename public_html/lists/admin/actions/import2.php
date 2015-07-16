@@ -293,7 +293,7 @@ if (sizeof($email_list)) {
           $count["dataupdate"]++;
           $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables["user"], $userid));
           $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-          $history_entry = $GLOBALS['scheme'] . '://' . getConfig("website") . $GLOBALS["adminpages"] . '/?page=user&id=' . $userid . "\n\n";
+          $history_entry = $GLOBALS['admin_scheme'] . '://' . getConfig("website") . $GLOBALS["adminpages"] . '/?page=user&id=' . $userid . "\n\n";
           foreach ($user["systemvalues"] as $column => $value) {
             if (!empty($column)) { # && !empty($value)) {
               if ($column == 'groupmapping' || strpos($column,'grouptype_') === 0) {
