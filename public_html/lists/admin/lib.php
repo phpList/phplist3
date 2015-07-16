@@ -1515,11 +1515,11 @@ function shortenTextDisplay($text,$max = 30) {
   }
    
   $text = str_replace('http://','',$text);
-  if (strlen($text) > $max) {
+  if (mb_strlen($text) > $max) {
     if ($max < 30) {
-      $display = substr($text,0,$max - 4).' ... ';
+      $display = mb_substr($text,0,$max - 4).' ... ';
     } else {
-      $display = substr($text,0,20).' ... '.substr($text,-10);
+      $display = mb_substr($text,0,20).' ... '.mb_substr($text,-10);
     }
       
   } else {
