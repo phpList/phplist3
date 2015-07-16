@@ -23,10 +23,16 @@ $GLOBALS["pagestats"] = array();
 $GLOBALS["pagestats"]["time_start"] = $now["sec"] * 1000000 + $now["usec"];
 $GLOBALS["pagestats"]["number_of_queries"] = 0;
 
-if (function_exists('iconv_set_encoding')) {
-  iconv_set_encoding("input_encoding", "UTF-8");
-  iconv_set_encoding("internal_encoding", "UTF-8");
-  iconv_set_encoding("output_encoding", "UTF-8");
+// taken from Joomla, prepare for PHP5.6 and up
+// see https://github.com/phpList/phplist3/pull/3
+if (function_exists('iconv') || ((!strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && dl('iconv.so')))) {
+  if (version_compare(PHP_VERSION, '5.6', '>='))	{
+	@ini_set('default_charset', 'UTF-8');
+  } elseif (function_exists('iconv_set_encoding')) {
+    iconv_set_encoding("input_encoding", "UTF-8");
+    iconv_set_encoding("internal_encoding", "UTF-8");
+    iconv_set_encoding("output_encoding", "UTF-8");
+  }
 }
 
 if (function_exists('mb_internal_encoding')) {
