@@ -1509,6 +1509,11 @@ function listCategories() {
  */
 
 function shortenTextDisplay($text,$max = 30) {
+  ## use mb_ version if possible, see https://github.com/phpList/phplist3/pull/10
+  if (function_exists('mb_strlen')) {
+      return mb_shortenTextDisplay($text,$max);
+  }
+   
   $text = str_replace('http://','',$text);
   if (strlen($text) > $max) {
     if ($max < 30) {
@@ -1525,6 +1530,25 @@ function shortenTextDisplay($text,$max = 30) {
   
   return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
 }
+
+function mb_shortenTextDisplay($text,$max = 30) {
+  $text = str_replace('http://','',$text);
+  if (mb_strlen($text) > $max) {
+    if ($max < 30) {
+      $display = mb_substr($text,0,$max - 4).' ... ';
+    } else {
+      $display = mb_substr($text,0,20).' ... '.mb_substr($text,-10);
+    }
+      
+  } else {
+    $display = $text;
+  }
+  $display = str_replace('/','/&#x200b;',$display);
+  $display = str_replace('@','@&#x200b;',$display);
+  
+  return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>',htmlspecialchars($text),htmlspecialchars($text),$display);
+}
+
 
 if (!function_exists('getnicebacktrace')) {
 function getNiceBackTrace( $bTrace = false ) {
