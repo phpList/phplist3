@@ -381,6 +381,22 @@ class phplistPlugin {
     # prefix the shorttag with _ to suppress it from the send page (for internal use)
     return array ();
   }
+
+  /**
+   * 
+   * Called when viewing a message
+   * The plugin can return a caption and a value that will be displayed as an additional row.
+   * Each can include HTML and should be html encoded.
+   * 
+   * @param messageid integer: id of the campaign
+   * @param messagedata array: associative array of message data
+   * @return array 2-element array, [0] caption, [1] value.
+   *         or false if the plugin does not want to display a row.
+   */
+  function viewMessage($messageid, array $messagedata)
+  {
+    return false;
+  }
   
   /*
    * HelloWorld
