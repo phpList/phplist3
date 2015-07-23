@@ -85,12 +85,12 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 }  
 
 $content = '<table class="messageView">';
-
-$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('entered'),stripslashes($msgdata['entered']));
-$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('fromfield'),stripslashes($msgdata['fromfield']));
-$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('message'),stripslashes($msgdata['message']));
-$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('textmessage'),nl2br(stripslashes($msgdata['textmessage'])));
-$content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('footer'),stripslashes($msgdata['footer']));
+$format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>';
+$content .= sprintf($format,s('entered'),stripslashes($msgdata['entered']));
+$content .= sprintf($format,s('fromfield'),stripslashes($msgdata['fromfield']));
+$content .= sprintf($format,s('message'),stripslashes($msgdata['message']));
+$content .= sprintf($format,s('textmessage'),nl2br(stripslashes($msgdata['textmessage'])));
+$content .= sprintf($format,s('footer'),stripslashes($msgdata['footer']));
 
 $finishSending = mktime($msgdata['finishsending']['hour'],$msgdata['finishsending']['minute'],0,
     $msgdata['finishsending']['month'],$msgdata['finishsending']['day'],$msgdata['finishsending']['year']);
@@ -102,17 +102,23 @@ $requeueuntilTime = mktime($msgdata['requeueuntil']['hour'],$msgdata['requeueunt
     $msgdata['requeueuntil']['month'],$msgdata['requeueuntil']['day'],$msgdata['requeueuntil']['year']);
 
 if ($embargoTime > time()) {
-    $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('Embargoed until'),date('Y-m-d H:i:s',$embargoTime ));
+    $content .= sprintf($format,s('Embargoed until'),date('Y-m-d H:i:s',$embargoTime ));
 }
 if ($finishSending > time()) {
-    $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('Stop sending after'),date('Y-m-d H:i:s',$finishSending ));
+    $content .= sprintf($format,s('Stop sending after'),date('Y-m-d H:i:s',$finishSending ));
 }
 if (!empty($msgdata['repeatinterval'])) {
-  $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('Repeating'),s('every %s until %s',s($repetitionLabels[$msgdata['repeatinterval']]),date('Y-m-d H:i:s',$repeatuntilTime )));
+  $content .= sprintf($format,s('Repeating'),s('every %s until %s',s($repetitionLabels[$msgdata['repeatinterval']]),date('Y-m-d H:i:s',$repeatuntilTime )));
 }    
 if (!empty($msgdata['requeueinterval'])) {
-  $content .= sprintf('<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>',s('Requeueing'),s('every %s until %s',s($repetitionLabels[$msgdata['requeueinterval']]),date('Y-m-d H:i:s',$requeueuntilTime )));
+  $content .= sprintf($format,s('Requeueing'),s('every %s until %s',s($repetitionLabels[$msgdata['requeueinterval']]),date('Y-m-d H:i:s',$requeueuntilTime )));
 }    
+
+foreach ($plugins as $pi) {
+    if ($piAdd = $pi->viewMessage($id, $msgdata)) {
+        $content .= sprintf($format, $piAdd[0], $piAdd[1]);
+    }
+}
 
 if (ALLOW_ATTACHMENTS) {
   $content .=  '<tr><td colspan="2"><h3>' . $GLOBALS['I18N']->get('Attachments for this campaign') . '</h3></td></tr>';
