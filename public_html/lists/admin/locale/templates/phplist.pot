@@ -3917,58 +3917,58 @@ msgstr ""
 msgid "Requeueing"
 msgstr ""
 
-#: public_html/lists/admin/message.php:118
+#: public_html/lists/admin/message.php:124
 msgid "Attachments for this campaign"
 msgstr ""
 
-#: public_html/lists/admin/message.php:123
+#: public_html/lists/admin/message.php:129
 msgid "No attachments"
 msgstr ""
 
-#: public_html/lists/admin/message.php:126
+#: public_html/lists/admin/message.php:132
 #: public_html/databasestructure.php:111
 msgid "Filename"
 msgstr ""
 
-#: public_html/lists/admin/message.php:127
+#: public_html/lists/admin/message.php:133
 msgid "Size"
 msgstr ""
 
-#: public_html/lists/admin/message.php:128
+#: public_html/lists/admin/message.php:134
 #: public_html/databasestructure.php:110
 msgid "Mime Type"
 msgstr ""
 
-#: public_html/lists/admin/message.php:129
+#: public_html/lists/admin/message.php:135
 #: public_html/databasestructure.php:33 public_html/databasestructure.php:94
 msgid "Description"
 msgstr ""
 
-#: public_html/lists/admin/message.php:135
+#: public_html/lists/admin/message.php:141
 msgid ""
 "This campaign will be sent to subscribers, who are member of the following "
 "lists"
 msgstr ""
 
-#: public_html/lists/admin/message.php:137
+#: public_html/lists/admin/message.php:143
 msgid ""
 "This campaign has been sent to subscribers, who are member of the following "
 "lists"
 msgstr ""
 
-#: public_html/lists/admin/message.php:143
+#: public_html/lists/admin/message.php:149
 msgid "None yet"
 msgstr ""
 
-#: public_html/lists/admin/message.php:150
+#: public_html/lists/admin/message.php:156
 msgid "Except when they were also member of these lists"
 msgstr ""
 
-#: public_html/lists/admin/message.php:162
+#: public_html/lists/admin/message.php:168
 msgid "Send this campaign to another list"
 msgstr ""
 
-#: public_html/lists/admin/message.php:179
+#: public_html/lists/admin/message.php:185
 msgid "Resend"
 msgstr ""
 
