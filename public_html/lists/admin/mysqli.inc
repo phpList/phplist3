@@ -4,6 +4,7 @@
 # replace functions in this file to make it work with other Databases
 
 if (!function_exists("mysqli_connect")) {
+  header('Mysqli functionality missing',true,500);
   print "Fatal Error: Mysql is not supported in your PHP, recompile and try again.";
   exit;
 }
@@ -28,21 +29,27 @@ function Sql_Connect($host,$user,$password,$database) {
     }
     switch ($errno) {
       case 1049: # unknown database
+        header('Unknown database',true,500);
         print "Unknown database, cannot continue";
         exit;
       case 1045: # access denied
+        header('Cannot connect to database, access denied',true,500);
         print "Cannot connect to database, access denied. Please check your configuration or contact the administrator.";
         exit;
       case 2002:
+        header('Cannot connect to database, server not running',true,500);
          print "Cannot connect to database, Sql server is not running. Please check your configuration or contact the administrator.";
         exit;
       case 1040: # too many connections
+        header('Cannot connect to database, server too busy',true,500);
         print "Sorry, the server is currently too busy, please try again later.";
         exit;
       case 2005: # "unknown host"
+        header('Cannot connect to database, unknown host',true,500);
         print "Unknown database host to connected to, please check your configuration";
         exit;
       case 2006: # "gone away"
+        header('Cannot connect to database, server gone away',true,500);
         print "Sorry, the server is currently too busy, please try again later.";
         exit;
       case 0:
@@ -51,12 +58,14 @@ function Sql_Connect($host,$user,$password,$database) {
         if (isset($GLOBALS['database_connection'])) {
           print SQL_Error($GLOBALS['database_connection'],$errno);
         } else {
+          header('Cannot connect to database',true,500);
           print "Cannot connect to Database, please check your configuration";
         }
     }
     exit;
   }
   if (!$db) {
+    header('Cannot connect to database',true,500);
     print "Cannot connect to Database, please check your configuration";
     exit;
   }
