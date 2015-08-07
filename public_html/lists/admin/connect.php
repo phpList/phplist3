@@ -1216,7 +1216,9 @@ function listSelectHTML ($current,$fieldname,$subselect,$alltab = '') {
       if ($some > 1) { ## don't show tabs, when there's just one
         $listindex .= sprintf('<li><a href="#%s%d">%s</a></li>',$fieldname,$tabno,$category);
       }
-      $listhtml .= sprintf('<div id="%s%d"><ul>%s</ul></div>',$fieldname,$tabno,$content);
+      // Add select all checkbox in every category to select all lists in that category.
+      $content = sprintf('<li><input class = "all-lists" type=checkbox name="all-lists-cat-' . str_replace(' ', '-', strtolower($category)) . '">Select all lists in this category</li>') . $content;
+      $listhtml .= sprintf('<div class="%s" id="%s%d"><ul>%s</ul></div>', str_replace(' ', '-', strtolower($category)), $fieldname,$tabno,$content);
       $tabno++;
     }
   }
