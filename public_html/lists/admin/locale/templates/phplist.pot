@@ -8672,393 +8672,409 @@ msgid "pagetitlehover:user"
 msgstr ""
 
 #: public_html/databasestructure.php:250
-msgid "pagetitle:userhistory"
+msgid "pagetitle:adduser"
 msgstr ""
 
 #: public_html/databasestructure.php:251
-msgid "pagetitlehover:userhistory"
+msgid "pagetitlehover:adduser"
 msgstr ""
 
 #: public_html/databasestructure.php:252
-msgid "pagetitle:messages"
+msgid "pagetitle:userhistory"
 msgstr ""
 
 #: public_html/databasestructure.php:253
-msgid "pagetitlehover:messages"
+msgid "pagetitlehover:userhistory"
 msgstr ""
 
 #: public_html/databasestructure.php:254
-msgid "pagetitle:message"
+msgid "pagetitle:messages"
 msgstr ""
 
 #: public_html/databasestructure.php:255
-msgid "pagetitlehover:message"
+msgid "pagetitlehover:messages"
 msgstr ""
 
 #: public_html/databasestructure.php:256
-msgid "pagetitle:processqueue"
+msgid "pagetitle:message"
 msgstr ""
 
 #: public_html/databasestructure.php:257
-msgid "pagetitlehover:processqueue"
+msgid "pagetitlehover:message"
 msgstr ""
 
 #: public_html/databasestructure.php:258
-msgid "pagetitle:defaults"
+msgid "pagetitle:processqueue"
 msgstr ""
 
 #: public_html/databasestructure.php:259
-msgid "pagetitlehover:defaults"
+msgid "pagetitlehover:processqueue"
 msgstr ""
 
 #: public_html/databasestructure.php:260
-msgid "pagetitle:upgrade"
+msgid "pagetitle:defaults"
 msgstr ""
 
 #: public_html/databasestructure.php:261
-msgid "pagetitlehover:upgrade"
+msgid "pagetitlehover:defaults"
 msgstr ""
 
 #: public_html/databasestructure.php:262
-msgid "pagetitle:templates"
+msgid "pagetitle:upgrade"
 msgstr ""
 
 #: public_html/databasestructure.php:263
-msgid "pagetitlehover:templates"
+msgid "pagetitlehover:upgrade"
 msgstr ""
 
 #: public_html/databasestructure.php:264
-msgid "pagetitle:template"
+msgid "pagetitle:templates"
 msgstr ""
 
 #: public_html/databasestructure.php:265
-msgid "pagetitlehover:template"
+msgid "pagetitlehover:templates"
 msgstr ""
 
 #: public_html/databasestructure.php:266
-msgid "pagetitle:viewtemplate"
+msgid "pagetitle:template"
 msgstr ""
 
 #: public_html/databasestructure.php:267
-msgid "pagetitlehover:viewtemplate"
+msgid "pagetitlehover:template"
 msgstr ""
 
 #: public_html/databasestructure.php:268
-msgid "pagetitle:configure"
+msgid "pagetitle:viewtemplate"
 msgstr ""
 
 #: public_html/databasestructure.php:269
-msgid "pagetitlehover:configure"
+msgid "pagetitlehover:viewtemplate"
 msgstr ""
 
 #: public_html/databasestructure.php:270
-msgid "pagetitle:admin"
+msgid "pagetitle:configure"
 msgstr ""
 
 #: public_html/databasestructure.php:271
-msgid "pagetitlehover:admin"
+msgid "pagetitlehover:configure"
 msgstr ""
 
 #: public_html/databasestructure.php:272
-msgid "pagetitle:admins"
+msgid "pagetitle:admin"
 msgstr ""
 
 #: public_html/databasestructure.php:273
-msgid "pagetitlehover:admins"
+msgid "pagetitlehover:admin"
 msgstr ""
 
 #: public_html/databasestructure.php:274
-msgid "pagetitle:adminattributes"
+msgid "pagetitle:admins"
 msgstr ""
 
 #: public_html/databasestructure.php:275
-msgid "pagetitlehover:adminattributes"
+msgid "pagetitlehover:admins"
 msgstr ""
 
 #: public_html/databasestructure.php:276
-msgid "pagetitle:processbounces"
+msgid "pagetitle:adminattributes"
 msgstr ""
 
 #: public_html/databasestructure.php:277
-msgid "pagetitlehover:processbounces"
+msgid "pagetitlehover:adminattributes"
 msgstr ""
 
 #: public_html/databasestructure.php:278
-msgid "pagetitle:bounces"
+msgid "pagetitle:processbounces"
 msgstr ""
 
 #: public_html/databasestructure.php:279
-msgid "pagetitlehover:bounces"
+msgid "pagetitlehover:processbounces"
 msgstr ""
 
 #: public_html/databasestructure.php:280
-msgid "pagetitle:bounce"
+msgid "pagetitle:bounces"
 msgstr ""
 
 #: public_html/databasestructure.php:281
-msgid "pagetitlehover:bounce"
+msgid "pagetitlehover:bounces"
 msgstr ""
 
 #: public_html/databasestructure.php:282
-msgid "pagetitle:spageedit"
+msgid "pagetitle:bounce"
 msgstr ""
 
 #: public_html/databasestructure.php:283
-msgid "pagetitlehover:spageedit"
+msgid "pagetitlehover:bounce"
 msgstr ""
 
 #: public_html/databasestructure.php:284
-msgid "pagetitle:spage"
+msgid "pagetitle:spageedit"
 msgstr ""
 
 #: public_html/databasestructure.php:285
-msgid "pagetitlehover:spage"
+msgid "pagetitlehover:spageedit"
 msgstr ""
 
 #: public_html/databasestructure.php:286
-msgid "pagetitle:eventlog"
+msgid "pagetitle:spage"
 msgstr ""
 
 #: public_html/databasestructure.php:287
-msgid "pagetitlehover:eventlog"
+msgid "pagetitlehover:spage"
 msgstr ""
 
 #: public_html/databasestructure.php:288
-msgid "pagetitle:getrss"
+msgid "pagetitle:eventlog"
 msgstr ""
 
 #: public_html/databasestructure.php:289
-msgid "pagetitlehover:getrss"
+msgid "pagetitlehover:eventlog"
 msgstr ""
 
 #: public_html/databasestructure.php:290
-msgid "pagetitle:viewrss"
+msgid "pagetitle:getrss"
 msgstr ""
 
 #: public_html/databasestructure.php:291
-msgid "pagetitlehover:viewrss"
+msgid "pagetitlehover:getrss"
 msgstr ""
 
 #: public_html/databasestructure.php:292
-msgid "pagetitle:community"
+msgid "pagetitle:viewrss"
 msgstr ""
 
 #: public_html/databasestructure.php:293
-msgid "pagetitlehover:community"
+msgid "pagetitlehover:viewrss"
 msgstr ""
 
 #: public_html/databasestructure.php:294
-msgid "pagetitle:vote"
+msgid "pagetitle:community"
 msgstr ""
 
 #: public_html/databasestructure.php:295
-msgid "pagetitlehover:vote"
+msgid "pagetitlehover:community"
 msgstr ""
 
 #: public_html/databasestructure.php:296
-msgid "pagetitle:login"
+msgid "pagetitle:vote"
 msgstr ""
 
 #: public_html/databasestructure.php:297
-msgid "pagetitlehover:login"
+msgid "pagetitlehover:vote"
 msgstr ""
 
 #: public_html/databasestructure.php:298
-msgid "pagetitle:logout"
+msgid "pagetitle:login"
 msgstr ""
 
 #: public_html/databasestructure.php:299
-msgid "pagetitlehover:logout"
+msgid "pagetitlehover:login"
 msgstr ""
 
 #: public_html/databasestructure.php:300
-msgid "pagetitle:mclicks"
+msgid "pagetitle:logout"
 msgstr ""
 
 #: public_html/databasestructure.php:301
-msgid "pagetitlehover:mclicks"
+msgid "pagetitlehover:logout"
 msgstr ""
 
 #: public_html/databasestructure.php:302
-msgid "pagetitle:uclicks"
+msgid "pagetitle:mclicks"
 msgstr ""
 
 #: public_html/databasestructure.php:303
-msgid "pagetitlehover:uclicks"
+msgid "pagetitlehover:mclicks"
 msgstr ""
 
 #: public_html/databasestructure.php:304
-msgid "pagetitle:massunconfirm"
+msgid "pagetitle:uclicks"
 msgstr ""
 
 #: public_html/databasestructure.php:305
-msgid "pagetitlehover:massunconfirm"
+msgid "pagetitlehover:uclicks"
 msgstr ""
 
 #: public_html/databasestructure.php:306
-msgid "pagetitle:massremove"
+msgid "pagetitle:massunconfirm"
 msgstr ""
 
 #: public_html/databasestructure.php:307
-msgid "pagetitlehover:massremove"
+msgid "pagetitlehover:massunconfirm"
 msgstr ""
 
 #: public_html/databasestructure.php:308
-msgid "pagetitle:usermgt"
+msgid "pagetitle:massremove"
 msgstr ""
 
 #: public_html/databasestructure.php:309
-msgid "pagetitlehover:usermgt"
+msgid "pagetitlehover:massremove"
 msgstr ""
 
 #: public_html/databasestructure.php:310
-msgid "pagetitle:bouncemgt"
+msgid "pagetitle:usermgt"
 msgstr ""
 
 #: public_html/databasestructure.php:311
-msgid "pagetitlehover:bouncemgt"
+msgid "pagetitlehover:usermgt"
 msgstr ""
 
 #: public_html/databasestructure.php:312
-msgid "pagetitle:domainstats"
+msgid "pagetitle:bouncemgt"
 msgstr ""
 
 #: public_html/databasestructure.php:313
-msgid "pagetitlehover:domainstats"
+msgid "pagetitlehover:bouncemgt"
 msgstr ""
 
 #: public_html/databasestructure.php:314
-msgid "pagetitle:mviews"
+msgid "pagetitle:domainstats"
 msgstr ""
 
 #: public_html/databasestructure.php:315
-msgid "pagetitlehover:mviews"
+msgid "pagetitlehover:domainstats"
 msgstr ""
 
 #: public_html/databasestructure.php:316
-msgid "pagetitle:statsmgt"
+msgid "pagetitle:mviews"
 msgstr ""
 
 #: public_html/databasestructure.php:317
-msgid "pagetitlehover:statsmgt"
+msgid "pagetitlehover:mviews"
 msgstr ""
 
 #: public_html/databasestructure.php:318
-msgid "pagetitle:statsoverview"
+msgid "pagetitle:statsmgt"
 msgstr ""
 
 #: public_html/databasestructure.php:319
-msgid "pagetitlehover:statsoverview"
+msgid "pagetitlehover:statsmgt"
 msgstr ""
 
 #: public_html/databasestructure.php:320
-msgid "pagetitle:subscriberstats"
+msgid "pagetitle:statsoverview"
 msgstr ""
 
 #: public_html/databasestructure.php:321
-msgid "pagetitlehover:subscriberstats"
+msgid "pagetitlehover:statsoverview"
 msgstr ""
 
 #: public_html/databasestructure.php:322
-msgid "pagetitle:dbcheck"
+msgid "pagetitle:subscriberstats"
 msgstr ""
 
 #: public_html/databasestructure.php:323
-msgid "pagetitlehover:dbcheck"
+msgid "pagetitlehover:subscriberstats"
 msgstr ""
 
 #: public_html/databasestructure.php:324
-msgid "pagetitle:importadmin"
+msgid "pagetitle:dbcheck"
 msgstr ""
 
 #: public_html/databasestructure.php:325
-msgid "pagetitlehover:importadmin"
+msgid "pagetitlehover:dbcheck"
 msgstr ""
 
 #: public_html/databasestructure.php:326
-msgid "pagetitle:dbadmin"
+msgid "pagetitle:importadmin"
 msgstr ""
 
 #: public_html/databasestructure.php:327
-msgid "pagetitlehover:dbadmin"
+msgid "pagetitlehover:importadmin"
 msgstr ""
 
 #: public_html/databasestructure.php:328
-msgid "pagetitle:usercheck"
+msgid "pagetitle:dbadmin"
 msgstr ""
 
 #: public_html/databasestructure.php:329
-msgid "pagetitlehover:usercheck"
+msgid "pagetitlehover:dbadmin"
 msgstr ""
 
 #: public_html/databasestructure.php:330
-msgid "pagetitle:listbounces"
+msgid "pagetitle:usercheck"
 msgstr ""
 
 #: public_html/databasestructure.php:331
-msgid "pagetitlehover:listbounces"
+msgid "pagetitlehover:usercheck"
 msgstr ""
 
 #: public_html/databasestructure.php:332
-msgid "pagetitle:bouncerules"
+msgid "pagetitle:listbounces"
 msgstr ""
 
 #: public_html/databasestructure.php:333
-msgid "pagetitlehover:bouncerules"
+msgid "pagetitlehover:listbounces"
 msgstr ""
 
 #: public_html/databasestructure.php:334
-msgid "pagetitle:checkbouncerules"
+msgid "pagetitle:bouncerules"
 msgstr ""
 
 #: public_html/databasestructure.php:335
-msgid "pagetitlehover:checkbouncerules"
+msgid "pagetitlehover:bouncerules"
 msgstr ""
 
 #: public_html/databasestructure.php:336
-msgid "pagetitle:translate"
+msgid "pagetitle:bouncerule"
 msgstr ""
 
 #: public_html/databasestructure.php:337
-msgid "pagetitlehover:translate"
+msgid "pagetitlehover:bouncerule"
 msgstr ""
 
 #: public_html/databasestructure.php:338
-msgid "pagetitle:ajaxform"
+msgid "pagetitle:checkbouncerules"
 msgstr ""
 
 #: public_html/databasestructure.php:339
-msgid "pagetitlehover:ajaxform"
+msgid "pagetitlehover:checkbouncerules"
 msgstr ""
 
 #: public_html/databasestructure.php:340
-msgid "pagetitle:updatetranslation"
+msgid "pagetitle:translate"
 msgstr ""
 
 #: public_html/databasestructure.php:341
-msgid "pagetitlehover:updatetranslation"
+msgid "pagetitlehover:translate"
 msgstr ""
 
 #: public_html/databasestructure.php:342
-msgid "pagetitle:reindex"
+msgid "pagetitle:ajaxform"
 msgstr ""
 
 #: public_html/databasestructure.php:343
-msgid "pagetitlehover:reindex"
+msgid "pagetitlehover:ajaxform"
 msgstr ""
 
 #: public_html/databasestructure.php:344
-msgid "pagetitle:plugins"
+msgid "pagetitle:updatetranslation"
 msgstr ""
 
 #: public_html/databasestructure.php:345
-msgid "pagetitlehover:plugins"
+msgid "pagetitlehover:updatetranslation"
 msgstr ""
 
 #: public_html/databasestructure.php:346
-msgid "pagetitle:hostedprocessqueuesetup"
+msgid "pagetitle:reindex"
 msgstr ""
 
 #: public_html/databasestructure.php:347
+msgid "pagetitlehover:reindex"
+msgstr ""
+
+#: public_html/databasestructure.php:348
+msgid "pagetitle:plugins"
+msgstr ""
+
+#: public_html/databasestructure.php:349
+msgid "pagetitlehover:plugins"
+msgstr ""
+
+#: public_html/databasestructure.php:350
+msgid "pagetitle:hostedprocessqueuesetup"
+msgstr ""
+
+#: public_html/databasestructure.php:351
 msgid "pagetitlehover:hostedprocessqueuesetup"
 msgstr ""
