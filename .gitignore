@@ -1,2 +1,4 @@
 /.svn/
 /plugins/
+vendor/
+composer.lock

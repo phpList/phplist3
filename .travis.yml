@@ -1,0 +1,28 @@
+# Configuration file for running the test suite. Results typically at http://travis-ci.org/backdrop/backdrop
+# whitelist
+language: php
+php:
+  - 5.3
+before_script:
+  - sudo apt-get update > /dev/null
+  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+  # Set a custom vhost
+  - sudo sed -i -e "s,/var/www,$(pwd)/public_html,g" /etc/apache2/sites-available/default
+  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
+  - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
+  - sudo /etc/init.d/apache2 restart
+  - sudo cp -f travis-ci/behat.yml behat.yml
+  - sudo cp -f travis-ci/config.php public_html/lists/config/config.php
+  - composer self-update
+  - composer install --dev --prefer-dist
+
+  # Set MySQL configuration and create the database.
+  - mysql -e 'SET GLOBAL wait_timeout = 5400;'
+  - mysql -e 'create database phplistdb;'
+
+script:
+  - vendor/bin/behat
+after_failure:
+  - echo "Failures detected. Outputing additional logs:"
+  - sudo cat /var/log/apache2/error.log
+  - sudo cat /var/log/mysql/error.log
