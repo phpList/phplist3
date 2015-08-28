@@ -213,6 +213,14 @@ function loadMessageData($msgid) {
     $messagedata["fromemail"] = $default['from'];
     $messagedata["fromname"] = $messagedata["fromfield"] ;
   }
+  // disallow an email address in the name
+  if (preg_match("/([^ ]+@[^ ]+)/",$messagedata["fromname"],$regs)) {
+    $messagedata["fromname"] = str_replace($regs[0],"",$messagedata["fromname"]);
+  }
+  // clean up
+  $messagedata["fromemail"] = str_replace(',','',$messagedata['fromemail']);
+  $messagedata["fromname"] = str_replace(',','',$messagedata['fromname']);
+  
   $messagedata["fromname"] = trim($messagedata["fromname"]);
 
   # erase double spacing 
