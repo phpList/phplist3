@@ -87,16 +87,16 @@ if (!empty($_POST['importcontent'])) {
       flush();
     }
   }
-  $report =  s('%d lines processed',$count['processed'])."\n";
-  $report .= s('%d email addresses added to the list(s)',$count['addedtolist'])."\n";
-  $report .= s('%d new email addresses imported',$count['imported'])."\n";
-  $report .= s('%d email addresses already existed in the database',$count['duplicate'])."\n";
+  $report =  s('%d lines processed',$count['processed']).PHP_EOL;
+  $report .= s('%d email addresses added to the list(s)',$count['addedtolist']).PHP_EOL;
+  $report .= s('%d new email addresses imported',$count['imported']).PHP_EOL;
+  $report .= s('%d email addresses already existed in the database',$count['duplicate']).PHP_EOL;
   if (!empty($count['invalid'])) {
-    $report .= s('%d invalid email addresses',$count['invalid'])."\n";
-    $report .= s('Invalid addresses will be reported in the report that is sent to %s',getConfig("admin_address"));
+    $report .= s('%d invalid email addresses',$count['invalid']).PHP_EOL;
+    $report .= s('Invalid addresses will be reported in the report that is sent to %s',getConfig("admin_address")).PHP_EOL;
   }
   if ($count['foundonblacklist']) {
-    $report .= s('%d addresses were blacklisted and have not been subscribed to the list',$count['foundonblacklist'])."\n";
+    $report .= s('%d addresses were blacklisted and have not been subscribed to the list',$count['foundonblacklist']).PHP_EOL;
   }
 
   print ActionResult(nl2br($report));
