@@ -1100,127 +1100,127 @@ msgstr ""
 msgid "Unnamed List"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:283
+#: public_html/lists/admin/lib.php:291
 msgid "Hello"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:284
+#: public_html/lists/admin/lib.php:292
 msgid "You have requested a new password for phpList."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:285
+#: public_html/lists/admin/lib.php:293
 msgid "To enter a new one, please visit the following link:"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:287
+#: public_html/lists/admin/lib.php:295
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:288 public_html/lists/admin/login.php:96
+#: public_html/lists/admin/lib.php:296 public_html/lists/admin/login.php:96
 msgid "New password"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:289
+#: public_html/lists/admin/lib.php:297
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:291
+#: public_html/lists/admin/lib.php:299
 msgid "Error sending password change token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:548
+#: public_html/lists/admin/lib.php:556
 #: public_html/lists/admin/actions/msgstatus.php:76
 #: public_html/lists/admin/bounces.php:143
 #: public_html/lists/admin/bounces.php:159
 msgid "Unknown"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:559
+#: public_html/lists/admin/lib.php:567
 msgid "very little time"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:609
+#: public_html/lists/admin/lib.php:617
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:742 public_html/lists/admin/lib.php:745
+#: public_html/lists/admin/lib.php:750 public_html/lists/admin/lib.php:753
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:746
+#: public_html/lists/admin/lib.php:754
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:749
+#: public_html/lists/admin/lib.php:757
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:757
+#: public_html/lists/admin/lib.php:765
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1434 public_html/lists/admin/lib.php:1439
+#: public_html/lists/admin/lib.php:1442 public_html/lists/admin/lib.php:1447
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1683
+#: public_html/lists/admin/lib.php:1691
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1684
+#: public_html/lists/admin/lib.php:1692
 #: public_html/lists/admin/send_core.php:368
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1686 public_html/lists/admin/lib.php:1697
+#: public_html/lists/admin/lib.php:1694 public_html/lists/admin/lib.php:1705
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1688
+#: public_html/lists/admin/lib.php:1696
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1690
+#: public_html/lists/admin/lib.php:1698
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1692
+#: public_html/lists/admin/lib.php:1700
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1694
+#: public_html/lists/admin/lib.php:1702
 #: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1695 public_html/lists/admin/lib.php:1698
+#: public_html/lists/admin/lib.php:1703 public_html/lists/admin/lib.php:1706
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1709
+#: public_html/lists/admin/lib.php:1717
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1710
+#: public_html/lists/admin/lib.php:1718
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1716
+#: public_html/lists/admin/lib.php:1724
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1716
+#: public_html/lists/admin/lib.php:1724
 msgid "Do not subscribe"
 msgstr ""
 
