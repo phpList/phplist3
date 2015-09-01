@@ -16,6 +16,10 @@ if (isset($_GET['err'])) {
            Info(s('You have been logged out, because the session token of your request was incorrect'),true);
            print PageLinkButton('home',s('Continue'));
            break;
+        case "2":
+           Info(s('You have been logged out for security purposes, because there were too many errors in your session'),true);
+           print PageLinkButton('home',s('Continue'));
+           break;
     }
 }
 

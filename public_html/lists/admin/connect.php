@@ -428,7 +428,14 @@ function join_clean($sep,$array) {
 }
 
 function Fatal_Error($msg,$documentationURL = '') {
+  if (empty($_SESSION['fatalerror'])) $_SESSION['fatalerror'] = 0;
+  $_SESSION['fatalerror']++;
   header('Fatal error',true,509);
+  if ($_SESSION['fatalerror'] > 5) {
+    $_SESSION['logout_error'] = s('Too many errors, please login again');
+    Redirect('logout&err=2');
+  }
+  
   if ($GLOBALS['commandline']) {
     @ob_end_clean();
     print "\n".$GLOBALS["I18N"]->get("fatalerror").": ".strip_tags($msg)."\n";
