@@ -127,7 +127,7 @@ if (empty($list['category'])) {
 <div class="field"><input type="checkbox" name="active" value="1"
 <?php 
 
-echo empty($list["active"]) ? 'checked="checked"' : '';
+echo !empty($list["active"]) ? 'checked="checked"' : '';
 if (listUsedInSubscribePage($id)) print ' disabled="disabled" ';
 
  ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label></div>
