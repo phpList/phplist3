@@ -340,7 +340,7 @@ if (!defined('PHPLIST_POWEREDBY_URLROOT')) define('PHPLIST_POWEREDBY_URLROOT','h
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
   $allowed_referrers = array();
 }
-if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN','http://'.$_SERVER['HTTP_HOST']);
+if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) define('ACCESS_CONTROL_ALLOW_ORIGIN',$GLOBALS['scheme'].'://'.$_SERVER['HTTP_HOST']);
 
 if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',false);
 #https://mantis.phplist.com/view.php?id=15603
