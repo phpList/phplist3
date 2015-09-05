@@ -533,6 +533,7 @@ class PHPlistMailer extends PHPMailer {
 
       $requestdata = array(
         'Action' => 'SendRawEmail',
+        'Source' => $GLOBALS["message_envelope"],
         'Destinations.member.1' => $this->destinationemail,
         'RawMessage.Data' => $rawmessage,
       );
