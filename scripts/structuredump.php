@@ -101,6 +101,7 @@ $pagetitles = array(
 'reindex', 
 'plugins',
 'hostedprocessqueuesetup',
+'suppressionlist',
 );
 ## add the pagetitles and hover
 foreach ($pagetitles as $pagetitle) {
