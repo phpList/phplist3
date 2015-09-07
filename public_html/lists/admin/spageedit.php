@@ -20,6 +20,9 @@ if (isset($_GET['id'])) {
   $id = 0;
 }
 
+$sendtestresult = "";
+$testtarget = '';
+
 if (isset($_POST["save"])) {
   if (!verifyToken()) {
     print Error(s('Invalid security token, please reload the page and try again'));
@@ -264,6 +267,16 @@ $transactionHTML .= sprintf('<label for="unsubscribemessage">%s</label><textarea
   $GLOBALS['I18N']->get('Message'),
   htmlspecialchars(stripslashes($data["unsubscribemessage"])));
 
+$sendtest_content = sprintf('<div class="sendTest" id="sendTest">
+    '.$sendtestresult .'
+    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
+    <input type="text" name="testtarget" size="40" value="'.htmlspecialchars($testtarget).'"/><br />%s
+    </div>',
+    s('Send test message'),s('to email addresses'), 
+    s('(comma separate addresses - all must be existing subscribers)'));
+$testpanel = new UIPanel(s('Send Test'),$sendtest_content);
+$testpanel->setID('testpanel');
+#$transactionHTML .= $testpanel->display();
 
 $transactionHTML .= '</div>';
   
