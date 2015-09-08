@@ -510,6 +510,11 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   
   ## #17328 - remove list categories with quotes
   Sql_Query(sprintf("update %s set category = replace(category,\"\\\\'\",\" \")",$tables['list']));
+  
+  ## longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
+  ## before converting, it's quickest to clear the cache
+  clearPageCache ();
+  Sql_Query(sprintf('alter table %s change column content content longblob',$tables['urlcache']));
 
   # mark the database to be our current version
   if ($success) {

@@ -344,7 +344,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
          "url" => array("varchar(255) not null",""),
          "lastmodified" => array("integer",""),
          "added" => array("datetime",""),
-         "content" => array("mediumtext",""),
+         "content" => array("longblog",""), 
          "index_1" => array("urlindex (url)",""),
       ),
       //"gchartcache" => array(
