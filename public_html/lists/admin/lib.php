@@ -809,7 +809,7 @@ function setPageCache($url,$lastmodified = 0,$content) {
 #  if (isset($GLOBALS['developer_email'])) return;
   Sql_Query(sprintf('delete from %s where url = "%s"',$GLOBALS["tables"]["urlcache"],$url));
   Sql_Query(sprintf('insert into %s (url,lastmodified,added,content)
-    values("%s",%d,now(),"%s")',$GLOBALS["tables"]["urlcache"],$url,$lastmodified,addslashes($content)));
+    values("%s",%d,now(),"%s")',$GLOBALS["tables"]["urlcache"],$url,$lastmodified,sql_escape($content)));
 }
 
 function clearPageCache () {
