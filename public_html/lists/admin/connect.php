@@ -1758,13 +1758,13 @@ function phplist_shutdown () {
     if (is_array($_SERVER))
     while (list($key,$val) = each ($_SERVER)) {
       if (stripos($key,"password") === false) {
-        $message .= $key . "=" . $val . "\n";
+        $message .= $key . "=" . serialize($val) . "\n";
       }
     }
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugin->processError($message);
     }
-#    sendMail(getConfig("report_address"),$GLOBALS["installation_name"]." Mail list error",,"");
+#   sendMail(getConfig("report_address"),$GLOBALS["installation_name"]." Mail list error",$message);
   }
 
 #  print "Phplist shutdown $status";
