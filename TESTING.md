@@ -17,10 +17,21 @@ run the following command:
 $ cp default.behat.yml behat.yml
 ```
 Edit _behat.yml_ file and customize your **base_url**
+
+### Initial setup
+Create a database, but keep it empty
+
+```sh
+$ mysqladmin -uroot -p create phplisttestdb
+$ mysqladmin -uroot -p -e "grant all on phplisttestdb.* to phplist@localhost identified by 'testpassword'"
+```
+
+edit your phplist config file to use these details
+
 ### Run The tests
 Execute the following command:
 ```sh
-$ behat
+$ vendor/bin/behat
 ```
 ### TODO
 Add writing tests documentation.
