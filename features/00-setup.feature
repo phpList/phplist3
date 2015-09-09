@@ -3,7 +3,7 @@ Feature: Setup
   As an admin user
   I need to be able to init db
 
-  Scenario: Go to dashborad
+  Scenario: Go to dashboard
     Given I am on "/lists/admin/"
     Then I should see "Database has not been initialised. go to Initialise Database to continue"
 
