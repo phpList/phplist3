@@ -3,5 +3,5 @@ default:
     Behat\MinkExtension\Extension:
       goutte:    ~
       selenium2: ~
-	  # Change to you custom url
+      # Change to you custom url
       base_url: http://localhost/phplist3/public_html/
