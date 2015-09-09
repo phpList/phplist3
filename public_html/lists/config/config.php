@@ -40,6 +40,9 @@ define("PHPMAILERHOST",'');
 
 define ("TEST",1);
 
+#bth rainhail.com 9.4.2015 Adding support for custom messages that can be renderered in
+#templates as [CONTENT1], [CONTENT2], etc...
+define("CUSTOM_MESSAGE_COUNT",10);
 
 
 /*

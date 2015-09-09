@@ -45,6 +45,7 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   
   ## at this stage we don't know whether the content is HTML or text, it's just content
   $content = $cached[$messageid]['content'];
+  $custom_content = $cached[$messageid]['custom_content'];
 
   if (VERBOSE && $getspeedstats) {
     output('Load user start');
@@ -257,6 +258,16 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $textcontent = $cached[$messageid]["textcontent"];
     }
     $htmlcontent = $content;
+
+    for ($i = 1; $i <= CUSTOM_MESSAGE_COUNT; $i++) {
+      if (empty($cached[$messageid]["custom_content"][$i]["textcontent"])) {
+        $custom_content[$i]["textcontent"] = HTML2Text($custom_content[$i]["content"]);
+      } else {
+        $custom_content[$i]["textcontent"] = $cached[$messageid]["custom_content"][$i]["textcontent"];
+      }
+
+      $custom_content[$i]["htmlcontent"] = $custom_content[$i]["content"];
+    }
   } else {
     if (empty($cached[$messageid]["textcontent"])) {
       $textcontent = $content;
@@ -264,6 +275,16 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
       $textcontent = $cached[$messageid]["textcontent"];
     }
     $htmlcontent = parseText($content);
+
+    for ($i = 1; $i <= CUSTOM_MESSAGE_COUNT; $i++) {
+      if (empty($cached[$messageid]["custom_content"][$i]["textcontent"])) {
+        $custom_content[$i]["textcontent"] = $custom_content[$i]["content"];
+      } else {
+        $custom_content[$i]["textcontent"] = $cached[$messageid]["custom_content"][$i]["textcontent"];
+      }
+
+      $custom_content[$i]["htmlcontent"] = parseText($custom_content[$i]["content"]);
+    }
   }
 
   if (VERBOSE && $getspeedstats) {
@@ -277,10 +298,13 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
     output('merge into template start');
   }
 
-  if ($cached[$messageid]["template"])
+  if ($cached[$messageid]["template"]) {
     # template used
-    $htmlmessage = str_replace("[CONTENT]",$htmlcontent,$cached[$messageid]["template"]);
-  else {
+    $htmlmessage = str_replace("[CONTENT]", $htmlcontent, $cached[$messageid]["template"]);
+    for ($i = 1; $i <= CUSTOM_MESSAGE_COUNT; $i++) {
+      $htmlmessage = str_replace("[CONTENT".$i."]", $custom_content[$i]["htmlcontent"], $htmlmessage);
+    }
+  } else {
     # no template used
     $htmlmessage = $htmlcontent;
     $adddefaultstyle = 1;
@@ -1399,6 +1423,23 @@ function precacheMessage($messageid,$forwardContent = 0) {
   } else {
     $cached[$messageid]["textcontent"] = '';
   }
+
+
+  # Get the custom placeholder content
+  $custom_content = array();
+  for ($i = 1; $i <= CUSTOM_MESSAGE_COUNT; $i++){
+    $item = array();
+    $item["content"] = $message["content".$i];
+    $item["htmlcontent"] = '';
+    if (USE_MANUAL_TEXT_PART) {
+      $item["textcontent"] = $message["textcontent".$i];
+    } else {
+      $item["textcontent"] = '';
+    }
+    $custom_content[$i] = $item;
+  }
+  $cached[$messageid]["custom_content"] = $custom_content;
+
 #  var_dump($cached);exit;
   #0013076: different content when forwarding 'to a friend'
   $cached[$messageid]["footer"] = $forwardContent ? stripslashes($message["forwardfooter"]) : $message["footer"];
