@@ -922,8 +922,8 @@ if (!$done) {
     <input class="submit" type="submit" name="sendtest" value="%s"/> '.Help('sendtest').' %s: 
     <input type="text" name="testtarget" size="40" value="'.$messagedata["testtarget"].'"/><br />%s
     </div>',$sendtestresult,
-    $GLOBALS['I18N']->get('Send Test'),$GLOBALS['I18N']->get(' to email address(es)'),
-    $GLOBALS['I18N']->get('(comma separate addresses - all must be existing subscribers)'));
+    s('Send Test'),s(' to email address(es)'),
+    s('(comma separate addresses - all must be existing subscribers)'));
 
   # notification of progress of message sending
   # defaulting to admin_details['email'] gives the wrong impression that this is the
@@ -1187,7 +1187,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 
 if ($allReady) {
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
-  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars(s('Place Campaign in Queue for Sending')).'">\');
+  $("#addtoqueue").html(\'<input class="action-button" type="submit" name="send" id="addtoqueuebutton" value="'.htmlspecialchars(str_replace("'","\'",s('Place Campaign in Queue for Sending'))).'">\');
   </script>';
 } else {
   $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
@@ -1209,7 +1209,7 @@ $saveDraftButton = '<div class="sendSubmit">
     value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" />';
   $metaPanel = new UIPanel(s('Meta data'),$titleInput); 
 
-  $testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'),$sendtest_content);
+  $testpanel = new UIPanel(s('Send Test'),$sendtest_content);
   $testpanel->setID('testpanel');
 
  # print $testpanel->display();
