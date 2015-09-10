@@ -1070,7 +1070,11 @@ function fetchUrlCurl($url,$request_parameters) {
     curl_close($curl);
     if (VERBOSE) logEvent('fetched '.$url.' status '.$status);
 #    var_dump($status); exit;
-    return $raw_result;
+    if ($status == 200) {
+        return $raw_result;
+    } else {
+        return "";
+    }
 }
 
 function fetchUrlPear($url,$request_parameters) {
