@@ -1,19 +1,5 @@
 <?php
 
-if (is_file(dirname(__FILE__) .'/../../../VERSION')) { $fd = fopen (dirname(__FILE__) .'/../../../VERSION', "r"); while ($line = fscanf ($fd, "%[a-zA-Z0-9,. ]=%[a-zA-Z0-9,. ]")) { list ($key, $val) = $line; if ($key == "VERSION") $version = $val; } fclose($fd); } else { $version = "dev";} // ### remove on rollout ###
-
-if (!defined('VERSION')) {
-  if (!ini_get('open_basedir') && is_dir(dirname(__FILE__).'/../../../.git')) {
-    define("VERSION",$version.'-dev');
-    define('DEVVERSION',true);
-  } else {
-    define("VERSION",$version);
-    define('DEVVERSION',false);
-  }
-} else {
-  define(   'DEVVERSION'    ,false);
-}
-
 require_once dirname(__FILE__)."/inc/userlib.php";
 include_once dirname(__FILE__)."/inc/maillib.php";
 

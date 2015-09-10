@@ -7,6 +7,20 @@
  */
 define('PHPLISTINIT',true);
 
+if (is_file(dirname(__FILE__) .'/../../../VERSION')) { $fd = fopen (dirname(__FILE__) .'/../../../VERSION', "r"); while ($line = fscanf ($fd, "%[a-zA-Z0-9,. ]=%[a-zA-Z0-9,. ]")) { list ($key, $val) = $line; if ($key == "VERSION") $version = $val; } fclose($fd); } else { $version = "dev";} // ### remove on rollout ###
+
+if (!defined('VERSION')) {
+  if (!ini_get('open_basedir') && is_dir(dirname(__FILE__).'/../../../.git')) {
+    define("VERSION",$version.'-dev');
+    define('DEVVERSION',true);
+  } else {
+    define("VERSION",$version);
+    define('DEVVERSION',false);
+  }
+} else {
+  define(   'DEVVERSION'    ,false);
+}
+
 if (empty($GLOBALS["commandline"]) && isset($GLOBALS["developer_email"]) && $_SERVER['HTTP_HOST'] != 'dev.phplist.com' && !empty($GLOBALS['show_dev_errors'])) {
   error_reporting(E_ALL);
   ini_set('display_errors',1);
