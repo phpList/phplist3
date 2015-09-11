@@ -726,6 +726,17 @@ class phplistPlugin {
     return false;
   }
 
+  /* login
+   * called on login
+   * @param none
+   * @return true when user is successfully logged by plugin, false instead
+   */
+
+  function login() {
+    return false;
+  }
+
+
   /* logout
    * called on logout
    * @param none

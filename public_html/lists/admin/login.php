@@ -1,6 +1,18 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+$logged=false;
+foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+  if ($plugin->login()) {
+    $logged=true;
+    break;
+  }
+}
+if ($logged) {
+  header('Location: '.$_SERVER['REQUEST_URI']);
+  exit();
+}
+
 if (TEST && strpos($_SERVER['HTTP_HOST'],'phplist.org') !== false) {
   print Info($GLOBALS['I18N']->get('default login is')." admin, ".$GLOBALS['I18N']->get('with password')." phplist").'.';
 }
