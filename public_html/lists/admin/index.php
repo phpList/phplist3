@@ -484,6 +484,94 @@ if (USEFCK) {
 }
 */
 
+/** 
+ * 
+ * show global news, based on the version in use 
+ * 
+ * **/
+
+#if (empty($_SESSION['newsshown'])) { ## keep flag to only show one message per session
+if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT')) {
+  ## for testing
+  if (!empty($_GET['reset']) && $_GET['reset'] == 'news') {
+    SaveConfig('readnews'.$_SESSION['logindetails']['id'],'',0,1);
+    SaveConfig('viewednews'.$_SESSION['logindetails']['id'],'',0,1);
+    SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'],'',0,1);
+    SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'],'',0,1);
+    clearPageCache();
+  }
+
+  $readmessagesconf = getConfig('readnews'.$_SESSION['logindetails']['id']);
+  $readmessages = unserialize($readmessagesconf);
+  if (!is_array($readmessages)) $readmessages = array();
+
+  /* also keep track of when a message is viewed and suppress it
+    if it hasn't been closed after several views */
+  $viewedmessagesconf = getConfig('viewednews'.$_SESSION['logindetails']['id']);
+  $viewedmessages = unserialize($viewedmessagesconf);
+  if (!is_array($viewedmessages)) $viewedmessages = array();
+
+  $news = array();
+
+  // we only need it once per language per system, regardless of admins
+  $phpListNewsLastChecked = getConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso']);
+  if (empty($phpListNewsLastChecked) || ($phpListNewsLastChecked + 86400 < time())) {
+     SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'],time(),0,1);
+     $newsIndex = fetchUrl(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
+     SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'],$newsIndex,0,1);
+  }
+  $newsIndex = getConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso']);
+
+  if (!empty($newsIndex)) {
+    $newsitems = explode("\n",$newsIndex);
+    foreach ($newsitems as $newsitem) {
+      $newsitem = trim($newsitem);
+      if (!empty($newsitem) && !in_array(md5($newsitem),$readmessages) &&
+        (
+         empty($viewedmessages[md5($newsitem)]['count']) ||
+          $viewedmessages[md5($newsitem)]['count'] < 20)
+        ) {
+        $newscontent = fetchUrl(PHPLISTNEWSROOT.'/'.$newsitem);
+        if (!empty($newscontent)) {
+          $news[$newsitem] = $newscontent;
+        }
+      }
+    }
+
+    ksort($news);
+    $newscontent = '';
+    foreach ($news as $newsitem => $newscontent) {
+      $newsid = md5($newsitem);
+      if (!isset($viewedmessages[$newsid])) {
+        $viewedmessages[$newsid] = array(
+          'time' => time(),
+          'count' => 1,
+        );
+      } else {
+        $viewedmessages[$newsid]['count']++;
+      }
+      SaveConfig('viewednews'.$_SESSION['logindetails']['id'],serialize($viewedmessages),0,1);
+      $newscontent = '<div class="news"><a href="./?page=markread&id='.$newsid.'" class="ajaxable hide" title="'.s('Hide forever').'">'.s('Hide forever').'</a>'.$newscontent.'</div>';
+      break;
+    }
+  }
+  if (!empty($newscontent)) {
+    $_SESSION['newsshown'] = time();
+    print '<div class="panel announcements closethisone">';
+    print '<div class="content">';
+    print $newscontent;
+    print '</div>';
+    print '</div>';
+  }
+}
+#} // end of show one per session (not used)
+
+/** 
+ * 
+ * end of news
+ * 
+ * **/
+
 if (defined("USE_PDF") && USE_PDF && !defined('FPDF_VERSION')) {
   Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
 }
