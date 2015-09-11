@@ -189,7 +189,7 @@ define('TLD_AUTH_MD5','https://www.phplist.com/files/tlds-alpha-by-domain.txt.md
 define('TLD_REFETCH_TIMEOUT',15552000); ## 180 days, about 6 months
 define('PQAPI_URL','https://pqapi.phplist.com/1/t/pqapi');
 if (!defined('SHOW_PQCHOICE')) define('SHOW_PQCHOICE',false);
-define('PHPLISTNEWSROOT','https://www.phplist.com/news/'.VERSION);
+if (!defined('PHPLISTNEWSROOT')) define('PHPLISTNEWSROOT','https://www.phplist.com/downloadnews/');
 
 if (!defined("ALLOW_ATTACHMENTS")) define("ALLOW_ATTACHMENTS",0);
 if (!defined("EMAILTEXTCREDITS")) define("EMAILTEXTCREDITS",0);
