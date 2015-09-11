@@ -89,9 +89,11 @@ if (empty($ml['firstclick'])) {
 if ($msgtype == 'H') {
   Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d',
     $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
+  $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=HTML&utm_campaign='.urlencode($messagedata["subject"]);
 } elseif ($msgtype == 'T') {
   Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
     $GLOBALS['tables']['linktrack_ml'],$fwdid,$messageid));
+  $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=text&utm_campaign='.urlencode($messagedata["subject"]);
 }
    
 $viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
