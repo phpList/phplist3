@@ -81,7 +81,7 @@ print '<input type="hidden" name="save" value="item_'.$id.'" />
 ## https://mantis.phplist.org/view.php?id=16924 
 
 ## UX wise, it would be good to close the editing DIV again.
-print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">' . s('cancel changes') . '</button>';
+print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">' . s('undo') . '</button>';
 
 ## another option is to use a link back to configure, but that will go back to top, which isn't great UX either.
 #print '<a href="./?page=configure" class="button">'.s('cancel changes').'</a>';
