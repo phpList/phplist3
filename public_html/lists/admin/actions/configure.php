@@ -23,7 +23,7 @@ $(".configValue").each(function() {
 */
 
 $configItem = $default_config[$id];
-printf('<div class="configEditing">' . $GLOBALS['I18N']->get('Editing') . ' <b>%s</b></div>',$configItem['description']);
+printf('<div class="configEditing">' . s('Editing') . ' <b>%s</b></div>',$configItem['description']);
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />',$id,$id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';
@@ -74,4 +74,16 @@ if ($configItem['type'] == "textarea") {
 if (isset($_GET['ret']) && $_GET['ret'] == 'catlists') {
     print '<input type="hidden" name="ret" value="catlists" />';
 }
-print '<input type="hidden" name="save" value="item_'.$id.'" /><button class="submit" type="submit" name="savebutton">' . s('save changes') . '</button> <button id="dontsavebutton" type="reset">' . s('cancel changes') . '</button></div>';
+print '<input type="hidden" name="save" value="item_'.$id.'" />
+<button class="submit" type="submit" name="savebutton">' . s('save changes') . '</button>';
+
+## for cancellation, we use a reset button, but that will reset all values in the entire page
+## https://mantis.phplist.org/view.php?id=16924 
+
+## UX wise, it would be good to close the editing DIV again.
+print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">' . s('cancel changes') . '</button>';
+
+## another option is to use a link back to configure, but that will go back to top, which isn't great UX either.
+#print '<a href="./?page=configure" class="button">'.s('cancel changes').'</a>';
+
+print '</div>';
