@@ -122,6 +122,9 @@ $(document).ready(function() {
   $("a.ajaxable").click(function() {
     var url = this.href;
     var thispage = urlParameter('page',window.location.href);
+    if (thispage == "") {
+        thispage = "home";
+    }
     var action = urlParameter('action',url);
     if (action == "") {
       url += '&action='+thispage;
