@@ -491,7 +491,7 @@ if (USEFCK) {
  * **/
 
 #if (empty($_SESSION['newsshown'])) { ## keep flag to only show one message per session
-if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT')) {
+if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHPLISTNEWSROOT) {
   ## for testing
   if (!empty($_GET['reset']) && $_GET['reset'] == 'news') {
     SaveConfig('readnews'.$_SESSION['logindetails']['id'],'',0,1);
