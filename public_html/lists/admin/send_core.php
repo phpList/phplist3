@@ -1208,6 +1208,7 @@ $saveDraftButton = '<div class="sendSubmit">
   '<input type="text" name="campaigntitle"  id="campaigntitleinput"
     value="'.htmlentities($messagedata['campaigntitle'],ENT_QUOTES,'UTF-8').'" size="60" />';
   $metaPanel = new UIPanel(s('Meta data'),$titleInput); 
+  $metaPanel->setID('metadata');
 
   $testpanel = new UIPanel(s('Send Test'),$sendtest_content);
   $testpanel->setID('testpanel');
