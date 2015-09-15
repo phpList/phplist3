@@ -1,5 +1,5 @@
 /.svn/
-/plugins/
+/plugins
 vendor/
 composer.lock
 /behat.yml
