@@ -454,7 +454,8 @@ if (!isset($GLOBALS['pagefooter']) || !is_array($GLOBALS['pagefooter'])) $GLOBAL
 if (!isset($GLOBALS['check_for_host'])) $GLOBALS['check_for_host'] = 0;
 
 ## experimental, use minified JS and CSS
-if (!defined('USE_MINIFIED_ASSETS')) define('USE_MINIFIED_ASSETS',false);
+if (!defined('USE_MINIFIED_ASSETS')) define('USE_MINIFIED_ASSETS',true);
+$firstInstallButton = '';
 
 ## set up a memcached global object, and test it
 $GLOBALS['MC'] = null;
