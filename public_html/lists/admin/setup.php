@@ -50,7 +50,7 @@ $link = PageLink2("configure",$GLOBALS['I18N']->get('Go there'));
 if (!empty($link)) {
   $html .= '<tr><td>'.$GLOBALS['I18N']->get('Verify Settings').'</td>
     <td>'.$link.'</td><td>';
-  $data = Sql_Fetch_Row_Query("select value from {$tables["config"]} where item = \"admin_address\"");
+  $data = Sql_Fetch_Row_Query("select value from {$tables["config"]} where item = \"subscribeurl\"");
   if ($data[0]) {
     $html .= $GLOBALS["img_tick"];
   } else {
