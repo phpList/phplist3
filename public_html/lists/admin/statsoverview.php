@@ -86,7 +86,13 @@ if (!$id) {
   $ls = new WebblerListing('');
   $ls->usePanel($paging);
   while ($row = Sql_Fetch_Array($req)) {
-    $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($row['subject'],30);
+  #  $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($row['subject'],30);
+    $messagedata = loadMessageData($row['messageid']);
+    if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+        $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata["campaigntitle"]). '<br/><strong>'.shortenTextDisplay($messagedata["subject"],30).'</strong>';
+    } else {
+        $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($messagedata["subject"],30);
+    }
 
     $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',$GLOBALS['tables']['user_message_forward'],$row['messageid']));
     

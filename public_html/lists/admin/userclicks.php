@@ -62,7 +62,8 @@ if ($fwdid) {
     $GLOBALS['tables']['linktrack_forward'],$fwdid));
 }
 if ($msgid) {
-  $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $msgid $subselect");
+#  $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $msgid $subselect");
+  $messagedata = loadMessageData($msgid);
 }
 if ($userid) {
   $userdata = Sql_Fetch_Array_query("SELECT * FROM {$tables['user']} where id = $userid $subselect");
@@ -73,8 +74,11 @@ if ($fwdid && $msgid) {
   print ' ' .strtolower(PageLink2('uclicks&amp;id='.$fwdid,$urldata['url']));
   print '</h3>';
   $downloadContent = s('Subscribers who clicked on URL "%s" in the campaign with subject "%s", sent %s',$urldata['url'],$messagedata['subject'],$messagedata['sent']).PHP_EOL;
-  print '<table class="userclicksDetails">
-  <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
+  print '<table class="userclicksDetails">';
+  if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+    print '<tr><td>'.s('Title').'<td><td>'.$messagedata['campaigntitle'].'</td></tr>';
+  }
+  print '<tr><td>'.s('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
   </table>';
@@ -87,7 +91,11 @@ if ($fwdid && $msgid) {
   print '<h3>'.$GLOBALS['I18N']->get('Subscriber clicks on a campaign').'</h3>';
   print s('Subscriber').' '.PageLink2('user&amp;id='.$userid,$userdata['email']);
   print '</h3>';
-  print '<table class="userclickDetails">
+  print '<table class="userclickDetails">';
+  if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+    print '<tr><td>'.s('Title').'<td><td>'.$messagedata['campaigntitle'].'</td></tr>';
+  }
+  print '
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.PageLink2('mclicks&amp;id='.$msgid,$messagedata['subject']).'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
@@ -105,7 +113,11 @@ if ($fwdid && $msgid) {
     $fwdid);
 } elseif ($msgid) {
   print '<h3>'.$GLOBALS['I18N']->get('Subscribers who clicked a campaign').'</h3>';
-  print '<table class="userclickDetails">
+  print '<table class="userclickDetails">';
+  if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+    print '<tr><td>'.s('Title').'<td><td>'.$messagedata['campaigntitle'].'</td></tr>';
+  }
+  print '
   <tr><td>'.$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>'.$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>

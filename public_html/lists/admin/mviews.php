@@ -67,12 +67,16 @@ if (!$id) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
   while ($row = Sql_Fetch_Array($req)) {
   #  $element = $row['messageid'].' '.substr($row['subject'],0,50);
+    $messagedata = loadMessageData($row['messageid']);
     if (!$download) {
-      $element = shortenTextDisplay($row['subject'],30);
+      if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+         $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata["campaigntitle"]). '<br/><strong>'.shortenTextDisplay($messagedata["subject"],30).'</strong>';
+      } else {
+         $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($messagedata["subject"],30);
+      }
     } else {
-      $element = $row['subject'];
+      $element = $messagedata['subject'];
     }
-    $element = '<!--'.$row['messageid'].'-->'.$element;
     $ls->addElement($element,PageUrl2('mviews&amp;id='.$row['messageid']));
     $ls->setClass($element,'row1');
     if (!empty($row['sent'])) {

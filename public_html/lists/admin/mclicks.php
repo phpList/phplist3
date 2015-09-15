@@ -57,6 +57,7 @@ if (!$id) {
   $ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
   while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
+    $messagedata = loadMessageData($row['messageid']);
     $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent"',$GLOBALS['tables']['usermessage'],$row['messageid']));
     $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$row['messageid']));
     if ($totalusers[0] > 0) {
@@ -65,9 +66,13 @@ if (!$id) {
       $clickrate = $GLOBALS['I18N']->get('N/A');
     }
     if (!$download) {
-      $element = '<!--'.$row['messageid']. '-->'.shortenTextDisplay($row['subject']);
+      if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+         $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata["campaigntitle"]). '<br/><strong>'.shortenTextDisplay($messagedata["subject"],30).'</strong>';
+      } else {
+         $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($messagedata["subject"],30);
+      }
     } else {
-      $element = '<!--'.$row['messageid']. '-->'.$row['subject'];
+      $element = $messagedata['subject'];
     }
       
     $ls->addElement($element,PageURL2('mclicks&amp;id='.$row['messageid']));

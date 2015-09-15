@@ -90,12 +90,15 @@ $summary['totalclicks'] = 0;
 $summary['uniqueclicks'] = 0;
 
 while ($row = Sql_Fetch_Array($req)) {
-  $msgsubj = Sql_Fetch_Row_query(sprintf('select subject from %s where id = %d',$GLOBALS['tables']['message'],$row['messageid']));
-
+  $messagedata = loadMessageData($row['messageid']);
   if (!$download) {
-    $element = '<!-- '.$row['messageid'] . '-->'.shortenTextDisplay($msgsubj[0],30);
+    if ($messagedata['subject'] != $messagedata['campaigntitle']) {
+       $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata["campaigntitle"]). '<br/><strong>'.shortenTextDisplay($messagedata["subject"],30).'</strong>';
+    } else {
+       $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($messagedata["subject"],30);
+    }
   } else {
-    $element = '<!-- '.$row['messageid'] . '-->'.$msgsubj[0];
+    $element = $messagedata['subject'];
   }
 #  $element = $GLOBALS['I18N']->get('msg').' '.$row['messageid'].': '.substr($msgsubj[0],0,25). '...';
 #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
