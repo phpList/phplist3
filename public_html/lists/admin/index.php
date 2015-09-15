@@ -404,7 +404,7 @@ if ($GLOBALS["require_login"] && $page != "login") {
   if ($page != "logout" && empty($logoutontop) && !$ajax) {
   #  print '<div class="right">'.PageLink2("logout",$GLOBALS['I18N']->get('logout')).'</div>';
     if (!empty($_SESSION['firstinstall']) && $page != 'setup') {
-      print '<div class="fright">'.PageLinkClass("setup",$GLOBALS['I18N']->get('Continue Configuration'),'','firstinstallbutton').'</div>';
+      $firstInstallButton = '<div id="firstinstallbutton">'.PageLinkClass("setup",s('Continue Configuration'),'','firstinstallbutton').'</div>';
     }
   }
 }
