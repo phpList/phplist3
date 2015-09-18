@@ -287,13 +287,20 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
         break;
       case "preferences":
         if (!isset($_GET["id"]) || !$_GET['id']) $_GET["id"] = $id;
-        $success = require 'admin/subscribelib2.php';
+
         if (!$userid) {
 #          print "Userid not set".$_SESSION["userid"];
           print sendPersonalLocationPage($id);
-        } elseif (ASKFORPASSWORD && $userpassword && !$canlogin) {
+          break;
+        }
+
+        if (ASKFORPASSWORD && $userpassword && !$canlogin) {
           print LoginPage($id,$userid,$emailcheck);
-        } elseif ($success != 3) {
+          break;
+        }
+        $success = require 'admin/subscribelib2.php';
+
+        if ($success != 3) {
           print PreferencesPage($id,$userid);
         }
         break;
@@ -379,10 +386,13 @@ function sendPersonalLocationPage($id)
   $html .= $GLOBALS['pagedata']["header"];
   $html .= '<h3>'.$GLOBALS["strPreferencesTitle"].'</h3>';
   $html .= $GLOBALS["msg"];
-  if ($_REQUEST["email"]) {
+
+  if (isset($_REQUEST["email"])) {
     $email = $_REQUEST["email"];
-  } elseif ($_SESSION["userdata"]["email"]["value"]) {
+  } elseif (isset($_SESSION["userdata"]["email"]["value"])) {
     $email = $_SESSION["userdata"]["email"]["value"];
+  } else {
+    $email = '';
   }
   $html .= $GLOBALS["strPersonalLocationInfo"];
 
