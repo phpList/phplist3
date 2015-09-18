@@ -386,10 +386,13 @@ function sendPersonalLocationPage($id)
   $html .= $GLOBALS['pagedata']["header"];
   $html .= '<h3>'.$GLOBALS["strPreferencesTitle"].'</h3>';
   $html .= $GLOBALS["msg"];
-  if ($_REQUEST["email"]) {
+
+  if (isset($_REQUEST["email"])) {
     $email = $_REQUEST["email"];
-  } elseif ($_SESSION["userdata"]["email"]["value"]) {
+  } elseif (isset($_SESSION["userdata"]["email"]["value"])) {
     $email = $_SESSION["userdata"]["email"]["value"];
+  } else {
+    $email = '';
   }
   $html .= $GLOBALS["strPersonalLocationInfo"];
 
