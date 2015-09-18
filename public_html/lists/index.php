@@ -287,13 +287,20 @@ if ($login_required && empty($_SESSION["userloggedin"]) && !$canlogin) {
         break;
       case "preferences":
         if (!isset($_GET["id"]) || !$_GET['id']) $_GET["id"] = $id;
-        $success = require 'admin/subscribelib2.php';
+
         if (!$userid) {
 #          print "Userid not set".$_SESSION["userid"];
           print sendPersonalLocationPage($id);
-        } elseif (ASKFORPASSWORD && $userpassword && !$canlogin) {
+          break;
+        }
+
+        if (ASKFORPASSWORD && $userpassword && !$canlogin) {
           print LoginPage($id,$userid,$emailcheck);
-        } elseif ($success != 3) {
+          break;
+        }
+        $success = require 'admin/subscribelib2.php';
+
+        if ($success != 3) {
           print PreferencesPage($id,$userid);
         }
         break;
