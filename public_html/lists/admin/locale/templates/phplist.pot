@@ -1,72 +1,72 @@
-#: public_html/lists/index.php:607
+#: public_html/lists/index.php:617
 #, php-format
 msgid "You are logged in as administrator (%s) of this phpList system"
 msgstr ""
 
-#: public_html/lists/index.php:608
+#: public_html/lists/index.php:618
 msgid ""
 "You are therefore offered the following choice, which your subscribers will "
 "not see when they load this page."
 msgstr ""
 
-#: public_html/lists/index.php:609
+#: public_html/lists/index.php:619
 msgid "Go back to admin area"
 msgstr ""
 
-#: public_html/lists/index.php:610
+#: public_html/lists/index.php:620
 msgid "Please choose"
 msgstr ""
 
-#: public_html/lists/index.php:610
+#: public_html/lists/index.php:620
 msgid "Make this subscriber confirmed immediately"
 msgstr ""
 
-#: public_html/lists/index.php:611
+#: public_html/lists/index.php:621
 msgid "Send this subscriber a request for confirmation email"
 msgstr ""
 
-#: public_html/lists/index.php:678
+#: public_html/lists/index.php:688
 msgid ""
 "Subscriber removed from Blacklist for manual confirmation of subscription"
 msgstr ""
 
-#: public_html/lists/index.php:694
+#: public_html/lists/index.php:704
 msgid "Subscriber has been removed from blacklist"
 msgstr ""
 
-#: public_html/lists/index.php:780
+#: public_html/lists/index.php:790
 msgid "Forwarded receiver requested blacklist"
 msgstr ""
 
-#: public_html/lists/index.php:788
+#: public_html/lists/index.php:798
 msgid "\"Jump off\" used by subscriber, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:790
+#: public_html/lists/index.php:800
 msgid "\"Jump off\" set, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:966
+#: public_html/lists/index.php:976
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
 msgstr ""
 
-#: public_html/lists/index.php:1052 public_html/lists/index.php:1059
+#: public_html/lists/index.php:1062 public_html/lists/index.php:1069
 msgid "Message Forwarded"
 msgstr ""
 
-#: public_html/lists/index.php:1052
+#: public_html/lists/index.php:1062
 #, php-format
 msgid "%s has forwarded message %d to %s"
 msgstr ""
 
-#: public_html/lists/index.php:1059
+#: public_html/lists/index.php:1069
 #, php-format
 msgid "%s tried forwarding message %d to %s but failed"
 msgstr ""
 
-#: public_html/lists/index.php:1075
+#: public_html/lists/index.php:1085
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
@@ -564,13 +564,13 @@ msgid "ETA"
 msgstr ""
 
 #: public_html/lists/admin/msgstatus.php:28
-#: public_html/lists/admin/statsoverview.php:96
+#: public_html/lists/admin/statsoverview.php:102
 #: public_html/lists/admin/messages.php:82
 #: public_html/lists/admin/actions/msgstatus.php:72
 #: public_html/lists/admin/userhistory.php:99
-#: public_html/lists/admin/uclicks.php:117
-#: public_html/lists/admin/mviews.php:83
-#: public_html/lists/admin/mviews.php:192 public_html/databasestructure.php:63
+#: public_html/lists/admin/uclicks.php:120
+#: public_html/lists/admin/mviews.php:87
+#: public_html/lists/admin/mviews.php:196 public_html/databasestructure.php:63
 msgid "sent"
 msgstr ""
 
@@ -1239,12 +1239,12 @@ msgid "You do not have access to this page"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:62
-#: public_html/lists/admin/mclicks.php:93
+#: public_html/lists/admin/mclicks.php:98
 #: public_html/lists/admin/domainstats.php:35
 #: public_html/lists/admin/uclicks.php:65
 #: public_html/lists/admin/uclicks.php:73
 #: public_html/lists/admin/mviews.php:53
-#: public_html/lists/admin/mviews.php:119
+#: public_html/lists/admin/mviews.php:123
 msgid "Download as CSV file"
 msgstr ""
 
@@ -1252,119 +1252,120 @@ msgstr ""
 msgid "There are currently no campaigns to view"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:97
+#: public_html/lists/admin/statsoverview.php:103
 #: public_html/lists/admin/users.php:447
 msgid "bncs"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:98
+#: public_html/lists/admin/statsoverview.php:104
 msgid "fwds"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:99
-#: public_html/lists/admin/statsoverview.php:114
-#: public_html/lists/admin/mviews.php:85 public_html/lists/admin/mviews.php:99
-#: public_html/lists/admin/mviews.php:196
+#: public_html/lists/admin/statsoverview.php:105
+#: public_html/lists/admin/statsoverview.php:120
+#: public_html/lists/admin/mviews.php:89
+#: public_html/lists/admin/mviews.php:103
+#: public_html/lists/admin/mviews.php:200
 msgid "views"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:103
-#: public_html/lists/admin/userclicks.php:175
-#: public_html/lists/admin/mclicks.php:163
-#: public_html/lists/admin/mclicks.php:189
+#: public_html/lists/admin/statsoverview.php:109
+#: public_html/lists/admin/userclicks.php:187
+#: public_html/lists/admin/mclicks.php:168
+#: public_html/lists/admin/mclicks.php:194
 #: public_html/lists/admin/userhistory.php:92
 #: public_html/lists/admin/userhistory.php:95
 #: public_html/lists/admin/uclicks.php:57
-#: public_html/lists/admin/uclicks.php:123
-#: public_html/lists/admin/uclicks.php:136
+#: public_html/lists/admin/uclicks.php:126
+#: public_html/lists/admin/uclicks.php:139
 msgid "clicks"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:105
-#: public_html/lists/admin/statsoverview.php:116
-#: public_html/lists/admin/mviews.php:87
-#: public_html/lists/admin/mviews.php:101
+#: public_html/lists/admin/statsoverview.php:111
+#: public_html/lists/admin/statsoverview.php:122
+#: public_html/lists/admin/mviews.php:91
+#: public_html/lists/admin/mviews.php:105
 msgid "rate"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:106
+#: public_html/lists/admin/statsoverview.php:112
 #: public_html/lists/admin/eventlog.php:110
 #: public_html/lists/admin/userhistory.php:175
 #: public_html/lists/admin/bounces.php:162
-#: public_html/lists/admin/mviews.php:79 public_html/lists/admin/mviews.php:81
+#: public_html/lists/admin/mviews.php:83 public_html/lists/admin/mviews.php:85
 msgid "date"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:112
-#: public_html/lists/admin/mviews.php:97
+#: public_html/lists/admin/statsoverview.php:118
+#: public_html/lists/admin/mviews.php:101
 msgid "Comparison to other admins"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:128
+#: public_html/lists/admin/statsoverview.php:134
 msgid "View all campaigns"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:134
+#: public_html/lists/admin/statsoverview.php:140
 msgid "Campaign not found"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:142
+#: public_html/lists/admin/statsoverview.php:148
 #: public_html/lists/admin/messages.php:11
 #: public_html/lists/admin/messages.php:12
 #: public_html/lists/admin/send_core.php:686
-#: public_html/lists/admin/userclicks.php:77
-#: public_html/lists/admin/userclicks.php:91
-#: public_html/lists/admin/userclicks.php:109
-#: public_html/lists/admin/mclicks.php:116
+#: public_html/lists/admin/userclicks.php:81
+#: public_html/lists/admin/userclicks.php:99
+#: public_html/lists/admin/userclicks.php:121
+#: public_html/lists/admin/mclicks.php:121
 #: public_html/lists/admin/spageedit.php:250
 #: public_html/lists/admin/spageedit.php:257
 #: public_html/lists/admin/spageedit.php:264
-#: public_html/lists/admin/mviews.php:125
+#: public_html/lists/admin/mviews.php:129
 msgid "Subject"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:146
+#: public_html/lists/admin/statsoverview.php:152
 msgid "Date entered"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:150
-#: public_html/lists/admin/mclicks.php:118
+#: public_html/lists/admin/statsoverview.php:156
+#: public_html/lists/admin/mclicks.php:123
 msgid "Date sent"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:154
+#: public_html/lists/admin/statsoverview.php:160
 #: public_html/databasestructure.php:69
 msgid "Sent as HTML"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:158
+#: public_html/lists/admin/statsoverview.php:164
 #: public_html/databasestructure.php:68
 msgid "Sent as text"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:179
+#: public_html/lists/admin/statsoverview.php:185
 #: public_html/lists/admin/messages.php:387
-#: public_html/lists/admin/mclicks.php:121
+#: public_html/lists/admin/mclicks.php:126
 msgid "Bounced"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:185
+#: public_html/lists/admin/statsoverview.php:191
 msgid "Opened"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:190
+#: public_html/lists/admin/statsoverview.php:196
 msgid "% Opened"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:195
+#: public_html/lists/admin/statsoverview.php:201
 msgid "Clicked"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:200
+#: public_html/lists/admin/statsoverview.php:206
 msgid "% Clicked"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:205
+#: public_html/lists/admin/statsoverview.php:211
 msgid "Forwarded"
 msgstr ""
 
@@ -2356,7 +2357,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:333
 #: public_html/lists/admin/send_core.php:925
-#: public_html/lists/admin/send_core.php:1212
+#: public_html/lists/admin/send_core.php:1213
 #: public_html/lists/admin/spageedit.php:277
 msgid "Send Test"
 msgstr ""
@@ -2665,7 +2666,7 @@ msgstr ""
 #: public_html/lists/admin/msgbounces.php:10
 #: public_html/lists/admin/message.php:91
 #: public_html/lists/admin/eventlog.php:111
-#: public_html/lists/admin/userclicks.php:158
+#: public_html/lists/admin/userclicks.php:170
 msgid "message"
 msgstr ""
 
@@ -2708,9 +2709,9 @@ msgstr ""
 
 #: public_html/lists/admin/members.php:58
 #: public_html/lists/admin/members.php:69
-#: public_html/lists/admin/userclicks.php:81
-#: public_html/lists/admin/userclicks.php:101
-#: public_html/lists/admin/userclicks.php:114
+#: public_html/lists/admin/userclicks.php:85
+#: public_html/lists/admin/userclicks.php:109
+#: public_html/lists/admin/userclicks.php:126
 msgid "Download subscribers"
 msgstr ""
 
@@ -3031,11 +3032,11 @@ msgstr ""
 #: public_html/lists/admin/messages.php:13
 #: public_html/lists/admin/messages.php:14
 #: public_html/lists/admin/messages.php:354
-#: public_html/lists/admin/userclicks.php:78
-#: public_html/lists/admin/userclicks.php:92
-#: public_html/lists/admin/userclicks.php:110
-#: public_html/lists/admin/mclicks.php:117
-#: public_html/lists/admin/mviews.php:126 public_html/databasestructure.php:17
+#: public_html/lists/admin/userclicks.php:82
+#: public_html/lists/admin/userclicks.php:100
+#: public_html/lists/admin/userclicks.php:122
+#: public_html/lists/admin/mclicks.php:122
+#: public_html/lists/admin/mviews.php:130 public_html/databasestructure.php:17
 #: public_html/databasestructure.php:34 public_html/databasestructure.php:44
 #: public_html/databasestructure.php:54 public_html/databasestructure.php:83
 #: public_html/databasestructure.php:98
@@ -3050,10 +3051,10 @@ msgstr ""
 #: public_html/lists/admin/messages.php:17
 #: public_html/lists/admin/messages.php:18
 #: public_html/lists/admin/messages.php:365
-#: public_html/lists/admin/userclicks.php:79
-#: public_html/lists/admin/userclicks.php:93
-#: public_html/lists/admin/userclicks.php:111
-#: public_html/lists/admin/mviews.php:127
+#: public_html/lists/admin/userclicks.php:83
+#: public_html/lists/admin/userclicks.php:101
+#: public_html/lists/admin/userclicks.php:123
+#: public_html/lists/admin/mviews.php:131
 msgid "Sent"
 msgstr ""
 
@@ -3129,7 +3130,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:367
 #: public_html/lists/admin/bouncerule.php:62
-#: public_html/lists/admin/userclicks.php:171
+#: public_html/lists/admin/userclicks.php:183
 #: public_html/lists/admin/bounce.php:210 public_html/databasestructure.php:61
 msgid "Status"
 msgstr ""
@@ -3143,7 +3144,7 @@ msgid "Unique Views"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:384
-#: public_html/lists/admin/mclicks.php:125
+#: public_html/lists/admin/mclicks.php:130
 msgid "Clicks"
 msgstr ""
 
@@ -3152,25 +3153,25 @@ msgid "Time to send"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:424
-#: public_html/lists/admin/uclicks.php:130
-#: public_html/lists/admin/uclicks.php:131
-#: public_html/lists/admin/uclicks.php:136
-#: public_html/lists/admin/uclicks.php:138
+#: public_html/lists/admin/uclicks.php:133
+#: public_html/lists/admin/uclicks.php:134
+#: public_html/lists/admin/uclicks.php:139
+#: public_html/lists/admin/uclicks.php:141
 msgid "total"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:424
 #: public_html/lists/admin/send_core.php:771
-#: public_html/lists/admin/userclicks.php:178
-#: public_html/lists/admin/mclicks.php:83
-#: public_html/lists/admin/mclicks.php:170
+#: public_html/lists/admin/userclicks.php:190
+#: public_html/lists/admin/mclicks.php:88
+#: public_html/lists/admin/mclicks.php:175
 msgid "text"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:424
 #: public_html/lists/admin/send_core.php:768
-#: public_html/lists/admin/mclicks.php:83
-#: public_html/lists/admin/mclicks.php:169
+#: public_html/lists/admin/mclicks.php:88
+#: public_html/lists/admin/mclicks.php:174
 msgid "html"
 msgstr ""
 
@@ -5873,71 +5874,79 @@ msgstr ""
 msgid "Click statistics"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:72
+#: public_html/lists/admin/userclicks.php:73
 msgid "Subscriber clicks for a URL in a campaign"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:75
+#: public_html/lists/admin/userclicks.php:76
 #, php-format
 msgid ""
 "Subscribers who clicked on URL \"%s\" in the campaign with subject \"%s\", "
 "sent %s"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:87
+#: public_html/lists/admin/userclicks.php:79
+#: public_html/lists/admin/userclicks.php:96
+#: public_html/lists/admin/userclicks.php:118
+#: public_html/lists/admin/spageedit.php:162
+#: public_html/databasestructure.php:107 public_html/databasestructure.php:154
+msgid "Title"
+msgstr ""
+
+#: public_html/lists/admin/userclicks.php:91
 msgid "Subscriber clicks on a campaign"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:88
-#: public_html/lists/admin/userclicks.php:121
+#: public_html/lists/admin/userclicks.php:92
+#: public_html/lists/admin/userclicks.php:133
 msgid "Subscriber"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:99
+#: public_html/lists/admin/userclicks.php:107
 msgid "Subscribers who clicked a URL"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:100
+#: public_html/lists/admin/userclicks.php:108
 #, php-format
 msgid "Subscribers who clicked on the URL \"%s\" across all campaigns"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:107
+#: public_html/lists/admin/userclicks.php:115
 msgid "Subscribers who clicked a campaign"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:113
+#: public_html/lists/admin/userclicks.php:125
 #, php-format
 msgid "Subscribers who clicked on campaign with subject \"%s\", sent %s"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:120
+#: public_html/lists/admin/userclicks.php:132
 msgid "Clicks of a subscriber"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:135
-#: public_html/lists/admin/mclicks.php:119
+#: public_html/lists/admin/userclicks.php:147
+#: public_html/lists/admin/mclicks.php:124
 #: public_html/lists/admin/users.php:337
 msgid "Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:167
+#: public_html/lists/admin/userclicks.php:179
 msgid "view user"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:173
-#: public_html/lists/admin/mclicks.php:173
-#: public_html/lists/admin/uclicks.php:115
+#: public_html/lists/admin/userclicks.php:185
+#: public_html/lists/admin/mclicks.php:178
+#: public_html/lists/admin/uclicks.php:118
 msgid "firstclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:174
-#: public_html/lists/admin/mclicks.php:174
-#: public_html/lists/admin/uclicks.php:116
+#: public_html/lists/admin/userclicks.php:186
+#: public_html/lists/admin/mclicks.php:179
+#: public_html/lists/admin/uclicks.php:119
 msgid "latestclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:177
+#: public_html/lists/admin/userclicks.php:189
 msgid "HTML"
 msgstr ""
 
@@ -6056,47 +6065,47 @@ msgstr ""
 msgid "Available Messages"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:65
-#: public_html/lists/admin/mclicks.php:113
+#: public_html/lists/admin/mclicks.php:66
+#: public_html/lists/admin/mclicks.php:118
 msgid "N/A"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:75
+#: public_html/lists/admin/mclicks.php:80
 msgid "links"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:77
+#: public_html/lists/admin/mclicks.php:82
 msgid "user clicks"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:78
-#: public_html/lists/admin/mclicks.php:165
-#: public_html/lists/admin/mclicks.php:191
+#: public_html/lists/admin/mclicks.php:83
+#: public_html/lists/admin/mclicks.php:170
+#: public_html/lists/admin/mclicks.php:196
 msgid "clickrate"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:80
+#: public_html/lists/admin/mclicks.php:85
 msgid "total clicks"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:105
+#: public_html/lists/admin/mclicks.php:110
 msgid "Click Details for a Message"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:119
+#: public_html/lists/admin/mclicks.php:124
 msgid "Sent to"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:125
+#: public_html/lists/admin/mclicks.php:130
 #: public_html/lists/admin/uclicks.php:80
 msgid "View subscribers"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:126
+#: public_html/lists/admin/mclicks.php:131
 msgid "Click rate"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:129
+#: public_html/lists/admin/mclicks.php:134
 msgid "Campaign click statistics"
 msgstr ""
 
@@ -6691,8 +6700,8 @@ msgid "asc"
 msgstr ""
 
 #: public_html/lists/admin/users.php:324 public_html/lists/admin/users.php:328
-#: public_html/lists/admin/mviews.php:143
-#: public_html/lists/admin/mviews.php:146
+#: public_html/lists/admin/mviews.php:147
+#: public_html/lists/admin/mviews.php:150
 #, php-format
 msgid "Listing user %d to %d"
 msgstr ""
@@ -7206,7 +7215,7 @@ msgstr ""
 
 #: public_html/lists/admin/userhistory.php:102
 #: public_html/lists/admin/userhistory.php:114
-#: public_html/lists/admin/mviews.php:199
+#: public_html/lists/admin/mviews.php:203
 msgid "responsetime"
 msgstr ""
 
@@ -7691,12 +7700,12 @@ msgstr ""
 msgid "Click details for a URL"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:123
+#: public_html/lists/admin/uclicks.php:126
 msgid "view subscribers who clicked"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:125
-#: public_html/lists/admin/uclicks.php:138
+#: public_html/lists/admin/uclicks.php:128
+#: public_html/lists/admin/uclicks.php:141
 msgid "click rate"
 msgstr ""
 
@@ -7781,11 +7790,6 @@ msgstr ""
 
 #: public_html/lists/admin/spageedit.php:158
 msgid "General Information"
-msgstr ""
-
-#: public_html/lists/admin/spageedit.php:162
-#: public_html/databasestructure.php:107 public_html/databasestructure.php:154
-msgid "Title"
 msgstr ""
 
 #: public_html/lists/admin/spageedit.php:185
@@ -7933,24 +7937,24 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: public_html/lists/admin/mviews.php:81
+#: public_html/lists/admin/mviews.php:85
 msgid "in progress"
 msgstr ""
 
-#: public_html/lists/admin/mviews.php:134
+#: public_html/lists/admin/mviews.php:138
 msgid "Open statistics"
 msgstr ""
 
-#: public_html/lists/admin/mviews.php:168
+#: public_html/lists/admin/mviews.php:172
 msgid "Entries"
 msgstr ""
 
-#: public_html/lists/admin/mviews.php:194
 #: public_html/lists/admin/mviews.php:198
+#: public_html/lists/admin/mviews.php:202
 msgid "firstview"
 msgstr ""
 
-#: public_html/lists/admin/mviews.php:195
+#: public_html/lists/admin/mviews.php:199
 msgid "lastview"
 msgstr ""
 
