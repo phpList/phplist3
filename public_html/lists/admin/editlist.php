@@ -66,14 +66,14 @@ if (!empty($_POST["addnewlist"]) && !empty($_POST["listname"])) {
   if ($id) {
     $query = sprintf('update %s set name="%s",description="%s",category="%s",
     active=%d,listorder=%d,prefix = "%s", owner = %d
-    where id=%d',$tables["list"],sql_escape($_POST["listname"]),
+    where id=%d',$GLOBALS['tables']["list"],sql_escape($_POST["listname"]),
     sql_escape($_POST["description"]),sql_escape($_POST['category']),$_POST["active"],$_POST["listorder"],
     $_POST["prefix"],$_POST["owner"],$id);
   } else {
     $query = sprintf('insert into %s
       (name,description,entered,listorder,owner,prefix,active,category)
       values("%s","%s",now(),%d,%d,"%s",%d,"%s")',
-      $tables["list"],sql_escape($_POST["listname"]),sql_escape($_POST["description"]),
+      $GLOBALS['tables']["list"],sql_escape($_POST["listname"]),sql_escape($_POST["description"]),
       $_POST["listorder"],$_POST["owner"],sql_escape($_POST["prefix"]),$_POST["active"],sql_escape($category));
   }
 #  print $query;
