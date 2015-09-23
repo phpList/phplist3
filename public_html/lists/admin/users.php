@@ -88,7 +88,8 @@ if ($findby && !$find)
 
 $system_findby = array (
   "email",
-  "foreignkey"
+  "foreignkey",
+  "uniqid",
 );
 
 if ($findby && $find && !in_array($findby, $system_findby)) {
