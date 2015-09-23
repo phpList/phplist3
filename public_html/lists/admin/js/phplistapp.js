@@ -352,9 +352,8 @@ $(document).ready(function() {
   var docurl = document.location.search;
   document.cookie="browsetrail="+escape(docurl);
 
-  setTimeout("autoSave();",120000); // once every two minutes should suffice
-  //setTimeout("autoSave();",500); // for testing
-
+  setInterval("autoSave();",120000); // once every two minutes should suffice
+  
     // tick all the boxes in a category.
     $('li.selectallcategory').on('click', function(){
       if($(this).find('input[type=checkbox]').attr('id').match('all-lists')) {
