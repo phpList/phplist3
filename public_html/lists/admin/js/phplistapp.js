@@ -40,9 +40,7 @@ function messageStatusUpdate(msgid) {
 function getServerTime() {
    $('#servertime').load('./?page=pageaction&ajaxed=true&action=getservertime',"",function() {
    });
-   setTimeout("getServerTime()",60100); // just over a minute
 }
-
 function autoSave() {
   // in the future, do an auto-save, for now, we want to keep the session alive
   $("#autosave").load('./?page=pageaction&ajaxed=true&action=keepalive');
@@ -364,6 +362,8 @@ $(document).ready(function() {
       }
     });
 
+    // @TODO, only set when needed
+    setInterval(getServerTime,30000);
 
 /* future dev
   $("#listinvalid").load("./?page=pageaction&action=listinvalid&ajaxed=true",function() {
