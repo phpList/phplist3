@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+## @@TODO, finish and add to reconcile, and then document
 ## merge the history of two subscriber profiles, that are the same on email, except for some extraneous characters like space, newline, carriage return or tab
 ob_end_flush();
 set_time_limit(600);
