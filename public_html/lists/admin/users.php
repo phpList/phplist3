@@ -361,6 +361,9 @@ $filterpanel .= '>'. $GLOBALS['I18N']->get('Email').'</option>';
 $filterpanel .= '<option value="foreignkey" ';
 $filterpanel .= $findby == "foreignkey"? 'selected="selected"':'';
 $filterpanel .= '>'. $GLOBALS['I18N']->get('Foreign Key').'</option>';
+$filterpanel .= '<option value="uniqid" ';
+$filterpanel .= $findby == "uniqid"? 'selected="selected"':'';
+$filterpanel .= '>'. $GLOBALS['I18N']->get('Unique ID').'</option>';
 
 $att_req = Sql_Query("select id,name from " . $tables["attribute"] . " where type = \"hidden\" or type = \"textline\" or type = \"select\"");
 while ($row = Sql_Fetch_Array($att_req)) {
@@ -443,7 +446,8 @@ if ($result) {
       }
     }
     
-    if (in_array("bounces", $columns)) {
+    $ls_bncs = '';
+    if (in_array("bounces", $columns) && !empty($user["bouncecount"])) {
       $ls_bncs=$GLOBALS['I18N']->get('bncs').": ".$user["bouncecount"];
     }
     $ls->addRow($user["email"],"<div class='listinghdname gray'>".$ls_msgs."<br />".$ls_bncs."</div>",$ls_del.'&nbsp;'.$ls_confirmed);
