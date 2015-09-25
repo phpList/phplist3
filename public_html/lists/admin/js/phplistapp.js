@@ -106,17 +106,6 @@ $(document).ready(function() {
     $(this).parents('.note').hide();
   });
 
-  $(".dontsavebutton").click(function() {
-     item = $(this).attr('id');
-     item = item.replace(/dontsave/,''); 
-     // alert(item);
-     
-     // it would be nicer to restore the original content, but that
-     // would takes a while to accomplish
-     $("#"+item).html('<strong>editing cancelled</strong>');
-    // console.log($("#"+item).html());
-  });
-
   $("a.ajaxable").click(function() {
     var url = this.href;
     var thispage = urlParameter('page',window.location.href);

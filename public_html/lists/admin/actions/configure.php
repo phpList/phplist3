@@ -23,7 +23,7 @@ $(".configValue").each(function() {
 */
 
 $configItem = $default_config[$id];
-printf('<div class="configEditing">' . s('Editing') . ' <b>%s</b></div>',$configItem['description']);
+printf('<div class="configEditing" id="descriptionitem_'.$id.'">' . s('Editing') . ' <b>%s</b></div>',$configItem['description']);
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />',$id,$id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';
@@ -87,3 +87,15 @@ print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">' .
 #print '<a href="./?page=configure" class="button">'.s('cancel changes').'</a>';
 
 print '</div>';
+
+print '<script type="text/javascript">
+
+  $(".dontsavebutton").click(function() {
+     item = $(this).attr(\'id\');
+     item = item.replace(/dontsave/,\'\'); 
+     desc = $("#description"+item).html();
+     $("#"+item).html(desc+\' <i>editing cancelled</i>\');
+  });
+
+</script>';
+
