@@ -136,7 +136,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
       if ($value > $configInfo['max']) $value = $configInfo['max'];
       break;
     case 'email':
-      if (!is_email($value)) {
+      if (!empty($value) && !is_email($value)) {
         ## hmm, this is displayed only later
        # $_SESSION['action_result'] = s('Invalid value for email address');
         return $configInfo['description'].': '.s('Invalid value for email address');
@@ -190,7 +190,7 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
 
   You can configure your PoweredBy options in your config file
 
-  Michiel Dethmers, phpList Ltd 2001-2014
+  Michiel Dethmers, phpList Ltd 2001-2015
 */
 if (DEVVERSION)
   $v = "dev";
