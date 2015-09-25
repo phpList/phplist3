@@ -94,7 +94,7 @@ print '<script type="text/javascript">
      item = $(this).attr(\'id\');
      item = item.replace(/dontsave/,\'\'); 
      desc = $("#description"+item).html();
-     $("#"+item).html(desc+\' <i>editing cancelled</i>\');
+     $("#"+item).html(desc+\' <i>'.str_replace("'","\'",s('editing cancelled')).'</i>\');
   });
 
 </script>';
