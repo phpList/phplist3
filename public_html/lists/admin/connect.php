@@ -28,8 +28,8 @@ if (empty($xormask)) {
   SaveConfig("xormask",$xormask,0,1);
 }
 define('XORmask',$xormask);
-if (empty($_SESSION['csrf_token'])) {
-  $_SESSION['csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
+if (empty($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
+  $_SESSION[$GLOBALS['installation_name'].'_csrf_token'] = substr(md5(uniqid(mt_rand(), true)),rand(0,32),rand(0,32));
 }
 if (isset($_SESSION['lastactivity'])) {
   $_SESSION['session_age'] = time() - $_SESSION['lastactivity'];
@@ -1023,8 +1023,8 @@ function PageLink2($name,$desc="",$url="",$no_plugin = false,$title = '') {
         $pi = "";
       }
       
-      if (!empty($_SESSION['csrf_token'])) {
-        $token = '&amp;tk='.$_SESSION['csrf_token'];
+      if (!empty($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
+        $token = '&amp;tk='.$_SESSION[$GLOBALS['installation_name'].'_csrf_token'];
       } else {
         $token = '';
       }
