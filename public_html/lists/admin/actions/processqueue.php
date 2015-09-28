@@ -18,7 +18,7 @@ if (isset($_GET['secret'])) {
     $inRemoteCall = true;
     ## check that we actually still want remote queue processing
     $pqChoice = getConfig('pqchoice');
-    if ($pqChoice != 'phplistdotcom') {
+    if (SHOW_PQCHOICE && $pqChoice != 'phplistdotcom') {
         $counters['campaigns'] = 0;
         print outputCounters();
         exit;

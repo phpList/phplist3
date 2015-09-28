@@ -327,6 +327,13 @@ Queue and Load management
 # check README.commandline how to do this
 define ("MANUALLY_PROCESS_QUEUE",1);
 
+# This setting will activate an initial setup choice for processing the queue
+# When "true" it will allow a choice between remote queue processing with the 
+# phpList.com service or processing it locally in the browser.
+# when the value is "false", you can use remote processing in your own way
+# as explain at https://resources.phplist.com/system/remote_processing
+# define('SHOW_PQCHOICE',false);
+
 # batch processing
 # if you are on a shared host, it will probably be appreciated if you don't send
 # out loads of emails in one go. To do this, you can configure batch processing.
