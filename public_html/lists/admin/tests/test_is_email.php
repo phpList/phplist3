@@ -70,6 +70,9 @@ class test_is_email extends phplistTest {
        '$A12345@example.com'      => TRUE ,
        "!def!xyz%abc@example.com" => TRUE ,
        '\\\'a0@example.com' => FALSE,
+       'someone@phplíst.com' => TRUE,
+       'hello@clk.email' => TRUE,
+       'hello@xn--tst-qla.de' => TRUE,
     );
      
     print("<P>PHP " . PHP_VERSION . " running on " . PHP_OS . " - Testing email address validation...</P>");
@@ -87,6 +90,7 @@ class test_is_email extends phplistTest {
         $nFoundWrong++;  
       }
     }
+
     
     if ($nFoundWrong > 0) {
       print("<P>The following $nFoundWrong email addresses were evaluated wrong:<BR/>$resultString</P>");
