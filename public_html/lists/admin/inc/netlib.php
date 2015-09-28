@@ -27,7 +27,7 @@ function getClientIP() {
 		$forwarded_list = array_map('trim', $forwarded_list);
     $the_ip = array_shift($forwarded_list);
 
-		if ( filter_var( $the_ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+		if ( filter_var( $the_ip, FILTER_VALIDATE_IP ) ) {
   	  #logEvent("X-Forwarded-For ip=".$the_ip);
 			return $the_ip;
 		}
@@ -39,13 +39,13 @@ function getClientIP() {
     $forwarded_list = array_map('trim', $forwarded_list);
     $the_ip = array_shift($forwarded_list);
 
-		if ( filter_var( $the_ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+		if ( filter_var( $the_ip, FILTER_VALIDATE_IP ) ) {
   	  #logEvent("HTTP_X_FORWARDED_FOR ip=".$the_ip);
 			return $the_ip;
 		}
 	} 
 
-	$the_ip = filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 );
+	$the_ip = filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP );
   #logEvent("REMOTE_ADDR ip=".$the_ip);
 
 	return $the_ip;
