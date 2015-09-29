@@ -1485,7 +1485,7 @@ exit;
 */
 
   foreach ($GLOBALS['plugins'] as $plugin) {
-    $plugin->processLoadedMessage($messageid, $cached[$messageid]);
+    $plugin->processPrecachedCampaign($messageid, $cached[$messageid]);
   }
 
   if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
