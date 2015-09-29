@@ -154,24 +154,23 @@ class PHPlistMailer extends PHPMailer {
       $this->find_html_images($templateid);
       $this->find_html_images_in_base64();
     }
-    function find_html_images_in_base64(){
-		  $images=array();
-		  preg_match_all('~data:image/[a-zA-Z]*;base64,[a-zA-Z0-9+/\\\\=]*|=[^=]|={3,}~', $this->Body, $images);
-		  $i=0;
-		  foreach($images[0] as $img){
-			 
-			 $imagen_type=array();
-			 if(preg_match_all('~data:(image/[a-zA-Z]*){1};base64~',$img,$imagen_type)){
-			   $content_type = isset($imagen_type[1][0])? $imagen_type[1][0]:'';
-			   $image= str_replace("data:{$content_type};base64,",'',$img);
-			   $cid = $this->add_html_image($image, md5(uniqid(time())).'.'.$this->image_types[$content_type], $content_type);
-			   if (!empty($cid)) {
-				  $this->Body = str_replace($img, "cid:$cid", $this->Body);
-			   }
-			}
-			$i++;
-		 }
-	}
+   function find_html_images_in_base64() {
+        $images = array();
+	    if (preg_match_all('~data:image/[a-zA-Z]*;base64,[a-zA-Z0-9+/\\\\=]*(=[^=]|={3,})?~', $this->Body, $images)) {
+		    foreach ($images[0] as $img) {
+                $imagen_type = array();
+                if (preg_match_all('~data:(image/[a-zA-Z]*){1};base64~', $img, $imagen_type)) {
+                    $content_type = isset($imagen_type[1][0]) ? $imagen_type[1][0] : '';
+                    $image = str_replace("data:{$content_type};base64,", '', $img);
+                    $cid = $this->add_html_image($image, md5(uniqid(time())) . '.' . $this->image_types[$content_type], $content_type);
+                    if (!empty($cid)) {
+                        $this->Body = str_replace($img, "cid:$cid", $this->Body);
+                    }
+                }
+            }
+			
+        }
+    }
     
     function add_timestamp()
     {
