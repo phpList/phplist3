@@ -1484,6 +1484,10 @@ exit;
 }
 */
 
+  foreach ($GLOBALS['plugins'] as $plugin) {
+    $plugin->processLoadedMessage($messageid, $cached[$messageid]);
+  }
+
   if (VERBOSE && !empty($GLOBALS['getspeedstats'])) {
     output('parse config start');
   }
