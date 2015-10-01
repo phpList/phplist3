@@ -504,9 +504,12 @@ function userGroups($loginname) {
 }
 
 function is_email($email) {
-   if (mb_strlen($email) != strlen($email) && function_exists('idn_to_ascii')) {
-      list($user,$domain) = explode('@',$email);
-      $email = $user.'@'.idn_to_ascii($domain);
+   if (function_exists('idn_to_ascii') && mb_strlen($email) != strlen($email)) { 
+      $elements = explode('@',strrev($email),2);
+      if (!empty($elements[0]) && !empty($elements[1])) {
+         $email = strrev($elements[1]).'@'.idn_to_ascii(strrev($elements[0]));
+      }
+      unset($elements);
    }
 
   #@@ dont_require_validemail should be replaced by EMAIL_ADDRESS_VALIDATION_LEVEL
