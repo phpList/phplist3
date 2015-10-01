@@ -7,15 +7,18 @@ $list = $_SESSION['export']['list'];
 
 switch ($access) {
   case 'owner':
-    if ($list) {
+      if ($list) {
+        $check = Sql_Fetch_Assoc_Query(sprintf('select id from %s where owner = %d and id = %d',$GLOBALS['tables']['list'],$_SESSION['logindetails']['id'],$list));
+        if (empty($check['id'])) {
+          print Error(s('That is not your list'));
+          return;
+        }        
+      }
+        
       $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '. $GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
                                                      ' INNER JOIN '.$GLOBALS['tables']['user'].' user ON listuser.userid = user.id';
       $subselect = ' and list.owner = ' . $_SESSION['logindetails']['id'];
       $listselect_and = ' and owner = ' . $_SESSION['logindetails']['id'];
-    } else {
-      $querytables = $GLOBALS['tables']['user'].' user';
-      $subselect = '';
-    }
     break;
   case 'all':
     if ($list) {
@@ -43,6 +46,7 @@ if ($_SESSION['export']['column'] == 'nodate') {
   if ($list) {
     $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s where listid = %d %s',$querytables,$list,$subselect));
   } else {
+    ## this takes begin and end of all users, regardless of whether they are on the list of this admin @TODO 
     $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s ',$querytables));
   }
 
