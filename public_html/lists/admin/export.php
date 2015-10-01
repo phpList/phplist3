@@ -24,10 +24,17 @@ if (isset($_REQUEST['list'])) {
 $access = accessLevel('export');
 switch ($access) {
   case 'owner':
+    if ($list) {
+      $check = Sql_Fetch_Assoc_Query(sprintf('select id from %s where owner = %d and id = %d',$GLOBALS['tables']['list'],$_SESSION['logindetails']['id'],$list));
+      if (empty($check['id'])) {
+          print Error(s('That is not your list'));
+          return;
+      }        
+    }
     $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '. $GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
                                                    ' INNER JOIN '.$GLOBALS['tables']['user'].' user ON listuser.userid = user.id';
-    $subselect = ' and list.owner = ' . $_SESSION['logindetails']['id'];
-    $listselect_where = ' where owner = ' . $_SESSION['logindetails']['id'];
+    $subselect = ' list.id = '.$list.' and list.owner = ' . $_SESSION['logindetails']['id'];
+    $ownerselect_where = ' where owner = ' . $_SESSION['logindetails']['id'];
     break;
   case 'all':
     if ($list) {
@@ -37,13 +44,13 @@ switch ($access) {
       $querytables = $GLOBALS['tables']['user'].' user';
       $subselect = '';
     }
-    $listselect_where = '';
+    $ownerselect_where = '';
     break;
   case 'none':
   default:
     $querytables = $GLOBALS['tables']['user'].' user';
     $subselect = ' and user.id = 0';
-    $listselect_where = ' where owner = 0';
+    $ownerselect_where = ' where owner = 0';
     break;
 }
 
@@ -69,7 +76,7 @@ if (isset($_POST['processexport'])) {
 }
 
 if ($list) {
-  print sprintf($GLOBALS['I18N']->get('Export subscribers on %s'),ListName($list));
+  print s('Export subscribers on %s',ListName($list));
 }
 
 print formStart();
@@ -91,7 +98,7 @@ if (isset($_GET['list']) && $_GET['list'] == 'all') {
 <?php
 if (empty($list)) { 
   print '<select name="list">';
-  $req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$listselect_where));
+  $req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$ownerselect_where));
   while ($row = Sql_Fetch_Array($req)) {
     printf ('<option value="%d">%s</option>',$row['id'],$row['name']);
   }
@@ -127,7 +134,7 @@ if (empty($list)) {
 
 ?>
 
-<p class="submit"><input type="submit" name="processexport" id="processexport" value="<?php echo $GLOBALS['I18N']->get('Export'); ?>"></p></form>
+<p class="submit"><input type="submit" name="processexport" id="processexport" value="<?php echo s('Export'); ?>"></p></form>
 
 <?php
 
