@@ -77,12 +77,12 @@ if (!$id) {
       
     $ls->addElement($element,PageURL2('mclicks&amp;id='.$row['messageid']));
     $ls->setClass($element,'row1');
-    $ls->addColumn($element,$GLOBALS['I18N']->get('links'),$row['linkcount']);
+    $ls->addColumn($element,s('links'),$row['linkcount']);
 #    $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$totalusers[0]);
-    $ls->addColumn($element,$GLOBALS['I18N']->get('user clicks'),$totalclicked[0]);
-    $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$clickrate);
+    $ls->addColumn($element,s('subscribers'),$totalclicked[0]);
+    $ls->addColumn($element,s('clickrate'),$clickrate);
     
-    $ls->addColumn($element,$GLOBALS['I18N']->get('total clicks'),PageLink2('userclicks&msgid='.$row['messageid'],$row['totalclicks']));
+    $ls->addColumn($element,s('clicks'),PageLink2('userclicks&msgid='.$row['messageid'],$row['totalclicks']));
 #    $ls->addColumn($element,$GLOBALS['I18N']->get('total'),$row['total']);
 #    $ls->addColumn($element,$GLOBALS['I18N']->get('users'),$row['users']);
     $ls->addRow($element,'','<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>');
@@ -127,7 +127,7 @@ if ($totalusers[0] > 0) {
   print sprintf('%0.2f',($totalbounced[0] / $totalusers[0] * 100));
   print '%)</td></tr>';
 }
-print '<tr><td>'.$GLOBALS['I18N']->get('Clicks').'<td><td>'.$totalclicked[0].' '.PageLinkButton('userclicks&msgid='.$id,s('View subscribers')).'</td></tr>
+print '<tr><td>'.s('Unique subscribers who clicked').'<td><td>'.$totalclicked[0].'</td><td>'.PageLinkButton('userclicks&msgid='.$id,s('View subscribers')).'</td></tr>
 <tr><td>'.$GLOBALS['I18N']->get('Click rate').'<td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
@@ -165,9 +165,9 @@ while ($row = Sql_Fetch_Array($req)) {
   //$perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
   //$ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 #  if (CLICKTRACK_SHOWDETAIL) {
-    $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$uniqueclicks['users']);
+    $ls->addColumn($element,s('clicks'),$uniqueclicks['users']);
     $perc = sprintf('%0.2f',($uniqueclicks['users'] / $totalusers[0] * 100));
-    $ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
+    $ls->addColumn($element,s('clickrate'),$perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
     
     $moreInfo1 = '
@@ -187,12 +187,8 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 $ls->addElement('total');
 $ls->setClass('total','rowtotal');
-//$ls->addColumn('total',$GLOBALS['I18N']->get('clicks'),$summary['totalclicks']);
-//$perc = sprintf('%0.2f',($summary['totalclicks'] / $summary['totalsent'] * 100));
-//$ls->addColumn('total',$GLOBALS['I18N']->get('clickrate'),$perc.'%');
-#if (CLICKTRACK_SHOWDETAIL) {
-  $ls->addColumn('total',$GLOBALS['I18N']->get('clicks'),$summary['uniqueclicks']);
-  $perc = sprintf('%0.2f',($summary['uniqueclicks'] / $totalusers[0] * 100));
-  $ls->addColumn('total',$GLOBALS['I18N']->get('clickrate'),$perc.'%');
-#}
+$ls->addColumn('total',s('clicks'),$summary['uniqueclicks']);
+$perc = sprintf('%0.2f',($summary['uniqueclicks'] / $totalusers[0] * 100));
+$ls->addColumn('total',s('clickrate'),$perc.'%');
+
 print $ls->display();

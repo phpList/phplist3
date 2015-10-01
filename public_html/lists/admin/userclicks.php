@@ -126,7 +126,7 @@ if ($fwdid && $msgid) {
   print '<div class="fright">'.PageLinkButton('userclicks&msgid='.$msgid.'&dl=1',s('Download subscribers')).'</div>';
   $query = sprintf('select distinct user.email,user.id as userid,firstclick,date_format(latestclick,
     "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
-    and uml_click.messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],
+    and uml_click.messageid = %d group by user.email',$GLOBALS['tables']['linktrack_uml_click'],$GLOBALS['tables']['user'],
     $msgid);
 } elseif ($userid) {
   print '<h3>'.$GLOBALS['I18N']->get('Clicks of a subscriber').'</h3>';
