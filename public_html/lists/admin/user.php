@@ -2,10 +2,8 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 require_once dirname(__FILE__).'/date.php';
 
-#if (!$_GET["id"] && !$_GET["delete"]) {
-#  Fatal_Error("No such user");
-#  return;
-#}
+if (!defined('PHPLISTINIT')) exit;
+
 $id = sprintf('%d',isset($_GET["id"]) ? $_GET['id']:0);
 $delete = sprintf('%d',isset($_GET['delete']) ? $_GET["delete"]:0);
 $start=isset($_GET['start'])? sprintf('%d',$_GET['start']):0;
@@ -31,23 +29,21 @@ if (isset($_GET['findby'])) {
 } else {
   $findby = '';
 }
+
 $access = accessLevel("user");
 switch ($access) {
   case "owner":
     $subselect = sprintf(' and %s.owner = %d',$tables["list"],$_SESSION["logindetails"]["id"]);
     $subselect_where = sprintf(' where %s.owner = %d',$tables["list"],$_SESSION["logindetails"]["id"]);break;
-
   case "all":
-    $subselect = "";break;
-
+    $subselect = "";$subselect_where = '';break;
   case "view":
     $subselect = "";
     if (sizeof($_POST)) {
-      print Error("You only have privileges to view this page, not change any of the information");
+      print Error(s('You only have privileges to view this page, not change any of the information'));
       return;
     }
     break;
-
   case "none":
   default:
     $subselect = " and ".$tables["list"].".id = 0";
@@ -60,34 +56,8 @@ $struct = $DBstruct["user"];
 
 $more = '';
 
-if (!defined('PHPLISTINIT')) exit;
-
-$id = sprintf('%d',isset($_GET["id"]) ? $_GET['id']:0);
-$delete = sprintf('%d',isset($_GET['delete']) ? $_GET["delete"]:0);
-$date = new Date();
 $newuser = 0;
 $feedback = '';
-
-$access = accessLevel("user");
-switch ($access) {
-  case "owner":
-    $subselect = sprintf(' and %s.owner = %d',$tables["list"],$_SESSION["logindetails"]["id"]);
-    $subselect_where = sprintf(' where %s.owner = %d',$tables["list"],$_SESSION["logindetails"]["id"]);break;
-  case "all":
-    $subselect = "";$subselect_where = '';break;
-  case "view":
-    $subselect = "";
-    if (sizeof($_POST)) {
-      print Error($GLOBALS['I18N']->get('You only have privileges to view this page, not change any of the information'));
-      return;
-    }
-    break;
-  case "none":
-  default:
-    $subselect = " and ".$tables["list"].".id = 0";
-    $subselect_where = " where ".$tables["list"].".owner = 0";break;
-}
-
 $error_exist = 0;
 
 if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
@@ -110,7 +80,7 @@ if (!empty($_POST["change"]) && ($access == "owner"|| $access == "all")) {
      }
    
      if (!$id) {
-       print $GLOBALS['I18N']->get('Error adding subscriber, please check that the subscriber exists');
+       print s('Error adding subscriber, please check that the subscriber exists');
        $error_exist = 1;
        //return;
      }
