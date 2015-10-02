@@ -5,9 +5,20 @@ $status = 'FAIL';
 $disabled_plugins = unserialize(getConfig('plugins_disabled'));
 
 if (isset($_GET['disable'])) {
-  if (isset($GLOBALS['plugins'][$_GET['disable']])) {
-    $disabled_plugins[$_GET['disable']] = 1;
+  $disable = $_GET['disable'];
+
+  if (isset($plugins[$disable])) {
+    unset($plugins[$disable]);
+    $disabled_plugins[$disable] = 1;
   }
+
+  // test whether other enabled plugins depend on this one
+  foreach ($plugins as $piName => $pi) {
+      if (!pluginCanEnable($piName)) {
+        unset($plugins[$piName]);
+        $disabled_plugins[$piName] = 1;
+      }
+  }  
   saveConfig('plugins_disabled',serialize($disabled_plugins),0);
   $status = $GLOBALS['img_cross'].'<script type="text/javascript">document.location = document.location; </script>';
 } elseif (isset($_GET['enable'])) {
