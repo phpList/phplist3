@@ -355,6 +355,10 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         print Warn(s('This campaign is scheduled to stop sending before the embargo time. No mails will be sent.'));
         print PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',s('Review Scheduling'));
       }
+      ## reset any queued messages, as the selection may have changed
+      if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
+        $query = sprintf('delete from '.$tables['usermessage'].' where messageid = %d and status = "todo"',$messagedata['id']);
+      }
       
       print "<h3>".$GLOBALS['I18N']->get("Campaign queued")."</h3>";
       foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
