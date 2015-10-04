@@ -657,7 +657,7 @@ msgstr ""
 
 #: public_html/lists/admin/connect.php:1220
 #: public_html/lists/admin/connect.php:1222
-#: public_html/lists/admin/export.php:111
+#: public_html/lists/admin/export.php:118
 msgid "Select all"
 msgstr ""
 
@@ -861,7 +861,7 @@ msgstr ""
 #: public_html/lists/admin/plugins.php:27
 #: public_html/lists/admin/configure.php:69
 #: public_html/lists/admin/import2.php:61
-#: public_html/lists/admin/import1.php:32 public_html/lists/admin/user.php:95
+#: public_html/lists/admin/import1.php:32 public_html/lists/admin/user.php:65
 #: public_html/lists/admin/spageedit.php:28
 msgid "Invalid security token, please reload the page and try again"
 msgstr ""
@@ -918,7 +918,7 @@ msgstr ""
 #: public_html/lists/admin/import2.php:47
 #: public_html/lists/admin/import2.php:364
 #: public_html/lists/admin/import3.php:264
-#: public_html/lists/admin/user.php:359
+#: public_html/lists/admin/user.php:329
 #: public_html/lists/admin/initialise.php:56
 msgid "Continue"
 msgstr ""
@@ -1271,8 +1271,9 @@ msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:109
 #: public_html/lists/admin/userclicks.php:187
+#: public_html/lists/admin/mclicks.php:85
 #: public_html/lists/admin/mclicks.php:168
-#: public_html/lists/admin/mclicks.php:194
+#: public_html/lists/admin/mclicks.php:190
 #: public_html/lists/admin/userhistory.php:92
 #: public_html/lists/admin/userhistory.php:95
 #: public_html/lists/admin/uclicks.php:57
@@ -1611,7 +1612,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:225
 #: public_html/lists/admin/messages.php:235
 #: public_html/lists/admin/eventlog.php:38 public_html/lists/admin/list.php:68
-#: public_html/lists/admin/user.php:302 public_html/lists/admin/admins.php:33
+#: public_html/lists/admin/user.php:272 public_html/lists/admin/admins.php:33
 #: public_html/lists/admin/admin.php:121 public_html/lists/admin/users.php:227
 msgid "Done"
 msgstr ""
@@ -2087,6 +2088,7 @@ msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:396
 #: public_html/lists/admin/members.php:254
+#: public_html/lists/admin/mclicks.php:82
 msgid "subscribers"
 msgstr ""
 
@@ -2328,8 +2330,8 @@ msgstr ""
 #: public_html/lists/admin/template.php:322
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:110
-#: public_html/lists/admin/list.php:285 public_html/lists/admin/user.php:467
-#: public_html/lists/admin/user.php:496
+#: public_html/lists/admin/list.php:285 public_html/lists/admin/user.php:437
+#: public_html/lists/admin/user.php:466
 #: public_html/lists/admin/bouncerule.php:71
 #: public_html/lists/admin/admin.php:254
 #: public_html/lists/admin/attributes.php:382
@@ -2374,7 +2376,7 @@ msgstr ""
 #: public_html/lists/admin/templates.php:7
 #: public_html/lists/admin/messages.php:146
 #: public_html/lists/admin/eventlog.php:33 public_html/lists/admin/list.php:61
-#: public_html/lists/admin/user.php:293 public_html/lists/admin/admins.php:29
+#: public_html/lists/admin/user.php:263 public_html/lists/admin/admins.php:29
 #: public_html/lists/admin/admin.php:117
 msgid "Deleting"
 msgstr ""
@@ -2499,7 +2501,7 @@ msgid "cannot be empty"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:91
-#: public_html/lists/admin/user.php:281 public_html/lists/admin/admin.php:107
+#: public_html/lists/admin/user.php:251 public_html/lists/admin/admin.php:107
 #: public_html/lists/admin/editlist.php:87
 msgid "Changes saved"
 msgstr ""
@@ -2519,7 +2521,7 @@ msgstr ""
 
 #: public_html/lists/admin/configure.php:134
 #: public_html/lists/admin/actions/configure.php:61
-#: public_html/lists/admin/user.php:393
+#: public_html/lists/admin/user.php:363
 #: public_html/lists/admin/bouncerule.php:35
 #: public_html/lists/admin/admin.php:182 public_html/lists/admin/admin.php:199
 msgid "Yes"
@@ -2527,7 +2529,7 @@ msgstr ""
 
 #: public_html/lists/admin/configure.php:136
 #: public_html/lists/admin/actions/configure.php:68
-#: public_html/lists/admin/user.php:393
+#: public_html/lists/admin/user.php:363
 #: public_html/lists/admin/bouncerule.php:36
 #: public_html/lists/admin/admin.php:182 public_html/lists/admin/admin.php:200
 msgid "No"
@@ -3144,7 +3146,6 @@ msgid "Unique Views"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:384
-#: public_html/lists/admin/mclicks.php:130
 msgid "Clicks"
 msgstr ""
 
@@ -3551,7 +3552,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:547
 #: public_html/lists/admin/list.php:147 public_html/lists/admin/list.php:158
-#: public_html/lists/admin/user.php:503
+#: public_html/lists/admin/user.php:473
 msgid "Lists"
 msgstr ""
 
@@ -4193,7 +4194,7 @@ msgid "Import of new subscriber"
 msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:189
-#: public_html/lists/admin/user.php:269
+#: public_html/lists/admin/user.php:239
 msgid "No data changed"
 msgstr ""
 
@@ -4279,21 +4280,26 @@ msgstr ""
 msgid "Network error updating language, please try again later"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:56
+#: public_html/lists/admin/actions/export.php:13
+#: public_html/lists/admin/export.php:30
+msgid "That is not your list"
+msgstr ""
+
+#: public_html/lists/admin/actions/export.php:60
 #, php-format
 msgid "phpList Export on %s from %s to %s (%s).csv"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:58
+#: public_html/lists/admin/actions/export.php:62
 #, php-format
 msgid "phpList Export from %s to %s (%s).csv"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:139
+#: public_html/lists/admin/actions/export.php:143
 msgid "List Membership"
 msgstr ""
 
-#: public_html/lists/admin/actions/export.php:187
+#: public_html/lists/admin/actions/export.php:191
 #: public_html/lists/admin/actions/processqueue.php:292
 msgid "All done"
 msgstr ""
@@ -5457,101 +5463,101 @@ msgstr ""
 msgid "No emails found"
 msgstr ""
 
-#: public_html/lists/admin/user.php:81
+#: public_html/lists/admin/user.php:43
 msgid ""
 "You only have privileges to view this page, not change any of the information"
 msgstr ""
 
-#: public_html/lists/admin/user.php:113
+#: public_html/lists/admin/user.php:83
 msgid "Error adding subscriber, please check that the subscriber exists"
 msgstr ""
 
-#: public_html/lists/admin/user.php:171
+#: public_html/lists/admin/user.php:141
 msgid "Uploaded avatar file too big"
 msgstr ""
 
-#: public_html/lists/admin/user.php:240 public_html/lists/admin/user.php:247
+#: public_html/lists/admin/user.php:210 public_html/lists/admin/user.php:217
 #, php-format
 msgid "Subscriber removed from list %s"
 msgstr ""
 
-#: public_html/lists/admin/user.php:253
+#: public_html/lists/admin/user.php:223
 #, php-format
 msgid "Subscriber added to list %s"
 msgstr ""
 
-#: public_html/lists/admin/user.php:264
+#: public_html/lists/admin/user.php:234
 msgid "(no data)"
 msgstr ""
 
-#: public_html/lists/admin/user.php:265
+#: public_html/lists/admin/user.php:235
 msgid "changed from"
 msgstr ""
 
-#: public_html/lists/admin/user.php:273
+#: public_html/lists/admin/user.php:243
 #, php-format
 msgid "Subscribed to %s"
 msgstr ""
 
-#: public_html/lists/admin/user.php:276
+#: public_html/lists/admin/user.php:246
 #, php-format
 msgid "Unsubscribed from %s"
 msgstr ""
 
-#: public_html/lists/admin/user.php:279
+#: public_html/lists/admin/user.php:249
 #, php-format
 msgid "Update by %s"
 msgstr ""
 
-#: public_html/lists/admin/user.php:314
+#: public_html/lists/admin/user.php:284
 msgid "No such subscriber"
 msgstr ""
 
-#: public_html/lists/admin/user.php:327
+#: public_html/lists/admin/user.php:297
 msgid "No Lists"
 msgstr ""
 
-#: public_html/lists/admin/user.php:330
+#: public_html/lists/admin/user.php:300
 msgid "History"
 msgstr ""
 
-#: public_html/lists/admin/user.php:339
+#: public_html/lists/admin/user.php:309
 #: public_html/lists/admin/userhistory.php:51
 msgid "Are you sure you want to remove this subscriber from the system."
 msgstr ""
 
-#: public_html/lists/admin/user.php:340 public_html/lists/admin/user.php:341
+#: public_html/lists/admin/user.php:310 public_html/lists/admin/user.php:311
 #: public_html/lists/admin/userhistory.php:52
 #: public_html/lists/admin/userhistory.php:53
 msgid "remove subscriber"
 msgstr ""
 
-#: public_html/lists/admin/user.php:355
+#: public_html/lists/admin/user.php:325
 msgid "Add a new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/user.php:358
+#: public_html/lists/admin/user.php:328
 msgid "Email address"
 msgstr ""
 
-#: public_html/lists/admin/user.php:396
+#: public_html/lists/admin/user.php:366
 msgid "Add to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/user.php:398
+#: public_html/lists/admin/user.php:368
 msgid "Remove from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/user.php:471
+#: public_html/lists/admin/user.php:441
 msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/user.php:474
+#: public_html/lists/admin/user.php:444
 msgid "Mailinglist membership"
 msgstr ""
 
-#: public_html/lists/admin/user.php:502
+#: public_html/lists/admin/user.php:472
 #: public_html/lists/admin/userhistory.php:48
 msgid "Details"
 msgstr ""
@@ -5669,60 +5675,60 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: public_html/lists/admin/export.php:53
+#: public_html/lists/admin/export.php:60
 msgid "Invalid security token. Please reload the page and try again."
 msgstr ""
 
-#: public_html/lists/admin/export.php:64
+#: public_html/lists/admin/export.php:71
 msgid "Processing export, this may take a while. Please wait"
 msgstr ""
 
-#: public_html/lists/admin/export.php:72
+#: public_html/lists/admin/export.php:79
 #, php-format
 msgid "Export subscribers on %s"
 msgstr ""
 
-#: public_html/lists/admin/export.php:83
+#: public_html/lists/admin/export.php:90
 msgid "What date needs to be used:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:84
+#: public_html/lists/admin/export.php:91
 msgid "Any date"
 msgstr ""
 
-#: public_html/lists/admin/export.php:84
+#: public_html/lists/admin/export.php:91
 msgid "Export all subscribers"
 msgstr ""
 
-#: public_html/lists/admin/export.php:85
+#: public_html/lists/admin/export.php:92
 msgid "When they signed up"
 msgstr ""
 
-#: public_html/lists/admin/export.php:86
+#: public_html/lists/admin/export.php:93
 msgid "When the record was changed"
 msgstr ""
 
-#: public_html/lists/admin/export.php:87
+#: public_html/lists/admin/export.php:94
 msgid "Based on changelog"
 msgstr ""
 
-#: public_html/lists/admin/export.php:88
+#: public_html/lists/admin/export.php:95
 msgid "When they subscribed to"
 msgstr ""
 
-#: public_html/lists/admin/export.php:105
+#: public_html/lists/admin/export.php:112
 msgid "Date From:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:106
+#: public_html/lists/admin/export.php:113
 msgid "Date To:"
 msgstr ""
 
-#: public_html/lists/admin/export.php:110
+#: public_html/lists/admin/export.php:117
 msgid "Select the columns to include in the export"
 msgstr ""
 
-#: public_html/lists/admin/export.php:130
+#: public_html/lists/admin/export.php:137
 msgid "Export"
 msgstr ""
 
@@ -6078,18 +6084,10 @@ msgstr ""
 msgid "links"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:82
-msgid "user clicks"
-msgstr ""
-
 #: public_html/lists/admin/mclicks.php:83
 #: public_html/lists/admin/mclicks.php:170
-#: public_html/lists/admin/mclicks.php:196
+#: public_html/lists/admin/mclicks.php:192
 msgid "clickrate"
-msgstr ""
-
-#: public_html/lists/admin/mclicks.php:85
-msgid "total clicks"
 msgstr ""
 
 #: public_html/lists/admin/mclicks.php:110
@@ -6098,6 +6096,10 @@ msgstr ""
 
 #: public_html/lists/admin/mclicks.php:124
 msgid "Sent to"
+msgstr ""
+
+#: public_html/lists/admin/mclicks.php:130
+msgid "Unique subscribers who clicked"
 msgstr ""
 
 #: public_html/lists/admin/mclicks.php:130
