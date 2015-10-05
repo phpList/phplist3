@@ -1358,9 +1358,13 @@ function flushClickTrackCache() {
 function resetMessageStatistics($messageid = 0) {
   ## remove the record of the links in the message, actual clicks of links, and the users sent to
   
-  Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_ml'],$messageid));
-  Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$messageid));
-  Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['usermessage'],$messageid));
+  ## do not do this, if more than X have gone out
+  $numsent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where messageid = %d',$GLOBALS['tables']['usermessage'],$messageid));
+  if ($numsent[0] < RESETSTATS_MAX) {
+      Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_ml'],$messageid));
+      Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['linktrack_uml_click'],$messageid));
+      Sql_Query(sprintf('delete from %s where messageid = %d',$GLOBALS['tables']['usermessage'],$messageid));
+  }
 }
 
 if (!function_exists('formatbytes')) {
