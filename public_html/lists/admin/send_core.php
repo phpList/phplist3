@@ -949,13 +949,17 @@ if (!$done) {
      Help("googletrack").' '.s('add Google Analytics tracking code'),
      !empty($messagedata['google_track']) ? 'checked="checked"':'');
 
-  ## @@TODO, maybe add a check on "sent" for this campaign and suppress this once it's over a threshold
-  $send_content .= sprintf('
-    <div class="resetStatistics">
-    <label for"cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
-    </div>',
-     Help("resetstats").' '.s('Reset click statistics'),
-     !empty($messagedata['resetstats']) ? 'checked="checked"':'');
+  $numsent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where messageid = %d',$GLOBALS['tables']['usermessage'],$messagedata['id']));
+  if ($numsent[0] < RESETSTATS_MAX) {
+      $send_content .= sprintf('
+        <div class="resetStatistics">
+        <label for"cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
+        </div>',
+         Help("resetstats").' '.s('Reset click statistics'),
+         !empty($messagedata['resetstats']) ? 'checked="checked"':'');
+  } else {
+      $send_content .= '<input type="hidden" name="resetstats" value="0" />';
+  }
 
   $send_content .= sprintf('
     <div class="isTestCampaign">
