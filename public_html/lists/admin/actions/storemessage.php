@@ -11,8 +11,8 @@ if (!$id) {
   return;
 }
 
-if (isset($_REQUEST['sendmethod']) && $_REQUEST['sendmethod'] == 'inputhere') {
-  $_REQUEST['sendurl'] = '';
+if (isset($_POST['sendmethod']) && $_POST['sendmethod'] == 'inputhere') {
+  $_POST['sendurl'] = '';
 }
 
 if (!empty($_POST['sendurl'])) {
