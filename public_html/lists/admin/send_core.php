@@ -177,8 +177,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
   ### allow plugins manipulate data or save it somewhere else
   $plugintabs = array();
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-  #  print "Saving ".$plugin->name;
-    $resultMsg = $plugin->sendMessageTabSave($id,$messagedata);
+    $resultMsg = $plugin->sendMessageTabSave($id, $messagedata);
   }
 
   if (!$htmlformatted  && strip_tags($messagedata["message"]) != $messagedata["message"]) {
