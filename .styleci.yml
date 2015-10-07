@@ -9,3 +9,15 @@ enabled:
 disabled:
   - unalign_double_arrow
   - unalign_equals
+
+finder:
+  exclude:
+    - "hostedplugins"
+    - "public_html/lists/admin/plugins"
+    - "public_html/lists/admin/PHPMailer"
+    - "public_html/lists/admin/help"
+    - "public_html/lists/admin/info"
+    - "public_html/lists/admin/locale"
+    - "public_html/lists/admin/ui"
+
+
