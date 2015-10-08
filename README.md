@@ -44,7 +44,7 @@ To use phpList you need a webserver which supports PHP version 5, and a MySQL da
 ## Installation
 Read the installation instructions with abundant help at: 
 
-http://docs.phplist.com/PhplistInstallation
+https://www.phplist.org/manual/ch028_installation.xhtml
 
 ## Upgrade
 
