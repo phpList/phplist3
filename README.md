@@ -1,5 +1,7 @@
 # phpList
 
+[![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+
 Open source newsletter and email marketing manager https://www.phplist.com
 
 ---
