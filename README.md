@@ -41,6 +41,10 @@ Particular aspects of the system are:
 ## Requirements
 To use phpList you need a webserver which supports PHP version 5, and a MySQL database.
 
+phpList should work with a standard PHP environment, but some functionality may require additional modules. 
+
+More detailed requirements can be found in the [Reources Wiki](https://resources.phplist.com/system)
+
 ## Installation
 Read the installation instructions with abundant help at: 
 
