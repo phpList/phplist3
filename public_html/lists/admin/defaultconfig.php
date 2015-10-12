@@ -78,6 +78,14 @@ $default_config = array (
   'allowempty' => true,
   'category'=> 'general',
 ),
+# logo of the organisation
+"organisation_logo" => array (
+ 'value' => '',
+ 'description' => s("Logo of the organisation"),
+  'type' => "image",
+  'allowempty' => true,
+  'category'=> 'general',
+),
 
   # how often to check for new versions of PHPlist
 "check_new_version" => array (

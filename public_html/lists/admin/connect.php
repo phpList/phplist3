@@ -164,6 +164,15 @@ function SaveConfig($item,$value,$editable=1,$ignore_errors = 0) {
       }
 
       break;
+    case 'image':
+      include "class.image.inc";
+      $image = new imageUpload();
+      $imageId = $image->uploadImage($item,0);
+      if ($imageId) {
+        $value = $imageId;
+      }
+      ## we only use the image type for the logo
+      flushLogoCache();
   }
   ## reset to default if not set, and required
   if (empty($configInfo['allowempty']) && empty($value)) {

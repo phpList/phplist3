@@ -619,6 +619,19 @@ function previewTemplate($id,$adminid = 0,$text = "", $footer = "") {
   #0013076: Blacklisting posibility for unknown users
   $template = str_ireplace("[BLACKLIST]",sprintf('<a href="%s">%s</a>',getConfig("blacklisturl"),$GLOBALS["strThisLink"]),$template);
   $template = str_ireplace("[PREFERENCES]",sprintf('<a href="%s">%s</a>',getConfig("preferencesurl"),$GLOBALS["strThisLink"]),$template);
+  
+  $logoImageId = getConfig('organisation_logo');
+  preg_match_all('/\[LOGO\:?(\d+)?\]/',$template,$logoInstances);
+  foreach ($logoInstances[0] as $index => $logoInstance) {
+      $size = $logoInstances[1][$index];
+      if (!empty($size)) {
+          $logoSize = '&amp;m='.$size;
+      } else {
+          $logoSize = '';
+      }
+      $template = str_replace($logoInstance,'?page=image&amp;id='.$logoImageId.$logoSize,$template);
+  }
+  
   if (!EMAILTEXTCREDITS) {
     $template = str_ireplace("[SIGNATURE]",'<img src="?page=image&amp;id='.$poweredImageId.'" width="70" height="30" />',$template);
   } else {
@@ -1732,3 +1745,63 @@ function subscribeToAnnouncementsForm($emailAddress = "") {
 <button type="submit" id="phplistsubscribe">'.s('Subscribe').'</button> <button id="phplistnotsubscribe" class="fright">'.s('Do not subscribe').'</button></form>'
     .' </p>';
 }
+
+function createCachedLogoImage($size) {
+    
+  $logoImageId = getConfig('organisation_logo');
+  if (empty($logoImageId)) return false;
+
+  $imgData = Sql_Fetch_Assoc_Query(sprintf('select data from %s where template = 0 and filename = "ORGANISATIONLOGO%d.png"',$GLOBALS['tables']["templateimage"],$size));
+  if (!empty($imgData["data"])) {
+      return true;
+  }
+  $imgData = Sql_Fetch_Assoc_Query(sprintf('select data from %s where id = %d and template = 0',$GLOBALS['tables']["templateimage"],$logoImageId));
+  $imageContent = base64_decode($imgData["data"]);
+  if (empty($imageContent)) {
+    ## fall back to a single pixel, so that there are no broken images
+    $imageContent = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAALGPC/xhBQAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0gQCEx05cqKA8gAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII='); 
+  }
+  
+  if (function_exists('getimagesizefromstring')) {
+    $imgSize = getimagesizefromstring ( $imageContent );
+    $sizeW = $imgSize[0];
+    $sizeH = $imgSize[1];
+    if ($sizeH > $sizeW) {
+      $sizefactor = (double) ($size / $sizeH);
+    } else {
+      $sizefactor = (double) ($size / $sizeW) ;
+    }
+    $newwidth = (int) ($sizeW * $sizefactor);
+    $newheight = (int) ($sizeH * $sizefactor);
+  } else {
+    $sizefactor = 1;
+  }
+  if ($sizefactor < 1) {
+    $original = imagecreatefromstring($imageContent);
+    $resized = imagecreatetruecolor($newwidth, $newheight); ## creates a black image (why would you want that....)
+    imagesavealpha($resized, true);
+    $transparent = imagecolorallocatealpha($resized,255,255,255,127); ## white. All the methods to make it transparent didn't work for me @@TODO really make transparent
+    imagefill($resized, 0, 0, $transparent);
+    
+    if (imagecopyresized ($resized , $original ,0 ,0 ,0 ,0 , $newwidth , $newheight , $sizeW , $sizeH )) {
+      Sql_Query(sprintf('delete from %s where template = 0 and filename = "ORGANISATIONLOGO%d.png"',$GLOBALS['tables']["templateimage"],$size));
+        
+      ## rather convoluted way to get the image contents
+      $buffer = ob_get_contents();
+      ob_end_clean();
+      ob_start();
+      imagepng($resized);
+      $imageContent = ob_get_contents();
+      ob_end_clean();
+      print $buffer;
+    }
+  } # else copy original
+  Sql_Query(sprintf('insert into %s (template,filename,mimetype,data,width,height) values(0,"ORGANISATIONLOGO%d.png","%s","%s",%d,%d)',
+    $GLOBALS['tables']["templateimage"],$size,$imgSize['mime'],base64_encode($imageContent),$newwidth,$newheight));
+  return true;
+}
+
+function flushLogoCache() {
+  Sql_Query(sprintf('delete from %s where template = 0 and filename like "ORGANISATIONLOGO%%.png"',$GLOBALS['tables']["templateimage"]));
+}
+
