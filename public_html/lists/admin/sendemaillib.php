@@ -763,8 +763,6 @@ function sendEmail ($messageid,$email,$hash,$htmlpref = 0,$rssitems = array(),$f
   }
   
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-#    $textmessage = $plugin->parseOutgoingTextMessage($messageid,$textmessage,$destinationemail, $userdata);
-#    $htmlmessage = $plugin->parseOutgoingHTMLMessage($messageid,$htmlmessage,$destinationemail, $userdata);
     $plugin_attachments = $plugin->getMessageAttachment($messageid,$mail->Body);
     if (!empty($plugin_attachments[0]['content'])) {
       foreach ($plugins_attachments as $plugin_attachment) {
@@ -1541,9 +1539,22 @@ exit;
     $dir = str_replace('/','\/',UPLOADIMAGES_DIR);
     $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/'.$dir.'(.*)>/iU','<img\\1src="'.$GLOBALS['public_scheme'].'://'.$baseurl.'/'.UPLOADIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
   }
-  //if (defined('FCKIMAGES_DIR') && FCKIMAGES_DIR) {
-    //$cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/lists\/'.FCKIMAGES_DIR.'(.*)>/iU','<img\\1src="'.$GLOBALS['public_scheme'].'://'.$baseurl.'/lists/'.FCKIMAGES_DIR.'\\2>',$cached[$messageid]['content']);
-  //}
+  
+  ## replace Logo placeholders
+  foreach (array('content','template','htmlfooter') as $element) {
+    preg_match_all('/\[LOGO\:?(\d+)?\]/',$cached[$messageid][$element],$logoInstances);
+    foreach ($logoInstances[0] as $index => $logoInstance) {
+       $size = sprintf('%d',$logoInstances[1][$index]);
+       if (!empty($size)) {
+          $logoSize = $size;
+       } else {
+          $logoSize = '500';
+       }
+       createCachedLogoImage($logoSize);
+       $cached[$messageid][$element] = str_replace($logoInstance,'ORGANISATIONLOGO'.$logoSize.'.png',$cached[$messageid][$element]);
+    }
+  }
+
   return 1;
 }  
 

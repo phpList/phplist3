@@ -17,7 +17,7 @@ class imageUpload {
     # find image in database
     global $config,$tables;
     $html = '<table class="classimage" border="0">';
-    if ($name && $template_id) {
+    if ($name) {
       $req = Sql_Query(sprintf('select * from %s where template = %d
       and filename = "%s"',$tables["templateimage"],$template_id,$name));
       $imdata = Sql_Fetch_array($req);
@@ -31,20 +31,20 @@ class imageUpload {
        function unCheck'.$name.'() {
         if (this.document.forms[0].'.$name.') {
           if ((this.document.forms[0].'.$name.'_keep.checked) && (this.document.forms[0].'.$name.'.value != ""))
-       this.document.forms[0].'.$name.'_keep.checked = false;
+            this.document.forms[0].'.$name.'_keep.checked = false;
          }
        }
     </script>
     ';
     if (!empty($imdata["data"]) && !empty($imdata["width"]) && !empty($imdata["height"])) {
-      $html .= '<tr><td colspan=3>'.$GLOBALS['I18N']->get('An image exists on the server, check this box to keep the existing one').' <input type="checkbox" name="'.$name.'_keep" value="yes" checked>&nbsp;';
-      $html .= sprintf('%s</td></tr>',$this->viewImageLink($imdata["id"],$imdata["width"],$imdata["height"],$GLOBALS['I18N']->get('View Image')));
+      $html .= '<tr><td colspan=3><div style="display: none">'.s('An image exists on the server, check this box to keep the existing one').' <input type="checkbox" name="'.$name.'_keep" value="yes" checked>&nbsp;</div>
+      <p><i>'.s('Uploading a new image will replace the existing one').'</i></p>';
+#      $html .= sprintf('<img src="./?page=image&amp;id=%d&amp;m=250" width="250" alt="" class="logoimage" />',$imdata["id"]);
+      $html .= '</td></tr>';
     }
     else
     $html .= '<tr><td colspan=3><input type="hidden" name="'.$name.'_keep" value="no">'.$GLOBALS['I18N']->get('No Image was found').'</td></tr>';
     $html .= '<tr><td colspan=2>'.$GLOBALS['I18N']->get('Upload new image').':</td><td><input type="hidden" name="'.$name.'_originalname" value="'.$originalname.'"><input type=file name="'.$name.'" onChange="unCheck'.$name.'();"></td></tr>';
-#    $html .= '<tr><td colspan=2>Caption: </td><td><input type=text name="'.$name.'_caption" size="40" value="'.$imdata["caption"].'"></td></tr>';
-#    $html .= '<tr><td colspan=2>Alt Tag: </td><td><input type=text name="'.$name.'_alttag" size="40" value="'.$imdata["alttag"].'"></td></tr>';
     return $html . '</table>';
   }
 
@@ -107,10 +107,7 @@ class imageUpload {
     $type = $_FILES[$imagename]["type"];
     $keep = $_REQUEST[$imagename."_keep"];
 
-#    dbg("Uploading Name $imagename, File $tmpimagefile, Location $location, Type $type, ". $$type . " Location ". $$location);
-#    dbg("existing $existingid - $keep => ".$$keep);
     if ($filename && $tmpimagefile && $tmpimagefile != "none" && ltrim($keep) != "yes") {
-#      dbg("Uploading $tmpimagefile");
       if (!$type && $type = $this->detect_php_upload_bug($tmpimagefile))
         $this->fix_php_upload_bug($tmpimagefile);
         list($width,$height) = GetImageSize($tmpimagefile);
@@ -137,4 +134,3 @@ class imageUpload {
     return 0;
   }
 }
-?>

@@ -9,8 +9,41 @@ if ($id) {
   $res = Sql_query("select * from {$tables["templateimage"]} where id = $id");
   $row = Sql_fetch_array($res);
 }
+if (isset($_GET['m'])) {
+    $max = sprintf('%d',$_GET['m']);
+} else {
+    $max = 0;
+}
 
 if (!empty($row["data"])) {
+  $imageContent = base64_decode($row["data"]);
+  if ($max && function_exists('getimagesizefromstring')) { ## getimagesizefromstring is 5.4 and up
+    $imSize = getimagesizefromstring ( $imageContent );
+    $sizeW = $imSize[0];
+    $sizeH = $imSize[1];
+    if (($sizeH > $max) || ($sizeW > $max))  {
+      if ($sizeH > $sizeW) {
+        $sizefactor = (double) ($max / $sizeH);
+      } else {
+        $sizefactor = (double) ($max / $sizeW) ;
+      }
+      $newwidth = (int) ($sizeW * $sizefactor);
+      $newheight = (int) ($sizeH * $sizefactor);
+
+      $original = imagecreatefromstring($imageContent);
+      $resized = imagecreatetruecolor($newwidth, $newheight);
+      imagesavealpha($resized, true);
+      $transparent = imagecolorallocatealpha($resized,255,255,255,127);
+      imagefill($resized, 0, 0, $transparent);
+      if (imagecopyresized ($resized , $original ,0 ,0 ,0 ,0 , $newwidth , $newheight , $sizeW , $sizeH )) {
+          header("Content-type: ".$imSize['mime']);
+      } else {
+          header("Content-type: image/jpeg");
+      }
+      echo imagejpeg($resized);
+      exit;
+    }
+  }
   if ($row["mimetype"]) {
     Header("Content-type: ".$row["mimetype"]);
   } else {

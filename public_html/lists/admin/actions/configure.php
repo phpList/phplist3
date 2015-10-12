@@ -27,10 +27,11 @@ printf('<div class="configEditing" id="descriptionitem_'.$id.'">' . s('Editing')
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />',$id,$id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';
-if (isset($dbval))
+if (isset($dbval)) {
   $value = $dbval;
-else
+} else {
   $value = $configItem['value'];
+}
 #  print $id.' '.$value . " ".$website . " ".$domain.'<br/>';
 
 if ($id != "website" && $id != "domain") {
@@ -42,16 +43,16 @@ if ($id != "website" && $id != "domain") {
 if ($configItem['type'] == "textarea") {
   printf('<textarea name="values[%s]" rows=25 cols=55>%s</textarea>',
     $id,htmlspecialchars(stripslashes($value)));
-} else if (
+} elseif (
   $configItem['type'] == "text" || $configItem['type'] == "url" || 
   $configItem['type'] == "email" || $configItem['type'] == "emaillist" 
   ) {
   printf('<input type="text" name="values[%s]" size="70" value="%s" />',
   $id,htmlspecialchars(stripslashes($value)));
-} else if ($configItem['type'] == "integer") {
+} elseif ($configItem['type'] == "integer") {
   printf('<input type="text" name="values[%s]" size="70" value="%d" />',
   $id,htmlspecialchars(stripslashes($value)));
-} else if ($configItem['type'] == "boolean") {
+} elseif ($configItem['type'] == "boolean") {
   printf ('<select name="values[%s]">',$id);
   print '<option value="true" ';
   if ($value === true || $value == "true" || $value == 1) {
@@ -68,6 +69,12 @@ if ($configItem['type'] == "textarea") {
   print $GLOBALS['I18N']->get('No') ;
   print '  </option>';
   print '</select>';
+} elseif ($configItem['type'] == "image") {
+  print '<br/><p>'.s('Please upload an image file, PNG or JPG.').'</p>';
+  include "class.image.inc";
+  $image = new imageUpload();
+  printf ('<input type="hidden" name="values[%s]" value="%s" />',$id,$value); ## to trigger the saving of the value
+  print $image->showInput($id,$value,0);
 } else {
   print s('Don\'t know how to handle type '.$configItem['type']);
 }
