@@ -101,6 +101,7 @@ class imageUpload {
     global $tables;
     global $config;
     $imagename = safeImageName($imagename);
+    if (!isset($_FILES[$imagename])) return 0;
     $tmpimagefile = $_FILES[$imagename]['tmp_name'];
     $originalname =  $_POST[$imagename.'_originalname'];
     $filename = $_FILES[$imagename]["name"];
