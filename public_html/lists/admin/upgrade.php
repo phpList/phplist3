@@ -515,6 +515,27 @@ if (isset($_GET["doit"]) && $_GET["doit"] == 'yes') {
   ## before converting, it's quickest to clear the cache
   clearPageCache ();
   Sql_Query(sprintf('alter table %s change column content content longblob',$tables['urlcache']));
+  # bth 7.13.2015 add new content columns ver > 3.0.12
+//  $add_content_columns_sql = <<< CONTENTCOLUMNSSQL
+//ALTER TABLE %s
+//ADD COLUMN `content1` LONGTEXT NULL DEFAULT NULL AFTER `owner`,
+//ADD COLUMN `textcontent1` LONGTEXT NULL DEFAULT NULL AFTER `content1`,
+//ADD COLUMN `content2` LONGTEXT NULL DEFAULT NULL AFTER `textcontent1`,
+//ADD COLUMN `textcontent2` LONGTEXT NULL DEFAULT NULL AFTER `content2`,
+//ADD COLUMN `content3` LONGTEXT NULL DEFAULT NULL AFTER `textcontent2`,
+//ADD COLUMN `textcontent3` LONGTEXT NULL DEFAULT NULL AFTER `content3`,
+//ADD COLUMN `content4` LONGTEXT NULL DEFAULT NULL AFTER `textcontent3`,
+//ADD COLUMN `textcontent4` LONGTEXT NULL DEFAULT NULL AFTER `content4`,
+//ADD COLUMN `content5` LONGTEXT NULL DEFAULT NULL AFTER `textcontent4`,
+//ADD COLUMN `textcontent5` LONGTEXT NULL DEFAULT NULL AFTER `content5`;
+//CONTENTCOLUMNSSQL;
+  # bth 7.13.2015 add new content columns ver > 3.0.12
+  for ($i = 1; $i <= CUSTOM_MESSAGE_COUNT; $i++) {
+    $add_content_columns_content_sql = "ALTER TABLE %s ADD COLUMN `content%d` LONGTEXT NULL DEFAULT NULL";
+    $add_content_columns_text_sql = "ALTER TABLE %s ADD COLUMN `textcontent%d` LONGTEXT NULL DEFAULT NULL";
+    Sql_Query(sprintf($add_content_columns_content_sql, $tables['message'], $i));
+    Sql_Query(sprintf($add_content_columns_text_sql, $tables['message'], $i));
+  }
 
   # mark the database to be our current version
   if ($success) {

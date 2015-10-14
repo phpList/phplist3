@@ -191,7 +191,18 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         subject = "%s", fromfield = "%s", tofield = "%s",
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s", 
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
-        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d', $tables["message"], 
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%s", 
+	content1 = "%s", textcontent1 = "%s", 
+	content2 = "%s", textcontent2 = "%s", 
+	content3 = "%s", textcontent3 = "%s", 
+	content4 = "%s", textcontent4 = "%s", 
+	content5 = "%s", textcontent5 = "%s", 
+	content6 = "%s", textcontent6 = "%s", 
+	content7 = "%s", textcontent7 = "%s", 
+	content8 = "%s", textcontent8 = "%s", 
+	content9 = "%s", textcontent9 = "%s", 
+	content10 = "%s", textcontent10 = "%s" 
+	where id = %d', $tables["message"], 
            sql_escape($messagedata['campaigntitle']) // we store the title in the subject field. Better would be to rename the DB column, but this will do for now
          , sql_escape($messagedata['fromfield'])
          , sql_escape($messagedata['tofield'])
@@ -210,6 +221,26 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
          , $htmlformatted ? '1' : '0'
          , $messagedata["sendformat"]
          , sql_escape($messagedata["template"])
+         , sql_escape($messagedata["content1"])
+         , sql_escape($messagedata["textcontent1"])
+         , sql_escape($messagedata["content2"])
+         , sql_escape($messagedata["textcontent2"])
+         , sql_escape($messagedata["content3"])
+         , sql_escape($messagedata["textcontent3"])
+         , sql_escape($messagedata["content4"])
+         , sql_escape($messagedata["textcontent4"])
+         , sql_escape($messagedata["content5"])
+         , sql_escape($messagedata["textcontent5"])
+         , sql_escape($messagedata["content6"])
+         , sql_escape($messagedata["textcontent6"])
+         , sql_escape($messagedata["content7"])
+         , sql_escape($messagedata["textcontent7"])
+         , sql_escape($messagedata["content8"])
+         , sql_escape($messagedata["textcontent8"])
+         , sql_escape($messagedata["content9"])
+         , sql_escape($messagedata["textcontent9"])
+         , sql_escape($messagedata["content10"])
+         , sql_escape($messagedata["textcontent10"])
          , $id
       )
     );
