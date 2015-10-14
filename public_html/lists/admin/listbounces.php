@@ -36,7 +36,7 @@ switch ($access) {
 if (!$listid) {
   $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s list, %s listuser,
     %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 150',$GLOBALS['tables']['list'],$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage'], $isowner_and));
+    order by listuser.listid limit 250',$GLOBALS['tables']['list'],$GLOBALS['tables']['listuser'],$GLOBALS['tables']['user_message_bounce'],$GLOBALS['tables']['listmessage'], $isowner_and));
   $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
   $some = 0;
   while ($row = Sql_Fetch_Array($req)) {
