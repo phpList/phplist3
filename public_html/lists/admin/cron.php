@@ -66,10 +66,13 @@ foreach ($cronJobs as $cronJob) {
     if (empty($lastrun) || ($now - $lastrun > $cronJob['frequency'] * 60)) {
         cl_output('Need to run '.$cronJob['plugin'] . ' - '.$cronJob['page']);
         $cronJob['page'] = basename($cronJob['page'],'.php');
+        $cmd_result = "";
         if (isset($GLOBALS['plugins'][$cronJob['plugin']]) && is_file($GLOBALS['plugins'][$cronJob['plugin']]->coderoot . $cronJob['page'].'.php')) {
-             include_once $GLOBALS['plugins'][$cronJob['plugin']]->coderoot . $cronJob['page'].'.php';
+           cl_output('running php '.$argv[0].' -c '. $GLOBALS['configfile']. ' -m '.$cronJob['plugin'].' -p '.$cronJob['page']);
+           exec('php '.$argv[0].' -c '. $GLOBALS['configfile']. ' -m '.$cronJob['plugin'].' -p '.$cronJob['page'],$cmd_result);
         } elseif (empty($cronJob['plugin']) && is_file(__DIR__.'/'.$cronJob['page'].'.php')) {
-             include_once __DIR__.'/'.$cronJob['page'].'.php';
+           cl_output ('running php '.$argv[0].' -c '. $GLOBALS['configfile'].' -p '.$cronJob['page']);
+           exec('php '.$argv[0].' -c '. $GLOBALS['configfile'].' -p '.$cronJob['page'],$cmd_result);
         }
         SaveConfig(md5($cronID),time(),0);
     } else {
