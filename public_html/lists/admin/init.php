@@ -420,6 +420,7 @@ if (!defined('FORWARD_FRIEND_COUNT_ATTRIBUTE')) define('FORWARD_FRIEND_COUNT_ATT
 ## when click track links are detected, block sending
 ## if false, will only show warning. For now defaulting to false, but may change that later
 if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) define('BLOCK_PASTED_CLICKTRACKLINKS',false);
+if (!defined('SORT_FLAG_CASE')) define('SORT_FLAG_CASE',1); // pre PHP5.4
 
 if (FORWARD_EMAIL_COUNT < 1) {
   print 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
