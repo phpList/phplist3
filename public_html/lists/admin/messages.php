@@ -448,6 +448,11 @@ if ($total) {
     } elseif ($msg['status'] != 'draft') {
       $actionbuttons .= '<span class="resend">'.PageLinkButton("messages",$GLOBALS['I18N']->get("Requeue"),"resend=".$msg["id"], '', s('Requeue')).'</span>';
     }
+    $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"], '', s('View')).'</span>';
+
+    if ($clicks[0] && CLICKTRACK) {
+      $actionbuttons .= '<span class="stats">'.PageLinkButton("statsoverview",$GLOBALS['I18N']->get("statistics"),"id=".$msg["id"], '', s('Statistics')).'</span>';
+    }
     #0012081: Add new 'Mark as sent' button
     if ($msg['status'] == 'suspended') {
       $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],$GLOBALS['I18N']->get('Mark&nbsp;sent'), '', '', s('Mark sent')).'</span>';
@@ -458,16 +463,13 @@ if ($total) {
     $deletebutton = new ConfirmButton(
        s('Are you sure you want to delete this campaign?'),
        PageURL2("messages$url_keep&delete=".$msg["id"]),
-       s('delete this campaign'));
+       s('delete this campaign'),'','button');
 
 #      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
-      $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
       $actionbuttons .= '<span class="edit">'.PageLinkButton("send",$GLOBALS['I18N']->get("Edit"),"id=".$msg["id"], '', s('Edit')).'</span>'; 
-    }
-    $actionbuttons .= '<span class="view">'.PageLinkButton("message",$GLOBALS['I18N']->get("View"),"id=".$msg["id"], '', s('View')).'</span>';
-
-    if ($clicks[0] && CLICKTRACK) {
-      $actionbuttons .= '<span class="stats">'.PageLinkButton("statsoverview",$GLOBALS['I18N']->get("statistics"),"id=".$msg["id"], '', s('Statistics')).'</span>';
+      if (empty($clicks[0])) { ## disallow deletion when there are stats
+        $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
+      }
     }
 
     $ls->addColumn($listingelement,$GLOBALS['I18N']->get("Action"), '<div class="messageactions">'.$actionbuttons.'</div>');
