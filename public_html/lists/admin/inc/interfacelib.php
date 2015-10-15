@@ -960,10 +960,10 @@ class confirmButton extends button {
   protected $linkhtml = '';
   protected $js;
   
-  function confirmButton($confirmationtext,$link,$linktext,$title = '') {
+  function confirmButton($confirmationtext,$link,$linktext,$title = '',$class = 'confirm') {
     if (!isset($GLOBALS['confirmButtonCount'])) $GLOBALS['confirmButtonCount'] = 0;
     $GLOBALS['confirmButtonCount']++;
-    $this->linkhtml = ' class="confirm" id="confirm'.$GLOBALS['confirmButtonCount'].'"';
+    $this->linkhtml = ' class="'.$class.'" id="confirm'.$GLOBALS['confirmButtonCount'].'"';
     $this->link = '#';
     $this->linktext = $linktext;
     $GLOBALS['pagefooter']['confirmbutton'.$GLOBALS['confirmButtonCount']] = '
