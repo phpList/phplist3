@@ -38,7 +38,7 @@ $sendtest = !empty($_POST["sendtest"]);
 $baseurl = PageURL2($_GET["page"].'&amp;id='.$id);
 
 if (!isset($_GET['tab'])) $_GET['tab'] = '';
-$_GET['tab'] = preg_replace('/\W/','',$_GET['tab']);
+$_GET['tab'] = strip_tags($_GET['tab']);
 if (!empty($_GET['tab'])) {
   $baseurl .= '&tab='.$_GET['tab'];
 }
