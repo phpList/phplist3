@@ -1,34 +1,33 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-if ($_GET["action"] == "js") {
-  ob_end_clean();
-  $req = Sql_query("select name from {$tables["attribute"]} where type in ('textline','select') order by listorder");
-  $attnames = ';preferences url;unsubscribe url';
-  $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
-  while ($row = Sql_Fetch_Row($req)) {
-    $attnames .= ';'.strtolower(substr($row[0],0,15));
-    $attcodes .= ';['.strtoupper($row[0]).']';
-  }
-
-  $imgdir = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-
-  $smileypath = $_SERVER["DOCUMENT_ROOT"].$GLOBALS["pageroot"].'/images/smiley';
-  $smileyextensions = array('gif');
-  $smileys = '';
-  if ($dir = opendir($smileypath)) {
-    while (false !== ($file = readdir($dir)))
-    {
-      list($fname,$ext) = explode(".",$file);
-      if (in_array($ext,$smileyextensions)) {
-        $smileys .= '"'.$file.'",';
-      }
+if ($_GET['action'] == 'js') {
+    ob_end_clean();
+    $req = Sql_query("select name from {$tables['attribute']} where type in ('textline','select') order by listorder");
+    $attnames = ';preferences url;unsubscribe url';
+    $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
+    while ($row = Sql_Fetch_Row($req)) {
+        $attnames .= ';'.strtolower(substr($row[0], 0, 15));
+        $attcodes .= ';['.strtoupper($row[0]).']';
     }
-  }
-  $smileys = substr($smileys,0,-1);
 
-?>
+    $imgdir = getenv('DOCUMENT_ROOT').$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+
+    $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
+    $smileyextensions = array('gif');
+    $smileys = '';
+    if ($dir = opendir($smileypath)) {
+        while (false !== ($file = readdir($dir))) {
+            list($fname, $ext) = explode('.', $file);
+            if (in_array($ext, $smileyextensions)) {
+                $smileys .= '"'.$file.'",';
+            }
+        }
+    }
+    $smileys = substr($smileys, 0, -1);
+
+    ?>
 oTB_Items.Attribute      = new TBCombo( "Attributes"      , "doAttribute(this)"    , 'Attribute'    , '<?php echo $attnames?>', '<?php echo $attcodes?>') ;
 
 function doAttribute(combo)
@@ -87,7 +86,7 @@ config.LinkUpload = false ;
 config.LinkUploadURL = config.BasePath + "../?page=fckphplist&amp;action=uploadfile" ;
 
 //config.SmileyPath  = config.BasePath + "images/smiley/fun/" ;
-config.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/images/smiley/'?>'
+config.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/images/smiley/'?>'
 
 config.SmileyImages  = [<?php echo $smileys?>] ;
 config.SmileyColumns = 8 ;
@@ -95,8 +94,8 @@ config.SmileyWindowWidth  = 800 ;
 config.SmileyWindowHeight  = 600 ;
 
 <?php exit;
-} elseif ($_GET["action"] == "browseimage") {
-/*
+} elseif ($_GET['action'] == 'browseimage') {
+    /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003 Frederico Caldeira Knabben
  *
@@ -114,54 +113,60 @@ config.SmileyWindowHeight  = 600 ;
 
 // Init var :
 
-  $IMAGES_BASE_URL = 'http://'.$_SERVER["SERVER_NAME"].$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $IMAGES_BASE_DIR = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
+  $IMAGES_BASE_URL = 'http://'.$_SERVER['SERVER_NAME'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $IMAGES_BASE_DIR = getenv('DOCUMENT_ROOT').$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
 
 // End int var
 
 // Thanks : php dot net at phor dot net
-function walk_dir($path) {
-  if ($dir = opendir($path)) {
-    while (false !== ($file = readdir($dir)))
+function walk_dir($path)
+{
+    if ($dir = opendir($path)) {
+        while (false !== ($file = readdir($dir))) {
+            if ($file[0] == '.') {
+                continue;
+            }
+            if (is_dir($path.'/'.$file)) {
+                $retval = array_merge($retval, walk_dir($path.'/'.$file));
+            } elseif (is_file($path.'/'.$file)) {
+                $retval[] = $path.'/'.$file;
+            }
+        }
+        closedir($dir);
+    }
+
+    return $retval;
+}
+
+    function CheckImgExt($filename)
     {
-      if ($file[0]==".") continue;
-      if (is_dir($path."/".$file))
-        $retval = array_merge($retval,walk_dir($path."/".$file));
-      else if (is_file($path."/".$file))
-        $retval[]=$path."/".$file;
-      }
-    closedir($dir);
-    }
-  return $retval;
-}
+        $img_exts = array('gif','jpg', 'jpeg','png');
+        foreach ($img_exts as $this_ext) {
+            if (preg_match("/\.$this_ext$/", $filename)) {
+                return true;
+            }
+        }
 
-function CheckImgExt($filename) {
-  $img_exts = array("gif","jpg", "jpeg","png");
-  foreach($img_exts as $this_ext) {
-    if (preg_match("/\.$this_ext$/", $filename)) {
-      return TRUE;
+        return false;
     }
-  }
-  return FALSE;
-}
-$files = array();
-foreach (walk_dir($IMAGES_BASE_DIR) as $file) {
-  $file = preg_replace("#//+#", '/', $file);
-  $IMAGES_BASE_DIR = preg_replace("#//+#", '/', $IMAGES_BASE_DIR);
-  $file = preg_replace("#$IMAGES_BASE_DIR#", '', $file);
-  if (CheckImgExt($file)) {
-    $files[] = $file;  //adding filenames to array
-  }
-}
+    $files = array();
+    foreach (walk_dir($IMAGES_BASE_DIR) as $file) {
+        $file = preg_replace('#//+#', '/', $file);
+        $IMAGES_BASE_DIR = preg_replace('#//+#', '/', $IMAGES_BASE_DIR);
+        $file = preg_replace("#$IMAGES_BASE_DIR#", '', $file);
+        if (CheckImgExt($file)) {
+            $files[] = $file;  //adding filenames to array
+        }
+    }
 
-sort($files);  //sorting array
+    sort($files);  //sorting array
 
 // generating $html_img_lst
 foreach ($files as $file) {
-  $html_img_lst .= "<a href=\"javascript:getImage('$file');\">$file</a><br/>\n";
+    $html_img_lst .= "<a href=\"javascript:getImage('$file');\">$file</a><br/>\n";
 }
-ob_end_clean();
-?>
+    ob_end_clean();
+    ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <HTML>
@@ -169,7 +174,8 @@ ob_end_clean();
     <TITLE>Image Browser</TITLE>
     <LINK rel="stylesheet" type="text/css" href="./FCKeditor/css/fck_dialog.css">
     <SCRIPT language="javascript" type="text/javascript">
-var sImagesPath  = "<?php echo $IMAGES_BASE_URL; ?>";
+var sImagesPath  = "<?php echo $IMAGES_BASE_URL;
+    ?>";
 var sActiveImage = "" ;
 
 function getImage(imageName)
@@ -231,8 +237,8 @@ function ok()
 </HTML>
 <?php
 exit;
-} elseif ($_GET["action"] == "uploadimage") {
-//  ob_end_clean();
+} elseif ($_GET['action'] == 'uploadimage') {
+    //  ob_end_clean();
 
 /*
  * FCKeditor - The text editor for internet
@@ -254,9 +260,8 @@ exit;
 
 // Init var :
 
-  $UPLOAD_BASE_URL = 'http://'.$_SERVER["SERVER_NAME"].$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $UPLOAD_BASE_DIR = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-
+  $UPLOAD_BASE_URL = 'http://'.$_SERVER['SERVER_NAME'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $UPLOAD_BASE_DIR = getenv('DOCUMENT_ROOT').$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
 
 // End int var
 
@@ -277,43 +282,46 @@ exit;
 <?php
 
 if (file_exists($UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'])) {
-  echo "Error : File ".$_FILES['FCKeditor_File']['name']." exists, can't overwrite it...";
-  echo '<BR><BR><INPUT type="button" value=" Cancel " onclick="window.close()">';
+    echo 'Error : File '.$_FILES['FCKeditor_File']['name']." exists, can't overwrite it...";
+    echo '<BR><BR><INPUT type="button" value=" Cancel " onclick="window.close()">';
 } else {
-  if (is_uploaded_file($_FILES['FCKeditor_File']['tmp_name'])) {
-    $savefile = $UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'];
+    if (is_uploaded_file($_FILES['FCKeditor_File']['tmp_name'])) {
+        $savefile = $UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'];
 
-    if (move_uploaded_file($_FILES['FCKeditor_File']['tmp_name'], $savefile)) {
-      chmod($savefile, 0666);
-      ?>
-    <SCRIPT language=javascript>window.opener.setImage('<?php echo $UPLOAD_BASE_URL.$_FILES['FCKeditor_File']['name']; ?>') ; window.close();</SCRIPT>";
+        if (move_uploaded_file($_FILES['FCKeditor_File']['tmp_name'], $savefile)) {
+            chmod($savefile, 0666);
+            ?>
+    <SCRIPT language=javascript>window.opener.setImage('<?php echo $UPLOAD_BASE_URL.$_FILES['FCKeditor_File']['name'];
+            ?>') ; window.close();</SCRIPT>";
     <?php
-    }
-  } else {
-    echo "Error : ";
-    switch($_FILES['FCKeditor_File']['error']) {
+
+        }
+    } else {
+        echo 'Error : ';
+        switch ($_FILES['FCKeditor_File']['error']) {
       case 0: //no error; possible file attack!
-        echo "There was a problem with your upload.";
+        echo 'There was a problem with your upload.';
         break;
       case 1: //uploaded file exceeds the upload_max_filesize directive in php.ini
-        echo "The file you are trying to upload is too big.";
+        echo 'The file you are trying to upload is too big.';
         break;
       case 2: //uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the html form
-        echo "The file you are trying to upload is too big.";
+        echo 'The file you are trying to upload is too big.';
         break;
       case 3: //uploaded file was only partially uploaded
-        echo "The file you are trying upload was only partially uploaded.";
+        echo 'The file you are trying upload was only partially uploaded.';
         break;
       case 4: //no file was uploaded
-        echo "You must select an image for upload.";
+        echo 'You must select an image for upload.';
         break;
       default: //a default error, just in case!  :)
-        echo "There was a problem with your upload.";
+        echo 'There was a problem with your upload.';
         break;
     }
-  }
-  echo '<BR><BR><INPUT type="button" value=" Cancel " onclick="window.close()">';
-} ?>
+    }
+    echo '<BR><BR><INPUT type="button" value=" Cancel " onclick="window.close()">';
+}
+    ?>
         </B></TD>
       </TR>
     </TABLE>
@@ -322,35 +330,35 @@ if (file_exists($UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'])) {
 <?php
 //exit;
 } elseif ($_GET['action'] == 'js2') {
-  ob_end_clean();
-  header('Content-type: text/plain');
-  $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder',$GLOBALS['tables']['attribute']));
-  $attnames = ';preferences url;unsubscribe url';
-  $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
-  while ($row = Sql_Fetch_Row($req)) {
-    $attnames .= ';'.strtolower(substr($row[0],0,15));
-    $attcodes .= ';['.strtoupper($row[0]).']';
-  }
-
-  $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-
-  $smileypath = $_SERVER["DOCUMENT_ROOT"].$GLOBALS["pageroot"].'/images/smiley';
-  $smileyextensions = array('gif');
-  $smileys = '';
-  if ($dir = opendir($smileypath)) {
-    while (false !== ($file = readdir($dir))) {
-      if (strpos($file,'.') !== false) {
-        list($fname,$ext) = explode(".",$file);
-        if (in_array($ext,$smileyextensions)) {
-          $smileys .= '"'.$file.'",';
-        }
-      }
+    ob_end_clean();
+    header('Content-type: text/plain');
+    $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder', $GLOBALS['tables']['attribute']));
+    $attnames = ';preferences url;unsubscribe url';
+    $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
+    while ($row = Sql_Fetch_Row($req)) {
+        $attnames .= ';'.strtolower(substr($row[0], 0, 15));
+        $attcodes .= ';['.strtoupper($row[0]).']';
     }
-  }
-  $smileys = substr($smileys,0,-1);
 
-?>
+    $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+
+    $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
+    $smileyextensions = array('gif');
+    $smileys = '';
+    if ($dir = opendir($smileypath)) {
+        while (false !== ($file = readdir($dir))) {
+            if (strpos($file, '.') !== false) {
+                list($fname, $ext) = explode('.', $file);
+                if (in_array($ext, $smileyextensions)) {
+                    $smileys .= '"'.$file.'",';
+                }
+            }
+        }
+    }
+    $smileys = substr($smileys, 0, -1);
+
+    ?>
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2005 Frederico Caldeira Knabben
@@ -489,7 +497,7 @@ FCKConfig.LinkUploadDeniedExtensions  = ".(php|php3|php5|phtml|asp|aspx|ascx|jsp
 
 FCKConfig.ImageUpload = <?php echo $enable_image_upload?> ;
 FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/upload/phplist/upload.php?Type=Image' ;
-FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/'?>'
+FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/'?>'
 
 FCKConfig.ImageUploadAllowedExtensions  = ".(jpg|gif|jpeg|png)$" ;    // empty for all
 FCKConfig.ImageUploadDeniedExtensions = "" ;              // empty for no one
@@ -501,7 +509,7 @@ FCKConfig.FlashUploadURL = FCKConfig.BasePath + 'filemanager/upload/asp/upload.a
 FCKConfig.FlashUploadAllowedExtensions  = ".(swf|fla)$" ;   // empty for all
 FCKConfig.FlashUploadDeniedExtensions = "" ;          // empty for no one
 
-FCKConfig.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/images/smiley/'?>'
+FCKConfig.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/images/smiley/'?>'
 FCKConfig.SmileyImages  = [<?php echo $smileys?>] ;
 FCKConfig.SmileyColumns = 8 ;
 FCKConfig.SmileyWindowWidth   = 320 ;
@@ -511,40 +519,40 @@ if( window.console ) window.console.log( 'Config is loaded!' ) ;  // @Packager.C
 <?php
   exit;
 } elseif ($_GET['action'] == 'js3') {
-  @ob_end_clean();
-  header('Content-type: text/plain');
-  $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder',$GLOBALS['tables']['attribute']));
-  $attnames = ';preferences url;unsubscribe url';
-  $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
-  while ($row = Sql_Fetch_Row($req)) {
-    $attnames .= ';'.strtolower(substr($row[0],0,15));
-    $attcodes .= ';['.strtoupper($row[0]).']';
-  }
-
-  $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-
-  $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
-  $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-
-  $smileypath = $_SERVER["DOCUMENT_ROOT"].$GLOBALS["pageroot"].'/images/smiley';
-  $smileyextensions = array('gif');
-  $smileys = '';
-  if (is_dir($smileypath)) {
-    if ($dir = opendir($smileypath)) {
-      while (false !== ($file = readdir($dir))) {
-        if (strpos($file,'.') !== false) {
-          list($fname,$ext) = explode(".",$file);
-          if (in_array($ext,$smileyextensions)) {
-            $smileys .= '"'.$file.'",';
-          }
-        }
-      }
+    @ob_end_clean();
+    header('Content-type: text/plain');
+    $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder', $GLOBALS['tables']['attribute']));
+    $attnames = ';preferences url;unsubscribe url';
+    $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
+    while ($row = Sql_Fetch_Row($req)) {
+        $attnames .= ';'.strtolower(substr($row[0], 0, 15));
+        $attcodes .= ';['.strtoupper($row[0]).']';
     }
-    $smileys = substr($smileys,0,-1);
-  }
 
-?>
+    $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+
+    $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
+    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+
+    $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
+    $smileyextensions = array('gif');
+    $smileys = '';
+    if (is_dir($smileypath)) {
+        if ($dir = opendir($smileypath)) {
+            while (false !== ($file = readdir($dir))) {
+                if (strpos($file, '.') !== false) {
+                    list($fname, $ext) = explode('.', $file);
+                    if (in_array($ext, $smileyextensions)) {
+                        $smileys .= '"'.$file.'",';
+                    }
+                }
+            }
+        }
+        $smileys = substr($smileys, 0, -1);
+    }
+
+    ?>
 /*
  * FCKeditor - The text editor for internet
  * Copyright (C) 2003-2006 Frederico Caldeira Knabben
@@ -712,7 +720,7 @@ FCKConfig.LinkUploadDeniedExtensions  = ".(php|php3|php5|phtml|asp|aspx|ascx|jsp
 
 FCKConfig.ImageUpload = <?php echo $enable_image_upload?> ;
 FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/upload/phplist/upload.php?Type=Image' ;
-FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/'?>'
+FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/'?>'
 
 FCKConfig.ImageUploadAllowedExtensions  = ".(jpg|gif|jpeg|png)$" ;    // empty for all
 FCKConfig.ImageUploadDeniedExtensions = "" ;              // empty for no one
@@ -722,7 +730,7 @@ FCKConfig.FlashUploadURL = FCKConfig.BasePath + 'filemanager/upload/' + _QuickUp
 FCKConfig.FlashUploadAllowedExtensions  = ".(swf|fla)$" ;   // empty for all
 FCKConfig.FlashUploadDeniedExtensions = "" ;          // empty for no one
 
-FCKConfig.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/images/smiley/'?>'
+FCKConfig.SmileyPath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/images/smiley/'?>'
 FCKConfig.SmileyImages  = [<?php echo $smileys?>] ;
 FCKConfig.SmileyColumns = 8 ;
 FCKConfig.SmileyWindowWidth   = 320 ;
@@ -730,45 +738,43 @@ FCKConfig.SmileyWindowHeight  = 240 ;
 
 <?php
   exit;
-} elseif ($_GET['action'] == 'js4') { 
-  ob_end_clean();
-  header('Content-type: text/plain');
-  $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder',$GLOBALS['tables']['attribute']));
-  $attnames = ';preferences url;unsubscribe url';
-  $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
-  while ($row = Sql_Fetch_Row($req)) {
-    $attnames .= ';'.strtolower(substr($row[0],0,15));
-    $attcodes .= ';['.strtoupper($row[0]).']';
-  }
-
-  $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-
-  if (defined('UPLOADIMAGES_DIR')) {
-    $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable ($imgdir) ? 'true':'false';
-  }
-
-  $smileypath = $_SERVER["DOCUMENT_ROOT"].$GLOBALS["pageroot"].'/images/smiley';
-  $smileyextensions = array('gif');
-  $smileys = '';
-  if (is_dir($smileypath)) {
-
-    if ($dir = opendir($smileypath)) {
-      while (false !== ($file = readdir($dir)))
-      {
-        if (strpos($file,'.') !== false) {
-          list($fname,$ext) = explode(".",$file);
-          if (in_array($ext,$smileyextensions)) {
-            $smileys .= '"'.$file.'",';
-          }
-        }
-      }
+} elseif ($_GET['action'] == 'js4') {
+    ob_end_clean();
+    header('Content-type: text/plain');
+    $req = Sql_query(sprintf('select name from %s where type in ("textline","select") order by listorder', $GLOBALS['tables']['attribute']));
+    $attnames = ';preferences url;unsubscribe url';
+    $attcodes = ';[PREFERENCES];[UNSUBSCRIBE]';
+    while ($row = Sql_Fetch_Row($req)) {
+        $attnames .= ';'.strtolower(substr($row[0], 0, 15));
+        $attcodes .= ';['.strtoupper($row[0]).']';
     }
-    $smileys = substr($smileys,0,-1);
-  }
 
-?>
+    $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
+    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+
+    if (defined('UPLOADIMAGES_DIR')) {
+        $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
+        $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    }
+
+    $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
+    $smileyextensions = array('gif');
+    $smileys = '';
+    if (is_dir($smileypath)) {
+        if ($dir = opendir($smileypath)) {
+            while (false !== ($file = readdir($dir))) {
+                if (strpos($file, '.') !== false) {
+                    list($fname, $ext) = explode('.', $file);
+                    if (in_array($ext, $smileyextensions)) {
+                        $smileys .= '"'.$file.'",';
+                    }
+                }
+            }
+        }
+        $smileys = substr($smileys, 0, -1);
+    }
+
+    ?>
 /*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
  * Copyright (C) 2003-2008 Frederico Caldeira Knabben
@@ -878,12 +884,13 @@ FCKConfig.ToolbarSets["Default"] = [
 
   <?php
     $editor_secondrow = getConfig('editortoolbar_row2');
-   if (!empty($editor_secondrow)) {
-    print ",'/',\n";
-    $tools = cleanCommaList($editor_secondrow);
-    $tools = str_replace("'","\'",$tools);
-    print "['".join("','",explode(',',$tools))."']";
-  }?>  
+    if (!empty($editor_secondrow)) {
+        print ",'/',\n";
+        $tools = cleanCommaList($editor_secondrow);
+        $tools = str_replace("'", "\'", $tools);
+        print "['".implode("','", explode(',', $tools))."']";
+    }
+    ?>  
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
@@ -1079,7 +1086,7 @@ FCKConfig.LinkUploadDeniedExtensions  = "" ;  // empty for no one
 FCKConfig.ImageUpload = <?php echo $enable_image_upload?> ;
 //FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/connectors/' + _QuickUploadLanguage + '/upload.' + _QuickUploadExtension + '?Type=Image' ;
 FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/connectors/phplist/upload.php?Type=Image' ;
-FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS["pageroot"].'/'.UPLOADIMAGES_DIR.'/'?>'
+FCKConfig.ImagePath = document.location.protocol + '//' + document.location.host +'<?php echo $GLOBALS['pageroot'].'/'.UPLOADIMAGES_DIR.'/'?>'
 
 FCKConfig.ImageUploadAllowedExtensions  = ".(jpg|gif|jpeg|png|bmp)$" ;    // empty for all
 FCKConfig.ImageUploadDeniedExtensions = "" ;              // empty for no one
@@ -1103,9 +1110,8 @@ FCKConfig.MsWebBrowserControlCompat = false ;
 FCKConfig.PreventSubmitHandler = false ;
 <?php
   exit;
-
-} elseif ($_GET["action"]) {
-  print "Sorry, not implemented";
+} elseif ($_GET['action']) {
+    print 'Sorry, not implemented';
 }
 
 ?>

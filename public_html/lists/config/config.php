@@ -16,13 +16,13 @@
 */
 
 # what is your Mysql database server hostname
-$database_host = "localhost";
+$database_host = 'localhost';
 
 # what is the name of the database we are using
-$database_name = "phplistdb";
+$database_name = 'phplistdb';
 
 # what user has access to this database
-$database_user = "phplist";
+$database_user = 'phplist';
 
 # and what is the password to login to control the database
 $database_password = 'phplist';
@@ -32,15 +32,13 @@ $database_password = 'phplist';
 ## 
 ##     define("PHPMAILERHOST",'smtp.mydomain.com');
 
-define("PHPMAILERHOST",'');
+define('PHPMAILERHOST', '');
 
 # if test is true (not 0) it will not actually send ANY messages, but display what it would have sent
 # this is here, to make sure you edited the config file and mails are not sent "accidentally"
 # on unmanaged systems
 
-define ("TEST",1);
-
-
+define('TEST', 1);
 
 /*
 
@@ -72,7 +70,7 @@ $bounce_protocol = 'pop';
 # commandline option. If this is 0, users cannot run the page from the web
 # frontend. Read README.commandline to find out how to set it up on the
 # commandline
-define ("MANUALLY_PROCESS_BOUNCES",1);
+define('MANUALLY_PROCESS_BOUNCES', 1);
 
 # when the protocol is pop, specify these three
 $bounce_mailbox_host = 'localhost';
@@ -83,7 +81,7 @@ $bounce_mailbox_password = 'password';
 # the default should be fine but if it doesn't work, you can try the second
 # one. To do that, add a # before the first line and take off the one before the
 # second line
-$bounce_mailbox_port = "110/pop3/notls";
+$bounce_mailbox_port = '110/pop3/notls';
 #$bounce_mailbox_port = "110/pop3";
 
 # it's getting more common to have secure connections, in which case you probably want to use
@@ -110,4 +108,4 @@ $bounce_unsubscribe_threshold = 5;
 # choose the encryption method for password
 # check the extended config for more info
 # in most cases, it is fine to leave this as it is
-define("ENCRYPTION_ALGO",'sha256');
+define('ENCRYPTION_ALGO', 'sha256');
