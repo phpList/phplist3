@@ -10,7 +10,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'candidate') {
     $url = '&type=active';
 }
 
-if (isset($_POST['tagaction']) && isset($_POST['tagged']) && is_array($_POST['tagged']) && sizeof($_POST['tagged'])) {
+if (isset($_POST['tagaction']) && isset($_POST['tagged']) && is_array($_POST['tagged']) && count($_POST['tagged'])) {
     switch ($_POST['tagaction']) {
     case 'delete':
       foreach ($_POST['tagged'] as $key => $val) {

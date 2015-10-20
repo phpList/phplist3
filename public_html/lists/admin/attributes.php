@@ -189,7 +189,7 @@ if (isset($_POST['action'])) {
         $first = array_shift($_POST['tag']);
         $firstdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['attribute'], $first));
         $first = $firstdata['id'];
-        if (!sizeof($_POST['tag'])) {
+        if (!count($_POST['tag'])) {
             print Error(s('cannot merge just one attribute'));
         } else {
             $cbg_initiated = 0;

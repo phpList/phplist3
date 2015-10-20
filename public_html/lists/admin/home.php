@@ -323,13 +323,13 @@ if ($some) {
 //  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Purge rss items'));
 //}
 //
-//obsolete, moved to rssmanager plugin 
+//obsolete, moved to rssmanager plugin
 //if ($some && ENABLE_RSS && !array_key_exists("rssmanager", $GLOBALS["plugins"]))
 //  print $ls->display();
 
 $some = 0;
 $ls = new WebblerListing('');
-if (sizeof($GLOBALS['plugins'])) {
+if (count($GLOBALS['plugins'])) {
     foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
         $menu = $plugin->adminmenu();
         if (is_array($menu)) {

@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 ########################################################################
-# Reads mail from a test account that will recieve all sent mail. 
+# Reads mail from a test account that will recieve all sent mail.
 # Use developer_email to send all mail to one account.
 # Use test_email settings to pop this box.
 # This file shows the links from the first email foun d for a selected user.

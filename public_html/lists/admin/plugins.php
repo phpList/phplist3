@@ -71,7 +71,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     //echo "status: " . $zip->status  . "\n";
     //echo "statusSys: " . $zip->statusSys . "\n";
     //echo "filename: " . $zip->filename . "\n";
-    //echo "comment: " . $zip->comment . "\n";  
+    //echo "comment: " . $zip->comment . "\n";
 
     $extractList = array();
         $dir_prefix = '';
@@ -195,7 +195,6 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     $ls->setClass($pluginname, 'row1');
  # $ls->addColumn($pluginname,s('name'),$plugin->name);
 
-
   $details = '<div class="plugindetails">';
     $details .= '<div class="detail"><span class="label">'.s('name').'</span>';
     $details .= '<span class="value">'.$plugin->name.'</span></div>';
@@ -239,7 +238,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         $ls->addColumn($pluginname, s('enabled'), $GLOBALS['img_cross']);
     }
     if (DEVVERSION) {
-        //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ? 
+        //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ?
       //PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
     if ($plugin->enabled) {
         $details .= '<div class="detail"><span class="label">'.s('initialise').'</span>';

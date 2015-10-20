@@ -58,7 +58,7 @@ if (!$listid) {
 }
 $query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.user
   where '.
-#  now() < date_add(umb.time,interval 6 month) and 
+#  now() < date_add(umb.time,interval 6 month) and
  ' lu.listid = %d
   group by lu.userid
   ', $GLOBALS['tables']['listuser'], $GLOBALS['tables']['user_message_bounce'], $listid);

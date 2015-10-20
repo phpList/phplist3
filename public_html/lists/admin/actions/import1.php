@@ -1,6 +1,7 @@
 <?php
 
 
+
   verifyCsrfGetToken();
   @ob_end_flush();
 
@@ -58,8 +59,8 @@
   $additional_emails = 0;
   $foundBlacklisted = 0;
   $some = 0;
-  $num_lists = sizeof($importdata['importlists']);
-  $todo = sizeof($user_list);
+  $num_lists = count($importdata['importlists']);
+  $todo = count($user_list);
   $done = 0;
   $report = '';
   if ($hasinfo) {
@@ -204,7 +205,7 @@
           foreach ($listmembership as $key => $val) {
               $history_entry .= $GLOBALS['I18N']->get('Is now subscribed to:')." $val\n";
           }
-          if (!sizeof($listmembership)) {
+          if (!count($listmembership)) {
               $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists')."\n";
           }
 

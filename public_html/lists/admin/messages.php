@@ -347,7 +347,6 @@ if ($total) {
         $clicks = Sql_Fetch_Row_Query("select sum(clicked) from {$tables['linktrack_ml']} where messageid = ".$msg['id']);
 #    $clicks = array(0);
 
-
 /*
     foreach ($messagedata as $key => $val) {
       $ls->addColumn($listingelement,$key,$val);
@@ -391,7 +390,6 @@ if ($total) {
             $resultStats .= '</table>';
 
 //      $ls->addColumn($listingelement,s('Results'),$resultStats);
-
 
       //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Viewed"), $msg["viewed"]);
       //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Unique Views"), $uniqueviews[0]);

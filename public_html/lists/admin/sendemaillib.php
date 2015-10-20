@@ -30,7 +30,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
   #0013076: different content when forwarding 'to a friend'
   if (FORWARD_ALTERNATIVE_CONTENT) {
-      $forwardContent = sizeof($forwardedby) > 0;
+      $forwardContent = count($forwardedby) > 0;
   } else {
       $forwardContent = 0;
   }
@@ -128,7 +128,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
         if ($remote_content) {
             ## @TODO, work out a nice way to do this: ##17197
-          ## collecting different remote URLS only works if they do not have html and body tags. 
+          ## collecting different remote URLS only works if they do not have html and body tags.
           ## but if we strip them here, that might affect specially crafted ones, eg <body class="xx">
           if (0) {
               $remote_content = preg_replace('/<html[^>]*>/', '', $remote_content);
@@ -175,8 +175,8 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $html['blacklisturl'] = sprintf('%s%semail=%s', $url, htmlspecialchars($sep), $email);
     $text['blacklisturl'] = sprintf('%s%semail=%s', $url, $sep, $email);
 
-  #0013076: Problem found during testing: message part must be parsed correctly as well.  
-  if (sizeof($forwardedby) && isset($forwardedby['email'])) {
+  #0013076: Problem found during testing: message part must be parsed correctly as well.
+  if (count($forwardedby) && isset($forwardedby['email'])) {
       $html['unsubscribe'] = $html['blacklist'];
       $text['unsubscribe'] = $text['blacklist'];
       $html['forwardedby'] = $forwardedby['email'];
@@ -541,7 +541,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     # convert Text message
     # first find occurances of our top domain, to avoid replacing them later
 
-    # hmm, this is no point, it's not just *our* topdomain, but any 
+    # hmm, this is no point, it's not just *our* topdomain, but any
 
   if (0) {
       preg_match_all('#(https?://'.$GLOBALS['website'].'/?)\s+#mis', $textmessage, $links);
@@ -953,7 +953,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 #  print htmlspecialchars($htmlmessage);exit;
 
   if (!TEST) {
-      if ($hash != 'forwarded' || !sizeof($forwardedby)) {
+      if ($hash != 'forwarded' || !count($forwardedby)) {
           $fromname = $cached[$messageid]['fromname'];
           $fromemail = $cached[$messageid]['fromemail'];
           $subject = $cached[$messageid]['subject'];
@@ -1532,7 +1532,6 @@ print $message['sendurl'];
 print $remote_content;exit;
 */
     } // end if not userspecific url
-
 
   if ($cached[$messageid]['htmlformatted']) {
       #   $cached[$messageid]["content"] = compressContent($cached[$messageid]["content"]);

@@ -30,13 +30,13 @@ if (!isset($_GET['show']) || $_GET['show'] != 'all') {
 
 $categories = listCategories();
 
-if (!sizeof($categories)) {
+if (!count($categories)) {
     ## try to fetch them from existing lists
   $req = Sql_Query(sprintf('select distinct category from %s where category != "" ', $tables['list']));
     while ($row = Sql_Fetch_Row($req)) {
         array_push($categories, $row[0]);
     }
-    if (!sizeof($categories)) {
+    if (!count($categories)) {
         print '<p>'.s('No list categories have been defined').'</p>';
         print '<p>'.s('Once you have set up a few categories, come back to this page to classify your lists with your categories.').'</p>';
         print '<p>'.PageLinkButton('configure&id=list_categories&ret=catlists', $I18N->get('Configure Categories')).'</p>';
@@ -71,7 +71,7 @@ print '<div class="fright">'.PageLinkButton('configure&id=list_categories&ret=ca
 
 $ls = new WebblerListing(s('Categorise lists'));
 $aListCategories = listCategories();
-if (sizeof($aListCategories)) {
+if (count($aListCategories)) {
     while ($row = Sql_Fetch_Assoc($req)) {
         $ls->addELement($row['id']);
         $ls->addColumn($row['id'], $GLOBALS['I18N']->get('Name'), stripslashes($row['name']));

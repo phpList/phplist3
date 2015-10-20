@@ -42,7 +42,7 @@ switch ($access) {
     $subselect = '';$subselect_where = '';break;
   case 'view':
     $subselect = '';
-    if (sizeof($_POST)) {
+    if (count($_POST)) {
         print Error(s('You only have privileges to view this page, not change any of the information'));
 
         return;
@@ -213,7 +213,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
              Sql_Query(sprintf('delete from %s where userid = %d and listid = %d', $tables['listuser'], $id, $listId));
              $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $listName);
          }
-     } elseif (sizeof($unsubscribed_from)) {
+     } elseif (count($unsubscribed_from)) {
          # only unsubscribe from the lists of this admin
        $req = Sql_Query("select id,name from {$tables['list']} $subselect_where and id in (".implode(',', array_keys($unsubscribed_from)).')');
          while ($row = Sql_Fetch_Row($req)) {
@@ -221,7 +221,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
              $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $row[1]);
          }
      }
-      if (sizeof($subscribed_to)) {
+      if (count($subscribed_to)) {
           foreach ($subscribed_to as $listID => $listName) {
               Sql_Query("insert into {$tables['listuser']} (userid,listid,entered,modified) values($id,$listID,now(),now())");
               $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'), $listName);
@@ -499,6 +499,5 @@ $p = new UIPanel('', $mailinglistsHTML);
 print '<div id="lists">'.$p->display().'</div>';
 
 print '</div>'; ## end of tabbed
-
 
 print '</form>';

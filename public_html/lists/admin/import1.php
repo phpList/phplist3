@@ -126,7 +126,7 @@ if (isset($_REQUEST['import'])) {
     );
     }
 
-    if (sizeof($email_list) > 300 && !$test_import) {
+    if (count($email_list) > 300 && !$test_import) {
         # this is a possibly a time consuming process, so lets show a progress bar
   #  print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
     flush();
@@ -162,7 +162,7 @@ if (isset($_REQUEST['import'])) {
   } else {
       file_put_contents($newfile.'.data', serialize($_POST));
 
-      print '<h3>'.s('Importing %d subscribers to %d lists, please wait', sizeof($email_list), sizeof($import_lists)).'</h3>';
+      print '<h3>'.s('Importing %d subscribers to %d lists, please wait', count($email_list), count($import_lists)).'</h3>';
       print $GLOBALS['img_busy'];
       print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
       print '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).addCsrfGetToken().'" scrolling="no" height="50"></iframe>';

@@ -262,9 +262,9 @@ class PHPlistMailer extends PHPMailer
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             #    print "Checking Destination for ".$plugin->name."<br/>";
           $pluginHeaders = $plugin->messageHeaders($this);
-            if ($pluginHeaders && sizeof($pluginHeaders)) {
+            if ($pluginHeaders && count($pluginHeaders)) {
                 foreach ($pluginHeaders as $headerItem => $headerValue) {
-                    ## @@TODO, do we need to sanitise them? 
+                    ## @@TODO, do we need to sanitise them?
               $this->addCustomHeader($headerItem.': '.$headerValue);
                 }
             }
@@ -438,6 +438,7 @@ class PHPlistMailer extends PHPMailer
     }
 
     ## addition for filesystem images
+
     public function filesystem_image_exists($filename)
     {
         ##  find the image referenced and see if it's on the server
@@ -508,6 +509,7 @@ class PHPlistMailer extends PHPMailer
 
         return '';
     }
+
     ## end addition
 
     public function image_exists($templateid, $filename)

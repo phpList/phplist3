@@ -17,8 +17,8 @@ class test_is_email extends phplistTest
       'name@company@com'                                                              => false, // two ats
       'name@company.co.uk'                                                            => true , // more .domain sections
       'name@.company.co.uk'                                                           => false, // more .domain sections wrongly
-      'n&me@company.com'                                                              => true , // 
-      "n'me@company.com"                                                              => true , // 
+      'n&me@company.com'                                                              => true , //
+      "n'me@company.com"                                                              => true , //
       'name last@company.com'                                                         => false, // unquoted space is wrong
       '"namelast"@company.com'                                                        => true , // Quoted string can be anything, as long as certain chars are escaped with \
       '"name last"@company.com'                                                       => true , // Quoted string can be anything, as long as certain chars are escaped with \
@@ -42,7 +42,7 @@ class test_is_email extends phplistTest
       'a.nonymous@example.com'    => true ,
       'name+tag@example.com'      => true ,
       ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
-     # '"name\@tag"@example.com'   => TRUE , 
+     # '"name\@tag"@example.com'   => TRUE ,
       '"name\@tag"@example.com'                            => false , // � this is a valid email address containing two @ symbols.
       "escaped\ spaces\ are\ allowed@example.com"          => true ,
       '"spaces may be quoted"@example.com'                 => true ,

@@ -163,7 +163,7 @@ if (!isset($_SESSION['adminlanguage']) || !is_array($_SESSION['adminlanguage']))
   );
 }
 
-## this interferes with the frontend if an admin is logged in. 
+## this interferes with the frontend if an admin is logged in.
 ## better split the frontend and backend charSets at some point
 #if (!isset($GLOBALS['strCharSet'])) {
   $GLOBALS['strCharSet'] = $_SESSION['adminlanguage']['charset'];
@@ -296,7 +296,7 @@ class phplist_I18N
     } else {
         ## try to do "fr_FR", or "de_DE", might work in most cases
       ## hmm, not for eg fa_IR or zh_CN so they'll need the above file
-      # http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes      
+      # http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes
       $lan_map = $this->language.'_'.strtoupper($this->language);
     }
 
@@ -542,7 +542,7 @@ $lan = array(
         if (empty($language)) {
             $language = $this->language;
         }
-        if (sizeof($translations)) {
+        if (count($translations)) {
             foreach ($translations as $orig => $trans) {
                 Sql_Query('replace into '.$GLOBALS['tables']['i18n'].' (lan,original,translation) values("'.$language.'","'.sql_escape($orig).'","'.sql_escape($trans).'")');
             }

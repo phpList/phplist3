@@ -50,7 +50,7 @@ function footer()
 function deleteOldTokens()
 {
     #  echo "<script>alert('".PASSWORD_CHANGE_TIMEFRAME."');</script>";
-  //DELETE FROM phplist_admin_password_request WHERE date_add( date, INTERVAL 1 year ) < now( )  
+  //DELETE FROM phplist_admin_password_request WHERE date_add( date, INTERVAL 1 year ) < now( )
   $SQLquery = sprintf('delete from %s where date_add( date, INTERVAL %s) < now( )', $GLOBALS['tables']['admin_password_request'], PASSWORD_CHANGE_TIMEFRAME);
     $query = Sql_Query($SQLquery);
 }

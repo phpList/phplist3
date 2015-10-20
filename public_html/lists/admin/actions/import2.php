@@ -26,18 +26,18 @@ if ($_SESSION['import_record_delimiter'] != "\n") {
 
 // Split file/emails into array
 $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
-output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', sizeof($email_list)));
+output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
 $header = array_shift($email_list);
 $header = str_replace('"', '', $header);
-$total = sizeof($email_list);
+$total = count($email_list);
 $headers = explode($_SESSION['import_field_delimiter'], $header);
 $headers = array_unique($headers);
 $_SESSION['columnnames'] = $headers;
 
 ### show progress and adjust working space
-if (sizeof($email_list)) {
+if (count($email_list)) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
-    if (sizeof($email_list) > 300 && !$_SESSION['test_import']) {
+    if (count($email_list) > 300 && !$_SESSION['test_import']) {
         # this is a possibly a time consuming process, so show a progress bar
     print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
@@ -65,8 +65,8 @@ if (sizeof($email_list)) {
     $count['foundblacklisted'] = 0;
     $c = 1;
     $count['invalid_email'] = 0;
-    $num_lists = sizeof($_SESSION['lists']);
-    $total = sizeof($email_list);
+    $num_lists = count($_SESSION['lists']);
+    $total = count($email_list);
     $cnt = 0;
     $count['emailmatch'] = 0;
     $count['fkeymatch'] = 0;
@@ -106,10 +106,10 @@ if (sizeof($email_list)) {
 
     //print ("<pre>" . var_dump($_SESSION["import_attribute"]) . "</pre>"); // debug
     //    dbg('_SESSION["import_attribute"',$_SESSION["import_attribute"]); //debug
-    if (sizeof($values) != (sizeof($_SESSION['import_attribute']) + sizeof($system_attributes) - sizeof($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
+    if (count($values) != (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
         Warn('Record has more values than header indicated ('.
-      sizeof($values).'!='.
-       (sizeof($_SESSION['import_attribute']) + sizeof($system_attributes) - sizeof($unused_systemattr)).
+      count($values).'!='.
+       (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)).
       "), this may cause trouble: $index");
     }
         if (!$invalid || ($invalid && $_SESSION['omit_invalid'] != 'yes')) {
@@ -210,7 +210,7 @@ if (sizeof($email_list)) {
           $clashcheck = Sql_Fetch_Array_Query(sprintf('select id,foreignkey,uniqid from %s
                     where email = "%s"', $tables['user'], $user['systemvalues']['email']));
                     if ($clashcheck['id'] != $existing_user['id']) {
-                        #https://mantis.phplist.org/view.php?id=17752 
+                        #https://mantis.phplist.org/view.php?id=17752
             # if the existing record does not have an FK, we treat it as an update, matched on email
             if (empty($clashcheck['foreignkey'])) {
                 ++$count['emailmatch'];
@@ -299,7 +299,7 @@ if (sizeof($email_list)) {
             foreach ($user['systemvalues'] as $column => $value) {
                 if (!empty($column)) { # && !empty($value)) {
               if ($column == 'groupmapping' || strpos($column, 'grouptype_') === 0) {
-                  ## specifically request this group, so that it doesn't interfere with the "groups" which are the ones 
+                  ## specifically request this group, so that it doesn't interfere with the "groups" which are the ones
                 ## submitted in the form
 
                 if (strpos($column, 'grouptype_') === 0) {

@@ -134,7 +134,7 @@ while ($row = sql_Fetch_array($req)) {
 }
 
 print '<ul>';
-print '<li>'.sizeof($rules).' '.$GLOBALS['I18N']->get('new rules found').'</li>';
+print '<li>'.count($rules).' '.$GLOBALS['I18N']->get('new rules found').'</li>';
 print '<li>'.$notmatched.' '.$GLOBALS['I18N']->get('bounces not matched').'</li>';
 print '<li>'.$existmatch.' '.$GLOBALS['I18N']->get('bounces matched to existing rules').'</li>';
 if ($next) {

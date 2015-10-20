@@ -87,7 +87,7 @@ while ($row = Sql_Fetch_Row($req)) {
 }
 array_push($aListCategories, s('Uncategorised'));
 
-if (sizeof($aListCategories)) {
+if (count($aListCategories)) {
     if (isset($_GET['tab']) && in_array($_GET['tab'], $aListCategories)) {
         $current = $_GET['tab'];
     } elseif (isset($_SESSION['last_list_category']) && in_array($_SESSION['last_list_category'], $aListCategories)) {
@@ -127,7 +127,7 @@ if (sizeof($aListCategories)) {
     } else {
         $tabs->setCurrent(s('Uncategorised'));
     }
-    if (sizeof($aListCategories) > 1) {
+    if (count($aListCategories) > 1) {
         print $tabs->display();
     }
 }
@@ -138,7 +138,7 @@ $countquery
 $countresult = Sql_query($countquery);
 $total = Sql_Num_Rows($countresult);
 
-if ($total == 0 && sizeof($aListCategories) && $current == '' && empty($_GET['tab'])) {
+if ($total == 0 && count($aListCategories) && $current == '' && empty($_GET['tab'])) {
     ## reload to first category, if none found by default (ie all lists are categorised)
   if (!empty($aListCategories[0])) {
       Redirect('list&tab='.$aListCategories[0]);
@@ -221,8 +221,8 @@ while ($row = Sql_fetch_array($result)) {
   ## we assume "confirmed" to be 1 or 0, so that the sum gives the total confirmed
   ## could be incorrect, as 1000 is also "true" but will be ok (saves a few queries)
 
-  ## same with blacklisted, but we're disregarding that for now, because blacklisted subscribers should not 
-  ## be on the list at all. 
+  ## same with blacklisted, but we're disregarding that for now, because blacklisted subscribers should not
+  ## be on the list at all.
   ## @@TODO increase accuracy, without adding loads of queries.
 
   $req = Sql_Query(sprintf('select count(u.id) as total,sum(u.confirmed) as confirmed, sum(u.blacklisted) as blacklisted 

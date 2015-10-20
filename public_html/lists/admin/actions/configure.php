@@ -86,7 +86,7 @@ print '<input type="hidden" name="save" value="item_'.$id.'" />
 <button class="submit" type="submit" name="savebutton">'.s('save changes').'</button>';
 
 ## for cancellation, we use a reset button, but that will reset all values in the entire page
-## https://mantis.phplist.org/view.php?id=16924 
+## https://mantis.phplist.org/view.php?id=16924
 
 ## UX wise, it would be good to close the editing DIV again.
 print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">'.s('undo').'</button>';

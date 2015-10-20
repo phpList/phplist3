@@ -404,7 +404,7 @@ function Error($msg, $documentationURL = '')
 
     $GLOBALS['mail_error'] .= 'Error: '.$msg."\n";
     ++$GLOBALS['mail_error_count'];
-    if (is_array($_POST) && sizeof($_POST)) {
+    if (is_array($_POST) && count($_POST)) {
         $GLOBALS['mail_error'] .= "\nPost vars:\n";
         while (list($key, $val) = each($_POST)) {
             if ($key != 'password') {
@@ -539,7 +539,7 @@ function pageTitle($page)
 }
 
 $GLOBALS['pagecategories'] = array(
-  ## category title => array( 
+  ## category title => array(
     # toplink => page to link top menu to
     # pages => pages in this category
 
@@ -826,7 +826,7 @@ function contextMenu()
     }
 
     if (!empty($thispage_category) && !empty($GLOBALS['pagecategories'][$thispage_category]['menulinks'])) {
-        if (sizeof($GLOBALS['pagecategories'][$thispage_category]['menulinks'])) {
+        if (count($GLOBALS['pagecategories'][$thispage_category]['menulinks'])) {
             foreach ($GLOBALS['pagecategories'][$thispage_category]['menulinks'] as $category_page) {
                 $GLOBALS['context_menu'][$category_page] = $category_page;
             }
@@ -968,7 +968,7 @@ function topMenu()
     }
 
     if ($_SESSION['logindetails']['superuser']) { // we don't have a system yet to distinguish access to plugins
-    if (sizeof($GLOBALS['plugins'])) {
+    if (count($GLOBALS['plugins'])) {
         foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
             //if (isset($GLOBALS['pagecategories']['plugins'])) {
             //array_push($GLOBALS['pagecategories']['plugins']['menulinks'],'main&pi='.$pluginName);
@@ -1292,7 +1292,7 @@ function listSelectHTML($current, $fieldname, $subselect, $alltab = '')
 
     $tabno = 1;
     $listindex = $listhtml = '';
-    $some = sizeof($categoryhtml);
+    $some = count($categoryhtml);
 
     if (!empty($alltab)) {
         #&& $some > 1) {
@@ -1432,7 +1432,7 @@ function Help($topic, $text = '?')
 }
 
 # Debugging system, needs $debug = TRUE and $verbose = TRUE or $debug_log = {path} in config.php
-# Hint: When using log make sure the file gets write permissions 
+# Hint: When using log make sure the file gets write permissions
 #
 function dbg($variable, $description = 'Value', $nestingLevel = 0)
 {
@@ -1520,7 +1520,7 @@ function PageData($id)
         $data[$row['name']] = str_ireplace('[organisation_name]', $GLOBALS['organisation_name'], $data[$row['name']]);
         $data[$row['name']] = str_ireplace('[website]', $GLOBALS['website'], $data[$row['name']]);
         $data[$row['name']] = str_ireplace('[website]', $GLOBALS['domain'], $data[$row['name']]);
-    //@@ TODO, add call to plugins here? 
+    //@@ TODO, add call to plugins here?
     }
     if (!isset($data['lists'])) {
         $data['lists'] = '';

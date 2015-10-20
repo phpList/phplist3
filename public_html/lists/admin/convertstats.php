@@ -1,6 +1,6 @@
 <?php
 
-## 
+##
 if (!$GLOBALS['commandline']) {
     @ob_end_flush();
     print '<p class="information">'.$GLOBALS['I18N']->get('Hint: this page also works from commandline').'</p>';

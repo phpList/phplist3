@@ -86,6 +86,7 @@ class phplistPlugin
    *        'description of dependency' => condition for plugin to be enabled
    *    )
    */
+
   public function dependencyCheck()
   {
       return array(
@@ -104,6 +105,7 @@ class phplistPlugin
    * use the "activate" function instead
    * that way you can use processDBerror to handle DB errors
    */
+
   public function __construct()
   {
       $this->phplistplugin();
@@ -112,7 +114,7 @@ class phplistPlugin
     public function phplistplugin()
     {
         # constructor
-    # Startup code, other objects might not be constructed yet 
+    # Startup code, other objects might not be constructed yet
     #print ("<BR>Construct " . $this->name);
     ## try to prepend PLUGIN ROOTDIR, if necessary
     if (!is_dir($this->coderoot)) {
@@ -190,7 +192,7 @@ class phplistPlugin
 
     public function activate()
     {
-        # Startup code, all other objects are constructed 
+        # Startup code, all other objects are constructed
     # returns success or failure, false means we cannot start
     if (isset($this->settings)) {
         foreach ($this->settings as $item => $itemDetails) {
@@ -283,7 +285,7 @@ class phplistPlugin
     {
         ## displayConfig
     # purpose: display input for a config variable in the backend
-    # parameters: 
+    # parameters:
     # name -> name of the config variable, as found in $this->configvars
     # return, HTML snippet of input to slot into a form
     $name = trim(strtolower($name));
@@ -381,7 +383,7 @@ class phplistPlugin
   public function sendMessageTab($messageid = 0, $messagedata = array())
   {
       ## add a tab to the "Send a Message page" for options to be set in the plugin
-    # parameters: 
+    # parameters:
     #    messageid = ID of the message being displayed (should always be > 0)
     #    messagedata = associative array of all data from the db for this message
     # returns: HTML code to slot into the form to submit to the database
@@ -438,6 +440,7 @@ class phplistPlugin
    * HelloWorld
    * just a simple check
    */
+
   public function HelloWorld($params)
   {
       print 'Hello to you from '.$this->name;
@@ -509,6 +512,7 @@ class phplistPlugin
    * @param array   &$message: associative array of message data
    * @return void
    */
+
   public function processPrecachedCampaign($messageid, array &$message)
   {
   }
@@ -521,6 +525,7 @@ class phplistPlugin
    * @param array   userdata: associative array with data about user
    * @return string parsed content
    */
+
   public function parseOutgoingTextMessage($messageid, $content, $destination, $userdata = null)
   {
       return $content;
@@ -534,6 +539,7 @@ class phplistPlugin
    * @param array   userdata: associative array with data about user
    * @return string parsed content
    */
+
   public function parseOutgoingHTMLMessage($messageid, $content, $destination, $userdata = null)
   {
       return $content;
@@ -544,7 +550,7 @@ class phplistPlugin
         ###getMessageAttachment($messageid,$mail->Body);
     # parameters: $messageid,$messagecontent
     # returns array (
-    #  'content' => Content of the attachment 
+    #  'content' => Content of the attachment
     #  'filename' => name of the attached file
     #  'mimetype' => mimetype of the attachment
     # );
@@ -558,7 +564,7 @@ class phplistPlugin
     # Designed to ENCRYPT the fully expanded message just before sending
     # Designed to be called by phplistmailer
     # parameters:
-    #   messageid: message being sent 
+    #   messageid: message being sent
     #   body: current body of message
     #   header: current header of message, except for the Content-Type
     #   contenttype: Content-Type of message
@@ -575,8 +581,8 @@ class phplistPlugin
     {
         ### setFinalDestinationEmail
     # purpose: change the actual recipient based on user Attribute values:
-    # parameters: 
-    #   messageid: message being sent 
+    # parameters:
+    #   messageid: message being sent
     #   uservalues: array of "attributename" => "attributevalue" of all user attributes
     #   email: email that this message is current set to go out to
     # returns: email that it should go out to
@@ -671,6 +677,7 @@ class phplistPlugin
    * @param string $message
    * @return bool -> true if report has been processed and dealt with
    */
+
   public function sendReport($subject, $message)
   {
       return false;
@@ -682,6 +689,7 @@ class phplistPlugin
    * @param string $message
    * @return null
    */
+
   public function sendError($subject, $to = '', $message = '')
   {
   }
@@ -690,6 +698,7 @@ class phplistPlugin
    * @param integer $error number
    * @return null
    */
+
   public function processDBerror($errorid)
   {
   }
@@ -699,6 +708,7 @@ class phplistPlugin
    * @param string $report
    * @return null
    */
+
   public function importReport($report)
   {
   }
@@ -706,6 +716,7 @@ class phplistPlugin
   /* processError
    * @param string msg
    */
+
   public function processError($msg)
   {
   }
@@ -715,6 +726,7 @@ class phplistPlugin
    * @param none
    * @return null
    */
+
   public function processQueueStart()
   {
   }
@@ -725,6 +737,7 @@ class phplistPlugin
    * @param none
    * @return bool
    */
+
   public function allowProcessQueue()
   {
       return true;
@@ -736,6 +749,7 @@ class phplistPlugin
    * @param array messagedata 
    * @return bool;
    */
+
   public function sendTestAllowed($messagedata)
   {
       return true;
@@ -757,6 +771,7 @@ class phplistPlugin
    * @param array messagedata - associative array with all data for campaign
    * @return empty string if allowed, or error string containing reason for not allowing
    */
+
   public function allowMessageToBeQueued($messagedata = array())
   {
       return '';
@@ -781,10 +796,12 @@ class phplistPlugin
   public function messageReQueued($id)
   {
   }
+
   /* messageQueueFinished
    * called when a sending of the queue has finished
    * @return null
    */
+
   public function messageQueueFinished()
   {
   }
@@ -793,6 +810,7 @@ class phplistPlugin
    * @param string msg message to log
    * @return true when dealt with or false to pass on
    */
+
   public function logEvent($msg = '')
   {
       return false;
@@ -808,6 +826,7 @@ class phplistPlugin
   {
       return '';
   }
+
   /**
    * cronJobs.
    *
@@ -911,7 +930,7 @@ class phplistPlugin
 
     public function processSubscribePageEdit($subscribePageID)
     {
-        # purpose: process selected subscribepage options for this list 
+        # purpose: process selected subscribepage options for this list
     # return false if failed
     # Currently used in spageedit.php
     # 200710 Bas
@@ -929,6 +948,7 @@ class phplistPlugin
    * @param string $emailaddress
    * @return bool true if email address is correct
    */
+
    public function validateEmailAddress($emailAddress)
    {
        return true;

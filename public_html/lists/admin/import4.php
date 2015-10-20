@@ -67,7 +67,7 @@ if (!$_POST['remote_host'] ||
   $_POST['remote_database'], $_POST['remote_prefix'], $_POST['remote_userprefix']);
     $c = 0;
     print '<tr><td colspan="2">';
-    if (sizeof($available_lists) > 1) {
+    if (count($available_lists) > 1) {
         print $GLOBALS['I18N']->get('select_lists').'<br/>';
     }
     print '<ul>';
