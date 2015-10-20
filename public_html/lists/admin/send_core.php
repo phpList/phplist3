@@ -188,18 +188,29 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         $errormsg = '<span  class="error">'.$GLOBALS['I18N']->get('Warning: You indicated the content was not HTML, but there were  some HTML  tags in it. This  may  cause  errors').'</span>';
     }
 
+    
     $result = Sql_Query(
       sprintf('update %s  set 
         subject = "%s", fromfield = "%s", tofield = "%s",
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s", 
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
-        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d', $tables['message'],
-           sql_escape($messagedata['campaigntitle']) // we store the title in the subject field. Better would be to rename the DB column, but this will do for now
-, sql_escape($messagedata['fromfield']), sql_escape($messagedata['tofield']), sql_escape($messagedata['replyto']), sprintf('%04d-%02d-%02d %02d:%02d',
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d', 
+        $tables['message'],
+        sql_escape($messagedata['campaigntitle']), /* we store the title in the subject field. Better would be to rename the DB column, but this will do for now */
+        sql_escape($messagedata['fromfield']), 
+        sql_escape($messagedata['tofield']), 
+        sql_escape($messagedata['replyto']), 
+        sprintf('%04d-%02d-%02d %02d:%02d',
             $messagedata['embargo']['year'], $messagedata['embargo']['month'], $messagedata['embargo']['day'],
-            $messagedata['embargo']['hour'], $messagedata['embargo']['minute']), $messagedata['repeatinterval'], sprintf('%04d-%02d-%02d %02d:%02d',
+            $messagedata['embargo']['hour'], $messagedata['embargo']['minute']), $messagedata['repeatinterval'], 
+        sprintf('%04d-%02d-%02d %02d:%02d',
             $messagedata['repeatuntil']['year'], $messagedata['repeatuntil']['month'], $messagedata['repeatuntil']['day'],
-            $messagedata['repeatuntil']['hour'], $messagedata['repeatuntil']['minute']), sql_escape($messagedata['message']), sql_escape($messagedata['textmessage']), sql_escape($messagedata['footer']), sql_escape($messagedata['status']), $htmlformatted ? '1' : '0', $messagedata['sendformat'], sql_escape($messagedata['template']), $id
+            $messagedata['repeatuntil']['hour'], $messagedata['repeatuntil']['minute']), 
+        sql_escape($messagedata['message']), 
+        sql_escape($messagedata['textmessage']), 
+        sql_escape($messagedata['footer']), 
+        sql_escape($messagedata['status']), $htmlformatted ? '1' : '0', $messagedata['sendformat'], 
+        sql_escape($messagedata['template']), $id
       )
     );
 
