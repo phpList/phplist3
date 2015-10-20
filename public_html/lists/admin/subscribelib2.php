@@ -33,7 +33,7 @@ if (!empty($data['language_file']) && is_file($_SERVER['DOCUMENT_ROOT'].'/'.base
 }
 
 $required = array();   # id's of missing attribbutes '
-if (sizeof($subscribepagedata)) {
+if (count($subscribepagedata)) {
     $attributes = explode('+', $subscribepagedata['attributes']);
     foreach ($attributes as $attribute) {
         if (isset($subscribepagedata[sprintf('attribute%03d', $attribute)]) && $subscribepagedata[sprintf('attribute%03d', $attribute)]) {
@@ -52,7 +52,7 @@ if (sizeof($subscribepagedata)) {
     }
 }
 
-if (sizeof($required)) {
+if (count($required)) {
     $required_ids = implode(',', $required);
   # check if all required attributes have been entered;
   if ($required_ids) {
@@ -240,7 +240,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
    # subscribe to the lists
    $lists = '';
-    $subscriptions = array(); ## used to keep track of which admins to alert 
+    $subscriptions = array(); ## used to keep track of which admins to alert
 
    if (isset($_POST['list']) && is_array($_POST['list'])) {
        while (list($key, $val) = each($_POST['list'])) {
@@ -354,7 +354,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     $user_att = getUserAttributeValues($email);
 
-    if (sizeof($user_att)) {
+    if (count($user_att)) {
         while (list($att_name, $att_value) = each($user_att)) {
             $thankyoupage = str_ireplace('['.$att_name.']', $att_value, $thankyoupage);
         }
@@ -706,7 +706,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
             array_push($listset, $listid);
         }
     }
-    if (sizeof($listset) >= 1) {
+    if (count($listset) >= 1) {
         $subselect = 'where id in ('.implode(',', $listset).') ';
     }
 
@@ -1333,7 +1333,6 @@ $htmlchoice = 'checkforhtml';
   }
 
     $html .= '</fieldset>'."\n"; ## class=attributes
-
 
 #  print htmlspecialchars( '<fieldset class="phplist">'.$html.'</fieldset>');exit;
   return $html;

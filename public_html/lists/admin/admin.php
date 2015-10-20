@@ -147,7 +147,6 @@ if ($id) {
 print '<div class="content">';
 #var_dump($data);
 
-
 print formStart(' class="adminAdd"');
 printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">', $id);
 

@@ -45,7 +45,7 @@ if (!$some) {
 function mailBoxName($mailbox, $delimiter, $level)
 {
     $folder_path = explode($delimiter, $mailbox);
-    if ($level > sizeof($folder_path)) {
+    if ($level > count($folder_path)) {
         return 0;
     } else {
         return $folder_path[$level];
@@ -112,7 +112,7 @@ function fetchEmailsFromHeader($header, $folder, $fieldlist = array())
 {
     $res = array();
 #  print "<br/>Processing $header";
-  if (!sizeof($fieldlist)) {
+  if (!count($fieldlist)) {
       $fieldlist = $GLOBALS['email_header_fields'];
   }
     ++$GLOBALS['messagecount'];
@@ -242,12 +242,12 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
     }
     $c = 0;
     print '<tr><td>';
-    if (sizeof($available_lists) > 1) {
+    if (count($available_lists) > 1) {
         print $GLOBALS['I18N']->get('Select the lists to add the emails to').'<br/>';
     }
     print '<ul>';
     foreach ($available_lists as $index => $name) {
-        if (sizeof($available_lists) == 1) {
+        if (count($available_lists) == 1) {
             printf('<input type="hidden" name="lists[0]" value="%d">
         <li>'.$GLOBALS['I18N']->get('Adding users to list').'. <b>%s</b>', $index, $name);
         } else {
@@ -319,7 +319,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
     $level = 0;
     $foldersdone = array();
     $tree = array();
-    while (sizeof($folderdone) < sizeof($folders) && $level < 10) {
+    while (count($folderdone) < count($folders) && $level < 10) {
         reset($folders);
         asort($folders);
         while (list($key, $val) = each($folders)) {
@@ -372,9 +372,9 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
         flush();
     }
     if (is_array($all_emails)) {
-        $num = sizeof($all_emails);
+        $num = count($all_emails);
         print '<p class="information">'.$GLOBALS['I18N']->get('Processed').':'.$GLOBALS['foldercount'].' '.$GLOBALS['I18N']->get('folders and').' '.$GLOBALS['messagecount'].' '.$GLOBALS['I18N']->get('messages').'</p>';
-        print '<h3>'.sizeof($all_emails).' '.$GLOBALS['I18N']->get('unique emails found').'</h3>';
+        print '<h3>'.count($all_emails).' '.$GLOBALS['I18N']->get('unique emails found').'</h3>';
         flush();
 
         $usetwo = 0;
@@ -492,7 +492,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
       }; // end if
         }; // end foreach
 
-    $num_lists = sizeof($lists);
+    $num_lists = count($lists);
 
     # be grammatically correct :-)
     $displists = ($num_lists == 1) ? $GLOBALS['I18N']->get('list') : $GLOBALS['I18N']->get('lists');

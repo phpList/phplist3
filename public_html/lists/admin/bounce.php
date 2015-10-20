@@ -16,10 +16,10 @@ $actionresult = '';
 
 $useremail = isset($_GET['useremail']) && is_email($_GET['useremail']) ? $_GET['useremail'] : ''; ## @TODO sanitize
 $deletebounce = isset($_GET['deletebounce']); #BUGFIX #15286 - nickyoung
-$amount = isset($_GET['amount']) ? sprintf('%d', $_GET['amount']) : ''; #BUGFIX #15286 - CS2 
-$unconfirm = isset($_GET['unconfirm']); #BUGFIX #15286 - CS2 
+$amount = isset($_GET['amount']) ? sprintf('%d', $_GET['amount']) : ''; #BUGFIX #15286 - CS2
+$unconfirm = isset($_GET['unconfirm']); #BUGFIX #15286 - CS2
 $maketext = isset($_GET['maketext']); #BUGFIX #15286 - CS2
-$deleteuser = isset($_GET['deleteuser']);  #BUGFIX #15286 - CS2 
+$deleteuser = isset($_GET['deleteuser']);  #BUGFIX #15286 - CS2
 
 $type = '';
 if (isset($_GET['type'])) {
@@ -179,7 +179,7 @@ if ($id) {
     if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i', $bounce['header'], $regs)) {
         $transfer_encoding = strtolower($regs[1]);
     } elseif (0 && preg_match('/Content-Type: multipart\/mixed;\s+boundary="([^"]+)"/im', $bounce['header'], $regs)) {
-        ## @TODO, this needs more work, but probably easier to find a class that can 
+        ## @TODO, this needs more work, but probably easier to find a class that can
     ## split is all into itś parts
 #    print "BOUNDARY: ". $regs[1];
     $multi_part_boundary = $regs[1];

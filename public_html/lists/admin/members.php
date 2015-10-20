@@ -315,10 +315,10 @@ if (!empty($id) || $listAll) {
 
     ## allow plugins to add columns
     foreach ($GLOBALS['plugins'] as $plugin) {
-        $plugin->displayUsers($user,  $element, $ls);
+        $plugin->displayUsers($user, $element, $ls);
     }
 
-        if (sizeof($columns)) {
+        if (count($columns)) {
             # let's not do this when not required, adds rather many db requests
 #      $attributes = getUserAttributeValues('',$user['id']);
 #      foreach ($attributes as $key => $val) {

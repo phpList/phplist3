@@ -102,7 +102,7 @@ if (!isset($usertable_prefix)) {
 /* this can probably go */
 if (isset($GLOBALS['design'])) {
     $GLOBALS['ui'] = $GLOBALS['design'];
-#@todo 
+#@todo
 #  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
 

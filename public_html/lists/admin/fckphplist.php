@@ -12,7 +12,7 @@ if ($_GET['action'] == 'js') {
     }
 
     $imgdir = getenv('DOCUMENT_ROOT').$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
 
     $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
     $smileyextensions = array('gif');
@@ -341,7 +341,7 @@ if (file_exists($UPLOAD_BASE_DIR.$_FILES['FCKeditor_File']['name'])) {
     }
 
     $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
 
     $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
     $smileyextensions = array('gif');
@@ -530,10 +530,10 @@ if( window.console ) window.console.log( 'Config is loaded!' ) ;  // @Packager.C
     }
 
     $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
 
     $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
 
     $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';
     $smileyextensions = array('gif');
@@ -750,11 +750,11 @@ FCKConfig.SmileyWindowHeight  = 240 ;
     }
 
     $imgdir = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/';
-    $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+    $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
 
     if (defined('UPLOADIMAGES_DIR')) {
         $imgdir = $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/';
-        $enable_image_upload = is_dir($imgdir) && is_writeable($imgdir) ? 'true' : 'false';
+        $enable_image_upload = is_dir($imgdir) && is_writable($imgdir) ? 'true' : 'false';
     }
 
     $smileypath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/images/smiley';

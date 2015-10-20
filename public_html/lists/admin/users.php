@@ -447,7 +447,7 @@ if ($result) {
     if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins'])) {
         foreach ($GLOBALS['plugins'] as $plugin) {
             if (method_exists($plugin, 'displayUsers')) {
-                $plugin->displayUsers($user,  $user['email'], $ls);
+                $plugin->displayUsers($user, $user['email'], $ls);
             }
         }
     }

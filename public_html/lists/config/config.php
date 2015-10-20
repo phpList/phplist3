@@ -29,7 +29,7 @@ $database_password = 'phplist';
 
 # if you have an SMTP server, set it here. Otherwise it will use the normal php mail() function
 ## if your SMTP server is called "smtp.mydomain.com" you enter this below like this:
-## 
+##
 ##     define("PHPMAILERHOST",'smtp.mydomain.com');
 
 define('PHPMAILERHOST', '');
@@ -54,8 +54,8 @@ define('TEST', 1);
 
 */
 
-# Message envelope. 
-# 
+# Message envelope.
+#
 # This is the address that most bounces will be delivered to
 # Your should make this an address that no PERSON reads
 # but a mailbox that phpList can empty every so often, to process the bounces

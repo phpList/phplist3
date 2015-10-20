@@ -1,9 +1,9 @@
 <?php
 
 #######################################################################
-# Builds the global array DBstruct out of two subarrays. DBStruct holds the column definition for the database 
- # tables. A table definition must be in either $DBstructuser or $DBstructphplist. The global array 'tables' will be 
- # constructed out of DBStruct and will hold only the table names. Plugins can have their own DBStructs and these 
+# Builds the global array DBstruct out of two subarrays. DBStruct holds the column definition for the database
+ # tables. A table definition must be in either $DBstructuser or $DBstructphplist. The global array 'tables' will be
+ # constructed out of DBStruct and will hold only the table names. Plugins can have their own DBStructs and these
  # will be added to $DBstructphplist.
 #######################################################################
 
@@ -50,7 +50,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         'uniqid'          => array('varchar(255)','sysexp:Unique ID'),
         'htmlemail'       => array('tinyint default 0','Send this subscriber HTML emails'),
         'subscribepage'   => array('integer','sys:Which page was used to subscribe'),
-        'rssfrequency'    => array('varchar(100)','RSS Frequency'), ## no longer used, but keep to avoid Sql Errors 
+        'rssfrequency'    => array('varchar(100)','RSS Frequency'), ## no longer used, but keep to avoid Sql Errors
         'password'        => array('varchar(255)','sys:Password'),
         'passwordchanged' => array('date','sys:Last time password was changed'),
         'disabled'        => array('tinyint default 0','Is this account disabled?'),
@@ -500,4 +500,3 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
   );
 
   $DBstruct = $DBstructuser  + $DBstructphplist; # order of tables is essential for smooth upgrade
-

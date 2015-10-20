@@ -69,10 +69,10 @@ function fill($prefix, $listid)
         $data = array();
         reset($attributes);
         while (list($key, $val) = each($attributes)) {
-            $data[$val] = pos($values[$val]);
+            $data[$val] = current($values[$val]);
             if (!$data[$val]) {
                 reset($values[$val]);
-                $data[$val] = pos($values[$val]);
+                $data[$val] = current($values[$val]);
             }
             next($values[$val]);
         }
@@ -109,7 +109,7 @@ while ($row = Sql_Fetch_Row($res)) {
 }
 
 if (!ini_get('safe_mode')) {
-    if (!sizeof($testlists)) {
+    if (!count($testlists)) {
         print '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Error: cannot find any test lists to use";</script>'."\n";
     } elseif (!isset($eraseall)) {
         print '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Filling ";</script>'."\n";

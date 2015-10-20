@@ -54,7 +54,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     }
 }
 
-if (!sizeof($cronJobs)) {
+if (!count($cronJobs)) {
     cl_output(s('Nothing to do'));
     exit;
 }
@@ -91,4 +91,3 @@ if ($maxNextRun > 0) {
     cl_output('DELAYUNTIL='.(int) ($now + $maxNextRun));
 }
 #var_dump($cronJobs);
-

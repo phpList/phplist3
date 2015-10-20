@@ -73,7 +73,7 @@ if (!$id) {
         }
     }
 
-  # 0008720: Using -p send from the commandline doesn't seem to work 
+  # 0008720: Using -p send from the commandline doesn't seem to work
   if (!$GLOBALS['commandline']) {
       Redirect($_GET['page'].'&id='.$id);
       exit;
@@ -163,7 +163,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     }
     } elseif ($send) {
         // We're sending - change state to "send-it" status!
-    if (is_array($messagedata['targetlist']) && sizeof($messagedata['targetlist'])
+    if (is_array($messagedata['targetlist']) && count($messagedata['targetlist'])
       && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) &&
       !empty($messagedata['message']) && empty($duplicate_attribute)) {
         $messagedata['status'] = 'submitted';
@@ -252,7 +252,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
   # criteria system, add one by one:
 
-  if (ALLOW_ATTACHMENTS && isset($_FILES) && is_array($_FILES) && sizeof($_FILES) > 0) {
+  if (ALLOW_ATTACHMENTS && isset($_FILES) && is_array($_FILES) && count($_FILES) > 0) {
       for ($att_cnt = 1;$att_cnt <= NUMATTACHMENTS;++$att_cnt) {
           $fieldname = 'attachment'.$att_cnt;
           if (isset($_FILES[$fieldname])) {
@@ -341,7 +341,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
   // If we're sending the message, just return now to the calling script
   # we only need to check that everything is there, once we actually want to send
-  if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_atribute) && sizeof($messagedata['targetlist'])) {
+  if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_atribute) && count($messagedata['targetlist'])) {
       if ($messagedata['status'] == 'submitted') {
 
       ##16615, check that "send until" is in after the embargo and warn if it isn't
@@ -440,9 +440,9 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
       // OK, let's get to sending!
       $emailaddresses = explode(',', $messagedata['testtarget']);
-          if (sizeof($emailaddresses) > SENDTEST_MAX) {
+          if (count($emailaddresses) > SENDTEST_MAX) {
               foreach ($GLOBALS['plugins'] as $plname => $plugin) {
-                  $plugin->processError('Send test capped from '.sizeof($emailaddresses).' to '.SENDTEST_MAX);
+                  $plugin->processError('Send test capped from '.count($emailaddresses).' to '.SENDTEST_MAX);
               }
               $limited = array_chunk($emailaddresses, SENDTEST_MAX);
               $emailaddresses = $limited[0];
@@ -463,7 +463,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
               if (SEND_ONE_TESTMAIL) {
                   $success = sendEmail($id, $address, $user['uniqid'], $user['htmlemail'], array(), array($address));
               } else {
-                  $success = sendEmail($id, $address, $user['uniqid'], 1,  array(), array($address)) && sendEmail($id, $address, $user['uniqid'], 0,  array(), array($address));
+                  $success = sendEmail($id, $address, $user['uniqid'], 1, array(), array($address)) && sendEmail($id, $address, $user['uniqid'], 0, array(), array($address));
               }
           } else {
               if (SEND_ONE_TESTMAIL) {
@@ -805,7 +805,7 @@ if (!$done) {
 
   foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
       $plugins_sendformats = $plugin->sendFormats();
-      if (is_array($plugins_sendformats) && sizeof($plugins_sendformats)) {
+      if (is_array($plugins_sendformats) && count($plugins_sendformats)) {
           foreach ($plugins_sendformats as $val => $desc) {
               $val = preg_replace("/\W/", '', strtolower(trim($val)));
               if ($val[0] != '_') { ## allow a plugin to add a format that is not actually displayed
@@ -1005,7 +1005,7 @@ if (!$done) {
 */
 
   if (!empty($messagedata['textsize']) || !empty($messagedata['htmlsize'])) {
-      if (is_array($messagedata['targetlist']) && sizeof($messagedata['targetlist'])) {
+      if (is_array($messagedata['targetlist']) && count($messagedata['targetlist'])) {
           $lists = $messagedata['targetlist'];
           if (isset($messagedata['excludelist'])) {
               $excludelists = $messagedata['excludelist'];
@@ -1026,7 +1026,7 @@ if (!$done) {
           }
           unset($lists['all']);
           unset($lists['allactive']);
-          if (isset($messagedata['excludelist']) && is_array($messagedata['excludelist']) && sizeof($messagedata['excludelist'])) {
+          if (isset($messagedata['excludelist']) && is_array($messagedata['excludelist']) && count($messagedata['excludelist'])) {
               $exclude = sprintf(' and listuser.listid not in (%s)', implode(',', $messagedata['excludelist']));
           } else {
               $exclude = '';
@@ -1246,4 +1246,3 @@ $saveDraftButton = '<div class="sendSubmit">
   $testpanel->setID('testpanel');
 
  # print $testpanel->display();
-

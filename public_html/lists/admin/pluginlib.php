@@ -125,7 +125,7 @@ foreach ($pluginFiles as $file) {
 $GLOBALS['pluginsendformats'] = array();
 foreach ($GLOBALS['plugins'] as $className => $pluginInstance) {
     $plugin_sendformats = $pluginInstance->sendFormats();
-    if (is_array($plugin_sendformats) && sizeof($plugin_sendformats)) {
+    if (is_array($plugin_sendformats) && count($plugin_sendformats)) {
         foreach ($plugin_sendformats as $val => $desc) {
             $val = preg_replace("/\W/", '', strtolower(trim($val)));
             $GLOBALS['pluginsendformats'][$val] = $className;
@@ -149,10 +149,10 @@ function upgradePlugins($toUpgrade)
 
 $commandlinePluginPages = array();
 $commandlinePlugins = array();
-if (sizeof($GLOBALS['plugins'])) {
+if (count($GLOBALS['plugins'])) {
     foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
         $cl_pages = $plugin->commandlinePluginPages;
-        if (sizeof($cl_pages)) {
+        if (count($cl_pages)) {
             $commandlinePlugins[] = $pluginName;
             $commandlinePluginPages[$pluginName] = $cl_pages;
         }

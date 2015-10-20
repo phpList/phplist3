@@ -83,7 +83,7 @@ function setMessageData($msgid, $name, $value)
     }
     if ($name == 'footer') {
         // strip HTML comments
-    $value = preg_replace('/<!--.*-->/', '', $value);// this is ungreedy 
+    $value = preg_replace('/<!--.*-->/', '', $value);// this is ungreedy
     }
 
     Sql_Query(sprintf('replace into %s set id = %d,name = "%s", data = "%s"',
@@ -234,7 +234,7 @@ function loadMessageData($msgid)
 
     $messagedata['fromname'] = trim($messagedata['fromname']);
 
-  # erase double spacing 
+  # erase double spacing
   while (strpos($messagedata['fromname'], '  ')) {
       $messagedata['fromname'] = str_replace('  ', ' ', $messagedata['fromname']);
   }
@@ -288,7 +288,7 @@ function sendAdminPasswordToken($adminId)
     $row = Sql_Fetch_Row_Query($SQLquery);
     $adminName = $row[0];
     $email = $row[1];
-  #Check if the token is not present in the database yet.  
+  #Check if the token is not present in the database yet.
   while (1) {
       #Randomize the token to be encrypted and insert it into the db.
     $date = date('U');
@@ -380,7 +380,7 @@ function constructSystemMail($message, $subject = '')
     $htmlmessage = nl2br($htmlmessage);
     ## make links clickable:
     preg_match_all('~https?://[^\s<]+~i', $htmlmessage, $matches);
-        for ($i = 0; $i < sizeof($matches[0]);++$i) {
+        for ($i = 0; $i < count($matches[0]);++$i) {
             $match = $matches[0][$i];
             $htmlmessage = str_replace($match, '<a href="'.$match.'">'.$match.'</a>', $htmlmessage);
         }
@@ -390,7 +390,7 @@ function constructSystemMail($message, $subject = '')
       $lists = $listsmatch[1];
       $listsHTML = '';
       preg_match_all('/\*([^\*]+)/', $lists, $matches);
-      for ($i = 0;$i < sizeof($matches[0]);++$i) {
+      for ($i = 0;$i < count($matches[0]);++$i) {
           $listsHTML .= '<li>'.$matches[1][$i].'</li>';
       }
       $htmlmessage = str_replace($listsmatch[0], '<ul>'.$listsHTML.'</ul>', $htmlmessage);
@@ -513,7 +513,7 @@ function sendAdminCopy($subject, $message, $lists = array())
     if ($sendcopy) {
         $lists = cleanArray($lists);
         $mails = array();
-        if (sizeof($lists) && SEND_LISTADMIN_COPY) {
+        if (count($lists) && SEND_LISTADMIN_COPY) {
             $mailsreq = Sql_Query(sprintf('select email from %s admin, %s list where admin.id = list.owner and list.id in (%s)',
         $GLOBALS['tables']['admin'], $GLOBALS['tables']['list'], implode(',', $lists)));
             while ($row = Sql_Fetch_Array($mailsreq)) {
@@ -522,7 +522,7 @@ function sendAdminCopy($subject, $message, $lists = array())
         }
     ## hmm, do we want to be exclusive? Either listadmin or main ones
     ## could do all instead
-    if (!sizeof($mails)) {
+    if (!count($mails)) {
         $admin_mail = getConfig('admin_address');
 
         if ($c = getConfig('admin_addresses')) {
@@ -1081,7 +1081,7 @@ function fetchUrl($url, $userdata = array())
   $url = str_ireplace('&amp;', '&', $url);
 
  # logEvent("Fetching $url");
-  if (sizeof($userdata)) {
+  if (count($userdata)) {
       foreach ($userdata as $key => $val) {
           if ($key != 'password') {
               $url = utf8_encode(str_ireplace("[$key]", urlencode($val), utf8_decode($url)));
@@ -1466,7 +1466,7 @@ function matchedBounceRule($text, $activeonly = 0)
 
 function matchBounceRules($text, $rules = array())
 {
-    if (!sizeof($rules)) {
+    if (!count($rules)) {
         $rules = loadBounceRules();
     }
 

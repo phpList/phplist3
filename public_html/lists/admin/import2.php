@@ -214,10 +214,10 @@ if (!empty($_SESSION['import_file'])) {
   */
   // Split file/emails into array
   $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
-  output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', sizeof($email_list)));
+  output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
     $header = array_shift($email_list);
     $header = str_replace('"', '', $header);
-    $total = sizeof($email_list);
+    $total = count($email_list);
     $headers = explode($_SESSION['import_field_delimiter'], $header);
     $headers = array_unique($headers);
     $_SESSION['columnnames'] = $headers;
@@ -246,7 +246,7 @@ if (!empty($_SESSION['import_file'])) {
 
 #  var_dump($system_attributes);
   $system_attribute_reverse_map = array();
-    for ($i = 0; $i < sizeof($headers); ++$i) {
+    for ($i = 0; $i < count($headers); ++$i) {
         $column = clean($headers[$i]);
   #  print $i."<h3>$column</h3>".$_POST['column'.$i].'<br/>';
     $column = preg_replace('#/#', '', $column);
@@ -356,7 +356,7 @@ if (!empty($_SESSION['import_file'])) {
   ### use above selector for each unknown imported attribute
   $ls = new WebblerListing($GLOBALS['I18N']->get('Import Attributes'));
     $request_mapping = 0;
-# var_dump($_SESSION["import_attribute"]); 
+# var_dump($_SESSION["import_attribute"]);
 # var_dump($_SESSION["systemindex"]);
 # var_dump( $used_systemattr);
   foreach ($_SESSION['import_attribute'] as $column => $rec) {
@@ -428,8 +428,8 @@ if (!empty($_SESSION['test_import'])) {
     print '<p>'.PageLinkButton($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')).'</p>';
     print '<h3>'.$GLOBALS['I18N']->get('Test Output').'</h3>';
 #  dbg($_SESSION["import_attribute"]);
-} elseif (sizeof($email_list)) {
-    print '<h3>'.s('Importing %d subscribers to %d lists, please wait', sizeof($email_list), sizeof($_SESSION['lists'])).'</h3>';
+} elseif (count($email_list)) {
+    print '<h3>'.s('Importing %d subscribers to %d lists, please wait', count($email_list), count($_SESSION['lists'])).'</h3>';
     print $GLOBALS['img_busy'];
     print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
     print '<br/> <iframe id="import2" src="./?page=pageaction&action=import2&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="5" width="100"></iframe>';
@@ -439,9 +439,9 @@ if (!empty($_SESSION['test_import'])) {
 
 #var_dump($system_attributes);
 ### show progress and adjust working space
-if (sizeof($email_list)) {
+if (count($email_list)) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
-    if (sizeof($email_list) > 300 && !$_SESSION['test_import']) {
+    if (count($email_list) > 300 && !$_SESSION['test_import']) {
         # this is a possibly a time consuming process, so show a progress bar
     print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
@@ -484,8 +484,8 @@ if (sizeof($email_list)) {
     $count['group_add'] = 0;
     $c = 1;
     $count['invalid_email'] = 0;
-    $num_lists = sizeof($_SESSION['lists']);
-    $total = sizeof($email_list);
+    $num_lists = count($_SESSION['lists']);
+    $total = count($email_list);
     $cnt = 0;
     $count['emailmatch'] = 0;
     $count['fkeymatch'] = 0;

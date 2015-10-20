@@ -143,11 +143,11 @@ if (isset($GLOBALS['pageheader'])) {
 }
 
 if ($GLOBALS['commandline']) {
-    if (!isset($_SERVER['USER']) && sizeof($GLOBALS['commandline_users'])) {
+    if (!isset($_SERVER['USER']) && count($GLOBALS['commandline_users'])) {
         clineError('USER environment variable is not defined, cannot do access check. Please make sure USER is defined.');
         exit;
     }
-    if (is_array($GLOBALS['commandline_users']) && sizeof($GLOBALS['commandline_users']) && !in_array($_SERVER['USER'], $GLOBALS['commandline_users'])) {
+    if (is_array($GLOBALS['commandline_users']) && count($GLOBALS['commandline_users']) && !in_array($_SERVER['USER'], $GLOBALS['commandline_users'])) {
         clineError('Sorry, You ('.$_SERVER['USER'].') do not have sufficient permissions to run phplist on commandline');
         exit;
     }
@@ -648,7 +648,7 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
             print '</ul>';
         } elseif ($page != 'login') {
             print '<br/>'."$page -&gt; ".s('Sorry this page was not found in the plugin').'<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
-        cl_output("$page -> ".s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include"); 
+        cl_output("$page -> ".s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include");
         }
     } else {
         Error(s('Access Denied'));

@@ -173,7 +173,7 @@ print $panel->display();
 
 <?php
 
-if (sizeof($lists_done)) {
+if (count($lists_done)) {
     if (empty($subselect)) {
         $subselect .= ' where id not in ('.implode(',', $lists_done).')';
     } else {

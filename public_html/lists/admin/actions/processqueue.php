@@ -90,7 +90,7 @@ $minbatchperiod = -1;
 # check for batch limits
 $ISPrestrictions = '';
 $ISPlockfile = '';
-//$rssitems = array(); //Obsolete by rssmanager plugin 
+//$rssitems = array(); //Obsolete by rssmanager plugin
 $user_attribute_query = '';
 $lastsent = !empty($_GET['lastsent']) ? sprintf('%d', $_GET['lastsent']) : 0;
 $lastskipped = !empty($_GET['lastskipped']) ? sprintf('%d', $_GET['lastskipped']) : 0;
@@ -432,7 +432,7 @@ function outputCounters()
     if (function_exists('json_encode')) { // only PHP5.2.0 and up
     return json_encode($counters);
     } else {
-        ## keep track of which php versions we need to continue to support 
+        ## keep track of which php versions we need to continue to support
     $counters['PHPVERSION'] = phpversion();
         foreach ($counters as $key => $val) {
             $result .= $key.'='.$val.';';
@@ -450,7 +450,7 @@ function sendEmailTest($messageid, $email)
     } else {
         $report .= "\n".$GLOBALS['I18N']->get('(test)').' '.$GLOBALS['I18N']->get('Would have sent').' '.$messageid.$GLOBALS['I18N']->get('to').' '.$email;
     }
-  // fake a bit of a delay, 
+  // fake a bit of a delay,
   usleep(0.75 * 1000000);
   // and say it was fine.
   return true;
@@ -548,7 +548,7 @@ while ($msg = Sql_Fetch_Assoc($req)) {
 }
 
 $messagelimit = '';
-## limit the number of campaigns to work on 
+## limit the number of campaigns to work on
 if (defined('MAX_PROCESS_MESSAGE')) {
     $messagelimit = sprintf(' limit %d ', MAX_PROCESS_MESSAGE);
 }
@@ -604,7 +604,7 @@ while ($message = Sql_fetch_array($messages)) {
     $counters['sent_users_for_message '.$messageid] = 0;
     $counters['total_users_for_message '.$messageid] = 0;
     if (PROCESSCAMPAIGNS_PARALLEL) {
-        $counters['max_users_for_message '.$messageid] = (int) $counters['num_per_batch'] / $num_messages; ## not entirely correct if a campaign has less left 
+        $counters['max_users_for_message '.$messageid] = (int) $counters['num_per_batch'] / $num_messages; ## not entirely correct if a campaign has less left
     if (VERBOSE) {
         cl_output(s('Maximum for campaign %d is %d', $messageid, $counters['max_users_for_message '.$messageid]));
     }
@@ -963,7 +963,7 @@ while ($message = Sql_fetch_array($messages)) {
         }
         flush();
 
-    ## 
+    ##
     #Sql_Query(sprintf('delete from %s where userid = %d and messageid = %d and status = "active"',$tables['usermessage'],$userid,$messageid));
 
     # check whether the user has already received the message
@@ -990,7 +990,7 @@ while ($message = Sql_fetch_array($messages)) {
         $useremail = $user['email']; # email of the subscriber
         $userhash = $user['uniqid'];  # unique string of the user
         $htmlpref = $user['htmlemail'];  # preference for HTML emails
-        $confirmed = $user['confirmed'] && !$user['disabled']; ## 7 = disabled flag 
+        $confirmed = $user['confirmed'] && !$user['disabled']; ## 7 = disabled flag
         $blacklisted = $user['blacklisted'];
 
                 $cansend = !$blacklisted && $confirmed;
@@ -1127,7 +1127,7 @@ while ($message = Sql_fetch_array($messages)) {
               ++$counters['sent_users_for_message '.$messageid];
               $um = Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"sent")', $tables['usermessage'], $userid, $messageid));
 
-//obsolete, moved to rssmanager plugin 
+//obsolete, moved to rssmanager plugin
 //            if (ENABLE_RSS && $pxrocessrss) {
 //              foreach ($rssitems as $rssitemid) {
 //                $status = Sql_query("update {$tables['rssitem']} set processed = processed +1 where id = $rssitemid");
@@ -1342,5 +1342,4 @@ while ($message = Sql_fetch_array($messages)) {
 if (!$num_messages) {
     $script_stage = 6;
 } # we are done
-# shutdown will take care of reporting  
-
+# shutdown will take care of reporting

@@ -59,7 +59,7 @@ function rssUserHasContent($userid, $messageid, $frequency)
         while ($row = Sql_Fetch_Row($listsreq)) {
             array_push($lists, $row[0]);
         }
-        if (!sizeof($lists)) {
+        if (!count($lists)) {
             return 0;
         }
         $liststosend = implode(',', $lists);
@@ -81,7 +81,7 @@ function rssUserHasContent($userid, $messageid, $frequency)
   #  print "<br/>Items to send for user $userid: ".sizeof($itemstosend);
     # if it is less than the threshold return nothing
     $threshold = getConfig('rssthreshold');
-        if (sizeof($itemstosend) >= $threshold) {
+        if (count($itemstosend) >= $threshold) {
             return $itemstosend;
         } else {
             return array();

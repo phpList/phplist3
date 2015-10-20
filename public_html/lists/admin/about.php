@@ -62,7 +62,7 @@
 ';
    // list plugins and allow them to add details
 $pg = '';
-if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && sizeof($GLOBALS['plugins'])) {
+if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && count($GLOBALS['plugins'])) {
     foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
         $pg .= '<li><strong>'.$plugin->name.'</strong> version '.$plugin->version;
         if ($plugin->authors) {

@@ -4,7 +4,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 # interface functions
 
-
 class UIPanel
 {
     private $header = '';
@@ -230,14 +229,14 @@ class WebblerListing
     public function listingHeader()
     {
         $tophelp = '';
-        if (!sizeof($this->columns)) {
+        if (!count($this->columns)) {
             $tophelp = $this->help;
         }
         $html = '<tr valign="top">';
         $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>', str_replace(' ', '_', htmlspecialchars(mb_strtolower($this->title))), $tophelp, $this->title);
         $c = 1;
         foreach ($this->columns as $column => $columnname) {
-            if ($c == sizeof($this->columns)) {
+            if ($c == count($this->columns)) {
                 $html .= sprintf('<th><div class="listinghdelement">%s%s</div></th>', $columnname, $this->help);
             } else {
                 if ($this->sortby[$columnname] && $this->sort) {
@@ -309,13 +308,13 @@ class WebblerListing
           <span class="listingrowname"><a href="%s" class="listinghdname" title="%s">%s</a></span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>', $row['class'], $row['url'], htmlspecialchars($row['name']), $row['name'], $align, sizeof($this->columns), $align, $value);
+          </td></tr>', $row['class'], $row['url'], htmlspecialchars($row['name']), $row['name'], $align, count($this->columns), $align, $value);
             } else {
                 $html .= sprintf('<tr class="rowelement %s"><td class="listingrowname">
           <span class="listingrowname">%s</span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>', $row['class'], $row['name'], $align, sizeof($this->columns), $align, $value);
+          </td></tr>', $row['class'], $row['name'], $align, count($this->columns), $align, $value);
             }
         }
         if (!$this->suppressGreenline) {
@@ -324,7 +323,7 @@ class WebblerListing
         <td colspan="%d" bgcolor="#CCCC99"><img height="1" alt="" src="images/transparent.png" width="1" border="0" /></td>
         </tr>
         <!--greenline end-->
-      ', sizeof($this->columns) + 2);
+      ', count($this->columns) + 2);
         }
         $this->buttonduplicate = 1;
         if ($this->buttonduplicate) {
@@ -343,7 +342,7 @@ class WebblerListing
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><td colspan="%d" align="right">%s</td></tr>
         <tr><td colspan="2">&nbsp;</td></tr>
-        ', sizeof($this->columns) + 2, $buttons);
+        ', count($this->columns) + 2, $buttons);
             }
         }
 
@@ -354,7 +353,7 @@ class WebblerListing
     {
         $html = '';
         $buttons = '';
-        if (sizeof($this->buttons)) {
+        if (count($this->buttons)) {
             foreach ($this->buttons as $button => $url) {
                 $buttons .= sprintf('<a class="button" href="%s">%s</a>', $url, strtoupper($button));
             }
@@ -363,11 +362,11 @@ class WebblerListing
       <tr><td colspan="2">&nbsp;</td></tr>
       <tr><td colspan="%d" align="right">%s</td></tr>
       <tr><td colspan="2">&nbsp;</td></tr>
-      ', sizeof($this->columns) + 2, $buttons);
+      ', count($this->columns) + 2, $buttons);
             }
         }
         $submitbuttons = '';
-        if (sizeof($this->submitbuttons)) {
+        if (count($this->submitbuttons)) {
             foreach ($this->submitbuttons as $name => $label) {
                 $submitbuttons .= sprintf('<button type="submit" name="%s">%s</button>', $name, strtoupper($label));
             }
@@ -376,7 +375,7 @@ class WebblerListing
       <tr><td colspan="2">&nbsp;</td></tr>
       <tr><td colspan="%d" align="right">%s</td></tr>
       <tr><td colspan="2">&nbsp;</td></tr>
-      ', sizeof($this->columns) + 2, $submitbuttons);
+      ', count($this->columns) + 2, $submitbuttons);
             }
         }
         $html .= '</table>';
@@ -419,7 +418,7 @@ class WebblerListing
     public function display($add_index = 0, $class = '')
     {
         $html = '';
-        if (!sizeof($this->elements)) {
+        if (!count($this->elements)) {
             return '';
         }
 #   if ($add_index)
@@ -427,7 +426,7 @@ class WebblerListing
 
     $html .= $this->listingStart($class);
         if (!empty($this->insideNav)) {
-            $html .= sprintf('<tr><td colspan="%d">%s</td></tr>', sizeof($this->columns) + 1, $this->insideNav);
+            $html .= sprintf('<tr><td colspan="%d">%s</td></tr>', count($this->columns) + 1, $this->insideNav);
         }
         if (!$this->suppressHeader) {
             $html .= $this->listingHeader();
@@ -513,14 +512,14 @@ class WebblerListing2 extends WebblerListing
 <input type="text" name="listorder[3]" value="1" size="5">     
 </div><!--ENDOF .header -->      ';
         $tophelp = '';
-        if (!sizeof($this->columns)) {
+        if (!count($this->columns)) {
             $tophelp = $this->help;
         }
         $html = '<tr valign="top">';
         $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>', str_replace(' ', '_', htmlspecialchars(mb_strtolower($this->title))), $tophelp, $this->title);
         $c = 1;
         foreach ($this->columns as $column => $columnname) {
-            if ($c == sizeof($this->columns)) {
+            if ($c == count($this->columns)) {
                 $html .= sprintf('<th><div class="listinghdelement">%s%s</div></th>', $columnname, $this->help);
             } else {
                 if ($this->sortby[$columnname] && $this->sort) {
@@ -595,13 +594,13 @@ class WebblerListing2 extends WebblerListing
           <span class="listingrowname"><a href="%s" class="listinghdname" title="%s">%s</a></span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>', $row['url'], htmlspecialchars(strip_tags($row['name'])), $row['name'], $align, sizeof($this->columns), $align, $value);
+          </td></tr>', $row['url'], htmlspecialchars(strip_tags($row['name'])), $row['name'], $align, count($this->columns), $align, $value);
             } else {
                 $html .= sprintf('<tr><td class="listingrowname">
           <span class="listingrowname">%s</span>
           </td><td class="listingelement%s" colspan="%d">
           <span class="listingelement%s">%s</span>
-          </td></tr>', $row['name'], $align, sizeof($this->columns), $align, $value);
+          </td></tr>', $row['name'], $align, count($this->columns), $align, $value);
             }
         }
         $this->buttonduplicate = 1;
@@ -621,7 +620,7 @@ class WebblerListing2 extends WebblerListing
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><td colspan="%d" align="right">%s</td></tr>
         <tr><td colspan="2">&nbsp;</td></tr>
-        ', sizeof($this->columns) + 2, $buttons);
+        ', count($this->columns) + 2, $buttons);
             }
         }
 
@@ -633,7 +632,7 @@ class WebblerListing2 extends WebblerListing
         return '</div><!--ENDOF .listing -->  ';
         $html = '';
         $buttons = '';
-        if (sizeof($this->buttons)) {
+        if (count($this->buttons)) {
             foreach ($this->buttons as $button => $url) {
                 $buttons .= sprintf('<a class="button" href="%s">%s</a>', $url, strtoupper($button));
             }
@@ -641,10 +640,10 @@ class WebblerListing2 extends WebblerListing
     <tr><td colspan="2">&nbsp;</td></tr>
     <tr><td colspan="%d" align="right">%s</td></tr>
     <tr><td colspan="2">&nbsp;</td></tr>
-    ', sizeof($this->columns) + 2, $buttons);
+    ', count($this->columns) + 2, $buttons);
         }
         $buttons = '';
-        if (sizeof($this->submitbuttons)) {
+        if (count($this->submitbuttons)) {
             foreach ($this->submitbuttons as $name => $label) {
                 $buttons .= sprintf('<button type="submit" name="%s">%s</button>', $name, strtoupper($label));
             }
@@ -652,7 +651,7 @@ class WebblerListing2 extends WebblerListing
     <tr><td colspan="2">&nbsp;</td></tr>
     <tr><td colspan="%d" align="right">%s</td></tr>
     <tr><td colspan="2">&nbsp;</td></tr>
-    ', sizeof($this->columns) + 2, $buttons);
+    ', count($this->columns) + 2, $buttons);
         }
         $html .= '</table>';
 
@@ -1102,13 +1101,13 @@ class buttonGroup
 
         $html .= $this->topbutton->showA();
 
-        if (sizeof($this->buttons)) {
+        if (count($this->buttons)) {
             $html .= '<img height="18" width="18" align="top" class="arrow" src="ui/'.$GLOBALS['ui'].'/images/menuarrow.png" />';
         }
 
         $html .= $this->topbutton->showAend();
 
-        if (sizeof($this->buttons)) {
+        if (count($this->buttons)) {
             $html .= '<div class="submenu" style="display: none;">';
 
             foreach ($this->buttons as $button) {

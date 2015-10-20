@@ -107,7 +107,6 @@ while ($row = Sql_Fetch_Array($req)) {
 #  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
 #    $GLOBALS['tables']['linktrack'],$id,$row['url']));
 
-
  # if (CLICKTRACK_SHOWDETAIL) {
     $uniqueclicks = Sql_Fetch_Array_Query(sprintf('select count(distinct userid) as users from %s
       where messageid = %d and forwardid = %d',

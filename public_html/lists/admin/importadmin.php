@@ -39,7 +39,7 @@ if (!empty($_POST['import'])) {
   //}
   $import_field_delimiter = "\t";
 
-  //if (!isset($_POST['import_field_delimiter']) || $_POST['import_field_delimiter'] == "" || $_POST['import_field_delimiter'] == "TAB") 
+  //if (!isset($_POST['import_field_delimiter']) || $_POST['import_field_delimiter'] == "" || $_POST['import_field_delimiter'] == "TAB")
     //$import_field_delimiter = "\t";
 
   // Check file for illegal characters
@@ -52,7 +52,7 @@ if (!empty($_POST['import'])) {
 
   // Split file/emails into array
   $email_list = explode("\n", $email_list);
-    if (sizeof($email_list) > 300 && !$test_import) {
+    if (count($email_list) > 300 && !$test_import) {
         # this is a possibly a time consuming process, so let's show a progress bar
     flush();
     # increase the memory to make sure we're not running out
@@ -62,7 +62,7 @@ if (!empty($_POST['import'])) {
   # take the header and parse it to attributes
   $header = array_shift($email_list);
     $attributes = explode($import_field_delimiter, $header);
-    for ($i = 0;$i < sizeof($attributes);++$i) {
+    for ($i = 0;$i < count($attributes);++$i) {
         $attribute = clean($attributes[$i]);
     # check whether they exist
     if (strtolower($attribute) == 'email') {
@@ -134,7 +134,7 @@ if (!empty($_POST['import'])) {
             $invalid = 1;
             ++$invalid_email_count;
         }
-        if (sizeof($values) != sizeof($attributes) && $test_input && $show_warnings) {
+        if (count($values) != count($attributes) && $test_input && $show_warnings) {
             Warn($GLOBALS['I18N']->get('Record has more values than header indicated, this may cause trouble').': '.$email);
         }
         if (!$invalid || ($invalid && $omit_invalid != 'yes')) {

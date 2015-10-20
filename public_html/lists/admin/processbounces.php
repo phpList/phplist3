@@ -510,7 +510,7 @@ if (VERBOSE) {
 }
 $advanced_report = '';
 $bouncerules = loadBounceRules();
-if (sizeof($bouncerules)) {
+if (count($bouncerules)) {
     outputProcessBounce($GLOBALS['I18N']->get('Processing bounces based on active bounce rules'));
     $matched = 0;
     $notmatched = 0;
@@ -672,7 +672,7 @@ while ($user = Sql_Fetch_Row($userid_req)) {
     //$tables["usermessage"],$tables["user_message_bounce"],
     //$user[0]));
 
-  ## 17361 - update of the above query, to include the bounce table and to exclude duplicate bounces  
+  ## 17361 - update of the above query, to include the bounce table and to exclude duplicate bounces
   $msg_req = Sql_Query(sprintf('select umb.*,um.*,b.status,b.comment from %s um left join %s umb on (um.messageid = umb.message and userid = user)
     left join %s b on umb.bounce = b.id 
     where userid = %d and um.status = "sent" 
@@ -776,4 +776,3 @@ if ($report) {
 
 # IMAP errors following when Notices are on are a PHP bug
 # http://bugs.php.net/bug.php?id=7207
-

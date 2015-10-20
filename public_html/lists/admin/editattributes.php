@@ -122,7 +122,7 @@ function deleteItem($table, $attributeid, $delete)
         array_push($dependencies, $row['userid']);
     }
 
-    if (sizeof($dependencies) == 0) {
+    if (count($dependencies) == 0) {
         $result = Sql_query("delete from $table where id = $delete");
     } elseif ($replace) {
         $result = Sql_Query("update $tables[user_attribute] set value = $replace where value = $delete");
@@ -132,11 +132,11 @@ function deleteItem($table, $attributeid, $delete)
         print " <b>$val</b><br />";
         print $GLOBALS['I18N']->get('The following subscriber(s) are dependent on this value<br />Update the subscriber profiles to not use this attribute value and try again');
 
-        for ($i = 0;$i < sizeof($dependencies);++$i) {
+        for ($i = 0;$i < count($dependencies);++$i) {
             print PageLink2('user', $GLOBALS['I18N']->get('user').' '.$dependencies[$i], "id=$dependencies[$i]")."<br />\n";
             if ($i > 10) {
                 print $GLOBALS['I18N']->get('* Too many to list, total dependencies:').'
- '.sizeof($dependencies).'<br /><br />';
+ '.count($dependencies).'<br /><br />';
                 giveAlternative($table, $delete, $attributeid);
 
                 return 0;

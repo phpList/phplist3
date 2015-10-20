@@ -21,7 +21,7 @@ switch ($access) {
     $subselect = '';break;
   case 'view':
     $subselect = '';
-    if (sizeof($_POST) || $_GET['unblacklist']) {
+    if (count($_POST) || $_GET['unblacklist']) {
         print Error($GLOBALS['I18N']->get('you only have privileges to view this page, not change any of the information'));
 
         return;
@@ -186,4 +186,3 @@ while ($row = Sql_Fetch_Array($req)) {
 print $ls->display();
 print '</div>';
 print '</div>'; ## end of tabbed
-

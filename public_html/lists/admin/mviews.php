@@ -157,7 +157,7 @@ if (isset($start) && $start > 0) {
 }
 
 ## hmm, this needs more work, as it'll run out of memory, because it's building the entire
-## listing before pushing it out. 
+## listing before pushing it out.
 ## would be best to not have a limit, but putting one to avoid that
 if ($download) {
     $limit = ' limit 100000';

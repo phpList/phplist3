@@ -332,7 +332,7 @@ function UserAttributeValue($user = 0, $attribute = 0)
                   $ids[] = $iValue;
               }
           }
-          if (!sizeof($ids)) {
+          if (!count($ids)) {
               return '';
           }
           $val_ids[0] = implode(',', $ids);

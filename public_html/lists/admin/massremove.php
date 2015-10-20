@@ -12,7 +12,7 @@ if (!$_SESSION['logindetails']['superuser']) {
 
 if (isset($_POST['unsubscribe'])) {
     $emails = explode("\n", trim($_POST['unsubscribe']));
-    $total = sizeof($emails);
+    $total = count($emails);
     $count = $notfound = $deleted = $blacklisted = $notDeleted = 0;
     foreach ($emails as $email) {
         $email = trim($email);

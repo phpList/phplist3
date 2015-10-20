@@ -31,7 +31,7 @@ if (isset($_POST['save'])) {
         return;
     }
     $owner = (int) $_POST['owner'];
-    $title = $_POST['title']; ## danger, make sure to escape 
+    $title = $_POST['title']; ## danger, make sure to escape
 
   if (!$owner) {
       $owner = $_SESSION['logindetails']['id'];
@@ -74,7 +74,7 @@ if (isset($_POST['save'])) {
       }
             $order = sprintf('%d', $_POST['attr_listorder'][$att]);
             $required = !empty($_POST['attr_required'][$att]);
-//END BUGFIX 15285 - note 50677 (part 1)     
+//END BUGFIX 15285 - note 50677 (part 1)
 
       Sql_Query(sprintf('insert into %s (id,name,data) values(%d,"attribute%03d","%s")',
         $tables['subscribepage_data'], $id, $att,
@@ -207,7 +207,7 @@ $generalinfoHTML .= sprintf('<label for="ajax_subscribeconfirmation">%s</label><
 $generalinfoHTML .=  sprintf('<label for="button">%s</label><input type="text" name="button" value="%s" size="60" />',
   $GLOBALS['I18N']->get('Text for Button'),
   htmlspecialchars($data['button']));
-$generalinfoHTML .=  sprintf('<label for="htmlchoice">%s</label>',  $GLOBALS['I18N']->get('HTML Email choice'));
+$generalinfoHTML .=  sprintf('<label for="htmlchoice">%s</label>', $GLOBALS['I18N']->get('HTML Email choice'));
 $generalinfoHTML .=  sprintf('<input type="radio" name="htmlchoice" value="textonly" %s />
   %s <br/>',
   $data['htmlchoice'] == 'textonly' ? 'checked="checked"' : '',
@@ -357,7 +357,6 @@ $listsHTML .=  '</div>';
 print $listsHTML;
 print '</div>'; // accordion
 
-
 $ownerHTML = $singleOwner = '';
 $adminCount = 0;
 if ($GLOBALS['require_login'] && (isSuperUser() || accessLevel('spageedit') == 'all')) {
@@ -366,7 +365,7 @@ if ($GLOBALS['require_login'] && (isSuperUser() || accessLevel('spageedit') == '
     }
     $ownerHTML .= '<br/>'.$GLOBALS['I18N']->get('Owner').': <select name="owner">';
     $admins = $GLOBALS['admin_auth']->listAdmins();
-    $adminCount = sizeof($admins);
+    $adminCount = count($admins);
     foreach ($admins as $adminid => $adminname) {
         $singleOwner = '<input type="hidden" name="owner" value="'.$adminid.'" />';
         $ownerHTML .= sprintf('<option value="%d" %s>%s</option>', $adminid, $adminid == $data['owner'] ? 'selected="selected"' : '', $adminname);

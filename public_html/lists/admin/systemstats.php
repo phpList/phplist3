@@ -143,7 +143,7 @@ foreach ($systemstats as $item) {
           if ($monthmax > $max) {
               $max = $monthmax;
           }
-          $nummonths = sizeof($months);
+          $nummonths = count($months);
       }
       $Chart->setLegend(array_keys($chartData));
     #$Chart->setBarWidth(4,1,3);

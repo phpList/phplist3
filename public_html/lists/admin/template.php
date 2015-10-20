@@ -70,7 +70,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         $content_req = Sql_Fetch_Row_Query("select template from {$tables['template']} where id = $id");
         $images = getTemplateImages($content_req[0]);
 
-        if (sizeof($images)) {
+        if (count($images)) {
             include 'class.image.inc';
             $image = new imageUpload();
             while (list($key, $val) = each($images)) {
@@ -96,7 +96,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
 
  //   var_dump($images);
 
-    if (($checkfullimages || $checkimagesexist) && sizeof($images)) {
+    if (($checkfullimages || $checkimagesexist) && count($images)) {
         foreach ($images as $key => $val) {
             if (!preg_match('#^https?://#i', $key)) {
                 if ($checkfullimages) {
@@ -163,7 +163,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
             }
         }
 
-        if (sizeof($missingImages) && empty($_POST['sendtest'])) {
+        if (count($missingImages) && empty($_POST['sendtest'])) {
             include dirname(__FILE__).'/class.image.inc';
             $image = new imageUpload();
             print '<h3>'.$GLOBALS['I18N']->get('Images').'</h3><p class="information">'.$GLOBALS['I18N']->get('Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.').'</p>';

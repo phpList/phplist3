@@ -47,7 +47,7 @@ if ($_SESSION['export']['column'] == 'nodate') {
   if ($list) {
       $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s where listid = %d %s', $querytables, $list, $subselect));
   } else {
-      ## this takes begin and end of all users, regardless of whether they are on the list of this admin @TODO 
+      ## this takes begin and end of all users, regardless of whether they are on the list of this admin @TODO
     $dates = Sql_Fetch_Row_Query(sprintf('select date(min(user.modified)),date(max(user.modified)) from %s ', $querytables));
   }
 
@@ -87,7 +87,7 @@ if (is_array($_SESSION['export']['cols'])) {
     while (list($key, $val) = each($DBstruct['user'])) {
         if (in_array($key, $_SESSION['export']['cols'])) {
             if (strpos($val[1], 'sys') === false) {
-                fwrite($exportfile,  $val[1].$col_delim);
+                fwrite($exportfile, $val[1].$col_delim);
             } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {
                 if ($regs[1] == 'ID') { # avoid freak Excel bug: http://mantis.phplist.com/view.php?id=15526
           $regs[1] = 'id';
@@ -102,7 +102,7 @@ if (is_array($_SESSION['export']['attrs'])) {
     $res = Sql_Query("select id,name,type from {$tables['attribute']}");
     while ($row = Sql_fetch_array($res)) {
         if (in_array($row['id'], $_SESSION['export']['attrs'])) {
-            fwrite($exportfile,  trim(stripslashes($row['name'])).$col_delim);
+            fwrite($exportfile, trim(stripslashes($row['name'])).$col_delim);
             array_push($attributes, array('id' => $row['id'], 'type' => $row['type']));
         }
     }
@@ -115,8 +115,8 @@ if ($_SESSION['export']['column'] == 'listentered') {
     $querytables .= ', '.$GLOBALS['tables']['user_history'].' user_history ';
     $subselect .= ' and user_history.userid = user.id and user_history.summary = "Profile edit"';
     fwrite($exportfile, 'IP'.$col_delim);
-    fwrite($exportfile,  'Change Summary'.$col_delim);
-    fwrite($exportfile,  'Change Detail'.$col_delim);
+    fwrite($exportfile, 'Change Summary'.$col_delim);
+    fwrite($exportfile, 'Change Detail'.$col_delim);
     $exporthistory = 1;
 } else {
     switch ($_SESSION['export']['column']) {

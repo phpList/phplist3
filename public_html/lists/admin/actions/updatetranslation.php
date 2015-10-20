@@ -24,9 +24,9 @@ foreach ($LU->translation as $update) {
 }
 
 $status = '';
-if (sizeof($translations)) {
+if (count($translations)) {
     $I18N->updateDBtranslations($translations, time());
-    $status = sprintf(s('updated %d language terms'), sizeof($translations));
+    $status = sprintf(s('updated %d language terms'), count($translations));
 } else {
     $status = Error(s('Network error updating language, please try again later'));
 }

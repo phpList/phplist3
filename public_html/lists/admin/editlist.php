@@ -146,7 +146,7 @@ if (listUsedInSubscribePage($id)) {
         $list['owner'] = $_SESSION['logindetails']['id'];
     }
     $admins = $GLOBALS['admin_auth']->listAdmins();
-    if (sizeof($admins) > 1) {
+    if (count($admins) > 1) {
         print '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
         foreach ($admins as $adminid => $adminname) {
             printf('    <option value="%d" %s>%s</option>', $adminid, $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
@@ -160,7 +160,7 @@ if (listUsedInSubscribePage($id)) {
 }
 
 $aListCategories = listCategories();
-if (sizeof($aListCategories)) {
+if (count($aListCategories)) {
     print '<div class="label"><label for="category">'.$GLOBALS['I18N']->get('Category').'</label></div>';
     print '<div class="field"><select name="category">';
     print '<option value="">-- '.$GLOBALS['I18N']->get('choose category').'</option>';

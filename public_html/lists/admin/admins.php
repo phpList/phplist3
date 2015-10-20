@@ -52,7 +52,7 @@ if (!$external) {
 
 if ($external) {
     $admins = $GLOBALS['admin_auth']->listAdmins();
-    $total = sizeof($admins);
+    $total = count($admins);
     $found = $total;
     $ls = new WebblerListing($GLOBALS['I18N']->get('Administrators'));
     foreach ($admins as $adminid => $adminname) {

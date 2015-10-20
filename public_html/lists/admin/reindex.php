@@ -3,7 +3,7 @@
 # This page will recreate all indexes from the structure.php file.
 # It can be called from your phpserver: ~/lists/admin/?page=reindex
 # PHP will skip indexes that are already created by name.
-# WARNING: This can take a long time on large tables, there is no feedback 
+# WARNING: This can take a long time on large tables, there is no feedback
 # and te session can be killed by your browser or server after a timeout.
 # Just reload if you think nothing happens after 30 minutes or so.
 

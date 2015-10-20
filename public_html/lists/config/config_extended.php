@@ -141,7 +141,7 @@ define('MAXLIST', 1);
 $commandline_users = array();
 
 ## silent resubscribe
-# when someone signs up with an email address already in the database, 
+# when someone signs up with an email address already in the database,
 # phpList will simply accept it and subscribe them as if it is the first time
 # however, that allows anyone to overwrite data of someone else
 # see also https://mantis.phplist.com/view.php?id=15557
@@ -303,7 +303,6 @@ define('NOSTATSCOLLECTION', 0);
 # which is useful for me for future developments
 # $stats_collection_address = 'phplist-stats@phplist.com';
 
-
 /* 
 
 =========================================================================
@@ -314,7 +313,7 @@ Queue and Load management
 
 */
 
-# If you set up your system to send the message automatically (from commandline), 
+# If you set up your system to send the message automatically (from commandline),
 # you can set this value to 0, so "Process Queue" will disappear from the site
 # this will also stop users from loading the page on the web frontend, so you will
 # have to make sure that you run the queue from the commandline
@@ -322,7 +321,7 @@ Queue and Load management
 define('MANUALLY_PROCESS_QUEUE', 1);
 
 # This setting will activate an initial setup choice for processing the queue
-# When "true" it will allow a choice between remote queue processing with the 
+# When "true" it will allow a choice between remote queue processing with the
 # phpList.com service or processing it locally in the browser.
 # when the value is "false", you can use remote processing in your own way
 # as explain at https://resources.phplist.com/system/remote_processing
@@ -342,7 +341,7 @@ define('MAX_PROCESS_MESSAGE', 999);
 # process parallel
 # if there are multiple messages in the queue, divide the max batch across them
 # instead of sending them one by one.
-# this only works if you use batch processing. It will divide the batch between the 
+# this only works if you use batch processing. It will divide the batch between the
 # campaigns that need sending.
 #define('PROCESSCAMPAIGNS_PARALLEL',true);
 
@@ -394,7 +393,7 @@ define('DOMAIN_AUTO_THROTTLE', 0);
 # to limit the time, regardless of batch processing or other throttling of a single run of "processqueue"
 # you can set the MAX_PROCESSQUEUE_TIME in seconds
 # if a single queue run exceeds this amount, it will stop, just to pick up from where it left off next time
-# this allows multiple installations each to run the queue, but slow installations (eg with large emails) 
+# this allows multiple installations each to run the queue, but slow installations (eg with large emails)
 # set to 0 to disable this feature.
 define('MAX_PROCESSQUEUE_TIME', 0);
 
@@ -409,7 +408,7 @@ Miscellaneous
 */
 
 ## default system language
-# set the default system language. If the language cannot be detected, it will fall back to 
+# set the default system language. If the language cannot be detected, it will fall back to
 # this one. It has to be the "ISO code" of the language.
 # to find what languages are available here, check out http://translate.phplist.com/
 $default_system_language = 'en';
@@ -428,7 +427,7 @@ define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 
 # Show private lists
 # If you have a mixture of public and private lists, you can set this to 1, to allow
-# your subscribers to see (and unsubscribe from) your private lists on their 
+# your subscribers to see (and unsubscribe from) your private lists on their
 # preferences page. By default it won't show private (non-public) lists
 # see also https://mantis.phplist.com/view.php?id=15274
 define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
@@ -438,7 +437,6 @@ define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
 # If that's happening to you, you may want to set this one
 # check https://mantis.phplist.com/view.php?id=15603 for more info
 # define('WORDWRAP_HTML',60);
-
 
 # year ranges. If you use dates, by default the drop down for year will be from
 # three years before until 10 years after this the current value for year. If there
@@ -491,7 +489,7 @@ define('SEND_ONE_TESTMAIL', 0);
 # your queue takes longer than the time identified here.
 define('REMOTE_URL_REFETCH_TIMEOUT', 3600);
 
-# Users Page Max. The page listing subscribers will stop listing them and require a search, 
+# Users Page Max. The page listing subscribers will stop listing them and require a search,
 # when the amount of subscribers is over 1000. With this settings you can change that cut-off point
 define('USERSPAGE_MAX', 1000);
 
@@ -562,7 +560,7 @@ define('PHPMAILERHOST', '');
 # define('PHPMAILERPORT',25);
 
 ## test vs blast
-# you can send test messages via a different SMTP host than the actual campaign queue 
+# you can send test messages via a different SMTP host than the actual campaign queue
 # if not set, these default to the above PHPMAILERHOST and PHPMAILERPORT
 # define('PHPMAILERTESTHOST','testsmtp.mydomain.com');
 # define('PHPMAILERBLASTHOST','livesmtp.mydomain.com');
@@ -590,7 +588,7 @@ Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
 # Usertrack
 # Usertrack is used to track views or opens of campaigns. This only works in HTML messages
 # as it relies on a little image being pulled from the phpList system to update the database
-# To add it to your campaigns, you need to add [USERTRACK] somewhere. 
+# To add it to your campaigns, you need to add [USERTRACK] somewhere.
 # From version 3 onwards, this is automatically done with the following setting. If you do not
 # want it, you can switch it off here, by uncommenting the next line
 # define('ALWAYS_ADD_USERTRACK',0);
@@ -703,7 +701,6 @@ $database_module = 'mysqli.inc';
 # this only works when using mysql and only for administrator sessions
 # $SessionTableName = "phplistsessions";
 
-
 /*
 
 =========================================================================
@@ -719,9 +716,9 @@ Experimental Features
 # 1 = 10.4 style email validation.
 # 2 = RFC821 email validation without escaping and quoting of local part.
 # 3 = RFC821 email validation.
-# This is an expirimental email address validation based on the original RFC. It will validate all kind 
+# This is an expirimental email address validation based on the original RFC. It will validate all kind
 # of 'weird' emails like !#$%&'*+-/=.?^_`{|}~@example.com and escaped\ spaces\ are\ allowed@[1.0.0.127]
-# not implemented are:    
+# not implemented are:
 #   Length of domainPart is not checked
 #   Not accepted are CR and LF even if escaped by \
 #   Not accepted is Folding
@@ -746,7 +743,7 @@ define('EMAIL_ADDRESS_VALIDATION_LEVEL', 2);
 
 # HTTP_HOST
 # In some systems (eg behind load balancing proxies) you may need to set the HOST to be something else
-# then the system identifies. If you do, you can set it here. 
+# then the system identifies. If you do, you can set it here.
 #define('HTTP_HOST','your.website.com');
 
 # list exclude will add the option to send a message to users who are on a list
@@ -778,16 +775,15 @@ define('MESSAGEQUEUE_PREPARE', 0);
 # or
 #$admin_auth_module = '/usr/local/etc/auth.inc';
 
-
 # Public protocol
-# phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
+# phpList will automatically use the protocol you run the admin interface on for clicktrack links and
 # tracking images
 # but if you want to force this to be http, when you eg run the admin on https, uncomment the below line
 # see also https://mantis.phplist.com/view.php?id=16611
 #define('PUBLIC_PROTOCOL','http');
 
 # Admin protocol
-# similar to the above, if you need to force the admin pages on either http or https (eg when behind a 
+# similar to the above, if you need to force the admin pages on either http or https (eg when behind a
 # proxy that prevents proper auto-detection), you can set it here
 #define('ADMIN_PROTOCOL','https');
 
@@ -800,7 +796,7 @@ define('MESSAGEQUEUE_PREPARE', 0);
 define('USE_ADVANCED_BOUNCEHANDLING', 0);
 
 # When forwarding ('to a friend') the message will be using the attributes of the destination email by default.
-# This often means the message gets stripped of al its attributes. 
+# This often means the message gets stripped of al its attributes.
 # When setting this constant to 1, the message will use the attributes of the forwarding user. It can be used
 # to connect the destinatory to the forwarder and/or reward the forwarder.
 define('KEEPFORWARDERATTRIBUTES', 0);
@@ -814,10 +810,10 @@ define('FORWARD_EMAIL_COUNT', 1);
 # Allow user to add a personal note when forwarding 'to a friend'
 # 0 will turn this option off. default is 0 to not change behaviour from previous version.
 # 500 is recommended as a sound value to write a little introductory note to a friend
-# The note is prepeded to both text and html messages and will be stripped of all html 
+# The note is prepeded to both text and html messages and will be stripped of all html
 define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 
 # different content when forwarding 'to a friend'
 # Allow admin to enter a different message that will be sent when forwarding 'to a friend'
-# This will show an extra tab in the message dialog. 
+# This will show an extra tab in the message dialog.
 define('FORWARD_ALTERNATIVE_CONTENT', 0);
