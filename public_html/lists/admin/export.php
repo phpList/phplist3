@@ -3,46 +3,47 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 # export users from PHPlist
 
-include dirname(__FILE__) .'/date.php';
+include dirname(__FILE__).'/date.php';
 
 $fromdate = '';
 $todate = '';
-$from = new date("from");
-$to = new date("to");
+$from = new date('from');
+$to = new date('to');
 if (isset($_REQUEST['list'])) {
-  if (isset($_GET['list'])) {
-    $list = sprintf('%d',$_GET['list']);
-  } elseif (isset($_POST['column']) && $_POST['column'] == 'listentered') {
-    $list = sprintf('%d',$_POST['list']);
-  } else {
-    $list = 0;
-  }
+    if (isset($_GET['list'])) {
+        $list = sprintf('%d', $_GET['list']);
+    } elseif (isset($_POST['column']) && $_POST['column'] == 'listentered') {
+        $list = sprintf('%d', $_POST['list']);
+    } else {
+        $list = 0;
+    }
 } else {
-  $list = 0;
+    $list = 0;
 }
 
 $access = accessLevel('export');
 switch ($access) {
   case 'owner':
     if ($list) {
-      $check = Sql_Fetch_Assoc_Query(sprintf('select id from %s where owner = %d and id = %d',$GLOBALS['tables']['list'],$_SESSION['logindetails']['id'],$list));
-      if (empty($check['id'])) {
-          print Error(s('That is not your list'));
-          return;
-      }        
+        $check = Sql_Fetch_Assoc_Query(sprintf('select id from %s where owner = %d and id = %d', $GLOBALS['tables']['list'], $_SESSION['logindetails']['id'], $list));
+        if (empty($check['id'])) {
+            print Error(s('That is not your list'));
+
+            return;
+        }
     }
-    $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '. $GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
+    $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '.$GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
                                                    ' INNER JOIN '.$GLOBALS['tables']['user'].' user ON listuser.userid = user.id';
-    $subselect = ' list.id = '.$list.' and list.owner = ' . $_SESSION['logindetails']['id'];
-    $ownerselect_where = ' where owner = ' . $_SESSION['logindetails']['id'];
+    $subselect = ' list.id = '.$list.' and list.owner = '.$_SESSION['logindetails']['id'];
+    $ownerselect_where = ' where owner = '.$_SESSION['logindetails']['id'];
     break;
   case 'all':
     if ($list) {
-      $querytables = $GLOBALS['tables']['user'].' user'.', '.$GLOBALS['tables']['listuser'].' listuser ON user.id = listuser.userid';
-      $subselect = '';
+        $querytables = $GLOBALS['tables']['user'].' user'.', '.$GLOBALS['tables']['listuser'].' listuser ON user.id = listuser.userid';
+        $subselect = '';
     } else {
-      $querytables = $GLOBALS['tables']['user'].' user';
-      $subselect = '';
+        $querytables = $GLOBALS['tables']['user'].' user';
+        $subselect = '';
     }
     $ownerselect_where = '';
     break;
@@ -54,35 +55,37 @@ switch ($access) {
     break;
 }
 
-require dirname(__FILE__). '/structure.php';
+require dirname(__FILE__).'/structure.php';
 if (isset($_POST['processexport'])) {
-  if (!verifyToken()) { ## csrf check
+    if (!verifyToken()) { ## csrf check
     print Error($GLOBALS['I18N']->get('Invalid security token. Please reload the page and try again.'));
+
+        return;
+    }
+    $_SESSION['export'] = array();
+    $_SESSION['export']['column'] = $_POST['column'];
+    $_SESSION['export']['cols'] = $_POST['cols'];
+    $_SESSION['export']['attrs'] = $_POST['attrs'];
+    $_SESSION['export']['fromdate'] = $from->getDate('from');
+    $_SESSION['export']['todate'] =  $to->getDate('to');
+    $_SESSION['export']['list'] = $list;
+
+    print '<p>'.s('Processing export, this may take a while. Please wait').'</p>';
+    print $GLOBALS['img_busy'];
+    print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
+    print '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
+
     return;
-  }
-  $_SESSION['export'] = array();
-  $_SESSION['export']['column'] = $_POST['column'];
-  $_SESSION['export']['cols'] = $_POST['cols'];
-  $_SESSION['export']['attrs'] = $_POST['attrs'];
-  $_SESSION['export']['fromdate'] = $from->getDate("from");
-  $_SESSION['export']['todate'] =  $to->getDate("to");
-  $_SESSION['export']['list'] = $list;
-  
-  print '<p>'.s('Processing export, this may take a while. Please wait').'</p>';
-  print $GLOBALS['img_busy'];
-  print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-  print '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
-  return;
 }
 
 if ($list) {
-  print s('Export subscribers on %s',ListName($list));
+    print s('Export subscribers on %s', ListName($list));
 }
 
 print formStart();
 $checked = 'entered';
 if (isset($_GET['list']) && $_GET['list'] == 'all') {
-  $checked = 'nodate';
+    $checked = 'nodate';
 }
 
 ?>
@@ -96,21 +99,21 @@ if (isset($_GET['list']) && $_GET['list'] == 'all') {
 
 
 <?php
-if (empty($list)) { 
-  print '<select name="list">';
-  $req = Sql_Query(sprintf('select * from %s %s',$GLOBALS['tables']['list'],$ownerselect_where));
-  while ($row = Sql_Fetch_Array($req)) {
-    printf ('<option value="%d">%s</option>',$row['id'],$row['name']);
-  }
-  print '</select>';
+if (empty($list)) {
+    print '<select name="list">';
+    $req = Sql_Query(sprintf('select * from %s %s', $GLOBALS['tables']['list'], $ownerselect_where));
+    while ($row = Sql_Fetch_Array($req)) {
+        printf('<option value="%d">%s</option>', $row['id'], $row['name']);
+    }
+    print '</select>';
 } else {
-  printf('<input type="hidden" name="list" value="%d" />',$list);
-  print '<strong>'.listName($list).'</strong><br/><br/>';
+    printf('<input type="hidden" name="list" value="%d" />', $list);
+    print '<strong>'.listName($list).'</strong><br/><br/>';
 }
 ?>
 <div id="exportdates">
-<?php echo $GLOBALS['I18N']->get('Date From:');?> <?php echo $from->showInput("","",$fromdate);?>
-<?php echo $GLOBALS['I18N']->get('Date To:');?>  <?php echo $to->showInput("","",$todate);?>
+<?php echo $GLOBALS['I18N']->get('Date From:');?> <?php echo $from->showInput('', '', $fromdate);?>
+<?php echo $GLOBALS['I18N']->get('Date To:');?>  <?php echo $to->showInput('', '', $todate);?>
 </div>
 
 
@@ -119,17 +122,17 @@ if (empty($list)) {
 
 <?php
   $cols = array();
-  while (list ($key,$val) = each ($DBstruct["user"])) {
-    if (strpos($val[1],"sys") === false) {
-      printf ("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ',$key,$val[1]);
-    } elseif (preg_match("/sysexp:(.*)/",$val[1],$regs)) {
-      printf ("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ',$key,$regs[1]);
-    }
+  while (list($key, $val) = each($DBstruct['user'])) {
+      if (strpos($val[1], 'sys') === false) {
+          printf("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $val[1]);
+      } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {
+          printf("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $regs[1]);
+      }
   }
   $res = Sql_Query("select id,name,tablename,type from {$tables['attribute']} order by listorder");
   $attributes = array();
   while ($row = Sql_fetch_array($res)) {
-    printf ("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ',$row["id"],stripslashes(htmlspecialchars($row["name"])));
+      printf("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ', $row['id'], stripslashes(htmlspecialchars($row['name'])));
   }
 
 ?>
@@ -139,5 +142,5 @@ if (empty($list)) {
 <?php
 
 if ($checked == 'nodate') {
-  print '<script type="text/javascript">$("#exportdates").hide();</script>';
+    print '<script type="text/javascript">$("#exportdates").hide();</script>';
 }

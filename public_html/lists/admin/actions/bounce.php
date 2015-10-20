@@ -5,6 +5,6 @@ verifyCsrfGetToken();
 
 $status = '';
 if (isset($_GET['hideheader'])) {
-  $_SESSION['hidebounceheader'] = true;
-  $status = ' ';
+    $_SESSION['hidebounceheader'] = true;
+    $status = ' ';
 }

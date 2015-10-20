@@ -2,29 +2,30 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!$_SESSION['logindetails']['superuser']) {
-  print $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
-  return;
+    print $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
+
+    return;
 }
 
 if (!empty($_POST['unsubscribe'])) {
-  $emails = explode("\n",$_POST['unsubscribe']);
-  $count = 0;
-  $unsubbed = $blacklisted = 0;
-  foreach ($emails as $email) {
-    $email = trim($email);
-    $count++;
-    set_time_limit(30);
-    Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"',$GLOBALS['tables']['user'],$email));
-    $unsubbed += Sql_Affected_Rows();
-    if (!empty($_POST['blacklist'])) {
-      $blacklisted++;
-      addUserToBlackList($email,$GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
+    $emails = explode("\n", $_POST['unsubscribe']);
+    $count = 0;
+    $unsubbed = $blacklisted = 0;
+    foreach ($emails as $email) {
+        $email = trim($email);
+        ++$count;
+        set_time_limit(30);
+        Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"', $GLOBALS['tables']['user'], $email));
+        $unsubbed += Sql_Affected_Rows();
+        if (!empty($_POST['blacklist'])) {
+            ++$blacklisted;
+            addUserToBlackList($email, $GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
+        }
     }
+    printf($GLOBALS['I18N']->get('All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>'), $count, $unsubbed, $blacklisted);
+    print PageLinkButton('suppressionlist', s('Add more'));
 
-  }
-  printf($GLOBALS['I18N']->get('All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>'),$count,$unsubbed,$blacklisted);
-  print PageLinkButton('suppressionlist',s('Add more'));
-  return;
+    return;
 }
 ?>
 

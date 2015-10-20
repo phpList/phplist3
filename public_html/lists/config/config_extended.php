@@ -10,22 +10,21 @@ General settings for language and database
 
 */
 
-
 # select the language module to use
 # Look for <country>.inc files in the texts directory
 # to find your language
 # this is the language for the frontend pages. In the admin pages you can
 # choose your language by using the dropdown in the pages.
-$language_module = "english.inc";
+$language_module = 'english.inc';
 
 # what is your Mysql database server
-$database_host = "localhost";
+$database_host = 'localhost';
 
 # what is the name of the database we are using
-$database_name = "phplistdb";
+$database_name = 'phplistdb';
 
 # who do we log in as?
-$database_user = "phplist";
+$database_user = 'phplist';
 
 # and what password do we use
 $database_password = 'phplist';
@@ -42,11 +41,11 @@ $database_connection_ssl = false;
 $installation_name = 'phpList';
 
 # if you want a prefix to all your tables, specify it here,
-$table_prefix = "phplist_";
+$table_prefix = 'phplist_';
 
 # if you want to use a different prefix to user tables, specify it here.
 # read README.usertables for more information
-$usertable_prefix = "phplist_user_";
+$usertable_prefix = 'phplist_user_';
 
 # if you change the path to the phpList system, make the change here as well
 # path should be relative to the root directory of your webserver (document root)
@@ -80,7 +79,7 @@ $bounce_protocol = 'pop';
 # commandline option. If this is 0, users cannot run the page from the web
 # frontend. Read README.commandline to find out how to set it up on the
 # commandline
-define ("MANUALLY_PROCESS_BOUNCES",1);
+define('MANUALLY_PROCESS_BOUNCES', 1);
 
 # when the protocol is pop, specify these three
 $bounce_mailbox_host = 'localhost';
@@ -91,7 +90,7 @@ $bounce_mailbox_password = 'password';
 # the default should be fine but if it doesn't work, you can try the second
 # one. To do that, add a # before the first line and take off the one before the
 # second line
-$bounce_mailbox_port = "110/pop3/notls";
+$bounce_mailbox_port = '110/pop3/notls';
 #$bounce_mailbox_port = "110/pop3";
 
 # it's getting more common to have secure connections, in which case you probably want to use
@@ -115,7 +114,6 @@ $bounce_mailbox_purge_unprocessed = 1;
 # how many bounces in a row need to have occurred for a user to be marked unconfirmed
 $bounce_unsubscribe_threshold = 5;
 
-
 /*
 
 =========================================================================
@@ -134,7 +132,7 @@ Security related settings
 $require_login = 1;
 
 # if you use login, how many lists can be created per administrator
-define("MAXLIST",1);
+define('MAXLIST', 1);
 
 # if you use commandline, you will need to identify the users who are allowed to run
 # the script. See README.commandline for more info
@@ -143,7 +141,7 @@ define("MAXLIST",1);
 $commandline_users = array();
 
 ## silent resubscribe
-# when someone signs up with an email address already in the database, 
+# when someone signs up with an email address already in the database,
 # phpList will simply accept it and subscribe them as if it is the first time
 # however, that allows anyone to overwrite data of someone else
 # see also https://mantis.phplist.com/view.php?id=15557
@@ -155,7 +153,7 @@ $commandline_users = array();
 # this will cause some public pages to ask for an email and a password when the password is
 # set for the user. If you want to activate this functionality, set the following
 # to 1. See README.passwords for more information
-define("ASKFORPASSWORD",0);
+define('ASKFORPASSWORD', 0);
 
 # if you use passwords, they will be stored encrypted
 # set this one to the algorythm to use. You can find out which ones are
@@ -167,16 +165,16 @@ define("ASKFORPASSWORD",0);
 # reset the password. They will not be able to request the password from
 # the system
 # if you change this, you may have to use the "Forgot password" system to get back in your installation
-define("ENCRYPTION_ALGO",'sha256');
+define('ENCRYPTION_ALGO', 'sha256');
 
 # if you also want to force people who unsubscribe to provide a password before
 # processing their unsubscription, set this to 1. You need to have the above one set
 # to 1 for this to have an effect
-define("UNSUBSCRIBE_REQUIRES_PASSWORD",0);
+define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 
 # if a user should immediately be unsubscribed, when using their personal URL, instead of
 # the default way, which will ask them for a reason, set this to 1
-define("UNSUBSCRIBE_JUMPOFF",0);
+define('UNSUBSCRIBE_JUMPOFF', 0);
 
 # when a user unsubscribes they are sent one final email informing them of
 # their unsubscription. In order for that email to actually go out, a gracetime
@@ -188,9 +186,7 @@ $blacklist_gracetime = 5;
 # this needs to be the same for every request. This may not work with
 # network situations where you connect via multiple proxies, so you can
 # switch off the checking by setting this to 0
-define("CHECK_SESSIONIP",1);
-
-
+define('CHECK_SESSIONIP', 1);
 
 # Check for host of email entered for subscription
 # Do not use it if your server is not 24hr online
@@ -207,18 +203,17 @@ Debugging and informational
 
 */
 
-
 # if test is true (not 0) it will not actually send ANY messages,
 # but display what it would have sent
-define ("TEST",1);
+define('TEST', 1);
 
 # if you set verbose to 1, it will show the messages that will be sent. Do not do this
 # if you have a lot of users, because it is likely to crash your browser
-define ("VERBOSE",0);
+define('VERBOSE', 0);
 
 # some warnings may show up about your PHP settings. If you want to get rid of them
 # set this value to 0
-define ("WARN_ABOUT_PHP_SETTINGS",1);
+define('WARN_ABOUT_PHP_SETTINGS', 1);
 
 # user history system info.
 # when logging the history of a user, you can specify which system variables you
@@ -228,14 +223,14 @@ define ("WARN_ABOUT_PHP_SETTINGS",1);
 $userhistory_systeminfo = array(
   'HTTP_USER_AGENT',
   'HTTP_REFERER',
-  'REMOTE_ADDR'
+  'REMOTE_ADDR',
 );
 
 # add spamblock
 # if you set this to 1, phplist will try to check if the subscribe attempt is a spambot trying to send
 # nonsense. If you think this doesn't work, set this to 0
 # this is currently only implemented on the subscribe pages
-define('USE_SPAM_BLOCK',1);
+define('USE_SPAM_BLOCK', 1);
 
 # notify spam
 # when phplist detects a possible spam attack, it can send you a notification about it
@@ -243,7 +238,7 @@ define('USE_SPAM_BLOCK',1);
 # to 0, if you think the check does it's job correctly.
 # it will only send you emails if you have "Does the admin get copies of subscribe, update and unsubscribe messages"
 # in the configuration set to true
-define('NOTIFY_SPAM',1);
+define('NOTIFY_SPAM', 1);
 
 /* 
 =========================================================================
@@ -252,13 +247,13 @@ Security
 
 =========================================================================
 
-*/ 
+*/
 
 # CHECK REFERRER. Set this to "true" to activate a check on each request to make sure that
 # the "referrer" in the request is from ourselves. This is not failsafe, as the referrer may
 # not exist, or can be spoofed, but it will help a little
 # it is also possible that it doesn't work with Webservers that are not Apache, we haven't tested that.
-define('CHECK_REFERRER',false);
+define('CHECK_REFERRER', false);
 
 # if you activate the check above, you can add domain names in this array for those domains
 # that you trust and that can be allowed as well
@@ -280,7 +275,7 @@ Feedback to developers
 # request the "Powered By" image from www.phplist.com, instead of locally. This will give me
 # a little bit of an indication of how much it is used, which will encourage me to continue
 # developing phpList. If you do not like this, set Register to 0.
-define ("REGISTER",1);
+define('REGISTER', 1);
 
 # CREDITS
 # We request you retain some form of credits on the public elements of
@@ -293,21 +288,20 @@ define ("REGISTER",1);
 
 # If you want to remove the image from the HTML emails, set this constant
 # to be 1, the HTML emails will then only add a line of text as signature
-define("EMAILTEXTCREDITS",0);
+define('EMAILTEXTCREDITS', 0);
 
 # if you want to also remove the image from your public webpages
 # set the next one to 1, and the pages will only include a line of text
-define("PAGETEXTCREDITS",0);
+define('PAGETEXTCREDITS', 0);
 
 # in order to get some feedback about performance, phpList can send statistics to a central
 # email address. To de-activate this set the following value to 1
-define ("NOSTATSCOLLECTION",0);
+define('NOSTATSCOLLECTION', 0);
 
 # this is the email it will be sent to. You can leave the default, or you can set it to send
 # to your self. If you use the default you will give me some feedback about performance
 # which is useful for me for future developments
 # $stats_collection_address = 'phplist-stats@phplist.com';
-
 
 /* 
 
@@ -319,16 +313,15 @@ Queue and Load management
 
 */
 
-
-# If you set up your system to send the message automatically (from commandline), 
+# If you set up your system to send the message automatically (from commandline),
 # you can set this value to 0, so "Process Queue" will disappear from the site
 # this will also stop users from loading the page on the web frontend, so you will
 # have to make sure that you run the queue from the commandline
 # check README.commandline how to do this
-define ("MANUALLY_PROCESS_QUEUE",1);
+define('MANUALLY_PROCESS_QUEUE', 1);
 
 # This setting will activate an initial setup choice for processing the queue
-# When "true" it will allow a choice between remote queue processing with the 
+# When "true" it will allow a choice between remote queue processing with the
 # phpList.com service or processing it locally in the browser.
 # when the value is "false", you can use remote processing in your own way
 # as explain at https://resources.phplist.com/system/remote_processing
@@ -343,28 +336,28 @@ define ("MANUALLY_PROCESS_QUEUE",1);
 
 # max messages to process
 # if there are multiple messages in the queue, set a maximum to work on
-define('MAX_PROCESS_MESSAGE',999);
+define('MAX_PROCESS_MESSAGE', 999);
 
 # process parallel
 # if there are multiple messages in the queue, divide the max batch across them
 # instead of sending them one by one.
-# this only works if you use batch processing. It will divide the batch between the 
+# this only works if you use batch processing. It will divide the batch between the
 # campaigns that need sending.
 #define('PROCESSCAMPAIGNS_PARALLEL',true);
 
 # define the amount of emails you want to send per period. If 0, batch processing
 # is disabled and messages are sent out as fast as possible
-define("MAILQUEUE_BATCH_SIZE",0); 
+define('MAILQUEUE_BATCH_SIZE', 0);
 
 # define the length of one batch processing period, in seconds (3600 is an hour)
-define("MAILQUEUE_BATCH_PERIOD",3600);
+define('MAILQUEUE_BATCH_PERIOD', 3600);
 
 # to avoid overloading the server that sends your email, you can add a little delay
 # between messages that will spread the load of sending
 # you will need to find a good value for your own server
 # value is in seconds, and you can use fractions, eg "0.5" is half a second
 # (or you can play with the autothrottle below)
-define('MAILQUEUE_THROTTLE',0); 
+define('MAILQUEUE_THROTTLE', 0);
 
 # Mailqueue autothrottle. This will try to automatically change the delay
 # between messages to make sure that the MAILQUEUE_BATCH_SIZE (above) is spread evently over
@@ -373,7 +366,7 @@ define('MAILQUEUE_THROTTLE',0);
 # and MAILQUEUE_BATCH_PERIOD being a positive value
 # it still needs tweaking, so send your feedback to mantis.phplist.com if you find
 # any issues with it
-define('MAILQUEUE_AUTOTHROTTLE',0);
+define('MAILQUEUE_AUTOTHROTTLE', 0);
 
 # Domain Throttling
 # You can activate domain throttling, by setting USE_DOMAIN_THROTTLE to 1
@@ -385,27 +378,24 @@ define('MAILQUEUE_AUTOTHROTTLE',0);
 # if too many failures for throttling occur, the send process will automatically add an extra
 # delay to try to improve that. The example sends 1 message every 2 minutes.
 
-define('USE_DOMAIN_THROTTLE',0);
-define('DOMAIN_BATCH_SIZE',1);
-define('DOMAIN_BATCH_PERIOD',120);
+define('USE_DOMAIN_THROTTLE', 0);
+define('DOMAIN_BATCH_SIZE', 1);
+define('DOMAIN_BATCH_PERIOD', 120);
 
 # if you have very large numbers of users on the same domains, this may result in the need
 # to run processqueue many times, when you use domain throttling. You can also tell phplist
 # to simply delay a bit between messages to increase the number of messages sent per queue run
 # if you want to use that set this to 1, otherwise simply run the queue many times. A cron
 # process every 10 or 15 minutes is recommended.
-define('DOMAIN_AUTO_THROTTLE',0);
+define('DOMAIN_AUTO_THROTTLE', 0);
 
 # MAX_PROCESSQUEUE_TIME
 # to limit the time, regardless of batch processing or other throttling of a single run of "processqueue"
 # you can set the MAX_PROCESSQUEUE_TIME in seconds
 # if a single queue run exceeds this amount, it will stop, just to pick up from where it left off next time
-# this allows multiple installations each to run the queue, but slow installations (eg with large emails) 
+# this allows multiple installations each to run the queue, but slow installations (eg with large emails)
 # set to 0 to disable this feature.
-define('MAX_PROCESSQUEUE_TIME',0);
-
-
-
+define('MAX_PROCESSQUEUE_TIME', 0);
 
 /*
 
@@ -418,7 +408,7 @@ Miscellaneous
 */
 
 ## default system language
-# set the default system language. If the language cannot be detected, it will fall back to 
+# set the default system language. If the language cannot be detected, it will fall back to
 # this one. It has to be the "ISO code" of the language.
 # to find what languages are available here, check out http://translate.phplist.com/
 $default_system_language = 'en';
@@ -433,21 +423,20 @@ $default_system_language = 'en';
 # if you do not require users to actually sign up to lists, but only want to
 # use the subscribe page as a kind of registration system, you can set this to 1 and
 # users will not receive an error when they do not check a list to subscribe to
-define("ALLOW_NON_LIST_SUBSCRIBE",0);
+define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 
 # Show private lists
 # If you have a mixture of public and private lists, you can set this to 1, to allow
-# your subscribers to see (and unsubscribe from) your private lists on their 
+# your subscribers to see (and unsubscribe from) your private lists on their
 # preferences page. By default it won't show private (non-public) lists
 # see also https://mantis.phplist.com/view.php?id=15274
-define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
+define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
 
 # wrap html
 # in some cases, strange newlines appear in the HTML source of campaigns
 # If that's happening to you, you may want to set this one
 # check https://mantis.phplist.com/view.php?id=15603 for more info
 # define('WORDWRAP_HTML',60);
-
 
 # year ranges. If you use dates, by default the drop down for year will be from
 # three years before until 10 years after this the current value for year. If there
@@ -457,22 +446,22 @@ define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS',0);
 # if set to 0 they will use the default behaviour. So I'm afraid you can't start with
 # year 0. Also be aware not to set the end year to something relatively soon in the
 # future, or it will stop working when you reach that year.
-define('DATE_START_YEAR',0);
-define('DATE_END_YEAR',0);
+define('DATE_START_YEAR', 0);
+define('DATE_END_YEAR', 0);
 
 # empty value prefix. This can be used to identify values in select attributes
 # that are not allowed to be selected and cause an error "Please enter your ..."
 # by using a top value that starts with this string, you can make sure that the
 # selects do not have a default value, that may be accidentally selected
 # eg. "-- choose your country"
-define('EMPTY_VALUE_PREFIX','--');
+define('EMPTY_VALUE_PREFIX', '--');
 
 # admin details for messages
 # if this is enabled phplist will initialise the From in new messages to be the
 # details of the logged in administrator who is sending the message
 # otherwise it will default to the values set in the configure page that identify
 # the From for system messages
-define('USE_ADMIN_DETAILS_FOR_MESSAGES',1);
+define('USE_ADMIN_DETAILS_FOR_MESSAGES', 1);
 
 # attribute value reorder limit
 # for selectable attributes, like "select" and "radio" you can manage the order of the values
@@ -487,7 +476,7 @@ define('USE_ADMIN_DETAILS_FOR_MESSAGES',1);
 # and the other in Text format. If you set this to 1, you can override this behaviour
 # and only have a test email sent to you that matches the user record of the user that the
 # test emails are sent to
-define('SEND_ONE_TESTMAIL',0);
+define('SEND_ONE_TESTMAIL', 0);
 
 # send a webpage. You can send the contents of a webpage, by adding
 # [URL:http://website/file.html] as the content of a message. This can also be personalised
@@ -498,11 +487,11 @@ define('SEND_ONE_TESTMAIL',0);
 # this only affects sending within the same "process queue". If a new process queue is started
 # the URL will be fetched the first time anyway. Therefore this is only useful is processing
 # your queue takes longer than the time identified here.
-define('REMOTE_URL_REFETCH_TIMEOUT',3600);
+define('REMOTE_URL_REFETCH_TIMEOUT', 3600);
 
-# Users Page Max. The page listing subscribers will stop listing them and require a search, 
+# Users Page Max. The page listing subscribers will stop listing them and require a search,
 # when the amount of subscribers is over 1000. With this settings you can change that cut-off point
-define('USERSPAGE_MAX',1000);
+define('USERSPAGE_MAX', 1000);
 
 # Message Age. The Scheduling tab has an option to stop sending a message when it has reached a certain date.
 # This can be used to avoid the campaign going out, eg when an event has already taken place.
@@ -512,7 +501,7 @@ define('USERSPAGE_MAX',1000);
 # 2592000 - 30 days
 # 604800 - a week.
 # 86400 - a day
-define('DEFAULT_MESSAGEAGE',15768000);
+define('DEFAULT_MESSAGEAGE', 15768000);
 
 # Repetition. This adds the option to repeat the same message in the future.
 # After the message has been sent, this option will cause the system to automatically
@@ -520,12 +509,12 @@ define('DEFAULT_MESSAGEAGE',15768000);
 # send the same message to your users
 # the embargo of the message will be increased with the repetition interval you choose
 # also read the README.repetition for more info
-define('USE_REPETITION',0);
+define('USE_REPETITION', 0);
 
 # admin language
 # if you want to disable the language switch for the admin interface (and run all in english)
 # set this one to 0
-define('LANGUAGE_SWITCH',1);
+define('LANGUAGE_SWITCH', 1);
 
 ## error 404 page
 ## custom "File not found".
@@ -533,8 +522,7 @@ define('LANGUAGE_SWITCH',1);
 ## page, you can set this here. This needs to be a file that is in your webserver document root
 ## eg /home/youraccount/public_html/404.html
 ## the contents are displayed "as-is", so it will not run any PHP code in the file.
-define('ERROR404PAGE','404.html');
-
+define('ERROR404PAGE', '404.html');
 
 /*
 
@@ -557,7 +545,7 @@ Message sending options
 
 # To use a SMTP server please give your server hostname here, leave it blank to use the standard
 # PHP mail() command.
-define("PHPMAILERHOST",'');
+define('PHPMAILERHOST', '');
 
 # in the above you can specify multiple SMTP servers like this:
 # 'server1:port1;server2:port2;server3:port3' eg
@@ -572,7 +560,7 @@ define("PHPMAILERHOST",'');
 # define('PHPMAILERPORT',25);
 
 ## test vs blast
-# you can send test messages via a different SMTP host than the actual campaign queue 
+# you can send test messages via a different SMTP host than the actual campaign queue
 # if not set, these default to the above PHPMAILERHOST and PHPMAILERPORT
 # define('PHPMAILERTESTHOST','testsmtp.mydomain.com');
 # define('PHPMAILERBLASTHOST','livesmtp.mydomain.com');
@@ -600,7 +588,7 @@ Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
 # Usertrack
 # Usertrack is used to track views or opens of campaigns. This only works in HTML messages
 # as it relies on a little image being pulled from the phpList system to update the database
-# To add it to your campaigns, you need to add [USERTRACK] somewhere. 
+# To add it to your campaigns, you need to add [USERTRACK] somewhere.
 # From version 3 onwards, this is automatically done with the following setting. If you do not
 # want it, you can switch it off here, by uncommenting the next line
 # define('ALWAYS_ADD_USERTRACK',0);
@@ -610,14 +598,14 @@ Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
 # go via phpList. This will make sure that clicks are tracked. This is experimental and
 # all your findings when using this feature should be reported to mantis
 # for now it's off by default until we think it works correctly
-define('CLICKTRACK',0);
+define('CLICKTRACK', 0);
 
 # Click track, list detail
 # if you enable this, you will get some extra statistics about unique users who have clicked the
 # links in your messages, and the breakdown between clicks from text or html messages.
 # However, this will slow down the process to view the statistics, so it is
 # recommended to leave it off, but if you're very curious, you can enable it
-define('CLICKTRACK_SHOWDETAIL',0);
+define('CLICKTRACK_SHOWDETAIL', 0);
 
 # If you want to upload images in the editor, you need to specify the location
 # of the directory where the images go. This needs to be writable by the webserver,
@@ -626,33 +614,33 @@ define('CLICKTRACK_SHOWDETAIL',0);
 #   eg if your webserver root is /home/user/public_html
 #   then the images directory is /home/user/public_html/uploadimages
 # This is a potential security risk, so read README.security for more information
-define('UPLOADIMAGES_DIR',"uploadimages");
+define('UPLOADIMAGES_DIR', 'uploadimages');
 
 ## for the above, you can also use subdirectories, for example
 #define("UPLOADIMAGES_DIR","images/newsletter/uploaded");
 
 # Manual text part, will give you an input box for the text version of the message
 # instead of trying to create it by parsing the HTML version into plain text
-define('USE_MANUAL_TEXT_PART',1);
+define('USE_MANUAL_TEXT_PART', 1);
 
 # set this to 1 to allow adding attachments to the mails
 # caution, message may become very large. it is generally more
 # acceptable to send a URL for download to users
 # using attachments requires PHP 4.1.0 and up
-define('ALLOW_ATTACHMENTS',0);
+define('ALLOW_ATTACHMENTS', 0);
 
 # when using attachments you can upload them to the server
 # if you want to use attachments from the local filesystem (server) set this to 1
 # filesystem attachments are attached at real send time of the message, not at
 # the time of creating the message
-define("FILESYSTEM_ATTACHMENTS",0);
+define('FILESYSTEM_ATTACHMENTS', 0);
 
 # if you add filesystem attachments, you will need to tell phpList where your
 # mime.types file is.
-define("MIMETYPES_FILE","/etc/mime.types");
+define('MIMETYPES_FILE', '/etc/mime.types');
 
 # if a mimetype cannot be determined for a file, specify the default mimetype here:
-define("DEFAULT_MIMETYPE","application/octet-stream");
+define('DEFAULT_MIMETYPE', 'application/octet-stream');
 
 # you can create your own pages to slot into phpList and do certain things
 # that are more specific to your situation (plugins)
@@ -667,7 +655,7 @@ define("DEFAULT_MIMETYPE","application/octet-stream");
 
 # uncomment this one to see the examples in the system (and then comment the
 # one above)
-define("PLUGIN_ROOTDIR","plugins");
+define('PLUGIN_ROOTDIR', 'plugins');
 
 # the attachment repository is the place where the files are stored (if you use
 # ALLOW_ATTACHMENTS)
@@ -683,9 +671,7 @@ $attachment_repository = '/tmp';
 $export_mimetype = 'application/csv';
 
 # if you want to use export format optimized for Excel, set this one to 1
-define("EXPORT_EXCEL",0);
-
-
+define('EXPORT_EXCEL', 0);
 
 # tmpdir. A location where phplist can write some temporary files if necessary
 # Make sure it is writable by your webserver user, and also check that you have
@@ -708,13 +694,12 @@ $tmpdir = '/tmp';
 # select the database module to use
 # anyone wanting to submit other database modules is
 # very welcome!
-$database_module = "mysqli.inc";
+$database_module = 'mysqli.inc';
 
 # you can store sessions in the database instead of the default place by assigning
 # a tablename to this value. The table will be created and will not use any prefixes
 # this only works when using mysql and only for administrator sessions
 # $SessionTableName = "phplistsessions";
-
 
 /*
 
@@ -731,9 +716,9 @@ Experimental Features
 # 1 = 10.4 style email validation.
 # 2 = RFC821 email validation without escaping and quoting of local part.
 # 3 = RFC821 email validation.
-# This is an expirimental email address validation based on the original RFC. It will validate all kind 
+# This is an expirimental email address validation based on the original RFC. It will validate all kind
 # of 'weird' emails like !#$%&'*+-/=.?^_`{|}~@example.com and escaped\ spaces\ are\ allowed@[1.0.0.127]
-# not implemented are:    
+# not implemented are:
 #   Length of domainPart is not checked
 #   Not accepted are CR and LF even if escaped by \
 #   Not accepted is Folding
@@ -741,7 +726,7 @@ Experimental Features
 #   Not accepted is comments (eg. (this is a comment)@example.com)
 # Extra:
 #   topLevelDomain can only be one of the defined ones
-define("EMAIL_ADDRESS_VALIDATION_LEVEL",2);
+define('EMAIL_ADDRESS_VALIDATION_LEVEL', 2);
 
 # Time Zone
 # By default phpList will operate in the Timezone of your server. If you want to work
@@ -758,12 +743,12 @@ define("EMAIL_ADDRESS_VALIDATION_LEVEL",2);
 
 # HTTP_HOST
 # In some systems (eg behind load balancing proxies) you may need to set the HOST to be something else
-# then the system identifies. If you do, you can set it here. 
+# then the system identifies. If you do, you can set it here.
 #define('HTTP_HOST','your.website.com');
 
 # list exclude will add the option to send a message to users who are on a list
 # except when they are on another list.
-define('USE_LIST_EXCLUDE',0);
+define('USE_LIST_EXCLUDE', 0);
 
 ## message queue prepare
 # this option will handle the sending of the queue a little bit differently
@@ -773,7 +758,7 @@ define('USE_LIST_EXCLUDE',0);
 # send them. This can be useful if the SQL query to find subscribers for a campaign is slow
 # which is the case when your database is filling up.
 # set to 1 to use
-define('MESSAGEQUEUE_PREPARE',0);
+define('MESSAGEQUEUE_PREPARE', 0);
 
 # admin authentication module.
 # to validate the login for an administrator, you can define your own authentication module
@@ -790,17 +775,15 @@ define('MESSAGEQUEUE_PREPARE',0);
 # or
 #$admin_auth_module = '/usr/local/etc/auth.inc';
 
-
-
 # Public protocol
-# phpList will automatically use the protocol you run the admin interface on for clicktrack links and 
+# phpList will automatically use the protocol you run the admin interface on for clicktrack links and
 # tracking images
 # but if you want to force this to be http, when you eg run the admin on https, uncomment the below line
 # see also https://mantis.phplist.com/view.php?id=16611
 #define('PUBLIC_PROTOCOL','http');
 
 # Admin protocol
-# similar to the above, if you need to force the admin pages on either http or https (eg when behind a 
+# similar to the above, if you need to force the admin pages on either http or https (eg when behind a
 # proxy that prevents proper auto-detection), you can set it here
 #define('ADMIN_PROTOCOL','https');
 
@@ -810,28 +793,27 @@ define('MESSAGEQUEUE_PREPARE',0);
 # your system, which will be a good thing for making sure you are not being blacklisted by other
 # mail systems
 # if you use this, you will need to teach your system regularly about patterns in new bounces
-define('USE_ADVANCED_BOUNCEHANDLING',0);
+define('USE_ADVANCED_BOUNCEHANDLING', 0);
 
 # When forwarding ('to a friend') the message will be using the attributes of the destination email by default.
-# This often means the message gets stripped of al its attributes. 
+# This often means the message gets stripped of al its attributes.
 # When setting this constant to 1, the message will use the attributes of the forwarding user. It can be used
 # to connect the destinatory to the forwarder and/or reward the forwarder.
-define("KEEPFORWARDERATTRIBUTES",0);
+define('KEEPFORWARDERATTRIBUTES', 0);
 
 # forward to friend, multiple emails
 # This setting defines howmany email addresses you can enter in the forward page.
 # Default is 1 to not change behaviour from previous version.
-define("FORWARD_EMAIL_COUNT",1);
+define('FORWARD_EMAIL_COUNT', 1);
 
 # forward to friend - personal message
 # Allow user to add a personal note when forwarding 'to a friend'
 # 0 will turn this option off. default is 0 to not change behaviour from previous version.
 # 500 is recommended as a sound value to write a little introductory note to a friend
-# The note is prepeded to both text and html messages and will be stripped of all html 
-define("FORWARD_PERSONAL_NOTE_SIZE",0);
+# The note is prepeded to both text and html messages and will be stripped of all html
+define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 
 # different content when forwarding 'to a friend'
 # Allow admin to enter a different message that will be sent when forwarding 'to a friend'
-# This will show an extra tab in the message dialog. 
-define("FORWARD_ALTERNATIVE_CONTENT",0);
-
+# This will show an extra tab in the message dialog.
+define('FORWARD_ALTERNATIVE_CONTENT', 0);

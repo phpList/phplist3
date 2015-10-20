@@ -29,6 +29,6 @@ $pages = array(
 
 print '<ul class="dashboard_button">';
 foreach ($pages as $page) {
-  print '<li class="configuration">'.PageLink2($page,s($page)).'</li>';
+    print '<li class="configuration">'.PageLink2($page, s($page)).'</li>';
 }
 print '</ul>';

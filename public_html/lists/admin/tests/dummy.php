@@ -1,13 +1,12 @@
 <?php
 
-class dummy extends phplistTest {
-  var $name = 'Dummy test';
-  var $purpose = 'Just an initial dummy test';
+class dummy extends phplistTest
+{
+    public $name = 'Dummy test';
+    public $purpose = 'Just an initial dummy test';
 
-  function runtest() {
-    
-
-    return 1;
-  }
+    public function runtest()
+    {
+        return 1;
+    }
 }
-?>

@@ -4,10 +4,10 @@
 
 exit; ## unfinished code
 
-$req = Sql_Query(sprintf('select id,email as label, email as value from %s where email like "%s%%" limit 10',$tables['user'],$_GET['term']));
+$req = Sql_Query(sprintf('select id,email as label, email as value from %s where email like "%s%%" limit 10', $tables['user'], $_GET['term']));
 $results = array();
 while ($row = Sql_Fetch_Assoc($req)) {
-  $results[] = $row;
+    $results[] = $row;
 }
 #var_dump($results);
 
@@ -16,8 +16,8 @@ while ($row = Sql_Fetch_Assoc($req)) {
 
 $out = '[ ';
 foreach ($results as $match) {
-  $out .= '{ "id": "'.$match['id'].'", "label:"'.$match['label'].'", "value": "'.$match['value']. '" },';
+    $out .= '{ "id": "'.$match['id'].'", "label:"'.$match['label'].'", "value": "'.$match['value'].'" },';
 }
-$out = substr($out,0,-1);
+$out = substr($out, 0, -1);
 print $out.']';
 exit;

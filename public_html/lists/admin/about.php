@@ -12,7 +12,7 @@
        </p>
     </td>
     <td class="top">
-    <?php echo s('phpList is licensed with the %sGNU Affero Public License (AGPL)%s','<a href="http://www.gnu.org/licenses/agpl.html" target="_blank">','</a>')?>.<br/>
+    <?php echo s('phpList is licensed with the %sGNU Affero Public License (AGPL)%s', '<a href="http://www.gnu.org/licenses/agpl.html" target="_blank">', '</a>')?>.<br/>
     Copyright &copy; 2000-<?php echo date('Y')?> <a href="http://phplist.com" target="_blank">phpList Ltd.</a><br/><br/>
     <h3><?php echo s('Developers')?>:</h3>
     <ul>
@@ -56,29 +56,31 @@
    <?php 
    $pluginsHTML = '
     <tr>
-    <td width="50" valign="top">'. $GLOBALS["I18N"]->get('Plugins'). '</td>
+    <td width="50" valign="top">'.$GLOBALS['I18N']->get('Plugins').'</td>
     <td valign="top">
       <ul class="aboutplugins">
 ';
    // list plugins and allow them to add details
 $pg = '';
-if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && sizeof($GLOBALS['plugins'])) {
-  foreach ($GLOBALS['plugins'] as $pluginName=>$plugin) {
-    $pg .= '<li><strong>' . $plugin->name . '</strong> version ' . $plugin->version;
-    if ( $plugin->authors ){
-      $pg .= ' <span class="pluginauthor">by ' . $plugin->authors . '</span>'; 
+if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && count($GLOBALS['plugins'])) {
+    foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
+        $pg .= '<li><strong>'.$plugin->name.'</strong> version '.$plugin->version;
+        if ($plugin->authors) {
+            $pg .= ' <span class="pluginauthor">by '.$plugin->authors.'</span>';
+        }
+        if ($plugin->displayAbout()) {
+            $pg .= ' <span class="pluginabout"'.$plugin->displayAbout().'</span>';
+        }
+        $pg .= '</li>';
     }
-    if ( $plugin->displayAbout() ){
-      $pg .= ' <span class="pluginabout"' . $plugin->displayAbout(). '</span>';
-    }
-    $pg .= '</li>';
-  } 
-    $pluginsHTML .= $pg . '
+    $pluginsHTML .= $pg.'
           </ul>
         </td>
       </tr>
   ';
-  if ($pg != "") echo $pluginsHTML;
+    if ($pg != '') {
+        echo $pluginsHTML;
+    }
 }
 ?>
 </table>

@@ -2,110 +2,109 @@
 
 ## dump the structure file for language parsing
 
-define('PHPLISTINIT',1);
+define('PHPLISTINIT', 1);
 
-include "public_html/lists/admin/structure.php";
+include 'public_html/lists/admin/structure.php';
 print '<?php '.PHP_EOL;
 
 foreach ($DBstruct as $table => $tStruct) {
-  foreach ($tStruct as $column => $cStruct) {
-  #  var_dump($cStruct);
+    foreach ($tStruct as $column => $cStruct) {
+        #  var_dump($cStruct);
     $val = $cStruct[1];
-    $val = str_replace('sysexp:','',$val);
-    $val = str_replace('sys:','',$val);
-    $val = preg_replace('/^index$/','',$val);
-    $val = preg_replace('/^unique$/','',$val);
-    $val = preg_replace('/^id$/i','',$val);
+        $val = str_replace('sysexp:', '', $val);
+        $val = str_replace('sys:', '', $val);
+        $val = preg_replace('/^index$/', '', $val);
+        $val = preg_replace('/^unique$/', '', $val);
+        $val = preg_replace('/^id$/i', '', $val);
 
-    if (!empty($val)) {
-      print 'get("'.$val .'")'.PHP_EOL;
+        if (!empty($val)) {
+            print 'get("'.$val.'")'.PHP_EOL;
+        }
     }
-  }
 }
 
 $pagetitles = array(
-'home', 
+'home',
 'setup',
-'about', 
+'about',
 'attributes',
-'stresstest', 
-'list', 
+'stresstest',
+'list',
 'config',
-'catlists', 
+'catlists',
 'editattributes',
-'editlist', 
-'checki18n', 
-'importsimple', 
-'import4', 
-'import3', 
-'import2', 
+'editlist',
+'checki18n',
+'importsimple',
+'import4',
+'import3',
+'import2',
 'import1',
-'import', 
+'import',
 'export',
-'initialise', 
-'send', 
+'initialise',
+'send',
 'preparesend',
-'sendprepared', 
-'members', 
+'sendprepared',
+'members',
 'users',
-'reconcileusers', 
+'reconcileusers',
 'user',
 'adduser',
-'userhistory', 
-'messages', 
-'message', 
+'userhistory',
+'messages',
+'message',
 'processqueue',
-'defaults', 
-'upgrade', 
+'defaults',
+'upgrade',
 'templates',
-'template', 
-'viewtemplate', 
-'configure', 
-'admin', 
+'template',
+'viewtemplate',
+'configure',
+'admin',
 'admins',
-'adminattributes', 
-'processbounces', 
-'bounces', 
-'bounce', 
+'adminattributes',
+'processbounces',
+'bounces',
+'bounce',
 'spageedit',
-'spage', 
-'eventlog', 
-'getrss', 
-'viewrss', 
+'spage',
+'eventlog',
+'getrss',
+'viewrss',
 'community',
-'vote', 
-'login', 
-'logout', 
-'mclicks', 
-'uclicks', 
+'vote',
+'login',
+'logout',
+'mclicks',
+'uclicks',
 'massunconfirm',
-'massremove', 
-'usermgt', 
+'massremove',
+'usermgt',
 'bouncemgt',
 'domainstats',
-'mviews', 
-'statsmgt', 
+'mviews',
+'statsmgt',
 'statsoverview',
-'subscriberstats', 
-'dbcheck', 
-'importadmin', 
-'dbadmin', 
-'usercheck', 
+'subscriberstats',
+'dbcheck',
+'importadmin',
+'dbadmin',
+'usercheck',
 'listbounces',
 'bouncerules',
 'bouncerule',
-'checkbouncerules', 
-'translate', 
-'ajaxform', 
-'updatetranslation', 
-'reindex', 
+'checkbouncerules',
+'translate',
+'ajaxform',
+'updatetranslation',
+'reindex',
 'plugins',
 'hostedprocessqueuesetup',
 'suppressionlist',
 );
 ## add the pagetitles and hover
 foreach ($pagetitles as $pagetitle) {
-   print 'get("pagetitle:'.$pagetitle .'")'.PHP_EOL;
-   print 'get("pagetitlehover:'.$pagetitle .'")'.PHP_EOL;
+    print 'get("pagetitle:'.$pagetitle.'")'.PHP_EOL;
+    print 'get("pagetitlehover:'.$pagetitle.'")'.PHP_EOL;
 }
- 
