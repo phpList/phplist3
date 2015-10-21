@@ -1,4 +1,28 @@
 {
+	"name": "phpList/phplist3",
+	"description": "The world's most popular open source newsletter manager",
+	"keywords": ["phplist", "email", "newsletter", "manager"],
+	"homepage": "https://www.phpList.org/",
+	"type": "project",
+	"license": "GNU Affero General Public License version 3.0 or later (AGPLv3+)",
+	"support": {
+		"issues": "https://github.com/phpList/phpList/issues",
+		"forum": "https://discuss.phplist.org/",
+		"wiki": "http://resources.phplist.com/",
+		"source": "https://github.com/phpList/phpList3"
+	},
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.4.0",
+                "symfony/dependency-injection": "~2.6",
+                "symfony/yaml": "~2.6",
+                "symfony/config": "~2.6",
+		"phpmailer/phpmailer": "v5.2.7",
+		"psr/log": "1.0.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*"
+	},
     "require-dev": {
         "behat/mink": "~1.4",
         "behat/mink-goutte-driver": "~1.2",
