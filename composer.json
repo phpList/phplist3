@@ -12,17 +12,6 @@
 		"source": "https://github.com/phpList/phpList3"
 	},
 	"minimum-stability": "dev",
-	"require": {
-		"php": ">=5.4.0",
-                "symfony/dependency-injection": "~2.6",
-                "symfony/yaml": "~2.6",
-                "symfony/config": "~2.6",
-		"phpmailer/phpmailer": "v5.2.7",
-		"psr/log": "1.0.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "3.7.*"
-	},
     "require-dev": {
         "behat/mink": "~1.4",
         "behat/mink-goutte-driver": "~1.2",
