@@ -20,10 +20,8 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
 ;
 
 return Symfony\CS\Config\Config::create()
-    ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
-//    ->level(Symfony\CS\FixerInterface::PSR0_LEVEL)
+//    ->level(Symfony\CS\FixerInterface::PSR0_LEVEL) /* default is symfony */
 //    ->level(Symfony\CS\FixerInterface::NONE_LEVEL)
-    ->fixers(array('trailing_spaces', 'encoding'))
-    ->fixers(array('-psr2'))
+    ->fixers(array('trailing_spaces', 'encoding', 'align_double_arrow', 'newline_after_open_tag', 'ordered_use', 'long_array_syntax'))
     ->finder($finder)
 ;
