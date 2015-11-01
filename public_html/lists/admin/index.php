@@ -390,6 +390,7 @@ if (!$ajax) {
 if (!$ajax) {
     print '<h4 class="pagetitle">'.mb_strtolower($page_title).'</h4>';
 }
+print '<div class="hidden">'.PageLink2('home',s('Main page')).'</div>';
 
 if ($GLOBALS['require_login'] && $page != 'login') {
     if ($page == 'logout') {
