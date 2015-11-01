@@ -553,7 +553,7 @@ if (defined('MAX_PROCESS_MESSAGE')) {
     $messagelimit = sprintf(' limit %d ', MAX_PROCESS_MESSAGE);
 }
 
-$query = " select id from ${tablesarray('message')} where status not in ('draft', 'sent', 'prepared', 'suspended') and embargo <= now() order by entered ".$messagelimit;
+$query = " select id from ${tables['message]} where status not in ('draft', 'sent', 'prepared', 'suspended') and embargo <= now() order by entered ".$messagelimit;
 if (VERBOSE) {
     processQueueOutput($query);
 }
@@ -582,7 +582,7 @@ if ($num_messages) {
 } else {
     ## check for a future embargo, to be able to report when it expires.
   $future = Sql_Fetch_Assoc_Query('select unix_timestamp(embargo) - unix_timestamp(now()) as waittime '
-    ." from ${tablesarray('message')}"
+    ." from ${tables['message']}"
     ." where status not in ('draft', 'sent', 'prepared', 'suspended')"
     .' and embargo > now()'
     .' order by embargo asc limit 1');
@@ -901,7 +901,7 @@ while ($message = Sql_fetch_array($messages)) {
             }
         } else {
             processQueueOutput($GLOBALS['I18N']->get('No users to process for this batch'), 0, 'progress');
-            $userids = Sql_Query("select * from ${tablesarray('user')} where id = 0");
+            $userids = Sql_Query("select * from ${tables['user']} where id = 0");
         }
         $affrows = Sql_Affected_Rows();
         processQueueOutput($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows, 0, 'progress');
