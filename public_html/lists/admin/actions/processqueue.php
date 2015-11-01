@@ -553,7 +553,7 @@ if (defined('MAX_PROCESS_MESSAGE')) {
     $messagelimit = sprintf(' limit %d ', MAX_PROCESS_MESSAGE);
 }
 
-$query = " select id from ${tables['message]} where status not in ('draft', 'sent', 'prepared', 'suspended') and embargo <= now() order by entered ".$messagelimit;
+$query = ' select id from '.$tables['message'].' where status not in ("draft", "sent", "prepared", "suspended") and embargo <= now() order by entered '.$messagelimit;
 if (VERBOSE) {
     processQueueOutput($query);
 }
