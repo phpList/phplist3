@@ -153,14 +153,6 @@ git remote set-url upstream https://github.com/PHPMailer/PHPMailer.git
 
 Please *don't* use the SourceForge or Google Code projects any more.
 
-## Sponsorship
-
-Development time and resources for PHPMailer are provided by [Smartmessages.net](https://info.smartmessages.net/), a powerful email marketing system.
-
-<a href="https://info.smartmessages.net/"><img src="https://www.smartmessages.net/img/smartmessages-logo.svg" width="250" height="28" alt="Smartmessages email marketing"></a>
-
-Other contributions are gladly received, whether in beer 🍺, T-shirts 👕, Amazon wishlist raids, or cold, hard cash 💰.
-
 ## Changelog
 
 See [changelog](changelog.md).

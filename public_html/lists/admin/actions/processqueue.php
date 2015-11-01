@@ -1343,3 +1343,4 @@ if (!$num_messages) {
     $script_stage = 6;
 } # we are done
 # shutdown will take care of reporting
+

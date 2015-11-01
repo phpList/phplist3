@@ -68,3 +68,4 @@ if (!empty($_SESSION['privileges'])) {
 }
 #var_dump($GLOBALS['disallowpages']);
 #var_dump($GLOBALS['pagecategories']);
+
