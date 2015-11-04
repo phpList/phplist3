@@ -16,10 +16,10 @@ before_script:
   - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
-  - sudo cp -f travis-ci/behat.yml behat.yml
-  - sudo cp -f travis-ci/config.php public_html/lists/config/config.php
+  - sudo cp -f tests/travis-ci/behat.yml behat.yml
+  - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
-  - composer install --dev --prefer-dist
+  - composer install --prefer-dist
 
   # Set MySQL configuration and create the database.
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
