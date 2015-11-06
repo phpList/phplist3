@@ -1165,6 +1165,17 @@ if (empty($testValue) && (empty($testValue2) || $testValue2 == 'e.g. http://www.
   $("#addtoqueue").append(\'<div class="missing">'.$GLOBALS['I18N']->get('message content missing').'</div>\');
   </script>';
 }
+
+if ($messagedata['sendmethod'] == 'remoteurl') {
+    $code = testUrl($messagedata['sendurl']);
+    if ($code != 200) {
+        $allReady = false;
+        $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
+        $("#addtoqueue").append(\'<div class="missing">'.s('Incorrect URL for sending').' ('.resourceLink('http://resources.phplist.com/documentation/errors/sendurlinvalid').')</div>\');
+        </script>';
+    }
+}
+
 $testValue = trim($messagedata['fromfield']);
 if (empty($testValue)) {
     $allReady = false;
@@ -1203,16 +1214,6 @@ if ($hasClickTrackLinks && BLOCK_PASTED_CLICKTRACKLINKS) {
     $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">'.s('Content contains click track links.').resourceLink('http://resources.phplist.com/documentation/errors/pasteclicktrack').'</div>\');
   </script>';
-}
-
-if (!empty($messagedata['sendurl'])) {
-    $code = testUrl($messagedata['sendurl']);
-    if ($code != 200) {
-        $allReady = false;
-        $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
-        $("#addtoqueue").append(\'<div class="missing">'.s('Incorrect URL for sending').resourceLink('http://resources.phplist.com/documentation/errors/sendurlinvalid').'</div>\');
-        </script>';
-    }
 }
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
