@@ -12,6 +12,7 @@ if (!Sql_Table_exists($GLOBALS['tables']['i18n'])) {
 if (isset($_GET['lan'])) { ## Non-JS version
   include 'actions/updatetranslation.php';
 }
+$force = !empty($_GET['force']);
 
 $LU = getTranslationUpdates();
 if (!$LU || !is_object($LU)) {
@@ -30,7 +31,7 @@ foreach ($LU->translation as $lan) {
     } else {
         $lan_name = $lan->name;
     }
-    if ($lan->iso == $_SESSION['adminlanguage']['iso'] && $lan->lastmodified > $lastupdated) {
+    if ($force || ($lan->iso == $_SESSION['adminlanguage']['iso'] && $lan->lastmodified > $lastupdated)) {
         $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso, $lan_name);
     } else {
         $updateLink = $lan_name;
