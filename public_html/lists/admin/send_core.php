@@ -1205,6 +1205,16 @@ if ($hasClickTrackLinks && BLOCK_PASTED_CLICKTRACKLINKS) {
   </script>';
 }
 
+if (!empty($messagedata['sendurl'])) {
+    $code = testUrl($messagedata['sendurl']);
+    if ($code != 200) {
+        $allReady = false;
+        $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
+        $("#addtoqueue").append(\'<div class="missing">'.s('Incorrect URL for sending').resourceLink('http://resources.phplist.com/documentation/errors/sendurlinvalid').'</div>\');
+        </script>';
+    }
+}
+
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginerror = '';
     $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
