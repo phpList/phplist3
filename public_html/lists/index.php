@@ -823,9 +823,10 @@ function unsubscribePage($id)
       // It would be better to do this above, where the email is set for the other cases.
       // But to prevent vulnerabilities let's keep it here for now. [bas]
     if (!$blacklistRequest) {
-        $query = Sql_Fetch_Row_Query(sprintf('select id,email from %s where email = "%s"', $tables['user'], sql_escape($email)));
+        $query = Sql_Fetch_Row_Query(sprintf('select id,email,blacklisted from %s where email = "%s"', $tables['user'], sql_escape($email)));
         $userid = $query[0];
         $email = $query[1];
+        $isBlackListed = !empty($query[2]);
     }
 
         if (!$userid) {
@@ -848,15 +849,17 @@ function unsubscribePage($id)
       ## 17753 - do not actually remove the list-membership when unsubscribing
    #   $result = Sql_query(sprintf('delete from %s where userid = %d',$tables["listuser"],$userid));
       $lists = '  * '.$GLOBALS['strAllMailinglists']."\n";
-      # add user to blacklist
-      addUserToBlacklist($email, nl2br(strip_tags($_POST['unsubscribereason'])));
 
-            addUserHistory($email, 'Unsubscription', "Unsubscribed from $lists");
-            $unsubscribemessage = str_replace('[LISTS]', $lists, getUserConfig("unsubscribemessage:$id", $userid));
-            sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage), system_messageheaders($email), '', true);
-            $reason = $_POST['unsubscribereason'] ? "Reason given:\n".stripslashes($_POST['unsubscribereason']) : 'No Reason given';
-            sendAdminCopy('List unsubscription', $email." has unsubscribed\n$reason", $subscriptions);
-            addSubscriberStatistics('unsubscription', 1);
+            if (empty($isBlackListed)) { // only process when not already marked as blacklisted
+                  # add user to blacklist
+                  addUserToBlacklist($email, nl2br(strip_tags($_POST['unsubscribereason'])));
+                addUserHistory($email, 'Unsubscription', "Unsubscribed from $lists");
+                $unsubscribemessage = str_replace('[LISTS]', $lists, getUserConfig("unsubscribemessage:$id", $userid));
+                sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage), system_messageheaders($email), '', true);
+                $reason = $_POST['unsubscribereason'] ? "Reason given:\n".stripslashes($_POST['unsubscribereason']) : 'No Reason given';
+                sendAdminCopy('List unsubscription', $email." has unsubscribed\n$reason", $subscriptions);
+                addSubscriberStatistics('unsubscription', 1);
+            }
         }
 
         if ($userid) {
