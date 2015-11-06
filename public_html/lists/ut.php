@@ -44,7 +44,7 @@ if (!empty($_GET['u']) && !empty($_GET['m'])) {
     $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',
     $GLOBALS['tables']['user'], $_GET['u']));
     if ($userid[0]) {
-        Sql_Query(sprintf('update %s set viewed = now() where messageid = %d and userid = %d',
+        Sql_Query(sprintf('update %s set viewed = now() where messageid = %d and userid = %d and viewed is null',
       $GLOBALS['tables']['usermessage'], $_GET['m'], $userid[0]));
         Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d',
       $GLOBALS['tables']['message'], $_GET['m']));
