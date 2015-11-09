@@ -2191,143 +2191,143 @@ msgstr ""
 msgid "does not exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:121
+#: public_html/lists/admin/template.php:123
 msgid "Not a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:128
+#: public_html/lists/admin/template.php:130
 msgid "No Title"
 msgstr ""
 
-#: public_html/lists/admin/template.php:130
+#: public_html/lists/admin/template.php:132
 msgid "Template does not contain the [CONTENT] placeholder"
 msgstr ""
 
-#: public_html/lists/admin/template.php:150
+#: public_html/lists/admin/template.php:152
 msgid "Template saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:169
+#: public_html/lists/admin/template.php:171
 msgid "Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:169
+#: public_html/lists/admin/template.php:171
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
 
-#: public_html/lists/admin/template.php:170
+#: public_html/lists/admin/template.php:172
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:181
-#: public_html/lists/admin/template.php:185
+#: public_html/lists/admin/template.php:183
+#: public_html/lists/admin/template.php:187
 msgid "Image name:"
 msgstr ""
 
-#: public_html/lists/admin/template.php:181
-#: public_html/lists/admin/template.php:185
+#: public_html/lists/admin/template.php:183
+#: public_html/lists/admin/template.php:187
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:191
+#: public_html/lists/admin/template.php:193
 msgid "Save Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:197
+#: public_html/lists/admin/template.php:199
 msgid "Template was successfully saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:207
+#: public_html/lists/admin/template.php:209
 msgid "Some errors were found, template NOT saved!"
 msgstr ""
 
-#: public_html/lists/admin/template.php:218
+#: public_html/lists/admin/template.php:220
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:222
-msgid "Sending test \"Request for confirmation\" to"
-msgstr ""
-
 #: public_html/lists/admin/template.php:224
-#: public_html/lists/admin/template.php:231
-#: public_html/lists/admin/template.php:238
-#: public_html/lists/admin/tests/sendpage.php:31
-#: public_html/lists/admin/tests/sendpage.php:39
-msgid "OK"
+msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
 #: public_html/lists/admin/template.php:226
 #: public_html/lists/admin/template.php:233
 #: public_html/lists/admin/template.php:240
+#: public_html/lists/admin/tests/sendpage.php:31
+#: public_html/lists/admin/tests/sendpage.php:39
+msgid "OK"
+msgstr ""
+
+#: public_html/lists/admin/template.php:228
+#: public_html/lists/admin/template.php:235
+#: public_html/lists/admin/template.php:242
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:229
+#: public_html/lists/admin/template.php:231
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:236
+#: public_html/lists/admin/template.php:238
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:243
+#: public_html/lists/admin/template.php:245
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:248
+#: public_html/lists/admin/template.php:250
 msgid "Sending a test from templates only works for the system template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:249
+#: public_html/lists/admin/template.php:251
 msgid ""
 "To test your template, go to campaigns and send a test campaign using the "
 "template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:278
+#: public_html/lists/admin/template.php:280
 msgid "List of Templates"
 msgstr ""
 
-#: public_html/lists/admin/template.php:286
+#: public_html/lists/admin/template.php:288
 msgid "Title of this template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:292
 msgid "Content of the template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:292
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:292
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
 
-#: public_html/lists/admin/template.php:293
+#: public_html/lists/admin/template.php:295
 msgid "Template file."
 msgstr ""
 
-#: public_html/lists/admin/template.php:316
+#: public_html/lists/admin/template.php:318
 msgid "Check that all links have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:320
+#: public_html/lists/admin/template.php:322
 msgid "Check that all images have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:327
+#: public_html/lists/admin/template.php:329
 msgid "Check that all external images exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:333
+#: public_html/lists/admin/template.php:335
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:125
 #: public_html/lists/admin/list.php:281 public_html/lists/admin/user.php:452
@@ -2341,23 +2341,23 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: public_html/lists/admin/template.php:342
+#: public_html/lists/admin/template.php:344
 #: public_html/lists/admin/spageedit.php:278
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:342
+#: public_html/lists/admin/template.php:344
 #: public_html/lists/admin/spageedit.php:278
 msgid "to email addresses"
 msgstr ""
 
-#: public_html/lists/admin/template.php:343
+#: public_html/lists/admin/template.php:345
 #: public_html/lists/admin/send_core.php:950
 #: public_html/lists/admin/spageedit.php:279
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/template.php:344
+#: public_html/lists/admin/template.php:346
 #: public_html/lists/admin/send_core.php:949
 #: public_html/lists/admin/send_core.php:1256
 #: public_html/lists/admin/spageedit.php:280
