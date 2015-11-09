@@ -117,7 +117,9 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         if ($checkfulllinks) {
             $links = getTemplateLinks($content);
             foreach ($links as $key => $val) {
-                if (!preg_match('#^https?://#i', $val) && !preg_match('#^mailto:#i', $val)) {
+                if (!preg_match('#^https?://#i', $val) && !preg_match('#^mailto:#i', $val)
+                    && !(strtoupper($val) == '[PREFERENCESURL]' || strtoupper($val) == '[UNSUBSCRIBEURL]' || strtoupper($val) == '[BLACKLISTURL]' || strtoupper($val) == '[FORWARDURL]'  || strtoupper($val) == '[CONFIRMATIONURL]')
+                ) {
                     $actionresult .=  $GLOBALS['I18N']->get('Not a full URL').": $val<br/>\n";
                     $templateok = 0;
                 }
