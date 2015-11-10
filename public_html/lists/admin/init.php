@@ -6,6 +6,7 @@
  * it cannot use the DB contents, as the DB connection hasn't been established yet
  */
 define('PHPLISTINIT', true);
+error_reporting(0);
 
 ### remove on rollout ###
 if (is_file(dirname(__FILE__).'/../../../VERSION')) {
@@ -32,7 +33,6 @@ if (!defined('VERSION')) {
 } else {
     define('DEVVERSION', false);
 }
-### end remove on rollout ###
 
 if (empty($GLOBALS['commandline']) && isset($GLOBALS['developer_email']) && $_SERVER['HTTP_HOST'] != 'dev.phplist.com' && !empty($GLOBALS['show_dev_errors'])) {
     error_reporting(E_ALL);
@@ -40,8 +40,10 @@ if (empty($GLOBALS['commandline']) && isset($GLOBALS['developer_email']) && $_SE
     foreach ($_REQUEST as $key => $val) {
         unset($$key);
     }
-} else {
-    error_reporting(0);
+}
+### end remove on rollout ###
+if (!defined('DEVVERSION')) {
+    define('DEVVERSION', false);
 }
 
 # record the start time(usec) of script

@@ -649,21 +649,6 @@ $GLOBALS['pagecategories'] = array(
         'reindex',
       ),
   ),
-  'develop' => array(
-      'toplink' => 'develop',
-      'pages'   => array(
-     #   'checki18n',
-        'stresstest',
-        'subscriberstats',
-        'tests',
-      ),
-      'menulinks' => array(
-     #   'checki18n',
-        'stresstest',
-        'subscriberstats',
-        'tests',
-      ),
-  ),
   'config' => array(
       'toplink' => 'setup',
       'pages'   => array(
@@ -714,13 +699,30 @@ $GLOBALS['pagecategories'] = array(
         'home',
       ),
   ),
+
   //'plugins' => array(
     //'toplink' => 'plugins',
     //'pages' => array(),
     //'menulinks' => array(),
   //),
 );
-
+  if (DEVVERSION) {
+    $GLOBALS['pagecategories']['develop'] = array(
+      'toplink' => 'develop',
+      'pages'   => array(
+     #   'checki18n',
+        'stresstest',
+        'subscriberstats',
+        'tests',
+      ),
+      'menulinks' => array(
+     #   'checki18n',
+        'stresstest',
+        'subscriberstats',
+        'tests',
+      ),
+  );
+}
 function pageCategory($page)
 {
     foreach ($GLOBALS['pagecategories'] as $category => $cat_details) {
