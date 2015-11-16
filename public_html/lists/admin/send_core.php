@@ -572,6 +572,9 @@ if (!$done) {
               $plugintabname = substr(strip_tags($plugin->sendMessageTabTitle()), 0, 10);
               $plugintabs[$plugintabname] = $plugintab;
               $tabs->addTab($GLOBALS['I18N']->get($plugintabname), "$tabbaseurl&amp;tab=".urlencode($plugintabname));
+              if ($insertBefore = $plugin->sendMessageTabInsertBefore()) {
+                  $tabs->insertTabBefore($insertBefore,$GLOBALS['I18N']->get($plugintabname));
+              }
               ++$counttabs;
           }
       }

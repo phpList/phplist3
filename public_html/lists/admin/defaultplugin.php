@@ -392,10 +392,17 @@ class phplistPlugin
 
     public function sendMessageTabTitle($messageid = 0)
     {
-        ## If adding a TAB to the Send a Message page, what is the TAB's name
+    ## If adding a TAB to the Send a Message page, what is the TAB's name
     # parameters: none
     # returns: short title (less than about 10 characters)
     return '';
+    }
+    
+    public function sendMessageTabInsertBefore() {
+        ## If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
+        # parameters: none
+        # returns: tab title to insert before
+        return false;
     }
 
   /** sendMessageTabSave
