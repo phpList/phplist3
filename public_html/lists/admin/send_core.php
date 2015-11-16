@@ -527,41 +527,33 @@ if (!$done) {
   if ($id) {
       $tabs = new WebblerTabs();
       $tabbaseurl = preg_replace('/&tab=[^&]+/', '', $baseurl);
-      $tabs->addTab($GLOBALS['I18N']->get('Content'), $tabbaseurl.'&amp;tab=Content');
+      $tabs->addTab(s('Content'), $tabbaseurl.'&amp;tab=Content');
       $counttabs = 1;
       if (USE_MANUAL_TEXT_PART) {
-          $tabs->addTab($GLOBALS['I18N']->get('Text'), $tabbaseurl.'&amp;tab=Text');
+          $tabs->addTab(s('Text'), $tabbaseurl.'&amp;tab=Text');
           ++$counttabs;
       }
       if (FORWARD_ALTERNATIVE_CONTENT) {
-          $tabs->addTab($GLOBALS['I18N']->get('Forward'), $tabbaseurl.'&amp;tab=Forward');
+          $tabs->addTab(s('Forward'), $tabbaseurl.'&amp;tab=Forward');
           ++$counttabs;
       }
-      $tabs->addTab($GLOBALS['I18N']->get('Format'), $tabbaseurl.'&amp;tab=Format');
+      $tabs->addTab(s('Format'), $tabbaseurl.'&amp;tab=Format');
       ++$counttabs;
       if (ALLOW_ATTACHMENTS) {
-          $tabs->addTab($GLOBALS['I18N']->get('Attach'), $tabbaseurl.'&amp;tab=Attach');
+          $tabs->addTab(s('Attach'), $tabbaseurl.'&amp;tab=Attach');
           ++$counttabs;
       }
-      $tabs->addTab($GLOBALS['I18N']->get('Scheduling'), $tabbaseurl.'&amp;tab=Scheduling');
+      $tabs->addTab(s('Scheduling'), $tabbaseurl.'&amp;tab=Scheduling');
       ++$counttabs;
-#    if (USE_RSS) {
-  #      $tabs->addTab("RSS",$baseurl.'&amp;tab=RSS');
-#    }
-#    $tabs->addTab($GLOBALS['I18N']->get("Criteria"),$tabbaseurl.'&amp;tab=Criteria');
-    $tabs->addTab($GLOBALS['I18N']->get('Lists'), $tabbaseurl.'&amp;tab=Lists');
+      $tabs->addTab(s('Lists'), $tabbaseurl.'&amp;tab=Lists');
       ++$counttabs;
-#    $tabs->addTab("Review and Send",$baseurl.'&amp;tab=Review');
 
     if ($_GET['tab']) {
-        $tabs->setCurrent($GLOBALS['I18N']->get($_GET['tab']));
+        $tabs->setCurrent(s($_GET['tab']));
     } else {
-        $tabs->setCurrent($GLOBALS['I18N']->get('Content'));
+        $tabs->setCurrent(s('Content'));
     }
-//    if (defined("WARN_SAVECHANGES")) {
-      $tabs->addLinkCode(' class="savechanges" ');
-//    }
-  #$baseurl = sprintf('./?page=%s&amp;id=%d',$_GET["page"],$id);
+    $tabs->addLinkCode(' class="savechanges" ');
 
     ### allow plugins to add tabs
     $plugintabs = array();
@@ -573,14 +565,14 @@ if (!$done) {
               $plugintabs[$plugintabname] = $plugintab;
               $tabs->addTab($GLOBALS['I18N']->get($plugintabname), "$tabbaseurl&amp;tab=".urlencode($plugintabname));
               if ($insertBefore = $plugin->sendMessageTabInsertBefore()) {
-                  $tabs->insertTabBefore($insertBefore,$GLOBALS['I18N']->get($plugintabname));
+                  $tabs->insertTabBefore(s($insertBefore),s($GLOBALS['I18N']->get($plugintabname)));
               }
               ++$counttabs;
           }
       }
 
     ## this one always last
-    $tabs->addTab($GLOBALS['I18N']->get('Finish'), $tabbaseurl.'&amp;tab=Finish');
+    $tabs->addTab(s('Finish'), $tabbaseurl.'&amp;tab=Finish');
       ++$counttabs;
 
   # print $tabs->display();
