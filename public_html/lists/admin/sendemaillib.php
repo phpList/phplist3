@@ -766,6 +766,12 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
   # build the email
   $mail = new PHPlistMailer($messageid, $destinationemail);
+
+    if ($isTestMail) {
+        $mail->SMTPDebug = PHPMAILER_SMTP_DEBUG;
+        $mail->Debugoutput = 'html';
+    }
+
     if ($forwardedby) {
         $mail->add_timestamp();
     }

@@ -560,6 +560,9 @@ if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
 if (!defined('PHPMAILER_SECURE')) {
     define('PHPMAILER_SECURE', false);
 }
+if (!defined('PHPMAILER_SMTP_DEBUG')) {
+    define('PHPMAILER_SMTP_DEBUG', 0);
+}
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
 }

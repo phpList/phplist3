@@ -570,6 +570,11 @@ define('PHPMAILERHOST', '');
 # it can either be "ssl" or "tls", nothing else
 # define("PHPMAILER_SECURE",'ssl');
 
+## SMTP debugging
+# Enable debugging output by phpmailer when sending test emails
+# See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.html#property_SMTPDebug
+# define('PHPMAILER_SMTP_DEBUG', 0);
+
 ## Smtp Timeout
 ## If you use SMTP for sending, you can set the timeout of the SMTP connection
 ## defaults to 5 seconds
