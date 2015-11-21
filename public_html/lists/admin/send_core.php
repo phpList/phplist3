@@ -565,7 +565,7 @@ if (!$done) {
               $plugintabs[$plugintabname] = $plugintab;
               $tabs->addTab($GLOBALS['I18N']->get($plugintabname), "$tabbaseurl&amp;tab=".urlencode($plugintabname));
               if ($insertBefore = $plugin->sendMessageTabInsertBefore()) {
-                  $tabs->insertTabBefore(s($insertBefore),s($GLOBALS['I18N']->get($plugintabname)));
+                  $tabs->insertTabBefore(s($insertBefore),s($plugintabname));
               }
               ++$counttabs;
           }
