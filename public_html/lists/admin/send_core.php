@@ -398,7 +398,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
   // OK, the message has been saved, now check to see if we need to send a test message
   if ($sendtest) {
-      $sendtestresult = '<r/>';
+      $sendtestresult = '<br/>';
       if (empty($_SESSION['lasttestsent'])) {
           $_SESSION['lasttestsent'] = 0;
       }
