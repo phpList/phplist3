@@ -719,7 +719,7 @@ function confirmPage($id)
         $info = $GLOBALS['strConfirmInfo'];
     } else {
         logEvent('Request for confirmation for invalid user ID: '.substr($_GET['uid'], 0, 150));
-        $html .= 'Error: '.$GLOBALS['strUserNotFound'];
+        $html = 'Error: '.$GLOBALS['strUserNotFound'];
         $info = $GLOBALS['strConfirmFailInfo'];
     }
 
