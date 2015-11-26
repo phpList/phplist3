@@ -1127,15 +1127,6 @@ while ($message = Sql_fetch_array($messages)) {
               ++$counters['sent_users_for_message '.$messageid];
               $um = Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"sent")', $tables['usermessage'], $userid, $messageid));
 
-//obsolete, moved to rssmanager plugin
-//            if (ENABLE_RSS && $pxrocessrss) {
-//              foreach ($rssitems as $rssitemid) {
-//                $status = Sql_query("update {$tables['rssitem']} set processed = processed +1 where id = $rssitemid");
-//                $um = Sql_query("replace into {$tables['rssitem_user']} (userid,itemid) values($userid,$rssitemid)");
-//              }
-//              Sql_Query("replace into {$tables["user_rss"]} (userid,last) values($userid,date_sub(now(),interval 15 minute))");
-//
-//              }
           } else {
               ++$counters['failed_sent'];
               ++$counters['failed_sent_for_message '.$messageid];
