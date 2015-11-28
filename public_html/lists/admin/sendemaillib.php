@@ -1608,20 +1608,9 @@ exit;
         $cached[$messageid]['content'] = preg_replace('/<img(.*)src="\/'.$dir.'(.*)>/iU', '<img\\1src="'.$GLOBALS['public_scheme'].'://'.$baseurl.'/'.UPLOADIMAGES_DIR.'\\2>', $cached[$messageid]['content']);
     }
 
-  ## replace Logo placeholders
-  foreach (array('content', 'template', 'htmlfooter') as $element) {
-      preg_match_all('/\[LOGO\:?(\d+)?\]/', $cached[$messageid][$element], $logoInstances);
-      foreach ($logoInstances[0] as $index => $logoInstance) {
-          $size = sprintf('%d', $logoInstances[1][$index]);
-          if (!empty($size)) {
-              $logoSize = $size;
-          } else {
-              $logoSize = '500';
-          }
-          createCachedLogoImage($logoSize);
-          $cached[$messageid][$element] = str_replace($logoInstance, 'ORGANISATIONLOGO'.$logoSize.'.png', $cached[$messageid][$element]);
-      }
-  }
+    foreach (array('content', 'template', 'htmlfooter') as $element) {
+        $cached[$messageid][$element] = parseLogoPlaceholders($cached[$messageid][$element]);
+    }
 
     return 1;
 }
