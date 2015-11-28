@@ -1299,6 +1299,9 @@ while ($message = Sql_fetch_array($messages)) {
     }
         if (!$counters['failed_sent']) {
             repeatMessage($messageid);
+            foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+                $plugin->processSendingCampaignFinished($messageid);
+            }
             $status = Sql_query(sprintf('update %s set status = "sent",sent = now() where id = %d', $GLOBALS['tables']['message'], $messageid));
 
             if (!empty($msgdata['notify_end']) && !isset($msgdata['end_notified'])) {

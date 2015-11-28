@@ -523,6 +523,17 @@ class phplistPlugin
   public function processPrecachedCampaign($messageid, array &$message)
   {
   }
+  
+  /** 
+   * handle the moment that sending a campaign has finished.
+   * this is after the campaign has been potentially duplicated for repetition.
+   * 
+   * @param integer $messageid ID of the campaign
+   * @return void
+   */
+  public function processSendingCampaignFinished($messageid) 
+  {
+  }
 
   /* 
    * parseOutgoingTextMessage
@@ -554,7 +565,7 @@ class phplistPlugin
 
     public function getMessageAttachment($messageid, $content)
     {
-        ###getMessageAttachment($messageid,$mail->Body);
+    ###getMessageAttachment($messageid,$mail->Body);
     # parameters: $messageid,$messagecontent
     # returns array (
     #  'content' => Content of the attachment
