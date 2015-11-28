@@ -132,6 +132,7 @@ class PHPlistMailer extends PHPMailer
         if (defined('PHPMAILER_SECURE') && PHPMAILER_SECURE) {
             $this->SMTPSecure = PHPMAILER_SECURE;
         }
+        $this->SMTPAutoTLS = true;
 
         if ($GLOBALS['message_envelope']) {
             $this->Sender = $GLOBALS['message_envelope'];
