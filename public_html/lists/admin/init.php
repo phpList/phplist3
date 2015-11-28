@@ -655,6 +655,8 @@ $adminpages = $GLOBALS['pageroot'].'/admin';
 ## remove possibly duplicated // at the beginning
 $adminpages = preg_replace('~^//~', '/', $adminpages);
 
+$GLOBALS['homepage'] = 'home';
+
 if (!isset($systemroot)) {
     $systemroot = dirname(__FILE__);
 }
