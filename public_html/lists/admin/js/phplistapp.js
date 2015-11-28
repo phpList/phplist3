@@ -335,6 +335,13 @@ $(document).ready(function() {
     $("#stopqueue").hide();    
     $("#resumequeue").show();    
   });
+  
+  $(".updatepluginbutton").click(function() {
+    if (!confirm("Are you sure you want to update this plugin? \nphpList does not currently check on compatibility of the update.\nThis will just fetch the latest version.\nPlease verify before upgrading.")) {
+        return false;
+    }
+    return true;
+  });
 
   var docurl = document.location.search;
   document.cookie="browsetrail="+escape(docurl);

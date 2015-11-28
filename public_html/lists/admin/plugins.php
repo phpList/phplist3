@@ -264,7 +264,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {
         $updateForm = formStart();
         $updateForm .= '<input type="hidden" name="pluginurl" value="'.$pluginDetails['installUrl'].'"/>
-        <button type="submit" name="update" title="'.s('update this plugin').'">'.s('update').'</button></form>';
+        <button type="submit" name="update" title="'.s('update this plugin').'" class="updatepluginbutton">'.s('update').'</button></form>';
         $ls->addColumn($pluginname, s('update'), $updateForm);
     }
     $details .= '</div>';
