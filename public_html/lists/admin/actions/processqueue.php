@@ -1300,7 +1300,7 @@ while ($message = Sql_fetch_array($messages)) {
         if (!$counters['failed_sent']) {
             repeatMessage($messageid);
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-                $plugin->processSendingCampaignFinished($messageid);
+                $plugin->processSendingCampaignFinished($messageid,$msgdata);
             }
             $status = Sql_query(sprintf('update %s set status = "sent",sent = now() where id = %d', $GLOBALS['tables']['message'], $messageid));
 

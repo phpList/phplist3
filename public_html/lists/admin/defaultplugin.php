@@ -529,9 +529,10 @@ class phplistPlugin
    * this is after the campaign has been potentially duplicated for repetition.
    * 
    * @param integer $messageid ID of the campaign
+   * @param array messagedata associative array with the current message data
    * @return void
    */
-  public function processSendingCampaignFinished($messageid) 
+  public function processSendingCampaignFinished($messageid,array $messagedata) 
   {
   }
 
