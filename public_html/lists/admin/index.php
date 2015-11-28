@@ -432,8 +432,8 @@ if (!$ajax && $page != 'login') {
     if (TEST) {
         print Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
-    if (version_compare(PHP_VERSION, '5.1.2', '<') && WARN_ABOUT_PHP_SETTINGS) {
-        Error($GLOBALS['I18N']->get('phpList requires PHP version 5.1.2 or higher'));
+    if (version_compare(PHP_VERSION, '5.3.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
+        Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.0 or higher.'));
     }
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
         Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
