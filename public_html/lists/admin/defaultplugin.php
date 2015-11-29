@@ -487,6 +487,18 @@ class phplistPlugin
   {
       return false;
   }
+    
+  /* throttleDomainMap
+   *
+   * Return the mapping of the domain for throttling
+   * Only the first plugin that returns a non-false value will be used
+   * 
+   * @param string $domain domain to map
+   * @return string mapping or false if not mapped
+ */
+  function throttleDomainMap ($domain) {
+      return false;
+  }
 
   /**
    * messageStatusLimitReached.

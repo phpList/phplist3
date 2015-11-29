@@ -1026,27 +1026,33 @@ while ($message = Sql_fetch_array($messages)) {
 
         $throttled = 0;
                 if ($cansend && USE_DOMAIN_THROTTLE) {
-                    list($mailbox, $domainname) = explode('@', $useremail);
+                    list($mailbox, $throttleDomain) = explode('@', $useremail);
+                    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+                        if ($newThrottleDomain = $plugin->throttleDomainMap($throttleDomain)) {
+                            $throttleDomain = $newThrottleDomain;
+                            break;
+                        }
+                    }
                     $now = time();
                     $interval = $now - ($now % DOMAIN_BATCH_PERIOD);
-                    if (!isset($domainthrottle[$domainname]) || !is_array($domainthrottle[$domainname])) {
-                        $domainthrottle[$domainname] = array(
+                    if (!isset($domainthrottle[$throttleDomain]) || !is_array($domainthrottle[$throttleDomain])) {
+                        $domainthrottle[$throttleDomain] = array(
               'interval'  => '',
               'sent'      => 0,
               'attempted' => 0,
             );
-                    } elseif (isset($domainthrottle[$domainname]['interval']) && $domainthrottle[$domainname]['interval'] == $interval) {
-                        $throttled = $domainthrottle[$domainname]['sent'] >= DOMAIN_BATCH_SIZE;
+                    } elseif (isset($domainthrottle[$throttleDomain]['interval']) && $domainthrottle[$throttleDomain]['interval'] == $interval) {
+                        $throttled = $domainthrottle[$throttleDomain]['sent'] >= DOMAIN_BATCH_SIZE;
                         if ($throttled) {
                             ++$counters['send blocked by domain throttle'];
-                            ++$domainthrottle[$domainname]['attempted'];
+                            ++$domainthrottle[$throttleDomain]['attempted'];
                             if (DOMAIN_AUTO_THROTTLE
-                && $domainthrottle[$domainname]['attempted'] > 25 # skip a few before auto throttling
+                && $domainthrottle[$throttleDomain]['attempted'] > 25 # skip a few before auto throttling
                 && $num_messages <= 1 # only do this when there's only one message to process otherwise the other ones don't get a chance
                 && $counters['total_users_for_message '.$messageid] < 1000 # and also when there's not too many left, because then it's likely they're all being throttled
               ) {
-                                $domainthrottle[$domainname]['attempted'] = 0;
-                                logEvent(sprintf($GLOBALS['I18N']->get('There have been more than 10 attempts to send to %s that have been blocked for domain throttling.'), $domainname));
+                                $domainthrottle[$throttleDomain]['attempted'] = 0;
+                                logEvent(sprintf($GLOBALS['I18N']->get('There have been more than 10 attempts to send to %s that have been blocked for domain throttling.'), $throttleDomain));
                                 logEvent($GLOBALS['I18N']->get('Introducing extra delay to decrease throttle failures'));
                                 if (VERBOSE) {
                                     processQueueOutput($GLOBALS['I18N']->get('Introducing extra delay to decrease throttle failures'));
@@ -1058,7 +1064,7 @@ while ($message = Sql_fetch_array($messages)) {
                                 }
                 #processQueueOutput("Running throttle delay: ".$running_throttle_delay);
                             } elseif (VERBOSE) {
-                                processQueueOutput(sprintf($GLOBALS['I18N']->get('%s is currently over throttle limit of %d per %d seconds').' ('.$domainthrottle[$domainname]['sent'].')', $domainname, DOMAIN_BATCH_SIZE, DOMAIN_BATCH_PERIOD));
+                                processQueueOutput(sprintf($GLOBALS['I18N']->get('%s is currently over throttle limit of %d per %d seconds').' ('.$domainthrottle[$throttleDomain]['sent'].')', $throttleDomain, DOMAIN_BATCH_SIZE, DOMAIN_BATCH_PERIOD));
                             }
                         }
                     }
@@ -1115,12 +1121,11 @@ while ($message = Sql_fetch_array($messages)) {
           # tried to send email , process succes / failure
           if ($success) {
               if (USE_DOMAIN_THROTTLE) {
-                  list($mailbox, $domainname) = explode('@', $useremail);
-                  if ($domainthrottle[$domainname]['interval'] != $interval) {
-                      $domainthrottle[$domainname]['interval'] = $interval;
-                      $domainthrottle[$domainname]['sent'] = 1;
+                  if ($domainthrottle[$throttleDomain]['interval'] != $interval) {
+                      $domainthrottle[$throttleDomain]['interval'] = $interval;
+                      $domainthrottle[$throttleDomain]['sent'] = 1;
                   } else {
-                      ++$domainthrottle[$domainname]['sent'];
+                      ++$domainthrottle[$throttleDomain]['sent'];
                   }
               }
               ++$counters['sent'];
