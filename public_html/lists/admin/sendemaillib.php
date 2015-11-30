@@ -804,9 +804,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
   switch ($cached[$messageid]['sendformat']) {
     case 'PDF':
       # send a PDF file to users who want html and text to everyone else
-      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-          $plugin->processSuccesFailure($messageid, 'astext', $userdata);
-      }
       if ($htmlpref) {
           if (!$isTestMail) {
               Sql_Query("update {$GLOBALS['tables']['message']} set aspdf = aspdf + 1 where id = $messageid");
@@ -848,9 +845,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
       }
       break;
     case 'text and PDF':
-      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-          $plugin->processSuccesFailure($messageid, 'astext', $userdata);
-      }
       # send a PDF file to users who want html and text to everyone else
       if ($htmlpref) {
           if (!$isTestMail) {
@@ -894,9 +888,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
       break;
     case 'text':
       # send as text
-      foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-          $plugin->processSuccesFailure($messageid, 'astext', $userdata);
-      }
       if (!$isTestMail) {
           Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
       }
@@ -924,9 +915,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             if (!$isTestMail) {
                 Sql_Query("update {$GLOBALS['tables']['message']} set astextandhtml = astextandhtml + 1 where id = $messageid");
             }
-            foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-                $plugin->processSuccesFailure($messageid, 'ashtml', $userdata);
-            }
         #  dbg("Adding HTML ".$cached[$messageid]["templateid"]);
           if (WORDWRAP_HTML) {
               ## wrap it: http://mantis.phplist.com/view.php?id=15528
@@ -942,9 +930,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         } else {
             if (!$isTestMail) {
                 Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
-            }
-            foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-                $plugin->processSuccesFailure($messageid, 'astext', $userdata);
             }
             $mail->add_text($textmessage);
 #          $mail->setText($textmessage);

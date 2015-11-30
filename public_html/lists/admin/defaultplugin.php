@@ -1,19 +1,28 @@
 <?php
 
+/**
+ * phplistPlugin main class to extend for plugins 
+ */
+ 
+/**
+ * a plugin for phpList should extend this class to work. Once you have extended
+ * you can implement all the hooks provided to manipulate the functionality of phpList
+ * in many places.
+ */
+
 require_once dirname(__FILE__).'/accesscheck.php';
 
 class phplistPlugin
 {
-    ############################################################
-  # Registration & Config
 
   public $name = 'Default Plugin';
-    public $version = 'unknown';
-    public $authors = '';
-    public $description = 'No description';
-    public $documentationUrl = '';## link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
+  public $version = 'unknown';
+  public $authors = '';
+  public $description = 'No description';
+  public $documentationUrl = '';## link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
   public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
   public $system_root = ''; ## root dir of the phpList admin directory
+
   #@@Some ideas to implement this:
   # * Start each method with if (!$this->enabled) return parent :: parentMethod($args);
   # * Don't add to manage Global plugins if disabled
@@ -31,9 +40,9 @@ class phplistPlugin
   # The page name is the file name without .php. The files must be in the $coderoot directory
   public $publicPages = array();
 
-    public $configArray = array();
+  public $configArray = array();
 
-    public $importTabTitle = ''; ## title of the tab for the import page
+  public $importTabTitle = ''; ## title of the tab for the import page
 
   public $needI18N = 0;
 
@@ -46,7 +55,7 @@ class phplistPlugin
    */
   public $editorProvider = false;
 
-    public $tables = array(); // will hold tablename -> real table mapping
+  public $tables = array(); // will hold tablename -> real table mapping
 
   /* array of pages in this plugin to add to the main menu
    * 
@@ -66,6 +75,7 @@ class phplistPlugin
    * info
    * 
    */
+   
   public $topMenuLinks = array();
 
   /* titles of pages in the plugin, this is used in the listing of the pages in the menu
@@ -94,10 +104,14 @@ class phplistPlugin
       );
   }
 
-    public function name()
-    {
-        return $this->name;
-    }
+  /** 
+   * name of this plugin
+   */
+
+  public function name()
+  {
+     return $this->name;
+  }
 
   /* 
    * constructor
@@ -111,8 +125,8 @@ class phplistPlugin
       $this->phplistplugin();
   }
 
-    public function phplistplugin()
-    {
+  public function phplistplugin()
+  {
         # constructor
     # Startup code, other objects might not be constructed yet
     #print ("<BR>Construct " . $this->name);
@@ -146,9 +160,9 @@ class phplistPlugin
 
         $inventory = dirname($me->getFileName()).'/../.git/logs/HEAD';
         if (is_file($inventory)) {
-            $sz   = filesize($inventory);
+            $sz = filesize($inventory);
             $seek = max(0, $sz - 2000); // read from back of the file
-            $fh   = fopen($inventory, 'rb');
+            $fh = fopen($inventory, 'rb');
             fseek($fh, $seek);
             $chunk = fread($fh, 2000);
             fclose($fh);
@@ -330,7 +344,7 @@ class phplistPlugin
   {
       return array(
       # page, description
-      'main'       => 'Main Page',
+      'main' => 'Main Page',
       'helloworld' => 'Hello World page',
     );
   }
@@ -392,13 +406,14 @@ class phplistPlugin
 
     public function sendMessageTabTitle($messageid = 0)
     {
-    ## If adding a TAB to the Send a Message page, what is the TAB's name
+        ## If adding a TAB to the Send a Message page, what is the TAB's name
     # parameters: none
     # returns: short title (less than about 10 characters)
     return '';
     }
-    
-    public function sendMessageTabInsertBefore() {
+
+    public function sendMessageTabInsertBefore()
+    {
         ## If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
         # parameters: none
         # returns: tab title to insert before
@@ -487,7 +502,7 @@ class phplistPlugin
   {
       return false;
   }
-    
+
   /* throttleDomainMap
    *
    * Return the mapping of the domain for throttling
@@ -496,7 +511,8 @@ class phplistPlugin
    * @param string $domain domain to map
    * @return string mapping or false if not mapped
  */
-  function throttleDomainMap ($domain) {
+  public function throttleDomainMap($domain)
+  {
       return false;
   }
 
@@ -535,16 +551,15 @@ class phplistPlugin
   public function processPrecachedCampaign($messageid, array &$message)
   {
   }
-  
+
   /** 
    * handle the moment that sending a campaign has finished.
    * this is after the campaign has been potentially duplicated for repetition.
    * 
-   * @param integer $messageid ID of the campaign
+   * @param int $messageid ID of the campaign
    * @param array messagedata associative array with the current message data
-   * @return void
    */
-  public function processSendingCampaignFinished($messageid,array $messagedata) 
+  public function processSendingCampaignFinished($messageid, array $messagedata)
   {
   }
 
@@ -578,7 +593,7 @@ class phplistPlugin
 
     public function getMessageAttachment($messageid, $content)
     {
-    ###getMessageAttachment($messageid,$mail->Body);
+        ###getMessageAttachment($messageid,$mail->Body);
     # parameters: $messageid,$messagecontent
     # returns array (
     #  'content' => Content of the attachment
@@ -650,14 +665,18 @@ class phplistPlugin
   {
       return 0;
   }
+  
+  
+  /**
+    * 
+    * process the success or failure of sending an email in $sendformat
+    * 
+    * @deprecated, no longer used since 3.2.4
+    * 
+    */
 
     public function processSuccesFailure($messageid, $sendformat, $userdata, $success = true)
     {
-        # purpose: process the success or failure of sending an email in $sendformat
-    #   if function returns false, caller will know the whole email should be marked as failed
-    # Currently used in sendemaillib.php
-    # 200710 Bas
-    return true;
     }
 
   /**
@@ -884,26 +903,34 @@ class phplistPlugin
       return array();
   }
 
-  ############################################################
-  # User
+
+    /** 
+     * displayUsers
+     * 
+     * add columns for this plugin to WebblerListing
+     * Currently used in users.php and members.php
+     * 
+     * @param (array) user - associative array of user data
+     * @param string $rowid - $element of the WebblerListing
+     * @param WebblerListing $list - listing object to add to
+     * 
+     * @note, unclear if this actually works. Better not to use it.
+     */
 
   public function displayUsers($user, $rowid, $list)
   {
-      # purpose: add columns for this plugin to WebblerListing
-    # Currently used in users.php and members.php
-    # 200710 Bas
-    # (array) user, should have an id to connect to the database
-    # (mixed) rowid, used to place data in the right row  of the WebblerListing
-    # (WebblerListing) list, will hold the result
-
-    return; #@@idea: return false could mean don't display this user at all
   }
+
+    /**
+     * deleteUser
+     * 
+     * allow plugins to delete their data when deleting a user
+     * 
+     * @param integer $id the ID of the subscriber
+     */
 
     public function deleteUser($id)
     {
-        # purpose: allow plugins to delete their data when deleting a user
-    # 200711 Bas
-    return true;
     }
 
   ############################################################
