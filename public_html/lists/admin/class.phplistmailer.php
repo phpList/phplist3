@@ -76,15 +76,15 @@ class PHPlistMailer extends PHPMailer
         $this->destinationemail = $email;
         $this->SingleTo = false;
         $this->CharSet =  'UTF-8';# getConfig("html_charset");
-      $this->inBlast = $inBlast;
-      ### hmm, would be good to sort this out differently, but it'll work for now
-      ## don't send test message using the blast server
-      if (isset($_GET['page']) && $_GET['page'] == 'send') {
-          $this->inBlast = false;
-      }
+        $this->inBlast = $inBlast;
+        ### hmm, would be good to sort this out differently, but it'll work for now
+        ## don't send test message using the blast server
+        if (isset($_GET['page']) && $_GET['page'] == 'send') {
+            $this->inBlast = false;
+        }
+        $this->Helo = getConfig('domain');
 
         if ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
-            $this->Helo = getConfig('website');
             $this->Host = PHPMAILERBLASTHOST;
             $this->Port = PHPMAILERBLASTPORT;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
@@ -98,8 +98,7 @@ class PHPlistMailer extends PHPMailer
             if (defined('PHPMAILERPORT')) {
                 $this->Port = PHPMAILERPORT;
             }
-        //logEvent('Sending email via '.PHPMAILERHOST);
-        $this->Helo = getConfig('website');
+            //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERTESTHOST;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
@@ -112,8 +111,7 @@ class PHPlistMailer extends PHPMailer
             if (defined('PHPMAILERPORT')) {
                 $this->Port = PHPMAILERPORT;
             }
-        //logEvent('Sending email via '.PHPMAILERHOST);
-        $this->Helo = getConfig('website');
+            //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERHOST;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
              && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']) {
