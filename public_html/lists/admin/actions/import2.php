@@ -209,7 +209,7 @@ if (count($email_list)) {
                     # check whether the email will clash
                     $clashcheck = Sql_Fetch_Array_Query(sprintf('select id,foreignkey,uniqid from %s
                     where email = "%s"', $tables['user'], $user['systemvalues']['email']));
-                    if ($clashcheck['id'] != $existing_user['id']) {
+                    if (!empty($clashcheck['id']) && $clashcheck['id'] != $existing_user['id']) {
                         #https://mantis.phplist.org/view.php?id=17752
                         # if the existing record does not have an FK, we treat it as an update, matched on email
                         if (empty($clashcheck['foreignkey'])) {
