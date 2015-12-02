@@ -136,8 +136,18 @@ print '<tr><td>'.s('Unique subscribers who clicked').'<td><td>'.$totalclicked[0]
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Campaign click statistics'));
 
-$req = Sql_Query(sprintf('select url,firstclick,date_format(latestclick,
-  "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, %s forward  where ml.messageid = %d and ml.forwardid = forward.id', $GLOBALS['tables']['linktrack_ml'], $GLOBALS['tables']['linktrack_forward'], $id));
+$query = sprintf('select url,firstclick,date_format(latestclick,
+  "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, 
+  %s forward  where ml.messageid = %d and ml.forwardid = forward.id', $GLOBALS['tables']['linktrack_ml'], $GLOBALS['tables']['linktrack_forward'], $id);
+
+$req = Sql_Query($query);
+## put a limit on (when there are too many distinct URLs, eg when personalised URLs have been used)
+$num = Sql_Affected_Rows();
+if ($num > 50) {
+    $query .= ' and total > 0 limit 50';
+    $req = Sql_Query($query);
+}
+
 $summary = array();
 $summary['totalclicks'] = 0;
 $summary['totalsent'] = 0;
