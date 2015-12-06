@@ -4,6 +4,8 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
+$GLOBALS['authenticationplugin'] = false;
+
 if (!defined('PLUGIN_ROOTDIR')) {
     define('PLUGIN_ROOTDIR', 'notdefined');
 }
@@ -53,6 +55,8 @@ foreach ($pluginRootDirs as $pluginRootDir) {
       closedir($dh);
   }
 }
+// load the defaultAdminAuth last, to fall back to it
+array_push($pluginFiles, dirname(__FILE__). '/phpListAdminAuthentication.php');
 
 $auto_enable_plugins = array();
 if (isset($GLOBALS['plugins_autoenable'])) {
@@ -90,6 +94,9 @@ foreach ($pluginFiles as $file) {
           if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance, 'editor')) {
               $GLOBALS['editorplugin'] = $className;
           }
+          if (!$GLOBALS['authenticationplugin'] && $pluginInstance->authProvider && method_exists($pluginInstance, 'validateLogin')) {
+              $GLOBALS['authenticationplugin'] = $className;
+          }
      #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
           $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
                 if (!empty($plugin_initialised)) {
@@ -122,6 +129,11 @@ foreach ($pluginFiles as $file) {
     }
     }
 }
+## enable the default auth plugin, if no other was activated
+if (empty($GLOBALS['authenticationplugin'])) {
+    $GLOBALS['authenticationplugin'] = 'phpListAdminAuthentication';
+}
+
 $GLOBALS['pluginsendformats'] = array();
 foreach ($GLOBALS['plugins'] as $className => $pluginInstance) {
     $plugin_sendformats = $pluginInstance->sendFormats();

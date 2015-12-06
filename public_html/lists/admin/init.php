@@ -719,6 +719,10 @@ if (!isset($GLOBALS['export_mimetype'])) {
 if (!isset($GLOBALS['admin_auth_module'])) {
     $GLOBALS['admin_auth_module'] = 'phplist_auth.inc';
 }
+// unset the default admin_auth_module, to use the plugin version
+if ($GLOBALS['admin_auth_module'] == 'phplist_auth.inc') {
+    $GLOBALS['admin_auth_module'] = '';
+}
 if (!isset($GLOBALS['require_login'])) {
     $GLOBALS['require_login'] = 1;
 }
