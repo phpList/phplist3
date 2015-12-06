@@ -1272,8 +1272,8 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:111
 #: public_html/lists/admin/userclicks.php:189
 #: public_html/lists/admin/mclicks.php:87
-#: public_html/lists/admin/mclicks.php:171
-#: public_html/lists/admin/mclicks.php:193
+#: public_html/lists/admin/mclicks.php:181
+#: public_html/lists/admin/mclicks.php:203
 #: public_html/lists/admin/userhistory.php:98
 #: public_html/lists/admin/userhistory.php:101
 #: public_html/lists/admin/uclicks.php:58
@@ -1379,78 +1379,78 @@ msgstr ""
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:992
+#: public_html/lists/admin/sendemaillib.php:977
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1009
+#: public_html/lists/admin/sendemaillib.php:994
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1012
+#: public_html/lists/admin/sendemaillib.php:997
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1017
+#: public_html/lists/admin/sendemaillib.php:1002
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1019
+#: public_html/lists/admin/sendemaillib.php:1004
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1022
+#: public_html/lists/admin/sendemaillib.php:1007
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1024
+#: public_html/lists/admin/sendemaillib.php:1009
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1062
+#: public_html/lists/admin/sendemaillib.php:1047
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1103
+#: public_html/lists/admin/sendemaillib.php:1088
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1104
-#: public_html/lists/admin/sendemaillib.php:1117
+#: public_html/lists/admin/sendemaillib.php:1089
+#: public_html/lists/admin/sendemaillib.php:1102
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1109
+#: public_html/lists/admin/sendemaillib.php:1094
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1115
+#: public_html/lists/admin/sendemaillib.php:1100
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1116
+#: public_html/lists/admin/sendemaillib.php:1101
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1136
-#: public_html/lists/admin/sendemaillib.php:1138
+#: public_html/lists/admin/sendemaillib.php:1121
+#: public_html/lists/admin/sendemaillib.php:1123
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
@@ -2837,7 +2837,7 @@ msgstr ""
 #: public_html/lists/admin/members.php:384
 #: public_html/lists/admin/actions/processqueue.php:449
 #: public_html/lists/admin/actions/processqueue.php:451
-#: public_html/lists/admin/actions/processqueue.php:1084
+#: public_html/lists/admin/actions/processqueue.php:1090
 msgid "to"
 msgstr ""
 
@@ -3165,14 +3165,14 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:791
 #: public_html/lists/admin/userclicks.php:192
 #: public_html/lists/admin/mclicks.php:90
-#: public_html/lists/admin/mclicks.php:178
+#: public_html/lists/admin/mclicks.php:188
 msgid "text"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:429
 #: public_html/lists/admin/send_core.php:788
 #: public_html/lists/admin/mclicks.php:90
-#: public_html/lists/admin/mclicks.php:177
+#: public_html/lists/admin/mclicks.php:187
 msgid "html"
 msgstr ""
 
@@ -3999,7 +3999,7 @@ msgid "Resend"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:47
-#: public_html/lists/admin/actions/processqueue.php:1278
+#: public_html/lists/admin/actions/processqueue.php:1283
 msgid "unknown"
 msgstr ""
 
@@ -4317,12 +4317,25 @@ msgstr ""
 msgid "All done"
 msgstr ""
 
-#: public_html/lists/admin/actions/addemail.php:17
+#: public_html/lists/admin/actions/addemail.php:14
+msgid "That is not a valid email address"
+msgstr ""
+
+#: public_html/lists/admin/actions/addemail.php:18
+#, php-format
+msgid "Added by %s"
+msgstr ""
+
+#: public_html/lists/admin/actions/addemail.php:18
+msgid "Added with add-email on test"
+msgstr ""
+
+#: public_html/lists/admin/actions/addemail.php:19
 msgid "Email address added"
 msgstr ""
 
-#: public_html/lists/admin/actions/addemail.php:23
-msgid "Adding email address failed"
+#: public_html/lists/admin/actions/addemail.php:25
+msgid "Adding email address failed, try again later"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:51
@@ -4615,104 +4628,104 @@ msgstr ""
 msgid "Sending of this message has been suspended"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1049
+#: public_html/lists/admin/actions/processqueue.php:1055
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
 "for domain throttling."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1050
-#: public_html/lists/admin/actions/processqueue.php:1052
+#: public_html/lists/admin/actions/processqueue.php:1056
+#: public_html/lists/admin/actions/processqueue.php:1058
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1061
+#: public_html/lists/admin/actions/processqueue.php:1067
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1084
+#: public_html/lists/admin/actions/processqueue.php:1090
 msgid "Sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1097
+#: public_html/lists/admin/actions/processqueue.php:1103
 #, php-format
 msgid "Warning: a lot of errors while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1102
-#: public_html/lists/admin/actions/processqueue.php:1320
+#: public_html/lists/admin/actions/processqueue.php:1108
+#: public_html/lists/admin/actions/processqueue.php:1325
 msgid "It took"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1102
+#: public_html/lists/admin/actions/processqueue.php:1108
 msgid "seconds to send"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1141
+#: public_html/lists/admin/actions/processqueue.php:1146
 msgid "Failed sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1181
+#: public_html/lists/admin/actions/processqueue.php:1186
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1192
+#: public_html/lists/admin/actions/processqueue.php:1197
 msgid "not sending to "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1211
+#: public_html/lists/admin/actions/processqueue.php:1216
 msgid "Unconfirmed user"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1221
-#: public_html/lists/admin/actions/processqueue.php:1223
+#: public_html/lists/admin/actions/processqueue.php:1226
+#: public_html/lists/admin/actions/processqueue.php:1228
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1231
+#: public_html/lists/admin/actions/processqueue.php:1236
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1232
+#: public_html/lists/admin/actions/processqueue.php:1237
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1250
+#: public_html/lists/admin/actions/processqueue.php:1255
 msgid "Not sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1250
+#: public_html/lists/admin/actions/processqueue.php:1255
 msgid "already sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1293
+#: public_html/lists/admin/actions/processqueue.php:1298
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1298
+#: public_html/lists/admin/actions/processqueue.php:1303
 msgid "Hmmm, No users found to send to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1310
+#: public_html/lists/admin/actions/processqueue.php:1315
 msgid "Message campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1311
+#: public_html/lists/admin/actions/processqueue.php:1316
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1312
+#: public_html/lists/admin/actions/processqueue.php:1317
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1320
+#: public_html/lists/admin/actions/processqueue.php:1325
 msgid "to send this message"
 msgstr ""
 
@@ -5645,12 +5658,12 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:274
+#: public_html/lists/admin/class.phplistmailer.php:272
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:279
+#: public_html/lists/admin/class.phplistmailer.php:277
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
@@ -5967,13 +5980,13 @@ msgid "view user"
 msgstr ""
 
 #: public_html/lists/admin/userclicks.php:187
-#: public_html/lists/admin/mclicks.php:181
+#: public_html/lists/admin/mclicks.php:191
 #: public_html/lists/admin/uclicks.php:118
 msgid "firstclick"
 msgstr ""
 
 #: public_html/lists/admin/userclicks.php:188
-#: public_html/lists/admin/mclicks.php:182
+#: public_html/lists/admin/mclicks.php:192
 #: public_html/lists/admin/uclicks.php:119
 msgid "latestclick"
 msgstr ""
@@ -6107,8 +6120,8 @@ msgid "links"
 msgstr ""
 
 #: public_html/lists/admin/mclicks.php:85
-#: public_html/lists/admin/mclicks.php:173
-#: public_html/lists/admin/mclicks.php:195
+#: public_html/lists/admin/mclicks.php:183
+#: public_html/lists/admin/mclicks.php:205
 msgid "clickrate"
 msgstr ""
 
@@ -7061,7 +7074,7 @@ msgstr ""
 msgid "Sorry, not implemented yet"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:299
+#: public_html/lists/admin/defaultplugin.php:313
 msgid "choose"
 msgstr ""
 
