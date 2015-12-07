@@ -6,8 +6,25 @@ class phpListAdminAuthentication extends phplistPlugin {
   public $authors = 'Michiel Dethmers';
   public $description = 'Provides authentication to phpList using the internal phpList administration database';
   public $authProvider = true;
+  
+  /**
+   * 
+   * validateLogin, verify that the login credentials are correct
+   * 
+   * @param string $login the login field
+   * @param string $password the password
+   * 
+   * @return array 
+   *    index 0 -> false if login failed, index of the administrator if successful
+   *    index 1 -> error message when login fails
+   * 
+   * eg 
+   *    return array(5,'OK'); // -> login successful for admin 5
+   *    return array(0,'Incorrect login details'); // login failed
+   * 
+   */ 
 
-  function validateLogin($login,$password) {
+  public function validateLogin($login,$password) {
     $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'], sql_escape($login));
     $req = Sql_Query($query);
     $admindata = Sql_Fetch_Assoc($req);
@@ -41,6 +58,23 @@ class phpListAdminAuthentication extends phplistPlugin {
     }
   }
 
+  /**
+   * 
+   * validateAccount, verify that the logged in admin is still valid
+   * 
+   * this allows verification that the admin still exists and is valid
+   * 
+   * @param int $id the ID of the admin as provided by validateLogin
+   * 
+   * @return array 
+   *    index 0 -> false if failed, true if successful
+   *    index 1 -> error message when validation fails
+   * 
+   * eg 
+   *    return array(1,'OK'); // -> admin valid
+   *    return array(0,'No such account'); // admin failed
+   * 
+   */ 
   function validateAccount($id) {
     /* can only do this after upgrade, which means
      * that the first login will always fail
@@ -72,26 +106,78 @@ class phpListAdminAuthentication extends phplistPlugin {
     return array(1,"OK");
   }
 
+  /**
+   * adminName
+   * 
+   * Name of the currently logged in administrator
+   * Use for logging, eg "subscriber updated by XXXX"
+   * and to display ownership of lists
+   * 
+   * @param int $id ID of the admin
+   * 
+   * @return string;
+   */
+
   function adminName($id) {
     $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
     return $req[0] ? $req[0] : s("Nobody");
   }
   
+  /**
+   * adminEmail
+   * 
+   * Email address of the currently logged in administrator
+   * used to potentially pre-fill the "From" field in a campaign
+   * 
+   * @param int $id ID of the admin
+   * 
+   * @return string;
+   */
   function adminEmail($id) {
     $req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
     return $req[0] ? $req[0] : "";
   }    
 
+  /**
+   * adminIdForEmail
+   * 
+   * Return matching admin ID for an email address
+   * used for verifying the admin email address on a Forgot Password request
+   * 
+   * @param string $email email address 
+   * 
+   * @return ID if found or false if not;
+   */
   function adminIdForEmail($email) { #Obtain admin Id from a given email address.
     $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$GLOBALS["tables"]["admin"],sql_escape($email)));
     return $req[0] ? $req[0] : "";
   } 
   
+  /**
+   * isSuperUser
+   * 
+   * Return whether this admin is a super-admin or not
+   * 
+   * @param int $id admin ID
+   * 
+   * @return true if super-admin false if not
+   */
   function isSuperUser($id) {
     $req = Sql_Fetch_Row_Query(sprintf('select superuser from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
     return $req[0];
   }
 
+  /**
+   * listAdmins
+   * 
+   * Return array of admins in the system
+   * Used in the list page to allow assigning ownership to lists
+   * 
+   * @param none
+   * 
+   * @return array of admins
+   *    id => name
+   */
   function listAdmins() {
     $result = array();
     $req = Sql_Query("select id,loginname from {$GLOBALS["tables"]["admin"]} order by loginname");
