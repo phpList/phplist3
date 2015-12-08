@@ -327,7 +327,7 @@ function getTopSmtpServer($domain)
 
 function sendMail($to, $subject, $message, $header = '', $parameters = '', $skipblacklistcheck = 0)
 {
-    if (TEST) {
+    if (defined('TEST') && TEST) {
         return 1;
     }
 
@@ -439,16 +439,16 @@ function sendMailPhpMailer($to, $subject, $message)
     $destinationemail = '';
 
 #  print "Sending $to from $fromemail<br/>";
-  if (DEVVERSION) {
+    if (defined('DEVVERSION') && DEVVERSION) {
       $message = "To: $to\n".$message;
       if ($GLOBALS['developer_email']) {
           $destinationemail = $GLOBALS['developer_email'];
       } else {
-          print 'Error: Running DEV version, but developer_email not set';
+        #  print 'Error: Running DEV version, but developer_email not set';
       }
-  } else {
+    } else {
       $destinationemail = $to;
-  }
+    }
     list($htmlmessage, $textmessage) = constructSystemMail($message, $subject);
 
     $mail = new PHPlistMailer('systemmessage', $destinationemail, false);
