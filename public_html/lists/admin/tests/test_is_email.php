@@ -74,7 +74,8 @@ class test_is_email extends phplistTest
        'someone@phplíst.com'                      => true,
        'hello@clk.email'                          => true,
        'hello@xn--tst-qla.de'                     => true,
-    );
+       'some\weird\escaping\shouldfail@yahoo.com' => true, // this should fail, but doesn't
+      );
 
         print('<P>PHP '.PHP_VERSION.' running on '.PHP_OS.' - Testing email address validation...</P>');
 
