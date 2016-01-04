@@ -438,8 +438,8 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           clearPageCache();
           include 'sendemaillib.php';
 
-      // OK, let's get to sending!
-      $emailaddresses = explode(',', $messagedata['testtarget']);
+            // OK, let's get to sending!
+          $emailaddresses = explode(',', $messagedata['testtarget']);
           if (count($emailaddresses) > SENDTEST_MAX) {
               foreach ($GLOBALS['plugins'] as $plname => $plugin) {
                   $plugin->processError('Send test capped from '.count($emailaddresses).' to '.SENDTEST_MAX);
@@ -450,13 +450,13 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           }
       }
   #  var_dump($emailaddresses);#exit;
-
+    $messagedata['testtarget'] = '';
     foreach ($emailaddresses as $address) {
         $address = trim($address);
         if (empty($address)) {
             continue;
         }
-        $result = Sql_query(sprintf('select id,email,uniqid,htmlemail,rssfrequency,confirmed from %s where email = "%s"', $tables['user'], $address));
+        $result = Sql_query(sprintf('select id,email,uniqid,htmlemail,rssfrequency,confirmed from %s where email = "%s"', $tables['user'], sql_escape($address)));
                                                                                                           //Leftover from the preplugin era
       if ($user = Sql_fetch_array($result)) {
           if (FORWARD_ALTERNATIVE_CONTENT && $_GET['tab'] == 'Forward') {
@@ -481,12 +481,16 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           }
           $sendtestresult .= '<br/>';
       } else {
+          $address = htmlspecialchars(substr(strip_tags($address),0,255));
+          
           $sendtestresult .= $GLOBALS['I18N']->get('Email address not found to send test message.').": $address";
           $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s%s" class="button ajaxable">%s</a></div>', $baseurl, urlencode($address), addCsrfGetToken(), $GLOBALS['I18N']->get('add'));
       }
+      $messagedata['testtarget'] .= $address.', ';
     }
-      $sendtestresult .= '<hr/>';
-      $sendtestresult .= '<script type="text/javascript">this.location.hash="sendTest";</script>';
+    $messagedata['testtarget'] = substr($messagedata['testtarget'],0,-2);
+    $sendtestresult .= '<hr/>';
+    $sendtestresult .= '<script type="text/javascript">this.location.hash="sendTest";</script>';
   }
 } elseif (isset($_POST['deleteattachments']) && is_array($_POST['deleteattachments']) && $id) {
     if (ALLOW_ATTACHMENTS) {
@@ -936,13 +940,11 @@ if (!$done) {
   }
 
   // Display the HTML for the "Send Test" button, and the input field for the email addresses
-  $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
-    %s
-    <input class="submit" type="submit" name="sendtest" value="%s"/> '.Help('sendtest').' %s: 
-    <input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'"/><br />%s
-    </div>', $sendtestresult,
-    s('Send Test'), s(' to email address(es)'),
-    s('(comma separate addresses - all must be existing subscribers)'));
+  $sendtest_content = '<div class="sendTest" id="sendTest">
+    '. $sendtestresult.'
+    <input class="submit" type="submit" name="sendtest" value="'.s('Send Test').'" /> '.Help('sendtest').' '. s('to email address(es)').':'. 
+    '<input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'"/><br />'.s('(comma separate addresses - all must be existing subscribers)').'
+    </div>';
 
   # notification of progress of message sending
   # defaulting to admin_details['email'] gives the wrong impression that this is the
