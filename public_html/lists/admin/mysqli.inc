@@ -168,7 +168,7 @@ function Sql_Query($query,$ignore = 0) {
       cl_output('Sql error '. $query);
     }
   }
-  if (isset($GLOBALS["developer_email"])) {
+  if (isset($GLOBALS["developer_email"]) && !empty($GLOBALS["developer_logqueries"])) {
     # log time queries take
     $now = gettimeofday();
     $end = $now["sec"] * 1000000 + $now["usec"];
