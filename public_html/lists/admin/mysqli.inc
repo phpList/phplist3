@@ -137,7 +137,7 @@ function Sql_Query($query,$ignore = 0) {
   if (isset($GLOBALS['lastquery'])) {
     unset($GLOBALS['lastquery']);
   }
-  if (isset($GLOBALS["developer_email"])) {
+  if (isset($GLOBALS["developer_email"]) && !empty($GLOBALS["developer_logqueries"])) {
 
     sqllog($query,'/tmp/queries.log');
   
