@@ -336,13 +336,15 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         while ($row = Sql_Fetch_Array($req)) {
             $intro = Sql_Fetch_Row_Query(sprintf('select data from %s where id = %d and name = "intro"', $tables['subscribepage_data'], $row['id']));
             print $intro[0];
-            printf('<p><a href="./?p=subscribe&id=%d">%s</a></p>', $row['id'], stripslashes($row['title']));
+            printf('<p><a href="'.getConfig('subscribeurl').'&id=%d">%s</a></p>', $row['id'], stripslashes($row['title']));
         }
     } else {
-        printf('<p><a href="./?p=subscribe">%s</a></p>', $strSubscribeTitle);
+        printf('<p><a href="'.getConfig('subscribeurl').'">%s</a></p>', $strSubscribeTitle);
     }
 
-    printf('<p><a href="./?p=unsubscribe">%s</a></p>', $strUnsubscribeTitle);
+    if (SHOW_UNSUBSCRIBELINK) {
+        printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
+    }
     print $PoweredBy;
     print $pagedata['footer'];
 }
