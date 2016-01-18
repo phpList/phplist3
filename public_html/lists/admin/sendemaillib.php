@@ -1407,7 +1407,8 @@ function addHTMLFooter($message, $footer)
 
 function precacheMessage($messageid, $forwardContent = 0)
 {
-    global $cached;
+    global $cached, $tables;
+
     $domain = getConfig('domain');
 
 #    $message = Sql_query("select * from {$GLOBALS["tables"]["message"]} where id = $messageid");
@@ -1572,17 +1573,31 @@ exit;
           $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
       }
   }
-    if (preg_match('/##LISTOWNER=(.*)/', $cached[$messageid]['content'], $regs)) {
-        $cached[$messageid]['listowner'] = $regs[1];
-        $cached[$messageid]['content'] = str_replace($regs[0], '', $cached[$messageid]['content']);
-    } else {
-        $cached[$messageid]['listowner'] = 0;
-    }
 
-    if (!empty($cached[$messageid]['listowner'])) {
-        $att_req = Sql_Query("select name,value from {$GLOBALS['tables']['adminattribute']},{$GLOBALS['tables']['admin_attribute']} where {$GLOBALS['tables']['adminattribute']}.id = {$GLOBALS['tables']['admin_attribute']}.adminattributeid and {$GLOBALS['tables']['admin_attribute']}.adminid = ".$cached[$messageid]['listowner']);
+    $result = Sql_Query(
+        "SELECT DISTINCT l.owner
+        FROM {$tables['list']} AS l
+        JOIN  {$tables['listmessage']} AS lm ON lm.listid = l.id
+        WHERE lm.messageid = $messageid"
+    );
+
+    if ($result !== false && Sql_Num_Rows($result) == 1) {
+        $row = Sql_Fetch_Assoc($result);
+        $listOwner = $row['owner'];
+
+        $att_req = Sql_Query(
+            "SELECT a.name, aa.value
+            FROM {$tables['adminattribute']} a
+            JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid
+            WHERE aa.adminid = $listOwner"
+        );
+
         while ($att = Sql_Fetch_Array($att_req)) {
-            $cached[$messageid]['content'] = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att['name']))."\]#", $att['value'], $cached[$messageid]['content']);
+            $cached[$messageid]['content'] = preg_replace(
+                '#\[LISTOWNER.' . preg_quote($att['name']) . '\]#i',
+                $att['value'],
+                $cached[$messageid]['content']
+            );
         }
     }
 
