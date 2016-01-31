@@ -17,6 +17,7 @@
     <h3><?php echo s('Developers')?>:</h3>
     <ul>
       <li>Michiel Dethmers, phpList Ltd</li>
+      <li><a href="https://twitter.com/samtuke" title="Sam Tuke's Twitter feed">Sam Tuke</a>, phpList Ltd</li>
     </ul>
     <h3><?php echo s('Contributors')?></h3>
     <ul>
