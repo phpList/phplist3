@@ -15,7 +15,7 @@ class PHPlistMailer extends PHPMailer
     public $WordWrap = 75;
     public $encoding = 'base64';
     public $messageid = 0;
-    public $destionationemail = '';
+    public $destinationemail = '';
     public $estimatedsize = 0;
     public $mailsize = 0;
     private $inBlast = false;
