@@ -698,6 +698,9 @@ if (!defined('FORWARD_PERSONAL_NOTE_SIZE')) {
 if (!defined('EMBEDUPLOADIMAGES')) {
     define('EMBEDUPLOADIMAGES', 0);
 }
+if (!defined('EMBEDEXTERNALIMAGES')) {
+    define('EMBEDEXTERNALIMAGES', false);
+}
 if (!defined('IMPORT_FILESIZE')) {
     define('IMPORT_FILESIZE', 5);
 }
