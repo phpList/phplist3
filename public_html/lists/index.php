@@ -336,13 +336,19 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         while ($row = Sql_Fetch_Array($req)) {
             $intro = Sql_Fetch_Row_Query(sprintf('select data from %s where id = %d and name = "intro"', $tables['subscribepage_data'], $row['id']));
             print $intro[0];
-            printf('<p><a href="./?p=subscribe&id=%d">%s</a></p>', $row['id'], stripslashes($row['title']));
+            if (SHOW_SUBSCRIBELINK) {
+                printf('<p><a href="'.getConfig('subscribeurl').'&id=%d">%s</a></p>', $row['id'], stripslashes($row['title']));
+            }
         }
     } else {
-        printf('<p><a href="./?p=subscribe">%s</a></p>', $strSubscribeTitle);
+        if (SHOW_SUBSCRIBELINK) {
+            printf('<p><a href="'.getConfig('subscribeurl').'">%s</a></p>', $strSubscribeTitle);
+        }
     }
 
-    printf('<p><a href="./?p=unsubscribe">%s</a></p>', $strUnsubscribeTitle);
+    if (SHOW_UNSUBSCRIBELINK) {
+        printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
+    }
     print $PoweredBy;
     print $pagedata['footer'];
 }
@@ -376,8 +382,10 @@ function LoginPage($id, $userid, $email = '', $msg = '')
     } else {
         $html .= '<input type=submit name="forgotpassword" value="'.$GLOBALS['strForgotPassword'].'">';
     }
-    $html .= '<br/><br/>
-    <p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+    $html .= '<br/><br/>';
+    if (SHOW_UNSUBSCRIBELINK) {
+        $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+    }
     $html .= '</form>'.$GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
 
@@ -406,8 +414,10 @@ function sendPersonalLocationPage($id)
     $html .= '<tr><td>'.$GLOBALS['strEmail'].'</td><td><input type=text name="email" value="'.$email.'" size="30"></td></tr>';
     $html .= '</table>';
     $html .= '<p><input type=submit name="sendpersonallocation" value="'.$GLOBALS['strContinue'].'"></p>';
-    $html .= '<br/><br/>
-    <p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+    $html .= '<br/><br/>';
+    if (SHOW_UNSUBSCRIBELINK) {
+        $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+    }
     $html .= '</form>'.$GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
 
@@ -501,10 +511,12 @@ function checkEmail()
         $html .= $GLOBALS['strYouAreBlacklisted'];
     }
 
-    $html .= '<p><input type=submit name="update" value="'.$GLOBALS['strUpdatePreferences'].'" onClick="return checkform();"></p>
-    </form><br/><br/>
-    <p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>
-  '.$GLOBALS['PoweredBy'];
+    $html .= '<p><input type=submit name="update" value="'.$GLOBALS['strUpdatePreferences'].'" onClick="return checkform();"></p></form>';
+    $html .= '<br/><br/>';
+    if (SHOW_UNSUBSCRIBELINK) {
+        $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+    }
+    $html .= $GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
 
     return $html;
@@ -648,8 +660,8 @@ function checkGroup(name,value)
     if (USE_SPAM_BLOCK) {
         $html .= '<div style="display:none"><input type="text" name="VerificationCodeX" value="" size="20"></div>';
     }
-    $html .= '<p><input type=submit name="subscribe" value="'.$GLOBALS['pagedata']['button'].'" onClick="return checkform();"></p>
-    </form><br/><br/>';
+    $html .= '<p><input type=submit name="subscribe" value="'.$GLOBALS['pagedata']['button'].'" onClick="return checkform();"></p></form>';
+    $html .= '<br/><br/>';
     if (SHOW_UNSUBSCRIBELINK) {
         $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
     }

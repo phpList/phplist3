@@ -254,6 +254,9 @@ if (!defined('UNSUBSCRIBE_JUMPOFF')) {
 if (!defined('SHOW_UNSUBSCRIBELINK')) {
     define('SHOW_UNSUBSCRIBELINK', true);
 }
+if (!defined('SHOW_SUBSCRIBELINK')) {
+    define('SHOW_SUBSCRIBELINK', true);
+}
 
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
     ##https://mantis.phplist.com/view.php?id=16787
