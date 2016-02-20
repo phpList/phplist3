@@ -325,6 +325,35 @@ class PHPlistMailer extends PHPMailer
         $html_images = array();
         $filesystem_images = array();
 
+        ## addition for external images
+        if (defined('EMBEDEXTERNALIMAGES') && EMBEDEXTERNALIMAGES) {
+            $external_images = array();
+            $matched_images = array();
+
+            preg_match_all('~src="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|', $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images); //
+
+            for ($i = 0; $i < count($matched_images[1]); ++$i)
+                if ($this->external_image_exists($matched_images[1][$i]))
+                    $external_images[] = $matched_images[1][$i].'~^~'.basename($matched_images[2][$i]).'~^~'.strtolower($matched_images[3][$i]);
+
+            if (!empty($external_images)) {
+                $external_images = array_unique($external_images);
+
+                for ($i = 0; $i < count($external_images); ++$i) {
+                    $external_image = explode('~^~', $external_images[$i]);
+
+                    if ($external_image = $this->get_external_image($external_image[0])) {
+                        $content_type = $this->image_types[$external_image[2]];
+                        $cid = $this->add_html_image($external_image, $external_image[1], $content_type); 
+
+                        if (!empty($cid))
+                            $this->Body = str_replace($external_image[0], 'cid:'.$cid, $this->Body);
+                    }
+                }
+            }
+        }
+        ## end addition
+
         preg_match_all('/"([^"]+\.('.implode('|', $extensions).'))"/Ui', $this->Body, $images);
 
         for ($i = 0; $i < count($images[1]); ++$i) {
@@ -440,107 +469,6 @@ class PHPlistMailer extends PHPMailer
 
     public function filesystem_image_exists($filename)
     {
-        if (defined('EMBEDEXTERNALIMAGES') && EMBEDEXTERNALIMAGES) {
-            // Check for a http(s) address excluding this host
-            if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === FALSE)) {
-                $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
-
-                // Create cache directory
-                if (!file_exists($extCacheDir))
-                    @mkdir($extCacheDir);
-
-                if (file_exists($extCacheDir) && is_writable($extCacheDir)) {
-                    // Remove old files in cache directory
-                    if ($extCacheDirHandle = @opendir($extCacheDir)) {
-                        while (FALSE !== ($cacheFile = @readdir($extCacheDirHandle))) {
-                            if (($cacheFile != '.') && ($cacheFile != '..')) {
-                                $cacheFileMTime = @filemtime($extCacheDir.'/'.$cacheFile);
-
-                                if (is_numeric($cacheFileMTime) && ($cacheFileMTime > 0) && ((time() - $cacheFileMTime) >= 86400)) // 1 day
-                                    @unlink($extCacheDir.'/'.$cacheFile);
-                            }
-                        }
-
-                        @closedir($extCacheDirHandle);
-                    }
-
-                    // Generate local filename
-                    //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
-                    $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~i', '~[^\w\.]~i'), array('', '_'), $filename);
-
-                    // Download and cache file
-                    if (!file_exists($cacheFile)) {
-                        $cacheFileContent = '';
-
-                        // Try downloading using cURL
-                        if (function_exists('curl_init')) {
-                            $cURLHandle = curl_init($filename);
-
-                            if ($cURLHandle !== FALSE) {
-                                //curl_setopt($cURLHandle, CURLOPT_URL, $filename);
-                                curl_setopt($cURLHandle, CURLOPT_HTTPGET, TRUE);
-                                curl_setopt($cURLHandle, CURLOPT_HEADER, 0);
-                                curl_setopt($cURLHandle, CURLOPT_BINARYTRANSFER, TRUE);
-                                curl_setopt($cURLHandle, CURLOPT_RETURNTRANSFER, TRUE);
-                                //curl_setopt($cURLHandle, CURLOPT_FILE, $cacheFileHandle);
-                                curl_setopt($cURLHandle, CURLOPT_TIMEOUT, 30);
-                                curl_setopt($cURLHandle, CURLOPT_FOLLOWLOCATION, TRUE);
-                                curl_setopt($cURLHandle, CURLOPT_MAXREDIRS, 10);
-                                curl_setopt($cURLHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
-                                curl_setopt($cURLHandle, CURLOPT_FAILONERROR, TRUE);
-
-                                $cacheFileContent = curl_exec($cURLHandle);
-
-                                $cURLErrNo = curl_errno($cURLHandle);
-                                $cURLInfo = curl_getinfo($cURLHandle);
-
-                                curl_close($cURLHandle);
-
-                                if ($cURLErrNo != 0)
-                                    $cacheFileContent = 'CURL_ERROR_'.$cURLErrNo;
-                                if ($cURLInfo['http_code'] >= 400)
-                                    $cacheFileContent = 'HTTP_CODE_'.$cURLInfo['http_code'];
-                            }
-                        }
-
-                        // Try downloading using file_get_contents 
-                        if ($cacheFileContent == '') {
-                            $remoteURLContext = stream_context_create(array(
-                                'http' =>
-                                    array(
-                                        'method' => 'GET',
-                                        'timeout' => '30',
-                                        'max_redirects' => '10'
-                                    )));
-
-                            $cacheFileContent = file_get_contents($filename, FALSE, $remoteURLContext);
-                            if ($cacheFileContent === FALSE)
-                                $cacheFileContent = 'FGC_ERROR';
-                        }
-
-                        // Limit size
-                        if (strlen($cacheFileContent) > 1048576) // 1 MB
-                            $cacheFileContent = 'MAX_SIZE';
-
-                        // Write cache file
-                        //file_put_contents($cacheFile, $cacheFileContent, LOCK_EX);
-                        $cacheFileHandle = @fopen($cacheFile, 'wb');
-                        if ($cacheFileHandle !== FALSE) {
-                            if (flock($cacheFileHandle, LOCK_EX)) {
-                                fwrite($cacheFileHandle, $cacheFileContent);
-                                fflush($cacheFileHandle);
-                                flock($cacheFileHandle, LOCK_UN);
-                            }
-                            fclose($cacheFileHandle);
-                        }
-                    }
-
-                    if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
-                        return TRUE;
-                }
-            }
-        }
-
         ##  find the image referenced and see if it's on the server
       $imageroot = getConfig('uploadimageroot');
 #      cl_output('filesystem_image_exists '.$docroot.' '.$filename);
@@ -570,14 +498,6 @@ class PHPlistMailer extends PHPMailer
 
     public function get_filesystem_image($filename)
     {
-        if (defined('EMBEDEXTERNALIMAGES') && EMBEDEXTERNALIMAGES) {
-            $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
-            $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~i', '~[^\w\.]~i'), array('', '_'), $filename);
-
-            if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
-                return base64_encode(file_get_contents($cacheFile));
-        }
-
         ## get the image contents
       $localfile = basename(urldecode($filename));
 #      cl_output('get file system image'.$filename.' '.$localfile);
@@ -616,6 +536,123 @@ class PHPlistMailer extends PHPMailer
       }
 
         return '';
+    }
+
+    ## end addition
+
+    ## addition for external images
+
+    public function external_image_exists($filename)
+    {
+        // Check for a http(s) address excluding this host
+        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === FALSE)) {
+            $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
+
+            // Create cache directory
+            if (!file_exists($extCacheDir))
+                @mkdir($extCacheDir);
+
+            if (file_exists($extCacheDir) && is_writable($extCacheDir)) {
+                // Remove old files in cache directory
+                if (defined('EXTERNALIMAGE_MAXAGE') && EXTERNALIMAGE_MAXAGE && ($extCacheDirHandle = @opendir($extCacheDir))) {
+                    while (FALSE !== ($cacheFile = @readdir($extCacheDirHandle))) {
+                        if ((strlen($cacheFile) > 0) && (substr($cacheFile, 0, 1) != '.')) {
+                            $cacheFileMTime = @filemtime($extCacheDir.'/'.$cacheFile);
+
+                            if (is_numeric($cacheFileMTime) && ($cacheFileMTime > 0) && ((time() - $cacheFileMTime) > EXTERNALIMAGE_MAXAGE))
+                                @unlink($extCacheDir.'/'.$cacheFile);
+                        }
+                    }
+
+                    @closedir($extCacheDirHandle);
+                }
+
+                // Generate local filename
+                //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
+                $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~Ui', '~[^\w\.]~Ui'), array('', '_'), $filename);
+
+                // Download and cache file
+                if (!file_exists($cacheFile)) {
+                    $cacheFileContent = '';
+                    $downloadTimeout = (defined('EXTERNALIMAGE_TIMEOUT') ? EXTERNALIMAGE_TIMEOUT : 30);
+
+                    // Try downloading using cURL
+                    if (function_exists('curl_init')) {
+                        $cURLHandle = curl_init($filename);
+
+                        if ($cURLHandle !== FALSE) {
+                            //curl_setopt($cURLHandle, CURLOPT_URL, $filename);
+                            curl_setopt($cURLHandle, CURLOPT_HTTPGET, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_HEADER, 0);
+                            curl_setopt($cURLHandle, CURLOPT_BINARYTRANSFER, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_RETURNTRANSFER, TRUE);
+                            //curl_setopt($cURLHandle, CURLOPT_FILE, $cacheFileHandle);
+                            curl_setopt($cURLHandle, CURLOPT_TIMEOUT, $downloadTimeout);
+                            curl_setopt($cURLHandle, CURLOPT_FOLLOWLOCATION, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_MAXREDIRS, 10);
+                            curl_setopt($cURLHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
+                            curl_setopt($cURLHandle, CURLOPT_FAILONERROR, TRUE);
+
+                            $cacheFileContent = curl_exec($cURLHandle);
+
+                            $cURLErrNo = curl_errno($cURLHandle);
+                            $cURLInfo = curl_getinfo($cURLHandle);
+
+                            curl_close($cURLHandle);
+
+                            if ($cURLErrNo != 0)
+                                $cacheFileContent = 'CURL_ERROR_'.$cURLErrNo;
+                            if ($cURLInfo['http_code'] >= 400)
+                                $cacheFileContent = 'HTTP_CODE_'.$cURLInfo['http_code'];
+                        }
+                    }
+
+                    // Try downloading using file_get_contents 
+                    if ($cacheFileContent == '') {
+                        $remoteURLContext = stream_context_create(array(
+                            'http' =>
+                                array(
+                                    'method' => 'GET',
+                                    'timeout' => $downloadTimeout,
+                                    'max_redirects' => '10'
+                                )));
+
+                        $cacheFileContent = file_get_contents($filename, FALSE, $remoteURLContext);
+                        if ($cacheFileContent === FALSE)
+                            $cacheFileContent = 'FGC_ERROR';
+                    }
+
+                    // Limit size
+                    if (defined('EXTERNALIMAGE_MAXSIZE') && EXTERNALIMAGE_MAXSIZE && (strlen($cacheFileContent) > EXTERNALIMAGE_MAXSIZE))
+                        $cacheFileContent = 'MAX_SIZE';
+
+                    // Write cache file
+                    //file_put_contents($cacheFile, $cacheFileContent, LOCK_EX);
+                    $cacheFileHandle = @fopen($cacheFile, 'wb');
+                    if ($cacheFileHandle !== FALSE) {
+                        if (flock($cacheFileHandle, LOCK_EX)) {
+                            fwrite($cacheFileHandle, $cacheFileContent);
+                            fflush($cacheFileHandle);
+                            flock($cacheFileHandle, LOCK_UN);
+                        }
+                        fclose($cacheFileHandle);
+                    }
+                }
+
+                if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
+                    return TRUE;
+            }
+        }
+    }
+
+    public function get_external_image($filename)
+    {
+        $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
+        //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
+        $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~Ui', '~[^\w\.]~Ui'), array('', '_'), $filename);
+
+        if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
+            return base64_encode(file_get_contents($cacheFile));
     }
 
     ## end addition
