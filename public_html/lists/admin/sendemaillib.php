@@ -420,6 +420,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $htmlmessage = parsePlaceHolders($htmlmessage, $html);
     $textmessage = parsePlaceHolders($textmessage, $text);
 
+    if ($cached[$messageid]['adminattributes']) {
+        $htmlmessage = parsePlaceHolders($htmlmessage, $cached[$messageid]['adminattributes']);
+        $textmessage = parsePlaceHolders($textmessage, $cached[$messageid]['adminattributes']);
+    }
+
     if (VERBOSE && $getspeedstats) {
         output('parse placeholders end');
     }
@@ -1573,6 +1578,23 @@ exit;
           $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
       }
   }
+    /*
+     *  cache message owner and list owner attribute values
+     */
+    $cached[$messageid]['adminattributes'] = array();
+    $result = Sql_Query(
+        "SELECT a.name, aa.value
+        FROM {$tables['adminattribute']} a
+        JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid
+        JOIN {$tables['message']} m ON aa.adminid = m.owner
+        WHERE m.id = $messageid"
+    );
+
+    if ($result !== false) {
+        while ($att = Sql_Fetch_Array($result)) {
+            $cached[$messageid]['adminattributes']['OWNER.' . $att['name']] = $att['value'];
+        }
+    }
 
     $result = Sql_Query(
         "SELECT DISTINCT l.owner
@@ -1593,11 +1615,7 @@ exit;
         );
 
         while ($att = Sql_Fetch_Array($att_req)) {
-            $cached[$messageid]['content'] = preg_replace(
-                '#\[LISTOWNER.' . preg_quote($att['name']) . '\]#i',
-                $att['value'],
-                $cached[$messageid]['content']
-            );
+            $cached[$messageid]['adminattributes']['LISTOWNER.' . $att['name']] = $att['value'];
         }
     }
 
