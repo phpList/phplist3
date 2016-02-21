@@ -1,72 +1,72 @@
-#: public_html/lists/index.php:622
+#: public_html/lists/index.php:634
 #, php-format
 msgid "You are logged in as administrator (%s) of this phpList system"
 msgstr ""
 
-#: public_html/lists/index.php:623
+#: public_html/lists/index.php:635
 msgid ""
 "You are therefore offered the following choice, which your subscribers will "
 "not see when they load this page."
 msgstr ""
 
-#: public_html/lists/index.php:624
+#: public_html/lists/index.php:636
 msgid "Go back to admin area"
 msgstr ""
 
-#: public_html/lists/index.php:625
+#: public_html/lists/index.php:637
 msgid "Please choose"
 msgstr ""
 
-#: public_html/lists/index.php:625
+#: public_html/lists/index.php:637
 msgid "Make this subscriber confirmed immediately"
 msgstr ""
 
-#: public_html/lists/index.php:626
+#: public_html/lists/index.php:638
 msgid "Send this subscriber a request for confirmation email"
 msgstr ""
 
-#: public_html/lists/index.php:694
+#: public_html/lists/index.php:706
 msgid ""
 "Subscriber removed from Blacklist for manual confirmation of subscription"
 msgstr ""
 
-#: public_html/lists/index.php:710
+#: public_html/lists/index.php:722
 msgid "Subscriber has been removed from blacklist"
 msgstr ""
 
-#: public_html/lists/index.php:797
+#: public_html/lists/index.php:809
 msgid "Forwarded receiver requested blacklist"
 msgstr ""
 
-#: public_html/lists/index.php:805
+#: public_html/lists/index.php:817
 msgid "\"Jump off\" used by subscriber, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:807
+#: public_html/lists/index.php:819
 msgid "\"Jump off\" set, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:990
+#: public_html/lists/index.php:1002
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
 msgstr ""
 
-#: public_html/lists/index.php:1076 public_html/lists/index.php:1085
+#: public_html/lists/index.php:1088 public_html/lists/index.php:1097
 msgid "Message Forwarded"
 msgstr ""
 
-#: public_html/lists/index.php:1076
+#: public_html/lists/index.php:1088
 #, php-format
 msgid "%s has forwarded message %d to %s"
 msgstr ""
 
-#: public_html/lists/index.php:1085
+#: public_html/lists/index.php:1097
 #, php-format
 msgid "%s tried forwarding message %d to %s but failed"
 msgstr ""
 
-#: public_html/lists/index.php:1100
+#: public_html/lists/index.php:1112
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
@@ -1375,82 +1375,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:788
+#: public_html/lists/admin/sendemaillib.php:793
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:977
+#: public_html/lists/admin/sendemaillib.php:982
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:994
+#: public_html/lists/admin/sendemaillib.php:999
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:997
+#: public_html/lists/admin/sendemaillib.php:1002
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1002
+#: public_html/lists/admin/sendemaillib.php:1007
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1004
+#: public_html/lists/admin/sendemaillib.php:1009
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1007
+#: public_html/lists/admin/sendemaillib.php:1012
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1009
+#: public_html/lists/admin/sendemaillib.php:1014
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1047
+#: public_html/lists/admin/sendemaillib.php:1052
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1088
+#: public_html/lists/admin/sendemaillib.php:1093
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1089
-#: public_html/lists/admin/sendemaillib.php:1102
+#: public_html/lists/admin/sendemaillib.php:1094
+#: public_html/lists/admin/sendemaillib.php:1107
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1094
+#: public_html/lists/admin/sendemaillib.php:1099
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1100
+#: public_html/lists/admin/sendemaillib.php:1105
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1101
+#: public_html/lists/admin/sendemaillib.php:1106
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1121
-#: public_html/lists/admin/sendemaillib.php:1123
+#: public_html/lists/admin/sendemaillib.php:1126
+#: public_html/lists/admin/sendemaillib.php:1128
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
