@@ -330,7 +330,7 @@ class PHPlistMailer extends PHPMailer
             $external_images = array();
             $matched_images = array();
 
-            preg_match_all('~src="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|', $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images); //
+            preg_match_all('~="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|', $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images); //
 
             for ($i = 0; $i < count($matched_images[1]); ++$i)
                 if ($this->external_image_exists($matched_images[1][$i]))
@@ -342,9 +342,9 @@ class PHPlistMailer extends PHPMailer
                 for ($i = 0; $i < count($external_images); ++$i) {
                     $external_image = explode('~^~', $external_images[$i]);
 
-                    if ($external_image = $this->get_external_image($external_image[0])) {
+                    if ($image = $this->get_external_image($external_image[0])) {
                         $content_type = $this->image_types[$external_image[2]];
-                        $cid = $this->add_html_image($external_image, $external_image[1], $content_type); 
+                        $cid = $this->add_html_image($image, $external_image[1], $content_type); 
 
                         if (!empty($cid))
                             $this->Body = str_replace($external_image[0], 'cid:'.$cid, $this->Body);
