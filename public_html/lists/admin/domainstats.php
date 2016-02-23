@@ -18,16 +18,34 @@ if ($download) {
 
 $some = 0;
 $confirmed = array();
-$req = Sql_Query(sprintf('select lcase(substring_index(email,"@",-1)) as domain,count(email) as num from %s where confirmed group by domain order by num desc limit 50', $GLOBALS['tables']['user']));
+
+// Count the number of confirmed users per domain and return them in descending order
+$req = Sql_Query(sprintf(
+'select
+    lcase( substring_index( email,"@",-1 ) ) as domain
+    ,count(email) as num
+from
+    %s
+where
+    confirmed group by domain
+order by
+    num desc
+limit
+    50'
+, $GLOBALS['tables']['user']));
+
 $ls = new WebblerListing($GLOBALS['I18N']->get('Top 50 domains with more than 5 emails'));
+
+// Loop through the resulting top 50 domains and fetch extra data
 while ($row = Sql_Fetch_Array($req)) {
     if ($row['num'] > 5) {
         $some = 1;
         $ls->addElement($row['domain']);
         $confirmed[$row['domain']] = $row['num'];
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'), $row['num']);
+        // Calculate the number of confirmed subs on this domain as a percentage of all subs
         $perc = sprintf('%0.2f', ($row['num'] / $total * 100));
-        $ls->addColumn($row['domain'], '<!-conf-->'.$GLOBALS['I18N']->get('perc'), $perc);
+        // Add data to the table
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'), $row['num'].' ('.$perc.'%)');
     }
 }
 
@@ -37,22 +55,40 @@ if ($some) {
     print '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';
 }
 
-$req = Sql_Query(sprintf('select lcase(substring_index(email,"@",-1)) as domain,count(email) as num from %s where !confirmed group by domain order by num desc limit 50', $GLOBALS['tables']['user']));
+// Count the number of unconfirmed users per domain and return them in descending order
+$req = Sql_Query(sprintf(
+'select 
+    lcase(substring_index(email,"@",-1)) as domain
+    , count(email) as num 
+from 
+    %s 
+where 
+    !confirmed 
+group by 
+    domain 
+order by 
+    num desc 
+limit 
+    50'
+, $GLOBALS['tables']['user']));
+
+// Loop through the resulting top 50 domains and fetch extra data
 while ($row = Sql_Fetch_Array($req)) {
-    /*  if (!in_array($confirmed,$row['domain'])) {
-    $ls->addElement($row['domain']);
-  }*/
+    
+  // Add data for the unconfirmed subscribers to the domain info already retrieved for the confirmed subscribers
   if (in_array($row['domain'], array_keys($confirmed))) {
       if ($row['num'] > 5) {
-          $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'), $row['num']);
+          // Calculate the number of unconfirmed subs on this domain as a percentage of all subs
           $perc = sprintf('%0.2f', ($row['num'] / $total * 100));
-          $ls->addColumn($row['domain'], '<!--unc-->'.$GLOBALS['I18N']->get('perc'), $perc);
+          $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'), $row['num'].' ('.$perc.'%)');
       }
-      $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('num'), $row['num'] + $confirmed[$row['domain']]);
       $perc = sprintf('%0.2f', (($row['num'] + $confirmed[$row['domain']]) / $total * 100));
+      $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'), $row['num'] + $confirmed[$row['domain']].' ('.$perc.'%)');
       $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('perc'), $perc);
   }
 }
+
+// If download was requested, send CSV
 if ($download) {
     ob_end_clean();
     print $ls->tabDelimited();
