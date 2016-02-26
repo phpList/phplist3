@@ -52,7 +52,7 @@ print '</div>';
 
 print formStart();
 print '<table>';
-printf('<tr><td>%s</td><td><input type=text name="regex" size=30 value="%s"></td></tr>',
+printf('<tr><td colspan="2">%s</td></tr><tr><td colspan="2"><input type=text name="regex" size=60 value="%s"></td></tr>',
   $GLOBALS['I18N']->get('Regular Expression'), htmlspecialchars($data['regex']));
 printf('<tr><td>%s</td><td>%s</td></tr>',
   $GLOBALS['I18N']->get('Created By'), adminName($data['admin']));
