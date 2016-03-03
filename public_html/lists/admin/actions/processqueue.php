@@ -609,7 +609,7 @@ while ($message = Sql_fetch_array($messages)) {
             cl_output(s('Maximum for campaign %d is %d', $messageid, $counters['max_users_for_message '.$messageid]));
         }
     } else {
-        $counters['max_users_for_message '.$messageid] = $counters['num_per_batch'];
+        $counters['max_users_for_message '.$messageid] = 0;
     }
 
     $counters['processed_users_for_message '.$messageid] = 0;
@@ -884,47 +884,29 @@ while ($message = Sql_fetch_array($messages)) {
         $counters['total_users_for_message '.$messageid] = Sql_Affected_Rows();
     }
 
-    if (MAILQUEUE_BATCH_SIZE) {
-        ## in case of sending multiple campaigns, reduce batch with "sent"
-   # $counters['num_per_batch'] -= $counters['sent'];
-
-    # send in batches of $counters['num_per_batch'] users
-    $batch_total = $counters['total_users_for_message '.$messageid];
-        if ($counters['num_per_batch'] > 0) {
-            $query .= sprintf(' limit 0,%d', $counters['num_per_batch']);
-            if (VERBOSE) {
-                processQueueOutput($counters['num_per_batch'].'  query -> '.$query);
-            }
-            $userids = Sql_Query($query);
-            if (Sql_Has_Error($database_connection)) {
-                ProcessError(Sql_Error($database_connection));
-            }
-        } else {
-            processQueueOutput($GLOBALS['I18N']->get('No users to process for this batch'), 0, 'progress');
-            $userids = Sql_Query("select * from ${tables['user']} where id = 0");
-        }
-        $affrows = Sql_Affected_Rows();
-        processQueueOutput($GLOBALS['I18N']->get('Processing batch of ').': '.$affrows, 0, 'progress');
-    }
-
     while ($userdata = Sql_Fetch_Row($userids)) {
         $userid = $userdata[0];    # id of the user
-        ++$counters['processed_users_for_message '.$messageid];
 
-        if ($counters['processed_users_for_message '.$messageid] > $counters['max_users_for_message '.$messageid]) {
+        /*
+         * when parallel processing stop when the number sent for this message reaches the limit
+         */
+        if ($counters['max_users_for_message '.$messageid]
+            && $counters['sent_users_for_message '.$messageid] >= $counters['max_users_for_message '.$messageid]) {
             if (VERBOSE) {
-                cl_output(s('Over limit for this campaign: %d is more than %d', $counters['processed_users_for_message '.$messageid], $counters['max_users_for_message '.$messageid]));
+                cl_output(s('Limit for this campaign reached: %d (%d)', $counters['sent_users_for_message '.$messageid], $counters['max_users_for_message '.$messageid]));
             }
             break;
         }
-
-        $failure_reason = '';
+        /*
+         * when batch processing stop when the number sent reaches the batch limit
+         */
         if ($counters['num_per_batch'] && $counters['sent'] >= $counters['num_per_batch']) {
             processQueueOutput(s('batch limit reached').': '.$counters['sent'].' ('.$counters['num_per_batch'].')', 1, 'progress');
             $GLOBALS['wait'] = $batch_period;
 
             return;
         }
+        $failure_reason = '';
 
         if (!empty($getspeedstats)) {
             processQueueOutput('-----------------------------------'."\n".'start process user '.$userid);
@@ -1003,9 +985,6 @@ while ($message = Sql_fetch_array($messages)) {
 
                 reset($GLOBALS['plugins']);
                 while ($cansend && $plugin = current($GLOBALS['plugins'])) {
-                    if (VERBOSE) {
-                        cl_output('Checking plugin '.$plugin->name());
-                    }
                     $cansend = $plugin->canSend($msgdata, $user);
                     if (!$cansend) {
                         $failure_reason .= 'Sending blocked by plugin '.$plugin->name;
@@ -1282,12 +1261,13 @@ while ($message = Sql_fetch_array($messages)) {
             $timeleft = 0;
             $eta = $GLOBALS['I18N']->get('unknown');
         }
+        ++$counters['processed_users_for_message '.$messageid];
         setMessageData($messageid, 'ETA', $eta);
         setMessageData($messageid, 'msg/hr', "$msgperhour");
 
         cl_progress('sent '.$counters['sent'].' ETA '.$eta.' sending '.sprintf('%d', $msgperhour).' msg/hr');
 
-        setMessageData($messageid, 'to process', $counters['total_users_for_message '.$messageid] - $counters['sent']);
+        setMessageData($messageid, 'to process', $counters['total_users_for_message '.$messageid] - $counters['processed_users_for_message '.$messageid]);
         setMessageData($messageid, 'last msg sent', time());
         #  setMessageData($messageid,'totaltime',$GLOBALS['processqueue_timer']->elapsed(1));
         if (!empty($getspeedstats)) {
@@ -1297,7 +1277,7 @@ while ($message = Sql_fetch_array($messages)) {
     $processed = $notsent + $counters['sent'] + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
     processQueueOutput(s('Processed %d out of %d subscribers', $counters['processed_users_for_message '.$messageid], $counters['total_users_for_message '.$messageid]), 1, 'progress');
 
-    if ($counters['total_users_for_message '.$messageid] - $counters['sent_users_for_message '.$messageid] <= 0 || $stopSending) {
+    if ($counters['total_users_for_message '.$messageid] - $counters['processed_users_for_message '.$messageid] <= 0 || $stopSending) {
         # this message is done
         if (!$someusers) {
             processQueueOutput($GLOBALS['I18N']->get('Hmmm, No users found to send to'), 1, 'progress');
