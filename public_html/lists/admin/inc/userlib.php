@@ -599,6 +599,13 @@ function is_email($email)
     if ($ats != 1) {
         return 0;
     }
+    
+    // for some strange reason user@domain.191.it fails https://mantis.phplist.org/view.php?id=17982
+    ## quick hack to make it pass
+    if (preg_match('/\.191\.it$/i',$email)) {
+		return true;
+	}
+    
 
   ## fail on emails starting or ending "-" or "." in the pre-at, seems to happen quite often, probably cut-n-paste errors
   if (preg_match('/^-/', $email) ||
