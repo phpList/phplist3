@@ -212,8 +212,15 @@ limit
     25'
 , $GLOBALS['tables']['user']));
 
+// initialise empty array for collecting query results
+$resultArray = array();
+
 // Get the query results and map to array
-$resultArray = mysqli_fetch_all( $query, MYSQLI_ASSOC );
+// NOTE: deliberately avoiding use of mysqli_fetch_all() as it requires mysqlnd
+// which may not be available
+while ( $row = $query->fetch_assoc() ) {
+    $resultArray[] = $row;
+}
 
 // Filter results to include only subscribers who are confirmed
 $filteredResults = multiArrayFilterByNot( $resultArray, 'unconfirmed', 0 );
