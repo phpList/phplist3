@@ -1240,7 +1240,7 @@ msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:64
 #: public_html/lists/admin/mclicks.php:100
-#: public_html/lists/admin/domainstats.php:35
+#: public_html/lists/admin/domainstats.php:142
 #: public_html/lists/admin/uclicks.php:66
 #: public_html/lists/admin/uclicks.php:75
 #: public_html/lists/admin/mviews.php:55
@@ -1826,7 +1826,7 @@ msgid "processed %d out of %d bounces for advanced bounce rules"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:537
-#: public_html/lists/admin/actions/processqueue.php:953
+#: public_html/lists/admin/actions/processqueue.php:935
 #: public_html/lists/admin/generatebouncerules.php:49
 msgid "Process Killed by other process"
 msgstr ""
@@ -2779,12 +2779,14 @@ msgid "Listing subscriber 1 to 50"
 msgstr ""
 
 #: public_html/lists/admin/members.php:274
-#: public_html/lists/admin/domainstats.php:28
+#: public_html/lists/admin/domainstats.php:135
+#: public_html/lists/admin/domainstats.php:242
 msgid "confirmed"
 msgstr ""
 
 #: public_html/lists/admin/members.php:275
-#: public_html/lists/admin/domainstats.php:47
+#: public_html/lists/admin/domainstats.php:174
+#: public_html/lists/admin/domainstats.php:246
 msgid "unconfirmed"
 msgstr ""
 
@@ -2837,7 +2839,7 @@ msgstr ""
 #: public_html/lists/admin/members.php:384
 #: public_html/lists/admin/actions/processqueue.php:449
 #: public_html/lists/admin/actions/processqueue.php:451
-#: public_html/lists/admin/actions/processqueue.php:1090
+#: public_html/lists/admin/actions/processqueue.php:1069
 msgid "to"
 msgstr ""
 
@@ -3154,6 +3156,9 @@ msgid "Time to send"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:429
+#: public_html/lists/admin/domainstats.php:179
+#: public_html/lists/admin/domainstats.php:254
+#: public_html/lists/admin/domainstats.php:283
 #: public_html/lists/admin/uclicks.php:133
 #: public_html/lists/admin/uclicks.php:134
 #: public_html/lists/admin/uclicks.php:139
@@ -3999,7 +4004,7 @@ msgid "Resend"
 msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:47
-#: public_html/lists/admin/actions/processqueue.php:1283
+#: public_html/lists/admin/actions/processqueue.php:1262
 msgid "unknown"
 msgstr ""
 
@@ -4595,137 +4600,129 @@ msgstr ""
 msgid "to process"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:903
-msgid "No users to process for this batch"
-msgstr ""
-
-#: public_html/lists/admin/actions/processqueue.php:907
-msgid "Processing batch of "
-msgstr ""
-
-#: public_html/lists/admin/actions/processqueue.php:916
+#: public_html/lists/admin/actions/processqueue.php:896
 #, php-format
-msgid "Over limit for this campaign: %d is more than %d"
+msgid "Limit for this campaign reached: %d (%d)"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:923
+#: public_html/lists/admin/actions/processqueue.php:904
 msgid "batch limit reached"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:945
+#: public_html/lists/admin/actions/processqueue.php:927
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:950
+#: public_html/lists/admin/actions/processqueue.php:932
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:959
+#: public_html/lists/admin/actions/processqueue.php:941
 msgid "Message I was working on has disappeared"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:962
+#: public_html/lists/admin/actions/processqueue.php:944
 msgid "Sending of this message has been suspended"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1055
+#: public_html/lists/admin/actions/processqueue.php:1034
 #, php-format
 msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
 "for domain throttling."
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1056
-#: public_html/lists/admin/actions/processqueue.php:1058
+#: public_html/lists/admin/actions/processqueue.php:1035
+#: public_html/lists/admin/actions/processqueue.php:1037
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1067
+#: public_html/lists/admin/actions/processqueue.php:1046
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1090
+#: public_html/lists/admin/actions/processqueue.php:1069
 msgid "Sending"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1103
+#: public_html/lists/admin/actions/processqueue.php:1082
 #, php-format
 msgid "Warning: a lot of errors while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1108
-#: public_html/lists/admin/actions/processqueue.php:1325
+#: public_html/lists/admin/actions/processqueue.php:1087
+#: public_html/lists/admin/actions/processqueue.php:1305
 msgid "It took"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1108
+#: public_html/lists/admin/actions/processqueue.php:1087
 msgid "seconds to send"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1146
+#: public_html/lists/admin/actions/processqueue.php:1125
 msgid "Failed sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1186
+#: public_html/lists/admin/actions/processqueue.php:1165
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1197
+#: public_html/lists/admin/actions/processqueue.php:1176
 msgid "not sending to "
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1216
+#: public_html/lists/admin/actions/processqueue.php:1195
 msgid "Unconfirmed user"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1226
-#: public_html/lists/admin/actions/processqueue.php:1228
+#: public_html/lists/admin/actions/processqueue.php:1205
+#: public_html/lists/admin/actions/processqueue.php:1207
 msgid "Invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1236
+#: public_html/lists/admin/actions/processqueue.php:1215
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1237
+#: public_html/lists/admin/actions/processqueue.php:1216
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1255
+#: public_html/lists/admin/actions/processqueue.php:1234
 msgid "Not sending to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1255
+#: public_html/lists/admin/actions/processqueue.php:1234
 msgid "already sent"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1298
+#: public_html/lists/admin/actions/processqueue.php:1278
 #, php-format
 msgid "Processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1303
+#: public_html/lists/admin/actions/processqueue.php:1283
 msgid "Hmmm, No users found to send to"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1315
+#: public_html/lists/admin/actions/processqueue.php:1295
 msgid "Message campaign finished"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1316
+#: public_html/lists/admin/actions/processqueue.php:1296
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1317
+#: public_html/lists/admin/actions/processqueue.php:1297
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:1325
+#: public_html/lists/admin/actions/processqueue.php:1305
 msgid "to send this message"
 msgstr ""
 
@@ -7426,34 +7423,27 @@ msgstr ""
 msgid "Do not save, and go back to the lists"
 msgstr ""
 
-#: public_html/lists/admin/domainstats.php:22
-msgid "Top 50 domains with more than 5 emails"
+#: public_html/lists/admin/domainstats.php:124
+msgid "Top 50 domains with more than 5 subscribers"
 msgstr ""
 
-#: public_html/lists/admin/domainstats.php:30
-#: public_html/lists/admin/domainstats.php:49
-#: public_html/lists/admin/domainstats.php:53
-#: public_html/lists/admin/domainstats.php:72
-msgid "perc"
-msgstr ""
-
-#: public_html/lists/admin/domainstats.php:37
+#: public_html/lists/admin/domainstats.php:145
 msgid ""
 "Once you have some more subscribers, this page will list statistics on the "
 "domains of your subscribers. It will list domains that have 5 or more "
 "subscribers."
 msgstr ""
 
-#: public_html/lists/admin/domainstats.php:51
-msgid "num"
+#: public_html/lists/admin/domainstats.php:234
+msgid "Domains with most unconfirmed subscribers"
 msgstr ""
 
-#: public_html/lists/admin/domainstats.php:66
+#: public_html/lists/admin/domainstats.php:249
+msgid "blacklisted"
+msgstr ""
+
+#: public_html/lists/admin/domainstats.php:278
 msgid "Top 25 pre-@ of email addresses"
-msgstr ""
-
-#: public_html/lists/admin/domainstats.php:70
-msgid "amount"
 msgstr ""
 
 #: public_html/lists/admin/processqueue.php:35
