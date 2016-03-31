@@ -34,15 +34,15 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
     ## verify the url against known locations, and require it to be "zip".
     ## let's hope Github keeps this structure for a while
-    if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/([\w]+)\.zip$~i', $packageurl, $regs)) {
+    if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
         print Error(s('Invalid download URL, please reload the page and try again'));
 
         return;
-    } else {
-        $developer = $regs[1];
-        $project_name = $regs[2];
-        $branch = $regs[3];
     }
+    $developer = $regs[1];
+    $project_name = $regs[2];
+    $branch = $regs[3];
+
     print '<h3>'.s('Fetching plugin').'</h3>';
 
     print '<h2>'.s('Developer').' '.$developer.'</h2>';
@@ -120,8 +120,10 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
      #       var_dump($pluginInfo);
 
                         print '<br/>';
-                        if (copy_recursive($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
-                            $pluginDestination.'/'.$dirEntry)) {
+                        if (copy_recursive(
+                            $GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
+                            $pluginDestination.'/'.$dirEntry
+                        )) {
                             delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
                             $installOk = true;
                         } elseif (is_dir($pluginDestination.'/'.$dirEntry.'.'.$bu_dir)) {
