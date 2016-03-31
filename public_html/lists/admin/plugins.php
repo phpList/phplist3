@@ -32,17 +32,17 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
     $packageurl = trim($_POST['pluginurl']);
 
-  ## verify the url against known locations, and require it to be "zip".
-  ## let's hope Github keeps this structure for a while
-  if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/([\w]+)\.zip$~i', $packageurl, $regs)) {
-      print Error(s('Invalid download URL, please reload the page and try again'));
+    ## verify the url against known locations, and require it to be "zip".
+    ## let's hope Github keeps this structure for a while
+    if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/([\w]+)\.zip$~i', $packageurl, $regs)) {
+        print Error(s('Invalid download URL, please reload the page and try again'));
 
-      return;
-  } else {
-      $developer = $regs[1];
-      $project_name = $regs[2];
-      $branch = $regs[3];
-  }
+        return;
+    } else {
+        $developer = $regs[1];
+        $project_name = $regs[2];
+        $branch = $regs[3];
+    }
     print '<h3>'.s('Fetching plugin').'</h3>';
 
     print '<h2>'.s('Developer').' '.$developer.'</h2>';
@@ -73,12 +73,12 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     //echo "filename: " . $zip->filename . "\n";
     //echo "comment: " . $zip->comment . "\n";
 
-    $extractList = array();
+        $extractList = array();
         $dir_prefix = '';
         for ($i = 0; $i < $zip->numFiles;++$i) {
             #      echo "index: $i<br/>\n";
   #    var_dump($zip->statIndex($i));
-      $zipItem = $zip->statIndex($i);
+            $zipItem = $zip->statIndex($i);
             if (preg_match('~^([^/]+)/plugins/~', $zipItem['name'], $regs)) {
                 array_push($extractList, $zipItem['name']);
                 $dir_prefix = $regs[1];
@@ -86,9 +86,9 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
         }
     //var_dump($extractList);
     //var_dump($dir_prefix);
-    @mkdir($GLOBALS['tmpdir'].'/phpListPluginInstall', 0755);
+        @mkdir($GLOBALS['tmpdir'].'/phpListPluginInstall', 0755);
   #  $destination = $GLOBALS['tmpdir'].'/phpListPluginDestination';
-    @mkdir($pluginDestination, 0755);
+        @mkdir($pluginDestination, 0755);
         if (is_writable($pluginDestination)) {
             if ($zip->extractTo($GLOBALS['tmpdir'].'/phpListPluginInstall', $extractList)) {
                 $extractedDir = opendir($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/');
@@ -99,11 +99,11 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
                         print $dirEntry;
                         if (preg_match('/^([\w]+)\.php$/', $dirEntry, $regs)) {
                             $pluginInfo[$regs[1]] = array(
-                'installUrl'  => $packageurl,
-                'developer'   => $developer,
-                'projectName' => $project_name,
-                'installDate' => time(),
-              );
+                                'installUrl'  => $packageurl,
+                                'developer'   => $developer,
+                                'projectName' => $project_name,
+                                'installDate' => time(),
+                            );
                         }
 
                         $bu_dir = time();
@@ -113,29 +113,29 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
                                 $pluginsForUpgrade[] = $regs[1];
                             }
                             @rename($pluginDestination.'/'.$dirEntry,
-                $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
+                                $pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
                         } else {
                             print ' '.s('new plugin');
                         }
      #       var_dump($pluginInfo);
 
-            print '<br/>';
+                        print '<br/>';
                         if (copy_recursive($GLOBALS['tmpdir'].'/phpListPluginInstall/'.$dir_prefix.'/plugins/'.$dirEntry,
-              $pluginDestination.'/'.$dirEntry)) {
+                            $pluginDestination.'/'.$dirEntry)) {
                             delFsTree($pluginDestination.'/'.$dirEntry.'.'.$bu_dir);
                             $installOk = true;
                         } elseif (is_dir($pluginDestination.'/'.$dirEntry.'.'.$bu_dir)) {
                             ## try to place old one back
-              @rename($pluginDestination.'/'.$dirEntry.'.'.$bu_dir, $pluginDestination.'/'.$dirEntry);
+                            @rename($pluginDestination.'/'.$dirEntry.'.'.$bu_dir, $pluginDestination.'/'.$dirEntry);
                         }
                     }
                 }
                 foreach ($pluginInfo as $plugin => $pluginDetails) {
                     #  print 'Writing '.$pluginDestination.'/'.$plugin.'.info.txt<br/>';
-          file_put_contents($pluginDestination.'/'.$plugin.'.info.txt', serialize($pluginDetails));
+                    file_put_contents($pluginDestination.'/'.$plugin.'.info.txt', serialize($pluginDetails));
                 }
-        ## clean up
-        delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
+                ## clean up
+                delFsTree($GLOBALS['tmpdir'].'/phpListPluginInstall');
 
                 if ($installOk) {
                     upgradePlugins($pluginsForUpgrade);
@@ -204,25 +204,25 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     $details .= '<span class="value">'.$plugin->description.'</span></div>';
     if (!empty($GLOBALS['developer_email'])) {
         ## show the origin of the plugin, as many may exist
-    $details .= '<div class="detail"><span class="label">'.s('origin').'</span>';
+        $details .= '<div class="detail"><span class="label">'.s('origin').'</span>';
         $details .= '<span class="value">'.$plugin->origin.'</span></div>';
     }
 
 #  $ls->addRow($pluginname,s('description'),$plugin->description);
  # $ls->addColumn($pluginname,s('version'),$plugin->version);
-  if (!empty($pluginDetails['installDate'])) {
+    if (!empty($pluginDetails['installDate'])) {
       #  $ls->addColumn($pluginname,s('installed'),date('Y-m-d',$pluginDetails['installDate']));
-    $details .= '<div class="detail"><span class="label">'.s('installed').'</span>';
-      $details .= '<span class="value">'.date('Y-m-d', $pluginDetails['installDate']).'</span></div>';
-  }
+        $details .= '<div class="detail"><span class="label">'.s('installed').'</span>';
+        $details .= '<span class="value">'.date('Y-m-d', $pluginDetails['installDate']).'</span></div>';
+    }
     if (!empty($pluginDetails['installUrl'])) {
         #   $ls->addRow($pluginname,s('installation Url'),$pluginDetails['installUrl']);
-    $details .= '<div class="detail"><span class="label">'.s('installation Url').'</span>';
+        $details .= '<div class="detail"><span class="label">'.s('installation Url').'</span>';
         $details .= '<span class="value">'.$pluginDetails['installUrl'].'</span></div>';
     }
     if (!empty($pluginDetails['developer'])) {
         #   $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
-    $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
+        $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
         $details .= '<span class="value">'.$pluginDetails['developer'].'</span></div>';
     }
     if (!empty($plugin->documentationUrl)) {
@@ -240,16 +240,16 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if (DEVVERSION) {
         //$ls->addColumn($pluginname,s('initialise'),$plugin->enabled ?
       //PageLinkAjax('plugins&initialise='.$pluginname,s('Initialise')) : '');
-    if ($plugin->enabled) {
-        $details .= '<div class="detail"><span class="label">'.s('initialise').'</span>';
-        $details .= '<span class="value">';
-        $details .= PageLinkAjax('plugins&initialise='.$pluginname, s('Initialise'));
-        $details .= '</span></div>';
-    }
+        if ($plugin->enabled) {
+            $details .= '<div class="detail"><span class="label">'.s('initialise').'</span>';
+            $details .= '<span class="value">';
+            $details .= PageLinkAjax('plugins&initialise='.$pluginname, s('Initialise'));
+            $details .= '</span></div>';
+        }
     }
     if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
         ## we can only delete the ones that were installed from the interface
-    $ls->addColumn($pluginname, s('delete'), '<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname.'\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
+        $ls->addColumn($pluginname, s('delete'), '<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname.'\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
     }
     if (!pluginCanEnable($pluginname)) {
         $details .= '<div class="detail"><span class="label">'.s('Dependency check').'</span>';
