@@ -1621,6 +1621,7 @@ function verifyCsrfGetToken($enforce = 1)
         Redirect('logout&err=1');
         exit;
     }
+    return true;
 }
 
 function addCsrfGetToken()

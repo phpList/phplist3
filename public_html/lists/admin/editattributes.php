@@ -130,7 +130,7 @@ function deleteItem($table, $attributeid, $delete)
     } else {
         print $GLOBALS['I18N']->get('Cannot delete');
         print " <b>$val</b><br />";
-        print $GLOBALS['I18N']->get('The following subscriber(s) are dependent on this value<br />Update the subscriber profiles to not use this attribute value and try again');
+        print $GLOBALS['I18N']->get('The following subscriber(s) are dependent on this value<br />Update the subscriber profiles to not use this attribute value and try again').'<br/>';
 
         for ($i = 0;$i < count($dependencies);++$i) {
             print PageLink2('user', $GLOBALS['I18N']->get('user').' '.$dependencies[$i], "id=$dependencies[$i]")."<br />\n";
@@ -150,14 +150,14 @@ function deleteItem($table, $attributeid, $delete)
 }
 
 if (isset($_GET['delete'])) {
-    if (!verifyToken()) {
+    if (!verifyCsrfGetToken(true)) {
         print Error(s('No Access'));
 
         return;
     }
     deleteItem($table, $id, sprintf('%d', $_GET['delete']));
 } elseif (isset($_GET['deleteall'])) {
-    if (!verifyToken()) {
+    if (!verifyCsrfGetToken(true)) {
         print Error(s('No Access'));
 
         return;
