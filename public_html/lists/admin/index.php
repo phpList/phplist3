@@ -37,7 +37,7 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
         }
     }
     $GLOBALS['commandline'] = 1;
-    $cline = parseCLine();
+    $cline = parseCline();
     $dir = dirname($_SERVER['SCRIPT_FILENAME']);
     chdir($dir);
 
