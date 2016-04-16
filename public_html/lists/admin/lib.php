@@ -307,7 +307,7 @@ function sendAdminPasswordToken($adminId)
   $emailBody = $GLOBALS['I18N']->get('Hello').' '.$adminName."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have requested a new password for phpList.')."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('To enter a new one, please visit the following link:')."\n\n";
-    $emailBody .= sprintf('http://%s/?page=login&token=%s', $urlroot, $key)."\n\n";
+    $emailBody .= sprintf('%s://%s/?page=login&token=%s', $GLOBALS['admin_scheme'], $urlroot, $key)."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have 24 hours left to change your password. After that, your token won\'t be valid.');
     if (sendMail($email, $GLOBALS['I18N']->get('New password'), "\n\n".$emailBody, '', '', true)) {
         return $GLOBALS['I18N']->get('A password change token has been sent to the corresponding email address.');
