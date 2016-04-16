@@ -977,8 +977,7 @@ function forwardPage($id)
   $mid = 0;
     if (isset($_REQUEST['mid'])) {
         $mid = sprintf('%d', $_REQUEST['mid']);
-        $req = Sql_Query(sprintf('select * from %s where id = %d', $tables['message'], $mid));
-        $messagedata = Sql_Fetch_Array($req);
+        $messagedata = loadMessageData($mid);
         $mid = $messagedata['id'];
         if ($mid) {
             $subtitle = $GLOBALS['strForwardSubtitle'].' '.stripslashes($messagedata['subject']);
