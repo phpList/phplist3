@@ -671,7 +671,7 @@ while ($message = Sql_fetch_array($messages)) {
         foreach ($notifications as $notification) {
             sendMail($notification, s('Campaign started'),
                 s('phplist has started sending the campaign with subject %s', $msgdata['subject'])."\n\n".
-                s('to view the progress of this campaign, go to %s://%s',$GLOBALS['admin_scheme'], getConfig('website').$GLOBALS['adminpages'].'/?page=messages&amp;tab=active'));
+                s('to view the progress of this campaign, go to %s://%s',$GLOBALS['admin_scheme'], hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active'));
         }
         Sql_Query(sprintf('insert ignore into %s (name,id,data) values("start_notified",%d,now())',
             $GLOBALS['tables']['messagedata'], $messageid));
