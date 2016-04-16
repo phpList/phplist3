@@ -131,7 +131,12 @@ class PHPlistMailer extends PHPMailer
             $this->SMTPSecure = PHPMAILER_SECURE;
         }
         $this->SMTPAutoTLS = true;
-
+        
+        if (isset($GLOBALS['phpmailer_smtpoptions'])) {
+			$this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];
+		}
+		
+ 
         if ($GLOBALS['message_envelope']) {
             $this->Sender = $GLOBALS['message_envelope'];
             $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
