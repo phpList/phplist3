@@ -415,6 +415,7 @@ function processQueueOutput($message, $logit = 1, $target = 'summary')
                 }
             }
         }
+        @ob_flush();
         flush();
     }
 
