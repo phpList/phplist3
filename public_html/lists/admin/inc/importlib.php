@@ -3,7 +3,7 @@
 function my_shutdown()
 {
     # print "Shutting down";
-  # print connection_status(); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
+    # print connection_status(); # with PHP 4.2.1 buggy. http://bugs.php.net/bug.php?id=17774
 }
 
 function output($msg)
@@ -14,7 +14,7 @@ function output($msg)
         print strip_tags($msg);
         @ob_start();
     } else {
-        print $msg."\n";
+        print $msg . "\n";
     }
 }
 
@@ -23,10 +23,10 @@ function parseImportPlaceHolders($templ, $data)
     $retval = $templ;
     foreach ($data as $key => $val) {
         $key = strtoupper($key);
-  #  dbg('Parsing '.$key.' in '.$templ);
-    if (!is_array($val)) {
-        $retval = preg_replace('/\['.preg_quote($key).'\]/i', $val, $retval);
-    }
+        #  dbg('Parsing '.$key.' in '.$templ);
+        if (!is_array($val)) {
+            $retval = preg_replace('/\[' . preg_quote($key) . '\]/i', $val, $retval);
+        }
     }
 
     return $retval;
@@ -52,7 +52,7 @@ reset($DBstruct['user']);
 while (list($key, $val) = each($DBstruct['user'])) {
     if (strpos($val[1], 'sys') === false && is_array($val)) {
         $system_attributes[strtolower($key)] = $val[1];  ## allow columns like "htmlemail" and "foreignkey"
-    $system_attributes_nicename[strtolower($val[1])] = $key; ## allow columns like "Send this user HTML emails" and "Foreign Key"
+        $system_attributes_nicename[strtolower($val[1])] = $key; ## allow columns like "Send this user HTML emails" and "Foreign Key"
     } else {
         $colname = $val[1];
         if (strpos($colname, ':')) {
@@ -65,7 +65,7 @@ $subselect = ' where id > 0 ';
 if ($GLOBALS['require_login'] && !isSuperUser()) {
     $access = accessLevel('import2');
     if ($access == 'owner') {
-        $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
+        $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
     } elseif ($access == 'all') {
         $subselect = ' where id > 0 ';
     } elseif ($access == 'none') {
@@ -82,12 +82,12 @@ $system_attributes['groupmapping'] = 'Group Membership';
 if (isset($GLOBALS['config']['usergroup_types'])) {
     foreach ($GLOBALS['config']['usergroup_types'] as $grouptype => $typedesc) {
         if (!empty($grouptype)) {
-            $system_attributes['grouptype_'.$grouptype] = $typedesc.' of group';
+            $system_attributes['grouptype_' . $grouptype] = $typedesc . ' of group';
         }
     }
 }
 if (!isset($GLOBALS['assign_invalid_default'])) {
-    $GLOBALS['assign_invalid_default'] = s('Invalid email').' [number]';
+    $GLOBALS['assign_invalid_default'] = s('Invalid email') . ' [number]';
 }
 
 $system_attribute_reverse_map = array_reverse($system_attributes, true);

@@ -6,90 +6,116 @@ styles for the functionality. No styling/colours
 
 /* ********************* tabs that are links between pages ************************/
 
-#webblertabs, #sendtabs {display: inline-block}
+#webblertabs, #sendtabs {
+    display: inline-block
+}
 
 #webblertabs ul li a {
-  display: block; 
-  padding: 5px 10px;
-  margin: 0;
-  border: 2px solid #CCCCCC;
-  -moz-border-radius-topleft: 3px; 
-  -moz-border-radius-topright: 3px; 
-  -webkit-border-top-left-radius: 3px; 
-  -webkit-border-top-right-radius: 3px;
-  min-width: 80px; /*changed to min-width so this size is adaptable for longer tabs */
+    display: block;
+    padding: 5px 10px;
+    margin: 0;
+    border: 2px solid #CCCCCC;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    min-width: 80px; /*changed to min-width so this size is adaptable for longer tabs */
 }
 
 #webblertabs ul,
-#sendtabs ul {float: left; margin: 0 10px; padding: 0}
+#sendtabs ul {
+    float: left;
+    margin: 0 10px;
+    padding: 0
+}
 
 #webblertabs ul li,
 #sendtabs ul li {
-  float: left;
-  margin-right: 5px;
+    float: left;
+    margin-right: 5px;
 }
 
 #webblertabs ul li.current a,
-#sendtabs ul li.current a {opacity: 1}
+#sendtabs ul li.current a {
+    opacity: 1
+}
 
-span.tabno {display: block; font-size: 22px; font-weight: bold; line-height: 1; padding: 4px 4px 0 4px; }
-span.title {display: block; padding:0 4px 4px; width: auto!important}
+span.tabno {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 4px 4px 0 4px;
+}
+
+span.title {
+    display: block;
+    padding: 0 4px 4px;
+    width: auto !important
+}
 
 #sendtabs ul li a {
-display:block; 
-opacity: .4;
-width: 80px;
--moz-border-radius-topleft: 3px; 
--moz-border-radius-topright: 3px; 
-border: 1px solid #f2f2f2; 
--webkit-border-top-left-radius: 3px; 
--webkit-border-top-right-radius: 3px;
-font-size: 12px;
+    display: block;
+    opacity: .4;
+    width: 80px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border: 1px solid #f2f2f2;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    font-size: 12px;
 }
 
 #webblertabs ul li a:hover,
 #sendtabs ul li a:hover,
-#sendtabs ul li a:hover span {text-decoration: none; opacity: 1}
+#sendtabs ul li a:hover span {
+    text-decoration: none;
+    opacity: 1
+}
 
 /* ************* end of tabs ***************/
 
 /* ************* next/prev links ****************/
 
 .panel .step-nav {
-  position: absolute;
-  top: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .panel .step-nav a {
-  -moz-border-radius: 3px 3px 3px 3px;
-  display: inline-block;
-  font-size: 18px;
-  margin: 0 0 0 4px;
-  padding: 3px 8px 3px;
-  line-height: 1.2;
-/*
-  text-shadow: 1px 1px 2px #333;
-*/
+    -moz-border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 0 0 4px;
+    padding: 3px 8px 3px;
+    line-height: 1.2;
+    /*
+      text-shadow: 1px 1px 2px #333;
+    */
 }
 
 .panel .step-nav a[href=""] {
-  color: rgba(255,255,255,.4);
-  text-shadow: none
+    color: rgba(255, 255, 255, .4);
+    text-shadow: none
 }
 
 .panel .step-nav a.next {
-  padding-right: 25px}
+    padding-right: 25px
+}
 
-.panel .step-nav a:hover {text-decoration: none!important; background-color: #000}
+.panel .step-nav a:hover {
+    text-decoration: none !important;
+    background-color: #000
+}
 
 .panel .link-left {
-  display:block;
-  height:80px;
-  left:-46px;
-  position:absolute;
-  top:10px;
-  width:40px;
+    display: block;
+    height: 80px;
+    left: -46px;
+    position: absolute;
+    top: 10px;
+    width: 40px;
 }
 
 /* query why we need to position this here? */
@@ -99,20 +125,23 @@ font-size: 12px;
 /*
 #testpanel {position: absolute; right: 40px; top: 550px; width:250px; }
 */
-#testpanel input[type="text"]{width: 90%; }
+#testpanel input[type="text"] {
+    width: 90%;
+}
 
 .openhelpimage {
-  text-align: center;
-  padding-top: 120px;
+    text-align: center;
+    padding-top: 120px;
 }
 
-.error{
-  border:3px solid;
-  margin:0px 20px 20px;
-  color: red;
-  font-weight: bold;
-  padding:10px;
+.error {
+    border: 3px solid;
+    margin: 0px 20px 20px;
+    color: red;
+    font-weight: bold;
+    padding: 10px;
 }
+
 .examplecode {
     border: 3px solid;
     margin: 0 20px 20px;
@@ -121,109 +150,118 @@ font-size: 12px;
 }
 
 table.about tr td {
-  border:1px solid;
-  padding: 20px;
+    border: 1px solid;
+    padding: 20px;
 }
+
 td.abouthead {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 table.adminDetails td {
-  padding: 5px;
+    padding: 5px;
 }
 
 .actionresult, .result {
-border: 2px solid;
-margin: 15px 0;
-padding: 1em 1em 1em 50px;
-font-size: 12px;
-font-weight: bold
+    border: 2px solid;
+    margin: 15px 0;
+    padding: 1em 1em 1em 50px;
+    font-size: 12px;
+    font-weight: bold
 }
+
 .hidden {
-  display: none;
+    display: none;
 }
-div.plugindetails > div.detail  {
-  text-align: left;
-  width: 100%;
-  padding: 2px;
-  margin: 2px 5px 5px;
+
+div.plugindetails > div.detail {
+    text-align: left;
+    width: 100%;
+    padding: 2px;
+    margin: 2px 5px 5px;
 }
 
 div.plugindetails > div.detail > span.label {
-  text-align: left;
-  margin: 15px 0;
-  padding: 1em 1em 1em 2px;
-  font-size: 12px;
-  font-weight: bold
+    text-align: left;
+    margin: 15px 0;
+    padding: 1em 1em 1em 2px;
+    font-size: 12px;
+    font-weight: bold
 }
 
 div.plugindetails > div.detail > span.value {
-  text-align: left;
-  margin: 15px 0;
-  padding: 1em 1em 1em 2px;
-  font-size: 12px;
+    text-align: left;
+    margin: 15px 0;
+    padding: 1em 1em 1em 2px;
+    font-size: 12px;
 }
 
 #generatetextversion {
-  float: right;
-  border:1px solid #CCCCCC;
-  margin: 5px 5px 5px 5px;
-  padding: 1em 1em 1em 1em;
-  width: 75px;
+    float: right;
+    border: 1px solid #CCCCCC;
+    margin: 5px 5px 5px 5px;
+    padding: 1em 1em 1em 1em;
+    width: 75px;
 }
+
 #spinner {
-  width: 45px;
-  height: 45px;
-  float:left;
+    width: 45px;
+    height: 45px;
+    float: left;
 }
+
 #processqueuecontrols {
-  width: 150px;
-  height: 45px;
-  margin: 3px 3px 3px 3px;
-  display: inline;
-  float: left;
+    width: 150px;
+    height: 45px;
+    margin: 3px 3px 3px 3px;
+    display: inline;
+    float: left;
 }
 
 #progressmeter {
-  width: 500px;
-  margin: 3px 3px 3px 3px;
-  display: block;
-  border: 1px dashed #CCCCCC;
+    width: 500px;
+    margin: 3px 3px 3px 3px;
+    display: block;
+    border: 1px dashed #CCCCCC;
 }
+
 #progress {
-  background-color: #CCCCCC;
-  display: block;
-  position: absolute;
-  width: 0px;
-  text-align: right;
-  overflow: hidden;
-  height: 20px;
+    background-color: #CCCCCC;
+    display: block;
+    position: absolute;
+    width: 0px;
+    text-align: right;
+    overflow: hidden;
+    height: 20px;
 }
 
 #processqueueiframe {
-  width: 99%;
-  height: 10px;
-  border: 1px solid white;
-  display: none;
+    width: 99%;
+    height: 10px;
+    border: 1px solid white;
+    display: none;
 }
+
 #processqueuesummary {
-  width: 99%;
-  height: 250px;
-  overflow: hidden;
-  border: 1px solid white;
+    width: 99%;
+    height: 250px;
+    overflow: hidden;
+    border: 1px solid white;
 }
+
 #progresscount {
-  display: none;
+    display: none;
 }
+
 #processqueueprogress {
-  width: 99%;
-  height: 95px;
-  overflow: hidden;
-  border: 1px solid white;
+    width: 99%;
+    height: 95px;
+    overflow: hidden;
+    border: 1px solid white;
 }
 
 #processqueueoutput {
-  width: 99%;
-  height: 400px;
-  border: 1px solid white;
+    width: 99%;
+    height: 400px;
+    border: 1px solid white;
 }

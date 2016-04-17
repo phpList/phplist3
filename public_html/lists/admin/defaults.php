@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 $attributes = array();
 @ob_end_flush();
@@ -42,12 +42,12 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     while (list($key, $val) = each($selected)) {
         $entry = readentry("data/$val");
         list($name, $desc) = explode(':', $entry);
-        print '<br/><br/>'.$GLOBALS['I18N']->get('Loading')." $desc<br/>\n";
+        print '<br/><br/>' . $GLOBALS['I18N']->get('Loading') . " $desc<br/>\n";
         $lc_name = str_replace(' ', '', strtolower(str_replace('.txt', '', $val)));
         $lc_name = preg_replace("/[\W]/", '', $lc_name);
 
         if ($lc_name == '') {
-            Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty:')." $lc_name");
+            Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty:') . " $lc_name");
         }
         Sql_Query("select * from {$tables['attribute']} where tablename = \"$lc_name\"");
         if (Sql_Affected_Rows()) {
@@ -55,11 +55,11 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
         }
 
         $query = sprintf('insert into %s (name,type,required,tablename) values("%s","%s",%d,"%s")',
-    $tables['attribute'], addslashes($name), 'select', 1, $lc_name);
+            $tables['attribute'], addslashes($name), 'select', 1, $lc_name);
         Sql_Query($query);
         $insertid = Sql_Insert_id();
 
-        $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
+        $query = "create table $table_prefix" . "listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
         Sql_Query($query);
         $fp = fopen("data/$val", 'r');
         $header = '';
@@ -69,13 +69,14 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
                 if (!$header) {
                     $header = $buffer;
                 } elseif (trim($buffer) != '') {
-                    Sql_Query(sprintf('insert into %slistattr_%s (name) values("%s")', $table_prefix, $lc_name, trim($buffer)));
+                    Sql_Query(sprintf('insert into %slistattr_%s (name) values("%s")', $table_prefix, $lc_name,
+                        trim($buffer)));
                 }
             }
         }
         fclose($fp);
     }
-    print $GLOBALS['I18N']->get('done').'<br/><br/>';
+    print $GLOBALS['I18N']->get('done') . '<br/><br/>';
 
     print PageLinkButton('attributes', $GLOBALS['I18N']->get('return to editing attributes'));
 
@@ -84,9 +85,9 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     ?>
 
 
-<?php echo formStart(' class="defaultsAdd"')?>
-<?php
-reset($attributes);
+    <?php echo formStart(' class="defaultsAdd"') ?>
+    <?php
+    reset($attributes);
     while (list($key, $attribute) = each($attributes)) {
         if (strstr($key, ':')) {
             list($name, $desc) = explode(':', $key);
@@ -95,6 +96,6 @@ reset($attributes);
             }
         }
     }
-    print '<input class="submit" type="submit" value="'.$GLOBALS['I18N']->get('Add').'" /></form>';
+    print '<input class="submit" type="submit" value="' . $GLOBALS['I18N']->get('Add') . '" /></form>';
 }
 ?>

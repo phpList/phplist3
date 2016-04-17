@@ -1,3 +1,3 @@
 <?php
 
-include __DIR__.'/mysqli.inc';
+include __DIR__ . '/mysqli.inc';

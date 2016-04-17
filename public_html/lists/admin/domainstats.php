@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 # domain stats
 
@@ -9,8 +9,8 @@ require_once dirname(__FILE__).'/accesscheck.php';
  * key equals desired value, and return a new multi-dimensional array of those
  * child arrays which qualify.
  *
- * @param array  $parentArray   Multi-dimensional array to check
- * @param string $requiredKey   Key to check
+ * @param array $parentArray Multi-dimensional array to check
+ * @param string $requiredKey Key to check
  * @param string $requiredValue Required value for qualification
  */
 function multiArrayFilterBy(array $parentArray, $requiredKey, $requiredValue)
@@ -34,8 +34,8 @@ function multiArrayFilterBy(array $parentArray, $requiredKey, $requiredValue)
  * key **does not equal** desired value, and return a new multi-dimensional array
  * of those child arrays which qualify.
  *
- * @param array  $parentArray    Multi-dimensional array to check
- * @param string $requiredKey    Key to check
+ * @param array $parentArray Multi-dimensional array to check
+ * @param string $requiredKey Key to check
  * @param string $forbiddenValue Required value for qualification
  */
 function multiArrayFilterByNot(array $parentArray, $requiredKey, $forbiddenValue)
@@ -56,8 +56,8 @@ function multiArrayFilterByNot(array $parentArray, $requiredKey, $forbiddenValue
 /**
  * Check that the value of a given array key matches a particular value.
  *
- * @param array  $array         array to check
- * @param string $requiredKey   Key to check
+ * @param array $array array to check
+ * @param string $requiredKey Key to check
  * @param string $requiredValue Required value
  */
 function arrayKeyHasValue(array $array, $requiredKey, $requiredValue)
@@ -73,8 +73,8 @@ function arrayKeyHasValue(array $array, $requiredKey, $requiredValue)
 /**
  * Check that the value of a given array key does not match a particular value.
  *
- * @param array  $array          array to check
- * @param string $requiredKey    Key to check
+ * @param array $array array to check
+ * @param string $requiredKey Key to check
  * @param string $forbiddenValue Forbidden value
  */
 function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
@@ -89,7 +89,7 @@ function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
 
 // Fetch all subscribers' data
 $totalreq = Sql_Fetch_Row_Query(sprintf(
-'select
+    'select
     count(*)
 from
     %s', $GLOBALS['tables']['user']));
@@ -113,7 +113,7 @@ $confirmed = array();
 
 // Count the number of confirmed users per domain and return them in descending order
 $req = Sql_Query(sprintf(
-'select
+    'select
     lcase( substring_index( email,"@",-1 ) ) as domain
     ,count(email) as num
 from
@@ -136,22 +136,24 @@ while ($row = Sql_Fetch_Array($req)) {
         // Calculate the number of confirmed subs on this domain as a percentage of all subs
         $perc = sprintf('%0.2f', ($row['num'] / $total * 100));
         // Add data to the table
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'), '<strong>'.number_format($row['num']).'</strong> ('.$perc.'%)');
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
+            '<strong>' . number_format($row['num']) . '</strong> (' . $perc . '%)');
     }
 }
 
 // If confirmed subscribers were found
 if ($some) {
     // Print download button
-    print '<div class="actions">'.PageLinkButton('domainstats&dl=true', $GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+    print '<div class="actions">' . PageLinkButton('domainstats&dl=true',
+            $GLOBALS['I18N']->get('Download as CSV file')) . '</div>';
 } else {
     // Print missing data notice
-    print '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';
+    print '<h3>' . s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.') . '</h3>';
 }
 
 // Count the number of unconfirmed users per domain and return them in descending order
 $req = Sql_Query(sprintf(
-'select
+    'select
     lcase(substring_index(email,"@",-1)) as domain
     , count(email) as num
 from
@@ -168,18 +170,20 @@ limit
 // Loop through the resulting top 50 domains and fetch extra data
 while ($row = Sql_Fetch_Array($req)) {
 
-  // Add data for the unconfirmed subscribers to the domain info already retrieved for the confirmed subscribers
-  if (in_array($row['domain'], array_keys($confirmed))) {
-      if ($row['num'] > 5) {
-          // Calculate the number of unconfirmed subs on this domain as a percentage of all subs on this domain
-          $percentUnconfirmed = sprintf('%0.2f', ($row['num'] / $total * 100));
-          $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'), '<strong>'.number_format($row['num']).'</strong> ('.$percentUnconfirmed.'%)');
-      }
+    // Add data for the unconfirmed subscribers to the domain info already retrieved for the confirmed subscribers
+    if (in_array($row['domain'], array_keys($confirmed))) {
+        if ($row['num'] > 5) {
+            // Calculate the number of unconfirmed subs on this domain as a percentage of all subs on this domain
+            $percentUnconfirmed = sprintf('%0.2f', ($row['num'] / $total * 100));
+            $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
+                '<strong>' . number_format($row['num']) . '</strong> (' . $percentUnconfirmed . '%)');
+        }
 
-      // Calculate the number subs on this domain as a percentage of all subs
-      $percentTotal = sprintf('%0.2f', (($row['num'] + $confirmed[$row['domain']]) / $total * 100));
-      $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'), '<strong>'.number_format($row['num'] + $confirmed[$row['domain']]).'</strong> ('.$percentTotal.'%)');
-  }
+        // Calculate the number subs on this domain as a percentage of all subs
+        $percentTotal = sprintf('%0.2f', (($row['num'] + $confirmed[$row['domain']]) / $total * 100));
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
+            '<strong>' . number_format($row['num'] + $confirmed[$row['domain']]) . '</strong> (' . $percentTotal . '%)');
+    }
 }
 
 // If download was requested, send CSV
@@ -196,7 +200,7 @@ print '<br /><br />';
 
 // Fetch top 50 domains ordered by total unconfirmed descending
 $query = Sql_Query(sprintf(
-'select
+    'select
     lcase(substring_index(email,"@",-1)) as domain
     , count(email) as total
     , sum(confirmed = 0) AS unconfirmed
@@ -238,19 +242,23 @@ if ($totalDomains > 0) {
 
         // Calculate the number of confirmed subs on this domain as a percentage of all subs using that domain
         $percentConfirmed = sprintf('%0.2f', ($row['confirmed'] / $row['total'] * 100));
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'), '<strong>'.number_format($row['confirmed']).'</strong> ('.$percentConfirmed.'%)');
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
+            '<strong>' . number_format($row['confirmed']) . '</strong> (' . $percentConfirmed . '%)');
 
         // Calculate the number of unconfirmed subs on this domain as a percentage of all subs using that domain
         $percentUnconfirmed = sprintf('%0.2f', ($row['unconfirmed'] / $row['total'] * 100));
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'), '<strong>'.number_format($row['unconfirmed']).'</strong> ('.$percentUnconfirmed.'%)');
-    // Calculate the number of blacklisted subs on this domain as a percentage of all subs using that domain
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
+            '<strong>' . number_format($row['unconfirmed']) . '</strong> (' . $percentUnconfirmed . '%)');
+        // Calculate the number of blacklisted subs on this domain as a percentage of all subs using that domain
         $percentBlacklisted = sprintf('%0.2f', ($row['blacklisted'] / $row['total'] * 100));
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('blacklisted'), '<strong>'.number_format($row['blacklisted']).'</strong> ('.$percentBlacklisted.'%)');
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('blacklisted'),
+            '<strong>' . number_format($row['blacklisted']) . '</strong> (' . $percentBlacklisted . '%)');
 
         // Calculate the number subs on this domain as a percentage of all subs
         $percentTotal = sprintf('%0.2f', ($row['total'] / $total * 100));
         // Show the total subscribers using this domain
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'), '<strong>'.number_format($row['total']).'</strong> ('.$percentTotal.'%)');
+        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
+            '<strong>' . number_format($row['total']) . '</strong> (' . $percentTotal . '%)');
     }
 
     // Print table
@@ -259,7 +267,7 @@ if ($totalDomains > 0) {
 }
 
 $req = Sql_Query(sprintf(
-'select
+    'select
     lcase(substring_index(email,"@",1)) as preat
     , count(email) as num
 from
@@ -278,7 +286,7 @@ while ($row = Sql_Fetch_Array($req)) {
     if ($row['num'] > 0) {
         $ls->addElement($row['preat']);
         $percentTotal = sprintf('%0.2f', $row['num'] / $total * 100);
-        $ls->addColumn($row['preat'], s('total'), '<strong>'.$row['num'].'</strong> ('.$percentTotal.'%)');
+        $ls->addColumn($row['preat'], s('total'), '<strong>' . $row['num'] . '</strong> (' . $percentTotal . '%)');
     }
 }
 print $ls->display();

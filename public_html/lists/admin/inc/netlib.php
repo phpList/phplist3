@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 #bth rainhail.com 7.1.2015 added to support proxys passing along the client IP
 #https://www.chriswiegman.com/2014/05/getting-correct-ip-address-php/
@@ -8,10 +8,10 @@ function getClientIP()
 {
     if (function_exists('apache_request_headers')) {
         $headers = apache_request_headers();
-    #logEvent("apache_request_headers");
+        #logEvent("apache_request_headers");
     } else {
         $headers = $_SERVER;
-    #logEvent("_SERVER");
+        #logEvent("_SERVER");
     }
 
     if (array_key_exists('X-Forwarded-For', $headers)) {
@@ -47,7 +47,7 @@ function getClientIP()
     }
 
     $the_ip = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
-  #logEvent("REMOTE_ADDR ip=".$the_ip);
+    #logEvent("REMOTE_ADDR ip=".$the_ip);
 
     return $the_ip;
 }

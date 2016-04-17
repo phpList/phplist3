@@ -20,15 +20,15 @@ while ($file = readdir($dir)) {
 */
 
 $pages = array(
-  'initialise',
-  'upgrade',
-  'dbcheck',
-  'reindex',
-  'converttoutf8',
+    'initialise',
+    'upgrade',
+    'dbcheck',
+    'reindex',
+    'converttoutf8',
 );
 
 print '<ul class="dashboard_button">';
 foreach ($pages as $page) {
-    print '<li class="configuration">'.PageLink2($page, s($page)).'</li>';
+    print '<li class="configuration">' . PageLink2($page, s($page)) . '</li>';
 }
 print '</ul>';

@@ -20,18 +20,20 @@ if (!empty($_POST['sendurl'])) {
         print Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
     } else {
         ## hard overwrite the message content, wipe all that was there.
-    ## check there's a protocol
-    ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
+        ## check there's a protocol
+        ## @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
 
-    if ($_POST['sendurl'] == 'e.g. http://www.phplist.com/testcampaign.html') {
-        $_POST['sendurl'] = '';
-    } else {
-        if (!preg_match('/^https?:\/\//i', $_POST['sendurl']) && !preg_match('/testcampaign/i', $_POST['sendurl'])) {
-            $_POST['sendurl'] = 'http://'.$_POST['sendurl'];
+        if ($_POST['sendurl'] == 'e.g. http://www.phplist.com/testcampaign.html') {
+            $_POST['sendurl'] = '';
+        } else {
+            if (!preg_match('/^https?:\/\//i', $_POST['sendurl']) && !preg_match('/testcampaign/i',
+                    $_POST['sendurl'])
+            ) {
+                $_POST['sendurl'] = 'http://' . $_POST['sendurl'];
+            }
+
+            $_POST['message'] = '[URL:' . $_POST['sendurl'] . ']';
         }
-
-        $_POST['message'] = '[URL:'.$_POST['sendurl'].']';
-    }
     }
 }
 
@@ -42,15 +44,15 @@ if (!empty($_POST['sendurl'])) {
 if (isset($_POST['cb']) && is_array($_POST['cb'])) {
     foreach ($_POST['cb'] as $cbname => $cbval) {
         ## $cbval is a dummy
-    setMessageData($id, $cbname, '0');
+        setMessageData($id, $cbname, '0');
     }
 }
 ## remember all data entered
 foreach ($_POST as $key => $val) { //#17566 - we are only interested in POST data, not all in REQUEST
-/*
-  print $key .' '.$val;
-*/
-  setMessageData($id, $key, $val);
+    /*
+      print $key .' '.$val;
+    */
+    setMessageData($id, $key, $val);
     if (get_magic_quotes_gpc()) {
         if (is_string($val)) {
             $messagedata[$key] = stripslashes($val);

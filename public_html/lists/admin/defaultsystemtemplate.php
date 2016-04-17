@@ -13,16 +13,17 @@ $template = '<div style="margin:0; text-align:center; width:100%; background:#EE
     </div>
 <br /></div>';
 
-$exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "System Template"', $GLOBALS['tables']['template']));
+$exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "System Template"',
+    $GLOBALS['tables']['template']));
 if ($exists[0]) {
-    print '<p>'.$GLOBALS['I18N']->get('The default system template already exists').'</p>';
-    print '<p>'.PageLinkButton('templates', $GLOBALS['I18N']->get('Go back to templates')).'</p>';
+    print '<p>' . $GLOBALS['I18N']->get('The default system template already exists') . '</p>';
+    print '<p>' . PageLinkButton('templates', $GLOBALS['I18N']->get('Go back to templates')) . '</p>';
 } else {
     Sql_Query(sprintf('insert into %s (title,template,listorder) values("System Template","%s",0)',
-    $GLOBALS['tables']['template'], addslashes($template)));
+        $GLOBALS['tables']['template'], addslashes($template)));
     $newid = Sql_Insert_Id();
     saveConfig('systemmessagetemplate', $newid);
-    print '<p>'.$GLOBALS['I18N']->get('The default system template has been added as template with ID').' '.$newid.' </p>';
-    print '<p>'.PageLinkButton('templates', $GLOBALS['I18N']->get('Go back to templates')).'</p>';
-    print '<p>'.PageLinkButton('template&amp;id='.$newid, $GLOBALS['I18N']->get('Edit template')).'</p>';
+    print '<p>' . $GLOBALS['I18N']->get('The default system template has been added as template with ID') . ' ' . $newid . ' </p>';
+    print '<p>' . PageLinkButton('templates', $GLOBALS['I18N']->get('Go back to templates')) . '</p>';
+    print '<p>' . PageLinkButton('template&amp;id=' . $newid, $GLOBALS['I18N']->get('Edit template')) . '</p>';
 }

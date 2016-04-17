@@ -1,11 +1,11 @@
 <?php
 
-include dirname(__FILE__).'/structure.php';
+include dirname(__FILE__) . '/structure.php';
 if (!defined('PHPLISTINIT')) {
     exit;
 }
 
-print '<h3>'.s('Database structure check').'</h3>';
+print '<h3>' . s('Database structure check') . '</h3>';
 
 unset($_SESSION['dbtables']);
 $pass = true;
@@ -39,10 +39,11 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
             $indexes = $uniques = $engine = $category = '';
             foreach ($struct as $column => $colstruct) {
                 if (strpos($column, 'index_') === false &&
-          strpos($column, 'unique_') === false &&
-          $column != 'primary key' &&
-          $column != 'storage_engine' &&
-          $column != 'table_category') {
+                    strpos($column, 'unique_') === false &&
+                    $column != 'primary key' &&
+                    $column != 'storage_engine' &&
+                    $column != 'table_category'
+                ) {
                     $tls->addElement($column);
                     $exist = isset($columns[strtolower($column)]);
                     if ($exist) {
@@ -53,15 +54,15 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
                     }
                 } else {
                     if (strpos($column, 'index_') !== false) {
-                        $indexes .= $colstruct[0].'<br/>';
+                        $indexes .= $colstruct[0] . '<br/>';
                     }
                     if (strpos($column, 'unique_') !== false) {
-                        $uniques .= $colstruct[0].'<br/>';
+                        $uniques .= $colstruct[0] . '<br/>';
                     }
-  #          if ($column == "primary key")
-            if ($column == 'storage_engine') {
-                $engine = $colstruct[0];
-            }
+                    #          if ($column == "primary key")
+                    if ($column == 'storage_engine') {
+                        $engine = $colstruct[0];
+                    }
                     if ($column == 'table_category') {
                         $category = $colstruct;
                     }
@@ -71,7 +72,7 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
     } else {
         $haserror = true;
         unset($tls);
-        $createlink = PageUrl2('pageaction&action=createtable&table='.urlencode($table));
+        $createlink = PageUrl2('pageaction&action=createtable&table=' . urlencode($table));
     }
     if (!$haserror) {
         $tls->collapse();
@@ -92,11 +93,11 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
     if (!empty($tls)) {
         $ls->addColumn($table, 'check', $tls->display());
     }
-/*
-  if (!empty($createlink)) {
-    $ls->addColumn($table,"create",'<div> Table is missing <a href="'.$createlink.'" class="ajaxable">Create</a></div>');
-  }
-*/
+    /*
+      if (!empty($createlink)) {
+        $ls->addColumn($table,"create",'<div> Table is missing <a href="'.$createlink.'" class="ajaxable">Create</a></div>');
+      }
+    */
 }
 print $ls->display();
 if ($pass) {

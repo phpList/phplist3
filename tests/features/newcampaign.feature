@@ -1,4 +1,3 @@
-
 Feature: Create new campaign
   In order to create a new campaign
   As an admin user
@@ -18,7 +17,7 @@ Feature: Create new campaign
     And I fill in "message" with "This is the Content of the Campaign"
     And I fill in "footer" with "This is the Footer of the campaign"
     And I fill in "campaigntitle" with "This is the Title of the Campaign"
-    And I press "Save and continue editing"   
+    And I press "Save and continue editing"
     Then I should see "This is the Content of the Campaign"
     When I follow "Scheduling"
     Then I should see "Embargoed Until"
@@ -26,7 +25,7 @@ Feature: Create new campaign
     Then I should see "Please select the lists you want to send your campaign to"
     And I should see "All Lists"
     When I check "targetlist[all]"
-    And I press "Save and continue editing"   
+    And I press "Save and continue editing"
     Then I should see "selected"
     When I follow "Finish"
     And I press "send"

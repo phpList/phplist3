@@ -18,7 +18,7 @@ $translations = array();
 foreach ($LU->translation as $update) {
     if ($update->iso == $lan) {
         #  $status = $update->updateurl;
-    $translationUpdate = fetchUrl($update->updateurl);
+        $translationUpdate = fetchUrl($update->updateurl);
         $translations = parsePo($translationUpdate);
     }
 }

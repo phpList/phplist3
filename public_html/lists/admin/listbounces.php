@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 $access = accessLevel('listbounces');
 
 $listid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
@@ -9,57 +9,59 @@ $isowner_and = '';
 $isowner_where = '';
 
 switch ($access) {
-  case 'owner':
-    if ($listid) {
-        $req = Sql_Query(sprintf('select id from '.$tables['list'].' where owner = %d and id = %d', $_SESSION['logindetails']['id'], $listid));
-        if (!Sql_Affected_Rows()) {
+    case 'owner':
+        if ($listid) {
+            $req = Sql_Query(sprintf('select id from ' . $tables['list'] . ' where owner = %d and id = %d',
+                $_SESSION['logindetails']['id'], $listid));
+            if (!Sql_Affected_Rows()) {
+                Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+
+                return;
+            }
+        }
+        $isowner_and = sprintf(' list.owner = %d and ', $_SESSION['logindetails']['id']);
+        $isowner_where = sprintf(' where list.owner = %d ', $_SESSION['logindetails']['id']);
+        break;
+    case 'all':
+    case 'view':
+        break;
+    case 'none':
+    default:
+        if ($listid) {
             Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+            $isowner_and = sprintf(' list.owner = 0 and ');
+            $isowner_where = sprintf(' where list.owner = 0 ');
 
             return;
         }
-    }
-    $isowner_and = sprintf(' list.owner = %d and ', $_SESSION['logindetails']['id']);
-    $isowner_where = sprintf(' where list.owner = %d ', $_SESSION['logindetails']['id']);
-    break;
-  case 'all':
-  case 'view':
-    break;
-  case 'none':
-  default:
-    if ($listid) {
-        Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
-        $isowner_and = sprintf(' list.owner = 0 and ');
-        $isowner_where = sprintf(' where list.owner = 0 ');
-
-        return;
-    }
-    break;
+        break;
 }
 if (!$listid) {
     $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s list, %s listuser,
     %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'], $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
+    order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
+        $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
     $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
     $some = 0;
     while ($row = Sql_Fetch_Array($req)) {
         $some = 1;
-        $element = '<!--'.$GLOBALS['I18N']->get('list').' '.$row['listid'].'-->'.listName($row['listid']);
-        $ls->addElement($element, PageUrl2('listbounces&amp;id='.$row['listid']));
-  #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
+        $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
+        $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
+        #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
+        $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
     }
     if ($some) {
         print $ls->display();
     } else {
-        print '<p>'.$GLOBALS['I18N']->get('None found').'</p>';
+        print '<p>' . $GLOBALS['I18N']->get('None found') . '</p>';
     }
 
     return;
 }
 $query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.user
-  where '.
+  where ' .
 #  now() < date_add(umb.time,interval 6 month) and
- ' lu.listid = %d
+    ' lu.listid = %d
   group by lu.userid
   ', $GLOBALS['tables']['listuser'], $GLOBALS['tables']['user_message_bounce'], $listid);
 
@@ -72,22 +74,23 @@ $numpp = 150;
 $selectOtherlist = new buttonGroup(new Button(PageUrl2('listbounces'), $GLOBALS['I18N']->get('Select another list')));
 $lists = Sql_Query(sprintf('select id,name from %s list %s order by listorder', $tables['list'], $isowner_where));
 while ($list = Sql_Fetch_Assoc($lists)) {
-    $selectOtherlist->addButton(new Button(PageUrl2('listbounces').'&amp;id='.$list['id'], htmlspecialchars($list['name'])));
+    $selectOtherlist->addButton(new Button(PageUrl2('listbounces') . '&amp;id=' . $list['id'],
+        htmlspecialchars($list['name'])));
 }
 
 print $selectOtherlist->show();
 if ($total) {
-    print PageLinkButton('listbounces&amp;type=dl&amp;id='.$listid, 'Download emails');
+    print PageLinkButton('listbounces&amp;type=dl&amp;id=' . $listid, 'Download emails');
 }
 
-print '<p>'.s('%d bounces to list %s', $total, listName($listid)).'</p>';
+print '<p>' . s('%d bounces to list %s', $total, listName($listid)) . '</p>';
 
 $start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
 if ($total > $numpp && !$download) {
     #  print Paging2('listbounces&amp;id='.$listid,$total,$numpp,'Page');
- # $listing = sprintf($GLOBALS['I18N']->get("Listing %s to %s"),$s,$s+$numpp);
-  $limit = "limit $start,".$numpp;
-    print simplePaging('listbounces&amp;id='.$listid, $start, $total, $numpp);
+    # $listing = sprintf($GLOBALS['I18N']->get("Listing %s to %s"),$s,$s+$numpp);
+    $limit = "limit $start," . $numpp;
+    print simplePaging('listbounces&amp;id=' . $listid, $start, $total, $numpp);
 
     $query .= $limit;
     $req = Sql_Query($query);
@@ -96,22 +99,23 @@ if ($total > $numpp && !$download) {
 if ($download) {
     ob_end_clean();
     Header('Content-type: text/plain');
-    $filename = 'Bounces on '.listName($listid);
+    $filename = 'Bounces on ' . listName($listid);
     header("Content-disposition:  attachment; filename=\"$filename\"");
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on').' '.listName($listid));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on') . ' ' . listName($listid));
 $ls->noShader();
 while ($row = Sql_Fetch_Array($req)) {
     $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
-    $GLOBALS['tables']['user'], $row['userid']));
+        $GLOBALS['tables']['user'], $row['userid']));
     if (!empty($userdata['email'])) {
         if ($download) {
-            print $userdata['email']."\n";
+            print $userdata['email'] . "\n";
         } else {
-            $ls->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
+            $ls->addElement($row['userid'], PageUrl2('user&amp;id=' . $row['userid']));
             $ls->addColumn($row['userid'], s('address'), $userdata['email']);
-            $ls->addColumn($row['userid'], s('# bounces'), PageLink2('userhistory&id='.$row['userid'], $row['numbounces']));
+            $ls->addColumn($row['userid'], s('# bounces'),
+                PageLink2('userhistory&id=' . $row['userid'], $row['numbounces']));
         }
     }
 }

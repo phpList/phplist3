@@ -24,7 +24,8 @@ $(".configValue").each(function() {
 */
 
 $configItem = $default_config[$id];
-printf('<div class="configEditing" id="descriptionitem_'.$id.'">'.s('Editing').' <b>%s</b></div>', $configItem['description']);
+printf('<div class="configEditing" id="descriptionitem_' . $id . '">' . s('Editing') . ' <b>%s</b></div>',
+    $configItem['description']);
 printf('<div class="configValue" id="edit_%s"><input type="hidden" name="id" value="%s" />', $id, $id);
 $dbval = getConfig($id);
 #  print $dbval.'<br/>';
@@ -43,16 +44,16 @@ if ($id != 'website' && $id != 'domain') {
 #  print "VALUE:".$value . '<br/>';
 if ($configItem['type'] == 'textarea') {
     printf('<textarea name="values[%s]" rows=25 cols=55>%s</textarea>',
-    $id, htmlspecialchars(stripslashes($value)));
+        $id, htmlspecialchars(stripslashes($value)));
 } elseif (
-  $configItem['type'] == 'text' || $configItem['type'] == 'url' ||
-  $configItem['type'] == 'email' || $configItem['type'] == 'emaillist'
-  ) {
+    $configItem['type'] == 'text' || $configItem['type'] == 'url' ||
+    $configItem['type'] == 'email' || $configItem['type'] == 'emaillist'
+) {
     printf('<input type="text" name="values[%s]" size="70" value="%s" />',
-  $id, htmlspecialchars(stripslashes($value)));
+        $id, htmlspecialchars(stripslashes($value)));
 } elseif ($configItem['type'] == 'integer') {
     printf('<input type="text" name="values[%s]" size="70" value="%d" />',
-  $id, htmlspecialchars(stripslashes($value)));
+        $id, htmlspecialchars(stripslashes($value)));
 } elseif ($configItem['type'] == 'boolean') {
     printf('<select name="values[%s]">', $id);
     print '<option value="true" ';
@@ -71,25 +72,25 @@ if ($configItem['type'] == 'textarea') {
     print '  </option>';
     print '</select>';
 } elseif ($configItem['type'] == 'image') {
-    print '<br/><p>'.s('Please upload an image file, PNG or JPG.').'</p>';
+    print '<br/><p>' . s('Please upload an image file, PNG or JPG.') . '</p>';
     include 'class.image.inc';
     $image = new imageUpload();
     printf('<input type="hidden" name="values[%s]" value="%s" />', $id, $value); ## to trigger the saving of the value
-  print $image->showInput($id, $value, 0);
+    print $image->showInput($id, $value, 0);
 } else {
-    print s('Don\'t know how to handle type '.$configItem['type']);
+    print s('Don\'t know how to handle type ' . $configItem['type']);
 }
 if (isset($_GET['ret']) && $_GET['ret'] == 'catlists') {
     print '<input type="hidden" name="ret" value="catlists" />';
 }
-print '<input type="hidden" name="save" value="item_'.$id.'" />
-<button class="submit" type="submit" name="savebutton">'.s('save changes').'</button>';
+print '<input type="hidden" name="save" value="item_' . $id . '" />
+<button class="submit" type="submit" name="savebutton">' . s('save changes') . '</button>';
 
 ## for cancellation, we use a reset button, but that will reset all values in the entire page
 ## https://mantis.phplist.org/view.php?id=16924
 
 ## UX wise, it would be good to close the editing DIV again.
-print '<button class="dontsavebutton" id="dontsaveitem_'.$id.'" type="reset">'.s('undo').'</button>';
+print '<button class="dontsavebutton" id="dontsaveitem_' . $id . '" type="reset">' . s('undo') . '</button>';
 
 ## another option is to use a link back to configure, but that will go back to top, which isn't great UX either.
 #print '<a href="./?page=configure" class="button">'.s('cancel changes').'</a>';
@@ -102,7 +103,7 @@ print '<script type="text/javascript">
      item = $(this).attr(\'id\');
      item = item.replace(/dontsave/,\'\'); 
      desc = $("#description"+item).html();
-     $("#"+item).html(desc+\' <i>'.str_replace("'", "\'", s('editing cancelled')).'</i>\');
+     $("#"+item).html(desc+\' <i>' . str_replace("'", "\'", s('editing cancelled')) . '</i>\');
   });
 
 </script>';

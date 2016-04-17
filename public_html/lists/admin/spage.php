@@ -1,6 +1,5 @@
-
 <?php
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 if (isset($_POST['default']) && $_POST['default']) {
     saveConfig('defaultsubscribepage', $_POST['default']);
@@ -18,14 +17,17 @@ $subselect = '';
 if ($GLOBALS['require_login'] && !isSuperUser()) {
     $access = accessLevel('list');
     switch ($access) {
-    case 'owner':
-      $subselect = ' where owner = '.$_SESSION['logindetails']['id'];break;
-    case 'all':
-      $subselect = '';break;
-    case 'none':
-    default:
-      $subselect = ' where id = 0';break;
-  }
+        case 'owner':
+            $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
+            break;
+        case 'all':
+            $subselect = '';
+            break;
+        case 'none':
+        default:
+            $subselect = ' where id = 0';
+            break;
+    }
 }
 
 if (isset($_REQUEST['delete'])) {
@@ -35,10 +37,10 @@ if (isset($_REQUEST['delete'])) {
 }
 if ($delete) {
     Sql_Query(sprintf('delete from %s where id = %d',
-    $tables['subscribepage'], $delete));
+        $tables['subscribepage'], $delete));
     Sql_Query(sprintf('delete from %s where id = %d',
-    $tables['subscribepage_data'], $delete));
-    Info($GLOBALS['I18N']->get('Deleted')." $delete");
+        $tables['subscribepage_data'], $delete));
+    Info($GLOBALS['I18N']->get('Deleted') . " $delete");
 }
 print formStart('name="pagelist" class="spageEdit" ');
 print '<input type="hidden" name="active[-1]" value="1" />';## to force the active array to exist
@@ -56,21 +58,26 @@ while ($p = Sql_Fetch_Array($req)) {
         } else {
             $checked = '';
         }
-        $ls->addColumn($p['id'], $GLOBALS['I18N']->get('default'), sprintf('<input type="radio" name="default" value="%d" %s onchange="document.pagelist.submit()" />', $p['id'], $checked));
+        $ls->addColumn($p['id'], $GLOBALS['I18N']->get('default'),
+            sprintf('<input type="radio" name="default" value="%d" %s onchange="document.pagelist.submit()" />',
+                $p['id'], $checked));
     } else {
         $adminname = '';
         $isdefault = '';
     }
-    $ls->addColumn($p['id'], s('active'), sprintf('<input type="checkbox" name="active[%d]" value="1" %s  onchange="document.pagelist.submit()" />', $p['id'], $p['active'] ? 'checked="checked"' : ''));
-    $ls->addRow($p['id'], $p['active'] ? '<span class="yes" title="'.$GLOBALS['I18N']->get('active').'"></span>' : '<span class="no" title="'.$GLOBALS['I18N']->get('not active').'"></span>',
-    sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('edit').'">%s</a></span>',
-    PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')).
-    sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a></span>',
-    PageURL2('spage', '', 'delete='.$p['id']), $GLOBALS['I18N']->get('del')).
-    sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
-    getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
+    $ls->addColumn($p['id'], s('active'),
+        sprintf('<input type="checkbox" name="active[%d]" value="1" %s  onchange="document.pagelist.submit()" />',
+            $p['id'], $p['active'] ? 'checked="checked"' : ''));
+    $ls->addRow($p['id'],
+        $p['active'] ? '<span class="yes" title="' . $GLOBALS['I18N']->get('active') . '"></span>' : '<span class="no" title="' . $GLOBALS['I18N']->get('not active') . '"></span>',
+        sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="' . $GLOBALS['I18N']->get('edit') . '">%s</a></span>',
+            PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')) .
+        sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="' . $GLOBALS['I18N']->get('delete') . '">%s</a></span>',
+            PageURL2('spage', '', 'delete=' . $p['id']), $GLOBALS['I18N']->get('del')) .
+        sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="' . $GLOBALS['I18N']->get('view') . '">%s</a></span>',
+            getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
 }
 print $ls->display();
-print '<p class="button">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p>';
+print '<p class="button">' . PageLink2('spageedit', s('Add a new subscribe page')) . '</p>';
 ?>
 </form>

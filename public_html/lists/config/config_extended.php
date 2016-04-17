@@ -221,9 +221,9 @@ define('WARN_ABOUT_PHP_SETTINGS', 1);
 # variables of PHP. check http://www.php.net/manual/en/language.variables.predefined.php
 # the values are different per system, but these ones are quite common.
 $userhistory_systeminfo = array(
-  'HTTP_USER_AGENT',
-  'HTTP_REFERER',
-  'REMOTE_ADDR',
+    'HTTP_USER_AGENT',
+    'HTTP_REFERER',
+    'REMOTE_ADDR',
 );
 
 # add spamblock

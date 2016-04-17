@@ -2,8 +2,8 @@
 
 ob_start();
 $er = error_reporting(0);
-require_once dirname(__FILE__).'/admin/inc/unregister_globals.php';
-require_once dirname(__FILE__).'/admin/inc/magic_quotes.php';
+require_once dirname(__FILE__) . '/admin/inc/unregister_globals.php';
+require_once dirname(__FILE__) . '/admin/inc/magic_quotes.php';
 
 ## none of our parameters can contain html for now
 $_GET = removeXss($_GET);
@@ -20,34 +20,34 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
     exit;
 }
 
-require_once dirname(__FILE__).'/admin/init.php';
+require_once dirname(__FILE__) . '/admin/init.php';
 
 $GLOBALS['database_module'] = basename($GLOBALS['database_module']);
 $GLOBALS['language_module'] = basename($GLOBALS['language_module']);
 
-require_once dirname(__FILE__).'/admin/'.$GLOBALS['database_module'];
+require_once dirname(__FILE__) . '/admin/' . $GLOBALS['database_module'];
 
 # load default english and language
-include_once dirname(__FILE__).'/texts/english.inc';
+include_once dirname(__FILE__) . '/texts/english.inc';
 # Allow customisation per installation
-if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'])) {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'];
+if (is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $GLOBALS['language_module'])) {
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/' . $GLOBALS['language_module'];
 }
 
-include_once dirname(__FILE__).'/admin/languages.php';
-require_once dirname(__FILE__).'/admin/defaultconfig.php';
-require_once dirname(__FILE__).'/admin/connect.php';
-include_once dirname(__FILE__).'/admin/lib.php';
+include_once dirname(__FILE__) . '/admin/languages.php';
+require_once dirname(__FILE__) . '/admin/defaultconfig.php';
+require_once dirname(__FILE__) . '/admin/connect.php';
+include_once dirname(__FILE__) . '/admin/lib.php';
 
 if (!empty($_GET['u']) && !empty($_GET['m'])) {
     $_GET['u'] = preg_replace('/\W/', '', $_GET['u']);
     $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',
-    $GLOBALS['tables']['user'], $_GET['u']));
+        $GLOBALS['tables']['user'], $_GET['u']));
     if ($userid[0]) {
         Sql_Query(sprintf('update %s set viewed = now() where messageid = %d and userid = %d and viewed is null',
-      $GLOBALS['tables']['usermessage'], $_GET['m'], $userid[0]));
+            $GLOBALS['tables']['usermessage'], $_GET['m'], $userid[0]));
         Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d',
-      $GLOBALS['tables']['message'], $_GET['m']));
+            $GLOBALS['tables']['message'], $_GET['m']));
     }
 }
 
