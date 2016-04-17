@@ -300,7 +300,16 @@ if (!empty($GLOBALS['require_login'])) {
     );
     } elseif (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
         #$msg = 'Not logged in';
-    $page = 'login';
+        $logged=false;
+        foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+            if ($plugin->login()) {
+                $logged=true;
+                break;
+            }
+        }
+        if (!$logged) {
+            $page = 'login';
+        }
     } elseif (CHECK_SESSIONIP && $_SESSION['adminloggedin'] && $_SESSION['adminloggedin'] != $remoteAddr) {
         logEvent(sprintf($GLOBALS['I18N']->get('login ip invalid from %s for %s (was %s)'), $remoteAddr, $_SESSION['logindetails']['adminname'], $_SESSION['adminloggedin']));
         $msg = $GLOBALS['I18N']->get('Your IP address has changed. For security reasons, please login again');
