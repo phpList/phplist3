@@ -653,7 +653,7 @@ while ($message = Sql_fetch_array($messages)) {
 
         # mark the message as suspended
         Sql_Query(sprintf('update %s set status = "suspended" where id = %d', $GLOBALS['tables']['message'], $messageid));
-          processQueueOutput(s('Error loading message, please check the eventlog for details'));
+        processQueueOutput(s('Error loading message, please check the eventlog for details'));
         if (MANUALLY_PROCESS_QUEUE) {
             # wait a little, otherwise the message won't show
             sleep(10);
@@ -672,7 +672,7 @@ while ($message = Sql_fetch_array($messages)) {
         foreach ($notifications as $notification) {
             sendMail($notification, s('Campaign started'),
                 s('phplist has started sending the campaign with subject %s', $msgdata['subject'])."\n\n".
-                s('to view the progress of this campaign, go to %s://%s',$GLOBALS['admin_scheme'], hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active'));
+                s('to view the progress of this campaign, go to %s://%s', $GLOBALS['admin_scheme'], hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active'));
         }
         Sql_Query(sprintf('insert ignore into %s (name,id,data) values("start_notified",%d,now())',
             $GLOBALS['tables']['messagedata'], $messageid));
@@ -956,7 +956,7 @@ while ($message = Sql_fetch_array($messages)) {
 
         $um = Sql_Query(sprintf('select entered from %s where userid = %d and messageid = %d and status != "todo"', $tables['usermessage'], $userid, $messageid));
         if (!Sql_Num_Rows($um)) {
-                ## mark this message that we're working on it, so that no other process will take it
+            ## mark this message that we're working on it, so that no other process will take it
             ## between two lines ago and here, should hopefully be quick enough
             $userlock = Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"active")', $tables['usermessage'], $userid, $messageid));
 
@@ -981,7 +981,7 @@ while ($message = Sql_fetch_array($messages)) {
 ## Ask plugins if they are ok with sending this message to this user
 */
                 if (!empty($getspeedstats)) {
-                  processQueueOutput('start check plugins ');
+                    processQueueOutput('start check plugins ');
                 }
 
                 reset($GLOBALS['plugins']);
@@ -1101,38 +1101,37 @@ while ($message = Sql_fetch_array($messages)) {
                     # tried to send email , process succes / failure
                     if ($success) {
                         if (USE_DOMAIN_THROTTLE) {
-                          if ($domainthrottle[$throttleDomain]['interval'] != $interval) {
-                              $domainthrottle[$throttleDomain]['interval'] = $interval;
-                              $domainthrottle[$throttleDomain]['sent'] = 1;
-                          } else {
-                              ++$domainthrottle[$throttleDomain]['sent'];
-                          }
+                            if ($domainthrottle[$throttleDomain]['interval'] != $interval) {
+                                $domainthrottle[$throttleDomain]['interval'] = $interval;
+                                $domainthrottle[$throttleDomain]['sent'] = 1;
+                            } else {
+                                ++$domainthrottle[$throttleDomain]['sent'];
+                            }
                         }
                         ++$counters['sent'];
                         ++$counters['sent_users_for_message '.$messageid];
                         $um = Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"sent")', $tables['usermessage'], $userid, $messageid));
-
                     } else {
                         ++$counters['failed_sent'];
                         ++$counters['failed_sent_for_message '.$messageid];
                         ## need to check this, the entry shouldn't be there in the first place, so no need to delete it
                         ## might be a cause for duplicated emails
                         if (defined('MESSAGEQUEUE_PREPARE') && MESSAGEQUEUE_PREPARE) {
-                         Sql_Query(sprintf('update %s set status = "todo" where userid = %d and messageid = %d and status = "active"', $tables['usermessage'], $userid, $messageid));
+                            Sql_Query(sprintf('update %s set status = "todo" where userid = %d and messageid = %d and status = "active"', $tables['usermessage'], $userid, $messageid));
                         } else {
-                         Sql_Query(sprintf('delete from %s where userid = %d and messageid = %d and status = "active"', $tables['usermessage'], $userid, $messageid));
+                            Sql_Query(sprintf('delete from %s where userid = %d and messageid = %d and status = "active"', $tables['usermessage'], $userid, $messageid));
                         }
                         if (VERBOSE) {
-                          processQueueOutput($GLOBALS['I18N']->get('Failed sending to').' '.$useremail);
-                          logEvent("Failed sending message $messageid to $useremail");
+                            processQueueOutput($GLOBALS['I18N']->get('Failed sending to').' '.$useremail);
+                            logEvent("Failed sending message $messageid to $useremail");
                         }
                          # make sure it's not because it's an underdeliverable email
                          # unconfirm this user, so they're not included next time
                         if (!$throttled && !validateEmail($useremail)) {
-                             ++$unconfirmed;
-                             ++$counters['email address invalidated'];
-                             logEvent("invalid email address $useremail user marked unconfirmed");
-                             Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"',
+                            ++$unconfirmed;
+                            ++$counters['email address invalidated'];
+                            logEvent("invalid email address $useremail user marked unconfirmed");
+                            Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"',
                                  $GLOBALS['tables']['user'], $useremail));
                         }
                     }
@@ -1174,7 +1173,7 @@ while ($message = Sql_fetch_array($messages)) {
                     ++$cannotsend;
                     # mark it as sent anyway, because otherwise the process will never finish
                     if (VERBOSE) {
-                      processQueueOutput($GLOBALS['I18N']->get('not sending to ').$useremail);
+                        processQueueOutput($GLOBALS['I18N']->get('not sending to ').$useremail);
                     }
                     $um = Sql_query("replace into {$tables['usermessage']} (entered,userid,messageid,status) values(now(),$userid,$messageid,\"not sent\")");
                 }
@@ -1230,10 +1229,10 @@ while ($message = Sql_fetch_array($messages)) {
             ## June 2010, with the multiple send process extension, that's quite possible to happen again
 
             $um = Sql_Fetch_Row($um);
-                ++$notsent;
-                if (VERBOSE) {
-                    processQueueOutput($GLOBALS['I18N']->get('Not sending to').' '.$userid.', '.$GLOBALS['I18N']->get('already sent').' '.$um[0]);
-                }
+            ++$notsent;
+            if (VERBOSE) {
+                processQueueOutput($GLOBALS['I18N']->get('Not sending to').' '.$userid.', '.$GLOBALS['I18N']->get('already sent').' '.$um[0]);
+            }
         }
         $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");
         $processed = $notsent + $counters['sent'] + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
@@ -1286,7 +1285,7 @@ while ($message = Sql_fetch_array($messages)) {
         if (!$counters['failed_sent']) {
             repeatMessage($messageid);
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-                $plugin->processSendingCampaignFinished($messageid,$msgdata);
+                $plugin->processSendingCampaignFinished($messageid, $msgdata);
             }
             $status = Sql_query(sprintf('update %s set status = "sent",sent = now() where id = %d', $GLOBALS['tables']['message'], $messageid));
 
@@ -1295,7 +1294,7 @@ while ($message = Sql_fetch_array($messages)) {
                 foreach ($notifications as $notification) {
                     sendMail($notification, $GLOBALS['I18N']->get('Message campaign finished'),
                         s('phpList has finished sending the campaign with subject %s', $msgdata['subject'])."\n\n".
-                        s('to view the statistics of this campaign, go to %s://%s', $GLOBALS['admin_scheme'],getConfig('website').$GLOBALS['adminpages'].'/?page=statsoverview&id='.$messageid)
+                        s('to view the statistics of this campaign, go to %s://%s', $GLOBALS['admin_scheme'], getConfig('website').$GLOBALS['adminpages'].'/?page=statsoverview&id='.$messageid)
                     );
                 }
                 Sql_Query(sprintf('insert ignore into %s (name,id,data) values("end_notified",%d,now())',
@@ -1323,4 +1322,3 @@ if (!$num_messages) {
     $script_stage = 6;
 } # we are done
 # shutdown will take care of reporting
-

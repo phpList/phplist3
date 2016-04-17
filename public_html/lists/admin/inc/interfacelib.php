@@ -750,8 +750,9 @@ class WebblerTabs
         $this->tabs[$name] = $url;
         $this->tablabels[$name] = $label;
     }
-    
-    public function insertTabBefore($first, $second) {
+
+    public function insertTabBefore($first, $second)
+    {
         if (isset($this->tabs[$first]) && isset($this->tabs[$second])) {
             $reordered = array();
             foreach ($this->tabs as $tabName => $tabContent) {
@@ -767,7 +768,6 @@ class WebblerTabs
             $this->tabs = $reordered;
         }
     }
-        
 
     public function addPrevNext()
     {

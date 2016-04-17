@@ -500,4 +500,3 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
   );
 
   $DBstruct = $DBstructuser  + $DBstructphplist; # order of tables is essential for smooth upgrade
-

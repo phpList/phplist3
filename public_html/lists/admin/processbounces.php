@@ -776,4 +776,3 @@ if ($report) {
 
 # IMAP errors following when Notices are on are a PHP bug
 # http://bugs.php.net/bug.php?id=7207
-

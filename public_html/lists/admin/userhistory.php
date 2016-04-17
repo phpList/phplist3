@@ -186,4 +186,3 @@ while ($row = Sql_Fetch_Array($req)) {
 print $ls->display();
 print '</div>';
 print '</div>'; ## end of tabbed
-

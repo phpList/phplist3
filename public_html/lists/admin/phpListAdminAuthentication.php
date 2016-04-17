@@ -1,15 +1,15 @@
 <?php
 
-class phpListAdminAuthentication extends phplistPlugin {
-  public $name = 'Default phpList Authentication Plugin';
-  public $version = 0.1;
-  public $authors = 'Michiel Dethmers';
-  public $description = 'Provides authentication to phpList using the internal phpList administration database';
-  public $authProvider = true;
-  
+class phpListAdminAuthentication extends phplistPlugin
+{
+    public $name = 'Default phpList Authentication Plugin';
+    public $version = 0.1;
+    public $authors = 'Michiel Dethmers';
+    public $description = 'Provides authentication to phpList using the internal phpList administration database';
+    public $authProvider = true;
+
   /**
-   * 
-   * validateLogin, verify that the login credentials are correct
+   * validateLogin, verify that the login credentials are correct.
    * 
    * @param string $login the login field
    * @param string $password the password
@@ -21,46 +21,47 @@ class phpListAdminAuthentication extends phplistPlugin {
    * eg 
    *    return array(5,'OK'); // -> login successful for admin 5
    *    return array(0,'Incorrect login details'); // login failed
-   * 
-   */ 
-
-  public function validateLogin($login,$password) {
-    $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'], sql_escape($login));
-    $req = Sql_Query($query);
-    $admindata = Sql_Fetch_Assoc($req);
-    $encryptedPass = hash(ENCRYPTION_ALGO,$password);
-    $passwordDB = $admindata['password'];    
-    #Password encryption verification.
-    if(strlen($passwordDB)<$GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
-      #Encrypt the actual DB password before performing the validation below.
-      $encryptedPassDB =  hash(ENCRYPTION_ALGO,$passwordDB);
-      $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'], $encryptedPassDB,sql_escape($login));
-      $passwordDB = $encryptedPassDB;
+   */
+  public function validateLogin($login, $password)
+  {
+      $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'], sql_escape($login));
       $req = Sql_Query($query);
-    } 
-    if ($admindata["disabled"]) {
-      return array(0,s("your account has been disabled"));
-    } elseif (#Password validation.
-      !empty($passwordDB) && $encryptedPass == $passwordDB) {
-      return array($admindata['id'],"OK");
-    } else {
-      return array(0,s("incorrect password"));
+      $admindata = Sql_Fetch_Assoc($req);
+      $encryptedPass = hash(ENCRYPTION_ALGO, $password);
+      $passwordDB = $admindata['password'];
+    #Password encryption verification.
+    if (strlen($passwordDB) < $GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
+      #Encrypt the actual DB password before performing the validation below.
+      $encryptedPassDB =  hash(ENCRYPTION_ALGO, $passwordDB);
+        $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'], $encryptedPassDB, sql_escape($login));
+        $passwordDB = $encryptedPassDB;
+        $req = Sql_Query($query);
     }
-    return array(0,s("Login failed"));
+      if ($admindata['disabled']) {
+          return array(0,s('your account has been disabled'));
+      } elseif (#Password validation.
+      !empty($passwordDB) && $encryptedPass == $passwordDB) {
+          return array($admindata['id'],'OK');
+      } else {
+          return array(0,s('incorrect password'));
+      }
+
+      return array(0,s('Login failed'));
   }
 
-  function getPassword($email) {
-    $email = preg_replace("/[;,\"\']/","",$email);
-    $req = Sql_Query('select email,password,loginname from '.$GLOBALS["tables"]["admin"].' where email = "'.sql_escape($email).'"');
-    if (Sql_Affected_Rows()) {
-      $row = Sql_Fetch_Row($req);
-      return $row[1];
+    public function getPassword($email)
+    {
+        $email = preg_replace("/[;,\"\']/", '', $email);
+        $req = Sql_Query('select email,password,loginname from '.$GLOBALS['tables']['admin'].' where email = "'.sql_escape($email).'"');
+        if (Sql_Affected_Rows()) {
+            $row = Sql_Fetch_Row($req);
+
+            return $row[1];
+        }
     }
-  }
 
   /**
-   * 
-   * validateAccount, verify that the logged in admin is still valid
+   * validateAccount, verify that the logged in admin is still valid.
    * 
    * this allows verification that the admin still exists and is valid
    * 
@@ -73,41 +74,42 @@ class phpListAdminAuthentication extends phplistPlugin {
    * eg 
    *    return array(1,'OK'); // -> admin valid
    *    return array(0,'No such account'); // admin failed
-   * 
-   */ 
-  function validateAccount($id) {
-    /* can only do this after upgrade, which means
+   */
+  public function validateAccount($id)
+  {
+      /* can only do this after upgrade, which means
      * that the first login will always fail
     */
-    
+
     $query = sprintf('select id, disabled,password from %s where id = %d', $GLOBALS['tables']['admin'], $id);
-    $data = Sql_Fetch_Row_Query($query);
-    if (!$data[0]) {
-      return array(0,s("No such account"));
-    } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION["logindetails"]["passhash"]) {
-      return array(0,s("Your session does not match your password. If you just changed your password, simply log back in."));
-    } elseif ($data[1]) {
-      return array(0,s("your account has been disabled"));
-    }
-    
+      $data = Sql_Fetch_Row_Query($query);
+      if (!$data[0]) {
+          return array(0,s('No such account'));
+      } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION['logindetails']['passhash']) {
+          return array(0,s('Your session does not match your password. If you just changed your password, simply log back in.'));
+      } elseif ($data[1]) {
+          return array(0,s('your account has been disabled'));
+      }
+
     ## do this seperately from above, to avoid lock out when the DB hasn't been upgraded.
     ## so, ignore the error
-    $query = sprintf('select privileges from %s where id = %d', $GLOBALS['tables']['admin'],$id);
-    $req = Sql_Query($query);
-    if ($req) {
-      $data = Sql_Fetch_Row($req);
-    } else {
-      $data = array();
-    }
-    
-    if (!empty($data[0])) {
-      $_SESSION['privileges'] = unserialize($data[0]);
-    }
-    return array(1,"OK");
+    $query = sprintf('select privileges from %s where id = %d', $GLOBALS['tables']['admin'], $id);
+      $req = Sql_Query($query);
+      if ($req) {
+          $data = Sql_Fetch_Row($req);
+      } else {
+          $data = array();
+      }
+
+      if (!empty($data[0])) {
+          $_SESSION['privileges'] = unserialize($data[0]);
+      }
+
+      return array(1,'OK');
   }
 
   /**
-   * adminName
+   * adminName.
    * 
    * Name of the currently logged in administrator
    * Use for logging, eg "subscriber updated by XXXX"
@@ -117,14 +119,15 @@ class phpListAdminAuthentication extends phplistPlugin {
    * 
    * @return string;
    */
+  public function adminName($id)
+  {
+      $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d', $GLOBALS['tables']['admin'], $id));
 
-  function adminName($id) {
-    $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
-    return $req[0] ? $req[0] : s("Nobody");
+      return $req[0] ? $req[0] : s('Nobody');
   }
-  
+
   /**
-   * adminEmail
+   * adminEmail.
    * 
    * Email address of the currently logged in administrator
    * used to potentially pre-fill the "From" field in a campaign
@@ -133,13 +136,15 @@ class phpListAdminAuthentication extends phplistPlugin {
    * 
    * @return string;
    */
-  function adminEmail($id) {
-    $req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
-    return $req[0] ? $req[0] : "";
-  }    
+  public function adminEmail($id)
+  {
+      $req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d', $GLOBALS['tables']['admin'], $id));
+
+      return $req[0] ? $req[0] : '';
+  }
 
   /**
-   * adminIdForEmail
+   * adminIdForEmail.
    * 
    * Return matching admin ID for an email address
    * used for verifying the admin email address on a Forgot Password request
@@ -148,13 +153,15 @@ class phpListAdminAuthentication extends phplistPlugin {
    * 
    * @return ID if found or false if not;
    */
-  function adminIdForEmail($email) { #Obtain admin Id from a given email address.
-    $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',$GLOBALS["tables"]["admin"],sql_escape($email)));
-    return $req[0] ? $req[0] : "";
-  } 
-  
+  public function adminIdForEmail($email)
+  { #Obtain admin Id from a given email address.
+    $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $GLOBALS['tables']['admin'], sql_escape($email)));
+
+      return $req[0] ? $req[0] : '';
+  }
+
   /**
-   * isSuperUser
+   * isSuperUser.
    * 
    * Return whether this admin is a super-admin or not
    * 
@@ -162,13 +169,15 @@ class phpListAdminAuthentication extends phplistPlugin {
    * 
    * @return true if super-admin false if not
    */
-  function isSuperUser($id) {
-    $req = Sql_Fetch_Row_Query(sprintf('select superuser from %s where id = %d',$GLOBALS["tables"]["admin"],$id));
-    return $req[0];
+  public function isSuperUser($id)
+  {
+      $req = Sql_Fetch_Row_Query(sprintf('select superuser from %s where id = %d', $GLOBALS['tables']['admin'], $id));
+
+      return $req[0];
   }
 
   /**
-   * listAdmins
+   * listAdmins.
    * 
    * Return array of admins in the system
    * Used in the list page to allow assigning ownership to lists
@@ -178,13 +187,14 @@ class phpListAdminAuthentication extends phplistPlugin {
    * @return array of admins
    *    id => name
    */
-  function listAdmins() {
-    $result = array();
-    $req = Sql_Query("select id,loginname from {$GLOBALS["tables"]["admin"]} order by loginname");
-    while ($row = Sql_Fetch_Array($req)) {
-      $result[$row["id"]] = $row["loginname"];
-    }
-    return $result;
-  }
+  public function listAdmins()
+  {
+      $result = array();
+      $req = Sql_Query("select id,loginname from {$GLOBALS['tables']['admin']} order by loginname");
+      while ($row = Sql_Fetch_Array($req)) {
+          $result[$row['id']] = $row['loginname'];
+      }
 
+      return $result;
+  }
 }

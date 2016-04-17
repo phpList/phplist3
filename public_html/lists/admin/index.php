@@ -233,13 +233,15 @@ if (!empty($GLOBALS['require_login'])) {
     #bth 7.1.2015 to support x-forwarded-for
     $remoteAddr = getClientIP();
     if (!empty($GLOBALS['admin_auth_module'])) {
-        Error(s('Admin authentication has changed, please update your admin module'),'https://resources.phplist.com/documentation/errors/adminauthchange');
+        Error(s('Admin authentication has changed, please update your admin module'), 'https://resources.phplist.com/documentation/errors/adminauthchange');
+
         return;
     }
     if (class_exists($GLOBALS['authenticationplugin'])) {
         $GLOBALS['admin_auth'] = new $GLOBALS['authenticationplugin']();
     } else {
         print Fatal_Error($GLOBALS['I18N']->get('Admin Authentication initialisation failure'));
+
         return;
     }
     if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password']) && !empty($_REQUEST['password'])) {
@@ -292,10 +294,10 @@ if (!empty($GLOBALS['require_login'])) {
     );
     } elseif (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
         #$msg = 'Not logged in';
-        $logged=false;
+        $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             if ($plugin->login()) {
-                $logged=true;
+                $logged = true;
                 break;
             }
         }

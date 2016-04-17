@@ -451,12 +451,12 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
       }
   #  var_dump($emailaddresses);#exit;
     $messagedata['testtarget'] = '';
-    foreach ($emailaddresses as $address) {
-        $address = trim($address);
-        if (empty($address)) {
-            continue;
-        }
-        $result = Sql_query(sprintf('select id,email,uniqid,htmlemail,rssfrequency,confirmed from %s where email = "%s"', $tables['user'], sql_escape($address)));
+      foreach ($emailaddresses as $address) {
+          $address = trim($address);
+          if (empty($address)) {
+              continue;
+          }
+          $result = Sql_query(sprintf('select id,email,uniqid,htmlemail,rssfrequency,confirmed from %s where email = "%s"', $tables['user'], sql_escape($address)));
                                                                                                           //Leftover from the preplugin era
       if ($user = Sql_fetch_array($result)) {
           if (FORWARD_ALTERNATIVE_CONTENT && $_GET['tab'] == 'Forward') {
@@ -481,16 +481,16 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
           }
           $sendtestresult .= '<br/>';
       } else {
-          $address = htmlspecialchars(substr(strip_tags($address),0,255));
-          
+          $address = htmlspecialchars(substr(strip_tags($address), 0, 255));
+
           $sendtestresult .= $GLOBALS['I18N']->get('Email address not found to send test message.').": $address";
           $sendtestresult .= sprintf('  <div class="inline"><a href="%s&action=addemail&email=%s%s" class="button ajaxable">%s</a></div>', $baseurl, urlencode($address), addCsrfGetToken(), $GLOBALS['I18N']->get('add'));
       }
-      $messagedata['testtarget'] .= $address.', ';
-    }
-    $messagedata['testtarget'] = substr($messagedata['testtarget'],0,-2);
-    $sendtestresult .= '<hr/>';
-    $sendtestresult .= '<script type="text/javascript">this.location.hash="sendTest";</script>';
+          $messagedata['testtarget'] .= $address.', ';
+      }
+      $messagedata['testtarget'] = substr($messagedata['testtarget'], 0, -2);
+      $sendtestresult .= '<hr/>';
+      $sendtestresult .= '<script type="text/javascript">this.location.hash="sendTest";</script>';
   }
 } elseif (isset($_POST['deleteattachments']) && is_array($_POST['deleteattachments']) && $id) {
     if (ALLOW_ATTACHMENTS) {
@@ -552,12 +552,12 @@ if (!$done) {
       $tabs->addTab(s('Lists'), $tabbaseurl.'&amp;tab=Lists');
       ++$counttabs;
 
-    if ($_GET['tab']) {
-        $tabs->setCurrent(s($_GET['tab']));
-    } else {
-        $tabs->setCurrent(s('Content'));
-    }
-    $tabs->addLinkCode(' class="savechanges" ');
+      if ($_GET['tab']) {
+          $tabs->setCurrent(s($_GET['tab']));
+      } else {
+          $tabs->setCurrent(s('Content'));
+      }
+      $tabs->addLinkCode(' class="savechanges" ');
 
     ### allow plugins to add tabs
     $plugintabs = array();
@@ -569,7 +569,7 @@ if (!$done) {
               $plugintabs[$plugintabname] = $plugintab;
               $tabs->addTab($GLOBALS['I18N']->get($plugintabname), "$tabbaseurl&amp;tab=".urlencode($plugintabname));
               if ($insertBefore = $plugin->sendMessageTabInsertBefore()) {
-                  $tabs->insertTabBefore(s($insertBefore),s($plugintabname));
+                  $tabs->insertTabBefore(s($insertBefore), s($plugintabname));
               }
               ++$counttabs;
           }
@@ -941,8 +941,8 @@ if (!$done) {
 
   // Display the HTML for the "Send Test" button, and the input field for the email addresses
   $sendtest_content = '<div class="sendTest" id="sendTest">
-    '. $sendtestresult.'
-    <input class="submit" type="submit" name="sendtest" value="'.s('Send Test').'" /> '.Help('sendtest').' '. s('to email address(es)').':'. 
+    '.$sendtestresult.'
+    <input class="submit" type="submit" name="sendtest" value="'.s('Send Test').'" /> '.Help('sendtest').' '.s('to email address(es)').':'.
     '<input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'"/><br />'.s('(comma separate addresses - all must be existing subscribers)').'
     </div>';
 
@@ -1254,4 +1254,3 @@ $saveDraftButton = '<div class="sendSubmit">
   $testpanel->setID('testpanel');
 
  # print $testpanel->display();
-

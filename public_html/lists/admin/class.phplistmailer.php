@@ -131,12 +131,11 @@ class PHPlistMailer extends PHPMailer
             $this->SMTPSecure = PHPMAILER_SECURE;
         }
         $this->SMTPAutoTLS = true;
-        
+
         if (isset($GLOBALS['phpmailer_smtpoptions'])) {
-			$this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];
-		}
-		
- 
+            $this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];
+        }
+
         if ($GLOBALS['message_envelope']) {
             $this->Sender = $GLOBALS['message_envelope'];
             $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
@@ -337,9 +336,11 @@ class PHPlistMailer extends PHPMailer
 
             preg_match_all('~="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|', $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images); //
 
-            for ($i = 0; $i < count($matched_images[1]); ++$i)
-                if ($this->external_image_exists($matched_images[1][$i]))
+            for ($i = 0; $i < count($matched_images[1]); ++$i) {
+                if ($this->external_image_exists($matched_images[1][$i])) {
                     $external_images[] = $matched_images[1][$i].'~^~'.basename($matched_images[2][$i]).'~^~'.strtolower($matched_images[3][$i]);
+                }
+            }
 
             if (!empty($external_images)) {
                 $external_images = array_unique($external_images);
@@ -349,10 +350,11 @@ class PHPlistMailer extends PHPMailer
 
                     if ($image = $this->get_external_image($external_image[0])) {
                         $content_type = $this->image_types[$external_image[2]];
-                        $cid = $this->add_html_image($image, $external_image[1], $content_type); 
+                        $cid = $this->add_html_image($image, $external_image[1], $content_type);
 
-                        if (!empty($cid))
+                        if (!empty($cid)) {
                             $this->Body = str_replace($external_image[0], 'cid:'.$cid, $this->Body);
+                        }
                     }
                 }
             }
@@ -550,22 +552,24 @@ class PHPlistMailer extends PHPMailer
     public function external_image_exists($filename)
     {
         // Check for a http(s) address excluding this host
-        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === FALSE)) {
+        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === false)) {
             $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
 
             // Create cache directory
-            if (!file_exists($extCacheDir))
+            if (!file_exists($extCacheDir)) {
                 @mkdir($extCacheDir);
+            }
 
             if (file_exists($extCacheDir) && is_writable($extCacheDir)) {
                 // Remove old files in cache directory
                 if (defined('EXTERNALIMAGE_MAXAGE') && EXTERNALIMAGE_MAXAGE && ($extCacheDirHandle = @opendir($extCacheDir))) {
-                    while (FALSE !== ($cacheFile = @readdir($extCacheDirHandle))) {
+                    while (false !== ($cacheFile = @readdir($extCacheDirHandle))) {
                         if ((strlen($cacheFile) > 0) && (substr($cacheFile, 0, 1) != '.')) {
                             $cacheFileMTime = @filemtime($extCacheDir.'/'.$cacheFile);
 
-                            if (is_numeric($cacheFileMTime) && ($cacheFileMTime > 0) && ((time() - $cacheFileMTime) > EXTERNALIMAGE_MAXAGE))
+                            if (is_numeric($cacheFileMTime) && ($cacheFileMTime > 0) && ((time() - $cacheFileMTime) > EXTERNALIMAGE_MAXAGE)) {
                                 @unlink($extCacheDir.'/'.$cacheFile);
+                            }
                         }
                     }
 
@@ -585,18 +589,18 @@ class PHPlistMailer extends PHPMailer
                     if (function_exists('curl_init')) {
                         $cURLHandle = curl_init($filename);
 
-                        if ($cURLHandle !== FALSE) {
+                        if ($cURLHandle !== false) {
                             //curl_setopt($cURLHandle, CURLOPT_URL, $filename);
-                            curl_setopt($cURLHandle, CURLOPT_HTTPGET, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_HTTPGET, true);
                             curl_setopt($cURLHandle, CURLOPT_HEADER, 0);
-                            curl_setopt($cURLHandle, CURLOPT_BINARYTRANSFER, TRUE);
-                            curl_setopt($cURLHandle, CURLOPT_RETURNTRANSFER, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_BINARYTRANSFER, true);
+                            curl_setopt($cURLHandle, CURLOPT_RETURNTRANSFER, true);
                             //curl_setopt($cURLHandle, CURLOPT_FILE, $cacheFileHandle);
                             curl_setopt($cURLHandle, CURLOPT_TIMEOUT, $downloadTimeout);
-                            curl_setopt($cURLHandle, CURLOPT_FOLLOWLOCATION, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_FOLLOWLOCATION, true);
                             curl_setopt($cURLHandle, CURLOPT_MAXREDIRS, 10);
-                            curl_setopt($cURLHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
-                            curl_setopt($cURLHandle, CURLOPT_FAILONERROR, TRUE);
+                            curl_setopt($cURLHandle, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($cURLHandle, CURLOPT_FAILONERROR, true);
 
                             $cacheFileContent = curl_exec($cURLHandle);
 
@@ -605,36 +609,39 @@ class PHPlistMailer extends PHPMailer
 
                             curl_close($cURLHandle);
 
-                            if ($cURLErrNo != 0)
+                            if ($cURLErrNo != 0) {
                                 $cacheFileContent = 'CURL_ERROR_'.$cURLErrNo;
-                            if ($cURLInfo['http_code'] >= 400)
+                            }
+                            if ($cURLInfo['http_code'] >= 400) {
                                 $cacheFileContent = 'HTTP_CODE_'.$cURLInfo['http_code'];
+                            }
                         }
                     }
 
                     // Try downloading using file_get_contents 
                     if ($cacheFileContent == '') {
                         $remoteURLContext = stream_context_create(array(
-                            'http' =>
-                                array(
-                                    'method' => 'GET',
-                                    'timeout' => $downloadTimeout,
-                                    'max_redirects' => '10'
-                                )));
+                            'http' => array(
+                                    'method'        => 'GET',
+                                    'timeout'       => $downloadTimeout,
+                                    'max_redirects' => '10',
+                                ), ));
 
-                        $cacheFileContent = file_get_contents($filename, FALSE, $remoteURLContext);
-                        if ($cacheFileContent === FALSE)
+                        $cacheFileContent = file_get_contents($filename, false, $remoteURLContext);
+                        if ($cacheFileContent === false) {
                             $cacheFileContent = 'FGC_ERROR';
+                        }
                     }
 
                     // Limit size
-                    if (defined('EXTERNALIMAGE_MAXSIZE') && EXTERNALIMAGE_MAXSIZE && (strlen($cacheFileContent) > EXTERNALIMAGE_MAXSIZE))
+                    if (defined('EXTERNALIMAGE_MAXSIZE') && EXTERNALIMAGE_MAXSIZE && (strlen($cacheFileContent) > EXTERNALIMAGE_MAXSIZE)) {
                         $cacheFileContent = 'MAX_SIZE';
+                    }
 
                     // Write cache file
                     //file_put_contents($cacheFile, $cacheFileContent, LOCK_EX);
                     $cacheFileHandle = @fopen($cacheFile, 'wb');
-                    if ($cacheFileHandle !== FALSE) {
+                    if ($cacheFileHandle !== false) {
                         if (flock($cacheFileHandle, LOCK_EX)) {
                             fwrite($cacheFileHandle, $cacheFileContent);
                             fflush($cacheFileHandle);
@@ -644,8 +651,9 @@ class PHPlistMailer extends PHPMailer
                     }
                 }
 
-                if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
-                    return TRUE;
+                if (file_exists($cacheFile) && (@filesize($cacheFile) > 64)) {
+                    return true;
+                }
             }
         }
     }
@@ -656,8 +664,9 @@ class PHPlistMailer extends PHPMailer
         //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
         $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~Ui', '~[^\w\.]~Ui'), array('', '_'), $filename);
 
-        if (file_exists($cacheFile) && (@filesize($cacheFile) > 64))
+        if (file_exists($cacheFile) && (@filesize($cacheFile) > 64)) {
             return base64_encode(file_get_contents($cacheFile));
+        }
     }
 
     ## end addition

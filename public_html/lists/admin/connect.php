@@ -707,7 +707,7 @@ $GLOBALS['pagecategories'] = array(
   //),
 );
   if (DEVVERSION) {
-    $GLOBALS['pagecategories']['develop'] = array(
+      $GLOBALS['pagecategories']['develop'] = array(
       'toplink' => 'develop',
       'pages'   => array(
      #   'checki18n',
@@ -722,7 +722,7 @@ $GLOBALS['pagecategories'] = array(
         'tests',
       ),
   );
-}
+  }
 function pageCategory($page)
 {
     foreach ($GLOBALS['pagecategories'] as $category => $cat_details) {

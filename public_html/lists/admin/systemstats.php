@@ -75,9 +75,9 @@ $systemstats = array(
     'query' => sprintf('select count(distinct(userid)) as num ,year(firstclick) as year,month(firstclick) month  from %s where forwardid in (select id from %s where url like "%%/lists/?p=unsubscribe") group by year(firstclick), month(firstclick) order by firstclick desc', $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['linktrack_forward']),
   ),
   array(
-    'name' => 'Next subscriberid',
-    'query' => sprintf('select Auto_increment as num, year(now()) as year, month(now()) as month FROM information_schema.tables where table_name="%s" AND table_schema="%s"',$GLOBALS['tables']['user'],$GLOBALS['database_name']),
-  ),    
+    'name'  => 'Next subscriberid',
+    'query' => sprintf('select Auto_increment as num, year(now()) as year, month(now()) as month FROM information_schema.tables where table_name="%s" AND table_schema="%s"', $GLOBALS['tables']['user'], $GLOBALS['database_name']),
+  ),
 );
 
 $chartCount = 0;

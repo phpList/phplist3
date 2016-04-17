@@ -46,6 +46,6 @@ class FeatureContext extends MinkContext
             system(__DIR__.'/../../../scripts/recreatedb.sh');
         } elseif (is_file(__DIR__.'/../../recreatedb.sh')) {
             system(__DIR__.'/../../recreatedb.sh');
-        } 
+        }
     }
 }

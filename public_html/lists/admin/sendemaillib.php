@@ -1592,7 +1592,7 @@ exit;
 
     if ($result !== false) {
         while ($att = Sql_Fetch_Array($result)) {
-            $cached[$messageid]['adminattributes']['OWNER.' . $att['name']] = $att['value'];
+            $cached[$messageid]['adminattributes']['OWNER.'.$att['name']] = $att['value'];
         }
     }
 
@@ -1615,7 +1615,7 @@ exit;
         );
 
         while ($att = Sql_Fetch_Array($att_req)) {
-            $cached[$messageid]['adminattributes']['LISTOWNER.' . $att['name']] = $att['value'];
+            $cached[$messageid]['adminattributes']['LISTOWNER.'.$att['name']] = $att['value'];
         }
     }
 

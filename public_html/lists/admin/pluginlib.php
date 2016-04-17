@@ -56,7 +56,7 @@ foreach ($pluginRootDirs as $pluginRootDir) {
   }
 }
 // load the defaultAdminAuth last, to fall back to it
-array_push($pluginFiles, dirname(__FILE__). '/phpListAdminAuthentication.php');
+array_push($pluginFiles, dirname(__FILE__).'/phpListAdminAuthentication.php');
 
 $auto_enable_plugins = array();
 if (isset($GLOBALS['plugins_autoenable'])) {
@@ -94,9 +94,9 @@ foreach ($pluginFiles as $file) {
           if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance, 'editor')) {
               $GLOBALS['editorplugin'] = $className;
           }
-          if (!$GLOBALS['authenticationplugin'] && $pluginInstance->authProvider && method_exists($pluginInstance, 'validateLogin')) {
-              $GLOBALS['authenticationplugin'] = $className;
-          }
+                if (!$GLOBALS['authenticationplugin'] && $pluginInstance->authProvider && method_exists($pluginInstance, 'validateLogin')) {
+                    $GLOBALS['authenticationplugin'] = $className;
+                }
      #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
           $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
                 if (!empty($plugin_initialised)) {

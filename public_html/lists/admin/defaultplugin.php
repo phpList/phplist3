@@ -1,25 +1,23 @@
 <?php
 
 /**
- * phplistPlugin main class to extend for plugins 
+ * phplistPlugin main class to extend for plugins.
  */
- 
+
 /**
  * a plugin for phpList should extend this class to work. Once you have extended
  * you can implement all the hooks provided to manipulate the functionality of phpList
  * in many places.
  */
-
 require_once dirname(__FILE__).'/accesscheck.php';
 
 class phplistPlugin
 {
-
-  public $name = 'Default Plugin';
-  public $version = 'unknown';
-  public $authors = '';
-  public $description = 'No description';
-  public $documentationUrl = '';## link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
+    public $name = 'Default Plugin';
+    public $version = 'unknown';
+    public $authors = '';
+    public $description = 'No description';
+    public $documentationUrl = '';## link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
   public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
   public $system_root = ''; ## root dir of the phpList admin directory
 
@@ -40,15 +38,14 @@ class phplistPlugin
   # The page name is the file name without .php. The files must be in the $coderoot directory
   public $publicPages = array();
 
-  public $configArray = array();
+    public $configArray = array();
 
-  public $importTabTitle = ''; ## title of the tab for the import page
+    public $importTabTitle = ''; ## title of the tab for the import page
 
   public $needI18N = 0;
 
   /** set to true, if this plugin provides the WYSIWYG editor for the send page
-   * 
-   * the plugin will then need to implement:
+   * the plugin will then need to implement:.
    * 
    * function editor($fieldname,$fieldvalue)
    * 
@@ -57,13 +54,11 @@ class phplistPlugin
   public $editorProvider = false;
 
   /** set to true, if this plugin provides verification of the administrator login
-   * 
-   * the plugin will then need to implement a variety of methods, check the docs
-   * 
+   * the plugin will then need to implement a variety of methods, check the docs.
    */
   public $authProvider = false;
 
-  public $tables = array(); // will hold tablename -> real table mapping
+    public $tables = array(); // will hold tablename -> real table mapping
 
   /* array of pages in this plugin to add to the main menu
    * 
@@ -83,7 +78,7 @@ class phplistPlugin
    * info
    * 
    */
-   
+
   public $topMenuLinks = array();
 
   /* titles of pages in the plugin, this is used in the listing of the pages in the menu
@@ -113,12 +108,11 @@ class phplistPlugin
   }
 
   /** 
-   * name of this plugin
+   * name of this plugin.
    */
-
   public function name()
   {
-     return $this->name;
+      return $this->name;
   }
 
   /* 
@@ -133,8 +127,8 @@ class phplistPlugin
       $this->phplistplugin();
   }
 
-  public function phplistplugin()
-  {
+    public function phplistplugin()
+    {
         # constructor
     # Startup code, other objects might not be constructed yet
     #print ("<BR>Construct " . $this->name);
@@ -352,7 +346,7 @@ class phplistPlugin
   {
       return array(
       # page, description
-      'main' => 'Main Page',
+      'main'       => 'Main Page',
       'helloworld' => 'Hello World page',
     );
   }
@@ -673,16 +667,12 @@ class phplistPlugin
   {
       return 0;
   }
-  
-  
-  /**
-    * 
-    * process the success or failure of sending an email in $sendformat
-    * 
-    * @deprecated, no longer used since 3.2.4
-    * 
-    */
 
+    /**
+     * process the success or failure of sending an email in $sendformat.
+     * 
+     * @deprecated, no longer used since 3.2.4
+     */
     public function processSuccesFailure($messageid, $sendformat, $userdata, $success = true)
     {
     }
@@ -922,32 +912,29 @@ class phplistPlugin
       return array();
   }
 
-
-    /** 
-     * displayUsers
-     * 
-     * add columns for this plugin to WebblerListing
-     * Currently used in users.php and members.php
-     * 
-     * @param (array) user - associative array of user data
-     * @param string $rowid - $element of the WebblerListing
-     * @param WebblerListing $list - listing object to add to
-     * 
-     * @note, unclear if this actually works. Better not to use it.
-     */
-
+  /** 
+   * displayUsers.
+   * 
+   * add columns for this plugin to WebblerListing
+   * Currently used in users.php and members.php
+   * 
+   * @param (array) user - associative array of user data
+   * @param string $rowid - $element of the WebblerListing
+   * @param WebblerListing $list - listing object to add to
+   * 
+   * @note, unclear if this actually works. Better not to use it.
+   */
   public function displayUsers($user, $rowid, $list)
   {
   }
 
     /**
-     * deleteUser
+     * deleteUser.
      * 
      * allow plugins to delete their data when deleting a user
      * 
-     * @param integer $id the ID of the subscriber
+     * @param int $id the ID of the subscriber
      */
-
     public function deleteUser($id)
     {
     }

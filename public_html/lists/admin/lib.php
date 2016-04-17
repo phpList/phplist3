@@ -440,14 +440,14 @@ function sendMailPhpMailer($to, $subject, $message)
 
 #  print "Sending $to from $fromemail<br/>";
     if (defined('DEVVERSION') && DEVVERSION) {
-      $message = "To: $to\n".$message;
-      if ($GLOBALS['developer_email']) {
-          $destinationemail = $GLOBALS['developer_email'];
-      } else {
-        #  print 'Error: Running DEV version, but developer_email not set';
-      }
+        $message = "To: $to\n".$message;
+        if ($GLOBALS['developer_email']) {
+            $destinationemail = $GLOBALS['developer_email'];
+        } else {
+            #  print 'Error: Running DEV version, but developer_email not set';
+        }
     } else {
-      $destinationemail = $to;
+        $destinationemail = $to;
     }
     list($htmlmessage, $textmessage) = constructSystemMail($message, $subject);
 
@@ -1621,6 +1621,7 @@ function verifyCsrfGetToken($enforce = 1)
         Redirect('logout&err=1');
         exit;
     }
+
     return true;
 }
 
@@ -1980,7 +1981,8 @@ function flushLogoCache()
     Sql_Query(sprintf('delete from %s where template = 0 and filename like "ORGANISATIONLOGO%%.png"', $GLOBALS['tables']['templateimage']));
 }
 
-function parseLogoPlaceholders($content) {
+function parseLogoPlaceholders($content)
+{
     ## replace Logo placeholders
     preg_match_all('/\[LOGO\:?(\d+)?\]/', $content, $logoInstances);
     foreach ($logoInstances[0] as $index => $logoInstance) {
@@ -1993,6 +1995,6 @@ function parseLogoPlaceholders($content) {
         createCachedLogoImage($logoSize);
         $content = str_replace($logoInstance, 'ORGANISATIONLOGO'.$logoSize.'.png', $content);
     }
+
     return $content;
 }
-

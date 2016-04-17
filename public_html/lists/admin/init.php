@@ -20,7 +20,7 @@ if (is_file(dirname(__FILE__).'/../../../VERSION')) {
     fclose($fd);
 } else {
     $version = 'dev';
-} 
+}
 
 if (!defined('VERSION')) {
     if (!ini_get('open_basedir') && is_dir(dirname(__FILE__).'/../../../.git')) {
