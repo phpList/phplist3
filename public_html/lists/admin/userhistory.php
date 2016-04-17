@@ -94,6 +94,8 @@ printf('%d ' . $GLOBALS['I18N']->get('messages sent to this user') . '<br/>', $n
 if ($num) {
     $resptime = 0;
     $totalresp = 0;
+    $ls->setElementHeading($GLOBALS['I18N']->get('Campaign Id'));
+
     while ($msg = Sql_Fetch_Array($msgs)) {
         $ls->addElement($msg['messageid'],
             PageURL2('message', $GLOBALS['I18N']->get('view'), 'id=' . $msg['messageid']));
@@ -178,6 +180,7 @@ if (isBlackListed($user['email'])) {
 }
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Subscription History'));
+$ls->setElementHeading($GLOBALS['I18N']->get('Event'));
 $req = Sql_Query(sprintf('select * from %s where userid = %d order by id desc', $tables['user_history'], $user['id']));
 if (!Sql_Affected_Rows()) {
     print $GLOBALS['I18N']->get('no details found');

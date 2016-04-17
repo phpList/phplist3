@@ -55,6 +55,7 @@ class UIPanel
 class WebblerListing
 {
     public $title;
+    public $elementHeading;
     public $help;
     public $elements = array();
     public $columns = array();
@@ -85,6 +86,11 @@ class WebblerListing
             $this->suppressGreenline();
             $this->buttonsOutsideTable = true;
         }
+    }
+
+    public function setElementHeading($heading)
+    {
+        $this->elementHeading = $heading;
     }
 
     public function noShader()
@@ -232,9 +238,11 @@ class WebblerListing
         if (!count($this->columns)) {
             $tophelp = $this->help;
         }
+
+        $heading = isset($this->elementHeading) ? $this->elementHeading : $this->title;
         $html = '<tr valign="top">';
         $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',
-            str_replace(' ', '_', htmlspecialchars(mb_strtolower($this->title))), $tophelp, $this->title);
+            str_replace(' ', '_', htmlspecialchars(mb_strtolower($heading))), $tophelp, $heading);
         $c = 1;
         foreach ($this->columns as $column => $columnname) {
             if ($c == count($this->columns)) {
@@ -488,7 +496,8 @@ class WebblerListing
 
     public function tabDelimited()
     {
-        print $this->title . "\t";
+        $heading = isset($this->elementHeading) ? $this->elementHeading : $this->title;
+        print $heading . "\t";
         foreach ($this->columns as $column => $columnname) {
             print $this->plainText($column) . "\t";
         }
