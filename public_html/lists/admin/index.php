@@ -231,23 +231,15 @@ print "$page_title</title>";
 
 if (!empty($GLOBALS['require_login'])) {
     #bth 7.1.2015 to support x-forwarded-for
-  $remoteAddr = getClientIP();
-    if ($GLOBALS['admin_auth_module'] && is_file('auth/'.$GLOBALS['admin_auth_module'])) {
-        require_once 'auth/'.$GLOBALS['admin_auth_module'];
-    } elseif ($GLOBALS['admin_auth_module'] && is_file($GLOBALS['admin_auth_module'])) {
-        require_once $GLOBALS['admin_auth_module'];
-    } else {
-        if ($GLOBALS['admin_auth_module']) {
-            logEvent('Warning: unable to use '.$GLOBALS['admin_auth_module'].' for admin authentication, reverting back to phplist authentication');
-            $GLOBALS['admin_auth_module'] = 'phplist_auth.inc';
-        }
-        require_once 'auth/phplist_auth.inc';
+    $remoteAddr = getClientIP();
+    if (!empty($GLOBALS['admin_auth_module'])) {
+        Error(s('Admin authentication has changed, please update your admin module'),'https://resources.phplist.com/documentation/errors/adminauthchange');
+        return;
     }
-    if (class_exists('admin_auth')) {
-        $GLOBALS['admin_auth'] = new admin_auth();
+    if (class_exists($GLOBALS['authenticationplugin'])) {
+        $GLOBALS['admin_auth'] = new $GLOBALS['authenticationplugin']();
     } else {
         print Fatal_Error($GLOBALS['I18N']->get('Admin Authentication initialisation failure'));
-
         return;
     }
     if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password']) && !empty($_REQUEST['password'])) {
