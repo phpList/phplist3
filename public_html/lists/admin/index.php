@@ -238,12 +238,7 @@ print "$page_title</title>";
 if (!empty($GLOBALS['require_login'])) {
     #bth 7.1.2015 to support x-forwarded-for
     $remoteAddr = getClientIP();
-    if (!empty($GLOBALS['admin_auth_module'])) {
-        Error(s('Admin authentication has changed, please update your admin module'),
-            'https://resources.phplist.com/documentation/errors/adminauthchange');
 
-        return;
-    }
     if (class_exists($GLOBALS['authenticationplugin'])) {
         $GLOBALS['admin_auth'] = new $GLOBALS['authenticationplugin']();
     } else {

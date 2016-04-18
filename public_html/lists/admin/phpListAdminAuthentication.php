@@ -46,7 +46,20 @@ class phpListAdminAuthentication extends phplistPlugin
         ) {
             return array($admindata['id'], 'OK');
         } else {
+
+            if (!empty($GLOBALS['admin_auth_module'])) {
+                Error(s('Admin authentication has changed, please update your admin module'),
+                    'https://resources.phplist.com/documentation/errors/adminauthchange');
+
+                return;
+            }
             return array(0, s('incorrect password'));
+        }
+        if (!empty($GLOBALS['admin_auth_module'])) {
+            Error(s('Admin authentication has changed, please update your admin module'),
+                'https://resources.phplist.com/documentation/errors/adminauthchange');
+
+            return;
         }
 
         return array(0, s('Login failed'));
