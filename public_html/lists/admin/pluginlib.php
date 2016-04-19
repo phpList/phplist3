@@ -136,6 +136,9 @@ foreach ($pluginFiles as $file) {
 ## enable the default auth plugin, if no other was activated
 if (empty($GLOBALS['authenticationplugin'])) {
     $GLOBALS['authenticationplugin'] = 'phpListAdminAuthentication';
+} else {
+# otherwise remove it, so it can't be enabled either
+    unset($GLOBALS['allplugins']['phpListAdminAuthentication']);
 }
 
 $GLOBALS['pluginsendformats'] = array();
