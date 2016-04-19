@@ -28,13 +28,13 @@ switch ($access) {
 
 if (!empty($_POST['resend']) && is_array($_POST['list'])) {
     if (!empty($_POST['list']['all'])) {
-        $res = Sql_query(sprintf('select id from %s', $tables['list']));
+        $res = Sql_query(sprintf('select id from %s %s', $tables['list'], $subselect));
         while ($list = Sql_fetch_array($res)) {
             $result = Sql_query(sprintf('insert into %s (messageid,listid,entered) values(%d,%d,now())',
                 $tables['listmessage'], $id, $list['id']));
         }
     } elseif (!empty($_POST['list']['allactive'])) {
-        $res = Sql_query(sprintf('select id from %s where active', $tables['list']));
+        $res = Sql_query(sprintf('select id from %s where active %s', $tables['list'], $owner_select_and));
         while ($list = Sql_fetch_array($res)) {
             $result = Sql_query(sprintf('insert into %s (messageid,listid,entered) values(%d,%d,now())',
                 $tables['listmessage'], $id, $list['id']));
