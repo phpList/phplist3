@@ -373,11 +373,7 @@ function sendMessageStats($msgid)
                  ) as $item) {
             $msg .= "\n" . $item . ' => ' . $data[$item];
         }
-        if ($stats_collection_address == 'phplist-stats@phplist.com' && $data['processed'] > 500) {
-            mail($stats_collection_address, 'phpList stats', $msg);
-        } else {
-            mail($stats_collection_address, 'phpList stats', $msg);
-        }
+        sendMail($stats_collection_address, 'phpList stats', $msg, '', '', true);
     }
 }
 
