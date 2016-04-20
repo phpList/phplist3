@@ -24,22 +24,24 @@ function listMemberCounts($listId)
     $req = Sql_Query(
         "SELECT
         SUM(1) AS total,
-        SUM(if(u.confirmed = 1 && u.blacklisted = 0, 1, 0)) AS confirmed,
-        SUM(if(u.confirmed = 0 && u.blacklisted = 0, 1, 0)) AS notconfirmed,
-        SUM(if(u.blacklisted = 1, 1, 0)) AS blacklisted
+        SUM(IF(u.confirmed = 1 && u.blacklisted = 0, 1, 0)) AS confirmed,
+        SUM(IF(u.confirmed = 0 && u.blacklisted = 0, 1, 0)) AS notconfirmed,
+        SUM(IF(u.blacklisted = 1, 1, 0)) AS blacklisted
         FROM {$tables['user']} u
         $join"
     );
     $counts = Sql_Fetch_Assoc($req);
-    $membersDisplay = '<span class="memberCount" title="'.s('Confirmed members').'">'.$counts['confirmed'].'</span>';
-
-    if ($counts['notconfirmed'] > 0) {
-        $membersDisplay .= ' <span class="unconfirmedCount" title="'.s('Unconfirmed members').'">('.$counts['notconfirmed'].')</span>';
-    }
-
-    if ($counts['blacklisted'] > 0) {
-        $membersDisplay .= ' <span class="unconfirmedCount" title="'.s('Blacklisted members').'">('.$counts['blacklisted'].')</span>';
-    }
+    $membersDisplay = sprintf(
+        '<span class="memberCount" title="%s">%s</span>' .  ' ('
+        . '<span class="unconfirmedCount" title="%s">%s</span>' . ' '
+        . '<span class="blacklistedCount" title="%s">%s</span>' . ')',
+        s('Confirmed members'),
+        number_format($counts['confirmed']),
+        s('Unconfirmed members'),
+        number_format($counts['notconfirmed']),
+        s('Blacklisted members'),
+        number_format($counts['blacklisted'])
+    );
 
     return $membersDisplay;
 }
