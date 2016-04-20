@@ -1,6 +1,51 @@
 <?php
 require_once dirname(__FILE__) . '/accesscheck.php';
 
+/**
+ * Create the html to show the number of list members in up to three totals.
+ * Confirmed - subscriber is confirmed and not blacklisted
+ * Not confirmed - subscriber is not confirmed and not blacklisted
+ * Blacklisted - subscriber is blacklisted. 
+ *
+ * @param   int  $listId the list id, or 0 for all subscribers
+ * @return  string
+ */
+function listMemberCounts($listId)
+{
+    global $tables;
+
+    if ($listId) {
+        $join = 
+        "JOIN {$tables['listuser']} lu ON u.id = lu.userid
+        WHERE lu.listid = $listId";
+    } else {
+        $join = '';
+    }
+    $req = Sql_Query(
+        "SELECT
+        SUM(1) AS total,
+        SUM(IF(u.confirmed = 1 && u.blacklisted = 0, 1, 0)) AS confirmed,
+        SUM(IF(u.confirmed = 0 && u.blacklisted = 0, 1, 0)) AS notconfirmed,
+        SUM(IF(u.blacklisted = 1, 1, 0)) AS blacklisted
+        FROM {$tables['user']} u
+        $join"
+    );
+    $counts = Sql_Fetch_Assoc($req);
+    $membersDisplay = sprintf(
+        '<span class="memberCount" title="%s">%s</span>' .  ' ('
+        . '<span class="unconfirmedCount" title="%s">%s</span>' . ' '
+        . '<span class="blacklistedCount" title="%s">%s</span>' . ')',
+        s('Confirmed members'),
+        number_format($counts['confirmed']),
+        s('Unconfirmed members'),
+        number_format($counts['notconfirmed']),
+        s('Blacklisted members'),
+        number_format($counts['blacklisted'])
+    );
+
+    return $membersDisplay;
+}
+
 print formStart('class="listListing"');
 $some = 0;
 if (isset($_GET['start'])) {
@@ -167,23 +212,8 @@ $ls->usePanel($paging);
  * we can only do this for superusers of course
  * */
 if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
-    $query
-        = ' select count(u.id) as total,'
-        . ' sum(u.confirmed) as confirmed, '
-        . ' sum(u.blacklisted) as blacklisted '
-        . ' from ' . $tables['user'] . ' u';
-
-    $req = Sql_Query($query);
-    $membercount = Sql_Fetch_Assoc($req);
-
-    $members = $membercount['confirmed'];
-    $unconfirmedMembers = (int)($membercount['total'] - $members);
+    $membersDisplay = listMemberCounts(0);
     $desc = s('All subscribers');
-    if ($unconfirmedMembers > 0) {
-        $membersDisplay = '<span class="memberCount" title="' . s('Confirmed members') . '">' . $members . '</span> <span class="unconfirmedCount" title="' . s('Unconfirmed members') . '">(' . $unconfirmedMembers . ')</span>';
-    } else {
-        $membersDisplay = '<span class="memberCount">' . $members . '</span>';
-    }
 
     $element = '<!-- ' . $row['id'] . '-->' . s('All subscribers');
     $ls->addElement($element);
@@ -221,28 +251,8 @@ if ($numlists > 15) {
 }
 
 while ($row = Sql_fetch_array($result)) {
-
-    ## we only consider confirmed and not blacklisted subscribers members of a list
-    ## we assume "confirmed" to be 1 or 0, so that the sum gives the total confirmed
-    ## could be incorrect, as 1000 is also "true" but will be ok (saves a few queries)
-
-    ## same with blacklisted, but we're disregarding that for now, because blacklisted subscribers should not
-    ## be on the list at all.
-    ## @@TODO increase accuracy, without adding loads of queries.
-
-    $req = Sql_Query(sprintf('select count(u.id) as total,sum(u.confirmed) as confirmed, sum(u.blacklisted) as blacklisted
-    from ' . $tables['listuser'] . ' lu, ' . $tables['user'] . ' u where u.id = lu.userid and listid = %d ',
-        $row['id']));
-    $membercount = Sql_Fetch_Assoc($req);
-
-    $members = $membercount['confirmed'];
-    $unconfirmedMembers = (int)($membercount['total'] - $members);
+    $membersDisplay = listMemberCounts($row['id']);
     $desc = stripslashes($row['description']);
-    if ($unconfirmedMembers > 0) {
-        $membersDisplay = '<span class="memberCount" title="' . s('Confirmed members') . '">' . $members . '</span> <span class="unconfirmedCount" title="' . s('Unconfirmed members') . '">(' . $unconfirmedMembers . ')</span>';
-    } else {
-        $membersDisplay = '<span class="memberCount">' . $members . '</span>';
-    }
 
     //## allow plugins to add columns
     // @@@ TODO review this
