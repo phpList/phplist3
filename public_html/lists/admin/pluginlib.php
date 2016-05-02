@@ -55,8 +55,6 @@ foreach ($pluginRootDirs as $pluginRootDir) {
         closedir($dh);
     }
 }
-// load the defaultAdminAuth last, to fall back to it
-array_push($pluginFiles, dirname(__FILE__) . '/phpListAdminAuthentication.php');
 
 $auto_enable_plugins = array();
 if (isset($GLOBALS['plugins_autoenable'])) {
@@ -132,13 +130,6 @@ foreach ($pluginFiles as $file) {
             #print "$className = ".$pluginInstance->name."<br/>";
         }
     }
-}
-## enable the default auth plugin, if no other was activated
-if (empty($GLOBALS['authenticationplugin'])) {
-    $GLOBALS['authenticationplugin'] = 'phpListAdminAuthentication';
-} else {
-# otherwise remove it, so it can't be enabled either
-    unset($GLOBALS['allplugins']['phpListAdminAuthentication']);
 }
 
 $GLOBALS['pluginsendformats'] = array();

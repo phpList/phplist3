@@ -7,7 +7,7 @@ if (isset($_GET['remember_find'])) {
     $remember_find = '';
 }
 
-$external = $require_login && $GLOBALS['admin_auth_module'] != 'phplist_auth.inc';
+$external = $require_login && !is_a($GLOBALS['admin_auth'], 'phpListAdminAuthentication');
 $start = isset($_GET['start']) ? sprintf('%d', $_GET['start']) : 0;
 $listid = isset($_GET['id']) ? sprintf('%d', $_GET['id']) : 0;
 $find = isset($_REQUEST['find']) ? $_REQUEST['find'] : '';
