@@ -240,7 +240,7 @@ if (!empty($GLOBALS['require_login'])) {
     $remoteAddr = getClientIP();
 
     if ($GLOBALS['authenticationplugin']) {
-        $GLOBALS['admin_auth'] = new $GLOBALS['authenticationplugin']();
+        $GLOBALS['admin_auth'] = $GLOBALS['plugins'][$GLOBALS['authenticationplugin']];
     } else {
         require __DIR__ . '/phpListAdminAuthentication.php';
         $GLOBALS['admin_auth'] = new phpListAdminAuthentication();
