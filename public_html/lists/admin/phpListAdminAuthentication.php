@@ -1,12 +1,11 @@
 <?php
 
-class phpListAdminAuthentication extends phplistPlugin
+class phpListAdminAuthentication
 {
-    public $name = 'Default phpList Authentication Plugin';
+    public $name = 'Default phpList Authentication';
     public $version = 0.1;
     public $authors = 'Michiel Dethmers';
     public $description = 'Provides authentication to phpList using the internal phpList administration database';
-    public $authProvider = true;
 
     /**
      * validateLogin, verify that the login credentials are correct.

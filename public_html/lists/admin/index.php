@@ -239,12 +239,11 @@ if (!empty($GLOBALS['require_login'])) {
     #bth 7.1.2015 to support x-forwarded-for
     $remoteAddr = getClientIP();
 
-    if (class_exists($GLOBALS['authenticationplugin'])) {
-        $GLOBALS['admin_auth'] = new $GLOBALS['authenticationplugin']();
+    if ($GLOBALS['authenticationplugin']) {
+        $GLOBALS['admin_auth'] = $GLOBALS['plugins'][$GLOBALS['authenticationplugin']];
     } else {
-        print Fatal_Error($GLOBALS['I18N']->get('Admin Authentication initialisation failure'));
-
-        return;
+        require __DIR__ . '/phpListAdminAuthentication.php';
+        $GLOBALS['admin_auth'] = new phpListAdminAuthentication();
     }
     if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password']) && !empty($_REQUEST['password'])) {
         $loginresult = $GLOBALS['admin_auth']->validateLogin($_REQUEST['login'], $_REQUEST['password']);
