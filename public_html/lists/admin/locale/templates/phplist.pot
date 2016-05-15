@@ -257,7 +257,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: public_html/lists/admin/home.php:86 public_html/lists/admin/index.php:421
+#: public_html/lists/admin/home.php:86 public_html/lists/admin/index.php:420
 msgid "Continue Configuration"
 msgstr ""
 
@@ -1696,7 +1696,7 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:23
 #: public_html/lists/admin/actions/processqueue.php:17
-#: public_html/lists/admin/index.php:287
+#: public_html/lists/admin/index.php:286
 msgid "Incorrect processing secret"
 msgstr ""
 
@@ -3405,7 +3405,7 @@ msgid "All Done"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:111
-#: public_html/lists/admin/index.php:648 public_html/lists/admin/index.php:668
+#: public_html/lists/admin/index.php:647 public_html/lists/admin/index.php:667
 msgid "Access Denied"
 msgstr ""
 
@@ -5295,35 +5295,35 @@ msgstr ""
 msgid "subscriber management functions"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:43
-#: public_html/lists/admin/phpListAdminAuthentication.php:110
+#: public_html/lists/admin/phpListAdminAuthentication.php:42
+#: public_html/lists/admin/phpListAdminAuthentication.php:109
 msgid "your account has been disabled"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:51
-#: public_html/lists/admin/phpListAdminAuthentication.php:59
+#: public_html/lists/admin/phpListAdminAuthentication.php:50
+#: public_html/lists/admin/phpListAdminAuthentication.php:58
 msgid "Admin authentication has changed, please update your admin module"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:56
+#: public_html/lists/admin/phpListAdminAuthentication.php:55
 msgid "incorrect password"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:65
+#: public_html/lists/admin/phpListAdminAuthentication.php:64
 msgid "Login failed"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:103
+#: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "No such account"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:107
+#: public_html/lists/admin/phpListAdminAuthentication.php:106
 msgid ""
 "Your session does not match your password. If you just changed your "
 "password, simply log back in."
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:145
+#: public_html/lists/admin/phpListAdminAuthentication.php:144
 msgid "Nobody"
 msgstr ""
 
@@ -6993,128 +6993,124 @@ msgstr ""
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/index.php:245
-msgid "Admin Authentication initialisation failure"
-msgstr ""
-
-#: public_html/lists/admin/index.php:255
+#: public_html/lists/admin/index.php:254
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
 
-#: public_html/lists/admin/index.php:279
+#: public_html/lists/admin/index.php:278
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:311
+#: public_html/lists/admin/index.php:310
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:313
+#: public_html/lists/admin/index.php:312
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:320
+#: public_html/lists/admin/index.php:319
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:339
+#: public_html/lists/admin/index.php:338
 msgid "Your session timed out, please log in again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:344
+#: public_html/lists/admin/index.php:343
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:402
+#: public_html/lists/admin/index.php:401
 msgid "Main page"
 msgstr ""
 
-#: public_html/lists/admin/index.php:406
+#: public_html/lists/admin/index.php:405
 msgid "goodbye"
 msgstr ""
 
-#: public_html/lists/admin/index.php:410
+#: public_html/lists/admin/index.php:409
 msgid "good morning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:412
+#: public_html/lists/admin/index.php:411
 msgid "good afternoon"
 msgstr ""
 
-#: public_html/lists/admin/index.php:414
+#: public_html/lists/admin/index.php:413
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:429
+#: public_html/lists/admin/index.php:428
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:443
+#: public_html/lists/admin/index.php:442
 #: public_html/lists/admin/processqueue.php:32
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:446
+#: public_html/lists/admin/index.php:445
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.0 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:449
+#: public_html/lists/admin/index.php:448
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:454
+#: public_html/lists/admin/index.php:453
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:456
+#: public_html/lists/admin/index.php:455
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:469
+#: public_html/lists/admin/index.php:468
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:470
+#: public_html/lists/admin/index.php:469
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:472
+#: public_html/lists/admin/index.php:471
 #, php-format
 msgid "You have %s message(s) waiting to be sent"
 msgstr ""
 
-#: public_html/lists/admin/index.php:577
+#: public_html/lists/admin/index.php:576
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:599
+#: public_html/lists/admin/index.php:598
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:607
+#: public_html/lists/admin/index.php:606
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:664 public_html/lists/admin/index.php:665
+#: public_html/lists/admin/index.php:663 public_html/lists/admin/index.php:664
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:672
+#: public_html/lists/admin/index.php:671
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:678
+#: public_html/lists/admin/index.php:677
 msgid "Sorry, not implemented yet"
 msgstr ""
 
