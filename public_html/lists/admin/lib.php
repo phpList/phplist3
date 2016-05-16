@@ -56,6 +56,12 @@ function setMessageData($msgid, $name, $value)
         return;
     }
 
+    if ($name == 'subject' || $name == 'campaigntitle') {
+        ## disallow html in the subject and title
+        $value = strip_tags($value);
+    }
+
+
     if ($name == 'targetlist' && is_array($value)) {
         Sql_query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
         if (!empty($value['all']) || !empty($value['allactive'])) {
@@ -664,7 +670,7 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     $req = Sql_Query(sprintf('select id from %s where filename = "powerphplist.png" and template = 0',
         $GLOBALS['tables']['templateimage']));
     if (!Sql_Affected_Rows()) {
-        Sql_Query(sprintf('insert into %s (template, mimetype, filename, data, width, height) 
+        Sql_Query(sprintf('insert into %s (template, mimetype, filename, data, width, height)
       values (0, "image/png", "powerphplist.png", "%s", 70, 30)', $GLOBALS['tables']['templateimage'],
             $GLOBALS['newpoweredimage']));
         $poweredImageId = Sql_Insert_Id();
@@ -1748,10 +1754,10 @@ function listCategories()
 
 /*
  * shortenTextDisplay
- * 
+ *
  * mostly used for columns in listings to retrict the width, particularly on mobile devices
  * it will show the full text as the title tip but restrict the size of the output
- * 
+ *
  * will also place a space after / and @ to facilitate wrapping in the browser
  */
 
@@ -1972,9 +1978,9 @@ function subscribeToAnnouncementsForm($emailAddress = '')
     . s('to make sure you are updated when new versions come out. Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low.') .
     '<script type="text/javascript">var pleaseEnter = "' . strip_tags($emailAddress) . '";</script> ' .
     '<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
-<script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script> 
-<div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform"> 
-<input type="text" name="email" value="" id="emailaddress" /> 
+<script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
+<div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
+<input type="text" name="email" value="" id="emailaddress" />
 <button type="submit" id="phplistsubscribe">' . s('Subscribe') . '</button> <button id="phplistnotsubscribe" class="fright">' . s('Do not subscribe') . '</button></form>'
     . ' </p>';
 }

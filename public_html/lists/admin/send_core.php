@@ -49,7 +49,7 @@ if (!empty($_GET['tab'])) {
 if (!$id) {
     $defaulttemplate = getConfig('defaultmessagetemplate');
     $defaultfooter = getConfig('messagefooter');
-    Sql_Query(sprintf('insert into %s (subject, status, entered, sendformat, embargo, repeatuntil, owner, template, tofield, replyto,footer) 
+    Sql_Query(sprintf('insert into %s (subject, status, entered, sendformat, embargo, repeatuntil, owner, template, tofield, replyto,footer)
     values("(no title)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s" )',
         $GLOBALS['tables']['message'],
         $_SESSION['logindetails']['id'],
@@ -160,6 +160,7 @@ if (!isset($_SESSION['fckeditor_height'])) {
 #actions and store in database#######################
 
 if ($send || $sendtest || $prepare || $save || $savedraft) {
+    verifyCsrfGetToken();
     if ($savedraft || $save || $sendtest) {
         // We're just saving, not sending.
         if (!isset($messagedata['status']) || $messagedata['status'] == '') {
@@ -197,11 +198,11 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
     $result = Sql_Query(
         sprintf('update %s  set
         subject = "%s", fromfield = "%s", tofield = "%s",
-        replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s", 
+        replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s",
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
         htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d',
             $tables['message'],
-            sql_escape($messagedata['campaigntitle']),
+            sql_escape(strip_tags($messagedata['campaigntitle'])),
             /* we store the title in the subject field. Better would be to rename the DB column, but this will do for now */
             sql_escape($messagedata['fromfield']),
             sql_escape($messagedata['tofield']),
