@@ -76,7 +76,7 @@ if (!$id) {
 
     # 0008720: Using -p send from the commandline doesn't seem to work
     if (!$GLOBALS['commandline']) {
-        Redirect($_GET['page'] . '&id=' . $id);
+        Redirect($_GET['page'] . '&id=' . $id.addCsrfGetToken());
         exit;
     }
 }
@@ -701,7 +701,7 @@ if (!$done) {
 
     if ($GLOBALS['can_fetchUrl']) {
         $maincontent .= sprintf('
-      
+
       <div id="contentchoice" class="field">
       <label for="sendmethod">' . $GLOBALS['I18N']->get('Content') . Help('sendmethod') . '</label>' . '
       <input type="radio" name="sendmethod" value="remoteurl" %s />' . $GLOBALS['I18N']->get('Send a Webpage') . '
@@ -888,7 +888,7 @@ if (!$done) {
 
     #0013076: different content when forwarding 'to a friend'
     $tmp = '
- 
+
   </div></div> <!-- end of message content -->
   ';
 
