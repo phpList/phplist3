@@ -69,11 +69,11 @@ if (!$id) {
     $timerange = ' and msg.entered > date_sub(now(),interval 12 month)';
     $timerange = '';
 
-    $query = sprintf('select msg.owner,msg.id as messageid,count(um.viewed) as views, 
-    count(um.status) as total,subject,date_format(sent,"%%e %%b %%Y") as sent,
-    bouncecount as bounced from %s um,%s msg where um.messageid = msg.id and um.status = "sent" %s %s %s
+    $query = sprintf('select msg.owner,msg.id as messageid,  
+    subject,date_format(sent,"%%e %%b %%Y") as sent,
+    bouncecount as bounced from %s msg where msg.status = "sent" %s %s %s
     group by msg.id order by msg.entered desc',
-        $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['message'], $subselect, $timerange, $ownership);
+        $GLOBALS['tables']['message'], $subselect, $timerange, $ownership);
     $req = Sql_Query($query);
     $total = Sql_Num_Rows($req);
     if ($total > 10 && !$download) {
@@ -101,17 +101,23 @@ if (!$id) {
 
         $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
             $GLOBALS['tables']['user_message_forward'], $row['messageid']));
+	   $views = Sql_Fetch_Row_Query(sprintf('select count(viewed) from %s where messageid = %d 
+	       and status = "sent"', 
+	       $GLOBALS['tables']['usermessage'], $row['messageid']));
+	   $totls = Sql_Fetch_Row_Query(sprintf('select count(status) from %s where messageid = %d 
+	       and status = "sent"', 
+	       $GLOBALS['tables']['usermessage'], $row['messageid']));
 
         $ls->addElement($element,
             PageURL2('statsoverview&amp;id=' . $row['messageid']));#,PageURL2('message&amp;id='.$row['messageid']));
         $ls->setClass($element, 'row1');
         #   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
-        $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $row['total']);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $totls[0]);
         $ls->addColumn($element, $GLOBALS['I18N']->get('bncs'), $row['bounced']);
         $ls->addColumn($element, $GLOBALS['I18N']->get('fwds'), sprintf('%d', $fwded[0]));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $row['views'],
-            $row['views'] ? PageURL2('mviews&amp;id=' . $row['messageid']) : '');
-        $perc = sprintf('%0.2f', ($row['views'] / ($row['total'] - $row['bounced']) * 100));
+        $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $views[0],
+            $views[0] ? PageURL2('mviews&amp;id=' . $row['messageid']) : '');
+        $perc = sprintf('%0.2f', ($views[0] / ($totls[0] - $row['bounced']) * 100));
 
         $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
             $GLOBALS['tables']['linktrack_uml_click'], $row['messageid']));
