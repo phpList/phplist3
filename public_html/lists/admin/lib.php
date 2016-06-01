@@ -511,7 +511,9 @@ function sendMailPhpMailer($to, $subject, $message)
     $removeurl = getConfig('unsubscribeurl');
     $sep = strpos($removeurl, '?') === false ? '?' : '&';
     $mail->addCustomHeader('List-Unsubscribe: <' . $removeurl . $sep . 'email=' . $to . '&jo=1>');
-
+    if(isset($reply_to)) {
+        $mail->addCustomHeader('Reply-To: '.$reply_to);
+    }
     return $mail->compatSend('', $destinationemail, $fromname, $fromemail, $subject);
 }
 
