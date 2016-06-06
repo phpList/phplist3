@@ -257,8 +257,13 @@ if (isset($add)) {
     echo ActionResult($GLOBALS['I18N']->get('User added'));
 }
 
-$countpanel .= s('%s subscribers in total', $total);
-$countpanel .= '<br/>' . s('Subscribers with a red icon are either unconfirmed or blacklisted or both') . " ($totalunconfirmed)<br/>";
+// Make the totals human readable
+$totalFormatted = number_format( $total );
+$totalunconfirmedFormatted = number_format( $totalunconfirmed );
+
+// Add messages to panel
+$countpanel .= s('%s subscribers in total', $totalFormatted);
+$countpanel .= '<br/>' . s('Subscribers with a red icon are either unconfirmed or blacklisted or both') . " ($totalunconfirmedFormatted)<br/>";
 
 $url = getenv('REQUEST_URI');
 if ($unconfirmed) {
