@@ -422,11 +422,7 @@ function constructSystemMail($message, $subject = '')
         #  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
         $htmlmessage = nl2br($htmlmessage);
         ## make links clickable:
-        preg_match_all('~https?://[^\s<]+~i', $htmlmessage, $matches);
-        for ($i = 0; $i < count($matches[0]); ++$i) {
-            $match = $matches[0][$i];
-            $htmlmessage = str_replace($match, '<a href="' . $match . '">' . $match . '</a>', $htmlmessage);
-        }
+        $htmlmessage = preg_replace('~https?://[^\s<]+~i', '<a href="$0">$0</a>', $htmlmessage);
     }
     ## add li-s around the lists
     if (preg_match('/<ul>\s+(\*.*)<\/ul>/imsxU', $htmlmessage, $listsmatch)) {
