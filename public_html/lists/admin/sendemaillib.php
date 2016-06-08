@@ -1620,9 +1620,11 @@ function precacheMessage($messageid, $forwardContent = 0)
     $result = Sql_Query(
         "SELECT a.name, aa.value
         FROM {$tables['adminattribute']} a
-        JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid
-        JOIN {$tables['message']} m ON aa.adminid = m.owner
-        WHERE m.id = $messageid"
+        LEFT JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid AND aa.adminid = (
+            SELECT owner
+            FROM {$tables['message']}
+            WHERE id = $messageid
+        )"
     );
 
     if ($result !== false) {
@@ -1641,17 +1643,20 @@ function precacheMessage($messageid, $forwardContent = 0)
     if ($result !== false && Sql_Num_Rows($result) == 1) {
         $row = Sql_Fetch_Assoc($result);
         $listOwner = $row['owner'];
-
         $att_req = Sql_Query(
             "SELECT a.name, aa.value
             FROM {$tables['adminattribute']} a
-            JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid
-            WHERE aa.adminid = $listOwner"
+            LEFT JOIN {$tables['admin_attribute']} aa ON a.id = aa.adminattributeid AND aa.adminid = $listOwner"
         );
+    } else {
+        $att_req = Sql_Query(
+            "SELECT a.name, '' AS value
+            FROM {$tables['adminattribute']} a"
+        );
+    }
 
-        while ($att = Sql_Fetch_Array($att_req)) {
-            $cached[$messageid]['adminattributes']['LISTOWNER.' . $att['name']] = $att['value'];
-        }
+    while ($att = Sql_Fetch_Array($att_req)) {
+        $cached[$messageid]['adminattributes']['LISTOWNER.' . $att['name']] = $att['value'];
     }
 
     $baseurl = $GLOBALS['website'];
