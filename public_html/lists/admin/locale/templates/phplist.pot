@@ -1140,96 +1140,96 @@ msgstr ""
 msgid "Error sending password change token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:643
+#: public_html/lists/admin/lib.php:639
 #: public_html/lists/admin/actions/msgstatus.php:81
 #: public_html/lists/admin/bounces.php:152
 #: public_html/lists/admin/bounces.php:170
 msgid "Unknown"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:654
+#: public_html/lists/admin/lib.php:650
 msgid "very little time"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:711
+#: public_html/lists/admin/lib.php:707
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:881 public_html/lists/admin/lib.php:885
+#: public_html/lists/admin/lib.php:877 public_html/lists/admin/lib.php:881
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:887
+#: public_html/lists/admin/lib.php:883
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:890
+#: public_html/lists/admin/lib.php:886
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:898
+#: public_html/lists/admin/lib.php:894
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1679 public_html/lists/admin/lib.php:1684
+#: public_html/lists/admin/lib.php:1675 public_html/lists/admin/lib.php:1680
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1949
+#: public_html/lists/admin/lib.php:1945
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1950
+#: public_html/lists/admin/lib.php:1946
 #: public_html/lists/admin/send_core.php:385
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1952 public_html/lists/admin/lib.php:1963
+#: public_html/lists/admin/lib.php:1948 public_html/lists/admin/lib.php:1959
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1954
+#: public_html/lists/admin/lib.php:1950
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1956
+#: public_html/lists/admin/lib.php:1952
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1958
+#: public_html/lists/admin/lib.php:1954
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1960
+#: public_html/lists/admin/lib.php:1956
 #: public_html/lists/admin/processqueue.php:99
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1961 public_html/lists/admin/lib.php:1964
+#: public_html/lists/admin/lib.php:1957 public_html/lists/admin/lib.php:1960
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1977
+#: public_html/lists/admin/lib.php:1973
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1978
+#: public_html/lists/admin/lib.php:1974
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1984
+#: public_html/lists/admin/lib.php:1980
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1984
+#: public_html/lists/admin/lib.php:1980
 msgid "Do not subscribe"
 msgstr ""
 
