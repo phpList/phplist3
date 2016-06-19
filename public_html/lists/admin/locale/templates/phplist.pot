@@ -313,7 +313,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:147
 #: public_html/lists/admin/import4.php:118
-#: public_html/lists/admin/users.php:405
+#: public_html/lists/admin/users.php:410
 msgid "users"
 msgstr ""
 
@@ -1258,7 +1258,7 @@ msgid "There are currently no campaigns to view"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:110
-#: public_html/lists/admin/users.php:465
+#: public_html/lists/admin/users.php:470
 msgid "bncs"
 msgstr ""
 
@@ -1564,7 +1564,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:126
 #: public_html/lists/admin/actions/import1.php:217
 #: public_html/lists/admin/import3.php:514
-#: public_html/lists/admin/users.php:445
+#: public_html/lists/admin/users.php:450
 msgid "lists"
 msgstr ""
 
@@ -3021,7 +3021,7 @@ msgid "Purpose"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:10
-#: public_html/lists/admin/users.php:315
+#: public_html/lists/admin/users.php:320
 msgid "Sort by"
 msgstr ""
 
@@ -3078,7 +3078,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:130
 #: public_html/lists/admin/admins.php:105
-#: public_html/lists/admin/users.php:318 public_html/lists/admin/users.php:386
+#: public_html/lists/admin/users.php:323 public_html/lists/admin/users.php:391
 msgid "Go"
 msgstr ""
 
@@ -3728,7 +3728,7 @@ msgid "filename"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:938
-#: public_html/lists/admin/users.php:316
+#: public_html/lists/admin/users.php:321
 msgid "desc"
 msgstr ""
 
@@ -3886,13 +3886,13 @@ msgid "What is the type of information you want to check"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:42
-#: public_html/lists/admin/users.php:375 public_html/databasestructure.php:27
+#: public_html/lists/admin/users.php:380 public_html/databasestructure.php:27
 #: public_html/databasestructure.php:28
 msgid "Foreign Key"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:43
-#: public_html/lists/admin/users.php:372 public_html/databasestructure.php:12
+#: public_html/lists/admin/users.php:377 public_html/databasestructure.php:12
 #: public_html/databasestructure.php:85 public_html/databasestructure.php:87
 #: public_html/databasestructure.php:132
 msgid "Email"
@@ -6014,7 +6014,7 @@ msgstr ""
 
 #: public_html/lists/admin/userclicks.php:161
 #: public_html/lists/admin/mclicks.php:135
-#: public_html/lists/admin/users.php:349
+#: public_html/lists/admin/users.php:354
 msgid "Subscribers"
 msgstr ""
 
@@ -6766,69 +6766,69 @@ msgstr ""
 msgid "Sorry, only super users can delete users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:260
+#: public_html/lists/admin/users.php:265
 #, php-format
 msgid "%s subscribers in total"
 msgstr ""
 
-#: public_html/lists/admin/users.php:261
+#: public_html/lists/admin/users.php:266
 msgid ""
 "Subscribers with a red icon are either unconfirmed or blacklisted or both"
 msgstr ""
 
-#: public_html/lists/admin/users.php:289
+#: public_html/lists/admin/users.php:294
 msgid "Show only unconfirmed users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:291
+#: public_html/lists/admin/users.php:296
 msgid "Show only blacklisted users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:317
+#: public_html/lists/admin/users.php:322
 msgid "asc"
 msgstr ""
 
-#: public_html/lists/admin/users.php:336 public_html/lists/admin/users.php:340
+#: public_html/lists/admin/users.php:341 public_html/lists/admin/users.php:345
 #: public_html/lists/admin/mviews.php:160
 #: public_html/lists/admin/mviews.php:163
 #, php-format
 msgid "Listing user %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/users.php:363
+#: public_html/lists/admin/users.php:368
 msgid "Find a user"
 msgstr ""
 
-#: public_html/lists/admin/users.php:378 public_html/databasestructure.php:19
+#: public_html/lists/admin/users.php:383 public_html/databasestructure.php:19
 msgid "Unique ID"
 msgstr ""
 
-#: public_html/lists/admin/users.php:386
+#: public_html/lists/admin/users.php:391
 msgid "reset"
 msgstr ""
 
-#: public_html/lists/admin/users.php:393
+#: public_html/lists/admin/users.php:398
 msgid "Find subscribers"
 msgstr ""
 
-#: public_html/lists/admin/users.php:398
+#: public_html/lists/admin/users.php:403
 msgid "Download all users as CSV file"
 msgstr ""
 
-#: public_html/lists/admin/users.php:400
+#: public_html/lists/admin/users.php:405
 msgid "Add a User"
 msgstr ""
 
-#: public_html/lists/admin/users.php:451
+#: public_html/lists/admin/users.php:456
 #: public_html/lists/admin/uclicks.php:56
 msgid "msgs"
 msgstr ""
 
-#: public_html/lists/admin/users.php:472
+#: public_html/lists/admin/users.php:477
 msgid "no results"
 msgstr ""
 
-#: public_html/lists/admin/users.php:472
+#: public_html/lists/admin/users.php:477
 msgid "No users apply"
 msgstr ""
 
