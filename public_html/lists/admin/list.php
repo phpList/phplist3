@@ -33,7 +33,7 @@ function listMemberCounts($listId)
     $counts = Sql_Fetch_Assoc($req);
     $membersDisplay = sprintf(
         '<span class="memberCount" title="%s">%s</span>' .  ' ('
-        . '<span class="unconfirmedCount" title="%s">%s</span>' . ' '
+        . '<span class="unconfirmedCount" title="%s">%s</span>, ' . ' '
         . '<span class="blacklistedCount" title="%s">%s</span>' . ')',
         s('Confirmed members'),
         number_format($counts['confirmed']),
