@@ -50,8 +50,9 @@ function getUniqid($table = '')
 
 function userSelect($fieldname, $current = '')
 {
+    global $tables;
     $html = sprintf('<select name="%s">', $fieldname);
-    $req = Sql_Query(sprintf('select id,email from user order by email'));
+    $req = Sql_Query(sprintf('select id,email from %s order by email', $tables['user']));
     while ($row = Sql_Fetch_Array($req)) {
         $html .= sprintf('<option value="%d" %s>%s</option>', $row['id'],
             $current == $row['id'] ? 'selected="selected"' : '', $row['email']);
