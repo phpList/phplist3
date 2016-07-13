@@ -438,7 +438,7 @@ function preferencesPage($id, $userid)
     $html .= '<h3>' . $GLOBALS['strPreferencesInfo'] . '</h3>';
     $html .= '
 
-<br/><div class="error"><span class="required">' . $GLOBALS['strRequired'] . '</span></div><br/>
+<br/><div class="error"><span class="required">* ' . $GLOBALS['strRequired'] . '</span></div><br/>
 ' . $GLOBALS['msg'] . '
 
 <script language="Javascript" type="text/javascript">
@@ -538,7 +538,7 @@ function subscribePage($id)
     $html .= $GLOBALS['pagedata']['intro'];
     $html .= '
 
-<div class="error"><span class="required">' . $GLOBALS['strRequired'] . '</span></div>
+<div class="error"><span class="required">* ' . $GLOBALS['strRequired'] . '</span></div>
 ' . $GLOBALS['msg'] . '
 
 <script language="Javascript" type="text/javascript">
