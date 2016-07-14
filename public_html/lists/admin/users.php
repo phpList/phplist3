@@ -338,7 +338,8 @@ $listing = '';
 $dolist = 1;
 if (true || $total > MAX_USER_PP) {
     if (isset($start) && $start) {
-        $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), $start, $start + MAX_USER_PP);
+        $totalUserCount = number_format( $start + MAX_USER_PP );
+        $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), $start, $totalUserCount);
         $limit = "limit $start," . MAX_USER_PP;
     } else {
         if ($total < USERSPAGE_MAX || $searchdone) {
