@@ -824,7 +824,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
     $html = '';
     if (!isset($_GET['page']) || (isset($_GET['page']) && $_GET['page'] != 'import1')) {
         $html = sprintf('
-  <tr><td><div class="required">%s</div></td>
+  <tr><td><div class="required">%s *</div></td>
   <td class="attributeinput"><input type=text name=email value="%s" size="%d" />
   <script language="Javascript" type="text/javascript">addFieldToCheck("email","%s");</script></td></tr>',
             $GLOBALS['strEmail'], htmlspecialchars($email), $textlinewidth, $GLOBALS['strEmail']);
@@ -836,7 +836,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
             $_REQUEST['emailconfirm'] = '';
         }
         $html .= sprintf('
-  <tr><td><div class="required">%s</div></td>
+  <tr><td><div class="required">%s *</div></td>
   <td class="attributeinput"><input type=text name=emailconfirm value="%s" size="%d" />
   <script language="Javascript" type="text/javascript">addFieldToCheck("emailconfirm","%s");</script></td></tr>',
             $GLOBALS['strConfirmEmail'], htmlspecialchars(stripslashes($_REQUEST['emailconfirm'])), $textlinewidth,
@@ -1156,7 +1156,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
 
     $html = '';
     $html .= '<fieldset class="subscriberdetails">';
-    $html .= sprintf('<div class="required"><label for="email">%s</label>
+    $html .= sprintf('<div class="required"><label for="email">%s *</label>
     <input type="text" name="email" value="%s" class="input email required" />', $GLOBALS['strEmail'],
         htmlspecialchars($email));
 
