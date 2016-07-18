@@ -30,7 +30,7 @@ $unmatched = 0;
 $matched = 0;
 $req = Sql_Query(sprintf('select * from %s where comment != "not processed" %s', $GLOBALS['tables']['bounce'], $limit));
 while ($row = Sql_Fetch_Array($req)) {
-    $action = matchBounceRules($row['data'], $bouncerules);
+    $action = matchBounceRules($row['header'] . "\n\n" . $row['data'], $bouncerules);
     if ($action) {
         #  print $row['comment']. " Match: $action<br/>";
         ++$matched;
