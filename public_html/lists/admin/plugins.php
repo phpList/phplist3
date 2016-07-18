@@ -230,6 +230,15 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         $details .= '<div class="detail"><span class="label">' . s('More information') . '</span>';
         $details .= '<span class="value"><a href="' . $plugin->documentationUrl . '" target="moreinfoplugin">' . s('Documentation Page') . '</a></span></div>';
     }
+
+    if ($plugin->enabled && !empty($plugin->settings)) {
+        $firstSetting = reset($plugin->settings);
+        $category = $firstSetting['category'];
+        $settingsUrl = PageURL2('configure')  . '#' . strtolower($category);
+        $details .= '<div class="detail"><span class="label">' . s('Configure') . '</span>';
+        $details .= '<span class="value"><a href="' . $settingsUrl . '">' . s($category) . ' ' . s('settings'). '</a></span></div>';
+    }
+
     if (pluginCanEnable($pluginname)) {
         $ls->addColumn($pluginname, s('enabled'), $plugin->enabled ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
         $ls->addColumn($pluginname, s('action'), $plugin->enabled ?
