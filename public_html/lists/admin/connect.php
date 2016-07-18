@@ -1817,12 +1817,24 @@ function repeatMessage($msgid)
 
         return;
     }
-    foreach ($DBstruct['message'] as $column => $rec) {
-        if ($column != 'id' && $column != 'entered' && $column != 'sendstart') {
-            Sql_Query(sprintf('update %s set %s = "%s" where id = %d',
-                $GLOBALS['tables']['message'], $column, addslashes($msgdata[$column]), $newid));
-        }
+    
+    //  Do not copy columns that use default values or are explicitly set
+    $columnsToCopy = array_diff(
+        array_keys($DBstruct['message']),
+        array(
+            'id', 'entered', 'modified', 'embargo', 'status', 'sent', 'processed', 'astext', 'ashtml',
+            'astextandhtml', 'aspdf', 'astextandpdf', 'viewed', 'bouncecount', 'sendstart',
+        )
+    );
+
+    foreach ($columnsToCopy as $column) {
+        Sql_Query(sprintf('update %s set %s = "%s" where id = %d',
+            $GLOBALS['tables']['message'], $column, addslashes($msgdata[$column]), $newid));
     }
+    Sql_Query(sprintf('update %s set embargo = "%s",status = "submitted" where id = %d',
+        $GLOBALS['tables']['message'], $msgdata['newembargo'], $newid));
+
+    // copy rows in messagedata
     $req = Sql_Query(sprintf(
         "SELECT *
     FROM %s
@@ -1833,27 +1845,10 @@ function repeatMessage($msgid)
         setMessageData($newid, $row['name'], $row['data']);
     }
 
-    Sql_Query(sprintf('update %s set embargo = "%s",status = "submitted",sent = "" where id = %d',
-        $GLOBALS['tables']['message'], $msgdata['newembargo'], $newid));
-
     list($e['year'], $e['month'], $e['day'], $e['hour'], $e['minute'], $e['second']) =
         sscanf($msgdata['newembargo'], '%04d-%02d-%02d %02d:%02d:%02d');
     unset($e['second']);
     setMessageData($newid, 'embargo', $e);
-
-    foreach (array(
-                 'processed',
-                 'astext',
-                 'ashtml',
-                 'astextandhtml',
-                 'aspdf',
-                 'astextandpdf',
-                 'viewed',
-                 'bouncecount'
-             ) as $item) {
-        Sql_Query(sprintf('update %s set %s = 0 where id = %d',
-            $GLOBALS['tables']['message'], $item, $newid));
-    }
 
     # lists
     $req = Sql_Query(sprintf('select listid from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
