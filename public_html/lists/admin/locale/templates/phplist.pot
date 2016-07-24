@@ -313,7 +313,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:147
 #: public_html/lists/admin/import4.php:118
-#: public_html/lists/admin/users.php:410
+#: public_html/lists/admin/users.php:411
 msgid "users"
 msgstr ""
 
@@ -355,6 +355,7 @@ msgid "configure"
 msgstr ""
 
 #: public_html/lists/admin/home.php:187
+#: public_html/lists/admin/plugins.php:238
 msgid "Configure"
 msgstr ""
 
@@ -1005,26 +1006,31 @@ msgstr ""
 msgid "Documentation Page"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:234
 #: public_html/lists/admin/plugins.php:239
+#: public_html/lists/admin/configure.php:123
+msgid "settings"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:243
+#: public_html/lists/admin/plugins.php:248
 msgid "enabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:235
+#: public_html/lists/admin/plugins.php:244
 #: public_html/lists/admin/bouncerules.php:102
 msgid "action"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:245
+#: public_html/lists/admin/plugins.php:254
 msgid "initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:247
+#: public_html/lists/admin/plugins.php:256
 msgid "Initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:253
-#: public_html/lists/admin/plugins.php:254
+#: public_html/lists/admin/plugins.php:262
+#: public_html/lists/admin/plugins.php:263
 #: public_html/lists/admin/templates.php:40
 #: public_html/lists/admin/templates.php:41
 #: public_html/lists/admin/spage.php:75
@@ -1034,38 +1040,38 @@ msgstr ""
 msgid "delete"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:254
+#: public_html/lists/admin/plugins.php:263
 msgid "delete this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:257
+#: public_html/lists/admin/plugins.php:266
 msgid "Dependency check"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:260
+#: public_html/lists/admin/plugins.php:269
 #, php-format
 msgid "Plugin can not be enabled, because \"%s\" is enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:263
+#: public_html/lists/admin/plugins.php:272
 msgid "Plugin can not be enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:263
+#: public_html/lists/admin/plugins.php:272
 #, php-format
 msgid "Failure on system requirement <strong>%s</strong>"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:271
+#: public_html/lists/admin/plugins.php:280
 msgid "update this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:271
-#: public_html/lists/admin/plugins.php:272
+#: public_html/lists/admin/plugins.php:280
+#: public_html/lists/admin/plugins.php:281
 msgid "update"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:275
+#: public_html/lists/admin/plugins.php:284
 msgid "details"
 msgstr ""
 
@@ -1258,7 +1264,7 @@ msgid "There are currently no campaigns to view"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:110
-#: public_html/lists/admin/users.php:470
+#: public_html/lists/admin/users.php:471
 msgid "bncs"
 msgstr ""
 
@@ -1564,7 +1570,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:126
 #: public_html/lists/admin/actions/import1.php:217
 #: public_html/lists/admin/import3.php:514
-#: public_html/lists/admin/users.php:450
+#: public_html/lists/admin/users.php:451
 msgid "lists"
 msgstr ""
 
@@ -2521,10 +2527,6 @@ msgstr ""
 msgid "Categories saved"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:123
-msgid "settings"
-msgstr ""
-
 #: public_html/lists/admin/configure.php:135
 #: public_html/lists/admin/actions/configure.php:64
 #: public_html/lists/admin/user.php:387
@@ -3078,7 +3080,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:130
 #: public_html/lists/admin/admins.php:105
-#: public_html/lists/admin/users.php:323 public_html/lists/admin/users.php:391
+#: public_html/lists/admin/users.php:323 public_html/lists/admin/users.php:392
 msgid "Go"
 msgstr ""
 
@@ -3886,13 +3888,13 @@ msgid "What is the type of information you want to check"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:42
-#: public_html/lists/admin/users.php:380 public_html/databasestructure.php:27
+#: public_html/lists/admin/users.php:381 public_html/databasestructure.php:27
 #: public_html/databasestructure.php:28
 msgid "Foreign Key"
 msgstr ""
 
 #: public_html/lists/admin/usercheck.php:43
-#: public_html/lists/admin/users.php:377 public_html/databasestructure.php:12
+#: public_html/lists/admin/users.php:378 public_html/databasestructure.php:12
 #: public_html/databasestructure.php:85 public_html/databasestructure.php:87
 #: public_html/databasestructure.php:132
 msgid "Email"
@@ -6014,7 +6016,7 @@ msgstr ""
 
 #: public_html/lists/admin/userclicks.php:161
 #: public_html/lists/admin/mclicks.php:135
-#: public_html/lists/admin/users.php:354
+#: public_html/lists/admin/users.php:355
 msgid "Subscribers"
 msgstr ""
 
@@ -6788,47 +6790,47 @@ msgstr ""
 msgid "asc"
 msgstr ""
 
-#: public_html/lists/admin/users.php:341 public_html/lists/admin/users.php:345
+#: public_html/lists/admin/users.php:342 public_html/lists/admin/users.php:346
 #: public_html/lists/admin/mviews.php:160
 #: public_html/lists/admin/mviews.php:163
 #, php-format
 msgid "Listing user %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/users.php:368
+#: public_html/lists/admin/users.php:369
 msgid "Find a user"
 msgstr ""
 
-#: public_html/lists/admin/users.php:383 public_html/databasestructure.php:19
+#: public_html/lists/admin/users.php:384 public_html/databasestructure.php:19
 msgid "Unique ID"
 msgstr ""
 
-#: public_html/lists/admin/users.php:391
+#: public_html/lists/admin/users.php:392
 msgid "reset"
 msgstr ""
 
-#: public_html/lists/admin/users.php:398
+#: public_html/lists/admin/users.php:399
 msgid "Find subscribers"
 msgstr ""
 
-#: public_html/lists/admin/users.php:403
+#: public_html/lists/admin/users.php:404
 msgid "Download all users as CSV file"
 msgstr ""
 
-#: public_html/lists/admin/users.php:405
+#: public_html/lists/admin/users.php:406
 msgid "Add a User"
 msgstr ""
 
-#: public_html/lists/admin/users.php:456
+#: public_html/lists/admin/users.php:457
 #: public_html/lists/admin/uclicks.php:56
 msgid "msgs"
 msgstr ""
 
-#: public_html/lists/admin/users.php:477
+#: public_html/lists/admin/users.php:478
 msgid "no results"
 msgstr ""
 
-#: public_html/lists/admin/users.php:477
+#: public_html/lists/admin/users.php:478
 msgid "No users apply"
 msgstr ""
 
