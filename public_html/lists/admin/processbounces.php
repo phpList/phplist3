@@ -358,7 +358,7 @@ function processPop($server, $user, $password)
     if (!$link) {
         outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to') . " $server: " . imap_last_error());
 
-        return;
+        return false;
     }
 
     return processMessages($link, 100000);
@@ -376,7 +376,7 @@ function processMbox($file)
     if (!$link) {
         outputProcessBounce($GLOBALS['I18N']->get('Cannot open mailbox file') . ' ' . imap_last_error());
 
-        return;
+        return false;
     }
 
     return processMessages($link, 100000);
@@ -461,7 +461,7 @@ register_shutdown_function('processbounces_shutdown');
 $abort = ignore_user_abort(1);
 if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
     # force set, so kill other processes
-    cl_output('Force set, killing other send processes');
+    cl_output(s('Force set, killing other send processes'));
     $process_id = getPageLock(1);
 } else {
     $process_id = getPageLock();
@@ -486,6 +486,10 @@ switch ($bounce_protocol) {
         return;
 }
 
+if ($GLOBALS['commandline'] && empty($download_report)) {#
+    cl_output(s('Download failed, exiting'));
+    return;
+}
 # now we have filled database with all available bounces
 
 ## reprocess the unidentified ones, as the bounce detection has improved, so it might catch more
