@@ -471,6 +471,10 @@ if (!defined('EMAIL_ADDRESS_VALIDATION_LEVEL')) {
 if (!defined('BLACKLIST_EMAIL_ON_BOUNCE')) {
     define('BLACKLIST_EMAIL_ON_BOUNCE', 5);
 }
+if ($bounce_unsubscribe_threshold < BLACKLIST_EMAIL_ON_BOUNCE) {
+    $bounce_unsubscribe_threshold = BLACKLIST_EMAIL_ON_BOUNCE;
+}
+
 if (!defined('UNBLACKLIST_IN_PROFILE')) {
     define('UNBLACKLIST_IN_PROFILE', false);
 }
