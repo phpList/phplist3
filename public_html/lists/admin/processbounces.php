@@ -455,8 +455,6 @@ if (empty($bounce_mailbox) && (empty($bounce_mailbox_host) || empty($bounce_mail
     return;
 }
 
-print prepareOutput();
-flushBrowser();
 
 # lets not do this unless we do some locking first
 register_shutdown_function('processbounces_shutdown');
@@ -471,6 +469,9 @@ if (!empty($GLOBALS['commandline']) && isset($cline['f'])) {
 if (empty($process_id)) {
     return;
 }
+print prepareOutput();
+flushBrowser();
+
 $download_report = '';
 switch ($bounce_protocol) {
     case 'pop':
