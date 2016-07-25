@@ -673,12 +673,8 @@ if (count($bouncerules)) {
 outputProcessBounce($GLOBALS['I18N']->get('Identifying consecutive bounces'));
 
 # we only need users who are confirmed at the moment
-$userid_req = Sql_query(sprintf('select distinct %s.user from %s,%s
-  where %s.id = %s.user and %s.confirmed',
-    $tables['user_message_bounce'],
-    $tables['user_message_bounce'],
-    $tables['user'],
-    $tables['user'],
+$userid_req = Sql_query(sprintf('select distinct umb.user from %s umb, %s u
+  where u.id = umb.user and u.confirmed and !u.blacklisted',
     $tables['user_message_bounce'],
     $tables['user']
 ));
