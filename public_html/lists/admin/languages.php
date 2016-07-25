@@ -333,6 +333,10 @@ class phplist_I18N
         if (!isset($_SESSION['translations']) || !is_array($_SESSION['translations'])) {
             $_SESSION['translations'] = array();
         }
+        // mark it as translated even if not, to avoid fetching it every time
+        if (empty($translation)) {
+            $translation = $text;
+        }
         $_SESSION['translations'][$text] = array(
             'trans' => $translation,
             'ts' => time(),
