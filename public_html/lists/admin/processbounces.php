@@ -791,7 +791,7 @@ if ($advanced_report) {
     $report .= $GLOBALS['I18N']->get('Report of advanced bounce processing:') . "\n$advanced_report\n";
 }
 if ($unsubscribed_users) {
-    $report .= PHP_EOL . $GLOBALS['I18N']->get('Below are users who have been marked unconfirmed. The in () is the number of consecutive bounces.') . PHP_EOL;
+    $report .= PHP_EOL . $GLOBALS['I18N']->get('Below are users who have been marked unconfirmed. The number in () is the number of consecutive bounces.') . PHP_EOL;
     $report .= "\n$unsubscribed_users";
 }
 if ($report) {
