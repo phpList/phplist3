@@ -475,8 +475,6 @@ msgid "Process Bounces"
 msgstr ""
 
 #: public_html/lists/admin/home.php:316
-#: public_html/lists/admin/processbounces.php:393
-#: public_html/lists/admin/processbounces.php:394
 #: public_html/lists/admin/reconcileusers.php:215
 #: public_html/lists/admin/reconcileusers.php:225
 #: public_html/lists/admin/reconcileusers.php:502
@@ -1161,81 +1159,81 @@ msgstr ""
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:877 public_html/lists/admin/lib.php:881
+#: public_html/lists/admin/lib.php:878 public_html/lists/admin/lib.php:882
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:883
+#: public_html/lists/admin/lib.php:884
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:886
+#: public_html/lists/admin/lib.php:887
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:894
+#: public_html/lists/admin/lib.php:895
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1675 public_html/lists/admin/lib.php:1680
+#: public_html/lists/admin/lib.php:1676 public_html/lists/admin/lib.php:1681
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1945
+#: public_html/lists/admin/lib.php:1946
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1946
+#: public_html/lists/admin/lib.php:1947
 #: public_html/lists/admin/send_core.php:385
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1948 public_html/lists/admin/lib.php:1959
+#: public_html/lists/admin/lib.php:1949 public_html/lists/admin/lib.php:1960
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1950
+#: public_html/lists/admin/lib.php:1951
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1952
+#: public_html/lists/admin/lib.php:1953
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1954
+#: public_html/lists/admin/lib.php:1955
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1956
+#: public_html/lists/admin/lib.php:1957
 #: public_html/lists/admin/processqueue.php:99
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1957 public_html/lists/admin/lib.php:1960
+#: public_html/lists/admin/lib.php:1958 public_html/lists/admin/lib.php:1961
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1973
+#: public_html/lists/admin/lib.php:1974
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1974
+#: public_html/lists/admin/lib.php:1975
 msgid ""
 "to make sure you are updated when new versions come out. Sometimes security "
 "bugs are found which make it important to upgrade. Traffic on the list is "
 "very low."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1980
+#: public_html/lists/admin/lib.php:1981
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1980
+#: public_html/lists/admin/lib.php:1981
 msgid "Do not subscribe"
 msgstr ""
 
@@ -1745,7 +1743,8 @@ msgid "Cannot open mailbox file"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:389
-msgid "bounces to fetch from the mailbox"
+#, php-format
+msgid "%d bounces to fetch from the mailbox"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:390
@@ -1754,16 +1753,14 @@ msgid "Please do not interrupt this process"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:391
-msgid "bounces to process"
+#, php-format
+msgid "%d bounces to process"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:393
-#: public_html/lists/admin/readtestmail.php:242
-msgid "Processing first"
-msgstr ""
-
 #: public_html/lists/admin/processbounces.php:394
-msgid "processing first"
+#, php-format
+msgid "Processing first %d bounces"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:398
@@ -1808,156 +1805,164 @@ msgstr ""
 msgid "Bounce mechanism not properly configured"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:483
+#: public_html/lists/admin/processbounces.php:464
+msgid "Force set, killing other send processes"
+msgstr ""
+
+#: public_html/lists/admin/processbounces.php:484
 msgid "bounce_protocol not supported"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:497
+#: public_html/lists/admin/processbounces.php:490
+msgid "Download failed, exiting"
+msgstr ""
+
+#: public_html/lists/admin/processbounces.php:502
 #, php-format
 msgid "%d bounces to reprocess"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:501
-#: public_html/lists/admin/processbounces.php:513
+#: public_html/lists/admin/processbounces.php:506
+#: public_html/lists/admin/processbounces.php:518
 #, php-format
 msgid "%d out of %d processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:515
+#: public_html/lists/admin/processbounces.php:520
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:520
+#: public_html/lists/admin/processbounces.php:525
 msgid "Processing bounces based on active bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:534
+#: public_html/lists/admin/processbounces.php:539
 #, php-format
 msgid "processed %d out of %d bounces for advanced bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:543
+#: public_html/lists/admin/processbounces.php:548
 #: public_html/lists/admin/actions/processqueue.php:968
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:580
-#: public_html/lists/admin/processbounces.php:758
+#: public_html/lists/admin/processbounces.php:585
+#: public_html/lists/admin/processbounces.php:759
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:581
-#: public_html/lists/admin/processbounces.php:602
+#: public_html/lists/admin/processbounces.php:586
+#: public_html/lists/admin/processbounces.php:607
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:581
-#: public_html/lists/admin/processbounces.php:602
-#: public_html/lists/admin/processbounces.php:615
-#: public_html/lists/admin/processbounces.php:627
-#: public_html/lists/admin/processbounces.php:640
-#: public_html/lists/admin/processbounces.php:652
+#: public_html/lists/admin/processbounces.php:586
+#: public_html/lists/admin/processbounces.php:607
+#: public_html/lists/admin/processbounces.php:620
+#: public_html/lists/admin/processbounces.php:632
+#: public_html/lists/admin/processbounces.php:645
+#: public_html/lists/admin/processbounces.php:657
 msgid "bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:601
+#: public_html/lists/admin/processbounces.php:606
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:610
+#: public_html/lists/admin/processbounces.php:615
 msgid "Subscriber auto blacklisted  by bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:614
-#: public_html/lists/admin/processbounces.php:626
-#: public_html/lists/admin/processbounces.php:639
-#: public_html/lists/admin/processbounces.php:651
+#: public_html/lists/admin/processbounces.php:619
+#: public_html/lists/admin/processbounces.php:631
+#: public_html/lists/admin/processbounces.php:644
+#: public_html/lists/admin/processbounces.php:656
 msgid "Auto Unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:615
-#: public_html/lists/admin/processbounces.php:627
-#: public_html/lists/admin/processbounces.php:652
+#: public_html/lists/admin/processbounces.php:620
+#: public_html/lists/admin/processbounces.php:632
+#: public_html/lists/admin/processbounces.php:657
 msgid "User auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:622
+#: public_html/lists/admin/processbounces.php:627
 #, php-format
 msgid "Subscriber auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:635
-#: public_html/lists/admin/processbounces.php:647
+#: public_html/lists/admin/processbounces.php:640
+#: public_html/lists/admin/processbounces.php:652
 #, php-format
 msgid "Email address auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:640
+#: public_html/lists/admin/processbounces.php:645
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:667
+#: public_html/lists/admin/processbounces.php:672
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:668
+#: public_html/lists/admin/processbounces.php:673
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:672
+#: public_html/lists/admin/processbounces.php:677
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:686
+#: public_html/lists/admin/processbounces.php:687
 #: public_html/lists/admin/cron.php:58
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:755
+#: public_html/lists/admin/processbounces.php:756
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:759
+#: public_html/lists/admin/processbounces.php:760
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:769
+#: public_html/lists/admin/processbounces.php:770
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:770
+#: public_html/lists/admin/processbounces.php:771
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:782
+#: public_html/lists/admin/processbounces.php:783
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:789
+#: public_html/lists/admin/processbounces.php:790
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:794
+#: public_html/lists/admin/processbounces.php:795
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:797
+#: public_html/lists/admin/processbounces.php:798
 msgid ""
 "Below are users who have been marked unconfirmed. The in () is the number of "
 "consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:801
+#: public_html/lists/admin/processbounces.php:802
 msgid "Report:"
 msgstr ""
 
@@ -5117,7 +5122,7 @@ msgstr ""
 msgid "Import"
 msgstr ""
 
-#: public_html/lists/admin/languages.php:645
+#: public_html/lists/admin/languages.php:649
 msgid "over treshold, user marked unconfirmed"
 msgstr ""
 
@@ -7734,6 +7739,10 @@ msgstr ""
 
 #: public_html/lists/admin/readtestmail.php:239
 msgid "mails in mailbox"
+msgstr ""
+
+#: public_html/lists/admin/readtestmail.php:242
+msgid "Processing first"
 msgstr ""
 
 #: public_html/lists/admin/readtestmail.php:242
