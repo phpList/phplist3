@@ -17,7 +17,7 @@ if (empty($_GET['embed'])) {
     print '<iframe src="?page=viewtemplate&embed=yes&omitall=yes&id=' . $id . $more . '"
     scrolling="auto" width=100% height=450 margin=0 frameborder=0>
   </iframe>';
-    print '<p class="button">' . PageLink2('template&amp;id=' . $_GET['id'],
+    print '<p class="button">' . PageLink2('template&amp;id=' . $id,
             $GLOBALS['I18N']->get('Back to edit template')) . '</p>';
 } else {
     ob_end_clean();
