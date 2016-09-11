@@ -1958,8 +1958,8 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:798
 msgid ""
-"Below are users who have been marked unconfirmed. The in () is the number of "
-"consecutive bounces."
+"Below are users who have been marked unconfirmed. The number in () is the "
+"number of consecutive bounces."
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:802
