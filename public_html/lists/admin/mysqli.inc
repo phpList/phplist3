@@ -20,7 +20,7 @@ function Sql_Connect($host, $user, $password, $database)
     }
     $db = mysqli_init();
     $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
-    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL;
+    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
 
     if (!mysqli_real_connect($db, $host, $user, $password, $database, $database_port, $database_socket, $compress | $secure)) {
         $errno = mysqli_connect_errno();
@@ -53,6 +53,9 @@ function Sql_Connect($host, $user, $password, $database)
                 exit;
             case 2006: # "gone away"
                 header('Cannot connect to database, server gone away', true, 506);
+                if ($compress || $secure) {
+                    print "Verify that your 'compress' or 'secure' setting for DB connections are supported by your database server.<br/>";
+                }
                 print "Sorry, the server is currently too busy, please try again later.";
                 exit;
             case 0:
