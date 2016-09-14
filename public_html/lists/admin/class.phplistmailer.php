@@ -716,13 +716,35 @@ class PHPlistMailer extends PHPMailer
         # as we already encoded the contents in $path, return $path
         return chunk_split($path, 76, $this->LE);
     }
-
+  
+    /**
+     * Builds and sends an email through Amazon SES.
+     * The curl handle is persisted and closed only when an error occurs.
+     *
+     * @param string $messageheader
+     * @param string $messagebody
+     *
+     * @return bool whether the email was sent successfully
+     */
     public function AmazonSESSend($messageheader, $messagebody)
     {
+        static $curl = null;
+
+        if ($curl === null) {
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, AWS_POSTURL);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_HEADER, 1);
+            curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
+            curl_setopt($curl, CURLOPT_USERAGENT, NAME . ' (phpList version ' . VERSION . ', http://www.phplist.com/)');
+            curl_setopt($curl, CURLOPT_POST, 1);
+        }
+
         $messageheader = preg_replace('/' . $this->LE . '$/', '', $messageheader);
         $messageheader .= $this->LE . 'Subject: ' . $this->EncodeHeader($this->Subject) . $this->LE;
-
-        #print nl2br(htmlspecialchars($messageheader));      exit;
 
         $date = date('r');
         $aws_signature = base64_encode(hash_hmac('sha256', $date, AWS_SECRETKEY, true));
@@ -732,70 +754,34 @@ class PHPlistMailer extends PHPMailer
             'Content-Type: application/x-www-form-urlencoded',
             'Date: ' . $date,
             'X-Amzn-Authorization: AWS3-HTTPS AWSAccessKeyId=' . AWS_ACCESSKEYID . ',Algorithm=HMACSHA256,Signature=' . $aws_signature,
+            'Connection: keep-alive',
+            'Keep-Alive: 300',
         );
-
-        /*
-         *    using the SendEmail call
-              $requestdata = array(
-                'Action' => 'SendEmail',
-                'Source' => $this->Sender,
-                'Destination.ToAddresses.member.1' => $this->destinationemail,
-                'Message.Subject.Data' => $this->Subject,
-                'Message.Body.Text.Data' => $messagebody,
-              );
-        */
-        #     print '<hr/>Rawmessage '.nl2br(htmlspecialchars($messageheader. $this->LE. $this->LE.$messagebody));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $requestheader);
 
         $rawmessage = base64_encode($messageheader . $this->LE . $this->LE . $messagebody);
-        #   $rawmessage = str_replace('=','',$rawmessage);
-
         $requestdata = array(
             'Action' => 'SendRawEmail',
             'Source' => $GLOBALS['message_envelope'],
             'Destinations.member.1' => $this->destinationemail,
             'RawMessage.Data' => $rawmessage,
         );
-
-        $header = '';
-        foreach ($requestheader as $param) {
-            $header .= $param . $this->LE;
-        }
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, AWS_POSTURL);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $requestheader);
-        #    print('<br/>Sending header '.htmlspecialchars($header).'<hr/>');
-
-        curl_setopt($curl, CURLOPT_HEADER, 1);
-        curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, NAME . ' (phpList version ' . VERSION . ', http://www.phplist.com/)');
-        curl_setopt($curl, CURLOPT_POST, 1);
-
-        ## this generates multipart/form-data, and that crashes the API, so don't use
-        #      curl_setopt($curl, CURLOPT_POSTFIELDS, $parameters);
-
-        $data = '';
-        foreach ($requestdata as $param => $value) {
-            $data .= $param . '=' . urlencode($value) . '&';
-        }
-        $data = substr($data, 0, -1);
-        #    print('Sending data '.htmlspecialchars($data).'<hr/>');
+        $data = http_build_query($requestdata, null, '&');
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
         $res = curl_exec($curl);
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        #    print('Curl status '.$status);
-        if ($status != 200) {
+
+        if ($res === false || $status != 200) {
             $error = curl_error($curl);
+            curl_close($curl);
+            $curl = null;
             logEvent('Amazon SES status ' . $status . ' ' . strip_tags($res) . ' ' . $error);
+
+            return false;
         }
-        curl_close($curl);
-        #     print('Got remote admin response '.htmlspecialchars($res).'<br/>');
-        return $status == 200;
+
+        return true;
     }
 
     public function MailSend($header, $body)
