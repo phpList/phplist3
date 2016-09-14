@@ -29,6 +29,12 @@ $database_user = 'phplist';
 # and what password do we use
 $database_password = 'phplist';
 
+# the mysql server port number if not the default
+$database_port = null;
+
+# the socket to be used
+$database_socket = null;
+
 # enable database connection compression
 $database_connection_compression = false;
 

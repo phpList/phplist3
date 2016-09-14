@@ -148,6 +148,12 @@ if (empty($GLOBALS['language_module'])) {
 if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__) . '/' . $GLOBALS['database_module'])) {
     $GLOBALS['database_module'] = 'mysqli.inc';
 }
+if (!isset($database_port)) {
+    $database_port = null;
+}
+if (!isset($database_socket)) {
+    $database_socket = null;
+}
 if (!isset($database_connection_compression)) {
     $database_connection_compression = false;
 }
