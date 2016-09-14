@@ -3,7 +3,7 @@
 # sql functions, currently only set up to work with MySql
 # replace functions in this file to make it work with other Databases
 
-if (!function_exists("mysqli_connect")) {
+if (!function_exists("mysqli_init")) {
     header('Mysqli functionality missing', true, 500);
     print "Fatal Error: Mysql is not supported in your PHP, recompile and try again.";
     exit;
@@ -11,18 +11,20 @@ if (!function_exists("mysqli_connect")) {
 
 function Sql_Connect($host, $user, $password, $database)
 {
-    $compress = (empty($GLOBALS['database_connection_compression'])) ? 0 : MYSQLI_CLIENT_COMPRESS;
-    $secure = (empty($GLOBALS['database_connection_ssl'])) ? 0 : MYSQLI_CLIENT_SSL;
+    global $database_port, $database_socket, $database_connection_compression, $database_connection_ssl;
 
-    if ($host && $user) {
-        $db = mysqli_connect($host, $user, $password, false, $compress | $secure);
+    if (!$host || !$user) {
+        header('Cannot connect to database', true, 508);
+        print "Cannot connect to Database, host and user are required. Please check your configuration";
+        exit;
     }
-    $errno = mysqli_connect_errno();
-    if (!$errno) {
-        $res = mysqli_select_db($db, $database);
-        $errno = mysqli_errno($db);
-    }
-    if ($errno) {
+    $db = mysqli_init();
+    $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
+    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL;
+
+    if (!mysqli_real_connect($db, $host, $user, $password, $database, $database_port, $database_socket, $compress | $secure)) {
+        $errno = mysqli_connect_errno();
+
         if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins'])) {
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
                 $plugin->processDBerror($errno);
@@ -72,6 +74,7 @@ function Sql_Connect($host, $user, $password, $database)
     }
     mysqli_query($db, "SET NAMES 'utf8'");
     unset($GLOBALS['lastquery']);
+
     return $db;
 }
 
