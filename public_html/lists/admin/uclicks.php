@@ -41,8 +41,17 @@ if ($download) {
 }
 
 if (!$id) {
-    $req = Sql_Query(sprintf('select forward.id,url, sum(clicked) as numclicks, max(latestclick) as lastclicked, count(messageid) as msgs from %s
-    where clicked %s and forward.id = ml.forwardid and latestclick > date_sub(now(),interval 12 month) group by url order by latestclick desc limit 50',
+    $req = Sql_Query(sprintf('
+        SELECT forward.id,
+        url,
+        SUM(clicked) AS numclicks,
+        MAX(latestclick) AS lastclicked,
+        COUNT(messageid) AS msgs
+        FROM %s
+        WHERE clicked %s AND forward.id = ml.forwardid AND latestclick > DATE_SUB(NOW(),INTERVAL 12 MONTH)
+        GROUP BY forward.id
+        ORDER BY lastclicked DESC
+        LIMIT 50',
         $select_tables, $owner_and));
     $ls = new WebblerListing($GLOBALS['I18N']->get('Available URLs'));
     while ($row = Sql_Fetch_Array($req)) {

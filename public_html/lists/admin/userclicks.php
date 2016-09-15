@@ -115,11 +115,21 @@ if ($fwdid && $msgid) {
     $downloadContent = s('Subscribers who clicked on the URL "%s" across all campaigns', $urldata['url']) . PHP_EOL;
     print '<div class="fright">' . PageLinkButton('userclicks&fwdid=' . $fwdid . '&dl=1',
             s('Download subscribers')) . '</div>';
-    $query = sprintf('select user.email, user.id as userid,firstclick,date_format(latestclick,
-    "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
-    and uml_click.forwardid = %d group by uml_click.userid', $GLOBALS['tables']['linktrack_uml_click'],
+    $query = sprintf('
+        SELECT user.email,
+        user.id AS userid,
+        MIN(firstclick) AS firstclick,
+        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        SUM(clicked) AS clicked
+        FROM %s AS uml_click
+        JOIN %s AS user ON uml_click.userid = user.id
+        WHERE uml_click.forwardid = %d
+        GROUP BY uml_click.userid
+        ',
+        $GLOBALS['tables']['linktrack_uml_click'],
         $GLOBALS['tables']['user'],
-        $fwdid);
+        $fwdid
+    );
 } elseif ($msgid) {
     print '<h3>' . $GLOBALS['I18N']->get('Subscribers who clicked a campaign') . '</h3>';
     print '<table class="userclickDetails">';
@@ -135,11 +145,21 @@ if ($fwdid && $msgid) {
             $messagedata['sent']) . PHP_EOL;
     print '<div class="fright">' . PageLinkButton('userclicks&msgid=' . $msgid . '&dl=1',
             s('Download subscribers')) . '</div>';
-    $query = sprintf('select distinct user.email,user.id as userid,firstclick,date_format(latestclick,
-    "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
-    and uml_click.messageid = %d group by user.email', $GLOBALS['tables']['linktrack_uml_click'],
+    $query = sprintf('
+        SELECT DISTINCT user.email,
+        user.id AS userid,
+        MIN(firstclick) AS firstclick,
+        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        SUM(clicked) AS clicked
+        FROM %s AS uml_click
+        JOIN %s AS user ON uml_click.userid = user.id 
+        WHERE uml_click.messageid = %d
+        GROUP BY uml_click.userid
+        ',
+        $GLOBALS['tables']['linktrack_uml_click'],
         $GLOBALS['tables']['user'],
-        $msgid);
+        $msgid
+    );
 } elseif ($userid) {
     print '<h3>' . $GLOBALS['I18N']->get('Clicks of a subscriber') . '</h3>';
     print s('Subscriber') . ' ' . PageLink2('user&amp;id=' . $userid, $userdata['email']);
