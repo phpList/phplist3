@@ -48,6 +48,37 @@ function getUniqid($table = '')
     return $id;
 }
 
+function obfuscateString($string) {
+    $l = strlen(($string));
+    if ($l > 3) {
+        $obf = substr($string, 0, 1);
+        $obf .= str_repeat('*', $l - 2);
+        $obf .= substr($string, -1, 1);
+    } else {
+        $obf = str_repeat('*', $l);
+    }
+    return $obf;
+}
+
+function obfuscateEmailAddress($emailAddress) {
+    if (is_email($emailAddress)) {
+
+        list($userName, $domain) = explode('@', strtolower($emailAddress));
+
+        $obf = obfuscateString($userName) . '@';
+
+        $domainParts = explode('.', $domain);
+        $TLD = array_pop($domainParts);
+
+        foreach ($domainParts as $dPart) {
+            $obf .= obfuscateString($dPart) . '.';
+        }
+
+        return $obf . $TLD;
+    }
+    return $emailAddress;
+}
+
 function userSelect($fieldname, $current = '')
 {
     global $tables;
