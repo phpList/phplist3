@@ -421,7 +421,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             $GLOBALS['tables']['user'], $_GET['uid']));
         $userid = $req[0];
     } else {
-        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"" . $_GET['email'] . '"');
+        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"" . sql_escape($_GET['email']) . '"');
         $userid = $req[0];
     }
     if (!$userid) {
@@ -506,10 +506,10 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     }
 
     $query = sprintf('update %s set email = "%s", %s htmlemail = %d where id = %d',
-        $GLOBALS['tables']['user'], addslashes($_POST['email']), $storepassword, $_POST['htmlemail'], $userid);
+        $GLOBALS['tables']['user'], sql_escape($_POST['email']), $storepassword, $_POST['htmlemail'], $userid);
     #print $query;
     $result = Sql_query($query);
-    if ($data['email'] != $email) {
+    if (strtolower($data['email']) != strtolower($email)) {
         $emailchanged = 1;
         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'], $userid));
     }
@@ -788,7 +788,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
             $data[$row['attributeid']] = $row['value'];
         }
 
-        $email = $current['email'];
+        $email = obfuscateEmailAddress($current['email']);
         $htmlemail = $current['htmlemail'];
         # override with posted info
         foreach ($current as $key => $val) {

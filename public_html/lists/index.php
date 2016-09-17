@@ -801,12 +801,14 @@ function unsubscribePage($id)
         $userdata = Sql_Fetch_Array_Query(sprintf('select email,id,blacklisted from %s where uniqid = "%s"',
             $tables['user'], sql_escape($_GET['uid'])));
         $email = $userdata['email'];
+        $displayEmail = obfuscateEmailAddress($userdata['email']);
         $userid = $userdata['id'];
         $isBlackListed = $userdata['blacklisted'] != '0';
         $blacklistRequest = false;
     } else {
         if (isset($_REQUEST['email'])) {
             $email = $_REQUEST['email'];
+            $displayEmail = obfuscateEmailAddress($email);
         }
         if (!validateEmail($email)) {
             $email = '';
@@ -909,10 +911,10 @@ function unsubscribePage($id)
 
     $res .= '<h3>' . $GLOBALS['strUnsubscribeInfo'] . '</h3>' .
         $msg . '<form method="post" action=""><input type="hidden" name="p" value="unsubscribe" />';
-    if (!isset($_POST['email']) || empty($email)) {
+    if (empty($displayEmail) && !isset($_POST['email']) || empty($email)) {
         $res .= '<p>' . $GLOBALS['strEnterEmail'] . ': <input type="text" name="email" value="' . $email . '" size="40" /></p>';
     } else {
-        $res .= '<p><input type="hidden" name="email" value="' . $email . '" />' . $GLOBALS['strEmail'] . ': ' . $email . '</p>';
+        $res .= '<p><input type="hidden" name="email" value="' . $email . '" />' . $GLOBALS['strEmail'] . ': ' . $displayEmail . '</p>';
     }
 
     if (!$email) {
