@@ -630,7 +630,8 @@ if (!defined('RFC_DIRECT_DELIVERY')) {
 if (0 && class_exists('HTTP_Request2')) {
     $GLOBALS['has_pear_http_request'] = 2;
 } else {
-    @include_once 'HTTP/Request.php';
+    ## this seems to crash in PHP7. Let's just use curl instead
+    # @include_once 'HTTP/Request.php';
     $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
 }
 $GLOBALS['has_curl'] = function_exists('curl_init');
