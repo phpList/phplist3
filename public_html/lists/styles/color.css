@@ -28,7 +28,6 @@ a:hover {
 
 #footer {
     background-color: #FFF;
-    background-image: url('../images/footer_bk.png')
 }
 
 #mainContent table {
@@ -57,7 +56,6 @@ input[type="password"] {
 input[type="submit"],
 p.button a, a.button {
     border-color: #BBB #AAA #AAA #BBB;
-    background: url("../images/bg-button.gif") repeat-x 0 0 #DDD;
     color: #333;
 }
 
