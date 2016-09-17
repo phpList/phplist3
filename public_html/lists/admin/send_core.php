@@ -650,17 +650,17 @@ if (!$done) {
     if (!defined('IN_WEBBLER')) {
         if (empty($messagedata['fromfield'])) {
             $defaultFrom = getConfig('campaignfrom_default');
-            if (!empty($defaultFrom)) {
-                $messagedata['fromfield'] = $defaultFrom;
-            } elseif (USE_ADMIN_DETAILS_FOR_MESSAGES && is_object($GLOBALS['admin_auth']) && $GLOBALS['require_login']) {
+            if (empty($defaultFrom)) {
+                $defaultFrom = getConfig('message_from_name') . ' ' . getConfig('message_from_address');
+            }
+            $messagedata['fromfield'] = $defaultFrom;
+
+
+            if (USE_ADMIN_DETAILS_FOR_MESSAGES && is_object($GLOBALS['admin_auth']) && $GLOBALS['require_login']) {
                 $adminemail = $GLOBALS['admin_auth']->adminEmail($_SESSION['logindetails']['id']);
                 if (!empty($adminemail)) {
                     $messagedata['fromfield'] = $GLOBALS['admin_auth']->adminName($_SESSION['logindetails']['id']) . ' ' . $adminemail;
-                } else {
-                    $messagedata['fromfield'] = getConfig('message_from_name') . ' ' . getConfig('message_from_address');
                 }
-            } else {
-                $messagedata['fromfield'] = getConfig('message_from_name') . ' ' . getConfig('message_from_address');
             }
         }
     }

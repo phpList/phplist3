@@ -466,7 +466,7 @@ define('EMPTY_VALUE_PREFIX', '--');
 # if this is enabled phplist will initialise the From in new messages to be the
 # details of the logged in administrator who is sending the message
 # otherwise it will default to the values set in the configure page that identify
-# the From for system messages
+# the "Default for 'From:' in a campaign"
 define('USE_ADMIN_DETAILS_FOR_MESSAGES', 1);
 
 # attribute value reorder limit
