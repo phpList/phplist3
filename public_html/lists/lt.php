@@ -96,6 +96,10 @@ if ($msgtype == 'H') {
     Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
     $trackingcode = 'utm_source=phplist' . $messageid . '&utm_medium=email&utm_content=text&utm_campaign=' . urlencode($messagedata['subject']);
+} else {
+    ## we don't know any other option
+    FileNotFound();
+    exit;
 }
 
 $viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
