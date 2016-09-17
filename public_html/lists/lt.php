@@ -60,6 +60,7 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
         $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
     if (!empty($linkdata['forward'])) {
         ## we're not recording clicks, but at least links in older newsletters won't break.
+        header('See Other', true, 303);
         header('Location: ' . $linkdata['forward']);
         exit;
     }
@@ -161,5 +162,6 @@ if (!empty($messagedata['google_track'])) {
     }
 }
 
+header('See Other', true, 303); ## use 303, because Location only uses 302, which gets indexed
 header('Location: ' . $url);
 exit;
