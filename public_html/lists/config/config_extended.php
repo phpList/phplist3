@@ -575,7 +575,7 @@ define('PHPMAILERHOST', '');
 # define('PHPMAILERBLASTPORT',25);
 
 # to use SSL/TLS when sending set this value
-# it can either be "ssl" or "tls", nothing else
+# it can either be "ssl" or "tls" or false to not use SSL/TLS at all
 # define("PHPMAILER_SECURE",'ssl');
 
 ## SMTP debugging

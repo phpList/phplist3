@@ -130,10 +130,16 @@ class PHPlistMailer extends PHPMailer
             $this->Hostname = getConfig('domain');
         }
 
-        if (defined('PHPMAILER_SECURE') && PHPMAILER_SECURE) {
-            $this->SMTPSecure = PHPMAILER_SECURE;
-        }
         $this->SMTPAutoTLS = true;
+        if (defined('PHPMAILER_SECURE') && PHPMAILER_SECURE) {
+            if (PHPMAILER_SECURE != 'auto') { // auto is already on
+                $this->SMTPSecure = PHPMAILER_SECURE;
+            }
+        } elseif (defined('PHPMAILER_SECURE') && !PHPMAILER_SECURE) {
+            ##18115 allow switching AutoTLS off, when using insecure and untrusted (self signed) certificates
+            $this->SMTPSecure = '';
+            $this->SMTPAutoTLS = false;
+        }
 
         if (isset($GLOBALS['phpmailer_smtpoptions'])) {
             $this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];

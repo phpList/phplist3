@@ -571,7 +571,7 @@ if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
     define('PHPMAILERTESTHOST', PHPMAILERHOST);
 }
 if (!defined('PHPMAILER_SECURE')) {
-    define('PHPMAILER_SECURE', false);
+    define('PHPMAILER_SECURE', 'auto');
 }
 if (!defined('PHPMAILER_SMTP_DEBUG')) {
     define('PHPMAILER_SMTP_DEBUG', 0);
