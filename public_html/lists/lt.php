@@ -64,11 +64,18 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
         header('Location: ' . $linkdata['forward']);
         exit;
     }
-
 #  echo 'Invalid Request';
     # maybe some logging?
     FileNotFound();
     exit;
+}
+
+## verify that this subscriber actually received this message, otherwise they're not allowed
+## allow admins on test messages
+$allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
+    $GLOBALS['tables']['usermessage'], $userid, $messageid));
+if (($allowed[0] != $userid || !$allowed[0]) && empty($_SESSION['adminloggedin'])) {
+    FileNotFound();
 }
 
 ## hmm a bit heavy to use here @@@optimise
