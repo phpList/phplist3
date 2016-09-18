@@ -46,10 +46,14 @@ if ($id != $_GET['id']) {
 
 $track = base64_decode($id);
 $track = $track ^ XORmask;
-@list($msgtype, $fwdid, $messageid, $userid) = explode('|', $track);
-$userid = sprintf('%d', $userid);
-$fwdid = sprintf('%d', $fwdid);
-$messageid = sprintf('%d', $messageid);
+$elements = explode('|', $track);
+if (sizeof($elements) != 4) {
+    FileNotFound();
+}
+$msgtype = substr($elements[0],0,1);
+$userid = sprintf('%d', $elements[3]);
+$fwdid = sprintf('%d', $elements[1]);
+$messageid = sprintf('%d', $elements[2]);
 
 $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
     $fwdid));
