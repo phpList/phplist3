@@ -79,7 +79,14 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
 $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
     $GLOBALS['tables']['usermessage'], $userid, $messageid));
 if (($allowed[0] != $userid || !$allowed[0]) && empty($_SESSION['adminloggedin'])) {
-    FileNotFound();
+    ## has this campaign be sent yet, if not, it's most likely an admin testing
+    $sent = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
+        $GLOBALS['tables']['usermessage'], $messageid));
+    if (empty($sent[0])) {
+        FileNotFound('<br/><i>' . s('Links in test campaigns only work when you are logged in as an administrator.') . '</i><br/>');
+    } else {
+        FileNotFound();
+    }
 }
 
 ## hmm a bit heavy to use here @@@optimise
