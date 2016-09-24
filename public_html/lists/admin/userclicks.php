@@ -164,11 +164,29 @@ if ($fwdid && $msgid) {
     print '<h3>' . $GLOBALS['I18N']->get('Clicks of a subscriber') . '</h3>';
     print s('Subscriber') . ' ' . PageLink2('user&amp;id=' . $userid, $userdata['email']);
 
-    $query = sprintf('select sum(htmlclicked) as htmlclicked,sum(textclicked) as textclicked,user.email,user.id as userid,min(firstclick) as firstclick,date_format(max(latestclick),
-    "%%e %%b %%Y %%H:%%i") as latestclick,sum(clicked) as clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
-    and uml_click.userid = %d and forward.id = uml_click.forwardid group by url',
-        $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['user'], $GLOBALS['tables']['linktrack_forward'],
-        $userid);
+    $query = sprintf('
+        SELECT SUM(htmlclicked) AS htmlclicked,
+        SUM(textclicked) AS textclicked,
+        user.email,
+        user.id AS userid,
+        MIN(firstclick) AS firstclick,
+        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        SUM(clicked) AS clicked,
+        GROUP_CONCAT(messageid ORDER BY messageid SEPARATOR \' \') AS messageid,
+        forwardid,
+        url
+        FROM %s AS uml_click
+        JOIN %s AS user ON uml_click.userid = user.id
+        JOIN %s AS forward ON forward.id = uml_click.forwardid
+        WHERE uml_click.userid = %d
+        GROUP BY forwardid
+        ORDER BY clicked DESC, url
+        ',
+        $GLOBALS['tables']['linktrack_uml_click'],
+        $GLOBALS['tables']['user'],
+        $GLOBALS['tables']['linktrack_forward'],
+        $userid
+    );
 }
 
 #ob_end_flush();
@@ -201,8 +219,14 @@ while ($row = Sql_Fetch_Array($req)) {
             $element = shortenTextDisplay($row['url']);
             $ls->addElement($element, PageUrl2('uclicks&amp;id=' . $row['forwardid']));
             $ls->setClass($element, 'row1');
-            $ls->addColumn($element, $GLOBALS['I18N']->get('message'),
-                PageLink2('mclicks&amp;id=' . $row['messageid'], ' ' . $row['messageid']));
+            $messageLinks = preg_replace_callback(
+                '/\d+/',
+                function($matches) {
+                    return PageLink2("mclick&id={$matches[0]}", $matches[0]);
+                },
+                $row['messageid']
+            );
+            $ls->addColumn($element, $GLOBALS['I18N']->get('message'), $messageLinks);
         }
         #  $element = sprintf('<a href="%s" target="_blank" class="url" title="%s">%s</a>',$row['url'],$row['url'],substr(str_replace('http://','',$row['url']),0,50));
         #  $total = Sql_Verbose_Query(sprintf('select count(*) as total from %s where messageid = %d and url = "%s"',
