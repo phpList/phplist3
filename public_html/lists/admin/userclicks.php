@@ -222,7 +222,7 @@ while ($row = Sql_Fetch_Array($req)) {
             $messageLinks = preg_replace_callback(
                 '/\d+/',
                 function($matches) {
-                    return PageLink2("mclick&id={$matches[0]}", $matches[0]);
+                    return PageLink2("mclicks&id={$matches[0]}", $matches[0]);
                 },
                 $row['messageid']
             );
