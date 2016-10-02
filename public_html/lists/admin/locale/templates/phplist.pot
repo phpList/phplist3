@@ -1284,7 +1284,7 @@ msgid "views"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:118
-#: public_html/lists/admin/userclicks.php:224
+#: public_html/lists/admin/userclicks.php:248
 #: public_html/lists/admin/mclicks.php:91
 #: public_html/lists/admin/mclicks.php:191
 #: public_html/lists/admin/mclicks.php:213
@@ -2686,7 +2686,7 @@ msgstr ""
 #: public_html/lists/admin/msgbounces.php:12
 #: public_html/lists/admin/message.php:98
 #: public_html/lists/admin/eventlog.php:109
-#: public_html/lists/admin/userclicks.php:204
+#: public_html/lists/admin/userclicks.php:229
 msgid "message"
 msgstr ""
 
@@ -3152,7 +3152,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:395
 #: public_html/lists/admin/bouncerule.php:69
-#: public_html/lists/admin/userclicks.php:219
+#: public_html/lists/admin/userclicks.php:243
 #: public_html/lists/admin/bounce.php:223 public_html/databasestructure.php:61
 msgid "Status"
 msgstr ""
@@ -3186,7 +3186,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:455
 #: public_html/lists/admin/send_core.php:834
-#: public_html/lists/admin/userclicks.php:228
+#: public_html/lists/admin/userclicks.php:252
 #: public_html/lists/admin/mclicks.php:95
 #: public_html/lists/admin/mclicks.php:198
 msgid "text"
@@ -6024,29 +6024,29 @@ msgstr ""
 msgid "Clicks of a subscriber"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:181
+#: public_html/lists/admin/userclicks.php:199
 #: public_html/lists/admin/mclicks.php:135
 #: public_html/lists/admin/users.php:355
 msgid "Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:214
+#: public_html/lists/admin/userclicks.php:238
 msgid "view user"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:222
+#: public_html/lists/admin/userclicks.php:246
 #: public_html/lists/admin/mclicks.php:201
 #: public_html/lists/admin/uclicks.php:130
 msgid "firstclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:223
+#: public_html/lists/admin/userclicks.php:247
 #: public_html/lists/admin/mclicks.php:202
 #: public_html/lists/admin/uclicks.php:131
 msgid "latestclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:227
+#: public_html/lists/admin/userclicks.php:251
 msgid "HTML"
 msgstr ""
 
