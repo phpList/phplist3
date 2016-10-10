@@ -58,14 +58,13 @@ $messageid = sprintf('%d', $elements[2]);
 $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
     $fwdid));
 
-if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
+if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid || $userid != $elements[3] || $fwdid != $elements[1] || $messageid != $elements[2]) {
     ## try the old table to avoid breaking links
     $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
     if (!empty($linkdata['forward'])) {
-        ## we're not recording clicks, but at least links in older newsletters won't break.
-        header('HTTP/1.0 303 See Other', true, 303);
-        header('Location: ' . $linkdata['forward']);
+        ## we're not recording clicks, but at least links from older phpList versions won't break.
+        header('Location: ' . $linkdata['forward'], true, 303);
         exit;
     }
 #  echo 'Invalid Request';
@@ -74,16 +73,18 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid) {
     exit;
 }
 
+$allowPersonalised = false;
+
 ## verify that this subscriber actually received this message, otherwise they're not allowed
-## allow admins on test messages
+## normal URLS on test messages, but block personalised ones
 $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
     $GLOBALS['tables']['usermessage'], $userid, $messageid));
-if (($allowed[0] != $userid || !$allowed[0]) && empty($_SESSION['adminloggedin'])) {
-    ## has this campaign be sent yet, if not, it's most likely an admin testing
+if ($allowed[0] != $userid || !$allowed[0])  {
+    ## has this campaign been sent yet, if not, it's most likely an admin testing
     $sent = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
         $GLOBALS['tables']['usermessage'], $messageid));
     if (empty($sent[0])) {
-        FileNotFound('<br/><i>' . s('Links in test campaigns only work when you are logged in as an administrator.') . '</i><br/>');
+        $allowPersonalised = !empty($_SESSION['adminloggedin']);
     } else {
         FileNotFound();
     }
@@ -149,6 +150,10 @@ if ($msgtype == 'H') {
 
 $url = $linkdata['url'];
 if ($linkdata['personalise']) {
+    if (!$allowPersonalised) {
+        FileNotFound('<br/><i>' . s('Profile links in test campaigns only work when you are logged in as an administrator.') . '</i><br/>');
+    }
+
     $uid = Sql_Fetch_Row_Query(sprintf('select uniqid from %s where id = %d', $GLOBALS['tables']['user'], $userid));
     if ($uid[0]) {
         if (strpos($url, '?')) {
@@ -184,6 +189,5 @@ if (!empty($messagedata['google_track'])) {
     }
 }
 
-header('HTTP/1.0 303 See Other', true, 303); ## use 303, because Location only uses 302, which gets indexed
-header('Location: ' . $url);
+header('Location: ' . $url, true, 303); ## use 303, because Location only uses 302, which gets indexed
 exit;
