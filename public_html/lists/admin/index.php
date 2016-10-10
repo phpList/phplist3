@@ -468,7 +468,7 @@ if (!$ajax && $page != 'login') {
                 $link = PageLinkButton('processqueue', s('Process the queue'));
                 $link2 = PageLinkButton('messages&amp;tab=active', s('View the queue'));
                 if ($link || $link2) {
-                    print Info(sprintf(s('You have %s message(s) waiting to be sent'),
+                    print Info(sprintf(s('You have %s campaign(s) in the queue, ready for processing'),
                             $queued_count[0]) . '<br/>' . $link . ' ' . $link2);
                 }
             }
