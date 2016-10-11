@@ -46,19 +46,19 @@ if ($id != $_GET['id']) {
 
 $track = base64_decode($id);
 $track = $track ^ XORmask;
-$elements = explode('|', $track);
-if (sizeof($elements) != 4) {
-    FileNotFound();
-}
-$msgtype = substr($elements[0],0,1);
-$userid = sprintf('%d', $elements[3]);
-$fwdid = sprintf('%d', $elements[1]);
-$messageid = sprintf('%d', $elements[2]);
 
+if (!preg_match('/^(H|T)\|(\d+)\|(\d+)\|(\d+)$/', $track, $matches)) {
+    FileNotFound();
+    exit;
+}
+$msgtype = $matches[1];
+$fwdid = $matches[2];
+$messageid = $matches[3];
+$userid = $matches[4];
 $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
     $fwdid));
 
-if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid || $userid != $elements[3] || $fwdid != $elements[1] || $messageid != $elements[2]) {
+if (!$linkdata) {
     ## try the old table to avoid breaking links
     $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
@@ -73,21 +73,15 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid || $userid !
     exit;
 }
 
-$allowPersonalised = false;
+$allowPersonalised = true;
 
 ## verify that this subscriber actually received this message, otherwise they're not allowed
 ## normal URLS on test messages, but block personalised ones
 $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
     $GLOBALS['tables']['usermessage'], $userid, $messageid));
-if ($allowed[0] != $userid || !$allowed[0])  {
-    ## has this campaign been sent yet, if not, it's most likely an admin testing
-    $sent = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
-        $GLOBALS['tables']['usermessage'], $messageid));
-    if (empty($sent[0])) {
-        $allowPersonalised = !empty($_SESSION['adminloggedin']);
-    } else {
-        FileNotFound();
-    }
+
+if (!$allowed) {
+    $allowPersonalised = !empty($_SESSION['adminloggedin']);
 }
 
 ## hmm a bit heavy to use here @@@optimise
@@ -111,14 +105,10 @@ if ($msgtype == 'H') {
     Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
     $trackingcode = 'utm_source=phplist' . $messageid . '&utm_medium=email&utm_content=HTML&utm_campaign=' . urlencode($messagedata['subject']);
-} elseif ($msgtype == 'T') {
+} else {
     Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
     $trackingcode = 'utm_source=phplist' . $messageid . '&utm_medium=email&utm_content=text&utm_campaign=' . urlencode($messagedata['subject']);
-} else {
-    ## we don't know any other option
-    FileNotFound();
-    exit;
 }
 
 $viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
