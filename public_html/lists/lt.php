@@ -73,7 +73,7 @@ if (!$fwdid || $linkdata['id'] != $fwdid || !$userid || !$messageid || $userid !
     exit;
 }
 
-$allowPersonalised = false;
+$allowPersonalised = true;
 
 ## verify that this subscriber actually received this message, otherwise they're not allowed
 ## normal URLS on test messages, but block personalised ones
