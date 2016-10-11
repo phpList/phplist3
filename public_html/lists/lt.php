@@ -79,15 +79,9 @@ $allowPersonalised = true;
 ## normal URLS on test messages, but block personalised ones
 $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
     $GLOBALS['tables']['usermessage'], $userid, $messageid));
-if ($allowed[0] != $userid || !$allowed[0])  {
-    ## has this campaign been sent yet, if not, it's most likely an admin testing
-    $sent = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
-        $GLOBALS['tables']['usermessage'], $messageid));
-    if (empty($sent[0])) {
-        $allowPersonalised = !empty($_SESSION['adminloggedin']);
-    } else {
-        FileNotFound();
-    }
+
+if (!$allowed) {
+    $allowPersonalised = !empty($_SESSION['adminloggedin']);
 }
 
 ## hmm a bit heavy to use here @@@optimise
