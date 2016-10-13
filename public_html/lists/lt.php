@@ -47,7 +47,7 @@ if ($id != $_GET['id']) {
 $track = base64_decode($id);
 $track = $track ^ XORmask;
 
-if (!preg_match('/^(H|T)\|(\d+)\|(\d+)\|(\d+)$/', $track, $matches)) {
+if (!preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
     FileNotFound();
     exit;
 }
