@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 # for now redirect to export
 

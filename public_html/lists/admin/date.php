@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
     class date
@@ -15,28 +15,28 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
         public function date($name = '')
         {
             $this->days = array(
-        $GLOBALS['I18N']->get('Sunday'),
-        $GLOBALS['I18N']->get('Monday'),
-        $GLOBALS['I18N']->get('Tuesday'),
-        $GLOBALS['I18N']->get('Wednesday'),
-        $GLOBALS['I18N']->get('Thursday'),
-        $GLOBALS['I18N']->get('Friday'),
-        $GLOBALS['I18N']->get('Saturday'),
-      );
+                $GLOBALS['I18N']->get('Sunday'),
+                $GLOBALS['I18N']->get('Monday'),
+                $GLOBALS['I18N']->get('Tuesday'),
+                $GLOBALS['I18N']->get('Wednesday'),
+                $GLOBALS['I18N']->get('Thursday'),
+                $GLOBALS['I18N']->get('Friday'),
+                $GLOBALS['I18N']->get('Saturday'),
+            );
             $this->months = array(
-        '01' => $GLOBALS['I18N']->get('January'),
-        '02' => $GLOBALS['I18N']->get('February'),
-        '03' => $GLOBALS['I18N']->get('March'),
-        '04' => $GLOBALS['I18N']->get('April'),
-        '05' => $GLOBALS['I18N']->get('May'),
-        '06' => $GLOBALS['I18N']->get('June'),
-        '07' => $GLOBALS['I18N']->get('July'),
-        '08' => $GLOBALS['I18N']->get('August'),
-        '09' => $GLOBALS['I18N']->get('September'),
-        '10' => $GLOBALS['I18N']->get('October'),
-        '11' => $GLOBALS['I18N']->get('November'),
-        '12' => $GLOBALS['I18N']->get('December'),
-      );
+                '01' => $GLOBALS['I18N']->get('January'),
+                '02' => $GLOBALS['I18N']->get('February'),
+                '03' => $GLOBALS['I18N']->get('March'),
+                '04' => $GLOBALS['I18N']->get('April'),
+                '05' => $GLOBALS['I18N']->get('May'),
+                '06' => $GLOBALS['I18N']->get('June'),
+                '07' => $GLOBALS['I18N']->get('July'),
+                '08' => $GLOBALS['I18N']->get('August'),
+                '09' => $GLOBALS['I18N']->get('September'),
+                '10' => $GLOBALS['I18N']->get('October'),
+                '11' => $GLOBALS['I18N']->get('November'),
+                '12' => $GLOBALS['I18N']->get('December'),
+            );
             $this->name = $name;
             $this->getDate();
             $this->getTime();
@@ -61,7 +61,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
         public function setDateTime($datetime)
         {
             #0000-00-00 00:00:00
-      list($date, $time) = explode(' ', $datetime);
+            list($date, $time) = explode(' ', $datetime);
             $this->setDate($date);
             $this->setTime($time);
         }
@@ -86,12 +86,13 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
                 $return = date('Y-m-d');
             }
             if (isset($_REQUEST[$value]['year']) && is_array($_REQUEST[$value]) && isset($_REQUEST[$value]['month']) && isset($_REQUEST[$value]['day'])) {
-                $return =  sprintf('%04d-%02d-%02d', $_REQUEST[$value]['year'], $_REQUEST[$value]['month'], $_REQUEST[$value]['day']);
+                $return = sprintf('%04d-%02d-%02d', $_REQUEST[$value]['year'], $_REQUEST[$value]['month'],
+                    $_REQUEST[$value]['day']);
             } else {
-                $return =  date('Y-m-d');
+                $return = date('Y-m-d');
             }
-     # print "Date ".$value.' '.$return;
-      return $return;
+            # print "Date ".$value.' '.$return;
+            return $return;
         }
 
         public function getTime($value = '')
@@ -111,20 +112,20 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             if (!$name) {
                 $name = $this->name;
             }
-  #    dbg("$name $fielddata $value $document_id");
-      if (!is_array($value)) {
-          $year = substr($value, 0, 4);
-          $month = substr($value, 5, 2);
-          $day = substr($value, 8, 2);
-          $hour = substr($value, 11, 2);
-          $minute = substr($value, 14, 2);
-      } else {
-          $year = $value['year'];
-          $month = $value['month'];
-          $day = $value['day'];
-          $hour = $value['hour'];
-          $minute = $value['minute'];
-      }
+            #    dbg("$name $fielddata $value $document_id");
+            if (!is_array($value)) {
+                $year = substr($value, 0, 4);
+                $month = substr($value, 5, 2);
+                $day = substr($value, 8, 2);
+                $hour = substr($value, 11, 2);
+                $minute = substr($value, 14, 2);
+            } else {
+                $year = $value['year'];
+                $month = $value['month'];
+                $day = $value['day'];
+                $hour = $value['hour'];
+                $minute = $value['minute'];
+            }
 
             if (!$day && !$month && !$year) {
                 $now = getdate(time());
@@ -135,9 +136,9 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             $html = '<div class="date">';
 
             $html .= " 
-      <!-- $day / $month / $year -->".'
-     <select name="'.$name.'[day]">';
-            for ($i = 1;$i < 32;++$i) {
+      <!-- $day / $month / $year -->" . '
+     <select name="' . $name . '[day]">';
+            for ($i = 1; $i < 32; ++$i) {
                 $sel = '';
                 if ($i == $day) {
                     $sel = 'selected="selected"';
@@ -147,7 +148,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             }
             $html .= '
       </select>
-      <select name="'.$name.'[month]">';
+      <select name="' . $name . '[month]">';
             reset($this->months);
             while (list($key, $val) = each($this->months)) {
                 $sel = '';
@@ -173,8 +174,8 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
 
             $html .= '
       </select>
-      <select name="'.$name.'[year]">';
-            for ($i = $start;$i <= $end;++$i) {
+      <select name="' . $name . '[year]">';
+            for ($i = $start; $i <= $end; ++$i) {
                 $html .= '
           <option ';
                 if ($i == $year) {
@@ -186,8 +187,8 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
       </select>';
             if ($this->useTime) {
                 $html .= '
-      <select name="'.$name.'[hour]">';
-                for ($i = 0;$i <= 23;++$i) {
+      <select name="' . $name . '[hour]">';
+                for ($i = 0; $i <= 23; ++$i) {
                     $sel = '';
                     if ($i == $hour) {
                         $sel = 'selected="selected"';
@@ -198,8 +199,8 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
                 $html .= '
         </select>';
                 $html .= '
-        <select name="'.$name.'[minute]">';
-                for ($i = 0;$i <= 59;$i += 15) {
+        <select name="' . $name . '[minute]">';
+                for ($i = 0; $i <= 59; $i += 15) {
                     $sel = '';
                     if ($i == $minute) {
                         $sel = 'selected="selected"';
@@ -211,7 +212,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
         </select>';
             }
 
-            return $html.'</div>';
+            return $html . '</div>';
         }
 
         public function display($parent, $data, $leaf, $branch)
@@ -223,7 +224,8 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
 
         public function store($itemid, $fielddata, $value, $table)
         {
-            Sql_query(sprintf('replace into %s values("%s",%d,"%s")', $table, $fielddata['name'], $itemid, $this->getDate($value)));
+            Sql_query(sprintf('replace into %s values("%s",%d,"%s")', $table, $fielddata['name'], $itemid,
+                $this->getDate($value)));
         }
     }
 }

@@ -1,94 +1,262 @@
 /* start file:/lists/styles/subscribe.css   */
 
-
 /* =-------------- Global Reset ----------*/
 
 html, body, div, span, applet, object, pre,
-iframe, h1, h2, h3, h4, h5, h6, blockquote, 
-p, a, abbr, acronym, address, big, cite, 
-code, del, dfn, em, font, img, ins, kbd, q, 
-s, samp, tt, small, strike, sub, strong, b, 
-sup, var, u, i, center, dl, dt, dd, ol, ul, 
-li, fieldset, form, label, legend, table, 
-caption, tbody, tfoot, thead, tr, th, td    { margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent}
+iframe, h1, h2, h3, h4, h5, h6, blockquote,
+p, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, font, img, ins, kbd, q,
+s, samp, tt, small, strike, sub, strong, b,
+sup, var, u, i, center, dl, dt, dd, ol, ul,
+li, fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
 
-ol, ul                                      { list-style:none}
-blockquote, q                               { quotes:none}
-:focus                                      { outline:0}
-ins                                         { text-decoration:none}
-del                                         { text-decoration:line-through}
-table                                       { border-collapse:collapse; border-spacing:0}
+ol, ul {
+    list-style: none
+}
 
+blockquote, q {
+    quotes: none
+}
+
+:focus {
+    outline: 0
+}
+
+ins {
+    text-decoration: none
+}
+
+del {
+    text-decoration: line-through
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
 
 /* =------------- Typography ----------*/
 
-html *                  {font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
-a                       { text-decoration:none}
-h3                      { font-size:18px; font-weight:normal;margin:20px 0px;line-height:30px}
-p                       { font-size:12px; margin:.75em 0}
-li,table,form           { font-size:12px }
-.error                  { font-size:13px;padding:3px; font-variant: small-caps;}
-input,textarea, select  { font-size:14px;}
+html * {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 20px 0px;
+    line-height: 30px
+}
+
+p {
+    font-size: 12px;
+    margin: .75em 0
+}
+
+li, table, form {
+    font-size: 12px
+}
+
+.error {
+    font-size: 13px;
+    padding: 3px;
+    font-variant: small-caps;
+}
+
+input, textarea, select {
+    font-size: 14px;
+}
 
 /* =-----------------Layout ----------*/
 
-body                    { background-position:top left; background-repeat: repeat-x;}
-#container              { max-width:920px;min-width:300px; margin:0 auto}
-#header                 { height:106px; width:100%}
-.fixed #mainContent     { margin:0 30px}
-#footer                 { clear:both; background-position:top left; background-repeat:repeat-x}
-#footerframe            { margin:0 40px; min-height:100px}
-#footer ul              { float:left; margin:1.5em 0}
-#footer ul li           { float:left; margin-right:10px}
+body {
+    background-position: top left;
+    background-repeat: repeat-x;
+}
 
+#container {
+    max-width: 920px;
+    min-width: 300px;
+    margin: 0 auto
+}
+
+#header {
+    height: 106px;
+    width: 100%
+}
+
+.fixed #mainContent {
+    margin: 0 30px
+}
+
+#footer {
+    clear: both;
+    background-position: top left;
+    background-repeat: repeat-x
+}
+
+#footerframe {
+    margin: 0 40px;
+    min-height: 100px
+}
+
+#footer ul {
+    float: left;
+    margin: 1.5em 0
+}
+
+#footer ul li {
+    float: left;
+    margin-right: 10px
+}
 
 /* =---------------- Styles ----------*/
 
-.panel                      { position:relative; border-width:6px; border-style:solid; margin-bottom:20px; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; -moz-box-shadow:1px 1px 8px rgba(0, 0, 0, 0.4); -webkit-box-shadow:1px 1px 8px rgba(0, 0, 0, 0.4); box-shadow:1px 1px 8px rgba(0, 0, 0, 0.6);}
-.panel .content             { padding:25px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;}
+.panel {
+    position: relative;
+    border-width: 6px;
+    border-style: solid;
+    margin-bottom: 20px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.panel .content {
+    padding: 25px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
 
 .note, .adminmessage,
-.missing                    { position:relative; background:url("../images/info-icon.png") no-repeat scroll 15px 11px #FFFECD; border:1px solid #FFDE9F; color:#855230; margin:15px 0; padding:1em 30px 1em 50px; font-size:12px }
+.missing {
+    position: relative;
+    background: url("../images/info-icon.png") no-repeat scroll 15px 11px #FFFECD;
+    border: 1px solid #FFDE9F;
+    color: #855230;
+    margin: 15px 0;
+    padding: 1em 30px 1em 50px;
+    font-size: 12px
+}
 
-.poweredby                  { clear:both; padding-top:10px; }
-p.poweredby a               { border:0; background: none;}
-p.poweredby a:hover         { background:none; border:0;}
+.poweredby {
+    clear: both;
+    padding-top: 10px;
+}
 
-p a                         {font-size:16px; }
-p a[href='./?p=unsubscribe']{float:right; font-size:12px; margin-top:50px}
+p.poweredby a {
+    border: 0;
+    background: none;
+}
 
+p.poweredby a:hover {
+    background: none;
+    border: 0;
+}
+
+p a {
+    font-size: 16px;
+}
+
+p a[href='./?p=unsubscribe'] {
+    float: right;
+    font-size: 12px;
+    margin-top: 50px
+}
 
 /* ---------------- Table Styles ---------------- */
 
-#mainContent table                      { width:100%; border-width:10px; border-style:solid;}
-#mainContent table td                   { padding:5px 10px; margin:1px;}
+#mainContent table {
+    width: 100%;
+    border-width: 10px;
+    border-style: solid;
+}
 
+#mainContent table td {
+    padding: 5px 10px;
+    margin: 1px;
+}
 
 /* =---------------- Form Elements ----------*/
 
-input[type="text"], 
-input[type="password"]              { margin:5px 0; padding:6px; border-width:2px; border-style:solid; width:80%;}
+input[type="text"],
+input[type="password"] {
+    margin: 5px 0;
+    padding: 6px;
+    border-width: 2px;
+    border-style: solid;
+    width: 80%;
+}
 
-textarea                            { padding:5px; border-width:1px; border-style:solid; width:80%;}
-select                              { margin:0 2px 0 0; padding:2px 1px 2px 5px; background:none repeat scroll 0 0; border-width:1px; border-style:solid;}
+textarea {
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    width: 80%;
+}
+
+select {
+    margin: 0 2px 0 0;
+    padding: 2px 1px 2px 5px;
+    background: none repeat scroll 0 0;
+    border-width: 1px;
+    border-style: solid;
+}
 
 input[type="submit"],
-p.button a, a.button                { position:relative; margin:5px 0; border-style:solid; border-width:1px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; padding:3px 6px; font-size:14px; line-height:1;}
+p.button a, a.button {
+    position: relative;
+    margin: 5px 0;
+    border-style: solid;
+    border-width: 1px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 14px;
+    line-height: 1;
+}
 
-input:hover[type="submit"], 
-a:hover.button, p.button a:hover    { cursor:pointer; text-decoration:none;}
+input:hover[type="submit"],
+a:hover.button, p.button a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
 
-span.required, div.required         { color:red; }
+span.required, div.required {
+    color: red;
+}
 
 /* =---------------- Top Logo ----------*/
 
-#logo { margin-top:5px; font-size:48px; }
-
+#logo {
+    margin-top: 5px;
+    font-size: 48px;
+}
 
 /* =---------------- small screens ----------*/
 
 @media only screen and (max-width: 767px) {
-        .fixed #mainContent {margin:0 5px}
+    .fixed #mainContent {
+        margin: 0 5px
     }
+}
 
 /* end file:/lists/styles/subscribe.css   */

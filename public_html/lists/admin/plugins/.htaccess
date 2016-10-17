@@ -1,8 +1,24 @@
 <FilesMatch "\.(php|inc)$">
-Order allow,deny
-deny from all
+	# Apache < 2.3
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+		Satisfy All
+	</IfModule>
+	# Apache ≥ 2.3
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
 </FilesMatch>
 <FilesMatch "index.php$">
-Order allow,deny
-allow from all
+	# Apache < 2.3
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Allow from all
+		Satisfy All
+	</IfModule>
+	# Apache ≥ 2.3
+	<IfModule mod_authz_core.c>
+		Require all granted
+	</IfModule>
 </FilesMatch>

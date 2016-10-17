@@ -25,7 +25,8 @@ function unregister_GLOBALS()
     // Variables that shouldn't be unset
     $noUnset = array('GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
 
-    $input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES, isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array());
+    $input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES,
+        isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array());
     foreach ($input as $k => $v) {
         if (!in_array($k, $noUnset) && isset($GLOBALS[$k])) {
             $GLOBALS[$k] = null;

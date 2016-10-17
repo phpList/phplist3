@@ -22,54 +22,55 @@
     height: 40px;
     list-style: none outside none;
     margin: 0;
-    padding: 0;}
+    padding: 0;
+}
 
 #menuTop a:hover {
-    background: none repeat scroll 0 0 #FFFECD;}
-
+    background: none repeat scroll 0 0 #FFFECD;
+}
 
 #menuTop a:active {
-    background: none repeat scroll 0 0 #EEEEE;}
+    background: none repeat scroll 0 0 #EEEEE;
+}
 
 #menuTop li li a {
     background: none repeat scroll 0 0 #F5F5F5;
     border: 1px solid #CCCCCC;
-    width: 155%;}
-
-
-#menuTop h3{
-display:block;
-border-width:1px;
-border-style:solid;
-margin:0;
-padding:0 5px;
+    width: 155%;
 }
 
-#menuTop h3{
-text-transform:uppercase
+#menuTop h3 {
+    display: block;
+    border-width: 1px;
+    border-style: solid;
+    margin: 0;
+    padding: 0 5px;
 }
 
-
-#menuTop a, #menuTop a:visited{
-color:#000000;
+#menuTop h3 {
+    text-transform: uppercase
 }
 
-#menuTop li{
-position:relative;
-list-style: none;
-margin-left:0px;
+#menuTop a, #menuTop a:visited {
+    color: #000000;
 }
 
-#menuTop ul ul{
-position:absolute;
-z-index:500;
-top:auto;
-display:none;
+#menuTop li {
+    position: relative;
+    list-style: none;
+    margin-left: 0px;
 }
 
-#menuTop ul ul ul{
-top:0;
-left:100%;
+#menuTop ul ul {
+    position: absolute;
+    z-index: 500;
+    top: auto;
+    display: none;
+}
+
+#menuTop ul ul ul {
+    top: 0;
+    left: 100%;
 }
 
 /* Begin non-anchor hover selectors */
@@ -80,40 +81,42 @@ older version of csshover.htc - V1.21.041022. It
 improves IE's performance speed to use the older
 file and this method */
 
-div#menuTop h3:hover{
+div#menuTop h3:hover {
 }
 
-div#menuTop li:hover{
-cursor:pointer;
-z-index:100;
+div#menuTop li:hover {
+    cursor: pointer;
+    z-index: 100;
 }
 
 div#menuTop li:hover ul ul,
 div#menuTop li li:hover ul ul,
 div#menuTop li li li:hover ul ul,
-div#menuTop li li li li:hover ul ul
-{display:none;}
+div#menuTop li li li li:hover ul ul {
+    display: none;
+}
 
 div#menuTop li:hover ul,
 div#menuTop li li:hover ul,
 div#menuTop li li li:hover ul,
-div#menuTop li li li li:hover ul
-{display:block;}
+div#menuTop li li li li:hover ul {
+    display: block;
+}
 
 /* End of non-anchor hover selectors */
 
 /* Styling for Expand */
 
-#menuTop a.x, #menuTop a.x:visited{
-font-weight:normal;
+#menuTop a.x, #menuTop a.x:visited {
+    font-weight: normal;
 }
 
-#menuTop a.x:hover{
-color:#fff;
+#menuTop a.x:hover {
+    color: #fff;
 }
 
-#menuTop a.x:active{
-color:#060;
+#menuTop a.x:active {
+    color: #060;
 }
 
 /* End CSS Popout Menu */

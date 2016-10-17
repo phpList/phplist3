@@ -3,9 +3,8 @@
 styles for the functionality. Ajaxed and Iframed pages version
 */
 
-
-body{
-  font:13px/1.5 Tahoma,'Helvetica Neue','Liberation Sans',FreeSans,sans-serif;
-  padding:0;
-  margin:0;
+body {
+    font: 13px/1.5 Tahoma, 'Helvetica Neue', 'Liberation Sans', FreeSans, sans-serif;
+    padding: 0;
+    margin: 0;
 }

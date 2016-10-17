@@ -1,8 +1,7 @@
-
 <div id="configurecontent"></div>
 
 <?php
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 /*
 if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
   $_SESSION["firstinstall"] = 1;
@@ -12,7 +11,8 @@ if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
 */
 
 if (isset($_GET['resetdefault']) && $_GET['resetdefault'] == 'yes') {
-    Sql_Query(sprintf('delete from %s where editable and item in ("%s")', $GLOBALS['tables']['config'], implode('","', array_keys($default_config))));
+    Sql_Query(sprintf('delete from %s where editable and item in ("%s")', $GLOBALS['tables']['config'],
+        implode('","', array_keys($default_config))));
     $_SESSION['action_result'] = s('The settings have been reset to the phpList default');
     Redirect('configure');
 }
@@ -32,12 +32,13 @@ if (empty($_REQUEST['id'])) {
 if (empty($_GET['id'])) {
     ## @@TODO might be an idea to allow reset on an "id" as well
     $button = new ConfirmButton(
-       s('Are you sure you want to reset the configuration to the default?'),
-       PageURL2('configure&resetdefault=yes', 'reset', ''),
-       s('Reset to default'));
+        s('Are you sure you want to reset the configuration to the default?'),
+        PageURL2('configure&resetdefault=yes', 'reset', ''),
+        s('Reset to default'));
 
-    print '<div class="fright">'.$button->show().'</div>';
-    print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'), 1);
+    print '<div class="fright">' . $button->show() . '</div>';
+    print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),
+        1);
 }
 
 $configCategories = array();
@@ -83,17 +84,17 @@ if (!empty($_REQUEST['save'])) {
                 }
                 if (empty($value) && !$info['allowempty']) {
                     #    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
-          $haserror = $info['description'].' '.$GLOBALS['I18N']->get('cannot be empty');
+                    $haserror = $info['description'] . ' ' . $GLOBALS['I18N']->get('cannot be empty');
                 } else {
                     $haserror = SaveConfig($id, $value);
                 }
             }
         }
         if (!$haserror) {
-            print '<div class="actionresult">'.s('Changes saved').'</div>';
+            print '<div class="actionresult">' . s('Changes saved') . '</div>';
             unset($id);
         } else {
-            print '<div class="actionresult error">'.$haserror.'<br/>'.s('Changes not saved').'</div>';
+            print '<div class="actionresult error">' . $haserror . '<br/>' . s('Changes not saved') . '</div>';
             unset($id);
         }
 #    Redirect("configure");
@@ -108,7 +109,7 @@ if (!empty($_REQUEST['save'])) {
     }
 
     if (in_array($item, array_keys($default_config))) {
-        Redirect('configure#item_'.$item);
+        Redirect('configure#item_' . $item);
         exit;
     }
 }
@@ -118,8 +119,8 @@ if (empty($id)) {
 
     foreach ($configCategories as $configCategory => $configItems) {
         $some = 0;
-        $categoryHTML = '<fieldset id="'.$configCategory.'">';
-        $categoryHTML .= '<legend>'.s($configCategory).' '.s('settings').'</legend>';
+        $categoryHTML = '<fieldset id="' . $configCategory . '">';
+        $categoryHTML .= '<legend>' . s($configCategory) . ' ' . s('settings') . '</legend>';
 
         foreach ($configItems as $configItem) {
             $dbvalue = getConfig($configItem);
@@ -145,12 +146,16 @@ if (empty($id)) {
             if (!in_array($configItem, $GLOBALS['noteditableconfig'])) {
                 $some = 1;
 
-                $resourceLink = sprintf('<a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a>', $_SESSION['adminlanguage']['iso'], $configItem);
-        ## disable this until the resources wiki is organised properly
-        $resourceLink = '';
+                $resourceLink = sprintf('<a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a>',
+                    $_SESSION['adminlanguage']['iso'], $configItem);
+                ## disable this until the resources wiki is organised properly
+                $resourceLink = '';
 
-                $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>', $alternate, $configItem, PageURL2('configure', '', "id=$configItem"), s('edit this value'), s('edit'), $default_config[$configItem]['description'], $resourceLink);
-                $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>', $configItem, $displayValue);
+                $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',
+                    $alternate, $configItem, PageURL2('configure', '', "id=$configItem"), s('edit this value'),
+                    s('edit'), $default_config[$configItem]['description'], $resourceLink);
+                $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>', $configItem,
+                    $displayValue);
                 if ($alternate == 1) {
                     $alternate = 2;
                 } else {
@@ -165,5 +170,5 @@ if (empty($id)) {
     }
     print '</form>';
 } else {
-    include dirname(__FILE__).'/actions/configure.php';
+    include dirname(__FILE__) . '/actions/configure.php';
 }

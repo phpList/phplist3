@@ -4,7 +4,6 @@ enabled:
   - align_double_arrow
   - newline_after_open_tag
   - ordered_use
-  - long_array_syntax
 
 disabled:
   - unalign_double_arrow

@@ -29,6 +29,12 @@ $database_user = 'phplist';
 # and what password do we use
 $database_password = 'phplist';
 
+# the mysql server port number if not the default
+$database_port = null;
+
+# the socket to be used
+$database_socket = null;
+
 # enable database connection compression
 $database_connection_compression = false;
 
@@ -221,9 +227,9 @@ define('WARN_ABOUT_PHP_SETTINGS', 1);
 # variables of PHP. check http://www.php.net/manual/en/language.variables.predefined.php
 # the values are different per system, but these ones are quite common.
 $userhistory_systeminfo = array(
-  'HTTP_USER_AGENT',
-  'HTTP_REFERER',
-  'REMOTE_ADDR',
+    'HTTP_USER_AGENT',
+    'HTTP_REFERER',
+    'REMOTE_ADDR',
 );
 
 # add spamblock
@@ -460,7 +466,7 @@ define('EMPTY_VALUE_PREFIX', '--');
 # if this is enabled phplist will initialise the From in new messages to be the
 # details of the logged in administrator who is sending the message
 # otherwise it will default to the values set in the configure page that identify
-# the From for system messages
+# the "Default for 'From:' in a campaign"
 define('USE_ADMIN_DETAILS_FOR_MESSAGES', 1);
 
 # attribute value reorder limit
@@ -542,6 +548,8 @@ Message sending options
 ## when you do this, you may need to run some tests, to see if the phpMailer version
 ## you have works ok
 #define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
+# or a more recent version of phpMailer will be like this
+#define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php');
 
 # To use a SMTP server please give your server hostname here, leave it blank to use the standard
 # PHP mail() command.
@@ -567,8 +575,13 @@ define('PHPMAILERHOST', '');
 # define('PHPMAILERBLASTPORT',25);
 
 # to use SSL/TLS when sending set this value
-# it can either be "ssl" or "tls", nothing else
+# it can either be "ssl" or "tls" or false to not use SSL/TLS at all
 # define("PHPMAILER_SECURE",'ssl');
+
+## SMTP debugging
+# Enable debugging output by phpmailer when sending test emails
+# See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.html#property_SMTPDebug
+# define('PHPMAILER_SMTP_DEBUG', 0);
 
 ## Smtp Timeout
 ## If you use SMTP for sending, you can set the timeout of the SMTP connection

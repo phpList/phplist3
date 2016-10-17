@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $plugin->logout();
@@ -14,13 +14,14 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 if (isset($_GET['err'])) {
     switch ($_GET['err']) {
         case '1':
-           Info(s('You have been logged out, because the session token of your request was incorrect'), true);
-           print PageLinkButton('home', s('Continue'));
-           break;
+            Info(s('You have been logged out, because the session token of your request was incorrect'), true);
+            print PageLinkButton('home', s('Continue'));
+            break;
         case '2':
-           Info(s('You have been logged out for security purposes, because there were too many errors in your session'), true);
-           print PageLinkButton('home', s('Continue'));
-           break;
+            Info(s('You have been logged out for security purposes, because there were too many errors in your session'),
+                true);
+            print PageLinkButton('home', s('Continue'));
+            break;
     }
 }
 

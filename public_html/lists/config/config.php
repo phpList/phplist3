@@ -3,14 +3,14 @@
 /*
 
 * ==============================================================================================================
-* 
-* 
-* The minimum requirements to get phpList working are in this file. 
+*
+*
+* The minimum requirements to get phpList working are in this file.
 * If you are interested in tweaking more options, check out the config_extended.php file
 * or visit http://resources.phplist.com/system/config
-* 
+*
 * ** NOTE: To use options from config_extended.php, you need to copy them to this file **
-* 
+*
 ==============================================================================================================
 
 */
@@ -34,7 +34,7 @@ $database_password = 'phplist';
 
 define('PHPMAILERHOST', '');
 
-# if test is true (not 0) it will not actually send ANY messages, but display what it would have sent
+# if TEST is set to 1 (not 0) it will not actually send ANY messages, but display what it would have sent
 # this is here, to make sure you edited the config file and mails are not sent "accidentally"
 # on unmanaged systems
 
@@ -43,13 +43,13 @@ define('TEST', 1);
 /*
 
 ==============================================================================================================
-* 
+*
 * Settings for handling bounces
-* 
-* This section is OPTIONAL, and not necessary to send out mailings, but it is highly recommended to correctly 
+*
+* This section is OPTIONAL, and not necessary to send out mailings, but it is highly recommended to correctly
 * set up bounce processing. Without processing of bounces your system will end up sending large amounts of
 * unnecessary messages, which overloads your own server, the receiving servers and internet traffic as a whole
-* 
+*
 ==============================================================================================================
 
 */

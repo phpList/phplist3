@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 ## @@TODO, finish and add to reconcile, and then document
 ## merge the history of two subscriber profiles, that are the same on email, except for some extraneous characters like space, newline, carriage return or tab
@@ -10,19 +10,24 @@ set_time_limit(600);
 function mergeUsers($original, $duplicate)
 {
     set_time_limit(60);
-    print '<br/>Merging '.$duplicate.' into '.$original;
+    print '<br/>Merging ' . $duplicate . ' into ' . $original;
 
     $umreq = Sql_Query(sprintf('select * from %s where userid = %d', $GLOBALS['tables']['usermessage'], $duplicate));
     while ($um = Sql_Fetch_Array($umreq)) {
-        Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s"', $GLOBALS['tables']['usermessage'], $original, $um['entered'], $duplicate, $um['entered']), 1);
+        Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s"',
+            $GLOBALS['tables']['usermessage'], $original, $um['entered'], $duplicate, $um['entered']), 1);
     }
-    $bncreq = Sql_Query(sprintf('select * from %s where user = %d', $GLOBALS['tables']['user_message_bounce'], $duplicate));
+    $bncreq = Sql_Query(sprintf('select * from %s where user = %d', $GLOBALS['tables']['user_message_bounce'],
+        $duplicate));
     while ($bnc = Sql_Fetch_Array($bncreq)) {
-        Sql_Query(sprintf('update %s set user = %d, time = "%s" where user = %d and time = "%s"', $GLOBALS['tables']['user_message_bounce'], $original, $bnc['time'], $duplicate, $bnc['time']), 1);
+        Sql_Query(sprintf('update %s set user = %d, time = "%s" where user = %d and time = "%s"',
+            $GLOBALS['tables']['user_message_bounce'], $original, $bnc['time'], $duplicate, $bnc['time']), 1);
     }
     $listreq = Sql_Query(sprintf('select * from %s where userid = %d', $GLOBALS['tables']['listuser'], $duplicate));
     while ($list = Sql_Fetch_Array($listreq)) {
-        Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s" and listid = %d', $GLOBALS['tables']['listuser'], $original, $list['entered'], $duplicate, $list['entered'], $list['listid']), 1);
+        Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s" and listid = %d',
+            $GLOBALS['tables']['listuser'], $original, $list['entered'], $duplicate, $list['entered'], $list['listid']),
+            1);
     }
     Sql_Query(sprintf('delete from %s where userid = %d', $GLOBALS['tables']['listuser'], $duplicate));
     Sql_Query(sprintf('delete from %s where user = %d', $GLOBALS['tables']['user_message_bounce'], $duplicate));
@@ -30,7 +35,7 @@ function mergeUsers($original, $duplicate)
 #  if (MERGE_DUPLICATES_DELETE_DUPLICATE) {
     deleteUser($duplicate);
 #  }
-  flush();
+    flush();
 }
 
 print '<h2>Merge on spaces</h2>';

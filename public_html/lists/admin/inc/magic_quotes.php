@@ -44,8 +44,8 @@ function removeXss($string)
 
         return $return;
     }
-  #$string = preg_replace('/<script/im','&lt;script',$string);
-  $string = htmlspecialchars($string);
+    #$string = preg_replace('/<script/im','&lt;script',$string);
+    $string = htmlspecialchars($string);
 
     return $string;
 }

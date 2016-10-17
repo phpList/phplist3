@@ -1,9 +1,11 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
+$GLOBALS['authenticationplugin'] = false;
+
 if (!defined('PLUGIN_ROOTDIR')) {
     define('PLUGIN_ROOTDIR', 'notdefined');
 }
@@ -15,43 +17,43 @@ if (defined('PLUGIN_ROOTDIRS')) {
 $pluginRootDirs[] = PLUGIN_ROOTDIR;
 $pluginRootDirs = array_unique($pluginRootDirs);
 
-include_once dirname(__FILE__).'/defaultplugin.php';
+include_once dirname(__FILE__) . '/defaultplugin.php';
 $pluginFiles = array();
 
 foreach ($pluginRootDirs as $pluginRootDir) {
     ## try to expand to subdir of the admin dir
-  if (!is_dir($pluginRootDir) && !empty($pluginRootDir)) {
-      $pluginRootDir = dirname(__FILE__).'/'.$pluginRootDir;
-  }
+    if (!is_dir($pluginRootDir) && !empty($pluginRootDir)) {
+        $pluginRootDir = dirname(__FILE__) . '/' . $pluginRootDir;
+    }
 
 #  print '<h3>'.$pluginRootDir.'</h3>';
-  if (is_dir($pluginRootDir)) {
-      $dh = opendir($pluginRootDir);
-      while (false !== ($file = readdir($dh))) {
-          if ($file != '.' && $file != '..' && !preg_match('/~$/', $file)) {
-              #        print $pluginRootDir.' '.$file.'<br/>';
-        if (is_file($pluginRootDir.'/'.$file) && preg_match("/\.php$/", $file)) {
-            #          print "ADD $file<br/>";
-          array_push($pluginFiles, $pluginRootDir.'/'.$file);
-        } elseif (is_dir($pluginRootDir.'/'.$file.'/plugins')) {
-            #         print 'SUBROOT'.$pluginRootDir.' '.$file.'<br/>';
-          $subRoot = $pluginRootDir.'/'.$file.'/plugins';
-            $subDir = opendir($subRoot);
-            while (false !== ($subFile = readdir($subDir))) {
-                if (is_file($subRoot.'/'.$subFile) && preg_match("/\.php$/", $subFile)) {
-                    #              print "ADD $subFile<br/>";
-              array_push($pluginFiles, $subRoot.'/'.$subFile);
+    if (is_dir($pluginRootDir)) {
+        $dh = opendir($pluginRootDir);
+        while (false !== ($file = readdir($dh))) {
+            if ($file != '.' && $file != '..' && !preg_match('/~$/', $file)) {
+                #        print $pluginRootDir.' '.$file.'<br/>';
+                if (is_file($pluginRootDir . '/' . $file) && preg_match("/\.php$/", $file)) {
+                    #          print "ADD $file<br/>";
+                    array_push($pluginFiles, $pluginRootDir . '/' . $file);
+                } elseif (is_dir($pluginRootDir . '/' . $file . '/plugins')) {
+                    #         print 'SUBROOT'.$pluginRootDir.' '.$file.'<br/>';
+                    $subRoot = $pluginRootDir . '/' . $file . '/plugins';
+                    $subDir = opendir($subRoot);
+                    while (false !== ($subFile = readdir($subDir))) {
+                        if (is_file($subRoot . '/' . $subFile) && preg_match("/\.php$/", $subFile)) {
+                            #              print "ADD $subFile<br/>";
+                            array_push($pluginFiles, $subRoot . '/' . $subFile);
+                        } else {
+                            #              print "NOT A FILE: $subRoot.'/'.$subFile<br/>";
+                        }
+                    }
                 } else {
-                    #              print "NOT A FILE: $subRoot.'/'.$subFile<br/>";
+                    #          print 'NOT A DIR: '.$pluginRootDir.'/'.$file.'/plugins<br/>';
                 }
             }
-        } else {
-            #          print 'NOT A DIR: '.$pluginRootDir.'/'.$file.'/plugins<br/>';
         }
-          }
-      }
-      closedir($dh);
-  }
+        closedir($dh);
+    }
 }
 
 $auto_enable_plugins = array();
@@ -74,54 +76,62 @@ foreach ($pluginFiles as $file) {
     list($className, $ext) = explode('.', basename($file));
     if (preg_match("/[\w]+/", $className)) {
         # && !in_array($className,$GLOBALS['plugins_disabled'])) {
-    if (!class_exists($className)) {
-        include_once $file;
-        if (class_exists($className)) {
-            $pluginInstance = new $className();
-            $pluginInstance->origin = $file;
-      #  print "Instance $className<br/>";
-        ## bit of a duplication of plugins, but $GLOBALS['plugins'] should only contain active ones
-        ## using "allplugins" allow listing them, and switch on/off in the plugins page
-        $GLOBALS['allplugins'][$className] = $pluginInstance;
-            if (!in_array($className, $GLOBALS['plugins_disabled'])) {
-                $GLOBALS['plugins'][$className] = $pluginInstance;
-          ## remember the first plugin that says it can provide the editor
-          ## the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
-          if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance, 'editor')) {
-              $GLOBALS['editorplugin'] = $className;
-          }
-     #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
-          $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
-                if (!empty($plugin_initialised)) {
-                    $GLOBALS['plugins'][$className]->enabled = true;
-                } elseif (in_array($className, $auto_enable_plugins)) {
-                    $GLOBALS['plugins'][$className]->initialise();
-                    $GLOBALS['plugins'][$className]->enabled = true;
-                } else {
-                    $GLOBALS['plugins'][$className]->enabled = false;
-                    $disabled_plugins[$className] = 1;
-                    saveConfig('plugins_disabled', serialize($disabled_plugins), 0);
-                }
-
-                if (!empty($GLOBALS['plugins'][$className]->DBstruct)) {
-                    foreach ($GLOBALS['plugins'][$className]->DBstruct as $tablename => $tablecolumns) {
-                        $GLOBALS['tables'][$className.'_'.$tablename] =  $GLOBALS['table_prefix'].$className.'_'.$tablename;
+        if (!class_exists($className)) {
+            include_once $file;
+            if (class_exists($className)) {
+                $pluginInstance = new $className();
+                $pluginInstance->origin = $file;
+                #  print "Instance $className<br/>";
+                ## bit of a duplication of plugins, but $GLOBALS['plugins'] should only contain active ones
+                ## using "allplugins" allow listing them, and switch on/off in the plugins page
+                $GLOBALS['allplugins'][$className] = $pluginInstance;
+                if (!in_array($className, $GLOBALS['plugins_disabled'])) {
+                    $GLOBALS['plugins'][$className] = $pluginInstance;
+                    ## remember the first plugin that says it can provide the editor
+                    ## the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
+                    if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance,
+                            'editor')
+                    ) {
+                        $GLOBALS['editorplugin'] = $className;
                     }
-                }
-                if ($GLOBALS['plugins'][$className]->enabled) {
-                    $GLOBALS['plugins'][$className]->activate();
+                    if (!$GLOBALS['authenticationplugin'] && $pluginInstance->authProvider && method_exists($pluginInstance,
+                            'validateLogin')
+                    ) {
+                        $GLOBALS['authenticationplugin'] = $className;
+                    }
+                    #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
+                    $plugin_initialised = getConfig(md5('plugin-' . $className . '-initialised'));
+                    if (!empty($plugin_initialised)) {
+                        $GLOBALS['plugins'][$className]->enabled = true;
+                    } elseif (in_array($className, $auto_enable_plugins)) {
+                        $GLOBALS['plugins'][$className]->initialise();
+                        $GLOBALS['plugins'][$className]->enabled = true;
+                    } else {
+                        $GLOBALS['plugins'][$className]->enabled = false;
+                        $disabled_plugins[$className] = 1;
+                        saveConfig('plugins_disabled', serialize($disabled_plugins), 0);
+                    }
+
+                    if (!empty($GLOBALS['plugins'][$className]->DBstruct)) {
+                        foreach ($GLOBALS['plugins'][$className]->DBstruct as $tablename => $tablecolumns) {
+                            $GLOBALS['tables'][$className . '_' . $tablename] = $GLOBALS['table_prefix'] . $className . '_' . $tablename;
+                        }
+                    }
+                    if ($GLOBALS['plugins'][$className]->enabled) {
+                        $GLOBALS['plugins'][$className]->activate();
+                    }
+                } else {
+                    $GLOBALS['allplugins'][$className]->enabled = false;
+                    dbg($className . ' disabled');
                 }
             } else {
-                $GLOBALS['allplugins'][$className]->enabled = false;
-                dbg($className.' disabled');
+                Error('initialisation of plugin ' . $className . ' failed');
             }
-        } else {
-            Error('initialisation of plugin '.$className.' failed');
+            #print "$className = ".$pluginInstance->name."<br/>";
         }
-      #print "$className = ".$pluginInstance->name."<br/>";
-    }
     }
 }
+
 $GLOBALS['pluginsendformats'] = array();
 foreach ($GLOBALS['plugins'] as $className => $pluginInstance) {
     $plugin_sendformats = $pluginInstance->sendFormats();
@@ -138,12 +148,12 @@ function upgradePlugins($toUpgrade)
     foreach ($toUpgrade as $pluginname) {
         #    print '<h2>Upgrading '.$pluginname. '</h2><br/> ';
 #    print md5('plugin-'.$pluginname.'-versiondate');
-    $currentDate = getConfig(md5('plugin-'.$pluginname.'-versiondate'));
+        $currentDate = getConfig(md5('plugin-' . $pluginname . '-versiondate'));
 #    print 'CUrrent '.$currentDate;
-    if ($GLOBALS['allplugins'][$pluginname]->upgrade($currentDate)) {
-        #      print "Saving ".'plugin-'.$pluginname.'-versiondate';
-      SaveConfig(md5('plugin-'.$pluginname.'-versiondate'), date('Y-m-d'), 0);
-    }
+        if ($GLOBALS['allplugins'][$pluginname]->upgrade($currentDate)) {
+            #      print "Saving ".'plugin-'.$pluginname.'-versiondate';
+            SaveConfig(md5('plugin-' . $pluginname . '-versiondate'), date('Y-m-d'), 0);
+        }
     }
 }
 
@@ -168,11 +178,11 @@ function pluginsCall($method)
 {
     $args = func_get_args();
     $m = array_shift($args); # the first is the method itself
-  foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-      if (method_exists($plugin, $method)) {
-          $plugin->$method($args);
-      }
-  }
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+        if (method_exists($plugin, $method)) {
+            $plugin->$method($args);
+        }
+    }
 }
 
 function pluginCanEnable($plugin)
