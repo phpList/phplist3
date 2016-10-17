@@ -547,6 +547,35 @@ if ($dbversion == VERSION) {
     ## #17328 - remove list categories with quotes
     Sql_Query(sprintf("update %s set category = replace(category,\"\\\\'\",\" \")", $tables['list']));
 
+
+    ## add uuid columns
+    if (!Sql_Table_Column_Exists($GLOBALS['tables']['message'], 'uuid')) {
+        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+            $GLOBALS['tables']['message']));
+    }
+    if (!Sql_Table_Column_Exists($GLOBALS['tables']['linktrack_forward'], 'uuid')) {
+        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+            $GLOBALS['tables']['linktrack_forward']));
+    }
+    if (!Sql_Table_Column_Exists($GLOBALS['tables']['user'], 'uuid')) {
+        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+            $GLOBALS['tables']['user']));
+    }
+    # add uuids to those that do not have it
+    $req = Sql_Query(sprintf('select id from %s where uuid = ""',$GLOBALS['tables']['user']));
+    while ($row = Sql_Fetch_Row($req)) {
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['user'],uuid::generate(4),$row[0]));
+    }
+    $req = Sql_Query(sprintf('select id from %s where uuid = ""',$GLOBALS['tables']['message']));
+    while ($row = Sql_Fetch_Row($req)) {
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['message'],uuid::generate(4),$row[0]));
+    }
+    $req = Sql_Query(sprintf('select id from %s where uuid = ""',$GLOBALS['tables']['linktrack_forward']));
+    while ($row = Sql_Fetch_Row($req)) {
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['linktrack_forward'],uuid::generate(4),$row[0]));
+    }
+
+
     ## longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     ## before converting, it's quickest to clear the cache
     clearPageCache();

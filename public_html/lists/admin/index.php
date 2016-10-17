@@ -86,6 +86,7 @@ $GLOBALS['pagestats']['number_of_queries'] = 0;
 
 # load all required files
 require_once dirname(__FILE__) . '/init.php';
+require_once dirname(__FILE__) . '/inc/UUID.php';
 require_once dirname(__FILE__) . '/' . $GLOBALS['database_module'];
 include_once dirname(__FILE__) . '/../texts/english.inc';
 include_once dirname(__FILE__) . '/../texts/' . $GLOBALS['language_module'];
