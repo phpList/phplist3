@@ -1,6 +1,7 @@
-#: public_html/lists/lt.php:86
+#: public_html/lists/lt.php:144
 msgid ""
-"Links in test campaigns only work when you are logged in as an administrator."
+"Profile links in test campaigns only work when you are logged in as an "
+"administrator."
 msgstr ""
 
 #: public_html/lists/index.php:640
@@ -7097,7 +7098,7 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:471
 #, php-format
-msgid "You have %s message(s) waiting to be sent"
+msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
 #: public_html/lists/admin/index.php:576
