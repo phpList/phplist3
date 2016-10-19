@@ -513,7 +513,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             if (preg_match('/\.$/', $link)) {
                 $link = substr($link, 0, -1);
             }
-            $linkid = 0;
+            $linkUUID = 0;
 
             $linktext = $links[4][$i];
 
@@ -535,9 +535,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 #          $link = $urlbase . $link;
 #        }
 
-                $linkid = clickTrackLinkId($messageid, $userdata['id'], $url, $link);
+                $linkUUID = clickTrackLinkId($messageid, $userdata['id'], $url, $link);
 
-                $masked = "H|$linkid|$messageid|" . $userdata['id'] ^ XORmask;
+                $masked = "H|$linkUUID|".$cached[$messageid]['uuid']."|" . $userdata['uuid'] ^ XORmask;
                 $masked = base64_encode($masked);
                 ## 15254- the encoding adds one or two extraneous = signs, take them off
                 $masked = preg_replace('/=$/', '', $masked);
@@ -609,33 +609,33 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $link = substr($link, 0, -1);
             }
 
-            $linkid = 0;
+            $linkUUID = 0;
             if (preg_match('/^http|ftp/i', $link)) {
                 # && !strpos($link,$clicktrack_root)) {
                 $url = cleanUrl($link, array('PHPSESSID', 'uid'));
 
-                $linkid = clickTrackLinkId($messageid, $userdata['id'], $url, $link);
+                $linkUUID = clickTrackLinkId($messageid, $userdata['uuid'], $url, $link);
 
-                $masked = "T|$linkid|$messageid|" . $userdata['id'] ^ XORmask;
+                $masked = "T|$linkUUID|".$cached[$messageid]['uuid']."|" . $userdata['uuid'] ^ XORmask;
                 $masked = base64_encode($masked);
                 ## 15254- the encoding adds one or two extraneous = signs, take them off
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = urlencode($masked);
                 if (!CLICKTRACK_LINKMAP) {
-                    $newlinks[$linkid] = sprintf('%s://%s/lt.php?id=%s', $GLOBALS['public_scheme'],
+                    $newlinks[$linkUUID] = sprintf('%s://%s/lt.php?id=%s', $GLOBALS['public_scheme'],
                         $website . $GLOBALS['pageroot'], $masked);
                 } else {
-                    $newlinks[$linkid] = sprintf('%s://%s%s', $GLOBALS['public_scheme'], $website . CLICKTRACK_LINKMAP,
+                    $newlinks[$linkUUID] = sprintf('%s://%s%s', $GLOBALS['public_scheme'], $website . CLICKTRACK_LINKMAP,
                         $masked);
                 }
 
 #        print $links[0][$i] .' -> '.$newlink.'<br/>';
-                $textmessage = str_replace($links[1][$i], '[%%%' . $linkid . '%%%]', $textmessage);
+                $textmessage = str_replace($links[1][$i], '[%%%' . $linkUUID . '%%%]', $textmessage);
             }
         }
-        foreach ($newlinks as $linkid => $newlink) {
-            $textmessage = str_replace('[%%%' . $linkid . '%%%]', $newlink, $textmessage);
+        foreach ($newlinks as $linkUUID => $newlink) {
+            $textmessage = str_replace('[%%%' . $linkUUID . '%%%]', $newlink, $textmessage);
         }
     }
     if (VERBOSE && $getspeedstats) {
@@ -1167,7 +1167,7 @@ function createPDF($text)
         $GLOBALS['pdf_fontsize'] = 12;
     }
     $pdf = new FPDF();
-    $pdf->SetCreator('PHPlist version ' . VERSION);
+    $pdf->SetCreator('phpList version ' . VERSION);
     $pdf->Open();
     $pdf->AliasNbPages();
     $pdf->AddPage();
@@ -1316,19 +1316,23 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
      * alter table phplist_linktrack_forward add index (url); 
      * */
 
-        $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"',
+        $exists = Sql_Fetch_Row_Query(sprintf('select id,uuid from %s where url = "%s"',
             $GLOBALS['tables']['linktrack_forward'], sql_escape(substr($url, 0, 255))));
         if (!$exists[0]) {
             $personalise = preg_match('/uid=/', $link);
+            $uuid = Uuid::generate(4);
             Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d, uuid = "%s"',
-                $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise,Uuid::generate(4)));
+                $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise,$uuid));
             $fwdid = Sql_Insert_id();
+            $fwduuid = $uuid;
         } else {
             $fwdid = $exists[0];
+            $fwduuid = $exists[1];
         }
-        $cached['linktrack'][$link] = $fwdid;
+        $cached['linktrack'][$link] = array($fwdid,$fwduuid);
     } else {
-        $fwdid = $cached['linktrack'][$link];
+        $fwdid = $cached['linktrack'][$link][0];
+        $fwduuid = $cached['linktrack'][$link][1];
     }
 
     if (!isset($cached['linktracksent'][$messageid]) || !is_array($cached['linktracksent'][$messageid])) {
@@ -1359,7 +1363,7 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
         values(%d,%d,"%s","%s")',$GLOBALS['tables']['linktrack'],$messageid,$userdata['id'],$url,addslashes($link)));
       $req = Sql_Fetch_Row_Query(sprintf('select linkid from %s where messageid = %s and userid = %d and forwardid = %d
       ',$GLOBALS['tables']['linktrack'],$messageid,$userid,$fwdid));*/
-    return $fwdid;
+    return $fwduuid;
 }
 
 function parseText($text)
@@ -1455,6 +1459,7 @@ function precacheMessage($messageid, $forwardContent = 0)
 #    $cached[$messageid] = array();
 #    $message = Sql_fetch_array($message);
     $message = loadMessageData($messageid);
+    $cached[$messageid]['uuid'] = $message['uuid'];
 
     ## the reply to is actually not in use
     if (preg_match('/([^ ]+@[^ ]+)/', $message['replyto'], $regs)) {
