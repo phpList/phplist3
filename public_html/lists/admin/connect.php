@@ -28,7 +28,7 @@ if (empty($xormask)) {
     $xormask = md5(uniqid(rand(), true));
     SaveConfig('xormask', $xormask, 0, 1);
 }
-define('XORmask', $xormask);
+define('XORmask', str_repeat($xormask,20));
 if (empty($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
     $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = substr(md5(uniqid(mt_rand(), true)), rand(0, 32),
         rand(0, 32));
