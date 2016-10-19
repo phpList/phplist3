@@ -469,7 +469,7 @@ function Fatal_Error($msg, $documentationURL = '')
         $_SESSION['fatalerror'] = 0;
     }
     ++$_SESSION['fatalerror'];
-    header('Fatal error', true, 509);
+    header('HTTP/1.0 509 Fatal error');
     if ($_SESSION['fatalerror'] > 5) {
         $_SESSION['logout_error'] = s('Too many errors, please login again');
         Redirect('logout&err=2');
