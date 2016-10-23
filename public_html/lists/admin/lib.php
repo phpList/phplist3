@@ -330,10 +330,16 @@ function sendAdminPasswordToken($adminId)
     $email = $row[1];
     #Check if the token is not present in the database yet.
     while (1) {
-        #Randomize the token to be encrypted and insert it into the db.
-        $date = date('U');
-        $random = rand(1, $date);
-        $key = md5($date ^ $random);
+        #hash a random value and insert it into the db.
+        # @TODO replace openssl with random_bytes() https://github.com/paragonie/random_compat
+        # @TODO alter database schema to allow longer tokens
+        # @TODO encode rather than hash the random value to avoid needlessly reducing entropy, or at the very least use sha2
+        # @TODO add a hmac?
+        $random = openssl_random_pseudo_bytes(32,$strong);
+        if ($strong !== TRUE) {
+            return $GLOBALS['I18N']->get('Error sending password change token');
+        }
+        $key = md5($random);
         $SQLquery = sprintf("select * from %s where key_value = '%s'", $GLOBALS['tables']['admin_password_request'],
             $key);
         $row = Sql_Fetch_Row_Query($SQLquery);
