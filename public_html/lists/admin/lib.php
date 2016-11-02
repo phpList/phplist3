@@ -320,37 +320,26 @@ function campaignTitle($id)
     return stripslashes($campaignTitle['title']);
 }
 
-#Send email with a random encrypted token.
+#Send an email with a password reset token to the specified adminId.
 function sendAdminPasswordToken($adminId)
 {
-    #Retrieve the admin login name.
+    #Invalidate extisting password reset tokens for this user
+    Sql_Query( sprintf("delete from %s where admin = '%s'", $GLOBALS['tables']['admin_password_request'],$adminId) );
+
+    #Create random token
+    # @TODO alter database schema to allow longer tokens, currently 16 characters / 128 bits
+    $key = bin2hex(random_bytes(16));
+
+    # sql to insert token into the database, token can be used to change the password once executed.
+    $insertToken = sprintf("insert into %s(date, admin, key_value) values (now(), %d, '%s');",
+        $GLOBALS['tables']['admin_password_request'], $adminId, $key);
+
+    #Retrieve the admin login name and email address
     $SQLquery = sprintf('select loginname,email from %s where id=%d;', $GLOBALS['tables']['admin'], $adminId);
     $row = Sql_Fetch_Row_Query($SQLquery);
     $adminName = $row[0];
     $email = $row[1];
-    #Check if the token is not present in the database yet.
-    while (1) {
-        #hash a random value and insert it into the db.
-        # @TODO replace openssl with random_bytes() https://github.com/paragonie/random_compat
-        # @TODO alter database schema to allow longer tokens
-        # @TODO encode rather than hash the random value to avoid needlessly reducing entropy, or at the very least use sha2
-        # @TODO add a hmac?
-        $random = openssl_random_pseudo_bytes(32,$strong);
-        if ($strong !== TRUE) {
-            return $GLOBALS['I18N']->get('Error sending password change token');
-        }
-        $key = md5($random);
-        $SQLquery = sprintf("select * from %s where key_value = '%s'", $GLOBALS['tables']['admin_password_request'],
-            $key);
-        $row = Sql_Fetch_Row_Query($SQLquery);
-        //echo "<script text='javascript'>alert('".($row[0]=='')."');</script>";
-        if ($row[0] == '') {
-            break;
-        }
-    }
-    $query = sprintf("insert into %s(date, admin, key_value) values (now(), %d, '%s');",
-        $GLOBALS['tables']['admin_password_request'], $adminId, $key);
-    Sql_Query($query);
+
     $urlroot = getConfig('website') . $GLOBALS['adminpages'];
     #Build the email body to be sent, and finally send it.
     $emailBody = $GLOBALS['I18N']->get('Hello') . ' ' . $adminName . "\n\n";
@@ -358,7 +347,10 @@ function sendAdminPasswordToken($adminId)
     $emailBody .= $GLOBALS['I18N']->get('To enter a new one, please visit the following link:') . "\n\n";
     $emailBody .= sprintf('%s://%s/?page=login&token=%s', $GLOBALS['admin_scheme'], $urlroot, $key) . "\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have 24 hours left to change your password. After that, your token won\'t be valid.');
+
     if (sendMail($email, $GLOBALS['I18N']->get('New password'), "\n\n" . $emailBody, '', '', true)) {
+        #Insert the token into the database
+        Sql_Query($insertToken);
         return $GLOBALS['I18N']->get('A password change token has been sent to the corresponding email address.');
     } else {
         return $GLOBALS['I18N']->get('Error sending password change token');
