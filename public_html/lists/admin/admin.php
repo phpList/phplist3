@@ -52,7 +52,7 @@ if (!empty($_POST['change'])) {
                 if (!$total) {
                     Sql_Query(sprintf('insert into %s (loginname,namelc,password,email,created) values("%s","%s","%s","%s",now())',
                         $tables['admin'], strtolower(normalize($_POST['loginname'])),
-                        strtolower(normalize($_POST['loginname'])), encryptPass(md5(rand(0, 1000))),
+                        strtolower(normalize($_POST['loginname'])), encryptPass(random_bytes(32)),
                         sql_escape($_POST['email'])));
                     $id = Sql_Insert_Id($tables['admin'], 'id');
                 } else {
