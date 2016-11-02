@@ -15,6 +15,8 @@ $GLOBALS['commandline'] = 0;
 
 require_once dirname(__FILE__) . '/inc/unregister_globals.php';
 require_once dirname(__FILE__) . '/inc/magic_quotes.php';
+# Remove when php5.X is unsupported, currently 31 Dec 2018, https://secure.php.net/supported-versions.php
+require_once dirname(__FILE__) . '/inc/random_compat/random.php';
 
 /* no idea why it wouldn't be there (no dependencies are mentioned on php.net/mb_strtolower), but
  * found a system missing it. We need it from the start */
