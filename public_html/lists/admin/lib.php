@@ -1687,8 +1687,7 @@ function verifyCsrfGetToken($enforce = 1)
 function addCsrfGetToken()
 {
     if (empty($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-        $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = substr(md5(uniqid(mt_rand(), true)), rand(0, 32),
-            rand(0, 32));
+        $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = bin2hex(random_bytes(16));
     }
 
     return '&tk=' . $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'];
