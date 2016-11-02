@@ -35,16 +35,7 @@ function getUniqid($table = '')
             $table = 'user';
         }
     }
-    $id = md5(mt_rand() . uniqid(time(), true)); ##17603 better random CID value on Windows
-
-    /* this doesn't scale very well, do this offline
-    # make sure it is really unique
-    $req = Sql_Query("select id from $table where uniqid = \"$id\"");
-    while (Sql_Affected_rows()) {
-      $id = md5(uniqid(mt_rand()));
-      $req = Sql_Query("select id from $table where uniqid = \"$id\"");
-    }
-    */
+    $id = hex2bin(random_bytes(16));
     return $id;
 }
 
