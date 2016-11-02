@@ -30,8 +30,7 @@ if (empty($xormask)) {
 }
 define('XORmask', $xormask);
 if (empty($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-    $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = substr(md5(uniqid(mt_rand(), true)), rand(0, 32),
-        rand(0, 32));
+    $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = bin2hex(random_bytes(16));
 }
 if (isset($_SESSION['lastactivity'])) {
     $_SESSION['session_age'] = time() - $_SESSION['lastactivity'];
