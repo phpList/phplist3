@@ -87,7 +87,7 @@ if (!$id) {
         print '<p class="information">' . $GLOBALS['I18N']->get('There are currently no campaigns to view') . '</p>';
     }
 
-    $ls = new WebblerListing('');
+    $ls = new WebblerListing('Campaign statistics');
     $ls->usePanel($paging);
     while ($row = Sql_Fetch_Array($req)) {
         #  $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($row['subject'],30);
