@@ -260,7 +260,12 @@ while ($row = Sql_fetch_array($result)) {
     //$desc = $plugin->displayLists($row) . $desc;
     //}
 
-    $element = '<!-- ' . $row['id'] . '-->' . stripslashes($row['name']);
+    $element = '<!-- ' . 
+    $row['id'] . '-->' . '<a href="./?page=members&id=' . 
+    $row['id'] . '" title="' . 
+    $GLOBALS['I18N']->get('View Members') . '">'. 
+    stripslashes($row['name'] . '</a>' );
+    
     $ls->addElement($element);
     $ls->setClass($element, 'rows row1');
     $ls->addColumn($element,
