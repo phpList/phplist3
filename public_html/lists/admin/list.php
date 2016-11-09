@@ -211,7 +211,7 @@ $ls->usePanel($paging);
  * this will avoid that confusion
  * we can only do this for superusers of course
  * */
-if ( isSuperUser()) {
+if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
     $membersDisplay = listMemberCounts(0);
     $desc = s('Total') . '(' . s('All subscribers'). ')';
 
