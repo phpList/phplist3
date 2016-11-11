@@ -42,13 +42,14 @@ if (!$listid) {
     order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
         $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
     $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
+    $ls->setElementHeading('List name');
     $some = 0;
     while ($row = Sql_Fetch_Array($req)) {
         $some = 1;
         $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
         $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
         #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('Total bounces'), $row['numusers']);
     }
     if ($some) {
         print $ls->display();
