@@ -106,6 +106,7 @@ if ($download) {
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on') . ' ' . listName($listid));
 $ls->noShader();
+$ls->setElementHeading('Subscriber ID');
 while ($row = Sql_Fetch_Array($req)) {
     $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
         $GLOBALS['tables']['user'], $row['userid']));
@@ -114,8 +115,8 @@ while ($row = Sql_Fetch_Array($req)) {
             print $userdata['email'] . "\n";
         } else {
             $ls->addElement($row['userid'], PageUrl2('user&amp;id=' . $row['userid']));
-            $ls->addColumn($row['userid'], s('address'), $userdata['email']);
-            $ls->addColumn($row['userid'], s('# bounces'),
+            $ls->addColumn($row['userid'], s('Subscriber address'), $userdata['email']);
+            $ls->addColumn($row['userid'], s('Total bounces'),
                 PageLink2('userhistory&id=' . $row['userid'], $row['numbounces']));
         }
     }
