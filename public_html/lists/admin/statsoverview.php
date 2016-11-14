@@ -104,6 +104,7 @@ if (!$id) {
 
         $ls->addElement($element,
             PageURL2('statsoverview&amp;id=' . $row['messageid']));#,PageURL2('message&amp;id='.$row['messageid']));
+        $ls->setElementHeading($GLOBALS['I18N']->get('Campaign'));
         $ls->setClass($element, 'row1');
         #   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
         $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $row['total']);
