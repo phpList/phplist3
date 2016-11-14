@@ -42,13 +42,14 @@ if (!$listid) {
     order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
         $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
     $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
+    $ls->setElementHeading('List name');
     $some = 0;
     while ($row = Sql_Fetch_Array($req)) {
         $some = 1;
         $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
         $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
         #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('Total bounces'), $row['numusers']);
     }
     if ($some) {
         print $ls->display();
@@ -105,6 +106,7 @@ if ($download) {
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on') . ' ' . listName($listid));
 $ls->noShader();
+$ls->setElementHeading('Subscriber ID');
 while ($row = Sql_Fetch_Array($req)) {
     $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
         $GLOBALS['tables']['user'], $row['userid']));
@@ -113,8 +115,8 @@ while ($row = Sql_Fetch_Array($req)) {
             print $userdata['email'] . "\n";
         } else {
             $ls->addElement($row['userid'], PageUrl2('user&amp;id=' . $row['userid']));
-            $ls->addColumn($row['userid'], s('address'), $userdata['email']);
-            $ls->addColumn($row['userid'], s('# bounces'),
+            $ls->addColumn($row['userid'], s('Subscriber address'), $userdata['email']);
+            $ls->addColumn($row['userid'], s('Total bounces'),
                 PageLink2('userhistory&id=' . $row['userid'], $row['numbounces']));
         }
     }
