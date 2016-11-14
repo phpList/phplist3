@@ -462,8 +462,7 @@ class PHPlistMailer extends PHPMailer
          * to phpMailer
          */
 
-        #$cid = md5(uniqid(time()));
-        $cid = md5(mt_rand() . $name . uniqid(time(), true)); ##17603 better random CID value on Windows
+        $cid = bin2hex(random_bytes(16)); # @TODO seems this does not need to be random, just unique? perhaps hash($contents)
         if (method_exists($this, 'AddEmbeddedImageString')) {
             $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
         } elseif (method_exists($this, 'AddStringEmbeddedImage')) {

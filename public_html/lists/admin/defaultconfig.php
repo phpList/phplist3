@@ -98,8 +98,9 @@ $default_config = array(
     ),
 
     ## remote processing secret
+    # @TODO previous value generation was limited to 20 hex characters (max), determine if this is enough (80 bits)
     'remote_processing_secret' => array(
-        'value' => substr(md5(uniqid(mt_rand(), true)), rand(0, 10), rand(10, 20)),
+        'value' => bin2hex(random_bytes(10)),
         'description' => s('Secret for remote processing'),
         'type' => 'text',
         'category' => 'security',

@@ -30,8 +30,7 @@ if (empty($xormask)) {
 }
 define('XORmask', $xormask);
 if (empty($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-    $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = substr(md5(uniqid(mt_rand(), true)), rand(0, 32),
-        rand(0, 32));
+    $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = bin2hex(random_bytes(16));
 }
 if (isset($_SESSION['lastactivity'])) {
     $_SESSION['session_age'] = time() - $_SESSION['lastactivity'];
@@ -283,7 +282,7 @@ function formStart($additional = '')
         if (!Sql_Check_For_Table('admintoken')) {
             createTable('admintoken');
         }
-        $key = md5(time() . mt_rand(0, 10000));
+        $key = bin2hex(random_bytes(16));
         Sql_Query(sprintf('insert into %s (adminid,value,entered,expires) values(%d,"%s",%d,date_add(now(),interval 1 hour))',
             $GLOBALS['tables']['admintoken'], $_SESSION['logindetails']['id'], $key, time()), 1);
         $html .= sprintf('<input type="hidden" name="formtoken" value="%s" />', $key);
