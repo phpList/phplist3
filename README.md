@@ -53,6 +53,10 @@ Deploy it on your own server, or get a hosted account at http://phplist.com.
 ## Requirements
 See [System requirements](https://resources.phplist.com/system)
 
+## Demo
+
+See [Public demo](http://dev.phplist.com/lists/admin/)
+
 ## Development
 See [phpList development](https://resources.phplist.com/develop/start)
 
@@ -61,7 +65,11 @@ See the [Installation guide](https://www.phplist.org/manual/ch028_installation.x
 
 ## Upgrade
 
-phpList upgrade process.
+### For users
+
+See [Upgrading a manual installation](https://www.phplist.org/manual/ch031_upgrading.xhtml)
+
+### For developers
 
 How to upgrade from any previous version to the latest version
 
@@ -98,6 +106,10 @@ Step 5. Go to http://yourdomain/lists/admin/ and choose the Upgrade link
 Step 6. Click the link in this page.
 
 This process may take quite a while if your database is large. Don't interrupt it.
+
+## Issues
+
+Report issues to [Mantis issue tracker](https://mantis.phplist.org/bug_report_page.php) (select project *phpList*)
 
 ## Languages
 In the directory `phplists/lists/texts` you will find existing translations of the public
