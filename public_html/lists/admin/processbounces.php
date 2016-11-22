@@ -387,6 +387,12 @@ function processMessages($link, $max = 3000)
     global $bounce_mailbox_purge_unprocessed, $bounce_mailbox_purge;
     $num = imap_num_msg($link);
     outputProcessBounce( s('%d bounces to fetch from the mailbox',$num) . PHP_EOL);
+
+    if ($num == 0) {
+        imap_close($link);
+
+        return '';
+    }
     outputProcessBounce($GLOBALS['I18N']->get('Please do not interrupt this process') . PHP_EOL);
     $report = ' ' . s('%d bounces to process',$num) . PHP_EOL;
     if ($num > $max) {
@@ -436,9 +442,8 @@ function processMessages($link, $max = 3000)
     outputProcessBounce(s('Closing mailbox, and purging messages'));
     set_time_limit(60 * $num);
     imap_close($link);
-    if ($num) {
-        return $report;
-    }
+
+    return $report;
 }
 
 if (!function_exists('imap_open')) {
@@ -486,8 +491,9 @@ switch ($bounce_protocol) {
         return;
 }
 
-if ($GLOBALS['commandline'] && empty($download_report)) {#
+if ($GLOBALS['commandline'] && $download_report === false) {
     cl_output(s('Download failed, exiting'));
+
     return;
 }
 # now we have filled database with all available bounces
