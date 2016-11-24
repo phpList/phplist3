@@ -716,6 +716,19 @@ function snbr($text)
     return $trans;
 }
 
+/**
+ * function sJS
+ * get the translation from the S function, but escape single quotes for use in Javascript
+ *
+ */
+function sjs($text)
+{
+    $trans = s($text);
+    $trans = str_replace("'", "\'", $trans);
+
+    return $trans;
+}
+
 function parsePo($translationUpdate)
 {
     $translation_lines = explode("\n", $translationUpdate);
