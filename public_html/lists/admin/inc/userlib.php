@@ -35,7 +35,7 @@ function getUniqid($table = '')
             $table = 'user';
         }
     }
-    $id = hex2bin(random_bytes(16));
+    $id = md5(random_bytes(16));
     return $id;
 }
 
