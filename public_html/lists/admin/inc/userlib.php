@@ -142,8 +142,8 @@ function addNewUser($email, $password = '')
     Sql_Query(sprintf('insert into %s set email = "%s",
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
-    uniqid = "%s",htmlemail = 1
-    ', $GLOBALS['tables']['user'], $email, $passwordEnc, getUniqid()));
+    uniqid = "%s",htmlemail = 1, uuid = "%s"
+    ', $GLOBALS['tables']['user'], $email, $passwordEnc, getUniqid(), uuid::generate(4)));
 
     $id = Sql_Insert_Id();
 

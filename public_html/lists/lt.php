@@ -47,30 +47,68 @@ if ($id != $_GET['id']) {
 $track = base64_decode($id);
 $track = $track ^ XORmask;
 
-if (!preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
-    FileNotFound();
-    exit;
-}
-$msgtype = $matches[1];
-$fwdid = $matches[2];
-$messageid = $matches[3];
-$userid = $matches[4];
-$linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
-    $fwdid));
+if (preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
+    $msgtype = $matches[1];
+    $fwdid = $matches[2];
+    $messageid = $matches[3];
+    $userid = $matches[4];
+    $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
+        $fwdid));
 
-if (!$linkdata) {
-    ## try the old table to avoid breaking links
-    $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
-        $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
-    if (!empty($linkdata['forward'])) {
-        ## we're not recording clicks, but at least links from older phpList versions won't break.
-        header('Location: ' . $linkdata['forward'], true, 303);
+    if (!$linkdata) {
+        ## try the old table to avoid breaking links
+        $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
+            $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
+        if (!empty($linkdata['forward'])) {
+            ## we're not recording clicks, but at least links from older phpList versions won't break.
+            header('Location: ' . $linkdata['forward'], true, 303);
+            exit;
+        }
+#  echo 'Invalid Request';
+        # maybe some logging?
+        FileNotFound();
         exit;
     }
-#  echo 'Invalid Request';
-    # maybe some logging?
+} elseif (preg_match('/^(H|T)\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})$/', $track, $matches)) {
+    $msgtype = $matches[1];
+    $fwduuid = $matches[2];
+    $messageuuid = $matches[3];
+    $useruuid = $matches[4];
+
+//    print $msgtype . '<br/>';
+//    print $fwduuid . '<br/>';
+//    print $messageuuid . '<br/>';
+//    print $useruuid . '<br/>';
+
+    $linkdata = Sql_Fetch_Assoc_query(sprintf('select * from %s where uuid = "%s"', $GLOBALS['tables']['linktrack_forward'],
+        $fwduuid));
+
+    if (empty($linkdata)) {
+        FileNotFound();
+        exit;
+    }
+    $fwdid = $linkdata['id'];
+
+    $userdata = Sql_Fetch_array_query(sprintf('select id from %s where uuid = "%s"', $GLOBALS['tables']['user'],
+        $useruuid));
+
+    if (empty($userdata)) {
+        FileNotFound();
+        exit;
+    }
+    $userid = $userdata['id'];
+    $messagedata = Sql_Fetch_array_query(sprintf('select id from %s where uuid = "%s"', $GLOBALS['tables']['message'],
+        $messageuuid));
+
+    if (empty($messagedata)) {
+        FileNotFound();
+        exit;
+    }
+    $messageid = $messagedata['id'];
+} else {
     FileNotFound();
     exit;
+
 }
 
 $allowPersonalised = true;
@@ -179,5 +217,6 @@ if (!empty($messagedata['google_track'])) {
     }
 }
 
+//print "Location $url"; exit;
 header('Location: ' . $url, true, 303); ## use 303, because Location only uses 302, which gets indexed
 exit;

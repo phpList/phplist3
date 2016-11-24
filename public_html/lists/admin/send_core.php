@@ -49,11 +49,11 @@ if (!empty($_GET['tab'])) {
 if (!$id) {
     $defaulttemplate = getConfig('defaultmessagetemplate');
     $defaultfooter = getConfig('messagefooter');
-    Sql_Query(sprintf('insert into %s (subject, status, entered, sendformat, embargo, repeatuntil, owner, template, tofield, replyto,footer)
-    values("(no title)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s" )',
+    Sql_Query(sprintf('insert into %s (subject, status, entered, sendformat, embargo, repeatuntil, owner, template, tofield, replyto,footer, uuid)
+    values("(no title)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s", "%s" )',
         $GLOBALS['tables']['message'],
         $_SESSION['logindetails']['id'],
-        $defaulttemplate, sql_escape($defaultfooter)));
+        $defaulttemplate, sql_escape($defaultfooter),Uuid::generate(4)));
 
     $id = Sql_Insert_Id();
 
