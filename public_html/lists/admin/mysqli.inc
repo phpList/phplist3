@@ -190,7 +190,7 @@ function Sql_Query($query, $ignore = 0)
         $elapsed = $end - $start;
         if ($elapsed > 300000) {
             $query = substr($query, 0, 2000);
-            sqllog(' [' . $elapsed . '] ' . $query, "/tmp/phplist-sqltimer.log");
+            sqllog(' [' . secs2time($elapsed) . '] ' . $query, "/tmp/phplist-sqltimer.log");
         } else {
 #      sqllog(' ['.$elapsed.'] '.$query,"/tmp/phplist-sqltimer.log");
         }
