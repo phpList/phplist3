@@ -701,10 +701,10 @@ if (!empty($GLOBALS['developer_email'])) {
     print '<br/>Memory usage: ' . $memory_usage;
 }
 
-if (isset($GLOBALS['statslog'])) {
+if (isset($GLOBALS['statslog']) && !empty($_SERVER['REQUEST_URI'])) {
     if ($fp = @fopen($GLOBALS['statslog'], 'a')) {
         @fwrite($fp,
-            $GLOBALS['pagestats']['number_of_queries'] . "\t$elapsed\t" . $_SERVER['REQUEST_URI'] . "\t" . $GLOBALS['installation_name'] . "\n");
+            $GLOBALS['pagestats']['number_of_queries'] . "\t$elapsed\t" . $_SERVER['REQUEST_URI'] . "\t NAME:" . $GLOBALS['installation_name'] . "\n");
     }
 }
 print '-->';
