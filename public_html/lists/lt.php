@@ -38,16 +38,21 @@ require_once dirname(__FILE__) . '/admin/defaultconfig.php';
 require_once dirname(__FILE__) . '/admin/connect.php';
 include_once dirname(__FILE__) . '/admin/lib.php';
 
-$id = sprintf('%s', $_GET['id']);
-if ($id != $_GET['id']) {
-    print 'Invalid Request';
-    exit;
+$tid = sprintf('%s', $_GET['tid']);
+if ($tid != $_GET['tid']) {
+    $id = sprintf('%s', $_GET['id']);  // old style tracking
+    if ($id != $_GET['id']) {
+        print 'Invalid Request';
+        exit;
+    }
+    $track = base64_decode($id);
+    $track = $track ^ XORmask;
+} else {
+    $track = base64_decode($tid);
+    $track = $track ^ XORmask;
 }
 
-$track = base64_decode($id);
-$track = $track ^ XORmask;
-
-if (preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
+if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
     $msgtype = $matches[1];
     $fwdid = $matches[2];
     $messageid = $matches[3];
@@ -111,14 +116,15 @@ if (preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches
 
 }
 
-$allowPersonalised = true;
+$allowPersonalised = !isset($id);    $id = hex2bin(random_bytes(16));
+
 
 ## verify that this subscriber actually received this message, otherwise they're not allowed
 ## normal URLS on test messages, but block personalised ones
 $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
     $GLOBALS['tables']['usermessage'], $userid, $messageid));
 
-if (!$allowed) {
+if (empty($allowed[0])) {
     $allowPersonalised = !empty($_SESSION['adminloggedin']);
 }
 
