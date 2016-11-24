@@ -55,7 +55,9 @@ See [System requirements](https://resources.phplist.com/system)
 
 ## Demo
 
-See [Public demo](http://dev.phplist.com/lists/admin/)
+Latest stable [Public demo](http://demo.phplist.org/lists/admin/) 
+
+Latest unstable [Latest Dev code](http://dev.phplist.com/lists/admin/)
 
 ## Development
 See [phpList development](https://resources.phplist.com/develop/start)
