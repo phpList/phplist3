@@ -563,6 +563,12 @@ if ($dbversion == VERSION) {
     }
     # add uuids to those that do not have it
     $req = Sql_Query(sprintf('select id from %s where uuid = ""',$GLOBALS['tables']['user']));
+    $numS = Sql_Affected_Rows();
+    if ($numS > 10000) {
+        output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
+        output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.'));
+    }
+
     while ($row = Sql_Fetch_Row($req)) {
         Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['user'],uuid::generate(4),$row[0]));
     }
