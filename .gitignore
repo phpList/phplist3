@@ -5,3 +5,9 @@ composer.lock
 /behat.yml
 .php_cs.cache
 /.idea/
+/hostedplugins
+dressprow
+dressprow-ph
+phplist-ui-bootstrap
+phplist-ui-bootstrap-ph
+
