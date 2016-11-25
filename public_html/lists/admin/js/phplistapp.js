@@ -423,7 +423,7 @@ $(document).ready(function () {
      */
 
     // contendiv loader
-    if (typeof('contentdivcontent') != 'undefined' && contentdivcontent != null && contentdivcontent != '') {
+    if (typeof contentdivcontent != 'undefined' && contentdivcontent != null && contentdivcontent != '') {
         $("#contentdiv").html(busyImage+'<div id="loadingprogressbanner"></div>');
         $("#contentdiv").load(contentdivcontent);
         setInterval(loadProgress, 1000);
