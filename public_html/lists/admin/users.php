@@ -408,7 +408,8 @@ print '</div>';
 
 $some = 0;
 
-$ls = new WebblerListing(s('users'));
+$ls = new WebblerListing(s('subscribers'));
+$ls->setElementHeading(s('subscriber'));
 $ls->usePanel($paging);
 if ($result) {
     while ($user = Sql_fetch_array($result)) {
