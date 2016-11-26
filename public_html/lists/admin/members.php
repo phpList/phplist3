@@ -300,7 +300,7 @@ if (!empty($id) || $listAll) {
     print $tabs->display();
     print "</div>\n";
 
-    print '<p>' . s('%s subscribers', number_format($total)) . '</p>';
+    print '<p>' . s('%d subscribers', $total) . '</p>';
 
     print formStart(' name="users" class="membersProcess" ');
     printf('<input type="hidden" name="id" value="%d" />', $id);
@@ -312,29 +312,19 @@ if (!empty($id) || $listAll) {
     $columns = explode(',', getConfig('membership_columns'));
     # $columns = array('country','Lastname');
     $ls = new WebblerListing($GLOBALS['I18N']->get('Members'));
-    $ls->setElementHeading($GLOBALS['I18N']->get('Subscriber'));
     $ls->usePanel($paging);
     while ($user = Sql_fetch_array($result)) {
         $element = shortenTextDisplay($user['email']);
         $ls->addElement($element, PageUrl2('user&amp;id=' . $user['id']));
         $ls->setClass($element, 'row1');
         $ls_delete = '';
-
-        // If subscriber is active (confirmed & unblacklisted) show tick else show cross
-        $ls->addColumn($element, 'Enabled', 
-            ($user['confirmed'] && !$user['blacklisted']) 
-                ? '<span title="Subscriber is confirmed and not blacklisted">'.$GLOBALS['img_tick'].'</span>' 
-                : '<span title="Subscriber is either unconfirmed or blacklisted">'.$GLOBALS['img_cross'].'</span>'
-            );
-
-        // If user has permission to delete, add column with link
         if ($access != 'view') {
             $ls_delete = sprintf('<a title="' . $GLOBALS['I18N']->get('Delete') . '" class="del" href="javascript:deleteRec(\'%s\');"></a>',
                 PageURL2('members', '', "start=$start&$pagingKeep&id=$id&delete=" . $user['id']));
-                $ls->addColumn($element, 'Delete', $ls_delete);
         }
-        
-        // If user has permission to select multiple, add checkbox
+        $ls->addRow($element, '',
+            ($user['confirmed'] && !$user['blacklisted']) ? $ls_delete . $GLOBALS['img_tick'] : $ls_delete . $GLOBALS['img_cross']);
+
         if ($access != 'view' && !$listAll) {
             $ls->addColumn($element, $GLOBALS['I18N']->get('tag'),
                 sprintf('<input type="checkbox" name="user[%d]" value="1" />', $user['id']));
