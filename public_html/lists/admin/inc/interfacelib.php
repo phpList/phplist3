@@ -185,6 +185,9 @@ class WebblerListing
         return $res;
     }
 
+    /**
+     * Add a table row with two columns and optional hyperlink and css class
+     */
     public function addRow($name, $row_name, $value, $url = '', $align = '', $class = '')
     {
         if (!isset($name)) {
