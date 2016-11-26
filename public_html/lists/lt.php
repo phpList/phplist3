@@ -48,6 +48,11 @@ if ($tid != $_GET['tid']) {
     }
     $track = base64_decode($id);
     $track = $track ^ XORmask;
+} elseif (strlen($tid) == 64) {
+    $dec = bin2hex(base64_decode(str_replace(' ','+',$tid)));
+    $track = 'T|'.substr($dec,0,8).'-'.substr($dec,8,4).'-4'.substr($dec,13,3).'-'.substr($dec,16,4).'-'.substr($dec,20,12).'|'.
+        substr($dec,32,8).'-'.substr($dec,40,4).'-4'.substr($dec,45,3).'-'.substr($dec,48,4).'-'.substr($dec,52,12).'|'.
+        substr($dec,64,8).'-'.substr($dec,72,4).'-4'.substr($dec,77,3).'-'.substr($dec,80,4).'-'.substr($dec,84,12);
 } else {
     $track = base64_decode($tid);
     $track = $track ^ XORmask;

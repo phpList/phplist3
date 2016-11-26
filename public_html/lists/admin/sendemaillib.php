@@ -616,12 +616,17 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
                 $linkUUID = clickTrackLinkId($messageid, $userdata['uuid'], $url, $link);
 
-                $masked = "T|$linkUUID|".$cached[$messageid]['uuid']."|" . $userdata['uuid'] ^ XORmask;
-                $masked = base64_encode($masked);
-                ## 15254- the encoding adds one or two extraneous = signs, take them off
-                $masked = preg_replace('/=$/', '', $masked);
-                $masked = preg_replace('/=$/', '', $masked);
-                $masked = urlencode($masked);
+                if (0) {
+                    $masked = "T|$linkUUID|" . $cached[$messageid]['uuid'] . "|" . $userdata['uuid'] ^ XORmask;
+                    $masked = base64_encode($masked);
+                    ## 15254- the encoding adds one or two extraneous = signs, take them off
+                    $masked = preg_replace('/=$/', '', $masked);
+                    $masked = preg_replace('/=$/', '', $masked);
+                    $masked = urlencode($masked);
+                } else {
+                    $masked = str_replace('-4',substr(bin2hex(random_bytes(1)),0,1),$linkUUID.$cached[$messageid]['uuid'].$userdata['uuid']);
+                    $masked = str_replace('=','',base64_encode(hex2bin(str_replace('-','',$masked))));
+                }
                 if (!CLICKTRACK_LINKMAP) {
                     $newlinks[$linkUUID] = sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'],
                         $website . $GLOBALS['pageroot'], $masked);
@@ -630,7 +635,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                         $masked);
                 }
 
-#        print $links[0][$i] .' -> '.$newlink.'<br/>';
+#        print $links[0][$i] .' -> '.$newlinks[$linkUUID].'<br/>';
                 $textmessage = str_replace($links[1][$i], '[%%%' . $linkUUID . '%%%]', $textmessage);
             }
         }
@@ -641,7 +646,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if (VERBOSE && $getspeedstats) {
         output('click track end');
     }
-
+#exit;
     ## if we're not tracking clicks, we should add Google tracking here
     ## otherwise, we can add it when redirecting on the click
     if (!CLICKTRACK && !empty($cached[$messageid]['google_track'])) {
