@@ -543,6 +543,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = urlencode($masked);
+                if (SIGN_WITH_HMAC) {
+                    $masked .= '&hm=' . hash_hmac(ENCRYPTION_ALGO, $masked, XORmask);
+                }
 
                 if (!CLICKTRACK_LINKMAP) {
                     $newlink = sprintf('<a %shref="%s://%s/lt.php?tid=%s" %s>%s</a>', $links[1][$i],
@@ -627,6 +630,10 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     $masked = str_replace('-4',substr(bin2hex(random_bytes(1)),0,1),$linkUUID.$cached[$messageid]['uuid'].$userdata['uuid']);
                     $masked = str_replace('=','',base64_encode(hex2bin(str_replace('-','',$masked))));
                 }
+                if (SIGN_WITH_HMAC) {
+                    $masked .= '&hm=' . hash_hmac(ENCRYPTION_ALGO, $masked, XORmask);
+                }
+
                 if (!CLICKTRACK_LINKMAP) {
                     $newlinks[$linkUUID] = sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'],
                         $website . $GLOBALS['pageroot'], $masked);

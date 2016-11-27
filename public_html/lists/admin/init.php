@@ -456,6 +456,9 @@ if (!defined('NOTIFY_SPAM')) {
 if (!defined('CLICKTRACK_LINKMAP')) {
     define('CLICKTRACK_LINKMAP', 0);
 }
+if (!defined('SIGN_WITH_HMAC')) {
+    define('SIGN_WITH_HMAC',false);
+}
 if (!defined('ALWAYS_ADD_USERTRACK')) {
     define('ALWAYS_ADD_USERTRACK', 1);
 }

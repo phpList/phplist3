@@ -40,16 +40,27 @@ require_once dirname(__FILE__) . '/admin/connect.php';
 include_once dirname(__FILE__) . '/admin/lib.php';
 
 $tid = sprintf('%s', $_GET['tid']);
+
+if (SIGN_WITH_HMAC) {
+    $hmac = $_GET['hm'];
+    if (empty($hmac)) {
+        print 'Invalid Request'; exit;
+    }
+    if ($hmac != hash_hmac(ENCRYPTION_ALGO, str_replace(' ','+',$tid), XORmask)) {
+        print 'Invalid Request'; exit;
+    }
+}
+
 if ($tid != $_GET['tid']) {
     $id = sprintf('%s', $_GET['id']);  // old style tracking
     if ($id != $_GET['id']) {
-        print 'Invalid Request';
-        exit;
+        print 'Invalid Request';   exit;
     }
     $track = base64_decode($id);
     $track = $track ^ XORmask;
 } elseif (strlen($tid) == 64) {
-    $dec = bin2hex(base64_decode(str_replace(' ','+',$tid)));
+    $tid = str_replace(' ','+',$tid);
+    $dec = bin2hex(base64_decode($tid));
     $track = 'T|'.substr($dec,0,8).'-'.substr($dec,8,4).'-4'.substr($dec,13,3).'-'.substr($dec,16,4).'-'.substr($dec,20,12).'|'.
         substr($dec,32,8).'-'.substr($dec,40,4).'-4'.substr($dec,45,3).'-'.substr($dec,48,4).'-'.substr($dec,52,12).'|'.
         substr($dec,64,8).'-'.substr($dec,72,4).'-4'.substr($dec,77,3).'-'.substr($dec,80,4).'-'.substr($dec,84,12);
@@ -78,7 +89,6 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 #  echo 'Invalid Request';
         # maybe some logging?
         FileNotFound();
-        exit;
     }
 } elseif (preg_match('/^(H|T)\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})$/', $track, $matches)) {
     $msgtype = $matches[1];
@@ -96,7 +106,6 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 
     if (empty($linkdata)) {
         FileNotFound();
-        exit;
     }
     $fwdid = $linkdata['id'];
 
@@ -105,7 +114,6 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 
     if (empty($userdata)) {
         FileNotFound();
-        exit;
     }
     $userid = $userdata['id'];
     $messagedata = Sql_Fetch_array_query(sprintf('select id from %s where uuid = "%s"', $GLOBALS['tables']['message'],
@@ -113,13 +121,10 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 
     if (empty($messagedata)) {
         FileNotFound();
-        exit;
     }
     $messageid = $messagedata['id'];
 } else {
     FileNotFound();
-    exit;
-
 }
 
 $allowPersonalised = !isset($id);    $id = hex2bin(random_bytes(16));
