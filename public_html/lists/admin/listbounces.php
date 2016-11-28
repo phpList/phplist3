@@ -37,26 +37,28 @@ switch ($access) {
         break;
 }
 if (!$listid) {
-    $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s list, %s listuser,
-    %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
-        $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
-    $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
-    $ls->setElementHeading('List name');
-    $some = 0;
-    while ($row = Sql_Fetch_Array($req)) {
-        $some = 1;
-        $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
-        $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
-        #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('Total bounces'), $row['numusers']);
-    }
-    if ($some) {
-        print $ls->display();
+    ## for testing the loader allow a delay flag
+    if (isset($_GET['delay'])) {
+        $_SESSION['LoadDelay'] = sprintf('%d', $_GET['delay']);
     } else {
-        print '<p>' . $GLOBALS['I18N']->get('None found') . '</p>';
+        unset($_SESSION['LoadDelay']);
     }
+    print '<div id="contentdiv"></div>';
+    print '<script type="text/javascript">
 
+        var loadMessage = \''.sjs('Please wait, your request is being processed. Do not refresh this page.').'\';
+        var loadMessages = new Array(); 
+        loadMessages[5] = \''.sjs('Still loading the breakdown of bounces per list').'\';
+        loadMessages[30] = \''.sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns').'\';
+        loadMessages[60] = \''.sjs('It should be soon now, your data is almost here.').'\';
+        loadMessages[90] = \''.sjs('This seems to take longer than expected, looks like there is a lot of data to work on.').'\';
+        loadMessages[120] = \''.sjs('Still loading, please be patient, your page will show shortly.').'\';
+        loadMessages[150] = \''.sjs('It will really be soon now.').'\';
+        loadMessages[180] = \''.sjs('Maybe get a coffee instead, otherwise it is like watching paint dry.').'\';
+        loadMessages[210] = \''.sjs('Still not here, let\'s have another coffee then.').'\';
+        loadMessages[240] = \''.sjs('Too much coffee, I\'m trembling.').'\';
+        var contentdivcontent = "./?page=pageaction&action=listbounces&ajaxed=true&id='.$listid. addCsrfGetToken() . '";
+     </script>';
     return;
 }
 $query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.user
