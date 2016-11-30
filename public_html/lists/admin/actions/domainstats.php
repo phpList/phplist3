@@ -1,7 +1,9 @@
 <?php
 
 verifyCsrfGetToken();
-
+if (!empty($_SESSION['LoadDelay'])) {
+    sleep($_SESSION['LoadDelay']);
+}
 # domain stats
 $status = '';
 
