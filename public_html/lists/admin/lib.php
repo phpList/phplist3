@@ -2068,3 +2068,86 @@ function parseLogoPlaceholders($content)
 
     return $content;
 }
+
+/**
+ * Loop through a multi-dimensional array, check a particular child array
+ * key equals desired value, and return a new multi-dimensional array of those
+ * child arrays which qualify.
+ *
+ * @param array $parentArray Multi-dimensional array to check
+ * @param string $requiredKey Key to check
+ * @param string $requiredValue Required value for qualification
+ */
+function multiArrayFilterBy(array $parentArray, $requiredKey, $requiredValue)
+{
+    // Initialise empty array for storing qualifying child arrays
+    $parentArraySubset = array();
+    // Loop through parent arrays
+    foreach ($parentArray as $key => $childArray) {
+        // Check if child array key value matches required value
+        if (arrayKeyHasValue($childArray, $requiredKey, $requiredValue)) {
+            // Values match, add to qualified array
+            $parentArraySubset[$key] = $childArray;
+        }
+    }
+
+    return $parentArraySubset;
+}
+
+/**
+ * Loop through a multi-dimensional array, check a particular child array
+ * key **does not equal** desired value, and return a new multi-dimensional array
+ * of those child arrays which qualify.
+ *
+ * @param array $parentArray Multi-dimensional array to check
+ * @param string $requiredKey Key to check
+ * @param string $forbiddenValue Required value for qualification
+ */
+function multiArrayFilterByNot(array $parentArray, $requiredKey, $forbiddenValue)
+{
+    // Initialise empty array for storing qualifying child arrays
+    $parentArraySubset = array();
+    // Loop through parent arrays
+    foreach ($parentArray as $key => $childArray) {
+        if (arrayKeyHasNotValue($childArray, $requiredKey, $forbiddenValue)) {
+            // Values match, add to qualified array
+            $parentArraySubset[$key] = $childArray;
+        }
+    }
+
+    return $parentArraySubset;
+}
+
+/**
+ * Check that the value of a given array key matches a particular value.
+ *
+ * @param array $array array to check
+ * @param string $requiredKey Key to check
+ * @param string $requiredValue Required value
+ */
+function arrayKeyHasValue(array $array, $requiredKey, $requiredValue)
+{
+    // Check if array key value matches required value
+    if ($array[$requiredKey] == $requiredValue) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Check that the value of a given array key does not match a particular value.
+ *
+ * @param array $array array to check
+ * @param string $requiredKey Key to check
+ * @param string $forbiddenValue Forbidden value
+ */
+function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
+{
+    // Check if array key value matches required value
+    if ($array[$requiredKey] != $forbiddenValue) {
+        return true;
+    } else {
+        return false;
+    }
+}
