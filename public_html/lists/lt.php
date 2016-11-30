@@ -46,7 +46,7 @@ if (SIGN_WITH_HMAC) {
     if (empty($hmac)) {
         print 'Invalid Request'; exit;
     }
-    if (hash_equals(hash_hmac(ENCRYPTION_ALGO, str_replace(' ','+',$tid), XORmask),$hmac)) {
+    if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, str_replace(' ','+',$tid), XORmask),$hmac)) {
         print 'Invalid Request'; exit;
     }
 }
