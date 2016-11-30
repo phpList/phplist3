@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/inc/userlib.php';
 include_once dirname(__FILE__) . '/inc/maillib.php';
+include_once dirname(__FILE__) . '/inc/php_compat.php';
 
 # set some variables
 if (!isset($_GET['pi'])) {
