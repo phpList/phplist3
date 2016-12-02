@@ -334,9 +334,9 @@ function finish($flag, $message, $script_stage)
 {
     global $nothingtodo, $counters, $messageid;
     if ($flag == 'error') {
-        $subject = s('Subscriber list errors');
+        $subject = s('Email queue procesing errors');
     } elseif ($flag == 'info') {
-        $subject = s('Subscriber list processing log');
+        $subject = s('Email queue processing report');
     }
     if (!$nothingtodo && !$GLOBALS['inRemoteCall']) {
         processQueueOutput(s('Finished this run'), 1, 'progress');
@@ -359,7 +359,7 @@ function finish($flag, $message, $script_stage)
 
         // If plugins have not sent the report, send it the default way
         if (!$reportSent) {
-            $messageWithIntro = s('The following events occured during the processing of a subscriber list:') . "\n" . $message;            
+            $messageWithIntro = s('The following events occured while processing the email queue:') . "\n" . $message;            
             $messageWithIntroAndFooter = $messageWithIntro . "\n\n" . s('To stop receiving these reports read:') . ' https://resources.phplist.com/system/config/send_queue_processing_report' . "\n\n";
             sendReport($subject, $messageWithIntroAndFooter);
         }
