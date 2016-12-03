@@ -48,15 +48,15 @@ if (!$listid) {
 
         var loadMessage = \''.sjs('Please wait, your request is being processed. Do not refresh this page.').'\';
         var loadMessages = new Array(); 
-        loadMessages[5] = \''.sjs('Still loading the breakdown of bounces per list').'\';
-        loadMessages[30] = \''.sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns').'\';
-        loadMessages[60] = \''.sjs('It should be soon now, your data is almost here.').'\';
-        loadMessages[90] = \''.sjs('This seems to take longer than expected, looks like there is a lot of data to work on.').'\';
-        loadMessages[120] = \''.sjs('Still loading, please be patient, your page will show shortly.').'\';
-        loadMessages[150] = \''.sjs('It will really be soon now.').'\';
-        loadMessages[180] = \''.sjs('Maybe get a coffee instead, otherwise it is like watching paint dry.').'\';
-        loadMessages[210] = \''.sjs('Still not here, let\'s have another coffee then.').'\';
-        loadMessages[240] = \''.sjs('Too much coffee, I\'m trembling.').'\';
+        loadMessages[5] = \''.sjs('Content loading &mdash; if there is a lot of data to process, this may take some time').'\';
+        loadMessages[30] = \''.sjs('Content loading &mdash; thank you for your patience').'\';
+        loadMessages[60] = \''.sjs('Content loading').'\';
+        loadMessages[90] = \''.sjs('Content loading').'\';
+        loadMessages[120] = \''.sjs('Content loading').'\';
+        loadMessages[150] = \''.sjs('Content loading').'\';
+        loadMessages[180] = \''.sjs('Content loading').'\';
+        loadMessages[210] = \''.sjs('Content loading &mdash; either a very large amount of data is being processed or the system is experiencing high demand').'\';
+        loadMessages[240] = \''.sjs('Thank you for your patience &mdash; if the content fails to load in the next few minutes please report the issue').'\';
         var contentdivcontent = "./?page=pageaction&action=listbounces&ajaxed=true&id='.$listid. addCsrfGetToken() . '";
      </script>';
     return;
