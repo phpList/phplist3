@@ -2151,3 +2151,21 @@ function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
         return false;
     }
 }
+
+function asyncLoadContent($url)
+{
+    return '<script type="text/javascript">
+        var loadMessage = \'' . sjs('Please wait, your request is being processed. Do not refresh this page.') . '\';
+        var loadMessages = new Array(); 
+        loadMessages[30] = \'' . sjs('Still loading') . '\';
+        loadMessages[90] = \'' . sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns') . '\';
+        loadMessages[150] = \'' . sjs('It should be soon now, your page content is almost here.') . '\';
+        loadMessages[210] = \'' . sjs('This seems to take longer than expected, looks like there is a lot of data to work on.') . '\';
+        loadMessages[240] = \'' . sjs('Still loading, please be patient, your page content will show shortly.') . '\';
+        loadMessages[300] = \'' . sjs('It will really be soon now until the page will display.') . '\';
+        loadMessages[360] = \'' . sjs('Still loading, please wait') . '\';
+        loadMessages[420] = \'' . sjs('The loading has been just over seven minutes. We can wait just a little longer.') . '\';
+        loadMessages[500] = \'' . sjs('If the page does not load soon, please report this in the user forums.') . '\';
+        var contentdivcontent = "'.$url.'";
+     </script>';
+}
