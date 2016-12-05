@@ -66,16 +66,29 @@ if ($access == 'all') {
 print '</div>';
 
 $bouncels = new WebblerListing($GLOBALS['I18N']->get('Bounces'));
+$bouncels->setElementHeading('Bounce ID');
 $bouncelist = '';
 $bounces = array();
 # check for bounces
-$req = Sql_Query(sprintf('select *,date_format(time,"%%e %%b %%Y %%T") as ftime from %s where user = %d',
-    $tables['user_message_bounce'], $user['id']));
+$req = Sql_Query(sprintf('
+select 
+    message_bounce.id
+    , message_bounce.message
+    , time
+    , bounce
+    , date_format(time,"%%e %%b %%Y %%T") as ftime
+from 
+    %s as message_bounce
+where 
+    user = %d'
+, $tables['user_message_bounce'], $user['id']));
+
 if (Sql_Affected_Rows()) {
     while ($row = Sql_Fetch_Array($req)) {
+        $messagedata = loadMessageData($row['message']);
         $bouncels->addElement($row['bounce'],
             PageURL2('bounce', $GLOBALS['I18N']->get('view'), 'id=' . $row['bounce']));
-        $bouncels->addColumn($row['bounce'], $GLOBALS['I18N']->get('msg'), $row['message']);
+        $bouncels->addColumn($row['bounce'], $GLOBALS['I18N']->get('Campaign title'), stripslashes($messagedata['campaigntitle']));
         $bouncels->addColumn($row['bounce'], $GLOBALS['I18N']->get('time'), $row['ftime']);
         $bounces[$row['message']] = $row['ftime'];
     }
@@ -114,7 +127,7 @@ if ($num) {
         $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('sent'), formatDateTime($msg['entered'], 1));
         if (!$msg['notviewed']) {
             $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('viewed'), formatDateTime($msg['viewed'], 1));
-            $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('responsetime'), $msg['responsetime']);
+            $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('Response time'), $msg['responsetime']);
             $resptime += $msg['responsetime'];
             $totalresp += 1;
         }

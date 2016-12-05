@@ -37,25 +37,14 @@ switch ($access) {
         break;
 }
 if (!$listid) {
-    $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numusers from %s list, %s listuser,
-    %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
-    order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
-        $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
-    $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
-    $some = 0;
-    while ($row = Sql_Fetch_Array($req)) {
-        $some = 1;
-        $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
-        $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
-        #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
-    }
-    if ($some) {
-        print $ls->display();
+    ## for testing the loader allow a delay flag
+    if (isset($_GET['delay'])) {
+        $_SESSION['LoadDelay'] = sprintf('%d', $_GET['delay']);
     } else {
-        print '<p>' . $GLOBALS['I18N']->get('None found') . '</p>';
+        unset($_SESSION['LoadDelay']);
     }
-
+    print '<div id="contentdiv"></div>';
+    print asyncLoadContent('./?page=pageaction&action=listbounces&ajaxed=true&id='.$listid. addCsrfGetToken());
     return;
 }
 $query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.user
@@ -105,6 +94,7 @@ if ($download) {
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on') . ' ' . listName($listid));
 $ls->noShader();
+$ls->setElementHeading('Subscriber ID');
 while ($row = Sql_Fetch_Array($req)) {
     $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
         $GLOBALS['tables']['user'], $row['userid']));
@@ -113,8 +103,8 @@ while ($row = Sql_Fetch_Array($req)) {
             print $userdata['email'] . "\n";
         } else {
             $ls->addElement($row['userid'], PageUrl2('user&amp;id=' . $row['userid']));
-            $ls->addColumn($row['userid'], s('address'), $userdata['email']);
-            $ls->addColumn($row['userid'], s('# bounces'),
+            $ls->addColumn($row['userid'], s('Subscriber address'), $userdata['email']);
+            $ls->addColumn($row['userid'], s('Total bounces'),
                 PageLink2('userhistory&id=' . $row['userid'], $row['numbounces']));
         }
     }
