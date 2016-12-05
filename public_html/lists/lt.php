@@ -116,7 +116,7 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 
 }
 
-$allowPersonalised = !isset($id);    $id = hex2bin(random_bytes(16));
+$allowPersonalised = !isset($id);
 
 
 ## verify that this subscriber actually received this message, otherwise they're not allowed
