@@ -39,7 +39,8 @@ require_once dirname(__FILE__) . '/admin/connect.php';
 include_once dirname(__FILE__) . '/admin/lib.php';
 
 $tid = sprintf('%s', $_GET['tid']);
-if ($tid != $_GET['tid']) {
+if (!empty($tid) && $tid != $_GET['tid']) {
+    unset($tid);
     $id = sprintf('%s', $_GET['id']);  // old style tracking
     if ($id != $_GET['id']) {
         print 'Invalid Request';
@@ -116,8 +117,7 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
 
 }
 
-$allowPersonalised = !isset($id);
-
+$allowPersonalised = isset($tid);
 
 ## verify that this subscriber actually received this message, otherwise they're not allowed
 ## normal URLS on test messages, but block personalised ones
