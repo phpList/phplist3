@@ -51,8 +51,8 @@ if (!empty($_POST['importcontent'])) {
 
         if ($isValid) {
             ## I guess everyone will import all their users wanting to receive HTML ....
-            $query = sprintf('insert into %s (email,entered,htmlemail,confirmed,uniqid)
-                values("%s",now(),1,1,"%s")', $tables['user'], $line, $uniqid);
+            $query = sprintf('insert into %s (email,entered,htmlemail,confirmed,uniqid,uuid)
+                values("%s",now(),1,1,"%s","%s")', $tables['user'], $line, $uniqid,uuid::generate(4));
             $result = Sql_query($query, 1);
             $userid = Sql_insert_id();
             if (empty($userid)) {
