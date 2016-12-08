@@ -46,8 +46,12 @@ if (SIGN_WITH_HMAC) {
     if (empty($hmac)) {
         print 'Invalid Request'; exit;
     }
-    if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, str_replace(' ','+',$tid), XORmask),$hmac)) {
-        print 'Invalid Request'; exit;
+
+    $myUrl = sprintf('%s://%s%s',$_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+    $myUrl = str_replace('&hm='.$hmac,'',$myUrl);
+
+    if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, XORmask),$hmac)) {
+         print 'Invalid Request'; exit;
     }
 }
 
