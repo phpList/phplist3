@@ -56,6 +56,10 @@ if (!$id) {
         $defaulttemplate, sql_escape($defaultfooter),Uuid::generate(4)));
 
     $id = Sql_Insert_Id();
+    if (empty($id)) { // something went wrong creating the campaign
+        Fatal_Error(s('Unable to create campaign, did you forget to upgrade the database?'));
+        exit;
+    }
 
     if (isset($_GET['list'])) {
         if ($_GET['list'] == 'all') {
