@@ -566,7 +566,7 @@ if ($dbversion == VERSION) {
     $numS = Sql_Affected_Rows();
     if ($numS > 10000) {
         output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
-        output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.'));
+        output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.'). ' '. resourceLink('https://resources.phplist.com/system/commandline',s('Documentation how to set up phpList commandline')));
     }
 
     while ($row = Sql_Fetch_Row($req)) {

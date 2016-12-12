@@ -499,9 +499,12 @@ function Fatal_Error($msg, $documentationURL = '')
     return 0;
 }
 
-function resourceLink($url)
+function resourceLink($url, $title = '')
 {
-    return ' <span class="resourcelink"><a href="' . $url . '" title="' . s('Documentation about this error') . '" target="_blank" class="resourcelink">' . snbr('More information') . '</a></span>';
+    if (empty($title)) {
+        $title = s('Documentation about this error');
+    }
+    return ' <span class="resourcelink"><a href="' . $url . '" title="' . htmlspecialchars($title) . '" target="_blank" class="resourcelink">' . snbr('More information') . '</a></span>';
 }
 
 function Warn($msg)
