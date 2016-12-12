@@ -1,0 +1,47 @@
+#header #logo {
+float:right;
+}
+#logged{
+float:left;
+}
+body{
+direction:rtl;
+text-align:right;
+}
+.ui-accordion-content table td a.hometext {
+    text-align: right;
+
+}
+.block ul li a, li.shade0 a {
+    padding: 5px 10px 5px 0;
+
+}
+
+.hide {
+
+    float: left;
+    text-indent: -9999px;
+}
+.menutableright h3 {
+    padding-left: 0px;
+    padding-right: 5px;
+}
+#menuTop{
+float:right !important;
+}
+#languageswitcher{
+float:left;
+}
+#logout {
+    background: url("../images/32x32/logout16x16-neg.png") no-repeat scroll 92% 50% transparent;
+    padding: 3px 22px 3px 5px;
+}
+#footer{
+text-align:right;
+}
+.ui-accordion .ui-accordion-header .ui-icon {
+    right: 0.5em;
+}
+.ui-accordion-icons .ui-accordion-header a {
+    padding-right: 2.2em;
+}

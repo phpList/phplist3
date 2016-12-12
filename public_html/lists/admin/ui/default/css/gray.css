@@ -1,0 +1,236 @@
+/* File:/lists/admin/ui/default/css/gray.css */
+
+
+/******************************* 
+
+TABLE OF CONTENT
+
+1. FONT COLORS 
+2. BACKGROUND (colors and gradients) 
+3. BORDER COLORS 
+4. SHADOWS (box and text)
+
+*******************************/
+
+
+
+/******************************* 1. FONT COLORS */
+
+
+#menuTop ul ul li a:hover, #login:hover, 
+a.reset:hover, a.action-button:hover, 
+input.action-button:hover, #logout:hover            { color:#000 !important}
+
+body, .button a, div.accordion tr td.listingname a, 
+.button a:hover, tr .listingelement a.button,
+tr .listingelement a.button:hover,
+div.accordion tr .listingname a.listingname:hover,      
+#generatetextversion a.ajaxable,#newsfeed ul li a,
+#languageswitcher form select, .menutableright h3,
+.dashboard_button a,.dashboard_button a:hover,
+.minitabs #webblertabs ul li a:hover                { color:#333}
+
+h1, h2, h3, h4, h5, h6, div.dropButton a,   
+.ui-dialog-content, .gray, #webblertabs ul li a, 
+.panel table th, a.reset, .note, a.confirm,
+.configForm legend,  #globalhelp .content .text     { color:#666}
+
+#login, #logout, .pagetitle                         { color:#AAA}
+
+#menuTop ul ul li a, #globalhelp .buttonhelp, 
+.firstinstallbutton                                 { color:#EEE !important}
+
+#sendtabs ul.sendcampaign li a, #menuTop ul li a,  
+#menuTop ul li a:hover, #menuTop ul li:hover,
+.panel .step-nav a.next:hover, a.action-button,
+#sendtabs ul.sendcampaign li.current a,
+input.action-button, div.messageactions a, 
+.panel .step-nav a.next, .panel .step-nav a.back,
+.ui-tabs-panel h3,
+.minitabs #webblertabs ul li.current a              { color:#FFF !important}
+
+a:active, #addtoqueue .missing, #addtoqueue .error  { color:red}
+
+a, div.accordion table td a, tr td.listingname a,
+tr td.listingelement a, .block ul li a, li.shade0 a,
+.ui-widget-content a                                { color:#22769D}
+
+.block ul li a:hover, #webblertabs ul li a:hover, 
+div.dropButton .submenu a:hover, li.shade0 a:hover,
+tr td.listingname a:hover, a:hover,
+tr td.listingelement a:hover, 
+div.accordion table td a:hover                      { color:#F93}
+
+#listselection li label:before                      {color: #13d80e}
+
+
+/******************************* 2. BACKGROUND */
+
+body                                                { background-color:#F9F9F9}
+
+.bgwhite,#newsfeed .publisheddate                   { background-color:#FFF !important}
+
+div.panel .content, .ui-accordion-content,
+a.confirm, .ui-dialog .ui-dialog-titlebar-close, 
+a.reset, h3.ui-accordion-header a, .configcontent,
+.ui-dialog .ui-dialog-titlebar-close:hover,
+.dbcheck #content table td table td,
+.block ul li a:hover, div.configEdit a.ajaxable,
+#listselection li label:before  { background-color:#FFF}
+
+#listselection li label                             { background-color:#f5f5f5}
+#listselection li label:hover                       { background-color: #e9f8fc}
+#listselection li input[type='checkbox']:checked + label{ background-color: #daf2fa}
+
+
+
+#generatetextversion a.ajaxable, .row.odd, 
+table.userAdd tr td, .ui-dialog-content textarea,  
+body.attributes #new-attribute, .configForm legend,   
+.row1, #globalhelp .content .text, form#login-form,
+table.bounceActions tr td, .ui-dialog-content input, 
+div.accordion tr td.listingname a,span.add_member:hover,
+span.delete a.confirm:hover,span.send-list a.button:hover,
+.block ul li a, li.shade0 a, .dashboard_button a,
+span.edit-list a.button:hover, #messagefilterform   { background-color:#EEE}
+
+.shade1, .shade2, span.marksent a.button:hover,
+div.panel, span.delete a.button:hover, 
+span.edit a.button:hover, span.view a.button:hover, 
+span.suspend a.button:hover, .rowtotal, .ui-dialog, 
+span.resend a.button:hover, .panel table th,
+span.stats a.button:hover, a.action-button:hover,
+input.action-button:hover, .menutableright h3,
+#languageswitcher form select,span.add_member,
+span.delete a.confirm,span.send-list a.button,
+span.edit-list a.button                             { background-color:#DDD}
+
+#newsfeed ul li a                                   { background-color:#DEE}
+#newsfeed h3                                        { background:#BCD}
+
+#menuTop ul ul li a:hover, #login:hover, 
+#logout:hover                                       { background-color:#AAA !important}
+
+#navigation,#sendtabs ul.sendcampaign li a, 
+.firstinstallbutton,.ui-tabs-panel h3               { background-color:#888}
+
+#globalhelp .buttonhelp, .panel .step-nav a.next, 
+.panel .step-nav a.back                             { background-color:#666}
+
+span#menu-button span:hover,a.action-button,
+#menuTop ul ul li, #menuTop ul li:hover, #logout,    
+input.action-button                                 { background-color:#444}
+
+#menuTop ul li a:hover                              { background-color:#444 !important}
+
+.ui-widget-overlay                                  { background-color:#000}
+
+div.accordion tr .listingname a.listingname:hover,
+.note,  .isDragging, #addtoqueue .error, 
+#addtoqueue .missing, tr.dragged, 
+#generatetextversion a.ajaxable:hover,
+.dashboard_button a:hover,#newsfeed ul li a:hover   { background-color:#FFF6BF}
+
+.panel .step-nav a.back:hover, 
+.panel .step-nav a.next:hover,
+.minitabs #webblertabs ul li.current                { background-color:#F93}
+
+#sendtabs ul li.current a,
+#sendtabs ul.sendcampaign li.current a, 
+div.messageactions a, #sendtabs ul li a:hover       { background-color:#22769D}
+
+a.reset, a.confirm									{ background-image:-moz-linear-gradient(top, rgba(255, 255, 255, .2) 0%, rgba(150, 150, 150, .2) 100%); background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, .2)), color-stop(100%,rgba(150, 150, 150, .2))); background-image:-webkit-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(150, 150, 150, .2) 100%); background-image:-o-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(150, 150, 150, .2) 100%); background-image:-ms-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(150, 150, 150, .2) 100%); background-image:linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(150, 150, 150, .2) 100%)}
+
+
+
+/******************************* 3. BORDER COLORS */
+
+
+table.importadmin, body.attributes td,
+table.import1, table.userAdd tr, table.importcsvMain, 
+table.bouncerulesAction, table.adminDetails,
+table.attributeNew, table.spageeditListing, 
+body.attributes table, table.bounceActions tr       { border-color:#FFF !important}
+
+.ui-dialog-content, a.reset:hover, 
+body.attributes hr, body.attributes #new-attribute,
+#languageswitcher form select                       { border-color:#BBB !important}
+
+.minitabs #webblertabs ul li                        { border-color:#BBB}
+
+div.panel, div.panel .content, #addtoqueue, hr, form#login-form, 
+form#forgotpassword-form, a.reset, a.confirm,#messagefilterform,
+#listselection li label:before  { border-color:#CCC}
+
+.dbcheck #content table td table td, .panel table td, .panel table th,
+#listselection .tabbed { border-color:#DDD}
+
+#globalhelp .content .text,.ui-dialog, #webblertabs, 
+.configForm fieldset, .configForm legend, 
+div.dropButton  { border-color:#999}
+
+#login:hover, #logout:hover                         { border-color:#777}
+
+#login, #logout, .block, .panel .step-nav a.next,
+.panel .step-nav a.back,div.configEdit a.ajaxable,
+.minitabs #webblertabs ul li.current                { border-color:#666}
+
+#addtoqueue .missing, .note                         { border-color:#FDD845}
+
+div.accordion table td a.hometext:hover, 
+a:hover, .panel .step-nav a.back:hover, 
+.panel .step-nav a.next:hover,
+tr .listingname a:hover, #webblertabs ul li:hover,
+#webblertabs ul li a:hover,
+div.dropButton .submenu a:hover,
+.ui-dialog .ui-dialog-titlebar-close,
+.ui-dialog .ui-dialog-titlebar-close:hover,
+div.configEdit a.ajaxable:hover                     { border-color:#F93}
+
+.block ul li a, li.shade0 a, .menutableright h3     { border-bottom-color:#666}
+
+#menuTop ul ul li                                   { border-bottom-color:#999}
+
+body.users .filter, body.list tr:nth-child(2n+3)    { border-bottom-color:#CCC}
+
+#menuTop ul ul li a:hover                           { border-bottom-color:#FFF !important; border-top-color:#FFF !important; }
+
+#footer, .row1, .rowtotal, 
+div.dropButton .submenu a                           { border-top-color:#999}
+
+body.attributes h3									{ border-top-color:#CCC}
+
+a.reset, a.confirm									{ border-top-color:#DDD; border-left-color:#DDD; }
+
+body.list table 									{ border-left-color:#CCC; border-right-color:#CCC}
+
+
+
+/******************************* 4. SHADOWS */
+
+a.reset, a.confirm                                  { text-shadow:0 1px rgba(255, 255, 255, .75)}
+
+div.configEdit a.ajaxable                           { -moz-box-shadow: inset 0px 0px 6px #666; -webkit-box-shadow: inset 0px 0px 6px #666; box-shadow: inset 0px 0px 6px #666}
+
+#listselection li label:before                      { -moz-box-shadow: inset 0px 0px 6px #EEE; -webkit-box-shadow: inset 0px 0px 6px #EEE; box-shadow: inset 0px 0px 6px #EEE}
+
+.shadow, #right-bar ul, #right-bar h3			    { -moz-box-shadow:1px 2px 6px #999; -webkit-box-shadow:1px 2px 6px #999; box-shadow:1px 2px 6px #999}
+
+div.accordion tr td.listingname a,span.add_member, 
+#generatetextversion a.ajaxable,.dashboard_button a,
+span.delete a.confirm,span.send-list a.button,
+span.edit-list a.button                             { -moz-box-shadow:2px 2px 2px #888; -webkit-box-shadow:2px 2px 2px #888; box-shadow:2px 2px 2px #888}
+
+div.dropButton, #webblertabs                        { -moz-box-shadow:inset 0 0 8px #999; -webkit-box-shadow:inset 0 0 8px #999; box-shadow:inset 0 0 8px #999}
+
+.paging .controls a:hover							{ -moz-box-shadow:0px 0px 0px #888; -webkit-box-shadow:0px 0px 0px #888; box-shadow:0px 0px 0px #888}
+
+a.action-button, input.action-button                { -moz-box-shadow:1px 1px 4px #000; -webkit-box-shadow:1px 1px 4px #000; box-shadow:1px 1px 4px #000}
+
+.panel .step-nav a.back:hover,
+.panel .step-nav a.next:hover,
+.minitabs #webblertabs ul li:hover,
+.minitabs #webblertabs ul li.current                { -moz-box-shadow:1px 1px 4px #777; -webkit-box-shadow:1px 1px 4px #777; box-shadow:1px 1px 4px #777}
+
+
+/* End of /lists/admin/ui/default/css/gray.css */
