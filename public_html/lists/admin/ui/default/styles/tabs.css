@@ -1,0 +1,26 @@
+#webblertabs {
+	FONT-SIZE: 75%; BACKGROUND: url(../images/tabs/bgwhite.gif) #fff bottom; FLOAT: left; WIDTH: 95%; LINE-HEIGHT: normal; 
+}
+#webblertabs UL {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 10px; LIST-STYLE-TYPE: none
+}
+
+#webblertabs LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 9px; BACKGROUND: url(../images/tabs/left.gif) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#webblertabs A {
+	PADDING-RIGHT: 9px; DISPLAY: block; PADDING-LEFT: 1px; FONT-WEIGHT: bold; BACKGROUND: url(../images/tabs/right.gif) no-repeat right top; FLOAT: left; PADDING-BOTTOM: 4px; COLOR: #765; PADDING-TOP: 3px; TEXT-DECORATION: none
+}
+#webblertabs A {
+	FLOAT: none
+}
+#webblertabs A:hover {
+	COLOR: #333
+}
+#webblertabs #current {
+	BACKGROUND-IMAGE: url(../images/tabs/left_on.gif)
+}
+#webblertabs #current A {
+	BACKGROUND-IMAGE: url(../images/tabs/right_on.gif); PADDING-BOTTOM: 5px; COLOR: #333
+}
+

@@ -1,0 +1,612 @@
+/* File:/lists/admin/ui/default/css/style.css */
+
+/*******************************
+
+TABLE OF CONTENT
+
+ 1. GENERAL STYLES
+ 2. STRUCTURE DIVS
+ 3. GLOBAL HELP
+ 4. INFOS, ALERTS AND ERRORS
+ 5. INDIVIDUAL HELP POPUP AND FORM POPUP
+ 6. MAIN MENU
+ 7. ACCORDION
+ 8. TABS [ui-tabs, webblertabs (and minitabs) and sendtabs]
+ 9. LISTINGS [paging, table styles, drag and drop]
+10. ICONS AND BUTTONS
+11. SPECIAL PAGES
+12. SIDEBAR
+13. FOOTER
+
+*******************************/
+
+
+
+/******************************* 1. GENERAL STYLES */
+
+body													{ font:13px/1.5 Arial, Helvetica, sans-serif; padding:0; margin:0; background:url('../../default/images/page_bk.png') repeat-x}
+body.nobackground										{ font-size: 14px; background:url('../../default/images/spacer.png') repeat-x; }
+hr														{ border:0; border-style:solid; border-top-width:1px; clear:both; height:0; margin:10px 0px}
+table													{ /* this put same width on all columns for break-word: table-layout:fixed; */ width:100%}
+table table												{ width:auto}
+td,th													{ overflow:hidden; word-wrap:break-word}
+td .button												{ word-wrap:normal}
+td.dataname												{ width:120px; font-weight:bold; font-size:12px}
+select													{ word-wrap:normal;width:100%; max-width:220px}
+input[type="file"]							 			{ width:100%}
+input.listorder								 			{ width:25px !important}
+a,a.hide:hover											{ text-decoration:none}
+a:focus													{ outline:1px dotted}
+a:active, a:visited								 		{ outline:none}
+h1, h2, h3, h4, h5, h6									{ font-weight:normal}
+h1														{ font-size:25px}
+h2														{ font-size:23px}
+h3														{ font-size:21px; margin-bottom:10px; margin-top:10px}
+h4														{ font-size:19px}
+h5														{ font-size:17px}
+h6														{ font-size:15px}
+ol														{ list-style:decimal;;padding:5px 20px}
+ul														{ list-style:disc; margin-bottom:10px;padding:5px 20px}
+ul.nobullets											{ list-style:none}
+li														{ margin:0px 0px 15px 15px}
+h3 a													{ font-size:18px; word-wrap:break-word}
+.about ul												{ margin-bottom:30px}
+.plugins h4												{ margin-bottom:10px}
+.tleft 													{ text-align:left}
+.tright,.right * 										{ text-align:right}
+.fleft 													{ float:left; margin-right:10px}
+.fright 												{ float:right}
+.clear													{ clear:both}
+.information, p.info									{ margin-top:20px}
+.small 													{ font-size:6pt}
+.pagetitle												{ text-transform:uppercase; margin-top:10px; margin-bottom:20px}
+.centered												{ margin:5px auto; text-align:center; display:block}
+div.panel h2											{ margin-bottom:5px; font-size:20px}
+p,dl,h1,h2,h4,h5,h6,ol,pre,table,address,fieldset,figure{ margin-bottom:20px}
+form .actions											{ border:0px}
+div.submit, p.button									{ margin:10px 0px}
+.shade1, .shade2										{ margin-bottom:5px; padding:1px; background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0}
+.show-on-mobile                                         {display:none}
+textarea,.cke                                           {max-width:100% !important}
+
+@media only screen and (max-width: 767px){
+    .url                                                {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: inline-block;max-width: 170px}
+    .hide-on-mobile                                     {display:none}
+    .show-on-mobile                                     {display:inherit}
+}
+
+
+/******************************* 2. STRUCTURE DIVS */
+
+#container												{ margin-top:10px}
+#header													{ height:60px; margin-top:0px}
+#header #logo 											{ float:left}
+#logo													{ margin:0}
+#content												{ min-height:400px; margin-top:10px}
+div.actions												{ margin:10px 0px; padding:10px 0px}
+div.panel												{ background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0; clear:both; border-width:1px; border-style:solid; margin:0px; padding:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+div.panel .content										{ border-width:1px; border-style:solid; padding:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+.panel .content .wrapper								{ margin-top:10px}
+
+
+/******************************* 3. GLOBAL HELP */
+
+#globalhelp 											{ text-align:left; margin-top:37px}
+#globalhelp .content									{ overflow:hidden; height:auto; width:100%; display:none}
+#globalhelp .content .text								{ font-size:15px; line-height:20px; padding:20px; width:auto; border-width:1px; border-style:solid; border-top:0px; margin:0 auto; -webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px; border-bottom-right-radius:10px; border-bottom-left-radius:10px}
+#globalhelp .buttonhelp									{ background:url('../../default/images/16x16/info.png') no-repeat 6px 3px; cursor:pointer; float:right; margin-right:10px; margin-top:-1px; width:auto; text-align:center; padding:2px 8px 2px 25px; text-transform:uppercase; -webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px; border-bottom-right-radius:10px; border-bottom-left-radius:10px}
+#globalhelp .close										{ visibility:hidden}
+#globalhelp .content .text *							{ font-size:15px; line-height:20px}
+
+
+/******************************* 4. INFOS, ALERTS AND ERRORS */
+
+.note{ clear:both; border-width:1px; border-style:solid; margin:0px 0px 20px; padding:10px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+.note h3{ font-style:normal; margin:0; font-size:12pt}
+.note p{ margin-bottom:5px}
+.note a{ text-decoration:underline}
+.hide{ background:url('../../default/images/close_button1.gif') no-repeat; display:block; float:right; margin-top:-5px; margin-right:-5px; overflow:hidden; height:20px; text-indent:-9999px; width:20px}
+.error{ margin:10px 0px}
+.result{ clear:both}
+.announcements{ margin-bottom:40px !important; padding: 7px !important}
+.news{ font-size: 120%}
+
+
+/******************************* 5. INDIVIDUAL HELP POPUP AND FORM POPUP */
+
+.ui-dialog												{ position:fixed; height:auto; min-width: 300px; top:10px !important;max-height:95% !important; overflow-y:auto; background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; padding:4px 1px}
+.ui-widget-overlay										{ zoom:1; opacity:0.6; filter:alpha(opacity=60); background-image:none}
+.ui-dialog .ui-dialog-titlebar							{ background:none; border:none; width:1px; float:right; padding:0px}
+.ui-dialog .ui-dialog-titlebar-close 					{ border-width:2px; border-style:solid; padding:0px; -webkit-border-radius:100px; -moz-border-radius:100px; border-radius:100px}
+.ui-dialog .ui-resizable-se 							{ /* width:13px; height:13px; bottom:5px; right:5px; */ display:none; visibility:hidden; }
+.ui-dialog-content										{ border-width:1px !important; border-style:solid !important; padding:5px !Important; margin:8px 2px; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px}
+.ui-dialog-content .panel								{ background:none; border:none}
+.ui-dialog-content form,
+.ui-dialog-content .panel .content						{ border:none}
+.ui-resizable-s,.ui-resizable-sw                        { bottom:0px}
+
+
+/******************************* 6. MAIN MENU */
+
+#navigation												{ height:auto; -webkit-border-bottom-right-radius:6px; -webkit-border-bottom-left-radius:6px; -moz-border-radius-bottomright:6px; -moz-border-radius-bottomleft:6px; border-bottom-right-radius:6px; border-bottom-left-radius:6px}
+#menuTop												{ float:left; width:auto !important}
+#menuTop a 												{ background:transparent !important; border:0 !important; display:block; margin-top:-1px; line-height:17px; text-decoration:none}
+#menuTop ul li a 										{ padding:10px 10px !important}
+#menuTop ul li											{ margin:0px; font-size:15px; margin-right:0px}
+#menuTop ul ul li										{ overflow:hidden; border-bottom-width:1px !important; border-bottom-style:dotted !important; zoom:1; filter:alpha(opacity=97); opacity:0.97}
+#menuTop ul ul li a										{ font-size:13px; margin:0px; padding:4px 4px 4px 25px !important; width:auto !important; min-width:200px}
+#menuTop ul ul li a:hover								{ border-top-width:1px !important; border-top-style:solid !important; border-bottom-width:1px !important; border-bottom-style:solid !important; padding-bottom:3px !important; padding-top:3px !important}
+span#menu-button										{ display:none}
+span#menu-button span									{ margin-left:10px; margin-top:2px; display:inline-block; height:25px; width:25px; background:url('../../default/images/menu.png') 50% 50% no-repeat; overflow:hidden; text-indent:-9999px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+span#menu-button span:hover								{ cursor:pointer}
+
+
+/******************************* 7. ACCORDION */
+.ui-widget												{font-family:Arial,Helvetica,sans-serif}
+h3.ui-accordion-header a								{ background:url('../../default/images/grad.png') repeat-x}
+div.accordion table td									{ border:0px; vertical-align:middle; padding:10px}
+div.accordion table										{ width:auto}
+div.accordion table td a								{ font-size:11px; text-align:center; display:block; height:auto; padding:45px 5px 10px 5px}
+div.accordion div.panel .content 						{ background:transparent}
+div.accordion table td.listingelement a					{ min-width:60px; padding-top:10px}
+div.accordion table td a.hometext:hover					{ text-decoration:none}
+div.accordion table td a.hometext						{ font-size:14px; text-align:left; vertical-align:top}
+div.accordion table td.listingelement					{ font-size:11px}
+div.accordion table td.listingname						{ width:auto; height:70px; font-size:11px}
+.ui-accordion-content .panel							{ border:0px; background:transparent}
+.ui-accordion-content									{ background:url('../../default/images/grad.png') repeat-x 0px -30px}
+div.accordion table										{ table-layout:auto}
+div.accordion td, div.accordion th						{ overflow:auto; text-align:left}
+div.accordion tr td.listingname a						{ -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; min-width:100px}
+div.accordion tr .listingname a.listingname:hover		{ text-decoration:none; font-size:11px}
+div.accordion .panel .content,
+div.accordion .panel .content td						{ border:0px}
+div.accordion h3										{ margin-bottom:0px; -moz-border-radius-topright:0px; -moz-border-radius-topleft:0px; -webkit-border-top-right-radius:0px; -webkit-border-top-left-radius:0px; border-top-left-radius:0px; border-top-right-radius:0px; -moz-border-radius-bottomright:0px; -moz-border-radius-bottomleft:0px; -webkit-border-bottom-right-radius:0px; -webkit-border-bottom-left-radius:0px; border-bottom-left-radius:0px; border-bottom-right-radius:0px}
+div.accordion h3.ui-state-active						{ border-bottom:0px;margin-bottom:0px; }
+div.accordion .ui-accordion-content,
+div.accordion .ui-accordion-content div,
+div.accordion .ui-accordion-content div td 				{ margin:0px !important; border-top:0px; top:0px}
+
+/******************************* 8. TABS [ui-tabs, webblertabs (and minitabs) and sendtabs] */
+
+/* ui tabs */
+ul.ui-tabs-nav											{ padding:0px}
+.ui-tabs-nav li											{ font-size:14px; font-family:Arial, Helvetica,sans-serif; -webkit-border-top-right-radius:8px; -webkit-border-top-left-radius:8px; -moz-border-radius-topright:8px; -moz-border-radius-topleft:8px; border-top-right-radius:8px; border-top-left-radius:8px}
+.ui-tabs-nav li a										{ padding:8px 5px !important}
+.ui-tabs												{font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:normal}
+.ui-tabs .ui-tabs-nav									{padding:0px}
+.ui-tabs .ui-tabs-panel					 				{ padding:6px 2px 0px}
+.ui-tabs-panel h3,body#app .ui-tabs-panel h2.account	{font-size:18px;padding:2px 10px}
+ui-tabs table th 										{ font-size: 14px;  font-weight:bold;  }
+div.notes, a.footnote 									{ font-size: 10px; vertical-align: super; }
+@media only screen and (max-width: 767px){
+    .tabbed.ui-tabs .ui-tabs-nav li                     {width:99%}
+    .tabbed.ui-tabs .ui-tabs-nav li a                   {width:95%;display:block}
+}
+
+/* dropdown menus (webblertabs) */
+div.dropButton											{ width:190px; position:relative; padding:5px 5px 5px 10px; margin:10px 10px 10px 0px; background:url('../../default/images/menuarrow.png') 180px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; font-size:15px; line-height:15px; font-variant:small-caps; clear:both}
+div.dropButton a img.arrow								{ display:none}
+div.dropButton .submenu a 								{ line-height:12px; padding:7px; margin-top:5px; width:175px; font-size:13px; border-top-width:1px; border-top-style:dotted; display:inline-block; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
+#webblertabs											{ min-height:28px;width:200px; position:relative; margin:10px 10px 10px 0px; background:url('../../default/images/menuarrow.png') 170px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
+#webblertabs ul											{ width:170px; margin:0px;padding:0px 0px; list-style:none;position:absolute;clear:both; font-size:15px; line-height:15px; border: 1px solid #CCC;border-radius: 8px;background:rgba(250,250,250,0.95)}
+.minitabs #webblertabs ul                               {position:relative}
+#webblertabs ul li										{ margin-left:2px; padding:0px}
+#webblertabs ul li a									{ padding:1px 10px !important; width:150px; overflow:hidden}
+div.dropButton .submenu a:hover 						{ margin-top:5px}
+#webblertabs ul li, #webblertabs ul li a                { width:170px; margin:0px; padding:1px 0px; border:none; clear:both; font-size:15px; line-height:15px; -webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px}
+#webblertabs ul li:hover,
+div.dropButton .submenu a:hover							{ border:0}
+
+/* minitabs (webblertabs inside "minitabs" div)  */
+.minitabs                                               { margin:0px auto 5px;padding:0px}
+.minitabs #webblertabs                                  {padding:0px;margin:0px}
+.minitabs #webblertabs, .minitabs #webblertabs *        { width:auto;min-width:initial; background:transparent}
+.minitabs #webblertabs ul                               {padding:0px !important;margin:2px 6px}
+.minitabs, .minitabs #webblertabs ul li,
+.minitabs #webblertabs ul li a                          { display:inline-block !important;clear:none}
+.minitabs #webblertabs ul li:hover,
+.minitabs #webblertabs ul li                            { border:1px solid;margin:2px;padding:2px 0px}
+.minitabs #webblertabs ul li a span                     {margin:0px;padding:2px 0px}
+
+/* send tabs */
+.sendtabs_container										{ width:100%; text-align:center; margin-bottom:-2px !important;max-height:50px}
+.sendtabs_container .nexttab							{ cursor:pointer; float:right; padding:5px; margin-top:10px;vertical-align: top;height:15px}
+.sendtabs_container .prevtab							{ cursor:pointer; float:left; padding:5px; margin-top:10px;vertical-align: top;height:15px}
+.sendtabs_container .prevtab.disabled,
+.sendtabs_container .nexttab.disabled					{ visibility:hidden}
+#sendtabs ul.sendcampaign li							{ width:auto !important; margin:1px}
+#sendtabs ul.sendcampaign li a							{ -webkit-border-top-right-radius:10px; -webkit-border-top-left-radius:10px; -moz-border-radius-topright:10px; -moz-border-radius-topleft:10px; border-top-right-radius:10px; border-top-left-radius:10px; font-size:100%; width:100px !important}
+#sendtabs ul.sendcampaign li.current a					{ font-size:100%}
+#sendtabs ul li a 										{ border:0px; font-size:12px !important}
+#sendtabs ul li.current a, #sendtabs ul li a:hover		{ text-decoration:none}
+.sendtabs_container .prevtab:hover,
+.sendtabs_container .nexttab:hover						{ zoom:1; filter:alpha(opacity=70); opacity:0.7}
+ul.sendcampaign											{ list-style: none}
+#metadata                                               { margin-bottom:20px }
+
+
+/******************************* 9. LISTINGS [paging, table styles, drag and drop] */
+
+/* paging */
+.paging .controls 										{ float:right}
+.paging .controls a										{ padding:5px 14px; margin:0px; border:0px; float:left; height:17px}
+.paging .controls .first								{ background:url('../../default/images/icons-paging.png') no-repeat 0px -27px}
+.paging .controls .previous								{ background:url('../../default/images/icons-paging.png') no-repeat -28px -27px}
+.paging .controls .next									{ background:url('../../default/images/icons-paging.png') no-repeat -56px -27px}
+.paging .controls .last									{ background:url('../../default/images/icons-paging.png') no-repeat -84px -27px}
+.paging .controls .first:hover							{ background-position:0px 0px}
+.paging .controls .previous:hover						{ background-position:-28px 0px}
+.paging .controls .next:hover							{ background-position:-56px 0px}
+.paging .controls .last:hover							{ background-position:-84px 0px}
+.paging .range 											{ max-width:300px; float:left}
+
+/* tables styles */
+.row1													{ border-top-width:2px; border-top-style:solid}
+.rowtotal												{ border-top-width:4px; border-top-style:solid}
+.row1 .listingelement									{ text-align:center}
+.row1 .listingelement .listorder						{ margin:0 auto; padding:2px; text-align:center}
+.listingrowname											{ text-align:right; font-weight:bold}
+.row1 span.listingelement a.button,span.add_member,
+span.delete a.confirm,span.send-list a.button,
+span.edit-list a.button									{ float:none; font-weight:bold; padding:3px 5px; height:auto}
+td span.listingelement a.button							{ margin-left:5px; float:right}
+span.listingelement select								{ width:100%}
+.listingelement .del									{ float:right}
+.row1 .viewusers .button								{ vertical-align:middle}
+tr.row  td												{ max-width:100px}
+td.listingelement, td.listingname, th, td.listingrowname{ text-align:center !important}
+.listinghdelement, .listinghdname, .listingsmall		{ font-size:9px; padding:1px; text-transform:uppercase}
+.content .listingsmall, .content .listingsmall			{ padding:2px !important; font-weight:bold}
+tr td.listingname a,tr td.listinelement a,span.add_member,
+span.delete a.confirm,span.send-list a.button,
+span.edit-list a.button									{ -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+tr .listingname a:hover, tr .listingelement a:hover		{ text-decoration:none}
+.panel table td											{ border-width:1px; border-style:solid; padding:4px}
+.panel table th											{ text-align:center; font-weight:bold; background:url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; }
+.memberCount                                            { color: #0A0; }
+.unconfirmedCount                                       { color: #FFA500; }
+.blacklistedCount                                       { color: #C55; }
+
+/* drag and drop */
+.save													{ background:url('../../default/images/16x16/alert.png'); height:16px; width:16px; display:inline-block; margin-right:5px}
+
+
+/******************************* 10. ICONS AND BUTTONS */
+
+a.action-button{line-height:1.5 !important;display:inline-block;padding:3px !important;text-align:center; }
+a.action-button::first-letter {text-transform:uppercase}
+
+/* login/logout buttons */
+#logged													{ float:left; margin-top:15px; float:right}
+#login, #logout											{ padding:2px 12px 4px 30px; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px}
+#login													{ background:url('../../default/images/32x32/login16x16-neg.png') 15% 50% no-repeat}
+#logout													{ background:url('../../default/images/32x32/logout16x16-neg.png') 12% 50% no-repeat}
+#login:hover,#logout:hover								{ padding:2px 12px 4px 30px; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; text-decoration:none}
+#login:hover											{ background:url('../../default/images/32x32/login16x16.png') 15% 50% no-repeat}
+#logout:hover											{ background:url('../../default/images/32x32/logout16x16.png') 12% 50% no-repeat}
+
+/* listings icons and buttons */
+a.del, span.yes, span.no								{ height:16px; width:16px; display:block; text-indent:-9999px; margin:0 auto; margin-top:3px}
+a.del													{ background:url('../../default/images/16x16/mini-trash.png') no-repeat}
+span.yes												{ background:url('../../default/images/16x16/yes.png') no-repeat}
+span.no													{ background:url('../../default/images/16x16/no.png') no-repeat}
+.firstinstallbutton										{ cursor:pointer; margin-left:4px; margin-bottom: 50px; padding:5px 10px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+a.action-button, input.action-button					{ cursor:pointer;  margin:10px 0px; padding:5px 15px; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; font-size:15px; clear:both; font-weight:normal; text-shadow:none; border:0;white-space:nowrap}
+a.action-button											{ line-height:50px}
+a.reset, a.confirm										{ border-width:1px; border-style:solid; padding:4px 12px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; display:inline-block; font-size:11px; font-weight:bold; text-decoration:none; cursor:pointer; margin:5px 10px 5px 0px; line-height:normal; padding:8px 10px; font-family:Arial, Helvetica, sans-serif}
+span.add_member a										{ background:url("../../default/images/16x16/add-members.png") no-repeat scroll 50% 50%}
+span.delete a.button,span.delete a.confirm				{ background:url("../../default/images/16x16/mini-trash.png") no-repeat scroll 50% 50%}
+span.edit a.button,span.edit-list a.button				{ background:url("../../default/images/16x16/edit-1.png") no-repeat scroll 50% 50%}
+span.button a.opendialog span.view, span.view a.button	{ background:url("../../default/images/16x16/view.png") no-repeat scroll 50% 50%}
+span.stats a.button										{ background:url("../../default/images/16x16/statistics.png") no-repeat scroll 50% 50%}
+span.resend a.button, span.send-list a.button			{ background:url("../../default/images/16x16/play.png") no-repeat scroll 50% 50%}
+span.suspend a.button									{ background:url("../../default/images/16x16/pause.png") no-repeat scroll 50% 50%}
+span.marksent a.button									{ background:url("../../default/images/16x16/stop.png") no-repeat scroll 50% 50%}
+span.viewusers a.button,.row1 span.viewusers a.button	{ background:url("../../default/images/16x16/user.png") no-repeat scroll 50% 50%}
+a.action-button:hover, input.action-button:hover		{ border:0}
+span.delete a.button,span.edit a.button, span.edit-list a.button,
+span.view a.button,span.stats a.button, span.delete a.confirm,
+span.resend a.button,span.suspend a.button, span.send-list a.button,
+span.marksent a.button,.row1 span.viewusers a.button,
+span.button a.opendialog span.view,span.add_member a	{ vertical-align: middle;width:16px; height:16px; overflow:hidden; text-indent:-9999px; display:inline-block}
+#dashboardcampaign, #dashboardsubscribers,
+#dashboardstatistics 									{ display:inline}
+
+
+/* Dashboard icons */
+.dashboard_button a										{ display:block;-webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; padding:15px 10px 15px 50px;background-position: 10px 10px; background-repeat: no-repeat; }
+.dashboard_button 										{ list-style:none;border:0px; padding:0px; margin:10px; max-width:250px; display:block; }
+#copy_paste a											{ background-image:url('../../default/images/32x32/copy_paste.png')}
+#import_list a											{ background-image:url('../../default/images/32x32/import-txt.png') }
+#import_csv a											{ background-image:url('../../default/images/32x32/import-csv.png') }
+
+div.accordion tr td.listingname a,
+div.accordion tr .listingname a.listingname:hover		{ background-position:50% 10px; background-repeat:no-repeat}
+tr.config-link td.listingname a,
+.dashboard_button .configuration a						{ background-image:url('../../default/images/32x32/config.png')}
+tr.send-campaign td.listingname a						{ background-image:url('../../default/images/32x32/edit.png')}
+tr.view-statistics td.listingname a,
+.dashboard_button .statistics a							{ background-image:url('../../default/images/32x32/statistics.png')}
+tr.manage-campaigns td.listingname a					{ background-image:url('../../default/images/32x32/search.png')}
+tr.manage-users td.listingname a						{ background-image:url('../../default/images/32x32/user.png')}
+tr.manage-lists td.listingname a						{ background-image:url('../../default/images/32x32/order-162.png')}
+tr.list-users td.listingname a							{ background-image:url('../../default/images/32x32/customers.png')}
+tr.reconcileusers td.listingname a						{ background-image:url('../../default/images/32x32/refresh.png')}
+tr.import-users td.listingname a						{ background-image:url('../../default/images/32x32/importusers.png')}
+tr.export-users td.listingname a						{ background-image:url('../../default/images/32x32/exportusers.png')}
+tr.configure td.listingname a							{ background-image:url('../../default/images/32x32/settings.png')}
+tr.configure-attributes td.listingname a				{ background-image:url('../../default/images/32x32/attibutes.png')}
+tr.custom-attribute td.listingname a					{ background-image:url('../../default/images/32x32/tag.png')}
+tr.spage td.listingname a								{ background-image:url('../../default/images/32x32/order.png')}
+tr.admins td.listingname a								{ background-image:url('../../default/images/32x32/admin.png')}
+tr.adminattributes td.listingname a						{ background-image:url('../../default/images/32x32/attibutes.png')}
+tr.send-message td.listingname a						{ background-image:url('../../default/images/32x32/email.png')}
+tr.templates td.listingname a							{ background-image:url('../../default/images/32x32/project.png')}
+tr.list-all-msg td.listingname a						{ background-image:url('../../default/images/32x32/library.png')}
+tr.processqueue td.listingname a						{ background-image:url('../../default/images/32x32/process.png')}
+tr.processbounces td.listingname a						{ background-image:url('../../default/images/32x32/process.png')}
+tr.bounces td.listingname a								{ background-image:url('../../default/images/32x32/refresh.png')}
+tr.plugin td.listingname a								{ background-image:url('../../default/images/32x32/plugin.png')}
+tr.setup td.listingname a								{ background-image:url('../../default/images/32x32/config.png')}
+tr.dbcheck td.listingname a								{ background-image:url('../../default/images/32x32/database.png')}
+tr.view-log td.listingname a							{ background-image:url('../../default/images/32x32/order-162.png')}
+
+
+/******************************* 11. SPECIAL PAGES */
+
+/* initialise form */
+#initialiseform input[type="submit"]                      { border-color:#000}
+#initialiseform input[type="submit"]:disabled             { border-color:#CCC}
+
+
+/* login page */
+#login-form *											{ border:none; font-size:100%}
+form#login-form											{ background:url('../../default/images/login.png') 5% 30% no-repeat; margin:0 auto; margin-top:40px; margin-bottom:20px; padding-top:20px; padding-left:130px; border-width:1px; border-style:solid; max-width:250px}
+form#login-form table tr td								{ padding-right:10px !important; text-align:left}
+#login-form .submit										{ margin-top:5px}
+.home-not-auth form hr									{ display:none; clear:both; margin:0 auto; width:100% !important; margin-bottom:40px; margin-top:40px}
+form#forgotpassword-form								{ border-width:1px; border-style:solid; padding:20px 20px 10px 20px; margin-top:50px}
+form#forgotpassword-form div.login						{ padding-left:50px; background:url('../../default/images/32x32/consulting.png') 0% 10% no-repeat; padding-bottom:10px}
+form#forgotpassword-form p								{ margin:0px; padding:0px}
+form#forgotpassword-form input[type="text"]				{ float:left; max-width:70% !important; margin:5px 5px 10px 0px; height:20px; padding:2px}
+form#forgotpassword-form input[type="submit"]			{ float:left; margin:4px; height:27px; padding:6px 10px}
+.loginPassUpdate input[type="text"],
+.loginPassUpdate input[type="password"] 				{ width:200px}
+
+/* pages: import1, import2, importadmin, admindetails, bouncerules, adminattributes,spageedit */
+table.import1, table.importadmin, table.importcsvMain,
+table.bouncerulesAction, table.adminDetails,
+table.attributeNew,table.spageeditListing				{ width:auto; border-width:0px !important; border-style:solid !important}
+
+/* bounces page */
+body.bounces .actions a.button							{ float:right}
+body.bounces .actions div.dropButton,
+body.bounces .actions #webblertabs						{ float:left}
+
+/* spageedit page */
+table.spageeditListing td								{ padding:10px}
+
+/* mviews page */
+table.mviewsDetails										{ width:auto}
+table.mviewsDetails td									{ padding-right:10px}
+
+/* mclicks page */
+table.mclicksDetails									{ width:auto}
+table.mclicksDetails td									{ padding-right:10px}
+
+/* viewrss page */
+table.viewrssListing									{ width:auto}
+table.viewrssListing td									{ padding-right:10px}
+
+/* setup page */
+.panel table.setupMain									{ width:auto}
+.panel table.setupMain td								{ border:0px}
+
+/* members page */
+body.members .listingelement .no,
+body.members .listingelement .yes 						{ float:right; margin-right:10px}
+table.membersProcess select								{ width:100%; margin-bottom:0px}
+table.membersProcess tr td								{ padding:4px !important}
+
+/* usercheck page */
+table.usercheckForm, table.usercheckForm td				{ width:90%; text-align:left}
+
+/*  list subscribers page */
+body.list div.actions									{ float:right; margin:10px 0px 10px; padding:0px; width:auto}
+body.list div.actions a									{ margin:0px 10px 0px 0px}
+body.list p												{ clear:both; margin-top:10px; width:100%}
+body.list .total										{ font-size:22px}
+body.list table 										{ border-left-width:1px; border-left-style:solid; border-right-width:1px; border-right-style:solid}
+body.list table td 										{ border:0; height:auto; }
+body.list tr:nth-child(2n+3)							{ border-bottom-width:1px; border-bottom-style:solid}
+span.add_member											{ padding:3px 5px;float:right;margin-right:4px}
+span.add_member a										{padding:1px 5px}
+span.delete a.confirm,span.send-list a.button,span.edit-list a.button{ padding:4px 10px; margin-top:0px;float:right;border:0px}
+span.send-list a.button									{margin-right:5px}
+
+
+/* users page */
+body.users .filter,  body.users .usersFind				{ margin:20px}
+body.users .filter										{ border-bottom-width:1px; border-bottom-style:dashed; margin-bottom:20px}
+body.users .filter label								{ margin-bottom:10px}
+body.users .filter label[for=unconfirmed]				{ float:left; margin-right:20px; width:220px}
+body.users .filter label[for=blacklisted]				{ width:220px; float:left}
+body.users .filter label[for=sortby]					{ float:left; width:200px; margin-top:0px; margin-bottom:10px;margin-right:20px}
+body.users .filter label[for=sortby] select				{ width:120px; float:right; margin-bottom:0px}
+body.users .filter label[for=sortdesc]					{ margin-right:10px; float:left}
+body.users .filter label[for=sortasc]					{ margin-top:0px; float:left}
+body.users .filter .submit								{ margin:0px 70% 10px 0}
+body.users table.usersFind								{ width:90%; text-align:left}
+body.users .usersFind .submit							{ margin-right:50%}
+body.users .usersFind .reset							{ margin-left:-50%}
+body.users .usersFind input[type=text]					{ width:250px !important; float:left; margin-right:20px}
+body.users div#add-csv-button,
+body.users div#add-user-button							{ display:inline-block; }
+body.users .listingelement .no,
+body.users .listingelement .yes							{ float:right; margin-right:10px}
+.usersFind td											{ border:0px !important}
+
+/* usermgt page */
+body.usermgt #wrapp ul									{ margin-left:10px; list-style:none}
+body.usermgt #wrapp ul li ul li a						{ padding-left:20px; background:url('../../default/images/16x16/tag.png') 0% 50% no-repeat; font-size:14px}
+body.usermgt #wrapp ul li#users a						{ padding-left:20px; background:url('../../default/images/16x16/search.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#attributes a					{ padding-left:20px; background:url('../../default/images/16x16/attibutes.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#reconcileusers a				{ padding-left:20px; background:url('../../default/images/16x16/database.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#usercheck a					{ padding-left:20px; background:url('../../default/images/16x16/check.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#massunconfirm a				{ padding-left:20px; background:url('../../default/images/16x16/issue.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#massremove a					{ padding-left:20px; background:url('../../default/images/16x16/issue.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#edit-values					{ padding-left:20px; background:url('../../default/images/16x16/pencil.png') 0% 0% no-repeat}
+body.usermgt #wrapp ul li#import						{ padding-left:20px; background:url('../../default/images/16x16/importusers.png') 0% 0% no-repeat}
+body.usermgt #wrapp ul li#export						{ padding-left:20px; background:url('../../default/images/16x16/exportusers.png') 0% 0% no-repeat}
+
+/* reconcileusers users page */
+body.reconcileusers hr									{ padding:10px 0px}
+body.reconcileusers .reconcile							{ clear:both}
+body.reconcileusers .information						{ margin:5px 5px}
+body.reconcileusers input.button 						{ clear:both !Important}
+body.reconcileusers .reconcile a.button					{ width:38%; text-align:center; float:left; margin-bottom:20px}
+body.reconcileusers select								{ width:120px; display:inline-block; margin-bottom:0px}
+body.reconcileusers select[name=num]					{ width:50px; margin:0px 5px}
+body.reconcileusers legend								{ font-weight:normal; clear:both !important; padding-bottom:10px}
+body.reconcileusers .field								{ margin-top:10px !important}
+ul.reconcile											{list-style: none}
+ul.reconcile li 										{margin:0px}
+
+/* attributes page */
+body.attributes td , body.attributes table 				{ border-width:0px !important; border-style:solid !important}
+body.attributes hr										{ border-width:1px !important; border-style:solid !important; margin:20px !important}
+body.attributes #new-attribute 							{ border-width:1px; border-style:solid; padding:10px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+body.attributes #new-attribute h3						{ border:0;margin-top:10px;margin-bottom:30px}
+body.attributes h3										{ margin-top:20px; border-top-width:1px; border-top-style:solid; }
+
+/* editattributes page */
+body.editattributes span.delete a						{ display:inline-block; height:20px; width:20px; background:url('../../default/images/16x16/mini-trash.png') 50% 50% no-repeat; text-indent:-9999px; overflow:hidden}
+body.editattributes .panel h3							{ font-size:20px; margin-bottom:5px; }
+div.row-value											{ margin:5px; margin-bottom:20px; clear:both}
+div.row-value .listorder								{ float:left; margin-right:10px; margin-bottom:0px}
+div.row-value .delete									{ float:right; margin-left:10px}
+
+/* send page */
+#sendmessageform .panel .header							{ min-height:40px}
+#generatetextversion a.ajaxable							{ display:block; background:url('../../default/images/32x32/import-html.png') no-repeat 5px 5px; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; padding:10px 10px 10px 40px; float:left}
+#generatetextversion 									{ border:0px; padding:0px; margin:10px; width:auto; display:block; text-align:center}
+.panel .header .step-nav 								{ margin-top:-32px}
+.panel .step-nav 										{ position:relative; float:right; text-align:right; margin:10px 0px}
+.panel .step-nav a.next 								{ background:url('../../default/images/next.png') no-repeat left top; padding:2px 2px 2px 20px}
+.panel .step-nav a.back 								{ background:url('../../default/images/back.png') no-repeat right top; padding:2px 20px 2px 2px; float:left}
+.panel .step-nav a.back, .panel .step-nav a.next		{ border-width:4px; border-style:solid; display:inline-block; text-transform:uppercase; cursor:pointer; font-size:14px;	-webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+.panel .step-nav a.back:hover,
+.panel .step-nav a.next:hover							{ text-decoration:none}
+body.send .field										{ margin-bottom:10px}
+body.send .field label									{ display:block; font-weight:bold}
+body.send .sendNotify label								{ display:block; width:100%}
+body.send .panel .content div							{ margin:5px}
+body.send textarea										{ width:88%}
+#addtoqueue												{ margin:10px; padding:10px; border-width:1px; border-style:solid}
+#addtoqueue .missing									{ padding:15px; padding-left:25px; background:url('../../default/images/16x16/alert.png')  3px center no-repeat; border-width:1px; border-style:solid}
+a.helpdialog, a.resourcereference						{ height:16px; width:16px; background:url('../../default/images/16x16/info.png') no-repeat; display:inline-block; overflow:hidden; text-indent:9999px; margin-left:5px}
+#addtoqueue .error										{ padding:5px; margin-top:20px; padding-left:25px; background:url('../../default/images/16x16/error.png')  3px center no-repeat; border:1px solid red}
+#listselection a                                        { outline:none}
+#listselection .inactivelist,#listselection .activelist{ float:right}
+#listselection .ui-icon                                 {display:none}
+#listselection h3,#listselection a[name="lists"]        { padding:5px 0px;background:none;border:none}
+#listselection ul                                       { list-style-type: none;padding-left: 0;margin-top: 1em}
+#listselection .tabbed                                  { border: 1px;border-style: solid;padding:5px}
+#listselection .tabbed > ul                             { border: 0;margin: 0}
+#listselection li label                                 { font-size:15px;transition: .075s background ease-out;font-weight: normal;display: block;vertical-align: middle;min-height: 1.75em;line-height: 1.5;padding: .4em;border-radius: 3px;cursor: pointer}
+#listselection li .all-lists + label{font-weight: bold}
+#listselection li label small                           {font-size:12px;display:block;padding-top:0px;margin-top:0px;line-height: 1}
+#listselection li label:before                          { content: "";display: inline-block;vertical-align: middle;width: 1.5em;height: 1.5em;border-width: 1px; border-style: solid;margin-right: .75em;border-radius: 2px;text-align: center}
+#listselection li label br                              { clear: both; }
+#listselection .tabbed div li input[type='checkbox']:checked + label{font-weight: bold}
+#listselection .tabbed div li input[type='checkbox']:checked + label:before { content: "✓"; font-weight: bold}
+
+
+/* messages page */
+div.messageactions										{ padding-bottom:1px; padding-left:0px}
+div.messageactions a 									{ background:none repeat scroll 0 0; font-size:14px; padding:5px 5px}
+div.messageactions a.button 							{ margin-bottom:3px}
+table.messagesendstats									{ float:right; margin-right:10px}
+#filtertext												{ float:left; width:100px !Important;padding:0px; height:26px;line-height: 0px}
+#messagefilterform button								{ margin:0px 0px 0px 5px;padding:6px 10px}
+#messagefilterform select								{ width:100px; float:left; margin:0px 3px;height:28px;padding:4px}
+#messagefilterform select.numppOptions					{ width:50px}
+#messagefilterform										{ border-width:1px;border-style:solid;padding:4px 8px;-webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
+/* REDUCE IMAGE WIDTH ON VIEW CAMPAIGN TO NOT BREAK TABLE*/
+body.message table.messageView td img { max-width:100% !important;height:auto !important}
+/* HIDE TABLES IN DESIGN EMAILS WHEN WIDTH EXCEED VIEW CAMPAIGN TABLE WIDTH */
+body.message div.panel .content{ overflow:hidden}
+/* REMOVE BACKGROUND COLOR ON TABLES inside MAILINGS DESING */
+body.message div.panel table.messageView table{ background-color:transparent}
+
+/* user page */
+table.userAdd .dataname									{ width:auto}
+table.userListing .tdcheck								{ padding-left:40px}
+table.userListing .bgwhite								{ padding-top:20px}
+table.userAdd											{ width:99%}
+table.userAdd tr										{ border-width:4px !important; border-style:solid !important}
+table.userAdd input, table.userAdd select				{ margin-bottom:1px}
+table.userAdd td.label									{ width:40%}
+table.userAdd td.value									{ width:60%}
+
+/* userclicks page */
+table.userclicksDetails									{ width:auto}
+table.userclicksDetails td								{ padding-right:10px}
+
+/* bounce page */
+table.bounceActions tr td								{ width:auto}
+table.bounceActions tr									{ border-width:4px !important; border-style:solid !important}
+table.bounceActions input								{ margin-bottom:1px}
+table.bounceActions .submit								{ margin-top:15px}
+table.bounceActions tr td								{ border:0px !important}
+
+/* configure page */
+div.configEdit											{ line-height:14px;margin-bottom:10px; padding:3px}
+div.configEdit a.ajaxable								{ background:url('../../default/images/16x16/edit-1.png') 60% 50% no-repeat; height:16px; width:16px; display:inline-block; text-indent:-9999px; overflow:hidden; float:left; margin:0px 10px 0px 4px; padding:3px 10px; border-style: solid; border-width: 1px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+div.configcontent										{ padding:2px 15px 10px}
+.configForm fieldset									{ border-width:1px; border-style:solid; padding:15px}
+.configForm legend										{ font-weight:normal; font-size:18px; background: url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; padding:0px 10px; -webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px}
+div.date select 										{ display:inline; width:auto}
+
+/* dbcheck page */
+.dbcheck #content table td								{ font-size:10px}
+.dbcheck #content table td span.listingelement .panel	{ width:100px; border:0; background:transparent}
+.dbcheck #content table td span.listingelement .panel h2{ margin-bottom:3px}
+.dbcheck #content table td								{ border:0px}
+.dbcheck #content table td table td						{ border-width:1px; border-style:solid}
+.dbcheck #content table td span.listingelement h2		{ font-size:10px; font-weight:bold; font-variant:small-caps}
+.dbcheck  table .panel .content							{ display:none; border:0px; -webkit-border-radius:0px; -moz-border-radius:0px; border-radius:0px}
+
+/* community page */
+body.community .ui-tabs .ui-tabs-panel					{ padding:20px}
+
+/* templates page */
+body.templates span.button 								{ background-image:none; float:right; margin-left:5px}
+
+
+
+/******************************* 12. SIDEBAR */
+
+#right-bar												{ margin-top:10px}
+#right-bar ul, #languageswitcher *						{ margin-top:0px}
+.block													{ margin-top:20px; border-width:0px; border-style:solid}
+.block ul												{padding:0px}
+.block ul li, li.shade0 								{ list-style:none; margin:0}
+.block ul li a, li.shade0 a								{ border-bottom-width:1px; border-bottom-style:dotted; display:block; padding:5px 0; padding-left:10px}
+.block ul li br, li.shade0 br							{ display:none}
+.block ul li a:hover, li.shade0 a:hover					{ text-decoration:none}
+.menutableright h3										{ margin:0; font-size:12pt; background:url('../../default/images/header-bg.gif') repeat-x; border-bottom-width:1px; border-bottom-style:dotted; padding-left:10px; -webkit-border-top-right-radius:6px; -webkit-border-top-left-radius:6px; -moz-border-radius-topright:6px; -moz-border-radius-topleft:6px; border-top-right-radius:6px; border-top-left-radius:6px}
+#languageswitcher										{ float:right; margin:0px; margin-top:20px; width:100%}
+#languageswitcher form select							{ font-size:12pt; background:url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; width:100%; padding-left:5px}
+#newsfeed .publisheddate                                { margin-top: 0px; padding: 10px 5px 0px; text-transform: uppercase;font-size:10px }
+#newsfeed ul li a                                       { line-height: 1.1;padding:7px 10px}
+
+/******************************* 13. FOOTER */
+
+#footer													{ border-top-width:1px; border-top-style:dotted; margin-top:40px; height:30px; padding:7px}
+#footer a:hover											{ text-decoration:none}
+#footer .right											{ float:right; margin-left:20px}
+
+
+/* End of /lists/admin/ui/default/css/style.css */
