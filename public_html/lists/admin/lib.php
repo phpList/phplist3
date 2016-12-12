@@ -1670,7 +1670,7 @@ function verifyCsrfGetToken($enforce = 1)
         return true;
     }
     if (isset($_GET['tk']) && isset($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-        if ($_GET['tk'] != $_SESSION[$GLOBALS['installation_name'] . '_csrf_token']) {
+        if (!hash_equals($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'],$_GET['tk'])) {
             $_SESSION['logout_error'] = s('Error, incorrect session token');
             Redirect('logout&err=1');
             exit;
