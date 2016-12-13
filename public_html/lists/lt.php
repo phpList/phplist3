@@ -39,63 +39,48 @@ require_once dirname(__FILE__) . '/admin/defaultconfig.php';
 require_once dirname(__FILE__) . '/admin/connect.php';
 include_once dirname(__FILE__) . '/admin/lib.php';
 
-$tid = sprintf('%s', $_GET['tid']);
 
-if (SIGN_WITH_HMAC) {
-    $hmac = $_GET['hm'];
-    if (empty($hmac)) {
-        print 'Invalid Request'; exit;
+if (isset($_GET['tid'])) {
+     if (!is_string($_GET['tid'])) {
+        print 'Invalid Request';
+        exit;
     }
+    $tid = $_GET['tid'];
 
-    $myUrl = sprintf('%s://%s%s',$_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
-    $myUrl = str_replace('&hm='.$hmac,'',$myUrl);
-
-    if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, XORmask),$hmac)) {
-         print 'Invalid Request'; exit;
-    }
-}
-
-if (!empty($tid) && $tid != $_GET['tid']) {
-    unset($tid);
-    $id = sprintf('%s', $_GET['id']);  // old style tracking
-    if ($id != $_GET['id']) {
-        print 'Invalid Request';   exit;
-    }
-    $track = base64_decode($id);
-    $track = $track ^ XORmask;
-} elseif (strlen($tid) == 64) {
-    $tid = str_replace(' ','+',$tid);
-    $dec = bin2hex(base64_decode($tid));
-    $track = 'T|'.substr($dec,0,8).'-'.substr($dec,8,4).'-4'.substr($dec,13,3).'-'.substr($dec,16,4).'-'.substr($dec,20,12).'|'.
-        substr($dec,32,8).'-'.substr($dec,40,4).'-4'.substr($dec,45,3).'-'.substr($dec,48,4).'-'.substr($dec,52,12).'|'.
-        substr($dec,64,8).'-'.substr($dec,72,4).'-4'.substr($dec,77,3).'-'.substr($dec,80,4).'-'.substr($dec,84,12);
-} else {
-    $track = base64_decode($tid);
-    $track = $track ^ XORmask;
-}
-
-if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
-    $msgtype = $matches[1];
-    $fwdid = $matches[2];
-    $messageid = $matches[3];
-    $userid = $matches[4];
-    $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
-        $fwdid));
-
-    if (!$linkdata) {
-        ## try the old table to avoid breaking links
-        $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
-            $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
-        if (!empty($linkdata['forward'])) {
-            ## we're not recording clicks, but at least links from older phpList versions won't break.
-            header('Location: ' . $linkdata['forward'], true, 303);
-            exit;
+    if (SIGN_WITH_HMAC) {
+        $hmac = $_GET['hm'];
+        if (empty($hmac)) {
+            print 'Invalid Request'; exit;
         }
-#  echo 'Invalid Request';
-        # maybe some logging?
+        $myUrl = sprintf('%s://%s%s',$_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+        $myUrl = str_replace('&hm='.$hmac,'',$myUrl);
+
+        if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, XORmask),$hmac)) {
+            print 'Invalid Request'; exit;
+        }
+    }
+
+    if (strlen($tid) == 64) {
+        $tid = str_replace(' ','+',$tid);
+        $dec = bin2hex(base64_decode($tid));
+        $track = 'T|'.substr($dec,0,8).'-'.substr($dec,8,4).'-4'.substr($dec,13,3).'-'.substr($dec,16,4).'-'.substr($dec,20,12).'|'.
+            substr($dec,32,8).'-'.substr($dec,40,4).'-4'.substr($dec,45,3).'-'.substr($dec,48,4).'-'.substr($dec,52,12).'|'.
+            substr($dec,64,8).'-'.substr($dec,72,4).'-4'.substr($dec,77,3).'-'.substr($dec,80,4).'-'.substr($dec,84,12);
+    } else {
+        $track = base64_decode($tid);
+        $track = $track ^ XORmask;
+    }
+
+    if (!preg_match(
+            '/^(H|T)
+            \|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})
+            \|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})
+            \|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})$/x',
+            $track,
+            $matches
+        )) {
         FileNotFound();
     }
-} elseif (preg_match('/^(H|T)\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})\|([a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})$/', $track, $matches)) {
     $msgtype = $matches[1];
     $fwduuid = $matches[2];
     $messageuuid = $matches[3];
@@ -128,19 +113,50 @@ if (isset($id) && preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $t
         FileNotFound();
     }
     $messageid = $messagedata['id'];
+    $allowPersonalised = true;
+} elseif (isset($_GET['id'])) {
+     if (!is_string($_GET['id'])) {
+        print 'Invalid Request';
+        exit;
+    }
+    $id = $_GET['id'];
+    $track = base64_decode($id);
+    $track = $track ^ XORmask;
+
+    if (!preg_match('/^(H|T)\|([1-9]\d*)\|([1-9]\d*)\|([1-9]\d*)$/', $track, $matches)) {
+        FileNotFound();
+    }
+    $msgtype = $matches[1];
+    $fwdid = $matches[2];
+    $messageid = $matches[3];
+    $userid = $matches[4];
+    $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['linktrack_forward'],
+        $fwdid));
+
+    if (!$linkdata) {
+        ## try the old table to avoid breaking links
+        $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
+            $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
+        if (!empty($linkdata['forward'])) {
+            ## we're not recording clicks, but at least links from older phpList versions won't break.
+            header('Location: ' . $linkdata['forward'], true, 303);
+            exit;
+        }
+#  echo 'Invalid Request';
+        # maybe some logging?
+        FileNotFound();
+    }
+    ## verify that this subscriber actually received this message, otherwise they're allowed
+    ## normal URLS on test messages, but not personalised ones
+    $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
+        $GLOBALS['tables']['usermessage'], $userid, $messageid));
+
+    $allowPersonalised = empty($allowed[0])
+        ? !empty($_SESSION['adminloggedin'])
+        : true;
 } else {
-    FileNotFound();
-}
-
-$allowPersonalised = isset($tid);
-
-## verify that this subscriber actually received this message, otherwise they're not allowed
-## normal URLS on test messages, but block personalised ones
-$allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
-    $GLOBALS['tables']['usermessage'], $userid, $messageid));
-
-if (empty($allowed[0])) {
-    $allowPersonalised = !empty($_SESSION['adminloggedin']);
+    print 'Invalid Request';
+    exit;
 }
 
 ## hmm a bit heavy to use here @@@optimise
