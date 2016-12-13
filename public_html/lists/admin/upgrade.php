@@ -255,7 +255,7 @@ if ($dbversion == VERSION) {
         case '2.5.1':
         case '2.5.2':
             Sql_Query("alter table {$tables['subscribepage']} add column owner integer");
-            Sql_Query("alter ignore table {$tables['task']} add unique (page)");
+            Sql_Query("alter table {$tables['task']} add unique (page)");
         case '2.5.3':
         case '2.5.4':
             Sql_Query("alter table {$tables['user']} add column foreignkey varchar(100)");
@@ -390,13 +390,13 @@ if ($dbversion == VERSION) {
     ## alter ignore doesn't seem to work on InnoDB: http://bugs.mysql.com/bug.php?id=40344
     # convert to MyIsam first @@Mysql Specific code !
     Sql_Query('alter table ' . $tables['i18n'] . ' engine MyIsam', 1);
-    Sql_Query('alter ignore table ' . $tables['i18n'] . ' add unique lanorigunq (lan(10),original(200))', 1);
+    Sql_Query('alter table ' . $tables['i18n'] . ' add unique lanorigunq (lan(10),original(200))', 1);
 
     ## mantis issue 9001, make sure that the "repeat" column in the messages table is renamed to repeatinterval
     # to avoid a name clash with Mysql 5.
     # problem is that this statement will fail if the DB is already running Mysql 5
     if (Sql_Table_Column_Exists($GLOBALS['tables']['message'], 'repeat')) {
-        Sql_Query(sprintf('alter ignore table %s change column repeat repeatinterval integer default 0',
+        Sql_Query(sprintf('alter table %s change column repeat repeatinterval integer default 0',
             $GLOBALS['tables']['message']));
     }
 
@@ -550,15 +550,15 @@ if ($dbversion == VERSION) {
 
     ## add uuid columns
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['message'], 'uuid')) {
-        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+        Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
             $GLOBALS['tables']['message']));
     }
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['linktrack_forward'], 'uuid')) {
-        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+        Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
             $GLOBALS['tables']['linktrack_forward']));
     }
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['user'], 'uuid')) {
-        Sql_Query(sprintf('alter ignore table %s add column uuid varchar(36) default ""',
+        Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
             $GLOBALS['tables']['user']));
     }
     # add uuids to those that do not have it
