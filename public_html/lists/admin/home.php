@@ -380,7 +380,7 @@ if (checkAccess('initialise') && !$_GET['pi']) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('setup');
     $ls->addElement($element, PageURL2('setup'));
-    $ls->addColumn($element, '&nbsp;', PageLinkClass('setup', $GLOBALS['I18N']->get('Setup ') . NAME, '', 'hometext'));
+    $ls->addColumn($element, '&nbsp;', PageLinkClass('setup', $GLOBALS['I18N']->get('Setup ') . ' ' . NAME, '', 'hometext'));
     $ls->setClass($element, 'setup');
 }
 if (checkAccess('upgrade') && !$_GET['pi'] && $upgrade_required) {
