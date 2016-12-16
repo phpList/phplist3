@@ -50,7 +50,9 @@
 
     </div>
     <div id="hosted">
-
+        
+        <h3><?php print s('phpList Hosted') ?></h3>
+        
         <p>phpList.com provides professional hosting of phpList with plans from 300 messages to millions of messages per month. Free trials and customised packages are available. All accounts include technical support and complete setup and management of your account
             .</p>
 
