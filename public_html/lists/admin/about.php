@@ -4,6 +4,10 @@
             <td colspan="2" class="abouthead"><?php echo NAME ?></td>
         </tr>
         <tr>
+            <td>Announcements</td>
+            <td><?php echo subscribeToAnnouncementsForm() ?></td>
+        </tr>
+        <tr>
             <td class="poweredby" valign="top">
                 Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION ?>
                 <a href="https://www.phplist.com" target="_blank"><br/><br/>
@@ -101,5 +105,3 @@
         ?>
     </table>
 </div>
-
-
