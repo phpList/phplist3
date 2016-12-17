@@ -334,7 +334,7 @@ function finish($flag, $message, $script_stage)
 {
     global $nothingtodo, $counters, $messageid;
     if ($flag == 'error') {
-        $subject = s('Message queue procesing errors');
+        $subject = s('Message queue processing errors');
     } elseif ($flag == 'info') {
         $subject = s('Message queue processing report');
     }
