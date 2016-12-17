@@ -4,6 +4,10 @@
             <td colspan="2" class="abouthead"><?php echo s('About') . ' ' . NAME ?></td>
         </tr>
         <tr>
+            <td>Announcements</td>
+            <td><?php echo subscribeToAnnouncementsForm() ?></td>
+        </tr>
+        <tr>
             <td class="poweredby" valign="top">
                 Version
             </td>
@@ -156,5 +160,3 @@
         ?>
     </table>
 </div>
-
-
