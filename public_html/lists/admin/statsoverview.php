@@ -101,29 +101,31 @@ if (empty($messagedata['subject'])) {
     return;
 }
 
-print '<h3>' . $messagedata['subject'] . '</h3>';
+print '<h3>' . s('Campaign statistics') . '</h3>';
 
 $ls = new WebblerListing('');
 
+$ls->setElementHeading($messagedata['campaigntitle']); 
+
 $element = ucfirst(s('Subject'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', shortenTextDisplay($messagedata['subject'], 30));
+$ls->addColumn($element, '', PageLink2('message&id=' . $id, shortenTextDisplay($messagedata['subject'], 30)));
 
 $element = ucfirst(s('Date entered'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $messagedata['entered']);
+$ls->addColumn($element, '', formatDateTime($messagedata['entered']));
 
 $element = ucfirst(s('Date sent'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $messagedata['sent']);
+$ls->addColumn($element, '', formatDateTime($messagedata['sent']));
 
 $element = ucfirst(s('Sent as HTML'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $messagedata['astextandhtml']);
+$ls->addColumn($element, '', $messagedata['astextandhtml']);
 
 $element = ucfirst(s('Sent as text'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $messagedata['astext']);
+$ls->addColumn($element, '', $messagedata['astext']);
 
 $totalSent = 0;
 $sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where messageid = %d group by status',
@@ -131,7 +133,7 @@ $sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where mes
 while ($row = Sql_Fetch_Assoc($sentQ)) {
     $element = ucfirst($row['status']);
     $ls->addElement($element);
-    $ls->addColumn($element, '&nbsp;', $row['num']);
+    $ls->addColumn($element, '', $row['num']);
     if ($row['status'] == 'sent') {
         $totalSent = $row['num'];
     }
@@ -146,35 +148,35 @@ $bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct user) from %s wher
     $tables['user_message_bounce'], $id));
 $element = ucfirst(s('Bounced'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $bounced[0]);
+$ls->addColumn($element, '', $bounced[0]);
 $totalBounced = $bounced[0];
 
 $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent" and viewed is not null',
     $tables['usermessage'], $id));
 $element = ucfirst(s('Opened'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', !empty($viewed[0]) ? PageLink2('mviews&id=' . $id, $viewed[0]) : '0');
+$ls->addColumn($element, '', !empty($viewed[0]) ? PageLink2('mviews&id=' . $id, $viewed[0]) : '0');
 
 $perc = sprintf('%0.2f', $viewed[0] / ($totalSent - $totalBounced) * 100);
-$element = ucfirst(s('% Opened'));
+$element = ucfirst(s('Opened'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $perc);
+$ls->addColumn($element, '', $perc . ' %');
 
 $clicked = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
     $tables['linktrack_uml_click'], $id));
 $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', !empty($clicked[0]) ? PageLink2('mclicks&id=' . $id, $clicked[0]) : '0');
+$ls->addColumn($element, '', !empty($clicked[0]) ? PageLink2('mclicks&id=' . $id, $clicked[0]) : '0');
 
 $perc = sprintf('%0.2f', $clicked[0] / ($totalSent - $totalBounced) * 100);
-$element = ucfirst(s('% Clicked'));
+$element = ucfirst(s('Clicked'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $perc);
+$ls->addColumn($element, '', $perc . ' %');
 
 $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
     $GLOBALS['tables']['user_message_forward'], $id));
 $element = ucfirst(s('Forwarded'));
 $ls->addElement($element);
-$ls->addColumn($element, '&nbsp;', $fwded[0]);
+$ls->addColumn($element, '', $fwded[0]);
 
 print $ls->display();
