@@ -759,6 +759,7 @@ class WebblerTabs
     private $tabs = array();
     private $tablabels = array();
     private $current = '';
+    private $currentTitle = '';
     private $previous = '';
     private $next = '';
     private $linkcode = '';
@@ -817,7 +818,7 @@ class WebblerTabs
 
     public function tabTitle()
     {
-        return $this->current;
+        return $this->currentTitle;
     }
 
     public function setListClass($class)
@@ -827,7 +828,8 @@ class WebblerTabs
 
     public function setCurrent($name)
     {
-        $this->current = mb_strtolower($name);
+        $this->current = mb_strtolower(strip_tags($name));
+        $this->currentTitle = htmlspecialchars(strip_tags($name));
     }
 
     public function previousLink()
