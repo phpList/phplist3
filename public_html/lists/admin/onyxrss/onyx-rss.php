@@ -42,25 +42,32 @@ class ONYX_RSS
     public $data;
     public $type;
     public $lasterror;
+   /* For when PHP v.5 is released
+    * http://www.phpvolcano.com/eide/php5.php?page=variables
+    * private $parser;
+    * private $conf;
+    * private $rss;
+    * private $data;
+    * private $type;
+   */
 
-    /* For when PHP v.5 is released
-     * http://www.phpvolcano.com/eide/php5.php?page=variables
-     * private $parser;
-     * private $conf;
-     * private $rss;
-     * private $data;
-     * private $type;
-    */
+   // Forward compatibility with PHP v.5
+   // http://www.phpvolcano.com/eide/php5.php?page=start
 
     public function __construct()
     {
         $this->conf = array();
-        $this->conf['error'] = '<br /><strong>Error on line %s of ' . __FILE__ . '</strong>: %s<br />';
+        $this->conf['error'] = '<br /><strong>Error on line %s of '.__FILE__.'</strong>: %s<br />';
         $this->conf['cache_path'] = dirname(__FILE__);
         $this->conf['cache_time'] = 180;
         $this->conf['debug_mode'] = true;
         $this->conf['fetch_mode'] = ONYX_FETCH_ASSOC;
         $this->lasterror = '';
+        $this->context = stream_context_create(array(
+            'http'=>array(
+                'timeout' => 5.0
+            )
+        ));
 
         if (!function_exists('xml_parser_create')) {
             $this->raiseError((__LINE__ - 2), ONYX_ERR_NO_PARSER);
@@ -88,6 +95,7 @@ class ONYX_RSS
         $this->rss['index'] = 0;
         $this->rss['output_index'] = -1;
         $this->data = array();
+        $mod = 0;
 
         if ($file) {
             if (!is_writable($this->conf['cache_path'])) {
@@ -95,14 +103,15 @@ class ONYX_RSS
 
                 return false;
             }
-            $file = str_replace('//', '/', $this->conf['cache_path'] . '/' . $file);
+            $file = str_replace('//', '/', $this->conf['cache_path'].'/'.$file);
             if (!$time) {
                 $time = $this->conf['cache_time'];
             }
             $this->rss['cache_age'] = file_exists($file) ? ceil((time() - filemtime($file)) / 60) : 0;
+            $cacheHasExpired = $time <= $this->rss['cache_age'];
 
             clearstatcache();
-            if (!$local && file_exists($file)) {
+            if (!$local && file_exists($file) && $cacheHasExpired) {
                 if (($mod = $this->mod_time($uri)) === false) {
                     $this->raiseError((__LINE__ - 2), ONYX_ERR_INVALID_URI);
 
@@ -113,13 +122,13 @@ class ONYX_RSS
             } elseif ($local) {
                 $mod = (file_exists($file) && ($m = filemtime($uri))) ? $m : time() + 3600;
             }
+            $feedHasNewContent = $mod >= (time() - ($this->rss['cache_age'] * 60));
         }
         if (!$file ||
-            ($file && !file_exists($file)) ||
-            ($file && file_exists($file) && $time <= $this->rss['cache_age'] && $mod >= (time() - ($this->rss['cache_age'] * 60)))
-        ) {
+           ($file && !file_exists($file)) ||
+           ($file && file_exists($file) && $cacheHasExpired && $feedHasNewContent)) {
             clearstatcache();
-            if (!($fp = @fopen($uri, 'r'))) {
+            if (!($fp = @fopen($uri, 'r', false, $this->context))) {
                 $this->raiseError((__LINE__ - 2), ONYX_ERR_INVALID_URI);
 
                 return false;
@@ -127,8 +136,7 @@ class ONYX_RSS
             while ($chunk = fread($fp, 4096)) {
                 $parsedOkay = xml_parse($this->parser, $chunk, feof($fp));
                 if (!$parsedOkay && xml_get_error_code($this->parser) != XML_ERROR_NONE) {
-                    $this->raiseError((__LINE__ - 3),
-                        'File has an XML error (<em>' . xml_error_string(xml_get_error_code($this->parser)) . '</em> at line <em>' . xml_get_current_line_number($this->parser) . '</em>).');
+                    $this->raiseError((__LINE__ - 3), 'File has an XML error (<em>'.xml_error_string(xml_get_error_code($this->parser)).'</em> at line <em>'.xml_get_current_line_number($this->parser).'</em>).');
 
                     return false;
                 }
@@ -137,8 +145,7 @@ class ONYX_RSS
             clearstatcache();
             if ($file) {
                 if (!($cache = @fopen($file, 'w'))) {
-                    $this->raiseError((__LINE__ - 2),
-                        'Could not write to cache file (<em>' . $file . '</em>).  The path may be invalid or you may not have write permissions.');
+                    $this->raiseError((__LINE__ - 2), 'Could not write to cache file (<em>'.$file.'</em>).  The path may be invalid or you may not have write permissions.');
 
                     return false;
                 }
@@ -147,10 +154,13 @@ class ONYX_RSS
                 $this->rss['cache_age'] = 0;
             }
         } else {
+            if ($cacheHasExpired) {
+                touch($file);
+                $this->rss['cache_age'] = 0;
+            }
             clearstatcache();
             if (!($fp = @fopen($file, 'r'))) {
-                $this->raiseError((__LINE__ - 2),
-                    'Could not read contents of cache file (<em>' . $cache_file . '</em>).');
+                $this->raiseError((__LINE__ - 2), 'Could not read contents of cache file (<em>'.$cache_file.'</em>).');
 
                 return false;
             }
@@ -166,73 +176,73 @@ class ONYX_RSS
         return $this->parse($uri, $file, $time, true);
     }
 
-    //private function tag_open($parser, $tag, $attrs)
+   //private function tag_open($parser, $tag, $attrs)
 
-    public function tag_open($parser, $tag, $attrs)
-    {
-        $this->rss['current_tag'] = $tag = strtolower($tag);
-        switch ($tag) {
+   public function tag_open($parser, $tag, $attrs)
+   {
+       $this->rss['current_tag'] = $tag = strtolower($tag);
+       switch ($tag) {
+         case 'channel':
+         case 'image':
+         case 'textinput':
+            $this->type = $tag;
+            break;
+         case 'item':
+            $this->type = $tag;
+            ++$this->rss['index'];
+            break;
+         default:
+            break;
+      }
+       if (count($attrs)) {
+           foreach ($attrs as $k => $v) {
+               if (strpos($k, 'xmlns') !== false) {
+                   $this->data['namespaces'][$k] = $v;
+               }
+           }
+       }
+   }
+
+   //private function tag_close($parser, $tag){}
+
+   public function tag_close($parser, $tag)
+   {
+   }
+
+   //private function cdata($parser, $cdata)
+
+   public function cdata($parser, $cdata)
+   {
+       if (strlen(trim($cdata)) && $cdata != "\n") {
+           switch ($this->type) {
             case 'channel':
             case 'image':
             case 'textinput':
-                $this->type = $tag;
-                break;
+               (!isset($this->data[$this->type][$this->rss['current_tag']]) ||
+                !strlen($this->data[$this->type][$this->rss['current_tag']])) ?
+                  $this->data[$this->type][$this->rss['current_tag']] = $cdata :
+                  $this->data[$this->type][$this->rss['current_tag']] .= $cdata;
+               break;
             case 'item':
-                $this->type = $tag;
-                ++$this->rss['index'];
-                break;
-            default:
-                break;
-        }
-        if (count($attrs)) {
-            foreach ($attrs as $k => $v) {
-                if (strpos($k, 'xmlns') !== false) {
-                    $this->data['namespaces'][$k] = $v;
-                }
-            }
-        }
-    }
-
-    //private function tag_close($parser, $tag){}
-
-    public function tag_close($parser, $tag)
-    {
-    }
-
-    //private function cdata($parser, $cdata)
-
-    public function cdata($parser, $cdata)
-    {
-        if (strlen(trim($cdata)) && $cdata != "\n") {
-            switch ($this->type) {
-                case 'channel':
-                case 'image':
-                case 'textinput':
-                    (!isset($this->data[$this->type][$this->rss['current_tag']]) ||
-                        !strlen($this->data[$this->type][$this->rss['current_tag']])) ?
-                        $this->data[$this->type][$this->rss['current_tag']] = $cdata :
-                        $this->data[$this->type][$this->rss['current_tag']] .= $cdata;
-                    break;
-                case 'item':
-                    (!isset($this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']]) ||
-                        !strlen($this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']])) ?
-                        $this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']] = $cdata :
-                        $this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']] .= $cdata;
-                    break;
-            }
-        }
-    }
+               (!isset($this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']]) ||
+                !strlen($this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']])) ?
+                  $this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']] = $cdata :
+                  $this->data['items'][$this->rss['index'] - 1][$this->rss['current_tag']] .= $cdata;
+               break;
+         }
+       }
+   }
 
     public function getData($type)
     {
         if ($type == ONYX_META) {
-            return $this->conf['fetch_mode'] == 1 ? $this->data['channel'] : (object)$this->data['channel'];
+            return $this->conf['fetch_mode'] == 1 ? $this->data['channel'] : (object) $this->data['channel'];
         }
         if ($type == ONYX_IMAGE) {
-            return $this->conf['fetch_mode'] == 1 ? $this->data['image'] : (object)$this->data['image'];
+            return $this->conf['fetch_mode'] == 1 ? $this->data['image'] : (object) $this->data['image'];
         }
         if ($type == ONYX_TEXTINPUT) {
-            return $this->conf['fetch_mode'] == 1 ? $this->data['textinput'] : (object)$this->data['textinput'];
+            return $this->conf['fetch_mode'] == 1 ? $this->data['textinput'] : (object) $this->data['textinput'];
         }
         if ($type == ONYX_ITEMS) {
             if ($this->conf['fetch_mode'] == 1) {
@@ -241,13 +251,13 @@ class ONYX_RSS
 
             $temp = array();
             for ($i = 0; $i < count($this->data['items']); ++$i) {
-                $temp[] = (object)$this->data['items'][$i];
+                $temp[] = (object) $this->data['items'][$i];
             }
 
             return $temp;
         }
         if ($type == ONYX_NAMESPACES) {
-            return $this->conf['fetch_mode'] == 1 ? $this->data['namespaces'] : (object)$this->data['namespaces'];
+            return $this->conf['fetch_mode'] == 1 ? $this->data['namespaces'] : (object) $this->data['namespaces'];
         }
         if ($type == ONYX_CACHE_AGE) {
             return $this->rss['cache_age'];
@@ -270,7 +280,7 @@ class ONYX_RSS
         }
 
         return ($type == ONYX_FETCH_ASSOC) ? $this->data['items'][$this->rss['output_index']] :
-            (($type == ONYX_FETCH_OBJECT) ? (object)$this->data['items'][$this->rss['output_index']] : false);
+             (($type == ONYX_FETCH_OBJECT) ? (object) $this->data['items'][$this->rss['output_index']] : false);
     }
 
     public function itemAt($num)
@@ -284,7 +294,7 @@ class ONYX_RSS
         $type = $this->conf['fetch_mode'];
 
         return ($type == ONYX_FETCH_ASSOC) ? $this->data['items'][$num] :
-            (($type == ONYX_FETCH_OBJECT) ? (object)$this->data['items'][$num] : false);
+             (($type == ONYX_FETCH_OBJECT) ? (object) $this->data['items'][$num] : false);
     }
 
     public function startBuffer($file = false)
@@ -311,16 +321,16 @@ class ONYX_RSS
         }
     }
 
-    //private function raiseError($line, $err)
+   //private function raiseError($line, $err)
 
-    public function raiseError($line, $err)
-    {
-        if ($this->conf['debug_mode']) {
-            printf($this->conf['error'], $line, $err);
-        } else {
-            $this->lasterror = $err;
-        }
-    }
+   public function raiseError($line, $err)
+   {
+       if ($this->conf['debug_mode']) {
+           printf($this->conf['error'], $line, $err);
+       } else {
+           $this->lasterror = $err;
+       }
+   }
 
     public function setCachePath($path)
     {
@@ -334,7 +344,7 @@ class ONYX_RSS
 
     public function setDebugMode($state)
     {
-        $this->conf['debug_mode'] = (bool)$state;
+        $this->conf['debug_mode'] = (bool) $state;
     }
 
     public function setFetchMode($mode)
@@ -342,46 +352,46 @@ class ONYX_RSS
         $this->conf['fetch_mode'] = $mode;
     }
 
-    //private function mod_time($uri)
+   //private function mod_time($uri)
 
-    public function mod_time($uri)
-    {
-        if (function_exists('version_compare') && version_compare(phpversion(), '4.3.0') >= 0) {
-            if (!($fp = @fopen($uri, 'r'))) {
-                return false;
-            }
+   public function mod_time($uri)
+   {
+       if (function_exists('version_compare') && version_compare(phpversion(), '4.3.0') >= 0) {
+           if (!($fp = fopen($uri, 'r', false, $this->context))) {
+               return false;
+           }
 
-            $meta = stream_get_meta_data($fp);
-            for ($j = 0; isset($meta['wrapper_data'][$j]); ++$j) {
-                if (strpos(strtolower($meta['wrapper_data'][$j]), 'last-modified') !== false) {
-                    $modtime = substr($meta['wrapper_data'][$j], 15);
-                    break;
-                }
-            }
-            fclose($fp);
-        } else {
-            $parts = parse_url($uri);
-            $host = $parts['host'];
-            $path = $parts['path'];
+           $meta = stream_get_meta_data($fp);
+           for ($j = 0; isset($meta['wrapper_data'][$j]); ++$j) {
+               if (strpos(strtolower($meta['wrapper_data'][$j]), 'last-modified') !== false) {
+                   $modtime = substr($meta['wrapper_data'][$j], 15);
+                   break;
+               }
+           }
+           fclose($fp);
+       } else {
+           $parts = parse_url($uri);
+           $host = $parts['host'];
+           $path = $parts['path'];
 
-            if (!($fp = @fsockopen($host, 80))) {
-                return false;
-            }
+           if (!($fp = @fsockopen($host, 80))) {
+               return false;
+           }
 
-            $req = "HEAD $path HTTP/1.1\r\nUser-Agent: PHP/" . phpversion();
-            $req .= "\r\nHost: $host\r\nAccept: */*\r\n\r\n";
-            fwrite($fp, $req);
+           $req = "HEAD $path HTTP/1.1\r\nUser-Agent: PHP/".phpversion();
+           $req .= "\r\nHost: $host\r\nAccept: */*\r\n\r\n";
+           fwrite($fp, $req);
 
-            while (!feof($fp)) {
-                $str = fgets($fp, 4096);
-                if (strpos(strtolower($str), 'last-modified') !== false) {
-                    $modtime = substr($str, 15);
-                    break;
-                }
-            }
-            fclose($fp);
-        }
+           while (!feof($fp)) {
+               $str = fgets($fp, 4096);
+               if (strpos(strtolower($str), 'last-modified') !== false) {
+                   $modtime = substr($str, 15);
+                   break;
+               }
+           }
+           fclose($fp);
+       }
 
-        return (isset($modtime)) ? $modtime : 0;
-    }
+       return (isset($modtime)) ? $modtime : 0;
+   }
 }
