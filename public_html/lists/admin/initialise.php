@@ -200,8 +200,8 @@ if ($success) {
 
     $uri = $_SERVER['REQUEST_URI'];
     $uri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $uri);
-    $body = '
-    Version: ' . VERSION . "\r\n"
+    $body = 
+        'Version: ' . VERSION . "\r\n"
         . ' Url: '
         . $_SERVER['SERVER_NAME']
         . $uri
