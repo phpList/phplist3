@@ -347,6 +347,7 @@ if ($total > $_SESSION['messagenumpp']) {
 }
 
 $ls = new WebblerListing(s('Campaigns'));
+$ls->setElementHeading('Campaign');
 $ls->usePanel($paging);
 
 ## messages table
