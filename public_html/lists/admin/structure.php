@@ -65,6 +65,7 @@ $DBstructuser = array( # order of tables is essential for smooth upgrade
         'index_5' => array('confidx (confirmed)', 'sys:index'),
         'index_6' => array('blidx (blacklisted)', 'sys:index'),
         'index_7' => array('optidx (optedin)', 'sys:index'),
+        'index_8' => array('uuididx (uuid)','sys:index'),
     ),
     'user_history' => array(
         'id' => array('integer not null primary key auto_increment', 'sys:ID'),
@@ -149,6 +150,7 @@ $DBstructphplist = array(
         'sendstart' => array('datetime', 'When did sending of this message start'),
         'rsstemplate' => array('varchar(100)', 'if used as a RSS template, what frequency'),
         'owner' => array('integer', 'Admin who is owner'),
+        'index_1' => array('uuididx (uuid)','sys:index'),
     ),
     'messagedata' => array(
         'name' => array('varchar(100) not null', 'Name of field'),
@@ -420,6 +422,7 @@ $DBstructphplist = array(
         #        "index_2" => array("urlforwardindex (url,forward(255))",""),
         #        'unique_1' => array('fwdunique (forward (500))','Forward should be unique'),
         'unique_1' => array('urlunique (url)', 'URL should be unique'),
+        'index_2' => array('uuididx (uuid)','sys:index'),
     ),
     'linktrack_userclick' => array(
         'linkid' => array('integer not null', ''),

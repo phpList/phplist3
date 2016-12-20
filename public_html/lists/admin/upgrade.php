@@ -552,13 +552,19 @@ if ($dbversion == VERSION) {
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['message'], 'uuid')) {
         Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
             $GLOBALS['tables']['message']));
+        Sql_Query(sprintf('alter table %s add index uuididx (uuid)',
+            $GLOBALS['tables']['message']));
     }
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['linktrack_forward'], 'uuid')) {
         Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
             $GLOBALS['tables']['linktrack_forward']));
+        Sql_Query(sprintf('alter table %s add index uuididx (uuid)',
+            $GLOBALS['tables']['linktrack_forward']));
     }
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['user'], 'uuid')) {
         Sql_Query(sprintf('alter table %s add column uuid varchar(36) default ""',
+            $GLOBALS['tables']['user']));
+        Sql_Query(sprintf('alter table %s add index uuididx (uuid)',
             $GLOBALS['tables']['user']));
     }
     # add uuids to those that do not have it
