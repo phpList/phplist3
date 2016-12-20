@@ -80,6 +80,22 @@ if ($GLOBALS['commandline']) {
         }
     }
 }
+$req = Sql_Query(sprintf('select id from %s where uuid is NULL or uuid = ""', $GLOBALS['tables']['user']));
+$num = Sql_Affected_Rows();
+if ($num) {
+    cl_output(s('Giving a UUID to %d subscribers, this may take a while', $num));
+    while ($row = Sql_Fetch_Row($req)) {
+        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['user'], uuid::generate(4), $row[0]));
+    }
+}
+$req = Sql_Query(sprintf('select id from %s where uuid is NULL or uuid = ""', $GLOBALS['tables']['message']));
+$num = Sql_Affected_Rows();
+if ($num) {
+    cl_output(s('Giving a UUID to %d campaigns, this may take a while', $num));
+    while ($row = Sql_Fetch_Row($req)) {
+        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['message'], uuid::generate(4), $row[0]));
+    }
+}
 
 $counters['num_per_batch'] = 0;
 $batch_period = 0;
