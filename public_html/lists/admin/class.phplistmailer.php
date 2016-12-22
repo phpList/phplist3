@@ -84,7 +84,9 @@ class PHPlistMailer extends PHPMailer
         }
         $this->Helo = getConfig('domain');
 
-        if ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
+        if ($GLOBALS['emailsenderplugin']) {
+            $this->Mailer = 'plugin';
+        } elseif ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
             $this->Host = PHPMAILERBLASTHOST;
             $this->Port = PHPMAILERBLASTPORT;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
@@ -123,6 +125,10 @@ class PHPlistMailer extends PHPMailer
                 $this->SMTPAuth = true;
             }
             $this->Mailer = 'smtp';
+        } elseif (USE_AMAZONSES) {
+            $this->Mailer = 'amazonSes';
+        } elseif (USE_LOCAL_SPOOL && is_dir(USE_LOCAL_SPOOL) && is_writable(USE_LOCAL_SPOOL)) {
+            $this->Mailer = 'localSpool';
         } else {
             $this->isMail();
         }
@@ -724,15 +730,16 @@ class PHPlistMailer extends PHPMailer
     }
   
     /**
+     * Called by phpmailer when $Mailer is set to amazonSes.
      * Builds and sends an email through Amazon SES.
      * The curl handle is persisted and closed only when an error occurs.
      *
-     * @param string $messageheader
-     * @param string $messagebody
+     * @param string $header the message http headers
+     * @param string $body   the message body
      *
      * @return bool whether the email was sent successfully
      */
-    public function AmazonSESSend($messageheader, $messagebody)
+    public function amazonSesSend($header, $body)
     {
         static $curl = null;
 
@@ -749,8 +756,7 @@ class PHPlistMailer extends PHPMailer
             curl_setopt($curl, CURLOPT_POST, 1);
         }
 
-        $messageheader = preg_replace('/' . $this->LE . '$/', '', $messageheader);
-        $messageheader .= $this->LE . 'Subject: ' . $this->EncodeHeader($this->Subject) . $this->LE;
+        $header = preg_replace('/' . $this->LE . '$/', '', $header);
 
         $date = date('r');
         $aws_signature = base64_encode(hash_hmac('sha256', $date, AWS_SECRETKEY, true));
@@ -760,12 +766,10 @@ class PHPlistMailer extends PHPMailer
             'Content-Type: application/x-www-form-urlencoded',
             'Date: ' . $date,
             'X-Amzn-Authorization: AWS3-HTTPS AWSAccessKeyId=' . AWS_ACCESSKEYID . ',Algorithm=HMACSHA256,Signature=' . $aws_signature,
-            'Connection: keep-alive',
-            'Keep-Alive: 300',
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $requestheader);
 
-        $rawmessage = base64_encode($messageheader . $this->LE . $this->LE . $messagebody);
+        $rawmessage = base64_encode($header . $this->LE . $this->LE . $body);
         $requestdata = array(
             'Action' => 'SendRawEmail',
             'Source' => $GLOBALS['message_envelope'],
@@ -782,7 +786,7 @@ class PHPlistMailer extends PHPMailer
             $error = curl_error($curl);
             curl_close($curl);
             $curl = null;
-            logEvent('Amazon SES status ' . $status . ' ' . strip_tags($res) . ' ' . $error);
+            logEvent(sprintf('Amazon SES status: %s, result: %s, curl error: %s', $status, strip_tags($res), $error));
 
             return false;
         }
@@ -790,27 +794,31 @@ class PHPlistMailer extends PHPMailer
         return true;
     }
 
-    public function MailSend($header, $body)
+    /**
+     * Called by phpmailer when $Mailer is set to plugin.
+     *
+     * @param string $header the message http headers
+     * @param string $body   the message body
+     *
+     * @return bool success/failure
+     */
+    public function pluginSend($header, $body)
     {
-        $this->mailsize = strlen($header . $body);
+        global $emailsenderplugin;
 
-        ## use Amazon, if set up, @@TODO redo with latest PHPMailer
-        ## https://github.com/PHPMailer/PHPMailer/commit/57b183bf6a203cb69231bc3a235a00905feff75b
+        return $emailsenderplugin->send($this, $header, $body);
+    }
 
-        if (USE_AMAZONSES) {
-            $header .= 'To: ' . $this->destinationemail . $this->LE;
-
-            return $this->AmazonSESSend($header, $body);
-        }
-
-        ## we don't really use multiple to's so pass that on to phpmailer, if there are any
-        if (!$this->SingleTo || !USE_LOCAL_SPOOL) {
-            return parent::MailSend($header, $body);
-        }
-        if (!is_dir(USE_LOCAL_SPOOL) || !is_writable(USE_LOCAL_SPOOL)) {
-            ## if local spool is not set, send the normal way
-            return parent::MailSend($header, $body);
-        }
+    /**
+     * Called by phpmailer when $Mailer is set to localSpool.
+     *
+     * @param string $header the message http headers
+     * @param string $body   the message body
+     *
+     * @return bool success/failure
+     */
+    public function localSpoolSend($header, $body)
+    {
         $fname = tempnam(USE_LOCAL_SPOOL, 'msg');
         file_put_contents($fname, $header . "\n" . $body);
         file_put_contents($fname . '.S', $this->Sender);

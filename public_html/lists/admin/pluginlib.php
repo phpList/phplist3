@@ -1,10 +1,12 @@
 <?php
 
 require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__) . '/EmailSender.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
 $GLOBALS['authenticationplugin'] = false;
+$GLOBALS['emailsenderplugin'] = false;
 
 if (!defined('PLUGIN_ROOTDIR')) {
     define('PLUGIN_ROOTDIR', 'notdefined');
@@ -98,6 +100,10 @@ foreach ($pluginFiles as $file) {
                             'validateLogin')
                     ) {
                         $GLOBALS['authenticationplugin'] = $className;
+                    }
+
+                    if (!$GLOBALS['emailsenderplugin'] && $pluginInstance instanceof EmailSender) {
+                        $GLOBALS['emailsenderplugin'] = $pluginInstance;
                     }
                     #     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
                     $plugin_initialised = getConfig(md5('plugin-' . $className . '-initialised'));
