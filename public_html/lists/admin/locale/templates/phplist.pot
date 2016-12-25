@@ -1628,7 +1628,7 @@ msgid "How to get help"
 msgstr ""
 
 #: public_html/lists/admin/community.php:11
-msgid "How to help out"
+msgid "Contribute"
 msgstr ""
 
 #: public_html/lists/admin/community.php:16
@@ -1637,8 +1637,8 @@ msgstr ""
 
 #: public_html/lists/admin/community.php:17
 msgid ""
-"The concept behind open source is collaboration. A loosely organised network "
-"of many contributors where the whole is greater than the sum of its parts."
+"The concept behind Open Source is collaboration. An organised network of "
+"many contributors where the whole is greater than the sum of its parts."
 msgstr ""
 
 #: public_html/lists/admin/community.php:18
@@ -1653,18 +1653,56 @@ msgstr ""
 
 #: public_html/lists/admin/community.php:29
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
-"support\">visit the support section on the phpList website</a>"
+"A variety of support options are available for this phpList server, "
+"including free help from communnity members, and professional advice and "
+"consulting from experts"
+msgstr ""
+
+#: public_html/lists/admin/community.php:33
+msgid "Support community"
 msgstr ""
 
 #: public_html/lists/admin/community.php:34
-msgid "Help out with phpList"
+msgid "Support forum"
 msgstr ""
 
 #: public_html/lists/admin/community.php:35
+msgid "Independent professional support"
+msgstr ""
+
+#: public_html/lists/admin/community.php:40
+msgid "Contribute to phpList"
+msgstr ""
+
+#: public_html/lists/admin/community.php:41
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
-"developers\">visit the developers section on the phpList website</a>"
+"phpList is a community effort &mdash; your contributions power the project. "
+"Help phpList to serve your needs more effectively by applying your skills "
+"and resources."
+msgstr ""
+
+#: public_html/lists/admin/community.php:44
+msgid "Developer community"
+msgstr ""
+
+#: public_html/lists/admin/community.php:45
+msgid "Developer resources &amp; documentation"
+msgstr ""
+
+#: public_html/lists/admin/community.php:46
+msgid "Documentation coordination"
+msgstr ""
+
+#: public_html/lists/admin/community.php:47
+msgid "Translation platform"
+msgstr ""
+
+#: public_html/lists/admin/community.php:48
+msgid "Donate to support phpList development"
+msgstr ""
+
+#: public_html/lists/admin/community.php:54
+msgid "phpList Hosted"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:9
@@ -7175,7 +7213,7 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:445
 msgid ""
-"Your PHP version is out of date. phpList requires PHP version 5.3.0 or "
+"Your PHP version is out of date. phpList requires PHP version 5.4.0 or "
 "higher."
 msgstr ""
 
