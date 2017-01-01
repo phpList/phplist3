@@ -193,7 +193,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:390
 #: public_html/lists/admin/initialise.php:235
-#: public_html/lists/admin/upgrade.php:590
+#: public_html/lists/admin/upgrade.php:609
 msgid "Upgrade"
 msgstr ""
 
@@ -3404,24 +3404,24 @@ msgid "Converting DB to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:74
-#: public_html/lists/admin/upgrade.php:455
+#: public_html/lists/admin/upgrade.php:472
 msgid "Upgrading the database to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:77
 #: public_html/lists/admin/converttoutf8.php:79
-#: public_html/lists/admin/upgrade.php:458
+#: public_html/lists/admin/upgrade.php:475
 msgid "Upgrading table "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:85
 #: public_html/lists/admin/converttoutf8.php:87
-#: public_html/lists/admin/upgrade.php:464
+#: public_html/lists/admin/upgrade.php:481
 msgid "Upgrading column "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:92
-#: public_html/lists/admin/upgrade.php:469
+#: public_html/lists/admin/upgrade.php:486
 msgid "upgrade to UTF-8, done"
 msgstr ""
 
@@ -5855,18 +5855,18 @@ msgid "Domain Statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:15
-#: public_html/lists/admin/upgrade.php:572
+#: public_html/lists/admin/upgrade.php:591
 msgid "The clicktracking system has changed"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:16
-#: public_html/lists/admin/upgrade.php:573
+#: public_html/lists/admin/upgrade.php:592
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:18
-#: public_html/lists/admin/upgrade.php:574
+#: public_html/lists/admin/upgrade.php:593
 msgid "Convert Old data to new"
 msgstr ""
 
@@ -7084,7 +7084,7 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:210
-#: public_html/lists/admin/upgrade.php:563
+#: public_html/lists/admin/upgrade.php:582
 msgid "Success"
 msgstr ""
 
@@ -7954,66 +7954,83 @@ msgstr ""
 msgid "click rate"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:37
+#: public_html/lists/admin/upgrade.php:39
+msgid ""
+"Another process is already upgrading this installation. Use -f to force "
+"upgrade, but only if you are sure the other process is no longer active."
+msgstr ""
+
+#: public_html/lists/admin/upgrade.php:41
+msgid "Force Upgrade"
+msgstr ""
+
+#: public_html/lists/admin/upgrade.php:41
+#, php-format
+msgid ""
+"Another process is already upgrading this installation. Click %s to force "
+"upgrade, but only if you are sure the other process is no longer active."
+msgstr ""
+
+#: public_html/lists/admin/upgrade.php:51
 msgid "Your database version"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:40
+#: public_html/lists/admin/upgrade.php:54
 msgid ""
 "Please edit your config file and change \"mysql.inc\" to \"mysqli.inc\" to "
 "avoid future PHP incompatibility"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:46
+#: public_html/lists/admin/upgrade.php:60
 msgid ""
 "Your database is already the correct version, there is no need to upgrade"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:48
+#: public_html/lists/admin/upgrade.php:62
 msgid "update Top Level Domains"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:68
+#: public_html/lists/admin/upgrade.php:82
 msgid "Please wait, upgrading your database, do not interrupt"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:472
+#: public_html/lists/admin/upgrade.php:489
 msgid "Database requires converting to UTF-8."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:473
+#: public_html/lists/admin/upgrade.php:490
 msgid "However, there is too little diskspace for this conversion"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:474
+#: public_html/lists/admin/upgrade.php:491
 msgid "Please do a manual conversion."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:475
+#: public_html/lists/admin/upgrade.php:492
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:578
+#: public_html/lists/admin/upgrade.php:597
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:583
+#: public_html/lists/admin/upgrade.php:602
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:587
+#: public_html/lists/admin/upgrade.php:606
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:588
+#: public_html/lists/admin/upgrade.php:607
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:589
+#: public_html/lists/admin/upgrade.php:608
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
