@@ -93,6 +93,21 @@ if (defined('SYSTEM_TIMEZONE')) {
 #  print "Time now: ".date('Y-m-d H:i:s').'<br/>';
 }
 
+## build a list of themes that are available
+$themedir = dirname(__FILE__) . '/ui/';
+$d = opendir($themedir);
+while ($th = readdir($d)) {
+    if (!in_array($th,
+            array_keys($THEMES)) && is_dir($themedir . '/' . $th) && is_file($themedir . '/' . $th . '/theme_info')
+    ) {
+        $themeData = parse_ini_file($themedir . '/' . $th . '/theme_info');
+        if (!empty($themeData['name']) && !empty($themeData['dir'])) {
+            $THEMES[$th] = $themeData;
+        }
+
+    }
+}
+
 if (!empty($GLOBALS['SessionTableName'])) { // rather undocumented feature, but seems to be used by some
     include_once dirname(__FILE__) . '/sessionlib.php';
 }

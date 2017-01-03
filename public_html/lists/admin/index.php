@@ -110,6 +110,19 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables['config'], 1)) {
     //$plugin->activate();
     //}
 }
+
+if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($THEMES[$_REQUEST['settheme']])) {
+    $settheme = preg_replace('/[^\w_-]+/', '', strip_tags($_REQUEST['settheme']));
+    $GLOBALS['ui'] = $_REQUEST['settheme'];
+    $_SESSION['ui'] = $GLOBALS['ui'];
+}
+
+if (isset($_SESSION['ui']) && is_array($THEMES[$_SESSION['ui']])) {
+    $GLOBALS['ui'] = $_SESSION['ui'];
+} else {
+    $_SESSION['ui'] = $GLOBALS['ui'];
+}
+
 if (!empty($_GET['page']) && $_GET['page'] == 'logout' && empty($_GET['err'])) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->logout();
@@ -367,6 +380,29 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstin
  </div>';
     if ($lancount <= 1) {
         $languageswitcher = '';
+    }
+}
+
+$themeswitcher = '';
+if (THEME_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinstall']) && empty($_GET['firstinstall'])) {
+    $themeswitcher = '
+ <div id="themeswitcher">
+       <form name="themeswitchform" method="post" action="">';
+    $themeswitcher .= '
+           <select name="settheme" onchange="document.themeswitchform.submit()">';
+    $themecount = 0;
+    foreach ($GLOBALS['THEMES'] as $theme => $themeData) {
+        $themeswitcher .= sprintf('
+                 <option value="%s" %s>%s</option>', $theme,
+            $_SESSION['ui'] == $theme ? 'selected="selected"' : '', htmlspecialchars(strip_tags($themeData['name'])));
+                ++$themecount;
+    }
+    $themeswitcher .= '
+            </select>
+       </form>
+ </div>';
+    if ($themecount <= 1) {
+        $themeswitcher = '';
     }
 }
 
