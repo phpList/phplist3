@@ -428,6 +428,9 @@ if (!defined('DOMAIN_AUTO_THROTTLE')) {
 if (!defined('LANGUAGE_SWITCH')) {
     define('LANGUAGE_SWITCH', 1);
 }
+if (!defined('THEME_SWITCH')) {
+    define('THEME_SWITCH',true);
+}
 #if (!defined('USE_ADVANCED_BOUNCEHANDLING')) define('USE_ADVANCED_BOUNCEHANDLING',1);
 if (!defined('DATE_START_YEAR')) {
     define('DATE_START_YEAR', 1900);
@@ -816,6 +819,10 @@ $repetitionLabels = array(
     20160 => 'fortnight',
     40320 => 'four weeks',
 );
+
+$LANGUAGES = array();
+$THEMES = array();
+
 
 $GLOBALS['disallowpages'] = array();
 # list of pages and categorisation in the system

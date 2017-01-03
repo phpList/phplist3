@@ -7,22 +7,6 @@ Languages, countries, and the charsets typically used for them
 http://www.w3.org/International/O-charset-lang.html
 
 */
-## this array is now automatically build from the file system using the
-## language_info file in each subdirectory of /locale/
-## and further on, from the XML data of the translation site
-$LANGUAGES = array(
-    'nl' => array('Dutch ', 'UTF-8', ' UTF-8, windows-1252 '),
-    'de' => array('Deutsch ', 'UTF-8', 'UTF-8, windows-1252 '),
-    'en' => array('English ', 'UTF-8', 'UTF-8, windows-1252 '),
-    'es' => array('espa&ntilde;ol', 'UTF-8', 'UTF-8, windows-1252'),
-#"fa" => array('Persian','utf-8','utf-8'),
-    'fr' => array('fran&ccedil;ais ', 'UTF-8', 'UTF-8, windows-1252 '),
-    'pl' => array('Polish ', 'UTF-8', 'UTF-8'),
-    'pt_BR' => array('portugu&ecirc;s ', 'UTF-8', 'UTF-8, windows-1252'),
-    'zh_TW' => array('Traditional Chinese', 'utf-8', 'utf-8'),
-    'zh_CN' => array('Simplified Chinese', 'utf-8', 'utf-8'),
-    'vi' => array('Vietnamese', 'utf-8', 'utf-8'),
-);
 
 ## pick up languages from the lan directory
 $landir = dirname(__FILE__) . '/locale/';
@@ -32,17 +16,7 @@ while ($lancode = readdir($d)) {
     if (!in_array($landir,
             array_keys($LANGUAGES)) && is_dir($landir . '/' . $lancode) && is_file($landir . '/' . $lancode . '/language_info')
     ) {
-        $lan_info = file_get_contents($landir . '/' . $lancode . '/language_info');
-        $lines = explode("\n", $lan_info);
-        $lan = array();
-        foreach ($lines as $line) {
-            // use utf8 matching
-            if (preg_match('/(\w+)=([\p{L}\p{N}&\#; \-\(\)]+)/u', $line, $regs)) {
-                #      if (preg_match('/(\w+)=([\w&; \-\(\)]+)/',$line,$regs)) {
-#      if (preg_match('/(\w+)=(.+)/',$line,$regs)) {
-                $lan[$regs[1]] = $regs[2];
-            }
-        }
+        $lan = parse_ini_file($landir . '/' . $lancode . '/language_info');
         if (!isset($lan['gettext'])) {
             $lan['gettext'] = $lancode;
         }
