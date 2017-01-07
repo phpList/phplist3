@@ -122,6 +122,7 @@ if (isset($_SESSION['ui']) && is_array($THEMES[$_SESSION['ui']])) {
 } else {
     $_SESSION['ui'] = $GLOBALS['ui'];
 }
+$THEMEINFO = $THEMES[$_SESSION['ui']];
 
 if (!empty($_GET['page']) && $_GET['page'] == 'logout' && empty($_GET['err'])) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
