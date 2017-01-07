@@ -87,7 +87,7 @@ function loadProgress () {
     //    $("#loadingprogressbanner").html(loadMessages[loadCounter]);
         currentMessage = loadMessages[loadCounter] + '<br/>';
     }
-    if (loadCounter % 5 == 0) {
+    if (loadCounter % 50 == 0) {
         currentMessage += ' * ';
     }
     $("#loadingprogressbanner").html(loadMessage+'<br/><br/>'+currentMessage);
