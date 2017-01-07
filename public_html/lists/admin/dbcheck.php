@@ -11,13 +11,14 @@ unset($_SESSION['dbtables']);
 $pass = true;
 
 $ls = new WebblerListing(s('Database structure'));
+$ls->setElementHeading(s('Table'));
 while (list($table, $tablename) = each($GLOBALS['tables'])) {
     $createlink = '';
     $indexes = $uniques = $engine = $category = '';
 
     $ls->addElement($table);
     if ($table != $tablename) {
-        $ls->addColumn($table, 'real name', $tablename);
+        $ls->addColumn($table, s('real name'), $tablename);
     }
     if (Sql_Table_Exists($tablename)) {
         $req = Sql_Query("show columns from $tablename", 0);
@@ -47,10 +48,10 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
                     $tls->addElement($column);
                     $exist = isset($columns[strtolower($column)]);
                     if ($exist) {
-                        $tls->addColumn($column, 'exist', $GLOBALS['img_tick']);
+                        $tls->addColumn($column, s('exist'), $GLOBALS['img_tick']);
                     } else {
                         $haserror = 1;
-                        $tls->addColumn($column, 'exist', $GLOBALS['img_cross']);
+                        $tls->addColumn($column, s('exist'), $GLOBALS['img_cross']);
                     }
                 } else {
                     if (strpos($column, 'index_') !== false) {
@@ -76,22 +77,22 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
     }
     if (!$haserror) {
         $tls->collapse();
-        $ls->addColumn($table, 'ok', $GLOBALS['img_tick']);
+        $ls->addColumn($table, s('ok'), $GLOBALS['img_tick']);
     } else {
         $pass = false;
-        $ls->addColumn($table, 'ok', $GLOBALS['img_cross']);
+        $ls->addColumn($table, s('ok'), $GLOBALS['img_cross']);
     }
     if (!empty($indexes)) {
-        $ls->addColumn($table, 'index', $indexes);
+        $ls->addColumn($table, s('index'), $indexes);
     }
     if (!empty($uniques)) {
-        $ls->addColumn($table, 'unique', $uniques);
+        $ls->addColumn($table, s('unique'), $uniques);
     }
     if (!empty($category)) {
-        $ls->addColumn($table, 'category', $category);
+        $ls->addColumn($table, s('category'), $category);
     }
     if (!empty($tls)) {
-        $ls->addColumn($table, 'check', $tls->display());
+        $ls->addColumn($table, s('check'), $tls->display());
     }
     /*
       if (!empty($createlink)) {
