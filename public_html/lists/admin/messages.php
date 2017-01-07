@@ -347,6 +347,7 @@ if ($total > $_SESSION['messagenumpp']) {
 }
 
 $ls = new WebblerListing(s('Campaigns'));
+$ls->setElementHeading('Campaign');
 $ls->usePanel($paging);
 
 ## messages table
@@ -390,7 +391,7 @@ if ($total) {
       updateMessages.push(' . $msg['id'] . ');</script>';
         $GLOBALS['pagefooter']['statusupdate'] = '<script type="text/javascript">window.setInterval("messagesStatusUpdate()",5000);</script>';
         if ($msg['status'] == 'sent') {
-            $statusdiv = $GLOBALS['I18N']->get('Sent') . ': ' . $msg['sent'];
+            $statusdiv = $GLOBALS['I18N']->get('Sent') . ': ' . formatDateTime( $msg['sent'] );
         }
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Status'), $statusdiv);
 
