@@ -117,7 +117,8 @@ if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($T
     $_SESSION['ui'] = $GLOBALS['ui'];
 }
 if (isset($GLOBALS['ui']) && ! is_array($THEMES[$GLOBALS['ui']])) {
-    $GLOBALS['ui'] = array_keys($THEMES)[0];
+    $themeKeys = array_keys($THEMES);
+    $GLOBALS['ui'] = $themeKeys[0];
 }
 if (isset($_SESSION['ui']) && is_array($THEMES[$_SESSION['ui']])) {
     $GLOBALS['ui'] = $_SESSION['ui'];
