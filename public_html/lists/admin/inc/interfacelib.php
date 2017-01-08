@@ -11,7 +11,7 @@ class UIPanel
     private $content = '';
     private $id = '';
 
-    public function UIPanel($header, $content, $nav = '')
+    public function __construct($header, $content, $nav = '')
     {
         $this->header = $header;
         $this->nav = $nav;
@@ -75,7 +75,7 @@ class WebblerListing
     private $suppressGreenline = false;
     private $buttonsOutsideTable = false;
 
-    public function WebblerListing($title, $help = '')
+    public function __construct($title, $help = '')
     {
         $this->title = strip_tags($title);
         $this->help = strip_tags($help);
@@ -707,7 +707,7 @@ class DomTab
     public $tabs = array();
     public $domtabcluster = '';
 
-    public function DomTab($name = '')
+    public function __construct($name = '')
     {
         $this->domtabcluster = $name;
     }
@@ -944,7 +944,7 @@ class pageInfo
     private $infocontent = '';
     private $addhide = true;
 
-    public function pageInfo($id = '')
+    public function __construct($id = '')
     {
         $this->ajaxed = isset($_GET['ajaxed']);
         $this->noteid = $id;
@@ -1064,7 +1064,7 @@ class button
     protected $linkhtml = '';
     protected $js = '';
 
-    public function button($link, $linktext, $title = '')
+    public function __construct($link, $linktext, $title = '')
     {
         $this->link = $link;
         $this->linktext = $linktext;
@@ -1106,7 +1106,7 @@ class confirmButton extends button
     protected $linkhtml = '';
     protected $js;
 
-    public function confirmButton($confirmationtext, $link, $linktext, $title = '', $class = 'confirm')
+    public function __construct($confirmationtext, $link, $linktext, $title = '', $class = 'confirm')
     {
         if (!isset($GLOBALS['confirmButtonCount'])) {
             $GLOBALS['confirmButtonCount'] = 0;
@@ -1129,7 +1129,7 @@ class buttonGroup
     private $buttons = array();
     private $topbutton = '';
 
-    public function buttonGroup($topbutton = '')
+    public function __construct($topbutton = '')
     {
         $this->topbutton = $topbutton;
     }
@@ -1180,7 +1180,7 @@ class WebblerShader
     public $display = 'block';
     public $initialstate = 'open';
 
-    public function WebblerShader($name)
+    public function __construct($name)
     {
         $this->name = $name;
         if (!isset($GLOBALS['shadercount'])) {

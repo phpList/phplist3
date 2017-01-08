@@ -2241,7 +2241,7 @@ class timer
     public $start;
     public $previous = 0;
 
-    public function timer()
+    public function __construct()
     {
         $now = gettimeofday();
         $this->start = $now['sec'] * 1000000 + $now['usec'];

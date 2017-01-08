@@ -163,7 +163,7 @@ class phplist_I18N
     private $hasDB = false;
     private $lan = array();
 
-    public function phplist_I18N()
+    public function __construct()
     {
         $this->basedir = dirname(__FILE__) . '/locale/';
         $this->defaultlanguage = $GLOBALS['default_system_language'];

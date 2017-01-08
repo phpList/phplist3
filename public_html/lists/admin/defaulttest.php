@@ -6,7 +6,7 @@ class phplistTest
     public $purpose = 'Test to be extended to test all kinds of things';
     public $userdata = array();
 
-    public function phplistTest()
+    public function __construct()
     {
         /*
     $this->userdata = Sql_Fetch_Assoc_Query(sprintf('select * from %s where email = "%s"',$GLOBALS['tables']['user'],$GLOBALS['developer_email']));

@@ -50,10 +50,10 @@ class PHPMailerOAuthGoogle
     }
 
     private function getProvider() {
-        return new League\OAuth2\Client\Provider\Google([
+        return new League\OAuth2\Client\Provider\Google(array(
             'clientId' => $this->oauthClientId,
             'clientSecret' => $this->oauthClientSecret
-        ]);
+        ));
     }
 
     private function getGrant()

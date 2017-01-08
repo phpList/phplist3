@@ -35,7 +35,7 @@ class PHPlistMailer extends PHPMailer
     public $Hello = '';
     public $timeStamp = '';
 
-    public function PHPlistMailer($messageid, $email, $inBlast = true, $exceptions = false)
+    public function __construct($messageid, $email, $inBlast = true, $exceptions = false)
     {
         parent::__construct($exceptions);
         parent::SetLanguage('en', dirname(__FILE__) . '/PHPMailer/language/');
