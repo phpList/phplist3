@@ -113,6 +113,23 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables['config'], 1)) {
     //$plugin->activate();
     //}
 }
+
+if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($THEMES[$_REQUEST['settheme']])) {
+    $settheme = preg_replace('/[^\w_-]+/', '', strip_tags($_REQUEST['settheme']));
+    $GLOBALS['ui'] = $_REQUEST['settheme'];
+    $_SESSION['ui'] = $GLOBALS['ui'];
+}
+if (isset($GLOBALS['ui']) && ! is_array($THEMES[$GLOBALS['ui']])) {
+    $themeKeys = array_keys($THEMES);
+    $GLOBALS['ui'] = $themeKeys[0];
+}
+if (isset($_SESSION['ui']) && is_array($THEMES[$_SESSION['ui']])) {
+    $GLOBALS['ui'] = $_SESSION['ui'];
+} else {
+    $_SESSION['ui'] = $GLOBALS['ui'];
+}
+$THEMEINFO = $THEMES[$_SESSION['ui']];
+
 if (!empty($_GET['page']) && $_GET['page'] == 'logout' && empty($_GET['err'])) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->logout();
@@ -373,6 +390,29 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstin
     }
 }
 
+$themeswitcher = '';
+if (THEME_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinstall']) && empty($_GET['firstinstall'])) {
+    $themeswitcher = '
+ <div id="themeswitcher">
+       <form name="themeswitchform" method="post" action="">';
+    $themeswitcher .= '
+           <select name="settheme" onchange="document.themeswitchform.submit()">';
+    $themecount = 0;
+    foreach ($GLOBALS['THEMES'] as $theme => $themeData) {
+        $themeswitcher .= sprintf('
+                 <option value="%s" %s>%s</option>', $theme,
+            $_SESSION['ui'] == $theme ? 'selected="selected"' : '', htmlspecialchars(strip_tags($themeData['name'])));
+                ++$themecount;
+    }
+    $themeswitcher .= '
+            </select>
+       </form>
+ </div>';
+    if ($themecount <= 1) {
+        $themeswitcher = '';
+    }
+}
+
 require_once dirname(__FILE__) . '/setpermissions.php';
 $include = '';
 
@@ -444,8 +484,8 @@ if (!$ajax && $page != 'login') {
     if (TEST) {
         print Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
-    if (version_compare(PHP_VERSION, '5.3.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
-        Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.0 or higher.'));
+    if (version_compare(PHP_VERSION, '5.4.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
+        Error(s('Your PHP version is out of date. phpList requires PHP version 5.4.0 or higher.'));
     }
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
         Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));

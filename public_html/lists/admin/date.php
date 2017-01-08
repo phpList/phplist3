@@ -12,7 +12,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
         public $months = array();
         public $useTime = false;
 
-        public function date($name = '')
+        public function __construct($name = '')
         {
             $this->days = array(
                 $GLOBALS['I18N']->get('Sunday'),

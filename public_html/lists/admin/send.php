@@ -98,8 +98,9 @@ if (!$GLOBALS['commandline']) {
     if ($numdraft > 0 && !isset($_GET['id']) && !isset($_GET['new'])) {
         print '<p>' . PageLinkActionButton('send&amp;new=1', $I18N->get('start a new message'), '', '',
                 s('Start a new campaign')) . '</p>';
-        print '<p><h3>' . $I18N->get('Choose an existing draft message to work on') . '</h3></p><br/>';
-        $ls = new WebblerListing($I18N->get('Draft messages'));
+        print '<p><h3>' . $I18N->get('Choose an existing draft campaign to work on') . '</h3></p><br/>';
+        $ls = new WebblerListing($I18N->get('Draft campaigns'));
+        $ls->setElementHeading('Campaign');
         $ls->noShader();
         while ($row = Sql_Fetch_Array($req)) {
             $element = '<!--' . $row['id'] . '-->' . $row['subject'];

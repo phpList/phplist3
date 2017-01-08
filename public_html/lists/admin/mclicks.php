@@ -68,15 +68,15 @@ if (($totalusers[0] - $totalbounced[0]) > 0) {
 }
 print '<table class="mclicksDetails">
 <tr><td>' . $GLOBALS['I18N']->get('Subject') . '<td><td>' . $messagedata['subject'] . '</td></tr>
-<tr><td>' . $GLOBALS['I18N']->get('Entered') . '<td><td>' . $messagedata['entered'] . '</td></tr>
-<tr><td>' . $GLOBALS['I18N']->get('Date sent') . '<td><td>' . $messagedata['sent'] . '</td></tr>
-<tr><td>' . $GLOBALS['I18N']->get('Sent to') . '<td><td>' . $totalusers[0] . ' ' . $GLOBALS['I18N']->get('Subscribers') . '</td></tr>';
+<tr><td>' . $GLOBALS['I18N']->get('Entered') . '<td><td>' . formatDateTime( $messagedata['entered'] ) . '</td></tr>
+<tr><td>' . $GLOBALS['I18N']->get('Date sent') . '<td><td>' . formatDateTime( $messagedata['sent'] ) . '</td></tr>
+<tr><td>' . $GLOBALS['I18N']->get('Sent to') . '<td><td>' . number_format( $totalusers[0] ) . ' ' . $GLOBALS['I18N']->get('Subscribers') . '</td></tr>';
 if ($totalusers[0] > 0) {
-    print '<tr><td>' . $GLOBALS['I18N']->get('Bounced') . '<td><td>' . $totalbounced[0] . ' (';
+    print '<tr><td>' . $GLOBALS['I18N']->get('Bounced') . '<td><td>' . number_format( $totalbounced[0] ) . ' (';
     print sprintf('%0.2f', ($totalbounced[0] / $totalusers[0] * 100));
     print '%)</td></tr>';
 }
-print '<tr><td>' . s('Unique subscribers who clicked') . '<td><td>' . $totalclicked[0] . '</td><td>' . PageLinkButton('userclicks&msgid=' . $id,
+print '<tr><td>' . s('Unique subscribers who clicked') . '<td><td>' . number_format( $totalclicked[0] ) . '</td><td>' . PageLinkButton('userclicks&msgid=' . $id,
         s('View subscribers')) . '</td></tr>
 <tr><td>' . $GLOBALS['I18N']->get('Click rate') . '<td><td>' . $clickperc . ' %</td></tr>
 </table><hr/>';

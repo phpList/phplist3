@@ -5,9 +5,9 @@ class sendpage extends phplistTest
     public $name = 'Send a Webpage';
     public $purpose = 'Testing that sending a webpage works ok';
 
-    public function sendpage()
+    public function __construct()
     {
-        parent::phplistTest();
+        parent::__construct();
     }
 
     public function runtest()

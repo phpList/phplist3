@@ -99,13 +99,14 @@ printf('<form method="get" action="">
     $exclude == 1 ? 'checked="checked"' : '');
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Events'));
+$ls->setElementHeading(s('Event'));
 
 # @@@@ Looks like there are a few del, page, date, message which may not be i18nable.
 
 while ($event = Sql_fetch_array($result)) {
     $ls->addElement($event['id']);
     $ls->setClass($event['id'], 'row1');
-    $ls->addColumn($event['id'], $GLOBALS['I18N']->get('date'), $event['entered']);
+    $ls->addColumn($event['id'], $GLOBALS['I18N']->get('date'), formatDateTime( $event['entered'] ));
     $ls->addColumn($event['id'], $GLOBALS['I18N']->get('message'), strip_tags($event['entry']));
     $delete_url = sprintf('<a href="javascript:deleteRec(\'%s\');" class="del" >%s</a>',
         PageURL2('eventlog', 'delete', "start=$start&amp;delete=" . $event['id']), $GLOBALS['I18N']->get('del'));

@@ -11,6 +11,7 @@ if (!$GLOBALS['commandline']) {
     $_GET['doit'] = 'yes';
     ob_start();
 }
+$force = isset($cline['f']) || isset($_GET['force']);
 
 function output($message)
 {
@@ -31,6 +32,19 @@ function output($message)
 }
 
 $dbversion = getConfig('version');
+$inUpgrade = getConfig('in-upgrade-to');
+if (!empty($inUpgrade) && $inUpgrade == VERSION) {
+    if (!$force) {
+        if ($GLOBALS['commandline']) {
+            output(s('Another process is already upgrading this installation. Use -f to force upgrade, but only if you are sure the other process is no longer active.'));
+        } else {
+            output(s('Another process is already upgrading this installation. Click %s to force upgrade, but only if you are sure the other process is no longer active.',PageLinkButton('upgrade&doit=yes&force=1',s('Force Upgrade'))));
+        }
+        return;
+    }
+}
+
+
 if (!$dbversion) {
     $dbversion = 'Older than 1.4.1';
 }
@@ -72,6 +86,9 @@ if ($dbversion == VERSION) {
     if (preg_match('/(.*?)-/', $dbversion, $regs)) {
         $dbversion = $regs[1];
     }
+
+    ## lock this process
+    SaveConfig('in-upgrade-to', VERSION, 1);
     switch ($dbversion) {
         case '1.4.1':
             # nothing changed,
@@ -593,6 +610,8 @@ if ($dbversion == VERSION) {
     clearPageCache();
     Sql_Query(sprintf('alter table %s change column content content longblob', $tables['urlcache']));
 
+    ## unlock the upgrade process
+    Sql_Query(sprintf('delete from %s where item = "in-upgrade-to"', $tables['config']));
     # mark the database to be our current version
     if ($success) {
         SaveConfig('version', VERSION, 0);

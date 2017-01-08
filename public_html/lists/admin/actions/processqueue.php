@@ -350,9 +350,9 @@ function finish($flag, $message, $script_stage)
 {
     global $nothingtodo, $counters, $messageid;
     if ($flag == 'error') {
-        $subject = s('Maillist errors');
+        $subject = s('Message queue processing errors');
     } elseif ($flag == 'info') {
-        $subject = s('Maillist Processing info');
+        $subject = s('Message queue processing report');
     }
     if (!$nothingtodo && !$GLOBALS['inRemoteCall']) {
         processQueueOutput(s('Finished this run'), 1, 'progress');
@@ -364,17 +364,20 @@ function finish($flag, $message, $script_stage)
     if (!$GLOBALS['inRemoteCall'] && !TEST && !$nothingtodo && SEND_QUEUE_PROCESSING_REPORT) {
         $reportSent = false;
 
-        ## @@TODO work out a way to deal with the order of processing the plugins
-        ## as that can make a difference here.
+        // Execute plugin hooks for sending report
+        // @@TODO work out a way to deal with the order of processing the plugins
+        // as that can make a difference here.
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             if (!$reportSent) {
                 $reportSent = $plugin->sendReport($subject, $message);
             }
         }
+
+        // If plugins have not sent the report, send it the default way
         if (!$reportSent) {
-            ## fall back to the central one
-            $message .= "\n\n" . s('To stop receiving these reports read:') . ' https://resources.phplist.com/system/config/send_queue_processing_report' . "\n\n";
-            sendReport($subject, $message);
+            $messageWithIntro = s('The following events occured while processing the message queue:') . "\n" . $message;            
+            $messageWithIntroAndFooter = $messageWithIntro . "\n\n" . s('To stop receiving these reports read:') . ' https://resources.phplist.com/system/config/send_queue_processing_report' . "\n\n";
+            sendReport($subject, $messageWithIntroAndFooter);
         }
     }
 }

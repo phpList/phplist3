@@ -20,13 +20,17 @@ before_script:
   - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
   - composer install --prefer-dist
+  - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
+  - ls -l vendor/bin
 
   # Set MySQL configuration and create the database.
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
   - mysql -e 'create database phplistdb;'
 
 script:
+  - vendor/bin/phpLint ./public_html
   - vendor/bin/behat
+
 after_failure:
   - echo "Failures detected. Outputing additional logs:"
   - sudo cat /var/log/apache2/error.log

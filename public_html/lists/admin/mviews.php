@@ -75,7 +75,7 @@ if ($download) {
     header('Content-disposition:  attachment; filename="phpList Message open statistics for ' . $messagedata['subject'] . '.csv"');
 }
 
-$ls = new WebblerListing(ucfirst($GLOBALS['I18N']->get('Open statistics')));
+$ls = new WebblerListing($GLOBALS['I18N']->get('Open statistics'));
 
 $req = Sql_Query(sprintf('select um.userid
     from %s um,%s msg where um.messageid = %d and um.messageid = msg.id and um.viewed is not null %s
@@ -148,3 +148,4 @@ if ($download) {
 } else {
     print $ls->display();
 }
+
