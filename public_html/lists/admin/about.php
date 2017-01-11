@@ -4,12 +4,12 @@
             <td colspan="2" class="abouthead"><?php echo s('About') . ' ' . NAME ?></td>
         </tr>
         <tr>
-            <td>Announcements</td>
+            <td><?php echo s('Announcements');?></td>
             <td><?php echo subscribeToAnnouncementsForm() ?></td>
         </tr>
         <tr>
             <td class="poweredby" valign="top">
-                Version
+                <?php echo s('Version')?>
             </td>
             <td>
                 Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION ?>
@@ -18,7 +18,7 @@
             </td>
         </tr>
         <tr>
-            <td>Legal</td>
+            <td><?php echo s('Legal');?></td>
             <td>
                 <?php echo s('phpList is licensed with the %sGNU Affero Public License (AGPL)%s',
                     '<a href="http://www.gnu.org/licenses/agpl.html" target="_blank">', '</a>') ?>.<br/>
@@ -27,7 +27,7 @@
              </td>
         </tr>
         <tr>
-            <td>Certification</td>
+            <td><?php echo s('Certification');?></td>
             <td>
                 <p><?php echo s('Certified Secure by ') ?><a href="https://www.httpcs.com/"
                                                              title="Web Vulnerability Scanner" target="_blank"><img
