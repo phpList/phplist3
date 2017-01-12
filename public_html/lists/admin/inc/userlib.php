@@ -35,7 +35,7 @@ function getUniqid($table = '')
             $table = 'user';
         }
     }
-    $id = md5(random_bytes(16));
+    $id = bin2hex(random_bytes(16));
     return $id;
 }
 
@@ -138,7 +138,6 @@ function addNewUser($email, $password = '')
     }
 
     $passwordEnc = encryptPass($password);
-
     Sql_Query(sprintf('insert into %s set email = "%s",
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
@@ -146,7 +145,6 @@ function addNewUser($email, $password = '')
     ', $GLOBALS['tables']['user'], $email, $passwordEnc, getUniqid(), uuid::generate(4)));
 
     $id = Sql_Insert_Id();
-
     return $id;
 }
 
