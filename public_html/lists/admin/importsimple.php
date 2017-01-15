@@ -51,8 +51,8 @@ if (!empty($_POST['importcontent'])) {
 
         if ($isValid) {
             ## I guess everyone will import all their users wanting to receive HTML ....
-            $query = sprintf('insert into %s (email,entered,htmlemail,confirmed,uniqid)
-                values("%s",now(),1,1,"%s")', $tables['user'], $line, $uniqid);
+            $query = sprintf('insert into %s (email,entered,htmlemail,confirmed,uniqid,uuid)
+                values("%s",now(),1,1,"%s","%s")', $tables['user'], $line, $uniqid,uuid::generate(4));
             $result = Sql_query($query, 1);
             $userid = Sql_insert_id();
             if (empty($userid)) {
@@ -178,7 +178,7 @@ $content .= '<p class="information">' .
     $GLOBALS['I18N']->get('Please enter the emails to import, one per line, in the box below and click "Import Emails"');
 #$GLOBALS['I18N']->get('<b>Warning</b>: the emails you import will not be checked on validity. You can do this later on the "reconcile subscribers" page.');
 $content .= '</p>';
-$content .= '<div class="field"><input type="checkbox" name="checkvalidity" value="1" checked="checked" /> ' . $GLOBALS['I18N']->get('Check to skip emails that are not valid') . '</div>';
+$content .= '<div class="field"><input type="checkbox" name="checkvalidity" value="1" checked="checked" /> ' . $GLOBALS['I18N']->get('Skip emails that are not valid') . '</div>';
 $content .= '<div class="field"><input type="submit" name="doimport" value="' . $GLOBALS['I18N']->get('Import emails') . '" ></div>';
 $content .= '<div class="field"><textarea name="importcontent" rows="10" cols="40"></textarea></div>';
 
