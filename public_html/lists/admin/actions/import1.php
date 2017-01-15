@@ -129,9 +129,9 @@ while (list($email, $data) = each($user_list)) {
             $uniqid = getUniqid();
             $old_listmembership = array();
 
-            $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail) values("%s",now(),%d,"%s","%s")',
+            $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail,uuid) values("%s",now(),%d,"%s","%s", "%s")',
                 $tables['user'], $email, $importdata['notify'] != 'yes', $uniqid,
-                isset($importdata['htmlemail']) ? '1' : '0');
+                isset($importdata['htmlemail']) ? '1' : '0',uuid::generate(4));
             $result = Sql_query($query);
             $userid = Sql_Insert_Id($tables['user'], 'id');
 
