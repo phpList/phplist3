@@ -1,7 +1,7 @@
 <?php
 
-#updatetranslation
-#sleep(20);
+//updatetranslation
+//sleep(20);
 $lan = '';
 if (isset($_GET['lan'])) {
     $lan = $_GET['lan'];
@@ -9,7 +9,7 @@ if (isset($_GET['lan'])) {
 }
 $LU = getTranslationUpdates();
 if (!$LU || !is_object($LU)) {
-    print Error(s('Unable to fetch list of languages, please check your network or try again later'));
+    echo Error(s('Unable to fetch list of languages, please check your network or try again later'));
 
     return;
 }
@@ -17,7 +17,7 @@ if (!$LU || !is_object($LU)) {
 $translations = array();
 foreach ($LU->translation as $update) {
     if ($update->iso == $lan) {
-        #  $status = $update->updateurl;
+        //  $status = $update->updateurl;
         $translationUpdate = fetchUrl($update->updateurl);
         $translations = parsePo($translationUpdate);
     }

@@ -1,10 +1,10 @@
 <?php
 
-#ob_end_clean();
-## blacklist an email from commandline
+//ob_end_clean();
+//# blacklist an email from commandline
 
 if (!$GLOBALS['commandline']) {
-    print 'Error, this can only be called from commandline' . "\n";
+    echo 'Error, this can only be called from commandline'."\n";
     exit;
 }
 
@@ -30,14 +30,14 @@ if (empty($emailDB) && empty($email)) {
 }
 
 if (isBlackListed($emailDB)) {
-    ## do this anyway, just to be sure
+    //# do this anyway, just to be sure
     Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"', $GLOBALS['tables']['user'], $emailDB));
     cl_output('OK');
     exit;
 }
 
 if (!empty($emailDB)) {
-    ## do this immediately
+    //# do this immediately
     Sql_Query(sprintf('update %s set blacklisted = 1 where email = "%s"', $GLOBALS['tables']['user'], $emailDB));
 
     addEmailToBlackList($emailDB, 'blacklisted due to spam complaints', $date);
@@ -45,6 +45,6 @@ if (!empty($emailDB)) {
     addEmailToBlackList($email, 'blacklisted due to spam complaints', $date);
 }
 
-cl_output('OK ' . $emailDB);
+cl_output('OK '.$emailDB);
 
 exit;

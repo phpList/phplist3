@@ -1,4 +1,5 @@
 <?php
+
 verifyCsrfGetToken();
 
 if (isset($_GET['id'])) {
@@ -14,15 +15,15 @@ if (isset($_GET['start'])) {
 
 $addcomparison = 0;
 $access = accessLevel('mviews');
-#print "Access level: $access";
+//print "Access level: $access";
 switch ($access) {
     case 'owner':
-        $subselect = ' and owner = ' . $_SESSION['logindetails']['id'];
+        $subselect = ' and owner = '.$_SESSION['logindetails']['id'];
         if ($id) {
             $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
                 $id, $subselect));
             if ($allow[0] != $_SESSION['logindetails']['id']) {
-                print $GLOBALS['I18N']->get('You do not have access to this page');
+                echo $GLOBALS['I18N']->get('You do not have access to this page');
 
                 return;
             }
@@ -35,7 +36,7 @@ switch ($access) {
     case 'none':
     default:
         $subselect = ' where id = 0';
-        print $GLOBALS['I18N']->get('You do not have access to this page');
+        echo $GLOBALS['I18N']->get('You do not have access to this page');
 
         return;
         break;
@@ -48,13 +49,13 @@ $download = !empty($_GET['dl']);
 if (!$id) {
     if ($download) {
         ob_end_clean();
-        #  header("Content-type: text/plain");
+        //  header("Content-type: text/plain");
         header('Content-type: text/csv');
         header('Content-disposition:  attachment; filename="phpList Message open statistics.csv"');
         ob_start();
     }
-    $status .= '<p>' . PageLinkButton('page=pageaction&action=mviews&dl=true', s('Download as CSV file')) . '</p>';
-#  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
+    $status .= '<p>'.PageLinkButton('page=pageaction&action=mviews&dl=true', s('Download as CSV file')).'</p>';
+//  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $timerange = ' and msg.entered  > date_sub(now(),interval 12 month)';
     $timerange = '';
     $limit = 'limit 10';
@@ -65,39 +66,39 @@ if (!$id) {
     group by msg.id order by msg.entered desc limit 50', $GLOBALS['tables']['usermessage'],
         $GLOBALS['tables']['message'], $subselect, $timerange));
     if (!Sql_Affected_Rows()) {
-        $status .= '<p class="information">' . $GLOBALS['I18N']->get('There are currently no messages to view') . '</p>';
+        $status .= '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
     }
 
     $ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
     while ($row = Sql_Fetch_Array($req)) {
-        #  $element = $row['messageid'].' '.substr($row['subject'],0,50);
+        //  $element = $row['messageid'].' '.substr($row['subject'],0,50);
         $messagedata = loadMessageData($row['messageid']);
         if (!$download) {
             if ($messagedata['subject'] != $messagedata['campaigntitle']) {
-                $element = '<!--' . $row['messageid'] . '-->' . stripslashes($messagedata['campaigntitle']) . '<br/><strong>' . shortenTextDisplay($messagedata['subject'],
-                        30) . '</strong>';
+                $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata['campaigntitle']).'<br/><strong>'.shortenTextDisplay($messagedata['subject'],
+                        30).'</strong>';
             } else {
-                $element = '<!--' . $row['messageid'] . '-->' . shortenTextDisplay($messagedata['subject'], 30);
+                $element = '<!--'.$row['messageid'].'-->'.shortenTextDisplay($messagedata['subject'], 30);
             }
         } else {
             $element = $messagedata['subject'];
         }
-        $ls->addElement($element, PageUrl2('mviews&amp;id=' . $row['messageid']));
+        $ls->addElement($element, PageUrl2('mviews&amp;id='.$row['messageid']));
         $ls->setClass($element, 'row1');
         if (!empty($row['sent'])) {
             $ls->addRow($element,
-                '<div class="listingsmall gray">' . $GLOBALS['I18N']->get('date') . ': ' . $row['sent'] . '</div>', '');
+                '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('date').': '.$row['sent'].'</div>', '');
         } else {
             $ls->addRow($element,
-                '<div class="listingsmall gray">' . $GLOBALS['I18N']->get('date') . ': ' . $GLOBALS['I18N']->get('in progress') . '</div>',
+                '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('date').': '.$GLOBALS['I18N']->get('in progress').'</div>',
                 '');
         }
         $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $row['total']);
-        #   $ls->addColumn($element,$GLOBALS['I18N']->get('bounced'),$row['bounced']);
+        //   $ls->addColumn($element,$GLOBALS['I18N']->get('bounced'),$row['bounced']);
         $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $row['views'],
-            $row['views'] ? PageURL2('mviews&amp;id=' . $row['messageid']) : '');
+            $row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
         $openrate = sprintf('%0.2f', ($row['views'] / $row['total'] * 100));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('rate'), $openrate . ' %');
+        $ls->addColumn($element, $GLOBALS['I18N']->get('rate'), $openrate.' %');
         /*
             $bouncerate = sprintf('%0.2f',($row['bounced'] / $row['total'] * 100));
             $ls->addColumn($element,$GLOBALS['I18N']->get('bounce rate'),$bouncerate.' %');
@@ -113,7 +114,7 @@ if (!$id) {
         $ls->addElement($overall);
         $ls->addColumn($overall, $GLOBALS['I18N']->get('views'), $viewed['viewed']);
         $perc = sprintf('%0.2f', ($viewed['viewed'] / $total['total'] * 100));
-        $ls->addColumn($overall, $GLOBALS['I18N']->get('rate'), $perc . ' %');
+        $ls->addColumn($overall, $GLOBALS['I18N']->get('rate'), $perc.' %');
     }
     if ($download) {
         ob_end_clean();

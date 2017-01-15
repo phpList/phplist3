@@ -1,10 +1,10 @@
 <?php
 
-# default configuration. These values can be changed
-# via the admin page, so you do not need to edit them here
-# they are used to initialise things
-# if you *do* edit them, make sure they stay in the correct format
-# otherwise you will end up with parse errors and things will stop working
+// default configuration. These values can be changed
+// via the admin page, so you do not need to edit them here
+// they are used to initialise things
+// if you *do* edit them, make sure they stay in the correct format
+// otherwise you will end up with parse errors and things will stop working
 
 if (!defined('PHPLISTINIT')) {
     die;
@@ -14,11 +14,11 @@ $defaultheader = '</head><body>';
 
 $defaultfooter = '</body></html>';
 
-if (is_file(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/frontendheader.php')) {
-    $defaultheader = file_get_contents(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/frontendheader.php');
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendheader.php')) {
+    $defaultheader = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendheader.php');
 }
-if (is_file(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/frontendfooter.php')) {
-    $defaultfooter = file_get_contents(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/frontendfooter.php');
+if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php')) {
+    $defaultfooter = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php');
 }
 
 if (isset($_SERVER['HTTP_HOST'])) {
@@ -31,7 +31,7 @@ if (preg_match("#^www\.(.*)#i", $D_domain, $regs)) {
     $D_domain = $regs[1];
 }
 
-# for starters, you want to leave this line as it is.
+// for starters, you want to leave this line as it is.
 $default_config = array(
 
     /* any next line has the format
@@ -44,302 +44,302 @@ $default_config = array(
       ),
     */
 
-    # what is your website location (url)
+    // what is your website location (url)
     'website' => array(
-        'value' => $D_website,
+        'value'       => $D_website,
         'description' => s('Website address (without http://)'),
-        'type' => 'text',
-        'allowempty' => false, ## indication this value cannot be empty (1 being it can be empty)
-        'category' => 'general',
+        'type'        => 'text',
+        'allowempty'  => false, //# indication this value cannot be empty (1 being it can be empty)
+        'category'    => 'general',
     ),
 
-    # what is your domain (for sending emails)
+    // what is your domain (for sending emails)
     'domain' => array(
-        'value' => $D_domain,
+        'value'       => $D_domain,
         'description' => s('Domain Name of your server (for email)'),
-        'type' => 'text',
-        'allowempty' => false,
-        'category' => 'general',
+        'type'        => 'text',
+        'allowempty'  => false,
+        'category'    => 'general',
     ),
 
-    # admin address is the person who is in charge of this system
+    // admin address is the person who is in charge of this system
     'admin_address' => array(
-        'value' => 'webmaster@[DOMAIN]',
+        'value'       => 'webmaster@[DOMAIN]',
         'description' => s('Person in charge of this system (one email address)'),
-        'type' => 'email',
-        'allowempty' => false,
-        'category' => 'general',
+        'type'        => 'email',
+        'allowempty'  => false,
+        'category'    => 'general',
     ),
-    # name of the organisation
+    // name of the organisation
     'organisation_name' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('Name of the organisation'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'general',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'general',
     ),
-# logo of the organisation
+// logo of the organisation
     'organisation_logo' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('Logo of the organisation'),
-        'type' => 'image',
-        'allowempty' => true,
-        'category' => 'general',
+        'type'        => 'image',
+        'allowempty'  => true,
+        'category'    => 'general',
     ),
 
-    # how often to check for new versions of PHPlist
+    // how often to check for new versions of PHPlist
     'check_new_version' => array(
-        'value' => '7',
+        'value'       => '7',
         'description' => s('How often do you want to check for a new version of phplist (days)'),
-        'type' => 'integer',
-        'min' => 1,
-        'max' => 180,
-        'category' => 'security',
+        'type'        => 'integer',
+        'min'         => 1,
+        'max'         => 180,
+        'category'    => 'security',
     ),
 
-    ## remote processing secret
-    # @TODO previous value generation was limited to 20 hex characters (max), determine if this is enough (80 bits)
+    //# remote processing secret
+    // @TODO previous value generation was limited to 20 hex characters (max), determine if this is enough (80 bits)
     'remote_processing_secret' => array(
-        'value' => bin2hex(random_bytes(10)),
+        'value'       => bin2hex(random_bytes(10)),
         'description' => s('Secret for remote processing'),
-        'type' => 'text',
-        'category' => 'security',
+        'type'        => 'text',
+        'category'    => 'security',
     ),
 
-    # admin addresses are other people who receive copies of subscriptions
+    // admin addresses are other people who receive copies of subscriptions
     'admin_addresses' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('List of email addresses to CC in system messages (separate by commas)'),
-        'type' => 'emaillist',
-        'allowempty' => true,
-        'category' => 'reporting',
+        'type'        => 'emaillist',
+        'allowempty'  => true,
+        'category'    => 'reporting',
     ),
     'campaignfrom_default' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s("Default for 'From:' in a campaign"),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
     'notifystart_default' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s("Default for 'address to alert when sending starts'"),
-        'type' => 'email',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'email',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
     'notifyend_default' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s("Default for 'address to alert when sending finishes'"),
-        'type' => 'email',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'email',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
     'always_add_googletracking' => array(
-        'value' => '0',
+        'value'       => '0',
         'description' => s('Always add Google tracking code to campaigns'),
-        'type' => 'boolean',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'boolean',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
-    # report address is the person who gets the reports
+    // report address is the person who gets the reports
     'report_address' => array(
-        'value' => 'listreports@[DOMAIN]',
+        'value'       => 'listreports@[DOMAIN]',
         'description' => s('Who gets the reports (email address, separate multiple emails with a comma)'),
-        'type' => 'emaillist',
-        'allowempty' => true,
-        'category' => 'reporting',
+        'type'        => 'emaillist',
+        'allowempty'  => true,
+        'category'    => 'reporting',
     ),
 
-    # where will messages appear to come from
+    // where will messages appear to come from
     'message_from_address' => array(
-        'value' => 'noreply@[DOMAIN]',
+        'value'       => 'noreply@[DOMAIN]',
         'description' => s('From email address for system messages'),
-        'type' => 'email',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'email',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
     'message_from_name' => array(
-        'value' => s('Webmaster'),
+        'value'       => s('Webmaster'),
         'description' => s('Name for system messages'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # what is the reply-to on messages?
+    // what is the reply-to on messages?
     'message_replyto_address' => array(
-        'value' => 'noreply@[DOMAIN]',
+        'value'       => 'noreply@[DOMAIN]',
         'description' => s('Reply-to email address for system messages'),
-        'type' => 'email',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'email',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # if there is only one visible list, do we hide it and automatically
-    # subscribe users who sign up
-    ## not sure why you would not want this :-) maybe it should not be an option at all
+    // if there is only one visible list, do we hide it and automatically
+    // subscribe users who sign up
+    //# not sure why you would not want this :-) maybe it should not be an option at all
     'hide_single_list' => array(
-        'value' => '1',
+        'value'       => '1',
         'description' => s('If there is only one visible list, should it be hidden in the page and automatically subscribe users who sign up'),
-        'type' => 'boolean',
-        'allowempty' => true,
-        'category' => 'subscription-ui',
+        'type'        => 'boolean',
+        'allowempty'  => true,
+        'category'    => 'subscription-ui',
     ),
 
-    # categories for lists, to organise them a little bit
-    # comma separated list of words
+    // categories for lists, to organise them a little bit
+    // comma separated list of words
     'list_categories' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('Categories for lists. Separate with commas.'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'list-organisation',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'list-organisation',
     ),
 
-    # width of a textline field
+    // width of a textline field
     'textline_width' => array(
-        'value' => '40',
+        'value'       => '40',
         'description' => s('Width of a textline field (numerical)'),
-        'type' => 'integer',
-        'min' => 20,
-        'max' => 150,
-        'category' => 'subscription-ui',
+        'type'        => 'integer',
+        'min'         => 20,
+        'max'         => 150,
+        'category'    => 'subscription-ui',
     ),
 
-    # dimensions of a textarea field
+    // dimensions of a textarea field
     'textarea_dimensions' => array(
-        'value' => '10,40',
+        'value'       => '10,40',
         'description' => s('Dimensions of a textarea field (rows,columns)'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'subscription-ui',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'subscription-ui',
     ),
 
-    # send copies of subscribe, update unsubscribe messages to the administrator
+    // send copies of subscribe, update unsubscribe messages to the administrator
     'send_admin_copies' => array(
-        'value' => '0',
+        'value'       => '0',
         'description' => s('Send notifications about subscribe, update and unsubscribe'),
-        'type' => 'boolean',
-        'allowempty' => true,
-        'category' => 'reporting',
+        'type'        => 'boolean',
+        'allowempty'  => true,
+        'category'    => 'reporting',
     ),
 
-    # the main subscribe page, when there are multiple
+    // the main subscribe page, when there are multiple
     'defaultsubscribepage' => array(
-        'value' => 1,
+        'value'       => 1,
         'description' => s('The default subscribe page when there are multiple'),
-        'type' => 'integer',
-        'min' => 1,
-        'max' => 999,  // max(id) from subscribepage
-        'allowempty' => true,
-        'category' => 'subscription',
+        'type'        => 'integer',
+        'min'         => 1,
+        'max'         => 999,  // max(id) from subscribepage
+        'allowempty'  => true,
+        'category'    => 'subscription',
     ),
 
-    # the default template for sending an html message
+    // the default template for sending an html message
     'defaultmessagetemplate' => array(
-        'value' => 0,
+        'value'       => 0,
         'description' => s('The default HTML template to use when sending a message'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
 
-    # the template for system messages (welcome confirm subscribe etc)
+    // the template for system messages (welcome confirm subscribe etc)
     'systemmessagetemplate' => array(
-        'value' => 0,
+        'value'       => 0,
         'description' => s('The HTML wrapper template for system messages'),
-        'type' => 'integer',
-        'min' => 0,
-        'max' => 999, // or max(id) from template
-        'allowempty' => true,
-        'category' => 'transactional',
+        'type'        => 'integer',
+        'min'         => 0,
+        'max'         => 999, // or max(id) from template
+        'allowempty'  => true,
+        'category'    => 'transactional',
     ),
-    ## the location of your subscribe script
-    #"public_baseurl" => array("http://[WEBSITE]$pageroot/",
-    #  "Base URL for public pages","text"),
+    //# the location of your subscribe script
+    //"public_baseurl" => array("http://[WEBSITE]$pageroot/",
+    //  "Base URL for public pages","text"),
 
-    # the location of your subscribe script
+    // the location of your subscribe script
     'subscribeurl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=subscribe",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=subscribe",
         'description' => s('URL where subscribers can sign up'),
-        'type' => 'url',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'url',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
-    # the location of your unsubscribe script:
+    // the location of your unsubscribe script:
     'unsubscribeurl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=unsubscribe",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=unsubscribe",
         'description' => s('URL where subscribers can unsubscribe'),
-        'type' => 'url',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'url',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
-    #0013076: Blacklisting posibility for unknown users
-    # the location of your blacklist script:
+    //0013076: Blacklisting posibility for unknown users
+    // the location of your blacklist script:
     'blacklisturl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=donotsend",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=donotsend",
         'description' => s('URL where unknown users can unsubscribe (do-not-send-list)'),
-        'type' => 'url',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'url',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
-# the location of your confirm script:
+// the location of your confirm script:
     'confirmationurl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=confirm",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=confirm",
         'description' => s('URL where subscribers have to confirm their subscription'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
-    # url to change their preferences
+    // url to change their preferences
     'preferencesurl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=preferences",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=preferences",
         'description' => s('URL where subscribers can update their details'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
-    # url to change their preferences
+    // url to change their preferences
     'forwardurl' => array(
-        'value' => $GLOBALS['public_scheme'] . "://[WEBSITE]$pageroot/?p=forward",
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=forward",
         'description' => s('URL for forwarding messages'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'subscription',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
     ),
 
     'ajax_subscribeconfirmation' => array(
-        'value' => s('<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>'),
+        'value'       => s('<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>'),
         'description' => s('Text to display when subscription with an AJAX request was successful'),
-        'type' => 'textarea',
-        'allowempty' => true,
-        'category' => 'subscription',
+        'type'        => 'textarea',
+        'allowempty'  => true,
+        'category'    => 'subscription',
     ),
 
-    # the location of your subscribe script
-    #"subscribe_baseurl" => array("http://[WEBSITE]$pageroot/",
-    #  "Base URL for public pages","text"),
+    // the location of your subscribe script
+    //"subscribe_baseurl" => array("http://[WEBSITE]$pageroot/",
+    //  "Base URL for public pages","text"),
 
-    # the subject of the message
+    // the subject of the message
     'subscribesubject' => array(
-        'value' => s('Request for confirmation'),
+        'value'       => s('Request for confirmation'),
         'description' => s('Subject of the message subscribers receive when they sign up'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # message that is sent when people sign up to a list
-    # [LISTS] will be replaced with the list of lists they have signed up to
-    # [CONFIRMATIONURL] will be replaced with the URL where a user has to confirm
-    # their subscription
+    // message that is sent when people sign up to a list
+    // [LISTS] will be replaced with the list of lists they have signed up to
+    // [CONFIRMATIONURL] will be replaced with the URL where a user has to confirm
+    // their subscription
     'subscribemessage' => array(
         'value' => '
 
@@ -360,21 +360,21 @@ $default_config = array(
   
     ',
         'description' => s('Message subscribers receive when they sign up'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # subject of the message when they unsubscribe
+    // subject of the message when they unsubscribe
     'unsubscribesubject' => array(
-        'value' => s('Goodbye from our Newsletter'),
+        'value'       => s('Goodbye from our Newsletter'),
         'description' => s('Subject of the message subscribers receive when they unsubscribe'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # message that is sent when they unsubscribe
+    // message that is sent when they unsubscribe
     'unsubscribemessage' => array(
         'value' => '
   
@@ -392,21 +392,21 @@ $default_config = array(
   
   ',
         'description' => s('Message subscribers receive when they unsubscribe'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # confirmation of subscription
+    // confirmation of subscription
     'confirmationsubject' => array(
-        'value' => s('Welcome to our Newsletter'),
+        'value'       => s('Welcome to our Newsletter'),
         'description' => s('Subject of the message subscribers receive after confirming their email address'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # message that is sent to confirm subscription
+    // message that is sent to confirm subscription
     'confirmationmessage' => array(
         'value' => '
   
@@ -424,24 +424,24 @@ $default_config = array(
   
   ',
         'description' => s('Message subscribers receive after confirming their email address'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # the subject of the message sent when changing the user details
+    // the subject of the message sent when changing the user details
     'updatesubject' => array(
-        'value' => s('[notify] Change of List-Membership details'),
+        'value'       => s('[notify] Change of List-Membership details'),
         'description' => s('Subject of the message subscribers receive when they have changed their details'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # the message that is sent when a user updates their information.
-    # just to make sure they approve of it.
-    # confirmationinfo is replaced by one of the options below
-    # userdata is replaced by the information in the database
+    // the message that is sent when a user updates their information.
+    // just to make sure they approve of it.
+    // confirmationinfo is replaced by one of the options below
+    // userdata is replaced by the information in the database
     'updatemessage' => array(
         'value' => '
   
@@ -465,14 +465,14 @@ $default_config = array(
   
     ',
         'description' => s('Message subscribers receive when they have changed their details'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # this is the text that is placed in the [!-- confirmation --] location of the above
-    # message, in case the email is sent to their new email address and they have changed
-    # their email address
+    // this is the text that is placed in the [!-- confirmation --] location of the above
+    // message, in case the email is sent to their new email address and they have changed
+    // their email address
     'emailchanged_text' => array(
         'value' => '
   When updating your details, your email address has changed.
@@ -482,14 +482,14 @@ $default_config = array(
   
   ',
         'description' => s('Part of the message that is sent to their new email address when subscribers change their information, and the email address has changed'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
-    # this is the text that is placed in the [!-- confirmation --] location of the above
-    # message, in case the email is sent to their old email address and they have changed
-    # their email address
+    // this is the text that is placed in the [!-- confirmation --] location of the above
+    // message, in case the email is sent to their old email address and they have changed
+    // their email address
     'emailchanged_text_oldaddress' => array(
         'value' => '
   Please Note: when updating your details, your email address has changed.
@@ -499,17 +499,17 @@ $default_config = array(
   your membership.
   ',
         'description' => s('Part of the message that is sent to their old email address when subscribers change their information, and the email address has changed'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
     'personallocation_subject' => array(
-        'value' => s('Your personal location'),
+        'value'       => s('Your personal location'),
         'description' => s('Subject of message when subscribers request their personal location'),
-        'type' => 'text',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
     'personallocation_message' => array(
@@ -525,9 +525,9 @@ $default_config = array(
   Thank you.
   ',
         'description' => s('Message when subscribers request their personal location'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
     'messagefooter' => array(
@@ -542,9 +542,9 @@ $default_config = array(
 
   ',
         'description' => s('Default footer for sending a campaign'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'campaign',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'campaign',
     ),
 
     'forwardfooter' => array(
@@ -557,25 +557,25 @@ $default_config = array(
     </div>
   ',
         'description' => s('Footer used when a message has been forwarded'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'campaign',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'campaign',
     ),
 
     'pageheader' => array(
-        'value' => $defaultheader,
+        'value'       => $defaultheader,
         'description' => s('Header of public pages.'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'subscription-ui',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'subscription-ui',
     ),
 
     'pagefooter' => array(
-        'value' => $defaultfooter,
+        'value'       => $defaultfooter,
         'description' => s('Footer of public pages'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'subscription-ui',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'subscription-ui',
     ),
 
 //"html_charset" => array (
@@ -602,63 +602,63 @@ Your personal location is:
 Thank you.
 ',
         'description' => s('Message to send when they request their personal location'),
-        'type' => 'textarea',
-        'allowempty' => 0,
-        'category' => 'transactional',
+        'type'        => 'textarea',
+        'allowempty'  => 0,
+        'category'    => 'transactional',
     ),
 
     'remoteurl_append' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('String to always append to remote URL when using send-a-webpage'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
 
     'wordwrap' => array(
-        'value' => '75',
+        'value'       => '75',
         'description' => s('Width for Wordwrap of Text messages'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
 
     'html_email_style' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('CSS for HTML messages without a template'),
-        'type' => 'textarea',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'textarea',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
 
     'alwayssendtextto' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('Domains that only accept text emails, one per line'),
-        'type' => 'textarea',
-        'allowempty' => true,
-        'category' => 'campaign',
+        'type'        => 'textarea',
+        'allowempty'  => true,
+        'category'    => 'campaign',
     ),
 
     'tld_last_sync' => array(
-        'value' => '0',
+        'value'       => '0',
         'description' => s('last time TLDs were fetched'),
-        'type' => 'text',
-        'allowempty' => true,
-        'category' => 'system',
-        'hidden' => true,
+        'type'        => 'text',
+        'allowempty'  => true,
+        'category'    => 'system',
+        'hidden'      => true,
     ),
     'internet_tlds' => array(
-        'value' => '',
+        'value'       => '',
         'description' => s('Top level domains'),
-        'type' => 'textarea',
-        'allowempty' => true,
-        'category' => 'system',
-        'hidden' => true,
+        'type'        => 'textarea',
+        'allowempty'  => true,
+        'category'    => 'system',
+        'hidden'      => true,
     ),
 
 );
 
-########## certainly do not edit after this #########
+//######### certainly do not edit after this #########
 
 $redfont = '';
 $efont = '';
@@ -669,7 +669,7 @@ if (!TEST && REGISTER && defined('VERSION')) {
     } else {
         $v = VERSION;
     }
-    $PoweredBy = '<p align="left"><a href="http://www.phplist.com"><img src="http://powered.phplist.com/images/' . $v . '/power-phplist.png" width="88" height="31" title="powered by phplist" alt="powered by phplist" border="0" /></a></p>';
+    $PoweredBy = '<p align="left"><a href="http://www.phplist.com"><img src="http://powered.phplist.com/images/'.$v.'/power-phplist.png" width="88" height="31" title="powered by phplist" alt="powered by phplist" border="0" /></a></p>';
 } else {
     $PoweredBy = '<center><a href="http://www.phplist.com"><img src="images/power-phplist.png" width="88" height="31" title="powered by phplist" alt="powered by phplist" border="0" /></a></center>';
 }
@@ -706,12 +706,12 @@ if (!function_exists('getconfig')) {
                 if (isset($default_config[$item])) {
                     $value = $default_config[$item]['value'];
                 }
-                # save the default value to the database, so we can obtain
-                # the information when running from commandline
+                // save the default value to the database, so we can obtain
+                // the information when running from commandline
                 if (Sql_Table_Exists($tables['config'])) {
                     saveConfig($item, $value);
                 }
-                #    print "$item => $value<br/>";
+                //    print "$item => $value<br/>";
             } else {
                 $row = Sql_Fetch_Row($req);
                 $value = $row[0];
@@ -736,16 +736,16 @@ if (!function_exists('getconfig')) {
             } elseif ($value == '1') {
                 $value = 'true';
             }
-            ## cast to bool
+            //# cast to bool
             $value = $value == 'true';
         }
 
-        ## disallow single quotes in listcategories
+        //# disallow single quotes in listcategories
         if ($item == 'list_categories') {
             $value = str_replace("'", ' ', $value);
         }
 
-        # if this is a subpage item, and no value was found get the global one
+        // if this is a subpage item, and no value was found get the global one
         if (!$value && strpos($item, ':') !== false) {
             list($a, $b) = explode(':', $item);
             $value = getConfig($a);
@@ -790,37 +790,37 @@ function getUserConfig($item, $userid = 0)
             }
         }
     }
-    # if this is a subpage item, and no value was found get the global one
+    // if this is a subpage item, and no value was found get the global one
     if (!$value && strpos($item, ':') !== false) {
         list($a, $b) = explode(':', $item);
         $value = getUserConfig($a, $userid);
     }
 
     if ($userid) {
-        $rs = Sql_Query(sprintf('select uniqid, email from ' . $tables['user'] . ' where id = %d', $userid));
+        $rs = Sql_Query(sprintf('select uniqid, email from '.$tables['user'].' where id = %d', $userid));
         $user_req = Sql_Fetch_Row($rs);
         $uniqid = $user_req[0];
         $email = $user_req[1];
-        # parse for placeholders
-        # do some backwards compatibility:
-        # hmm, reverted back to old system
+        // parse for placeholders
+        // do some backwards compatibility:
+        // hmm, reverted back to old system
 
         $url = getConfig('unsubscribeurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[UNSUBSCRIBEURL]', $url . $sep . 'uid=' . $uniqid, $value);
+        $value = str_ireplace('[UNSUBSCRIBEURL]', $url.$sep.'uid='.$uniqid, $value);
         $url = getConfig('confirmationurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[CONFIRMATIONURL]', $url . $sep . 'uid=' . $uniqid, $value);
+        $value = str_ireplace('[CONFIRMATIONURL]', $url.$sep.'uid='.$uniqid, $value);
         $url = getConfig('preferencesurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[PREFERENCESURL]', $url . $sep . 'uid=' . $uniqid, $value);
+        $value = str_ireplace('[PREFERENCESURL]', $url.$sep.'uid='.$uniqid, $value);
         $value = str_ireplace('[EMAIL]', $email, $value);
 
         $value = parsePlaceHolders($value, getUserAttributeValues($email));
     }
     $value = str_ireplace('[SUBSCRIBEURL]', getConfig('subscribeurl'), $value);
     $value = preg_replace('/\[DOMAIN\]/i', $domain,
-        $value); #@ID Should be done only in one place. Combine getConfig and this one?
+        $value); //@ID Should be done only in one place. Combine getConfig and this one?
     $value = preg_replace('/\[WEBSITE\]/i', $website, $value);
 
     if ($value == '0') {
@@ -836,6 +836,6 @@ $access_levels = array(
     0 => 'none',
     1 => 'all',
     2 => 'view',
-    #   3 => "edit",
+    //   3 => "edit",
     4 => 'owner',
 );

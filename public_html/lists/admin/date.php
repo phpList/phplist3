@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
     class date
@@ -60,7 +60,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
 
         public function setDateTime($datetime)
         {
-            #0000-00-00 00:00:00
+            //0000-00-00 00:00:00
             list($date, $time) = explode(' ', $datetime);
             $this->setDate($date);
             $this->setTime($time);
@@ -91,7 +91,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             } else {
                 $return = date('Y-m-d');
             }
-            # print "Date ".$value.' '.$return;
+            // print "Date ".$value.' '.$return;
             return $return;
         }
 
@@ -112,7 +112,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             if (!$name) {
                 $name = $this->name;
             }
-            #    dbg("$name $fielddata $value $document_id");
+            //    dbg("$name $fielddata $value $document_id");
             if (!is_array($value)) {
                 $year = substr($value, 0, 4);
                 $month = substr($value, 5, 2);
@@ -136,8 +136,8 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             $html = '<div class="date">';
 
             $html .= " 
-      <!-- $day / $month / $year -->" . '
-     <select name="' . $name . '[day]">';
+      <!-- $day / $month / $year -->".'
+     <select name="' .$name.'[day]">';
             for ($i = 1; $i < 32; ++$i) {
                 $sel = '';
                 if ($i == $day) {
@@ -148,7 +148,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             }
             $html .= '
       </select>
-      <select name="' . $name . '[month]">';
+      <select name="' .$name.'[month]">';
             reset($this->months);
             while (list($key, $val) = each($this->months)) {
                 $sel = '';
@@ -174,7 +174,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
 
             $html .= '
       </select>
-      <select name="' . $name . '[year]">';
+      <select name="' .$name.'[year]">';
             for ($i = $start; $i <= $end; ++$i) {
                 $html .= '
           <option ';
@@ -187,7 +187,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
       </select>';
             if ($this->useTime) {
                 $html .= '
-      <select name="' . $name . '[hour]">';
+      <select name="' .$name.'[hour]">';
                 for ($i = 0; $i <= 23; ++$i) {
                     $sel = '';
                     if ($i == $hour) {
@@ -199,7 +199,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
                 $html .= '
         </select>';
                 $html .= '
-        <select name="' . $name . '[minute]">';
+        <select name="' .$name.'[minute]">';
                 for ($i = 0; $i <= 59; $i += 15) {
                     $sel = '';
                     if ($i == $minute) {
@@ -212,7 +212,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
         </select>';
             }
 
-            return $html . '</div>';
+            return $html.'</div>';
         }
 
         public function display($parent, $data, $leaf, $branch)

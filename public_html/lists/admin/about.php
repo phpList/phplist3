@@ -1,10 +1,10 @@
 <div align="center">
     <table class="about" border="1" cellspacing="5" cellpadding="5">
         <tr>
-            <td colspan="2" class="abouthead"><?php echo s('About') . ' ' . NAME ?></td>
+            <td colspan="2" class="abouthead"><?php echo s('About').' '.NAME ?></td>
         </tr>
         <tr>
-            <td><?php echo s('Announcements');?></td>
+            <td><?php echo s('Announcements'); ?></td>
             <td><?php echo subscribeToAnnouncementsForm() ?></td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
             </td>
         </tr>
         <tr>
-            <td><?php echo s('Legal');?></td>
+            <td><?php echo s('Legal'); ?></td>
             <td>
                 <?php echo s('phpList is licensed with the %sGNU Affero Public License (AGPL)%s',
                     '<a href="http://www.gnu.org/licenses/agpl.html" target="_blank">', '</a>') ?>.<br/>
@@ -27,7 +27,7 @@
              </td>
         </tr>
         <tr>
-            <td><?php echo s('Certification');?></td>
+            <td><?php echo s('Certification'); ?></td>
             <td>
                 <p><?php echo s('Certified Secure by ') ?><a href="https://www.httpcs.com/"
                                                              title="Web Vulnerability Scanner" target="_blank"><img
@@ -131,7 +131,7 @@
         <?php
         $pluginsHTML = '
     <tr>
-    <td width="50" valign="top">' . $GLOBALS['I18N']->get('Plugins') . '</td>
+    <td width="50" valign="top">' .$GLOBALS['I18N']->get('Plugins').'</td>
     <td valign="top">
       <ul class="aboutplugins">
 ';
@@ -139,16 +139,16 @@
         $pg = '';
         if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && count($GLOBALS['plugins'])) {
             foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
-                $pg .= '<li><strong>' . $plugin->name . '</strong> version ' . $plugin->version;
+                $pg .= '<li><strong>'.$plugin->name.'</strong> version '.$plugin->version;
                 if ($plugin->authors) {
-                    $pg .= ' <span class="pluginauthor">by ' . $plugin->authors . '</span>';
+                    $pg .= ' <span class="pluginauthor">by '.$plugin->authors.'</span>';
                 }
                 if ($plugin->displayAbout()) {
-                    $pg .= ' <span class="pluginabout"' . $plugin->displayAbout() . '</span>';
+                    $pg .= ' <span class="pluginabout"'.$plugin->displayAbout().'</span>';
                 }
                 $pg .= '</li>';
             }
-            $pluginsHTML .= $pg . '
+            $pluginsHTML .= $pg.'
           </ul>
         </td>
       </tr>

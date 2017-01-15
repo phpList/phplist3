@@ -1,7 +1,7 @@
 <?php
 
-# click stats per message
-require_once dirname(__FILE__) . '/accesscheck.php';
+// click stats per message
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_GET['id'])) {
     $id = sprintf('%d', $_GET['id']);
@@ -16,15 +16,15 @@ if (isset($_GET['start'])) {
 
 $addcomparison = 0;
 $access = accessLevel('mviews');
-#print "Access level: $access";
+//print "Access level: $access";
 switch ($access) {
     case 'owner':
-        $subselect = ' and owner = ' . $_SESSION['logindetails']['id'];
+        $subselect = ' and owner = '.$_SESSION['logindetails']['id'];
         if ($id) {
             $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
                 $id, $subselect));
             if ($allow[0] != $_SESSION['logindetails']['id']) {
-                print $GLOBALS['I18N']->get('You do not have access to this page');
+                echo $GLOBALS['I18N']->get('You do not have access to this page');
 
                 return;
             }
@@ -37,7 +37,7 @@ switch ($access) {
     case 'none':
     default:
         $subselect = ' where id = 0';
-        print $GLOBALS['I18N']->get('You do not have access to this page');
+        echo $GLOBALS['I18N']->get('You do not have access to this page');
 
         return;
         break;
@@ -46,33 +46,33 @@ switch ($access) {
 $download = !empty($_GET['dl']);
 
 if (!$id) {
-    print '<div id="contentdiv"></div>';
-    print asyncLoadContent('./?page=pageaction&action=mviews&ajaxed=true&id='.$id.'&start='.$start . addCsrfGetToken());
+    echo '<div id="contentdiv"></div>';
+    echo asyncLoadContent('./?page=pageaction&action=mviews&ajaxed=true&id='.$id.'&start='.$start.addCsrfGetToken());
 
     return;
 }
 
 if ($download) {
     ob_end_clean();
-#  header("Content-type: text/plain");
+//  header("Content-type: text/plain");
     header('Content-type: text/csv');
     ob_start();
 }
 if (empty($start)) {
-    print '<p>' . PageLinkButton('mviews&dl=true&id=' . $id . '&start=' . $start,
-            $GLOBALS['I18N']->get('Download as CSV file')) . '</p>';
+    echo '<p>'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,
+            $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
 }
 
-#print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
+//print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
-print '<table class="mviewsDetails">
-<tr><td>' . $GLOBALS['I18N']->get('Subject') . '<td><td>' . $messagedata['subject'] . '</td></tr>
-<tr><td>' . $GLOBALS['I18N']->get('Entered') . '<td><td>' . $messagedata['entered'] . '</td></tr>
-<tr><td>' . $GLOBALS['I18N']->get('Sent') . '<td><td>' . $messagedata['sent'] . '</td></tr>
+echo '<table class="mviewsDetails">
+<tr><td>' .$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
 </table><hr/>';
 
 if ($download) {
-    header('Content-disposition:  attachment; filename="phpList Message open statistics for ' . $messagedata['subject'] . '.csv"');
+    header('Content-disposition:  attachment; filename="phpList Message open statistics for '.$messagedata['subject'].'.csv"');
 }
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Open statistics'));
@@ -85,23 +85,23 @@ $req = Sql_Query(sprintf('select um.userid
 $total = Sql_Affected_Rows();
 if (isset($start) && $start > 0) {
     $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), $start, $start + MAX_USER_PP);
-    $limit = "limit $start," . MAX_USER_PP;
+    $limit = "limit $start,".MAX_USER_PP;
 } else {
     $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), 1, MAX_USER_PP);
-    $limit = 'limit 0,' . MAX_USER_PP;
+    $limit = 'limit 0,'.MAX_USER_PP;
     $start = 0;
-    $limit = 'limit 0,' . MAX_USER_PP;
+    $limit = 'limit 0,'.MAX_USER_PP;
 }
 
-## hmm, this needs more work, as it'll run out of memory, because it's building the entire
-## listing before pushing it out.
-## would be best to not have a limit, but putting one to avoid that
+//# hmm, this needs more work, as it'll run out of memory, because it's building the entire
+//# listing before pushing it out.
+//# would be best to not have a limit, but putting one to avoid that
 if ($download) {
     $limit = ' limit 100000';
 }
 
 if ($id) {
-    $url_keep = '&amp;id=' . $id;
+    $url_keep = '&amp;id='.$id;
 } else {
     $url_keep = '';
 }
@@ -122,17 +122,17 @@ $req = Sql_Query(sprintf('select userid,email,um.entered as sent,min(um.viewed) 
 $summary = array();
 while ($row = Sql_Fetch_Array($req)) {
     if ($download) {
-        ## with download, the 50 per page limit is not there.
+        //# with download, the 50 per page limit is not there.
         set_time_limit(60);
         $element = $row['email'];
     } else {
         $element = shortenTextDisplay($row['email'], 15);
     }
-    $ls->addElement($element, PageUrl2('userhistory&amp;id=' . $row['userid']));
+    $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element, 'row1');
     $ls->addRow($element,
-        '<div class="listingsmall gray">' . $GLOBALS['I18N']->get('sent') . ': ' . formatDateTime($row['sent'],
-            1) . '</div>', '');
+        '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.formatDateTime($row['sent'],
+            1).'</div>', '');
     if ($row['viewcount'] > 1) {
         $ls->addColumn($element, $GLOBALS['I18N']->get('firstview'), formatDateTime($row['firstview'], 1));
         $ls->addColumn($element, $GLOBALS['I18N']->get('lastview'), formatDateTime($row['lastview']));
@@ -144,8 +144,7 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 if ($download) {
     ob_end_clean();
-    print $ls->tabDelimited();
+    echo $ls->tabDelimited();
 } else {
-    print $ls->display();
+    echo $ls->display();
 }
-

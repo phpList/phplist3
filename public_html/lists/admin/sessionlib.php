@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-# try to set the configuration
+// try to set the configuration
 if (empty($GLOBALS['SessionTableName'])) {
     return;
 }
 
-# only necessary on main pages, not in lt/dl etc
+// only necessary on main pages, not in lt/dl etc
 if (basename($_SERVER['SCRIPT_NAME']) != 'index.php') {
     return;
 }
@@ -25,14 +25,14 @@ if (ini_get('session.save_handler') == 'user') {
         'mysql_session_gc'
     );
 } else {
-    #  @ini_set("session.save_handler","files");
+    //  @ini_set("session.save_handler","files");
 }
 
 if (!Sql_Table_exists($GLOBALS['SessionTableName'])) {
     Sql_Create_Table($GLOBALS['SessionTableName'], array(
-        'sessionid' => array('CHAR(32) NOT NULL PRIMARY KEY', ''),
+        'sessionid'  => array('CHAR(32) NOT NULL PRIMARY KEY', ''),
         'lastactive' => array('INTEGER NOT NULL', ''),
-        'data' => array('LONGTEXT', ''),
+        'data'       => array('LONGTEXT', ''),
     ));
 }
 
@@ -48,7 +48,7 @@ function mysql_session_close()
 
 function mysql_session_read($SessionID)
 {
-    #	dbg("Reading session info for $SessionID");
+    //	dbg("Reading session info for $SessionID");
     $SessionTableName = $GLOBALS['SessionTableName'];
     $SessionID = addslashes($SessionID);
 
@@ -64,7 +64,7 @@ function mysql_session_read($SessionID)
 
 function mysql_session_write($SessionID, $val)
 {
-    #	dbg("writing session info for $SessionID");
+    //	dbg("writing session info for $SessionID");
     $SessionTableName = $GLOBALS['SessionTableName'];
     $SessionID = addslashes($SessionID);
     $val = addslashes($val);

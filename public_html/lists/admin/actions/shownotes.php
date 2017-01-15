@@ -1,6 +1,6 @@
 <?php
 
-## show notes
+//# show notes
 
 $_SESSION['suppressinfo'] = array();
 $status = ' ';

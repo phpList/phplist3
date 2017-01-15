@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-mt_srand((double)microtime() * 1000000);
+mt_srand((float) microtime() * 1000000);
 $randval = mt_rand();
 
 if (empty($id) && isset($_GET['id'])) {
@@ -15,24 +15,24 @@ if (!$id && $_GET['page'] != 'import1') {
     Fatal_Error('Invalid call');
     exit;
 }
-require_once dirname(__FILE__) . '/date.php';
+require_once dirname(__FILE__).'/date.php';
 $date = new Date();
 
-## Check if input is complete
+//# Check if input is complete
 $allthere = 1;
 $subscribepagedata = PageData($id);
-if (isset($subscribepagedata['language_file']) && is_file(dirname(__FILE__) . '/../texts/' . basename($subscribepagedata['language_file']))) {
-    @include_once dirname(__FILE__) . '/../texts/' . basename($subscribepagedata['language_file']);
+if (isset($subscribepagedata['language_file']) && is_file(dirname(__FILE__).'/../texts/'.basename($subscribepagedata['language_file']))) {
+    @include_once dirname(__FILE__).'/../texts/'.basename($subscribepagedata['language_file']);
 }
-# Allow customisation per installation
-if (is_file($_SERVER['DOCUMENT_ROOT'] . '/' . basename($GLOBALS['language_module']))) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/' . basename($GLOBALS['language_module']);
+// Allow customisation per installation
+if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.basename($GLOBALS['language_module']))) {
+    include_once $_SERVER['DOCUMENT_ROOT'].'/'.basename($GLOBALS['language_module']);
 }
-if (!empty($data['language_file']) && is_file($_SERVER['DOCUMENT_ROOT'] . '/' . basename($data['language_file']))) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/' . basename($data['language_file']);
+if (!empty($data['language_file']) && is_file($_SERVER['DOCUMENT_ROOT'].'/'.basename($data['language_file']))) {
+    include_once $_SERVER['DOCUMENT_ROOT'].'/'.basename($data['language_file']);
 }
 
-$required = array();   # id's of missing attribbutes '
+$required = array();   // id's of missing attribbutes '
 if (count($subscribepagedata)) {
     $attributes = explode('+', $subscribepagedata['attributes']);
     foreach ($attributes as $attribute) {
@@ -57,18 +57,18 @@ if (count($subscribepagedata)) {
 
 if (count($required)) {
     $required_ids = implode(',', $required);
-    # check if all required attributes have been entered;
+    // check if all required attributes have been entered;
     if ($required_ids) {
         $res = Sql_Query("select * from {$GLOBALS['tables']['attribute']} where id in ($required_ids)");
         $allthere = 1;
         $missing = '';
         while ($row = Sql_Fetch_Array($res)) {
-            $fieldname = 'attribute' . $row['id'];
+            $fieldname = 'attribute'.$row['id'];
             $thisonemissing = 0;
             if ($row['type'] != 'hidden') {
                 $thisonemissing = empty($_POST[$fieldname]);
                 if ($thisonemissing) {
-                    $missing .= $row['name'] . ', ';
+                    $missing .= $row['name'].', ';
                 }
                 $allthere = $allthere && !$thisonemissing;
             }
@@ -82,9 +82,8 @@ if (count($required)) {
     $missing = '';
 }
 
-#
-# If need to check for double entry of email address
-#
+// If need to check for double entry of email address
+
 if (isset($subscribepagedata['emaildoubleentry']) && $subscribepagedata['emaildoubleentry'] == 'yes') {
     if (!(isset($_POST['email']) && isset($_POST['emailconfirm']) && $_POST['email'] == $_POST['emailconfirm'])) {
         $allthere = 0;
@@ -110,12 +109,12 @@ if (!empty($_POST['VerificationCodeX'])) {
      If there is an error, you will need to  add them manually.
 --------------------------------------------------------------------------------  ');
         foreach ($_REQUEST as $key => $val) {
-            $msg .= "\n" . 'Form field: ' . htmlentities($key) . "\n" . '=================' . "\nSubmitted value: " . htmlentities($val) . "\n" . '==============' . "\n\n";
+            $msg .= "\n".'Form field: '.htmlentities($key)."\n".'================='."\nSubmitted value: ".htmlentities($val)."\n".'=============='."\n\n";
         }
         foreach ($_SERVER as $key => $val) {
-            $msg .= "\n" . 'HTTP Server Data: ' . htmlentities($key) . "\n" . '=================' . "\nValue: " . htmlentities($val) . "\n" . '==============' . "\n\n";
+            $msg .= "\n".'HTTP Server Data: '.htmlentities($key)."\n".'================='."\nValue: ".htmlentities($val)."\n".'=============='."\n\n";
         }
-        sendAdminCopy(s('phplist Spam blocked'), "\n" . $msg);
+        sendAdminCopy(s('phplist Spam blocked'), "\n".$msg);
     }
     unset($msg);
 
@@ -123,7 +122,7 @@ if (!empty($_POST['VerificationCodeX'])) {
 }
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    #  dbg($plugin->name);
+    //  dbg($plugin->name);
     if ($plugin->enabled) {
         $pluginResult = $plugin->validateSubscriptionPage($subscribepagedata);
         if (!empty($pluginResult)) {
@@ -157,8 +156,8 @@ if ($allthere && ASKFORPASSWORD && ($_POST['passwordreq'] || $_POST['password'])
 
 if (isset($_POST['email']) && !empty($GLOBALS['check_for_host'])) {
     list($username, $domaincheck) = explode('@', $_POST['email']);
-#  $mxhosts = array();
-#  $validhost = getmxrr ($domaincheck,$mxhosts);
+//  $mxhosts = array();
+//  $validhost = getmxrr ($domaincheck,$mxhosts);
     $validhost = checkdnsrr($domaincheck, 'MX') || checkdnsrr($domaincheck, 'A');
 } else {
     $validhost = 1;
@@ -168,14 +167,14 @@ $listsok = ((!ALLOW_NON_LIST_SUBSCRIBE && isset($_POST['list']) && is_array($_PO
 
 if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allthere && $validhost) {
     $history_entry = '';
-    # make sure to save the correct data
+    // make sure to save the correct data
     if ($subscribepagedata['htmlchoice'] == 'checkfortext' && empty($_POST['textemail'])) {
         $htmlemail = 1;
     } else {
         $htmlemail = !empty($_POST['htmlemail']);
     }
 
-    # now check whether this user already exists.
+    // now check whether this user already exists.
     $email = $_POST['email'];
     if (preg_match("/(.*)\n/U", $email, $regs)) {
         $email = $regs[1];
@@ -183,7 +182,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     $result = Sql_query(sprintf('select * from %s where email = "%s"', $GLOBALS['tables']['user'], sql_escape($email)));
     if (!Sql_affected_rows()) {
-        # they do not exist, so add them
+        // they do not exist, so add them
         $query = sprintf('insert into %s (email,entered,uniqid,confirmed,
     htmlemail,subscribepage) values("%s",now(),"%s",0,%d,%d)',
             $GLOBALS['tables']['user'], sql_escape($email), getUniqid(), $htmlemail, $id);
@@ -191,27 +190,27 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $userid = Sql_Insert_Id();
         addSubscriberStatistics('total users', 1);
     } else {
-        # they do exist, so update the existing record
-        # read the current values to compare changes
+        // they do exist, so update the existing record
+        // read the current values to compare changes
         $old_data = Sql_fetch_array($result);
         if (ASKFORPASSWORD && $old_data['password']) {
             $encP = encryptPass($_POST['password']);
             $canlogin = !empty($encP) && !empty($_POST['password']) && $encP == $old_data['password'];
-            #     print $canlogin.' '.$_POST['password'].' '.$encP.' '. $old_data["password"];
+            //     print $canlogin.' '.$_POST['password'].' '.$encP.' '. $old_data["password"];
             if (!$canlogin) {
-                $msg = '<p class="error">' . $GLOBALS['strUserExists'] . '</p>';
-                $msg .= '<p class="information">' . $GLOBALS['strUserExistsExplanationStart'] .
+                $msg = '<p class="error">'.$GLOBALS['strUserExists'].'</p>';
+                $msg .= '<p class="information">'.$GLOBALS['strUserExistsExplanationStart'].
                     sprintf('<a href="%s&amp;email=%s">%s</a>', getConfig('preferencesurl'), $email,
-                        $GLOBALS['strUserExistsExplanationLink']) .
-                    $GLOBALS['strUserExistsExplanationEnd'] . '</p>';
+                        $GLOBALS['strUserExistsExplanationLink']).
+                    $GLOBALS['strUserExistsExplanationEnd'].'</p>';
 
                 return;
             }
         }
 
-        # https://mantis.phplist.com/view.php?id=15557, disallow re-subscribing existing subscribers
+        // https://mantis.phplist.com/view.php?id=15557, disallow re-subscribing existing subscribers
         if (!SILENT_RESUBSCRIBE) {
-            $msg = '<div class="error missing"><h4>' . $GLOBALS['strUserExistsResubscribe'] . '</h4>';
+            $msg = '<div class="error missing"><h4>'.$GLOBALS['strUserExistsResubscribe'].'</h4>';
             $msg .= '<p>';
             $msg .= sprintf($GLOBALS['strUserExistsResubscribeExplanation'], getConfig('preferencesurl'));
             $msg .= '</p></div>';
@@ -221,7 +220,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
         $userid = $old_data['id'];
         $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-        $history_entry = '';#http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+        $history_entry = ''; //http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
 
         $query = sprintf('update %s set email = "%s",htmlemail = %d,subscribepage = %d where id = %d',
             $GLOBALS['tables']['user'], addslashes($email), $htmlemail, $id, $userid);
@@ -230,10 +229,10 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (ASKFORPASSWORD && $_POST['password']) {
         $newpassword = encryptPass($_POST['password']);
-        # see whether is has changed
+        // see whether is has changed
         $curpwd = Sql_Fetch_Row_Query("select password from {$GLOBALS['tables']['user']} where id = $userid");
         if ($newpassword != $curpwd[0]) {
-            $storepassword = 'password = "' . $newpassword . '"';
+            $storepassword = 'password = "'.$newpassword.'"';
             Sql_query("update {$GLOBALS['tables']['user']} set passwordchanged = now(),$storepassword where id = $userid");
         } else {
             $storepassword = '';
@@ -242,9 +241,9 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $storepassword = '';
     }
 
-    # subscribe to the lists
+    // subscribe to the lists
     $lists = '';
-    $subscriptions = array(); ## used to keep track of which admins to alert
+    $subscriptions = array(); //# used to keep track of which admins to alert
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
         while (list($key, $val) = each($_POST['list'])) {
@@ -253,38 +252,38 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
                 if (!empty($key)) {
                     $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
                         $GLOBALS['tables']['listuser'], $userid, $key));
-                    $lists .= "\n  * " . listname($key);
+                    $lists .= "\n  * ".listname($key);
                     $subscriptions[] = $key;
 
                     addSubscriberStatistics('subscribe', 1, $key);
                 } else {
-                    ## hack attempt...
+                    //# hack attempt...
                     exit;
                 }
             }
         }
     }
 
-    # remember the users attributes
-    # make sure to only remember the ones from this subscribe page
-    $history_entry .= 'Subscribe page: ' . $id;
+    // remember the users attributes
+    // make sure to only remember the ones from this subscribe page
+    $history_entry .= 'Subscribe page: '.$id;
     array_push($attributes, 0);
     $attids = join_clean(',', $attributes);
     if ($attids && $attids != '') {
-        $res = Sql_Query('select * from ' . $GLOBALS['tables']['attribute'] . " where id in ($attids)");
+        $res = Sql_Query('select * from '.$GLOBALS['tables']['attribute']." where id in ($attids)");
         while ($row = Sql_Fetch_Array($res)) {
-            $fieldname = 'attribute' . $row['id'];
+            $fieldname = 'attribute'.$row['id'];
             if (!array_key_exists($fieldname, $_POST)) {
                 continue;
             }
             $value = $_POST[$fieldname];
-            #    if ($value != "") {
+            //    if ($value != "") {
             if ($row['type'] == 'date') {
                 $value = $date->getDate($fieldname);
             } elseif (is_array($value)) {
                 $newval = array();
                 foreach ($value as $val) {
-                    array_push($newval, sprintf('%0' . $checkboxgroup_storesize . 'd', $val));
+                    array_push($newval, sprintf('%0'.$checkboxgroup_storesize.'d', $val));
                 }
                 $value = implode(',', $newval);
             } elseif ($row['type'] != 'textarea') {
@@ -294,14 +293,14 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             }
             Sql_Query(sprintf('replace into %s (attributeid,userid,value) values("%s","%s","%s")',
                 $GLOBALS['tables']['user_attribute'], $row['id'], $userid, $value));
-            $history_entry .= "\n" . $row['name'] . ' = ' . UserAttributeValue($userid, $row['id']);
-            #    }
+            $history_entry .= "\n".$row['name'].' = '.UserAttributeValue($userid, $row['id']);
+            //    }
         }
     }
     $information_changed = 0;
     if (isset($old_data) && is_array($old_data)) {
         $history_subject = 'Re-Subscription';
-        # when they submit a new subscribe
+        // when they submit a new subscribe
         $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['user'],
             $userid));
         $current_data = array_merge($current_data, getUserAttributeValues('', $userid));
@@ -326,20 +325,20 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     $blacklisted = isBlackListed($email);
 
-    print '<title>' . $GLOBALS['strSubscribeTitle'] . '</title>';
-    print $subscribepagedata['header'];
+    echo '<title>'.$GLOBALS['strSubscribeTitle'].'</title>';
+    echo $subscribepagedata['header'];
 
     if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] && !(isset($_GET['p']) && $_GET['p'] == 'asubscribe')) {
-        print '<p class="information"><b>You are logged in as ' . $_SESSION['logindetails']['adminname'] . '</b></p>';
-        print '<p><a href="' . $adminpages . '" class="button">Back to the main admin page</a></p>';
+        echo '<p class="information"><b>You are logged in as '.$_SESSION['logindetails']['adminname'].'</b></p>';
+        echo '<p><a href="'.$adminpages.'" class="button">Back to the main admin page</a></p>';
 
         if ($_POST['makeconfirmed'] && !$blacklisted) {
             $sendrequest = 0;
             Sql_Query(sprintf('update %s set confirmed = 1 where email = "%s"', $GLOBALS['tables']['user'], $email));
-            addUserHistory($email, $history_subject . ' by ' . $_SESSION['logindetails']['adminname'], $history_entry);
+            addUserHistory($email, $history_subject.' by '.$_SESSION['logindetails']['adminname'], $history_entry);
         } elseif ($_POST['makeconfirmed']) {
-            print '<p class="information">' . $GLOBALS['I18N']->get('Email is blacklisted, so request for confirmation has been sent.') . '<br/>';
-            print $GLOBALS['I18N']->get('If user confirms subscription, they will be removed from the blacklist.') . '</p>';
+            echo '<p class="information">'.$GLOBALS['I18N']->get('Email is blacklisted, so request for confirmation has been sent.').'<br/>';
+            echo $GLOBALS['I18N']->get('If user confirms subscription, they will be removed from the blacklist.').'</p>';
 
             $sendrequest = 1;
         } else {
@@ -349,11 +348,11 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $sendrequest = 1;
     }
 
-    # personalise the thank you page
+    // personalise the thank you page
     if ($subscribepagedata['thankyoupage']) {
         $thankyoupage = $subscribepagedata['thankyoupage'];
     } else {
-        $thankyoupage = '<h3>' . $strThanks . '</h3>' . '<p class="information">' . $strEmailConfirmation . '</p>';
+        $thankyoupage = '<h3>'.$strThanks.'</h3>'.'<p class="information">'.$strEmailConfirmation.'</p>';
     }
 
     $thankyoupage = str_ireplace('[email]', $email, $thankyoupage);
@@ -362,7 +361,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (count($user_att)) {
         while (list($att_name, $att_value) = each($user_att)) {
-            $thankyoupage = str_ireplace('[' . $att_name . ']', $att_value, $thankyoupage);
+            $thankyoupage = str_ireplace('['.$att_name.']', $att_value, $thankyoupage);
         }
     }
 
@@ -373,43 +372,43 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         }
     }
 
-    if ($sendrequest && $listsok) { #is_array($_POST["list"])) {
+    if ($sendrequest && $listsok) { //is_array($_POST["list"])) {
         if (RFC_DIRECT_DELIVERY) {
             $ok = sendMailDirect($email, getConfig("subscribesubject:$id"), $subscribemessage,
                 system_messageheaders($email), $envelope, 1);
             if (!$ok) {
-                print '<h3>' . $strEmailFailed . '</h3>';
-                print '<p>' . $GLOBALS['smtpError'] . '</p>';
+                echo '<h3>'.$strEmailFailed.'</h3>';
+                echo '<p>'.$GLOBALS['smtpError'].'</p>';
             } else {
-                sendAdminCopy('Lists subscription', "\n" . $email . " has subscribed\n\n$history_entry",
+                sendAdminCopy('Lists subscription', "\n".$email." has subscribed\n\n$history_entry",
                     $subscriptions);
                 addUserHistory($email, $history_subject, $history_entry);
-                print $thankyoupage;
+                echo $thankyoupage;
             }
         } elseif (sendMail($email, getConfig("subscribesubject:$id"), $subscribemessage, system_messageheaders($email),
             $envelope, 1)) {
-            sendAdminCopy('Lists subscription', "\n" . $email . " has subscribed\n\n$history_entry", $subscriptions);
+            sendAdminCopy('Lists subscription', "\n".$email." has subscribed\n\n$history_entry", $subscriptions);
             addUserHistory($email, $history_subject, $history_entry);
-            print $thankyoupage;
+            echo $thankyoupage;
         } else {
-            print '<h3>' . $strEmailFailed . '</h3>';
+            echo '<h3>'.$strEmailFailed.'</h3>';
             if ($blacklisted) {
-                print '<p class="information">' . $GLOBALS['strYouAreBlacklisted'] . '</p>';
+                echo '<p class="information">'.$GLOBALS['strYouAreBlacklisted'].'</p>';
             }
         }
     } else {
-        print $thankyoupage;
+        echo $thankyoupage;
         if ($_SESSION['adminloggedin']) {
-            print '<p class="information">User has been added and confirmed</p>';
+            echo '<p class="information">User has been added and confirmed</p>';
         }
     }
 
-    print '<p class="information">' . $PoweredBy . '</p>';
-    print $subscribepagedata['footer'];
+    echo '<p class="information">'.$PoweredBy.'</p>';
+    echo $subscribepagedata['footer'];
     //  exit;
     // Instead of exiting here, we return 2. So in lists/index.php
     // We can decide, whether to show subscribe page or not.
-    ## issue 6508
+    //# issue 6508
     return 2;
 } elseif (isset($_POST['update']) && $_POST['update'] && is_email($_POST['email']) && $allthere) {
     $email = trim($_POST['email']);
@@ -421,28 +420,28 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             $GLOBALS['tables']['user'], $_GET['uid']));
         $userid = $req[0];
     } else {
-        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"" . sql_escape($_GET['email']) . '"');
+        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"".sql_escape($_GET['email']).'"');
         $userid = $req[0];
     }
     if (!$userid) {
         Fatal_Error('Error, no such user');
     }
-    # update the existing record, check whether the email has changed
+    // update the existing record, check whether the email has changed
     $req = Sql_Query("select * from {$GLOBALS['tables']['user']} where id = $userid");
     $data = Sql_fetch_array($req);
 
-    # check that the password was provided if required
-    # we only require a password if there is one, otherwise people are blocked out
-    # when switching to requiring passwords
+    // check that the password was provided if required
+    // we only require a password if there is one, otherwise people are blocked out
+    // when switching to requiring passwords
     if (ASKFORPASSWORD && $data['password']) {
-        # they need to be "logged in" for this
+        // they need to be "logged in" for this
         if (empty($_SESSION['userloggedin'])) {
             Fatal_Error('Access Denied');
             exit;
         }
         $checkpassword = '';
         $allow = 0;
-        # either they have to give the current password, or given two new ones
+        // either they have to give the current password, or given two new ones
         if (ENCRYPTPASSWORD) {
             $checkpassword = encryptPass($_POST['password']);
         } else {
@@ -455,13 +454,13 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         }
 
         if (!$allow) {
-            # @@@ this check should be done above, so the error can be embedded in the template
-            print $GLOBALS['strPasswordsNoMatch'];
+            // @@@ this check should be done above, so the error can be embedded in the template
+            echo $GLOBALS['strPasswordsNoMatch'];
             exit;
         }
     }
 
-    # check whether they are changing to an email that already exists, should not be possible
+    // check whether they are changing to an email that already exists, should not be possible
     $req = Sql_Query("select uniqid from {$GLOBALS['tables']['user']} where email = \"$email\"");
     if (Sql_Affected_Rows()) {
         $row = Sql_Fetch_Row($req);
@@ -469,14 +468,14 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             Fatal_Error('Cannot change to that email address.
       <br/>This email already exists.
       <br/>Please use the preferences URL for this email to make updates.
-      <br/>Click <a href="' . getConfig('preferencesurl') . "&amp;email=$email\">here</a> to request your personal location");
+      <br/>Click <a href="' .getConfig('preferencesurl')."&amp;email=$email\">here</a> to request your personal location");
             exit;
         }
     }
-    # read the current values to compare changes
+    // read the current values to compare changes
     $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['user'], $userid));
     $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-    $history_entry = '';#'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+    $history_entry = ''; //'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
 
     if (ASKFORPASSWORD && $_POST['password']) {
         if (ENCRYPTPASSWORD) {
@@ -484,10 +483,10 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         } else {
             $newpassword = sprintf('%s', $_POST['password']);
         }
-        # see whether is has changed
+        // see whether is has changed
         $curpwd = Sql_Fetch_Row_Query("select password from {$GLOBALS['tables']['user']} where id = $userid");
         if ($_POST['password'] != $curpwd[0]) {
-            $storepassword = 'password = "' . $newpassword . '",';
+            $storepassword = 'password = "'.$newpassword.'",';
             Sql_query("update {$GLOBALS['tables']['user']} set passwordchanged = now() where id = $userid");
             $history_entry .= "\nUser has changed their password\n";
             addSubscriberStatistics('password change', 1);
@@ -498,7 +497,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $storepassword = '';
     }
 
-    # We want all these to be set, albeit to empty string
+    // We want all these to be set, albeit to empty string
     foreach (array('htmlemail') as $sUnsubscribeFormVar) {
         if (!isset($_POST[$sUnsubscribeFormVar])) {
             $_POST[$sUnsubscribeFormVar] = '';
@@ -507,15 +506,15 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     $query = sprintf('update %s set email = "%s", %s htmlemail = %d where id = %d',
         $GLOBALS['tables']['user'], sql_escape($_POST['email']), $storepassword, $_POST['htmlemail'], $userid);
-    #print $query;
+    //print $query;
     $result = Sql_query($query);
     if (strtolower($data['email']) != strtolower($email)) {
         $emailchanged = 1;
         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'], $userid));
     }
 
-    # subscribe to the lists
-    # first take them off the ones, then re-subscribe
+    // subscribe to the lists
+    // first take them off the ones, then re-subscribe
     if ($subscribepagedata['lists']) {
         $subscribepagedata['lists'] = preg_replace("/^\,/", '', $subscribepagedata['lists']);
         Sql_query(sprintf('delete from %s where userid = %d and listid in (%s)', $GLOBALS['tables']['listuser'],
@@ -530,16 +529,16 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         while (list($key, $val) = each($_POST['list'])) {
             if ($val == 'signup') {
                 $result = Sql_query("replace into {$GLOBALS['tables']['listuser']} (userid,listid,entered) values($userid,$key,now())");
-#        $lists .= "  * ".$_POST["listname"][$key]."\n";
+//        $lists .= "  * ".$_POST["listname"][$key]."\n";
             }
         }
     }
-    # check list membership
+    // check list membership
     $subscriptions = array();
     $req = Sql_Query(sprintf('select * from %s listuser,%s list where listuser.userid = %d and listuser.listid = list.id and list.active',
         $GLOBALS['tables']['listuser'], $GLOBALS['tables']['list'], $userid));
     while ($row = Sql_Fetch_Array($req)) {
-        $lists .= '  * ' . listName($row['listid']) . "\n";
+        $lists .= '  * '.listName($row['listid'])."\n";
         array_push($subscriptions, $row['listid']);
     }
 
@@ -550,14 +549,14 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $lists = 'No Lists';
     }
 
-    # We want all these to be set, albeit to empty string
+    // We want all these to be set, albeit to empty string
     foreach (array('datachange', 'htmlemail', 'information_changed', 'emailchanged') as $sUnsubscribeVar) {
         if (!isset(${$sUnsubscribeVar})) {
             ${$sUnsubscribeVar} = '';
         }
     }
 
-    $datachange .= "$strEmail : " . $email . "\n";
+    $datachange .= "$strEmail : ".$email."\n";
     if ($subscribepagedata['htmlchoice'] != 'textonly'
         && $subscribepagedata['htmlchoice'] != 'htmlonly'
     ) {
@@ -565,24 +564,24 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $datachange .= $_POST['htmlemail'] ? "$strYes\n" : "$strNo\n";
     }
 
-    # remember the users attributes
+    // remember the users attributes
     $attids = join_clean(',', $attributes);
     if ($attids && $attids != '') {
-        $res = Sql_Query('select * from ' . $GLOBALS['tables']['attribute'] . " where id in ($attids)");
+        $res = Sql_Query('select * from '.$GLOBALS['tables']['attribute']." where id in ($attids)");
         while ($attribute = Sql_Fetch_Array($res)) {
-            $fieldname = 'attribute' . $attribute['id'];
+            $fieldname = 'attribute'.$attribute['id'];
             if (isset($_POST[$fieldname])) {
-                $value = $_POST[$fieldname]; ## is being sanitised below, depending on attribute type
+                $value = $_POST[$fieldname]; //# is being sanitised below, depending on attribute type
             } else {
                 $value = '';
             }
-            $replace = 1;#isset($_POST[$fieldname]);
+            $replace = 1; //isset($_POST[$fieldname]);
             if ($attribute['type'] == 'date') {
                 $value = $date->getDate($fieldname);
             } elseif (is_array($value)) {
                 $values = array();
                 foreach ($value as $val) {
-                    array_push($values, sprintf('%0' . $checkboxgroup_storesize . 'd', $val));
+                    array_push($values, sprintf('%0'.$checkboxgroup_storesize.'d', $val));
                 }
                 $value = implode(',', $values);
             } elseif ($attribute['type'] != 'textarea') {
@@ -594,7 +593,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
                 Sql_query(sprintf('replace into %s (attributeid,userid,value) values("%s","%s","%s")',
                     $GLOBALS['tables']['user_attribute'], $attribute['id'], $userid, $value));
                 if ($attribute['type'] != 'hidden') {
-                    $datachange .= strip_tags($attribute['name']) . ' : ';
+                    $datachange .= strip_tags($attribute['name']).' : ';
                     if ($attribute['type'] == 'checkbox') {
                         $datachange .= $value ? $strYes : $strNo;
                     } elseif ($attribute['type'] != 'date' && $attribute['type'] != 'textline' && $attribute['type'] != 'textarea') {
@@ -633,8 +632,8 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $message = str_replace('[CONFIRMATIONINFO]', '', $message);
     }
 
-    print '<title>' . $GLOBALS['strPreferencesTitle'] . '</title>';
-    print $subscribepagedata['header'];
+    echo '<title>'.$GLOBALS['strPreferencesTitle'].'</title>';
+    echo $subscribepagedata['header'];
     if (!TEST) {
         if ($emailchanged) {
             if (sendMail($data['email'], getConfig('updatesubject'), $oldaddressmessage, system_messageheaders($email),
@@ -644,7 +643,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             ) {
                 $ok = 1;
                 sendAdminCopy('Lists information changed',
-                    "\n" . $data['email'] . " has changed their information.\n\nThe email has changed to $email.\n\n$history_entry",
+                    "\n".$data['email']." has changed their information.\n\nThe email has changed to $email.\n\n$history_entry",
                     $subscriptions);
                 addUserHistory($email, 'Change', $history_entry);
             } else {
@@ -654,7 +653,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             if (sendMail($email, getConfig('updatesubject'), $message, system_messageheaders($email), $envelope)) {
                 $ok = 1;
                 sendAdminCopy('Lists information changed',
-                    "\n" . $data['email'] . " has changed their information\n\n$history_entry", $subscriptions);
+                    "\n".$data['email']." has changed their information\n\n$history_entry", $subscriptions);
                 addUserHistory($email, 'Change', $history_entry);
             } else {
                 $ok = 0;
@@ -664,39 +663,39 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $ok = 1;
     }
     if ($ok) {
-        print '<h3>' . $GLOBALS['strPreferencesUpdated'] . '</h3>';
+        echo '<h3>'.$GLOBALS['strPreferencesUpdated'].'</h3>';
         if ($emailchanged) {
             echo $strPreferencesEmailChanged;
         }
-        print '<br/>';
+        echo '<br/>';
         if ($_GET['p'] == 'preferences') {
-            #0013134: turn off the confirmation email when an existing subscriber changes preference.
+            //0013134: turn off the confirmation email when an existing subscriber changes preference.
             $ok = 1;
         } else {
             echo $strPreferencesNotificationSent;
         }
     } else {
-        print '<h3>' . $strEmailFailed . '</h3>';
+        echo '<h3>'.$strEmailFailed.'</h3>';
     }
-    print '<p class="information">' . $PoweredBy . '</p>';
-    print $subscribepagedata['footer'];
+    echo '<p class="information">'.$PoweredBy.'</p>';
+    echo $subscribepagedata['footer'];
     // exit;
     // Instead of exiting here, we return 3. So in lists/index.php
     // We can decide, whether to show preferences page or not.
-    ## mantis issue 6508
+    //# mantis issue 6508
     return 3;
 } elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !is_email($_POST['email'])) {
-    $msg = '<div class="error missing">' . $strEnterEmail . '</div><br/>';
+    $msg = '<div class="error missing">'.$strEnterEmail.'</div><br/>';
 } elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !$validhost) {
-    $msg = '<div class="error missing">' . $strInvalidHostInEmail . '</div><br/>';
+    $msg = '<div class="error missing">'.$strInvalidHostInEmail.'</div><br/>';
 } elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && $pluginResult) {
-    $msg = '<div class="error missing">' . $pluginResult . '</div><br/>';
+    $msg = '<div class="error missing">'.$pluginResult.'</div><br/>';
 } elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && $missing) {
-    $msg = '<div class="error missing">' . "$strValuesMissing: $missing" . '</div><br/>';
+    $msg = '<div class="error missing">'."$strValuesMissing: $missing".'</div><br/>';
 } elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !isset($_POST['list']) && !ALLOW_NON_LIST_SUBSCRIBE) {
-    $msg = '<div class="error missing">' . $strEnterList . '</div><br/>';
+    $msg = '<div class="error missing">'.$strEnterList.'</div><br/>';
 } else {
-    #  $msg = 'Unknown Error';
+    //  $msg = 'Unknown Error';
 }
 
 function ListAvailableLists($userid = 0, $lists_to_show = '')
@@ -713,7 +712,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
     $showlists = explode(',', $lists_to_show);
     if (PREFERENCEPAGE_SHOW_PRIVATE_LISTS && !empty($userid)) {
-        ## merge with the subscribed lists, regardless of public state
+        //# merge with the subscribed lists, regardless of public state
         $req = Sql_Query(sprintf('select listid from %s where userid = %d', $tables['listuser'], $userid));
         while ($row = Sql_Fetch_Row($req)) {
             $subscribed[] = $row[0];
@@ -727,7 +726,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         }
     }
     if (count($listset) >= 1) {
-        $subselect = 'where id in (' . implode(',', $listset) . ') ';
+        $subselect = 'where id in ('.implode(',', $listset).') ';
     }
 
     $some = 0;
@@ -735,7 +734,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     $result = Sql_query("SELECT * FROM {$GLOBALS['tables']['list']} $subselect order by listorder, name");
     while ($row = Sql_fetch_array($result)) {
         if ($row['active'] || in_array($row['id'], $subscribed)) {
-            $html .= '<li class="list"><input type="checkbox" name="list[' . $row['id'] . ']" value="signup" ';
+            $html .= '<li class="list"><input type="checkbox" name="list['.$row['id'].']" value="signup" ';
             if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
                 $html .= 'checked="checked"';
             }
@@ -746,14 +745,14 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $html .= 'checked="checked"';
                 }
             }
-            $html .= ' /><b>' . stripslashes($row['name']) . '</b><div class="listdescription">';
+            $html .= ' /><b>'.stripslashes($row['name']).'</b><div class="listdescription">';
             $desc = nl2br(stripslashes($row['description']));
-            #     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
-            $html .= $desc . '</div></li>';
+            //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
+            $html .= $desc.'</div></li>';
             ++$some;
             if ($some == 1) {
                 $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
-                $singlelisthtml .= '<input type="hidden" name="listname[' . $row['id'] . ']" value="' . htmlspecialchars(stripslashes($row['name'])) . '"/>';
+                $singlelisthtml .= '<input type="hidden" name="listname['.$row['id'].']" value="'.htmlspecialchars(stripslashes($row['name'])).'"/>';
             }
         }
     }
@@ -762,13 +761,13 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     if (!$some) {
         global $strNotAvailable;
 
-        return '<p class="information">' . $strNotAvailable . '</p>';
+        return '<p class="information">'.$strNotAvailable.'</p>';
     } elseif ($some == 1 && ($hidesinglelist == 'true' || $hidesinglelist === true || $hidesinglelist === '1')) {
         return $singlelisthtml;
     } else {
         global $strPleaseSelect;
 
-        return '<p class="information">' . $strPleaseSelect . ':</p>' . $html;
+        return '<p class="information">'.$strPleaseSelect.':</p>'.$html;
     }
 }
 
@@ -790,7 +789,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
 
         $email = obfuscateEmailAddress($current['email']);
         $htmlemail = $current['htmlemail'];
-        # override with posted info
+        // override with posted info
         foreach ($current as $key => $val) {
             if (isset($_POST[$key]) && $key != 'password') {
                 $current[$key] = $val;
@@ -846,8 +845,8 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
 
     if ((isset($_GET['page']) && $_GET['page'] != 'import1') || !isset($_GET['page'])) {
         if (ASKFORPASSWORD) {
-            # we only require a password if there isnt one, so they can set it
-            # otherwise they can keep the existing, if they do not enter anything
+            // we only require a password if there isnt one, so they can set it
+            // otherwise they can keep the existing, if they do not enter anything
             if (!isset($current['password']) || !$current['password']) {
                 $pwdclass = 'required';
                 $js = sprintf('<script language="Javascript" type="text/javascript">addFieldToCheck("password","%s");</script>',
@@ -871,7 +870,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
         }
     }
 
-## Write attribute fields
+//# Write attribute fields
     switch ($htmlchoice) {
         case 'textonly':
             if (!isset($htmlemail)) {
@@ -946,10 +945,10 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
             }
             $attr['required'] = $attributedata[$attr['id']]['required'];
             $attr['default_value'] = $attributedata[$attr['id']]['default_value'];
-            $fieldname = 'attribute' . $attr['id'];
-            #  print "<tr><td>".$attr["id"]."</td></tr>";
+            $fieldname = 'attribute'.$attr['id'];
+            //  print "<tr><td>".$attr["id"]."</td></tr>";
             if ($userid && !isset($_POST[$fieldname])) {
-                # post values take precedence
+                // post values take precedence
                 $val = Sql_Fetch_Row_Query(sprintf('select value from %s where
           attributeid = %d and userid = %d', $GLOBALS['tables']['user_attribute'], $attr['id'], $userid));
                 $_POST[$fieldname] = $val[0];
@@ -959,25 +958,25 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
             switch ($attr['type']) {
                 case 'checkbox':
                     $output[$attr['id']] = '<tr><td colspan="2">';
-                    # what they post takes precedence over the database information
+                    // what they post takes precedence over the database information
                     if ($_POST[$fieldname]) {
                         $checked = $_POST[$fieldname] ? 'checked="checked"' : '';
                     } else {
                         $checked = $data[$attr['id']] ? 'checked="checked"' : '';
                     }
-                    $output[$attr['id']] .= sprintf("\n" . '<input type="checkbox" name="%s" value="on" %s class="attributeinput" id="'.$fieldname.'" />',
+                    $output[$attr['id']] .= sprintf("\n".'<input type="checkbox" name="%s" value="on" %s class="attributeinput" id="'.$fieldname.'" />',
                         $fieldname, $checked);
-                    $output[$attr['id']] .= sprintf("\n" . '<span class="%s"><label for="'.$fieldname.'">%s</label></span>',
-                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' :  stripslashes($attr['name']));
+                    $output[$attr['id']] .= sprintf("\n".'<span class="%s"><label for="'.$fieldname.'">%s</label></span>',
+                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' : stripslashes($attr['name']));
                     if ($attr['required']) {
                         $output[$attr['id']] .= sprintf('<script language="Javascript" type="text/javascript">addFieldToCheck("%s","%s");</script>',
                             $fieldname, $attr['name']);
                     }
                     break;
                 case 'radio':
-                    $output[$attr['id']] .= sprintf("\n" . '<tr><td colspan="2"><div class="%s">%s</div>',
-                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' :  stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $output[$attr['id']] .= sprintf("\n".'<tr><td colspan="2"><div class="%s">%s</div>',
+                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' : stripslashes($attr['name']));
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     while ($value = Sql_Fetch_array($values_request)) {
                         if (!empty($_POST[$fieldname])) {
                             $checked = $_POST[$fieldname] == $value['id'] ? 'checked="checked"' : '';
@@ -986,8 +985,8 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                         } else {
                             $checked = $attr['default_value'] == $value['name'] ? 'checked="checked"' : '';
                         }
-                        $output[$attr['id']] .= sprintf('<input type="radio"  class="attributeinput" name="%s" id="'.$fieldname.$value["id"].'" value="%s" %s />&nbsp;%s&nbsp;',
-                            $fieldname, $value['id'], $checked, '<label for="'.$fieldname.$value["id"].'">'.$value['name'].'</label>');
+                        $output[$attr['id']] .= sprintf('<input type="radio"  class="attributeinput" name="%s" id="'.$fieldname.$value['id'].'" value="%s" %s />&nbsp;%s&nbsp;',
+                            $fieldname, $value['id'], $checked, '<label for="'.$fieldname.$value['id'].'">'.$value['name'].'</label>');
                     }
                     if ($attr['required']) {
                         $output[$attr['id']] .= sprintf('<script language="Javascript" type="text/javascript">addGroupToCheck("%s","%s");</script>',
@@ -995,9 +994,9 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                     }
                     break;
                 case 'select':
-                    $output[$attr['id']] .= sprintf("\n" . '<tr><td><div class="%s"><label for="'.$fieldname.'">%s</label></div>',
-                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' :  stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $output[$attr['id']] .= sprintf("\n".'<tr><td><div class="%s"><label for="'.$fieldname.'">%s</label></div>',
+                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' : stripslashes($attr['name']));
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     $output[$attr['id']] .= sprintf('</td><td class="attributeinput"><!--%d--><select name="%s" class="attributeinput" id="'.$fieldname.'">',
                         $data[$attr['id']], $fieldname);
                     while ($value = Sql_Fetch_array($values_request)) {
@@ -1012,7 +1011,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                         } else {
                             $selected = '';
                         }
-                        if (preg_match('/^' . preg_quote(EMPTY_VALUE_PREFIX) . '/i', $value['name'])) {
+                        if (preg_match('/^'.preg_quote(EMPTY_VALUE_PREFIX).'/i', $value['name'])) {
                             $value['id'] = '';
                         }
                         $output[$attr['id']] .= sprintf('<option value="%s" %s>%s', $value['id'], $selected,
@@ -1021,9 +1020,9 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                     $output[$attr['id']] .= '</select>';
                     break;
                 case 'checkboxgroup':
-                    $output[$attr['id']] .= sprintf("\n" . '<tr><td><div class="%s">%s</div>',
-                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' :  stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $output[$attr['id']] .= sprintf("\n".'<tr><td><div class="%s">%s</div>',
+                        $attr['required'] ? 'required' : 'attributename', $attr['required'] ? stripslashes($attr['name']).' *' : stripslashes($attr['name']));
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     $output[$attr['id']] .= sprintf('</td>');
                     $first_td = 0;
                     while ($value = Sql_Fetch_array($values_request)) {
@@ -1047,7 +1046,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                     $first_td = 0;
                     break;
                 case 'textline':
-                    $output[$attr['id']] .= sprintf("\n" . '<tr><td><div class="%s"><label for="'.$fieldname.'">%s</label></div>',
+                    $output[$attr['id']] .= sprintf("\n".'<tr><td><div class="%s"><label for="'.$fieldname.'">%s</label></div>',
                         $attr['required'] ? 'required' : 'attributename', $attr['required'] ? $attr['name'].' *' : $attr['name']);
                     $output[$attr['id']] .= sprintf('</td><td class="attributeinput">
             <input type="text" name="%s"  class="attributeinput" size="%d" value="%s" id="'.$fieldname.'" />', $fieldname,
@@ -1059,7 +1058,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                     }
                     break;
                 case 'textarea':
-                    $output[$attr['id']] .= sprintf("\n" . '<tr><td colspan="2">
+                    $output[$attr['id']] .= sprintf("\n".'<tr><td colspan="2">
             <div class="%s"><label for="'.$fieldname.'">%s</label></div></td></tr>', $attr['required'] ? 'required' : 'attributename',
                         $attr['required'] ? $attr['name'].' *' : $attr['name']);
                     $output[$attr['id']] .= sprintf('<tr><td class="attributeinput" colspan="2">
@@ -1076,7 +1075,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                         $fieldname, $data[$attr['id']] ? $data[$attr['id']] : $attr['default_value']);
                     break;
                 case 'date':
-                    require_once dirname(__FILE__) . '/date.php';
+                    require_once dirname(__FILE__).'/date.php';
                     $date = new Date();
                     $postval = $date->getDate($fieldname);
                     if ($data[$attr['id']]) {
@@ -1085,7 +1084,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
                         $val = $postval;
                     }
 
-                    $output[$attr['id']] = sprintf("\n" . '<tr><td><div class="%s">%s</div>',
+                    $output[$attr['id']] = sprintf("\n".'<tr><td><div class="%s">%s</div>',
                         $attr['required'] ? 'required' : 'attributename', $attr['required'] ? $attr['name'].' *' : $attr['name']);
                     $output[$attr['id']] .= sprintf('</td><td class="attributeinput">
             %s</td></tr>', $date->showInput($fieldname, '', $val));
@@ -1097,7 +1096,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
         }
     }
 
-    # make sure the order is correct
+    // make sure the order is correct
     foreach ($attributes as $attribute => $listorder) {
         if (isset($output[$attribute])) {
             $html .= $output[$attribute];
@@ -1123,7 +1122,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
 
         $email = $current['email'];
         $htmlemail = $current['htmlemail'];
-        # override with posted info
+        // override with posted info
         foreach ($current as $key => $val) {
             if (isset($_POST[$key]) && $key != 'password') {
                 $current[$key] = $val;
@@ -1171,14 +1170,14 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
     }
 
     if (ASKFORPASSWORD) {
-        # we only require a password if there isnt one, so they can set it
-        # otherwise they can keep the existing, if they do not enter anything
+        // we only require a password if there isnt one, so they can set it
+        // otherwise they can keep the existing, if they do not enter anything
         if (!isset($current['password']) || !$current['password']) {
             $pwdclass = 'required';
-            #  $html .= '<input type="hidden" name="passwordreq" value="1" />';
+            //  $html .= '<input type="hidden" name="passwordreq" value="1" />';
         } else {
             $pwdclass = 'attributename';
-            #  $html .= '<input type="hidden" name="passwordreq" value="0" />';
+            //  $html .= '<input type="hidden" name="passwordreq" value="0" />';
         }
 
         $html .= sprintf('
@@ -1188,10 +1187,10 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
       <label for="password_check">%s</label><input type="password" name="password_check" value="" class="input password required" />',
             $GLOBALS['strPassword2']);
     }
-    $html .= '</div>'; ## class=required
+    $html .= '</div>'; //# class=required
 
     $htmlchoice = 'checkforhtml';
-## Write attribute fields
+//# Write attribute fields
     switch ($htmlchoice) {
         case 'textonly':
             if (!isset($htmlemail)) {
@@ -1241,7 +1240,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
     }
     $html .= "</fieldset>\n";
 
-    $html .= '<fieldset class="attributes">' . "\n";
+    $html .= '<fieldset class="attributes">'."\n";
 
     $attids = implode(',', array_keys($attributes));
     $output = array();
@@ -1254,10 +1253,10 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             }
             $attr['required'] = $attributedata[$attr['id']]['required'];
             $attr['default_value'] = $attributedata[$attr['id']]['default_value'];
-            $fieldname = 'attribute' . $attr['id'];
-            #  print "<tr><td>".$attr["id"]."</td></tr>";
+            $fieldname = 'attribute'.$attr['id'];
+            //  print "<tr><td>".$attr["id"]."</td></tr>";
             if ($userid && !isset($_POST[$fieldname])) {
-                # post values take precedence
+                // post values take precedence
                 $val = Sql_Fetch_Row_Query(sprintf('select value from %s where
           attributeid = %d and userid = %d', $GLOBALS['tables']['user_attribute'], $attr['id'], $userid));
                 $_POST[$fieldname] = $val[0];
@@ -1267,21 +1266,21 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             switch ($attr['type']) {
                 case 'checkbox':
                     $output[$attr['id']] = '';
-                    # what they post takes precedence over the database information
+                    // what they post takes precedence over the database information
                     if (isset($_POST[$fieldname])) {
                         $checked = !empty($_POST[$fieldname]) ? 'checked="checked"' : '';
                     } else {
                         $checked = !empty($data[$attr['id']]) ? 'checked="checked"' : '';
                     }
-                    $output[$attr['id']] .= sprintf("\n" . '<input type="checkbox" name="%s" value="on" %s class="input%s" />',
+                    $output[$attr['id']] .= sprintf("\n".'<input type="checkbox" name="%s" value="on" %s class="input%s" />',
                         $fieldname, $checked, $attr['required'] ? ' required' : '');
-                    $output[$attr['id']] .= sprintf("\n" . '<label for="%s" class="%s">%s</label>', $fieldname,
+                    $output[$attr['id']] .= sprintf("\n".'<label for="%s" class="%s">%s</label>', $fieldname,
                         $attr['required'] ? 'required' : '', stripslashes($attr['name']));
                     break;
                 case 'radio':
-                    $output[$attr['id']] .= sprintf("\n" . '<fieldset class="radiogroup %s"><legend>%s</legend>',
+                    $output[$attr['id']] .= sprintf("\n".'<fieldset class="radiogroup %s"><legend>%s</legend>',
                         $attr['required'] ? 'required' : '', stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     while ($value = Sql_Fetch_array($values_request)) {
                         if (!empty($_POST[$fieldname])) {
                             $checked = $_POST[$fieldname] == $value['id'] ? 'checked="checked"' : '';
@@ -1294,12 +1293,12 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                             $attr['required'] ? ' required' : '', $fieldname, $value['id'], $checked, $fieldname,
                             $value['name']);
                     }
-                    $output[$attr['id']] . '</fieldset>';
+                    $output[$attr['id']].'</fieldset>';
                     break;
                 case 'select':
-                    $output[$attr['id']] .= sprintf("\n" . '<fieldset class="selectgroup %s"><label for="%s">%s</label>',
+                    $output[$attr['id']] .= sprintf("\n".'<fieldset class="selectgroup %s"><label for="%s">%s</label>',
                         $attr['required'] ? 'required' : '', $fieldname, stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     $output[$attr['id']] .= sprintf('<select name="%s" class="input%s">', $fieldname,
                         $attr['required'] ? 'required' : '');
                     while ($value = Sql_Fetch_array($values_request)) {
@@ -1310,7 +1309,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                         } else {
                             $selected = $attr['default_value'] == $value['name'] ? 'selected="selected"' : '';
                         }
-                        if (preg_match('/^' . preg_quote(EMPTY_VALUE_PREFIX) . '/i', $value['name'])) {
+                        if (preg_match('/^'.preg_quote(EMPTY_VALUE_PREFIX).'/i', $value['name'])) {
                             $value['id'] = '';
                         }
                         $output[$attr['id']] .= sprintf('<option value="%s" %s>%s</option>', $value['id'], $selected,
@@ -1320,9 +1319,9 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                     $output[$attr['id']] .= '</fieldset>';
                     break;
                 case 'checkboxgroup':
-                    $output[$attr['id']] .= sprintf("\n" . '<fieldset class="checkboxgroup %s"><label for="%s">%s</label>',
+                    $output[$attr['id']] .= sprintf("\n".'<fieldset class="checkboxgroup %s"><label for="%s">%s</label>',
                         $attr['required'] ? 'required' : '', $fieldname, stripslashes($attr['name']));
-                    $values_request = Sql_Query("select * from $table_prefix" . 'listattr_' . $attr['tablename'] . ' order by listorder,name');
+                    $values_request = Sql_Query("select * from $table_prefix".'listattr_'.$attr['tablename'].' order by listorder,name');
                     $cbCounter = 0;
                     while ($value = Sql_Fetch_array($values_request)) {
                         ++$cbCounter;
@@ -1340,14 +1339,14 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                     $output[$attr['id']] .= '</fieldset>';
                     break;
                 case 'textline':
-                    $output[$attr['id']] .= sprintf("\n" . '<label for="%s" class="input %s">%s</label>', $fieldname,
+                    $output[$attr['id']] .= sprintf("\n".'<label for="%s" class="input %s">%s</label>', $fieldname,
                         $attr['required'] ? ' required' : '', $attr['name']);
                     $output[$attr['id']] .= sprintf('<input type="text" name="%s" class="input%s" value="%s" />',
                         $fieldname, $attr['required'] ? ' required' : '',
                         isset($_POST[$fieldname]) ? htmlspecialchars(stripslashes($_POST[$fieldname])) : (isset($data[$attr['id']]) ? $data[$attr['id']] : $attr['default_value']));
                     break;
                 case 'textarea':
-                    $output[$attr['id']] .= sprintf("\n" . '<label for="%s" class="input %s">%s</label>', $fieldname,
+                    $output[$attr['id']] .= sprintf("\n".'<label for="%s" class="input %s">%s</label>', $fieldname,
                         $attr['required'] ? ' required' : '', $attr['name']);
                     $output[$attr['id']] .= sprintf('<textarea name="%s" rows="%d" cols="%d" class="input%s" wrap="virtual">%s</textarea>',
                         $fieldname, $textarearows, $textareacols, $attr['required'] ? ' required' : '',
@@ -1358,7 +1357,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                         $data[$attr['id']] ? $data[$attr['id']] : $attr['default_value']);
                     break;
                 case 'date':
-                    require_once dirname(__FILE__) . '/date.php';
+                    require_once dirname(__FILE__).'/date.php';
                     $date = new Date();
                     $postval = $date->getDate($fieldname);
                     if ($data[$attr['id']]) {
@@ -1367,7 +1366,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
                         $val = $postval;
                     }
 
-                    $output[$attr['id']] = sprintf("\n" . '<fieldset class="date%s"><label for="%s">%s</label>',
+                    $output[$attr['id']] = sprintf("\n".'<fieldset class="date%s"><label for="%s">%s</label>',
                         $attr['required'] ? ' required' : '', $fieldname, $attr['name']);
                     $output[$attr['id']] .= sprintf('%s', $date->showInput($fieldname, '', $val));
                     $output[$attr['id']] .= '</fieldset>';
@@ -1379,16 +1378,16 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
         }
     }
 
-    # make sure the order is correct
+    // make sure the order is correct
     foreach ($attributes as $attribute => $listorder) {
         if (isset($output[$attribute])) {
             $html .= $output[$attribute];
         }
     }
 
-    $html .= '</fieldset>' . "\n"; ## class=attributes
+    $html .= '</fieldset>'."\n"; //# class=attributes
 
-#  print htmlspecialchars( '<fieldset class="phplist">'.$html.'</fieldset>');exit;
+//  print htmlspecialchars( '<fieldset class="phplist">'.$html.'</fieldset>');exit;
     return $html;
 }
 
@@ -1399,7 +1398,7 @@ function ListAllAttributes()
     $attributedata = array();
     $res = Sql_Query("select * from {$GLOBALS['tables']['attribute']} order by listorder");
     while ($row = Sql_Fetch_Array($res)) {
-        #   print $row["id"]. " ".$row["name"];
+        //   print $row["id"]. " ".$row["name"];
         $attributes[$row['id']] = $row['listorder'];
         $attributedata[$row['id']]['id'] = $row['id'];
         $attributedata[$row['id']]['default_value'] = $row['default_value'];

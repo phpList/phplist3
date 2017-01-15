@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 $req = Sql_Query(sprintf('select * from %s where date_add(from_unixtime(unixdate),interval 12 month) > now() order by unixdate',
     $GLOBALS['tables']['userstats']));
@@ -15,4 +15,4 @@ while ($row = Sql_Fetch_Array($req)) {
     }
     $ls->addColumn($element, $date, $row['value']);
 }
-print $ls->display();
+echo $ls->display();

@@ -1,6 +1,6 @@
 <?php
 
-## some system tasks, that don't need to be in the menu
+//# some system tasks, that don't need to be in the menu
 
 /*
  * bit of code to list all files and compare them to the menu categorisation
@@ -27,8 +27,8 @@ $pages = array(
     'converttoutf8',
 );
 
-print '<ul class="dashboard_button">';
+echo '<ul class="dashboard_button">';
 foreach ($pages as $page) {
-    print '<li class="configuration">' . PageLink2($page, s($page)) . '</li>';
+    echo '<li class="configuration">'.PageLink2($page, s($page)).'</li>';
 }
-print '</ul>';
+echo '</ul>';

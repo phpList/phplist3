@@ -2,10 +2,10 @@
 
 ob_start();
 $er = error_reporting(0);
-require_once dirname(__FILE__) . '/admin/inc/unregister_globals.php';
-require_once dirname(__FILE__) . '/admin/inc/magic_quotes.php';
+require_once dirname(__FILE__).'/admin/inc/unregister_globals.php';
+require_once dirname(__FILE__).'/admin/inc/magic_quotes.php';
 
-## none of our parameters can contain html for now
+//# none of our parameters can contain html for now
 $_GET = removeXss($_GET);
 $_POST = removeXss($_POST);
 $_REQUEST = removeXss($_REQUEST);
@@ -15,34 +15,33 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
 } elseif (is_file('config/config.php')) {
     include 'config/config.php';
 } else {
-    print "Error, cannot find config file\n";
+    echo "Error, cannot find config file\n";
     exit;
 }
 
-require_once dirname(__FILE__) . '/admin/init.php';
+require_once dirname(__FILE__).'/admin/init.php';
 
 $GLOBALS['database_module'] = basename($GLOBALS['database_module']);
 $GLOBALS['language_module'] = basename($GLOBALS['language_module']);
 
-require_once dirname(__FILE__) . '/admin/' . $GLOBALS['database_module'];
+require_once dirname(__FILE__).'/admin/'.$GLOBALS['database_module'];
 
-# load default english and language
-include_once dirname(__FILE__) . '/texts/english.inc';
-# Allow customisation per installation
-if (is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $GLOBALS['language_module'])) {
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/' . $GLOBALS['language_module'];
+// load default english and language
+include_once dirname(__FILE__).'/texts/english.inc';
+// Allow customisation per installation
+if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'])) {
+    include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'];
 }
 
-require_once dirname(__FILE__) . '/admin/inc/random_compat/random.php';
-include_once dirname(__FILE__) . '/admin/languages.php';
-require_once dirname(__FILE__) . '/admin/defaultconfig.php';
-require_once dirname(__FILE__) . '/admin/connect.php';
-include_once dirname(__FILE__) . '/admin/lib.php';
-
+require_once dirname(__FILE__).'/admin/inc/random_compat/random.php';
+include_once dirname(__FILE__).'/admin/languages.php';
+require_once dirname(__FILE__).'/admin/defaultconfig.php';
+require_once dirname(__FILE__).'/admin/connect.php';
+include_once dirname(__FILE__).'/admin/lib.php';
 
 if (isset($_GET['tid'])) {
-     if (!is_string($_GET['tid'])) {
-        print 'Invalid Request';
+    if (!is_string($_GET['tid'])) {
+        echo 'Invalid Request';
         exit;
     }
     $tid = $_GET['tid'];
@@ -50,22 +49,24 @@ if (isset($_GET['tid'])) {
     if (SIGN_WITH_HMAC) {
         $hmac = $_GET['hm'];
         if (empty($hmac)) {
-            print 'Invalid Request'; exit;
+            echo 'Invalid Request';
+            exit;
         }
-        $myUrl = sprintf('%s://%s%s',$_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
-        $myUrl = str_replace('&hm='.$hmac,'',$myUrl);
+        $myUrl = sprintf('%s://%s%s', $_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+        $myUrl = str_replace('&hm='.$hmac, '', $myUrl);
 
-        if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, XORmask),$hmac)) {
-            print 'Invalid Request'; exit;
+        if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, XORmask), $hmac)) {
+            echo 'Invalid Request';
+            exit;
         }
     }
 
     if (strlen($tid) == 64) {
-        $tid = str_replace(' ','+',$tid);
+        $tid = str_replace(' ', '+', $tid);
         $dec = bin2hex(base64_decode($tid));
-        $track = 'T|'.substr($dec,0,8).'-'.substr($dec,8,4).'-4'.substr($dec,13,3).'-'.substr($dec,16,4).'-'.substr($dec,20,12).'|'.
-            substr($dec,32,8).'-'.substr($dec,40,4).'-4'.substr($dec,45,3).'-'.substr($dec,48,4).'-'.substr($dec,52,12).'|'.
-            substr($dec,64,8).'-'.substr($dec,72,4).'-4'.substr($dec,77,3).'-'.substr($dec,80,4).'-'.substr($dec,84,12);
+        $track = 'T|'.substr($dec, 0, 8).'-'.substr($dec, 8, 4).'-4'.substr($dec, 13, 3).'-'.substr($dec, 16, 4).'-'.substr($dec, 20, 12).'|'.
+            substr($dec, 32, 8).'-'.substr($dec, 40, 4).'-4'.substr($dec, 45, 3).'-'.substr($dec, 48, 4).'-'.substr($dec, 52, 12).'|'.
+            substr($dec, 64, 8).'-'.substr($dec, 72, 4).'-4'.substr($dec, 77, 3).'-'.substr($dec, 80, 4).'-'.substr($dec, 84, 12);
     } else {
         $track = base64_decode($tid);
         $track = $track ^ XORmask;
@@ -115,8 +116,8 @@ if (isset($_GET['tid'])) {
     $messageid = $messagedata['id'];
     $allowPersonalised = true;
 } elseif (isset($_GET['id'])) {
-     if (!is_string($_GET['id'])) {
-        print 'Invalid Request';
+    if (!is_string($_GET['id'])) {
+        echo 'Invalid Request';
         exit;
     }
     $id = $_GET['id'];
@@ -134,20 +135,20 @@ if (isset($_GET['tid'])) {
         $fwdid));
 
     if (!$linkdata) {
-        ## try the old table to avoid breaking links
+        //# try the old table to avoid breaking links
         $linkdata = Sql_Fetch_array_query(sprintf('select * from %s where linkid = %d and userid = %d and messageid = %d',
             $GLOBALS['tables']['linktrack'], $fwdid, $userid, $messageid));
         if (!empty($linkdata['forward'])) {
-            ## we're not recording clicks, but at least links from older phpList versions won't break.
-            header('Location: ' . $linkdata['forward'], true, 303);
+            //# we're not recording clicks, but at least links from older phpList versions won't break.
+            header('Location: '.$linkdata['forward'], true, 303);
             exit;
         }
-#  echo 'Invalid Request';
-        # maybe some logging?
+//  echo 'Invalid Request';
+        // maybe some logging?
         FileNotFound();
     }
-    ## verify that this subscriber actually received this message, otherwise they're allowed
-    ## normal URLS on test messages, but not personalised ones
+    //# verify that this subscriber actually received this message, otherwise they're allowed
+    //# normal URLS on test messages, but not personalised ones
     $allowed = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and messageid = %d',
         $GLOBALS['tables']['usermessage'], $userid, $messageid));
 
@@ -155,15 +156,15 @@ if (isset($_GET['tid'])) {
         ? !empty($_SESSION['adminloggedin'])
         : true;
 } else {
-    print 'Invalid Request';
+    echo 'Invalid Request';
     exit;
 }
 
-## hmm a bit heavy to use here @@@optimise
+//# hmm a bit heavy to use here @@@optimise
 $messagedata = loadMessageData($messageid);
 $trackingcode = '';
-#print "$track<br/>";
-#print "User $userid, Mess $messageid, Link $linkid";
+//print "$track<br/>";
+//print "User $userid, Mess $messageid, Link $linkid";
 
 $ml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d',
     $GLOBALS['tables']['linktrack_ml'], $messageid, $fwdid));
@@ -179,11 +180,11 @@ if (empty($ml['firstclick'])) {
 if ($msgtype == 'H') {
     Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
-    $trackingcode = 'utm_source=phplist' . $messageid . '&utm_medium=email&utm_content=HTML&utm_campaign=' . urlencode($messagedata['subject']);
+    $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=HTML&utm_campaign='.urlencode($messagedata['subject']);
 } else {
     Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
-    $trackingcode = 'utm_source=phplist' . $messageid . '&utm_medium=email&utm_content=text&utm_campaign=' . urlencode($messagedata['subject']);
+    $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=text&utm_campaign='.urlencode($messagedata['subject']);
 }
 
 $viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
@@ -216,44 +217,44 @@ if ($msgtype == 'H') {
 $url = $linkdata['url'];
 if ($linkdata['personalise']) {
     if (!$allowPersonalised) {
-        FileNotFound('<br/><i>' . s('Profile links in test campaigns only work when you are logged in as an administrator.') . '</i><br/>');
+        FileNotFound('<br/><i>'.s('Profile links in test campaigns only work when you are logged in as an administrator.').'</i><br/>');
     }
 
     $uid = Sql_Fetch_Row_Query(sprintf('select uniqid from %s where id = %d', $GLOBALS['tables']['user'], $userid));
     if ($uid[0]) {
         if (strpos($url, '?')) {
-            $url .= '&uid=' . $uid[0];
+            $url .= '&uid='.$uid[0];
         } else {
-            $url .= '?uid=' . $uid[0];
+            $url .= '?uid='.$uid[0];
         }
     }
 }
-#print "$url<br/>";
+//print "$url<br/>";
 if (!isset($_SESSION['entrypoint'])) {
     $_SESSION['entrypoint'] = $url;
 }
 
 if (!empty($messagedata['google_track'])) {
-    ## take off existing tracking code, if found
+    //# take off existing tracking code, if found
     if (strpos($url, 'utm_medium') !== false) {
         $url = preg_replace('/utm_(\w+)\=[^&]+/', '', $url);
     }
-    ## 16894 make sure to keep the fragment value at the end of the URL
+    //# 16894 make sure to keep the fragment value at the end of the URL
     if (strpos($url, '#')) {
         list($tmplink, $fragment) = explode('#', $url);
         $url = $tmplink;
         unset($tmplink);
-        $fragment = '#' . $fragment;
+        $fragment = '#'.$fragment;
     } else {
         $fragment = '';
     }
     if (strpos($url, '?')) {
-        $url = $url . '&' . $trackingcode . $fragment;
+        $url = $url.'&'.$trackingcode.$fragment;
     } else {
-        $url = $url . '?' . $trackingcode . $fragment;
+        $url = $url.'?'.$trackingcode.$fragment;
     }
 }
 
 //print "Location $url"; exit;
-header('Location: ' . $url, true, 303); ## use 303, because Location only uses 302, which gets indexed
+header('Location: '.$url, true, 303); //# use 303, because Location only uses 302, which gets indexed
 exit;

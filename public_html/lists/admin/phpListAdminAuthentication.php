@@ -10,12 +10,12 @@ class phpListAdminAuthentication
     /**
      * validateLogin, verify that the login credentials are correct.
      *
-     * @param string $login the login field
+     * @param string $login    the login field
      * @param string $password the password
      *
      * @return array
-     *    index 0 -> false if login failed, index of the administrator if successful
-     *    index 1 -> error message when login fails
+     *               index 0 -> false if login failed, index of the administrator if successful
+     *               index 1 -> error message when login fails
      *
      * eg
      *    return array(5,'OK'); // -> login successful for admin 5
@@ -29,9 +29,9 @@ class phpListAdminAuthentication
         $admindata = Sql_Fetch_Assoc($req);
         $encryptedPass = hash(ENCRYPTION_ALGO, $password);
         $passwordDB = $admindata['password'];
-        #Password encryption verification.
+        //Password encryption verification.
         if (strlen($passwordDB) < $GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
-            #Encrypt the actual DB password before performing the validation below.
+            //Encrypt the actual DB password before performing the validation below.
             $encryptedPassDB = hash(ENCRYPTION_ALGO, $passwordDB);
             $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'],
                 $encryptedPassDB, sql_escape($login));
@@ -40,18 +40,18 @@ class phpListAdminAuthentication
         }
         if ($admindata['disabled']) {
             return array(0, s('your account has been disabled'));
-        } elseif (#Password validation.
+        } elseif (//Password validation.
             !empty($passwordDB) && $encryptedPass == $passwordDB
         ) {
             return array($admindata['id'], 'OK');
         } else {
-
             if (!empty($GLOBALS['admin_auth_module'])) {
                 Error(s('Admin authentication has changed, please update your admin module'),
                     'https://resources.phplist.com/documentation/errors/adminauthchange');
 
                 return;
             }
+
             return array(0, s('incorrect password'));
         }
         if (!empty($GLOBALS['admin_auth_module'])) {
@@ -67,7 +67,7 @@ class phpListAdminAuthentication
     public function getPassword($email)
     {
         $email = preg_replace("/[;,\"\']/", '', $email);
-        $req = Sql_Query('select email,password,loginname from ' . $GLOBALS['tables']['admin'] . ' where email = "' . sql_escape($email) . '"');
+        $req = Sql_Query('select email,password,loginname from '.$GLOBALS['tables']['admin'].' where email = "'.sql_escape($email).'"');
         if (Sql_Affected_Rows()) {
             $row = Sql_Fetch_Row($req);
 
@@ -83,8 +83,8 @@ class phpListAdminAuthentication
      * @param int $id the ID of the admin as provided by validateLogin
      *
      * @return array
-     *    index 0 -> false if failed, true if successful
-     *    index 1 -> error message when validation fails
+     *               index 0 -> false if failed, true if successful
+     *               index 1 -> error message when validation fails
      *
      * eg
      *    return array(1,'OK'); // -> admin valid
@@ -103,14 +103,14 @@ class phpListAdminAuthentication
         } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION['logindetails']['passhash']) {
             return array(
                 0,
-                s('Your session does not match your password. If you just changed your password, simply log back in.')
+                s('Your session does not match your password. If you just changed your password, simply log back in.'),
             );
         } elseif ($data[1]) {
             return array(0, s('your account has been disabled'));
         }
 
-        ## do this seperately from above, to avoid lock out when the DB hasn't been upgraded.
-        ## so, ignore the error
+        //# do this seperately from above, to avoid lock out when the DB hasn't been upgraded.
+        //# so, ignore the error
         $query = sprintf('select privileges from %s where id = %d', $GLOBALS['tables']['admin'], $id);
         $req = Sql_Query($query);
         if ($req) {
@@ -172,7 +172,7 @@ class phpListAdminAuthentication
      * @return ID if found or false if not;
      */
     public function adminIdForEmail($email)
-    { #Obtain admin Id from a given email address.
+    { //Obtain admin Id from a given email address.
         $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $GLOBALS['tables']['admin'],
             sql_escape($email)));
 
@@ -204,7 +204,7 @@ class phpListAdminAuthentication
      * @param none
      *
      * @return array of admins
-     *    id => name
+     *               id => name
      */
     public function listAdmins()
     {

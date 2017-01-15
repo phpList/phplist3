@@ -1,6 +1,6 @@
 <?php
 
-# initialisation stuff
+// initialisation stuff
 /* init sets all the defaults
  * it is called after config, so that constants not defined in config can be set here
  * it cannot use the DB contents, as the DB connection hasn't been established yet
@@ -8,9 +8,9 @@
 define('PHPLISTINIT', true);
 error_reporting(0);
 
-### remove on rollout ###
-if (is_file(dirname(__FILE__) . '/../../../VERSION')) {
-    $fd = fopen(dirname(__FILE__) . '/../../../VERSION', 'r');
+//## remove on rollout ###
+if (is_file(dirname(__FILE__).'/../../../VERSION')) {
+    $fd = fopen(dirname(__FILE__).'/../../../VERSION', 'r');
     while ($line = fscanf($fd, '%[a-zA-Z0-9,. ]=%[a-zA-Z0-9,. ]')) {
         list($key, $val) = $line;
         if ($key == 'VERSION') {
@@ -23,8 +23,8 @@ if (is_file(dirname(__FILE__) . '/../../../VERSION')) {
 }
 
 if (!defined('VERSION')) {
-    if (!ini_get('open_basedir') && is_dir(dirname(__FILE__) . '/../../../.git')) {
-        define('VERSION', $version . '-dev');
+    if (!ini_get('open_basedir') && is_dir(dirname(__FILE__).'/../../../.git')) {
+        define('VERSION', $version.'-dev');
         define('DEVVERSION', true);
     } else {
         define('VERSION', $version);
@@ -41,12 +41,12 @@ if (empty($GLOBALS['commandline']) && isset($GLOBALS['developer_email']) && $_SE
         unset($$key);
     }
 }
-### end remove on rollout ###
+//## end remove on rollout ###
 if (!defined('DEVVERSION')) {
     define('DEVVERSION', false);
 }
 
-# record the start time(usec) of script
+// record the start time(usec) of script
 $now = gettimeofday();
 $GLOBALS['pagestats'] = array();
 $GLOBALS['pagestats']['time_start'] = $now['sec'] * 1000000 + $now['usec'];
@@ -67,12 +67,12 @@ if (function_exists('iconv') || ((!strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' &&
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding('UTF-8');
 }
-#magic quotes are deprecated, so try to switch off if possible
+//magic quotes are deprecated, so try to switch off if possible
 ini_set('magic_quotes_gpc', 'off');
 
 $IsCommandlinePlugin = '';
 $zlib_compression = ini_get('zlib.output_compression');
-# hmm older versions of PHP don't have this, but then again, upgrade php instead?
+// hmm older versions of PHP don't have this, but then again, upgrade php instead?
 if (function_exists('ob_list_handlers')) {
     $handlers = ob_list_handlers();
 } else {
@@ -82,16 +82,16 @@ $gzhandler = 0;
 foreach ($handlers as $handler) {
     $gzhandler = $gzhandler || $handler == 'ob_gzhandler';
 }
-# @@@ needs more work
+// @@@ needs more work
 $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 
-# make sure these are set correctly, so they cannot be injected due to the PHP Globals Problem,
-# http://www.hardened-php.net/globals-problem
+// make sure these are set correctly, so they cannot be injected due to the PHP Globals Problem,
+// http://www.hardened-php.net/globals-problem
 $GLOBALS['language_module'] = $language_module;
 $GLOBALS['database_module'] = $database_module;
 
-## this is mostly useful when using commandline, and the language is not detected
-## with the browser
+//# this is mostly useful when using commandline, and the language is not detected
+//# with the browser
 if (!isset($GLOBALS['default_system_language'])) {
     $GLOBALS['default_system_language'] = 'en';
 }
@@ -106,31 +106,31 @@ if (!isset($usertable_prefix)) {
 /* this can probably go */
 if (isset($GLOBALS['design'])) {
     $GLOBALS['ui'] = $GLOBALS['design'];
-#@todo
-#  $GLOBALS['design'] = basename($GLOBALS['design']);
+//@todo
+//  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
 
-if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'])) {
-    ## prefer dressprow over orange
-    if (is_dir(dirname(__FILE__) . '/ui/dressprow')) {
+if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
+    //# prefer dressprow over orange
+    if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
         $GLOBALS['ui'] = 'dressprow';
     } else {
         $GLOBALS['ui'] = 'default';
     }
 }
 
-include_once dirname(__FILE__) . '/structure.php';
+include_once dirname(__FILE__).'/structure.php';
 
 if (!isset($tables)) {
     $tables = array();
 }
 foreach ($GLOBALS['DBstructuser'] as $tablename => $tablecolumns) {
-    $tables[$tablename] = $usertable_prefix . $tablename;
-};
+    $tables[$tablename] = $usertable_prefix.$tablename;
+}
 foreach ($GLOBALS['DBstructphplist'] as $tablename => $tablecolumns) {
-    $tables[$tablename] = $table_prefix . $tablename;
-};
-# unset the struct arrays, DBStruct and tables globals remain for the rest of the program
+    $tables[$tablename] = $table_prefix.$tablename;
+}
+// unset the struct arrays, DBStruct and tables globals remain for the rest of the program
 unset($GLOBALS['DBstructuser']);
 unset($GLOBALS['DBstructphplist']);
 
@@ -145,7 +145,7 @@ if ($magic_quotes == 'off' || empty($magic_quotes)) {
 if (empty($GLOBALS['language_module'])) {
     $GLOBALS['language_module'] = 'english.inc';
 }
-if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__) . '/' . $GLOBALS['database_module'])) {
+if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__).'/'.$GLOBALS['database_module'])) {
     $GLOBALS['database_module'] = 'mysqli.inc';
 }
 if (!isset($database_port)) {
@@ -161,10 +161,10 @@ if (!isset($database_connection_ssl)) {
     $database_connection_ssl = false;
 }
 
-## @@ would be nice to move this to the config file at some point
-# http://mantis.phplist.com/view.php?id=15521
-## set it on the fly, although that will probably only work with Apache
-## we need to save this in the DB, so that it'll work on commandline
+//# @@ would be nice to move this to the config file at some point
+// http://mantis.phplist.com/view.php?id=15521
+//# set it on the fly, although that will probably only work with Apache
+//# we need to save this in the DB, so that it'll work on commandline
 $GLOBALS['scheme'] = (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) ? 'https' : 'http';
 if (defined('ADMIN_PROTOCOL')) {
     $GLOBALS['admin_scheme'] = ADMIN_PROTOCOL;
@@ -186,7 +186,7 @@ if (!isset($bounce_protocol)) {
 if (!isset($bounce_unsubscribe_threshold)) {
     $bounce_unsubscribe_threshold = 3;
 }
-## spelling mistake in earlier version, make sure to set it correctly
+//# spelling mistake in earlier version, make sure to set it correctly
 if (!isset($bounce_unsubscribe_threshold) && isset($bounce_unsubscribe_treshold)) {
     $bounce_unsubscribe_threshold = $bounce_unsubscribe_treshold;
 }
@@ -197,7 +197,7 @@ if (!isset($bounce_mailbox_purge_unprocessed)) {
     $bounce_mailbox_purge_unprocessed = true;
 }
 
-# set some defaults if they are not specified
+// set some defaults if they are not specified
 if (!defined('REGISTER')) {
     define('REGISTER', 1);
 }
@@ -219,7 +219,7 @@ define('TRANSLATIONS_XML', 'https://translate.phplist.org/translations.xml');
 //define('TLD_AUTH_MD5','http://data.iana.org/TLD/tlds-alpha-by-domain.txt.md5');
 define('TLD_AUTH_LIST', 'https://www.phplist.com/files/tlds-alpha-by-domain.txt');
 define('TLD_AUTH_MD5', 'https://www.phplist.com/files/tlds-alpha-by-domain.txt.md5');
-define('TLD_REFETCH_TIMEOUT', 15552000); ## 180 days, about 6 months
+define('TLD_REFETCH_TIMEOUT', 15552000); //# 180 days, about 6 months
 if (!defined('PQAPI_URL')) {
     define('PQAPI_URL', 'https://pqapi.phplist.com/1/t/pqapi');
 }
@@ -244,7 +244,7 @@ if (!defined('USEFCK')) {
 }
 if (!defined('USECK')) {
     define('USECK', 0);
-} ## ckeditor integration, not finished yet
+} //# ckeditor integration, not finished yet
 if (!defined('ASKFORPASSWORD')) {
     define('ASKFORPASSWORD', 0);
 }
@@ -265,25 +265,25 @@ if (!defined('SHOW_SUBSCRIBELINK')) {
 }
 
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
-    ##https://mantis.phplist.com/view.php?id=16787
-    # passwords are encrypted, so we need to stick to md5 to keep working
+    //#https://mantis.phplist.com/view.php?id=16787
+    // passwords are encrypted, so we need to stick to md5 to keep working
 
-    ## we also need some "update" mechanism to handle an algo change
+    //# we also need some "update" mechanism to handle an algo change
     if (!defined('ENCRYPTION_ALGO')) {
         define('ENCRYPTION_ALGO', 'md5');
     }
 }
 
 if (ASKFORPASSWORD && !defined('ENCRYPTPASSWORD')) {
-    ## we now always encrypt
+    //# we now always encrypt
     define('ENCRYPTPASSWORD', 1);
 }
 if (!defined('ENCRYPTPASSWORD')) {
-    ## old method to encrypt, used to be with md5, keep like this for backward compat.
+    //# old method to encrypt, used to be with md5, keep like this for backward compat.
     if (!defined('ENCRYPTION_ALGO')) {
         define('ENCRYPTION_ALGO', 'md5');
     }
-#  define("ENCRYPTPASSWORD",0);
+//  define("ENCRYPTPASSWORD",0);
 }
 
 if (!defined('ENCRYPTION_ALGO')) {
@@ -293,7 +293,7 @@ if (!defined('ENCRYPTION_ALGO')) {
         define('ENCRYPTION_ALGO', 'md5');
     }
 }
-## remember the length of a hashed string
+//# remember the length of a hashed string
 $hash_length = strlen(hash(ENCRYPTION_ALGO, 'some text'));
 
 if (!defined('PHPMAILER')) {
@@ -307,7 +307,7 @@ if (!defined('NUMATTACHMENTS')) {
 }
 if (!defined('PLUGIN_ROOTDIR')) {
     define('PLUGIN_ROOTDIR', 'plugins');
-} ##17270 - this will point to the plugins subdir of admin
+} //#17270 - this will point to the plugins subdir of admin
 if (!defined('PLUGIN_ROOTDIRS')) {
     define('PLUGIN_ROOTDIRS', '');
 }
@@ -429,9 +429,9 @@ if (!defined('LANGUAGE_SWITCH')) {
     define('LANGUAGE_SWITCH', 1);
 }
 if (!defined('THEME_SWITCH')) {
-    define('THEME_SWITCH',true);
+    define('THEME_SWITCH', true);
 }
-#if (!defined('USE_ADVANCED_BOUNCEHANDLING')) define('USE_ADVANCED_BOUNCEHANDLING',1);
+//if (!defined('USE_ADVANCED_BOUNCEHANDLING')) define('USE_ADVANCED_BOUNCEHANDLING',1);
 if (!defined('DATE_START_YEAR')) {
     define('DATE_START_YEAR', 1900);
 }
@@ -460,7 +460,7 @@ if (!defined('CLICKTRACK_LINKMAP')) {
     define('CLICKTRACK_LINKMAP', 0);
 }
 if (!defined('SIGN_WITH_HMAC')) {
-    define('SIGN_WITH_HMAC',false);
+    define('SIGN_WITH_HMAC', false);
 }
 if (!defined('ALWAYS_ADD_USERTRACK')) {
     define('ALWAYS_ADD_USERTRACK', 1);
@@ -514,14 +514,14 @@ if (!defined('SENDPROCESS_SERVERNAME')) {
 if (!defined('CHECK_REFERRER')) {
     define('CHECK_REFERRER', true);
 }
-# if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
-# if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
+// if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php');
+// if (!defined('PHPMAILER_PATH')) define ('PHPMAILER_PATH',dirname(__FILE__) . '/PHPMailer_v5.1/class.phpmailer.php');
 if (!defined('DB_TRANSLATION')) {
     define('DB_TRANSLATION', 0);
 }
 if (!defined('MAX_PROCESS_MESSAGE')) {
     define('MAX_PROCESS_MESSAGE', 5);
-} ## how many campaigns to work on at the same time
+} //# how many campaigns to work on at the same time
 if (!defined('ALLOW_DELETEBOUNCE')) {
     define('ALLOW_DELETEBOUNCE', 1);
 }
@@ -539,19 +539,19 @@ if (!defined('MAX_AVATAR_SIZE')) {
 }
 if (!defined('DEFAULT_MESSAGEAGE')) {
     define('DEFAULT_MESSAGEAGE', 604800);
-} ## 7 days in seconds
+} //# 7 days in seconds
 if (!defined('ADD_EMAIL_THROTTLE')) {
     define('ADD_EMAIL_THROTTLE', 1);
-} ## seconds between addemail ajax requests
+} //# seconds between addemail ajax requests
 if (!defined('SENDTEST_THROTTLE')) {
     define('SENDTEST_THROTTLE', 1);
-} ## seconds between send test
+} //# seconds between send test
 if (!defined('SENDTEST_MAX')) {
     define('SENDTEST_MAX', 999);
-} ## max number of emails in a send test
+} //# max number of emails in a send test
 if (!defined('RESETSTATS_MAX')) {
     define('RESETSTATS_MAX', 10);
-} ## do not reset statistics if more than this number have been sent
+} //# do not reset statistics if more than this number have been sent
 if (!defined('MAX_PROCESSQUEUE_TIME')) {
     define('MAX_PROCESSQUEUE_TIME', 99999);
 }
@@ -593,10 +593,10 @@ if (!isset($GLOBALS['installation_name'])) {
     $GLOBALS['installation_name'] = 'phpList';
 }
 if (!defined('SESSIONNAME')) {
-    define('SESSIONNAME', 'phpList' . $GLOBALS['installation_name'] . 'session');
+    define('SESSIONNAME', 'phpList'.$GLOBALS['installation_name'].'session');
 }
-## this doesn't yet work with the FCKEditor
-#ini_set('session.name',str_replace(' ','',SESSIONNAME));
+//# this doesn't yet work with the FCKEditor
+//ini_set('session.name',str_replace(' ','',SESSIONNAME));
 
 if (!defined('USE_AMAZONSES')) {
     define('USE_AMAZONSES', defined('AWS_ACCESSKEYID') && AWS_ACCESSKEYID && function_exists('curl_init'));
@@ -612,13 +612,13 @@ if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
     $allowed_referrers = array();
 }
 if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) {
-    define('ACCESS_CONTROL_ALLOW_ORIGIN', $GLOBALS['scheme'] . '://' . $_SERVER['HTTP_HOST']);
+    define('ACCESS_CONTROL_ALLOW_ORIGIN', $GLOBALS['scheme'].'://'.$_SERVER['HTTP_HOST']);
 }
 
 if (!defined('PREFERENCEPAGE_SHOW_PRIVATE_LISTS')) {
     define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', false);
 }
-#https://mantis.phplist.com/view.php?id=15603
+//https://mantis.phplist.com/view.php?id=15603
 if (!defined('WORDWRAP_HTML')) {
     define('WORDWRAP_HTML', 0);
 }
@@ -627,17 +627,17 @@ if (!defined('USE_PRECEDENCE_HEADER')) {
 }
 if (!defined('RFC_DIRECT_DELIVERY')) {
     define('RFC_DIRECT_DELIVERY', false);
-}  ## Request for Confirmation, delivery with SMTP
-# check whether Pear HTTP/Request is available, and which version
-# try 2 first
+}  //# Request for Confirmation, delivery with SMTP
+// check whether Pear HTTP/Request is available, and which version
+// try 2 first
 
-# @@TODO finish this, as it is more involved than just renaming the class
-#@include_once "HTTP/Request2.php";
+// @@TODO finish this, as it is more involved than just renaming the class
+//@include_once "HTTP/Request2.php";
 if (0 && class_exists('HTTP_Request2')) {
     $GLOBALS['has_pear_http_request'] = 2;
 } else {
-    ## this seems to crash in PHP7. Let's just use curl instead
-    # @include_once 'HTTP/Request.php';
+    //# this seems to crash in PHP7. Let's just use curl instead
+    // @include_once 'HTTP/Request.php';
     $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
 }
 $GLOBALS['has_curl'] = function_exists('curl_init');
@@ -645,7 +645,7 @@ $GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_cu
 
 $GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
 
-## fairly crude way to determine php version, but mostly needed for the stripos
+//# fairly crude way to determine php version, but mostly needed for the stripos
 if (function_exists('stripos')) {
     define('PHP5', 1);
 } else {
@@ -670,9 +670,9 @@ if (!isset($pageroot)) {
     $pageroot = '/lists';
     $GLOBALS['pageroot'] = '/lists';
 }
-## as the "admin" in adminpages is hardcoded, don't put it in the config file
-$adminpages = $GLOBALS['pageroot'] . '/admin';
-## remove possibly duplicated // at the beginning
+//# as the "admin" in adminpages is hardcoded, don't put it in the config file
+$adminpages = $GLOBALS['pageroot'].'/admin';
+//# remove possibly duplicated // at the beginning
 $adminpages = preg_replace('~^//~', '/', $adminpages);
 
 $GLOBALS['homepage'] = 'home';
@@ -695,8 +695,8 @@ if (!defined('FORWARD_EMAIL_COUNT')) {
 if (!defined('FORWARD_FRIEND_COUNT_ATTRIBUTE')) {
     define('FORWARD_FRIEND_COUNT_ATTRIBUTE', 0);
 }
-## when click track links are detected, block sending
-## if false, will only show warning. For now defaulting to false, but may change that later
+//# when click track links are detected, block sending
+//# if false, will only show warning. For now defaulting to false, but may change that later
 if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) {
     define('BLOCK_PASTED_CLICKTRACKLINKS', false);
 }
@@ -705,10 +705,10 @@ if (!defined('SORT_FLAG_CASE')) {
 } // pre PHP5.4
 
 if (FORWARD_EMAIL_COUNT < 1) {
-    print 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
+    echo 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
     exit;
 }
-# allows FORWARD_EMAIL_COUNT forwards per user per period in mysql interval terms
+// allows FORWARD_EMAIL_COUNT forwards per user per period in mysql interval terms
 if (!defined('FORWARD_EMAIL_PERIOD')) {
     define('FORWARD_EMAIL_PERIOD', '1 minute');
 }
@@ -727,9 +727,9 @@ if (!defined('IMPORT_FILESIZE')) {
 if (!defined('SMTP_TIMEOUT')) {
     define('SMTP_TIMEOUT', 5);
 }
-## experimental, mark mails "todo" in the DB and process the "todo" list, to avoid the user query being run every queue run
+//# experimental, mark mails "todo" in the DB and process the "todo" list, to avoid the user query being run every queue run
 if (!defined('MESSAGEQUEUE_PREPARE')) {
-    ## with a multi-process config, we need the queue prepare mechanism and memcache
+    //# with a multi-process config, we need the queue prepare mechanism and memcache
     if (MAX_SENDPROCESSES > 1) {
         define('MESSAGEQUEUE_PREPARE', true);
     } else {
@@ -772,17 +772,17 @@ if (!isset($GLOBALS['check_for_host'])) {
     $GLOBALS['check_for_host'] = 0;
 }
 
-## experimental, use minified JS and CSS
+//# experimental, use minified JS and CSS
 if (!defined('USE_MINIFIED_ASSETS')) {
     define('USE_MINIFIED_ASSETS', true);
 }
 $firstInstallButton = '';
 
-## set up a memcached global object, and test it
+//# set up a memcached global object, and test it
 $GLOBALS['MC'] = null;
 
 if (defined('MEMCACHED')) {
-    include_once dirname(__FILE__) . '/class.memcached.php';
+    include_once dirname(__FILE__).'/class.memcached.php';
     if (class_exists('phpListMC')) {
         $GLOBALS['MC'] = new phpListMC();
         list($mc_server, $mc_port) = explode(':', MEMCACHED);
@@ -798,26 +798,26 @@ if (defined('MEMCACHED')) {
     }
 }
 
-## global counters array to keep track of things
+//# global counters array to keep track of things
 $counters = array(
-    'campaign' => 0,
-    'num_users_for_message' => 0,
-    'batch_count' => 0,
-    'batch_total' => 0,
-    'sendemail returned false total' => 0,
+    'campaign'                        => 0,
+    'num_users_for_message'           => 0,
+    'batch_count'                     => 0,
+    'batch_total'                     => 0,
+    'sendemail returned false total'  => 0,
     'send blocked by domain throttle' => 0,
-    'add attachment error' => 0,
-    'sendemail returned false' => 0,
-    'sentastest' => 0,
-    'invalid' => 0,
-    'failed_sent' => 0,
-    'sent' => 0,
-    'num_per_batch' => 0,
+    'add attachment error'            => 0,
+    'sendemail returned false'        => 0,
+    'sentastest'                      => 0,
+    'invalid'                         => 0,
+    'failed_sent'                     => 0,
+    'sent'                            => 0,
+    'num_per_batch'                   => 0,
 );
 
 $repetitionLabels = array(
-    60 => 'hour',  // can't use s() here yet
-    1440 => 'day',
+    60    => 'hour',  // can't use s() here yet
+    1440  => 'day',
     10080 => 'week',
     20160 => 'fortnight',
     40320 => 'four weeks',
@@ -826,74 +826,73 @@ $repetitionLabels = array(
 $LANGUAGES = array();
 $THEMES = array();
 
-
 $GLOBALS['disallowpages'] = array();
-# list of pages and categorisation in the system
-## old version
+// list of pages and categorisation in the system
+//# old version
 $system_pages = array(
     'system' => array(
         'adminattributes' => 'none',
-        'attributes' => 'none',
-        'upgrade' => 'none',
-        'configure' => 'none',
-        'spage' => 'owner',
-        'spageedit' => 'owner',
-        'defaultconfig' => 'none',
-        'defaults' => 'none',
-        'initialise' => 'none',
-        'bounces' => 'none',
-        'bounce' => 'none',
-        'processbounces' => 'none',
-        'eventlog' => 'none',
-        'reconcileusers' => 'none',
-        'getrss' => 'owner',
-        'viewrss' => 'owner',
-        'purgerss' => 'none',
-        'setup' => 'none',
-        'dbcheck' => 'none',
+        'attributes'      => 'none',
+        'upgrade'         => 'none',
+        'configure'       => 'none',
+        'spage'           => 'owner',
+        'spageedit'       => 'owner',
+        'defaultconfig'   => 'none',
+        'defaults'        => 'none',
+        'initialise'      => 'none',
+        'bounces'         => 'none',
+        'bounce'          => 'none',
+        'processbounces'  => 'none',
+        'eventlog'        => 'none',
+        'reconcileusers'  => 'none',
+        'getrss'          => 'owner',
+        'viewrss'         => 'owner',
+        'purgerss'        => 'none',
+        'setup'           => 'none',
+        'dbcheck'         => 'none',
 
     ),
     'list' => array(
-        'list' => 'owner',
+        'list'     => 'owner',
         'editlist' => 'owner',
-        'members' => 'owner',
+        'members'  => 'owner',
     ),
     'user' => array(
-        'user' => 'none',
-        'users' => 'none',
-        'dlusers' => 'none',
+        'user'           => 'none',
+        'users'          => 'none',
+        'dlusers'        => 'none',
         'editattributes' => 'none',
-        'usercheck' => 'none',
-        'import1' => 'none',
-        'import2' => 'none',
-        'import3' => 'none',
-        'import4' => 'none',
-        'import' => 'none',
-        'export' => 'none',
-        'massunconfirm' => 'none',
+        'usercheck'      => 'none',
+        'import1'        => 'none',
+        'import2'        => 'none',
+        'import3'        => 'none',
+        'import4'        => 'none',
+        'import'         => 'none',
+        'export'         => 'none',
+        'massunconfirm'  => 'none',
 
     ),
     'message' => array(
-        'message' => 'owner',
-        'messages' => 'owner',
+        'message'      => 'owner',
+        'messages'     => 'owner',
         'processqueue' => 'none',
-        'send' => 'owner',
-        'preparesend' => 'none',
+        'send'         => 'owner',
+        'preparesend'  => 'none',
         'sendprepared' => 'all',
-        'template' => 'none',
-        'templates' => 'none',
+        'template'     => 'none',
+        'templates'    => 'none',
     ),
     'clickstats' => array(
-        'statsmgt' => 'owner',
-        'mclicks' => 'owner',
-        'uclicks' => 'owner',
-        'userclicks' => 'owner',
-        'mviews' => 'owner',
+        'statsmgt'      => 'owner',
+        'mclicks'       => 'owner',
+        'uclicks'       => 'owner',
+        'userclicks'    => 'owner',
+        'mviews'        => 'owner',
         'statsoverview' => 'owner',
 
     ),
     'admin' => array(
         'admins' => 'none',
-        'admin' => 'owner',
+        'admin'  => 'owner',
     ),
 );

@@ -1,19 +1,19 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 verifyCsrfGetToken();
 
 $id = sprintf('%d', $_GET['id']);
 if (!$id) {
-    print $GLOBALS['I18N']->get('Please select a message to display') . "\n";
+    echo $GLOBALS['I18N']->get('Please select a message to display')."\n";
     exit;
 }
 
 $access = accessLevel('message');
-#print "Access: $access";
+//print "Access: $access";
 switch ($access) {
     case 'owner':
-        $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
-        $owner_select_and = ' and owner = ' . $_SESSION['logindetails']['id'];
+        $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
+        $owner_select_and = ' and owner = '.$_SESSION['logindetails']['id'];
         break;
     case 'all':
         $subselect = '';
@@ -54,8 +54,8 @@ if (!empty($_POST['resend']) && is_array($_POST['list'])) {
         $messagedata['finishsending']['month'], $messagedata['finishsending']['day'],
         $messagedata['finishsending']['year']);
     if ($finishSending < time()) {
-        $_SESSION['action_result'] .= '<br />' . s('This campaign is scheduled to stop sending in the past. No mails will be sent.');
-        $_SESSION['action_result'] .= '<br />' . PageLinkButton('send&amp;id=' . $messagedata['id'] . '&amp;tab=Scheduling',
+        $_SESSION['action_result'] .= '<br />'.s('This campaign is scheduled to stop sending in the past. No mails will be sent.');
+        $_SESSION['action_result'] .= '<br />'.PageLinkButton('send&amp;id='.$messagedata['id'].'&amp;tab=Scheduling',
                 s('Review Scheduling'));
     }
 
@@ -63,12 +63,12 @@ if (!empty($_POST['resend']) && is_array($_POST['list'])) {
     exit;
 }
 
-require_once $coderoot . 'structure.php';
+require_once $coderoot.'structure.php';
 
 $result = Sql_Fetch_Assoc_query(sprintf('select id, subject from %s where id = %d %s', $tables['message'], $id,
     $owner_select_and));
 if (empty($result['id'])) {
-    print $GLOBALS['I18N']->get('No such campaign');
+    echo $GLOBALS['I18N']->get('No such campaign');
 
     return;
 }
@@ -77,18 +77,18 @@ $campaignTitle = $result['subject'];
 $msgdata = loadMessageData($id);
 
 if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
-    print '<div class="actions">';
-    print '<p>' . PageLinkButton('send&amp;id=' . $id, $GLOBALS['I18N']->get('Edit this message')) . '</p>';
-    print '</div>';
+    echo '<div class="actions">';
+    echo '<p>'.PageLinkButton('send&amp;id='.$id, $GLOBALS['I18N']->get('Edit this message')).'</p>';
+    echo '</div>';
 } else {
-    print '<div class="actions">';
+    echo '<div class="actions">';
 
     $editbutton = new ConfirmButton(
         s('Editing an active or finished campaign will place it back in the draft queue, continue?'),
-        PageURL2('send&id=' . $id),
+        PageURL2('send&id='.$id),
         s('Edit campaign'));
-    print $editbutton->show();
-    print '</div>';
+    echo $editbutton->show();
+    echo '</div>';
 }
 
 $content = '<table class="messageView">';
@@ -132,12 +132,12 @@ foreach ($plugins as $pi) {
 }
 
 if (ALLOW_ATTACHMENTS) {
-    $content .= '<tr><td colspan="2"><h3>' . $GLOBALS['I18N']->get('Attachments for this campaign') . '</h3></td></tr>';
+    $content .= '<tr><td colspan="2"><h3>'.$GLOBALS['I18N']->get('Attachments for this campaign').'</h3></td></tr>';
     $req = Sql_Query("select * from {$tables['message_attachment']},{$tables['attachment']}
     where {$tables['message_attachment']}.attachmentid = {$tables['attachment']}.id and
     {$tables['message_attachment']}.messageid = $id");
     if (!Sql_Affected_Rows()) {
-        $content .= '<tr><td colspan="2">' . $GLOBALS['I18N']->get('No attachments') . '</td></tr>';
+        $content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get('No attachments').'</td></tr>';
     }
     while ($att = Sql_Fetch_array($req)) {
         $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Filename'), $att['remotefile']);
@@ -147,20 +147,20 @@ if (ALLOW_ATTACHMENTS) {
         $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Description'),
             $att['description']);
     }
-    # print '</table>';
+    // print '</table>';
 }
 
 if (empty($msgdata['sent'])) {
-    $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>'.s('This campaign will be sent to subscribers, who are member of the following lists').':</h4></td></tr>';
 } else {
-    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>'.$GLOBALS['I18N']->get('This campaign has been sent to subscribers, who are member of the following lists').':</h4></td></tr>';
 }
 
 $lists_done = array();
 $result = Sql_Query(sprintf('select l.name, l.id from %s lm, %s l where lm.messageid = %d and lm.listid = l.id',
     $tables['listmessage'], $tables['list'], $id));
 if (!Sql_Affected_Rows()) {
-    $content .= '<tr><td colspan="2">' . $GLOBALS['I18N']->get('None yet') . '</td></tr>';
+    $content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get('None yet').'</td></tr>';
 }
 while ($lst = Sql_fetch_array($result)) {
     array_push($lists_done, $lst['id']);
@@ -168,7 +168,7 @@ while ($lst = Sql_fetch_array($result)) {
 }
 
 if ($msgdata['excludelist']) {
-    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('Except when they were also member of these lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>'.$GLOBALS['I18N']->get('Except when they were also member of these lists').':</h4></td></tr>';
     $result = Sql_Query(sprintf('select l.name, l.id from %s l where id in (%s)', $tables['list'],
         implode(',', $msgdata['excludelist'])));
     while ($lst = Sql_fetch_array($result)) {
@@ -178,7 +178,7 @@ if ($msgdata['excludelist']) {
 $content .= '</table>';
 
 $panel = new UIPanel(htmlspecialchars($campaignTitle), $content);
-print $panel->display();
+echo $panel->display();
 ?>
 
     <a name="resend"></a><p class="information"><?php echo s('Send this campaign to another list'); ?>:</p>
@@ -189,13 +189,13 @@ print $panel->display();
 
 if (count($lists_done)) {
     if (empty($subselect)) {
-        $subselect .= ' where id not in (' . implode(',', $lists_done) . ')';
+        $subselect .= ' where id not in ('.implode(',', $lists_done).')';
     } else {
-        $subselect .= ' and id not in (' . implode(',', $lists_done) . ')';
+        $subselect .= ' and id not in ('.implode(',', $lists_done).')';
     }
 }
 $selectAgain = listSelectHTML(array(), 'list', $subselect, '');
 
-print $selectAgain;
+echo $selectAgain;
 
-print '<input class="submit" type="submit" name="resend" value="' . s('Resend') . '" /></form>';
+echo '<input class="submit" type="submit" name="resend" value="'.s('Resend').'" /></form>';

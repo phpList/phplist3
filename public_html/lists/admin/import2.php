@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 if (!ALLOW_IMPORT) {
-    print '<p class="information">' . $GLOBALS['I18N']->get('import is not available') . '</p>';
+    echo '<p class="information">'.$GLOBALS['I18N']->get('import is not available').'</p>';
 
     return;
 }
@@ -39,8 +39,8 @@ if (($post_max_size < $file_max_size) && WARN_ABOUT_PHP_SETTINGS) {
         'http://php.net/post_max_size', 'http://php.net/post_max_size')));
 }
 
-require dirname(__FILE__) . '//structure.php';
-require dirname(__FILE__) . '/inc/importlib.php';
+require dirname(__FILE__).'//structure.php';
+require dirname(__FILE__).'/inc/importlib.php';
 register_shutdown_function('my_shutdown');
 
 if (!defined('WEBBLER')) {
@@ -48,23 +48,23 @@ if (!defined('WEBBLER')) {
 }
 if (!empty($_GET['reset']) && $_GET['reset'] == 'yes') {
     clearImport();
-    print '<h3>' . $GLOBALS['I18N']->get('Import cleared') . '</h3>';
-    print PageLinkButton('import2', s('Continue'));
+    echo '<h3>'.$GLOBALS['I18N']->get('Import cleared').'</h3>';
+    echo PageLinkButton('import2', s('Continue'));
 
     return;
 } else {
-    # if ((!empty($_SESSION["import_file"]) || !empty($_SESSION["test_import"])) && (!isset($_GET['confirm']) || $_GET['confirm'] != 'yes')) {
+    // if ((!empty($_SESSION["import_file"]) || !empty($_SESSION["test_import"])) && (!isset($_GET['confirm']) || $_GET['confirm'] != 'yes')) {
     $button = new ConfirmButton(
         s('Are you sure you want to reset the import session?'),
         PageURL2('import2&reset=yes', 'reset', ''),
         s('Reset Import session'));
 
-    print '<div class="fright">' . $button->show() . '</div>';
-    # }
+    echo '<div class="fright">'.$button->show().'</div>';
+    // }
 }
 if (isset($_POST['import'])) {
     if (!verifyToken()) {
-        print Error(s('Invalid security token, please reload the page and try again'),
+        echo Error(s('Invalid security token, please reload the page and try again'),
             'http://resources.phplist.com/documentation/errors/securitytoken');
 
         return;
@@ -84,7 +84,7 @@ if (isset($_POST['import'])) {
         return;
     }
 
-    ## disallow some extensions. Won't avoid all problems, but will help with the most common ones.
+    //# disallow some extensions. Won't avoid all problems, but will help with the most common ones.
     $extension = strtolower(pathinfo($_FILES['import_file']['name'], PATHINFO_EXTENSION));
     if (in_array($extension, array('xls', 'ods', 'ots', 'fods', 'xlsx', 'xlt', 'dif', 'dbf', 'html', 'slk'))) {
         Fatal_Error(s('Please upload a plain text file only. You cannot use a spreadsheet. You need to export the data from the spreadsheet into a TAB delimited text file'));
@@ -96,7 +96,7 @@ if (isset($_POST['import'])) {
         define('IMPORT_FILESIZE', 1);
     }
     if (!$GLOBALS['commandline'] && filesize($_FILES['import_file']['tmp_name']) > (IMPORT_FILESIZE * 1000000)) {
-        # if we allow more, we will certainly run out of memory
+        // if we allow more, we will certainly run out of memory
         Fatal_Error($GLOBALS['I18N']->get('File too big, please split it up into smaller ones'));
 
         return;
@@ -108,7 +108,7 @@ if (isset($_POST['import'])) {
       }
     */
 
-    ## set notify to always "no". Confirmation should run through the first campaing
+    //# set notify to always "no". Confirmation should run through the first campaing
     $_POST['notify'] = 'no';
     if (!$_POST['notify'] && !$test_import) {
         Fatal_Error($GLOBALS['I18N']->get('Please choose whether to sign up immediately or to send a notification'));
@@ -119,8 +119,8 @@ if (isset($_POST['import'])) {
     }
 
     if ($_FILES['import_file'] && $_FILES['import_file']['size'] > 10) {
-        #  $newfile = $GLOBALS['tmpdir'] . '/' . basename($_FILES['import_file']['name']) . time();
-        $newfile = $GLOBALS['tmpdir'] . '/' . 'csvimport' . $GLOBALS['installation_name'] . time();
+        //  $newfile = $GLOBALS['tmpdir'] . '/' . basename($_FILES['import_file']['name']) . time();
+        $newfile = $GLOBALS['tmpdir'].'/'.'csvimport'.$GLOBALS['installation_name'].time();
         if (!$GLOBALS['commandline']) {
             move_uploaded_file($_FILES['import_file']['tmp_name'], $newfile);
         } else {
@@ -164,8 +164,8 @@ if (isset($_POST['import'])) {
     }
     $_SESSION['grouptype'] = isset($_POST['grouptype']) ? sprintf('%d', $_POST['grouptype']) : '';
     $_SESSION['overwrite'] = !empty($_POST['overwrite']);
-    $_SESSION['notify'] = $_POST['notify']; # yes or no
-    # $_SESSION["listname"] = $_POST["listname"];
+    $_SESSION['notify'] = $_POST['notify']; // yes or no
+    // $_SESSION["listname"] = $_POST["listname"];
     $_SESSION['retainold'] = !empty($_POST['retainold']);
     $_SESSION['throttle_import'] = !empty($_POST['throttle_import']) ? sprintf('%d', $_POST['throttle_import']) : 0;
 }
@@ -175,11 +175,11 @@ if (!empty($_GET['confirm'])) {
 }
 
 if (!empty($_SESSION['import_file'])) {
-    # output some stuff to make sure it's not buffered in the browser
+    // output some stuff to make sure it's not buffered in the browser
     for ($i = 0; $i < 10000; ++$i) {
-        print '  ' . "\n";
+        echo '  '."\n";
     }
-    output('<p class="information">' . $GLOBALS['I18N']->get('Reading emails from file ... '));
+    output('<p class="information">'.$GLOBALS['I18N']->get('Reading emails from file ... '));
     flush();
     if (filesize($_SESSION['import_file']) > 50000) {
         @ini_set('memory_limit', memory_get_usage() + 50 * filesize($_SESSION['import_file']));
@@ -198,9 +198,9 @@ if (!empty($_SESSION['import_file'])) {
 
     if ($_SESSION['import_record_delimiter'] != "\n") {
         $email_list = str_replace($_SESSION['import_record_delimiter'], "\n", $email_list);
-    };
+    }
 
-    # not sure if we need to check on errors
+    // not sure if we need to check on errors
     /*
       for($i=0; $i<count($illegal_cha); $i++) {
         if( ($illegal_cha[$i] != $import_field_delimiter) && ($illegal_cha[$i] != $import_record_delimiter) && (strpos($header, $illegal_cha[$i]) != false) ) {
@@ -217,7 +217,7 @@ if (!empty($_SESSION['import_file'])) {
     */
     // Split file/emails into array
     $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
-    output(sprintf('..' . $GLOBALS['I18N']->get('ok, %d lines') . '</p>', count($email_list)));
+    output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
     $header = array_shift($email_list);
     $header = str_replace('"', '', $header);
     $total = count($email_list);
@@ -225,15 +225,15 @@ if (!empty($_SESSION['import_file'])) {
     $headers = array_unique($headers);
     $_SESSION['columnnames'] = $headers;
 
-    ## possibly rewrite "nice" header names to short ones
+    //# possibly rewrite "nice" header names to short ones
     foreach ($headers as $headerid => $headerline) {
         if (in_array(strtolower($headerline), array_keys($system_attributes_nicename))) {
             $headers[$headerid] = $system_attributes_nicename[strtolower($headerline)];
         }
     }
 
-    ### Compare header line with system and user attributes
-    ## build user_attributes array
+    //## Compare header line with system and user attributes
+    //# build user_attributes array
     $req = Sql_Query(sprintf('select id,name from %s order by listorder,name', $tables['attribute']));
     while ($row = Sql_Fetch_Array($req)) {
         $attributes[$row['id']] = $row['name'];
@@ -247,111 +247,111 @@ if (!empty($_SESSION['import_file'])) {
         }
     }
 
-#  var_dump($system_attributes);
+//  var_dump($system_attributes);
     $system_attribute_reverse_map = array();
     for ($i = 0; $i < count($headers); ++$i) {
         $column = clean($headers[$i]);
-        #  print $i."<h3>$column</h3>".$_POST['column'.$i].'<br/>';
+        //  print $i."<h3>$column</h3>".$_POST['column'.$i].'<br/>';
         $column = preg_replace('#/#', '', $column);
-#    $dbg = "Field $i: $headers[$i] - $column - form/option:" . $_POST['column' . $i];
+//    $dbg = "Field $i: $headers[$i] - $column - form/option:" . $_POST['column' . $i];
         if (in_array(strtolower($column), array_keys($system_attributes))
-            || (isset($_POST['column' . $i]) && in_array(strtolower($_POST['column' . $i]),
+            || (isset($_POST['column'.$i]) && in_array(strtolower($_POST['column'.$i]),
                     array_keys($system_attributes)))
             || (isset($_SESSION['systemindex']) && in_array($i, array_values($_SESSION['systemindex'])))
         ) {
-            #   print "System $column ".$_POST['column'.$i]. "=> $i<br/>";
-            if (isset($_POST['column' . $i])) {
-                $_SESSION['systemindex'][$_POST['column' . $i]] = $i;
+            //   print "System $column ".$_POST['column'.$i]. "=> $i<br/>";
+            if (isset($_POST['column'.$i])) {
+                $_SESSION['systemindex'][$_POST['column'.$i]] = $i;
             } else {
                 $_SESSION['systemindex'][$column] = $i;
             }
             unset($_SESSION['import_attribute'][$column]);
             $system_attribute_reverse_map[strtolower($column)] = $i;
             array_push($used_systemattr, strtolower($column));
-#      $dbg .= " =system";
+//      $dbg .= " =system";
         } elseif (strtolower($column) == 'list membership' ||
-            (isset($_POST['column' . $i]) && $_POST['column' . $i] == 'skip') ||
+            (isset($_POST['column'.$i]) && $_POST['column'.$i] == 'skip') ||
             in_array($column, array_keys($skip_system_attributes)) ||
             in_array($column, array_values($skip_system_attributes))
         ) {
-            ## skip was chosen or it's list membership, which we don't want to import since it's too complicated.
+            //# skip was chosen or it's list membership, which we don't want to import since it's too complicated.
             $_SESSION['import_attribute'][$column] = array(
-                'index' => $i,
+                'index'  => $i,
                 'record' => 'skip',
                 'column' => "$column",
             );
             array_push($used_systemattr, strtolower($column));
-#      $dbg .= " =skip";
+//      $dbg .= " =skip";
         } else {
             if (isset($_SESSION['import_attribute'][$column]['record']) && $_SESSION['import_attribute'][$column]['record']) {
-                ## mapping has been defined
-#        print $column.' is set<br/>';
-#        $dbg .= " =known mapping in session: " . $_SESSION["import_attribute"][$column]["record"];
+                //# mapping has been defined
+//        print $column.' is set<br/>';
+//        $dbg .= " =known mapping in session: " . $_SESSION["import_attribute"][$column]["record"];
             } elseif (isset($_POST["column$i"])) {
-                ## newly posted mapping
-                if (in_array(strtolower($_POST['column' . $i]), array_keys($system_attributes))) {
-                    #  print 'SYSTEM: '.$i. ' '.$_POST['column'.$i].'<br/>';
+                //# newly posted mapping
+                if (in_array(strtolower($_POST['column'.$i]), array_keys($system_attributes))) {
+                    //  print 'SYSTEM: '.$i. ' '.$_POST['column'.$i].'<br/>';
                     $type = '';
-                    if (strpos($_POST['column' . $i], 'grouptype_') === 0) {
-                        list($t, $type) = explode('_', $_POST['column' . $i]);
+                    if (strpos($_POST['column'.$i], 'grouptype_') === 0) {
+                        list($t, $type) = explode('_', $_POST['column'.$i]);
                         $type = sprintf('%d', $type);
-                        $_SESSION['systemindex']['grouptype_' . $type] = $i;
+                        $_SESSION['systemindex']['grouptype_'.$type] = $i;
                         $_SESSION['import_attribute'][$column] = array(
-                            'index' => $i,
-                            'record' => 'grouptype_' . $type,
+                            'index'  => $i,
+                            'record' => 'grouptype_'.$type,
                             'column' => $column,
-                            'type' => $type,
+                            'type'   => $type,
                         );
-                        array_push($used_systemattr, strtolower('grouptype_' . $type));
+                        array_push($used_systemattr, strtolower('grouptype_'.$type));
                     } else {
-                        #  print "COLUMMN $column = $i<br/>";
+                        //  print "COLUMMN $column = $i<br/>";
                         $_SESSION['systemindex'][$column] = $i;
                         $_SESSION['import_attribute'][$column] = array(
-                            'index' => $i,
+                            'index'  => $i,
                             'record' => 'system',
-                            #strtolower($column),#$system_attribute_reverse_map[strtolower($column)],
+                            //strtolower($column),#$system_attribute_reverse_map[strtolower($column)],
                             'column' => "$column",
                         );
-                        array_push($used_systemattr, strtolower($_POST['column' . $i]));
+                        array_push($used_systemattr, strtolower($_POST['column'.$i]));
                     }
                 } else {
-                    ## attribute mapping was chosen
+                    //# attribute mapping was chosen
                     $_SESSION['import_attribute'][$column] = array(
-                        'index' => $i,
+                        'index'  => $i,
                         'record' => $_POST["column$i"],
                         'column' => "$column",
                     );
                 }
-#        $dbg .= " =mapping chosen";
+//        $dbg .= " =mapping chosen";
             } else {
-                ## define mapping based on existing attribute or ask for it
-                #@@ Why is $attributes not used
-                $existing = Sql_Fetch_Row_Query('select id from ' . $tables['attribute'] . " where name = \"$column\"");
+                //# define mapping based on existing attribute or ask for it
+                //@@ Why is $attributes not used
+                $existing = Sql_Fetch_Row_Query('select id from '.$tables['attribute']." where name = \"$column\"");
                 $_SESSION['import_attribute'][$column] = array(
-                    'index' => $i,
+                    'index'  => $i,
                     'record' => $existing[0],
                     'column' => $column,
                 );
                 array_push($used_attributes, $existing[0]);
                 if ($existing[0]) {
-                    #        $dbg .= " =known attribute id=" . $existing[0];
+                    //        $dbg .= " =known attribute id=" . $existing[0];
                 } else {
-                    #          $dbg .= " =request mapping";
-                };
+                    //          $dbg .= " =request mapping";
+                }
             }
         }
         //dbg('Imported column',$dbg, 'import'); //debug
     }
-#  dbg($_SESSION["import_attribute"]);
-#  var_dump($_SESSION["import_attribute"] );exit;
+//  dbg($_SESSION["import_attribute"]);
+//  var_dump($_SESSION["import_attribute"] );exit;
 
-# var_dump($_SESSION);
-#var_dump($used_systemattr);exit;
-    ### build option list from known attributes
+// var_dump($_SESSION);
+//var_dump($used_systemattr);exit;
+    //## build option list from known attributes
     $unused_systemattr = array_diff(array_keys($system_attributes), $used_systemattr);
     $unused_attributes = array_diff(array_keys($attributes), $used_attributes);
-    $options = '<option value="new">-- ' . $GLOBALS['I18N']->get('Create new one') . '</option>';
-    $options .= '<option value="skip">-- ' . $GLOBALS['I18N']->get('Skip Column') . '</option>';
+    $options = '<option value="new">-- '.$GLOBALS['I18N']->get('Create new one').'</option>';
+    $options .= '<option value="skip">-- '.$GLOBALS['I18N']->get('Skip Column').'</option>';
     foreach ($unused_systemattr as $sysindex) {
         $options .= sprintf('<option value="%s">%s</option>', $sysindex, substr($system_attributes[$sysindex], 0, 25));
     }
@@ -359,12 +359,12 @@ if (!empty($_SESSION['import_file'])) {
         $options .= sprintf('<option value="%s">%s</option>', $attindex,
             substr(stripslashes($attributes[$attindex]), 0, 25));
     }
-    ### use above selector for each unknown imported attribute
+    //## use above selector for each unknown imported attribute
     $ls = new WebblerListing($GLOBALS['I18N']->get('Import Attributes'));
     $request_mapping = 0;
-# var_dump($_SESSION["import_attribute"]);
-# var_dump($_SESSION["systemindex"]);
-# var_dump( $used_systemattr);
+// var_dump($_SESSION["import_attribute"]);
+// var_dump($_SESSION["systemindex"]);
+// var_dump( $used_systemattr);
     foreach ($_SESSION['import_attribute'] as $column => $rec) {
         /*
       print '<pre>';
@@ -376,15 +376,15 @@ if (!empty($_SESSION['import_file'])) {
             $request_mapping = 1;
             $ls->addElement($column);
             $ls->addColumn($column, $GLOBALS['I18N']->get('select'),
-                '<select name="column' . $rec['index'] . '">' . $options . '</select>');
+                '<select name="column'.$rec['index'].'">'.$options.'</select>');
         }
     }
     if ($request_mapping) {
         $ls->addButton($GLOBALS['I18N']->get('Continue'), 'javascript:document.importform.submit()');
-        print '<p class="information">' . $GLOBALS['I18N']->get('Please identify the target of the following unknown columns') . '</p>';
-        print '<form name="importform" method="post">';
-        print $ls->display();
-        print '</form>';
+        echo '<p class="information">'.$GLOBALS['I18N']->get('Please identify the target of the following unknown columns').'</p>';
+        echo '<form name="importform" method="post">';
+        echo $ls->display();
+        echo '</form>';
 
         /*
             print '<pre>';
@@ -396,7 +396,7 @@ if (!empty($_SESSION['import_file'])) {
     }
 }
 
-### show summary
+//## show summary
 if (!empty($_SESSION['test_import'])) {
     if (!isset($_SESSION['systemindex']['email'])) {
         Fatal_Error($GLOBALS['I18N']->get('Cannot find column with email, you need to map at least one column to "Email"'),
@@ -407,7 +407,7 @@ if (!empty($_SESSION['test_import'])) {
     $ls = new WebblerListing($GLOBALS['I18N']->get('Summary'));
     foreach ($_SESSION['systemindex'] as $column => $columnid) {
         $ls->addElement($_SESSION['columnnames'][$columnid]);
-        $ls->addColumn($_SESSION['columnnames'][$columnid], $GLOBALS['I18N']->get('maps to'), 'system: ' . $column);
+        $ls->addColumn($_SESSION['columnnames'][$columnid], $GLOBALS['I18N']->get('maps to'), 'system: '.$column);
     }
     foreach ($_SESSION['import_attribute'] as $column => $rec) {
         if (trim($column) != '') {
@@ -426,51 +426,51 @@ if (!empty($_SESSION['test_import'])) {
             }
         }
     }
-    print $ls->display();
-    #var_dump($_SESSION["import_attribute"]);
-# print "SYSTEM INDEX";
-# var_dump($_SESSION["systemindex"]);
+    echo $ls->display();
+    //var_dump($_SESSION["import_attribute"]);
+// print "SYSTEM INDEX";
+// var_dump($_SESSION["systemindex"]);
 
-    print '<h3>';
+    echo '<h3>';
     printf($GLOBALS['I18N']->get('%d lines will be imported'), $total);
-    print '</h3>';
-    print '<p>' . PageLinkButton($_GET['page'] . '&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')) . '</p>';
-    print '<h3>' . $GLOBALS['I18N']->get('Test Output') . '</h3>';
-#  dbg($_SESSION["import_attribute"]);
+    echo '</h3>';
+    echo '<p>'.PageLinkButton($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')).'</p>';
+    echo '<h3>'.$GLOBALS['I18N']->get('Test Output').'</h3>';
+//  dbg($_SESSION["import_attribute"]);
 } elseif (count($email_list)) {
-    print '<h3>' . s('Importing %d subscribers to %d lists, please wait', count($email_list),
-            count($_SESSION['lists'])) . '</h3>';
-    print $GLOBALS['img_busy'];
-    print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-    print '<br/> <iframe id="import2" src="./?page=pageaction&action=import2&ajaxed=true' . addCsrfGetToken() . '" scrolling="no" height="5" width="100"></iframe>';
+    echo '<h3>'.s('Importing %d subscribers to %d lists, please wait', count($email_list),
+            count($_SESSION['lists'])).'</h3>';
+    echo $GLOBALS['img_busy'];
+    echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
+    echo '<br/> <iframe id="import2" src="./?page=pageaction&action=import2&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="5" width="100"></iframe>';
 
     return;
 }
 
-#var_dump($system_attributes);
-### show progress and adjust working space
+//var_dump($system_attributes);
+//## show progress and adjust working space
 if (count($email_list)) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
     if (count($email_list) > 300 && !$_SESSION['test_import']) {
-        # this is a possibly a time consuming process, so show a progress bar
-        print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
+        // this is a possibly a time consuming process, so show a progress bar
+        echo '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
-        # increase the memory to make sure we are not running out
-        #    $mem = sizeof($email_list);
+        // increase the memory to make sure we are not running out
+        //    $mem = sizeof($email_list);
         ini_set('memory_limit', '32M');
     }
 
-    ### store the chosen mappings in the $system_attribute_mapping list
-    # print "A: ".sizeof($import_attribute);
+    //## store the chosen mappings in the $system_attribute_mapping list
+    // print "A: ".sizeof($import_attribute);
     foreach ($system_attributes as $key => $val) {
         if (isset($_SESSION['systemindex'][$key])) {
             $system_attribute_mapping[$key] = $_SESSION['systemindex'][$key];
         }
     }
 
-    # #Bas bugfix 0008106: import 'foreignkey' fails; bad SQL
-    # When the user chose to map an unknown import attribute to a system attribute this attribute ends up in
-    # $_SESSION["import_attribute"]. This code moves the attribute to the system mappings array
+    // #Bas bugfix 0008106: import 'foreignkey' fails; bad SQL
+    // When the user chose to map an unknown import attribute to a system attribute this attribute ends up in
+    // $_SESSION["import_attribute"]. This code moves the attribute to the system mappings array
 
     /*
       foreach ($_SESSION["import_attribute"] as $column => $item) {
@@ -484,8 +484,8 @@ if (count($email_list)) {
     //  dbg('$system_attribute_mapping', $system_attribute_mapping); //debug
     //  dbg('$_SESSION["import_attribute"]',$_SESSION["import_attribute"]); //debug
 
-    ### Parse the lines into records
-    #  print "<br/>Loading emails .. ";
+    //## Parse the lines into records
+    //  print "<br/>Loading emails .. ";
     flush();
     $count = array();
     $count['email_add'] = 0;
@@ -504,30 +504,30 @@ if (count($email_list)) {
     $additional_emails = 0;
     foreach ($email_list as $line) {
         set_time_limit(60);
-        # will contain attributes to store / change
+        // will contain attributes to store / change
         $user = array();
-        # get rid of text delimiters generally added by spreadsheet apps
+        // get rid of text delimiters generally added by spreadsheet apps
         $line = str_replace('"', '', $line);
 
         $values = explode($_SESSION['import_field_delimiter'], $line);
         $system_values = array();
         foreach ($system_attribute_mapping as $column => $index) {
-            # print '<br/>'.$column . ' = '. $values[$index];
+            // print '<br/>'.$column . ' = '. $values[$index];
             if (!empty($values[$index])) {
                 $system_values[$column] = $values[$index];
             } else {
                 $system_values[$column] = '';
             }
         }
-        ## Check completeness
+        //# Check completeness
         $index = clean($system_values['email']);
         $invalid = 0;
         if (!$index) {
             if ($_SESSION['show_warnings']) {
-                Warn($GLOBALS['I18N']->get('Record has no email') .
+                Warn($GLOBALS['I18N']->get('Record has no email').
                     ": $c -> $line");
             }
-            $index = $GLOBALS['I18N']->get('Invalid Email') . " $c";
+            $index = $GLOBALS['I18N']->get('Invalid Email')." $c";
             $system_values['email'] = $_SESSION['assign_invalid'];
             $invalid = 1;
             ++$count['invalid_email'];
@@ -549,7 +549,7 @@ if (count($email_list)) {
                 }
             }
         } else {
-            # Warn("Omitting invalid one: $email");
+            // Warn("Omitting invalid one: $email");
         }
         $user['systemvalues']['email'] = parseImportPlaceHolders($system_values['email'],
             array_merge($replace, $system_values, array(
@@ -562,7 +562,7 @@ if (count($email_list)) {
         }
         if ($_SESSION['test_import']) {
 
-            #   var_dump($user["systemvalues"]);#exit;
+            //   var_dump($user["systemvalues"]);#exit;
             $html = '';
             foreach ($user['systemvalues'] as $column => $value) {
                 if (strpos($column, 'grouptype_') === 0) {
@@ -574,31 +574,31 @@ if (count($email_list)) {
                     if ($value) {
                         $html .= "$column -> $value<br/>\n";
                     } else {
-                        $html .= "$column -> " . $GLOBALS['I18N']->get('clear value') . "<br/>\n";
+                        $html .= "$column -> ".$GLOBALS['I18N']->get('clear value')."<br/>\n";
                     }
                 }
             }
-            #    var_dump($_SESSION["systemindex"]);
+            //    var_dump($_SESSION["systemindex"]);
 
             reset($_SESSION['import_attribute']);
             foreach ($_SESSION['import_attribute'] as $column => $item) {
                 if (!empty($user[$item['index']])) {
                     if ($item['record'] == 'new') {
-                        $html .= ' ' . $GLOBALS['I18N']->get('New Attribute') . ': ' . $item['column'];
+                        $html .= ' '.$GLOBALS['I18N']->get('New Attribute').': '.$item['column'];
                     } elseif ($item['record'] == 'skip') {
-                        # forget about it
-                        $html .= ' ' . $GLOBALS['I18N']->get('Skip value') . ' ' . $column . ': ';
+                        // forget about it
+                        $html .= ' '.$GLOBALS['I18N']->get('Skip value').' '.$column.': ';
                     } elseif ($item['record'] != 'system') {
                         $html .= $attributes[$item['record']];
-#            var_dump($attributes[$item['record']]);
+//            var_dump($attributes[$item['record']]);
                     } else {
                         $html .= $item['column'];
                     }
-                    $html .= ' -> ' . $user[$item['index']] . '<br/>';
+                    $html .= ' -> '.$user[$item['index']].'<br/>';
                 }
             }
             if ($html) {
-                print '<blockquote>' . $html . '</blockquote><hr />';
+                echo '<blockquote>'.$html.'</blockquote><hr />';
             }
         }
         if ($c > 50) {
@@ -606,10 +606,10 @@ if (count($email_list)) {
         }
     }
 
-    printf($GLOBALS['I18N']->get('Test output<br/>If the output looks ok, click %s to submit for real') . '<br/><br/>',
-        PageLink2($_GET['page'] . '&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')));
+    printf($GLOBALS['I18N']->get('Test output<br/>If the output looks ok, click %s to submit for real').'<br/><br/>',
+        PageLink2($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')));
 
-    print '<p>' . PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')) . '</p>';
+    echo '<p>'.PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')).'</p>';
 
     return;
 }
@@ -617,7 +617,7 @@ if (count($email_list)) {
 
 
 <ul>
-    <?php print formStart('enctype="multipart/form-data" name="import"'); ?>
+    <?php echo formStart('enctype="multipart/form-data" name="import"'); ?>
     <?php
 
     /*
@@ -627,7 +627,7 @@ if (count($email_list)) {
         $subselect .= sprintf(' and id= %d', $_GET['list']);
     }
 
-    $result = Sql_query('SELECT id,name FROM ' . $tables['list'] . " $subselect ORDER BY listorder");
+    $result = Sql_query('SELECT id,name FROM '.$tables['list']." $subselect ORDER BY listorder");
     $c = 0;
     $some = Sql_Affected_Rows();
 
@@ -637,7 +637,7 @@ if (count($email_list)) {
             $c, stripslashes($row['name']), $c, $row['id'], $GLOBALS['I18N']->get('Adding users to list'),
             stripslashes($row['name']));
     } else {
-        print '<h3>' . $GLOBALS['I18N']->get('Select the lists to add the emails to') . '</h3>';
+        echo '<h3>'.$GLOBALS['I18N']->get('Select the lists to add the emails to').'</h3>';
         /*
             while ($row = Sql_fetch_array($result)) {
               printf('<li><input type="hidden" name="listname[%d]" value="%s"><input type="checkbox" name="lists[%d]" value="%d">%s', $c, stripslashes($row["name"]), $c, $row["id"], stripslashes($row["name"]));
@@ -647,12 +647,12 @@ if (count($email_list)) {
         */
 
         if (!$some) {
-            echo $GLOBALS['I18N']->get('No lists available') . ' ' . PageLink2('editlist',
+            echo $GLOBALS['I18N']->get('No lists available').' '.PageLink2('editlist',
                     $GLOBALS['I18N']->get('Add a list'));
         } else {
             $selected_lists = getSelectedLists('lists');
 
-            print listSelectHTML($selected_lists, 'lists', $subselect, s('Select the lists to add the emails to'));
+            echo listSelectHTML($selected_lists, 'lists', $subselect, s('Select the lists to add the emails to'));
         }
     }
     /*
@@ -667,10 +667,10 @@ if (count($email_list)) {
             printf('<p class="information"><input type="hidden" name="groupname[%d]" value="%s"><input type="hidden" name="groups[%d]" value="%d">Adding users to group <b>%s</b></p>',
                 $c, $row['name'], $c, $row['id'], $row['name']);
         } else {
-            print '<p class="information">' . $GLOBALS['I18N']->get('Select the groups to add the users to') . '</p>';
+            echo '<p class="information">'.$GLOBALS['I18N']->get('Select the groups to add the users to').'</p>';
             while ($row = Sql_fetch_array($result)) {
                 if ($row['id'] == $everyone_groupid) {
-                    printf('<li><input type="hidden" name="groupname[%d]" value="%s"><input type="hidden" name="groups[%d]" value="%d"><b>%s</b> - ' . $GLOBALS['I18N']->get('automatically added'),
+                    printf('<li><input type="hidden" name="groupname[%d]" value="%s"><input type="hidden" name="groups[%d]" value="%d"><b>%s</b> - '.$GLOBALS['I18N']->get('automatically added'),
                         $c, $row['name'], $c, $row['id'], $row['name']);
                 } else {
                     printf('<li><input type="hidden" name="groupname[%d]" value="%s"><input type="checkbox" name="groups[%d]" value="%d">%s',
@@ -682,11 +682,11 @@ if (count($email_list)) {
         }
 
         if (!empty($GLOBALS['config']['usergroup_types'])) {
-            print '<p class="information">Select the default group membership type</p><select name="grouptype">';
+            echo '<p class="information">Select the default group membership type</p><select name="grouptype">';
             foreach ($GLOBALS['config']['usergroup_types'] as $ind => $val) {
                 printf('<option value="%d">%s of group</option>', $ind, $val);
             }
-            print '</select>';
+            echo '</select>';
         }
     }
     ?>
@@ -763,8 +763,8 @@ if (count($email_list)) {
             </tr>
 
             <?php
-            ## we should not allow sending this, but run it through process queue instead
-            ## https://mantis.phplist.com/view.php?id=16898
+            //# we should not allow sending this, but run it through process queue instead
+            //# https://mantis.phplist.com/view.php?id=16898
             ?>
             <!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.') ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Send&nbsp;Notification&nbsp;email') ?>&nbsp;<input type="radio" name="notify" value="yes" /></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately') ?>&nbsp;<input type="radio" name="notify" value="no" checked="checked"/></td></tr>

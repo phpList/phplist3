@@ -1,17 +1,17 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 $result = '';
 
 if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
-    $result .= s('deleting bounce %d', $_REQUEST['delete']) . "..\n";
+    $result .= s('deleting bounce %d', $_REQUEST['delete'])."..\n";
     if ($GLOBALS['require_login'] && !isSuperUser()) {
     } else {
         deleteBounce($_REQUEST['delete']);
     }
     $result .= $GLOBALS['I18N']->get('done');
-    print ActionResult($result);
+    echo ActionResult($result);
 }
 
 $tabs = new WebblerTabs();
@@ -63,8 +63,8 @@ if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
     }
 }
 
-# view bounces
-$count = Sql_Query(sprintf('select count(*) from %s where status ' . $status_compare . ' "unidentified bounce"',
+// view bounces
+$count = Sql_Query(sprintf('select count(*) from %s where status '.$status_compare.' "unidentified bounce"',
     $tables['bounce']));
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
@@ -79,20 +79,20 @@ $baseurl = "bounces&start=$start&tab=$currentTab";
 $limit = MAX_USER_PP;
 if (!empty($actionresult)) {
     $_SESSION['action_result'] = $actionresult;
-    Header('Location: ./?page=' . $baseurl);
+    header('Location: ./?page='.$baseurl);
     exit;
-#  print '<div id="actionresult" class="result">'.$actionresult .'</div>';
+//  print '<div id="actionresult" class="result">'.$actionresult .'</div>';
 }
 
 if ($total > MAX_USER_PP) {
     $paging = simplePaging("bounces&amp;tab=$currentTab", $start, $total, MAX_USER_PP,
-        $status . ' ' . $GLOBALS['I18N']->get('bounces'));
+        $status.' '.$GLOBALS['I18N']->get('bounces'));
     $query = sprintf('select * from %s where status %s "unidentified bounce" order by date desc limit %s offset %s',
         $tables['bounce'], $status_compare, $limit, $offset);
     $result = Sql_Query($query);
 } else {
     $paging = '';
-    $query = sprintf('select * from %s where status ' . $status_compare . ' "unidentified bounce" order by date desc',
+    $query = sprintf('select * from %s where status '.$status_compare.' "unidentified bounce" order by date desc',
         $tables['bounce']);
     $result = Sql_Query($query);
 }
@@ -100,52 +100,52 @@ if ($total > MAX_USER_PP) {
 $buttons = new ButtonGroup(new Button(PageURL2('bounces'), s('delete')));
 $buttons->addButton(
     new ConfirmButton(
-        $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months') . '?',
+        $GLOBALS['I18N']->get('are you sure you want to delete all unidentified bounces older than 2 months').'?',
         PageURL2("$baseurl&action=deleteunidentified"),
         $GLOBALS['I18N']->get('delete all unidentified (&gt; 2 months old)')));
 $buttons->addButton(
     new ConfirmButton(
-        $GLOBALS['I18N']->get('are you sure you want to delete all bounces older than 2 months') . '?',
+        $GLOBALS['I18N']->get('are you sure you want to delete all bounces older than 2 months').'?',
         PageURL2("$baseurl&action=deleteprocessed"),
         $GLOBALS['I18N']->get('delete all processed (&gt; 2 months old)')));
 $buttons->addButton(
     new ConfirmButton(
-        $GLOBALS['I18N']->get('are you sure you want to delete all bounces') . '?',
+        $GLOBALS['I18N']->get('are you sure you want to delete all bounces').'?',
         PageURL2("$baseurl&action=deleteall"),
         $GLOBALS['I18N']->get('Delete all')));
 
-print "<div class='actions'>\n";
-print "<div class='minitabs'>\n";
-print $tabs->display();
-print "</div>\n";
+echo "<div class='actions'>\n";
+echo "<div class='minitabs'>\n";
+echo $tabs->display();
+echo "</div>\n";
 
-print PageLinkButton('listbounces', $GLOBALS['I18N']->get('view bounces by list'));
+echo PageLinkButton('listbounces', $GLOBALS['I18N']->get('view bounces by list'));
 if (ALLOW_DELETEBOUNCE) {
-    print '<div class="fright">' . $buttons->show() . '</div>';
+    echo '<div class="fright">'.$buttons->show().'</div>';
 }
-print "</div><!-- .actions div-->\n";
+echo "</div><!-- .actions div-->\n";
 
 if (!Sql_Num_Rows($result)) {
     switch ($status) {
         case 'unidentified':
-            print '<p class="information">' . s('no unidentified bounces available') . '</p>';
+            print '<p class="information">'.s('no unidentified bounces available').'</p>';
             break;
         case 'processed':
-            print '<p class="information">' . s('no processed bounces available') . '</p>';
+            print '<p class="information">'.s('no processed bounces available').'</p>';
             break;
 
     }
 }
 
-$ls = new WebblerListing(s($status) . ' ' . s('bounces'));
+$ls = new WebblerListing(s($status).' '.s('bounces'));
 $ls->usePanel($paging);
 while ($bounce = Sql_fetch_array($result)) {
-    #@@@ not sure about these ones - bounced list message
+    //@@@ not sure about these ones - bounced list message
     $element = $bounce['id'];
-    $ls->addElement($element, PageUrl2('bounce&type=' . $status . '&id=' . $bounce['id']));
+    $ls->addElement($element, PageUrl2('bounce&type='.$status.'&id='.$bounce['id']));
     if (preg_match("#bounced list message ([\d]+)#", $bounce['status'], $regs)) {
-        $messageid = PageLink2('message&id=' . $regs[1], shortenTextDisplay(campaignTitle($regs[1]),
-            30));#sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+        $messageid = PageLink2('message&id='.$regs[1], shortenTextDisplay(campaignTitle($regs[1]),
+            30)); //sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
     } elseif ($bounce['status'] == 'bounced system message') {
         $messageid = $GLOBALS['I18N']->get('System Message');
     } else {
@@ -161,11 +161,11 @@ while ($bounce = Sql_fetch_array($result)) {
     $ls->addColumn($element, s('Campaign'), $messageid);
 
     if (preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)) {
-        $userid = PageLink2('user&id=' . $regs[1],
-            $regs[1]);#sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+        $userid = PageLink2('user&id='.$regs[1],
+            $regs[1]); //sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
     } elseif (preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)) {
-        $userid = PageLink2('user&id=' . $regs[1],
-            $regs[1]);#sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+        $userid = PageLink2('user&id='.$regs[1],
+            $regs[1]); //sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
     } else {
         $userid = $GLOBALS['I18N']->get('Unknown');
     }
@@ -184,5 +184,5 @@ while ($bounce = Sql_fetch_array($result)) {
        );
     */
 }
-#print "</table>";
-print $ls->display();
+//print "</table>";
+echo $ls->display();

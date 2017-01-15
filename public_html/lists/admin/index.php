@@ -2,9 +2,9 @@
 
 @ob_start();
 $er = error_reporting(0);
-# check for commandline and cli version
+// check for commandline and cli version
 if (!isset($_SERVER['SERVER_NAME']) && PHP_SAPI != 'cli') {
-    print 'Warning: commandline only works well with the cli version of PHP';
+    echo 'Warning: commandline only works well with the cli version of PHP';
 }
 
 if (isset($_REQUEST['_SERVER'])) {
@@ -13,10 +13,10 @@ if (isset($_REQUEST['_SERVER'])) {
 $cline = array();
 $GLOBALS['commandline'] = 0;
 
-require_once dirname(__FILE__) . '/inc/unregister_globals.php';
-require_once dirname(__FILE__) . '/inc/magic_quotes.php';
-# Remove when php5.X is unsupported, currently 31 Dec 2018, https://secure.php.net/supported-versions.php
-require_once dirname(__FILE__) . '/inc/random_compat/random.php';
+require_once dirname(__FILE__).'/inc/unregister_globals.php';
+require_once dirname(__FILE__).'/inc/magic_quotes.php';
+// Remove when php5.X is unsupported, currently 31 Dec 2018, https://secure.php.net/supported-versions.php
+require_once dirname(__FILE__).'/inc/random_compat/random.php';
 
 /* no idea why it wouldn't be there (no dependencies are mentioned on php.net/mb_strtolower), but
  * found a system missing it. We need it from the start */
@@ -27,9 +27,9 @@ if (!function_exists('mb_strtolower')) {
     }
 }
 
-# setup commandline
-#if (php_sapi_name() == "cli") {
-## 17355 - change the way CL is detected, using the way Drupal does it.
+// setup commandline
+//if (php_sapi_name() == "cli") {
+//# 17355 - change the way CL is detected, using the way Drupal does it.
 if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_numeric($_SERVER['argc']) && $_SERVER['argc'] > 0))) {
     for ($i = 0; $i < $_SERVER['argc']; ++$i) {
         $my_args = array();
@@ -44,7 +44,7 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
     chdir($dir);
 
     if (!is_file($cline['c'])) {
-        print "Cannot find config file\n";
+        echo "Cannot find config file\n";
         exit;
     }
 } else {
@@ -59,7 +59,7 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
     $configfile = $_SERVER['ConfigFile'];
 } elseif (isset($cline['c']) && is_file($cline['c'])) {
     $configfile = $cline['c'];
-} elseif (is_file(dirname(__FILE__) . '/../config/config.php')) {
+} elseif (is_file(dirname(__FILE__).'/../config/config.php')) {
     $configfile = '../config/config.php';
 } else {
     $configfile = '../config/config.php';
@@ -68,37 +68,37 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
 if (is_file($configfile) && filesize($configfile) > 20) {
     include $configfile;
 } elseif ($GLOBALS['commandline']) {
-    print 'Cannot find config file' . "\n";
+    echo 'Cannot find config file'."\n";
 } else {
-    print '<h3>Cannot find config file, please check permissions</h3>';
+    echo '<h3>Cannot find config file, please check permissions</h3>';
     exit;
 }
 $ajax = isset($_GET['ajaxed']);
 
 if (!isset($database_host) || !isset($database_user) || !isset($database_password) || !isset($database_name)) {
-    print 'Database details incomplete, please check your config file';
+    echo 'Database details incomplete, please check your config file';
     exit;
 }
-#exit;
-# record the start time(usec) of script
+//exit;
+// record the start time(usec) of script
 $now = gettimeofday();
 $GLOBALS['pagestats'] = array();
 $GLOBALS['pagestats']['time_start'] = $now['sec'] * 1000000 + $now['usec'];
 $GLOBALS['pagestats']['number_of_queries'] = 0;
 
-# load all required files
-require_once dirname(__FILE__) . '/init.php';
-require_once dirname(__FILE__) . '/inc/UUID.php';
-require_once dirname(__FILE__) . '/' . $GLOBALS['database_module'];
-include_once dirname(__FILE__) . '/../texts/english.inc';
-include_once dirname(__FILE__) . '/../texts/' . $GLOBALS['language_module'];
-include_once dirname(__FILE__) . '/languages.php';
-require_once dirname(__FILE__) . '/defaultconfig.php';
+// load all required files
+require_once dirname(__FILE__).'/init.php';
+require_once dirname(__FILE__).'/inc/UUID.php';
+require_once dirname(__FILE__).'/'.$GLOBALS['database_module'];
+include_once dirname(__FILE__).'/../texts/english.inc';
+include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
+include_once dirname(__FILE__).'/languages.php';
+require_once dirname(__FILE__).'/defaultconfig.php';
 
-require_once dirname(__FILE__) . '/connect.php';
-include_once dirname(__FILE__) . '/lib.php';
-require_once dirname(__FILE__) . '/inc/netlib.php';
-require_once dirname(__FILE__) . '/inc/interfacelib.php';
+require_once dirname(__FILE__).'/connect.php';
+include_once dirname(__FILE__).'/lib.php';
+require_once dirname(__FILE__).'/inc/netlib.php';
+require_once dirname(__FILE__).'/inc/interfacelib.php';
 
 $systemTimer = new timer();
 
@@ -107,7 +107,7 @@ verifyCsrfGetToken(false);
 
 if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables['config'], 1)) {
     $_SESSION['hasconf'] = true;
-    ### Activate all plugins
+    //## Activate all plugins
     /* already done in pluginlib */
     //foreach ($GLOBALS['plugins'] as $plugin) {
     //$plugin->activate();
@@ -119,7 +119,7 @@ if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($T
     $GLOBALS['ui'] = $_REQUEST['settheme'];
     $_SESSION['ui'] = $GLOBALS['ui'];
 }
-if (isset($GLOBALS['ui']) && ! is_array($THEMES[$GLOBALS['ui']])) {
+if (isset($GLOBALS['ui']) && !is_array($THEMES[$GLOBALS['ui']])) {
     $themeKeys = array_keys($THEMES);
     $GLOBALS['ui'] = $themeKeys[0];
 }
@@ -141,24 +141,24 @@ if (!empty($_GET['page']) && $_GET['page'] == 'logout' && empty($_GET['err'])) {
     Redirect('home');
 }
 
-## send a header for IE
+//# send a header for IE
 header('X-UA-Compatible: IE=Edge');
-## tell SE's to leave us alone
+//# tell SE's to leave us alone
 header('X-Robots-Tag: noindex');
 
 if (!$ajax && !$GLOBALS['commandline']) {
-    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/pagetop_minified.php')) {
-        include_once dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/pagetop_minified.php';
+    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minified.php')) {
+        include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minified.php';
     } else {
-        include_once dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/pagetop.php';
+        include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php';
     }
 }
 
 if (isset($GLOBALS['pageheader'])) {
     foreach ($GLOBALS['pageheader'] as $sHeaderItem => $sHtml) {
-        print '<!--' . $sHeaderItem . '-->' . $sHtml;
+        echo '<!--'.$sHeaderItem.'-->'.$sHtml;
 
-        print "\n";
+        echo "\n";
     }
 }
 
@@ -170,33 +170,33 @@ if ($GLOBALS['commandline']) {
     if (is_array($GLOBALS['commandline_users']) && count($GLOBALS['commandline_users']) && !in_array($_SERVER['USER'],
             $GLOBALS['commandline_users'])
     ) {
-        clineError('Sorry, You (' . $_SERVER['USER'] . ') do not have sufficient permissions to run phplist on commandline');
+        clineError('Sorry, You ('.$_SERVER['USER'].') do not have sufficient permissions to run phplist on commandline');
         exit;
     }
     $GLOBALS['require_login'] = 0;
 
-    # getopt is actually useless
-    #$opt = getopt("p:");
+    // getopt is actually useless
+    //$opt = getopt("p:");
 
     $IsCommandlinePlugin = isset($cline['m']) && in_array($cline['m'], $GLOBALS['commandlinePlugins']);
     if ($cline['p'] && !$IsCommandlinePlugin) {
         if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],
                 $GLOBALS['commandline_pages'])
         ) {
-            clineError($cline['p'] . ' does not process commandline');
+            clineError($cline['p'].' does not process commandline');
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
         }
-        cl_processtitle('core-' . $_GET['page']);
+        cl_processtitle('core-'.$_GET['page']);
     } elseif ($cline['p'] && $IsCommandlinePlugin) {
         if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],
                 $commandlinePluginPages[$cline['m']])
         ) {
-            clineError($cline['p'] . ' does not process commandline');
+            clineError($cline['p'].' does not process commandline');
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
             $_GET['pi'] = $cline['m'];
-            cl_processtitle($_GET['pi'] . '-' . $_GET['page']);
+            cl_processtitle($_GET['pi'].'-'.$_GET['page']);
         }
     } else {
         clineUsage(' [other parameters]');
@@ -204,11 +204,11 @@ if ($GLOBALS['commandline']) {
     }
 } else {
     if (CHECK_REFERRER && isset($_SERVER['HTTP_REFERER'])) {
-        ## do a crude check on referrer. Won't solve everything, as it can be faked, but shouldn't hurt
+        //# do a crude check on referrer. Won't solve everything, as it can be faked, but shouldn't hurt
         $ref = parse_url($_SERVER['HTTP_REFERER']);
         $parts = explode(':', $_SERVER['HTTP_HOST']);
         if ($ref['host'] != $parts[0] && !in_array($ref['host'], $allowed_referrers)) {
-            print 'Access denied';
+            echo 'Access denied';
             exit;
         }
     }
@@ -225,12 +225,12 @@ if (preg_match("/([\w_]+)/", $page, $regs)) {
 } else {
     $page = '';
 }
-if (!is_file($page . '.php') && !isset($_GET['pi'])) {
+if (!is_file($page.'.php') && !isset($_GET['pi'])) {
     $page = $GLOBALS['homepage'];
 }
 
 if (!$GLOBALS['admin_auth_module']) {
-    # stop login system when no admins exist
+    // stop login system when no admins exist
     if (!Sql_Table_Exists($tables['admin'])) {
         $GLOBALS['require_login'] = 0;
     } else {
@@ -249,20 +249,20 @@ if (!empty($_GET['pi']) && isset($GLOBALS['plugins'][$_GET['pi']])) {
     $page_title = $GLOBALS['I18N']->pageTitle($page);
 }
 
-print '<title>' . NAME . ' :: ';
+echo '<title>'.NAME.' :: ';
 if (isset($GLOBALS['installation_name'])) {
-    print $GLOBALS['installation_name'] . ' :: ';
+    echo $GLOBALS['installation_name'].' :: ';
 }
-print "$page_title</title>";
+echo "$page_title</title>";
 
 if (!empty($GLOBALS['require_login'])) {
-    #bth 7.1.2015 to support x-forwarded-for
+    //bth 7.1.2015 to support x-forwarded-for
     $remoteAddr = getClientIP();
 
     if ($GLOBALS['authenticationplugin']) {
         $GLOBALS['admin_auth'] = $GLOBALS['plugins'][$GLOBALS['authenticationplugin']];
     } else {
-        require __DIR__ . '/phpListAdminAuthentication.php';
+        require __DIR__.'/phpListAdminAuthentication.php';
         $GLOBALS['admin_auth'] = new phpListAdminAuthentication();
     }
     if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password']) && !empty($_REQUEST['password'])) {
@@ -278,18 +278,18 @@ if (!empty($GLOBALS['require_login'])) {
             $_SESSION['adminloggedin'] = $remoteAddr;
             $_SESSION['logindetails'] = array(
                 'adminname' => $_REQUEST['login'],
-                'id' => $loginresult[0],
+                'id'        => $loginresult[0],
                 'superuser' => $admin_auth->isSuperUser($loginresult[0]),
-                'passhash' => sha1($_REQUEST['password']),
+                'passhash'  => sha1($_REQUEST['password']),
             );
-            ##16692 - make sure admin permissions apply at first login
+            //#16692 - make sure admin permissions apply at first login
             $GLOBALS['admin_auth']->validateAccount($_SESSION['logindetails']['id']);
             unset($_SESSION['session_age']);
             if (!empty($_POST['page'])) {
                 $page = preg_replace('/\W+/', '', $_POST['page']);
             }
         }
-        #If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
+        //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
     } elseif (isset($_REQUEST['forgotpassword'])) {
         $adminId = $GLOBALS['admin_auth']->adminIdForEmail($_REQUEST['forgotpassword']);
         if ($adminId) {
@@ -299,23 +299,23 @@ if (!empty($GLOBALS['require_login'])) {
         }
         $page = 'login';
     } elseif (!empty($_GET['secret']) && ($_GET['page'] == 'processbounces' || $_GET['page'] == 'processqueue' || $_GET['page'] == 'processcron')) {
-        ## remote processing call
+        //# remote processing call
         $ourSecret = getConfig('remote_processing_secret');
         if ($ourSecret != $_GET['secret']) {
             @ob_end_clean();
-            print 'Error' . ': ' . s('Incorrect processing secret');
+            echo 'Error'.': '.s('Incorrect processing secret');
             exit;
         }
 
         $_SESSION['adminloggedin'] = $remoteAddr;
         $_SESSION['logindetails'] = array(
             'adminname' => 'remotecall',
-            'id' => 0,
+            'id'        => 0,
             'superuser' => 0,
-            'passhash' => 'xxxx',
+            'passhash'  => 'xxxx',
         );
     } elseif (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
-        #$msg = 'Not logged in';
+        //$msg = 'Not logged in';
         $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             if ($plugin->login()) {
@@ -358,10 +358,10 @@ if (!empty($_SESSION['adminloggedin']) && !empty($_SESSION['session_age']) && $_
     $msg = s('Your session timed out, please log in again');
 }
 
-##  force to login page, if an Ajax call is made without being logged in
+//#  force to login page, if an Ajax call is made without being logged in
 if ($ajax && empty($_SESSION['adminloggedin'])) {
     $_SESSION['action_result'] = s('Your session timed out, please login again');
-    print '<script type="text/javascript">top.location = "./?page=home";</script>';
+    echo '<script type="text/javascript">top.location = "./?page=home";</script>';
     exit;
 }
 
@@ -374,12 +374,12 @@ if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstin
            <select name="setlanguage" onchange="document.languageswitchform.submit()">';
     $lancount = 0;
     foreach ($GLOBALS['LANGUAGES'] as $iso => $rec) {
-        #  if (is_dir(dirname(__FILE__).'/locale/'.$iso)) {
+        //  if (is_dir(dirname(__FILE__).'/locale/'.$iso)) {
         $languageswitcher .= sprintf('
                  <option value="%s" %s>%s</option>', $iso,
             $_SESSION['adminlanguage']['iso'] == $iso ? 'selected="selected"' : '', $rec[0]);
         ++$lancount;
-        #  }
+        //  }
     }
     $languageswitcher .= '
             </select>
@@ -402,7 +402,7 @@ if (THEME_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinsta
         $themeswitcher .= sprintf('
                  <option value="%s" %s>%s</option>', $theme,
             $_SESSION['ui'] == $theme ? 'selected="selected"' : '', htmlspecialchars(strip_tags($themeData['name'])));
-                ++$themecount;
+        ++$themecount;
     }
     $themeswitcher .= '
             </select>
@@ -413,35 +413,35 @@ if (THEME_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinsta
     }
 }
 
-require_once dirname(__FILE__) . '/setpermissions.php';
+require_once dirname(__FILE__).'/setpermissions.php';
 $include = '';
 
 if ($page != '' && $page != 'install') {
     preg_match("/([\w_]+)/", $page, $regs);
     $include = $regs[1];
     $include .= '.php';
-    $include = $page . '.php';
+    $include = $page.'.php';
 } else {
-    $include = $GLOBALS['homepage'] . '.php';
+    $include = $GLOBALS['homepage'].'.php';
 }
 $pageinfo = new pageInfo();
 $pageinfo->fetchInfoContent($include);
 
-if (is_file('ui/' . $GLOBALS['ui'] . '/mainmenu.php')) {
-    include 'ui/' . $GLOBALS['ui'] . '/mainmenu.php';
+if (is_file('ui/'.$GLOBALS['ui'].'/mainmenu.php')) {
+    include 'ui/'.$GLOBALS['ui'].'/mainmenu.php';
 }
 if (!$ajax) {
-    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/header_minified.inc')) {
-        include 'ui/' . $GLOBALS['ui'] . '/header_minified.inc';
+    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/header_minified.inc')) {
+        include 'ui/'.$GLOBALS['ui'].'/header_minified.inc';
     } else {
-        include 'ui/' . $GLOBALS['ui'] . '/header.inc';
+        include 'ui/'.$GLOBALS['ui'].'/header.inc';
     }
 }
 
 if (!$ajax) {
-    print '<h4 class="pagetitle">' . mb_strtolower($page_title) . '</h4>';
+    echo '<h4 class="pagetitle">'.mb_strtolower($page_title).'</h4>';
 }
-print '<div class="hidden">' . PageLink2('home', s('Main page')) . '</div>';
+echo '<div class="hidden">'.PageLink2('home', s('Main page')).'</div>';
 
 if ($GLOBALS['require_login'] && $page != 'login') {
     if ($page == 'logout') {
@@ -458,31 +458,30 @@ if ($GLOBALS['require_login'] && $page != 'login') {
     }
 
     if ($page != 'logout' && empty($logoutontop) && !$ajax) {
-        #  print '<div class="right">'.PageLink2("logout",$GLOBALS['I18N']->get('logout')).'</div>';
+        //  print '<div class="right">'.PageLink2("logout",$GLOBALS['I18N']->get('logout')).'</div>';
         if (!empty($_SESSION['firstinstall']) && $page != 'setup') {
-            $firstInstallButton = '<div id="firstinstallbutton">' . PageLinkClass('setup', s('Continue Configuration'),
-                    '', 'firstinstallbutton') . '</div>';
+            $firstInstallButton = '<div id="firstinstallbutton">'.PageLinkClass('setup', s('Continue Configuration'),
+                    '', 'firstinstallbutton').'</div>';
         }
     }
 }
 
 if (!$GLOBALS['commandline']) {
-    print '<noscript>';
+    echo '<noscript>';
     Info(s('phpList will work without Javascript, but it will be easier to use if you switch it on.'));
-    print '</noscript>';
+    echo '</noscript>';
 }
 
 if (!$ajax && $page != 'login') {
     if (strpos(VERSION, 'dev') && !TEST) {
-        #
         if ($GLOBALS['developer_email']) {
-            Info('Running DEV version. All emails will be sent to ' . $GLOBALS['developer_email']);
+            Info('Running DEV version. All emails will be sent to '.$GLOBALS['developer_email']);
         } else {
             Info('Running DEV version, but developer email is not set');
         }
     }
     if (TEST) {
-        print Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
+        echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
     if (version_compare(PHP_VERSION, '5.4.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.4.0 or higher.'));
@@ -499,11 +498,11 @@ if (!$ajax && $page != 'login') {
     }
 
     if (MANUALLY_PROCESS_QUEUE && isSuperUser() && empty($_GET['pi']) &&
-        ## hmm, how many more pages to not show this?
+        //# hmm, how many more pages to not show this?
         (!isset($_GET['page']) ||
             ($_GET['page'] != 'processqueue' && $_GET['page'] != 'messages' && $_GET['page'] != 'upgrade'))
     ) {
-        ## avoid error on uninitialised DB
+        //# avoid error on uninitialised DB
         if (Sql_Table_exists($tables['message'])) {
             $queued_count = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where status in ("submitted","inprocess") and embargo < now()',
                 $tables['message']));
@@ -511,28 +510,28 @@ if (!$ajax && $page != 'login') {
                 $link = PageLinkButton('processqueue', s('Process the queue'));
                 $link2 = PageLinkButton('messages&amp;tab=active', s('View the queue'));
                 if ($link || $link2) {
-                    print Info(sprintf(s('You have %s campaign(s) in the queue, ready for processing'),
-                            $queued_count[0]) . '<br/>' . $link . ' ' . $link2);
+                    echo Info(sprintf(s('You have %s campaign(s) in the queue, ready for processing'),
+                            $queued_count[0]).'<br/>'.$link.' '.$link2);
                 }
             }
         }
     }
 }
 
-# always allow access to the about page
+// always allow access to the about page
 if (isset($_GET['page']) && $_GET['page'] == 'about') {
     $page = 'about';
     $include = 'about.php';
 }
-print $pageinfo->show();
+echo $pageinfo->show();
 
 if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION['adminloggedin'])) {
     $action = basename($_GET['action']);
-    if (is_file(dirname(__FILE__) . '/actions/' . $action . '.php')) {
+    if (is_file(dirname(__FILE__).'/actions/'.$action.'.php')) {
         $status = '';
-        ## the page action return the result in $status
-        include dirname(__FILE__) . '/actions/' . $action . '.php';
-        print '<div id="actionresult">' . $status . '</div>';
+        //# the page action return the result in $status
+        include dirname(__FILE__).'/actions/'.$action.'.php';
+        echo '<div id="actionresult">'.$status.'</div>';
     }
 }
 
@@ -545,24 +544,24 @@ if (USEFCK) {
 }
 */
 
-/* 
- * 
- * show global news, based on the version in use 
- * 
+/*
+ *
+ * show global news, based on the version in use
+ *
  * **/
 
-#if (empty($_SESSION['newsshown'])) { ## keep flag to only show one message per session
+//if (empty($_SESSION['newsshown'])) { ## keep flag to only show one message per session
 if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHPLISTNEWSROOT) {
-    ## for testing
+    //# for testing
     if (!empty($_GET['reset']) && $_GET['reset'] == 'news') {
-        SaveConfig('readnews' . $_SESSION['logindetails']['id'], '', 0, 1);
-        SaveConfig('viewednews' . $_SESSION['logindetails']['id'], '', 0, 1);
-        SaveConfig('phpListNewsLastChecked-' . $_SESSION['adminlanguage']['iso'], '', 0, 1);
-        SaveConfig('phpListNewsIndex-' . $_SESSION['adminlanguage']['iso'], '', 0, 1);
+        SaveConfig('readnews'.$_SESSION['logindetails']['id'], '', 0, 1);
+        SaveConfig('viewednews'.$_SESSION['logindetails']['id'], '', 0, 1);
+        SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'], '', 0, 1);
+        SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'], '', 0, 1);
         clearPageCache();
     }
 
-    $readmessagesconf = getConfig('readnews' . $_SESSION['logindetails']['id']);
+    $readmessagesconf = getConfig('readnews'.$_SESSION['logindetails']['id']);
     $readmessages = unserialize($readmessagesconf);
     if (!is_array($readmessages)) {
         $readmessages = array();
@@ -570,7 +569,7 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
 
     /* also keep track of when a message is viewed and suppress it
       if it hasn't been closed after several views */
-    $viewedmessagesconf = getConfig('viewednews' . $_SESSION['logindetails']['id']);
+    $viewedmessagesconf = getConfig('viewednews'.$_SESSION['logindetails']['id']);
     $viewedmessages = unserialize($viewedmessagesconf);
     if (!is_array($viewedmessages)) {
         $viewedmessages = array();
@@ -579,13 +578,13 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
     $news = array();
 
     // we only need it once per language per system, regardless of admins
-    $phpListNewsLastChecked = getConfig('phpListNewsLastChecked-' . $_SESSION['adminlanguage']['iso']);
+    $phpListNewsLastChecked = getConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso']);
     if (empty($phpListNewsLastChecked) || ($phpListNewsLastChecked + 86400 < time())) {
-        SaveConfig('phpListNewsLastChecked-' . $_SESSION['adminlanguage']['iso'], time(), 0, 1);
-        $newsIndex = fetchUrl(PHPLISTNEWSROOT . '/' . VERSION . '-' . $_SESSION['adminlanguage']['iso'] . '-index.txt');
-        SaveConfig('phpListNewsIndex-' . $_SESSION['adminlanguage']['iso'], $newsIndex, 0, 1);
+        SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'], time(), 0, 1);
+        $newsIndex = fetchUrl(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
+        SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'], $newsIndex, 0, 1);
     }
-    $newsIndex = getConfig('phpListNewsIndex-' . $_SESSION['adminlanguage']['iso']);
+    $newsIndex = getConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso']);
 
     if (!empty($newsIndex)) {
         $newsitems = explode("\n", $newsIndex);
@@ -596,7 +595,7 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
                     empty($viewedmessages[md5($newsitem)]['count']) ||
                     $viewedmessages[md5($newsitem)]['count'] < 20)
             ) {
-                $newscontent = fetchUrl(PHPLISTNEWSROOT . '/' . $newsitem);
+                $newscontent = fetchUrl(PHPLISTNEWSROOT.'/'.$newsitem);
                 if (!empty($newscontent)) {
                     $news[$newsitem] = $newscontent;
                 }
@@ -609,32 +608,32 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
             $newsid = md5($newsitem);
             if (!isset($viewedmessages[$newsid])) {
                 $viewedmessages[$newsid] = array(
-                    'time' => time(),
+                    'time'  => time(),
                     'count' => 1,
                 );
             } else {
                 ++$viewedmessages[$newsid]['count'];
             }
-            SaveConfig('viewednews' . $_SESSION['logindetails']['id'], serialize($viewedmessages), 0, 1);
-            $newscontent = '<div class="news"><a href="./?page=markread&id=' . $newsid . '" class="ajaxable hide" title="' . s('Hide forever') . '">' . s('Hide forever') . '</a>' . $newscontent . '</div>';
+            SaveConfig('viewednews'.$_SESSION['logindetails']['id'], serialize($viewedmessages), 0, 1);
+            $newscontent = '<div class="news"><a href="./?page=markread&id='.$newsid.'" class="ajaxable hide" title="'.s('Hide forever').'">'.s('Hide forever').'</a>'.$newscontent.'</div>';
             break;
         }
     }
     if (!empty($newscontent)) {
         $_SESSION['newsshown'] = time();
-        print '<div class="panel announcements closethisone">';
-        print '<div class="content">';
-        print $newscontent;
-        print '</div>';
-        print '</div>';
+        echo '<div class="panel announcements closethisone">';
+        echo '<div class="content">';
+        echo $newscontent;
+        echo '</div>';
+        echo '</div>';
     }
 }
-#} // end of show one per session (not used)
+//} // end of show one per session (not used)
 
-/* 
- * 
+/*
+ *
  * end of news
- * 
+ *
  * **/
 
 if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
@@ -653,26 +652,26 @@ if (preg_match('#(.*?)/admin?$#i', $this_doc, $regs)) {
 clearstatcache();
 if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
     if (checkAccess($page) || $page == 'about') {
-        # check whether there is a language file to include
-        if (is_file('lan/' . $_SESSION['adminlanguage']['iso'] . '/' . $include)) {
-            include 'lan/' . $_SESSION['adminlanguage']['iso'] . '/' . $include;
+        // check whether there is a language file to include
+        if (is_file('lan/'.$_SESSION['adminlanguage']['iso'].'/'.$include)) {
+            include 'lan/'.$_SESSION['adminlanguage']['iso'].'/'.$include;
         }
-        if (is_file('ui/' . $GLOBALS['ui'] . '/pages/' . $include)) {
-            $include = 'ui/' . $GLOBALS['ui'] . '/pages/' . $include;
+        if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
+            $include = 'ui/'.$GLOBALS['ui'].'/pages/'.$include;
         }
-        #  print "Including $include<br/>";
+        //  print "Including $include<br/>";
 
-        # hmm, pre-parsing and capturing the error would be nice
-        #$parses_ok = eval(@file_get_contents($include));
+        // hmm, pre-parsing and capturing the error would be nice
+        //$parses_ok = eval(@file_get_contents($include));
         $parses_ok = 1;
 
         if (!$parses_ok) {
-            print Error("cannot parse $include");
-            print '<p class="error">Sorry, an error occurred. This is a bug. Please <a href="http://mantis.phplist.com">report the bug to the Bug Tracker</a><br/>Sorry for the inconvenience</a></p>';
+            echo Error("cannot parse $include");
+            echo '<p class="error">Sorry, an error occurred. This is a bug. Please <a href="http://mantis.phplist.com">report the bug to the Bug Tracker</a><br/>Sorry for the inconvenience</a></p>';
         } else {
             if (!empty($_SESSION['action_result'])) {
-                print '<div class="actionresult">' . $_SESSION['action_result'] . '</div>';
-#        print '<script>alert("'.$_SESSION['action_result'].'")</script>';
+                echo '<div class="actionresult">'.$_SESSION['action_result'].'</div>';
+//        print '<script>alert("'.$_SESSION['action_result'].'")</script>';
                 unset($_SESSION['action_result']);
             }
 
@@ -689,22 +688,22 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
     } else {
         Error(s('Access Denied'));
     }
-#  print "End of inclusion<br/>";
+//  print "End of inclusion<br/>";
 } elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
     $plugin = $GLOBALS['plugins'][$_GET['pi']];
     $menu = $plugin->adminmenu();
     if (checkAccess($page, $_GET['pi'])) {
-        if (is_file($plugin->coderoot . $include)) {
-            include $plugin->coderoot . $include;
+        if (is_file($plugin->coderoot.$include)) {
+            include $plugin->coderoot.$include;
         } elseif ($include == 'main.php' || $page == 'home') {
-            print '<h3>' . $plugin->name . '</h3><ul>';
+            echo '<h3>'.$plugin->name.'</h3><ul>';
             foreach ($menu as $page => $desc) {
-                print '<li>' . PageLink2($page, $desc) . '</li>';
+                echo '<li>'.PageLink2($page, $desc).'</li>';
             }
-            print '</ul>';
+            echo '</ul>';
         } elseif ($page != 'login') {
-            print '<br/>' . "$page -&gt; " . s('Sorry this page was not found in the plugin') . '<br/>';#.' '.$plugin->coderoot.$include.'<br/>';
-            cl_output("$page -> " . s('Sorry this page was not found in the plugin'));#. ' '.$plugin->coderoot . "$include");
+            echo '<br/>'."$page -&gt; ".s('Sorry this page was not found in the plugin').'<br/>'; //.' '.$plugin->coderoot.$include.'<br/>';
+            cl_output("$page -> ".s('Sorry this page was not found in the plugin')); //. ' '.$plugin->coderoot . "$include");
         }
     } else {
         Error(s('Access Denied'));
@@ -714,40 +713,40 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
         clineError(s('Sorry, that module does not exist'));
         exit;
     }
-    if (is_file('ui/' . $GLOBALS['ui'] . '/pages/' . $include)) {
-        include 'ui/' . $GLOBALS['ui'] . '/pages/' . $include;
+    if (is_file('ui/'.$GLOBALS['ui'].'/pages/'.$include)) {
+        include 'ui/'.$GLOBALS['ui'].'/pages/'.$include;
     } else {
-        print "$page -&gt; " . $GLOBALS['I18N']->get('Sorry, not implemented yet');
+        echo "$page -&gt; ".$GLOBALS['I18N']->get('Sorry, not implemented yet');
     }
 }
 
-# some debugging stuff
+// some debugging stuff
 $now = gettimeofday();
 $finished = $now['sec'] * 1000000 + $now['usec'];
 $elapsed = $finished - $GLOBALS['pagestats']['time_start'];
 $elapsed = ($elapsed / 1000000);
 
-print "\n\n" . '<!--';
+echo "\n\n".'<!--';
 if (!empty($GLOBALS['developer_email'])) {
-    print '<br clear="all" />';
-    print $GLOBALS['pagestats']['number_of_queries'] . " db queries in $elapsed seconds";
+    echo '<br clear="all" />';
+    echo $GLOBALS['pagestats']['number_of_queries']." db queries in $elapsed seconds";
     if (function_exists('memory_get_peak_usage')) {
-        $memory_usage = 'Peak: ' . memory_get_peak_usage();
+        $memory_usage = 'Peak: '.memory_get_peak_usage();
     } elseif (function_exists('memory_get_usage')) {
         $memory_usage = memory_get_usage();
     } else {
         $memory_usage = 'Cannot determine with this PHP version';
     }
-    print '<br/>Memory usage: ' . $memory_usage;
+    echo '<br/>Memory usage: '.$memory_usage;
 }
 
 if (isset($GLOBALS['statslog']) && !empty($_SERVER['REQUEST_URI'])) {
     if ($fp = @fopen($GLOBALS['statslog'], 'a')) {
         @fwrite($fp,
-            $GLOBALS['pagestats']['number_of_queries'] . "\t$elapsed\t" . $_SERVER['REQUEST_URI'] . "\t NAME:" . $GLOBALS['installation_name'] . "\n");
+            $GLOBALS['pagestats']['number_of_queries']."\t$elapsed\t".$_SERVER['REQUEST_URI']."\t NAME:".$GLOBALS['installation_name']."\n");
     }
 }
-print '-->';
+echo '-->';
 
 if (!empty($GLOBALS['inRemoteCall']) || $ajax || !empty($GLOBALS['commandline'])) {
     @ob_end_clean();
@@ -757,20 +756,20 @@ if (!empty($GLOBALS['inRemoteCall']) || $ajax || !empty($GLOBALS['commandline'])
         @ob_end_flush();
     }
 
-    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/footer_minified.inc')) {
-        include_once 'ui/' . $GLOBALS['ui'] . '/footer_minified.inc';
+    if (USE_MINIFIED_ASSETS && file_exists(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/footer_minified.inc')) {
+        include_once 'ui/'.$GLOBALS['ui'].'/footer_minified.inc';
     } else {
-        include_once 'ui/' . $GLOBALS['ui'] . '/footer.inc';
+        include_once 'ui/'.$GLOBALS['ui'].'/footer.inc';
     }
 }
 if (isset($GLOBALS['pagefooter'])) {
     foreach ($GLOBALS['pagefooter'] as $sFooterItem => $sHtml) {
-        print '<!--' . $sFooterItem . '-->' . $sHtml;
+        echo '<!--'.$sFooterItem.'-->'.$sHtml;
 
-        print "\n";
+        echo "\n";
     }
 }
-print '</body></html>';
+echo '</body></html>';
 
 function parseCline()
 {
@@ -780,12 +779,12 @@ function parseCline()
         if (substr($clinearg, 0, 1) == '-') {
             $par = substr($clinearg, 1, 1);
             $clinearg = substr($clinearg, 2, strlen($clinearg));
-            # $res[$par] = "";
+            // $res[$par] = "";
             $cur = mb_strtolower($par);
             $res[$cur] .= $clinearg;
         } elseif ($cur) {
             if ($res[$cur]) {
-                $res[$cur] .= ' ' . $clinearg;
+                $res[$cur] .= ' '.$clinearg;
             } else {
                 $res[$cur] .= $clinearg;
             }

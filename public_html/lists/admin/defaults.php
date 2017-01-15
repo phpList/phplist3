@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 $attributes = array();
 @ob_end_flush();
@@ -42,12 +42,12 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     while (list($key, $val) = each($selected)) {
         $entry = readentry("data/$val");
         list($name, $desc) = explode(':', $entry);
-        print '<br/><br/>' . $GLOBALS['I18N']->get('Loading') . " $desc<br/>\n";
+        echo '<br/><br/>'.$GLOBALS['I18N']->get('Loading')." $desc<br/>\n";
         $lc_name = str_replace(' ', '', strtolower(str_replace('.txt', '', $val)));
         $lc_name = preg_replace("/[\W]/", '', $lc_name);
 
         if ($lc_name == '') {
-            Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty:') . " $lc_name");
+            Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty:')." $lc_name");
         }
         Sql_Query("select * from {$tables['attribute']} where tablename = \"$lc_name\"");
         if (Sql_Affected_Rows()) {
@@ -59,7 +59,7 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
         Sql_Query($query);
         $insertid = Sql_Insert_id();
 
-        $query = "create table $table_prefix" . "listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
+        $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
         Sql_Query($query);
         $fp = fopen("data/$val", 'r');
         $header = '';
@@ -76,11 +76,11 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
         }
         fclose($fp);
     }
-    print $GLOBALS['I18N']->get('done') . '<br/><br/>';
+    echo $GLOBALS['I18N']->get('done').'<br/><br/>';
 
-    print PageLinkButton('attributes', $GLOBALS['I18N']->get('return to editing attributes'));
+    echo PageLinkButton('attributes', $GLOBALS['I18N']->get('return to editing attributes'));
 
-#@@@@ not sure about this one:  print '<p class="button">'.PageLink2("attributes",$GLOBALS['I18N']->get('continue')).'</p>';
+//@@@@ not sure about this one:  print '<p class="button">'.PageLink2("attributes",$GLOBALS['I18N']->get('continue')).'</p>';
 } else {
     ?>
 
@@ -96,6 +96,6 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
             }
         }
     }
-    print '<input class="submit" type="submit" value="' . $GLOBALS['I18N']->get('Add') . '" /></form>';
+    echo '<input class="submit" type="submit" value="'.$GLOBALS['I18N']->get('Add').'" /></form>';
 }
 ?>

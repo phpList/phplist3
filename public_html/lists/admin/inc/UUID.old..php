@@ -1,6 +1,6 @@
 <?php
 /**
- * UUID class
+ * UUID class.
  *
  * The following class generates VALID RFC 4122 COMPLIANT
  * Universally Unique IDentifiers (UUID) version 3, 4 and 5.
@@ -10,38 +10,40 @@
  * PHP implementation.
  *
  * @author Andrew Moore
+ *
  * @link http://www.php.net/manual/en/function.uniqid.php#94959
  */
 class UUID
 {
     /**
-     * Generate v3 UUID
+     * Generate v3 UUID.
      *
      * Version 3 UUIDs are named based. They require a namespace (another
      * valid UUID) and a value (the name). Given the same namespace and
      * name, the output is always the same.
      *
-     * @param	uuid	$namespace
-     * @param	string	$name
+     * @param uuid   $namespace
+     * @param string $name
      */
     public static function v3($namespace, $name)
     {
-        if(!self::is_valid($namespace)) return false;
+        if (!self::is_valid($namespace)) {
+            return false;
+        }
 
         // Get hexadecimal components of namespace
-        $nhex = str_replace(array('-','{','}'), '', $namespace);
+        $nhex = str_replace(array('-', '{', '}'), '', $namespace);
 
         // Binary Value
         $nstr = '';
 
         // Convert Namespace UUID to bits
-        for($i = 0; $i < strlen($nhex); $i+=2)
-        {
-            $nstr .= chr(hexdec($nhex[$i].$nhex[$i+1]));
+        for ($i = 0; $i < strlen($nhex); $i += 2) {
+            $nstr .= chr(hexdec($nhex[$i].$nhex[$i + 1]));
         }
 
         // Calculate hash value
-        $hash = md5($nstr . $name);
+        $hash = md5($nstr.$name);
 
         return sprintf('%08s-%04s-%04x-%04x-%12s',
 
@@ -66,8 +68,7 @@ class UUID
     }
 
     /**
-     *
-     * Generate v4 UUID
+     * Generate v4 UUID.
      *
      * Version 4 UUIDs are pseudo-random.
      */
@@ -96,33 +97,34 @@ class UUID
     }
 
     /**
-     * Generate v5 UUID
+     * Generate v5 UUID.
      *
      * Version 5 UUIDs are named based. They require a namespace (another
      * valid UUID) and a value (the name). Given the same namespace and
      * name, the output is always the same.
      *
-     * @param	uuid	$namespace
-     * @param	string	$name
+     * @param uuid   $namespace
+     * @param string $name
      */
     public static function v5($namespace, $name)
     {
-        if(!self::is_valid($namespace)) return false;
+        if (!self::is_valid($namespace)) {
+            return false;
+        }
 
         // Get hexadecimal components of namespace
-        $nhex = str_replace(array('-','{','}'), '', $namespace);
+        $nhex = str_replace(array('-', '{', '}'), '', $namespace);
 
         // Binary Value
         $nstr = '';
 
         // Convert Namespace UUID to bits
-        for($i = 0; $i < strlen($nhex); $i+=2)
-        {
-            $nstr .= chr(hexdec($nhex[$i].$nhex[$i+1]));
+        for ($i = 0; $i < strlen($nhex); $i += 2) {
+            $nstr .= chr(hexdec($nhex[$i].$nhex[$i + 1]));
         }
 
         // Calculate hash value
-        $hash = sha1($nstr . $name);
+        $hash = sha1($nstr.$name);
 
         return sprintf('%08s-%04s-%04x-%04x-%12s',
 
@@ -146,7 +148,8 @@ class UUID
         );
     }
 
-    public static function is_valid($uuid) {
+    public static function is_valid($uuid)
+    {
         return preg_match('/^\{?[0-9a-f]{8}\-?[0-9a-f]{4}\-?[0-9a-f]{4}\-?'.
             '[0-9a-f]{4}\-?[0-9a-f]{12}\}?$/i', $uuid) === 1;
     }

@@ -10,7 +10,7 @@
  * If no refresh token is obtained when running this file, revoke access to your app
  * using link: https://accounts.google.com/b/0/IssuedAuthSubTokens and run the script again.
  * This script requires PHP 5.4 or later
- * PHP Version 5.4
+ * PHP Version 5.4.
  */
 
 namespace League\OAuth2\Client\Provider;
@@ -25,33 +25,36 @@ use Psr\Http\Message\ResponseInterface;
 session_start();
 
 //If this automatic URL doesn't work, set it yourself manually
-$redirectUri = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+$redirectUri = isset($_SERVER['HTTPS']) ? 'https://' : 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 //$redirectUri = 'http://localhost/phpmailer/get_oauth_token.php';
 
 //These details obtained are by setting up app in Google developer console.
 $clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
 $clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
 
-class Google extends AbstractProvider
+class get_oauth_token extends AbstractProvider
 {
     use BearerAuthorizationTrait;
 
     const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'id';
 
     /**
-     * @var string If set, this will be sent to google as the "access_type" parameter.
+     * @var string If set, this will be sent to google as the "access_type" parameter
+     *
      * @link https://developers.google.com/accounts/docs/OAuth2WebServer#offline
      */
     protected $accessType;
 
     /**
-     * @var string If set, this will be sent to google as the "hd" parameter.
+     * @var string If set, this will be sent to google as the "hd" parameter
+     *
      * @link https://developers.google.com/accounts/docs/OAuth2Login#hd-param
      */
     protected $hostedDomain;
 
     /**
-     * @var string If set, this will be sent to google as the "scope" parameter.
+     * @var string If set, this will be sent to google as the "scope" parameter
+     *
      * @link https://developers.google.com/gmail/api/auth/scopes
      */
     protected $scope;
@@ -68,36 +71,37 @@ class Google extends AbstractProvider
 
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-	return ' ';
+        return ' ';
     }
 
     protected function getAuthorizationParameters(array $options)
     {
-	if (is_array($this->scope)) {
+        if (is_array($this->scope)) {
             $separator = $this->getScopeSeparator();
             $this->scope = implode($separator, $this->scope);
         }
 
         $params = array_merge(
             parent::getAuthorizationParameters($options),
-            array_filter([
+            array_filter(array(
                 'hd'          => $this->hostedDomain,
                 'access_type' => $this->accessType,
-		'scope'       => $this->scope,
+        'scope'               => $this->scope,
                 // if the user is logged in with more than one account ask which one to use for the login!
-                'authuser'    => '-1'
-            ])
+                'authuser' => '-1',
+            ))
         );
+
         return $params;
     }
 
     protected function getDefaultScopes()
     {
-        return [
+        return array(
             'email',
             'openid',
             'profile',
-        ];
+        );
     }
 
     protected function getScopeSeparator()
@@ -108,11 +112,11 @@ class Google extends AbstractProvider
     protected function checkResponse(ResponseInterface $response, $data)
     {
         if (!empty($data['error'])) {
-            $code  = 0;
+            $code = 0;
             $error = $data['error'];
 
             if (is_array($error)) {
-                $code  = $error['code'];
+                $code = $error['code'];
                 $error = $error['message'];
             }
 
@@ -126,15 +130,14 @@ class Google extends AbstractProvider
     }
 }
 
-
 //Set Redirect URI in Developer Console as [https/http]://<yourdomain>/<folder>/get_oauth_token.php
 $provider = new Google(
     array(
-        'clientId' => $clientId,
+        'clientId'     => $clientId,
         'clientSecret' => $clientSecret,
-        'redirectUri' => $redirectUri,
-        'scope' => array('https://mail.google.com/'),
-	'accessType' => 'offline'
+        'redirectUri'  => $redirectUri,
+        'scope'        => array('https://mail.google.com/'),
+    'accessType'       => 'offline',
     )
 );
 
@@ -142,7 +145,7 @@ if (!isset($_GET['code'])) {
     // If we don't have an authorization code then get one
     $authUrl = $provider->getAuthorizationUrl();
     $_SESSION['oauth2state'] = $provider->getState();
-    header('Location: ' . $authUrl);
+    header('Location: '.$authUrl);
     exit;
 // Check given state against previously stored one to mitigate CSRF attack
 } elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
@@ -153,10 +156,10 @@ if (!isset($_GET['code'])) {
     $token = $provider->getAccessToken(
         'authorization_code',
         array(
-            'code' => $_GET['code']
+            'code' => $_GET['code'],
         )
     );
 
     // Use this to get a new access token if the old one expires
-    echo 'Refresh Token: ' . $token->getRefreshToken();
+    echo 'Refresh Token: '.$token->getRefreshToken();
 }

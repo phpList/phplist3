@@ -1,6 +1,6 @@
 <?php
 
 if (!function_exists('checkAccess')) {
-    print 'Invalid Request';
+    echo 'Invalid Request';
     exit;
 }

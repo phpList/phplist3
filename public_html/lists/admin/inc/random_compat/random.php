@@ -1,7 +1,7 @@
 <?php
 /**
  * Random_* Compatibility Library
- * for using the new PHP 7 random_* API in PHP 5 projects
+ * for using the new PHP 7 random_* API in PHP 5 projects.
  *
  * @version 2.0.2
  * @released 2016-04-03
@@ -28,7 +28,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 if (!defined('PHP_VERSION_ID')) {
     // This constant was introduced in PHP 5.2.7
     $RandomCompatversion = array_map('intval', explode('.', PHP_VERSION));
@@ -42,7 +41,6 @@ if (!defined('PHP_VERSION_ID')) {
 }
 
 if (PHP_VERSION_ID < 70000) {
-
     if (!defined('RANDOM_COMPAT_READ_BUFFER')) {
         define('RANDOM_COMPAT_READ_BUFFER', 8);
     }
@@ -54,7 +52,7 @@ if (PHP_VERSION_ID < 70000) {
     require_once $RandomCompatDIR.'/error_polyfill.php';
 
     if (!is_callable('random_bytes')) {
-        /**
+        /*
          * PHP 5.2.0 - 5.6.x way to implement random_bytes()
          *
          * We use conditional statements here to define the function in accordance
@@ -78,7 +76,7 @@ if (PHP_VERSION_ID < 70000) {
             }
         }
 
-        /**
+        /*
          * Reading directly from /dev/urandom:
          */
         if (DIRECTORY_SEPARATOR === '/') {
@@ -121,7 +119,7 @@ if (PHP_VERSION_ID < 70000) {
             $RandomCompatUrandom = false;
         }
 
-        /**
+        /*
          * mcrypt_create_iv()
          */
         if (
@@ -136,7 +134,7 @@ if (PHP_VERSION_ID < 70000) {
             // Prevent this code from hanging indefinitely on non-Windows;
             // see https://bugs.php.net/bug.php?id=69833
             if (
-                DIRECTORY_SEPARATOR !== '/' || 
+                DIRECTORY_SEPARATOR !== '/' ||
                 (PHP_VERSION_ID <= 50609 || PHP_VERSION_ID >= 50613)
             ) {
                 // See random_bytes_mcrypt.php
@@ -172,7 +170,7 @@ if (PHP_VERSION_ID < 70000) {
             $RandomCompatCOMtest = null;
         }
 
-        /**
+        /*
          * throw new Exception
          */
         if (!is_callable('random_bytes')) {

@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-# make sure we have not send any output yet
+// make sure we have not send any output yet
 ob_end_clean();
 
 $id = !empty($_GET['id']) ? sprintf('%d', $_GET['id']) : 0;
@@ -18,18 +18,18 @@ if (isset($_GET['m'])) {
 
 if (!empty($row['data'])) {
     $imageContent = base64_decode($row['data']);
-    if ($max && function_exists('getimagesizefromstring')) { ## getimagesizefromstring is 5.4 and up
+    if ($max && function_exists('getimagesizefromstring')) { //# getimagesizefromstring is 5.4 and up
         $imSize = getimagesizefromstring($imageContent);
         $sizeW = $imSize[0];
         $sizeH = $imSize[1];
         if (($sizeH > $max) || ($sizeW > $max)) {
             if ($sizeH > $sizeW) {
-                $sizefactor = (double)($max / $sizeH);
+                $sizefactor = (float) ($max / $sizeH);
             } else {
-                $sizefactor = (double)($max / $sizeW);
+                $sizefactor = (float) ($max / $sizeW);
             }
-            $newwidth = (int)($sizeW * $sizefactor);
-            $newheight = (int)($sizeH * $sizefactor);
+            $newwidth = (int) ($sizeW * $sizefactor);
+            $newheight = (int) ($sizeH * $sizefactor);
 
             $original = imagecreatefromstring($imageContent);
             $resized = imagecreatetruecolor($newwidth, $newheight);
@@ -37,7 +37,7 @@ if (!empty($row['data'])) {
             $transparent = imagecolorallocatealpha($resized, 255, 255, 255, 127);
             imagefill($resized, 0, 0, $transparent);
             if (imagecopyresized($resized, $original, 0, 0, 0, 0, $newwidth, $newheight, $sizeW, $sizeH)) {
-                header('Content-type: ' . $imSize['mime']);
+                header('Content-type: '.$imSize['mime']);
             } else {
                 header('Content-type: image/jpeg');
             }
@@ -46,12 +46,12 @@ if (!empty($row['data'])) {
         }
     }
     if ($row['mimetype']) {
-        Header('Content-type: ' . $row['mimetype']);
+        header('Content-type: '.$row['mimetype']);
     } else {
         header('Content-type: image/jpeg');
     }
     echo base64_decode($row['data']);
 } else {
     header('Content-Type: image/png');
-    print base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAALGPC/xhBQAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0gQCEx05cqKA8gAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII=');
+    echo base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAALGPC/xhBQAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0gQCEx05cqKA8gAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII=');
 }

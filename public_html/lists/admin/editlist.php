@@ -12,10 +12,10 @@ if ($GLOBALS['require_login'] && !isSuperUser()) {
     $access = accessLevel('editlist');
     switch ($access) {
         case 'owner':
-            $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
-            $subselect_and = ' and owner = ' . $_SESSION['logindetails']['id'];
+            $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
+            $subselect_and = ' and owner = '.$_SESSION['logindetails']['id'];
             if ($id) {
-                Sql_Query('select id from ' . $GLOBALS['tables']['list'] . $subselect . " and id = $id");
+                Sql_Query('select id from '.$GLOBALS['tables']['list'].$subselect." and id = $id");
                 if (!Sql_Affected_Rows()) {
                     Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
 
@@ -48,7 +48,7 @@ if ($GLOBALS['require_login'] && !isSuperUser()) {
 }
 
 if ($id) {
-    echo '<br />' . PageLinkButton('members', s('Members of this list'), "id=$id");
+    echo '<br />'.PageLinkButton('members', s('Members of this list'), "id=$id");
 }
 
 if (!empty($_POST['addnewlist']) && !empty($_POST['listname'])) {
@@ -58,7 +58,7 @@ if (!empty($_POST['addnewlist']) && !empty($_POST['listname'])) {
     if (!isset($_POST['active'])) {
         $_POST['active'] = listUsedInSubscribePage($id);
     }
-    ## prefix isn't used any more
+    //# prefix isn't used any more
     $_POST['prefix'] = '';
 
     $categories = listCategories();
@@ -82,41 +82,41 @@ if (!empty($_POST['addnewlist']) && !empty($_POST['listname'])) {
             $_POST['listorder'], $_POST['owner'], sql_escape($_POST['prefix']), $_POST['active'],
             sql_escape($category));
     }
-#  print $query;
+//  print $query;
     $result = Sql_Query($query);
     if (!$id) {
         $id = sql_insert_id();
 
-        $_SESSION['action_result'] = s('New list added') . ": $id";
+        $_SESSION['action_result'] = s('New list added').": $id";
         $_SESSION['newlistid'] = $id;
     } else {
         $_SESSION['action_result'] = s('Changes saved');
     }
-    ## allow plugins to save their fields
+    //# allow plugins to save their fields
     foreach ($GLOBALS['plugins'] as $plugin) {
         $result = $result && $plugin->processEditList($id);
     }
-    print '<div class="actionresult">' . $_SESSION['action_result'] . '</div>';
+    echo '<div class="actionresult">'.$_SESSION['action_result'].'</div>';
     if ($_GET['page'] == 'editlist') {
-        print '<div class="actions">' . PageLinkButton('importsimple&amp;list=' . $id,
-                s('Add some subscribers')) . ' ' . PageLinkButton('editlist', s('Add another list')) . '</div>';
+        echo '<div class="actions">'.PageLinkButton('importsimple&amp;list='.$id,
+                s('Add some subscribers')).' '.PageLinkButton('editlist', s('Add another list')).'</div>';
     }
     unset($_SESSION['action_result']);
 
     return;
-    ## doing this, the action result disappears, which we don't want
+    //# doing this, the action result disappears, which we don't want
     Redirect('list');
 }
 
 if (!empty($id)) {
-    $result = Sql_Query('SELECT * FROM ' . $GLOBALS['tables']['list'] . " where id = $id");
+    $result = Sql_Query('SELECT * FROM '.$GLOBALS['tables']['list']." where id = $id");
     $list = Sql_Fetch_Array($result);
 } else {
     $list = array(
         'name' => '',
 //    'rssfeed' => '',  //Obsolete by rssmanager plugin
-        'active' => 0,
-        'listorder' => 0,
+        'active'      => 0,
+        'listorder'   => 0,
         'description' => '',
     );
 }
@@ -138,7 +138,7 @@ if (empty($list['category'])) {
 
         echo !empty($list['active']) ? 'checked="checked"' : '';
         if (listUsedInSubscribePage($id)) {
-            print ' disabled="disabled" ';
+            echo ' disabled="disabled" ';
         }
 
         ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label>
@@ -147,40 +147,40 @@ if (empty($list['category'])) {
 <div class="field"><input type="text" name="listorder" value="<?php echo $list['listorder'] ?>" class="listorder"/>
 </div>
 <?php if ($GLOBALS['require_login'] && (isSuperUser() || accessLevel('editlist') == 'all')) {
-    if (empty($list['owner'])) {
-        $list['owner'] = $_SESSION['logindetails']['id'];
-    }
-    $admins = $GLOBALS['admin_auth']->listAdmins();
-    if (count($admins) > 1) {
-        print '<div class="label"><label for="owner">' . $GLOBALS['I18N']->get('Owner') . '</label></div><div class="field"><select name="owner">';
-        foreach ($admins as $adminid => $adminname) {
-            printf('    <option value="%d" %s>%s</option>', $adminid,
+            if (empty($list['owner'])) {
+                $list['owner'] = $_SESSION['logindetails']['id'];
+            }
+            $admins = $GLOBALS['admin_auth']->listAdmins();
+            if (count($admins) > 1) {
+                echo '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
+                foreach ($admins as $adminid => $adminname) {
+                    printf('    <option value="%d" %s>%s</option>', $adminid,
                 $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
+                }
+                echo '</select></div>';
+            } else {
+                echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
+            }
+        } else {
+            echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
         }
-        print '</select></div>';
-    } else {
-        print '<input type="hidden" name="owner" value="' . $_SESSION['logindetails']['id'] . '" />';
-    }
-} else {
-    print '<input type="hidden" name="owner" value="' . $_SESSION['logindetails']['id'] . '" />';
-}
 
 $aListCategories = listCategories();
 if (count($aListCategories)) {
-    print '<div class="label"><label for="category">' . $GLOBALS['I18N']->get('Category') . '</label></div>';
-    print '<div class="field"><select name="category">';
-    print '<option value="">-- ' . $GLOBALS['I18N']->get('choose category') . '</option>';
+    echo '<div class="label"><label for="category">'.$GLOBALS['I18N']->get('Category').'</label></div>';
+    echo '<div class="field"><select name="category">';
+    echo '<option value="">-- '.$GLOBALS['I18N']->get('choose category').'</option>';
     foreach ($aListCategories as $category) {
         $category = trim($category);
         printf('<option value="%s" %s>%s</option>', $category,
             $category == $list['category'] ? 'selected="selected"' : '', $category);
     }
-    print '</select></div>';
+    echo '</select></div>';
 }
 
-### allow plugins to add rows
+//## allow plugins to add rows
 foreach ($GLOBALS['plugins'] as $plugin) {
-    print $plugin->displayEditList($list);
+    echo $plugin->displayEditList($list);
 }
 
 ?>
@@ -188,6 +188,6 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
 <input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>"/>
-<?php print PageLinkClass('list', $GLOBALS['I18N']->get('Cancel'), '', 'button cancel',
+<?php echo PageLinkClass('list', $GLOBALS['I18N']->get('Cancel'), '', 'button cancel',
     $GLOBALS['I18N']->get('Do not save, and go back to the lists')); ?>
 </form>
