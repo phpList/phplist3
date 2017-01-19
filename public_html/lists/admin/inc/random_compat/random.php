@@ -1,10 +1,10 @@
 <?php
 /**
  * Random_* Compatibility Library
- * for using the new PHP 7 random_* API in PHP 5 projects.
+ * for using the new PHP 7 random_* API in PHP 5 projects
  *
- * @version 2.0.2
- * @released 2016-04-03
+ * @version 2.0.4
+ * @released 2016-11-07
  *
  * The MIT License (MIT)
  *
@@ -28,6 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 if (!defined('PHP_VERSION_ID')) {
     // This constant was introduced in PHP 5.2.7
     $RandomCompatversion = array_map('intval', explode('.', PHP_VERSION));
@@ -40,6 +41,9 @@ if (!defined('PHP_VERSION_ID')) {
     $RandomCompatversion = null;
 }
 
+/**
+ * PHP 7.0.0 and newer have these functions natively.
+ */
 if (PHP_VERSION_ID < 70000) {
     if (!defined('RANDOM_COMPAT_READ_BUFFER')) {
         define('RANDOM_COMPAT_READ_BUFFER', 8);
@@ -52,7 +56,7 @@ if (PHP_VERSION_ID < 70000) {
     require_once $RandomCompatDIR.'/error_polyfill.php';
 
     if (!is_callable('random_bytes')) {
-        /*
+        /**
          * PHP 5.2.0 - 5.6.x way to implement random_bytes()
          *
          * We use conditional statements here to define the function in accordance
@@ -65,7 +69,7 @@ if (PHP_VERSION_ID < 70000) {
          *   4. COM('CAPICOM.Utilities.1')->GetRandom()
          *   5. openssl_random_pseudo_bytes() (absolute last resort)
          *
-         * See ERRATA.md for our reasoning behind this particular order
+         * See RATIONALE.md for our reasoning behind this particular order
          */
         if (extension_loaded('libsodium')) {
             // See random_bytes_libsodium.php
@@ -76,7 +80,7 @@ if (PHP_VERSION_ID < 70000) {
             }
         }
 
-        /*
+        /**
          * Reading directly from /dev/urandom:
          */
         if (DIRECTORY_SEPARATOR === '/') {
@@ -119,8 +123,22 @@ if (PHP_VERSION_ID < 70000) {
             $RandomCompatUrandom = false;
         }
 
-        /*
+        /**
          * mcrypt_create_iv()
+         *
+         * We only want to use mcypt_create_iv() if:
+         *
+         * - random_bytes() hasn't already been defined
+         * - PHP >= 5.3.7
+         * - the mcrypt extensions is loaded
+         * - One of these two conditions is true:
+         *   - We're on Windows (DIRECTORY_SEPARATOR !== '/')
+         *   - We're not on Windows and /dev/urandom is readabale
+         *     (i.e. we're not in a chroot jail)
+         * - Special case:
+         *   - If we're not on Windows, but the PHP version is between
+         *     5.6.10 and 5.6.12, we don't want to use mcrypt. It will
+         *     hang indefinitely. This is bad.
          */
         if (
             !is_callable('random_bytes')
@@ -128,13 +146,11 @@ if (PHP_VERSION_ID < 70000) {
             PHP_VERSION_ID >= 50307
             &&
             extension_loaded('mcrypt')
-            &&
-            (DIRECTORY_SEPARATOR !== '/' || $RandomCompatUrandom)
         ) {
             // Prevent this code from hanging indefinitely on non-Windows;
             // see https://bugs.php.net/bug.php?id=69833
             if (
-                DIRECTORY_SEPARATOR !== '/' ||
+                DIRECTORY_SEPARATOR !== '/' || 
                 (PHP_VERSION_ID <= 50609 || PHP_VERSION_ID >= 50613)
             ) {
                 // See random_bytes_mcrypt.php
@@ -143,6 +159,10 @@ if (PHP_VERSION_ID < 70000) {
         }
         $RandomCompatUrandom = null;
 
+        /**
+         * This is a Windows-specific fallback, for when the mcrypt extension
+         * isn't loaded.
+         */
         if (
             !is_callable('random_bytes')
             &&
@@ -170,7 +190,7 @@ if (PHP_VERSION_ID < 70000) {
             $RandomCompatCOMtest = null;
         }
 
-        /*
+        /**
          * throw new Exception
          */
         if (!is_callable('random_bytes')) {

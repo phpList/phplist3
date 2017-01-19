@@ -1,7 +1,7 @@
 <?php
 /**
  * Random_* Compatibility Library
- * for using the new PHP 7 random_* API in PHP 5 projects.
+ * for using the new PHP 7 random_* API in PHP 5 projects
  *
  * The MIT License (MIT)
  *
@@ -25,20 +25,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-if (!is_callable('RandomCompat_intval')) {
 
+if (!is_callable('RandomCompat_intval')) {
+    
     /**
      * Cast to an integer if we can, safely.
-     *
+     * 
      * If you pass it a float in the range (~PHP_INT_MAX, PHP_INT_MAX)
      * (non-inclusive), it will sanely cast it to an int. If you it's equal to
-     * ~PHP_INT_MAX or PHP_INT_MAX, we let it fail as not an integer. Floats
+     * ~PHP_INT_MAX or PHP_INT_MAX, we let it fail as not an integer. Floats 
      * lose precision, so the <= and => operators might accidentally let a float
      * through.
-     *
+     * 
      * @param int|float $number    The number we want to convert to an int
-     * @param bool      $fail_open Set to true to not throw an exception
-     *
+     * @param boolean   $fail_open Set to true to not throw an exception
+     * 
      * @return int (or float if $fail_open)
      *
      * @throws TypeError
