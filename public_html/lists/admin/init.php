@@ -293,8 +293,15 @@ if (!defined('ENCRYPTION_ALGO')) {
         define('ENCRYPTION_ALGO', 'md5');
     }
 }
+if (!defined('HASH_ALGO')) {
+    if (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
+        define('HASH_ALGO', 'sha256');
+    } else {
+        define('HASH_ALGO', ENCRYPTION_ALGO);
+    }
+}
 //# remember the length of a hashed string
-$hash_length = strlen(hash(ENCRYPTION_ALGO, 'some text'));
+$hash_length = strlen(hash(HASH_ALGO, 'some text'));
 
 if (!defined('PHPMAILER')) {
     define('PHPMAILER', 1);

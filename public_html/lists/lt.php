@@ -55,7 +55,7 @@ if (isset($_GET['tid'])) {
         $myUrl = sprintf('%s://%s%s', $_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
         $myUrl = str_replace('&hm='.$hmac, '', $myUrl);
 
-        if (!hash_equals(hash_hmac(ENCRYPTION_ALGO, $myUrl, HMACKEY), $hmac)) {
+        if (!hash_equals(hash_hmac(HASH_ALGO, $myUrl, HMACKEY), $hmac)) {
             echo 'Invalid Request';
             exit;
         }

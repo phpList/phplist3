@@ -27,12 +27,12 @@ class phpListAdminAuthentication
             sql_escape($login));
         $req = Sql_Query($query);
         $admindata = Sql_Fetch_Assoc($req);
-        $encryptedPass = hash(ENCRYPTION_ALGO, $password);
+        $encryptedPass = hash(HASH_ALGO, $password);
         $passwordDB = $admindata['password'];
         //Password encryption verification.
         if (strlen($passwordDB) < $GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
             //Encrypt the actual DB password before performing the validation below.
-            $encryptedPassDB = hash(ENCRYPTION_ALGO, $passwordDB);
+            $encryptedPassDB = hash(HASH_ALGO, $passwordDB);
             $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'],
                 $encryptedPassDB, sql_escape($login));
             $passwordDB = $encryptedPassDB;

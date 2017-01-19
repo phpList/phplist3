@@ -999,11 +999,11 @@ function encryptPass($pass)
     }
 
     if (function_exists('hash')) {
-        if (!in_array(ENCRYPTION_ALGO, hash_algos(), true)) {
+        if (!in_array(HASH_ALGO, hash_algos(), true)) {
             //# fallback, not that secure, but better than none at all
             $algo = 'md5';
         } else {
-            $algo = ENCRYPTION_ALGO;
+            $algo = HASH_ALGO;
         }
 
         return hash($algo, $pass);

@@ -161,7 +161,7 @@ $commandline_users = array();
 // to 1. See README.passwords for more information
 define('ASKFORPASSWORD', 0);
 
-// if you use passwords, they will be stored encrypted
+// if you use passwords, they will be stored hashed
 // set this one to the algorythm to use. You can find out which ones are
 // supported by your system with the command
 // $ php -r "var_dump(hash_algos());";
@@ -171,7 +171,7 @@ define('ASKFORPASSWORD', 0);
 // reset the password. They will not be able to request the password from
 // the system
 // if you change this, you may have to use the "Forgot password" system to get back in your installation
-define('ENCRYPTION_ALGO', 'sha256');
+define('HASH_ALGO', 'sha256');
 
 // if you also want to force people who unsubscribe to provide a password before
 // processing their unsubscription, set this to 1. You need to have the above one set
