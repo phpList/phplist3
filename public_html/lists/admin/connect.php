@@ -30,6 +30,13 @@ if (empty($xormask)) {
     SaveConfig('xormask', $xormask, 0, 1);
 }
 define('XORmask', str_repeat($xormask, 20));
+$hmackey = getConfig('hmackey');
+if (empty($hmackey)) {
+    $hmackey = bin2hex(random_bytes(256));
+    SaveConfig('hmackey', $hmackey, 0, 1);
+}
+define('HMACKEY', $hmackey);
+
 if (empty($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
     $_SESSION[$GLOBALS['installation_name'].'_csrf_token'] = bin2hex(random_bytes(16));
 }
