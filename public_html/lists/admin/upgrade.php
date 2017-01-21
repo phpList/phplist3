@@ -390,7 +390,7 @@ if ($dbversion == VERSION) {
                 $req = Sql_Query(sprintf('select loginname,password from %s where length(password) < %d',
                     $GLOBALS['tables']['admin'], $GLOBALS['hash_length']));
                 while ($row = Sql_Fetch_Assoc($req)) {
-                    $encryptedPassDB = hash(ENCRYPTION_ALGO, $row['password']);
+                    $encryptedPassDB = hash(HASH_ALGO, $row['password']);
                     $query = sprintf('update %s set password = "%s" where loginname = "%s"',
                         $GLOBALS['tables']['admin'], $encryptedPassDB, $row['loginname']);
                     Sql_Query($query);
