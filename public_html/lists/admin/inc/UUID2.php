@@ -7,72 +7,83 @@
  */
 //use Exception;
 
-class Uuid2
+class UUID2
 {
     const MD5 = 3;
     const SHA1 = 5;
     /**
-     * 00001111  Clears all bits of version byte with AND
+     * 00001111  Clears all bits of version byte with AND.
+     *
      * @var int
      */
     const CLEAR_VER = 15;
 
     /**
-     * 00111111  Clears all relevant bits of variant byte with AND
+     * 00111111  Clears all relevant bits of variant byte with AND.
+     *
      * @var int
      */
     const CLEAR_VAR = 63;
 
     /**
-     * 11100000  Variant reserved for future use
+     * 11100000  Variant reserved for future use.
+     *
      * @var int
      */
     const VAR_RES = 224;
 
     /**
-     * 11000000  Microsoft UUID variant
+     * 11000000  Microsoft UUID variant.
+     *
      * @var int
      */
     const VAR_MS = 192;
 
     /**
-     * 10000000  The RFC 4122 variant (this variant)
+     * 10000000  The RFC 4122 variant (this variant).
+     *
      * @var int
      */
     const VAR_RFC = 128;
 
     /**
-     * 00000000  The NCS compatibility variant
+     * 00000000  The NCS compatibility variant.
+     *
      * @var int
      */
     const VAR_NCS = 0;
 
     /**
-     * 00010000
+     * 00010000.
+     *
      * @var int
      */
     const VERSION_1 = 16;
 
     /**
-     * 00110000
+     * 00110000.
+     *
      * @var int
      */
     const VERSION_3 = 48;
 
     /**
-     * 01000000
+     * 01000000.
+     *
      * @var int
      */
     const VERSION_4 = 64;
 
     /**
-     * 01010000
+     * 01010000.
+     *
      * @var int
      */
     const VERSION_5 = 80;
 
     /**
-     * Time (in 100ns steps) between the start of the UTC and Unix epochs
+     * Time (in 100ns steps) between the start of the UTC and Unix epochs.
+     *
      * @var int
      */
     const INTERVAL = 0x01b21dd213814000;
@@ -113,6 +124,7 @@ class Uuid2
 
     /**
      * @param string $uuid
+     *
      * @throws Exception
      */
     protected function __construct($uuid)
@@ -124,25 +136,26 @@ class Uuid2
         $this->bytes = $uuid;
 
         // Optimize the most common use
-        $this->string = bin2hex(substr($uuid, 0, 4)) . "-" .
-            bin2hex(substr($uuid, 4, 2)) . "-" .
-            bin2hex(substr($uuid, 6, 2)) . "-" .
-            bin2hex(substr($uuid, 8, 2)) . "-" .
+        $this->string = bin2hex(substr($uuid, 0, 4)).'-'.
+            bin2hex(substr($uuid, 4, 2)).'-'.
+            bin2hex(substr($uuid, 6, 2)).'-'.
+            bin2hex(substr($uuid, 8, 2)).'-'.
             bin2hex(substr($uuid, 10, 6));
     }
 
-
     /**
-     * @param int $ver
+     * @param int    $ver
      * @param string $node
      * @param string $ns
+     *
      * @return Uuid
+     *
      * @throws Exception
      */
     public static function generate($ver = 1, $node = null, $ns = null)
     {
         /* Create a new UUID based on provided data. */
-        switch ((int)$ver) {
+        switch ((int) $ver) {
             case 1:
                 return new static(static::mintTime($node));
             case 2:
@@ -164,6 +177,7 @@ class Uuid2
      * These are derived from the time at which they were generated.
      *
      * @param string $node
+     *
      * @return string
      */
     protected static function mintTime($node = null)
@@ -177,17 +191,17 @@ class Uuid2
         $time = microtime(1) * 10000000 + static::INTERVAL;
 
         // Convert to a string representation
-        $time = sprintf("%F", $time);
+        $time = sprintf('%F', $time);
 
         //strip decimal point
         preg_match("/^\d+/", $time, $time);
 
         // And now to a 64-bit binary representation
         $time = base_convert($time[0], 10, 16);
-        $time = pack("H*", str_pad($time, 16, "0", STR_PAD_LEFT));
+        $time = pack('H*', str_pad($time, 16, '0', STR_PAD_LEFT));
 
         // Reorder bytes to their proper locations in the UUID
-        $uuid = $time[4] . $time[5] . $time[6] . $time[7] . $time[2] . $time[3] . $time[0] . $time[1];
+        $uuid = $time[4].$time[5].$time[6].$time[7].$time[2].$time[3].$time[0].$time[1];
 
         // Generate a random clock sequence
         $uuid .= static::randomBytes(2);
@@ -207,7 +221,7 @@ class Uuid2
         //  generate a random MAC address and set the multicast bit
         if (is_null($node)) {
             $node = static::randomBytes(6);
-            $node[0] = pack("C", ord($node[0]) | 1);
+            $node[0] = pack('C', ord($node[0]) | 1);
         }
 
         $uuid .= $node;
@@ -216,9 +230,10 @@ class Uuid2
     }
 
     /**
-     * Randomness is returned as a string of bytes
+     * Randomness is returned as a string of bytes.
      *
      * @param $bytes
+     *
      * @return string
      */
     public static function randomBytes($bytes)
@@ -232,6 +247,7 @@ class Uuid2
      * Since laravel 4.* and 5.0 requires Mcrypt and 5.1 requires OpenSSL the fallback should never be used.
      *
      * @throws Exception
+     *
      * @return string
      */
     public static function initRandom()
@@ -253,7 +269,8 @@ class Uuid2
      * Returns binary representation, or false on failure.
      *
      * @param string $str
-     * @param integer $len
+     * @param int    $len
+     *
      * @return string|null
      */
     protected static function makeBin($str, $len)
@@ -272,7 +289,7 @@ class Uuid2
         if (strlen($str) !== ($len * 2)) {
             return null;
         } else {
-            return pack("H*", $str);
+            return pack('H*', $str);
         }
     }
 
@@ -283,7 +300,9 @@ class Uuid2
      * @param string $ver
      * @param string $node
      * @param string $ns
+     *
      * @return string
+     *
      * @throws Exception
      */
     protected static function mintName($ver, $node, $ns)
@@ -304,11 +323,11 @@ class Uuid2
         switch ($ver) {
             case static::MD5:
                 $version = static::VERSION_3;
-                $uuid = md5($ns . $node, 1);
+                $uuid = md5($ns.$node, 1);
                 break;
             case static::SHA1:
                 $version = static::VERSION_5;
-                $uuid = substr(sha1($ns . $node, 1), 0, 16);
+                $uuid = substr(sha1($ns.$node, 1), 0, 16);
                 break;
             default:
                 // no default really required here
@@ -320,13 +339,13 @@ class Uuid2
         // set version
         $uuid[6] = chr(ord($uuid[6]) & static::CLEAR_VER | $version);
 
-        return ($uuid);
+        return $uuid;
     }
 
     /**
      * Generate a Version 4 UUID.
      * These are derived solely from random numbers.
-     * generate random fields
+     * generate random fields.
      *
      * @return string
      */
@@ -342,9 +361,10 @@ class Uuid2
     }
 
     /**
-     * Import an existing UUID
+     * Import an existing UUID.
      *
      * @param string $uuid
+     *
      * @return Uuid
      */
     public static function import($uuid)
@@ -359,6 +379,7 @@ class Uuid2
      *
      * @param string $a
      * @param string $b
+     *
      * @return string|string
      */
     public static function compare($a, $b)
@@ -372,14 +393,16 @@ class Uuid2
 
     /**
      * Get the specified number of random bytes, using random_bytes().
-     * Randomness is returned as a string of bytes
+     * Randomness is returned as a string of bytes.
      *
      * Requires Php 7, or random_compact polyfill
      *
      * @param $bytes
+     *
      * @return mixed
      */
-    protected static function randomPhp7($bytes) {
+    protected static function randomPhp7($bytes)
+    {
         return random_bytes($bytes);
     }
 
@@ -388,6 +411,7 @@ class Uuid2
      * Randomness is returned as a string of bytes.
      *
      * @param $bytes
+     *
      * @return mixed
      */
     protected static function randomOpenSSL($bytes)
@@ -400,6 +424,7 @@ class Uuid2
      * Randomness is returned as a string of bytes.
      *
      * @param $bytes
+     *
      * @return string
      */
     protected static function randomMcrypt($bytes)
@@ -411,13 +436,14 @@ class Uuid2
      * Get the specified number of random bytes, using mt_rand().
      * Randomness is returned as a string of bytes.
      *
-     * @param integer $bytes
+     * @param int $bytes
+     *
      * @return string
      */
     protected static function randomTwister($bytes)
     {
-        $rand = "";
-        for ($a = 0; $a < $bytes; $a++) {
+        $rand = '';
+        for ($a = 0; $a < $bytes; ++$a) {
             $rand .= chr(mt_rand(0, 255));
         }
 
@@ -426,27 +452,28 @@ class Uuid2
 
     /**
      * @param string $var
-     * @return string|string|number|number|number|number|number|NULL|number|NULL|NULL
+     *
+     * @return string|string|number|number|number|number|number|null|number|null|null
      */
     public function __get($var)
     {
         switch ($var) {
-            case "bytes":
+            case 'bytes':
                 return $this->bytes;
             // no break
-            case "hex":
+            case 'hex':
                 return bin2hex($this->bytes);
             // no break
-            case "string":
+            case 'string':
                 return $this->__toString();
             // no break
-            case "urn":
-                return "urn:uuid:" . $this->__toString();
+            case 'urn':
+                return 'urn:uuid:'.$this->__toString();
             // no break
-            case "version":
+            case 'version':
                 return ord($this->bytes[6]) >> 4;
             // no break
-            case "variant":
+            case 'variant':
                 $byte = ord($this->bytes[8]);
                 if ($byte >= static::VAR_RES) {
                     return 3;
@@ -458,20 +485,20 @@ class Uuid2
                     return 0;
                 }
             // no break
-            case "node":
+            case 'node':
                 if (ord($this->bytes[6]) >> 4 == 1) {
                     return bin2hex(substr($this->bytes, 10));
                 } else {
                     return null;
                 }
             // no break
-            case "time":
+            case 'time':
                 if (ord($this->bytes[6]) >> 4 == 1) {
                     // Restore contiguous big-endian byte order
-                    $time = bin2hex($this->bytes[6] . $this->bytes[7] . $this->bytes[4] . $this->bytes[5] .
-                        $this->bytes[0] . $this->bytes[1] . $this->bytes[2] . $this->bytes[3]);
+                    $time = bin2hex($this->bytes[6].$this->bytes[7].$this->bytes[4].$this->bytes[5].
+                        $this->bytes[0].$this->bytes[1].$this->bytes[2].$this->bytes[3]);
                     // Clear version flag
-                    $time[0] = "0";
+                    $time[0] = '0';
 
                     // Do some reverse arithmetic to get a Unix timestamp
                     return (hexdec($time) - static::INTERVAL) / 10000000;
@@ -486,7 +513,7 @@ class Uuid2
     }
 
     /**
-     * Return the UUID
+     * Return the UUID.
      *
      * @return string
      */
@@ -495,4 +522,3 @@ class Uuid2
         return $this->string;
     }
 }
-

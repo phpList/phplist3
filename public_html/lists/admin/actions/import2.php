@@ -273,7 +273,7 @@ if (count($email_list)) {
 
                     $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail,uuid)
                     values("%s",now(),%d,"%s",1,"%s")', $tables['user'], $user['systemvalues']['email'], $confirmed,
-                        $uniqid,uuid::generate(4));
+                        $uniqid, uuid::generate(4));
                     $result = Sql_query($query, 1);
                     $userid = Sql_insert_id();
                     if (!$userid) {
@@ -285,7 +285,7 @@ if (count($email_list)) {
                         while (!$userid) {
                             ++$c;
                             $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail,uuid)
-                            values("%s",now(),%d,"%s",1,"%s")', $tables['user'], $user['systemvalues']['email'] .
+                            values("%s",now(),%d,"%s",1,"%s")', $tables['user'], $user['systemvalues']['email'].
                                 " ($c)", 0, $uniqid, uuid::generate(4));
                             $result = Sql_query($query, 1);
                             $userid = Sql_insert_id();
