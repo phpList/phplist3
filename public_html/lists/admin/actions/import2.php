@@ -263,9 +263,6 @@ if (count($email_list)) {
                 } else {
                     // user does not exist
                     $new = 1;
-                    // Create unique number
-                    mt_srand((float) microtime() * 1000000);
-                    $randval = mt_rand();
                     // this is very time consuming when importing loads of users as it does a lookup
                     // needs speeding up if possible
                     $uniqid = getUniqid();

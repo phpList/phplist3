@@ -2,9 +2,6 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 
-mt_srand((float) microtime() * 1000000);
-$randval = mt_rand();
-
 if (empty($id) && isset($_GET['id'])) {
     $id = sprintf('%d', $_GET['id']);
 } elseif (!isset($id)) {
