@@ -458,11 +458,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
                     // Email does not exist
                     $new = 1;
 
-                    // Create unique number
-                    mt_srand((float) microtime() * 1000000);
-                    $randval = mt_rand();
                     $uniqid = getUniqid();
-
                     $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail)
              values("%s",now(),%d,"%s",%d)',
                         $tables['user'], $importuser['email'], $_POST['notify'] != 'yes', $uniqid,
