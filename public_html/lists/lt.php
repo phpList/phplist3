@@ -27,7 +27,7 @@ $GLOBALS['language_module'] = basename($GLOBALS['language_module']);
 require_once dirname(__FILE__).'/admin/'.$GLOBALS['database_module'];
 
 // load default english and language
-include_once dirname(__FILE__).'/texts/english.inc';
+include_once dirname(__FILE__).'/admin/defaultFrontendTexts.php';
 // Allow customisation per installation
 if (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'])) {
     include_once $_SERVER['DOCUMENT_ROOT'].'/'.$GLOBALS['language_module'];
