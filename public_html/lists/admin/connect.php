@@ -102,17 +102,20 @@ if (defined('SYSTEM_TIMEZONE')) {
 
 //# build a list of themes that are available
 $themedir = dirname(__FILE__).'/ui/';
+$themeNames = array(); // avoid duplicate theme names
 $d = opendir($themedir);
 while ($th = readdir($d)) {
     if (!in_array($th,
             array_keys($THEMES)) && is_dir($themedir.'/'.$th) && is_file($themedir.'/'.$th.'/theme_info')
     ) {
         $themeData = parse_ini_file($themedir.'/'.$th.'/theme_info');
-        if (!empty($themeData['name']) && !empty($themeData['dir'])) {
+        if (!empty($themeData['name']) && !empty($themeData['dir']) && !isset($themeNames[$themeData['name']])) {
             $THEMES[$th] = $themeData;
+            $themeNames[$themeData['name']] = $th;
         }
     }
 }
+unset($themeNames);
 
 if (!empty($GLOBALS['SessionTableName'])) { // rather undocumented feature, but seems to be used by some
     include_once dirname(__FILE__).'/sessionlib.php';
