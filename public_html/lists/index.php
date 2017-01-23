@@ -232,7 +232,7 @@ if ($id) {
   by the developers  but also helps build interest, traffic and use of
   phpList, which is beneficial to it's future development.
 
-  Michiel Dethmers, phpList Ltd 2000-2013
+  Michiel Dethmers, phpList Ltd 2000-2017
 */
 include 'admin/ui/'.$GLOBALS['ui'].'/publicpagetop.php';
 
@@ -342,7 +342,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
             echo $intro[0];
             if (SHOW_SUBSCRIBELINK) {
                 printf('<p><a href="'.getConfig('subscribeurl').'&id=%d">%s</a></p>', $row['id'],
-                    stripslashes($row['title']));
+                    strip_tags(stripslashes($row['title'])));
             }
         }
     } else {
