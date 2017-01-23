@@ -525,7 +525,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     if (is_array($_POST['list'])) {
         while (list($key, $val) = each($_POST['list'])) {
             if ($val == 'signup') {
-                $result = Sql_query("replace into {$GLOBALS['tables']['listuser']} (userid,listid,entered) values($userid,$key,now())");
+                $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS['tables']['listuser'],$userid,$key));
 //        $lists .= "  * ".$_POST["listname"][$key]."\n";
             }
         }
