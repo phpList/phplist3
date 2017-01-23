@@ -41,7 +41,7 @@ if (isset($_POST['save'])) {
     }
     if ($id) {
         Sql_Query(sprintf('update %s set title = "%s",owner = %d where id = %d',
-            $tables['subscribepage'], sql_escape($title), $owner, $id));
+            $tables['subscribepage'], sql_escape(strip_tags($title)), $owner, $id));
     } else {
         Sql_Query(sprintf('insert into %s (title,owner) values("%s",%d)',
             $tables['subscribepage'], $title, $owner));
