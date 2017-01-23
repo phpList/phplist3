@@ -98,7 +98,7 @@ while ($row = Sql_Fetch_Array($req)) {
     }
 
     $ls->addColumn($element, $GLOBALS['I18N']->get('expression'),
-        '<a name="'.$row['id'].'"></a>'.shortenTextDisplay($row['regex'], 50));
+        '<a name="'.$row['id'].'"></a>'.shortenTextDisplay(htmlspecialchars($row['regex']), 50));
     $ls->addColumn($element, $GLOBALS['I18N']->get('action'), $GLOBALS['bounceruleactions'][$row['action']]);
 //  $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where regex = %d',$GLOBALS['tables']['bounceregex_bounce'],$row['id']));
 //  $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$num[0]);
