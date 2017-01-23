@@ -118,6 +118,10 @@ if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($T
     $settheme = preg_replace('/[^\w_-]+/', '', strip_tags($_REQUEST['settheme']));
     $GLOBALS['ui'] = $_REQUEST['settheme'];
     $_SESSION['ui'] = $GLOBALS['ui'];
+    SetCookie ( 'preferredTheme', $_SESSION['ui'],time()+31536000);
+} elseif (!empty($_COOKIE['preferredTheme']) && isset($THEMES[$_COOKIE['preferredTheme']])) {
+    $GLOBALS['ui'] = $_COOKIE['preferredTheme'];
+    $_SESSION['ui'] = $GLOBALS['ui'];
 }
 if (isset($GLOBALS['ui']) && !is_array($THEMES[$GLOBALS['ui']])) {
     $themeKeys = array_keys($THEMES);
