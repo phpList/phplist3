@@ -151,9 +151,9 @@ if (ALLOW_ATTACHMENTS) {
 }
 
 if (empty($msgdata['sent'])) {
-    $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers who are member of the following lists') . ':</h4></td></tr>';
 } else {
-    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers who are members of the following lists') . ':</h4></td></tr>';
 }
 
 $lists_done = array();
