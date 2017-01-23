@@ -35,7 +35,7 @@ $prepare = isset($_POST['prepare']);
 $save = !empty($_POST['save']) || !empty($_POST['followupto']);
 $savedraft = !empty($_POST['savedraft']);
 $sendtest = !empty($_POST['sendtest']);
-$baseurl = PageURL2($_GET['page'].'&amp;id='.$id);
+$baseurl = PageURL2('send'.'&amp;id='.$id);
 
 if (!isset($_GET['tab'])) {
     $_GET['tab'] = '';
@@ -221,7 +221,8 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
             sql_escape($messagedata['message']),
             sql_escape($messagedata['textmessage']),
             sql_escape($messagedata['footer']),
-            sql_escape($messagedata['status']), $htmlformatted ? '1' : '0', $messagedata['sendformat'],
+            sql_escape($messagedata['status']), $htmlformatted ? '1' : '0',
+            sql_escape($messagedata['sendformat']),
             sql_escape($messagedata['template']), $id
         )
     );

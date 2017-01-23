@@ -39,12 +39,43 @@ if (!isset($GLOBALS['developer_email'])) {
     Please <a href="http://mantis.phplist.com">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
 }
 
+function cleanListName($name) { ## we allow certain tags in a listname
+    $name = strip_tags($name,'<br><p><h1><h2><h3><b><i>');
+    $allowedAttr = array('title','class','style');
+
+    // we need to clean attributes as well.
+
+    preg_match_all('~<(/?)([\w]+)([^>]*)/?>~',$name,$regs);
+
+    for ($i=0; $i< sizeof($regs[0]); $i++ ) {
+        $clean = '';
+  #      print $i . ' '.htmlspecialchars($regs[0][$i]).'<h2>'.$regs[1][$i].'</h2><b>'.strlen($regs[3][$i]).'</b><br/> ';
+        if ($regs[1][$i] == '/') {
+            $clean .= '</'.$regs[2][$i].'>';
+        } elseif (!strlen($regs[3][$i]) || $regs[3][$i] == '/') {
+            $clean .= '<'.$regs[2][$i].$regs[3][$i].'>';
+        } else {
+            $attributes = $regs[3][$i];
+            preg_match_all('/([\w]+)="([^\"]+)"/',$attributes,$attrregs); // only allow properly formatted, without spacing
+            $newattributes = '';
+            for ($j=0; $j< sizeof($attrregs[0]); $j++ ) {
+                if (in_array($attrregs[1][$j],$allowedAttr)) {
+                    $newattributes .= $attrregs[1][$j].'="'.$attrregs[2][$j].'" ';
+                }
+            }
+            $clean .= '<'.$regs[2][$i].' '.trim($newattributes).'>';
+        }
+        $name = str_ireplace($regs[0][$i],$clean,$name);
+    }
+    return $name;
+}
+
 function listName($id)
 {
     global $tables;
     $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
 
-    return $req[0] ? stripslashes($req[0]) : $GLOBALS['I18N']->get('Unnamed List');
+    return $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
 }
 
 function setMessageData($msgid, $name, $value)

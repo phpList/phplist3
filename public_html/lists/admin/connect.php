@@ -1318,7 +1318,7 @@ function ListofLists($current, $fieldname, $subselect)
         if (isset($current[$list['id']]) && $current[$list['id']]) {
             $categoryhtml[$list['category']] .= 'checked';
         }
-        $categoryhtml[$list['category']] .= ' />'.htmlspecialchars(stripslashes($list['name']));
+        $categoryhtml[$list['category']] .= ' />'.htmlspecialchars(cleanListName(stripslashes($list['name'])));
         if ($list['active']) {
             $categoryhtml[$list['category']] .= ' <span class="activelist">'.s('Public list').'</span>';
         } else {

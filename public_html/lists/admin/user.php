@@ -302,7 +302,7 @@ if ($id) {
     $lists = Sql_query("SELECT listid,name FROM {$tables['listuser']},{$tables['list']} where userid = ".$user['id']." and $tables[listuser].listid = $tables[list].id $subselect ");
 
     while ($lst = Sql_fetch_array($lists)) {
-        $membership .= '<li>'.PageLink2('editlist', $lst['name'], 'id='.$lst['listid']).'</li>';
+        $membership .= '<li>'.PageLink2('editlist', cleanListName($lst['name']), 'id='.$lst['listid']).'</li>';
         array_push($subscribed, $lst['listid']);
     }
 
@@ -494,7 +494,7 @@ while ($row = Sql_Fetch_Array($req)) {
         $subs = '';
     }
     $mailinglistsHTML .= sprintf('<td class="tdcheck" bgcolor="%s"><input type="checkbox" name="subscribe[]" value="%d" %s /> %s</td>',
-        $bgcol, $row['id'], $subs, stripslashes($row['name']));
+        $bgcol, $row['id'], $subs, stripslashes(cleanListName($row['name'])));
 }
 $mailinglistsHTML .= '</tr>';
 if ($access != 'view') {

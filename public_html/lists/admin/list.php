@@ -265,7 +265,7 @@ while ($row = Sql_fetch_array($result)) {
     $row['id'].'-->'.'<a href="./?page=members&id='.
     $row['id'].'" title="'.
     $GLOBALS['I18N']->get('View Members').'">'.
-    stripslashes($row['name'].'</a>');
+    stripslashes(cleanListName($row['name']).'</a>');
 
     $ls->addElement($element);
     $ls->setClass($element, 'rows row1');

@@ -20,6 +20,9 @@ if (isset($_GET['sortby'])) {
 } else {
     $sortby = '';
 }
+if (strtolower($sortby) == 'password') {
+    $sortby = '';
+}
 
 if (isset($_GET['delete'])) {
     $delete = sprintf('%d', $_GET['delete']);
