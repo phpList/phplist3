@@ -754,8 +754,8 @@ function addUserHistory($email, $msg, $detail)
             $ip = '';
         }
         Sql_Query(sprintf('insert into %s (ip,userid,date,summary,detail,systeminfo)
-      values("%s",%d,now(),"%s","%s","%s")', $user_his_table, $ip, $userid[0], addslashes($msg),
-            addslashes(htmlspecialchars($detail)), $sysinfo));
+            values("%s",%d,now(),"%s","%s","%s")', $user_his_table, $ip, $userid[0], sql_escape($msg),
+            sql_escape(htmlspecialchars($detail)), sql_escape($sysinfo)));
     }
 }
 
