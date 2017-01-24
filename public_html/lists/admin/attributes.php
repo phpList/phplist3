@@ -41,7 +41,7 @@ if (isset($_POST['action'])) {
                 $insertid = Sql_Insert_id();
                 // text boxes and hidden fields do not have their own table
                 if ($_POST['type'][$id] != 'textline' && $_POST['type'][$id] != 'hidden') {
-                    $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
+                    $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255), unique (name(150)), listorder integer default 0)";
                     Sql_Query($query);
                 } else {
                     // and they cannot currently be required, changed 29/08/01, insert javascript to require them, except for hidden ones :-)
@@ -86,7 +86,7 @@ if (isset($_POST['action'])) {
                                 case 'select':
                                     $lc_name = getNewAttributeTablename($req[1]);
                                     Sql_Query("update {$tables['attribute']} set tablename = \"$lc_name\" where id = $id");
-                                    Sql_Query("create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)");
+                                    Sql_Query("create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255), unique (name(150)),listorder integer default 0)");
                                     $attreq = Sql_Query("select distinct value from {$tables['user_attribute']} where attributeid = $id");
                                     while ($row = Sql_Fetch_Row($attreq)) {
                                         $attindexreq = Sql_Query("select id from $table_prefix"."listattr_$lc_name where name = \"$row[0]\"");
@@ -233,7 +233,7 @@ if (isset($_POST['action'])) {
                         // checkboxes are merged into a checkbox group
                         // set that up first
                         Sql_query(sprintf('create table %s
-            (id integer not null primary key auto_increment, name varchar(255) unique,
+            (id integer not null primary key auto_increment, name varchar(255), unique (name(150)),
             listorder integer default 0)', $valuestable), 1);
                         Sql_query(sprintf('insert into %s (name) values("%s")', $valuestable, $firstdata['name']));
                         $val = Sql_Insert_Id();

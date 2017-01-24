@@ -59,7 +59,7 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
         Sql_Query($query);
         $insertid = Sql_Insert_id();
 
-        $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255) unique,listorder integer default 0)";
+        $query = "create table $table_prefix"."listattr_$lc_name (id integer not null primary key auto_increment, name varchar(255), unique (name(150)),listorder integer default 0)";
         Sql_Query($query);
         $fp = fopen("data/$val", 'r');
         $header = '';

@@ -189,7 +189,7 @@ if (!$_POST['remote_host'] ||
             if ($att['type'] == 'select' || $att['type'] == 'radio' || $att['type'] == 'checkboxgroup') {
                 $query = "create table if not exists $table_prefix".'listattr_'.$att['tablename'].'
         (id integer not null primary key auto_increment,
-        name varchar(255) unique,listorder integer default 0)';
+        name varchar(255), unique (name(150)),listorder integer default 0)';
                 Sql_Query($query, 0);
                 connectRemote();
                 $attvalue_req = Sql_Query('select id,name,listorder from '.$_POST['remote_prefix'].'listattr_'.$att['tablename']);

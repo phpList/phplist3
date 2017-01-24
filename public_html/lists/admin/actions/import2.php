@@ -196,7 +196,7 @@ if (count($email_list)) {
                         Sql_Query(sprintf('update %s set tablename = "attr%d" where id = %d', $tables['attribute'],
                             $attid, $attid));
                         Sql_Query('create table '.$GLOBALS['table_prefix'].'listattr_attr'.$attid.'
-                        (id integer not null primary key auto_increment, name varchar(255) unique,
+                        (id integer not null primary key auto_increment, name varchar(255), unique (name(150)),
                         listorder integer default 0)');
                         $_SESSION['import_attribute'][$column]['record'] = $attid;
                     }

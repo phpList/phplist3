@@ -34,7 +34,7 @@ if (isset($_POST['action']) && $_POST['action'] == $GLOBALS['I18N']->get('Save C
             if ($_POST['type'][$id] != 'textline' && $_POST['type'][$id] != 'hidden') {
                 $query = "create table $table_prefix"."adminattr_$lc_name
           (id integer not null primary key auto_increment,
-          name varchar(255) unique,listorder integer default 0)";
+          name varchar(255), unique (name(150)),listorder integer default 0)";
                 Sql_Query($query);
             } else {
                 // and they cannot currently be required, changed 29/08/01,
