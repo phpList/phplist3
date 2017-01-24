@@ -30,4 +30,4 @@ Feature: Create new campaign
     When I follow "Finish"
     And I press "send"
     Then I should see "Campaign queued"
-    Then print last response
+#    Then print last response

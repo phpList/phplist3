@@ -6,3 +6,7 @@ default:
       goutte:    ~
       selenium2: ~
       base_url: http://phplist.dev
+  context :
+      parameters :
+          user: root
+          password :
