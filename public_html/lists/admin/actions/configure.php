@@ -77,6 +77,17 @@ if ($configItem['type'] == 'textarea') {
     $image = new imageUpload();
     printf('<input type="hidden" name="values[%s]" value="%s" />', $id, $value); //# to trigger the saving of the value
     echo $image->showInput($id, $value, 0);
+} elseif ($configItem['type'] == 'select') {
+    echo '<select name="values['.$id.']">';
+    foreach ($configItem['values'] as $key => $label) {
+        print '<option value="'.$key.'"';
+        if ($key == $configItem['value']) {
+            print ' selected="selected"';
+        }
+        print '>'.$label.'</option>';
+    }
+
+
 } else {
     echo s('Don\'t know how to handle type '.$configItem['type']);
 }

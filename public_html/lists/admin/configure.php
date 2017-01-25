@@ -89,6 +89,11 @@ if (!empty($_REQUEST['save'])) {
                     $haserror = SaveConfig($id, $value);
                 }
             }
+            if ($id == 'UITheme') {
+                if (in_array($value,array_keys($THEMES)) && $value != $_SESSION['ui']) {
+                    $newTheme = $value;
+                }
+            }
         }
         if (!$haserror) {
             echo '<div class="actionresult">'.s('Changes saved').'</div>';
@@ -106,6 +111,10 @@ if (!empty($_REQUEST['save'])) {
     if (isset($_POST['ret']) && $_POST['ret'] == 'catlists') {
         $_SESSION['action_result'] = s('Categories saved');
         Redirect('catlists');
+    }
+    if (isset($newTheme)) {
+        Redirect("configure&settheme=".$newTheme);
+        exit;
     }
 
     if (in_array($item, array_keys($default_config))) {

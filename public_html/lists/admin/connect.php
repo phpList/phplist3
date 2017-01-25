@@ -115,7 +115,19 @@ while ($th = readdir($d)) {
         }
     }
 }
+if (count($THEMES) > 1) {
+    $default_config['UITheme'] = array(
+        'value'       => $_SESSION['ui'],
+        'values'      => array_flip($themeNames),
+        'description' => s('Theme for phpList'),
+        'type'        => 'select',
+        'allowempty'  => false,
+        'category'    => 'general',
+        'hidden'      => false,
+    );
+}
 unset($themeNames);
+
 
 if (!empty($GLOBALS['SessionTableName'])) { // rather undocumented feature, but seems to be used by some
     include_once dirname(__FILE__).'/sessionlib.php';
