@@ -64,8 +64,17 @@ if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($L
         'charset' => $LANGUAGES[$setlanguage][1],
         'dir'     => $LANGUAGES[$setlanguage][4],
     );
-//  var_dump($_SESSION['adminlanguage'] );
+    SetCookie ( 'preferredLanguage', $setlanguage,time()+31536000);
+} elseif (empty($_SESSION['adminlanguage']) && isset($_COOKIE['preferredLanguage'])) {
+    $setlanguage = preg_replace('/[^\w_-]+/', '', $_COOKIE['preferredLanguage']);
+    $_SESSION['adminlanguage'] = array(
+        'info'    => $setlanguage,
+        'iso'     => $setlanguage,
+        'charset' => $LANGUAGES[$setlanguage][1],
+        'dir'     => $LANGUAGES[$setlanguage][4],
+    );
 }
+//  var_dump($_SESSION['adminlanguage'] );
 
 /*
 if (!empty($_SESSION['show_translation_colours'])) {
