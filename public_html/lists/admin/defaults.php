@@ -28,14 +28,13 @@ function readentry($file)
     return '';
 }
 
-$dir = opendir('data');
-while ($file = readdir($dir)) {
+$files = scandir('data');
+foreach ($files as $file) {
     if (is_file("data/$file")) {
         $entry = readentry("data/$file");
         $attributes[$entry] = $file;
     }
 }
-closedir($dir);
 
 if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     $selected = $_POST['selected'];
