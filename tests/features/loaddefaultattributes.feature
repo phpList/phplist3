@@ -12,31 +12,25 @@ Feature: Create new campaign
     When I follow "predefined defaults"
     Then I should see "Countries in the world"
     When I fill in the following:
-      | selected[]  | gendersp.txt   |
+      | selected[]  | be-cities.txt   |
  #   Then print last response
     And I press "add"
-    Then I should see "Loading Sexo"
+    Then I should see "Loading Cities of Belgium"
     And I should see "done"
     When I follow "return to editing attributes"
-    Then I should see "Sexo"
+    Then I should see "Woonplaats"
     And I should see "edit values"
     When I follow "edit values"
  #   Then print last response
-    Then I should see "Femenino"
-    And I should see "Masculino"
-    When I fill in the following:
-      | listorder[1]  | 50   |
-      | listorder[2]  | 10   |
-    And I press "Change order"
-    Then I should see "Femenino"
-    And I should see "Masculino"
+    Then I should see "Brussel"
+    And I should see "Bruxelles"
     When I follow "Add new"
-    Then I should see "Add new Sexo, one per line"
+    Then I should see "Add new Woonplaats, one per line"
     When I fill in the following:
       | itemlist  | Undefined   |
-    And I press "Add new Sexo"
-    Then I should see "Femenino"
-    And I should see "Masculino"
+    And I press "Add new Woonplaats"
+    Then I should see "Brussel"
+    And I should see "Bruxelles"
     And I should see "Undefined"
     And I follow "Back to attributes"
     Then I should see "Existing attributes"
