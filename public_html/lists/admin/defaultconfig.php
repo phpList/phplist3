@@ -23,9 +23,12 @@ if (is_file(dirname(__FILE__) . '/ui/' . $GLOBALS['ui'] . '/frontendfooter.php')
 
 if (isset($_SERVER['HTTP_HOST'])) {
     $D_website = $_SERVER['HTTP_HOST'];
-} else {
+} elseif (isset($_SERVER['SERVER_NAME'])) {
     $D_website = $_SERVER['SERVER_NAME'];
+} else {
+    $D_website = 'unable to determine';
 }
+
 $D_domain = $D_website;
 if (preg_match("#^www\.(.*)#i", $D_domain, $regs)) {
     $D_domain = $regs[1];
