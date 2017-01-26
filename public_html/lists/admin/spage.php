@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_POST['default']) && $_POST['default']) {
     saveConfig('defaultsubscribepage', $_POST['default']);
@@ -18,7 +18,7 @@ if ($GLOBALS['require_login'] && !isSuperUser()) {
     $access = accessLevel('list');
     switch ($access) {
         case 'owner':
-            $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
+            $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
             break;
         case 'all':
             $subselect = '';
@@ -40,17 +40,17 @@ if ($delete) {
         $tables['subscribepage'], $delete));
     Sql_Query(sprintf('delete from %s where id = %d',
         $tables['subscribepage_data'], $delete));
-    Info($GLOBALS['I18N']->get('Deleted') . " $delete");
+    Info($GLOBALS['I18N']->get('Deleted')." $delete");
 }
-print formStart('name="pagelist" class="spageEdit" ');
-print '<input type="hidden" name="active[-1]" value="1" />';## to force the active array to exist
+echo formStart('name="pagelist" class="spageEdit" ');
+echo '<input type="hidden" name="active[-1]" value="1" />'; //# to force the active array to exist
 $ls = new WebblerListing($GLOBALS['I18N']->get('subscribe pages'));
 
 $req = Sql_Query(sprintf('select * from %s %s order by title', $tables['subscribepage'], $subselect));
 while ($p = Sql_Fetch_Array($req)) {
     $ls->addElement($p['id']);
     $ls->setClass($p['id'], 'row1');
-    $ls->addColumn($p['id'], $GLOBALS['I18N']->get('title'), stripslashes($p['title']));
+    $ls->addColumn($p['id'], $GLOBALS['I18N']->get('title'), strip_tags(stripslashes($p['title'])));
     if (($require_login && isSuperUser()) || !$require_login) {
         $ls->addColumn($p['id'], $GLOBALS['I18N']->get('owner'), adminName($p['owner']));
         if ($p['id'] == $default) {
@@ -69,15 +69,15 @@ while ($p = Sql_Fetch_Array($req)) {
         sprintf('<input type="checkbox" name="active[%d]" value="1" %s  onchange="document.pagelist.submit()" />',
             $p['id'], $p['active'] ? 'checked="checked"' : ''));
     $ls->addRow($p['id'],
-        $p['active'] ? '<span class="yes" title="' . $GLOBALS['I18N']->get('active') . '"></span>' : '<span class="no" title="' . $GLOBALS['I18N']->get('not active') . '"></span>',
-        sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="' . $GLOBALS['I18N']->get('edit') . '">%s</a></span>',
-            PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')) .
-        sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="' . $GLOBALS['I18N']->get('delete') . '">%s</a></span>',
-            PageURL2('spage', '', 'delete=' . $p['id']), $GLOBALS['I18N']->get('del')) .
-        sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="' . $GLOBALS['I18N']->get('view') . '">%s</a></span>',
+        $p['active'] ? '<span class="yes" title="'.$GLOBALS['I18N']->get('active').'"></span>' : '<span class="no" title="'.$GLOBALS['I18N']->get('not active').'"></span>',
+        sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('edit').'">%s</a></span>',
+            PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')).
+        sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a></span>',
+            PageURL2('spage', '', 'delete='.$p['id']), $GLOBALS['I18N']->get('del')).
+        sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
             getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
 }
-print $ls->display();
-print '<p class="button">' . PageLink2('spageedit', s('Add a new subscribe page')) . '</p>';
+echo $ls->display();
+echo '<p class="button">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p>';
 ?>
 </form>

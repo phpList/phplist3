@@ -4,7 +4,7 @@ verifyCsrfGetToken();
 if (!empty($_SESSION['LoadDelay'])) {
     sleep($_SESSION['LoadDelay']);
 }
-# domain stats
+// domain stats
 $status = '';
 
 // Fetch all subscribers' data
@@ -58,18 +58,18 @@ while ($row = Sql_Fetch_Array($req)) {
         $perc = sprintf('%0.0f', ($row['num'] / $total * 100));
         // Add data to the table
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
-            '<strong>' . number_format($row['num']) . '</strong> (' . $perc . '%)');
+            '<strong>'.number_format($row['num']).'</strong> ('.$perc.'%)');
     }
 }
 
 // If confirmed subscribers were found
 if ($some) {
     // Print download button
-    $status .= '<div class="actions">' . PageLinkButton('page=pageaction&action=domainstats&dl=true',
-            $GLOBALS['I18N']->get('Download as CSV file')) . '</div>';
+    $status .= '<div class="actions">'.PageLinkButton('page=pageaction&action=domainstats&dl=true',
+            $GLOBALS['I18N']->get('Download as CSV file')).'</div>';
 } else {
     // Print missing data notice
-    $status .= '<h3>' . s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.') . '</h3>';
+    $status .= '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';
 }
 
 // Count the number of unconfirmed users per domain and return them in descending order
@@ -97,20 +97,20 @@ while ($row = Sql_Fetch_Array($req)) {
             // Calculate the number of unconfirmed subs on this domain as a percentage of all subs on this domain
             $percentUnconfirmed = sprintf('%0.0f', ($row['num'] / $total * 100));
             $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
-                '<strong>' . number_format($row['num']) . '</strong> (' . $percentUnconfirmed . '%)');
+                '<strong>'.number_format($row['num']).'</strong> ('.$percentUnconfirmed.'%)');
         }
 
         // Calculate the number subs on this domain as a percentage of all subs
         $percentTotal = sprintf('%0.0f', (($row['num'] + $confirmed[$row['domain']]) / $total * 100));
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
-            '<strong>' . number_format($row['num'] + $confirmed[$row['domain']]) . '</strong> (' . $percentTotal . '%)');
+            '<strong>'.number_format($row['num'] + $confirmed[$row['domain']]).'</strong> ('.$percentTotal.'%)');
     }
 }
 
 // If download was requested, send CSV
 if ($download) {
     ob_end_clean();
-    print $ls->tabDelimited();
+    echo $ls->tabDelimited();
 }
 
 $status .= $ls->display();
@@ -165,22 +165,22 @@ if ($totalDomains > 0) {
         // Calculate the number of confirmed subs on this domain as a percentage of all subs using that domain
         $percentConfirmed = sprintf('%0.0f', ($row['confirmed'] / $row['total'] * 100));
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
-            '<strong>' . number_format($row['confirmed']) . '</strong> (' . $percentConfirmed . '%)');
+            '<strong>'.number_format($row['confirmed']).'</strong> ('.$percentConfirmed.'%)');
 
         // Calculate the number of unconfirmed subs on this domain as a percentage of all subs using that domain
         $percentUnconfirmed = sprintf('%0.0f', ($row['unconfirmed'] / $row['total'] * 100));
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
-            '<strong>' . number_format($row['unconfirmed']) . '</strong> (' . $percentUnconfirmed . '%)');
+            '<strong>'.number_format($row['unconfirmed']).'</strong> ('.$percentUnconfirmed.'%)');
         // Calculate the number of blacklisted subs on this domain as a percentage of all subs using that domain
         $percentBlacklisted = sprintf('%0.0f', ($row['blacklisted'] / $row['total'] * 100));
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('blacklisted'),
-            '<strong>' . number_format($row['blacklisted']) . '</strong> (' . $percentBlacklisted . '%)');
+            '<strong>'.number_format($row['blacklisted']).'</strong> ('.$percentBlacklisted.'%)');
 
         // Calculate the number subs on this domain as a percentage of all subs
         $percentTotal = sprintf('%0.0f', ($row['total'] / $total * 100));
         // Show the total subscribers using this domain
         $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
-            '<strong>' . number_format($row['total']) . '</strong> (' . $percentTotal . '%)');
+            '<strong>'.number_format($row['total']).'</strong> ('.$percentTotal.'%)');
     }
 
     // Print table
@@ -210,7 +210,7 @@ while ($row = Sql_Fetch_Array($req)) {
     if ($row['num'] > 0) {
         $ls->addElement($row['preat']);
         $percentTotal = sprintf('%0.0f', $row['num'] / $total * 100);
-        $ls->addColumn($row['preat'], s('total'), '<strong>' . $row['num'] . '</strong> (' . $percentTotal . '%)');
+        $ls->addColumn($row['preat'], s('total'), '<strong>'.$row['num'].'</strong> ('.$percentTotal.'%)');
     }
 }
 $status .= $ls->display();

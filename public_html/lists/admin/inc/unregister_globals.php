@@ -12,8 +12,8 @@ function unregister_GLOBALS()
         return;
     }
 
-    ## https://mantis.phplist.com/view.php?id=16882
-    ## no need to do this on commandline
+    //# https://mantis.phplist.com/view.php?id=16882
+    //# no need to do this on commandline
     if (php_sapi_name() == 'cli') {
         return;
     }

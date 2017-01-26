@@ -1,11 +1,11 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 @ob_end_flush();
 flushBrowser();
 
 if (!$_SESSION['logindetails']['superuser']) {
-    print $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
+    echo $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
 
     return;
 }
@@ -23,7 +23,7 @@ if (isset($_POST['unsubscribe'])) {
         if (!empty($_POST['blacklist'])) {
             ++$blacklisted;
             addUserToBlackList($email,
-                $GLOBALS['I18N']->get('Blacklisted by') . ' ' . $_SESSION['logindetails']['adminname']);
+                $GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
         }
         $campaignCount = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where userid = %d',
             $GLOBALS['tables']['usermessage'], $userid[0]));
@@ -43,10 +43,10 @@ if (isset($_POST['unsubscribe'])) {
             }
         }
     }
-    print s('All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found',
+    echo s('All done, %d emails processed<br/>%d emails blacklisted<br/>%d emails deleted<br/>%d emails not found',
         $count, $blacklisted, $deleted, $notfound);
-    print '<br/>' . s('%d subscribers could not be deleted, because they have already received campaigns', $notDeleted);
-    print '<br/>' . PageLinkButton('massremove', s('Remove more'));
+    echo '<br/>'.s('%d subscribers could not be deleted, because they have already received campaigns', $notDeleted);
+    echo '<br/>'.PageLinkButton('massremove', s('Remove more'));
 
     return;
 }

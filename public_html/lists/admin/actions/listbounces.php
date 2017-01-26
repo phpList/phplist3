@@ -1,4 +1,5 @@
 <?php
+
 verifyCsrfGetToken();
 
 $access = accessLevel('listbounces');
@@ -12,7 +13,7 @@ $status = '';
 switch ($access) {
     case 'owner':
         if ($listid) {
-            $req = Sql_Query(sprintf('select id from ' . $tables['list'] . ' where owner = %d and id = %d',
+            $req = Sql_Query(sprintf('select id from '.$tables['list'].' where owner = %d and id = %d',
                 $_SESSION['logindetails']['id'], $listid));
             if (!Sql_Affected_Rows()) {
                 Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
@@ -49,14 +50,13 @@ $ls->setElementHeading('List name');
 $some = 0;
 while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
-    $element = '<!--' . $GLOBALS['I18N']->get('list') . ' ' . $row['listid'] . '-->' . listName($row['listid']);
-    $ls->addElement($element, PageUrl2('listbounces&amp;id=' . $row['listid']));
-    #  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
+    $element = '<!--'.$GLOBALS['I18N']->get('list').' '.$row['listid'].'-->'.listName($row['listid']);
+    $ls->addElement($element, PageUrl2('listbounces&amp;id='.$row['listid']));
+    //  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
     $ls->addColumn($element, $GLOBALS['I18N']->get('Total bounces'), $row['numusers']);
 }
 if ($some) {
     $status = $ls->display();
 } else {
-    $status = '<p>' . $GLOBALS['I18N']->get('None found') . '</p>';
+    $status = '<p>'.$GLOBALS['I18N']->get('None found').'</p>';
 }
-

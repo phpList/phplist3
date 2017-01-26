@@ -1,6 +1,6 @@
 <?php
 
-# experiment, see whether we can correct the magic quotes centrally
+// experiment, see whether we can correct the magic quotes centrally
 
 function addSlashesArray($array)
 {
@@ -44,7 +44,7 @@ function removeXss($string)
 
         return $return;
     }
-    #$string = preg_replace('/<script/im','&lt;script',$string);
+    //$string = preg_replace('/<script/im','&lt;script',$string);
     $string = htmlspecialchars($string);
 
     return $string;
@@ -63,4 +63,4 @@ foreach ($_REQUEST as $key => $val) {
 foreach ($_REQUEST as $key => $val) {
   print "COOKIE: $key = $val<br/>";
 }
-*/;
+*/

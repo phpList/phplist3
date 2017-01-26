@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 ignore_user_abort();
 set_time_limit(500);
@@ -32,7 +32,7 @@ if (!empty($_POST['import'])) {
     // Change delimiter for new line.
     if (isset($_POST['import_record_delimiter']) && $_POST['import_record_delimiter'] != '') {
         $email_list = str_replace($_POST['import_record_delimiter'], "\n", $email_list);
-    };
+    }
 
     //if (isset($_POST['import_field_delimiter'])) {
     //$import_field_delimiter = $_POST['import_field_delimiter'];
@@ -43,30 +43,30 @@ if (!empty($_POST['import'])) {
     //$import_field_delimiter = "\t";
 
     // Check file for illegal characters
-    $illegal_cha = array("\t");#",", ";", ":", "#",
+    $illegal_cha = array("\t"); //",", ";", ":", "#",
     for ($i = 0; $i < count($illegal_cha); ++$i) {
         if (($illegal_cha[$i] != $import_field_delimiter) && ($illegal_cha[$i] != $import_record_delimiter) && (strpos($email_list,
                     $illegal_cha[$i]) != false)
         ) {
-            Fatal_Error($GLOBALS['I18N']->get('Some characters that are not valid have been found. These might be delimiters. Please check the file and select the right delimiter. Character found:') . $illegal_cha[$i]);
+            Fatal_Error($GLOBALS['I18N']->get('Some characters that are not valid have been found. These might be delimiters. Please check the file and select the right delimiter. Character found:').$illegal_cha[$i]);
         }
-    };
+    }
 
     // Split file/emails into array
     $email_list = explode("\n", $email_list);
     if (count($email_list) > 300 && !$test_import) {
-        # this is a possibly a time consuming process, so let's show a progress bar
+        // this is a possibly a time consuming process, so let's show a progress bar
         flush();
-        # increase the memory to make sure we're not running out
+        // increase the memory to make sure we're not running out
         ini_set('memory_limit', '16M');
     }
 
-    # take the header and parse it to attributes
+    // take the header and parse it to attributes
     $header = array_shift($email_list);
     $attributes = explode($import_field_delimiter, $header);
     for ($i = 0; $i < count($attributes); ++$i) {
         $attribute = clean($attributes[$i]);
-        # check whether they exist
+        // check whether they exist
         if (strtolower($attribute) == 'email') {
             $emailindex = $i;
         } elseif (strtolower($attribute) == 'password') {
@@ -74,15 +74,15 @@ if (!empty($_POST['import'])) {
         } elseif (strtolower($attribute) == 'loginname') {
             $loginnameindex = $i;
         } else {
-            $req = Sql_Query('select id from ' . $tables['adminattribute'] . " where name = \"$attribute\"");
+            $req = Sql_Query('select id from '.$tables['adminattribute']." where name = \"$attribute\"");
             if (!Sql_Affected_Rows()) {
                 $lc_name = substr(str_replace(' ', '', strtolower($attribute)), 0, 10);
                 if ($lc_name == '') {
-                    Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty') . ': ' . $lc_name);
+                    Fatal_Error($GLOBALS['I18N']->get('Name cannot be empty').': '.$lc_name);
                 }
-                Sql_Query('select * from ' . $tables['adminattribute'] . " where tablename = \"$lc_name\"");
+                Sql_Query('select * from '.$tables['adminattribute']." where tablename = \"$lc_name\"");
                 if (Sql_Affected_Rows()) {
-                    Fatal_Error($GLOBALS['I18N']->get('Name is not unique enough') . ': ' . $attribute);
+                    Fatal_Error($GLOBALS['I18N']->get('Name is not unique enough').': '.$attribute);
                 }
 
                 if (!$test_import) {
@@ -111,44 +111,44 @@ if (!empty($_POST['import'])) {
 
     $privs = array(
         'subscribers' => !empty($_POST['subscribers']),
-        'campaigns' => !empty($_POST['campaigns']),
-        'statistics' => !empty($_POST['statistics']),
-        'settings' => !empty($_POST['settings']),
+        'campaigns'   => !empty($_POST['campaigns']),
+        'statistics'  => !empty($_POST['statistics']),
+        'settings'    => !empty($_POST['settings']),
     );
     // Parse the lines into records
     $c = 1;
     $invalid_email_count = 0;
 
-    print '<h3>' . s('Import administrators, please wait') . '</h3>';
+    echo '<h3>'.s('Import administrators, please wait').'</h3>';
     flush();
 
     foreach ($email_list as $line) {
         $values = explode($import_field_delimiter, $line);
-        #   var_dump($values);
+        //   var_dump($values);
         $email = clean($values[$emailindex]);
         $password = $values[$passwordindex];
         $loginname = $values[$loginnameindex];
         $invalid = 0;
         if (!$email) {
             if ($test_input && $show_warnings) {
-                Warn($GLOBALS['I18N']->get('Record has no email') . ': ' . $c->$line);
+                Warn($GLOBALS['I18N']->get('Record has no email').': '.$c->$line);
             }
-            $email = $GLOBALS['I18N']->get('Invalid Email') . ' ' . $c;
+            $email = $GLOBALS['I18N']->get('Invalid Email').' '.$c;
             $invalid = 1;
             ++$invalid_email_count;
         }
         if (count($values) != count($attributes) && $test_input && $show_warnings) {
-            Warn($GLOBALS['I18N']->get('Record has more values than header indicated, this may cause trouble') . ': ' . $email);
+            Warn($GLOBALS['I18N']->get('Record has more values than header indicated, this may cause trouble').': '.$email);
         }
         if (!$invalid || ($invalid && $omit_invalid != 'yes')) {
             $user_list[$email] = array(
-                'password' => $password,
+                'password'  => $password,
                 'loginname' => $loginname,
             );
             reset($import_attribute);
             $user_list[$email]['values'] = $values;
         } else {
-            # Warn("Omitting invalid one: $email");
+            // Warn("Omitting invalid one: $email");
         }
         ++$c;
         if ($test_import && $c > 50) {
@@ -158,30 +158,30 @@ if (!empty($_POST['import'])) {
 
     // View test output of emails
     if ($test_import) {
-        print $GLOBALS['I18N']->get('Test output: If the output looks ok, go Back to resubmit for real') . '<br/><br/>';
+        echo $GLOBALS['I18N']->get('Test output: If the output looks ok, go Back to resubmit for real').'<br/><br/>';
         $i = 1;
         while (list($email, $data) = each($user_list)) {
             $email = trim($email);
             if (strlen($email) > 4) {
-                print "<br/><b>$email</b><br/>";
+                echo "<br/><b>$email</b><br/>";
                 $html = '';
-                $html .= $GLOBALS['I18N']->get('password') . ': ' . $data['password'] . '</br>';
-                $html .= $GLOBALS['I18N']->get('login') . ': ' . $data['loginname'] . '</br>';
+                $html .= $GLOBALS['I18N']->get('password').': '.$data['password'].'</br>';
+                $html .= $GLOBALS['I18N']->get('login').': '.$data['loginname'].'</br>';
                 reset($import_attribute);
                 foreach ($import_attribute as $item) {
                     if (!empty($data['values'][$item['index']])) {
-                        $html .= $attributes[$item['index']] . ' -> ' . $data['values'][$item['index']] . '<br/>';
+                        $html .= $attributes[$item['index']].' -> '.$data['values'][$item['index']].'<br/>';
                     }
                 }
                 if ($html) {
-                    print "<blockquote>$html</blockquote>";
+                    echo "<blockquote>$html</blockquote>";
                 }
-            };
+            }
             if ($i == 50) {
                 break;
-            };
+            }
             ++$i;
-        };
+        }
 
         // Do import
     } else {
@@ -195,9 +195,9 @@ if (!empty($_POST['import'])) {
                     $loginname = $data['loginname'];
                     if (!$loginname && $email) {
                         $loginname = $email;
-                        Warn($GLOBALS['I18N']->get('Empty loginname, using email:') . ' ' . $email);
+                        Warn($GLOBALS['I18N']->get('Empty loginname, using email:').' '.$email);
                     }
-                    $result = Sql_query('SELECT id FROM ' . $tables['admin'] . " WHERE email = '$email' or loginname = '" . sql_escape($data['loginname']) . "'");
+                    $result = Sql_query('SELECT id FROM '.$tables['admin']." WHERE email = '$email' or loginname = '".sql_escape($data['loginname'])."'");
                     if (Sql_affected_rows()) {
                         $admin = Sql_fetch_array($result);
                         $adminid = $admin['id'];
@@ -234,16 +234,16 @@ if (!empty($_POST['import'])) {
                         if (!empty($data['values'][$item['index']])) {
                             $attribute_index = $item['record'];
                             $value = $data['values'][$item['index']];
-                            # check whether this is a textline or a selectable item
-                            $att = Sql_Fetch_Row_Query('select type,tablename,name from ' . $tables['adminattribute'] . " where id = $attribute_index");
+                            // check whether this is a textline or a selectable item
+                            $att = Sql_Fetch_Row_Query('select type,tablename,name from '.$tables['adminattribute']." where id = $attribute_index");
                             switch ($att[0]) {
                                 case 'select':
                                 case 'radio':
-                                    $val = Sql_Query("select id from $table_prefix" . "adminattr_$att[1] where name = \"$value\"");
-                                    # if we don't have this value add it
+                                    $val = Sql_Query("select id from $table_prefix"."adminattr_$att[1] where name = \"$value\"");
+                                    // if we don't have this value add it
                                     if (!Sql_Affected_Rows()) {
-                                        Sql_Query("insert into $table_prefix" . "adminattr_$att[1] (name) values(\"$value\")");
-                                        Warn($GLOBALS['I18N']->get('Value') . " $value " . $GLOBALS['I18N']->get('added to attribute') . " $att[2]");
+                                        Sql_Query("insert into $table_prefix"."adminattr_$att[1] (name) values(\"$value\")");
+                                        Warn($GLOBALS['I18N']->get('Value')." $value ".$GLOBALS['I18N']->get('added to attribute')." $att[2]");
                                         $att_value = Sql_Insert_Id();
                                     } else {
                                         $d = Sql_Fetch_Row($val);
@@ -252,9 +252,9 @@ if (!empty($_POST['import'])) {
                                     break;
                                 case 'checkbox':
                                     if ($value) {
-                                        $val = Sql_Fetch_Row_Query("select id from $table_prefix" . "adminattr_$att[1] where name = \"Checked\"");
+                                        $val = Sql_Fetch_Row_Query("select id from $table_prefix"."adminattr_$att[1] where name = \"Checked\"");
                                     } else {
-                                        $val = Sql_Fetch_Row_Query("select id from $table_prefix" . "adminattr_$att[1] where name = \"Unchecked\"");
+                                        $val = Sql_Fetch_Row_Query("select id from $table_prefix"."adminattr_$att[1] where name = \"Unchecked\"");
                                     }
                                     $att_value = $val[0];
                                     break;
@@ -269,46 +269,44 @@ if (!empty($_POST['import'])) {
                     }
 
                     if (!empty($_REQUEST['createlist'])) {
-                        $exists = Sql_Fetch_Row_Query('select id from ' . $tables['list'] . ' where name = "' . sql_escape($loginname) . '"');
+                        $exists = Sql_Fetch_Row_Query('select id from '.$tables['list'].' where name = "'.sql_escape($loginname).'"');
                         if (empty($exists[0])) {
                             Sql_Query(sprintf('insert into %s (name,description,active,owner)
               values("%s","%s",1,%d)',
                                 $tables['list'],
                                 sql_escape($loginname),
-                                s('List for') . ' ' . sql_escape($loginname),
+                                s('List for').' '.sql_escape($loginname),
                                 $adminid));
                         }
                     }
-                }; // end if
+                } // end if
             }
-        }; // end while
+        } // end while
 
-        # let's be grammatically correct :-) '
-        $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new administrator was') . ' ' : $GLOBALS['I18N']->get('new administrators were') . ' ';
+        // let's be grammatically correct :-) '
+        $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new administrator was').' ' : $GLOBALS['I18N']->get('new administrators were').' ';
 
         if (!$some) {
-            print '<br/>' . $GLOBALS['I18N']->get('All the administrators already exist in the database') . '<br/>';
-            print $GLOBALS['I18N']->get('Information has been updated from the import') . '<br/>';
+            echo '<br/>'.$GLOBALS['I18N']->get('All the administrators already exist in the database').'<br/>';
+            echo $GLOBALS['I18N']->get('Information has been updated from the import').'<br/>';
         } else {
-            print "$count_email_add $dispemail " . $GLOBALS['I18N']->get('succesfully imported to the database and added to the system.') . '<br/>';
+            echo "$count_email_add $dispemail ".$GLOBALS['I18N']->get('succesfully imported to the database and added to the system.').'<br/>';
         }
-    }; // end else
-    print PageLinkButton('importadmin', $GLOBALS['I18N']->get('Import some more administrators'));
+    } // end else
+    echo PageLinkButton('importadmin', $GLOBALS['I18N']->get('Import some more administrators'));
 } else {
     echo formStart('enctype="multipart/form-data" name="import" class="importadminDo" ') ?>
     <?php
     if ($GLOBALS['require_login'] && !isSuperUser()) {
         $access = accessLevel('importadmin');
         if ($access == 'owner') {
-            $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
+            $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
         } elseif ($access == 'all') {
             $subselect = '';
         } elseif ($access == 'none') {
             $subselect = ' where id = 0';
         }
-    }
-
-    ?>
+    } ?>
     </ul>
     <div class="panel">
         <div class="content">
@@ -334,17 +332,16 @@ if (!empty($_POST['import'])) {
                         <input type=checkbox name="createlist" value="yes" checked></td>
                 </tr>
                 <?php
-                print '<tr><td colspan="2">';
-                print '<div id="privileges">
-' . s('Privileges') . ':
-<label for="subscribers"><input type="checkbox" name="subscribers" checked="checked" />' . s('Manage subscribers') . '</label>
-<label for="campaigns"><input type="checkbox" name="campaigns" checked="checked"/>' . s('Send Campaigns') . '</label>
-<label for="statistics"><input type="checkbox" name="statistics" checked="checked"/>' . s('View Statistics') . '</label>
-<label for="settings"><input type="checkbox" name="settings" checked="checked"/>' . s('Change Settings') . '</label>
+                echo '<tr><td colspan="2">';
+    echo '<div id="privileges">
+' .s('Privileges').':
+<label for="subscribers"><input type="checkbox" name="subscribers" checked="checked" />' .s('Manage subscribers').'</label>
+<label for="campaigns"><input type="checkbox" name="campaigns" checked="checked"/>' .s('Send Campaigns').'</label>
+<label for="statistics"><input type="checkbox" name="statistics" checked="checked"/>' .s('View Statistics').'</label>
+<label for="settings"><input type="checkbox" name="settings" checked="checked"/>' .s('Change Settings').'</label>
 </div>';
-                print '</td></tr>';
-                print '</td></tr>';
-                ?>
+    echo '</td></tr>';
+    echo '</td></tr>'; ?>
                 <tr>
                     <td><input type="submit" name="import" value="<?php echo $GLOBALS['I18N']->get('Do Import') ?>">
                     </td>
@@ -354,5 +351,6 @@ if (!empty($_POST['import'])) {
         </div>
     </div>
     <?php
+
 } ?>
 

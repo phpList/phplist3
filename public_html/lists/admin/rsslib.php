@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 function parseRSSTemplate($template, $data)
 {
     foreach ($data as $key => $val) {
         if (!preg_match("#^\d+$#", $key)) {
-            #      print "$key => $val<br/>";
-            $template = preg_replace('#\[' . preg_quote($key) . '\]#i', $val, $template);
+            //      print "$key => $val<br/>";
+            $template = preg_replace('#\['.preg_quote($key).'\]#i', $val, $template);
         }
     }
     $template = preg_replace("/\[[A-Z\. ]+\]/i", '', $template);
@@ -47,11 +47,11 @@ function rssUserHasContent($userid, $messageid, $frequency)
     $exists = Sql_Affected_Rows();
     $cansend = Sql_Fetch_Row($cansend_req);
     if (!$exists || $cansend[0]) {
-        # we can send this user as far as the frequency is concerned
-        # now check whether there is actually some content
+        // we can send this user as far as the frequency is concerned
+        // now check whether there is actually some content
 
-        # check what lists to use. This is the intersection of the lists for the
-        # user and the lists for the message
+        // check what lists to use. This is the intersection of the lists for the
+        // user and the lists for the message
         $lists = array();
         $listsreq = Sql_Query(sprintf('
       select %s.listid from %s,%s where %s.listid = %s.listid and %s.userid = %d and
@@ -66,7 +66,7 @@ function rssUserHasContent($userid, $messageid, $frequency)
             return 0;
         }
         $liststosend = implode(',', $lists);
-        # request the rss items that match these lists and that have not been sent to this user
+        // request the rss items that match these lists and that have not been sent to this user
         $itemstosend = array();
         $max = sprintf('%d', getConfig('rssmax'));
         if (!$max) {
@@ -81,8 +81,8 @@ function rssUserHasContent($userid, $messageid, $frequency)
                 array_push($itemstosend, $item['id']);
             }
         }
-        #  print "<br/>Items to send for user $userid: ".sizeof($itemstosend);
-        # if it is less than the threshold return nothing
+        //  print "<br/>Items to send for user $userid: ".sizeof($itemstosend);
+        // if it is less than the threshold return nothing
         $threshold = getConfig('rssthreshold');
         if (count($itemstosend) >= $threshold) {
             return $itemstosend;

@@ -1,16 +1,16 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-########################################################################
-# Reads mail from a test account that will recieve all sent mail.
-# Use developer_email to send all mail to one account.
-# Use test_email settings to pop this box.
-# This file shows the links from the first email foun d for a selected user.
-# The links can be use to for instance confirm the user in an automated test.
-#
-# 2007 Bas Ovink - tincan ltd
-########################################################################
+//#######################################################################
+// Reads mail from a test account that will recieve all sent mail.
+// Use developer_email to send all mail to one account.
+// Use test_email settings to pop this box.
+// This file shows the links from the first email foun d for a selected user.
+// The links can be use to for instance confirm the user in an automated test.
+
+// 2007 Bas Ovink - tincan ltd
+//#######################################################################
 
 //CREATE TABLE `dev-phplist`.`phplist_testemail` (
 //`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -26,13 +26,13 @@ require_once dirname(__FILE__) . '/accesscheck.php';
 if (!$GLOBALS['commandline']) {
     ob_end_flush();
     if (!MANUALLY_PROCESS_testS) {
-        print $GLOBALS['I18N']->get('This page can only be called from the commandline');
+        echo $GLOBALS['I18N']->get('This page can only be called from the commandline');
 
         return;
     }
 } else {
     ob_end_clean();
-    print ClineSignature();
+    echo ClineSignature();
     ob_start();
 }
 
@@ -42,12 +42,12 @@ function prepareOutput()
     if (!$outputdone) {
         $outputdone = 1;
 
-        return formStart('name="outputform" class="readtestmailOutput" ') . '<textarea name="output" rows=10 cols=70></textarea></form>';
+        return formStart('name="outputform" class="readtestmailOutput" ').'<textarea name="output" rows=10 cols=70></textarea></form>';
     }
 }
 
 $report = '';
-## some general functions
+//# some general functions
 function finish($flag, $message)
 {
     if ($flag == 'error') {
@@ -59,7 +59,7 @@ function finish($flag, $message)
         sendReport($subject, $message);
     }
 
-    # try..catch
+    // try..catch
     global $link;
     imap_close($link);
 }
@@ -75,47 +75,47 @@ function processTestEmails_shutdown()
 {
     global $report, $process_id;
     releaseLock($process_id);
-    # $report .= "Connection status:".connection_status();
+    // $report .= "Connection status:".connection_status();
     finish('info', $report);
     if (!$GLOBALS['commandline']) {
-        include_once dirname(__FILE__) . '/footer.inc';
+        include_once dirname(__FILE__).'/footer.inc';
     }
 }
 
 function output($message, $reset = 0)
 {
-    $infostring = '[' . date('D j M Y H:i',
-            time()) . '] [' . getenv('REMOTE_HOST') . '] [' . getenv('REMOTE_ADDR') . ']';
-    #print "$infostring $message<br/>\n";
+    $infostring = '['.date('D j M Y H:i',
+            time()).'] ['.getenv('REMOTE_HOST').'] ['.getenv('REMOTE_ADDR').']';
+    //print "$infostring $message<br/>\n";
     $message = preg_replace("/\n/", '', $message);
-    ## contribution from http://forums.phplist.com/viewtopic.php?p=14648
-    ## in languages with accented characters replace the HTML back
+    //# contribution from http://forums.phplist.com/viewtopic.php?p=14648
+    //# in languages with accented characters replace the HTML back
     //Replace the "&rsquo;" which is not replaced by html_decode
     $message = preg_replace('/&rsquo;/', "'", $message);
     //Decode HTML chars
-    #$message = html_entity_decode($message,ENT_QUOTES,$_SESSION['adminlanguage']['charset']);
+    //$message = html_entity_decode($message,ENT_QUOTES,$_SESSION['adminlanguage']['charset']);
     $message = html_entity_decode($message, ENT_QUOTES, 'UTF-8');
     if ($GLOBALS['commandline']) {
         ob_end_clean();
-        print strip_tags($message) . "\n";
+        echo strip_tags($message)."\n";
         ob_start();
     } else {
         if ($reset) {
-            print '<script language="Javascript" type="text/javascript">
+            echo '<script language="Javascript" type="text/javascript">
                                                                   //        if (document.forms[0].name == "outputform") {
                                                                             document.outputform.output.value = "";
                                                                             document.outputform.output.value += "\n";
                                                                   //        }
-                                                                        </script>' . "\n";
+                                                                        </script>' ."\n";
         }
 
-        print '<script language="Javascript" type="text/javascript">
+        echo '<script language="Javascript" type="text/javascript">
                                             //      if (document.forms[0].name == "outputform") {
-                                                    document.outputform.output.value += "' . $message . '";
+                                                    document.outputform.output.value += "' .$message.'";
                                                     document.outputform.output.value += "\n";
                                             //      } else
-                                            //        document.writeln("' . $message . '");
-                                                </script>' . "\n";
+                                            //        document.writeln("' .$message.'");
+                                                </script>' ."\n";
     }
 
     flush();
@@ -125,7 +125,7 @@ function output($message, $reset = 0)
 //  global $tables;
 //  $headerinfo= imap_headerinfo($link, $mailIndex);
 //  $header= imap_fetchheader($link, $mailIndex);
-//
+
 //  $body= imap_body($link, $mailIndex);
 //  $msgid= 0;
 //  $user= 0;
@@ -138,7 +138,7 @@ function output($message, $reset = 0)
 //    if (is_array($match) && isset ($match[1]))
 //      $msgid= trim($match[1]);
 //  }
-//
+
 //  preg_match("/X-ListMember: (.*)/i", $header, $match);
 //  if (is_array($match) && isset ($match[1]))
 //    $user= trim($match[1]);
@@ -198,13 +198,13 @@ function openPop($server, $user, $password)
     set_time_limit(6000);
 
     if (!TEST) {
-        $link = imap_open('{' . $server . ':' . $port . '}INBOX', $user, $password, CL_EXPUNGE);
+        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
     } else {
-        $link = imap_open('{' . $server . ':' . $port . '}INBOX', $user, $password);
+        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
     }
 
     if (!$link) {
-        output($GLOBALS['I18N']->get('Cannot create POP3 connection to') . " $server: " . imap_last_error());
+        output($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $server: ".imap_last_error());
 
         return;
     }
@@ -222,7 +222,7 @@ function openMbox($file)
         $link = imap_open($file, '', '');
     }
     if (!$link) {
-        output($GLOBALS['I18N']->get('Cannot open mailbox file') . ' ' . imap_last_error());
+        output($GLOBALS['I18N']->get('Cannot open mailbox file').' '.imap_last_error());
 
         return;
     }
@@ -236,10 +236,10 @@ function findEmailForUser($link, $mailToFind, $max = 3000)
     output(sprintf('Looking for emails to %s', $mailToFind));
 
     $num = imap_num_msg($link);
-    output($num . ' ' . $GLOBALS['I18N']->get('mails in mailbox') . "\n");
-    output($GLOBALS['I18N']->get('Please do not interrupt this process') . "\n");
+    output($num.' '.$GLOBALS['I18N']->get('mails in mailbox')."\n");
+    output($GLOBALS['I18N']->get('Please do not interrupt this process')."\n");
     if ($num > $max) {
-        print $GLOBALS['I18N']->get('Processing first') . " $max " . $GLOBALS['I18N']->get('tests') . '<br/>';
+        echo $GLOBALS['I18N']->get('Processing first')." $max ".$GLOBALS['I18N']->get('tests').'<br/>';
         $num = $max;
     }
 
@@ -262,12 +262,12 @@ function findEmailForUser($link, $mailToFind, $max = 3000)
         if ($found) {
             output('Message found');
             if (!TEST && $test_mailbox_purge) {
-                output($GLOBALS['I18N']->get('Deleting message') . " $mailIndex");
+                output($GLOBALS['I18N']->get('Deleting message')." $mailIndex");
                 imap_delete($link, $mailIndex);
             }
         } else {
             if (!TEST && $test_mailbox_purge_unprocessed) {
-                output($GLOBALS['I18N']->get('Deleting message') . " $mailIndex");
+                output($GLOBALS['I18N']->get('Deleting message')." $mailIndex");
                 imap_delete($link, $mailIndex);
             }
         }
@@ -282,17 +282,15 @@ function findEmailForUser($link, $mailToFind, $max = 3000)
     }
 }
 
-#############################################
-# main
+//############################################
+// main
 function main()
 {
 }
 
-;
-
 if (!function_exists('imap_open')) {
-    Error($GLOBALS['I18N']->get('IMAP is not included in your PHP installation, cannot continue') .
-        '<br/>' . $GLOBALS['I18N']->get('Check out') .
+    Error($GLOBALS['I18N']->get('IMAP is not included in your PHP installation, cannot continue').
+        '<br/>'.$GLOBALS['I18N']->get('Check out').
         ' <a href="http://www.php.net/manual/en/ref.imap.php">http://www.php.net/manual/en/ref.imap.php</a>');
 
     return;
@@ -301,23 +299,23 @@ if (!function_exists('imap_open')) {
 flush();
 $outputdone = 0;
 
-# lets not do this unless we do some locking first
+// lets not do this unless we do some locking first
 register_shutdown_function('processTestEmails_shutdown');
 $abort = ignore_user_abort(1);
 $process_id = getPageLock();
 
 if (!empty($_REQUEST['email'])) {
     $mailToFind = $_REQUEST['email'];
-    print prepareOutput();
+    echo prepareOutput();
 
     switch ($test_protocol) {
-        case 'pop' :
+        case 'pop':
             $link = openPop($test_mailbox_host, $test_mailbox_user, $test_mailbox_password);
             break;
-        case 'mbox' :
+        case 'mbox':
             $link = openMbox($test_mailbox);
             break;
-        default :
+        default:
             Error($GLOBALS['I18N']->get('test_protocol not supported'));
 
             return;
@@ -348,9 +346,9 @@ if (!empty($_REQUEST['email'])) {
 }
 
 {
-    print('<form method="get">');
-    print('  <input name="page" value="readtestmail" type="hidden" />');
-    print('  <input class="submit" type="submit" name="action" value="Get email for user: " />');
+    echo '<form method="get">';
+    echo '  <input name="page" value="readtestmail" type="hidden" />';
+    echo '  <input class="submit" type="submit" name="action" value="Get email for user: " />';
     printf('  <input type="text" name="email" value="%s" />', $_REQUEST['email']);
-    print('</form>');
+    echo '</form>';
 }

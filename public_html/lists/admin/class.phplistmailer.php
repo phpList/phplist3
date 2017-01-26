@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (defined('PHPMAILER_PATH') and PHPMAILER_PATH != '') {
-    #require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php'
+    //require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php'
     require_once PHPMAILER_PATH;
 } else {
     //https://github.com/PHPMailer/PHPMailer
-    require_once dirname(__FILE__) . '/PHPMailer/PHPMailerAutoload.php';
+    require_once dirname(__FILE__).'/PHPMailer/PHPMailerAutoload.php';
 }
 
 class PHPlistMailer extends PHPMailer
@@ -20,15 +20,15 @@ class PHPlistMailer extends PHPMailer
     public $mailsize = 0;
     private $inBlast = false;
     public $image_types = array(
-        'gif' => 'image/gif',
-        'jpg' => 'image/jpeg',
+        'gif'  => 'image/gif',
+        'jpg'  => 'image/jpeg',
         'jpeg' => 'image/jpeg',
-        'jpe' => 'image/jpeg',
-        'bmp' => 'image/bmp',
-        'png' => 'image/png',
-        'tif' => 'image/tiff',
+        'jpe'  => 'image/jpeg',
+        'bmp'  => 'image/bmp',
+        'png'  => 'image/png',
+        'tif'  => 'image/tiff',
         'tiff' => 'image/tiff',
-        'swf' => 'application/x-shockwave-flash',
+        'swf'  => 'application/x-shockwave-flash',
     );
 
     public $LE = "\n";
@@ -38,12 +38,12 @@ class PHPlistMailer extends PHPMailer
     public function __construct($messageid, $email, $inBlast = true, $exceptions = false)
     {
         parent::__construct($exceptions);
-        parent::SetLanguage('en', dirname(__FILE__) . '/PHPMailer/language/');
-        $this->addCustomHeader('X-phpList-version: ' . VERSION);
+        parent::SetLanguage('en', dirname(__FILE__).'/PHPMailer/language/');
+        $this->addCustomHeader('X-phpList-version: '.VERSION);
         $this->addCustomHeader("X-MessageID: $messageid");
         $this->addCustomHeader("X-ListMember: $email");
 
-        ## amazon SES doesn't like this
+        //# amazon SES doesn't like this
         /*
          * http://mantis.phplist.com/view.php?id=15562
          * Interesting, https://mantis.phplist.com/view.php?id=16688
@@ -75,10 +75,10 @@ class PHPlistMailer extends PHPMailer
 
         $this->destinationemail = $email;
         $this->SingleTo = false;
-        $this->CharSet = 'UTF-8';# getConfig("html_charset");
+        $this->CharSet = 'UTF-8'; // getConfig("html_charset");
         $this->inBlast = $inBlast;
-        ### hmm, would be good to sort this out differently, but it'll work for now
-        ## don't send test message using the blast server
+        //## hmm, would be good to sort this out differently, but it'll work for now
+        //# don't send test message using the blast server
         if (isset($_GET['page']) && $_GET['page'] == 'send') {
             $this->inBlast = false;
         }
@@ -142,7 +142,7 @@ class PHPlistMailer extends PHPMailer
                 $this->SMTPSecure = PHPMAILER_SECURE;
             }
         } elseif (defined('PHPMAILER_SECURE') && !PHPMAILER_SECURE) {
-            ##18115 allow switching AutoTLS off, when using insecure and untrusted (self signed) certificates
+            //#18115 allow switching AutoTLS off, when using insecure and untrusted (self signed) certificates
             $this->SMTPSecure = '';
             $this->SMTPAutoTLS = false;
         }
@@ -153,12 +153,12 @@ class PHPlistMailer extends PHPMailer
 
         if ($GLOBALS['message_envelope']) {
             $this->Sender = $GLOBALS['message_envelope'];
-            $this->addCustomHeader('Bounces-To: ' . $GLOBALS['message_envelope']);
+            $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
 
-## one to work on at a later stage
-#        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
+//# one to work on at a later stage
+//        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
         }
-        ## when the email is generated from a webpage (quite possible :-) add a "received line" to identify the origin
+        //# when the email is generated from a webpage (quite possible :-) add a "received line" to identify the origin
         if (!empty($_SERVER['REMOTE_ADDR'])) {
             $this->add_timestamp();
         }
@@ -178,9 +178,9 @@ class PHPlistMailer extends PHPMailer
 
     public function add_timestamp()
     {
-        #0013076:
-        # Add a line like Received: from [10.1.2.3] by website.example.com with HTTP; 01 Jan 2003 12:34:56 -0000
-        # more info: http://www.spamcop.net/fom-serve/cache/369.html
+        //0013076:
+        // Add a line like Received: from [10.1.2.3] by website.example.com with HTTP; 01 Jan 2003 12:34:56 -0000
+        // more info: http://www.spamcop.net/fom-serve/cache/369.html
         $ip_address = $_SERVER['REMOTE_ADDR'];
         if (!empty($_SERVER['REMOTE_HOST'])) {
             $ip_domain = $_SERVER['REMOTE_HOST'];
@@ -207,18 +207,18 @@ class PHPlistMailer extends PHPMailer
     {
         if (!$this->Body) {
             $this->IsHTML(false);
-            $this->Body = html_entity_decode($text, ENT_QUOTES, 'UTF-8'); #$text;
+            $this->Body = html_entity_decode($text, ENT_QUOTES, 'UTF-8'); //$text;
         } else {
-            $this->AltBody = html_entity_decode($text, ENT_QUOTES, 'UTF-8');#$text;
+            $this->AltBody = html_entity_decode($text, ENT_QUOTES, 'UTF-8'); //$text;
         }
     }
 
     public function append_text($text)
     {
         if ($this->AltBody) {
-            $this->AltBody .= html_entity_decode($text, ENT_QUOTES, 'UTF-8');#$text;
+            $this->AltBody .= html_entity_decode($text, ENT_QUOTES, 'UTF-8'); //$text;
         } else {
-            $this->Body .= html_entity_decode($text . "\n", ENT_QUOTES, 'UTF-8');#$text;
+            $this->Body .= html_entity_decode($text."\n", ENT_QUOTES, 'UTF-8'); //$text;
         }
     }
 
@@ -230,7 +230,7 @@ class PHPlistMailer extends PHPMailer
     {
         $parentheader = parent::CreateHeader();
         if (!empty($this->timeStamp)) {
-            $header = 'Received: ' . $this->timeStamp . $this->LE . $parentheader;
+            $header = 'Received: '.$this->timeStamp.$this->LE.$parentheader;
         } else {
             $header = $parentheader;
         }
@@ -257,7 +257,7 @@ class PHPlistMailer extends PHPMailer
     }
 
     public function compatSend(
-        $to_name = '',
+        $to_name,
         $to_addr,
         $from_name,
         $from_addr,
@@ -272,33 +272,33 @@ class PHPlistMailer extends PHPMailer
             $this->FromName = $from_name;
         }
         if (!empty($GLOBALS['developer_email'])) {
-            # make sure we are not sending out emails to real users
-            # when developing
+            // make sure we are not sending out emails to real users
+            // when developing
             $this->AddAddress($GLOBALS['developer_email']);
             if ($GLOBALS['developer_email'] != $to_addr) {
-                $this->Body = 'X-Originally to: ' . $to_addr . "\n\n" . $this->Body;
+                $this->Body = 'X-Originally to: '.$to_addr."\n\n".$this->Body;
             }
         } else {
             $this->AddAddress($to_addr);
         }
         $this->Subject = $subject;
         if ($this->Body) {
-            ## allow plugins to add header lines
+            //# allow plugins to add header lines
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-                #    print "Checking Destination for ".$plugin->name."<br/>";
+                //    print "Checking Destination for ".$plugin->name."<br/>";
                 $pluginHeaders = $plugin->messageHeaders($this);
                 if ($pluginHeaders && count($pluginHeaders)) {
                     foreach ($pluginHeaders as $headerItem => $headerValue) {
-                        ## @@TODO, do we need to sanitise them?
-                        $this->addCustomHeader($headerItem . ': ' . $headerValue);
+                        //# @@TODO, do we need to sanitise them?
+                        $this->addCustomHeader($headerItem.': '.$headerValue);
                     }
                 }
             }
             if (!parent::Send()) {
-                logEvent(s('Error sending email to %s', $to_addr) . ' ' . $this->ErrorInfo);
+                logEvent(s('Error sending email to %s', $to_addr).' '.$this->ErrorInfo);
 
                 return 0;
-            }#
+            }
         } else {
             logEvent(s('Error, empty message-body sending email to %s', $to_addr));
 
@@ -319,11 +319,11 @@ class PHPlistMailer extends PHPMailer
 
     public function add_attachment($contents, $filename, $mimetype)
     {
-        ## phpmailer 2.x
+        //# phpmailer 2.x
         if (method_exists($this, 'AddStringAttachment')) {
             $this->AddStringAttachment($contents, $filename, 'base64', $mimetype);
         } else {
-            ## old phpmailer
+            //# old phpmailer
             // Append to $attachment array
             $cur = count($this->attachment);
             $this->attachment[$cur][0] = base64_encode($contents);
@@ -339,8 +339,8 @@ class PHPlistMailer extends PHPMailer
 
     public function find_html_images($templateid)
     {
-        #if (!$templateid) return;
-        ## no template can be templateid 0, find the powered by image
+        //if (!$templateid) return;
+        //# no template can be templateid 0, find the powered by image
         $templateid = sprintf('%d', $templateid);
 
         // Build the list of image extensions
@@ -351,17 +351,17 @@ class PHPlistMailer extends PHPMailer
         $html_images = array();
         $filesystem_images = array();
 
-        ## addition for external images
+        //# addition for external images
         if (defined('EMBEDEXTERNALIMAGES') && EMBEDEXTERNALIMAGES) {
             $external_images = array();
             $matched_images = array();
 
-            preg_match_all('~="(http[s]?://(?:(?!' . $_SERVER['SERVER_NAME'] . '))([^"]+\.(' . implode('|',
-                    $extensions) . '))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images); //
+            preg_match_all('~="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|',
+                    $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images);
 
             for ($i = 0; $i < count($matched_images[1]); ++$i) {
                 if ($this->external_image_exists($matched_images[1][$i])) {
-                    $external_images[] = $matched_images[1][$i] . '~^~' . basename($matched_images[2][$i]) . '~^~' . strtolower($matched_images[3][$i]);
+                    $external_images[] = $matched_images[1][$i].'~^~'.basename($matched_images[2][$i]).'~^~'.strtolower($matched_images[3][$i]);
                 }
             }
 
@@ -376,29 +376,29 @@ class PHPlistMailer extends PHPMailer
                         $cid = $this->add_html_image($image, $external_image[1], $content_type);
 
                         if (!empty($cid)) {
-                            $this->Body = str_replace($external_image[0], 'cid:' . $cid, $this->Body);
+                            $this->Body = str_replace($external_image[0], 'cid:'.$cid, $this->Body);
                         }
                     }
                 }
             }
         }
-        ## end addition
+        //# end addition
 
-        preg_match_all('/"([^"]+\.(' . implode('|', $extensions) . '))"/Ui', $this->Body, $images);
+        preg_match_all('/"([^"]+\.('.implode('|', $extensions).'))"/Ui', $this->Body, $images);
 
         for ($i = 0; $i < count($images[1]); ++$i) {
             if ($this->image_exists($templateid, $images[1][$i])) {
                 $html_images[] = $images[1][$i];
                 $this->Body = str_replace($images[1][$i], basename($images[1][$i]), $this->Body);
             }
-            ## addition for filesystem images
+            //# addition for filesystem images
             if (EMBEDUPLOADIMAGES) {
                 if ($this->filesystem_image_exists($images[1][$i])) {
                     $filesystem_images[] = $images[1][$i];
                     $this->Body = str_replace($images[1][$i], basename($images[1][$i]), $this->Body);
                 }
             }
-            ## end addition
+            //# end addition
         }
         if (!empty($html_images)) {
             // If duplicate images are embedded, they may show up as attachments, so remove them.
@@ -415,7 +415,7 @@ class PHPlistMailer extends PHPMailer
                 }
             }
         }
-        ## addition for filesystem images
+        //# addition for filesystem images
         if (!empty($filesystem_images)) {
             // If duplicate images are embedded, they may show up as attachments, so remove them.
             $filesystem_images = array_unique($filesystem_images);
@@ -426,18 +426,18 @@ class PHPlistMailer extends PHPMailer
                         strrpos($filesystem_images[$i], '.') + 1))];
                     $cid = $this->add_html_image($image, basename($filesystem_images[$i]), $content_type);
                     if (!empty($cid)) {
-                        $this->Body = str_replace(basename($filesystem_images[$i]), "cid:$cid", $this->Body);#@@@
+                        $this->Body = str_replace(basename($filesystem_images[$i]), "cid:$cid", $this->Body); //@@@
                     }
                 }
             }
         }
-        ## end addition
+        //# end addition
     }
 
     public function add_html_image($contents, $name = '', $content_type = 'application/octet-stream')
     {
-        ## in phpMailer 2 and up we cannot use AddStringAttachment, because that doesn't use a cid
-        ## we can't write to "attachment" either, because it's private
+        //# in phpMailer 2 and up we cannot use AddStringAttachment, because that doesn't use a cid
+        //# we can't write to "attachment" either, because it's private
 
         /* one way to do it, is using a temporary file, but that'll have
          * quite an effect on performance and also isn't backward compatible,
@@ -468,19 +468,18 @@ class PHPlistMailer extends PHPMailer
          * to phpMailer
          */
 
-        #$cid = md5(uniqid(time()));
-        $cid = md5(mt_rand() . $name . uniqid(time(), true)); ##17603 better random CID value on Windows
+        $cid = bin2hex(random_bytes(16)); // @TODO seems this does not need to be random, just unique? perhaps hash($contents)
         if (method_exists($this, 'AddEmbeddedImageString')) {
             $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
         } elseif (method_exists($this, 'AddStringEmbeddedImage')) {
-            ## PHPMailer 5.2.5 and up renamed the method
-            ## https://github.com/PHPMailer/PHPMailer/issues/42#issuecomment-16217354
+            //# PHPMailer 5.2.5 and up renamed the method
+            //# https://github.com/PHPMailer/PHPMailer/issues/42#issuecomment-16217354
             $this->AddStringEmbeddedImage(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
         } elseif (isset($this->attachment) && is_array($this->attachment)) {
             // Append to $attachment array
             $cur = count($this->attachment);
             $this->attachment[$cur][0] = base64_decode($contents);
-            $this->attachment[$cur][1] = '';#$filename;
+            $this->attachment[$cur][1] = ''; //$filename;
             $this->attachment[$cur][2] = $name;
             $this->attachment[$cur][3] = 'base64';
             $this->attachment[$cur][4] = $content_type;
@@ -489,7 +488,7 @@ class PHPlistMailer extends PHPMailer
             $this->attachment[$cur][7] = $cid;
         } else {
             logEvent('phpMailer needs patching to be able to use inline images from templates');
-            print Error('phpMailer needs patching to be able to use inline images from templates');
+            echo Error('phpMailer needs patching to be able to use inline images from templates');
 
             return;
         }
@@ -497,88 +496,88 @@ class PHPlistMailer extends PHPMailer
         return $cid;
     }
 
-    ## addition for filesystem images
+    //# addition for filesystem images
 
     public function filesystem_image_exists($filename)
     {
-        ##  find the image referenced and see if it's on the server
+        //#  find the image referenced and see if it's on the server
         $imageroot = getConfig('uploadimageroot');
-#      cl_output('filesystem_image_exists '.$docroot.' '.$filename);
+//      cl_output('filesystem_image_exists '.$docroot.' '.$filename);
 
         $elements = parse_url($filename);
         $localfile = basename($elements['path']);
 
         $localfile = urldecode($localfile);
-        #     cl_output('CHECK'.$localfile);
+        //     cl_output('CHECK'.$localfile);
 
         if (defined('UPLOADIMAGES_DIR')) {
-            #  print $_SERVER['DOCUMENT_ROOT'].$localfile;
+            //  print $_SERVER['DOCUMENT_ROOT'].$localfile;
             return
-                is_file($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/image/' . $localfile)
-                || is_file($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/' . $localfile)
-                ## commandline
-                || is_file($imageroot . '/' . $localfile);
+                is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/image/'.$localfile)
+                || is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/'.$localfile)
+                //# commandline
+                || is_file($imageroot.'/'.$localfile);
         } else {
             return
-                is_file($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/image/' . $localfile)
-                || is_file($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/' . $localfile)
-                ## commandline
-                || is_file('../' . FCKIMAGES_DIR . '/image/' . $localfile)
-                || is_file('../' . FCKIMAGES_DIR . '/' . $localfile);
+                is_file($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/image/'.$localfile)
+                || is_file($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/'.$localfile)
+                //# commandline
+                || is_file('../'.FCKIMAGES_DIR.'/image/'.$localfile)
+                || is_file('../'.FCKIMAGES_DIR.'/'.$localfile);
         }
     }
 
     public function get_filesystem_image($filename)
     {
-        ## get the image contents
+        //# get the image contents
         $localfile = basename(urldecode($filename));
-#      cl_output('get file system image'.$filename.' '.$localfile);
+//      cl_output('get file system image'.$filename.' '.$localfile);
         if (defined('UPLOADIMAGES_DIR')) {
-            #       print 'UPLOAD';
+            //       print 'UPLOAD';
             $imageroot = getConfig('uploadimageroot');
-            if (is_file($imageroot . $localfile)) {
-                return base64_encode(file_get_contents($imageroot . $localfile));
+            if (is_file($imageroot.$localfile)) {
+                return base64_encode(file_get_contents($imageroot.$localfile));
             } else {
-                if (is_file($_SERVER['DOCUMENT_ROOT'] . $localfile)) {
-                    ## save the document root to be able to retrieve the file later from commandline
+                if (is_file($_SERVER['DOCUMENT_ROOT'].$localfile)) {
+                    //# save the document root to be able to retrieve the file later from commandline
                     SaveConfig('uploadimageroot', $_SERVER['DOCUMENT_ROOT'], 0, 1);
 
-                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . $localfile));
-                } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/image/' . $localfile)) {
-                    SaveConfig('uploadimageroot', $_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/image/', 0, 1);
+                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'].$localfile));
+                } elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/image/'.$localfile)) {
+                    SaveConfig('uploadimageroot', $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/image/', 0, 1);
 
-                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/image/' . $localfile));
-                } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/' . $localfile)) {
-                    SaveConfig('uploadimageroot', $_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/', 0, 1);
+                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/image/'.$localfile));
+                } elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/'.$localfile)) {
+                    SaveConfig('uploadimageroot', $_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/', 0, 1);
 
-                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/' . UPLOADIMAGES_DIR . '/' . $localfile));
+                    return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.UPLOADIMAGES_DIR.'/'.$localfile));
                 }
             }
-        } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/' . $localfile)) {
+        } elseif (is_file($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/'.$localfile)) {
             $elements = parse_url($filename);
             $localfile = basename($elements['path']);
 
-            return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/' . $localfile));
-        } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/image/' . $localfile)) {
-            return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . $GLOBALS['pageroot'] . '/' . FCKIMAGES_DIR . '/image/' . $localfile));
-        } elseif (is_file('../' . FCKIMAGES_DIR . '/' . $localfile)) {   ## commandline
-            return base64_encode(file_get_contents('../' . FCKIMAGES_DIR . '/' . $localfile));
-        } elseif (is_file('../' . FCKIMAGES_DIR . '/image/' . $localfile)) {
-            return base64_encode(file_get_contents('../' . FCKIMAGES_DIR . '/image/' . $localfile));
+            return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/'.$localfile));
+        } elseif (is_file($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/image/'.$localfile)) {
+            return base64_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'].$GLOBALS['pageroot'].'/'.FCKIMAGES_DIR.'/image/'.$localfile));
+        } elseif (is_file('../'.FCKIMAGES_DIR.'/'.$localfile)) {   //# commandline
+            return base64_encode(file_get_contents('../'.FCKIMAGES_DIR.'/'.$localfile));
+        } elseif (is_file('../'.FCKIMAGES_DIR.'/image/'.$localfile)) {
+            return base64_encode(file_get_contents('../'.FCKIMAGES_DIR.'/image/'.$localfile));
         }
 
         return '';
     }
 
-    ## end addition
+    //# end addition
 
-    ## addition for external images
+    //# addition for external images
 
     public function external_image_exists($filename)
     {
         // Check for a http(s) address excluding this host
-        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://' . $_SERVER['SERVER_NAME'] . '/') === false)) {
-            $extCacheDir = $GLOBALS['tmpdir'] . '/external_cache';
+        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === false)) {
+            $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
 
             // Create cache directory
             if (!file_exists($extCacheDir)) {
@@ -590,10 +589,10 @@ class PHPlistMailer extends PHPMailer
                 if (defined('EXTERNALIMAGE_MAXAGE') && EXTERNALIMAGE_MAXAGE && ($extCacheDirHandle = @opendir($extCacheDir))) {
                     while (false !== ($cacheFile = @readdir($extCacheDirHandle))) {
                         if ((strlen($cacheFile) > 0) && (substr($cacheFile, 0, 1) != '.')) {
-                            $cacheFileMTime = @filemtime($extCacheDir . '/' . $cacheFile);
+                            $cacheFileMTime = @filemtime($extCacheDir.'/'.$cacheFile);
 
                             if (is_numeric($cacheFileMTime) && ($cacheFileMTime > 0) && ((time() - $cacheFileMTime) > EXTERNALIMAGE_MAXAGE)) {
-                                @unlink($extCacheDir . '/' . $cacheFile);
+                                @unlink($extCacheDir.'/'.$cacheFile);
                             }
                         }
                     }
@@ -603,9 +602,9 @@ class PHPlistMailer extends PHPMailer
 
                 // Generate local filename
                 //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
-                $cacheFile = $extCacheDir . '/' . $this->messageid . '_' . preg_replace(array(
+                $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array(
                         '~[\.][\.]+~Ui',
-                        '~[^\w\.]~Ui'
+                        '~[^\w\.]~Ui',
                     ), array('', '_'), $filename);
 
                 // Download and cache file
@@ -638,20 +637,20 @@ class PHPlistMailer extends PHPMailer
                             curl_close($cURLHandle);
 
                             if ($cURLErrNo != 0) {
-                                $cacheFileContent = 'CURL_ERROR_' . $cURLErrNo;
+                                $cacheFileContent = 'CURL_ERROR_'.$cURLErrNo;
                             }
                             if ($cURLInfo['http_code'] >= 400) {
-                                $cacheFileContent = 'HTTP_CODE_' . $cURLInfo['http_code'];
+                                $cacheFileContent = 'HTTP_CODE_'.$cURLInfo['http_code'];
                             }
                         }
                     }
 
-                    // Try downloading using file_get_contents 
+                    // Try downloading using file_get_contents
                     if ($cacheFileContent == '') {
                         $remoteURLContext = stream_context_create(array(
                             'http' => array(
-                                'method' => 'GET',
-                                'timeout' => $downloadTimeout,
+                                'method'        => 'GET',
+                                'timeout'       => $downloadTimeout,
                                 'max_redirects' => '10',
                             ),
                         ));
@@ -689,9 +688,9 @@ class PHPlistMailer extends PHPMailer
 
     public function get_external_image($filename)
     {
-        $extCacheDir = $GLOBALS['tmpdir'] . '/external_cache';
+        $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
         //$cacheFile = $extCacheDir.'/'.$this->messageid.'_'.hash('sha256', $filename);
-        $cacheFile = $extCacheDir . '/' . $this->messageid . '_' . preg_replace(array('~[\.][\.]+~Ui', '~[^\w\.]~Ui'),
+        $cacheFile = $extCacheDir.'/'.$this->messageid.'_'.preg_replace(array('~[\.][\.]+~Ui', '~[^\w\.]~Ui'),
                 array('', '_'), $filename);
 
         if (file_exists($cacheFile) && (@filesize($cacheFile) > 64)) {
@@ -699,7 +698,7 @@ class PHPlistMailer extends PHPMailer
         }
     }
 
-    ## end addition
+    //# end addition
 
     public function image_exists($templateid, $filename)
     {
@@ -725,10 +724,10 @@ class PHPlistMailer extends PHPMailer
 
     public function EncodeFile($path, $encoding = 'base64')
     {
-        # as we already encoded the contents in $path, return $path
+        // as we already encoded the contents in $path, return $path
         return chunk_split($path, 76, $this->LE);
     }
-  
+
     /**
      * Called by phpmailer when $Mailer is set to amazonSes.
      * Builds and sends an email through Amazon SES.
@@ -752,29 +751,29 @@ class PHPlistMailer extends PHPMailer
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_HEADER, 1);
             curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-            curl_setopt($curl, CURLOPT_USERAGENT, NAME . ' (phpList version ' . VERSION . ', http://www.phplist.com/)');
+            curl_setopt($curl, CURLOPT_USERAGENT, NAME.' (phpList version '.VERSION.', http://www.phplist.com/)');
             curl_setopt($curl, CURLOPT_POST, 1);
         }
 
-        $header = preg_replace('/' . $this->LE . '$/', '', $header);
+        $header = preg_replace('/'.$this->LE.'$/', '', $header);
 
         $date = date('r');
         $aws_signature = base64_encode(hash_hmac('sha256', $date, AWS_SECRETKEY, true));
 
         $requestheader = array(
-            'Host: ' . parse_url(AWS_POSTURL, PHP_URL_HOST),
+            'Host: '.parse_url(AWS_POSTURL, PHP_URL_HOST),
             'Content-Type: application/x-www-form-urlencoded',
-            'Date: ' . $date,
-            'X-Amzn-Authorization: AWS3-HTTPS AWSAccessKeyId=' . AWS_ACCESSKEYID . ',Algorithm=HMACSHA256,Signature=' . $aws_signature,
+            'Date: '.$date,
+            'X-Amzn-Authorization: AWS3-HTTPS AWSAccessKeyId='.AWS_ACCESSKEYID.',Algorithm=HMACSHA256,Signature='.$aws_signature,
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $requestheader);
 
-        $rawmessage = base64_encode($header . $this->LE . $this->LE . $body);
+        $rawmessage = base64_encode($header.$this->LE.$this->LE.$body);
         $requestdata = array(
-            'Action' => 'SendRawEmail',
-            'Source' => $GLOBALS['message_envelope'],
+            'Action'                => 'SendRawEmail',
+            'Source'                => $GLOBALS['message_envelope'],
             'Destinations.member.1' => $this->destinationemail,
-            'RawMessage.Data' => $rawmessage,
+            'RawMessage.Data'       => $rawmessage,
         );
         $data = http_build_query($requestdata, null, '&');
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -820,8 +819,8 @@ class PHPlistMailer extends PHPMailer
     public function localSpoolSend($header, $body)
     {
         $fname = tempnam(USE_LOCAL_SPOOL, 'msg');
-        file_put_contents($fname, $header . "\n" . $body);
-        file_put_contents($fname . '.S', $this->Sender);
+        file_put_contents($fname, $header."\n".$body);
+        file_put_contents($fname.'.S', $this->Sender);
 
         return true;
     }

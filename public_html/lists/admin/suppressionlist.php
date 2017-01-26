@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!$_SESSION['logindetails']['superuser']) {
-    print $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
+    echo $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
 
     return;
 }
@@ -20,12 +20,12 @@ if (!empty($_POST['unsubscribe'])) {
         if (!empty($_POST['blacklist'])) {
             ++$blacklisted;
             addUserToBlackList($email,
-                $GLOBALS['I18N']->get('Blacklisted by') . ' ' . $_SESSION['logindetails']['adminname']);
+                $GLOBALS['I18N']->get('Blacklisted by').' '.$_SESSION['logindetails']['adminname']);
         }
     }
     printf($GLOBALS['I18N']->get('All done, %d emails processed, %d emails marked unconfirmed, %d emails blacklisted<br/>'),
         $count, $unsubbed, $blacklisted);
-    print PageLinkButton('suppressionlist', s('Add more'));
+    echo PageLinkButton('suppressionlist', s('Add more'));
 
     return;
 }

@@ -16,6 +16,7 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->exclude('admin/ui')
     ->exclude('admin/locale')
     ->exclude('admin/PHPMailer')
+    ->exclude('admin/inc/random_compat')
     ->in(__DIR__)
 ;
 

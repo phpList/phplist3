@@ -64,9 +64,9 @@ class ONYX_RSS
         $this->conf['fetch_mode'] = ONYX_FETCH_ASSOC;
         $this->lasterror = '';
         $this->context = stream_context_create(array(
-            'http'=>array(
-                'timeout' => 5.0
-            )
+            'http' => array(
+                'timeout' => 5.0,
+            ),
         ));
 
         if (!function_exists('xml_parser_create')) {

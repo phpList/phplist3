@@ -1,7 +1,7 @@
 <div id="configurecontent"></div>
 
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 /*
 if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
   $_SESSION["firstinstall"] = 1;
@@ -22,22 +22,22 @@ if (empty($_REQUEST['id'])) {
 } else {
     $id = $_REQUEST['id'];
     if (!isset($default_config[$id])) {
-        print $GLOBALS['I18N']->get('invalid request');
+        echo $GLOBALS['I18N']->get('invalid request');
 
         return;
     }
 }
-#print '<div class="actions">'.PageLinkButton('configure&resetdefault=yes',s('Reset to default')).'</div>';
+//print '<div class="actions">'.PageLinkButton('configure&resetdefault=yes',s('Reset to default')).'</div>';
 
 if (empty($_GET['id'])) {
-    ## @@TODO might be an idea to allow reset on an "id" as well
+    //# @@TODO might be an idea to allow reset on an "id" as well
     $button = new ConfirmButton(
         s('Are you sure you want to reset the configuration to the default?'),
         PageURL2('configure&resetdefault=yes', 'reset', ''),
         s('Reset to default'));
 
-    print '<div class="fright">' . $button->show() . '</div>';
-    print Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),
+    echo '<div class="fright">'.$button->show().'</div>';
+    echo Info(s('You can edit all of the values in this page, and click the "save changes" button once to save all the changes you made.'),
         1);
 }
 
@@ -60,15 +60,15 @@ foreach ($default_config as $item => $details) {
     $configTypes[$details['type']][] = $item;
     $configCategories[strtolower($details['category'])][] = $item;
 }
-#var_dump($configCategories);
-#var_dump($configTypes);
+//var_dump($configCategories);
+//var_dump($configTypes);
 
-print formStart(' class="configForm" enctype="multipart/form-data" ');
-# configure options
+echo formStart(' class="configForm" enctype="multipart/form-data" ');
+// configure options
 reset($default_config);
 if (!empty($_REQUEST['save'])) {
     if (!verifyToken()) {
-        print Error(s('Invalid security token, please reload the page and try again'));
+        echo Error(s('Invalid security token, please reload the page and try again'));
 
         return;
     }
@@ -83,22 +83,27 @@ if (!empty($_REQUEST['save'])) {
                     $value = str_replace('[WEBSITE]', '', $value);
                 }
                 if (empty($value) && !$info['allowempty']) {
-                    #    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
-                    $haserror = $info['description'] . ' ' . $GLOBALS['I18N']->get('cannot be empty');
+                    //    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
+                    $haserror = $info['description'].' '.$GLOBALS['I18N']->get('cannot be empty');
                 } else {
                     $haserror = SaveConfig($id, $value);
                 }
             }
+            if ($id == 'UITheme') {
+                if (in_array($value,array_keys($THEMES)) && $value != $_SESSION['ui']) {
+                    $newTheme = $value;
+                }
+            }
         }
         if (!$haserror) {
-            print '<div class="actionresult">' . s('Changes saved') . '</div>';
+            echo '<div class="actionresult">'.s('Changes saved').'</div>';
             unset($id);
         } else {
-            print '<div class="actionresult error">' . $haserror . '<br/>' . s('Changes not saved') . '</div>';
+            echo '<div class="actionresult error">'.$haserror.'<br/>'.s('Changes not saved').'</div>';
             unset($id);
         }
-#    Redirect("configure");
-#    exit;
+//    Redirect("configure");
+//    exit;
     }
     $item = $_REQUEST['save'];
     $item = str_replace('item_', '', $item);
@@ -107,9 +112,13 @@ if (!empty($_REQUEST['save'])) {
         $_SESSION['action_result'] = s('Categories saved');
         Redirect('catlists');
     }
+    if (isset($newTheme)) {
+        Redirect("configure&settheme=".$newTheme);
+        exit;
+    }
 
     if (in_array($item, array_keys($default_config))) {
-        Redirect('configure#item_' . $item);
+        Redirect('configure#item_'.$item);
         exit;
     }
 }
@@ -119,8 +128,8 @@ if (empty($id)) {
 
     foreach ($configCategories as $configCategory => $configItems) {
         $some = 0;
-        $categoryHTML = '<fieldset id="' . $configCategory . '">';
-        $categoryHTML .= '<legend>' . s($configCategory) . ' ' . s('settings') . '</legend>';
+        $categoryHTML = '<fieldset id="'.$configCategory.'">';
+        $categoryHTML .= '<legend>'.s($configCategory).' '.s('settings').'</legend>';
 
         foreach ($configItems as $configItem) {
             $dbvalue = getConfig($configItem);
@@ -148,7 +157,7 @@ if (empty($id)) {
 
                 $resourceLink = sprintf('<a class="resourcereference" href="http://resources.phplist.com/%s/config:%s" target="_blank">?</a>',
                     $_SESSION['adminlanguage']['iso'], $configItem);
-                ## disable this until the resources wiki is organised properly
+                //# disable this until the resources wiki is organised properly
                 $resourceLink = '';
 
                 $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',
@@ -165,10 +174,10 @@ if (empty($id)) {
         }
         $categoryHTML .= '</fieldset>';
         if ($some) {
-            print $categoryHTML;
+            echo $categoryHTML;
         }
     }
-    print '</form>';
+    echo '</form>';
 } else {
-    include dirname(__FILE__) . '/actions/configure.php';
+    include dirname(__FILE__).'/actions/configure.php';
 }

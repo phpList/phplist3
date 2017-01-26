@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 if (isset($_GET['type']) && $_GET['type'] == 'candidate') {
     $type = 'candidate';
@@ -30,7 +30,7 @@ if (isset($_POST['tagaction']) && isset($_POST['tagged']) && is_array($_POST['ta
             }
             break;
     }
-    Redirect('bouncerules' . $url);
+    Redirect('bouncerules'.$url);
 }
 
 if (isset($_POST['listorder']) && is_array($_POST['listorder'])) {
@@ -42,7 +42,7 @@ if (isset($_POST['listorder']) && is_array($_POST['listorder'])) {
 
 if (isset($_GET['del']) && $_GET['del']) {
     Sql_Query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['bounceregex'], $_GET['del']));
-    Redirect('bouncerules' . $url);
+    Redirect('bouncerules'.$url);
 }
 
 if (isset($_POST['newrule']) && $_POST['newrule']) {
@@ -51,15 +51,15 @@ if (isset($_POST['newrule']) && $_POST['newrule']) {
         sql_escape($_POST['comment']), $_SESSION['logindetails']['id']), 1);
     $num = Sql_Affected_Rows();
     if ($num < 0) {
-        print '<p class="information">' . $GLOBALS['I18N']->get('That rule exists already') . '</p>';
+        echo '<p class="information">'.$GLOBALS['I18N']->get('That rule exists already').'</p>';
     } else {
-        Redirect('bouncerules' . $url);
+        Redirect('bouncerules'.$url);
     }
 }
 $count = Sql_Query(sprintf('select status, count(*) as num from %s group by status',
     $GLOBALS['tables']['bounceregex']));
 while ($row = Sql_Fetch_Array($count)) {
-    printf($GLOBALS['I18N']->get('Number of %s rules: %d') . '<br/>', $row['status'], $row['num']);
+    printf($GLOBALS['I18N']->get('Number of %s rules: %d').'<br/>', $row['status'], $row['num']);
 }
 
 $tabs = new WebblerTabs();
@@ -70,38 +70,38 @@ if ($type == 'candidate') {
 } else {
     $tabs->setCurrent($GLOBALS['I18N']->get('active'));
 }
-print "<p><div class='minitabs'>\n";
-print $tabs->display();
-print "</div></p>\n";
+echo "<p><div class='minitabs'>\n";
+echo $tabs->display();
+echo "</div></p>\n";
 
 $some = 1;
 $req = Sql_Query(sprintf('select * from %s where status = "%s" order by listorder,regex',
     $GLOBALS['tables']['bounceregex'], $type));
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounce Regular Expressions'));
 if (!Sql_Num_Rows($req)) {
-    print $GLOBALS['I18N']->get('No Rules found');
+    echo $GLOBALS['I18N']->get('No Rules found');
     $some = 0;
 } else {
-    print formStart('class="bouncerulesListing"');
+    echo formStart('class="bouncerulesListing"');
 }
 
 while ($row = Sql_Fetch_Array($req)) {
-    $element = $GLOBALS['I18N']->get('rule') . ' ' . $row['id'];
-    $ls->addElement($element, PageUrl2('bouncerule&amp;id=' . $row['id']));
+    $element = $GLOBALS['I18N']->get('rule').' '.$row['id'];
+    $ls->addElement($element, PageUrl2('bouncerule&amp;id='.$row['id']));
     if ($type == 'candidate') {
-        # check if it matches an active rule
+        // check if it matches an active rule
         $activerule = matchedBounceRule($row['regex'], 1);
         if ($activerule) {
             $ls->addColumn($element, $GLOBALS['I18N']->get('match'),
-                PageLink2('bouncerule&amp;id=' . $activerule, $GLOBALS['I18N']->get('match')));
+                PageLink2('bouncerule&amp;id='.$activerule, $GLOBALS['I18N']->get('match')));
         }
     }
 
     $ls->addColumn($element, $GLOBALS['I18N']->get('expression'),
-        '<a name="' . $row['id'] . '"></a>' . shortenTextDisplay($row['regex'], 50));
+        '<a name="'.$row['id'].'"></a>'.shortenTextDisplay(htmlspecialchars($row['regex']), 50));
     $ls->addColumn($element, $GLOBALS['I18N']->get('action'), $GLOBALS['bounceruleactions'][$row['action']]);
-#  $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where regex = %d',$GLOBALS['tables']['bounceregex_bounce'],$row['id']));
-#  $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$num[0]);
+//  $num = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where regex = %d',$GLOBALS['tables']['bounceregex_bounce'],$row['id']));
+//  $ls->addColumn($element,$GLOBALS['I18N']->get('#bncs'),$num[0]);
     $ls->addColumn($element, $GLOBALS['I18N']->get('#bncs'), $row['count']);
 
     $ls->addColumn($element, $GLOBALS['I18N']->get('tag'),
@@ -109,11 +109,11 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($element, $GLOBALS['I18N']->get('order'),
         sprintf('<input type="text" name="listorder[%d]" value="%d" size=3>', $row['id'], $row['listorder']));
     $ls->addColumn($element, $GLOBALS['I18N']->get('del'),
-        PageLink2('bouncerules&del=' . $row['id'] . $url, $GLOBALS['I18N']->get('del')));
+        PageLink2('bouncerules&del='.$row['id'].$url, $GLOBALS['I18N']->get('del')));
 }
-print $ls->display();
+echo $ls->display();
 if ($some) {
-    print '<p class="information">' . $GLOBALS['I18N']->get('with tagged rules: ') . ' ';
+    echo '<p class="information">'.$GLOBALS['I18N']->get('with tagged rules: ').' ';
     printf('<b>%s</b> <input type="checkbox" name="tagaction" value="delete"><br/>', $GLOBALS['I18N']->get('delete'));
     if ($type == 'candidate') {
         printf('<b>%s</b> <input type="checkbox" name="tagaction" value="activate"><br/>',
@@ -122,21 +122,21 @@ if ($some) {
         printf('<b>%s</b> <input type="checkbox" name="tagaction" value="deactivate"><br/>',
             $GLOBALS['I18N']->get('make inactive'));
     }
-    print ' <p class="submit"><input type="submit" name="doit" value="' . $GLOBALS['I18N']->get('Save Changes') . '"></p>';
-    print '</form>';
+    echo ' <p class="submit"><input type="submit" name="doit" value="'.$GLOBALS['I18N']->get('Save Changes').'"></p>';
+    echo '</form>';
 }
-print '<hr/>';
-print '<h3>' . $GLOBALS['I18N']->get('add a new rule') . '</h3>';
-print '<form method=post>';
-print '<table class="bouncerulesAction">';
+echo '<hr/>';
+echo '<h3>'.$GLOBALS['I18N']->get('add a new rule').'</h3>';
+echo '<form method=post>';
+echo '<table class="bouncerulesAction">';
 printf('<tr><td>%s</td><td><input type=text name="newrule" size=30></td></tr>',
     $GLOBALS['I18N']->get('Regular Expression'));
 printf('<tr><td>%s</td><td><select name="action">', $GLOBALS['I18N']->get('Action'));
 foreach ($GLOBALS['bounceruleactions'] as $action => $desc) {
     printf('<option value="%s">%s</option>', $action, $desc);
 }
-print '</select></td></tr>';
+echo '</select></td></tr>';
 printf('<tr><td colspan="2">%s</td></tr><tr><td colspan="2"><textarea name="comment" rows=10 cols=65></textarea></td></tr>',
     $GLOBALS['I18N']->get('Memo for this rule'));
-print '<tr><td colspan="2"><p class="submit"><input type="submit" name="add" value="' . $GLOBALS['I18N']->get('Add new Rule') . '"></td></tr>';
-print '</table></form>';
+echo '<tr><td colspan="2"><p class="submit"><input type="submit" name="add" value="'.$GLOBALS['I18N']->get('Add new Rule').'"></td></tr>';
+echo '</table></form>';

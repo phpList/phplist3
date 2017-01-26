@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-# interface functions
+// interface functions
 
 class UIPanel
 {
@@ -27,10 +27,10 @@ class UIPanel
     {
         $html = '<div class="panel"';
         if (!empty($this->id)) {
-            $html .= ' id="' . $this->id . '"';
+            $html .= ' id="'.$this->id.'"';
         }
         $html .= '>';
-        $html .= '<div class="header"><h2>' . $this->header . '</h2>';
+        $html .= '<div class="header"><h2>'.$this->header.'</h2>';
         $nav = '';
         if ($this->nav) {
             $html .= $this->nav;
@@ -39,11 +39,11 @@ class UIPanel
         $html .= '
 <div class="content">
 
-    ' . $this->content . '
+    ' .$this->content.'
   </div><!-- ENDOF .content -->';
         $html .= '
 <div class="footer">
-      ' . $this->nav . '
+      ' .$this->nav.'
   </div><!-- ENDOF .footer -->
 </div><!-- ENDOF .panel -->
     ';
@@ -79,7 +79,7 @@ class WebblerListing
     {
         $this->title = strip_tags($title);
         $this->help = strip_tags($help);
-        ## in phpList don't use the shader
+        //# in phpList don't use the shader
         if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
             $this->noShader();
             $this->usePanel();
@@ -118,12 +118,12 @@ class WebblerListing
     {
         if (!isset($this->elements[$name])) {
             $this->elements[$name] = array(
-                'name' => $name,
-                'url' => $url,
+                'name'    => $name,
+                'url'     => $url,
                 'colsize' => $colsize,
                 'columns' => array(),
-                'rows' => array(),
-                'class' => '',
+                'rows'    => array(),
+                'class'   => '',
             );
         }
     }
@@ -155,10 +155,10 @@ class WebblerListing
         }
         $this->columns[$column_name] = $column_name;
         $this->sortby[$column_name] = $column_name;
-        # @@@ should make this a callable function
+        // @@@ should make this a callable function
         $this->elements[$name]['columns']["$column_name"] = array(
             'value' => $value,
-            'url' => $url,
+            'url'   => $url,
             'align' => $align,
         );
     }
@@ -178,7 +178,7 @@ class WebblerListing
         $res = '';
         foreach ($_GET as $key => $val) {
             if ($key != $remove) {
-                $res .= "$key=" . urlencode($val) . '&amp;';
+                $res .= "$key=".urlencode($val).'&amp;';
             }
         }
 
@@ -191,9 +191,9 @@ class WebblerListing
             return;
         }
         $this->elements[$name]['rows']["$row_name"] = array(
-            'name' => $row_name,
+            'name'  => $row_name,
             'value' => $value,
-            'url' => $url,
+            'url'   => $url,
             'align' => $align,
             'class' => $class,
         );
@@ -220,8 +220,8 @@ class WebblerListing
     public function duplicateButton($name, $rows)
     {
         $this->duplicatebuttons[$name] = array(
-            'button' => $name,
-            'rows' => $rows,
+            'button'   => $name,
+            'rows'     => $rows,
             'rowcount' => 1,
         );
         $this->buttonduplicate = 1;
@@ -229,7 +229,7 @@ class WebblerListing
 
     public function listingStart($class = '')
     {
-        return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="listing ' . $class . '">';
+        return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="listing '.$class.'">';
     }
 
     public function listingHeader()
@@ -259,7 +259,7 @@ class WebblerListing
             }
             ++$c;
         }
-        #  $html .= sprintf('<td align="right"><span class="listinghdelementright">%s</span></td>',$lastelement);
+        //  $html .= sprintf('<td align="right"><span class="listinghdelementright">%s</span></td>',$lastelement);
         $html .= '</tr>';
 
         return $html;
@@ -268,12 +268,12 @@ class WebblerListing
     public function listingElement($element)
     {
         if (!empty($element['colsize'])) {
-            $width = 'width=' . $element['colsize'];
+            $width = 'width='.$element['colsize'];
         } else {
             $width = '';
         }
         if (isset($element['class'])) {
-            $html = '<tr class="' . $element['class'] . '">';
+            $html = '<tr class="'.$element['class'].'">';
         } else {
             $html = '<tr>';
         }
@@ -398,7 +398,7 @@ class WebblerListing
         }
         $html .= '</table>';
         if ($this->buttonsOutsideTable) {
-            $html .= $buttons . $submitbuttons;
+            $html .= $buttons.$submitbuttons;
         }
 
         return $html;
@@ -439,8 +439,8 @@ class WebblerListing
         if (!count($this->elements)) {
             return '';
         }
-#   if ($add_index)
-#     $html = $this->index();
+//   if ($add_index)
+//     $html = $this->index();
 
         $html .= $this->listingStart($class);
         if (!empty($this->insideNav)) {
@@ -450,8 +450,8 @@ class WebblerListing
             $html .= $this->listingHeader();
         }
 
-#    global $float_menu;
-#    $float_menu .= "<a style=\"display: block;\" href=\"#".htmlspecialchars($this->title)."\">$this->title</a>";
+//    global $float_menu;
+//    $float_menu .= "<a style=\"display: block;\" href=\"#".htmlspecialchars($this->title)."\">$this->title</a>";
         if ($this->sort) {
             usort($this->elements, array($this, 'cmp'));
         }
@@ -497,20 +497,20 @@ class WebblerListing
     public function tabDelimited()
     {
         $heading = isset($this->elementHeading) ? $this->elementHeading : $this->title;
-        print $heading . "\t";
+        echo $heading."\t";
         foreach ($this->columns as $column => $columnname) {
-            print $this->plainText($column) . "\t";
+            echo $this->plainText($column)."\t";
         }
-        print "\n";
+        echo "\n";
         foreach ($this->elements as $element) {
-            print $this->plainText($element['name']) . "\t";
+            echo $this->plainText($element['name'])."\t";
             foreach ($this->columns as $column) {
                 if (isset($element['columns'][$column]) && $element['columns'][$column]['value']) {
-                    print $this->plainText($element['columns'][$column]['value']);
+                    echo $this->plainText($element['columns'][$column]['value']);
                 }
-                print "\t";
+                echo "\t";
             }
-            print "\n";
+            echo "\n";
         }
         exit;
     }
@@ -520,7 +520,7 @@ class WebblerListing2 extends WebblerListing
 {
     public function listingStart($class = '')
     {
-        return '<div class="listing ' . $class . '">';
+        return '<div class="listing '.$class.'">';
     }
 
     public function listingHeader()
@@ -552,7 +552,7 @@ class WebblerListing2 extends WebblerListing
             }
             ++$c;
         }
-        #  $html .= sprintf('<td align="right"><span class="listinghdelementright">%s</span></td>',$lastelement);
+        //  $html .= sprintf('<td align="right"><span class="listinghdelementright">%s</span></td>',$lastelement);
         $html .= '</tr>';
 
         return $html;
@@ -561,24 +561,24 @@ class WebblerListing2 extends WebblerListing
     public function listingElement($element)
     {
         /*
-    return '<div class="column members">     
+    return '<div class="column members">
     <a href="#"><span class="label">Members</span> <span class="value">55425</span></a>
     <a class="button" href="#" title="add">Add</a>
 </div><!--ENDOF .column --> ';
 */
 
         if (!empty($element['colsize'])) {
-            $width = 'width=' . $element['colsize'];
+            $width = 'width='.$element['colsize'];
         } else {
             $width = '';
         }
         if (isset($element['class'])) {
-            $html = '<tr class="' . $element['class'] . '">';
+            $html = '<tr class="'.$element['class'].'">';
         } else {
             $html = '<tr>';
         }
 
-        $html = '<div class="column ' . $element['class'] . '">';
+        $html = '<div class="column '.$element['class'].'">';
 
         foreach ($this->columns as $column) {
             if (isset($element['columns'][$column]) && $element['columns'][$column]['value']) {
@@ -693,12 +693,12 @@ class WebblerListing2 extends WebblerListing
     <input type="checkbox" name="active[3]" value="1" checked="checked">
     </div>
     <div class="listingfield">
-    <span class="label inline">Owner</span> <span class="title">Admin<span class="title"> 	
-    </div>     
+    <span class="label inline">Owner</span> <span class="title">Admin<span class="title">
+    </div>
 </div><!--ENDOF .settings -->
 <div class="content">
-<p>This is a text description of this list decribing it in as much detail as required by the administartor that creates the list</p> 	
-</div><!--ENDOF .content --> 
+<p>This is a text description of this list decribing it in as much detail as required by the administartor that creates the list</p>
+</div><!--ENDOF .content -->
 
 */
 
@@ -736,21 +736,21 @@ class DomTab
         ';
         foreach ($this->tabs as $title => $content) {
             $html .= sprintf('<li><a href="#%s" title="%s">%s</a></li>',
-                $this->domtabcluster . urlencode(mb_strtolower($title)), htmlspecialchars($title), $title);
+                $this->domtabcluster.urlencode(mb_strtolower($title)), htmlspecialchars($title), $title);
         }
         $html .= '</ul>';
 
         foreach ($this->tabs as $title => $content) {
             $html .= '<div style="display: none;">';
             $html .= sprintf('<h4><a name="%s" id="%s"><span class="hide">%s</span></a></h4>',
-                $this->domtabcluster . mb_strtolower($title), $this->domtabcluster . urlencode(strtolower($title)),
+                $this->domtabcluster.mb_strtolower($title), $this->domtabcluster.urlencode(strtolower($title)),
                 $title);
             $html .= $content;
             $html .= '</div>';
         }
         $html .= '</div>';
 
-        return $this->header() . $html;
+        return $this->header().$html;
     }
 }
 
@@ -872,14 +872,14 @@ class WebblerTabs
         $previousTab = $this->previous();
         $nextTab = $this->next();
         if (!empty($previousTab)) {
-            $html .= '<a class="back savechanges" href="' . $previousTab . '">' . $GLOBALS['I18N']->get('Back') . '</a>';
+            $html .= '<a class="back savechanges" href="'.$previousTab.'">'.$GLOBALS['I18N']->get('Back').'</a>';
         } else {
-            #  $html .= '<a class="back">'.$GLOBALS['I18N']->get('Back').'</a>';
+            //  $html .= '<a class="back">'.$GLOBALS['I18N']->get('Back').'</a>';
         }
         if (!empty($nextTab)) {
-            $html .= '<a class="next savechanges" href="' . $nextTab . '">' . $GLOBALS['I18N']->get('Next') . '</a>';
+            $html .= '<a class="next savechanges" href="'.$nextTab.'">'.$GLOBALS['I18N']->get('Next').'</a>';
         } else {
-            #  $html .= '<a class="next">'.$GLOBALS['I18N']->get('Next').'</a>';
+            //  $html .= '<a class="next">'.$GLOBALS['I18N']->get('Next').'</a>';
         }
         $html .= '</div>';
 
@@ -892,10 +892,10 @@ class WebblerTabs
         if (empty($GLOBALS['design']) && empty($GLOBALS['ui'])) {
             $html = '<style type=text/css media=screen>@import url( styles/tabs.css );</style>';
         }
-        $html .= '<div id="' . $this->id . '">';
-        $html .= '<' . $this->liststyle;
+        $html .= '<div id="'.$this->id.'">';
+        $html .= '<'.$this->liststyle;
         if (!empty($this->class)) {
-            $html .= ' class="' . $this->class . '"';
+            $html .= ' class="'.$this->class.'"';
         }
         $html .= '>';
         reset($this->tabs);
@@ -907,7 +907,7 @@ class WebblerTabs
             if (mb_strtolower(strip_tags($tab)) == $this->current) {
                 $this->previous = $previous;
                 $gotcurrent = true;
-                $html .= '<li class="current" id="' . $count . '">';
+                $html .= '<li class="current" id="'.$count.'">';
             } else {
                 if ($gotcurrent && empty($this->next)) {
                     $this->next = $tab;
@@ -923,15 +923,15 @@ class WebblerTabs
             $html .= '</li>';
             $previous = $tab;
         }
-        $html .= '</' . $this->liststyle . '>';
+        $html .= '</'.$this->liststyle.'>';
 
         if ($this->addprevnext) {
             $html .= $this->prevNextNav();
         }
         $html .= '</div>';
 
-#    $html .= '<span class="faderight">&nbsp;</span>';
-        #  $html .= '<br clear="all" />';
+//    $html .= '<span class="faderight">&nbsp;</span>';
+        //  $html .= '<br clear="all" />';
         return $html;
     }
 }
@@ -963,15 +963,15 @@ class pageInfo
 
     public function fetchInfoContent($include)
     {
-        ## pages to not allow hiding the info for
+        //# pages to not allow hiding the info for
         if (in_array($include, array('login.php', 'logout.php'))) {
             $this->addhide = false;
         }
-        ## import has too much in the info and needs replacing
+        //# import has too much in the info and needs replacing
         if (in_array($include, array('import.php'))) {
             return '';
         }
-        ## community should not show in the global help, but main page
+        //# community should not show in the global help, but main page
         if (in_array($include, array('community.php'))) {
             return '';
         }
@@ -981,33 +981,33 @@ class pageInfo
         ob_end_clean();
         ob_start();
 
-        # include some information
+        // include some information
         if (empty($_GET['pi'])) {
-            if (is_file('info/' . $_SESSION['adminlanguage']['info'] . "/$include")) {
-                @include 'info/' . $_SESSION['adminlanguage']['info'] . "/$include";
+            if (is_file('info/'.$_SESSION['adminlanguage']['info']."/$include")) {
+                @include 'info/'.$_SESSION['adminlanguage']['info']."/$include";
             } elseif (is_file("info/en/$include")) {
                 @include "info/en/$include";
             } else {
-                print $buffer;
+                echo $buffer;
 
-                return '';#'No file: '."info/en/$include";
+                return ''; //'No file: '."info/en/$include";
             }
         } elseif (isset($_GET['pi']) && !empty($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
-            if (is_file($GLOBALS['plugins'][$_GET['pi']]->coderoot . '/info/' . $_SESSION['adminlanguage']['info'] . "/$include")) {
-                @include $GLOBALS['plugins'][$_GET['pi']]->coderoot . '/info/' . $_SESSION['adminlanguage']['info'] . "/$include";
+            if (is_file($GLOBALS['plugins'][$_GET['pi']]->coderoot.'/info/'.$_SESSION['adminlanguage']['info']."/$include")) {
+                @include $GLOBALS['plugins'][$_GET['pi']]->coderoot.'/info/'.$_SESSION['adminlanguage']['info']."/$include";
             }
         } elseif (is_file("info/en/$include")) {
             @include "info/en/$include";
-            #  print "Not a file: "."info/".$adminlanguage["info"]."/$include";
+            //  print "Not a file: "."info/".$adminlanguage["info"]."/$include";
         } else {
-            print $buffer;
+            echo $buffer;
 
             return '';
         }
         $this->infocontent = ob_get_contents();
         ob_end_clean();
         ob_start();
-        print $buffer;
+        echo $buffer;
     }
 
     public function show()
@@ -1028,21 +1028,21 @@ class pageInfo
             }
         }
 
-        $html = '<div class="note ' . $this->noteid . '">';
+        $html = '<div class="note '.$this->noteid.'">';
         if ($this->addhide) {
             $html .=
                 '<a href="./?page='
-                . $GLOBALS['page']
-                . '&amp;action=hidenote&amp;note='
-                . $this->noteid
-                . '" class="hide ajaxable" title="'
-                . $GLOBALS['I18N']->get('Close this box')
-                . '">'
-                . $GLOBALS['I18N']->get('Hide')
-                . '</a>';
+                .$GLOBALS['page']
+                .'&amp;action=hidenote&amp;note='
+                .$this->noteid
+                .'" class="hide ajaxable" title="'
+                .$GLOBALS['I18N']->get('Close this box')
+                .'">'
+                .$GLOBALS['I18N']->get('Hide')
+                .'</a>';
         }
         $html .= $this->infocontent;
-        $html .= '</div>'; ## end of info div
+        $html .= '</div>'; //# end of info div
         return $html;
     }
 
@@ -1073,11 +1073,11 @@ class button
 
     public function showA()
     {
-        $html = '<a href="' . $this->link . '" ' . $this->linkhtml;
+        $html = '<a href="'.$this->link.'" '.$this->linkhtml;
         if ($this->title) {
-            $html .= ' title="' . htmlspecialchars($this->title) . '"';
+            $html .= ' title="'.htmlspecialchars($this->title).'"';
         } else {
-            $html .= ' title="' . htmlspecialchars($this->linktext) . '"';
+            $html .= ' title="'.htmlspecialchars($this->linktext).'"';
         }
         $html .= '>';
         $html .= $this->linktext;
@@ -1087,14 +1087,14 @@ class button
 
     public function showAend()
     {
-        $html = '</a>' . $this->js;
+        $html = '</a>'.$this->js;
 
         return $html;
     }
 
     public function show()
     {
-        return $this->showA() . $this->showAend();
+        return $this->showA().$this->showAend();
     }
 }
 
@@ -1112,12 +1112,12 @@ class confirmButton extends button
             $GLOBALS['confirmButtonCount'] = 0;
         }
         ++$GLOBALS['confirmButtonCount'];
-        $this->linkhtml = ' class="' . $class . '" id="confirm' . $GLOBALS['confirmButtonCount'] . '"';
+        $this->linkhtml = ' class="'.$class.'" id="confirm'.$GLOBALS['confirmButtonCount'].'"';
         $this->link = '#';
         $this->linktext = $linktext;
-        $GLOBALS['pagefooter']['confirmbutton' . $GLOBALS['confirmButtonCount']] = '
+        $GLOBALS['pagefooter']['confirmbutton'.$GLOBALS['confirmButtonCount']] = '
     <script type="text/javascript">
-    $("#confirm' . $GLOBALS['confirmButtonCount'] . '").click(function(){ if (confirm("' . htmlspecialchars(strip_tags($confirmationtext)) . '")){window.location="' . $link . '"};});
+    $("#confirm' .$GLOBALS['confirmButtonCount'].'").click(function(){ if (confirm("'.htmlspecialchars(strip_tags($confirmationtext)).'")){window.location="'.$link.'"};});
     </script>';
 
         $this->title = $title;
@@ -1150,7 +1150,7 @@ class buttonGroup
         $html .= $this->topbutton->showA();
 
         if (count($this->buttons)) {
-            $html .= '<img height="18" width="18" align="top" class="arrow" src="ui/' . $GLOBALS['ui'] . '/images/menuarrow.png" />';
+            $html .= '<img height="18" width="18" align="top" class="arrow" src="ui/'.$GLOBALS['ui'].'/images/menuarrow.png" />';
         }
 
         $html .= $this->topbutton->showAend();
@@ -1209,7 +1209,7 @@ class WebblerShader
     public function shaderJavascript()
     {
         if ($_SERVER['QUERY_STRING']) {
-            $cookie = 'WS?' . $_SERVER['QUERY_STRING'];
+            $cookie = 'WS?'.$_SERVER['QUERY_STRING'];
         } else {
             $cookie = 'WS';
         }
@@ -1221,7 +1221,7 @@ class WebblerShader
   <script language="Javascript" type="text/javascript">
 
   <!--
-  var states = Array("' . implode('","', explode(',', $_COOKIE[$cookie])) . '");
+  var states = Array("' .implode('","', explode(',', $_COOKIE[$cookie])).'");
   var cookieloaded = 0;
   var expireDate = new Date;
   expireDate.setDate(expireDate.getDate()+365);
@@ -1275,7 +1275,7 @@ class WebblerShader
       if(shaderDiv.style.display == \'block\') {
         states[id] = "closed";
         shaderDiv.style.display = \'none\';
-        shaderSpan.innerHTML = \'<span class="shadersmall">' . $GLOBALS['I18N']->get('open') . '&nbsp;</span><img alt="" src="images/shaderdown.gif" height="9" width="9" border="0" />\';
+        shaderSpan.innerHTML = \'<span class="shadersmall">' .$GLOBALS['I18N']->get('open').'&nbsp;</span><img alt="" src="images/shaderdown.gif" height="9" width="9" border="0" />\';
         footerTitle.style.visibility = \'visible\';
         if (shaderImg)
           shaderImg.src = \'images/expand.gif\';
@@ -1283,7 +1283,7 @@ class WebblerShader
         states[id] = "open";
         shaderDiv.style.display = \'block\';
         footerTitle.style.visibility = \'hidden\';
-        shaderSpan.innerHTML = \'<span class="shadersmall">' . $GLOBALS['I18N']->get('close') . '&nbsp;</span><img alt="" src="images/shaderup.gif" height="9" width="9" border="0" />\';
+        shaderSpan.innerHTML = \'<span class="shadersmall">' .$GLOBALS['I18N']->get('close').'&nbsp;</span><img alt="" src="images/shaderup.gif" height="9" width="9" border="0" />\';
         if (shaderImg)
           shaderImg.src = \'images/collapse.gif\';
       }
@@ -1328,9 +1328,9 @@ class WebblerShader
         default_status = pref;
       }
       if(default_status == \'block\') {
-        span_text = \'<span class="shadersmall">' . $GLOBALS['I18N']->get('close') . '&nbsp;</span><img src="images/shaderup.gif" alt="" height="9" width="9" border="0" />\';
+        span_text = \'<span class="shadersmall">' .$GLOBALS['I18N']->get('close').'&nbsp;</span><img src="images/shaderup.gif" alt="" height="9" width="9" border="0" />\';
       } else {
-        span_text = \'<span class="shadersmall">' . $GLOBALS['I18N']->get('open') . '&nbsp;</span><img src="images/shaderdown.gif" alt="" height="9" width="9" border="0" />\';
+        span_text = \'<span class="shadersmall">' .$GLOBALS['I18N']->get('open').'&nbsp;</span><img src="images/shaderdown.gif" alt="" height="9" width="9" border="0" />\';
       }
       document.writeln("<a href=\'javascript: shade(" + number + ");\'><span id=\'shaderspan" + number + "\' class=\'shadersmalltext\'>" + span_text + "</span></a>");
     }
@@ -1403,7 +1403,7 @@ class WebblerShader
     <td class="shaderfooterright"><script language="javascript" type="text/javascript">open_span(%d,\'%s\');</script>&nbsp;</td>
     <td class="shaderborder"><img src="images/transparent.png" alt="" height="1" border="0" width="1" /></td>
   </tr>
-' . $this->dividerRow() . '
+' .$this->dividerRow().'
 </table><!-- End table from header -->
 </div><!-- End tablewrapper -->
     ', $this->num, $this->display, addslashes($this->name), $this->num, $this->display);

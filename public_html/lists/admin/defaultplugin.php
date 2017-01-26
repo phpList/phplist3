@@ -9,7 +9,7 @@
  * you can implement all the hooks provided to manipulate the functionality of phpList
  * in many places.
  */
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 class phplistPlugin
 {
@@ -17,30 +17,30 @@ class phplistPlugin
     public $version = 'unknown';
     public $authors = '';
     public $description = 'No description';
-    public $documentationUrl = '';## link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
+    public $documentationUrl = ''; //# link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
     public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
-    public $system_root = ''; ## root dir of the phpList admin directory
+    public $system_root = ''; //# root dir of the phpList admin directory
 
-    #@@Some ideas to implement this:
-    # * Start each method with if (!$this->enabled) return parent :: parentMethod($args);
-    # * Don't add to manage Global plugins if disabled
-    public $coderoot = './PLUGIN_ROOTDIR/defaultplugin/'; # coderoot relative to the phplist admin directory
-    # optional configuration variables
+    //@@Some ideas to implement this:
+    // * Start each method with if (!$this->enabled) return parent :: parentMethod($args);
+    // * Don't add to manage Global plugins if disabled
+    public $coderoot = './PLUGIN_ROOTDIR/defaultplugin/'; // coderoot relative to the phplist admin directory
+    // optional configuration variables
     public $configvars = array();
-    # config var    array( type, name [array values]));
+    // config var    array( type, name [array values]));
     public $DBstruct = array();
 
-    # These files can be called from the commandline
-    # The variable holds an array of page names, (the file name without .php) and the files must be in the $coderoot directory.
+    // These files can be called from the commandline
+    // The variable holds an array of page names, (the file name without .php) and the files must be in the $coderoot directory.
     public $commandlinePluginPages = array();
 
-    # An array of page names that can be called as public pages, e.g. www.mysite.com/lists/?pi=myplugin&p=mypage
-    # The page name is the file name without .php. The files must be in the $coderoot directory
+    // An array of page names that can be called as public pages, e.g. www.mysite.com/lists/?pi=myplugin&p=mypage
+    // The page name is the file name without .php. The files must be in the $coderoot directory
     public $publicPages = array();
 
     public $configArray = array();
 
-    public $importTabTitle = ''; ## title of the tab for the import page
+    public $importTabTitle = ''; //# title of the tab for the import page
 
     public $needI18N = 0;
 
@@ -129,24 +129,24 @@ class phplistPlugin
 
     public function phplistplugin()
     {
-        # constructor
-        # Startup code, other objects might not be constructed yet
-        #print ("<BR>Construct " . $this->name);
-        ## try to prepend PLUGIN ROOTDIR, if necessary
+        // constructor
+        // Startup code, other objects might not be constructed yet
+        //print ("<BR>Construct " . $this->name);
+        //# try to prepend PLUGIN ROOTDIR, if necessary
         if (!is_dir($this->coderoot)) {
-            $this->coderoot = PLUGIN_ROOTDIR . '/' . $this->coderoot;
+            $this->coderoot = PLUGIN_ROOTDIR.'/'.$this->coderoot;
         }
-        ## always enable in dev mode
+        //# always enable in dev mode
         if (!empty($GLOBALS['developer_email'])) {
             $this->enabled = 1;
         }
         $this->importTabTitle = $this->name;
         $this->system_root = dirname(__FILE__);
         $this->version = $this->getVersion();
-        ## map table names
+        //# map table names
         $me = new ReflectionObject($this);
         foreach ($this->DBstruct as $table => $structure) {
-            $this->tables[$table] = $GLOBALS['table_prefix'] . $me->getName() . '_' . $table;
+            $this->tables[$table] = $GLOBALS['table_prefix'].$me->getName().'_'.$table;
         }
     }
 
@@ -155,12 +155,12 @@ class phplistPlugin
         $version = array();
         $me = new ReflectionObject($this);
 
-        ## interesting trick from Dokuwiki inc/infoutils.php
-        if (is_dir(dirname($me->getFileName()) . '/../.git')) {
+        //# interesting trick from Dokuwiki inc/infoutils.php
+        if (is_dir(dirname($me->getFileName()).'/../.git')) {
             $version['type'] = 'Git';
             $version['date'] = 'unknown';
 
-            $inventory = dirname($me->getFileName()) . '/../.git/logs/HEAD';
+            $inventory = dirname($me->getFileName()).'/../.git/logs/HEAD';
             if (is_file($inventory)) {
                 $sz = filesize($inventory);
                 $seek = max(0, $sz - 2000); // read from back of the file
@@ -179,7 +179,7 @@ class phplistPlugin
                 }
             }
 
-            return $version['type'] . ' - ' . $version['date'];
+            return $version['type'].' - '.$version['date'];
         }
 
         return $this->version;
@@ -189,15 +189,15 @@ class phplistPlugin
     {
         global $table_prefix;
         $me = new ReflectionObject($this);
-        $plugin_initialised = getConfig(md5('plugin-' . $me->getName() . '-initialised'));
+        $plugin_initialised = getConfig(md5('plugin-'.$me->getName().'-initialised'));
         if (empty($plugin_initialised)) {
             foreach ($this->DBstruct as $table => $structure) {
-                if (!Sql_Table_exists($table_prefix . $me->getName() . '_' . $table)) {
-                    #  print s('Creating table').' '.$table . '<br/>';
-                    Sql_Create_Table($table_prefix . $me->getName() . '_' . $table, $structure);
+                if (!Sql_Table_exists($table_prefix.$me->getName().'_'.$table)) {
+                    //  print s('Creating table').' '.$table . '<br/>';
+                    Sql_Create_Table($table_prefix.$me->getName().'_'.$table, $structure);
                 }
             }
-            saveConfig(md5('plugin-' . $me->getName() . '-initialised'), time(), 0);
+            saveConfig(md5('plugin-'.$me->getName().'-initialised'), time(), 0);
         }
     }
 
@@ -208,8 +208,8 @@ class phplistPlugin
 
     public function activate()
     {
-        # Startup code, all other objects are constructed
-        # returns success or failure, false means we cannot start
+        // Startup code, all other objects are constructed
+        // returns success or failure, false means we cannot start
         if (isset($this->settings)) {
             foreach ($this->settings as $item => $itemDetails) {
                 $GLOBALS['default_config'][$item] = $itemDetails;
@@ -220,14 +220,14 @@ class phplistPlugin
 
     public function displayAbout()
     {
-        # Return html snippet to tell about coopyrights of used third party code.
-        # author is already displayed
+        // Return html snippet to tell about coopyrights of used third party code.
+        // author is already displayed
         return;
     }
 
     public function i18nLanguageDir()
     {
-        # Return i18n Language Dir so that main page content can be extended
+        // Return i18n Language Dir so that main page content can be extended
         return;
     }
 
@@ -237,7 +237,7 @@ class phplistPlugin
             return s($this->pageTitles[$page]);
         }
 
-        return $this->name . ' : ' . $page;
+        return $this->name.' : '.$page;
     }
 
     public function pageTitleHover($page)
@@ -246,7 +246,7 @@ class phplistPlugin
             return s($this->pageTitleHover[$page]);
         }
 
-        return $this->name . ' : ' . $page;
+        return $this->name.' : '.$page;
     }
 
     /** deleteSent - wipe DB entries marking a campaign sent for subscribers
@@ -258,18 +258,18 @@ class phplistPlugin
 
     public function writeConfig($name, $value)
     {
-        #  write a value to the general config to be retrieved at a later stage
-        # parameters: name -> name of the variable
-        #             value -> value of the variablesiable, can be a scalar, array or object
-        # returns success or failure    $store = '';
+        //  write a value to the general config to be retrieved at a later stage
+        // parameters: name -> name of the variable
+        //             value -> value of the variablesiable, can be a scalar, array or object
+        // returns success or failure    $store = '';
         if (is_object($value) || is_array($value)) {
-            $store = 'SER:' . serialize($value);
+            $store = 'SER:'.serialize($value);
         } else {
             $store = $value;
         }
         Sql_Query(sprintf('replace into %s set item = "%s-%s",value="%s",editable=0', $GLOBALS['tables']['config'],
             $this->name, addslashes($name), addslashes($store)));
-        ## force refresh of config in session
+        //# force refresh of config in session
         unset($_SESSION['config']);
 
         return 1;
@@ -277,12 +277,12 @@ class phplistPlugin
 
     public function getConfig($name)
     {
-        # read a value from the general config to be retrieved at a later stage
-        # parameters: name -> name of the variable
-        # returns value
+        // read a value from the general config to be retrieved at a later stage
+        // parameters: name -> name of the variable
+        // returns value
 
-        if (isset($_SESSION['config'][$this->name . '-' . addslashes($name)])) {
-            return $_SESSION['config'][$this->name . '-' . addslashes($name)];
+        if (isset($_SESSION['config'][$this->name.'-'.addslashes($name)])) {
+            return $_SESSION['config'][$this->name.'-'.addslashes($name)];
         }
 
         $req = Sql_Fetch_Array_Query(sprintf('select value from  %s where item = "%s-%s"', $GLOBALS['tables']['config'],
@@ -294,18 +294,18 @@ class phplistPlugin
         } else {
             $value = $result;
         }
-        $_SESSION['config'][$this->name . '-' . addslashes($name)] = $value;
+        $_SESSION['config'][$this->name.'-'.addslashes($name)] = $value;
 
         return $result;
     }
 
     public function displayConfig($name)
     {
-        ## displayConfig
-        # purpose: display input for a config variable in the backend
-        # parameters:
-        # name -> name of the config variable, as found in $this->configvars
-        # return, HTML snippet of input to slot into a form
+        //# displayConfig
+        // purpose: display input for a config variable in the backend
+        // parameters:
+        // name -> name of the config variable, as found in $this->configvars
+        // return, HTML snippet of input to slot into a form
         $name = trim(strtolower($name));
         $name = preg_replace('/\W/', '', $name);
         $type = $this->configvars[$name][0];
@@ -313,7 +313,7 @@ class phplistPlugin
         $currentvalue = $this->getConfig($name);
         $html = '';
         switch ($type) {
-            case 'attributeselect' :
+            case 'attributeselect':
                 $html = sprintf('<select name="%s"><option value=""> --%s</option>', $name,
                     $GLOBALS['I18N']->get('choose'));
                 $req = Sql_Query(sprintf('select * from %s', $GLOBALS['tables']['attribute']));
@@ -325,7 +325,7 @@ class phplistPlugin
                 $html .= '</select>';
 
                 return $html;
-            case 'radio' :
+            case 'radio':
                 $values = $this->configvars[$name][2];
                 foreach ($values as $key => $label) {
                     $html .= sprintf('<input type="radio" name="%s" value="%s" %s> %s', $name, $key,
@@ -333,13 +333,13 @@ class phplistPlugin
                 }
 
                 return $html;
-            case 'textarea' :
+            case 'textarea':
                 $html = sprintf('<textarea name="%s" rows="10" cols="40" wrap="virtual">%s </textarea>', $name,
                     htmlspecialchars($currentvalue));
 
                 return $html;
-            case 'text' :
-            default :
+            case 'text':
+            default:
                 $html = sprintf('<input type="text" name="%s" value="%s" size="45">', $name,
                     htmlspecialchars($currentvalue));
 
@@ -347,24 +347,24 @@ class phplistPlugin
         }
     }
 
-    ############################################################
-    # Main interface hooks
+    //###########################################################
+    // Main interface hooks
 
     public function adminmenu()
     {
         return array(
-            # page, description
-            'main' => 'Main Page',
+            // page, description
+            'main'       => 'Main Page',
             'helloworld' => 'Hello World page',
         );
     }
 
-    ############################################################
-    # Frontend
+    //###########################################################
+    // Frontend
 
     public function displaySubscriptionChoice($pageData, $userID = 0)
     {
-        # return snippet for the Subscribe page
+        // return snippet for the Subscribe page
         return '';
     }
 
@@ -375,12 +375,12 @@ class phplistPlugin
 
     public function parseThankyou($pageid = 0, $userid = 0, $text = '')
     {
-        # parse the text of the thankyou page
-        # parameters:
-        #  pageid -> id of the subscribe page
-        #  userid -> id of the user
-        #  text -> current text of the page
-        # returns parsed text
+        // parse the text of the thankyou page
+        // parameters:
+        //  pageid -> id of the subscribe page
+        //  userid -> id of the user
+        //  text -> current text of the page
+        // returns parsed text
         return $text;
     }
 
@@ -388,8 +388,8 @@ class phplistPlugin
     {
     }
 
-    ############################################################
-    # Messages
+    //###########################################################
+    // Messages
 
     /* displayMessages
      *  obsolete
@@ -401,32 +401,32 @@ class phplistPlugin
         return '';
     }
 
-    ############################################################
-    # Message
+    //###########################################################
+    // Message
 
     public function sendMessageTab($messageid = 0, $messagedata = array())
     {
-        ## add a tab to the "Send a Message page" for options to be set in the plugin
-        # parameters:
-        #    messageid = ID of the message being displayed (should always be > 0)
-        #    messagedata = associative array of all data from the db for this message
-        # returns: HTML code to slot into the form to submit to the database
+        //# add a tab to the "Send a Message page" for options to be set in the plugin
+        // parameters:
+        //    messageid = ID of the message being displayed (should always be > 0)
+        //    messagedata = associative array of all data from the db for this message
+        // returns: HTML code to slot into the form to submit to the database
         return '';
     }
 
     public function sendMessageTabTitle($messageid = 0)
     {
-        ## If adding a TAB to the Send a Message page, what is the TAB's name
-        # parameters: none
-        # returns: short title (less than about 10 characters)
+        //# If adding a TAB to the Send a Message page, what is the TAB's name
+        // parameters: none
+        // returns: short title (less than about 10 characters)
         return '';
     }
 
     public function sendMessageTabInsertBefore()
     {
-        ## If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
-        # parameters: none
-        # returns: tab title to insert before
+        //# If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
+        // parameters: none
+        // returns: tab title to insert before
         return false;
     }
 
@@ -444,11 +444,11 @@ class phplistPlugin
 
     public function sendFormats()
     {
-        ## sendFormats();
-        # parameters: none
-        # returns array of "shorttag" => "description" of possible formats this plugin can provide
-        # this will be listed in the "Send As" list of radio buttons, so that an editor can choose the format
-        # prefix the shorttag with _ to suppress it from the send page (for internal use)
+        //# sendFormats();
+        // parameters: none
+        // returns array of "shorttag" => "description" of possible formats this plugin can provide
+        // this will be listed in the "Send As" list of radio buttons, so that an editor can choose the format
+        // prefix the shorttag with _ to suppress it from the send page (for internal use)
         return array();
     }
 
@@ -461,7 +461,7 @@ class phplistPlugin
      * @param messagedata array: associative array of message data
      *
      * @return array 2-element array, [0] caption, [1] value.
-     *         or false if the plugin does not want to display a row.
+     *               or false if the plugin does not want to display a row
      */
     public function viewMessage($messageid, array $messagedata)
     {
@@ -475,11 +475,11 @@ class phplistPlugin
 
     public function HelloWorld($params)
     {
-        print 'Hello to you from ' . $this->name;
+        echo 'Hello to you from '.$this->name;
     }
 
-    ############################################################
-    # Processqueue
+    //###########################################################
+    // Processqueue
 
     /* canSend
      *
@@ -539,7 +539,7 @@ class phplistPlugin
     }
 
     /** messageStatus
-     * @param int $id messageid
+     * @param int    $id     messageid
      * @param string $status message status
      *
      * @return possible additional text to display
@@ -603,29 +603,29 @@ class phplistPlugin
 
     public function getMessageAttachment($messageid, $content)
     {
-        ###getMessageAttachment($messageid,$mail->Body);
-        # parameters: $messageid,$messagecontent
-        # returns array (
-        #  'content' => Content of the attachment
-        #  'filename' => name of the attached file
-        #  'mimetype' => mimetype of the attachment
-        # );
+        //##getMessageAttachment($messageid,$mail->Body);
+        // parameters: $messageid,$messagecontent
+        // returns array (
+        //  'content' => Content of the attachment
+        //  'filename' => name of the attached file
+        //  'mimetype' => mimetype of the attachment
+        // );
         return array();
     }
 
     public function mimeWrap($messageid, $body, $header, $contenttype, $destination)
     {
-        ### mimeWrap
-        # purpose: wrap the actual contents of the message in another MIME layer
-        # Designed to ENCRYPT the fully expanded message just before sending
-        # Designed to be called by phplistmailer
-        # parameters:
-        #   messageid: message being sent
-        #   body: current body of message
-        #   header: current header of message, except for the Content-Type
-        #   contenttype: Content-Type of message
-        #   destination: email that this message is going out to
-        # returns array(newheader,newbody,newcontenttype)
+        //## mimeWrap
+        // purpose: wrap the actual contents of the message in another MIME layer
+        // Designed to ENCRYPT the fully expanded message just before sending
+        // Designed to be called by phplistmailer
+        // parameters:
+        //   messageid: message being sent
+        //   body: current body of message
+        //   header: current header of message, except for the Content-Type
+        //   contenttype: Content-Type of message
+        //   destination: email that this message is going out to
+        // returns array(newheader,newbody,newcontenttype)
         return array(
             $header,
             $body,
@@ -635,13 +635,13 @@ class phplistPlugin
 
     public function setFinalDestinationEmail($messageid, $uservalues, $email)
     {
-        ### setFinalDestinationEmail
-        # purpose: change the actual recipient based on user Attribute values:
-        # parameters:
-        #   messageid: message being sent
-        #   uservalues: array of "attributename" => "attributevalue" of all user attributes
-        #   email: email that this message is current set to go out to
-        # returns: email that it should go out to
+        //## setFinalDestinationEmail
+        // purpose: change the actual recipient based on user Attribute values:
+        // parameters:
+        //   messageid: message being sent
+        //   uservalues: array of "attributename" => "attributevalue" of all user attributes
+        //   email: email that this message is current set to go out to
+        // returns: email that it should go out to
         return $email;
     }
 
@@ -927,8 +927,8 @@ class phplistPlugin
      * Currently used in users.php and members.php
      *
      * @param (array) user - associative array of user data
-     * @param string $rowid - $element of the WebblerListing
-     * @param WebblerListing $list - listing object to add to
+     * @param string         $rowid - $element of the WebblerListing
+     * @param WebblerListing $list  - listing object to add to
      *
      * @note, unclear if this actually works. Better not to use it.
      */
@@ -947,30 +947,30 @@ class phplistPlugin
     {
     }
 
-    ############################################################
-    # List
+    //###########################################################
+    // List
 
     public function displayLists($list)
     {
-        # purpose: return html snippet with plugin info for this list
-        # Currently used in lists.php
-        # 200711 Bas
+        // purpose: return html snippet with plugin info for this list
+        // Currently used in lists.php
+        // 200711 Bas
         return;
     }
 
     public function displayEditList($list)
     {
-        # purpose: return tablerows with list attributes for this list
-        # Currently used in list.php
-        # 200710 Bas
+        // purpose: return tablerows with list attributes for this list
+        // Currently used in list.php
+        // 200710 Bas
         return;
     }
 
     public function processEditList($id)
     {
-        # purpose: process edit list page (usually save fields)
-        # return false if failed
-        # 200710 Bas
+        // purpose: process edit list page (usually save fields)
+        // return false if failed
+        // 200710 Bas
         return true;
     }
 
@@ -978,14 +978,14 @@ class phplistPlugin
     {
     }
 
-    ############################################################
-    # Subscribe page
+    //###########################################################
+    // Subscribe page
 
     public function displaySubscribePageEdit($subscribePageData)
     {
-        # purpose: return tablerows with subscribepage options for this list
-        # Currently used in spageedit.php
-        # 200710 Bas
+        // purpose: return tablerows with subscribepage options for this list
+        // Currently used in spageedit.php
+        // 200710 Bas
         return;
     }
 
@@ -1002,16 +1002,16 @@ class phplistPlugin
 
     public function processSubscribePageEdit($subscribePageID)
     {
-        # purpose: process selected subscribepage options for this list
-        # return false if failed
-        # Currently used in spageedit.php
-        # 200710 Bas
+        // purpose: process selected subscribepage options for this list
+        // return false if failed
+        // Currently used in spageedit.php
+        // 200710 Bas
         return true;
     }
 
     public function importContent()
     {
-        # purpose: show content for this plugin on the import page
+        // purpose: show content for this plugin on the import page
         return '';
     }
 
@@ -1026,14 +1026,12 @@ class phplistPlugin
         return true;
     }
 
-    ######################################
-    # Static functions to manage the collection of plugins
+    //#####################################
+    // Static functions to manage the collection of plugins
 
     public static function isEnabled($pluginName)
     {
-        # see if a plugin is enabled, static method so it can be called even if existance of plugin is unknown.
+        // see if a plugin is enabled, static method so it can be called even if existance of plugin is unknown.
         return array_key_exists($pluginName, $GLOBALS['plugins']) && $GLOBALS['plugins'][$pluginName]->enabled;
     }
 }
-
-;
