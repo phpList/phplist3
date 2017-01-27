@@ -95,8 +95,8 @@ $content = '<table class="messageView">';
 $format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>';
 $content .= sprintf($format, s('entered'), stripslashes($msgdata['entered']));
 $content .= sprintf($format, s('fromfield'), stripslashes($msgdata['fromfield']));
-$content .= sprintf($format, s('message'), stripslashes($msgdata['message']));
-$content .= sprintf($format, s('textmessage'), nl2br(stripslashes($msgdata['textmessage'])));
+$content .= sprintf($format, s('HTML content'), stripslashes($msgdata['message']));
+$content .= sprintf($format, s('Text content'), nl2br(stripslashes($msgdata['textmessage'])));
 $content .= sprintf($format, s('footer'), stripslashes($msgdata['footer']));
 
 $finishSending = mktime($msgdata['finishsending']['hour'], $msgdata['finishsending']['minute'], 0,
@@ -151,9 +151,9 @@ if (ALLOW_ATTACHMENTS) {
 }
 
 if (empty($msgdata['sent'])) {
-    $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers who are member of the following lists') . ':</h4></td></tr>';
 } else {
-    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers, who are member of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers who are members of the following lists') . ':</h4></td></tr>';
 }
 
 $lists_done = array();
