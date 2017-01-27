@@ -739,8 +739,8 @@ if (!$done) {
     <div class="field">' . s('phpList operates in the time zone "%s"', SYSTEM_TIMEZONE) . '</div>';
     } else {
         $scheduling_content .= '
-    <div class="field">' . s('Dates and times are relative to the Server Time') . '<br/>' . s('Current Server Time is') . ' <span id="servertime">' . substr($currentTime[0],
-                0, -3) . '</span>' . '</div>';
+    <div class="field">' . s('Dates and times are relative to the Server Time') . '<br/>' . s('Current Server Time is') . ' <span id="servertime">' . 
+date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     }
 
     $scheduling_content .= '  <div class="field"><label for="embargo">' . $GLOBALS['I18N']->get('Embargoed Until') . Help('embargo') . '</label>' . '
