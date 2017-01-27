@@ -517,8 +517,8 @@ if ($counters['num_per_batch'] > 0) {
         if ($diff < 0) {
             $diff = 0;
         }
-        processQueueOutput(s('This batch will be %s emails, because in the last %d seconds %d emails were sent',
-            number_format($counters['num_per_batch']), $batch_period, $diff), 0, 'progress');
+        processQueueOutput(s('This batch will be %s emails, because in the last %s seconds %s emails were sent',
+            number_format($counters['num_per_batch']), number_format($batch_period), number_format($diff)), 0, 'progress');
     } else {
 
         processQueueOutput(s('Sending in batches of %s emails', number_format($counters['num_per_batch'])), 0, 'progress');
