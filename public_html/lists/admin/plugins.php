@@ -165,6 +165,8 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
 if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
     Info(s('The plugin root directory is not writable, please install plugins manually'));
+} elseif (ini_get('allow_url_fopen') != '1') {
+    Info(s('The PHP option for <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">URL-aware fopen wrappers</a> needs to be enabled. This is required to allow installation from a remote URL'));
 } elseif (!class_exists('ZipArchive')) {
     Info(s('PHP has no <a href="http://php.net/zip">Zip capability</a>. This is required to allow installation from a remote URL'));
 } else {
