@@ -46,7 +46,7 @@ $configTypes = array();
 
 foreach ($default_config as $item => $details) {
     if (empty($details['category'])) {
-        $details['category'] = 'other';
+        $details['category'] = s('other');
     }
     if (empty($details['type'])) {
         $details['type'] = 'undefined';
@@ -128,8 +128,8 @@ if (empty($id)) {
 
     foreach ($configCategories as $configCategory => $configItems) {
         $some = 0;
-        $categoryHTML = '<fieldset id="'.$configCategory.'">';
-        $categoryHTML .= '<legend>'.s($configCategory).' '.s('settings').'</legend>';
+        $categoryHTML = '<fieldset id="' . $configCategory . '">';
+        $categoryHTML .= '<legend>' . s('%s settings',$configCategory) . '</legend>';
 
         foreach ($configItems as $configItem) {
             $dbvalue = getConfig($configItem);

@@ -529,20 +529,21 @@ if ($counters['num_per_batch'] > 0) {
     }
     if ($original_num_per_batch != $counters['num_per_batch']) {
         if (empty($reload)) {
-            processQueueOutput(s('Sending in batches of %d messages', $original_num_per_batch), 0);
+            processQueueOutput(s('Sending in batches of %s messages', number_format($original_num_per_batch)), 0);
         }
         $diff = $original_num_per_batch - $counters['num_per_batch'];
         if ($diff < 0) {
             $diff = 0;
         }
-        processQueueOutput(s('This batch will be %d emails, because in the last %d seconds %d emails were sent',
-            $counters['num_per_batch'], $batch_period, $diff), 0, 'progress');
+        processQueueOutput(s('This batch will be %s emails, because in the last %s seconds %s emails were sent',
+            number_format($counters['num_per_batch']), number_format($batch_period), number_format($diff)), 0, 'progress');
     } else {
-        processQueueOutput(s('Sending in batches of %d emails', $counters['num_per_batch']), 0, 'progress');
+
+        processQueueOutput(s('Sending in batches of %s emails', number_format($counters['num_per_batch'])), 0, 'progress');
     }
 } elseif ($counters['num_per_batch'] < 0) {
-    processQueueOutput(s('In the last %d seconds more emails were sent (%d) than is currently allowed per batch (%d)',
-        $batch_period, $recently_sent[0], $original_num_per_batch), 0, 'progress');
+    processQueueOutput(s('In the last %s seconds more emails were sent (%s) than is currently allowed per batch (%s)',
+        number_format($batch_period), number_format($recently_sent[0]), number_format($original_num_per_batch)), 0, 'progress');
     $processed = 0;
     $script_stage = 5;
     $GLOBALS['wait'] = $batch_period;

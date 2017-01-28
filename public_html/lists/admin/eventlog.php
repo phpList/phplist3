@@ -58,7 +58,7 @@ $count = Sql_Query("select count(*) from {$tables['eventlog']} $where");
 $totalres = Sql_fetch_Row($count);
 $total = $totalres[0];
 
-echo $total.' '.$GLOBALS['I18N']->get('Events').'<br/>';
+print number_format($total) . ' ' . $GLOBALS['I18N']->get('Events') . '<br/>';
 if ($total > MAX_USER_PP) {
     if (isset($start) && $start) {
         $limit = "limit $start,".MAX_USER_PP;
