@@ -81,7 +81,7 @@ if ($configItem['type'] == 'textarea') {
     echo '<select name="values['.$id.']">';
     foreach ($configItem['values'] as $key => $label) {
         print '<option value="'.$key.'"';
-        if ($key == $configItem['value']) {
+        if ($key == $value) {
             print ' selected="selected"';
         }
         print '>'.$label.'</option>';
