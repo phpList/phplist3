@@ -16,6 +16,7 @@ class FeatureContext extends MinkContext
 {
 
     private $params = array();
+    private $data = array();
 
     /**
      * Initializes context.
@@ -54,4 +55,22 @@ class FeatureContext extends MinkContext
         mysqli_query($db,'drop database if exists phplistbehattestdb');
         mysqli_query($db,'create database phplistbehattestdb');
     }
+
+    /**
+     * @When /^I fill in "([^"]*)" with an email address$/
+     */
+    public function iFillInWithAnEmailAddress($fieldName)
+    {
+        $this->data['email'] = 'email@domain.com'; // at some point really make random
+        $this->fillField($fieldName, $this->data['email']);
+    }
+
+    /**
+     * @Given /^I should see the email address I entered$/
+     */
+    public function iShouldSeeTheEmailAddressIEntered()
+    {
+        $this->assertSession()->pageTextContains($this->data['email']);
+    }
+
 }
