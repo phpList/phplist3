@@ -31,7 +31,7 @@ refreshTlds();
 
 // check for latest version
 $checkinterval = sprintf('%d', getConfig('check_new_version'));
-if (!isset($checkinterval)) {
+if (empty($checkinterval)) {
     $checkinterval = 7;
 }
 
@@ -67,11 +67,11 @@ if (!$showUpdateAvail && $checkinterval) {
 
 if ($showUpdateAvail) {
     echo '<div class="newversion note">';
-    echo $GLOBALS['I18N']->get('A new version of phpList is available!');
+    echo s('A new version of phpList is available!');
     echo '<br/>';
-    echo '<br/>'.$GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
-    echo '<br/>'.$GLOBALS['I18N']->get('Your version').': <b>'.$thisversion.'</b>';
-    echo '<br/>'.$GLOBALS['I18N']->get('Latest version').': <b>'.$latestversion.'</b><br/>  ';
+    echo '<br/>'.s('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
+    echo '<br/>'.s('Your version').': <b>'.$thisversion.'</b>';
+    echo '<br/>'.s('Latest version').': <b>'.$latestversion.'</b><br/>  ';
     echo '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version').'" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
     echo '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version').'" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
 }

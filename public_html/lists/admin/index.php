@@ -490,6 +490,17 @@ if (!$ajax && $page != 'login') {
     if (version_compare(PHP_VERSION, '5.4.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.4.0 or higher.'));
     }
+    if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
+        Fatal_Error(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
+            Visit <a href="https://www.phplist.org/users/" title="'.s('Get some help').'">the support site</a> if you need some help.'
+            ,'<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=outdated-download-forced&amp;utm_campaign=phpList" title="'.s('Download the latest version').'" target="_blank">'));
+        return;
+    }
+
+    if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50300) {
+        Fatal_Error(s('Your PHP version is too old. Please upgrade PHP before continuing'));
+        return;
+    }
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
         Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
     }
