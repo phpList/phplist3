@@ -1330,7 +1330,7 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
             $GLOBALS['tables']['linktrack_forward'], sql_escape(substr($url, 0, 255))));
         if (!$exists[0]) {
             $personalise = preg_match('/uid=/', $link);
-            $uuid = Uuid::generate(4);
+            $uuid = (string) Uuid::generate(4);
             Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d, uuid = "%s"',
                 $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise, $uuid));
             $fwdid = Sql_Insert_id();

@@ -86,7 +86,7 @@ if ($num) {
     cl_output(s('Giving a UUID to %d subscribers, this may take a while', $num));
     output(s('Giving a UUID to %d subscribers, this may take a while', $num));
     while ($row = Sql_Fetch_Row($req)) {
-        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['user'], uuid::generate(4), $row[0]));
+        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['user'], (string) uuid::generate(4), $row[0]));
     }
 }
 // make sure campaigns have a UUID. They may not when created via eg the API
@@ -95,7 +95,7 @@ $num = Sql_Affected_Rows();
 if ($num) {
     cl_output(s('Giving a UUID to %d campaigns', $num));
     while ($row = Sql_Fetch_Row($req)) {
-        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['user'], uuid::generate(4), $row[0]));
+        Sql_query(sprintf('update %s set uniqid = "%s" where id = %d', $GLOBALS['tables']['user'], (string) uuid::generate(4), $row[0]));
     }
 }
 

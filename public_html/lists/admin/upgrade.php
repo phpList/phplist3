@@ -592,15 +592,15 @@ if ($dbversion == VERSION) {
     }
 
     while ($row = Sql_Fetch_Row($req)) {
-        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['user'], uuid::generate(4), $row[0]));
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['user'], (string) uuid::generate(4), $row[0]));
     }
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['message']));
     while ($row = Sql_Fetch_Row($req)) {
-        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['message'], uuid::generate(4), $row[0]));
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['message'], (string) uuid::generate(4), $row[0]));
     }
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['linktrack_forward']));
     while ($row = Sql_Fetch_Row($req)) {
-        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['linktrack_forward'], uuid::generate(4), $row[0]));
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['linktrack_forward'], (string) uuid::generate(4), $row[0]));
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache

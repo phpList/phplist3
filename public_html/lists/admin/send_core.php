@@ -53,7 +53,7 @@ if (!$id) {
     values("(no title)", "draft", now(), "HTML", now(), now(), %d, %d, "", "", "%s", "%s" )',
         $GLOBALS['tables']['message'],
         $_SESSION['logindetails']['id'],
-        $defaulttemplate, sql_escape($defaultfooter), Uuid::generate(4)));
+        $defaulttemplate, sql_escape($defaultfooter), (string) Uuid::generate(4)));
 
     $id = Sql_Insert_Id();
     if (empty($id)) { // something went wrong creating the campaign
