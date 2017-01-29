@@ -1,9 +1,9 @@
-Feature: Create new campaign
-  In order to create a new campaign
+Feature: Load default attributes
+  In order to load default attributes
   As an admin user
-  I need to be able to login and start a new campaign
+  I need to be able to login and load default attributes and add a value
 
-  Scenario: Login and create a campaign
+  Scenario: Load default attributes and add a value
     Given I am on "/lists/admin/?page=attributes"
     When I fill in "login" with "admin"
     And I fill in "password" with "Mypassword123+"
