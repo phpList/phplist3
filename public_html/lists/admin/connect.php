@@ -514,6 +514,7 @@ function Fatal_Error($msg, $documentationURL = '')
         echo "\n".$GLOBALS['I18N']->get('fatalerror').': '.strip_tags($msg)."\n";
         @ob_start();
     } else {
+        @ob_end_clean();
         if (isset($GLOBALS['I18N']) && is_object($GLOBALS['I18N'])) {
             echo '<div align="center" class="error">'.$GLOBALS['I18N']->get('fatalerror').": $msg ";
         } else {
