@@ -503,10 +503,14 @@ function Fatal_Error($msg, $documentationURL = '')
         $_SESSION['fatalerror'] = 0;
     }
     ++$_SESSION['fatalerror'];
-    header('HTTP/1.0 509 Fatal error');
+    header('HTTP/1.0 500 Fatal error');
     if ($_SESSION['fatalerror'] > 5) {
         $_SESSION['logout_error'] = s('Too many errors, please login again');
+        $_SESSION['adminloggedin'] = '';
+        $_SESSION['logindetails'] = '';
+        session_destroy();
         Redirect('logout&err=2');
+        exit;
     }
 
     if ($GLOBALS['commandline']) {
