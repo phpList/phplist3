@@ -408,6 +408,11 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     //# issue 6508
     return 2;
 } elseif (isset($_POST['update']) && $_POST['update'] && is_email($_POST['email']) && $allthere) {
+    if ($subscribepagedata['htmlchoice'] == 'checkfortext') {
+        $htmlemail = empty($_POST['textemail']);
+    } else {
+        $htmlemail = !empty($_POST['htmlemail']);
+    }
     $email = trim($_POST['email']);
     if (preg_match("/(.*)\n/U", $email, $regs)) {
         $email = $regs[1];
@@ -494,20 +499,15 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $storepassword = '';
     }
 
-    // We want all these to be set, albeit to empty string
-    foreach (array('htmlemail') as $sUnsubscribeFormVar) {
-        if (!isset($_POST[$sUnsubscribeFormVar])) {
-            $_POST[$sUnsubscribeFormVar] = '';
-        }
-    }
-
     $query = sprintf('update %s set email = "%s", %s htmlemail = %d where id = %d',
-        $GLOBALS['tables']['user'], sql_escape($_POST['email']), $storepassword, $_POST['htmlemail'], $userid);
+        $GLOBALS['tables']['user'], sql_escape($_POST['email']), $storepassword, $htmlemail, $userid);
     //print $query;
     $result = Sql_query($query);
     if (strtolower($data['email']) != strtolower($email)) {
         $emailchanged = 1;
         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'], $userid));
+    } else {
+        $emailchanged = 0;
     }
 
     // subscribe to the lists
@@ -546,19 +546,12 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         $lists = 'No Lists';
     }
 
-    // We want all these to be set, albeit to empty string
-    foreach (array('datachange', 'htmlemail', 'information_changed', 'emailchanged') as $sUnsubscribeVar) {
-        if (!isset(${$sUnsubscribeVar})) {
-            ${$sUnsubscribeVar} = '';
-        }
-    }
-
-    $datachange .= "$strEmail : ".$email."\n";
+    $datachange = "$strEmail : ".$email."\n";
     if ($subscribepagedata['htmlchoice'] != 'textonly'
         && $subscribepagedata['htmlchoice'] != 'htmlonly'
     ) {
         $datachange .= "$strSendHTML : ";
-        $datachange .= $_POST['htmlemail'] ? "$strYes\n" : "$strNo\n";
+        $datachange .= $htmlemail ? "$strYes\n" : "$strNo\n";
     }
 
     // remember the users attributes
