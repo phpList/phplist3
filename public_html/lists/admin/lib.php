@@ -630,7 +630,7 @@ function cleanEmail($value)
 }
 
 if (TEST && REGISTER) {
-    $pixel = '<img src="http://powered.phplist.com/images/pixel.gif" width="1" height="1" />';
+    $pixel = '<img src="'.PHPLIST_POWEREDBY_URLROOT.'/pixel.gif" width="1" height="1" />';
 }
 
 function timeDiff($time1, $time2)
