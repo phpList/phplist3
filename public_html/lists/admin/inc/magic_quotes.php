@@ -27,12 +27,10 @@ function stripSlashesArray($array)
     return $array;
 }
 
-if (!ini_get('magic_quotes_gpc') || ini_get('magic_quotes_gpc') == 'off') {
-    $_POST = addSlashesArray($_POST);
-    $_GET = addSlashesArray($_GET);
-    $_REQUEST = addSlashesArray($_REQUEST);
-    $_COOKIE = addSlashesArray($_COOKIE);
-}
+$_POST = addSlashesArray($_POST);
+$_GET = addSlashesArray($_GET);
+$_REQUEST = addSlashesArray($_REQUEST);
+$_COOKIE = addSlashesArray($_COOKIE);
 
 function removeXss($string)
 {

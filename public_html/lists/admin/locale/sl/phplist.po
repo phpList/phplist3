@@ -10066,7 +10066,24 @@ msgstr ""
 #~ msgstr "Trenutni atributi"
 
 #~ msgid "spamblockemailintro"
-#~ msgstr "  -------------------------------------------------------------------------------- This is a notification of a possible spam attack to your phplist subscribe page. The data submitted has been copied below, so you can check whether this was actually the case. The submitted data has been converted into non-html characters, for security reasons.  If you want to stop receiving this message, set     define('NOTIFY_SPAM',0);  in your phplist config file.  This user has not been added to the database. If there is an error, you will need to  add them manually.  --------------------------------------------------------------------------------  "
+#~ msgstr "
+
+ --------------------------------------------------------------------------------
+ This is a notification of a possible spam attack to your phplist subscribe page.
+ The data submitted has been copied below, so you can check whether this was actually the case.
+ The submitted data has been converted into non-html characters, for security reasons.
+
+ If you want to stop receiving this message, set
+
+   define('NOTIFY_SPAM',0);
+
+ in your phplist config file.
+
+ This user has not been added to the database. If there is an error, you will need to
+ add them manually.
+ --------------------------------------------------------------------------------
+
+ "
 
 #~ msgid "was_subscribed"
 #~ msgstr "Was subscribed to:"
@@ -10267,7 +10284,12 @@ msgstr ""
 #~ msgstr "Kontrolne vrednosti za"
 
 #~ msgid "prependemailtext"
-#~ msgstr " Oprostite, da vas motimo: malo čistimo svojo bazo podatkov in izgleda, da  ste se prijavili na naše novice, niste pa uspeli potrditi vaše prijave.  Sedaj imate ponovno možnost, da vašo prijavo potrdite.Navodila so kot spodaj.   "
+#~ msgstr "
+ Oprostite, da vas motimo: malo čistimo svojo bazo podatkov in izgleda, da
+ ste se prijavili na naše novice, niste pa uspeli potrditi vaše prijave.
+
+ Sedaj imate ponovno možnost, da vašo prijavo potrdite.Navodila so kot spodaj.
+   "
 
 #~ msgid "unreadable"
 #~ msgstr "Cannot read file. It is not readable !"
@@ -10315,7 +10337,9 @@ msgstr ""
 #~ msgstr "Spodaj so uporabniki, ki so bili označeni kot nepotrjeni. Številka v [] je njihova uporabniška ID, številka v () pa je število zaporednih odbojev"
 
 #~ msgid "import3info"
-#~ msgstr "There are two ways to add the names of the users,  either one attribute for the entire name or two attributes, one for first name and one for last name. If you use 'two attributes', the name will be split after the first space."
+#~ msgstr "There are two ways to add the names of the users,
+  either one attribute for the entire name or two attributes, one for first name and one for last name.
+ If you use 'two attributes', the name will be split after the first space."
 
 #~ msgid "whatisprepare"
 #~ msgstr "Kaj je priprava sporočila"
@@ -10420,7 +10444,19 @@ msgstr ""
 #~ msgstr "If you choose ""send notification email"" the users you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails."
 
 #~ msgid "importintro"
-#~ msgstr "<p>The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called ""email"" and not something like ""e-mail"" or     ""Email Address"".     Case is not important.     </p>     If you have a column called ""Foreign Key"", this will be used for synchronisation between an     external database and the PHPlist database. The foreignkey will take precedence when matching     an existing user. This will slow down the import process. If you use this, it is allowed to have     records without email, but an ""Invalid Email"" will be created instead. You can then do     a search on ""invalid email"" to find those records. Maximum size of a foreign key is 100.     <br/><br/>     <b>Warning</b>: the file needs to be plain text. Do not upload binary files like a Word Document.     <br/>"
+#~ msgstr "<p>The file you upload will need to have the attributes of the records on    the first line.
+     Make sure that the email column is called ""email"" and not something like ""e-mail"" or
+     ""Email Address"".
+     Case is not important.
+     </p>
+     If you have a column called ""Foreign Key"", this will be used for synchronisation between an
+     external database and the PHPlist database. The foreignkey will take precedence when matching
+     an existing user. This will slow down the import process. If you use this, it is allowed to have
+     records without email, but an ""Invalid Email"" will be created instead. You can then do
+     a search on ""invalid email"" to find those records. Maximum size of a foreign key is 100.
+     <br/><br/>
+     <b>Warning</b>: the file needs to be plain text. Do not upload binary files like a Word Document.
+     <br/>"
 
 #~ msgid "powered by"
 #~ msgstr "powered by"
@@ -10507,13 +10543,17 @@ msgstr ""
 #~ msgstr "Spoji dvojne vnose"
 
 #~ msgid "rulesexistwarning"
-#~ msgstr "Pravila odbojev so že nastavljena.      Bodite pozorni pri oblikovanju novih, saj lahko vplivajo na že obstoječe."
+#~ msgstr "Pravila odbojev so že nastavljena.
+     Bodite pozorni pri oblikovanju novih, saj lahko vplivajo na že obstoječe."
 
 #~ msgid "IncreaseB"
 #~ msgstr "Povečaj štetje odbojev z"
 
 #~ msgid "assigninvalid_blurb"
-#~ msgstr "Assign Invalid will be used to create an email for users with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column ""First Name"" and one called ""Last Name"", you can use ""[first name] [last name]"" to construct a new value for the email for this user containing their first name and last name. The value [number] can be used to insert the sequence number for importing."
+#~ msgstr "Assign Invalid will be used to create an email for users with an invalid email address.
+ You can use values between [ and ] to make up a value for the email. For example if your import file contains a column ""First Name"" and one called ""Last Name"", you can use
+ ""[first name] [last name]"" to construct a new value for the email for this user containing their first name and last name.
+ The value [number] can be used to insert the sequence number for importing."
 
 #~ msgid "warnnopearhttprequest"
 #~ msgstr "Poslati poskušaš oddaljen URL, ampak PEAR::HTTP/Request ni na voljo, tako, da to ne bo uspešno"
@@ -10552,7 +10592,10 @@ msgstr ""
 #~ msgstr "razširi"
 
 #~ msgid "norulesyet"
-#~ msgstr "Ni definiranih pravil odbojev.      Lahko kliknete na ""Ustvari pravilo za odboje"" za samodejno generiranje pravil osnovanih na obstoječih pravilih.      Rezultat bo veliko pravil, ki jih boste morao pregledati in aktivirati.      S časom je potrebno dodati nova pravila, ko se število odbojev poveča."
+#~ msgstr "Ni definiranih pravil odbojev.
+     Lahko kliknete na ""Ustvari pravilo za odboje"" za samodejno generiranje pravil osnovanih na obstoječih pravilih.
+     Rezultat bo veliko pravil, ki jih boste morao pregledati in aktivirati.
+     S časom je potrebno dodati nova pravila, ko se število odbojev poveča."
 
 #~ msgid "Upload new image"
 #~ msgstr "Prenesi novo sliko"
@@ -10591,7 +10634,16 @@ msgstr ""
 #~ msgstr "Test output:"
 
 #~ msgid "strAccessExplain"
-#~ msgstr "<hr/> <p>Nastavitev dovoljenj za vpogled strani v sistemu:</p> <ul> <li>Vse: admin ima vsa dovoljenja</li> <li>Pogled: admin lahko vidi strani, vendar jih ne more spreminjati. Velja za strani ""uporabnik"", ""uporabniki"" in ""člani"".</li> <li>Noben: admin ne more videti te strani</li> <li>Owner: admin lahko vidi to stran, ampak vidi samo vsebino seznamov, katerih je lastnik</li> </ul> <p>Pozor: Geslo administratorja mora vsebovati najmanj 4 karakterje</p> "
+#~ msgstr "<hr/>
+ <p>Nastavitev dovoljenj za vpogled strani v sistemu:</p>
+ <ul>
+ <li>Vse: admin ima vsa dovoljenja</li>
+ <li>Pogled: admin lahko vidi strani, vendar jih ne more spreminjati. Velja za strani ""uporabnik"", ""uporabniki"" in ""člani"".</li>
+ <li>Noben: admin ne more videti te strani</li>
+ <li>Owner: admin lahko vidi to stran, ampak vidi samo vsebino seznamov, katerih je lastnik</li>
+ </ul>
+ <p>Pozor: Geslo administratorja mora vsebovati najmanj 4 karakterje</p>
+ "
 
 #~ msgid "(default is line break)"
 #~ msgstr "(default is line break)"
@@ -10827,7 +10879,8 @@ msgstr ""
 #~ msgid "nofpdf"
 #~ msgstr "You are trying to use PDF support without having FPDF loaded"
 
-#~ msgid "if there is only one visible list, should it be hidden in the page and automatically     subscribe users who sign up (0/1)"
+#~ msgid "if there is only one visible list, should it be hidden in the page and automatically
+     subscribe users who sign up (0/1)"
 #~ msgstr "Če je vidna le ena kategorija novic, ali naj bo skrita na naročnišči strani in naj se naročniki samodejno včlanijo vanjo? (0/1)"
 
 #~ msgid "adding"
@@ -10840,7 +10893,8 @@ msgstr ""
 #~ msgstr "Kategorija je aktivna"
 
 #~ msgid "excludelistexplain"
-#~ msgstr "Sporočilo bo poslano uporabnikom zgornjih kategorij,     razen, če so člani kategorij, ki ste jih izbrali tukaj."
+#~ msgstr "Sporočilo bo poslano uporabnikom zgornjih kategorij,
+     razen, če so člani kategorij, ki ste jih izbrali tukaj."
 
 #~ msgid "create_subscr_pages"
 #~ msgstr "Ustvari naročniške strani"
@@ -10909,7 +10963,11 @@ msgstr ""
 #~ msgstr "Izberi kolone, ki bodo vključene v izvoz"
 
 #~ msgid "importadmininfo"
-#~ msgstr "   The file you upload will need to contain the administrators you want to add to the system. The columns need to have the following headers: <b>email</b>, <b>loginname</b>, <b>password</b>. Any other columns will be added as admin attributes.  <b>Warning</b>: the file needs to be plain text. Do not upload binary files like a Word Document.   "
+#~ msgstr "
+   The file you upload will need to contain the administrators
+ you want to add to the system. The columns need to have the following headers: <b>email</b>, <b>loginname</b>, <b>password</b>. Any other columns will be added as admin attributes.
+  <b>Warning</b>: the file needs to be plain text. Do not upload binary files like a Word Document.
+   "
 
 #~ msgid "line_break_default"
 #~ msgstr "(default is line break)"
@@ -10977,8 +11035,10 @@ msgstr ""
 #~ msgid "selectlists"
 #~ msgstr "Izberi kategorije za pošiljanje"
 
-#~ msgid "to make sure you are updated when new versions come out.     Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
-#~ msgstr "to make sure you are updated when new versions come out.     Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
+#~ msgid "to make sure you are updated when new versions come out.
+     Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
+#~ msgstr "to make sure you are updated when new versions come out.
+     Sometimes security bugs are found which make it important to upgrade. Traffic on the list is very low."
 
 #~ msgid "Message Sending has started"
 #~ msgstr "Pošiljanje sporočil se je pričelo"
@@ -10988,9 +11048,6 @@ msgstr ""
 
 #~ msgid "PHPList Users"
 #~ msgstr "PHPList Uporabniki"
-
-#~ msgid "magicquoteswarning"
-#~ msgstr "Things will work better when PHP magic_quotes_gpc = <b>on</b>"
 
 #~ msgid "It is safe to click your stop button now, report will be sent by email to"
 #~ msgstr "Sedaj je varno za klik na gumb ""stop"", poročilo bo poslano na e-pošto:"
@@ -11054,9 +11111,6 @@ msgstr ""
 
 #~ msgid "WhenSignedUp"
 #~ msgstr "Ko so se prijavili"
-
-#~ msgid "magicruntimewarning"
-#~ msgstr "Things will work better when PHP magic_quotes_runtime = off"
 
 #~ msgid "name_not_unique"
 #~ msgstr "Ime ni dovolj unikatno"
@@ -11152,7 +11206,34 @@ msgstr ""
 #~ msgstr "Dimenzije področja za tekst (vrstice,kolone)"
 
 #~ msgid "TempSample"
-#~ msgstr "  While Socrates was speaking, Pythodorus thought that Parmenides and Zeno were not altogether pleased at the successive steps of the argument; but still they gave the closest attention, and often looked at one another, and smiled as if in admiration of him.  When he had finished, Parmenides expressed their feelings in the following words:--  Socrates, he said, I admire the bent of your mind towards philosophy; tell me now, was this your own distinction between ideas in themselves and the things which partake of them? and do you think that there is an idea of likeness apart from the likeness which we possess, and of the one and many, and of the other things which Zeno mentioned?  I think that there are such ideas, said Socrates.  Parmenides proceeded:  And would you also make absolute ideas of the just and the beautiful and the good, and of all that class?  Yes, he said, I should.  And would you make an idea of man apart from us and from all other human creatures, or of fire and water?  I am often undecided, Parmenides, as to whether I ought to include them or not.  "
+#~ msgstr "
+
+ While Socrates was speaking, Pythodorus thought that Parmenides and Zeno
+ were not altogether pleased at the successive steps of the argument; but
+ still they gave the closest attention, and often looked at one another, and
+ smiled as if in admiration of him.  When he had finished, Parmenides
+ expressed their feelings in the following words:--
+
+ Socrates, he said, I admire the bent of your mind towards philosophy; tell
+ me now, was this your own distinction between ideas in themselves and the
+ things which partake of them? and do you think that there is an idea of
+ likeness apart from the likeness which we possess, and of the one and many,
+ and of the other things which Zeno mentioned?
+
+ I think that there are such ideas, said Socrates.
+
+ Parmenides proceeded:  And would you also make absolute ideas of the just
+ and the beautiful and the good, and of all that class?
+
+ Yes, he said, I should.
+
+ And would you make an idea of man apart from us and from all other human
+ creatures, or of fire and water?
+
+ I am often undecided, Parmenides, as to whether I ought to include them or
+ not.
+
+ "
 
 #~ msgid "Users apply"
 #~ msgstr "Uporabnikov ustreza"
@@ -11215,7 +11296,8 @@ msgstr ""
 #~ msgstr "Info o sporočilu"
 
 #~ msgid "messagefooterexplanation"
-#~ msgstr "Uporabi <b>[UNSUBSCRIBE]</b> za vstavitev osebne strani za odjavo vsakega uporabnika.     <br/>Uporabi <b>[PREFERENCES]</b> za vstavitev povezave za urejanje podrobnosti vsakega uporabnika"
+#~ msgstr "Uporabi <b>[UNSUBSCRIBE]</b> za vstavitev osebne strani za odjavo vsakega uporabnika.
+     <br/>Uporabi <b>[PREFERENCES]</b> za vstavitev povezave za urejanje podrobnosti vsakega uporabnika"
 
 #~ msgid "Is this user Super Admin?"
 #~ msgstr "Ali je ta uporabnik super Administrator?"

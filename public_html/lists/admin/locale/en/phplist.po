@@ -10275,12 +10275,6 @@ msgstr "Suppression List"
 #~ msgid "In safe mode, not everything will work as expected"
 #~ msgstr "In safe mode, not everything will work as expected"
 
-#~ msgid "Things will work better when PHP magic_quotes_gpc = on"
-#~ msgstr "Things will work better when PHP magic_quotes_gpc = <b>on</b>"
-
-#~ msgid "Things will work better when PHP magic_quotes_runtime = off"
-#~ msgstr "Things will work better when PHP magic_quotes_runtime = off"
-
 #~ msgid "You do not have enough privileges to access this page"
 #~ msgstr "You do not have enough privileges to access this page"
 
