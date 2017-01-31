@@ -602,7 +602,7 @@ if (!defined('AWS_POSTURL')) {
     define('AWS_POSTURL', 'https://email.us-east-1.amazonaws.com/');
 }
 if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
-    define('PHPLIST_POWEREDBY_URLROOT', 'http://powered.phplist.com/images');
+    define('PHPLIST_POWEREDBY_URLROOT', 'https://d3u7tsw7cvar0t.cloudfront.net/images/');
 }
 
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
