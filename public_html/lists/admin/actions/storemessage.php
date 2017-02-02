@@ -53,15 +53,7 @@ foreach ($_POST as $key => $val) { //#17566 - we are only interested in POST dat
       print $key .' '.$val;
     */
     setMessageData($id, $key, $val);
-    if (get_magic_quotes_gpc()) {
-        if (is_string($val)) {
-            $messagedata[$key] = stripslashes($val);
-        } else {
-            $messagedata[$key] = $val;
-        }
-    } else {
-        $messagedata[$key] = $val;
-    }
+    $messagedata[$key] = $val;
 }
 unset($GLOBALS['MD']);
 

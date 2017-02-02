@@ -7276,7 +7276,7 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:485
 msgid ""
-"Your PHP version is out of date. phpList requires PHP version 5.4.0 or "
+"Your PHP version is out of date. phpList requires PHP version 5.6.0 or "
 "higher."
 msgstr ""
 
