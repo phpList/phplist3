@@ -213,14 +213,21 @@ $ls->usePanel($paging);
  * */
 if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
     $membersDisplay = listMemberCounts(0);
-    $desc = s('All subscribers');
+    $desc = s('Total') . '(' . s('All subscribers'). ')';
 
-    $element = '<!-- ' . $row['id'] . '-->' . s('All subscribers');
+    $element = '<!-- ' . $row['id'] . '--><strong>' . ucwords(s('Total')) . ' (' . strtolower(s('All subscribers')). ')</strong>';
     $ls->addElement($element);
     $ls->setClass($element, 'rows row1');
     $ls->addColumn($element,
         $GLOBALS['I18N']->get('Members'),
-        '<div style="display:inline-block;text-align:right;width:50%;float:left;">' . $membersDisplay . '</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id=all" title="' . $GLOBALS['I18N']->get('View Members') . '">' . $GLOBALS['I18N']->get('View Members') . '</a></span>');
+        '<div style="display:inline-block;text-align:right;width:50%;float:left;">' . 
+            '<strong>' . $membersDisplay . '</strong> 
+        </div>
+        <span class="view" style="text-align:left;display:inline-block;float:right;width:48%;">
+            <a class="button " href="./?page=members&id=all" title="' . $GLOBALS['I18N']->get('View Members') . '">' . 
+                $GLOBALS['I18N']->get('View Members') . '
+            </a>
+        </span>');
 
     $deletebutton = new ConfirmButton(
         s('This is a system list. You cannot delete it.'),
