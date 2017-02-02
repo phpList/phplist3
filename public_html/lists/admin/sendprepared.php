@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 echo '<hr/><p class="information">';
 
@@ -7,7 +7,7 @@ $access = accessLevel('sendprepared');
 
 switch ($access) {
     case 'owner':
-        $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
+        $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
         break;
     case 'all':
         $subselect = '';
@@ -24,7 +24,7 @@ if ($message && $list) {
     $lists = array();
     if (is_array($list)) {
         if ($list['all']) {
-            $res = Sql_query('select * from ' . $tables['list'] . " $subselect");
+            $res = Sql_query('select * from '.$tables['list']." $subselect");
             while ($row = Sql_fetch_array($res)) {
                 if ($row['active']) {
                     array_push($lists, $row['id']);
@@ -57,7 +57,7 @@ if ($message && $list) {
             addslashes($msg['fromfield']),
             addslashes($msg['tofield']),
             addslashes($msg['replyto']),
-            addslashes($msg['message'] . "\n##LISTOWNER=" . $owner),
+            addslashes($msg['message']."\n##LISTOWNER=".$owner),
             addslashes($msg['footer']),
             $msg['userselection'],
             $msg['htmlformatted'],
@@ -70,10 +70,9 @@ if ($message && $list) {
             $result = Sql_query("insert into {$tables['listmessage']} (messageid,listid,entered) values($messageid,$list,now())");
         }
     }
-    $done = 1;
-    ?>
+    $done = 1; ?>
     <h3>Message Queued for sending</h3>
-    <?php #echo $num ?> <!--users apply (at the moment, independent of list membership)<p class="x">-->
+    <?php //echo $num?> <!--users apply (at the moment, independent of list membership)<p class="x">-->
     <?php
 
 } elseif ($send && !$message) {
@@ -89,22 +88,22 @@ if ($message && $list) {
 }
 
 if (!$done) {
-    print 'To send a prepared message, check the radio button next to the message you want to send and click "Send"';
-    print formStart('name="sendpreparedform" class="sendpreparedSend" ');
+    echo 'To send a prepared message, check the radio button next to the message you want to send and click "Send"';
+    echo formStart('name="sendpreparedform" class="sendpreparedSend" ');
 
     $req = Sql_Query("select * from {$tables['message']} where status = 'prepared'");
     if (!Sql_Affected_Rows()) {
-        Error('No prepared messages found. You need to ' . PageLink2('preparesend', 'Prepare') . ' one first');
+        Error('No prepared messages found. You need to '.PageLink2('preparesend', 'Prepare').' one first');
     }
     while ($message = Sql_Fetch_Array($req)) {
-        print '<hr/>Subject: <b>' . $message['subject'] . '</b>, ';
-        print 'From: <b>' . $message['fromfield'] . '</b> <br/>';
-        print 'Send this message <input type="radio" name="message" value="' . $message['id'] . '" /><br/><br/>';
-        print '<p class="information">[start of message]</p>';
-        print '<iframe src="?page=viewmessage&embed=yes&omitall=yes&amp;id=' . $message['id'] . '"
+        echo '<hr/>Subject: <b>'.$message['subject'].'</b>, ';
+        echo 'From: <b>'.$message['fromfield'].'</b> <br/>';
+        echo 'Send this message <input type="radio" name="message" value="'.$message['id'].'" /><br/><br/>';
+        echo '<p class="information">[start of message]</p>';
+        echo '<iframe src="?page=viewmessage&embed=yes&omitall=yes&amp;id='.$message['id'].'"
     scrolling="auto" width=100% height=450 margin=0 frameborder=0>
   </iframe>';
-        print '<p class="information">[end of message]</p>';
+        echo '<p class="information">[end of message]</p>';
     }
 
     $html = '<hr/><p class="information">Please select the lists you want to send it to:
@@ -115,18 +114,18 @@ if (!$done) {
     $result = Sql_query("SELECT * FROM {$tables['list']} $subselect");
     $num = 0;
     while ($row = Sql_fetch_array($result)) {
-        $html .= '<li><input type=checkbox name=list[' . $row['id'] . '] value=signup ';
+        $html .= '<li><input type=checkbox name=list['.$row['id'].'] value=signup ';
         if ($list[$row['id']] == 'signup') {
             $html .= 'checked="checked"';
         }
-        $html .= ' />' . $row['name'];
+        $html .= ' />'.$row['name'];
         if ($row['active']) {
             $html .= ' (List is Active)';
         } else {
             $html .= ' (List is not Active)';
         }
 
-        $desc = nl2br(StripSlashes($row['description']));
+        $desc = nl2br(stripslashes($row['description']));
 
         $html .= "<br/>$desc</li>";
         $some = 1;
@@ -135,19 +134,18 @@ if (!$done) {
     }
 
     if (!$some) {
-        echo $html . 'Sorry there are currently no lists available';
+        echo $html.'Sorry there are currently no lists available';
     }
     if ($num == 1) {
-        print '<input type="hidden" name="list[' . $list . ']" value="signup" />';
+        echo '<input type="hidden" name="list['.$list.']" value="signup" />';
     } else {
-        print $html;
+        echo $html;
         $buttonmsg = ' to the Selected Mailinglists';
-    }
-
-    ?>
+    } ?>
     </ul>
     <input class="submit" type="submit" name=send value="Send Message <?php echo $buttonmsg ?>"
            onclick="document.sendpreparedform.submit()"/>
     </form>
     <?php
+
 } ?>

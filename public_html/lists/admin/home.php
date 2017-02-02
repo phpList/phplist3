@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 ob_end_flush();
 $upgrade_required = 0;
 $canUpgrade = checkAccess('upgrade');
@@ -8,17 +8,17 @@ $canUpgrade = checkAccess('upgrade');
 if (Sql_Table_exists($tables['config'], 1)) {
     $dbversion = getConfig('version');
     if ($dbversion != VERSION && $canUpgrade) {
-        Error($GLOBALS['I18N']->get('Your database is out of date, please make sure to upgrade') . '<br/>' .
-            $GLOBALS['I18N']->get('Your version') . ' : ' . $dbversion . '<br/>' .
-            $GLOBALS['I18N']->get('phplist version') . ' : ' . VERSION .
-            '<br/>' . PageLink2('upgrade', $GLOBALS['I18N']->get('Upgrade'))
+        Error($GLOBALS['I18N']->get('Your database is out of date, please make sure to upgrade').'<br/>'.
+            $GLOBALS['I18N']->get('Your version').' : '.$dbversion.'<br/>'.
+            $GLOBALS['I18N']->get('phplist version').' : '.VERSION.
+            '<br/>'.PageLink2('upgrade', $GLOBALS['I18N']->get('Upgrade'))
         );
         $upgrade_required = 1;
     }
 } else {
-    Info($GLOBALS['I18N']->get('Database has not been initialised') . '. ' .
-        $GLOBALS['I18N']->get('go to') . ' ' .
-        PageLink2('initialise&firstinstall=1', $GLOBALS['I18N']->get('Initialise Database')) . ' ' .
+    Info($GLOBALS['I18N']->get('Database has not been initialised').'. '.
+        $GLOBALS['I18N']->get('go to').' '.
+        PageLink2('initialise&firstinstall=1', $GLOBALS['I18N']->get('Initialise Database')).' '.
         $GLOBALS['I18N']->get('to continue'), 1);
     $GLOBALS['firsttime'] = 1;
     $_SESSION['firstinstall'] = 1;
@@ -26,16 +26,16 @@ if (Sql_Table_exists($tables['config'], 1)) {
     return;
 }
 
-## trigger this somewhere else?
+//# trigger this somewhere else?
 refreshTlds();
 
-# check for latest version
+// check for latest version
 $checkinterval = sprintf('%d', getConfig('check_new_version'));
-if (!isset($checkinterval)) {
+if (empty($checkinterval)) {
     $checkinterval = 7;
 }
 
-$showUpdateAvail = !empty($_GET['showupdate']); ## just to check the design
+$showUpdateAvail = !empty($_GET['showupdate']); //# just to check the design
 $thisversion = VERSION;
 $thisversion = preg_replace("/[^\.\d]/", '', $thisversion);
 $latestversion = getConfig('updateavailable');
@@ -43,20 +43,20 @@ $showUpdateAvail = $showUpdateAvail || (!empty($latestversion) && !versionCompar
 
 if (!$showUpdateAvail && $checkinterval) {
 
-    ##https://mantis.phplist.com/view.php?id=16815
+    //#https://mantis.phplist.com/view.php?id=16815
     $query = sprintf('select date_add(value, interval %d day) < now() as needscheck from %s where item = "updatelastcheck"',
         $checkinterval, $tables['config']);
     $needscheck = Sql_Fetch_Row_Query($query);
     if ($needscheck[0] != '0') {
-        @ini_set('user_agent', NAME . ' (phplist version ' . VERSION . ')');
+        @ini_set('user_agent', NAME.' (phplist version '.VERSION.')');
         @ini_set('default_socket_timeout', 5);
         if ($fp = @fopen('https://www.phplist.com/files/LATESTVERSION', 'r')) {
             $latestversion = fgets($fp);
             $latestversion = preg_replace("/[^\.\d]/", '', $latestversion);
             @fclose($fp);
             if (!versionCompare($thisversion, $latestversion)) {
-                ## remember this, so we can remind about the update, without the need to check the phplist site
-                ## hmmm, this causes it to be "stuck" on the last version checked
+                //# remember this, so we can remind about the update, without the need to check the phplist site
+                //# hmmm, this causes it to be "stuck" on the last version checked
                 SaveConfig('updateavailable', $latestversion, 0, true);
                 $showUpdateAvail = true;
             }
@@ -66,17 +66,17 @@ if (!$showUpdateAvail && $checkinterval) {
 }
 
 if ($showUpdateAvail) {
-    print '<div class="newversion note">';
-    print $GLOBALS['I18N']->get('A new version of phpList is available!');
-    print '<br/>';
-    print '<br/>' . $GLOBALS['I18N']->get('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
-    print '<br/>' . $GLOBALS['I18N']->get('Your version') . ': <b>' . $thisversion . '</b>';
-    print '<br/>' . $GLOBALS['I18N']->get('Latest version') . ': <b>' . $latestversion . '</b><br/>  ';
-    print '<a href="https://www.phplist.com/latestchanges?utm_source=pl' . $thisversion . '&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="' . s('Read what has changed in the new version') . '" target="_blank">' . $GLOBALS['I18N']->get('View what has changed') . '</a>&nbsp;&nbsp;';
-    print '<a href="https://www.phplist.com/download?utm_source=pl' . $thisversion . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . $GLOBALS['I18N']->get('Download') . '</a></div>';
+    echo '<div class="newversion note">';
+    echo s('A new version of phpList is available!');
+    echo '<br/>';
+    echo '<br/>'.s('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
+    echo '<br/>'.s('Your version').': <b>'.$thisversion.'</b>';
+    echo '<br/>'.s('Latest version').': <b>'.$latestversion.'</b><br/>  ';
+    echo '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version').'" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
+    echo '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version').'" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
 }
 
-print '<div class="accordion">';
+echo '<div class="accordion">';
 
 $some = 0;
 $ls = new WebblerListing('');
@@ -125,10 +125,10 @@ if (checkAccess('statsoverview')) {
 }
 
 if ($some) {
-    print '<h3><a name="main">' . $GLOBALS['I18N']->get('Main') . '</a></h3>';
+    echo '<h3><a name="main">'.$GLOBALS['I18N']->get('Main').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
 $some = 0;
@@ -172,10 +172,10 @@ if (checkAccess('reconcileusers')) {
     $ls->setClass($element, 'reconcileusers');
 }
 if ($some) {
-    print '<h3><a name="list">' . $GLOBALS['I18N']->get('List and user functions') . '</a></h3>';
+    echo '<h3><a name="list">'.$GLOBALS['I18N']->get('List and user functions').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 $some = 0;
 $ls = new WebblerListing('');
@@ -184,7 +184,7 @@ if (checkAccess('configure')) {
     $element = $GLOBALS['I18N']->get('configure');
     $ls->addElement($element, PageURL2('configure'));
     $ls->addColumn($element, '&nbsp;',
-        PageLinkClass('configure', $GLOBALS['I18N']->get('Configure') . ' ' . NAME, '', 'hometext'));
+        PageLinkClass('configure', $GLOBALS['I18N']->get('Configure').' '.NAME, '', 'hometext'));
     $ls->setClass($element, 'configure');
 }
 if (checkAccess('attributes') && !$_GET['pi']) {
@@ -195,12 +195,12 @@ if (checkAccess('attributes') && !$_GET['pi']) {
         PageLinkClass('attributes', $GLOBALS['I18N']->get('Configure Attributes'), '', 'hometext'));
     $ls->setClass($element, 'configure-attributes');
     if (Sql_table_exists($tables['attribute'])) {
-        $res = Sql_Query('select * from ' . $tables['attribute'], 0);
+        $res = Sql_Query('select * from '.$tables['attribute'], 0);
         while ($row = Sql_Fetch_array($res)) {
             if ($row['type'] != 'checkbox' && $row['type'] != 'textarea' && $row['type'] != 'textline' && $row['type'] != 'hidden') {
-                $ls->addElement($row['name'], PageURL2('editattributes&amp;id=' . $row['id']));
-                $ls->addColumn($row['name'], '&nbsp;', PageLinkClass('editattributes&amp;id=' . $row['id'],
-                    $GLOBALS['I18N']->get('Control values for') . ' ' . $row['name'], '', 'hometext'));
+                $ls->addElement($row['name'], PageURL2('editattributes&amp;id='.$row['id']));
+                $ls->addColumn($row['name'], '&nbsp;', PageLinkClass('editattributes&amp;id='.$row['id'],
+                    $GLOBALS['I18N']->get('Control values for').' '.$row['name'], '', 'hometext'));
                 $ls->setClass($row['name'], 'custom-attribute');
             }
         }
@@ -216,10 +216,10 @@ if (checkAccess('spage')) {
 }
 
 if ($some) {
-    print '<h3><a name="config">' . $GLOBALS['I18N']->get('Configuration Functions') . '</a></h3>';
+    echo '<h3><a name="config">'.$GLOBALS['I18N']->get('Configuration Functions').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
 $some = 0;
@@ -242,10 +242,10 @@ if (checkAccess('adminattributes')) {
     $ls->setClass($element, 'adminattributes');
 }
 if ($some) {
-    print '<h3><a name="admin">' . $GLOBALS['I18N']->get('Administrator Functions') . '</a></h3>';
+    echo '<h3><a name="admin">'.$GLOBALS['I18N']->get('Administrator Functions').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
 $some = 0;
@@ -319,10 +319,10 @@ if (checkAccess('bounces')) {
     $ls->setClass($element, 'bounces');
 }
 if ($some) {
-    print '<h3><a name="msg">' . $GLOBALS['I18N']->get('Message Functions') . '</a></h3>';
+    echo '<h3><a name="msg">'.$GLOBALS['I18N']->get('Message Functions').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
 //obsolete, moved to rssmanager plugin
@@ -346,7 +346,7 @@ if ($some) {
 //  $ls->addElement($element,PageURL2("purgerss"));
 //  $ls->addColumn($element,"&nbsp;",$GLOBALS['I18N']->get('Purge rss items'));
 //}
-//
+
 //obsolete, moved to rssmanager plugin
 //if ($some && ENABLE_RSS && !array_key_exists("rssmanager", $GLOBALS["plugins"]))
 //  print $ls->display();
@@ -359,19 +359,19 @@ if (count($GLOBALS['plugins'])) {
         if (is_array($menu)) {
             foreach ($menu as $page => $desc) {
                 $some = 1;
-                $ls->addElement($pluginName . ' ' . $page, PageUrl2("$page&amp;pi=$pluginName"));
-                $ls->addColumn($pluginName . ' ' . $page, '&nbsp;',
+                $ls->addElement($pluginName.' '.$page, PageUrl2("$page&amp;pi=$pluginName"));
+                $ls->addColumn($pluginName.' '.$page, '&nbsp;',
                     PageLinkClass("$page&amp;pi=$pluginName", $GLOBALS['I18N']->get($desc), '', 'hometext'));
-                $ls->setClass($pluginName . ' ' . $page, 'plugin');
+                $ls->setClass($pluginName.' '.$page, 'plugin');
             }
         }
     }
 }
 if ($some) {
-    print '<h3><a name="plugins">' . $GLOBALS['I18N']->get('Plugins') . '</a></h3>';
+    echo '<h3><a name="plugins">'.$GLOBALS['I18N']->get('Plugins').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
 $some = 0;
@@ -380,7 +380,7 @@ if (checkAccess('initialise') && !$_GET['pi']) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('setup');
     $ls->addElement($element, PageURL2('setup'));
-    $ls->addColumn($element, '&nbsp;', PageLinkClass('setup', $GLOBALS['I18N']->get('Setup ') . ' ' . NAME, '', 'hometext'));
+    $ls->addColumn($element, '&nbsp;', PageLinkClass('setup', $GLOBALS['I18N']->get('Setup ').' '.NAME, '', 'hometext'));
     $ls->setClass($element, 'setup');
 }
 if (checkAccess('upgrade') && !$_GET['pi'] && $upgrade_required) {
@@ -416,10 +416,10 @@ if (checkAccess('admin') && $GLOBALS['require_login'] && !isSuperUser()) {
     $ls->setClass($element, 'change-pass');
 }
 if ($some) {
-    print '<h3><a name="system">' . $GLOBALS['I18N']->get('System Functions') . '</a></h3>';
+    echo '<h3><a name="system">'.$GLOBALS['I18N']->get('System Functions').'</a></h3>';
     $ls->noShader();
     $ls->noHeader();
-    print '<div>' . $ls->display() . '</div>';
+    echo '<div>'.$ls->display().'</div>';
 }
 
-print '</div>';
+echo '</div>';

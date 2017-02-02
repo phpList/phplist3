@@ -1,10 +1,10 @@
 <?php
 /**
  * Build the news <ul> element from the rss feed items.
- * 
+ *
  * @param ONYX_RSS $rss onyx-rss instance
  * @param int      $max the maximum number of feed items to return
- * 
+ *
  * @return string the generated html or an empty string
  */
 function buildNews($rss, $max)
@@ -19,7 +19,7 @@ function buildNews($rss, $max)
     $rss->rss['output_index'] = -1;
 
     while ($item = $rss->getNextItem()) {
-        $count++;
+        ++$count;
 
         if ($count > $max) {
             break;
@@ -32,7 +32,7 @@ function buildNews($rss, $max)
             $date = str_replace($regs[0], '', $date);
         }
 
-        ## remove the '<p>&nbsp;</p>' in the descriptions
+        //# remove the '<p>&nbsp;</p>' in the descriptions
         $desc = $item['description'];
         $desc = str_replace('<p>&nbsp;</p>', '', $desc);
         $desc = '';
@@ -53,7 +53,7 @@ function buildNews($rss, $max)
 $newsSize = 'long';
 
 if (empty($_SESSION['adminloggedin'])
-    || (isset($_GET['page']) && !in_array($_GET['page'], array('home', 'about', 'dashboard', 'community','login')))) {
+    || (isset($_GET['page']) && !in_array($_GET['page'], array('home', 'about', 'dashboard', 'community', 'login')))) {
     $newsSize = 'short';
 }
 

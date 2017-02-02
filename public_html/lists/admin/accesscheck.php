@@ -1,8 +1,8 @@
 <?php
 
 if (!defined('PHPLISTINIT')) {
-    #	print backtrace();
-    print 'Invalid Request';
+    //	print backtrace();
+    echo 'Invalid Request';
     exit;
 }
 
@@ -19,8 +19,8 @@ function accessLevel($page)
         return 0;
     }
 
-    ## for non-supers we only allow owner views
-    ## this is likely to need tweaking
+    //# for non-supers we only allow owner views
+    //# this is likely to need tweaking
     return 'owner';
 }
 
@@ -33,14 +33,14 @@ function requireAccessLevel($page, $level)
 
 function isSuperUser()
 {
-    ## for now mark webbler admins superuser
+    //# for now mark webbler admins superuser
     if (defined('WEBBLER') || defined('IN_WEBBLER')) {
         return 1;
     }
     global $tables;
     $issuperuser = 0;
-#  if (!isset($_SESSION["adminloggedin"])) return 0;
-    # if (!is_array($_SESSION["logindetails"])) return 0;
+//  if (!isset($_SESSION["adminloggedin"])) return 0;
+    // if (!is_array($_SESSION["logindetails"])) return 0;
     if (isset($_SESSION['logindetails']['superuser'])) {
         return $_SESSION['logindetails']['superuser'];
     }

@@ -1,11 +1,11 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-# for now redirect to export
+// for now redirect to export
 
-# it would be good to rewrite this to export the user search selection
-# in the users page instead.
+// it would be good to rewrite this to export the user search selection
+// in the users page instead.
 
-Header('Location: ./?page=export');
+header('Location: ./?page=export');
 exit;

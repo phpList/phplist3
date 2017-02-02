@@ -6,7 +6,7 @@
   phpList, which is beneficial to it's future development.
 
   Michiel Dethmers, phpList Ltd 2003 - 2015
-  * 
+  *
 */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
@@ -46,8 +46,8 @@
 <?php
 if (isset($GLOBALS['config']['head'])) {
     foreach ($GLOBALS['config']['head'] as $sHtml) {
-        print $sHtml;
-        print "\n";
-        print "\n";
+        echo $sHtml;
+        echo "\n";
+        echo "\n";
     }
 }

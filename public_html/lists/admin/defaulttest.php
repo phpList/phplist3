@@ -26,7 +26,7 @@ class phplistTest
         if (!$this->userdata['id']) {
             Sql_Query(sprintf('insert into %s (email) values("%s")', $GLOBALS['tables']['user'],
                 $GLOBALS['developer_email']));
-            print 'Bounce user created: ' . $GLOBALS['developer_email'] . '<br/>';
+            echo 'Bounce user created: '.$GLOBALS['developer_email'].'<br/>';
         }
         $GLOBALS['message_envelope'] = $GLOBALS['developer_email'];
 

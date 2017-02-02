@@ -1,15 +1,15 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
-# library used for plugging into the webbler, instead of "connect"
-# depricated and should be removed
-include_once dirname(__FILE__) . '/class.phplistmailer.php';
+require_once dirname(__FILE__).'/accesscheck.php';
+// library used for plugging into the webbler, instead of "connect"
+// depricated and should be removed
+include_once dirname(__FILE__).'/class.phplistmailer.php';
 
 $domain = getConfig('domain');
 $website = getConfig('website');
 
 if (!$GLOBALS['message_envelope']) {
-    # why not try set it to "person in charge of this system". Will help get rid of a lot of bounces to nobody@server :-)
+    // why not try set it to "person in charge of this system". Will help get rid of a lot of bounces to nobody@server :-)
     $admin = getConfig('admin_address');
     if (!empty($admin)) {
         $GLOBALS['message_envelope'] = $admin;
@@ -22,21 +22,52 @@ if (defined('IN_WEBBLER') && is_object($GLOBALS['config']['plugins']['phplist'])
 
 /* this should probably move to init.php */
 $GLOBALS['bounceruleactions'] = array(
-    'deleteuser' => $GLOBALS['I18N']->get('delete subscriber'),
-    'unconfirmuser' => $GLOBALS['I18N']->get('unconfirm subscriber'),
-    'blacklistuser' => $GLOBALS['I18N']->get('blacklist subscriber'),
-    'blacklistemail' => $GLOBALS['I18N']->get('blacklist email address'),
-    'deleteuserandbounce' => $GLOBALS['I18N']->get('delete subscriber and bounce'),
-    'unconfirmuseranddeletebounce' => $GLOBALS['I18N']->get('unconfirm subscriber and delete bounce'),
-    'blacklistuseranddeletebounce' => $GLOBALS['I18N']->get('blacklist subscriber and delete bounce'),
+    'deleteuser'                    => $GLOBALS['I18N']->get('delete subscriber'),
+    'unconfirmuser'                 => $GLOBALS['I18N']->get('unconfirm subscriber'),
+    'blacklistuser'                 => $GLOBALS['I18N']->get('blacklist subscriber'),
+    'blacklistemail'                => $GLOBALS['I18N']->get('blacklist email address'),
+    'deleteuserandbounce'           => $GLOBALS['I18N']->get('delete subscriber and bounce'),
+    'unconfirmuseranddeletebounce'  => $GLOBALS['I18N']->get('unconfirm subscriber and delete bounce'),
+    'blacklistuseranddeletebounce'  => $GLOBALS['I18N']->get('blacklist subscriber and delete bounce'),
     'blacklistemailanddeletebounce' => $GLOBALS['I18N']->get('blacklist email address and delete bounce'),
-    'deletebounce' => $GLOBALS['I18N']->get('delete bounce'),
+    'deletebounce'                  => $GLOBALS['I18N']->get('delete bounce'),
 );
 
 if (!isset($GLOBALS['developer_email'])) {
-    ini_set('error_append_string', 'phpList version ' . VERSION);
+    ini_set('error_append_string', 'phpList version '.VERSION);
     ini_set('error_prepend_string', '<p class="error">Sorry a software error occurred:<br/>
     Please <a href="http://mantis.phplist.com">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
+}
+
+function cleanListName($name) { ## we allow certain tags in a listname
+    $name = strip_tags($name,'<br><p><h1><h2><h3><b><i>');
+    $allowedAttr = array('title','class','style');
+
+    // we need to clean attributes as well.
+
+    preg_match_all('~<(/?)([\w]+)([^>]*)/?>~',$name,$regs);
+
+    for ($i=0; $i< sizeof($regs[0]); $i++ ) {
+        $clean = '';
+  #      print $i . ' '.htmlspecialchars($regs[0][$i]).'<h2>'.$regs[1][$i].'</h2><b>'.strlen($regs[3][$i]).'</b><br/> ';
+        if ($regs[1][$i] == '/') {
+            $clean .= '</'.$regs[2][$i].'>';
+        } elseif (!strlen($regs[3][$i]) || $regs[3][$i] == '/') {
+            $clean .= '<'.$regs[2][$i].$regs[3][$i].'>';
+        } else {
+            $attributes = $regs[3][$i];
+            preg_match_all('/([\w]+)="([^\"]+)"/',$attributes,$attrregs); // only allow properly formatted, without spacing
+            $newattributes = '';
+            for ($j=0; $j< sizeof($attrregs[0]); $j++ ) {
+                if (in_array($attrregs[1][$j],$allowedAttr)) {
+                    $newattributes .= $attrregs[1][$j].'="'.$attrregs[2][$j].'" ';
+                }
+            }
+            $clean .= '<'.$regs[2][$i].' '.trim($newattributes).'>';
+        }
+        $name = str_ireplace($regs[0][$i],$clean,$name);
+    }
+    return $name;
 }
 
 function listName($id)
@@ -44,7 +75,7 @@ function listName($id)
     global $tables;
     $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
 
-    return $req[0] ? stripslashes($req[0]) : $GLOBALS['I18N']->get('Unnamed List');
+    return $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
 }
 
 function setMessageData($msgid, $name, $value)
@@ -57,27 +88,26 @@ function setMessageData($msgid, $name, $value)
     }
 
     if ($name == 'subject' || $name == 'campaigntitle') {
-        ## disallow html in the subject and title
+        //# disallow html in the subject and title
         $value = strip_tags($value);
     }
-
 
     if ($name == 'targetlist' && is_array($value)) {
         Sql_query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
         if (!empty($value['all']) || !empty($value['allactive'])) {
-            $res = Sql_query('select * from ' . $GLOBALS['tables']['list'] . ' ' . $GLOBALS['subselect']);
+            $res = Sql_query('select * from '.$GLOBALS['tables']['list'].' '.$GLOBALS['subselect']);
             while ($row = Sql_Fetch_Array($res)) {
                 $listid = $row['id'];
                 if ($row['active'] || !empty($value['all'])) {
-                    $result = Sql_query('insert ignore into ' . $GLOBALS['tables']['listmessage'] . "  (messageid,listid,entered) values($msgid,$listid,now())");
+                    $result = Sql_query('insert ignore into '.$GLOBALS['tables']['listmessage']."  (messageid,listid,entered) values($msgid,$listid,now())");
                 }
             }
-            ## once we used "all" to set all, unset it, to avoid confusion trying to unselect lists
+            //# once we used "all" to set all, unset it, to avoid confusion trying to unselect lists
             unset($value['all']);
         } else {
             foreach ($value as $listid => $val) {
-                if ($listid != 'unselect') { ## see #16940 - ignore a list called "unselect" which is there to allow unselecting all
-                    $query = sprintf(' insert into ' . $GLOBALS['tables']['listmessage'] . ' (messageid,listid,entered) values(%d, %d, now())',
+                if ($listid != 'unselect') { //# see #16940 - ignore a list called "unselect" which is there to allow unselecting all
+                    $query = sprintf(' insert into '.$GLOBALS['tables']['listmessage'].' (messageid,listid,entered) values(%d, %d, now())',
                         $msgid, $listid);
                     $result = Sql_Query($query);
                 }
@@ -85,24 +115,24 @@ function setMessageData($msgid, $name, $value)
         }
     }
     if (is_array($value) || is_object($value)) {
-        $value = 'SER:' . serialize($value);
+        $value = 'SER:'.serialize($value);
     }
     if ($name == 'footer') {
         // strip HTML comments
-        $value = preg_replace('/<!--.*-->/', '', $value);// this is ungreedy
+        $value = preg_replace('/<!--.*-->/', '', $value); // this is ungreedy
     }
 
     Sql_Query(sprintf('replace into %s set id = %d,name = "%s", data = "%s"',
         $GLOBALS['tables']['messagedata'], $msgid, addslashes($name), addslashes($value)));
-#  print "setting $name for $msgid to $value";
-#  exit;
+//  print "setting $name for $msgid to $value";
+//  exit;
 }
 
 function loadMessageData($msgid)
 {
     $default = array(
         'from' => getConfig('message_from_address'),
-        ## can add some more from below
+        //# can add some more from below
         'google_track' => getConfig('always_add_googletracking'),
     );
     if (empty($default['from'])) {
@@ -116,67 +146,67 @@ function loadMessageData($msgid)
         return $GLOBALS['MD'][$msgid];
     }
 
-    ## when loading an old message that hasn't got data stored in message data, load it from the message table
+    //# when loading an old message that hasn't got data stored in message data, load it from the message table
     $prevMsgData = Sql_Fetch_Assoc_Query(sprintf('select * from %s where id = %d',
         $GLOBALS['tables']['message'], $msgid));
 
     $finishSending = time() + DEFAULT_MESSAGEAGE;
 
     $messagedata = array(
-        'template' => getConfig('defaultmessagetemplate'),
-        'sendformat' => 'HTML',
-        'message' => '',
+        'template'       => getConfig('defaultmessagetemplate'),
+        'sendformat'     => 'HTML',
+        'message'        => '',
         'forwardmessage' => '',
-        'textmessage' => '',
-        'rsstemplate' => '',
-        'embargo' => array(
-            'year' => date('Y'),
-            'month' => date('m'),
-            'day' => date('d'),
-            'hour' => date('H'),
-            'minute' => date('i')
+        'textmessage'    => '',
+        'rsstemplate'    => '',
+        'embargo'        => array(
+            'year'   => date('Y'),
+            'month'  => date('m'),
+            'day'    => date('d'),
+            'hour'   => date('H'),
+            'minute' => date('i'),
         ),
         'repeatinterval' => 0,
-        'repeatuntil' => array(
-            'year' => date('Y'),
-            'month' => date('m'),
-            'day' => date('d'),
-            'hour' => date('H'),
-            'minute' => date('i')
+        'repeatuntil'    => array(
+            'year'   => date('Y'),
+            'month'  => date('m'),
+            'day'    => date('d'),
+            'hour'   => date('H'),
+            'minute' => date('i'),
         ),
         'requeueinterval' => 0,
-        'requeueuntil' => array(
-            'year' => date('Y'),
-            'month' => date('m'),
-            'day' => date('d'),
-            'hour' => date('H'),
-            'minute' => date('i')
+        'requeueuntil'    => array(
+            'year'   => date('Y'),
+            'month'  => date('m'),
+            'day'    => date('d'),
+            'hour'   => date('H'),
+            'minute' => date('i'),
         ),
         'finishsending' => array(
-            'year' => date('Y', $finishSending),
-            'month' => date('m', $finishSending),
-            'day' => date('d', $finishSending),
-            'hour' => date('H', $finishSending),
-            'minute' => date('i', $finishSending)
+            'year'   => date('Y', $finishSending),
+            'month'  => date('m', $finishSending),
+            'day'    => date('d', $finishSending),
+            'hour'   => date('H', $finishSending),
+            'minute' => date('i', $finishSending),
         ),
-        'fromfield' => '',
-        'subject' => '',
+        'fromfield'      => '',
+        'subject'        => '',
         'forwardsubject' => '',
-        'footer' => getConfig('messagefooter'),
-        'forwardfooter' => getConfig('forwardfooter'),
-        'status' => '',
-        'tofield' => '',
-        'replyto' => '',
-        'targetlist' => '',
+        'footer'         => getConfig('messagefooter'),
+        'forwardfooter'  => getConfig('forwardfooter'),
+        'status'         => '',
+        'tofield'        => '',
+        'replyto'        => '',
+        'targetlist'     => '',
         'criteria_match' => '',
-        'sendurl' => '',
-        'sendmethod' => 'inputhere', ## make a config
-        'testtarget' => '',
-        'notify_start' => getConfig('notifystart_default'),
-        'notify_end' => getConfig('notifyend_default'),
-        'google_track' => $default['google_track'] == 'true' || $default['google_track'] === true || $default['google_track'] == '1',
-        'excludelist' => array(),
-        'sentastest' => 0,
+        'sendurl'        => '',
+        'sendmethod'     => 'inputhere', //# make a config
+        'testtarget'     => '',
+        'notify_start'   => getConfig('notifystart_default'),
+        'notify_end'     => getConfig('notifyend_default'),
+        'google_track'   => $default['google_track'] == 'true' || $default['google_track'] === true || $default['google_track'] == '1',
+        'excludelist'    => array(),
+        'sentastest'     => 0,
     );
     if (is_array($prevMsgData)) {
         foreach ($prevMsgData as $key => $val) {
@@ -204,7 +234,7 @@ function loadMessageData($msgid)
         }
         if (!in_array($row['name'],
             array('astext', 'ashtml', 'astextandhtml', 'aspdf', 'astextandpdf'))
-        ) { ## don't overwrite counters in the message table from the data table
+        ) { //# don't overwrite counters in the message table from the data table
             $messagedata[stripslashes($row['name'])] = $data;
         }
     }
@@ -212,51 +242,51 @@ function loadMessageData($msgid)
     foreach (array('embargo', 'repeatuntil', 'requeueuntil') as $datefield) {
         if (!is_array($messagedata[$datefield])) {
             $messagedata[$datefield] = array(
-                'year' => date('Y'),
-                'month' => date('m'),
-                'day' => date('d'),
-                'hour' => date('H'),
-                'minute' => date('i')
+                'year'   => date('Y'),
+                'month'  => date('m'),
+                'day'    => date('d'),
+                'hour'   => date('H'),
+                'minute' => date('i'),
             );
         }
     }
 
     // Load lists that were targetted with message...
     $result = Sql_Query(sprintf('select list.name,list.id
-    from ' . $GLOBALS['tables']['listmessage'] . ' listmessage,' . $GLOBALS['tables']['list'] . ' list
+    from ' .$GLOBALS['tables']['listmessage'].' listmessage,'.$GLOBALS['tables']['list'].' list
      where listmessage.messageid = %d and listmessage.listid = list.id', $msgid));
     while ($lst = Sql_fetch_array($result)) {
         $messagedata['targetlist'][$lst['id']] = 1;
     }
 
-    ## backwards, check that the content has a url and use it to fill the sendurl
+    //# backwards, check that the content has a url and use it to fill the sendurl
     if (empty($messagedata['sendurl'])) {
 
-        ## can't do "ungreedy matching, in case the URL has placeholders, but this can potentially
-        ## throw problems
+        //# can't do "ungreedy matching, in case the URL has placeholders, but this can potentially
+        //# throw problems
         if (preg_match('/\[URL:(.*)\]/i', $messagedata['message'], $regs)) {
             $messagedata['sendurl'] = $regs[1];
         }
     }
     if (empty($messagedata['sendurl']) && !empty($messagedata['message'])) {
-        # if there's a message and no url, make sure to show the editor, and not the URL input
+        // if there's a message and no url, make sure to show the editor, and not the URL input
         $messagedata['sendmethod'] = 'inputhere';
     }
 
-    ### parse the from field into it's components - email and name
+    //## parse the from field into it's components - email and name
     if (preg_match('/([^ ]+@[^ ]+)/', $messagedata['fromfield'], $regs)) {
-        # if there is an email in the from, rewrite it as "name <email>"
+        // if there is an email in the from, rewrite it as "name <email>"
         $messagedata['fromname'] = str_replace($regs[0], '', $messagedata['fromfield']);
         $messagedata['fromemail'] = $regs[0];
-        # if the email has < and > take them out here
+        // if the email has < and > take them out here
         $messagedata['fromemail'] = str_replace('<', '', $messagedata['fromemail']);
         $messagedata['fromemail'] = str_replace('>', '', $messagedata['fromemail']);
-        # make sure there are no quotes around the name
+        // make sure there are no quotes around the name
         $messagedata['fromname'] = str_replace('"', '', ltrim(rtrim($messagedata['fromname'])));
     } elseif (strpos($messagedata['fromfield'], ' ')) {
-        # if there is a space, we need to add the email
+        // if there is a space, we need to add the email
         $messagedata['fromname'] = $messagedata['fromfield'];
-        #  $cached[$messageid]["fromemail"] = "listmaster@$domain";
+        //  $cached[$messageid]["fromemail"] = "listmaster@$domain";
         $messagedata['fromemail'] = $default['from'];
     } else {
         $messagedata['fromemail'] = $default['from'];
@@ -272,12 +302,12 @@ function loadMessageData($msgid)
 
     $messagedata['fromname'] = trim($messagedata['fromname']);
 
-    # erase double spacing
+    // erase double spacing
     while (strpos($messagedata['fromname'], '  ')) {
         $messagedata['fromname'] = str_replace('  ', ' ', $messagedata['fromname']);
     }
 
-    ## if the name ends up being empty, copy the email
+    //# if the name ends up being empty, copy the email
     if (empty($messagedata['fromname'])) {
         $messagedata['fromname'] = $messagedata['fromemail'];
     }
@@ -296,12 +326,12 @@ function loadMessageData($msgid)
             $messagedata['campaigntitle'] = '(no title)';
         }
     }
-    ## copy subject to title
+    //# copy subject to title
     if ($messagedata['campaigntitle'] == '(no title)' && $messagedata['subject'] != '(no subject)') {
         $messagedata['campaigntitle'] = $messagedata['subject'];
     }
     $GLOBALS['MD'][$msgid] = $messagedata;
-#  var_dump($messagedata);
+//  var_dump($messagedata);
     return $messagedata;
 }
 
@@ -320,39 +350,38 @@ function campaignTitle($id)
     return stripslashes($campaignTitle['title']);
 }
 
-#Send email with a random encrypted token.
+//Send an email with a password reset token to the specified adminId.
 function sendAdminPasswordToken($adminId)
 {
-    #Retrieve the admin login name.
+    //Invalidate extisting password reset tokens for this user
+    Sql_Query(sprintf("delete from %s where admin = '%s'", $GLOBALS['tables']['admin_password_request'], $adminId));
+
+    //Create random token
+    // @TODO alter database schema to allow longer tokens, currently 16 characters / 128 bits
+    $key = bin2hex(random_bytes(16));
+
+    // sql to insert token into the database, token can be used to change the password once executed.
+    $insertToken = sprintf("insert into %s(date, admin, key_value) values (now(), %d, '%s');",
+        $GLOBALS['tables']['admin_password_request'], $adminId, $key);
+
+    //Retrieve the admin login name and email address
     $SQLquery = sprintf('select loginname,email from %s where id=%d;', $GLOBALS['tables']['admin'], $adminId);
     $row = Sql_Fetch_Row_Query($SQLquery);
     $adminName = $row[0];
     $email = $row[1];
-    #Check if the token is not present in the database yet.
-    while (1) {
-        #Randomize the token to be encrypted and insert it into the db.
-        $date = date('U');
-        $random = rand(1, $date);
-        $key = md5($date ^ $random);
-        $SQLquery = sprintf("select * from %s where key_value = '%s'", $GLOBALS['tables']['admin_password_request'],
-            $key);
-        $row = Sql_Fetch_Row_Query($SQLquery);
-        //echo "<script text='javascript'>alert('".($row[0]=='')."');</script>";
-        if ($row[0] == '') {
-            break;
-        }
-    }
-    $query = sprintf("insert into %s(date, admin, key_value) values (now(), %d, '%s');",
-        $GLOBALS['tables']['admin_password_request'], $adminId, $key);
-    Sql_Query($query);
-    $urlroot = getConfig('website') . $GLOBALS['adminpages'];
-    #Build the email body to be sent, and finally send it.
-    $emailBody = $GLOBALS['I18N']->get('Hello') . ' ' . $adminName . "\n\n";
-    $emailBody .= $GLOBALS['I18N']->get('You have requested a new password for phpList.') . "\n\n";
-    $emailBody .= $GLOBALS['I18N']->get('To enter a new one, please visit the following link:') . "\n\n";
-    $emailBody .= sprintf('%s://%s/?page=login&token=%s', $GLOBALS['admin_scheme'], $urlroot, $key) . "\n\n";
+
+    $urlroot = getConfig('website').$GLOBALS['adminpages'];
+    //Build the email body to be sent, and finally send it.
+    $emailBody = $GLOBALS['I18N']->get('Hello').' '.$adminName."\n\n";
+    $emailBody .= $GLOBALS['I18N']->get('You have requested a new password for phpList.')."\n\n";
+    $emailBody .= $GLOBALS['I18N']->get('To enter a new one, please visit the following link:')."\n\n";
+    $emailBody .= sprintf('%s://%s/?page=login&token=%s', $GLOBALS['admin_scheme'], $urlroot, $key)."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have 24 hours left to change your password. After that, your token won\'t be valid.');
-    if (sendMail($email, $GLOBALS['I18N']->get('New password'), "\n\n" . $emailBody, '', '', true)) {
+
+    if (sendMail($email, $GLOBALS['I18N']->get('New password'), "\n\n".$emailBody, '', '', true)) {
+        //Insert the token into the database
+        Sql_Query($insertToken);
+
         return $GLOBALS['I18N']->get('A password change token has been sent to the corresponding email address.');
     } else {
         return $GLOBALS['I18N']->get('Error sending password change token');
@@ -374,7 +403,7 @@ function sendMail($to, $subject, $message, $header = '', $parameters = '', $skip
         return 1;
     }
 
-    # do a quick check on mail injection attempt, @@@ needs more work
+    // do a quick check on mail injection attempt, @@@ needs more work
     if (preg_match("/\n/", $to)) {
         logEvent('Error: invalid recipient, containing newlines, email blocked');
 
@@ -419,20 +448,20 @@ function constructSystemMail($message, $subject = '')
     } else {
         $textmessage = $message;
         $htmlmessage = $message;
-        #  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
+        //  $htmlmessage = str_replace("\n\n","\n",$htmlmessage);
         $htmlmessage = nl2br($htmlmessage);
-        ## make links clickable:
+        //# make links clickable:
         $htmlmessage = preg_replace('~https?://[^\s<]+~i', '<a href="$0">$0</a>', $htmlmessage);
     }
-    ## add li-s around the lists
+    //# add li-s around the lists
     if (preg_match('/<ul>\s+(\*.*)<\/ul>/imsxU', $htmlmessage, $listsmatch)) {
         $lists = $listsmatch[1];
         $listsHTML = '';
         preg_match_all('/\*([^\*]+)/', $lists, $matches);
         for ($i = 0; $i < count($matches[0]); ++$i) {
-            $listsHTML .= '<li>' . $matches[1][$i] . '</li>';
+            $listsHTML .= '<li>'.$matches[1][$i].'</li>';
         }
-        $htmlmessage = str_replace($listsmatch[0], '<ul>' . $listsHTML . '</ul>', $htmlmessage);
+        $htmlmessage = str_replace($listsmatch[0], '<ul>'.$listsHTML.'</ul>', $htmlmessage);
     }
 
     $htmltemplate = '';
@@ -455,7 +484,7 @@ function constructSystemMail($message, $subject = '')
         if (strpos($htmlcontent, '[SIGNATURE]')) {
             $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
         } elseif (strpos($htmlcontent, '</body>')) {
-            $htmlcontent = str_replace('</body>', $phpListPowered . '</body>', $htmlcontent);
+            $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
         } else {
             $htmlcontent .= $phpListPowered;
         }
@@ -467,8 +496,8 @@ function constructSystemMail($message, $subject = '')
 
 function sendMailPhpMailer($to, $subject, $message)
 {
-    # global function to capture sending emails, to avoid trouble with
-    # older (and newer!) php versions
+    // global function to capture sending emails, to avoid trouble with
+    // older (and newer!) php versions
     $fromemail = getConfig('message_from_address');
     $fromname = getConfig('message_from_name');
     $message_replyto_address = getConfig('message_replyto_address');
@@ -479,13 +508,13 @@ function sendMailPhpMailer($to, $subject, $message)
     }
     $destinationemail = '';
 
-#  print "Sending $to from $fromemail<br/>";
+//  print "Sending $to from $fromemail<br/>";
     if (defined('DEVVERSION') && DEVVERSION) {
-        $message = "To: $to\n" . $message;
+        $message = "To: $to\n".$message;
         if ($GLOBALS['developer_email']) {
             $destinationemail = $GLOBALS['developer_email'];
         } else {
-            #  print 'Error: Running DEV version, but developer_email not set';
+            //  print 'Error: Running DEV version, but developer_email not set';
         }
     } else {
         $destinationemail = $to;
@@ -495,18 +524,18 @@ function sendMailPhpMailer($to, $subject, $message)
     $mail = new PHPlistMailer('systemmessage', $destinationemail, false);
     if (!empty($htmlmessage)) {
         $mail->add_html($htmlmessage, $textmessage, getConfig('systemmessagetemplate'));
-        ## In the above phpMailer strips all tags, which removes the links which are wrapped in < and > by HTML2text
-        ## so add it again
+        //# In the above phpMailer strips all tags, which removes the links which are wrapped in < and > by HTML2text
+        //# so add it again
         $mail->add_text($textmessage);
     }
     $mail->add_text($textmessage);
-    # 0008549: message envelope not passed to php mailer,
+    // 0008549: message envelope not passed to php mailer,
     $mail->Sender = $GLOBALS['message_envelope'];
 
-    ## always add the List-Unsubscribe header
+    //# always add the List-Unsubscribe header
     $removeurl = getConfig('unsubscribeurl');
     $sep = strpos($removeurl, '?') === false ? '?' : '&';
-    $mail->addCustomHeader('List-Unsubscribe: <' . $removeurl . $sep . 'email=' . $to . '&jo=1>');
+    $mail->addCustomHeader('List-Unsubscribe: <'.$removeurl.$sep.'email='.$to.'&jo=1>');
 
     return $mail->compatSend('', $destinationemail, $fromname, $fromemail, $subject);
 }
@@ -514,8 +543,8 @@ function sendMailPhpMailer($to, $subject, $message)
 function sendMailDirect($destinationemail, $subject, $message)
 {
     $GLOBALS['smtpError'] = '';
-    ## try to deliver directly, so that any error (eg user not found) can be sent back to the
-    ## subscriber, so they can fix it
+    //# try to deliver directly, so that any error (eg user not found) can be sent back to the
+    //# subscriber, so they can fix it
     unset($GLOBALS['developer_email']);
 
     list($htmlmessage, $textmessage) = constructSystemMail($message, $subject);
@@ -523,7 +552,7 @@ function sendMailDirect($destinationemail, $subject, $message)
 
     list($dummy, $domain) = explode('@', $destinationemail);
 
-    #print_r ($mxhosts);exit;
+    //print_r ($mxhosts);exit;
     $smtpServer = getTopSmtpServer($domain);
 
     $fromemail = getConfig('message_from_address');
@@ -561,8 +590,8 @@ function sendAdminCopy($subject, $message, $lists = array())
                 array_push($mails, $row['email']);
             }
         }
-        ## hmm, do we want to be exclusive? Either listadmin or main ones
-        ## could do all instead
+        //# hmm, do we want to be exclusive? Either listadmin or main ones
+        //# could do all instead
         if (!count($mails)) {
             $admin_mail = getConfig('admin_address');
 
@@ -585,7 +614,7 @@ function sendAdminCopy($subject, $message, $lists = array())
 
 function safeImageName($name)
 {
-    $name = 'image' . str_replace('.', 'DOT', $name);
+    $name = 'image'.str_replace('.', 'DOT', $name);
     $name = str_replace('(', 'BRO', $name);
     $name = str_replace(')', 'BRC', $name);
     $name = str_replace(' ', 'SPC', $name);
@@ -621,7 +650,7 @@ function cleanEmail($value)
     $value = str_replace(')', '', $value);
     $value = preg_replace('/\.$/', '', $value);
 
-    ## these are allowed in emails
+    //# these are allowed in emails
 //  $value = preg_replace("/'/","&rsquo;",$value);
     $value = preg_replace('/`/', '&lsquo;', $value);
     $value = stripslashes($value);
@@ -657,12 +686,12 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
 {
     global $tables;
     if (defined('IN_WEBBLER')) {
-        $more = '&amp;pi=' . $_GET['pi'];
+        $more = '&amp;pi='.$_GET['pi'];
     } else {
         $more = '';
     }
     $poweredImageId = 0;
-    # make sure the 0 template has the powered by image
+    // make sure the 0 template has the powered by image
     $req = Sql_Query(sprintf('select id from %s where filename = "powerphplist.png" and template = 0',
         $GLOBALS['tables']['templateimage']));
     if (!Sql_Affected_Rows()) {
@@ -679,13 +708,13 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     $img_req = Sql_Query(sprintf('select id,filename from %s where template = %d order by filename desc',
         $tables['templateimage'], $id));
     while ($img = Sql_Fetch_Array($img_req)) {
-        $template = preg_replace('#' . preg_quote($img['filename']) . '#', '?page=image&amp;id=' . $img['id'] . $more,
+        $template = preg_replace('#'.preg_quote($img['filename']).'#', '?page=image&amp;id='.$img['id'].$more,
             $template);
     }
     if ($adminid) {
         $att_req = Sql_Query("select name,value from {$tables['adminattribute']},{$tables['admin_attribute']} where {$tables['adminattribute']}.id = {$tables['admin_attribute']}.adminattributeid and {$tables['admin_attribute']}.adminid = $adminid");
         while ($att = Sql_Fetch_Array($att_req)) {
-            $template = preg_replace("#\[LISTOWNER." . strtoupper(preg_quote($att['name'])) . "\]#", $att['value'],
+            $template = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att['name']))."\]#", $att['value'],
                 $template);
         }
     }
@@ -707,7 +736,7 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     $template = str_ireplace('[SUBJECT]', s('This is the Newsletter Subject'), $template);
     $template = str_ireplace('[UNSUBSCRIBE]',
         sprintf('<a href="%s">%s</a>', getConfig('unsubscribeurl'), $GLOBALS['strThisLink']), $template);
-    #0013076: Blacklisting posibility for unknown users
+    //0013076: Blacklisting posibility for unknown users
     $template = str_ireplace('[BLACKLIST]',
         sprintf('<a href="%s">%s</a>', getConfig('blacklisturl'), $GLOBALS['strThisLink']), $template);
     $template = str_ireplace('[PREFERENCES]',
@@ -718,16 +747,16 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     foreach ($logoInstances[0] as $index => $logoInstance) {
         $size = $logoInstances[1][$index];
         if (!empty($size)) {
-            $logoSize = '&amp;m=' . $size;
+            $logoSize = '&amp;m='.$size;
         } else {
             $logoSize = '';
         }
-        $template = str_replace($logoInstance, '?page=image&amp;id=' . $logoImageId . $logoSize, $template);
+        $template = str_replace($logoInstance, '?page=image&amp;id='.$logoImageId.$logoSize, $template);
     }
 
     if (!EMAILTEXTCREDITS) {
         $template = str_ireplace('[SIGNATURE]',
-            '<img src="?page=image&amp;id=' . $poweredImageId . '" width="70" height="30" />', $template);
+            '<img src="?page=image&amp;id='.$poweredImageId.'" width="70" height="30" />', $template);
     } else {
         $template = str_ireplace('[SIGNATURE]', $GLOBALS['PoweredByText'], $template);
     }
@@ -746,7 +775,7 @@ function parseMessage($content, $template, $adminid = 0)
     $template = preg_replace("#\[CONTENT\]#", $content, $template);
     $att_req = Sql_Query("select name,value from {$tables['adminattribute']},{$tables['admin_attribute']} where {$tables['adminattribute']}.id = {$tables['admin_attribute']}.adminattributeid and {$tables['admin_attribute']}.adminid = $adminid");
     while ($att = Sql_Fetch_Array($att_req)) {
-        $template = preg_replace("#\[LISTOWNER." . strtoupper(preg_quote($att['name'])) . "\]#", $att['value'],
+        $template = preg_replace("#\[LISTOWNER.".strtoupper(preg_quote($att['name']))."\]#", $att['value'],
             $template);
     }
 
@@ -798,7 +827,7 @@ function system_messageHeaders($useremail = '')
     $additional_headers .= "X-Mailer: phplist version $v (www.phplist.com)\n";
     $additional_headers .= "X-MessageID: systemmessage\n";
     if ($useremail) {
-        $additional_headers .= 'X-User: ' . $useremail . "\n";
+        $additional_headers .= 'X-User: '.$useremail."\n";
     }
 
     return $additional_headers;
@@ -831,7 +860,7 @@ function logEvent($msg)
         $p, sql_escape($msg)));
 }
 
-### process locking stuff
+//## process locking stuff
 function getPageLock($force = 0)
 {
     global $tables;
@@ -840,12 +869,12 @@ function getPageLock($force = 0)
         $thispage = $_GET['action'];
     }
     $thispage = preg_replace('/\W/', '', $thispage);
-#  cl_output('getting pagelock '.$thispage);
-#  ob_end_flush();
+//  cl_output('getting pagelock '.$thispage);
+//  ob_end_flush();
 
     if ($GLOBALS['commandline'] && $thispage == 'processqueue') {
         if (is_object($GLOBALS['MC'])) {
-            ## multi-send requires a valid memcached setup
+            //# multi-send requires a valid memcached setup
             $max = MAX_SENDPROCESSES;
         } else {
             $max = 1;
@@ -854,9 +883,9 @@ function getPageLock($force = 0)
         $max = 1;
     }
 
-    ## allow killing other processes
+    //# allow killing other processes
     if ($force) {
-        Sql_query('delete from ' . $tables['sendprocess'] . ' where page = "' . sql_escape($thispage) . '"');
+        Sql_query('delete from '.$tables['sendprocess'].' where page = "'.sql_escape($thispage).'"');
     }
 
     $running_req = Sql_query(sprintf('select now() - modified as age,id from %s where page = "%s" and alive order by started desc',
@@ -864,20 +893,20 @@ function getPageLock($force = 0)
     $count = Sql_Num_Rows($running_req);
     $running_res = Sql_Fetch_Assoc($running_req);
     $waited = 0;
-    # while ($running_res['age'] && $count >= $max) { # a process is already running
-    while ($count >= $max) { # don't check age, as it may be 0
-        #   cl_output('running process: '.$running_res['age'].' '.$max);
+    // while ($running_res['age'] && $count >= $max) { # a process is already running
+    while ($count >= $max) { // don't check age, as it may be 0
+        //   cl_output('running process: '.$running_res['age'].' '.$max);
         if ($running_res['age'] > 600) {
-            # some sql queries can take quite a while
-            #cl_output($running_res['id'].' is old '.$running_res['age']);
-            # process has been inactive for too long, kill it
-            Sql_query("update {$tables['sendprocess']} set alive = 0 where id = " . $running_res['id']);
-        } elseif ((int)$count >= (int)$max) {
-            #   cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
+            // some sql queries can take quite a while
+            //cl_output($running_res['id'].' is old '.$running_res['age']);
+            // process has been inactive for too long, kill it
+            Sql_query("update {$tables['sendprocess']} set alive = 0 where id = ".$running_res['id']);
+        } elseif ((int) $count >= (int) $max) {
+            //   cl_output (sprintf($GLOBALS['I18N']->get('A process for this page is already running and it was still alive %s seconds ago'),$running_res['age']));
             if (function_exists('output')) {
                 output(s('A process for this page is already running and it was still alive %d seconds ago', $running_res['age']), 0);
             }
-            sleep(1); # to log the messages in the correct order
+            sleep(1); // to log the messages in the correct order
             if ($GLOBALS['commandline']) {
                 cl_output(s('A process for this page is already running and it was still alive %d seconds ago',
                     $running_res['age']), 0);
@@ -891,25 +920,25 @@ function getPageLock($force = 0)
         }
         ++$waited;
         if ($waited > 10) {
-            # we have waited 10 cycles, abort and quit script
+            // we have waited 10 cycles, abort and quit script
             output($GLOBALS['I18N']->get('We have been waiting too long, I guess the other process is still going ok'),
                 0);
 
             return false;
         }
-        $running_req = Sql_query('select now() - modified,id from ' . $tables['sendprocess'] . " where page = \"$thispage\" and alive order by started desc");
+        $running_req = Sql_query('select now() - modified,id from '.$tables['sendprocess']." where page = \"$thispage\" and alive order by started desc");
         $count = Sql_Num_Rows($running_req);
         $running_res = Sql_Fetch_row($running_req);
     }
     if (!empty($GLOBALS['commandline'])) {
-        $processIdentifier = SENDPROCESS_SERVERNAME . ':' . getmypid();
+        $processIdentifier = SENDPROCESS_SERVERNAME.':'.getmypid();
     } else {
         $processIdentifier = $_SERVER['REMOTE_ADDR'];
     }
-    $res = Sql_query('insert into ' . $tables['sendprocess'] . ' (started,page,alive,ipaddress) values(now(),"' . $thispage . '",1,"' . $processIdentifier . '")');
+    $res = Sql_query('insert into '.$tables['sendprocess'].' (started,page,alive,ipaddress) values(now(),"'.$thispage.'",1,"'.$processIdentifier.'")');
     $send_process_id = Sql_Insert_Id();
     $abort = ignore_user_abort(1);
-#  cl_output('Got pagelock '.$send_process_id );
+//  cl_output('Got pagelock '.$send_process_id );
     return $send_process_id;
 }
 
@@ -917,7 +946,7 @@ function keepLock($processid)
 {
     global $tables;
     $thispage = $GLOBALS['page'];
-    Sql_query('Update ' . $tables['sendprocess'] . " set alive = alive + 1 where id = $processid");
+    Sql_query('Update '.$tables['sendprocess']." set alive = alive + 1 where id = $processid");
 }
 
 function checkLock($processid)
@@ -946,9 +975,9 @@ function getPageCacheLastModified($url)
     return $req[0];
 }
 
-function setPageCache($url, $lastmodified = 0, $content)
+function setPageCache($url, $lastmodified, $content)
 {
-    #  if (isset($GLOBALS['developer_email'])) return;
+    //  if (isset($GLOBALS['developer_email'])) return;
     Sql_Query(sprintf('delete from %s where url = "%s"', $GLOBALS['tables']['urlcache'], $url));
     Sql_Query(sprintf('insert into %s (url,lastmodified,added,content)
     values("%s",%d,now(),"%s")', $GLOBALS['tables']['urlcache'], $url, $lastmodified, sql_escape($content)));
@@ -957,7 +986,7 @@ function setPageCache($url, $lastmodified = 0, $content)
 function clearPageCache()
 {
     unset($GLOBALS['urlcache']);
-    Sql_Query('delete from ' . $GLOBALS['tables']['urlcache']);
+    Sql_Query('delete from '.$GLOBALS['tables']['urlcache']);
 }
 
 function removeJavascript($content)
@@ -977,7 +1006,7 @@ function stripComments($content)
 function compressContent($content)
 {
 
-    ## this needs loads more testing across systems to be sure
+    //# this needs loads more testing across systems to be sure
     return $content;
 
     $content = preg_replace("/\n/", ' ', $content);
@@ -985,7 +1014,7 @@ function compressContent($content)
     $content = removeJavascript($content);
     $content = stripComments($content);
 
-    ## find some clean way to remove double spacing
+    //# find some clean way to remove double spacing
     $content = preg_replace("/\t/", ' ', $content);
     while (preg_match('/  /', $content)) {
         $content = preg_replace('/  /', ' ', $content);
@@ -1001,11 +1030,11 @@ function encryptPass($pass)
     }
 
     if (function_exists('hash')) {
-        if (!in_array(ENCRYPTION_ALGO, hash_algos(), true)) {
-            ## fallback, not that secure, but better than none at all
+        if (!in_array(HASH_ALGO, hash_algos(), true)) {
+            //# fallback, not that secure, but better than none at all
             $algo = 'md5';
         } else {
-            $algo = ENCRYPTION_ALGO;
+            $algo = HASH_ALGO;
         }
 
         return hash($algo, $pass);
@@ -1068,7 +1097,7 @@ function fetchStyles($text) {
 /* verify that a redirection is to ourselves */
 function isValidRedirect($url)
 {
-    ## we might want to add some more checks here
+    //# we might want to add some more checks here
     return strpos($url, hostName());
 }
 
@@ -1082,9 +1111,9 @@ function expandURL($url)
     $url_append = preg_replace('/\W/', '', $url_append);
     if ($url_append) {
         if (strpos($url, '?')) {
-            $url = $url . $url_append;
+            $url = $url.$url_append;
         } else {
-            $url = $url . '?' . $url_append;
+            $url = $url.'?'.$url_append;
         }
     }
 
@@ -1094,7 +1123,7 @@ function expandURL($url)
 function testUrl($url)
 {
     if (VERBOSE) {
-        logEvent('Checking ' . $url);
+        logEvent('Checking '.$url);
     }
     $code = 500;
     if ($GLOBALS['has_curl']) {
@@ -1110,7 +1139,7 @@ function testUrl($url)
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v' . VERSION . ' (http://www.phplist.com)');
+        curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.' (http://www.phplist.com)');
         $raw_result = curl_exec($curl);
         $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     } elseif ($GLOBALS['has_pear_http_request']) {
@@ -1119,13 +1148,13 @@ function testUrl($url)
         }
         @require_once 'HTTP/Request.php';
         $headreq = new HTTP_Request($url, $request_parameters);
-        $headreq->addHeader('User-Agent', 'phplist v' . VERSION . ' (http://www.phplist.com)');
+        $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (http://www.phplist.com)');
         if (!PEAR::isError($headreq->sendRequest(false))) {
             $code = $headreq->getResponseCode();
         }
     }
     if (VERBOSE) {
-        logEvent('Checking ' . $url . ' => ' . $code);
+        logEvent('Checking '.$url.' => '.$code);
     }
 
     return $code;
@@ -1135,10 +1164,10 @@ function fetchUrl($url, $userdata = array())
 {
     $content = '';
 
-    ## fix the Editor replacing & with &amp;
+    //# fix the Editor replacing & with &amp;
     $url = str_ireplace('&amp;', '&', $url);
 
-    # logEvent("Fetching $url");
+    // logEvent("Fetching $url");
     if (count($userdata)) {
         foreach ($userdata as $key => $val) {
             if ($key != 'password') {
@@ -1152,15 +1181,15 @@ function fetchUrl($url, $userdata = array())
     }
 
     $url = expandUrl($url);
-#  print "<h1>Fetching ".$url."</h1>";
+//  print "<h1>Fetching ".$url."</h1>";
 
-    # keep in memory cache in case we send a page to many emails
+    // keep in memory cache in case we send a page to many emails
     if (isset($GLOBALS['urlcache'][$url]) && is_array($GLOBALS['urlcache'][$url])
         && (time() - $GLOBALS['urlcache'][$url]['fetched'] < REMOTE_URL_REFETCH_TIMEOUT)
     ) {
-        #     logEvent($url . " is cached in memory");
+        //     logEvent($url . " is cached in memory");
         if (VERBOSE && function_exists('output')) {
-            output('From memory cache: ' . $url);
+            output('From memory cache: '.$url);
         }
 
         return $GLOBALS['urlcache'][$url]['content'];
@@ -1169,34 +1198,34 @@ function fetchUrl($url, $userdata = array())
     $dbcache_lastmodified = getPageCacheLastModified($url);
     $timeout = time() - $dbcache_lastmodified;
     if ($timeout < REMOTE_URL_REFETCH_TIMEOUT) {
-        #    logEvent($url.' was cached in database');
+        //    logEvent($url.' was cached in database');
         if (VERBOSE && function_exists('output')) {
-            output('From database cache: ' . $url);
+            output('From database cache: '.$url);
         }
 
         return getPageCache($url);
     } else {
-        #    logEvent($url.' is not cached in database '.$timeout.' '. $dbcache_lastmodified." ".time());
+        //    logEvent($url.' is not cached in database '.$timeout.' '. $dbcache_lastmodified." ".time());
     }
 
     $request_parameters = array(
-        'timeout' => 600,
+        'timeout'        => 600,
         'allowRedirects' => 1,
-        'method' => 'HEAD',
+        'method'         => 'HEAD',
     );
 
     $remote_charset = 'UTF-8';
-    ## relying on the last modified header doesn't work for many pages
-    ## use current time instead
-    ## see http://mantis.phplist.com/view.php?id=7684
-#    $lastmodified = strtotime($header["last-modified"]);
+    //# relying on the last modified header doesn't work for many pages
+    //# use current time instead
+    //# see http://mantis.phplist.com/view.php?id=7684
+//    $lastmodified = strtotime($header["last-modified"]);
     $lastmodified = time();
     $cache = getPageCache($url, $lastmodified);
     if (!$cache) {
         if (function_exists('curl_init')) {
             $content = fetchUrlCurl($url, $request_parameters);
         } elseif (0 && $GLOBALS['has_pear_http_request'] == 2) {
-            ## @#TODO, make it work with Request2
+            //# @#TODO, make it work with Request2
             @require_once 'HTTP/Request2.php';
         } elseif ($GLOBALS['has_pear_http_request']) {
             @require_once 'HTTP/Request.php';
@@ -1206,14 +1235,14 @@ function fetchUrl($url, $userdata = array())
         }
     } else {
         if (VERBOSE) {
-            logEvent($url . ' was cached in database');
+            logEvent($url.' was cached in database');
         }
         $content = $cache;
     }
 
     if (!empty($content)) {
         $content = addAbsoluteResources($content, $url);
-        logEvent('Fetching ' . $url . ' success');
+        logEvent('Fetching '.$url.' success');
         setPageCache($url, $lastmodified, $content);
 
         $GLOBALS['urlcache'][$url] = array(
@@ -1228,7 +1257,7 @@ function fetchUrl($url, $userdata = array())
 function fetchUrlCurl($url, $request_parameters)
 {
     if (VERBOSE) {
-        logEvent($url . ' fetching with curl ');
+        logEvent($url.' fetching with curl ');
     }
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -1239,14 +1268,14 @@ function fetchUrlCurl($url, $request_parameters)
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-    curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v' . VERSION . 'c (http://www.phplist.com)');
+    curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (http://www.phplist.com)');
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
     if (VERBOSE) {
-        logEvent('fetched ' . $url . ' status ' . $status);
+        logEvent('fetched '.$url.' status '.$status);
     }
-#    var_dump($status); exit;
+//    var_dump($status); exit;
     if ($status == 200) {
         return $raw_result;
     } else {
@@ -1257,20 +1286,20 @@ function fetchUrlCurl($url, $request_parameters)
 function fetchUrlPear($url, $request_parameters)
 {
     if (VERBOSE) {
-        logEvent($url . ' fetching with PEAR');
+        logEvent($url.' fetching with PEAR');
     }
 
     if (0 && $GLOBALS['has_pear_http_request'] == 2) {
         $headreq = new HTTP_Request2($url, $request_parameters);
-        $headreq->setHeader('User-Agent', 'phplist v' . VERSION . 'p (http://www.phplist.com)');
+        $headreq->setHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
     } else {
         $headreq = new HTTP_Request($url, $request_parameters);
-        $headreq->addHeader('User-Agent', 'phplist v' . VERSION . 'p (http://www.phplist.com)');
+        $headreq->addHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
     }
     if (!PEAR::isError($headreq->sendRequest(false))) {
         $code = $headreq->getResponseCode();
         if ($code != 200) {
-            logEvent('Fetching ' . $url . ' failed, error code ' . $code);
+            logEvent('Fetching '.$url.' failed, error code '.$code);
 
             return 0;
         }
@@ -1283,14 +1312,14 @@ function fetchUrlPear($url, $request_parameters)
         $request_parameters['method'] = 'GET';
         if (0 && $GLOBALS['has_pear_http_request'] == 2) {
             $req = new HTTP_Request2($url, $request_parameters);
-            $req->setHeader('User-Agent', 'phplist v' . VERSION . 'p (http://www.phplist.com)');
+            $req->setHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
         } else {
             $req = new HTTP_Request($url, $request_parameters);
-            $req->addHeader('User-Agent', 'phplist v' . VERSION . 'p (http://www.phplist.com)');
+            $req->addHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
         }
-        logEvent('Fetching ' . $url);
+        logEvent('Fetching '.$url);
         if (VERBOSE && function_exists('output')) {
-            output('Fetching remote: ' . $url);
+            output('Fetching remote: '.$url);
         }
         if (!PEAR::isError($req->sendRequest(true))) {
             $content = $req->getResponseBody();
@@ -1299,12 +1328,12 @@ function fetchUrlPear($url, $request_parameters)
                 $content = iconv($remote_charset, 'UTF-8//TRANSLIT', $content);
             }
         } else {
-            logEvent('Fetching ' . $url . ' failed on GET ' . $req->getResponseCode());
+            logEvent('Fetching '.$url.' failed on GET '.$req->getResponseCode());
 
             return 0;
         }
     } else {
-        logEvent('Fetching ' . $url . ' failed on HEAD');
+        logEvent('Fetching '.$url.' failed on HEAD');
 
         return 0;
     }
@@ -1347,7 +1376,7 @@ function cleanUrl($url, $disallowed_params = array('PHPSESSID'))
     if (empty($parsed['query'])) {
         $parsed['query'] = '';
     }
-    # hmm parse_str should take the delimiters as a parameter
+    // hmm parse_str should take the delimiters as a parameter
     if (strpos($parsed['query'], '&amp;')) {
         $pairs = explode('&amp;', $parsed['query']);
         foreach ($pairs as $pair) {
@@ -1359,29 +1388,29 @@ function cleanUrl($url, $disallowed_params = array('PHPSESSID'))
             }
         }
     } else {
-        ## parse_str turns . into _ which is wrong
-#    parse_str($parsed['query'],$params);
+        //# parse_str turns . into _ which is wrong
+//    parse_str($parsed['query'],$params);
         $params = parseQueryString($parsed['query']);
     }
-    $uri = !empty($parsed['scheme']) ? $parsed['scheme'] . ':' . ((strtolower($parsed['scheme']) == 'mailto') ? '' : '//') : '';
-    $uri .= !empty($parsed['user']) ? $parsed['user'] . (!empty($parsed['pass']) ? ':' . $parsed['pass'] : '') . '@' : '';
+    $uri = !empty($parsed['scheme']) ? $parsed['scheme'].':'.((strtolower($parsed['scheme']) == 'mailto') ? '' : '//') : '';
+    $uri .= !empty($parsed['user']) ? $parsed['user'].(!empty($parsed['pass']) ? ':'.$parsed['pass'] : '').'@' : '';
     $uri .= !empty($parsed['host']) ? $parsed['host'] : '';
-    $uri .= !empty($parsed['port']) ? ':' . $parsed['port'] : '';
+    $uri .= !empty($parsed['port']) ? ':'.$parsed['port'] : '';
     $uri .= !empty($parsed['path']) ? $parsed['path'] : '';
-#  $uri .= $parsed['query'] ? '?'.$parsed['query'] : '';
+//  $uri .= $parsed['query'] ? '?'.$parsed['query'] : '';
     $query = '';
     foreach ($params as $key => $val) {
         if (!in_array($key, $disallowed_params)) {
             //0008980: Link Conversion for Click Tracking. no = will be added if key is empty.
-            $query .= $key . ($val != '' ? '=' . $val . '&' : '&');
+            $query .= $key.($val != '' ? '='.$val.'&' : '&');
         }
     }
     $query = substr($query, 0, -1);
-    $uri .= $query ? '?' . $query : '';
-#  if (!empty($params['p'])) {
-#    $uri .= '?p='.$params['p'];
-#  }
-    $uri .= !empty($parsed['fragment']) ? '#' . $parsed['fragment'] : '';
+    $uri .= $query ? '?'.$query : '';
+//  if (!empty($params['p'])) {
+//    $uri .= '?p='.$params['p'];
+//  }
+    $uri .= !empty($parsed['fragment']) ? '#'.$parsed['fragment'] : '';
 
     return $uri;
 }
@@ -1406,21 +1435,21 @@ if (!function_exists('dbg')) {
             return;
         }
         $fp = @fopen($logfile, 'a');
-        $line = '[' . date('d M Y, H:i:s') . '] ' . getenv('REQUEST_URI') . '(' . $config['stats']['number_of_queries'] . ") $msg \n";
+        $line = '['.date('d M Y, H:i:s').'] '.getenv('REQUEST_URI').'('.$config['stats']['number_of_queries'].") $msg \n";
         @fwrite($fp, $line);
         @fclose($fp);
     }
 }
 
-function addSubscriberStatistics($item = '', $amount, $list = 0)
+function addSubscriberStatistics($item, $amount, $list = 0)
 {
     switch (STATS_INTERVAL) {
         case 'monthly':
-            # mark everything as the first day of the month
+            // mark everything as the first day of the month
             $time = mktime(0, 0, 0, date('m'), 1, date('Y'));
             break;
         case 'weekly':
-            # mark everything for the first sunday of the week
+            // mark everything for the first sunday of the week
             $time = mktime(0, 0, 0, date('m'), date('d') - date('w'), date('Y'));
             break;
         case 'daily':
@@ -1442,17 +1471,17 @@ function deleteMessage($id = 0)
         $ownerselect_and = '';
         $ownerselect_where = '';
     } else {
-        $ownerselect_where = ' WHERE owner = ' . $_SESSION['logindetails']['id'];
-        $ownerselect_and = ' and owner = ' . $_SESSION['logindetails']['id'];
+        $ownerselect_where = ' WHERE owner = '.$_SESSION['logindetails']['id'];
+        $ownerselect_and = ' and owner = '.$_SESSION['logindetails']['id'];
     }
 
-    # delete the message in delete
-    $result = Sql_query('select id from ' . $GLOBALS['tables']['message'] . " where id = $id $ownerselect_and");
+    // delete the message in delete
+    $result = Sql_query('select id from '.$GLOBALS['tables']['message']." where id = $id $ownerselect_and");
     while ($row = Sql_Fetch_Row($result)) {
-        $result = Sql_query('delete from ' . $GLOBALS['tables']['message'] . " where id = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['message']." where id = $row[0]");
         $suc6 = Sql_Affected_Rows();
-        $result = Sql_query('delete from ' . $GLOBALS['tables']['usermessage'] . " where messageid = $row[0]");
-        $result = Sql_query('delete from ' . $GLOBALS['tables']['listmessage'] . " where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['usermessage']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['listmessage']." where messageid = $row[0]");
 
         return $suc6;
     }
@@ -1492,7 +1521,7 @@ function loadBounceRules($all = 0)
         if ($row['regex'] && $row['action']) {
             $result[$row['regex']] = array(
                 'action' => $row['action'],
-                'id' => $row['id'],
+                'id'     => $row['id'],
             );
         }
     }
@@ -1510,12 +1539,12 @@ function matchedBounceRule($text, $activeonly = 0)
     $req = Sql_Query(sprintf('select * from %s %s order by listorder', $GLOBALS['tables']['bounceregex'], $status));
     while ($row = Sql_Fetch_Array($req)) {
         $pattern = str_replace(' ', '\s+', $row['regex']);
-        #   print "Trying to match ".$pattern;
-        #print ' with '.$text;
-        #   print '<br/>';
-        if (@preg_match('/' . preg_quote($pattern) . '/iUm', $text)) {
+        //   print "Trying to match ".$pattern;
+        //print ' with '.$text;
+        //   print '<br/>';
+        if (@preg_match('/'.preg_quote($pattern).'/iUm', $text)) {
             return $row['id'];
-        } elseif (@preg_match('/' . $pattern . '/iUm', $text)) {
+        } elseif (@preg_match('/'.$pattern.'/iUm', $text)) {
             return $row['id'];
         }
     }
@@ -1531,12 +1560,12 @@ function matchBounceRules($text, $rules = array())
 
     foreach ($rules as $pattern => $rule) {
         $pattern = str_replace(' ', '\s+', $pattern);
-        if (@preg_match('/' . preg_quote($pattern) . '/iUm', $text)) {
+        if (@preg_match('/'.preg_quote($pattern).'/iUm', $text)) {
             return $rule;
-        } elseif (@preg_match('/' . $pattern . '/iUm', $text)) {
+        } elseif (@preg_match('/'.$pattern.'/iUm', $text)) {
             return $rule;
         } else {
-            #      print "Trying to match $pattern failed<br/>";
+            //      print "Trying to match $pattern failed<br/>";
         }
     }
 
@@ -1545,9 +1574,9 @@ function matchBounceRules($text, $rules = array())
 
 function flushBrowser()
 {
-    ## push some more output to the browser, so it displays things sooner
+    //# push some more output to the browser, so it displays things sooner
     for ($i = 0; $i < 10000; ++$i) {
-        print ' ' . "\n";
+        echo ' '."\n";
     }
     flush();
 }
@@ -1570,9 +1599,9 @@ function flushClickTrackCache()
 
 function resetMessageStatistics($messageid = 0)
 {
-    ## remove the record of the links in the message, actual clicks of links, and the users sent to
+    //# remove the record of the links in the message, actual clicks of links, and the users sent to
 
-    ## do not do this, if more than X have gone out
+    //# do not do this, if more than X have gone out
     $numsent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where messageid = %d',
         $GLOBALS['tables']['usermessage'], $messageid));
     if ($numsent[0] < RESETSTATS_MAX) {
@@ -1608,7 +1637,7 @@ if (!function_exists('formatbytes')) {
 
 function strip_newlines($str, $placeholder = '')
 {
-    $str = str_replace(chr(13) . chr(10), $placeholder, $str);
+    $str = str_replace(chr(13).chr(10), $placeholder, $str);
     $str = str_replace(chr(10), $placeholder, $str);
     $str = str_replace(chr(13), $placeholder, $str);
 
@@ -1617,7 +1646,7 @@ function strip_newlines($str, $placeholder = '')
 
 function parseDate($strdate, $format = 'Y-m-d')
 {
-    # parse a string date into a date
+    // parse a string date into a date
     $strdate = trim($strdate);
     if (strlen($strdate) < 6) {
         $newvalue = 0;
@@ -1648,7 +1677,7 @@ function verifyToken()
         return false;
     }
 
-    ## @@@TODO for now ignore the error. This will cause a block on editing admins if the table doesn't exist.
+    //# @@@TODO for now ignore the error. This will cause a block on editing admins if the table doesn't exist.
     $req = Sql_Fetch_Row_Query(sprintf('select id from %s where adminid = %d and value = "%s" and expires > now()',
         $GLOBALS['tables']['admintoken'], $_SESSION['logindetails']['id'], sql_escape($_POST['formtoken'])), 1);
     if (empty($req[0])) {
@@ -1662,7 +1691,7 @@ function verifyToken()
     return true;
 }
 
-## verify the session token on ajaxed GET requests
+//# verify the session token on ajaxed GET requests
 function verifyCsrfGetToken($enforce = 1)
 { // enforce=0 allows checking "if exist"
     if (!defined('PHPLISTINIT')) {
@@ -1671,13 +1700,13 @@ function verifyCsrfGetToken($enforce = 1)
     if ($GLOBALS['commandline']) {
         return true;
     }
-    if (isset($_GET['tk']) && isset($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-        if ($_GET['tk'] != $_SESSION[$GLOBALS['installation_name'] . '_csrf_token']) {
+    if (isset($_GET['tk']) && isset($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
+        if (!hash_equals($_SESSION[$GLOBALS['installation_name'].'_csrf_token'], $_GET['tk'])) {
             $_SESSION['logout_error'] = s('Error, incorrect session token');
             Redirect('logout&err=1');
             exit;
         }
-    } elseif ($enforce && isset($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
+    } elseif ($enforce && isset($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
         $_SESSION['logout_error'] = s('Error, incorrect session token');
         Redirect('logout&err=1');
         exit;
@@ -1688,22 +1717,21 @@ function verifyCsrfGetToken($enforce = 1)
 
 function addCsrfGetToken()
 {
-    if (empty($_SESSION[$GLOBALS['installation_name'] . '_csrf_token'])) {
-        $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'] = substr(md5(uniqid(mt_rand(), true)), rand(0, 32),
-            rand(0, 32));
+    if (empty($_SESSION[$GLOBALS['installation_name'].'_csrf_token'])) {
+        $_SESSION[$GLOBALS['installation_name'].'_csrf_token'] = bin2hex(random_bytes(16));
     }
 
-    return '&tk=' . $_SESSION[$GLOBALS['installation_name'] . '_csrf_token'];
+    return '&tk='.$_SESSION[$GLOBALS['installation_name'].'_csrf_token'];
 }
 
 function refreshTlds($force = 0)
 {
-    ## fetch list of Tlds and store in DB
+    //# fetch list of Tlds and store in DB
     $lastDone = getConfig('tld_last_sync');
     $tlds = '';
-    ## let's not do this too often
+    //# let's not do this too often
     if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
-        ## even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
+        //# even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
         SaveConfig('tld_last_sync', time(), 0);
         if (defined('TLD_AUTH_LIST')) {
             $tlds = fetchUrl(TLD_AUTH_LIST);
@@ -1712,10 +1740,10 @@ function refreshTlds($force = 0)
             $tld_md5 = fetchUrl(TLD_AUTH_MD5);
             list($remote_md5, $fname) = explode(' ', $tld_md5);
             $mymd5 = md5($tlds);
-#        print 'OK: '.$remote_md5.' '.$mymd5;
+//        print 'OK: '.$remote_md5.' '.$mymd5;
             $validated = $remote_md5 == $mymd5;
         } else {
-            $tlds = file_get_contents(dirname(__FILE__) . '/data/tlds-alpha-by-domain.txt');
+            $tlds = file_get_contents(dirname(__FILE__).'/data/tlds-alpha-by-domain.txt');
             $validated = true;
         }
 
@@ -1723,16 +1751,16 @@ function refreshTlds($force = 0)
             $lines = explode("\n", $tlds);
             $tld_list = '';
             foreach ($lines as $line) {
-                ## for now, only handle ascii lines
+                //# for now, only handle ascii lines
                 if (preg_match('/^\w+$/', $line)) {
-                    $tld_list .= $line . '|';
+                    $tld_list .= $line.'|';
                 }
             }
             $tld_list = substr($tld_list, 0, -1);
             SaveConfig('internet_tlds', strtolower($tld_list), 0);
         }
-#  } else {
-#    print $lastDone;
+//  } else {
+//    print $lastDone;
     }
 
     return true;
@@ -1760,7 +1788,7 @@ function listCategories()
 
 function shortenTextDisplay($text, $max = 30)
 {
-    ## use mb_ version if possible, see https://github.com/phpList/phplist3/pull/10
+    //# use mb_ version if possible, see https://github.com/phpList/phplist3/pull/10
     if (function_exists('mb_strlen')) {
         return mb_shortenTextDisplay($text, $max);
     }
@@ -1768,9 +1796,9 @@ function shortenTextDisplay($text, $max = 30)
     $text = str_replace('http://', '', $text);
     if (strlen($text) > $max) {
         if ($max < 30) {
-            $display = substr($text, 0, $max - 4) . ' ... ';
+            $display = substr($text, 0, $max - 4).' ... ';
         } else {
-            $display = substr($text, 0, 20) . ' ... ' . substr($text, -10);
+            $display = substr($text, 0, 20).' ... '.substr($text, -10);
         }
     } else {
         $display = $text;
@@ -1787,9 +1815,9 @@ function mb_shortenTextDisplay($text, $max = 30)
     $text = str_replace('http://', '', $text);
     if (mb_strlen($text) > $max) {
         if ($max < 30) {
-            $display = mb_substr($text, 0, $max - 4) . ' ... ';
+            $display = mb_substr($text, 0, $max - 4).' ... ';
         } else {
-            $display = mb_substr($text, 0, 20) . ' ... ' . mb_substr($text, -10);
+            $display = mb_substr($text, 0, 20).' ... '.mb_substr($text, -10);
         }
     } else {
         $display = $text;
@@ -1818,7 +1846,7 @@ if (!function_exists('getnicebacktrace')) {
                 $sTrace .= "\n";
             }
 
-            $sTrace .= $iIndex . sprintf('%s#%4d:%s() ',
+            $sTrace .= $iIndex.sprintf('%s#%4d:%s() ',
                     pad_right($aBackTrace[$iIndex]['file'], 30),
                     $aBackTrace[$iIndex]['line'],
                     pad_right($aBackTrace[$iIndex]['function'], 15)
@@ -1843,7 +1871,7 @@ function delFsTree($dir)
         return false;
     }
     if (!is_dir($dir) && is_file($dir)) {
-        return unlink($dir); ## delete file
+        return unlink($dir); //# delete file
     }
     if (!is_dir($dir)) {
         return;
@@ -1870,9 +1898,9 @@ function copy_recursive($source, $dest)
                 continue;
             }
             if ($item->isDir()) {
-                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                mkdir($dest.DIRECTORY_SEPARATOR.$iterator->getSubPathName());
             } else {
-                if (!copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) {
+                if (!copy($item, $dest.DIRECTORY_SEPARATOR.$iterator->getSubPathName())) {
                     return false;
                 }
             }
@@ -1886,7 +1914,7 @@ function copy_recursive($source, $dest)
 
 function parsePlaceHolders($content, $array = array())
 {
-    ## the editor turns all non-ascii chars into the html equivalent so do that as well
+    //# the editor turns all non-ascii chars into the html equivalent so do that as well
     foreach ($array as $key => $val) {
         $array[strtoupper($key)] = $val;
         $array[htmlentities(strtoupper($key), ENT_QUOTES, 'UTF-8')] = $val;
@@ -1894,13 +1922,13 @@ function parsePlaceHolders($content, $array = array())
     }
 
     foreach ($array as $key => $val) {
-        if (PHP5) {  ## the help only lists attributes with strlen($name) < 20
-            #  print '<br/>'.$key.' '.$val.'<hr/>'.htmlspecialchars($content).'<hr/>';
-            if (stripos($content, '[' . $key . ']') !== false) {
-                $content = str_ireplace('[' . $key . ']', $val, $content);
+        if (PHP5) {  //# the help only lists attributes with strlen($name) < 20
+            //  print '<br/>'.$key.' '.$val.'<hr/>'.htmlspecialchars($content).'<hr/>';
+            if (stripos($content, '['.$key.']') !== false) {
+                $content = str_ireplace('['.$key.']', $val, $content);
             }
-            if (preg_match('/\[' . $key . '%%([^\]]+)\]/i', $content, $regs)) { ## @@todo, check for quoting */ etc
-                #    var_dump($regs);
+            if (preg_match('/\['.$key.'%%([^\]]+)\]/i', $content, $regs)) { //# @@todo, check for quoting */ etc
+                //    var_dump($regs);
                 if (!empty($val)) {
                     $content = str_ireplace($regs[0], $val, $content);
                 } else {
@@ -1909,7 +1937,7 @@ function parsePlaceHolders($content, $array = array())
             }
         } else {
             $key = str_replace('/', '\/', $key);
-            if (preg_match('/\[' . $key . '\]/i', $content, $match)) {
+            if (preg_match('/\['.$key.'\]/i', $content, $match)) {
                 $content = str_replace($match[0], $val, $content);
             }
         }
@@ -1932,7 +1960,7 @@ function quoteEnclosed($value, $col_delim = "\t", $row_delim = "\n")
         $enclose = 1;
     }
     if ($enclose) {
-        $value = '"' . $value . '"';
+        $value = '"'.$value.'"';
     }
 
     return $value;
@@ -1941,12 +1969,12 @@ function quoteEnclosed($value, $col_delim = "\t", $row_delim = "\n")
 function activateRemoteQueue()
 {
     $result = '';
-    $activated = file_get_contents(PQAPI_URL . '&cmd=start&key=' . getConfig('PQAPIkey') . '&s=' . urlencode(getConfig('remote_processing_secret')) . '&u=' . base64_encode($GLOBALS['admin_scheme'] . '://' . hostName() . dirname($_SERVER['REQUEST_URI'])));
+    $activated = file_get_contents(PQAPI_URL.'&cmd=start&key='.getConfig('PQAPIkey').'&s='.urlencode(getConfig('remote_processing_secret')).'&u='.base64_encode($GLOBALS['admin_scheme'].'://'.hostName().dirname($_SERVER['REQUEST_URI'])));
     if ($activated == 'OK') {
-        $result .= '<h3>' . s('Remote queue processing has been activated successfully') . '</h3>';
-        $result .= '<p>' . PageLinkButton('messages&tab=active', $GLOBALS['I18N']->get('view progress')) . '</p>';
+        $result .= '<h3>'.s('Remote queue processing has been activated successfully').'</h3>';
+        $result .= '<p>'.PageLinkButton('messages&tab=active', $GLOBALS['I18N']->get('view progress')).'</p>';
     } elseif ($activated == 'KEYFAIL' || $activated == 'NAC') {
-        $result .= '<h3>' . s('Error activating remote queue processing') . '</h3>';
+        $result .= '<h3>'.s('Error activating remote queue processing').'</h3>';
         if ($activated == 'KEYFAIL') {
             $result .= s('The API key is incorrect');
         } elseif ($activated == 'NAC') {
@@ -1954,11 +1982,11 @@ function activateRemoteQueue()
         } else {
             $result .= s('Unknown error');
         }
-        $result .= '<p><a href="./?page=hostedprocessqueuesetup" class="button">' . s('Change settings') . '</a></p>';
-        $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">' . s('Run queue locally') . '</a></p>';
+        $result .= '<p><a href="./?page=hostedprocessqueuesetup" class="button">'.s('Change settings').'</a></p>';
+        $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
     } else {
-        $result .= '<h3>' . s('Error activating remote queue processing') . '</h3>';
-        $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">' . s('Run queue locally') . '</a></p>';
+        $result .= '<h3>'.s('Error activating remote queue processing').'</h3>';
+        $result .= '<p><a href="./?page=processqueue&pqchoice=local" class="button">'.s('Run queue locally').'</a></p>';
     }
 
     return $result;
@@ -1971,15 +1999,15 @@ function subscribeToAnnouncementsForm($emailAddress = '')
     }
 
     return '<div class="information">'
-    . '<h3>' . s('Sign up to receive news and updates about phpList ') . '</h3>'
-    . s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)') .
-    '<script type="text/javascript">var pleaseEnter = "' . strip_tags($emailAddress) . '";</script> ' .
+    .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
+    .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
+    '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
     '<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
 <input type="text" name="email" value="" id="emailaddress" />
-<button type="submit" id="phplistsubscribe">' . s('Subscribe') . '</button> <button id="phplistnotsubscribe" class="fright">' . s('Do not subscribe') . '</button></form>'
-    . ' </div>';
+<button type="submit" id="phplistsubscribe">' .s('Subscribe').'</button> <button id="phplistnotsubscribe" class="fright">'.s('Do not subscribe').'</button></form>'
+    .' </div>';
 }
 
 function createCachedLogoImage($size)
@@ -1998,7 +2026,7 @@ function createCachedLogoImage($size)
         $GLOBALS['tables']['templateimage'], $logoImageId));
     $imageContent = base64_decode($imgData['data']);
     if (empty($imageContent)) {
-        ## fall back to a single pixel, so that there are no broken images
+        //# fall back to a single pixel, so that there are no broken images
         $imageContent = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAALGPC/xhBQAAAAZQTFRF////AAAAVcLTfgAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0gQCEx05cqKA8gAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII=');
     }
 
@@ -2007,37 +2035,37 @@ function createCachedLogoImage($size)
         $sizeW = $imgSize[0];
         $sizeH = $imgSize[1];
         if ($sizeH > $sizeW) {
-            $sizefactor = (double)($size / $sizeH);
+            $sizefactor = (float) ($size / $sizeH);
         } else {
-            $sizefactor = (double)($size / $sizeW);
+            $sizefactor = (float) ($size / $sizeW);
         }
-        $newwidth = (int)($sizeW * $sizefactor);
-        $newheight = (int)($sizeH * $sizefactor);
+        $newwidth = (int) ($sizeW * $sizefactor);
+        $newheight = (int) ($sizeH * $sizefactor);
     } else {
         $sizefactor = 1;
     }
     if ($sizefactor < 1) {
         $original = imagecreatefromstring($imageContent);
-        $resized = imagecreatetruecolor($newwidth, $newheight); ## creates a black image (why would you want that....)
+        $resized = imagecreatetruecolor($newwidth, $newheight); //# creates a black image (why would you want that....)
         imagesavealpha($resized, true);
         $transparent = imagecolorallocatealpha($resized, 255, 255, 255,
-            127); ## white. All the methods to make it transparent didn't work for me @@TODO really make transparent
+            127); //# white. All the methods to make it transparent didn't work for me @@TODO really make transparent
         imagefill($resized, 0, 0, $transparent);
 
         if (imagecopyresized($resized, $original, 0, 0, 0, 0, $newwidth, $newheight, $sizeW, $sizeH)) {
             Sql_Query(sprintf('delete from %s where template = 0 and filename = "ORGANISATIONLOGO%d.png"',
                 $GLOBALS['tables']['templateimage'], $size));
 
-            ## rather convoluted way to get the image contents
+            //# rather convoluted way to get the image contents
             $buffer = ob_get_contents();
             ob_end_clean();
             ob_start();
             imagepng($resized);
             $imageContent = ob_get_contents();
             ob_end_clean();
-            print $buffer;
+            echo $buffer;
         }
-    } # else copy original
+    } // else copy original
     Sql_Query(sprintf('insert into %s (template,filename,mimetype,data,width,height) values(0,"ORGANISATIONLOGO%d.png","%s","%s",%d,%d)',
         $GLOBALS['tables']['templateimage'], $size, $imgSize['mime'], base64_encode($imageContent), $newwidth,
         $newheight));
@@ -2053,7 +2081,7 @@ function flushLogoCache()
 
 function parseLogoPlaceholders($content)
 {
-    ## replace Logo placeholders
+    //# replace Logo placeholders
     preg_match_all('/\[LOGO\:?(\d+)?\]/', $content, $logoInstances);
     foreach ($logoInstances[0] as $index => $logoInstance) {
         $size = sprintf('%d', $logoInstances[1][$index]);
@@ -2063,7 +2091,7 @@ function parseLogoPlaceholders($content)
             $logoSize = '500';
         }
         createCachedLogoImage($logoSize);
-        $content = str_replace($logoInstance, 'ORGANISATIONLOGO' . $logoSize . '.png', $content);
+        $content = str_replace($logoInstance, 'ORGANISATIONLOGO'.$logoSize.'.png', $content);
     }
 
     return $content;
@@ -2074,8 +2102,8 @@ function parseLogoPlaceholders($content)
  * key equals desired value, and return a new multi-dimensional array of those
  * child arrays which qualify.
  *
- * @param array $parentArray Multi-dimensional array to check
- * @param string $requiredKey Key to check
+ * @param array  $parentArray   Multi-dimensional array to check
+ * @param string $requiredKey   Key to check
  * @param string $requiredValue Required value for qualification
  */
 function multiArrayFilterBy(array $parentArray, $requiredKey, $requiredValue)
@@ -2099,8 +2127,8 @@ function multiArrayFilterBy(array $parentArray, $requiredKey, $requiredValue)
  * key **does not equal** desired value, and return a new multi-dimensional array
  * of those child arrays which qualify.
  *
- * @param array $parentArray Multi-dimensional array to check
- * @param string $requiredKey Key to check
+ * @param array  $parentArray    Multi-dimensional array to check
+ * @param string $requiredKey    Key to check
  * @param string $forbiddenValue Required value for qualification
  */
 function multiArrayFilterByNot(array $parentArray, $requiredKey, $forbiddenValue)
@@ -2121,8 +2149,8 @@ function multiArrayFilterByNot(array $parentArray, $requiredKey, $forbiddenValue
 /**
  * Check that the value of a given array key matches a particular value.
  *
- * @param array $array array to check
- * @param string $requiredKey Key to check
+ * @param array  $array         array to check
+ * @param string $requiredKey   Key to check
  * @param string $requiredValue Required value
  */
 function arrayKeyHasValue(array $array, $requiredKey, $requiredValue)
@@ -2138,8 +2166,8 @@ function arrayKeyHasValue(array $array, $requiredKey, $requiredValue)
 /**
  * Check that the value of a given array key does not match a particular value.
  *
- * @param array $array array to check
- * @param string $requiredKey Key to check
+ * @param array  $array          array to check
+ * @param string $requiredKey    Key to check
  * @param string $forbiddenValue Forbidden value
  */
 function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
@@ -2155,17 +2183,17 @@ function arrayKeyHasNotValue(array $array, $requiredKey, $forbiddenValue)
 function asyncLoadContent($url)
 {
     return '<script type="text/javascript">
-        var loadMessage = \'' . sjs('Please wait, your request is being processed. Do not refresh this page.') . '\';
+        var loadMessage = \'' .sjs('Please wait, your request is being processed. Do not refresh this page.').'\';
         var loadMessages = new Array(); 
-        loadMessages[30] = \'' . sjs('Still loading') . '\';
-        loadMessages[90] = \'' . sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns') . '\';
-        loadMessages[150] = \'' . sjs('It should be soon now, your page content is almost here.') . '\';
-        loadMessages[210] = \'' . sjs('This seems to take longer than expected, looks like there is a lot of data to work on.') . '\';
-        loadMessages[240] = \'' . sjs('Still loading, please be patient, your page content will show shortly.') . '\';
-        loadMessages[300] = \'' . sjs('It will really be soon now until the page will display.') . '\';
-        loadMessages[360] = \'' . sjs('Still loading, please wait') . '\';
-        loadMessages[420] = \'' . sjs('The loading has been just over seven minutes. We can wait just a little longer.') . '\';
-        loadMessages[500] = \'' . sjs('If the page does not load soon, please report this in the user forums.') . '\';
+        loadMessages[30] = \'' .sjs('Still loading').'\';
+        loadMessages[90] = \'' .sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns').'\';
+        loadMessages[150] = \'' .sjs('It should be soon now, your page content is almost here.').'\';
+        loadMessages[210] = \'' .sjs('This seems to take longer than expected, looks like there is a lot of data to work on.').'\';
+        loadMessages[240] = \'' .sjs('Still loading, please be patient, your page content will show shortly.').'\';
+        loadMessages[300] = \'' .sjs('It will really be soon now until the page will display.').'\';
+        loadMessages[360] = \'' .sjs('Still loading, please wait').'\';
+        loadMessages[420] = \'' .sjs('The loading has been just over seven minutes. We can wait just a little longer.').'\';
+        loadMessages[500] = \'' .sjs('If the page does not load soon, please report this in the user forums.').'\';
         var contentdivcontent = "'.$url.'";
      </script>';
 }

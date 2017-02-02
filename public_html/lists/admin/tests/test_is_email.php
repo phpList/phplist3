@@ -1,6 +1,6 @@
 <?php
 
-#testEmail();
+//testEmail();
 
 class test_is_email extends phplistTest
 {
@@ -25,9 +25,9 @@ class test_is_email extends phplistTest
             'name@.company.co.uk' => false,
             // more .domain sections wrongly
             'n&me@company.com' => true,
-            //
+
             "n'me@company.com" => true,
-            //
+
             'name last@company.com' => false,
             // unquoted space is wrong
             '"namelast"@company.com' => true,
@@ -64,50 +64,50 @@ class test_is_email extends phplistTest
             // Mantis #0010174 @@ maybe support during import?
             'name@127.0.0.1' => true,
             // not in the RFC but generally accepted (?)
-            # From http://en.wikibooks.org/wiki/Programming:JavaScript:Standards_and_Best_Practices
-            'me@example.com' => true,
+            // From http://en.wikibooks.org/wiki/Programming:JavaScript:Standards_and_Best_Practices
+            'me@example.com'         => true,
             'a.nonymous@example.com' => true,
-            'name+tag@example.com' => true,
-            ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
-            # '"name\@tag"@example.com'   => TRUE ,
+            'name+tag@example.com'   => true,
+            //# next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
+            // '"name\@tag"@example.com'   => TRUE ,
             '"name\@tag"@example.com' => false,
             // � this is a valid email address containing two @ symbols.
             "escaped\ spaces\ are\ allowed@example.com" => true,
-            '"spaces may be quoted"@example.com' => true,
-            "!#$%&'*+-/=.?^_`{|}~@example.com" => true,
-            #   "!#$%&'*+-/=.?^_`{|}~@[1.0.0.127]" => TRUE , # Excluded
-            #		"!#$%&'*+-/=.?^_`{|}~@[IPv6:0123:4567:89AB:CDEF:0123:4567:89AB:CDEF]" => TRUE , #Excluded
-            #		"me(this is a comment)@example.com" => TRUE , #Excluded
-            'me@' => false,
-            '@example.com' => false,
-            'me.@example.com' => false,
-            '.me@example.com' => false,
-            'me@example..com' => false,
-            'me.example@com' => false,
-            "me\@example.com" => false,
+            '"spaces may be quoted"@example.com'        => true,
+            "!#$%&'*+-/=.?^_`{|}~@example.com"          => true,
+            //   "!#$%&'*+-/=.?^_`{|}~@[1.0.0.127]" => TRUE , # Excluded
+            //		"!#$%&'*+-/=.?^_`{|}~@[IPv6:0123:4567:89AB:CDEF:0123:4567:89AB:CDEF]" => TRUE , #Excluded
+            //		"me(this is a comment)@example.com" => TRUE , #Excluded
+            'me@'                      => false,
+            '@example.com'             => false,
+            'me.@example.com'          => false,
+            '.me@example.com'          => false,
+            'me@example..com'          => false,
+            'me.example@com'           => false,
+            "me\@example.com"          => false,
             "s'oneill@somenice.museum" => true,
-            ## some uncommon TLDs
-            'me@domain.museum' => true,
-            'me@me.me' => true,
-            'jobs@jobs.jobs' => true,
+            //# some uncommon TLDs
+            'me@domain.museum'        => true,
+            'me@me.me'                => true,
+            'jobs@jobs.jobs'          => true,
             'hello@me.nonexistingtld' => false,
-            ## next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
-#      "me\@sales.com@example.com"          => TRUE,
+            //# next one is actually officiall valid, but we're marking it as not, as it's rather uncommon
+//      "me\@sales.com@example.com"          => TRUE,
             "me\@sales.com@example.com" => false,
-            # From http://www.faqs.org/rfcs/rfc3696.html
+            // From http://www.faqs.org/rfcs/rfc3696.html
             'customer/department=shipping@example.com' => true,
-            '$A12345@example.com' => true,
-            '!def!xyz%abc@example.com' => true,
-            '\\\'a0@example.com' => false,
-            'someone@phplíst.com' => true,
-            'hello@clk.email' => true,
-            'hello@xn--tst-qla.de' => true,
+            '$A12345@example.com'                      => true,
+            '!def!xyz%abc@example.com'                 => true,
+            '\\\'a0@example.com'                       => false,
+            'someone@phplíst.com'                      => true,
+            'hello@clk.email'                          => true,
+            'hello@xn--tst-qla.de'                     => true,
             'some\weird\escaping\shouldfail@yahoo.com' => true,
             // this should fail, but doesn't
             'user@domain.191.it' => true,
         );
 
-        print('<P>PHP ' . PHP_VERSION . ' running on ' . PHP_OS . ' - Testing email address validation...</P>');
+        echo '<P>PHP '.PHP_VERSION.' running on '.PHP_OS.' - Testing email address validation...</P>';
 
         $resultString = '';
         $nFoundWrong = 0;
@@ -115,19 +115,19 @@ class test_is_email extends phplistTest
         $boolean = array('FALSE', 'TRUE');
 
         foreach ($emailAddresses as $emailAddress => $emailAddressValid) {
-            #	print($emailAddress . " is " . is_email($emailAddresses) .", should be " . $emailAddressValid . "<BR/>");
+            //	print($emailAddress . " is " . is_email($emailAddresses) .", should be " . $emailAddressValid . "<BR/>");
             if (is_email($emailAddress) != $emailAddressValid) {
-                $resultString .= "$emailAddress should be " . $boolean[$emailAddressValid] . '<BR/>';
+                $resultString .= "$emailAddress should be ".$boolean[$emailAddressValid].'<BR/>';
                 ++$nFoundWrong;
             }
         }
 
         if ($nFoundWrong > 0) {
-            print("<P>The following $nFoundWrong email addresses were evaluated wrong:<BR/>$resultString</P>");
+            echo "<P>The following $nFoundWrong email addresses were evaluated wrong:<BR/>$resultString</P>";
 
             return false;
         } else {
-            print('<P>All email addresses evaluated correctly.</P>');
+            echo '<P>All email addresses evaluated correctly.</P>';
 
             return true;
         }

@@ -10,7 +10,7 @@ class translation extends phplistTest
         $test = new phplist_I18N();
         $test->language = 'nl';
 
-        $dutch = file_get_contents(dirname(__FILE__) . '/../locale/nl/phplist.po');
+        $dutch = file_get_contents(dirname(__FILE__).'/../locale/nl/phplist.po');
         $lines = explode("\n", $dutch);
         $orig = $trans = '';
         $translations = array();
@@ -35,9 +35,9 @@ class translation extends phplistTest
                     //print '<p>'.$test->get($orig).'</p>';
                 } else {
                     $result['bad'] += 1;
-                    print "<h3>FAIL ON $orig</h3>";
-                    print "<p>Should be <b>$trans</b></p>";
-                    print '<p>Is currently <b>' . $test->gettext($orig) . '</b></p>';
+                    echo "<h3>FAIL ON $orig</h3>";
+                    echo "<p>Should be <b>$trans</b></p>";
+                    echo '<p>Is currently <b>'.$test->gettext($orig).'</b></p>';
                 }
             }
         }

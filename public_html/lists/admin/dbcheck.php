@@ -1,11 +1,11 @@
 <?php
 
-include dirname(__FILE__) . '/structure.php';
+include dirname(__FILE__).'/structure.php';
 if (!defined('PHPLISTINIT')) {
     exit;
 }
 
-print '<h3>' . s('Database structure check') . '</h3>';
+echo '<h3>'.s('Database structure check').'</h3>';
 
 unset($_SESSION['dbtables']);
 $pass = true;
@@ -55,12 +55,12 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
                     }
                 } else {
                     if (strpos($column, 'index_') !== false) {
-                        $indexes .= $colstruct[0] . '<br/>';
+                        $indexes .= $colstruct[0].'<br/>';
                     }
                     if (strpos($column, 'unique_') !== false) {
-                        $uniques .= $colstruct[0] . '<br/>';
+                        $uniques .= $colstruct[0].'<br/>';
                     }
-                    #          if ($column == "primary key")
+                    //          if ($column == "primary key")
                     if ($column == 'storage_engine') {
                         $engine = $colstruct[0];
                     }
@@ -73,7 +73,7 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
     } else {
         $haserror = true;
         unset($tls);
-        $createlink = PageUrl2('pageaction&action=createtable&table=' . urlencode($table));
+        $createlink = PageUrl2('pageaction&action=createtable&table='.urlencode($table));
     }
     if (!$haserror) {
         $tls->collapse();
@@ -100,7 +100,7 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
       }
     */
 }
-print $ls->display();
+echo $ls->display();
 if ($pass) {
     cl_output('PASS');
 } else {

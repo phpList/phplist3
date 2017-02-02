@@ -1,9 +1,9 @@
 <?php
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
-# export users from PHPlist
+// export users from PHPlist
 
-include dirname(__FILE__) . '/date.php';
+include dirname(__FILE__).'/date.php';
 
 $fromdate = '';
 $todate = '';
@@ -28,38 +28,38 @@ switch ($access) {
             $check = Sql_Fetch_Assoc_Query(sprintf('select id from %s where owner = %d and id = %d',
                 $GLOBALS['tables']['list'], $_SESSION['logindetails']['id'], $list));
             if (empty($check['id'])) {
-                print Error(s('That is not your list'));
+                echo Error(s('That is not your list'));
 
                 return;
             }
         }
-        $querytables = $GLOBALS['tables']['list'] . ' list INNER JOIN ' . $GLOBALS['tables']['listuser'] . ' listuser ON listuser.listid = list.id' .
-            ' INNER JOIN ' . $GLOBALS['tables']['user'] . ' user ON listuser.userid = user.id';
-        $subselect = ' list.id = ' . $list . ' and list.owner = ' . $_SESSION['logindetails']['id'];
-        $ownerselect_where = ' where owner = ' . $_SESSION['logindetails']['id'];
+        $querytables = $GLOBALS['tables']['list'].' list INNER JOIN '.$GLOBALS['tables']['listuser'].' listuser ON listuser.listid = list.id'.
+            ' INNER JOIN '.$GLOBALS['tables']['user'].' user ON listuser.userid = user.id';
+        $subselect = ' list.id = '.$list.' and list.owner = '.$_SESSION['logindetails']['id'];
+        $ownerselect_where = ' where owner = '.$_SESSION['logindetails']['id'];
         break;
     case 'all':
         if ($list) {
-            $querytables = $GLOBALS['tables']['user'] . ' user' . ', ' . $GLOBALS['tables']['listuser'] . ' listuser ON user.id = listuser.userid';
+            $querytables = $GLOBALS['tables']['user'].' user'.', '.$GLOBALS['tables']['listuser'].' listuser ON user.id = listuser.userid';
             $subselect = '';
         } else {
-            $querytables = $GLOBALS['tables']['user'] . ' user';
+            $querytables = $GLOBALS['tables']['user'].' user';
             $subselect = '';
         }
         $ownerselect_where = '';
         break;
     case 'none':
     default:
-        $querytables = $GLOBALS['tables']['user'] . ' user';
+        $querytables = $GLOBALS['tables']['user'].' user';
         $subselect = ' and user.id = 0';
         $ownerselect_where = ' where owner = 0';
         break;
 }
 
-require dirname(__FILE__) . '/structure.php';
+require dirname(__FILE__).'/structure.php';
 if (isset($_POST['processexport'])) {
-    if (!verifyToken()) { ## csrf check
-        print Error($GLOBALS['I18N']->get('Invalid security token. Please reload the page and try again.'));
+    if (!verifyToken()) { //# csrf check
+        echo Error($GLOBALS['I18N']->get('Invalid security token. Please reload the page and try again.'));
 
         return;
     }
@@ -71,19 +71,19 @@ if (isset($_POST['processexport'])) {
     $_SESSION['export']['todate'] = $to->getDate('to');
     $_SESSION['export']['list'] = $list;
 
-    print '<p>' . s('Processing export, this may take a while. Please wait') . '</p>';
-    print $GLOBALS['img_busy'];
-    print '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-    print '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true' . addCsrfGetToken() . '" scrolling="no" height="50"></iframe>';
+    echo '<p>'.s('Processing export, this may take a while. Please wait').'</p>';
+    echo $GLOBALS['img_busy'];
+    echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
+    echo '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
 
     return;
 }
 
 if ($list) {
-    print s('Export subscribers on %s', ListName($list));
+    echo s('Export subscribers on %s', ListName($list));
 }
 
-print formStart();
+echo formStart();
 $checked = 'entered';
 if (isset($_GET['list']) && $_GET['list'] == 'all') {
     $checked = 'nodate';
@@ -110,15 +110,15 @@ if (isset($_GET['list']) && $_GET['list'] == 'all') {
 
 <?php
 if (empty($list)) {
-    print '<select name="list">';
+    echo '<select name="list">';
     $req = Sql_Query(sprintf('select * from %s %s', $GLOBALS['tables']['list'], $ownerselect_where));
     while ($row = Sql_Fetch_Array($req)) {
         printf('<option value="%d">%s</option>', $row['id'], $row['name']);
     }
-    print '</select>';
+    echo '</select>';
 } else {
     printf('<input type="hidden" name="list" value="%d" />', $list);
-    print '<strong>' . listName($list) . '</strong><br/><br/>';
+    echo '<strong>'.listName($list).'</strong><br/><br/>';
 }
 ?>
     <div id="exportdates">
@@ -135,15 +135,15 @@ if (empty($list)) {
 $cols = array();
 while (list($key, $val) = each($DBstruct['user'])) {
     if (strpos($val[1], 'sys') === false) {
-        printf("\n" . '<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $val[1]);
+        printf("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $val[1]);
     } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {
-        printf("\n" . '<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $regs[1]);
+        printf("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $regs[1]);
     }
 }
 $res = Sql_Query("select id,name,tablename,type from {$tables['attribute']} order by listorder");
 $attributes = array();
 while ($row = Sql_fetch_array($res)) {
-    printf("\n" . '<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ', $row['id'],
+    printf("\n".'<br/><input type="checkbox" name="attrs[]" value="%s" checked="checked" /> %s ', $row['id'],
         stripslashes(htmlspecialchars($row['name'])));
 }
 
@@ -155,5 +155,5 @@ while ($row = Sql_fetch_array($res)) {
 <?php
 
 if ($checked == 'nodate') {
-    print '<script type="text/javascript">$("#exportdates").hide();</script>';
+    echo '<script type="text/javascript">$("#exportdates").hide();</script>';
 }

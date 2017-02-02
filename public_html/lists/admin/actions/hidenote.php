@@ -1,6 +1,6 @@
 <?php
 
-## hiding notes
+//# hiding notes
 
 if ($_GET['note']) {
     if (!isset($_SESSION['suppressinfo']) || !is_array($_SESSION['suppressinfo'])) {

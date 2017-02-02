@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../sendemaillib.php';
+require_once dirname(__FILE__).'/../sendemaillib.php';
 
 class parseplaceholders extends phplistTest
 {
@@ -11,51 +11,51 @@ class parseplaceholders extends phplistTest
     {
         $placeholderTests = array(
             'Basic 1' => array(
-                'values' => array('NAME' => 'First Name', 'LASTNAME' => 'Last Name'),
+                'values'   => array('NAME' => 'First Name', 'LASTNAME' => 'Last Name'),
                 'template' => ' [NAME] [LASTNAME] ',
-                'result' => ' First Name Last Name ',
+                'result'   => ' First Name Last Name ',
             ),
             'Basic with fallback' => array(
-                'values' => array('SALUTATION' => '', 'LASTNAME' => 'Last Name'),
+                'values'   => array('SALUTATION' => '', 'LASTNAME' => 'Last Name'),
                 'template' => ' Dear [SALUTATION%%Mr/Ms] [LASTNAME] ',
-                'result' => ' Dear Mr/Ms Last Name ',
+                'result'   => ' Dear Mr/Ms Last Name ',
             ),
             'Basic Case' => array(
-                'values' => array('saluTaTION' => '', 'LastName' => 'Last Name'),
+                'values'   => array('saluTaTION' => '', 'LastName' => 'Last Name'),
                 'template' => ' Dear [SALuTation%%Mr/Ms] [lASTnAme] ',
-                'result' => ' Dear Mr/Ms Last Name ',
+                'result'   => ' Dear Mr/Ms Last Name ',
             ),
             'Foreign Char' => array(
-                'values' => array('Företag' => 'XXX'),
+                'values'   => array('Företag' => 'XXX'),
                 'template' => ' [Företag] [F&ouml;retag] [F&ouml;RETAG] ',
-                'result' => ' XXX XXX XXX ',
+                'result'   => ' XXX XXX XXX ',
             ),
             'Foreign Char2' => array(
-                'values' => array('Företag' => 'XXX'),
+                'values'   => array('Företag' => 'XXX'),
                 'template' => ' [F&ouml;RETAG%%Company name] ',
-                'result' => ' XXX ',
+                'result'   => ' XXX ',
             ),
             'Empty value' => array(
-                'values' => array('Empty' => ''),
+                'values'   => array('Empty' => ''),
                 'template' => ' [EMPTY%%Fallback value] ',
-                'result' => ' Fallback value ',
+                'result'   => ' Fallback value ',
             ),
             'Foreign Char3' => array(
-                'values' => array('PAíS COUNTRY' => 'São Paulo'),
+                'values'   => array('PAíS COUNTRY' => 'São Paulo'),
                 'template' => ' [PA&iacute;S COUNTRY%%Fallback value] [PAíS COUNTRY%%Fallback value] ',
-                'result' => ' São Paulo São Paulo ',
+                'result'   => ' São Paulo São Paulo ',
             ),
             'Foreign Char Fallback' => array(
-                'values' => array('PAíS COUNTRY' => ''),
+                'values'   => array('PAíS COUNTRY' => ''),
                 'template' => ' [PA&iacute;S COUNTRY%%Fallback value] [PAíS COUNTRY%%Fallback value] ',
-                'result' => ' Fallback value Fallback value ',
+                'result'   => ' Fallback value Fallback value ',
             ),
             'Multiple' => array(
                 'values' => array(
-                    'Name' => '',
+                    'Name'         => '',
                     'PAíS COUNTRY' => 'São Paulo',
-                    'Nome' => 'Your real name',
-                    'GRUPO BAND' => 'Loahded dipers'
+                    'Nome'         => 'Your real name',
+                    'GRUPO BAND'   => 'Loahded dipers',
                 ),
                 'template' => '<p>Dear [NAME%%Friend]</p>
 <p>&nbsp;</p>
@@ -74,7 +74,7 @@ class parseplaceholders extends phplistTest
             ),
 
         );
-        print('<P>PHP ' . PHP_VERSION . ' running on ' . PHP_OS . ' - Testing placeholder parsing</P>');
+        echo '<P>PHP '.PHP_VERSION.' running on '.PHP_OS.' - Testing placeholder parsing</P>';
 
         $resultString = '';
         $nFoundWrong = 0;
@@ -84,17 +84,17 @@ class parseplaceholders extends phplistTest
         foreach ($placeholderTests as $placeholder => $test) {
             $testresult = parsePlaceHolders($test['template'], $test['values']);
             if ($testresult != $test['result']) {
-                $resultString .= "$placeholder parses incorrectly <BR/> <pre>" . htmlspecialchars($testresult) . '</pre> instead of <pre>' . htmlspecialchars($test['result']) . '</pre>';
+                $resultString .= "$placeholder parses incorrectly <BR/> <pre>".htmlspecialchars($testresult).'</pre> instead of <pre>'.htmlspecialchars($test['result']).'</pre>';
                 ++$nFoundWrong;
             }
         }
 
         if ($nFoundWrong > 0) {
-            print("<P>The following $nFoundWrong placeholders were evaluated wrong:<BR/>$resultString</P>");
+            echo "<P>The following $nFoundWrong placeholders were evaluated wrong:<BR/>$resultString</P>";
 
             return false;
         } else {
-            print('<P>All placeholders evaluated correctly.</P>');
+            echo '<P>All placeholders evaluated correctly.</P>';
 
             return true;
         }

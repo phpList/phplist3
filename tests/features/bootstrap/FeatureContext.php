@@ -14,6 +14,10 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class FeatureContext extends MinkContext
 {
+
+    private $params = array();
+    private $data = array();
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -22,7 +26,7 @@ class FeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
+        $this->params = $parameters;
     }
 
 //
@@ -42,10 +46,31 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        if (is_file(__DIR__ . '/../../../scripts/recreatedb.sh')) {
-            system(__DIR__ . '/../../../scripts/recreatedb.sh');
-        } elseif (is_file(__DIR__ . '/../../recreatedb.sh')) {
-            system(__DIR__ . '/../../recreatedb.sh');
-        }
+
+        $user = $this->params['user'];
+        $password = $this->params['password'];
+        $db = mysqli_init();
+
+        mysqli_real_connect($db, 'localhost', $user, $password, 'mysql');
+        mysqli_query($db,'drop database if exists phplistbehattestdb');
+        mysqli_query($db,'create database phplistbehattestdb');
     }
+
+    /**
+     * @When /^I fill in "([^"]*)" with an email address$/
+     */
+    public function iFillInWithAnEmailAddress($fieldName)
+    {
+        $this->data['email'] = 'email@domain.com'; // at some point really make random
+        $this->fillField($fieldName, $this->data['email']);
+    }
+
+    /**
+     * @Given /^I should see the email address I entered$/
+     */
+    public function iShouldSeeTheEmailAddressIEntered()
+    {
+        $this->assertSession()->pageTextContains($this->data['email']);
+    }
+
 }

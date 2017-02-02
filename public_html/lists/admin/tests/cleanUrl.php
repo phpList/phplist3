@@ -8,43 +8,43 @@ class cleanUrl extends phplistTest
     private $tests = array(
 
         'simple' => array(
-            'orig' => 'http://www.phplist.com',
+            'orig'   => 'http://www.phplist.com',
             'result' => 'http://www.phplist.com',
         ),
         'https' => array(
-            'orig' => 'https://www.phplist.com',
+            'orig'   => 'https://www.phplist.com',
             'result' => 'https://www.phplist.com',
         ),
         'param1' => array(
-            'orig' => 'http://www.phplist.com/?lid=2345',
+            'orig'   => 'http://www.phplist.com/?lid=2345',
             'result' => 'http://www.phplist.com/?lid=2345',
         ),
-        'emptykey' => array( ## https://mantis.phplist.com/view.php?id=8980
-            'orig' => 'http://sub.domain.com/clk;6961dd9731;1544477399;e?http://www.domain.com/offer',
+        'emptykey' => array( //# https://mantis.phplist.com/view.php?id=8980
+            'orig'   => 'http://sub.domain.com/clk;6961dd9731;1544477399;e?http://www.domain.com/offer',
             'result' => 'http://sub.domain.com/clk;6961dd9731;1544477399;e?http://www.domain.com/offer',
         ),
-        'paramisnull' => array(## https://mantis.phplist.com/view.php?id=15615
-            'orig' => 'http://sub.domain.com/?param=0',
+        'paramisnull' => array(//# https://mantis.phplist.com/view.php?id=15615
+            'orig'   => 'http://sub.domain.com/?param=0',
             'result' => 'http://sub.domain.com/?param=0',
         ),
         'googlemaps' => array(
-            'orig' => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
+            'orig'   => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
             'result' => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
         ),
         'doubleclick' => array(
-            'orig' => 'http://ad.doubleclick.net/clk;273332321;99419470;i?http://www.ticketmaster.com/ANNIE-NY-tickets/artist/1740456?camefrom=CFC_NED_ANNIE_2BWORLD&utm_source=BWW&utm_medium=email&utm_campaign=annie',
+            'orig'   => 'http://ad.doubleclick.net/clk;273332321;99419470;i?http://www.ticketmaster.com/ANNIE-NY-tickets/artist/1740456?camefrom=CFC_NED_ANNIE_2BWORLD&utm_source=BWW&utm_medium=email&utm_campaign=annie',
             'result' => 'http://ad.doubleclick.net/clk;273332321;99419470;i?http://www.ticketmaster.com/ANNIE-NY-tickets/artist/1740456?camefrom=CFC_NED_ANNIE_2BWORLD&utm_source=BWW&utm_medium=email&utm_campaign=annie',
         ),
         'cleanUID' => array(
-            'orig' => 'http://sub.domain.com/lists/?p=unsubscribe&uid=75edfb003756d00aa3bc58b3b630939c',
+            'orig'   => 'http://sub.domain.com/lists/?p=unsubscribe&uid=75edfb003756d00aa3bc58b3b630939c',
             'result' => 'http://sub.domain.com/lists/?p=unsubscribe',
         ),
         'cleanUIDSESSID' => array(
-            'orig' => 'http://sub.domain.com/lists/?p=unsubscribe&uid=75edfb003756d00aa3bc58b3b630939c&PHPSESSID=ABCDEFG',
+            'orig'   => 'http://sub.domain.com/lists/?p=unsubscribe&uid=75edfb003756d00aa3bc58b3b630939c&PHPSESSID=ABCDEFG',
             'result' => 'http://sub.domain.com/lists/?p=unsubscribe',
         ),
         'googlemapsUID' => array(
-            'orig' => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&uid=75edfb003756d00aa3bc58b3b630939c&PHPSESSID=ABCDEFG&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
+            'orig'   => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&uid=75edfb003756d00aa3bc58b3b630939c&PHPSESSID=ABCDEFG&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
             'result' => 'https://maps.google.co.nz/maps/ms?msa=0&msid=205172721934932230455.0004b9985e4a2669ddcab&ie=UTF8&t=h&ll=11.867351,-98.789062&spn=122.508405,263.320313&z=2&source=embed&mid=1364172689',
         ),
     );
@@ -54,14 +54,14 @@ class cleanUrl extends phplistTest
         $pass = 1;
         foreach ($this->tests as $test) {
             $result = cleanUrl($test['orig'], array('PHPSESSID', 'uid'));
-            print $result . ' should be ' . $test['result'];
+            echo $result.' should be '.$test['result'];
             $pass = $pass && $result == $test['result'];
             if ($pass) {
-                print $GLOBALS['img_tick'];
+                echo $GLOBALS['img_tick'];
             } else {
-                print $GLOBALS['img_cross'];
+                echo $GLOBALS['img_cross'];
             }
-            print '<br/>';
+            echo '<br/>';
         }
 
         return $pass;

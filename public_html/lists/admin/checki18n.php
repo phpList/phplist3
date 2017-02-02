@@ -1,11 +1,11 @@
 <?php
 
-require_once dirname(__FILE__) . '/accesscheck.php';
+require_once dirname(__FILE__).'/accesscheck.php';
 
 $_SESSION['show_translation_colours'] = 1;
 
-print '<p class="button">' . PageLink2('checki18n&amp;changedonly=yes', 'Show changes only') . '</p>';
-# translation check. See that every token has a text in a file and vv
+echo '<p class="button">'.PageLink2('checki18n&amp;changedonly=yes', 'Show changes only').'</p>';
+// translation check. See that every token has a text in a file and vv
 
 function getFileI18Ntags($file)
 {
@@ -34,11 +34,11 @@ function checkI18NDir($rootdir)
     while ($file = readdir($dir)) {
         $fileoutput = '';
         $some = 0;
-        if (is_file($rootdir . '/' . $file)) {
-            $fileoutput .= '<hr/><h3>' . $file . '</h3><br/>';
-            $arr = getFileI18Ntags($rootdir . '/' . $file);
+        if (is_file($rootdir.'/'.$file)) {
+            $fileoutput .= '<hr/><h3>'.$file.'</h3><br/>';
+            $arr = getFileI18Ntags($rootdir.'/'.$file);
             $lan = array();
-            #    include 'lan/en/'.$file;
+            //    include 'lan/en/'.$file;
             switch ($file) {
                 case 'send_core.php':
                     $_GET['page'] = 'send';
@@ -62,21 +62,21 @@ function checkI18NDir($rootdir)
                 if (!isset($_GET['changedonly']) || ($_GET['changedonly'] === 'yes' && preg_match('/ff1717/i',
                             $translation))
                 ) {
-                    $fileoutput .= "'" . $tag . '\' =&gt; \'' . $translation . '\',<br/>';
+                    $fileoutput .= "'".$tag.'\' =&gt; \''.$translation.'\',<br/>';
                     $some = 1;
                 }
             }
             if ($some) {
-                print $fileoutput;
+                echo $fileoutput;
             }
-            #      print "RES: $tag<br/>";
-            #    }
-            #      if (!in_array($tag,$lan)) {
-            #        print "Missing: $tag<br/>";
-            #      } else {
-            #        print "Exists: $tag<br/>";
-            #      }
-            #    }
+            //      print "RES: $tag<br/>";
+            //    }
+            //      if (!in_array($tag,$lan)) {
+            //        print "Missing: $tag<br/>";
+            //      } else {
+            //        print "Exists: $tag<br/>";
+            //      }
+            //    }
         }
     }
 }
@@ -97,5 +97,5 @@ function selectAll() {
 print '<textarea name="content" rows="50" cols="60">';
 */
 checkI18NDir(dirname(__FILE__));
-#print '</textarea>';
-print '</form>';
+//print '</textarea>';
+echo '</form>';
