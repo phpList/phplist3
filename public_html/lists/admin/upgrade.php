@@ -586,14 +586,25 @@ if ($dbversion == VERSION) {
     // add uuids to those that do not have it
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['user']));
     $numS = Sql_Affected_Rows();
-    if ($numS > 10000) {
+    if ($numS > 500) {
+
+        // with a lot of subscrirbers this can take a very long time, causing a blank page for a long time (I had one system where it took almost an hour)
+        //.This really needs to be loaded in Async mode, therefore I'm removing this for now
+        // it is not strictly necessary to do this here, because processqueue does it as well.
+        // that does mean that the first process queue may take a while.
+
+     //   output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
+     //   output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
+    } else {
         output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
         output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
+        while ($row = Sql_Fetch_Row($req)) {
+            Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['user'], (string)uuid::generate(4), $row[0]));
+        }
     }
 
-    while ($row = Sql_Fetch_Row($req)) {
-        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['user'], (string) uuid::generate(4), $row[0]));
-    }
+    // let's hope there aren't too many campaigns or links, otherwise the same timeout would apply.
+
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['message']));
     while ($row = Sql_Fetch_Row($req)) {
         Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['message'], (string) uuid::generate(4), $row[0]));
