@@ -5507,12 +5507,6 @@ msgstr ""
 msgid "Your version"
 msgstr ""
 
-#: public_html/lists/admin/actions/processqueue.php:478
-msgid ""
-"Your webserver is running in safe_mode. Please keep this window open. It may "
-"reload several times to make sure all messages are sent."
-msgstr ""
-
 #: public_html/lists/admin/defaultconfig.php:416
 msgid "[notify] Change of List-Membership details"
 msgstr ""

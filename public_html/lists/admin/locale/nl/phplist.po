@@ -9901,14 +9901,6 @@ msgstr "Onderdrukkingslijst"
 #~ "venster zal verschillende malen opnieuw laden om het bericht te zenden. Een "
 #~ "rapport zal per e-mail bericht worden verzonden naar"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "De webserver functioneert momenteel in de veilige modus. Laat dit venster "
-#~ "open. Het kan verschillende malen opnieuw laden om er zeker van te zijn dat "
-#~ "alle berichten verstuurd zijn."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Rapporten zullen worden verzonden naar"
 

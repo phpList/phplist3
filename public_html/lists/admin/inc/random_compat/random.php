@@ -109,7 +109,7 @@ if (PHP_VERSION_ID < 70000) {
                 @is_readable('/dev/urandom')
             ) {
                 // Error suppression on is_readable() in case of an open_basedir
-                // or safe_mode failure. All we care about is whether or not we
+                // failure. All we care about is whether or not we
                 // can read it at this point. If the PHP environment is going to
                 // panic over trying to see if the file can be read in the first
                 // place, that is not helpful to us here.
@@ -150,7 +150,7 @@ if (PHP_VERSION_ID < 70000) {
             // Prevent this code from hanging indefinitely on non-Windows;
             // see https://bugs.php.net/bug.php?id=69833
             if (
-                DIRECTORY_SEPARATOR !== '/' || 
+                DIRECTORY_SEPARATOR !== '/' ||
                 (PHP_VERSION_ID <= 50609 || PHP_VERSION_ID >= 50613)
             ) {
                 // See random_bytes_mcrypt.php

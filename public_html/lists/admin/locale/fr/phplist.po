@@ -9922,14 +9922,6 @@ msgstr "titre de page : suppression de liste"
 #~ "lot, la page se rechargera plusieurs fois pour envoyer les messages. Le "
 #~ "rapport sera envoyé à"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Votre serveur web est en mode sécurité. Merci de garder cette fenêtre "
-#~ "ouverte. Elle va peut-être se recharger plusieurs fois jusqu'à la fin de "
-#~ "l'envoi de tous les messages."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Les rapports seront envoyés par courriel à"
 
@@ -10754,9 +10746,6 @@ msgstr "titre de page : suppression de liste"
 #~ msgstr ""
 #~ "Il est plus sain de désactiver les \"Register Globals\" dans votre php.ini. "
 #~ "Des les poistionner à <b>off</b> plutôt qu'à "
-
-#~ msgid "In safe mode, not everything will work as expected"
-#~ msgstr "En safe_mode, tous ne fonctionneras pas comme attendu"
 
 #~ msgid "Reload required"
 #~ msgstr "Il faut rafra&icirc;chir l&rsquo;&eacute;cran"

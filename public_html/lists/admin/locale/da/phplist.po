@@ -9500,14 +9500,6 @@ msgstr ""
 #~ "gang, s&aring; der vil blive reloadet flere gange for at sende beskederne. "
 #~ "Rapport vil blive sendt til"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Din webserver k&oslash;rer i \"safe_mode\". Venligst hold dette vindue "
-#~ "&aring;ben. Det vil m&aring;ske genopfriske adskillige gange for at v&aelig;"
-#~ "re sikker p&aring; at alle beskeder er blevet sendt."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Rapporter vil blive sendt via email til"
 

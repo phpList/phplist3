@@ -9491,14 +9491,6 @@ msgstr ""
 #~ "partibearbetning, så det kommer uppdateras flera gånger för att sända "
 #~ "utskicken. Rapporter kommer sändas via e-post till"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Din webbserver körs i \"safe_mode\". Vänligen håll detta fönster öppet. Det "
-#~ "kan uppdateras flera gånger för att försäkra sig om att alla utskick har "
-#~ "sänts."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Rapporter kommer sändas via e-post till"
 

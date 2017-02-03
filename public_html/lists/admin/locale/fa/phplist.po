@@ -9570,13 +9570,6 @@ msgstr ""
 #~ "این پنجره چند بار بارگذاری مجدد میشود تا پیامها را بفرستد. گزارش کار ایمیل "
 #~ "میشود به"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "سرور وب شما در حالت \"safe_mode\" است. لطفا این پنجره را باز نگه دارید. ممکن "
-#~ "است چند بار بارگذاری شود تا اطمینان حاصل شود که همه پیامها فرستاده شده اند."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "گزارشها ایمیل میشوند به"
 

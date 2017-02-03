@@ -18,7 +18,7 @@ if (isset($_GET['m'])) {
 
 if (!empty($row['data'])) {
     $imageContent = base64_decode($row['data']);
-    if ($max && function_exists('getimagesizefromstring')) { //# getimagesizefromstring is 5.4 and up
+    if ($max) {
         $imSize = getimagesizefromstring($imageContent);
         $sizeW = $imSize[0];
         $sizeH = $imSize[1];

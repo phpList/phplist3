@@ -9632,13 +9632,6 @@ msgstr "pagetitlehover:lista suzbijenih"
 #~ "Ostavite ovaj prozor otvoren. Pošto ste omogućili grupno slanje prozor će se "
 #~ "više puta učitati dok šalje poruke. Izveštaji će biti poslati e-porukom za"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Vaš veb server je u sigurnom režimu. Držite ovaj prozor otvoren.  On će se "
-#~ "učitati više puta dok se sve poruke ne pošalju."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Izveštaji će biti poslati na "
 

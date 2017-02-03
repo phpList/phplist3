@@ -202,14 +202,6 @@ if (isset($cline['m'])) {
     cl_output('Max to send is '.$cline['m'].' setting num per batch to '.$counters['num_per_batch']);
 }
 
-$safemode = 0;
-if (ini_get('safe_mode')) {
-    // keep an eye on timeouts
-    $safemode = 1;
-    $counters['num_per_batch'] = min(100, $counters['num_per_batch']);
-    echo $GLOBALS['I18N']->get('Running in safe mode').'<br/>';
-}
-
 $original_num_per_batch = $counters['num_per_batch'];
 if ($counters['num_per_batch'] && $batch_period) {
     // check how many were sent in the last batch period and take off that
@@ -524,9 +516,6 @@ if (empty($reload)) { //# only show on first load
 }
 
 if ($counters['num_per_batch'] > 0) {
-    if ($safemode) {
-        processQueueOutput(s('In safe mode, batches are set to a maximum of 100'));
-    }
     if ($original_num_per_batch != $counters['num_per_batch']) {
         if (empty($reload)) {
             processQueueOutput(s('Sending in batches of %s messages', number_format($original_num_per_batch)), 0);

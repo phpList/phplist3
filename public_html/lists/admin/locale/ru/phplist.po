@@ -9698,14 +9698,6 @@ msgstr ""
 #~ "Не закрывайте это окно: в процессе пакетной обработки содержимое будет "
 #~ "обновлено несколько раз. Отчёты будут отправлены по электронной почте на"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Не закрывайте окно: веб сервер запущен в безопасном режиме (safe_mode) и "
-#~ "может потребоваться неоднократный перезапуск в окне для гарантии отправки "
-#~ "всех сообщений."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Отчёты будут отправлены по электронной почте на"
 

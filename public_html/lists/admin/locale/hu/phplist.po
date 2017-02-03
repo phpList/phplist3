@@ -9502,14 +9502,6 @@ msgstr ""
 #~ "többször újra fog tölteni az üzenetek elküldéséhez. A jelentések e-mailben "
 #~ "kerülnek elküldésre a következőnek:"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "A webkiszolgáló \"safe_mode\" beállítással fut. Hagyja nyitva ezt az "
-#~ "ablakot. Több alkalommal újratöltődhet, hogy megbizonyosdhasson arról, az "
-#~ "összes üzenet elküldésre került."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "A jelentések e-mailben kerülnek elküldésre a következőnek:"
 

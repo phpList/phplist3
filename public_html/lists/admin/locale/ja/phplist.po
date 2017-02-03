@@ -9442,13 +9442,6 @@ msgstr ""
 #~ "Please leave this window open. You have batch processing enabled, so it will "
 #~ "reload several times to send the messages. Reports will be sent by email to"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Your webserver is running in \"safe_mode\". Please keep this window open. It "
-#~ "may reload several times to make sure all messages are sent."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Reports will be sent by email to"
 

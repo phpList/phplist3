@@ -9664,13 +9664,6 @@ msgstr "Suppression List"
 #~ "Please leave this window open. You have batch processing enabled, so it will "
 #~ "reload several times to send the messages. Reports will be sent by email to"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Reports will be sent by email to"
 
@@ -10274,12 +10267,6 @@ msgstr "Suppression List"
 
 #~ msgid "In safe mode, not everything will work as expected"
 #~ msgstr "In safe mode, not everything will work as expected"
-
-#~ msgid "Things will work better when PHP magic_quotes_gpc = on"
-#~ msgstr "Things will work better when PHP magic_quotes_gpc = <b>on</b>"
-
-#~ msgid "Things will work better when PHP magic_quotes_runtime = off"
-#~ msgstr "Things will work better when PHP magic_quotes_runtime = off"
 
 #~ msgid "You do not have enough privileges to access this page"
 #~ msgstr "You do not have enough privileges to access this page"

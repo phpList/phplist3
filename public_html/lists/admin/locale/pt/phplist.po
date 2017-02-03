@@ -10011,14 +10011,6 @@ msgstr "Lista de remoção"
 #~ "far&aacute; com que a janela atualize v&aacute;rias vezes para poder enviar "
 #~ "todas as mensagens. Ser&atilde;o enviados relat&oacute;rios via email para"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "O servidor est&aacute; a trabalhar no modo de seguran&ccedil;a. Mantenha "
-#~ "esta janela aberta. Pois para que todas as mensagens sejam enviadas ela "
-#~ "ter&aacute; que ser atualizada diversas vezes."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Os relat&oacute;rios ser&atilde;o enviados por email para"
 
