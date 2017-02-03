@@ -13,7 +13,7 @@
 	    <div id="language">
             <?php print $languageswitcher; ?>
         </div>
-        <div id="themedrop"><?php print $themeswitcher; ?></div>
+<!--        <div id="themedrop"><?php print $themeswitcher; ?></div>-->
 	<div class="clear"></div>
 <?php include dirname(__FILE__).'/rssfeed.php'; ?>  
 	</div><!-- end #right-bar -->
