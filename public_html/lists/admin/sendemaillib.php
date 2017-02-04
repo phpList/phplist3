@@ -627,9 +627,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     $masked = preg_replace('/=$/', '', $masked);
                     $masked = urlencode($masked);
                 } else {
-                    $masked = substr($linkUUID,0,14).bin2hex(random_bytes(1)).substr($linkUUID,15).
-                        substr($cached[$messageid]['uuid'],0,14).bin2hex(random_bytes(1)).substr($cached[$messageid]['uuid'],15).
-                        substr($userdata['uuid'],0,14).bin2hex(random_bytes(1)).substr($userdata['uuid'],15);
+                    $masked = $linkUUID . $cached[$messageid]['uuid'] . $userdata['uuid'];
+                    $uuidLength = strlen($linkUUID);
+                    $masked[14] = substr(bin2hex(random_bytes(1)), 0, 1);
+                    $masked[$uuidLength + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
+                    $masked[$uuidLength * 2 + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
                     $masked = str_replace('=', '', base64_encode(hex2bin(str_replace('-', '', $masked))));
                 }
                 if (SIGN_WITH_HMAC) {
