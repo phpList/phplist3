@@ -27,6 +27,11 @@ function stripSlashesArray($array)
     return $array;
 }
 
+$_POST = addSlashesArray($_POST);
+$_GET = addSlashesArray($_GET);
+$_REQUEST = addSlashesArray($_REQUEST);
+$_COOKIE = addSlashesArray($_COOKIE);
+
 function removeXss($string)
 {
     if (is_array($string)) {
