@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
 
-[![StyleCI](https://styleci.io/repos/32042787/shield)](https://styleci.io/repos/32042787)
-
 Open source newsletter and email marketing manager https://www.phplist.org
 
 ---
