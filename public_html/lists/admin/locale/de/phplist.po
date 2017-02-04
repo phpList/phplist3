@@ -9860,14 +9860,6 @@ msgstr "pagetitlehover:suppressionlist"
 #~ "darum wird es mehrmals neu laden, um die Nachrichten zu senden. Der Bericht "
 #~ "wird per E-Mail gesendet an"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Ihr Webserver arbeite im safe_mode. Bitte lassen Sie dieses Fenster offen. "
-#~ "Es kann öfter aktualisiert werden, um sicherzustellen, dass alle Nachrichten "
-#~ "gesendet werden."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Berichte werden per E-Mail an folgende Adresse verschickt:"
 

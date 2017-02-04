@@ -9423,14 +9423,6 @@ msgstr ""
 #~ "waardoor dit venster verschillende keren opnieuw zal laden om het bericht te "
 #~ "verzenden. Rapporten worden verzonden per email naar"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Uw webserver loop in \"veilige modus\". Lat dit venster aub open.Het kan "
-#~ "verschillende malen herladen om er zeker van te zijn dat alle berichten "
-#~ "verstuurd zijn."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Rapporten zullen worden verzonden naar"
 

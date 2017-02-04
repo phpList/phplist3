@@ -9462,11 +9462,6 @@ msgstr ""
 #~ "reload several times to send the messages. Reports will be sent by email to"
 #~ msgstr "請保持這個視窗開啟，因為您啟用了批次處理功能，所以系統會自動重新載入頁面多次來寄送所有信件；報表將會寄到 "
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr "您的網站伺服器執行在 \"安全模式\"，請保持開啟這個視窗，它也許會重新讀取多次來確保所有信件能夠順利寄出。"
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "報表會寄到"
 

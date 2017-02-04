@@ -9641,14 +9641,6 @@ msgstr ""
 #~ "habilitado, por lo que va a recargar varias veces para enviar los mensajes. "
 #~ "Los informes se pueden enviar por correo electrónico a"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Su servidor est&aacute; funcionando en &#171;safe_mode&#187; (modo seguro). "
-#~ "Mantenga esta ventana abierta. Puede que se recargue varias veces para "
-#~ "asegurar que se env&iacute;n todos los mensajes."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Los informes se enviar&aacute;n por correo a"
 

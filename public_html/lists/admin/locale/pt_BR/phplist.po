@@ -9723,14 +9723,6 @@ msgstr ""
 #~ "far&aacute; com que a janela atulize v&aacute;rias vezes para poder enviar "
 #~ "todas as mensagens. Ser&atilde; enviados relat&oacute;rios via email para"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "O servidor est&aacute; rodando no modo de seguran&ccedil;a. Mantenha esta "
-#~ "janela aberta, pois para que todas as mensagens sejam enviadas ela "
-#~ "ter&aacute; que ser atualizada diversas vezes"
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "Relat&oacute;rios ser&atilde;o enviados por email para"
 

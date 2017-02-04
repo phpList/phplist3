@@ -108,37 +108,32 @@ while ($row = Sql_Fetch_Row($res)) {
     array_push($testlists, $row[0]);
 }
 
-if (!ini_get('safe_mode')) {
-    if (!count($testlists)) {
-        echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Error: cannot find any test lists to use";</script>'."\n";
-    } elseif (!isset($eraseall)) {
-        echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Filling ";</script>'."\n";
-        for ($i = 0; $i <= 100; ++$i) {
-            set_time_limit(60);
-            flush();
-            reset($testlists);
-            while (list($key, $val) = each($testlists)) {
-                if (!fill(getmypid().$i, $val)) {
-                    return;
-                }
-            }
-        }
-    } else {
-        $req = Sql_Query("select id from $tables[user] where email like \"testuser%\"");
-        $i = 1;
+if (!count($testlists)) {
+    echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Error: cannot find any test lists to use";</script>'."\n";
+} elseif (!isset($eraseall)) {
+    echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Filling ";</script>'."\n";
+    for ($i = 0; $i <= 100; ++$i) {
         set_time_limit(60);
-        echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Erasing ";</script>'."\n";
         flush();
-        while ($row = Sql_Fetch_row($req)) {
-            Sql_Query("delete quick from $tables[user_attribute] where userid = $row[0]");
-            Sql_Query("delete quick from $tables[listuser] where userid = $row[0]");
-            Sql_Query("delete quick from $tables[usermessage] where userid = $row[0]");
-            Sql_Query("delete quick from $tables[user] where id = $row[0]");
-            ++$i;
+        reset($testlists);
+        while (list($key, $val) = each($testlists)) {
+            if (!fill(getmypid().$i, $val)) {
+                return;
+            }
         }
     }
 } else {
-    echo Error('Cannot do stresstest in safe mode');
+    $req = Sql_Query("select id from $tables[user] where email like \"testuser%\"");
+    $i = 1;
+    set_time_limit(60);
+    echo '<script language="Javascript" type="text/javascript"> document.forms[0].output.value="Erasing ";</script>'."\n";
+    flush();
+    while ($row = Sql_Fetch_row($req)) {
+        Sql_Query("delete quick from $tables[user_attribute] where userid = $row[0]");
+        Sql_Query("delete quick from $tables[listuser] where userid = $row[0]");
+        Sql_Query("delete quick from $tables[usermessage] where userid = $row[0]");
+        Sql_Query("delete quick from $tables[user] where id = $row[0]");
+        ++$i;
+    }
 }
-
 ?>

@@ -9735,13 +9735,6 @@ msgstr "Lista revoche"
 #~ "finestra si aggiornerà per inviare tutti i messaggi. Un report verrà inviato "
 #~ "per mail a"
 
-#~ msgid ""
-#~ "Your webserver is running in safe_mode. Please keep this window open. It may "
-#~ "reload several times to make sure all messages are sent."
-#~ msgstr ""
-#~ "Il Webserver è in esecuzione in safe_mode. Per favore tieni aperta questa "
-#~ "finestra. Deve aggiornarsi più volte per inviare tutti i messaggi."
-
 #~ msgid "Reports will be sent by email to"
 #~ msgstr "I report saranno inviati via email a"
 

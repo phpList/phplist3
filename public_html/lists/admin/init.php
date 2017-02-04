@@ -67,8 +67,6 @@ if (function_exists('iconv') || ((!strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' &&
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding('UTF-8');
 }
-//magic quotes are deprecated, so try to switch off if possible
-ini_set('magic_quotes_gpc', 'off');
 
 $IsCommandlinePlugin = '';
 $zlib_compression = ini_get('zlib.output_compression');
@@ -135,12 +133,6 @@ unset($GLOBALS['DBstructuser']);
 unset($GLOBALS['DBstructphplist']);
 
 $GLOBALS['show_dev_errors'] = $show_dev_errors;
-$magic_quotes = ini_get('magic_quotes_gpc');
-if ($magic_quotes == 'off' || empty($magic_quotes)) {
-    define('NO_MAGIC_QUOTES', true);
-} else {
-    define('NO_MAGIC_QUOTES', false);
-}
 
 if (empty($GLOBALS['language_module'])) {
     $GLOBALS['language_module'] = 'english.inc';
@@ -711,9 +703,6 @@ if (!defined('FORWARD_FRIEND_COUNT_ATTRIBUTE')) {
 if (!defined('BLOCK_PASTED_CLICKTRACKLINKS')) {
     define('BLOCK_PASTED_CLICKTRACKLINKS', false);
 }
-if (!defined('SORT_FLAG_CASE')) {
-    define('SORT_FLAG_CASE', 1);
-} // pre PHP5.4
 
 if (FORWARD_EMAIL_COUNT < 1) {
     echo 'Config Error: FORWARD_EMAIL_COUNT must be > (int) 0';
