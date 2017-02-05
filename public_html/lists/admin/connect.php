@@ -115,7 +115,7 @@ while ($th = readdir($d)) {
         }
     }
 }
-if (count($THEMES) > 1) {
+if (count($THEMES) > 1 && THEME_SWITCH) {
     $default_config['UITheme'] = array(
         'value'       => $_SESSION['ui'],
         'values'      => array_flip($themeNames),
