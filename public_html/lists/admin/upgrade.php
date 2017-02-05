@@ -586,7 +586,7 @@ if ($dbversion == VERSION) {
     // add uuids to those that do not have it
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['user']));
     $numS = Sql_Affected_Rows();
-    if ($numS > 500) {
+    if ($numS > 500 && empty($GLOBALS['commandline'])) {
 
         // with a lot of subscrirbers this can take a very long time, causing a blank page for a long time (I had one system where it took almost an hour)
         //.This really needs to be loaded in Async mode, therefore I'm removing this for now
