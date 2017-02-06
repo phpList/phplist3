@@ -1864,7 +1864,7 @@ function repeatMessage($msgid)
         array_keys($DBstruct['message']),
         array(
             'id', 'entered', 'modified', 'embargo', 'status', 'sent', 'processed', 'astext', 'ashtml',
-            'astextandhtml', 'aspdf', 'astextandpdf', 'viewed', 'bouncecount', 'sendstart',
+            'astextandhtml', 'aspdf', 'astextandpdf', 'viewed', 'bouncecount', 'sendstart', 'uuid',
         )
     );
 
@@ -1872,8 +1872,13 @@ function repeatMessage($msgid)
         Sql_Query(sprintf('update %s set %s = "%s" where id = %d',
             $GLOBALS['tables']['message'], $column, addslashes($msgdata[$column]), $newid));
     }
-    Sql_Query(sprintf('update %s set embargo = "%s",status = "submitted" where id = %d',
-        $GLOBALS['tables']['message'], $msgdata['newembargo'], $newid));
+    Sql_Query(sprintf(
+        'update %s set embargo = "%s",status = "submitted", uuid="%s" where id = %d',
+        $GLOBALS['tables']['message'],
+        $msgdata['newembargo'],
+        UUID::generate(4),
+        $newid
+    ));
 
     // copy rows in messagedata
     $req = Sql_Query(sprintf(
