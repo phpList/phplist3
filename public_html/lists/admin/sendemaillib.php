@@ -82,6 +82,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     // print '<pre>';var_dump($user_att_values);print '</pre>';exit;
     $query = sprintf('select * from %s where email = "%s"', $GLOBALS['tables']['user'], sql_escape($email));
     $userdata = Sql_Fetch_Assoc_Query($query);
+    if (empty($userdata['uuid'])) {
+        $uuid = (string) uuid::generate(4);
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['user'], $uuid ,$userdata['id']));
+        $userdata['uuid'] = $uuid;
+    }
     if (empty($userdata['id'])) {
         $userdata = array();
     }
