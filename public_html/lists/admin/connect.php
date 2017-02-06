@@ -1876,7 +1876,7 @@ function repeatMessage($msgid)
         'update %s set embargo = "%s",status = "submitted", uuid="%s" where id = %d',
         $GLOBALS['tables']['message'],
         $msgdata['newembargo'],
-        UUID::generate(4),
+        (string) UUID::generate(4),
         $newid
     ));
 
