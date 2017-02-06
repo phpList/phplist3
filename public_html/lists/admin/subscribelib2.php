@@ -181,8 +181,8 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     if (!Sql_affected_rows()) {
         // they do not exist, so add them
         $query = sprintf('insert into %s (email,entered,uniqid,confirmed,
-    htmlemail,subscribepage) values("%s",now(),"%s",0,%d,%d)',
-            $GLOBALS['tables']['user'], sql_escape($email), getUniqid(), $htmlemail, $id);
+    htmlemail,subscribepage,uuid) values("%s",now(),"%s",0,%d,%d,"%s")',
+            $GLOBALS['tables']['user'], sql_escape($email), getUniqid(), $htmlemail, $id, (string) uuid::generate(4));
         $result = Sql_query($query);
         $userid = Sql_Insert_Id();
         addSubscriberStatistics('total users', 1);
