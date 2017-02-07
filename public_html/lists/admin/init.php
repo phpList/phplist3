@@ -294,10 +294,13 @@ if (!defined('ENCRYPTION_ALGO')) {
     }
 }
 if (!defined('HASH_ALGO')) {
-    if (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
+	// keep previous hashalg. @@TODO force an update of hash method, many may still be on md5. 
+	if (defined('ENCRYPTION_ALGO')) {
+        define('HASH_ALGO', ENCRYPTION_ALGO);
+	} elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
         define('HASH_ALGO', 'sha256');
     } else {
-        define('HASH_ALGO', ENCRYPTION_ALGO);
+        define('HASH_ALGO', 'md5');
     }
 }
 //# remember the length of a hashed string
