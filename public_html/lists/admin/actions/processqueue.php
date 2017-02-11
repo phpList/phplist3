@@ -84,7 +84,7 @@ $req = Sql_Query(sprintf('select id from %s where uuid is NULL or uuid = ""', $G
 $num = Sql_Affected_Rows();
 if ($num) {
     cl_output(s('Giving a UUID to %d subscribers, this may take a while', $num));
-    output(s('Giving a UUID to %d subscribers, this may take a while', $num));
+    processQueueOutput(s('Giving a UUID to %d subscribers, this may take a while', $num));
     while ($row = Sql_Fetch_Row($req)) {
         Sql_query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['user'], (string) uuid::generate(4), $row[0]));
     }
