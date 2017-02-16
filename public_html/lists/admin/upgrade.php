@@ -157,7 +157,7 @@ if ($dbversion == VERSION && !$force) {
                     s('Run manual conversion to UTF8'));
             echo '</div>';
         }
-    }def
+    }
 
     //# 2.11.7 and up
     Sql_Query(sprintf('alter table %s add column privileges text', $tables['admin']), 1);
@@ -251,7 +251,7 @@ if ($dbversion == VERSION && !$force) {
     // add uuids to those that do not have it
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['user']));
     $numS = Sql_Affected_Rows();
-    if ($numS > 500) {
+    if (!$GLOBALS['commandline'] && $numS > 500) {
 
         // with a lot of subscrirbers this can take a very long time, causing a blank page for a long time (I had one system where it took almost an hour)
         //.This really needs to be loaded in Async mode, therefore I'm removing this for now
