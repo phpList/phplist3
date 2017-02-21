@@ -1350,6 +1350,20 @@ function releaseLock($processid)
     Sql_query("delete from {$tables['sendprocess']} where id = $processid");
 }
 
+// some basic MM functions, to be expanded upon
+function setMaintenanceMode($message = '') {
+    SaveConfig('maintenancemode', serialize(array('message' => $message)),0);
+}
+
+function clearMaintenanceMode() {
+    SaveConfig('maintenancemode','',0);
+}
+
+function inMaintenanceMode() {
+    $mm = getConfig('maintenancemode');
+    return $mm;
+}
+
 function parseQueryString($str)
 {
     if (empty($str)) {
