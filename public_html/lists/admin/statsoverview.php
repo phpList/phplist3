@@ -103,7 +103,7 @@ $ls->addColumn($element, '', formatDateTime($messagedata['entered']));
 
 $element = ucfirst(s('Date sent'));
 $ls->addElement($element);
-$ls->addColumn($element, '', formatDateTime($messagedata['sent'], 1));
+$ls->addColumn($element, '', formatDateTime($messagedata['sent']));
 
 $element = ucfirst(s('Sent as HTML'));
 $ls->addElement($element);
