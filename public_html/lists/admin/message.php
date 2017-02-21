@@ -164,7 +164,10 @@ if (!Sql_Affected_Rows()) {
 }
 while ($lst = Sql_fetch_array($result)) {
     array_push($lists_done, $lst['id']);
-    $content .= sprintf('<tr><td><!--%d--></td><td>%s</td></tr>', $lst['id'], stripslashes($lst['name']));
+    $content .= 
+'<tr>
+    <td>' . PageLinkButton('members&amp;id=' . $lst['id'], stripslashes($lst['name']), '', '', s('View Members')) . '</td>
+</tr>';
 }
 
 if ($msgdata['excludelist']) {
