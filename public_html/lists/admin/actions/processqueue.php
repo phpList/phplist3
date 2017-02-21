@@ -54,6 +54,14 @@ if (empty($send_process_id)) {
     return;
 }
 
+$mm = inMaintenanceMode();
+if (!empty($mm)) {
+    processQueueOutput(s('The system is in maintenance mode, stopping. Try again later.'));
+    $status = s('In maintenance mode, try again later.');
+    releaseLock($send_process_id);
+    return;
+}
+
 //cl_output('page locked on '.$send_process_id);
 
 if (empty($GLOBALS['commandline']) && isset($_GET['reload'])) {
