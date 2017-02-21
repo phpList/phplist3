@@ -694,10 +694,15 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
                 @ob_end_clean();
                 @ob_start();
             }
-            if (isset($GLOBALS['developer_email'])) {
-                include $include;
+            $mm = inMaintenanceMode();
+            if (empty($mm) || $GLOBALS['commandline'] || $page == 'login' || $page == 'about' || $page == 'community') {
+                if (isset($GLOBALS['developer_email'])) {
+                    include $include;
+                } else {
+                    @include $include;
+                }
             } else {
-                @include $include;
+                print '<h1>'.s('phpList is in maintenance mode.<br/>Please try again in half an hour.'). '<h1>';
             }
         }
     } else {
