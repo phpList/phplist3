@@ -32,6 +32,7 @@ function output($message)
 }
 
 $dbversion = getConfig('version');
+$releaseDBversion = getConfig('releaseDBversion'); // release version check
 $inUpgrade = getConfig('in-upgrade-to');
 if (!empty($inUpgrade) && $inUpgrade == VERSION) {
     if (!$force) {
@@ -59,6 +60,12 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
 if (!versionCompare($dbversion,'3.2.0')) {
     Fatal_Error(s('Your version is older than 3.2.0 and cannot be upgraded to this version. Please upgrade to 3.2.0 first and then try again.'));
     return;
+}
+
+// only action upgrade if necessary
+if ($force && $dbversion == VERSION  && defined('RELEASEDATE') && RELEASEDATE == $releaseDBversion) {
+    output(s('Your database is already the correct version (%s), including release date version (%s), there is no need to upgrade',$dbversion, $releaseDBversion));
+    unset($_GET['doit']);
 }
 
 if ($dbversion == VERSION && !$force) {
@@ -296,6 +303,9 @@ if ($dbversion == VERSION && !$force) {
     // mark the database to be our current version
     if ($success) {
         SaveConfig('version', VERSION, 0);
+        if (defined('RELEASEDATE')) {
+            SaveConfig('releaseDBversion', RELEASEDATE, 0);
+        }
         // mark now to be the last time we checked for an update
         SaveConfig('updatelastcheck', date('Y-m-d H:i:s', time()), 0, true);
         //# also clear any possible value for "updateavailable"
