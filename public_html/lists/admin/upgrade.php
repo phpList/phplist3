@@ -70,6 +70,13 @@ if ($dbversion == VERSION && !$force) {
 } elseif (isset($_GET['doit']) && $_GET['doit'] == 'yes') {
     $success = 1;
     // once we are off, this should not be interrupted
+
+    // mark the system to be in maintenance mode
+    setMaintenanceMode(s('Upgrading phpList to version '.VERSION));
+
+    // force send and other processes to stop
+    Sql_Query(sprintf('delete from %s ',$GLOBALS['tables']['sendprocess']));
+
     ignore_user_abort(1);
     // rename tables if we are using the prefix
     include dirname(__FILE__).'/structure.php';
@@ -317,6 +324,7 @@ if ($dbversion == VERSION && !$force) {
             output($GLOBALS['I18N']->get('Upgrade failed'));
         }
     }
+    clearMaintenanceMode();
 } else {
     echo '<p>'.s('Your database requires upgrading, please make sure to create a backup of your database first.').'</p>';
     echo '<p>'.s('If you have a large database, make sure you have sufficient diskspace available for upgrade.').'</p>';
