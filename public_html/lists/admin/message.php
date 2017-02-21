@@ -74,12 +74,10 @@ if (empty($result['id'])) {
 }
 
 // Fetch message details
-$messagedata = loadMessageData($result['id']);
+$msgdata = loadMessageData($id);
 
 // Set heading to campaign title (not necessarily the subject)
-$campaignTitle = $messagedata['campaigntitle'];
-
-$msgdata = loadMessageData($id);
+$campaignTitle = $msgdata['campaigntitle'];
 
 if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
     echo '<div class="actions">';
