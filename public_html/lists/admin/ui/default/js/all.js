@@ -1088,9 +1088,20 @@ b.dequeue()})})}})(jQuery);
  */
 
 /* these can be "overwritten" by the UI */
-var busyImage = '<img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait" />';
-var menuArrowImage = 'ui/default/images/menuarrow.png';
-var menuArrowActiveImagesrc = 'ui/default/images/menuarrow_active.png';
+var busyImage = '<div id="pleasewait"><img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" id="pleasewaitimg" /></div>';
+var menuArrowImage = 'ui/dressprow/images/menuarrow.png';
+var menuArrowActiveImagesrc = 'ui/dressprow/images/menuarrow_active.png';
+var loaded = false;
+var loadCounter = 0;
+var loadMessage = 'Please wait, your request is being processed. Do not refresh this page. ';
+var loadMessages = new Array(); // default, can be changed by the page using it
+loadMessages[5] = 'Still loading';
+loadMessages[30] = 'It may seem to take a while, but there is a lot of data to crunch';
+loadMessages[60] = 'It should be soon now';
+loadMessages[90] = 'This seems to take longer than expected';
+loadMessages[120] = 'Still loading, please be patient';
+loadMessages[150] = 'It will really be soon now';
+var currentMessage = '';
 
 function urlParameter(name, link) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -1152,6 +1163,21 @@ function refreshExport() {
     // alert('Refresh '+document.location);
     document.location = document.location;
 }
+
+function loadProgress () {
+
+    if (loadMessages[loadCounter]) {
+        // $("#loadingprogressbanner").html("Loading please wait "+loadCounter);
+    //    $("#loadingprogressbanner").html(loadMessages[loadCounter]);
+        currentMessage = loadMessages[loadCounter] + '<br/>';
+    }
+    if (loadCounter % 50 == 0) {
+        currentMessage += ' * ';
+    }
+    $("#loadingprogressbanner").html(loadMessage+'<br/><br/>'+currentMessage);
+    loadCounter++;
+}
+
 
 function openHelpDialog(url) {
     $("#dialog").dialog({
@@ -1480,7 +1506,15 @@ $(document).ready(function () {
      });
      */
 
+    // contendiv loader
+    if (typeof contentdivcontent != 'undefined' && contentdivcontent != null && contentdivcontent != '') {
+        $("#contentdiv").html(busyImage+'<div id="loadingprogressbanner"></div>');
+        $("#contentdiv").load(contentdivcontent);
+        setInterval(loadProgress, 1000);
+    }
 });
+
+
 
 function allDone(text) {
     if (!text) {
@@ -2214,8 +2248,8 @@ window.jQuery.fn.extend(
 }(window.jQuery, window, window.document);
 
 /*phpListThemes/phplist-ui-dressprow/js/phplist.js*/ 
-var menuArrowsrc = 'ui/default/images/menuarrow.png';
-var menuArrowActivesrc = 'ui/default/images/menuarrow_active.png';
+var menuArrowsrc = 'ui/dressprow/images/menuarrow.png';
+var menuArrowActivesrc = 'ui/dressprow/images/menuarrow_active.png';
 
 /* JS function to handle media queries */
 window.matchMedia = window.matchMedia || (function(doc, undefined){

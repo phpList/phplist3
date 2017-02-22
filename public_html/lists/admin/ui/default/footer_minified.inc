@@ -1,4 +1,4 @@
-	    </div>
+        </div>
     </div> <!-- end #content -->
 
     <div id="right-bar" class="grid_4 four columns">
@@ -10,17 +10,19 @@
         <div id="recent" class="menutableright block">
             <?php print recentlyVisited(); ?>
         </div>
-	    <div id="language">
+        <div id="language">
             <?php print $languageswitcher; ?>
         </div>
-        <!--div id="themedrop"><?php print $themeswitcher; ?></div-->
 	<div class="clear"></div>
-<?php include dirname(__FILE__).'/rssfeed.php'; ?>  
+        <div id="newsfeed" class="menutableright block">
+            <h3><?php echo s('phpList community news'); ?></h3>
+            <?php include 'communityfeed.php'; ?>
+        </div>
 	</div><!-- end #right-bar -->
-	
-	<div class="clear"></div>
-
 </div> <!-- end #container -->
+	
+<div class="clear"></div>
+
 
 <div id="footer">
     <div class="container">

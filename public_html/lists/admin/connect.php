@@ -116,6 +116,9 @@ while ($th = readdir($d)) {
     }
 }
 if (count($THEMES) > 1 && THEME_SWITCH) {
+    unset($THEMES['default']); // the default theme can be hidden if others are available
+    unset($themeNames['phpList Default']);
+
     $default_config['UITheme'] = array(
         'value'       => $_SESSION['ui'],
         'values'      => array_flip($themeNames),
