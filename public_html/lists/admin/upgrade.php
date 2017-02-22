@@ -63,7 +63,7 @@ if (!versionCompare($dbversion,'3.2.0')) {
 }
 
 // only action upgrade if necessary
-if ($force && $dbversion == VERSION  && defined('RELEASEDATE') && RELEASEDATE == $releaseDBversion) {
+if ($force && $dbversion == VERSION  && defined('RELEASEDATE') && RELEASEDATE <= $releaseDBversion) {
     output(s('Your database is already the correct version (%s), including release date version (%s), there is no need to upgrade',$dbversion, $releaseDBversion));
     unset($_GET['doit']);
 }
