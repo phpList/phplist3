@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50300) {
+    die('Your PHP version is too old. Please upgrade PHP before continuing.');
+}
+
 @ob_start();
 $er = error_reporting(0);
 // check for commandline and cli version
