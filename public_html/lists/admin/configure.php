@@ -138,18 +138,31 @@ if (empty($id)) {
             } else {
                 $value = $default_config[$configItem]['value'];
             }
-            $displayValue = nl2br(htmlspecialchars(stripslashes($value)));
-            if ($default_config[$configItem]['type'] == 'boolean') {
-                if ($value) {
-                    $displayValue = s('Yes');
-                } else {
-                    $displayValue = s('No');
-                }
-            }
-            if ($default_config[$configItem]['type'] == 'image') {
-                if ($value) {
-                    $displayValue = sprintf('<img src="./?page=image&amp;id=%d&amp;m=300" />', $value);
-                }
+
+            switch ($default_config[$configItem]['type']) {
+                case 'boolean':
+                    if ($value) {
+                        $displayValue = s('Yes');
+                    } else {
+                        $displayValue = s('No');
+                    }
+                    break;
+                case 'image' :
+                    if ($value) {
+                        $displayValue = sprintf('<img src="./?page=image&amp;id=%d&amp;m=300" />', $value);
+                    } else {
+                        $displayValue = '';
+                    }
+                    break;
+                case 'select':
+                    if (isset($default_config[$configItem]['values'][$value])) {
+                        $displayValue = $default_config[$configItem]['values'][$value];
+                    } else {
+                        $displayValue = $default_config[$configItem]['value'];
+                    }
+                    break;
+                default:
+                    $displayValue = nl2br(htmlspecialchars(stripslashes($value)));
             }
 
             if (!in_array($configItem, $GLOBALS['noteditableconfig'])) {
