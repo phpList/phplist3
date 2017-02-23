@@ -72,9 +72,12 @@ if (empty($result['id'])) {
 
     return;
 }
-$campaignTitle = $result['subject'];
 
+// Fetch message details
 $msgdata = loadMessageData($id);
+
+// Set heading to campaign title (not necessarily the subject)
+$campaignTitle = $msgdata['campaigntitle'];
 
 if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
     echo '<div class="actions">';
@@ -98,7 +101,9 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 
 $content = '<table class="messageView">';
 $format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>';
-$content .= sprintf($format, s('entered'), stripslashes($msgdata['entered']));
+
+$content .= sprintf($format, s('Subject'), $result['subject']);
+$content .= sprintf($format, s('entered'), formatDateTime( stripslashes($msgdata['entered'] )));
 $content .= sprintf($format, s('fromfield'), stripslashes($msgdata['fromfield']));
 $content .= sprintf($format, s('HTML content'), stripslashes($msgdata['message']));
 $content .= sprintf($format, s('Text content'), nl2br(stripslashes($msgdata['textmessage'])));
@@ -114,20 +119,20 @@ $requeueuntilTime = mktime($msgdata['requeueuntil']['hour'], $msgdata['requeueun
     $msgdata['requeueuntil']['month'], $msgdata['requeueuntil']['day'], $msgdata['requeueuntil']['year']);
 
 if ($embargoTime > time()) {
-    $content .= sprintf($format, s('Embargoed until'), date('Y-m-d H:i:s', $embargoTime));
+    $content .= sprintf($format, s('Embargoed until'), formatDateTime( date('Y-m-d H:i:s' )), $embargoTime );
 }
 if ($finishSending > time()) {
-    $content .= sprintf($format, s('Stop sending after'), date('Y-m-d H:i:s', $finishSending));
+    $content .= sprintf($format, s('Stop sending after'), formatDateTime( date('Y-m-d H:i:s' )), $finishSending);
 }
 if (!empty($msgdata['repeatinterval'])) {
     $content .= sprintf($format, s('Repeating'),
         s('every %s until %s', s($repetitionLabels[$msgdata['repeatinterval']]),
-            date('Y-m-d H:i:s', $repeatuntilTime)));
+            formatDateTime( date('Y-m-d H:i:s' )), $repeatuntilTime));
 }
 if (!empty($msgdata['requeueinterval'])) {
     $content .= sprintf($format, s('Requeueing'),
         s('every %s until %s', s($repetitionLabels[$msgdata['requeueinterval']]),
-            date('Y-m-d H:i:s', $requeueuntilTime)));
+            formatDateTime( date('Y-m-d H:i:s' )), $requeueuntilTime));
 }
 
 foreach ($plugins as $pi) {
