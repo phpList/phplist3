@@ -344,10 +344,7 @@ class PHPlistMailer extends PHPMailer
         $templateid = sprintf('%d', $templateid);
 
         // Build the list of image extensions
-        $extensions = array();
-        while (list($key) = each($this->image_types)) {
-            $extensions[] = $key;
-        }
+        $extensions = implode('|', array_keys($this->image_types));
         $html_images = array();
         $filesystem_images = array();
 
@@ -355,9 +352,12 @@ class PHPlistMailer extends PHPMailer
         if (defined('EMBEDEXTERNALIMAGES') && EMBEDEXTERNALIMAGES) {
             $external_images = array();
             $matched_images = array();
-
-            preg_match_all('~="(http[s]?://(?:(?!'.$_SERVER['SERVER_NAME'].'))([^"]+\.('.implode('|',
-                    $extensions).'))([\\?/][^"]+)?)"~Ui', $this->Body, $matched_images);
+            $pattern = sprintf(
+                '~="(https?://(?!%s)([^"]+\.(%s))([\\?/][^"]+)?)"~Ui',
+                preg_quote(getConfig('website')),
+                $extensions
+            );
+            preg_match_all($pattern, $this->Body, $matched_images);
 
             for ($i = 0; $i < count($matched_images[1]); ++$i) {
                 if ($this->external_image_exists($matched_images[1][$i])) {
@@ -384,7 +384,7 @@ class PHPlistMailer extends PHPMailer
         }
         //# end addition
 
-        preg_match_all('/"([^"]+\.('.implode('|', $extensions).'))"/Ui', $this->Body, $images);
+        preg_match_all('/"([^"]+\.('.$extensions.'))"/Ui', $this->Body, $images);
 
         for ($i = 0; $i < count($images[1]); ++$i) {
             if ($this->image_exists($templateid, $images[1][$i])) {
@@ -576,7 +576,7 @@ class PHPlistMailer extends PHPMailer
     public function external_image_exists($filename)
     {
         // Check for a http(s) address excluding this host
-        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.$_SERVER['SERVER_NAME'].'/') === false)) {
+        if ((strpos($filename, 'http') === 0) && (strpos($filename, '://'.getConfig('website').'/') === false)) {
             $extCacheDir = $GLOBALS['tmpdir'].'/external_cache';
 
             // Create cache directory
