@@ -314,10 +314,18 @@ function my_shutdown()
         }
         $counters['delaysend'] = (int) ($batch_period - $totaltime);
         if (empty($GLOBALS['inRemoteCall']) && empty($GLOBALS['commandline'])) {
-            sleep($delaytime);
-            printf('<script type="text/javascript">
-          document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
-        </script></body></html>', $reload, $counters['sent'], $notsent, addCsrfGetToken());
+            if (defined('JSLEEPMETHOD')) {
+                printf('<script type="text/javascript">
+                setTimeout(function() {
+                    document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
+                }, %d);
+                </script></body></html>', $reload, $counters['sent'], $notsent, addCsrfGetToken(), $delaytime*1000);
+            } else {
+			    sleep($delaytime);
+                printf('<script type="text/javascript">
+                document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
+                </script></body></html>', $reload, $counters['sent'], $notsent, addCsrfGetToken());
+		    }
         }
     } elseif ($script_stage == 6 || $nothingtodo) {
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
