@@ -1164,7 +1164,23 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     }
 }
 
-$GLOBALS['pagefooter']['sendtabs'] = "<script type='text/javascript'>\n".
+$GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/javascript' src='js/jquery.cycle2.min.js'></script>
+<script>
+	$(document).ready(function(){
+	    var counttab = " .$counttabs.";
+	    var currenttab = $('.current').attr('id');
+		var starttab = currenttab-2;
+		$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel',allowWrap:false });
+		$('.nexttab').click(function(){
+			$('.sendcampaign').cycle('next');
+		});
+		$('.prevtab').click(function(){
+			$('.sendcampaign').cycle('prev');
+		});
+		$('.sendcampaign').cycle('goto', starttab);
+	});
+</script><style>#sendtabs{width:81%}#sendtabs ul{width:100%;margin:0px 2px}</style>";
+/*"<script type='text/javascript'>\n".
     '$(document).ready(function() {
     var counttab = ' .$counttabs.";
     var currenttab = $('.current').attr('id');
@@ -1208,6 +1224,7 @@ $(window).resize(function(){
 });
 
 </script>";
+*/
 
 echo '<img src="ui/'.$GLOBALS['ui'].'/images/prevtab.png" id="prev" class="prevtab" />';
 echo '<img src="ui/'.$GLOBALS['ui'].'/images/nexttab.png" id="next" class="nexttab" />';
