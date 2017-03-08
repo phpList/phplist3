@@ -549,7 +549,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = urlencode($masked);
                 if (SIGN_WITH_HMAC) {
-                    $masked .= '&hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
+                    $masked .= '&amp;hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
                 }
 
                 if (!CLICKTRACK_LINKMAP) {
