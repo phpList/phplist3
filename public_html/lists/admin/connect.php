@@ -101,14 +101,23 @@ if (defined('SYSTEM_TIMEZONE')) {
 }
 
 //# build a list of themes that are available
-$themedir = dirname(__FILE__).'/ui/';
+$themedir = dirname(__FILE__).'/ui';
 $themeNames = array(); // avoid duplicate theme names
 $d = opendir($themedir);
-while ($th = readdir($d)) {
-    if (!in_array($th,
-            array_keys($THEMES)) && is_dir($themedir.'/'.$th) && is_file($themedir.'/'.$th.'/theme_info')
-    ) {
+
+while (false !== ($th = readdir($d))) {
+    if (is_dir($themedir.'/'.$th) && is_file($themedir.'/'.$th.'/theme_info')) {
         $themeData = parse_ini_file($themedir.'/'.$th.'/theme_info');
+
+        if (false === $themeData || null === $themeData) {
+            // unable to parse the theme info file so choose the first theme found
+            $THEMES[$th] = array(
+                'name' => 'unknown',
+                'dir' => $th,
+            );
+            break;
+        }
+
         if (!empty($themeData['name']) && !empty($themeData['dir']) && !isset($themeNames[$themeData['name']])) {
             $THEMES[$th] = $themeData;
             $themeNames[$themeData['name']] = $th;
