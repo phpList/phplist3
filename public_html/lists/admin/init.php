@@ -651,13 +651,6 @@ $GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_cu
 
 $GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
 
-//# fairly crude way to determine php version, but mostly needed for the stripos
-if (function_exists('stripos')) {
-    define('PHP5', 1);
-} else {
-    define('PHP5', 0);
-}
-
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {
     $GLOBALS['tmpdir'] = $system_tmpdir;
