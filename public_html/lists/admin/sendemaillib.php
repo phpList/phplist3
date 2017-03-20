@@ -1337,12 +1337,18 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
 
         $exists = Sql_Fetch_Row_Query(sprintf('select id,uuid from %s where url = "%s"',
             $GLOBALS['tables']['linktrack_forward'], sql_escape(substr($url, 0, 255))));
-        if (!$exists[0]) {
+        if (empty($exists[0])) {
             $personalise = preg_match('/uid=/', $link);
-            $uuid = (string) Uuid::generate(4);
+            $uuid = (string)Uuid::generate(4);
             Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d, uuid = "%s"',
                 $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise, $uuid));
             $fwdid = Sql_Insert_id();
+            $fwduuid = $uuid;
+        } elseif (empty($exists[1])) {
+            $uuid = (string)Uuid::generate(4);
+            Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',
+                $GLOBALS['tables']['linktrack_forward'], $uuid,$exists[0]));
+            $fwdid = $exists[0];
             $fwduuid = $uuid;
         } else {
             $fwdid = $exists[0];
