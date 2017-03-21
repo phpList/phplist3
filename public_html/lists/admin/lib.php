@@ -1930,19 +1930,18 @@ function parsePlaceHolders($content, $array = array())
 {
     //# the editor turns all non-ascii chars into the html equivalent so do that as well
     foreach ($array as $key => $val) {
-        $array[strtoupper($key)] = $val;
-        $array[htmlentities(strtoupper($key), ENT_QUOTES, 'UTF-8')] = $val;
-        $array[str_ireplace(' ', '&nbsp;', strtoupper($key))] = $val;
+        $array[htmlentities($key, ENT_QUOTES, 'UTF-8')] = $val;
+        $array[str_ireplace(' ', '&nbsp;', $key)] = $val;
     }
 
     foreach ($array as $key => $val) {
-        //  print '<br/>'.$key.' '.$val.'<hr/>'.htmlspecialchars($content).'<hr/>';
         if (stripos($content, '['.$key.']') !== false) {
             $content = str_ireplace('['.$key.']', $val, $content);
         }
-        if (preg_match('/\['.$key.'%%([^\]]+)\]/i', $content, $regs)) { //# @@todo, check for quoting */ etc
-            //    var_dump($regs);
-            if (!empty($val)) {
+        $quoted = preg_quote($key, '/');
+
+        if (preg_match('/\['.$quoted.'%%([^\]]+)\]/i', $content, $regs)) {
+            if (isset($val) && $val != '') {
                 $content = str_ireplace($regs[0], $val, $content);
             } else {
                 $content = str_ireplace($regs[0], $regs[1], $content);
