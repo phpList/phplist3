@@ -69,6 +69,7 @@ $commandline_pages = array(
     'converttoutf8',
     'initlanguages',
     'cron',
+    'updatetlds',
 );
 
 if (isset($message_envelope)) {
@@ -424,7 +425,7 @@ function normalize($var)
 
 function ClineSignature()
 {
-    return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, http://www.phplist.com\n";
+    return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, https://www.phplist.com";
 }
 
 function ClineError($msg)
@@ -437,10 +438,8 @@ function ClineError($msg)
 
 function clineUsage($line = '')
 {
-    @ob_end_clean();
-    echo clineSignature();
-    echo 'Usage: '.$_SERVER['SCRIPT_FILENAME']." -p page $line\n\n";
-    exit;
+    cl_output(clineSignature());
+    cl_output( 'Usage: '.$_SERVER['SCRIPT_FILENAME']." -p page $line".PHP_EOL);
 }
 
 function Error($msg, $documentationURL = '')

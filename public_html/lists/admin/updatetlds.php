@@ -1,0 +1,13 @@
+<?php
+
+if (!$GLOBALS['commandline']) {
+    @ob_end_flush();
+    echo '<p class="information">'.s('This page only works from commandline').'</p>';
+    return;
+} else {
+    cl_output(ClineSignature());
+}
+
+refreshTlds(false);
+$tlds = explode('|', getConfig('internet_tlds'));
+cl_output(s('Now we have %d top level domains',count($tlds)));
