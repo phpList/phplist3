@@ -54,7 +54,6 @@ if (!function_exists('hash_equals')) { // 5.6 and up
 }
 
 if (!function_exists('hex2bin')) { // PHP 5.4 and up
-    function hex2bin($data) {
     /**
      * Convert hexadecimal values to ASCII characters.
      *
@@ -64,6 +63,7 @@ if (!function_exists('hex2bin')) { // PHP 5.4 and up
      *
      * @return string Returns the binary representation of the given data or FALSE on failure. 
      */
+    function hex2bin($data) {
         static $old;
         if ($old === null) {
             $old = version_compare(PHP_VERSION, '5.2', '<');
