@@ -52,3 +52,46 @@ if (!function_exists('hash_equals')) { // 5.6 and up
         return $ret === 0;
     }
 }
+
+if (!function_exists('hex2bin')) { // PHP 5.4 and up
+    function hex2bin($data) {
+    /**
+     * Convert hexadecimal values to ASCII characters.
+     *
+     * Credits to walf from http://php.net/manual/en/function.hex2bin.php#113472
+     *
+     * @param string $data The hexadecimal representation of data to be converted
+     *
+     * @return string Returns the binary representation of the given data or FALSE on failure. 
+     */
+        static $old;
+        if ($old === null) {
+            $old = version_compare(PHP_VERSION, '5.2', '<');
+        }
+        $isobj = false;
+        if (is_scalar($data) || (($isobj = is_object($data)) && method_exists($data, '__toString'))) {
+            if ($isobj && $old) {
+                ob_start();
+                echo $data;
+                $data = ob_get_clean();
+            }
+            else {
+                $data = (string) $data;
+            }
+        }
+        else {
+            trigger_error(__FUNCTION__.'() expects parameter 1 to be string, ' . gettype($data) . ' given', E_USER_WARNING);
+            return;//null in this case
+        }
+        $len = strlen($data);
+        if ($len % 2) {
+            trigger_error(__FUNCTION__.'(): Hexadecimal input string must have an even length', E_USER_WARNING);
+            return false;
+        }
+        if (strspn($data, '0123456789abcdefABCDEF') != $len) {
+            trigger_error(__FUNCTION__.'(): Input string must be hexadecimal string', E_USER_WARNING);
+            return false;
+        }
+        return pack('H*', $data);
+    }
+}
