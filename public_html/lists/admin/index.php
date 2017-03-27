@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50300) {
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50303) {
     die('Your PHP version is too old. Please upgrade PHP before continuing.');
 }
 
@@ -491,7 +491,7 @@ if (!$ajax && $page != 'login') {
     if (TEST) {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
-    if (version_compare(PHP_VERSION, '5.3.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
+    if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.4.0 or higher.'));
     }
     if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
@@ -501,10 +501,6 @@ if (!$ajax && $page != 'login') {
         return;
     }
 
-    if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50300) {
-        Fatal_Error(s('Your PHP version is too old. Please upgrade PHP before continuing'));
-        return;
-    }
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
         Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
     }
