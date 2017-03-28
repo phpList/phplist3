@@ -64,16 +64,8 @@ if (!function_exists('hex2bin')) { // PHP 5.4 and up
      * @return string Returns the binary representation of the given data or FALSE on failure. 
      */
     function hex2bin($data) {
-        $isobj = false;
-        if (is_scalar($data) || (($isobj = is_object($data)) && method_exists($data, '__toString'))) {
-            if ($isobj) {
-                ob_start();
-                echo $data;
-                $data = ob_get_clean();
-            }
-            else {
-                $data = (string) $data;
-            }
+        if (is_scalar($data) || (method_exists($data, '__toString'))) {
+            $data = (string) $data;
         }
         else {
             trigger_error(__FUNCTION__.'() expects parameter 1 to be string, ' . gettype($data) . ' given', E_USER_WARNING);
