@@ -208,6 +208,14 @@ if ($GLOBALS['commandline']) {
         }
     } else {
         clineUsage(' [other parameters]');
+        cl_output(s('Available options:'));
+        foreach ($GLOBALS['commandline_pages'] as $page){
+            @ob_end_clean();
+            echo '     '.$page.PHP_EOL;
+            @ob_start();
+        }
+
+
         exit;
     }
 } else {
