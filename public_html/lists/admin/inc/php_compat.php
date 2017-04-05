@@ -57,7 +57,9 @@ if (!function_exists('hex2bin')) { // PHP 5.4 and up
     /**
      * Convert hexadecimal values to ASCII characters.
      *
-     * Credits to walf from http://php.net/manual/en/function.hex2bin.php#113472
+     * Credits: Walf's user note from PHP Documentation Group - http://php.net/manual/en/function.hex2bin.php#113472
+     * License: CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+     * Changes: The original part of the code has been simplified assuming PHP >= 5.3.3
      *
      * @param string $data The hexadecimal representation of data to be converted
      *
