@@ -36,9 +36,9 @@ function listMemberCounts($listId)
         '<span class="memberCount" title="%s">%s</span>'.' ('
         .'<span class="unconfirmedCount" title="%s">%s</span>, '.' '
         .'<span class="blacklistedCount" title="%s">%s</span>'.')',
-        s('Confirmed members'),
+        s('Confirmed and not blacklisted members'),
         number_format($counts['confirmed']),
-        s('Unconfirmed members'),
+        s('Unconfirmed and not blacklisted members'),
         number_format($counts['notconfirmed']),
         s('Blacklisted members'),
         number_format($counts['blacklisted'])
