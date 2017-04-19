@@ -69,6 +69,7 @@ if (!$id) {
         unset($_SESSION['LoadDelay']);
     }
 
+    // Load page content via AJAX
     echo '<div id="contentdiv"></div>';
     echo asyncLoadContent('./?page=pageaction&action=statsoverview&ajaxed=true&id='.$id.'&start='.$start.addCsrfGetToken());
 

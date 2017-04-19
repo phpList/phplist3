@@ -410,7 +410,7 @@ if ($total) {
       <tr><td>' .s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
             if ($clicks[0]) {
                 $resultStats .= '
-           <tr><td>' .s('Clicks').'</td><td>'.$clicks[0].'</td></tr>';
+           <tr><td>' .s('Total Clicks').'</td><td>'.$clicks[0].'</td></tr>';
             }
             $resultStats .= '
          <tr><td>' .s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
