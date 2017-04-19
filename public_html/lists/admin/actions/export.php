@@ -40,9 +40,6 @@ switch ($access) {
         break;
 }
 
-$exportfileName = tempnam($GLOBALS['tmpdir'], $GLOBALS['installation_name'].'-export'.time());
-$exportfile = fopen($exportfileName, 'w');
-
 if ($_SESSION['export']['column'] == 'nodate') {
     //# fetch dates as min and max from user table
     if ($list) {
@@ -60,14 +57,15 @@ if ($_SESSION['export']['column'] == 'nodate') {
     $fromdate = $_SESSION['export']['fromdate'];
     $todate = $_SESSION['export']['todate'];
 }
-if ($list) {
-    $filename = s('phpList Export on %s from %s to %s (%s).csv', ListName($list), $fromdate, $todate, date('Y-M-d'));
-} else {
-    $filename = s('phpList Export from %s to %s (%s).csv', $fromdate, $todate, date('Y-M-d'));
-}
 ob_end_clean();
-$filename = trim(strip_tags($filename));
+
 if (!empty($_SESSION['export']['fileready']) && is_file($_SESSION['export']['fileready'])) {
+    if ($list) {
+        $filename = s('phpList Export on %s from %s to %s (%s).csv', ListName($list), $fromdate, $todate, date('Y-M-d'));
+    } else {
+        $filename = s('phpList Export from %s to %s (%s).csv', $fromdate, $todate, date('Y-M-d'));
+    }
+    $filename = trim(strip_tags($filename));
     header('Content-type: '.$GLOBALS['export_mimetype'].'; charset=UTF-8');
     header("Content-disposition:  attachment; filename=\"$filename\"");
     $fp = fopen($_SESSION['export']['fileready'], 'r');
@@ -80,6 +78,8 @@ if (!empty($_SESSION['export']['fileready']) && is_file($_SESSION['export']['fil
     exit;
 }
 
+$exportfileName = tempnam($GLOBALS['tmpdir'], $GLOBALS['installation_name'].'-export'.time());
+$exportfile = fopen($exportfileName, 'w');
 $col_delim = "\t";
 if (EXPORT_EXCEL) {
     $col_delim = ',';
