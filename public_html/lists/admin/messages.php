@@ -408,7 +408,7 @@ if ($total) {
             $resultStats = '<table class="messagesendstats">
       <thead>
         <tr>
-          <td colspan="3" style="text-decoration: underline; text-align: center">Statistics</td>
+          <th colspan="3" style="text-decoration: underline; text-align: center; font-weight: normal;">Statistics</th>
         </tr>
       </thead>
       <tr><td>' .s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
@@ -459,7 +459,7 @@ if ($total) {
             sprintf('<table class="messagesendstats">
       <thead>
         <tr>
-          <td colspan="3" style="text-decoration: underline; text-align: center">Processed</td>
+          <th colspan="3" style="text-decoration: underline; text-align: center; font-weight: normal;">Processed</th>
         </tr>
       </thead>
       %s
