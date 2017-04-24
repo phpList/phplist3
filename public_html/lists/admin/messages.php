@@ -406,6 +406,11 @@ if ($total) {
 //      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("both"), $msg["astextandpdf"]);
 //    }
             $resultStats = '<table class="messagesendstats">
+      <thead>
+        <tr>
+          <td colspan="3" style="text-decoration: underline; text-align: center">Statistics</td>
+        </tr>
+      </thead>
       <tr><td>' .s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
       <tr><td>' .s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
             if ($clicks[0]) {
@@ -452,6 +457,11 @@ if ($total) {
 
         $sendstats =
             sprintf('<table class="messagesendstats">
+      <thead>
+        <tr>
+          <td colspan="3" style="text-decoration: underline; text-align: center">Processed</td>
+        </tr>
+      </thead>
       %s
       <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
         %s%s
