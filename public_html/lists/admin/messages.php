@@ -408,7 +408,7 @@ if ($total) {
             $resultStats = '<table class="messagesendstats">
       <thead>
         <tr>
-          <th colspan="3">Statistics</th>
+          <th colspan="2">Statistics</th>
         </tr>
       </thead>
       <tbody>
@@ -421,7 +421,7 @@ if ($total) {
             $resultStats .= '
             <tr><td>' .s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
                 $resultStats .= '
-        <tbody>
+        </tbody>
     </table>';
 
 //      $ls->addColumn($listingelement,s('Results'),$resultStats);
