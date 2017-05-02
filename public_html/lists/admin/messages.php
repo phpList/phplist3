@@ -406,15 +406,23 @@ if ($total) {
 //      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("both"), $msg["astextandpdf"]);
 //    }
             $resultStats = '<table class="messagesendstats">
-      <tr><td>' .s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
-      <tr><td>' .s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
-            if ($clicks[0]) {
-                $resultStats .= '
-           <tr><td>' .s('Total Clicks').'</td><td>'.$clicks[0].'</td></tr>';
-            }
+      <thead>
+        <tr>
+          <th colspan="2">Statistics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>' .s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
+        <tr><td>' .s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
+                if ($clicks[0]) {
+                    $resultStats .= '
+            <tr><td>' .s('Total Clicks').'</td><td>'.$clicks[0].'</td></tr>';
+                }
             $resultStats .= '
-         <tr><td>' .s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
-            $resultStats .= '</table>';
+            <tr><td>' .s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
+                $resultStats .= '
+        </tbody>
+    </table>';
 
 //      $ls->addColumn($listingelement,s('Results'),$resultStats);
 
@@ -452,13 +460,20 @@ if ($total) {
 
         $sendstats =
             sprintf('<table class="messagesendstats">
-      %s
-      <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
-        %s%s
-      </tr>
-      <tr><td><b>%d</b></td><td><b>%d</b></td><td><b>%d</b></td>
-        %s %s %s %s
-      </tr>
+          <thead>
+            <tr>
+              <th colspan="3">Processed</th>
+            </tr>
+          </thead>
+          <tbody>
+              %s
+              <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
+                %s%s
+              </tr>
+              <tr><td><b>%d</b></td><td><b>%d</b></td><td><b>%d</b></td>
+                %s %s %s %s
+              </tr>
+          </tbody>
       </table>',
                 !empty($timetosend) ? '<tr><td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
                 !empty($msg['aspdf']) ? '<td>'.$GLOBALS['I18N']->get('PDF').'</td>' : '',
