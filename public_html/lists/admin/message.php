@@ -114,20 +114,20 @@ $requeueuntilTime = mktime($msgdata['requeueuntil']['hour'], $msgdata['requeueun
     $msgdata['requeueuntil']['month'], $msgdata['requeueuntil']['day'], $msgdata['requeueuntil']['year']);
 
 if ($embargoTime > time()) {
-    $content .= sprintf($format, s('Embargoed until'), formatDateTime( date('Y-m-d H:i:s' )), $embargoTime );
+    $content .= sprintf($format, s('Embargoed until'), formatDateTime( date('Y-m-d H:i', $embargoTime )));
 }
 if ($finishSending > time()) {
-    $content .= sprintf($format, s('Stop sending after'), formatDateTime( date('Y-m-d H:i:s' )), $finishSending);
+    $content .= sprintf($format, s('Stop sending after'), formatDateTime( date('Y-m-d H:i', $finishSending )));
 }
 if (!empty($msgdata['repeatinterval'])) {
     $content .= sprintf($format, s('Repeating'),
         s('every %s until %s', s($repetitionLabels[$msgdata['repeatinterval']]),
-            formatDateTime( date('Y-m-d H:i:s' )), $repeatuntilTime));
+            formatDateTime( date('Y-m-d H:i', $repeatuntilTime ))));
 }
 if (!empty($msgdata['requeueinterval'])) {
     $content .= sprintf($format, s('Requeueing'),
         s('every %s until %s', s($repetitionLabels[$msgdata['requeueinterval']]),
-            formatDateTime( date('Y-m-d H:i:s' )), $requeueuntilTime));
+            formatDateTime( date('Y-m-d H:i', $requeueuntilTime ))));
 }
 
 foreach ($plugins as $pi) {
