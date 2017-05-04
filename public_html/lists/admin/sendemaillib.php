@@ -82,6 +82,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     // print '<pre>';var_dump($user_att_values);print '</pre>';exit;
     $query = sprintf('select * from %s where email = "%s"', $GLOBALS['tables']['user'], sql_escape($email));
     $userdata = Sql_Fetch_Assoc_Query($query);
+    if (empty($userdata['uuid'])) {
+        $uuid = (string) uuid::generate(4);
+        Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',$GLOBALS['tables']['user'], $uuid ,$userdata['id']));
+        $userdata['uuid'] = $uuid;
+    }
     if (empty($userdata['id'])) {
         $userdata = array();
     }
@@ -544,7 +549,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = urlencode($masked);
                 if (SIGN_WITH_HMAC) {
-                    $masked .= '&hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
+                    $masked .= '&amp;hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
                 }
 
                 if (!CLICKTRACK_LINKMAP) {
@@ -1332,12 +1337,18 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
 
         $exists = Sql_Fetch_Row_Query(sprintf('select id,uuid from %s where url = "%s"',
             $GLOBALS['tables']['linktrack_forward'], sql_escape(substr($url, 0, 255))));
-        if (!$exists[0]) {
+        if (empty($exists[0])) {
             $personalise = preg_match('/uid=/', $link);
-            $uuid = (string) Uuid::generate(4);
+            $uuid = (string)Uuid::generate(4);
             Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d, uuid = "%s"',
                 $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise, $uuid));
             $fwdid = Sql_Insert_id();
+            $fwduuid = $uuid;
+        } elseif (empty($exists[1])) {
+            $uuid = (string)Uuid::generate(4);
+            Sql_Query(sprintf('update %s set uuid = "%s" where id = %d',
+                $GLOBALS['tables']['linktrack_forward'], $uuid,$exists[0]));
+            $fwdid = $exists[0];
             $fwduuid = $uuid;
         } else {
             $fwdid = $exists[0];

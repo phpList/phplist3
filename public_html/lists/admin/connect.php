@@ -69,6 +69,7 @@ $commandline_pages = array(
     'converttoutf8',
     'initlanguages',
     'cron',
+    'updatetlds',
 );
 
 if (isset($message_envelope)) {
@@ -101,14 +102,23 @@ if (defined('SYSTEM_TIMEZONE')) {
 }
 
 //# build a list of themes that are available
-$themedir = dirname(__FILE__).'/ui/';
+$themedir = dirname(__FILE__).'/ui';
 $themeNames = array(); // avoid duplicate theme names
 $d = opendir($themedir);
-while ($th = readdir($d)) {
-    if (!in_array($th,
-            array_keys($THEMES)) && is_dir($themedir.'/'.$th) && is_file($themedir.'/'.$th.'/theme_info')
-    ) {
+
+while (false !== ($th = readdir($d))) {
+    if (is_dir($themedir.'/'.$th) && is_file($themedir.'/'.$th.'/theme_info')) {
         $themeData = parse_ini_file($themedir.'/'.$th.'/theme_info');
+
+        if (false === $themeData || null === $themeData) {
+            // unable to parse the theme info file so choose the first theme found
+            $THEMES[$th] = array(
+                'name' => 'unknown',
+                'dir' => $th,
+            );
+            break;
+        }
+
         if (!empty($themeData['name']) && !empty($themeData['dir']) && !isset($themeNames[$themeData['name']])) {
             $THEMES[$th] = $themeData;
             $themeNames[$themeData['name']] = $th;
@@ -116,6 +126,9 @@ while ($th = readdir($d)) {
     }
 }
 if (count($THEMES) > 1 && THEME_SWITCH) {
+    unset($THEMES['default']); // the default theme can be hidden if others are available
+    unset($themeNames['phpList Default']);
+
     $default_config['UITheme'] = array(
         'value'       => $_SESSION['ui'],
         'values'      => array_flip($themeNames),
@@ -421,7 +434,7 @@ function normalize($var)
 
 function ClineSignature()
 {
-    return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, http://www.phplist.com\n";
+    return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, https://www.phplist.com";
 }
 
 function ClineError($msg)
@@ -434,10 +447,8 @@ function ClineError($msg)
 
 function clineUsage($line = '')
 {
-    @ob_end_clean();
-    echo clineSignature();
-    echo 'Usage: '.$_SERVER['SCRIPT_FILENAME']." -p page $line\n\n";
-    exit;
+    cl_output(clineSignature());
+    cl_output( 'Usage: '.$_SERVER['SCRIPT_FILENAME']." -p page $line".PHP_EOL);
 }
 
 function Error($msg, $documentationURL = '')

@@ -2094,6 +2094,21 @@ div.plugindetails > div.detail > span.value {
     height: 400px;
     border: 1px solid white;
 }
+#pleasewait {
+    /*border: 3px solid #4138ff;*/
+    text-align: center;
+    width: 100%;
+    /*height: 150px;*/
+}
+#loadingprogressbanner  {
+    /*border: 3px solid #4138ff;*/
+    text-align: center;
+    width: 100%;
+    padding: 1em 1em 1em 2px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 150px;
+}
 
 /*phpList3/public_html/lists/admin/css/menu.css*/ /* CSS Menus - Horizontal CSS Menu with Dropdown and Popout Menus - 20050131 */
 
@@ -2874,8 +2889,8 @@ TABLE OF CONTENT
 
 /******************************* 1. GENERAL STYLES */
 
-body													{ font:13px/1.5 Arial, Helvetica, sans-serif; padding:0; margin:0; background:url('../../default/images/page_bk.png') repeat-x}
-body.nobackground										{ font-size: 14px; background:url('../../default/images/spacer.png') repeat-x; }
+body													{ font:13px/1.5 Arial, Helvetica, sans-serif; padding:0; margin:0; background:url('../../dressprow/images/page_bk.png') repeat-x}
+body.nobackground										{ font-size: 14px; background:url('../../dressprow/images/spacer.png') repeat-x; }
 hr														{ border:0; border-style:solid; border-top-width:1px; clear:both; height:0; margin:10px 0px}
 table													{ /* this put same width on all columns for break-word: table-layout:fixed; */ width:100%}
 table table												{ width:auto}
@@ -2915,7 +2930,7 @@ div.panel h2											{ margin-bottom:5px; font-size:20px}
 p,dl,h1,h2,h4,h5,h6,ol,pre,table,address,fieldset,figure{ margin-bottom:20px}
 form .actions											{ border:0px}
 div.submit, p.button									{ margin:10px 0px}
-.shade1, .shade2										{ margin-bottom:5px; padding:1px; background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0}
+.shade1, .shade2										{ margin-bottom:5px; padding:1px; background:url("../../dressprow/images/header-bg.gif") repeat-x scroll 0 0}
 .show-on-mobile                                         {display:none}
 textarea,.cke                                           {max-width:100% !important}
 
@@ -2934,7 +2949,7 @@ textarea,.cke                                           {max-width:100% !importa
 #logo													{ margin:0}
 #content												{ min-height:400px; margin-top:10px}
 div.actions												{ margin:10px 0px; padding:10px 0px}
-div.panel												{ background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0; clear:both; border-width:1px; border-style:solid; margin:0px; padding:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+div.panel												{ background:url("../../dressprow/images/header-bg.gif") repeat-x scroll 0 0; clear:both; border-width:1px; border-style:solid; margin:0px; padding:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
 div.panel .content										{ border-width:1px; border-style:solid; padding:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
 .panel .content .wrapper								{ margin-top:10px}
 
@@ -2944,7 +2959,7 @@ div.panel .content										{ border-width:1px; border-style:solid; padding:5px;
 #globalhelp 											{ text-align:left; margin-top:37px}
 #globalhelp .content									{ overflow:hidden; height:auto; width:100%; display:none}
 #globalhelp .content .text								{ font-size:15px; line-height:20px; padding:20px; width:auto; border-width:1px; border-style:solid; border-top:0px; margin:0 auto; -webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px; border-bottom-right-radius:10px; border-bottom-left-radius:10px}
-#globalhelp .buttonhelp									{ background:url('../../default/images/16x16/info.png') no-repeat 6px 3px; cursor:pointer; float:right; margin-right:10px; margin-top:-1px; width:auto; text-align:center; padding:2px 8px 2px 25px; text-transform:uppercase; -webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px; border-bottom-right-radius:10px; border-bottom-left-radius:10px}
+#globalhelp .buttonhelp									{ background:url('../../dressprow/images/16x16/info.png') no-repeat 6px 3px; cursor:pointer; float:right; margin-right:10px; margin-top:-1px; width:auto; text-align:center; padding:2px 8px 2px 25px; text-transform:uppercase; -webkit-border-bottom-right-radius:10px; -webkit-border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px; border-bottom-right-radius:10px; border-bottom-left-radius:10px}
 #globalhelp .close										{ visibility:hidden}
 #globalhelp .content .text *							{ font-size:15px; line-height:20px}
 
@@ -2955,7 +2970,7 @@ div.panel .content										{ border-width:1px; border-style:solid; padding:5px;
 .note h3{ font-style:normal; margin:0; font-size:12pt}
 .note p{ margin-bottom:5px}
 .note a{ text-decoration:underline}
-.hide{ background:url('../../default/images/close_button1.gif') no-repeat; display:block; float:right; margin-top:-5px; margin-right:-5px; overflow:hidden; height:20px; text-indent:-9999px; width:20px}
+.hide{ background:url('../../dressprow/images/close_button1.gif') no-repeat; display:block; float:right; margin-top:-5px; margin-right:-5px; overflow:hidden; height:20px; text-indent:-9999px; width:20px}
 .error{ margin:10px 0px}
 .result{ clear:both}
 .announcements{ margin-bottom:40px !important; padding: 7px !important}
@@ -2964,7 +2979,7 @@ div.panel .content										{ border-width:1px; border-style:solid; padding:5px;
 
 /******************************* 5. INDIVIDUAL HELP POPUP AND FORM POPUP */
 
-.ui-dialog												{ position:fixed; height:auto; min-width: 300px; top:10px !important;max-height:95% !important; overflow-y:auto; background:url("../../default/images/header-bg.gif") repeat-x scroll 0 0; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; padding:4px 1px}
+.ui-dialog												{ position:fixed; height:auto; min-width: 300px; top:10px !important;max-height:95% !important; overflow-y:auto; background:url("../../dressprow/images/header-bg.gif") repeat-x scroll 0 0; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; padding:4px 1px}
 .ui-widget-overlay										{ zoom:1; opacity:0.6; filter:alpha(opacity=60); background-image:none}
 .ui-dialog .ui-dialog-titlebar							{ background:none; border:none; width:1px; float:right; padding:0px}
 .ui-dialog .ui-dialog-titlebar-close 					{ border-width:2px; border-style:solid; padding:0px; -webkit-border-radius:100px; -moz-border-radius:100px; border-radius:100px}
@@ -2987,13 +3002,13 @@ div.panel .content										{ border-width:1px; border-style:solid; padding:5px;
 #menuTop ul ul li a										{ font-size:13px; margin:0px; padding:4px 4px 4px 25px !important; width:auto !important; min-width:200px}
 #menuTop ul ul li a:hover								{ border-top-width:1px !important; border-top-style:solid !important; border-bottom-width:1px !important; border-bottom-style:solid !important; padding-bottom:3px !important; padding-top:3px !important}
 span#menu-button										{ display:none}
-span#menu-button span									{ margin-left:10px; margin-top:2px; display:inline-block; height:25px; width:25px; background:url('../../default/images/menu.png') 50% 50% no-repeat; overflow:hidden; text-indent:-9999px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+span#menu-button span									{ margin-left:10px; margin-top:2px; display:inline-block; height:25px; width:25px; background:url('../../dressprow/images/menu.png') 50% 50% no-repeat; overflow:hidden; text-indent:-9999px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
 span#menu-button span:hover								{ cursor:pointer}
 
 
 /******************************* 7. ACCORDION */
 .ui-widget												{font-family:Arial,Helvetica,sans-serif}
-h3.ui-accordion-header a								{ background:url('../../default/images/grad.png') repeat-x}
+h3.ui-accordion-header a								{ background:url('../../dressprow/images/grad.png') repeat-x}
 div.accordion table td									{ border:0px; vertical-align:middle; padding:10px}
 div.accordion table										{ width:auto}
 div.accordion table td a								{ font-size:11px; text-align:center; display:block; height:auto; padding:45px 5px 10px 5px}
@@ -3004,7 +3019,7 @@ div.accordion table td a.hometext						{ font-size:14px; text-align:left; vertic
 div.accordion table td.listingelement					{ font-size:11px}
 div.accordion table td.listingname						{ width:auto; height:70px; font-size:11px}
 .ui-accordion-content .panel							{ border:0px; background:transparent}
-.ui-accordion-content									{ background:url('../../default/images/grad.png') repeat-x 0px -30px}
+.ui-accordion-content									{ background:url('../../dressprow/images/grad.png') repeat-x 0px -30px}
 div.accordion table										{ table-layout:auto}
 div.accordion td, div.accordion th						{ overflow:auto; text-align:left}
 div.accordion tr td.listingname a						{ -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; min-width:100px}
@@ -3035,10 +3050,10 @@ div.notes, a.footnote 									{ font-size: 10px; vertical-align: super; }
 }
 
 /* dropdown menus (webblertabs) */
-div.dropButton											{ width:190px; position:relative; padding:5px 5px 5px 10px; margin:10px 10px 10px 0px; background:url('../../default/images/menuarrow.png') 180px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; font-size:15px; line-height:15px; font-variant:small-caps; clear:both}
+div.dropButton											{ width:190px; position:relative; padding:5px 5px 5px 10px; margin:10px 10px 10px 0px; background:url('../../dressprow/images/menuarrow.png') 180px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; font-size:15px; line-height:15px; font-variant:small-caps; clear:both}
 div.dropButton a img.arrow								{ display:none}
 div.dropButton .submenu a 								{ line-height:12px; padding:7px; margin-top:5px; width:175px; font-size:13px; border-top-width:1px; border-top-style:dotted; display:inline-block; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
-#webblertabs											{ min-height:28px;width:200px; position:relative; margin:10px 10px 10px 0px; background:url('../../default/images/menuarrow.png') 170px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
+#webblertabs											{ min-height:28px;width:200px; position:relative; margin:10px 10px 10px 0px; background:url('../../dressprow/images/menuarrow.png') 170px 3px no-repeat; border-width:1px; border-style:solid; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px}
 #webblertabs ul											{ width:170px; margin:0px;padding:0px 0px; list-style:none;position:absolute;clear:both; font-size:15px; line-height:15px; border: 1px solid #CCC;border-radius: 8px;background:rgba(250,250,250,0.95)}
 .minitabs #webblertabs ul                               {position:relative}
 #webblertabs ul li										{ margin-left:2px; padding:0px}
@@ -3081,10 +3096,10 @@ ul.sendcampaign											{ list-style: none}
 /* paging */
 .paging .controls 										{ float:right}
 .paging .controls a										{ padding:5px 14px; margin:0px; border:0px; float:left; height:17px}
-.paging .controls .first								{ background:url('../../default/images/icons-paging.png') no-repeat 0px -27px}
-.paging .controls .previous								{ background:url('../../default/images/icons-paging.png') no-repeat -28px -27px}
-.paging .controls .next									{ background:url('../../default/images/icons-paging.png') no-repeat -56px -27px}
-.paging .controls .last									{ background:url('../../default/images/icons-paging.png') no-repeat -84px -27px}
+.paging .controls .first								{ background:url('../../dressprow/images/icons-paging.png') no-repeat 0px -27px}
+.paging .controls .previous								{ background:url('../../dressprow/images/icons-paging.png') no-repeat -28px -27px}
+.paging .controls .next									{ background:url('../../dressprow/images/icons-paging.png') no-repeat -56px -27px}
+.paging .controls .last									{ background:url('../../dressprow/images/icons-paging.png') no-repeat -84px -27px}
 .paging .controls .first:hover							{ background-position:0px 0px}
 .paging .controls .previous:hover						{ background-position:-28px 0px}
 .paging .controls .next:hover							{ background-position:-56px 0px}
@@ -3113,13 +3128,13 @@ span.delete a.confirm,span.send-list a.button,
 span.edit-list a.button									{ -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
 tr .listingname a:hover, tr .listingelement a:hover		{ text-decoration:none}
 .panel table td											{ border-width:1px; border-style:solid; padding:4px}
-.panel table th											{ text-align:center; font-weight:bold; background:url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; }
+.panel table th											{ text-align:center; font-weight:bold; background:url('../../dressprow/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; }
 .memberCount                                            { color: #0A0; }
 .unconfirmedCount                                       { color: #FFA500; }
 .blacklistedCount                                       { color: #C55; }
 
 /* drag and drop */
-.save													{ background:url('../../default/images/16x16/alert.png'); height:16px; width:16px; display:inline-block; margin-right:5px}
+.save													{ background:url('../../dressprow/images/16x16/alert.png'); height:16px; width:16px; display:inline-block; margin-right:5px}
 
 
 /******************************* 10. ICONS AND BUTTONS */
@@ -3130,30 +3145,30 @@ a.action-button::first-letter {text-transform:uppercase}
 /* login/logout buttons */
 #logged													{ float:left; margin-top:15px; float:right}
 #login, #logout											{ padding:2px 12px 4px 30px; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px}
-#login													{ background:url('../../default/images/32x32/login16x16-neg.png') 15% 50% no-repeat}
-#logout													{ background:url('../../default/images/32x32/logout16x16-neg.png') 12% 50% no-repeat}
+#login													{ background:url('../../dressprow/images/32x32/login16x16-neg.png') 15% 50% no-repeat}
+#logout													{ background:url('../../dressprow/images/32x32/logout16x16-neg.png') 12% 50% no-repeat}
 #login:hover,#logout:hover								{ padding:2px 12px 4px 30px; border-width:1px; border-style:solid; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; text-decoration:none}
-#login:hover											{ background:url('../../default/images/32x32/login16x16.png') 15% 50% no-repeat}
-#logout:hover											{ background:url('../../default/images/32x32/logout16x16.png') 12% 50% no-repeat}
+#login:hover											{ background:url('../../dressprow/images/32x32/login16x16.png') 15% 50% no-repeat}
+#logout:hover											{ background:url('../../dressprow/images/32x32/logout16x16.png') 12% 50% no-repeat}
 
 /* listings icons and buttons */
 a.del, span.yes, span.no								{ height:16px; width:16px; display:block; text-indent:-9999px; margin:0 auto; margin-top:3px}
-a.del													{ background:url('../../default/images/16x16/mini-trash.png') no-repeat}
-span.yes												{ background:url('../../default/images/16x16/yes.png') no-repeat}
-span.no													{ background:url('../../default/images/16x16/no.png') no-repeat}
+a.del													{ background:url('../../dressprow/images/16x16/mini-trash.png') no-repeat}
+span.yes												{ background:url('../../dressprow/images/16x16/yes.png') no-repeat}
+span.no													{ background:url('../../dressprow/images/16x16/no.png') no-repeat}
 .firstinstallbutton										{ cursor:pointer; margin-left:4px; margin-bottom: 50px; padding:5px 10px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
 a.action-button, input.action-button					{ cursor:pointer;  margin:10px 0px; padding:5px 15px; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; font-size:15px; clear:both; font-weight:normal; text-shadow:none; border:0;white-space:nowrap}
 a.action-button											{ line-height:50px}
 a.reset, a.confirm										{ border-width:1px; border-style:solid; padding:4px 12px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; display:inline-block; font-size:11px; font-weight:bold; text-decoration:none; cursor:pointer; margin:5px 10px 5px 0px; line-height:normal; padding:8px 10px; font-family:Arial, Helvetica, sans-serif}
-span.add_member a										{ background:url("../../default/images/16x16/add-members.png") no-repeat scroll 50% 50%}
-span.delete a.button,span.delete a.confirm				{ background:url("../../default/images/16x16/mini-trash.png") no-repeat scroll 50% 50%}
-span.edit a.button,span.edit-list a.button				{ background:url("../../default/images/16x16/edit-1.png") no-repeat scroll 50% 50%}
-span.button a.opendialog span.view, span.view a.button	{ background:url("../../default/images/16x16/view.png") no-repeat scroll 50% 50%}
-span.stats a.button										{ background:url("../../default/images/16x16/statistics.png") no-repeat scroll 50% 50%}
-span.resend a.button, span.send-list a.button			{ background:url("../../default/images/16x16/play.png") no-repeat scroll 50% 50%}
-span.suspend a.button									{ background:url("../../default/images/16x16/pause.png") no-repeat scroll 50% 50%}
-span.marksent a.button									{ background:url("../../default/images/16x16/stop.png") no-repeat scroll 50% 50%}
-span.viewusers a.button,.row1 span.viewusers a.button	{ background:url("../../default/images/16x16/user.png") no-repeat scroll 50% 50%}
+span.add_member a										{ background:url("../../dressprow/images/16x16/add-members.png") no-repeat scroll 50% 50%}
+span.delete a.button,span.delete a.confirm				{ background:url("../../dressprow/images/16x16/mini-trash.png") no-repeat scroll 50% 50%}
+span.edit a.button,span.edit-list a.button				{ background:url("../../dressprow/images/16x16/edit-1.png") no-repeat scroll 50% 50%}
+span.button a.opendialog span.view, span.view a.button	{ background:url("../../dressprow/images/16x16/view.png") no-repeat scroll 50% 50%}
+span.stats a.button										{ background:url("../../dressprow/images/16x16/statistics.png") no-repeat scroll 50% 50%}
+span.resend a.button, span.send-list a.button			{ background:url("../../dressprow/images/16x16/play.png") no-repeat scroll 50% 50%}
+span.suspend a.button									{ background:url("../../dressprow/images/16x16/pause.png") no-repeat scroll 50% 50%}
+span.marksent a.button									{ background:url("../../dressprow/images/16x16/stop.png") no-repeat scroll 50% 50%}
+span.viewusers a.button,.row1 span.viewusers a.button	{ background:url("../../dressprow/images/16x16/user.png") no-repeat scroll 50% 50%}
 a.action-button:hover, input.action-button:hover		{ border:0}
 span.delete a.button,span.edit a.button, span.edit-list a.button,
 span.view a.button,span.stats a.button, span.delete a.confirm,
@@ -3167,40 +3182,40 @@ span.button a.opendialog span.view,span.add_member a	{ vertical-align: middle;wi
 /* Dashboard icons */
 .dashboard_button a										{ display:block;-webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; padding:15px 10px 15px 50px;background-position: 10px 10px; background-repeat: no-repeat; }
 .dashboard_button 										{ list-style:none;border:0px; padding:0px; margin:10px; max-width:250px; display:block; }
-#copy_paste a											{ background-image:url('../../default/images/32x32/copy_paste.png')}
-#import_list a											{ background-image:url('../../default/images/32x32/import-txt.png') }
-#import_csv a											{ background-image:url('../../default/images/32x32/import-csv.png') }
+#copy_paste a											{ background-image:url('../../dressprow/images/32x32/copy_paste.png')}
+#import_list a											{ background-image:url('../../dressprow/images/32x32/import-txt.png') }
+#import_csv a											{ background-image:url('../../dressprow/images/32x32/import-csv.png') }
 
 div.accordion tr td.listingname a,
 div.accordion tr .listingname a.listingname:hover		{ background-position:50% 10px; background-repeat:no-repeat}
 tr.config-link td.listingname a,
-.dashboard_button .configuration a						{ background-image:url('../../default/images/32x32/config.png')}
-tr.send-campaign td.listingname a						{ background-image:url('../../default/images/32x32/edit.png')}
+.dashboard_button .configuration a						{ background-image:url('../../dressprow/images/32x32/config.png')}
+tr.send-campaign td.listingname a						{ background-image:url('../../dressprow/images/32x32/edit.png')}
 tr.view-statistics td.listingname a,
-.dashboard_button .statistics a							{ background-image:url('../../default/images/32x32/statistics.png')}
-tr.manage-campaigns td.listingname a					{ background-image:url('../../default/images/32x32/search.png')}
-tr.manage-users td.listingname a						{ background-image:url('../../default/images/32x32/user.png')}
-tr.manage-lists td.listingname a						{ background-image:url('../../default/images/32x32/order-162.png')}
-tr.list-users td.listingname a							{ background-image:url('../../default/images/32x32/customers.png')}
-tr.reconcileusers td.listingname a						{ background-image:url('../../default/images/32x32/refresh.png')}
-tr.import-users td.listingname a						{ background-image:url('../../default/images/32x32/importusers.png')}
-tr.export-users td.listingname a						{ background-image:url('../../default/images/32x32/exportusers.png')}
-tr.configure td.listingname a							{ background-image:url('../../default/images/32x32/settings.png')}
-tr.configure-attributes td.listingname a				{ background-image:url('../../default/images/32x32/attibutes.png')}
-tr.custom-attribute td.listingname a					{ background-image:url('../../default/images/32x32/tag.png')}
-tr.spage td.listingname a								{ background-image:url('../../default/images/32x32/order.png')}
-tr.admins td.listingname a								{ background-image:url('../../default/images/32x32/admin.png')}
-tr.adminattributes td.listingname a						{ background-image:url('../../default/images/32x32/attibutes.png')}
-tr.send-message td.listingname a						{ background-image:url('../../default/images/32x32/email.png')}
-tr.templates td.listingname a							{ background-image:url('../../default/images/32x32/project.png')}
-tr.list-all-msg td.listingname a						{ background-image:url('../../default/images/32x32/library.png')}
-tr.processqueue td.listingname a						{ background-image:url('../../default/images/32x32/process.png')}
-tr.processbounces td.listingname a						{ background-image:url('../../default/images/32x32/process.png')}
-tr.bounces td.listingname a								{ background-image:url('../../default/images/32x32/refresh.png')}
-tr.plugin td.listingname a								{ background-image:url('../../default/images/32x32/plugin.png')}
-tr.setup td.listingname a								{ background-image:url('../../default/images/32x32/config.png')}
-tr.dbcheck td.listingname a								{ background-image:url('../../default/images/32x32/database.png')}
-tr.view-log td.listingname a							{ background-image:url('../../default/images/32x32/order-162.png')}
+.dashboard_button .statistics a							{ background-image:url('../../dressprow/images/32x32/statistics.png')}
+tr.manage-campaigns td.listingname a					{ background-image:url('../../dressprow/images/32x32/search.png')}
+tr.manage-users td.listingname a						{ background-image:url('../../dressprow/images/32x32/user.png')}
+tr.manage-lists td.listingname a						{ background-image:url('../../dressprow/images/32x32/order-162.png')}
+tr.list-users td.listingname a							{ background-image:url('../../dressprow/images/32x32/customers.png')}
+tr.reconcileusers td.listingname a						{ background-image:url('../../dressprow/images/32x32/refresh.png')}
+tr.import-users td.listingname a						{ background-image:url('../../dressprow/images/32x32/importusers.png')}
+tr.export-users td.listingname a						{ background-image:url('../../dressprow/images/32x32/exportusers.png')}
+tr.configure td.listingname a							{ background-image:url('../../dressprow/images/32x32/settings.png')}
+tr.configure-attributes td.listingname a				{ background-image:url('../../dressprow/images/32x32/attibutes.png')}
+tr.custom-attribute td.listingname a					{ background-image:url('../../dressprow/images/32x32/tag.png')}
+tr.spage td.listingname a								{ background-image:url('../../dressprow/images/32x32/order.png')}
+tr.admins td.listingname a								{ background-image:url('../../dressprow/images/32x32/admin.png')}
+tr.adminattributes td.listingname a						{ background-image:url('../../dressprow/images/32x32/attibutes.png')}
+tr.send-message td.listingname a						{ background-image:url('../../dressprow/images/32x32/email.png')}
+tr.templates td.listingname a							{ background-image:url('../../dressprow/images/32x32/project.png')}
+tr.list-all-msg td.listingname a						{ background-image:url('../../dressprow/images/32x32/library.png')}
+tr.processqueue td.listingname a						{ background-image:url('../../dressprow/images/32x32/process.png')}
+tr.processbounces td.listingname a						{ background-image:url('../../dressprow/images/32x32/process.png')}
+tr.bounces td.listingname a								{ background-image:url('../../dressprow/images/32x32/refresh.png')}
+tr.plugin td.listingname a								{ background-image:url('../../dressprow/images/32x32/plugin.png')}
+tr.setup td.listingname a								{ background-image:url('../../dressprow/images/32x32/config.png')}
+tr.dbcheck td.listingname a								{ background-image:url('../../dressprow/images/32x32/database.png')}
+tr.view-log td.listingname a							{ background-image:url('../../dressprow/images/32x32/order-162.png')}
 
 
 /******************************* 11. SPECIAL PAGES */
@@ -3212,12 +3227,12 @@ tr.view-log td.listingname a							{ background-image:url('../../default/images/
 
 /* login page */
 #login-form *											{ border:none; font-size:100%}
-form#login-form											{ background:url('../../default/images/login.png') 5% 30% no-repeat; margin:0 auto; margin-top:40px; margin-bottom:20px; padding-top:20px; padding-left:130px; border-width:1px; border-style:solid; max-width:250px}
+form#login-form											{ background:url('../../dressprow/images/login.png') 5% 30% no-repeat; margin:0 auto; margin-top:40px; margin-bottom:20px; padding-top:20px; padding-left:130px; border-width:1px; border-style:solid; max-width:250px}
 form#login-form table tr td								{ padding-right:10px !important; text-align:left}
 #login-form .submit										{ margin-top:5px}
 .home-not-auth form hr									{ display:none; clear:both; margin:0 auto; width:100% !important; margin-bottom:40px; margin-top:40px}
 form#forgotpassword-form								{ border-width:1px; border-style:solid; padding:20px 20px 10px 20px; margin-top:50px}
-form#forgotpassword-form div.login						{ padding-left:50px; background:url('../../default/images/32x32/consulting.png') 0% 10% no-repeat; padding-bottom:10px}
+form#forgotpassword-form div.login						{ padding-left:50px; background:url('../../dressprow/images/32x32/consulting.png') 0% 10% no-repeat; padding-bottom:10px}
 form#forgotpassword-form p								{ margin:0px; padding:0px}
 form#forgotpassword-form input[type="text"]				{ float:left; max-width:70% !important; margin:5px 5px 10px 0px; height:20px; padding:2px}
 form#forgotpassword-form input[type="submit"]			{ float:left; margin:4px; height:27px; padding:6px 10px}
@@ -3299,16 +3314,16 @@ body.users .listingelement .yes							{ float:right; margin-right:10px}
 
 /* usermgt page */
 body.usermgt #wrapp ul									{ margin-left:10px; list-style:none}
-body.usermgt #wrapp ul li ul li a						{ padding-left:20px; background:url('../../default/images/16x16/tag.png') 0% 50% no-repeat; font-size:14px}
-body.usermgt #wrapp ul li#users a						{ padding-left:20px; background:url('../../default/images/16x16/search.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#attributes a					{ padding-left:20px; background:url('../../default/images/16x16/attibutes.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#reconcileusers a				{ padding-left:20px; background:url('../../default/images/16x16/database.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#usercheck a					{ padding-left:20px; background:url('../../default/images/16x16/check.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#massunconfirm a				{ padding-left:20px; background:url('../../default/images/16x16/issue.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#massremove a					{ padding-left:20px; background:url('../../default/images/16x16/issue.png') 0% 50% no-repeat}
-body.usermgt #wrapp ul li#edit-values					{ padding-left:20px; background:url('../../default/images/16x16/pencil.png') 0% 0% no-repeat}
-body.usermgt #wrapp ul li#import						{ padding-left:20px; background:url('../../default/images/16x16/importusers.png') 0% 0% no-repeat}
-body.usermgt #wrapp ul li#export						{ padding-left:20px; background:url('../../default/images/16x16/exportusers.png') 0% 0% no-repeat}
+body.usermgt #wrapp ul li ul li a						{ padding-left:20px; background:url('../../dressprow/images/16x16/tag.png') 0% 50% no-repeat; font-size:14px}
+body.usermgt #wrapp ul li#users a						{ padding-left:20px; background:url('../../dressprow/images/16x16/search.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#attributes a					{ padding-left:20px; background:url('../../dressprow/images/16x16/attibutes.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#reconcileusers a				{ padding-left:20px; background:url('../../dressprow/images/16x16/database.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#usercheck a					{ padding-left:20px; background:url('../../dressprow/images/16x16/check.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#massunconfirm a				{ padding-left:20px; background:url('../../dressprow/images/16x16/issue.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#massremove a					{ padding-left:20px; background:url('../../dressprow/images/16x16/issue.png') 0% 50% no-repeat}
+body.usermgt #wrapp ul li#edit-values					{ padding-left:20px; background:url('../../dressprow/images/16x16/pencil.png') 0% 0% no-repeat}
+body.usermgt #wrapp ul li#import						{ padding-left:20px; background:url('../../dressprow/images/16x16/importusers.png') 0% 0% no-repeat}
+body.usermgt #wrapp ul li#export						{ padding-left:20px; background:url('../../dressprow/images/16x16/exportusers.png') 0% 0% no-repeat}
 
 /* reconcileusers users page */
 body.reconcileusers hr									{ padding:10px 0px}
@@ -3331,7 +3346,7 @@ body.attributes #new-attribute h3						{ border:0;margin-top:10px;margin-bottom:
 body.attributes h3										{ margin-top:20px; border-top-width:1px; border-top-style:solid; }
 
 /* editattributes page */
-body.editattributes span.delete a						{ display:inline-block; height:20px; width:20px; background:url('../../default/images/16x16/mini-trash.png') 50% 50% no-repeat; text-indent:-9999px; overflow:hidden}
+body.editattributes span.delete a						{ display:inline-block; height:20px; width:20px; background:url('../../dressprow/images/16x16/mini-trash.png') 50% 50% no-repeat; text-indent:-9999px; overflow:hidden}
 body.editattributes .panel h3							{ font-size:20px; margin-bottom:5px; }
 div.row-value											{ margin:5px; margin-bottom:20px; clear:both}
 div.row-value .listorder								{ float:left; margin-right:10px; margin-bottom:0px}
@@ -3339,12 +3354,12 @@ div.row-value .delete									{ float:right; margin-left:10px}
 
 /* send page */
 #sendmessageform .panel .header							{ min-height:40px}
-#generatetextversion a.ajaxable							{ display:block; background:url('../../default/images/32x32/import-html.png') no-repeat 5px 5px; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; padding:10px 10px 10px 40px; float:left}
+#generatetextversion a.ajaxable							{ display:block; background:url('../../dressprow/images/32x32/import-html.png') no-repeat 5px 5px; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; padding:10px 10px 10px 40px; float:left}
 #generatetextversion 									{ border:0px; padding:0px; margin:10px; width:auto; display:block; text-align:center}
 .panel .header .step-nav 								{ margin-top:-32px}
 .panel .step-nav 										{ position:relative; float:right; text-align:right; margin:10px 0px}
-.panel .step-nav a.next 								{ background:url('../../default/images/next.png') no-repeat left top; padding:2px 2px 2px 20px}
-.panel .step-nav a.back 								{ background:url('../../default/images/back.png') no-repeat right top; padding:2px 20px 2px 2px; float:left}
+.panel .step-nav a.next 								{ background:url('../../dressprow/images/next.png') no-repeat left top; padding:2px 2px 2px 20px}
+.panel .step-nav a.back 								{ background:url('../../dressprow/images/back.png') no-repeat right top; padding:2px 20px 2px 2px; float:left}
 .panel .step-nav a.back, .panel .step-nav a.next		{ border-width:4px; border-style:solid; display:inline-block; text-transform:uppercase; cursor:pointer; font-size:14px;	-webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
 .panel .step-nav a.back:hover,
 .panel .step-nav a.next:hover							{ text-decoration:none}
@@ -3354,9 +3369,9 @@ body.send .sendNotify label								{ display:block; width:100%}
 body.send .panel .content div							{ margin:5px}
 body.send textarea										{ width:88%}
 #addtoqueue												{ margin:10px; padding:10px; border-width:1px; border-style:solid}
-#addtoqueue .missing									{ padding:15px; padding-left:25px; background:url('../../default/images/16x16/alert.png')  3px center no-repeat; border-width:1px; border-style:solid}
-a.helpdialog, a.resourcereference						{ height:16px; width:16px; background:url('../../default/images/16x16/info.png') no-repeat; display:inline-block; overflow:hidden; text-indent:9999px; margin-left:5px}
-#addtoqueue .error										{ padding:5px; margin-top:20px; padding-left:25px; background:url('../../default/images/16x16/error.png')  3px center no-repeat; border:1px solid red}
+#addtoqueue .missing									{ padding:15px; padding-left:25px; background:url('../../dressprow/images/16x16/alert.png')  3px center no-repeat; border-width:1px; border-style:solid}
+a.helpdialog, a.resourcereference						{ height:16px; width:16px; background:url('../../dressprow/images/16x16/info.png') no-repeat; display:inline-block; overflow:hidden; text-indent:9999px; margin-left:5px}
+#addtoqueue .error										{ padding:5px; margin-top:20px; padding-left:25px; background:url('../../dressprow/images/16x16/error.png')  3px center no-repeat; border:1px solid red}
 #listselection a                                        { outline:none}
 #listselection .inactivelist,#listselection .activelist{ float:right}
 #listselection .ui-icon                                 {display:none}
@@ -3413,10 +3428,10 @@ table.bounceActions tr td								{ border:0px !important}
 
 /* configure page */
 div.configEdit											{ line-height:14px;margin-bottom:10px; padding:3px}
-div.configEdit a.ajaxable								{ background:url('../../default/images/16x16/edit-1.png') 60% 50% no-repeat; height:16px; width:16px; display:inline-block; text-indent:-9999px; overflow:hidden; float:left; margin:0px 10px 0px 4px; padding:3px 10px; border-style: solid; border-width: 1px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
+div.configEdit a.ajaxable								{ background:url('../../dressprow/images/16x16/edit-1.png') 60% 50% no-repeat; height:16px; width:16px; display:inline-block; text-indent:-9999px; overflow:hidden; float:left; margin:0px 10px 0px 4px; padding:3px 10px; border-style: solid; border-width: 1px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px}
 div.configcontent										{ padding:2px 15px 10px}
 .configForm fieldset									{ border-width:1px; border-style:solid; padding:15px}
-.configForm legend										{ font-weight:normal; font-size:18px; background: url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; padding:0px 10px; -webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px}
+.configForm legend										{ font-weight:normal; font-size:18px; background: url('../../dressprow/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; padding:0px 10px; -webkit-border-radius:6px; -moz-border-radius:6px; border-radius:6px}
 div.date select 										{ display:inline; width:auto}
 
 /* dbcheck page */
@@ -3446,9 +3461,9 @@ body.templates span.button 								{ background-image:none; float:right; margin-
 .block ul li a, li.shade0 a								{ border-bottom-width:1px; border-bottom-style:dotted; display:block; padding:5px 0; padding-left:10px}
 .block ul li br, li.shade0 br							{ display:none}
 .block ul li a:hover, li.shade0 a:hover					{ text-decoration:none}
-.menutableright h3										{ margin:0; font-size:12pt; background:url('../../default/images/header-bg.gif') repeat-x; border-bottom-width:1px; border-bottom-style:dotted; padding-left:10px; -webkit-border-top-right-radius:6px; -webkit-border-top-left-radius:6px; -moz-border-radius-topright:6px; -moz-border-radius-topleft:6px; border-top-right-radius:6px; border-top-left-radius:6px}
+.menutableright h3										{ margin:0; font-size:12pt; background:url('../../dressprow/images/header-bg.gif') repeat-x; border-bottom-width:1px; border-bottom-style:dotted; padding-left:10px; -webkit-border-top-right-radius:6px; -webkit-border-top-left-radius:6px; -moz-border-radius-topright:6px; -moz-border-radius-topleft:6px; border-top-right-radius:6px; border-top-left-radius:6px}
 #languageswitcher										{ float:right; margin:0px; margin-top:20px; width:100%}
-#languageswitcher form select							{ font-size:12pt; background:url('../../default/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; width:100%; padding-left:5px}
+#languageswitcher form select							{ font-size:12pt; background:url('../../dressprow/images/header-bg.gif') repeat-x; border-width:1px; border-style:solid; width:100%; padding-left:5px}
 #newsfeed .publisheddate                                { margin-top: 0px; padding: 10px 5px 0px; text-transform: uppercase;font-size:10px }
 #newsfeed ul li a                                       { line-height: 1.1;padding:7px 10px}
 
@@ -3459,9 +3474,9 @@ body.templates span.button 								{ background-image:none; float:right; margin-
 #footer .right											{ float:right; margin-left:20px}
 
 
-/* End of /lists/admin/ui/default/css/style.css */
+/* End of /lists/admin/ui/dressprow/css/style.css */
 
-/*phpListThemes/phplist-ui-dressprow/css/gray.css*/ /* File:/lists/admin/ui/default/css/gray.css */
+/*phpListThemes/phplist-ui-dressprow/css/gray.css*/ /* File:/lists/admin/ui/dressprow/css/gray.css */
 
 
 /******************************* 
@@ -3696,4 +3711,4 @@ a.action-button, input.action-button                { -moz-box-shadow:1px 1px 4p
 .minitabs #webblertabs ul li.current                { -moz-box-shadow:1px 1px 4px #777; -webkit-box-shadow:1px 1px 4px #777; box-shadow:1px 1px 4px #777}
 
 
-/* End of /lists/admin/ui/default/css/gray.css */
+/* End of /lists/admin/ui/dressprow/css/gray.css */

@@ -86,11 +86,16 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 } else {
     echo '<div class="actions">';
 
+    // Print edit campaign button
     $editbutton = new ConfirmButton(
         s('Editing an active or finished campaign will place it back in the draft queue, continue?'),
         PageURL2('send&id='.$id),
         s('Edit campaign'));
     echo $editbutton->show();
+
+    // Print view campaign statistics button
+    echo PageLinkButton( 'statsoverview&id='.$id, s('Statistics'), s('View statistics'));
+
     echo '</div>';
 }
 
@@ -169,7 +174,10 @@ if (!Sql_Affected_Rows()) {
 }
 while ($lst = Sql_fetch_array($result)) {
     array_push($lists_done, $lst['id']);
-    $content .= sprintf('<tr><td><!--%d--></td><td>%s</td></tr>', $lst['id'], stripslashes($lst['name']));
+    $content .= 
+'<tr>
+    <td>' . PageLinkButton('members&amp;id=' . $lst['id'], stripslashes($lst['name']), '', '', s('View Members')) . '</td>
+</tr>';
 }
 
 if ($msgdata['excludelist']) {

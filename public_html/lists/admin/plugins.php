@@ -45,8 +45,8 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
     echo '<h3>'.s('Fetching plugin').'</h3>';
 
-    echo '<h2>'.s('Developer').' '.$developer.'</h2>';
-    echo '<h2>'.s('Project').' '.$project_name.'</h2>';
+    echo '<h2>'.s('Developer').': '.$developer.'</h2>';
+    echo '<h2>'.s('Project').': '.$project_name.'</h2>';
 
     $filename = '';
     $packagefile = file_get_contents($packageurl);

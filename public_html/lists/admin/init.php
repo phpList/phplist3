@@ -211,7 +211,7 @@ define('TRANSLATIONS_XML', 'https://translate.phplist.org/translations.xml');
 //define('TLD_AUTH_MD5','http://data.iana.org/TLD/tlds-alpha-by-domain.txt.md5');
 define('TLD_AUTH_LIST', 'https://www.phplist.com/files/tlds-alpha-by-domain.txt');
 define('TLD_AUTH_MD5', 'https://www.phplist.com/files/tlds-alpha-by-domain.txt.md5');
-define('TLD_REFETCH_TIMEOUT', 15552000); //# 180 days, about 6 months
+define('TLD_REFETCH_TIMEOUT', 2592000); //# 30 days
 if (!defined('PQAPI_URL')) {
     define('PQAPI_URL', 'https://pqapi.phplist.com/1/t/pqapi');
 }
@@ -286,10 +286,13 @@ if (!defined('ENCRYPTION_ALGO')) {
     }
 }
 if (!defined('HASH_ALGO')) {
-    if (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
+	// keep previous hashalg. @@TODO force an update of hash method, many may still be on md5. 
+	if (defined('ENCRYPTION_ALGO')) {
+        define('HASH_ALGO', ENCRYPTION_ALGO);
+	} elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
         define('HASH_ALGO', 'sha256');
     } else {
-        define('HASH_ALGO', ENCRYPTION_ALGO);
+        define('HASH_ALGO', 'md5');
     }
 }
 //# remember the length of a hashed string
@@ -647,13 +650,6 @@ $GLOBALS['has_curl'] = function_exists('curl_init');
 $GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_curl'];
 
 $GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
-
-//# fairly crude way to determine php version, but mostly needed for the stripos
-if (function_exists('stripos')) {
-    define('PHP5', 1);
-} else {
-    define('PHP5', 0);
-}
 
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {

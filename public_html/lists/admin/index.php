@@ -1,6 +1,12 @@
 <?php
 
-@ob_start();
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50303) {
+    die('Your PHP version is too old. Please upgrade PHP before continuing.');
+}
+
+if (ob_get_level() == 0) {
+    @ob_start();
+}
 $er = error_reporting(0);
 // check for commandline and cli version
 if (!isset($_SERVER['SERVER_NAME']) && PHP_SAPI != 'cli') {
@@ -204,6 +210,14 @@ if ($GLOBALS['commandline']) {
         }
     } else {
         clineUsage(' [other parameters]');
+        cl_output(s('Available options:'));
+        foreach ($GLOBALS['commandline_pages'] as $page){
+            @ob_end_clean();
+            echo '     '.$page.PHP_EOL;
+            @ob_start();
+        }
+
+
         exit;
     }
 } else {
@@ -487,8 +501,8 @@ if (!$ajax && $page != 'login') {
     if (TEST) {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
-    if (version_compare(PHP_VERSION, '5.4.0', '<') && WARN_ABOUT_PHP_SETTINGS) {
-        Error(s('Your PHP version is out of date. phpList requires PHP version 5.4.0 or higher.'));
+    if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
+        Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
     }
     if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
         Fatal_Error(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
@@ -497,10 +511,6 @@ if (!$ajax && $page != 'login') {
         return;
     }
 
-    if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50300) {
-        Fatal_Error(s('Your PHP version is too old. Please upgrade PHP before continuing'));
-        return;
-    }
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
         Warn($GLOBALS['I18N']->get('You are trying to use RSS, but XML is not included in your PHP'));
     }
@@ -694,10 +704,15 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
                 @ob_end_clean();
                 @ob_start();
             }
-            if (isset($GLOBALS['developer_email'])) {
-                include $include;
+            $mm = inMaintenanceMode();
+            if (empty($mm) || $GLOBALS['commandline'] || $page == 'login' || $page == 'about' || $page == 'community') {
+                if (isset($GLOBALS['developer_email'])) {
+                    include $include;
+                } else {
+                    @include $include;
+                }
             } else {
-                @include $include;
+                print '<h1>'.s('phpList is in maintenance mode.<br/>Please try again in half an hour.'). '<h1>';
             }
         }
     } else {

@@ -125,7 +125,7 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
         $GLOBALS['tables']['linktrack_uml_click'], $row['messageid']));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('clicks'), $totalclicked[0],
+    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique Clicks'), $totalclicked[0],
         $totalclicked[0] ? PageURL2('mclicks&id='.$row['messageid']) : '');
 
     $ls->addRow($element, '',

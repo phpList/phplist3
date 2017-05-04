@@ -18,7 +18,7 @@
   },
   "minimum-stability": "dev",
   "require": {
-    "php": ">= 5.4.0, <= 7.1.99"
+    "php": ">= 5.3.3, <= 7.1.99"
   },
   "require-dev": {
     "behat/mink": "~1.4",

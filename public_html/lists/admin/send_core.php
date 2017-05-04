@@ -1164,7 +1164,33 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     }
 }
 
-$GLOBALS['pagefooter']['sendtabs'] = "<script type='text/javascript'>\n".
+$GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/javascript' src='js/jquery.cycle2.min.js'></script>
+<script>
+	$(document).ready(function(){
+	    var counttab = ".$counttabs.";
+	    var currenttab = $('.current').attr('id');
+		var tabvis = (($('.sendtabs_container').width()-50)/102)+'';
+		var arrvis = tabvis.split('.');
+		var tabdif = currenttab-arrvis[0];
+		if (counttab <= arrvis[0]) {arrvis[0] = counttab-1};
+		$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
+		$('.sendcampaign').cycle('goto',tabdif); 
+
+	    $(window).on('resize',function() {
+			$('.sendcampaign').cycle('destroy');
+			tabvis = (($('.sendtabs_container').width()-50)/102)+'';
+			arrvis = tabvis.split('.');
+			tabdif = currenttab-arrvis[0];
+			if (counttab <= arrvis[0]) {arrvis[0] = counttab-1};
+			$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
+			$('.sendcampaign').cycle('goto',tabdif); 
+		});
+	});
+</script><style>#sendtabs ul{margin:0 1px}</style>";
+
+/* OLD SCRIPT: 
+
+	"<script type='text/javascript'>\n".
     '$(document).ready(function() {
     var counttab = ' .$counttabs.";
     var currenttab = $('.current').attr('id');
@@ -1208,6 +1234,7 @@ $(window).resize(function(){
 });
 
 </script>";
+*/
 
 echo '<img src="ui/'.$GLOBALS['ui'].'/images/prevtab.png" id="prev" class="prevtab" />';
 echo '<img src="ui/'.$GLOBALS['ui'].'/images/nexttab.png" id="next" class="nexttab" />';

@@ -162,6 +162,13 @@ table.adminDetails td {
     padding: 5px;
 }
 
+/* Style nested table heading row */
+tr table th {
+    text-decoration: underline; 
+    text-align: center; 
+    font-weight: normal;
+}
+
 .actionresult, .result {
     border: 2px solid;
     margin: 15px 0;

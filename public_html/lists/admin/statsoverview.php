@@ -69,6 +69,7 @@ if (!$id) {
         unset($_SESSION['LoadDelay']);
     }
 
+    // Load page content via AJAX
     echo '<div id="contentdiv"></div>';
     echo asyncLoadContent('./?page=pageaction&action=statsoverview&ajaxed=true&id='.$id.'&start='.$start.addCsrfGetToken());
 
@@ -119,9 +120,9 @@ $sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where mes
 while ($row = Sql_Fetch_Assoc($sentQ)) {
     $element = ucfirst($row['status']);
     $ls->addElement($element);
-    $ls->addColumn($element, '', $row['num']);
+    $ls->addColumn($element, '', number_format( $row['num'] ));
     if ($row['status'] == 'sent') {
-        $totalSent = $row['num'];
+        $totalSent = number_format( $row['num'] );
     }
 }
 /*
@@ -134,7 +135,7 @@ $bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct user) from %s wher
     $tables['user_message_bounce'], $id));
 $element = ucfirst(s('Bounced'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $bounced[0]);
+$ls->addColumn($element, '', number_format( $bounced[0] ));
 $totalBounced = $bounced[0];
 
 $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent" and viewed is not null',
@@ -163,6 +164,6 @@ $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %
     $GLOBALS['tables']['user_message_forward'], $id));
 $element = ucfirst(s('Forwarded'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $fwded[0]);
+$ls->addColumn($element, '', number_format( $fwded[0] ));
 
 echo $ls->display();
