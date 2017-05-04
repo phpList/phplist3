@@ -417,8 +417,8 @@ if ($total) {
             $viewStatsFormatted = array();
 
             // Make statistical integers human readable
-            foreach ( $viewStats as $key => $value ) {
-                $viewStatsFormatted[$key] = number_format( $value );
+            foreach ($viewStats as $key => $value) {
+                $viewStatsFormatted[$key] = number_format($value);
             }
 
             $resultStats = '<table class="messagesendstats">
@@ -478,8 +478,8 @@ if ($total) {
         $sentStatsFormatted = array();
 
         // Make statistical integers human readable
-        foreach ( $sentStats as $key => $value ) {
-            $sentStatsFormatted[$key] = number_format( $value );
+        foreach ($sentStats as $key => $value) {
+            $sentStatsFormatted[$key] = number_format($value);
         }
 
         $sendstats =
