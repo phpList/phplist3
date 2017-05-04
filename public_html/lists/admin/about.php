@@ -8,6 +8,10 @@
             <td><?php echo subscribeToAnnouncementsForm() ?></td>
         </tr>
         <tr>
+            <td>Announcements</td>
+            <td><?php echo subscribeToAnnouncementsForm() ?></td>
+        </tr>
+        <tr>
             <td class="poweredby" valign="top">
                 <?php echo s('Version')?>
             </td>
