@@ -1870,7 +1870,7 @@ function repeatMessage($msgid)
         return;
     }
 
-    //  Do not copy columns that use default values or are explicitly set
+    //  Do not copy columns that use default values or are explicitly set, or indices
     $columnsToCopy = array_diff(
         array_keys($DBstruct['message']),
         array(
@@ -1878,6 +1878,7 @@ function repeatMessage($msgid)
             'astextandhtml', 'aspdf', 'astextandpdf', 'viewed', 'bouncecount', 'sendstart', 'uuid',
         )
     );
+    $columnsToCopy = preg_grep('/^index_/', $columnsToCopy, PREG_GREP_INVERT);
 
     foreach ($columnsToCopy as $column) {
         Sql_Query(sprintf('update %s set %s = "%s" where id = %d',
@@ -1891,11 +1892,11 @@ function repeatMessage($msgid)
         $newid
     ));
 
-    // copy rows in messagedata
+    // copy rows in messagedata except those that are explicitly set
     $req = Sql_Query(sprintf(
         "SELECT *
     FROM %s
-    WHERE id = %d AND name NOT IN ('id')",
+    WHERE id = %d AND name NOT IN ('id', 'embargo', 'finishsending')",
         $GLOBALS['tables']['messagedata'], $msgid
     ));
     while ($row = Sql_Fetch_Array($req)) {
@@ -1906,6 +1907,16 @@ function repeatMessage($msgid)
         sscanf($msgdata['newembargo'], '%04d-%02d-%02d %02d:%02d:%02d');
     unset($e['second']);
     setMessageData($newid, 'embargo', $e);
+
+    $finishSending = time() + DEFAULT_MESSAGEAGE;
+    $finish = array(
+        'year'   => date('Y', $finishSending),
+        'month'  => date('m', $finishSending),
+        'day'    => date('d', $finishSending),
+        'hour'   => date('H', $finishSending),
+        'minute' => date('i', $finishSending),
+    );
+    setMessageData($newid, 'finishsending', $finish);
 
     // lists
     $req = Sql_Query(sprintf('select listid from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
