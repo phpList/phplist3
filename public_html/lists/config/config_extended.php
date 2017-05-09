@@ -632,6 +632,13 @@ define('UPLOADIMAGES_DIR', 'uploadimages');
 //# for the above, you can also use subdirectories, for example
 //define("UPLOADIMAGES_DIR","images/newsletter/uploaded");
 
+
+// EMBEDEXTERNALIMAGES
+// this flag will fetch images in your content that are remotely hosted and put them
+// inside the message that is sent.
+define('EMBEDEXTERNALIMAGES',false);
+
+
 // Manual text part, will give you an input box for the text version of the message
 // instead of trying to create it by parsing the HTML version into plain text
 define('USE_MANUAL_TEXT_PART', 1);
