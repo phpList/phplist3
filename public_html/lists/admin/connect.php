@@ -1389,9 +1389,10 @@ function listSelectHTML($current, $fieldname, $subselect, $alltab = '')
             if ($category == 'all') {
                 $category = '@';
             }
-            if ($some > 1) { //# don't show tabs, when there's just one
+/* "if" commented on 2017-5-8 to show tabs always fixing UI bugs on all themes with jQuery in checkboxes. I suggest to remove it permanently. */
+//            if ($some > 1) { //# don't show tabs, when there's just one
                 $listindex .= sprintf('<li><a href="#%s%d">%s</a></li>', $fieldname, $tabno, $category);
-            }
+ //           }
             if ($fieldname == 'targetlist') {
                 // Add select all checkbox in every category to select all lists in that category.
                 if ($category == 'selected') {
