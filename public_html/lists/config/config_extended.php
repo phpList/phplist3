@@ -55,6 +55,8 @@ $usertable_prefix = 'phplist_user_';
 
 // if you change the path to the phpList system, make the change here as well
 // path should be relative to the root directory of your webserver (document root)
+// Warning: Do not change this after installation. You can only change this before you
+// install and initialise phpList.
 $pageroot = '/lists';
 
 /*
