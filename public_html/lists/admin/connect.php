@@ -70,6 +70,7 @@ $commandline_pages = array(
     'initlanguages',
     'cron',
     'updatetlds',
+    'runcommand',
 );
 
 if (isset($message_envelope)) {
