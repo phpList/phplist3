@@ -46,8 +46,9 @@ order by
 limit
     50', $GLOBALS['tables']['user']));
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Top 50 domains with more than 5 subscribers'));
+$ls = new WebblerListing(s('Top 50 domains with more than 5 subscribers'));
 $ls->setElementHeading('Domain');
+$columnFormat = '<strong>%s</strong> (%s%%)';
 
 if (Sql_Num_Rows($req) > 0) {
     while ($row = Sql_Fetch_Array($req)) {
@@ -55,30 +56,40 @@ if (Sql_Num_Rows($req) > 0) {
 
         // Calculate the number of confirmed subs on this domain as a percentage of all subscribers
         $perc = round($row['domain_confirmed'] / $total * 100);
-
-        // Add data to the table
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
-            '<strong>' . number_format($row['domain_confirmed']) . '</strong> (' . $perc . '%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('confirmed'),
+            sprintf($columnFormat, number_format($row['domain_confirmed']), $perc)
+        );
 
         // Calculate the number of unconfirmed subs on this domain as a percentage of all subscribers
         $percentUnconfirmed = round($row['domain_unconfirmed'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
-            '<strong>' . number_format($row['domain_unconfirmed']) . '</strong> (' . $percentUnconfirmed . '%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('unconfirmed'),
+            sprintf($columnFormat, number_format($row['domain_unconfirmed']), $percentUnconfirmed)
+        );
 
         // Calculate the number of blacklisted subs on this domain as a percentage of all subscribers
         $percentBlacklisted = round($row['domain_blacklisted'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('blacklisted'),
-            '<strong>' . number_format($row['domain_blacklisted']) . '</strong> (' . $percentBlacklisted . '%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('blacklisted'),
+            sprintf($columnFormat, number_format($row['domain_blacklisted']), $percentBlacklisted)
+        );
 
         // Calculate the number subs on this domain as a percentage of all subscribers
         $percentTotal = round($row['domain_total'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
-            '<strong>' . number_format($row['domain_total']) . '</strong> (' . $percentTotal . '%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('total'),
+            sprintf($columnFormat, number_format($row['domain_total']), $percentTotal)
+        );
     }
 
     // Print download button
     $status .= '<div class="actions">'.PageLinkButton('page=pageaction&action=domainstats&dl=true',
-            $GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+            s('Download as CSV file')).'</div>';
 } else {
     // Print missing data notice
     $status .= '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';
@@ -117,7 +128,7 @@ limit
 
 // Only print table if results are found
 if (Sql_Num_Rows($query) > 0) {
-    $ls = new WebblerListing($GLOBALS['I18N']->get('Domains with most unconfirmed subscribers'));
+    $ls = new WebblerListing(s('Domains with most unconfirmed subscribers'));
     $ls->setElementHeading('Domain');
 
     // Loop through each domain result
@@ -126,23 +137,35 @@ if (Sql_Num_Rows($query) > 0) {
 
         // Calculate the number of confirmed subs on this domain as a percentage of all subscribers
         $percentConfirmed = round($row['domain_confirmed'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('confirmed'),
-            '<strong>'.number_format($row['domain_confirmed']).'</strong> ('.$percentConfirmed.'%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('confirmed'),
+            sprintf($columnFormat, number_format($row['domain_confirmed']), $percentConfirmed)
+        );
 
         // Calculate the number of unconfirmed subs on this domain as a percentage of all subscribers
         $percentUnconfirmed = round($row['domain_unconfirmed'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('unconfirmed'),
-            '<strong>'.number_format($row['domain_unconfirmed']).'</strong> ('.$percentUnconfirmed.'%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('unconfirmed'),
+            sprintf($columnFormat, number_format($row['domain_unconfirmed']), $percentUnconfirmed)
+        );
         // Calculate the number of blacklisted subs on this domain as a percentage of all subscribers
         $percentBlacklisted = round($row['domain_blacklisted'] / $total * 100);
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('blacklisted'),
-            '<strong>'.number_format($row['domain_blacklisted']).'</strong> ('.$percentBlacklisted.'%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('blacklisted'),
+            sprintf($columnFormat, number_format($row['domain_blacklisted']), $percentBlacklisted)
+        );
 
         // Calculate the number subs on this domain as a percentage of all subscribers
         $percentTotal = round($row['domain_total'] / $total * 100);
         // Show the total subscribers using this domain
-        $ls->addColumn($row['domain'], $GLOBALS['I18N']->get('total'),
-            '<strong>'.number_format($row['domain_total']).'</strong> ('.$percentTotal.'%)');
+        $ls->addColumn(
+            $row['domain'],
+            s('total'),
+            sprintf($columnFormat, number_format($row['domain_total']), $percentTotal)
+        );
     }
 
     // Print table
@@ -165,14 +188,18 @@ order by
 limit
     25', $GLOBALS['tables']['user']));
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Top 25 local-parts of email addresses'));
+$ls = new WebblerListing(s('Top 25 local-parts of email addresses'));
 $ls->setElementHeading('Local-part');
 
 while ($row = Sql_Fetch_Array($req)) {
     if ($row['num'] > 0) {
         $ls->addElement($row['preat']);
         $percentTotal = round($row['num'] / $total * 100);
-        $ls->addColumn($row['preat'], s('total'), '<strong>'.$row['num'].'</strong> ('.$percentTotal.'%)');
+        $ls->addColumn(
+            $row['preat'],
+            s('total'),
+            sprintf($columnFormat, number_format($row['num']), $percentTotal)
+        );
     }
 }
 $status .= $ls->display();
