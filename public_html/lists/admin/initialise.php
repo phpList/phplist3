@@ -6,6 +6,7 @@ include dirname(__FILE__).'/structure.php';
 @ob_end_flush();
 
 $success = 1;
+
 if (!isset($_REQUEST['adminname'])) {
     $_REQUEST['adminname'] = '';
 }
