@@ -8,16 +8,16 @@ include dirname(__FILE__).'/structure.php';
 $success = 1;
 
 if (!isset($_REQUEST['adminname'])) {
-    $_REQUEST['adminname'] = '';
+    $_REQUEST['adminname'] = getenv('ADMIN_NAME');
 }
 if (!isset($_REQUEST['orgname'])) {
-    $_REQUEST['orgname'] = '';
+    $_REQUEST['orgname'] = getenv('ORGANISATION_NAME');
 }
 if (!isset($_REQUEST['adminpassword'])) {
-    $_REQUEST['adminpassword'] = '';
+    $_REQUEST['adminpassword'] = getenv('ADMIN_PASSWORD');
 }
 if (!isset($_REQUEST['adminemail'])) {
-    $_REQUEST['adminemail'] = '';
+    $_REQUEST['adminemail'] = getenv('ADMIN_EMAIL');
 }
 
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
