@@ -1,8 +1,6 @@
 # file that keeps track of the latest tag in cvs and the corresponding version
 # this automates publishing a new version, when it's tagged
 # if you don't understand this, don't worry. You don't need this file
-VERSION=3.3.0
-TAG=xx
-PREVTAG=xx
-DEVVERSION=3.3.0
+VERSION=3.3.1
+DEVVERSION=3.3.2
 
