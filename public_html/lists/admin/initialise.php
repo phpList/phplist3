@@ -5,18 +5,33 @@ require_once dirname(__FILE__).'/accesscheck.php';
 include dirname(__FILE__).'/structure.php';
 @ob_end_flush();
 
+function output($message)
+{
+    if ($GLOBALS['commandline']) {
+        @ob_end_clean();
+        echo strip_tags($message)."\n";
+        ob_start();
+    } else {
+        echo $message;
+        flush();
+        @ob_end_flush();
+    }
+    flush();
+}
+
 $success = 1;
+
 if (!isset($_REQUEST['adminname'])) {
-    $_REQUEST['adminname'] = '';
+    $_REQUEST['adminname'] = getenv('ADMIN_NAME');
 }
 if (!isset($_REQUEST['orgname'])) {
-    $_REQUEST['orgname'] = '';
+    $_REQUEST['orgname'] = getenv('ORGANISATION_NAME');
 }
 if (!isset($_REQUEST['adminpassword'])) {
-    $_REQUEST['adminpassword'] = '';
+    $_REQUEST['adminpassword'] = getenv('ADMIN_PASSWORD');
 }
 if (!isset($_REQUEST['adminemail'])) {
-    $_REQUEST['adminemail'] = '';
+    $_REQUEST['adminemail'] = getenv('ADMIN_EMAIL');
 }
 
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
@@ -73,7 +88,7 @@ if (empty($_SESSION['hasconf']) && !empty($_REQUEST['firstinstall']) && (empty($
 
 //var_dump($GLOBALS['plugins']);exit;
 
-echo '<h3>'.s('Creating tables')."</h3><br />\n";
+output('<h3>'.s('Creating tables')."</h3><br />");
 while (list($table, $val) = each($DBstruct)) {
     if ($force) {
         if ($table == 'attribute') {
@@ -99,10 +114,10 @@ while (list($table, $val) = each($DBstruct)) {
     $query .= "\n) default character set utf8";
 
     // submit it to the database
-    echo s('Initialising table')." <b>$table</b>";
+    output(s('Initialising table')." <b>$table</b>");
     if (!$force && Sql_Table_Exists($tables[$table])) {
         Error(s('Table already exists').'<br />');
-        echo '... '.s('failed')."<br />\n";
+        output( '... '.s('failed')."<br />");
         $success = 0;
     } else {
         $res = Sql_Query($query, 0);
@@ -124,7 +139,7 @@ while (list($table, $val) = each($DBstruct)) {
                 }
 
                 Sql_Query(sprintf('insert into %s (loginname,namelc,email,created,modified,password,passwordchanged,superuser,disabled)
-          values("%s","%s","%s",now(),now(),"%s",now(),%d,0)',
+                    values("%s","%s","%s",now(),now(),"%s",now(),%d,0)',
                     $tables['admin'], 'admin', 'admin', $adminemail, encryptPass($adminpass), 1));
 
                 //# let's add them as a subscriber as well
@@ -143,9 +158,9 @@ while (list($table, $val) = each($DBstruct)) {
                 }
             }
 
-            echo '... '.s('ok')."<br />\n";
+            output( '... '.s('ok')."<br />");
         } else {
-            echo '... '.s('failed')."<br />\n";
+            output( '... '.s('failed')."<br />\n");
         }
     }
 }
@@ -156,7 +171,7 @@ if ($success) {
 
 //# initialise plugins that are already here
 foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
-    echo s('Initialise plugin').' '.$pluginName.'<br/>';
+    output( s('Initialise plugin').' '.$pluginName.'<br/>');
     if (method_exists($plugin, 'initialise')) {
         $plugin->initialise();
     }
@@ -164,6 +179,7 @@ foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
 }
 
 if ($success) {
+    output( s('Setting default configuration').'<br/>');
     // mark the database to be our current version
     SaveConfig('version', VERSION, 0);
     // mark now to be the last time we checked for an update

@@ -106,6 +106,11 @@ include_once dirname(__FILE__).'/lib.php';
 require_once dirname(__FILE__).'/inc/netlib.php';
 require_once dirname(__FILE__).'/inc/interfacelib.php';
 
+if ($cline['-'] == 'version') {
+    cl_output(ClineSignature());
+    exit;
+}
+
 $systemTimer = new timer();
 
 // do a loose check, if the token is there, it needs to be valid.

@@ -55,6 +55,8 @@ $usertable_prefix = 'phplist_user_';
 
 // if you change the path to the phpList system, make the change here as well
 // path should be relative to the root directory of your webserver (document root)
+// Warning: Do not change this after installation. You can only change this before you
+// install and initialise phpList.
 $pageroot = '/lists';
 
 /*
@@ -631,6 +633,13 @@ define('UPLOADIMAGES_DIR', 'uploadimages');
 
 //# for the above, you can also use subdirectories, for example
 //define("UPLOADIMAGES_DIR","images/newsletter/uploaded");
+
+
+// EMBEDEXTERNALIMAGES
+// this flag will fetch images in your content that are remotely hosted and put them
+// inside the message that is sent.
+define('EMBEDEXTERNALIMAGES',false);
+
 
 // Manual text part, will give you an input box for the text version of the message
 // instead of trying to create it by parsing the HTML version into plain text

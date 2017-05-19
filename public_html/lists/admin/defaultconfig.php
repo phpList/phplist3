@@ -21,12 +21,20 @@ if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php')) {
     $defaultfooter = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php');
 }
 
+$envHost = getEnv('HOSTNAME');
+$envPort = getEnv('PORT');
 if (isset($_SERVER['HTTP_HOST'])) {
     $D_website = $_SERVER['HTTP_HOST'];
 } elseif (isset($_SERVER['SERVER_NAME'])) {
     $D_website = $_SERVER['SERVER_NAME'];
+} elseif(!empty($envHost)) {
+    if ($envPort != 80 && $envPort != 443) {
+        $D_website = "$envHost:$envPort";
+    } else {
+        $D_website = "$envHost";
+    }
 } else {
-    $D_website = 'unable to determine';
+    $D_website = s('unable to detect hostname');
 }
 
 $D_domain = $D_website;
