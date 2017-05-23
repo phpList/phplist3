@@ -570,6 +570,11 @@ if (count($bouncerules)) {
                 Sql_Query(sprintf('insert ignore into %s (regex,bounce) values(%d,%d)',
                     $GLOBALS['tables']['bounceregex_bounce'], $rule['id'], $row['bounce']));
 
+                //17860 - check the current status to avoid doing it over and over
+                $currentStatus = Sql_Fetch_Assoc_Query(sprintf('select confirmed,blacklisted from %s where id = %d', $GLOBALS['tables']['user'],$row['user']));
+                $confirmed = !empty($currentStatus['confirmed']);
+                $blacklisted = !empty($currentStatus['blacklisted']);
+
                 switch ($rule['action']) {
                     case 'deleteuser':
                         logEvent('User '.$userdata['email'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
@@ -580,16 +585,18 @@ if (count($bouncerules)) {
                         deleteUser($row['user']);
                         break;
                     case 'unconfirmuser':
-                        logEvent('User '.$userdata['email'].' unconfirmed by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
-                                $rule['id']));
-                        Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
-                            $row['user']));
-                        $advanced_report .= 'User '.$userdata['email'].' made unconfirmed by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
-                        $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        addUserHistory($userdata['email'], s('Auto Unconfirmed'),
-                            s('Subscriber auto unconfirmed for').' '.s('bounce rule').' '.$rule['id']);
-                        addSubscriberStatistics('auto unsubscribe', 1);
+                        if ($confirmed) {
+                            logEvent('User ' . $userdata['email'] . ' unconfirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
+                                $row['user']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' made unconfirmed by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], s('Auto Unconfirmed'),
+                                s('Subscriber auto unconfirmed for') . ' ' . s('bounce rule') . ' ' . $rule['id']);
+                            addSubscriberStatistics('auto unsubscribe', 1);
+                        }
                         break;
                     case 'deleteuserandbounce':
                         logEvent('User '.$userdata['email'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
@@ -601,41 +608,47 @@ if (count($bouncerules)) {
                         deleteBounce($row['bounce']);
                         break;
                     case 'unconfirmuseranddeletebounce':
-                        logEvent('User '.$userdata['email'].' unconfirmed by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
-                                $rule['id']));
-                        Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
-                            $row['user']));
-                        $advanced_report .= 'User '.$userdata['email'].' made unconfirmed by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
-                        $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        addUserHistory($userdata['email'], s('Auto unconfirmed'),
-                            s('Subscriber auto unconfirmed for').' '.$GLOBALS['I18N']->get('bounce rule').' '.$rule['id']);
-                        addSubscriberStatistics('auto unsubscribe', 1);
+                        if ($confirmed) {
+                            logEvent('User ' . $userdata['email'] . ' unconfirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
+                                $row['user']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' made unconfirmed by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], s('Auto unconfirmed'),
+                                s('Subscriber auto unconfirmed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
+                            addSubscriberStatistics('auto unsubscribe', 1);
+                        }
                         deleteBounce($row['bounce']);
                         break;
                     case 'blacklistuser':
-                        logEvent('User '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
-                                $rule['id']));
-                        addUserToBlacklist($userdata['email'],
-                            s('Subscriber auto blacklisted  by bounce rule', $rule['id']));
-                        $advanced_report .= 'User '.$userdata['email'].' blacklisted by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
-                        $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        addUserHistory($userdata['email'], $GLOBALS['I18N']->get('Auto Unsubscribed'),
-                            $GLOBALS['I18N']->get('User auto unsubscribed for').' '.$GLOBALS['I18N']->get('bounce rule').' '.$rule['id']);
-                        addSubscriberStatistics('auto blacklist', 1);
+                        if (!$blacklisted) {
+                            logEvent('User ' . $userdata['email'] . ' blacklisted by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            addUserToBlacklist($userdata['email'],
+                                s('Subscriber auto blacklisted  by bounce rule', $rule['id']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' blacklisted by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], $GLOBALS['I18N']->get('Auto Unsubscribed'),
+                                $GLOBALS['I18N']->get('User auto unsubscribed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
+                            addSubscriberStatistics('auto blacklist', 1);
+                        }
                         break;
                     case 'blacklistuseranddeletebounce':
-                        logEvent('User '.$userdata['email'].' blacklisted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
-                                $rule['id']));
-                        addUserToBlacklist($userdata['email'],
-                            s('Subscriber auto blacklisted by bounce rule %d', $rule['id']));
-                        $advanced_report .= 'User '.$userdata['email'].' blacklisted by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
-                        $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        addUserHistory($userdata['email'], $GLOBALS['I18N']->get('Auto Unsubscribed'),
-                            $GLOBALS['I18N']->get('User auto unsubscribed for').' '.$GLOBALS['I18N']->get('bounce rule').' '.$rule['id']);
-                        addSubscriberStatistics('auto blacklist', 1);
+                        if (!$blacklisted) {
+                            logEvent('User ' . $userdata['email'] . ' blacklisted by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            addUserToBlacklist($userdata['email'],
+                                s('Subscriber auto blacklisted by bounce rule %d', $rule['id']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' blacklisted by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], $GLOBALS['I18N']->get('Auto Unsubscribed'),
+                                $GLOBALS['I18N']->get('User auto unsubscribed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
+                            addSubscriberStatistics('auto blacklist', 1);
+                        }
                         deleteBounce($row['bounce']);
                         break;
                     case 'blacklistemail':
