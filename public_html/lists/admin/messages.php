@@ -8,15 +8,22 @@ $access = accessLevel('messages');
 $filterSelectDefault = ' --- '.s('filter').' --- ';
 
 $messageSortOptions = array(
-    'default'     => s('Sort by'),
-    'subjectasc'  => s('Subject').' - '.s('Ascending'),
-    'subjectdesc' => s('Subject').' - '.s('Descending'),
-    'enteredasc'  => s('Entered').' - '.s('Ascending'),
-    'entereddesc' => s('Entered').' - '.s('Descending'),
-    'embargoasc'  => s('Embargo').' - '.s('Ascending'),
-    'embargodesc' => s('Embargo').' - '.s('Descending'),
-    'sentasc'     => s('Sent').' - '.s('Ascending'),
-    'sentdesc'    => s('Sent').' - '.s('Descending'),
+    'subjectasc'  => array('label' => s('Subject').' - '.s('Ascending'), 'orderby' => 'subject asc'),
+    'subjectdesc'  => array('label' => s('Subject').' - '.s('Descending'), 'orderby' => 'subject desc'),
+    'enteredasc'  => array('label' => s('Entered').' - '.s('Ascending'), 'orderby' => 'entered asc'),
+    'enteredasc'  => array('label' => s('Entered').' - '.s('Descending'), 'orderby' => 'entered desc'),
+    'modifiedasc'  => array('label' => s('Modified').' - '.s('Ascending'), 'orderby' => 'modified asc'),
+    'modifieddesc'  => array('label' => s('Modified').' - '.s('Descending'), 'orderby' => 'modified desc'),
+    'embargoasc'  => array('label' => s('Embargo').' - '.s('Ascending'), 'orderby' => 'embargo asc'),
+    'embargodesc'  => array('label' => s('Embargo').' - '.s('Descending'), 'orderby' => 'embargo desc'),
+    'sentasc'  => array('label' => s('Sent').' - '.s('Ascending'), 'orderby' => 'sent asc'),
+    'sentdesc'  => array('label' => s('Sent').' - '.s('Descending'), 'orderby' => 'sent desc'),
+);
+$tabSortDefaults = array(
+    'active' => 'embargodesc',
+    'draft' => 'modifieddesc',
+    'sent' => 'sentdesc',
+    'static' => 'embargodesc',
 );
 
 if ($access == 'all') {
@@ -37,7 +44,7 @@ if (!isset($_SESSION['messagefilter'])) {
 }
 if (!empty($_POST['clear'])) {
     $_SESSION['messagefilter'] = '';
-    $_SESSION['messagesortby'] = '';
+    $_SESSION['messagesortby'] = array();
     $_SESSION['messagenumpp'] = MAX_MSG_PP;
     unset($_POST['filter']);
     unset($_POST['numPP']);
@@ -58,21 +65,28 @@ if (isset($_POST['numPP'])) {
         $_SESSION['messagenumpp'] = MAX_MSG_PP;
     }
 }
-// remember last one listed
-if (!isset($_GET['tab']) && !empty($_SESSION['lastmessagetype'])) {
-    $_GET['tab'] = $_SESSION['lastmessagetype'];
-} elseif (isset($_GET['tab'])) {
-    $_SESSION['lastmessagetype'] = $_GET['tab'];
-}
 
-if (!isset($_SESSION['messagesortby'])) {
-    $_SESSION['messagesortby'] = '';
-}
-if (isset($_POST['sortBy'])) {
-    if (in_array($_POST['sortBy'], array_keys($messageSortOptions))) {
-        $_SESSION['messagesortby'] = $_POST['sortBy'];
+if (isset($_GET['tab'])) {
+    $currentTab = $_GET['tab'];
+} else {
+    if (isset($_SESSION['lastmessagetype'])) {
+        $currentTab = $_SESSION['lastmessagetype'];
+    } else {
+        $currentTab = 'sent';
     }
 }
+$_SESSION['lastmessagetype'] = $currentTab;
+
+if (isset($_POST['sortBy'])) {
+    if (in_array($_POST['sortBy'], array_keys($messageSortOptions))) {
+        $_SESSION['messagesortby'][$currentTab] = $_POST['sortBy'];
+    }
+}
+
+if (!isset($_SESSION['messagesortby'][$currentTab])) {
+    $_SESSION['messagesortby'][$currentTab] = $tabSortDefaults[$currentTab];
+}
+$currentSortBy = $_SESSION['messagesortby'][$currentTab];
 
 echo '<div class="actions"><div class="fright">';
 echo PageLinkActionButton('send&amp;new=1', $GLOBALS['I18N']->get('Start a new campaign'));
@@ -91,12 +105,7 @@ if (USE_PREPARE) {
 //if (ENABLE_RSS) {
 //  $tabs->addTab("rss",PageUrl2("messages&amp;tab=rss"));
 //}
-if (!empty($_GET['tab'])) {
-    $tabs->setCurrent($_GET['tab']);
-} else {
-    $_GET['tab'] = 'sent';
-    $tabs->setCurrent('sent');
-}
+$tabs->setCurrent($currentTab);
 
 echo '<div class="minitabs">';
 echo $tabs->display();
@@ -120,11 +129,11 @@ foreach (array(5, 10, 15, 20, 50, 100) as $numppOption) {
 }
 echo '</select>';
 echo '<select name="sortBy" class="sortby">';
-foreach ($messageSortOptions as $sortOption => $sortOptionLabel) {
-    if ($sortOption == $_SESSION['messagesortby']) {
-        echo '<option selected="selected" value="'.$sortOption.'">'.$sortOptionLabel.'</option>';
+foreach ($messageSortOptions as $sortOption => $optionData) {
+    if ($sortOption == $currentSortBy) {
+        echo '<option selected="selected" value="'.$sortOption.'">'.$optionData['label'].'</option>';
     } else {
-        echo '<option value="'.$sortOption.'">'.$sortOptionLabel.'</option>';
+        echo '<option value="'.$sortOption.'">'.$optionData['label'].'</option>';
     }
 }
 echo '</select>';
@@ -284,30 +293,26 @@ if (!empty($action_result)) {
 
 $where = array();
 //## Switch tab
-switch ($_GET['tab']) {
+switch ($currentTab) {
     case 'queued':
 //    $subselect = ' status in ("submitted") and (rsstemplate is NULL or rsstemplate = "") ';
         $where[] = " status in ('submitted', 'suspended') ";
-        $url_keep = '&amp;tab=queued';
         break;
     case 'static':
         $where[] = " status in ('prepared') ";
-        $url_keep = '&amp;tab=static';
         break;
     case 'draft':
         $where[] = " status in ('draft') ";
-        $url_keep = '&amp;tab=draft';
         break;
     case 'active':
         $where[] = " status in ('inprocess','submitted', 'suspended') ";
-        $url_keep = '&amp;tab=active';
         break;
     case 'sent':
     default:
         $where[] = " status in ('sent') ";
-        $url_keep = '&amp;tab=sent';
         break;
 }
+$url_keep = '&amp;tab='.$currentTab;
 
 if (!empty($_SESSION['messagefilter'])) {
     $where[] = ' subject like "%'.sql_escape($_SESSION['messagefilter']).'%" ';
@@ -318,37 +323,7 @@ if ($access != 'all') {
     $where[] = ' owner = '.$_SESSION['logindetails']['id'];
 }
 $whereClause = ' where '.implode(' and ', $where);
-
-$sortBySql = 'order by entered desc';
-switch ($_SESSION['messagesortby']) {
-    case 'sentasc':
-        $sortBySql = 'order by sent asc';
-        break;
-    case 'sentdesc':
-        $sortBySql = 'order by sent desc';
-        break;
-    case 'subjectasc':
-        $sortBySql = 'order by subject asc';
-        break;
-    case 'subjectdesc':
-        $sortBySql = 'order by subject desc';
-        break;
-    case 'enteredasc':
-        $sortBySql = 'order by entered asc';
-        break;
-    case 'entereddesc':
-        $sortBySql = 'order by entered desc';
-        break;
-    case 'embargoasc':
-        $sortBySql = 'order by embargo asc';
-        break;
-    case 'embargodesc':
-        $sortBySql = 'order by embargo desc';
-        break;
-    default:
-        $sortBySql = 'order by embargo desc, entered desc';
-}
-
+$sortBySql = 'order by '.$messageSortOptions[$currentSortBy]['orderby'];
 $req = Sql_query('select count(*) from '.$tables['message'].$whereClause.' '.$sortBySql);
 $total_req = Sql_Fetch_Row($req);
 $total = $total_req[0];
@@ -641,7 +616,7 @@ END;
 
 echo $ls->display();
 
-if ($total > 5 && $_GET['tab'] == 'active') {
+if ($total > 5 && $currentTab == 'active') {
     echo PageLinkButton('messages', $GLOBALS['I18N']->get('Suspend All'), 'action=suspall');
     echo PageLinkButton('messages', $GLOBALS['I18N']->get('Mark All Sent'), 'action=markallsent');
 }
