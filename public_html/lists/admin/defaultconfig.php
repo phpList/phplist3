@@ -352,24 +352,22 @@ $default_config = array(
     // [CONFIRMATIONURL] will be replaced with the URL where a user has to confirm
     // their subscription
     'subscribemessage' => array(
-        'value' => '
+        'value' => 
+'Almost welcome to our newsletter(s) ...
 
-  Almost welcome to our newsletter(s) ...
+Someone, hopefully you, has subscribed your email address to the following newsletters:
 
-  Someone, hopefully you, has subscribed your email address to the following newsletters:
-  
-  [LISTS]
+[LISTS]
 
-  If this is correct, please click the following link to confirm your subscription.
-  Without this confirmation, you will not receive any newsletters.
-  
-  [CONFIRMATIONURL]
-  
-  If this is not correct, you do not need to do anything, simply delete this message.
+If this is correct, please click the following link to confirm your subscription.
+Without this confirmation, you will not receive any newsletters.
 
-  Thank you
-  
-    ',
+[CONFIRMATIONURL]
+
+If this is not correct, you do not need to do anything, simply delete this message.
+
+Thank you'
+    ,
         'description' => s('Message subscribers receive when they sign up'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -387,21 +385,19 @@ $default_config = array(
 
     // message that is sent when they unsubscribe
     'unsubscribemessage' => array(
-        'value' => '
-  
-  Goodbye from our Newsletter, sorry to see you go.
+        'value' => 
+'Goodbye from our Newsletter, sorry to see you go.
 
-  You have been unsubscribed from our newsletters.
+You have been unsubscribed from our newsletters.
 
-  This is the last email you will receive from us. Our newsletter system, phpList,
-  will refuse to send you any further messages, without manual intervention by our administrator.
+This is the last email you will receive from us. Our newsletter system, phpList,
+will refuse to send you any further messages, without manual intervention by our administrator.
 
-  If there is an error in this information, you can re-subscribe:
-  please go to [SUBSCRIBEURL] and follow the steps.
+If there is an error in this information, you can re-subscribe:
+please go to [SUBSCRIBEURL] and follow the steps.
 
-  Thank you
-  
-  ',
+Thank you'
+  ,
         'description' => s('Message subscribers receive when they unsubscribe'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -419,21 +415,19 @@ $default_config = array(
 
     // message that is sent to confirm subscription
     'confirmationmessage' => array(
-        'value' => '
-  
-  Welcome to our Newsletter
+        'value' => 
+'Welcome to our Newsletter
 
-  Please keep this message for later reference.
+Please keep this message for later reference.
 
-  Your email address has been added to the following newsletter(s):
-  [LISTS]
+Your email address has been added to the following newsletter(s):
+[LISTS]
 
-  To update your details and preferences please go to [PREFERENCESURL].
-  If you do not want to receive any more messages, please go to [UNSUBSCRIBEURL].
+To update your details and preferences please go to [PREFERENCESURL].
+If you do not want to receive any more messages, please go to [UNSUBSCRIBEURL].
 
-  Thank you
-  
-  ',
+Thank you'
+  ,
         'description' => s('Message subscribers receive after confirming their email address'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -454,27 +448,25 @@ $default_config = array(
     // confirmationinfo is replaced by one of the options below
     // userdata is replaced by the information in the database
     'updatemessage' => array(
-        'value' => '
-  
-  This message is to inform you of a change of your details on our newsletter database
+        'value' =>   
+'This message is to inform you of a change of your details on our newsletter database
 
-  You are currently member of the following newsletters:
-  
-  [LISTS]
-  
-  [CONFIRMATIONINFO]
-  
-  The information on our system for you is as follows:
-  
-  [USERDATA]
-  
-  If this is not correct, please update your information at the following location:
-  
-  [PREFERENCESURL]
-  
-  Thank you
-  
-    ',
+You are currently member of the following newsletters:
+
+[LISTS]
+
+[CONFIRMATIONINFO]
+
+The information on our system for you is as follows:
+
+[USERDATA]
+
+If this is not correct, please update your information at the following location:
+
+[PREFERENCESURL]
+
+Thank you'
+  ,
         'description' => s('Message subscribers receive when they have changed their details'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -502,13 +494,13 @@ $default_config = array(
     // message, in case the email is sent to their old email address and they have changed
     // their email address
     'emailchanged_text_oldaddress' => array(
-        'value' => '
-  Please Note: when updating your details, your email address has changed.
+        'value' => 
+'Please Note: when updating your details, your email address has changed.
 
-  A message has been sent to your new email address with a URL
-  to confirm this change. Please visit this website to activate
-  your membership.
-  ',
+A message has been sent to your new email address with a URL
+to confirm this change. Please visit this website to activate
+your membership.'
+  ,
         'description' => s('Part of the message that is sent to their old email address when subscribers change their information, and the email address has changed'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -524,17 +516,16 @@ $default_config = array(
     ),
 
     'personallocation_message' => array(
-        'value' => '
-  
-  You have requested your personal location to update your details in our newsletter database.
-  The location is below. Please make sure that you use the full line as mentioned below.
-  Sometimes email programmes can wrap the line into multiple lines.
-  
-  Your personal location is:
-  [PREFERENCESURL]
-  
-  Thank you.
-  ',
+        'value' => 
+'You have requested your personal location to update your details in our newsletter database.
+The location is below. Please make sure that you use the full line as mentioned below.
+Sometimes email programmes can wrap the line into multiple lines.
+
+Your personal location is:
+[PREFERENCESURL]
+
+Thank you.'
+  ,
         'description' => s('Message when subscribers request their personal location'),
         'type'        => 'textarea',
         'allowempty'  => 0,
@@ -601,17 +592,17 @@ $default_config = array(
 //),
 
     'personallocation_message' => array(
-        'value' => '
+        'value' => 
 
-You have requested your personal location to update your details from our website.
+'You have requested your personal location to update your details from our website.
 The location is below. Please make sure that you use the full line as mentioned below.
 Sometimes email programmes can wrap the line into multiple lines.
 
 Your personal location is:
 [PREFERENCESURL]
 
-Thank you.
-',
+Thank you.'
+,
         'description' => s('Message to send when they request their personal location'),
         'type'        => 'textarea',
         'allowempty'  => 0,
