@@ -71,7 +71,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     }
     if (isset($_POST['email']) && !empty($_POST['email'])) {
         //# let's not validate here, an admin can add anything as an email, if they like, well, except for HTML
-        $email = strip_tags($_POST['email']);
+        $email = trim(strip_tags($_POST['email']));
     } else {
         $email = '';
     }
