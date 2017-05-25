@@ -8,22 +8,64 @@ $access = accessLevel('messages');
 $filterSelectDefault = ' --- '.s('filter').' --- ';
 
 $messageSortOptions = array(
-    'subjectasc'  => array('label' => s('Subject').' - '.s('Ascending'), 'orderby' => 'subject asc'),
-    'subjectdesc'  => array('label' => s('Subject').' - '.s('Descending'), 'orderby' => 'subject desc'),
-    'enteredasc'  => array('label' => s('Entered').' - '.s('Ascending'), 'orderby' => 'entered asc'),
-    'enteredasc'  => array('label' => s('Entered').' - '.s('Descending'), 'orderby' => 'entered desc'),
-    'modifiedasc'  => array('label' => s('Modified').' - '.s('Ascending'), 'orderby' => 'modified asc'),
-    'modifieddesc'  => array('label' => s('Modified').' - '.s('Descending'), 'orderby' => 'modified desc'),
-    'embargoasc'  => array('label' => s('Embargo').' - '.s('Ascending'), 'orderby' => 'embargo asc'),
-    'embargodesc'  => array('label' => s('Embargo').' - '.s('Descending'), 'orderby' => 'embargo desc'),
-    'sentasc'  => array('label' => s('Sent').' - '.s('Ascending'), 'orderby' => 'sent asc'),
-    'sentdesc'  => array('label' => s('Sent').' - '.s('Descending'), 'orderby' => 'sent desc'),
+    'subjectasc'  => array(
+        'label' => s('Subject').' - '.s('Ascending'),
+        'orderby' => 'subject asc'
+    ),
+    'subjectdesc'  => array(
+        'label' => s('Subject').' - '.s('Descending'),
+        'orderby' => 'subject desc'
+    ),
+    'enteredasc'  => array(
+        'label' => s('Entered').' - '.s('Ascending'),
+        'orderby' => 'entered asc'
+    ),
+    'entereddesc'  => array(
+        'label' => s('Entered').' - '.s('Descending'),
+        'orderby' => 'entered desc'
+    ),
+    'modifiedasc'  => array(
+        'label' => s('Modified').' - '.s('Ascending'),
+        'orderby' => 'modified asc'
+    ),
+    'modifieddesc'  => array(
+        'label' => s('Modified').' - '.s('Descending'),
+        'orderby' => 'modified desc'
+    ),
+    'embargoasc'  => array(
+        'label' => s('Embargo').' - '.s('Ascending'),
+        'orderby' => 'embargo asc'
+    ),
+    'embargodesc'  => array(
+        'label' => s('Embargo').' - '.s('Descending'),
+        'orderby' => 'embargo desc'
+    ),
+    'sentasc'  => array(
+        'label' => s('Sent').' - '.s('Ascending'),
+        'orderby' => 'sent asc'
+    ),
+    'sentdesc'  => array(
+        'label' => s('Sent').' - '.s('Descending'),
+        'orderby' => 'sent desc'
+    ),
 );
-$tabSortDefaults = array(
-    'active' => 'embargodesc',
-    'draft' => 'modifieddesc',
-    'sent' => 'sentdesc',
-    'static' => 'embargodesc',
+$tabParameters = array(
+    'active' => array(
+        'status' => "'inprocess', 'submitted', 'suspended'",
+        'defaultSort' => 'embargodesc'
+    ),
+    'draft' => array(
+        'status' => "'draft'",
+        'defaultSort' => 'modifieddesc'
+    ),
+    'sent' => array(
+        'status' => "'sent'",
+        'defaultSort' => 'sentdesc'
+    ),
+    'static' => array(
+        'status' => "'prepared'",
+        'defaultSort' => 'embargodesc'
+    ),
 );
 
 if ($access == 'all') {
@@ -66,7 +108,7 @@ if (isset($_POST['numPP'])) {
     }
 }
 
-if (isset($_GET['tab'])) {
+if (isset($_GET['tab']) && isset($tabParameters[$_GET['tab']])) {
     $currentTab = $_GET['tab'];
 } else {
     if (isset($_SESSION['lastmessagetype'])) {
@@ -84,7 +126,7 @@ if (isset($_POST['sortBy'])) {
 }
 
 if (!isset($_SESSION['messagesortby'][$currentTab])) {
-    $_SESSION['messagesortby'][$currentTab] = $tabSortDefaults[$currentTab];
+    $_SESSION['messagesortby'][$currentTab] = $tabParameters[$currentTab]['defaultSort'];
 }
 $currentSortBy = $_SESSION['messagesortby'][$currentTab];
 
@@ -292,26 +334,7 @@ if (!empty($action_result)) {
 }
 
 $where = array();
-//## Switch tab
-switch ($currentTab) {
-    case 'queued':
-//    $subselect = ' status in ("submitted") and (rsstemplate is NULL or rsstemplate = "") ';
-        $where[] = " status in ('submitted', 'suspended') ";
-        break;
-    case 'static':
-        $where[] = " status in ('prepared') ";
-        break;
-    case 'draft':
-        $where[] = " status in ('draft') ";
-        break;
-    case 'active':
-        $where[] = " status in ('inprocess','submitted', 'suspended') ";
-        break;
-    case 'sent':
-    default:
-        $where[] = " status in ('sent') ";
-        break;
-}
+$where[] = sprintf('status in (%s)', $tabParameters[$currentTab]['status']);
 $url_keep = '&amp;tab='.$currentTab;
 
 if (!empty($_SESSION['messagefilter'])) {
