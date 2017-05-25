@@ -81,18 +81,24 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
         $email = '';
     }
 
-    if (!$error_exist && !empty($email)) {
-        if (!$id) {
-            $id = addNewUser($email);
-            Redirect("user&id=$id");
-            exit;
-        }
+    // validate that an email address has been entered
+    if ($email == '') {
+        $_SESSION['action_result'] = s('email address cannot be empty');
+        $location = $id == 0 ? 'user' : "user&id=$id";
+        Redirect($location);
+    }
 
-        if (!$id) {
-            echo s('Error adding subscriber, please check that the subscriber exists');
-            $error_exist = 1;
-            //return;
-        }
+    if ($id == 0) {
+        $id = addNewUser($email);
+        Redirect("user&id=$id");
+    }
+
+    // validate that the email address does not already exist
+    $queryResult = Sql_Fetch_Row_Query(sprintf("select 1 from %s where email = '%s' and id != %d", $tables['user'], sql_escape($email), $id));
+
+    if ($queryResult) {
+        $_SESSION['action_result'] = s('email address %s already exists', $email);
+        Redirect("user&id=$id");
     }
 
     /************ BEGIN <whitout_error IF block>  (end in line 264) **********************/
