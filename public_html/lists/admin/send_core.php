@@ -1172,7 +1172,7 @@ $GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/j
 		var tabvis = (($('.sendtabs_container').width()-50)/102)+'';
 		var arrvis = tabvis.split('.');
 		var tabdif = currenttab-arrvis[0];
-		if (counttab <= arrvis[0]) {arrvis[0] = counttab-1};
+		if (counttab <= arrvis[0]) {arrvis[0] = counttab};
 		$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
 		$('.sendcampaign').cycle('goto',tabdif); 
 
@@ -1181,7 +1181,7 @@ $GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/j
 			tabvis = (($('.sendtabs_container').width()-50)/102)+'';
 			arrvis = tabvis.split('.');
 			tabdif = currenttab-arrvis[0];
-			if (counttab <= arrvis[0]) {arrvis[0] = counttab-1};
+			if (counttab <= arrvis[0]) {arrvis[0] = counttab};
 			$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
 			$('.sendcampaign').cycle('goto',tabdif); 
 		});
