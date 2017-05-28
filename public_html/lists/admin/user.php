@@ -61,12 +61,7 @@ switch ($access) {
 require dirname(__FILE__).'/structure.php';
 
 $struct = $DBstruct['user'];
-
-$more = '';
-
-$newuser = 0;
 $feedback = '';
-$error_exist = 0;
 
 if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     if (!verifyToken()) {
@@ -76,196 +71,197 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     }
     if (isset($_POST['email']) && !empty($_POST['email'])) {
         //# let's not validate here, an admin can add anything as an email, if they like, well, except for HTML
-        $email = strip_tags($_POST['email']);
+        $email = trim(strip_tags($_POST['email']));
     } else {
         $email = '';
     }
 
-    if (!$error_exist && !empty($email)) {
-        if (!$id) {
-            $id = addNewUser($email);
-            Redirect("user&id=$id");
-            exit;
-        }
+    // validate that an email address has been entered
+    if ($email == '') {
+        $_SESSION['action_result'] = s('email address cannot be empty');
+        $location = $id == 0 ? 'user' : "user&id=$id";
+        Redirect($location);
+    }
 
-        if (!$id) {
-            echo s('Error adding subscriber, please check that the subscriber exists');
-            $error_exist = 1;
-            //return;
-        }
+    if ($id == 0) {
+        $id = addNewUser($email);
+        Redirect("user&id=$id");
+    }
+
+    // validate that the email address does not already exist
+    $queryResult = Sql_Fetch_Row_Query(sprintf("select 1 from %s where email = '%s' and id != %d", $tables['user'], sql_escape($email), $id));
+
+    if ($queryResult) {
+        $_SESSION['action_result'] = s('email address %s already exists', $email);
+        Redirect("user&id=$id");
     }
 
     /************ BEGIN <whitout_error IF block>  (end in line 264) **********************/
-    if (!$error_exist) {
-        // read the current values to compare changes
-        $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'], $id));
-        $old_data = array_merge($old_data, getUserAttributeValues('', $id));
+    // read the current values to compare changes
+    $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'], $id));
+    $old_data = array_merge($old_data, getUserAttributeValues('', $id));
 
-        // and membership of lists
-        $old_listmembership = array();
-        $req = Sql_Query("select * from {$tables['listuser']} where userid = $id");
-        while ($row = Sql_Fetch_Array($req)) {
-            $old_listmembership[$row['listid']] = listName($row['listid']);
-        }
-
-        while (list($key, $val) = each($struct)) {
-            if (is_array($val)) {
-                if (isset($val[1]) && strpos($val[1], ':')) {
-                    list($a, $b) = explode(':', $val[1]);
-                } else {
-                    $a = $b = '';
-                }
-                if (strpos($a, 'sys') === false && $val[1]) {
-                    if ($key == 'password') {
-                        if (!empty($_POST[$key])) {
-                            Sql_Query("update {$tables['user']} set $key = \"".encryptPass($_POST[$key])."\" where id = $id");
-                        }
-                    } else {
-                        if ($key != 'password' || !empty($_POST[$key])) {
-                            if ($key == 'password') {
-                                $_POST[$key] = hash('sha256', $_POST[$key]);
-                            }
-
-                            Sql_Query("update {$tables['user']} set $key = \"".sql_escape($_POST[$key])."\" where id = $id");
-                        }
-                    }
-                } elseif ((!$require_login || ($require_login && isSuperUser())) && $key == 'confirmed') {
-                    Sql_Query("update {$tables['user']} set $key = \"".sql_escape($_POST[$key])."\" where id = $id");
-                }
-            }
-        }
-
-        if (!empty($_FILES) && is_array($_FILES)) { //# only avatars are files
-            foreach ($_FILES['attribute']['name'] as $key => $val) {
-                if (!empty($_FILES['attribute']['name'][$key])) {
-                    $tmpnam = $_FILES['attribute']['tmp_name'][$key];
-                    $size = $_FILES['attribute']['size'][$key];
-
-                    if ($size < MAX_AVATAR_SIZE) {
-                        $avatar = file_get_contents($tmpnam);
-                        Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-                 values(%d,%d,"%s")', $tables['user_attribute'], $id, $key, base64_encode($avatar)));
-                    } elseif ($size) {
-                        echo Error($GLOBALS['I18N']->get('Uploaded avatar file too big'));
-                    }
-                }
-            }
-        }
-
-        if (isset($_POST['attribute']) && is_array($_POST['attribute'])) {
-            foreach ($_POST['attribute'] as $key => $val) {
-                Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-           values(%d,%d,"%s")', $tables['user_attribute'], $id, $key, sql_escape($val)));
-            }
-        }
-
-        if (isset($_POST['dateattribute']) && is_array($_POST['dateattribute'])) {
-            foreach ($_POST['dateattribute'] as $attid => $fields) {
-                if (isset($fields['novalue'])) {
-                    $value = '';
-                } else {
-                    $value = sprintf('%04d-%02d-%02d', $fields['year'], $fields['month'], $fields['day']);
-                }
-                Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-           values(%d,%d,"%s")', $tables['user_attribute'], $id, $attid, $value));
-            }
-        }
-
-        if (isset($_POST['cbattribute']) && is_array($_POST['cbattribute'])) {
-            while (list($key, $val) = each($_POST['cbattribute'])) {
-                if (isset($_POST['attribute'][$key]) && $_POST['attribute'][$key] == 'on') {
-                    Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-             values(%d,%d,"on")', $tables['user_attribute'], $id, $key));
-                } else {
-                    Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-             values(%d,%d,"")', $tables['user_attribute'], $id, $key));
-                }
-            }
-        }
-
-        if (isset($_POST['cbgroup']) && is_array($_POST['cbgroup'])) {
-            while (list($key, $val) = each($_POST['cbgroup'])) {
-                $field = 'cbgroup'.$val;
-                if (isset($_POST[$field]) && is_array($_POST[$field])) {
-                    $newval = array();
-                    foreach ($_POST[$field] as $fieldval) {
-                        array_push($newval, sprintf('%0'.$checkboxgroup_storesize.'d', $fieldval));
-                    }
-                    $value = implode(',', $newval);
-                } else {
-                    $value = '';
-                }
-                Sql_Query(sprintf('replace into %s (userid,attributeid,value)
-           values(%d,%d,"%s")', $tables['user_attribute'], $id, $val, $value));
-            }
-        }
-
-        $new_lists = array_values($_POST['subscribe']);
-        $new_subscriptions = array();
-        array_shift($new_lists); // remove dummy
-        foreach ($new_lists as $list) {
-            $listID = sprintf('%d', $list);
-            $new_subscriptions[$listID] = listName($listID);
-        }
-
-        $subscribed_to = array_diff_assoc($new_subscriptions, $old_listmembership);
-        $unsubscribed_from = array_diff_assoc($old_listmembership, $new_subscriptions);
-
-        // submitting page now saves everything, so check is not necessary
-        if ($subselect == '') {
-            foreach ($unsubscribed_from as $listId => $listName) {
-                Sql_Query(sprintf('delete from %s where userid = %d and listid = %d', $tables['listuser'], $id,
-                    $listId));
-                $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $listName);
-            }
-        } elseif (count($unsubscribed_from)) {
-            // only unsubscribe from the lists of this admin
-            $req = Sql_Query("select id,name from {$tables['list']} $subselect_where and id in (".implode(',',
-                    array_keys($unsubscribed_from)).')');
-            while ($row = Sql_Fetch_Row($req)) {
-                Sql_Query("delete from {$tables['listuser']} where userid = $id and listid = $row[0]");
-                $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $row[1]);
-            }
-        }
-        if (count($subscribed_to)) {
-            foreach ($subscribed_to as $listID => $listName) {
-                Sql_Query("insert into {$tables['listuser']} (userid,listid,entered,modified) values($id,$listID,now(),now())");
-                $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'), $listName);
-            }
-            $feedback .= '<br/>';
-        }
-        $history_entry = '';
-        $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'], $id));
-        $current_data = array_merge($current_data, getUserAttributeValues('', $id));
-
-        foreach ($current_data as $key => $val) {
-            if (!is_numeric($key)) {
-                if (isset($old_data[$key]) && $old_data[$key] != $val && $key != 'modified') {
-                    if ($old_data[$key] == '') {
-                        $old_data[$key] = s('(no data)');
-                    }
-                    $history_entry .= "$key = $val\n".s('changed from')." $old_data[$key]\n";
-                }
-            }
-        }
-        if (!$history_entry) {
-            $history_entry = "\n".s('No data changed')."\n";
-        }
-
-        foreach ($subscribed_to as $key => $desc) {
-            $history_entry .= s('Subscribed to %s', $desc)."\n";
-        }
-        foreach ($unsubscribed_from as $key => $desc) {
-            $history_entry .= s('Unsubscribed from %s', $desc)."\n";
-        }
-
-        addUserHistory($email, s('Update by %s', adminName($_SESSION['logindetails']['id'])), $history_entry);
-        if (empty($newuser)) {
-            $_SESSION['action_result'] = s('Changes saved').$feedback;
-        }
-        Redirect("user&id=$id");
-        exit;
+    // and membership of lists
+    $old_listmembership = array();
+    $req = Sql_Query("select * from {$tables['listuser']} where userid = $id");
+    while ($row = Sql_Fetch_Array($req)) {
+        $old_listmembership[$row['listid']] = listName($row['listid']);
     }
+
+    while (list($key, $val) = each($struct)) {
+        if (is_array($val)) {
+            if (isset($val[1]) && strpos($val[1], ':')) {
+                list($a, $b) = explode(':', $val[1]);
+            } else {
+                $a = $b = '';
+            }
+            if (strpos($a, 'sys') === false && $val[1]) {
+                if ($key == 'password') {
+                    if (!empty($_POST[$key])) {
+                        Sql_Query("update {$tables['user']} set $key = \"".encryptPass($_POST[$key])."\" where id = $id");
+                    }
+                } else {
+                    if ($key != 'password' || !empty($_POST[$key])) {
+                        if ($key == 'password') {
+                            $_POST[$key] = hash('sha256', $_POST[$key]);
+                        }
+
+                        Sql_Query("update {$tables['user']} set $key = \"".sql_escape($_POST[$key])."\" where id = $id");
+                    }
+                }
+            } elseif ((!$require_login || ($require_login && isSuperUser())) && $key == 'confirmed') {
+                Sql_Query("update {$tables['user']} set $key = \"".sql_escape($_POST[$key])."\" where id = $id");
+            }
+        }
+    }
+
+    if (!empty($_FILES) && is_array($_FILES)) { //# only avatars are files
+        foreach ($_FILES['attribute']['name'] as $key => $val) {
+            if (!empty($_FILES['attribute']['name'][$key])) {
+                $tmpnam = $_FILES['attribute']['tmp_name'][$key];
+                $size = $_FILES['attribute']['size'][$key];
+
+                if ($size < MAX_AVATAR_SIZE) {
+                    $avatar = file_get_contents($tmpnam);
+                    Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+             values(%d,%d,"%s")', $tables['user_attribute'], $id, $key, base64_encode($avatar)));
+                } elseif ($size) {
+                    echo Error($GLOBALS['I18N']->get('Uploaded avatar file too big'));
+                }
+            }
+        }
+    }
+
+    if (isset($_POST['attribute']) && is_array($_POST['attribute'])) {
+        foreach ($_POST['attribute'] as $key => $val) {
+            Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+       values(%d,%d,"%s")', $tables['user_attribute'], $id, $key, sql_escape($val)));
+        }
+    }
+
+    if (isset($_POST['dateattribute']) && is_array($_POST['dateattribute'])) {
+        foreach ($_POST['dateattribute'] as $attid => $fields) {
+            if (isset($fields['novalue'])) {
+                $value = '';
+            } else {
+                $value = sprintf('%04d-%02d-%02d', $fields['year'], $fields['month'], $fields['day']);
+            }
+            Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+       values(%d,%d,"%s")', $tables['user_attribute'], $id, $attid, $value));
+        }
+    }
+
+    if (isset($_POST['cbattribute']) && is_array($_POST['cbattribute'])) {
+        while (list($key, $val) = each($_POST['cbattribute'])) {
+            if (isset($_POST['attribute'][$key]) && $_POST['attribute'][$key] == 'on') {
+                Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+         values(%d,%d,"on")', $tables['user_attribute'], $id, $key));
+            } else {
+                Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+         values(%d,%d,"")', $tables['user_attribute'], $id, $key));
+            }
+        }
+    }
+
+    if (isset($_POST['cbgroup']) && is_array($_POST['cbgroup'])) {
+        while (list($key, $val) = each($_POST['cbgroup'])) {
+            $field = 'cbgroup'.$val;
+            if (isset($_POST[$field]) && is_array($_POST[$field])) {
+                $newval = array();
+                foreach ($_POST[$field] as $fieldval) {
+                    array_push($newval, sprintf('%0'.$checkboxgroup_storesize.'d', $fieldval));
+                }
+                $value = implode(',', $newval);
+            } else {
+                $value = '';
+            }
+            Sql_Query(sprintf('replace into %s (userid,attributeid,value)
+       values(%d,%d,"%s")', $tables['user_attribute'], $id, $val, $value));
+        }
+    }
+
+    $new_lists = array_values($_POST['subscribe']);
+    $new_subscriptions = array();
+    array_shift($new_lists); // remove dummy
+    foreach ($new_lists as $list) {
+        $listID = sprintf('%d', $list);
+        $new_subscriptions[$listID] = listName($listID);
+    }
+
+    $subscribed_to = array_diff_assoc($new_subscriptions, $old_listmembership);
+    $unsubscribed_from = array_diff_assoc($old_listmembership, $new_subscriptions);
+
+    // submitting page now saves everything, so check is not necessary
+    if ($subselect == '') {
+        foreach ($unsubscribed_from as $listId => $listName) {
+            Sql_Query(sprintf('delete from %s where userid = %d and listid = %d', $tables['listuser'], $id,
+                $listId));
+            $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $listName);
+        }
+    } elseif (count($unsubscribed_from)) {
+        // only unsubscribe from the lists of this admin
+        $req = Sql_Query("select id,name from {$tables['list']} $subselect_where and id in (".implode(',',
+                array_keys($unsubscribed_from)).')');
+        while ($row = Sql_Fetch_Row($req)) {
+            Sql_Query("delete from {$tables['listuser']} where userid = $id and listid = $row[0]");
+            $feedback .= '<br/>'.sprintf(s('Subscriber removed from list %s'), $row[1]);
+        }
+    }
+    if (count($subscribed_to)) {
+        foreach ($subscribed_to as $listID => $listName) {
+            Sql_Query("insert into {$tables['listuser']} (userid,listid,entered,modified) values($id,$listID,now(),now())");
+            $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'), $listName);
+        }
+        $feedback .= '<br/>';
+    }
+    $history_entry = '';
+    $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'], $id));
+    $current_data = array_merge($current_data, getUserAttributeValues('', $id));
+
+    foreach ($current_data as $key => $val) {
+        if (!is_numeric($key)) {
+            if (isset($old_data[$key]) && $old_data[$key] != $val && $key != 'modified') {
+                if ($old_data[$key] == '') {
+                    $old_data[$key] = s('(no data)');
+                }
+                $history_entry .= "$key = $val\n".s('changed from')." $old_data[$key]\n";
+            }
+        }
+    }
+    if (!$history_entry) {
+        $history_entry = "\n".s('No data changed')."\n";
+    }
+
+    foreach ($subscribed_to as $key => $desc) {
+        $history_entry .= s('Subscribed to %s', $desc)."\n";
+    }
+    foreach ($unsubscribed_from as $key => $desc) {
+        $history_entry .= s('Unsubscribed from %s', $desc)."\n";
+    }
+
+    addUserHistory($email, s('Update by %s', adminName($_SESSION['logindetails']['id'])), $history_entry);
+    $_SESSION['action_result'] = s('Changes saved').$feedback;
+    Redirect("user&id=$id");
     /************ END <whitout_error IF block>  (start in line 71) **********************/
 }
 
