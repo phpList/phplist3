@@ -1714,7 +1714,7 @@ function formatDate($date, $short = 0)
     $day = sprintf('%d', $day);
 
     if ($date) {
-        return $day.'&nbsp;'.monthName(intval($month), $short).'&nbsp;'.$year;
+        return $day.' '.monthName(intval($month), $short).' '.$year;
     }
 }
 
