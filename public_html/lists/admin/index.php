@@ -202,6 +202,7 @@ if ($GLOBALS['commandline']) {
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
         }
+        cl_output( ClineSignature());
         cl_processtitle('core-'.$_GET['page']);
     } elseif ($cline['p'] && $IsCommandlinePlugin) {
         if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],
@@ -211,18 +212,21 @@ if ($GLOBALS['commandline']) {
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
             $_GET['pi'] = $cline['m'];
+            cl_output( ClineSignature());
             cl_processtitle($_GET['pi'].'-'.$_GET['page']);
         }
     } else {
         clineUsage(' [other parameters]');
         cl_output(s('Available options:'));
+        @ob_end_clean();
         foreach ($GLOBALS['commandline_pages'] as $page){
-            @ob_end_clean();
             echo '     '.$page.PHP_EOL;
-            @ob_start();
         }
-
-
+        foreach ($GLOBALS['commandlinePluginPages'] as $plugin => $pluginPages){
+            foreach ($pluginPages as $page) {
+                echo '     ' . $page .' -m'.$plugin. PHP_EOL;
+            }
+        }
         exit;
     }
 } else {
