@@ -57,7 +57,6 @@ $checkboxgroup_storesize = 1; // this will allow 10000 options for checkboxes
 $commandline_pages = array(
     'dbcheck',
     'send',
-    'processqueueforked',
     'processqueue',
     'processbounces',
     'import',
