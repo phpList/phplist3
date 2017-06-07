@@ -31,6 +31,7 @@ function output($message)
     flush();
 }
 
+output(""); 
 $dbversion = getConfig('version');
 $releaseDBversion = getConfig('releaseDBversion'); // release version check
 $inUpgrade = getConfig('in-upgrade-to');
@@ -291,6 +292,10 @@ if ($dbversion == VERSION && !$force) {
     $req = Sql_Query(sprintf('select id from %s where uuid = ""', $GLOBALS['tables']['linktrack_forward']));
     while ($row = Sql_Fetch_Row($req)) {
         Sql_Query(sprintf('update %s set uuid = "%s" where id = %d', $GLOBALS['tables']['linktrack_forward'], (string) uuid::generate(4), $row[0]));
+    }
+
+    if (!Sql_Table_Exists($tables['admin_password_request'])) {
+        createTable('admin_password_request');
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
