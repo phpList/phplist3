@@ -2203,3 +2203,22 @@ function asyncLoadContent($url)
         var contentdivcontent = "'.$url.'";
      </script>';
 }
+
+/**
+ * load content in a div after loading
+ */
+
+function asyncLoadContentDiv($url,$divname)
+{
+
+    // annoying how associate arrays don't seem to work
+
+    return '<script type="text/javascript">
+        if (typeof asyncLoadDiv == "undefined") {
+            var asyncLoadDiv = new Array();
+            var asyncLoadUrl = new Array();
+        }
+        asyncLoadDiv[asyncLoadDiv.length] = "'.$divname.'";
+        asyncLoadUrl[asyncLoadUrl.length] = "'.$url.'";
+     </script>';
+}

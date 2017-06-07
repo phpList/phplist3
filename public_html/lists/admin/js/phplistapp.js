@@ -69,6 +69,11 @@ function checkAllBoxes(checked, checkboxes) {
     });
 }
 
+function loadDivContent(divid, index) {
+    $("#"+asyncLoadDiv[index]).html(busyImage + '<div id="loadingprogressbanner"></div>');
+    $("#"+asyncLoadDiv[index]).load(asyncLoadUrl[index]);
+}
+
 function refreshCriteriaList() {
     var id = urlParameter('id', document.location);
     $("#existingCriteria").html(busyImage);
@@ -427,6 +432,10 @@ $(document).ready(function () {
         $("#contentdiv").html(busyImage+'<div id="loadingprogressbanner"></div>');
         $("#contentdiv").load(contentdivcontent);
         setInterval(loadProgress, 1000);
+    }
+    // a loader for multiple divs
+    if (typeof asyncLoadDiv != 'undefined') {
+        asyncLoadDiv.forEach(loadDivContent)
     }
 });
 
