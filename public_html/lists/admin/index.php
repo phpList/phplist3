@@ -106,7 +106,7 @@ include_once dirname(__FILE__).'/lib.php';
 require_once dirname(__FILE__).'/inc/netlib.php';
 require_once dirname(__FILE__).'/inc/interfacelib.php';
 
-if ($cline['-'] == 'version') {
+if (!empty($cline['-']) && $cline['-'] == 'version') {
     cl_output(ClineSignature());
     exit;
 }
