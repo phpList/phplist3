@@ -1728,10 +1728,10 @@ msgstr "Ricevere aiuto su phpList"
 
 #: public_html/lists/admin/community.php:28
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
-"Da completare. Nel frattempo è possibile <a href=\"http://www.phplist.com/"
+"Da completare. Nel frattempo è possibile <a href=\"https://www.phplist.com/"
 "support\"> visitare la sezione di supporto del sito di phpList</a>"
 
 #: public_html/lists/admin/community.php:32
@@ -1740,10 +1740,10 @@ msgstr "Aiutare PhpList"
 
 #: public_html/lists/admin/community.php:33
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
-"Da completare. Nel frattempo è possibile <a href=\"http://www.phplist.com/"
+"Da completare. Nel frattempo è possibile <a href=\"https://www.phplist.com/"
 "developers\">visitare la sezione sviluppatori del sito di phpList</a>"
 
 #: public_html/lists/admin/processbounces.php:9

@@ -1331,13 +1331,13 @@ $(document).ready(function () {
         }
     });
     $("#remoteurlinput").focus(function () {
-        if (this.value == 'e.g. http://www.phplist.com/testcampaign.html') {
+        if (this.value == 'e.g. https://www.phplist.com/testcampaign.html') {
             this.value = "";
         }
     })
     $("#remoteurlinput").blur(function () {
         if (this.value == "") {
-            this.value = "e.g. http://www.phplist.com/testcampaign.html";
+            this.value = "e.g. https://www.phplist.com/testcampaign.html";
             return;
         }
         $("#remoteurlstatus").html(busyImage);
@@ -2256,35 +2256,35 @@ window.jQuery.fn.extend(
 
 }(window.jQuery, window, window.document);
 
-/*phpList3/public_html/lists/admin/ui/default/js/phplist.js*/ 
+/*phpList3/public_html/lists/admin/ui/default/js/phplist.js*/
 var menuArrowsrc = 'ui/default/images/menuarrow.png';
 var menuArrowActivesrc = 'ui/default/images/menuarrow_active.png';
 
 /* JS function to handle media queries */
 window.matchMedia = window.matchMedia || (function(doc, undefined){
-  
+
   var bool,
       docElem = doc.documentElement,
       refNode = docElem.firstElementChild || docElem.firstChild,
       // fakeBody required for <FF4 when executed in <head>
       fakeBody = doc.createElement('body'),
       div = doc.createElement('div');
-  
+
   div.id = 'mq-test-1';
   div.style.cssText = "position:absolute;top:-100em";
   fakeBody.appendChild(div);
-  
+
   return function(q){
-    
+
     div.innerHTML = '&shy;<style media="'+q+'"> #mq-test-1 { width: 42px; }</style>';
-    
+
     docElem.insertBefore(fakeBody, refNode);
     bool = div.offsetWidth == 42;
     docElem.removeChild(fakeBody);
-    
+
     return { matches: bool, media: q };
   };
-  
+
 })(document);
 
 
@@ -2299,13 +2299,13 @@ $(document).ready(function() {
 		$(this).next("div.content").toggle("slow");
 		});
 	});
-	
-    // open/close div global help    
-        $("#globalhelp").click(function(){        
+
+    // open/close div global help
+        $("#globalhelp").click(function(){
     	    if(matchMedia('only screen and (max-width: 767px)').matches){ $("#menuTop").hide(); }
      	    $("#globalhelp .content").toggle();
 	});
-	
+
 /* sliding menu for mobile screen */
 	 $(window).bind("load resize", function(){
 	    if(matchMedia('only screen and (max-width: 767px)').matches){
@@ -2323,15 +2323,15 @@ $(document).ready(function() {
 		  $("#menuTop").show();
 	  }
 	});
-	
+
 /* sub menus on mobile */
 	 $(window).bind("load resize", function(){
-    var org=[];	
-    $("#menuTop>ul>li>a").each(function(index) { 
+    var org=[];
+    $("#menuTop>ul>li>a").each(function(index) {
 		org.push($(this).attr("href"));
 		});
 	  if(matchMedia('only screen and (max-width: 767px)').matches){
-		$("#menuTop>ul>li>a").each(function(index) { 
+		$("#menuTop>ul>li>a").each(function(index) {
 		if($(this).parent('li').children('ul').length!=0)
 		$(this).attr("href","javascript:void(0);").addClass("collaps");
 		else
@@ -2340,9 +2340,9 @@ $(document).ready(function() {
 		$("#menuTop>ul>li>a.collaps").each(function(index) {
 		$(this).toggle(function() {
 			$(this).parent().children("ul").addClass("visible");
-			
+
 			}, function() {
-			$(this).parent().children("ul").removeClass("visible"); 
+			$(this).parent().children("ul").removeClass("visible");
 			});
 			});
 	  }
@@ -2357,7 +2357,7 @@ $(document).ready(function() {
         $(this).find('ul li.current').show();
     });
     $('#webblertabs .current a').click(function () {return false;});
-    
+
     $('#webblertabs').hover(function(){
         $(this).find('ul li').slideDown();
     },
@@ -2365,7 +2365,7 @@ $(document).ready(function() {
         $(this).find('ul li').hide();
         $(this).find('ul li.current').show();
     });
-    
+
     // dropdown menu 2
     $('.dropButton').hover(function(){
         $(this).find('.submenu').slideDown();
@@ -2373,7 +2373,7 @@ $(document).ready(function() {
     function(){
         $(this).find('.submenu').hide();
     });
-/* Draggable behaviour for table sorting*/	
+/* Draggable behaviour for table sorting*/
 	// disable drag n drop for description rows
 	$( ".disable-draggable tr" ).each(function( index ) {
 		$(this).attr('id','row-'+index);
@@ -2388,7 +2388,7 @@ $(document).ready(function() {
 		onDragClass: "isDragging",
 		onDrop: function(table, row) {
 			var rows = table.tBodies[0].rows;
-			
+
 			var id = $(row).attr("data-row-position"); // current row
 			// rebuid ids
 			$( "tr.rows" ).each(function( index ) {
@@ -2429,14 +2429,14 @@ $(document).ready(function() {
 			// change row height
 			$( ".rows" ).height(rowsH + actionsH);
 		}
-		
+
 	});
 	// fix if click with no drag
 	table_2.mouseup(function(){
 	  $( ".nodrag:hidden" ).show();
 	  $( ".rows" ).height(rowsH);
 	  $('.tmptable').remove();
-	});	
+	});
 
         // styling list tab in send page
 	$('body.send').find('.ui-tabs-panel li').each(function(){
@@ -2456,7 +2456,7 @@ $(document).ready(function() {
         $(label).attr('for', cbx_name);
     }
 
-    function listify(selector) 
+    function listify(selector)
     {
         $(selector).each(function(index, val) {
             // Give all checkboxes the same ID as the name attribute
