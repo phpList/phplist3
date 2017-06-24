@@ -751,7 +751,7 @@ class PHPlistMailer extends PHPMailer
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_HEADER, 1);
             curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-            curl_setopt($curl, CURLOPT_USERAGENT, NAME.' (phpList version '.VERSION.', http://www.phplist.com/)');
+            curl_setopt($curl, CURLOPT_USERAGENT, NAME.' (phpList version '.VERSION.', https://www.phplist.com/)');
             curl_setopt($curl, CURLOPT_POST, 1);
         }
 

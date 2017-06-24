@@ -8,16 +8,16 @@ class cleanUrl extends phplistTest
     private $tests = array(
 
         'simple' => array(
-            'orig'   => 'http://www.phplist.com',
-            'result' => 'http://www.phplist.com',
+            'orig'   => 'https://www.phplist.com',
+            'result' => 'https://www.phplist.com',
         ),
         'https' => array(
             'orig'   => 'https://www.phplist.com',
             'result' => 'https://www.phplist.com',
         ),
         'param1' => array(
-            'orig'   => 'http://www.phplist.com/?lid=2345',
-            'result' => 'http://www.phplist.com/?lid=2345',
+            'orig'   => 'https://www.phplist.com/?lid=2345',
+            'result' => 'https://www.phplist.com/?lid=2345',
         ),
         'emptykey' => array( //# https://mantis.phplist.com/view.php?id=8980
             'orig'   => 'http://sub.domain.com/clk;6961dd9731;1544477399;e?http://www.domain.com/offer',

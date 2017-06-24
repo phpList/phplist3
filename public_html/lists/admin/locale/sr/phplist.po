@@ -1713,10 +1713,10 @@ msgstr "Zatražite pomoć u radu sa phpList"
 
 #: public_html/lists/admin/community.php:28
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
-"Biće napisano. U međuvremenu možete da <a href=\"http://www.phplist.com/"
+"Biće napisano. U međuvremenu možete da <a href=\"https://www.phplist.com/"
 "support\">posetite deo za podršku na phpList web stranicama</a>"
 
 #: public_html/lists/admin/community.php:32
@@ -1725,10 +1725,10 @@ msgstr "Pruži pomoć u vezi phpList"
 
 #: public_html/lists/admin/community.php:33
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
-"Biće napisano. U međuvremenu možete da <a href=\"http://www.phplist.com/"
+"Biće napisano. U međuvremenu možete da <a href=\"https://www.phplist.com/"
 "developers\">posetite odeljak za programere na phpList web stranicama</a>"
 
 #: public_html/lists/admin/processbounces.php:9

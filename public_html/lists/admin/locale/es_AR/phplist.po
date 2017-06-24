@@ -1727,11 +1727,11 @@ msgstr "Obtener ayuda sobre phpList"
 
 #: public_html/lists/admin/community.php:28
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
 "Pendiente de escritura. Mientras tanto puede <a href=\""
-"http://www.phplist.com/support\">visitar la sección de soporte en el sitio "
+"https://www.phplist.com/support\">visitar la sección de soporte en el sitio "
 "web de phpList</a>"
 
 #: public_html/lists/admin/community.php:32
@@ -1740,11 +1740,11 @@ msgstr "Contribuir con phpList"
 
 #: public_html/lists/admin/community.php:33
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
 "Pendiente de escritura. Mientras tanto puede <a href=\""
-"http://www.phplist.com/developers\">visitar la sección de desarrolladores "
+"https://www.phplist.com/developers\">visitar la sección de desarrolladores "
 "del sitio web de phpList</a>"
 
 #: public_html/lists/admin/processbounces.php:9

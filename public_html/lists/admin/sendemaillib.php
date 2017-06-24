@@ -256,7 +256,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
       Michiel Dethmers, phpList Ltd 2003 - 2013
     */
     if (!EMAILTEXTCREDITS) {
-        $html['signature'] = $PoweredByImage; //'<div align="center" id="signature"><a href="http://www.phplist.com"><img src="powerphplist.png" width=88 height=31 title="Powered by PHPlist" alt="Powered by PHPlist" border="0" /></a></div>';
+        $html['signature'] = $PoweredByImage; //'<div align="center" id="signature"><a href="https://www.phplist.com"><img src="powerphplist.png" width=88 height=31 title="Powered by PHPlist" alt="Powered by PHPlist" border="0" /></a></div>';
         // oops, accidentally became spyware, never intended that, so take it out again :-)
         $html['signature'] = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"', $html['signature']);
     } else {

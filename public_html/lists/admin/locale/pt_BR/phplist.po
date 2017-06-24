@@ -230,7 +230,7 @@ msgstr "Sua versão"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr "versão do <a href=\"http://www.phplist.com\">phplist</a>"
+msgstr "versão do <a href=\"https://www.phplist.com\">phplist</a>"
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:365
 #: public_html/lists/admin/initialise.php:230
@@ -1730,10 +1730,10 @@ msgstr "Consiga ajuda com phpList"
 
 #: public_html/lists/admin/community.php:28
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
-"A ser escrito. Por enquanto você pode <a href=\"http://www.phplist.com/"
+"A ser escrito. Por enquanto você pode <a href=\"https://www.phplist.com/"
 "support\">visitar a seção de suporte do site phpList</a>"
 
 #: public_html/lists/admin/community.php:32
@@ -1742,10 +1742,10 @@ msgstr "Ajudar o phpList"
 
 #: public_html/lists/admin/community.php:33
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
-"A ser escrito. Por enquanto você pode <a href=\"http://www.phplist.com/"
+"A ser escrito. Por enquanto você pode <a href=\"https://www.phplist.com/"
 "developers\">visitar a seção desenvolvedores no site phpList</a>"
 
 #: public_html/lists/admin/processbounces.php:9

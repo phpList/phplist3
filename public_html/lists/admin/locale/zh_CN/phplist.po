@@ -226,7 +226,7 @@ msgstr "您的版本"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr "<a href=\"http://www.phplist.com\">phplist</a> 版本"
+msgstr "<a href=\"https://www.phplist.com\">phplist</a> 版本"
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:365
 #: public_html/lists/admin/initialise.php:230
@@ -1708,7 +1708,7 @@ msgstr ""
 
 #: public_html/lists/admin/community.php:28
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "support\">visit the support section on the phpList website</a>"
 msgstr ""
 
@@ -1718,7 +1718,7 @@ msgstr ""
 
 #: public_html/lists/admin/community.php:33
 msgid ""
-"To be written. In the meantime you can <a href=\"http://www.phplist.com/"
+"To be written. In the meantime you can <a href=\"https://www.phplist.com/"
 "developers\">visit the developers section on the phpList website</a>"
 msgstr ""
 

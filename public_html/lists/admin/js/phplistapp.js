@@ -247,13 +247,13 @@ $(document).ready(function () {
         }
     });
     $("#remoteurlinput").focus(function () {
-        if (this.value == 'e.g. http://www.phplist.com/testcampaign.html') {
+        if (this.value == 'e.g. https://www.phplist.com/testcampaign.html') {
             this.value = "";
         }
     })
     $("#remoteurlinput").blur(function () {
         if (this.value == "") {
-            this.value = "e.g. http://www.phplist.com/testcampaign.html";
+            this.value = "e.g. https://www.phplist.com/testcampaign.html";
             return;
         }
         $("#remoteurlstatus").html(busyImage);

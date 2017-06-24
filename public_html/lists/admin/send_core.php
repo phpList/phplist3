@@ -714,7 +714,7 @@ if (!$done) {
         );
 
         if (empty($messagedata['sendurl'])) {
-            $messagedata['sendurl'] = 'e.g. http://www.phplist.com/testcampaign.html';
+            $messagedata['sendurl'] = 'e.g. https://www.phplist.com/testcampaign.html';
         }
 
         $maincontent .= '
@@ -741,7 +741,7 @@ if (!$done) {
     <div class="field">' .s('phpList operates in the time zone "%s"', SYSTEM_TIMEZONE).'</div>';
     } else {
         $scheduling_content .= '
-    <div class="field">' . s('Dates and times are relative to the Server Time') . '<br/>' . s('Current Server Time is') . ' <span id="servertime">' . 
+    <div class="field">' . s('Dates and times are relative to the Server Time') . '<br/>' . s('Current Server Time is') . ' <span id="servertime">' .
 date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     }
 
@@ -1188,7 +1188,7 @@ $GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/j
 	});
 </script><style>#sendtabs ul{margin:0 1px}</style>";
 
-/* OLD SCRIPT: 
+/* OLD SCRIPT:
 
 	"<script type='text/javascript'>\n".
     '$(document).ready(function() {
@@ -1256,7 +1256,7 @@ if (empty($testValue) || $testValue == '(no subject)') {
 $testValue = trim($messagedata['message']);
 $testValue2 = trim($messagedata['sendurl']);
 
-if (empty($testValue) && (empty($testValue2) || $testValue2 == 'e.g. http://www.phplist.com/testcampaign.html')) {
+if (empty($testValue) && (empty($testValue2) || $testValue2 == 'e.g. https://www.phplist.com/testcampaign.html')) {
     $allReady = false;
     $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
   $("#addtoqueue").append(\'<div class="missing">' .$GLOBALS['I18N']->get('message content missing').'</div>\');
