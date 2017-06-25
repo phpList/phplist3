@@ -46,7 +46,6 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-
         $user = $this->params['user'];
         $password = $this->params['password'];
         $db = mysqli_init();
