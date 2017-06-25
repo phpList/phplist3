@@ -4,10 +4,7 @@ Feature: Create a new subscriber
   I need to be able to login and start a new campaign
 
   Scenario: Login and create a campaign
-    Given I am on "/lists/admin/"
-    When I fill in "login" with "admin"
-    And I fill in "password" with "Mypassword123+"
-    And I press "Continue"
+    Given I have logged in as an administrator
     Then I should see "Add a new subscriber"
     When I follow "Add a new subscriber"
     Then I should see "Email address"

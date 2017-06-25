@@ -4,10 +4,8 @@ Feature: Load default attributes
   I need to be able to login and load default attributes and add a value
 
   Scenario: Load default attributes and add a value
-    Given I am on "/lists/admin/?page=attributes"
-    When I fill in "login" with "admin"
-    And I fill in "password" with "Mypassword123+"
-    And I press "Continue"
+    Given I have logged in as an administrator
+    And I am on "/lists/admin/?page=attributes"
     Then I should see "predefined defaults"
     When I follow "predefined defaults"
     Then I should see "Countries in the world"

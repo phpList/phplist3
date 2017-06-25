@@ -46,8 +46,8 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        $user = $this->params['user'];
-        $password = $this->params['password'];
+        $user = $this->params['db_user'];
+        $password = $this->params['db_password'];
         $db = mysqli_init();
 
         mysqli_real_connect($db, 'localhost', $user, $password, 'mysql');
@@ -70,6 +70,16 @@ class FeatureContext extends MinkContext
     public function iShouldSeeTheEmailAddressIEntered()
     {
         $this->assertSession()->pageTextContains($this->data['email']);
+    }
+
+    /**
+    * @Given /^I have logged in as an administrator$/
+    */
+    public function iAmAuthenticatedAsAdmin() {
+        $this->visit($this->params['base_url'] . '/lists/admin/');
+        $this->fillField('login', $this->params['admin_username']);
+        $this->fillField('password', $this->params['admin_password']);
+        $this->pressButton('Continue');
     }
 
 }
