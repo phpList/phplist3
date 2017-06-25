@@ -3,17 +3,20 @@
 /*
 
 * ==============================================================================================================
-* 
-* 
-* The minimum requirements to get phpList working are in this file. 
+*
+*
+* The minimum requirements to get phpList working are in this file.
 * If you are interested in tweaking more options, check out the config_extended.php file
 * or visit http://resources.phplist.com/system/config
-* 
+*
 * ** NOTE: To use options from config_extended.php, you need to copy them to this file **
-* 
+*
 ==============================================================================================================
 
 */
+
+# Set default theme
+$ui = 'phplist-ui-bootlist';
 
 # what is your Mysql database server hostname
 $database_host = 'localhost';
@@ -43,13 +46,13 @@ define('TEST', 1);
 /*
 
 ==============================================================================================================
-* 
+*
 * Settings for handling bounces
-* 
-* This section is OPTIONAL, and not necessary to send out mailings, but it is highly recommended to correctly 
+*
+* This section is OPTIONAL, and not necessary to send out mailings, but it is highly recommended to correctly
 * set up bounce processing. Without processing of bounces your system will end up sending large amounts of
 * unnecessary messages, which overloads your own server, the receiving servers and internet traffic as a whole
-* 
+*
 ==============================================================================================================
 
 */
