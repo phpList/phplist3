@@ -12,4 +12,4 @@ default:
           db_user: root
           db_password :
           admin_username : admin
-          admin_password : phplist
+          admin_password : Mypassword123+
