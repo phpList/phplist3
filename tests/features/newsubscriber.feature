@@ -19,4 +19,3 @@ Feature: Create a new subscriber
   # And I should see the email address I entered
     And I follow "History"
     Then I should see the email address I entered
-
