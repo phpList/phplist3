@@ -5,10 +5,9 @@ Feature: Create new campaign
 
   Scenario: Login and create a campaign
     Given I have logged in as an administrator
+    Given No campaigns yet exist
     Then I should see "Start or continue a campaign"
     When I follow "Start or continue a campaign"
-    Then I should see "start a new campaign"
-    When I follow "start a new campaign"
     Then I should see "Campaign subject"
     When I fill in "subject" with "This is a test subject"
     And I fill in "fromfield" with "From me me@mydomain.com"

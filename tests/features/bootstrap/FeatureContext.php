@@ -27,6 +27,13 @@ class FeatureContext extends MinkContext
     public function __construct(array $parameters)
     {
         $this->params = $parameters;
+        $this->db = mysqli_init();
+        mysqli_real_connect(
+            $this->db
+            , 'localhost', $this->params['db_user']
+            , $this->params['db_password']
+            , $this->params['db_name']
+        );
     }
 
 //
@@ -46,13 +53,8 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        $user = $this->params['db_user'];
-        $password = $this->params['db_password'];
-        $db = mysqli_init();
-
-        mysqli_real_connect($db, 'localhost', $user, $password, 'mysql');
-        mysqli_query($db,'drop database if exists phplistbehattestdb');
-        mysqli_query($db,'create database phplistbehattestdb');
+        mysqli_query($this->db,'drop database if exists phplistbehattestdb');
+        mysqli_query($this->db,'create database phplistbehattestdb');
     }
 
     /**
@@ -70,6 +72,20 @@ class FeatureContext extends MinkContext
     public function iShouldSeeTheEmailAddressIEntered()
     {
         $this->assertSession()->pageTextContains($this->data['email']);
+    }
+
+    /**
+     * @Given /^No campaigns yet exist$/
+     */
+    public function iHaveNotYetCreatedCampaigns()
+    {
+        // Count the number of campaigns in phplist_message table
+        $result = mysqli_fetch_assoc(mysqli_query($this->db,'select count(*) as count from phplist_message;'));
+        $campaignCount = $result['count'];
+
+        if ($campaignCount > 0) {
+            throw new Exception('One or more campagins already exist');
+        }
     }
 
     /**
