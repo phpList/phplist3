@@ -17,12 +17,16 @@ before_script:
   - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
+  # Configure Behat
   - sudo cp -f tests/travis-ci/behat.yml behat.yml
   - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
+  # Setup composer
   - composer self-update
   - composer install --prefer-dist
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
+  # Install Trevelin theme
+  - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist && rm master.tar.gz && cd ../../../../
 
   # Set MySQL configuration and create the database.
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'

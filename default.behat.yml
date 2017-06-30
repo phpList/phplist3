@@ -7,5 +7,9 @@ default:
       base_url: http://localhost/phplist3/public_html/
   context :
      parameters :
-          user: xyz
-          password : abc
+          base_url: http://localhost/phplist3/public_html/
+          db_user: xyz
+          db_password : abc
+          db_name : mysql
+          admin_username : admin_username
+          admin_password : admin_password

@@ -8,5 +8,8 @@ default:
       base_url: http://phplist.dev
   context :
       parameters :
-          user: root
-          password :
+          base_url: http://phplist.dev
+          db_user: root
+          db_password :
+          admin_username : admin
+          admin_password : Mypassword123+
