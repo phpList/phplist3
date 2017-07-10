@@ -2,48 +2,27 @@
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
 
-Open source newsletter and email marketing manager https://www.phplist.org
+Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: https://www.phplist.org
+
+phpList includes analytics, segmentation, content personalisaton, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2015.
+
+Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 ---
-
-Copyright (C) 2000-2015 Michiel Dethmers, phpList Ltd.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU Affero General Public License
-as published by the Free Software Foundation; either version 3
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
----
-
-## What is phpList
-
-phpList delivers Open Source email marketing, including analytics, list segmentation, content personalisaton and bounce processing. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2015.
-
-Deploy it on your own server, or get a hosted account at http://phplist.com. 
 
 ### Features
 
-* Web Based Interface: Lets you write and send messages, and manage your email campaigns over the internet
-* Message Queuing: No duplicate messages. No 'forgotten' messages. phpList manages message delivery with a message queue, ensuring that every subscriber gets the email message, and that no subscribers receive two copies, even if they're subscribed to more than one list!
-* Personalisation: You can use the attributes you define in the emails you send, to make every email personal to the user who receives them.
-* Amazon SES support
-* Tracking: You can see how many users opened + clicked your email
-* Bounce Handling: Bounces can be processed and users can be automatically unsubscribed when too many emails to them bounced.
-* CSV User Import and Export
-* Send a Webpage: Tell phpList the URL of a webpage you want to send to your users and it will fetch it and send it out.
-* Embargoed Sending: You can create a message and tell the system to only start sending it at a certain date and time in the future.
-* Attachments: You can add attachments to your message.
-* Load Throttling: You can limit the load on your server so it doesn't overload.
-* Domain Throttling: You can limit the number of emails to specific domains to keep on the friendly side of their system administrators.
+* Responsive web-based, and command-line interfaces
+* Real-time analytics: track message responses and subscriber behaviour
+* Message-queue management: load-balancesand throttles multiple accounts and campaigns; tracks every delivery outcome
+* Content personalisation: every messages customised to individual subscriber attributes and preferences
+* Automated bounce management and processing: policy and regex-based handling with every bounce accessibly archived
+* Schedule, pause, resume, repeat, and requeue campaigns
+* Amazon SES: built-in optimised support
+* CSV and Excel based subscriber import and export, including attributes and preferences
+* Send a Webpage: automatic remote html polling, conversion, and dispatch
+* Email attachments support
+* Domain-based throttling: comply with host-specific policies by defining custom rules
 * RSS Feeds: phpList can be set up to read a range of RSS sources and send the contents on a regular basis to users. The user can identify how often they want to receive the feeds.
 
 ---
@@ -119,3 +98,6 @@ appear in the language of your choice.
 In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
+
+## License
+phpList 3 is licensed under the terms of the AGPLv3 Open Source license and is available free of charge.
