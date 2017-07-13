@@ -1,4 +1,4 @@
-# phpList
+# phpList 3
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
 
@@ -29,12 +29,6 @@ Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 ## Requirements
 See [System requirements](https://resources.phplist.com/system)
-
-## Demo
-
-Latest stable [Public demo](http://demo.phplist.org/lists/admin/) 
-
-Latest unstable [Latest Dev code](http://dev.phplist.com/lists/admin/)
 
 ## Development
 See [phpList development](https://resources.phplist.com/develop/start)
@@ -74,7 +68,7 @@ Step 4. Copy your configuration files to lists/config or re-edit the new config 
 sometimes new features are added to the config file, so it's better to use
 the new config file and re-adapt it to your situation.
 
-I have put an example .htaccess file in this directory. You should not allow
+An example .htaccess exists file in this directory. You should not allow
 access to this directory from the webserver at all. The example will work with
 apache.
 
