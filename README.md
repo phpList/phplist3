@@ -1,6 +1,8 @@
 # phpList 3
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+[![Download phpList](https://img.shields.io/sourceforge/dt/phplist.svg)](https://sourceforge.net/projects/phplist/files/latest/download)
+[![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: https://www.phplist.org
 
