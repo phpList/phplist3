@@ -1,6 +1,7 @@
 # phpList 3
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+[![Stable release](https://img.shields.io/badge/stable-3.3.1-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![Download phpList](https://img.shields.io/sourceforge/dt/phplist.svg)](https://sourceforge.net/projects/phplist/files/latest/download)
 [![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
