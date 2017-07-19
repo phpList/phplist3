@@ -441,10 +441,10 @@ define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
 
 // Show 'All Subscribers' section on Subscriber Lists page
-// This flag enabled will show a list called “All subscribers” on the Subscriber Lists 
-// page that has all subscribers in the system as members. This prevents confusion
-// if there are subscribers not assigned to lists and therefore total subscribers
-// are than the sum of all list members.
+// This flag enabled will show a list called “All subscribers” on the 
+// Subscriber Lists page that has all subscribers in the system as members. 
+// This prevents confusion if there are subscribers not assigned to lists and 
+// therefore total subscribers are than the sum of all list members.
 define('SHOW_LIST_OFALL_SUBSCRIBERS');
 
 // wrap html
