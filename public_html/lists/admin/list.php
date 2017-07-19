@@ -206,7 +206,7 @@ $numlists = Sql_Affected_Rows($result);
 $ls = new WebblerListing(s('Lists'));
 $ls->usePanel($paging);
 
-/* Always Show a "list" of all subscribers
+/* Always Show a "list" of aall subscribers
  * https://mantis.phplist.com/view.php?id=17433
  * many users are confused when they have more subscribers than members of lists
  * this will avoid that confusion
