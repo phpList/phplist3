@@ -440,6 +440,13 @@ define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 // see also https://mantis.phplist.com/view.php?id=15274
 define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
 
+// Show 'All Subscribers' section on Subscriber Lists page
+// This flag enabled will show a list called “All subscribers” on the 
+// Subscriber Lists page that has all subscribers in the system as members. 
+// This prevents confusion if there are subscribers not assigned to lists and 
+// therefore total subscribers are than the sum of all list members.
+define('SHOW_LIST_OFALL_SUBSCRIBERS', false);
+
 // wrap html
 // in some cases, strange newlines appear in the HTML source of campaigns
 // If that's happening to you, you may want to set this one
