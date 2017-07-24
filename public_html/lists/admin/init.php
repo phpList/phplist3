@@ -495,9 +495,6 @@ if (!defined('UNBLACKLIST_IN_PROFILE')) {
 if (!defined('MANUALLY_PROCESS_BOUNCES')) {
     define('MANUALLY_PROCESS_BOUNCES', 1);
 }
-if (!defined('ENCRYPT_ADMIN_PASSWORDS')) {
-    define('ENCRYPT_ADMIN_PASSWORDS', 1);
-}
 if (!defined('PASSWORD_CHANGE_TIMEFRAME')) {
     define('PASSWORD_CHANGE_TIMEFRAME', '1 day');
 }

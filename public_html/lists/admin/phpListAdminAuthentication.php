@@ -100,11 +100,6 @@ class phpListAdminAuthentication
         $data = Sql_Fetch_Row_Query($query);
         if (!$data[0]) {
             return array(0, s('No such account'));
-        } elseif (!ENCRYPT_ADMIN_PASSWORDS && sha1($noaccess_req[2]) != $_SESSION['logindetails']['passhash']) {
-            return array(
-                0,
-                s('Your session does not match your password. If you just changed your password, simply log back in.'),
-            );
         } elseif ($data[1]) {
             return array(0, s('your account has been disabled'));
         }

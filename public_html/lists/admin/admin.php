@@ -92,7 +92,7 @@ if (!empty($_POST['change'])) {
                 Sql_Query("update {$tables['admin']} set $key = \"".addslashes($_POST[$key])."\" where id = $id");
             }
         }
-        if (ENCRYPT_ADMIN_PASSWORDS && !empty($_POST['updatepassword'])) {
+        if (!empty($_POST['updatepassword'])) {
             //Send token email.
             echo sendAdminPasswordToken($id).'<br/>';
             //# check for password changes
@@ -177,7 +177,7 @@ while (list($key, $val) = each($struct)) {
         if ($b == 'Privileges') { //# this whole thing of using structure is getting silly, @@TODO rewrite without
         } else {
             //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
-            if ($b == 'Password' && ENCRYPT_ADMIN_PASSWORDS) {
+            if ($b == 'Password') {
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
                 if ($changeAdminPass) {
                     $checkNo = '';
@@ -191,7 +191,7 @@ while (list($key, $val) = each($struct)) {
                                <input type="radio" name="updatepassword" value="1" %s>%s</input></td></tr>
 ',
                     $GLOBALS['I18N']->get('Password'), $GLOBALS['I18N']->get('hidden'),
-                    (ENCRYPT_ADMIN_PASSWORDS ? $GLOBALS['I18N']->get('Update it?') : $GLOBALS['I18N']->get('Remind it?')),
+                    $GLOBALS['I18N']->get('Update it?') ,
                     $checkNo,
                     $GLOBALS['I18N']->get('No'), $checkYes, $GLOBALS['I18N']->get('Yes'));
             } else {

@@ -231,9 +231,6 @@ if ($success) {
     //'.$GLOBALS['I18N']->get("Please make sure to read the file README.security that can be found in the zip file.").'</p>');
     echo subscribeToAnnouncementsForm($_REQUEST['adminemail']);
 
-    if (ENCRYPT_ADMIN_PASSWORDS && !empty($adminid)) {
-        echo sendAdminPasswordToken($adminid);
-    }
     // make sure the 0 template has the powered by image
     $query = sprintf('insert into %s (template, mimetype, filename, data, width, height) values (0, "image/png", "powerphplist.png", "%s", 70, 30)',
         $GLOBALS['tables']['templateimage'], $newpoweredimage);
