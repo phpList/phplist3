@@ -405,6 +405,22 @@ if ($total) {
 //    if (!empty($msg["astextandpdf"])) {
 //      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("both"), $msg["astextandpdf"]);
 //    }
+
+            // Prepare view & bounce statistics for printing
+            $viewStats = array(
+                'views' => $msg['viewed']
+                , 'uniqueViews' => $uniqueviews[0]
+                , 'clicks' => $clicks[0]
+                , 'bounces' => $msg['bouncecount']
+            );
+
+            $viewStatsFormatted = array();
+
+            // Make statistical integers human readable
+            foreach ($viewStats as $key => $value) {
+                $viewStatsFormatted[$key] = number_format($value);
+            }
+
             $resultStats = '<table class="messagesendstats">
       <thead>
         <tr>
@@ -412,17 +428,16 @@ if ($total) {
         </tr>
       </thead>
       <tbody>
-        <tr><td>' .s('Viewed').'</td><td>'.$msg['viewed'].'</td></tr>
-        <tr><td>' .s('Unique Views').'</td><td>'.$uniqueviews[0].'</td></tr>';
-                if ($clicks[0]) {
-                    $resultStats .= '
-            <tr><td>' .s('Total Clicks').'</td><td>'.$clicks[0].'</td></tr>';
-                }
-            $resultStats .= '
-            <tr><td>' .s('Bounced').'</td><td>'.$msg['bouncecount'].'</td></tr>';
+          <tr><td>' .s('Viewed').'</td><td>'.$viewStatsFormatted['views'].'</td></tr>
+          <tr><td>' .s('Unique Views').'</td><td>'.$viewStatsFormatted['uniqueViews'].'</td></tr>';
+            if ($clicks[0]) {
                 $resultStats .= '
-        </tbody>
-    </table>';
+                <tr><td>' .s('Total Clicks').'</td><td>'.$viewStatsFormatted['clicks'].'</td></tr>';
+            }
+            $resultStats .= '
+            <tr><td>' .s('Bounced').'</td><td>'.$viewStatsFormatted['bounces'].'</td></tr>
+      </tbody>
+  </table>';
 
 //      $ls->addColumn($listingelement,s('Results'),$resultStats);
 
@@ -457,6 +472,22 @@ if ($total) {
         //$bouncedrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
         //$colspan-1,$GLOBALS['I18N']->get("Bounced"),$msg["bouncecount"]);
         //}
+    
+        // Calculcate sent statistics for printing
+        $sentStats = array(
+            'grandTotal' => $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']
+            , 'text' => $msg['astext']
+            , 'html' => $msg['ashtml'] + $msg['astextandhtml'] //bug 0009687
+            , 'pdf' => $msg['aspdf']
+            , 'textPlusPDF' => $msg['astextandpdf']
+        );
+
+        $sentStatsFormatted = array();
+
+        // Make statistical integers human readable
+        foreach ($sentStats as $key => $value) {
+            $sentStatsFormatted[$key] = number_format($value);
+        }
 
         $sendstats =
             sprintf('<table class="messagesendstats">
@@ -470,7 +501,7 @@ if ($total) {
               <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
                 %s%s
               </tr>
-              <tr><td><b>%d</b></td><td><b>%d</b></td><td><b>%d</b></td>
+              <tr><td><b>%s</b></td><td><b>%s</b></td><td><b>%s</b></td>
                 %s %s %s %s
               </tr>
           </tbody>
@@ -478,11 +509,11 @@ if ($total) {
                 !empty($timetosend) ? '<tr><td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
                 !empty($msg['aspdf']) ? '<td>'.$GLOBALS['I18N']->get('PDF').'</td>' : '',
                 !empty($msg['astextandpdf']) ? '<td>'.$GLOBALS['I18N']->get('both').'</td>' : '',
-                $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf'],
-                $msg['astext'],
-                $msg['ashtml'] + $msg['astextandhtml'], //bug 0009687
-                !empty($msg['aspdf']) ? '<td><b>'.$msg['aspdf'].'</b></td>' : '',
-                !empty($msg['astextandpdf']) ? '<td><b>'.$msg['astextandpdf'].'</b></td>' : '',
+                $sentStatsFormatted['grandTotal'],
+                $sentStatsFormatted['text'],
+                $sentStatsFormatted['html'],
+                !empty($msg['aspdf']) ? '<td><b>'.$sentStatsFormatted['pdf'].'</b></td>' : '',
+                !empty($msg['astextandpdf']) ? '<td><b>'.$sentStatsFormatted['textPlusPDF'].'</b></td>' : '',
                 $clicksrow, $bouncedrow
             );
         if ($msg['status'] != 'draft') {
