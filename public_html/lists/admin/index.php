@@ -466,7 +466,7 @@ if (!$ajax) {
 }
 
 if (!$ajax) {
-    echo '<h4 class="pagetitle">'.mb_strtolower($page_title).'</h4>';
+    echo '<h4 class="pagetitle">'.$page_title.'</h4>';
 }
 echo '<div class="hidden">'.PageLink2('home', s('Main page')).'</div>';
 
