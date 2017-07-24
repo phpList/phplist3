@@ -5,6 +5,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $subselect = $whereClause = '';
 $action_result = '';
 $access = accessLevel('messages');
+$filterSelectDefault = ' --- '.s('filter').' --- ';
 
 $messageSortOptions = array(
     'default'     => s('Sort by'),
@@ -44,7 +45,7 @@ if (!empty($_POST['clear'])) {
 }
 if (isset($_POST['filter'])) {
     $_SESSION['messagefilter'] = removeXSS($_POST['filter']);
-    if ($_SESSION['messagefilter'] == ' --- filter --- ') {
+    if ($_SESSION['messagefilter'] == $filterSelectDefault) {
         $_SESSION['messagefilter'] = '';
     }
 }
@@ -103,7 +104,7 @@ echo '</div>';
 
 $filterDisplay = $_SESSION['messagefilter'];
 if ($filterDisplay == '') {
-    $filterDisplay = ' --- filter --- ';
+    $filterDisplay = $filterSelectDefault;
 }
 echo '<div id="messagefilter" class="filterdiv fright">';
 echo formStart(' id="messagefilterform" ');
