@@ -4,7 +4,7 @@
  */
 
 /* these can be "overwritten" by the UI */
-var busyImage = '<div id="pleasewait"><img src="images/busy.gif" with="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" id="pleasewaitimg" /></div>';
+var busyImage = '<div id="pleasewait"><img src="images/busy.gif" width="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" id="pleasewaitimg" /></div>';
 var menuArrowImage = 'ui/dressprow/images/menuarrow.png';
 var menuArrowActiveImagesrc = 'ui/dressprow/images/menuarrow_active.png';
 var loaded = false;
@@ -135,6 +135,12 @@ function totalSentUpdate(msgid) {
 $(document).ready(function () {
     $(".note .hide").click(function () {
         $(this).parents('.note').hide();
+    });
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        }
     });
 
     $("a.ajaxable").click(function () {
