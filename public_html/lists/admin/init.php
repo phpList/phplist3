@@ -116,6 +116,9 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
         $GLOBALS['ui'] = 'default';
     }
 }
+if (!is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php')) {
+    print 'Error: unable to initialise theme'; exit;
+}
 
 include_once dirname(__FILE__).'/structure.php';
 
