@@ -80,7 +80,7 @@
             <td>        
                 <ul>
                     <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
-                    <li><a href="http://mariela.harpo-web.com" target="_blank">Mariela Zárate</a></li>
+                    <li><a href="http://mariela.harpitoweb.com" target="_blank">Mariela Zárate</a></li>
                 </ul>
             </td>
         </tr>
