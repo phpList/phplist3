@@ -209,10 +209,12 @@ class phplistPlugin
         return true;
     }
 
+    /**
+     * Startup code, all other objects are constructed
+     * returns success or failure, false means we cannot start
+     */
     public function activate()
     {
-        // Startup code, all other objects are constructed
-        // returns success or failure, false means we cannot start
         if (isset($this->settings)) {
             foreach ($this->settings as $item => $itemDetails) {
                 $GLOBALS['default_config'][$item] = $itemDetails;
@@ -221,16 +223,20 @@ class phplistPlugin
         }
     }
 
+    /**
+     * Return html snippet to tell about copyrights of used third party code.
+     * @note Plugin author is already displayed elsewhere
+     */
     public function displayAbout()
     {
-        // Return html snippet to tell about coopyrights of used third party code.
-        // author is already displayed
         return;
     }
 
+    /**
+     * Return i18n Language Dir so that main page content can be extended
+     */
     public function i18nLanguageDir()
     {
-        // Return i18n Language Dir so that main page content can be extended
         return;
     }
 
@@ -260,12 +266,14 @@ class phplistPlugin
     {
     }
 
+    /** 
+     * write a value to the general config to be retrieved at a later stage
+     * parameters: name -> name of the variable
+     * value -> value of the variablesiable, can be a scalar, array or object
+     * returns success or failure    $store = '';
+     */
     public function writeConfig($name, $value)
     {
-        //  write a value to the general config to be retrieved at a later stage
-        // parameters: name -> name of the variable
-        //             value -> value of the variablesiable, can be a scalar, array or object
-        // returns success or failure    $store = '';
         if (is_object($value) || is_array($value)) {
             $store = 'SER:'.serialize($value);
         } else {
@@ -279,12 +287,13 @@ class phplistPlugin
         return 1;
     }
 
+    /** 
+     * read a value from the general config to be retrieved at a later stage
+     * parameters: name -> name of the variable
+     * returns value
+     */
     public function getConfig($name)
     {
-        // read a value from the general config to be retrieved at a later stage
-        // parameters: name -> name of the variable
-        // returns value
-
         if (isset($_SESSION['config'][$this->name.'-'.addslashes($name)])) {
             return $_SESSION['config'][$this->name.'-'.addslashes($name)];
         }
@@ -303,13 +312,15 @@ class phplistPlugin
         return $result;
     }
 
+    /** 
+     * displayConfig
+     * purpose: display input for a config variable in the backend
+     * parameters:
+     * name -> name of the config variable, as found in $this->configvars
+     * return, HTML snippet of input to slot into a form
+     */
     public function displayConfig($name)
     {
-        //# displayConfig
-        // purpose: display input for a config variable in the backend
-        // parameters:
-        // name -> name of the config variable, as found in $this->configvars
-        // return, HTML snippet of input to slot into a form
         $name = trim(strtolower($name));
         $name = preg_replace('/\W/', '', $name);
         $type = $this->configvars[$name][0];
@@ -366,9 +377,11 @@ class phplistPlugin
     //###########################################################
     // Frontend
 
+    /** 
+     * return snippet for the Subscribe page
+     */
     public function displaySubscriptionChoice($pageData, $userID = 0)
     {
-        // return snippet for the Subscribe page
         return '';
     }
 
@@ -377,14 +390,16 @@ class phplistPlugin
         return;
     }
 
+    /** 
+     * parse the text of the thankyou page
+     * parameters:
+     * pageid -> id of the subscribe page
+     * userid -> id of the user
+     * text -> current text of the page
+     * returns parsed text
+     */
     public function parseThankyou($pageid = 0, $userid = 0, $text = '')
     {
-        // parse the text of the thankyou page
-        // parameters:
-        //  pageid -> id of the subscribe page
-        //  userid -> id of the user
-        //  text -> current text of the page
-        // returns parsed text
         return $text;
     }
 
@@ -408,29 +423,35 @@ class phplistPlugin
     //###########################################################
     // Message
 
+    /** 
+     * add a tab to the "Send a Message page" for options to be set in the plugin
+     * @param messageid ID of the message being displayed (should always be > 0)
+     * @param messagedata associative array of all data from the db for this message
+     * @return HTML code to slot into the form to submit to the database
+     */
     public function sendMessageTab($messageid = 0, $messagedata = array())
     {
-        //# add a tab to the "Send a Message page" for options to be set in the plugin
-        // parameters:
-        //    messageid = ID of the message being displayed (should always be > 0)
-        //    messagedata = associative array of all data from the db for this message
-        // returns: HTML code to slot into the form to submit to the database
         return '';
     }
 
+    /** 
+     * If adding a TAB to the Send a Message page, what is the TAB's name
+     * parameters: none
+     * @return short title (less than about 10 characters)
+     */
     public function sendMessageTabTitle($messageid = 0)
     {
-        //# If adding a TAB to the Send a Message page, what is the TAB's name
-        // parameters: none
-        // returns: short title (less than about 10 characters)
+
         return '';
     }
 
+    /** 
+     * If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
+     * parameters: none
+     * returns: tab title to insert before
+     */
     public function sendMessageTabInsertBefore()
     {
-        //# If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
-        // parameters: none
-        // returns: tab title to insert before
         return false;
     }
 
@@ -585,7 +606,6 @@ class phplistPlugin
      * @param array   userdata: associative array with data about user
      * @return string parsed content
      */
-
     public function parseOutgoingTextMessage($messageid, $content, $destination, $userdata = null)
     {
         return $content;
@@ -599,37 +619,40 @@ class phplistPlugin
      * @param array   userdata: associative array with data about user
      * @return string parsed content
      */
-
     public function parseOutgoingHTMLMessage($messageid, $content, $destination, $userdata = null)
     {
         return $content;
     }
 
+    /**
+      * getMessageAttachment($messageid,$mail->Body);
+      * parameters: $messageid,$messagecontent
+      * @return array (
+      *  'content' => Content of the attachment
+      *  'filename' => name of the attached file
+      *  'mimetype' => mimetype of the attachment
+      *  );
+      */
     public function getMessageAttachment($messageid, $content)
     {
-        //##getMessageAttachment($messageid,$mail->Body);
-        // parameters: $messageid,$messagecontent
-        // returns array (
-        //  'content' => Content of the attachment
-        //  'filename' => name of the attached file
-        //  'mimetype' => mimetype of the attachment
-        // );
         return array();
     }
 
+    /**
+     * mimeWrap
+     * purpose: wrap the actual contents of the message in another MIME layer
+     * Designed to ENCRYPT the fully expanded message just before sending
+     * Designed to be called by phplistmailer
+     * parameters:
+     *   messageid: message being sent
+     *   body: current body of message
+     *   header: current header of message, except for the Content-Type
+     *   contenttype: Content-Type of message
+     *   destination: email that this message is going out to
+     * returns array(newheader,newbody,newcontenttype)
+     */
     public function mimeWrap($messageid, $body, $header, $contenttype, $destination)
     {
-        //## mimeWrap
-        // purpose: wrap the actual contents of the message in another MIME layer
-        // Designed to ENCRYPT the fully expanded message just before sending
-        // Designed to be called by phplistmailer
-        // parameters:
-        //   messageid: message being sent
-        //   body: current body of message
-        //   header: current header of message, except for the Content-Type
-        //   contenttype: Content-Type of message
-        //   destination: email that this message is going out to
-        // returns array(newheader,newbody,newcontenttype)
         return array(
             $header,
             $body,
@@ -637,15 +660,17 @@ class phplistPlugin
         );
     }
 
+    /**
+     * setFinalDestinationEmail
+     * purpose: change the actual recipient based on user Attribute values:
+     * parameters:
+     *   messageid: message being sent
+     *   uservalues: array of "attributename" => "attributevalue" of all user attributes
+     *   email: email that this message is current set to go out to
+     * @returN email that it should go out to
+     */
     public function setFinalDestinationEmail($messageid, $uservalues, $email)
     {
-        //## setFinalDestinationEmail
-        // purpose: change the actual recipient based on user Attribute values:
-        // parameters:
-        //   messageid: message being sent
-        //   uservalues: array of "attributename" => "attributevalue" of all user attributes
-        //   email: email that this message is current set to go out to
-        // returns: email that it should go out to
         return $email;
     }
 
@@ -953,27 +978,33 @@ class phplistPlugin
     //###########################################################
     // List
 
+    /**
+     * purpose: return html snippet with plugin info for this list
+     * Currently used in lists.php
+     * 200711 Bas
+     */
     public function displayLists($list)
     {
-        // purpose: return html snippet with plugin info for this list
-        // Currently used in lists.php
-        // 200711 Bas
         return;
     }
 
+    /**
+     * purpose: return tablerows with list attributes for this list
+     * Currently used in list.php
+     * 200710 Bas
+     */
     public function displayEditList($list)
     {
-        // purpose: return tablerows with list attributes for this list
-        // Currently used in list.php
-        // 200710 Bas
         return;
     }
 
+    /**
+     * purpose: process edit list page (usually save fields)
+     * return false if failed
+     * 200710 Bas
+     */
     public function processEditList($id)
     {
-        // purpose: process edit list page (usually save fields)
-        // return false if failed
-        // 200710 Bas
         return true;
     }
 
@@ -984,11 +1015,13 @@ class phplistPlugin
     //###########################################################
     // Subscribe page
 
+    /**
+     * purpose: return tablerows with subscribepage options for this list
+     * Currently used in spageedit.php
+     * 200710 Bas
+     */
     public function displaySubscribePageEdit($subscribePageData)
     {
-        // purpose: return tablerows with subscribepage options for this list
-        // Currently used in spageedit.php
-        // 200710 Bas
         return;
     }
 
@@ -1002,18 +1035,22 @@ class phplistPlugin
         return false;
     }
 
+    /**
+     * purpose: process selected subscribepage options for this list
+     * return false if failed
+     * Currently used in spageedit.php
+     * 200710 Bas
+     */
     public function processSubscribePageEdit($subscribePageID)
     {
-        // purpose: process selected subscribepage options for this list
-        // return false if failed
-        // Currently used in spageedit.php
-        // 200710 Bas
         return true;
     }
 
+    /**
+     * purpose: show content for this plugin on the import page
+     */
     public function importContent()
     {
-        // purpose: show content for this plugin on the import page
         return '';
     }
 
@@ -1030,9 +1067,11 @@ class phplistPlugin
     //#####################################
     // Static functions to manage the collection of plugins
 
+    /**
+     * see if a plugin is enabled, static method so it can be called even if existance of plugin is unknown.
+     */
     public static function isEnabled($pluginName)
     {
-        // see if a plugin is enabled, static method so it can be called even if existance of plugin is unknown.
         return array_key_exists($pluginName, $GLOBALS['plugins']) && $GLOBALS['plugins'][$pluginName]->enabled;
     }
 }
