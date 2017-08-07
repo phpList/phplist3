@@ -288,13 +288,27 @@ while ($row = Sql_fetch_array($result)) {
         PageURL2('list&delete='.$row['id']),
         s('delete this list'));
 
-    $ls->addRow($element, '',
-        '<span class="edit-list"><a class="button" href="?page=editlist&amp;id='.$row['id'].'" title="'.$GLOBALS['I18N']->get('Edit this list').'"></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list='.$row['id'],
-            $GLOBALS['I18N']->get('send'), '', '',
-            $GLOBALS['I18N']->get('start a new campaign targetting this list')).'</span>'.
-        '<span class="add_member">'.PageLinkDialogOnly('importsimple&list='.$row['id'],
-            s('Add Members')).'</span>'.
-        '<span class="delete">'.$deletebutton->show().'</span>', '', '', 'actions nodrag');
+    $ls->addRow(
+        $element
+        , ''
+        , '<span class="edit-list"><a class="button" href="?page=editlist&amp;id='.$row['id'].'" title="'.$GLOBALS['I18N']->get('Edit this list').'"></a></span>'.'<span class="send-list">'
+            .PageLinkButton('send&new=1&list='.$row['id']
+        , $GLOBALS['I18N']->get('send')
+        , ''
+        , ''
+        , $GLOBALS['I18N']->get('start a new campaign targetting this list')).'</span>'.'<span class="add_member">'
+            .PageLinkDialogOnly(
+                'importsimple&list='.$row['id']
+                , s('Add Members')
+            )
+            .'</span>'
+            .'<span class="delete">'
+            .$deletebutton->show()
+            .'</span>'
+        , ''
+        , ''
+        , 'actions nodrag'
+    );
 
     $some = 1;
 }
