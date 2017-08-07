@@ -519,11 +519,11 @@ function checkEmail()
         $html .= $GLOBALS['strYouAreBlacklisted'];
     }
 
-    $html .= '<p><input type=submit name="update" value="'.$GLOBALS['strUpdatePreferences'].'" onClick="return checkform();"></p></form>';
-    $html .= '<br/><br/>';
+    $html .= '<input type=submit name="update" value="'.$GLOBALS['strUpdatePreferences'].'" onClick="return checkform();">';
     if (SHOW_UNSUBSCRIBELINK) {
-        $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+        $html .= ' &nbsp;&nbsp; <a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a>';
     }
+    $html.='</form>';
     $html .= $GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
 
@@ -670,11 +670,11 @@ function checkGroup(name,value)
     if (USE_SPAM_BLOCK) {
         $html .= '<div style="display:none"><input type="text" name="VerificationCodeX" value="" size="20"></div>';
     }
-    $html .= '<p><input type=submit name="subscribe" value="'.$GLOBALS['pagedata']['button'].'" onClick="return checkform();"></p></form>';
-    $html .= '<br/><br/>';
+    $html .= '<input type=submit name="subscribe" value="'.$GLOBALS['pagedata']['button'].'" onClick="return checkform();">';
     if (SHOW_UNSUBSCRIBELINK) {
-        $html .= '<p><a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a></p>';
+        $html .= ' &nbsp;&nbsp; <a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a>';
     }
+	$html .='</form>';
     $html .= $GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
     unset($_SESSION['subscriberConfirmed']);
