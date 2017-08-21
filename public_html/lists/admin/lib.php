@@ -197,7 +197,7 @@ function loadMessageData($msgid)
         'status'         => '',
         'tofield'        => '',
         'replyto'        => '',
-        'targetlist'     => '',
+        'targetlist'     => array(),
         'criteria_match' => '',
         'sendurl'        => '',
         'sendmethod'     => 'inputhere', //# make a config
