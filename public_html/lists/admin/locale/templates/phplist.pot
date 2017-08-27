@@ -7429,7 +7429,7 @@ msgstr ""
 msgid "Sorry, not implemented yet"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:318
+#: public_html/lists/admin/defaultplugin.php:333
 msgid "choose"
 msgstr ""
 
