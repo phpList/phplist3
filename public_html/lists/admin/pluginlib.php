@@ -87,10 +87,25 @@ foreach ($pluginFiles as $file) {
                 //# bit of a duplication of plugins, but $GLOBALS['plugins'] should only contain active ones
                 //# using "allplugins" allow listing them, and switch on/off in the plugins page
                 $GLOBALS['allplugins'][$className] = $pluginInstance;
+
                 if (!in_array($className, $GLOBALS['plugins_disabled'])) {
-                    $GLOBALS['plugins'][$className] = $pluginInstance;
-                    //# remember the first plugin that says it can provide the editor
-                    //# the "editor" method is not defined in the default plugin, so it'll have to be made explicitly.
+                    $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
+
+                    if (!empty($plugin_initialised)) {
+                        $GLOBALS['plugins'][$className] = $pluginInstance;
+                        $pluginInstance->enabled = true;
+                    } elseif (in_array($className, $auto_enable_plugins)) {
+                        $GLOBALS['plugins'][$className] = $pluginInstance;
+                        $pluginInstance->initialise();
+                        $pluginInstance->enabled = true;
+                    } else {
+                        // plugin is not enabled and not disabled, so disable it and don't process this plugin any further
+                        $pluginInstance->enabled = false;
+                        $disabled_plugins[$className] = 1;
+                        saveConfig('plugins_disabled', serialize($disabled_plugins), 0);
+                        continue;
+                    }
+                    // remember the first plugins that provide editor, authentication or email sending
                     if (!$GLOBALS['editorplugin'] && $pluginInstance->editorProvider && method_exists($pluginInstance,
                             'editor')
                     ) {
@@ -105,29 +120,15 @@ foreach ($pluginFiles as $file) {
                     if (!$GLOBALS['emailsenderplugin'] && $pluginInstance instanceof EmailSender) {
                         $GLOBALS['emailsenderplugin'] = $pluginInstance;
                     }
-                    //     print $className.' '.md5('plugin-'.$className.'-initialised').'<br/>';
-                    $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
-                    if (!empty($plugin_initialised)) {
-                        $GLOBALS['plugins'][$className]->enabled = true;
-                    } elseif (in_array($className, $auto_enable_plugins)) {
-                        $GLOBALS['plugins'][$className]->initialise();
-                        $GLOBALS['plugins'][$className]->enabled = true;
-                    } else {
-                        $GLOBALS['plugins'][$className]->enabled = false;
-                        $disabled_plugins[$className] = 1;
-                        saveConfig('plugins_disabled', serialize($disabled_plugins), 0);
-                    }
 
-                    if (!empty($GLOBALS['plugins'][$className]->DBstruct)) {
-                        foreach ($GLOBALS['plugins'][$className]->DBstruct as $tablename => $tablecolumns) {
+                    if (!empty($pluginInstance->DBstruct)) {
+                        foreach ($pluginInstance->DBstruct as $tablename => $tablecolumns) {
                             $GLOBALS['tables'][$className.'_'.$tablename] = $GLOBALS['table_prefix'].$className.'_'.$tablename;
                         }
                     }
-                    if ($GLOBALS['plugins'][$className]->enabled) {
-                        $GLOBALS['plugins'][$className]->activate();
-                    }
+                    $pluginInstance->activate();
                 } else {
-                    $GLOBALS['allplugins'][$className]->enabled = false;
+                    $pluginInstance->enabled = false;
                     dbg($className.' disabled');
                 }
             } else {
