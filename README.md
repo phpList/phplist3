@@ -30,6 +30,14 @@ Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 ---
 
+## Trying out phpList
+
+If you'd like to use phpList for your own campaigns, or you just want try phpList out, there is no need to do all the work of installing it yourself. [phpList Hosted](https://phplist.com) is free to use, just [sign up](https://phplist.com/register) to get started.
+
+If at a later time you do want to migrate from your own installation to phpList Hosted, or vice versa, your data can be migrated.
+
+Alternatively you can try out the latest phpList release at [phplist.org](https://demo.phplist.org/lists/admin/). This installation is wiped and refreshed every hour.
+
 ## Requirements
 See [System requirements](https://resources.phplist.com/system)
 
