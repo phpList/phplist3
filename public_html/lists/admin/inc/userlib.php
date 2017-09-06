@@ -90,26 +90,23 @@ function userSelect($fieldname, $current = '')
 
 function deleteUser($id)
 {
-    global $tables;
+    global $tables, $plugins;
+
+    Sql_Query(sprintf('delete from %s where userid = %d', $tables['linktrack_uml_click'], $id));
     Sql_Query(sprintf('delete from %s where userid = %d', $tables['listuser'], $id));
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['user_attribute'], $id));
     Sql_Query(sprintf('delete from %s where userid = %d', $tables['usermessage'], $id));
-    Sql_Query(sprintf('delete from %s where user = %d', $tables['user_message_bounce'], $id));
-    Sql_Query(sprintf('delete from %s where id = %d', $tables['user'], $id));
+    Sql_Query(sprintf('delete from %s where userid = %d', $tables['user_attribute'], $id));
     Sql_Query(sprintf('delete from %s where userid = %d', $tables['user_history'], $id));
+    Sql_Query(sprintf('delete from %s where user = %d', $tables['user_message_bounce'], $id));
+    Sql_Query(sprintf('delete from %s where user = %d', $tables['user_message_forward'], $id));
+    Sql_Query(sprintf('delete from %s where id = %d', $tables['user'], $id));
+
     if (Sql_table_exists('user_group')) {
         Sql_Query(sprintf('delete from user_group where userid = %d', $id), 1);
     }
-    //## allow plugins to delete their data
-
-    if (is_array($GLOBALS['plugins'])) {
-        foreach ($GLOBALS['plugins'] as $plugin) {
-            //$plugin->deleteUser($id);
-
-            if (method_exists($plugin, 'deleteUser')) {
-                $plugin->deleteUser($id);
-            }
-        }
+    // allow plugins to delete their data
+    foreach ($plugins as $plugin) {
+        $plugin->deleteUser($id);
     }
 }
 
