@@ -1303,7 +1303,7 @@ while ($message = Sql_fetch_array($messages)) {
                 processQueueOutput($GLOBALS['I18N']->get('Not sending to').' '.$userid.', '.$GLOBALS['I18N']->get('already sent').' '.$um[0]);
             }
         }
-        $status = Sql_query("update {$tables['message']} set processed = processed + 1 where id = $messageid");
+        $status = Sql_query("update {$tables['message']} set processed = processed + 1 % 16000000 where id = $messageid");
         $processed = $notsent + $counters['sent'] + $counters['invalid'] + $unconfirmed + $cannotsend + $counters['failed_sent'];
         //if ($processed % 10 == 0) {
         if (0) {
