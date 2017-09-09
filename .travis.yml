@@ -8,6 +8,8 @@ php:
   - 5.5
   - 5.4
   - 5.3
+  
+group: deprecated-2017Q3
 
 before_script:
   - sudo apt-get update > /dev/null
