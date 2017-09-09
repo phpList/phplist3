@@ -11,5 +11,6 @@ default:
           base_url: http://phplist.dev
           db_user: root
           db_password :
+          db_name: phplistdb
           admin_username : admin
           admin_password : Mypassword123+
