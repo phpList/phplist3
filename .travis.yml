@@ -7,16 +7,16 @@ php:
   - 5.6
   - 5.5
   - 5.4
-#  - 5.3
+  - 5.3
 
-# group: deprecated-2017Q3
+dist: precise
 
 before_script:
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
   # Set a custom vhost
-  - sudo sed -i -e "s,/var/www/html,$(pwd)/public_html,g" /etc/apache2/sites-available/000-default.conf
-  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/000-default.conf
+  - sudo sed -i -e "s,/var/www,$(pwd)/public_html,g" /etc/apache2/sites-available/default
+  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
   # Configure Behat
