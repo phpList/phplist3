@@ -494,7 +494,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     }
 
     if (CLICKTRACK && $hash != 'forwarded' && !empty($userdata['id'])) {
-        $urlbase = '';
         // convert html message
         preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
         $clicktrack_root = sprintf('%s://%s/lt.php', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot']);
@@ -505,18 +504,17 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             if (preg_match('/\.$/', $link)) {
                 $link = substr($link, 0, -1);
             }
-            $linkUUID = 0;
-
             $linktext = $links[4][$i];
 
-            //# if the link is text containing a "protocol" eg http:// then do not track it, otherwise
-            //# it will look like Phishing
-            //# it's ok when the link is an image
+            // if the link is text containing a "protocol" eg http:// then do not track it, otherwise
+            // it will look like Phishing
+            // it's ok when the link is an image
             $linktext = strip_tags($linktext);
             $looksLikePhishing = stripos($linktext, 'https://') !== false || stripos($linktext, 'http://') !== false;
 
-            if (!$looksLikePhishing && (preg_match('/^http|ftp/i', $link) || preg_match('/^http|ftp/i',
-                        $urlbase)) && !strpos($link, $clicktrack_root)
+            if (!$looksLikePhishing
+                && preg_match('/^http|ftp/i', $link)
+                && !strpos($link, $clicktrack_root)
             ) {
                 // take off personal uids
                 $url = cleanUrl($link, array('PHPSESSID', 'uid'));
@@ -557,7 +555,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $link = substr($link, 0, -1);
             }
 
-            $linkUUID = 0;
             if (preg_match('/^http|ftp/i', $link)) {
                 $url = cleanUrl($link, array('PHPSESSID', 'uid'));
 
