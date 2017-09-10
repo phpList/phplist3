@@ -513,7 +513,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 //    preg_match_all('/<a href=([^> ]*)([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
         $clicktrack_root = sprintf('%s://%s/lt.php', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot']);
         for ($i = 0; $i < count($links[2]); ++$i) {
-            $link = cleanUrl($links[2][$i]);
+            $link = cleanUrl(trim($links[2][$i]));
             $link = str_replace('"', '', $link);
             if (preg_match('/\.$/', $link)) {
                 $link = substr($link, 0, -1);
