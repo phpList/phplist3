@@ -7967,20 +7967,20 @@ msgstr ""
 msgid "Invalid email"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:462
+#: public_html/lists/admin/inc/userlib.php:459
 #, php-format
 msgid "Removed from blacklist by %s"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:464
+#: public_html/lists/admin/inc/userlib.php:461
 msgid "Removed from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:507
+#: public_html/lists/admin/inc/userlib.php:504
 msgid "Added to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:507
+#: public_html/lists/admin/inc/userlib.php:504
 #, php-format
 msgid "Added to blacklist for reason %s"
 msgstr ""
