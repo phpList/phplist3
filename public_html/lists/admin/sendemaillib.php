@@ -495,23 +495,10 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
     if (CLICKTRACK && $hash != 'forwarded' && !empty($userdata['id'])) {
         $urlbase = '';
-        // let's leave this for now
-        /*
-        if (preg_match('/<base href="(.*)"([^>]*)>/Umis',$htmlmessage,$regs)) {
-          $urlbase = $regs[1];
-        } else {
-          $urlbase = '';
-        }
-    #    print "URLBASE: $urlbase<br/>";
-        */
-
         // convert html message
-//    preg_match_all('/<a href="?([^> "]*)"?([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
         preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
-
-        // to process the Yahoo webpage with base href and link like <a href=link> we'd need this one
-//    preg_match_all('/<a href=([^> ]*)([^>]*)>(.*)<\/a>/Umis',$htmlmessage,$links);
         $clicktrack_root = sprintf('%s://%s/lt.php', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot']);
+
         for ($i = 0; $i < count($links[2]); ++$i) {
             $link = cleanUrl(trim($links[2][$i]));
             $link = str_replace('"', '', $link);
@@ -533,12 +520,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             ) {
                 // take off personal uids
                 $url = cleanUrl($link, array('PHPSESSID', 'uid'));
-
-//        $url = preg_replace('/&uid=[^\s&]+/','',$link);
-
-//        if (!strpos('http:',$link)) {
-//          $link = $urlbase . $link;
-//        }
 
                 $linkUUID = clickTrackLinkId($messageid, $userdata['id'], $url, $link);
 
@@ -565,48 +546,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         }
 
         // convert Text message
-        // first find occurances of our top domain, to avoid replacing them later
-
-        // hmm, this is no point, it's not just *our* topdomain, but any
-
-        if (0) {
-            preg_match_all('#(https?://'.$GLOBALS['website'].'/?)\s+#mis', $textmessage, $links);
-//    preg_match_all('#(https?://[a-z0-9\./\#\?&:@=%\-]+)#ims',$textmessage,$links);
-//    preg_match_all('!(https?:\/\/www\.[a-zA-Z0-9\.\/#~\?+=&%@-_]+)!mis',$textmessage,$links);
-
-            for ($i = 0; $i < count($links[1]); ++$i) {
-                // not entirely sure why strtolower was used, but it seems to break things http://mantis.phplist.com/view.php?id=4406
-//      $link = strtolower(cleanUrl($links[1][$i]));
-                $link = cleanUrl($links[1][$i]);
-                if (preg_match('/\.$/', $link)) {
-                    $link = substr($link, 0, -1);
-                }
-                $linkid = 0;
-                if (preg_match('/^http|ftp/i', $link) && !strpos($link, $clicktrack_root)) {
-                    $url = cleanUrl($link, array('PHPSESSID', 'uid'));
-                    $req = Sql_Query(sprintf('insert ignore into %s (messageid,userid,url,forward)
-          values(%d,%d,"%s","%s")', $GLOBALS['tables']['linktrack'], $messageid, $userdata['id'], $url, $link));
-                    $req = Sql_Fetch_Row_Query(sprintf('select linkid from %s where messageid = %s and userid = %d and forward = "%s"
-        ', $GLOBALS['tables']['linktrack'], $messageid, $userdata['id'], $link));
-                    $linkid = $req[0];
-
-                    $masked = "T|$linkid|$messageid|".$userdata['id'] ^ XORmask;
-                    $masked = urlencode(base64_encode($masked));
-                    $newlink = sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'],
-                        $website.$GLOBALS['pageroot'], $masked);
-                    $textmessage = str_replace($links[0][$i], '<'.$newlink.'>', $textmessage);
-                }
-            }
-        }
-        //now find the rest
-        // @@@ needs to expand to find complete urls like:
-        //http://user:password@www.web-site.com:1234/document.php?parameter=something&otherpar=somethingelse#anchor
-        // or secure
-        //https://user:password@www.website.com:2345/document.php?parameter=something%20&otherpar=somethingelse#anchor
-
         preg_match_all('#(https?://[^\s\>\}\,]+)#mis', $textmessage, $links);
-//    preg_match_all('#(https?://[a-z0-9\./\#\?&:@=%\-]+)#ims',$textmessage,$links);
-//    preg_match_all('!(https?:\/\/www\.[a-zA-Z0-9\.\/#~\?+=&%@-_]+)!mis',$textmessage,$links);
         //# sort the results in reverse order, so that they are replaced correctly
         rsort($links[1]);
         $newlinks = array();
@@ -619,26 +559,17 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
             $linkUUID = 0;
             if (preg_match('/^http|ftp/i', $link)) {
-                // && !strpos($link,$clicktrack_root)) {
                 $url = cleanUrl($link, array('PHPSESSID', 'uid'));
 
                 $linkUUID = clickTrackLinkId($messageid, $userdata['uuid'], $url, $link);
 
-                if (0) {
-                    $masked = "T|$linkUUID|".$cached[$messageid]['uuid'].'|'.$userdata['uuid'] ^ XORmask;
-                    $masked = base64_encode($masked);
-                    //# 15254- the encoding adds one or two extraneous = signs, take them off
-                    $masked = preg_replace('/=$/', '', $masked);
-                    $masked = preg_replace('/=$/', '', $masked);
-                    $masked = urlencode($masked);
-                } else {
-                    $masked = $linkUUID . $cached[$messageid]['uuid'] . $userdata['uuid'];
-                    $uuidLength = strlen($linkUUID);
-                    $masked[14] = substr(bin2hex(random_bytes(1)), 0, 1);
-                    $masked[$uuidLength + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
-                    $masked[$uuidLength * 2 + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
-                    $masked = str_replace('=', '', base64_encode(hex2bin(str_replace('-', '', $masked))));
-                }
+                $masked = $linkUUID . $cached[$messageid]['uuid'] . $userdata['uuid'];
+                $uuidLength = strlen($linkUUID);
+                $masked[14] = substr(bin2hex(random_bytes(1)), 0, 1);
+                $masked[$uuidLength + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
+                $masked[$uuidLength * 2 + 14] = substr(bin2hex(random_bytes(1)), 0, 1);
+                $masked = str_replace('=', '', base64_encode(hex2bin(str_replace('-', '', $masked))));
+
                 if (SIGN_WITH_HMAC) {
                     $masked .= '&hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
                 }
@@ -651,7 +582,6 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                         $masked);
                 }
 
-//        print $links[0][$i] .' -> '.$newlinks[$linkUUID].'<br/>';
                 $textmessage = str_replace($links[1][$i], '[%%%'.$linkUUID.'%%%]', $textmessage);
             }
         }
