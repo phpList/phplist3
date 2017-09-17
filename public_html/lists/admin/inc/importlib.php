@@ -62,7 +62,7 @@ while (list($key, $val) = each($DBstruct['user'])) {
     }
 }
 $subselect = ' where id > 0 ';
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if ( !isSuperUser()) {
     $access = accessLevel('import2');
     if ($access == 'owner') {
         $subselect = ' where owner = '.$_SESSION['logindetails']['id'];

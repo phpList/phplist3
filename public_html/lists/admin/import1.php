@@ -172,7 +172,7 @@ if (isset($_REQUEST['import'])) {
 } else {
     echo FormStart(' enctype="multipart/form-data" name="import"');
 
-    if ($GLOBALS['require_login'] && !isSuperUser()) {
+    if ( !isSuperUser()) {
         $access = accessLevel('import1');
         switch ($access) {
             case 'owner':

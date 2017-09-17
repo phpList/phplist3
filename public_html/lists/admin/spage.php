@@ -14,7 +14,7 @@ if (isset($_POST['active']) && is_array($_POST['active'])) {
 $default = getConfig('defaultsubscribepage');
 
 $subselect = '';
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if ( !isSuperUser()) {
     $access = accessLevel('list');
     switch ($access) {
         case 'owner':

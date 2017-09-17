@@ -33,7 +33,7 @@ if (!empty($link)) {
 }
 
 $link = PageLink2('admin&amp;id=1', s('Go there'));
-if (!empty($link) && $GLOBALS['require_login']) {
+if (!empty($link)) {
     $html .= '<tr><td>'.s('Change admin password').' </td>
   <td>' .$link.'</td><td>';
     $curpwd = Sql_Fetch_Row_Query("select password from {$tables['admin']} where loginname = \"admin\"");

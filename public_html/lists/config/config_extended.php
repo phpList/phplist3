@@ -132,13 +132,6 @@ Security related settings
 
 */
 
-// set this to 1 if you want phpList to deal with login for the administrative
-// section of the system
-// you will be able to add administrators who control their own lists
-// default login is "admin" with password "phplist"
-
-$require_login = 1;
-
 // if you use login, how many lists can be created per administrator
 define('MAXLIST', 1);
 
