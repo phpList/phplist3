@@ -103,6 +103,13 @@ while (list($table, $tablename) = each($GLOBALS['tables'])) {
 echo $ls->display();
 if ($pass) {
     cl_output('PASS');
+    $dbversion = getConfig('version');
+    if (empty($dbversion)) {
+        SaveConfig('version', VERSION, 0);
+        if (defined('RELEASEDATE')) {
+            SaveConfig('releaseDBversion', RELEASEDATE, 0);
+        }
+    }
 } else {
     cl_output('FAIL');
 }
