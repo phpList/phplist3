@@ -1420,82 +1420,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:830
+#: public_html/lists/admin/sendemaillib.php:757
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1020
+#: public_html/lists/admin/sendemaillib.php:947
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1037
+#: public_html/lists/admin/sendemaillib.php:964
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1041
+#: public_html/lists/admin/sendemaillib.php:968
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1047
+#: public_html/lists/admin/sendemaillib.php:974
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1049
+#: public_html/lists/admin/sendemaillib.php:976
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1053
+#: public_html/lists/admin/sendemaillib.php:980
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1055
+#: public_html/lists/admin/sendemaillib.php:982
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1093
+#: public_html/lists/admin/sendemaillib.php:1020
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1136
+#: public_html/lists/admin/sendemaillib.php:1063
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1138
-#: public_html/lists/admin/sendemaillib.php:1153
+#: public_html/lists/admin/sendemaillib.php:1065
+#: public_html/lists/admin/sendemaillib.php:1080
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1143
+#: public_html/lists/admin/sendemaillib.php:1070
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1150
+#: public_html/lists/admin/sendemaillib.php:1077
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1151
+#: public_html/lists/admin/sendemaillib.php:1078
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1172
-#: public_html/lists/admin/sendemaillib.php:1174
+#: public_html/lists/admin/sendemaillib.php:1099
+#: public_html/lists/admin/sendemaillib.php:1101
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
@@ -7967,20 +7967,20 @@ msgstr ""
 msgid "Invalid email"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:462
+#: public_html/lists/admin/inc/userlib.php:459
 #, php-format
 msgid "Removed from blacklist by %s"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:464
+#: public_html/lists/admin/inc/userlib.php:461
 msgid "Removed from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:507
+#: public_html/lists/admin/inc/userlib.php:504
 msgid "Added to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/inc/userlib.php:507
+#: public_html/lists/admin/inc/userlib.php:504
 #, php-format
 msgid "Added to blacklist for reason %s"
 msgstr ""
