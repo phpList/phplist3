@@ -134,7 +134,7 @@ if (!empty($_POST['importcontent'])) {
     return;
 }
 
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if (!isSuperUser()) {
     $access = accessLevel('import1');
     switch ($access) {
         case 'owner':

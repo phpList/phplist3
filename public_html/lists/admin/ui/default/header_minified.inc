@@ -10,7 +10,7 @@
 		<div id="logo"><a href="https://www.phplist.com" target="_blank"><img src="ui/default/images/branding.png" alt="phpList, email newsletter manager, logo" title="phpList, the world's most popular Open Source newsletter manager" /></a></div>
 		<div id="logged">
 <?php
-  if ($GLOBALS["require_login"] && (!isset ($_SESSION["adminloggedin"]) || !$_SESSION["adminloggedin"])) {
+  if (empty($_SESSION["adminloggedin"])) {
     print ('<a id="login" href="./?page=home">Login</a> ');
   } else {
     print ('<a id="logout" href="./?page=logout">Logout</a>');

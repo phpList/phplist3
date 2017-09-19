@@ -8,7 +8,7 @@ if (!empty($_GET['id'])) {
     $id = 0;
 }
 
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if ( !isSuperUser()) {
     $access = accessLevel('editlist');
     switch ($access) {
         case 'owner':
@@ -52,7 +52,7 @@ if ($id) {
 }
 
 if (!empty($_POST['addnewlist']) && !empty($_POST['listname'])) {
-    if ($GLOBALS['require_login'] && !isSuperUser()) {
+    if (!isSuperUser()) {
         $owner = $_SESSION['logindetails']['id'];
     }
     if (!isset($_POST['active'])) {
@@ -146,7 +146,7 @@ if (empty($list['category'])) {
 <div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
 <div class="field"><input type="text" name="listorder" value="<?php echo $list['listorder'] ?>" class="listorder"/>
 </div>
-<?php if ($GLOBALS['require_login'] && (isSuperUser() || accessLevel('editlist') == 'all')) {
+<?php if (accessLevel('editlist') == 'all') {
             if (empty($list['owner'])) {
                 $list['owner'] = $_SESSION['logindetails']['id'];
             }

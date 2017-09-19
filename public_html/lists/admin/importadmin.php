@@ -297,7 +297,7 @@ if (!empty($_POST['import'])) {
 } else {
     echo formStart('enctype="multipart/form-data" name="import" class="importadminDo" ') ?>
     <?php
-    if ($GLOBALS['require_login'] && !isSuperUser()) {
+    if (!isSuperUser()) {
         $access = accessLevel('importadmin');
         if ($access == 'owner') {
             $subselect = ' where owner = '.$_SESSION['logindetails']['id'];

@@ -742,9 +742,6 @@ if (!isset($GLOBALS['admin_auth_module'])) {
 if ($GLOBALS['admin_auth_module'] == 'phplist_auth.inc') {
     $GLOBALS['admin_auth_module'] = '';
 }
-if (!isset($GLOBALS['require_login'])) {
-    $GLOBALS['require_login'] = 1;
-}
 if (!isset($GLOBALS['noteditableconfig'])) {
     $GLOBALS['noteditableconfig'] = array();
 }

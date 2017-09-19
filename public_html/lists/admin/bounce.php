@@ -39,7 +39,7 @@ if (!$id && !$delete) {
     exit;
 }
 
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if (!isSuperUser()) {
     $access = accessLevel('bounce');
     switch ($access) {
         case 'all':
@@ -55,7 +55,7 @@ if (isset($start)) {
     echo '<br />'.PageLink2('bounces', $GLOBALS['I18N']->get('Back to the list of bounces'), "start=$start")."\n";
 }
 
-if (isset($_GET['doit']) && (($GLOBALS['require_login'] && isSuperUser()) || !$GLOBALS['require_login'])) {
+if (isset($_GET['doit']) && isSuperUser()) {
     if ($useremail) {
         $req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',
             $tables['user'], sql_escape($useremail)));

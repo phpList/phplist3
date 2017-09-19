@@ -6,7 +6,7 @@ $result = '';
 
 if (isset($_REQUEST['delete']) && $_REQUEST['delete']) {
     $result .= s('deleting bounce %d', $_REQUEST['delete'])."..\n";
-    if ($GLOBALS['require_login'] && !isSuperUser()) {
+    if (!isSuperUser()) {
     } else {
         deleteBounce($_REQUEST['delete']);
     }

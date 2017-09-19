@@ -89,7 +89,7 @@ switch ($access) {
 echo '<div class="actions">';
 echo PageLinkButton('catlists', $I18N->get('Categorise lists'));
 $canaddlist = false;
-if ($GLOBALS['require_login'] && !isSuperUser()) {
+if ( !isSuperUser()) {
     $numlists = Sql_Fetch_Row_query("select count(*) from {$tables['list']} where owner = ".$_SESSION['logindetails']['id']);
     if ($numlists[0] < MAXLIST) {
         echo PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list'));
@@ -278,16 +278,6 @@ while ($row = Sql_fetch_array($result)) {
         sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />', $row['id'],
             $row['active'] ? 'checked="checked"' : '',
             listUsedInSubscribePage($row['id']) ? ' disabled="disabled" ' : ''));
-    /*  $owner = adminName($row['owner']);
-      if (!empty($owner)) {
-        $ls->addColumn($element,
-          $GLOBALS['I18N']->get('Owner'),$GLOBALS['require_login'] ? adminName($row['owner']):$GLOBALS['I18N']->get('n/a'));
-      }
-      if (trim($desc) != '') {
-        $ls->addRow($element,
-          $GLOBALS['I18N']->get('Description'),$desc);
-      }
-      */
     $ls->addColumn($element,
         $GLOBALS['I18N']->get('Order'),
         sprintf('<input type="text" name="listorder[%d]" value="%d" size="3" class="listorder" />', $row['id'],

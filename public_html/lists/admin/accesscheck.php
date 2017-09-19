@@ -9,7 +9,7 @@ if (!defined('PHPLISTINIT')) {
 function accessLevel($page)
 {
     global $tables, $access_levels;
-    if (!$GLOBALS['require_login'] || isSuperUser()) {
+    if (isSuperUser()) {
         return 'all';
     }
     if (!isset($_SESSION['adminloggedin'])) {

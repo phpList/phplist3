@@ -1481,7 +1481,7 @@ function addSubscriberStatistics($item, $amount, $list = 0)
 
 function deleteMessage($id = 0)
 {
-    if (!$GLOBALS['require_login'] || $_SESSION['logindetails']['superuser']) {
+    if (isSuperUser()) {
         $ownerselect_and = '';
         $ownerselect_where = '';
     } else {

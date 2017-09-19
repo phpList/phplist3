@@ -658,7 +658,7 @@ if (!$done) {
             }
             $messagedata['fromfield'] = $defaultFrom;
 
-            if (!isSuperUser() && USE_ADMIN_DETAILS_FOR_MESSAGES && is_object($GLOBALS['admin_auth']) && $GLOBALS['require_login']) {
+            if (!isSuperUser() && USE_ADMIN_DETAILS_FOR_MESSAGES && is_object($GLOBALS['admin_auth'])) {
                 $adminemail = $GLOBALS['admin_auth']->adminEmail($_SESSION['logindetails']['id']);
                 if (!empty($adminemail)) {
                     $messagedata['fromfield'] = $GLOBALS['admin_auth']->adminName($_SESSION['logindetails']['id']).' '.$adminemail;

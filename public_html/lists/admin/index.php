@@ -177,6 +177,7 @@ if (isset($GLOBALS['pageheader'])) {
     }
 }
 
+$GLOBALS['require_login'] = 1; ## this is no longer configurable and should never have been
 if ($GLOBALS['commandline']) {
     if (!isset($_SERVER['USER']) && count($GLOBALS['commandline_users'])) {
         clineError('USER environment variable is not defined, cannot do access check. Please make sure USER is defined.');
@@ -470,7 +471,7 @@ if (!$ajax) {
 }
 echo '<div class="hidden">'.PageLink2('home', s('Main page')).'</div>';
 
-if ($GLOBALS['require_login'] && $page != 'login') {
+if ($page != 'login') {
     if ($page == 'logout') {
         $greeting = $GLOBALS['I18N']->get('goodbye');
     } else {

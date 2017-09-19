@@ -19,7 +19,7 @@ $messageSortOptions = array(
     'sentdesc'    => s('Sent').' - '.s('Descending'),
 );
 
-if (!$GLOBALS['require_login'] || $_SESSION['logindetails']['superuser'] || $access == 'all') {
+if ($access == 'all') {
     $ownerselect_and = '';
     $ownerselect_where = '';
 } else {
@@ -293,7 +293,7 @@ if (!empty($_SESSION['messagefilter'])) {
 }
 
 //## Query messages from db
-if ($GLOBALS['require_login'] && !$_SESSION['logindetails']['superuser'] || $access != 'all') {
+if ($access != 'all') {
     $where[] = ' owner = '.$_SESSION['logindetails']['id'];
 }
 $whereClause = ' where '.implode(' and ', $where);

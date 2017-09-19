@@ -384,7 +384,7 @@ echo '</div>'; // accordion
 
 $ownerHTML = $singleOwner = '';
 $adminCount = 0;
-if ($GLOBALS['require_login'] && (isSuperUser() || accessLevel('spageedit') == 'all')) {
+if (isSuperUser() || accessLevel('spageedit') == 'all') {
     if (!isset($data['owner'])) {
         $data['owner'] = 0;
     }

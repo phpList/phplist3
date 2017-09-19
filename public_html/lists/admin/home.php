@@ -407,7 +407,7 @@ if (checkAccess('eventlog')) {
         PageLinkClass('eventlog', $GLOBALS['I18N']->get('View the eventlog'), '', 'hometext'));
     $ls->setClass($element, 'view-log');
 }
-if (checkAccess('admin') && $GLOBALS['require_login'] && !isSuperUser()) {
+if (checkAccess('admin') && !isSuperUser()) {
     $some = 1;
     $element = $GLOBALS['I18N']->get('admin');
     $ls->addElement($element, PageURL2('admin'));

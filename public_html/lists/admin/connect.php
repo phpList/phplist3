@@ -859,7 +859,7 @@ function contextMenu()
     //   $GLOBALS["context_menu"]["bouncemgt"] = '';
     // }
 
-    if ($GLOBALS['require_login'] && (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin'])) {
+    if (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
         return '<ul class="contextmenu">'.$spb.PageLink2('home',
             $GLOBALS['I18N']->get('Main Page')).'<br />'.$spe.$spb.PageLink2('about',
             $GLOBALS['I18N']->get('about').' phplist').'<br />'.$spe.'</ul>';
