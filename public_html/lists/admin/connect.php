@@ -1203,9 +1203,9 @@ function PageLinkDialog($name, $desc = '', $url = '', $extraclass = '')
  * As PageLink2, but add the option to ajax it in a popover window
  * 
  * @param string $name
- * @param string|null $desc
- * @param string|null $url
- * @param string|null $extraclass
+ * @param string $desc
+ * @param string $url
+ * @param string $extraclass
  * 
  * @return string
  *   Formatted HTML link ready for printing
