@@ -502,7 +502,7 @@ if (!$GLOBALS['commandline']) {
 
 if (!$ajax && $page != 'login') {
     if (strpos(VERSION, 'dev') && !TEST) {
-        if ($GLOBALS['developer_email']) {
+        if (!empty($GLOBALS['developer_email'])) {
             Info('Running DEV version. All emails will be sent to '.$GLOBALS['developer_email']);
         } else {
             Info('Running DEV version, but developer email is not set');
