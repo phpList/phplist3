@@ -1201,13 +1201,21 @@ function PageLinkDialog($name, $desc = '', $url = '', $extraclass = '')
 
 /**
  * As PageLink2, but add the option to ajax it in a popover window
+ * 
+ * @param string $name
+ * @param string|null $desc
+ * @param string|null $url
+ * @param string|null $extraclass
+ * 
+ * @return string
+ *   Formatted HTML link ready for printing
  */
 function PageLinkDialogOnly($name, $desc = '', $url = '', $extraclass = '')
 {
-    $decFormatted = htmlspecialchars($desc);
-    $link = PageLink2($name, $decFormatted, $url);
+    $descFormatted = htmlspecialchars($desc);
+    $link = PageLink2($name, $descFormatted, $url);
     if ($link) {
-        $link = str_replace('<a ', '<a class="opendialog '.$extraclass.'" title="'.$decFormatted.'"', $link);
+        $link = str_replace('<a ', '<a class="opendialog '.$extraclass.'" title="'.$descFormatted.'"', $link);
         $link .= '';
     }
 
