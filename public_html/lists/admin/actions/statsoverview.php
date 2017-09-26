@@ -98,7 +98,7 @@ while ($row = Sql_Fetch_Array($req)) {
 
     if ($messagedata['subject'] != $messagedata['campaigntitle']) {
         $element = '<!--'.$row['messageid'].'-->'
-        .'<strong>'.shortenTextDisplay($messagedata['subject'], 30).'</strong>';
+        .'<strong>'.shortenTextDisplay($messagedata['campaigntitle'], 30).'</strong>';
     } else {
         $element = '<!--'.$row['messageid'].'-->'
         .shortenTextDisplay($messagedata['subject'], 30);
