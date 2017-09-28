@@ -1,24 +1,30 @@
-# Setup the test framework
+# Automated testing of phpList
 
-### Install composer globally
+## Acceptance tests (UAT)
+
+[Behat](http://behat.org/en/latest/) is used to execute User Acceptance Tests written in [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin). These tests are stored in `tests/features/`.
+
+### Execute Acceptance tests
+
+#### Install composer globally
 ```sh
 $ curl -sS https://getcomposer.org/installer | php
 $ mv composer.phar /usr/local/bin/composer
 ```
 You can read the official documentation [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
-### Install Behat
+#### Install Behat
 To install behat and other dependencies run the following command on the project root: 
 ```sh
 $ composer install
 ```
-### Configure Behat
+#### Configure Behat
 run the following command:
 ```sh
 $ cp default.behat.yml behat.yml
 ```
 Edit _behat.yml_ file and customize your **base_url**
 
-### Initial setup
+#### Database setup
 Create a database, but keep it empty
 
 ```sh
@@ -26,12 +32,12 @@ $ mysqladmin -uroot -p create phplisttestdb
 $ mysqladmin -uroot -p -e "grant all on phplisttestdb.* to phplist@localhost identified by 'testpassword'"
 ```
 
-edit your phplist config file to use these details
+Edit your phplist `config.php` [file](https://www.phplist.org/manual/ch028_installation.xhtml#edit-the-phplist-config-php-file) to use these details
 
-### Run The tests
-Execute the following command:
+#### Run The tests
+Execute the following command from within your phpList 3 code root directory:
 ```sh
 $ vendor/bin/behat
 ```
-### TODO
+#### TODO
 Add writing tests documentation.
