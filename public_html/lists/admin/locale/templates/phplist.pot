@@ -608,7 +608,7 @@ msgstr ""
 #: public_html/lists/admin/msgstatus.php:29
 #: public_html/lists/admin/messages.php:83
 #: public_html/lists/admin/actions/msgstatus.php:74
-#: public_html/lists/admin/actions/statsoverview.php:119
+#: public_html/lists/admin/actions/statsoverview.php:136
 #: public_html/lists/admin/actions/mviews.php:96
 #: public_html/lists/admin/userhistory.php:126
 #: public_html/lists/admin/uclicks.php:133
@@ -4176,40 +4176,12 @@ msgstr ""
 msgid "There are currently no campaigns to view"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:116
+#: public_html/lists/admin/actions/statsoverview.php:130
 #: public_html/lists/admin/bounces.php:161
 msgid "Campaign"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:120
-#: public_html/lists/admin/users.php:475
-msgid "bncs"
-msgstr ""
-
-#: public_html/lists/admin/actions/statsoverview.php:121
-msgid "fwds"
-msgstr ""
-
-#: public_html/lists/admin/actions/statsoverview.php:122
-#: public_html/lists/admin/actions/statsoverview.php:143
-#: public_html/lists/admin/actions/mviews.php:98
-#: public_html/lists/admin/actions/mviews.php:115
-#: public_html/lists/admin/mviews.php:139
-msgid "views"
-msgstr ""
-
-#: public_html/lists/admin/actions/statsoverview.php:128
-msgid "Unique Clicks"
-msgstr ""
-
-#: public_html/lists/admin/actions/statsoverview.php:132
-#: public_html/lists/admin/actions/statsoverview.php:145
-#: public_html/lists/admin/actions/mviews.php:101
-#: public_html/lists/admin/actions/mviews.php:117
-msgid "rate"
-msgstr ""
-
-#: public_html/lists/admin/actions/statsoverview.php:133
+#: public_html/lists/admin/actions/statsoverview.php:135
 #: public_html/lists/admin/actions/mviews.php:90
 #: public_html/lists/admin/actions/mviews.php:93
 #: public_html/lists/admin/eventlog.php:110
@@ -4218,9 +4190,36 @@ msgstr ""
 msgid "date"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:141
+#: public_html/lists/admin/actions/statsoverview.php:137
+#: public_html/lists/admin/users.php:475
+msgid "bncs"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:138
+msgid "fwds"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:139
+#: public_html/lists/admin/actions/statsoverview.php:153
+#: public_html/lists/admin/actions/mviews.php:98
+#: public_html/lists/admin/actions/mviews.php:115
+#: public_html/lists/admin/mviews.php:139
+msgid "views"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:142
+msgid "Unique Clicks"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:151
 #: public_html/lists/admin/actions/mviews.php:113
 msgid "Comparison to other admins"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:155
+#: public_html/lists/admin/actions/mviews.php:101
+#: public_html/lists/admin/actions/mviews.php:117
+msgid "rate"
 msgstr ""
 
 #: public_html/lists/admin/actions/reconcileusers.php:6
