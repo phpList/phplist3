@@ -22,7 +22,7 @@ run the following command:
 ```sh
 $ cp default.behat.yml behat.yml
 ```
-Edit _behat.yml_ file and customize your **base_url**
+Edit _behat.yml_ file and customize your `base_url`. The `base_url` determines which phpList server you wish to test. This could be a local development copy running on your machine, or a remotely hosted server. 
 
 #### Database setup
 Create a database, but keep it empty
