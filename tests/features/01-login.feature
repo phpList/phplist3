@@ -6,7 +6,7 @@ Feature: Login
     Scenario: Login as administrator
         Given I am on "/lists/admin/"
         When I fill in "login" with "admin"
-        And I fill in "password" with "Mypassword123+"
+        And I fill in "password" with "SuelaPassword"
         And I press "Continue"
         Then I should see "Start or continue a campaign"
 

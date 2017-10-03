@@ -1,6 +1,10 @@
 <?php
 
+namespace Context;
+
+use BaseContext;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
 
 //
 // Require 3rd-party libraries here:
@@ -12,7 +16,7 @@ use Behat\MinkExtension\Context\MinkContext;
 /**
  * Features context.
  */
-class FeatureContext extends MinkContext
+class FeatureContext extends RawMinkContext
 {
 
     private $params = array();
@@ -35,6 +39,86 @@ class FeatureContext extends MinkContext
             , $this->params['db_name']
         );
     }
+
+    public function __call($method, $parameters)
+    {
+        // we try to call the method on the Page first
+        $page = $this->getSession()->getPage();
+        if (method_exists($page, $method)) {
+            return call_user_func_array(array($page, $method), $parameters);
+        }
+
+        // we try to call the method on the Session
+        $session = $this->getSession();
+        if (method_exists($session, $method)) {
+            return call_user_func_array(array($session, $method), $parameters);
+        }
+
+        // could not find the method at all
+        throw new \RuntimeException(sprintf(
+            'The "%s()" method does not exist.', $method
+        ));
+    }
+
+    /**
+     * Everyone who tried Behat with Mink and a JavaScript driver (I use 
+     * Selenium2Driver with phantomjs) has had issues with trying to assert something 
+     * in the current web page while some JavaScript code has not been finished yet 
+     * (pending Ajax query for example).
+     * 
+     * The proper and recommended way of dealing with these issues is to use a spin 
+     * method in your context, that will run the assertion or code multiple times 
+     * before failing. Here is my implementation that you can add to your BaseContext:
+     */
+    public function spins($closure, $tries = 10)
+    {
+        for ($i = 0; $i <= $tries; $i++) {
+            try {
+                $closure();
+
+                return;
+            } catch (\Exception $e) {
+                if ($i == $tries) {
+                    throw $e;
+                }
+            }
+
+            sleep(1);
+        }
+    }
+
+    /**
+     * @When something long is taking long but should output :text
+     */
+    public function somethingLongShouldOutput($text)
+    {
+        $this->find('css', 'button#longStuff')->click();
+
+        $this->spins(function() use ($text) { 
+            $this->assertSession()->pageTextContains($text);
+        });
+    }
+
+    /**
+     * @Then do something on a button that might not be there yet
+     */
+    public function doSomethingNotThereYet()
+    {
+        $this->spins(function() { 
+            $button = $this->find('css', 'button#mightNotBeThereYet');
+            if (!$button) {
+                throw \Exception('Button is not there yet :(');
+            }
+            $button->click();
+        });
+    }
+
+    // Output page contents in case of failure
+    protected function throwExpectationException($message)
+    {
+        throw new ExpectationException($message, $this->getSession());
+    }
+
 
 //
 // Place your definition and hook methods here:
@@ -80,7 +164,15 @@ class FeatureContext extends MinkContext
     public function iHaveNotYetCreatedCampaigns()
     {
         // Count the number of campaigns in phplist_message table
-        $result = mysqli_fetch_assoc(mysqli_query($this->db,'select count(*) as count from phplist_message;'));
+        $result = mysqli_fetch_assoc(
+            mysqli_query(
+                $this->db,'
+                    select 
+                        count(*) as count 
+                    from 
+                        phplist_message;
+                ')
+        );
         $campaignCount = $result['count'];
 
         if ($campaignCount > 0) {
@@ -96,6 +188,8 @@ class FeatureContext extends MinkContext
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
+        if ($this->getSession()->getPage()->findLink('Dashboard')) {
+            throw new \ExpectationException('Login failed: Dashboard link not found');
+        }
     }
-
 }
