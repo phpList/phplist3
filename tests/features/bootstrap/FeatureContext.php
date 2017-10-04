@@ -1,10 +1,10 @@
 <?php
 
-namespace Context;
+use Behat\Behat\Context\Context;
 
-use BaseContext;
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\MinkExtension\Context\RawMinkContext;
+#use Behat\MinkExtension\Context\RawMinkContext;
 
 //
 // Require 3rd-party libraries here:
@@ -16,9 +16,8 @@ use Behat\MinkExtension\Context\RawMinkContext;
 /**
  * Features context.
  */
-class FeatureContext extends RawMinkContext
+class FeatureContext extends MinkContext
 {
-
     private $params = array();
     private $data = array();
 
@@ -28,9 +27,18 @@ class FeatureContext extends RawMinkContext
      *
      * @param array $parameters context parameters (set them up through behat.yml)
      */
-    public function __construct(array $parameters)
+    public function __construct($base_url, $db_user, $db_password, $db_name, $admin_username, $admin_password)
     {
-        $this->params = $parameters;
+    
+        $this->params = array(
+            'base_url' => $base_url
+            , 'db_user' => $db_user
+            , 'db_password' => $db_password
+            , 'db_name' => $db_name
+            , 'admin_username' => $admin_username
+            , 'admin_password' => $admin_password
+        );
+        
         $this->db = mysqli_init();
         mysqli_real_connect(
             $this->db
@@ -86,6 +94,12 @@ class FeatureContext extends RawMinkContext
             sleep(1);
         }
     }
+    
+    // Output page contents in case of failure
+    protected function throwExpectationException($message)
+    {
+        throw new ExpectationException($message, $this->getSession());
+    }
 
     /**
      * @When something long is taking long but should output :text
@@ -111,12 +125,6 @@ class FeatureContext extends RawMinkContext
             }
             $button->click();
         });
-    }
-
-    // Output page contents in case of failure
-    protected function throwExpectationException($message)
-    {
-        throw new ExpectationException($message, $this->getSession());
     }
 
 
@@ -189,7 +197,7 @@ class FeatureContext extends RawMinkContext
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
         if ($this->getSession()->getPage()->findLink('Dashboard')) {
-            throw new \ExpectationException('Login failed: Dashboard link not found');
+            $this->throwExpectationException('Login failed: Dashboard link not found');
         }
     }
 }
