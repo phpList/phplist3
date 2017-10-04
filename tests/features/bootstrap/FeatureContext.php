@@ -213,7 +213,8 @@ class FeatureContext extends MinkContext
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
-        if ($this->getSession()->getPage()->findLink('Dashboard')) {
+        
+        if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
             $this->throwExpectationException('Login failed: Dashboard link not found');
         }
     }
