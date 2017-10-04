@@ -6,9 +6,9 @@ Feature: Create new campaign
 
     Scenario: Login and create a campaign
         Given I have logged in as an administrator
-        Given No campaigns yet exist
-        Then I should see "Start or continue a campaign"
-        When I follow "Start or continue a campaign"
+        When I follow "Send a campaign"
+        # FIXME: won't work on travis
+        When I follow "start a new campaign"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
         And I fill in "fromfield" with "From me me@mydomain.com"
@@ -29,21 +29,18 @@ Feature: Create new campaign
         When I follow "Finish"
         And I press "send"
         Then I should see "Campaign queued"
-#    Then print last response
 
   # Switch to using a scenario outline that tests subaccounts also
     Scenario: Select a list to send the campaign to
         Given I have logged in as an administrator
-        #Given No campaigns yet exist
-        #Then I should see "Start or continue a campaign"
         When I follow "Send a campaign"
+        # FIXME: won't work on travis
         When I follow "start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
         And the "targetlist[all]" checkbox should not be checked
         And the "targetlist[allactive]" checkbox should not be checked
-        Then print last response
 
 
 
