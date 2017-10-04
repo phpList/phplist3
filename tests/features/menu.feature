@@ -28,3 +28,4 @@ Feature: Navigate the app using the menu
     And I press "send"
     Then I should see "Campaign queued"
 #    Then print last response
+    Then I save screenshot
