@@ -96,6 +96,7 @@ class FeatureContext extends MinkContext
     }
     
     // Output page contents in case of failure
+    // TODO: extend docs
     protected function throwExpectationException($message)
     {
         throw new ExpectationException($message, $this->getSession());
@@ -148,6 +149,22 @@ class FeatureContext extends MinkContext
         mysqli_query($this->db,'drop database if exists phplistbehattestdb');
         mysqli_query($this->db,'create database phplistbehattestdb');
     }
+    
+    /**
+     * @When I fill in :arg1 with a valid username
+     */
+    public function iFillInWithAValidUsername($arg1)
+    {
+        $this->fillField($arg1, $this->params['admin_username']);
+    }
+
+    /**
+     * @When I fill in :arg1 with a valid password
+     */
+    public function iFillInWithAValidPassword($arg1)
+    {
+        $this->fillField($arg1, $this->params['admin_password']);
+    }
 
     /**
      * @When /^I fill in "([^"]*)" with an email address$/
@@ -189,8 +206,8 @@ class FeatureContext extends MinkContext
     }
 
     /**
-    * @Given /^I have logged in as an administrator$/
-    */
+     * @Given /^I have logged in as an administrator$/
+     */
     public function iAmAuthenticatedAsAdmin() {
         $this->visit($this->params['base_url'] . '/lists/admin/');
         $this->fillField('login', $this->params['admin_username']);
