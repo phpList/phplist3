@@ -839,3 +839,12 @@ define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 // Allow admin to enter a different message that will be sent when forwarding 'to a friend'
 // This will show an extra tab in the message dialog.
 define('FORWARD_ALTERNATIVE_CONTENT', 0);
+
+#########################################################
+// Pop-Before-Smtp
+#########################################################
+define('POPBEFORESMTP', true);
+$phpmailer_popserver = 'pop3.example.com';
+$phpmailer_popuser = 'user@example.com';
+$phpmailer_poppassword = 'XXXXXXXXX';
+

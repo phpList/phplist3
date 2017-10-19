@@ -125,6 +125,22 @@ class PHPlistMailer extends PHPMailer
                 $this->SMTPAuth = true;
             }
             $this->Mailer = 'smtp';
+	} elseif (defined('POPBEFORESMTP') && POPBEFORESMPT != '') {
+		// PopBeforeSmtp
+		$popuser = $GLOBALS['phpmailer_popuser'];
+		$poppassword = $GLOBALS['phpmailer_poppassword'];
+		$popserver = $GLOBALS['phpmailer_popserver'];
+
+		$pop = new POP3();
+		$pop->Authorise($popserver, 110, 30, $popuser, $poppassword, 1);
+
+		$this->Host = $popserver;
+		if (defined('POPBEFORESMTP_DEBUG')) {
+			$this->SMTPDebug = 2;
+			//Ask for HTML-friendly debug output
+			$this->Debugoutput = 'html';
+		}
+		$this->Mailer = "smtp";
         } elseif (USE_AMAZONSES) {
             $this->Mailer = 'amazonSes';
         } elseif (USE_LOCAL_SPOOL && is_dir(USE_LOCAL_SPOOL) && is_writable(USE_LOCAL_SPOOL)) {
