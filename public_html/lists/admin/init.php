@@ -527,6 +527,9 @@ if (!defined('MAX_PROCESS_MESSAGE')) {
 if (!defined('ALLOW_DELETEBOUNCE')) {
     define('ALLOW_DELETEBOUNCE', 1);
 }
+if (!defined('DEBUG_DELETE_BOUNCES')) {
+    define('DEBUG_DELETE_BOUNCES', 0);
+}
 if (!defined('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD')) {
     define('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD', 120);
 }
