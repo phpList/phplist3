@@ -123,7 +123,7 @@ $bounce_mailbox_purge_unprocessed = 1;
 $bounce_unsubscribe_threshold = 5;
 
 // Allow admin to receive "deletebounce" by mail
-define('DEBUG_DELETE_BOUNCES', 1);
+define('REPORT_DELETED_BOUNCES', 1);
 
 /*
 
