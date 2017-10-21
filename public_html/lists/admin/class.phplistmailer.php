@@ -107,8 +107,8 @@ class PHPlistMailer extends PHPMailer
                 && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
             ) {
                 $this->Username = $GLOBALS['phpmailer_smtpuser'];
-                $this->Password = $GLOBALS['phpmailer_smtppassword'];
-                $this->SMTPAuth = true;
+	        $this->Password = $GLOBALS['phpmailer_smtppassword'];
+         	$this->SMTPAuth = true;
             }
             $this->Mailer = 'smtp';
         } elseif (defined('PHPMAILERHOST') && PHPMAILERHOST != '') {
@@ -117,30 +117,25 @@ class PHPlistMailer extends PHPMailer
             }
             //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERHOST;
-            if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
-                && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
-            ) {
-                $this->Username = $GLOBALS['phpmailer_smtpuser'];
-                $this->Password = $GLOBALS['phpmailer_smtppassword'];
-                $this->SMTPAuth = true;
-            }
-            $this->Mailer = 'smtp';
-	} elseif (defined('POPBEFORESMTP') && POPBEFORESMPT != '') {
-		// PopBeforeSmtp
-		$popuser = $GLOBALS['phpmailer_popuser'];
-		$poppassword = $GLOBALS['phpmailer_poppassword'];
-		$popserver = $GLOBALS['phpmailer_popserver'];
+            if (POP_BEFORE_SMTP) {
+                // authenticate using the smtp user and password
+                $pop = new POP3();
 
-		$pop = new POP3();
-		$pop->Authorise($popserver, 110, 30, $popuser, $poppassword, 1);
-
-		$this->Host = $popserver;
-		if (defined('POPBEFORESMTP_DEBUG')) {
-			$this->SMTPDebug = 2;
-			//Ask for HTML-friendly debug output
-			$this->Debugoutput = 'html';
-		}
-		$this->Mailer = "smtp";
+                if (!$pop->authorise(PHPMAILERHOST, 110, 30, $GLOBALS['phpmailer_smtpuser'], $GLOBALS['phpmailer_smtppassword'], 1)) {
+                    // unable to authenticate, there might be an error message in $pop->getErrors()
+                }
+                
+            } else {
+                // the existing smtp code
+                if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+                    && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
+                ) {
+                    $this->Username = $GLOBALS['phpmailer_smtpuser'];
+                    $this->Password = $GLOBALS['phpmailer_smtppassword'];
+                    $this->SMTPAuth = true;
+                }
+            }            
+	    $this->Mailer = 'smtp';
         } elseif (USE_AMAZONSES) {
             $this->Mailer = 'amazonSes';
         } elseif (USE_LOCAL_SPOOL && is_dir(USE_LOCAL_SPOOL) && is_writable(USE_LOCAL_SPOOL)) {
