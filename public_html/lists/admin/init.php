@@ -252,6 +252,9 @@ if (!defined('UNSUBSCRIBE_REQUIRES_PASSWORD')) {
 if (!defined('UNSUBSCRIBE_JUMPOFF')) {
     define('UNSUBSCRIBE_JUMPOFF', 1);
 }
+if (!defined('UNSUBSCRIBE_MAILTO')) {
+    define('UNSUBSCRIBE_MAILTO', 0);
+}
 if (!defined('SHOW_UNSUBSCRIBELINK')) {
     define('SHOW_UNSUBSCRIBELINK', true);
 }

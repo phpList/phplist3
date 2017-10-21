@@ -177,6 +177,9 @@ define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 // the default way, which will ask them for a reason, set this to 1
 define('UNSUBSCRIBE_JUMPOFF', 0);
 
+// To Add a mailto to list-unsubscribe Header, set this to 1
+define('UNSUBSCRIBE_MAILTO', 1);
+
 // when a user unsubscribes they are sent one final email informing them of
 // their unsubscription. In order for that email to actually go out, a gracetime
 // needs to be set otherwise it will never go out. The default of 5 minutes should
