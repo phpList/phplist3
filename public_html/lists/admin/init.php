@@ -259,7 +259,7 @@ if (!defined('SHOW_SUBSCRIBELINK')) {
     define('SHOW_SUBSCRIBELINK', true);
 }
 if (!defined('UNSUBSCRIBE_CONFIRMATION')) {
-    define('UNSUBSCRIBE_CONFIRMATION', 1);
+    define('UNSUBSCRIBE_CONFIRMATION', true);
 }
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
     //#https://mantis.phplist.com/view.php?id=16787

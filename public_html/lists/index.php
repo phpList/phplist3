@@ -898,11 +898,11 @@ function unsubscribePage($id)
         }
 
 	if ($userid) {
-		if (UNSUBSCRIBE_CONFIRMATION ==1)
-			$res .= '<h3>' . $GLOBALS['strUnsubscribeDone'] . '</h3>';
-		} else {
-			$res .= '<h3>' . $GLOBALS['strUnsubscribedNoConfirm'] . '</h3>';
-		}
+	    if (UNSUBSCRIBE_CONFIRMATION) {
+	        $res .= '<h3>' . $GLOBALS['strUnsubscribeDone'] . '</h3>';
+	    } else {
+	        $res .= '<h3>' . $GLOBALS['strUnsubscribedNoConfirm'] . '</h3>';
+	    }
 	}
         
 	//0013076: Blacklisting posibility for unknown users
