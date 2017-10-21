@@ -177,10 +177,6 @@ define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 // the default way, which will ask them for a reason, set this to 1
 define('UNSUBSCRIBE_JUMPOFF', 0);
 
-// To not send confirmation of unsubscription , instead of
-// the default way, which will send it, set this to 0
-define('UNSUBSCRIBE_CONFIRMATION', false);
-
 // when a user unsubscribes they are sent one final email informing them of
 // their unsubscription. In order for that email to actually go out, a gracetime
 // needs to be set otherwise it will never go out. The default of 5 minutes should
