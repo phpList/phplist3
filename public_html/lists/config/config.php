@@ -109,9 +109,3 @@ $bounce_unsubscribe_threshold = 5;
 // check the extended config for more info
 // in most cases, it is fine to leave this as it is
 define('HASH_ALGO', 'sha256');
-
-
-// To not send confirmation of unsubscription , instead of
-// the default way, which will send it, set this to false
-define('UNSUBSCRIBE_CONFIRMATION', false);
-
