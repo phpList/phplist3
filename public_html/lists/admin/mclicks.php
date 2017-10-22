@@ -75,8 +75,8 @@ if ($totalusers[0] > 0) {
     echo sprintf('%0.2f', ($totalbounced[0] / $totalusers[0] * 100));
     echo '%)</td></tr>';
 }
-echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($totalclicked[0]).'</td><td>'.PageLinkButton('userclicks&msgid='.$id,
-        s('View subscribers')).'</td></tr>
+echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($totalclicked[0]).' <span style="margin-left:10px">'.PageLinkButton('userclicks&msgid='.$id,
+        s('View subscribers')).'</span></td></tr>
 <tr><td>' .$GLOBALS['I18N']->get('Click rate').'</td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
