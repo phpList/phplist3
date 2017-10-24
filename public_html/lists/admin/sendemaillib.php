@@ -709,6 +709,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         }
         $htmlmessage = '<head>
         <meta content="text/html;charset=' .$cached[$messageid]['html_charset'].'" http-equiv="Content-Type">
+        <meta content="width=device-width"/>
         <title></title>' .$defaultstyle.'</head>'.$htmlmessage;
     }
     if (!preg_match('#<html.*</html>#ims', $htmlmessage)) {
