@@ -26,7 +26,7 @@ default:
                     selenium2:
                         capabilities: { "browser": "chrome" }
         Bex\Behat\ScreenshotExtension:
+            active_image_drivers: upload_pie
             image_drivers:
-                local:
-                    screenshot_directory: /tmp
-                    clear_screenshot_directory: false  # Enable removing all images before each test run. It is false by default.
+                upload_pie:
+                auth: '%UPLOADPIE_API_KEY%'
