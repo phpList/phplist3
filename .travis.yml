@@ -47,6 +47,7 @@ before_script:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
 script:
+- echo $UPLOADPIE_API_KEY # For debugging purposes
 - vendor/bin/phpLint ./public_html
 - vendor/bin/behat
 after_failure:
