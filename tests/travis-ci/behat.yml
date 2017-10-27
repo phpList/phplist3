@@ -1,4 +1,3 @@
-
 default:
     autoload:
         - %paths.base%/tests/features/bootstrap
@@ -8,12 +7,12 @@ default:
                 - %paths.base%/tests/features
             contexts:
                 - FeatureContext:
-          base_url: http://phplist.dev
-          db_user: root
-          db_password :
-          db_name: phplistdb
-          admin_username : admin
-          admin_password : Mypassword123+
+                    base_url: http://phplist.dev
+                    db_user: root
+                    db_password :
+                    db_name: phplistdb
+                    admin_username : admin
+                    admin_password : Mypassword123+
     extensions:
         Behat\MinkExtension:
             # Change to you custom url:
