@@ -29,4 +29,5 @@ default:
             active_image_drivers: upload_pie
             image_drivers:
                 upload_pie:
-                auth: '%UPLOADPIE_API_KEY%'
+                    auth: '%UPLOADPIE_API_KEY%'
+                    expire: '30m' # possible values: '30m', '1h', '6h', '1d', '1w'
