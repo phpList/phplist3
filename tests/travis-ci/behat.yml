@@ -1,16 +1,33 @@
+
 default:
-  paths:
-    features: tests/features
-  extensions:
-    Behat\MinkExtension\Extension:
-      goutte:    ~
-      selenium2: ~
-      base_url: http://phplist.dev
-  context :
-      parameters :
+    autoload:
+        - %paths.base%/tests/features/bootstrap
+    suites:
+        default:
+            paths:
+                - %paths.base%/tests/features
+            contexts:
+                - FeatureContext:
           base_url: http://phplist.dev
           db_user: root
           db_password :
           db_name: phplistdb
           admin_username : admin
           admin_password : Mypassword123+
+    extensions:
+        Behat\MinkExtension:
+            # Change to you custom url:
+            base_url:  'http://phplist.dev'
+            show_auto: false
+            show_cmd: google-chrome %s
+            browser_name: 'chrome'
+            sessions:
+                default:
+                    #goutte: ~
+                    selenium2:
+                        capabilities: { "browser": "chrome" }
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    screenshot_directory: /tmp
+                    clear_screenshot_directory: false  # Enable removing all images before each test run. It is false by default.
