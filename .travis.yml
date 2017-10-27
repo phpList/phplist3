@@ -1,18 +1,27 @@
+# Load secure environment variables for access by other scripts
+params:
+  - env
 language: php
 php:
-- 7.1
-- 7.0
-- 5.6
-- 5.5
-- 5.4
-- 5.3
+  - 7.1
+  - 7.0
+  - 5.6
+  - 5.5
+  - 5.4
+  - 5.3
 dist: precise
+addons:
+  # For testing with Selenium
+  chrome: stable
 notifications:
   slack:
     rooms:
       secure: LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU=
   on_success: change
   on_failure: always
+before_install:
+  - # start chrome and listen on `localhost`
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
 - sudo apt-get update > /dev/null
 - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
@@ -32,6 +41,9 @@ before_script:
   rm master.tar.gz && cd ../../../../
 - mysql -e 'SET GLOBAL wait_timeout = 5400;'
 - mysql -e 'create database phplistdb;'
+# Start xvfb (for use with Selenium)
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
 script:
 - vendor/bin/phpLint ./public_html
 - vendor/bin/behat
