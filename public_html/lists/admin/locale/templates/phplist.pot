@@ -1420,82 +1420,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:757
+#: public_html/lists/admin/sendemaillib.php:758
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:947
+#: public_html/lists/admin/sendemaillib.php:948
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:964
+#: public_html/lists/admin/sendemaillib.php:965
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:968
+#: public_html/lists/admin/sendemaillib.php:969
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:974
+#: public_html/lists/admin/sendemaillib.php:975
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:976
+#: public_html/lists/admin/sendemaillib.php:977
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:980
+#: public_html/lists/admin/sendemaillib.php:981
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:982
+#: public_html/lists/admin/sendemaillib.php:983
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1020
+#: public_html/lists/admin/sendemaillib.php:1021
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1063
+#: public_html/lists/admin/sendemaillib.php:1064
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1065
-#: public_html/lists/admin/sendemaillib.php:1080
+#: public_html/lists/admin/sendemaillib.php:1066
+#: public_html/lists/admin/sendemaillib.php:1081
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1070
+#: public_html/lists/admin/sendemaillib.php:1071
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1077
+#: public_html/lists/admin/sendemaillib.php:1078
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1078
+#: public_html/lists/admin/sendemaillib.php:1079
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1099
-#: public_html/lists/admin/sendemaillib.php:1101
+#: public_html/lists/admin/sendemaillib.php:1100
+#: public_html/lists/admin/sendemaillib.php:1102
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
