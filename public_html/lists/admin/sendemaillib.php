@@ -747,28 +747,18 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     
     $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
 
-    $unsubscribeMailto="";
+    $listUnsubscribeHeader = 'List-Unsubscribe: ';
+
     if (UNSUBSCRIBE_MAILTO) {
-        // To automated unsubscribe, add advanced rule "Unsubscribe By Mailto"
-        $ligneBreak = "\n";
-
-        // Mailto Subject
-        $unsubscribeMailtoSubject ="?subject=";
-            $unsubscribeMailtoSubject .= urlencode("Unsubscribe By Mailto");
-
-        // Mailto body
-        $unsubscribeMailtoBodyFormat = "unsubscribe User %s".$ligneBreak
-            ."X-MessageId : %s".$ligneBreak
-            ."uid= %s";
-
-        $unsubscribeMailtoBody ="&body=";
-            $unsubscribeMailtoBody .= urlencode(sprintf($unsubscribeMailtoBodyFormat , $destinationemail, $messageid, $hash));
-
-        $unsubscribeMailto = sprintf("mailto:%s%s%s",$GLOBALS['message_envelope'] ,$unsubscribeMailtoSubject, $unsubscribeMailtoBody);
-        
-        $unsubscribeMailto = "<".str_replace('+','%20',$unsubscribeMailto).">, ";
+        $listUnsubscribeHeader .= sprintf(
+            '<mailto:%s?subject=%s&body=%s>, ',
+            $GLOBALS['message_envelope'],
+            rawurlencode('Unsubscribe by mailto'),
+            rawurlencode("Please Unsubscribe me: $destinationemail\r\nX-ListMember: $destinationemail\r\nX-MessageID: $messageid\r\nuid=$hash\r\n")
+        );
     }
-    $mail->addCustomHeader("List-Unsubscribe:  $unsubscribeMailto<" . $text["jumpoffurl"] . ">");
+    $listUnsubscribeHeader .= "<" . $text["jumpoffurl"] . ">";
+    $mail->addCustomHeader($listUnsubscribeHeader);
     $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
     $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');
 
