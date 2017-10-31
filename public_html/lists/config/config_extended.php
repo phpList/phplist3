@@ -590,8 +590,11 @@ define('PHPMAILERHOST', '');
 //# defaults to 5 seconds
 // define('SMTP_TIMEOUT',5);
 
-// Pop-Before-Smtp
-define('POPBEFORESMTP', true);
+// Pop-Before-Smtp 
+// If you use Pop before Smtp, set to true
+// And complete smtp settings (PHPMAILERHOST,  phpmailer_smtpuser', phpmailer_smtppassword)
+define('POP_BEFORE_SMTP', false);
+define('POPBEFORESMTP_DEBUG', false);
 
 /*
 

@@ -107,8 +107,8 @@ class PHPlistMailer extends PHPMailer
                 && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
             ) {
                 $this->Username = $GLOBALS['phpmailer_smtpuser'];
-	        $this->Password = $GLOBALS['phpmailer_smtppassword'];
-         	$this->SMTPAuth = true;
+                $this->Password = $GLOBALS['phpmailer_smtppassword'];
+                $this->SMTPAuth = true;
             }
             $this->Mailer = 'smtp';
         } elseif (defined('PHPMAILERHOST') && PHPMAILERHOST != '') {
@@ -121,8 +121,15 @@ class PHPlistMailer extends PHPMailer
                 // authenticate using the smtp user and password
                 $pop = new POP3();
 
-                if (!$pop->authorise(PHPMAILERHOST, 110, 30, $GLOBALS['phpmailer_smtpuser'], $GLOBALS['phpmailer_smtppassword'], 1)) {
+                if (!$pop->authorise(PHPMAILERHOST, $this->Port, 30, $GLOBALS['phpmailer_smtpuser'], $GLOBALS['phpmailer_smtppassword'], 1)) {
                     // unable to authenticate, there might be an error message in $pop->getErrors()
+                    $poperror = $pop->getErrors();
+                    
+                    if (POPBEFORESMTP_DEBUG) {    
+                        $this->SMTPDebug = 2;
+                        //Ask for HTML-friendly debug output
+                        $this->Debugoutput = 'html';
+                    }
                 }
                 
             } else {
