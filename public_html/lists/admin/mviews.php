@@ -130,17 +130,34 @@ while ($row = Sql_Fetch_Array($req)) {
     }
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element, 'row1');
-    $ls->addRow($element,
-        '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'],
-            1).'</div>', '');
-    if ($row['viewcount'] > 1) {
+    $viewList = '';
+    if ($row['viewcount'] > 1) { // that will never happen as usermessage only has one entry per user-message
         $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
         $ls->addColumn($element, s('lastview'), formatDateTime($row['lastview']));
         $ls->addColumn($element, s('views'), $row['viewcount']);
     } else {
         $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
         $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
+
+        if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
+            $allViewsReq = Sql_Query(sprintf('select * from %s where userid = %d and messageid = %d order by viewed',$GLOBALS['tables']['user_message_view'],$row['userid'],$id));
+            $totalViews = Sql_Affected_Rows();
+
+            if ($totalViews > 1) {
+                $viewList = '';
+                while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
+                    $viewList .= formatDateTime($row2['viewed']) . '<br/>';
+                }
+
+//                $ls->addRow($element, '',
+//                    '<div class="listingsmall gray">Total views ' . $totalViews . '<br/>' . $viewList . '</div>');
+            }
+            $viewList = s('Total views').' ' . $totalViews . '<br/>' . $viewList;
+        }
+
     }
+    $ls->addRow($element,
+        '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'], 1).'</div>', $viewList);
 }
 if ($download) {
     ob_end_clean();
