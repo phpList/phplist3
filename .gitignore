@@ -7,3 +7,4 @@ composer.lock
 /.idea/
 public_html/lists/admin/help/
 public_html/lists/admin/info/
+public_html/lists/config/config.php
