@@ -66,18 +66,18 @@ if (($totalusers[0] - $totalbounced[0]) > 0) {
     $clickperc = $GLOBALS['I18N']->get('N/A');
 }
 echo '<table class="mclicksDetails">
-<tr><td>' .$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Entered').'<td><td>'.formatDateTime($messagedata['entered']).'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Date sent').'<td><td>'.formatDateTime($messagedata['sent']).'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Sent to').'<td><td>'.number_format($totalusers[0]).' '.$GLOBALS['I18N']->get('Subscribers').'</td></tr>';
+<tr><td>' .$GLOBALS['I18N']->get('Subject').'</td><td>'.$messagedata['subject'].'</td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Entered').'</td><td>'.formatDateTime($messagedata['entered']).'</td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Date sent').'</td><td>'.formatDateTime($messagedata['sent']).'</td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Sent to').'</td><td>'.number_format($totalusers[0]).' '.$GLOBALS['I18N']->get('Subscribers').'</td></tr>';
 if ($totalusers[0] > 0) {
-    echo '<tr><td>'.$GLOBALS['I18N']->get('Bounced').'<td><td>'.number_format($totalbounced[0]).' (';
+    echo '<tr><td>'.$GLOBALS['I18N']->get('Bounced').'</td><td>'.number_format($totalbounced[0]).' (';
     echo sprintf('%0.2f', ($totalbounced[0] / $totalusers[0] * 100));
     echo '%)</td></tr>';
 }
-echo '<tr><td>'.s('Unique subscribers who clicked').'<td><td>'.number_format($totalclicked[0]).'</td><td>'.PageLinkButton('userclicks&msgid='.$id,
-        s('View subscribers')).'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Click rate').'<td><td>'.$clickperc.' %</td></tr>
+echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($totalclicked[0]).' <span style="margin-left:10px">'.PageLinkButton('userclicks&msgid='.$id,
+        s('View subscribers')).'</span></td></tr>
+<tr><td>' .$GLOBALS['I18N']->get('Click rate').'</td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Campaign click statistics'));
