@@ -84,7 +84,7 @@ $req = Sql_Query(sprintf('select um.userid
 
 $total = Sql_Affected_Rows();
 if (isset($start) && $start > 0) {
-    $listing = sprintf(s('Listing user %d to %d'), $start, $start + MAX_USER_PP);
+    $listing = s('Listing user %d to %d', $start, $start + MAX_USER_PP);
     $limit = "limit $start,".MAX_USER_PP;
 } else {
     $listing = sprintf(s('Listing user %d to %d'), 1, MAX_USER_PP);
