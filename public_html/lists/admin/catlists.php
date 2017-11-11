@@ -68,7 +68,7 @@ if (!Sql_Affected_Rows()) {
     Info(s('All lists have already been assigned a category').'<br/>'.PageLinkButton('list', s('Back')), true);
 }
 
-echo '<div class="fright">'.PageLinkButton('catlists&show=all', s('Re-edit all lists')).'</div>';
+echo '<div class="fright pull-right">'.PageLinkButton('catlists&show=all', s('Re-edit all lists')).'</div>';
 echo '<div class="fright">'.PageLinkButton('configure&id=list_categories&ret=catlists',
         $I18N->get('Configure Categories')).'</div>';
 
