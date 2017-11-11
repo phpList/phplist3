@@ -59,8 +59,8 @@ if ($download) {
     ob_start();
 }
 if (empty($start)) {
-    echo '<p>'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,
-            $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+    echo '<p class="pull-right">'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,
+            $GLOBALS['I18N']->get('Download as CSV file')).'</p><div class="clearfix"></div>';
 }
 
 //print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';

@@ -54,7 +54,7 @@ if (!$id) {
         header('Content-disposition:  attachment; filename="phpList Message open statistics.csv"');
         ob_start();
     }
-    $status .= '<p>'.PageLinkButton('page=pageaction&action=mviews&dl=true', s('Download as CSV file')).'</p>';
+    $status .= '<p class="pull-right">'.PageLinkButton('page=pageaction&action=mviews&dl=true', s('Download as CSV file')).'</p><div class="clearfix"></div>';
 //  print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $timerange = ' and msg.entered  > date_sub(now(),interval 12 month)';
     $timerange = '';

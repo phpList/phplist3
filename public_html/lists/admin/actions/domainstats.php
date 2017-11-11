@@ -88,8 +88,8 @@ if (Sql_Num_Rows($req) > 0) {
     }
 
     // Print download button
-    $status .= '<div class="actions">'.PageLinkButton('page=pageaction&action=domainstats&dl=true',
-            s('Download as CSV file')).'</div>';
+    $status .= '<div class="actions pull-right">'.PageLinkButton('page=pageaction&action=domainstats&dl=true',
+            s('Download as CSV file')).'</div><div class="clearfix"></div>';
 } else {
     // Print missing data notice
     $status .= '<h3>'.s('Once you have some more subscribers, this page will list statistics on the domains of your subscribers. It will list domains that have 5 or more subscribers.').'</h3>';

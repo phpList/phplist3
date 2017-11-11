@@ -100,8 +100,8 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 if ($some) {
     $status .= '<div class="action">';
-    $status .= '<p>'.PageLinkButton('mclicks&dl=true', $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
-    $status .= '</div>';
+    $status .= '<p class="pull-right">'.PageLinkButton('mclicks&dl=true', $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+    $status .= '</div><div class="clearfix"></div>';
 //    print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $status .= $ls->display();
 }
