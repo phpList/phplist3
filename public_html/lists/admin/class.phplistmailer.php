@@ -162,6 +162,10 @@ class PHPlistMailer extends PHPMailer
         if (!empty($_SERVER['REMOTE_ADDR'])) {
             $this->add_timestamp();
         }
+	// Define Custom XMAILER value
+        if(defined('XMAILER')&& XMAILER != ''){
+	    $this->XMailer = XMAILER.'('.$this->Version.')';
+	}
         $this->messageid = $messageid;
     }
 
