@@ -64,11 +64,11 @@ function addUserForm($listid)
 if (!empty($id)) {
     echo '<h3>'.$GLOBALS['I18N']->get('Members of').' '.ListName($id).'</h3>';
     echo '<div class="actions">';
-    echo PageLinkButton('editlist', $GLOBALS['I18N']->get('edit list details'), "id=$id", 'pill-l');
+    echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('edit list details'), "id=$id", 'pill-l').'</div>';
     echo PageLinkButton("export&amp;list=$id", $GLOBALS['I18N']->get('Download subscribers'), '', 'pill-c');
     echo PageLinkDialog("importsimple&amp;list=$id", $GLOBALS['I18N']->get('Import Subscribers to this list'), '',
         'pill-r');
-    echo '</div>';
+    echo '</div><div class="clearfix"></div>';
 } else {
     if ($_REQUEST['id'] != 'all') {
         Redirect('list');

@@ -91,7 +91,7 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
         s('Editing an active or finished campaign will place it back in the draft queue, continue?'),
         PageURL2('send&id='.$id),
         s('Edit campaign'));
-    echo $editbutton->show();
+    echo '<div class="pull-right">'.$editbutton->show().'</div>';
 
     // Print view campaign statistics button
     echo PageLinkButton( 'statsoverview&id='.$id, s('Statistics'), s('View statistics'));

@@ -2,6 +2,8 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 
+echo '<p class="button pull-right fright">'.PageLink2('template', $GLOBALS['I18N']->get('Add new Template')).'</p>';
+
 if (isset($_GET['delete'])) {
     // delete the index in delete
     $delete = sprintf('%d', $_GET['delete']);
@@ -53,8 +55,6 @@ while ($row = Sql_fetch_Array($req)) {
 echo $ls->display();
 
 echo '</form>';
-
-echo '<p class="button">'.PageLink2('template', $GLOBALS['I18N']->get('Add new Template')).'</p>';
 
 $exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "System Template"',
     $GLOBALS['tables']['template']));

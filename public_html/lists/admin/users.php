@@ -404,10 +404,10 @@ echo $panel->display();
 
 //if (($require_login && isSuperUser()) || !$require_login)
 echo '<div class="actions">';
-echo '<div id="add-csv-button">'.PageLinkButton('dlusers', $GLOBALS['I18N']->get('Download all users as CSV file'),
+echo '<div id="add-csv-button" class="pull-left">'.PageLinkButton('dlusers', $GLOBALS['I18N']->get('Download all users as CSV file'),
         'nocache='.uniqid('')).'</div>';
-echo '<div id="add-user-button">'.PageLinkButton('adduser', $GLOBALS['I18N']->get('Add a User')).'</div>';
-echo '</div>';
+echo '<div id="add-user-button" class="pull-right">'.PageLinkButton('adduser', $GLOBALS['I18N']->get('Add a User')).'</div>';
+echo '</div><div class="clearfix"></div>';
 
 $some = 0;
 

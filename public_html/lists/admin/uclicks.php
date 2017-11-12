@@ -72,8 +72,8 @@ if (!$id) {
     }
     if ($some) {
         echo '<p>'.$GLOBALS['I18N']->get('Select URL to view').'</p>';
-        echo '<div class="actions">'.PageLinkButton('uclicks&dl=true',
-                $GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+        echo '<div class="actions pull-right">'.PageLinkButton('uclicks&dl=true',
+                $GLOBALS['I18N']->get('Download as CSV file')).'</div><div class="clearfix"></div>';
         echo $ls->display();
     } else {
         echo '<p class="information">'.$GLOBALS['I18N']->get('There are currently no statistics available').'</p>';

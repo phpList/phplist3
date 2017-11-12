@@ -280,11 +280,11 @@ if ($id) {
 ?>
 
 <p class="information"><?php echo $msg ?></p>
-<?php echo '<p class="button">'.PageLink2('templates', $GLOBALS['I18N']->get('List of Templates')).'</p>'; ?>
+<?php echo '<p class="button pull-right">'.PageLink2('templates', $GLOBALS['I18N']->get('List of Templates')).'</p><div class="clearfix"></div>'; ?>
 
 <?php echo formStart(' enctype="multipart/form-data" class="template2" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
-<div class="panel">
+<div class="panel"><div class="content">
     <table class="templateForm">
         <tr>
 
@@ -347,7 +347,7 @@ if ($id) {
                                    value="<?php echo $GLOBALS['I18N']->get('Save Changes') ?>"/></td>
         </tr>
     </table>
-</div>
+</div></div>
 <?php $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
     <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
