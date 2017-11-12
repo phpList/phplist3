@@ -77,7 +77,7 @@ if (!$id) {
 }
 
 //print '<h3>'.$GLOBALS['I18N']->get('Campaign statistics').'</h3>';
-echo PageLinkButton('statsoverview', s('View all campaigns'));
+echo '<div class="pull-right">'.PageLinkButton('statsoverview', s('View all campaigns')).'</div><div class="clearfix"></div>';
 
 $messagedata = loadMessageData($id);
 //var_dump($messagedata);

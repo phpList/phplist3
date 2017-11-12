@@ -18,9 +18,11 @@ if (!empty($find)) {
     $remember_find = '';
 }
 
+echo '<div class="button">'.PageLink2('importadmin', $GLOBALS['I18N']->get('Import list of admins')).'</div>';
+
 // with external admins we simply display information
 if (!$external) {
-    echo PageLinkActionButton('admin', $GLOBALS['I18N']->get('Add new admin'), "start=$start".$remember_find);
+    echo '<div class="pull-right fright">'.PageLinkActionButton('admin', $GLOBALS['I18N']->get('Add new admin'), "start=$start".$remember_find).'</div><div class="clearfix"></div>';
 
     if (isset($_GET['delete']) && $_GET['delete']) {
         // delete the index in delete
@@ -119,8 +121,6 @@ while ($admin = Sql_fetch_array($result)) {
     }
 }
 echo $ls->display();
-echo '<br/><hr/>';
-echo PageLinkButton('admin', $GLOBALS['I18N']->get('Add a new administrator'), "start=$start".$remember_find);
-echo '<p class="button">'.PageLink2('importadmin', $GLOBALS['I18N']->get('Import list of admins')).'</p>';
+echo '<br/><hr class="hidden-lg hidden-md hidden-sm hidden-xs" />';
 
 ?>

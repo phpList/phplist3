@@ -77,7 +77,8 @@ while ($p = Sql_Fetch_Array($req)) {
         sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
             getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
 }
+echo '<p class="button pull-right">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p><div class="clearfix"></div>';
+
 echo $ls->display();
-echo '<p class="button">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p>';
 ?>
 </form>
