@@ -139,7 +139,7 @@ while ($row = Sql_Fetch_Array($req)) {
         $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $row['viewcount']);
     } else {
         $ls->addColumn($element, $GLOBALS['I18N']->get('firstview'), formatDateTime($row['firstview'], 1));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('responsetime'), secs2time($row['responsetime']));
+        $ls->addColumn($element, $GLOBALS['I18N']->get('Response time'), secs2time($row['responsetime']));
     }
 }
 if ($download) {
