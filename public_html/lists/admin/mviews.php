@@ -84,13 +84,13 @@ $req = Sql_Query(sprintf('select um.userid
 
 $total = Sql_Affected_Rows();
 if (isset($start) && $start > 0) {
-    $listing = s('Listing user %d to %d', $start, $start + MAX_USER_PP);
-    $limit = "limit $start,".MAX_USER_PP;
+    $listing = s('Listing user %d to %d', $start, $start + MAX_OPENS_PP);
+    $limit = "limit $start,".MAX_OPENS_PP;
 } else {
-    $listing = sprintf(s('Listing user %d to %d'), 1, MAX_USER_PP);
-    $limit = 'limit 0,'.MAX_USER_PP;
+    $listing = sprintf(s('Listing user %d to %d'), 1, MAX_OPENS_PP);
+    $limit = 'limit 0,'.MAX_OPENS_PP;
     $start = 0;
-    $limit = 'limit 0,'.MAX_USER_PP;
+    $limit = 'limit 0,'.MAX_OPENS_PP;
 }
 
 //# hmm, this needs more work, as it'll run out of memory, because it's building the entire
@@ -107,7 +107,7 @@ if ($id) {
 }
 
 if ($total) {
-    $paging = simplePaging("mviews$url_keep", $start, $total, MAX_USER_PP, s('Entries'));
+    $paging = simplePaging("mviews$url_keep", $start, $total, MAX_OPENS_PP, s('Entries'));
     $ls->usePanel($paging);
 }
 
