@@ -24,7 +24,7 @@ switch ($access) {
             $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
                 $id, $subselect));
             if ($allow[0] != $_SESSION['logindetails']['id']) {
-                echo $GLOBALS['I18N']->get('You do not have access to this page');
+                echo s('You do not have access to this page');
 
                 return;
             }
@@ -37,7 +37,7 @@ switch ($access) {
     case 'none':
     default:
         $subselect = ' where id = 0';
-        echo $GLOBALS['I18N']->get('You do not have access to this page');
+        echo s('You do not have access to this page');
 
         return;
         break;
@@ -60,22 +60,22 @@ if ($download) {
 }
 if (empty($start)) {
     echo '<p class="pull-right">'.PageLinkButton('mviews&dl=true&id='.$id.'&start='.$start,
-            $GLOBALS['I18N']->get('Download as CSV file')).'</p><div class="clearfix"></div>';
+            s('Download as CSV file')).'</p><div class="clearfix"></div>';
 }
 
-//print '<h3>'.$GLOBALS['I18N']->get('View Details for a Message').'</h3>';
+//print '<h3>'.s('View Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
 echo '<table class="mviewsDetails">
-<tr><td>' .$GLOBALS['I18N']->get('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
+<tr><td>' .s('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
+<tr><td>' .s('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
+<tr><td>' .s('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
 </table><hr/>';
 
 if ($download) {
     header('Content-disposition:  attachment; filename="phpList Message open statistics for '.$messagedata['subject'].'.csv"');
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Open statistics'));
+$ls = new WebblerListing(s('Open statistics'));
 
 $req = Sql_Query(sprintf('select um.userid
     from %s um,%s msg where um.messageid = %d and um.messageid = msg.id and um.viewed is not null %s
@@ -84,10 +84,10 @@ $req = Sql_Query(sprintf('select um.userid
 
 $total = Sql_Affected_Rows();
 if (isset($start) && $start > 0) {
-    $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), $start, $start + MAX_USER_PP);
+    $listing = s('Listing user %d to %d', $start, $start + MAX_USER_PP);
     $limit = "limit $start,".MAX_USER_PP;
 } else {
-    $listing = sprintf($GLOBALS['I18N']->get('Listing user %d to %d'), 1, MAX_USER_PP);
+    $listing = sprintf(s('Listing user %d to %d'), 1, MAX_USER_PP);
     $limit = 'limit 0,'.MAX_USER_PP;
     $start = 0;
     $limit = 'limit 0,'.MAX_USER_PP;
@@ -107,7 +107,7 @@ if ($id) {
 }
 
 if ($total) {
-    $paging = simplePaging("mviews$url_keep", $start, $total, MAX_USER_PP, $GLOBALS['I18N']->get('Entries'));
+    $paging = simplePaging("mviews$url_keep", $start, $total, MAX_USER_PP, s('Entries'));
     $ls->usePanel($paging);
 }
 
@@ -131,15 +131,15 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element, 'row1');
     $ls->addRow($element,
-        '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.formatDateTime($row['sent'],
+        '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'],
             1).'</div>', '');
     if ($row['viewcount'] > 1) {
-        $ls->addColumn($element, $GLOBALS['I18N']->get('firstview'), formatDateTime($row['firstview'], 1));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('lastview'), formatDateTime($row['lastview']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $row['viewcount']);
+        $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
+        $ls->addColumn($element, s('lastview'), formatDateTime($row['lastview']));
+        $ls->addColumn($element, s('views'), $row['viewcount']);
     } else {
-        $ls->addColumn($element, $GLOBALS['I18N']->get('firstview'), formatDateTime($row['firstview'], 1));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('Response time'), secs2time($row['responsetime']));
+        $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
+        $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
     }
 }
 if ($download) {
