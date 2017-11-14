@@ -40,7 +40,7 @@ if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
     verifyCsrfGetToken();
     switch ($_GET['action']) {
         case 'deleteunidentified':
-            $req = Sql_Query(sprintf('delete from %s where comment = "unidentified bounce" and date_add(date,interval 2 month) < now()',
+            $req = Sql_Query(sprintf('delete from %s where status = "unidentified bounce" and date_add(date,interval 2 month) < now()',
                 $tables['bounce']));
             $count = Sql_Num_Rows($req);
             $actionresult = s('%d unidentified bounces older than 2 months have been deleted', $count);
