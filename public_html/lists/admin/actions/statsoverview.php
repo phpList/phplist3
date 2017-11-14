@@ -136,7 +136,7 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $totls[0]);
     $ls->addColumn($element, $GLOBALS['I18N']->get('bncs'), $row['bounced'].$percentBouncedFormatted);
     $ls->addColumn($element, $GLOBALS['I18N']->get('fwds'), sprintf('%d', $fwded[0]));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $views[0].$percentViewedFormatted,
+    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique views'), $views[0].$percentViewedFormatted,
     $views[0] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
 
     $ls->addColumn($element, $GLOBALS['I18N']->get('Unique Clicks'), $totalclicked[0].$percentClickedFormatted,
