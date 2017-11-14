@@ -133,13 +133,13 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->setClass($element, 'row1');
     //   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
     $ls->addColumn($element, $GLOBALS['I18N']->get('date'), $row['sent']);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $totls[0]);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('bncs'), $row['bounced'].$percentBouncedFormatted);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('fwds'), sprintf('%d', $fwded[0]));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique views'), $views[0].$percentViewedFormatted,
+    $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), number_format((int)$totls[0]));
+    $ls->addColumn($element, $GLOBALS['I18N']->get('bncs'), number_format((int)$row['bounced']).$percentBouncedFormatted);
+    $ls->addColumn($element, $GLOBALS['I18N']->get('fwds'), number_format((int)$fwded[0]));
+    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique views'), number_format((int)$views[0]).$percentViewedFormatted,
     $views[0] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
 
-    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique Clicks'), $totalclicked[0].$percentClickedFormatted,
+    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique Clicks'), number_format((int)$totalclicked[0]).$percentClickedFormatted,
         $totalclicked[0] ? PageURL2('mclicks&id='.$row['messageid']) : '');
 }
 //# needs reviewing
