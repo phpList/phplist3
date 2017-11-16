@@ -154,7 +154,7 @@ while ($row = Sql_Fetch_Array($req)) {
         set_time_limit(60);
         $element = $row['email'];
     } else {
-        $element = shortenTextDisplay($row['email'], 15);
+        $element = shortenTextDisplay($row['email'], 35);
     }
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element, 'row1');
