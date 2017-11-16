@@ -2094,24 +2094,21 @@ function secs2time($secs)
     $mins = (int) ($secs / 60);
     $secs = (int) ($secs % 60);
 
-    $res = '';
-    if ($years) {
-        $res .= $years.' '.s('years');
-    }
-    if ($days) {
-        $res .= ' '.$days.' '.s('days');
-    }
-    if ($hours) {
-        $res .= ' '.$hours.' '.s('hours');
-    }
-    if ($mins) {
-        $res .= ' '.$mins.' '.s('mins');
-    }
-    if ($secs) {
-        $res .= ' '.sprintf('%02d', $secs).' '.s('secs');
+    $format = compact('years', 'days', 'hours', 'mins');
+
+    $output = '';
+
+    foreach($format as $unit => $value) {
+        if ($value > 0) {
+              $output .= ' '.$value.' '.s($unit);
+        }
     }
 
-    return $res;
+    if ($secs) {
+        $output .= ' '.sprintf('%02d', $secs).' '.s('secs');
+    }
+
+    return $output;
 }
 
 function listPlaceHolders()
