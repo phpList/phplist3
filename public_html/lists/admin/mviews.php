@@ -171,7 +171,7 @@ while ($row = Sql_Fetch_Array($req)) {
             if ($totalViews > 1) {
                 $viewList = '';
                 while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
-                    $viewList .= formatDateTime($row2['viewed']) . '<br/>';
+                    $viewList .= formatDateTime($row2['viewed'], 1) . '<br/>';
                 }
 
 //                $ls->addRow($element, '',
