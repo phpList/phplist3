@@ -76,6 +76,7 @@ if ($download) {
 }
 
 $ls = new WebblerListing(s('Open statistics'));
+$ls->setElementHeading(s('Subscriber'));
 
 $req = Sql_Query(sprintf('select um.userid
     from %s um,%s msg where um.messageid = %d and um.messageid = msg.id and um.viewed is not null %s
