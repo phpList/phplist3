@@ -134,7 +134,9 @@ $req = Sql_Query(
             and um.viewed is not null 
             %s
         group by 
-            userid 
+            userid
+        order by
+            lastview desc 
         %s'
         , $GLOBALS['tables']['usermessage']
         , $GLOBALS['tables']['user']
