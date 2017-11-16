@@ -184,8 +184,11 @@ while ($row = Sql_Fetch_Array($req)) {
         }
 
     }
-    $ls->addRow($element,
-        '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'], 1).'</div>', $viewList);
+    $ls->addRow(
+        $element
+        , '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'], 1).'</div>'
+        , $viewList
+    );
 }
 if ($download) {
     ob_end_clean();
