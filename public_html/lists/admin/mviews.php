@@ -158,6 +158,7 @@ while ($row = Sql_Fetch_Array($req)) {
     }
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->setClass($element, 'row1');
+    $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
     $viewList = '';
     if ($row['viewcount'] > 1) { // that will never happen as usermessage only has one entry per user-message
         $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
@@ -174,21 +175,20 @@ while ($row = Sql_Fetch_Array($req)) {
             if ($totalViews > 1) {
                 $viewList = '';
                 while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
-                    $viewList .= formatDateTime($row2['viewed'], 1) . '<br/>';
+                    $viewList .= s('Viewed').': '.formatDateTime($row2['viewed'], 1) . '<br/>';
                 }
 
 //                $ls->addRow($element, '',
 //                    '<div class="listingsmall gray">Total views ' . $totalViews . '<br/>' . $viewList . '</div>');
             }
-            $viewList = s('Total views').' ' . $totalViews . '<br/>' . $viewList;
+            $ls->addRow(
+                $element
+                , s('Total views').': '.$totalViews
+                , $viewList
+            );
         }
 
     }
-    $ls->addRow(
-        $element
-        , '<div class="listingsmall gray">'.s('sent').': '.formatDateTime($row['sent'], 1).'</div>'
-        , $viewList
-    );
 }
 if ($download) {
     ob_end_clean();
