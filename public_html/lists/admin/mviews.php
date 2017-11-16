@@ -111,13 +111,38 @@ if ($total) {
     $ls->usePanel($paging);
 }
 
-$req = Sql_Query(sprintf('select userid,email,um.entered as sent,min(um.viewed) as firstview,
-    max(um.viewed) as lastview, count(um.viewed) as viewcount,
-    abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime
-    from %s um, %s user, %s msg where um.messageid = %d and um.messageid = msg.id and um.userid = user.id and um.status = "sent" and um.viewed is not null %s
-    group by userid %s',
-    $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['user'], $GLOBALS['tables']['message'], $id, $subselect,
-    $limit));
+$req = Sql_Query(
+    sprintf(
+        'select 
+            userid
+            , email
+            , um.entered as sent
+            , min(um.viewed) as firstview
+            , max(um.viewed) as lastview
+            , count(um.viewed) as viewcount
+            , abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime
+        from 
+            %s um
+            , %s user
+            , %s msg 
+        where 
+            um.messageid = %d 
+            and um.messageid = msg.id 
+            and um.userid = user.id 
+            and um.status = "sent" 
+            and um.viewed is not null 
+            %s
+        group by 
+            userid 
+        %s'
+        , $GLOBALS['tables']['usermessage']
+        , $GLOBALS['tables']['user']
+        , $GLOBALS['tables']['message']
+        , $id
+        , $subselect
+        , $limit
+    )
+);
 
 $summary = array();
 while ($row = Sql_Fetch_Array($req)) {
