@@ -2096,19 +2096,19 @@ function secs2time($secs)
 
     $res = '';
     if ($years) {
-        $res .= $years.' '.$GLOBALS['I18N']->get('years');
+        $res .= $years.' '.s('years');
     }
     if ($days) {
-        $res .= ' '.$days.' '.$GLOBALS['I18N']->get('days');
+        $res .= ' '.$days.' '.s('days');
     }
     if ($hours) {
-        $res .= ' '.$hours.' '.$GLOBALS['I18N']->get('hours');
+        $res .= ' '.$hours.' '.s('hours');
     }
     if ($mins) {
-        $res .= ' '.$mins.' '.$GLOBALS['I18N']->get('mins');
+        $res .= ' '.$mins.' '.s('mins');
     }
     if ($secs) {
-        $res .= ' '.sprintf('%02d', $secs).' '.$GLOBALS['I18N']->get('secs');
+        $res .= ' '.sprintf('%02d', $secs).' '.s('secs');
     }
 
     return $res;
