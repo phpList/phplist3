@@ -116,7 +116,7 @@ while ($admin = Sql_fetch_array($result)) {
         PageURL2('admins', 'Delete', "start=$start&amp;delete=".$admin['id']));
     $ls->addElement($admin['loginname'],
         PageUrl2('admin', $GLOBALS['I18N']->get('Show'), "start=$start&amp;id=".$admin['id'].$remember_find));
-    if (!$external && $admin['id'] != $_SESSION['logindetails']['id']) {
+    if (!$external && $_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {
         $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('Del'), $delete_url);
     }
 }
