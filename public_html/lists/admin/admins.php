@@ -18,41 +18,7 @@ if (!empty($find)) {
     $remember_find = '';
 }
 
-echo '<div class="button">'.PageLink2('importadmin', s('Import list of admins')).'</div>';
-
 // with external admins we simply display information
-if (!$external) {
-    echo '<div class="pull-right fright">'.PageLinkActionButton('admin', s('Add new admin'), "start=$start".$remember_find).'</div><div class="clearfix"></div>';
-
-    if (isset($_GET['delete']) && $_GET['delete']) {
-        // delete the index in delete
-        if ($_GET['delete'] == $_SESSION['logindetails']['id']) {
-            echo s('You cannot delete yourself')."\n";
-        } else {
-            echo s('Deleting')." $delete ..\n";
-            Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $_GET['delete']));
-            Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'],
-                $_GET['delete']));
-            Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_task'], $_GET['delete']));
-            echo '..'.s('Done')."<br /><hr><br />\n";
-            Redirect("admins&start=$start");
-        }
-    }
-
-    ob_end_flush();
-
-    if (isset($add)) {
-        if (isset($new)) {
-            $query = 'insert into '.$tables['admin']." (email,entered) values(\"$new\",now())";
-            $result = Sql_query($query);
-            $userid = Sql_insert_id();
-            $query = 'insert into '.$tables['listuser']." (userid,listid,entered) values($userid,$id,now())";
-            $result = Sql_query($query);
-        }
-        echo '<br/>'.s('Admin added').'<br/>';
-    }
-}
-
 if ($external) {
     $admins = $GLOBALS['admin_auth']->listAdmins();
     $total = count($admins);
@@ -64,15 +30,46 @@ if ($external) {
     echo $ls->display();
 
     return;
-} else {
-    if (!$find) {
-        $result = Sql_query('SELECT count(*) FROM '.$tables['admin']);
-    } else {
-        $result = Sql_query('SELECT count(*) FROM '.$tables['admin']." where loginname like \"%$find%\" or email like \"%$find%\"");
-    }
-    $totalres = Sql_fetch_Row($result);
-    $total = $totalres[0];
 }
+
+echo '<div class="button">'.PageLink2('importadmin', s('Import list of admins')).'</div>';
+echo '<div class="pull-right fright">'.PageLinkActionButton('admin', s('Add new admin'), "start=$start".$remember_find).'</div><div class="clearfix"></div>';
+
+if (isset($_GET['delete']) && $_GET['delete']) {
+    // delete the index in delete
+    if ($_GET['delete'] == $_SESSION['logindetails']['id']) {
+        echo s('You cannot delete yourself')."\n";
+    } else {
+        echo s('Deleting')." $delete ..\n";
+        Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $_GET['delete']));
+        Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'],
+            $_GET['delete']));
+        Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_task'], $_GET['delete']));
+        echo '..'.s('Done')."<br /><hr><br />\n";
+        Redirect("admins&start=$start");
+    }
+}
+
+ob_end_flush();
+
+if (isset($add)) {
+    if (isset($new)) {
+        $query = 'insert into '.$tables['admin']." (email,entered) values(\"$new\",now())";
+        $result = Sql_query($query);
+        $userid = Sql_insert_id();
+        $query = 'insert into '.$tables['listuser']." (userid,listid,entered) values($userid,$id,now())";
+        $result = Sql_query($query);
+    }
+    echo '<br/>'.s('Admin added').'<br/>';
+}
+
+if (!$find) {
+    $result = Sql_query('SELECT count(*) FROM '.$tables['admin']);
+} else {
+    $result = Sql_query('SELECT count(*) FROM '.$tables['admin']." where loginname like \"%$find%\" or email like \"%$find%\"");
+}
+$totalres = Sql_fetch_Row($result);
+$total = $totalres[0];
 
 echo '<p class="info">'.$total.' '.s('Administrators');
 echo $find ? ' '.s('found').'</p>' : '</p>';
@@ -121,11 +118,9 @@ while ($admin = Sql_fetch_array($result)) {
     $ls->addColumn($admin['loginname'], s('email'), $admin['email']);
     $ls->addColumn($admin['loginname'], s('Super Admin'), $admin['superuser'] ? s('Yes') : s('No'));
     $ls->addColumn($admin['loginname'], s('Disabled'), $admin['disabled'] ? s('Yes') : s('No'));
-    if (!$external && $_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {
+    if ($_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {
         $ls->addColumn($admin['loginname'], s('Del'), $delete_url);
     }
 }
 echo $ls->display();
 echo '<br/><hr class="hidden-lg hidden-md hidden-sm hidden-xs" />';
-
-?>
