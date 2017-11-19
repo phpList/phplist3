@@ -92,9 +92,9 @@ if ($total > MAX_USER_PP) {
     }
 }
 if ($find) {
-    $result = Sql_query('SELECT id,loginname,email FROM '.$tables['admin'].' where loginname like "%'.sql_escape($find).'%" or email like "%'.sql_escape($find)."%\" order by loginname $limit");
+    $result = Sql_query('SELECT id,loginname,email, superuser, disabled FROM '.$tables['admin'].' where loginname like "%'.sql_escape($find).'%" or email like "%'.sql_escape($find)."%\" order by loginname $limit");
 } else {
-    $result = Sql_query('SELECT id,loginname,email FROM '.$tables['admin']." order by loginname $limit");
+    $result = Sql_query('SELECT id,loginname,email, superuser, disabled FROM '.$tables['admin']." order by loginname $limit");
 }
 
 ?>
@@ -111,11 +111,16 @@ if ($find) {
 <?php
 $ls = new WebblerListing($GLOBALS['I18N']->get('Administrators'));
 $ls->usePanel($paging);
+$ls->setElementHeading('Login name');
 while ($admin = Sql_fetch_array($result)) {
     $delete_url = sprintf("<a href=\"javascript:deleteRec('%s');\">".$GLOBALS['I18N']->get('del').'</a>',
         PageURL2('admins', 'Delete', "start=$start&amp;delete=".$admin['id']));
     $ls->addElement($admin['loginname'],
         PageUrl2('admin', $GLOBALS['I18N']->get('Show'), "start=$start&amp;id=".$admin['id'].$remember_find));
+    $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('Id'), $admin['id']);
+    $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('email'), $admin['email']);
+    $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('Super Admin'), $admin['superuser'] ? s('Yes') : s('No'));
+    $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('Disabled'), $admin['disabled'] ? s('Yes') : s('No'));
     if (!$external && $_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {
         $ls->addColumn($admin['loginname'], $GLOBALS['I18N']->get('Del'), $delete_url);
     }
