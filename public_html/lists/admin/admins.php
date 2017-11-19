@@ -75,18 +75,11 @@ echo '<p class="info">'.$total.' '.s('Administrators');
 echo $find ? ' '.s('found').'</p>' : '</p>';
 
 $paging = '';
-if ($total > MAX_USER_PP) {
-    $paging = simplePaging("admins$remember_find", $start, $total, MAX_USER_PP,
-        s('Administrators'));
-}
 $limit = '';
+
 if ($total > MAX_USER_PP) {
-    if (isset($start) && $start) {
-        $limit = "limit $start,".MAX_USER_PP;
-    } else {
-        $limit = 'limit 0,50';
-        $start = 0;
-    }
+    $paging = simplePaging("admins$remember_find", $start, $total, MAX_USER_PP, s('Administrators'));
+    $limit = "limit $start,".MAX_USER_PP;
 }
 if ($find) {
     $result = Sql_query('SELECT id,loginname,email, superuser, disabled FROM '.$tables['admin'].' where loginname like "%'.sql_escape($find).'%" or email like "%'.sql_escape($find)."%\" order by loginname $limit");
