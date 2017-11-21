@@ -178,9 +178,6 @@ while ($row = Sql_Fetch_Array($req)) {
                 while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
                     $viewList .= s('Viewed').': '.formatDateTime($row2['viewed'], 1) . '<br/>';
                 }
-
-//                $ls->addRow($element, '',
-//                    '<div class="listingsmall gray">Total views ' . $totalViews . '<br/>' . $viewList . '</div>');
             }
             $ls->addRow(
                 $element
