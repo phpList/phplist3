@@ -21,8 +21,18 @@ switch ($access) {
     case 'owner':
         $subselect = ' and owner = '.$_SESSION['logindetails']['id'];
         if ($id) {
-            $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
-                $id, $subselect));
+            $allow = Sql_Fetch_Row_query(
+                sprintf(
+                    'select 
+                        owner 
+                    from 
+                        %s 
+                    where 
+                        id = %d %s'
+                , $GLOBALS['tables']['message']
+                , $id
+                , $subselect)
+            );
             if ($allow[0] != $_SESSION['logindetails']['id']) {
                 echo s('You do not have access to this page');
 
@@ -64,7 +74,14 @@ if (empty($start)) {
 }
 
 //print '<h3>'.s('View Details for a Message').'</h3>';
-$messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
+$messagedata = Sql_Fetch_Array_query(
+    "SELECT 
+        * 
+    FROM 
+        {$tables['message']} 
+    WHERE 
+        id = $id $subselect"
+);
 echo '<table class="mviewsDetails">
 <tr><td>' .s('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
 <tr><td>' .s('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
@@ -78,10 +95,24 @@ if ($download) {
 $ls = new WebblerListing(s('Open statistics'));
 $ls->setElementHeading(s('Subscriber'));
 
-$req = Sql_Query(sprintf('select um.userid
-    from %s um,%s msg where um.messageid = %d and um.messageid = msg.id and um.viewed is not null %s
-    group by userid',
-    $GLOBALS['tables']['usermessage'], $GLOBALS['tables']['message'], $id, $subselect));
+$req = Sql_Query(
+    sprintf(
+        'select 
+            um.userid
+        from 
+            %s um
+            , %s msg 
+        where 
+            um.messageid = %d 
+            and um.messageid = msg.id 
+            and um.viewed is not null %s
+        group by 
+            userid'
+    , $GLOBALS['tables']['usermessage']
+    , $GLOBALS['tables']['message']
+    , $id
+    , $subselect)
+);
 
 $total = Sql_Affected_Rows();
 if (isset($start) && $start > 0) {
@@ -170,7 +201,21 @@ while ($row = Sql_Fetch_Array($req)) {
         if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
             // Add class for table styling (groups rows differently for multi-row groups)
             $ls->setClass($element, 'row1');
-            $allViewsReq = Sql_Query(sprintf('select * from %s where userid = %d and messageid = %d order by viewed',$GLOBALS['tables']['user_message_view'],$row['userid'],$id));
+            $allViewsReq = Sql_Query(
+                sprintf(
+                    'select 
+                        * 
+                    from 
+                        %s 
+                    where 
+                        userid = %d 
+                        and messageid = %d 
+                    order by 
+                        viewed'
+                , $GLOBALS['tables']['user_message_view']
+                , $row['userid']
+                , $id
+            ));
             $totalViews = Sql_Affected_Rows();
 
             if ($totalViews > 1) {
