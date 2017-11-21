@@ -157,7 +157,6 @@ while ($row = Sql_Fetch_Array($req)) {
         $element = shortenTextDisplay($row['email'], 35);
     }
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
-    $ls->setClass($element, 'row1');
     $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
     $viewList = '';
     if ($row['viewcount'] > 1) { // that will never happen as usermessage only has one entry per user-message
@@ -169,6 +168,8 @@ while ($row = Sql_Fetch_Array($req)) {
         $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
 
         if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
+            // Add class for table styling (groups rows differently for multi-row groups)
+            $ls->setClass($element, 'row1');
             $allViewsReq = Sql_Query(sprintf('select * from %s where userid = %d and messageid = %d order by viewed',$GLOBALS['tables']['user_message_view'],$row['userid'],$id));
             $totalViews = Sql_Affected_Rows();
 
