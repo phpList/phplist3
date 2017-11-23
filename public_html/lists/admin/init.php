@@ -258,7 +258,9 @@ if (!defined('SHOW_UNSUBSCRIBELINK')) {
 if (!defined('SHOW_SUBSCRIBELINK')) {
     define('SHOW_SUBSCRIBELINK', true);
 }
-
+if (!defined('UNSUBSCRIBE_CONFIRMATION')) {
+    define('UNSUBSCRIBE_CONFIRMATION', true);
+}
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
     //#https://mantis.phplist.com/view.php?id=16787
     // passwords are encrypted, so we need to stick to md5 to keep working
