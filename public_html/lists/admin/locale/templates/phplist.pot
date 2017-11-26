@@ -52,27 +52,27 @@ msgstr ""
 msgid "\"Jump off\" set, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:1023
+#: public_html/lists/index.php:1029
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
 msgstr ""
 
-#: public_html/lists/index.php:1110 public_html/lists/index.php:1121
+#: public_html/lists/index.php:1116 public_html/lists/index.php:1127
 msgid "Message Forwarded"
 msgstr ""
 
-#: public_html/lists/index.php:1111
+#: public_html/lists/index.php:1117
 #, php-format
 msgid "%s has forwarded message %d to %s"
 msgstr ""
 
-#: public_html/lists/index.php:1122
+#: public_html/lists/index.php:1128
 #, php-format
 msgid "%s tried forwarding message %d to %s but failed"
 msgstr ""
 
-#: public_html/lists/index.php:1138
+#: public_html/lists/index.php:1144
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
@@ -178,7 +178,7 @@ msgstr ""
 #: public_html/lists/admin/send.php:113 public_html/lists/admin/spage.php:76
 #: public_html/lists/admin/send_core.php:949
 #: public_html/lists/admin/eventlog.php:113
-#: public_html/lists/admin/admins.php:115
+#: public_html/lists/admin/admins.php:106
 #: public_html/lists/admin/bouncerules.php:111
 #: public_html/lists/admin/bouncerules.php:112
 msgid "del"
@@ -1664,7 +1664,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:236
 #: public_html/lists/admin/messages.php:248
 #: public_html/lists/admin/eventlog.php:37 public_html/lists/admin/list.php:115
-#: public_html/lists/admin/user.php:281 public_html/lists/admin/admins.php:37
+#: public_html/lists/admin/user.php:281 public_html/lists/admin/admins.php:48
 #: public_html/lists/admin/admin.php:132 public_html/lists/admin/users.php:240
 msgid "Done"
 msgstr ""
@@ -2185,7 +2185,7 @@ msgid "subscribers"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:424
-#: public_html/lists/admin/admins.php:78
+#: public_html/lists/admin/admins.php:75
 msgid "found"
 msgstr ""
 
@@ -2463,7 +2463,7 @@ msgstr ""
 #: public_html/lists/admin/templates.php:10
 #: public_html/lists/admin/messages.php:148
 #: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:108
-#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:32
+#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:43
 #: public_html/lists/admin/admin.php:128
 msgid "Deleting"
 msgstr ""
@@ -2611,7 +2611,9 @@ msgstr ""
 #: public_html/lists/admin/actions/configure.php:64
 #: public_html/lists/admin/user.php:383
 #: public_html/lists/admin/bouncerule.php:39
-#: public_html/lists/admin/admin.php:196 public_html/lists/admin/admin.php:214
+#: public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:196
+#: public_html/lists/admin/admin.php:214
 msgid "Yes"
 msgstr ""
 
@@ -2619,7 +2621,9 @@ msgstr ""
 #: public_html/lists/admin/actions/configure.php:71
 #: public_html/lists/admin/user.php:383
 #: public_html/lists/admin/bouncerule.php:40
-#: public_html/lists/admin/admin.php:196 public_html/lists/admin/admin.php:215
+#: public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:196
+#: public_html/lists/admin/admin.php:215
 msgid "No"
 msgstr ""
 
@@ -2779,6 +2783,7 @@ msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:73
 #: public_html/lists/admin/usercheck.php:23
+#: public_html/lists/admin/admins.php:111
 msgid "email"
 msgstr ""
 
@@ -3169,7 +3174,7 @@ msgid "static"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:131
-#: public_html/lists/admin/admins.php:107 public_html/lists/admin/users.php:326
+#: public_html/lists/admin/admins.php:97 public_html/lists/admin/users.php:326
 #: public_html/lists/admin/users.php:395
 msgid "Go"
 msgstr ""
@@ -6339,36 +6344,48 @@ msgstr ""
 msgid "HTML"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:21
-msgid "Import list of admins"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:25
-msgid "Add new admin"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:30
-msgid "You cannot delete yourself"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:52
-msgid "Admin added"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:60 public_html/lists/admin/admins.php:77
-#: public_html/lists/admin/admins.php:83 public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:26 public_html/lists/admin/admins.php:74
+#: public_html/lists/admin/admins.php:81 public_html/lists/admin/admins.php:102
 msgid "Administrators"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:104
+#: public_html/lists/admin/admins.php:35
+msgid "Import list of admins"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:36
+msgid "Add new admin"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:41
+msgid "You cannot delete yourself"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:63
+msgid "Admin added"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:94
 msgid "Find an admin"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:118
+#: public_html/lists/admin/admins.php:109
 msgid "Show"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:120
+#: public_html/lists/admin/admins.php:110
+msgid "Id"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:112
+msgid "Super Admin"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:113
+msgid "Disabled"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:115
 msgid "Del"
 msgstr ""
 
