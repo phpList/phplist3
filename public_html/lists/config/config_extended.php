@@ -122,8 +122,8 @@ $bounce_mailbox_purge_unprocessed = 1;
 // how many bounces in a row need to have occurred for a user to be marked unconfirmed
 $bounce_unsubscribe_threshold = 5;
 
-// Allow admin to receive "deletebounce" by mail
-define('REPORT_DELETED_BOUNCES', 1);
+// Set to 0 to received by mail bounce deletions in the advanced bounce processing report
+define('REPORT_DELETED_BOUNCES', 0);
 
 /*
 
