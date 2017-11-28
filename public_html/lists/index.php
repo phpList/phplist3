@@ -887,19 +887,25 @@ function unsubscribePage($id)
                 addUserToBlacklist($email, nl2br(strip_tags($_POST['unsubscribereason'])));
                 addUserHistory($email, 'Unsubscription', "Unsubscribed from $lists");
                 $unsubscribemessage = str_replace('[LISTS]', $lists, getUserConfig("unsubscribemessage:$id", $userid));
-                sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage),
-                    system_messageheaders($email), '', true);
+                if (UNSUBSCRIBE_CONFIRMATION) {
+                    sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage),
+                        system_messageheaders($email), '', true);
+                }
                 $reason = $_POST['unsubscribereason'] ? "Reason given:\n".stripslashes($_POST['unsubscribereason']) : 'No Reason given';
                 sendAdminCopy('List unsubscription', $email." has unsubscribed\n$reason", $subscriptions);
                 addSubscriberStatistics('unsubscription', 1);
             }
         }
 
-        if ($userid) {
-            $res .= '<h3>'.$GLOBALS['strUnsubscribeDone'].'</h3>';
-        }
-
-        //0013076: Blacklisting posibility for unknown users
+	if ($userid) {
+	    if (UNSUBSCRIBE_CONFIRMATION) {
+	        $res .= '<h3>' . $GLOBALS['strUnsubscribeDone'] . '</h3>';
+	    } else {
+	        $res .= '<h3>' . $GLOBALS['strUnsubscribedNoConfirm'] . '</h3>';
+	    }
+	}
+        
+	//0013076: Blacklisting posibility for unknown users
         //if ($blacklistRequest) {
         //$res .= '<h3>'.$GLOBALS["strYouAreBlacklisted"] ."</h3>";
         //}

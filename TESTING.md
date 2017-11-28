@@ -1,4 +1,4 @@
-# Automated testing of phpList
+# Automated testing of phpList 3
 
 ## Acceptance tests (UAT)
 

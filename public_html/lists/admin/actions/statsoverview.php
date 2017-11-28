@@ -59,8 +59,8 @@ if ($download) {
 }
 
 if (empty($start)) {
-    $status .= '<div class="actions">'.PageLinkButton('pageaction&action=statsoverview&dl=true',
-            $GLOBALS['I18N']->get('Download as CSV file')).'</div>';
+    $status .= '<div class="actions pull-right">'.PageLinkButton('pageaction&action=statsoverview&dl=true',
+            $GLOBALS['I18N']->get('Download as CSV file')).'</div><div class="clearfix"></div>';
 }
 if (!empty($_SESSION['LoadDelay'])) {
     sleep($_SESSION['LoadDelay']);

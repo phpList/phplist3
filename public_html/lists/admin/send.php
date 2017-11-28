@@ -96,7 +96,7 @@ if (!$GLOBALS['commandline']) {
         $GLOBALS['tables']['message'], $ownership));
     $numdraft = Sql_Num_Rows($req);
     if ($numdraft > 0 && !isset($_GET['id']) && !isset($_GET['new'])) {
-        echo '<p>'.PageLinkActionButton('send&amp;new=1', $I18N->get('start a new message'), '', '',
+        echo '<p class="pull-right">'.PageLinkActionButton('send&amp;new=1', $I18N->get('start a new message'), '', '',
                 s('Start a new campaign')).'</p>';
         echo '<p><h3>'.$I18N->get('Choose an existing draft campaign to work on').'</h3></p><br/>';
         $ls = new WebblerListing($I18N->get('Draft campaigns'));

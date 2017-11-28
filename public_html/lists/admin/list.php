@@ -87,16 +87,16 @@ switch ($access) {
 }
 
 echo '<div class="actions">';
-echo PageLinkButton('catlists', $I18N->get('Categorise lists'));
+echo '<div class="pull-left">'.PageLinkButton('catlists', $I18N->get('Categorise lists')).'</div>';
 $canaddlist = false;
 if ( !isSuperUser()) {
     $numlists = Sql_Fetch_Row_query("select count(*) from {$tables['list']} where owner = ".$_SESSION['logindetails']['id']);
     if ($numlists[0] < MAXLIST) {
-        echo PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list'));
+        echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list')).'</div>';
         $canaddlist = true;
     }
 } else {
-    echo PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list'));
+    echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list')).'</div>';
     $canaddlist = true;
 }
 echo '</div>';
@@ -325,7 +325,7 @@ if (!$some) {
 ?>
 
 </form>
-<p>
+<p class="hidden-lg hidden-md hidden-sm hidden-xs">
     <?php
     if ($canaddlist) {
         echo PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list'));

@@ -179,6 +179,10 @@ define('UNSUBSCRIBE_JUMPOFF', 0);
 
 // To Add a mailto to list-unsubscribe Header, set this to true
 define('UNSUBSCRIBE_MAILTO', false);
+ 
+// To not send confirmation of unsubscription , instead of
+// the default way, which will send it, set this to false
+define('UNSUBSCRIBE_CONFIRMATION', true);
 
 // when a user unsubscribes they are sent one final email informing them of
 // their unsubscription. In order for that email to actually go out, a gracetime

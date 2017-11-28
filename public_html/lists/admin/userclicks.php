@@ -161,8 +161,7 @@ if ($fwdid && $msgid) {
         $msgid
     );
 } elseif ($userid) {
-    echo '<h3>'.$GLOBALS['I18N']->get('Clicks of a subscriber').'</h3>';
-    echo s('Subscriber').' '.PageLink2('user&amp;id='.$userid, $userdata['email']);
+    echo '<h3>'.$GLOBALS['I18N']->get('All clicks by').' <small><b>'.PageLink2('user&amp;id='.$userid, $userdata['email']).'</b></small></h3>';
 
     $query = sprintf('
         SELECT SUM(htmlclicked) AS htmlclicked,
