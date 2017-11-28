@@ -2,9 +2,6 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 
-//# fetch updated translation
-//var_dump($LANGUAGES);
-
 if (!Sql_Table_exists($GLOBALS['tables']['i18n'])) {
     include dirname(__FILE__).'/structure.php';
     Sql_Create_Table($GLOBALS['tables']['i18n'], $DBstruct['i18n']);
@@ -20,43 +17,62 @@ if (!$LU || !is_object($LU)) {
 
     return;
 }
+/*
+ * To sort the languages we need to create an array from $LU->translation, which is a SimpleXMLElement object.
+ */
+$languages = iterator_to_array($LU->translation, false);
+usort(
+    $languages,
+    function($a, $b) {
+        return strcasecmp($a->iso, $b->iso);
+    }
+);
+$ls = new WebblerListing(s('Language translations'));
+$ls->setElementHeading(s('Language'));
 
-//var_dump($LU);
-echo '<ul>';
-foreach ($LU->translation as $lan) {
-    //  var_dump($lan);
-    $lastupdated = getConfig('lastlanguageupdate-'.$lan->iso);
-    if (!empty($LANGUAGES[(string) $lan->iso])) {
-        $lan_name = $LANGUAGES[(string) $lan->iso][0];
-    } else {
-        $lan_name = $lan->name;
-    }
-    if ($force || ($lan->iso == $_SESSION['adminlanguage']['iso'] && $lan->lastmodified > $lastupdated)) {
-        $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso, $lan_name);
-    } else {
-        $updateLink = $lan_name;
-    }
-    if (empty($lastupdated)) {
-        $lastupdated = s('Never');
-    } else {
-        $lastupdated = date('Y-m-d', $lastupdated);
-    }
+foreach ($languages as $lan) {
+    $count = Sql_Fetch_Row_Query(sprintf(
+        'SELECT count(*)
+        FROM %s
+        WHERE lan = "%s" AND original = "language-name"',
+        $tables['i18n'],
+        $lan->iso
+    ));
 
-    $count = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where lan = "%s" and original = "language-name"',
-        $tables['i18n'], $lan->iso));
     if ($count[0] == 0) {
-        //# insert a dummy translation entry, so to record the language
-//    print '<h1>'.$count[0].'</h1>';
-        Sql_Query(sprintf('insert into %s (lan,original,translation) values("%s","%s","%s")', $tables['i18n'],
-            $lan->iso, 'language-name', $lan->name));
+        // insert a dummy translation entry, so to record the language
+        Sql_Query(sprintf(
+            'INSERT INTO %s (lan,original,translation)
+            VALUES("%s","%s","%s")',
+            $tables['i18n'],
+            $lan->iso,
+            'language-name',
+            $lan->name
+        ));
+    }
+    $lastupdated = getConfig('lastlanguageupdate-'.$lan->iso);
+    $isInstalled = $lastupdated != '';
+
+    if (!$isInstalled && !$force) {
+        continue;
     }
 
-    if ($lan->iso == $_SESSION['adminlanguage']['iso']) {
-        printf('<li><strong>%s %s: %s, %s: %s</strong></li>', $updateLink, s('Last updated'), $lastupdated,
-            s('Last modified'), date('Y-m-d', (int) $lan->lastmodified));
+    if ($isInstalled) {
+        if ($lan->lastmodified > $lastupdated) {
+            $status = s('Update is available');
+            $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso, s('Update'));
+        } else {
+            $status = s('Up-to-date');
+            $updateLink = $force ? pageLinkAjax('updatetranslation&lan='.$lan->iso, s('Update')) : '';
+        }
     } else {
-        printf('<li>%s %s: %s, %s: %s</li>', $updateLink, s('Last updated'), $lastupdated, s('Last modified'),
-            date('Y-m-d', (int) $lan->lastmodified));
+        $status = s('Not installed');
+        $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso, s('Install'));
     }
+    $languageName = !empty($LANGUAGES[(string) $lan->iso]) ? $LANGUAGES[(string) $lan->iso][0] : $lan->name;
+    $ls->addElement($languageName);
+    $ls->addColumn($languageName, s('Code'), $lan->iso);
+    $ls->addColumn($languageName, s('Translation status'), $status);
+    $ls->addColumn($languageName, s('Action'), $updateLink);
 }
-echo '</ul>';
+echo $ls->display();
