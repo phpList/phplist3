@@ -20,13 +20,13 @@ foreach ($LU->translation as $update) {
         //  $status = $update->updateurl;
         $translationUpdate = fetchUrl($update->updateurl);
         $translations = parsePo($translationUpdate);
+        break;
     }
 }
 
-$status = '';
 if (count($translations)) {
-    $I18N->updateDBtranslations($translations, time());
-    $status = sprintf(s('updated %d language terms'), count($translations));
+    $I18N->updateDBtranslations($translations, time(), $lan);
+    $status = s('updated %d language terms', count($translations));
 } else {
-    $status = Error(s('Network error updating language, please try again later'));
+    $status = s('No language terms found');
 }
