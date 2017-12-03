@@ -462,10 +462,11 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
     }
 }
 
-if ($access != 'view') {
-    $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
-}
 $userdetailsHTML .= '</table>';
+
+if ($access != 'view') {
+    $userdetailsHTML .= '<input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" />';
+}
 
 if (isBlackListed($user['email'])) {
     $userdetailsHTML .= '<h3>'.s('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
