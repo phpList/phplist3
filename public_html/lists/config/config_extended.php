@@ -594,6 +594,12 @@ define('PHPMAILERHOST', '');
 //# defaults to 5 seconds
 // define('SMTP_TIMEOUT',5);
 
+// Pop-Before-Smtp 
+// If you use Pop before Smtp, set to true
+// And complete smtp settings (PHPMAILERHOST,  phpmailer_smtpuser', phpmailer_smtppassword)
+define('POP_BEFORE_SMTP', false);
+define('POPBEFORESMTP_DEBUG', false);
+
 /*
 
 =========================================================================
@@ -843,3 +849,4 @@ define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 // Allow admin to enter a different message that will be sent when forwarding 'to a friend'
 // This will show an extra tab in the message dialog.
 define('FORWARD_ALTERNATIVE_CONTENT', 0);
+

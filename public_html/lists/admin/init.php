@@ -586,6 +586,12 @@ if (!defined('PHPMAILER_SECURE')) {
 if (!defined('PHPMAILER_SMTP_DEBUG')) {
     define('PHPMAILER_SMTP_DEBUG', 0);
 }
+if (!defined('POP_BEFORE_SMTP')) {
+    define('POP_BEFORE_SMTP', '');
+}
+if (!defined('POPBEFORESMTP_DEBUG')) {
+    define('POPBEFORESMTP_DEBUG', '');
+}
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
 }
