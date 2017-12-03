@@ -99,7 +99,7 @@ if ( !isSuperUser()) {
     echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list')).'</div>';
     $canaddlist = true;
 }
-echo '</div>';
+echo '</div><div class="clearfix"></div>';
 
 if (isset($_GET['delete'])) {
     verifyCsrfGetToken();
