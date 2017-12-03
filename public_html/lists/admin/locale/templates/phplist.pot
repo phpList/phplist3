@@ -3341,6 +3341,7 @@ msgid "delete this campaign"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:561
+#: public_html/lists/admin/updatetranslation.php:76
 #: public_html/lists/admin/bouncerule.php:64
 #: public_html/lists/admin/bounce.php:155
 #: public_html/lists/admin/bouncerules.php:134
@@ -4501,7 +4502,7 @@ msgid "Manually blacklisted by %s"
 msgstr ""
 
 #: public_html/lists/admin/actions/updatetranslation.php:12
-#: public_html/lists/admin/updatetranslation.php:19
+#: public_html/lists/admin/updatetranslation.php:16
 msgid ""
 "Unable to fetch list of languages, please check your network or try again "
 "later"
@@ -4513,7 +4514,7 @@ msgid "updated %d language terms"
 msgstr ""
 
 #: public_html/lists/admin/actions/updatetranslation.php:31
-msgid "Network error updating language, please try again later"
+msgid "No language terms found"
 msgstr ""
 
 #: public_html/lists/admin/actions/export.php:14
@@ -5999,18 +6000,41 @@ msgstr ""
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:40
-msgid "Never"
+#: public_html/lists/admin/updatetranslation.php:30
+msgid "Language translations"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:55
-#: public_html/lists/admin/updatetranslation.php:58
-msgid "Last updated"
+#: public_html/lists/admin/updatetranslation.php:31
+msgid "Language"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:56
-#: public_html/lists/admin/updatetranslation.php:58
-msgid "Last modified"
+#: public_html/lists/admin/updatetranslation.php:62
+msgid "Update is available"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:63
+#: public_html/lists/admin/updatetranslation.php:66
+msgid "Update"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:65
+msgid "Up-to-date"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:69
+msgid "Not installed"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:70
+msgid "Install"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:74
+msgid "Code"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:75
+msgid "Translation status"
 msgstr ""
 
 #: public_html/lists/admin/date.php:18
