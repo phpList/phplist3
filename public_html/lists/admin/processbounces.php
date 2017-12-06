@@ -678,6 +678,9 @@ if (count($bouncerules)) {
                         break;
                     case 'deletebounce':
                         deleteBounce($row['bounce']);
+			if (REPORT_DELETED_BOUNCES == 1) {
+			    $advanced_report .= 'Deleted bounce ' . $userdata['email'] . ' --> Bounce deleted by bounce rule ' . $rule['id'] . PHP_EOL;
+			}
                         break;
                 }
 
