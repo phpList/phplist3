@@ -1923,7 +1923,7 @@ msgid "Process Killed by other process"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:596
-#: public_html/lists/admin/processbounces.php:777
+#: public_html/lists/admin/processbounces.php:780
 msgid "Auto Unconfirmed"
 msgstr ""
 
@@ -1977,66 +1977,66 @@ msgstr ""
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:690
+#: public_html/lists/admin/processbounces.php:693
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:691
+#: public_html/lists/admin/processbounces.php:694
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:695
+#: public_html/lists/admin/processbounces.php:698
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:705
+#: public_html/lists/admin/processbounces.php:708
 #: public_html/lists/admin/cron.php:58
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:774
+#: public_html/lists/admin/processbounces.php:777
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:778
+#: public_html/lists/admin/processbounces.php:781
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:788
+#: public_html/lists/admin/processbounces.php:791
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:789
+#: public_html/lists/admin/processbounces.php:792
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:801
+#: public_html/lists/admin/processbounces.php:804
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:808
+#: public_html/lists/admin/processbounces.php:811
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:813
+#: public_html/lists/admin/processbounces.php:816
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:816
+#: public_html/lists/admin/processbounces.php:819
 msgid ""
 "Below are users who have been marked unconfirmed. The number in () is the "
 "number of consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:820
+#: public_html/lists/admin/processbounces.php:823
 msgid "Report:"
 msgstr ""
 
@@ -5990,12 +5990,12 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:298
+#: public_html/lists/admin/class.phplistmailer.php:316
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:303
+#: public_html/lists/admin/class.phplistmailer.php:321
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
