@@ -228,27 +228,11 @@ if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
         PageURL2('list'),
         s('delete this list'));
 
-
-    $editUrl = '?page=editlist&amp;id='.$row['id'];
-    $sendButton = PageLinkButton(
-        'send&new=1&list='.$row['id'],
-        s('send'),
-        '',
-        '',
-        s('start a new campaign targetting this list')
-    );
-    $importButton = PageLinkDialogOnly('importsimple&list='.$row['id'], s('Add Members'));
-
-    $actionsFormat = 
-<<<'END'
-<span class="edit-list"><a class="button" href="%s" title="%s"></a></span>
-<span class="send-list">%s</span>
-<span class="add_member">%s</span>
-<span class="delete">%s</span>
-END;
-    $actions = sprintf($actionsFormat, $editUrl, s('Edit this list'), $sendButton, $importButton, $deletebutton->show());
-    $ls->addRow($element, '', $actions, '', '', 'actions nodrag');
-
+    $ls->addRow($element, '',
+        '<span class="edit-list"><a class="button" href="?page=editlist" title=""></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list=all',
+            $GLOBALS['I18N']->get('send'), '', '', s('start a new campaign targetting all lists')).'</span>'.
+        '<span class="add_member">'.PageLink2('import', s('Add Members')).'</span>'.
+        '<span class="delete">'.$deletebutton->show().'</span>', '', '', 'actions nodrag');
     $some = 1;
 }
 
