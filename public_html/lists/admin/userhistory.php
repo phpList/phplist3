@@ -59,7 +59,7 @@ if ($access == 'all') {
     $delete = new ConfirmButton(
         htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
         PageURL2("user&delete=$id&amp;".addCsrfGetToken(), 'button', s('remove subscriber')),
-        s('remove subscriber'));
+        s('remove subscriber'),s('remove subscriber'), 'confirm btn btn-lg btn-danger pull-right');
     echo $delete->show();
 }
 
