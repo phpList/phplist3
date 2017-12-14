@@ -1,16 +1,33 @@
 default:
-  paths:
-    features: tests/features
-  extensions:
-    Behat\MinkExtension\Extension:
-      goutte:    ~
-      selenium2: ~
-      base_url: http://phplist.dev
-  context :
-      parameters :
-          base_url: http://phplist.dev
-          db_user: root
-          db_password :
-          db_name: phplistdb
-          admin_username : admin
-          admin_password : Mypassword123+
+    autoload:
+        - %paths.base%/tests/features/bootstrap
+    suites:
+        default:
+            paths:
+                - %paths.base%/tests/features
+            contexts:
+                - FeatureContext:
+                    base_url: http://phplist.dev
+                    db_user: root
+                    db_password :
+                    db_name: phplistdb
+                    admin_username : admin
+                    admin_password : Mypassword123+
+    extensions:
+        Behat\MinkExtension:
+            # Change to you custom url:
+            base_url:  'http://phplist.dev'
+            show_auto: false
+            show_cmd: google-chrome %s
+            browser_name: 'chrome'
+            sessions:
+                default:
+                    #goutte: ~
+                    selenium2:
+                        capabilities: { "browser": "chrome" }
+        Bex\Behat\ScreenshotExtension:
+            active_image_drivers: upload_pie
+            image_drivers:
+                upload_pie:
+                    auth: '%UPLOADPIE_API_KEY%'
+                    expire: '30m' # possible values: '30m', '1h', '6h', '1d', '1w'

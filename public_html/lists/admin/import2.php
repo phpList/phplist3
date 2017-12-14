@@ -696,8 +696,15 @@ if (count($email_list)) {
     <div class="content">
         <table class="importcsvMain" border="1">
             <tr>
-                <td colspan="2">
-                    <?php echo $GLOBALS['I18N']->get('The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called "email" and not something like "e-mail" or     "Email Address".     Case is not important.          If you have a column called "Foreign Key", this will be used for synchronisation between an     external database and the phpList database. The foreignkey will take precedence when matching     an existing subscriber. This will slow down the import process. If you use this, it is allowed to have     records without email, but an "Invalid Email" will be created instead. You can then do     a search on "invalid email" to find those records. Maximum size of a foreign key is 100.          Warning: the file needs to be plain text. Do not upload binary files like a Word Document.     ') ?>
+                <td colspan="2" style="width:70%">
+                    <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm1" >
+                    <div class="alert alert-info">
+                       The file you upload will need to have the attributes of the records on the first line. Make sure that the email column is called "email" and not something like "e-mail" or "Email Address".Case is not important. If you have a column called "Foreign Key", this will be used for synchronisation between an external database and the phpList database. The foreignkey will take precedence when matching an existing subscriber. This will slow down the import process. If you use this, it is allowed to have records without email, but an "Invalid Email" will be created instead. You can then do a search on "invalid email" to find those records. Maximum size of a foreign key is 100. Warning: the file needs to be plain text. Do not upload binary files like a Word Document.
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm1" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -718,28 +725,63 @@ if (count($email_list)) {
             </tr>
             <!--tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter') ?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break') ?>)</td></tr-->
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.') ?></td>
+                <td colspan="2">  
+                 <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm2">
+                    <div class="alert alert-info">
+                       If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm2" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
+            </td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
                 <td><input type="checkbox" name="import_test" value="yes" checked="checked"/></td>
             </tr>
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Show Warnings", you will get warnings for invalid records. Warnings will only be shown if you check "Test Output". They will be ignored when actually importing. ') ?></td>
+                <td colspan="2"> 
+            <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm3">
+                    <div class="alert alert-info">
+                      If you check "Show Warnings", you will get warnings for invalid records. Warnings will only be shown if you check "Test Output". They will be ignored when actually importing.
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm3" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
+                  
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
                 <td><input type="checkbox" name="show_warnings" value="yes"/></td>
             </tr>
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Omit Invalid", invalid records will not be added. Invalid records are records without an email. Any other attributes will be added automatically, ie if the country of a record is not found, it will be added to the list of countries.') ?></td>
+                <td colspan="2">
+                     <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm4">
+                    <div class="alert alert-info">
+                      If you check "Omit Invalid", invalid records will not be added. Invalid records are records without an email. Any other attributes will be added automatically, ie if the country of a record is not found, it will be added to the list of countries.
+                </div>
+            </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm4" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
+                    </td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
                 <td><input type="checkbox" name="omit_invalid" value="yes"/></td>
             </tr>
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('Assign Invalid will be used to create an email for subscribers with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column "First Name" and one called "Last Name", you can use "[first name] [last name]" to construct a new value for the email for this subscriber containing their first name and last name. The value [number] can be used to insert the sequence number for importing.') ?>
+                <td colspan="2">
+                    <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm5">
+                    <div class="alert alert-info">
+                      Assign Invalid will be used to create an email for subscribers with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column "First Name" and one called "Last Name", you can use "[first name] [last name]" to construct a new value for the email for this subscriber containing their first name and last name. The value [number] can be used to insert the sequence number for importing.
+                </div>
+            </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm5" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -748,14 +790,32 @@ if (count($email_list)) {
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Overwrite Existing", information about a subscriber in the database will be replaced by the imported information. Subscribers are matched by email or foreign key.') ?></td>
+                <td colspan="2">
+                    <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm6">
+                    <div class="alert alert-info">
+                    If you check "Overwrite Existing", information about a subscriber in the database will be replaced by the imported information. Subscribers are matched by email or foreign key.
+                </div>
+            </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm6" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
                 <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/></td>
             </tr>
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Retain Old Email", a conflict of two emails being the same will keep the old one and add "duplicate" to the new one. If you don&quot;t check it, the old one will get "duplicate" and the new one will take precedence.') ?></td>
+                <td colspan="2">
+                    <div id="globalhelp">
+                            <div class="collapse" id="helptargetIm7">
+                    <div class="alert alert-info">
+                    If you check "Retain Old Email", a conflict of two emails being the same will keep the old one and add "duplicate" to the new one. If you don't check it, the old one will get "duplicate" and the new one will take precedence.
+                </div>
+            </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptargetIm7" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
