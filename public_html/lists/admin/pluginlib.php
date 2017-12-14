@@ -2,35 +2,29 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 require_once dirname(__FILE__).'/EmailSender.php';
+include_once dirname(__FILE__).'/defaultplugin.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
 $GLOBALS['authenticationplugin'] = false;
 $GLOBALS['emailsenderplugin'] = false;
 
-if (!defined('PLUGIN_ROOTDIR')) {
-    define('PLUGIN_ROOTDIR', 'notdefined');
-}
-
 $pluginRootDirs = array();
-if (defined('PLUGIN_ROOTDIRS')) {
+if (PLUGIN_ROOTDIRS != '') {
     $pluginRootDirs = explode(';', PLUGIN_ROOTDIRS);
 }
 $pluginRootDirs[] = PLUGIN_ROOTDIR;
-$pluginRootDirs = array_unique($pluginRootDirs);
-
-include_once dirname(__FILE__).'/defaultplugin.php';
+$pluginRootDirs = array_filter(array_unique($pluginRootDirs));
 $pluginFiles = array();
 
 foreach ($pluginRootDirs as $pluginRootDir) {
     //# try to expand to subdir of the admin dir
-    if (!is_dir($pluginRootDir) && !empty($pluginRootDir)) {
+    if (!is_dir($pluginRootDir)) {
         $pluginRootDir = dirname(__FILE__).'/'.$pluginRootDir;
     }
 
 //  print '<h3>'.$pluginRootDir.'</h3>';
-    if (is_dir($pluginRootDir)) {
-        $dh = opendir($pluginRootDir);
+    if (is_dir($pluginRootDir) && ($dh = opendir($pluginRootDir))) {
         while (false !== ($file = readdir($dh))) {
             if ($file != '.' && $file != '..' && !preg_match('/~$/', $file)) {
                 //        print $pluginRootDir.' '.$file.'<br/>';
