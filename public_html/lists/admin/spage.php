@@ -74,7 +74,7 @@ while ($p = Sql_Fetch_Array($req)) {
             PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')).
         sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a></span>',
             PageURL2('spage', '', 'delete='.$p['id']), $GLOBALS['I18N']->get('del')).
-        sprintf('<span class="view"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
+        sprintf('<span class="view"><a class="button" target="_blank" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
             getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
 }
 echo '<p class="button pull-right">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p><div class="clearfix"></div>';
