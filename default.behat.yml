@@ -31,7 +31,7 @@ default:
                     #goutte: ~
                     selenium2:
                         # Change this to Firefox if necessary
-                        capabilities: { "browser": "chrome" }
+                        capabilities: { "browser": "chrome", "marionette": true }
         Bex\Behat\ScreenshotExtension:
             image_drivers:
                 local:
