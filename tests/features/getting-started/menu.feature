@@ -28,7 +28,6 @@ Feature: Navigate the app using the menu
         Examples:
          | Innerpages                |
          | Search subscribers        |
-         | Add a new subscriber      |
          | Manage subscribers        |
          | Subscriber lists          |
          | Import emails             |
@@ -36,6 +35,7 @@ Feature: Navigate the app using the menu
          | View bounces per list     |
          | Suppression List          |
          | Reconcile subscribers     |
+         | Subscribe pages           |
 
     Scenario Outline: Browse Campaigns menu
         Given I have logged in as an administrator
@@ -84,7 +84,6 @@ Feature: Navigate the app using the menu
          | Settings                           |
          | Manage plugins                     |
          | Configure attributes               |
-         | Subscribe pages                    |
          | Manage administrators              |
          | Import administrators              |
          | Configure administrator attributes|
