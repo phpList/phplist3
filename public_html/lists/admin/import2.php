@@ -616,7 +616,6 @@ if (count($email_list)) {
 ?>
 
 
-<ul>
     <?php echo formStart('enctype="multipart/form-data" name="import"'); ?>
     <?php
 
@@ -691,7 +690,6 @@ if (count($email_list)) {
     }
     ?>
 
-</ul>
 <div class="panel">
     <div class="content">
         <table class="importcsvMain" border="1">
