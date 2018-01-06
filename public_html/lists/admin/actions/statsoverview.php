@@ -1,5 +1,5 @@
 <?php
-// print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
+// print '<p>'.s('Select Message to view').'</p>';
 verifyCsrfGetToken();
 
 if (isset($_GET['id'])) {
@@ -29,7 +29,7 @@ switch ($access) {
             $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
                 $id, $ownership));
             if ($allow[0] != $_SESSION['logindetails']['id']) {
-                $status .= $GLOBALS['I18N']->get('You do not have access to this page');
+                $status .= s('You do not have access to this page');
 
                 return;
             }
@@ -41,7 +41,7 @@ switch ($access) {
     case 'none':
     default:
         $ownership = ' and msg.id = 0';
-        $status .= $GLOBALS['I18N']->get('You do not have access to this page');
+        $status .= s('You do not have access to this page');
 
         return;
         break;
@@ -60,7 +60,7 @@ if ($download) {
 
 if (empty($start)) {
     $status .= '<div class="actions pull-right">'.PageLinkButton('pageaction&action=statsoverview&dl=true',
-            $GLOBALS['I18N']->get('Download as CSV file')).'</div><div class="clearfix"></div>';
+            s('Download as CSV file')).'</div><div class="clearfix"></div>';
 }
 if (!empty($_SESSION['LoadDelay'])) {
     sleep($_SESSION['LoadDelay']);
@@ -87,7 +87,7 @@ if ($total > 10) {
 }
 
 if (!Sql_Affected_Rows()) {
-    $status .= '<p class="information">'.$GLOBALS['I18N']->get('There are currently no campaigns to view').'</p>';
+    $status .= '<p class="information">'.s('There are currently no campaigns to view').'</p>';
 }
 
 $ls = new WebblerListing('');
@@ -127,19 +127,19 @@ while ($row = Sql_Fetch_Array($req)) {
         $percentClickedFormatted = ' ('.sprintf('%0.2f', ($totalclicked[0] / ($totls[0] - $row['bounced']) * 100)).' %)';
     }
 
-    $ls->setElementHeading($GLOBALS['I18N']->get('Campaign'));
+    $ls->setElementHeading(s('Campaign'));
     $ls->addElement($element,
         PageURL2('statsoverview&amp;id='.$row['messageid'])); //,PageURL2('message&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
-    //   $ls->addColumn($element,$GLOBALS['I18N']->get('owner'),$row['owner']);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('date'), $row['sent']);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $totls[0]);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('bncs'), $row['bounced'].$percentBouncedFormatted);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('fwds'), sprintf('%d', $fwded[0]));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $views[0].$percentViewedFormatted,
+    //   $ls->addColumn($element,s('owner'),$row['owner']);
+    $ls->addColumn($element, s('date'), $row['sent']);
+    $ls->addColumn($element, s('sent'), number_format((int)$totls[0]));
+    $ls->addColumn($element, s('bncs'), number_format((int)$row['bounced']).$percentBouncedFormatted);
+    $ls->addColumn($element, s('fwds'), number_format((int)$fwded[0]));
+    $ls->addColumn($element, s('Unique views'), number_format((int)$views[0]).$percentViewedFormatted,
     $views[0] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
 
-    $ls->addColumn($element, $GLOBALS['I18N']->get('Unique Clicks'), $totalclicked[0].$percentClickedFormatted,
+    $ls->addColumn($element, s('Unique Clicks'), number_format((int)$totalclicked[0]).$percentClickedFormatted,
         $totalclicked[0] ? PageURL2('mclicks&id='.$row['messageid']) : '');
 }
 //# needs reviewing
@@ -148,11 +148,11 @@ if (false && $addcomparison) {
         $GLOBALS['tables']['usermessage']));
     $viewed = Sql_Fetch_Array_Query(sprintf('select count(viewed) as viewed from %s um where um.status = "sent"',
         $GLOBALS['tables']['usermessage']));
-    $overall = $GLOBALS['I18N']->get('Comparison to other admins');
+    $overall = s('Comparison to other admins');
     $ls->addElement($overall);
-    $ls->addColumn($overall, $GLOBALS['I18N']->get('views'), $viewed['viewed']);
+    $ls->addColumn($overall, s('views'), $viewed['viewed']);
     $perc = sprintf('%0.2f', ($viewed['viewed'] / $total['total'] * 100));
-    $ls->addColumn($overall, $GLOBALS['I18N']->get('rate'), $perc.' %');
+    $ls->addColumn($overall, s('rate'), $perc.' %');
 }
 if ($download) {
     ob_end_clean();
