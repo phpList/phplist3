@@ -45,14 +45,15 @@ if ($delete) {
 echo formStart('name="pagelist" class="spageEdit" ');
 echo '<input type="hidden" name="active[-1]" value="1" />'; //# to force the active array to exist
 $ls = new WebblerListing($GLOBALS['I18N']->get('subscribe pages'));
+$ls->setElementHeading($GLOBALS['I18N']->get('ID'));
 
 $req = Sql_Query(sprintf('select * from %s %s order by title', $tables['subscribepage'], $subselect));
 while ($p = Sql_Fetch_Array($req)) {
     $ls->addElement($p['id']);
     $ls->setClass($p['id'], 'row1');
-    $ls->addColumn($p['id'], $GLOBALS['I18N']->get('title'), strip_tags(stripslashes($p['title'])));
+    $ls->addColumn($p['id'], $GLOBALS['I18N']->get('Title'), strip_tags(stripslashes($p['title'])));
     if (($require_login && isSuperUser()) || !$require_login) {
-        $ls->addColumn($p['id'], $GLOBALS['I18N']->get('owner'), adminName($p['owner']));
+        $ls->addColumn($p['id'], $GLOBALS['I18N']->get('Owner'), adminName($p['owner']));
         if ($p['id'] == $default) {
             $checked = 'checked="checked"';
         } else {
