@@ -160,6 +160,16 @@ $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
 $ls->addColumn($element, '', $perc.' %');
 
+$element = ucfirst(s('Click Ratio'));
+$ls->addElement($element); 
+if ($viewed[0]!=0) {
+    $perc = sprintf('%0.2f', $clicked[0] / $viewed[0] * 100);
+    $ls->addColumn($element, '', $perc.' %');
+
+} else {
+    $ls->addColumn($element, '','0');
+}
+
 $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
     $GLOBALS['tables']['user_message_forward'], $id));
 $element = ucfirst(s('Forwarded'));
