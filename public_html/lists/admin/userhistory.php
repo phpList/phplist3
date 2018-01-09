@@ -203,10 +203,10 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($row['id'], s('ip'), $row['ip']);
     $ls->addColumn($row['id'], s('date'), formatDateTime($row['date']));
     $ls->addColumn($row['id'], s('summary'), $row['summary']);
-    $ls->addRow($row['id'], "<div class='gray'>".s('detail').': </div>',
+    $ls->addRow($row['id'], "<div class='gray'><strong>".s('detail').'</strong></div>',
         "<div class='tleft'>".nl2br(htmlspecialchars($row['detail'])).'</div>');
     // nl2br inserts leading <br/> elements and unnecessary whitespace; preg_replace removes this
-    $ls->addRow($row['id'], "<div class='gray'>".s('info').': </div>',
+    $ls->addRow($row['id'], "<div class='gray'><strong>".s('info').'</strong></div>',
         "<div class='tleft'>".preg_replace("|^(?:<br />[\n\r]+)*(.*?)(?:<br />[\n\r]+)*$|s", '$1', nl2br($row['systeminfo'])).'</div>');
 }
 
