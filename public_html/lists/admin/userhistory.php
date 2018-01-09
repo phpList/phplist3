@@ -171,9 +171,9 @@ if (isBlackListed($user['email'])) {
     $req = Sql_Query(sprintf('select * from %s where email = "%s"',
         $tables['user_blacklist_data'], $user['email']));
     while ($row = Sql_Fetch_Array($req)) {
-        $ls->addElement($row['name']);
+        $ls->addElement($GLOBALS['I18N']->get($row['name']));
         $isSpamReport = $isSpamReport || $row['data'] == 'blacklisted due to spam complaints';
-        $ls->addColumn($row['name'], $GLOBALS['I18N']->get('value'), stripslashes($row['data']));
+        $ls->addColumn($GLOBALS['I18N']->get($row['name']), $GLOBALS['I18N']->get('value'), stripslashes($row['data']));
     }
     $ls->addElement('<!-- remove -->');
     if (!$isSpamReport) {
