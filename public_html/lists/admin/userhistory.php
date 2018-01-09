@@ -207,7 +207,7 @@ while ($row = Sql_Fetch_Array($req)) {
         "<div class='tleft'>".nl2br(htmlspecialchars($row['detail'])).'</div>');
     // nl2br inserts leading <br/> elements and unnecessary whitespace; preg_replace removes this
     $ls->addRow($row['id'], "<div class='gray'><strong>".s('info').'</strong></div>',
-        "<div class='tleft'>".preg_replace("|^(?:<br />[\n\r]+)*(.*?)(?:<br />[\n\r]+)*$|s", '$1', nl2br($row['systeminfo'])).'</div>');
+        "<div class='tleft'>".preg_replace("|^(?:<br />[\n\r]+)*(.*?)(?:<br />[\n\r]+)*$|s", '$1', nl2br(htmlspecialchars_decode($row['systeminfo']))).'</div>');
 }
 
 echo $ls->display();
