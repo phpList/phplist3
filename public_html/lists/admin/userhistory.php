@@ -163,7 +163,7 @@ if (isBlackListed($user['email'])) {
     echo '<h3>'.$GLOBALS['I18N']->get('subscriber is blacklisted since').' ';
     $blacklist_info = Sql_Fetch_Array_Query(sprintf('select * from %s where email = "%s"',
         $tables['user_blacklist'], $user['email']));
-    echo $blacklist_info['added'].'</h3><br/>';
+    echo formatDateTime($blacklist_info['added']).'</h3><br/>';
     echo '';
 
     $isSpamReport = false;
@@ -201,7 +201,7 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addElement($row['id']);
     $ls->setClass($row['id'], 'row1');
     $ls->addColumn($row['id'], $GLOBALS['I18N']->get('ip'), $row['ip']);
-    $ls->addColumn($row['id'], $GLOBALS['I18N']->get('date'), $row['date']);
+    $ls->addColumn($row['id'], $GLOBALS['I18N']->get('date'), formatDateTime($row['date']));
     $ls->addColumn($row['id'], $GLOBALS['I18N']->get('summary'), $row['summary']);
     $ls->addRow($row['id'], "<div class='gray'>".$GLOBALS['I18N']->get('detail').': </div>',
         "<div class='tleft'>".nl2br(htmlspecialchars($row['detail'])).'</div>');
