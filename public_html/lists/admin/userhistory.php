@@ -6,7 +6,7 @@ if (!defined('PHPLISTINIT')) {
 }
 
 if (!$_GET['id']) {
-    Fatal_Error($GLOBALS['I18N']->get('no such User'));
+    Fatal_Error(s('no such User'));
 
     return;
 } else {
@@ -24,7 +24,7 @@ switch ($access) {
     case 'view':
         $subselect = '';
         if (count($_POST) || $_GET['unblacklist']) {
-            echo Error($GLOBALS['I18N']->get('you only have privileges to view this page, not change any of the information'));
+            echo Error(s('you only have privileges to view this page, not change any of the information'));
 
             return;
         }
@@ -43,18 +43,18 @@ if (isset($_GET['unblacklist'])) {
 
 $result = Sql_query("SELECT * FROM {$tables['user']} where id = $id");
 if (!Sql_Affected_Rows()) {
-    Fatal_Error($GLOBALS['I18N']->get('no such User'));
+    Fatal_Error(s('no such User'));
 
     return;
 }
 $user = sql_fetch_array($result);
 
-echo '<h3>'.$GLOBALS['I18N']->get('user').' '.PageLink2('user&id='.$user['id'], $user['email']).'</h3>';
+echo '<h3>'.s('user').' '.PageLink2('user&id='.$user['id'], $user['email']).'</h3>';
 echo '<div class="actions">';
 //printf('<a href="%s" class="button">%s</a>',getConfig("preferencesurl").
-//'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('update page'));
-//printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],$GLOBALS['I18N']->get('unsubscribe page'));
-echo PageLinkButton("user&amp;id=$id", $GLOBALS['I18N']->get('Details'));
+//'&amp;uid='.$user["uniqid"],s('update page'));
+//printf('<a href="%s" class="button">%s</a>',getConfig("unsubscribeurl").'&amp;uid='.$user["uniqid"],s('unsubscribe page'));
+echo PageLinkButton("user&amp;id=$id", s('Details'));
 if ($access == 'all') {
     $delete = new ConfirmButton(
         htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
@@ -65,7 +65,7 @@ if ($access == 'all') {
 
 echo '</div>';
 
-$bouncels = new WebblerListing($GLOBALS['I18N']->get('Bounces'));
+$bouncels = new WebblerListing(s('Bounces'));
 $bouncels->setElementHeading('Bounce ID');
 $bouncelist = '';
 $bounces = array();
@@ -86,14 +86,14 @@ if (Sql_Affected_Rows()) {
     while ($row = Sql_Fetch_Array($req)) {
         $messagedata = loadMessageData($row['message']);
         $bouncels->addElement($row['bounce'],
-            PageURL2('bounce', $GLOBALS['I18N']->get('view'), 'id='.$row['bounce']));
-        $bouncels->addColumn($row['bounce'], $GLOBALS['I18N']->get('Campaign title'), stripslashes($messagedata['campaigntitle']));
-        $bouncels->addColumn($row['bounce'], $GLOBALS['I18N']->get('time'), $row['ftime']);
+            PageURL2('bounce', s('view'), 'id='.$row['bounce']));
+        $bouncels->addColumn($row['bounce'], s('Campaign title'), stripslashes($messagedata['campaigntitle']));
+        $bouncels->addColumn($row['bounce'], s('time'), $row['ftime']);
         $bounces[$row['message']] = $row['ftime'];
     }
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Campaigns'));
+$ls = new WebblerListing(s('Campaigns'));
 if (Sql_Table_Exists($tables['usermessage'])) {
     $msgs = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or viewed is null) as notviewed,
     abs(unix_timestamp(entered) - unix_timestamp(viewed)) as responsetime from %s where userid = %d and status = "sent" order by entered desc',
@@ -102,53 +102,53 @@ if (Sql_Table_Exists($tables['usermessage'])) {
 } else {
     $num = 0;
 }
-printf('%d '.$GLOBALS['I18N']->get('messages sent to this user').'<br/>', $num);
+printf('%d '.s('messages sent to this user').'<br/>', $num);
 if ($num) {
     $resptime = 0;
     $totalresp = 0;
-    $ls->setElementHeading($GLOBALS['I18N']->get('Campaign Id'));
+    $ls->setElementHeading(s('Campaign Id'));
 
     while ($msg = Sql_Fetch_Array($msgs)) {
         $ls->addElement($msg['messageid'],
-            PageURL2('message', $GLOBALS['I18N']->get('view'), 'id='.$msg['messageid']));
+            PageURL2('message', s('view'), 'id='.$msg['messageid']));
         if (defined('CLICKTRACK') && CLICKTRACK) {
             $clicksreq = Sql_Fetch_Row_Query(sprintf('select sum(clicked) as numclicks from %s where userid = %s and messageid = %s',
                 $GLOBALS['tables']['linktrack_uml_click'], $user['id'], $msg['messageid']));
             $clicks = sprintf('%d', $clicksreq[0]);
             if ($clicks) {
-                $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('clicks'),
+                $ls->addColumn($msg['messageid'], s('clicks'),
                     PageLink2('userclicks&amp;userid='.$user['id'].'&amp;msgid='.$msg['messageid'], $clicks));
             } else {
-                $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('clicks'), 0);
+                $ls->addColumn($msg['messageid'], s('clicks'), 0);
             }
         }
 
-        $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('sent'), formatDateTime($msg['entered'], 1));
+        $ls->addColumn($msg['messageid'], s('sent'), formatDateTime($msg['entered'], 1));
         if (!$msg['notviewed']) {
-            $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('viewed'), formatDateTime($msg['viewed'], 1));
-            $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('Response time'), $msg['responsetime']);
+            $ls->addColumn($msg['messageid'], s('viewed'), formatDateTime($msg['viewed'], 1));
+            $ls->addColumn($msg['messageid'], s('Response time'), $msg['responsetime']);
             $resptime += $msg['responsetime'];
             $totalresp += 1;
         }
         if (!empty($bounces[$msg['messageid']])) {
-            $ls->addColumn($msg['messageid'], $GLOBALS['I18N']->get('bounce'), $bounces[$msg['messageid']]);
+            $ls->addColumn($msg['messageid'], s('bounce'), $bounces[$msg['messageid']]);
         }
     }
     if ($totalresp) {
         $avgresp = sprintf('%d', ($resptime / $totalresp));
-        $ls->addElement($GLOBALS['I18N']->get('average'));
-        $ls->setClass($GLOBALS['I18N']->get('average'), 'row1');
-        $ls->addColumn($GLOBALS['I18N']->get('average'), $GLOBALS['I18N']->get('responsetime'), $avgresp);
+        $ls->addElement(s('average'));
+        $ls->setClass(s('average'), 'row1');
+        $ls->addColumn(s('average'), s('responsetime'), $avgresp);
     }
 }
 
 echo '<div class="tabbed">';
 echo '<ul>';
-echo '<li><a href="#messages">'.ucfirst($GLOBALS['I18N']->get('Campaigns')).'</a></li>';
+echo '<li><a href="#messages">'.ucfirst(s('Campaigns')).'</a></li>';
 if (count($bounces)) {
-    echo '<li><a href="#bounces">'.ucfirst($GLOBALS['I18N']->get('Bounces')).'</a></li>';
+    echo '<li><a href="#bounces">'.ucfirst(s('Bounces')).'</a></li>';
 }
-echo '<li><a href="#subscription">'.ucfirst($GLOBALS['I18N']->get('Subscription')).'</a></li>';
+echo '<li><a href="#subscription">'.ucfirst(s('Subscription')).'</a></li>';
 echo '</ul>';
 
 echo '<div id="messages">';
@@ -160,25 +160,25 @@ echo '</div>';
 echo '<div id="subscription">';
 
 if (isBlackListed($user['email'])) {
-    echo '<h3>'.$GLOBALS['I18N']->get('subscriber is blacklisted since').' ';
+    echo '<h3>'.s('subscriber is blacklisted since').' ';
     $blacklist_info = Sql_Fetch_Array_Query(sprintf('select * from %s where email = "%s"',
         $tables['user_blacklist'], $user['email']));
-    echo $blacklist_info['added'].'</h3><br/>';
+    echo formatDateTime($blacklist_info['added']).'</h3><br/>';
     echo '';
 
     $isSpamReport = false;
-    $ls = new WebblerListing($GLOBALS['I18N']->get('Blacklist info'));
+    $ls = new WebblerListing(s('Blacklist info'));
     $req = Sql_Query(sprintf('select * from %s where email = "%s"',
         $tables['user_blacklist_data'], $user['email']));
     while ($row = Sql_Fetch_Array($req)) {
-        $ls->addElement($row['name']);
+        $ls->addElement(s($row['name']));
         $isSpamReport = $isSpamReport || $row['data'] == 'blacklisted due to spam complaints';
-        $ls->addColumn($row['name'], $GLOBALS['I18N']->get('value'), stripslashes($row['data']));
+        $ls->addColumn(s($row['name']), s('value'), stripslashes($row['data']));
     }
     $ls->addElement('<!-- remove -->');
     if (!$isSpamReport) {
         $button = new ConfirmButton(
-            htmlspecialchars($GLOBALS['I18N']->get('are you sure you want to delete this subscriber from the blacklist')).'?\\n'.htmlspecialchars($GLOBALS['I18N']->get('it should only be done with explicit permission from this subscriber')),
+            htmlspecialchars(s('are you sure you want to delete this subscriber from the blacklist')).'?\\n'.htmlspecialchars(s('it should only be done with explicit permission from this subscriber')),
             PageURL2("userhistory&unblacklist={$user['id']}&id={$user['id']}", 'button',
                 s('remove subscriber from blacklist')),
             s('remove subscriber from blacklist'));
@@ -191,22 +191,43 @@ if (isBlackListed($user['email'])) {
     echo $ls->display();
 }
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Subscription History'));
-$ls->setElementHeading($GLOBALS['I18N']->get('Event'));
+$ls = new WebblerListing(s('Subscription History'));
+$ls->setElementHeading(s('Event'));
 $req = Sql_Query(sprintf('select * from %s where userid = %d order by id desc', $tables['user_history'], $user['id']));
 if (!Sql_Affected_Rows()) {
-    echo $GLOBALS['I18N']->get('no details found');
+    echo s('no details found');
 }
 while ($row = Sql_Fetch_Array($req)) {
     $ls->addElement($row['id']);
     $ls->setClass($row['id'], 'row1');
-    $ls->addColumn($row['id'], $GLOBALS['I18N']->get('ip'), $row['ip']);
-    $ls->addColumn($row['id'], $GLOBALS['I18N']->get('date'), $row['date']);
-    $ls->addColumn($row['id'], $GLOBALS['I18N']->get('summary'), $row['summary']);
-    $ls->addRow($row['id'], "<div class='gray'>".$GLOBALS['I18N']->get('detail').': </div>',
-        "<div class='tleft'>".nl2br(htmlspecialchars($row['detail'])).'</div>');
-    $ls->addRow($row['id'], "<div class='gray'>".$GLOBALS['I18N']->get('info').': </div>',
-        "<div class='tleft'>".nl2br($row['systeminfo']).'</div>');
+    $ls->addColumn($row['id'], s('ip'), $row['ip']);
+    $ls->addColumn($row['id'], s('date'), formatDateTime($row['date']));
+    $ls->addColumn($row['id'], s('summary'), $row['summary']);
+    $ls->addRow(
+        $row['id']
+        , "<div class='gray'><strong>".s('detail').'</strong></div>'
+        , "<div class='tleft'>".
+        nl2br(
+            htmlspecialchars(
+                $row['detail']
+            )
+        ).'</div>'
+    );
+    // nl2br inserts leading <br/> elements and unnecessary whitespace; preg_replace removes this
+    $ls->addRow(
+        $row['id']
+        , "<div class='gray'><strong>".s('info').'</strong></div>'
+        , "<div class='tleft'>".
+            preg_replace(
+                "|^(?:<br />[\n\r]+)*(.*?)(?:<br />[\n\r]+)*$|s"
+                , '$1'
+                , nl2br(
+                    htmlspecialchars_decode(
+                        $row['systeminfo']
+                    )
+                )
+            ).'</div>'
+    );
 }
 
 echo $ls->display();
