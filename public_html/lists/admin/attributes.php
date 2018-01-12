@@ -107,7 +107,7 @@ if (isset($_POST['action'])) {
                                 case 'date':
                                     $attreq = Sql_Query("select * from {$tables['user_attribute']} where attributeid = $id");
                                     while ($row = Sql_Fetch_Array($attreq)) {
-                                        //                	if (strlen($row["value"] > 5)) {
+                                        //                  if (strlen($row["value"] > 5)) {
                                         Sql_Query(sprintf('update %s set value = "%s" where attributeid = %d and userid = %d',
                                             $tables['user_attribute'], parseDate($row['value']), $row['attributeid'],
                                             $row['userid']));
@@ -211,7 +211,7 @@ if (isset($_POST['action'])) {
                 $attdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['attribute'],
                     $attid));
                 if ($attdata['type'] != $firstdata['type']) {
-                    echo Error($GLOBALS['I18N']->get('Can only merge attributes of the same type'));
+                    echo Error(s('Can only merge attributes of the same type'));
                 } else {
                     // debugging: check values for every user. This is very memory demanding, so you'll need to
                     // add loads of memory to actually use it.
@@ -316,7 +316,7 @@ if (isset($_POST['action'])) {
                             break;
                         case 'checkboxgroup':
                             // hmm, this is a tricky one.
-                            print Error($GLOBALS['I18N']->get('Sorry, merging of checkbox groups is not implemented yet'));
+                            print Error(s('Sorry, merging of checkbox groups is not implemented yet'));
                             break;
                     }
 
@@ -342,33 +342,33 @@ Sql_Query("update {$tables['attribute']} set required = 0 where type = \"checkbo
         var warned = 0;
         function warn() {
             if (!warned)
-                alert("<?php echo $GLOBALS['I18N']->get('Warning, changing types of attributes can take a long time')?>");
+                alert("<?php echo s('Warning, changing types of attributes can take a long time')?>");
             warned = 1;
         }
     </script>
 <?php echo formStart() ?>
 <?php
-echo $GLOBALS['I18N']->get('Load data from').' '.PageLinkButton('defaults',
-        $GLOBALS['I18N']->get('predefined defaults')).Help("predefineddefaults").'<br />';
+echo s('Load data from').' '.PageLinkButton('defaults',
+        s('predefined defaults')).Help("predefineddefaults").'<br />';
 
 $res = Sql_Query("select * from {$tables['attribute']} order by listorder");
 if (Sql_Affected_Rows()) {
-    echo '<p class="information">'.$GLOBALS['I18N']->get('Existing attributes').':</p>';
+    echo '<p class="information">'.s('Existing attributes').':</p>';
 } else {
-    echo '<p class="information">'.$GLOBALS['I18N']->get('No Attributes have been defined yet').'</p>';
+    echo '<p class="information">'.s('No Attributes have been defined yet').'</p>';
 }
 $c = 0;
 echo '<div class="accordion">';
 while ($row = Sql_Fetch_array($res)) {
     ++$c;
     echo '<h3><a name="'.$row['id'].'">'.
-        $GLOBALS['I18N']->get('Attribute').': '.$row['id'].' '.htmlspecialchars(stripslashes(strip_tags($row['name'])));
+        s('Attribute').': '.$row['id'].' '.htmlspecialchars(stripslashes(strip_tags($row['name'])));
     if ($formtable_exists) {
         sql_query('select * from formfield where attribute = '.$row['id']);
-        echo '  ('.$GLOBALS['I18N']->get('used in').' '.Sql_affected_rows().' '.$GLOBALS['I18N']->get('forms').')';
+        echo '  ('.s('used in').' '.Sql_affected_rows().' '.$GLOBALS['I18N']->get('forms').')';
     }
 
-    echo '</a></h3><div><label>'.$GLOBALS['I18N']->get('Tag').'
+    echo '</a></h3><div><label>'.s('Tag').'
   <input type="checkbox" name="tag[' .$c.']" value="'.$row['id'].'" /></label>';
 
     echo '<label>'.s('Name').':</label>
@@ -379,14 +379,14 @@ while ($row = Sql_Fetch_array($res)) {
     echo '<select name="type['.$row['id'].']" onchange="warn();">';
     foreach ($types as $key => $val) {
         printf('<option value="%s" %s>%s</option>', $val, $val == $row['type'] ? 'selected="selected"' : '',
-            $GLOBALS['I18N']->get($val));
+            s($val));
     }
     echo ' 
    </select>';
 
     if ((defined('IN_WEBBLER') && IN_WEBBLER) || (defined('WEBBLER') && WEBBLER)) {
         if ($row['type'] == 'select' || $row['type'] == 'radio' || $row['type'] == 'checkboxgroup') {
-            echo ' '.$I18N->get('authoritative list').'&nbsp;';
+            echo ' '.s('authoritative list').'&nbsp;';
             printf('<select name="keywordlib[%d]"><option value="">-- select</option>', $row['id']);
             $req = Sql_Query(sprintf('select id,name from keywordlib order by listorder,name'));
             while ($kwlib = Sql_Fetch_Array($req)) {
@@ -399,15 +399,15 @@ while ($row = Sql_Fetch_array($res)) {
 
     if ((!defined('IN_WEBBLER') || !IN_WEBBLER) && (!defined('WEBBLER') || !WEBBLER)) {
         if ($row['type'] == 'select' || $row['type'] == 'radio' || $row['type'] == 'checkboxgroup') {
-            echo PageLinkButton('editattributes&id='.$row['id'], $I18N->get('edit values'));
+            echo PageLinkButton('editattributes&id='.$row['id'], s('edit values'));
         }
     }
 
-    echo '<label>'.$GLOBALS['I18N']->get('Default Value').':</label>
+    echo '<label>'.s('Default Value').':</label>
   <input type="text" name="default[' .$row['id'].']" value="'.htmlspecialchars(stripslashes($row['default_value'])).'" size="40" />';
-    echo '<label>'.$GLOBALS['I18N']->get('Order of Listing').':</label>
+    echo '<label>'.s('Order of Listing').':</label>
   <input type="text" name="listorder[' .$row['id'].']" value="'.$row['listorder'].'" size="5" />';
-    echo '<label>'.$GLOBALS['I18N']->get('Is this attribute required ?').'<input type="checkbox" name="required['.$row['id'].']" value="1" ';
+    echo '<label>'.s('Is this attribute required ?').'<input type="checkbox" name="required['.$row['id'].']" value="1" ';
     echo $row['required'] ? 'checked="checked"' : '';
     echo  '/></label>';
     echo  '</div>';
@@ -417,19 +417,19 @@ printf('<input class="submit" type="submit" name="action" value="%s" /> ', s('Sa
 if ($c) {
     printf('<span class="buttonGroup"><input class="submit" type="submit" name="tagaction[delete]" value="%s" /> 
   <input class="submit" type="submit" name="tagaction[merge]" value="%s" />%s
-  </span>', $GLOBALS['I18N']->get('Delete tagged attributes'), $GLOBALS['I18N']->get('Merge tagged attributes'),
+  </span>', s('Delete tagged attributes'), s('Merge tagged attributes'),
         Help('mergeattributes'));
 }
 
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
-<h3>' .$GLOBALS['I18N']->get('Add new Attribute').':</h3>
+<h3>' .s('Add new Attribute').':</h3>
 <div class="label"><label class="label">' .s('Name').': </label></div>
 <div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
 <div class="label"><label class="label">' .s('Type').': </label></div>
 <div class="field"><select name="type[0]">';
 foreach ($types as $key => $val) {
-    printf('     <option value="%s" %s>%s</option>', $val, '', $GLOBALS['I18N']->get($val));
+    printf('     <option value="%s" %s>%s</option>', $val, '', s($val));
 }
 echo'
 </select></div>
