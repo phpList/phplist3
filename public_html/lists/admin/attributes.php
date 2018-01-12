@@ -349,7 +349,7 @@ Sql_Query("update {$tables['attribute']} set required = 0 where type = \"checkbo
 <?php echo formStart() ?>
 <?php
 echo $GLOBALS['I18N']->get('Load data from').' '.PageLinkButton('defaults',
-        $GLOBALS['I18N']->get('predefined defaults')).'<br />';
+        $GLOBALS['I18N']->get('predefined defaults')).Help("predefineddefaults").'<br />';
 
 $res = Sql_Query("select * from {$tables['attribute']} order by listorder");
 if (Sql_Affected_Rows()) {
