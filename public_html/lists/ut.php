@@ -50,17 +50,15 @@ if (!empty($_GET['u']) && !empty($_GET['m'])) {
         Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d',
             $GLOBALS['tables']['message'], $_GET['m']));
 
-        if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
-            $metaData = array();
-            foreach (array('HTTP_USER_AGENT', 'HTTP_REFERER') as $key) {
-                if (isset($_SERVER[$key])) {
-                    $metaData[$key] = htmlspecialchars(strip_tags($_SERVER[$key]));
-                }
+        $metaData = array();
+        foreach (array('HTTP_USER_AGENT', 'HTTP_REFERER') as $key) {
+            if (isset($_SERVER[$key])) {
+                $metaData[$key] = htmlspecialchars(strip_tags($_SERVER[$key]));
             }
-
-            Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
-                $GLOBALS['tables']['user_message_view'], $_GET['m'], $userid[0],$_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
         }
+
+        Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
+            $GLOBALS['tables']['user_message_view'], $_GET['m'], $userid[0],$_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
     }
 }
 

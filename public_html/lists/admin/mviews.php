@@ -198,38 +198,36 @@ while ($row = Sql_Fetch_Array($req)) {
         $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
         $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
 
-        if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
-            // Add class for table styling (groups rows differently for multi-row groups)
-            $ls->setClass($element, 'row1');
-            $allViewsReq = Sql_Query(
-                sprintf(
-                    'select 
-                        * 
-                    from 
-                        %s 
-                    where 
-                        userid = %d 
-                        and messageid = %d 
-                    order by 
-                        viewed'
-                , $GLOBALS['tables']['user_message_view']
-                , $row['userid']
-                , $id
-            ));
-            $totalViews = Sql_Affected_Rows();
+        // Add class for table styling (groups rows differently for multi-row groups)
+        $ls->setClass($element, 'row1');
+        $allViewsReq = Sql_Query(
+            sprintf(
+                'select 
+                    * 
+                from 
+                    %s 
+                where 
+                    userid = %d 
+                    and messageid = %d 
+                order by 
+                    viewed'
+            , $GLOBALS['tables']['user_message_view']
+            , $row['userid']
+            , $id
+        ));
+        $totalViews = Sql_Affected_Rows();
 
-            if ($totalViews > 1) {
-                $viewList = '';
-                while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
-                    $viewList .= s('Viewed').': '.formatDateTime($row2['viewed'], 1) . '<br/>';
-                }
+        if ($totalViews > 1) {
+            $viewList = '';
+            while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
+                $viewList .= s('Viewed').': '.formatDateTime($row2['viewed'], 1) . '<br/>';
             }
-            $ls->addRow(
-                $element
-                , s('Total views').': '.$totalViews
-                , $viewList
-            );
         }
+        $ls->addRow(
+            $element
+            , s('Total views').': '.$totalViews
+            , $viewList
+        );
 
     }
 }

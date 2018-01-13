@@ -512,9 +512,6 @@ if (!defined('MAXLIST')) {
 if (!defined('SHOW_LIST_OFALL_SUBSCRIBERS')) {
     define('SHOW_LIST_OFALL_SUBSCRIBERS', false);
 }
-if (!defined('TRACK_TOTAL_VIEWS_PER_SUBSCRIBER')) {
-    define('TRACK_TOTAL_VIEWS_PER_SUBSCRIBER', false);
-}
 if (!defined('SENDPROCESS_SERVERNAME')) {
     define('SENDPROCESS_SERVERNAME', 'localhost');
 }

@@ -195,17 +195,15 @@ if (!$viewed[0]) {
     Sql_Query(sprintf('update %s set viewed = viewed + 1 where id = %d',
         $GLOBALS['tables']['message'], $messageid));
 
-    if (TRACK_TOTAL_VIEWS_PER_SUBSCRIBER) {
-        $metaData = array();
-        foreach (array('HTTP_USER_AGENT', 'HTTP_REFERER') as $key) {
-            if (isset($_SERVER[$key])) {
-                $metaData[$key] = htmlspecialchars(strip_tags($_SERVER[$key]));
-            }
+    $metaData = array();
+    foreach (array('HTTP_USER_AGENT', 'HTTP_REFERER') as $key) {
+        if (isset($_SERVER[$key])) {
+            $metaData[$key] = htmlspecialchars(strip_tags($_SERVER[$key]));
         }
-
-        Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
-            $GLOBALS['tables']['user_message_view'], $messageid, $userid, $_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
     }
+
+    Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
+        $GLOBALS['tables']['user_message_view'], $messageid, $userid, $_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
 }
 
 $uml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d and userid = %d',

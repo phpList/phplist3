@@ -298,6 +298,11 @@ if ($dbversion == VERSION && !$force) {
         createTable('admin_password_request');
     }
 
+    if (!Sql_Table_exists($GLOBALS['tables']['user_message_view'])) {
+        cl_output(s('Creating new table "user_message_view"'));
+        createTable('user_message_view');
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();
