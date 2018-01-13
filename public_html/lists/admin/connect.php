@@ -1143,7 +1143,7 @@ function PageLink2($name, $desc = '', $url = '', $no_plugin = false, $title = ''
         $desc = $name;
     }
     if (empty($title)) {
-        $title = $GLOBALS['I18N']->pageTitleHover($name);
+        $title = $GLOBALS['I18N']->pageTitleHover($page);
         if (empty($title)) {
             $title = $desc;
         }

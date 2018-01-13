@@ -258,7 +258,9 @@ if (!defined('SHOW_UNSUBSCRIBELINK')) {
 if (!defined('SHOW_SUBSCRIBELINK')) {
     define('SHOW_SUBSCRIBELINK', true);
 }
-
+if (!defined('UNSUBSCRIBE_CONFIRMATION')) {
+    define('UNSUBSCRIBE_CONFIRMATION', true);
+}
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
     //#https://mantis.phplist.com/view.php?id=16787
     // passwords are encrypted, so we need to stick to md5 to keep working
@@ -530,6 +532,9 @@ if (!defined('MAX_PROCESS_MESSAGE')) {
 if (!defined('ALLOW_DELETEBOUNCE')) {
     define('ALLOW_DELETEBOUNCE', 1);
 }
+if (!defined('REPORT_DELETED_BOUNCES')) {
+    define('REPORT_DELETED_BOUNCES', 0);
+}
 if (!defined('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD')) {
     define('MESSAGE_SENDSTATUS_INACTIVETHRESHOLD', 120);
 }
@@ -586,6 +591,12 @@ if (!defined('PHPMAILER_SECURE')) {
 }
 if (!defined('PHPMAILER_SMTP_DEBUG')) {
     define('PHPMAILER_SMTP_DEBUG', 0);
+}
+if (!defined('POP_BEFORE_SMTP')) {
+    define('POP_BEFORE_SMTP', '');
+}
+if (!defined('POPBEFORESMTP_DEBUG')) {
+    define('POPBEFORESMTP_DEBUG', '');
 }
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);

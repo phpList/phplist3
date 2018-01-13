@@ -52,27 +52,27 @@ msgstr ""
 msgid "\"Jump off\" set, reason not requested"
 msgstr ""
 
-#: public_html/lists/index.php:1023
+#: public_html/lists/index.php:1029
 msgid ""
 "When testing the phpList forward functionality, you need to be logged in as "
 "an administrator."
 msgstr ""
 
-#: public_html/lists/index.php:1110 public_html/lists/index.php:1121
+#: public_html/lists/index.php:1116 public_html/lists/index.php:1127
 msgid "Message Forwarded"
 msgstr ""
 
-#: public_html/lists/index.php:1111
+#: public_html/lists/index.php:1117
 #, php-format
 msgid "%s has forwarded message %d to %s"
 msgstr ""
 
-#: public_html/lists/index.php:1122
+#: public_html/lists/index.php:1128
 #, php-format
 msgid "%s tried forwarding message %d to %s but failed"
 msgstr ""
 
-#: public_html/lists/index.php:1138
+#: public_html/lists/index.php:1144
 #, php-format
 msgid "Forward request from invalid user ID: %s"
 msgstr ""
@@ -175,10 +175,10 @@ msgstr ""
 msgid "age"
 msgstr ""
 
-#: public_html/lists/admin/send.php:113 public_html/lists/admin/spage.php:76
+#: public_html/lists/admin/send.php:113 public_html/lists/admin/spage.php:77
 #: public_html/lists/admin/send_core.php:949
 #: public_html/lists/admin/eventlog.php:113
-#: public_html/lists/admin/admins.php:115
+#: public_html/lists/admin/admins.php:106
 #: public_html/lists/admin/bouncerules.php:111
 #: public_html/lists/admin/bouncerules.php:112
 msgid "del"
@@ -329,7 +329,7 @@ msgstr ""
 msgid "List all Users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:154 public_html/lists/admin/import1.php:240
+#: public_html/lists/admin/home.php:154 public_html/lists/admin/import1.php:242
 msgid "import"
 msgstr ""
 
@@ -686,7 +686,7 @@ msgid "All Public Lists"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:1325
-#: public_html/lists/admin/import2.php:651 public_html/lists/admin/list.php:95
+#: public_html/lists/admin/import2.php:650 public_html/lists/admin/list.php:95
 #: public_html/lists/admin/list.php:99 public_html/lists/admin/list.php:331
 #: public_html/lists/admin/import3.php:43
 msgid "Add a list"
@@ -1081,7 +1081,7 @@ msgstr ""
 #: public_html/lists/admin/plugins.php:265
 #: public_html/lists/admin/templates.php:42
 #: public_html/lists/admin/templates.php:43
-#: public_html/lists/admin/spage.php:75
+#: public_html/lists/admin/spage.php:76
 #: public_html/lists/admin/editattributes.php:206
 #: public_html/lists/admin/bouncerules.php:117
 #: public_html/lists/admin/bounces.php:100
@@ -1411,7 +1411,11 @@ msgstr ""
 msgid "Clicked"
 msgstr ""
 
-#: public_html/lists/admin/statsoverview.php:165
+#: public_html/lists/admin/statsoverview.php:163
+msgid "Click Ratio"
+msgstr ""
+
+#: public_html/lists/admin/statsoverview.php:175
 msgid "Forwarded"
 msgstr ""
 
@@ -1508,7 +1512,7 @@ msgid "import is not available"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:48
-#: public_html/lists/admin/import2.php:650
+#: public_html/lists/admin/import2.php:649
 #: public_html/lists/admin/import3.php:42
 msgid "No lists available"
 msgstr ""
@@ -1664,7 +1668,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:236
 #: public_html/lists/admin/messages.php:248
 #: public_html/lists/admin/eventlog.php:37 public_html/lists/admin/list.php:115
-#: public_html/lists/admin/user.php:281 public_html/lists/admin/admins.php:37
+#: public_html/lists/admin/user.php:281 public_html/lists/admin/admins.php:48
 #: public_html/lists/admin/admin.php:132 public_html/lists/admin/users.php:240
 msgid "Done"
 msgstr ""
@@ -1923,7 +1927,7 @@ msgid "Process Killed by other process"
 msgstr ""
 
 #: public_html/lists/admin/processbounces.php:596
-#: public_html/lists/admin/processbounces.php:777
+#: public_html/lists/admin/processbounces.php:780
 msgid "Auto Unconfirmed"
 msgstr ""
 
@@ -1977,66 +1981,66 @@ msgstr ""
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:690
+#: public_html/lists/admin/processbounces.php:693
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:691
+#: public_html/lists/admin/processbounces.php:694
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:695
+#: public_html/lists/admin/processbounces.php:698
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:705
+#: public_html/lists/admin/processbounces.php:708
 #: public_html/lists/admin/cron.php:58
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:774
+#: public_html/lists/admin/processbounces.php:777
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:778
+#: public_html/lists/admin/processbounces.php:781
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:788
+#: public_html/lists/admin/processbounces.php:791
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:789
+#: public_html/lists/admin/processbounces.php:792
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:801
+#: public_html/lists/admin/processbounces.php:804
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:808
+#: public_html/lists/admin/processbounces.php:811
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:813
+#: public_html/lists/admin/processbounces.php:816
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:816
+#: public_html/lists/admin/processbounces.php:819
 msgid ""
 "Below are users who have been marked unconfirmed. The number in () is the "
 "number of consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:820
+#: public_html/lists/admin/processbounces.php:823
 msgid "Report:"
 msgstr ""
 
@@ -2185,7 +2189,7 @@ msgid "subscribers"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:424
-#: public_html/lists/admin/admins.php:78
+#: public_html/lists/admin/admins.php:75
 msgid "found"
 msgstr ""
 
@@ -2444,14 +2448,14 @@ msgid "to email addresses"
 msgstr ""
 
 #: public_html/lists/admin/template.php:357
-#: public_html/lists/admin/send_core.php:995
+#: public_html/lists/admin/send_core.php:994
 #: public_html/lists/admin/spageedit.php:303
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
 #: public_html/lists/admin/template.php:358
-#: public_html/lists/admin/send_core.php:994
-#: public_html/lists/admin/send_core.php:1357
+#: public_html/lists/admin/send_core.php:998
+#: public_html/lists/admin/send_core.php:1362
 #: public_html/lists/admin/spageedit.php:304
 msgid "Send Test"
 msgstr ""
@@ -2463,7 +2467,7 @@ msgstr ""
 #: public_html/lists/admin/templates.php:10
 #: public_html/lists/admin/messages.php:148
 #: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:108
-#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:32
+#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:43
 #: public_html/lists/admin/admin.php:128
 msgid "Deleting"
 msgstr ""
@@ -2477,7 +2481,7 @@ msgid "Existing templates"
 msgstr ""
 
 #: public_html/lists/admin/templates.php:39
-#: public_html/lists/admin/bounce.php:221
+#: public_html/lists/admin/spage.php:48 public_html/lists/admin/bounce.php:221
 msgid "ID"
 msgstr ""
 
@@ -2611,7 +2615,9 @@ msgstr ""
 #: public_html/lists/admin/actions/configure.php:64
 #: public_html/lists/admin/user.php:383
 #: public_html/lists/admin/bouncerule.php:39
-#: public_html/lists/admin/admin.php:196 public_html/lists/admin/admin.php:214
+#: public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:196
+#: public_html/lists/admin/admin.php:214
 msgid "Yes"
 msgstr ""
 
@@ -2619,7 +2625,9 @@ msgstr ""
 #: public_html/lists/admin/actions/configure.php:71
 #: public_html/lists/admin/user.php:383
 #: public_html/lists/admin/bouncerule.php:40
-#: public_html/lists/admin/admin.php:196 public_html/lists/admin/admin.php:215
+#: public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:196
+#: public_html/lists/admin/admin.php:215
 msgid "No"
 msgstr ""
 
@@ -2628,7 +2636,7 @@ msgid "edit this value"
 msgstr ""
 
 #: public_html/lists/admin/configure.php:178
-#: public_html/lists/admin/spage.php:73 public_html/lists/admin/spage.php:74
+#: public_html/lists/admin/spage.php:74 public_html/lists/admin/spage.php:75
 msgid "edit"
 msgstr ""
 
@@ -2779,6 +2787,7 @@ msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:73
 #: public_html/lists/admin/usercheck.php:23
+#: public_html/lists/admin/admins.php:111
 msgid "email"
 msgstr ""
 
@@ -2969,38 +2978,45 @@ msgstr ""
 msgid "subscribe pages"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:53
-msgid "title"
+#: public_html/lists/admin/spage.php:54
+#: public_html/lists/admin/userclicks.php:82
+#: public_html/lists/admin/userclicks.php:100
+#: public_html/lists/admin/userclicks.php:137
+#: public_html/lists/admin/spageedit.php:187
+#: public_html/databasestructure.php:109 public_html/databasestructure.php:156
+msgid "Title"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:55
-msgid "owner"
+#: public_html/lists/admin/spage.php:56
+#: public_html/lists/admin/editlist.php:155
+#: public_html/lists/admin/spageedit.php:391
+msgid "Owner"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:61
+#: public_html/lists/admin/spage.php:62
 #: public_html/lists/admin/editattributes.php:213
 #: public_html/lists/admin/spageedit.php:203
 msgid "default"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:68 public_html/lists/admin/spage.php:72
+#: public_html/lists/admin/spage.php:69 public_html/lists/admin/spage.php:73
 #: public_html/lists/admin/messages.php:84
 #: public_html/lists/admin/bouncerules.php:66
 #: public_html/lists/admin/bouncerules.php:71
 msgid "active"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:72
+#: public_html/lists/admin/spage.php:73
 msgid "not active"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:77 public_html/lists/admin/spage.php:78
+#: public_html/lists/admin/spage.php:78 public_html/lists/admin/spage.php:79
 #: public_html/lists/admin/userhistory.php:89
 #: public_html/lists/admin/userhistory.php:113
 msgid "view"
 msgstr ""
 
-#: public_html/lists/admin/spage.php:80
+#: public_html/lists/admin/spage.php:81
 msgid "Add a new subscribe page"
 msgstr ""
 
@@ -3169,7 +3185,7 @@ msgid "static"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:131
-#: public_html/lists/admin/admins.php:107 public_html/lists/admin/users.php:326
+#: public_html/lists/admin/admins.php:97 public_html/lists/admin/users.php:326
 #: public_html/lists/admin/users.php:395
 msgid "Go"
 msgstr ""
@@ -3193,7 +3209,7 @@ msgid "Requeuing"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:184
-#: public_html/lists/admin/send_core.php:1301
+#: public_html/lists/admin/send_core.php:1306
 #: public_html/lists/admin/message.php:57
 msgid ""
 "This campaign is scheduled to stop sending in the past. No mails will be "
@@ -3202,8 +3218,8 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:186
 #: public_html/lists/admin/send_core.php:373
-#: public_html/lists/admin/send_core.php:1296
-#: public_html/lists/admin/send_core.php:1302
+#: public_html/lists/admin/send_core.php:1301
+#: public_html/lists/admin/send_core.php:1307
 #: public_html/lists/admin/message.php:59
 msgid "Review Scheduling"
 msgstr ""
@@ -3226,6 +3242,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:347
 #: public_html/lists/admin/messages.php:350
+#: public_html/lists/admin/userhistory.php:96
 #: public_html/lists/admin/userhistory.php:147
 msgid "Campaigns"
 msgstr ""
@@ -3336,6 +3353,7 @@ msgid "delete this campaign"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:561
+#: public_html/lists/admin/updatetranslation.php:76
 #: public_html/lists/admin/bouncerule.php:64
 #: public_html/lists/admin/bounce.php:155
 #: public_html/lists/admin/bouncerules.php:134
@@ -3507,7 +3525,7 @@ msgid "Access Denied"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:123
-#: public_html/lists/admin/send_core.php:1339
+#: public_html/lists/admin/send_core.php:1344
 msgid "Send Campaign"
 msgstr ""
 
@@ -3560,7 +3578,7 @@ msgid "Campaign added"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:371
-#: public_html/lists/admin/send_core.php:1295
+#: public_html/lists/admin/send_core.php:1300
 msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
@@ -3869,100 +3887,100 @@ msgstr ""
 msgid "Description of attachment"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:994
+#: public_html/lists/admin/send_core.php:993
 msgid "to email address(es)"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1009
+#: public_html/lists/admin/send_core.php:1014
 msgid "email to alert when sending of this message starts"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1010
-#: public_html/lists/admin/send_core.php:1012
+#: public_html/lists/admin/send_core.php:1015
+#: public_html/lists/admin/send_core.php:1017
 msgid "separate multiple with a comma"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1011
+#: public_html/lists/admin/send_core.php:1016
 msgid "email to alert when sending of this message has finished"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1018
+#: public_html/lists/admin/send_core.php:1023
 msgid "add Google Analytics tracking code"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1028
+#: public_html/lists/admin/send_core.php:1033
 msgid "Reset click statistics"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1038
+#: public_html/lists/admin/send_core.php:1043
 msgid "This is a test campaign"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1045
+#: public_html/lists/admin/send_core.php:1050
 msgid "Estimated size of HTML email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1048
+#: public_html/lists/admin/send_core.php:1053
 msgid "Estimated size of text email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1096
+#: public_html/lists/admin/send_core.php:1101
 msgid "Estimated size of mailout"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1101
+#: public_html/lists/admin/send_core.php:1106
 #, php-format
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1253
+#: public_html/lists/admin/send_core.php:1258
 msgid "subject missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1262
+#: public_html/lists/admin/send_core.php:1267
 msgid "message content missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1271
+#: public_html/lists/admin/send_core.php:1276
 msgid "Incorrect URL for sending"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1280
+#: public_html/lists/admin/send_core.php:1285
 msgid "From missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1309
+#: public_html/lists/admin/send_core.php:1314
 msgid "destination lists missing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1315
+#: public_html/lists/admin/send_core.php:1320
 msgid "Content contains click track links."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1334
+#: public_html/lists/admin/send_core.php:1339
 msgid "Place Campaign in Queue for Sending"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1338
+#: public_html/lists/admin/send_core.php:1343
 msgid ""
 "Some required information is missing. The send button will be enabled when "
 "this is resolved."
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1344
+#: public_html/lists/admin/send_core.php:1349
 msgid "Save as draft"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1346
+#: public_html/lists/admin/send_core.php:1351
 msgid "Save and continue editing"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1351
+#: public_html/lists/admin/send_core.php:1356
 msgid "Campaign Title"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1354
+#: public_html/lists/admin/send_core.php:1359
 msgid "Meta data"
 msgstr ""
 
@@ -4200,11 +4218,7 @@ msgid "fwds"
 msgstr ""
 
 #: public_html/lists/admin/actions/statsoverview.php:139
-#: public_html/lists/admin/actions/statsoverview.php:153
-#: public_html/lists/admin/actions/mviews.php:98
-#: public_html/lists/admin/actions/mviews.php:115
-#: public_html/lists/admin/mviews.php:139
-msgid "views"
+msgid "Unique views"
 msgstr ""
 
 #: public_html/lists/admin/actions/statsoverview.php:142
@@ -4214,6 +4228,13 @@ msgstr ""
 #: public_html/lists/admin/actions/statsoverview.php:151
 #: public_html/lists/admin/actions/mviews.php:113
 msgid "Comparison to other admins"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:153
+#: public_html/lists/admin/actions/mviews.php:98
+#: public_html/lists/admin/actions/mviews.php:115
+#: public_html/lists/admin/mviews.php:139
+msgid "views"
 msgstr ""
 
 #: public_html/lists/admin/actions/statsoverview.php:155
@@ -4496,7 +4517,7 @@ msgid "Manually blacklisted by %s"
 msgstr ""
 
 #: public_html/lists/admin/actions/updatetranslation.php:12
-#: public_html/lists/admin/updatetranslation.php:19
+#: public_html/lists/admin/updatetranslation.php:16
 msgid ""
 "Unable to fetch list of languages, please check your network or try again "
 "later"
@@ -4508,7 +4529,7 @@ msgid "updated %d language terms"
 msgstr ""
 
 #: public_html/lists/admin/actions/updatetranslation.php:31
-msgid "Network error updating language, please try again later"
+msgid "No language terms found"
 msgstr ""
 
 #: public_html/lists/admin/actions/export.php:14
@@ -5202,7 +5223,7 @@ msgid "Test Output"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:441
-#: public_html/lists/admin/import1.php:165
+#: public_html/lists/admin/import1.php:167
 #, php-format
 msgid "Importing %d subscribers to %d lists, please wait"
 msgstr ""
@@ -5212,28 +5233,28 @@ msgstr ""
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:637
+#: public_html/lists/admin/import2.php:636
 #: public_html/lists/admin/import3.php:254
 msgid "Adding users to list"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:640
-#: public_html/lists/admin/import2.php:655
-#: public_html/lists/admin/import1.php:198
+#: public_html/lists/admin/import2.php:639
+#: public_html/lists/admin/import2.php:654
+#: public_html/lists/admin/import1.php:200
 #: public_html/lists/admin/import3.php:248
 #: public_html/lists/admin/importsimple.php:172
 msgid "Select the lists to add the emails to"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:670
+#: public_html/lists/admin/import2.php:669
 msgid "Select the groups to add the users to"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:673
+#: public_html/lists/admin/import2.php:672
 msgid "automatically added"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:700
+#: public_html/lists/admin/import2.php:698
 msgid ""
 "The file you upload will need to have the attributes of the records on    "
 "the first line.     Make sure that the email column is called \"email\" and "
@@ -5249,45 +5270,45 @@ msgid ""
 "Document.     "
 msgstr ""
 
-#: public_html/lists/admin/import2.php:704
+#: public_html/lists/admin/import2.php:702
 #: public_html/lists/admin/importadmin.php:318
 msgid "File containing emails"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:707
+#: public_html/lists/admin/import2.php:705
 #, php-format
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:709
+#: public_html/lists/admin/import2.php:707
 #, php-format
 msgid "phpList will not process files larger than %dMB"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:714
+#: public_html/lists/admin/import2.php:712
 #: public_html/lists/admin/importadmin.php:321
 msgid "Field Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:716
+#: public_html/lists/admin/import2.php:714
 #: public_html/lists/admin/importadmin.php:321
 msgid "default is TAB"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:719
+#: public_html/lists/admin/import2.php:717
 #: public_html/lists/admin/importadmin.php:322
 msgid "Record Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:719
+#: public_html/lists/admin/import2.php:717
 #: public_html/lists/admin/importadmin.php:322
 msgid "default is line break"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:721
-#: public_html/lists/admin/import1.php:224
+#: public_html/lists/admin/import2.php:719
+#: public_html/lists/admin/import1.php:226
 #: public_html/lists/admin/importadmin.php:324
 msgid ""
 "If you check \"Test Output\", you will get the list of parsed emails on "
@@ -5296,23 +5317,23 @@ msgid ""
 "show the first 50 records."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:724
+#: public_html/lists/admin/import2.php:722
 #: public_html/lists/admin/importadmin.php:327
 msgid "Test output"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:728
+#: public_html/lists/admin/import2.php:726
 msgid ""
 "If you check \"Show Warnings\", you will get warnings for invalid records. "
 "Warnings will only be shown if you check \"Test Output\". They will be "
 "ignored when actually importing. "
 msgstr ""
 
-#: public_html/lists/admin/import2.php:731
+#: public_html/lists/admin/import2.php:729
 msgid "Show Warnings"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:735
+#: public_html/lists/admin/import2.php:733
 msgid ""
 "If you check \"Omit Invalid\", invalid records will not be added. Invalid "
 "records are records without an email. Any other attributes will be added "
@@ -5320,11 +5341,11 @@ msgid ""
 "to the list of countries."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:738
+#: public_html/lists/admin/import2.php:736
 msgid "Omit Invalid"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:742
+#: public_html/lists/admin/import2.php:740
 msgid ""
 "Assign Invalid will be used to create an email for subscribers with an "
 "invalid email address. You can use values between [ and ] to make up a value "
@@ -5335,24 +5356,24 @@ msgid ""
 "sequence number for importing."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:746
+#: public_html/lists/admin/import2.php:744
 msgid "Assign Invalid"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:751
+#: public_html/lists/admin/import2.php:749
 msgid ""
 "If you check \"Overwrite Existing\", information about a subscriber in the "
 "database will be replaced by the imported information. Subscribers are "
 "matched by email or foreign key."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:754
+#: public_html/lists/admin/import2.php:752
 #: public_html/lists/admin/import3.php:265
 #: public_html/lists/admin/import3.php:266
 msgid "Overwrite Existing"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:758
+#: public_html/lists/admin/import2.php:756
 msgid ""
 "If you check \"Retain Old Email\", a conflict of two emails being the same "
 "will keep the old one and add \"duplicate\" to the new one. If you don&quot;"
@@ -5360,46 +5381,46 @@ msgid ""
 "precedence."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:761
+#: public_html/lists/admin/import2.php:759
 msgid "Retain Old User Email"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:769
-#: public_html/lists/admin/import1.php:230
+#: public_html/lists/admin/import2.php:767
+#: public_html/lists/admin/import1.php:232
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
 "will be sent the request for confirmation of subscription to which they will "
 "have to reply. This is recommended, because it will identify invalid emails."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:770
+#: public_html/lists/admin/import2.php:768
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:770
-#: public_html/lists/admin/import1.php:231
+#: public_html/lists/admin/import2.php:768
+#: public_html/lists/admin/import1.php:233
 #: public_html/lists/admin/import3.php:270
 msgid "Make confirmed immediately"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:771
-#: public_html/lists/admin/import1.php:232
+#: public_html/lists/admin/import2.php:769
+#: public_html/lists/admin/import1.php:234
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:772
-#: public_html/lists/admin/import1.php:233
+#: public_html/lists/admin/import2.php:770
+#: public_html/lists/admin/import1.php:235
 msgid "Notification throttle"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:772
-#: public_html/lists/admin/import1.php:233
+#: public_html/lists/admin/import2.php:770
+#: public_html/lists/admin/import1.php:235
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:777
+#: public_html/lists/admin/import2.php:775
 msgid "Import"
 msgstr ""
 
@@ -5630,11 +5651,6 @@ msgid "Cannot read file. It is not readable !"
 msgstr ""
 
 #: public_html/lists/admin/import1.php:139
-#: public_html/lists/admin/import1.php:227
-msgid "Test output:"
-msgstr ""
-
-#: public_html/lists/admin/import1.php:139
 msgid "There should only be ONE email per line."
 msgstr ""
 
@@ -5647,14 +5663,19 @@ msgid "back"
 msgstr ""
 
 #: public_html/lists/admin/import1.php:139
-msgid " to resubmit for real"
+msgid "to resubmit for real"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:195
+#: public_html/lists/admin/import1.php:140
+#: public_html/lists/admin/import1.php:229
+msgid "Test output:"
+msgstr ""
+
+#: public_html/lists/admin/import1.php:197
 msgid "adding_users"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:217
+#: public_html/lists/admin/import1.php:219
 msgid ""
 "The file you upload will need to contain the emails you want to add to these "
 "lists. Anything after the email will be added as attribute \"Info\" of the "
@@ -5663,11 +5684,11 @@ msgid ""
 "like a Word Document."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:220
+#: public_html/lists/admin/import1.php:222
 msgid "File containing emails:"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:231
+#: public_html/lists/admin/import1.php:233
 msgid "Send Notification email"
 msgstr ""
 
@@ -5984,28 +6005,51 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:298
+#: public_html/lists/admin/class.phplistmailer.php:316
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:303
+#: public_html/lists/admin/class.phplistmailer.php:321
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:40
-msgid "Never"
+#: public_html/lists/admin/updatetranslation.php:30
+msgid "Language translations"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:55
-#: public_html/lists/admin/updatetranslation.php:58
-msgid "Last updated"
+#: public_html/lists/admin/updatetranslation.php:31
+msgid "Language"
 msgstr ""
 
-#: public_html/lists/admin/updatetranslation.php:56
-#: public_html/lists/admin/updatetranslation.php:58
-msgid "Last modified"
+#: public_html/lists/admin/updatetranslation.php:62
+msgid "Update is available"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:63
+#: public_html/lists/admin/updatetranslation.php:66
+msgid "Update"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:65
+msgid "Up-to-date"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:69
+msgid "Not installed"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:70
+msgid "Install"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:74
+msgid "Code"
+msgstr ""
+
+#: public_html/lists/admin/updatetranslation.php:75
+msgid "Translation status"
 msgstr ""
 
 #: public_html/lists/admin/date.php:18
@@ -6276,14 +6320,6 @@ msgid ""
 "sent %s"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:82
-#: public_html/lists/admin/userclicks.php:100
-#: public_html/lists/admin/userclicks.php:137
-#: public_html/lists/admin/spageedit.php:187
-#: public_html/databasestructure.php:109 public_html/databasestructure.php:156
-msgid "Title"
-msgstr ""
-
 #: public_html/lists/admin/userclicks.php:95
 msgid "Subscriber clicks on a campaign"
 msgstr ""
@@ -6339,36 +6375,48 @@ msgstr ""
 msgid "HTML"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:21
-msgid "Import list of admins"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:25
-msgid "Add new admin"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:30
-msgid "You cannot delete yourself"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:52
-msgid "Admin added"
-msgstr ""
-
-#: public_html/lists/admin/admins.php:60 public_html/lists/admin/admins.php:77
-#: public_html/lists/admin/admins.php:83 public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/admins.php:26 public_html/lists/admin/admins.php:74
+#: public_html/lists/admin/admins.php:81 public_html/lists/admin/admins.php:102
 msgid "Administrators"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:104
+#: public_html/lists/admin/admins.php:35
+msgid "Import list of admins"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:36
+msgid "Add new admin"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:41
+msgid "You cannot delete yourself"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:63
+msgid "Admin added"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:94
 msgid "Find an admin"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:118
+#: public_html/lists/admin/admins.php:109
 msgid "Show"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:120
+#: public_html/lists/admin/admins.php:110
+msgid "Id"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:112
+msgid "Super Admin"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:113
+msgid "Disabled"
+msgstr ""
+
+#: public_html/lists/admin/admins.php:115
 msgid "Del"
 msgstr ""
 
@@ -7605,10 +7653,6 @@ msgstr ""
 msgid "time"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:96
-msgid "Messages"
-msgstr ""
-
 #: public_html/lists/admin/userhistory.php:105
 msgid "messages sent to this user"
 msgstr ""
@@ -7753,11 +7797,6 @@ msgstr ""
 
 #: public_html/lists/admin/editlist.php:146
 msgid "Order for listing"
-msgstr ""
-
-#: public_html/lists/admin/editlist.php:155
-#: public_html/lists/admin/spageedit.php:391
-msgid "Owner"
 msgstr ""
 
 #: public_html/lists/admin/editlist.php:170

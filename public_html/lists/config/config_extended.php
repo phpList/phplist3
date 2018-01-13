@@ -122,6 +122,9 @@ $bounce_mailbox_purge_unprocessed = 1;
 // how many bounces in a row need to have occurred for a user to be marked unconfirmed
 $bounce_unsubscribe_threshold = 5;
 
+// Set to 0 to received by mail bounce deletions in the advanced bounce processing report
+define('REPORT_DELETED_BOUNCES', 0);
+
 /*
 
 =========================================================================
@@ -176,6 +179,10 @@ define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 // if a user should immediately be unsubscribed, when using their personal URL, instead of
 // the default way, which will ask them for a reason, set this to 1
 define('UNSUBSCRIBE_JUMPOFF', 0);
+
+// To not send confirmation of unsubscription , instead of
+// the default way, which will send it, set this to false
+define('UNSUBSCRIBE_CONFIRMATION', true);
 
 // when a user unsubscribes they are sent one final email informing them of
 // their unsubscription. In order for that email to actually go out, a gracetime
@@ -590,6 +597,12 @@ define('PHPMAILERHOST', '');
 //# defaults to 5 seconds
 // define('SMTP_TIMEOUT',5);
 
+// Pop-Before-Smtp 
+// If you use Pop before Smtp, set to true
+// And complete smtp settings (PHPMAILERHOST,  phpmailer_smtpuser', phpmailer_smtppassword)
+define('POP_BEFORE_SMTP', false);
+define('POPBEFORESMTP_DEBUG', false);
+
 /*
 
 =========================================================================
@@ -839,3 +852,4 @@ define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 // Allow admin to enter a different message that will be sent when forwarding 'to a friend'
 // This will show an extra tab in the message dialog.
 define('FORWARD_ALTERNATIVE_CONTENT', 0);
+

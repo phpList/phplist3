@@ -117,14 +117,32 @@ class PHPlistMailer extends PHPMailer
             }
             //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERHOST;
-            if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
-                && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
-            ) {
-                $this->Username = $GLOBALS['phpmailer_smtpuser'];
-                $this->Password = $GLOBALS['phpmailer_smtppassword'];
-                $this->SMTPAuth = true;
-            }
-            $this->Mailer = 'smtp';
+            if (POP_BEFORE_SMTP) {
+                // authenticate using the smtp user and password
+                $pop = new POP3();
+
+                if (!$pop->authorise(PHPMAILERHOST, $this->Port, 30, $GLOBALS['phpmailer_smtpuser'], $GLOBALS['phpmailer_smtppassword'], 1)) {
+                    // unable to authenticate, there might be an error message in $pop->getErrors()
+                    $poperror = $pop->getErrors();
+                    
+                    if (POPBEFORESMTP_DEBUG) {    
+                        $this->SMTPDebug = 2;
+                        //Ask for HTML-friendly debug output
+                        $this->Debugoutput = 'html';
+                    }
+                }
+                
+            } else {
+                // the existing smtp code
+                if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+                    && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
+                ) {
+                    $this->Username = $GLOBALS['phpmailer_smtpuser'];
+                    $this->Password = $GLOBALS['phpmailer_smtppassword'];
+                    $this->SMTPAuth = true;
+                }
+            }            
+	    $this->Mailer = 'smtp';
         } elseif (USE_AMAZONSES) {
             $this->Mailer = 'amazonSes';
         } elseif (USE_LOCAL_SPOOL && is_dir(USE_LOCAL_SPOOL) && is_writable(USE_LOCAL_SPOOL)) {
