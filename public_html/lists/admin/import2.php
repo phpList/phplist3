@@ -696,12 +696,16 @@ if (count($email_list)) {
     <div class="content">
         <table class="importcsvMain" border="1">
             <tr>
-                <td colspan="2">
-                    <?php echo $GLOBALS['I18N']->get('The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called "email" and not something like "e-mail" or     "Email Address".     Case is not important.          If you have a column called "Foreign Key", this will be used for synchronisation between an     external database and the phpList database. The foreignkey will take precedence when matching     an existing subscriber. This will slow down the import process. If you use this, it is allowed to have     records without email, but an "Invalid Email" will be created instead. You can then do     a search on "invalid email" to find those records. Maximum size of a foreign key is 100.          Warning: the file needs to be plain text. Do not upload binary files like a Word Document.     ') ?>
+                <td colspan="2"><div id="globalhelp">
+                            <div class="collapse" id="helptarget1">
+                    <div class="alert alert-info"> <?php echo $GLOBALS['I18N']->get('The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called "email" and not something like "e-mail" or     "Email Address".     Case is not important.          If you have a column called "Foreign Key", this will be used for synchronisation between an     external database and the phpList database. The foreignkey will take precedence when matching     an existing subscriber. This will slow down the import process. If you use this, it is allowed to have     records without email, but an "Invalid Email" will be created instead. You can then do     a search on "invalid email" to find those records. Maximum size of a foreign key is 100.          Warning: the file needs to be plain text. Do not upload binary files like a Word Document.     ') ?>
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptarget1" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
                 </td>
             </tr>
             <tr>
-                <td><?php echo $GLOBALS['I18N']->get('File containing emails') ?>:<br/>
+                <td style="width: 40%"><?php echo $GLOBALS['I18N']->get('File containing emails') ?>:<br/>
                 </td>
                 <td><input type="file" name="import_file">
                     <br/><?php printf($GLOBALS['I18N']->get('The following limits are set by your server:<br/>Maximum size of a total data sent to server: %s<br/>Maximum size of each individual file: %s'),
@@ -718,48 +722,32 @@ if (count($email_list)) {
             </tr>
             <!--tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter') ?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break') ?>)</td></tr-->
             <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Test Output", you will get the list of parsed emails on screen, and the database will not be filled with the information. This is useful to find out whether the format of your file is correct. It will only show the first 50 records.') ?></td>
-            </tr>
-            <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
-                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/></td>
+                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><a href="help/?topic=TestOutput" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
-            <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Show Warnings", you will get warnings for invalid records. Warnings will only be shown if you check "Test Output". They will be ignored when actually importing. ') ?></td>
-            </tr>
+         
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
-                <td><input type="checkbox" name="show_warnings" value="yes"/></td>
-            </tr>
-            <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Omit Invalid", invalid records will not be added. Invalid records are records without an email. Any other attributes will be added automatically, ie if the country of a record is not found, it will be added to the list of countries.') ?></td>
+                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic='ShowWarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
-                <td><input type="checkbox" name="omit_invalid" value="yes"/></td>
-            </tr>
-            <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('Assign Invalid will be used to create an email for subscribers with an invalid email address. You can use values between [ and ] to make up a value for the email. For example if your import file contains a column "First Name" and one called "Last Name", you can use "[first name] [last name]" to construct a new value for the email for this subscriber containing their first name and last name. The value [number] can be used to insert the sequence number for importing.') ?>
-                </td>
+                <td><input type="checkbox" name="omit_invalid" value="yes"/><a href="help/?topic=OmitInvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Assign Invalid') ?>:</td>
-                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/>
+                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><a href="help/?topic=AssignInvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Overwrite Existing", information about a subscriber in the database will be replaced by the imported information. Subscribers are matched by email or foreign key.') ?></td>
-            </tr>
+        
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
-                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/></td>
+                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><a href="help/?topic=OverwriteExisting" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
-            <tr>
-                <td colspan="2"><?php echo $GLOBALS['I18N']->get('If you check "Retain Old Email", a conflict of two emails being the same will keep the old one and add "duplicate" to the new one. If you don&quot;t check it, the old one will get "duplicate" and the new one will take precedence.') ?></td>
-            </tr>
+           
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
-                <td><input type="checkbox" name="retainold" value="yes"/></td>
+                <td><input type="checkbox" name="retainold" value="yes"/><a href="help/?topic=RetainOldEmail" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
 
             <?php
