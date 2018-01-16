@@ -15,6 +15,7 @@ $alldone = 1;
 
 $html = '';
 $html .= '<table class="setupMain">';
+$html .= '<tr><th> Step </th> <th>Status </th> </tr>';
 
 $link = PageLink2('initialise', s('Initialise Database'));
 if (!empty($link)) {
