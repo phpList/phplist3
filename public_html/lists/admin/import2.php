@@ -696,12 +696,7 @@ if (count($email_list)) {
     <div class="content">
         <table class="importcsvMain" border="1">
             <tr>
-                <td colspan="2"><div id="globalhelp">
-                            <div class="collapse" id="helptarget1">
-                    <div class="alert alert-info"> <?php echo $GLOBALS['I18N']->get('The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called "email" and not something like "e-mail" or     "Email Address".     Case is not important.          If you have a column called "Foreign Key", this will be used for synchronisation between an     external database and the phpList database. The foreignkey will take precedence when matching     an existing subscriber. This will slow down the import process. If you use this, it is allowed to have     records without email, but an "Invalid Email" will be created instead. You can then do     a search on "invalid email" to find those records. Maximum size of a foreign key is 100.          Warning: the file needs to be plain text. Do not upload binary files like a Word Document.     ') ?>
-                    </div>
-                </div>
-                <button class="btn btn-xs btn-danger pull-right glyphicon glyphicon-info-sign" type="button" data-toggle="collapse" data-target="#helptarget1" aria-expanded="false" aria-controls="collapseExample" title="HELP" style="margin-bottom: 0px"></button>
+                <td colspan="2"><?php echo $GLOBALS['I18N']->get('The file you upload will need to have the attributes of the records on    the first line.     Make sure that the email column is called "email" and not something like "e-mail" or     "Email Address".     Case is not important.          If you have a column called "Foreign Key", this will be used for synchronisation between an     external database and the phpList database. The foreignkey will take precedence when matching     an existing subscriber. This will slow down the import process. If you use this, it is allowed to have     records without email, but an "Invalid Email" will be created instead. You can then do     a search on "invalid email" to find those records. Maximum size of a foreign key is 100.          Warning: the file needs to be plain text. Do not upload binary files like a Word Document.     ') ?>
                 </td>
             </tr>
             <tr>
@@ -723,31 +718,31 @@ if (count($email_list)) {
             <!--tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter') ?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break') ?>)</td></tr-->
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
-                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><a href="help/?topic=TestOutput" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><a href="help/?topic=testoutput" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
          
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
-                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic='ShowWarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic='showwarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
-                <td><input type="checkbox" name="omit_invalid" value="yes"/><a href="help/?topic=OmitInvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="omit_invalid" value="yes"/><a href="help/?topic=omitinvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Assign Invalid') ?>:</td>
-                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><a href="help/?topic=AssignInvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a>
+                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><a href="help/?topic=assigninvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a>
                 </td>
             </tr>
         
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
-                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><a href="help/?topic=OverwriteExisting" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><a href="help/?topic=overwriteexisting" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
            
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
-                <td><input type="checkbox" name="retainold" value="yes"/><a href="help/?topic=RetainOldEmail" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="retainold" value="yes"/><a href="help/?topic=retainoldemail" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
 
             <?php
