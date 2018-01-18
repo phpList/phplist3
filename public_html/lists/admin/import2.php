@@ -723,7 +723,7 @@ if (count($email_list)) {
          
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
-                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic='showwarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic=showwarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
