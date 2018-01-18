@@ -120,7 +120,6 @@ foreach ($pluginFiles as $file) {
                             $GLOBALS['tables'][$className.'_'.$tablename] = $GLOBALS['table_prefix'].$className.'_'.$tablename;
                         }
                     }
-                    $pluginInstance->activate();
                 } else {
                     $pluginInstance->enabled = false;
                     dbg($className.' disabled');
@@ -131,6 +130,17 @@ foreach ($pluginFiles as $file) {
             //print "$className = ".$pluginInstance->name."<br/>";
         }
     }
+}
+//  Activate plugins in descending priority order
+uasort(
+    $plugins,
+    function($a, $b) {
+        return $b->priority - $a->priority;
+    }
+);
+
+foreach ($plugins as $pluginInstance) {
+    $pluginInstance->activate();
 }
 
 $GLOBALS['pluginsendformats'] = array();
