@@ -108,11 +108,11 @@ $ls->addColumn($element, '', formatDateTime($messagedata['sent']));
 
 $element = ucfirst(s('Sent as HTML'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $messagedata['astextandhtml']);
+$ls->addColumn($element, '', number_format($messagedata['astextandhtml']));
 
 $element = ucfirst(s('Sent as text'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $messagedata['astext']);
+$ls->addColumn($element, '', number_format($messagedata['astext']));
 
 $totalSent = 0;
 $sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where messageid = %d group by status',
