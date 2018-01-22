@@ -151,7 +151,8 @@ $req = Sql_Query(
             , um.entered as sent
             , min(um.viewed) as firstview
             , max(um.viewed) as lastview
-            , count(um.viewed) as viewcount
+            , count(um.viewed) as uniqueviews
+            , msg.viewed as totalcampaignviews
             , abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime
         from 
             %s um
@@ -180,26 +181,9 @@ $req = Sql_Query(
 
 $summary = array();
 while ($row = Sql_Fetch_Array($req)) {
-    if ($download) {
-        //# with download, the 50 per page limit is not there.
-        set_time_limit(60);
-        $element = $row['email'];
-    } else {
-        $element = shortenTextDisplay($row['email'], 35);
-    }
-    $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
-    $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
-    $viewList = '';
-    if ($row['viewcount'] > 1) { // that will never happen as usermessage only has one entry per user-message
-        $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
-        $ls->addColumn($element, s('lastview'), formatDateTime($row['lastview']));
-        $ls->addColumn($element, s('views'), $row['viewcount']);
-    } else {
-        $ls->addColumn($element, s('firstview'), formatDateTime($row['firstview'], 1));
-        $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
 
-        // Add class for table styling (groups rows differently for multi-row groups)
-        $ls->setClass($element, 'row1');
+    // If the campaign has been viewed more than once
+    if ($row['totalcampaignviews'] > 1) {
         $allViewsReq = Sql_Query(
             sprintf(
                 'select 
@@ -215,19 +199,34 @@ while ($row = Sql_Fetch_Array($req)) {
             , $row['userid']
             , $id
         ));
-        $totalViews = Sql_Affected_Rows();
+        $totalSubscriberViews = Sql_Affected_Rows();
+    }
+    if ($download) {
+        //# with download, the 50 per page limit is not there.
+        set_time_limit(60);
+        $element = $row['email'];
+    } else {
+        $element = shortenTextDisplay($row['email'], 35);
+    }
+    $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
+    $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
+    $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
+    $ls->addColumn($element, s('Total views'), ($totalSubscriberViews > 1 ? $totalSubscriberViews : 1));
 
-        if ($totalViews > 1) {
+    // If the subscriber has viewed the campaign more than once
+    if ($totalSubscriberViews > 1) {
+        // Add class for table styling (groups rows differently for multi-row groups)
+        $ls->setClass($element, 'row1');
+        if ($totalSubscriberViews > 1) {
             $viewList = '';
             while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
-                $viewList .= s('Viewed').': '.formatDateTime($row2['viewed'], 1) . '<br/>';
+                $ls->addRow(
+                    $element
+                    , s('Viewed').': '.formatDateTime($row2['viewed'], 1)
+                    , ''
+                );
             }
         }
-        $ls->addRow(
-            $element
-            , s('Total views').': '.$totalViews
-            , $viewList
-        );
 
     }
 }
