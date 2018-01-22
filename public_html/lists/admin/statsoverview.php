@@ -144,7 +144,7 @@ $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messag
 // Number of unique views 
 $element = ucfirst(s('Opened '));
 $ls->addElement($element);
-$ls->addColumn($element, '', !empty($viewed[0]) ? PageLink2('mviews&id='.$id, $viewed[0]) : '0');
+$ls->addColumn($element, '', !empty($viewed[0]) ? PageLink2('mviews&id='.$id, number_format($viewed[0])) : '0');
 
 // Opened Rate 
 $perc = sprintf('%0.2f', $viewed[0] / ($totalSent - $totalBounced) * 100);
@@ -158,7 +158,7 @@ $clicked = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messa
 // Number of Total Clicks
 $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
-$ls->addColumn($element, '', !empty($clicked[0]) ? PageLink2('mclicks&id='.$id, $clicked[0]) : '0');
+$ls->addColumn($element, '', !empty($clicked[0]) ? PageLink2('mclicks&id='.$id, number_format($clicked[0])) : '0');
 
 // Clicked Rate  
 $perc = sprintf('%0.2f', $clicked[0] / ($totalSent - $totalBounced) * 100);
