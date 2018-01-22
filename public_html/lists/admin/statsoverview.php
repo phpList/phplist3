@@ -122,7 +122,7 @@ while ($row = Sql_Fetch_Assoc($sentQ)) {
     $ls->addElement($element);
     $ls->addColumn($element, '',  number_format($row['num']));
     if ($row['status'] == 'sent') {
-        $totalSent = ( $row['num'] );
+        $totalSent = $row['num'];
     }
 }
 /*
