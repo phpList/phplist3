@@ -718,31 +718,31 @@ if (count($email_list)) {
             <!--tr><td><?php echo $GLOBALS['I18N']->get('Record Delimiter') ?>:</td><td><input type="text" name="import_record_delimiter" size="5"> (<?php echo $GLOBALS['I18N']->get('default is line break') ?>)</td></tr-->
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
-                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><a href="help/?topic=testoutput" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><?php echo Help('testoutput'); ?></td>
             </tr>
          
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
-                <td><input type="checkbox" name="show_warnings" value="yes"/><a href="help/?topic=showwarnings" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="show_warnings" value="yes"/><?php echo Help('showwarnings'); ?></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
-                <td><input type="checkbox" name="omit_invalid" value="yes"/><a href="help/?topic=omitinvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="omit_invalid" value="yes"/><?php echo Help('omitinvalid'); ?></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Assign Invalid') ?>:</td>
-                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><a href="help/?topic=assigninvalid" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a>
+                <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><?php echo Help('assigninvalid'); ?>
                 </td>
             </tr>
         
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
-                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><a href="help/?topic=overwriteexisting" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><?php echo Help('overwriteexisting'); ?></td>
             </tr>
            
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
-                <td><input type="checkbox" name="retainold" value="yes"/><a href="help/?topic=retainoldemail" class="helpdialog" target="_blank"><span class="glyphicon glyphicon-question-sign text-warning"></span></a></td>
+                <td><input type="checkbox" name="retainold" value="yes"/><?php echo Help('retainoldemail'); ?></td>
             </tr>
 
             <?php
