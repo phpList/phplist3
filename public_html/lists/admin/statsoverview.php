@@ -110,7 +110,6 @@ $element = ucfirst(s('Sent as HTML'));
 $ls->addElement($element);
 $ls->addColumn($element, '', number_format($messagedata['astextandhtml']));
 
-
 $element = ucfirst(s('Sent as text'));
 $ls->addElement($element);
 $ls->addColumn($element, '', number_format($messagedata['astext']));
@@ -126,13 +125,12 @@ while ($row = Sql_Fetch_Assoc($sentQ)) {
         $totalSent = ( $row['num'] );
     }
 }
-
 /*
 $element = ucfirst(s('Bounced'));
 $ls->addElement($element);
 $ls->addColumn($element,'&nbsp;',$messagedata['bouncecount']);
 */
-
+//Bounced
 $bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct user) from %s where message = %d',
     $tables['user_message_bounce'], $id));
 $element = ucfirst(s('Bounced'));
@@ -168,7 +166,6 @@ $element = ucfirst(s('Clicked Rate'));
 $ls->addElement($element);
 $ls->addColumn($element, '', $perc.' %');
 
-
 // Click per view rate
 $element = ucfirst(s('Click Per View Rate'));
 $ls->addElement($element); 
@@ -180,8 +177,7 @@ if ($viewed[0]!=0) {
     $ls->addColumn($element, '','0');
 }
 
-
-
+//Forwarded
 $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
     $GLOBALS['tables']['user_message_forward'], $id));
 $element = ucfirst(s('Forwarded'));
