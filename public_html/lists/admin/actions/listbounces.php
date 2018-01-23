@@ -16,7 +16,7 @@ switch ($access) {
             $req = Sql_Query(sprintf('select id from '.$tables['list'].' where owner = %d and id = %d',
                 $_SESSION['logindetails']['id'], $listid));
             if (!Sql_Affected_Rows()) {
-                Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+                Fatal_Error(s('You do not have enough privileges to view this page'));
 
                 return;
             }
@@ -30,7 +30,7 @@ switch ($access) {
     case 'none':
     default:
         if ($listid) {
-            Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+            Fatal_Error(s('You do not have enough privileges to view this page'));
             $isowner_and = sprintf(' list.owner = 0 and ');
             $isowner_where = sprintf(' where list.owner = 0 ');
 
@@ -45,18 +45,18 @@ $req = Sql_Query(sprintf('select listuser.listid,count(distinct userid) as numus
     %s umb, %s lm where %s list.id = listuser.listid and listuser.listid = lm.listid and listuser.userid = umb.user group by listuser.listid
     order by listuser.listid limit 250', $GLOBALS['tables']['list'], $GLOBALS['tables']['listuser'],
     $GLOBALS['tables']['user_message_bounce'], $GLOBALS['tables']['listmessage'], $isowner_and));
-$ls = new WebblerListing($GLOBALS['I18N']->get('Choose a list'));
+$ls = new WebblerListing(s('Choose a list'));
 $ls->setElementHeading('List name');
 $some = 0;
 while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
-    $element = '<!--'.$GLOBALS['I18N']->get('list').' '.$row['listid'].'-->'.listName($row['listid']);
+    $element = '<!--'.s('list').' '.$row['listid'].'-->'.listName($row['listid']);
     $ls->addElement($element, PageUrl2('listbounces&amp;id='.$row['listid']));
     //  $ls->addColumn($element,$GLOBALS['I18N']->get('name'),listName($row['listid']),PageUrl2('editlist&amp;id='.$row['listid']));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('Total bounces'), $row['numusers']);
+    $ls->addColumn($element, s('Total bounces'), number_format($row['numusers']));
 }
 if ($some) {
     $status = $ls->display();
 } else {
-    $status = '<p>'.$GLOBALS['I18N']->get('None found').'</p>';
+    $status = '<p>'.s('None found').'</p>';
 }
