@@ -88,6 +88,9 @@ echo '<table class="mviewsDetails">
 <tr><td>' .s('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
 </table><hr/>';
 
+echo '<p class="pull-right">'.PageLinkButton('statsoverview&id='.$id,
+            s('Campaign statistics')).'</p><div class="clearfix"></div>';
+
 if ($download) {
     header('Content-disposition:  attachment; filename="phpList Message open statistics for '.$messagedata['subject'].'.csv"');
 }
