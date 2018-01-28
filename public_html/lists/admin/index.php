@@ -260,11 +260,11 @@ if (!is_file($page.'.php') && !isset($_GET['pi'])) {
 if (!$GLOBALS['admin_auth_module']) {
     // stop login system when no admins exist
     if (!Sql_Table_Exists($tables['admin'])) {
-        $GLOBALS['require_login'] = 0;
+        $msg = s('Login not available. Re-initialise the database.');
     } else {
         $num = Sql_Query("select * from {$tables['admin']}");
         if (!Sql_Affected_Rows()) {
-            $GLOBALS['require_login'] = 0;
+            $msg = s('Login not available. Create an account first.');
         }
     }
 } elseif (!Sql_Table_exists($GLOBALS['tables']['config'])) {
