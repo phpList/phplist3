@@ -440,8 +440,8 @@ if ($total) {
             if ($clicks[0]) {
                 $resultStats .= '
             <tr>
-                <td>'.s('Clicks').'</td>
-                <td>'. (!empty($viewStats['Total clicks']) ? PageLink2('mclicks&id='.$msg['id'], $viewStatsFormatted['clicks']): '0').'</td>
+                <td>'.s('Total clicks').'</td>
+                <td>'. (!empty($viewStats['clicks']) ? PageLink2('mclicks&id='.$msg['id'], $viewStatsFormatted['clicks']): '0').'</td>
             </tr>';
             }
             $resultStats .= '
