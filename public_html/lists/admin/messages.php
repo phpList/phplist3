@@ -440,13 +440,14 @@ if ($total) {
             if ($clicks[0]) {
                 $resultStats .= '
             <tr>
-                <td>' .s('Total Clicks').'</td><td>'.$viewStatsFormatted['clicks'].'</td>
+                <td>'.s('Clicks').'</td>
+                <td>'. (!empty($viewStats['clicks']) ? PageLink2('mclicks&id='.$msg['id'], $viewStatsFormatted['clicks']): '0').'</td>
             </tr>';
             }
             $resultStats .= '
             <tr>
                 <td>' .s('Bounced').'</td>
-                <td>'.$viewStatsFormatted['bounces'].'</td>
+                <td>'.(!empty($viewStats['bounces']) ? PageLink2('bounces&id='.$msg['id'],$viewStatsFormatted['bounces']): '0').'</td>
             </tr>
         </tbody>
     </table>';
