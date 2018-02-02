@@ -11,16 +11,14 @@ dist: precise
 env:
   global:
     - secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="
-    - BEHAT_PARAMS: '{"extensions" :{ "Bex\Behat\ScreenshotExtension" : {"image_drivers" : {"upload_pie" : "$UPLOADPIE_API_KEY"}}}}'
+    - BEHAT_PARAMS: '{"extensions":{"Bex\Behat\ScreenshotExtension":{"image_drivers":{"upload_pie":"$UPLOADPIE_API_KEY"}}}}'
 notifications:
   slack:
     rooms:
       secure: "LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU="
   on_success: change
   on_failure: always
-before_install:
-  # start chrome and listen on `localhost`
-  - ./bin/start-selenium
+
 before_script:
   # Set Uploadpie auth key in behat config file via env var
   - echo $BEHAT_PARAMS
@@ -35,6 +33,8 @@ before_script:
   - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
   - composer install --prefer-dist
+  # start selenium
+  - ./bin/start-selenium
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
   - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
