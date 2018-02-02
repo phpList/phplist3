@@ -20,10 +20,13 @@ default:
                         username : YOUR_ADMIN_USERNAME
                         password : YOUR_ADMIN_PASSWORD
     extensions:
-        Lakion\Behat\MinkDebugExtension:
-            directory: build/behat
-            clean_start: true
-            screenshot: true
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: /tmp
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: false
 
         Behat\MinkExtension:
             # Change to the URL where phpList is running that should be tested

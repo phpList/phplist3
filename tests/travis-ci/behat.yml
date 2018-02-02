@@ -23,10 +23,13 @@ default:
                         username : admin
                         password : Mypassword123+
     extensions:
-        Lakion\Behat\MinkDebugExtension:
-            directory: "build/behat"
-            clean_start: true
-            screenshot: true
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: build/screenshot
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: false
 
         Behat\MinkExtension:
             # Change to you custom url:
