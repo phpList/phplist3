@@ -48,12 +48,13 @@ class FeatureContext extends MinkContext
         ),$admin);
 
         $this->params = array(
-            'base_url' => $base_url
-            , 'db_user' => $database['user']
-            , 'db_password' => $database['password']
-            , 'db_name' => $database['name']
-            , 'admin_username' => $admin['username']
-            , 'admin_password' => $admin['password']
+            'base_url' => $base_url,
+            'db_host' => $database['host'],
+            'db_user' => $database['user'],
+            'db_password' => $database['password'],
+            'db_name' => $database['name'],
+            'admin_username' => $admin['username'],
+            'admin_password' => $admin['password']
         );
         
         $this->db = mysqli_init();
@@ -164,8 +165,8 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        mysqli_query($this->db,'drop database if exists phplistbehattestdb');
-        mysqli_query($this->db,'create database phplistbehattestdb');
+        mysqli_query($this->db,'drop database if exists '.$this->params['db_name']);
+        mysqli_query($this->db,'create database '.$this->params['db_name']);
     }
     
     /**
