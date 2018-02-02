@@ -23,12 +23,13 @@ notifications:
 
 before_script:
   - sudo apt-get update > /dev/null
-  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
-    php5-intl
-  - sudo sed -i -e "s,/var/www,$(pwd)/public_html,g" /etc/apache2/sites-available/default
-  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
-  - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
-  - sudo /etc/init.d/apache2 restart
+  #- sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
+  #  php5-intl
+  #- sudo sed -i -e "s,/var/www,$(pwd)/public_html,g" /etc/apache2/sites-available/default
+  #- sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
+  #- echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
+  #- sudo /etc/init.d/apache2 restart
+  - php -S localhost:8000 -t public_html > /dev/null 2>&1 &
   - mkdir -p build/screenshot
   - cp -f tests/travis-ci/behat.yml behat.yml
   - cp -f tests/travis-ci/config.php public_html/lists/config/config.php
