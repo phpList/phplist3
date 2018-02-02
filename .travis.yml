@@ -52,9 +52,9 @@ script:
   - vendor/bin/phpLint ./public_html
   - vendor/bin/behat
 
+after_script:
+  - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png
 after_failure:
-  - export IMGUR_API_KEY=bec050c54e1bb52
-  - ./bin/imgur-uploader.sh build/screenshot/*.png
   - echo "Failures detected. Outputing additional logs:"
   - sudo ls -l /etc/apache2/sites-available/
   - sudo cat /etc/apache2/apache2.conf
