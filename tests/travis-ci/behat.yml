@@ -28,10 +28,13 @@ default:
                 default:
                     #goutte: ~
                     selenium2:
-                        capabilities: { "browser": "chrome" }
+                        capabilities:
+                            browserName: chrome
+                            marionette: true
+                            chrome:
+                                switches:
+                                    - "--headless"
+                                    - "--disable-gpu"
+                                    - "--window-size=2000,2000"
         Bex\Behat\ScreenshotExtension:
-            active_image_drivers: upload_pie
-            image_drivers:
-                upload_pie:
-                    auth: '%UPLOADPIE_API_KEY%'
-                    expire: '30m' # possible values: '30m', '1h', '6h', '1d', '1w'
+            active_image_drivers: img42
