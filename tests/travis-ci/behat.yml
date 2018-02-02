@@ -8,11 +8,15 @@ default:
             contexts:
                 - FeatureContext:
                     base_url: http://phplist.dev
-                    db_user: root
-                    db_password :
-                    db_name: phplistdb
-                    admin_username : admin
-                    admin_password : Mypassword123+
+                    database:
+                        host: localhost
+                        user: root
+                        password :
+                        name: phplistdb
+                    # Set admin user login credentials
+                    admin:
+                        username : admin
+                        password : Mypassword123+
     extensions:
         Behat\MinkExtension:
             # Change to you custom url:
