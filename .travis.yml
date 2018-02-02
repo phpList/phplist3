@@ -49,6 +49,7 @@ before_script:
   - mysql -e 'create database phplistdb;'
 
 script:
+  - vendor/bin/behat tests/features/getting-started/setup.feature:17
   - vendor/bin/phpLint ./public_html
   - vendor/bin/behat
 
