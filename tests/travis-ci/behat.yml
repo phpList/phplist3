@@ -36,5 +36,5 @@ default:
                                     - "--headless"
                                     - "--disable-gpu"
                                     - "--window-size=2000,2000"
-        Bex\Behat\ScreenshotExtension:
-            active_image_drivers: img42
+        #Bex\Behat\ScreenshotExtension:
+        #    active_image_drivers: img42
