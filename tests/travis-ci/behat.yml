@@ -1,4 +1,9 @@
 default:
+    formatters:
+        progress:
+            verbose: true
+            paths: false
+
     autoload:
         - %paths.base%/tests/features/bootstrap
     suites:
