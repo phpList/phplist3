@@ -22,9 +22,6 @@ notifications:
   on_failure: always
 
 before_script:
-  # Set Uploadpie auth key in behat config file via env var
-  - export BEHAT_PARAMS='{"extensions":{"Bex\\Behat\\ScreenshotExtension":{"image_drivers":{"upload_pie":{"auth":"'$UPLOADPIE_API_KEY'"}}}}}'
-
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
     php5-intl
@@ -36,9 +33,11 @@ before_script:
   - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
   - composer install --prefer-dist
+
   # start selenium
   - ./bin/start-selenium.sh > /dev/null 2>&1 &
   - sleep 3
+  - mkdir -p build/behat
 
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
@@ -52,9 +51,9 @@ script:
   - vendor/bin/phpLint ./public_html
   - vendor/bin/behat
 
-after_script:
-  - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png
 after_failure:
+  - vendor/bin/upload-textfiles build/behat
+  - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/behat/*.png
   - echo "Failures detected. Outputing additional logs:"
   - sudo ls -l /etc/apache2/sites-available/
   - sudo cat /etc/apache2/apache2.conf
