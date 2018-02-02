@@ -30,7 +30,6 @@ before_script:
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
   - mkdir -p build/screenshot
-  - pwd
   - cp -f tests/travis-ci/behat.yml behat.yml
   - cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
@@ -42,9 +41,9 @@ before_script:
 
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
-  #- cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-  #  && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
-  #  rm master.tar.gz && cd ../../../../
+  - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+    && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
+    rm master.tar.gz && cd ../../../../
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
   - mysql -e 'create database phplistdb;'
 
@@ -58,6 +57,6 @@ after_failure:
   - echo "Failures detected. Outputing additional logs:"
   - sudo ls -l /etc/apache2/sites-available/
   - sudo cat /etc/apache2/apache2.conf
-  - sudo cat /etc/apache2/sites-available/000-default.conf
+  - sudo cat /etc/apache2/sites-available/default
   - sudo cat /var/log/apache2/error.log
   - sudo cat /var/log/mysql/error.log
