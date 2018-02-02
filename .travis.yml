@@ -36,7 +36,9 @@ before_script:
   - composer self-update
   - composer install --prefer-dist
   # start selenium
-  - ./bin/start-selenium
+  - ./bin/start-selenium.sh > /dev/null 2>&1 &
+  - sleep 3
+
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
   - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
