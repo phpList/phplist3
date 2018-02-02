@@ -29,15 +29,16 @@ before_script:
   - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
-  - sudo cp -f tests/travis-ci/behat.yml behat.yml
-  - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
+  - mkdir -p build/behat
+  - pwd
+  - cp -f tests/travis-ci/behat.yml behat.yml
+  - cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - composer self-update
   - composer install --prefer-dist
 
   # start selenium
   - ./bin/start-selenium.sh > /dev/null 2>&1 &
   - sleep 3
-  - mkdir -p build/behat
 
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin

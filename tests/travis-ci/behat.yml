@@ -19,7 +19,7 @@ default:
                         password : Mypassword123+
     extensions:
         Lakion\Behat\MinkDebugExtension:
-            directory: build/behat
+            directory: "build/behat"
             clean_start: true
             screenshot: true
 
