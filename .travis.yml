@@ -42,9 +42,7 @@ before_script:
     rm master.tar.gz && cd ../../../../
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
   - mysql -e 'create database phplistdb;'
-  # Start xvfb (for use with Selenium)
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+
 script:
   - vendor/bin/phpLint ./public_html
   - vendor/bin/behat
