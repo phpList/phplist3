@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+vendor/bin/selenium-server-standalone -p 4444 -Dwebdriver.chrome.driver=vendor/bin/chromedriver --remote-debugging-port=9222
