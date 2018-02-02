@@ -29,10 +29,9 @@
     "fabpot/goutte": "@stable",
     "sllh/php-cs-fixer-styleci-bridge": "~1.3",
     "njoannidi/php-lint-bash": "dev-master",
-    "bex/behat-screenshot": "^1.2",
-    "bex/behat-screenshot-image-driver-uploadpie": "^1.0",
     "se/selenium-server-standalone": "^2.52",
-    "enm1989/chromedriver": "^2.35"
+    "enm1989/chromedriver": "^2.35",
+    "bex/behat-screenshot": "^1.2"
   },
   "prefer-stable": true,
   "config": {
