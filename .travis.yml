@@ -42,9 +42,9 @@ before_script:
 
   - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - ls -l vendor/bin
-  - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-    && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
-    rm master.tar.gz && cd ../../../../
+  #- cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+  #  && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
+  #  rm master.tar.gz && cd ../../../../
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
   - mysql -e 'create database phplistdb;'
 
