@@ -20,7 +20,7 @@ notifications:
 
 before_script:
   # Set Uploadpie auth key in behat config file via env var
-  - export BEHAT_PARAMS='{"extensions":{"Bex\\Behat\\ScreenshotExtension":{"image_drivers":{"upload_pie":{"auth":"'$UPLOADPIE_API_KEY'"}}}}'
+  - export BEHAT_PARAMS='{"extensions":{"Bex\\Behat\\ScreenshotExtension":{"image_drivers":{"upload_pie":{"auth":"'$UPLOADPIE_API_KEY'"}}}}}'
 
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
