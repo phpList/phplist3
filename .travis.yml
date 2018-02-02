@@ -52,7 +52,7 @@ script:
   - vendor/bin/behat
 
 after_failure:
-  - vendor/bin/upload-textfiles build/behat
+  - vendor/bin/upload-textfiles build/behat/*.log
   - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/behat/*.png
   - echo "Failures detected. Outputing additional logs:"
   - sudo ls -l /etc/apache2/sites-available/
