@@ -9,13 +9,13 @@ php:
 dist: precise
 # Load secure environment variables for access by other scripts
 env:
-- [
-    {secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="}
-  ]
+  global:
+    - secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="
+    - BEHAT_PARAMS: '{"extensions" :{ "Bex\Behat\ScreenshotExtension" : {"image_drivers" : {"upload_pie" : "$UPLOADPIE_API_KEY"}}}}'
 notifications:
   slack:
     rooms:
-      secure: LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU=
+      secure: "LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU="
   on_success: change
   on_failure: always
 before_install:
@@ -23,7 +23,7 @@ before_install:
   - ./bin/start-selenium
 before_script:
   # Set Uploadpie auth key in behat config file via env var
-  - export BEHAT_PARAMS='{"extensions" : {"Bex\Behat\ScreenshotExtension" : {"image_drivers" : {"upload_pie" : "'$UPLOADPIE_API_KEY'"}}}}'
+  - echo $BEHAT_PARAMS
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
     php5-intl
