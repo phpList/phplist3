@@ -10,12 +10,15 @@ default:
                     # Set to the URL where phpList is running that should be tested
                     base_url: http://localhost/phplist3/public_html/lists/
                     # Set database access credentials
-                    db_user: YOUR_DATABASE_USERNAME
-                    db_password : YOUR_DATABASE_PASSWORD
-                    db_name: YOUR_DATABASE_NAME
+                    database:
+                        host: YOUR_DATABASE_HOST
+                        user: YOUR_DATABASE_USERNAME
+                        password : YOUR_DATABASE_PASSWORD
+                        name: YOUR_DATABASE_NAME
                     # Set admin user login credentials
-                    admin_username : YOUR_ADMIN_USERNAME
-                    admin_password : YOUR_ADMIN_PASSWORD
+                    admin:
+                        username : YOUR_ADMIN_USERNAME
+                        password : YOUR_ADMIN_PASSWORD
     extensions:
         Behat\MinkExtension:
             # Change to the URL where phpList is running that should be tested
@@ -31,7 +34,15 @@ default:
                     #goutte: ~
                     selenium2:
                         # Change this to Firefox if necessary
-                        capabilities: { "browser": "chrome", "marionette": true }
+                        capabilities:
+                            browserName: chrome
+                            marionette: true
+                            chrome:
+                                switches:
+                                    - "--headless"
+                                    - "--disable-gpu"
+                                    - "--window-size=2000,2000"
+
         Bex\Behat\ScreenshotExtension:
             image_drivers:
                 local:
