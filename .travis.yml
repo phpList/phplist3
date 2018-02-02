@@ -1,8 +1,3 @@
-# Load secure environment variables for access by other scripts
-env:
-- [
-    {secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="}
-  ]
 language: php
 php:
   - 7.1
@@ -12,6 +7,11 @@ php:
   - 5.4
   - 5.3
 dist: precise
+# Load secure environment variables for access by other scripts
+env:
+- [
+    {secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="}
+  ]
 notifications:
   slack:
     rooms:
