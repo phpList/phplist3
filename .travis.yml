@@ -7,6 +7,9 @@ php:
   - 5.4
   - 5.3
 dist: precise
+cache:
+    directories:
+      - "$HOME/.composer/cache"
 # Load secure environment variables for access by other scripts
 env:
   global:
