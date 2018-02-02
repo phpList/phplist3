@@ -7,11 +7,11 @@ default:
                 - %paths.base%/tests/features
             contexts:
                 - FeatureContext:
-                    base_url: http://phplist.dev
+                    base_url: http://localhost:8000
                     database:
                         host: localhost
                         user: root
-                        password :
+                        password:
                         name: phplistdb
                     # Set admin user login credentials
                     admin:
@@ -28,7 +28,7 @@ default:
 
         Behat\MinkExtension:
             # Change to you custom url:
-            base_url:  'http://phplist.dev'
+            base_url:  'http://localhost:8000'
             show_auto: false
             show_cmd: google-chrome %s
             browser_name: 'chrome'
