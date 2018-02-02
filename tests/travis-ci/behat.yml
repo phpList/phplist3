@@ -36,5 +36,11 @@ default:
                                     - "--headless"
                                     - "--disable-gpu"
                                     - "--window-size=2000,2000"
-        #Bex\Behat\ScreenshotExtension:
-        #    active_image_drivers: img42
+        Bex\Behat\ScreenshotExtension:
+            active_image_drivers: local
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: build/screenshot
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: true
