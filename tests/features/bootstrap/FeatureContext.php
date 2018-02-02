@@ -21,30 +21,48 @@ class FeatureContext extends MinkContext
     private $params = array();
     private $data = array();
 
+    private $db;
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
      *
-     * @param array $parameters context parameters (set them up through behat.yml)
+     * @param string $base_url
+     * @param array $admin
+     * @param array $database
      */
-    public function __construct($base_url, $db_user, $db_password, $db_name, $admin_username, $admin_password)
+    public function __construct($base_url = 'http://localhost',$admin=array(), $database=array())
     {
-    
+        // merge default database value into configured value
+        $database = array_merge(array(
+            'host'      => 'localhost',
+            'password'  => 'phplist',
+            'user'      => 'phplist',
+            'name'      => 'phplistdb'
+        ),$database);
+
+        // merge default admin user value into configured value
+        $admin = array_merge(array(
+            'username' => 'admin',
+            'password' => 'admin'
+        ),$admin);
+
         $this->params = array(
             'base_url' => $base_url
-            , 'db_user' => $db_user
-            , 'db_password' => $db_password
-            , 'db_name' => $db_name
-            , 'admin_username' => $admin_username
-            , 'admin_password' => $admin_password
+            , 'db_user' => $database['user']
+            , 'db_password' => $database['password']
+            , 'db_name' => $database['name']
+            , 'admin_username' => $admin['username']
+            , 'admin_password' => $admin['password']
         );
         
         $this->db = mysqli_init();
         mysqli_real_connect(
-            $this->db
-            , 'localhost', $this->params['db_user']
-            , $this->params['db_password']
-            , $this->params['db_name']
+            $this->db,
+            $database['host'],
+            $database['user'],
+            $database['password'],
+            $database['name']
         );
     }
 
