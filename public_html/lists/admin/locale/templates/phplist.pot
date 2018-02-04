@@ -5244,7 +5244,7 @@ msgstr ""
 msgid "automatically added"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:698
+#: public_html/lists/admin/import2.php:697
 msgid ""
 "The file you upload will need to have the attributes of the records on    "
 "the first line.     Make sure that the email column is called \"email\" and "
@@ -5260,122 +5260,71 @@ msgid ""
 "Document.     "
 msgstr ""
 
-#: public_html/lists/admin/import2.php:702
+#: public_html/lists/admin/import2.php:701
 #: public_html/lists/admin/importadmin.php:318
 msgid "File containing emails"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:705
+#: public_html/lists/admin/import2.php:704
 #, php-format
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:707
+#: public_html/lists/admin/import2.php:706
 #, php-format
 msgid "phpList will not process files larger than %dMB"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:712
+#: public_html/lists/admin/import2.php:711
 #: public_html/lists/admin/importadmin.php:321
 msgid "Field Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:714
+#: public_html/lists/admin/import2.php:713
 #: public_html/lists/admin/importadmin.php:321
 msgid "default is TAB"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:717
+#: public_html/lists/admin/import2.php:716
 #: public_html/lists/admin/importadmin.php:322
 msgid "Record Delimiter"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:717
+#: public_html/lists/admin/import2.php:716
 #: public_html/lists/admin/importadmin.php:322
 msgid "default is line break"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:719
-#: public_html/lists/admin/import1.php:226
-#: public_html/lists/admin/importadmin.php:324
-msgid ""
-"If you check \"Test Output\", you will get the list of parsed emails on "
-"screen, and the database will not be filled with the information. This is "
-"useful to find out whether the format of your file is correct. It will only "
-"show the first 50 records."
-msgstr ""
-
-#: public_html/lists/admin/import2.php:722
+#: public_html/lists/admin/import2.php:718
 #: public_html/lists/admin/importadmin.php:327
 msgid "Test output"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:726
-msgid ""
-"If you check \"Show Warnings\", you will get warnings for invalid records. "
-"Warnings will only be shown if you check \"Test Output\". They will be "
-"ignored when actually importing. "
-msgstr ""
-
-#: public_html/lists/admin/import2.php:729
+#: public_html/lists/admin/import2.php:723
 msgid "Show Warnings"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:733
-msgid ""
-"If you check \"Omit Invalid\", invalid records will not be added. Invalid "
-"records are records without an email. Any other attributes will be added "
-"automatically, ie if the country of a record is not found, it will be added "
-"to the list of countries."
-msgstr ""
-
-#: public_html/lists/admin/import2.php:736
+#: public_html/lists/admin/import2.php:727
 msgid "Omit Invalid"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:740
-msgid ""
-"Assign Invalid will be used to create an email for subscribers with an "
-"invalid email address. You can use values between [ and ] to make up a value "
-"for the email. For example if your import file contains a column \"First Name"
-"\" and one called \"Last Name\", you can use \"[first name] [last name]\" to "
-"construct a new value for the email for this subscriber containing their "
-"first name and last name. The value [number] can be used to insert the "
-"sequence number for importing."
-msgstr ""
-
-#: public_html/lists/admin/import2.php:744
+#: public_html/lists/admin/import2.php:731
 msgid "Assign Invalid"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:749
-msgid ""
-"If you check \"Overwrite Existing\", information about a subscriber in the "
-"database will be replaced by the imported information. Subscribers are "
-"matched by email or foreign key."
-msgstr ""
-
-#: public_html/lists/admin/import2.php:752
+#: public_html/lists/admin/import2.php:737
 #: public_html/lists/admin/import3.php:265
 #: public_html/lists/admin/import3.php:266
 msgid "Overwrite Existing"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:756
-msgid ""
-"If you check \"Retain Old Email\", a conflict of two emails being the same "
-"will keep the old one and add \"duplicate\" to the new one. If you don&quot;"
-"t check it, the old one will get \"duplicate\" and the new one will take "
-"precedence."
-msgstr ""
-
-#: public_html/lists/admin/import2.php:759
+#: public_html/lists/admin/import2.php:742
 msgid "Retain Old User Email"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:767
+#: public_html/lists/admin/import2.php:750
 #: public_html/lists/admin/import1.php:232
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
@@ -5383,34 +5332,34 @@ msgid ""
 "have to reply. This is recommended, because it will identify invalid emails."
 msgstr ""
 
-#: public_html/lists/admin/import2.php:768
+#: public_html/lists/admin/import2.php:751
 msgid "Send&nbsp;Notification&nbsp;email"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:768
+#: public_html/lists/admin/import2.php:751
 #: public_html/lists/admin/import1.php:233
 #: public_html/lists/admin/import3.php:270
 msgid "Make confirmed immediately"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:769
+#: public_html/lists/admin/import2.php:752
 #: public_html/lists/admin/import1.php:234
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:770
+#: public_html/lists/admin/import2.php:753
 #: public_html/lists/admin/import1.php:235
 msgid "Notification throttle"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:770
+#: public_html/lists/admin/import2.php:753
 #: public_html/lists/admin/import1.php:235
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
-#: public_html/lists/admin/import2.php:775
+#: public_html/lists/admin/import2.php:758
 msgid "Import"
 msgstr ""
 
@@ -5676,6 +5625,15 @@ msgstr ""
 
 #: public_html/lists/admin/import1.php:222
 msgid "File containing emails:"
+msgstr ""
+
+#: public_html/lists/admin/import1.php:226
+#: public_html/lists/admin/importadmin.php:324
+msgid ""
+"If you check \"Test Output\", you will get the list of parsed emails on "
+"screen, and the database will not be filled with the information. This is "
+"useful to find out whether the format of your file is correct. It will only "
+"show the first 50 records."
 msgstr ""
 
 #: public_html/lists/admin/import1.php:233
@@ -7320,6 +7278,10 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:221
 msgid "Available options:"
+msgstr ""
+
+#: public_html/lists/admin/index.php:267
+msgid "Login not available. Create an account first."
 msgstr ""
 
 #: public_html/lists/admin/index.php:302
