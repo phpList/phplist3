@@ -209,6 +209,17 @@ $DBstructphplist = array(
         'index_4'     => array('statusidx (status)', ''),
         'index_5'     => array('viewedidx (viewed)', ''),
     ),
+    'user_message_view' => array( // allow recording each view
+        "id"          => array("integer not null primary key auto_increment","ID"),
+        'messageid'   => array('integer not null', 'Message ID'),
+        'userid'      => array('integer not null', 'subscriber ID'),
+        'viewed'      => array('datetime', 'When viewed'),
+        'ip'          => array('varchar(255)','IP'),
+        'data'        => array('longtext',''),
+        'index_1'     => array('usermsgidx (userid,messageid)', ''),
+        'index_2'     => array('msgidx (messageid)', ''),
+        'index_3'     => array('useridx (userid)', ''),
+    ),
     'sendprocess' => array( // keep track of running send processes to avoid to many running concurrently
         'id'        => array('integer not null primary key auto_increment', 'ID'),
         'started'   => array('datetime', 'Start Time'),

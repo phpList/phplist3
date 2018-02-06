@@ -60,6 +60,12 @@ class phplistPlugin
     public $authProvider = false;
 
     /**
+     * The priority of this plugin.
+     * phplist will activate() plugins in descending priority order
+     */
+    public $priority = 10;
+
+    /**
      * Holds tablename -> real table mapping
      */
     public $tables = array();

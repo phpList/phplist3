@@ -1143,7 +1143,7 @@ function PageLink2($name, $desc = '', $url = '', $no_plugin = false, $title = ''
         $desc = $name;
     }
     if (empty($title)) {
-        $title = $GLOBALS['I18N']->pageTitleHover($name);
+        $title = $GLOBALS['I18N']->pageTitleHover($page);
         if (empty($title)) {
             $title = $desc;
         }
@@ -2094,24 +2094,21 @@ function secs2time($secs)
     $mins = (int) ($secs / 60);
     $secs = (int) ($secs % 60);
 
-    $res = '';
-    if ($years) {
-        $res .= $years.' '.$GLOBALS['I18N']->get('years');
-    }
-    if ($days) {
-        $res .= ' '.$days.' '.$GLOBALS['I18N']->get('days');
-    }
-    if ($hours) {
-        $res .= ' '.$hours.' '.$GLOBALS['I18N']->get('hours');
-    }
-    if ($mins) {
-        $res .= ' '.$mins.' '.$GLOBALS['I18N']->get('mins');
-    }
-    if ($secs) {
-        $res .= ' '.sprintf('%02d', $secs).' '.$GLOBALS['I18N']->get('secs');
+    $format = compact('years', 'days', 'hours', 'mins');
+
+    $output = '';
+
+    foreach($format as $unit => $value) {
+        if ($value > 0) {
+              $output .= ' '.$value.' '.s($unit);
+        }
     }
 
-    return $res;
+    if ($secs) {
+        $output .= ' '.sprintf('%02d', $secs).' '.s('secs');
+    }
+
+    return $output;
 }
 
 function listPlaceHolders()

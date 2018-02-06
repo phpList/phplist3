@@ -107,6 +107,12 @@ if ($num) {
     }
 }
 
+// keep for now, just in case
+if (!Sql_Table_exists($GLOBALS['tables']['user_message_view'])) {
+    cl_output(s('Creating new table "user_message_view"'));
+    createTable('user_message_view');
+}
+
 $counters['num_per_batch'] = 0;
 $batch_period = 0;
 $script_stage = 0; // start

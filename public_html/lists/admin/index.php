@@ -264,7 +264,7 @@ if (!$GLOBALS['admin_auth_module']) {
     } else {
         $num = Sql_Query("select * from {$tables['admin']}");
         if (!Sql_Affected_Rows()) {
-            $GLOBALS['require_login'] = 0;
+            $msg = s('Login not available. Create an account first.');
         }
     }
 } elseif (!Sql_Table_exists($GLOBALS['tables']['config'])) {

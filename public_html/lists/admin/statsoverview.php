@@ -108,11 +108,11 @@ $ls->addColumn($element, '', formatDateTime($messagedata['sent']));
 
 $element = ucfirst(s('Sent as HTML'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $messagedata['astextandhtml']);
+$ls->addColumn($element, '', number_format($messagedata['astextandhtml']));
 
 $element = ucfirst(s('Sent as text'));
 $ls->addElement($element);
-$ls->addColumn($element, '', $messagedata['astext']);
+$ls->addColumn($element, '', number_format($messagedata['astext']));
 
 $totalSent = 0;
 $sentQ = Sql_Query(sprintf('select status,count(userid) as num from %s where messageid = %d group by status',
@@ -159,6 +159,16 @@ $perc = sprintf('%0.2f', $clicked[0] / ($totalSent - $totalBounced) * 100);
 $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
 $ls->addColumn($element, '', $perc.' %');
+
+$element = ucfirst(s('Click Ratio'));
+$ls->addElement($element); 
+if ($viewed[0]!=0) {
+    $perc = sprintf('%0.2f', $clicked[0] / $viewed[0] * 100);
+    $ls->addColumn($element, '', $perc.' %');
+
+} else {
+    $ls->addColumn($element, '','0');
+}
 
 $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
     $GLOBALS['tables']['user_message_forward'], $id));
