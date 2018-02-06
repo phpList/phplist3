@@ -1,60 +1,73 @@
-# Load secure environment variables for access by other scripts
-env:
-- [
-    {secure: "VQRmfY0b7dwYJNH2SyO5yGyWNTir8sNeCJOMgmH6slYF+zla6s6iuc6Nt837aVORSyL/CnASPRpm1O7wYDHJpYpa+kJRmNf/n/dyi0b+WVgH/H0NeqS/qUg7TTz+BtKQHqNUQourMOQ+vM4D75zSN+R7h/lf+hOdzucsqDBXcUA="}
-  ]
 language: php
-php:
-  - 7.1
-  - 7.0
-  - 5.6
-  - 5.5
-  - 5.4
-  - 5.3
-dist: precise
-addons:
-  # For testing with Selenium
-  chrome: stable
+
+cache:
+    directories:
+      - "$HOME/.composer/cache"
+
+matrix:
+    include:
+        - php: '5.4'
+          env: BROWSER=goutte
+        - php: '5.5'
+          env: BROWSER=goutte
+        - php: '5.6'
+          env: BROWSER=goutte
+        - php: '7.0'
+          env: BROWSER=goutte
+        - php: '7.1'
+          env: BROWSER=goutte
+        - php: '7.1'
+          env: BROWSER=chrome
+
 notifications:
   slack:
     rooms:
-      secure: LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU=
+      secure: "LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU="
   on_success: change
   on_failure: always
+
 before_install:
-  - # start chrome and listen on `localhost`
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-before_script:
-  # Set Uploadpie auth key in behat config file via env var
-  - export BEHAT_PARAMS='{"extensions" : {"Bex\Behat\ScreenshotExtension" : {"image_drivers" : {"upload_pie" : "'$UPLOADPIE_API_KEY'"}}}}'
-  - sudo apt-get update > /dev/null
-  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql
-    php5-intl
-  - sudo sed -i -e "s,/var/www,$(pwd)/public_html,g" /etc/apache2/sites-available/default
-  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
-  - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
-  - sudo /etc/init.d/apache2 restart
-  - sudo cp -f tests/travis-ci/behat.yml behat.yml
-  - sudo cp -f tests/travis-ci/config.php public_html/lists/config/config.php
-  - composer self-update
-  - composer install --prefer-dist
-  - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
-  - ls -l vendor/bin
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 2000x2000x16"
+  - phpenv config-rm xdebug.ini || echo "xdebug not available"
+  - if [[ $TRAVIS_PHP_VERSION = hhvm* ]]; then export INI=/etc/hhvm/php.ini; else export INI=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi
+  - echo memory_limit = -1 >> $INI
+
+install:
+  # install dependencies
+  - composer install --prefer-dist --no-interaction
+
+  # start php server for non php >=5.4 version
+  - php -S localhost:8000 -t public_html > /dev/null 2>&1 &
+
+  # start selenium and php server
+  - "sh -e /etc/init.d/xvfb start"
+  - "export DISPLAY=:99.0"
+  - ./bin/start-selenium > /dev/null 2>&1 &
+  - sleep 5
+
+  # setup database and phplist
+  - mkdir -p build/screenshot
+  - cp -f tests/travis-ci/behat.yml behat.yml
+  - cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
     && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
     rm master.tar.gz && cd ../../../../
+  - cd vendor/bin && ln -s ../njoannidi/php-lint-bash/phpLint && cd ../../
   - mysql -e 'SET GLOBAL wait_timeout = 5400;'
   - mysql -e 'create database phplistdb;'
-  # Start xvfb (for use with Selenium)
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - mysql -u root -e "CREATE USER 'phplist'@'localhost' IDENTIFIED BY 'phplist';"
+  - mysql -u root -e "GRANT ALL ON phplistdb.* TO 'phplist'@'localhost'; FLUSH PRIVILEGES;"
+  - sudo service mysql restart
+
 script:
-  - vendor/bin/phpLint ./public_html
-  - vendor/bin/behat
+  # check syntax
+  - ./vendor/bin/phpLint ./public_html
+
+  # run setup feature first to create database
+  - ./vendor/bin/behat -fprogress -p $BROWSER --strict --tags=@first-run
+
+  # run all feature except @first-run
+  - ./vendor/bin/behat -fprogress -p $BROWSER --strict --tags="~@first-run && ~@wip"
+
 after_failure:
-  - echo "Failures detected. Outputing additional logs:"
-  - sudo ls -l /etc/apache2/sites-available/
-  - sudo cat /etc/apache2/apache2.conf
-  - sudo cat /etc/apache2/sites-available/000-default.conf
-  - sudo cat /var/log/apache2/error.log
-  - sudo cat /var/log/mysql/error.log
+  - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png
