@@ -11,7 +11,7 @@ default:
                     database:
                         host: localhost
                         user: phplist
-                        password : phplist
+                        password: phplist
                         name: phplistdb
                     # Set admin user login credentials
                     admin:
