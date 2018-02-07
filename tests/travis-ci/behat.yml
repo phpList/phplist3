@@ -1,33 +1,68 @@
 default:
+    gherkin:
+      filters:
+        tags: "~@wip"
+
     autoload:
         - %paths.base%/tests/features/bootstrap
+
     suites:
         default:
             paths:
                 - %paths.base%/tests/features
             contexts:
                 - FeatureContext:
-                    base_url: http://phplist.dev
-                    db_user: root
-                    db_password :
-                    db_name: phplistdb
-                    admin_username : admin
-                    admin_password : Mypassword123+
+                    database:
+                        host: localhost
+                        user: phplist
+                        password: phplist
+                        name: phplistdb
+                    # Set admin user login credentials
+                    admin:
+                        username : admin
+                        password : Mypassword123+
     extensions:
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: build/screenshot
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: false
+
         Behat\MinkExtension:
-            # Change to you custom url:
-            base_url:  'http://phplist.dev'
-            show_auto: false
-            show_cmd: google-chrome %s
-            browser_name: 'chrome'
+            base_url: http://localhost:8000
+            selenium2: ~
+            goutte: ~
             sessions:
                 default:
-                    #goutte: ~
+                    goutte: ~
+                chrome:
                     selenium2:
-                        capabilities: { "browser": "chrome" }
-        Bex\Behat\ScreenshotExtension:
-            active_image_drivers: upload_pie
-            image_drivers:
-                upload_pie:
-                    auth: '%UPLOADPIE_API_KEY%'
-                    expire: '30m' # possible values: '30m', '1h', '6h', '1d', '1w'
+                        capabilities:
+                            browser: chrome
+                            marionette: true
+                firefox:
+                    selenium2:
+                        capabilities:
+                            browser: firefox
+                            version: ""
+                            marionette: true
+
+
+
+goutte:
+    extensions:
+        Behat\MinkExtension:
+            default_session: goutte
+
+chrome:
+    extensions:
+        Behat\MinkExtension:
+            default_session: chrome
+            browser_name: chrome
+firefox:
+    extensions:
+        Behat\MinkExtension:
+            default_session: firefox
+            browser_name: firefox

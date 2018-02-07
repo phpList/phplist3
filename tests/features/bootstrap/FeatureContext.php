@@ -21,30 +21,47 @@ class FeatureContext extends MinkContext
     private $params = array();
     private $data = array();
 
+    private $db;
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
      *
-     * @param array $parameters context parameters (set them up through behat.yml)
+     * @param array $admin
+     * @param array $database
      */
-    public function __construct($base_url, $db_user, $db_password, $db_name, $admin_username, $admin_password)
+    public function __construct( $database = array(), $admin = array())
     {
-    
+        // merge default database value into configured value
+        $database = array_merge(array(
+            'host'      => 'localhost',
+            'password'  => 'phplist',
+            'user'      => 'phplist',
+            'name'      => 'phplistdb'
+        ),$database);
+
+        // merge default admin user value into configured value
+        $admin = array_merge(array(
+            'username' => 'admin',
+            'password' => 'admin'
+        ),$admin);
+
         $this->params = array(
-            'base_url' => $base_url
-            , 'db_user' => $db_user
-            , 'db_password' => $db_password
-            , 'db_name' => $db_name
-            , 'admin_username' => $admin_username
-            , 'admin_password' => $admin_password
+            'db_host' => $database['host'],
+            'db_user' => $database['user'],
+            'db_password' => $database['password'],
+            'db_name' => $database['name'],
+            'admin_username' => $admin['username'],
+            'admin_password' => $admin['password']
         );
         
         $this->db = mysqli_init();
         mysqli_real_connect(
-            $this->db
-            , 'localhost', $this->params['db_user']
-            , $this->params['db_password']
-            , $this->params['db_name']
+            $this->db,
+            $database['host'],
+            $database['user'],
+            $database['password'],
+            $database['name']
         );
     }
 
@@ -146,8 +163,8 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        mysqli_query($this->db,'drop database if exists phplistbehattestdb');
-        mysqli_query($this->db,'create database phplistbehattestdb');
+        mysqli_query($this->db,'drop database if exists '.$this->params['db_name']);
+        mysqli_query($this->db,'create database '.$this->params['db_name']);
     }
     
     /**
@@ -209,7 +226,7 @@ class FeatureContext extends MinkContext
      * @Given /^I have logged in as an administrator$/
      */
     public function iAmAuthenticatedAsAdmin() {
-        $this->visit($this->params['base_url'] . '/lists/admin/');
+        $this->visit('/lists/admin/');
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
