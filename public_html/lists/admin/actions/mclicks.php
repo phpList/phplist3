@@ -84,14 +84,14 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->setClass($element, 'row1');
     $ls->addColumn($element, ucfirst(s('links')), $row['linkcount']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$totalusers[0]);
-    $ls->addColumn($element, ucfirst(s('subscribers')), $totalclicked[0]);
+    $ls->addColumn($element, ucfirst(s('subscribers')), number_format($totalclicked[0]));
     $ls->addColumn($element, ucfirst(s('clickrate')), $clickrate);
 
-    $ls->addColumn($element, ucfirst(s('clicks')), PageLink2('userclicks&msgid='.$row['messageid'], $row['totalclicks']));
+    $ls->addColumn($element, ucfirst(s('clicks')), PageLink2('userclicks&msgid='.$row['messageid'], number_format($row['totalclicks'])));
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('total'),$row['total']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('users'),$row['users']);
     $ls->addRow($element, '',
-        '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>');
+        '<div class="content listingsmall fright gray">'.s('html').': '.number_format($row['htmlclicked']).'</div><div class="content listingsmall fright gray">'.s('text').': '.number_format($row['textclicked']).'</div>');
 
     /* this one is the percentage of total links versus clicks. I guess that's too detailed for most people.
      * besides it'll be low
@@ -101,7 +101,7 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 if ($some) {
     $status .= '<div class="action">';
-    $status .= '<p class="pull-right">'.PageLinkButton('mclicks&dl=true', $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+    $status .= '<p class="pull-right">'.PageLinkButton('mclicks&dl=true', s('Download as CSV file')).'</p>';
     $status .= '</div><div class="clearfix"></div>';
 //    print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $status .= $ls->display();
