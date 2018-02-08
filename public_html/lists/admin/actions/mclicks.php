@@ -82,12 +82,12 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $ls->addElement($element, PageURL2('mclicks&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
-    $ls->addColumn($element, s('links'), $row['linkcount']);
+    $ls->addColumn($element, ucfirst(s('links')), $row['linkcount']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$totalusers[0]);
-    $ls->addColumn($element, s('subscribers'), $totalclicked[0]);
-    $ls->addColumn($element, s('clickrate'), $clickrate);
+    $ls->addColumn($element, ucfirst(s('subscribers')), $totalclicked[0]);
+    $ls->addColumn($element, ucfirst(s('clickrate')), $clickrate);
 
-    $ls->addColumn($element, s('clicks'), PageLink2('userclicks&msgid='.$row['messageid'], $row['totalclicks']));
+    $ls->addColumn($element, ucfirst(s('clicks')), PageLink2('userclicks&msgid='.$row['messageid'], $row['totalclicks']));
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('total'),$row['total']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('users'),$row['users']);
     $ls->addRow($element, '',
