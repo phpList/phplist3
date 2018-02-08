@@ -55,8 +55,8 @@ $req = Sql_Query(sprintf('select distinct messageid, subject,
 if (!Sql_Affected_Rows()) {
     $status .= '<p class="information">'.s('There are currently no messages to view').'</p>';
 }
-$ls = new WebblerListing(s('List of Available Messages'));
-$ls->setElementHeading(s('Message'));
+$ls = new WebblerListing(s('Clicked campaigns'));
+$ls->setElementHeading(s('Campaign'));
 while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
     $messagedata = loadMessageData($row['messageid']);
