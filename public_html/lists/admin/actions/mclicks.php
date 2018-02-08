@@ -53,9 +53,10 @@ $req = Sql_Query(sprintf('select distinct messageid, subject,
     where clicked and linktrack_ml.messageid = message.id %s  group by messageid order by entered desc limit 50',
     $GLOBALS['tables']['linktrack_ml'], $GLOBALS['tables']['message'], $subselect));
 if (!Sql_Affected_Rows()) {
-    $status .= '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
+    $status .= '<p class="information">'.s('There are currently no messages to view').'</p>';
 }
-$ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
+$ls = new WebblerListing(s('List of Available Messages'));
+$ls->setElementHeading(s('Message'));
 while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
     $messagedata = loadMessageData($row['messageid']);
@@ -66,7 +67,7 @@ while ($row = Sql_Fetch_Array($req)) {
     if ($totalusers[0] > 0) {
         $clickrate = sprintf('%0.2f', ($totalclicked[0] / $totalusers[0] * 100));
     } else {
-        $clickrate = $GLOBALS['I18N']->get('N/A');
+        $clickrate = s('N/A');
     }
     if (!$download) {
         if ($messagedata['subject'] != $messagedata['campaigntitle']) {

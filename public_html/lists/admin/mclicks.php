@@ -80,7 +80,7 @@ echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($t
 <tr><td>' .$GLOBALS['I18N']->get('Click rate').'</td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Campaign click statistics'));
+$ls = new WebblerListing(s('Campaign click statistics'));
 
 $query = sprintf('select url,firstclick,date_format(latestclick,
   "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, 
