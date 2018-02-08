@@ -216,23 +216,17 @@ if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
     $membersDisplay = listMemberCounts(0);
     $desc = s('All subscribers');
 
-    $element = '<!-- '.$row['id'].'-->'.s('All subscribers');
+    $element = '<!-- '.$row['id'].'-->'.s('All subscribers').Help('allsubscribers.php');
     $ls->addElement($element);
     $ls->setClass($element, 'rows row1');
     $ls->addColumn($element,
         $GLOBALS['I18N']->get('Members'),
         '<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$membersDisplay.'</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id=all" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
 
-    $deletebutton = new ConfirmButton(
-        s('This is a system list. You cannot delete it.'),
-        PageURL2('list'),
-        s('delete this list'));
-
     $ls->addRow($element, '',
-        '<span class="edit-list"><a class="button" href="?page=editlist" title=""></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list=all',
+        '<span class="send-list">'.PageLinkButton('send&new=1&list=all',
             $GLOBALS['I18N']->get('send'), '', '', s('start a new campaign targetting all lists')).'</span>'.
-        '<span class="add_member">'.PageLink2('import', s('Add Members')).'</span>'.
-        '<span class="delete">'.$deletebutton->show().'</span>', '', '', 'actions nodrag');
+        '<span class="add_member">'.PageLink2('import', s('Add Members')).'</span>', '', '', 'actions nodrag');
     $some = 1;
 }
 
