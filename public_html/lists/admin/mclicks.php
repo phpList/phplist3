@@ -52,7 +52,7 @@ if (!$id) {
     return;
 }
 
-echo '<h3>'.$GLOBALS['I18N']->get('Click Details for a Message').'</h3>';
+echo '<h3>'.s('Click Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
 $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent"',
     $GLOBALS['tables']['usermessage'], $id));
