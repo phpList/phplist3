@@ -1,6 +1,10 @@
 <?php
 
+use Behat\Behat\Context\Context;
+
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
+#use Behat\MinkExtension\Context\RawMinkContext;
 
 //
 // Require 3rd-party libraries here:
@@ -14,27 +18,133 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class FeatureContext extends MinkContext
 {
-
     private $params = array();
     private $data = array();
+
+    private $db;
 
     /**
      * Initializes context.
      * Every scenario gets its own context object.
      *
-     * @param array $parameters context parameters (set them up through behat.yml)
+     * @param array $admin
+     * @param array $database
      */
-    public function __construct(array $parameters)
+    public function __construct( $database = array(), $admin = array())
     {
-        $this->params = $parameters;
+        // merge default database value into configured value
+        $database = array_merge(array(
+            'host'      => 'localhost',
+            'password'  => 'phplist',
+            'user'      => 'phplist',
+            'name'      => 'phplistdb'
+        ),$database);
+
+        // merge default admin user value into configured value
+        $admin = array_merge(array(
+            'username' => 'admin',
+            'password' => 'admin'
+        ),$admin);
+
+        $this->params = array(
+            'db_host' => $database['host'],
+            'db_user' => $database['user'],
+            'db_password' => $database['password'],
+            'db_name' => $database['name'],
+            'admin_username' => $admin['username'],
+            'admin_password' => $admin['password']
+        );
+        
         $this->db = mysqli_init();
         mysqli_real_connect(
-            $this->db
-            , 'localhost', $this->params['db_user']
-            , $this->params['db_password']
-            , $this->params['db_name']
+            $this->db,
+            $database['host'],
+            $database['user'],
+            $database['password'],
+            $database['name']
         );
     }
+
+    public function __call($method, $parameters)
+    {
+        // we try to call the method on the Page first
+        $page = $this->getSession()->getPage();
+        if (method_exists($page, $method)) {
+            return call_user_func_array(array($page, $method), $parameters);
+        }
+
+        // we try to call the method on the Session
+        $session = $this->getSession();
+        if (method_exists($session, $method)) {
+            return call_user_func_array(array($session, $method), $parameters);
+        }
+
+        // could not find the method at all
+        throw new \RuntimeException(sprintf(
+            'The "%s()" method does not exist.', $method
+        ));
+    }
+
+    /**
+     * Everyone who tried Behat with Mink and a JavaScript driver (I use 
+     * Selenium2Driver with phantomjs) has had issues with trying to assert something 
+     * in the current web page while some JavaScript code has not been finished yet 
+     * (pending Ajax query for example).
+     * 
+     * The proper and recommended way of dealing with these issues is to use a spin 
+     * method in your context, that will run the assertion or code multiple times 
+     * before failing. Here is my implementation that you can add to your BaseContext:
+     */
+    public function spins($closure, $tries = 10)
+    {
+        for ($i = 0; $i <= $tries; $i++) {
+            try {
+                $closure();
+
+                return;
+            } catch (\Exception $e) {
+                if ($i == $tries) {
+                    throw $e;
+                }
+            }
+
+            sleep(1);
+        }
+    }
+    
+    // Output page contents in case of failure
+    // TODO: extend docs
+    protected function throwExpectationException($message)
+    {
+        throw new ExpectationException($message, $this->getSession());
+    }
+
+    /**
+     * @When something long is taking long but should output :text
+     */
+    public function somethingLongShouldOutput($text)
+    {
+        $this->find('css', 'button#longStuff')->click();
+
+        $this->spins(function() use ($text) { 
+            $this->assertSession()->pageTextContains($text);
+        });
+    }
+
+    /**
+     * @Then do something on a button that might not be there yet
+     */
+    public function doSomethingNotThereYet()
+    {
+        $this->spins(function() { 
+            $button = $this->find('css', 'button#mightNotBeThereYet');
+            if (!$button) {
+                throw \Exception('Button is not there yet :(');
+            }
+            $button->click();
+        });
+    }
+
 
 //
 // Place your definition and hook methods here:
@@ -53,8 +163,24 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        mysqli_query($this->db,'drop database if exists phplistbehattestdb');
-        mysqli_query($this->db,'create database phplistbehattestdb');
+        mysqli_query($this->db,'drop database if exists '.$this->params['db_name']);
+        mysqli_query($this->db,'create database '.$this->params['db_name']);
+    }
+    
+    /**
+     * @When I fill in :arg1 with a valid username
+     */
+    public function iFillInWithAValidUsername($arg1)
+    {
+        $this->fillField($arg1, $this->params['admin_username']);
+    }
+
+    /**
+     * @When I fill in :arg1 with a valid password
+     */
+    public function iFillInWithAValidPassword($arg1)
+    {
+        $this->fillField($arg1, $this->params['admin_password']);
     }
 
     /**
@@ -80,22 +206,33 @@ class FeatureContext extends MinkContext
     public function iHaveNotYetCreatedCampaigns()
     {
         // Count the number of campaigns in phplist_message table
-        $result = mysqli_fetch_assoc(mysqli_query($this->db,'select count(*) as count from phplist_message;'));
+        $result = mysqli_fetch_assoc(
+            mysqli_query(
+                $this->db,'
+                    select 
+                        count(*) as count 
+                    from 
+                        phplist_message;
+                ')
+        );
         $campaignCount = $result['count'];
 
         if ($campaignCount > 0) {
-            throw new Exception('One or more campagins already exist');
+            $this->throwExpectationException('One or more campagins already exist');
         }
     }
 
     /**
-    * @Given /^I have logged in as an administrator$/
-    */
+     * @Given /^I have logged in as an administrator$/
+     */
     public function iAmAuthenticatedAsAdmin() {
-        $this->visit($this->params['base_url'] . '/lists/admin/');
+        $this->visit('/lists/admin/');
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
+        
+        if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
+            $this->throwExpectationException('Login failed: Dashboard link not found');
+        }
     }
-
 }

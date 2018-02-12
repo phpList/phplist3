@@ -1,15 +1,67 @@
 default:
-  extensions:
-    Behat\MinkExtension\Extension:
-      goutte:    ~
-      selenium2: ~
-      # Change to you custom url
-      base_url: http://localhost/phplist3/public_html/
-  context :
-     parameters :
-          base_url: http://localhost/phplist3/public_html/
-          db_user: xyz
-          db_password : abc
-          db_name : mysql
-          admin_username : admin_username
-          admin_password : admin_password
+    autoload:
+        - %paths.base%/tests/features/bootstrap
+    suites:
+        default:
+            paths:
+                - %paths.base%/tests/features
+            contexts:
+                - FeatureContext:
+                    # Set database access credentials
+                    database:
+                        host: localhost
+                        user: phplist
+                        password: phplist
+                        name: phplistdb
+                    # Set admin user login credentials
+                    admin:
+                        username: admin
+                        password: Mypassword123+
+    extensions:
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: build/screenshot
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: true
+
+        Behat\MinkExtension:
+            base_url:  'http://localhost:8000'
+            default_session: goutte
+            goutte: ~
+            sessions:
+                default:
+                    goutte: ~
+                chrome:
+                    selenium2:
+                        capabilities:
+                            browser: chrome
+                            chrome:
+                                switches:
+                                    - "--window-size=2000,2000"
+                                    - "--disable-gpu"
+                                    - "--headless"
+
+                firefox:
+                    selenium2:
+                        capabilities:
+                            browser: firefox
+                            version: ""
+                            marionette: true
+
+goutte:
+    extensions:
+        Behat\MinkExtension:
+            default_session: goutte
+
+chrome:
+    extensions:
+        Behat\MinkExtension:
+            browser_name: chrome
+            default_session: chrome
+firefox:
+    extensions:
+        Behat\MinkExtension:
+            default_session: firefox
+            browser_name: firefox

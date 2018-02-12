@@ -7,3 +7,5 @@ composer.lock
 /.idea/
 public_html/lists/admin/help/
 public_html/lists/admin/info/
+*.kdev4
+/build

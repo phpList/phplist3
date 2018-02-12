@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#-Dwebdriver.gecko.driver="vendor/bin/geckodriver"
+vendor/bin/selenium-server-standalone -p 4444 -Dwebdriver.chrome.driver="vendor/bin/chromedriver" -Dwebdriver.gecko.driver="vendor/bin/geckodriver"

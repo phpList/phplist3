@@ -1,16 +1,68 @@
 default:
-  paths:
-    features: tests/features
-  extensions:
-    Behat\MinkExtension\Extension:
-      goutte:    ~
-      selenium2: ~
-      base_url: http://phplist.dev
-  context :
-      parameters :
-          base_url: http://phplist.dev
-          db_user: root
-          db_password :
-          db_name: phplistdb
-          admin_username : admin
-          admin_password : Mypassword123+
+    gherkin:
+      filters:
+        tags: "~@wip"
+
+    autoload:
+        - %paths.base%/tests/features/bootstrap
+
+    suites:
+        default:
+            paths:
+                - %paths.base%/tests/features
+            contexts:
+                - FeatureContext:
+                    database:
+                        host: localhost
+                        user: phplist
+                        password: phplist
+                        name: phplistdb
+                    # Set admin user login credentials
+                    admin:
+                        username : admin
+                        password : Mypassword123+
+    extensions:
+        Bex\Behat\ScreenshotExtension:
+            image_drivers:
+                local:
+                    # Where screenshots taken in case of failure will be stored on disk
+                    screenshot_directory: build/screenshot
+                    # This enables removing all images before each test run. False by default
+                    clear_screenshot_directory: false
+
+        Behat\MinkExtension:
+            base_url: http://localhost:8000
+            selenium2: ~
+            goutte: ~
+            sessions:
+                default:
+                    goutte: ~
+                chrome:
+                    selenium2:
+                        capabilities:
+                            browser: chrome
+                            marionette: true
+                firefox:
+                    selenium2:
+                        capabilities:
+                            browser: firefox
+                            version: ""
+                            marionette: true
+
+
+
+goutte:
+    extensions:
+        Behat\MinkExtension:
+            default_session: goutte
+
+chrome:
+    extensions:
+        Behat\MinkExtension:
+            default_session: chrome
+            browser_name: chrome
+firefox:
+    extensions:
+        Behat\MinkExtension:
+            default_session: firefox
+            browser_name: firefox
