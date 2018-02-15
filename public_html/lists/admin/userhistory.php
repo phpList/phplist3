@@ -126,7 +126,7 @@ if ($num) {
         $ls->addColumn($msg['messageid'], s('sent'), formatDateTime($msg['entered'], 1));
         if (!$msg['notviewed']) {
             $ls->addColumn($msg['messageid'], s('viewed'), formatDateTime($msg['viewed'], 1));
-            $ls->addColumn($msg['messageid'], s('Response time'), $msg['responsetime']);
+            $ls->addColumn($msg['messageid'], s('Response time'), secs2time($msg['responsetime']));
             $resptime += $msg['responsetime'];
             $totalresp += 1;
         }
@@ -136,9 +136,7 @@ if ($num) {
     }
     if ($totalresp) {
         $avgresp = sprintf('%d', ($resptime / $totalresp));
-        $ls->addElement(s('average'));
-        $ls->setClass(s('average'), 'row1');
-        $ls->addColumn(s('average'), s('responsetime'), $avgresp);
+        $ls->addElement('<strong>'.s('Average response time: ').'</strong>'.secs2time($avgresp));
     }
 }
 
