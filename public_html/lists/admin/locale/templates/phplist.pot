@@ -3230,7 +3230,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:347
 #: public_html/lists/admin/messages.php:350
 #: public_html/lists/admin/userhistory.php:96
-#: public_html/lists/admin/userhistory.php:147
+#: public_html/lists/admin/userhistory.php:145
 msgid "Campaigns"
 msgstr ""
 
@@ -4192,7 +4192,7 @@ msgstr ""
 #: public_html/lists/admin/actions/mviews.php:90
 #: public_html/lists/admin/actions/mviews.php:93
 #: public_html/lists/admin/eventlog.php:110
-#: public_html/lists/admin/userhistory.php:204
+#: public_html/lists/admin/userhistory.php:202
 #: public_html/lists/admin/bounces.php:173
 msgid "date"
 msgstr ""
@@ -5405,7 +5405,7 @@ msgid "Exclude filter"
 msgstr ""
 
 #: public_html/lists/admin/eventlog.php:103
-#: public_html/lists/admin/userhistory.php:195
+#: public_html/lists/admin/userhistory.php:193
 msgid "Event"
 msgstr ""
 
@@ -7588,7 +7588,7 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/userhistory.php:68
-#: public_html/lists/admin/userhistory.php:149
+#: public_html/lists/admin/userhistory.php:147
 msgid "Bounces"
 msgstr ""
 
@@ -7622,76 +7622,70 @@ msgid "bounce"
 msgstr ""
 
 #: public_html/lists/admin/userhistory.php:139
-#: public_html/lists/admin/userhistory.php:140
-#: public_html/lists/admin/userhistory.php:141
-msgid "average"
+msgid "Average response time: "
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:141
-msgid "responsetime"
-msgstr ""
-
-#: public_html/lists/admin/userhistory.php:151
+#: public_html/lists/admin/userhistory.php:149
 msgid "Subscription"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:163
+#: public_html/lists/admin/userhistory.php:161
 msgid "subscriber is blacklisted since"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:170
+#: public_html/lists/admin/userhistory.php:168
 msgid "Blacklist info"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:176
+#: public_html/lists/admin/userhistory.php:174
 msgid "value"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:181
+#: public_html/lists/admin/userhistory.php:179
 msgid "are you sure you want to delete this subscriber from the blacklist"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:181
+#: public_html/lists/admin/userhistory.php:179
 msgid "it should only be done with explicit permission from this subscriber"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:183
-#: public_html/lists/admin/userhistory.php:184
+#: public_html/lists/admin/userhistory.php:181
+#: public_html/lists/admin/userhistory.php:182
 msgid "remove subscriber from blacklist"
 msgstr ""
 
+#: public_html/lists/admin/userhistory.php:184
 #: public_html/lists/admin/userhistory.php:186
-#: public_html/lists/admin/userhistory.php:188
 msgid "remove"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:189
+#: public_html/lists/admin/userhistory.php:187
 msgid ""
 "For this subscriber to be removed from the blacklist, you need to ask them "
 "to re-subscribe using the phpList subscribe page"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:194
+#: public_html/lists/admin/userhistory.php:192
 msgid "Subscription History"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:198
+#: public_html/lists/admin/userhistory.php:196
 msgid "no details found"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:203
+#: public_html/lists/admin/userhistory.php:201
 msgid "ip"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:205
+#: public_html/lists/admin/userhistory.php:203
 msgid "summary"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:208
+#: public_html/lists/admin/userhistory.php:206
 msgid "detail"
 msgstr ""
 
-#: public_html/lists/admin/userhistory.php:219
+#: public_html/lists/admin/userhistory.php:217
 msgid "info"
 msgstr ""
 
