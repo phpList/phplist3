@@ -138,6 +138,7 @@ if (!Sql_Num_Rows($result)) {
 }
 
 $ls = new WebblerListing(s($status).' '.s('bounces'));
+$ls->setElementHeading('Bounce ID');
 $ls->usePanel($paging);
 while ($bounce = Sql_fetch_array($result)) {
     //@@@ not sure about these ones - bounced list message
