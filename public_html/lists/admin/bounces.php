@@ -171,7 +171,7 @@ while ($bounce = Sql_fetch_array($result)) {
         $userid = $GLOBALS['I18N']->get('Unknown');
     }
     $ls->addColumn($element, $GLOBALS['I18N']->get('user'), $userid);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('date'), $bounce['date']);
+    $ls->addColumn($element, $GLOBALS['I18N']->get('date'), formatDateTime($bounce['date']));
 
     /*
       printf( "<tr><td>[ <a href=\"javascript:deleteRec('%s');\">%s</a> |
