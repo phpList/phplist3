@@ -87,13 +87,38 @@ if (!empty($actionresult)) {
 if ($total > MAX_USER_PP) {
     $paging = simplePaging("bounces&amp;tab=$currentTab", $start, $total, MAX_USER_PP,
         $status.' '.$GLOBALS['I18N']->get('bounces'));
-    $query = sprintf('select * from %s where status %s "unidentified bounce" order by date desc limit %s offset %s',
-        $tables['bounce'], $status_compare, $limit, $offset);
+    $query = sprintf('
+        select 
+            * 
+        from 
+            %s 
+        where 
+            status %s "unidentified bounce" 
+        order by 
+            date desc 
+        limit 
+            %s 
+        offset 
+            %s'
+        , $tables['bounce']
+        , $status_compare
+        , $limit
+        , $offset
+    );
     $result = Sql_Query($query);
 } else {
     $paging = '';
-    $query = sprintf('select * from %s where status '.$status_compare.' "unidentified bounce" order by date desc',
-        $tables['bounce']);
+    $query = sprintf('
+        select 
+            * 
+        from 
+            %s 
+        where 
+            status '.$status_compare.' "unidentified bounce" 
+        order by 
+            date desc'
+        , $tables['bounce']
+    );
     $result = Sql_Query($query);
 }
 
@@ -138,6 +163,7 @@ if (!Sql_Num_Rows($result)) {
 }
 
 $ls = new WebblerListing(s($status).' '.s('bounces'));
+$ls->setElementHeading('Bounce ID');
 $ls->usePanel($paging);
 while ($bounce = Sql_fetch_array($result)) {
     //@@@ not sure about these ones - bounced list message
@@ -160,17 +186,31 @@ while ($bounce = Sql_fetch_array($result)) {
     */
     $ls->addColumn($element, s('Campaign'), $messageid);
 
-    if (preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)) {
-        $userid = PageLink2('user&id='.$regs[1],
-            $regs[1]); //sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
-    } elseif (preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)) {
-        $userid = PageLink2('user&id='.$regs[1],
-            $regs[1]); //sprintf('<a href="./?page=user&amp;id=%d">%d</a>',$regs[1],$regs[1]);
+    
+    if (
+        preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)
+        OR preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)
+    ) {
+        // Fetch additional data to be able to print subscriber address
+        $userdata = Sql_Fetch_Array_Query(
+            sprintf('
+                select 
+                    * 
+                from 
+                    %s 
+                where 
+                    id = %d'
+                , $GLOBALS['tables']['user']
+                , $regs[1]
+            )
+        );
+        $userIdLink = PageLink2('user&id='.$regs[1], $userdata['email']);
     } else {
-        $userid = $GLOBALS['I18N']->get('Unknown');
+        $userIdLink = $GLOBALS['I18N']->get('Unknown');
     }
-    $ls->addColumn($element, $GLOBALS['I18N']->get('user'), $userid);
-    $ls->addColumn($element, $GLOBALS['I18N']->get('date'), $bounce['date']);
+
+    $ls->addColumn($element, $GLOBALS['I18N']->get('user'), $userIdLink);
+    $ls->addColumn($element, $GLOBALS['I18N']->get('date'), formatDateTime($bounce['date']));
 
     /*
       printf( "<tr><td>[ <a href=\"javascript:deleteRec('%s');\">%s</a> |
@@ -179,7 +219,7 @@ while ($bounce = Sql_fetch_array($result)) {
        $GLOBALS['I18N']->get('delete'),
        PageLinkButton("bounce",$GLOBALS['I18N']->get('Show'),"s=$start&amp;id=".$bounce["id"]),
        $messageid,
-       $userid,
+       $userIdLink,
        $bounce["date"]
        );
     */
