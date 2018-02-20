@@ -82,11 +82,12 @@ $messagedata = Sql_Fetch_Array_query(
     WHERE 
         id = $id $subselect"
 );
-echo '<table class="mviewsDetails">
-<tr><td>' .s('Subject').'<td><td>'.$messagedata['subject'].'</td></tr>
-<tr><td>' .s('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
-<tr><td>' .s('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
-</table><hr/>';
+echo '<table class="mviewsDetails table table-bordered"><tr><td>' .
+'<div class="twelve columns col-sm-12 col-lg-6"><b>'.s('Subject').': </b><i>'.$messagedata['subject'].'</i></div>'.
+'<div class="clearfix hidden-lg"></div>'.
+'<div class="six columns col-sm-8 col-lg-3"><b>'.s('Entered').': </b>'.$messagedata['entered'].'</div>'.
+'<div class="six columns col-sm-4 col-lg-3"><b>'.s('Sent').': </b>'.$messagedata['sent'].'</div>'.
+'</td></tr></table>';
 
 echo '<p class="pull-right">'.PageLinkButton('statsoverview&id='.$id,
             s('Campaign statistics')).'</p><div class="clearfix"></div>';
