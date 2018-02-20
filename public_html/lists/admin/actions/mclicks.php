@@ -53,9 +53,10 @@ $req = Sql_Query(sprintf('select distinct messageid, subject,
     where clicked and linktrack_ml.messageid = message.id %s  group by messageid order by entered desc limit 50',
     $GLOBALS['tables']['linktrack_ml'], $GLOBALS['tables']['message'], $subselect));
 if (!Sql_Affected_Rows()) {
-    $status .= '<p class="information">'.$GLOBALS['I18N']->get('There are currently no messages to view').'</p>';
+    $status .= '<p class="information">'.s('There are currently no messages to view').'</p>';
 }
-$ls = new WebblerListing($GLOBALS['I18N']->get('Available Messages'));
+$ls = new WebblerListing(s('Clicked campaigns'));
+$ls->setElementHeading(s('Campaign'));
 while ($row = Sql_Fetch_Array($req)) {
     $some = 1;
     $messagedata = loadMessageData($row['messageid']);
@@ -66,7 +67,7 @@ while ($row = Sql_Fetch_Array($req)) {
     if ($totalusers[0] > 0) {
         $clickrate = sprintf('%0.2f', ($totalclicked[0] / $totalusers[0] * 100));
     } else {
-        $clickrate = $GLOBALS['I18N']->get('N/A');
+        $clickrate = s('N/A');
     }
     if (!$download) {
         if ($messagedata['subject'] != $messagedata['campaigntitle']) {
@@ -81,16 +82,16 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $ls->addElement($element, PageURL2('mclicks&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
-    $ls->addColumn($element, s('links'), $row['linkcount']);
+    $ls->addColumn($element, ucfirst(s('links')), $row['linkcount']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('sent'),$totalusers[0]);
-    $ls->addColumn($element, s('subscribers'), $totalclicked[0]);
-    $ls->addColumn($element, s('clickrate'), $clickrate);
+    $ls->addColumn($element, ucfirst(s('subscribers')), number_format($totalclicked[0]));
+    $ls->addColumn($element, ucfirst(s('clickrate')), $clickrate);
 
-    $ls->addColumn($element, s('clicks'), PageLink2('userclicks&msgid='.$row['messageid'], $row['totalclicks']));
+    $ls->addColumn($element, ucfirst(s('clicks')), PageLink2('userclicks&msgid='.$row['messageid'], number_format($row['totalclicks'])));
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('total'),$row['total']);
 //    $ls->addColumn($element,$GLOBALS['I18N']->get('users'),$row['users']);
     $ls->addRow($element, '',
-        '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('html').': '.$row['htmlclicked'].'</div><div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('text').': '.$row['textclicked'].'</div>');
+        '<div class="content listingsmall fright gray">'.s('html').': '.number_format($row['htmlclicked']).'</div><div class="content listingsmall fright gray">'.s('text').': '.number_format($row['textclicked']).'</div>');
 
     /* this one is the percentage of total links versus clicks. I guess that's too detailed for most people.
      * besides it'll be low
@@ -100,7 +101,7 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 if ($some) {
     $status .= '<div class="action">';
-    $status .= '<p class="pull-right">'.PageLinkButton('mclicks&dl=true', $GLOBALS['I18N']->get('Download as CSV file')).'</p>';
+    $status .= '<p class="pull-right">'.PageLinkButton('mclicks&dl=true', s('Download as CSV file')).'</p>';
     $status .= '</div><div class="clearfix"></div>';
 //    print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $status .= $ls->display();

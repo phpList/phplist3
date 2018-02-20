@@ -18,7 +18,7 @@ switch ($access) {
             $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
                 $id, $subselect));
             if ($allow[0] != $_SESSION['logindetails']['id']) {
-                echo $GLOBALS['I18N']->get('You do not have access to this page');
+                echo s('You do not have access to this page');
 
                 return;
             }
@@ -30,7 +30,7 @@ switch ($access) {
     case 'none':
     default:
         $subselect = ' where id = 0';
-        echo $GLOBALS['I18N']->get('You do not have access to this page');
+        echo s('You do not have access to this page');
 
         return;
         break;
@@ -52,7 +52,7 @@ if (!$id) {
     return;
 }
 
-echo '<h3>'.$GLOBALS['I18N']->get('Click Details for a Message').'</h3>';
+echo '<h3>'.s('Click Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
 $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent"',
     $GLOBALS['tables']['usermessage'], $id));
@@ -66,12 +66,12 @@ if (($totalusers[0] - $totalbounced[0]) > 0) {
     $clickperc = $GLOBALS['I18N']->get('N/A');
 }
 echo '<table class="mclicksDetails">
-<tr><td>' .$GLOBALS['I18N']->get('Subject').'</td><td>'.$messagedata['subject'].'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Entered').'</td><td>'.formatDateTime($messagedata['entered']).'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Date sent').'</td><td>'.formatDateTime($messagedata['sent']).'</td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Sent to').'</td><td>'.number_format($totalusers[0]).' '.$GLOBALS['I18N']->get('Subscribers').'</td></tr>';
+<tr><td>' .s('Subject').'</td><td>'.$messagedata['subject'].'</td></tr>
+<tr><td>' .s('Entered').'</td><td>'.formatDateTime($messagedata['entered']).'</td></tr>
+<tr><td>' .s('Date sent').'</td><td>'.formatDateTime($messagedata['sent']).'</td></tr>
+<tr><td>' .s('Sent to').'</td><td>'.number_format($totalusers[0]).' '.s('Subscribers').'</td></tr>';
 if ($totalusers[0] > 0) {
-    echo '<tr><td>'.$GLOBALS['I18N']->get('Bounced').'</td><td>'.number_format($totalbounced[0]).' (';
+    echo '<tr><td>'.s('Bounced').'</td><td>'.number_format($totalbounced[0]).' (';
     echo sprintf('%0.2f', ($totalbounced[0] / $totalusers[0] * 100));
     echo '%)</td></tr>';
 }
@@ -80,7 +80,8 @@ echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($t
 <tr><td>' .$GLOBALS['I18N']->get('Click rate').'</td><td>'.$clickperc.' %</td></tr>
 </table><hr/>';
 
-$ls = new WebblerListing($GLOBALS['I18N']->get('Campaign click statistics'));
+$ls = new WebblerListing(s('Campaign click statistics'));
+$ls->setElementHeading(s('Link URL'));
 
 $query = sprintf('select url,firstclick,date_format(latestclick,
   "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, 
@@ -125,14 +126,14 @@ while ($row = Sql_Fetch_Array($req)) {
     //$perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
     //$ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 //  if (CLICKTRACK_SHOWDETAIL) {
-    $ls->addColumn($element, s('clicks'), $uniqueclicks['users']);
+    $ls->addColumn($element, s('clicks'), number_format($uniqueclicks['users']));
     $perc = sprintf('%0.2f', ($uniqueclicks['users'] / $totalusers[0] * 100));
     $ls->addColumn($element, s('clickrate'), $perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
 
     $moreInfo1 = '
-      <div class="content listingsmall fright gray">' .s('html').': '.$row['htmlclicked'].'</div>'.'
-      <div class="content listingsmall fright gray">' .s('text').': '.$row['textclicked'].'</div>'.'
+      <div class="content listingsmall fright gray">' .s('html').': '.number_format($row['htmlclicked']).'</div>'.'
+      <div class="content listingsmall fright gray">' .s('text').': '.number_format($row['textclicked']).'</div>'.'
     ';
     $moreInfo2 = '
       <div class="content listingsmall fright gray">' .s('firstclick').': '.formatDateTime($row['firstclick']).'</div>'.'
@@ -145,10 +146,10 @@ while ($row = Sql_Fetch_Array($req)) {
     $summary['totalclicks'] += $row['clicked'];
     $summary['totalsent'] += $row['total'];
 }
-$ls->addElement('total');
-$ls->setClass('total', 'rowtotal');
-$ls->addColumn('total', s('clicks'), $summary['uniqueclicks']);
+$ls->addElement('Total');
+$ls->setClass('Total', 'rowtotal');
+$ls->addColumn('Total', s('clicks'), number_format($summary['uniqueclicks']));
 $perc = sprintf('%0.2f', ($summary['uniqueclicks'] / $totalusers[0] * 100));
-$ls->addColumn('total', s('clickrate'), $perc.'%');
+$ls->addColumn('Total', s('clickrate'), $perc.'%');
 
 echo $ls->display();
