@@ -309,16 +309,9 @@ class WebblerListing
         }
         $html .= '</tr>';
         foreach ($element['rows'] as $row) {
-            if ($row['value']) {
-                $value = $row['value'];
-            } else {
-                $value = '';
-            }
-            if (isset($row['align'])) {
-                $align = $row['align'];
-            } else {
-                $align = 'left';
-            }
+            $value = $row['value'];
+            $align = $row['align'];
+
             if (!empty($row['url'])) {
                 $html .= sprintf('<tr class="rowelement %s"><td class="listingrowname">
           <span class="listingrowname"><a href="%s" class="listinghdname" title="%s">%s</a></span>
