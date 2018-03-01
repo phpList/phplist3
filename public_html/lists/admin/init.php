@@ -112,8 +112,12 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
     //# prefer dressprow over orange
     if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
         $GLOBALS['ui'] = 'dressprow';
-    } else {
+    } elseif (is_dir(dirname(__FILE__).'/ui/default')) {
         $GLOBALS['ui'] = 'default';
+    } else {
+        ## pick the first available (this should really only be in dev mode)
+        $themes = glob(dirname(__FILE__).'/ui/*');
+        $GLOBALS['ui'] = basename($themes[0]);
     }
 }
 if (!is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop.php')) {
@@ -291,10 +295,10 @@ if (!defined('ENCRYPTION_ALGO')) {
     }
 }
 if (!defined('HASH_ALGO')) {
-	// keep previous hashalg. @@TODO force an update of hash method, many may still be on md5. 
-	if (defined('ENCRYPTION_ALGO')) {
+    // keep previous hashalg. @@TODO force an update of hash method, many may still be on md5.
+    if (defined('ENCRYPTION_ALGO')) {
         define('HASH_ALGO', ENCRYPTION_ALGO);
-	} elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
+    } elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
         define('HASH_ALGO', 'sha256');
     } else {
         define('HASH_ALGO', 'md5');
