@@ -875,12 +875,12 @@ msgid "First Page"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:2214
-#: public_html/lists/admin/inc/interfacelib.php:839
+#: public_html/lists/admin/inc/interfacelib.php:832
 msgid "Previous"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:2216
-#: public_html/lists/admin/inc/interfacelib.php:880
+#: public_html/lists/admin/inc/interfacelib.php:873
 msgid "Next"
 msgstr ""
 
@@ -7971,26 +7971,26 @@ msgstr ""
 msgid "sort by %s"
 msgstr ""
 
-#: public_html/lists/admin/inc/interfacelib.php:875
+#: public_html/lists/admin/inc/interfacelib.php:868
 #: public_html/lists/admin/catlists.php:68
 msgid "Back"
 msgstr ""
 
-#: public_html/lists/admin/inc/interfacelib.php:1039
+#: public_html/lists/admin/inc/interfacelib.php:1032
 msgid "Close this box"
 msgstr ""
 
-#: public_html/lists/admin/inc/interfacelib.php:1041
+#: public_html/lists/admin/inc/interfacelib.php:1034
 msgid "Hide"
 msgstr ""
 
-#: public_html/lists/admin/inc/interfacelib.php:1278
-#: public_html/lists/admin/inc/interfacelib.php:1333
+#: public_html/lists/admin/inc/interfacelib.php:1271
+#: public_html/lists/admin/inc/interfacelib.php:1326
 msgid "open"
 msgstr ""
 
-#: public_html/lists/admin/inc/interfacelib.php:1286
-#: public_html/lists/admin/inc/interfacelib.php:1331
+#: public_html/lists/admin/inc/interfacelib.php:1279
+#: public_html/lists/admin/inc/interfacelib.php:1324
 msgid "close"
 msgstr ""
 
