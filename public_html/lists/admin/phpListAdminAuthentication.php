@@ -39,10 +39,8 @@ class phpListAdminAuthentication
             $req = Sql_Query($query);
         }
         if ($admindata['disabled']) {
-            return array(0, s('your account has been disabled'));
-        } elseif (//Password validation.
-            !empty($passwordDB) && $encryptedPass == $passwordDB
-        ) {
+            return array(0, s('Your account has been disabled.'));
+        } elseif (!empty($passwordDB) && $encryptedPass == $passwordDB) { //password validation
             return array($admindata['id'], 'OK');
         } else {
             if (!empty($GLOBALS['admin_auth_module'])) {
@@ -52,16 +50,9 @@ class phpListAdminAuthentication
                 return;
             }
 
-            return array(0, s('incorrect password'));
         }
-        if (!empty($GLOBALS['admin_auth_module'])) {
-            Error(s('Admin authentication has changed, please update your admin module'),
-                'https://resources.phplist.com/documentation/errors/adminauthchange');
+        return array(0, s('Incorrect login details. Please enter your credentials.'));
 
-            return;
-        }
-
-        return array(0, s('Login failed'));
     }
 
     public function getPassword($email)
@@ -101,10 +92,10 @@ class phpListAdminAuthentication
         if (!$data[0]) {
             return array(0, s('No such account'));
         } elseif ($data[1]) {
-            return array(0, s('your account has been disabled'));
+            return array(0, s('Your account has been disabled'));
         }
 
-        //# do this seperately from above, to avoid lock out when the DB hasn't been upgraded.
+        //# do this separately from above, to avoid lock out when the DB hasn't been upgraded.
         //# so, ignore the error
         $query = sprintf('select privileges from %s where id = %d', $GLOBALS['tables']['admin'], $id);
         $req = Sql_Query($query);
