@@ -40,22 +40,22 @@ class phpListAdminAuthentication
         }
 
         if(empty($login)||($password=="")){
-            return [0, s('Please enter your credentials.')];
+            return array(0, s('Please enter your credentials.'));
         }
         if ($admindata['disabled']) {
-            return [0, s('Your account has been disabled.')];
+            return array(0, s('Your account has been disabled.'));
         }
         if (//Password validation.
             !empty($passwordDB) && $encryptedPass == $passwordDB
         )
-            return [$admindata['id'], 'OK'];
+            return array($admindata['id'], 'OK');
          else {
             if (!empty($GLOBALS['admin_auth_module'])) {
                 Error(s('Admin authentication has changed, please update your admin module'),
                     'https://resources.phplist.com/documentation/errors/adminauthchange');
                 return;
                 }
-        return [0, s('Incorrect password.')];
+        return array(0, s('Incorrect password.'));
 
         }
 
