@@ -120,6 +120,30 @@ if (!empty($id)) {
         'description' => '',
     );
 }
+
+if (isset($_GET['delete'])) {
+    verifyCsrfGetToken();
+    $delete = sprintf('%d', $_GET['delete']);
+    // delete the index in delete
+    $actionresult = $GLOBALS['I18N']->get('Deleting').' '.$GLOBALS['I18N']->get('list')." $delete ..\n";
+    $result = Sql_query(sprintf('delete from '.$tables['list'].' where id = %d %s', $delete, $subselect_and));
+    $done = Sql_Affected_Rows();
+    if ($done) {
+        $result = Sql_query('delete from '.$tables['listuser']." where listid = $delete");
+        $result = Sql_query('delete from '.$tables['listmessage']." where listid = $delete");
+    }
+    $actionresult .= '..'.$GLOBALS['I18N']->get('Done')."<br /><hr /><br />\n";
+    $_SESSION['action_result'] = $actionresult;
+    Redirect('list');
+
+    return;
+//  print ActionResult($actionresult);
+}
+
+$deletebutton = new ConfirmButton(
+    s('Are you sure you want to delete this list?').'\n'.s('This will NOT remove the subscribers that are on this list.').'\n'.s('You can reconnect subscribers to lists on the Reconcile Subscribers page.'),
+    PageURL2('list&delete='.$id),
+    s('delete this list'));
 if (empty($list['category'])) {
     $list['category'] = '';
 }
@@ -147,23 +171,23 @@ if (empty($list['category'])) {
 <div class="field"><input type="text" name="listorder" value="<?php echo $list['listorder'] ?>" class="listorder"/>
 </div>
 <?php if (accessLevel('editlist') == 'all') {
-            if (empty($list['owner'])) {
-                $list['owner'] = $_SESSION['logindetails']['id'];
-            }
-            $admins = $GLOBALS['admin_auth']->listAdmins();
-            if (count($admins) > 1) {
-                echo '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
-                foreach ($admins as $adminid => $adminname) {
-                    printf('    <option value="%d" %s>%s</option>', $adminid,
+    if (empty($list['owner'])) {
+        $list['owner'] = $_SESSION['logindetails']['id'];
+    }
+    $admins = $GLOBALS['admin_auth']->listAdmins();
+    if (count($admins) > 1) {
+        echo '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
+        foreach ($admins as $adminid => $adminname) {
+            printf('    <option value="%d" %s>%s</option>', $adminid,
                 $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
-                }
-                echo '</select></div>';
-            } else {
-                echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
-            }
-        } else {
-            echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
         }
+        echo '</select></div>';
+    } else {
+        echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
+    }
+} else {
+    echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
+}
 
 $aListCategories = listCategories();
 if (count($aListCategories)) {
@@ -184,10 +208,12 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 }
 
 ?>
+<form>
 <label for="description"><?php echo $GLOBALS['I18N']->get('List Description'); ?></label>
 <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
 <input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>"/>
 <?php echo PageLinkClass('list', $GLOBALS['I18N']->get('Cancel'), '', 'button cancel',
-    $GLOBALS['I18N']->get('Do not save, and go back to the lists')); ?>
+    $GLOBALS['I18N']->get('Do not save, and go back to the lists'));
+echo '<span class="delete">'.$deletebutton->show().'</span>'; ?>
 </form>
