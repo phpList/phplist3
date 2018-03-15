@@ -17,14 +17,14 @@ if ( !isSuperUser()) {
             if ($id) {
                 Sql_Query('select id from '.$GLOBALS['tables']['list'].$subselect." and id = $id");
                 if (!Sql_Affected_Rows()) {
-                    Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+                    Error(s('You do not have enough privileges to view this page'));
 
                     return;
                 }
             } else {
                 $numlists = Sql_Fetch_Row_query("select count(*) from {$GLOBALS['tables']['list']} $subselect");
                 if (!($numlists[0] < MAXLIST)) {
-                    Error($GLOBALS['I18N']->get('You cannot create a new list because you have reached maximum number of lists.'));
+                    Error(s('You cannot create a new list because you have reached maximum number of lists.'));
 
                     return;
                 }
@@ -38,7 +38,7 @@ if ( !isSuperUser()) {
         default:
             $subselect_and = ' and owner = -1';
             if ($id) {
-                Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+                Fatal_Error(s('You do not have enough privileges to view this page'));
 
                 return;
             }
@@ -125,14 +125,14 @@ if (isset($_GET['delete'])) {
     verifyCsrfGetToken();
     $delete = sprintf('%d', $_GET['delete']);
     // delete the index in delete
-    $actionresult = $GLOBALS['I18N']->get('Deleting').' '.$GLOBALS['I18N']->get('list')." $delete ..\n";
+    $actionresult = s('Deleting').' '.s('list')." $delete ..\n";
     $result = Sql_query(sprintf('delete from '.$tables['list'].' where id = %d %s', $delete, $subselect_and));
     $done = Sql_Affected_Rows();
     if ($done) {
         $result = Sql_query('delete from '.$tables['listuser']." where listid = $delete");
         $result = Sql_query('delete from '.$tables['listmessage']." where listid = $delete");
     }
-    $actionresult .= '..'.$GLOBALS['I18N']->get('Done')."<br /><hr /><br />\n";
+    $actionresult .= '..'.s('Done')."<br /><hr /><br />\n";
     $_SESSION['action_result'] = $actionresult;
     Redirect('list');
 
@@ -153,7 +153,7 @@ if (empty($list['category'])) {
 
 <?php echo formStart(' class="editlistSave" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
-<div class="label"><label for="listname"><?php echo $GLOBALS['I18N']->get('List name'); ?>:</label></div>
+<div class="label"><label for="listname"><?php echo s('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname"
                           value="<?php echo htmlspecialchars(stripslashes($list['name'])) ?>"/></div>
 
@@ -165,9 +165,9 @@ if (empty($list['category'])) {
             echo ' disabled="disabled" ';
         }
 
-        ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label>
+        ?> /><label for="active"><?php echo s('Public list (listed on the frontend)'); ?></label>
 </div>
-<div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
+<div class="label"><label for="listorder"><?php echo s('Order for listing'); ?></label></div>
 <div class="field"><input type="text" name="listorder" value="<?php echo $list['listorder'] ?>" class="listorder"/>
 </div>
 <?php if (accessLevel('editlist') == 'all') {
@@ -176,7 +176,7 @@ if (empty($list['category'])) {
     }
     $admins = $GLOBALS['admin_auth']->listAdmins();
     if (count($admins) > 1) {
-        echo '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
+        echo '<div class="label"><label for="owner">'.s('Owner').'</label></div><div class="field"><select name="owner">';
         foreach ($admins as $adminid => $adminname) {
             printf('    <option value="%d" %s>%s</option>', $adminid,
                 $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
@@ -191,9 +191,9 @@ if (empty($list['category'])) {
 
 $aListCategories = listCategories();
 if (count($aListCategories)) {
-    echo '<div class="label"><label for="category">'.$GLOBALS['I18N']->get('Category').'</label></div>';
+    echo '<div class="label"><label for="category">'.s('Category').'</label></div>';
     echo '<div class="field"><select name="category">';
-    echo '<option value="">-- '.$GLOBALS['I18N']->get('choose category').'</option>';
+    echo '<option value="">-- '.s('choose category').'</option>';
     foreach ($aListCategories as $category) {
         $category = trim($category);
         printf('<option value="%s" %s>%s</option>', $category,
@@ -209,11 +209,11 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 
 ?>
 <form>
-<label for="description"><?php echo $GLOBALS['I18N']->get('List Description'); ?></label>
+<label for="description"><?php echo s('List Description'); ?></label>
 <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
-<input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>"/>
-<?php echo PageLinkClass('list', $GLOBALS['I18N']->get('Cancel'), '', 'button cancel',
-    $GLOBALS['I18N']->get('Do not save, and go back to the lists'));
+<input class="submit" type="submit" name="addnewlist" value="<?php echo s('Save'); ?>"/>
+<?php echo PageLinkClass('list', s('Cancel'), '', 'button cancel',
+    s('Do not save, and go back to the lists'));
 echo '<span class="delete">'.$deletebutton->show().'</span>'; ?>
 </form>
