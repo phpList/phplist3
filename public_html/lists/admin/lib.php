@@ -1499,6 +1499,10 @@ function deleteMessage($id = 0)
         $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_view']." where messageid = $row[0]");
         $result = Sql_query('delete from '.$GLOBALS['tables']['message_attachment']." where messageid = $row[0]");
         $result = Sql_query('delete from '.$GLOBALS['tables']['messagedata']." where id = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['linktrack_uml_click']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['linktrack_ml']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_bounce']." where message = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_forward']." where message = $row[0]");
         return $suc6;
     }
 }
