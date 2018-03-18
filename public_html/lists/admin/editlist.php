@@ -121,24 +121,7 @@ if (!empty($id)) {
     );
 }
 
-if (isset($_GET['delete'])) {
-    verifyCsrfGetToken();
-    $delete = sprintf('%d', $_GET['delete']);
-    // delete the index in delete
-    $actionresult = s('Deleting').' '.s('list')." $delete ..\n";
-    $result = Sql_query(sprintf('delete from '.$tables['list'].' where id = %d %s', $delete, $subselect_and));
-    $done = Sql_Affected_Rows();
-    if ($done) {
-        $result = Sql_query('delete from '.$tables['listuser']." where listid = $delete");
-        $result = Sql_query('delete from '.$tables['listmessage']." where listid = $delete");
-    }
-    $actionresult .= '..'.s('Done')."<br /><hr /><br />\n";
-    $_SESSION['action_result'] = $actionresult;
-    Redirect('list');
 
-    return;
-//  print ActionResult($actionresult);
-}
 
 $deletebutton = new ConfirmButton(
     s('Are you sure you want to delete this list?').'\n'.s('This will NOT remove the subscribers that are on this list.').'\n'.s('You can reconnect subscribers to lists on the Reconcile Subscribers page.'),
