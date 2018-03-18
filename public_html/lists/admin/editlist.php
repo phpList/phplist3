@@ -192,11 +192,12 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 
 ?>
 <form>
-<label for="description"><?php echo s('List Description'); ?></label>
-<div class="field"><textarea name="description" cols="35" rows="5">
+    <label for="description"><?php echo s('List Description'); ?></label>
+    <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
-<input class="submit" type="submit" name="addnewlist" value="<?php echo s('Save'); ?>"/>
-<?php echo PageLinkClass('list', s('Cancel'), '', 'button cancel',
-    s('Do not save, and go back to the lists'));
-echo '<span class="delete">'.$deletebutton->show().'</span>'; ?>
+    <input class="submit" type="submit" name="addnewlist" value="<?php echo s('Save'); ?>"/>
+    <?php echo PageLinkClass('list', s('Cancel'), '', 'button cancel',
+        s('Do not save, and go back to the lists'));
+    if($id!==0){
+        echo '<span class="delete">'.$deletebutton->show().'</span>';} ?>
 </form>
