@@ -130,7 +130,7 @@ if (count($THEMES) > 1 && THEME_SWITCH) {
     unset($themeNames['phpList Default']);
 
     $default_config['UITheme'] = array(
-        'value'       => $_SESSION['ui'],
+        'value'       => isset($_SESSION['ui']) ? $_SESSION['ui'] : '',
         'values'      => array_flip($themeNames),
         'description' => s('Theme for phpList'),
         'type'        => 'select',
