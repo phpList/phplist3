@@ -43,7 +43,7 @@ class phpListAdminAuthentication
             return array(0, s('Please enter your credentials.'));
         }
         if ($admindata['disabled']) {
-            return array(0, s('Your account has been disabled.'));
+            return array(0, s('your account has been disabled'));
         }
         if (//Password validation.
             !empty($passwordDB) && $encryptedPass == $passwordDB
@@ -55,7 +55,7 @@ class phpListAdminAuthentication
                     'https://resources.phplist.com/documentation/errors/adminauthchange');
                 return;
                 }
-        return array(0, s('Incorrect password.'));
+        return array(0, s('incorrect password'));
 
         }
 
@@ -97,9 +97,9 @@ class phpListAdminAuthentication
         $query = sprintf('select id, disabled,password from %s where id = %d', $GLOBALS['tables']['admin'], $id);
         $data = Sql_Fetch_Row_Query($query);
         if (!$data[0]) {
-            return array(0, s('No such account.'));
+            return array(0, s('No such account'));
         } elseif ($data[1]) {
-            return array(0, s('Your account has been disabled.'));
+            return array(0, s('your account has been disabled'));
         }
 
         //# do this separately from above, to avoid lock out when the DB hasn't been upgraded.
