@@ -268,17 +268,36 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
 if (isset($delete) && $delete && $access != 'view') {
     verifyCsrfGetToken();
     // delete the index in delete
-    $_SESSION['action_result'] = s('Deleting')." $delete ..\n";
+    $_SESSION['action_result'] = s('Deleting').' '.s('Subscriber').' '.s('ID')." $delete ..\n";
     if ($require_login && !isSuperUser()) {
-        $lists = Sql_query("SELECT listid FROM {$tables['listuser']},{$tables['list']} where userid = ".$delete." and $tables[listuser].listid = $tables[list].id $subselect ");
+        // If the user does not permission to permanently delete, delete 
+        // subscriptoins instead
+
+        // Get all lists subscriber is a member of
+        $lists = Sql_query("
+            SELECT 
+                listid 
+            FROM 
+                {$tables['listuser']},{$tables['list']} 
+            WHERE 
+                userid = ".$delete." 
+                AND $tables[listuser].listid = $tables[list].id 
+                $subselect 
+        ");
         while ($lst = Sql_fetch_array($lists)) {
-            Sql_query("delete from {$tables['listuser']} where userid = $delete and listid = $lst[0]");
+            Sql_query("
+                DELETE FROM 
+                    {$tables['listuser']} 
+                WHERE 
+                    userid = $delete 
+                    AND listid = $lst[0]
+            ");
         }
     } else {
-        //# this action is no longer visible, but can stay here.
+        // permanently delete subscriber
         deleteUser($delete);
     }
-    $_SESSION['action_result'] .= '..'.s('Done')."\n";
+    $_SESSION['action_result'] .= s('Done')."\n";
     Redirect('user');
 }
 
