@@ -226,7 +226,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $html['userid'] = $hash;
     $text['userid'] = $hash;
 
-    $html['fromemail'] = $text['fromemail'] = getConfig('message_from_address');
+    $html['fromemail'] = $text['fromemail'] = $cached[$messageid]['fromemail'];
     
     $html['website'] = $GLOBALS['website']; // Your website's address, e.g. www.yourdomain.com
     $text['website'] = $GLOBALS['website'];
