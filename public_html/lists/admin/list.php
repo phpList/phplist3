@@ -268,7 +268,7 @@ while ($row = Sql_fetch_array($result)) {
         '<div style="display:inline-block;text-align:right;width:50%;float:left;">'.$membersDisplay.'</div><span class="view" style="text-align:left;display:inline-block;float:right;width:48%;"><a class="button " href="./?page=members&id='.$row['id'].'" title="'.$GLOBALS['I18N']->get('View Members').'">'.$GLOBALS['I18N']->get('View Members').'</a></span>');
 
     $ls->addColumn($element,
-        $GLOBALS['I18N']->get('Public'),
+        s('Public').Help('publiclist'),
         sprintf('<input type="checkbox" name="active[%d]" value="1" %s %s />', $row['id'],
             $row['active'] ? 'checked="checked"' : '',
             listUsedInSubscribePage($row['id']) ? ' disabled="disabled" ' : ''));
