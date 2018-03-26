@@ -49,7 +49,7 @@ function cleanListName($name) { ## we allow certain tags in a listname
 
     for ($i=0; $i< sizeof($regs[0]); $i++ ) {
         $clean = '';
-  #      print $i . ' '.htmlspecialchars($regs[0][$i]).'<h2>'.$regs[1][$i].'</h2><b>'.strlen($regs[3][$i]).'</b><br/> ';
+        #      print $i . ' '.htmlspecialchars($regs[0][$i]).'<h2>'.$regs[1][$i].'</h2><b>'.strlen($regs[3][$i]).'</b><br/> ';
         if ($regs[1][$i] == '/') {
             $clean .= '</'.$regs[2][$i].'>';
         } elseif (!strlen($regs[3][$i]) || $regs[3][$i] == '/') {
@@ -1496,7 +1496,13 @@ function deleteMessage($id = 0)
         $suc6 = Sql_Affected_Rows();
         $result = Sql_query('delete from '.$GLOBALS['tables']['usermessage']." where messageid = $row[0]");
         $result = Sql_query('delete from '.$GLOBALS['tables']['listmessage']." where messageid = $row[0]");
-
+        $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_view']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['message_attachment']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['messagedata']." where id = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['linktrack_uml_click']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['linktrack_ml']." where messageid = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_bounce']." where message = $row[0]");
+        $result = Sql_query('delete from '.$GLOBALS['tables']['user_message_forward']." where message = $row[0]");
         return $suc6;
     }
 }
@@ -2005,15 +2011,15 @@ function subscribeToAnnouncementsForm($emailAddress = '')
     }
 
     return '<div class="information">'
-    .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
-    .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
-    '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
-    '<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
+        .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
+        .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
+        '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
+        '<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
 <input type="text" name="email" value="" id="emailaddress" />
 <button type="submit" id="phplistsubscribe">' .s('Subscribe').'</button> <button id="phplistnotsubscribe" class="fright">'.s('Do not subscribe').'</button></form>'
-    .' </div>';
+        .' </div>';
 }
 
 function createCachedLogoImage($size)
