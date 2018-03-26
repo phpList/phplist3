@@ -186,52 +186,43 @@ $req = Sql_Query(
 $summary = array();
 while ($row = Sql_Fetch_Array($req)) {
 
-    // If the campaign has been viewed more than once
-    if ($row['totalcampaignviews'] > 1) {
-        $allViewsReq = Sql_Query(
-            sprintf(
-                'select 
-                    * 
-                from 
-                    %s 
-                where 
-                    userid = %d 
-                    and messageid = %d 
-                order by 
-                    viewed'
-            , $GLOBALS['tables']['user_message_view']
-            , $row['userid']
-            , $id
-        ));
-        $totalSubscriberViews = Sql_Affected_Rows();
-    }
+    $allViewsReq = Sql_Query(
+        sprintf(
+            'select 
+                * 
+            from 
+                %s 
+            where 
+                userid = %d 
+                and messageid = %d 
+            order by 
+                viewed'
+        , $GLOBALS['tables']['user_message_view']
+        , $row['userid']
+        , $id
+    ));
+    $totalSubscriberViews = Sql_Affected_Rows();
     if ($download) {
         //# with download, the 50 per page limit is not there.
         set_time_limit(60);
         $element = $row['email'];
+        $separator = ',';
     } else {
         $element = shortenTextDisplay($row['email'], 35);
+        $separator = '<br/>';
     }
     $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
     $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
     $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
-    $ls->addColumn($element, s('Total views'), ($totalSubscriberViews > 1 ? $totalSubscriberViews : 1));
 
-    // If the subscriber has viewed the campaign more than once
-    if ($totalSubscriberViews > 1) {
-        // Add class for table styling (groups rows differently for multi-row groups)
-        $ls->setClass($element, 'row1');
-        if ($totalSubscriberViews > 1) {
-            $viewList = '';
-            while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
-                $ls->addRow(
-                    $element
-                    , s('Viewed').': '.formatDateTime($row2['viewed'], 1)
-                    , ''
-                );
-            }
+    if ($totalSubscriberViews > 0) {
+        $ls->addColumn($element, s('Total views'), $totalSubscriberViews);
+        $viewTimes = array();
+
+        while ($row2 = Sql_Fetch_Assoc($allViewsReq)) {
+            $viewTimes[] = formatDateTime($row2['viewed'], 1);
         }
-
+        $ls->addColumn($element, s('Viewed'), implode($separator, $viewTimes));
     }
 }
 if ($download) {
