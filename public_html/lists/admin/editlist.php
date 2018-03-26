@@ -17,14 +17,14 @@ if ( !isSuperUser()) {
             if ($id) {
                 Sql_Query('select id from '.$GLOBALS['tables']['list'].$subselect." and id = $id");
                 if (!Sql_Affected_Rows()) {
-                    Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+                    Error(s('You do not have enough privileges to view this page'));
 
                     return;
                 }
             } else {
                 $numlists = Sql_Fetch_Row_query("select count(*) from {$GLOBALS['tables']['list']} $subselect");
                 if (!($numlists[0] < MAXLIST)) {
-                    Error($GLOBALS['I18N']->get('You cannot create a new list because you have reached maximum number of lists.'));
+                    Error(s('You cannot create a new list because you have reached maximum number of lists.'));
 
                     return;
                 }
@@ -38,7 +38,7 @@ if ( !isSuperUser()) {
         default:
             $subselect_and = ' and owner = -1';
             if ($id) {
-                Fatal_Error($GLOBALS['I18N']->get('You do not have enough privileges to view this page'));
+                Fatal_Error(s('You do not have enough privileges to view this page'));
 
                 return;
             }
@@ -120,6 +120,13 @@ if (!empty($id)) {
         'description' => '',
     );
 }
+
+
+
+$deletebutton = new ConfirmButton(
+    s('Are you sure you want to delete this list?').'\n'.s('This will NOT remove the subscribers that are on this list.').'\n'.s('You can reconnect subscribers to lists on the Reconcile Subscribers page.'),
+    PageURL2('list&delete='.$id),
+    s('delete this list'));
 if (empty($list['category'])) {
     $list['category'] = '';
 }
@@ -129,7 +136,7 @@ if (empty($list['category'])) {
 
 <?php echo formStart(' class="editlistSave" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
-<div class="label"><label for="listname"><?php echo $GLOBALS['I18N']->get('List name'); ?>:</label></div>
+<div class="label"><label for="listname"><?php echo s('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname"
                           value="<?php echo htmlspecialchars(stripslashes($list['name'])) ?>"/></div>
 
@@ -141,35 +148,35 @@ if (empty($list['category'])) {
             echo ' disabled="disabled" ';
         }
 
-        ?> /><label for="active"><?php echo $GLOBALS['I18N']->get('Public list (listed on the frontend)'); ?></label>
+        ?> /><label for="active"><?php echo s('Public list (listed on the frontend)'); ?></label>
 </div>
-<div class="label"><label for="listorder"><?php echo $GLOBALS['I18N']->get('Order for listing'); ?></label></div>
+<div class="label"><label for="listorder"><?php echo s('Order for listing'); ?></label></div>
 <div class="field"><input type="text" name="listorder" value="<?php echo $list['listorder'] ?>" class="listorder"/>
 </div>
 <?php if (accessLevel('editlist') == 'all') {
-            if (empty($list['owner'])) {
-                $list['owner'] = $_SESSION['logindetails']['id'];
-            }
-            $admins = $GLOBALS['admin_auth']->listAdmins();
-            if (count($admins) > 1) {
-                echo '<div class="label"><label for="owner">'.$GLOBALS['I18N']->get('Owner').'</label></div><div class="field"><select name="owner">';
-                foreach ($admins as $adminid => $adminname) {
-                    printf('    <option value="%d" %s>%s</option>', $adminid,
+    if (empty($list['owner'])) {
+        $list['owner'] = $_SESSION['logindetails']['id'];
+    }
+    $admins = $GLOBALS['admin_auth']->listAdmins();
+    if (count($admins) > 1) {
+        echo '<div class="label"><label for="owner">'.s('Owner').'</label></div><div class="field"><select name="owner">';
+        foreach ($admins as $adminid => $adminname) {
+            printf('    <option value="%d" %s>%s</option>', $adminid,
                 $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
-                }
-                echo '</select></div>';
-            } else {
-                echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
-            }
-        } else {
-            echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
         }
+        echo '</select></div>';
+    } else {
+        echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
+    }
+} else {
+    echo '<input type="hidden" name="owner" value="'.$_SESSION['logindetails']['id'].'" />';
+}
 
 $aListCategories = listCategories();
 if (count($aListCategories)) {
-    echo '<div class="label"><label for="category">'.$GLOBALS['I18N']->get('Category').'</label></div>';
+    echo '<div class="label"><label for="category">'.s('Category').'</label></div>';
     echo '<div class="field"><select name="category">';
-    echo '<option value="">-- '.$GLOBALS['I18N']->get('choose category').'</option>';
+    echo '<option value="">-- '.s('choose category').'</option>';
     foreach ($aListCategories as $category) {
         $category = trim($category);
         printf('<option value="%s" %s>%s</option>', $category,
@@ -184,10 +191,13 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 }
 
 ?>
-<label for="description"><?php echo $GLOBALS['I18N']->get('List Description'); ?></label>
-<div class="field"><textarea name="description" cols="35" rows="5">
+<form>
+    <label for="description"><?php echo s('List Description'); ?></label>
+    <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
-<input class="submit" type="submit" name="addnewlist" value="<?php echo $GLOBALS['I18N']->get('Save'); ?>"/>
-<?php echo PageLinkClass('list', $GLOBALS['I18N']->get('Cancel'), '', 'button cancel',
-    $GLOBALS['I18N']->get('Do not save, and go back to the lists')); ?>
+    <input class="submit" type="submit" name="addnewlist" value="<?php echo s('Save'); ?>"/>
+    <?php echo PageLinkClass('list', s('Cancel'), '', 'button cancel',
+        s('Do not save, and go back to the lists'));
+    if($id!==0){
+        echo '<span class="delete">'.$deletebutton->show().'</span>';} ?>
 </form>
