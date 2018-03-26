@@ -39,7 +39,7 @@ If at a later time you do want to migrate from your own installation to phpList 
 Alternatively you can try out the latest phpList release at [phplist.org](https://demo.phplist.org/lists/admin/). This installation is wiped and refreshed every hour.
 
 ## Requirements
-See [System requirements](https://resources.phplist.com/system)
+See [System requirements](https://resources.phplist.com/system/start)
 
 ## Development
 See [phpList development](https://resources.phplist.com/develop/start)
