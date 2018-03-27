@@ -133,7 +133,7 @@ if (empty($list)) {
 
 <?php
 $cols = array();
-while (list($key, $val) = each($DBstruct['user'])) {
+foreach ($DBstruct['user'] as $key => $val) {
     if (strpos($val[1], 'sys') === false) {
         printf("\n".'<br/><input type="checkbox" name="cols[]" value="%s" checked="checked" /> %s ', $key, $val[1]);
     } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {

@@ -19,7 +19,7 @@ $formtable_exists = Sql_Table_exists('formfield');
 echo '<div class="panel"><div class="header"></div><div class="content">';
 if (isset($_POST['action'])) {
     if (isset($_POST['name'])) {
-        while (list($id, $val) = each($_POST['name'])) {
+        foreach ($_POST['name'] as $id => $val) {
             if (!$id && isset($_POST['name'][0]) && $_POST['name'][0] != '') {
                 // it is a new one
                 $lc_name = getNewAttributeTablename($_POST['name'][0]);
@@ -173,7 +173,7 @@ if (isset($_POST['action'])) {
 } elseif (isset($_POST['tagaction']) && is_array($_POST['tag'])) {
     ksort($_POST['tag']);
     if (isset($_POST['tagaction']['delete'])) {
-        while (list($k, $id) = each($_POST['tag'])) {
+        foreach ($_POST['tag'] as $k => $id) {
             // check for dependencies
             $id = sprintf('%d', $id);
             if ($formtable_exists) {

@@ -31,7 +31,7 @@ if ($message && $list) {
                 }
             }
         } else {
-            while (list($key, $val) = each($list)) {
+            foreach ($list as $key => $val) {
                 if ($val == 'signup') {
                     array_push($lists, $key);
                 }
@@ -47,7 +47,7 @@ if ($message && $list) {
         array_push($listowners[$owner], $list);
     }
 
-    while (list($owner, $lists) = each($listowners)) {
+    foreach ($listowners as $owner => $lists) {
         $query = sprintf('insert into %s
       (subject,fromfield,tofield,replyto,message,footer,status,
       entered,userselection,htmlformatted,sendformat,template,owner)

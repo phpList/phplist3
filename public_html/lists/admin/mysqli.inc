@@ -373,7 +373,7 @@ function createTable($table)
 function Sql_create_Table($table, $structure)
 {
     $query = "CREATE TABLE $table (\n";
-    while (list($column, $val) = each($structure)) {
+    foreach ($structure as $column => $val) {
         if (preg_match('/index_\d+/', $column)) {
             $query .= "index " . $structure[$column][0] . ",";
         } elseif (preg_match('/unique_\d+/', $column)) {

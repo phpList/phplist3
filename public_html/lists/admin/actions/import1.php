@@ -88,7 +88,7 @@ while ($row = Sql_Fetch_Array($res)) {
     }
 }
 
-while (list($email, $data) = each($user_list)) {
+foreach ($user_list as $email => $data) {
     //# a lot of spreadsheet include those annoying quotes
     $email = str_replace('"', '', $email);
     set_time_limit(60);

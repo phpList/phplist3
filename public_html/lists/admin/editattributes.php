@@ -70,7 +70,7 @@ switch ($data['type']) {
             } else {
                 $listorder = $maxitem[0] + 1; // One more than the maximum
             }
-            while (list($key, $val) = each($items)) {
+            foreach ($items as $key => $val) {
                 $val = clean($val);
                 if ($val != '') {
                     $query = sprintf('insert into %s (name,listorder) values("%s","%s")', $table, $val, $listorder);

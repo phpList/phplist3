@@ -470,7 +470,7 @@ function Error($msg, $documentationURL = '')
     ++$GLOBALS['mail_error_count'];
     if (is_array($_POST) && count($_POST)) {
         $GLOBALS['mail_error'] .= "\nPost vars:\n";
-        while (list($key, $val) = each($_POST)) {
+        foreach ($_POST as $key => $val) {
             if ($key != 'password') {
                 if (is_array($val)) {
                     $GLOBALS['mail_error'] .= $key.'='.serialize($val)."\n";
@@ -1788,7 +1788,7 @@ function delimited($data)
 {
     $delimitedData = '';
     reset($data);
-    while (list($key, $val) = each($data)) {
+    foreach ($data as $key => $val) {
         $delimitedData .= $key.'KEYVALSEP'.$val.'ITEMSEP';
     }
     $length = strlen($delimitedData);
@@ -2044,7 +2044,7 @@ function phplist_shutdown()
             .$GLOBALS['mail_error'];
         $message .= "\n==== debugging information\n\nSERVER Vars\n";
         if (is_array($_SERVER)) {
-            while (list($key, $val) = each($_SERVER)) {
+            foreach ($_SERVER as $key => $val) {
                 if (stripos($key, 'password') === false) {
                     $message .= $key.'='.serialize($val)."\n";
                 }
@@ -2171,7 +2171,7 @@ function printarray($array)
     if (!is_array($array)) {
         return;
     }
-    while (list($key, $value) = each($array)) {
+    foreach ($array as $key => $value) {
         if (is_array($value)) {
             echo $key.'(array):<blockquote>';
             printarray($value); //recursief!!

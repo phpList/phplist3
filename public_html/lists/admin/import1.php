@@ -140,7 +140,7 @@ if (isset($_REQUEST['import'])) {
         <p><strong>'.$GLOBALS['I18N']->get('Test output:').'</strong></p>
         <hr/>';
         $i = 1;
-        while (list($email, $data) = each($user_list)) {
+        foreach ($user_list as $email => $data) {
             $email = trim($email);
             if (strlen($email) > 4) {
                 echo "<b>$email</b><br/>";

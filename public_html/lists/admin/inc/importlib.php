@@ -49,7 +49,7 @@ function clearImport()
 //# identify system values from the database structure
 $system_attributes = array();
 reset($DBstruct['user']);
-while (list($key, $val) = each($DBstruct['user'])) {
+foreach ($DBstruct['user'] as $key => $val) {
     if (strpos($val[1], 'sys') === false && is_array($val)) {
         $system_attributes[strtolower($key)] = $val[1];  //# allow columns like "htmlemail" and "foreignkey"
         $system_attributes_nicename[strtolower($val[1])] = $key; //# allow columns like "Send this user HTML emails" and "Foreign Key"
