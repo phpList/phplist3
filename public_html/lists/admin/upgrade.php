@@ -31,7 +31,7 @@ function output($message)
     flush();
 }
 
-output(""); 
+output("");
 $dbversion = getConfig('version');
 $releaseDBversion = getConfig('releaseDBversion'); // release version check
 $inUpgrade = getConfig('in-upgrade-to');
@@ -110,6 +110,38 @@ if ($dbversion == VERSION && !$force) {
     //# lock this process
     SaveConfig('in-upgrade-to', VERSION, 1);
 
+    switch ($dbversion) {
+	    // todo: replace with proper version
+    case '3.3.1':
+	    // first: remove the index from urlcache table
+	    Sql_Query('drop index urlindex on '.$GLOBALS['tables']['urlcache']);
+	// second: change varchar to text
+	    Sql_Query('ALTER TABLE '.$GLOBALS['tables']['urlcache'].' MODIFY url text');
+	    // third: create new index
+	    Sql_Query('CREATE INDEX urlindex ON '.$GLOBALS['tables']['urlcache'].' (url(255))');
+        // first: remove the index from linktrack table
+        Sql_Query('drop index urlindex on '.$GLOBALS['tables']['linktrack']);
+
+        Sql_Query('drop index miduidurlindex on '.$GLOBALS['tables']['linktrack']);
+        // second: change varchar to text
+        Sql_Query('ALTER TABLE '.$GLOBALS['tables']['linktrack'].' MODIFY url text');
+
+        Sql_Query('ALTER TABLE '.$GLOBALS['tables']['linktrack'].' MODIFY forward text');
+        // third: create new index
+        Sql_Query('CREATE INDEX urlindex ON '.$GLOBALS['tables']['linktrack'].' (url(255))');
+        Sql_Query('CREATE INDEX miduidurlindex ON '.$GLOBALS['tables']['linktrack'].' (messageid,userid,url(255))');
+
+        // first: remove the index from linktrack_forward table
+        Sql_Query('drop index urlindex on '.$GLOBALS['tables']['linktrack_forward']);
+        Sql_Query('drop index urlunique on '.$GLOBALS['tables']['linktrack_forward']);
+        // second: change varchar to text
+        Sql_Query('ALTER TABLE '.$GLOBALS['tables']['linktrack_forward'].' MODIFY url text');
+        // third: create new index
+        Sql_Query('CREATE INDEX urlindex ON '.$GLOBALS['tables']['linktrack_forward'].' (url(255))');
+        Sql_Query('CREATE INDEX urlunique ON '.$GLOBALS['tables']['linktrack_forward'].' (url(255))');
+
+	break;
+    }
     //# remember whether we've done this, to avoid doing it every time
     //# even thought that's not such a big deal
     $isUTF8 = getConfig('UTF8converted');
@@ -273,8 +305,8 @@ if ($dbversion == VERSION && !$force) {
         // it is not strictly necessary to do this here, because processqueue does it as well.
         // that does mean that the first process queue may take a while.
 
-     //   output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
-     //   output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
+        //   output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
+        //   output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
     } else {
         output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
         output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
