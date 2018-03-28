@@ -116,7 +116,7 @@ if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) 
         $GLOBALS['ui'] = 'default';
     } else {
         ## pick the first available (this should really only be in dev mode)
-        $themes = glob(dirname(__FILE__).'/ui/*');
+        $themes = glob(dirname(__FILE__).'/ui/*',GLOB_ONLYDIR);
         $GLOBALS['ui'] = basename($themes[0]);
     }
 }

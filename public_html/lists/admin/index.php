@@ -125,6 +125,10 @@ if (!empty($_SESSION['hasconf']) || Sql_Table_exists($tables['config'], 1)) {
     //}
 }
 
+if (isset($_REQUEST['resettheme'])) {
+    SetCookie ( 'preferredTheme','');
+}
+
 if (isset($_REQUEST['settheme']) && !empty($_REQUEST['settheme']) && is_array($THEMES[$_REQUEST['settheme']])) {
     $settheme = preg_replace('/[^\w_-]+/', '', strip_tags($_REQUEST['settheme']));
     $GLOBALS['ui'] = $_REQUEST['settheme'];
