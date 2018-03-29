@@ -424,6 +424,8 @@ if ($c) {
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
 <h3>' .s('Add new Attribute').':</h3>
+<div class="alert-warning">' .s('Warning: Please avoid storing sensitive personal information such as race, health, or sexual orientation.').'</div>
+
 <div class="label"><label class="label">' .s('Name').': </label></div>
 <div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
 <div class="label"><label class="label">' .s('Type').': </label></div>
