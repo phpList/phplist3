@@ -109,8 +109,9 @@ if (isset($GLOBALS['design'])) {
 }
 
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
-    //# prefer dressprow over orange
-    if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
+    if (is_dir(dirname(__FILE__).'/ui/phplist-ui-bootlist')) {
+        $GLOBALS['ui'] = 'phplist-ui-bootlist';
+    } elseif (is_dir(dirname(__FILE__).'/ui/dressprow')) {
         $GLOBALS['ui'] = 'dressprow';
     } else {
         $GLOBALS['ui'] = 'default';
@@ -291,10 +292,10 @@ if (!defined('ENCRYPTION_ALGO')) {
     }
 }
 if (!defined('HASH_ALGO')) {
-	// keep previous hashalg. @@TODO force an update of hash method, many may still be on md5. 
-	if (defined('ENCRYPTION_ALGO')) {
+    // keep previous hashalg. @@TODO force an update of hash method, many may still be on md5.
+    if (defined('ENCRYPTION_ALGO')) {
         define('HASH_ALGO', ENCRYPTION_ALGO);
-	} elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
+    } elseif (function_exists('hash_algos') && in_array('sha256', hash_algos())) {
         define('HASH_ALGO', 'sha256');
     } else {
         define('HASH_ALGO', 'md5');
