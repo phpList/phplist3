@@ -378,6 +378,9 @@ reset($struct);
 
 $userdetailsHTML = $mailinglistsHTML = '';
 $userdetailsHTML .= '<table class="userAdd" border="1">';
+if (isBlackListed($user['email'])) {
+    $userdetailsHTML .= '<h3 class="alert-info">'.s('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
+}
 
 while (list($key, $val) = each($struct)) {
     @list($a, $b) = explode(':', $val[1]);
@@ -485,10 +488,6 @@ if ($access != 'view') {
     $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
 }
 $userdetailsHTML .= '</table>';
-
-if (isBlackListed($user['email'])) {
-    $userdetailsHTML .= '<h3>'.s('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
-}
 
 $mailinglistsHTML .= '<h3>'.$GLOBALS['I18N']->get('Mailinglist membership').':</h3>';
 // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
