@@ -377,10 +377,10 @@ echo '<input type="hidden" name="returnpage" value="'.$returnpage.'" /><input ty
 reset($struct);
 
 $userdetailsHTML = $mailinglistsHTML = '';
-$userdetailsHTML .= '<table class="userAdd" border="1">';
 if (isBlackListed($user['email'])) {
     $userdetailsHTML .= '<h3 class="alert-info">'.s('Subscriber is blacklisted. No emails will be sent to this email address.').'</h3>';
 }
+$userdetailsHTML .= '<table class="userAdd" border="1">';
 
 while (list($key, $val) = each($struct)) {
     @list($a, $b) = explode(':', $val[1]);
