@@ -183,14 +183,16 @@ $(document).ready(function () {
         });
     }
 
-    $(".opendialog").click(function () {
+    $('body').on('click', '.opendialog', function(e) {
         openHelpDialog(this.href);
-        return false;
+        e.preventDefault();
     });
-    $(".helpdialog").click(function () {
+
+    $('body').on('click', '.helpdialog', function(e) {
         openHelpDialog(this.href);
-        return false;
+        e.preventDefault();
     });
+
     $(".closedialog").click(function () {
         $("#dialog").dialog('close');
     });
