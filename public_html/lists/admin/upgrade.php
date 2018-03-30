@@ -110,42 +110,59 @@ if ($dbversion == VERSION && !$force) {
     //# lock this process
     SaveConfig('in-upgrade-to', VERSION, 1);
 
-    switch ($dbversion) {
-	    //todo: replace with proper version
-    case '3.3.1':
-	    // first: remove the index from urlcache table
-	    Sql_Query('drop index urlindex on '.$GLOBALS['tables']['urlcache']);
-	    // second: change varchar to text
-	    Sql_Query('alter table '.$GLOBALS['tables']['urlcache'].' modify url text');
-	    // third: create new index
-	    Sql_Query('create index urlindex ON '.$GLOBALS['tables']['urlcache'].' (url(255))');
-        // first: remove the index from linktrack table
-        Sql_Query('drop index urlindex on '.$GLOBALS['tables']['linktrack']);
-        Sql_Query('drop index miduidurlindex on '.$GLOBALS['tables']['linktrack']);
-        // second: change varchar to text
-        Sql_Query('alter table '.$GLOBALS['tables']['linktrack'].' modify url text');
-        Sql_Query('alter table '.$GLOBALS['tables']['linktrack'].' modify forward text');
-        // third: create new index
-        Sql_Query('create index urlindex on '.$GLOBALS['tables']['linktrack'].' (url(255))');
-        Sql_Query('create index miduidurlindex on '.$GLOBALS['tables']['linktrack'].' (messageid,userid,url(255))');
-        // first: remove the index from linktrack_forward table
-        Sql_Query('drop index urlindex on '.$GLOBALS['tables']['linktrack_forward']);
-        Sql_Query('drop index urlunique on '.$GLOBALS['tables']['linktrack_forward']);
-        // second: change varchar to text
-        Sql_Query('alter table '.$GLOBALS['tables']['linktrack_forward'].' modify url text');
-        // third: create new index
-        Sql_Query('create index urlindex ON '.$GLOBALS['tables']['linktrack_forward'].' (url(255))');
-        Sql_Query('create index urlunique ON '.$GLOBALS['tables']['linktrack_forward'].' (url(255))');
+    if (version_compare($dbversion, '3.3.3','<')) {
 
-	break;
+        $indexesToRecreate = array(
+            'urlcache' => array(
+                'urlindex' => array('value' => 'url(255)', 'unique' => false),
+            ),
+            'linktrack' => array(
+                'urlindex' => array('value' => 'url(255)', 'unique' => false),
+                'miduidurlindex' => array('value' => 'messageid,userid,url(255)', 'unique' => true),
+            ),
+            'linktrack_forward' => array(
+                'urlindex' => array('value' => 'url(255)', 'unique' => false),
+                'urlunique' => array('value' => 'url(255)', 'unique' => true),
+            )
+        );
+
+        $tablesToAlter = array(
+            'urlcache' => array('url'),
+            'linktrack' => array('url', 'forward'),
+            'linktrack_forward' => array('url'),
+        );
+
+        foreach($indexesToRecreate as $table => $indexes) {
+            foreach($indexes as $indexName => $settings) {
+                Sql_Query("drop index $indexName on {$GLOBALS['tables'][$table]} ");
+            }
+
+            $alteringOperations = $tablesToAlter[$table];
+            foreach($alteringOperations as $operation) {
+                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation text ");
+            }
+
+            foreach($indexes as $indexName => $settings) {
+                $createStmt = '';
+                if($settings['unique'] === true) {
+                    $createStmt = 'create unique index';
+                } else {
+                    $createStmt = 'create index';
+                }
+                Sql_Query("$createStmt $indexName on {$GLOBALS['tables'][$table]}({$settings['value']})");
+            }
+
+        }
     }
+
+
     //# remember whether we've done this, to avoid doing it every time
     //# even thought that's not such a big deal
     $isUTF8 = getConfig('UTF8converted');
 
     if (empty($isUTF8)) {
         $maxsize = 0;
-        $req = Sql_Query('select (data_length+index_length) tablesize 
+        $req = Sql_Query('select (data_length+index_length) tablesize
       from information_schema.tables
       where table_schema="' .$GLOBALS['database_name'].'"');
 
