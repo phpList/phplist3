@@ -7,13 +7,15 @@ switch ($page) {
   case 'attributes': $page_title = '設定欄位'; break;
   case 'stresstest': $page_title = '壓力測試'; break;
   case 'list': $page_title = '電子報主題'; break;
+  case 'catlists': $page_title = '分類列表'; break;
   case 'editattributes': $page_title = '編輯欄位'; break;
   case 'editlist': $page_title = '編輯電子報'; break;
   case 'checki18n': $page_title = '檢查語言檔案'; break;
+  case 'importsimple': $page_title = '使用複製貼上匯入'; break;
   case 'import4': $page_title = '從遠端資料庫匯入名單'; break;
   case 'import3': $page_title = '從 IMAP 伺服器匯入名單'; break;
-  case 'import2':
-  case 'import1':
+  case 'import2': $page_title = '從 CSV檔 匯入'; break;
+  case 'import1': $page_title = '從 文字檔 匯入'; break;
   case 'import': $page_title = '匯入名單'; break;
   case 'export': $page_title = '匯出使用者'; break;
   case 'initialise': $page_title = '初始化資料庫'; break;
@@ -52,4 +54,29 @@ switch ($page) {
   case 'mclicks': $page_title = '信件點閱統計'; break;
   case 'uclicks': $page_title = '網址點閱統計'; break;
   case 'massunconfirm': $page_title = '大量重新確認信箱'; break;
+  case 'massremove': $page_title = '大量移除訂閱者'; break;
+  case 'usermgt': $page_title = '管理訂閱者'; break;
+  case 'bouncemgt': $page_title = '管理退信'; break;
+  case 'domainstats': $page_title = '網域統計'; break;
+  case 'mviews': $page_title = '查看開信紀錄'; break;
+  case 'statsmgt': $page_title = '管理統計'; break;
+  case 'statsoverview': $page_title = '統計總覽'; break;
+  case 'subscriberstats': $page_title = '訂閱者統計'; break;
+  case 'dbcheck': $page_title = '檢查資料庫架構'; break;
+  case 'importadmin': $page_title = '匯入管理員'; break;
+  case 'dbadmin': $page_title = '資料庫管理員'; break;
+  case 'usercheck': $page_title = '確認訂閱者是否已存在於系統中'; break;
+  case 'listbounces': $page_title = '查看各列表的退信'; break;
+  case 'bouncerules': $page_title = '退信規則'; break;
+  case 'checkbouncerules': $page_title = '檢查退信規則'; break;
+  case 'translate': $page_title = '翻譯 phpList'; break;
+  case 'ajaxform': $page_title = '使用 Ajax 技術'; break;
+  case 'updatetranslation': $page_title = '更新翻譯'; break;
+  case 'reindex': $page_title = '重新排序(re-index)資料庫'; break;
+  case 'plugins': $page_title = '管理外掛'; break;
+
+  default: $page_title = $page;
+    if (0) { //# discover new titles
+      file_put_contents('/tmp/pagetitles.php', ' case \''.$page.'\'\: $page_title = ""; break;'."\n", FILE_APPEND);
+    }
 }
