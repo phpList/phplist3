@@ -353,20 +353,24 @@ $default_config = array(
     // their subscription
     'subscribemessage' => array(
         'value' => 
-'Almost welcome to our newsletter(s) ...
-
-Someone, hopefully you, has subscribed your email address to the following newsletters:
+' You have been subscribed to the following newsletters:
 
 [LISTS]
 
-If this is correct, please click the following link to confirm your subscription.
-Without this confirmation, you will not receive any newsletters.
+
+Please click the following link to confirm it\'s really you:
 
 [CONFIRMATIONURL]
 
-If this is not correct, you do not need to do anything, simply delete this message.
 
-Thank you'
+In order to provide you with this service we\'ll need to
+
+Transfer your contact information to [domain]
+Store your contact information in your [domain] account
+Send you emails from [domain]
+Track your interactions with these emails for marketing purposes
+
+If this is not correct, or you do not agree, simply take no action and delete this message.'
     ,
         'description' => s('Message subscribers receive when they sign up'),
         'type'        => 'textarea',
