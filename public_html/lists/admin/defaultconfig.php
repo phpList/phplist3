@@ -365,9 +365,9 @@ Please click the following link to confirm it\'s really you:
 
 In order to provide you with this service we\'ll need to
 
-Transfer your contact information to [domain]
-Store your contact information in your [domain] account
-Send you emails from [domain]
+Transfer your contact information to [DOMAIN]
+Store your contact information in your [DOMAIN] account
+Send you emails from [DOMAIN]
 Track your interactions with these emails for marketing purposes
 
 If this is not correct, or you do not agree, simply take no action and delete this message.'
