@@ -216,6 +216,18 @@ class phplistPlugin
     }
 
     /**
+     * Allows a plugin to override the default check for a new version.
+     *
+     * @param array $pluginDetails
+     *
+     * @returns string|false|null new version, or false if update not available, or null to use the default update check
+     *
+     */
+    public function checkForUpdate(array $pluginDetails)
+    {
+    }
+
+    /**
      * Startup code, all other objects are constructed
      * returns success or failure, false means we cannot start
      */

@@ -181,10 +181,15 @@ if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
 }
 
 $ls = new WebblerListing(s('Installed plugins'));
+$ls->setElementHeading(s('Plugin'));
 
 if (empty($GLOBALS['allplugins'])) {
     return;
 }
+$countUpdate = 0;
+$countEnabled = 0;
+$countDisabled = 0;
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 ksort($GLOBALS['allplugins'], SORT_FLAG_CASE | SORT_STRING);
 
 foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
@@ -193,18 +198,70 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if (is_file(dirname($refl->getFileName()).'/'.$pluginname.'.info.txt')) {
         $pluginDetails = unserialize(file_get_contents($pluginDestination.'/'.$pluginname.'.info.txt'));
     }
+    $canEnable = pluginCanEnable($pluginname);
+    $canUpdate = !empty($pluginDetails['installUrl']) && class_exists('ZipArchive');
 
+    if ($canEnable && $plugin->enabled) {
+        $isEnabled = true;
+        ++$countEnabled;
+    } else {
+        $isEnabled = false;
+        ++$countDisabled;
+    }
+
+    if ($canUpdate) {
+        $latestVersion = $plugin->checkForUpdate($pluginDetails);
+
+        if ($latestVersion === null) {
+            $latestVersion = getLatestTag($pluginDetails['developer'], $pluginDetails['projectName']);
+            $updateAvailable = $latestVersion === null ? false : version_compare($latestVersion, $plugin->version) > 0;
+        } else {
+            $updateAvailable = (bool)$latestVersion;
+        }
+
+        if ($latestVersion === null) {
+            $updateStatus = s('Unable to find update');
+        } elseif ($updateAvailable) {
+            $updateStatus = s('Version %s is available', $latestVersion);
+            ++$countUpdate;
+        } else {
+            $updateStatus = s('Plugin is up-to-date');
+        }
+    } else {
+        $updateAvailable = false;
+        $updateStatus = s('Plugin must be updated manually');
+    }
+
+    if (($filter == 'enabled' && !$isEnabled)
+        || ($filter == 'disabled' && $isEnabled)
+        || ($filter == 'updates' && !$updateAvailable)) {
+        continue;
+    }
     $ls->addElement($pluginname);
     $ls->setClass($pluginname, 'row1');
     // $ls->addColumn($pluginname,s('name'),$plugin->name);
 
     $details = '<div class="plugindetails">';
     $details .= '<div class="detail"><span class="label">'.s('name').'</span>';
-    $details .= '<span class="value">'.$plugin->name.'</span></div>';
-    $details .= '<div class="detail"><span class="label">'.s('version').'</span>';
-    $details .= '<span class="value">'.$plugin->version.'</span></div>';
+    $details .= '<span class="value">'.$plugin->name.'</span>';
+
+    if (!empty($pluginDetails['developer'])) {
+        $details .= '<span class="label">'.s('developer').'</span>';
+        $details .= '<span class="value">'.$pluginDetails['developer'].'</span>';
+    }
+    $details .= '</div>';
+
     $details .= '<div class="detail"><span class="label">'.s('description').'</span>';
     $details .= '<span class="value">'.$plugin->description.'</span></div>';
+
+    $details .= '<div class="detail"><span class="label">'.s('version').'</span>';
+    $details .= '<span class="value">'.$plugin->version.'</span>';
+    $details .= sprintf(
+        '<span class="label">%s</span><span class="value">%s</span></div>',
+        s('Update status'),
+        $updateStatus
+    );
+
     if (!empty($GLOBALS['developer_email'])) {
         //# show the origin of the plugin, as many may exist
         $details .= '<div class="detail"><span class="label">'.s('origin').'</span>';
@@ -223,25 +280,26 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         $details .= '<div class="detail"><span class="label">'.s('installation Url').'</span>';
         $details .= '<span class="value">'.$pluginDetails['installUrl'].'</span></div>';
     }
-    if (!empty($pluginDetails['developer'])) {
-        //   $ls->addColumn($pluginname,s('developer'),$pluginDetails['developer']);
-        $details .= '<div class="detail"><span class="label">'.s('developer').'</span>';
-        $details .= '<span class="value">'.$pluginDetails['developer'].'</span></div>';
-    }
+    $detailEntry = '';
+
     if (!empty($plugin->documentationUrl)) {
-        $details .= '<div class="detail"><span class="label">'.s('More information').'</span>';
-        $details .= '<span class="value"><a href="'.$plugin->documentationUrl.'" target="moreinfoplugin">'.s('Documentation Page').'</a></span></div>';
+        $detailEntry .= '<span class="label">'.s('More information').'</span>';
+        $detailEntry .= '<span class="value"><a href="'.$plugin->documentationUrl.'" target="moreinfoplugin">'.s('Documentation Page').'</a></span>';
     }
 
     if ($plugin->enabled && !empty($plugin->settings)) {
         $firstSetting = reset($plugin->settings);
         $category = $firstSetting['category'];
         $settingsUrl = PageURL2('configure').'#'.strtolower($category);
-        $details .= '<div class="detail"><span class="label">'.s('Configure').'</span>';
-        $details .= '<span class="value"><a href="'.$settingsUrl.'">'.s($category).' '.s('settings').'</a></span></div>';
+        $detailEntry .= '<span class="label">'.s('Configure').'</span>';
+        $detailEntry .= '<span class="value"><a href="'.$settingsUrl.'">'.s($category).' '.s('settings').'</a></span>';
     }
 
-    if (pluginCanEnable($pluginname)) {
+    if ($detailEntry) {
+        $details .= '<div class="detail">'.$detailEntry.'</div>';
+    }
+
+    if ($canEnable) {
         $ls->addColumn($pluginname, s('enabled'), $plugin->enabled ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
         $ls->addColumn($pluginname, s('action'), $plugin->enabled ?
             PageLinkAjax('plugins&disable='.$pluginname, '<button>Disable</button>') :
@@ -264,7 +322,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         $ls->addColumn($pluginname, s('delete'),
             '<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname.'\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
     }
-    if (!pluginCanEnable($pluginname)) {
+    if (!$canEnable) {
         $details .= '<div class="detail"><span class="label">'.s('Dependency check').'</span>';
 
         if ($plugin->dependencyFailure == 'No other editor enabled') {
@@ -276,14 +334,91 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         }
     }
 
-    if (!empty($pluginDetails['installUrl']) && class_exists('ZipArchive')) {
+    if ($canUpdate) {
         $updateForm = formStart();
         $updateForm .= '<input type="hidden" name="pluginurl" value="'.$pluginDetails['installUrl'].'"/>
         <button type="submit" name="update" title="' .s('update this plugin').'" class="updatepluginbutton">'.s('update').'</button></form>';
-        $ls->addColumn($pluginname, s('update'), $updateForm);
+    } else {
+        $updateForm = '';
     }
+    $ls->addColumn($pluginname, s('update'), $updateForm);
     $details .= '</div>';
     $ls->addRow($pluginname, s('details'), $details);
 }
-
+//  Add panel showing the number of plugins, enabled, disabled, and with update available
+$ls->usePanel(
+    sprintf(
+        '%s (%d) | %s (%d) | %s (%d) | %s (%d)',
+        filterLink('all', count($allplugins), s('All')),
+        count($allplugins),
+        filterLink('enabled', $countEnabled, s('Enabled')),
+        $countEnabled,
+        filterLink('disabled', $countDisabled, s('Disabled')),
+        $countDisabled,
+        filterLink('updates', $countUpdate, s('Update available')),
+        $countUpdate
+    )
+);
 echo $ls->display();
+
+/** 
+ * Creates a link to the plugins page to show only plugins that meet the filter value.
+ *
+ * @param string $filterParam the URL query parameter
+ * @param int    $count       the number of plugins with the status
+ * @param string $caption     text for the link
+ *
+ * @return string html or text to be displayed
+ */
+function filterLink($filterParam, $count, $caption)
+{
+    global $filter;
+
+    return $count > 0
+        ? ($filter == $filterParam ? "<strong>$caption</strong>" : PageLink2('plugins', $caption, "filter=$filterParam"))
+        : $caption;
+}
+
+/** 
+ * Query GitHub for the latest tag of a plugin.
+ * Cache the result of each query for 24 hours to limit the number of API calls.
+ *
+ * @link https://developer.github.com/v3/repos/#list-tags
+ * @link https://developer.github.com/v3/#rate-limiting
+ *
+ * @param string $developer
+ * @param string $repository
+ *
+ * @return string|null the name of the latest tag or null when that cannot be retrieved
+ */
+function getLatestTag($developer, $repository)
+{
+    $tagUrl = "https://api.github.com/repos/$developer/$repository/tags";
+    $now = time();
+    $addedSince = $now - 24 * 60 * 60;
+    $content = getPageCache($tagUrl, $addedSince);
+
+    if ($content === null) {
+        // query result not in cache or cache has expired
+        $options = array(
+            'http' => array(
+                'method' => 'GET',
+                'header' => array("User-Agent: $repository")
+            )
+        );
+        $context = stream_context_create($options);
+        $content = file_get_contents($tagUrl, false, $context);
+        setPageCache($tagUrl, $now, $content);
+    }
+
+    if (!$content) {
+        return null;
+    }
+    $tags = json_decode($content);
+
+    if ($tags === null) {
+        return null;
+    }
+
+    return $tags[0]->name;
+}
