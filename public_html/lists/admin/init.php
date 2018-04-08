@@ -109,8 +109,9 @@ if (isset($GLOBALS['design'])) {
 }
 
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
-    //# prefer dressprow over orange
-    if (is_dir(dirname(__FILE__).'/ui/dressprow')) {
+    if (is_dir(dirname(__FILE__).'/ui/phplist-ui-bootlist')) {
+        $GLOBALS['ui'] = 'phplist-ui-bootlist';
+    } elseif (is_dir(dirname(__FILE__).'/ui/dressprow')) {
         $GLOBALS['ui'] = 'dressprow';
     } elseif (is_dir(dirname(__FILE__).'/ui/default')) {
         $GLOBALS['ui'] = 'default';
