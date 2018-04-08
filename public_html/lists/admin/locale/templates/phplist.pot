@@ -361,7 +361,7 @@ msgstr ""
 msgid "configure"
 msgstr ""
 
-#: public_html/lists/admin/home.php:187 public_html/lists/admin/plugins.php:240
+#: public_html/lists/admin/home.php:187 public_html/lists/admin/plugins.php:294
 msgid "Configure"
 msgstr ""
 
@@ -656,7 +656,7 @@ msgid "Documentation about this error"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:560
-#: public_html/lists/admin/plugins.php:232
+#: public_html/lists/admin/plugins.php:286
 msgid "More information"
 msgstr ""
 
@@ -1006,62 +1006,87 @@ msgstr ""
 msgid "Installed plugins"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:202
-msgid "name"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:204
-msgid "version"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:206
-msgid "description"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:210
-msgid "origin"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:218
-msgid "installed"
+#: public_html/lists/admin/plugins.php:184
+msgid "Plugin"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:223
-msgid "installation Url"
+msgid "Unable to find update"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:225
+#, php-format
+msgid "Version %s is available"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:228
-msgid "developer"
+msgid "Plugin is up-to-date"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:233
-msgid "Documentation Page"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:241
-msgid "settings"
+#: public_html/lists/admin/plugins.php:232
+msgid "Plugin must be updated manually"
 msgstr ""
 
 #: public_html/lists/admin/plugins.php:245
-#: public_html/lists/admin/plugins.php:250
+msgid "name"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:249
+msgid "developer"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:254
+msgid "description"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:257
+msgid "version"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:261
+msgid "Update status"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:267
+msgid "origin"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:275
+msgid "installed"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:280
+msgid "installation Url"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:287
+msgid "Documentation Page"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:295
+msgid "settings"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:303
+#: public_html/lists/admin/plugins.php:308
 msgid "enabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:246
+#: public_html/lists/admin/plugins.php:304
 #: public_html/lists/admin/bouncerules.php:102
 msgid "action"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:256
+#: public_html/lists/admin/plugins.php:314
 msgid "initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:258
+#: public_html/lists/admin/plugins.php:316
 msgid "Initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:264
-#: public_html/lists/admin/plugins.php:265
+#: public_html/lists/admin/plugins.php:322
+#: public_html/lists/admin/plugins.php:323
 #: public_html/lists/admin/templates.php:42
 #: public_html/lists/admin/templates.php:43
 #: public_html/lists/admin/spage.php:76
@@ -1071,39 +1096,56 @@ msgstr ""
 msgid "delete"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:265
+#: public_html/lists/admin/plugins.php:323
 msgid "delete this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:268
+#: public_html/lists/admin/plugins.php:326
 msgid "Dependency check"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:271
+#: public_html/lists/admin/plugins.php:329
 #, php-format
 msgid "Plugin can not be enabled, because \"%s\" is enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:274
+#: public_html/lists/admin/plugins.php:332
 msgid "Plugin can not be enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:274
+#: public_html/lists/admin/plugins.php:332
 #, php-format
 msgid "Failure on system requirement <strong>%s</strong>"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:282
+#: public_html/lists/admin/plugins.php:340
 msgid "update this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:282
-#: public_html/lists/admin/plugins.php:283
+#: public_html/lists/admin/plugins.php:340
+#: public_html/lists/admin/plugins.php:344
 msgid "update"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:286
+#: public_html/lists/admin/plugins.php:346
 msgid "details"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:352
+msgid "All"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:354
+msgid "Enabled"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:356
+#: public_html/lists/admin/admins.php:113
+msgid "Disabled"
+msgstr ""
+
+#: public_html/lists/admin/plugins.php:358
+msgid "Update available"
 msgstr ""
 
 #: public_html/lists/admin/lib.php:25
@@ -6366,10 +6408,6 @@ msgstr ""
 msgid "Super Admin"
 msgstr ""
 
-#: public_html/lists/admin/admins.php:113
-msgid "Disabled"
-msgstr ""
-
 #: public_html/lists/admin/admins.php:115
 msgid "Del"
 msgstr ""
@@ -6933,115 +6971,115 @@ msgstr ""
 msgid "Subject of the message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:371
+#: public_html/lists/admin/defaultconfig.php:375
 msgid "Message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:379
+#: public_html/lists/admin/defaultconfig.php:383
 msgid "Goodbye from our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:380
+#: public_html/lists/admin/defaultconfig.php:384
 msgid "Subject of the message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:401
+#: public_html/lists/admin/defaultconfig.php:405
 msgid "Message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:409
+#: public_html/lists/admin/defaultconfig.php:413
 msgid "Welcome to our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:410
+#: public_html/lists/admin/defaultconfig.php:414
 msgid ""
 "Subject of the message subscribers receive after confirming their email "
 "address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:431
+#: public_html/lists/admin/defaultconfig.php:435
 msgid "Message subscribers receive after confirming their email address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:439
+#: public_html/lists/admin/defaultconfig.php:443
 msgid "[notify] Change of List-Membership details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:440
+#: public_html/lists/admin/defaultconfig.php:444
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:470
+#: public_html/lists/admin/defaultconfig.php:474
 msgid "Message subscribers receive when they have changed their details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:487
+#: public_html/lists/admin/defaultconfig.php:491
 msgid ""
 "Part of the message that is sent to their new email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:504
+#: public_html/lists/admin/defaultconfig.php:508
 msgid ""
 "Part of the message that is sent to their old email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:511
+#: public_html/lists/admin/defaultconfig.php:515
 msgid "Your personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:512
+#: public_html/lists/admin/defaultconfig.php:516
 msgid "Subject of message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:529
+#: public_html/lists/admin/defaultconfig.php:533
 msgid "Message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:546
+#: public_html/lists/admin/defaultconfig.php:550
 msgid "Default footer for sending a campaign"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:561
+#: public_html/lists/admin/defaultconfig.php:565
 msgid "Footer used when a message has been forwarded"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:569
+#: public_html/lists/admin/defaultconfig.php:573
 msgid "Header of public pages."
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:577
+#: public_html/lists/admin/defaultconfig.php:581
 msgid "Footer of public pages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:606
+#: public_html/lists/admin/defaultconfig.php:610
 msgid "Message to send when they request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:614
+#: public_html/lists/admin/defaultconfig.php:618
 msgid "String to always append to remote URL when using send-a-webpage"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:622
+#: public_html/lists/admin/defaultconfig.php:626
 msgid "Width for Wordwrap of Text messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:630
+#: public_html/lists/admin/defaultconfig.php:634
 msgid "CSS for HTML messages without a template"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:638
+#: public_html/lists/admin/defaultconfig.php:642
 msgid "Domains that only accept text emails, one per line"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:646
+#: public_html/lists/admin/defaultconfig.php:650
 msgid "last time TLDs were fetched"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:654
+#: public_html/lists/admin/defaultconfig.php:658
 msgid "Top level domains"
 msgstr ""
 
@@ -7440,7 +7478,7 @@ msgstr ""
 msgid "Sorry, not implemented yet"
 msgstr ""
 
-#: public_html/lists/admin/defaultplugin.php:339
+#: public_html/lists/admin/defaultplugin.php:351
 msgid "choose"
 msgstr ""
 
