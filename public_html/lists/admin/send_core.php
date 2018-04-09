@@ -991,12 +991,12 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     // Display the HTML for the "Send Test" button, and the input field for the email addresses
     $sendtest_content = '<div class="sendTest" id="sendTest">
     ' .$sendtestresult.Help('sendtest').' <b>'.s('to email address(es)').':</b><br />'.
-    	'<p><i>&nbsp; '.s('(comma separate addresses - all must be existing subscribers)').'</i></p>'.
+        '<p><i>&nbsp; '.s('(comma separate addresses - all must be existing subscribers)').'</i></p>'.
         '<div class="input-group">
-        	<input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'" class="form-control" />
-        	<span class="input-group-btn">
-			    <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" /> 
-			 </span>
+            <input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'" class="form-control blockenterkey" />
+            <span class="input-group-btn">
+                <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" />
+             </span>
         </div>
     </div>';
 
@@ -1171,31 +1171,31 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
 
 $GLOBALS['pagefooter']['sendtabs'] = "<script language='Javascript' type='text/javascript' src='js/jquery.cycle2.min.js'></script>
 <script>
-	$(document).ready(function(){
-	    var counttab = ".$counttabs.";
-	    var currenttab = $('.current').attr('id');
-		var tabvis = (($('.sendtabs_container').width()-50)/102)+'';
-		var arrvis = tabvis.split('.');
-		var tabdif = currenttab-arrvis[0];
-		if (counttab <= arrvis[0]) {arrvis[0] = counttab};
-		$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
-		$('.sendcampaign').cycle('goto',tabdif); 
+    $(document).ready(function(){
+        var counttab = ".$counttabs.";
+        var currenttab = $('.current').attr('id');
+        var tabvis = (($('.sendtabs_container').width()-50)/102)+'';
+        var arrvis = tabvis.split('.');
+        var tabdif = currenttab-arrvis[0];
+        if (counttab <= arrvis[0]) {arrvis[0] = counttab};
+        $('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
+        $('.sendcampaign').cycle('goto',tabdif);
 
-	    $(window).on('resize',function() {
-			$('.sendcampaign').cycle('destroy');
-			tabvis = (($('.sendtabs_container').width()-50)/102)+'';
-			arrvis = tabvis.split('.');
-			tabdif = currenttab-arrvis[0];
-			if (counttab <= arrvis[0]) {arrvis[0] = counttab};
-			$('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
-			$('.sendcampaign').cycle('goto',tabdif); 
-		});
-	});
+        $(window).on('resize',function() {
+            $('.sendcampaign').cycle('destroy');
+            tabvis = (($('.sendtabs_container').width()-50)/102)+'';
+            arrvis = tabvis.split('.');
+            tabdif = currenttab-arrvis[0];
+            if (counttab <= arrvis[0]) {arrvis[0] = counttab};
+            $('.sendcampaign').cycle({ slides:'> li', timeout:0, fx:'carousel', allowWrap:false, carouselVisible:arrvis[0], next:'.nexttab', prev:'.prevtab' });
+            $('.sendcampaign').cycle('goto',tabdif);
+        });
+    });
 </script><style>#sendtabs ul{margin:0 1px}</style>";
 
 /* OLD SCRIPT:
 
-	"<script type='text/javascript'>\n".
+    "<script type='text/javascript'>\n".
     '$(document).ready(function() {
     var counttab = ' .$counttabs.";
     var currenttab = $('.current').attr('id');

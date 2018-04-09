@@ -208,6 +208,13 @@ $(document).ready(function () {
         return false;
     });
 
+    $(".blockenterkey").bind("keypress", function(e) {
+       if (e.keyCode == 13) {
+          return false; // stop submitting the form with enter
+        }
+    });
+
+
     /* hmm, doesn't work yet, but would be nice at some point
      $("#emailsearch").autocomplete({
      source: "?page=pageaction&ajaxed=true&action=searchemail",
