@@ -297,7 +297,7 @@ if (!empty($GLOBALS['require_login'])) {
         require __DIR__.'/phpListAdminAuthentication.php';
         $GLOBALS['admin_auth'] = new phpListAdminAuthentication();
     }
-    if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password']) && !empty($_REQUEST['password'])) {
+    if ((!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) && isset($_REQUEST['login']) && isset($_REQUEST['password'])) {
         $loginresult = $GLOBALS['admin_auth']->validateLogin($_REQUEST['login'], $_REQUEST['password']);
         if (!$loginresult[0]) {
             $_SESSION['adminloggedin'] = '';
