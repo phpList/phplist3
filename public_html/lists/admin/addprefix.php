@@ -13,7 +13,7 @@ if (!$GLOBALS['table_prefix']) {
 
 include 'structure.php';
 
-while (list($table, $value) = each($DBstruct)) {
+foreach ($DBstruct as $table => $value) {
     if ($table != $tables[$table]) {
         Sql_Verbose_Query("drop table if exists $tables[$table]", 0);
         Sql_Verbose_Query("alter table $table rename $tables[$table]", 0);

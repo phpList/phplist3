@@ -241,7 +241,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     $subscriptions = array(); //# used to keep track of which admins to alert
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
-        while (list($key, $val) = each($_POST['list'])) {
+        foreach ($_POST['list'] as $key => $val) {
             if ($val == 'signup') {
                 $key = sprintf('%d', $key);
                 if (!empty($key)) {
@@ -355,7 +355,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     $user_att = getUserAttributeValues($email);
 
     if (count($user_att)) {
-        while (list($att_name, $att_value) = each($user_att)) {
+        foreach ($user_att as $att_name => $att_value) {
             $thankyoupage = str_ireplace('['.$att_name.']', $att_value, $thankyoupage);
         }
     }
@@ -521,7 +521,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     $lists = '';
     if (is_array($_POST['list'])) {
-        while (list($key, $val) = each($_POST['list'])) {
+        foreach ($_POST['list'] as $key => $val) {
             if ($val == 'signup') {
                 $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS['tables']['listuser'],$userid,$key));
 //        $lists .= "  * ".$_POST["listname"][$key]."\n";

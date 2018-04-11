@@ -150,7 +150,7 @@ if (!defined('IN_WEBBLER') && !defined('WEBBLER')) {
       </select>
       <select name="' .$name.'[month]">';
             reset($this->months);
-            while (list($key, $val) = each($this->months)) {
+            foreach ($this->months as $key => $val) {
                 $sel = '';
                 if ($key == $month) {
                     $sel = 'selected="selected"';

@@ -12,7 +12,7 @@ $pass = true;
 
 $ls = new WebblerListing(s('Database structure'));
 $ls->setElementHeading(s('Table'));
-while (list($table, $tablename) = each($GLOBALS['tables'])) {
+foreach ($GLOBALS['tables'] as $table => $tablename) {
     $createlink = '';
     $indexes = $uniques = $engine = $category = '';
 

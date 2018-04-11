@@ -68,7 +68,7 @@ function fill($prefix, $listid)
     for ($i = 0; $i < $total; ++$i) {
         $data = array();
         reset($attributes);
-        while (list($key, $val) = each($attributes)) {
+        foreach ($attributes as $key => $val) {
             $data[$val] = current($values[$val]);
             if (!$data[$val]) {
                 reset($values[$val]);
@@ -85,7 +85,7 @@ function fill($prefix, $listid)
         if ($userid) {
             $result = Sql_query("replace into $tables[listuser] (userid,listid,entered) values($userid,$listid,now())");
             reset($data);
-            while (list($key, $val) = each($data)) {
+            foreach ($data as $key => $val) {
                 if ($key && $val) {
                     Sql_query("replace into $tables[user_attribute] (attributeid,userid,value) values(".$key.",$userid,".$val.')');
                 }
@@ -116,7 +116,7 @@ if (!count($testlists)) {
         set_time_limit(60);
         flush();
         reset($testlists);
-        while (list($key, $val) = each($testlists)) {
+        foreach ($testlists as $key => $val) {
             if (!fill(getmypid().$i, $val)) {
                 return;
             }

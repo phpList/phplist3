@@ -38,7 +38,7 @@ foreach ($files as $file) {
 
 if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     $selected = $_POST['selected'];
-    while (list($key, $val) = each($selected)) {
+    foreach ($selected as $key => $val) {
         $entry = readentry("data/$val");
         list($name, $desc) = explode(':', $entry);
         echo '<br/><br/>'.$GLOBALS['I18N']->get('Loading')." $desc<br/>\n";
@@ -87,7 +87,7 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
     <?php echo formStart(' class="defaultsAdd"') ?>
     <?php
     reset($attributes);
-    while (list($key, $attribute) = each($attributes)) {
+    foreach ($attributes as $key => $attribute) {
         if (strstr($key, ':')) {
             list($name, $desc) = explode(':', $key);
             if ($name && $desc) {

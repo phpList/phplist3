@@ -1248,7 +1248,7 @@ function saveUserAttribute($userid, $attid, $data)
 function saveUserByID($userid, $data)
 {
     dbg("Saving user by id $userid");
-    while (list($key, $val) = each($data)) {
+    foreach ($data as $key => $val) {
         if (preg_match("/^attribute(\d+)/", $key, $regs)) {
             $attid = $regs[1];
         } else {
@@ -1268,7 +1268,7 @@ function saveUser($loginname, $data)
     $id_req = Sql_Fetch_Row_Query("select id from user where email = \"$loginname\"");
     if ($id_req[0]) {
         $userid = $id_req[0];
-        while (list($key, $val) = each($data)) {
+        foreach ($data as $key => $val) {
             if (preg_match("/^attribute(\d+)/", $key, $regs)) {
                 $attid = $regs[1];
             }
@@ -1386,7 +1386,7 @@ function saveUserData($username, $fields)
 
     dbg('Checking required fields');
     reset($required_fields);
-    while (list($index, $field) = each($required_fields)) {
+    foreach ($required_fields as $index => $field) {
         $type = $fields[$field]['type'];
         // dbg("$field of type $type");
         if ($type != 'userfield' && $type != '') { //## @@@ need to check why type is not set
