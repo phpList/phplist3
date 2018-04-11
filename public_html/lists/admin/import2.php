@@ -542,7 +542,7 @@ if (count($email_list)) {
             $user['systemvalues'] = $system_values;
             reset($_SESSION['import_attribute']);
             $replace = array();
-            while (list($key, $val) = each($_SESSION['import_attribute'])) {
+            foreach ($_SESSION['import_attribute'] as $key => $val) {
                 if (!empty($values[$val['index']])) {
                     $user[$val['index']] = addslashes($values[$val['index']]);
                     $replace[$key] = addslashes($values[$val['index']]);

@@ -87,7 +87,7 @@ if (EXPORT_EXCEL) {
 $row_delim = "\n";
 
 if (is_array($_SESSION['export']['cols'])) {
-    while (list($key, $val) = each($DBstruct['user'])) {
+    foreach ($DBstruct['user'] as $key => $val) {
         if (in_array($key, $_SESSION['export']['cols'])) {
             if (strpos($val[1], 'sys') === false) {
                 fwrite($exportfile, $val[1].$col_delim);
@@ -168,11 +168,11 @@ while ($user = Sql_fetch_array($result)) {
     }
     ++$done;
     reset($_SESSION['export']['cols']);
-    while (list($key, $val) = each($_SESSION['export']['cols'])) {
+    foreach ($_SESSION['export']['cols'] as $key => $val) {
         fwrite($exportfile, strtr($user[$val], $col_delim, ',').$col_delim);
     }
     reset($attributes);
-    while (list($key, $val) = each($attributes)) {
+    foreach ($attributes as $key => $val) {
         $value = UserAttributeValue($user['id'], $val['id']);
         fwrite($exportfile, quoteEnclosed($value, $col_delim, $row_delim).$col_delim);
     }

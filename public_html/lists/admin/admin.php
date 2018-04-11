@@ -83,7 +83,7 @@ if (!empty($_POST['change'])) {
     if ($id) {
         echo '<div class="actionresult">';
         reset($struct);
-        while (list($key, $val) = each($struct)) {
+        foreach ($struct as $key => $val) {
             $a = $b = '';
             if (strstr($val[1], ':')) {
                 list($a, $b) = explode(':', $val[1]);
@@ -100,7 +100,7 @@ if (!empty($_POST['change'])) {
             //  Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
         }
         if (isset($_POST['attribute']) && is_array($_POST['attribute'])) {
-            while (list($key, $val) = each($_POST['attribute'])) {
+            foreach ($_POST['attribute'] as $key => $val) {
                 Sql_Query(sprintf('replace into %s (adminid,adminattributeid,value)
           values(%d,%d,"%s")', $tables['admin_attribute'], $id, $key, addslashes($val)));
             }
@@ -165,7 +165,7 @@ if (isset($data['privileges'])) {
 }
 
 reset($struct);
-while (list($key, $val) = each($struct)) {
+foreach ($struct as $key => $val) {
     $a = $b = '';
     if (empty($data[$key])) {
         $data[$key] = '';

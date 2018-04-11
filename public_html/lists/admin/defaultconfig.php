@@ -763,7 +763,7 @@ if (!function_exists('getconfig')) {
     }
 } else {
     reset($default_config);
-    while (list($item, $values) = each($default_config)) {
+    foreach ($default_config as $item => $values) {
         $val = getConfig($item);
         saveConfig($item, $values[0], 0);
     }

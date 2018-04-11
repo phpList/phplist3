@@ -88,7 +88,7 @@ if ($dbversion == VERSION && !$force) {
     ignore_user_abort(1);
     // rename tables if we are using the prefix
     include dirname(__FILE__).'/structure.php';
-    while (list($table, $value) = each($DBstruct)) {
+    foreach ($DBstruct as $table => $value) {
         set_time_limit(500);
         if (isset($table_prefix)) {
             if (Sql_Table_exists($table) && !Sql_Table_Exists($tables[$table])) {

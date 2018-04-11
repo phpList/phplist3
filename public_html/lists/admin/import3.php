@@ -333,7 +333,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
     while (count($folderdone) < count($folders) && $level < 10) {
         reset($folders);
         asort($folders);
-        while (list($key, $val) = each($folders)) {
+        foreach ($folders as $key => $val) {
             $delim = $val->delimiter;
             $name = str_replace('{'.$server.'}INBOX', '', imap_utf7_decode($val->name));
             $parent = mailBoxParent($name, $delim, $level);
@@ -361,7 +361,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
     echo '<p class="submit"><input type="submit" value="'.$GLOBALS['I18N']->get('Process Selected Folders').'"></p></form>';
 } else {
     $all_emails = array();
-    while (list($key, $folder) = each($_POST['checkfolder'])) {
+    foreach ($_POST['checkfolder'] as $key => $folder) {
         echo '<br/>';
         flush();
 
@@ -485,7 +485,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
                 reset($lists);
                 $addition = 0;
                 $listoflists = '';
-                while (list($key, $listid) = each($lists)) {
+                foreach ($lists as $key => $listid) {
                     $query = 'replace INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
                     $result = Sql_query($query);
                     // if the affected rows is 2, the user was already subscribed

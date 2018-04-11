@@ -37,7 +37,7 @@ if (!isset($_REQUEST['adminemail'])) {
 $force = !empty($_GET['force']) && $_GET['force'] == 'yes';
 
 if ($force) {
-    while (list($table, $val) = each($DBstruct)) {
+    foreach ($DBstruct as $table => $val) {
         if ($table == 'attribute') {
             $req = Sql_Query("select tablename from {$tables['attribute']}");
             while ($row = Sql_Fetch_Row($req)) {
@@ -89,7 +89,7 @@ if (empty($_SESSION['hasconf']) && !empty($_REQUEST['firstinstall']) && (empty($
 //var_dump($GLOBALS['plugins']);exit;
 
 output('<h3>'.s('Creating tables')."</h3><br />");
-while (list($table, $val) = each($DBstruct)) {
+foreach ($DBstruct as $table => $val) {
     if ($force) {
         if ($table == 'attribute') {
             $req = Sql_Query("select tablename from {$tables['attribute']}");
@@ -100,7 +100,7 @@ while (list($table, $val) = each($DBstruct)) {
         Sql_query("drop table if exists $tables[$table]");
     }
     $query = "CREATE TABLE $tables[$table] (\n";
-    while (list($column, $struct) = each($DBstruct[$table])) {
+    foreach ($DBstruct[$table] as $column => $struct) {
         if (preg_match('/index_\d+/', $column)) {
             $query .= 'index '.$struct[0].',';
         } elseif (preg_match('/unique_\d+/', $column)) {
@@ -150,7 +150,7 @@ while (list($table, $val) = each($DBstruct)) {
                 $adminid = Sql_Insert_Id();
                 */
             } elseif ($table == 'task') {
-                while (list($type, $pages) = each($system_pages)) {
+                foreach ($system_pages as $type => $pages) {
                     foreach ($pages as $page => $access_level) {
                         Sql_Query(sprintf('replace into %s (page,type) values("%s","%s")',
                             $tables['task'], $page, $type));

@@ -7,7 +7,7 @@ if (isset($_POST['action']) && $_POST['action'] == $GLOBALS['I18N']->get('Save C
         echo '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
     }
     flush();
-    while (list($id, $val) = each($_POST['name'])) {
+    foreach ($_POST['name'] as $id => $val) {
         if (!$id && isset($_POST['name'][0]) && $_POST['name'][0] != '') {
             // it is a new one
             $lc_name = substr(preg_replace("/\W/", '', strtolower($_POST['name'][0])), 0, 10);
@@ -59,7 +59,7 @@ if (isset($_POST['action']) && $_POST['action'] == $GLOBALS['I18N']->get('Save C
         }
     }
     if (isset($_POST['delete'])) {
-        while (list($id, $val) = each($_POST['delete'])) {
+        foreach ($_POST['delete'] as $id => $val) {
             $res = Sql_Query("select tablename,type from {$tables['adminattribute']} where id = $id");
             $row = Sql_Fetch_Row($res);
             if ($row[1] != 'hidden' && $row[1] != 'textline') {
@@ -135,7 +135,7 @@ while ($row = Sql_Fetch_array($res)) {
         <td colspan="2"><select name="type[0]">
                 <?php
                 $types = array('textline', 'hidden'); //'radio','select','checkbox',
-                while (list($key, $val) = each($types)) {
+                foreach ($types as $key => $val) {
                     printf('<option value="%s" %s>%s</option>', $val, '', $val);
                 }
                 ?>

@@ -116,7 +116,7 @@ if (count($email_list)) {
             $user['systemvalues'] = $system_values;
             reset($_SESSION['import_attribute']);
             $replace = array();
-            while (list($key, $val) = each($_SESSION['import_attribute'])) {
+            foreach ($_SESSION['import_attribute'] as $key => $val) {
                 if (!empty($values[$val['index']])) {
                     $user[$val['index']] = addslashes($values[$val['index']]);
                     $replace[$key] = addslashes($values[$val['index']]);
@@ -437,7 +437,7 @@ if (count($email_list)) {
                     reset($_SESSION['lists']);
                     $addition = 0;
                     $listoflists = '';
-                    while (list($key, $listid) = each($_SESSION['lists'])) {
+                    foreach ($_SESSION['lists'] as $key => $listid) {
                         $query = 'replace INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
                         $result = Sql_query($query, 1);
                         // if the affected rows is 2, the user was already subscribed
@@ -475,7 +475,7 @@ if (count($email_list)) {
                     //add this user to the groups identified
                     reset($groups);
                     $groupaddition = 0;
-                    while (list($key, $groupid) = each($groups)) {
+                    foreach ($groups as $key => $groupid) {
                         if ($groupid) {
                             $query = sprintf('replace INTO user_group (userid,groupid,type) values(%d,%d,%d)', $userid,
                                 $groupid, $_SESSION['grouptype']);

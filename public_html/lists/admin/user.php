@@ -108,7 +108,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
         $old_listmembership[$row['listid']] = listName($row['listid']);
     }
 
-    while (list($key, $val) = each($struct)) {
+    foreach ($struct as $key => $val) {
         if (is_array($val)) {
             if (isset($val[1]) && strpos($val[1], ':')) {
                 list($a, $b) = explode(':', $val[1]);
@@ -172,7 +172,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     }
 
     if (isset($_POST['cbattribute']) && is_array($_POST['cbattribute'])) {
-        while (list($key, $val) = each($_POST['cbattribute'])) {
+        foreach ($_POST['cbattribute'] as $key => $val) {
             if (isset($_POST['attribute'][$key]) && $_POST['attribute'][$key] == 'on') {
                 Sql_Query(sprintf('replace into %s (userid,attributeid,value)
          values(%d,%d,"on")', $tables['user_attribute'], $id, $key));
@@ -184,7 +184,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     }
 
     if (isset($_POST['cbgroup']) && is_array($_POST['cbgroup'])) {
-        while (list($key, $val) = each($_POST['cbgroup'])) {
+        foreach ($_POST['cbgroup'] as $key => $val) {
             $field = 'cbgroup'.$val;
             if (isset($_POST[$field]) && is_array($_POST[$field])) {
                 $newval = array();
@@ -360,7 +360,7 @@ reset($struct);
 $userdetailsHTML = $mailinglistsHTML = '';
 $userdetailsHTML .= '<table class="userAdd" border="1">';
 
-while (list($key, $val) = each($struct)) {
+foreach ($struct as $key => $val) {
     @list($a, $b) = explode(':', $val[1]);
 
     if (!isset($user[$key])) {

@@ -81,7 +81,7 @@ if (isset($_POST['save'])) {
     $attributes = '';
     if (isset($_POST['attr_use']) && is_array($_POST['attr_use'])) {
         $cnt = 0;
-        while (list($att, $val) = each($_POST['attr_use'])) {
+        foreach ($_POST['attr_use'] as $att => $val) {
             //BUGFIX 15285 - note 50677 (part 1: Attribute order) - by tipichris - mantis.phplist.com/view.php?id=15285
             // $default = $attr_default[$att];
             // $order = $attr_listorder[$att];

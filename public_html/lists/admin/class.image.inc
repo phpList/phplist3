@@ -63,7 +63,7 @@ class imageUpload
         $result = array();
         $req = Sql_Query(sprintf('select * from image where id = %d', $fielddata[data]));
         $att = Sql_Fetch_Array($req);
-        while (list($key, $val) = each($att)) {
+        foreach ($att as $key => $val) {
             $result[$fielddata[name] . "." . $key] = $val;
         }
         return $result;
