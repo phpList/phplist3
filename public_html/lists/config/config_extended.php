@@ -656,7 +656,7 @@ define('EMBEDEXTERNALIMAGES',false);
 
 // Manual text part, will give you an input box for the text version of the message
 // instead of trying to create it by parsing the HTML version into plain text
-define('USE_MANUAL_TEXT_PART', 1);
+define('USE_MANUAL_TEXT_PART', 0);
 
 // set this to 1 to allow adding attachments to the mails
 // caution, message may become very large. it is generally more
