@@ -17,10 +17,10 @@
         <p><?php echo s('The concept behind Open Source is collaboration. An organised network of many contributors where the whole is greater than the sum of its parts.') ?></p>
         <p><?php echo s('If you are interested to know more about Open Source, you can visit the links below') ?></p>
         <ul>
-            <li><a href="http://www.opensource.org">The Open Source Initiative</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Open-source_software">Wikipedia article on Open Source
+            <li><a href="http://www.opensource.org" target="_blank">The Open Source Initiative</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/Open-source_software" target="_blank">Wikipedia article on Open Source
                     software</a></li>
-            <li><a href="https://directory.fsf.org/">List of Open Source software</a></li>
+            <li><a href="https://directory.fsf.org/" target="_blank">List of Open Source software</a></li>
 
         </ul>
     </div>
@@ -30,9 +30,9 @@
             .</p>
 
         <ul>
-            <li><a href="https://www.phplist.org/users/"><?php echo s('Support community') ?></a></li>
-            <li><a href="https://discuss.phplist.org/c/support"><?php echo s('Support forum') ?></a></li>
-            <li><a href="https://www.phplist.org/paid-support/"><?php echo s('Independent professional support') ?></a></li>
+            <li><a href="https://www.phplist.org/users/" target="_blank"><?php echo s('Support community') ?></a></li>
+            <li><a href="https://discuss.phplist.org/c/support" target="_blank"><?php echo s('Support forum') ?></a></li>
+            <li><a href="https://www.phplist.org/paid-support/" target="_blank"><?php echo s('Independent professional support') ?></a></li>
         </ul>
     </div>
 
@@ -41,11 +41,11 @@
         <p><?php echo s('phpList is a community effort &mdash; your contributions power the project. Help phpList to serve your needs more effectively by applying your skills and resources.') ?></p>
 
         <ul>
-            <li><a href="https://www.phplist.org/development/"><?php echo s('Developer community') ?></a></li>
-            <li><a href="https://resources.phplist.com/develop/start"><?php echo s('Developer resources &amp; documentation') ?></a></li>
-            <li><a href="https://www.phplist.org/documentation/"><?php echo s('Documentation coordination') ?></a></li>
-            <li><a href="https://translate.phplist.org/"><?php echo s('Translation platform') ?></a></li>
-            <li><a href="https://www.phplist.org/#donate"><?php echo s('Donate to support phpList development') ?></a></li>
+            <li><a href="https://www.phplist.org/development/" target="_blank"><?php echo s('Developer community') ?></a></li>
+            <li><a href="https://resources.phplist.com/develop/start" target="_blank"><?php echo s('Developer resources &amp; documentation') ?></a></li>
+            <li><a href="https://www.phplist.org/documentation/" target="_blank"><?php echo s('Documentation coordination') ?></a></li>
+            <li><a href="https://translate.phplist.org/" target="_blank"><?php echo s('Translation platform') ?></a></li>
+            <li><a href="https://www.phplist.org/#donate" target="_blank"><?php echo s('Donate to support phpList development') ?></a></li>
         </ul>
 
     </div>
@@ -57,9 +57,9 @@
             .</p>
 
         <ul>
-            <li><a href="http://phplist.com/">phpList Hosted</a></li>
-            <li><a href="http://phplist.com/pricing">Pricing</a></li>
-            <li><a href="http://phplist.com/register">Register a trial account</a></li>
+            <li><a href="http://phplist.com/" target="_blank">phpList Hosted</a></li>
+            <li><a href="http://phplist.com/pricing" target="_blank">Pricing</a></li>
+            <li><a href="http://phplist.com/register" target="_blank">Register a trial account</a></li>
         </ul>
 
     </div>
