@@ -424,22 +424,22 @@ if ($c) {
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
 <h3>' .s('Add new Attribute').':</h3>
-<div class="alert-warning">' .s('Warning: Please avoid storing sensitive personal information such as race, health, or sexual orientation.').'</div>
+<div class="alert alert-warning">' .s('Warning: Please avoid storing sensitive personal information such as race, health, or sexual orientation.').'</div>
 
-<div class="label"><label class="label">' .s('Name').': </label></div>
+<div class="label pull-left"><label class="label">' .s('Name').': </label></div>
 <div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
-<div class="label"><label class="label">' .s('Type').': </label></div>
+<div class="label pull-left"><label class="label">' .s('Type').': </label></div>
 <div class="field"><select name="type[0]">';
 foreach ($types as $key => $val) {
     printf('     <option value="%s" %s>%s</option>', $val, '', s($val));
 }
 echo'
 </select></div>
-<div class="label"><label class="label">' .s('Default Value').': </label></div>
+<div class="label pull-left"><label class="label">' .s('Default Value').': </label></div>
 <div class="field"><input type="text" name="default[0]" value="" size="40" /></div>
-<div class="label"><label class="label">' .s('Order of Listing').': </label></div>
+<div class="label pull-left"><label class="label">' .s('Order of Listing').': </label></div>
 <div class="field"><input type="text" name="listorder[0]" value="" size="5" /></div>
-<div class="label"><label class="label">' .s('Is this attribute required?').': </label></div>
+<div class="label pull-left"><label class="label">' .s('Is this attribute required?').': </label></div>
 <div class="field"><input type="checkbox" name="required[0]" value="1" checked="checked" /></div>
 
 <div class="field"><input class="submit" type="submit" name="action" value="' .s('Save Changes').'" /></div>
