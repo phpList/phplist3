@@ -57,9 +57,9 @@ if (!empty($_GET['reset']) && $_GET['reset'] == 'yes') {
     $button = new ConfirmButton(
         s('Are you sure you want to reset the import session?'),
         PageURL2('import2&reset=yes', 'reset', ''),
-        s('Reset Import session'));
+        s('Reset Import session'),'','btn btn-lg btn-danger');
 
-    echo '<div class="fright">'.$button->show().'</div>';
+    echo '<div class="fright text-right">'.$button->show().'</div>';
     // }
 }
 if (isset($_POST['import'])) {
