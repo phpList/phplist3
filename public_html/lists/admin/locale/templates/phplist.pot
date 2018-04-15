@@ -2287,172 +2287,172 @@ msgstr ""
 msgid "Date they signed up before"
 msgstr ""
 
-#: public_html/lists/admin/template.php:69
+#: public_html/lists/admin/template.php:58
 msgid "No such template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:81
+#: public_html/lists/admin/template.php:70
 msgid "Images stored"
 msgstr ""
 
-#: public_html/lists/admin/template.php:83
+#: public_html/lists/admin/template.php:72
 msgid "No images found"
 msgstr ""
 
-#: public_html/lists/admin/template.php:86
+#: public_html/lists/admin/template.php:75
 msgid "Template saved and ready for use in campaigns"
 msgstr ""
 
-#: public_html/lists/admin/template.php:104
-#: public_html/lists/admin/template.php:111
+#: public_html/lists/admin/template.php:93
+#: public_html/lists/admin/template.php:100
 msgid "Image"
 msgstr ""
 
-#: public_html/lists/admin/template.php:104
+#: public_html/lists/admin/template.php:93
 msgid "\"not full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:111
+#: public_html/lists/admin/template.php:100
 msgid "does not exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:124
+#: public_html/lists/admin/template.php:113
 msgid "Not a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:131
+#: public_html/lists/admin/template.php:120
 msgid "No Title"
 msgstr ""
 
-#: public_html/lists/admin/template.php:133
+#: public_html/lists/admin/template.php:122
 msgid "Template does not contain the [CONTENT] placeholder"
 msgstr ""
 
-#: public_html/lists/admin/template.php:153
+#: public_html/lists/admin/template.php:142
 msgid "Template saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:172
+#: public_html/lists/admin/template.php:161
 msgid "Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:172
+#: public_html/lists/admin/template.php:161
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
 
-#: public_html/lists/admin/template.php:173
+#: public_html/lists/admin/template.php:162
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:184
-#: public_html/lists/admin/template.php:189
+#: public_html/lists/admin/template.php:173
+#: public_html/lists/admin/template.php:178
 msgid "Image name:"
 msgstr ""
 
-#: public_html/lists/admin/template.php:184
-#: public_html/lists/admin/template.php:189
+#: public_html/lists/admin/template.php:173
+#: public_html/lists/admin/template.php:178
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:196
+#: public_html/lists/admin/template.php:185
 msgid "Save Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:202
+#: public_html/lists/admin/template.php:191
 msgid "Template was successfully saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:212
+#: public_html/lists/admin/template.php:201
 msgid "Some errors were found, template NOT saved!"
 msgstr ""
 
-#: public_html/lists/admin/template.php:223
+#: public_html/lists/admin/template.php:212
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:227
+#: public_html/lists/admin/template.php:216
 msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:229
-#: public_html/lists/admin/template.php:236
-#: public_html/lists/admin/template.php:243
+#: public_html/lists/admin/template.php:218
+#: public_html/lists/admin/template.php:225
+#: public_html/lists/admin/template.php:232
 #: public_html/lists/admin/tests/sendpage.php:32
 #: public_html/lists/admin/tests/sendpage.php:40
 msgid "OK"
 msgstr ""
 
-#: public_html/lists/admin/template.php:231
-#: public_html/lists/admin/template.php:238
-#: public_html/lists/admin/template.php:245
+#: public_html/lists/admin/template.php:220
+#: public_html/lists/admin/template.php:227
+#: public_html/lists/admin/template.php:234
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:234
+#: public_html/lists/admin/template.php:223
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:241
+#: public_html/lists/admin/template.php:230
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:248
+#: public_html/lists/admin/template.php:237
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:253
+#: public_html/lists/admin/template.php:242
 msgid "Sending a test from templates only works for the system template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:254
+#: public_html/lists/admin/template.php:243
 msgid ""
 "To test your template, go to campaigns and send a test campaign using the "
 "template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:283
+#: public_html/lists/admin/template.php:272
 msgid "List of Templates"
 msgstr ""
 
-#: public_html/lists/admin/template.php:291
+#: public_html/lists/admin/template.php:280
 msgid "Title of this template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:296
+#: public_html/lists/admin/template.php:285
 msgid "Content of the template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:297
+#: public_html/lists/admin/template.php:286
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:298
+#: public_html/lists/admin/template.php:287
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
 
-#: public_html/lists/admin/template.php:301
+#: public_html/lists/admin/template.php:290
 msgid "Template file."
 msgstr ""
 
-#: public_html/lists/admin/template.php:325
+#: public_html/lists/admin/template.php:314
 msgid "Check that all links have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:330
+#: public_html/lists/admin/template.php:319
 msgid "Check that all images have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:338
+#: public_html/lists/admin/template.php:327
 msgid "Check that all external images exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:347
+#: public_html/lists/admin/template.php:336
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:156
 #: public_html/lists/admin/list.php:295 public_html/lists/admin/user.php:488
@@ -2466,23 +2466,23 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: public_html/lists/admin/template.php:356
+#: public_html/lists/admin/template.php:345
 #: public_html/lists/admin/spageedit.php:302
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:356
+#: public_html/lists/admin/template.php:345
 #: public_html/lists/admin/spageedit.php:302
 msgid "to email addresses"
 msgstr ""
 
-#: public_html/lists/admin/template.php:357
+#: public_html/lists/admin/template.php:346
 #: public_html/lists/admin/send_core.php:994
 #: public_html/lists/admin/spageedit.php:303
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/template.php:358
+#: public_html/lists/admin/template.php:347
 #: public_html/lists/admin/send_core.php:998
 #: public_html/lists/admin/send_core.php:1362
 #: public_html/lists/admin/spageedit.php:304
@@ -3713,8 +3713,7 @@ msgid "Scheduling"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:578
-#: public_html/lists/admin/list.php:195 public_html/lists/admin/list.php:206
-#: public_html/lists/admin/user.php:523
+#: public_html/lists/admin/list.php:206 public_html/lists/admin/user.php:523
 msgid "Lists"
 msgstr ""
 
@@ -5590,29 +5589,28 @@ msgstr ""
 msgid "subscriber management functions"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:42
-#: public_html/lists/admin/phpListAdminAuthentication.php:104
+#: public_html/lists/admin/phpListAdminAuthentication.php:43
+msgid "Please enter your credentials."
+msgstr ""
+
+#: public_html/lists/admin/phpListAdminAuthentication.php:46
+#: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "your account has been disabled"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:49
-#: public_html/lists/admin/phpListAdminAuthentication.php:58
+#: public_html/lists/admin/phpListAdminAuthentication.php:54
 msgid "Admin authentication has changed, please update your admin module"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:55
+#: public_html/lists/admin/phpListAdminAuthentication.php:58
 msgid "incorrect password"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:64
-msgid "Login failed"
-msgstr ""
-
-#: public_html/lists/admin/phpListAdminAuthentication.php:102
+#: public_html/lists/admin/phpListAdminAuthentication.php:100
 msgid "No such account"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:139
+#: public_html/lists/admin/phpListAdminAuthentication.php:137
 msgid "Nobody"
 msgstr ""
 
