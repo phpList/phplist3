@@ -86,20 +86,20 @@ switch ($access) {
         break;
 }
 
-echo '<div class="actions">';
-echo '<div class="pull-left">'.PageLinkButton('catlists', $I18N->get('Categorise lists')).'</div>';
+echo '<div class="row"><div class="actions col-xs-12">';
+echo '<span class="pull-left">'.PageLinkButton('catlists', $I18N->get('Categorise lists')).'</span>';
 $canaddlist = false;
 if ( !isSuperUser()) {
     $numlists = Sql_Fetch_Row_query("select count(*) from {$tables['list']} where owner = ".$_SESSION['logindetails']['id']);
     if ($numlists[0] < MAXLIST) {
-        echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list')).'</div>';
+        echo '<span class="pull-right">'.PageLinkButton('editlist', s('Add a list')).'</span>';
         $canaddlist = true;
     }
 } else {
-    echo '<div class="pull-right">'.PageLinkButton('editlist', $GLOBALS['I18N']->get('Add a list')).'</div>';
+    echo '<span class="pull-right">'.PageLinkButton('editlist', s('Add a list')).'</span>';
     $canaddlist = true;
 }
-echo '</div>';
+echo '</div></div>';
 
 if (isset($_GET['delete'])) {
     verifyCsrfGetToken();
@@ -192,7 +192,7 @@ if ($total == 0 && count($aListCategories) && $current == '' && empty($_GET['tab
     }
 }
 
-echo '<p class="total">'.$total.' '.$GLOBALS['I18N']->get('Lists').'</p>';
+//echo '<p class="total">'.$total.' '.s('Lists').'</p>';
 if ($total > 30 && empty($_SESSION['showalllists'])) {
     $paging = simplePaging('list', $s, $total, 10, '&nbsp;');
     $limit = " limit $s,10";
@@ -203,7 +203,7 @@ if ($total > 30 && empty($_SESSION['showalllists'])) {
 $result = Sql_query('select * from '.$tables['list'].' '.$subselect.' order by listorder '.$limit);
 $numlists = Sql_Affected_Rows($result);
 
-$ls = new WebblerListing(s('Lists'));
+$ls = new WebblerListing($total.' '.s('Lists'));
 $ls->usePanel($paging);
 
 /* Always Show a "list" of all subscribers
