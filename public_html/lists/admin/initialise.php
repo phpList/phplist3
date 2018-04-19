@@ -242,7 +242,7 @@ if ($success) {
 
     //# load language files
     // this is too slow
-  #  $GLOBALS['I18N']->initFSTranslations();
+    $GLOBALS['I18N']->initFSTranslations();
 } else {
     echo '<div class="initialiseOptions"><ul><li>'.s('Maybe you want to').' '.PageLinkButton('upgrade',
             s('Upgrade')).' '.s('instead?').'</li>
