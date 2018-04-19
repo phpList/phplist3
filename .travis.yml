@@ -68,6 +68,8 @@ script:
 
   # run all feature except @first-run
   - ./vendor/bin/behat -fprogress -p $BROWSER --strict --tags="~@first-run && ~@wip"
+addons:
+  chrome: stable
 
 after_failure:
   - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png
