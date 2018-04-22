@@ -327,11 +327,11 @@ function my_shutdown()
                 }, %d);
                 </script></body></html>', $reload, $counters['sent'], $notsent, addCsrfGetToken(), $delaytime*1000);
             } else {
-			    sleep($delaytime);
+                sleep($delaytime);
                 printf('<script type="text/javascript">
                 document.location = "./?page=pageaction&action=processqueue&ajaxed=true&reload=%d&lastsent=%d&lastskipped=%d%s";
                 </script></body></html>', $reload, $counters['sent'], $notsent, addCsrfGetToken());
-		    }
+            }
         }
     } elseif ($script_stage == 6 || $nothingtodo) {
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -584,7 +584,7 @@ while ($msg = Sql_Fetch_Assoc($req)) {
         'UPDATE %s
       SET status = "submitted",
       sendstart = null,
-      embargo = embargo + 
+      embargo = embargo +
         INTERVAL (FLOOR(TIMESTAMPDIFF(MINUTE, embargo, GREATEST(embargo, NOW())) / requeueinterval) + 1) * requeueinterval MINUTE
       WHERE id = %d',
         $GLOBALS['tables']['message'],
@@ -885,7 +885,7 @@ while ($message = Sql_fetch_array($messages)) {
         inner join %s as u ON u.id = listuser.userid
         inner join %s as listmessage ON listuser.listid = listmessage.listid
         left join %s as um ON (um.messageid = %d and um.userid = listuser.userid)
-        where 
+        where
         listmessage.messageid = %d
         and listmessage.listid = listuser.listid
         and u.id = listuser.userid
@@ -1042,6 +1042,7 @@ while ($message = Sql_fetch_array($messages)) {
                 $htmlpref = $user['htmlemail'];  // preference for HTML emails
                 $confirmed = $user['confirmed'] && !$user['disabled']; //# 7 = disabled flag
                 $blacklisted = $user['blacklisted'];
+                $msgdata['counters'] = $counters;
 
                 $cansend = !$blacklisted && $confirmed;
                 /*
