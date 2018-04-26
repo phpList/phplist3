@@ -102,7 +102,7 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 $content = '<table class="messageView">';
 $format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>';
 
-$content .= sprintf($format, s('Subject'), $result['subject']);
+$content .= sprintf($format, s('Subject'), $msgdata['subject']);
 $content .= sprintf($format, s('entered'), formatDateTime( stripslashes($msgdata['entered'] )));
 $content .= sprintf($format, s('fromfield'), stripslashes($msgdata['fromfield']));
 $content .= sprintf($format, s('HTML content'), stripslashes($msgdata['message']));
