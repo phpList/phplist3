@@ -1629,6 +1629,8 @@ function resetMessageStatistics($messageid = 0)
         Sql_Query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['linktrack_uml_click'],
             $messageid));
         Sql_Query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['usermessage'], $messageid));
+        Sql_Query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['user_message_view'], $messageid));
+        Sql_Query(sprintf('update %s set viewed = 0 where messageid = %d', $GLOBALS['tables']['message'], $messageid));
     }
 }
 
