@@ -745,8 +745,21 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if ($forwardedby) {
         $mail->add_timestamp();
     }
+    
     $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
-    $mail->addCustomHeader('List-Unsubscribe: <'.$text['jumpoffurl'].'>');
+
+    $listUnsubscribeHeader = 'List-Unsubscribe: ';
+
+    if (UNSUBSCRIBE_MAILTO) {
+        $listUnsubscribeHeader .= sprintf(
+            '<mailto:%s?subject=%s&body=%s>, ',
+            $GLOBALS['message_envelope'],
+            rawurlencode('Unsubscribe by mailto'),
+            rawurlencode("Please Unsubscribe me: $destinationemail\r\nX-ListMember: $destinationemail\r\nX-MessageID: $messageid\r\nuid=$hash\r\n")
+        );
+    }
+    $listUnsubscribeHeader .= "<" . $text["jumpoffurl"] . ">";
+    $mail->addCustomHeader($listUnsubscribeHeader);
     $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
     $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');
 
