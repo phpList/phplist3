@@ -342,6 +342,8 @@ $(document).ready(function () {
     });
 
     // export page
+    $(document).ready(function () {
+        $("#exportdates").hide();
     $("input:radio[name=column]").change(function () {
         if (this.value == 'nodate') {
             $("#exportdates").hide();
@@ -349,6 +351,7 @@ $(document).ready(function () {
             $("#exportdates").show();
         }
     });
+});
 
     $("#processexport").click(function () {
         // for export, refresh underlying page, to get a new security token
