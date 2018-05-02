@@ -84,7 +84,7 @@ if ($list) {
 }
 
 echo formStart();
-$checked = 'entered';
+$checked = 'nodate';
 if (isset($_GET['list']) && $_GET['list'] == 'all') {
     $checked = 'nodate';
 }
