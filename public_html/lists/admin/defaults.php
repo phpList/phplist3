@@ -53,8 +53,13 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
             Fatal_Error($GLOBALS['I18N']->get('Name is not unique enough'));
         }
 
+        $typeValue='select';
+        if($lc_name=='termsofservice'){
+        $typeValue='checkbox';
+        }
+
         $query = sprintf('insert into %s (name,type,required,tablename) values("%s","%s",%d,"%s")',
-            $tables['attribute'], addslashes($name), 'select', 1, $lc_name);
+            $tables['attribute'], addslashes($name),$typeValue,1, $lc_name);
         Sql_Query($query);
         $insertid = Sql_Insert_id();
 
