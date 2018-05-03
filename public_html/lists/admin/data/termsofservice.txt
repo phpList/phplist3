@@ -5,4 +5,4 @@
 # if you have any useful contributions like this for PHPlist, send them to me, 
 # and I can include them in next versions. That will save others in collecting 
 # the information
-I agree to the terms of service: Terms of Service
+I agree to the terms of service:Terms of Service
