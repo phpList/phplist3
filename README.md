@@ -16,8 +16,8 @@ Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 * Responsive web-based, and command-line interfaces
 * Real-time analytics: track message responses and subscriber behaviour
-* Message-queue management: load-balancesand throttles multiple accounts and campaigns; tracks every delivery outcome
-* Content personalisation: every messages customised to individual subscriber attributes and preferences
+* Message-queue management: load-balances and throttles multiple accounts and campaigns; tracks every delivery outcome
+* Content personalisation: every message customised to individual subscriber attributes and preferences
 * Automated bounce management and processing: policy and regex-based handling with every bounce accessibly archived
 * Schedule, pause, resume, repeat, and requeue campaigns
 * Amazon SES: built-in optimised support
@@ -31,11 +31,11 @@ Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 ## Trying out phpList
 
-If you'd like to use phpList for your own campaigns, or you just want try phpList out, there is no need to do all the work of installing it yourself. [phpList Hosted](https://phplist.com) is free to use, just [sign up](https://phplist.com/register) to get started.
+If you'd like to use phpList for your own campaigns, or you just want to try phpList out, there is no need to do all the work of installing it yourself. [phpList Hosted](https://phplist.com) is free to use, just [sign up](https://phplist.com/register) to get started.
 
 If at a later time you do want to migrate from your own installation to phpList Hosted, or vice versa, your data can be migrated.
 
-Alternatively you can try out the latest phpList release at [phplist.org](https://demo.phplist.org/lists/admin/). This installation is wiped and refreshed every hour.
+Alternatively, you can try out the latest phpList release at [phplist.org](https://demo.phplist.org/lists/admin/). This installation is wiped and refreshed every hour.
 
 ## Requirements
 See [System requirements](https://resources.phplist.com/system/start)
@@ -70,9 +70,8 @@ Step 3. Copy the files from the tar file to your webroot.
 You can copy everything in the "lists" directory in the tar file to your website.
 To facilitate future upgrades, ie to make it easier for you to simply copy
 everything I have now put the "configurable" files in their own directory. They
-reside in "lists/config". This is hopefully going to be the directory thay you can
-keep between upgrades, and that will contain the only information that you want
-changed in order to make it work for your own site.
+reside in "lists/config". This is hopefully going to be the directory that you can
+keep between upgrades, and that will contain the only information that you want to be changed in order to make it work for your own site.
 
 Step 4. Copy your configuration files to lists/config or re-edit the new config file
 sometimes new features are added to the config file, so it's better to use
@@ -86,7 +85,7 @@ You can overwrite the files that are there. They are example files.
 
 Step 5. Go to http://yourdomain/lists/admin/ and choose the Upgrade link
 
-Step 6. Click the link in this page.
+Step 6. Click the link on this page.
 
 This process may take quite a while if your database is large. Don't interrupt it.
 
