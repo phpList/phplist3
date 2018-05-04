@@ -17,8 +17,8 @@
         <p><?php echo s('The concept behind Open Source is collaboration. An organised network of many contributors where the whole is greater than the sum of its parts.') ?></p>
         <p><?php echo s('If you are interested to know more about Open Source, you can visit the links below') ?></p>
         <ul>
-            <li><a href="http://www.opensource.org" target="_blank">The Open Source Initiative</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Open-source_software" target="_blank">Wikipedia article on Open Source
+            <li><a href="https://www.opensource.org" target="_blank">The Open Source Initiative</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Open-source_software" target="_blank">Wikipedia article on Open Source
                     software</a></li>
             <li><a href="https://directory.fsf.org/" target="_blank">List of Open Source software</a></li>
 
@@ -57,9 +57,9 @@
             .</p>
 
         <ul>
-            <li><a href="http://phplist.com/" target="_blank">phpList Hosted</a></li>
-            <li><a href="http://phplist.com/pricing" target="_blank">Pricing</a></li>
-            <li><a href="http://phplist.com/register" target="_blank">Register a trial account</a></li>
+            <li><a href="https://phplist.com/" target="_blank">phpList Hosted</a></li>
+            <li><a href="https://phplist.com/pricing" target="_blank">Pricing</a></li>
+            <li><a href="https://phplist.com/register" target="_blank">Register a trial account</a></li>
         </ul>
 
     </div>
