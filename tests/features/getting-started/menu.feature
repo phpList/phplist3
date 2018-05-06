@@ -31,7 +31,7 @@ Feature: Navigate the app using the menu
          | Add a new subscriber      |
          | Manage subscribers        |
          | Subscriber lists          |
-         | Import emails             |
+         | Import subscribers        |
          | Export subscribers        |
          | View bounces per list     |
          | Suppression List          |
