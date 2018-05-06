@@ -17,16 +17,16 @@ Feature: Login
         And I press "Continue"
         Then I should see "Incorrect password"
 
-#    Scenario: Login with only a username
-#        Given I am on "/lists/admin/"
-#        When I fill in "login" with "no-user"
-#        And I fill in "password" with ""
-#        And I press "Continue"
-#        Then I should see "Please enter your credentials"
+   Scenario: Login with only a username
+         Given I am on "/lists/admin/"
+         When I fill in "login" with "no-user"
+         And I fill in "password" with ""
+         And I press "Continue"
+         Then I should see "Please enter your credentials"
 
-#    Scenario: Login with only a password
-#        Given I am on "/lists/admin/"
-#        When I fill in "login" with ""
-#        And I fill in "password" with "no-password"
-#        And I press "Continue"
-#        Then I should see "Please enter your credentials"
+     Scenario: Login with only a password
+         Given I am on "/lists/admin/"
+         When I fill in "login" with ""
+         And I fill in "password" with "no-password"
+         And I press "Continue"
+         Then I should see "Please enter your credentials"
