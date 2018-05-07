@@ -223,7 +223,7 @@ $inviteMessageSubject= "Invite";
 $uuid = Uuid::generate(4);
 $footer= sql_escape(getConfig('messagefooter'));
 
-    $result= Sql_query("insert into {$tables['message']} (uuid,subject,message,textmessage,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",\"text message test\",now(),\"draft\",1,\"$footer\",\"invite\" )");
+    $result= Sql_query("insert into {$tables['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",1,\"$footer\",\"invite\" )");
 
    // add a testlist
     $info = s('List for testing');
