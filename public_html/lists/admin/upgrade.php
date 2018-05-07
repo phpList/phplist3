@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__).'/lib.php';
 
 if (!$GLOBALS['commandline']) {
     @ob_end_flush();
@@ -305,28 +306,8 @@ if ($dbversion == VERSION && !$force) {
 
     if (version_compare($dbversion, '3.3.4','<')) {
         // add a draft campaign for invite plugin 
-    $inviteMessage= "Hi [FIRST NAME], remember us? You first signed up for our email newsletter on [ENTERED] -- please click here to confirm that you're happy to continue receiving our messages:
-
-        [CONFIRMATIONURL]
-        
-        If you do not confirm using this link then you won't hear from us again.
-        
-        While you're at it, you can also update your preferences, including your email address or other details, by clicking here:
-        
-        [PREFERENCESURL]
-        
-        By confirming your membership and keeping your details up to date, you're helping us to manage and protect your data in accordance with best practices.
-        
-        Thank you!
-        
-        ";
-        $inviteMessageSubject = "Invite";
-        $uuid = Uuid::generate(4);
-        $ownerid = $_SESSION['logindetails']['id'];
-        $footer = sql_escape(getConfig('messagefooter'));
-        
-            $result= Sql_query("insert into {$tables['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
-        
+        addInviteCampaign();
+  
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
