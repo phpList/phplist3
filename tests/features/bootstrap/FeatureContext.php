@@ -1,10 +1,27 @@
 <?php
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Selector\Xpath\Escaper;
+use WebDriver\Element;
+use \Behat\Mink\Element\NodeElement;
+use WebDriver\Exception\NoSuchElement;
+use WebDriver\Exception\UnknownCommand;
+use WebDriver\Exception\UnknownError;
+use WebDriver\Exception;
+use WebDriver\Key;
+use WebDriver\WebDriver;
 
 use Behat\Behat\Context\Context;
 
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
-#use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
+
+use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\ResponseTextException;
+use Behat\Mink\Exception\ElementNotFoundException;
+use WebDriver\Exception\StaleElementReference;
+use Behat\Behat\Tester\Exception\PendingException;
+
 
 //
 // Require 3rd-party libraries here:
@@ -16,52 +33,36 @@ use Behat\MinkExtension\Context\MinkContext;
 /**
  * Features context.
  */
+
 class FeatureContext extends MinkContext
 {
     private $params = array();
     private $data = array();
 
-    private $db;
-
     /**
      * Initializes context.
      * Every scenario gets its own context object.
      *
-     * @param array $admin
-     * @param array $database
+     * @param array $parameters context parameters (set them up through behat.yml)
      */
-    public function __construct( $database = array(), $admin = array())
+    public function __construct($base_url, $db_user, $db_password, $db_name, $admin_username, $admin_password)
     {
-        // merge default database value into configured value
-        $database = array_merge(array(
-            'host'      => 'localhost',
-            'password'  => 'phplist',
-            'user'      => 'phplist',
-            'name'      => 'phplistdb'
-        ),$database);
-
-        // merge default admin user value into configured value
-        $admin = array_merge(array(
-            'username' => 'admin',
-            'password' => 'admin'
-        ),$admin);
-
+    
         $this->params = array(
-            'db_host' => $database['host'],
-            'db_user' => $database['user'],
-            'db_password' => $database['password'],
-            'db_name' => $database['name'],
-            'admin_username' => $admin['username'],
-            'admin_password' => $admin['password']
+            'base_url' => $base_url
+            , 'db_user' => $db_user
+            , 'db_password' => $db_password
+            , 'db_name' => $db_name
+            , 'admin_username' => $admin_username
+            , 'admin_password' => $admin_password
         );
         
         $this->db = mysqli_init();
         mysqli_real_connect(
-            $this->db,
-            $database['host'],
-            $database['user'],
-            $database['password'],
-            $database['name']
+            $this->db
+            , 'localhost', $this->params['db_user']
+            , $this->params['db_password']
+            , $this->params['db_name']
         );
     }
 
@@ -163,8 +164,8 @@ class FeatureContext extends MinkContext
      */
     public function iRecreateTheDatabase()
     {
-        mysqli_query($this->db,'drop database if exists '.$this->params['db_name']);
-        mysqli_query($this->db,'create database '.$this->params['db_name']);
+        mysqli_query($this->db,'drop database if exists phplistbehattestdb');
+        mysqli_query($this->db,'create database phplistbehattestdb');
     }
     
     /**
@@ -226,7 +227,7 @@ class FeatureContext extends MinkContext
      * @Given /^I have logged in as an administrator$/
      */
     public function iAmAuthenticatedAsAdmin() {
-        $this->visit('/lists/admin/');
+        $this->visit($this->params['base_url'] . '/lists/admin/');
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
@@ -234,5 +235,171 @@ class FeatureContext extends MinkContext
         if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
             $this->throwExpectationException('Login failed: Dashboard link not found');
         }
+    }
+  
+   /**
+     * @When I switch to iframe :arg1
+     */
+    public function iSwitchToIframe($arg1)
+    {  $arg1=$this->find("css",'cke_wysiwyg_frame cke_reset');
+        $this->getSession()->switchToIFrame($arg1);
+       
+    }
+    
+    /**
+     * Go back to main document frame.
+     *
+     * @When (I )switch to main frame
+     */
+    public function switchToMainFrame()
+    {
+        $this->getSession()->getDriver()->switchToDefaultContent(); 
+    }
+
+    /**
+     * @Then I click on :arg1
+     */
+    public function iClickOn($arg1)
+    {  $arg1= $this->find("css",'submit btn btn-primary');
+       $this->getSession()->click($arg1);
+    }
+     /**
+     * @When I enter text :arg1
+     */
+    public function iEnterText($arg1)
+    { 
+
+        $script = <<<JS
+            (function(){
+        CKEDITOR.instances.message.setData( '<p>This is the editor data.</p>' ); })();
+JS;
+    //$this->getSession()->executeScript("document.body.innerHTML = '<p>".$arg1."</p>'");}
+      $this->getSession()->evaluateScript($script);
+    }
+      /**
+     * @Then I should read :arg1
+     */
+    public function iShouldRead($arg1)
+    {
+        $script = <<<JS
+        (function(){
+            CKEDITOR.instances.message.getData();})();
+
+JS;
+  $this->getSession()->evaluateScript($script);
+    }
+       /**
+     * @Then :arg1 checkbox should be checked
+     */
+
+   /**
+    * @Then /^Radio button with id "([^"]*)" should be checked$/
+    */
+   public function RadioButtonWithIdShouldBeChecked($sId)
+   {
+       $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
+       if (!$elementByCss) {
+           throw new Exception('Radio button with id ' . $sId.' is not checked');
+       }
+   }
+
+       /**
+     * @When I switch back from iframe
+     */
+    public function iSwitchBackFrom($name=null)
+    {
+     $this->getSession()->getDriver()->switchToIframe(null);
+    }
+
+      /**
+     * @Then I switch to other iframe :arg1
+     */
+    public function iSwitchToOtherIframe($arg1)
+    {
+      $this->getSession()->switchToIframe($arg1);
+    }
+    
+    /**
+     * @Given I mouse over :arg1
+     */
+    public function iMouseOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="menuTop"]/ul[5]/li');
+    if (!$findName) {
+        throw new Exception($arg1 . " could not be found");
+    } else {
+        $findName->mouseOver();
+    }
+}
+     /**
+     * @Given I click over :arg1
+     */
+    public function iClickOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="wrapp"]/form/div[1]/div/span[1]/a');
+        $findName->click();
+    }
+
+    /**
+   * @Given I write :text into :field
+   */
+  public function iWriteTextIntoField($text, $field)
+  {
+    $field = $this->getSession()
+      ->getDriver()
+      ->getWebDriverSession()
+      ->element('xpath', '//*[@id="edit_list_categories"]/div/input');
+      $field->postValue(['value' => [$text]]);
+  }
+
+
+       /**
+     * @Given I go back
+     */
+    public function iGoBack()
+    {
+        $this->getSession()->getDriver()->back();
+    }
+ /**
+     * @Given I go back to :arg1
+     */
+    public function iGoBackTo($page)
+    {
+        $this->getSession()->getDriver()->back();
+    }
+
+ /**
+     * @Then The header color should be black
+     */
+    public function theDivContextMenuBlockMenuColorShouldBeBlack()
+    {
+
+        // JS script that makes the CSS assertion in the browser.
+
+        $script = <<<JS
+            (function(){
+                return $('#header').css('color') === 'rgb(51, 51, 51)';
+            })();
+JS;
+
+        if (!$this->getSession()->evaluateScript($script)) {
+            throw new Exception();
+        }
+    }
+          /**
+     * @Then I should see :message on popups
+     */
+    public function iShouldSeeOnPopups($message)
+    {   return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
+    
+    }
+     /**
+     * @When I confirm the popup
+     */
+    public function iConfirmPopup()
+    {  
+    $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
     }
 }
