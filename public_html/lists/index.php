@@ -551,7 +551,7 @@ function checkform()
     if (eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].type") == "checkbox") {
       if (document.subscribeform.elements[fieldstocheck[i]].checked) {
       } else {
-        alert("' .$GLOBALS['strPleaseEnter'].' "+fieldnames[i]);
+        alert("' .$GLOBALS['strCheckbox'].' "+fieldnames[i]);
         eval("document.subscribeform.elements[\'"+fieldstocheck[i]+"\'].focus()");
 
         return false;
