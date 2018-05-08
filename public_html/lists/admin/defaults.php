@@ -56,6 +56,7 @@ if (!empty($_POST['selected']) && is_array($_POST['selected'])) {
         $typeValue = 'select';
         if($lc_name ==='termsofservice'){
             $typeValue = 'checkbox';
+            $name.= getConfig('domain');
         }
 
         $query = sprintf('insert into %s (name,type,required,tablename) values("%s","%s",%d,"%s")',
