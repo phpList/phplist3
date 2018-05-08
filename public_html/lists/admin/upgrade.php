@@ -1,7 +1,6 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
-require_once dirname(__FILE__).'/lib.php';
 
 if (!$GLOBALS['commandline']) {
     @ob_end_flush();

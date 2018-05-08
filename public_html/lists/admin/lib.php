@@ -1481,7 +1481,7 @@ function addSubscriberStatistics($item, $amount, $list = 0)
 
 function addInviteCampaign() {
 
-    $inviteMessage = "Hi [FIRST NAME], remember us? You first signed up for our email newsletter on [ENTERED] -- please click here to confirm that you're happy to continue receiving our messages:
+        $inviteMessage = "Hi [FIRST NAME], remember us? You first signed up for our email newsletter on [ENTERED] -- please click here to confirm that you're happy to continue receiving our messages:
 
         [CONFIRMATIONURL]
         
@@ -1500,8 +1500,9 @@ function addInviteCampaign() {
         $uuid = Uuid::generate(4);
         $ownerid = $_SESSION['logindetails']['id'];
         $footer = sql_escape(getConfig('messagefooter'));
-        $result= Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
-        return $result;
+        $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
+        
+    return $result;
 
    }
 
