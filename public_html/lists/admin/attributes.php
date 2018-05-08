@@ -54,7 +54,7 @@ if (isset($_POST['action'])) {
 //          Sql_Query('insert into '.$table_prefix.'listattr_'.$lc_name.' (name) values("Checked")');
 //          Sql_Query('insert into '.$table_prefix.'listattr_'.$lc_name.' (name) values("Unchecked")');
                     // we cannot "require" checkboxes, that does not make sense
-                    Sql_Query("update {$tables['attribute']} set required = 0 where id = $insertid");
+                    Sql_Query("update {$tables['attribute']} set required = 1 where id = $insertid");
                 }
                 if ($_POST['type'][$id] == 'checkboxgroup') {
                     Sql_Query("update {$tables['attribute']} set required = 0 where id = $insertid");
@@ -334,7 +334,7 @@ if (isset($_POST['action'])) {
         }
     }
 }
-Sql_Query("update {$tables['attribute']} set required = 0 where type = \"checkbox\" or type = \"checkboxgroup\" or type = \"hidden\"");
+Sql_Query("update {$tables['attribute']} set required = 0 where type = \"checkboxgroup\" or type = \"hidden\"");
 
 ?>
 
