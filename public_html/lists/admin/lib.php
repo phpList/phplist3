@@ -1481,27 +1481,29 @@ function addSubscriberStatistics($item, $amount, $list = 0)
 
 function addInviteCampaign() {
 
-        $inviteMessage = "Hi [FIRST NAME], remember us? You first signed up for our email newsletter on [ENTERED] -- please click here to confirm that you're happy to continue receiving our messages:
+    $message='<p>Hi [FIRST NAME%% ], remember us? You first signed up for our email newsletter on&nbsp;[ENTERED] -- please <a href="[CONFIRMATIONURL]" title="Confirm subscription">click here</a> to confirm that you&#39;re happy to continue receiving our messages:</p>
 
-        [CONFIRMATIONURL]
+        <p><strong><a href="[CONFIRMATIONURL]" title="Confirm subscription">Continue receiving messages</a></strong></p>
         
-        If you do not confirm using this link then you won't hear from us again.
+        <p><u>If you do not confirm using this link then you won&#39;t hear from us again</u>.</p>
         
-        While you're at it, you can also update your preferences, including your email address or other details, by clicking here:
+        <p>While you&#39;re at it, you can also update your preferences, including your email address or other details, by clicking here:</p>
         
-        [PREFERENCESURL]
+        <p><strong><a href="[PREFERENCESURL]">Update preferences</a></strong></p>
         
-        By confirming your membership and keeping your details up to date, you're helping us to manage and protect your data in accordance with best practices.
+        <p>By confirming your membership and keeping your details up to date, you&#39;re helping us to manage and protect your data in accordance with best practices.</p>
         
-        Thank you!
+        <p>Thank you!</p>
         
-        ";
-        $inviteMessageSubject = "Invite";
-        $uuid = Uuid::generate(4);
-        $ownerid = $_SESSION['logindetails']['id'];
-        $footer = sql_escape(getConfig('messagefooter'));
-        $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
         
+        ';
+    $inviteMessage=addslashes($message);
+    $inviteMessageSubject = "Do you want to continue receiving our messages?";
+    $uuid = Uuid::generate(4);
+    $ownerid = $_SESSION['logindetails']['id'];
+    $footer = sql_escape(getConfig('messagefooter'));
+    $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
+
     return $result;
 
    }
