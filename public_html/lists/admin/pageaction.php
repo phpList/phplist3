@@ -13,7 +13,7 @@ if ($ajax) {
         include_once dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/pagetop_minimal.php';
     }
 }
-$status = $GLOBALS['I18N']->get('Failed');
+$status = s('Failed');
 if (!empty($_GET['action'])) {
     $action = basename($_GET['action']);
     if (is_file(dirname(__FILE__).'/actions/'.$action.'.php')) {
