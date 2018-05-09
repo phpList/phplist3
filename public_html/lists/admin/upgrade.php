@@ -303,7 +303,7 @@ if ($dbversion == VERSION && !$force) {
         createTable('user_message_view');
     }
 
-    if (version_compare($dbversion, '3.3.4','<')) {
+    if (version_compare($dbversion, '3.3.3','<')) {
         // add a draft campaign for invite plugin 
         addInviteCampaign();
   
