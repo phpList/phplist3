@@ -529,6 +529,11 @@ echo '</ul>';
     ?>
 </div>
 
+<div id="deleteblacklisted">
+    <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklisted',
+        s('Delete blacklisted subscribers'), '', 'button');
+    ?>
+</div>
 
 <?php
 /*

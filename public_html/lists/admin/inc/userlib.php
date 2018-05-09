@@ -88,10 +88,48 @@ function userSelect($fieldname, $current = '')
     return $html;
 }
 
-function deleteUser($id)
+/**
+ * Delete a subscriber's records from user group table
+ */
+function deleteUserGroup($id)
 {
-    global $tables, $plugins;
+    if (Sql_table_exists('user_group')) {
+        Sql_Query(sprintf('delete from user_group where userid = %d', $id), 1);
+    }
+}
 
+/**
+ * Trigger deleteUser() hook for plugins
+ */
+function triggerDeleteUserPluginsHook($id)
+{
+    global $plugins;
+
+    // allow plugins to delete their data
+    foreach ($plugins as $plugin) {
+        $plugin->deleteUser($id);
+    }
+}
+
+/**
+ * Delete a subscriber's records from blacklist tables
+ */
+function deleteUserBlacklistRecords($id)
+{
+    global $tables;
+    $userEmail = getUserEmail($id);
+
+    Sql_Query('delete from '.$tables['user_blacklist'].' where email = "'.$userEmail.'"');
+    Sql_Query('delete from '.$tables['user_blacklist_data'].' where email = "'.$userEmail.'"');
+}
+
+/**
+ * Delete a subscriber's records except from blacklist tables
+ */
+function deleteUserRecordsLeaveBlacklistRecords($id)
+{
+    global $tables;
+    
     Sql_Query('delete from '.$tables['linktrack_uml_click'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['listuser'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['usermessage'].' where userid = '.$id);
@@ -101,14 +139,37 @@ function deleteUser($id)
     Sql_Query('delete from '.$tables['user_message_forward'].' where user = '.$id);
     Sql_Query('delete from '.$tables['user'].' where id = '.$id);
     Sql_Query('delete from '.$tables['user_message_view'].' where userid = '.$id);
+}
 
-    if (Sql_table_exists('user_group')) {
-        Sql_Query(sprintf('delete from user_group where userid = %d', $id), 1);
-    }
-    // allow plugins to delete their data
-    foreach ($plugins as $plugin) {
-        $plugin->deleteUser($id);
-    }
+/**
+ * Delete a subscriber but leave blacklist data
+ */
+function deleteUserLeaveBlacklist($id)
+{
+    deleteUserRecordsLeaveBlacklistRecords($id);
+    deleteUserGroup($id);
+    triggerDeleteUserPluginsHook($id);
+}
+
+/**
+ * Delete a subscriber including blacklist data
+ */
+function deleteUserIncludeBlacklist($id)
+{
+    // Note: deleteUserBlacklistRecords() must be executed first, else the ID 
+    // to email lookup fails due to the missing record
+    deleteUserBlacklistRecords($id);
+    deleteUserRecordsLeaveBlacklistRecords($id);
+    deleteUserGroup($id);
+    triggerDeleteUserPluginsHook($id);
+}
+
+/**
+ * Wrapper for backwards compatibility
+ */
+function deleteUser($id)
+{
+    deleteUserLeaveBlacklist($id);
 }
 
 function addNewUser($email, $password = '')
@@ -242,6 +303,17 @@ function AttributeValue($table, $value)
     }
 
     return '';
+}
+
+/**
+ * Convert subscriber ID to email address simply
+ */
+function getUserEmail($id)
+{
+    global $tables;
+    
+    $userid = Sql_Fetch_Row_Query("select email from {$tables['user']} where id = \"$id\"");    
+    return $userid[0];
 }
 
 function existUserID($id = 0)
@@ -412,6 +484,10 @@ function userName()
     return rtrim($res);
 }
 
+/**
+ * Check if a subscriber is blacklisted in blacklist data tables
+ * @note Ignores the user table
+ */
 function isBlackListed($email = '', $immediate = true)
 {
     if (!$email) {
@@ -435,6 +511,10 @@ function isBlackListed($email = '', $immediate = true)
     return Sql_Affected_Rows();
 }
 
+/**
+ * Check if a subscriber is blacklisted in the user table
+ * @note Ignores blacklist data tables
+ */
 function isBlackListedID($userid = 0)
 {
     if (!$userid) {

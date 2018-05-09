@@ -15,5 +15,24 @@ if ($_GET['option'] == 'deleteinvalidemail') {
             deleteUser($row['id']);
         }
     }
-    $status .= $c.' '.$GLOBALS['I18N']->get('subscribers deleted')."<br/>\n";
+    $status .= $c.' '.s('subscribers deleted')."<br/>\n";
+} elseif ($_GET['option'] == 'deleteblacklisted') {
+    $status = s('Deleting blacklisted subscribers').'<br/ >';
+    
+    flush();
+    $req = Sql_Query('
+        SELECT
+            id
+        FROM
+            '.$tables['user'].'
+        WHERE
+            blacklisted = 1'
+    );
+    $c = 0;
+    while ($row = Sql_Fetch_Array($req)) {
+        set_time_limit(60);
+        ++$c;
+        deleteUserIncludeBlacklist($row['id']);
+    }
+    $status .= $c.' '.s('subscribers deleted')."<br/>\n";
 }
