@@ -92,15 +92,15 @@ function deleteUser($id)
 {
     global $tables, $plugins;
 
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['linktrack_uml_click'], $id));
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['listuser'], $id));
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['usermessage'], $id));
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['user_attribute'], $id));
-    Sql_Query(sprintf('delete from %s where userid = %d', $tables['user_history'], $id));
-    Sql_Query(sprintf('delete from %s where user = %d', $tables['user_message_bounce'], $id));
-    Sql_Query(sprintf('delete from %s where user = %d', $tables['user_message_forward'], $id));
-    Sql_Query(sprintf('delete from %s where id = %d', $tables['user'], $id));
-    Sql_Query(sprintf('delete from %s where userid= %d', $tables['user_message_view'],$id));
+    Sql_Query('delete from '.$tables['linktrack_uml_click'].' where userid = '.$id);
+    Sql_Query('delete from '.$tables['listuser'].' where userid = '.$id);
+    Sql_Query('delete from '.$tables['usermessage'].' where userid = '.$id);
+    Sql_Query('delete from '.$tables['user_attribute'].' where userid = '.$id);
+    Sql_Query('delete from '.$tables['user_history'].' where userid = '.$id);
+    Sql_Query('delete from '.$tables['user_message_bounce'].' where user = '.$id);
+    Sql_Query('delete from '.$tables['user_message_forward'].' where user = '.$id);
+    Sql_Query('delete from '.$tables['user'].' where id = '.$id);
+    Sql_Query('delete from '.$tables['user_message_view'].' where userid = '.$id);
 
     if (Sql_table_exists('user_group')) {
         Sql_Query(sprintf('delete from user_group where userid = %d', $id), 1);
