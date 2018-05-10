@@ -528,13 +528,15 @@ echo '</ul>';
         $GLOBALS['I18N']->get('Delete subscribers who have an invalid email address'), '', 'button');
     ?>
 </div>
+<hr/>
 
-
-<?php
-/*
-<!--form method="get">
-<table class="reconcileForm"><tr><td colspan="2">
-<?php echo $GLOBALS['I18N']->get('To resend the request for confirmation to users who signed up and have not confirmed their subscription')?></td></tr>
+<form method="get">
+    <fieldset>
+        <legend>
+            <?php echo $GLOBALS['I18N']->get('To resend the request for confirmation to users who signed up and have not confirmed their subscription')?>
+        </legend>
+    </fieldset>
+<table class="reconcileForm">
 <tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up after')?>:</td><td><?php echo $from->showInput("","",$fromval);?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up before')?>:</td><td><?php echo $to->showInput("","",$toval);?></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Text to prepend to email')?>:</td></tr>
@@ -545,10 +547,9 @@ echo '</ul>';
 </table>
 <input type="hidden" name="page" value="reconcileusers" />
 <input type="hidden" name="option" value="resendconfirm" />
-<input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form-->
-*/
-?>
+<input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form>
 <hr/>
+
 <form method="get">
     <fieldset>
         <legend><?php echo $GLOBALS['I18N']->get('To delete subscribers who signed up and have not confirmed their subscription') ?></legend>
@@ -562,5 +563,5 @@ echo '</ul>';
     </fieldset>
     <input type="hidden" name="page" value="reconcileusers"/>
     <input type="hidden" name="option" value="deleteunconfirmed"/>
-    <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"></form>
+    <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here') ?>">
 </form>
