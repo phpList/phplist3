@@ -65,7 +65,7 @@ $feedback = '';
 
 if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     if (!verifyToken()) {
-        echo Error($GLOBALS['I18N']->get('Invalid security token, please reload the page and try again'));
+        echo Error(s('Invalid security token, please reload the page and try again'));
 
         return;
     }
@@ -146,7 +146,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
                     Sql_Query(sprintf('replace into %s (userid,attributeid,value)
              values(%d,%d,"%s")', $tables['user_attribute'], $id, $key, base64_encode($avatar)));
                 } elseif ($size) {
-                    echo Error($GLOBALS['I18N']->get('Uploaded avatar file too big'));
+                    echo Error(s('Uploaded avatar file too big'));
                 }
             }
         }
@@ -230,7 +230,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     if (count($subscribed_to)) {
         foreach ($subscribed_to as $listID => $listName) {
             Sql_Query("insert into {$tables['listuser']} (userid,listid,entered,modified) values($id,$listID,now(),now())");
-            $feedback .= '<br/>'.sprintf($GLOBALS['I18N']->get('Subscriber added to list %s'), $listName);
+            $feedback .= '<br/>'.sprintf(s('Subscriber added to list %s'), $listName);
         }
         $feedback .= '<br/>';
     }
@@ -322,11 +322,11 @@ if ($id) {
     }
 
     if (!$membership) {
-        $membership = $GLOBALS['I18N']->get('No Lists');
+        $membership = s('No Lists');
     }
 
     echo '<div class="actions">';
-    echo '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id", $GLOBALS['I18N']->get('History'));
+    echo PageLinkButton("userhistory&amp;id=$id", s('History'));
     echo 
         '<a 
             class="confirm btn btn-default" 
@@ -400,7 +400,7 @@ foreach ($struct as $key => $val) {
     if ($key == 'confirmed') {
         if (!$require_login || ($require_login && isSuperUser())) {
             $userdetailsHTML .= sprintf('<tr><td class="dataname">%s (1/0)</td><td><input type="text" name="%s" value="%s" size="5" /></td></tr>'."\n",
-                $GLOBALS['I18N']->get($b), $key, htmlspecialchars(stripslashes($user[$key])));
+                s($b), $key, htmlspecialchars(stripslashes($user[$key])));
         } else {
             $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>', $b,
                 stripslashes($user[$key]));
@@ -409,7 +409,7 @@ foreach ($struct as $key => $val) {
         $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
             $val[1], $key, '');
     } elseif ($key == 'blacklisted') {
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s', $GLOBALS['I18N']->get($b),
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s', s($b),
             $user[$key] || isBlackListed($user['email']) ? s('Yes') : s('No'));
 
         if (!($user[$key] || isBlackListed($user['email']))) {
@@ -424,10 +424,10 @@ foreach ($struct as $key => $val) {
         if (!strpos($key, '_')) {
             if (strpos($a, 'sys') !== false) {
                 $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
-                    $GLOBALS['I18N']->get($b), stripslashes($user[$key]));
+                    s($b), stripslashes($user[$key]));
             } elseif ($val[1]) {
                 $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
-                    $GLOBALS['I18N']->get($val[1]), $key, htmlspecialchars(stripslashes($user[$key])));
+                    s($val[1]), $key, htmlspecialchars(stripslashes($user[$key])));
             }
         }
     }
@@ -493,11 +493,11 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
 }
 
 if ($access != 'view') {
-    $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+    $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.s('Save Changes').'" /></td></tr>';
 }
 $userdetailsHTML .= '</table>';
 
-$mailinglistsHTML .= '<h3>'.$GLOBALS['I18N']->get('Mailinglist membership').':</h3>';
+$mailinglistsHTML .= '<h3>'.s('Mailinglist membership').':</h3>';
 // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
 $mailinglistsHTML .= '<input type="hidden" name="subscribe[]" value="-1" />';
 $mailinglistsHTML .= '<table class="userListing" border="1"><tr>';
@@ -520,15 +520,15 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 $mailinglistsHTML .= '</tr>';
 if ($access != 'view') {
-    $mailinglistsHTML .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr>';
+    $mailinglistsHTML .= '<tr><td class="bgwhite"><input class="submit" type="submit" name="change" value="'.s('Save Changes').'" /></td></tr>';
 }
 
 $mailinglistsHTML .= '</table>';
 
 echo '<div class="tabbed">';
 echo '<ul>';
-echo '<li><a href="#details">'.ucfirst($GLOBALS['I18N']->get('Details')).'</a></li>';
-echo '<li><a href="#lists">'.ucfirst($GLOBALS['I18N']->get('Lists')).'</a></li>';
+echo '<li><a href="#details">'.ucfirst(s('Details')).'</a></li>';
+echo '<li><a href="#lists">'.ucfirst(s('Lists')).'</a></li>';
 
 echo '</ul>';
 
