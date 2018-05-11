@@ -356,7 +356,12 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         }
     }
 
-    // Print unsubscribe link
+    // Print preferences page link
+    if (SHOW_PREFERENCESLINK) {
+        printf('<p><a href="'.getConfig('preferencesurl').'">%s</a></p>', $strPreferencesTitle);
+    }
+
+    // Print unsubscribe page link
     if (SHOW_UNSUBSCRIBELINK) {
         printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
     }
