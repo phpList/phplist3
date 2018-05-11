@@ -355,6 +355,14 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
     if (SHOW_UNSUBSCRIBELINK) {
         printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
     }
+    // Print link to contact admin using HTML entities for email obfuscation
+    echo 
+        '<p class=""><a href="'.
+            preg_replace_callback('/./', function($m) {
+                return '&#'.ord($m[0]).';';
+            }
+            , 'mailto:'.getConfig('admin_address')).
+        '">'.s('Contact the administrator').'</a></p>';
     echo $PoweredBy;
     echo $pagedata['footer'];
 }
