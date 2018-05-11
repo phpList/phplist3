@@ -15,7 +15,7 @@ if (isset($_GET['findby'])) {
 } else {
     $findby = '';
 }
-if (isset($_GET['find'])) { //# those notices are driving me nuts ...
+if (isset($_GET['find'])) {
     $find = $_GET['find']; //# I guess we should check on validity of it as well
 } else {
     $find = '';
@@ -326,7 +326,8 @@ if ($id) {
     }
 
     echo '<div class="actions">';
-    echo '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id", $GLOBALS['I18N']->get('History'));
+    echo '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id", s('History'));
+    echo '&nbsp;&nbsp;'.PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
     if (!empty($GLOBALS['config']['plugins']) && is_array($GLOBALS['config']['plugins'])) {
         foreach ($GLOBALS['config']['plugins'] as $pluginName => $plugin) {
             echo $plugin->userpageLink($id);
