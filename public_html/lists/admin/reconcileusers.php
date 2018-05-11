@@ -5,7 +5,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 if (!isSuperUser()) {
-    echo $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
+    echo s('Sorry, this page can only be used by super admins');
 
     return;
 }
@@ -52,7 +52,7 @@ function resendConfirm($id)
         $subject = getConfig('subscribesubject');
     }
 
-    logEvent($GLOBALS['I18N']->get('Resending confirmation request to').' '.$userdata['email']);
+    logEvent(s('Resending confirmation request to').' '.$userdata['email']);
     if (!TEST) {
         return sendMail($userdata['email'], $subject, $_REQUEST['prepend'].$subscribemessage,
             system_messageheaders($userdata['email']), $envelope);
@@ -103,7 +103,7 @@ function mergeUser($userid)
         $orig = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $GLOBALS['tables']['user'],
             $email));
         if ($orig[0]) {
-            echo ' '.$GLOBALS['I18N']->get('user found');
+            echo ' '.s('user found');
             $umreq = Sql_Query("select * from {$GLOBALS['tables']['usermessage']} where userid = ".$duplicate['id']);
             while ($um = Sql_Fetch_Array($umreq)) {
                 Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s"',
@@ -122,13 +122,13 @@ function mergeUser($userid)
                 deleteUser($duplicate['id']);
             }
         } else {
-            echo ' '.$GLOBALS['I18N']->get('no user found');
+            echo ' '.s('no user found');
             // so it must be save to rename the original to the actual email
             Sql_Query(sprintf('update %s set email = "%s" where id = %d', $GLOBALS['tables']['user'], $email, $userid));
         }
         flush();
     } else {
-        echo '-> '.$GLOBALS['I18N']->get('unable to find original email');
+        echo '-> '.s('unable to find original email');
     }
 }
 
@@ -157,110 +157,110 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                     case 'markallconfirmed':
                         $list = sprintf('%d', $_GET['list']);
                         if ($list == 0) {
-                            $action_result .= $GLOBALS['I18N']->get('Marking all subscribers confirmed');
+                            $action_result .= s('Marking all subscribers confirmed');
                             Sql_Query("update {$tables['user']} set confirmed = 1");
                         } else {
-                            $action_result .= sprintf($GLOBALS['I18N']->get('Marking all subscribers on list %s confirmed'),
+                            $action_result .= sprintf(s('Marking all subscribers on list %s confirmed'),
                                 ListName($list));
                             Sql_Query(sprintf('UPDATE %s, %s SET confirmed =1 WHERE  %s.id = %s.userid AND %s.listid= %d',
                                 $tables['user'], $tables['listuser'], $tables['user'], $tables['listuser'],
                                 $tables['listuser'], $list));
                         }
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         break;
                     case 'adduniqid':
-                        $action_result .= $GLOBALS['I18N']->get('Creating UniqID for all subscribers who do not have one');
+                        $action_result .= s('Creating UniqID for all subscribers who do not have one');
                         $req = Sql_Query("select * from {$tables['user']} where uniqid is NULL or uniqid = \"\"");
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'addUniqID';
                         break;
                     case 'markallhtml':
-                        $action_result .= $GLOBALS['I18N']->get('Marking all subscribers to receive HTML');
+                        $action_result .= s('Marking all subscribers to receive HTML');
                         Sql_Query("update {$tables['user']} set htmlemail = 1");
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         break;
                     case 'markalltext':
-                        $action_result .= $GLOBALS['I18N']->get('Marking all subscribers to receive text');
+                        $action_result .= s('Marking all subscribers to receive text');
                         Sql_Query("update {$tables['user']} set htmlemail = 0");
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         break;
                     case 'nolists':
-                        $action_result .= $GLOBALS['I18N']->get('Deleting subscribers who are not on any list');
+                        $action_result .= s('Deleting subscribers who are not on any list');
                         $req = Sql_Query(sprintf('select %s.id from %s
               left join %s on %s.id = %s.userid
               where userid is NULL',
                             $tables['user'], $tables['user'], $tables['listuser'], $tables['user'],
                             $tables['listuser']));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'deleteUser';
                         break;
                     case 'nolistsnewlist':
                         $list = sprintf('%d', $_GET['list']);
-                        $action_result .= $GLOBALS['I18N']->get('Moving subscribers who are not on any list to').' '.ListName($list);
+                        $action_result .= s('Moving subscribers who are not on any list to').' '.ListName($list);
                         $req = Sql_Query(sprintf('select %s.id from %s
               left join %s on %s.id = %s.userid
               where userid is NULL',
                             $tables['user'], $tables['user'], $tables['listuser'], $tables['user'],
                             $tables['listuser']));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'moveUser';
                         break;
                     case 'bounces':
-                        $action_result .= $GLOBALS['I18N']->get('Deleting subscribers with more than').' '.$num.' '.$GLOBALS['I18N']->get('bounces');
+                        $action_result .= s('Deleting subscribers with more than').' '.$num.' '.s('bounces');
                         $req = Sql_Query(sprintf('select id from %s
               where bouncecount > %d',
                             $tables['user'], $num
                         ));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'deleteUser';
                         break;
                     case 'blacklist':
-                        $action_result .= $GLOBALS['I18N']->get('Blacklisting subscribers with more than').' '.$num.' '.$GLOBALS['I18N']->get('bounces');
+                        $action_result .= s('Blacklisting subscribers with more than').' '.$num.' '.s('bounces');
                         $req = Sql_Query(sprintf('select id from %s
               where bouncecount > %d',
                             $tables['user'], $num
                         ));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'addUserToBlackListID';
                         break;
                     case 'resendconfirm':
                         $fromval = $from->getDate('from');
                         $toval = $from->getDate('to');
-                        $action_result .= $GLOBALS['I18N']->get('Resending request for confirmation to subscribers who signed up after').' '.$fromval.' '.$GLOBALS['I18N']->get('and before').' '.$toval;
+                        $action_result .= s('Resending request for confirmation to subscribers who signed up after').' '.$fromval.' '.s('and before').' '.$toval;
                         $req = Sql_Query(sprintf('select id from %s
               where entered > "%s" and entered < "%s" and !confirmed',
                             $tables['user'], $fromval, $toval
                         ));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'resendConfirm';
                         break;
                     case 'deleteunconfirmed':
                         $fromval = $from->getDate('from');
                         $toval = $from->getDate('to');
-                        $action_result .= $GLOBALS['I18N']->get('Deleting unconfirmed subscribers who signed up after').' '.$fromval.' '.$GLOBALS['I18N']->get('and before').' '.$toval;
+                        $action_result .= s('Deleting unconfirmed subscribers who signed up after').' '.$fromval.' '.s('and before').' '.$toval;
                         $req = Sql_Query(sprintf('select id from %s
               where entered > "%s" and entered < "%s" and !confirmed',
                             $tables['user'], $fromval, $toval
                         ));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'deleteuser';
                         break;
                     case 'mergeduplicates':
-                        $action_result .= $GLOBALS['I18N']->get('Trying to merge duplicates');
+                        $action_result .= s('Trying to merge duplicates');
                         $req = Sql_Verbose_Query(sprintf('select id from %s where (email like "duplicate%%" or email like "%% (_)") and (foreignkey = "" or foreignkey is null)',
                             $tables['user']));
                         $total = Sql_Affected_Rows();
-                        $action_result .= "<br/>$total ".$GLOBALS['I18N']->get('subscribers apply').'<br/>';
+                        $action_result .= "<br/>$total ".s('subscribers apply').'<br/>';
                         $todo = 'mergeUser';
                     case 'invalidemail':
                     case 'fixinvalidemail':
@@ -285,7 +285,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                         if (function_exists($todo)) {
                             $todo($user['id']);
                         } else {
-                            Fatal_Error($GLOBALS['I18N']->get("Don't know how to").' '.$todo);
+                            Fatal_Error(s("Don't know how to").' '.$todo);
 
                             return;
                         }
@@ -300,7 +300,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                 //include dirname(__FILE__).'/actions/listinvalid.php';
                 echo '<div id="listinvalid">LISTING</div>';
             } elseif (isset($_GET['option']) && $_GET['option'] == 'fixinvalidemail') {
-                Info($GLOBALS['I18N']->get('Trying to fix subscribers with an invalid email'));
+                Info(s('Trying to fix subscribers with an invalid email'));
                 flush();
                 $req = Sql_Query("select id,email from {$tables['user']}");
                 $c = 0;
@@ -314,20 +314,20 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                             Sql_Query(sprintf('update %s set email = "%s" where id = %d', $tables['user'], $fixemail,
                                 $row['id']), 0);
                             $list .= PageLink2('user&amp;id='.$row['id'].'&returnpage=reconcileusers&returnoption=fixinvalidemail',
-                                    $GLOBALS['I18N']->get('User').' '.$row['id']).'    ['.$row['email'].'] => fixed to '.$fixemail.'<br/>';
+                                    s('User').' '.$row['id']).'    ['.$row['email'].'] => fixed to '.$fixemail.'<br/>';
                             ++$fixed;
                         } else {
                             ++$notfixed;
                             $list .= PageLink2('user&amp;id='.$row['id'].'&returnpage=reconcileusers&returnoption=fixinvalidemail',
-                                    $GLOBALS['I18N']->get('User').' '.$row['id']).'    ['.$row['email'].']<br/>';
+                                    s('User').' '.$row['id']).'    ['.$row['email'].']<br/>';
                         }
                     }
                 }
-                echo $fixed.' '.$GLOBALS['I18N']->get('subscribers fixed').'<br/>'.$notfixed.' '.$GLOBALS['I18N']->get('subscribers could not be fixed').'<br/>'.$list."\n";
+                echo $fixed.' '.s('subscribers fixed').'<br/>'.$notfixed.' '.s('subscribers could not be fixed').'<br/>'.$list."\n";
             } elseif (isset($_GET['option']) && $_GET['option'] == 'deleteinvalidemail') {
                 include 'actions/reconcileusers.php';
             } elseif (isset($_GET['option']) && $_GET['option'] == 'markinvalidunconfirmed') {
-                Info($GLOBALS['I18N']->get('Marking subscribers with an invalid email as unconfirmed'));
+                Info(s('Marking subscribers with an invalid email as unconfirmed'));
                 flush();
                 $req = Sql_Query("select id,email from {$tables['user']}");
                 $c = 0;
@@ -338,42 +338,42 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                         Sql_Query("update {$tables['user']} set confirmed = 0 where id = {$row['id']}");
                     }
                 }
-                echo $c.' '.$GLOBALS['I18N']->get('subscribers updated')."<br/>\n";
+                echo $c.' '.s('subscribers updated')."<br/>\n";
             } elseif (isset($_GET['option']) && $_GET['option'] == 'removestaleentries') {
-                Info($GLOBALS['I18N']->get('Cleaning some user tables of invalid entries'));
+                Info(s('Cleaning some user tables of invalid entries'));
                 // some cleaning up of data:
                 $req = Sql_Verbose_Query("select {$tables['usermessage']}.userid
           from {$tables['usermessage']} left join {$tables['user']} on {$tables['usermessage']}.userid = {$tables['user']}.id
           where {$tables['user']}.id IS NULL group by {$tables['usermessage']}.userid");
-                echo Sql_Affected_Rows().' '.$GLOBALS['I18N']->get('entries apply').'<br/>';
+                echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['usermessage']} where userid = $row[0]");
                 }
                 $req = Sql_Verbose_Query("select {$tables['user_attribute']}.userid
           from {$tables['user_attribute']} left join {$tables['user']} on {$tables['user_attribute']}.userid = {$tables['user']}.id
           where {$tables['user']}.id IS NULL group by {$tables['user_attribute']}.userid");
-                echo Sql_Affected_Rows().' '.$GLOBALS['I18N']->get('entries apply').'<br/>';
+                echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['user_attribute']} where userid = $row[0]");
                 }
                 $req = Sql_Verbose_Query("select {$tables['listuser']}.userid
           from {$tables['listuser']} left join {$tables['user']} on {$tables['listuser']}.userid = {$tables['user']}.id
           where {$tables['user']}.id IS NULL group by {$tables['listuser']}.userid");
-                echo Sql_Affected_Rows().' '.$GLOBALS['I18N']->get('entries apply').'<br/>';
+                echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['listuser']} where userid = $row[0]");
                 }
                 $req = Sql_Verbose_Query("select {$tables['usermessage']}.userid
           from {$tables['usermessage']} left join {$tables['user']} on {$tables['usermessage']}.userid = {$tables['user']}.id
           where {$tables['user']}.id IS NULL group by {$tables['usermessage']}.userid");
-                echo Sql_Affected_Rows().' '.$GLOBALS['I18N']->get('entries apply').'<br/>';
+                echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['usermessage']} where userid = $row[0]");
                 }
                 $req = Sql_Verbose_Query("select {$tables['user_message_bounce']}.user
           from {$tables['user_message_bounce']} left join {$tables['user']} on {$tables['user_message_bounce']}.user = {$tables['user']}.id
           where {$tables['user']}.id IS NULL group by {$tables['user_message_bounce']}.user");
-                echo Sql_Affected_Rows().' '.$GLOBALS['I18N']->get('entries apply').'<br/>';
+                echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['user_message_bounce']} where user = $row[0]");
                 }
@@ -392,7 +392,7 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                 $count = Sql_query('SELECT count(*) FROM '.$table_list);
                 $unconfirmedcount = Sql_query('SELECT count(*) FROM '.$table_list.' where !confirmed');
             }
-            $delete_message = ('<br />'.$GLOBALS['I18N']->get('Delete will delete user and all listmemberships').'<br />');
+            $delete_message = ('<br />'.s('Delete will delete user and all listmemberships').'<br />');
             break;
         case 'none':
         default:
@@ -407,7 +407,7 @@ if (isset($_GET['delete'])) {
     // delete the index in delete
     echo "deleting $delete ..\n";
     deleteUser($delete);
-    echo '... '.$GLOBALS['I18N']->get('Done')."<br/><hr/><br/>\n";
+    echo '... '.s('Done')."<br/><hr/><br/>\n";
     Redirect("users&start=$start");
 }
 
@@ -420,8 +420,8 @@ if (!empty($action_result)) {
     echo '<div class="actionresult">'.$action_result.'</div>';
 }
 
-echo '<p class="information"><b>'.number_format($total).' '.$GLOBALS['I18N']->get('subscribers').'</b>';
-echo $find ? ' '.$GLOBALS['I18N']->get('found') : ' '.$GLOBALS['I18N']->get('in the database');
+echo '<p class="information"><b>'.number_format($total).' '.s('subscribers').'</b>';
+echo $find ? ' '.s('found') : ' '.s('in the database');
 echo '</p>';
 
 function snippetListsSelector($optionAll = false)
@@ -439,7 +439,7 @@ function snippetListsSelector($optionAll = false)
 
     $result = '<select name="list">;';
     if ($optionAll) {
-        $result .= sprintf('<option value="0">%s</option>', $GLOBALS['I18N']->get('-All-'));
+        $result .= sprintf('<option value="0">%s</option>', s('-All-'));
     }
     $result .= $optionList;
     $result .= '</select>';
@@ -448,17 +448,17 @@ function snippetListsSelector($optionAll = false)
 }
 
 echo '<ul class="reconcile">';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=nolists",$GLOBALS['I18N']->get("Delete all subscribers who are not subscribed to any list")).'</li>';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=invalidemail",$GLOBALS['I18N']->get("Find users who have an invalid email")).'</li>';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=adduniqid",$GLOBALS['I18N']->get("Make sure that all users have a UniqID")).'</li>';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=markinvalidunconfirmed",$GLOBALS['I18N']->get("Mark all users with an invalid email as unconfirmed")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=nolists",s("Delete all subscribers who are not subscribed to any list")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=invalidemail",s("Find users who have an invalid email")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=adduniqid",s("Make sure that all users have a UniqID")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=markinvalidunconfirmed",s("Mark all users with an invalid email as unconfirmed")).'</li>';
 echo '<li>'.PageLinkButton('reconcileusers&amp;option=markallhtml',
-        $GLOBALS['I18N']->get('Mark all subscribers to receive HTML')).'</li>';
+        s('Mark all subscribers to receive HTML')).'</li>';
 echo '<li>'.PageLinkButton('reconcileusers&amp;option=markalltext',
-        $GLOBALS['I18N']->get('Mark all subscribers to receive text')).'</li>';
-//echo '<li>'.$GLOBALS['I18N']->get('To try to (automatically)').' '. PageLinkButton("reconcileusers&amp;option=fixinvalidemail",$GLOBALS['I18N']->get("Fix emails for users who have an invalid email")).'</li>';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=removestaleentries",$GLOBALS['I18N']->get("Remove Stale entries from the database")).'</li>';
-//echo '<li>'.PageLinkButton("reconcileusers&amp;option=mergeduplicates",$GLOBALS['I18N']->get("Merge Duplicate Users")).'</li>';
+        s('Mark all subscribers to receive text')).'</li>';
+//echo '<li>'.s('To try to (automatically)').' '. PageLinkButton("reconcileusers&amp;option=fixinvalidemail",s("Fix emails for users who have an invalid email")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=removestaleentries",s("Remove Stale entries from the database")).'</li>';
+//echo '<li>'.PageLinkButton("reconcileusers&amp;option=mergeduplicates",s("Merge Duplicate Users")).'</li>';
 echo '</ul>';
 ?>
 <hr/>
@@ -467,10 +467,10 @@ echo '</ul>';
     <input type="hidden" name="option" value="markallconfirmed"/>
     <p class="information">
         <?php
-        echo sprintf($GLOBALS['I18N']->get('Mark all subscribers on list %s confirmed'), snippetListsSelector(true));
+        echo sprintf(s('Mark all subscribers on list %s confirmed'), snippetListsSelector(true));
         ?>
     </p>
-    <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"/>
+    <input class="submit" type="submit" value="<?php echo s('Click here') ?>"/>
 </form>
 
 <hr/>
@@ -479,18 +479,18 @@ echo '</ul>';
     <input type="hidden" name="option" value="nolistsnewlist"/>
     <p class="information">
         <?php
-        echo sprintf($GLOBALS['I18N']->get('To move all subscribers who are not subscribed to any list to %s'),
+        echo sprintf(s('To move all subscribers who are not subscribed to any list to %s'),
             snippetListsSelector());
         ?>
     </p>
-    <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"/>
+    <input class="submit" type="submit" value="<?php echo s('Click here') ?>"/>
 </form>
 
 <hr/>
 <form method="get">
     <input type="hidden" name="page" value="reconcileusers"/>
     <input type="hidden" name="option" value="bounces"/>
-    <p class="information"><?php echo $GLOBALS['I18N']->get('To delete all subscribers with more than') ?>
+    <p class="information"><?php echo s('To delete all subscribers with more than') ?>
         <select name="num">
             <option>1</option>
             <option>2</option>
@@ -499,14 +499,14 @@ echo '</ul>';
             <option>15</option>
             <option>20</option>
             <option>50</option>
-        </select> <?php echo $GLOBALS['I18N']->get('bounces') ?> <input class="button" type="submit"
-                                                                        value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"/>
+        </select> <?php echo s('bounces') ?> <input class="button" type="submit"
+                                                                        value="<?php echo s('Click here') ?>"/>
 </form>
 
 <form method="get">
     <input type="hidden" name="page" value="reconcileusers"/>
     <input type="hidden" name="option" value="blacklist"/>
-    <p class="information"><?php echo $GLOBALS['I18N']->get('To blacklist all subscribers with more than') ?>
+    <p class="information"><?php echo s('To blacklist all subscribers with more than') ?>
         <select name="num">
             <option>1</option>
             <option>2</option>
@@ -515,52 +515,65 @@ echo '</ul>';
             <option>15</option>
             <option>20</option>
             <option>50</option>
-        </select> <?php echo $GLOBALS['I18N']->get('bounces') ?> <input class="button" type="submit"
-                                                                        value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"/>
+        </select> <?php echo s('bounces') ?> <input class="button" type="submit"
+                                                                        value="<?php echo s('Click here') ?>"/>
 </form>
 
-<p class="information"><?php echo $GLOBALS['I18N']->get('Note: this will use the total count of bounces on a subscriber, not consecutive bounces') ?></p>
+<p class="information"><?php echo s('Note: this will use the total count of bounces on a subscriber, not consecutive bounces') ?></p>
 
 <hr/>
 
 <div id="deleteinvalid">
     <?php echo PageLinkAjax('reconcileusers&amp;option=deleteinvalidemail',
-        $GLOBALS['I18N']->get('Delete subscribers who have an invalid email address'), '', 'button');
+        s('Delete subscribers who have an invalid email address'), '', 'button');
     ?>
 </div>
 
+<hr/>
+
+<div id="deleteblacklistedunsubscribed">
+    <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklistedunsubscribed',
+        s('Delete subscribers who are blacklisted because they unsubscribed'), '', 'button');
+    ?>
+</div>
+
+<div id="deleteblacklisted">
+    <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklisted',
+        s('Delete all blacklisted subscribers'), '', 'button');
+    ?>
+</div>
 
 <?php
 /*
 <!--form method="get">
 <table class="reconcileForm"><tr><td colspan="2">
-<?php echo $GLOBALS['I18N']->get('To resend the request for confirmation to users who signed up and have not confirmed their subscription')?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up after')?>:</td><td><?php echo $from->showInput("","",$fromval);?></td></tr>
-<tr><td><?php echo $GLOBALS['I18N']->get('Date they signed up before')?>:</td><td><?php echo $to->showInput("","",$toval);?></td></tr>
-<tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('Text to prepend to email')?>:</td></tr>
+<?php echo s('To resend the request for confirmation to users who signed up and have not confirmed their subscription')?></td></tr>
+<tr><td><?php echo s('Date they signed up after')?>:</td><td><?php echo $from->showInput("","",$fromval);?></td></tr>
+<tr><td><?php echo s('Date they signed up before')?>:</td><td><?php echo $to->showInput("","",$toval);?></td></tr>
+<tr><td colspan="2"><?php echo s('Text to prepend to email')?>:</td></tr>
 <tr><td colspan="2"><textarea name="prepend" rows="10" cols="60">
-<?php echo $GLOBALS['I18N']->get(' Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   ')?>
+<?php echo s(' Sorry to bother you: we are cleaning up our database and  it appears that you have previously signed up to our mailinglists  and not confirmed your subscription.  We would like to give you the opportunity to re-confirm your  subscription. The instructions on how to confirm are below.   ')?>
 </textarea>
 </td></tr>
 </table>
 <input type="hidden" name="page" value="reconcileusers" />
 <input type="hidden" name="option" value="resendconfirm" />
-<input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here')?>" /></form-->
+<input class="submit" type="submit" value="<?php echo s('Click here')?>" /></form-->
 */
 ?>
 <hr/>
 <form method="get">
     <fieldset>
-        <legend><?php echo $GLOBALS['I18N']->get('To delete subscribers who signed up and have not confirmed their subscription') ?></legend>
+        <legend><?php echo s('To delete subscribers who signed up and have not confirmed their subscription') ?></legend>
         <div class="field"><label
-                for="fromdate"><?php echo $GLOBALS['I18N']->get('Date they signed up after') ?></label>
+                for="fromdate"><?php echo s('Date they signed up after') ?></label>
             <div id="fromdate"><?php echo $from->showInput('', '', $fromval); ?></div>
         </div>
-        <div class="field"><label for="todate"><?php echo $GLOBALS['I18N']->get('Date they signed up before') ?></label>
+        <div class="field"><label for="todate"><?php echo s('Date they signed up before') ?></label>
             <div id="todate"><?php echo $to->showInput('', '', $toval); ?></div>
         </div>
     </fieldset>
     <input type="hidden" name="page" value="reconcileusers"/>
     <input type="hidden" name="option" value="deleteunconfirmed"/>
-    <input class="submit" type="submit" value="<?php echo $GLOBALS['I18N']->get('Click here') ?>"></form>
+    <input class="submit" type="submit" value="<?php echo s('Click here') ?>"></form>
 </form>
