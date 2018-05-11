@@ -529,9 +529,17 @@ echo '</ul>';
     ?>
 </div>
 
+<hr/>
+
+<div id="deleteblacklistedunsubscribed">
+    <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklistedunsubscribed',
+        s('Delete subscribers who are blacklisted because they unsubscribed'), '', 'button');
+    ?>
+</div>
+
 <div id="deleteblacklisted">
     <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklisted',
-        s('Delete blacklisted subscribers'), '', 'button');
+        s('Delete all blacklisted subscribers'), '', 'button');
     ?>
 </div>
 
