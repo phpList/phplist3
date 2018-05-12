@@ -1499,10 +1499,10 @@ function addInviteCampaign() {
         ';
     $inviteMessage=addslashes($message);
     $inviteMessageSubject = "Do you want to continue receiving our messages?";
-    $uuid = Uuid::generate(4);
+    $uuid = uuid::generate(4);
     $ownerid = $_SESSION['logindetails']['id'];
     $footer = sql_escape(getConfig('messagefooter'));
-    $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\" $uuid\",\"$inviteMessageSubject\",\" $inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
+    $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\"$uuid\",\"$inviteMessageSubject\",\"$inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
 
     return $result;
 
