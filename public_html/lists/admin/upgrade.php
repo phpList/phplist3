@@ -303,6 +303,12 @@ if ($dbversion == VERSION && !$force) {
         createTable('user_message_view');
     }
 
+    if (version_compare($dbversion, '3.3.3','<')) {
+        // add a draft campaign for invite plugin 
+        addInviteCampaign();
+  
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

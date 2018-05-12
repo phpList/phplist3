@@ -333,9 +333,12 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         FileNotFound();
     }
 } else {
+    // If no particular page was requested then show the default
     echo '<title>'.$GLOBALS['strSubscribeTitle'].'</title>';
     echo $pagedata['header'];
     $req = Sql_Query(sprintf('select * from %s where active', $tables['subscribepage']));
+        
+    // If active subscribe pages exist then list them
     if (Sql_Affected_Rows()) {
         while ($row = Sql_Fetch_Array($req)) {
             $intro = Sql_Fetch_Row_Query(sprintf('select data from %s where id = %d and name = "intro"',
@@ -346,15 +349,30 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
                     strip_tags(stripslashes($row['title'])));
             }
         }
+    // If no active subscribe page exist then print link to default
     } else {
         if (SHOW_SUBSCRIBELINK) {
             printf('<p><a href="'.getConfig('subscribeurl').'">%s</a></p>', $strSubscribeTitle);
         }
     }
 
+    // Print preferences page link
+    if (SHOW_PREFERENCESLINK) {
+        printf('<p><a href="'.getConfig('preferencesurl').'">%s</a></p>', $strPreferencesTitle);
+    }
+
+    // Print unsubscribe page link
     if (SHOW_UNSUBSCRIBELINK) {
         printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
     }
+    // Print link to contact admin using HTML entities for email obfuscation
+    echo 
+        '<p class=""><a href="'.
+            preg_replace_callback('/./', function($m) {
+                return '&#'.ord($m[0]).';';
+            }
+            , 'mailto:'.getConfig('admin_address')).
+        '">'.s('Contact the administrator').'</a></p>';
     echo $PoweredBy;
     echo $pagedata['footer'];
 }
