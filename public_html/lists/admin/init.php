@@ -257,6 +257,9 @@ if (!defined('UNSUBSCRIBE_REQUIRES_PASSWORD')) {
 if (!defined('UNSUBSCRIBE_JUMPOFF')) {
     define('UNSUBSCRIBE_JUMPOFF', 1);
 }
+if (!defined('SHOW_PREFERENCESLINK')) {
+    define('SHOW_PREFERENCESLINK', true);
+}
 if (!defined('SHOW_UNSUBSCRIBELINK')) {
     define('SHOW_UNSUBSCRIBELINK', true);
 }

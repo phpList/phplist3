@@ -440,6 +440,15 @@ define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 // see also https://mantis.phplist.com/view.php?id=15274
 define('PREFERENCEPAGE_SHOW_PRIVATE_LISTS', 0);
 
+// Show the link(s) to subscribe page(s) on the phpList public homepage (lists/)
+define('SHOW_SUBSCRIBELINK', true);
+
+// Show link to the preferences page on the phpList public homepage (lists/)
+define('SHOW_PREFERENCESLINK', true);
+
+// Show link to the unsubscribe page on the phpList public homepage (lists/)
+define('SHOW_UNSUBSCRIBELINK', true);
+
 // Show 'All Subscribers' section on Subscriber Lists page
 // This flag enabled will show a list called “All subscribers” on the 
 // Subscriber Lists page that has all subscribers in the system as members. 
