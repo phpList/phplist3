@@ -1481,6 +1481,8 @@ function addSubscriberStatistics($item, $amount, $list = 0)
 
 /**
  * Insert a draft campaign for use with the Invite plugin
+ * @todo Make the campaign content translatable
+ * @todo Add Campaign Meta Title to clarify purpose of this draft
  */
 function addInviteCampaign() {
 
