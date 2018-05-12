@@ -42,7 +42,7 @@ $userrows = Sql_Query(
 
 
 // loop over the rows, outputting them
-while ($row = mysqli_fetch_assoc($userrows))
+while ($row = Sql_Fetch_Assoc($userrows))
     fputcsv($output, $row);
 
 fputcsv($output, array(' '));
@@ -60,7 +60,7 @@ $userhistoryrows = Sql_Query(
 
 
 // loop over the rows, outputting them
-while ($row = mysqli_fetch_assoc($userhistoryrows))
+while ($row = Sql_Fetch_Assoc($userhistoryrows))
     fputcsv($output, $row);
 fputcsv($output, array(' '));
 fputcsv($output, array('','Campaign Info'));
@@ -71,7 +71,7 @@ $msgsrows = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or vi
 
 
 // loop over the rows, outputting them
-while ($row = mysqli_fetch_assoc($msgsrows))
+while ($row = Sql_Fetch_Assoc($msgsrows))
     fputcsv($output, $row);
 fputcsv($output, array(''));
 
@@ -89,7 +89,7 @@ from
 where 
     user = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
 
-while ($row = mysqli_fetch_assoc($bouncesrows))
+while ($row = Sql_Fetch_Assoc($bouncesrows))
     fputcsv($output, $row);
 
 fputcsv($output, array(''));
@@ -105,7 +105,7 @@ left join $blacklist as b on d.email = b.email
 where b.email = '$emailaddress';
 ");
 
-while ($row = mysqli_fetch_assoc($blacklistinforows))
+while ($row = Sql_Fetch_Assoc($blacklistinforows))
     fputcsv($output, $row);
 
 fputcsv($output, array(''));
@@ -124,7 +124,7 @@ where u.userid = '$userid';
 ");
 
 
-while ($row = mysqli_fetch_assoc($attributesrows))
+while ($row = Sql_Fetch_Assoc($attributesrows))
     fputcsv($output, $row);
 
 $list = $GLOBALS['tables']['list'];
@@ -144,7 +144,7 @@ where u.userid = '$userid';
 ");
 
 
-while ($row = mysqli_fetch_assoc($listrows))
+while ($row = Sql_Fetch_Assoc($listrows))
     fputcsv($output, $row);
 
 
@@ -161,7 +161,7 @@ $linkrows = Sql_Query(
         , $GLOBALS['tables']['linktrack'], $user['id'])
 );
 
-while ($row = mysqli_fetch_assoc($linkrows))
+while ($row = Sql_Fetch_Assoc($linkrows))
     fputcsv($output, $row);
 
 fputcsv($output, array(' '));
@@ -177,7 +177,7 @@ $umlrows = Sql_Query(
         , $GLOBALS['tables']['linktrack_uml_click'], $user['id'])
 );
 
-while ($row = mysqli_fetch_assoc($umlrows))
+while ($row = Sql_Fetch_Assoc($umlrows))
     fputcsv($output, $row);
 
 fputcsv($output, array(' '));
@@ -193,7 +193,7 @@ $userclickrows = Sql_Query(
         , $GLOBALS['tables']['linktrack_userclick'], $user['id'])
 );
 
-while ($row = mysqli_fetch_assoc($userclickrows))
+while ($row = Sql_Fetch_Assoc($userclickrows))
     fputcsv($output, $row);
 
 fputcsv($output, array(' '));
@@ -209,7 +209,7 @@ $forwardrows = Sql_Query(
         , $GLOBALS['tables']['user_message_forward'], $user['id'])
 );
 
-while ($row = mysqli_fetch_assoc($forwardrows))
+while ($row = Sql_Fetch_Assoc($forwardrows))
     fputcsv($output, $row);
 
 
