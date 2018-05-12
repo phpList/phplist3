@@ -1479,25 +1479,25 @@ function addSubscriberStatistics($item, $amount, $list = 0)
     }
 }
 
+/**
+ * Insert a draft campaign for use with the Invite plugin
+ */
 function addInviteCampaign() {
 
-    $message='<p>Hi [FIRST NAME%% ], remember us? You first signed up for our email newsletter on&nbsp;[ENTERED] -- please <a href="[CONFIRMATIONURL]" title="Confirm subscription">click here</a> to confirm that you&#39;re happy to continue receiving our messages:</p>
+    $message =
+'<p>Hi [FIRST NAME%%there], remember us? You first signed up for our email newsletter on&nbsp;[ENTERED] &ndash; please click here to confirm you&#39;re happy to continue receiving our messages:</p>
 
-        <p><strong><a href="[CONFIRMATIONURL]" title="Confirm subscription">Continue receiving messages</a></strong></p>
-        
-        <p><u>If you do not confirm using this link then you won&#39;t hear from us again</u>.</p>
-        
-        <p>While you&#39;re at it, you can also update your preferences, including your email address or other details, by clicking here:</p>
-        
-        <p><strong><a href="[PREFERENCESURL]">Update preferences</a></strong></p>
-        
-        <p>By confirming your membership and keeping your details up to date, you&#39;re helping us to manage and protect your data in accordance with best practices.</p>
-        
-        <p>Thank you!</p>
-        
-        
-        ';
-    $inviteMessage=addslashes($message);
+<p><strong><a href="[CONFIRMATIONURL]" title="Confirm subscription">Continue receiving messages</a></strong>&nbsp; <u>(If you do not confirm using this link, then you won&#39;t hear from us again</u>)</p>
+
+<p>While you&#39;re at it, you can also update your preferences, including your email address or other details, by clicking here:</p>
+
+<p><strong><a href="[PREFERENCESURL]">Update preferences</a></strong></p>
+
+<p>By confirming your membership and keeping your details up to date, you&#39;re helping us to manage and protect your data in accordance with best practices.</p>
+
+<p>Thank you!</p>';
+
+    $inviteMessage = addslashes($message);
     $inviteMessageSubject = "Do you want to continue receiving our messages?";
     $uuid = uuid::generate(4);
     $ownerid = $_SESSION['logindetails']['id'];
@@ -2244,7 +2244,6 @@ function asyncLoadContent($url)
 /**
  * load content in a div after loading
  */
-
 function asyncLoadContentDiv($url,$divname)
 {
 
