@@ -2,4 +2,4 @@
 # format of this file: anything with a # symbol is ignored
 # first line without # will be the name of this "attribute"
 # anything else will be values to use
-I agree to the terms of service of :Terms of Service
+I am 16 years or older :Subscriber is an adult
