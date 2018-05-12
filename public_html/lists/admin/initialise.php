@@ -203,9 +203,10 @@ if ($success) {
     } else {
         SaveConfig('organisation_name', strip_tags($_REQUEST['adminemail']), 1);
     }
-
+    // add a draft campaign for invite plugin
+    addInviteCampaign();
     // add a testlist
-    $info = $GLOBALS['I18N']->get('List for testing');
+    $info = s('List for testing');
     $result = Sql_query("insert into {$tables['list']} (name,description,entered,active,owner) values(\"test\",\"$info\",now(),0,1)");
     $info = s('Sign up to our newsletter');
     $result = Sql_query("insert into {$tables['list']} (name,description,entered,active,owner) values(\"newsletter\",\"$info\",now(),1,1)");
