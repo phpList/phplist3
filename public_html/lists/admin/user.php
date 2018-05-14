@@ -424,7 +424,7 @@ foreach ($struct as $key => $val) {
     } else {
         if (!strpos($key, '_')) {
             if (strpos($a, 'sys') !== false) {
-                if ($key === 'modified' || $key === 'entered'){
+                if ($key === 'modified' || $key === 'entered' || $key === 'passwordchanged'){
                     $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
                         s($b), stripslashes(formatDateTime($user[$key])));
                 }else
