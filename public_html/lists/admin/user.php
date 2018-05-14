@@ -424,8 +424,12 @@ foreach ($struct as $key => $val) {
     } else {
         if (!strpos($key, '_')) {
             if (strpos($a, 'sys') !== false) {
-                $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
-                    s($b), stripslashes($user[$key]));
+                if ($key === 'modified' || $key === 'entered'){
+                    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
+                        s($b), stripslashes(formatDateTime($user[$key])));
+                }else
+                    $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
+                        s($b), stripslashes($user[$key]));
             } elseif ($val[1]) {
                 $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
                     s($val[1]), $key, htmlspecialchars(stripslashes($user[$key])));
