@@ -727,7 +727,7 @@ function confirmPage($id)
         while ($row = Sql_fetch_array($req)) {
             array_push($subscriptions, $row['id']);
             $lists .= "\n *".stripslashes($row['name']);
-            $html .= '<li class="list">'.stripslashes($row['name']).'<div class="listdescription">'.stripslashes($row['description']).'</div></li>';
+            $html .= '<li class="list"><b>'.stripslashes($row['name']).'</b><div class="listdescription">'.stripslashes($row['description']).'</div></li>';
         }
         $html .= '</ul>';
         if ($blacklisted) {
@@ -757,7 +757,7 @@ function confirmPage($id)
                 addSubscriberStatistics('confirmation', 1);
             }
         } else {
-            $html = $GLOBALS['strAlreadyConfirmed'];
+            $html .= $GLOBALS['strAlreadyConfirmed'];
         }
         $_SESSION['subscriberConfirmed'][$userdata['email']] = time();
         $info = $GLOBALS['strConfirmInfo'];
