@@ -98,10 +98,10 @@ while ($row = Sql_Fetch_Array($req)) {
 
     if ($messagedata['subject'] != $messagedata['campaigntitle']) {
         $element = '<!--'.$row['messageid'].'-->'
-        .'<strong>'.shortenTextDisplay($messagedata['campaigntitle'], 30).'</strong>';
+            .stripslashes(shortenTextDisplay($messagedata['campaigntitle'], 30)).'<br/><strong>'.stripslashes(shortenTextDisplay($messagedata['subject'], 30)).'</strong>';
     } else {
         $element = '<!--'.$row['messageid'].'-->'
-        .shortenTextDisplay($messagedata['subject'], 30);
+            .stripslashes(shortenTextDisplay($messagedata['subject'], 30));
     }
 
     $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
