@@ -424,7 +424,7 @@ if ($c) {
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
 <h3>' .s('Add new Attribute').':</h3>
-<div class="alert alert-warning">' .s('Warning: Please avoid storing sensitive personal information such as race, health, or sexual orientation.').'<a href="https://www.phplist.org/manual/ch048_gdpr.xhtml" target="_blank">' .s(' Read more...'). '</a></div>
+<div class="alert alert-warning">' .s('Warning: Storage of sensitive personal data such as race, health, and sexual orientation is regulated by some data protection laws').' <a href="https://www.phplist.org/manual/ch048_gdpr.xhtml" target="_blank">' .s('Read more'). '&hellip;</a></div>
 
 <div class="label pull-left"><label class="label">' .s('Name').': </label></div>
 <div class="field"><input type="text" name="name[0]" value="" size="40" /></div>
