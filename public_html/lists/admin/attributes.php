@@ -353,7 +353,7 @@ echo s('Load data from').' '.PageLinkButton('defaults',
 
 $res = Sql_Query("select * from {$tables['attribute']} order by listorder");
 if (Sql_Affected_Rows()) {
-    echo '<h3>' .s('Existing attributes').':</h3>';
+    echo '<h3>' .s('Existing attributes').'</h3>';
 } else {
     echo '<p class="information">'.s('No Attributes have been defined yet').'</p>';
 }
