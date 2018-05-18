@@ -353,7 +353,7 @@ echo s('Load data from').' '.PageLinkButton('defaults',
 
 $res = Sql_Query("select * from {$tables['attribute']} order by listorder");
 if (Sql_Affected_Rows()) {
-    echo '<p class="information">'.s('Existing attributes').':</p>';
+    echo '<h3>' .s('Existing attributes').':</h3>';
 } else {
     echo '<p class="information">'.s('No Attributes have been defined yet').'</p>';
 }
@@ -423,7 +423,7 @@ if ($c) {
 
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
-<h3>' .s('Add new Attribute').':</h3>
+<h3>' .s('Add new Attribute').'</h3>
 <div class="alert alert-warning">' .s('Warning: Storage of sensitive personal data such as race, health, and sexual orientation is regulated by some data protection laws').'. <a href="https://www.phplist.org/manual/ch048_gdpr.xhtml" target="_blank">' .s('Read more'). '&hellip;</a></div>
 
 <div class="label pull-left"><label class="label">' .s('Name').': </label></div>
