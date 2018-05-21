@@ -9,6 +9,7 @@ use WebDriver\Exception\UnknownError;
 use WebDriver\Exception;
 use WebDriver\Key;
 use WebDriver\WebDriver;
+use WebDriver\Exception\UnexpectedAlertOpen;
 
 use Behat\Behat\Context\Context;
 

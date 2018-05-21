@@ -8,6 +8,7 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
+        Then I should see "Start a new campaign"
         Given I follow "Start a new campaign"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"

@@ -7,10 +7,11 @@ Feature: Choose Theme
          Given I have logged in as an administrator
          Given I follow "Config"
          And I follow "Settings"
-         Then I should be on "/lists/admin/?page=configure"
+         Then I should be on "lists/admin/?page=configure"
          Given I am on "/lists/admin/?page=configure&id=UITheme"
+         Then I should see "Trevelin"
          Given I select "Dressprow" from "values[UITheme]"
-         When I press "Save changes"
+         And I press "Save changes"
          #Element not clickable at point
          #Given I follow "logout"
          Given I am on "/lists/admin/?page=logout"
