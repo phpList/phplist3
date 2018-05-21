@@ -7,7 +7,6 @@
 # the information
 Country:Countries in the world
 Afghanistan
-Akrotiri
 Albania
 Algeria
 American Samoa
@@ -75,6 +74,7 @@ Dhekelia
 Djibouti
 Dominica
 Dominican Republic
+East Timor
 Ecuador
 Egypt
 El Salvador
@@ -135,6 +135,7 @@ Kenya
 Kiribati
 Korea, North
 Korea, South
+Kosovo
 Kuwait
 Kyrgyzstan
 Laos
@@ -164,6 +165,7 @@ Micronesia, Federated States of
 Moldova
 Monaco
 Mongolia
+Montenegro
 Montserrat
 Morocco
 Mozambique
@@ -210,7 +212,7 @@ San Marino
 Sao Tome and Principe
 Saudi Arabia
 Senegal
-Serbia and Montenegro
+Serbia
 Seychelles
 Sierra Leone
 Singapore
@@ -220,6 +222,7 @@ Solomon Islands
 Somalia
 South Africa
 South Georgia and the South Sandwich Islands
+South Sudan
 Spain
 Spratly Islands
 Sri Lanka
