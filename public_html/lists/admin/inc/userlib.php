@@ -200,12 +200,13 @@ function addNewUser($email, $password = '')
         return $exists[0];
     }
 
+    $blacklist = isBlackListed($email);
     $passwordEnc = encryptPass($password);
-    Sql_Query(sprintf('insert into %s set email = "%s",
+    Sql_Query(sprintf('insert into %s set email = "%s", blacklisted = "%d",
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
     uniqid = "%s",htmlemail = 1, uuid = "%s"
-    ', $GLOBALS['tables']['user'], $email, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
+    ', $GLOBALS['tables']['user'], $email, $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
 
     $id = Sql_Insert_Id();
 
