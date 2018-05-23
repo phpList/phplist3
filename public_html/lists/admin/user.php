@@ -328,12 +328,15 @@ if ($id) {
     echo '<div class="actions">';
     echo PageLinkButton("userhistory&amp;id=$id", s('History'));
     echo PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
-    echo 
-        '<a 
+    if (!isBlackListed($user['email'])) {
+        echo
+            '<a 
             class="confirm btn btn-default" 
-            href="'.getConfig('preferencesurl')."&amp;uid=".$user['uniqid'].'">'.
-                s('Preferences page').'
+            
+            href="' . getConfig('preferencesurl') . "&amp;uid=" . $user['uniqid'] . '">' .
+            s('Preferences page') . '
         </a>';
+    }
 
     // Trigger hook to add additional buttons from plugins
     if (!empty($GLOBALS['config']['plugins']) && is_array($GLOBALS['config']['plugins'])) {
