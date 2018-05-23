@@ -326,8 +326,8 @@ if ($id) {
     }
 
     echo '<div class="actions">';
-    echo '&nbsp;&nbsp;'.PageLinkButton("userhistory&amp;id=$id", s('History'));
-    echo '&nbsp;&nbsp;'.PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
+    echo PageLinkButton("userhistory&amp;id=$id", s('History'));
+    echo PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
     echo 
         '<a 
             class="confirm btn btn-default" 
