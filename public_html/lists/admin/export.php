@@ -71,7 +71,6 @@ if (isset($_POST['processexport'])) {
     $_SESSION['export']['todate'] = $to->getDate('to');
     $_SESSION['export']['list'] = $list;
 
-    echo '<p>'.s('Processing export, this may take a while. Please wait').'</p>';
     echo $GLOBALS['img_busy'];
     echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
     echo '<br/> <iframe id="export" src="./?page=pageaction&action=export&ajaxed=true'.addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
