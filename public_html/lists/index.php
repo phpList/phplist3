@@ -480,7 +480,7 @@ function checkform()
     if ($GLOBALS['pagedata']['emaildoubleentry'] == 'yes') {
         $html .= '
   if (! compareEmail()) {
-    alert("Email addresses you entered do not match");
+    alert("' .str_replace('"', '\"', $GLOBALS['strEmailsNoMatch']).'");
 
     return false;
   }';
@@ -488,7 +488,7 @@ function checkform()
 
     $html .= '
   if (! checkEmail()) {
-    alert("Email addresses you entered is not valid");
+    alert("' .str_replace('"', '\"', $GLOBALS['strEmailNotValid']).'");
 
     return false;
   }';
