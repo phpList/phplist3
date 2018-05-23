@@ -332,10 +332,8 @@ if ($id) {
         echo
             '<a 
             class="confirm btn btn-default" 
-            
             href="' . getConfig('preferencesurl') . "&amp;uid=" . $user['uniqid'] . '">' .
-            s('Preferences page') . '
-        </a>';
+            s('Preferences page') . '</a>';
     }
 
     // Trigger hook to add additional buttons from plugins
