@@ -185,7 +185,7 @@ $content .= '<p class="information">'.
 $content .= '</p>';
 $content .= '<div class="field"><textarea name="importcontent" rows="10" cols="40"></textarea></div>';
 $content .= '<div class="field"><input type="checkbox" name="checkvalidity" value="1" checked="checked" /> '.s('Check to skip emails that are not valid').'</div>';
-$content .= '<div class="field"><input type="checkbox" name="confirm" value="1" checked="checked" /> '.s('The imported emails are confirmed').'</div>';
+$content .= '<div class="field"><input type="checkbox" name="confirm" value="1" checked="checked" /> '.s('Confirm email addresses by default').'</div>';
 $content .= '<div class="field"><input type="submit" name="doimport" value="'.s('Import emails').'" ></div>';
 
 $panel = new UIPanel('', $content);
