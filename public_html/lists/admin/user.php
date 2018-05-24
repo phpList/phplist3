@@ -270,26 +270,26 @@ if (isset($delete) && $delete && $access != 'view') {
     // delete the index in delete
     $_SESSION['action_result'] = s('Deleting').' '.s('Subscriber').' '.s('ID')." $delete ..\n";
     if ($require_login && !isSuperUser()) {
-        // If the user does not permission to permanently delete, delete 
+        // If the user does not permission to permanently delete, delete
         // subscriptoins instead
 
         // Get all lists subscriber is a member of
         $lists = Sql_query("
-            SELECT 
-                listid 
-            FROM 
-                {$tables['listuser']},{$tables['list']} 
-            WHERE 
-                userid = ".$delete." 
-                AND $tables[listuser].listid = $tables[list].id 
-                $subselect 
+            SELECT
+                listid
+            FROM
+                {$tables['listuser']},{$tables['list']}
+            WHERE
+                userid = ".$delete."
+                AND $tables[listuser].listid = $tables[list].id
+                $subselect
         ");
         while ($lst = Sql_fetch_array($lists)) {
             Sql_query("
-                DELETE FROM 
-                    {$tables['listuser']} 
-                WHERE 
-                    userid = $delete 
+                DELETE FROM
+                    {$tables['listuser']}
+                WHERE
+                    userid = $delete
                     AND listid = $lst[0]
             ");
         }
@@ -477,7 +477,7 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
         } elseif ($row['type'] == 'textarea') {
             $userdetailsHTML .= sprintf('
            <tr><td valign="top" class="dataname">%s</td><td><textarea name="attribute[%d]" rows="10" cols="40" class="wrap virtual">%s</textarea></td>
-           </tr>', stripslashes($row['name']), $row['id'], htmlspecialchars(stripslashes($row['value'])));
+           </tr>', stripslashes($row['name']), $row['id'], str_replace(array('>', '<'), array('&gt;', '&lt;'), stripslashes($row['value'])));
         } elseif ($row['type'] == 'avatar') {
             $userdetailsHTML .= sprintf('<tr><td valign="top" class="dataname">%s</td><td>',
                 stripslashes($row['name']));
@@ -493,7 +493,7 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
                     stripslashes($row['name']), UserAttributeValueSelect($id, $row['id']));
             } else {
                 $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",
-                    $row['name'], $row['id'], htmlspecialchars(stripslashes($row['value'])));
+                    $row['name'], $row['id'], str_replace('"', '&#x22;', stripslashes($row['value'])));
             }
         }
     }
