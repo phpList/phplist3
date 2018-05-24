@@ -32,20 +32,6 @@ if (!empty($link)) {
     $html .= '</td></tr>';
 }
 
-$link = PageLink2('admin&amp;id=1', s('Change admin password'));
-if (!empty($link)) {
-    $html .= '<tr><td>' .$link.'</td><td>';
-    $curpwd = Sql_Fetch_Row_Query("select password from {$tables['admin']} where loginname = \"admin\"");
-    if ($curpwd[0] != 'phplist' && $curpwd[0] != encryptPass('phplist')) {
-        $html .= $GLOBALS['img_tick'];
-    } else {
-        $alldone = 0;
-        $html .= $GLOBALS['img_cross'];
-    }
-
-    $html .= '</td></tr>';
-}
-
 $link = PageLink2('configure', s('Verify Settings'));
 if (!empty($link)) {
     $html .= '<tr><td>' .$link.'</td><td>';
