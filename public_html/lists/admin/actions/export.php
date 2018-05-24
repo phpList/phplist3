@@ -196,6 +196,7 @@ while ($user = Sql_fetch_array($result)) {
 
 echo '<script type="text/javascript">
 var parentJQuery = window.parent.jQuery;
+parentJQuery("#busyimage").show();
 parentJQuery("#progressbar").updateProgress("' .$todo.','.$todo.'");
 parentJQuery("#busyimage").hide();
 parentJQuery("#progresscount").html("' .s('All done').'");
