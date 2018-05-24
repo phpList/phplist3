@@ -58,7 +58,7 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
     );
 }
 
-if (!versionCompare($dbversion,'2.11.11')) {
+if (!versionCompare($dbversion,'2.11.11') && $dbversion!=='dev') {
     Fatal_Error(s('Your version is older than 3.2.0 and cannot be upgraded to this version. Please upgrade to 3.2.0 first and then try again.'));
     return;
 }
