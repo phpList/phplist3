@@ -18,6 +18,11 @@ matrix:
           env: BROWSER=goutte
         - php: '7.1'
           env: BROWSER=chrome
+        - php: '7.2'
+          env: BROWSER=goutte
+        - php: '7.2'
+          env: BROWSER=chrome
+
 
 notifications:
   slack:
