@@ -27,7 +27,7 @@ Feature: Login
          And I fill in "login" with a valid username
          And I fill in "password" with a valid password
          And I press "Continue"
-         Then I should see "Start or continue a campaign"
+         Then I should see "start or continue a campaign"
 
 
      Scenario: Login with only a password
@@ -40,4 +40,4 @@ Feature: Login
          And I fill in "login" with a valid username
          And I fill in "password" with a valid password
          And I press "Continue"
-         Then I should see "Start or continue a campaign"
+         Then I should see "start or continue a campaign"
