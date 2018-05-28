@@ -30,7 +30,7 @@ Feature: Create, edit, categorize and delete lists
            Then I should see "Editing Categories for lists. Separate with commas."
            When I write "First Category" into "edit_list_categories"
            And I press "Save changes"
-           And I press "Save changes"
+           #And I press "Save changes"
            Then I should see "Choose category"
 
  Scenario: Edit a list

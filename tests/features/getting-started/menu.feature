@@ -28,7 +28,6 @@ Feature: Navigate the app using the menu
         Examples:
          | Innerpages                |
          | Search subscribers        |
-         | Add a new subscriber      |
          | Manage subscribers        |
          | Subscriber lists          |
          | Import subscribers        |
