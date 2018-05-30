@@ -372,7 +372,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
                 return '&#'.ord($m[0]).';';
             }
             , 'mailto:'.getConfig('admin_address')).
-        '">'.$GLOBALS['contactAdmin'].'</a></p>';
+        '">'.$GLOBALS['strContactAdmin'].'</a></p>';
     echo $PoweredBy;
     echo $pagedata['footer'];
 }
