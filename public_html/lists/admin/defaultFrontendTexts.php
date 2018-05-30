@@ -140,7 +140,7 @@ $strForwardFooter = 'This message has been forwarded to you by [FORWARDEDBY].
   To subscribe to this newsletter go to';
 $strForward = 'Forward';
 $strFwd = 'Fwd'; # short version of forward for email subject
-$strContactAdmin= 'Contact the administrator';
+$strContactAdmin = 'Contact the administrator';
 
 
 ?>
