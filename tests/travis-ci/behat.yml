@@ -31,6 +31,7 @@ default:
                     clear_screenshot_directory: false
 
         Behat\MinkExtension:
+            files_path: %paths.base%/tests/files/
             base_url: http://localhost:8000
             selenium2: ~
             goutte: ~
