@@ -157,6 +157,19 @@ if (!empty($_GET['delete'])) {
     $action_result .= "<hr /><br />\n";
 }
 
+if (isset($_GET['duplicate'])) {
+    verifyCsrfGetToken();
+    
+    Sql_Query(sprintf('insert into %s (subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
+        modified, embargo, repeatinterval, repeatuntil, requeueuntil, requeueinterval, status,  htmlformatted, 
+        sendformat, template, processed, astext, ashtml, astextandhtml,aspdf, astextandpdf, rsstemplate, owner)
+        select subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
+        now(), now(), repeatinterval, repeatuntil, requeueuntil, requeueinterval, "draft",  htmlformatted, 
+        sendformat, template, processed, astext, ashtml, astextandhtml,aspdf, astextandpdf, rsstemplate, "%d" from %s
+        where id = %d',
+        $GLOBALS['tables']['message'],$_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],intval($_GET['duplicate'])));
+}
+
 if (isset($_GET['resend'])) {
     verifyCsrfGetToken();
     $resend = sprintf('%d', $_GET['resend']);
@@ -568,6 +581,11 @@ if ($total) {
             if (empty($clicks[0])) { //# disallow deletion when there are stats
                 $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
             }
+        }
+
+        if ($msg['status'] == 'sent') {
+            $actionbuttons .= '<span class="edit">'.PageLinkButton('messages', s('Copy to Draft'),
+                    'tab=draft&duplicate='.$msg['id'], '', s('Copy to Draft')).'</span>';
         }
 
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Action'),
