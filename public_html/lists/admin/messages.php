@@ -159,15 +159,15 @@ if (!empty($_GET['delete'])) {
 
 if (isset($_GET['duplicate'])) {
     verifyCsrfGetToken();
-    
+
     Sql_Query(sprintf('insert into %s (subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
-        modified, embargo, repeatinterval, repeatuntil, requeueuntil, requeueinterval, status,  htmlformatted, 
-        sendformat, template, processed, astext, ashtml, astextandhtml,aspdf, astextandpdf, rsstemplate, owner)
+        modified, embargo, repeatuntil, status, htmlformatted, sendformat, template, rsstemplate, owner)
         select subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
-        now(), now(), repeatinterval, repeatuntil, requeueuntil, requeueinterval, "draft",  htmlformatted, 
-        sendformat, template, processed, astext, ashtml, astextandhtml,aspdf, astextandpdf, rsstemplate, "%d" from %s
+        now(), now(), now(), "draft",  htmlformatted, 
+        sendformat, template, rsstemplate, "%d" from %s
         where id = %d',
-        $GLOBALS['tables']['message'],$_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],intval($_GET['duplicate'])));
+        $GLOBALS['tables']['message'],$_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],intval($_GET['duplicate'])));    
+
 }
 
 if (isset($_GET['resend'])) {
