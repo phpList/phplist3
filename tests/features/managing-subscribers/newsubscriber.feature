@@ -7,7 +7,6 @@ Feature: Create a new subscriber
     Given I have logged in as an administrator
     Given I follow "Subscribers"
     Given I follow "Search subscribers"
-    Then I should see "Find subscribers"
     Given I follow "Add a subscriber"
     Then I should see "Email address"
     When I fill in "email" with an email address
