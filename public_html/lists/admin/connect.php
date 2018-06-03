@@ -641,7 +641,7 @@ $GLOBALS['pagecategories'] = array(
         ),
         'menulinks' => array(
             'users',
-            'adduser',
+//            'adduser',
             'usermgt',
             'list',
             'import',
