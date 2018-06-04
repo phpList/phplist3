@@ -110,7 +110,7 @@ if ($dbversion == VERSION && !$force) {
     //# lock this process
     SaveConfig('in-upgrade-to', VERSION, 1);
 
-    if (version_compare($dbversion, '3.3.3','<')) {
+    if (version_compare($dbversion, '3.3.4','<')) {
 
         $indexesToRecreate = array(
             'urlcache' => array(
