@@ -346,9 +346,9 @@ if ($id) {
     $GLOBALS['I18N']->get('(comma separate addresses - all must be existing subscribers)'));
 $testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'), $sendtest_content);
 $testpanel->setID('testpanel');
-//  if ($systemTemplateID == $id) { ## for now, testing only for system message templates
+  if ($systemTemplateID == $id) { ## for now, testing only for system message templates
 echo $testpanel->display();
-//  }
+  }
 ?>
 
 </form>
