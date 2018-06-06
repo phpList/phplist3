@@ -1661,7 +1661,7 @@ function resetMessageStatistics($messageid = 0)
             $messageid));
         Sql_Query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['usermessage'], $messageid));
         Sql_Query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['user_message_view'], $messageid));
-        Sql_Query(sprintf('update %s set viewed = 0 where messageid = %d', $GLOBALS['tables']['message'], $messageid));
+        Sql_Query(sprintf('update %s set viewed = 0 where id = %d', $GLOBALS['tables']['message'], $messageid));
     }
 }
 
