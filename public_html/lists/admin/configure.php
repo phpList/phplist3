@@ -10,9 +10,12 @@ if ($_GET["firstinstall"] || $_SESSION["firstinstall"]) {
 }
 */
 
+/*reset configuration to default, but do not change admin email*/
 if (isset($_GET['resetdefault']) && $_GET['resetdefault'] == 'yes') {
-    Sql_Query(sprintf('delete from %s where editable and item in ("%s")', $GLOBALS['tables']['config'],
-        implode('","', array_keys($default_config))));
+    $adminEmailValue = getConfig('admin_address');
+    Sql_Query(sprintf('delete from %s where editable and item in ("%s") ', $GLOBALS['tables']['config'],
+        implode('","', array_keys($default_config)) ));
+    SaveConfig('admin_address', $adminEmailValue);
     $_SESSION['action_result'] = s('The settings have been reset to the phpList default');
     Redirect('configure');
 }
