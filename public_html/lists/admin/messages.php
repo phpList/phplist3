@@ -160,14 +160,22 @@ if (!empty($_GET['delete'])) {
 if (isset($_GET['duplicate'])) {
     verifyCsrfGetToken();
 
-    Sql_Query(sprintf('insert into %s (subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
-        modified, embargo, repeatuntil, status, htmlformatted, sendformat, template, rsstemplate, owner)
-        select subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
-        now(), now(), now(), "draft",  htmlformatted, 
+    Sql_Query(sprintf('insert into %s (uuid, subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
+        modified, embargo, repeatuntil, repeatinterval, requeueinterval, status, htmlformatted, sendformat, template, rsstemplate, owner)
+        select "%s", subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
+        now(), now(), now(), repeatinterval, requeueinterval, "draft",  htmlformatted, 
         sendformat, template, rsstemplate, "%d" from %s
         where id = %d',
-        $GLOBALS['tables']['message'],$_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],intval($_GET['duplicate'])));    
-
+        $GLOBALS['tables']['message'], (string) Uuid::generate(4), $_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],
+        intval($_GET['duplicate'])));    
+    if ($newId = Sql_Insert_Id()) {  // if we don't have a newId then the copy failed
+		Sql_Query(sprintf('insert into %s (id,name,data) '.
+			'select %d,name,data from %s where name in ("sendmethod","sendurl","campaigntitle","excludelist","subject") and id = %d',
+			$GLOBALS['tables']['messagedata'],$newId,$GLOBALS['tables']['messagedata'],intval($_GET['duplicate'])));
+		Sql_Query(sprintf('insert into %s (messageid, listid, entered)  select %d, listid, now() from %s where messageid = %d',
+			$GLOBALS['tables']['listmessage'],$newId,$GLOBALS['tables']['listmessage'],intval($_GET['duplicate'])));
+	}
+	
 }
 
 if (isset($_GET['resend'])) {
