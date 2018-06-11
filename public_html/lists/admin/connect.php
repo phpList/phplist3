@@ -240,9 +240,9 @@ function SaveConfig($item, $value, $editable = 1, $ignore_errors = 0)
             include 'class.image.inc';
             $image = new imageUpload();
             $imageId = $image->uploadImage($item, 0);
-            if ($imageId) {
+#            if ($imageId) {
                 $value = $imageId;
-            }
+#            }
             //# we only use the image type for the logo
             flushLogoCache();
     }
@@ -2115,11 +2115,11 @@ function listPlaceHolders()
 {
     $html = '<table border="1"><tr><td><strong>'.s('Attribute').'</strong></td><td><strong>'.s('Placeholder').'</strong></td></tr>';
     $req = Sql_query('
-    select 
-        name 
-    from 
-        '.$GLOBALS['tables']['attribute'].' 
-    order by 
+    select
+        name
+    from
+        '.$GLOBALS['tables']['attribute'].'
+    order by
         listorder
     ');
     while ($row = Sql_Fetch_Row($req)) {
