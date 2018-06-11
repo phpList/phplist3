@@ -3,7 +3,6 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 include dirname(__FILE__).'/structure.php';
-@ob_end_flush();
 
 function output($message)
 {
@@ -50,6 +49,7 @@ if ($force) {
     Redirect('initialise&firstinstall=1');
     exit;
 }
+@ob_end_flush();
 
 if (empty($_SESSION['hasconf']) && !empty($_REQUEST['firstinstall']) && (empty($_REQUEST['adminemail']) || strlen($_REQUEST['adminpassword']) < 8)) {
     echo '<noscript>';
