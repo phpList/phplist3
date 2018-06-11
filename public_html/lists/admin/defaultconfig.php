@@ -354,7 +354,7 @@ $default_config = array(
     // [CONFIRMATIONURL] will be replaced with the URL where a user has to confirm
     // their subscription
     'subscribemessage' => array(
-        'value' => 
+        'value' =>
 ' You have been subscribed to the following newsletters:
 
 [LISTS]
@@ -391,7 +391,7 @@ If this is not correct, or you do not agree, simply take no action and delete th
 
     // message that is sent when they unsubscribe
     'unsubscribemessage' => array(
-        'value' => 
+        'value' =>
 'Goodbye from our Newsletter, sorry to see you go.
 
 You have been unsubscribed from our newsletters.
@@ -421,7 +421,7 @@ Thank you'
 
     // message that is sent to confirm subscription
     'confirmationmessage' => array(
-        'value' => 
+        'value' =>
 'Welcome to our Newsletter
 
 Please keep this message for later reference.
@@ -454,7 +454,7 @@ Thank you'
     // confirmationinfo is replaced by one of the options below
     // userdata is replaced by the information in the database
     'updatemessage' => array(
-        'value' =>   
+        'value' =>
 'This message is to inform you of a change of your details on our newsletter database
 
 You are currently member of the following newsletters:
@@ -486,9 +486,9 @@ Thank you'
         'value' => '
   When updating your details, your email address has changed.
   Please confirm your new email address by visiting this webpage:
-  
+
   [CONFIRMATIONURL]
-  
+
   ',
         'description' => s('Part of the message that is sent to their new email address when subscribers change their information, and the email address has changed'),
         'type'        => 'textarea',
@@ -500,7 +500,7 @@ Thank you'
     // message, in case the email is sent to their old email address and they have changed
     // their email address
     'emailchanged_text_oldaddress' => array(
-        'value' => 
+        'value' =>
 'Please Note: when updating your details, your email address has changed.
 
 A message has been sent to your new email address with a URL
@@ -522,7 +522,7 @@ your membership.'
     ),
 
     'personallocation_message' => array(
-        'value' => 
+        'value' =>
 'You have requested your personal location to update your details in our newsletter database.
 The location is below. Please make sure that you use the full line as mentioned below.
 Sometimes email programmes can wrap the line into multiple lines.
@@ -540,7 +540,7 @@ Thank you.'
 
     'messagefooter' => array(
         'value' => '--
-  
+
     <div class="footer" style="text-align:left; font-size: 75%;">
       <p>This message was sent to [EMAIL] by [FROMEMAIL]</p>
       <p>To forward this message, please do not use the forward button of your email application, because this message was made specifically for you only. Instead use the <a href="[FORWARDURL]">forward page</a> in our newsletter system.<br/>
@@ -598,7 +598,7 @@ Thank you.'
 //),
 
     'personallocation_message' => array(
-        'value' => 
+        'value' =>
 
 'You have requested your personal location to update your details from our website.
 The location is below. Please make sure that you use the full line as mentioned below.
@@ -815,18 +815,18 @@ function getUserConfig($item, $userid = 0)
 
         $url = getConfig('unsubscribeurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[UNSUBSCRIBEURL]', $url.$sep.'uid='.$uniqid, $value);
+        $value = str_ireplace('[UNSUBSCRIBEURL]', $url.$sep.'uid='.$uniqid.' ', $value);
         $url = getConfig('confirmationurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[CONFIRMATIONURL]', $url.$sep.'uid='.$uniqid, $value);
+        $value = str_ireplace('[CONFIRMATIONURL]', $url.$sep.'uid='.$uniqid.' ', $value);
         $url = getConfig('preferencesurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[PREFERENCESURL]', $url.$sep.'uid='.$uniqid, $value);
+        $value = str_ireplace('[PREFERENCESURL]', $url.$sep.'uid='.$uniqid.' ', $value);
         $value = str_ireplace('[EMAIL]', $email, $value);
 
         $value = parsePlaceHolders($value, getUserAttributeValues($email));
     }
-    $value = str_ireplace('[SUBSCRIBEURL]', getConfig('subscribeurl'), $value);
+    $value = str_ireplace('[SUBSCRIBEURL]', getConfig('subscribeurl').' ', $value);
     $value = preg_replace('/\[DOMAIN\]/i', $domain,
         $value); //@ID Should be done only in one place. Combine getConfig and this one?
     $value = preg_replace('/\[WEBSITE\]/i', $website, $value);
