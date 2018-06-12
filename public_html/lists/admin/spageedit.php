@@ -267,8 +267,6 @@ $generalinfoHTML .= sprintf('<input type="radio" name="emaildoubleentry" value="
 
 $generalinfoHTML .= '</div>';
 
-echo $generalinfoHTML;
-
 $transactionHTML = '<h3><a name="transaction">'.s('Transaction messages').'</a></h3>';
 
 $transactionHTML .= '<div>';
@@ -307,8 +305,6 @@ $testpanel->setID('testpanel');
 
 $transactionHTML .= '</div>';
 
-echo $transactionHTML;
-
 $attributesHTML = '<h3><a name="attributes">'.s('Select the attributes to use').'</a></h3>';
 $attributesHTML .= '<div>';
 $hasAttributes = false;
@@ -341,10 +337,6 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 
 $attributesHTML .= '</div>';
-
-if ($hasAttributes) {
-    echo $attributesHTML;
-}
 
 //## allow plugins to add tabs
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -379,7 +371,14 @@ while ($row = Sql_Fetch_Array($req)) {
 
 $listsHTML .= '</div>';
 
+//the order of tabs
+echo $generalinfoHTML;
 echo $listsHTML;
+if ($hasAttributes) {
+    echo $attributesHTML;
+}
+echo $transactionHTML;
+
 echo '</div>'; // accordion
 
 $ownerHTML = $singleOwner = '';
