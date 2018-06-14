@@ -75,17 +75,17 @@ if (isset($_POST['sortBy'])) {
 }
 
 echo '<div class="actions"><div class="fright">';
-echo PageLinkActionButton('send&amp;new=1', $GLOBALS['I18N']->get('Start a new campaign'));
+echo PageLinkActionButton('send&amp;new=1', s('Start a new campaign'));
 echo '</div><div class="clear"></div></div>';
 
 //## Print tabs
 $tabs = new WebblerTabs();
-$tabs->addTab($GLOBALS['I18N']->get('sent'), PageUrl2('messages&amp;tab=sent'), 'sent');
-$tabs->addTab($GLOBALS['I18N']->get('active'), PageUrl2('messages&amp;tab=active'), 'active');
-$tabs->addTab($GLOBALS['I18N']->get('draft'), PageUrl2('messages&amp;tab=draft'), 'draft');
-//$tabs->addTab($GLOBALS['I18N']->get("queued"),PageUrl2("messages&amp;tab=queued"));#
+$tabs->addTab(ucfirst(s('sent')), PageUrl2('messages&amp;tab=sent'), 'sent');
+$tabs->addTab(ucfirst(s('active')), PageUrl2('messages&amp;tab=active'), 'active');
+$tabs->addTab(ucfirst(s('draft')), PageUrl2('messages&amp;tab=draft'), 'draft');
+//$tabs->addTab(s("queued"),PageUrl2("messages&amp;tab=queued"));#
 if (USE_PREPARE) {
-    $tabs->addTab($GLOBALS['I18N']->get('static'), PageUrl2('messages&amp;tab=static'), 'static');
+    $tabs->addTab(ucfirst(s('static')), PageUrl2('messages&amp;tab=static'), 'static');
 }
 //obsolete, moved to rssmanager plugin
 //if (ENABLE_RSS) {
@@ -145,12 +145,12 @@ if (!empty($_GET['delete'])) {
         array_push($todelete, sprintf('%d', $_GET['delete']));
     }
     foreach ($todelete as $delete) {
-        $action_result .= $GLOBALS['I18N']->get('Deleting')." $delete ...";
+        $action_result .= s('Deleting')." $delete ...";
         $del = deleteMessage($delete);
         if ($del) {
-            $action_result .= '... '.$GLOBALS['I18N']->get('Done');
+            $action_result .= '... '.s('Done');
         } else {
-            $action_result .= '... '.$GLOBALS['I18N']->get('failed');
+            $action_result .= '... '.s('failed');
         }
         $action_result .= '<br/>';
     }
@@ -161,7 +161,7 @@ if (isset($_GET['resend'])) {
     verifyCsrfGetToken();
     $resend = sprintf('%d', $_GET['resend']);
     // requeue the message in $resend
-    $action_result .= $GLOBALS['I18N']->get('Requeuing')." $resend ..";
+    $action_result .= s('Requeuing')." $resend ..";
     $result = Sql_Query(sprintf('update %s set status = "submitted", sendstart = null where id = %d',
         $tables['message'], $resend));
     $suc6 = Sql_Affected_Rows();
@@ -170,7 +170,7 @@ if (isset($_GET['resend'])) {
         $result = Sql_query(sprintf('delete from %s where messageid = %d', $tables['usermessage'], $resend));
     }
     if ($suc6) {
-        $action_result .= '... '.$GLOBALS['I18N']->get('Done');
+        $action_result .= '... '.s('Done');
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
             $plugin->messageReQueued($resend);
         }
@@ -189,7 +189,7 @@ if (isset($_GET['resend'])) {
             $action_result .= activateRemoteQueue();
         }
     } else {
-        $action_result .= '... '.$GLOBALS['I18N']->get('failed');
+        $action_result .= '... '.s('failed');
     }
     $action_result .= '<br />';
 }
@@ -197,14 +197,14 @@ if (isset($_GET['resend'])) {
 if (isset($_GET['suspend'])) {
     verifyCsrfGetToken();
     $suspend = sprintf('%d', $_GET['suspend']);
-    $action_result .= $GLOBALS['I18N']->get('Suspending')." $suspend ..";
+    $action_result .= s('Suspending')." $suspend ..";
     $result = Sql_query(sprintf('update %s set status = "suspended" where id = %d and (status = "inprocess" or status = "submitted") %s',
         $tables['message'], $suspend, $ownerselect_and));
     $suc6 = Sql_Affected_Rows();
     if ($suc6) {
-        $action_result .= '... '.$GLOBALS['I18N']->get('Done');
+        $action_result .= '... '.s('Done');
     } else {
-        $action_result .= '... '.$GLOBALS['I18N']->get('failed');
+        $action_result .= '... '.s('failed');
     }
     $action_result .= '<br /><hr /><br />';
 }
@@ -212,14 +212,14 @@ if (isset($_GET['suspend'])) {
 if (isset($_GET['markSent'])) {
     verifyCsrfGetToken();
     $markSent = sprintf('%d', $_GET['markSent']);
-    $action_result .= $GLOBALS['I18N']->get('Marking as sent ')." $markSent ..";
+    $action_result .= s('Marking as sent ')." $markSent ..";
     $result = Sql_query(sprintf('update %s set status = "sent", repeatinterval = 0,requeueinterval = 0 where id = %d and (status = "suspended") %s',
         $tables['message'], $markSent, $ownerselect_and));
     $suc6 = Sql_Affected_Rows();
     if ($suc6) {
-        $action_result .= '... '.$GLOBALS['I18N']->get('Done');
+        $action_result .= '... '.s('Done');
     } else {
-        $action_result .= '... '.$GLOBALS['I18N']->get('Failed');
+        $action_result .= '... '.s('Failed');
     }
     $action_result .= '<br /><hr /><br />';
 }
@@ -228,26 +228,26 @@ if (isset($_GET['action'])) {
     verifyCsrfGetToken();
     switch ($_GET['action']) {
         case 'suspall':
-            $action_result .= $GLOBALS['I18N']->get('Suspending all').' ..';
+            $action_result .= s('Suspending all').' ..';
             $result = Sql_query(sprintf('update %s set status = "suspended" where (status = "inprocess" or status = "submitted") %s',
                 $tables['message'], $ownerselect_and));
             $suc6 = Sql_Affected_Rows();
             if ($suc6) {
-                $action_result .= "... $suc6 ".$GLOBALS['I18N']->get('Done');
+                $action_result .= "... $suc6 ".s('Done');
             } else {
-                $action_result .= '... '.$GLOBALS['I18N']->get('Failed');
+                $action_result .= '... '.s('Failed');
             }
             $action_result .= '<br /><hr /><br />';
             break;
         case 'markallsent':
-            $action_result .= $GLOBALS['I18N']->get('Marking all as sent ').'  ..';
+            $action_result .= s('Marking all as sent ').'  ..';
             $result = Sql_query(sprintf('update %s set status = "sent", repeatinterval = 0,requeueinterval = 0 where (status = "suspended") %s',
                 $tables['message'], $markSent, $ownerselect_and));
             $suc6 = Sql_Affected_Rows();
             if ($suc6) {
-                $action_result .= "... $suc6 ".$GLOBALS['I18N']->get('Done');
+                $action_result .= "... $suc6 ".s('Done');
             } else {
-                $action_result .= '... '.$GLOBALS['I18N']->get('Failed');
+                $action_result .= '... '.s('Failed');
             }
             $action_result .= '<br /><hr /><br />';
             break;
@@ -344,7 +344,7 @@ if (isset($start) && $start > 0) {
 $paging = '';
 if ($total > $_SESSION['messagenumpp']) {
     $paging = simplePaging("messages$url_keep", $start, $total, $_SESSION['messagenumpp'],
-        $GLOBALS['I18N']->get('Campaigns'));
+        s('Campaigns'));
 }
 
 $ls = new WebblerListing(s('Campaigns'));
@@ -381,7 +381,7 @@ if ($total) {
             }
 
         */
-        $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Entered'), formatDateTime($msg['entered']));
+        $ls->addColumn($listingelement, ucfirst(s('Entered')), formatDateTime($msg['entered']));
 
         $_GET['id'] = $msg['id'];
         $statusdiv = '<div id="messagestatus'.$msg['id'].'">';
@@ -392,27 +392,27 @@ if ($total) {
       updateMessages.push(' .$msg['id'].');</script>';
         $GLOBALS['pagefooter']['statusupdate'] = '<script type="text/javascript">window.setInterval("messagesStatusUpdate()",5000);</script>';
         if ($msg['status'] == 'sent') {
-            $statusdiv = $GLOBALS['I18N']->get('Sent').': '.formatDateTime($msg['sent']);
+            $statusdiv = ucfirst(s('Sent')).': '.formatDateTime($msg['sent']);
         }
-        $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Status'), $statusdiv);
+        $ls->addColumn($listingelement, ucfirst(s('Status')), $statusdiv);
 
         if ($msg['status'] != 'draft') {
-            //    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("total"), $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']);
-//    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("text"), $msg['astext']);
-//    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("html"), $msg["ashtml"] + $msg["astextandhtml"]);
+            //    $ls->addColumn($listingelement,s("total"), $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']);
+//    $ls->addColumn($listingelement,s("text"), $msg['astext']);
+//    $ls->addColumn($listingelement,s("html"), $msg["ashtml"] + $msg["astextandhtml"]);
 //    if (!empty($msg['aspdf'])) {
-//      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("PDF"), $msg['aspdf']);
+//      $ls->addColumn($listingelement,s("PDF"), $msg['aspdf']);
 //    }
 //    if (!empty($msg["astextandpdf"])) {
-//      $ls->addColumn($listingelement,$GLOBALS['I18N']->get("both"), $msg["astextandpdf"]);
+//      $ls->addColumn($listingelement,s("both"), $msg["astextandpdf"]);
 //    }
 
             // Prepare view & bounce statistics for printing
             $viewStats = array(
                 'views' => $msg['viewed']
-                , 'uniqueViews' => $uniqueviews[0]
-                , 'clicks' => $clicks[0]
-                , 'bounces' => $msg['bouncecount']
+            , 'uniqueViews' => $uniqueviews[0]
+            , 'clicks' => $clicks[0]
+            , 'bounces' => $msg['bouncecount']
             );
 
             $viewStatsFormatted = array();
@@ -430,23 +430,23 @@ if ($total) {
         </thead>
         <tbody>
             <tr>
-                <td>' .s('Total views').'</td>
+                <td>' .ucfirst(s('Total views')).'</td>
                 <td>'.(!empty($viewStats['views']) ? PageLink2('mviews&id='.$msg['id'], $viewStatsFormatted['views']) : '0').'</td>
             </tr>
             <tr>
-                <td>' .s('Unique Views').'</td>
+                <td>' .ucfirst(s('Unique Views')).'</td>
                 <td>'.(!empty($viewStats['uniqueViews']) ? PageLink2('mviews&id='.$msg['id'], $viewStatsFormatted['uniqueViews']) : '0').'</td>
             </tr>';
             if ($clicks[0]) {
                 $resultStats .= '
             <tr>
-                <td>'.s('Total clicks').'</td>
+                <td>'.ucfirst(s('Total clicks')).'</td>
                 <td>'. (!empty($viewStats['clicks']) ? PageLink2('mclicks&id='.$msg['id'], $viewStatsFormatted['clicks']): '0').'</td>
             </tr>';
             }
             $resultStats .= '
             <tr>
-                <td>' .s('Bounced').'</td>
+                <td>' .ucfirst(s('Bounced')).'</td>
                 <td>'.(!empty($viewStats['bounces']) ? PageLink2('bounces&id='.$msg['id'],$viewStatsFormatted['bounces']): '0').'</td>
             </tr>
         </tbody>
@@ -454,16 +454,16 @@ if ($total) {
 
 //      $ls->addColumn($listingelement,s('Results'),$resultStats);
 
-            //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Viewed"), $msg["viewed"]);
-            //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Unique Views"), $uniqueviews[0]);
+            //$ls->addColumn($listingelement,s("Viewed"), $msg["viewed"]);
+            //$ls->addColumn($listingelement,s("Unique Views"), $uniqueviews[0]);
             //if ($clicks[0]) {
-            //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Clicks"), $clicks[0]);
+            //$ls->addColumn($listingelement,s("Clicks"), $clicks[0]);
             //}
-            //$ls->addColumn($listingelement,$GLOBALS['I18N']->get("Bounced"), $msg["bouncecount"]);
+            //$ls->addColumn($listingelement,s("Bounced"), $msg["bouncecount"]);
         }
 
         if ($msg['status'] == 'sent') {
-            $timetosend = $GLOBALS['I18N']->get('Time to send').': '.timeDiff($msg['sendstart'], $msg['sent']);
+            $timetosend = s('Time to send').': '.timeDiff($msg['sendstart'], $msg['sent']);
         } else {
             $timetosend = '';
         }
@@ -479,20 +479,20 @@ if ($total) {
 
         //if ($clicks[0]) {
         //$clicksrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
-        //$colspan-1,$GLOBALS['I18N']->get("Clicks"),$clicks[0]);
+        //$colspan-1,s("Clicks"),$clicks[0]);
         //}
         //if ($msg["bouncecount"]) {
         //$bouncedrow = sprintf('<tr><td colspan="%d">%s</td><td>%d</td></tr>',
-        //$colspan-1,$GLOBALS['I18N']->get("Bounced"),$msg["bouncecount"]);
+        //$colspan-1,s("Bounced"),$msg["bouncecount"]);
         //}
-    
+
         // Calculcate sent statistics for printing
         $sentStats = array(
             'grandTotal' => $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']
-            , 'text' => $msg['astext']
-            , 'html' => $msg['ashtml'] + $msg['astextandhtml'] //bug 0009687
-            , 'pdf' => $msg['aspdf']
-            , 'textPlusPDF' => $msg['astextandpdf']
+        , 'text' => $msg['astext']
+        , 'html' => $msg['ashtml'] + $msg['astextandhtml'] //bug 0009687
+        , 'pdf' => $msg['aspdf']
+        , 'textPlusPDF' => $msg['astextandpdf']
         );
 
         $sentStatsFormatted = array();
@@ -511,7 +511,7 @@ if ($total) {
           </thead>
           <tbody>
               %s
-              <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
+              <tr><td>' .ucfirst(s('total')).'</td><td>'.ucfirst(s('text')).'</td><td>'.ucfirst(s('html')).'</td>
                 %s%s
               </tr>
               <tr><td><b>%s</b></td><td><b>%s</b></td><td><b>%s</b></td>
@@ -520,8 +520,8 @@ if ($total) {
           </tbody>
       </table>',
                 !empty($timetosend) ? '<tr><td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
-                !empty($msg['aspdf']) ? '<td>'.$GLOBALS['I18N']->get('PDF').'</td>' : '',
-                !empty($msg['astextandpdf']) ? '<td>'.$GLOBALS['I18N']->get('both').'</td>' : '',
+                !empty($msg['aspdf']) ? '<td>'.s('PDF').'</td>' : '',
+                !empty($msg['astextandpdf']) ? '<td>'.s('both').'</td>' : '',
                 $sentStatsFormatted['grandTotal'],
                 $sentStatsFormatted['text'],
                 $sentStatsFormatted['html'],
@@ -536,23 +536,23 @@ if ($total) {
         $actionbuttons = '';
         if ($msg['status'] == 'inprocess' || $msg['status'] == 'submitted') {
             $actionbuttons .= '<span class="suspend">'.PageLinkButton('messages&suspend='.$msg['id'],
-                    $GLOBALS['I18N']->get('Suspend'), '', '', s('Suspend')).'</span>';
+                    s('Suspend'), '', '', s('Suspend')).'</span>';
         } elseif ($msg['status'] != 'draft') {
-            $actionbuttons .= '<span class="resend">'.PageLinkButton('messages', $GLOBALS['I18N']->get('Requeue'),
+            $actionbuttons .= '<span class="resend">'.PageLinkButton('messages', s('Requeue'),
                     'resend='.$msg['id'], '', s('Requeue')).'</span>';
         }
-        $actionbuttons .= '<span class="view">'.PageLinkButton('message', $GLOBALS['I18N']->get('View'),
+        $actionbuttons .= '<span class="view">'.PageLinkButton('message', s('View'),
                 'id='.$msg['id'], '', s('View')).'</span>';
 
         if ($clicks[0] && CLICKTRACK) {
             $actionbuttons .= '<span class="stats">'.PageLinkButton('statsoverview',
-                    $GLOBALS['I18N']->get('statistics'), 'id='.$msg['id'], '', s('Statistics')).'</span>';
+                    s('statistics'), 'id='.$msg['id'], '', s('Statistics')).'</span>';
         }
         //0012081: Add new 'Mark as sent' button
         if ($msg['status'] == 'suspended') {
             $actionbuttons .= '<span class="marksent">'.PageLinkButton('messages&amp;markSent='.$msg['id'],
-                    $GLOBALS['I18N']->get('Mark&nbsp;sent'), '', '', s('Mark sent')).'</span>';
-            $actionbuttons .= '<span class="edit">'.PageLinkButton('send', $GLOBALS['I18N']->get('Edit'),
+                    s('Mark&nbsp;sent'), '', '', s('Mark sent')).'</span>';
+            $actionbuttons .= '<span class="edit">'.PageLinkButton('send', s('Edit'),
                     'id='.$msg['id'], '', s('Edit')).'</span>';
         } elseif ($msg['status'] == 'draft' || !empty($messagedata['istestcampaign'])) {
             //# only draft messages should be deletable, the rest isn't
@@ -562,15 +562,15 @@ if ($total) {
                 PageURL2("messages$url_keep&delete=".$msg['id']),
                 s('delete this campaign'), '', 'button');
 
-//      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
-            $actionbuttons .= '<span class="edit">'.PageLinkButton('send', $GLOBALS['I18N']->get('Edit'),
+//      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.s("delete").'">'.s("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
+            $actionbuttons .= '<span class="edit">'.PageLinkButton('send', s('Edit'),
                     'id='.$msg['id'], '', s('Edit')).'</span>';
             if (empty($clicks[0])) { //# disallow deletion when there are stats
                 $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
             }
         }
 
-        $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Action'),
+        $ls->addColumn($listingelement, ucfirst(s('Action')),
             '<div class="messageactions">'.$actionbuttons.'</div>');
     }
 }
@@ -578,6 +578,6 @@ if ($total) {
 echo $ls->display();
 
 if ($total > 5 && $_GET['tab'] == 'active') {
-    echo PageLinkButton('messages', $GLOBALS['I18N']->get('Suspend All'), 'action=suspall');
-    echo PageLinkButton('messages', $GLOBALS['I18N']->get('Mark All Sent'), 'action=markallsent');
+    echo PageLinkButton('messages', s('Suspend All'), 'action=suspall');
+    echo PageLinkButton('messages', s('Mark All Sent'), 'action=markallsent');
 }
