@@ -82,13 +82,13 @@ if (!$GLOBALS['commandline']) {
             while ($row = Sql_Fetch_Row($req)) {
                 deleteMessage($row[0]);
             }
-            $_SESSION['action_result'] = $GLOBALS['I18N']->get('All draft campaigns deleted');
-            echo Info($GLOBALS['I18N']->get('campaigns deleted'));
+            $_SESSION['action_result'] = s('All draft campaigns deleted');
+            echo Info(s('campaigns deleted'));
         } else {
             verifyCsrfGetToken();
             deleteMessage(sprintf('%d', $_GET['delete']));
-            echo Info($GLOBALS['I18N']->get('campaign deleted'));
-            $_SESSION['action_result'] = $GLOBALS['I18N']->get('Campaign deleted');
+            echo Info(s('campaign deleted'));
+            $_SESSION['action_result'] = s('Campaign deleted');
         }
     }
 
@@ -98,21 +98,21 @@ if (!$GLOBALS['commandline']) {
     if ($numdraft > 0 && !isset($_GET['id']) && !isset($_GET['new'])) {
         echo '<p class="pull-right">'.PageLinkActionButton('send&amp;new=1', $I18N->get('start a new message'), '', '',
                 s('Start a new campaign')).'</p>';
-        echo '<p><h3>'.$I18N->get('Choose an existing draft campaign to work on').'</h3></p><br/>';
-        $ls = new WebblerListing($I18N->get('Draft campaigns'));
-        $ls->setElementHeading('Campaign');
+        echo '<p><h3>'.s('Choose an existing draft campaign to work on').'</h3></p><br/>';
+        $ls = new WebblerListing(ucfirst(s('Draft campaigns')));
+        $ls->setElementHeading(ucfirst(s('Campaign')));
         $ls->noShader();
         while ($row = Sql_Fetch_Array($req)) {
             $element = '<!--'.$row['id'].'-->'.$row['subject'];
             $ls->addElement($element, PageUrl2('send&amp;id='.$row['id']));
             $ls->setClass($element, 'row1');
             //    $ls->addColumn($element,$I18N->get('edit'),PageLink2('send&amp;id='.$row['id'],$I18N->get('edit')));
-            $ls->addColumn($element, $I18N->get('entered'), $row['entered']);
-            $ls->addColumn($element, $I18N->get('age'), secs2time($row['age']));
+            $ls->addColumn($element, ucfirst(s('entered')), $row['entered']);
+            $ls->addColumn($element, ucfirst(s('age')), secs2time($row['age']));
             $ls->addRow($element, '',
                 '<a class="del" href="'.PageUrl2('send&amp;delete='.$row['id']).'" title="'.$I18N->get('del').'">'.$I18N->get('del').'</a>');
         }
-        $ls->addButton($I18N->get('delete all'), PageUrl2('send&amp;delete=alldraft'));
+        $ls->addButton(ucfirst(s('delete all')), PageUrl2('send&amp;delete=alldraft'));
         echo $ls->display();
 
         return;
@@ -141,20 +141,20 @@ if ($done) {
 */
 $list_content = '
 <div id="listselection" class="accordion">
-<h3><a name="lists">' .$GLOBALS['I18N']->get('Please select the lists you want to send your campaign to').':</a></h3>
+<h3><a name="lists">' .s('Please select the lists you want to send your campaign to').':</a></h3>
 ';
 
 $list_content .= listSelectHTML($messagedata['targetlist'], 'targetlist', $subselect);
 
 if (USE_LIST_EXCLUDE) {
     $list_content .= '
-    <h3><a name="excludelists">' .$GLOBALS['I18N']->get('Please select the lists you want to exclude from this campaign').'</a></h3>';
+    <h3><a name="excludelists">' .s('Please select the lists you want to exclude from this campaign').'</a></h3>';
 
     if (!isset($messagedata['excludelist']) || !is_array($messagedata['excludelist'])) {
         $messagedata['excludelist'] = array();
     }
     $list_content .= listSelectHTML($messagedata['excludelist'], 'excludelist', $subselect,
-        $GLOBALS['I18N']->get('The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here.'));
+        s('The campaign will go to users who are a member of the lists above,     unless they are a member of one of the lists you select here.'));
 }
 
 $list_content .= '</div>'; //# close accordion
