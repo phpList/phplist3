@@ -670,7 +670,14 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             echo $strPreferencesNotificationSent;
         }
     } else {
-        echo '<h3>'.$strEmailFailed.'</h3>';
+        $isThisBlacklisted = isBlackListed($email);
+        var_dump($isThisBlacklisted);
+        if ($isThisBlacklisted) {
+            echo '<p class="information">'.$GLOBALS['strYouAreBlacklisted'].'</p>';
+        } else {
+            echo '<h3>'.$strEmailFailed.'</h3>';
+        }
+
     }
     echo '<p class="information">'.$PoweredBy.'</p>';
     echo $subscribepagedata['footer'];
