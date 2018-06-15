@@ -671,7 +671,6 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
         }
     } else {
         $isThisBlacklisted = isBlackListed($email);
-        var_dump($isThisBlacklisted);
         if ($isThisBlacklisted) {
             echo '<p class="information">'.$GLOBALS['strYouAreBlacklisted'].'</p>';
         } else {
