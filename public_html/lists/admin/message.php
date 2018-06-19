@@ -4,7 +4,7 @@ verifyCsrfGetToken();
 
 $id = sprintf('%d', $_GET['id']);
 if (!$id) {
-    echo $GLOBALS['I18N']->get('Please select a message to display')."\n";
+    echo s('Please select a message to display')."\n";
     exit;
 }
 
@@ -48,7 +48,7 @@ if (!empty($_POST['resend']) && is_array($_POST['list'])) {
         }
     }
     Sql_Query("update $tables[message] set status = \"submitted\" where id = $id");
-    $_SESSION['action_result'] = $GLOBALS['I18N']->get('campaign requeued');
+    $_SESSION['action_result'] = s('campaign requeued');
     $messagedata = loadMessageData($id);
     $finishSending = mktime($messagedata['finishsending']['hour'], $messagedata['finishsending']['minute'], 0,
         $messagedata['finishsending']['month'], $messagedata['finishsending']['day'],
@@ -68,7 +68,7 @@ require_once $coderoot.'structure.php';
 $result = Sql_Fetch_Assoc_query(sprintf('select id, subject from %s where id = %d %s', $tables['message'], $id,
     $owner_select_and));
 if (empty($result['id'])) {
-    echo $GLOBALS['I18N']->get('No such campaign');
+    echo s('No such campaign');
 
     return;
 }
@@ -81,7 +81,7 @@ $campaignTitle = $msgdata['campaigntitle'];
 
 if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
     echo '<div class="actions">';
-    echo '<p>'.PageLinkButton('send&amp;id='.$id, $GLOBALS['I18N']->get('Edit this message')).'</p>';
+    echo '<p>'.PageLinkButton('send&amp;id='.$id, s('Edit this message')).'</p>';
     echo '</div>';
 } else {
     echo '<div class="actions">';
@@ -102,11 +102,11 @@ if ($msgdata['status'] == 'draft' || $msgdata['status'] == 'suspended') {
 $content = '<table class="messageView">';
 $format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td></tr>';
 
-$content .= sprintf($format, s('Subject'), $msgdata['subject']);
+$content .= sprintf($format, s('Subject'), htmlentities($msgdata['subject']));
 $content .= sprintf($format, s('entered'), formatDateTime( stripslashes($msgdata['entered'] )));
-$content .= sprintf($format, s('fromfield'), stripslashes($msgdata['fromfield']));
+$content .= sprintf($format, s('fromfield'), htmlentities(stripslashes($msgdata['fromfield'])));
 $content .= sprintf($format, s('HTML content'), stripslashes($msgdata['message']));
-$content .= sprintf($format, s('Text content'), nl2br(stripslashes($msgdata['textmessage'])));
+$content .= sprintf($format, s('Text content'), htmlentities(stripslashes($msgdata['textmessage'])));
 $content .= sprintf($format, s('footer'), stripslashes($msgdata['footer']));
 
 $finishSending = mktime($msgdata['finishsending']['hour'], $msgdata['finishsending']['minute'], 0,
@@ -142,20 +142,20 @@ foreach ($plugins as $pi) {
 }
 
 if (ALLOW_ATTACHMENTS) {
-    $content .= '<tr><td colspan="2"><h3>'.$GLOBALS['I18N']->get('Attachments for this campaign').'</h3></td></tr>';
+    $content .= '<tr><td colspan="2"><h3>'.s('Attachments for this campaign').'</h3></td></tr>';
     $req = Sql_Query("select * from {$tables['message_attachment']},{$tables['attachment']}
     where {$tables['message_attachment']}.attachmentid = {$tables['attachment']}.id and
     {$tables['message_attachment']}.messageid = $id");
     if (!Sql_Affected_Rows()) {
-        $content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get('No attachments').'</td></tr>';
+        $content .= '<tr><td colspan="2">'.s('No attachments').'</td></tr>';
     }
     while ($att = Sql_Fetch_array($req)) {
-        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Filename'), $att['remotefile']);
-        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Size'),
+        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', s('Filename'),  htmlentities($att['remotefile']));
+        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', s('Size'),
             formatBytes($att['size']));
-        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Mime Type'), $att['mimetype']);
-        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', $GLOBALS['I18N']->get('Description'),
-            $att['description']);
+        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', s('Mime Type'), htmlentities($att['mimetype']));
+        $content .= sprintf('<tr><td>%s:</td><td>%s</td></tr>', s('Description'),
+            htmlentities($att['description']));
     }
     // print '</table>';
 }
@@ -163,25 +163,25 @@ if (ALLOW_ATTACHMENTS) {
 if (empty($msgdata['sent'])) {
     $content .= '<tr><td colspan="2"><h4>' . s('This campaign will be sent to subscribers who are member of the following lists') . ':</h4></td></tr>';
 } else {
-    $content .= '<tr><td colspan="2"><h4>' . $GLOBALS['I18N']->get('This campaign has been sent to subscribers who are members of the following lists') . ':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>' . s('This campaign has been sent to subscribers who are members of the following lists') . ':</h4></td></tr>';
 }
 
 $lists_done = array();
 $result = Sql_Query(sprintf('select l.name, l.id from %s lm, %s l where lm.messageid = %d and lm.listid = l.id',
     $tables['listmessage'], $tables['list'], $id));
 if (!Sql_Affected_Rows()) {
-    $content .= '<tr><td colspan="2">'.$GLOBALS['I18N']->get('None yet').'</td></tr>';
+    $content .= '<tr><td colspan="2">'.s('None yet').'</td></tr>';
 }
 while ($lst = Sql_fetch_array($result)) {
     array_push($lists_done, $lst['id']);
-    $content .= 
-'<tr>
+    $content .=
+        '<tr>
     <td>' . PageLinkButton('members&amp;id=' . $lst['id'], stripslashes($lst['name']), '', '', s('View Members')) . '</td>
 </tr>';
 }
 
 if ($msgdata['excludelist']) {
-    $content .= '<tr><td colspan="2"><h4>'.$GLOBALS['I18N']->get('Except when they were also member of these lists').':</h4></td></tr>';
+    $content .= '<tr><td colspan="2"><h4>'.s('Except when they were also member of these lists').':</h4></td></tr>';
     $result = Sql_Query(sprintf('select l.name, l.id from %s l where id in (%s)', $tables['list'],
         implode(',', $msgdata['excludelist'])));
     while ($lst = Sql_fetch_array($result)) {
