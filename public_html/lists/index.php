@@ -343,7 +343,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         while ($row = Sql_Fetch_Array($req)) {
             $intro = Sql_Fetch_Row_Query(sprintf('select data from %s where id = %d and name = "intro"',
                 $tables['subscribepage_data'], $row['id']));
-            echo $intro[0];
+            echo stripslashes($intro[0]);
             if (SHOW_SUBSCRIBELINK) {
                 printf('<p><a href="'.getConfig('subscribeurl').'&id=%d">%s</a></p>', $row['id'],
                     strip_tags(stripslashes($row['title'])));
