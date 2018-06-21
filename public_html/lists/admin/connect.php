@@ -754,22 +754,22 @@ $GLOBALS['pagecategories'] = array(
             'catlists',
         ),
     ),
-    'info' => array(
-        'toplink' => 'about',
-        'pages'   => array(
-            'about',
-            'community',
-            'home',
+    //'info' => array(
+        //'toplink' => 'about',
+        //'pages'   => array(
+            //'about',
+            //'community',
+            //'home',
             //   'translate',
-            'vote',
-        ),
-        'menulinks' => array(
-            'about',
-            'community',
+            //'vote',
+        //),
+        //'menulinks' => array(
+           // 'about',
+            //'community',
             //    'translate',
-            'home',
-        ),
-    ),
+            //'home',
+        //),
+    //),
 
     //'plugins' => array(
     //'toplink' => 'plugins',
