@@ -29,7 +29,7 @@ Feature: Navigate the app using the menu
          | Innerpages                |
          | Search subscribers        |
          | Manage subscribers        |
-         | Configure attributes               |
+         | Configure attributes      |
          | Subscriber lists          |
          | Import emails             |
          | Export subscribers        |
