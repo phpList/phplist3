@@ -29,6 +29,7 @@ Feature: Navigate the app using the menu
          | Innerpages                |
          | Search subscribers        |
          | Manage subscribers        |
+         | Configure attributes      |
          | Subscriber lists          |
          | Import emails             |
          | Export subscribers        |
@@ -82,7 +83,6 @@ Feature: Navigate the app using the menu
          | Configuration                      |
          | Settings                           |
          | Manage plugins                     |
-         | Configure attributes               |
          | Subscribe pages                    |
          | Manage administrators              |
          | Import administrators              |
