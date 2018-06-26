@@ -210,7 +210,7 @@ while ($row = Sql_Fetch_Array($req)) {
     } else {
         if (!$userid) {
             $element = shortenTextDisplay($row['email']);
-            $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
+            $ls->addElement($element, PageUrl2('user&amp;id='.$row['userid']));
             $ls->setClass($element, 'row1');
         } else {
             //    $link = substr($row['url'],0,50);

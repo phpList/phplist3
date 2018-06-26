@@ -1101,18 +1101,10 @@ class confirmButton extends button
 
     public function __construct($confirmationtext, $link, $linktext, $title = '', $class = 'confirm')
     {
-        if (!isset($GLOBALS['confirmButtonCount'])) {
-            $GLOBALS['confirmButtonCount'] = 0;
-        }
-        ++$GLOBALS['confirmButtonCount'];
-        $this->linkhtml = ' class="'.$class.'" id="confirm'.$GLOBALS['confirmButtonCount'].'"';
-        $this->link = '#';
+        $onclickevent = 'return confirm(\''.htmlspecialchars(strip_tags($confirmationtext)).'\')';
+        $this->linkhtml = ' class="'.$class.'" onclick="'.$onclickevent.'"';
+        $this->link = $link;
         $this->linktext = $linktext;
-        $GLOBALS['pagefooter']['confirmbutton'.$GLOBALS['confirmButtonCount']] = '
-    <script type="text/javascript">
-    $("#confirm' .$GLOBALS['confirmButtonCount'].'").click(function(){ if (confirm("'.htmlspecialchars(strip_tags($confirmationtext)).'")){window.location="'.$link.'"};});
-    </script>';
-
         $this->title = $title;
     }
 }

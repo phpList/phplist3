@@ -326,7 +326,6 @@ if ($id) {
     }
 
     echo '<div class="actions">';
-    echo PageLinkButton("userhistory&amp;id=$id", s('History'));
     echo PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
     if (!isBlackListed($user['email'])) {
         echo
@@ -534,8 +533,11 @@ $mailinglistsHTML .= '</table>';
 
 echo '<div class="tabbed">';
 echo '<ul>';
-echo '<li><a href="#details">'.ucfirst(s('Details')).'</a></li>';
+echo '<li><a href="#details">'.s('Details').'</a></li>';
 echo '<li><a href="#lists">'.ucfirst(s('Lists')).'</a></li>';
+echo '<li><a href="./?page=pageaction&action=campaigns&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Campaigns').'</a></li>';
+echo '<li><a href="./?page=pageaction&action=bounces&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Bounces').'</a></li>';
+echo '<li><a href="./?page=pageaction&action=subscription&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Subscription').'</a></li>';
 
 echo '</ul>';
 
@@ -546,5 +548,11 @@ $p = new UIPanel('', $mailinglistsHTML);
 echo '<div id="lists">'.$p->display().'</div>';
 
 echo '</div>'; //# end of tabbed
+
+if (isset($_GET['unblacklist'])) {
+    $unblacklist = sprintf('%d', $_GET['unblacklist']);
+    unBlackList($unblacklist);
+    Redirect('user&id='.$unblacklist);
+}
 
 echo '</form>';
