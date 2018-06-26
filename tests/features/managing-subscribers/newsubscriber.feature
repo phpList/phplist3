@@ -13,6 +13,3 @@ Feature: Create a new subscriber
     And I press "change"
     Then I should see "subscriber profile"
     Then I should see "Add to blacklist"
-    # the email address is also visible in the previous page but it is within a text input and not detected
-    And I follow "History"
-    Then I should see the email address I entered
