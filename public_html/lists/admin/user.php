@@ -534,7 +534,7 @@ $mailinglistsHTML .= '</table>';
 echo '<div class="tabbed">';
 echo '<ul>';
 echo '<li><a href="#details">'.s('Details').'</a></li>';
-echo '<li><a href="#lists">'.ucfirst(s('Lists')).'</a></li>';
+echo '<li><a href="#lists">'.s('Lists').'</a></li>';
 echo '<li><a href="./?page=pageaction&action=campaigns&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Campaigns').'</a></li>';
 echo '<li><a href="./?page=pageaction&action=bounces&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Bounces').'</a></li>';
 echo '<li><a href="./?page=pageaction&action=subscription&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Subscription').'</a></li>';
