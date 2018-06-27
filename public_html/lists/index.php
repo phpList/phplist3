@@ -727,7 +727,7 @@ function confirmPage($id)
         while ($row = Sql_fetch_array($req)) {
             array_push($subscriptions, $row['id']);
             $lists .= "\n *".stripslashes($row['name']);
-            $html .= '<li class="list"><b>'.stripslashes($row['name']).'</b><div class="listdescription">'.stripslashes($row['description']).'</div></li>';
+            $html .= '<li class="list"><b>'.stripslashes($row['name']).'</b><div class="listdescription">'.htmlentities(stripslashes($row['description'])).'</div></li>';
         }
         $html .= '</ul>';
         if ($blacklisted) {
