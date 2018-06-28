@@ -396,6 +396,9 @@ if ($total) {
         }
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Status'), $statusdiv);
 
+        /*
+         * Display the lists that have been selected for the campaign
+         */
         $maxListsDisplayed = 3;
         $namesQuery = <<<END
     SELECT SQL_CALC_FOUND_ROWS l.name
@@ -418,7 +421,11 @@ END;
 
             if ($numberOfLists > $maxListsDisplayed) {
                 array_pop($listNames);
-                $listNames[] = s('and %d more', $numberOfLists - ($maxListsDisplayed - 1));
+                $listNames[] = sprintf(
+                    '<a href="%s">%s</a>',
+                    PageURL2('message', '', "id={$msg['id']}").'#targetlists',
+                    htmlspecialchars(s('and %d more', $numberOfLists - ($maxListsDisplayed - 1)))
+                );
             }
             $ls->addRow($listingelement, s('Lists'), implode('<br/>', $listNames), '', 'left');
         }
