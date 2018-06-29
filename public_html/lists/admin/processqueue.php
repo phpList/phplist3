@@ -78,8 +78,8 @@ if ($pqChoice == 'local') {
       <div class="wrapper">
         <div id="spinner"></div>
         <div id="processqueuecontrols">';
-    echo '<a href="#" id="stopqueue" class="button">'.snbr('Stop processing').'</a>';
-    echo '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.snbr('Resume processing').'</a>';
+    echo '<a href="#" id="stopqueue" class="button">'.snbr('stop processing').'</a>';
+    echo '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.snbr('resume processing').'</a>';
     echo '<div id="progressmeterold"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
     echo '&nbsp';
     echo '</div>
