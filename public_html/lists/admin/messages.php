@@ -396,6 +396,40 @@ if ($total) {
         }
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Status'), $statusdiv);
 
+        /*
+         * Display the lists that have been selected for the campaign
+         */
+        $maxListsDisplayed = 3;
+        $namesQuery = <<<END
+    SELECT SQL_CALC_FOUND_ROWS l.name
+    FROM {$tables['list']} l
+    JOIN {$tables['listmessage']} lm  ON l.id = lm.listid
+    WHERE lm.messageid = {$msg['id']}
+    ORDER BY l.name
+    LIMIT $maxListsDisplayed
+END;
+        $namesResult = Sql_Query($namesQuery);
+        $row = Sql_Fetch_Row_Query('SELECT FOUND_ROWS()');
+        $numberOfLists = $row[0];
+
+        if ($numberOfLists > 0) {
+            $listNames = array();
+
+            while ($row = Sql_Fetch_Assoc($namesResult)) {
+                $listNames[] = htmlspecialchars($row['name']);
+            }
+
+            if ($numberOfLists > $maxListsDisplayed) {
+                array_pop($listNames);
+                $listNames[] = sprintf(
+                    '<a href="%s">%s</a>',
+                    PageURL2('message', '', "id={$msg['id']}").'#targetlists',
+                    htmlspecialchars(s('and %d more', $numberOfLists - ($maxListsDisplayed - 1)))
+                );
+            }
+            $ls->addRow($listingelement, s('Lists'), implode('<br/>', $listNames), '', 'left');
+        }
+
         if ($msg['status'] != 'draft') {
             //    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("total"), $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']);
 //    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("text"), $msg['astext']);
