@@ -711,6 +711,14 @@ function sjs($text)
     return $trans;
 }
 
+/**
+ * function sHtmlEntities
+ * get the translation from the s function, but escape it by using htmlentities.
+ */
+function sHtmlEntities ($text) {
+    return htmlentities(s($text));
+}
+
 function parsePo($translationUpdate)
 {
     $translation_lines = explode("\n", $translationUpdate);
