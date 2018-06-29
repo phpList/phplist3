@@ -70,7 +70,7 @@ if (empty($pqChoice)) {
 }
 
 if ($pqChoice == 'local') {
-  echo '<a href="./?page=messages&tab=active" id="sendingprogress" class="button">'.snbr('View progress').'</a>';
+  echo '<a href="./?page=messages&tab=active" id="sendingprogress" class="button btn-primary btn-lg pull-right">'.snbr('View progress').'</a>';
     echo '
   <div class="panel">
     <h2>' .s('Processing queued campaigns').'</h2>
