@@ -599,7 +599,7 @@ END;
 //      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
             $actionbuttons .= '<span class="edit">'.PageLinkButton('send', $GLOBALS['I18N']->get('Edit'),
                     'id='.$msg['id'], '', s('Edit')).'</span>';
-            if (empty($clicks[0])) { //# disallow deletion when there are stats
+            if (empty($clicks[0])  ||  !empty($messagedata['istestcampaign'])) { //# disallow deletion when there are stats except when is test campaign
                 $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
             }
         }
