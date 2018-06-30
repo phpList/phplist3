@@ -106,7 +106,7 @@ while ($row = Sql_Fetch_Array($req)) {
             $ls->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
             $ls->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $userdata['email']));
             $ls->addColumn($row['userid'], s('Total bounces'),
-                PageLink2('userhistory&id='.$row['userid'], $row['numbounces']));
+                PageLink2('user&id='.$row['userid'], $row['numbounces']));
         }
     }
 }

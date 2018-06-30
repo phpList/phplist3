@@ -637,7 +637,6 @@ $GLOBALS['pagecategories'] = array(
             'suppressionlist',
             'reconcileusers',
             'usercheck',
-            'userhistory',
             'user',
             'adduser',
             'attributes',
