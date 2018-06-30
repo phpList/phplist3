@@ -157,6 +157,19 @@ if (!empty($_GET['delete'])) {
     $action_result .= "<hr /><br />\n";
 }
 
+if (isset($_GET['duplicate'])) {
+    verifyCsrfGetToken();
+
+    Sql_Query(sprintf('insert into %s (subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
+        modified, embargo, repeatuntil, status, htmlformatted, sendformat, template, rsstemplate, owner)
+        select subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
+        now(), now(), now(), "draft",  htmlformatted, 
+        sendformat, template, rsstemplate, "%d" from %s
+        where id = %d',
+        $GLOBALS['tables']['message'],$_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],intval($_GET['duplicate'])));    
+
+}
+
 if (isset($_GET['resend'])) {
     verifyCsrfGetToken();
     $resend = sprintf('%d', $_GET['resend']);
@@ -602,6 +615,11 @@ END;
             if (empty($clicks[0])  ||  !empty($messagedata['istestcampaign'])) { //# disallow deletion when there are stats except when is test campaign
                 $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
             }
+        }
+
+        if ($msg['status'] == 'sent') {
+            $actionbuttons .= '<span class="copy">'.PageLinkButton('messages', s('Copy to Draft'),
+                    'tab=draft&duplicate='.$msg['id'], '', s('Copy to Draft')).'</span>';
         }
 
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Action'),
