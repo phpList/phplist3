@@ -102,7 +102,7 @@ while ($p = Sql_Fetch_Array($req)) {
         sprintf('<span class="view"><a class="button" target="_blank" href="%s&amp;id=%d" title="'.s('view').'">%s</a></span>',
             getConfig('subscribeurl'), $p['id'], s('view')).
         sprintf('<span class="resettemplate"><a class="button"  href = "javascript:confirmOpenUrl(\''.htmlentities(s('Are you sure you want to reset this subscription page template?')).'\', \'%s\')" title="'.s('reset').'">%s</a></span>',
-            PageURL2('spage', '',  'reset='.$p['id']), s('reset'))
+            PageURL2('spage', '',  'reset='.$p['id']), s('reset styling to default'))
     );
 }
 echo '<p class="button pull-right">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p><div class="clearfix"></div>';
