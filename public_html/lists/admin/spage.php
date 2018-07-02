@@ -54,13 +54,6 @@ if ($reset) {
     $valuesToUpdate =  array(
         'header' => 'pageheader',
         'footer' => 'pagefooter',
-        'subscribemessage' => 'subscribemessage',
-        'subscribesubject' => 'subscribesubject',
-        'confirmationmessage' => 'confirmationmessage',
-        'confirmationsubject' => 'confirmationsubject',
-        'ajax_subscribeconfirmation'=> 'ajax_subscribeconfirmation' ,
-        'unsubscribemessage'=> 'unsubscribemessage' ,
-        'unsubscribesubject'=> 'unsubscribesubject' ,
     );
 
     foreach ($valuesToUpdate as $key => $value){
