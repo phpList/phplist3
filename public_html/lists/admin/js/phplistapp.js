@@ -509,6 +509,10 @@ $.fn.updateProgress = function () {
     $("#progressbar").progressbar({max: 100, value: +perc});
 };
 
+function confirmOpenUrl(msg, url) {
+    if (confirm(msg))
+        document.location = url;
+}
 
 /*
  * old library of stuff that needs to be ported to jQuery style JS
