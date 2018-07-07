@@ -498,10 +498,11 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
     }
 }
 
-if ($access != 'view') {
-    $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.s('Save Changes').'" /></td></tr>';
-}
 $userdetailsHTML .= '</table>';
+
+if ($access != 'view') {
+    $userdetailsHTML .= '<input class="submit" type="submit" name="change" value="'.s('Save Changes').'" />';
+}
 
 $mailinglistsHTML .= '<h3>'.s('Mailinglist membership').':</h3>';
 // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
