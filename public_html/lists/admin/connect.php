@@ -617,7 +617,9 @@ $GLOBALS['pagecategories'] = array(
     // pages => pages in this category
     'dashboard'   => array(
         'toplink'=> 'home',
-        'pages'  => ''),
+        'pages'  => array(),
+        'menulinks' => array(),
+    ),
     'subscribers' => array(
         'toplink' => 'list',
         'pages'   => array(
