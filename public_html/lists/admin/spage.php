@@ -101,7 +101,7 @@ while ($p = Sql_Fetch_Array($req)) {
             PageURL2('spage', '', 'delete='.$p['id']), s('del')).
         sprintf('<span class="view"><a class="button" target="_blank" href="%s&amp;id=%d" title="'.s('view').'">%s</a></span>',
             getConfig('subscribeurl'), $p['id'], s('view')).
-        sprintf('<span class="resettemplate"><a class="button"  href = "javascript:confirmOpenUrl(\''.htmlentities(s('Are you sure you want to reset this subscription page template?')).'\', \'%s\')" title="'.s('reset').'">%s</a></span>',
+        sprintf('<span class="resettemplate"><a class="button"  href = "javascript:confirmOpenUrl(\''.htmlentities(s('Are you sure you want to reset this subscription page template?')).'\', \'%s\')" title="'.s('reset style to default').'">%s</a></span>',
             PageURL2('spage', '',  'reset='.$p['id']), s('reset styling to default'))
     );
 }
