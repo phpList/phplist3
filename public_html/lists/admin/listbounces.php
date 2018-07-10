@@ -90,7 +90,7 @@ if ($download) {
     ob_end_clean();
     header('Content-type: text/plain');
     $filename = 'Bounces on '.listName($listid);
-    header("Content-disposition:  attachment; filename=\"$filename\"");
+    header("Content-disposition:  attachment; filename=\"$filename\".csv");
 }
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on').' '.listName($listid));
