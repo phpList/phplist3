@@ -83,8 +83,7 @@ echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($t
 $ls = new WebblerListing(s('Campaign click statistics'));
 $ls->setElementHeading(s('Link URL'));
 
-$query = sprintf('select url,firstclick,date_format(latestclick,
-  "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, 
+$query = sprintf('select url,firstclick, latestclick,total,clicked,htmlclicked,textclicked,forwardid from %s ml, 
   %s forward  where ml.messageid = %d and ml.forwardid = forward.id', $GLOBALS['tables']['linktrack_ml'],
     $GLOBALS['tables']['linktrack_forward'], $id);
 
@@ -137,7 +136,7 @@ while ($row = Sql_Fetch_Array($req)) {
     ';
     $moreInfo2 = '
       <div class="content listingsmall fright gray">' .s('firstclick').': '.formatDateTime($row['firstclick']).'</div>'.'
-      <div class="content listingsmall fright gray">' .s('latestclick').': '.$row['latestclick'].'</div>'.'
+      <div class="content listingsmall fright gray">' .s('latestclick').': '.formatDateTime($row['latestclick']).'</div>'.'
     ';
 
     //# @@TODO the totals for HTML+text will now not match the total clicks
