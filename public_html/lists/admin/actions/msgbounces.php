@@ -7,48 +7,52 @@
 
 verifyCsrfGetToken();
 
-$access = accessLevel('actions/msgbounces');
+$access = accessLevel('msgbounces');
 
-$messageid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
-$isowner_and = '';
-$isowner_where = '';
-$status = '';
+if (isset($_GET['id'])) {
+    $id = sprintf('%d', $_GET['id']);
+} else {
+    $id = 0;
+}
+if (isset($_GET['start'])) {
+    $start = sprintf('%d', $_GET['start']);
+} else {
+    $start = 0;
+}
 
+$access = accessLevel('msgbounces');
+print "Access level: $access";
 switch ($access) {
     case 'owner':
-        if ($messageid) {
-            $req = Sql_Query(sprintf('select id from '.$tables['message'].' where owner = %d and id = %d',
-                $_SESSION['logindetails']['id'], $messageid));
-            if (!Sql_Affected_Rows()) {
-                Fatal_Error(s('You do not have enough privileges to view this page'));
+        $subselect = ' and owner = '.$_SESSION['logindetails']['id'];
+        if ($id) {
+            $allow = Sql_Fetch_Row_query(sprintf('select owner from %s where id = %d %s', $GLOBALS['tables']['message'],
+                $id, $subselect));
+            if ($allow[0] != $_SESSION['logindetails']['id']) {
+                echo $GLOBALS['I18N']->get('You do not have access to this page');
 
                 return;
             }
         }
-        $isowner_and = sprintf(' message.owner = %d and ', $_SESSION['logindetails']['id']);
-        $isowner_where = sprintf(' where message.owner = %d ', $_SESSION['logindetails']['id']);
+
         break;
     case 'all':
-    case 'view':
+        $subselect = '';
         break;
     case 'none':
     default:
-        if ($messageid) {
-            Fatal_Error(s('You do not have enough privileges to view this page'));
-            $isowner_and = sprintf(' message.owner = 0 and ');
-            $isowner_where = sprintf(' where message.owner = 0 ');
+        $subselect = ' where id = 0';
+        echo $GLOBALS['I18N']->get('You do not have access to this page');
 
-            return;
-        }
+        return;
         break;
 }
-if (!empty($_SESSION['LoadDelay'])) {
-    sleep($_SESSION['LoadDelay']);
-}
+
+$status = '';
 $req = Sql_Query(sprintf('select msg.id as messageid, msg.subject, count(msgbounce.bounce) as totalbounces from %s msg,%s msgbounce
-    where msg.id = msgbounce.message 
+    where msg.id = msgbounce.message %s
     group by msg.id order by messageid', $GLOBALS['tables']['message'],
-    $GLOBALS['tables']['user_message_bounce']));
+    $GLOBALS['tables']['user_message_bounce'], $subselect));
 if (!Sql_Affected_Rows()) {
     $status .= '<p class="information">'.s('There are currently no data to view').'</p>';
 }
