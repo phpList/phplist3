@@ -16,9 +16,10 @@ if (isset($_POST['usercheck'])) {
             $exists = Sql_Query(sprintf('select id,foreignkey,email from %s where email = "%s"', $tables['user'],
                 sql_escape($user)));
         }
+        $element = htmlentities(stripslashes($user));
         if (Sql_Num_Rows($exists)) {
             $id = Sql_Fetch_Array($exists);
-            $element = strip_tags($user);
+
             $lsexist->setElementHeading(s('Subscriber email'));
             $lsexist->addElement($element, PageUrl2('user&amp;id='.$id['id']));
             if (isset($id['foreignkey'])) {
@@ -26,7 +27,7 @@ if (isset($_POST['usercheck'])) {
             }
         } else {
             $lsnonexist->setElementHeading(s('Subscriber email'));
-            $lsnonexist->addElement(strip_tags($user));
+            $lsnonexist->addElement($element);
         }
     }
     echo $lsexist->display();
