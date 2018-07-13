@@ -23,10 +23,14 @@ if (isset($_POST['usercheck'])) {
             $lsexist->setElementHeading(s('Subscriber email'));
             $lsexist->addElement($element, PageUrl2('user&amp;id='.$id['id']));
             if (isset($id['foreignkey'])) {
-                $lsexist->addColumn($element, s('key'), $id['foreignkey']);
+                $lsexist->addColumn($element, s('Foreign key'), $id['foreignkey']);
             }
         } else {
-            $lsnonexist->setElementHeading(s('Subscriber email'));
+            if (isset($_POST['check']) && $_POST['check'] == 'foreignkey') {
+                $lsnonexist->setElementHeading(s('Foreign key'));
+            } else {
+                $lsnonexist->setElementHeading(s('Subscriber email'));
+            }
             $lsnonexist->addElement($element);
         }
     }
@@ -44,9 +48,9 @@ $content .= '<form method="post" action="">';
 $content .= '<table class="usercheckForm">';
 $content .= '<tr><td>'.s('What is the type of information you want to check').'</td></tr>';
 $content .= '<tr><td><label for="foreignkey">'.s('Foreign Key').'</label> <input type="radio" id="foreignkey" name="check" value="foreignkey"></td></tr>';
-$content .= '<tr><td><label for="email">'.s('Email').'</label> <input type="radio" id="email" name="check" value="email"></td></tr>';
+$content .= '<tr><td><label for="email">'.s('Email').'</label> <input type="radio" id="email" name="check" value="email" required ></td></tr>';
 $content .= '<tr><td>'.s('Paste the values to check in this box, one per line').'</td></tr>';
-$content .= '<tr><td><textarea name="usercheck" rows=30 cols=65>'.htmlentities(stripslashes($_POST['usercheck'])).'</textarea></td></tr>';
+$content .= '<tr><td><textarea name="usercheck" rows=10 cols=65>'.htmlentities(stripslashes($_POST['usercheck'])).'</textarea></td></tr>';
 $content .= '<tr><td><input type="submit" name="continue" value="'.s('Continue').'" class="button"></td></tr>';
 $content .= '</table></form>';
 
