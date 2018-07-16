@@ -20,8 +20,6 @@ if (isset($_GET['start'])) {
     $start = 0;
 }
 
-$access = accessLevel('msgbounces');
-print "Access level: $access";
 switch ($access) {
     case 'owner':
         $subselect = ' and owner = '.$_SESSION['logindetails']['id'];

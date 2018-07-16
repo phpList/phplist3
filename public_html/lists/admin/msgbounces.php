@@ -54,7 +54,6 @@ $userTable = $GLOBALS['tables']['user'];
 $messageBounceTable = $GLOBALS['tables']['user_message_bounce'];
 $query= "select  u.id as userid, u.email, mb.time from $messageBounceTable mb join $userTable u
 on u.id = mb.user where mb.message = '$messageid' ";
-var_dump($query);
 
 $req = Sql_Query($query);
 
