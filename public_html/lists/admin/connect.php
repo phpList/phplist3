@@ -683,6 +683,7 @@ $GLOBALS['pagecategories'] = array(
             'statsmgt',
             'statsoverview',
             'domainstats',
+            'msgbounces',
         ),
         'menulinks' => array(
             'statsoverview',
@@ -690,6 +691,7 @@ $GLOBALS['pagecategories'] = array(
             'mclicks',
             'uclicks',
             'domainstats',
+            'msgbounces',
         ),
     ),
     'system' => array(
