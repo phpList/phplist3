@@ -70,6 +70,7 @@ if (empty($pqChoice)) {
 }
 
 if ($pqChoice == 'local') {
+  echo '<a href="./?page=messages&tab=active" id="sendingprogress" class="button btn-primary btn-lg pull-right">'.snbr('View progress').'</a>';
     echo '
   <div class="panel">
     <h2>' .s('Processing queued campaigns').'</h2>
@@ -80,6 +81,7 @@ if ($pqChoice == 'local') {
     echo '<a href="#" id="stopqueue" class="button">'.snbr('stop processing').'</a>';
     echo '<a href="./?page=processqueue" id="resumequeue" class="button hidden">'.snbr('resume processing').'</a>';
     echo '<div id="progressmeterold"><div id="progresscount"></div><div id="progress">&nbsp;</div></div>';
+    echo '&nbsp';
     echo '</div>
       </div>
       <div id="processqueueoutput">
