@@ -346,11 +346,11 @@ if ($id) {
         $delete = new ConfirmButton(
             htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
             PageURL2("user&delete=$id".addCsrfGetToken(), 'button', s('remove subscriber')),
-            s('remove subscriber'));
+            s('remove subscriber'),'','btn btn-lg btn-danger pull-right');
         echo $delete->show();
     }
 
-    echo '</div>';
+    echo '</div><div class="clearfix"></div>';
 } else {
     if (!empty($_POST['subscribe'])) {
         foreach ($_POST['subscribe'] as $idx => $listid) {
