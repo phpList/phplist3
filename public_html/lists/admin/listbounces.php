@@ -89,8 +89,8 @@ if ($total > $numpp && !$download) {
 if ($download) {
     ob_end_clean();
     header('Content-type: text/plain');
-    $filename = 'Bounces on '.listName($listid);
-    header("Content-disposition:  attachment; filename=\"$filename\".csv");
+    $filename = 'Bounces on '.listName($listid).'.csv';
+    header("Content-disposition:  attachment; filename={$filename}");
 }
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on').' '.listName($listid));
