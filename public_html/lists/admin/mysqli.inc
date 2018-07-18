@@ -350,6 +350,17 @@ function Sql_Table_Column_Exists($table, $column)
     }
 }
 
+function table_index_exists($table, $index) {
+    $e = false;
+    if ($result = Sql_Query("SHOW INDEX FROM $table WHERE Key_name = '$index'")) {
+        if($result->num_rows >= 1) {
+            $e = true;
+        }
+    }
+    mysqli_free_result($result);
+    return $e;
+}
+
 function Sql_Check_For_Table($table)
 {
     ## table is the full table name including the prefix, or the abbreviated one without prefix
