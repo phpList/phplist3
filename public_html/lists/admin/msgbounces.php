@@ -77,7 +77,7 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $bouncels->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
     $bouncels->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $row['email']));
-    $bouncels->addColumn($row['userid'], s('Time'), $row['time']);
+    $bouncels->addColumn($row['userid'], s('Time'), formatDateTime($row['time']));
 
 
 
