@@ -349,6 +349,22 @@ function Sql_Table_Column_Exists($table, $column)
         }
     }
 }
+/**
+ * Check if a specific INDEX exists in a specific table
+ * @param string $table The table name
+ * @param string $index The key name
+ * @return bool
+ */
+function table_index_exists($table, $index) {
+    $e = false;
+    if ($result = Sql_Query("SHOW INDEX FROM $table WHERE Key_name = '$index'")) {
+        if($result->num_rows >= 1) {
+            $e = true;
+        }
+    }
+    mysqli_free_result($result);
+    return $e;
+}
 
 function Sql_Check_For_Table($table)
 {
