@@ -1484,7 +1484,7 @@ function addSubscriberStatistics($item, $amount, $list = 0)
  * @todo Make the campaign content translatable
  * @todo Add Campaign Meta Title to clarify purpose of this draft
  */
-function addInviteCampaign() {
+function addInviteCampaign($install) {
 
     $message =
 '<p>Hi [FIRST NAME%%there], remember us? You first signed up for our email newsletter on&nbsp;[ENTERED] &ndash; please click here to confirm you&#39;re happy to continue receiving our messages:</p>
@@ -1502,7 +1502,11 @@ function addInviteCampaign() {
     $inviteMessage = addslashes($message);
     $inviteMessageSubject = "Do you want to continue receiving our messages?";
     $uuid = uuid::generate(4);
-    $ownerid = $_SESSION['logindetails']['id'];
+    if ( $install === "initial") {
+        $ownerid = 1;
+    } else {
+        $ownerid = $_SESSION['logindetails']['id'];
+    }
     $footer = sql_escape(getConfig('messagefooter'));
     $result = Sql_query("insert into {$GLOBALS['tables']['message']} (uuid,subject,message,entered, status, owner, footer, sendformat) values(\"$uuid\",\"$inviteMessageSubject\",\"$inviteMessage\",now(),\"draft\",\"$ownerid\",\"$footer\",\"invite\" )");
 
