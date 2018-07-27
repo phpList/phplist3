@@ -173,9 +173,9 @@ if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
     echo '<h3>'.s('Install a new plugin').'</h3>';
 		echo '<div class="jumbotron col-sm-12">';
     echo '<div class="col-sm-3 col-md-3 col-lg-3 row"><a class="resourceslink btn btn-info" href="http://resources.phplist.com/plugins/" title="'.s('Find plugins').'" target="_blank">'.s('Find plugins').'</a></div><div class="clearfix visible-xs visible-md"></div><br class="visible-xs visible-md" />';
-    echo formStart();
+    echo formStart('class="form-horizontal"');
     echo '<fieldset class="col-sm-9 col-md-9 col-lg-9 input-group">
-      <label for="pluginurl" class="pull-left">' .s('Plugin package URL').'</label>
+      <label for="pluginurl" class="pull-left control-label">' .s('Plugin package URL').'</label>
 			<div class="clearfix visible-xs visible-md"></div>
       <div type="field" class="pull-left col-lg-7 col-md-9 input-group"><input type="text" id="pluginurl" name="pluginurl" /></div>
       <button type="submit" name="download">' .s('Install plugin').'</button>
