@@ -70,7 +70,7 @@ while ($list = Sql_Fetch_Assoc($lists)) {
 
 echo $selectOtherlist->show();
 if ($total) {
-    echo PageLinkButton('listbounces&amp;type=dl&amp;id='.$listid, 'Download emails','','btn-primary pull-right btn-lg');
+    echo PageLinkButton('listbounces&amp;type=dl&amp;id='.$listid, s('Download addresses'),'','btn-primary pull-right btn-lg');
 }
 
 echo '<p>'.s('%d bounces to list %s', $total, listName($listid)).'</p>';
