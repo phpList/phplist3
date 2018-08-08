@@ -93,9 +93,9 @@ if (!$id) {
                 '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('date').': '.$GLOBALS['I18N']->get('in progress').'</div>',
                 '');
         }
-        $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), $row['total']);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('sent'), number_format($row['total']));
         //   $ls->addColumn($element,$GLOBALS['I18N']->get('bounced'),$row['bounced']);
-        $ls->addColumn($element, $GLOBALS['I18N']->get('views'), $row['views'],
+        $ls->addColumn($element, $GLOBALS['I18N']->get('views'), number_format($row['views']),
             $row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
         $openrate = sprintf('%0.2f', ($row['views'] / $row['total'] * 100));
         $ls->addColumn($element, $GLOBALS['I18N']->get('rate'), $openrate.' %');
