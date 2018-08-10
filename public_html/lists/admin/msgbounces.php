@@ -4,9 +4,8 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $access = accessLevel('msgbounces');
 
 $messageid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
+$download = isset($_GET['type']) && $_GET['type'] === 'dl';
 
-$isowner_and = '';
-$isowner_where = '';
 
 switch ($access) {
     case 'owner':
@@ -14,13 +13,11 @@ switch ($access) {
             $req = Sql_Query(sprintf('select id from '.$tables['message'].' where owner = %d and id = %d',
                 $_SESSION['logindetails']['id'], $messageid));
             if (!Sql_Affected_Rows()) {
-                Fatal_Error(s('You do not have enough privileges to view this page'));
+                echo s('You do not have access to this page');
 
                 return;
             }
         }
-        $isowner_and = sprintf(' message.owner = %d and ', $_SESSION['logindetails']['id']);
-        $isowner_where = sprintf(' where message.owner = %d ', $_SESSION['logindetails']['id']);
         break;
     case 'all':
     case 'view':
@@ -28,9 +25,8 @@ switch ($access) {
     case 'none':
     default:
         if ($messageid) {
-            Fatal_Error(s('You do not have enough privileges to view this page'));
-            $isowner_and = sprintf(' message.owner = 0 and ');
-            $isowner_where = sprintf(' where message.owner = 0 ');
+            echo s('You do not have access to this page');
+
 
             return;
         }
@@ -60,18 +56,32 @@ $req = Sql_Query($query);
 $total = Sql_Affected_Rows();
 $limit = '';
 $numpp = 150;
+
+if ($total) {
+    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-left btn-lg pull-bottom');
+}
+
 $start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
-if ($total > $numpp ) {
+if ($total > $numpp && !$download ) {
     $limit = "limit $start,".$numpp;
     echo simplePaging('msgbounces&amp;id='.$messageid, $start, $total, $numpp);
 
     $query .= $limit;
     $req = Sql_Query($query);
 
-
 }
+
+
 $messagedata = loadMessageData($messageid);
+if ($download) {
+    ob_end_clean();
+    header('Content-type: text/csv');
+    $filename = 'Bounces on '.campaignTitle($messageid).'.csv';
+    header("Content-disposition:  attachment; filename={$filename}");
+    ob_start();
+}
 $bouncels = new WebblerListing(s('Bounces on').' '.shortenTextDisplay($messagedata['subject'], 30));
+$bouncels->noShader();
 $bouncels->setElementHeading('Subscriber ID');
 while ($row = Sql_Fetch_Array($req)) {
 
@@ -82,4 +92,11 @@ while ($row = Sql_Fetch_Array($req)) {
 
 
 }
-echo $bouncels->display();
+if ($download) {
+    ob_end_clean();
+    echo $bouncels->tabDelimited();
+    exit;
+} else {
+     echo $bouncels->display();
+}
+
