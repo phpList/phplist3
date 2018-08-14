@@ -120,14 +120,14 @@ if ($dbversion == VERSION && !$force) {
             ),
             'linktrack' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'miduidurlindex' => array('value' => 'messageid,userid,url(255)', 'unique' => true),
+                'miduidurlindex' => array('value' => 'messageid,userid,urlhash', 'unique' => true),
             ),
             'linktrack_forward' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'urlunique' => array('value' => 'url(255)', 'unique' => true),
+                'urlunique' => array('value' => 'urlhash', 'unique' => true),
             ),
             'bounceregex' =>  array(
-                'regex' => array('value' => 'regex(255)', 'unique'=> true),
+                'regex' => array('value' => 'regexhash', 'unique'=> true),
             ),
         );
 
@@ -137,6 +137,13 @@ if ($dbversion == VERSION && !$force) {
             'linktrack_forward' => array('url'),
             'bounceregex' => array('regex'),
         );
+
+        //add columns for hash values
+
+        Sql_Query("alter table {$GLOBALS['tables']['linktrack']} add column urlhash binary(32) ");
+        Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add column urlhash binary(32) ");
+        Sql_Query("alter table {$GLOBALS['tables']['regex']} add column regexhash binary(32) ");
+
 
         foreach($indexesToRecreate as $table => $indexes) {
 
@@ -151,7 +158,7 @@ if ($dbversion == VERSION && !$force) {
 
             $alteringOperations = $tablesToAlter[$table];
             foreach($alteringOperations as $operation) {
-                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation text ");
+                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation varchar(2083) ");
             }
 
             foreach($indexes as $indexName => $settings) {
