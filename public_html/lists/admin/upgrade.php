@@ -144,8 +144,12 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash binary(16) ");
         Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash binary(16) ");
 
-        //UPDATE yourtable
-//SET hash = MD5(name)
+        // add hash values
+
+        Sql_Query("update {$GLOBALS['tables']['linktrack']} set urlhash = md5(url) ");
+        Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) ");
+        Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) ");
+
 
 
         foreach($indexesToRecreate as $table => $indexes) {
