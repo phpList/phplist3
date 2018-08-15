@@ -62,7 +62,7 @@ $chooseAnotherCampaign = new buttonGroup (
     new Button(PageUrl2('msgbounces'), s('Select another campaign')
     )
 );
-$listOfCampaigns = Sql_Query(sprintf('select id, subject from %s campaign ', $tables['message']));
+$listOfCampaigns = Sql_Query(sprintf('select id, subject from %s campaign order by subject ', $tables['message']));
 while ($campaign = Sql_Fetch_Assoc($listOfCampaigns)) {
     $chooseAnotherCampaign->addButton(new Button
         (PageUrl2('msgbounces') . '&amp;id=' . $campaign['id'], htmlentities($campaign['subject']))
