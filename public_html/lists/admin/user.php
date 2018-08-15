@@ -326,7 +326,6 @@ if ($id) {
     }
 
     echo '<div class="actions">';
-    echo PageLinkButton("userhistory&amp;id=$id", s('History'));
     echo PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
     if (!isBlackListed($user['email'])) {
         echo
@@ -347,11 +346,11 @@ if ($id) {
         $delete = new ConfirmButton(
             htmlspecialchars(s('Are you sure you want to remove this subscriber from the system.')),
             PageURL2("user&delete=$id".addCsrfGetToken(), 'button', s('remove subscriber')),
-            s('remove subscriber'));
+            s('remove subscriber'),'','btn btn-lg btn-danger pull-right');
         echo $delete->show();
     }
 
-    echo '</div>';
+    echo '</div><div class="clearfix"></div>';
 } else {
     if (!empty($_POST['subscribe'])) {
         foreach ($_POST['subscribe'] as $idx => $listid) {
@@ -499,10 +498,11 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
     }
 }
 
-if ($access != 'view') {
-    $userdetailsHTML .= '<tr><td colspan="2" class="bgwhite"><input class="submit" type="submit" name="change" value="'.s('Save Changes').'" /></td></tr>';
-}
 $userdetailsHTML .= '</table>';
+
+if ($access != 'view') {
+    $userdetailsHTML .= '<input class="submit" type="submit" name="change" value="'.s('Save Changes').'" />';
+}
 
 $mailinglistsHTML .= '<h3>'.s('Mailinglist membership').':</h3>';
 // a dummy entry, to make the array show up in POST even if all checkboxes are unchecked
@@ -534,8 +534,11 @@ $mailinglistsHTML .= '</table>';
 
 echo '<div class="tabbed">';
 echo '<ul>';
-echo '<li><a href="#details">'.ucfirst(s('Details')).'</a></li>';
-echo '<li><a href="#lists">'.ucfirst(s('Lists')).'</a></li>';
+echo '<li><a href="#details">'.s('Details').'</a></li>';
+echo '<li><a href="#lists">'.s('Lists').'</a></li>';
+echo '<li><a href="./?page=pageaction&action=campaigns&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Campaigns').'</a></li>';
+echo '<li><a href="./?page=pageaction&action=bounces&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Bounces').'</a></li>';
+echo '<li><a href="./?page=pageaction&action=subscription&ajaxed=true&id='.$id .addCsrfGetToken().'">'.s('Subscription').'</a></li>';
 
 echo '</ul>';
 
@@ -546,5 +549,11 @@ $p = new UIPanel('', $mailinglistsHTML);
 echo '<div id="lists">'.$p->display().'</div>';
 
 echo '</div>'; //# end of tabbed
+
+if (isset($_GET['unblacklist'])) {
+    $unblacklist = sprintf('%d', $_GET['unblacklist']);
+    unBlackList($unblacklist);
+    Redirect('user&id='.$unblacklist);
+}
 
 echo '</form>';

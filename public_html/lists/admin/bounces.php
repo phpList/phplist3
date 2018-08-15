@@ -144,11 +144,13 @@ echo "<div class='minitabs'>\n";
 echo $tabs->display();
 echo "</div>\n";
 
-echo PageLinkButton('listbounces', $GLOBALS['I18N']->get('view bounces by list'));
+echo '<span class="pull-right">'.PageLinkButton('listbounces', $GLOBALS['I18N']->get('view bounces by list')).'</span>';
 if (ALLOW_DELETEBOUNCE) {
-    echo '<div class="fright">'.$buttons->show().'</div>';
+
+    echo '<div class="fright pull-left">'.$buttons->show().'</div>';
 }
 echo "</div><!-- .actions div-->\n";
+echo '<div class="clearfix"></div>';
 
 if (!Sql_Num_Rows($result)) {
     switch ($status) {

@@ -212,7 +212,7 @@ while ($row = Sql_Fetch_Array($req)) {
         $element = shortenTextDisplay($row['email'], 35);
         $separator = '<br/>';
     }
-    $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
+    $ls->addElement($element, PageUrl2('user&amp;id='.$row['userid']));
     $ls->addColumn($element, s('Sent'), formatDateTime($row['sent'], 1));
     $ls->addColumn($element, s('Response time'), secs2time($row['responsetime']));
 

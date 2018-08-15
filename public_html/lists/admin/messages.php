@@ -157,6 +157,27 @@ if (!empty($_GET['delete'])) {
     $action_result .= "<hr /><br />\n";
 }
 
+if (isset($_GET['duplicate'])) {
+    verifyCsrfGetToken();
+
+    Sql_Query(sprintf('insert into %s (uuid, subject, fromfield, tofield, replyto, message, textmessage, footer, entered, 
+        modified, embargo, repeatuntil, repeatinterval, requeueinterval, status, htmlformatted, sendformat, template, rsstemplate, owner)
+        select "%s", subject, fromfield, tofield, replyto, message, textmessage, footer, now(), 
+        now(), now(), now(), repeatinterval, requeueinterval, "draft",  htmlformatted, 
+        sendformat, template, rsstemplate, "%d" from %s
+        where id = %d',
+        $GLOBALS['tables']['message'], (string) Uuid::generate(4), $_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],
+        intval($_GET['duplicate'])));    
+    if ($newId = Sql_Insert_Id()) {  // if we don't have a newId then the copy failed
+		Sql_Query(sprintf('insert into %s (id,name,data) '.
+			'select %d,name,data from %s where name in ("sendmethod","sendurl","campaigntitle","excludelist","subject") and id = %d',
+			$GLOBALS['tables']['messagedata'],$newId,$GLOBALS['tables']['messagedata'],intval($_GET['duplicate'])));
+		Sql_Query(sprintf('insert into %s (messageid, listid, entered)  select %d, listid, now() from %s where messageid = %d',
+			$GLOBALS['tables']['listmessage'],$newId,$GLOBALS['tables']['listmessage'],intval($_GET['duplicate'])));
+	}
+	
+}
+
 if (isset($_GET['resend'])) {
     verifyCsrfGetToken();
     $resend = sprintf('%d', $_GET['resend']);
@@ -396,6 +417,40 @@ if ($total) {
         }
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Status'), $statusdiv);
 
+        /*
+         * Display the lists that have been selected for the campaign
+         */
+        $maxListsDisplayed = 3;
+        $namesQuery = <<<END
+    SELECT SQL_CALC_FOUND_ROWS l.name
+    FROM {$tables['list']} l
+    JOIN {$tables['listmessage']} lm  ON l.id = lm.listid
+    WHERE lm.messageid = {$msg['id']}
+    ORDER BY l.name
+    LIMIT $maxListsDisplayed
+END;
+        $namesResult = Sql_Query($namesQuery);
+        $row = Sql_Fetch_Row_Query('SELECT FOUND_ROWS()');
+        $numberOfLists = $row[0];
+
+        if ($numberOfLists > 0) {
+            $listNames = array();
+
+            while ($row = Sql_Fetch_Assoc($namesResult)) {
+                $listNames[] = htmlspecialchars($row['name']);
+            }
+
+            if ($numberOfLists > $maxListsDisplayed) {
+                array_pop($listNames);
+                $listNames[] = sprintf(
+                    '<a href="%s">%s</a>',
+                    PageURL2('message', '', "id={$msg['id']}").'#targetlists',
+                    htmlspecialchars(s('and %d more', $numberOfLists - ($maxListsDisplayed - 1)))
+                );
+            }
+            $ls->addRow($listingelement, s('Lists'), implode('<br/>', $listNames), '', 'left');
+        }
+
         if ($msg['status'] != 'draft') {
             //    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("total"), $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']);
 //    $ls->addColumn($listingelement,$GLOBALS['I18N']->get("text"), $msg['astext']);
@@ -565,9 +620,14 @@ if ($total) {
 //      $actionbuttons .= sprintf('<span class="delete"><a href="javascript:deleteRec(\'%s\');" class="button" title="'.$GLOBALS['I18N']->get("delete").'">'.$GLOBALS['I18N']->get("delete").'</a></span>',PageURL2("messages$url_keep","","delete=".$msg["id"]));
             $actionbuttons .= '<span class="edit">'.PageLinkButton('send', $GLOBALS['I18N']->get('Edit'),
                     'id='.$msg['id'], '', s('Edit')).'</span>';
-            if (empty($clicks[0])) { //# disallow deletion when there are stats
+            if (empty($clicks[0])  ||  !empty($messagedata['istestcampaign'])) { //# disallow deletion when there are stats except when is test campaign
                 $actionbuttons .= '<span class="delete">'.$deletebutton->show().'</span>';
             }
+        }
+
+        if ($msg['status'] == 'sent') {
+            $actionbuttons .= '<span class="edit">'.PageLinkButton('messages', s('Copy to Draft'),
+                    'tab=draft&duplicate='.$msg['id'], '', s('Copy to Draft')).'</span>';
         }
 
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Action'),

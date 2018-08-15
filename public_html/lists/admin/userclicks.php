@@ -161,7 +161,7 @@ if ($fwdid && $msgid) {
         $msgid
     );
 } elseif ($userid) {
-    echo '<h3>'.$GLOBALS['I18N']->get('All clicks by').' <small><b>'.PageLink2('user&amp;id='.$userid, $userdata['email']).'</b></small></h3>';
+    echo '<div class="jumbotron">'.$GLOBALS['I18N']->get('All clicks by').' <b>'.PageLink2('user&amp;id='.$userid, $userdata['email']).'</b></div>';
 
     $query = sprintf('
         SELECT SUM(htmlclicked) AS htmlclicked,
@@ -210,7 +210,7 @@ while ($row = Sql_Fetch_Array($req)) {
     } else {
         if (!$userid) {
             $element = shortenTextDisplay($row['email']);
-            $ls->addElement($element, PageUrl2('userhistory&amp;id='.$row['userid']));
+            $ls->addElement($element, PageUrl2('user&amp;id='.$row['userid']));
             $ls->setClass($element, 'row1');
         } else {
             //    $link = substr($row['url'],0,50);

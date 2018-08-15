@@ -905,7 +905,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     <label for="textmessage">' .$GLOBALS['I18N']->get('Plain text version of message').Help('plaintextversion').'</label>'.'
     <div id="generatetextversion">' .PageLinkAjax('send&tab=Text&id='.$id.'&action=generatetext',
                 $GLOBALS['I18N']->get('generate from HTML')).'</a> '.Help('generatetext').'</div>
-    <textarea id="textmessage" name="textmessage" cols="65" rows="20">' .$messagedata['textmessage'].'</textarea>
+    <textarea id="textmessage" name="textmessage" cols="65" rows="20">' .htmlentities($messagedata['textmessage']).'</textarea>
   </div>';
     }
 //var_dump($messagedata);

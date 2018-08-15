@@ -70,7 +70,7 @@ while ($list = Sql_Fetch_Assoc($lists)) {
 
 echo $selectOtherlist->show();
 if ($total) {
-    echo PageLinkButton('listbounces&amp;type=dl&amp;id='.$listid, 'Download emails','','btn-primary pull-right btn-lg');
+    echo PageLinkButton('listbounces&amp;type=dl&amp;id='.$listid, s('Download addresses'),'','btn-primary pull-right btn-lg');
 }
 
 echo '<p>'.s('%d bounces to list %s', $total, listName($listid)).'</p>';
@@ -89,8 +89,8 @@ if ($total > $numpp && !$download) {
 if ($download) {
     ob_end_clean();
     header('Content-type: text/plain');
-    $filename = 'Bounces on '.listName($listid);
-    header("Content-disposition:  attachment; filename=\"$filename\"");
+    $filename = 'Bounces on '.listName($listid).'.csv';
+    header("Content-disposition:  attachment; filename={$filename}");
 }
 
 $ls = new WebblerListing($GLOBALS['I18N']->get('Bounces on').' '.listName($listid));
@@ -106,7 +106,7 @@ while ($row = Sql_Fetch_Array($req)) {
             $ls->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
             $ls->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $userdata['email']));
             $ls->addColumn($row['userid'], s('Total bounces'),
-                PageLink2('userhistory&id='.$row['userid'], $row['numbounces']));
+                PageLink2('user&id='.$row['userid'], $row['numbounces']));
         }
     }
 }

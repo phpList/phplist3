@@ -14,7 +14,6 @@ Feature: Navigate the app using the menu
       | statistics                |
       | system                    |
       | Configuration functions   |
-      | info                      |
       | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
@@ -29,6 +28,7 @@ Feature: Navigate the app using the menu
          | Innerpages                |
          | Search subscribers        |
          | Manage subscribers        |
+         | Configure attributes      |
          | Subscriber lists          |
          | Import emails             |
          | Export subscribers        |
@@ -82,7 +82,6 @@ Feature: Navigate the app using the menu
          | Configuration                      |
          | Settings                           |
          | Manage plugins                     |
-         | Configure attributes               |
          | Subscribe pages                    |
          | Manage administrators              |
          | Import administrators              |
@@ -90,16 +89,6 @@ Feature: Navigate the app using the menu
          | Bounce rules                       |
          | Check bounce rules                 |
          | Categorise lists                   |
-    
-      
-    Scenario Outline: Browse Info menu
-        Given I have logged in as an administrator
-        Given I follow "Info"
-        Then I should see "<Innerpages>"
-        Examples:
-         | Innerpages    |
-         | About phpList |
-         | Help          |
     
     Scenario Outline: Browse Develop menu
         Given I have logged in as an administrator

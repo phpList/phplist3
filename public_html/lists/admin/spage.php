@@ -42,6 +42,30 @@ if ($delete) {
         $tables['subscribepage_data'], $delete));
     Info($GLOBALS['I18N']->get('Deleted')." $delete");
 }
+
+if (isset($_REQUEST['reset'])) {
+    $reset = sprintf('%d', $_REQUEST['reset']);
+} else {
+    $reset = 0;
+}
+
+
+if ($reset) {
+    $valuesToUpdate =  array(
+        'header' => 'pageheader',
+        'footer' => 'pagefooter',
+    );
+
+    foreach ($valuesToUpdate as $key => $value){
+        $query = sprintf('update %s set data = "%s" where name = "%s" and id = %d', $tables['subscribepage_data'], sql_escape(getConfig($value)), $key, $reset);
+        Sql_Query($query);
+    }
+}
+
+
+
+
+
 echo formStart('name="pagelist" class="spageEdit" ');
 echo '<input type="hidden" name="active[-1]" value="1" />'; //# to force the active array to exist
 $ls = new WebblerListing($GLOBALS['I18N']->get('subscribe pages'));
@@ -70,13 +94,16 @@ while ($p = Sql_Fetch_Array($req)) {
         sprintf('<input type="checkbox" name="active[%d]" value="1" %s  onchange="document.pagelist.submit()" />',
             $p['id'], $p['active'] ? 'checked="checked"' : ''),'',' text-center');
     $ls->addRow($p['id'],
-        $p['active'] ? '<span class="yes" title="'.$GLOBALS['I18N']->get('active').'"></span>' : '<span class="no" title="'.$GLOBALS['I18N']->get('not active').'"></span>',
-        sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('edit').'">%s</a></span>',
-            PageURL2('spageedit', ''), $p['id'], $GLOBALS['I18N']->get('edit')).
-        sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.$GLOBALS['I18N']->get('delete').'">%s</a></span>',
-            PageURL2('spage', '', 'delete='.$p['id']), $GLOBALS['I18N']->get('del')).
-        sprintf('<span class="view"><a class="button" target="_blank" href="%s&amp;id=%d" title="'.$GLOBALS['I18N']->get('view').'">%s</a></span>',
-            getConfig('subscribeurl'), $p['id'], $GLOBALS['I18N']->get('view')));
+        $p['active'] ? '<span class="yes" title="'.s('active').'"></span>' : '<span class="no" title="'.s('not active').'"></span>',
+        sprintf('<span class="edit"><a class="button" href="%s&amp;id=%d" title="'.s('edit').'">%s</a></span>',
+            PageURL2('spageedit', ''), $p['id'], s('edit')).
+        sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.s('delete').'">%s</a></span>',
+            PageURL2('spage', '', 'delete='.$p['id']), s('del')).
+        sprintf('<span class="view"><a class="button" target="_blank" href="%s&amp;id=%d" title="'.s('view').'">%s</a></span>',
+            getConfig('subscribeurl'), $p['id'], s('view')).
+        sprintf('<span class="resettemplate"><a class="button"  href = "javascript:confirmOpenUrl(\''.htmlentities(s('Are you sure you want to reset this subscription page template?')).'\', \'%s\')" title="'.s('reset').'">%s</a></span>',
+            PageURL2('spage', '',  'reset='.$p['id']), s('reset styling to default'))
+    );
 }
 echo '<p class="button pull-right">'.PageLink2('spageedit', s('Add a new subscribe page')).'</p><div class="clearfix"></div>';
 
