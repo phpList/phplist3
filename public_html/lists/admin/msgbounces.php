@@ -6,7 +6,7 @@ $access = accessLevel('msgbounces');
 $messageid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
 $download = isset($_GET['type']) && $_GET['type'] === 'dl';
 
-
+$isowner_where = '';
 switch ($access) {
     case 'owner':
         if ($messageid) {
@@ -18,6 +18,7 @@ switch ($access) {
                 return;
             }
         }
+
         break;
     case 'all':
     case 'view':
@@ -57,10 +58,24 @@ $total = Sql_Affected_Rows();
 $limit = '';
 $numpp = 150;
 
+$chooseAnotherCampaign = new buttonGroup (
+    new Button(PageUrl2('msgbounces'), s('Select another campaign')
+    )
+);
+$listOfCampaigns = Sql_Query(sprintf('select id, subject from %s campaign ', $tables['message']));
+while ($campaign = Sql_Fetch_Assoc($listOfCampaigns)) {
+    $chooseAnotherCampaign->addButton(new Button
+        (PageUrl2('msgbounces') . '&amp;id=' . $campaign['id'], htmlentities($campaign['subject']))
+    );
+
+}
+echo $chooseAnotherCampaign->show();
+
 if ($total) {
-    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-left btn-lg pull-bottom');
+    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-right btn-lg pull-bottom');
 }
 
+echo '<p>'.number_format($total).s(' bounces to campaign %s', campaignTitle($messageid)).'</p>';
 $start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
 if ($total > $numpp && !$download ) {
     $limit = "limit $start,".$numpp;
