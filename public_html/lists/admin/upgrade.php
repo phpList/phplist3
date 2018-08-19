@@ -118,10 +118,6 @@ if ($dbversion == VERSION && !$force) {
             'urlcache' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
             ),
-            'linktrack' => array(
-                'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'miduidurlindex' => array('value' => 'messageid,userid,urlhash', 'unique' => true),
-            ),
             'linktrack_forward' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
                 'urlunique' => array('value' => 'urlhash', 'unique' => true),
@@ -133,20 +129,17 @@ if ($dbversion == VERSION && !$force) {
 
         $tablesToAlter = array(
             'urlcache' => array('url'),
-            'linktrack' => array('url', 'forward'),
             'linktrack_forward' => array('url'),
             'bounceregex' => array('regex'),
         );
 
         //add columns for hash values
 
-        Sql_Query("alter table {$GLOBALS['tables']['linktrack']} add  urlhash binary(16) ");
         Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash binary(16) ");
         Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash binary(16) ");
 
         // add hash values
 
-        Sql_Query("update {$GLOBALS['tables']['linktrack']} set urlhash = md5(url) ");
         Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) ");
         Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) ");
 
