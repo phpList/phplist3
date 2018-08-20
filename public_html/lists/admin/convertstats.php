@@ -83,12 +83,12 @@ while ($row = Sql_Fetch_Array($req)) {
         break;
     }
 
-    $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where url = "%s"', $GLOBALS['tables']['linktrack_forward'],
-        $row['url']));
+    $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where urlhash = "%s"', $GLOBALS['tables']['linktrack_forward'],
+        md5($row['url'])));
     if (!$exists[0]) {
         $personalise = preg_match('/uid=/', $row['forward']);
-        Sql_Query(sprintf('insert into %s (url,personalise) values("%s",%d)', $GLOBALS['tables']['linktrack_forward'],
-            $row['url'], $personalise));
+        Sql_Query(sprintf('insert into %s (url, urlhash, personalise) values("%s","%s", %d)', $GLOBALS['tables']['linktrack_forward'],
+            $row['url'], md5($row['url']), $personalise));
         $fwdid = Sql_Insert_id();
     } else {
         $fwdid = $exists[0];
