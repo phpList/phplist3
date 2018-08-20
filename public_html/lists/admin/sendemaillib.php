@@ -1263,13 +1263,13 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
      * alter table phplist_linktrack_forward add index (url);
      * */
 
-        $exists = Sql_Fetch_Row_Query(sprintf('select id,uuid from %s where url = "%s"',
-            $GLOBALS['tables']['linktrack_forward'], sql_escape(substr($url, 0, 255))));
+        $exists = Sql_Fetch_Row_Query(sprintf('select id,uuid from %s where urlhash = "%s"',
+            $GLOBALS['tables']['linktrack_forward'], md5(sql_escape($url))));
         if (empty($exists[0])) {
             $personalise = preg_match('/uid=/', $link);
             $uuid = (string)Uuid::generate(4);
-            Sql_Query(sprintf('insert into %s set url = "%s", personalise = %d, uuid = "%s"',
-                $GLOBALS['tables']['linktrack_forward'], sql_escape($url), $personalise, $uuid));
+            Sql_Query(sprintf('insert into %s set url = "%s", urlhash = "%s", personalise = %d, uuid = "%s"',
+                $GLOBALS['tables']['linktrack_forward'], sql_escape($url), md5(sql_escape($url)), $personalise, $uuid));
             $fwdid = Sql_Insert_id();
             $fwduuid = $uuid;
         } elseif (empty($exists[1])) {
