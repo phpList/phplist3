@@ -135,13 +135,13 @@ if ($dbversion == VERSION && !$force) {
 
         //add columns for hash values
 
-        Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash binary(16) ");
-        Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash binary(16) ");
+        Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash char(32) ");
+        Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash char(32) ");
 
         // add hash values
 
-        Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) ");
-        Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) ");
+        Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) where urlhash is NULL ");
+        Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) where regexhash is NULL ");
 
 
 
