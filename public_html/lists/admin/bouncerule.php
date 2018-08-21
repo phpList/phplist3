@@ -30,7 +30,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'next') {
 }
 
 if (isset($_POST['save']) && $_POST['save']) {
-    Sql_Query(sprintf('update %s set regex = "%s", hashregex = "%s", action="%s", comment="%s",status = "%s" where id= %d',
+    Sql_Query(sprintf('update %s set regex = "%s", regexhash = "%s", action="%s", comment="%s",status = "%s" where id= %d',
         $GLOBALS['tables']['bounceregex'], trim($_POST['regex']), md5(trim($_POST['regex'])), sql_escape($_POST['action']),
         sql_escape($_POST['comment']), sql_escape($_POST['status']), $_GET['id']), 1);
     $num = Sql_Affected_Rows();

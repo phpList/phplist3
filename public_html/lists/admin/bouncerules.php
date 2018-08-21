@@ -46,7 +46,7 @@ if (isset($_GET['del']) && $_GET['del']) {
 }
 
 if (isset($_POST['newrule']) && $_POST['newrule']) {
-    Sql_Query(sprintf('insert into %s (regex, hashregex, action,comment,admin,status) values("%s","%s","%s","%s",%d,"active")',
+    Sql_Query(sprintf('insert into %s (regex, regexhash, action,comment,admin,status) values("%s","%s","%s","%s",%d,"active")',
         $GLOBALS['tables']['bounceregex'], sql_escape($_POST['newrule']), md5(sql_escape($_POST['newrule'])), sql_escape($_POST['action']),
         sql_escape($_POST['comment']), $_SESSION['logindetails']['id']), 1);
     $num = Sql_Affected_Rows();

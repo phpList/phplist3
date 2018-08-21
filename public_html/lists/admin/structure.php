@@ -376,7 +376,7 @@ $DBstructphplist = array(
 
     //# keep it in for now, but could be dropped at some point
     //# once all dependencies have been removed
-    // tables that have unique indexes on hash values : linktrack, linktrack_forward, bounceregex
+    // tables that have unique indexes on hash values :  linktrack_forward, bounceregex
     'linktrack' => array(
         'linkid'      => array('integer not null primary key auto_increment', 'Link ID'),
         'messageid'   => array('integer not null', 'Message ID'),
