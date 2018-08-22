@@ -118,25 +118,32 @@ if ($dbversion == VERSION && !$force) {
             'urlcache' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
             ),
-            'linktrack' => array(
-                'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'miduidurlindex' => array('value' => 'messageid,userid,url(255)', 'unique' => true),
-            ),
             'linktrack_forward' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'urlunique' => array('value' => 'url(255)', 'unique' => true),
+                'urlunique' => array('value' => 'urlhash', 'unique' => true),
             ),
             'bounceregex' =>  array(
-                'regex' => array('value' => 'regex(255)', 'unique'=> true),
+                'regex' => array('value' => 'regexhash', 'unique'=> true),
             ),
         );
 
         $tablesToAlter = array(
             'urlcache' => array('url'),
-            'linktrack' => array('url', 'forward'),
             'linktrack_forward' => array('url'),
             'bounceregex' => array('regex'),
         );
+
+        //add columns for hash values
+
+        Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash char(32) ");
+        Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash char(32) ");
+
+        // add hash values
+
+        Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) where urlhash is NULL ");
+        Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) where regexhash is NULL ");
+
+
 
         foreach($indexesToRecreate as $table => $indexes) {
 
@@ -151,7 +158,7 @@ if ($dbversion == VERSION && !$force) {
 
             $alteringOperations = $tablesToAlter[$table];
             foreach($alteringOperations as $operation) {
-                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation text ");
+                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation varchar(2083) ");
             }
 
             foreach($indexes as $indexName => $settings) {
