@@ -518,9 +518,11 @@ END;
         }
 
         if ($msg['status'] == 'sent') {
-            $timetosend = $GLOBALS['I18N']->get('Time to send').': '.timeDiff($msg['sendstart'], $msg['sent']);
+            $started = s('Started ').': '.formatDateTime($msg['sendstart']);
+            $timetosend = s('Time to send').': '.timeDiff($msg['sendstart'], $msg['sent']);
         } else {
             $timetosend = '';
+            $started = '';
         }
 
         $colspan = 3;
@@ -565,16 +567,18 @@ END;
             </tr>
           </thead>
           <tbody>
-              %s
-              <tr><td>' .$GLOBALS['I18N']->get('total').'</td><td>'.$GLOBALS['I18N']->get('text').'</td><td>'.$GLOBALS['I18N']->get('html').'</td>
-                %s%s
+              %s %s
+              <tr><td>' .s('total').'</td><td>'.s('text').'</td><td>'.s('html').'</td>
+                %s%
               </tr>
               <tr><td><b>%s</b></td><td><b>%s</b></td><td><b>%s</b></td>
                 %s %s %s %s
               </tr>
           </tbody>
       </table>',
-                !empty($timetosend) ? '<tr><td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
+                !empty($started) ? '<tr> <td colspan="'.$colspan.'">'.$started.'</td></tr>' : '',
+
+                !empty($timetosend) ? '<tr> <td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
                 !empty($msg['aspdf']) ? '<td>'.$GLOBALS['I18N']->get('PDF').'</td>' : '',
                 !empty($msg['astextandpdf']) ? '<td>'.$GLOBALS['I18N']->get('both').'</td>' : '',
                 $sentStatsFormatted['grandTotal'],
