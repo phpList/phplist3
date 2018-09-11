@@ -142,7 +142,7 @@ msgstr "選擇另一個列表"
 
 #: public_html/lists/admin/listbounces.php:76
 #, php-format
-msgid "%d bounces to list %s"
+msgid "%s bounces to list %s"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:96

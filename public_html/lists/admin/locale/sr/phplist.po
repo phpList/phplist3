@@ -130,8 +130,8 @@ msgstr "Odaberi drugu listu"
 
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
-msgid "%d bounces to list %s"
-msgstr "%d vraćenih poruka u listi %s"
+msgid "%s bounces to list %s"
+msgstr "%s vraćenih poruka u listi %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"

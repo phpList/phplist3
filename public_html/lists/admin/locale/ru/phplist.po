@@ -136,8 +136,8 @@ msgstr "Выбрать другой список"
 
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
-msgid "%d bounces to list %s"
-msgstr "%d возвращённых писем в списке %s"
+msgid "%s bounces to list %s"
+msgstr "%s возвращённых писем в списке %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"

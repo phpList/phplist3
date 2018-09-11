@@ -142,8 +142,8 @@ msgstr "Kies een andere verzendlijst"
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
 #, php-format, php-format
-msgid "%d bounces to list %s"
-msgstr "%d teruggekaatste e-mail berichten bij verzendlijst %s"
+msgid "%s bounces to list %s"
+msgstr "%s teruggekaatste e-mail berichten bij verzendlijst %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"
