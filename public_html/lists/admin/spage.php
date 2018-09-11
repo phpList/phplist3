@@ -52,12 +52,12 @@ if (isset($_REQUEST['reset'])) {
 
 if ($reset) {
     $valuesToUpdate =  array(
-        'header' => 'pageheader',
-        'footer' => 'pagefooter',
+        'header' => $defaultheader,
+        'footer' => $defaultfooter,
     );
 
     foreach ($valuesToUpdate as $key => $value){
-        $query = sprintf('update %s set data = "%s" where name = "%s" and id = %d', $tables['subscribepage_data'], sql_escape(getConfig($value)), $key, $reset);
+        $query = sprintf('update %s set data = "%s" where name = "%s" and id = %d', $tables['subscribepage_data'], sql_escape($value), $key, $reset);
         Sql_Query($query);
     }
 }
