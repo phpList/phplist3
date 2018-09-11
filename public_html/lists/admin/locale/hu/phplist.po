@@ -2626,7 +2626,7 @@ msgstr "Igen"
 #: public_html/lists/admin/bouncerule.php:37
 #: public_html/lists/admin/admin.php:189 public_html/lists/admin/admin.php:207
 msgid "No"
-msgstr "S.sz."
+msgstr "Nem"
 
 #: public_html/lists/admin/configure.php:152
 msgid "edit this value"
