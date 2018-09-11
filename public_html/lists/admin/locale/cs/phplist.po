@@ -127,8 +127,8 @@ msgstr "Vyberte jiný seznam"
 
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
-msgid "%d bounces to list %s"
-msgstr "%d skáče do seznamu %s"
+msgid "%s bounces to list %s"
+msgstr "%s skáče do seznamu %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"

@@ -139,8 +139,8 @@ msgstr "Sélectionner une autre liste"
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
 #, php-format, php-format
-msgid "%d bounces to list %s"
-msgstr "%d messages rejetés de la liste %s"
+msgid "%s bounces to list %s"
+msgstr "%s messages rejetés de la liste %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"

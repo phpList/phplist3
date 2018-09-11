@@ -134,8 +134,8 @@ msgstr "Vælg endnu en liste"
 
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
-msgid "%d bounces to list %s"
-msgstr "%d bounces til liste %s"
+msgid "%s bounces to list %s"
+msgstr "%s bounces til liste %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"

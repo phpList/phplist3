@@ -138,8 +138,8 @@ msgstr "Selecione outra lista"
 
 #: public_html/lists/admin/listbounces.php:83
 #, php-format
-msgid "%d bounces to list %s"
-msgstr "%d devolu&ccedil;&otilde;es para a lista %s"
+msgid "%s bounces to list %s"
+msgstr "%s devolu&ccedil;&otilde;es para a lista %s"
 
 #: public_html/lists/admin/listbounces.php:103
 msgid "Bounces on"
