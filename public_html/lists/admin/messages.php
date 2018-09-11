@@ -630,7 +630,7 @@ END;
         }
 
         if ($msg['status'] == 'sent') {
-            $actionbuttons .= '<span class="edit">'.PageLinkButton('messages', s('Copy to Draft'),
+            $actionbuttons .= '<span class="copy">'.PageLinkButton('messages', s('Copy to Draft'),
                     'tab=draft&duplicate='.$msg['id'], '', s('Copy to Draft')).'</span>';
         }
 

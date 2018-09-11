@@ -112,34 +112,53 @@ if ($dbversion == VERSION && !$force) {
 
     if (version_compare($dbversion, '3.3.4','<')) {
 
+        Sql_Query("alter table {$GLOBALS['tables']['bounce']} modify data mediumblob ");
+
         $indexesToRecreate = array(
             'urlcache' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
             ),
-            'linktrack' => array(
-                'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'miduidurlindex' => array('value' => 'messageid,userid,url(255)', 'unique' => true),
-            ),
             'linktrack_forward' => array(
                 'urlindex' => array('value' => 'url(255)', 'unique' => false),
-                'urlunique' => array('value' => 'url(255)', 'unique' => true),
-            )
+                'urlunique' => array('value' => 'urlhash', 'unique' => true),
+            ),
+            'bounceregex' =>  array(
+                'regex' => array('value' => 'regexhash', 'unique'=> true),
+            ),
         );
 
         $tablesToAlter = array(
             'urlcache' => array('url'),
-            'linktrack' => array('url', 'forward'),
             'linktrack_forward' => array('url'),
+            'bounceregex' => array('regex'),
         );
 
+        //add columns for hash values
+
+        Sql_Query("alter table {$GLOBALS['tables']['linktrack_forward']} add  urlhash char(32) ");
+        Sql_Query("alter table {$GLOBALS['tables']['bounceregex']} add  regexhash char(32) ");
+
+        // add hash values
+
+        Sql_Query("update {$GLOBALS['tables']['linktrack_forward']} set urlhash = md5(url) where urlhash is NULL ");
+        Sql_Query("update {$GLOBALS['tables']['bounceregex']} set regexhash = md5(regex) where regexhash is NULL ");
+
+
+
         foreach($indexesToRecreate as $table => $indexes) {
+
+
             foreach($indexes as $indexName => $settings) {
-                Sql_Query("drop index $indexName on {$GLOBALS['tables'][$table]} ");
+
+                $exists = table_index_exists($GLOBALS['tables'][$table],$indexName);
+                 if ($exists) {
+                     Sql_Query("drop index $indexName on {$GLOBALS['tables'][$table]} ");
+                 }
             }
 
             $alteringOperations = $tablesToAlter[$table];
             foreach($alteringOperations as $operation) {
-                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation text ");
+                Sql_Query("alter table {$GLOBALS['tables'][$table]} modify $operation varchar(2083) ");
             }
 
             foreach($indexes as $indexName => $settings) {
@@ -149,6 +168,7 @@ if ($dbversion == VERSION && !$force) {
                 } else {
                     $createStmt = 'create index';
                 }
+
                 Sql_Query("$createStmt $indexName on {$GLOBALS['tables'][$table]}({$settings['value']})");
             }
 
@@ -350,9 +370,13 @@ if ($dbversion == VERSION && !$force) {
     }
 
     if (version_compare($dbversion, '3.3.3','<')) {
-        // add a draft campaign for invite plugin 
+        // add a draft campaign for invite plugin
         addInviteCampaign();
-  
+
+    }
+
+    if (version_compare($dbversion, '3.3.4','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['bounce']} modify data mediumblob ");
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
