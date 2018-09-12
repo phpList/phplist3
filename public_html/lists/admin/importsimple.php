@@ -75,10 +75,14 @@ if (!empty($_POST['importcontent'])) {
             //# do not add them to the list(s) when blacklisted
             $isBlackListed = isBlackListed($line);
             if (!$isBlackListed) {
-                ++$count['addedtolist'];
+                $addition = false;
                 foreach ($selected_lists as $k => $listid) {
-                    $query = 'replace into '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
+                    $query = 'insert ignore into '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
                     $result = Sql_query($query);
+                    $addition = $addition || Sql_Affected_Rows() == 1;
+                }
+                if ($addition) {
+                    ++$count['addedtolist'];
                 }
             } else {
                 //# mark blacklisted, just in case ##17288

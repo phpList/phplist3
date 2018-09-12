@@ -94,9 +94,9 @@ if (isset($_REQUEST['processtags']) && $access != 'view') {
                 foreach ($_POST['user'] as $key => $val) {
                     Sql_query(sprintf('delete from %s where listid = %d and userid = %d', $tables['listuser'], $id,
                         $key));
-                    Sql_query(sprintf('replace into %s (listid,userid) values(%d,%d)', $tables['listuser'],
+                    Sql_query(sprintf('insert ignore into %s (listid,userid, entered) values(%d,%d, now())', $tables['listuser'],
                         $_POST['movedestination'], $key));
-                    if (Sql_Affected_rows() == 1) { // 2 means they were already on the list
+                    if (Sql_Affected_rows() == 1) { // 0 means they were already on the list
                         ++$cnt;
                     }
                 }
@@ -105,9 +105,11 @@ if (isset($_REQUEST['processtags']) && $access != 'view') {
             case 'copy':
                 $cnt = 0;
                 foreach ($_POST['user'] as $key => $val) {
-                    Sql_query(sprintf('replace into %s (listid,userid)
-            values(%d,%d);', $tables['listuser'], $_POST['copydestination'], $key));
-                    ++$cnt;
+                    Sql_query(sprintf('insert ignore into %s (listid,userid, entered)
+            values(%d,%d, now());', $tables['listuser'], $_POST['copydestination'], $key));
+                    if (Sql_Affected_rows() == 1) {
+                        ++$cnt;
+                    }
                 }
                 $msg = $cnt.' '.$GLOBALS['I18N']->get('subscribers were copied to').' '.listName($_POST['copydestination']);
                 break;
@@ -139,9 +141,9 @@ if (isset($_REQUEST['processtags']) && $access != 'view') {
                 while ($user = Sql_Fetch_Row($req)) {
                     Sql_query(sprintf('delete from %s where listid = %d and userid = %d', $tables['listuser'], $id,
                         $user[0]));
-                    Sql_query(sprintf('replace into %s (listid,userid) values(%d,%d)', $tables['listuser'],
+                    Sql_query(sprintf('insert ignore into %s (listid,userid, entered) values(%d,%d, now())', $tables['listuser'],
                         $_POST['movedestination_all'], $user[0]));
-                    if (Sql_Affected_rows() == 1) { // 2 means they were already on the list
+                    if (Sql_Affected_rows() == 1) { // 0 means they were already on the list
                         ++$cnt;
                     }
                 }
@@ -150,9 +152,11 @@ if (isset($_REQUEST['processtags']) && $access != 'view') {
             case 'copy':
                 $cnt = 0;
                 while ($user = Sql_Fetch_Row($req)) {
-                    Sql_query(sprintf('replace into %s (listid,userid) values(%d,%d)', $tables['listuser'],
+                    Sql_query(sprintf('insert ignore into %s (listid,userid, entered) values(%d,%d, now())', $tables['listuser'],
                         $_POST['copydestination_all'], $user[0]));
-                    ++$cnt;
+                    if (Sql_Affected_rows() == 1) {
+                        ++$cnt;
+                    }
                 }
                 $msg = $cnt.' '.$GLOBALS['I18N']->get('subscribers were copied to').' '.listName($_POST['copydestination_all']);
                 break;
