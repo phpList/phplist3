@@ -155,9 +155,9 @@ foreach ($user_list as $email => $data) {
         $isBlackListed = isBlackListed($email);
         if (!$isBlackListed) {
             foreach ($importdata['importlists'] as $key => $listid) {
-                $query = 'replace INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
+                $query = 'insert ignore INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
                 $result = Sql_query($query);
-                // if the affected rows is 2, the user was already subscribed
+                // if the affected rows is 0, the user was already subscribed
                 $addition = $addition || Sql_Affected_Rows() == 1;
                 if (!empty($importdata['listname'][$key])) {
                     $listoflists .= '  * '.$importdata['listname'][$key]."\n";
