@@ -1,8 +1,7 @@
 <?php
 
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50303) {
-    die('Your PHP version is too old. Please upgrade PHP before continuing.');
-}
+// check for basic prerequisites
+require_once dirname(__FILE__).'/checkprerequisites.php';
 
 if (ob_get_level() == 0) {
     @ob_start();
