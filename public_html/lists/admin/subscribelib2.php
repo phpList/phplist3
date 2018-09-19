@@ -415,8 +415,10 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             $GLOBALS['tables']['user'], $_GET['uid']));
         $userid = $req[0];
     } else {
-        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"".sql_escape($_GET['email']).'"');
-        $userid = $req[0];
+        // This could be abused and is not required
+        // $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"".sql_escape($_GET['email']).'"');
+        // $userid = $req[0];
+        $userid = false;
     }
     if (!$userid) {
         Fatal_Error('Error, no such user');
