@@ -1,80 +1,117 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
+$access = accessLevel('msgbounces');
 
-$msgid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
+$messageid = empty($_GET['id']) ? 0 : sprintf('%d', $_GET['id']);
+$download = isset($_GET['type']) && $_GET['type'] === 'dl';
 
-if (!$msgid) {
-    $req = Sql_Query(sprintf('select message.id as messageid,message.subject,count(distinct user) as numusers from %s message, %s umb where message.id = umb.message and date_add(message.entered,interval 3 month) > now() group by message.id order by message.entered desc',
-        $GLOBALS['tables']['message'], $GLOBALS['tables']['user_message_bounce']));
-    $ls = new WebblerListing($GLOBALS['I18N']->get('Choose a message'));
-    while ($row = Sql_Fetch_Array($req)) {
-        $element = $GLOBALS['I18N']->get('message').' '.$row['messageid'];
-        $ls->addElement($element, PageUrl2('msgbounces&amp;id='.$row['messageid']));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('subject'), $row['subject']);
-        $ls->addColumn($element, $GLOBALS['I18N']->get('# bounced'), $row['numusers']);
+$isowner_where = '';
+switch ($access) {
+    case 'owner':
+        if ($messageid) {
+            $req = Sql_Query(sprintf('select id from '.$tables['message'].' where owner = %d and id = %d',
+                $_SESSION['logindetails']['id'], $messageid));
+            if (!Sql_Affected_Rows()) {
+                echo s('You do not have access to this page');
+
+                return;
+            }
+        }
+
+        break;
+    case 'all':
+    case 'view':
+        break;
+    case 'none':
+    default:
+        if ($messageid) {
+            echo s('You do not have access to this page');
+
+
+            return;
+        }
+        break;
+}
+if (!$messageid) {
+    //# for testing the loader allow a delay flag
+    if (isset($_GET['delay'])) {
+        $_SESSION['LoadDelay'] = sprintf('%d', $_GET['delay']);
+    } else {
+        unset($_SESSION['LoadDelay']);
     }
-    echo $ls->display();
+    echo '<div id="contentdiv"></div>';
+    echo asyncLoadContent('./?page=pageaction&action=msgbounces&ajaxed=true&id='.$messageid.addCsrfGetToken());
 
     return;
 }
 
-$req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > now() group by umb.user order by message.entered desc',
-    $GLOBALS['tables']['message'], $GLOBALS['tables']['user_message_bounce'], $msgid));
+$userTable = $GLOBALS['tables']['user'];
+
+$messageBounceTable = $GLOBALS['tables']['user_message_bounce'];
+$query= "select  u.id as userid, u.email, mb.time from $messageBounceTable mb join $userTable u
+on u.id = mb.user where mb.message = '$messageid' ";
+
+$req = Sql_Query($query);
+
 $total = Sql_Affected_Rows();
 $limit = '';
 $numpp = 150;
 
-$s = empty($_GET['s']) ? 0 : sprintf('%d', $_GET['s']);
-if ($total > 500 && $_GET['type'] != 'dl') {
-    //  print Paging2('listbounces&amp;id='.$listid,$total,$numpp,'Page');
-    $listing = sprintf($GLOBALS['I18N']->get('Listing %s to %s'), $s, $s + $numpp);
-    $limit = "limit $s,".$numpp;
-    echo $total.' '.$GLOBALS['I18N']->get(' Total').'</p>';
-    printf('<table class="bouncesListing" border="1"><tr><td colspan=4 align=center>%s</td></tr><tr><td>%s</td><td>%s</td><td>
-          %s</td><td>%s</td></tr></table><hr/>',
-        $listing,
-        PageLink2('msgbounces&amp;id='.$msgid, '&lt;&lt;', 's=0'),
-        PageLink2('msgbounces&amp;id='.$msgid, '&lt;', sprintf('s=%d', max(0, $s - $numpp))),
-        PageLink2('msgbounces&amp;id='.$msgid, '&gt;', sprintf('s=%d', min($total, $s + $numpp))),
-        PageLink2('msgbounces&amp;id='.$msgid, '&gt;&gt;', sprintf('s=%d', $total - $numpp)));
-    $req = Sql_Query(sprintf('select message.id as messageid,message.subject,umb.user as userid,count(bounce) as numbounces from %s message, %s umb where message.id = umb.message and message.id = %d and date_add(message.entered,interval 3 month) > now() group by umb.user order by message.entered desc %s',
-        $GLOBALS['tables']['message'], $GLOBALS['tables']['user_message_bounce'], $msgid, $limit));
+$chooseAnotherCampaign = new buttonGroup (
+    new Button(PageUrl2('msgbounces'), s('Select another campaign')
+    )
+);
+$listOfCampaigns = Sql_Query(sprintf('select id, subject from %s campaign order by subject ', $tables['message']));
+while ($campaign = Sql_Fetch_Assoc($listOfCampaigns)) {
+    $chooseAnotherCampaign->addButton(new Button
+        (PageUrl2('msgbounces') . '&amp;id=' . $campaign['id'], htmlentities($campaign['subject']))
+    );
+
+}
+echo $chooseAnotherCampaign->show();
+
+if ($total) {
+    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-right btn-lg pull-bottom');
 }
 
-echo '<p class="button">'.PageLink2('msgbounces', 'Select another message');
-echo '&nbsp;'.PageLink2('msgbounces&type=dl&&amp;id='.$msgid, 'Download emails');
-echo '</p>';
-if ($_GET['type'] == 'dl') {
+echo '<p>'.number_format($total).s(' bounces to campaign %s', campaignTitle($messageid)).'</p>';
+$start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
+if ($total > $numpp && !$download ) {
+    $limit = "limit $start,".$numpp;
+    echo simplePaging('msgbounces&amp;id='.$messageid, $start, $total, $numpp);
+
+    $query .= $limit;
+    $req = Sql_Query($query);
+
+}
+
+
+$messagedata = loadMessageData($messageid);
+if ($download) {
     ob_end_clean();
-    header('Content-type: text/plain');
-    $filename = 'Bounces on message '.$msgid;
-    header("Content-disposition:  attachment; filename=\"$filename\"");
+    header('Content-type: text/csv');
+    $filename = 'Bounces on '.campaignTitle($messageid).'.csv';
+    header("Content-disposition:  attachment; filename={$filename}");
+    ob_start();
 }
-
-$currentmsg = 0;
-$ls = new WebblerListing('');
+$bouncels = new WebblerListing(s('Bounces on').' '.shortenTextDisplay($messagedata['subject'], 30));
+$bouncels->noShader();
+$bouncels->setElementHeading('Subscriber ID');
 while ($row = Sql_Fetch_Array($req)) {
-    if ($currentmsg != $row['messageid']) {
-        if ($_GET['type'] != 'dl') {
-            echo $ls->display();
-        }
-        $currentmsg = $row['messageid'];
-        flush();
-        $ls = new WebblerListing($row['subject']);
-    }
-    $userdata = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d',
-        $GLOBALS['tables']['user'], $row['userid']));
-    if ($_GET['type'] == 'dl') {
-        echo $userdata['email']."\n";
-    }
 
-    $ls->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
-    $ls->addColumn($row['userid'], $GLOBALS['I18N']->get('email'), $userdata['email']);
-    $ls->addColumn($row['userid'], $GLOBALS['I18N']->get('# bounces'), $row['numbounces']);
+    $bouncels->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
+    $bouncels->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $row['email']));
+    $bouncels->addColumn($row['userid'], s('Time'), formatDateTime($row['time']));
+
+
+
 }
-if ($_GET['type'] != 'dl') {
-    echo $ls->display();
-} else {
+if ($download) {
+    ob_end_clean();
+    echo $bouncels->tabDelimited();
     exit;
+} else {
+     echo $bouncels->display();
 }
+
