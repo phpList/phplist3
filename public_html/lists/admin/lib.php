@@ -1385,6 +1385,12 @@ function parseQueryString($str)
 
 function cleanUrl($url, $disallowed_params = array('PHPSESSID'))
 {
+    // process url only if it contains a disallowed parameter
+    $pattern = sprintf('/(%s)=/', implode('|', $disallowed_params));
+
+    if (!preg_match($pattern, $url)) {
+        return htmlspecialchars_decode($url);
+    }
     $parsed = @parse_url($url);
     $params = array();
     if (empty($parsed['query'])) {
