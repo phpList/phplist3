@@ -737,7 +737,8 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     $result = Sql_query("SELECT * FROM {$GLOBALS['tables']['list']} $subselect order by listorder, name");
     while ($row = Sql_fetch_array($result)) {
         if ($row['active'] || in_array($row['id'], $subscribed)) {
-            $html .= '<li class="list"><input type="checkbox" name="list['.$row['id'].']" value="signup" ';
+			//  id required for label 
+            $html .= '<li class="list"><input type="checkbox" name="list[' . $row['id'] . ']" id="list'.$row['id'].'" value="signup" ';
             if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
                 $html .= 'checked="checked"';
             }
@@ -748,8 +749,8 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $html .= 'checked="checked"';
                 }
             }
-            $html .= ' /><b>'.stripslashes($row['name']).'</b><div class="listdescription">';
-            $desc = nl2br(stripslashes($row['description']));
+		    $html .= " /><b><label for=\"list$row[id]\">".stripslashes($row["name"]).'</label></b><div class="listdescription">';
+            $desc = nl2br(stripslashes($row["description"]));
             //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
             $html .= $desc.'</div></li>';
             ++$some;
@@ -1184,10 +1185,10 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
         }
 
         $html .= sprintf('
-      <label for="password">%s</label><input type="password" name="password" value="" class="input password required" />',
+      <label for="password">%s</label><input type="password" id="password" name="password" value="" class="input password required" />',
             $GLOBALS['strPassword']);
         $html .= sprintf('
-      <label for="password_check">%s</label><input type="password" name="password_check" value="" class="input password required" />',
+      <label for="password_check">%s</label><input type="password" name="password_check" id="password_check" value="" class="input password required" />',
             $GLOBALS['strPassword2']);
     }
     $html .= '</div>'; //# class=required
@@ -1211,7 +1212,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" id="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
                 empty($htmlemail) ? 'checked="checked"' : '', $GLOBALS['strPreferTextEmail']);
             break;
         case 'radiotext':
@@ -1236,7 +1237,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" value="1" %s />
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" id="htmlemail" value="1" %s />
         <label for="htmlemail">%s</label></div></fieldset>', !empty($htmlemail) ? 'checked="checked"' : '',
                 $GLOBALS['strPreferHTMLEmail']);
             break;
