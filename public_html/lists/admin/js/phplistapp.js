@@ -331,6 +331,25 @@ $(document).ready(function () {
                 break;
         }
     });
+    $(document).ready(function () {
+        $('#adminpassword, #confirmpassword').on('keyup', function () {
+            if ($('#adminpassword').val().length < 8){
+                $('#shortpassword').html('Password must be at least 8 characters in length').css('color', 'red');
+                $("#savechanges").attr('disabled', 'disabled');
+            }else if ($('#adminpassword').val().length >= 8){
+                $('#shortpassword').html('OK ').css('color', 'green');
+                if ($('#adminpassword').val() === $('#confirmpassword').val()) {
+                    $('#message').html('Matching').css('color', 'green');
+                    $("#savechanges").removeAttr('disabled');
+                } else {
+                    $('#message').html('Not Matching').css('color', 'red');
+                    $("#savechanges").attr('disabled', 'disabled');
+                }
+
+
+            }
+        });
+    });
 
     $("#initialadminpassword").keyup(function () {
         if (this.value.length >= 8) {
@@ -339,6 +358,7 @@ $(document).ready(function () {
             $("#initialisecontinue").attr('disabled', 'disabled');
         }
     });
+
     $("#initialiseform").submit(function () {
         $("#dialog").dialog({
             minHeight: 400,
