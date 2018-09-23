@@ -188,8 +188,11 @@ foreach ($struct as $key => $val) {
             if ($b == 'Password') {
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
                 if ($adminAction===1){
-                    echo '<tr><td>'.s('Create password').'</td>';
-                    echo '<td><input type="password" name="adminpassword" value="" /> </td></tr>';
+                    echo '<tr><td><label for="adminpassword">'.s('Create password').'</td></label>';
+                    echo '<td><input type="password" name="adminpassword" id= "adminpassword" value="" /><span id= "shortpassword"></span></td></tr> ';
+                    echo '<tr><td><label for="confirmpassword">'.s('Confirm password').'</td>';
+                    echo '<td><input type="password" name="confirmpassword" id= "confirmpassword" value="" /><span id= "message"></span></label></td></tr>';
+
 
                 }
                 if ($changeAdminPass) {
@@ -284,9 +287,11 @@ echo '<div id="privileges">
 <label for="settings"><input type="checkbox" name="settings" ' .$checked['settings'].'/>'.s('Change Settings').'</label>
 </div>';
 echo '</td></tr>';
-
-echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.s('Save Changes').'" /></td></tr></table>';
-
+if ($adminAction===1) {
+    echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges" disabled="disabled" value="' . s('Save Changes') . '" /></td></tr></table>';
+}else {
+    echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges"  value="' . s('Save Changes') . '" /></td></tr></table>';
+}
 echo '</div>'; // content
 echo '</div>'; // panel
 
