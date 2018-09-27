@@ -189,9 +189,9 @@ foreach ($struct as $key => $val) {
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
                 if ($adminAction===1){
                     echo '<tr><td><label for="adminpassword">'.s('Create password').'</td></label>';
-                    echo '<td><input type="password" name="adminpassword" id= "adminpassword" value="" /><span id= "shortpassword"></span></td></tr> ';
+                    echo '<td><input type="password" name="adminpassword" id= "adminpassword" value="" /><span id= "shortpassword" >'.s('Password must be at least 8 characters in length').'</span></td></tr> ';
                     echo '<tr><td><label for="confirmpassword">'.s('Confirm password').'</td>';
-                    echo '<td><input type="password" name="confirmpassword" id= "confirmpassword" value="" /><span id= "message"></span></label></td></tr>';
+                    echo '<td><input type="password" name="confirmpassword" id= "confirmpassword" value="" /><span id= "notmatching">'.s('Not Matching').'</span></label></td></tr>';
 
 
                 }

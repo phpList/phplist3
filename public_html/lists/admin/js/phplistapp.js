@@ -332,17 +332,20 @@ $(document).ready(function () {
         }
     });
     $(document).ready(function () {
+        $('#notmatching, #shortpassword').hide();
         $('#adminpassword, #confirmpassword').on('keyup', function () {
             if ($('#adminpassword').val().length < 8){
-                $('#shortpassword').html('Password must be at least 8 characters in length').css('color', 'red');
+                $('#shortpassword').show();
+                $('#shortpassword').css('color', 'red');
                 $("#savechanges").attr('disabled', 'disabled');
             }else if ($('#adminpassword').val().length >= 8){
-                $('#shortpassword').html('OK ').css('color', 'green');
+                $('#shortpassword').hide();
                 if ($('#adminpassword').val() === $('#confirmpassword').val()) {
-                    $('#message').html('Matching').css('color', 'green');
+                    $('#notmatching').hide();
                     $("#savechanges").removeAttr('disabled');
                 } else {
-                    $('#message').html('Not Matching').css('color', 'red');
+                    $('#notmatching').show();
+                    $('#notmatching').css('color', 'red');
                     $("#savechanges").attr('disabled', 'disabled');
                 }
 
