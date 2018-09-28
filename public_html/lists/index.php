@@ -665,7 +665,7 @@ function checkGroup(name,value)
     if (USE_SPAM_BLOCK) {
         $html .= '<div style="display:none"><input type="text" name="VerificationCodeX" value="" size="20"></div>';
     }
-    $html .= '<input type=submit name="subscribe" value="'.$GLOBALS['pagedata']['button'].'" onClick="return checkform();">';
+    $html .= '<input type=submit name="subscribe" value="'.$GLOBALS['strSubmit'].'" onClick="return checkform();">';
     if (SHOW_UNSUBSCRIBELINK) {
         $html .= ' &nbsp;&nbsp; <a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a>';
     }
