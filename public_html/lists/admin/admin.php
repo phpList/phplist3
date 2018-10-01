@@ -101,9 +101,7 @@ if (!empty($_POST['change'])) {
         if (!empty($_POST['updatepassword'])) {
             //Send token email.
             echo sendAdminPasswordToken($id).'<br/>';
-            //# check for password changes
-        } elseif (isset($_POST['password'])) {
-            //  Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
+
         }
         if (isset($_POST['attribute']) && is_array($_POST['attribute'])) {
             foreach ($_POST['attribute'] as $key => $val) {
@@ -145,7 +143,7 @@ if (!empty($_GET['delete'])) {
 echo '<div class="panel">';
 
 if ($id) {
-    $adminAction =0;
+    $addAdmin = false;
     echo '<h3>'.s('Edit Administrator').': ';
     $result = Sql_query("SELECT * FROM {$tables['admin']} where id = $id");
     $data = sql_fetch_assoc($result);
@@ -155,7 +153,7 @@ if ($id) {
             $data['loginname']);
     }
 } else {
-    $adminAction=1;
+    $addAdmin = true;
     $data = array();
     echo '<h3>'.s('Add a new Administrator').'</h3>';
 }
@@ -164,7 +162,7 @@ echo '<div class="content">';
 //var_dump($data);
 
 echo formStart(' class="adminAdd"');
-printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">', $id);
+printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails"  border="1">', $id);
 
 if (isset($data['privileges'])) {
     $privileges = unserialize($data['privileges']);
@@ -187,14 +185,39 @@ foreach ($struct as $key => $val) {
             //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
             if ($b == 'Password') {
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
-                if ($adminAction===1){
-                    echo '<tr><td><label for="adminpassword">'.s('Create password').'</td></label>';
-                    echo '<td><input type="password" name="adminpassword" id= "adminpassword" value="" /><span id= "shortpassword" >'.s('Password must be at least 8 characters in length').'</span></label></td></tr> ';
-                    echo '<tr><td><label for="confirmpassword">'.s('Confirm password').'</td>';
-                    echo '<td><input type="password" name="confirmpassword" id= "confirmpassword" value="" /><span id= "notmatching">'.s('Not Matching').'</span></label></td></tr>';
+                if ($addAdmin===true){
+
+                    echo ' <tr>
+      <td>'.s('Choose how to set password').'</td>
+      <td>
+          <input type="radio" id="passwordoption1" name="passwordoption" value="1"  checked="checked">'.s('Send email').'
+          <input type="radio" id= "passwordoption0" name="passwordoption" value="0"   >'.s('Create password').'
+      </td>
+  </tr>
+  
+  <tr id="passrow">
+        <td>
+            <label for="adminpassword">'.s('Create password').'</label>
+        </td>
+        <td>
+            <input type="password" name="adminpassword" id="adminpassword" value="" >
+            <span id= "shortpassword">'.s('Password must be at least 8 characters').'</span>
+        </td>
+    </tr>
+    
+    <tr id="confirmrow">
+        <td>
+            <label for="confirmpassword">'.s('Confirm password').'</label>
+        </td>
+        <td>
+            <input type="password" name="confirmpassword" id="confirmpassword" value="">
+            <span id= "notmatching">'.s('Not matching').'</span>
+        </td>
+    </tr>';
 
 
                 }
+
                 if ($changeAdminPass) {
                     $checkNo = '';
                     $checkYes = 'checked="checked"';
@@ -202,7 +225,7 @@ foreach ($struct as $key => $val) {
                     $checkYes = '';
                     $checkNo = 'checked="checked"';
                 }
-                if ($adminAction!==1) {
+                if ($addAdmin===false) {
                     printf('<tr><td>%s (%s)</td><td>%s<input type="radio" name="updatepassword" value="0" %s>%s</input>
                                <input type="radio" name="updatepassword" value="1" %s>%s</input></td></tr>
 ',
@@ -212,7 +235,7 @@ foreach ($struct as $key => $val) {
                 }
             } else {
                 if ($b != 'Password') {
-                    if ($adminAction !==1) {
+                    if ($addAdmin !==true) {
                         printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $data[$key]);
                     }
                 } else {
@@ -287,11 +310,11 @@ echo '<div id="privileges">
 <label for="settings"><input type="checkbox" name="settings" ' .$checked['settings'].'/>'.s('Change Settings').'</label>
 </div>';
 echo '</td></tr>';
-if ($adminAction===1) {
-    echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges" disabled="disabled" value="' . s('Save Changes') . '" /></td></tr></table>';
-}else {
-    echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges"  value="' . s('Save Changes') . '" /></td></tr></table>';
+if (!empty($_POST['passwordoption'])) {
+    echo sendAdminPasswordToken($id).'<br/>';
 }
+echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges"  value="' . s('Save Changes') . '" /></td></tr></table>';
+
 echo '</div>'; // content
 echo '</div>'; // panel
 

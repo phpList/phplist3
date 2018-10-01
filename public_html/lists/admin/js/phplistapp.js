@@ -296,6 +296,8 @@ $(document).ready(function () {
         }
     });
 
+
+
     $("a.savechanges").click(function () {
         if (changed) {
             document.sendmessageform.followupto.value = this.href;
@@ -331,7 +333,26 @@ $(document).ready(function () {
                 break;
         }
     });
+
+    $("#passrow").hide();
+    $("#confirmrow").hide();
+
+    $('input[type=radio][name=passwordoption]').change(function() {
+        if($("#passwordoption1").is(':checked'))
+        {
+            $("#passrow").hide();
+            $("#confirmrow").hide();
+        } else if($("#passwordoption0").is(':checked'))
+        {
+            $("#passrow").show();
+            $("#confirmrow").show();
+            $('#shortpassword').prop('required',true);
+            $('#confirmpassword').prop('required',true);
+        }
+    });
     $(document).ready(function () {
+
+
         $('#notmatching, #shortpassword').hide();
         $('#adminpassword, #confirmpassword').on('keyup', function () {
             if ($('#adminpassword').val().length < 8){
