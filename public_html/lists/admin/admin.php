@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 $start = sprintf('%d', !empty($_GET['start']) ? $_GET['start'] : 0);
-echo PageLinkActionButton('admins', $GLOBALS['I18N']->get('List of Administrators'), "start=$start");
+echo PageLinkActionButton('admins', s('List of Administrators'), "start=$start");
 
 require dirname(__FILE__).'/structure.php';
 
@@ -28,14 +28,14 @@ switch ($accesslevel) {
         $noaccess = 1;
 }
 if ($noaccess) {
-    echo Error($GLOBALS['I18N']->get('No Access'));
+    echo Error(s('No Access'));
 
     return;
 }
 
 if (!empty($_POST['change'])) {
     if (!verifyToken()) { //# csrf check, should be added in more places
-        echo Error($GLOBALS['I18N']->get('No Access'));
+        echo Error(s('No Access'));
 
         return;
     }
@@ -50,9 +50,15 @@ if (!empty($_POST['change'])) {
                 $totalres = Sql_fetch_Row($result);
                 $total = $totalres[0];
                 if (!$total) {
+
+                    if (isset($_REQUEST['adminpassword'])) {
+                        $adminpass = $_REQUEST['adminpassword'];
+                    } else {
+                        $adminpass = random_bytes(32);
+                    }
                     Sql_Query(sprintf('insert into %s (loginname,namelc,password,email,created) values("%s","%s","%s","%s",now())',
                         $tables['admin'], strtolower(normalize($_POST['loginname'])),
-                        strtolower(normalize($_POST['loginname'])), encryptPass(random_bytes(32)),
+                        strtolower(normalize($_POST['loginname'])), encryptPass($adminpass),
                         sql_escape($_POST['email'])));
                     $id = Sql_Insert_Id($tables['admin'], 'id');
                 } else {
@@ -95,9 +101,7 @@ if (!empty($_POST['change'])) {
         if (!empty($_POST['updatepassword'])) {
             //Send token email.
             echo sendAdminPasswordToken($id).'<br/>';
-            //# check for password changes
-        } elseif (isset($_POST['password'])) {
-            //  Sql_Query("update {$tables["admin"]} set password = \"".sql_escape($_POST['password'])."\" where id = $id");
+
         }
         if (isset($_POST['attribute']) && is_array($_POST['attribute'])) {
             foreach ($_POST['attribute'] as $key => $val) {
@@ -115,23 +119,23 @@ if (!empty($_POST['change'])) {
             $GLOBALS['tables']['admin'], adminName($_SESSION['logindetails']['id']), sql_escape(serialize($privs)),
             $id));
 
-        echo $GLOBALS['I18N']->get('Changes saved');
+        echo s('Changes saved');
         echo '</div>';
     } else {
-        Error($GLOBALS['I18N']->get('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
+        Error(s('Error adding new admin, login name and/or email not inserted, email not valid or admin already exists'));
     }
 }
 
 if (!empty($_GET['delete'])) {
     $delete = sprintf('%d', $_GET['delete']);
     // delete the index in delete
-    echo $GLOBALS['I18N']->get('Deleting')." $delete ..\n";
+    echo s('Deleting')." $delete ..\n";
     if ($delete != $_SESSION['logindetails']['id']) {
         Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $delete));
         Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'], $delete));
-        echo '..'.$GLOBALS['I18N']->get('Done');
+        echo '..'.s('Done');
     } else {
-        echo '..'.$GLOBALS['I18N']->get('Failed, you cannot delete yourself');
+        echo '..'.s('Failed, you cannot delete yourself');
     }
     echo "<br /><hr/><br />\n";
 }
@@ -139,7 +143,8 @@ if (!empty($_GET['delete'])) {
 echo '<div class="panel">';
 
 if ($id) {
-    echo '<h3>'.$GLOBALS['I18N']->get('Edit Administrator').': ';
+    $addAdmin = false;
+    echo '<h3>'.s('Edit Administrator').': ';
     $result = Sql_query("SELECT * FROM {$tables['admin']} where id = $id");
     $data = sql_fetch_assoc($result);
     echo $data['loginname'].'</h3>';
@@ -148,15 +153,16 @@ if ($id) {
             $data['loginname']);
     }
 } else {
+    $addAdmin = true;
     $data = array();
-    echo '<h3>'.$GLOBALS['I18N']->get('Add a new Administrator').'</h3>';
+    echo '<h3>'.s('Add a new Administrator').'</h3>';
 }
 
 echo '<div class="content">';
 //var_dump($data);
 
 echo formStart(' class="adminAdd"');
-printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" border="1">', $id);
+printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails"  border="1">', $id);
 
 if (isset($data['privileges'])) {
     $privileges = unserialize($data['privileges']);
@@ -179,6 +185,39 @@ foreach ($struct as $key => $val) {
             //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
             if ($b == 'Password') {
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
+                if ($addAdmin===true){
+
+                    echo ' <tr>
+      <td>'.s('Choose how to set password').'</td>
+      <td>
+          <input type="radio" id="passwordoption1" name="passwordoption" value="1"  checked="checked">'.s('Send email').'
+          <input type="radio" id= "passwordoption0" name="passwordoption" value="0"   >'.s('Create password').'
+      </td>
+  </tr>
+  
+  <tr id="passrow">
+        <td>
+            <label for="adminpassword">'.s('Create password').'</label>
+        </td>
+        <td>
+            <input type="password" name="adminpassword" id="adminpassword" value="" >
+            <span id= "shortpassword">'.s('Password must be at least 8 characters').'</span>
+        </td>
+    </tr>
+    
+    <tr id="confirmrow">
+        <td>
+            <label for="confirmpassword">'.s('Confirm password').'</label>
+        </td>
+        <td>
+            <input type="password" name="confirmpassword" id="confirmpassword" value="">
+            <span id= "notmatching">'.s('Not matching').'</span>
+        </td>
+    </tr>';
+
+
+                }
+
                 if ($changeAdminPass) {
                     $checkNo = '';
                     $checkYes = 'checked="checked"';
@@ -186,38 +225,41 @@ foreach ($struct as $key => $val) {
                     $checkYes = '';
                     $checkNo = 'checked="checked"';
                 }
-
-                printf('<tr><td>%s (%s)</td><td>%s<input type="radio" name="updatepassword" value="0" %s>%s</input>
+                if ($addAdmin===false) {
+                    printf('<tr><td>%s (%s)</td><td>%s<input type="radio" name="updatepassword" value="0" %s>%s</input>
                                <input type="radio" name="updatepassword" value="1" %s>%s</input></td></tr>
 ',
-                    $GLOBALS['I18N']->get('Password'), $GLOBALS['I18N']->get('hidden'),
-                    $GLOBALS['I18N']->get('Update it?') ,
-                    $checkNo,
-                    $GLOBALS['I18N']->get('No'), $checkYes, $GLOBALS['I18N']->get('Yes'));
+                        s('Password'), s('hidden'),
+                        s('Update it?'),
+                        $checkYes, s('Yes'), $checkNo, s('No'));
+                }
             } else {
                 if ($b != 'Password') {
-                    printf('<tr><td>%s</td><td>%s</td></tr>', $GLOBALS['I18N']->get($b), $data[$key]);
+                    if ($addAdmin !==true) {
+                        printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $data[$key]);
+                    }
                 } else {
                     printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
-                        $GLOBALS['I18N']->get('Password'), $key, stripslashes($data[$key]));
+                        s('Password'), $key, stripslashes($data[$key]));
                 }
             }
         }
     } elseif ($key == 'loginname' && $data[$key] == 'admin') {
-        printf('<tr><td>'.$GLOBALS['I18N']->get('Login Name').'</td><td>admin</td>');
+        printf('<tr><td>'.s('Login Name').'</td><td>admin</td>');
         echo '<td><input type="hidden" name="loginname" value="admin" /></td></tr>';
     } elseif ($key == 'superuser' || $key == 'disabled') {
         if ($accesslevel == 'all') {
             //If key is 'superuser' or 'disable' locate a boolean combo box.
-            printf('<tr><td>%s</td><td>', $GLOBALS['I18N']->get($val[1]));
+            printf('<tr><td>%s</td><td>', s($val[1]));
             printf('<select name="%s" size="1">', $key);
-            echo '<option value="1" '.(!empty($data[$key]) ? ' selected="selected"' : '').'>'.$GLOBALS['I18N']->get('Yes').'</option>';
-            echo '<option value="0" '.(empty($data[$key]) ? ' selected="selected"' : '').'>'.$GLOBALS['I18N']->get('No').'</option></select>';
+            echo '<option value="1" '.(!empty($data[$key]) ? ' selected="selected"' : '').'>'.s('Yes').'</option>';
+            echo '<option value="0" '.(empty($data[$key]) ? ' selected="selected"' : '').'>'.s('No').'</option></select>';
             echo '</td></tr>'."\n";
         }
     } elseif (!empty($val[1]) && !strpos($key, '_')) {
+
         printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
-            $GLOBALS['I18N']->get($val[1]), $key, htmlspecialchars(stripslashes($data[$key])));
+            s($val[1]), $key, htmlspecialchars(stripslashes($data[$key])));
     }
 }
 $res = Sql_Query("select
@@ -268,8 +310,10 @@ echo '<div id="privileges">
 <label for="settings"><input type="checkbox" name="settings" ' .$checked['settings'].'/>'.s('Change Settings').'</label>
 </div>';
 echo '</td></tr>';
-
-echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" value="'.$GLOBALS['I18N']->get('Save Changes').'" /></td></tr></table>';
+if (!empty($_POST['passwordoption'])) {
+    echo sendAdminPasswordToken($id).'<br/>';
+}
+echo '<tr><td colspan="2"><input class="submit" type="submit" name="change" id ="savechanges"  value="' . s('Save Changes') . '" /></td></tr></table>';
 
 echo '</div>'; // content
 echo '</div>'; // panel

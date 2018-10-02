@@ -296,6 +296,8 @@ $(document).ready(function () {
         }
     });
 
+
+
     $("a.savechanges").click(function () {
         if (changed) {
             document.sendmessageform.followupto.value = this.href;
@@ -332,6 +334,47 @@ $(document).ready(function () {
         }
     });
 
+    $("#passrow").hide();
+    $("#confirmrow").hide();
+
+    $('input[type=radio][name=passwordoption]').change(function() {
+        if($("#passwordoption1").is(':checked'))
+        {
+            $("#passrow").hide();
+            $("#confirmrow").hide();
+        } else if($("#passwordoption0").is(':checked'))
+        {
+            $("#passrow").show();
+            $("#confirmrow").show();
+            $('#shortpassword').prop('required',true);
+            $('#confirmpassword').prop('required',true);
+        }
+    });
+    $(document).ready(function () {
+
+
+        $('#notmatching, #shortpassword').hide();
+        $('#adminpassword, #confirmpassword').on('keyup', function () {
+            if ($('#adminpassword').val().length < 8){
+                $('#shortpassword').show();
+                $('#shortpassword').css('color', 'red');
+                $("#savechanges").attr('disabled', 'disabled');
+            }else if ($('#adminpassword').val().length >= 8){
+                $('#shortpassword').hide();
+                if ($('#adminpassword').val() === $('#confirmpassword').val()) {
+                    $('#notmatching').hide();
+                    $("#savechanges").removeAttr('disabled');
+                } else {
+                    $('#notmatching').show();
+                    $('#notmatching').css('color', 'red');
+                    $("#savechanges").attr('disabled', 'disabled');
+                }
+
+
+            }
+        });
+    });
+
     $("#initialadminpassword").keyup(function () {
         if (this.value.length >= 8) {
             $("#initialisecontinue").removeAttr('disabled');
@@ -339,6 +382,7 @@ $(document).ready(function () {
             $("#initialisecontinue").attr('disabled', 'disabled');
         }
     });
+
     $("#initialiseform").submit(function () {
         $("#dialog").dialog({
             minHeight: 400,
