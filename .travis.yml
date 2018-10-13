@@ -69,7 +69,7 @@ install:
 before_script:
   - sudo service postfix stop
   - smtp-sink -d "%d.%H.%M.%S" localhost:2500 1000 &
-  - cp -fv .travis/config.php public_html/lists/config/config.php
+  - cp -fv ./.travis/config.php public_html/lists/config/config.php
 
 script:
   # check syntax
