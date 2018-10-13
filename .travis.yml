@@ -44,7 +44,7 @@ install:
   - composer install --prefer-dist --no-interaction
 
   # start php server for non php >=5.4 version
-  - cp -fv ./.travis/config.php public_html/lists/config/config.php
+  - cp -fv ./tests/config.php.dist public_html/lists/config/config.php
   - php -S localhost:8000 -t public_html > /dev/null 2>&1 &
 
   # start selenium and php server
