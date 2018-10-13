@@ -44,6 +44,7 @@ install:
   - composer install --prefer-dist --no-interaction
 
   # start php server for non php >=5.4 version
+  - cp -fv ./.travis/config.php public_html/lists/config/config.php
   - php -S localhost:8000 -t public_html > /dev/null 2>&1 &
 
   # start selenium and php server
@@ -69,7 +70,6 @@ install:
 before_script:
   - sudo service postfix stop
   - smtp-sink -d "%d.%H.%M.%S" localhost:2500 1000 &
-  - cp -fv ./.travis/config.php public_html/lists/config/config.php
 
 script:
   # check syntax
