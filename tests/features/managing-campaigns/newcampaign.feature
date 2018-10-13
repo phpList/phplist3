@@ -8,7 +8,6 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
-        # FIXME: won't work on travis
         Given I follow "start a new campaign"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
@@ -34,9 +33,9 @@ Feature: Create new campaign
   # Switch to using a scenario outline that tests subaccounts also
     Scenario: Select a list to send the campaign to
         Given I have logged in as an administrator
-        When I follow "Send a campaign"
-        # FIXME: won't work on travis
-        When I follow "start a new campaign"
+        And I follow "Campaigns"
+        And I follow "Send a campaign"
+        And I follow "start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
@@ -47,7 +46,6 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
-        # FIXME: won't work on travis
         Given I follow "start a new campaign"
         Then I should see "SEND A CAMPAIGN"
         When I fill in "subject" with "This is a test subject"
