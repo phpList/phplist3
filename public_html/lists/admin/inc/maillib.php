@@ -39,6 +39,7 @@ function HTML2Text($text)
         $linkurl = $links[2][$matchindex];
         // check if the text linked is a repetition of the URL
         if (trim($linktext) == trim($linkurl) ||
+            'https://'.trim($linktext) == trim($linkurl) ||
             'http://'.trim($linktext) == trim($linkurl)
         ) {
             $linkreplace = $linkurl;
