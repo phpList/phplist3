@@ -12,6 +12,7 @@ if (defined('PHPMAILER_PATH') and PHPMAILER_PATH != '') {
 
 class PHPlistMailer extends PHPMailer
 {
+    public $XMailer = ' ';  // disables `X-Mailer' header
     public $WordWrap = 75;
     public $encoding = 'base64';
     public $messageid = 0;
