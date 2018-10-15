@@ -45,7 +45,7 @@ function HTML2Text($text)
             $linkreplace = $linkurl;
         } else {
             //# if link is an anchor only, take it out
-            if (strpos($linkurl, '#') !== false) {
+            if (strpos($linkurl, '#') === 0) {
                 $linkreplace = $linktext;
             } else {
                 $linkreplace = $linktext.' <'.$linkurl.'>';
