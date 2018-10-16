@@ -171,7 +171,6 @@ class PHPlistMailer extends PHPMailer
 
         if ($GLOBALS['message_envelope']) {
             $this->Sender = $GLOBALS['message_envelope'];
-            $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
 
 //# one to work on at a later stage
 //        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
