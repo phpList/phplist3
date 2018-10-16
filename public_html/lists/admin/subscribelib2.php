@@ -733,33 +733,64 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     }
 
     $some = 0;
-    $html = '<ul class="list">';
-    $result = Sql_query("SELECT * FROM {$GLOBALS['tables']['list']} $subselect order by listorder, name");
+
+
+    $listData = array();
+
+
+
+    $result = Sql_query("SELECT distinct category FROM {$GLOBALS['tables']['list']}  order by category ");
     while ($row = Sql_fetch_array($result)) {
-        if ($row['active'] || in_array($row['id'], $subscribed)) {
-            $html .= '<li class="list"><input type="checkbox" name="list['.$row['id'].']" value="signup" ';
-            if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
-                $html .= 'checked="checked"';
-            }
-            if ($userid) {
-                $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
-                    $GLOBALS['tables']['listuser'], $userid, $row['id']));
-                if (Sql_Affected_Rows()) {
+        $listData[] = $row;
+    }
+    var_dump($listData);
+    $html ='<div class="accordion row">';
+    foreach ($listData as $row) {
+
+
+    }
+
+
+        $result = Sql_query(sprintf('select * from %s order by category',
+            $GLOBALS['tables']['list']));
+        while ($row = Sql_fetch_array($result)) {
+
+            if ($row['category'] !== '') {
+                $displayedCat = $row['category'];
+            } else  $displayedCat = s('Not categorized');
+
+            if ($row['active'] || in_array($row['id'], $subscribed)) {
+                $html .= '<h3><a name="general" >' . $displayedCat . '</a></h3>';
+                $html .= '<ul class="list">';
+                $html .= '<li ><input type="checkbox" name="list[' . $row['id'] . ']" value="signup" ';
+                if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
                     $html .= 'checked="checked"';
                 }
-            }
-            $html .= ' /><b>'.stripslashes($row['name']).'</b><div class="listdescription">';
-            $desc = nl2br(stripslashes($row['description']));
-            //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
-            $html .= $desc.'</div></li>';
-            ++$some;
-            if ($some == 1) {
-                $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
-                $singlelisthtml .= '<input type="hidden" name="listname['.$row['id'].']" value="'.htmlspecialchars(stripslashes($row['name'])).'"/>';
-            }
+                if ($userid) {
+                    $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
+                        $GLOBALS['tables']['listuser'], $userid, $row['id']));
+                    if (Sql_Affected_Rows()) {
+                        $html .= 'checked="checked"';
+                    }
+                }
+
+
+                $html .= ' /><b>' . stripslashes($row['name']) . '</b><div class="listdescription">';
+                $desc = nl2br(stripslashes($row['description']));
+                //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
+                $html .= $desc . '</div></li>';
+                ++$some;
+                if ($some == 1) {
+                    $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
+                    $singlelisthtml .= '<input type="hidden" name="listname[' . $row['id'] . ']" value="' . htmlspecialchars(stripslashes($row['name'])) . '"/>';
+                }
+            } // end of row active
         }
-    }
-    $html .= '</ul>';
+
+        $html .= '</ul>';
+
+    $html .= '</div>';
+
     $hidesinglelist = getConfig('hide_single_list');
     if (!$some) {
         global $strNotAvailable;
