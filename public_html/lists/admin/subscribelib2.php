@@ -745,14 +745,10 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     }
     var_dump($listData);
     $html ='<div class="accordion row">';
-    foreach ($listData as $row) {
 
 
-    }
-
-
-        $result = Sql_query(sprintf('select * from %s order by category',
-            $GLOBALS['tables']['list']));
+        $result = Sql_query(sprintf('select * from %s %s order by category',
+            $GLOBALS['tables']['list'], $subselect));
         while ($row = Sql_fetch_array($result)) {
 
             if ($row['category'] !== '') {
