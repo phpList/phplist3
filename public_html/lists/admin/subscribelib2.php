@@ -757,9 +757,11 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
             if ($row['active'] || in_array($row['id'], $subscribed)) {
                 $html .= '<h3><a name="general" >' . $displayedCat . '</a></h3>';
+                $html .= '<div>';
+
                 $html .= '<ul class="list">';
                 $html .= '<li ><input type="checkbox" name="list[' . $row['id'] . ']" value="signup" ';
-                if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
+                if (isset($list[$row['id']]) && $list[$row['id']] === 'signup') {
                     $html .= 'checked="checked"';
                 }
                 if ($userid) {
@@ -780,12 +782,13 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
                     $singlelisthtml .= '<input type="hidden" name="listname[' . $row['id'] . ']" value="' . htmlspecialchars(stripslashes($row['name'])) . '"/>';
                 }
-            } // end of row active
-        }
 
-        $html .= '</ul>';
+            } $html .= '</ul>';
+            $html .= '</div>';
+            // end of row active
+        }$html .= '</div>';
 
-    $html .= '</div>';
+
 
     $hidesinglelist = getConfig('hide_single_list');
     if (!$some) {
