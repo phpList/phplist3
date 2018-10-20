@@ -168,7 +168,7 @@ if (checkAccess('reconcileusers')) {
     $element = $GLOBALS['I18N']->get('reconcileusers');
     $ls->addElement($element, PageURL2('reconcileusers'));
     $ls->addColumn($element, '&nbsp;',
-        PageLinkClass('reconcile', $GLOBALS['I18N']->get('Reconcile the User Database'), '', 'hometext'));
+        PageLinkClass('reconcileusers', $GLOBALS['I18N']->get('Reconcile the User Database'), '', 'hometext'));
     $ls->setClass($element, 'reconcileusers');
 }
 if ($some) {
