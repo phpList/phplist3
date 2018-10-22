@@ -21,7 +21,7 @@ $bounce_mailbox_password = 'password';
 
 In the admin pages, you can now load the bounces in the phpList database. Some bounces are not
 always really bounces, but they can be "Message delayed" or "Out of Office" messages. Therefore
-PHPlist will not immediately unsubscribe a user when a message has bounces, but it will determine
+phpList will not immediately unsubscribe a user when a message has bounces, but it will determine
 a threshold of messages which will identify a bounce.
 
 You set the threshold with the variable
