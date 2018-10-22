@@ -701,6 +701,11 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     //  $msg = 'Unknown Error';
 }
 
+/**
+ * @param int $userid
+ * @param string $lists_to_show
+ * @return string
+ */
 function ListAvailableLists($userid = 0, $lists_to_show = '')
 {
     global $tables;
@@ -742,22 +747,28 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     $result = Sql_query("SELECT distinct category FROM {$GLOBALS['tables']['list']}  order by category ");
     while ($row = Sql_fetch_array($result)) {
         $listData[] = $row;
+
     }
-    var_dump($listData);
-    $html ='<div class="accordion row">';
+
+    $html = '<div class="accordion" >';
+    foreach ($listData as $key=>$value ) {
+
+        if ($value['category'] !== '') {
+            $displayedCat = $value['category'];
+        } else  $displayedCat = s('Not categorized');
 
 
-        $result = Sql_query(sprintf('select * from %s %s order by category',
-            $GLOBALS['tables']['list'], $subselect));
+        /**
+         * @todo Don't display categories if there are no available lists
+         */
+        $html .= '<h3 ><a name="general" >' . $displayedCat . '</a></h3>';
+
+        $html .= '<div>';
+        $result = Sql_query(sprintf('select * from %s %s and category = "%s" order by name',
+            $GLOBALS['tables']['list'], $subselect, $value['category']));
         while ($row = Sql_fetch_array($result)) {
-
-            if ($row['category'] !== '') {
-                $displayedCat = $row['category'];
-            } else  $displayedCat = s('Not categorized');
-
             if ($row['active'] || in_array($row['id'], $subscribed)) {
-                $html .= '<h3><a name="general" >' . $displayedCat . '</a></h3>';
-                $html .= '<div>';
+
 
                 $html .= '<ul class="list">';
                 $html .= '<li ><input type="checkbox" name="list[' . $row['id'] . ']" value="signup" ';
@@ -783,10 +794,17 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $singlelisthtml .= '<input type="hidden" name="listname[' . $row['id'] . ']" value="' . htmlspecialchars(stripslashes($row['name'])) . '"/>';
                 }
 
-            } $html .= '</ul>';
-            $html .= '</div>';
-            // end of row active
-        }$html .= '</div>';
+            }
+            $html .= '</ul>';
+        }
+
+        $html .= '</div>';
+    }
+
+    // end of row active
+
+    $html .= '</div>';
+
 
 
 
