@@ -1,12 +1,12 @@
 
-# handling bounces with PHPlist
+# handling bounces with phpList
 
 # requirements:
 	PHP version 4.0.5 and up
   for PHP 4.2.3 and up, it will not work in safe mode
   IMAP support in your PHP (see http://www.php.net/manual/en/ref.imap.php)
 
-How to make sure you can process bounces in PHPlist:
+How to make sure you can process bounces in phpList:
 
 Make sure the $message_envelope is a reference to a valid mailbox that you can access with
 the POP3 protocol (currently only POP3, other methods will follow)
@@ -19,14 +19,14 @@ $bounce_mailbox_host = 'localhost';
 $bounce_mailbox_user = 'login';
 $bounce_mailbox_password = 'password';
 
-In the admin pages, you can now load the bounces in the PHPlist database. Some bounces are not
+In the admin pages, you can now load the bounces in the phpList database. Some bounces are not
 always really bounces, but they can be "Message delayed" or "Out of Office" messages. Therefore
 PHPlist will not immediately unsubscribe a user when a message has bounces, but it will determine
 a threshold of messages which will identify a bounce.
 
 You set the threshold with the variable
 
-$bounce_unsubscribe_treshold = 3;
+$bounce_unsubscribe_threshold = 3;
 
 This variable will be used to returns of normal messages. If "systemmessages" return, a user will
 be unsubscribed immediately. Unsubscribed means that their email will be marked unconfirmed, which
@@ -50,4 +50,4 @@ $bounce_mailbox_purge can be 1 or 0, and 1 means that messages that have been pr
 will be delete from the mailbox. $bounce_mailbox_purge_unprocessed can be 1 or 0 as well, and
 1 means that also unprocessed messages, which are messages that could not be matched with a user in
 the system, will be deleted. This is fairly safe, because you can still look at the messages
-in PHPlist.
+in phpList.
