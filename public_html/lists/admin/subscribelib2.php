@@ -769,7 +769,6 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
              foreach ($listspercategory as $listelement )
              if ($listelement['category']=== $key){
                  if ($listelement['active'] || in_array($listelement['id'], $subscribed)) {
-                     echo $listelement['name'];
                      $html .= '<ul class="list">';
                      $html .= '<li ><input type="checkbox" name="list[' . $listelement['id'] . ']" value="signup" ';
                      if (isset($list[$listelement['id']]) && $list[$listelement['id']] === 'signup') {
