@@ -48,6 +48,7 @@ if (isset($_POST['save'])) {
         $id = Sql_Insert_id();
     }
     Sql_Query(sprintf('delete from %s where id = %d', $tables['subscribepage_data'], $id));
+
     foreach (array(
                  'title',
                  'language_file',
@@ -58,6 +59,7 @@ if (isset($_POST['save'])) {
                  'button',
                  'htmlchoice',
                  'emaildoubleentry',
+                 'showcategories',
                  'ajax_subscribeconfirmation',
              ) as $item) {
         Sql_Query(sprintf('insert into %s (name,id,data) values("%s",%d,"%s")',
@@ -141,6 +143,7 @@ $data['confirmationsubject'] = getConfig('confirmationsubject');
 $data['unsubscribemessage'] = getConfig('unsubscribemessage');
 $data['unsubscribesubject'] = getConfig('unsubscribesubject');
 $data['htmlchoice'] = 'htmlonly';
+$data['showcategories'] = 'no';
 $data['emaildoubleentry'] = 'yes';
 $data['rssdefault'] = 'daily'; //Leftover from the preplugin era
 $data['rssintro'] = s('Please indicate how often you want to receive messages');  //Leftover from the preplugin era
@@ -349,11 +352,20 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 
 $listsHTML = '<h3><a name="lists">'.s('Select the lists to offer').'</a></h3>';
 $listsHTML .= '<div>';
+$listsHTML .= sprintf('<label for="listcategories">%s</label><br/>',
+    s('Display lists'));
+$listsHTML .= sprintf('<input type="radio" name="showcategories" value="yes" %s />%s<br/>',
+    $data['showcategories'] === 'yes' ? 'checked="checked"' : '',
+    s('by categories'));
+$listsHTML .= sprintf('<input type="radio" name="showcategories" value="no" %s />%s<br/>',
+    $data['showcategories'] === 'no' ? 'checked="checked"' : '',
+    s('lists only'));
 $listsHTML .= '<p>'.s('You can only select "public" lists for subscribe pages.');
 $req = Sql_query("SELECT * FROM {$tables['list']} $subselect order by listorder");
 if (!Sql_Affected_Rows()) {
     $listsHTML .= '<br/>'.s('No lists available, please create one first');
 } else {
+
     $listsHTML .= '<br/>'.s('If you do not choose a list here, all public lists will be displayed.');
     $hideSingle = getConfig('hide_single_list');
     if ($hideSingle) {
