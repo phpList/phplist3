@@ -763,7 +763,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
          foreach ($uniqueCat as $key) {
              if ($key !== '') {
                  $displayedCat = $key;
-             } else  $displayedCat = s('Not categorized');
+             } else  $displayedCat = s('Other');
              $html .= '<h3 ><a name="general" >' . $displayedCat . '</a></h3>';
              $html .= '<div>';
              foreach ($listspercategory as $listelement )
