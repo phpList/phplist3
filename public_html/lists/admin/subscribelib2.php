@@ -840,16 +840,6 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
     }
 
-
-
-
-
-
-
-
-
-
-
     $hidesinglelist = getConfig('hide_single_list');
     if (!$some) {
         global $strNotAvailable;
