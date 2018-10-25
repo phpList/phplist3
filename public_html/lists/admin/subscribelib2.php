@@ -744,6 +744,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
     $some = 0;
 
+
     if (isset($GLOBALS['showCat'])&& $GLOBALS['showCat']===true){
         $listspercategory = array();
         $categories = array();
@@ -834,6 +835,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
                     $singlelisthtml .= '<input type="hidden" name="listname['.$row['id'].']" value="'.htmlspecialchars(stripslashes($row['name'])).'"/>';
                 }
+
             }
         }
         $html .= '</ul>';
@@ -1264,10 +1266,10 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
         }
 
         $html .= sprintf('
-      <label for="password">%s</label><input type="password" name="password" value="" class="input password required" />',
+      <label for="password">%s</label><input type="password" id="password" name="password" value="" class="input password required" />',
             $GLOBALS['strPassword']);
         $html .= sprintf('
-      <label for="password_check">%s</label><input type="password" name="password_check" value="" class="input password required" />',
+      <label for="password_check">%s</label><input type="password" name="password_check" id="password_check" value="" class="input password required" />',
             $GLOBALS['strPassword2']);
     }
     $html .= '</div>'; //# class=required
@@ -1291,7 +1293,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" id="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
                 empty($htmlemail) ? 'checked="checked"' : '', $GLOBALS['strPreferTextEmail']);
             break;
         case 'radiotext':
@@ -1316,7 +1318,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" value="1" %s />
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" id="htmlemail" value="1" %s />
         <label for="htmlemail">%s</label></div></fieldset>', !empty($htmlemail) ? 'checked="checked"' : '',
                 $GLOBALS['strPreferHTMLEmail']);
             break;

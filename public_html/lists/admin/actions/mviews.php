@@ -95,7 +95,7 @@ if (!$id) {
         }
         $ls->addColumn($element, s('sent'), number_format($row['total']));
         //   $ls->addColumn($element,s('bounced'),$row['bounced']);
-        $ls->addColumn($element, s('views'), number_format($row['views']),
+        $ls->addColumn($element, s('unique views'), number_format($row['views']),
             $row['views'] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
         $openrate = sprintf('%0.2f', ($row['views'] / $row['total'] * 100));
         $ls->addColumn($element, s('rate'), $openrate.' %');

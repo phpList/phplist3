@@ -9,7 +9,7 @@ echo '<ul style="list-style:none" class="navigation_list">';
 
 echo $spb.PageLink2('bouncerules', s('List Bounce Rules')).$spe;
 echo $spb.PageLink2('bounces', s('View Bounces')).$spe;
-echo $spb.PageLink2('listbounces', s('View Bounces per campaign')).$spe;
+echo $spb.PageLink2('msgbounces', s('View Bounces per campaign')).$spe;
 echo $spb.PageLink2('listbounces', s('View Bounces per list')).$spe;
 echo $spb.PageLink2('checkbouncerules', s('Check Current Bounce Rules')).$spe;
 
