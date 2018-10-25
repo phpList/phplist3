@@ -765,13 +765,14 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         foreach ($uniqueCat as $key) {
             if ($key !== '') {
                 $displayedCat = $key;
-            } else  $displayedCat = s('Other');
+            } else  $displayedCat = s('General');
             $html .= '<h3 ><a name="general" >' . $displayedCat . '</a></h3>';
             $html .= '<div>';
+            $html .= '<ul class="list" id="listcategory">';
             foreach ($listspercategory as $listelement)
                 if ($listelement['category'] === $key) {
                     if ($listelement['active'] || in_array($listelement['id'], $subscribed)) {
-                        $html .= '<ul class="list">';
+
                         $html .= '<li ><input type="checkbox" name="list[' . $listelement['id'] . ']" value="signup" ';
                         if (isset($list[$listelement['id']]) && $list[$listelement['id']] === 'signup') {
                             $html .= 'checked="checked"';
@@ -796,8 +797,8 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                         }
 
                     }
-                    $html .= '</ul>';
-                }
+
+                }$html .= '</ul>';
 
             $html .= '</div>';
         }
