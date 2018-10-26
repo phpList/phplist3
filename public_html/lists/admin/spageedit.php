@@ -353,14 +353,14 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 $listsHTML = '<h3><a name="lists">'.s('Select the lists to offer').'</a></h3>';
 $listsHTML .= '<div>';
 $listsHTML .= sprintf('<label for="listcategories">%s</label><br/>',
-    s('Display lists'));
-$listsHTML .= sprintf('<input type="radio" name="showcategories" value="yes" %s />%s<br/>',
-    $data['showcategories'] === 'yes' ? 'checked="checked"' : '',
-    s('by categories'));
+    s('Display list categories'));
 $listsHTML .= sprintf('<input type="radio" name="showcategories" value="no" %s />%s<br/>',
     $data['showcategories'] === 'no' ? 'checked="checked"' : '',
-    s('lists only'));
-$listsHTML .= '<p>'.s('You can only select "public" lists for subscribe pages.');
+    s('Do not show list categories'));
+$listsHTML .= sprintf('<input type="radio" name="showcategories" value="yes" %s />%s<br/>',
+    $data['showcategories'] === 'yes' ? 'checked="checked"' : '',
+    s('Display lists in labelled categories'));
+$listsHTML .= '<p><label>'.s('Lists').'</label><br/>'.s('You can only select "public" lists for subscribe pages.');
 $req = Sql_query("SELECT * FROM {$tables['list']} $subselect order by listorder");
 if (!Sql_Affected_Rows()) {
     $listsHTML .= '<br/>'.s('No lists available, please create one first');
