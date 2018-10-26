@@ -753,7 +753,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
         while ($row = Sql_fetch_array($catresult)) {
 
-            $listspercategory[] = array('id' => $row ['id'], 'name' => $row ['name'], 'description' => $row ['name'], 'active' => $row ['active'], 'category' => $row ['category']);
+            $listspercategory[] = array('id' => $row ['id'], 'name' => $row ['name'], 'description' => $row ['description'], 'active' => $row ['active'], 'category' => $row ['category']);
 
         }
 
