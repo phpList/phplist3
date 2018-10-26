@@ -733,6 +733,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         $showlists = array_unique(array_merge($showlists, $subscribed));
     }
 
+
     foreach ($showlists as $listid) {
         if (preg_match("/^\d+$/", $listid)) {
             array_push($listset, $listid);
@@ -751,6 +752,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         $catresult = Sql_query(sprintf('select * from %s %s order by category',
             $GLOBALS['tables']['list'], $subselect));
 
+
         while ($row = Sql_fetch_array($catresult)) {
 
             $listspercategory[] = array('id' => $row ['id'], 'name' => $row ['name'], 'description' => $row ['description'], 'active' => $row ['active'], 'category' => $row ['category']);
@@ -758,21 +760,27 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         }
 
         foreach ($listspercategory as $key => $value) {
-            $categories[] = $value['category'];
+
+            if($value['active']) {
+                $categories[] = $value['category'];
+            }
         }
         $uniqueCat = array_unique($categories);
 
         $html = '<div class="accordion" >';
         foreach ($uniqueCat as $key) {
+
             if ($key !== '') {
                 $displayedCat = $key;
             } else  $displayedCat = s('General');
+
             $html .= '<h3 ><a name="general" >' . $displayedCat . '</a></h3>';
             $html .= '<div>';
             $html .= '<ul class="list" id="listcategory">';
+            $count = 0;
             foreach ($listspercategory as $listelement)
                 if ($listelement['category'] === $key) {
-                    if ($listelement['active'] || in_array($listelement['id'], $subscribed)) {
+                    if ($listelement['active'] || in_array($listelement['id'], $subscribed) ) {
 
                         $html .= '<li ><input type="checkbox" name="list[' . $listelement['id'] . ']" value="signup" ';
                         if (isset($list[$listelement['id']]) && $list[$listelement['id']] === 'signup') {
@@ -799,7 +807,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
                     }
 
-                }$html .= '</ul>';
+                } $html .= '</ul>';
 
             $html .= '</div>';
         }
