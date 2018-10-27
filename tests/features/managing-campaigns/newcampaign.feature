@@ -1,4 +1,3 @@
-@wip
 Feature: Create new campaign
 
     In order to create a new campaign
@@ -9,7 +8,6 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
-        # FIXME: won't work on travis
         Given I follow "start a new campaign"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
@@ -35,15 +33,31 @@ Feature: Create new campaign
   # Switch to using a scenario outline that tests subaccounts also
     Scenario: Select a list to send the campaign to
         Given I have logged in as an administrator
-        When I follow "Send a campaign"
-        # FIXME: won't work on travis
-        When I follow "start a new campaign"
+        And I follow "Campaigns"
+        And I follow "Send a campaign"
+        And I follow "start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
         And the "targetlist[all]" checkbox should not be checked
         And the "targetlist[allactive]" checkbox should not be checked
 
+    Scenario: Sending a test email
+        Given I have logged in as an administrator
+        Given I follow "Campaigns"
+        Given I follow "Send a campaign"
+        Given I follow "start a new campaign"
+        Then I should see "SEND A CAMPAIGN"
+        When I fill in "subject" with "This is a test subject"
+        And I fill in "fromfield" with "From me me@mydomain.com"
+        And I fill in "sendmethod" with "inputhere"
+        And I fill in "message" with "This is the Content of the Campaign"
+        And I fill in "footer" with "This is the Footer of the campaign"
+        And I fill in "campaigntitle" with "This is the Title of the Campaign"
+        And I press "Save and continue editing"
+        And I fill in "testtarget" with "admin@phplist.dev"
+        And I press "sendtest"
+        Then I should see "Sent test mail to: admin@phplist.dev"
 
 
 

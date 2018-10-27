@@ -86,6 +86,11 @@ foreach ($pluginFiles as $file) {
                     $plugin_initialised = getConfig(md5('plugin-'.$className.'-initialised'));
 
                     if (!empty($plugin_initialised)) {
+                        if (!pluginCanEnable($className)) {
+                            // an already enabled plugin now does not meet its dependencies, do not enable it
+                            $pluginInstance->enabled = false;
+                            continue;
+                        }                            
                         $GLOBALS['plugins'][$className] = $pluginInstance;
                         $pluginInstance->enabled = true;
                     } elseif (in_array($className, $auto_enable_plugins)) {
@@ -139,13 +144,7 @@ uasort(
     }
 );
 
-foreach ($plugins as $className => $pluginInstance) {
-    if (!pluginCanEnable($className)) {
-        // an already enabled plugin now does not meet its dependencies, do not enable it
-        $pluginInstance->enabled = false;
-        unset($plugins[$className]);
-        continue;
-    }                            
+foreach ($plugins as $pluginInstance) {
     $pluginInstance->activate();
 }
 
