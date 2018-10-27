@@ -31,7 +31,8 @@
     "njoannidi/php-lint-bash": "dev-master",
     "se/selenium-server-standalone": "^2.52",
     "enm1989/chromedriver": "^2.36",
-    "bex/behat-screenshot": "^1.2"
+    "bex/behat-screenshot": "^1.2",
+    "zbateson/mail-mime-parser": "^1.1"
   },
   "prefer-stable": true,
   "config": {

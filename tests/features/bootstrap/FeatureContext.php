@@ -21,7 +21,21 @@ class FeatureContext extends MinkContext
     private $params = array();
     private $data = array();
 
+    /**
+     * @var mysqli
+     */
     private $db;
+
+    /**
+     * Null if user is not logged in
+     * @var string
+     */
+    private $token;
+
+    /**
+     * @var array
+     */
+    private $currentUser;
 
     /**
      * Initializes context.
@@ -157,6 +171,74 @@ class FeatureContext extends MinkContext
 //        doSomethingWith($argument);
 //    }
 //
+    /**
+     * @Given /^I have logged in as an administrator$/
+     */
+    public function iAmAuthenticatedAsAdmin() {
+        $this->visit('/lists/admin/');
+        $this->fillField('login', $this->params['admin_username']);
+        $this->fillField('password', $this->params['admin_password']);
+        $this->pressButton('Continue');
+
+        if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
+            $this->throwExpectationException('Login failed: Dashboard link not found');
+        }
+
+        // store current token
+        $link = $this->getSession()->getPage()->findLink('dashboard');
+        $href = $link->getAttribute('href');
+        $this->token = substr($href,strpos($href,'tk=')+3);
+        $this->currentUser = $this->generateCurrentUserInfo($this->params['admin_username']);
+    }
+
+    /**
+     * @param $name
+     * @return array
+     * @throws Exception
+     */
+    private function generateCurrentUserInfo($name)
+    {
+        $db = $this->getMysqli();
+        $query = sprintf(
+            'SELECT * from %s where loginname="%s"',
+            'phplist_admin',
+            $name
+        );
+        $results = $db->query($query)->fetch_assoc();
+        if(!isset($results['id']) ){
+            throw new \Exception($db->error);
+        }
+        return $results;
+    }
+    /**
+     * @return bool
+     */
+    public function isLoggedIn($throwsException = false)
+    {
+        $retVal = $this->token != null;
+        if(!$retVal && $throwsException){
+            throw new \Exception('Not logged in yet');
+        }
+        return $retVal;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentUser()
+    {
+        $this->isLoggedIn(true);
+        return $this->currentUser;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        $this->isLoggedIn(true);
+        return $this->token;
+    }
 
     /**
      * @When /^I recreate the database$/
@@ -223,16 +305,54 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^I have logged in as an administrator$/
+     * @Given /^I have subscriber with email "([^"]*)"/
      */
-    public function iAmAuthenticatedAsAdmin() {
-        $this->visit('/lists/admin/');
-        $this->fillField('login', $this->params['admin_username']);
-        $this->fillField('password', $this->params['admin_password']);
-        $this->pressButton('Continue');
-        
-        if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
-            $this->throwExpectationException('Login failed: Dashboard link not found');
+    public function iHaveSubscriber($email)
+    {
+        $this->clickLink('S');
+    }
+
+    /**
+     * @return mysqli
+     */
+    public function getMysqli()
+    {
+        return $this->db;
+    }
+
+    /**
+     * @var array $params
+     * @return string
+     */
+    public function generateUrl($params)
+    {
+        $token = $this->getToken();
+        $params['tk'] = $token;
+        $url = $this->getSession()->getCurrentUrl();
+
+        $queryPath = [];
+        foreach($params as $name=>$value){
+            $queryPath[] = $name.'='.$value;
         }
+        $link = $url.'?'.implode('&',$queryPath);
+        return $link;
+    }
+
+    /**
+     * @param $num
+     * @Then /^I wait for .* (second|seconds)/
+     */
+    public function iWaitForSeconds($num)
+    {
+        $num = (int) $num;
+        sleep($num);
+    }
+
+    /**
+     * @Then /^I wait for the ajax response$/
+     */
+    public function iWaitForTheAjaxResponse()
+    {
+        $this->getSession()->wait(5000, '(0 === jQuery.active)');
     }
 }
