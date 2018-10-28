@@ -143,12 +143,16 @@ $data['confirmationsubject'] = getConfig('confirmationsubject');
 $data['unsubscribemessage'] = getConfig('unsubscribemessage');
 $data['unsubscribesubject'] = getConfig('unsubscribesubject');
 $data['htmlchoice'] = 'htmlonly';
-$data['showcategories'] = 'no';
 $data['emaildoubleentry'] = 'yes';
 $data['rssdefault'] = 'daily'; //Leftover from the preplugin era
 $data['rssintro'] = s('Please indicate how often you want to receive messages');  //Leftover from the preplugin era
 $selected_lists = array();
 $attributedata = array();
+if(getConfig('displaycategories')==0) {
+    $data['showcategories'] = 'no';
+}else {
+    $data['showcategories'] = 'yes';
+}
 
 if ($id) {
     //# Fill values from database
