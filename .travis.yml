@@ -7,21 +7,21 @@ cache:
 matrix:
     include:
         - php: '5.4'
-          env: BROWSER=goutte
-        - php: '5.5'
-          env: BROWSER=goutte
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
+        - php: '5.5' 
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '5.6'
-          env: BROWSER=goutte
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.0'
-          env: BROWSER=goutte
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.1'
-          env: BROWSER=goutte
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.1'
-          env: BROWSER=chrome
+          env: BROWSER=chrome TAGS="~@first-run && ~@wip"
         - php: '7.2'
-          env: BROWSER=goutte
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.2'
-          env: BROWSER=chrome
+          env: BROWSER=chrome TAGS="~@first-run && ~@wip"
 
 
 notifications:
@@ -44,7 +44,8 @@ install:
   - composer install --prefer-dist --no-interaction
 
   # start php server for non php >=5.4 version
-  - cp -fv ./tests/config.php.dist public_html/lists/config/config.php
+  - cp -fv tests/travis-ci/behat.yml behat.yml
+  - cp -fv tests/travis-ci/config.php public_html/lists/config/config.php
   - php -S localhost:8000 -t public_html > /dev/null 2>&1 &
 
   # start selenium and php server
@@ -55,8 +56,6 @@ install:
 
   # setup database and phplist
   - mkdir -p build/screenshot
-  - cp -f tests/travis-ci/behat.yml behat.yml
-  - cp -f tests/travis-ci/config.php public_html/lists/config/config.php
   - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
     && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
     rm master.tar.gz && cd ../../../../
@@ -69,19 +68,24 @@ install:
 
 before_script:
   - sudo service postfix stop
+  - mkdir -p build/mails
+  - cd build/mails
   - smtp-sink -d "%d.%H.%M.%S" localhost:2500 1000 &
+  - cd ${TRAVIS_BUILD_DIR}
 
 script:
   # check syntax
   - ./vendor/bin/phpLint ./public_html
 
   # run setup feature first to create database
-  - ./vendor/bin/behat -fprogress -p $BROWSER --strict --tags=@first-run
+  - ./vendor/bin/behat -n -fprogress -p $BROWSER --strict --tags=@first-run
 
   # run all feature except @first-run
-  - ./vendor/bin/behat -fprogress -p $BROWSER --strict --tags="~@first-run && ~@wip"
+  - ./vendor/bin/behat -n -fprogress -p $BROWSER --strict --tags="${TAGS}"
 addons:
   chrome: stable
 
 after_failure:
+  - ls -l build/mails
+  - ls -l
   - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png

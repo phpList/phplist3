@@ -4,6 +4,7 @@ require __DIR__.'/bootstrap.php';
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 class SubscriberContext implements Context
@@ -27,16 +28,16 @@ class SubscriberContext implements Context
      * @param array $table
      *
      * @Given /I have "(.*)" list with the following subscribers:/
+     * @throws Exception
      */
-    public function iHaveSubscribersForList($list,TableNode $table)
+    public function iHaveSubscribersForList($list, PyStringNode $stringNode)
     {
-
+        $rows = $stringNode->getStrings();
         $db = $this->featureContext->getMysqli();
-        $rows = $table->getRows();
         $list = $this->iHaveList($list);
         $table = 'phplist_listuser';
         foreach($rows as $row){
-            $subscriber = $this->iHaveSubscriber($row[0]);
+            $subscriber = $this->iHaveSubscriber($row);
 
             $select = sprintf(
                 'SELECT userid,listid from %s where userid=%s and listid=%s',

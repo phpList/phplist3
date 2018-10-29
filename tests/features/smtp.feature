@@ -21,19 +21,16 @@ Feature: SMTP Mail test
         And I should have email sent from "From Me"
         And I should have email sent to address "admin@phplist.dev"
         And I should have email sent contains "This is the Content of the Campaign"
-        # @todo: remove this failed test before pull request merged
-        And I should have email sent with the following:
-            | from         | Failed Name             |
-            | from address | fail.from@mydomain.com  |
-            | to address   | fail.to@pplist.dev      |
 
     @emptySentMail @javascript
     Scenario: Sending campaign with list subscribers
         Given I have logged in as an administrator
         And I have "smtp" list with the following subscribers:
-            | test1@phplist.dev |
-            | test2@phplist.dev |
-            | test3@phplist.dev |
+            """
+            test1@phplist.dev
+            test2@phplist.dev
+            test3@phplist.dev
+            """
         And I follow "Campaigns"
         And I follow "Send a campaign"
         And I follow "start a new campaign"
