@@ -767,7 +767,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         }
         $uniqueCat = array_unique($categories);
 
-        $html = '<div class="accordion" >';
+        $html = '<div class="accordion allexpanded" >';
         foreach ($uniqueCat as $key) {
 
             if ($key !== '') {
