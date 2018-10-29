@@ -102,5 +102,10 @@ In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
 
+## Code of Conduct
+This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project and its community, you are expected to uphold
+this code.
+
 ## License
 phpList 3 is licensed under the terms of the AGPLv3 Open Source license and is available free of charge.
