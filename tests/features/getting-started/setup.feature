@@ -19,6 +19,6 @@ Feature: Setup
     When I fill in "adminname" with "admin"
     And I fill in "orgname" with "phplist ltd"
     And I fill in "adminemail" with "admin@phplist.dev"
-    And I fill in "adminpassword" with "Mypassword123+"
+    And I fill in "adminpassword" with a valid password
     And I press "Continue"
     Then I should see "Success:"
