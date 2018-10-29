@@ -15,34 +15,33 @@
 
 */
 
-# Set default theme
-$ui = 'phplist-ui-bootlist';
-
-# what is your Mysql database server hostname
+// what is your Mysql database server hostname
 $database_host = 'localhost';
 
-# what is the name of the database we are using
+// what is the name of the database we are using
 $database_name = 'phplistdb';
 
-# what user has access to this database
+// what user has access to this database
 $database_user = 'phplist';
 
-# and what is the password to login to control the database
+// and what is the password to login to control the database
 $database_password = 'phplist';
 
-# if you have an SMTP server, set it here. Otherwise it will use the normal php mail() function
-## if your SMTP server is called "smtp.mydomain.com" you enter this below like this:
-##
-##     define("PHPMAILERHOST",'smtp.mydomain.com');
+// if you have an SMTP server, set it here. Otherwise it will use the normal php mail() function
+//# if your SMTP server is called "smtp.mydomain.com" you enter this below like this:
+//#
+//#     define("PHPMAILERHOST",'smtp.mydomain.com');
 
-define('PHPMAILERHOST', '');
+define('PHPMAILERHOST', 'localhost');
+define('PHPMAILERPORT',2500);
+define('PHPMAILER_SECURE',false);
 
-# if test is true (not 0) it will not actually send ANY messages, but display what it would have sent
-# this is here, to make sure you edited the config file and mails are not sent "accidentally"
-# on unmanaged systems
 
-define('TEST', 1);
+// if TEST is set to 1 (not 0) it will not actually send ANY messages, but display what it would have sent
+// this is here, to make sure you edited the config file and mails are not sent "accidentally"
+// on unmanaged systems
 
+define('TEST', 0);
 /*
 
 ==============================================================================================================
@@ -57,58 +56,58 @@ define('TEST', 1);
 
 */
 
-# Message envelope.
-#
-# This is the address that most bounces will be delivered to
-# Your should make this an address that no PERSON reads
-# but a mailbox that phpList can empty every so often, to process the bounces
+// Message envelope.
 
-# $message_envelope = 'listbounces@yourdomain';
+// This is the address that most bounces will be delivered to
+// Your should make this an address that no PERSON reads
+// but a mailbox that phpList can empty every so often, to process the bounces
 
-# Handling bounces. Check README.bounces for more info
-# This can be 'pop' or 'mbox'
+// $message_envelope = 'listbounces@yourdomain';
+
+// Handling bounces. Check README.bounces for more info
+// This can be 'pop' or 'mbox'
 $bounce_protocol = 'pop';
 
-# set this to 0, if you set up a cron to download bounces regularly by using the
-# commandline option. If this is 0, users cannot run the page from the web
-# frontend. Read README.commandline to find out how to set it up on the
-# commandline
+// set this to 0, if you set up a cron to download bounces regularly by using the
+// commandline option. If this is 0, users cannot run the page from the web
+// frontend. Read README.commandline to find out how to set it up on the
+// commandline
 define('MANUALLY_PROCESS_BOUNCES', 1);
 
-# when the protocol is pop, specify these three
+// when the protocol is pop, specify these three
 $bounce_mailbox_host = 'localhost';
 $bounce_mailbox_user = 'popuser';
 $bounce_mailbox_password = 'password';
 
-# the "port" is the remote port of the connection to retrieve the emails
-# the default should be fine but if it doesn't work, you can try the second
-# one. To do that, add a # before the first line and take off the one before the
-# second line
+// the "port" is the remote port of the connection to retrieve the emails
+// the default should be fine but if it doesn't work, you can try the second
+// one. To do that, add a # before the first line and take off the one before the
+// second line
 $bounce_mailbox_port = '110/pop3/notls';
-#$bounce_mailbox_port = "110/pop3";
+//$bounce_mailbox_port = "110/pop3";
 
-# it's getting more common to have secure connections, in which case you probably want to use
-#$bounce_mailbox_port = "995/pop3/ssl/novalidate-cert";
+// it's getting more common to have secure connections, in which case you probably want to use
+//$bounce_mailbox_port = "995/pop3/ssl/novalidate-cert";
 
-# when the protocol is mbox specify this one
-# it needs to be a local file in mbox format, accessible to your webserver user
+// when the protocol is mbox specify this one
+// it needs to be a local file in mbox format, accessible to your webserver user
 $bounce_mailbox = '/var/mail/listbounces';
 
-# set this to 0 if you want to keep your messages in the mailbox. this is potentially
-# a problem, because bounces will be counted multiple times, so only do this if you are
-# testing things.
+// set this to 0 if you want to keep your messages in the mailbox. this is potentially
+// a problem, because bounces will be counted multiple times, so only do this if you are
+// testing things.
 $bounce_mailbox_purge = 1;
 
-# set this to 0 if you want to keep unprocessed messages in the mailbox. Unprocessed
-# messages are messages that could not be matched with a user in the system
-# messages are still downloaded into phpList, so it is safe to delete them from
-# the mailbox and view them in phpList
+// set this to 0 if you want to keep unprocessed messages in the mailbox. Unprocessed
+// messages are messages that could not be matched with a user in the system
+// messages are still downloaded into phpList, so it is safe to delete them from
+// the mailbox and view them in phpList
 $bounce_mailbox_purge_unprocessed = 1;
 
-# how many bounces in a row need to have occurred for a user to be marked unconfirmed
+// how many bounces in a row need to have occurred for a user to be marked unconfirmed
 $bounce_unsubscribe_threshold = 5;
 
-# choose the encryption method for password
-# check the extended config for more info
-# in most cases, it is fine to leave this as it is
+// choose the hash method for password
+// check the extended config for more info
+// in most cases, it is fine to leave this as it is
 define('HASH_ALGO', 'sha256');

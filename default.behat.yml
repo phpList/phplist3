@@ -9,7 +9,7 @@ default:
                 - FeatureContext:
                     # Set database access credentials
                     database:
-                        host: localhost
+                        host: 127.0.0.1
                         user: phplist
                         password: phplist
                         name: phplistdb
@@ -17,6 +17,10 @@ default:
                     admin:
                         username: admin
                         password: Mypassword123+
+                - MailContext:
+                    mail_dir: %paths.base%/build/mails
+                - SubscriberContext
+                - UserContext
     extensions:
         Bex\Behat\ScreenshotExtension:
             image_drivers:
@@ -27,7 +31,7 @@ default:
                     clear_screenshot_directory: true
 
         Behat\MinkExtension:
-            base_url:  'http://localhost:8000'
+            base_url:  'http://127.0.0.1:8000'
             default_session: goutte
             goutte: ~
             sessions:
@@ -35,13 +39,18 @@ default:
                     goutte: ~
                 chrome:
                     selenium2:
+                        browser: chrome
                         capabilities:
+                            browserName: chrome
                             browser: chrome
+                            version: ""
                             chrome:
                                 switches:
-                                    - "--window-size=2000,2000"
-                                    - "--disable-gpu"
                                     - "--headless"
+                                    - "--disable-gpu"
+                                    - "--window-size=2000,2000"
+                                    - "--lang=en"
+                                    - "--no-sandbox"
 
                 firefox:
                     selenium2:
