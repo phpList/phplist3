@@ -135,8 +135,8 @@ $guessedemail = '';
 if ($id) {
     $result = Sql_query("SELECT * FROM {$tables['bounce']} where id = $id");
     if (!Sql_Affected_Rows()) {
-        Fatal_Error($GLOBALS['I18N']->get('This bounce no longer exists in the database.'));
-
+       echo  '<div class="alert alert-warning" role="alert">
+        '.s('This bounce no longer exists in the database.').'</div>';
         return;
     }
     $bounce = sql_fetch_array($result);
