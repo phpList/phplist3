@@ -290,7 +290,15 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
                     }
                     exit;
                 } else {
+                    // we failed to subscribe the user; send an error back to
+                    // the ajax client
+
                     echo 'FAIL';
+
+                    // thow an exception so the http status code is a 500
+                    // Internal Server Error, easily caught by jquery.ajax()
+                    throw new Exception( "Error: Subscribe attempt failed!" );
+
                 }
                 break;
             case 'preferences':
