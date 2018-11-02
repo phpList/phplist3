@@ -12,7 +12,7 @@
                 <?php echo s('Version')?>
             </td>
             <td>
-                Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION ?>
+                Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION ?> (<a href="https://github.com/phpList/phplist3/" target="_blank">source)</a>
                 <a href="https://www.phplist.com" target="_blank">
                     <img src="../images/power-phplist.png" alt="" width="70" height="30" border="0"/></a>
             </td>

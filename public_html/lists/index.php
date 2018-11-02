@@ -85,29 +85,6 @@ if (isset($_GET['uid']) && $_GET['uid']) {
     $userid = $req[1];
     $userpassword = $req[2];
     $emailcheck = $req[3];
-} elseif (isset($_GET['email'])) {
-    $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where email = "%s"',
-        $tables['user'], $_GET['email']));
-    $id = $req[0];
-    $userid = $req[1];
-    $userpassword = $req[2];
-    $emailcheck = $req[3];
-} elseif (isset($_REQUEST['unsubscribeemail'])) {
-    $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where email = "%s"',
-        $tables['user'], sql_escape($_REQUEST['unsubscribeemail'])));
-    $id = $req[0];
-    $userid = $req[1];
-    $userpassword = $req[2];
-    $emailcheck = $req[3];
-    /*
-    } elseif ($_SESSION["userloggedin"] && $_SESSION["userid"]) {
-      $req = Sql_Fetch_Row_Query(sprintf('select subscribepage,id,password,email from %s where id = %d',
-        $tables["user"],$_SESSION["userid"]));
-      $id = $req[0];
-      $userid = $req[1];
-      $userpassword = $req[2];
-      $emailcheck = $req[3];
-    */
 } else {
     $userid = '';
     $userpassword = '';

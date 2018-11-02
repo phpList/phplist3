@@ -1,7 +1,7 @@
 # phpList 3
 
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
-[![Stable release](https://img.shields.io/badge/stable-3.3.4-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+[![Stable release](https://img.shields.io/badge/stable-3.3.5-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: https://www.phplist.org
@@ -101,6 +101,11 @@ appear in the language of your choice.
 In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
+
+## Code of Conduct
+This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project and its community, you are expected to uphold
+this code.
 
 ## License
 phpList 3 is licensed under the terms of the AGPLv3 Open Source license and is available free of charge.

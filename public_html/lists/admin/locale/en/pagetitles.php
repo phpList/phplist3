@@ -42,6 +42,7 @@ switch ($page) {
   case 'processbounces': $page_title = 'Retrieve bounces from server'; break;
   case 'bounces': $page_title = 'View bounces'; break;
   case 'bounce': $page_title = 'View a bounce'; break;
+  case 'msgbounces': $page_title = 'View bounces per campaign'; break;
   case 'spageedit': $page_title = 'Edit a subscribe page'; break;
   case 'spage': $page_title = 'Subscribe pages'; break;
   case 'eventlog': $page_title = 'Log of events'; break;

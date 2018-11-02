@@ -88,6 +88,11 @@ if (isset($subscribepagedata['emaildoubleentry']) && $subscribepagedata['emaildo
     }
 }
 
+// check if the lists should be displayed by category
+if (isset($subscribepagedata['showcategories']) && $subscribepagedata['showcategories'] == 'yes') {
+    $GLOBALS['showCat'] = true;
+}
+
 // anti spambot check
 if (!empty($_POST['VerificationCodeX'])) {
     if (NOTIFY_SPAM) {
@@ -415,8 +420,10 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
             $GLOBALS['tables']['user'], $_GET['uid']));
         $userid = $req[0];
     } else {
-        $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"".sql_escape($_GET['email']).'"');
-        $userid = $req[0];
+        // This could be abused and is not required
+        // $req = Sql_Fetch_Row_query("select id from {$GLOBALS['tables']['user']} where email = \"".sql_escape($_GET['email']).'"');
+        // $userid = $req[0];
+        $userid = false;
     }
     if (!$userid) {
         Fatal_Error('Error, no such user');
@@ -699,6 +706,11 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     //  $msg = 'Unknown Error';
 }
 
+/**
+ * @param int $userid
+ * @param string $lists_to_show
+ * @return string
+ */
 function ListAvailableLists($userid = 0, $lists_to_show = '')
 {
     global $tables;
@@ -721,6 +733,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
         $showlists = array_unique(array_merge($showlists, $subscribed));
     }
 
+
     foreach ($showlists as $listid) {
         if (preg_match("/^\d+$/", $listid)) {
             array_push($listset, $listid);
@@ -731,33 +744,112 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     }
 
     $some = 0;
-    $html = '<ul class="list">';
-    $result = Sql_query("SELECT * FROM {$GLOBALS['tables']['list']} $subselect order by listorder, name");
-    while ($row = Sql_fetch_array($result)) {
-        if ($row['active'] || in_array($row['id'], $subscribed)) {
-            $html .= '<li class="list"><input type="checkbox" name="list['.$row['id'].']" value="signup" ';
-            if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
-                $html .= 'checked="checked"';
-            }
-            if ($userid) {
-                $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
-                    $GLOBALS['tables']['listuser'], $userid, $row['id']));
-                if (Sql_Affected_Rows()) {
-                    $html .= 'checked="checked"';
-                }
-            }
-            $html .= ' /><b>'.stripslashes($row['name']).'</b><div class="listdescription">';
-            $desc = nl2br(stripslashes($row['description']));
-            //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
-            $html .= $desc.'</div></li>';
-            ++$some;
-            if ($some == 1) {
-                $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
-                $singlelisthtml .= '<input type="hidden" name="listname['.$row['id'].']" value="'.htmlspecialchars(stripslashes($row['name'])).'"/>';
+
+
+    if (isset($GLOBALS['showCat'])&& $GLOBALS['showCat']===true){
+        $listspercategory = array();
+        $categories = array();
+        $catresult = Sql_query(sprintf('select * from %s %s order by category',
+            $GLOBALS['tables']['list'], $subselect));
+
+
+        while ($row = Sql_fetch_array($catresult)) {
+
+            $listspercategory[] = array('id' => $row ['id'], 'name' => $row ['name'], 'description' => $row ['description'], 'active' => $row ['active'], 'category' => $row ['category']);
+
+        }
+
+        foreach ($listspercategory as $key => $value) {
+
+            if($value['active']) {
+                $categories[] = $value['category'];
             }
         }
+        $uniqueCat = array_unique($categories);
+
+        $html = '<div class="accordion allexpanded" >';
+        foreach ($uniqueCat as $key) {
+
+            if ($key !== '') {
+                $displayedCat = $key;
+            } else  $displayedCat = s('General');
+
+            $html .= '<h3 ><a name="general" >' . $displayedCat . '</a></h3>';
+            $html .= '<div>';
+            $html .= '<ul class="list" id="listcategory">';
+            $count = 0;
+            foreach ($listspercategory as $listelement)
+                if ($listelement['category'] === $key) {
+                    if ($listelement['active'] || in_array($listelement['id'], $subscribed) ) {
+
+                        $html .= '<li ><input type="checkbox" name="list[' . $listelement['id'] . ']" value="signup" ';
+                        if (isset($list[$listelement['id']]) && $list[$listelement['id']] === 'signup') {
+                            $html .= 'checked="checked"';
+                        }
+                        if ($userid) {
+                            $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
+                                $GLOBALS['tables']['listuser'], $userid, $listelement['id']));
+                            if (Sql_Affected_Rows()) {
+                                $html .= 'checked="checked"';
+                            }
+                        }
+
+
+                        $html .= ' /><b>' . stripslashes($listelement['name']) . '</b><div class="listdescription">';
+                        $desc = nl2br(stripslashes($listelement['description']));
+                        //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
+                        $html .= $desc . '</div></li>';
+                        ++$some;
+                        if ($some == 1) {
+                            $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $listelement['id']);
+                            $singlelisthtml .= '<input type="hidden" name="listname[' . $listelement['id'] . ']" value="' . htmlspecialchars(stripslashes($listelement['name'])) . '"/>';
+                        }
+
+                    }
+
+                } $html .= '</ul>';
+
+            $html .= '</div>';
+        }
+
+        // end of row active
+
+        $html .= '</div>';
+
+    } else {
+
+        $html = '<ul class="list">';
+        $result = Sql_query("SELECT * FROM {$GLOBALS['tables']['list']} $subselect order by listorder, name");
+        while ($row = Sql_fetch_array($result)) {
+            if ($row['active'] || in_array($row['id'], $subscribed)) {
+                //  id required for label
+                $html .= '<li class="list"><input type="checkbox" name="list[' . $row['id'] . ']" id="list'.$row['id'].'" value="signup" ';
+                if (isset($list[$row['id']]) && $list[$row['id']] == 'signup') {
+                    $html .= 'checked="checked"';
+                }
+                if ($userid) {
+                    $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
+                        $GLOBALS['tables']['listuser'], $userid, $row['id']));
+                    if (Sql_Affected_Rows()) {
+                        $html .= 'checked="checked"';
+                    }
+                }
+                $html .= " /> <label for=\"list$row[id]\"><b>".stripslashes($row['name']).'</b></label><div class="listdescription">';
+                $desc = nl2br(stripslashes($row['description']));
+                //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
+                $html .= $desc.'</div></li>';
+                ++$some;
+                if ($some == 1) {
+                    $singlelisthtml = sprintf('<input type="hidden" name="list[%d]" value="signup" />', $row['id']);
+                    $singlelisthtml .= '<input type="hidden" name="listname['.$row['id'].']" value="'.htmlspecialchars(stripslashes($row['name'])).'"/>';
+                }
+
+            }
+        }
+        $html .= '</ul>';
+
     }
-    $html .= '</ul>';
+
     $hidesinglelist = getConfig('hide_single_list');
     if (!$some) {
         global $strNotAvailable;
@@ -1182,10 +1274,10 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
         }
 
         $html .= sprintf('
-      <label for="password">%s</label><input type="password" name="password" value="" class="input password required" />',
+      <label for="password">%s</label><input type="password" id="password" name="password" value="" class="input password required" />',
             $GLOBALS['strPassword']);
         $html .= sprintf('
-      <label for="password_check">%s</label><input type="password" name="password_check" value="" class="input password required" />',
+      <label for="password_check">%s</label><input type="password" name="password_check" id="password_check" value="" class="input password required" />',
             $GLOBALS['strPassword2']);
     }
     $html .= '</div>'; //# class=required
@@ -1209,7 +1301,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="textemail" id="textemail" value="1" %s /><label for="textemail">%s</label></div></fieldset>',
                 empty($htmlemail) ? 'checked="checked"' : '', $GLOBALS['strPreferTextEmail']);
             break;
         case 'radiotext':
@@ -1234,7 +1326,7 @@ function ListAttributes2011($attributes, $attributedata, $htmlchoice = 0, $useri
             if (!isset($htmlemail)) {
                 $htmlemail = 0;
             }
-            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" value="1" %s />
+            $html .= sprintf('<fieldset class="htmlchoice"><div><input type="checkbox" name="htmlemail" id="htmlemail" value="1" %s />
         <label for="htmlemail">%s</label></div></fieldset>', !empty($htmlemail) ? 'checked="checked"' : '',
                 $GLOBALS['strPreferHTMLEmail']);
             break;

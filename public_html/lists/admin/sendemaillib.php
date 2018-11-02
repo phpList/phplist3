@@ -194,14 +194,14 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $sep = strpos($url, '?') === false ? '?' : '&';
     $html['subscribe'] = sprintf('<a href="%s">%s</a> ', $url, $strThisLink);
     $text['subscribe'] = sprintf('%s', $url);
-    $html['subscribeurl'] = sprintf('%s ', $url);
+    $html['subscribeurl'] = sprintf('%s', $url);
     $text['subscribeurl'] = sprintf('%s ', $url);
     $url = getConfig('forwardurl');
     $sep = strpos($url, '?') === false ? '?' : '&';
     $html['forward'] = sprintf('<a href="%s%suid=%s&amp;mid=%d">%s</a> ', $url, htmlspecialchars($sep), $hash,
         $messageid, $strThisLink);
     $text['forward'] = sprintf('%s%suid=%s&mid=%d ', $url, $sep, $hash, $messageid);
-    $html['forwardurl'] = sprintf('%s%suid=%s&amp;mid=%d ', $url, htmlspecialchars($sep), $hash, $messageid);
+    $html['forwardurl'] = sprintf('%s%suid=%s&amp;mid=%d', $url, htmlspecialchars($sep), $hash, $messageid);
     $text['forwardurl'] = $text['forward'];
     $html['messageid'] = sprintf('%d', $messageid);
     $text['messageid'] = sprintf('%d', $messageid);
@@ -213,14 +213,14 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $url = getConfig('preferencesurl');
     $sep = strpos($url, '?') === false ? '?' : '&';
     $html['preferences'] = sprintf('<a href="%s%suid=%s">%s</a> ', $url, htmlspecialchars($sep), $hash, $strThisLink);
-    $text['preferences'] = sprintf('%s%suid=%s ', $url, $sep, $hash);
-    $html['preferencesurl'] = sprintf('%s%suid=%s ', $url, htmlspecialchars($sep), $hash);
-    $text['preferencesurl'] = sprintf('%s%suid=%s ', $url, $sep, $hash);
+    $text['preferences'] = sprintf('%s%suid=%s', $url, $sep, $hash);
+    $html['preferencesurl'] = sprintf('%s%suid=%s', $url, htmlspecialchars($sep), $hash);
+    $text['preferencesurl'] = sprintf('%s%suid=%s', $url, $sep, $hash);
 
     $url = getConfig('confirmationurl');
     $sep = strpos($url, '?') === false ? '?' : '&';
-    $html['confirmationurl'] = sprintf('%s%suid=%s ', $url, htmlspecialchars($sep), $hash);
-    $text['confirmationurl'] = sprintf('%s%suid=%s ', $url, $sep, $hash);
+    $html['confirmationurl'] = sprintf('%s%suid=%s', $url, htmlspecialchars($sep), $hash);
+    $text['confirmationurl'] = sprintf('%s%suid=%s', $url, $sep, $hash);
 
     //historical, not sure it's still used
     $html['userid'] = $hash;

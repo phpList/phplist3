@@ -210,6 +210,14 @@ $default_config = array(
         'category'    => 'list-organisation',
     ),
 
+    'displaycategories' => array(
+        'value'       => 0,
+        'description' => s('Display list categories on subscribe page'),
+        'type'        => 'boolean',
+        'allowempty'  => false,
+        'category'    => 'list-organisation',
+    ),
+
     // width of a textline field
     'textline_width' => array(
         'value'       => '40',
