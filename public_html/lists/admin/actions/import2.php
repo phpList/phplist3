@@ -28,9 +28,8 @@ if ($_SESSION['import_record_delimiter'] != "\n") {
 $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
 output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
 $header = array_shift($email_list);
-$header = str_replace('"', '', $header);
 $total = count($email_list);
-$headers = explode($_SESSION['import_field_delimiter'], $header);
+$headers = str_getcsv($header, $_SESSION['import_field_delimiter']);
 $headers = array_unique($headers);
 $_SESSION['columnnames'] = $headers;
 
@@ -77,10 +76,7 @@ if (count($email_list)) {
         set_time_limit(60);
         // will contain attributes to store / change
         $user = array();
-        // get rid of text delimiters generally added by spreadsheet apps
-        $line = str_replace('"', '', $line);
-
-        $values = explode($_SESSION['import_field_delimiter'], $line);
+        $values = str_getcsv($line, $_SESSION['import_field_delimiter']);
         $system_values = array();
         foreach ($system_attribute_mapping as $column => $index) {
             //   print '<br/>'.$column . ' = '. $values[$index];
