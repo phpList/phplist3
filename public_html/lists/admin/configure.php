@@ -99,10 +99,10 @@ if (!empty($_REQUEST['save'])) {
             }
         }
         if (!$haserror) {
-            echo '<div class="actionresult">'.s('Changes saved').'</div>';
+            echo '<div class="actionresult">'.  $_SESSION['action_result'] =s('Changes saved').'</div>';
             unset($id);
         } else {
-            echo '<div class="actionresult error">'.$haserror.'<br/>'.s('Changes not saved').'</div>';
+            echo '<div class="actionresult error">'.  $_SESSION['action_result'] =$haserror.'<br/>'.s('Changes not saved').'</div>';
             unset($id);
         }
 //    Redirect("configure");
