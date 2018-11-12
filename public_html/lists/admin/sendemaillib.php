@@ -495,16 +495,16 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
     if (CLICKTRACK && $hash != 'forwarded' && !empty($userdata['id'])) {
         // convert html message
-        preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
+        preg_match_all('/<a (.*)href=(["\'])(.*)\2([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
         $clicktrack_root = sprintf('%s://%s/lt.php', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot']);
 
-        for ($i = 0; $i < count($links[2]); ++$i) {
-            $link = cleanUrl(trim($links[2][$i]));
+        for ($i = 0; $i < count($links[3]); ++$i) {
+            $link = cleanUrl(trim($links[3][$i]));
             $link = str_replace('"', '', $link);
             if (preg_match('/\.$/', $link)) {
                 $link = substr($link, 0, -1);
             }
-            $linktext = $links[4][$i];
+            $linktext = $links[5][$i];
 
             // if the link is text containing a "protocol" eg http:// then do not track it, otherwise
             // it will look like Phishing
@@ -533,11 +533,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
                 if (!CLICKTRACK_LINKMAP) {
                     $newlink = sprintf('<a %shref="%s://%s/lt.php?tid=%s" %s>%s</a>', $links[1][$i],
-                        $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked, $links[3][$i],
-                        $links[4][$i]);
+                        $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked, $links[4][$i],
+                        $links[5][$i]);
                 } else {
                     $newlink = sprintf('<a %shref="%s://%s%s" %s>%s</a>', $links[1][$i], $GLOBALS['public_scheme'],
-                        $website.CLICKTRACK_LINKMAP, $masked, $links[3][$i], $links[4][$i]);
+                        $website.CLICKTRACK_LINKMAP, $masked, $links[4][$i], $links[5][$i]);
                 }
                 $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
             }
@@ -593,9 +593,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     //# if we're not tracking clicks, we should add Google tracking here
     //# otherwise, we can add it when redirecting on the click
     if (!CLICKTRACK && !empty($cached[$messageid]['google_track'])) {
-        preg_match_all('/<a (.*)href=["\'](.*)["\']([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
-        for ($i = 0; $i < count($links[2]); ++$i) {
-            $link = cleanUrl($links[2][$i]);
+        preg_match_all('/<a (.*)href=(["\'])(.*)\2([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
+        for ($i = 0; $i < count($links[3]); ++$i) {
+            $link = cleanUrl($links[3][$i]);
             $link = str_replace('"', '', $link);
             //# http://www.google.com/support/analytics/bin/answer.py?hl=en&answer=55578
 
@@ -620,7 +620,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $newurl = $link.'?'.$trackingcode.$fragment;
             }
             //   print $link. ' '.$newurl.' <br/>';
-            $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[3][$i], $links[4][$i]);
+            $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
             $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
         }
 
