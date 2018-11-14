@@ -148,8 +148,9 @@ $ls->addElement($element);
 $perc = sprintf('%0.2f', $viewed[0] / ($totalSent - $totalBounced) * 100);
 $ls->addColumn($element, '', !empty($viewed[0]) ? PageLink2('mviews&id='.$id, number_format($viewed[0])).'('. $perc .' %)' : '0');
 
-$clicked = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
-    $tables['linktrack_uml_click'], $id));
+$clicked = Sql_Fetch_Row_Query(sprintf('select sum(clicked) from %s where messageid= %d',
+    $tables['linktrack_ml'], $id));
+
 
 // Number of Total Clicks
 $element = ucfirst(s('Clicked'));
