@@ -38,6 +38,10 @@ class phplistPlugin
     // The page name is the file name without .php. The files must be in the $coderoot directory
     public $publicPages = array();
 
+    // Pages that can be called using the remote processing secret parameter,
+    // e.g. www.mysite.com/lists/admin/?pi=myplugin&page=mypage&secret=1234567890
+    public $remotePages = array();
+
     public $configArray = array();
 
     public $importTabTitle = ''; //# title of the tab for the import page

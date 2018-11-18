@@ -274,8 +274,11 @@ if (!$GLOBALS['admin_auth_module']) {
     $GLOBALS['require_login'] = 0;
 }
 
-if (!empty($_GET['pi']) && isset($GLOBALS['plugins'][$_GET['pi']])) {
-    $page_title = $GLOBALS['plugins'][$_GET['pi']]->pageTitle($page);
+$plugin = !empty($_GET['pi']) && isset($plugins[$_GET['pi']])
+    ? $plugins[$_GET['pi']]
+    : null;
+if ($plugin) {
+    $page_title = $plugin->pageTitle($page);
 } else {
     $page_title = $GLOBALS['I18N']->pageTitle($page);
 }
@@ -285,6 +288,7 @@ if (isset($GLOBALS['installation_name'])) {
     echo $GLOBALS['installation_name'].' :: ';
 }
 echo "$page_title</title>";
+$inRemoteCall = false;
 
 if (!empty($GLOBALS['require_login'])) {
     //bth 7.1.2015 to support x-forwarded-for
@@ -329,7 +333,8 @@ if (!empty($GLOBALS['require_login'])) {
             $msg = $GLOBALS['I18N']->get('Failed sending a change password token');
         }
         $page = 'login';
-    } elseif (!empty($_GET['secret']) && ($_GET['page'] == 'processbounces' || $_GET['page'] == 'processqueue' || $_GET['page'] == 'processcron')) {
+    } elseif (!empty($_GET['secret'])
+        && in_array($_GET['page'], $plugin === null ? array('processbounces', 'processqueue', 'processcron') : $plugin->remotePages)) {
         //# remote processing call
         $ourSecret = getConfig('remote_processing_secret');
         if ($ourSecret != $_GET['secret']) {
@@ -345,6 +350,7 @@ if (!empty($GLOBALS['require_login'])) {
             'superuser' => 0,
             'passhash'  => 'xxxx',
         );
+        $inRemoteCall = true;
     } elseif (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
         //$msg = 'Not logged in';
         $logged = false;
@@ -732,8 +738,7 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
         Error(s('Access Denied'));
     }
 //  print "End of inclusion<br/>";
-} elseif (!empty($_GET['pi']) && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && isset($GLOBALS['plugins'][$_GET['pi']]) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
-    $plugin = $GLOBALS['plugins'][$_GET['pi']];
+} elseif ($plugin !== null) {
     $menu = $plugin->adminmenu();
     if (checkAccess($page, $_GET['pi'])) {
         if (is_file($plugin->coderoot.$include)) {
