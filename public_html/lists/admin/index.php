@@ -678,15 +678,11 @@ if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
     Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
 }
 
-$this_doc = getenv('REQUEST_URI');
-if (preg_match('#(.*?)/admin?$#i', $this_doc, $regs)) {
-    $check_pageroot = $pageroot;
-    $check_pageroot = preg_replace('#/$#', '', $check_pageroot);
-    if ($check_pageroot != $regs[1] && WARN_ABOUT_PHP_SETTINGS) {
+if (WARN_ABOUT_PHP_SETTINGS) {
+    if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
         Warn($GLOBALS['I18N']->get('The pageroot in your config does not match the current locationCheck your config file.'));
     }
 }
-
 clearstatcache();
 if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
     if (checkAccess($page) || $page == 'about') {
