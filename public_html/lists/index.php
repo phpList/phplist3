@@ -274,9 +274,9 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
 
                     echo 'FAIL';
 
-                    // thow an exception so the http status code is a 500
+                    // log an error and set the http status code to a 500
                     // Internal Server Error, easily caught by jquery.ajax()
-                    throw new Exception( "Error: Subscribe attempt failed!" );
+                    error_log( "Error: Subscribe attempt failed!" );
                     http_response_code( 500 );
 
                 }
