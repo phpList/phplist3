@@ -258,6 +258,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
                     addSubscriberStatistics('subscribe', 1, $key);
                 } else {
                     //# hack attempt...
+                    throw new Exception( "ERROR: Unexpected input error: empty element in \$_POST['list'] array. Exiting." );
                     exit;
                 }
             }
