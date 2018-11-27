@@ -1506,16 +1506,17 @@ function phpcfgsize2bytes($val)
 {
     $val = trim($val);
     $last = mb_strtolower($val{strlen($val) - 1});
+    $result = substr($val, 0, -1);
     switch ($last) {
         case 'g':
-            $val *= 1024;
+            $result *= 1024;
         case 'm':
-            $val *= 1024;
+            $result *= 1024;
         case 'k':
-            $val *= 1024;
+            $result *= 1024;
     }
 
-    return $val;
+    return $result;
 }
 
 function Help($topic, $text = '?')
