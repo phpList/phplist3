@@ -1057,7 +1057,11 @@ while ($message = Sql_fetch_array($messages)) {
                     $cansend = $plugin->canSend($msgdata, $user);
                     if (!$cansend) {
                         $failure_reason .= 'Sending blocked by plugin '.$plugin->name;
-                        ++$counters['send blocked by '.$plugin->name];
+                        $counterIndex = 'send blocked by '.$plugin->name;
+                        if (!isset($counters[$counterIndex])) {
+                            $counters[$counterIndex] = 0;
+                        }
+                        ++$counters[$counterIndex];
                         if (VERBOSE) {
                             cl_output('Sending blocked by plugin '.$plugin->name);
                         }
