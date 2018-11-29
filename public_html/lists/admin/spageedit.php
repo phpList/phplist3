@@ -346,11 +346,13 @@ while ($row = Sql_Fetch_Array($req)) {
 $attributesHTML .= '</div>';
 
 //## allow plugins to add tabs
+$pluginsHTML = '';
+
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginHTML = $plugin->displaySubscribepageEdit($data);
     if (!empty($pluginHTML)) {
-        echo '<h3><a name="'.$pluginname.'">'.s('Information needed for %s', $plugin->name).'</a></h3>';
-        echo '<div>'.$pluginHTML.'</div>';
+        $pluginsHTML .= '<h3><a name="'.$pluginname.'">'.s('Information needed for %s', $plugin->name).'</a></h3>';
+        $pluginsHTML .= '<div>'.$pluginHTML.'</div>';
     }
 }
 
@@ -394,6 +396,7 @@ if ($hasAttributes) {
     echo $attributesHTML;
 }
 echo $transactionHTML;
+echo $pluginsHTML;
 
 echo '</div>'; // accordion
 
