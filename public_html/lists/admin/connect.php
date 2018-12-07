@@ -759,6 +759,11 @@ $GLOBALS['pagecategories'] = array(
             'catlists',
         ),
     ),
+    'update'   => array(
+        'toplink'=> 'redirecttoupdater',
+        'pages'  => array(),
+        'menulinks' => array(),
+    ),
     //'info' => array(
         //'toplink' => 'about',
         //'pages'   => array(
