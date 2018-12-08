@@ -378,7 +378,7 @@ function LoginPage($id, $userid, $email = '', $msg = '')
 
     $html .= formStart('name="loginform"');
     $html .= '<table border=0>';
-    $html .= '<tr><td>'.$GLOBALS['strEmail'].'</td><td><input type=text name="email" value="'.$email.'" size="30"></td></tr>';
+    $html .= '<tr><td>'.$GLOBALS['strEmail'].'</td><td><input type=text name="email" value="'.$email.'" size="30" autofocus></td></tr>';
     $html .= '<tr><td>'.$GLOBALS['strPassword'].'</td><td><input type="password" name="password" value="'.$_POST['password'].'" size="30"></td></tr>';
     $html .= '</table>';
     $html .= '<p><input type=submit name="login" value="'.$GLOBALS['strLogin'].'"></p>';
