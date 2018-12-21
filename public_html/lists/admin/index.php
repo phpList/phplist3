@@ -182,6 +182,7 @@ if (isset($GLOBALS['pageheader'])) {
 
 $GLOBALS['require_login'] = 1; ## this is no longer configurable and should never have been
 if ($GLOBALS['commandline']) {
+    cl_output(ClineSignature());
     if (!isset($_SERVER['USER']) && count($GLOBALS['commandline_users'])) {
         clineError('USER environment variable is not defined, cannot do access check. Please make sure USER is defined.');
         exit;
@@ -206,7 +207,6 @@ if ($GLOBALS['commandline']) {
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
         }
-        cl_output( ClineSignature());
         cl_processtitle('core-'.$_GET['page']);
     } elseif ($cline['p'] && $IsCommandlinePlugin) {
         if (empty($GLOBALS['developer_email']) && isset($cline['p']) && !in_array($cline['p'],
@@ -216,7 +216,6 @@ if ($GLOBALS['commandline']) {
         } elseif (isset($cline['p'])) {
             $_GET['page'] = $cline['p'];
             $_GET['pi'] = $cline['m'];
-            cl_output( ClineSignature());
             cl_processtitle($_GET['pi'].'-'.$_GET['page']);
         }
     } else {

@@ -4,8 +4,6 @@ if (!$GLOBALS['commandline']) {
     @ob_end_flush();
     echo '<p class="information">'.s('This page only works from commandline').'</p>';
     return;
-} else {
-    cl_output(ClineSignature());
 }
 
 if (isset($cline['f'])) {

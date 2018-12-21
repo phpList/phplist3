@@ -58,7 +58,6 @@ if ($GLOBALS['commandline']) {
     if (!$cline['l']) {
         echo ClineError('Specify lists to import users to');
     }
-    echo clineSignature();
 
     ob_start();
     $_FILES['import_file'] = array(

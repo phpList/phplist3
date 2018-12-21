@@ -18,9 +18,6 @@ if (!$GLOBALS['commandline']) {
 
     return;
 }
-
-cl_output(ClineSignature());
-
 $cronJobs = array(
 
     // at a later stage, these should be added

@@ -5,11 +5,8 @@ require_once dirname(__FILE__).'/accesscheck.php';
 if (!$GLOBALS['commandline']) {
     @ob_end_flush();
 } else {
-    @ob_end_clean();
-    echo ClineSignature();
     //# when on cl, doit immediately
     $_GET['doit'] = 'yes';
-    ob_start();
 }
 $force = isset($cline['f']) || isset($_GET['force']);
 

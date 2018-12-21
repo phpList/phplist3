@@ -442,14 +442,12 @@ function ClineSignature()
 function ClineError($msg)
 {
     ob_end_clean();
-    echo ClineSignature();
     echo "\nError: $msg\n";
     exit;
 }
 
 function clineUsage($line = '')
 {
-    cl_output(clineSignature());
     cl_output( 'Usage: '.$_SERVER['SCRIPT_FILENAME']." -p page $line".PHP_EOL);
 }
 
