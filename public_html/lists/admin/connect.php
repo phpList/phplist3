@@ -759,11 +759,6 @@ $GLOBALS['pagecategories'] = array(
             'catlists',
         ),
     ),
-    'update'   => array(
-        'toplink'=> 'redirecttoupdater',
-        'pages'  => array(),
-        'menulinks' => array(),
-    ),
     //'info' => array(
         //'toplink' => 'about',
         //'pages'   => array(
@@ -787,6 +782,13 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
+if(ALLOW_UPDATER){
+    $GLOBALS['pagecategories']['update'] = array(
+        'toplink'=> 'redirecttoupdater',
+        'pages'  => array(),
+        'menulinks' => array(),
+    );
+}
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
         'toplink' => 'develop',
