@@ -862,3 +862,7 @@ define('FORWARD_PERSONAL_NOTE_SIZE', 0);
 // This will show an extra tab in the message dialog.
 define('FORWARD_ALTERNATIVE_CONTENT', 0);
 
+// To disable the automatic updater change the value to false. By default the value it true.
+define('ALLOW_UPDATER', true);
+
+
