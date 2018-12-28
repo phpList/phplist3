@@ -13,7 +13,7 @@ Feature: Navigate the app using the menu
       | campaigns                 |
       | statistics                |
       | system                    |
-      | Configuration functions   |
+      | config   |
       | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
