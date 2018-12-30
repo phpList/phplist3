@@ -76,6 +76,10 @@ function outputProcessBounce($message, $reset = 0)
     $message = html_entity_decode($message, ENT_QUOTES, 'UTF-8');
     if ($GLOBALS['commandline']) {
         cl_output($message);
+    } elseif ($GLOBALS['inRemoteCall']) {
+        ob_end_clean();
+        echo $message, "\n";
+        ob_start();
     } else {
         if ($reset) {
             echo '<script language="Javascript" type="text/javascript">
