@@ -124,7 +124,6 @@ include 'send_core.php';
 if ($done) {
     if ($GLOBALS['commandline']) {
         ob_end_clean();
-        echo clineSignature();
         echo 'Message with subject '.$_POST['subject'].' was sent to '.$lists."\n";
         exit;
     }

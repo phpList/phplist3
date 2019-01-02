@@ -30,10 +30,6 @@ if (!$GLOBALS['commandline']) {
         //# we're in a normal session, so the csrf token should work
         verifyCsrfGetToken();
     }
-} else {
-    ob_end_clean();
-    echo ClineSignature();
-    ob_start();
 }
 
 flush();

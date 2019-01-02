@@ -19,9 +19,6 @@ if (!$GLOBALS['commandline']) {
         return;
     }
 } else {
-    @ob_end_clean();
-    echo ClineSignature();
-    ob_start();
     include dirname(__FILE__).'/actions/processqueue.php';
 
     return;

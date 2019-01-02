@@ -6,13 +6,10 @@ if (!$GLOBALS['commandline']) {
     echo '<p class="information">'.$GLOBALS['I18N']->get('Hint: this page also works from commandline').'</p>';
     $limit = 10000;
 } else {
-    @ob_end_clean();
-    echo ClineSignature();
     //# when on cl, doit immediately
     $_GET['doit'] = 'yes';
     //# on commandline handle more
     $limit = 50000;
-    ob_start();
 }
 
 function output($message)

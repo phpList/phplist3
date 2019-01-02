@@ -9,10 +9,6 @@ if (empty($GLOBALS['commandline'])) {
 
     return;
 }
-ob_end_clean();
-echo ClineSignature();
-ob_start();
-
 $locale_root = dirname(__FILE__).'/locale/';
 
 $force = isset($cline['f']);
