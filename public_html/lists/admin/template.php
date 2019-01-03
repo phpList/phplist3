@@ -55,7 +55,7 @@ $baseurl = '';
 
 if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     if (!$id) {
-        $msg = $GLOBALS['I18N']->get('No such template');
+        $msg = s('No such template');
     } else {
         $content_req = Sql_Fetch_Row_Query("select template from {$tables['template']} where id = $id");
         $images = getTemplateImages($content_req[0]);
@@ -67,9 +67,9 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
                 // printf('Image name: <b>%s</b> (%d times used)<br />',$key,$val);
                 $image->uploadImage($key, $id);
             }
-            $msg = $GLOBALS['I18N']->get('Images stored');
+            $msg = s('Images stored');
         } else {
-            $msg = $GLOBALS['I18N']->get('No images found');
+            $msg = s('No images found');
         }
     }
     $_SESSION['action_result'] = $msg.'<br/>'.s('Template saved and ready for use in campaigns');
@@ -81,7 +81,14 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { //# let's save when sending a test
     $templateok = 1;
     $title = $_POST['title'];
-    if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
+    $req = Sql_Query(sprintf('select * from %s where title = "%s" ',$tables['template'], sql_escape($title)));
+    if(Sql_Affected_Rows()){
+        $titleExists = true;
+    }else {
+        $titleExists = false;
+    }
+
+    if (!empty($title) && strpos($content, '[CONTENT]') !== false && !$titleExists) {
         $images = getTemplateImages($content);
 
         //   var_dump($images);
@@ -90,14 +97,14 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
             foreach ($images as $key => $val) {
                 if (!preg_match('#^https?://#i', $key)) {
                     if ($checkfullimages) {
-                        $actionresult .= $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('"not full URL')."<br/>\n";
+                        $actionresult .= s('Image')." $key => ".s('"not full URL')."<br/>\n";
                         $templateok = 0;
                     }
                 } else {
                     if ($checkimagesexist) {
                         $imageFound = testUrl($key);
                         if ($imageFound != 200) {
-                            $actionresult .= $GLOBALS['I18N']->get('Image')." $key => ".$GLOBALS['I18N']->get('does not exist')."<br/>\n";
+                            $actionresult .= s('Image')." $key => ".s('does not exist')."<br/>\n";
                             $templateok = 0;
                         }
                     }
@@ -110,16 +117,18 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
                 if (!preg_match('#^https?://#i', $val) && !preg_match('#^mailto:#i', $val)
                     && !(strtoupper($val) == '[PREFERENCESURL]' || strtoupper($val) == '[UNSUBSCRIBEURL]' || strtoupper($val) == '[BLACKLISTURL]' || strtoupper($val) == '[FORWARDURL]' || strtoupper($val) == '[CONFIRMATIONURL]')
                 ) {
-                    $actionresult .= $GLOBALS['I18N']->get('Not a full URL').": $val<br/>\n";
+                    $actionresult .= s('Not a full URL').": $val<br/>\n";
                     $templateok = 0;
                 }
             }
         }
     } else {
         if (!$title) {
-            $actionresult .= $GLOBALS['I18N']->get('No Title').'<br/>';
+            $actionresult .= s('No Title').'<br/>';
+        }elseif ($titleExists){
+            $actionresult .= s('The title of the template exists.').'<br/>';
         } else {
-            $actionresult .= $GLOBALS['I18N']->get('Template does not contain the [CONTENT] placeholder').'<br/>';
+            $actionresult .= s('Template does not contain the [CONTENT] placeholder').'<br/>';
         }
         $templateok = 0;
     }
@@ -158,8 +167,8 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         if (count($missingImages) && empty($_POST['sendtest'])) {
             include dirname(__FILE__).'/class.image.inc';
             $image = new imageUpload();
-            echo '<h3>'.$GLOBALS['I18N']->get('Images').'</h3><p class="information">'.$GLOBALS['I18N']->get('Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.').'</p>';
-            echo '<p class="information">'.$GLOBALS['I18N']->get('This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template.').'</p>';
+            echo '<h3>'.s('Images').'</h3><p class="information">'.s('Below is the list of images used in your template. If an image is currently unavailable, please upload it to the database.').'</p>';
+            echo '<p class="information">'.s('This includes all images, also fully referenced ones, so you may choose not to upload some. If you upload images, they will be included in the campaigns that use this template.').'</p>';
             echo formStart('enctype="multipart/form-data" class="template1" ');
             echo '<input type="hidden" name="id" value="'.$id.'" />';
             ksort($images);
@@ -170,26 +179,26 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
                     $missingImage = true;
                     $imageFound = testUrl($key);
                     if ($imageFound != 200) {
-                        printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',
+                        printf(s('Image name:').' <b>%s</b> ('.s('%d times used').')<br/>',
                             $key, $val);
                         echo $image->showInput($key, $val, $id);
                     }
                 } else {
-                    printf($GLOBALS['I18N']->get('Image name:').' <b>%s</b> ('.$GLOBALS['I18N']->get('%d times used').')<br/>',
+                    printf(s('Image name:').' <b>%s</b> ('.s('%d times used').')<br/>',
                         $key, $val);
                     echo $image->showInput($key, $val, $id);
                 }
             }
 
             echo '<input type="hidden" name="id" value="'.$id.'" /><input type="hidden" name="action" value="addimages" />
-        <input class="submit" type="submit" name="addimages" value="' .$GLOBALS['I18N']->get('Save Images').'" /></form>';
+        <input class="submit" type="submit" name="addimages" value="' .s('Save Images').'" /></form>';
             if (empty($_POST['sendtest'])) {
                 return;
             }
             //    return;
         } else {
             $_SESSION['action_result'] = s('Template was successfully saved');
-//      print '<p class="information">'.$GLOBALS['I18N']->get('Template does not contain local images')."</p>";
+//      print '<p class="information">'.s('Template does not contain local images')."</p>";
             if (empty($_POST['sendtest'])) {
                 Redirect('templates');
 
@@ -198,7 +207,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
             //    return;
         }
     } else {
-        $actionresult .= $GLOBALS['I18N']->get('Some errors were found, template NOT saved!');
+        $actionresult .= s('Some errors were found, template NOT saved!');
         $data['title'] = $title;
         $data['template'] = $content;
     }
@@ -209,32 +218,32 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         $testtarget = '';
 
         if ($id == $systemTemplateID) {
-            $actionresult .= '<h3>'.$GLOBALS['I18N']->get('Sending test').'</h3>';
+            $actionresult .= '<h3>'.s('Sending test').'</h3>';
             foreach ($targetEmails as $email) {
                 if (validateEmail($email)) {
                     $testtarget .= $email.', ';
-                    $actionresult .= $GLOBALS['I18N']->get('Sending test "Request for confirmation" to').' '.$email.'  ';
+                    $actionresult .= s('Sending test "Request for confirmation" to').' '.$email.'  ';
                     if (sendMail($email, getConfig('subscribesubject'), getConfig('subscribemessage'))) {
                         $actionresult .= s('OK');
                     } else {
                         $actionresult .= s('FAILED');
                     }
                     $actionresult .= '<br/>';
-                    $actionresult .= $GLOBALS['I18N']->get('Sending test "Welcome" to').' '.$email.'  ';
+                    $actionresult .= s('Sending test "Welcome" to').' '.$email.'  ';
                     if (sendMail($email, getConfig('confirmationsubject'), getConfig('confirmationmessage'))) {
                         $actionresult .= s('OK');
                     } else {
                         $actionresult .= s('FAILED');
                     }
                     $actionresult .= '<br/>';
-                    $actionresult .= $GLOBALS['I18N']->get('Sending test "Unsubscribe confirmation" to').' '.$email.'  ';
+                    $actionresult .= s('Sending test "Unsubscribe confirmation" to').' '.$email.'  ';
                     if (sendMail($email, getConfig('unsubscribesubject'), getConfig('unsubscribemessage'))) {
                         $actionresult .= s('OK');
                     } else {
                         $actionresult .= s('FAILED');
                     }
                 } elseif (trim($email) != '') {
-                    $actionresult .= '<p>'.$GLOBALS['I18N']->get('Error sending test messages to').' '.htmlspecialchars($email).'</p>';
+                    $actionresult .= '<p>'.s('Error sending test messages to').' '.htmlspecialchars($email).'</p>';
                 }
             }
         } else {
@@ -269,7 +278,7 @@ if ($id) {
 ?>
 
 <p class="information"><?php echo $msg ?></p>
-<?php echo '<p class="button pull-right">'.PageLink2('templates', $GLOBALS['I18N']->get('List of Templates')).'</p><div class="clearfix"></div>'; ?>
+<?php echo '<p class="button pull-right">'.PageLink2('templates', s('List of Templates')).'</p><div class="clearfix"></div>'; ?>
 
 <?php echo formStart(' enctype="multipart/form-data" class="template2" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
@@ -277,7 +286,7 @@ if ($id) {
     <table class="templateForm">
         <tr>
 
-            <td><?php echo $GLOBALS['I18N']->get('Title of this template') ?></td>
+            <td><?php echo s('Title of this template') ?></td>
             <td><input type="text" name="title" value="<?php echo stripslashes(htmlspecialchars($data['title'])) ?>"
                        size="30"/></td>
         </tr>
@@ -311,12 +320,12 @@ if ($id) {
   <td><input type="text" name="baseurl" size="40" value="<?php echo htmlspecialchars($baseurl) ?>" /></td>
 </tr-->
         <tr>
-            <td><?php echo $GLOBALS['I18N']->get('Check that all links have a full URL') ?></td>
+            <td><?php echo s('Check that all links have a full URL') ?></td>
             <td><input type="checkbox" name="checkfulllinks" <?php echo $checkfulllinks ? 'checked="checked"' : '' ?> />
             </td>
         </tr>
         <tr>
-            <td><?php echo $GLOBALS['I18N']->get('Check that all images have a full URL') ?></td>
+            <td><?php echo s('Check that all images have a full URL') ?></td>
             <td><input type="checkbox"
                        name="checkfullimages" <?php echo $checkfullimages ? 'checked="checked"' : '' ?> /></td>
         </tr>
@@ -324,7 +333,7 @@ if ($id) {
         <?php if ($GLOBALS['can_fetchUrl']) {
                     ?>
             <tr>
-                <td><?php echo $GLOBALS['I18N']->get('Check that all external images exist') ?></td>
+                <td><?php echo s('Check that all external images exist') ?></td>
                 <td><input type="checkbox"
                            name="checkimagesexist" <?php echo $checkimagesexist ? 'checked="checked"' : '' ?> /></td>
             </tr>
@@ -333,7 +342,7 @@ if ($id) {
                 } ?>
         <tr>
             <td colspan="2"><input class="submit" type="submit" name="save"
-                                   value="<?php echo $GLOBALS['I18N']->get('Save Changes') ?>"/></td>
+                                   value="<?php echo s('Save Changes') ?>"/></td>
         </tr>
     </table>
 </div></div>
@@ -342,9 +351,9 @@ if ($id) {
     <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
     <input type="text" name="testtarget" size="40" value="' .htmlspecialchars($testtarget).'"/><br />%s
     </div>',
-    $GLOBALS['I18N']->get('Send test message'), $GLOBALS['I18N']->get('to email addresses'),
-    $GLOBALS['I18N']->get('(comma separate addresses - all must be existing subscribers)'));
-$testpanel = new UIPanel($GLOBALS['I18N']->get('Send Test'), $sendtest_content);
+    s('Send test message'), s('to email addresses'),
+    s('(comma separate addresses - all must be existing subscribers)'));
+$testpanel = new UIPanel(s('Send Test'), $sendtest_content);
 $testpanel->setID('testpanel');
   if ($systemTemplateID == $id) { ## for now, testing only for system message templates
 echo $testpanel->display();
