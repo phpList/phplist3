@@ -198,15 +198,15 @@ msgstr ""
 msgid "delete all"
 msgstr ""
 
-#: public_html/lists/admin/send.php:144
+#: public_html/lists/admin/send.php:143
 msgid "Please select the lists you want to send your campaign to"
 msgstr ""
 
-#: public_html/lists/admin/send.php:151
+#: public_html/lists/admin/send.php:150
 msgid "Please select the lists you want to exclude from this campaign"
 msgstr ""
 
-#: public_html/lists/admin/send.php:157
+#: public_html/lists/admin/send.php:156
 msgid ""
 "The campaign will go to users who are a member of the lists above,     "
 "unless they are a member of one of the lists you select here."
@@ -226,7 +226,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:390
 #: public_html/lists/admin/initialise.php:249
-#: public_html/lists/admin/upgrade.php:428
+#: public_html/lists/admin/upgrade.php:425
 msgid "Upgrade"
 msgstr ""
 
@@ -276,7 +276,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: public_html/lists/admin/home.php:86 public_html/lists/admin/index.php:500
+#: public_html/lists/admin/home.php:86 public_html/lists/admin/index.php:499
 msgid "Continue Configuration"
 msgstr ""
 
@@ -469,7 +469,7 @@ msgstr ""
 msgid "Process the Message Queue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:302 public_html/lists/admin/connect.php:567
+#: public_html/lists/admin/home.php:302 public_html/lists/admin/connect.php:565
 msgid "warning"
 msgstr ""
 
@@ -647,217 +647,217 @@ msgstr ""
 msgid "Invalid value for email address"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:463
+#: public_html/lists/admin/connect.php:461
 msgid "error"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:521
+#: public_html/lists/admin/connect.php:519
 msgid "Too many errors, please login again"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:531
-#: public_html/lists/admin/connect.php:536
+#: public_html/lists/admin/connect.php:529
+#: public_html/lists/admin/connect.php:534
 msgid "fatalerror"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:557
+#: public_html/lists/admin/connect.php:555
 msgid "Documentation about this error"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:560
+#: public_html/lists/admin/connect.php:558
 #: public_html/lists/admin/plugins.php:290
 msgid "More information"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:876
+#: public_html/lists/admin/connect.php:874
 msgid "Main Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:877
+#: public_html/lists/admin/connect.php:875
 msgid "about"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:945
+#: public_html/lists/admin/connect.php:943
 msgid "In this section"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:984
+#: public_html/lists/admin/connect.php:982
 msgid "Recently visited"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1325
+#: public_html/lists/admin/connect.php:1323
 msgid "All Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1331
+#: public_html/lists/admin/connect.php:1329
 msgid "All Public Lists"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1335
+#: public_html/lists/admin/connect.php:1333
 #: public_html/lists/admin/import2.php:646 public_html/lists/admin/list.php:95
 #: public_html/lists/admin/list.php:99 public_html/lists/admin/list.php:325
 #: public_html/lists/admin/import3.php:43
 msgid "Add a list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1346
+#: public_html/lists/admin/connect.php:1344
 #: public_html/lists/admin/list.php:135 public_html/lists/admin/list.php:145
 #: public_html/lists/admin/list.php:167 public_html/lists/admin/list.php:175
 msgid "Uncategorised"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1363
+#: public_html/lists/admin/connect.php:1361
 msgid "Public list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1365
+#: public_html/lists/admin/connect.php:1363
 msgid "Private list"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1412
-#: public_html/lists/admin/connect.php:1415
+#: public_html/lists/admin/connect.php:1410
+#: public_html/lists/admin/connect.php:1413
 #: public_html/lists/admin/export.php:131
 msgid "Select all"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1429
+#: public_html/lists/admin/connect.php:1427
 msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1687
+#: public_html/lists/admin/connect.php:1685
 #: public_html/lists/admin/systemstats.php:13
 #: public_html/lists/admin/date.php:27
 msgid "January"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1688
+#: public_html/lists/admin/connect.php:1686
 #: public_html/lists/admin/systemstats.php:14
 #: public_html/lists/admin/date.php:28
 msgid "February"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1689
+#: public_html/lists/admin/connect.php:1687
 #: public_html/lists/admin/systemstats.php:15
 #: public_html/lists/admin/date.php:29
 msgid "March"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1690
+#: public_html/lists/admin/connect.php:1688
 #: public_html/lists/admin/systemstats.php:16
 #: public_html/lists/admin/date.php:30
 msgid "April"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1691
-#: public_html/lists/admin/connect.php:1706
+#: public_html/lists/admin/connect.php:1689
+#: public_html/lists/admin/connect.php:1704
 #: public_html/lists/admin/systemstats.php:17
 #: public_html/lists/admin/systemstats.php:32
 #: public_html/lists/admin/date.php:31
 msgid "May"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1692
+#: public_html/lists/admin/connect.php:1690
 #: public_html/lists/admin/systemstats.php:18
 #: public_html/lists/admin/date.php:32
 msgid "June"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1693
+#: public_html/lists/admin/connect.php:1691
 #: public_html/lists/admin/systemstats.php:19
 #: public_html/lists/admin/date.php:33
 msgid "July"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1694
+#: public_html/lists/admin/connect.php:1692
 #: public_html/lists/admin/systemstats.php:20
 #: public_html/lists/admin/date.php:34
 msgid "August"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1695
+#: public_html/lists/admin/connect.php:1693
 #: public_html/lists/admin/systemstats.php:21
 #: public_html/lists/admin/date.php:35
 msgid "September"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1696
+#: public_html/lists/admin/connect.php:1694
 #: public_html/lists/admin/systemstats.php:22
 #: public_html/lists/admin/date.php:36
 msgid "October"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1697
+#: public_html/lists/admin/connect.php:1695
 #: public_html/lists/admin/systemstats.php:23
 #: public_html/lists/admin/date.php:37
 msgid "November"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1698
+#: public_html/lists/admin/connect.php:1696
 #: public_html/lists/admin/systemstats.php:24
 #: public_html/lists/admin/date.php:38
 msgid "December"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1702
+#: public_html/lists/admin/connect.php:1700
 #: public_html/lists/admin/systemstats.php:28
 msgid "Jan"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1703
+#: public_html/lists/admin/connect.php:1701
 #: public_html/lists/admin/systemstats.php:29
 msgid "Feb"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1704
+#: public_html/lists/admin/connect.php:1702
 #: public_html/lists/admin/systemstats.php:30
 msgid "Mar"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1705
+#: public_html/lists/admin/connect.php:1703
 #: public_html/lists/admin/systemstats.php:31
 msgid "Apr"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1707
+#: public_html/lists/admin/connect.php:1705
 #: public_html/lists/admin/systemstats.php:33
 msgid "Jun"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1708
+#: public_html/lists/admin/connect.php:1706
 #: public_html/lists/admin/systemstats.php:34
 msgid "Jul"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1709
+#: public_html/lists/admin/connect.php:1707
 #: public_html/lists/admin/systemstats.php:35
 msgid "Aug"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1710
+#: public_html/lists/admin/connect.php:1708
 #: public_html/lists/admin/systemstats.php:36
 msgid "Sep"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1711
+#: public_html/lists/admin/connect.php:1709
 #: public_html/lists/admin/systemstats.php:37
 msgid "Oct"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1712
+#: public_html/lists/admin/connect.php:1710
 #: public_html/lists/admin/systemstats.php:38
 msgid "Nov"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1713
+#: public_html/lists/admin/connect.php:1711
 #: public_html/lists/admin/systemstats.php:39
 msgid "Dec"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2119
+#: public_html/lists/admin/connect.php:2117
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2127
+#: public_html/lists/admin/connect.php:2125
 #: public_html/lists/admin/import4.php:177
 #: public_html/lists/admin/import4.php:186
 #: public_html/lists/admin/attributes.php:365
@@ -865,35 +865,35 @@ msgstr ""
 msgid "Attribute"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2127
+#: public_html/lists/admin/connect.php:2125
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2214
+#: public_html/lists/admin/connect.php:2212
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2216
+#: public_html/lists/admin/connect.php:2214
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2231
+#: public_html/lists/admin/connect.php:2229
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2232
+#: public_html/lists/admin/connect.php:2230
 #: public_html/lists/admin/inc/interfacelib.php:832
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2234
+#: public_html/lists/admin/connect.php:2232
 #: public_html/lists/admin/inc/interfacelib.php:873
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2236
+#: public_html/lists/admin/connect.php:2234
 msgid "Last Page"
 msgstr ""
 
@@ -1293,7 +1293,7 @@ msgid "Unknown error"
 msgstr ""
 
 #: public_html/lists/admin/lib.php:2044
-#: public_html/lists/admin/processqueue.php:99
+#: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
@@ -1818,269 +1818,269 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:23
 #: public_html/lists/admin/actions/processqueue.php:17
-#: public_html/lists/admin/index.php:342
+#: public_html/lists/admin/index.php:341
 msgid "Incorrect processing secret"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:56
+#: public_html/lists/admin/processbounces.php:52
 msgid "Bounce processing error"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:58
+#: public_html/lists/admin/processbounces.php:54
 msgid "Bounce Processing info"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:243
+#: public_html/lists/admin/processbounces.php:239
 msgid "system message bounced, user marked unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:244
+#: public_html/lists/admin/processbounces.php:240
 msgid "Bounced system message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:245
+#: public_html/lists/admin/processbounces.php:241
 msgid "User marked unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:246
+#: public_html/lists/admin/processbounces.php:242
 msgid "View Bounce"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:316
+#: public_html/lists/admin/processbounces.php:312
 msgid "system message bounced, but unknown user"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:359
+#: public_html/lists/admin/processbounces.php:355
 #: public_html/lists/admin/readtestmail.php:207
 msgid "Cannot create POP3 connection to"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:377
+#: public_html/lists/admin/processbounces.php:373
 #: public_html/lists/admin/readtestmail.php:225
 msgid "Cannot open mailbox file"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:389
+#: public_html/lists/admin/processbounces.php:385
 #, php-format
 msgid "%d bounces to fetch from the mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:396
+#: public_html/lists/admin/processbounces.php:392
 #: public_html/lists/admin/readtestmail.php:240
 msgid "Please do not interrupt this process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:397
+#: public_html/lists/admin/processbounces.php:393
 #, php-format
 msgid "%d bounces to process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:399
-#: public_html/lists/admin/processbounces.php:400
+#: public_html/lists/admin/processbounces.php:395
+#: public_html/lists/admin/processbounces.php:396
 #, php-format
 msgid "Processing first %d bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:404
+#: public_html/lists/admin/processbounces.php:400
 msgid "Running in test mode, not deleting messages from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:406
+#: public_html/lists/admin/processbounces.php:402
 msgid "Processed messages will be deleted from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:423
-#: public_html/lists/admin/processbounces.php:432
+#: public_html/lists/admin/processbounces.php:419
+#: public_html/lists/admin/processbounces.php:428
 #: public_html/lists/admin/readtestmail.php:265
 #: public_html/lists/admin/readtestmail.php:270
 msgid "Deleting message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:427
+#: public_html/lists/admin/processbounces.php:423
 msgid "Not deleting processed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:436
+#: public_html/lists/admin/processbounces.php:432
 msgid "Not deleting unprocessed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:442
+#: public_html/lists/admin/processbounces.php:438
 #: public_html/lists/admin/readtestmail.php:277
 msgid "Closing mailbox, and purging messages"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:450
+#: public_html/lists/admin/processbounces.php:446
 #: public_html/lists/admin/readtestmail.php:292
 msgid "IMAP is not included in your PHP installation, cannot continue"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:451
+#: public_html/lists/admin/processbounces.php:447
 #: public_html/lists/admin/readtestmail.php:293
 msgid "Check out"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:458
+#: public_html/lists/admin/processbounces.php:454
 msgid "Bounce mechanism not properly configured"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:468
+#: public_html/lists/admin/processbounces.php:464
 msgid "Force set, killing other send processes"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:488
+#: public_html/lists/admin/processbounces.php:484
 msgid "bounce_protocol not supported"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:494
+#: public_html/lists/admin/processbounces.php:490
 msgid "Download failed, exiting"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:507
+#: public_html/lists/admin/processbounces.php:503
 #, php-format
 msgid "%d bounces to reprocess"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:511
-#: public_html/lists/admin/processbounces.php:523
+#: public_html/lists/admin/processbounces.php:507
+#: public_html/lists/admin/processbounces.php:519
 #, php-format
 msgid "%d out of %d processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:525
+#: public_html/lists/admin/processbounces.php:521
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:530
+#: public_html/lists/admin/processbounces.php:526
 msgid "Processing bounces based on active bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:544
+#: public_html/lists/admin/processbounces.php:540
 #, php-format
 msgid "processed %d out of %d bounces for advanced bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:553
+#: public_html/lists/admin/processbounces.php:549
 #: public_html/lists/admin/actions/processqueue.php:1001
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:596
-#: public_html/lists/admin/processbounces.php:780
+#: public_html/lists/admin/processbounces.php:592
+#: public_html/lists/admin/processbounces.php:776
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:597
-#: public_html/lists/admin/processbounces.php:620
+#: public_html/lists/admin/processbounces.php:593
+#: public_html/lists/admin/processbounces.php:616
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:597
-#: public_html/lists/admin/processbounces.php:620
-#: public_html/lists/admin/processbounces.php:635
-#: public_html/lists/admin/processbounces.php:649
-#: public_html/lists/admin/processbounces.php:663
-#: public_html/lists/admin/processbounces.php:675
+#: public_html/lists/admin/processbounces.php:593
+#: public_html/lists/admin/processbounces.php:616
+#: public_html/lists/admin/processbounces.php:631
+#: public_html/lists/admin/processbounces.php:645
+#: public_html/lists/admin/processbounces.php:659
+#: public_html/lists/admin/processbounces.php:671
 msgid "bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:619
+#: public_html/lists/admin/processbounces.php:615
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:630
+#: public_html/lists/admin/processbounces.php:626
 msgid "Subscriber auto blacklisted  by bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:634
-#: public_html/lists/admin/processbounces.php:648
-#: public_html/lists/admin/processbounces.php:662
-#: public_html/lists/admin/processbounces.php:674
+#: public_html/lists/admin/processbounces.php:630
+#: public_html/lists/admin/processbounces.php:644
+#: public_html/lists/admin/processbounces.php:658
+#: public_html/lists/admin/processbounces.php:670
 msgid "Auto Unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:635
-#: public_html/lists/admin/processbounces.php:649
-#: public_html/lists/admin/processbounces.php:675
+#: public_html/lists/admin/processbounces.php:631
+#: public_html/lists/admin/processbounces.php:645
+#: public_html/lists/admin/processbounces.php:671
 msgid "User auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:644
+#: public_html/lists/admin/processbounces.php:640
 #, php-format
 msgid "Subscriber auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:658
-#: public_html/lists/admin/processbounces.php:670
+#: public_html/lists/admin/processbounces.php:654
+#: public_html/lists/admin/processbounces.php:666
 #, php-format
 msgid "Email address auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:663
+#: public_html/lists/admin/processbounces.php:659
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:693
+#: public_html/lists/admin/processbounces.php:689
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:694
+#: public_html/lists/admin/processbounces.php:690
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:698
+#: public_html/lists/admin/processbounces.php:694
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:708
-#: public_html/lists/admin/cron.php:58
+#: public_html/lists/admin/processbounces.php:704
+#: public_html/lists/admin/cron.php:55
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:777
+#: public_html/lists/admin/processbounces.php:773
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:781
+#: public_html/lists/admin/processbounces.php:777
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:791
+#: public_html/lists/admin/processbounces.php:787
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:792
+#: public_html/lists/admin/processbounces.php:788
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:804
+#: public_html/lists/admin/processbounces.php:800
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:811
+#: public_html/lists/admin/processbounces.php:807
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:816
+#: public_html/lists/admin/processbounces.php:812
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:819
+#: public_html/lists/admin/processbounces.php:815
 msgid ""
 "Below are users who have been marked unconfirmed. The number in () is the "
 "number of consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:823
+#: public_html/lists/admin/processbounces.php:819
 msgid "Report:"
 msgstr ""
 
@@ -2322,156 +2322,160 @@ msgstr ""
 msgid "Template saved and ready for use in campaigns"
 msgstr ""
 
-#: public_html/lists/admin/template.php:93
 #: public_html/lists/admin/template.php:100
+#: public_html/lists/admin/template.php:107
 msgid "Image"
 msgstr ""
 
-#: public_html/lists/admin/template.php:93
+#: public_html/lists/admin/template.php:100
 msgid "\"not full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:100
+#: public_html/lists/admin/template.php:107
 msgid "does not exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:113
+#: public_html/lists/admin/template.php:120
 msgid "Not a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:120
+#: public_html/lists/admin/template.php:127
 msgid "No Title"
 msgstr ""
 
-#: public_html/lists/admin/template.php:122
+#: public_html/lists/admin/template.php:129
+msgid "The title of the template exists."
+msgstr ""
+
+#: public_html/lists/admin/template.php:131
 msgid "Template does not contain the [CONTENT] placeholder"
 msgstr ""
 
-#: public_html/lists/admin/template.php:142
+#: public_html/lists/admin/template.php:151
 msgid "Template saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:161
+#: public_html/lists/admin/template.php:170
 msgid "Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:161
+#: public_html/lists/admin/template.php:170
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
 
-#: public_html/lists/admin/template.php:162
+#: public_html/lists/admin/template.php:171
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:173
-#: public_html/lists/admin/template.php:178
+#: public_html/lists/admin/template.php:182
+#: public_html/lists/admin/template.php:187
 msgid "Image name:"
 msgstr ""
 
-#: public_html/lists/admin/template.php:173
-#: public_html/lists/admin/template.php:178
+#: public_html/lists/admin/template.php:182
+#: public_html/lists/admin/template.php:187
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:185
+#: public_html/lists/admin/template.php:194
 msgid "Save Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:191
+#: public_html/lists/admin/template.php:200
 msgid "Template was successfully saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:201
+#: public_html/lists/admin/template.php:210
 msgid "Some errors were found, template NOT saved!"
 msgstr ""
 
-#: public_html/lists/admin/template.php:212
+#: public_html/lists/admin/template.php:221
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:216
+#: public_html/lists/admin/template.php:225
 msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:218
-#: public_html/lists/admin/template.php:225
-#: public_html/lists/admin/template.php:232
+#: public_html/lists/admin/template.php:227
+#: public_html/lists/admin/template.php:234
+#: public_html/lists/admin/template.php:241
 #: public_html/lists/admin/tests/sendpage.php:32
 #: public_html/lists/admin/tests/sendpage.php:40
 msgid "OK"
 msgstr ""
 
-#: public_html/lists/admin/template.php:220
-#: public_html/lists/admin/template.php:227
-#: public_html/lists/admin/template.php:234
+#: public_html/lists/admin/template.php:229
+#: public_html/lists/admin/template.php:236
+#: public_html/lists/admin/template.php:243
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:223
+#: public_html/lists/admin/template.php:232
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:230
+#: public_html/lists/admin/template.php:239
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:237
+#: public_html/lists/admin/template.php:246
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:242
+#: public_html/lists/admin/template.php:251
 msgid "Sending a test from templates only works for the system template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:243
+#: public_html/lists/admin/template.php:252
 msgid ""
 "To test your template, go to campaigns and send a test campaign using the "
 "template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:272
+#: public_html/lists/admin/template.php:281
 msgid "List of Templates"
 msgstr ""
 
-#: public_html/lists/admin/template.php:280
+#: public_html/lists/admin/template.php:289
 msgid "Title of this template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:285
+#: public_html/lists/admin/template.php:294
 msgid "Content of the template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:286
+#: public_html/lists/admin/template.php:295
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:287
+#: public_html/lists/admin/template.php:296
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
 
-#: public_html/lists/admin/template.php:290
+#: public_html/lists/admin/template.php:299
 msgid "Template file."
 msgstr ""
 
-#: public_html/lists/admin/template.php:314
+#: public_html/lists/admin/template.php:323
 msgid "Check that all links have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:319
+#: public_html/lists/admin/template.php:328
 msgid "Check that all images have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:327
+#: public_html/lists/admin/template.php:336
 msgid "Check that all external images exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:336
+#: public_html/lists/admin/template.php:345
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:156
 #: public_html/lists/admin/list.php:295 public_html/lists/admin/user.php:504
@@ -2485,23 +2489,23 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: public_html/lists/admin/template.php:345
+#: public_html/lists/admin/template.php:354
 #: public_html/lists/admin/spageedit.php:307
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:345
+#: public_html/lists/admin/template.php:354
 #: public_html/lists/admin/spageedit.php:307
 msgid "to email addresses"
 msgstr ""
 
-#: public_html/lists/admin/template.php:346
+#: public_html/lists/admin/template.php:355
 #: public_html/lists/admin/send_core.php:994
 #: public_html/lists/admin/spageedit.php:308
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/template.php:347
+#: public_html/lists/admin/template.php:356
 #: public_html/lists/admin/send_core.php:998
 #: public_html/lists/admin/send_core.php:1362
 #: public_html/lists/admin/spageedit.php:309
@@ -3555,24 +3559,24 @@ msgid "Converting DB to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:74
-#: public_html/lists/admin/upgrade.php:218
+#: public_html/lists/admin/upgrade.php:215
 msgid "Upgrading the database to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:77
 #: public_html/lists/admin/converttoutf8.php:79
-#: public_html/lists/admin/upgrade.php:221
+#: public_html/lists/admin/upgrade.php:218
 msgid "Upgrading table "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:85
 #: public_html/lists/admin/converttoutf8.php:87
-#: public_html/lists/admin/upgrade.php:227
+#: public_html/lists/admin/upgrade.php:224
 msgid "Upgrading column "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:92
-#: public_html/lists/admin/upgrade.php:232
+#: public_html/lists/admin/upgrade.php:229
 msgid "upgrade to UTF-8, done"
 msgstr ""
 
@@ -3594,7 +3598,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:738 public_html/lists/admin/index.php:757
+#: public_html/lists/admin/index.php:737 public_html/lists/admin/index.php:756
 msgid "Access Denied"
 msgstr ""
 
@@ -4845,7 +4849,7 @@ msgid "Giving a UUID to %d campaigns"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:112
-#: public_html/lists/admin/upgrade.php:368
+#: public_html/lists/admin/upgrade.php:365
 msgid "Creating new table \"user_message_view\""
 msgstr ""
 
@@ -5632,11 +5636,11 @@ msgstr ""
 msgid "page"
 msgstr ""
 
-#: public_html/lists/admin/initlanguages.php:28
+#: public_html/lists/admin/initlanguages.php:24
 msgid "Initialising language"
 msgstr ""
 
-#: public_html/lists/admin/initlanguages.php:31
+#: public_html/lists/admin/initlanguages.php:27
 msgid "Up to date"
 msgstr ""
 
@@ -6161,18 +6165,18 @@ msgid "Domain Statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:15
-#: public_html/lists/admin/upgrade.php:409
+#: public_html/lists/admin/upgrade.php:406
 msgid "The clicktracking system has changed"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:16
-#: public_html/lists/admin/upgrade.php:410
+#: public_html/lists/admin/upgrade.php:407
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:18
-#: public_html/lists/admin/upgrade.php:411
+#: public_html/lists/admin/upgrade.php:408
 msgid "Convert Old data to new"
 msgstr ""
 
@@ -7023,7 +7027,7 @@ msgstr ""
 msgid "This page only works from commandline"
 msgstr ""
 
-#: public_html/lists/admin/updatetlds.php:17
+#: public_html/lists/admin/updatetlds.php:15
 #, php-format
 msgid "Now we have %d top level domains"
 msgstr ""
@@ -7476,7 +7480,7 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:227
-#: public_html/lists/admin/upgrade.php:400
+#: public_html/lists/admin/upgrade.php:397
 msgid "Success"
 msgstr ""
 
@@ -7512,144 +7516,144 @@ msgstr ""
 msgid "Hint: this page also works from commandline"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:54
+#: public_html/lists/admin/convertstats.php:51
 msgid "creating tables done"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:68
+#: public_html/lists/admin/convertstats.php:65
 #, php-format
 msgid "%d entries still to convert"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:75
+#: public_html/lists/admin/convertstats.php:72
 msgid "converting data"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:82
+#: public_html/lists/admin/convertstats.php:79
 msgid "processing cancelled"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:168
+#: public_html/lists/admin/convertstats.php:165
 msgid "Optimizing table to recover space"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:170
+#: public_html/lists/admin/convertstats.php:167
 msgid "Finished"
 msgstr ""
 
-#: public_html/lists/admin/convertstats.php:173
+#: public_html/lists/admin/convertstats.php:170
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/index.php:224
+#: public_html/lists/admin/index.php:223
 msgid "Available options:"
 msgstr ""
 
-#: public_html/lists/admin/index.php:270
+#: public_html/lists/admin/index.php:269
 msgid "Login not available. Create an account first."
 msgstr ""
 
-#: public_html/lists/admin/index.php:309
+#: public_html/lists/admin/index.php:308
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
 
-#: public_html/lists/admin/index.php:333
+#: public_html/lists/admin/index.php:332
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:367
+#: public_html/lists/admin/index.php:366
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:369
+#: public_html/lists/admin/index.php:368
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:376
+#: public_html/lists/admin/index.php:375
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:395
+#: public_html/lists/admin/index.php:394
 msgid "Your session timed out, please log in again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:400
+#: public_html/lists/admin/index.php:399
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:481
+#: public_html/lists/admin/index.php:480
 msgid "Main page"
 msgstr ""
 
-#: public_html/lists/admin/index.php:485
+#: public_html/lists/admin/index.php:484
 msgid "goodbye"
 msgstr ""
 
-#: public_html/lists/admin/index.php:489
+#: public_html/lists/admin/index.php:488
 msgid "good morning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:491
+#: public_html/lists/admin/index.php:490
 msgid "good afternoon"
 msgstr ""
 
-#: public_html/lists/admin/index.php:493
+#: public_html/lists/admin/index.php:492
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:508
+#: public_html/lists/admin/index.php:507
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:515
+#: public_html/lists/admin/index.php:514
 msgid "Running DEV version. All emails will be sent to "
 msgstr ""
 
-#: public_html/lists/admin/index.php:517
+#: public_html/lists/admin/index.php:516
 msgid "Running DEV version, but developer email is not set"
 msgstr ""
 
-#: public_html/lists/admin/index.php:521
-#: public_html/lists/admin/processqueue.php:32
+#: public_html/lists/admin/index.php:520
+#: public_html/lists/admin/processqueue.php:29
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:524
 msgid "Try automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:524
 msgid "automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:524
 msgid "here"
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:524
 msgid "beta"
 msgstr ""
 
-#: public_html/lists/admin/index.php:528
+#: public_html/lists/admin/index.php:527
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.3 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:532
+#: public_html/lists/admin/index.php:531
 msgid "Get some help"
 msgstr ""
 
-#: public_html/lists/admin/index.php:533
+#: public_html/lists/admin/index.php:532
 msgid "Download the latest version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:531
+#: public_html/lists/admin/index.php:530
 #, php-format
 msgid ""
 "Your phpList version is older than two years. Please %supgrade phpList</a> "
@@ -7657,60 +7661,60 @@ msgid ""
 "            Visit <a href=\"https://www.phplist.org/users/\" title=\""
 msgstr ""
 
-#: public_html/lists/admin/index.php:538
+#: public_html/lists/admin/index.php:537
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:543
+#: public_html/lists/admin/index.php:542
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:545
+#: public_html/lists/admin/index.php:544
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:558
+#: public_html/lists/admin/index.php:557
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:559
+#: public_html/lists/admin/index.php:558
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:561
+#: public_html/lists/admin/index.php:560
 #, php-format
 msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
-#: public_html/lists/admin/index.php:666
+#: public_html/lists/admin/index.php:665
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:688
+#: public_html/lists/admin/index.php:687
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:693
+#: public_html/lists/admin/index.php:692
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:734
+#: public_html/lists/admin/index.php:733
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:753 public_html/lists/admin/index.php:754
+#: public_html/lists/admin/index.php:752 public_html/lists/admin/index.php:753
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:761
+#: public_html/lists/admin/index.php:760
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:767
+#: public_html/lists/admin/index.php:766
 msgid "Sorry, not implemented yet"
 msgstr ""
 
@@ -7943,51 +7947,51 @@ msgstr ""
 msgid "Do not save, and go back to the lists"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:36
+#: public_html/lists/admin/processqueue.php:33
 msgid "This page requires Javascript to be enabled."
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:54
+#: public_html/lists/admin/processqueue.php:51
 msgid "To send your queue, you can now use the phpList.com service"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:61
+#: public_html/lists/admin/processqueue.php:58
 msgid "Set up using the service"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:68
+#: public_html/lists/admin/processqueue.php:65
 msgid "Use local processing"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:75
+#: public_html/lists/admin/processqueue.php:72
 msgid "Processing queued campaigns"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:80
+#: public_html/lists/admin/processqueue.php:77
 msgid "stop processing"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:81
+#: public_html/lists/admin/processqueue.php:78
 msgid "resume processing"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:94
+#: public_html/lists/admin/processqueue.php:91
 msgid "Using local processing"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:94
+#: public_html/lists/admin/processqueue.php:91
 msgid "Reset"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:97
+#: public_html/lists/admin/processqueue.php:94
 msgid "To send your queue, you use the service from phpList.com"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:98
+#: public_html/lists/admin/processqueue.php:95
 msgid "View progress"
 msgstr ""
 
-#: public_html/lists/admin/processqueue.php:100
+#: public_html/lists/admin/processqueue.php:97
 msgid "Reset choice"
 msgstr ""
 
@@ -8264,116 +8268,116 @@ msgstr ""
 msgid "click rate"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:41
+#: public_html/lists/admin/upgrade.php:38
 msgid ""
 "Another process is already upgrading this installation. Use -f to force "
 "upgrade, but only if you are sure the other process is no longer active."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:43
+#: public_html/lists/admin/upgrade.php:40
 msgid "Force Upgrade"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:43
+#: public_html/lists/admin/upgrade.php:40
 #, php-format
 msgid ""
 "Another process is already upgrading this installation. Click %s to force "
 "upgrade, but only if you are sure the other process is no longer active."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:53
+#: public_html/lists/admin/upgrade.php:50
 msgid "Your database version"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:56
+#: public_html/lists/admin/upgrade.php:53
 msgid ""
 "Please edit your config file and change \"mysql.inc\" to \"mysqli.inc\" to "
 "avoid future PHP incompatibility"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:62
+#: public_html/lists/admin/upgrade.php:59
 msgid ""
 "Your version is older than 3.2.0 and cannot be upgraded to this version. "
 "Please upgrade to 3.2.0 first and then try again."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:68
+#: public_html/lists/admin/upgrade.php:65
 #, php-format
 msgid ""
 "Your database is already the correct version (%s), including release date "
 "version (%s), there is no need to upgrade"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:73
+#: public_html/lists/admin/upgrade.php:70
 msgid ""
 "Your database is already the correct version, there is no need to upgrade"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:75
+#: public_html/lists/admin/upgrade.php:72
 msgid "update Top Level Domains"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:83
+#: public_html/lists/admin/upgrade.php:80
 msgid "Upgrading phpList to version "
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:102
+#: public_html/lists/admin/upgrade.php:99
 msgid "Please wait, upgrading your database, do not interrupt"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:235
+#: public_html/lists/admin/upgrade.php:232
 msgid "Database requires converting to UTF-8."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:236
+#: public_html/lists/admin/upgrade.php:233
 msgid "However, there is too little diskspace for this conversion"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:237
+#: public_html/lists/admin/upgrade.php:234
 msgid "Please do a manual conversion."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:238
+#: public_html/lists/admin/upgrade.php:235
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:345
+#: public_html/lists/admin/upgrade.php:342
 msgid ""
 "Giving a UUID to your subscribers and campaigns. If you have a lot of them, "
 "this may take a while."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:346
+#: public_html/lists/admin/upgrade.php:343
 msgid ""
 "If the page times out, you can reload. Or otherwise try to run the upgrade "
 "from commandline instead."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:346
+#: public_html/lists/admin/upgrade.php:343
 msgid "Documentation how to set up phpList commandline"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:415
+#: public_html/lists/admin/upgrade.php:412
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:420
+#: public_html/lists/admin/upgrade.php:417
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:425
+#: public_html/lists/admin/upgrade.php:422
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:426
+#: public_html/lists/admin/upgrade.php:423
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:427
+#: public_html/lists/admin/upgrade.php:424
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
