@@ -25,7 +25,6 @@ $user = sql_fetch_array($result);
 $bouncels = new WebblerListing(s('Bounces'));
 $bouncels->setElementHeading('Bounce ID');
 $bouncelist = '';
-$bounces = array();
 // check for bounces
 $req = Sql_Query(sprintf('
 select
@@ -46,7 +45,6 @@ if (Sql_Affected_Rows()) {
             PageURL2('bounce', s('view'), 'id=' . $row['bounce']));
         $bouncels->addColumn($row['bounce'], s('Campaign title'), stripslashes($messagedata['campaigntitle']));
         $bouncels->addColumn($row['bounce'], s('time'), $row['ftime']);
-        $bounces[$row['message']] = $row['ftime'];
     }
     echo $bouncels->display();
 } else {
