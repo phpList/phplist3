@@ -87,8 +87,8 @@ if ($fwdid && $msgid) {
   </table>';
     echo '<div class="fright">'.PageLinkButton('userclicks&fwdid='.$fwdid.'&msgid='.$msgid.'&dl=1',
             s('Download subscribers')).'</div>';
-    $query = sprintf('select htmlclicked, textclicked, user.email,user.id as userid,firstclick,date_format(latestclick,
-    "%%e %%b %%Y %%H:%%i") as latestclick,clicked from %s as uml_click, %s as user where uml_click.userid = user.id 
+    $query = sprintf('select htmlclicked, textclicked, user.email,user.id as userid,firstclick,latestclick,clicked
+    from %s as uml_click, %s as user where uml_click.userid = user.id 
     and uml_click.forwardid = %d and uml_click.messageid = %d
     and uml_click.clicked', $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['user'], $fwdid, $msgid);
 } elseif ($userid && $msgid) {
@@ -105,8 +105,8 @@ if ($fwdid && $msgid) {
   <tr><td>' .$GLOBALS['I18N']->get('Entered').'<td><td>'.$messagedata['entered'].'</td></tr>
   <tr><td>' .$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
   </table>';
-    $query = sprintf('select htmlclicked, textclicked,user.email,user.id as userid,firstclick,date_format(latestclick,
-    "%%e %%b %%Y %%H:%%i") as latestclick,clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
+    $query = sprintf('select htmlclicked, textclicked,user.email,user.id as userid,firstclick,latestclick,
+    clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
     and uml_click.userid = %d and uml_click.messageid = %d and forward.id = uml_click.forwardid',
         $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['user'], $GLOBALS['tables']['linktrack_forward'],
         $userid, $msgid);
@@ -119,7 +119,7 @@ if ($fwdid && $msgid) {
         SELECT user.email,
         user.id AS userid,
         MIN(firstclick) AS firstclick,
-        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        MAX(latestclick) AS latestclick,
         SUM(clicked) AS clicked
         FROM %s AS uml_click
         JOIN %s AS user ON uml_click.userid = user.id
@@ -149,7 +149,7 @@ if ($fwdid && $msgid) {
         SELECT DISTINCT user.email,
         user.id AS userid,
         MIN(firstclick) AS firstclick,
-        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        MAX(latestclick) AS latestclick,
         SUM(clicked) AS clicked
         FROM %s AS uml_click
         JOIN %s AS user ON uml_click.userid = user.id 
@@ -169,7 +169,7 @@ if ($fwdid && $msgid) {
         user.email,
         user.id AS userid,
         MIN(firstclick) AS firstclick,
-        DATE_FORMAT(MAX(latestclick), "%%e %%b %%Y %%H:%%i") AS latestclick,
+        MAX(latestclick) AS latestclick,
         SUM(clicked) AS clicked,
         GROUP_CONCAT(messageid ORDER BY messageid SEPARATOR \' \') AS messageid,
         forwardid,
@@ -243,7 +243,7 @@ while ($row = Sql_Fetch_Array($req)) {
                 $userStatus['confirmed'] && empty($userStatus['blacklisted']) ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
         }
         $ls->addColumn($element, $GLOBALS['I18N']->get('firstclick'), formatDateTime($row['firstclick'], 1));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('latestclick'), $row['latestclick']);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('latestclick'), formatDateTime($row['latestclick'], 1));
         $ls->addColumn($element, $GLOBALS['I18N']->get('clicks'), $row['clicked'].$ls_userid);
         if (!empty($row['htmlclicked']) && !empty($row['textclicked'])) {
             $ls->addRow($element,

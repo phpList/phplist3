@@ -94,9 +94,9 @@ echo PageLinkButton('userclicks&fwdid='.$id, s('View subscribers'));
 if ($download) {
     header('Content-disposition:  attachment; filename="phpList URL click statistics for '.$urldata['url'].'.csv"');
 }
-$req = Sql_Query(sprintf('select messageid,firstclick,date_format(latestclick,
-  "%%e %%b %%Y %%H:%%i") as latestclick,total,clicked from %s where forwardid = %d and firstclick is not null order by firstclick desc
-  ', $GLOBALS['tables']['linktrack_ml'], $id));
+$req = Sql_Query(sprintf('select messageid,firstclick,latestclick,total,clicked
+    from %s where forwardid = %d and firstclick is not null order by firstclick desc',
+    $GLOBALS['tables']['linktrack_ml'], $id));
 $summary = array();
 $summary['totalsent'] = 0;
 $summary['totalclicks'] = 0;
@@ -128,7 +128,7 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addElement($element, PageUrl2('mclicks&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
     $ls->addColumn($element, $GLOBALS['I18N']->get('firstclick'), formatDateTime($row['firstclick'], 1));
-    $ls->addColumn($element, $GLOBALS['I18N']->get('latestclick'), $row['latestclick']);
+    $ls->addColumn($element, $GLOBALS['I18N']->get('latestclick'), formatDateTime($row['latestclick'], 1));
     $ls->addRow($element,
         '<div class="listingsmall gray">'.$GLOBALS['I18N']->get('sent').': '.$row['total'].'</div>', '');
 //  $ls->addColumn($element,$GLOBALS['I18N']->get('clicks'),$row['clicked'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id.'" title="'.$GLOBALS['I18N']->get('view users').'"></a></span>'));
