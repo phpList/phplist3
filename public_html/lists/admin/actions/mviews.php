@@ -61,7 +61,7 @@ if (!$id) {
     $limit = 'limit 10';
 
     $req = Sql_Query(sprintf('select msg.id as messageid,count(um.viewed) as views, count(um.status) as total,
-    subject,date_format(sent,"%%e %%b %%Y") as sent,bouncecount as bounced from %s um,%s msg
+    subject,sent,bouncecount as bounced from %s um,%s msg
     where um.messageid = msg.id and um.status = "sent" %s %s
     group by msg.id order by msg.entered desc limit 50', $GLOBALS['tables']['usermessage'],
         $GLOBALS['tables']['message'], $subselect, $timerange));
@@ -87,7 +87,7 @@ if (!$id) {
         $ls->setClass($element, 'row1');
         if (!empty($row['sent'])) {
             $ls->addRow($element,
-                '<div class="listingsmall gray">'.s('date').': '.$row['sent'].'</div>', '');
+                '<div class="listingsmall gray">'.s('date').': '.formatDate($row['sent'], true).'</div>', '');
         } else {
             $ls->addRow($element,
                 '<div class="listingsmall gray">'.s('date').': '.s('in progress').'</div>',

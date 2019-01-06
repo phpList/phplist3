@@ -68,9 +68,8 @@ if (!empty($_SESSION['LoadDelay'])) {
 $timerange = ' and msg.entered > date_sub(now(),interval 12 month)';
 $timerange = '';
 
-$query = sprintf('select msg.owner,msg.id as messageid,  
-    subject,date_format(sent,"%%e %%b %%Y") as sent,
-    bouncecount as bounced from %s msg where msg.status = "sent" %s %s %s
+$query = sprintf('select msg.owner,msg.id as messageid, subject, sent, bouncecount as bounced
+    from %s msg where msg.status = "sent" %s %s %s
     group by msg.id order by msg.entered desc',
     $GLOBALS['tables']['message'], $subselect, $timerange, $ownership);
 $req = Sql_Query($query);
@@ -132,7 +131,7 @@ while ($row = Sql_Fetch_Array($req)) {
         PageURL2('statsoverview&amp;id='.$row['messageid'])); //,PageURL2('message&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
     //   $ls->addColumn($element,s('owner'),$row['owner']);
-    $ls->addColumn($element, s('date'), $row['sent']);
+    $ls->addColumn($element, s('date'), formatDate($row['sent'], true));
     $ls->addColumn($element, s('sent'), number_format((int)$totls[0]));
     $ls->addColumn($element, s('bncs').Help("bounces"), number_format((int)$row['bounced']).$percentBouncedFormatted);
     $ls->addColumn($element, s('fwds').Help("forwards"), number_format((int)$fwded[0]));
