@@ -20,7 +20,7 @@ if ($_GET['option'] == 'deleteinvalidemail') {
 
     // Delete subscribers who are blacklisted (for any reason)
     $status = s('Deleting blacklisted subscribers').'<br/ >';
-    
+
     flush();
     $req = Sql_Query('
         SELECT
@@ -42,7 +42,7 @@ if ($_GET['option'] == 'deleteinvalidemail') {
 
     // Delete subscribers who are blacklisted because they unsubscribed
     $status = s('Deleting blacklisted subscribers').'<br/ >';
-    
+
     flush();
     $req = Sql_Query('
         SELECT
@@ -50,9 +50,9 @@ if ($_GET['option'] == 'deleteinvalidemail') {
         FROM
             '.$tables['user'].' AS u
         LEFT JOIN
-        	'.$tables['user_blacklist'].' AS bl ON bl.email = u.email
-        LEFT JOIN 
-        	'.$tables['user_blacklist_data'].' AS bld ON bld.email = u.email
+            '.$tables['user_blacklist'].' AS bl ON bl.email = u.email
+        LEFT JOIN
+            '.$tables['user_blacklist_data'].' AS bld ON bld.email = u.email
         WHERE
             blacklisted = 1
             AND bld.name = "reason"
@@ -66,4 +66,25 @@ if ($_GET['option'] == 'deleteinvalidemail') {
         deleteUserIncludeBlacklist($row['id']);
     }
     $status .= $c.' '.s('subscribers deleted')."<br/>\n";
+} elseif ($_GET['option'] == 'relinksystembounces') {
+    $status = s('Relinking transactional messages that bounced to the related subscriber profile').'<br/ >';
+    $req = Sql_Query(sprintf('select count(id) from %s where status = "bounced system message" and comment like "%% marked unconfirmed"',$tables['bounce']));
+    $totalRow = Sql_Fetch_Row($req);
+    $total = $totalRow[0];
+    $status .= s('%d to process',$total).'<br/>';
+    flush();
+
+    $cnt = 0;
+    $done = 0;
+    $req = Sql_Query(sprintf('select id,comment,date from %s where status = "bounced system message" and comment like "%% marked unconfirmed"',$tables['bounce']));
+    while ($row = Sql_Fetch_Assoc($req)) {
+        ++$cnt;
+        set_time_limit(60);
+        if (preg_match('/([\d]+) marked unconfirmed/',$row['comment'],$regs)) {
+            ++$done;
+            Sql_Query(sprintf('insert into %s (user,message,bounce,time) values(%d,-1,%d,current_timestamp)',$tables['user_message_bounce'],$regs[1],$row['id'],$row['date']));
+        }
+    }
+    $status .= s('%d bounces have been associated with a subscriber profile',$done);
 }
+

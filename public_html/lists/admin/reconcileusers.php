@@ -531,6 +531,13 @@ echo '</ul>';
 
 <hr/>
 
+<div id="relinksystembounces">
+    <?php echo PageLinkAjax('reconcileusers&amp;option=relinksystembounces',
+        s('Associate system bounces to subscriber profiles'), '', 'button');
+    ?>
+</div>
+<hr/>
+
 <div id="deleteblacklistedunsubscribed">
     <?php echo PageLinkAjax('reconcileusers&amp;option=deleteblacklistedunsubscribed',
         s('Delete subscribers who are blacklisted because they unsubscribed'), '', 'button');
