@@ -617,7 +617,7 @@ msgstr ""
 #: public_html/lists/admin/msgstatus.php:29
 #: public_html/lists/admin/messages.php:83
 #: public_html/lists/admin/actions/msgstatus.php:74
-#: public_html/lists/admin/actions/statsoverview.php:136
+#: public_html/lists/admin/actions/statsoverview.php:135
 #: public_html/lists/admin/actions/campaigns.php:54
 #: public_html/lists/admin/actions/mviews.php:96
 #: public_html/lists/admin/uclicks.php:133 public_html/databasestructure.php:65
@@ -1448,7 +1448,7 @@ msgid "Clicked"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:165
-#: public_html/lists/admin/actions/statsoverview.php:142
+#: public_html/lists/admin/actions/statsoverview.php:141
 msgid "Unique Clicks"
 msgstr ""
 
@@ -3044,7 +3044,7 @@ msgstr ""
 
 #: public_html/lists/admin/spage.php:102 public_html/lists/admin/spage.php:103
 #: public_html/lists/admin/actions/campaigns.php:41
-#: public_html/lists/admin/actions/bounces.php:46
+#: public_html/lists/admin/actions/bounces.php:44
 msgid "view"
 msgstr ""
 
@@ -4269,17 +4269,17 @@ msgstr ""
 msgid "Download as CSV file"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:90
+#: public_html/lists/admin/actions/statsoverview.php:89
 msgid "There are currently no campaigns to view"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:130
+#: public_html/lists/admin/actions/statsoverview.php:129
 #: public_html/lists/admin/actions/mclicks.php:59
 #: public_html/lists/admin/bounces.php:189
 msgid "Campaign"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:135
+#: public_html/lists/admin/actions/statsoverview.php:134
 #: public_html/lists/admin/actions/subscription.php:92
 #: public_html/lists/admin/actions/mviews.php:90
 #: public_html/lists/admin/actions/mviews.php:93
@@ -4288,30 +4288,30 @@ msgstr ""
 msgid "date"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:137
+#: public_html/lists/admin/actions/statsoverview.php:136
 #: public_html/lists/admin/users.php:475
 msgid "bncs"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:138
+#: public_html/lists/admin/actions/statsoverview.php:137
 msgid "fwds"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:139
+#: public_html/lists/admin/actions/statsoverview.php:138
 msgid "Unique views"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:151
+#: public_html/lists/admin/actions/statsoverview.php:150
 #: public_html/lists/admin/actions/mviews.php:113
 msgid "Comparison to other admins"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:153
+#: public_html/lists/admin/actions/statsoverview.php:152
 #: public_html/lists/admin/actions/mviews.php:115
 msgid "views"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:155
+#: public_html/lists/admin/actions/statsoverview.php:154
 #: public_html/lists/admin/actions/mviews.php:101
 #: public_html/lists/admin/actions/mviews.php:117
 msgid "rate"
@@ -5224,15 +5224,15 @@ msgstr ""
 msgid "Bounces"
 msgstr ""
 
-#: public_html/lists/admin/actions/bounces.php:47
+#: public_html/lists/admin/actions/bounces.php:45
 msgid "Campaign title"
 msgstr ""
 
-#: public_html/lists/admin/actions/bounces.php:48
+#: public_html/lists/admin/actions/bounces.php:46
 msgid "time"
 msgstr ""
 
-#: public_html/lists/admin/actions/bounces.php:53
+#: public_html/lists/admin/actions/bounces.php:50
 msgid "Bounces data not found"
 msgstr ""
 
