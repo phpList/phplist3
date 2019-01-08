@@ -42,7 +42,11 @@ if (Sql_Affected_Rows()) {
         $messagedata = loadMessageData($row['message']);
         $bouncels->addElement($row['bounce'],
             PageURL2('bounce', s('view'), 'id=' . $row['bounce']));
-        $bouncels->addColumn($row['bounce'], s('Campaign title'), stripslashes($messagedata['campaigntitle']));
+        if (!empty($messagedata['id'])) {
+            $bouncels->addColumn($row['bounce'], s('Campaign title'), stripslashes($messagedata['campaigntitle']));
+        } else {
+            $bouncels->addColumn($row['bounce'], s('Campaign title'), s('Transactional message'));
+        }
         $bouncels->addColumn($row['bounce'], s('time'), formatDateTime($row['time'], true));
     }
     echo $bouncels->display();

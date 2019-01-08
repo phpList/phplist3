@@ -236,6 +236,9 @@ function processBounceData($bounceid, $msgid, $userid)
       where id = %d',
             $tables['bounce'],
             $userid, $bounceid));
+
+        ##@@TODO use the date of the bounce, instead of "now" as processing may be different
+        Sql_Query(sprintf('insert into %s (user,message,bounce,time) values(%d,-1,%d,current_timestamp)',$tables['user_message_bounce'], $userid, $bounceid));
         logEvent("$userid ".$GLOBALS['I18N']->get('system message bounced, user marked unconfirmed'));
         addUserHistory($useremail, $GLOBALS['I18N']->get('Bounced system message'), '
     <br/>' .$GLOBALS['I18N']->get('User marked unconfirmed')."
@@ -674,9 +677,9 @@ if (count($bouncerules)) {
                         break;
                     case 'deletebounce':
                         deleteBounce($row['bounce']);
-			if (REPORT_DELETED_BOUNCES == 1) {
-			    $advanced_report .= 'Deleted bounce ' . $userdata['email'] . ' --> Bounce deleted by bounce rule ' . $rule['id'] . PHP_EOL;
-			}
+            if (REPORT_DELETED_BOUNCES == 1) {
+                $advanced_report .= 'Deleted bounce ' . $userdata['email'] . ' --> Bounce deleted by bounce rule ' . $rule['id'] . PHP_EOL;
+            }
                         break;
                 }
 
@@ -718,8 +721,8 @@ while ($user = Sql_Fetch_Row($userid_req)) {
 
     //# 17361 - update of the above query, to include the bounce table and to exclude duplicate bounces
     $msg_req = Sql_Query(sprintf('select umb.*,um.*,b.status,b.comment from %s um left join %s umb on (um.messageid = umb.message and userid = user)
-    left join %s b on umb.bounce = b.id 
-    where userid = %d and um.status = "sent" 
+    left join %s b on umb.bounce = b.id
+    where userid = %d and um.status = "sent"
     order by entered desc',
         $tables['usermessage'], $tables['user_message_bounce'], $tables['bounce'],
         $user[0]));
