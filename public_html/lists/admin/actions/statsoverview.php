@@ -115,6 +115,9 @@ while ($row = Sql_Fetch_Array($req)) {
     $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
     $GLOBALS['tables']['linktrack_uml_click'], $row['messageid']));
 
+    $totalclicks = Sql_Fetch_Row_Query(sprintf('select count( userid) from %s where messageid = %d',
+        $GLOBALS['tables']['linktrack_uml_click'], $row['messageid']));
+
     $percentBouncedFormatted = $percentViewedFormatted = $percentClickedFormatted = '';
     if ($row['bounced'] > 0) {
         $percentBouncedFormatted = ' ('.sprintf('%0.2f', ($row['bounced'] / $totls[0] * 100)).' %)';
@@ -137,6 +140,8 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($element, s('fwds').Help("forwards"), number_format((int)$fwded[0]));
     $ls->addColumn($element, s('Unique views').Help("uniqueviews"), number_format((int)$views[0]).$percentViewedFormatted,
     $views[0] ? PageURL2('mviews&amp;id='.$row['messageid']) : '');
+    $ls->addColumn($element, s('Total Clicks').Help("totalclicks"), number_format((int)$totalclicks[0]),
+        $totalclicks[0] ? PageURL2('mclicks&id='.$row['messageid']) : '');
 
     $ls->addColumn($element, s('Unique Clicks').Help("uniqueclicks"), number_format((int)$totalclicked[0]).$percentClickedFormatted,
         $totalclicked[0] ? PageURL2('mclicks&id='.$row['messageid']) : '');
