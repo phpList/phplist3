@@ -2156,6 +2156,15 @@ function parseLogoPlaceholders($content)
     return $content;
 }
 
+function parseVCardPlaceholder($content) {
+    preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
+    foreach ($contactInstances[0] as $index => $contactInstance) {
+        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.s('Add us to your addressbook').'</a>',$content);
+    }
+
+    return $content;
+}
+
 /**
  * Loop through a multi-dimensional array, check a particular child array
  * key equals desired value, and return a new multi-dimensional array of those
