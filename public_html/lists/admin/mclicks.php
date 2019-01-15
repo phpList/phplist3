@@ -58,7 +58,11 @@ $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where me
     $GLOBALS['tables']['usermessage'], $id));
 $totalbounced = Sql_Fetch_Row_Query(sprintf('select count(user) from %s where message = %d',
     $GLOBALS['tables']['user_message_bounce'], $id));
+//unique clicks
 $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
+    $GLOBALS['tables']['linktrack_uml_click'], $id));
+//total clicks
+$totalclicks = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
     $GLOBALS['tables']['linktrack_uml_click'], $id));
 if (($totalusers[0] - $totalbounced[0]) > 0) {
     $clickperc = sprintf('%0.2f', ($totalclicked[0] / ($totalusers[0] - $totalbounced[0]) * 100));
@@ -77,7 +81,10 @@ if ($totalusers[0] > 0) {
 }
 echo '<tr><td>'.s('Unique subscribers who clicked').'</td><td>'.number_format($totalclicked[0]).' <span style="margin-left:10px">'.PageLinkButton('userclicks&msgid='.$id,
         s('View subscribers')).'</span></td></tr>
-<tr><td>' .$GLOBALS['I18N']->get('Click rate').'</td><td>'.$clickperc.' %</td></tr>
+<tr><td>' .s('Total clicks').'</td><td>'.number_format($totalclicks[0]).' </td></tr>
+<tr><td>' .s('Click rate').'</td><td>'.$clickperc.' %</td></tr>
+
+
 </table><hr/>';
 
 $ls = new WebblerListing(s('Campaign click statistics'));
