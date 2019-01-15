@@ -305,6 +305,9 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
             case 'confirm':
                 print ConfirmPage($id);
                 break;
+            case 'vcard':
+                print downloadvCard();
+                break;
             //0013076: Blacklisting posibility for unknown users
             case 'donotsend':
             case 'blacklist':
@@ -531,6 +534,16 @@ function checkEmail()
     $html .= $GLOBALS['pagedata']['footer'];
 
     return $html;
+}
+
+function downloadvCard(){
+
+    require 'admin/vCard.php';
+    $vCard = new vCard();
+    $vCard-> setOrg(getConfig('organisation_name'));
+    $vCard-> setEmail(getConfig('message_from_address'));
+    $vCard-> setUrl(getConfig('website'));
+    $vCard->createVCard();
 }
 
 function subscribePage($id)

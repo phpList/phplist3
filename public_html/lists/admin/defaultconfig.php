@@ -336,6 +336,15 @@ $default_config = array(
         'category'    => 'subscription',
     ),
 
+    // url to download vcf card
+    'vcardurl' => array(
+        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=vcard",
+        'description' => s('URL for downloading vcf card'),
+        'type'        => 'text',
+        'allowempty'  => 0,
+        'category'    => 'subscription',
+    ),
+
     'ajax_subscribeconfirmation' => array(
         'value'       => s('<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an email to confirm your subscription. Please click the link in the email to confirm</p>'),
         'description' => s('Text to display when subscription with an AJAX request was successful'),
