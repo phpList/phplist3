@@ -7,9 +7,21 @@
 
 class vCard
 {
+    /**
+     * @var string
+     */
     private $org;
+    /**
+     * @var string
+     */
     private $email;
+    /**
+     * @var
+     */
     private $logo;
+    /**
+     * @var string
+     */
     private $url;
 
 
@@ -79,7 +91,7 @@ class vCard
     /**
      * Create VCard (.vcf)
      *
-     * @return string
+     * @return void
      */
     public function createVCard()
     {
