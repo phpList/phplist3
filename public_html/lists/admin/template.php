@@ -88,7 +88,13 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         $titleExists = false;
     }
 
-    if (!empty($title) && strpos($content, '[CONTENT]') !== false && !$titleExists) {
+    if($titleExists && !$id){
+        $actionresult .= s('The title of the template exists.').'<br/>';
+        $templateok = 0;
+
+    }
+
+    if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
         $images = getTemplateImages($content);
 
         //   var_dump($images);
@@ -125,9 +131,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     } else {
         if (!$title) {
             $actionresult .= s('No Title').'<br/>';
-        }elseif ($titleExists){
-            $actionresult .= s('The title of the template exists.').'<br/>';
-        } else {
+        }else {
             $actionresult .= s('Template does not contain the [CONTENT] placeholder').'<br/>';
         }
         $templateok = 0;
