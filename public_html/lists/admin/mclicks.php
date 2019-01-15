@@ -125,7 +125,7 @@ while ($row = Sql_Fetch_Array($req)) {
     //$perc = sprintf('%0.2f',($row['clicked'] / $row['total'] * 100));
     //$ls->addColumn($element,$GLOBALS['I18N']->get('clickrate'),$perc.'%');
 //  if (CLICKTRACK_SHOWDETAIL) {
-    $ls->addColumn($element, s('clicks'), number_format($uniqueclicks['users']));
+    $ls->addColumn($element, s('unique clicks'), number_format($uniqueclicks['users']));
     $perc = sprintf('%0.2f', ($uniqueclicks['users'] / $totalusers[0] * 100));
     $ls->addColumn($element, s('clickrate'), $perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
@@ -147,7 +147,7 @@ while ($row = Sql_Fetch_Array($req)) {
 }
 $ls->addElement('Total');
 $ls->setClass('Total', 'rowtotal');
-$ls->addColumn('Total', s('clicks'), number_format($summary['uniqueclicks']));
+$ls->addColumn('Total', s('unique clicks'), number_format($summary['uniqueclicks']));
 $perc = sprintf('%0.2f', ($summary['uniqueclicks'] / $totalusers[0] * 100));
 $ls->addColumn('Total', s('clickrate'), $perc.'%');
 
