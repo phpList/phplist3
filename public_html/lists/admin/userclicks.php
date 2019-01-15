@@ -233,9 +233,7 @@ while ($row = Sql_Fetch_Array($req)) {
         //  $totalsent = Sql_Fetch_Array_Query(sprintf('select count(*) as total from %s where url = "%s"',
         //    $GLOBALS['tables']['linktrack'],$urldata['url']));
         $ls_userid = '';
-        if (!$userid) {
-            $ls_userid = '<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;userid='.$row['userid']).'" title="'.$GLOBALS['I18N']->get('view user').'"></a></span>';
-        }
+
         if (!empty($row['userid'])) {
             $userStatus = Sql_Fetch_Assoc_Query(sprintf('select blacklisted,confirmed from %s where id = %d',
                 $GLOBALS['tables']['user'], $row['userid']));
@@ -244,7 +242,11 @@ while ($row = Sql_Fetch_Array($req)) {
         }
         $ls->addColumn($element, $GLOBALS['I18N']->get('firstclick'), formatDateTime($row['firstclick'], 1));
         $ls->addColumn($element, $GLOBALS['I18N']->get('latestclick'), formatDateTime($row['latestclick'], 1));
-        $ls->addColumn($element, $GLOBALS['I18N']->get('clicks'), $row['clicked'].$ls_userid);
+        $ls->addColumn($element, $GLOBALS['I18N']->get('clicks'), $row['clicked']);
+        if (!$userid) { //Display
+            $ls_userid = '<span class="viewusers"><a class="button" href="' . PageUrl2('userclicks&amp;userid=' . $row['userid']) . '" title="' . s('view user') . '"></a></span>';
+            $ls->addColumn($element, s('View clicks'), $ls_userid);
+        }
         if (!empty($row['htmlclicked']) && !empty($row['textclicked'])) {
             $ls->addRow($element,
                 '<div class="content listingsmall fright gray">'.$GLOBALS['I18N']->get('HTML').': '.$row['htmlclicked'].'</div>'.
