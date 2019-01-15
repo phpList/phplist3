@@ -26,14 +26,14 @@ class vCard
 
 
     /**
-     * @param $org
+     * @param string $org
      */
     public function setOrg($org){
         $this->org = $org;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOrg()
     {
@@ -41,7 +41,7 @@ class vCard
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -49,7 +49,7 @@ class vCard
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail($email)
     {
@@ -73,7 +73,7 @@ class vCard
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
@@ -81,7 +81,7 @@ class vCard
     }
 
     /**
-     * @param mixed $url
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -89,7 +89,7 @@ class vCard
     }
 
     /**
-     * Create VCard (.vcf)
+     * Force VCard download (.vcf)
      *
      * @return void
      */
