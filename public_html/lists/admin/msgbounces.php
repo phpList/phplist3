@@ -75,7 +75,7 @@ if ($total) {
     echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-right btn-lg pull-bottom');
 }
 
-echo '<p>'.number_format($total).s(' bounces to campaign %s', campaignTitle($messageid)).'</p>';
+echo '<p>'.number_format($total).' '.s('bounces to campaign').' \''.campaignTitle($messageid).'\'</p>';
 $start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
 if ($total > $numpp && !$download ) {
     $limit = "limit $start,".$numpp;
