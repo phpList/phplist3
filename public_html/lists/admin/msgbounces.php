@@ -72,7 +72,7 @@ while ($campaign = Sql_Fetch_Assoc($listOfCampaigns)) {
 echo $chooseAnotherCampaign->show();
 
 if ($total) {
-    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download addresses'),'','btn-primary pull-right btn-lg pull-bottom');
+    echo PageLinkButton('msgbounces&amp;type=dl&amp;id='.$messageid, s('Download'),'','btn-primary pull-right btn-lg pull-bottom');
 }
 
 echo '<p>'.number_format($total).' '.s('bounces to campaign').' \''.campaignTitle($messageid).'\'</p>';
