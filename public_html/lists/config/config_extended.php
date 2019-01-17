@@ -55,6 +55,7 @@ $usertable_prefix = 'phplist_user_';
 
 // if you change the path to the phpList system, make the change here as well
 // path should be relative to the root directory of your webserver (document root)
+// If you install phpList in the document root then the value should be an empty string, not '/'.
 // Warning: Do not change this after installation. You can only change this before you
 // install and initialise phpList.
 $pageroot = '/lists';
@@ -450,9 +451,9 @@ define('SHOW_PREFERENCESLINK', true);
 define('SHOW_UNSUBSCRIBELINK', true);
 
 // Show 'All Subscribers' section on Subscriber Lists page
-// This flag enabled will show a list called “All subscribers” on the 
-// Subscriber Lists page that has all subscribers in the system as members. 
-// This prevents confusion if there are subscribers not assigned to lists and 
+// This flag enabled will show a list called “All subscribers” on the
+// Subscriber Lists page that has all subscribers in the system as members.
+// This prevents confusion if there are subscribers not assigned to lists and
 // therefore total subscribers are than the sum of all list members.
 define('SHOW_LIST_OFALL_SUBSCRIBERS', false);
 
@@ -606,7 +607,7 @@ define('PHPMAILERHOST', '');
 //# defaults to 5 seconds
 // define('SMTP_TIMEOUT',5);
 
-// Pop-Before-Smtp 
+// Pop-Before-Smtp
 // If you use Pop before Smtp, set to true
 // And complete smtp settings (PHPMAILERHOST,  phpmailer_smtpuser', phpmailer_smtppassword)
 define('POP_BEFORE_SMTP', false);
