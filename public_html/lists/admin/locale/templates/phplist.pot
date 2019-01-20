@@ -617,7 +617,7 @@ msgstr ""
 #: public_html/lists/admin/msgstatus.php:29
 #: public_html/lists/admin/messages.php:83
 #: public_html/lists/admin/actions/msgstatus.php:74
-#: public_html/lists/admin/actions/statsoverview.php:135
+#: public_html/lists/admin/actions/statsoverview.php:138
 #: public_html/lists/admin/actions/campaigns.php:54
 #: public_html/lists/admin/actions/mviews.php:96
 #: public_html/lists/admin/uclicks.php:133 public_html/databasestructure.php:65
@@ -1406,7 +1406,7 @@ msgstr ""
 #: public_html/lists/admin/userclicks.php:84
 #: public_html/lists/admin/userclicks.php:103
 #: public_html/lists/admin/userclicks.php:140
-#: public_html/lists/admin/mclicks.php:69
+#: public_html/lists/admin/mclicks.php:73
 #: public_html/lists/admin/spageedit.php:282
 #: public_html/lists/admin/spageedit.php:289
 #: public_html/lists/admin/spageedit.php:296
@@ -1419,7 +1419,7 @@ msgid "Date entered"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:105
-#: public_html/lists/admin/mclicks.php:71
+#: public_html/lists/admin/mclicks.php:75
 msgid "Date sent"
 msgstr ""
 
@@ -1435,7 +1435,7 @@ msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:136
 #: public_html/lists/admin/messages.php:504
-#: public_html/lists/admin/mclicks.php:74
+#: public_html/lists/admin/mclicks.php:78
 msgid "Bounced"
 msgstr ""
 
@@ -1448,7 +1448,7 @@ msgid "Clicked"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:165
-#: public_html/lists/admin/actions/statsoverview.php:141
+#: public_html/lists/admin/actions/statsoverview.php:146
 msgid "Unique Clicks"
 msgstr ""
 
@@ -2322,160 +2322,160 @@ msgstr ""
 msgid "Template saved and ready for use in campaigns"
 msgstr ""
 
-#: public_html/lists/admin/template.php:100
-#: public_html/lists/admin/template.php:107
-msgid "Image"
-msgstr ""
-
-#: public_html/lists/admin/template.php:100
-msgid "\"not full URL"
-msgstr ""
-
-#: public_html/lists/admin/template.php:107
-msgid "does not exist"
-msgstr ""
-
-#: public_html/lists/admin/template.php:120
-msgid "Not a full URL"
-msgstr ""
-
-#: public_html/lists/admin/template.php:127
-msgid "No Title"
-msgstr ""
-
-#: public_html/lists/admin/template.php:129
+#: public_html/lists/admin/template.php:92
 msgid "The title of the template exists."
 msgstr ""
 
-#: public_html/lists/admin/template.php:131
+#: public_html/lists/admin/template.php:106
+#: public_html/lists/admin/template.php:113
+msgid "Image"
+msgstr ""
+
+#: public_html/lists/admin/template.php:106
+msgid "\"not full URL"
+msgstr ""
+
+#: public_html/lists/admin/template.php:113
+msgid "does not exist"
+msgstr ""
+
+#: public_html/lists/admin/template.php:126
+msgid "Not a full URL"
+msgstr ""
+
+#: public_html/lists/admin/template.php:133
+msgid "No Title"
+msgstr ""
+
+#: public_html/lists/admin/template.php:135
 msgid "Template does not contain the [CONTENT] placeholder"
 msgstr ""
 
-#: public_html/lists/admin/template.php:151
+#: public_html/lists/admin/template.php:155
 msgid "Template saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:170
+#: public_html/lists/admin/template.php:174
 msgid "Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:170
+#: public_html/lists/admin/template.php:174
 msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
 
-#: public_html/lists/admin/template.php:171
+#: public_html/lists/admin/template.php:175
 msgid ""
 "This includes all images, also fully referenced ones, so you may choose not "
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:182
-#: public_html/lists/admin/template.php:187
+#: public_html/lists/admin/template.php:186
+#: public_html/lists/admin/template.php:191
 msgid "Image name:"
 msgstr ""
 
-#: public_html/lists/admin/template.php:182
-#: public_html/lists/admin/template.php:187
+#: public_html/lists/admin/template.php:186
+#: public_html/lists/admin/template.php:191
 #, php-format
 msgid "%d times used"
 msgstr ""
 
-#: public_html/lists/admin/template.php:194
+#: public_html/lists/admin/template.php:198
 msgid "Save Images"
 msgstr ""
 
-#: public_html/lists/admin/template.php:200
+#: public_html/lists/admin/template.php:204
 msgid "Template was successfully saved"
 msgstr ""
 
-#: public_html/lists/admin/template.php:210
+#: public_html/lists/admin/template.php:214
 msgid "Some errors were found, template NOT saved!"
 msgstr ""
 
-#: public_html/lists/admin/template.php:221
+#: public_html/lists/admin/template.php:225
 msgid "Sending test"
 msgstr ""
 
-#: public_html/lists/admin/template.php:225
+#: public_html/lists/admin/template.php:229
 msgid "Sending test \"Request for confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:227
-#: public_html/lists/admin/template.php:234
-#: public_html/lists/admin/template.php:241
+#: public_html/lists/admin/template.php:231
+#: public_html/lists/admin/template.php:238
+#: public_html/lists/admin/template.php:245
 #: public_html/lists/admin/tests/sendpage.php:32
 #: public_html/lists/admin/tests/sendpage.php:40
 msgid "OK"
 msgstr ""
 
-#: public_html/lists/admin/template.php:229
-#: public_html/lists/admin/template.php:236
-#: public_html/lists/admin/template.php:243
+#: public_html/lists/admin/template.php:233
+#: public_html/lists/admin/template.php:240
+#: public_html/lists/admin/template.php:247
 msgid "FAILED"
 msgstr ""
 
-#: public_html/lists/admin/template.php:232
+#: public_html/lists/admin/template.php:236
 msgid "Sending test \"Welcome\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:239
+#: public_html/lists/admin/template.php:243
 msgid "Sending test \"Unsubscribe confirmation\" to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:246
+#: public_html/lists/admin/template.php:250
 msgid "Error sending test messages to"
 msgstr ""
 
-#: public_html/lists/admin/template.php:251
+#: public_html/lists/admin/template.php:255
 msgid "Sending a test from templates only works for the system template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:252
+#: public_html/lists/admin/template.php:256
 msgid ""
 "To test your template, go to campaigns and send a test campaign using the "
 "template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:281
+#: public_html/lists/admin/template.php:285
 msgid "List of Templates"
 msgstr ""
 
-#: public_html/lists/admin/template.php:289
+#: public_html/lists/admin/template.php:293
 msgid "Title of this template"
 msgstr ""
 
-#: public_html/lists/admin/template.php:294
+#: public_html/lists/admin/template.php:298
 msgid "Content of the template."
 msgstr ""
 
-#: public_html/lists/admin/template.php:295
+#: public_html/lists/admin/template.php:299
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
 
-#: public_html/lists/admin/template.php:296
+#: public_html/lists/admin/template.php:300
 msgid "You can upload a template file or paste the text in the box below"
 msgstr ""
 
-#: public_html/lists/admin/template.php:299
+#: public_html/lists/admin/template.php:303
 msgid "Template file."
 msgstr ""
 
-#: public_html/lists/admin/template.php:323
+#: public_html/lists/admin/template.php:327
 msgid "Check that all links have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:328
+#: public_html/lists/admin/template.php:332
 msgid "Check that all images have a full URL"
 msgstr ""
 
-#: public_html/lists/admin/template.php:336
+#: public_html/lists/admin/template.php:340
 msgid "Check that all external images exist"
 msgstr ""
 
-#: public_html/lists/admin/template.php:345
+#: public_html/lists/admin/template.php:349
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:156
 #: public_html/lists/admin/list.php:295 public_html/lists/admin/user.php:504
@@ -2489,23 +2489,23 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: public_html/lists/admin/template.php:354
+#: public_html/lists/admin/template.php:358
 #: public_html/lists/admin/spageedit.php:307
 msgid "Send test message"
 msgstr ""
 
-#: public_html/lists/admin/template.php:354
+#: public_html/lists/admin/template.php:358
 #: public_html/lists/admin/spageedit.php:307
 msgid "to email addresses"
 msgstr ""
 
-#: public_html/lists/admin/template.php:355
+#: public_html/lists/admin/template.php:359
 #: public_html/lists/admin/send_core.php:994
 #: public_html/lists/admin/spageedit.php:308
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
-#: public_html/lists/admin/template.php:356
+#: public_html/lists/admin/template.php:360
 #: public_html/lists/admin/send_core.php:998
 #: public_html/lists/admin/send_core.php:1362
 #: public_html/lists/admin/spageedit.php:309
@@ -3209,7 +3209,7 @@ msgstr ""
 #: public_html/lists/admin/userclicks.php:85
 #: public_html/lists/admin/userclicks.php:105
 #: public_html/lists/admin/userclicks.php:141
-#: public_html/lists/admin/mclicks.php:70 public_html/lists/admin/mviews.php:91
+#: public_html/lists/admin/mclicks.php:74 public_html/lists/admin/mviews.php:91
 #: public_html/databasestructure.php:17 public_html/databasestructure.php:35
 #: public_html/databasestructure.php:45 public_html/databasestructure.php:56
 #: public_html/databasestructure.php:85 public_html/databasestructure.php:100
@@ -3304,7 +3304,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:418
 #: public_html/lists/admin/bouncerule.php:69
-#: public_html/lists/admin/userclicks.php:242
+#: public_html/lists/admin/userclicks.php:240
 #: public_html/lists/admin/bounce.php:226 public_html/lists/admin/setup.php:18
 #: public_html/databasestructure.php:63
 msgid "Status"
@@ -3332,6 +3332,7 @@ msgid "Unique Views"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:498
+#: public_html/lists/admin/mclicks.php:84
 msgid "Total clicks"
 msgstr ""
 
@@ -3357,15 +3358,15 @@ msgstr ""
 #: public_html/lists/admin/messages.php:571
 #: public_html/lists/admin/send_core.php:836
 #: public_html/lists/admin/actions/mclicks.php:94
-#: public_html/lists/admin/userclicks.php:251
-#: public_html/lists/admin/mclicks.php:135
+#: public_html/lists/admin/userclicks.php:253
+#: public_html/lists/admin/mclicks.php:142
 msgid "text"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:571
 #: public_html/lists/admin/send_core.php:833
 #: public_html/lists/admin/actions/mclicks.php:94
-#: public_html/lists/admin/mclicks.php:134
+#: public_html/lists/admin/mclicks.php:141
 msgid "html"
 msgstr ""
 
@@ -4273,13 +4274,13 @@ msgstr ""
 msgid "There are currently no campaigns to view"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:129
+#: public_html/lists/admin/actions/statsoverview.php:132
 #: public_html/lists/admin/actions/mclicks.php:59
 #: public_html/lists/admin/bounces.php:189
 msgid "Campaign"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:134
+#: public_html/lists/admin/actions/statsoverview.php:137
 #: public_html/lists/admin/actions/subscription.php:92
 #: public_html/lists/admin/actions/mviews.php:90
 #: public_html/lists/admin/actions/mviews.php:93
@@ -4288,30 +4289,34 @@ msgstr ""
 msgid "date"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:136
+#: public_html/lists/admin/actions/statsoverview.php:139
 #: public_html/lists/admin/users.php:475
 msgid "bncs"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:137
+#: public_html/lists/admin/actions/statsoverview.php:140
 msgid "fwds"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:138
+#: public_html/lists/admin/actions/statsoverview.php:141
 msgid "Unique views"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:150
+#: public_html/lists/admin/actions/statsoverview.php:143
+msgid "Total Clicks"
+msgstr ""
+
+#: public_html/lists/admin/actions/statsoverview.php:155
 #: public_html/lists/admin/actions/mviews.php:113
 msgid "Comparison to other admins"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:152
+#: public_html/lists/admin/actions/statsoverview.php:157
 #: public_html/lists/admin/actions/mviews.php:115
 msgid "views"
 msgstr ""
 
-#: public_html/lists/admin/actions/statsoverview.php:154
+#: public_html/lists/admin/actions/statsoverview.php:159
 #: public_html/lists/admin/actions/mviews.php:101
 #: public_html/lists/admin/actions/mviews.php:117
 msgid "rate"
@@ -4650,7 +4655,7 @@ msgid "Clicked campaigns"
 msgstr ""
 
 #: public_html/lists/admin/actions/mclicks.php:70
-#: public_html/lists/admin/mclicks.php:66
+#: public_html/lists/admin/mclicks.php:70
 msgid "N/A"
 msgstr ""
 
@@ -4659,17 +4664,15 @@ msgid "links"
 msgstr ""
 
 #: public_html/lists/admin/actions/mclicks.php:88
-#: public_html/lists/admin/mclicks.php:130
-#: public_html/lists/admin/mclicks.php:152
+#: public_html/lists/admin/mclicks.php:137
+#: public_html/lists/admin/mclicks.php:159
 msgid "clickrate"
 msgstr ""
 
 #: public_html/lists/admin/actions/mclicks.php:90
 #: public_html/lists/admin/actions/campaigns.php:47
 #: public_html/lists/admin/actions/campaigns.php:50
-#: public_html/lists/admin/userclicks.php:247
-#: public_html/lists/admin/mclicks.php:128
-#: public_html/lists/admin/mclicks.php:150
+#: public_html/lists/admin/userclicks.php:245
 #: public_html/lists/admin/uclicks.php:67
 #: public_html/lists/admin/uclicks.php:139
 #: public_html/lists/admin/uclicks.php:153
@@ -6523,27 +6526,31 @@ msgid "All clicks by"
 msgstr ""
 
 #: public_html/lists/admin/userclicks.php:198
-#: public_html/lists/admin/mclicks.php:72 public_html/lists/admin/users.php:358
+#: public_html/lists/admin/mclicks.php:76 public_html/lists/admin/users.php:358
 msgid "Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:237
-msgid "view user"
-msgstr ""
-
-#: public_html/lists/admin/userclicks.php:245
-#: public_html/lists/admin/mclicks.php:138
+#: public_html/lists/admin/userclicks.php:243
+#: public_html/lists/admin/mclicks.php:145
 #: public_html/lists/admin/uclicks.php:130
 msgid "firstclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:246
-#: public_html/lists/admin/mclicks.php:139
+#: public_html/lists/admin/userclicks.php:244
+#: public_html/lists/admin/mclicks.php:146
 #: public_html/lists/admin/uclicks.php:131
 msgid "latestclick"
 msgstr ""
 
-#: public_html/lists/admin/userclicks.php:250
+#: public_html/lists/admin/userclicks.php:247
+msgid "view user"
+msgstr ""
+
+#: public_html/lists/admin/userclicks.php:248
+msgid "View clicks"
+msgstr ""
+
+#: public_html/lists/admin/userclicks.php:252
 msgid "HTML"
 msgstr ""
 
@@ -6679,29 +6686,34 @@ msgstr ""
 msgid "Click Details for a Message"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:72
+#: public_html/lists/admin/mclicks.php:76
 msgid "Sent to"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:78
+#: public_html/lists/admin/mclicks.php:82
 msgid "Unique subscribers who clicked"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:79
+#: public_html/lists/admin/mclicks.php:83
 #: public_html/lists/admin/uclicks.php:93
 msgid "View subscribers"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:80
+#: public_html/lists/admin/mclicks.php:85
 msgid "Click rate"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:83
+#: public_html/lists/admin/mclicks.php:90
 msgid "Campaign click statistics"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:84
+#: public_html/lists/admin/mclicks.php:91
 msgid "Link URL"
+msgstr ""
+
+#: public_html/lists/admin/mclicks.php:135
+#: public_html/lists/admin/mclicks.php:157
+msgid "unique clicks"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:72
