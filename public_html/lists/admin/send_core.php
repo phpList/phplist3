@@ -1348,9 +1348,9 @@ if ($allReady) {
 $saveDraftButton = '<div class="sendSubmit">
     <input class="submit" type="submit" name="savedraft" value="' .s('Save as draft').'"/>
     <input type="hidden" name="id" value="' .$id.'"/>
-    <input type="hidden" name="status" value="draft"/> <input class="submit" type="submit" name="save" value="' .s('Save and continue editing').'"/>
-    <input type="hidden" name="id" value="' .$id.'"/>
-    <input type="hidden" name="status" value="draft"/></div>
+    <input type="hidden" name="status" value="draft"/>
+    <input class="submit" type="submit" name="save" value="' .s('Save and continue editing').'"/>
+  </div>
 ';
 
 $titleInput = '<label for="campaigntitle">'.s('Campaign Title').Help('campaigntitle').'</label>'.
