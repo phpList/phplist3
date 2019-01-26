@@ -9,26 +9,17 @@ if (isset($_GET['login']) || isset($_GET['password'])) {
 
     return;
 }
-$inRemoteCall = false;
 
-if (isset($_GET['secret'])) {
-    $ourSecret = getConfig('remote_processing_secret');
-    if ($ourSecret != $_GET['secret']) {
-        echo Error(s('Incorrect processing secret'));
-
-        return;
-    } else {
-        $inRemoteCall = true;
-        //# check that we actually still want remote queue processing
-        $pqChoice = getConfig('pqchoice');
-        if (SHOW_PQCHOICE && $pqChoice != 'phplistdotcom') {
-            $counters['campaigns'] = 0;
-            echo outputCounters();
-            exit;
-        }
+if ($inRemoteCall) {
+    // check that we actually still want remote queue processing
+    $pqChoice = getConfig('pqchoice');
+    if (SHOW_PQCHOICE && $pqChoice != 'phplistdotcom') {
+        $counters['campaigns'] = 0;
+        echo outputCounters();
+        exit;
     }
 } else {
-    //# we're in a normal session, so the csrf token should work
+    // we're in a normal session, so the csrf token should work
     verifyCsrfGetToken();
 }
 

@@ -1,9 +1,9 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
-$inRemoteCall = false;
 
-if (!$GLOBALS['commandline']) {
+if (!$GLOBALS['commandline'] && !$GLOBALS['inRemoteCall']) {
+    // browser session
     ob_end_flush();
     if (!MANUALLY_PROCESS_BOUNCES) {
         echo $GLOBALS['I18N']->get('This page can only be called from the commandline');
@@ -15,21 +15,9 @@ if (!$GLOBALS['commandline']) {
 
         return;
     }
-    $inRemoteCall = false;
 
-    if (isset($_GET['secret'])) {
-        $ourSecret = getConfig('remote_processing_secret');
-        if ($ourSecret != $_GET['secret']) {
-            echo Error(s('Incorrect processing secret'));
-
-            return;
-        } else {
-            $inRemoteCall = true;
-        }
-    } else {
-        //# we're in a normal session, so the csrf token should work
-        verifyCsrfGetToken();
-    }
+    //# we're in a normal session, so the csrf token should work
+    verifyCsrfGetToken();
 }
 
 flush();
@@ -88,6 +76,10 @@ function outputProcessBounce($message, $reset = 0)
     $message = html_entity_decode($message, ENT_QUOTES, 'UTF-8');
     if ($GLOBALS['commandline']) {
         cl_output($message);
+    } elseif ($GLOBALS['inRemoteCall']) {
+        ob_end_clean();
+        echo $message, "\n";
+        ob_start();
     } else {
         if ($reset) {
             echo '<script language="Javascript" type="text/javascript">
