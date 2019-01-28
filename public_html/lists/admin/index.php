@@ -273,8 +273,8 @@ if (!$GLOBALS['admin_auth_module']) {
     $GLOBALS['require_login'] = 0;
 }
 
-$plugin = !empty($_GET['pi']) && isset($plugins[$_GET['pi']])
-    ? $plugins[$_GET['pi']]
+$plugin = !empty($GLOBALS['plugins'][$_GET['pi']]) && isset($GLOBALS['plugins'][$_GET['pi']])
+    ? $GLOBALS['plugins'][$_GET['pi']]
     : null;
 if ($plugin) {
     $page_title = $plugin->pageTitle($page);
@@ -737,8 +737,10 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
         Error(s('Access Denied'));
     }
 //  print "End of inclusion<br/>";
-} elseif ($plugin !== null) {
+} elseif ($plugin !== null && isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && is_object($GLOBALS['plugins'][$_GET['pi']])) {
+
     $menu = $plugin->adminmenu();
+
     if (checkAccess($page, $_GET['pi'])) {
         if (is_file($plugin->coderoot.$include)) {
             include $plugin->coderoot.$include;
