@@ -194,7 +194,7 @@ foreach ($struct as $key => $val) {
           <input type="radio" id= "passwordoption0" name="passwordoption" value="0"   >'.s('Create password').'
       </td>
   </tr>
-  
+
   <tr id="passrow">
         <td>
             <label for="adminpassword">'.s('Create password').'</label>
@@ -204,7 +204,7 @@ foreach ($struct as $key => $val) {
             <span id= "shortpassword">'.s('Password must be at least 8 characters').'</span>
         </td>
     </tr>
-    
+
     <tr id="confirmrow">
         <td>
             <label for="confirmpassword">'.s('Confirm password').'</label>
@@ -226,8 +226,8 @@ foreach ($struct as $key => $val) {
                     $checkNo = 'checked="checked"';
                 }
                 if ($addAdmin===false) {
-                    printf('<tr><td>%s (%s)</td><td>%s<input type="radio" name="updatepassword" value="0" %s>%s</input>
-                               <input type="radio" name="updatepassword" value="1" %s>%s</input></td></tr>
+                    printf('<tr><td>%s (%s)</td><td>%s<input type="radio" name="updatepassword" value="1" %s>%s</input>
+                               <input type="radio" name="updatepassword" value="0" %s>%s</input></td></tr>
 ',
                         s('Password'), s('hidden'),
                         s('Update it?'),
