@@ -3596,7 +3596,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:737 public_html/lists/admin/index.php:756
+#: public_html/lists/admin/index.php:737 public_html/lists/admin/index.php:758
 msgid "Access Denied"
 msgstr ""
 
@@ -4042,7 +4042,7 @@ msgstr ""
 msgid "Save as draft"
 msgstr ""
 
-#: public_html/lists/admin/send_core.php:1351
+#: public_html/lists/admin/send_core.php:1352
 msgid "Save and continue editing"
 msgstr ""
 
@@ -7723,15 +7723,15 @@ msgstr ""
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:752 public_html/lists/admin/index.php:753
+#: public_html/lists/admin/index.php:754 public_html/lists/admin/index.php:755
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:760
+#: public_html/lists/admin/index.php:762
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:766
+#: public_html/lists/admin/index.php:768
 msgid "Sorry, not implemented yet"
 msgstr ""
 
