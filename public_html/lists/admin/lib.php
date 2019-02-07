@@ -2159,7 +2159,7 @@ function parseLogoPlaceholders($content)
 function parseVCardPlaceholder($content) {
     preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
     foreach ($contactInstances[0] as $index => $contactInstance) {
-        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.s('Add us to your addressbook').'</a>',$content);
+        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.$GLOBALS['$strContactMessage'].'</a>',$content);
     }
 
     return $content;
