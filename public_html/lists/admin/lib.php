@@ -2156,10 +2156,29 @@ function parseLogoPlaceholders($content)
     return $content;
 }
 
-function parseVCardPlaceholder($content) {
+/**
+ * Parse [CONTACT] as HTML placeholder for VCard
+ * @param $content
+ * @return mixed
+ */
+function parseVCardHTMLPlaceholder($content) {
     preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
     foreach ($contactInstances[0] as $index => $contactInstance) {
-        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.$GLOBALS['$strContactMessage'].'</a>',$content);
+        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.$GLOBALS['strContactMessage'].'</a>', $content);
+    }
+
+    return $content;
+}
+
+/**
+ * Parse [CONTACT] as Text placeholder for VCard
+ * @param $content
+ * @return mixed
+ */
+function parseVCardTextPlaceholder($content) {
+    preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
+    foreach ($contactInstances[0] as $index => $contactInstance) {
+        $content = str_replace($contactInstance, $GLOBALS['strContactMessage'].' '.htmlentities(getConfig('vcardurl')), $content);
     }
 
     return $content;
