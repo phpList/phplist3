@@ -64,6 +64,7 @@ $strYouAreBlacklisted = 'Your email is listed in our "Do not send" list, which m
 In order to receive newsletters again, manual intervention is required by our administrator. Please contact us stating explicitly that you want to receive newsletters again.';
 $strPreferencesNotificationSent = 'You will receive a notification message with the changes';
 $strPreferencesUpdated = 'Thank you. We have updated your information.';
+$strContactMessage     = 'Add us to your address book';
 $strClickHere          = 'Click here';
 $strThisLink           = 'this link';
 $strToUnsubscribe      = 'If you do not want to receive any more newsletters, ';
