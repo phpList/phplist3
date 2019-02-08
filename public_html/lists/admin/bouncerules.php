@@ -51,7 +51,7 @@ if (isset($_POST['newrule']) && $_POST['newrule']) {
         sql_escape($_POST['comment']), $_SESSION['logindetails']['id']), 1);
     $num = Sql_Affected_Rows();
     if ($num < 0) {
-        echo '<p class="information">'.$GLOBALS['I18N']->get('That rule exists already').'</p>';
+        echo '<p class="actionresult alert alert-info">'.$GLOBALS['I18N']->get('That rule exists already').'</p>';
     } else {
         Redirect('bouncerules'.$url);
     }
