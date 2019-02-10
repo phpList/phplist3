@@ -87,9 +87,9 @@ msgstr ""
 
 #: public_html/lists/admin/runcommand.php:12
 #: public_html/lists/admin/pageaction.php:16
-#: public_html/lists/admin/messages.php:243
-#: public_html/lists/admin/messages.php:259
-#: public_html/lists/admin/messages.php:271
+#: public_html/lists/admin/messages.php:298
+#: public_html/lists/admin/messages.php:314
+#: public_html/lists/admin/messages.php:326
 #: public_html/lists/admin/tests/sendpage.php:34
 #: public_html/lists/admin/tests/sendpage.php:42
 msgid "Failed"
@@ -163,7 +163,8 @@ msgstr ""
 msgid "start a new message"
 msgstr ""
 
-#: public_html/lists/admin/send.php:100 public_html/lists/admin/messages.php:78
+#: public_html/lists/admin/send.php:100
+#: public_html/lists/admin/messages.php:138
 msgid "Start a new campaign"
 msgstr ""
 
@@ -615,7 +616,7 @@ msgid "ETA"
 msgstr ""
 
 #: public_html/lists/admin/msgstatus.php:29
-#: public_html/lists/admin/messages.php:83
+#: public_html/lists/admin/messages.php:143
 #: public_html/lists/admin/actions/msgstatus.php:74
 #: public_html/lists/admin/actions/statsoverview.php:138
 #: public_html/lists/admin/actions/campaigns.php:54
@@ -1319,53 +1320,49 @@ msgstr ""
 msgid "Do not subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2162
-msgid "Add us to your addressbook"
-msgstr ""
-
-#: public_html/lists/admin/lib.php:2254
+#: public_html/lists/admin/lib.php:2273
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2256
+#: public_html/lists/admin/lib.php:2275
 msgid "Still loading"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2257
+#: public_html/lists/admin/lib.php:2276
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2258
+#: public_html/lists/admin/lib.php:2277
 msgid "It should be soon now, your page content is almost here."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2259
+#: public_html/lists/admin/lib.php:2278
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2260
+#: public_html/lists/admin/lib.php:2279
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2261
+#: public_html/lists/admin/lib.php:2280
 msgid "It will really be soon now until the page will display."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2262
+#: public_html/lists/admin/lib.php:2281
 msgid "Still loading, please wait"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2263
+#: public_html/lists/admin/lib.php:2282
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2264
+#: public_html/lists/admin/lib.php:2283
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr ""
 
@@ -1403,8 +1400,8 @@ msgid "Campaign statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:97
-#: public_html/lists/admin/messages.php:12
 #: public_html/lists/admin/messages.php:13
+#: public_html/lists/admin/messages.php:18
 #: public_html/lists/admin/send_core.php:732
 #: public_html/lists/admin/message.php:105
 #: public_html/lists/admin/userclicks.php:84
@@ -1438,7 +1435,7 @@ msgid "Sent as text"
 msgstr ""
 
 #: public_html/lists/admin/statsoverview.php:136
-#: public_html/lists/admin/messages.php:504
+#: public_html/lists/admin/messages.php:506
 #: public_html/lists/admin/mclicks.php:78
 msgid "Bounced"
 msgstr ""
@@ -1469,82 +1466,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:757
+#: public_html/lists/admin/sendemaillib.php:758
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:947
+#: public_html/lists/admin/sendemaillib.php:948
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:964
+#: public_html/lists/admin/sendemaillib.php:965
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:968
+#: public_html/lists/admin/sendemaillib.php:969
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:974
+#: public_html/lists/admin/sendemaillib.php:975
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:976
+#: public_html/lists/admin/sendemaillib.php:977
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:980
+#: public_html/lists/admin/sendemaillib.php:981
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:982
+#: public_html/lists/admin/sendemaillib.php:983
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1020
+#: public_html/lists/admin/sendemaillib.php:1021
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1063
+#: public_html/lists/admin/sendemaillib.php:1064
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1065
-#: public_html/lists/admin/sendemaillib.php:1080
+#: public_html/lists/admin/sendemaillib.php:1066
+#: public_html/lists/admin/sendemaillib.php:1081
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1070
+#: public_html/lists/admin/sendemaillib.php:1071
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1077
+#: public_html/lists/admin/sendemaillib.php:1078
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1078
+#: public_html/lists/admin/sendemaillib.php:1079
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1099
-#: public_html/lists/admin/sendemaillib.php:1101
+#: public_html/lists/admin/sendemaillib.php:1100
+#: public_html/lists/admin/sendemaillib.php:1102
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
@@ -1705,12 +1702,12 @@ msgstr ""
 #: public_html/lists/admin/reconcileusers.php:410
 #: public_html/lists/admin/templates.php:13
 #: public_html/lists/admin/members.php:253
-#: public_html/lists/admin/messages.php:151
-#: public_html/lists/admin/messages.php:194
-#: public_html/lists/admin/messages.php:226
-#: public_html/lists/admin/messages.php:241
-#: public_html/lists/admin/messages.php:257
-#: public_html/lists/admin/messages.php:269
+#: public_html/lists/admin/messages.php:206
+#: public_html/lists/admin/messages.php:249
+#: public_html/lists/admin/messages.php:281
+#: public_html/lists/admin/messages.php:296
+#: public_html/lists/admin/messages.php:312
+#: public_html/lists/admin/messages.php:324
 #: public_html/lists/admin/eventlog.php:37 public_html/lists/admin/list.php:115
 #: public_html/lists/admin/user.php:300 public_html/lists/admin/admins.php:48
 #: public_html/lists/admin/admin.php:136 public_html/lists/admin/users.php:240
@@ -2515,7 +2512,7 @@ msgid "Add new Template"
 msgstr ""
 
 #: public_html/lists/admin/templates.php:10
-#: public_html/lists/admin/messages.php:148
+#: public_html/lists/admin/messages.php:203
 #: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:108
 #: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:43
 #: public_html/lists/admin/admin.php:132
@@ -3029,7 +3026,7 @@ msgid "default"
 msgstr ""
 
 #: public_html/lists/admin/spage.php:93 public_html/lists/admin/spage.php:97
-#: public_html/lists/admin/messages.php:84
+#: public_html/lists/admin/messages.php:144
 #: public_html/lists/admin/bouncerules.php:66
 #: public_html/lists/admin/bouncerules.php:71
 msgid "active"
@@ -3181,28 +3178,25 @@ msgstr ""
 msgid "filter"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:11
-#: public_html/lists/admin/users.php:323
-msgid "Sort by"
-msgstr ""
-
-#: public_html/lists/admin/messages.php:12
-#: public_html/lists/admin/messages.php:14
-#: public_html/lists/admin/messages.php:16
-#: public_html/lists/admin/messages.php:18
+#: public_html/lists/admin/messages.php:13
+#: public_html/lists/admin/messages.php:22
+#: public_html/lists/admin/messages.php:30
+#: public_html/lists/admin/messages.php:38
+#: public_html/lists/admin/messages.php:46
 msgid "Ascending"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:13
-#: public_html/lists/admin/messages.php:15
-#: public_html/lists/admin/messages.php:17
-#: public_html/lists/admin/messages.php:19
+#: public_html/lists/admin/messages.php:18
+#: public_html/lists/admin/messages.php:26
+#: public_html/lists/admin/messages.php:34
+#: public_html/lists/admin/messages.php:42
+#: public_html/lists/admin/messages.php:50
 msgid "Descending"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:14
-#: public_html/lists/admin/messages.php:15
-#: public_html/lists/admin/messages.php:405
+#: public_html/lists/admin/messages.php:22
+#: public_html/lists/admin/messages.php:26
+#: public_html/lists/admin/messages.php:407
 #: public_html/lists/admin/userclicks.php:85
 #: public_html/lists/admin/userclicks.php:105
 #: public_html/lists/admin/userclicks.php:141
@@ -3213,14 +3207,21 @@ msgstr ""
 msgid "Entered"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:16
-#: public_html/lists/admin/messages.php:17
+#: public_html/lists/admin/messages.php:30
+#: public_html/lists/admin/messages.php:34 public_html/databasestructure.php:39
+#: public_html/databasestructure.php:46 public_html/databasestructure.php:57
+#: public_html/databasestructure.php:86 public_html/databasestructure.php:109
+msgid "Modified"
+msgstr ""
+
+#: public_html/lists/admin/messages.php:38
+#: public_html/lists/admin/messages.php:42
 msgid "Embargo"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:18
-#: public_html/lists/admin/messages.php:19
-#: public_html/lists/admin/messages.php:416
+#: public_html/lists/admin/messages.php:46
+#: public_html/lists/admin/messages.php:50
+#: public_html/lists/admin/messages.php:418
 #: public_html/lists/admin/userclicks.php:86
 #: public_html/lists/admin/userclicks.php:106
 #: public_html/lists/admin/userclicks.php:142
@@ -3228,27 +3229,27 @@ msgstr ""
 msgid "Sent"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:85
+#: public_html/lists/admin/messages.php:145
 msgid "draft"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:88
+#: public_html/lists/admin/messages.php:148
 msgid "static"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:131
+#: public_html/lists/admin/messages.php:186
 #: public_html/lists/admin/admins.php:97 public_html/lists/admin/users.php:326
 #: public_html/lists/admin/users.php:395
 msgid "Go"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:131
+#: public_html/lists/admin/messages.php:186
 msgid "Clear"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:153
-#: public_html/lists/admin/messages.php:213
-#: public_html/lists/admin/messages.php:228
+#: public_html/lists/admin/messages.php:208
+#: public_html/lists/admin/messages.php:268
+#: public_html/lists/admin/messages.php:283
 #: public_html/lists/admin/send_core.php:501
 #: public_html/lists/admin/import3.php:382
 #: public_html/lists/admin/initialise.php:120
@@ -3256,11 +3257,11 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:185
+#: public_html/lists/admin/messages.php:240
 msgid "Requeuing"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:205
+#: public_html/lists/admin/messages.php:260
 #: public_html/lists/admin/send_core.php:1306
 #: public_html/lists/admin/message.php:57
 msgid ""
@@ -3268,7 +3269,7 @@ msgid ""
 "sent."
 msgstr ""
 
-#: public_html/lists/admin/messages.php:207
+#: public_html/lists/admin/messages.php:262
 #: public_html/lists/admin/send_core.php:373
 #: public_html/lists/admin/send_core.php:1301
 #: public_html/lists/admin/send_core.php:1307
@@ -3276,30 +3277,30 @@ msgstr ""
 msgid "Review Scheduling"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:221
+#: public_html/lists/admin/messages.php:276
 msgid "Suspending"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:236
+#: public_html/lists/admin/messages.php:291
 msgid "Marking as sent "
 msgstr ""
 
-#: public_html/lists/admin/messages.php:252
+#: public_html/lists/admin/messages.php:307
 msgid "Suspending all"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:264
+#: public_html/lists/admin/messages.php:319
 msgid "Marking all as sent "
 msgstr ""
 
-#: public_html/lists/admin/messages.php:368
-#: public_html/lists/admin/messages.php:371
+#: public_html/lists/admin/messages.php:370
+#: public_html/lists/admin/messages.php:373
 #: public_html/lists/admin/actions/campaigns.php:24
 #: public_html/lists/admin/user.php:539
 msgid "Campaigns"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:418
+#: public_html/lists/admin/messages.php:420
 #: public_html/lists/admin/bouncerule.php:69
 #: public_html/lists/admin/userclicks.php:240
 #: public_html/lists/admin/bounce.php:226 public_html/lists/admin/setup.php:18
@@ -3307,41 +3308,41 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:448
+#: public_html/lists/admin/messages.php:450
 #, php-format
 msgid "and %d more"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:451
+#: public_html/lists/admin/messages.php:453
 #: public_html/lists/admin/send_core.php:578
 #: public_html/lists/admin/list.php:206 public_html/lists/admin/user.php:538
 #: public_html/lists/admin/spageedit.php:369
 msgid "Lists"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:488
+#: public_html/lists/admin/messages.php:490
 #: public_html/lists/admin/mviews.php:220
 msgid "Total views"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:492
+#: public_html/lists/admin/messages.php:494
 msgid "Unique Views"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:498
+#: public_html/lists/admin/messages.php:500
 #: public_html/lists/admin/mclicks.php:84
 msgid "Total clicks"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:521
+#: public_html/lists/admin/messages.php:523
 msgid "Started "
 msgstr ""
 
-#: public_html/lists/admin/messages.php:522
+#: public_html/lists/admin/messages.php:524
 msgid "Time to send"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:571
+#: public_html/lists/admin/messages.php:573
 #: public_html/lists/admin/actions/domainstats.php:85
 #: public_html/lists/admin/actions/domainstats.php:166
 #: public_html/lists/admin/actions/domainstats.php:200
@@ -3352,7 +3353,7 @@ msgstr ""
 msgid "total"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:571
+#: public_html/lists/admin/messages.php:573
 #: public_html/lists/admin/send_core.php:836
 #: public_html/lists/admin/actions/mclicks.php:94
 #: public_html/lists/admin/userclicks.php:253
@@ -3360,75 +3361,75 @@ msgstr ""
 msgid "text"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:571
+#: public_html/lists/admin/messages.php:573
 #: public_html/lists/admin/send_core.php:833
 #: public_html/lists/admin/actions/mclicks.php:94
 #: public_html/lists/admin/mclicks.php:141
 msgid "html"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:582
+#: public_html/lists/admin/messages.php:584
 msgid "PDF"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:583
+#: public_html/lists/admin/messages.php:585
 msgid "both"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:598
+#: public_html/lists/admin/messages.php:600
 msgid "Suspend"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:600
-#: public_html/lists/admin/messages.php:601
+#: public_html/lists/admin/messages.php:602
+#: public_html/lists/admin/messages.php:603
 #: public_html/lists/admin/actions/msgstatus.php:70
 msgid "Requeue"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:603
-#: public_html/lists/admin/messages.php:604
+#: public_html/lists/admin/messages.php:605
+#: public_html/lists/admin/messages.php:606
 msgid "View"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:608
+#: public_html/lists/admin/messages.php:610
 msgid "statistics"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:608
+#: public_html/lists/admin/messages.php:610
 #: public_html/lists/admin/subscriberstats.php:7
 #: public_html/lists/admin/message.php:97
 msgid "Statistics"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:613
+#: public_html/lists/admin/messages.php:615
 msgid "Mark&nbsp;sent"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:613
+#: public_html/lists/admin/messages.php:615
 msgid "Mark sent"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:614
-#: public_html/lists/admin/messages.php:615
-#: public_html/lists/admin/messages.php:625
-#: public_html/lists/admin/messages.php:626
+#: public_html/lists/admin/messages.php:616
+#: public_html/lists/admin/messages.php:617
+#: public_html/lists/admin/messages.php:627
+#: public_html/lists/admin/messages.php:628
 msgid "Edit"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:620
+#: public_html/lists/admin/messages.php:622
 msgid "Are you sure you want to delete this campaign?"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:622
+#: public_html/lists/admin/messages.php:624
 msgid "delete this campaign"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:633
-#: public_html/lists/admin/messages.php:634
+#: public_html/lists/admin/messages.php:635
+#: public_html/lists/admin/messages.php:636
 msgid "Copy to Draft"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:637
+#: public_html/lists/admin/messages.php:639
 #: public_html/lists/admin/updatetranslation.php:76
 #: public_html/lists/admin/bouncerule.php:64
 #: public_html/lists/admin/bounce.php:158
@@ -3436,11 +3437,11 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:645
+#: public_html/lists/admin/messages.php:647
 msgid "Suspend All"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:646
+#: public_html/lists/admin/messages.php:648
 msgid "Mark All Sent"
 msgstr ""
 
@@ -7342,6 +7343,10 @@ msgstr ""
 msgid "Show only blacklisted users"
 msgstr ""
 
+#: public_html/lists/admin/users.php:323
+msgid "Sort by"
+msgstr ""
+
 #: public_html/lists/admin/users.php:325
 msgid "asc"
 msgstr ""
@@ -8694,12 +8699,6 @@ msgstr ""
 
 #: public_html/databasestructure.php:38
 msgid "Rss Feed"
-msgstr ""
-
-#: public_html/databasestructure.php:39 public_html/databasestructure.php:46
-#: public_html/databasestructure.php:57 public_html/databasestructure.php:86
-#: public_html/databasestructure.php:109
-msgid "Modified"
 msgstr ""
 
 #: public_html/databasestructure.php:40
