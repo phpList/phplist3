@@ -496,9 +496,9 @@ if (!defined('EMAIL_ADDRESS_VALIDATION_LEVEL')) {
     define('EMAIL_ADDRESS_VALIDATION_LEVEL', 3);
 }
 if (!defined('BLACKLIST_EMAIL_ON_BOUNCE')) {
-    define('BLACKLIST_EMAIL_ON_BOUNCE', 5);
+    define('BLACKLIST_EMAIL_ON_BOUNCE', 50);
 }
-if ($bounce_unsubscribe_threshold < BLACKLIST_EMAIL_ON_BOUNCE) {
+if ($bounce_unsubscribe_threshold > BLACKLIST_EMAIL_ON_BOUNCE) {
     $bounce_unsubscribe_threshold = BLACKLIST_EMAIL_ON_BOUNCE;
 }
 
