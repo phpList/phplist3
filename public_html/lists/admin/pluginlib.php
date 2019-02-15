@@ -67,6 +67,16 @@ if (is_array($disabled_plugins)) {
     }
 }
 
+// Move Common plugin to top as some plugins need it as dependency
+// An example plugin is Autoresponder, which requires the CommonPlugin as a dependency
+// Any better solution is welcome, but the fact is that the order of plugins is important!
+usort(
+    $pluginFiles,
+    function($a, $b) {
+        return ('plugins/CommonPlugin.php' == $b) ? 1 : 0;
+    }
+);
+
 //var_dump($GLOBALS['plugins_disabled']);exit;
 foreach ($pluginFiles as $file) {
     list($className, $ext) = explode('.', basename($file));
