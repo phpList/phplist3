@@ -56,9 +56,6 @@ echo $ls->display();
 
 echo '</form>';
 
-$exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "System Template"',
-    $GLOBALS['tables']['template']));
-if (empty($exists[0])) {
-    echo '<p class="button">'.PageLink2('defaultsystemtemplate',
-            s('Add default system template')).'</p>';
-}
+echo '<p class="button">'.PageLink2('defaultsystemtemplate',
+            s('Add default template')).'</p>';
+
