@@ -81,7 +81,9 @@ if (isset($_POST['Submit'])) {
             $GLOBALS['tables']['template'], $title, addslashes($content)));
         $newid = Sql_Insert_Id();
 
-        saveConfig('systemmessagetemplate', $newid);
+        if ($title === 'System Template') {
+            saveConfig('systemmessagetemplate', $newid);
+        }
 
         echo '<p>' . s('The selected default template has been added as template with ID') . ' ' . $newid . ' </p>';
         echo '<p>' . PageLinkButton('templates', s('Go back to templates')) . '</p>';
