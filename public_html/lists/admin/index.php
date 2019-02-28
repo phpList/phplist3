@@ -519,10 +519,36 @@ if (!$ajax && $page != 'login') {
     if (TEST) {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
+
     $updaterdir = __DIR__ . '/../updater';
-    if(file_exists($updaterdir) && ALLOW_UPDATER){
-        echo Info(s('Try automatic updater').' <a href="?page=redirecttoupdater" title="'.s('automatic updater').'">'.s('here').'</a>'.' ('.s('beta').')');
+
+    include 'updatelib.php';
+
+    if (showUpdateNotification()) {
+
+        try {
+
+            $updateNotif = checkForUpdate('init.php');
+
+        } catch (Exception $e) {
+
+            echo s('Error: '),  $e->getMessage(), "\n";
+
+        }
+
+        $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version').'" target="_blank">'.s('Download the new version').'</a>';
+
+        if (file_exists($updaterdir) && ALLOW_UPDATER) {
+
+            $moreInfo.= s(' or update').' <a href="?page=redirecttoupdater" title="'.s('automatic updater').'">'.s('here.').'</a>';
+        }
+
+        if ($updateNotif!== '') {
+
+            Info($updateNotif.''.$moreInfo);
+        }
     }
+
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
     }
