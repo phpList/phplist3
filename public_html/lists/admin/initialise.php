@@ -193,6 +193,7 @@ if ($success) {
     SaveConfig('message_from_address', $adminemail);
     SaveConfig('message_from_name', strip_tags($_REQUEST['adminname']));
     SaveConfig('message_replyto_address', $adminemail);
+    SaveConfig('lastcheckupdate', date('m/d/Y h:i:s', time()), 0, true);
 
     if (!empty($_REQUEST['orgname'])) {
         SaveConfig('organisation_name', strip_tags($_REQUEST['orgname']), 1);

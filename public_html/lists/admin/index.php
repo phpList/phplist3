@@ -520,32 +520,34 @@ if (!$ajax && $page != 'login') {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
 
-    $updaterdir = __DIR__ . '/../updater';
+    if (!strpos(VERSION, 'dev')){
 
-    include 'updatelib.php';
+        $updaterdir = __DIR__ . '/../updater';
 
-    if (showUpdateNotification()) {
+        include 'updateLib.php';
 
-        try {
+        if (showUpdateNotification()) {
+            try {
 
-            $updateNotif = checkForUpdate('init.php');
+                $updateNotif = checkForUpdate('init.php');
 
-        } catch (Exception $e) {
+            } catch (Exception $e) {
 
-            echo s('Error: '),  $e->getMessage(), "\n";
+                echo s('Error: '), $e->getMessage(), "\n";
 
-        }
+            }
 
-        $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version').'" target="_blank">'.s('Download the new version').'</a>';
+            $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a>';
 
-        if (file_exists($updaterdir) && ALLOW_UPDATER) {
+            if (file_exists($updaterdir) && ALLOW_UPDATER) {
 
-            $moreInfo.= s(' or update').' <a href="?page=redirecttoupdater" title="'.s('automatic updater').'">'.s('here.').'</a>';
-        }
+                $moreInfo .= s(' or update') . ' <a href="?page=redirecttoupdater" title="' . s('automatic updater') . '">' . s('here.') . '</a>';
+            }
 
-        if ($updateNotif!== '') {
+            if ($updateNotif !== '') {
 
-            Info($updateNotif.''.$moreInfo);
+                Info($updateNotif . '' . $moreInfo);
+            }
         }
     }
 
