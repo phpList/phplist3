@@ -110,7 +110,7 @@ function openHelpDialog(url) {
     var destpage = urlParameter('page', url);
     url = url.replace(/page=/, 'origpage=');
     $("#dialog").load(url + '&ajaxed=true&page=pageaction&action=' + destpage);
-    $(".ui-widget-overlay").click(function () {
+    $(".ui-widget-overlay").on('click', function () {
         $("#dialog").dialog('close');
     });
 }
@@ -133,7 +133,7 @@ function totalSentUpdate(msgid) {
 }
 
 $(document).ready(function () {
-    $(".note .hide").click(function () {
+    $(".note .hide").on('click',function () {
         $(this).parents('.note').hide();
     });
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
         }
     });
 
-    $("a.ajaxable").click(function () {
+    $("a.ajaxable").on('click',function () {
         var url = this.href;
         var thispage = urlParameter('page', window.location.href);
         if (thispage == "") {
@@ -161,7 +161,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("input:checkbox.checkallcheckboxes").click(function () {
+    $("input:checkbox.checkallcheckboxes").on('click',function () {
         if (this.checked) {
             $("input[type=checkbox]:not(:checked)").each(function () {
                 this.checked = true;
@@ -193,12 +193,12 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    $(".closedialog").click(function () {
+    $(".closedialog").on('click',function () {
         $("#dialog").dialog('close');
     });
 
     //dropbuttons
-    $("div.dropButton img.arrow").click(function () {
+    $("div.dropButton img.arrow").on('click',function () {
         submenu = $(this).parent().parent().find("div.submenu");
         if (submenu.css('display') == "block") {
             submenu.hide();
@@ -210,7 +210,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $(".blockenterkey").bind("keypress", function(e) {
+    $(".blockenterkey").on("keypress", function(e) {
        if (e.keyCode == 13) {
           return false; // stop submitting the form with enter
         }
@@ -239,34 +239,34 @@ $(document).ready(function () {
         $(".tabbed1").tabs();
     }
 
-    $("#subjectinput").focus(function () {
+    $("#subjectinput").trigger("focus",function () {
         if (this.value == '(no subject)') {
             this.value = "";
         }
     })
-    $("#subjectinput").blur(function () {
+    $("#subjectinput").on('blur',function () {
         if (this.value == "") {
             this.value = "(no subject)";
             return;
         }
     });
-    $("#campaigntitleinput").focus(function () {
+    $("#campaigntitleinput").trigger("focus",function () {
         if (this.value == '(no title)') {
             this.value = "";
         }
     })
-    $("#campaigntitleinput").blur(function () {
+    $("#campaigntitleinput").on('blur',function () {
         if (this.value == "") {
             this.value = "(no title)";
             return;
         }
     });
-    $("#remoteurlinput").focus(function () {
+    $("#remoteurlinput").trigger("focus",function () {
         if (this.value == 'e.g. https://www.phplist.com/testcampaign.html') {
             this.value = "";
         }
     })
-    $("#remoteurlinput").blur(function () {
+    $("#remoteurlinput").on('blur',function () {
         if (this.value == "") {
             this.value = "e.g. https://www.phplist.com/testcampaign.html";
             return;
@@ -274,19 +274,19 @@ $(document).ready(function () {
         $("#remoteurlstatus").html(busyImage);
         $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + this.value);
     });
-    $("#filtertext").focus(function () {
+    $("#filtertext").trigger("focus",function () {
         if (this.value == ' --- filter --- ') {
             this.value = "";
         }
     })
-    $("#filtertext").blur(function () {
+    $("#filtertext").on('blur',function () {
         if (this.value == "") {
             this.value = " --- filter --- ";
             return;
         }
     });
 
-    $("input:radio[name=sendmethod]").change(function () {
+    $("input:radio[name=sendmethod]").on("change",function () {
         if (this.value == "remoteurl") {
             $("#remoteurl").show();
             $("#messagecontent").hide();
@@ -298,7 +298,7 @@ $(document).ready(function () {
 
 
 
-    $("a.savechanges").click(function () {
+    $("a.savechanges").on('click',function () {
         if (changed) {
             document.sendmessageform.followupto.value = this.href;
             document.location.hash = ""
@@ -307,7 +307,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#criteriaSelect").change(function () {
+    $("#criteriaSelect").on("change",function () {
         var val = $("#criteriaSelect").val();
         var operator = '';
         switch (aT[val]) {
@@ -337,7 +337,7 @@ $(document).ready(function () {
     $("#passrow").hide();
     $("#confirmrow").hide();
 
-    $('input[type=radio][name=passwordoption]').change(function() {
+    $('input[type=radio][name=passwordoption]').on("change",function() {
         if($("#passwordoption1").is(':checked'))
         {
             $("#passrow").hide();
@@ -375,7 +375,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#initialadminpassword").keyup(function () {
+    $("#initialadminpassword").on("keyup",function () {
         if (this.value.length >= 8) {
             $("#initialisecontinue").removeAttr('disabled');
         } else if (this.value.length < 8) {
@@ -383,7 +383,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#initialiseform").submit(function () {
+    $("#initialiseform").on("submit",function () {
         $("#dialog").dialog({
             minHeight: 400,
             width: 600,
@@ -395,7 +395,7 @@ $(document).ready(function () {
     // export page
     $(document).ready(function () {
         $("#exportdates").hide();
-    $("input:radio[name=column]").change(function () {
+    $("input:radio[name=column]").on("change",function () {
         if (this.value == 'nodate') {
             $("#exportdates").hide();
         } else {
@@ -404,12 +404,12 @@ $(document).ready(function () {
     });
 });
 
-    $("#processexport").click(function () {
+    $("#processexport").on('click',function () {
         // for export, refresh underlying page, to get a new security token
         setTimeout("refreshExport()", 10000);
     })
 
-    $("#selectallcheckbox").click(function () {
+    $("#selectallcheckbox").on('click',function () {
         $(':checkbox').prop('checked', this.checked);
     })
 
@@ -422,14 +422,14 @@ $(document).ready(function () {
 //  $("#processqueueoutput").html('Processing queue, please wait<script type="text/javascript">alert(document.location)</script>');
     $("#spinner").html(busyImage);
 
-    $("#stopqueue").click(function () {
+    $("#stopqueue").on('click', function () {
         $("#processqueueoutput").html('Processing cancelled');
         $("#spinner").html('&nbsp;');
         $("#stopqueue").hide();
         $("#resumequeue").show();
     });
 
-    $(".updatepluginbutton").click(function () {
+    $(".updatepluginbutton").on('click',function () {
         if (!confirm("Are you sure you want to update this plugin? \nphpList does not currently check on compatibility of the update.\nThis will just fetch the latest version.\nPlease verify before upgrading.")) {
             return false;
         }
