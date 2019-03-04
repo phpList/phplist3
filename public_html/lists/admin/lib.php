@@ -2162,9 +2162,9 @@ function parseLogoPlaceholders($content)
  * @return mixed
  */
 function parseVCardHTMLPlaceholder($content) {
-    preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
+    preg_match_all('/\[CONTACT\:?(\d+)?\]/i', $content, $contactInstances);
     foreach ($contactInstances[0] as $index => $contactInstance) {
-        $content = str_replace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).' ">'.$GLOBALS['strContactMessage'].'</a>', $content);
+        $content = str_ireplace($contactInstance, '<a href="'.htmlentities(getConfig('vcardurl')).'">'.$GLOBALS['strContactMessage'].'</a>', $content);
     }
 
     return $content;
@@ -2176,9 +2176,9 @@ function parseVCardHTMLPlaceholder($content) {
  * @return mixed
  */
 function parseVCardTextPlaceholder($content) {
-    preg_match_all('/\[CONTACT\:?(\d+)?\]/', $content, $contactInstances);
+    preg_match_all('/\[CONTACT\:?(\d+)?\]/i', $content, $contactInstances);
     foreach ($contactInstances[0] as $index => $contactInstance) {
-        $content = str_replace($contactInstance, $GLOBALS['strContactMessage'].' '.htmlentities(getConfig('vcardurl')), $content);
+        $content = str_ireplace($contactInstance, $GLOBALS['strContactMessage'].' '.htmlentities(getConfig('vcardurl')), $content);
     }
 
     return $content;
@@ -2271,7 +2271,7 @@ function asyncLoadContent($url)
 {
     return '<script type="text/javascript">
         var loadMessage = \'' .sjs('Please wait, your request is being processed. Do not refresh this page.').'\';
-        var loadMessages = new Array(); 
+        var loadMessages = new Array();
         loadMessages[30] = \'' .sjs('Still loading').'\';
         loadMessages[90] = \'' .sjs('It may seem to take a while, but there is a lot of data to crunch<br/>if you have a lot of subscribers and campaigns').'\';
         loadMessages[150] = \'' .sjs('It should be soon now, your page content is almost here.').'\';
