@@ -97,17 +97,17 @@ if (isset($subscribepagedata['showcategories']) && $subscribepagedata['showcateg
 if (!empty($_POST['VerificationCodeX'])) {
     if (NOTIFY_SPAM) {
         $msg = $GLOBALS['I18N']->get('
--------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------
     This is a notification of a possible spam attack to your phplist subscribe page.
     The data submitted has been copied below, so you can check whether this was actually the case.
     The submitted data has been converted into non-html characters, for security reasons.
-    If you want to stop receiving this message, set 
-    
-     define("NOTIFY_SPAM",0);  
-     
-     in your phplist config file.  
-     
-     This subscriber has NOT been added to the database. 
+    If you want to stop receiving this message, set
+
+     define("NOTIFY_SPAM",0);
+
+     in your phplist config file.
+
+     This subscriber has NOT been added to the database.
      If there is an error, you will need to  add them manually.
 --------------------------------------------------------------------------------  ');
         foreach ($_REQUEST as $key => $val) {
@@ -749,7 +749,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     if (isset($GLOBALS['showCat'])&& $GLOBALS['showCat']===true){
         $listspercategory = array();
         $categories = array();
-        $catresult = Sql_query(sprintf('select * from %s %s order by category',
+        $catresult = Sql_query(sprintf('select * from %s %s order by category, listorder, name',
             $GLOBALS['tables']['list'], $subselect));
 
 
