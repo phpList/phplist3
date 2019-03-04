@@ -29,53 +29,6 @@ if (Sql_Table_exists($tables['config'], 1)) {
 //# trigger this somewhere else?
 refreshTlds();
 
-// check for latest version
-$checkinterval = sprintf('%d', getConfig('check_new_version'));
-if (empty($checkinterval)) {
-    $checkinterval = 7;
-}
-
-$showUpdateAvail = !empty($_GET['showupdate']); //# just to check the design
-$thisversion = VERSION;
-$thisversion = preg_replace("/[^\.\d]/", '', $thisversion);
-$latestversion = getConfig('updateavailable');
-$showUpdateAvail = $showUpdateAvail || (!empty($latestversion) && !versionCompare($thisversion, $latestversion));
-
-if (!$showUpdateAvail && $checkinterval) {
-
-    //#https://mantis.phplist.com/view.php?id=16815
-    $query = sprintf('select date_add(value, interval %d day) < now() as needscheck from %s where item = "updatelastcheck"',
-        $checkinterval, $tables['config']);
-    $needscheck = Sql_Fetch_Row_Query($query);
-    if ($needscheck[0] != '0') {
-        @ini_set('user_agent', NAME.' (phplist version '.VERSION.')');
-        @ini_set('default_socket_timeout', 5);
-        if ($fp = @fopen('https://www.phplist.com/files/LATESTVERSION', 'r')) {
-            $latestversion = fgets($fp);
-            $latestversion = preg_replace("/[^\.\d]/", '', $latestversion);
-            @fclose($fp);
-            if (!versionCompare($thisversion, $latestversion)) {
-                //# remember this, so we can remind about the update, without the need to check the phplist site
-                //# hmmm, this causes it to be "stuck" on the last version checked
-                SaveConfig('updateavailable', $latestversion, 0, true);
-                $showUpdateAvail = true;
-            }
-        }
-        SaveConfig('updatelastcheck', date('Y-m-d H:i:s', time()), 0, true);
-    }
-}
-
-if ($showUpdateAvail) {
-    echo '<div class="newversion note">';
-    echo s('A new version of phpList is available!');
-    echo '<br/>';
-    echo '<br/>'.s('The new version may have fixed security issues,<br/>so it is recommended to upgrade as soon as possible');
-    echo '<br/>'.s('Your version').': <b>'.$thisversion.'</b>';
-    echo '<br/>'.s('Latest version').': <b>'.$latestversion.'</b><br/>  ';
-    echo '<a href="https://www.phplist.com/latestchanges?utm_source=pl'.$thisversion.'&amp;utm_medium=updatenews&amp;utm_campaign=phpList" title="'.s('Read what has changed in the new version').'" target="_blank">'.$GLOBALS['I18N']->get('View what has changed').'</a>&nbsp;&nbsp;';
-    echo '<a href="https://www.phplist.com/download?utm_source=pl'.$thisversion.'&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="'.s('Download the new version').'" target="_blank">'.$GLOBALS['I18N']->get('Download').'</a></div>';
-}
-
 echo '<div class="accordion">';
 
 $some = 0;

@@ -99,16 +99,6 @@ $default_config = array(
         'category'    => 'general',
     ),
 
-    // how often to check for new versions of PHPlist
-    'check_new_version' => array(
-        'value'       => '7',
-        'description' => s('How often do you want to check for a new version of phplist (days)'),
-        'type'        => 'integer',
-        'min'         => 1,
-        'max'         => 180,
-        'category'    => 'security',
-    ),
-
     //# remote processing secret
     // @TODO previous value generation was limited to 20 hex characters (max), determine if this is enough (80 bits)
     'remote_processing_secret' => array(
