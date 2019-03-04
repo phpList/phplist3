@@ -84,7 +84,7 @@ function lastTimeCheck()
     $currentTimeFormattedDateTime = new DateTime($currentTime);
 
     $interval = $currentTimeFormattedDateTime->diff($lastTimeFormattedDateTime);
-    $dDiff = $interval->format('%d');
+    $dDiff = $interval->format('%a');
 
     if ($dDiff >= '3') {
 
