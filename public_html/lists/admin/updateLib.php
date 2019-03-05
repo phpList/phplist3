@@ -55,9 +55,14 @@ function checkForUpdate($path = '')
 {
     $serverResponse = getResponse($path);
     $version = isset($serverResponse['version']) ? $serverResponse['version'] : '';
+    $enabledNotification = true;
+
+    if (strpos($version, 'RC') && (getConfig('rc_notification') == 0)) {
+        $enabledNotification = false;
+    }
     $versionString = isset($serverResponse['versionstring']) ? $serverResponse['versionstring'] : '';
 
-    if ($version !== '' && $version !== getCurrentphpListVersion($path) && version_compare(getCurrentphpListVersion($path), $version)) {
+    if ($version !== '' && $version !== getCurrentphpListVersion($path) && version_compare(getCurrentphpListVersion($path), $version) && $enabledNotification) {
         $updateMessage = s('Update to ' . htmlentities($versionString) . ' is available.  ');
     } else {
         $updateMessage = '';

@@ -98,6 +98,13 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'general',
     ),
+    'rc_notification' => array(
+        'value'       => 0,
+        'description' => s('Show notification for Release Candidates'),
+        'type'        => 'boolean',
+        'allowempty'  => true,
+        'category'    => 'general',
+    ),
 
     //# remote processing secret
     // @TODO previous value generation was limited to 20 hex characters (max), determine if this is enough (80 bits)
