@@ -543,7 +543,7 @@ your membership.'
         'value' =>
 'You have requested your personal location to update your details in our newsletter database.
 The location is below. Please make sure that you use the full line as mentioned below.
-Sometimes email programmes can wrap the line into multiple lines.
+Sometimes email programs wrap the link over multiple lines.
 
 Your personal location is:
 [PREFERENCESURL]
