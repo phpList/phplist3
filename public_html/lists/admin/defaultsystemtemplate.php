@@ -405,7 +405,7 @@ echo '<div>
   <input type="radio" name="template" value="systemtemplate" checked>  System Template<br>
   <input type="radio" name="template" value="template1"> Template with Logo<br>
   <input type="radio" name="template" value="template2"> Simple Responsive Template<br> 
-  <input type="submit" value="Submit"  name="Submit">
+  <input type="submit" value="Select"  name="Submit">
 </form>
 </div>
 ';
