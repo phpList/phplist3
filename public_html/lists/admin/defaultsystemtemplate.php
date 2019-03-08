@@ -103,36 +103,12 @@ $template2 = '<p><style type="text/css">#ushuaia h1{font-size:36px}#ushuaia h2{f
 </div>
 <p>&nbsp;</p>
 </div>';
-$template3 = '<p><style type="text/css">#baires h1,#baires h2,#baires h3,#baires h4,#baires b,#baires a {color:#000 !important} #baires p{color:#666 !important}#baires_footer a{color:#EEE !important}</style></p>
-<div style="margin:0; text-align:center; width:100%; background:#EEE;min-width:240px;height:100%;" id="baires">
-<div style="width:96%;margin:0 auto; border:10px double #000;">
-<div style="background:#000;padding:5px 0px 5px 15px;color:#777;letter-spacing:20px;text-align:center;font-size:15px;margin:1px 0px">NEWSLETTER</div>
-<table height="100%" width="100%" style="font-family:Times New Roman, Garamond, serif;">
-    <tbody>
-        <tr>
-            <td bgcolor="#666" align="right" width="35" valign="top"><br />
-            <h3 style="margin:10px;text-align:right;font-weight:normal; color:#FFF !important; line-height:1.2; font-size:30px;">[SUBJECT]</h3>
-            </td>
-            <td bgcolor="#FFF" style="color:#666;margin:10px">
-            <div style="margin:10px">[CONTENT]</div>
-            </td>
-        </tr>
-        <tr>
-            <td style="background:#000;padding:5px;height:50px;color:#FFF !important" id="baires_footer" colspan="2">[FOOTER]</td>
-        </tr>
-        <tr>
-            <td style="background:#333;height:20px;text-align:center" colspan="2">[SIGNATURE]</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-</div>';
+
 echo formStart();
 echo '<div> 
   <input type="radio" name="template" value="systemtemplate" checked>  System Template<br>
   <input type="radio" name="template" value="template1"> Template 1<br>
   <input type="radio" name="template" value="template2"> Template 2<br> 
-  <input type="radio" name="template" value="template3"> Template 3<br> 
   <input type="submit" value="Submit"  name="Submit">
 </form>
 </div>
@@ -151,10 +127,6 @@ if (isset($_POST['Submit'])) {
         case 'template2':
             $title = "Template two";
             $content = $template2;
-            break;
-        case 'template3':
-            $title = "Template three";
-            $content = $template3;
             break;
     }
     $exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "%s"',
