@@ -191,6 +191,7 @@ if ($success) {
     SaveConfig('message_from_address', $adminemail);
     SaveConfig('message_from_name', strip_tags($_REQUEST['adminname']));
     SaveConfig('message_replyto_address', $adminemail);
+    SaveConfig('secret', bin2hex(random_bytes(20)));
     SaveConfig('lastcheckupdate', date('m/d/Y h:i:s', time()), 0, true);
 
     if (!empty($_REQUEST['orgname'])) {

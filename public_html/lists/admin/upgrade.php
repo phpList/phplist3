@@ -369,11 +369,14 @@ if ($dbversion == VERSION && !$force) {
     if (version_compare($dbversion, '3.3.3','<')) {
         // add a draft campaign for invite plugin
         addInviteCampaign();
-
     }
 
     if (version_compare($dbversion, '3.3.4','<')) {
         Sql_Query("alter table {$GLOBALS['tables']['bounce']} modify data mediumblob ");
+    }
+
+    if (version_compare($dbversion, '3.4.0-RC1','<')) {
+        SaveConfig('secret', bin2hex(random_bytes(20)));
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
