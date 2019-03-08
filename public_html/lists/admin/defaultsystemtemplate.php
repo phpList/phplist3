@@ -16,70 +16,6 @@ $systemTemplate = <<<EOD
 <br /></div>
 EOD;
 
-$templateWithLogo = <<<EOD
-<!doctype html>
-<html>
-    <head>
-	    <title></title>
-    </head>
-    <body>
-        <div id="shell" style="margin: 0px; background: none repeat scroll 0% 0% rgb(235, 235, 235); color: rgb(102, 102, 102); padding: 0px; text-align: center; width: 100%;"><noscript>
-	        <table cellspacing="0" border="0" class="required" style="margin: 0px auto;" width="600" cellpadding="10">
-		        <tr>
-			        <td align="right" style="font-size: 14px; font-family: Arial; line-height: 1.3em; text-align: left;">
-				        <p style="font-size: 14px; margin: 10px; line-height: 1.3em; font-family: Arial; padding: 0px; text-align: right;"><a href="[PREFERENCESURL]" title="Change subscription options" style="color: #4A4A4A; text-decoration: none;">Change Subscription</a> : <a href="[UNSUBSCRIBEURL]" title="Unsubscribe" style="color: #4A4A4A; text-decoration: none;">Unsubscribe</a></p>
-			        </td>
-		        </tr>
-	        </table>
-	        </noscript>
-            <table cellpadding="0" cellspacing="0" id="Box" style="margin: 10px auto; background: none repeat scroll 0% 0% rgb(255, 255, 255); color: rgb(102, 102, 102); padding: 0pt;" width="580">
-	            <tbody>
-		            <tr>
-			            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;">
-			            <table border="0" cellpadding="0" cellspacing="0" id="Header" style="background: none repeat scroll 0% 0% rgb(255, 255, 255);" width="600">
-				            <tbody>
-					            <tr valign="top">
-						            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;"><a href="[WEBSITE]" title="[ORGANISATION_NAME]"><img alt="***" src="[LOGO:290]" style="display: block;margin-left: auto;margin-right: auto;" /></a></td>
-					            </tr>
-				            </tbody>
-			            </table>
-			            <!--content table starts-->
-
-			            <table border="0" cellpadding="0" cellspacing="0" class="content" style="background-color: rgb(255, 255, 255); color: rgb(102, 102, 102);" width="600">
-				            <tbody>
-					            <tr valign="top">
-						            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;"><img alt="" height="20" src="pad.png" style="border: 0px none;" width="20" /></td>
-						            <td class="maincontent" style="font-size: 14px; font-family: Arial; line-height: 1.3em; text-align: left;">
-						            <h1 style="font-size: 1.8em; margin: 1em 0pt; color: rgb(87, 164, 210); padding: 0pt; letter-spacing: -1px;">[SUBJECT]</h1>
-
-						            <p style="font-size: 14px; margin: 0.5em 0pt 1em; line-height: 1.3em; font-family: Arial; text-align: left;">[CONTENT]</p>
-						            </td>
-						            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;"><img alt="" height="20" src="pad.png" style="border: 0px none;" width="20" /></td>
-					            </tr>
-				            </tbody>
-			            </table>
-			            <!--content table ends--><!--content table starts-->
-
-			            <table border="0" cellpadding="0" cellspacing="0" class="content" style="background-color: rgb(255, 255, 255); color: rgb(102, 102, 102);" width="600">
-				            <tbody>
-					            <tr valign="top">
-						            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;"><img alt="" height="20" src="pad.png" style="border: 0px none;" width="20" /></td>
-						            <td class="maincontent" style="font-size: 14px; margin:5px;font-family: Arial; line-height: 1.3em; text-align: left;">
-						            <p style="font-size: 14px; margin: 0.5em 0pt; line-height: 1.3em; font-family: Arial; text-align: left;">[FOOTER]</p>
-						            </td>
-						            <td style="font-size: 14px; line-height: 1.3em; font-family: Arial; text-align: left;"><img alt="" height="20" src="pad.png" style="border: 0px none;" width="20" /></td>
-					            </tr>
-				            </tbody>
-			            </table>
-			            </td>
-		            </tr>
-	            </tbody>
-            </table>
-        </div>
-    </body>
-</html>
-EOD;
-
 $simpleResponsiveTemplate = <<<EOD
 <!doctype html>
 <html>
@@ -336,12 +272,10 @@ $simpleResponsiveTemplate = <<<EOD
               line-height: 100%;
             }
             .apple-link a {
-              color: inherit !important;
               font-family: inherit !important;
               font-size: inherit !important;
-              font-weight: inherit !important;
+              font-weight: bold !important;
               line-height: inherit !important;
-              text-decoration: none !important;
             }
             .templatebtn-primary table td:hover {
               background-color: #34495e !important;
@@ -374,7 +308,10 @@ $simpleResponsiveTemplate = <<<EOD
 						    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
 							    <tbody>
 								    <tr>
-									    <td style="font-family: sans-serif;font-size: 14px;vertical-align: top;"><span class="preheader">This is preheader text. Some clients will show this text as a preview.</span> [CONTENT]</td>
+									    <td style="font-family: sans-serif;font-size: 14px;vertical-align: top;">
+                                            <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                                            [CONTENT]
+                                        </td>
 								    </tr>
 							    </tbody>
 						    </table>
@@ -389,9 +326,19 @@ $simpleResponsiveTemplate = <<<EOD
 			    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
 				    <tbody>
 					    <tr>
-						    <td class="templatecontent-block" style="font-family: sans-serif;font-size: 14px;vertical-align: top;"><span class="apple-link">[FOOTER]</span>
+						    <td class="templatecontent-block" style="font-family: sans-serif;font-size: 13px;vertical-align: top;">
+                                <span class="apple-link">
+                                    <div class="footer">
+                                        <p>This message was sent to [EMAIL] by [FROMEMAIL]
+                                        <br/>To change your details and preferences visit your <a href="[PREFERENCESURL]">preferences page</a>
+                                        <br/>To receive no further messages <a href="[UNSUBSCRIBEURL]">unsubscribe</a></p>
+                                    </div>
+                                </span>
+						    <p>
+                                <a href="[CONTACT]" style="color: #3498db; text-decoration: underline;">Add us to your address book</a>  |  
+                                <a href="[FORWARDURL]" style="color: #3498db; text-decoration: underline;">Forward this message</a>
 
-						    <p><a href="[FORWARDURL]" style="color: #3498db; text-decoration: underline;">Forward this message</a></p>
+                            </p>
 						    </td>
 					    </tr>
 				    </tbody>
