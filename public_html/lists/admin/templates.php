@@ -7,10 +7,11 @@ echo '<p class="button pull-right fright">'.PageLink2('template', s('Add new Tem
 if (isset($_GET['delete'])) {
     // delete the index in delete
     $delete = sprintf('%d', $_GET['delete']);
-    echo s('Deleting')." $delete ...\n";
+    echo '<div class="actionresult alert alert-info">';
+    echo s('Template with ID')." $delete ".s('deleted');
+    echo '</div>';
     $result = Sql_query('delete from '.$tables['template']." where id = $delete");
     $result = Sql_query('delete from '.$tables['templateimage']." where template = $delete");
-    echo '... '.s('Done')."<br /><hr /><br />\n";
 }
 if (isset($_POST['defaulttemplate'])) {
     saveConfig('defaultmessagetemplate', sprintf('%d', $_POST['defaulttemplate']));
