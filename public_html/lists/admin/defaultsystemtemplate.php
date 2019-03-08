@@ -5,7 +5,7 @@
  */
 echo '<h2>'.s('Default templates suit').'</h2>';
 
-$systemtemplate = <<<EOD
+$systemTemplate = <<<EOD
 <div style="margin:0; text-align:center; width:100%; background:#EEE;min-width:240px;height:100%;"><br />
     <div style="width:96%;margin:0 auto; border-top:6px solid #369;border-bottom: 6px solid #369;background:#DEF;" >
         <h3 style="margin-top:5px;background-color:#69C; font-weight:normal; color:#FFF; text-align:center; margin-bottom:5px; padding:10px; line-height:1.2; font-size:21px; text-transform:capitalize;">[SUBJECT]</h3>
@@ -15,7 +15,7 @@ $systemtemplate = <<<EOD
 <br /></div>
 EOD;
 
-$template1 = <<<EOD
+$templateWithLogo = <<<EOD
 <!doctype html>
 <html>
     <head>
@@ -79,7 +79,7 @@ $template1 = <<<EOD
 </html>
 EOD;
 
-$template2 = <<<EOD
+$simpleResponsiveTemplate = <<<EOD
 <!doctype html>
 <html>
     <head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -409,9 +409,9 @@ EOD;
 echo formStart();
 echo '
     <div> 
-      <input type="radio" name="template" value="systemtemplate" checked>System template<br>
-      <input type="radio" name="template" value="template1">Template with logo<br>
-      <input type="radio" name="template" value="template2">Simple responsive template<br> 
+      <input type="radio" name="template" value="systemTemplate" checked>System template<br>
+      <input type="radio" name="template" value="templateWithLogo">Template with logo<br>
+      <input type="radio" name="template" value="simpleResponsiveTemplate">Simple responsive template<br> 
       <input type="submit" value="Select"  name="Submit">
     </form>
 </div>';
@@ -419,17 +419,17 @@ echo '
 if (isset($_POST['Submit'])) {
     $radioVal = $_POST['template'];
     switch ($radioVal) {
-        case 'systemtemplate':
+        case 'systemTemplate':
             $title = "System template";
-            $content = $systemtemplate;
+            $content = $systemTemplate;
             break;
-        case 'template1':
+        case 'templateWithLogo':
             $title = "Template with logo";
-            $content = $template1;
+            $content = $templateWithLogo;
             break;
-        case 'template2':
+        case 'simpleResponsiveTemplate':
             $title = "Simple responsive template";
-            $content = $template2;
+            $content = $simpleResponsiveTemplate;
             break;
     }
     $exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "%s"',
