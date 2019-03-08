@@ -409,9 +409,9 @@ EOD;
 echo formStart();
 echo '
     <div> 
-      <input type="radio" name="template" value="systemtemplate" checked>  System Template<br>
-      <input type="radio" name="template" value="template1"> Template with Logo<br>
-      <input type="radio" name="template" value="template2"> Simple Responsive Template<br> 
+      <input type="radio" name="template" value="systemtemplate" checked>System template<br>
+      <input type="radio" name="template" value="template1">Template with logo<br>
+      <input type="radio" name="template" value="template2">Simple responsive template<br> 
       <input type="submit" value="Select"  name="Submit">
     </form>
 </div>';
@@ -420,15 +420,15 @@ if (isset($_POST['Submit'])) {
     $radioVal = $_POST['template'];
     switch ($radioVal) {
         case 'systemtemplate':
-            $title = "System Template";
+            $title = "System template";
             $content = $systemtemplate;
             break;
         case 'template1':
-            $title = "Template with Logo";
+            $title = "Template with logo";
             $content = $template1;
             break;
         case 'template2':
-            $title = "Simple Responsive Template";
+            $title = "Simple responsive template";
             $content = $template2;
             break;
     }
