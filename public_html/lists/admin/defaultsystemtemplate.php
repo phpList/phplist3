@@ -383,8 +383,9 @@ if (isset($_POST['Submit'])) {
         , $GLOBALS['tables']['template']
         , $title
     ));
-    $messages = '<div class="actionresult alert alert-info">';
+    
     if ($exists[0]) {
+        $messages = '<div class="actionresult alert alert-warning">';
         $messages .= s('This default template already exists');
         $messages .= '</div>';
         echo $messages;
@@ -398,6 +399,7 @@ if (isset($_POST['Submit'])) {
         if ($title === 'System Template') {
             saveConfig('systemmessagetemplate', $newid);
         }
+        $messages = '<div class="actionresult alert alert-success">';
         $messages .= s('The selected default template has been added as template with ID') . ' ' . $newid . ' ';
         $messages .= '</div>';
         echo $messages;
