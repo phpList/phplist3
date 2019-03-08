@@ -103,7 +103,7 @@ $default_config = array(
         'description' => s('Show notification for Release Candidates'),
         'type'        => 'boolean',
         'allowempty'  => true,
-        'category'    => 'general',
+        'category'    => 'system',
     ),
 
     //# remote processing secret
