@@ -57,5 +57,5 @@ echo $ls->display();
 echo '</form>';
 
 echo '<p class="button">'.PageLink2('defaultsystemtemplate',
-            s('Add default template')).'</p>';
+            s('Add templates from default selection')).'</p>';
 
