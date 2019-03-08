@@ -182,8 +182,6 @@ if ($success) {
     output( s('Setting default configuration').'<br/>');
     // mark the database to be our current version
     SaveConfig('version', VERSION, 0);
-    // mark now to be the last time we checked for an update
-    SaveConfig('updatelastcheck', date('Y-m-d H:i:s', time()), 0, true);
     SaveConfig('admin_address', $adminemail, 1);
     SaveConfig('message_from_name', strip_tags($_REQUEST['adminname']), 1);
     SaveConfig('campaignfrom_default', "$adminemail ".strip_tags($_REQUEST['adminname']));
@@ -194,6 +192,7 @@ if ($success) {
     SaveConfig('message_from_name', strip_tags($_REQUEST['adminname']));
     SaveConfig('message_replyto_address', $adminemail);
     SaveConfig('secret', bin2hex(random_bytes(20)));
+    SaveConfig('lastcheckupdate', date('m/d/Y h:i:s', time()), 0, true);
 
     if (!empty($_REQUEST['orgname'])) {
         SaveConfig('organisation_name', strip_tags($_REQUEST['orgname']), 1);

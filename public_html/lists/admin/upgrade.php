@@ -393,7 +393,7 @@ if ($dbversion == VERSION && !$force) {
             SaveConfig('releaseDBversion', RELEASEDATE, 0);
         }
         // mark now to be the last time we checked for an update
-        SaveConfig('updatelastcheck', date('Y-m-d H:i:s', time()), 0, true);
+        SaveConfig('lastcheckupdate', date('m/d/Y h:i:s', time()), 0, true);
         //# also clear any possible value for "updateavailable"
         Sql_Query(sprintf('delete from %s where item = "updateavailable"', $tables['config']));
 

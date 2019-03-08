@@ -98,15 +98,12 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'general',
     ),
-
-    // how often to check for new versions of PHPlist
-    'check_new_version' => array(
-        'value'       => '7',
-        'description' => s('How often do you want to check for a new version of phplist (days)'),
-        'type'        => 'integer',
-        'min'         => 1,
-        'max'         => 180,
-        'category'    => 'security',
+    'rc_notification' => array(
+        'value'       => 0,
+        'description' => s('Show notification for Release Candidates'),
+        'type'        => 'boolean',
+        'allowempty'  => true,
+        'category'    => 'system',
     ),
 
     //# remote processing secret
@@ -543,7 +540,7 @@ your membership.'
         'value' =>
 'You have requested your personal location to update your details in our newsletter database.
 The location is below. Please make sure that you use the full line as mentioned below.
-Sometimes email programmes can wrap the line into multiple lines.
+Sometimes email programs wrap the link over multiple lines.
 
 Your personal location is:
 [PREFERENCESURL]

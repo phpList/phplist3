@@ -110,7 +110,7 @@ function openHelpDialog(url) {
     var destpage = urlParameter('page', url);
     url = url.replace(/page=/, 'origpage=');
     $("#dialog").load(url + '&ajaxed=true&page=pageaction&action=' + destpage);
-    $(".ui-widget-overlay").on('click', function () {
+    $(".ui-widget-overlay").on("click",function () {
         $("#dialog").dialog('close');
     });
 }
@@ -133,7 +133,7 @@ function totalSentUpdate(msgid) {
 }
 
 $(document).ready(function () {
-    $(".note .hide").on('click',function () {
+    $(".note .hide").on("click",function () {
         $(this).parents('.note').hide();
     });
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
         }
     });
 
-    $("a.ajaxable").on('click',function () {
+    $("a.ajaxable").on("click",function () {
         var url = this.href;
         var thispage = urlParameter('page', window.location.href);
         if (thispage == "") {
@@ -161,7 +161,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("input:checkbox.checkallcheckboxes").on('click',function () {
+    $("input:checkbox.checkallcheckboxes").on("click",function () {
         if (this.checked) {
             $("input[type=checkbox]:not(:checked)").each(function () {
                 this.checked = true;
@@ -193,12 +193,12 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    $(".closedialog").on('click',function () {
+    $(".closedialog").on("click",function () {
         $("#dialog").dialog('close');
     });
 
     //dropbuttons
-    $("div.dropButton img.arrow").on('click',function () {
+    $("div.dropButton img.arrow").on("click",function () {
         submenu = $(this).parent().parent().find("div.submenu");
         if (submenu.css('display') == "block") {
             submenu.hide();
@@ -239,34 +239,34 @@ $(document).ready(function () {
         $(".tabbed1").tabs();
     }
 
-    $("#subjectinput").trigger("focus",function () {
+    $("#subjectinput").on("focus",function () {
         if (this.value == '(no subject)') {
             this.value = "";
         }
     })
-    $("#subjectinput").on('blur',function () {
+    $("#subjectinput").on("blur",function () {
         if (this.value == "") {
             this.value = "(no subject)";
             return;
         }
     });
-    $("#campaigntitleinput").trigger("focus",function () {
+    $("#campaigntitleinput").on("focus",function () {
         if (this.value == '(no title)') {
             this.value = "";
         }
     })
-    $("#campaigntitleinput").on('blur',function () {
+    $("#campaigntitleinput").on("blur",function () {
         if (this.value == "") {
             this.value = "(no title)";
             return;
         }
     });
-    $("#remoteurlinput").trigger("focus",function () {
+    $("#remoteurlinput").on("focus",function () {
         if (this.value == 'e.g. https://www.phplist.com/testcampaign.html') {
             this.value = "";
         }
     })
-    $("#remoteurlinput").on('blur',function () {
+    $("#remoteurlinput").on("blur",function () {
         if (this.value == "") {
             this.value = "e.g. https://www.phplist.com/testcampaign.html";
             return;
@@ -274,12 +274,12 @@ $(document).ready(function () {
         $("#remoteurlstatus").html(busyImage);
         $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + this.value);
     });
-    $("#filtertext").trigger("focus",function () {
+    $("#filtertext").on("focus",function () {
         if (this.value == ' --- filter --- ') {
             this.value = "";
         }
     })
-    $("#filtertext").on('blur',function () {
+    $("#filtertext").on("blur",function () {
         if (this.value == "") {
             this.value = " --- filter --- ";
             return;
@@ -298,7 +298,7 @@ $(document).ready(function () {
 
 
 
-    $("a.savechanges").on('click',function () {
+    $("a.savechanges").on("click",function () {
         if (changed) {
             document.sendmessageform.followupto.value = this.href;
             document.location.hash = ""
@@ -404,12 +404,12 @@ $(document).ready(function () {
     });
 });
 
-    $("#processexport").on('click',function () {
+    $("#processexport").on("click",function () {
         // for export, refresh underlying page, to get a new security token
         setTimeout("refreshExport()", 10000);
     })
 
-    $("#selectallcheckbox").on('click',function () {
+    $("#selectallcheckbox").on("click",function () {
         $(':checkbox').prop('checked', this.checked);
     })
 
@@ -422,14 +422,14 @@ $(document).ready(function () {
 //  $("#processqueueoutput").html('Processing queue, please wait<script type="text/javascript">alert(document.location)</script>');
     $("#spinner").html(busyImage);
 
-    $("#stopqueue").on('click', function () {
+    $("#stopqueue").on("click",function () {
         $("#processqueueoutput").html('Processing cancelled');
         $("#spinner").html('&nbsp;');
         $("#stopqueue").hide();
         $("#resumequeue").show();
     });
 
-    $(".updatepluginbutton").on('click',function () {
+    $(".updatepluginbutton").on("click",function () {
         if (!confirm("Are you sure you want to update this plugin? \nphpList does not currently check on compatibility of the update.\nThis will just fetch the latest version.\nPlease verify before upgrading.")) {
             return false;
         }
