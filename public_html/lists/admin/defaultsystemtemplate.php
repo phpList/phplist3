@@ -1,10 +1,11 @@
 <?php
 /**
  * Add default templates including default system template
- *
  */
-echo '<h2>'.s('Default templates suit').'</h2>';
 
+/**
+ * Define template contents
+ */
 $systemTemplate = <<<EOD
 <div style="margin:0; text-align:center; width:100%; background:#EEE;min-width:240px;height:100%;"><br />
     <div style="width:96%;margin:0 auto; border-top:6px solid #369;border-bottom: 6px solid #369;background:#DEF;" >
@@ -406,16 +407,9 @@ $simpleResponsiveTemplate = <<<EOD
 </html>
 EOD;
 
-echo formStart();
-echo '
-    <div> 
-      <input type="radio" name="template" value="systemTemplate" checked>System template<br>
-      <input type="radio" name="template" value="templateWithLogo">Template with logo<br>
-      <input type="radio" name="template" value="simpleResponsiveTemplate">Simple responsive template<br> 
-      <input type="submit" value="Select"  name="Submit">
-    </form>
-</div>';
-
+/**
+ * Handle requests to add template
+ */
 if (isset($_POST['Submit'])) {
     $radioVal = $_POST['template'];
     switch ($radioVal) {
@@ -432,11 +426,24 @@ if (isset($_POST['Submit'])) {
             $content = $simpleResponsiveTemplate;
             break;
     }
-    $exists = Sql_Fetch_Row_Query(sprintf('select * from %s where title = "%s"',
-        $GLOBALS['tables']['template'], $title));
+    $exists = Sql_Fetch_Row_Query(sprintf('
+        select 
+            * 
+        from 
+            %s 
+        where 
+            title = "%s"'
+        , $GLOBALS['tables']['template']
+        , $title
+    ));
+    $messages = '<div class="actionresult alert alert-info">';
     if ($exists[0]) {
-        echo '<p>' . s('This default template already exists') . '</p>';
-        echo '<p>' . PageLinkButton('templates', s('Go back to templates')) . '</p>';
+        $messages .= s('This default template already exists');
+        $messages .= '</div>';
+        echo $messages;
+        echo '<p>';
+        echo PageLinkButton('templates', s('Go back to templates'));
+        echo '</p>';
     } else {
         Sql_Query(sprintf('insert into %s (title,template,listorder) values("%s","%s",0)',
             $GLOBALS['tables']['template'], $title, addslashes($content)));
@@ -444,8 +451,27 @@ if (isset($_POST['Submit'])) {
         if ($title === 'System Template') {
             saveConfig('systemmessagetemplate', $newid);
         }
-        echo '<p>' . s('The selected default template has been added as template with ID') . ' ' . $newid . ' </p>';
-        echo '<p>' . PageLinkButton('templates', s('Go back to templates')) . '</p>';
-        echo '<p>' . PageLinkButton('template&amp;id=' . $newid, s('Edit the added template')) . '</p>';
+        $messages .= s('The selected default template has been added as template with ID') . ' ' . $newid . ' ';
+        $messages .= '</div>';
+        echo $messages;
+        echo '<p>';
+        echo '' . PageLinkButton('templates', s('Go back to templates')) . '';
+        echo '' . PageLinkButton('template&amp;id=' . $newid, s('Edit the added template')) . '';
+        echo '</p>';
     }
 }
+
+/**
+ * Print page contents
+ */
+echo '<h2>'.s('Default templates suit').'</h2>';
+
+echo formStart();
+echo '
+    <div> 
+      <input type="radio" name="template" value="systemTemplate" checked>System template<br>
+      <input type="radio" name="template" value="templateWithLogo">Template with logo<br>
+      <input type="radio" name="template" value="simpleResponsiveTemplate">Simple responsive template<br> 
+      <input type="submit" value="Select"  name="Submit">
+    </form>
+</div>';
