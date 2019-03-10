@@ -216,7 +216,7 @@ msgstr ""
 msgid "Your database is out of date, please make sure to upgrade"
 msgstr ""
 
-#: public_html/lists/admin/home.php:12 public_html/lists/admin/home.php:73
+#: public_html/lists/admin/home.php:12
 msgid "Your version"
 msgstr ""
 
@@ -224,9 +224,9 @@ msgstr ""
 msgid "phplist version"
 msgstr ""
 
-#: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:390
+#: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:343
 #: public_html/lists/admin/initialise.php:249
-#: public_html/lists/admin/upgrade.php:425
+#: public_html/lists/admin/upgrade.php:428
 msgid "Upgrade"
 msgstr ""
 
@@ -246,249 +246,218 @@ msgstr ""
 msgid "to continue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:70
-msgid "A new version of phpList is available!"
-msgstr ""
-
-#: public_html/lists/admin/home.php:72
-msgid ""
-"The new version may have fixed security issues,<br/>so it is recommended to "
-"upgrade as soon as possible"
-msgstr ""
-
-#: public_html/lists/admin/home.php:74
-msgid "Latest version"
-msgstr ""
-
-#: public_html/lists/admin/home.php:75
-msgid "Read what has changed in the new version"
-msgstr ""
-
-#: public_html/lists/admin/home.php:75
-msgid "View what has changed"
-msgstr ""
-
-#: public_html/lists/admin/home.php:76
-msgid "Download the new version"
-msgstr ""
-
-#: public_html/lists/admin/home.php:76
-#: public_html/lists/admin/msgbounces.php:75
-msgid "Download"
-msgstr ""
-
-#: public_html/lists/admin/home.php:86 public_html/lists/admin/index.php:499
+#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:499
 msgid "Continue Configuration"
 msgstr ""
 
-#: public_html/lists/admin/home.php:89
+#: public_html/lists/admin/home.php:42
 msgid "Continue the Configuration process of phpList"
 msgstr ""
 
-#: public_html/lists/admin/home.php:96
+#: public_html/lists/admin/home.php:49
 #: public_html/lists/admin/importsimple.php:127
 msgid "Send a campaign"
 msgstr ""
 
-#: public_html/lists/admin/home.php:99
+#: public_html/lists/admin/home.php:52
 msgid "Start or continue a campaign"
 msgstr ""
 
-#: public_html/lists/admin/home.php:104
+#: public_html/lists/admin/home.php:57
 msgid "Manage Campaigns"
 msgstr ""
 
-#: public_html/lists/admin/home.php:107
+#: public_html/lists/admin/home.php:60
 msgid "View current campaigns"
 msgstr ""
 
-#: public_html/lists/admin/home.php:112
+#: public_html/lists/admin/home.php:65
 msgid "Manage Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:115
+#: public_html/lists/admin/home.php:68
 msgid "Search, edit and add Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:120 public_html/lists/admin/admin.php:309
+#: public_html/lists/admin/home.php:73 public_html/lists/admin/admin.php:309
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
 msgstr ""
 
-#: public_html/lists/admin/home.php:123 public_html/lists/admin/message.php:97
+#: public_html/lists/admin/home.php:76 public_html/lists/admin/message.php:97
 msgid "View statistics"
 msgstr ""
 
-#: public_html/lists/admin/home.php:128
+#: public_html/lists/admin/home.php:81
 msgid "Main"
 msgstr ""
 
-#: public_html/lists/admin/home.php:138
+#: public_html/lists/admin/home.php:91
 msgid "Manage Lists"
 msgstr ""
 
-#: public_html/lists/admin/home.php:141
+#: public_html/lists/admin/home.php:94
 msgid "View, edit and add lists, that your subscribers can sign up to"
 msgstr ""
 
-#: public_html/lists/admin/home.php:147 public_html/lists/admin/import4.php:118
+#: public_html/lists/admin/home.php:100 public_html/lists/admin/import4.php:118
 msgid "users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:149
+#: public_html/lists/admin/home.php:102
 msgid "List all Users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:154 public_html/lists/admin/import1.php:242
+#: public_html/lists/admin/home.php:107 public_html/lists/admin/import1.php:242
 msgid "import"
 msgstr ""
 
-#: public_html/lists/admin/home.php:156
+#: public_html/lists/admin/home.php:109
 msgid "Import Users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:161
+#: public_html/lists/admin/home.php:114
 msgid "export"
 msgstr ""
 
-#: public_html/lists/admin/home.php:163
+#: public_html/lists/admin/home.php:116
 msgid "Export Users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:168
+#: public_html/lists/admin/home.php:121
 msgid "reconcileusers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:171
+#: public_html/lists/admin/home.php:124
 msgid "Reconcile the User Database"
 msgstr ""
 
-#: public_html/lists/admin/home.php:175
+#: public_html/lists/admin/home.php:128
 msgid "List and user functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:184
+#: public_html/lists/admin/home.php:137
 msgid "configure"
 msgstr ""
 
-#: public_html/lists/admin/home.php:187 public_html/lists/admin/plugins.php:298
+#: public_html/lists/admin/home.php:140 public_html/lists/admin/plugins.php:298
 msgid "Configure"
 msgstr ""
 
-#: public_html/lists/admin/home.php:192
+#: public_html/lists/admin/home.php:145
 msgid "attributes"
 msgstr ""
 
-#: public_html/lists/admin/home.php:195
+#: public_html/lists/admin/home.php:148
 msgid "Configure Attributes"
 msgstr ""
 
-#: public_html/lists/admin/home.php:203
+#: public_html/lists/admin/home.php:156
 msgid "Control values for"
 msgstr ""
 
-#: public_html/lists/admin/home.php:211
+#: public_html/lists/admin/home.php:164
 msgid "spage"
 msgstr ""
 
-#: public_html/lists/admin/home.php:214
+#: public_html/lists/admin/home.php:167
 msgid "Configure Subscribe Pages"
 msgstr ""
 
-#: public_html/lists/admin/home.php:219
+#: public_html/lists/admin/home.php:172
 msgid "Configuration Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:229
+#: public_html/lists/admin/home.php:182
 msgid "admins"
 msgstr ""
 
-#: public_html/lists/admin/home.php:232
+#: public_html/lists/admin/home.php:185
 msgid "Add, edit and remove Administrators"
 msgstr ""
 
-#: public_html/lists/admin/home.php:237
+#: public_html/lists/admin/home.php:190
 msgid "adminattributes"
 msgstr ""
 
-#: public_html/lists/admin/home.php:240
+#: public_html/lists/admin/home.php:193
 msgid "Configure Attributes for administrators"
 msgstr ""
 
-#: public_html/lists/admin/home.php:245
+#: public_html/lists/admin/home.php:198
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:255 public_html/lists/admin/list.php:228
+#: public_html/lists/admin/home.php:208 public_html/lists/admin/list.php:228
 #: public_html/lists/admin/list.php:287
 msgid "send"
 msgstr ""
 
-#: public_html/lists/admin/home.php:257
+#: public_html/lists/admin/home.php:210
 msgid "Send a Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:263
+#: public_html/lists/admin/home.php:216
 msgid "preparesend"
 msgstr ""
 
-#: public_html/lists/admin/home.php:266
+#: public_html/lists/admin/home.php:219
 msgid "Prepare a Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:271
+#: public_html/lists/admin/home.php:224
 msgid "sendprepared"
 msgstr ""
 
-#: public_html/lists/admin/home.php:274
+#: public_html/lists/admin/home.php:227
 msgid "Send a Prepared Message"
 msgstr ""
 
-#: public_html/lists/admin/home.php:280
+#: public_html/lists/admin/home.php:233
 msgid "templates"
 msgstr ""
 
-#: public_html/lists/admin/home.php:283
+#: public_html/lists/admin/home.php:236
 msgid "Configure Templates"
 msgstr ""
 
-#: public_html/lists/admin/home.php:288 public_html/lists/admin/import3.php:162
+#: public_html/lists/admin/home.php:241 public_html/lists/admin/import3.php:162
 #: public_html/lists/admin/import3.php:388
 msgid "messages"
 msgstr ""
 
-#: public_html/lists/admin/home.php:291
+#: public_html/lists/admin/home.php:244
 msgid "List all Messages"
 msgstr ""
 
-#: public_html/lists/admin/home.php:296
+#: public_html/lists/admin/home.php:249
 #: public_html/lists/admin/send_core.php:388
 msgid "processqueue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:299
+#: public_html/lists/admin/home.php:252
 msgid "Process the Message Queue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:302 public_html/lists/admin/connect.php:565
+#: public_html/lists/admin/home.php:255 public_html/lists/admin/connect.php:565
 msgid "warning"
 msgstr ""
 
-#: public_html/lists/admin/home.php:303
+#: public_html/lists/admin/home.php:256
 msgid ""
 "You have set TEST in config.php to 1, so it will only show what would be sent"
 msgstr ""
 
-#: public_html/lists/admin/home.php:308
+#: public_html/lists/admin/home.php:261
 msgid "processbounces"
 msgstr ""
 
-#: public_html/lists/admin/home.php:311
+#: public_html/lists/admin/home.php:264
 #: public_html/lists/admin/bouncemgt.php:16
 msgid "Process Bounces"
 msgstr ""
 
-#: public_html/lists/admin/home.php:316
+#: public_html/lists/admin/home.php:269
 #: public_html/lists/admin/reconcileusers.php:215
 #: public_html/lists/admin/reconcileusers.php:225
 #: public_html/lists/admin/reconcileusers.php:502
@@ -498,56 +467,56 @@ msgstr ""
 msgid "bounces"
 msgstr ""
 
-#: public_html/lists/admin/home.php:318
+#: public_html/lists/admin/home.php:271
 #: public_html/lists/admin/bouncemgt.php:11
 msgid "View Bounces"
 msgstr ""
 
-#: public_html/lists/admin/home.php:322
+#: public_html/lists/admin/home.php:275
 msgid "Message Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:371 public_html/lists/admin/about.php:134
+#: public_html/lists/admin/home.php:324 public_html/lists/admin/about.php:134
 msgid "Plugins"
 msgstr ""
 
-#: public_html/lists/admin/home.php:381
+#: public_html/lists/admin/home.php:334
 msgid "setup"
 msgstr ""
 
-#: public_html/lists/admin/home.php:383
+#: public_html/lists/admin/home.php:336
 msgid "Setup "
 msgstr ""
 
-#: public_html/lists/admin/home.php:388
+#: public_html/lists/admin/home.php:341
 msgid "upgrade"
 msgstr ""
 
-#: public_html/lists/admin/home.php:395
+#: public_html/lists/admin/home.php:348
 msgid "dbcheck"
 msgstr ""
 
-#: public_html/lists/admin/home.php:398
+#: public_html/lists/admin/home.php:351
 msgid "Check Database structure"
 msgstr ""
 
-#: public_html/lists/admin/home.php:404
+#: public_html/lists/admin/home.php:357
 msgid "eventlog"
 msgstr ""
 
-#: public_html/lists/admin/home.php:407
+#: public_html/lists/admin/home.php:360
 msgid "View the eventlog"
 msgstr ""
 
-#: public_html/lists/admin/home.php:412
+#: public_html/lists/admin/home.php:365
 msgid "admin"
 msgstr ""
 
-#: public_html/lists/admin/home.php:415
+#: public_html/lists/admin/home.php:368
 msgid "Change your details (e.g. password)"
 msgstr ""
 
-#: public_html/lists/admin/home.php:419
+#: public_html/lists/admin/home.php:372
 msgid "System Functions"
 msgstr ""
 
@@ -1096,8 +1065,8 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:326
 #: public_html/lists/admin/plugins.php:327
-#: public_html/lists/admin/templates.php:42
 #: public_html/lists/admin/templates.php:43
+#: public_html/lists/admin/templates.php:44
 #: public_html/lists/admin/spage.php:100
 #: public_html/lists/admin/editattributes.php:206
 #: public_html/lists/admin/bouncerules.php:117
@@ -1700,7 +1669,6 @@ msgstr ""
 
 #: public_html/lists/admin/import4.php:358
 #: public_html/lists/admin/reconcileusers.php:410
-#: public_html/lists/admin/templates.php:13
 #: public_html/lists/admin/members.php:253
 #: public_html/lists/admin/messages.php:206
 #: public_html/lists/admin/messages.php:249
@@ -1825,257 +1793,257 @@ msgstr ""
 msgid "Bounce Processing info"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:231
+#: public_html/lists/admin/processbounces.php:234
 msgid "system message bounced, user marked unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:232
+#: public_html/lists/admin/processbounces.php:235
 msgid "Bounced system message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:233
+#: public_html/lists/admin/processbounces.php:236
 msgid "User marked unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:234
+#: public_html/lists/admin/processbounces.php:237
 msgid "View Bounce"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:304
+#: public_html/lists/admin/processbounces.php:307
 msgid "system message bounced, but unknown user"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:347
+#: public_html/lists/admin/processbounces.php:350
 #: public_html/lists/admin/readtestmail.php:207
 msgid "Cannot create POP3 connection to"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:365
+#: public_html/lists/admin/processbounces.php:368
 #: public_html/lists/admin/readtestmail.php:225
 msgid "Cannot open mailbox file"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:377
+#: public_html/lists/admin/processbounces.php:380
 #, php-format
 msgid "%d bounces to fetch from the mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:384
+#: public_html/lists/admin/processbounces.php:387
 #: public_html/lists/admin/readtestmail.php:240
 msgid "Please do not interrupt this process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:385
+#: public_html/lists/admin/processbounces.php:388
 #, php-format
 msgid "%d bounces to process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:387
-#: public_html/lists/admin/processbounces.php:388
+#: public_html/lists/admin/processbounces.php:390
+#: public_html/lists/admin/processbounces.php:391
 #, php-format
 msgid "Processing first %d bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:392
+#: public_html/lists/admin/processbounces.php:395
 msgid "Running in test mode, not deleting messages from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:394
+#: public_html/lists/admin/processbounces.php:397
 msgid "Processed messages will be deleted from mailbox"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:411
-#: public_html/lists/admin/processbounces.php:420
+#: public_html/lists/admin/processbounces.php:414
+#: public_html/lists/admin/processbounces.php:423
 #: public_html/lists/admin/readtestmail.php:265
 #: public_html/lists/admin/readtestmail.php:270
 msgid "Deleting message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:415
+#: public_html/lists/admin/processbounces.php:418
 msgid "Not deleting processed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:424
+#: public_html/lists/admin/processbounces.php:427
 msgid "Not deleting unprocessed message"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:430
+#: public_html/lists/admin/processbounces.php:433
 #: public_html/lists/admin/readtestmail.php:277
 msgid "Closing mailbox, and purging messages"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:438
+#: public_html/lists/admin/processbounces.php:441
 #: public_html/lists/admin/readtestmail.php:292
 msgid "IMAP is not included in your PHP installation, cannot continue"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:439
+#: public_html/lists/admin/processbounces.php:442
 #: public_html/lists/admin/readtestmail.php:293
 msgid "Check out"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:446
+#: public_html/lists/admin/processbounces.php:449
 msgid "Bounce mechanism not properly configured"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:456
+#: public_html/lists/admin/processbounces.php:459
 msgid "Force set, killing other send processes"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:476
+#: public_html/lists/admin/processbounces.php:479
 msgid "bounce_protocol not supported"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:482
+#: public_html/lists/admin/processbounces.php:485
 msgid "Download failed, exiting"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:495
+#: public_html/lists/admin/processbounces.php:498
 #, php-format
 msgid "%d bounces to reprocess"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:499
-#: public_html/lists/admin/processbounces.php:511
+#: public_html/lists/admin/processbounces.php:502
+#: public_html/lists/admin/processbounces.php:514
 #, php-format
 msgid "%d out of %d processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:513
+#: public_html/lists/admin/processbounces.php:516
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:518
+#: public_html/lists/admin/processbounces.php:521
 msgid "Processing bounces based on active bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:532
+#: public_html/lists/admin/processbounces.php:535
 #, php-format
 msgid "processed %d out of %d bounces for advanced bounce rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:541
+#: public_html/lists/admin/processbounces.php:544
 #: public_html/lists/admin/actions/processqueue.php:992
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:584
-#: public_html/lists/admin/processbounces.php:768
+#: public_html/lists/admin/processbounces.php:587
+#: public_html/lists/admin/processbounces.php:771
 msgid "Auto Unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:585
-#: public_html/lists/admin/processbounces.php:608
+#: public_html/lists/admin/processbounces.php:588
+#: public_html/lists/admin/processbounces.php:611
 msgid "Subscriber auto unconfirmed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:585
-#: public_html/lists/admin/processbounces.php:608
-#: public_html/lists/admin/processbounces.php:623
-#: public_html/lists/admin/processbounces.php:637
-#: public_html/lists/admin/processbounces.php:651
-#: public_html/lists/admin/processbounces.php:663
+#: public_html/lists/admin/processbounces.php:588
+#: public_html/lists/admin/processbounces.php:611
+#: public_html/lists/admin/processbounces.php:626
+#: public_html/lists/admin/processbounces.php:640
+#: public_html/lists/admin/processbounces.php:654
+#: public_html/lists/admin/processbounces.php:666
 msgid "bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:607
+#: public_html/lists/admin/processbounces.php:610
 msgid "Auto unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:618
+#: public_html/lists/admin/processbounces.php:621
 msgid "Subscriber auto blacklisted  by bounce rule"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:622
-#: public_html/lists/admin/processbounces.php:636
-#: public_html/lists/admin/processbounces.php:650
-#: public_html/lists/admin/processbounces.php:662
+#: public_html/lists/admin/processbounces.php:625
+#: public_html/lists/admin/processbounces.php:639
+#: public_html/lists/admin/processbounces.php:653
+#: public_html/lists/admin/processbounces.php:665
 msgid "Auto Unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:623
-#: public_html/lists/admin/processbounces.php:637
-#: public_html/lists/admin/processbounces.php:663
+#: public_html/lists/admin/processbounces.php:626
+#: public_html/lists/admin/processbounces.php:640
+#: public_html/lists/admin/processbounces.php:666
 msgid "User auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:632
+#: public_html/lists/admin/processbounces.php:635
 #, php-format
 msgid "Subscriber auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:646
-#: public_html/lists/admin/processbounces.php:658
+#: public_html/lists/admin/processbounces.php:649
+#: public_html/lists/admin/processbounces.php:661
 #, php-format
 msgid "Email address auto blacklisted by bounce rule %d"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:651
+#: public_html/lists/admin/processbounces.php:654
 msgid "email auto unsubscribed for"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:681
+#: public_html/lists/admin/processbounces.php:684
 msgid "bounces processed by advanced processing"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:682
+#: public_html/lists/admin/processbounces.php:685
 msgid "bounces were not matched by advanced processing rules"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:686
+#: public_html/lists/admin/processbounces.php:689
 msgid "Identifying consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:696
+#: public_html/lists/admin/processbounces.php:699
 #: public_html/lists/admin/cron.php:55
 msgid "Nothing to do"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:765
+#: public_html/lists/admin/processbounces.php:768
 #, php-format
 msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:769
+#: public_html/lists/admin/processbounces.php:772
 #, php-format
 msgid "Subscriber auto unconfirmed for %d consecutive bounces"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:779
+#: public_html/lists/admin/processbounces.php:782
 #, php-format
 msgid "%d consecutive bounces, threshold reached, blacklisting subscriber"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:780
+#: public_html/lists/admin/processbounces.php:783
 #, php-format
 msgid "%d consecutive bounces, threshold reached"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:792
+#: public_html/lists/admin/processbounces.php:795
 #, php-format
 msgid "processed %d out of %d subscribers"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:799
+#: public_html/lists/admin/processbounces.php:802
 #, php-format
 msgid "total of %d subscribers processed"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:804
+#: public_html/lists/admin/processbounces.php:807
 msgid "Report of advanced bounce processing:"
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:807
+#: public_html/lists/admin/processbounces.php:810
 msgid ""
 "Below are users who have been marked unconfirmed. The number in () is the "
 "number of consecutive bounces."
 msgstr ""
 
-#: public_html/lists/admin/processbounces.php:811
+#: public_html/lists/admin/processbounces.php:814
 msgid "Report:"
 msgstr ""
 
@@ -2253,7 +2221,7 @@ msgstr ""
 #: public_html/lists/admin/reconcileusers.php:486
 #: public_html/lists/admin/reconcileusers.php:503
 #: public_html/lists/admin/reconcileusers.php:519
-#: public_html/lists/admin/reconcileusers.php:578
+#: public_html/lists/admin/reconcileusers.php:585
 msgid "Click here"
 msgstr ""
 
@@ -2281,23 +2249,27 @@ msgid "Delete subscribers who have an invalid email address"
 msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:536
+msgid "Associate system bounces to subscriber profiles"
+msgstr ""
+
+#: public_html/lists/admin/reconcileusers.php:543
 msgid "Delete subscribers who are blacklisted because they unsubscribed"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:542
+#: public_html/lists/admin/reconcileusers.php:549
 msgid "Delete all blacklisted subscribers"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:567
+#: public_html/lists/admin/reconcileusers.php:574
 msgid ""
 "To delete subscribers who signed up and have not confirmed their subscription"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:569
+#: public_html/lists/admin/reconcileusers.php:576
 msgid "Date they signed up after"
 msgstr ""
 
-#: public_html/lists/admin/reconcileusers.php:572
+#: public_html/lists/admin/reconcileusers.php:579
 msgid "Date they signed up before"
 msgstr ""
 
@@ -2511,38 +2483,38 @@ msgstr ""
 msgid "Add new Template"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:10
-#: public_html/lists/admin/messages.php:203
-#: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:108
-#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:43
-#: public_html/lists/admin/admin.php:132
-msgid "Deleting"
+#: public_html/lists/admin/templates.php:11
+msgid "Template with ID"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:24
+#: public_html/lists/admin/templates.php:11
+msgid "deleted"
+msgstr ""
+
+#: public_html/lists/admin/templates.php:25
 msgid "No template have been defined"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:30
+#: public_html/lists/admin/templates.php:31
 msgid "Existing templates"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:39
+#: public_html/lists/admin/templates.php:40
 #: public_html/lists/admin/spage.php:72 public_html/lists/admin/user.php:271
 #: public_html/lists/admin/bounce.php:224
 msgid "ID"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:48
+#: public_html/lists/admin/templates.php:49
 msgid "Campaign Default"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:51
+#: public_html/lists/admin/templates.php:52
 msgid "System"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:63
-msgid "Add default system template"
+#: public_html/lists/admin/templates.php:61
+msgid "Add templates from default selection"
 msgstr ""
 
 #: public_html/lists/admin/adminattributes.php:15
@@ -2775,20 +2747,20 @@ msgstr ""
 #: public_html/lists/admin/subscribelib2.php:99
 msgid ""
 "\n"
-"-------------------------------------------------------------------------------- \n"
+"--------------------------------------------------------------------------------\n"
 "    This is a notification of a possible spam attack to your phplist "
 "subscribe page.\n"
 "    The data submitted has been copied below, so you can check whether this "
 "was actually the case.\n"
 "    The submitted data has been converted into non-html characters, for "
 "security reasons.\n"
-"    If you want to stop receiving this message, set \n"
-"    \n"
-"     define(\"NOTIFY_SPAM\",0);  \n"
-"     \n"
-"     in your phplist config file.  \n"
-"     \n"
-"     This subscriber has NOT been added to the database. \n"
+"    If you want to stop receiving this message, set\n"
+"\n"
+"     define(\"NOTIFY_SPAM\",0);\n"
+"\n"
+"     in your phplist config file.\n"
+"\n"
+"     This subscriber has NOT been added to the database.\n"
 "     If there is an error, you will need to  add them manually.\n"
 "--------------------------------------------------------------------------------  "
 msgstr ""
@@ -2811,6 +2783,10 @@ msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:62
 msgid "Select another campaign"
+msgstr ""
+
+#: public_html/lists/admin/msgbounces.php:75
+msgid "Download"
 msgstr ""
 
 #: public_html/lists/admin/msgbounces.php:78
@@ -3247,6 +3223,13 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+#: public_html/lists/admin/messages.php:203
+#: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:108
+#: public_html/lists/admin/user.php:271 public_html/lists/admin/admins.php:43
+#: public_html/lists/admin/admin.php:132
+msgid "Deleting"
+msgstr ""
+
 #: public_html/lists/admin/messages.php:208
 #: public_html/lists/admin/messages.php:268
 #: public_html/lists/admin/messages.php:283
@@ -3597,7 +3580,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:737 public_html/lists/admin/index.php:758
+#: public_html/lists/admin/index.php:765 public_html/lists/admin/index.php:786
 msgid "Access Denied"
 msgstr ""
 
@@ -4333,6 +4316,22 @@ msgstr ""
 #: public_html/lists/admin/actions/reconcileusers.php:22
 #: public_html/lists/admin/actions/reconcileusers.php:44
 msgid "Deleting blacklisted subscribers"
+msgstr ""
+
+#: public_html/lists/admin/actions/reconcileusers.php:70
+msgid ""
+"Relinking transactional messages that bounced to the related subscriber "
+"profile"
+msgstr ""
+
+#: public_html/lists/admin/actions/reconcileusers.php:74
+#, php-format
+msgid "%d to process"
+msgstr ""
+
+#: public_html/lists/admin/actions/reconcileusers.php:91
+#, php-format
+msgid "%d bounces have been associated with a subscriber profile"
 msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:27
@@ -5225,15 +5224,20 @@ msgstr ""
 msgid "Bounces"
 msgstr ""
 
-#: public_html/lists/admin/actions/bounces.php:45
+#: public_html/lists/admin/actions/bounces.php:46
+#: public_html/lists/admin/actions/bounces.php:48
 msgid "Campaign title"
 msgstr ""
 
-#: public_html/lists/admin/actions/bounces.php:46
-msgid "time"
+#: public_html/lists/admin/actions/bounces.php:48
+msgid "Transactional message"
 msgstr ""
 
 #: public_html/lists/admin/actions/bounces.php:50
+msgid "time"
+msgstr ""
+
+#: public_html/lists/admin/actions/bounces.php:54
 msgid "Bounces data not found"
 msgstr ""
 
@@ -6166,18 +6170,18 @@ msgid "Domain Statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:15
-#: public_html/lists/admin/upgrade.php:406
+#: public_html/lists/admin/upgrade.php:409
 msgid "The clicktracking system has changed"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:16
-#: public_html/lists/admin/upgrade.php:407
+#: public_html/lists/admin/upgrade.php:410
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:18
-#: public_html/lists/admin/upgrade.php:408
+#: public_html/lists/admin/upgrade.php:411
 msgid "Convert Old data to new"
 msgstr ""
 
@@ -7066,250 +7070,250 @@ msgstr ""
 msgid "Logo of the organisation"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:105
-msgid "How often do you want to check for a new version of phplist (days)"
+#: public_html/lists/admin/defaultconfig.php:103
+msgid "Show notification for Release Candidates"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:116
+#: public_html/lists/admin/defaultconfig.php:113
 msgid "Secret for remote processing"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:124
+#: public_html/lists/admin/defaultconfig.php:121
 msgid "List of email addresses to CC in system messages (separate by commas)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:131
+#: public_html/lists/admin/defaultconfig.php:128
 msgid "Default for 'From:' in a campaign"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:138
+#: public_html/lists/admin/defaultconfig.php:135
 msgid "Default for 'address to alert when sending starts'"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:145
+#: public_html/lists/admin/defaultconfig.php:142
 msgid "Default for 'address to alert when sending finishes'"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:152
+#: public_html/lists/admin/defaultconfig.php:149
 msgid "Always add Google tracking code to campaigns"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:160
+#: public_html/lists/admin/defaultconfig.php:157
 msgid ""
 "Who gets the reports (email address, separate multiple emails with a comma)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:169
+#: public_html/lists/admin/defaultconfig.php:166
 msgid "From email address for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:176
+#: public_html/lists/admin/defaultconfig.php:173
 msgid "Webmaster"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:177
+#: public_html/lists/admin/defaultconfig.php:174
 msgid "Name for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:186
+#: public_html/lists/admin/defaultconfig.php:183
 msgid "Reply-to email address for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:197
+#: public_html/lists/admin/defaultconfig.php:194
 msgid ""
 "If there is only one visible list, should it be hidden in the page and "
 "automatically subscribe users who sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:207
+#: public_html/lists/admin/defaultconfig.php:204
 msgid "Categories for lists. Separate with commas."
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:216
+#: public_html/lists/admin/defaultconfig.php:213
 msgid "Display list categories on subscribe page"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:225
+#: public_html/lists/admin/defaultconfig.php:222
 msgid "Width of a textline field (numerical)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:235
+#: public_html/lists/admin/defaultconfig.php:232
 msgid "Dimensions of a textarea field (rows,columns)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:244
+#: public_html/lists/admin/defaultconfig.php:241
 msgid "Send notifications about subscribe, update and unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:253
+#: public_html/lists/admin/defaultconfig.php:250
 msgid "The default subscribe page when there are multiple"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:264
+#: public_html/lists/admin/defaultconfig.php:261
 msgid "The default HTML template to use when sending a message"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:273
+#: public_html/lists/admin/defaultconfig.php:270
 msgid "The HTML wrapper template for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:287
+#: public_html/lists/admin/defaultconfig.php:284
 msgid "URL where subscribers can sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:296
+#: public_html/lists/admin/defaultconfig.php:293
 msgid "URL where subscribers can unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:306
+#: public_html/lists/admin/defaultconfig.php:303
 msgid "URL where unknown users can unsubscribe (do-not-send-list)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:315
+#: public_html/lists/admin/defaultconfig.php:312
 msgid "URL where subscribers have to confirm their subscription"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:324
+#: public_html/lists/admin/defaultconfig.php:321
 msgid "URL where subscribers can update their details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:333
+#: public_html/lists/admin/defaultconfig.php:330
 msgid "URL for forwarding messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:342
+#: public_html/lists/admin/defaultconfig.php:339
 msgid "URL for downloading vcf card"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:349
+#: public_html/lists/admin/defaultconfig.php:346
 msgid ""
 "<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an "
 "email to confirm your subscription. Please click the link in the email to "
 "confirm</p>"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:350
+#: public_html/lists/admin/defaultconfig.php:347
 #: public_html/lists/admin/spageedit.php:234
 msgid "Text to display when subscription with an AJAX request was successful"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:362
+#: public_html/lists/admin/defaultconfig.php:359
 msgid "Request for confirmation"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:363
+#: public_html/lists/admin/defaultconfig.php:360
 msgid "Subject of the message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:395
+#: public_html/lists/admin/defaultconfig.php:392
 msgid "Message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:403
+#: public_html/lists/admin/defaultconfig.php:400
 msgid "Goodbye from our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:404
+#: public_html/lists/admin/defaultconfig.php:401
 msgid "Subject of the message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:425
+#: public_html/lists/admin/defaultconfig.php:422
 msgid "Message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:433
+#: public_html/lists/admin/defaultconfig.php:430
 msgid "Welcome to our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:434
+#: public_html/lists/admin/defaultconfig.php:431
 msgid ""
 "Subject of the message subscribers receive after confirming their email "
 "address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:455
+#: public_html/lists/admin/defaultconfig.php:452
 msgid "Message subscribers receive after confirming their email address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:463
+#: public_html/lists/admin/defaultconfig.php:460
 msgid "[notify] Change of List-Membership details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:464
+#: public_html/lists/admin/defaultconfig.php:461
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:494
+#: public_html/lists/admin/defaultconfig.php:491
 msgid "Message subscribers receive when they have changed their details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:511
+#: public_html/lists/admin/defaultconfig.php:508
 msgid ""
 "Part of the message that is sent to their new email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:528
+#: public_html/lists/admin/defaultconfig.php:525
 msgid ""
 "Part of the message that is sent to their old email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:535
+#: public_html/lists/admin/defaultconfig.php:532
 msgid "Your personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:536
+#: public_html/lists/admin/defaultconfig.php:533
 msgid "Subject of message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:553
+#: public_html/lists/admin/defaultconfig.php:550
 msgid "Message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:570
+#: public_html/lists/admin/defaultconfig.php:567
 msgid "Default footer for sending a campaign"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:585
+#: public_html/lists/admin/defaultconfig.php:582
 msgid "Footer used when a message has been forwarded"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:593
+#: public_html/lists/admin/defaultconfig.php:590
 msgid "Header of public pages."
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:601
+#: public_html/lists/admin/defaultconfig.php:598
 msgid "Footer of public pages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:630
+#: public_html/lists/admin/defaultconfig.php:627
 msgid "Message to send when they request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:638
+#: public_html/lists/admin/defaultconfig.php:635
 msgid "String to always append to remote URL when using send-a-webpage"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:646
+#: public_html/lists/admin/defaultconfig.php:643
 msgid "Width for Wordwrap of Text messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:654
+#: public_html/lists/admin/defaultconfig.php:651
 msgid "CSS for HTML messages without a template"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:662
+#: public_html/lists/admin/defaultconfig.php:659
 msgid "Domains that only accept text emails, one per line"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:670
+#: public_html/lists/admin/defaultconfig.php:667
 msgid "last time TLDs were fetched"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:678
+#: public_html/lists/admin/defaultconfig.php:675
 msgid "Top level domains"
 msgstr ""
 
@@ -7498,7 +7502,7 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:227
-#: public_html/lists/admin/upgrade.php:397
+#: public_html/lists/admin/upgrade.php:400
 msgid "Success"
 msgstr ""
 
@@ -7645,37 +7649,41 @@ msgstr ""
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:524
-msgid "Try automatic updater"
+#: public_html/lists/admin/index.php:536
+msgid "Error: "
 msgstr ""
 
-#: public_html/lists/admin/index.php:524
+#: public_html/lists/admin/index.php:540
+msgid "Download the new version"
+msgstr ""
+
+#: public_html/lists/admin/index.php:544
+msgid " or update"
+msgstr ""
+
+#: public_html/lists/admin/index.php:544
 msgid "automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:524
-msgid "here"
+#: public_html/lists/admin/index.php:544
+msgid "here."
 msgstr ""
 
-#: public_html/lists/admin/index.php:524
-msgid "beta"
-msgstr ""
-
-#: public_html/lists/admin/index.php:527
+#: public_html/lists/admin/index.php:555
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.3 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:531
+#: public_html/lists/admin/index.php:559
 msgid "Get some help"
 msgstr ""
 
-#: public_html/lists/admin/index.php:532
+#: public_html/lists/admin/index.php:560
 msgid "Download the latest version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:530
+#: public_html/lists/admin/index.php:558
 #, php-format
 msgid ""
 "Your phpList version is older than two years. Please %supgrade phpList</a> "
@@ -7683,60 +7691,60 @@ msgid ""
 "            Visit <a href=\"https://www.phplist.org/users/\" title=\""
 msgstr ""
 
-#: public_html/lists/admin/index.php:537
+#: public_html/lists/admin/index.php:565
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:542
+#: public_html/lists/admin/index.php:570
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:544
+#: public_html/lists/admin/index.php:572
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:557
+#: public_html/lists/admin/index.php:585
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:558
+#: public_html/lists/admin/index.php:586
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:560
+#: public_html/lists/admin/index.php:588
 #, php-format
 msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
-#: public_html/lists/admin/index.php:665
+#: public_html/lists/admin/index.php:693
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:687
+#: public_html/lists/admin/index.php:715
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:692
+#: public_html/lists/admin/index.php:720
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:733
+#: public_html/lists/admin/index.php:761
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:754 public_html/lists/admin/index.php:755
+#: public_html/lists/admin/index.php:782 public_html/lists/admin/index.php:783
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:762
+#: public_html/lists/admin/index.php:790
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:768
+#: public_html/lists/admin/index.php:796
 msgid "Sorry, not implemented yet"
 msgstr ""
 
@@ -7896,21 +7904,25 @@ msgstr ""
 msgid "phpList community news"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:19
-msgid "The default system template already exists"
+#: public_html/lists/admin/defaultsystemtemplate.php:389
+msgid "This default template already exists"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:20
-#: public_html/lists/admin/defaultsystemtemplate.php:27
+#: public_html/lists/admin/defaultsystemtemplate.php:393
+#: public_html/lists/admin/defaultsystemtemplate.php:407
 msgid "Go back to templates"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:26
-msgid "The default system template has been added as template with ID"
+#: public_html/lists/admin/defaultsystemtemplate.php:403
+msgid "The selected default template has been added as template with ID"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:28
-msgid "Edit template"
+#: public_html/lists/admin/defaultsystemtemplate.php:408
+msgid "Edit the added template"
+msgstr ""
+
+#: public_html/lists/admin/defaultsystemtemplate.php:416
+msgid "Default templates suit"
 msgstr ""
 
 #: public_html/lists/admin/editlist.php:27
@@ -7967,6 +7979,14 @@ msgstr ""
 
 #: public_html/lists/admin/editlist.php:200
 msgid "Do not save, and go back to the lists"
+msgstr ""
+
+#: public_html/lists/admin/updateLib.php:20
+msgid "No production version found."
+msgstr ""
+
+#: public_html/lists/admin/updateLib.php:66
+msgid "Update to "
 msgstr ""
 
 #: public_html/lists/admin/processqueue.php:33
@@ -8379,27 +8399,27 @@ msgstr ""
 msgid "Documentation how to set up phpList commandline"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:412
+#: public_html/lists/admin/upgrade.php:415
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:417
+#: public_html/lists/admin/upgrade.php:420
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:422
+#: public_html/lists/admin/upgrade.php:425
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:423
+#: public_html/lists/admin/upgrade.php:426
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:424
+#: public_html/lists/admin/upgrade.php:427
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
@@ -9759,33 +9779,33 @@ msgid "general settings"
 msgstr ""
 
 #: public_html/databasestructure.php:364
-msgid "security settings"
+msgid "system settings"
 msgstr ""
 
 #: public_html/databasestructure.php:365
-msgid "reporting settings"
+msgid "security settings"
 msgstr ""
 
 #: public_html/databasestructure.php:366
-msgid "campaign settings"
+msgid "reporting settings"
 msgstr ""
 
 #: public_html/databasestructure.php:367
-msgid "transactional settings"
+msgid "campaign settings"
 msgstr ""
 
 #: public_html/databasestructure.php:368
-msgid "subscription-ui settings"
+msgid "transactional settings"
 msgstr ""
 
 #: public_html/databasestructure.php:369
-msgid "list-organisation settings"
+msgid "subscription-ui settings"
 msgstr ""
 
 #: public_html/databasestructure.php:370
-msgid "subscription settings"
+msgid "list-organisation settings"
 msgstr ""
 
 #: public_html/databasestructure.php:371
-msgid "system settings"
+msgid "subscription settings"
 msgstr ""
