@@ -364,10 +364,7 @@ if (isset($_POST['Submit'])) {
             $title = "System template";
             $content = $systemTemplate;
             break;
-        case 'templateWithLogo':
-            $title = "Template with logo";
-            $content = $templateWithLogo;
-            break;
+
         case 'simpleResponsiveTemplate':
             $title = "Simple responsive template";
             $content = $simpleResponsiveTemplate;
@@ -419,7 +416,6 @@ echo formStart();
 echo '
     <div> 
       <input type="radio" name="template" value="systemTemplate" checked>System template<br>
-      <input type="radio" name="template" value="templateWithLogo">Template with logo<br>
       <input type="radio" name="template" value="simpleResponsiveTemplate">Simple responsive template<br> 
       <input type="submit" value="Select"  name="Submit">
     </form>
