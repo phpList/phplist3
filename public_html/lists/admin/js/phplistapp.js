@@ -239,7 +239,7 @@ $(document).ready(function () {
         $(".tabbed1").tabs();
     }
 
-    $("#subjectinput").on("focus",function () {
+    $("#subjectinput").trigger("focus",function () {
         if (this.value == '(no subject)') {
             this.value = "";
         }
