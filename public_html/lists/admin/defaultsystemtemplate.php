@@ -326,19 +326,12 @@ $simpleResponsiveTemplate = <<<EOD
 			    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
 				    <tbody>
 					    <tr>
-						    <td class="templatecontent-block" style="font-family: sans-serif;font-size: 13px;vertical-align: top;">
-                                <span class="apple-link">
-                                    <div class="footer">
-                                        <p>This message was sent to [EMAIL] by [FROMEMAIL]
-                                        <br/>To change your details and preferences visit your <a href="[PREFERENCESURL]">preferences page</a>
-                                        <br/>To receive no further messages <a href="[UNSUBSCRIBEURL]">unsubscribe</a></p>
-                                    </div>
-                                </span>
-						    <p>
-                                <a href="[CONTACT]" style="color: #3498db; text-decoration: underline;">Add us to your address book</a>  |  
-                                <a href="[FORWARDURL]" style="color: #3498db; text-decoration: underline;">Forward this message</a>
-
-                            </p>
+						   <td class="templatecontent-block" style="font-family: sans-serif;font-size: 13px;vertical-align: top;">
+                                                    <span class="apple-link">[FOOTER]</span>
+						    <div>
+                                <div style="color: #3498db; text-decoration: underline;">[CONTACT]</div>|<div>  
+                                <a href="[FORWARDURL]" style="color: #3498db; text-decoration: underline;">Forward this message</a></div>
+                                                    </div>
 						    </td>
 					    </tr>
 				    </tbody>
