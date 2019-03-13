@@ -2061,7 +2061,7 @@ function subscribeToAnnouncementsForm($emailAddress = '')
         .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
         .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
         '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
-        '<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
+        '<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
 <input type="text" name="email" value="" id="emailaddress" />
