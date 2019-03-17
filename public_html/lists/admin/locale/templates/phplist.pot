@@ -7904,24 +7904,24 @@ msgstr ""
 msgid "phpList community news"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:389
+#: public_html/lists/admin/defaultsystemtemplate.php:409
 msgid "This default template already exists"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:393
-#: public_html/lists/admin/defaultsystemtemplate.php:407
+#: public_html/lists/admin/defaultsystemtemplate.php:413
+#: public_html/lists/admin/defaultsystemtemplate.php:427
 msgid "Go back to templates"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:403
+#: public_html/lists/admin/defaultsystemtemplate.php:423
 msgid "The selected default template has been added as template with ID"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:408
+#: public_html/lists/admin/defaultsystemtemplate.php:428
 msgid "Edit the added template"
 msgstr ""
 
-#: public_html/lists/admin/defaultsystemtemplate.php:416
+#: public_html/lists/admin/defaultsystemtemplate.php:436
 msgid "Default templates suit"
 msgstr ""
 
