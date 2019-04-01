@@ -755,10 +755,10 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     }
 
     $orgName = getConfig('organisation_name');
-    if ($orgName === ''|| $orgName === null ){
+    if ($orgName === '' || $orgName === null) {
         // If organisation name is not set, show [ORGANISATION_NAME] placeholder
         $template = str_ireplace('[ORGANISATION_NAME]', '[ORGANISATION_NAME]', $template);
-    } else{
+    } else {
         $template = str_ireplace('[ORGANISATION_NAME]', $orgName, $template);
     }
 
