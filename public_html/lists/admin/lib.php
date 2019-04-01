@@ -754,6 +754,14 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
         $template = str_replace($logoInstance, '?page=image&amp;id='.$logoImageId.$logoSize, $template);
     }
 
+    $orgName = getConfig('organisation_name');
+    if ($orgName === ''|| $orgName === null ){
+        // If organisation name is not set, show [ORGANISATION_NAME] placeholder
+        $template = str_ireplace('[ORGANISATION_NAME]', '[ORGANISATION_NAME]', $template);
+    } else{
+        $template = str_ireplace('[ORGANISATION_NAME]', $orgName, $template);
+    }
+
     if (!EMAILTEXTCREDITS) {
         $template = str_ireplace('[SIGNATURE]',
             '<img src="?page=image&amp;id='.$poweredImageId.'" width="70" height="30" />', $template);
