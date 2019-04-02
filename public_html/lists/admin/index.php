@@ -23,8 +23,8 @@ require_once dirname(__FILE__).'/inc/magic_quotes.php';
 // Remove when php5.X is unsupported, currently 31 Dec 2018, https://secure.php.net/supported-versions.php
 require_once dirname(__FILE__).'/inc/random_compat/random.php';
 
-// Check if required extensions are installed.
-$phpExtensions = array(
+// Check if required PHP modules are installed.
+$requiredExtensions = array(
     'pcre',
     'core',
     'date',
@@ -44,16 +44,16 @@ $phpExtensions = array(
     'gd',
 );
 
-$notinstalled = array();
+$notInstalled = array();
 
-foreach ($phpExtensions as $value) {
+foreach ($requiredExtensions as $value) {
     if (!extension_loaded($value)) {
-        array_push($notinstalled, $value);
+        array_push($notInstalled, $value);
     }
 }
-if (count($notinstalled) > 0) {
+if (count($notInstalled) > 0) {
     $message = "The following PHP extensions are missing:" . '<br>';
-    foreach ($notinstalled as $value) {
+    foreach ($notInstalled as $value) {
         $message .= $value . '<br>';
     }
     die($message);
