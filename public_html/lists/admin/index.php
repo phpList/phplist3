@@ -24,7 +24,8 @@ require_once dirname(__FILE__).'/inc/magic_quotes.php';
 require_once dirname(__FILE__).'/inc/random_compat/random.php';
 
 // Check if required extensions are installed.
-$phpExtensions = array('pcre',
+$phpExtensions = array(
+    'pcre',
     'core',
     'date',
     'hash',
@@ -45,15 +46,15 @@ $phpExtensions = array('pcre',
 
 $notinstalled = array();
 
-foreach ($phpExtensions as $value){
+foreach ($phpExtensions as $value) {
     if (!extension_loaded($value)) {
         array_push($notinstalled, $value);
     }
 }
-if (count($notinstalled)>0){
-    $message = "The following PHP extensions are missing:".'<br>';
-    foreach ($notinstalled as $value){
-        $message .= $value.'<br>';
+if (count($notinstalled) > 0) {
+    $message = "The following PHP extensions are missing:" . '<br>';
+    foreach ($notinstalled as $value) {
+        $message .= $value . '<br>';
     }
     die($message);
 }
