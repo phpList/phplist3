@@ -416,7 +416,7 @@ if (isset($_POST['Submit'])) {
         Sql_Query(sprintf('insert into %s (title,template,listorder) values("%s","%s",0)',
             $GLOBALS['tables']['template'], $title, addslashes($content)));
         $newid = Sql_Insert_Id();
-        if ($title === 'System Template') {
+        if ($title === 'System template') {
             saveConfig('systemmessagetemplate', $newid);
         }
         $messages = '<div class="actionresult alert alert-success">';
