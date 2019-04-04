@@ -93,7 +93,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 
 Report issues to [Mantis issue tracker](https://mantis.phplist.org/bug_report_page.php) (select project *phpList*)
 
-## Languages
+## Languages, Info files and Contextual help on phpList
 In the directory `phplists/lists/texts` you will find existing translations of the public
 pages of phpList. You can use them in your config file to make the frontend of the system
 appear in the language of your choice.
@@ -101,6 +101,20 @@ appear in the language of your choice.
 In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
+
+The GitHub repo for the /texts directory [here](Contextual help). 
+
+To use info files in a local development copy of phpList you should get/clone the repo [here](https://github.com/phpList/phplist-lan-info) and place it on /lists/admin/info. The same applies for the ["Help" text repo](https://github.com/phpList/phplist-lan-help/) that should be placed into public_html/lists/texts
+
+## Themes
+
+Since version 3.3.0 phpList offers you the possibility to switch among two themes:
+1. [Dressprow](https://github.com/phpList/phplist-ui-dressprow);
+2. [Trevelin](https://github.com/phpList/phplist-ui-bootlist);
+
+While when you install phpList on production since 3.3.1 the default theme is Trevelin, on the development copy phpList will run a copy of Dressprow.
+To get the latest copy of each theme you should clone them individually into public_html/lists/admin/ui/ 
+For the prerequisites of each and Installation guide on your development copy make sure you check the README files of the repos.
 
 ## Code of Conduct
 This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
