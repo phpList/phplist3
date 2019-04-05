@@ -1,4 +1,3 @@
-
 DirectoryIndex index.php
 
 <FilesMatch "\.(php|inc)$">
@@ -14,7 +13,7 @@ DirectoryIndex index.php
 	</IfModule>
 </FilesMatch>
 # app.php is the entrypoint for phpList4
-<FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php|connector.php|app.php)$">
+<FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php|connector.php|api.php)$">
 	# Apache < 2.3
 	<IfModule !mod_authz_core.c>
 		Order allow,deny
@@ -26,6 +25,13 @@ DirectoryIndex index.php
 		Require all granted
 	</IfModule>
 </FilesMatch>
+
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+    RewriteRule api/v2/ api.php [L]
+</IfModule>
+
 
 # if you want more than this for attachments, you can increase these values
 # but you really, really should consider uploading them somewhere
