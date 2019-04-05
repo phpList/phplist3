@@ -29,7 +29,7 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     Options -MultiViews
     RewriteEngine On
-    RewriteRule api/ api.php [L]
+    RewriteRule api/v2/ api.php [L]
 </IfModule>
 
 
