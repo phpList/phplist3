@@ -246,7 +246,7 @@ msgstr ""
 msgid "to continue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:499
+#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:536
 msgid "Continue Configuration"
 msgstr ""
 
@@ -1212,126 +1212,126 @@ msgstr ""
 msgid "This is the Newsletter Subject"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:907 public_html/lists/admin/lib.php:911
+#: public_html/lists/admin/lib.php:915 public_html/lists/admin/lib.php:919
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:913
+#: public_html/lists/admin/lib.php:921
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:916
+#: public_html/lists/admin/lib.php:924
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:924
+#: public_html/lists/admin/lib.php:932
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1772 public_html/lists/admin/lib.php:1777
+#: public_html/lists/admin/lib.php:1780 public_html/lists/admin/lib.php:1785
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2033
+#: public_html/lists/admin/lib.php:2041
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2034
+#: public_html/lists/admin/lib.php:2042
 #: public_html/lists/admin/send_core.php:390
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2036 public_html/lists/admin/lib.php:2047
+#: public_html/lists/admin/lib.php:2044 public_html/lists/admin/lib.php:2055
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2038
+#: public_html/lists/admin/lib.php:2046
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2040
+#: public_html/lists/admin/lib.php:2048
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2042
+#: public_html/lists/admin/lib.php:2050
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2044
+#: public_html/lists/admin/lib.php:2052
 #: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2045 public_html/lists/admin/lib.php:2048
+#: public_html/lists/admin/lib.php:2053 public_html/lists/admin/lib.php:2056
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2061
+#: public_html/lists/admin/lib.php:2069
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2062
+#: public_html/lists/admin/lib.php:2070
 msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2068
+#: public_html/lists/admin/lib.php:2076
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2068
+#: public_html/lists/admin/lib.php:2076
 msgid "Do not subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2273
+#: public_html/lists/admin/lib.php:2281
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2275
+#: public_html/lists/admin/lib.php:2283
 msgid "Still loading"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2276
+#: public_html/lists/admin/lib.php:2284
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2277
+#: public_html/lists/admin/lib.php:2285
 msgid "It should be soon now, your page content is almost here."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2278
+#: public_html/lists/admin/lib.php:2286
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2279
+#: public_html/lists/admin/lib.php:2287
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2280
+#: public_html/lists/admin/lib.php:2288
 msgid "It will really be soon now until the page will display."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2281
+#: public_html/lists/admin/lib.php:2289
 msgid "Still loading, please wait"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2282
+#: public_html/lists/admin/lib.php:2290
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2283
+#: public_html/lists/admin/lib.php:2291
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr ""
 
@@ -1435,82 +1435,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:758
+#: public_html/lists/admin/sendemaillib.php:760
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:948
+#: public_html/lists/admin/sendemaillib.php:950
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:965
+#: public_html/lists/admin/sendemaillib.php:967
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:969
+#: public_html/lists/admin/sendemaillib.php:971
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:975
+#: public_html/lists/admin/sendemaillib.php:977
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:977
+#: public_html/lists/admin/sendemaillib.php:979
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:981
+#: public_html/lists/admin/sendemaillib.php:983
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:983
+#: public_html/lists/admin/sendemaillib.php:985
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1021
+#: public_html/lists/admin/sendemaillib.php:1023
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1064
+#: public_html/lists/admin/sendemaillib.php:1066
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1066
-#: public_html/lists/admin/sendemaillib.php:1081
+#: public_html/lists/admin/sendemaillib.php:1068
+#: public_html/lists/admin/sendemaillib.php:1083
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1071
+#: public_html/lists/admin/sendemaillib.php:1073
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1078
+#: public_html/lists/admin/sendemaillib.php:1080
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1079
+#: public_html/lists/admin/sendemaillib.php:1081
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1100
 #: public_html/lists/admin/sendemaillib.php:1102
+#: public_html/lists/admin/sendemaillib.php:1104
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
@@ -3580,7 +3580,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:765 public_html/lists/admin/index.php:786
+#: public_html/lists/admin/index.php:803 public_html/lists/admin/index.php:824
 msgid "Access Denied"
 msgstr ""
 
@@ -7567,123 +7567,123 @@ msgstr ""
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/index.php:223
+#: public_html/lists/admin/index.php:260
 msgid "Available options:"
 msgstr ""
 
-#: public_html/lists/admin/index.php:269
+#: public_html/lists/admin/index.php:306
 msgid "Login not available. Create an account first."
 msgstr ""
 
-#: public_html/lists/admin/index.php:308
+#: public_html/lists/admin/index.php:345
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
 
-#: public_html/lists/admin/index.php:332
+#: public_html/lists/admin/index.php:369
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:341
+#: public_html/lists/admin/index.php:378
 msgid "Incorrect processing secret"
 msgstr ""
 
-#: public_html/lists/admin/index.php:366
+#: public_html/lists/admin/index.php:403
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:368
+#: public_html/lists/admin/index.php:405
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:375
+#: public_html/lists/admin/index.php:412
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:394
+#: public_html/lists/admin/index.php:431
 msgid "Your session timed out, please log in again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:399
+#: public_html/lists/admin/index.php:436
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:480
+#: public_html/lists/admin/index.php:517
 msgid "Main page"
 msgstr ""
 
-#: public_html/lists/admin/index.php:484
+#: public_html/lists/admin/index.php:521
 msgid "goodbye"
 msgstr ""
 
-#: public_html/lists/admin/index.php:488
+#: public_html/lists/admin/index.php:525
 msgid "good morning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:490
+#: public_html/lists/admin/index.php:527
 msgid "good afternoon"
 msgstr ""
 
-#: public_html/lists/admin/index.php:492
+#: public_html/lists/admin/index.php:529
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:507
+#: public_html/lists/admin/index.php:544
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:514
+#: public_html/lists/admin/index.php:551
 msgid "Running DEV version. All emails will be sent to "
 msgstr ""
 
-#: public_html/lists/admin/index.php:516
+#: public_html/lists/admin/index.php:553
 msgid "Running DEV version, but developer email is not set"
 msgstr ""
 
-#: public_html/lists/admin/index.php:520
+#: public_html/lists/admin/index.php:557
 #: public_html/lists/admin/processqueue.php:29
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:536
+#: public_html/lists/admin/index.php:574
 msgid "Error: "
 msgstr ""
 
-#: public_html/lists/admin/index.php:540
+#: public_html/lists/admin/index.php:578
 msgid "Download the new version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:544
+#: public_html/lists/admin/index.php:582
 msgid " or update"
 msgstr ""
 
-#: public_html/lists/admin/index.php:544
+#: public_html/lists/admin/index.php:582
 msgid "automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:544
+#: public_html/lists/admin/index.php:582
 msgid "here."
 msgstr ""
 
-#: public_html/lists/admin/index.php:555
+#: public_html/lists/admin/index.php:593
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.3 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:559
+#: public_html/lists/admin/index.php:597
 msgid "Get some help"
 msgstr ""
 
-#: public_html/lists/admin/index.php:560
+#: public_html/lists/admin/index.php:598
 msgid "Download the latest version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:558
+#: public_html/lists/admin/index.php:596
 #, php-format
 msgid ""
 "Your phpList version is older than two years. Please %supgrade phpList</a> "
@@ -7691,60 +7691,60 @@ msgid ""
 "            Visit <a href=\"https://www.phplist.org/users/\" title=\""
 msgstr ""
 
-#: public_html/lists/admin/index.php:565
+#: public_html/lists/admin/index.php:603
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:570
+#: public_html/lists/admin/index.php:608
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:572
+#: public_html/lists/admin/index.php:610
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:585
+#: public_html/lists/admin/index.php:623
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:586
+#: public_html/lists/admin/index.php:624
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:588
+#: public_html/lists/admin/index.php:626
 #, php-format
 msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
-#: public_html/lists/admin/index.php:693
+#: public_html/lists/admin/index.php:731
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:715
+#: public_html/lists/admin/index.php:753
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:720
+#: public_html/lists/admin/index.php:758
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:761
+#: public_html/lists/admin/index.php:799
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:782 public_html/lists/admin/index.php:783
+#: public_html/lists/admin/index.php:820 public_html/lists/admin/index.php:821
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:790
+#: public_html/lists/admin/index.php:828
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:796
+#: public_html/lists/admin/index.php:834
 msgid "Sorry, not implemented yet"
 msgstr ""
 
