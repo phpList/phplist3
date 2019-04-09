@@ -173,14 +173,12 @@ if ($dbversion == VERSION && !$force) {
     }
 
     //Update jQuery version
-    if (version_compare($dbversion, '3.4.0', '<')) {
-
+    if (version_compare($dbversion, '3.4.1', '<')) {
         $oldFooter = getConfig('pagefooter');
         $pattern = "1.12.1.min.js";
         $replacement = "3.3.1.min.js";
         $newFooter = str_replace($pattern, $replacement, $oldFooter);
         SaveConfig('pagefooter', $newFooter);
-
     }
 
 
