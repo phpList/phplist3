@@ -172,7 +172,7 @@ if ($dbversion == VERSION && !$force) {
         }
     }
 
-    //Update jQuery version
+    // Update jQuery version referenced in public page HTML stored in the database
     if (version_compare($dbversion, '3.4.1', '<')) {
         $oldFooter = getConfig('pagefooter');
         $pattern = "1.12.1.min.js";
