@@ -175,8 +175,8 @@ if ($dbversion == VERSION && !$force) {
     // Update jQuery version referenced in public page HTML stored in the database
     if (version_compare($dbversion, '3.4.1', '<')) {
 
-        $pattern = "1.12.1.min.js";
-        $replacement = "min.js";
+        $pattern = "jquery-1.12.1.min.js";
+        $replacement = "jquery.min.js";
 
         // Replace jQuery version in config table.
         $oldConfigFooter = getConfig('pagefooter');
@@ -194,7 +194,6 @@ if ($dbversion == VERSION && !$force) {
             Sql_Query(sprintf('update %s set data = "%s" where data = "%s" ', $GLOBALS['tables']['subscribepage_data'], sql_escape($newFooter), addslashes($value)));
         }
     }
-
     //# remember whether we've done this, to avoid doing it every time
     //# even thought that's not such a big deal
     $isUTF8 = getConfig('UTF8converted');
