@@ -433,7 +433,7 @@ if (isset($_POST['Submit'])) {
 /**
  * Print page contents
  */
-echo '<h2>'.s('Default templates suit').'</h2>';
+echo '<h2>'.s('Default templates suite').'</h2>';
 
 echo formStart();
 echo '
