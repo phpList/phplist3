@@ -175,11 +175,21 @@ if ($dbversion == VERSION && !$force) {
     // Update jQuery version referenced in public page HTML stored in the database
     if (version_compare($dbversion, '3.4.1', '<')) {
 
-        $pattern = "jquery-1.12.1.min.js";
+        // The new filename does not hard-code the jQuery version number  
         $replacement = "jquery.min.js";
 
-        // Replace jQuery version in config table.
+        // Replace jQuery version public page footers in config table
         $oldConfigFooter = getConfig('pagefooter');
+        $matches = null;
+
+        // Find and replace all references to version-specific jQuery files
+        preg_match('/jquery-3.3.1.min.js/', $oldConfigFooter, $matches);
+        if ($matches[0] == "jquery-3.3.1.min.js") {
+            $pattern = "jquery-3.3.1.min.js";
+        } else {
+            $pattern = "jquery-1.12.1.min.js";
+        }
+
         $newConfigFooter = str_replace($pattern, $replacement, $oldConfigFooter);
         SaveConfig('pagefooter', $newConfigFooter);
 
@@ -189,7 +199,15 @@ if ($dbversion == VERSION && !$force) {
         while ($row = Sql_Fetch_Assoc($req)) {
             $footersArray[] = $row['data'];
         }
+
+        // Find and replace all references to version-specific jQuery files
         foreach ($footersArray as $key => $value) {
+            preg_match('/jquery-3.3.1.min.js/', $value, $matches);
+            if ($matches[0] == "jquery-3.3.1.min.js") {
+                $pattern = "jquery-3.3.1.min.js";
+            } else {
+                $pattern = "jquery-1.12.1.min.js";
+            }
             $newFooter = str_replace($pattern, $replacement, $value);
             Sql_Query(sprintf('update %s set data = "%s" where data = "%s" ', $GLOBALS['tables']['subscribepage_data'], sql_escape($newFooter), addslashes($value)));
         }
