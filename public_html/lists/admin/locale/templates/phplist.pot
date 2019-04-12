@@ -7922,7 +7922,7 @@ msgid "Edit the added template"
 msgstr ""
 
 #: public_html/lists/admin/defaultsystemtemplate.php:436
-msgid "Default templates suit"
+msgid "Default templates suite"
 msgstr ""
 
 #: public_html/lists/admin/editlist.php:27
