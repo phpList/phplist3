@@ -23,42 +23,6 @@ require_once dirname(__FILE__).'/inc/magic_quotes.php';
 // Remove when php5.X is unsupported, currently 31 Dec 2018, https://secure.php.net/supported-versions.php
 require_once dirname(__FILE__).'/inc/random_compat/random.php';
 
-// Check if required PHP modules are installed.
-$requiredExtensions = array(
-    'pcre',
-    'core',
-    'date',
-    'hash',
-    'spl',
-    'filter',
-    'openssl',
-    'mbstring',
-    'session',
-    'xml',
-    'curl',
-    'iconv',
-    'json',
-    'gettext',
-    'simplexml',
-    'mysqli',
-    'gd',
-);
-
-$notInstalled = array();
-
-foreach ($requiredExtensions as $value) {
-    if (!extension_loaded($value)) {
-        array_push($notInstalled, $value);
-    }
-}
-if (count($notInstalled) > 0) {
-    $message = "The following PHP extensions are missing:" . '<br>';
-    foreach ($notInstalled as $value) {
-        $message .= $value . '<br>';
-    }
-    die($message);
-}
-
 /* no idea why it wouldn't be there (no dependencies are mentioned on php.net/mb_strtolower), but
  * found a system missing it. We need it from the start */
 if (!function_exists('mb_strtolower')) {
