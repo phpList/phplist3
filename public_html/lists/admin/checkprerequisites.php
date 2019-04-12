@@ -20,6 +20,8 @@ $requiredExtensions = array(
     'date',
     'hash',
     'spl',
+    'json',
+    'filter',
     'session',
     'xml',
     'curl',
