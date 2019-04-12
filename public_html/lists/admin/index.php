@@ -30,18 +30,11 @@ $requiredExtensions = array(
     'date',
     'hash',
     'spl',
-    'filter',
-    'openssl',
-    'mbstring',
     'session',
     'xml',
     'curl',
-    'iconv',
-    'json',
-    'gettext',
     'simplexml',
     'mysqli',
-    'gd',
 );
 
 $notInstalled = array();
