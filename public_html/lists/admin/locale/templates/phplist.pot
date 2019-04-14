@@ -226,7 +226,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:343
 #: public_html/lists/admin/initialise.php:249
-#: public_html/lists/admin/upgrade.php:428
+#: public_html/lists/admin/upgrade.php:467
 msgid "Upgrade"
 msgstr ""
 
@@ -3541,24 +3541,24 @@ msgid "Converting DB to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:74
-#: public_html/lists/admin/upgrade.php:215
+#: public_html/lists/admin/upgrade.php:254
 msgid "Upgrading the database to use UTF-8, please wait"
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:77
 #: public_html/lists/admin/converttoutf8.php:79
-#: public_html/lists/admin/upgrade.php:218
+#: public_html/lists/admin/upgrade.php:257
 msgid "Upgrading table "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:85
 #: public_html/lists/admin/converttoutf8.php:87
-#: public_html/lists/admin/upgrade.php:224
+#: public_html/lists/admin/upgrade.php:263
 msgid "Upgrading column "
 msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:92
-#: public_html/lists/admin/upgrade.php:229
+#: public_html/lists/admin/upgrade.php:268
 msgid "upgrade to UTF-8, done"
 msgstr ""
 
@@ -4849,7 +4849,7 @@ msgid "Giving a UUID to %d campaigns"
 msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:103
-#: public_html/lists/admin/upgrade.php:365
+#: public_html/lists/admin/upgrade.php:404
 msgid "Creating new table \"user_message_view\""
 msgstr ""
 
@@ -6170,18 +6170,18 @@ msgid "Domain Statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:15
-#: public_html/lists/admin/upgrade.php:409
+#: public_html/lists/admin/upgrade.php:448
 msgid "The clicktracking system has changed"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:16
-#: public_html/lists/admin/upgrade.php:410
+#: public_html/lists/admin/upgrade.php:449
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:18
-#: public_html/lists/admin/upgrade.php:411
+#: public_html/lists/admin/upgrade.php:450
 msgid "Convert Old data to new"
 msgstr ""
 
@@ -7502,7 +7502,7 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:227
-#: public_html/lists/admin/upgrade.php:400
+#: public_html/lists/admin/upgrade.php:439
 msgid "Success"
 msgstr ""
 
@@ -8367,59 +8367,59 @@ msgstr ""
 msgid "Please wait, upgrading your database, do not interrupt"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:232
+#: public_html/lists/admin/upgrade.php:271
 msgid "Database requires converting to UTF-8."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:233
+#: public_html/lists/admin/upgrade.php:272
 msgid "However, there is too little diskspace for this conversion"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:234
+#: public_html/lists/admin/upgrade.php:273
 msgid "Please do a manual conversion."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:235
+#: public_html/lists/admin/upgrade.php:274
 msgid "Run manual conversion to UTF8"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:342
+#: public_html/lists/admin/upgrade.php:381
 msgid ""
 "Giving a UUID to your subscribers and campaigns. If you have a lot of them, "
 "this may take a while."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:343
+#: public_html/lists/admin/upgrade.php:382
 msgid ""
 "If the page times out, you can reload. Or otherwise try to run the upgrade "
 "from commandline instead."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:343
+#: public_html/lists/admin/upgrade.php:382
 msgid "Documentation how to set up phpList commandline"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:415
+#: public_html/lists/admin/upgrade.php:454
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:420
+#: public_html/lists/admin/upgrade.php:459
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:425
+#: public_html/lists/admin/upgrade.php:464
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:426
+#: public_html/lists/admin/upgrade.php:465
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:427
+#: public_html/lists/admin/upgrade.php:466
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
