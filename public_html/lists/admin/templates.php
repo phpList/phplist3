@@ -29,6 +29,7 @@ $defaulttemplate = getConfig('defaultmessagetemplate');
 $systemtemplate = getConfig('systemmessagetemplate');
 echo formStart('name="templates" class="templatesEdit" ');
 $ls = new WebblerListing(s('Campaign templates'));
+$ls->setElementHeading('Template');
 while ($row = Sql_fetch_Array($req)) {
     $img_template = '<img src="images/no-image-template.png" />';
     if (file_exists('templates/'.$row['id'].'.jpg')) {
