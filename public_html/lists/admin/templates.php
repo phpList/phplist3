@@ -41,11 +41,18 @@ while ($row = Sql_fetch_Array($req)) {
     $ls->addRow(
         $element
         , $img_template
-        , '<span class="button">'.PageLinkDialogOnly('viewtemplate&amp;id='.$row['id']
-        , $GLOBALS['img_view']).'</span>'.sprintf(
-            '<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.s('delete').'">%s</a>'
-            , PageUrl2('templates', '', 'delete='.$row['id']), s('delete')
-        )
+        , PageLinkDialogOnly(
+            'viewtemplate&amp;id='.$row['id']
+            , $GLOBALS['img_view']
+        ).
+        '<span class="edit">'.
+            PageLinkButton('template', $GLOBALS['I18N']->get('Edit'), $row['id'], '', s('Edit'))
+        .'</span>
+        <span class="delete">
+            <a class="button" href="javascript:deleteRec(\''.PageUrl2('templates', '', 'delete='.$row['id']).'\')" title="'.s('delete').'">'.
+                s('delete')
+            .'</a>
+        </span>'
     );
 //  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
 //    $GLOBALS['tables']['templateimage'],$row['id']));
