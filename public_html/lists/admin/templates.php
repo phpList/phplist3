@@ -37,7 +37,6 @@ while ($row = Sql_fetch_Array($req)) {
     $element = $row['title'];
     $ls->addElement($element, PageUrl2('template&amp;id='.$row['id']));
     $ls->setClass($element, 'row1');
-    $ls->addColumn($element, s('ID'), $row['id']);
     $ls->addRow(
         $element
         , $img_template
