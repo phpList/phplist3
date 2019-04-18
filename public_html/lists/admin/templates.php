@@ -38,10 +38,15 @@ while ($row = Sql_fetch_Array($req)) {
     $ls->addElement($element, PageUrl2('template&amp;id='.$row['id']));
     $ls->setClass($element, 'row1');
     $ls->addColumn($element, s('ID'), $row['id']);
-    $ls->addRow($element, $img_template,
-        '<span class="button">'.PageLinkDialogOnly('viewtemplate&amp;id='.$row['id'],
-            $GLOBALS['img_view']).'</span>'.sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.s('delete').'">%s</a>',
-            PageUrl2('templates', '', 'delete='.$row['id']), s('delete')));
+    $ls->addRow(
+        $element
+        , $img_template
+        , '<span class="button">'.PageLinkDialogOnly('viewtemplate&amp;id='.$row['id']
+        , $GLOBALS['img_view']).'</span>'.sprintf(
+            '<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.s('delete').'">%s</a>'
+            , PageUrl2('templates', '', 'delete='.$row['id']), s('delete')
+        )
+    );
 //  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
 //    $GLOBALS['tables']['templateimage'],$row['id']));
 //  $ls->addColumn($element,s('# imgs'),$imgcount[0]);
