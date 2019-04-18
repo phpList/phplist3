@@ -36,11 +36,18 @@ while ($row = Sql_fetch_Array($req)) {
     }
     $element = $row['title'];
     $ls->addElement($element, PageUrl2('template&amp;id='.$row['id']));
-    $ls->setClass($element, 'row1');
-    $ls->addRow(
-        $element
-        , $img_template
-        , PageLinkDialogOnly(
+//  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
+//    $GLOBALS['tables']['templateimage'],$row['id']));
+//  $ls->addColumn($element,s('# imgs'),$imgcount[0]);
+//  $ls->addColumn($element,s('View'),);
+    $ls->addColumn($element, s('Campaign Default'),
+        sprintf('<input type=radio name="defaulttemplate" value="%d" %s onchange="document.templates.submit();">',
+            $row['id'], $row['id'] == $defaulttemplate ? 'checked' : ''));
+    $ls->addColumn($element, s('System').Help('systemmessage'),
+        sprintf('<input type=radio name="systemtemplate" value="%d" %s onchange="document.templates.submit();">',
+            $row['id'], $row['id'] == $systemtemplate ? 'checked' : ''));
+    $ls->addColumn($element, s('Action'), 
+        PageLinkDialogOnly(
             'viewtemplate&amp;id='.$row['id']
             , $GLOBALS['img_view']
         ).
@@ -53,16 +60,7 @@ while ($row = Sql_fetch_Array($req)) {
             .'</a>
         </span>'
     );
-//  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
-//    $GLOBALS['tables']['templateimage'],$row['id']));
-//  $ls->addColumn($element,s('# imgs'),$imgcount[0]);
-//  $ls->addColumn($element,s('View'),);
-    $ls->addColumn($element, s('Campaign Default'),
-        sprintf('<input type=radio name="defaulttemplate" value="%d" %s onchange="document.templates.submit();">',
-            $row['id'], $row['id'] == $defaulttemplate ? 'checked' : ''));
-    $ls->addColumn($element, s('System').Help('systemmessage'),
-        sprintf('<input type=radio name="systemtemplate" value="%d" %s onchange="document.templates.submit();">',
-            $row['id'], $row['id'] == $systemtemplate ? 'checked' : ''));
+    
 }
 echo $ls->display();
 
