@@ -246,7 +246,7 @@ msgstr ""
 msgid "to continue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:536
+#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:500
 msgid "Continue Configuration"
 msgstr ""
 
@@ -3580,7 +3580,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:803 public_html/lists/admin/index.php:824
+#: public_html/lists/admin/index.php:766 public_html/lists/admin/index.php:787
 msgid "Access Denied"
 msgstr ""
 
@@ -7567,123 +7567,123 @@ msgstr ""
 msgid "Convert some more"
 msgstr ""
 
-#: public_html/lists/admin/index.php:260
+#: public_html/lists/admin/index.php:224
 msgid "Available options:"
 msgstr ""
 
-#: public_html/lists/admin/index.php:306
+#: public_html/lists/admin/index.php:270
 msgid "Login not available. Create an account first."
 msgstr ""
 
-#: public_html/lists/admin/index.php:345
+#: public_html/lists/admin/index.php:309
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
 
-#: public_html/lists/admin/index.php:369
+#: public_html/lists/admin/index.php:333
 msgid "Failed sending a change password token"
 msgstr ""
 
-#: public_html/lists/admin/index.php:378
+#: public_html/lists/admin/index.php:342
 msgid "Incorrect processing secret"
 msgstr ""
 
-#: public_html/lists/admin/index.php:403
+#: public_html/lists/admin/index.php:367
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:405
+#: public_html/lists/admin/index.php:369
 msgid "Your IP address has changed. For security reasons, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:412
+#: public_html/lists/admin/index.php:376
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
 msgstr ""
 
-#: public_html/lists/admin/index.php:431
+#: public_html/lists/admin/index.php:395
 msgid "Your session timed out, please log in again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:436
+#: public_html/lists/admin/index.php:400
 msgid "Your session timed out, please login again"
 msgstr ""
 
-#: public_html/lists/admin/index.php:517
+#: public_html/lists/admin/index.php:481
 msgid "Main page"
 msgstr ""
 
-#: public_html/lists/admin/index.php:521
+#: public_html/lists/admin/index.php:485
 msgid "goodbye"
 msgstr ""
 
-#: public_html/lists/admin/index.php:525
+#: public_html/lists/admin/index.php:489
 msgid "good morning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:527
+#: public_html/lists/admin/index.php:491
 msgid "good afternoon"
 msgstr ""
 
-#: public_html/lists/admin/index.php:529
+#: public_html/lists/admin/index.php:493
 msgid "good evening"
 msgstr ""
 
-#: public_html/lists/admin/index.php:544
+#: public_html/lists/admin/index.php:508
 msgid ""
 "phpList will work without Javascript, but it will be easier to use if you "
 "switch it on."
 msgstr ""
 
-#: public_html/lists/admin/index.php:551
+#: public_html/lists/admin/index.php:515
 msgid "Running DEV version. All emails will be sent to "
 msgstr ""
 
-#: public_html/lists/admin/index.php:553
+#: public_html/lists/admin/index.php:517
 msgid "Running DEV version, but developer email is not set"
 msgstr ""
 
-#: public_html/lists/admin/index.php:557
+#: public_html/lists/admin/index.php:521
 #: public_html/lists/admin/processqueue.php:29
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:574
+#: public_html/lists/admin/index.php:537
 msgid "Error: "
 msgstr ""
 
-#: public_html/lists/admin/index.php:578
+#: public_html/lists/admin/index.php:541
 msgid "Download the new version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:582
+#: public_html/lists/admin/index.php:545
 msgid " or update"
 msgstr ""
 
-#: public_html/lists/admin/index.php:582
+#: public_html/lists/admin/index.php:545
 msgid "automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:582
+#: public_html/lists/admin/index.php:545
 msgid "here."
 msgstr ""
 
-#: public_html/lists/admin/index.php:593
+#: public_html/lists/admin/index.php:556
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.3 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:597
+#: public_html/lists/admin/index.php:560
 msgid "Get some help"
 msgstr ""
 
-#: public_html/lists/admin/index.php:598
+#: public_html/lists/admin/index.php:561
 msgid "Download the latest version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:596
+#: public_html/lists/admin/index.php:559
 #, php-format
 msgid ""
 "Your phpList version is older than two years. Please %supgrade phpList</a> "
@@ -7691,60 +7691,60 @@ msgid ""
 "            Visit <a href=\"https://www.phplist.org/users/\" title=\""
 msgstr ""
 
-#: public_html/lists/admin/index.php:603
+#: public_html/lists/admin/index.php:566
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:608
+#: public_html/lists/admin/index.php:571
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:610
+#: public_html/lists/admin/index.php:573
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:623
+#: public_html/lists/admin/index.php:586
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:624
+#: public_html/lists/admin/index.php:587
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:626
+#: public_html/lists/admin/index.php:589
 #, php-format
 msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
-#: public_html/lists/admin/index.php:731
+#: public_html/lists/admin/index.php:694
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:753
+#: public_html/lists/admin/index.php:716
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:758
+#: public_html/lists/admin/index.php:721
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:799
+#: public_html/lists/admin/index.php:762
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:820 public_html/lists/admin/index.php:821
+#: public_html/lists/admin/index.php:783 public_html/lists/admin/index.php:784
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:828
+#: public_html/lists/admin/index.php:791
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:834
+#: public_html/lists/admin/index.php:797
 msgid "Sorry, not implemented yet"
 msgstr ""
 
