@@ -28,7 +28,8 @@ if (!Sql_Affected_Rows()) {
 $defaulttemplate = getConfig('defaultmessagetemplate');
 $systemtemplate = getConfig('systemmessagetemplate');
 echo formStart('name="templates" class="templatesEdit" ');
-$ls = new WebblerListing(s('Existing templates'));
+$ls = new WebblerListing(s('Campaign templates'));
+$ls->setElementHeading('Template');
 while ($row = Sql_fetch_Array($req)) {
     $img_template = '<img src="images/no-image-template.png" />';
     if (file_exists('templates/'.$row['id'].'.jpg')) {
@@ -36,12 +37,6 @@ while ($row = Sql_fetch_Array($req)) {
     }
     $element = $row['title'];
     $ls->addElement($element, PageUrl2('template&amp;id='.$row['id']));
-    $ls->setClass($element, 'row1');
-    $ls->addColumn($element, s('ID'), $row['id']);
-    $ls->addRow($element, $img_template,
-        '<span class="button">'.PageLinkDialogOnly('viewtemplate&amp;id='.$row['id'],
-            $GLOBALS['img_view']).'</span>'.sprintf('<span class="delete"><a class="button" href="javascript:deleteRec(\'%s\');" title="'.s('delete').'">%s</a>',
-            PageUrl2('templates', '', 'delete='.$row['id']), s('delete')));
 //  $imgcount = Sql_Fetch_Row_query(sprintf('select count(*) from %s where template = %d',
 //    $GLOBALS['tables']['templateimage'],$row['id']));
 //  $ls->addColumn($element,s('# imgs'),$imgcount[0]);
@@ -52,6 +47,21 @@ while ($row = Sql_fetch_Array($req)) {
     $ls->addColumn($element, s('System').Help('systemmessage'),
         sprintf('<input type=radio name="systemtemplate" value="%d" %s onchange="document.templates.submit();">',
             $row['id'], $row['id'] == $systemtemplate ? 'checked' : ''));
+    $ls->addColumn($element, s('Action'), 
+        PageLinkDialogOnly(
+            'viewtemplate&amp;id='.$row['id']
+            , $GLOBALS['img_view']
+        ).
+        '<span class="edit">'.
+            PageLinkButton('template', $GLOBALS['I18N']->get('Edit'), $row['id'], '', s('Edit'))
+        .'</span>
+        <span class="delete">
+            <a class="button" href="javascript:deleteRec(\''.PageUrl2('templates', '', 'delete='.$row['id']).'\')" title="'.s('delete').'">'.
+                s('delete')
+            .'</a>
+        </span>'
+    );
+    
 }
 echo $ls->display();
 
