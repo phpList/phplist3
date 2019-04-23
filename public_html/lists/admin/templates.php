@@ -55,7 +55,7 @@ while ($row = Sql_fetch_Array($req)) {
         '<span class="edit">'.
             PageLinkButton('template', $GLOBALS['I18N']->get('Edit'), $row['id'], '', s('Edit'))
         .'</span>
-        <span class="delete">
+        <span class="delete alignButtons">
             <a class="button" href="javascript:deleteRec(\''.PageUrl2('templates', '', 'delete='.$row['id']).'\')" title="'.s('delete').'">'.
                 s('delete')
             .'</a>
