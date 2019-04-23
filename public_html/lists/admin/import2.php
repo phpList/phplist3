@@ -721,7 +721,7 @@ if (count($email_list)) {
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Omit Invalid') ?>:</td>
-                <td><input type="checkbox" name="omit_invalid" value="yes"/><?php echo Help('omitinvalid'); ?></td>
+                <td><input type="checkbox" name="omit_invalid" value="yes" checked="checked"/><?php echo Help('omitinvalid'); ?></td>
             </tr>
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Assign Invalid') ?>:</td>
