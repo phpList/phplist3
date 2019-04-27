@@ -10,6 +10,10 @@ if (!file_exists($GLOBALS['tmpdir'].'/'.$file) || !file_exists($GLOBALS['tmpdir'
 
     return;
 }
+$omit_invalid = false;
+if ($_GET['omitinvalid']) {
+    $omit_invalid = true;
+}
 
 $importdata = unserialize(file_get_contents($GLOBALS['tmpdir'].'/'.$file.'.data'));
 
@@ -45,7 +49,8 @@ foreach ($email_list as $line) {
     if (strpos($email, ' ')) {
         list($email, $info) = explode(' ', $email);
     }
-    if (!is_email($email)){
+
+    if (!is_email($email) && $omit_invalid){
         unset($email, $info);
         $count_invalid_emails++;
     }

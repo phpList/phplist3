@@ -36,6 +36,8 @@ if (isset($_REQUEST['import'])) {
 
     $test_import = (isset($_POST['import_test']) && $_POST['import_test'] == 'yes');
 
+    $omit_invalid = (isset($_POST['omit_invalid']) && $_POST['omit_invalid'] == 'yes');
+
     if (empty($_FILES['import_file'])) {
         Fatal_Error($GLOBALS['I18N']->get('No file was specified. Maybe the file is too big?'));
 
@@ -118,10 +120,9 @@ if (isset($_REQUEST['import'])) {
         if (strpos($email, ' ')) {
             list($email, $info) = explode(' ', $email);
         }
-        if (!is_email($email)){
+        if (!is_email($email) && $omit_invalid){
             unset($email, $info);
         }
-
         //# actually looks like the "info" bit will get lost, but
         //# in a way, that doesn't matter
         $user_list[$email] = array(
@@ -171,7 +172,7 @@ if (isset($_REQUEST['import'])) {
                 count($import_lists)).'</h3>';
         echo $GLOBALS['img_busy'];
         echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-        echo '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
+        echo '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&omitinvalid='.$omit_invalid.'&file='.urlencode(basename($newfile)).addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
     } // end else
     // print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
 } else {
@@ -231,6 +232,10 @@ if (isset($_REQUEST['import'])) {
                 <tr>
                     <td><?php echo $GLOBALS['I18N']->get('Test output:'); ?></td>
                     <td><input type="checkbox" name="import_test" value="yes" checked="checked"/></td>
+                </tr>
+                <tr>
+                    <td><?php echo s('Omit Invalid') ?>:</td>
+                    <td><input type="checkbox" name="omit_invalid" checked="checked" value="yes"/></td>
                 </tr>
                 <!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.'); ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Send Notification email'); ?><input type="radio" name="notify" value="yes"></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately'); ?><input type="radio" name="notify" value="no"></td></tr>
