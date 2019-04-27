@@ -38,13 +38,17 @@ $email_list = explode("\n", $email_list);
 
 // Parse the lines into records
 $hasinfo = 0;
+$count_invalid_emails = 0;
 foreach ($email_list as $line) {
     $info = '';
     $email = trim($line); //# just take the entire line up to the first space to be the email
     if (strpos($email, ' ')) {
         list($email, $info) = explode(' ', $email);
     }
-
+    if (!is_email($email)){
+        unset($email, $info);
+        $count_invalid_emails++;
+    }
     //# actually looks like the "info" bit will get lost, but
     //# in a way, that doesn't matter
     $user_list[$email] = array(
@@ -220,6 +224,9 @@ $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email was') : $
 
 if ($count_email_exist) {
     $report .= '<br/> '.s('%d emails already existed in the database', $count_email_exist);
+}
+if ($count_invalid_emails !== 0 ) {
+    $report .= '<br/> '.s('%d invalid emails', $count_invalid_emails);
 }
 if (!$some && !$additional_emails) {
     $report .= '<br/>'.s('All the emails already exist in the database.');

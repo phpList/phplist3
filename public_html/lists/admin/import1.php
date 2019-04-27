@@ -118,6 +118,9 @@ if (isset($_REQUEST['import'])) {
         if (strpos($email, ' ')) {
             list($email, $info) = explode(' ', $email);
         }
+        if (!is_email($email)){
+            unset($email, $info);
+        }
 
         //# actually looks like the "info" bit will get lost, but
         //# in a way, that doesn't matter
