@@ -716,6 +716,10 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     global $tables;
     if (isset($_POST['list'])) {
         $list = $_POST['list'];
+    } elseif (!isset($_POST["subscribe"]) && isset($_GET['list'])) {
+        $list_value = "signup";
+        $list_values = explode(",", $_GET["list"]);
+        $list = array_fill_keys($list_values, $list_value);
     } else {
         $list = '';
     }
@@ -896,6 +900,8 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
         }
         if (isset($_POST['htmlemail'])) {
             $htmlemail = $_POST['htmlemail'];
+    	} elseif (!isset($_POST["subscribe"]) && isset($_GET['htmlemail'])) {
+      		$htmlemail = $_GET["htmlemail"];
         }
         $data = array();
         $current = array();
