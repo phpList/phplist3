@@ -1065,8 +1065,8 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:326
 #: public_html/lists/admin/plugins.php:327
-#: public_html/lists/admin/templates.php:43
-#: public_html/lists/admin/templates.php:44
+#: public_html/lists/admin/templates.php:59
+#: public_html/lists/admin/templates.php:60
 #: public_html/lists/admin/spage.php:100
 #: public_html/lists/admin/editattributes.php:206
 #: public_html/lists/admin/bouncerules.php:117
@@ -2496,24 +2496,35 @@ msgid "No template have been defined"
 msgstr ""
 
 #: public_html/lists/admin/templates.php:31
-msgid "Existing templates"
+msgid "Campaign templates"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:40
-#: public_html/lists/admin/spage.php:72 public_html/lists/admin/user.php:271
-#: public_html/lists/admin/bounce.php:224
-msgid "ID"
-msgstr ""
-
-#: public_html/lists/admin/templates.php:49
+#: public_html/lists/admin/templates.php:44
 msgid "Campaign Default"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:52
+#: public_html/lists/admin/templates.php:47
 msgid "System"
 msgstr ""
 
-#: public_html/lists/admin/templates.php:61
+#: public_html/lists/admin/templates.php:50
+#: public_html/lists/admin/messages.php:639
+#: public_html/lists/admin/updatetranslation.php:76
+#: public_html/lists/admin/bouncerule.php:64
+#: public_html/lists/admin/bounce.php:158
+#: public_html/lists/admin/bouncerules.php:134
+msgid "Action"
+msgstr ""
+
+#: public_html/lists/admin/templates.php:56
+#: public_html/lists/admin/messages.php:616
+#: public_html/lists/admin/messages.php:617
+#: public_html/lists/admin/messages.php:627
+#: public_html/lists/admin/messages.php:628
+msgid "Edit"
+msgstr ""
+
+#: public_html/lists/admin/templates.php:71
 msgid "Add templates from default selection"
 msgstr ""
 
@@ -2980,6 +2991,11 @@ msgstr ""
 msgid "subscribe pages"
 msgstr ""
 
+#: public_html/lists/admin/spage.php:72 public_html/lists/admin/user.php:271
+#: public_html/lists/admin/bounce.php:224
+msgid "ID"
+msgstr ""
+
 #: public_html/lists/admin/spage.php:78
 #: public_html/lists/admin/userclicks.php:82
 #: public_html/lists/admin/userclicks.php:100
@@ -3392,13 +3408,6 @@ msgstr ""
 msgid "Mark sent"
 msgstr ""
 
-#: public_html/lists/admin/messages.php:616
-#: public_html/lists/admin/messages.php:617
-#: public_html/lists/admin/messages.php:627
-#: public_html/lists/admin/messages.php:628
-msgid "Edit"
-msgstr ""
-
 #: public_html/lists/admin/messages.php:622
 msgid "Are you sure you want to delete this campaign?"
 msgstr ""
@@ -3410,14 +3419,6 @@ msgstr ""
 #: public_html/lists/admin/messages.php:635
 #: public_html/lists/admin/messages.php:636
 msgid "Copy to Draft"
-msgstr ""
-
-#: public_html/lists/admin/messages.php:639
-#: public_html/lists/admin/updatetranslation.php:76
-#: public_html/lists/admin/bouncerule.php:64
-#: public_html/lists/admin/bounce.php:158
-#: public_html/lists/admin/bouncerules.php:134
-msgid "Action"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:647
