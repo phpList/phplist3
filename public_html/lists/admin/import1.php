@@ -1,10 +1,10 @@
 <?php
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__) . '/accesscheck.php';
 
 $subselect = '';
 $report = '';
 if (!ALLOW_IMPORT) {
-    echo '<p class="information">'.$GLOBALS['I18N']->get('import is not available').'</p>';
+    echo '<p class="information">' . $GLOBALS['I18N']->get('import is not available') . '</p>';
 
     return;
 }
@@ -21,7 +21,7 @@ if (!is_dir($GLOBALS['tmpdir']) || !is_writable($GLOBALS['tmpdir'])) {
 }
 //if (ini_get("open_basedir")) {
 if (!is_dir($GLOBALS['tmpdir']) || !is_writable($GLOBALS['tmpdir'])) {
-    Warn($GLOBALS['I18N']->get('The temporary directory for uploading is not writable, so import will fail').' ('.$GLOBALS['tmpdir'].')');
+    Warn($GLOBALS['I18N']->get('The temporary directory for uploading is not writable, so import will fail') . ' (' . $GLOBALS['tmpdir'] . ')');
 }
 
 $import_lists = getSelectedLists('importlists');
@@ -35,6 +35,8 @@ if (isset($_REQUEST['import'])) {
     }
 
     $test_import = (isset($_POST['import_test']) && $_POST['import_test'] == 'yes');
+
+    $omit_invalid = (isset($_POST['omit_invalid']) && $_POST['omit_invalid'] == 'yes');
 
     if (empty($_FILES['import_file'])) {
         Fatal_Error($GLOBALS['I18N']->get('No file was specified. Maybe the file is too big?'));
@@ -75,10 +77,10 @@ if (isset($_REQUEST['import'])) {
     }
 
     if ($_FILES['import_file'] && filesize($_FILES['import_file']['tmp_name']) > 10) {
-        $newfile = $GLOBALS['tmpdir'].'/import'.$GLOBALS['installation_name'].time();
+        $newfile = $GLOBALS['tmpdir'] . '/import' . $GLOBALS['installation_name'] . time();
         move_uploaded_file($_FILES['import_file']['tmp_name'], $newfile);
         if (!($fp = fopen($newfile, 'r'))) {
-            Fatal_Error($GLOBALS['I18N']->get('Cannot read file. It is not readable !').' ('.$newfile.')');
+            Fatal_Error($GLOBALS['I18N']->get('Cannot read file. It is not readable !') . ' (' . $newfile . ')');
 
             return;
         }
@@ -118,7 +120,9 @@ if (isset($_REQUEST['import'])) {
         if (strpos($email, ' ')) {
             list($email, $info) = explode(' ', $email);
         }
-
+        if (!is_email($email) && $omit_invalid) {
+            unset($email, $info);
+        }
         //# actually looks like the "info" bit will get lost, but
         //# in a way, that doesn't matter
         $user_list[$email] = array(
@@ -136,8 +140,8 @@ if (isset($_REQUEST['import'])) {
 
     // View test output of emails
     if ($test_import) {
-        echo '<p>'.$GLOBALS['I18N']->get('There should only be ONE email per line.').' '.$GLOBALS['I18N']->get('If the output looks ok, go').' <a href="javascript:history.go(-1)">'.$GLOBALS['I18N']->get('back').'</a> '.$GLOBALS['I18N']->get('to resubmit for real').'.</p>
-        <p><strong>'.$GLOBALS['I18N']->get('Test output:').'</strong></p>
+        echo '<p>' . $GLOBALS['I18N']->get('There should only be ONE email per line.') . ' ' . $GLOBALS['I18N']->get('If the output looks ok, go') . ' <a href="javascript:history.go(-1)">' . $GLOBALS['I18N']->get('back') . '</a> ' . $GLOBALS['I18N']->get('to resubmit for real') . '.</p>
+        <p><strong>' . $GLOBALS['I18N']->get('Test output:') . '</strong></p>
         <hr/>';
         $i = 1;
         foreach ($user_list as $email => $data) {
@@ -147,7 +151,7 @@ if (isset($_REQUEST['import'])) {
                 $html = '';
                 foreach (array('info') as $item) {
                     if ($user_list[$email][$item]) {
-                        $html .= "$item -> ".$user_list[$email][$item].'<br/>';
+                        $html .= "$item -> " . $user_list[$email][$item] . '<br/>';
                     }
                 }
                 if ($html) {
@@ -162,23 +166,23 @@ if (isset($_REQUEST['import'])) {
 
         // Do import
     } else {
-        file_put_contents($newfile.'.data', serialize($_POST));
+        file_put_contents($newfile . '.data', serialize($_POST));
 
-        echo '<h3>'.s('Importing %d subscribers to %d lists, please wait', count($email_list),
-                count($import_lists)).'</h3>';
+        echo '<h3>' . s('Importing %d subscribers to %d lists, please wait', count($email_list),
+                count($import_lists)) . '</h3>';
         echo $GLOBALS['img_busy'];
         echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
-        echo '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&file='.urlencode(basename($newfile)).addCsrfGetToken().'" scrolling="no" height="50"></iframe>';
+        echo '<br/> <iframe id="import1" src="./?page=pageaction&action=import1&ajaxed=true&omitinvalid=' . $omit_invalid . '&file=' . urlencode(basename($newfile)) . addCsrfGetToken() . '" scrolling="no" height="50"></iframe>';
     } // end else
     // print '<p class="button">'.PageLink2("import1",$GLOBALS['I18N']->get('Import some more emails')).'</p>';
 } else {
     echo FormStart(' enctype="multipart/form-data" name="import"');
 
-    if ( !isSuperUser()) {
+    if (!isSuperUser()) {
         $access = accessLevel('import1');
         switch ($access) {
             case 'owner':
-                $subselect = ' where owner = '.$_SESSION['logindetails']['id'];
+                $subselect = ' where owner = ' . $_SESSION['logindetails']['id'];
                 break;
             case 'all':
                 $subselect = '';
@@ -190,14 +194,14 @@ if (isset($_REQUEST['import'])) {
         }
     }
 
-    $result = Sql_query('SELECT id,name FROM '.$tables['list']."$subselect ORDER BY listorder");
+    $result = Sql_query('SELECT id,name FROM ' . $tables['list'] . "$subselect ORDER BY listorder");
     $c = 0;
     if (Sql_Affected_Rows() == 1) {
         $row = Sql_fetch_array($result);
-        printf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.$GLOBALS['I18N']->get('adding_users').' <b>%s</b>',
+        printf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">' . $GLOBALS['I18N']->get('adding_users') . ' <b>%s</b>',
             $c, stripslashes($row['name']), $c, $row['id'], stripslashes($row['name']));
     } else {
-        echo '<h3>'.s('Select the lists to add the emails to').'</h3>';
+        echo '<h3>' . s('Select the lists to add the emails to') . '</h3>';
         echo ListSelectHTML($import_lists, 'importlists', $subselect);
     } ?>
 
@@ -206,6 +210,7 @@ if (isset($_REQUEST['import'])) {
 
         var fieldstocheck = new Array();
         var fieldnames = new Array();
+
         function addFieldToCheck(value, name) {
             fieldstocheck[fieldstocheck.length] = value;
             fieldnames[fieldnames.length] = name;
@@ -229,13 +234,17 @@ if (isset($_REQUEST['import'])) {
                     <td><?php echo $GLOBALS['I18N']->get('Test output:'); ?></td>
                     <td><input type="checkbox" name="import_test" value="yes" checked="checked"/></td>
                 </tr>
+                <tr>
+                    <td><?php echo s('Omit Invalid') ?>:</td>
+                    <td><input type="checkbox" name="omit_invalid" checked="checked" value="yes"/></td>
+                </tr>
                 <!--tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you choose "send notification email" the subscribers you are adding will be sent the request for confirmation of subscription to which they will have to reply. This is recommended, because it will identify invalid emails.'); ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Send Notification email'); ?><input type="radio" name="notify" value="yes"></td><td><?php echo $GLOBALS['I18N']->get('Make confirmed immediately'); ?><input type="radio" name="notify" value="no"></td></tr>
 <tr><td colspan="2"><?php echo $GLOBALS['I18N']->get('If you are going to send notification to users, you may want to add a little delay between messages') ?></td></tr>
 <tr><td><?php echo $GLOBALS['I18N']->get('Notification throttle') ?>:</td><td><input type="text" name="throttle_import" size="5"> <?php echo $GLOBALS['I18N']->get('(default is nothing, will send as fast as it can)') ?></td></tr-->
                 <?php
-                include_once dirname(__FILE__).'/subscribelib2.php';
-    echo ListAllAttributes(); ?>
+                include_once dirname(__FILE__) . '/subscribelib2.php';
+                echo ListAllAttributes(); ?>
 
                 <tr>
                     <td><p class="input"><input type="submit" name="import"

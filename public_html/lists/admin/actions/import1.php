@@ -5,16 +5,20 @@ verifyCsrfGetToken();
 @ob_end_flush();
 
 $file = $_GET['file'];
-if (!file_exists($GLOBALS['tmpdir'].'/'.$file) || !file_exists($GLOBALS['tmpdir'].'/'.$file.'.data')) {
+if (!file_exists($GLOBALS['tmpdir'] . '/' . $file) || !file_exists($GLOBALS['tmpdir'] . '/' . $file . '.data')) {
     echo s('File not found');
 
     return;
 }
+$omit_invalid = false;
+if ($_GET['omitinvalid']) {
+    $omit_invalid = true;
+}
 
-$importdata = unserialize(file_get_contents($GLOBALS['tmpdir'].'/'.$file.'.data'));
+$importdata = unserialize(file_get_contents($GLOBALS['tmpdir'] . '/' . $file . '.data'));
 
-$email_list = file_get_contents($GLOBALS['tmpdir'].'/'.$file);
-include_once dirname(__FILE__).'/../inc/userlib.php';
+$email_list = file_get_contents($GLOBALS['tmpdir'] . '/' . $file);
+include_once dirname(__FILE__) . '/../inc/userlib.php';
 
 // Clean up email file
 $email_list = trim($email_list);
@@ -38,6 +42,7 @@ $email_list = explode("\n", $email_list);
 
 // Parse the lines into records
 $hasinfo = 0;
+$count_invalid_emails = 0;
 foreach ($email_list as $line) {
     $info = '';
     $email = trim($line); //# just take the entire line up to the first space to be the email
@@ -45,6 +50,10 @@ foreach ($email_list as $line) {
         list($email, $info) = explode(' ', $email);
     }
 
+    if (!is_email($email) && $omit_invalid) {
+        unset($email, $info);
+        $count_invalid_emails++;
+    }
     //# actually looks like the "info" bit will get lost, but
     //# in a way, that doesn't matter
     $user_list[$email] = array(
@@ -64,7 +73,7 @@ $done = 0;
 $report = '';
 if ($hasinfo) {
     // we need to add an info attribute if it does not exist
-    $req = Sql_Query('select id from '.$tables['attribute'].' where name = "info"');
+    $req = Sql_Query('select id from ' . $tables['attribute'] . ' where name = "info"');
     if (!Sql_Affected_Rows()) {
         // it did not exist
         Sql_Query(sprintf('insert into %s (name,type,listorder,default_value,required,tablename)
@@ -73,10 +82,10 @@ if ($hasinfo) {
 }
 
 // which attributes were chosen, apply to all users
-$res = Sql_Query('select * from '.$tables['attribute']);
+$res = Sql_Query('select * from ' . $tables['attribute']);
 $attributes = array();
 while ($row = Sql_Fetch_Array($res)) {
-    $fieldname = 'attribute'.$row['id'];
+    $fieldname = 'attribute' . $row['id'];
     if (isset($importdata[$fieldname])) {
         if (is_array($importdata[$fieldname])) {
             $attributes[$row['id']] = implode(',', $importdata[$fieldname]);
@@ -96,7 +105,7 @@ foreach ($user_list as $email => $data) {
         //  print "$done / $todo<br/>";
         echo '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
-      parentJQuery("#progressbar").updateProgress("' .$done.','.$todo.'");
+      parentJQuery("#progressbar").updateProgress("' . $done . ',' . $todo . '");
       </script>';
         flush();
     }
@@ -104,7 +113,7 @@ foreach ($user_list as $email => $data) {
     if (strlen($email) > 4) {
         $email = addslashes($email);
         // Annoying hack => Much too time consuming. Solution => Set email in users to UNIQUE()
-        $result = Sql_query('SELECT id,uniqid FROM '.$tables['user']." WHERE email = '$email'");
+        $result = Sql_query('SELECT id,uniqid FROM ' . $tables['user'] . " WHERE email = '$email'");
         if (Sql_affected_rows()) {
             // Email exist, remember some values to add them to the lists
             $user = Sql_fetch_array($result);
@@ -131,7 +140,7 @@ foreach ($user_list as $email => $data) {
 
             $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail,uuid) values("%s",now(),%d,"%s","%s", "%s")',
                 $tables['user'], $email, $importdata['notify'] != 'yes', $uniqid,
-                isset($importdata['htmlemail']) ? '1' : '0', (string) uuid::generate(4));
+                isset($importdata['htmlemail']) ? '1' : '0', (string)uuid::generate(4));
             $result = Sql_query($query);
             $userid = Sql_Insert_Id($tables['user'], 'id');
 
@@ -155,12 +164,12 @@ foreach ($user_list as $email => $data) {
         $isBlackListed = isBlackListed($email);
         if (!$isBlackListed) {
             foreach ($importdata['importlists'] as $key => $listid) {
-                $query = 'insert ignore INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
+                $query = 'insert ignore INTO ' . $tables['listuser'] . " (userid,listid,entered) values($userid,$listid,now())";
                 $result = Sql_query($query);
                 // if the affected rows is 0, the user was already subscribed
                 $addition = $addition || Sql_Affected_Rows() == 1;
                 if (!empty($importdata['listname'][$key])) {
-                    $listoflists .= '  * '.$importdata['listname'][$key]."\n";
+                    $listoflists .= '  * ' . $importdata['listname'][$key] . "\n";
                 }
             }
             if ($addition) {
@@ -190,7 +199,7 @@ foreach ($user_list as $email => $data) {
             }
         }
         if (!$history_entry) {
-            $history_entry = "\n".$GLOBALS['I18N']->get('No data changed');
+            $history_entry = "\n" . $GLOBALS['I18N']->get('No data changed');
         }
         // check lists
         $listmembership = array();
@@ -198,18 +207,18 @@ foreach ($user_list as $email => $data) {
         while ($row = Sql_Fetch_Array($req)) {
             $listmembership[$row['listid']] = listName($row['listid']);
         }
-        $history_entry .= "\n".$GLOBALS['I18N']->get('List subscriptions:')."\n";
+        $history_entry .= "\n" . $GLOBALS['I18N']->get('List subscriptions:') . "\n";
         foreach ($old_listmembership as $key => $val) {
-            $history_entry .= $GLOBALS['I18N']->get('Was subscribed to:')." $val\n";
+            $history_entry .= $GLOBALS['I18N']->get('Was subscribed to:') . " $val\n";
         }
         foreach ($listmembership as $key => $val) {
-            $history_entry .= $GLOBALS['I18N']->get('Is now subscribed to:')." $val\n";
+            $history_entry .= $GLOBALS['I18N']->get('Is now subscribed to:') . " $val\n";
         }
         if (!count($listmembership)) {
-            $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists')."\n";
+            $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists') . "\n";
         }
 
-        addUserHistory($email, $GLOBALS['I18N']->get('Import by ').adminName(), $history_entry);
+        addUserHistory($email, $GLOBALS['I18N']->get('Import by ') . adminName(), $history_entry);
     } // end if
 } // end while
 
@@ -219,30 +228,33 @@ $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new email was') : 
 $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email was') : $GLOBALS['I18N']->get('emails were');
 
 if ($count_email_exist) {
-    $report .= '<br/> '.s('%d emails already existed in the database', $count_email_exist);
+    $report .= '<br/> ' . s('%d emails already existed in the database', $count_email_exist);
+}
+if ($count_invalid_emails !== 0) {
+    $report .= '<br/> ' . s('%d invalid emails', $count_invalid_emails);
 }
 if (!$some && !$additional_emails) {
-    $report .= '<br/>'.s('All the emails already exist in the database.');
+    $report .= '<br/>' . s('All the emails already exist in the database.');
 } else {
-    $report .= "<br/>$count_email_add $dispemail ".s('succesfully imported to the database and added to')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed to the')." $displists";
+    $report .= "<br/>$count_email_add $dispemail " . s('succesfully imported to the database and added to') . " $num_lists $displists.<br/>$additional_emails $dispemail2 " . $GLOBALS['I18N']->get('subscribed to the') . " $displists";
 }
 if ($foundBlacklisted) {
-    $report .= '<br/>'.s('%d emails were found on the do-not-send-list and have not been added to the lists',
+    $report .= '<br/>' . s('%d emails were found on the do-not-send-list and have not been added to the lists',
             $foundBlacklisted);
 }
 
-$htmlupdate = $report.'<br/>'.PageLinkButton('import1', s('Import some more emails'));
+$htmlupdate = $report . '<br/>' . PageLinkButton('import1', s('Import some more emails'));
 $htmlupdate = str_replace("'", "\'", $htmlupdate);
 
 $status = '<script type="text/javascript">
       var parentJQuery = window.parent.jQuery;
       parentJQuery("#progressbar").progressbar("destroy");
       parentJQuery("#busyimage").hide();
-      parentJQuery("#progresscount").html(\'' .$htmlupdate.'\');
+      parentJQuery("#progresscount").html(\'' . $htmlupdate . '\');
       </script>';
 
-@unlink($GLOBALS['tmpdir'].'/'.$file);
-@unlink($GLOBALS['tmpdir'].'/'.$file.'.data');
+@unlink($GLOBALS['tmpdir'] . '/' . $file);
+@unlink($GLOBALS['tmpdir'] . '/' . $file . '.data');
 
 //  print ActionResult($report);
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
