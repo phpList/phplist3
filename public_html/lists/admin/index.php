@@ -527,17 +527,9 @@ if (!$ajax && $page != 'login') {
 
         include 'updateLib.php';
 
-        if (showUpdateNotification()) {
-            try {
+        if (showUpdateNotification()  && (getCurrentphpListVersion()!==false) && extension_loaded('curl')) {
 
-                $updateNotif = checkForUpdate('init.php');
-
-            } catch (Exception $e) {
-
-                echo s('Error: '), $e->getMessage(), "\n";
-
-            }
-
+            $updateNotif = checkForUpdate('init.php');
             $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a>';
 
             if (file_exists($updaterdir) && ALLOW_UPDATER) {

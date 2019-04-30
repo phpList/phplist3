@@ -4,7 +4,6 @@
  *
  * @param string $path Production version location
  * @return mixed
- * @throws Exception
  */
 function getCurrentphpListVersion($path = '')
 {
@@ -13,11 +12,11 @@ function getCurrentphpListVersion($path = '')
     preg_match_all('/define\(\"VERSION\",\"(.*)\"\);/', $version, $matches);
 
     if (isset($matches[1][0])) {
-
         return $matches[1][0];
+    } else {
+        return
+            false;
     }
-
-    throw new Exception(s('No production version found.'));
 }
 
 /**
