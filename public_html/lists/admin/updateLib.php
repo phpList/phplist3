@@ -3,7 +3,7 @@
  * Get Current phpList Version.
  *
  * @param string $path Production version location
- * @return mixed
+ * @return string|bool
  */
 function getCurrentphpListVersion($path = '')
 {
@@ -14,8 +14,7 @@ function getCurrentphpListVersion($path = '')
     if (isset($matches[1][0])) {
         return $matches[1][0];
     } else {
-        return
-            false;
+        return false;
     }
 }
 

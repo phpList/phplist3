@@ -521,13 +521,13 @@ if (!$ajax && $page != 'login') {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
 
-    if (!strpos(VERSION, 'dev')){
+    if (!strpos(VERSION, 'dev')) {
 
         $updaterdir = __DIR__ . '/../updater';
 
         include 'updateLib.php';
 
-        if (showUpdateNotification()  && (getCurrentphpListVersion()!==false) && extension_loaded('curl')) {
+        if (showUpdateNotification() && (getCurrentphpListVersion() !== false) && extension_loaded('curl')) {
 
             $updateNotif = checkForUpdate('init.php');
             $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a>';
