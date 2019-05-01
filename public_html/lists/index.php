@@ -542,7 +542,7 @@ function downloadvCard(){
     $vCard = new vCard();
     $vCard-> setOrg(getConfig('organisation_name'));
     $vCard-> setEmail(getConfig('message_from_address'));
-    $vCard-> setUrl(getConfig('website'));
+    $vCard-> setUrl('http://'.getConfig('website'));
     $vCard->createVCard();
 }
 
