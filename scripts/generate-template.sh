@@ -20,32 +20,32 @@ fi
 
 [ -d public_html ] || exit 1; ## needs to run from phplist root
 
-# function mail_template_diff() {
+function mail_template_diff() {
 
-# 	if [ -z "$from_envelope" -o -z "$from_realn" ]; then
-# 		echo "Not from configured, skipping sending mail"
-# 		return
-# 	fi
+	if [ -z "$from_envelope" -o -z "$from_realn" ]; then
+		echo "Not from configured, skipping sending mail"
+		return
+	fi
 
-# 	cp phplist.pot "$current"
-# 	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
+	cp phplist.pot "$current"
+	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
 
-# 	if [ -n "$diff" ]; then
-# 		sendmail -f $from_envelope -F "$from_realn" $reportto << EOF
-# Subject: phpList language changes
-# To: $reportto
+	if [ -n "$diff" ]; then
+		sendmail -f $from_envelope -F "$from_realn" $reportto << EOF
+Subject: phpList language changes
+To: $reportto
 
-# These are this weeks changes in the language template file
-# They will show up in https://translate.phplist.com as untranslated
-# Please update your translations, thanks
+These are this weeks changes in the language template file
+They will show up in https://translate.phplist.com as untranslated
+Please update your translations, thanks
 
-# $diff
-# EOF
-# 	fi
+$diff
+EOF
+	fi
 
-# 	# Revert the cp we just did, so the diff is empty again
-# 	git checkout "$current"
-# }
+	# Revert the cp we just did, so the diff is empty again
+	git checkout "$current"
+}
 
 ## from http://www.lxg.de/code/playing-with-xgettext
 echo '' > messages.po # xgettext needs that file, and we need it empty
@@ -59,5 +59,4 @@ msgmerge -qN $current messages.po > phplist-new.pot
 mv -f phplist-new.pot phplist.pot
 rm -f messages.po phplist-new.pot public_html/databasestructure.php
 
-# mail_template_diff
-
+mail_template_diff
