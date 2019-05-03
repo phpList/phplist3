@@ -122,15 +122,13 @@ if (!empty($_POST['VerificationCodeX'])) {
 
     return;
 }
+$pluginErrors = array();
 
 foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-    //  dbg($plugin->name);
-    if ($plugin->enabled) {
-        $pluginResult = $plugin->validateSubscriptionPage($subscribepagedata);
-        if (!empty($pluginResult)) {
-            $allthere = 0;
-            break;
-        }
+    $pluginResult = $plugin->validateSubscriptionPage($subscribepagedata);
+    if (!empty($pluginResult)) {
+        $pluginErrors[] = $pluginResult;
+        $allthere = 0;
     }
 }
 
@@ -692,18 +690,27 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     // We can decide, whether to show preferences page or not.
     //# mantis issue 6508
     return 3;
-} elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !is_email($_POST['email'])) {
-    $msg = '<div class="error missing">'.$strEnterEmail.'</div><br/>';
-} elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !$validhost) {
-    $msg = '<div class="error missing">'.$strInvalidHostInEmail.'</div><br/>';
-} elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && $pluginResult) {
-    $msg = '<div class="error missing">'.$pluginResult.'</div><br/>';
-} elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && $missing) {
-    $msg = '<div class="error missing">'."$strValuesMissing: $missing".'</div><br/>';
-} elseif ((isset($_POST['subscribe']) || isset($_POST['update'])) && !isset($_POST['list']) && !ALLOW_NON_LIST_SUBSCRIBE) {
-    $msg = '<div class="error missing">'.$strEnterList.'</div><br/>';
-} else {
-    //  $msg = 'Unknown Error';
+}
+
+if (isset($_POST['subscribe']) || isset($_POST['update'])) {
+    $format = '<div class="error missing">%s</div>'."\n";
+    $msg = '';
+
+    if (!is_email($_POST['email'])) {
+        $msg .= sprintf($format, $strEnterEmail);
+    }
+    if (!$validhost) {
+        $msg .= sprintf($format, $strInvalidHostInEmail);
+    }
+    if ($missing) {
+        $msg .= sprintf($format, "$strValuesMissing: $missing");
+    }
+    if (!isset($_POST['list']) && !ALLOW_NON_LIST_SUBSCRIBE) {
+        $msg .= sprintf($format, $strEnterList);
+    }
+    foreach ($pluginErrors as $pluginError) {
+        $msg .= sprintf($format, $pluginError);
+    }
 }
 
 /**
