@@ -232,6 +232,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $text['domain'] = $GLOBALS['domain'];
     $html['organisation_name'] = getConfig('organisation_name');   // Organisation name placeholder
     $text['organisation_name'] = getConfig('organisation_name');
+    $vCardURL = htmlspecialchars(getConfig('vcardurl'));
+    $html['contacturl'] = $vCardURL;
+    $text['contacturl'] = $vCardURL;
 
     if ($hash != 'forwarded') {
         $text['footer'] = $cached[$messageid]['textfooter'];
