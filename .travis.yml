@@ -60,6 +60,7 @@ install:
 
   # setup database and phplist
   - mkdir -p build/screenshot
+  - cd public_html/lists/ && wget https://github.com/phpList/updater/archive/master.tar.gz && tar -xzf master.tar.gz && mv updater-master updater && rm master.tar.gz && cd ../../
   - cd public_html/lists/admin/ui/ && wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
     && tar -xzf master.tar.gz && mv phplist-ui-bootlist-master phplist-ui-bootlist &&
     rm master.tar.gz && cd ../../../../
