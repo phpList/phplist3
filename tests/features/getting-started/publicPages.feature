@@ -5,7 +5,7 @@ Feature: Use public pages as a subscriber
 
 Scenario: Use public pages links
     Given I am on "/lists"
-    Then I should see "Subscribe to our newsletter"
+    Then I should see "Subscribe to our Newsletter"
     Then I should see "Update your preferences"
     Then I should see "Unsubscribe from our Newsletters"
     Then I should see "Contact the administrator"
