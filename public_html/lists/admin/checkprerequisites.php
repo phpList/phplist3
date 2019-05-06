@@ -24,7 +24,6 @@ $requiredExtensions = array(
     'filter',
     'session',
     'xml',
-    'curl',
     'simplexml',
     'mysqli',
 );
