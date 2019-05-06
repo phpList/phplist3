@@ -65,7 +65,12 @@ if ($file && is_file($file)) {
     }
 
     list($fname, $ext) = explode('.', basename($data[2]));
-    header('Content-Disposition: attachment; filename="'.basename($data[2]).'"');
+    $undirect_mime_types = array('pdf');
+    $the_mime_types = explode("/", $data[1]);
+    if ($the_mime_types[0] == 'application' && in_array($the_mime_types[1], $undirect_mime_types))
+        header ('Content-Disposition: inline; filename="'.basename($data[2]).'"');
+    else
+        header('Content-Disposition: attachment; filename="'.basename($data[2]).'"');
     if ($data[4]) {
         $size = $data[4];
     } else {
