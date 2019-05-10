@@ -68,9 +68,9 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 </div>
 
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a> |
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a>
 <a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a> |
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a> |
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a>
 </div>
 
 <div align="center" width="100%">
