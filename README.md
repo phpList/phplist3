@@ -18,8 +18,8 @@ Fully functional Open Source email marketing manager for creating, sending, inte
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
 
 <div align="center" width="100%">
-  <a href="#">Community |</a> 
-  <a href="#">Hosted |</a> 
+  <a href="#">Community</a> | 
+  <a href="#">Hosted</a> |
   <a href="#">Demo</a>
   <br>
   <img src="http://brunadosti.com/resources/panel.png" align="center" width="100%">
@@ -68,15 +68,15 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 </div>
 
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a>
-<a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a>
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a>
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a> |
+<a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a> |
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a> |
 </div>
 
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;margin-left:32px;margin-right:45px;">See system requirements</a>
-<a href="#" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a>
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
+<a href="#" style="text-decoration:none;font-size:14px;color:#000;margin-left:32px;margin-right:45px;">See system requirements</a> |
+<a href="#" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a> |
+<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a> |
 </div>
 <br/>
 <br/>
