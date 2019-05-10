@@ -151,7 +151,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 
 <div align="center" width="100%">
   <img src="http://brunadosti.com/resources/site/Languages_icon.svg" align="center" width="96px" />
-  <h3>Languages</h3>
+  <h3>Languages, Info files and Contextual help</h3>
 </div>
 
 In the directory `phplists/lists/texts` you will find existing translations of the public
@@ -161,6 +161,22 @@ appear in the language of your choice.
 In the config file there are a lot of choices to make about your particular
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.
+
+#
+
+<div align="center" width="100%">
+  <img src="http://brunadosti.com/resources/site/Themes_icon.svg" align="center" width="96px" />
+  <h3>Themes</h3>
+</div>
+
+Since version 3.3.0 phpList offers you the possibility to switch among two themes:
+
+- [Dressprow](https://github.com/phpList/phplist-ui-dressprow)
+- [Trevelin](https://github.com/phpList/phplist-ui-bootlist)
+
+While when you install phpList on production since 3.3.1 the default theme is Trevelin, on the development copy phpList will run a copy of Dressprow.
+To get the latest copy of each theme you should clone them individually into public_html/lists/admin/ui/ 
+For the prerequisites of each and Installation guide on your development copy make sure you check the README files of the repos.
 
 #
 
