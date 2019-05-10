@@ -18,9 +18,9 @@ Fully functional Open Source email marketing manager for creating, sending, inte
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
 
 <div align="center" width="100%">
-  <a href="#">Community</a> | 
-  <a href="#">Hosted</a> |
-  <a href="#">Demo</a>
+  <a href="http://phplist.org/">Community</a> | 
+  <a href="http://phplist.com/">Hosted</a> |
+  <a href="https://demo.phplist.org">Demo</a>
   <br>
   <img src="http://brunadosti.com/resources/panel.png" align="center" width="100%">
   <br/>
