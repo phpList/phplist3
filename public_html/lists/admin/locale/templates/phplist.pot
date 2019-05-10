@@ -308,7 +308,7 @@ msgstr ""
 msgid "List all Users"
 msgstr ""
 
-#: public_html/lists/admin/home.php:107 public_html/lists/admin/import1.php:242
+#: public_html/lists/admin/home.php:107 public_html/lists/admin/import1.php:251
 msgid "import"
 msgstr ""
 
@@ -1435,82 +1435,82 @@ msgstr ""
 msgid "Sending message %d with subject %s to %s"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:760
+#: public_html/lists/admin/sendemaillib.php:763
 msgid "sendingtextonlyto"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:950
+#: public_html/lists/admin/sendemaillib.php:953
 #, php-format
 msgid "Error sending message %d (%d/%d) to %s (%s) "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:967
+#: public_html/lists/admin/sendemaillib.php:970
 #, php-format
 msgid "Size of HTML email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:971
+#: public_html/lists/admin/sendemaillib.php:974
 #, php-format
 msgid "Size of Text email: %s "
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:977
+#: public_html/lists/admin/sendemaillib.php:980
 #, php-format
 msgid "Message too large (%s is over %s), suspending"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:979
+#: public_html/lists/admin/sendemaillib.php:982
 msgid ""
 "Warning: the final message exceeds the sending limit, this campaign will "
 "fail sending. Reduce the size by removing attachments or images"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:983
+#: public_html/lists/admin/sendemaillib.php:986
 #, php-format
 msgid "Campaign %d suspended. Message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:985
+#: public_html/lists/admin/sendemaillib.php:988
 #, php-format
 msgid "Campaign %d suspended, message too large"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1023
+#: public_html/lists/admin/sendemaillib.php:1026
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1066
+#: public_html/lists/admin/sendemaillib.php:1069
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "copied to the repository. Check for permissions."
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1068
-#: public_html/lists/admin/sendemaillib.php:1083
+#: public_html/lists/admin/sendemaillib.php:1071
+#: public_html/lists/admin/sendemaillib.php:1086
 msgid "phpList system error"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1073
+#: public_html/lists/admin/sendemaillib.php:1076
 #, php-format
 msgid "failed to open attachment (%s) to add to campaign %d"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1080
+#: public_html/lists/admin/sendemaillib.php:1083
 #, php-format
 msgid "Attachment %s does not exist"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1081
+#: public_html/lists/admin/sendemaillib.php:1084
 #, php-format
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1102
-#: public_html/lists/admin/sendemaillib.php:1104
+#: public_html/lists/admin/sendemaillib.php:1105
+#: public_html/lists/admin/sendemaillib.php:1107
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
@@ -1615,7 +1615,7 @@ msgid "No users to copy, is the prefix correct?"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:126
-#: public_html/lists/admin/actions/import1.php:217
+#: public_html/lists/admin/actions/import1.php:226
 #: public_html/lists/admin/import3.php:510
 #: public_html/lists/admin/users.php:455
 msgid "lists"
@@ -1628,7 +1628,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:144
 #: public_html/lists/admin/import4.php:153
 #: public_html/lists/admin/actions/listbounces.php:53
-#: public_html/lists/admin/actions/import1.php:217
+#: public_html/lists/admin/actions/import1.php:226
 #: public_html/lists/admin/list.php:108 public_html/lists/admin/import3.php:510
 msgid "list"
 msgstr ""
@@ -2780,15 +2780,15 @@ msgstr ""
 msgid "phplist Spam blocked"
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:340
+#: public_html/lists/admin/subscribelib2.php:338
 msgid "Email is blacklisted, so request for confirmation has been sent."
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:341
+#: public_html/lists/admin/subscribelib2.php:339
 msgid "If user confirms subscription, they will be removed from the blacklist."
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:775
+#: public_html/lists/admin/subscribelib2.php:782
 msgid "General"
 msgstr ""
 
@@ -4466,7 +4466,7 @@ msgid "%d emails subscribed to the lists"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:502
-#: public_html/lists/admin/actions/import1.php:222
+#: public_html/lists/admin/actions/import1.php:231
 #, php-format
 msgid "%d emails already existed in the database"
 msgstr ""
@@ -4513,7 +4513,7 @@ msgid "phplist Import Results"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:539
-#: public_html/lists/admin/actions/import1.php:234
+#: public_html/lists/admin/actions/import1.php:246
 #: public_html/lists/admin/import2.php:608
 #: public_html/lists/admin/import3.php:533
 #: public_html/lists/admin/importsimple.php:128
@@ -4529,74 +4529,79 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:114
+#: public_html/lists/admin/actions/import1.php:123
 msgid "Import of existing subscriber"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:140
+#: public_html/lists/admin/actions/import1.php:149
 msgid "Import of new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:193
+#: public_html/lists/admin/actions/import1.php:202
 #: public_html/lists/admin/user.php:252
 msgid "No data changed"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:201
+#: public_html/lists/admin/actions/import1.php:210
 msgid "List subscriptions:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:203
+#: public_html/lists/admin/actions/import1.php:212
 msgid "Was subscribed to:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:206
+#: public_html/lists/admin/actions/import1.php:215
 msgid "Is now subscribed to:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:209
+#: public_html/lists/admin/actions/import1.php:218
 msgid "Not subscribed to any lists"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:212
+#: public_html/lists/admin/actions/import1.php:221
 msgid "Import by "
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:218
+#: public_html/lists/admin/actions/import1.php:227
 #: public_html/lists/admin/import3.php:511
 msgid "new email was"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:218
+#: public_html/lists/admin/actions/import1.php:227
 #: public_html/lists/admin/import3.php:511
 msgid "new emails were"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:219
+#: public_html/lists/admin/actions/import1.php:228
 #: public_html/lists/admin/import3.php:512
 msgid "email was"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:219
+#: public_html/lists/admin/actions/import1.php:228
 #: public_html/lists/admin/import3.php:512
 msgid "emails were"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:225
+#: public_html/lists/admin/actions/import1.php:234
+#, php-format
+msgid "%d invalid emails"
+msgstr ""
+
+#: public_html/lists/admin/actions/import1.php:237
 msgid "All the emails already exist in the database."
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:227
+#: public_html/lists/admin/actions/import1.php:239
 #: public_html/lists/admin/import3.php:517
 msgid "succesfully imported to the database and added to"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:227
+#: public_html/lists/admin/actions/import1.php:239
 #: public_html/lists/admin/import3.php:517
 msgid "subscribed to the"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:230
+#: public_html/lists/admin/actions/import1.php:242
 #, php-format
 msgid ""
 "%d emails were found on the do-not-send-list and have not been added to the "
@@ -5342,7 +5347,7 @@ msgid "Reset Import session"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:77
-#: public_html/lists/admin/import1.php:45
+#: public_html/lists/admin/import1.php:47
 msgid "File is either too large or does not exist."
 msgstr ""
 
@@ -5357,12 +5362,12 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/import2.php:100
-#: public_html/lists/admin/import1.php:50
+#: public_html/lists/admin/import1.php:52
 msgid "File too big, please split it up into smaller ones"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:114
-#: public_html/lists/admin/import1.php:66
+#: public_html/lists/admin/import1.php:68
 msgid "Please choose whether to sign up immediately or to send a notification"
 msgstr ""
 
@@ -5372,7 +5377,7 @@ msgid "Cannot read %s. file is not readable !"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:137
-#: public_html/lists/admin/import1.php:88
+#: public_html/lists/admin/import1.php:90
 msgid ""
 "Something went wrong while uploading the file. Empty file received. Maybe "
 "the file is too big, or you have no permissions to read it."
@@ -5442,7 +5447,7 @@ msgid "Test Output"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:440
-#: public_html/lists/admin/import1.php:167
+#: public_html/lists/admin/import1.php:171
 #, php-format
 msgid "Importing %d subscribers to %d lists, please wait"
 msgstr ""
@@ -5459,7 +5464,7 @@ msgstr ""
 
 #: public_html/lists/admin/import2.php:635
 #: public_html/lists/admin/import2.php:650
-#: public_html/lists/admin/import1.php:200
+#: public_html/lists/admin/import1.php:204
 #: public_html/lists/admin/import3.php:248
 #: public_html/lists/admin/importsimple.php:181
 msgid "Select the lists to add the emails to"
@@ -5536,6 +5541,7 @@ msgid "Show Warnings"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:723
+#: public_html/lists/admin/import1.php:238
 msgid "Omit Invalid"
 msgstr ""
 
@@ -5554,7 +5560,7 @@ msgid "Retain Old User Email"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:746
-#: public_html/lists/admin/import1.php:232
+#: public_html/lists/admin/import1.php:241
 msgid ""
 "If you choose \"send notification email\" the subscribers you are adding "
 "will be sent the request for confirmation of subscription to which they will "
@@ -5566,25 +5572,25 @@ msgid "Send&nbsp;Notification&nbsp;email"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:747
-#: public_html/lists/admin/import1.php:233
+#: public_html/lists/admin/import1.php:242
 #: public_html/lists/admin/import3.php:270
 msgid "Make confirmed immediately"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:748
-#: public_html/lists/admin/import1.php:234
+#: public_html/lists/admin/import1.php:243
 msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:749
-#: public_html/lists/admin/import1.php:235
+#: public_html/lists/admin/import1.php:244
 msgid "Notification throttle"
 msgstr ""
 
 #: public_html/lists/admin/import2.php:749
-#: public_html/lists/admin/import1.php:235
+#: public_html/lists/admin/import1.php:244
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
@@ -5803,46 +5809,46 @@ msgid ""
 "The temporary directory for uploading is not writable, so import will fail"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:40
+#: public_html/lists/admin/import1.php:42
 msgid "No file was specified. Maybe the file is too big?"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:58
+#: public_html/lists/admin/import1.php:60
 msgid ""
 "Please upload a plain text file only. You cannot use a spreadsheet. You can "
 "only upload a plain text file with one email address per line."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:81
+#: public_html/lists/admin/import1.php:83
 msgid "Cannot read file. It is not readable !"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:139
+#: public_html/lists/admin/import1.php:143
 msgid "There should only be ONE email per line."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:139
+#: public_html/lists/admin/import1.php:143
 msgid "If the output looks ok, go"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:139
+#: public_html/lists/admin/import1.php:143
 msgid "back"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:139
+#: public_html/lists/admin/import1.php:143
 msgid "to resubmit for real"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:140
-#: public_html/lists/admin/import1.php:229
+#: public_html/lists/admin/import1.php:144
+#: public_html/lists/admin/import1.php:234
 msgid "Test output:"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:197
+#: public_html/lists/admin/import1.php:201
 msgid "adding_users"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:219
+#: public_html/lists/admin/import1.php:224
 msgid ""
 "The file you upload will need to contain the emails you want to add to these "
 "lists. Anything after the email will be added as attribute \"Info\" of the "
@@ -5851,11 +5857,11 @@ msgid ""
 "like a Word Document."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:222
+#: public_html/lists/admin/import1.php:227
 msgid "File containing emails:"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:226
+#: public_html/lists/admin/import1.php:231
 #: public_html/lists/admin/importadmin.php:324
 msgid ""
 "If you check \"Test Output\", you will get the list of parsed emails on "
@@ -5864,7 +5870,7 @@ msgid ""
 "show the first 50 records."
 msgstr ""
 
-#: public_html/lists/admin/import1.php:233
+#: public_html/lists/admin/import1.php:242
 msgid "Send Notification email"
 msgstr ""
 

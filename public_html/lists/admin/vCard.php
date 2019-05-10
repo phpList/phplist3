@@ -97,7 +97,7 @@ class vCard
     {
         header('Content-Description: File Transfer');
         header('Content-Type: text/vcard');
-        header('Content-Disposition: attachment; filename="' . $this->getOrg() .'contact.vcf" ');
+        header('Content-Disposition: attachment; filename="' . $this->getOrg() .'-contact.vcf" ');
         header('Pragma: public');
         ob_clean();
         $vCard = "BEGIN:VCARD\r\n";
