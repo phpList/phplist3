@@ -76,7 +76,7 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 <div align="center" width="100%">
 <a href="#" style="text-decoration:none;font-size:14px;color:#000;margin-left:32px;margin-right:45px;">See system requirements</a> |
 <a href="#" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a> |
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a> |
+<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
 </div>
 <br/>
 <br/>
