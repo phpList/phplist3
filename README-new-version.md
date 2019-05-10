@@ -3,19 +3,16 @@
  <img src="https://www.phplist.com/site/images/logo-readme.svg" align="center" style="width:220px;">
 </div>
 <h1></h1>
-<p><br></p>
-<div align="center" width="100%">
-  <a href="https://travis-ci.org/phpList/phplist3">
-  <img src="https://www.phplist.com/site/images/readme-images/stable_3.3.8_btn.svg"></a>
-<a href="https://sourceforge.net/projects/phplist/files/phplist/"><img src="https://www.phplist.com/site/images/readme-images/build_passing_btn.svg"></a>
-<a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="https://www.phplist.com/site/images/readme-images/license_agpl_btn.svg"></a>
-</div>
-<br>
+
+[![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+[![Stable release](https://img.shields.io/badge/stable-3.4.1-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+[![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+
 <p>Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters:<a href="https://www.phplist.org">https://www.phplist.org</a></p>
 <p>phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.</p>
 <div align="center" width="100%">
-  <a href="https://www.phplist.org/">Community |</a> 
-  <a href="https://www.phplist.com/hosted?utm_source=hostedvsdownload&utm_medium=link&utm_campaign=phpList">Hosted |</a> 
+  <a href="https://discuss.phplist.org/">Community |</a> 
+  <a href="https://www.phplist.com/hosted.html">Hosted |</a> 
   <a href="https://www.phplist.org/demo/">Demo</a>
   <br>
   <img src="https://www.phplist.com/site/images/readme-images/panel.png" align="center" width="100%">
@@ -59,9 +56,9 @@
 <a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a>
 </div>
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;margin-left: 48px; margin-right:26px">See system requirements</a>
-<a href="#" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a>
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
+<a href="https://travis-ci.org/phpList/phplist3" style="text-decoration:none;font-size:14px;color:#000;margin-left: 48px; margin-right:26px">See system requirements</a>
+<a href="https://sourceforge.net/projects/phplist/files/phplist/" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a>
+<a href="https://www.gnu.org/licenses/agpl-3.0.en.html" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
 </div>
 <br>
 <br>
@@ -123,6 +120,20 @@ appear in the language of your choice.</p>
 installation. Make sure to read it carefully and step by step work your way through
 it. A lot of information is provided with each step.</p>
 <h1></h1>
+
+<div align="center" width="100%">
+  <img src="https://www.phplist.com/site/images/readme-images/themes_icon.svg" align="center" width="96px" />
+  <h3>Themes</h3>
+</div>
+
+Since version 3.3.0 phpList offers you the possibility to switch among two themes:
+
+- [Dressprow](https://github.com/phpList/phplist-ui-dressprow)
+- [Trevelin](https://github.com/phpList/phplist-ui-bootlist)
+
+While when you install phpList on production since 3.3.1 the default theme is Trevelin, on the development copy phpList will run a copy of Dressprow.
+To get the latest copy of each theme you should clone them individually into public_html/lists/admin/ui/ 
+For the prerequisites of each and Installation guide on your development copy make sure you check the README files of the repos.
 <div align="center" width="100%">
   <img src="https://www.phplist.com/site/images/readme-images/code_of_conduct_icon.svg" align="center" width="96px">
   <h3>Code of Conduct</h3>
