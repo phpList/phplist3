@@ -97,7 +97,9 @@ require_once dirname(__FILE__).'/init.php';
 require_once dirname(__FILE__).'/inc/UUID.php';
 require_once dirname(__FILE__).'/'.$GLOBALS['database_module'];
 include_once dirname(__FILE__).'/defaultFrontendTexts.php';
-include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
+if (file_exists(dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'])) {
+    include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
+}
 include_once dirname(__FILE__).'/languages.php';
 require_once dirname(__FILE__).'/defaultconfig.php';
 
