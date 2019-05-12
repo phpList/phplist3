@@ -105,11 +105,11 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $fwded = Sql_Fetch_Row_Query(sprintf('select count(id) from %s where message = %d',
     $GLOBALS['tables']['user_message_forward'], $row['messageid']));
-    $views = Sql_Fetch_Row_Query(sprintf('select count(viewed) from %s where messageid = %d 
-	       and status = "sent"',
+    $views = Sql_Fetch_Row_Query(sprintf('select count(viewed) from %s where messageid = %d
+           and status = "sent"',
     $GLOBALS['tables']['usermessage'], $row['messageid']));
-    $totls = Sql_Fetch_Row_Query(sprintf('select count(status) from %s where messageid = %d 
-	       and status = "sent"',
+    $totls = Sql_Fetch_Row_Query(sprintf('select count(status) from %s where messageid = %d
+           and status = "sent"',
     $GLOBALS['tables']['usermessage'], $row['messageid']));
 
     $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
@@ -119,13 +119,13 @@ while ($row = Sql_Fetch_Array($req)) {
         $GLOBALS['tables']['linktrack_uml_click'], $row['messageid']));
 
     $percentBouncedFormatted = $percentViewedFormatted = $percentClickedFormatted = '';
-    if ($row['bounced'] > 0) {
+    if ($row['bounced'] > 0 && $totls[0] > 0) {
         $percentBouncedFormatted = ' ('.sprintf('%0.2f', ($row['bounced'] / $totls[0] * 100)).' %)';
     }
-    if ($views[0] > 0) {
+    if ($views[0] > 0 && $totls[0] > 0) {
         $percentViewedFormatted = ' ('.sprintf('%0.2f', ($views[0] / ($totls[0] - $row['bounced']) * 100)).' %)';
     }
-    if ($totalclicked[0] > 0) {
+    if ($totalclicked[0] > 0 && $totls[0] > 0) {
         $percentClickedFormatted = ' ('.sprintf('%0.2f', ($totalclicked[0] / ($totls[0] - $row['bounced']) * 100)).' %)';
     }
 
