@@ -61,7 +61,7 @@ $some = 0;
 while ($row = Sql_Fetch_Array($req)) {
 
     $messagedata = loadMessageData($row['messageid']);
-    if (!$download) {
+    if (empty($download)) {
         if ($messagedata['subject'] != $messagedata['campaigntitle']) {
             $element = '<!--'.$row['messageid'].'-->'.stripslashes($messagedata['campaigntitle']).'<br/><strong>'.shortenTextDisplay($messagedata['subject'],
                     30).'</strong>';
