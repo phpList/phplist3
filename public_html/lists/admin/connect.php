@@ -302,10 +302,16 @@ if (!TEST && REGISTER) {
 }
 // some other configuration variables, which need less tweaking
 // number of users to show per page if there are more
-define('MAX_USER_PP', 50);
-define('MAX_MSG_PP', 5);
+if (!defined('MAX_USER_PP')) {
+    define('MAX_USER_PP', 50);
+}
+if (!defined('MAX_MSG_PP')) {
+    define('MAX_MSG_PP', 5);
+}
 // Used by e.g. mviews.php
-define('MAX_OPENS_PP', 20);
+if (!defined('MAX_OPENS_PP')) {
+    define('MAX_OPENS_PP', 20);
+}
 
 function formStart($additional = '')
 {
