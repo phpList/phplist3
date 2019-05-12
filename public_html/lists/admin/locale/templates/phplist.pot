@@ -3581,7 +3581,7 @@ msgid "Unable to create campaign, did you forget to upgrade the database?"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:115
-#: public_html/lists/admin/index.php:766 public_html/lists/admin/index.php:787
+#: public_html/lists/admin/index.php:758 public_html/lists/admin/index.php:779
 msgid "Access Denied"
 msgstr ""
 
@@ -7656,41 +7656,37 @@ msgstr ""
 msgid "Running in testmode, no emails will be sent. Check your config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:537
-msgid "Error: "
-msgstr ""
-
-#: public_html/lists/admin/index.php:541
+#: public_html/lists/admin/index.php:533
 msgid "Download the new version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:545
+#: public_html/lists/admin/index.php:537
 msgid " or update"
 msgstr ""
 
-#: public_html/lists/admin/index.php:545
+#: public_html/lists/admin/index.php:537
 msgid "automatic updater"
 msgstr ""
 
-#: public_html/lists/admin/index.php:545
+#: public_html/lists/admin/index.php:537
 msgid "here."
 msgstr ""
 
-#: public_html/lists/admin/index.php:556
+#: public_html/lists/admin/index.php:548
 msgid ""
 "Your PHP version is out of date. phpList requires PHP version 5.3.3 or "
 "higher."
 msgstr ""
 
-#: public_html/lists/admin/index.php:560
+#: public_html/lists/admin/index.php:552
 msgid "Get some help"
 msgstr ""
 
-#: public_html/lists/admin/index.php:561
+#: public_html/lists/admin/index.php:553
 msgid "Download the latest version"
 msgstr ""
 
-#: public_html/lists/admin/index.php:559
+#: public_html/lists/admin/index.php:551
 #, php-format
 msgid ""
 "Your phpList version is older than two years. Please %supgrade phpList</a> "
@@ -7698,60 +7694,60 @@ msgid ""
 "            Visit <a href=\"https://www.phplist.org/users/\" title=\""
 msgstr ""
 
-#: public_html/lists/admin/index.php:566
+#: public_html/lists/admin/index.php:558
 msgid "You are trying to use RSS, but XML is not included in your PHP"
 msgstr ""
 
-#: public_html/lists/admin/index.php:571
+#: public_html/lists/admin/index.php:563
 msgid ""
 "open_basedir restrictions are in effect, which may be the cause of the next "
 "warning"
 msgstr ""
 
-#: public_html/lists/admin/index.php:573
+#: public_html/lists/admin/index.php:565
 msgid "The attachment repository does not exist or is not writable"
 msgstr ""
 
-#: public_html/lists/admin/index.php:586
+#: public_html/lists/admin/index.php:578
 msgid "Process the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:587
+#: public_html/lists/admin/index.php:579
 msgid "View the queue"
 msgstr ""
 
-#: public_html/lists/admin/index.php:589
+#: public_html/lists/admin/index.php:581
 #, php-format
 msgid "You have %s campaign(s) in the queue, ready for processing"
 msgstr ""
 
-#: public_html/lists/admin/index.php:694
+#: public_html/lists/admin/index.php:686
 msgid "Hide forever"
 msgstr ""
 
-#: public_html/lists/admin/index.php:716
+#: public_html/lists/admin/index.php:708
 msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr ""
 
-#: public_html/lists/admin/index.php:721
+#: public_html/lists/admin/index.php:713
 msgid ""
 "The pageroot in your config does not match the current locationCheck your "
 "config file."
 msgstr ""
 
-#: public_html/lists/admin/index.php:762
+#: public_html/lists/admin/index.php:754
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
 msgstr ""
 
-#: public_html/lists/admin/index.php:783 public_html/lists/admin/index.php:784
+#: public_html/lists/admin/index.php:775 public_html/lists/admin/index.php:776
 msgid "Sorry this page was not found in the plugin"
 msgstr ""
 
-#: public_html/lists/admin/index.php:791
+#: public_html/lists/admin/index.php:783
 msgid "Sorry, that module does not exist"
 msgstr ""
 
-#: public_html/lists/admin/index.php:797
+#: public_html/lists/admin/index.php:789
 msgid "Sorry, not implemented yet"
 msgstr ""
 
@@ -7988,11 +7984,7 @@ msgstr ""
 msgid "Do not save, and go back to the lists"
 msgstr ""
 
-#: public_html/lists/admin/updateLib.php:20
-msgid "No production version found."
-msgstr ""
-
-#: public_html/lists/admin/updateLib.php:66
+#: public_html/lists/admin/updateLib.php:64
 msgid "Update to "
 msgstr ""
 
