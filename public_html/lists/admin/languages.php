@@ -16,7 +16,7 @@ while ($lancode = readdir($d)) {
     if (!in_array($landir,
             array_keys($LANGUAGES)) && is_dir($landir.'/'.$lancode) && is_file($landir.'/'.$lancode.'/language_info')
     ) {
-        $lan = parse_ini_file($landir.'/'.$lancode.'/language_info');
+        $lan = @parse_ini_file($landir.'/'.$lancode.'/language_info');
         if (!isset($lan['gettext'])) {
             $lan['gettext'] = $lancode;
         }
@@ -33,7 +33,7 @@ while ($lancode = readdir($d)) {
 
 //# pick up other languages from DB
 if (Sql_table_exists('i18n')) {
-    $req = Sql_Query(sprintf('select lan,translation from %s where 
+    $req = Sql_Query(sprintf('select lan,translation from %s where
     original = "language-name" and lan not in ("%s")', $GLOBALS['tables']['i18n'],
         implode('","', array_keys($LANGUAGES))));
     while ($row = Sql_Fetch_Assoc($req)) {
