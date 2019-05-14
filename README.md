@@ -150,7 +150,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/Languages_icon.svg" align="center" width="96px" />
+  <img src="http://brunadosti.com/resources/site/languages_icon.svg" align="center" width="96px" />
   <h3>Languages, Info files and Contextual help</h3>
 </div>
 
@@ -165,7 +165,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/Themes_icon.svg" align="center" width="96px" />
+  <img src="http://brunadosti.com/resources/site/themes_icon.svg" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
