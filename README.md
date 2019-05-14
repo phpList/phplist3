@@ -165,7 +165,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/themes_icon.svg" align="center" width="96px" />
+  <img src="http://brunadosti.com/resources/site/theme.svg" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
