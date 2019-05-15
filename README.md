@@ -4,14 +4,9 @@
 </div>
 
 #
-<br/>
-<div align="center" width="100%">
-  <a href="https://travis-ci.org/phpList/phplist3">
-  <img src="http://brunadosti.com/resources/site/stable_3.3.8_btn.svg" /></a>
-<a href="https://sourceforge.net/projects/phplist/files/phplist/"><img src="http://brunadosti.com/resources/site/build_passing_btn.svg" /></a>
-<a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="http://brunadosti.com/resources/site/license_agpl_btn.svg" /></a>
-</div>
-<br/>
+[![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+[![Stable release](https://img.shields.io/badge/stable-3.4.1-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+[![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters:[https://www.phplist.org](https://www.phplist.org)
 
@@ -68,7 +63,7 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 </div>
 
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a>
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a> |
 <a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a> |
 <a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a>
 </div>
@@ -79,13 +74,6 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 <a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
 </div>
 <br/>
-<br/>
-<div align="center" width="100%">
-  <a href="https://travis-ci.org/phpList/phplist3">
-  <img src="http://brunadosti.com/resources/site/system_requirements_btn.svg" /></a>
-<a href="https://sourceforge.net/projects/phplist/files/phplist/"><img src="http://brunadosti.com/resources/site/phpList_development_btn.svg" /></a>
-<a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="http://brunadosti.com/resources/site/installation_btn.svg" /></a>
-</div>
 <br/>
 
 ---
@@ -165,7 +153,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/theme.svg" align="center" width="96px" />
+  <img src="http://brunadosti.com/resources/site/themes.png" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
