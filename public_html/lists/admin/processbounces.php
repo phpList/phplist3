@@ -235,7 +235,7 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
             $tables['bounce'],
             $userid, $bounceid));
 
-        ##@@TODO use the date of the bounce, instead of "now" as processing may be different
+        #Use the date of the bounce, instead of "now" as processing may be different
         Sql_Query(sprintf('INSERT INTO %s 
             ( 
                         user, 
