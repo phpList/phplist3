@@ -6,7 +6,7 @@
  * it cannot use the DB contents, as the DB connection hasn't been established yet
  */
 define('PHPLISTINIT', true);
-error_reporting(1);
+error_reporting(0);
 
 //## remove on rollout ###
 if (is_file(dirname(__FILE__).'/../../../VERSION')) {
