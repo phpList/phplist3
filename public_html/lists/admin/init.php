@@ -6,7 +6,7 @@
  * it cannot use the DB contents, as the DB connection hasn't been established yet
  */
 define('PHPLISTINIT', true);
-error_reporting(0);
+error_reporting(1);
 
 //## remove on rollout ###
 if (is_file(dirname(__FILE__).'/../../../VERSION')) {
@@ -672,7 +672,7 @@ if (0 && class_exists('HTTP_Request2')) {
 $GLOBALS['has_curl'] = function_exists('curl_init');
 $GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_curl'];
 
-$GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
+$GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
 
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {
