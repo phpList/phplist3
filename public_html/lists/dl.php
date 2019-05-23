@@ -46,6 +46,15 @@ require_once dirname(__FILE__).'/admin/connect.php';
 include_once dirname(__FILE__).'/admin/lib.php';
 
 $id = sprintf('%d', $_GET['id']);
+$userid = 0;
+if (isset($_GET['uid'])) {
+    $uid = preg_replace('/\W/', '', $_GET['uid']);
+    ## @@TODO, add a check that this subscriber was actually sent any mails with this attachment. We're only checking that the subscriber exists
+    $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',$GLOBALS['tables']['user'], $uid));
+}
+if (empty($userid)) {
+    FileNotFound();
+}
 
 $data = Sql_Fetch_Row_Query("select filename,mimetype,remotefile,description,size from {$tables['attachment']} where id = $id");
 if (is_file($attachment_repository.'/'.$data[0])) {
