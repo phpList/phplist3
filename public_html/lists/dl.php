@@ -52,6 +52,9 @@ if (isset($_GET['uid'])) {
     ## @@TODO, add a check that this subscriber was actually sent any mails with this attachment. We're only checking that the subscriber exists
     $userid = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"',$GLOBALS['tables']['user'], $uid));
 }
+
+## this will have an issue in upgrade. When a campaign has been sent on an older version without the "uid", it will stop providing the document.
+## and throw a 404. This only applies to attachments in text versions of the campaigns (very limited audience, presumably)
 if (empty($userid)) {
     FileNotFound();
 }
