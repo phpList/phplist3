@@ -806,7 +806,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                             'application/pdf');
                     }
                 }
-                if (!addAttachments($messageid, $mail, 'HTML')) {
+                if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                     return 0;
                 }
             } else {
@@ -814,7 +814,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
                 }
                 $mail->add_text($textmessage);
-                if (!addAttachments($messageid, $mail, 'text')) {
+                if (!addAttachments($messageid, $mail, 'text',$hash)) {
                     return 0;
                 }
             }
@@ -848,7 +848,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                             'application/pdf');
                     }
                 }
-                if (!addAttachments($messageid, $mail, 'HTML')) {
+                if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                     return 0;
                 }
             } else {
@@ -856,7 +856,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
                 }
                 $mail->add_text($textmessage);
-                if (!addAttachments($messageid, $mail, 'text')) {
+                if (!addAttachments($messageid, $mail, 'text',$hash)) {
                     return 0;
                 }
             }
@@ -867,7 +867,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
             }
             $mail->add_text($textmessage);
-            if (!addAttachments($messageid, $mail, 'text')) {
+            if (!addAttachments($messageid, $mail, 'text',$hash)) {
                 return 0;
             }
             break;
@@ -900,7 +900,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                         $htmlmessage = wordwrap($htmlmessage, WORDWRAP_HTML, "\r\n");
                     }
                     $mail->add_html($htmlmessage, $textmessage, $cached[$messageid]['templateid']);
-                    if (!addAttachments($messageid, $mail, 'HTML')) {
+                    if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                         return 0;
                     }
                 } else {
@@ -910,7 +910,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     $mail->add_text($textmessage);
 //          $mail->setText($textmessage);
 //          $mail->Encoding = TEXTEMAIL_ENCODING;
-                    if (!addAttachments($messageid, $mail, 'text')) {
+                    if (!addAttachments($messageid, $mail, 'text',$hash)) {
                         return 0;
                     }
                 }
@@ -1001,7 +1001,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     return 0;
 }
 
-function addAttachments($msgid, &$mail, $type)
+function addAttachments($msgid, &$mail, $type,$hash = '')
 {
     global $attachment_repository, $website;
     $hasError = false;
@@ -1092,6 +1092,9 @@ function addAttachments($msgid, &$mail, $type)
 
                     case 'text':
                         $viewurl = $GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/dl.php?id='.$att['id'];
+                        if (!empty($hash)) {
+                            $viewurl .= '&uid='.$hash;
+                        }
                         $mail->append_text($att['description']."\n".$GLOBALS['strLocation'].': '.$viewurl."\n");
                         break;
                 }
