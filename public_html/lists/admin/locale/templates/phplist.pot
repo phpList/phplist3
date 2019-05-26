@@ -2788,7 +2788,7 @@ msgstr ""
 msgid "If user confirms subscription, they will be removed from the blacklist."
 msgstr ""
 
-#: public_html/lists/admin/subscribelib2.php:782
+#: public_html/lists/admin/subscribelib2.php:786
 msgid "General"
 msgstr ""
 
