@@ -183,7 +183,7 @@ class PHPlistMailer extends PHPMailer
 
         if (isset($GLOBALS['phpmailer_smtpoptions'])) {
             $this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];
-        }
+        
 
         // AGP Mods Start       
         //       $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
