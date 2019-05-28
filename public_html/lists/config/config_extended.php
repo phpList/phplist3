@@ -126,6 +126,31 @@ $bounce_unsubscribe_threshold = 5;
 // Set to 0 to received by mail bounce deletions in the advanced bounce processing report
 define('REPORT_DELETED_BOUNCES', 0);
 
+ /*
+
+      =========================================================================
+
+      AlanGeorge - Code Enhancements for phpList
+
+      Settings for additional mail headers
+
+      including Reply To, Errors to, unsubscribe to
+
+      =========================================================================
+
+      */
+
+      # This will add addtional header information to the Message envelope.
+      # Replace with your own email addresses
+
+      define ("EXTRA_ENVELOPE_HEADERS",1);
+
+      $reply_to_header = 'support@yourdomain.com';
+
+      $errors_to_header = 'support@yourdomain.com'; 
+
+      $unsubscribe_to_header = 'unsubscribe@yourdomain.com';
+
 /*
 
 =========================================================================

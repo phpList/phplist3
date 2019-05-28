@@ -43,6 +43,21 @@ class PHPlistMailer extends PHPMailer
         $this->addCustomHeader('X-phpList-version: '.VERSION);
         $this->addCustomHeader("X-MessageID: $messageid");
         $this->addCustomHeader("X-ListMember: $email");
+// AG-P mods - Start for List - UnSubscribe, precedence bulk, Reply-To envelope headers
+        if (EXTRA_ENVELOPE_HEADERS) {
+
+        $url = getConfig('unsubscribeurl');
+		$sep = preg_match('\?',$url)?'&':'?';
+        $req = Sql_Fetch_Row_Query(sprintf("SELECT uniqid FROM %s WHERE email = '%s'",
+                                          $GLOBALS['tables']['user'],$email));
+        $hash = $req[0];
+        $unsubscribeurl = sprintf('%s%suid=%s',$url,$sep,$hash);
+        $this->addCustomHeader('List-Unsubscribe: <mailto:'.$GLOBALS['unsubscribe_to_header']."?subject=$hash>,<$unsubscribeurl>");
+  
+        $this->addCustomHeader('Reply-To: '.$GLOBALS['reply_to_header']);
+        $this->addCustomHeader('Errors-To: '.$GLOBALS['errors_to_header']);
+        }
+ // AG-P mods - End   
 
         //# amazon SES doesn't like this
         /*
@@ -170,16 +185,19 @@ class PHPlistMailer extends PHPMailer
             $this->SMTPOptions = $GLOBALS['phpmailer_smtpoptions'];
         }
 
-        if ($GLOBALS['message_envelope']) {
-            $this->Sender = $GLOBALS['message_envelope'];
+        // AGP Mods Start       
+        //       $this->addCustomHeader('Bounces-To: '.$GLOBALS['message_envelope']);
+        // AGP Mods End
 
 //# one to work on at a later stage
 //        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
         }
         //# when the email is generated from a webpage (quite possible :-) add a "received line" to identify the origin
-        if (!empty($_SERVER['REMOTE_ADDR'])) {
-            $this->add_timestamp();
-        }
+        // AGP Mods Start	  
+        //      if (!empty($_SERVER['REMOTE_ADDR'])) {
+        //        $this->add_timestamp();
+        //      }
+        // AGP Mods End
         $this->messageid = $messageid;
     }
 

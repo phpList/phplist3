@@ -501,11 +501,13 @@ function sendMailPhpMailer($to, $subject, $message)
     $fromemail = getConfig('message_from_address');
     $fromname = getConfig('message_from_name');
     $message_replyto_address = getConfig('message_replyto_address');
-    if ($message_replyto_address) {
-        $reply_to = $message_replyto_address;
-    } else {
-        $reply_to = $from_address;
-    }
+// AGP Mods Start
+//  if ($message_replyto_address) {
+//        $reply_to = $message_replyto_address;
+//    } else {
+//        $reply_to = $from_address;
+//    }
+// AGP Mods End
     $destinationemail = '';
 
 //  print "Sending $to from $fromemail<br/>";
@@ -825,16 +827,17 @@ function system_messageHeaders($useremail = '')
     } else {
         $additional_headers = "From: $from_address\n";
     }
-    $message_replyto_address = getConfig('message_replyto_address');
-    if ($message_replyto_address) {
-        $additional_headers .= "Reply-To: $message_replyto_address\n";
-    } else {
-        $additional_headers .= "Reply-To: $from_address\n";
-    }
-    $v = VERSION;
-    $additional_headers .= "X-Mailer: phplist version $v (www.phplist.com)\n";
-    $additional_headers .= "X-MessageID: systemmessage\n";
-    if ($useremail) {
+# AGP Mods Start
+//  $message_replyto_address = getConfig('message_replyto_address');
+//  if ($message_replyto_address)
+//    $additional_headers .= "Reply-To: $message_replyto_address\n";
+//  else
+//    $additional_headers .= "Reply-To: $from_address\n";
+# AGP Mods End
+  $v = VERSION;
+//  $additional_headers .= "X-Mailer: phplist version $v (www.phplist.com)\n";
+  $additional_headers .= "X-MessageID: systemmessage\n";
+  if ($useremail) {
         $additional_headers .= 'X-User: '.$useremail."\n";
     }
 

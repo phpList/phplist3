@@ -750,10 +750,12 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if ($forwardedby) {
         $mail->add_timestamp();
     }
-    $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
-    $mail->addCustomHeader('List-Unsubscribe: <'.$text['jumpoffurl'].'>');
-    $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
-    $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');
+       // AGP Mods Start
+       $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
+       //  $mail->addCustomHeader('List-Unsubscribe: <'.$text['jumpoffurl'].'>');
+       // AGP Mods End  
+       $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
+       $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');  
 
     list($dummy, $domaincheck) = explode('@', $destinationemail);
     $text_domains = explode("\n", trim(getConfig('alwayssendtextto')));
@@ -930,9 +932,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             $subject = $GLOBALS['strFwd'].': '.$cached[$messageid]['subject'];
         }
 
-        if (!empty($cached[$messageid]['replytoemail'])) {
-            $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
-        }
+// AGP Mods Start    
+//    if (!empty($cached[$messageid]['replytoemail'])) {
+//          $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
+//    }
+// AGP Mods End   
         if ($getspeedstats) {
             output('build End '.$GLOBALS['processqueue_timer']->interval(1));
         }
