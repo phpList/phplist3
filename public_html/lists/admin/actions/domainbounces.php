@@ -7,9 +7,11 @@ if (!empty($_SESSION['LoadDelay'])) {
 $status = '';
 
 if (isset($_GET['domain'])) {
-    $domain = (string) $_GET['domain'];
+    //Replace everything except alphanumerical chars and period.
+    $domain = preg_replace('@[^0-9a-z\.]+@i', ' ',  $_GET['domain']);
 }
 if (isset($_GET['bounces'])) {
+    //make sure that bounces is integer.
     $bounces = (int) $_GET['bounces'];
 }
 
