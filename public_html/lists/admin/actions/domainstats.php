@@ -223,7 +223,7 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn(
         $row['domain'],
         s('Bounces'),
-        sprintf( $row['num'],'')
+        sprintf( number_format($row['num']),'')
     );
 }
 $status .= $ls->display();
