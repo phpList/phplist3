@@ -44,7 +44,7 @@ if (isset($_POST['save'])) {
             $tables['subscribepage'], sql_escape(strip_tags($title)), $owner, $id));
     } else {
         Sql_Query(sprintf('insert into %s (title,owner) values("%s",%d)',
-            $tables['subscribepage'], $title, $owner));
+            $tables['subscribepage'], sql_escape($title), $owner));
         $id = Sql_Insert_id();
     }
     Sql_Query(sprintf('delete from %s where id = %d', $tables['subscribepage_data'], $id));
