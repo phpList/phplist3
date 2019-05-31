@@ -867,3 +867,9 @@ define('FORWARD_ALTERNATIVE_CONTENT', 0);
 define('ALLOW_UPDATER', true);
 
 
+// Google mail Feedback loop configuration
+// When feedback loop is configured in Google mail according to https://support.google.com/mail/answer/6254652?hl=en
+// adds constant to email headers
+define('GOOGLE_SENDERID', '');
+
+
