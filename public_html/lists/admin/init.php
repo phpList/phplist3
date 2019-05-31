@@ -605,7 +605,7 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 }
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
-    
+}    
  if (!defined('GOOGLE_SENDERID')) {
     define('GOOGLE_SENDERID', '');   
 }
