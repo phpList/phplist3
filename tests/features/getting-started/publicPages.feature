@@ -9,7 +9,7 @@ Scenario: Use public pages links
     And I should see "Update your preferences"
     And I should see "Unsubscribe from our Newsletters"
     And I should see "Contact the administrator"
-    Given I follow "Subscribe to our Newsletter"
+    Given I follow "Subscribe to our newsletter"
     Then I should see "Email address *"
     Given I go back
     And I follow "Update your preferences"
