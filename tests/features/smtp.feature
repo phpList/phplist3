@@ -5,8 +5,8 @@ Feature: SMTP Mail test
         Given I have logged in as an administrator
         And I follow "Campaigns"
         And I follow "Send a campaign"
-        And I follow "start a new campaign"
-        Then I should see "SEND A CAMPAIGN"
+        # translation variation: campaign vs message
+        And I follow "start a new message"
         When I fill in "subject" with "This is a test subject"
         And I fill in "fromfield" with "From Me me@mydomain.com"
         And I fill in "sendmethod" with "inputhere"
@@ -33,7 +33,8 @@ Feature: SMTP Mail test
             """
         And I follow "Campaigns"
         And I follow "Send a campaign"
-        And I follow "start a new campaign"
+        # translation variation: campaign vs message
+        And I follow "start a new message"
         Then I should see "SEND A CAMPAIGN"
         When I fill in "subject" with "This is a SMTP Campaign Subject"
         And I fill in "fromfield" with "From Me me@mydomain.com"
