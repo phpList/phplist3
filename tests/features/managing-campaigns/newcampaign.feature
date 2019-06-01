@@ -7,8 +7,9 @@ Feature: Create new campaign
     Scenario: Login and create a campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
+        # translation variation: campaign vs message
         Given I follow "Send a campaign"
-        Given I follow "start a new campaign"
+        Given I follow "start a new message"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
         And I fill in "fromfield" with "From me me@mydomain.com"
