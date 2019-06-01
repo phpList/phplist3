@@ -3,7 +3,7 @@ Feature: Navigate the app using the menu
   As an admin user
   I need to be able to view and navigate navigation menu links
 
-  Scenario Outline: Use main menu navigation links
+  Scenario Outline: Use menu navigation links
     Given I have logged in as an administrator
     Then I should see "<Pagename>"
     Examples:
@@ -12,13 +12,21 @@ Feature: Navigate the app using the menu
       | subscribers               |
       | campaigns                 |
       | statistics                |
-      | system                    |
       | config                    |
-      | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
      Then I should see "Dashboard"
 
+  @fails-hosted
+  Scenario Outline: Use phpList self-hosted menu navigation links
+    Given I have logged in as an administrator
+    Then I should see "<Pagename>"
+    Examples:
+      | system                    |
+      | develop                   |
+     Then I should see "Recently Visited"
+     Then I should see "logout"
+     Then I should see "Dashboard"
 
     Scenario Outline: Browse Subscribers menu
         Given I have logged in as an administrator
@@ -58,6 +66,7 @@ Feature: Navigate the app using the menu
          | URL click statistics      |
          | Domain statistics         |
 
+    @fails-hosted
     Scenario Outline: Browse System menu
         Given I have logged in as an administrator
         Given I follow "System"
@@ -73,23 +82,32 @@ Feature: Navigate the app using the menu
          | Send the queue            |
          | Rebuild DB indexes        |
          | system                    |
+
      Scenario Outline: Browse Config menu
         Given I have logged in as an administrator
         Given I follow "Config"
         Then I should see "<Innerpages>"
         Examples:
-         | Innerpages                         |
          | Configuration                      |
          | Settings                           |
          | Manage plugins                     |
          | Subscribe pages                    |
+         | Categorise lists                   |
+
+     @fails-hosted
+     Scenario Outline: Browse phpList self-hosted Config menu options
+        Given I have logged in as an administrator
+        Given I follow "Config"
+        Then I should see "<Innerpages>"
+        Examples:
+         | Innerpages                         |
          | Manage administrators              |
          | Import administrators              |
-         | Configure administrator attributes|
+         | Configure administrator attributes |
          | Bounce rules                       |
          | Check bounce rules                 |
-         | Categorise lists                   |
-    
+
+    @fails-hosted
     Scenario Outline: Browse Develop menu
         Given I have logged in as an administrator
         Given I follow "Develop"
