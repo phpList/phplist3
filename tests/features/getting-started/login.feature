@@ -1,3 +1,4 @@
+@fails-hosted
 Feature: Login
     In order to access dashboard
     As an admin user
