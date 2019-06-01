@@ -42,6 +42,13 @@ Feature: Navigate the app using the menu
          | Export subscribers        |
          | View bounces per list     |
          | Suppression List          |
+
+    @fails-hosted
+    Scenario Outline: Browse phpList self-hosted Subscribers menu
+        Given I have logged in as an administrator
+        Given I follow "Subscribers"
+        Then I should see "<Innerpages>"
+        Examples:
          | Reconcile subscribers     |
 
     Scenario Outline: Browse Campaigns menu
