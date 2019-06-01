@@ -185,10 +185,11 @@ class FeatureContext extends MinkContext
         }
 
         // store current token
-        $link = $this->getSession()->getPage()->findLink('dashboard');
-        $href = $link->getAttribute('href');
-        $this->token = substr($href,strpos($href,'tk=')+3);
-        $this->currentUser = $this->generateCurrentUserInfo($this->params['admin_username']);
+        // NOTE: This is incompatible with remote testing
+//        $link = $this->getSession()->getPage()->findLink('dashboard');
+//        $href = $link->getAttribute('href');
+//        $this->token = substr($href,strpos($href,'tk=')+3);
+//        $this->currentUser = $this->generateCurrentUserInfo($this->params['admin_username']);
     }
 
     /**
