@@ -8,8 +8,7 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
-        # translation variation: campaign vs message
-        Given I follow "start a new message"
+        Given I follow "Start a new campaign"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
         And I fill in "fromfield" with "From me me@mydomain.com"
@@ -36,8 +35,7 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         And I follow "Campaigns"
         And I follow "Send a campaign"
-        # translation variation: campaign vs message
-        And I follow "start a new message"
+        And I follow "Start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
