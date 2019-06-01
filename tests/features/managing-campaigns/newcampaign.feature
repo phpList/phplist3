@@ -7,8 +7,8 @@ Feature: Create new campaign
     Scenario: Login and create a campaign
         Given I have logged in as an administrator
         Given I follow "Campaigns"
-        # translation variation: campaign vs message
         Given I follow "Send a campaign"
+        # translation variation: campaign vs message
         Given I follow "start a new message"
         Then I should see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
@@ -36,7 +36,8 @@ Feature: Create new campaign
         Given I have logged in as an administrator
         And I follow "Campaigns"
         And I follow "Send a campaign"
-        And I follow "start a new campaign"
+        # translation variation: campaign vs message
+        And I follow "start a new message"
         When I follow "Lists"
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
