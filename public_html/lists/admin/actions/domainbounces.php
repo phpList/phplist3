@@ -63,6 +63,7 @@ while ($row = Sql_Fetch_Row($viewed)) {
 }
 
 $bounceRate=  sprintf('%0.2f', $bounces / $sent * 100)."%";
+$viewRate=  sprintf('%0.2f', $viewed / $sent * 100)."%";
 
 $ls->addElement($domain);
 $ls->addColumn(
@@ -79,6 +80,6 @@ $ls->addColumn(
     $bounceRate);
 $ls->addColumn(
     $domain,
-    s('Total views'),
-    number_format($viewed));
+    s('View rate'),
+    $viewRate);
 $status .= $ls->display();
