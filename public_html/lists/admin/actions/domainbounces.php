@@ -68,11 +68,11 @@ $viewRate=  sprintf('%0.2f', $viewed / $sent * 100)."%";
 $ls->addElement($domain);
 $ls->addColumn(
     $domain,
-    s('Bounced emails'),
+    s('Total bounced emails'),
     number_format($bounces));
 $ls->addColumn(
     $domain,
-    s('Sent emails'),
+    s('Total sent emails'),
     number_format($sent));
 $ls->addColumn(
     $domain,
