@@ -76,7 +76,7 @@ $ls->addColumn(
     number_format($sent));
 $ls->addColumn(
     $domain,
-    s('Bounces/Sent rate'),
+    s('Bounce rate'),
     $bounceRate);
 $ls->addColumn(
     $domain,
