@@ -80,6 +80,6 @@ $ls->addColumn(
     $bounceRate);
 $ls->addColumn(
     $domain,
-    s('View rate'),
+    s('View rate').Help("viewrate"),
     $viewRate);
 $status .= $ls->display();
