@@ -294,7 +294,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if ($plugin->enabled && !empty($plugin->settings)) {
         $firstSetting = reset($plugin->settings);
         $category = $firstSetting['category'];
-        $settingsUrl = PageURL2('configure').'#'.strtolower($category);
+        $settingsUrl = PageURL2('configure').'#'.sanitiseId(strtolower($category));
         $detailEntry .= '<span class="label">'.s('Configure').'</span>';
         $detailEntry .= '<span class="value"><a href="'.$settingsUrl.'">'.s($category).' '.s('settings').'</a></span>';
     }

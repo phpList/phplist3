@@ -131,7 +131,7 @@ if (empty($id)) {
 
     foreach ($configCategories as $configCategory => $configItems) {
         $some = 0;
-        $categoryHTML = '<fieldset id="' . $configCategory . '">';
+        $categoryHTML = '<fieldset id="' . sanitiseId($configCategory) . '">';
         $categoryHTML .= '<legend>' . s('%s settings',$configCategory) . '</legend>';
 
         foreach ($configItems as $configItem) {
