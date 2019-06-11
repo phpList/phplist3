@@ -1538,7 +1538,7 @@ function Help($topic, $text = '?')
 /**
  * Checks if the list is private based on if the specified list id is active or not.
  *
- * @param Integer $listid
+ * @param int $listid
  * @return bool
  */
 function isPrivateList($listid) {
