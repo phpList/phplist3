@@ -245,7 +245,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup' && !isPrivateList($key)) { // make sure that the list is private
+            if ($val == 'signup' && !isPrivateList($key)) { // make sure that the list is not private
                 $key = sprintf('%d', $key);
                 if (!empty($key)) {
                     $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
