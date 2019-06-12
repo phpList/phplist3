@@ -245,7 +245,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) { // make sure that the list is not private
                 $key = sprintf('%d', $key);
                 if (!empty($key)) {
                     $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
@@ -527,7 +527,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     $lists = '';
     if (is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) {
                 $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS['tables']['listuser'],$userid,$key));
 //        $lists .= "  * ".$_POST["listname"][$key]."\n";
             }
@@ -746,7 +746,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
 
     foreach ($showlists as $listid) {
-        if (preg_match("/^\d+$/", $listid)) {
+        if (preg_match("/^\d+$/", $listid) && !isPrivateList($listid)) {
             array_push($listset, $listid);
         }
     }

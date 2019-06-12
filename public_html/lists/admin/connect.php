@@ -1535,6 +1535,31 @@ function Help($topic, $text = '?')
     return sprintf('<a href="help/?topic=%s" class="helpdialog" target="_blank">%s</a>', $topic, $text);
 }
 
+/**
+ * Checks if the list is private based on if the specified list id is active or not.
+ *
+ * @param int $listid
+ * @return bool
+ */
+function isPrivateList($listid) {
+
+    $activeVal = Sql_Query(sprintf('
+          SELECT active 
+          FROM   %s 
+          WHERE  id = %d',
+            $GLOBALS['tables']['list'], sql_escape($listid))
+    );
+
+    while ($row = Sql_Fetch_Row($activeVal)) {
+        $activeVal = $row[0];
+    }
+
+    if ($activeVal == 0) {
+        return true;
+    } else
+        return false;
+}
+
 // Debugging system, needs $debug = TRUE and $verbose = TRUE or $debug_log = {path} in config.php
 // Hint: When using log make sure the file gets write permissions
 
