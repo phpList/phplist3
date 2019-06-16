@@ -690,140 +690,140 @@ msgstr ""
 msgid "There are no lists available"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1691
+#: public_html/lists/admin/connect.php:1716
 #: public_html/lists/admin/systemstats.php:13
 #: public_html/lists/admin/date.php:27
 msgid "January"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1692
+#: public_html/lists/admin/connect.php:1717
 #: public_html/lists/admin/systemstats.php:14
 #: public_html/lists/admin/date.php:28
 msgid "February"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1693
+#: public_html/lists/admin/connect.php:1718
 #: public_html/lists/admin/systemstats.php:15
 #: public_html/lists/admin/date.php:29
 msgid "March"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1694
+#: public_html/lists/admin/connect.php:1719
 #: public_html/lists/admin/systemstats.php:16
 #: public_html/lists/admin/date.php:30
 msgid "April"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1695
-#: public_html/lists/admin/connect.php:1710
+#: public_html/lists/admin/connect.php:1720
+#: public_html/lists/admin/connect.php:1735
 #: public_html/lists/admin/systemstats.php:17
 #: public_html/lists/admin/systemstats.php:32
 #: public_html/lists/admin/date.php:31
 msgid "May"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1696
+#: public_html/lists/admin/connect.php:1721
 #: public_html/lists/admin/systemstats.php:18
 #: public_html/lists/admin/date.php:32
 msgid "June"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1697
+#: public_html/lists/admin/connect.php:1722
 #: public_html/lists/admin/systemstats.php:19
 #: public_html/lists/admin/date.php:33
 msgid "July"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1698
+#: public_html/lists/admin/connect.php:1723
 #: public_html/lists/admin/systemstats.php:20
 #: public_html/lists/admin/date.php:34
 msgid "August"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1699
+#: public_html/lists/admin/connect.php:1724
 #: public_html/lists/admin/systemstats.php:21
 #: public_html/lists/admin/date.php:35
 msgid "September"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1700
+#: public_html/lists/admin/connect.php:1725
 #: public_html/lists/admin/systemstats.php:22
 #: public_html/lists/admin/date.php:36
 msgid "October"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1701
+#: public_html/lists/admin/connect.php:1726
 #: public_html/lists/admin/systemstats.php:23
 #: public_html/lists/admin/date.php:37
 msgid "November"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1702
+#: public_html/lists/admin/connect.php:1727
 #: public_html/lists/admin/systemstats.php:24
 #: public_html/lists/admin/date.php:38
 msgid "December"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1706
+#: public_html/lists/admin/connect.php:1731
 #: public_html/lists/admin/systemstats.php:28
 msgid "Jan"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1707
+#: public_html/lists/admin/connect.php:1732
 #: public_html/lists/admin/systemstats.php:29
 msgid "Feb"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1708
+#: public_html/lists/admin/connect.php:1733
 #: public_html/lists/admin/systemstats.php:30
 msgid "Mar"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1709
+#: public_html/lists/admin/connect.php:1734
 #: public_html/lists/admin/systemstats.php:31
 msgid "Apr"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1711
+#: public_html/lists/admin/connect.php:1736
 #: public_html/lists/admin/systemstats.php:33
 msgid "Jun"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1712
+#: public_html/lists/admin/connect.php:1737
 #: public_html/lists/admin/systemstats.php:34
 msgid "Jul"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1713
+#: public_html/lists/admin/connect.php:1738
 #: public_html/lists/admin/systemstats.php:35
 msgid "Aug"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1714
+#: public_html/lists/admin/connect.php:1739
 #: public_html/lists/admin/systemstats.php:36
 msgid "Sep"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1715
+#: public_html/lists/admin/connect.php:1740
 #: public_html/lists/admin/systemstats.php:37
 msgid "Oct"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1716
+#: public_html/lists/admin/connect.php:1741
 #: public_html/lists/admin/systemstats.php:38
 msgid "Nov"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:1717
+#: public_html/lists/admin/connect.php:1742
 #: public_html/lists/admin/systemstats.php:39
 msgid "Dec"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2123
+#: public_html/lists/admin/connect.php:2148
 msgid "secs"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2131
+#: public_html/lists/admin/connect.php:2156
 #: public_html/lists/admin/import4.php:177
 #: public_html/lists/admin/import4.php:186
 #: public_html/lists/admin/attributes.php:365
@@ -831,35 +831,35 @@ msgstr ""
 msgid "Attribute"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2131
+#: public_html/lists/admin/connect.php:2156
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2218
+#: public_html/lists/admin/connect.php:2243
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2220
+#: public_html/lists/admin/connect.php:2245
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2235
+#: public_html/lists/admin/connect.php:2260
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2236
+#: public_html/lists/admin/connect.php:2261
 #: public_html/lists/admin/inc/interfacelib.php:832
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2238
+#: public_html/lists/admin/connect.php:2263
 #: public_html/lists/admin/inc/interfacelib.php:873
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2240
+#: public_html/lists/admin/connect.php:2265
 msgid "Last Page"
 msgstr ""
 
