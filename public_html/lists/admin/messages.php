@@ -5,7 +5,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $subselect = $whereClause = '';
 $action_result = '';
 $access = accessLevel('messages');
-$filterSelectDefault = ' --- '.s('filter').' --- ';
 
 $messageSortOptions = array(
     'subjectasc'  => array(
@@ -158,12 +157,10 @@ echo $tabs->display();
 echo '</div>';
 
 $filterDisplay = $_SESSION['messagefilter'];
-if ($filterDisplay == '') {
-    $filterDisplay = $filterSelectDefault;
-}
+
 echo '<div id="messagefilter" class="filterdiv fright">';
 echo formStart(' id="messagefilterform" ');
-echo '<div><input type="text" name="filter" value="'.htmlspecialchars($filterDisplay).'" id="filtertext" />';
+echo '<div><input type="text" name="filter" placeholder="&#128269;'.s('Search campaigns').'" value="'.htmlspecialchars($filterDisplay).'" />';
 
 echo '<select name="numPP" class="numppOptions">';
 foreach (array(5, 10, 15, 20, 50, 100) as $numppOption) {
