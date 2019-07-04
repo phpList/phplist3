@@ -241,7 +241,7 @@ if ($GLOBALS['commandline']) {
         $ref = parse_url($_SERVER['HTTP_REFERER']);
         $parts = explode(':', $_SERVER['HTTP_HOST']);
         if ($ref['host'] != $parts[0] && !in_array($ref['host'], $allowed_referrers)) {
-            echo 'Access denied';
+            echo 'Access denied <script type="text/javascript">document.location = document.location</script>';
             exit;
         }
     }
