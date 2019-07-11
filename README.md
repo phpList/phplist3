@@ -147,7 +147,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="https://www.phplist.com/site/images/readme-images/themes.png" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/themes.svg" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
