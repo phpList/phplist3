@@ -363,4 +363,13 @@ class FeatureContext extends MinkContext
     {
         $this->getSession()->getDriver()->back();
     }
+
+     /**
+     * @When I confirm the popup
+     */
+    public function iConfirmPopup()
+    {  
+        $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+    }
+
 }
