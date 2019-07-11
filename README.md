@@ -1,6 +1,6 @@
 <div align="center" width="100%">
 <br/>
- <img src="http://brunadosti.com/resources/site/logo-readme.svg" align="center" style="width:220px;">
+ <img src="https://www.phplist.com/site/images/readme-images/logo_readme.svg" align="center" style="width:220px;">
 </div>
 
 #
@@ -17,14 +17,14 @@ phpList includes analytics, segmentation, content personalisation, bounce proces
   <a href="http://phplist.com/">Hosted</a> |
   <a href="https://demo.phplist.org">Demo</a>
   <br>
-  <img src="http://brunadosti.com/resources/panel.png" align="center" width="100%">
+  <img src="https://www.phplist.com/site/images/readme-images/panel.png" align="center" width="100%">
   <br/>
 </div>
 
 ---
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/features_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/features_icon.svg" align="center" width="96px" />
   <h3>Features</h3>
 </div>
 
@@ -44,7 +44,7 @@ phpList includes analytics, segmentation, content personalisation, bounce proces
 ---
 
 <div align="center">
-<img src="http://brunadosti.com/resources/site/get_phpList_icon.svg" align="center" width="96px" />
+<img src="https://www.phplist.com/site/images/readme-images/get_phpList_icon.svg" align="center" width="96px" />
  <h3>Get phpList</h3>
 </div>
 
@@ -57,29 +57,23 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 
 
 <div align="center" style="max-width: 100%;">
-      <img src="http://brunadosti.com/resources/site/icon_1.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
-            <img src="http://brunadosti.com/resources/site/icon_2.svg" style="display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;    margin-left: 100px; margin-right: 100px;"/>
-            <img src="http://brunadosti.com/resources/site/icon_3.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
+      <img src="https://www.phplist.com/site/images/readme-images/icon_1.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
+            <img src="https://www.phplist.com/site/images/readme-images/icon_2.svg" style="display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;    margin-left: 100px; margin-right: 100px;"/>
+            <img src="https://www.phplist.com/site/images/readme-images/icon_3.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
 </div>
 
 <div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a> |
-<a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a> |
+<a href="#" style="text-decoration:none;font-size:22px;color:#000;">Requirements</a>
+<a href="#" style="margin-right:90px;margin-left:60px; text-decoration:none;font-size:22px;color:#000;">Development</a>
 <a href="#" style="text-decoration:none;font-size:22px;color:#000;">Installation</a>
 </div>
 
-<div align="center" width="100%">
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;margin-left:32px;margin-right:45px;">See system requirements</a> |
-<a href="#" style="margin-right:75px;margin-left:0px; text-decoration:none;font-size:14px;color:#000;">See phpList development</a> |
-<a href="#" style="text-decoration:none;font-size:14px;color:#000;">See the installation guide</a>
-</div>
-<br/>
-<br/>
+
 
 ---
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/upgrade_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/upgrade_icon.svg" align="center" width="96px" />
   <h3>Upgrade</h3>
 </div>
 
@@ -95,15 +89,15 @@ How to upgrade from any previous version to the latest version
 
 How to upgrade from any previous version to the latest version
 
-<div><img src="http://brunadosti.com/resources/site/1.svg" width="20px" style="margin-top:5px;"/> <strong>BACKUP your database</strong> (e.g. # mysqldump -u[user] -p[password] [database] > phplist-backup.sql)</div><br/>
+<div><img src="https://www.phplist.com/site/images/readme-images/1.svg" width="20px" style="margin-top:5px;"/> <strong>BACKUP your database</strong> (e.g. # mysqldump -u[user] -p[password] [database] > phplist-backup.sql)</div><br/>
 
-<div><img src="http://brunadosti.com/resources/site/2.svg" width="20px"/> <strong>Copy your old configured files to some safe place</strong></div>
+<div><img src="https://www.phplist.com/site/images/readme-images/2.svg" width="20px"/> <strong>Copy your old configured files to some safe place</strong></div>
 
    These files are:
 	lists/config/config.php
         possibly lists/texts/english.inc or any other language.inc if you have edited it
 
-<div><img src="http://brunadosti.com/resources/3.png" width="20px"/> <strong>Copy the files from the tar file to your webroot.</strong></div>
+<div><img src="https://www.phplist.com/site/images/readme-images/3.svg" width="20px"/> <strong>Copy the files from the tar file to your webroot.</strong></div>
 
 You can copy everything in the "lists" directory in the tar file to your website.
 To facilitate future upgrades, ie to make it easier for you to simply copy
@@ -111,7 +105,7 @@ everything I have now put the "configurable" files in their own directory. They
 reside in "lists/config". This is hopefully going to be the directory that you can
 keep between upgrades, and that will contain the only information that you want to be changed in order to make it work for your own site.
 
-<img src="http://brunadosti.com/resources/site/4.svg" width="20px"/> <strong>Copy your configuration files to lists/config or re-edit the new config file
+<img src="https://www.phplist.com/site/images/readme-images/4.svg" width="20px"/> <strong>Copy your configuration files to lists/config or re-edit the new config file
 sometimes new features are added to the config file, so it's better to use
 the new config file and re-adapt it to your situation.</strong>
 
@@ -121,15 +115,15 @@ apache.
 
 You can overwrite the files that are there. They are example files.
 
-<div><img src="http://brunadosti.com/resources/site/5.svg" width="20px"/> Go to http://yourdomain/lists/admin/ and choose the Upgrade link</div> <br/>
+<div><img src="https://www.phplist.com/site/images/readme-images/5.svg" width="20px"/> Go to http://yourdomain/lists/admin/ and choose the Upgrade link</div> <br/>
 
-<img src="http://brunadosti.com/resources/site/6.svg" width="20px"/><strong> Click the link on this page.</strong><br/>
+<img src="https://www.phplist.com/site/images/readme-images/6.svg" width="20px"/><strong> Click the link on this page.</strong><br/>
 This process may take quite a while if your database is large. Don't interrupt it.
 
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/issues_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/issues_icon.svg" align="center" width="96px" />
   <h3>Issues</h3>
   <p>Report issues to <a href="https://mantis.phplist.org/bug_report_page.php">Mantis issue tracker</a> (select project phpList 3 application)<br>
      'Please don't use GitHub issues'.</p>
@@ -138,7 +132,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/languages_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/languages_icon.svg" align="center" width="96px" />
   <h3>Languages, Info files and Contextual help</h3>
 </div>
 
@@ -153,7 +147,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/themes.png" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/themes.png" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
@@ -169,7 +163,7 @@ For the prerequisites of each and Installation guide on your development copy ma
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/code_of_conduct_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/code_of_conduct_icon.svg" align="center" width="96px" />
   <h3>Code of Conduct</h3>
 </div>
 
