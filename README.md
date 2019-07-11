@@ -1,6 +1,6 @@
 <div align="center" width="100%">
 <br/>
- <img src="https://www.phplist.com/site/images/readme-images/logo_readme.svg" align="center" style="width:220px;">
+ <img src="https://www.phplist.com/site/images/readme-images/logo-icon.svg" align="center" style="width:220px;">
 </div>
 
 #
@@ -147,7 +147,7 @@ it. A lot of information is provided with each step.
 #
 
 <div align="center" width="100%">
-  <img src="https://www.phplist.com/site/images/readme-images/themes.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/theme-icon.png" align="center" width="96px" />
   <h3>Themes</h3>
 </div>
 
