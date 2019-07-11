@@ -12,5 +12,6 @@ Scenario: Install new Plugin and update
         Then I should see "Plugin installed successfully"
         Given I follow "Continue" 
         And I press "update" 
+        Then I wait for 5 seconds
         When I confirm the pop up 
         Then I should not see "failed"
