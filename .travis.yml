@@ -22,7 +22,7 @@ matrix:
         - php: '7.2'
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.2'
-          env: BROWSER=chrome TAGS="~@first-run && ~@wip"
+          env: BROWSER=chrome TAGS="~@first-run && ~@wip && ~javascript"
         - php: '7.3'
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.3'
