@@ -23,9 +23,24 @@ $user = sql_fetch_array($result);
 
 $ls = new WebblerListing(s('Campaigns'));
 if (Sql_Table_Exists($GLOBALS['tables']['usermessage'])) {
-    $msgs = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or viewed is null) as notviewed,
-abs(unix_timestamp(entered) - unix_timestamp(viewed)) as responsetime from %s where userid = %d and status = "sent" order by entered desc',
-        $GLOBALS['tables']['usermessage'], $user['id']));
+    $msgs = Sql_Query('
+        SELECT
+            messageid,
+            entered,
+            viewed,
+            (viewed = 0 OR viewed IS NULL) AS notviewed,
+            ABS(
+                UNIX_TIMESTAMP(entered) - UNIX_TIMESTAMP(viewed)
+            ) AS responsetime
+        FROM
+            '.$GLOBALS['tables']['usermessage'].'
+        WHERE
+            userid = '.$user['id'].' AND
+        STATUS
+            = "sent"
+        ORDER BY
+            entered
+        DESC');
     $num = Sql_Affected_Rows();
 } else {
     $num = 0;
