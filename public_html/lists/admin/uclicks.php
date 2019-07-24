@@ -137,7 +137,7 @@ while ($row = Sql_Fetch_Array($req)) {
     $summary['totalsent'] += $row['total'];
 //  if (CLICKTRACK_SHOWDETAIL) {
     $ls->addColumn($element, s('clicks'),
-        $uniqueclicks['users'].'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id).'" title="'.s('view subscribers who clicked').'"></a></span>');
+        number_format($uniqueclicks['users']).'<span class="viewusers"><a class="button" href="'.PageUrl2('userclicks&amp;msgid='.$row['messageid'].'&amp;fwdid='.$id).'" title="'.s('view subscribers who clicked').'"></a></span>');
     $perc = sprintf('%0.2f', ($uniqueclicks['users'] / $row['total'] * 100));
     $ls->addColumn($element, s('click rate'), $perc.'%');
     $summary['uniqueclicks'] += $uniqueclicks['users'];
