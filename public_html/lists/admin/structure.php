@@ -424,7 +424,7 @@ $DBstructphplist = array(
         'index_4'     => array('miduidindex (messageid,userid)', ''),
         'unique_1'    => array('miduidfwdid (messageid,userid,forwardid)', ''),
     ),
-    'linktrack_forward' => array(
+    'linktrack_forward' => array( // This is the url / link tracking table; name is misleading
         'id'   => array('integer not null primary key auto_increment', 'forward ID'),
         'url'  => array('varchar(2083)', 'URL to log'),
         'urlhash'     => array('char(32)', 'hash value of URL'),
