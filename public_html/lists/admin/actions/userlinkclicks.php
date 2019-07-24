@@ -73,7 +73,7 @@ if ($num) {
                 '.$GLOBALS['tables']['linktrack_uml_click'].'
             WHERE
                 userid = '.$user['id'].'
-                AND messageid = '.$url['messageid']
+                AND forwardid = '.$url['forwardid']
         );
 
         $clicks = sprintf('%d', $clicksreq[0]);
