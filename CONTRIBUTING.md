@@ -9,7 +9,7 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 
 # Reporting an Issue
 
-You can report an issue here in Github, or use our issue tracker at https://mantis.phplist.com.
+You can report an issue here in Github or use our issue tracker at https://mantis.phplist.com.
 Most issues are in Mantis, and it may be best to check around to see if your issue has been reported before.
 
 Please follow the guidelines below when creating an issue so that your issue can be more promptly resolved:
