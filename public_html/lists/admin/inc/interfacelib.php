@@ -487,6 +487,9 @@ class WebblerListing
         return $text;
     }
 
+    /**
+     * Change output format to tab delimited (TSV)
+     */
     public function tabDelimited()
     {
         $heading = isset($this->elementHeading) ? $this->elementHeading : $this->title;
