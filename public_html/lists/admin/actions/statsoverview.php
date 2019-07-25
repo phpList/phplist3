@@ -77,8 +77,9 @@ $total = Sql_Num_Rows($req);
 if ($total > 10) {
     //print Paging(PageUrl2('statsoverview'),$start,$total,10);
     $paging = simplePaging('statsoverview', $start, $total, 10);
+    // Increase the record limit for exported files
     if ($download) {
-        $limit = ' limit 25';
+        $limit = ' limit 1000';
     }
 
     $query .= $limit;
