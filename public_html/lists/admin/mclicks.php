@@ -52,6 +52,12 @@ if (!$id) {
     return;
 }
 
+echo 
+    '<div class="actions pull-right">'.PageLinkButton(
+        'mclicks&id='.$id.'&dl=1'
+        , s('Download as CSV file')
+    ).'</div><div class="clearfix"></div>';
+
 echo '<h3>'.s('Click Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query("SELECT * FROM {$tables['message']} where id = $id $subselect");
 $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent"',
@@ -69,6 +75,7 @@ if (($totalusers[0] - $totalbounced[0]) > 0) {
 } else {
     $clickperc = $GLOBALS['I18N']->get('N/A');
 }
+
 echo '<table class="mclicksDetails">
 <tr><td>' .s('Subject').'</td><td>'.$messagedata['subject'].'</td></tr>
 <tr><td>' .s('Entered').'</td><td>'.formatDateTime($messagedata['entered']).'</td></tr>
@@ -157,5 +164,10 @@ $ls->setClass('Total', 'rowtotal');
 $ls->addColumn('Total', s('unique clicks'), number_format($summary['uniqueclicks']));
 $perc = sprintf('%0.2f', ($summary['uniqueclicks'] / $totalusers[0] * 100));
 $ls->addColumn('Total', s('clickrate'), $perc.'%');
+
+if ($download) {
+    ob_end_clean();
+    $status .= $ls->tabDelimited();
+}
 
 echo $ls->display();
