@@ -58,6 +58,7 @@ if (!Sql_Affected_Rows()) {
 $ls = new WebblerListing(s('Clicked campaigns'));
 $ls->setElementHeading(s('Campaign'));
 while ($row = Sql_Fetch_Array($req)) {
+    // Flag indicating that results were returned
     $some = 1;
     $messagedata = loadMessageData($row['messageid']);
     $totalusers = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent"',
@@ -99,14 +100,18 @@ while ($row = Sql_Fetch_Array($req)) {
     $ls->addColumn($element,$GLOBALS['I18N']->get('rate'),$perc.' %');
     */
 }
+
+// If records / links exist
 if ($some) {
+    // if data export requested
+    if ($download) {
+        ob_end_clean();
+        $status .= $ls->tabDelimited();
+    }
+
+    // Add CSV download button
     $status .= '<div class="action">';
     $status .= '<p class="pull-right">'.PageLinkButton('pageaction&action=mclicks&dl=true', s('Download as CSV file')).'</p>';
     $status .= '</div><div class="clearfix"></div>';
-//    print '<p>'.$GLOBALS['I18N']->get('Select Message to view').'</p>';
     $status .= $ls->display();
-}
-if ($download) {
-    ob_end_clean();
-    $status .= $ls->tabDelimited();
 }
