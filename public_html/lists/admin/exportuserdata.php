@@ -188,20 +188,35 @@ while ($row = Sql_Fetch_Assoc($umlrows))
 fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
 fputcsv($output, array(' ', s('Subscriber click statistics')), $csvColumnDelimiter);
-fputcsv($output, array( s('URL'), s('Link ID'), s('Message ID'), s('Name'), s('Data'), s('Date') ), $csvColumnDelimiter );
+fputcsv($output, array( s('URL'), s('Link ID'), s('Campaign ID'), s('First click'), s('Last click'), s('Total clicks') ), $csvColumnDelimiter );
+
 $userclickrows = Sql_Query('
     SELECT
-        linkid,
-        userid,
-        messageid,
-        NAME,
-        DATA,
-        DATE
-    FROM
-        '.$GLOBALS['tables']['linktrack_userclick'].'
-    WHERE
-        userid = '.sprintf('%d', $user['id'])
-);
+        url,
+        forwardid,
+        uml_click.messageid,
+        MIN(firstclick) AS firstclick,
+        MAX(latestclick) AS latestclick,
+        SUM(clicked) AS clicked,
+        GROUP_CONCAT(
+                messageid
+            ORDER BY
+                messageid SEPARATOR \' \') AS messageid
+    FROM 
+        '.$GLOBALS['tables']['linktrack_uml_click'].' AS uml_click
+    JOIN
+        '.$GLOBALS['tables']['user'].' AS user ON uml_click.userid = user.id
+    JOIN 
+        '.$GLOBALS['tables']['linktrack_forward'].' AS forward ON forward.id = uml_click.forwardid
+    WHERE 
+        uml_click.userid = '.sprintf('%d', $user['id']).'
+    GROUP BY 
+        forwardid
+    ORDER BY 
+        clicked DESC, 
+        url
+    ');
+
 
 while ($row = Sql_Fetch_Assoc($userclickrows))
     fputcsv($output, $row, $csvColumnDelimiter);
