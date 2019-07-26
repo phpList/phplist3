@@ -54,7 +54,7 @@ if (Sql_Table_Exists($GLOBALS['tables']['usermessage'])) {
 } else {
     $num = 0;
 }
-printf('%d '.s('links clicked by this subscriber').'<br/>', $num);
+printf('%d '.s('total clicks by this subscriber').'<br/>', $num);
 if ($num) {
     $resptime = 0;
     $totalresp = 0;
