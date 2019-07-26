@@ -224,14 +224,17 @@ while ($row = Sql_Fetch_Assoc($userclickrows))
 fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
 fputcsv($output, array(' ','Message Forward Info'), $csvColumnDelimiter);
-fputcsv($output, array('Message ID','Forward', 'Status', 'Time'), $csvColumnDelimiter);
-$forwardrows = Sql_Query(
-    sprintf(
-        'select message, forward, status, time 
-                from %s where user = %d'
-
-
-        , $GLOBALS['tables']['user_message_forward'], $user['id'])
+fputcsv($output, array( s('Message ID'), s('Forward address'), s('Status'), s('Time') ), $csvColumnDelimiter);
+$forwardrows = Sql_Query('
+SELECT
+    message,
+    forward,
+    status,
+    time
+FROM
+    '.$GLOBALS['tables']['user_message_forward'].'
+WHERE
+    USER = '.sprintf('%d', $user['id'])
 );
 
 while ($row = Sql_Fetch_Assoc($forwardrows))
