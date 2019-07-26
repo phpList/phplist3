@@ -45,6 +45,7 @@ if ($download) {
     ob_start();
 }
 
+// If and ID is provided, and we're viewing details for a specific campaign, load an ajaxed page version
 if (!$id) {
     echo '<div id="contentdiv"></div>';
     echo asyncLoadContent('./?page=pageaction&action=mclicks&ajaxed=true&id='.$id.addCsrfGetToken());
