@@ -163,7 +163,7 @@ if ($fwdid && $msgid) {
 } elseif ($userid) {
     echo '<div class="jumbotron">'.$GLOBALS['I18N']->get('All clicks by').' <b>'.PageLink2('user&amp;id='.$userid, $userdata['email']).'</b></div>';
 
-    $query = sprintf('
+    $query = '
         SELECT
             SUM(htmlclicked) AS htmlclicked,
             SUM(textclicked) AS textclicked,
@@ -179,24 +179,19 @@ if ($fwdid && $msgid) {
                 forwardid,
                 url
         FROM 
-            %s AS uml_click
+            '.$GLOBALS['tables']['linktrack_uml_click'].' AS uml_click
+        JOIN
+            '.$GLOBALS['tables']['user'].' AS user ON uml_click.userid = user.id
         JOIN 
-            %s AS user ON uml_click.userid = user.id
-        JOIN 
-            %s AS forward ON forward.id = uml_click.forwardid
+            '.$GLOBALS['tables']['linktrack_forward'].' AS forward ON forward.id = uml_click.forwardid
         WHERE 
-            uml_click.userid = %d
+            uml_click.userid = '.sprintf('%d', $userid).'
         GROUP BY 
             forwardid
         ORDER BY 
             clicked DESC, 
             url
-        ',
-        $GLOBALS['tables']['linktrack_uml_click'],
-        $GLOBALS['tables']['user'],
-        $GLOBALS['tables']['linktrack_forward'],
-        $userid
-    );
+        ';
 }
 
 //ob_end_flush();
