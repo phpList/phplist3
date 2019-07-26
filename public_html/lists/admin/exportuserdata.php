@@ -187,15 +187,20 @@ while ($row = Sql_Fetch_Assoc($umlrows))
 
 fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array(' ','User clicks Info'), $csvColumnDelimiter);
-fputcsv($output, array('Link ID', 'Message ID','Name', 'Data', 'Date'), $csvColumnDelimiter);
-$userclickrows = Sql_Query(
-    sprintf(
-        'select linkid, userid, messageid, name, data, date 
-                from %s where userid = %d'
-
-
-        , $GLOBALS['tables']['linktrack_userclick'], $user['id'])
+fputcsv($output, array(' ', s('Subscriber click statistics')), $csvColumnDelimiter);
+fputcsv($output, array( s('URL'), s('Link ID'), s('Message ID'), s('Name'), s('Data'), s('Date') ), $csvColumnDelimiter );
+$userclickrows = Sql_Query('
+    SELECT
+        linkid,
+        userid,
+        messageid,
+        NAME,
+        DATA,
+        DATE
+    FROM
+        '.$GLOBALS['tables']['linktrack_userclick'].'
+    WHERE
+        userid = '.sprintf('%d', $user['id'])
 );
 
 while ($row = Sql_Fetch_Assoc($userclickrows))
