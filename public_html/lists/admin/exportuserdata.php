@@ -190,6 +190,7 @@ fputcsv($output, array(' '), $csvColumnDelimiter);
 fputcsv($output, array(' ', s('Subscriber click statistics')), $csvColumnDelimiter);
 fputcsv($output, array( s('URL'), s('Link ID'), s('Campaign ID'), s('First click'), s('Last click'), s('Total clicks') ), $csvColumnDelimiter );
 
+// Query to get subscriber click data (all clicks from subscriber); from userclicks.php
 $userclickrows = Sql_Query('
     SELECT
         url,
@@ -215,8 +216,7 @@ $userclickrows = Sql_Query('
     ORDER BY 
         clicked DESC, 
         url
-    ');
-
+');
 
 while ($row = Sql_Fetch_Assoc($userclickrows))
     fputcsv($output, $row, $csvColumnDelimiter);
