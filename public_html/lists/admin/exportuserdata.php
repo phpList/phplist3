@@ -222,9 +222,6 @@ while ($row = Sql_Fetch_Assoc($userclickrows))
     fputcsv($output, $row, $csvColumnDelimiter);
 
 fputcsv($output, array(' '), $csvColumnDelimiter);
-// output the column headings
-fputcsv($output, array(' ','Message Forward Info'), $csvColumnDelimiter);
-fputcsv($output, array( s('Message ID'), s('Forward address'), s('Status'), s('Time') ), $csvColumnDelimiter);
 
 // Query to fetch forwarded messages data
 $forwardrows = Sql_Query('
@@ -239,10 +236,21 @@ WHERE
     USER = '.sprintf('%d', $user['id'])
 );
 
-while ($row = Sql_Fetch_Assoc($forwardrows))
-    fputcsv($output, $row, $csvColumnDelimiter);
+$totalForwards = Sql_Num_Rows( $forwardrows );
 
+// print table heading
+fputcsv($output, array(' ','Message Forward Info'), $csvColumnDelimiter);
 
+if ( $totalForwards < 1) {
+    fputcsv( $output, array(' ', s('No forwarded campaign data')), $csvColumnDelimiter );
+} else {
+
+    // print column headings
+    fputcsv($output, array( s('Message ID'), s('Forward address'), s('Status'), s('Time') ), $csvColumnDelimiter);
+
+    while ($row = Sql_Fetch_Assoc($forwardrows))
+        fputcsv($output, $row, $csvColumnDelimiter);
+}
 
 fclose($output);
 exit;
