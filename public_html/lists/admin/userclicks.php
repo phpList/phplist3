@@ -49,7 +49,6 @@ $downloadContent = '';
 
 if ($download) {
     ob_end_clean();
-//  header("Content-type: text/plain");
     header('Content-type: text/csv');
     header('Content-disposition:  attachment; filename="phpList click statistics.csv"');
     ob_start();
