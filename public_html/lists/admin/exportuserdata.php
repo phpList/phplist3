@@ -225,6 +225,8 @@ fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
 fputcsv($output, array(' ','Message Forward Info'), $csvColumnDelimiter);
 fputcsv($output, array( s('Message ID'), s('Forward address'), s('Status'), s('Time') ), $csvColumnDelimiter);
+
+// Query to fetch forwarded messages data
 $forwardrows = Sql_Query('
 SELECT
     message,
