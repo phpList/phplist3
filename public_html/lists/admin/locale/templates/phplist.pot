@@ -3353,14 +3353,14 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:838
 #: public_html/lists/admin/actions/mclicks.php:94
 #: public_html/lists/admin/userclicks.php:253
-#: public_html/lists/admin/mclicks.php:142
+#: public_html/lists/admin/mclicks.php:164
 msgid "text"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:570
 #: public_html/lists/admin/send_core.php:835
 #: public_html/lists/admin/actions/mclicks.php:94
-#: public_html/lists/admin/mclicks.php:141
+#: public_html/lists/admin/mclicks.php:163
 msgid "html"
 msgstr ""
 
@@ -4684,8 +4684,8 @@ msgid "links"
 msgstr ""
 
 #: public_html/lists/admin/actions/mclicks.php:88
-#: public_html/lists/admin/mclicks.php:137
 #: public_html/lists/admin/mclicks.php:159
+#: public_html/lists/admin/mclicks.php:181
 msgid "clickrate"
 msgstr ""
 
@@ -6566,13 +6566,13 @@ msgid "Subscribers"
 msgstr ""
 
 #: public_html/lists/admin/userclicks.php:243
-#: public_html/lists/admin/mclicks.php:145
+#: public_html/lists/admin/mclicks.php:167
 #: public_html/lists/admin/uclicks.php:130
 msgid "firstclick"
 msgstr ""
 
 #: public_html/lists/admin/userclicks.php:244
-#: public_html/lists/admin/mclicks.php:146
+#: public_html/lists/admin/mclicks.php:168
 #: public_html/lists/admin/uclicks.php:131
 msgid "latestclick"
 msgstr ""
@@ -6746,9 +6746,14 @@ msgstr ""
 msgid "Link URL"
 msgstr ""
 
-#: public_html/lists/admin/mclicks.php:135
-#: public_html/lists/admin/mclicks.php:157
+#: public_html/lists/admin/mclicks.php:155
+#: public_html/lists/admin/mclicks.php:179
 msgid "unique clicks"
+msgstr ""
+
+#: public_html/lists/admin/mclicks.php:156
+#: public_html/lists/admin/uclicks.php:140
+msgid "view subscribers who clicked"
 msgstr ""
 
 #: public_html/lists/admin/importsimple.php:72
@@ -8324,10 +8329,6 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:92
 msgid "Click details for a URL"
-msgstr ""
-
-#: public_html/lists/admin/uclicks.php:140
-msgid "view subscribers who clicked"
 msgstr ""
 
 #: public_html/lists/admin/uclicks.php:142
