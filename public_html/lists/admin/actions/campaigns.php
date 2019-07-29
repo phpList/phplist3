@@ -23,9 +23,24 @@ $user = sql_fetch_array($result);
 
 $ls = new WebblerListing(s('Campaigns'));
 if (Sql_Table_Exists($GLOBALS['tables']['usermessage'])) {
-    $msgs = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or viewed is null) as notviewed,
-abs(unix_timestamp(entered) - unix_timestamp(viewed)) as responsetime from %s where userid = %d and status = "sent" order by entered desc',
-        $GLOBALS['tables']['usermessage'], $user['id']));
+    $msgs = Sql_Query('
+        SELECT
+            messageid,
+            entered,
+            viewed,
+            (viewed = 0 OR viewed IS NULL) AS notviewed,
+            ABS(
+                UNIX_TIMESTAMP(entered) - UNIX_TIMESTAMP(viewed)
+            ) AS responsetime
+        FROM
+            '.$GLOBALS['tables']['usermessage'].'
+        WHERE
+            userid = '.$user['id'].' AND
+        STATUS
+            = "sent"
+        ORDER BY
+            entered
+        DESC');
     $num = Sql_Affected_Rows();
 } else {
     $num = 0;
@@ -37,24 +52,48 @@ if ($num) {
     $ls->setElementHeading(s('Campaign Id'));
 
     while ($msg = Sql_Fetch_Array($msgs)) {
-        $ls->addElement($msg['messageid'],
-            PageURL2('message', s('view'), 'id='.$msg['messageid']));
+        $ls->addElement(
+            $msg['messageid']
+            , PageURL2(
+                'message'
+                , s('view')
+                , 'id='.$msg['messageid']
+            )
+        );
+        
         if (defined('CLICKTRACK') && CLICKTRACK) {
             $clicksreq = Sql_Fetch_Row_Query(sprintf('select sum(clicked) as numclicks from %s where userid = %s and messageid = %s',
                 $GLOBALS['tables']['linktrack_uml_click'], $user['id'], $msg['messageid']));
             $clicks = sprintf('%d', $clicksreq[0]);
             if ($clicks) {
-                $ls->addColumn($msg['messageid'], s('clicks'),
-                    PageLink2('userclicks&amp;userid='.$user['id'].'&amp;msgid='.$msg['messageid'], $clicks));
+                $ls->addColumn(
+                    $msg['messageid'], s('clicks')
+                    , PageLink2(
+                        'userclicks&amp;userid='.$user['id'].'&amp;msgid='.$msg['messageid']
+                        , $clicks
+                    )
+                );
             } else {
                 $ls->addColumn($msg['messageid'], s('clicks'), 0);
             }
         }
 
-        $ls->addColumn($msg['messageid'], s('sent'), formatDateTime($msg['entered'], 1));
+        $ls->addColumn(
+            $msg['messageid']
+            , s('sent')
+            , formatDateTime($msg['entered'], 1)
+        );
         if (!$msg['notviewed']) {
-            $ls->addColumn($msg['messageid'], s('viewed'), formatDateTime($msg['viewed'], 1));
-            $ls->addColumn($msg['messageid'], s('Response time'), secs2time($msg['responsetime']));
+            $ls->addColumn(
+                $msg['messageid']
+                , s('viewed')
+                , formatDateTime($msg['viewed'], 1)
+            );
+            $ls->addColumn(
+                $msg['messageid']
+                , s('Response time')
+                , secs2time($msg['responsetime'])
+            );
             $resptime += $msg['responsetime'];
             $totalresp += 1;
         }
