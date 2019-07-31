@@ -175,7 +175,7 @@ this code.
 #
 
 <div align="center" width="100%">
-  <img src="http://brunadosti.com/resources/site/license_icon.svg" align="center" width="96px" />
+  <img src="https://www.phplist.com/site/images/readme-images/license_icon.svg" align="center" width="96px" />
   <h3>License</h3>
 </div>
 
