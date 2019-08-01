@@ -34,7 +34,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
     //# verify the url against known locations, and require it to be "zip".
     //# let's hope Github keeps this structure for a while
-    if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
+    if (!preg_match('~^https?://github\.com/([\w\-_]+)/([\w\-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
         echo Error(s('Invalid download URL, please reload the page and try again'));
 
         return;
@@ -294,7 +294,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if ($plugin->enabled && !empty($plugin->settings)) {
         $firstSetting = reset($plugin->settings);
         $category = $firstSetting['category'];
-        $settingsUrl = PageURL2('configure').'#'.strtolower($category);
+        $settingsUrl = PageURL2('configure').'#'.sanitiseId(strtolower($category));
         $detailEntry .= '<span class="label">'.s('Configure').'</span>';
         $detailEntry .= '<span class="value"><a href="'.$settingsUrl.'">'.s($category).' '.s('settings').'</a></span>';
     }
@@ -365,7 +365,7 @@ $ls->usePanel(
 );
 echo $ls->display();
 
-/** 
+/**
  * Creates a link to the plugins page to show only plugins that meet the filter value.
  *
  * @param string $filterParam the URL query parameter
@@ -383,7 +383,7 @@ function filterLink($filterParam, $count, $caption)
         : $caption;
 }
 
-/** 
+/**
  * Query GitHub for the latest tag of a plugin.
  * Cache the result of each query for 24 hours to limit the number of API calls.
  *

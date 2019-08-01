@@ -43,6 +43,9 @@ class PHPlistMailer extends PHPMailer
         $this->addCustomHeader('X-phpList-version: '.VERSION);
         $this->addCustomHeader("X-MessageID: $messageid");
         $this->addCustomHeader("X-ListMember: $email");
+        if (GOOGLE_SENDERID != '') {
+            $this->addCustomHeader("Feedback-ID: $messageid:".GOOGLE_SENDERID);
+        }                
 
         //# amazon SES doesn't like this
         /*

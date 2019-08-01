@@ -5,8 +5,6 @@ if (!defined('PHPLISTINIT')) {
     exit;
 }
 
-echo '<h3>'.s('Database structure check').'</h3>';
-
 unset($_SESSION['dbtables']);
 $pass = true;
 

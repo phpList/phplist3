@@ -302,10 +302,16 @@ if (!TEST && REGISTER) {
 }
 // some other configuration variables, which need less tweaking
 // number of users to show per page if there are more
-define('MAX_USER_PP', 50);
-define('MAX_MSG_PP', 5);
+if (!defined('MAX_USER_PP')) {
+    define('MAX_USER_PP', 50);
+}
+if (!defined('MAX_MSG_PP')) {
+    define('MAX_MSG_PP', 5);
+}
 // Used by e.g. mviews.php
-define('MAX_OPENS_PP', 20);
+if (!defined('MAX_OPENS_PP')) {
+    define('MAX_OPENS_PP', 20);
+}
 
 function formStart($additional = '')
 {
@@ -1527,6 +1533,31 @@ function phpcfgsize2bytes($val)
 function Help($topic, $text = '?')
 {
     return sprintf('<a href="help/?topic=%s" class="helpdialog" target="_blank">%s</a>', $topic, $text);
+}
+
+/**
+ * Checks if the list is private based on if the specified list id is active or not.
+ *
+ * @param int $listid
+ * @return bool
+ */
+function isPrivateList($listid) {
+
+    $activeVal = Sql_Query(sprintf('
+          SELECT active 
+          FROM   %s 
+          WHERE  id = %d',
+            $GLOBALS['tables']['list'], sql_escape($listid))
+    );
+
+    while ($row = Sql_Fetch_Row($activeVal)) {
+        $activeVal = $row[0];
+    }
+
+    if ($activeVal == 0) {
+        return true;
+    } else
+        return false;
 }
 
 // Debugging system, needs $debug = TRUE and $verbose = TRUE or $debug_log = {path} in config.php

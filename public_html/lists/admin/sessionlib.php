@@ -12,21 +12,17 @@ if (basename($_SERVER['SCRIPT_NAME']) != 'index.php') {
     return;
 }
 
-@ini_set('session.save_handler', 'user');
 $SessionTableName = $GLOBALS['SessionTableName'];
 
-if (ini_get('session.save_handler') == 'user') {
-    session_set_save_handler(
-        'mysql_session_open',
-        'mysql_session_close',
-        'mysql_session_read',
-        'mysql_session_write',
-        'mysql_session_destroy',
-        'mysql_session_gc'
-    );
-} else {
-    //  @ini_set("session.save_handler","files");
-}
+
+session_set_save_handler(
+	'mysql_session_open',
+	'mysql_session_close',
+	'mysql_session_read',
+	'mysql_session_write',
+	'mysql_session_destroy',
+	'mysql_session_gc'
+);
 
 if (!Sql_Table_exists($GLOBALS['SessionTableName'])) {
     Sql_Create_Table($GLOBALS['SessionTableName'], array(
@@ -58,7 +54,7 @@ function mysql_session_read($SessionID)
 
         return $data[0];
     } else {
-        return false;
+        return '';
     }
 }
 

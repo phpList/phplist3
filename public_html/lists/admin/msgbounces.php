@@ -86,13 +86,12 @@ if ($total > $numpp && !$download ) {
 
 }
 
-
 $messagedata = loadMessageData($messageid);
 if ($download) {
     ob_end_clean();
     header('Content-type: text/csv');
     $filename = 'Bounces on '.campaignTitle($messageid).'.csv';
-    header("Content-disposition:  attachment; filename={$filename}");
+    header('Content-disposition:  attachment; filename="'.$filename.'"');
     ob_start();
 }
 $bouncels = new WebblerListing(s('Bounces on').' '.shortenTextDisplay($messagedata['subject'], 30));

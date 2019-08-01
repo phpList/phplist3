@@ -197,7 +197,7 @@ if ($id) {
 //    print "BOUNDARY: ". $regs[1];
         $multi_part_boundary = $regs[1];
         $parts = explode($multi_part_boundary, $bounce['data']);
-        var_dump($parts);
+
         if (preg_match('/Content-Transfer-Encoding: ([\w-]+)/i', $bounce['data'], $regs)) {
             //     var_dump($regs);
             //     $transfer_encoding = strtolower($regs[1]);

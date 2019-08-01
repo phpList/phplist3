@@ -2310,3 +2310,18 @@ function asyncLoadContentDiv($url,$divname)
         asyncLoadUrl[asyncLoadUrl.length] = "'.$url.'";
      </script>';
 }
+
+/**
+ * Transform a value to be valid for an html id by removing invalid characters.
+ * This is for HTML 4. HTML 5 is more lenient.
+ *
+ * @see https://www.w3.org/TR/html4/types.html#type-id
+ *
+ * @param string $value
+ *
+ * @return string
+ */
+function sanitiseId($value)
+{
+    return preg_replace('/[^0-9A-Za-z\-_:.]/', '', $value);
+}

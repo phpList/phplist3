@@ -47,13 +47,13 @@ while ($row = Sql_fetch_Array($req)) {
     $ls->addColumn($element, s('System').Help('systemmessage'),
         sprintf('<input type=radio name="systemtemplate" value="%d" %s onchange="document.templates.submit();">',
             $row['id'], $row['id'] == $systemtemplate ? 'checked' : ''));
-    $ls->addColumn($element, s('Action'), 
+    $ls->addColumn($element, s('Action'),
         PageLinkDialogOnly(
             'viewtemplate&amp;id='.$row['id']
             , $GLOBALS['img_view']
         ).
         '<span class="edit">'.
-            PageLinkButton('template', $GLOBALS['I18N']->get('Edit'), $row['id'], '', s('Edit'))
+            PageLinkButton('template', $GLOBALS['I18N']->get('Edit'), 'id='.$row['id'], '', s('Edit'))
         .'</span>
         <span class="delete alignButtons">
             <a class="button" href="javascript:deleteRec(\''.PageUrl2('templates', '', 'delete='.$row['id']).'\')" title="'.s('delete').'">'.
@@ -61,7 +61,7 @@ while ($row = Sql_fetch_Array($req)) {
             .'</a>
         </span>'
     );
-    
+
 }
 echo $ls->display();
 

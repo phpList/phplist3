@@ -22,6 +22,8 @@ $some = 0;
 
 // handle commandline
 if ($GLOBALS['commandline']) {
+    $subselect = '';
+    $ownership = '';
     $cline = parseCline();
     reset($cline);
     if (!$cline || !is_array($cline) || !$cline['s'] || !$cline['l']) {

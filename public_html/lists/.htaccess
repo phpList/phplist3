@@ -12,7 +12,7 @@ DirectoryIndex index.php
 		Require all denied
 	</IfModule>
 </FilesMatch>
-# app.php is the entrypoint for phpList4
+# api.php is the entrypoint for phpList4
 <FilesMatch "(index.php|dl.php|ut.php|lt.php|download.php|connector.php|api.php)$">
 	# Apache < 2.3
 	<IfModule !mod_authz_core.c>
