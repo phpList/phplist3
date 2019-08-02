@@ -8,7 +8,7 @@
 [![Stable release](https://img.shields.io/badge/stable-3.4.3-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
-Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters:[https://www.phplist.org](https://www.phplist.org)
+Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: [https://www.phplist.org](https://www.phplist.org)
 
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
 
