@@ -99,19 +99,11 @@ These files are:
 
 <div><img src="https://www.phplist.com/site/images/readme-images/3.svg" width="20px"/> <strong>Copy the files from the tar file to your webroot.</strong></div>
 
-You can copy everything in the `lists` directory in the tar file to your website.
-To facilitate future upgrades, ie to make it easier for you to simply copy
-everything I have now put the "configurable" files in their own directory. They
-reside in "lists/config". This is hopefully going to be the directory that you can
-keep between upgrades, and that will contain the only information that you want to be changed in order to make it work for your own site.
+You can copy everything in the `lists` directory in the tar file to your website. To facilitate future upgrades, ie to make it easier for you to simply copy everything I have now put the "configurable" files in their own directory. They reside in "lists/config". This is hopefully going to be the directory that you can keep between upgrades, and that will contain the only information that you want to be changed in order to make it work for your own site.
 
-<img src="https://www.phplist.com/site/images/readme-images/4.svg" width="20px"/> <strong>Copy your configuration files to lists/config or re-edit the new config file
-sometimes new features are added to the config file, so it's better to use
-the new config file and re-adapt it to your situation.</strong>
+<img src="https://www.phplist.com/site/images/readme-images/4.svg" width="20px"/> <strong>Copy your configuration files to lists/config or re-edit the new config file sometimes new features are added to the config file, so it's better to use the new config file and re-adapt it to your situation.</strong>
 
-An example .htaccess exists file in this directory. You should not allow
-access to this directory from the webserver at all. The example will work with
-apache.
+An example .htaccess exists file in this directory. You should not allow access to this directory from the webserver at all. The example will work with apache.
 
 You can overwrite the files that are there. They are example files.
 
@@ -136,13 +128,9 @@ This process may take quite a while if your database is large. Don't interrupt i
   <h3>Languages, Info files and Contextual help</h3>
 </div>
 
-In the directory `phplists/lists/texts` you will find existing translations of the public
-pages of phpList. You can use them in your config file to make the frontend of the system
-appear in the language of your choice.
+In the directory `phplists/lists/texts` you will find existing translations of the public pages of phpList. You can use them in your config file to make the frontend of the system appear in the language of your choice.
 
-In the config file there are a lot of choices to make about your particular
-installation. Make sure to read it carefully and step by step work your way through
-it. A lot of information is provided with each step.
+In the config file there are a lot of choices to make about your particular installation. Make sure to read it carefully and step by step work your way through it. A lot of information is provided with each step.
 
 #
 
@@ -167,10 +155,7 @@ For the prerequisites of each and Installation guide on your development copy ma
   <h3>Code of Conduct</h3>
 </div>
 
-
-This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By participating in this project and its community, you are expected to uphold
-this code.
+This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project and its community, you are expected to uphold this code.
 
 #
 
