@@ -99,7 +99,7 @@ These files are:
 
 <div><img src="https://www.phplist.com/site/images/readme-images/3.svg" width="20px"/> <strong>Copy the files from the tar file to your webroot.</strong></div>
 
-You can copy everything in the "lists" directory in the tar file to your website.
+You can copy everything in the `lists` directory in the tar file to your website.
 To facilitate future upgrades, ie to make it easier for you to simply copy
 everything I have now put the "configurable" files in their own directory. They
 reside in "lists/config". This is hopefully going to be the directory that you can
@@ -115,7 +115,7 @@ apache.
 
 You can overwrite the files that are there. They are example files.
 
-<div><img src="https://www.phplist.com/site/images/readme-images/5.svg" width="20px"/> Go to http://yourdomain/lists/admin/ and choose the Upgrade link</div> <br/>
+<div><img src="https://www.phplist.com/site/images/readme-images/5.svg" width="20px"/> Go to `http://yourdomain/lists/admin/` and choose the 'Upgrade' link</div> <br/>
 
 <img src="https://www.phplist.com/site/images/readme-images/6.svg" width="20px"/><strong> Click the link on this page.</strong><br/>
 This process may take quite a while if your database is large. Don't interrupt it.
