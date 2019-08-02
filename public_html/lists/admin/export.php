@@ -152,7 +152,3 @@ while ($row = Sql_fetch_array($res)) {
     </p></form>
 
 <?php
-
-if ($checked == 'nodate') {
-    echo '<script type="text/javascript">$("#exportdates").hide();</script>';
-}

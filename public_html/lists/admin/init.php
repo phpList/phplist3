@@ -605,6 +605,9 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 }
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
+}    
+ if (!defined('GOOGLE_SENDERID')) {
+    define('GOOGLE_SENDERID', '');   
 }
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
@@ -672,7 +675,7 @@ if (0 && class_exists('HTTP_Request2')) {
 $GLOBALS['has_curl'] = function_exists('curl_init');
 $GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_curl'];
 
-$GLOBALS['jQuery'] = 'jquery-1.7.1.min.js';
+$GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
 
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {

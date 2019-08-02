@@ -26,9 +26,14 @@ header('Content-Disposition: attachment; filename=subscriberdata.csv');
 ob_start();
 $output = fopen('php://output', 'w');
 
+$csvColumnDelimiter = "\t";
+if (EXPORT_EXCEL) {
+    $csvColumnDelimiter = ',';
+}
+
 // output the column headings
-fputcsv($output, array('','General Subscriber Info'));
-fputcsv($output, array('Email', 'Confirmed','Blacklisted', 'Opted in', 'Bounce count','Entered','Modified','Html email','Subscribe Page','rssfrequency','disabled','extradata'));
+fputcsv($output, array('','General Subscriber Info'), $csvColumnDelimiter);
+fputcsv($output, array('Email', 'Confirmed','Blacklisted', 'Opted in', 'Bounce count','Entered','Modified','Html email','Subscribe Page','rssfrequency','disabled','extradata'), $csvColumnDelimiter);
 
 
 $userrows = Sql_Query(
@@ -43,12 +48,12 @@ $userrows = Sql_Query(
 
 // loop over the rows, outputting them
 while ($row = Sql_Fetch_Assoc($userrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(' '));
+fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array('','User History Info'));
-fputcsv($output, array('ip address', 'Summary','Date', 'Details', 'System Information'));
+fputcsv($output, array('','User History Info'), $csvColumnDelimiter);
+fputcsv($output, array('ip address', 'Summary','Date', 'Details', 'System Information'), $csvColumnDelimiter);
 $userhistoryrows = Sql_Query(
     sprintf(
         'select ip, summary,date, detail, systeminfo 
@@ -61,10 +66,10 @@ $userhistoryrows = Sql_Query(
 
 // loop over the rows, outputting them
 while ($row = Sql_Fetch_Assoc($userhistoryrows))
-    fputcsv($output, $row);
-fputcsv($output, array(' '));
-fputcsv($output, array('','Campaign Info'));
-fputcsv($output, array('Message ID', 'Entered','Viewed', 'Response time'));
+    fputcsv($output, $row, $csvColumnDelimiter);
+fputcsv($output, array(' '), $csvColumnDelimiter);
+fputcsv($output, array('','Campaign Info'), $csvColumnDelimiter);
+fputcsv($output, array('Message ID', 'Entered','Viewed', 'Response time'), $csvColumnDelimiter);
 $msgsrows = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or viewed is null) as notviewed,
     abs(unix_timestamp(entered) - unix_timestamp(viewed)) as responsetime from %s where userid = %d and status = "sent" order by entered desc',
     $GLOBALS['tables']['usermessage'], $user['id']));
@@ -72,11 +77,11 @@ $msgsrows = Sql_Query(sprintf('select messageid,entered,viewed,(viewed = 0 or vi
 
 // loop over the rows, outputting them
 while ($row = Sql_Fetch_Assoc($msgsrows))
-    fputcsv($output, $row);
-fputcsv($output, array(''));
+    fputcsv($output, $row, $csvColumnDelimiter);
+fputcsv($output, array(''), $csvColumnDelimiter);
 
-fputcsv($output, array('','Bounces Info'));
-fputcsv($output, array('Bounce ID', 'Bounce message','Time', 'Bounce','F time'));
+fputcsv($output, array('','Bounces Info'), $csvColumnDelimiter);
+fputcsv($output, array('Bounce ID', 'Bounce message','Time', 'Bounce','F time'), $csvColumnDelimiter);
 $bouncesrows = Sql_Query(sprintf('
 select 
     message_bounce.id
@@ -90,12 +95,12 @@ where
     user = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
 
 while ($row = Sql_Fetch_Assoc($bouncesrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(''));
+fputcsv($output, array(''), $csvColumnDelimiter);
 
-fputcsv($output, array('','Blacklist Info'));
-fputcsv($output, array('Email', 'Name','Data','Added'));
+fputcsv($output, array('','Blacklist Info'), $csvColumnDelimiter);
+fputcsv($output, array('Email', 'Name','Data','Added'), $csvColumnDelimiter);
 $blacklistdata = $GLOBALS['tables']['user_blacklist_data'];
 $blacklist = $GLOBALS['tables']['user_blacklist'];
 $emailaddress = sql_escape($user['email']);
@@ -106,11 +111,11 @@ where b.email = '$emailaddress';
 ");
 
 while ($row = Sql_Fetch_Assoc($blacklistinforows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(''));
-fputcsv($output, array('','Subscriber Attribute Info'));
-fputcsv($output, array('value','name', 'type','tablename'));
+fputcsv($output, array(''), $csvColumnDelimiter);
+fputcsv($output, array('','Subscriber Attribute Info'), $csvColumnDelimiter);
+fputcsv($output, array('value','name', 'type','tablename'), $csvColumnDelimiter);
 
 $userattribute = $GLOBALS['tables']['user_attribute'];
 $attribute = $GLOBALS['tables']['attribute'];
@@ -125,16 +130,16 @@ where u.userid = '$userid';
 
 
 while ($row = Sql_Fetch_Assoc($attributesrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
 $list = $GLOBALS['tables']['list'];
 $listuser = $GLOBALS['tables']['listuser'];
 
-fputcsv($output, array(''));
+fputcsv($output, array(''), $csvColumnDelimiter);
 
 
-fputcsv($output, array('','Lists Membership'));
-fputcsv($output, array('List name','description', 'entered','modified'));
+fputcsv($output, array('','Lists Membership'), $csvColumnDelimiter);
+fputcsv($output, array('List name','description', 'entered','modified'), $csvColumnDelimiter);
 
 $listrows = Sql_Query(
     "select l.name, l.description, u.entered, u.modified from $list as l 
@@ -145,13 +150,13 @@ where u.userid = '$userid';
 
 
 while ($row = Sql_Fetch_Assoc($listrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
 
-fputcsv($output, array(' '));
+fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array('','Links tracking Info'));
-fputcsv($output, array('URL', 'Forward','First Clicked', 'Latest Clicked', 'clicked','Campaign ID'));
+fputcsv($output, array('','Links tracking Info'), $csvColumnDelimiter);
+fputcsv($output, array('URL', 'Forward','First Clicked', 'Latest Clicked', 'clicked','Campaign ID'), $csvColumnDelimiter);
 $linkrows = Sql_Query(
     sprintf(
         'select url, forward, firstclick, latestclick, clicked, messageid 
@@ -162,12 +167,12 @@ $linkrows = Sql_Query(
 );
 
 while ($row = Sql_Fetch_Assoc($linkrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(' '));
+fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array('','UML clicks Info'));
-fputcsv($output, array('Message ID', 'Forward ID','First Click', 'Latest Click', 'clicked','Html Clicked', 'Text Clicked'));
+fputcsv($output, array('','UML clicks Info'), $csvColumnDelimiter);
+fputcsv($output, array('Message ID', 'Forward ID','First Click', 'Latest Click', 'clicked','Html Clicked', 'Text Clicked'), $csvColumnDelimiter);
 $umlrows = Sql_Query(
     sprintf(
         'select messageid, forwardid, firstclick, latestclick, clicked, htmlclicked, textclicked 
@@ -178,12 +183,12 @@ $umlrows = Sql_Query(
 );
 
 while ($row = Sql_Fetch_Assoc($umlrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(' '));
+fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array(' ','User clicks Info'));
-fputcsv($output, array('Link ID', 'Message ID','Name', 'Data', 'Date'));
+fputcsv($output, array(' ','User clicks Info'), $csvColumnDelimiter);
+fputcsv($output, array('Link ID', 'Message ID','Name', 'Data', 'Date'), $csvColumnDelimiter);
 $userclickrows = Sql_Query(
     sprintf(
         'select linkid, userid, messageid, name, data, date 
@@ -194,12 +199,12 @@ $userclickrows = Sql_Query(
 );
 
 while ($row = Sql_Fetch_Assoc($userclickrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
-fputcsv($output, array(' '));
+fputcsv($output, array(' '), $csvColumnDelimiter);
 // output the column headings
-fputcsv($output, array(' ','Message Forward Info'));
-fputcsv($output, array('Message ID','Forward', 'Status', 'Time'));
+fputcsv($output, array(' ','Message Forward Info'), $csvColumnDelimiter);
+fputcsv($output, array('Message ID','Forward', 'Status', 'Time'), $csvColumnDelimiter);
 $forwardrows = Sql_Query(
     sprintf(
         'select message, forward, status, time 
@@ -210,7 +215,7 @@ $forwardrows = Sql_Query(
 );
 
 while ($row = Sql_Fetch_Assoc($forwardrows))
-    fputcsv($output, $row);
+    fputcsv($output, $row, $csvColumnDelimiter);
 
 
 

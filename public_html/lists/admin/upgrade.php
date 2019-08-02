@@ -63,13 +63,15 @@ if (!versionCompare($dbversion,'2.11.11') && $dbversion!=='dev') {
 // only action upgrade if necessary
 if ($force && $dbversion == VERSION  && defined('RELEASEDATE') && RELEASEDATE <= $releaseDBversion) {
     output(s('Your database is already the correct version (%s), including release date version (%s), there is no need to upgrade',$dbversion, $releaseDBversion));
-    unset($_GET['doit']);
+    clearMaintenanceMode();
+   unset($_GET['doit']);
 }
 
 if ($dbversion == VERSION && !$force) {
     output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
 
     echo '<p>'.PageLinkAjax('upgrade&update=tlds', s('update Top Level Domains'), '', 'button').'</p>';
+    clearMaintenanceMode();
 
     echo subscribeToAnnouncementsForm();
 } elseif (isset($_GET['doit']) && $_GET['doit'] == 'yes') {
@@ -175,7 +177,7 @@ if ($dbversion == VERSION && !$force) {
     // Update jQuery version referenced in public page HTML stored in the database
     if (version_compare($dbversion, '3.4.1', '<')) {
 
-        // The new filename does not hard-code the jQuery version number  
+        // The new filename does not hard-code the jQuery version number
         $replacement = "jquery.min.js";
 
         // Replace jQuery version public page footers in config table

@@ -58,7 +58,9 @@ if (!$id) {
     $id = Sql_Insert_Id();
     if (empty($id)) { // something went wrong creating the campaign
         Fatal_Error(s('Unable to create campaign, did you forget to upgrade the database?'));
-        exit;
+        $done = 1;
+
+        return;
     }
 
     if (isset($_GET['list'])) {

@@ -13,6 +13,35 @@ if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50303) {
     die('Your PHP version is too old. Please upgrade PHP before continuing.');
 }
 
+// Check if required PHP modules are installed.
+$requiredExtensions = array(
+    'pcre',
+    'core',
+    'date',
+    'hash',
+    'spl',
+    'json',
+    'filter',
+    'session',
+    'xml',
+    'simplexml',
+    'mysqli',
+);
+
+$notInstalled = array();
+
+foreach ($requiredExtensions as $value) {
+    if (!extension_loaded($value)) {
+        array_push($notInstalled, $value);
+    }
+}
+if (count($notInstalled) > 0) {
+    $message = "The following PHP extensions are missing:" . '<br>';
+    foreach ($notInstalled as $value) {
+        $message .= $value . '<br>';
+    }
+    die($message);
+}
 // make sure we have access to a cryptographically secure pseudorandom number
 // generator (CSPNRG)
 try {

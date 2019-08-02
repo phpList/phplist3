@@ -245,7 +245,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) { // make sure that the list is not private
                 $key = sprintf('%d', $key);
                 if (!empty($key)) {
                     $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
@@ -527,7 +527,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     $lists = '';
     if (is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) {
                 $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS['tables']['listuser'],$userid,$key));
 //        $lists .= "  * ".$_POST["listname"][$key]."\n";
             }
@@ -723,6 +723,10 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     global $tables;
     if (isset($_POST['list'])) {
         $list = $_POST['list'];
+    } elseif (!isset($_POST["subscribe"]) && isset($_GET['list']) && preg_match("/^(\d+,)*\d+$/", $_GET['list'])) {
+        $list_value = "signup";
+        $list_values = explode(",", $_GET["list"]);
+        $list = array_fill_keys($list_values, $list_value);
     } else {
         $list = '';
     }
@@ -742,7 +746,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
 
     foreach ($showlists as $listid) {
-        if (preg_match("/^\d+$/", $listid)) {
+        if (preg_match("/^\d+$/", $listid) && !isPrivateList($listid)) {
             array_push($listset, $listid);
         }
     }
@@ -903,6 +907,8 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
         }
         if (isset($_POST['htmlemail'])) {
             $htmlemail = $_POST['htmlemail'];
+    	} elseif (!isset($_POST["subscribe"]) && isset($_GET['htmlemail']) && in_array($_GET['htmlemail'], [1,0])) {
+      		$htmlemail = $_GET["htmlemail"];
         }
         $data = array();
         $current = array();
