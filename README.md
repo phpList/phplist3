@@ -89,13 +89,13 @@ How to upgrade from any previous version to the latest version
 
 How to upgrade from any previous version to the latest version
 
-<div><img src="https://www.phplist.com/site/images/readme-images/1.svg" width="20px" style="margin-top:5px;"/> <strong>BACKUP your database</strong> (e.g. # mysqldump -u[user] -p[password] [database] > phplist-backup.sql)</div><br/>
+<div><img src="https://www.phplist.com/site/images/readme-images/1.svg" width="20px" style="margin-top:5px;"/> <strong>BACKUP your database</strong> (e.g. `mysqldump -u[user] -p[password] [database] > phplist-backup.sql`)</div><br/>
 
 <div><img src="https://www.phplist.com/site/images/readme-images/2.svg" width="20px"/> <strong>Copy your old configured files to some safe place</strong></div>
 
-   These files are:
-	lists/config/config.php
-        possibly lists/texts/english.inc or any other language.inc if you have edited it
+These files are:
+* `lists/config/config.php`
+* possibly `lists/texts/english.inc` or any other `language.inc` if you have edited it
 
 <div><img src="https://www.phplist.com/site/images/readme-images/3.svg" width="20px"/> <strong>Copy the files from the tar file to your webroot.</strong></div>
 
