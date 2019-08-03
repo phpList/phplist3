@@ -1546,8 +1546,8 @@ function Help($topic, $text = '?')
 function isPrivateList($listid) {
 
     $activeVal = Sql_Query(sprintf('
-          SELECT active 
-          FROM   %s 
+          SELECT active
+          FROM   %s
           WHERE  id = %d',
             $GLOBALS['tables']['list'], sql_escape($listid))
     );
@@ -2237,35 +2237,36 @@ function printarray($array)
 
 function simplePaging($baseurl, $start, $total, $numpp, $itemname = '')
 {
-    $end = $start ? $start + $numpp : $numpp;
-    if ($end > $total) {
-        $end = $total;
-    }
+    $start = max(0, $start);
+    $end = min($total, $start + $numpp);
+
     if (!empty($itemname)) {
         $text = $GLOBALS['I18N']->get('Listing %d to %d of %d');
     } else {
         $text = $GLOBALS['I18N']->get('Listing %d to %d');
     }
-    if ($start > 0) {
-        $listing = sprintf($text, $start + 1, $end, $total).' '.$itemname;
-    } else {
-        $listing = sprintf($text, 1, $end, $total).' '.$itemname;
-        $start = 0;
-    }
+    $listing = sprintf($text, $start + 1, $end, $total).' '.$itemname;
+
     if ($total < $numpp) {
         return $listing;
     }
+    // The last page displays the remaining items
+    $remainingItems = $total % $numpp;
 
-//# 22934 - new code
+    if ($remainingItems == 0) {
+        $remainingItems = $numpp;
+    }
+    $startLast = $total - $remainingItems;
+
     return '<div class="paging">
     <p class="range">' .$listing.'</p><div class="controls">
     <a title="' .$GLOBALS['I18N']->get('First Page').'" class="first" href="'.PageUrl2($baseurl.'&amp;start=0').'"></a>
     <a title="' .$GLOBALS['I18N']->get('Previous').'" class="previous" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
             max(0, $start - $numpp))).'"></a>
     <a title="' .$GLOBALS['I18N']->get('Next').'" class="next" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
-            min($total, $start + $numpp))).'"></a>
+            min($startLast, $start + $numpp))).'"></a>
     <a title="' .$GLOBALS['I18N']->get('Last Page').'" class="last" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
-            $total - $numpp)).'"></a>
+            $startLast)).'"></a>
     </div></div>
   ';
 }
