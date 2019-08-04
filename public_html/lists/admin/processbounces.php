@@ -142,10 +142,9 @@ function findUserID($text)
     //# that should not be too bad
 
     if (!$userid) {
-        preg_match_all('/[\S]+@[\S\.]+/', $text, $regs);
+        preg_match_all('/[._a-zA-Z0-9-]+@[.a-zA-Z0-9-]+/', $text, $regs);
 
-        foreach ($regs[0] as $match) {
-            $email = cleanEmail($match);
+        foreach ($regs[0] as $email) {
             $useridQ = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
                 sql_escape($email)));
             if (!empty($useridQ[0])) {
@@ -236,19 +235,19 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
             $userid, $bounceid));
 
         #Use the date of the bounce, instead of "now" as processing may be different
-        Sql_Query(sprintf('INSERT INTO %s 
-            ( 
-                        user, 
-                        message, 
-                        bounce, 
-                        time 
-            ) 
-            VALUES 
-            ( 
-                        %d, 
-                        -1, 
-                        %d, 
-                        %s 
+        Sql_Query(sprintf('INSERT INTO %s
+            (
+                        user,
+                        message,
+                        bounce,
+                        time
+            )
+            VALUES
+            (
+                        %d,
+                        -1,
+                        %d,
+                        %s
             )',
                 $tables['user_message_bounce'],
                 $userid, $bounceid, $bounceDate)
