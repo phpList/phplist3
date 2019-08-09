@@ -408,6 +408,8 @@ function sendMessageStats($msgid)
     }
     $data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['message'], $msgid));
     $msg .= 'phpList version '.VERSION."\n";
+    $msg .= 'phpList url '.getConfig("website")."\n";
+
     $diff = timeDiff($data['sendstart'], $data['sent']);
 
     if ($data['id'] && $data['processed'] > 10 && $diff != 'very little time') {
