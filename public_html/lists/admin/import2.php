@@ -1,6 +1,8 @@
 <?php
 
 require_once dirname(__FILE__).'/accesscheck.php';
+require_once dirname(__FILE__).'/inc/CSVParser.php';
+
 if (!ALLOW_IMPORT) {
     echo '<p class="information">'.$GLOBALS['I18N']->get('import is not available').'</p>';
 
@@ -196,10 +198,6 @@ if (!empty($_SESSION['import_file'])) {
     $email_list = str_replace("\n\r", "\n", $email_list);
     $email_list = str_replace("\n\n", "\n", $email_list);
 
-    if ($_SESSION['import_record_delimiter'] != "\n") {
-        $email_list = str_replace($_SESSION['import_record_delimiter'], "\n", $email_list);
-    }
-
     // not sure if we need to check on errors
     /*
       for($i=0; $i<count($illegal_cha); $i++) {
@@ -216,11 +214,10 @@ if (!empty($_SESSION['import_file'])) {
       };
     */
     // Split file/emails into array
-    $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
+    $email_list = CSVParser::parseCSV($email_list, $_SESSION['import_record_delimiter'], $_SESSION['import_field_delimiter']); //WARNING the file contents get replace by an array
     output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
-    $header = array_shift($email_list);
+    $headers = array_shift($email_list);
     $total = count($email_list);
-    $headers = str_getcsv($header, $_SESSION['import_field_delimiter']);
     $headers = array_unique($headers);
     $_SESSION['columnnames'] = $headers;
 
@@ -501,11 +498,10 @@ if (count($email_list)) {
     $count['dataupdate'] = 0;
     $count['duplicate'] = 0;
     $additional_emails = 0;
-    foreach ($email_list as $line) {
+    foreach ($email_list as $values) {
         set_time_limit(60);
         // will contain attributes to store / change
         $user = array();
-        $values = str_getcsv($line, $_SESSION['import_field_delimiter']);
         $system_values = array();
         foreach ($system_attribute_mapping as $column => $index) {
             // print '<br/>'.$column . ' = '. $values[$index];
@@ -521,7 +517,7 @@ if (count($email_list)) {
         if (!$index) {
             if ($_SESSION['show_warnings']) {
                 Warn($GLOBALS['I18N']->get('Record has no email').
-                    ": $c -> $line");
+                    ": $c -> ".implode($_SESSION['import_field_delimiter'], $line));
             }
             $index = $GLOBALS['I18N']->get('Invalid Email')." $c";
             $system_values['email'] = $_SESSION['assign_invalid'];
@@ -714,7 +710,7 @@ if (count($email_list)) {
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
                 <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><?php echo Help('testoutput'); ?></td>
             </tr>
-         
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
                 <td><input type="checkbox" name="show_warnings" value="yes"/><?php echo Help('showwarnings'); ?></td>
@@ -728,12 +724,12 @@ if (count($email_list)) {
                 <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><?php echo Help('assigninvalid'); ?>
                 </td>
             </tr>
-        
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
                 <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><?php echo Help('overwriteexisting'); ?></td>
             </tr>
-           
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
                 <td><input type="checkbox" name="retainold" value="yes"/><?php echo Help('retainoldemail'); ?></td>
