@@ -3,11 +3,13 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 require_once dirname(__FILE__).'/EmailSender.php';
 include_once dirname(__FILE__).'/defaultplugin.php';
+require_once dirname(__FILE__).'/AnalyticsQuery.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
 $GLOBALS['authenticationplugin'] = false;
 $GLOBALS['emailsenderplugin'] = false;
+$GLOBALS['analyticsqueryplugin'] = false;
 
 $pluginRootDirs = array();
 if (PLUGIN_ROOTDIRS != '') {
@@ -115,6 +117,12 @@ foreach ($pluginFiles as $file) {
                         $GLOBALS['emailsenderplugin'] = $pluginInstance;
                     }
 
+                    if (!$GLOBALS['analyticsqueryplugin'] && $pluginInstance instanceof AnalyticsQuery) {
+                        $GLOBALS['analyticsqueryplugin'] = $pluginInstance;
+                        // Add 'plugin' as an option on the Settings page
+                        $default_config['analytic_tracker']['values'] += array('plugin' => $analyticsqueryplugin->name);
+                    }
+
                     if (!empty($pluginInstance->DBstruct)) {
                         foreach ($pluginInstance->DBstruct as $tablename => $tablecolumns) {
                             $GLOBALS['tables'][$className.'_'.$tablename] = $GLOBALS['table_prefix'].$className.'_'.$tablename;
@@ -145,7 +153,7 @@ foreach ($plugins as $className => $pluginInstance) {
         $pluginInstance->enabled = false;
         unset($plugins[$className]);
         continue;
-    }                            
+    }
     $pluginInstance->activate();
 }
 
