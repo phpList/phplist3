@@ -2,6 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 include_once dirname(__FILE__).'/date.php';
+include_once dirname(__FILE__).'/analytics.php';
 
 $errormsg = '';
 $done = 0;
@@ -1022,9 +1023,32 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     <div class="campaignTracking">
     <label for="cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
     </div>',
-        Help('googletrack').' '.s('add Google Analytics tracking code'),
+        Help('googletrack').' '.s('Add analytics tracking code'),
         !empty($messagedata['google_track']) ? 'checked="checked"' : '');
 
+    /* add analytics query parameters then hide if not currently enabled */
+    $analytics = getAnalyticsQuery();
+    $editableParameters = $analytics->editableParameters($messagedata);
+
+    if (count($editableParameters) > 0) {
+        $send_content .= '<div id="analytics">';
+
+        foreach ($editableParameters as $field => $default) {
+            $value =  isset($messagedata[$field]) ? $messagedata[$field] : $default;
+            $send_content .= sprintf(
+                '<label>%s <input type="text" name="%s" id="%s" value="%s" size="35"/></label>',
+                $field,
+                $field,
+                $field,
+                $value
+            ) . "\n";
+        }
+        $send_content .= '</div>';
+
+        if (empty($messagedata['google_track'])) {
+            $GLOBALS['pagefooter']['hideanalytics'] = '<script type="text/javascript">$("#analytics").hide()</script>';
+        }
+    }
     $numsent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where messageid = %d',
         $GLOBALS['tables']['usermessage'], $messagedata['id']));
     if ($numsent[0] < RESETSTATS_MAX) {

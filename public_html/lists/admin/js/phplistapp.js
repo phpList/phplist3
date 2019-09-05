@@ -286,6 +286,14 @@ $(document).ready(function () {
         }
     });
 
+    $("#google_track").on("click",function () {
+        if (this.checked) {
+            $("#analytics").show();
+        } else {
+            $("#analytics").hide();
+        }
+    });
+
     $("input:radio[name=sendmethod]").on("change",function () {
         if (this.value == "remoteurl") {
             $("#remoteurl").show();

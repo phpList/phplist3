@@ -162,7 +162,6 @@ if (isset($_GET['tid'])) {
 
 //# hmm a bit heavy to use here @@@optimise
 $messagedata = loadMessageData($messageid);
-$trackingcode = '';
 //print "$track<br/>";
 //print "User $userid, Mess $messageid, Link $linkid";
 
@@ -180,11 +179,9 @@ if (empty($ml['firstclick'])) {
 if ($msgtype == 'H') {
     Sql_query(sprintf('update %s set htmlclicked = htmlclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
-    $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=HTML&utm_campaign='.urlencode($messagedata['subject']);
 } else {
     Sql_query(sprintf('update %s set textclicked = textclicked + 1 where forwardid = %d and messageid = %d',
         $GLOBALS['tables']['linktrack_ml'], $fwdid, $messageid));
-    $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=text&utm_campaign='.urlencode($messagedata['subject']);
 }
 
 $viewed = Sql_Fetch_Row_query(sprintf('select viewed from %s where messageid = %d and userid = %d',
@@ -245,24 +242,13 @@ if (!isset($_SESSION['entrypoint'])) {
 }
 
 if (!empty($messagedata['google_track'])) {
-    //# take off existing tracking code, if found
-    if (strpos($url, 'utm_medium') !== false) {
-        $url = preg_replace('/utm_(\w+)\=[^&]+/', '', $url);
-    }
-    //# 16894 make sure to keep the fragment value at the end of the URL
-    if (strpos($url, '#')) {
-        list($tmplink, $fragment) = explode('#', $url);
-        $url = $tmplink;
-        unset($tmplink);
-        $fragment = '#'.$fragment;
-    } else {
-        $fragment = '';
-    }
-    if (strpos($url, '?')) {
-        $url = $url.'&'.$trackingcode.$fragment;
-    } else {
-        $url = $url.'?'.$trackingcode.$fragment;
-    }
+    require __DIR__ . '/admin/analytics.php';
+
+    $analytics = getAnalyticsQuery();
+    $format = $msgtype == 'H' ? 'HTML' : 'text';
+    $trackingParameters = $analytics->trackingParameters($format, loadMessageData($messageid));
+    $prefix = $analytics->prefix();
+    $url = addAnalyticsTracking($url, $trackingParameters, $prefix);
 }
 
 foreach ($plugins as $pi) {
