@@ -835,31 +835,31 @@ msgstr ""
 msgid "Placeholder"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2245
+#: public_html/lists/admin/connect.php:2244
 #, php-format
 msgid "Listing %d to %d of %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2247
+#: public_html/lists/admin/connect.php:2246
 #, php-format
 msgid "Listing %d to %d"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2262
+#: public_html/lists/admin/connect.php:2263
 msgid "First Page"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2263
+#: public_html/lists/admin/connect.php:2264
 #: public_html/lists/admin/inc/interfacelib.php:835
 msgid "Previous"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2265
+#: public_html/lists/admin/connect.php:2266
 #: public_html/lists/admin/inc/interfacelib.php:876
 msgid "Next"
 msgstr ""
 
-#: public_html/lists/admin/connect.php:2267
+#: public_html/lists/admin/connect.php:2268
 msgid "Last Page"
 msgstr ""
 
@@ -1505,8 +1505,8 @@ msgid ""
 "found in the repository"
 msgstr ""
 
-#: public_html/lists/admin/sendemaillib.php:1105
-#: public_html/lists/admin/sendemaillib.php:1107
+#: public_html/lists/admin/sendemaillib.php:1108
+#: public_html/lists/admin/sendemaillib.php:1110
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
