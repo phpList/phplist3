@@ -27,7 +27,12 @@ matrix:
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.3'
           env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
-
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - dpkg  # see https://github.com/travis-ci/travis-ci/issues/9361
+    - google-chrome-stable
 
 notifications:
   slack:
@@ -89,8 +94,6 @@ script:
 
   # run all feature except @first-run
   - ./vendor/bin/behat -n -fprogress -p $BROWSER --strict --tags="${TAGS}"
-addons:
-  chrome: stable
 
 after_failure:
   - ls -l build/mails
