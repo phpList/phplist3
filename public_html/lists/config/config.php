@@ -12,22 +12,38 @@
 ==============================================================================================================
 */
 // what is your Mysql database server hostname
-$database_host = 'localhost';
+$database_host = 'dev-csi-dbmysql01-portali.site02.nivolapiemonte.it';
 // what is the name of the database we are using
-$database_name = 'phplistdb';
+$database_name = 'dev_db_mailing';
 // what user has access to this database
-$database_user = 'phplist';
+$database_user = 'dev_dbusr_mailing';
 // and what is the password to login to control the database
-$database_password = 'phplist';
+$database_password = '12Car4TT3ri!';
 // if you have an SMTP server, set it here. Otherwise it will use the normal php mail() function
 //# if your SMTP server is called "smtp.mydomain.com" you enter this below like this:
 //#
 //#     define("PHPMAILERHOST",'smtp.mydomain.com');
-define('PHPMAILERHOST', '');
+define('PHPMAILERHOST', 'mailfarm-app.csi.it');
 // if TEST is set to 1 (not 0) it will not actually send ANY messages, but display what it would have sent
 // this is here, to make sure you edited the config file and mails are not sent "accidentally"
 // on unmanaged systems
-define('TEST', 1);
+define('TEST', 0);
+
+/*
+=========================================================================
+
+Settings for requests behind a proxy
+
+=========================================================================
+*/       
+// ex proxy.mydoain.com 
+define('HTTP_PROXY_HOST', 'proxy-srv.csi.it');
+// ex 80. Usually 80,8080 or 3128
+define('HTTP_PROXY_PORT', '80');
+
+$default_system_language = "it";
+
+
 /*
 ==============================================================================================================
 *

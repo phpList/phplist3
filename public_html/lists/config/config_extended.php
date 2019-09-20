@@ -61,6 +61,20 @@ $usertable_prefix = 'phplist_user_';
 $pageroot = '/lists';
 
 /*
+=========================================================================
+
+Settings for requests behind a proxy
+
+=========================================================================
+*/       
+// ex proxy.mydoain.com 
+define('HTTP_PROXY_HOST', 'proxy-srv.csi.it');
+// ex 80. Usually 80,8080 or 3128
+define('HTTP_PROXY_PORT', '80');
+
+
+
+/*
 
 =========================================================================
 
