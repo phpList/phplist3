@@ -27,7 +27,6 @@ function getCurrentphpListVersion($path = '')
  */
 function getResponse($path = '')
 {
-
     $serverUrl = "https://download.phplist.org/version.json";
     $updateUrl = $serverUrl . '?version=' . getCurrentphpListVersion($path);
 
@@ -35,17 +34,11 @@ function getResponse($path = '')
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_URL, $updateUrl);
-    
-    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
-        curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
-        curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
-    }
-    
     $responseFromServer = curl_exec($ch);
-        
     curl_close($ch);
-                              
+
     $responseFromServer = json_decode($responseFromServer, true);
+
     return $responseFromServer;
 }
 
@@ -58,7 +51,6 @@ function getResponse($path = '')
  */
 function checkForUpdate($path = '')
 {
-
     $serverResponse = getResponse($path);
     $version = isset($serverResponse['version']) ? $serverResponse['version'] : '';
     $enabledNotification = true;
