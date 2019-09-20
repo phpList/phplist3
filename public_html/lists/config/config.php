@@ -28,6 +28,19 @@ define('PHPMAILERHOST', '');
 // this is here, to make sure you edited the config file and mails are not sent "accidentally"
 // on unmanaged systems
 define('TEST', 1);
+
+/*
+=========================================================================
+
+Settings for requests behind a proxy
+
+=========================================================================
+*/       
+// ex proxy.mydoain.com 
+define('HTTP_PROXY_HOST', '');
+// ex 80. Usually 80,8080 or 3128
+define('HTTP_PROXY_PORT', '');
+
 /*
 ==============================================================================================================
 *

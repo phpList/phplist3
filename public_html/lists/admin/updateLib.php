@@ -33,6 +33,14 @@ function getResponse($path = '')
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    // proxy  curl settings    
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }
+    
+    
     curl_setopt($ch, CURLOPT_URL, $updateUrl);
     $responseFromServer = curl_exec($ch);
     curl_close($ch);
