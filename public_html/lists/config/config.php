@@ -36,7 +36,7 @@ Settings for requests behind a proxy
 
 =========================================================================
 */       
-// ex proxy.mydoain.com 
+// ex proxy.mydomain.com 
 define('HTTP_PROXY_HOST', '');
 // ex 80. Usually 80,8080 or 3128
 define('HTTP_PROXY_PORT', '');
