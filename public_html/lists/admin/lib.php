@@ -1144,6 +1144,11 @@ function testUrl($url)
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+         // proxy  curl settings    
+        if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+            curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
+            curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+        }    
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
@@ -1272,6 +1277,11 @@ function fetchUrlCurl($url, $request_parameters)
     curl_setopt($curl, CURLOPT_TIMEOUT, $request_parameters['timeout']);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        // proxy  curl settings    
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }    
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($curl, CURLOPT_HEADER, 0);
