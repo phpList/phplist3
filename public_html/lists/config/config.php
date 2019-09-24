@@ -30,18 +30,6 @@ define('PHPMAILERHOST', '');
 define('TEST', 1);
 
 /*
-=========================================================================
-
-Settings for requests behind a proxy
-
-=========================================================================
-*/       
-// ex proxy.mydomain.com 
-define('HTTP_PROXY_HOST', '');
-// ex 80. Usually 80,8080 or 3128
-define('HTTP_PROXY_PORT', '');
-
-/*
 ==============================================================================================================
 *
 * Settings for handling bounces
