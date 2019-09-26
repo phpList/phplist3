@@ -38,8 +38,7 @@ function getResponse($path = '')
     if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
         curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
         curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
-    }
-    
+    }    
     
     curl_setopt($ch, CURLOPT_URL, $updateUrl);
     $responseFromServer = curl_exec($ch);

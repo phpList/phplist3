@@ -866,6 +866,13 @@ define('FORWARD_ALTERNATIVE_CONTENT', 0);
 // To disable the automatic updater change the value to false. By default the value is true.
 define('ALLOW_UPDATER', true);
 
+// Settings for requests behind a proxy       
+// ex proxy.mydomain.com 
+define('HTTP_PROXY_HOST', '');
+// ex 80. Usually 80,8080 or 3128
+define('HTTP_PROXY_PORT', '');
+
+
 // Google mail Feedback loop configuration
 // When feedback loop is configured in Google mail according to https://support.google.com/mail/answer/6254652?hl=en
 // adds constant to email headers

@@ -1144,6 +1144,11 @@ function testUrl($url)
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+         // proxy  curl settings    
+        if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+            curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
+            curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+        }    
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
@@ -1169,7 +1174,7 @@ function testUrl($url)
 }
 
 function fetchUrl($url, $userdata = array())
-{
+{                  
     $content = '';
 
     //# fix the Editor replacing & with &amp;
@@ -1202,7 +1207,7 @@ function fetchUrl($url, $userdata = array())
 
         return $GLOBALS['urlcache'][$url]['content'];
     }
-
+         
     $dbcache_lastmodified = getPageCacheLastModified($url);
     $timeout = time() - $dbcache_lastmodified;
     if ($timeout < REMOTE_URL_REFETCH_TIMEOUT) {
@@ -1215,22 +1220,22 @@ function fetchUrl($url, $userdata = array())
     } else {
         //    logEvent($url.' is not cached in database '.$timeout.' '. $dbcache_lastmodified." ".time());
     }
-
+     
     $request_parameters = array(
         'timeout'        => 600,
         'allowRedirects' => 1,
         'method'         => 'HEAD',
     );
-
+     
     $remote_charset = 'UTF-8';
     //# relying on the last modified header doesn't work for many pages
     //# use current time instead
     //# see http://mantis.phplist.com/view.php?id=7684
 //    $lastmodified = strtotime($header["last-modified"]);
-    $lastmodified = time();
-    $cache = getPageCache($url, $lastmodified);
+    $lastmodified = time();        
+    $cache = getPageCache($url, $lastmodified);   
     if (!$cache) {
-        if (function_exists('curl_init')) {
+        if (function_exists('curl_init')) {  
             $content = fetchUrlCurl($url, $request_parameters);
         } elseif (0 && $GLOBALS['has_pear_http_request'] == 2) {
             //# @#TODO, make it work with Request2
@@ -1266,20 +1271,26 @@ function fetchUrlCurl($url, $request_parameters)
 {
     if (VERBOSE) {
         logEvent($url.' fetching with curl ');
-    }
+    }      
+   
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_TIMEOUT, $request_parameters['timeout']);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        // proxy  curl settings     
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }    
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-    curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');
-    $raw_result = curl_exec($curl);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');   
+    $raw_result = curl_exec($curl);    
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
+    curl_close($curl);                                
     if (VERBOSE) {
         logEvent('fetched '.$url.' status '.$status);
     }
@@ -1292,7 +1303,7 @@ function fetchUrlCurl($url, $request_parameters)
 }
 
 function fetchUrlPear($url, $request_parameters)
-{
+{              
     if (VERBOSE) {
         logEvent($url.' fetching with PEAR');
     }
