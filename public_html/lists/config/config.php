@@ -27,8 +27,7 @@ define('PHPMAILERHOST', '');
 // if TEST is set to 1 (not 0) it will not actually send ANY messages, but display what it would have sent
 // this is here, to make sure you edited the config file and mails are not sent "accidentally"
 // on unmanaged systems
-define('TEST', 1);
-
+define('TEST', 1);            
 /*
 =========================================================================
 
@@ -40,7 +39,6 @@ Settings for requests behind a proxy
 define('HTTP_PROXY_HOST', '');
 // ex 80. Usually 80,8080 or 3128
 define('HTTP_PROXY_PORT', '');
-
 /*
 ==============================================================================================================
 *

@@ -268,7 +268,7 @@ if (!defined('SHOW_SUBSCRIBELINK')) {
 }
 if (!defined('UNSUBSCRIBE_CONFIRMATION')) {
     define('UNSUBSCRIBE_CONFIRMATION', true);
-}
+}   
 if (ASKFORPASSWORD && defined('ENCRYPTPASSWORD') && ENCRYPTPASSWORD) {
     //#https://mantis.phplist.com/view.php?id=16787
     // passwords are encrypted, so we need to stick to md5 to keep working
@@ -622,6 +622,12 @@ if (!isset($GLOBALS['installation_name'])) {
 }
 if (!defined('SESSIONNAME')) {
     define('SESSIONNAME', 'phpList'.$GLOBALS['installation_name'].'session');
+}
+if (!defined ('HTTP_PROXY_HOST')) {
+    define('HTTP_PROXY_HOST', '');
+}
+if (!defined ('HTTP_PROXY_PORT')) {
+    define('HTTP_PROXY_PORT', '');
 }
 //# this doesn't yet work with the FCKEditor
 //ini_set('session.name',str_replace(' ','',SESSIONNAME));
