@@ -1176,7 +1176,6 @@ function testUrl($url)
 function fetchUrl($url, $userdata = array())
 {                  
     $content = '';
-
     //# fix the Editor replacing & with &amp;
     $url = str_ireplace('&amp;', '&', $url);
 
@@ -1188,14 +1187,13 @@ function fetchUrl($url, $userdata = array())
             }
         }
     }
-
     if (!isset($GLOBALS['urlcache'])) {
         $GLOBALS['urlcache'] = array();
     }
 
     $url = expandUrl($url);
-//  print "<h1>Fetching ".$url."</h1>";
-
+     //  print "<h1>Fetching ".$url."</h1>";
+    
     // keep in memory cache in case we send a page to many emails
     if (isset($GLOBALS['urlcache'][$url]) && is_array($GLOBALS['urlcache'][$url])
         && (time() - $GLOBALS['urlcache'][$url]['fetched'] < REMOTE_URL_REFETCH_TIMEOUT)
@@ -1206,8 +1204,7 @@ function fetchUrl($url, $userdata = array())
         }
 
         return $GLOBALS['urlcache'][$url]['content'];
-    }
-         
+    }         
     $dbcache_lastmodified = getPageCacheLastModified($url);
     $timeout = time() - $dbcache_lastmodified;
     if ($timeout < REMOTE_URL_REFETCH_TIMEOUT) {
