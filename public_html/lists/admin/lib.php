@@ -1144,6 +1144,7 @@ function testUrl($url)
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        
        // proxy curl settings 
         if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
             curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_HOST);
