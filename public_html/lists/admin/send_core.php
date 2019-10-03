@@ -1020,7 +1020,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
 
     $send_content .= sprintf('
     <div class="campaignTracking">
-    <label for"cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
+    <label for="cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
     </div>',
         Help('googletrack').' '.s('add Google Analytics tracking code'),
         !empty($messagedata['google_track']) ? 'checked="checked"' : '');
@@ -1030,7 +1030,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     if ($numsent[0] < RESETSTATS_MAX) {
         $send_content .= sprintf('
         <div class="resetStatistics">
-        <label for"cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
+        <label for="cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
         </div>',
             Help('resetstats').' '.s('Reset click statistics'),
             !empty($messagedata['resetstats']) ? 'checked="checked"' : '');
@@ -1040,7 +1040,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
 
     $send_content .= sprintf('
     <div class="isTestCampaign">
-    <label for"cb[istestcampaign]">%s</label><input type="hidden" name="cb[istestcampaign]" value="1" /><input type="checkbox" name="istestcampaign" id="istestcampaign" value="1" %s />
+    <label for="cb[istestcampaign]">%s</label><input type="hidden" name="cb[istestcampaign]" value="1" /><input type="checkbox" name="istestcampaign" id="istestcampaign" value="1" %s />
     </div>',
         Help('istestcampaign').' '.s('This is a test campaign'),
         !empty($messagedata['istestcampaign']) ? 'checked="checked"' : '');
