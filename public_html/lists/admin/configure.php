@@ -158,11 +158,10 @@ if (empty($id)) {
                     }
                     break;
                 case 'select':
-                    if (isset($default_config[$configItem]['values'][$value])) {
-                        $displayValue = $default_config[$configItem]['values'][$value];
-                    } else {
-                        $displayValue = $default_config[$configItem]['value'];
-                    }
+                    $index = isset($default_config[$configItem]['values'][$value])
+                        ? $value
+                        : $default_config[$configItem]['value'];
+                    $displayValue = $default_config[$configItem]['values'][$index];
                     break;
                 default:
                     $displayValue = nl2br(htmlspecialchars(stripslashes($value)));
@@ -183,7 +182,7 @@ if (empty($id)) {
                 $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',
                     $alternate, $configItem, PageURL2('configure', '', "id=$configItem"), s('edit this value'),
                     s('edit'), $default_config[$configItem]['description'],  $infotext, $resourceLink);
-               
+
                 $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>', $configItem,
                     $displayValue);
                 if ($alternate == 1) {
