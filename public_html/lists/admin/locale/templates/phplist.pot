@@ -2658,11 +2658,11 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:184
+#: public_html/lists/admin/configure.php:183
 msgid "edit this value"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:185
+#: public_html/lists/admin/configure.php:184
 #: public_html/lists/admin/spage.php:98 public_html/lists/admin/spage.php:99
 msgid "edit"
 msgstr ""
