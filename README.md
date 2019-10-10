@@ -15,7 +15,7 @@ phpList includes analytics, segmentation, content personalisation, bounce proces
 Deploy it on your own server, or get a hosted account at http://phplist.com.
 
 <div align="center" width="100%">
-  <a href="http://phplist.org/">Community</a> | 
+  <a href="http://phplist.org/">Community</a> |
   <a href="http://phplist.com/">Hosted</a> |
   <a href="https://demo.phplist.org">Demo</a>
   <br>
@@ -141,14 +141,13 @@ In the config file there are a lot of choices to make about your particular inst
   <h3>Themes</h3>
 </div>
 
-Since version 3.3.0 phpList offers you the possibility to switch among two themes:
+phpList comes with [Trevelin](https://github.com/phpList/phplist-ui-bootlist) theme on default. Older versions than 3.4.6, include additionally [Dressprow](https://github.com/phpList/phplist-ui-dressprow) which is not currently maintained. Patches to Dressprow theme are still welcomed. Both themes are available for installation via [GitHub](https://github.com/phpList).
 
-- [Dressprow](https://github.com/phpList/phplist-ui-dressprow)
-- [Trevelin](https://github.com/phpList/phplist-ui-bootlist)
-
-While when you install phpList on production since 3.3.1 the default theme is Trevelin, on the development copy phpList will run a copy of Dressprow.
-To get the latest copy of each theme you should clone them individually into public_html/lists/admin/ui/ 
+To get the latest copy of each theme you should clone them individually into public_html/lists/admin/ui/
 For the prerequisites of each and Installation guide on your development copy make sure you check the README files of the repos.
+
+- [Trevelin](https://github.com/phpList/phplist-ui-bootlist)
+- [Dressprow](https://github.com/phpList/phplist-ui-dressprow)
 
 #
 
