@@ -23,27 +23,27 @@ msgstr ""
 #: public_html/lists/index.php:622
 #, php-format
 msgid "You are logged in as administrator (%s) of this phpList system"
-msgstr "Je bent aangemeld als beheerder (%s) van phpList"
+msgstr "Je bent aangemeld als beheerder (%s) van dit phpList systeem"
 
 #: public_html/lists/index.php:623
 msgid ""
 "You are therefore offered the following choice, which your subscribers will "
 "not see when they load this page."
 msgstr ""
-"Daarom word je de volgende keuze voor gelegd, die jouw abonnees niet zien "
+"Daarom word je de volgende keuze voorgelegd, die jouw abonnees niet zien "
 "als ze deze pagina bezoeken."
 
 #: public_html/lists/index.php:624
 msgid "Go back to admin area"
-msgstr "Ga terug naar de beheerpagina"
+msgstr "Ga terug naar de beheeromgeving"
 
 #: public_html/lists/index.php:625
 msgid "Please choose"
-msgstr "Kies"
+msgstr "Maak een keuze"
 
 #: public_html/lists/index.php:625
 msgid "Make this subscriber confirmed immediately"
-msgstr "Bevestig de inschrijving van deze persoon"
+msgstr "Bevestig direct de inschrijving van deze persoon"
 
 #: public_html/lists/index.php:626
 msgid "Send this subscriber a request for confirmation email"
@@ -70,7 +70,7 @@ msgstr ""
 
 #: public_html/lists/index.php:805
 msgid "\"Jump off\" used by subscriber, reason not requested"
-msgstr "Deze abonnee heeft geen reden gegeven voor de uitschrijving"
+msgstr "Deze abonnee heeft geen reden opgegeven voor de uitschrijving"
 
 #: public_html/lists/index.php:807
 msgid "\"Jump off\" set, reason not requested"
@@ -176,7 +176,7 @@ msgstr "Berichten verwijderd"
 
 #: public_html/lists/admin/send.php:97
 msgid "start a new message"
-msgstr "Maak een nieuw bericht"
+msgstr "Maak een nieuw bericht aan"
 
 #: public_html/lists/admin/send.php:97 public_html/lists/admin/messages.php:77
 msgid "Start a new campaign"
@@ -262,7 +262,7 @@ msgstr "ga naar"
 
 #: public_html/lists/admin/home.php:21 public_html/lists/admin/setup.php:22
 msgid "Initialise Database"
-msgstr "Database tabellen aangemaakt"
+msgstr "Database tabellen aanmaken"
 
 #: public_html/lists/admin/home.php:22
 msgid "to continue"
@@ -582,7 +582,7 @@ msgstr "Verander je eigen details (bijv wachtwoord)"
 
 #: public_html/lists/admin/home.php:391
 msgid "System Functions"
-msgstr "Programma"
+msgstr "Systeem functionaliteiten"
 
 #: public_html/lists/admin/dbcheck.php:8
 msgid "Database structure check"
@@ -1801,7 +1801,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:17
 #: public_html/lists/admin/index.php:290
 msgid "Incorrect processing secret"
-msgstr "Geheim proces niet juist"
+msgstr "Procesgeheim niet juist"
 
 #: public_html/lists/admin/processbounces.php:56
 msgid "Bounce processing error"
@@ -2338,7 +2338,7 @@ msgstr "Niet een volledige URL"
 
 #: public_html/lists/admin/template.php:128
 msgid "No Title"
-msgstr "Geen Titel"
+msgstr "Geen titel"
 
 #: public_html/lists/admin/template.php:130
 msgid "Template does not contain the [CONTENT] placeholder"
@@ -2702,7 +2702,7 @@ msgstr "bewerk deze waarde"
 #: public_html/lists/admin/configure.php:152
 #: public_html/lists/admin/spage.php:66 public_html/lists/admin/spage.php:67
 msgid "edit"
-msgstr "bewerk"
+msgstr "bewerken"
 
 #: public_html/lists/admin/hostedprocessqueuesetup.php:7
 #: public_html/lists/admin/editattributes.php:154
@@ -3749,7 +3749,7 @@ msgstr "Het verzenden van het testbericht naar"
 
 #: public_html/lists/admin/send_core.php:479
 msgid "success"
-msgstr "is gelukt."
+msgstr "gelukt"
 
 #: public_html/lists/admin/send_core.php:484
 msgid "Email address not found to send test message."
@@ -7923,11 +7923,11 @@ msgstr "Beschrijving van de verzendlijst"
 
 #: public_html/lists/admin/editlist.php:183
 msgid "Save"
-msgstr "Sla op"
+msgstr "Opslaan"
 
 #: public_html/lists/admin/editlist.php:184
 msgid "Cancel"
-msgstr "Annuleer"
+msgstr "Annuleren"
 
 #: public_html/lists/admin/editlist.php:184
 msgid "Do not save, and go back to the lists"
