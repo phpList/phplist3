@@ -1,26 +1,21 @@
 <?php
 
-require_once dirname(__FILE__).'/accesscheck.php';
+require_once __DIR__.'/accesscheck.php';
+require __DIR__.'/class.phplistmailerbase.php';
 
-if (defined('PHPMAILER_PATH') and PHPMAILER_PATH != '') {
-    //require_once '/usr/share/php/libphp-phpmailer/class.phpmailer.php'
-    require_once PHPMAILER_PATH;
-} else {
-    //https://github.com/PHPMailer/PHPMailer
-    require_once dirname(__FILE__).'/PHPMailer/PHPMailerAutoload.php';
-}
-
-class PHPlistMailer extends PHPMailer
+class phplistMailer extends phplistMailerBase
 {
+    // Inherited properties
     public $XMailer = ' ';  // disables `X-Mailer' header
     public $WordWrap = 75;
-    public $encoding = 'base64';
+
+    // Additional properties
     public $messageid = 0;
     public $destinationemail = '';
-    public $estimatedsize = 0;
-    public $mailsize = 0;
+
+    private $timeStamp = '';
     private $inBlast = false;
-    public $image_types = array(
+    private $image_types = array(
         'gif'  => 'image/gif',
         'jpg'  => 'image/jpeg',
         'jpeg' => 'image/jpeg',
@@ -32,20 +27,15 @@ class PHPlistMailer extends PHPMailer
         'swf'  => 'application/x-shockwave-flash',
     );
 
-    public $LE = "\n";
-    public $Hello = '';
-    public $timeStamp = '';
-
     public function __construct($messageid, $email, $inBlast = true, $exceptions = false)
     {
         parent::__construct($exceptions);
-        parent::SetLanguage('en', dirname(__FILE__).'/PHPMailer/language/');
         $this->addCustomHeader('X-phpList-version: '.VERSION);
         $this->addCustomHeader("X-MessageID: $messageid");
         $this->addCustomHeader("X-ListMember: $email");
         if (GOOGLE_SENDERID != '') {
             $this->addCustomHeader("Feedback-ID: $messageid:".GOOGLE_SENDERID);
-        }                
+        }
 
         //# amazon SES doesn't like this
         /*
@@ -128,14 +118,14 @@ class PHPlistMailer extends PHPMailer
                 if (!$pop->authorise(PHPMAILERHOST, $this->Port, 30, $GLOBALS['phpmailer_smtpuser'], $GLOBALS['phpmailer_smtppassword'], 1)) {
                     // unable to authenticate, there might be an error message in $pop->getErrors()
                     $poperror = $pop->getErrors();
-                    
-                    if (POPBEFORESMTP_DEBUG) {    
+
+                    if (POPBEFORESMTP_DEBUG) {
                         $this->SMTPDebug = 2;
                         //Ask for HTML-friendly debug output
                         $this->Debugoutput = 'html';
                     }
                 }
-                
+
             } else {
                 // the existing smtp code
                 if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
@@ -145,8 +135,8 @@ class PHPlistMailer extends PHPMailer
                     $this->Password = $GLOBALS['phpmailer_smtppassword'];
                     $this->SMTPAuth = true;
                 }
-            }            
-	    $this->Mailer = 'smtp';
+            }
+        $this->Mailer = 'smtp';
         } elseif (USE_AMAZONSES) {
             $this->Mailer = 'amazonSes';
         } elseif (USE_LOCAL_SPOOL && is_dir(USE_LOCAL_SPOOL) && is_writable(USE_LOCAL_SPOOL)) {
@@ -251,7 +241,7 @@ class PHPlistMailer extends PHPMailer
     {
         $parentheader = parent::CreateHeader();
         if (!empty($this->timeStamp)) {
-            $header = 'Received: '.$this->timeStamp.$this->LE.$parentheader;
+            $header = 'Received: '.$this->timeStamp.$this->lineEnding.$parentheader;
         } else {
             $header = $parentheader;
         }
@@ -340,22 +330,7 @@ class PHPlistMailer extends PHPMailer
 
     public function add_attachment($contents, $filename, $mimetype)
     {
-        //# phpmailer 2.x
-        if (method_exists($this, 'AddStringAttachment')) {
-            $this->AddStringAttachment($contents, $filename, 'base64', $mimetype);
-        } else {
-            //# old phpmailer
-            // Append to $attachment array
-            $cur = count($this->attachment);
-            $this->attachment[$cur][0] = base64_encode($contents);
-            $this->attachment[$cur][1] = $filename;
-            $this->attachment[$cur][2] = $filename;
-            $this->attachment[$cur][3] = $this->encoding;
-            $this->attachment[$cur][4] = $mimetype;
-            $this->attachment[$cur][5] = false; // isStringAttachment
-            $this->attachment[$cur][6] = 'attachment';
-            $this->attachment[$cur][7] = 0;
-        }
+        $this->AddStringAttachment($contents, $filename, 'base64', $mimetype);
     }
 
     public function find_html_images($templateid)
@@ -457,62 +432,8 @@ class PHPlistMailer extends PHPMailer
 
     public function add_html_image($contents, $name = '', $content_type = 'application/octet-stream')
     {
-        //# in phpMailer 2 and up we cannot use AddStringAttachment, because that doesn't use a cid
-        //# we can't write to "attachment" either, because it's private
-
-        /* one way to do it, is using a temporary file, but that'll have
-         * quite an effect on performance and also isn't backward compatible,
-         * because EncodeFile would need to be reverted to the default
-
-        file_put_contents('/tmp/'.$name,base64_decode($contents));
-        $cid = md5(uniqid(time()));
-        $this->AddEmbeddedImage('/tmp/'.$name, $cid, $name,'base64', $content_type);
-        */
-
-        /* So, for now the only way to get this working in phpMailer 2 or up is to make
-         * the attachment array public or add the AddEmbeddedImageString method
-         * we need to add instructions how to patch phpMailer for that.
-         * find out here whether it's been done and give an error if not
-         *
-         * it's been added to phpMailer 5.2.2
-         * http://code.google.com/a/apache-extras.org/p/phpmailer/issues/detail?id=119
-         *
-         *
-         */
-
-        /* @@TODO additional optimisation:
-         *
-         * - we store the image base64 encoded
-         * - then we decode it to pass it back to phpMailer
-         * - when then encodes it again
-         * - best would be to take out a step in there, but that would require more modifications
-         * to phpMailer
-         */
-
         $cid = bin2hex(random_bytes(16)); // @TODO seems this does not need to be random, just unique? perhaps hash($contents)
-        if (method_exists($this, 'AddEmbeddedImageString')) {
-            $this->AddEmbeddedImageString(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
-        } elseif (method_exists($this, 'AddStringEmbeddedImage')) {
-            //# PHPMailer 5.2.5 and up renamed the method
-            //# https://github.com/PHPMailer/PHPMailer/issues/42#issuecomment-16217354
-            $this->AddStringEmbeddedImage(base64_decode($contents), $cid, $name, $this->encoding, $content_type);
-        } elseif (isset($this->attachment) && is_array($this->attachment)) {
-            // Append to $attachment array
-            $cur = count($this->attachment);
-            $this->attachment[$cur][0] = base64_decode($contents);
-            $this->attachment[$cur][1] = ''; //$filename;
-            $this->attachment[$cur][2] = $name;
-            $this->attachment[$cur][3] = 'base64';
-            $this->attachment[$cur][4] = $content_type;
-            $this->attachment[$cur][5] = true; // isStringAttachment
-            $this->attachment[$cur][6] = 'inline';
-            $this->attachment[$cur][7] = $cid;
-        } else {
-            logEvent('phpMailer needs patching to be able to use inline images from templates');
-            echo Error('phpMailer needs patching to be able to use inline images from templates');
-
-            return;
-        }
+        $this->AddStringEmbeddedImage(base64_decode($contents), $cid, $name, 'base64', $content_type);
 
         return $cid;
     }
@@ -746,7 +667,7 @@ class PHPlistMailer extends PHPMailer
     public function EncodeFile($path, $encoding = 'base64')
     {
         // as we already encoded the contents in $path, return $path
-        return chunk_split($path, 76, $this->LE);
+        return chunk_split($path, 76, $this->lineEnding);
     }
 
     /**
@@ -775,8 +696,7 @@ class PHPlistMailer extends PHPMailer
             curl_setopt($curl, CURLOPT_USERAGENT, NAME.' (phpList version '.VERSION.', https://www.phplist.com/)');
             curl_setopt($curl, CURLOPT_POST, 1);
         }
-
-        $header = preg_replace('/'.$this->LE.'$/', '', $header);
+        $header = rtrim($header, "\r\n ");
 
         $date = date('r');
         $aws_signature = base64_encode(hash_hmac('sha256', $date, AWS_SECRETKEY, true));
@@ -789,7 +709,7 @@ class PHPlistMailer extends PHPMailer
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $requestheader);
 
-        $rawmessage = base64_encode($header.$this->LE.$this->LE.$body);
+        $rawmessage = base64_encode($header.$this->lineEnding.$this->lineEnding.$body);
         $requestdata = array(
             'Action'                => 'SendRawEmail',
             'Source'                => $GLOBALS['message_envelope'],
