@@ -6269,12 +6269,12 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:319
+#: public_html/lists/admin/class.phplistmailer.php:309
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:324
+#: public_html/lists/admin/class.phplistmailer.php:314
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
