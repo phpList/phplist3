@@ -68,11 +68,16 @@ if ($num) {
 
         $ls->addColumn($element, s('sent'), formatDateTime($msg['entered'], 1));
         if (!$msg['notviewed']) {
-            $ls->addColumn($element, s('viewed'), formatDateTime($msg['viewed'], 1));
-            $ls->addColumn($element, s('Response time'), secs2time($msg['responsetime']));
+            $viewed = formatDateTime($msg['viewed'], 1);
+            $responseTime = secs2time($msg['responsetime']);
             $resptime += $msg['responsetime'];
             $totalresp += 1;
+        } else {
+            $viewed = '';
+            $responseTime = '';
         }
+        $ls->addColumn($element, s('viewed'), $viewed);
+        $ls->addColumn($element, s('Response time'), $responseTime);
 
         if ($msg['bouncetime']) {
             $ls->addColumn($element, s('bounce'), formatDateTime($msg['bouncetime'], 1));
