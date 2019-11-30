@@ -1,7 +1,14 @@
 <?php
 
+// No need to do anything if already converted and not forcing an update
 $isUTF8 = getConfig('UTF8converted');
 
+if ($isUTF8 && !isset($cline['f'])) {
+    echo s('The DB was already converted to UTF-8 on').' '.$isUTF8;
+    cl_output(s('The DB was already converted to UTF-8 on').' '.$isUTF8);
+
+    return;
+}
 //# convert DB to UTF-8
 if (!$GLOBALS['commandline']) {
     ob_end_flush();
@@ -11,13 +18,9 @@ if (!$GLOBALS['commandline']) {
     }
 }
 
-if (isset($cline['f'])) { //# force
-    unset($isUTF8);
-}
-
 //# check diskspace. this operation duplicates the space required.
 $maxsize = 0;
-$req = Sql_Query('select (data_length+index_length) tablesize 
+$req = Sql_Query('select (data_length+index_length) tablesize
   from information_schema.tables
   where table_schema="' .$GLOBALS['database_name'].'"');
 
@@ -49,54 +52,49 @@ if ($maxsize > $avail && $require_confirmation) {
 
 cl_output(s('Converting DB to use UTF-8, please wait'));
 
-if (empty($isUTF8)) {
-    set_time_limit(5000);
+set_time_limit(5000);
 
-    echo s('Converting DB to use UTF-8, please wait').'<br/>';
-    //# convert to UTF8
-    $dbname = $GLOBALS['database_name'];
-    if (!empty($dbname)) {
-        //# the conversion complains about a key length
-        Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
+echo s('Converting DB to use UTF-8, please wait').'<br/>';
+//# convert to UTF8
+$dbname = $GLOBALS['database_name'];
+if (!empty($dbname)) {
+    //# the conversion complains about a key length
+    Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
 
-        $req = Sql_Query('select * from information_schema.columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
+    $req = Sql_Query('select * from information_schema.columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
 
-        $dbcolumns = array();
-        $dbtables = array();
-        while ($row = Sql_Fetch_Assoc($req)) {
-            //# make sure to only change our own tables, in case we share with other applications
-            if (in_array($row['TABLE_NAME'], array_values($GLOBALS['tables']))) {
-                $dbcolumns[] = $row;
-                $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
-            }
+    $dbcolumns = array();
+    $dbtables = array();
+    while ($row = Sql_Fetch_Assoc($req)) {
+        //# make sure to only change our own tables, in case we share with other applications
+        if (in_array($row['TABLE_NAME'], array_values($GLOBALS['tables']))) {
+            $dbcolumns[] = $row;
+            $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
         }
-
-        cl_output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait'));
-        foreach ($dbtables as $dbtable) {
-            set_time_limit(600);
-            echo($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable).'<br/>';
-            flush();
-            cl_output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable);
-            Sql_Query(sprintf('alter table %s default charset utf8', $dbtable), 1);
-        }
-
-        foreach ($dbcolumns as $dbcolumn) {
-            set_time_limit(600);
-            echo($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']).'<br/>';
-            flush();
-            cl_output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']);
-            Sql_Query(sprintf('alter table %s change column %s %s %s character set utf8',
-                $dbcolumn['TABLE_NAME'], $dbcolumn['COLUMN_NAME'], $dbcolumn['COLUMN_NAME'], $dbcolumn['COLUMN_TYPE']),
-                1);
-        }
-        cl_output($GLOBALS['I18N']->get('upgrade to UTF-8, done'));
-        saveConfig('UTF8converted', date('Y-m-d H:i'), 0);
-    } else {
-        echo s('Unable to determine the name of the database to convert');
     }
+
+    cl_output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait'));
+    foreach ($dbtables as $dbtable) {
+        set_time_limit(600);
+        echo($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable).'<br/>';
+        flush();
+        cl_output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable);
+        Sql_Query(sprintf('alter table %s default charset utf8', $dbtable), 1);
+    }
+
+    foreach ($dbcolumns as $dbcolumn) {
+        set_time_limit(600);
+        echo($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']).'<br/>';
+        flush();
+        cl_output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME']);
+        Sql_Query(sprintf('alter table %s change column %s %s %s character set utf8',
+            $dbcolumn['TABLE_NAME'], $dbcolumn['COLUMN_NAME'], $dbcolumn['COLUMN_NAME'], $dbcolumn['COLUMN_TYPE']),
+            1);
+    }
+    cl_output($GLOBALS['I18N']->get('upgrade to UTF-8, done'));
+    saveConfig('UTF8converted', date('Y-m-d H:i'), 0);
 } else {
-    echo s('The DB was already converted to UTF-8 on').' '.$isUTF8;
-    cl_output(s('The DB was already converted to UTF-8 on').' '.$isUTF8);
+    echo s('Unable to determine the name of the database to convert');
 }
 
 echo '<br/>'.s('All Done');
