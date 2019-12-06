@@ -265,6 +265,9 @@ if (!empty($messagedata['google_track'])) {
     }
 }
 
+foreach ($plugins as $pi) {
+    $pi->linkClick($msgtype, $fwdid, $messageid, $userid, $url);
+}
 //print "Location $url"; exit;
 header('Location: '.$url, true, 303); //# use 303, because Location only uses 302, which gets indexed
 exit;
