@@ -247,7 +247,7 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
                         %d,
                         -1,
                         %d,
-                        %s
+                        "%s"
             )',
                 $tables['user_message_bounce'],
                 $userid, $bounceid, $bounceDate)
