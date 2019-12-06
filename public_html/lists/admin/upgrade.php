@@ -229,9 +229,10 @@ if ($dbversion == VERSION && !$force) {
                 $maxsize = $row['tablesize'];
             }
         }
-        $maxsize = (int) $maxsize;
-        $avail = disk_free_space('/'); //# we have no idea where MySql stores the data, so this is only a crude check and warning.
         $maxsize = (int) ($maxsize * 1.2); //# add another 20%
+        $row = Sql_Fetch_Row_Query('select @@datadir');
+        $dataDir = $row[0];
+        $avail = disk_free_space($dataDir);
 
         //# convert to UTF8
         $dbname = $GLOBALS['database_name'];
