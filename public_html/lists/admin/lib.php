@@ -475,7 +475,9 @@ function constructSystemMail($message, $subject = '')
         $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
         $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
         $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
-        if (!EMAILTEXTCREDITS) {
+        if (!EMAILCREDITS) {
+            $phpListPowered = '';
+        } elseif (!EMAILTEXTCREDITS) {
             $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
                 $GLOBALS['PoweredByImage']);
         } else {

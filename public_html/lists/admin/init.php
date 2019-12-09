@@ -236,6 +236,9 @@ if (!defined('ALLOW_ATTACHMENTS')) {
 if (!defined('EMAILTEXTCREDITS')) {
     define('EMAILTEXTCREDITS', 0);
 }
+if (!defined('EMAILCREDITS')) {
+    define('EMAILCREDITS', 1);
+}
 if (!defined('PAGETEXTCREDITS')) {
     define('PAGETEXTCREDITS', 0);
 }
