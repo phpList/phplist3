@@ -59,6 +59,7 @@
                         QA Engineer
                     </li>
                     <li><a href="http://dragonrider.co.uk/phplist" target="_blank">Dragonrider</a>, Forum Moderator</li>
+                    <li>Check the phpList <a href="https://discuss.phplist.org/" target="_blank">community forum</a>.</li>
                 </ul>
             </td>
         </tr>
@@ -98,7 +99,7 @@
              </td>
             <td>        
                 <p><?php echo s('The translations are provided by the <a href="https://translate.phplist.org/about/contributors/">phpList translation community</a>') ?></p>
-                <p><?php echo s('The <a href="http://translate.phplist.com/" target="translate">translation site</a> runs <a href="http://translate.sourceforge.net/" target="pootle">Pootle</a> an Open Source translation tool, provided by <a href="http://translatehouse.org" target="translatehouse">Translate House</a>') ?></p>
+                <p><?php echo s('The <a href="http://translate.phplist.com/" target="translate">translation site</a> runs <a href="https://weblate.org/en/" target="translatehouse">Weblate</a> an Open Source translation tool.') ?></p>
             </td>
         </tr>
         <tr>
@@ -158,5 +159,13 @@
             }
         }
         ?>
+     <td><?php echo s('Sponsor phpList') ?>
+             </td>
+            <td>
+                <ul>
+                    <li>Support phpList financially on <a href="https://www.patreon.com/phpList" target="_blank">Patreon</a></li>
+                </ul>
+            </td>
+        </tr>
     </table>
 </div>
