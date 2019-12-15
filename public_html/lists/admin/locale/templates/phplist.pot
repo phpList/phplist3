@@ -476,7 +476,7 @@ msgstr ""
 msgid "Message Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:324 public_html/lists/admin/about.php:134
+#: public_html/lists/admin/home.php:324 public_html/lists/admin/about.php:135
 msgid "Plugins"
 msgstr ""
 
@@ -6431,50 +6431,52 @@ msgstr ""
 msgid "Contributors"
 msgstr ""
 
-#: public_html/lists/admin/about.php:67
+#: public_html/lists/admin/about.php:68
 msgid "Design"
 msgstr ""
 
-#: public_html/lists/admin/about.php:78
+#: public_html/lists/admin/about.php:79
 msgid "Design implementation"
 msgstr ""
 
-#: public_html/lists/admin/about.php:89
+#: public_html/lists/admin/about.php:90
 msgid "Documentation"
 msgstr ""
 
-#: public_html/lists/admin/about.php:97
+#: public_html/lists/admin/about.php:98
 msgid "Translations"
 msgstr ""
 
-#: public_html/lists/admin/about.php:100
+#: public_html/lists/admin/about.php:101
 msgid ""
 "The translations are provided by the <a href=\"https://translate.phplist.org/"
 "about/contributors/\">phpList translation community</a>"
 msgstr ""
 
-#: public_html/lists/admin/about.php:101
+#: public_html/lists/admin/about.php:102
 msgid ""
 "The <a href=\"http://translate.phplist.com/\" target=\"translate"
-"\">translation site</a> runs <a href=\"http://translate.sourceforge.net/\" "
-"target=\"pootle\">Pootle</a> an Open Source translation tool, provided by <a "
-"href=\"http://translatehouse.org\" target=\"translatehouse\">Translate "
-"House</a>"
+"\">translation site</a> runs <a href=\"https://weblate.org/en/\" target="
+"\"translatehouse\">Weblate</a> an Open Source translation tool."
 msgstr ""
 
-#: public_html/lists/admin/about.php:106
+#: public_html/lists/admin/about.php:107
 msgid "Acknowledgements"
 msgstr ""
 
-#: public_html/lists/admin/about.php:110
+#: public_html/lists/admin/about.php:111
 msgid ""
 "The developers wish to thank the many contributors to this system, who have "
 "helped out with bug reports, suggestions, donations, feature requests, "
 "sponsoring, translations and many other contributions."
 msgstr ""
 
-#: public_html/lists/admin/about.php:116
+#: public_html/lists/admin/about.php:117
 msgid "Portions of the system include"
+msgstr ""
+
+#: public_html/lists/admin/about.php:162
+msgid "Sponsor phpList"
 msgstr ""
 
 #: public_html/lists/admin/checkbouncerules.php:24
