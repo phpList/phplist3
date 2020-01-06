@@ -862,7 +862,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     $req = Sql_Query("select id,title from {$tables['template']} order by listorder");
     if (Sql_affected_Rows()) {
         $formatting_content .= '<div class="field"><label for="template">'.$GLOBALS['I18N']->get('Use Template').Help('usetemplate').'</label>'.'
-      <select name="template"><option value="0">-- ' .s('select one').'</option>
+      <select name="template"><option value="0" hidden>' .s('--Select one--').'</option>
       <option value="0">-- ' .s('No template').'</option>';
         $req = Sql_Query("select id,title from {$tables['template']} order by listorder");
         while ($row = Sql_Fetch_Array($req)) {
