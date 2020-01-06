@@ -30,11 +30,11 @@ class phplistMailer extends phplistMailerBase
     public function __construct($messageid, $email, $inBlast = true, $exceptions = false)
     {
         parent::__construct($exceptions);
-        $this->addCustomHeader('X-phpList-version: '.VERSION);
-        $this->addCustomHeader("X-MessageID: $messageid");
-        $this->addCustomHeader("X-ListMember: $email");
+        $this->addCustomHeader('X-phpList-version', VERSION);
+        $this->addCustomHeader('X-MessageID', $messageid);
+        $this->addCustomHeader('X-ListMember', $email);
         if (GOOGLE_SENDERID != '') {
-            $this->addCustomHeader("Feedback-ID: $messageid:".GOOGLE_SENDERID);
+            $this->addCustomHeader('Feedback-ID', "$messageid:".GOOGLE_SENDERID);
         }
 
         //# amazon SES doesn't like this
@@ -56,7 +56,7 @@ class phplistMailer extends phplistMailerBase
         */
 
         if (!USE_AMAZONSES && USE_PRECEDENCE_HEADER) {
-            $this->addCustomHeader('Precedence: bulk');
+            $this->addCustomHeader('Precedence', 'bulk');
         }
 
         $newwrap = getConfig('wordwrap');
@@ -233,10 +233,6 @@ class phplistMailer extends phplistMailerBase
         }
     }
 
-    public function build_message()
-    {
-    }
-
     public function CreateHeader()
     {
         $parentheader = parent::CreateHeader();
@@ -249,32 +245,12 @@ class phplistMailer extends phplistMailerBase
         return $header;
     }
 
-    public function CreateBody()
-    {
-        $body = parent::CreateBody();
-        /*
-              if ($this->ContentType != 'text/plain') {
-                foreach ($GLOBALS['plugins'] as $plugin) {
-                  $plreturn =  $plugin->mimeWrap($this->messageid,$body,$this->header,$this->ContentTypeHeader,$this->destinationemail);
-                  if (is_array($plreturn) && sizeof($plreturn) == 3) {
-                    $this->header = $plreturn[0];
-                    $body = $plreturn[1];
-                    $this->ContentTypeHeader = $plreturn[2];
-                  }
-                }
-              }
-        */
-        return $body;
-    }
-
     public function compatSend(
         $to_name,
         $to_addr,
         $from_name,
         $from_addr,
-        $subject = '',
-        $headers = '',
-        $envelope = ''
+        $subject = ''
     ) {
         if (!empty($from_addr) && method_exists($this, 'SetFrom')) {
             $this->SetFrom($from_addr, $from_name);
@@ -301,7 +277,7 @@ class phplistMailer extends phplistMailerBase
                 if ($pluginHeaders && count($pluginHeaders)) {
                     foreach ($pluginHeaders as $headerItem => $headerValue) {
                         //# @@TODO, do we need to sanitise them?
-                        $this->addCustomHeader($headerItem.': '.$headerValue);
+                        $this->addCustomHeader($headerItem, $headerValue);
                     }
                 }
             }
@@ -313,15 +289,6 @@ class phplistMailer extends phplistMailerBase
         } else {
             logEvent(s('Error, empty message-body sending email to %s', $to_addr));
 
-            return 0;
-        }
-
-        return 1;
-    }
-
-    public function Send()
-    {
-        if (!parent::Send()) {
             return 0;
         }
 

@@ -750,11 +750,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if ($forwardedby) {
         $mail->add_timestamp();
     }
-    $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
-    $mail->addCustomHeader('List-Unsubscribe: <'.$text['jumpoffurl'].'>');
-    $mail->addCustomHeader('List-Unsubscribe-Post: List-Unsubscribe=One-Click');
-    $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
-    $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');
+    $mail->addCustomHeader('List-Help', '<'.$text['preferences'].'>');
+    $mail->addCustomHeader('List-Unsubscribe', '<'.$text['jumpoffurl'].'>');
+    $mail->addCustomHeader('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click');
+    $mail->addCustomHeader('List-Subscribe', '<'.getConfig('subscribeurl').'>');
+    $mail->addCustomHeader('List-Owner', '<mailto:'.getConfig('admin_address').'>');
 
     list($dummy, $domaincheck) = explode('@', $destinationemail);
     $text_domains = explode("\n", trim(getConfig('alwayssendtextto')));
