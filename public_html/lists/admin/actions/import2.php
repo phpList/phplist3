@@ -524,7 +524,7 @@ if ($total > 0) {
     } else {
         output($report);
     }
-    $htmlupdate = $report.'<br/>'.PageLinkButton('import2', s('Import some more emails'));
+    $htmlupdate = $report.'<br/>'.'<div class="button btn btn-default">'.PageLinkButton('import2', s('Import some more emails')).'</div>';
     $htmlupdate = str_replace("'", "\'", $htmlupdate);
 
     clearImport();

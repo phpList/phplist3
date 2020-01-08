@@ -576,7 +576,7 @@ if (!empty($_SESSION['test_import'])) {
     printf($GLOBALS['I18N']->get('Test output<br/>If the output looks ok, click %s to submit for real').'<br/><br/>',
         PageLink2($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')));
 
-    echo '<p>'.PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')).'</p>';
+    echo '<div class="button btn btn-default">'.PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')).'</div>';
 
     return;
 }
