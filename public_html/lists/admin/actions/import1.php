@@ -243,7 +243,7 @@ if ($foundBlacklisted) {
             $foundBlacklisted);
 }
 
-$htmlupdate = $report . '<br/>' . PageLinkButton('import1', s('Import some more emails'));
+$htmlupdate = $report . '<br/>' .'<div class="input button btn btn-default">'.PageLinkButton('import1', s('Import some more emails')).'</div>';
 $htmlupdate = str_replace("'", "\'", $htmlupdate);
 
 $status = '<script type="text/javascript">
