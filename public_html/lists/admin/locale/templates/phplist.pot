@@ -3891,7 +3891,7 @@ msgid "Use Template"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:865
-msgid "select one"
+msgid "--Select one--"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:866
@@ -6266,12 +6266,12 @@ msgid ""
 "To avoid overloading the system, this will convert 10000 records at a time"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:309
+#: public_html/lists/admin/class.phplistmailer.php:285
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:314
+#: public_html/lists/admin/class.phplistmailer.php:290
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
