@@ -221,12 +221,12 @@ if (isset($_GET['duplicate'])) {
         $GLOBALS['tables']['message'], (string) Uuid::generate(4), $_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],
         intval($_GET['duplicate'])));
     if ($newId = Sql_Insert_Id()) {  // if we don't have a newId then the copy failed
-		Sql_Query(sprintf('insert into %s (id,name,data) '.
-			'select %d,name,data from %s where name in ("sendmethod","sendurl","campaigntitle","excludelist","subject") and id = %d',
-			$GLOBALS['tables']['messagedata'],$newId,$GLOBALS['tables']['messagedata'],intval($_GET['duplicate'])));
-		Sql_Query(sprintf('insert into %s (messageid, listid, entered)  select %d, listid, now() from %s where messageid = %d',
-			$GLOBALS['tables']['listmessage'],$newId,$GLOBALS['tables']['listmessage'],intval($_GET['duplicate'])));
-	}
+        Sql_Query(sprintf('insert into %s (id,name,data) '.
+            'select %d,name,data from %s where name in ("sendmethod","sendurl","campaigntitle","excludelist","subject") and id = %d',
+            $GLOBALS['tables']['messagedata'],$newId,$GLOBALS['tables']['messagedata'],intval($_GET['duplicate'])));
+        Sql_Query(sprintf('insert into %s (messageid, listid, entered)  select %d, listid, now() from %s where messageid = %d',
+            $GLOBALS['tables']['listmessage'],$newId,$GLOBALS['tables']['listmessage'],intval($_GET['duplicate'])));
+    }
 
 }
 
@@ -501,7 +501,7 @@ END;
             $resultStats .= '
             <tr>
                 <td>' .s('Bounced').'</td>
-                <td>'.(!empty($viewStats['bounces']) ? PageLink2('bounces&id='.$msg['id'],$viewStatsFormatted['bounces']): '0').'</td>
+                <td>'.(!empty($viewStats['bounces']) ? PageLink2('msgbounces&id='.$msg['id'],$viewStatsFormatted['bounces']): '0').'</td>
             </tr>
         </tbody>
     </table>';
