@@ -45,13 +45,16 @@ if (!$messageid) {
 
     return;
 }
-
-$userTable = $GLOBALS['tables']['user'];
-
-$messageBounceTable = $GLOBALS['tables']['user_message_bounce'];
-$query= "select  u.id as userid, u.email, mb.time from $messageBounceTable mb join $userTable u
-on u.id = mb.user where mb.message = '$messageid' ";
-
+$query = <<<END
+    select
+        u.id as userid,
+        u.email,
+        mb.bounce,
+        mb.time
+    from {$tables['user_message_bounce']} mb
+    join {$tables['user']} u on u.id = mb.user
+    where mb.message = $messageid
+END;
 $req = Sql_Query($query);
 
 $total = Sql_Affected_Rows();
@@ -96,15 +99,12 @@ if ($download) {
 }
 $bouncels = new WebblerListing(s('Bounces on').' '.shortenTextDisplay($messagedata['subject'], 30));
 $bouncels->noShader();
-$bouncels->setElementHeading('Subscriber ID');
+$bouncels->setElementHeading(s('Bounce ID'));
+
 while ($row = Sql_Fetch_Array($req)) {
-
-    $bouncels->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
-    $bouncels->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $row['email']));
-    $bouncels->addColumn($row['userid'], s('Time'), formatDateTime($row['time']));
-
-
-
+    $bouncels->addElement($row['bounce'], PageUrl2('bounce&amp;id='.$row['bounce']));
+    $bouncels->addColumn($row['bounce'], s('user'), PageLink2('user&id='.$row['userid'], $row['email']));
+    $bouncels->addColumn($row['bounce'], s('Time'), formatDateTime($row['time']));
 }
 if ($download) {
     ob_end_clean();
@@ -113,4 +113,3 @@ if ($download) {
 } else {
      echo $bouncels->display();
 }
-
