@@ -605,9 +605,9 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 }
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
-}    
+}
  if (!defined('GOOGLE_SENDERID')) {
-    define('GOOGLE_SENDERID', '');   
+    define('GOOGLE_SENDERID', '');
 }
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
@@ -762,6 +762,9 @@ if (!defined('MESSAGEQUEUE_PREPARE')) {
     } else {
         define('MESSAGEQUEUE_PREPARE', false);
     }
+}
+if (!defined('USE_PHPMAILER6')) {
+    define('USE_PHPMAILER6', false);
 }
 if (!isset($GLOBALS['export_mimetype'])) {
     $GLOBALS['export_mimetype'] = 'application/csv';

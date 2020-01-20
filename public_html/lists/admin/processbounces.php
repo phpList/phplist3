@@ -202,7 +202,7 @@ function processImapBounce($link, $num, $header)
         //# just say we did something, when actually we didn't
         return true;
     }
-    $bounceDateFormatted = date('Y-m-d H:i', $bounceDate);
+    $bounceDateFormatted = date('Y-m-d H:i:s', $bounceDate);
 
     Sql_Query(sprintf('insert into %s (date,header,data)
     values("%s","%s","%s")',
@@ -247,7 +247,7 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
                         %d,
                         -1,
                         %d,
-                        %s
+                        "%s"
             )',
                 $tables['user_message_bounce'],
                 $userid, $bounceid, $bounceDate)
