@@ -52,7 +52,7 @@ if (!$id) {
     return;
 }
 
-echo 
+echo
     '<div class="actions pull-right">'.PageLinkButton(
         'mclicks&id='.$id.'&dl=1'
         , s('Download as CSV file')
@@ -68,8 +68,8 @@ $totalbounced = Sql_Fetch_Row_Query(sprintf('select count(user) from %s where me
 $totalclicked = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where messageid = %d',
     $GLOBALS['tables']['linktrack_uml_click'], $id));
 //total clicks
-$totalclicks = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d',
-    $GLOBALS['tables']['linktrack_uml_click'], $id));
+$totalclicks = Sql_Fetch_Row_Query(sprintf('select sum(clicked) from %s where messageid = %d',
+    $GLOBALS['tables']['linktrack_ml'], $id));
 if (($totalusers[0] - $totalbounced[0]) > 0) {
     $clickperc = sprintf('%0.2f', ($totalclicked[0] / ($totalusers[0] - $totalbounced[0]) * 100));
 } else {
@@ -135,7 +135,7 @@ while ($row = Sql_Fetch_Array($req)) {
         FROM
             '.$GLOBALS['tables']['linktrack_uml_click'].'
         WHERE
-            messageid = '.sprintf($id, '%d').' 
+            messageid = '.sprintf($id, '%d').'
             AND forwardid = '.sprintf($row['forwardid'], '%d')
     );
 
