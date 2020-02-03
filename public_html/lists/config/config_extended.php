@@ -561,14 +561,16 @@ Message sending options
 
 */
 
-// you can specify the location of the phpMailer class here
-// if not set, the version included in the distribution will be used
-//# eg for Debian based systems, it may be something like the example below
-//# when you do this, you may need to run some tests, to see if the phpMailer version
-//# you have works ok
-//define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
-// or a more recent version of phpMailer will be like this
-//define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php');
+// If you are using PHPMailer 5 then you can use a different version to the phplist distribution by specifying
+// the location of the PHPMailer autoload file
+// if not set, the PHPMailer version included in the distribution will be used
+// eg for Debian based systems, it may be something like the example below
+// when you do this, you may need to run some tests, to see if the phpMailer version you have works ok
+//define ('PHPMAILER_PATH', '/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php');
+//
+// If you are using PHPMailer 6 then you can use a different version by setting the location of the PHPMailer
+// src directory, e.g.
+//define ('PHPMAILER_PATH', '/var/www/PHPMailer-master/src');
 
 // To use a SMTP server please give your server hostname here, leave it blank to use the standard
 // PHP mail() command.
