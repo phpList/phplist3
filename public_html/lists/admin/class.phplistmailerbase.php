@@ -8,7 +8,10 @@ if (USE_PHPMAILER6) {
             $prefixLength = strlen($prefix);
 
             if (substr($classname, 0, $prefixLength) == $prefix) {
-                $filename = 'PHPMailer6/src/' . substr($classname, $prefixLength) . '.php';
+                $phpmailerPath = defined('PHPMAILER_PATH') && PHPMAILER_PATH != ''
+                    ? rtrim(PHPMAILER_PATH, '/') . '/'
+                    : 'PHPMailer6/src/';
+                $filename = $phpmailerPath . substr($classname, $prefixLength) . '.php';
                 require $filename;
             }
         }
