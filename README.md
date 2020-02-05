@@ -7,7 +7,9 @@
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
 [![Stable release](https://img.shields.io/badge/stable-3.4.8-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
-
+<a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
+<img src="http://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
+</a>
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: [https://www.phplist.org](https://www.phplist.org)
 
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
@@ -59,9 +61,9 @@ Alternatively, you can try out the latest phpList release at [phplist.org](https
 
 
 <div align="center" style="max-width: 100%;">
-      <img src="https://www.phplist.com/site/images/readme-images/icon_1.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
+      <img src="https://www.phplist.com/site/images/readme-images/icon_1.svg" style="   display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
             <img src="https://www.phplist.com/site/images/readme-images/icon_2.svg" style="display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;    margin-left: 100px; margin-right: 100px;"/>
-            <img src="https://www.phplist.com/site/images/readme-images/icon_3.svg" style="	display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
+            <img src="https://www.phplist.com/site/images/readme-images/icon_3.svg" style=" display: inline-block;max-width: 96px;height: auto;width: 30%;margin: 1%;"/>
 </div>
 
 <div align="center" width="100%">
