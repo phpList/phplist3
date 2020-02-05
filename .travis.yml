@@ -7,8 +7,6 @@ cache:
 
 matrix:
     include:
-        - php: '5.4'
-          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '5.5'
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '5.6'
