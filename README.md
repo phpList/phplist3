@@ -10,6 +10,7 @@
 <a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
 <img src="http://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
 </a>
+<br/>
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: [https://www.phplist.org](https://www.phplist.org)
 
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
