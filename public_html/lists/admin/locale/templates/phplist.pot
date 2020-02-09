@@ -1725,7 +1725,7 @@ msgstr ""
 #: public_html/lists/admin/community.php:29
 msgid ""
 "A variety of support options are available for this phpList server, "
-"including free help from communnity members, and professional advice and "
+"including free help from community members, and professional advice and "
 "consulting from experts"
 msgstr ""
 
@@ -5853,23 +5853,23 @@ msgid "Please enter your credentials."
 msgstr ""
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:46
-#: public_html/lists/admin/phpListAdminAuthentication.php:102
+#: public_html/lists/admin/phpListAdminAuthentication.php:103
 msgid "your account has been disabled"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:54
+#: public_html/lists/admin/phpListAdminAuthentication.php:55
 msgid "Admin authentication has changed, please update your admin module"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:58
+#: public_html/lists/admin/phpListAdminAuthentication.php:59
 msgid "incorrect password"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:100
+#: public_html/lists/admin/phpListAdminAuthentication.php:101
 msgid "No such account"
 msgstr ""
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:137
+#: public_html/lists/admin/phpListAdminAuthentication.php:138
 msgid "Nobody"
 msgstr ""
 
