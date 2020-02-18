@@ -145,9 +145,9 @@ function addAbsoluteResources($text, $url)
         for ($i = 0; $i < count($foundtags[0]); ++$i) {
             $match = $foundtags[2][$i];
             $tagmatch = $foundtags[1][$i];
-//      print "$match<br/>";
-            if (preg_match('#^(http|javascript|https|ftp|mailto):#i', $match)) {
-                // scheme exists, leave it alone
+
+            if (preg_match('#^[a-z][a-z0-9.-]*:#i', $match)) {
+                // begins with a scheme, leave it alone
             } elseif (preg_match("#\[.*\]#U", $match)) {
                 // placeholders used, leave alone as well
             } elseif (substr($match, 0, 2) == '//') {
