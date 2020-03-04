@@ -81,7 +81,7 @@ if ($total) {
 echo '<p>'.number_format($total).' '.s('bounces to campaign').' \''.campaignTitle($messageid).'\'</p>';
 $start = empty($_GET['start']) ? 0 : sprintf('%d', $_GET['start']);
 if ($total > $numpp && !$download ) {
-    $limit = "limit $start,".$numpp;
+    $limit = " limit $start, $numpp";
     echo simplePaging('msgbounces&amp;id='.$messageid, $start, $total, $numpp);
 
     $query .= $limit;
