@@ -128,12 +128,11 @@ msgid "%s bounces to list %s"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:96
-#: public_html/lists/admin/msgbounces.php:97
+#: public_html/lists/admin/msgbounces.php:100
 msgid "Bounces on"
 msgstr ""
 
 #: public_html/lists/admin/listbounces.php:107
-#: public_html/lists/admin/msgbounces.php:103
 msgid "Subscriber address"
 msgstr ""
 
@@ -1537,6 +1536,7 @@ msgid "Server:"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:63
+#: public_html/lists/admin/msgbounces.php:106
 #: public_html/lists/admin/editattributes.php:137
 #: public_html/lists/admin/bounces.php:214
 msgid "user"
@@ -1611,7 +1611,7 @@ msgid "No users to copy, is the prefix correct?"
 msgstr ""
 
 #: public_html/lists/admin/import4.php:126
-#: public_html/lists/admin/actions/import1.php:226
+#: public_html/lists/admin/actions/import1.php:227
 #: public_html/lists/admin/import3.php:510
 #: public_html/lists/admin/users.php:455
 msgid "lists"
@@ -1624,7 +1624,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:144
 #: public_html/lists/admin/import4.php:153
 #: public_html/lists/admin/actions/listbounces.php:53
-#: public_html/lists/admin/actions/import1.php:226
+#: public_html/lists/admin/actions/import1.php:227
 #: public_html/lists/admin/list.php:123 public_html/lists/admin/import3.php:510
 msgid "list"
 msgstr ""
@@ -2788,19 +2788,24 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: public_html/lists/admin/msgbounces.php:62
+#: public_html/lists/admin/msgbounces.php:65
 msgid "Select another campaign"
 msgstr ""
 
-#: public_html/lists/admin/msgbounces.php:75
+#: public_html/lists/admin/msgbounces.php:78
 msgid "Download"
 msgstr ""
 
-#: public_html/lists/admin/msgbounces.php:78
+#: public_html/lists/admin/msgbounces.php:81
 msgid "bounces to campaign"
 msgstr ""
 
-#: public_html/lists/admin/msgbounces.php:104
+#: public_html/lists/admin/msgbounces.php:102
+#: public_html/databasestructure.php:126
+msgid "Bounce ID"
+msgstr ""
+
+#: public_html/lists/admin/msgbounces.php:107
 #: public_html/lists/admin/exportuserdata.php:249
 msgid "Time"
 msgstr ""
@@ -4530,7 +4535,7 @@ msgid "%d emails subscribed to the lists"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:490
-#: public_html/lists/admin/actions/import1.php:231
+#: public_html/lists/admin/actions/import1.php:232
 #, php-format
 msgid "%d emails already existed in the database"
 msgstr ""
@@ -4577,7 +4582,7 @@ msgid "phplist Import Results"
 msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:527
-#: public_html/lists/admin/actions/import1.php:246
+#: public_html/lists/admin/actions/import1.php:247
 #: public_html/lists/admin/import2.php:579
 #: public_html/lists/admin/import3.php:533
 #: public_html/lists/admin/importsimple.php:128
@@ -4597,75 +4602,75 @@ msgstr ""
 msgid "Import of existing subscriber"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:149
+#: public_html/lists/admin/actions/import1.php:150
 msgid "Import of new subscriber"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:202
+#: public_html/lists/admin/actions/import1.php:203
 #: public_html/lists/admin/user.php:252
 msgid "No data changed"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:210
+#: public_html/lists/admin/actions/import1.php:211
 msgid "List subscriptions:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:212
+#: public_html/lists/admin/actions/import1.php:213
 msgid "Was subscribed to:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:215
+#: public_html/lists/admin/actions/import1.php:216
 msgid "Is now subscribed to:"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:218
+#: public_html/lists/admin/actions/import1.php:219
 msgid "Not subscribed to any lists"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:221
-msgid "Import by "
+#: public_html/lists/admin/actions/import1.php:222
+msgid "Import by"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:227
+#: public_html/lists/admin/actions/import1.php:228
 #: public_html/lists/admin/import3.php:511
 msgid "new email was"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:227
+#: public_html/lists/admin/actions/import1.php:228
 #: public_html/lists/admin/import3.php:511
 msgid "new emails were"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:228
+#: public_html/lists/admin/actions/import1.php:229
 #: public_html/lists/admin/import3.php:512
 msgid "email was"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:228
+#: public_html/lists/admin/actions/import1.php:229
 #: public_html/lists/admin/import3.php:512
 msgid "emails were"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:234
+#: public_html/lists/admin/actions/import1.php:235
 #, php-format
 msgid "%d invalid emails"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:237
+#: public_html/lists/admin/actions/import1.php:238
 msgid "All the emails already exist in the database."
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:239
+#: public_html/lists/admin/actions/import1.php:240
 #: public_html/lists/admin/import3.php:517
 msgid "succesfully imported to the database and added to"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:239
+#: public_html/lists/admin/actions/import1.php:240
 #: public_html/lists/admin/import3.php:517
 msgid "subscribed to the"
 msgstr ""
 
-#: public_html/lists/admin/actions/import1.php:242
+#: public_html/lists/admin/actions/import1.php:243
 #, php-format
 msgid ""
 "%d emails were found on the do-not-send-list and have not been added to the "
@@ -9012,10 +9017,6 @@ msgstr ""
 
 #: public_html/databasestructure.php:123
 msgid "System Comment"
-msgstr ""
-
-#: public_html/databasestructure.php:126
-msgid "Bounce ID"
 msgstr ""
 
 #: public_html/databasestructure.php:127
