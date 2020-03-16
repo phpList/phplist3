@@ -98,6 +98,14 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'general',
     ),
+    'date_format' => array(
+        'value'       => 'j F Y',
+        'description' => s('Date format'),
+        'infoicon'    => true,
+        'type'        => 'text',
+        'allowempty'  => false,
+        'category'    => 'general',
+    ),
     'rc_notification' => array(
         'value'       => 0,
         'description' => s('Show notification for Release Candidates'),
