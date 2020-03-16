@@ -1711,55 +1711,113 @@ function PageAttributes($data)
     );
 }
 
+/**
+ * Return either the short or long representation of a month in the language for the current admin.
+ * Cache the set of month translations to avoid repeating the translations.
+ *
+ * @param string $month month number 01-12
+ * @param bool   $short generate short or long representation of the month
+ *
+ * @return string
+ */
 function monthName($month, $short = 0)
 {
-    $months = array(
-        '',
-        $GLOBALS['I18N']->get('January'),
-        $GLOBALS['I18N']->get('February'),
-        $GLOBALS['I18N']->get('March'),
-        $GLOBALS['I18N']->get('April'),
-        $GLOBALS['I18N']->get('May'),
-        $GLOBALS['I18N']->get('June'),
-        $GLOBALS['I18N']->get('July'),
-        $GLOBALS['I18N']->get('August'),
-        $GLOBALS['I18N']->get('September'),
-        $GLOBALS['I18N']->get('October'),
-        $GLOBALS['I18N']->get('November'),
-        $GLOBALS['I18N']->get('December'),
-    );
-    $shortmonths = array(
-        '',
-        $GLOBALS['I18N']->get('Jan'),
-        $GLOBALS['I18N']->get('Feb'),
-        $GLOBALS['I18N']->get('Mar'),
-        $GLOBALS['I18N']->get('Apr'),
-        $GLOBALS['I18N']->get('May'),
-        $GLOBALS['I18N']->get('Jun'),
-        $GLOBALS['I18N']->get('Jul'),
-        $GLOBALS['I18N']->get('Aug'),
-        $GLOBALS['I18N']->get('Sep'),
-        $GLOBALS['I18N']->get('Oct'),
-        $GLOBALS['I18N']->get('Nov'),
-        $GLOBALS['I18N']->get('Dec'),
-    );
+    static $shortmonths;
+    static $months;
+
     if ($short) {
-        return $shortmonths[intval($month)];
-    } else {
-        return $months[intval($month)];
+        if ($shortmonths === null) {
+            $shortmonths = array(
+                '',
+                s('Jan'),
+                s('Feb'),
+                s('Mar'),
+                s('Apr'),
+                s('May'),
+                s('Jun'),
+                s('Jul'),
+                s('Aug'),
+                s('Sep'),
+                s('Oct'),
+                s('Nov'),
+                s('Dec'),
+            );
+        }
+
+        return $shortmonths[(int) $month];
     }
+
+    if ($months === null) {
+        $months = array(
+            '',
+            s('January'),
+            s('February'),
+            s('March'),
+            s('April'),
+            s('May'),
+            s('June'),
+            s('July'),
+            s('August'),
+            s('September'),
+            s('October'),
+            s('November'),
+            s('December'),
+        );
+    }
+
+    return $months[(int) $month];
 }
 
+/**
+ * Format a date using a configurable format string.
+ *      d   2-digit day with leading zero
+ *      j   day without leading zero
+ *      F   long representation of month
+ *      m   2-digit month with leading zero
+ *      M   short representation of month
+ *      y   2-digit year
+ *      Y   4-digit year
+ * Optionally force a short representation to be used for the month.
+ *
+ * @param string $date  date as YYYY-MM-DD
+ * @param bool   $short force short representation of the month
+ *
+ * @return string
+ */
 function formatDate($date, $short = 0)
 {
+    $format = getConfig('date_format');
     $year = substr($date, 0, 4);
     $month = substr($date, 5, 2);
     $day = substr($date, 8, 2);
-    $day = sprintf('%d', $day);
+    $specifiers = array(
+        'Y' => $year,
+        'y' => substr($year, 2, 2),
+        'F' => monthName($month, $short),
+        'M' => monthName($month, true),
+        'm' => $month,
+        'd' => $day,
+        'j' => +$day,
+    );
+    $result = strtr($format, $specifiers);
 
-    if ($date) {
-        return $day.' '.monthName(intval($month), $short).' '.$year;
+    return $result;
+}
+
+function formatTime($time, $short = 0)
+{
+    return $time;
+}
+
+function formatDateTime($datetime, $short = 0)
+{
+    if ($datetime == '') {
+        return '';
     }
+    $date = substr($datetime, 0, 10);
+    $time = substr($datetime, 11, 8);
+
+    return formatDate($date, $short).' '.formatTime($time, $short);
 }
 
 $oldestpoweredimage = 'iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAABGdBTUEAALGPC/xhBQAAAMBQTFRFmQAAZgAAmgICmwUFnAgInQsLnxAQbw4OohYWcBERpBwcpiIiqCcnqiwsfCAgrDAwrjU1rzg4sTs7iTAws0FBtEVFtklJuU9Pu1VVn0pKkEREvltbtFxcwWRkw2trm1ZWrGNjx3V1y3x8zoWFqW5u0I6O15ycuoqK3aysxZqa3rm55s3N8t3d9+zs+fHx5t/f/Pf3/fr6////7+/vz8/PtbW1j4+Pb29vVVVVRkZGKioqExMTDg4OBwcHAwMDAAAAB4LGQwAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfSBAITGhB/UY5ZAAAD2ElEQVR4nI2VC3uiOhCGoVqq9YbcZHGxIoI0SLGhIJdt8///1c4kHnVPhTpPK4TPvEzmpkTvsiK/73vckmAuSdJ93/26G5wEhsQN7uuaVTSrWP1BGT1WtCpgUWUf7FhVX1WWVZ/Hz/Qu6ltoSf8ZLFnxwfKypPBXZ02dsrQss7oovnJ+PZa0au6gHqJFT5KuwDmjGctZzp09lux4pF911RRFTT/x+geU8ifqe2T3pX8MEsM+ioY2BThHyyavm5TWRQbhKMS1KVJQOo24ivR/o/RY101Oi4Yd4SUVBoTmNaCqnOYV0POqKLtyR7zBNyoHVz+402nxZqI83uIi+KdSWjtOfFPYh+boeaB8D4N0Xx3LsnzjaRK5hqZOkNwK7u4rIsv6Nyrxl0t7YRmc3ApmneCdLK//efAWhxvPW63cpc3JreCU1QyrNj/31+tul5K1s+brtSzv0p3j7IS0ffHW+lT3kO3aljYbP7eBcyhk6BAKnXGJ6gv8y0NMmg4eD3G1pe97iIvs4OIpCjbearkw1PGoDQzFm7OU5U124sbI3G6HIriIcXY6pnAf+VzCF+kHCIhrm/NJK7iqM+gKdmmvV+Er8hPMHcY44bURrbn0HqGU+OAyxKIV3JQweWh9dphu8dgiCARzNwXujrsfvfCIkGiKUrBBsMvnpAl4xTThBm10qeO8uTQgBDE+XQkF1I4eyBr9fiM6SntC+DsjDqY+d9CTzAQcmHGCdwFX58xdOmKIlClHRQ7yee4gRoQ84VMOnp/BJFaUfcRvpZudF5/AcB2eYns6+z4QKxKgREOevDPYo6E7kjrAkDtw57B38PTgowOIULi65RIhXDpAVUC5ncGSBwF0O8C4W08xqk+pSOQ+XInc/bqWYlEUZ7BtSkpEO8DgzlTm9koPOn7G/i90MQn1a8kX/UFDKAMe48S2430b+BDjqVNsvCmBcPIERp6OuYuDaykCLrYH34a0WQTBmt0EH8hm6f7mhRu8QsCSEGYNFJHvuitYktW15AJX6x6bwt7JSlWNxRJO/ULf/E0QBjDAwGy05dJdeSfJ55INXJhAg9ZfEGHEfVaexzPNssWpcSyCTwvLsngvWQt76QqJzzUcmXPO7QLHq4H00FcGo8ncsHjFRq4Y5NocTFXVuWYAWkh8EoO76onbbwHHHh+oCAaX54aubxPqA9U0tNlsMpmMwSYzVTNMIeErTXCXx/fxsd+7Cd6MTzcPvcfBYIRkKwxD2KnB1vFo9CxsNJ6A2yZItmWdNOT2+73b4LMBGFzG/RrYXBU7uSkKfKA0UyEwVyJwe72Hh1u4v1tVRVPPqSx/AAAAAElFTkSuQmCC';
@@ -2017,11 +2075,6 @@ function versionCompare($thisversion, $latestversion)
     return 0;
 }
 
-function formatTime($time, $short = 0)
-{
-    return $time;
-}
-
 function cleanArray($array)
 {
     $result = array();
@@ -2036,14 +2089,6 @@ function cleanArray($array)
     }
 
     return $result;
-}
-
-function formatDateTime($datetime, $short = 0)
-{
-    $date = substr($datetime, 0, 10);
-    $time = substr($datetime, 11, 8);
-
-    return formatDate($date, $short).' '.formatTime($time, $short);
 }
 
 function cl_processtitle($title)
