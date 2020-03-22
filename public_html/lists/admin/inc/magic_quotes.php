@@ -44,8 +44,31 @@ function removeXss($string)
     }
     //$string = preg_replace('/<script/im','&lt;script',$string);
     $string = htmlspecialchars($string);
-
     return $string;
+}
+
+function disableJavascript($content) {
+    ## disallow Javascript
+    $content = str_ireplace('<script','< script',$content);
+    $content = str_ireplace('onmouseover','on mouse over',$content);
+    $content = str_ireplace('onmouseout','on mouse out',$content);
+    $content = str_ireplace('onmousemove','on mouse move',$content);
+    $content = str_ireplace('onmousedown','on mouse down',$content);
+    $content = str_ireplace('onclick','on click',$content);
+    $content = str_ireplace('ondblclick','on dbl click',$content);
+    $content = str_ireplace('onload','on load',$content);
+    $content = str_ireplace('onunload','on unload',$content);
+    $content = str_ireplace('onerror','on error',$content);
+    $content = str_ireplace('onresize','on resize',$content);
+    $content = str_ireplace('onblur','on blue',$content);
+    $content = str_ireplace('onchange','on change',$content);
+    $content = str_ireplace('onfocus','on focus',$content);
+    $content = str_ireplace('onselect','on select',$content);
+    $content = str_ireplace('onsubmit','on submit',$content);
+    $content = str_ireplace('onreset','on reset',$content);
+    $content = str_ireplace('onkeyup','on keyup',$content);
+    $content = str_ireplace('onkeydown','on keydown',$content);
+    return $content;
 }
 
 /*

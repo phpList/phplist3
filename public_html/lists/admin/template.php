@@ -80,7 +80,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     //$msg = '';
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { //# let's save when sending a test
     $templateok = 1;
-    $title = $_POST['title'];
+    $title = strip_tags($_POST['title']);
     $req = Sql_Query(sprintf('select * from %s where title = "%s" ',$tables['template'], sql_escape($title)));
     if(Sql_Affected_Rows()){
         $titleExists = true;
@@ -91,9 +91,9 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     if($titleExists && !$id){
         $actionresult .= s('The title of the template exists.').'<br/>';
         $templateok = 0;
-
     }
 
+    $content = disableJavascript($content);
     if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
         $images = getTemplateImages($content);
 
