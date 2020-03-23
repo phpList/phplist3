@@ -180,10 +180,11 @@ foreach ($struct as $key => $val) {
         list($a, $b) = explode(':', $val[1]);
     }
     if ($a == 'sys') {
-        if ($b == 'Privileges') { //# this whole thing of using structure is getting silly, @@TODO rewrite without
-        } else {
-            //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
-            if ($b == 'Password') {
+        switch ($b) {
+            case 'Privileges':
+                break;
+            case 'Password':
+                //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
                 if ($addAdmin===true){
 
@@ -233,16 +234,26 @@ foreach ($struct as $key => $val) {
                         s('Update it?'),
                         $checkYes, s('Yes'), $checkNo, s('No'));
                 }
-            } else {
-                if ($b != 'Password') {
-                    if ($addAdmin !==true) {
-                        printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $data[$key]);
-                    }
-                } else {
-                    printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
-                        s('Password'), $key, stripslashes($data[$key]));
+                break;
+            default:
+                if ($addAdmin) {
+                    break;
                 }
-            }
+
+                switch ($key) {
+                    case 'created':
+                        $value = formatDateTime($data[$key]);
+                        break;
+                    case 'modified':
+                        $value = formatDateTime($data[$key]);
+                        break;
+                    case 'passwordchanged':
+                        $value = formatDate($data[$key]);
+                        break;
+                    default:
+                        $value = $data[$key];
+                }
+                printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $value);
         }
     } elseif ($key == 'loginname' && $data[$key] == 'admin') {
         printf('<tr><td>'.s('Login Name').'</td><td>admin</td>');
