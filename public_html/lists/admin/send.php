@@ -109,7 +109,7 @@ if (!$GLOBALS['commandline']) {
             $ls->addElement($element, PageUrl2('send&amp;id='.$row['id']));
             $ls->setClass($element, 'row1');
             //    $ls->addColumn($element,$I18N->get('edit'),PageLink2('send&amp;id='.$row['id'],$I18N->get('edit')));
-            $ls->addColumn($element, $I18N->get('entered'), $row['entered']);
+            $ls->addColumn($element, $I18N->get('entered'), formatDateTime($row['entered']));
             $ls->addColumn($element, $I18N->get('age'), secs2time($row['age']));
             $ls->addRow($element, '',
                 '<a class="del" href="'.PageUrl2('send&amp;delete='.$row['id']).'" title="'.$I18N->get('del').'">'.$I18N->get('del').'</a>');
