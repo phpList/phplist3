@@ -34,7 +34,7 @@ class SMTP
      *
      * @var string
      */
-    const VERSION = '6.1.1';
+    const VERSION = '6.1.5';
 
     /**
      * SMTP line break constant.
@@ -51,11 +51,24 @@ class SMTP
     const DEFAULT_PORT = 25;
 
     /**
-     * The maximum line length allowed by RFC 2822 section 2.1.1.
+     * The maximum line length allowed by RFC 5321 section 4.5.3.1.6,
+     * *excluding* a trailing CRLF break.
+     *
+     * @see https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6
      *
      * @var int
      */
     const MAX_LINE_LENGTH = 998;
+
+    /**
+     * The maximum line length allowed for replies in RFC 5321 section 4.5.3.1.5,
+     * *including* a trailing CRLF line break.
+     *
+     * @see https://tools.ietf.org/html/rfc5321#section-4.5.3.1.5
+     *
+     * @var int
+     */
+    const MAX_REPLY_LENGTH = 512;
 
     /**
      * Debug level for no output.
@@ -372,7 +385,7 @@ class SMTP
         // SMTP server can take longer to respond, give longer timeout for first read
         // Windows does not have support for this timeout function
         if (strpos(PHP_OS, 'WIN') !== 0) {
-            $max = ini_get('max_execution_time');
+            $max = (int) ini_get('max_execution_time');
             // Don't bother if unlimited
             if (0 !== $max && $timeout > $max) {
                 @set_time_limit($timeout);
@@ -1161,13 +1174,13 @@ class SMTP
                 break;
             }
             //Deliberate noise suppression - errors are handled afterwards
-            $str = @fgets($this->smtp_conn, 515);
+            $str = @fgets($this->smtp_conn, self::MAX_REPLY_LENGTH);
             $this->edebug('SMTP INBOUND: "' . trim($str) . '"', self::DEBUG_LOWLEVEL);
             $data .= $str;
             // If response is only 3 chars (not valid, but RFC5321 S4.2 says it must be handled),
-            // or 4th character is a space, we are done reading, break the loop,
-            // string array access is a micro-optimisation over strlen
-            if (!isset($str[3]) || (isset($str[3]) && $str[3] === ' ')) {
+            // or 4th character is a space or a line break char, we are done reading, break the loop.
+            // String array access is a significant micro-optimisation over strlen
+            if (!isset($str[3]) || $str[3] === ' ' || $str[3] === "\r" || $str[3] === "\n") {
                 break;
             }
             // Timed-out? Log and break
@@ -1331,6 +1344,7 @@ class SMTP
         } else {
             $this->last_smtp_transaction_id = false;
             foreach ($this->smtp_transaction_id_patterns as $smtp_transaction_id_pattern) {
+                $matches = [];
                 if (preg_match($smtp_transaction_id_pattern, $reply, $matches)) {
                     $this->last_smtp_transaction_id = trim($matches[1]);
                     break;
