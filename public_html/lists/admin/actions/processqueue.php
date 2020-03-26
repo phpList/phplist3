@@ -1,5 +1,10 @@
 <?php
 
+// adding max processing time option
+if(!empty($_GET['max_processqueue_time'])) {
+  set_time_limit(intval($_GET['max_processqueue_time'])+10);
+}
+
 //# temporarily remove this check, to make sure processing the queue with a remote call continues to work
 //# https://mantis.phplist.com/view.php?id=17316
 //verifyCsrfGetToken();
@@ -184,6 +189,10 @@ if (defined('MAX_PROCESSQUEUE_TIME') && MAX_PROCESSQUEUE_TIME > 0) {
 // in-page processing force to a minute max, and make sure there's a batch size
 if (empty($GLOBALS['commandline'])) {
     $maxProcessQueueTime = min($maxProcessQueueTime, 60);
+    // adding max processing time option
+    if(!empty($_GET['max_processqueue_time'])) {
+        $maxProcessQueueTime=intval($_GET['max_processqueue_time']);
+    }
     if ($counters['num_per_batch'] <= 0) {
         $counters['num_per_batch'] = 10000;
     }
