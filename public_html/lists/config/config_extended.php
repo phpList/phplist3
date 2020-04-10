@@ -601,7 +601,7 @@ define('PHPMAILERHOST', '');
 
 //# SMTP debugging
 // Enable debugging output by phpmailer when sending test emails
-// See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.html#property_SMTPDebug
+// See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.PHPMailer.PHPMailer.html#property_SMTPDebug
 // define('PHPMAILER_SMTP_DEBUG', 0);
 
 //# Smtp Timeout
