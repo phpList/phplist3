@@ -50,6 +50,7 @@ function removeXss($string)
 function disableJavascript($content) {
     ## disallow Javascript
     $content = str_ireplace('<script','< script',$content);
+    $content = str_ireplace('onmouseenter','on mouse enter',$content);
     $content = str_ireplace('onmouseover','on mouse over',$content);
     $content = str_ireplace('onmouseout','on mouse out',$content);
     $content = str_ireplace('onmousemove','on mouse move',$content);
