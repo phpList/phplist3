@@ -1774,6 +1774,7 @@ function monthName($month, $short = 0)
  *      j   day without leading zero
  *      F   long representation of month
  *      m   2-digit month with leading zero
+ *      n   month without leading zero
  *      M   short representation of month
  *      y   2-digit year
  *      Y   4-digit year
@@ -1796,6 +1797,7 @@ function formatDate($date, $short = 0)
         'F' => monthName($month, $short),
         'M' => monthName($month, true),
         'm' => $month,
+        'n' => +$month,
         'd' => $day,
         'j' => +$day,
     );
