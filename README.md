@@ -5,7 +5,7 @@
 
 #
 [![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
-[![Stable release](https://img.shields.io/badge/stable-3.5.2-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+[![Stable release](https://img.shields.io/badge/stable-3.5.3-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License](https://poser.pugx.org/phplist/phplist4-core/license.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 <a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
 <img src="http://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
