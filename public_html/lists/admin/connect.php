@@ -788,7 +788,7 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
-if(ALLOW_UPDATER){
+if(isSuperUser() && ALLOW_UPDATER){
     $GLOBALS['pagecategories']['update'] = array(
         'toplink'=> 'redirecttoupdater',
         'pages'  => array(),
