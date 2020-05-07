@@ -651,7 +651,7 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
     $phpListNewsLastChecked = getConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso']);
     if (empty($phpListNewsLastChecked) || ($phpListNewsLastChecked + 86400 < time())) {
         SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'], time(), 0, 1);
-        $newsIndex = fetchUrl(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
+        $newsIndex = fetchUrlDirect(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
         SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'], $newsIndex, 0, 1);
     }
     $newsIndex = getConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso']);

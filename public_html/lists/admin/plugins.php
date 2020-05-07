@@ -49,7 +49,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     echo '<h2>'.s('Project').': '.$project_name.'</h2>';
 
     $filename = '';
-    $packagefile = file_get_contents($packageurl);
+    $packagefile = fetchUrlDirect($packageurl);
     if (!$packagefile) {
         echo Error(s('Unable to download plugin package, check your connection'));
     } else {
@@ -165,8 +165,6 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
 if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
     Info(s('The plugin root directory is not writable, please install plugins manually'));
-} elseif (ini_get('allow_url_fopen') != '1') {
-    Info(s('The PHP option for <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">URL-aware fopen wrappers</a> needs to be enabled. This is required to allow installation from a remote URL'));
 } elseif (!class_exists('ZipArchive')) {
     Info(s('PHP has no <a href="http://php.net/zip">Zip capability</a>. This is required to allow installation from a remote URL'));
 } else {
@@ -398,22 +396,8 @@ function filterLink($filterParam, $count, $caption)
 function getLatestTag($developer, $repository)
 {
     $tagUrl = "https://api.github.com/repos/$developer/$repository/tags";
-    $now = time();
-    $addedSince = $now - 24 * 60 * 60;
-    $content = getPageCache($tagUrl, $addedSince);
-
-    if ($content === null) {
-        // query result not in cache or cache has expired
-        $options = array(
-            'http' => array(
-                'method' => 'GET',
-                'header' => array("User-Agent: $repository")
-            )
-        );
-        $context = stream_context_create($options);
-        $content = file_get_contents($tagUrl, false, $context);
-        setPageCache($tagUrl, $now, $content);
-    }
+    $ttl = 24 * 60 * 60;
+    $content = fetchUrl($tagUrl, array(), $ttl);
 
     if (!$content) {
         return null;
