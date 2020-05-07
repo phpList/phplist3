@@ -1133,7 +1133,7 @@ function testUrl($url)
     if (VERBOSE) {
         logEvent('Checking '.$url);
     }
-    $code = 500;
+
     if ($GLOBALS['has_curl']) {
         if (VERBOSE) {
             logEvent('Checking curl ');
@@ -1147,18 +1147,24 @@ function testUrl($url)
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.' (https://www.phplist.com)');
+        curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');
         $raw_result = curl_exec($curl);
         $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    } elseif ($GLOBALS['has_pear_http_request']) {
+    } else {
         if (VERBOSE) {
-            logEvent('Checking PEAR ');
+            logEvent('Checking HTTP_Request2 ');
         }
-        @require_once 'HTTP/Request.php';
-        $headreq = new HTTP_Request($url, $request_parameters);
-        $headreq->addHeader('User-Agent', 'phplist v'.VERSION.' (https://www.phplist.com)');
-        if (!PEAR::isError($headreq->sendRequest(false))) {
-            $code = $headreq->getResponseCode();
+        require_once 'HTTP/Request2.php';
+
+        $headreq = new HTTP_Request2($url, HTTP_Request2::METHOD_HEAD, array('follow_redirects' => true));
+        $headreq->setHeader('User-Agent', 'phplist v'.VERSION.'p (https://www.phplist.com)');
+
+        try {
+            $response = $headreq->send();
+            $code = $response->getStatus();
+        } catch (HTTP_Request2_Exception $e) {
+            logEvent(sprintf('Error fetching %s %s', $url, $e->getMessage()));
+            $code = 500;
         }
     }
     if (VERBOSE) {
@@ -1168,7 +1174,19 @@ function testUrl($url)
     return $code;
 }
 
-function fetchUrl($url, $userdata = array())
+/**
+ * Returns the content of a URL from
+ *  the global variable $urlcache,
+ *  or the urlcache table
+ *  or fetching the URL directly.
+ *
+ * @param string $url      the URL to fetch
+ * @param array  $userdata user fields to be replaced in the url
+ * @param int    $ttl      time to live, the number of seconds after which the cached item will expire
+ *
+ * @return string|false the url content or false for an error
+ */
+function fetchUrl($url, $userdata = array(), $ttl = REMOTE_URL_REFETCH_TIMEOUT)
 {
     $content = '';
 
@@ -1193,7 +1211,7 @@ function fetchUrl($url, $userdata = array())
 
     // keep in memory cache in case we send a page to many emails
     if (isset($GLOBALS['urlcache'][$url]) && is_array($GLOBALS['urlcache'][$url])
-        && (time() - $GLOBALS['urlcache'][$url]['fetched'] < REMOTE_URL_REFETCH_TIMEOUT)
+        && (time() - $GLOBALS['urlcache'][$url]['fetched'] < $ttl)
     ) {
         //     logEvent($url . " is cached in memory");
         if (VERBOSE && function_exists('output')) {
@@ -1205,7 +1223,7 @@ function fetchUrl($url, $userdata = array())
 
     $dbcache_lastmodified = getPageCacheLastModified($url);
     $timeout = time() - $dbcache_lastmodified;
-    if ($timeout < REMOTE_URL_REFETCH_TIMEOUT) {
+    if ($timeout < $ttl) {
         //    logEvent($url.' was cached in database');
         if (VERBOSE && function_exists('output')) {
             output('From database cache: '.$url);
@@ -1228,24 +1246,14 @@ function fetchUrl($url, $userdata = array())
     //# see http://mantis.phplist.com/view.php?id=7684
 //    $lastmodified = strtotime($header["last-modified"]);
     $lastmodified = time();
-    $cache = getPageCache($url, $lastmodified);
-    if (!$cache) {
-        if (function_exists('curl_init')) {
-            $content = fetchUrlCurl($url, $request_parameters);
-        } elseif (0 && $GLOBALS['has_pear_http_request'] == 2) {
-            //# @#TODO, make it work with Request2
-            @require_once 'HTTP/Request2.php';
-        } elseif ($GLOBALS['has_pear_http_request']) {
-            @require_once 'HTTP/Request.php';
-            $content = fetchUrlPear($url, $request_parameters);
-        } else {
-            return false;
-        }
-    } else {
+    $content = getPageCache($url, $lastmodified);
+
+    if ($content) {
         if (VERBOSE) {
             logEvent($url.' was cached in database');
         }
-        $content = $cache;
+    } else {
+        $content = fetchUrlDirect($url, $request_parameters);
     }
 
     if (!empty($content)) {
@@ -1260,6 +1268,31 @@ function fetchUrl($url, $userdata = array())
     }
 
     return $content;
+}
+
+/**
+ * Fetches a URL directly.
+ * Use curl if available otherwise fallback to HTTP_Request2.
+ *
+ * @param string  $url               the URL to fetch
+ * @param array   $requestParameters params for the http request
+ *
+ * @return string|false the url content or false for an error
+ */
+function fetchUrlDirect($url, $requestParameters = array())
+{
+    global $has_curl;
+
+    $defaultParameters = array(
+        'timeout' => 10,
+    );
+    $parameters = $requestParameters + $defaultParameters;
+
+    if ($has_curl) {
+        return fetchUrlCurl($url, $parameters);
+    }
+
+    return fetchUrlHttpRequest2($url, $parameters);
 }
 
 function fetchUrlCurl($url, $request_parameters)
@@ -1289,6 +1322,52 @@ function fetchUrlCurl($url, $request_parameters)
     } else {
         return '';
     }
+}
+
+/**
+ * Fetches a URL using the PEAR package HTTP_Request2.
+ *
+ * @param string  $url               the URL to fetch
+ * @param array   $requestParameters params for the http request
+ *
+ * @return string the url content or false for an error
+ */
+function fetchUrlHttpRequest2($url, $requestParameters)
+{
+    require_once 'HTTP/Request2.php';
+
+    if (VERBOSE) {
+        logEvent("Fetching $url with HTTP_Request2");
+    }
+    $request = new HTTP_Request2(
+        $url,
+        HTTP_Request2::METHOD_GET,
+        array(
+            'timeout' => $requestParameters['timeout'],
+            'follow_redirects' => true,
+        )
+    );
+    $request->setHeader('User-Agent', 'phplist v'.VERSION.'p (http://www.phplist.com)');
+
+    try {
+        $response = $request->send();
+
+        if ($response->getStatus() == 200) {
+            $content = $response->getBody();
+
+            if (VERBOSE) {
+                logEvent("Fetched $url");
+            }
+        } else {
+            logEvent(sprintf('Unexpected HTTP status: %s %s', $response->getStatus(), $response->getReasonPhrase()));
+            $content = false;
+        }
+    } catch (HTTP_Request2_Exception $e) {
+        logEvent(sprintf('Error fetching %s %s', $url, $e->getMessage()));
+        $content = false;
+    }
+
+    return $content;
 }
 
 function fetchUrlPear($url, $request_parameters)
@@ -1809,10 +1888,10 @@ function refreshTlds($force = 0)
         //# even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
         SaveConfig('tld_last_sync', time(), 0);
         if (defined('TLD_AUTH_LIST')) {
-            $tlds = fetchUrl(TLD_AUTH_LIST);
+            $tlds = fetchUrlDirect(TLD_AUTH_LIST);
         }
         if ($tlds && defined('TLD_AUTH_MD5')) {
-            $tld_md5 = fetchUrl(TLD_AUTH_MD5);
+            $tld_md5 = fetchUrlDirect(TLD_AUTH_MD5);
             list($remote_md5, $fname) = explode(' ', $tld_md5);
             $mymd5 = md5($tlds);
 //        print 'OK: '.$remote_md5.' '.$mymd5;
