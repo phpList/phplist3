@@ -59,6 +59,7 @@ $default_config = array(
     'website' => array(
         'value'       => $D_website,
         'description' => s('Website address (without http://)'),
+        'infoicon'    => true,
         'type'        => 'text',
         'allowempty'  => false, //# indication this value cannot be empty (1 being it can be empty)
         'category'    => 'general',
