@@ -29,11 +29,8 @@ matrix:
           env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
 
 apt:
-  sources:
-    - google-chrome
   packages:
     - dpkg  # see https://github.com/travis-ci/travis-ci/issues/9361
-    - google-chrome-stable
 
 notifications:
   slack:
