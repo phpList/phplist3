@@ -4,7 +4,6 @@ require_once dirname(__FILE__).'/accesscheck.php';
 include_once dirname(__FILE__).'/date.php';
 include_once dirname(__FILE__).'/analytics.php';
 
-error_reporting(1);
 $errormsg = '';
 $done = 0;
 $messageid = 0;
