@@ -4,6 +4,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 include_once dirname(__FILE__).'/date.php';
 include_once dirname(__FILE__).'/analytics.php';
 
+error_reporting(1);
 $errormsg = '';
 $done = 0;
 $messageid = 0;
@@ -697,12 +698,22 @@ if (!$done) {
     */
 
     $maincontent .= '
-  <div class="field"><label for="subject">' .s('Campaign subject').Help('subject').'</label>'.
-        '<input type="text" name="subject"  id="subjectinput"
-    value="' .htmlentities($utf8_subject, ENT_QUOTES, 'UTF-8').'" size="60" /></div>
+  <div class="field">
+    <label for="subject">' .s('Campaign subject').Help('subject').'</label>'.
+    '<input type="text" name="subject"  id="subjectinput" value="' .htmlentities($utf8_subject, ENT_QUOTES, 'UTF-8').'" size="60" />
+  </div>
+                
   <div class="field"><label for="fromfield">' .$GLOBALS['I18N']->get('From Line').Help('from').'</label>'.'
     <input type="text" name="fromfield"
-   value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>';
+   value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>
+   
+    <div class="field" id="message-text-preview">
+      <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
+      <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
+      <div id="message-text-preview-button">' .
+        PageLinkAjax('send&tab=Content&id='.$id.'&action=generatetextpreview', $GLOBALS['I18N']->get('Generate')).'</a>
+      </div>
+    </div>';
 
     if ($GLOBALS['can_fetchUrl']) {
         $maincontent .= sprintf('
