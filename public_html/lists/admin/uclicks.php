@@ -89,7 +89,7 @@ $ls = new WebblerListing(s('URL Click Statistics'));
 
 $urldata = Sql_Fetch_Array_Query(sprintf('select url from %s where id = %d',
     $GLOBALS['tables']['linktrack_forward'], $id));
-echo '<h3>'.s('Click details for a URL').': <b><a href="'.$urldata['url'].'" target="_blank"><span aria-hidden="true" class="glyphicon glyphicon-new-window"></span> '.$urldata['url'].'</a></b></h3><br/>';
+echo '<h3>'.s('Click details for a URL').': <b><a href="'.htmlspecialchars( $urldata['url'] ).'" target="_blank"><span aria-hidden="true" class="glyphicon glyphicon-new-window"></span> '.htmlspecialchars( $urldata['url'] ).'</a></b></h3><br/>';
 echo PageLinkButton('userclicks&fwdid='.$id, s('View subscribers'));
 if ($download) {
     header('Content-disposition:  attachment; filename="phpList URL click statistics for '.$urldata['url'].'.csv"');
