@@ -12,9 +12,13 @@
                 <?php echo s('Version')?>
             </td>
             <td>
-                Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>, version <?php echo VERSION ?> (<a href="https://github.com/phpList/phplist3/" target="_blank">source)</a>
+                Powered by <a href="https://www.phplist.com" target="_blank">phplist</a>
+                <?php if (!empty($_SESSION['adminloggedin'])) {
+                    echo ', version '. VERSION ;
+                }?> 
+                (<a href="https://github.com/phpList/phplist3/" target="_blank">source)</a>
                 <a href="https://phplist.com/poweredby" target="_blank">
-                    <img src="../images/power-phplist.png" alt="Powered by phpList button" border="0"/></a>
+                    <img src="../images/power-phplist.png" alt="Powered by phpList" border="0"/></a>
             </td>
         </tr>
         <tr>
@@ -44,8 +48,8 @@
             <td>        
                 <ul>
                     <li>Michiel Dethmers, phpList Ltd</li>
-                    <li><a href="https://twitter.com/samtuke" title="Sam Tuke's Twitter feed">Sam Tuke</a>, phpList Ltd
-                    </li>
+                    <li><a href="https://twitter.com/samtuke" title="Sam Tuke's Twitter feed">Sam Tuke</a></li>
+                    <li><a href="http://www.dcameron.me.uk/phplist" target="_blank">Duncan Cameron</a></li>                   
                 </ul>
             </td>
         </tr>
@@ -70,7 +74,7 @@
             <td>
                 <ul>
                     <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
-                    <li><a href="http://alfredomarcopradil.com/" target="_blank">Alfredo Marco Pradil</a></li>
+                    <li><a href="https://harpitoweb.com" target="_blank">Mariela Zárate</a></li>
                 </ul>
             </td>
         </tr>
@@ -81,7 +85,7 @@
             <td>        
                 <ul>
                     <li><a href="http://eyecatching.tn/" target="_blank">Tarek Djebali</a></li>
-                    <li><a href="http://mariela.harpitoweb.com" target="_blank">Mariela Zárate</a></li>
+                    <li><a href="https://harpitoweb.com" target="_blank">Mariela Zárate</a></li>
                 </ul>
             </td>
         </tr>
@@ -140,7 +144,10 @@
         $pg = '';
         if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins']) && count($GLOBALS['plugins'])) {
             foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
-                $pg .= '<li><strong>'.$plugin->name.'</strong> version '.$plugin->version;
+                $pg .= '<li><strong>'.$plugin->name.'</strong>';
+                if (!empty($_SESSION['adminloggedin'])) {
+                    $pg .= 'version '.$plugin->version;
+                }
                 if ($plugin->authors) {
                     $pg .= ' <span class="pluginauthor">by '.$plugin->authors.'</span>';
                 }
