@@ -25,13 +25,11 @@ $shortPreviewText = substr( $previewText, 0, 90);
 // convert to visual preview
 // FIXME this fails when the text is large, or contains £
 
-// replace newlines with spaces
+// remove newlines
 $shortPreviewText = str_replace("\r", "", $shortPreviewText);
 $shortPreviewText = str_replace("\n", "", $shortPreviewText);
-// replace escaped newlines
+
 $shortPreviewText = trim($shortPreviewText);
-$shortPreviewText = preg_replace("/\n/", '\\n', $shortPreviewText);
-$shortPreviewText = preg_replace("/\r/", '', $shortPreviewText);
 
 // fix entities
 $shortPreviewText = htmlentities($shortPreviewText, ENT_IGNORE, 'UTF-8', true);
