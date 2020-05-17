@@ -339,7 +339,7 @@ msgstr ""
 msgid "configure"
 msgstr ""
 
-#: public_html/lists/admin/home.php:140 public_html/lists/admin/plugins.php:298
+#: public_html/lists/admin/home.php:140 public_html/lists/admin/plugins.php:296
 msgid "Configure"
 msgstr ""
 
@@ -475,7 +475,7 @@ msgstr ""
 msgid "Message Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:324 public_html/lists/admin/about.php:135
+#: public_html/lists/admin/home.php:324 public_html/lists/admin/about.php:139
 msgid "Plugins"
 msgstr ""
 
@@ -630,7 +630,7 @@ msgid "Documentation about this error"
 msgstr ""
 
 #: public_html/lists/admin/connect.php:566
-#: public_html/lists/admin/plugins.php:290
+#: public_html/lists/admin/plugins.php:288
 msgid "More information"
 msgstr ""
 
@@ -948,118 +948,111 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:169
 msgid ""
-"The PHP option for <a href=\"http://php.net/manual/en/filesystem."
-"configuration.php#ini.allow-url-fopen\">URL-aware fopen wrappers</a> needs "
-"to be enabled. This is required to allow installation from a remote URL"
-msgstr ""
-
-#: public_html/lists/admin/plugins.php:171
-msgid ""
 "PHP has no <a href=\"http://php.net/zip\">Zip capability</a>. This is "
 "required to allow installation from a remote URL"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:173
+#: public_html/lists/admin/plugins.php:171
 msgid "Install a new plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:175
+#: public_html/lists/admin/plugins.php:173
 msgid "Find plugins"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:178
+#: public_html/lists/admin/plugins.php:176
 msgid "Plugin package URL"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:181
+#: public_html/lists/admin/plugins.php:179
 msgid "Install plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:187
+#: public_html/lists/admin/plugins.php:185
 msgid "Installed plugins"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:188
+#: public_html/lists/admin/plugins.php:186
 msgid "Plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:227
+#: public_html/lists/admin/plugins.php:225
 msgid "Unable to find update"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:229
+#: public_html/lists/admin/plugins.php:227
 #, php-format
 msgid "Version %s is available"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:232
+#: public_html/lists/admin/plugins.php:230
 msgid "Plugin is up-to-date"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:236
+#: public_html/lists/admin/plugins.php:234
 msgid "Plugin must be updated manually"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:249
+#: public_html/lists/admin/plugins.php:247
 msgid "name"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:253
+#: public_html/lists/admin/plugins.php:251
 msgid "developer"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:258
+#: public_html/lists/admin/plugins.php:256
 msgid "description"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:261
+#: public_html/lists/admin/plugins.php:259
 msgid "version"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:265
+#: public_html/lists/admin/plugins.php:263
 msgid "Update status"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:271
+#: public_html/lists/admin/plugins.php:269
 msgid "origin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:279
+#: public_html/lists/admin/plugins.php:277
 msgid "installed"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:284
+#: public_html/lists/admin/plugins.php:282
 msgid "installation Url"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:291
+#: public_html/lists/admin/plugins.php:289
 msgid "Documentation Page"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:299
+#: public_html/lists/admin/plugins.php:297
 msgid "settings"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:307
-#: public_html/lists/admin/plugins.php:312
+#: public_html/lists/admin/plugins.php:305
+#: public_html/lists/admin/plugins.php:310
 msgid "enabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:308
+#: public_html/lists/admin/plugins.php:306
 #: public_html/lists/admin/bouncerules.php:102
 msgid "action"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:318
+#: public_html/lists/admin/plugins.php:316
 msgid "initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:320
+#: public_html/lists/admin/plugins.php:318
 msgid "Initialise"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:326
-#: public_html/lists/admin/plugins.php:327
+#: public_html/lists/admin/plugins.php:324
+#: public_html/lists/admin/plugins.php:325
 #: public_html/lists/admin/templates.php:59
 #: public_html/lists/admin/templates.php:60
 #: public_html/lists/admin/spage.php:100
@@ -1069,55 +1062,55 @@ msgstr ""
 msgid "delete"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:327
+#: public_html/lists/admin/plugins.php:325
 msgid "delete this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:330
+#: public_html/lists/admin/plugins.php:328
 msgid "Dependency check"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:333
+#: public_html/lists/admin/plugins.php:331
 #, php-format
 msgid "Plugin can not be enabled, because \"%s\" is enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:336
+#: public_html/lists/admin/plugins.php:334
 msgid "Plugin can not be enabled."
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:336
+#: public_html/lists/admin/plugins.php:334
 #, php-format
 msgid "Failure on system requirement <strong>%s</strong>"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:344
+#: public_html/lists/admin/plugins.php:342
 msgid "update this plugin"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:344
-#: public_html/lists/admin/plugins.php:348
+#: public_html/lists/admin/plugins.php:342
+#: public_html/lists/admin/plugins.php:346
 msgid "update"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:350
+#: public_html/lists/admin/plugins.php:348
 msgid "details"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:356
+#: public_html/lists/admin/plugins.php:354
 msgid "All"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:358
+#: public_html/lists/admin/plugins.php:356
 msgid "Enabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:360
+#: public_html/lists/admin/plugins.php:358
 #: public_html/lists/admin/admins.php:113
 msgid "Disabled"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:362
+#: public_html/lists/admin/plugins.php:360
 msgid "Update available"
 msgstr ""
 
@@ -1228,105 +1221,105 @@ msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1780 public_html/lists/admin/lib.php:1785
+#: public_html/lists/admin/lib.php:1859 public_html/lists/admin/lib.php:1864
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2041
+#: public_html/lists/admin/lib.php:2120
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2042
+#: public_html/lists/admin/lib.php:2121
 #: public_html/lists/admin/send_core.php:393
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2044 public_html/lists/admin/lib.php:2055
+#: public_html/lists/admin/lib.php:2123 public_html/lists/admin/lib.php:2134
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2046
+#: public_html/lists/admin/lib.php:2125
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2048
+#: public_html/lists/admin/lib.php:2127
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2050
+#: public_html/lists/admin/lib.php:2129
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2052
+#: public_html/lists/admin/lib.php:2131
 #: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2053 public_html/lists/admin/lib.php:2056
+#: public_html/lists/admin/lib.php:2132 public_html/lists/admin/lib.php:2135
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2069
+#: public_html/lists/admin/lib.php:2148
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2070
+#: public_html/lists/admin/lib.php:2149
 msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2076
+#: public_html/lists/admin/lib.php:2155
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2076
+#: public_html/lists/admin/lib.php:2155
 msgid "Do not subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2281
+#: public_html/lists/admin/lib.php:2360
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2283
+#: public_html/lists/admin/lib.php:2362
 msgid "Still loading"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2284
+#: public_html/lists/admin/lib.php:2363
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2285
+#: public_html/lists/admin/lib.php:2364
 msgid "It should be soon now, your page content is almost here."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2286
+#: public_html/lists/admin/lib.php:2365
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2287
+#: public_html/lists/admin/lib.php:2366
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2288
+#: public_html/lists/admin/lib.php:2367
 msgid "It will really be soon now until the page will display."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2289
+#: public_html/lists/admin/lib.php:2368
 msgid "Still loading, please wait"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2290
+#: public_html/lists/admin/lib.php:2369
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2291
+#: public_html/lists/admin/lib.php:2370
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr ""
 
@@ -6411,76 +6404,76 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: public_html/lists/admin/about.php:21
+#: public_html/lists/admin/about.php:25
 msgid "Legal"
 msgstr ""
 
-#: public_html/lists/admin/about.php:23
+#: public_html/lists/admin/about.php:27
 #, php-format
 msgid "phpList is licensed with the %sGNU Affero Public License (AGPL)%s"
 msgstr ""
 
-#: public_html/lists/admin/about.php:30
+#: public_html/lists/admin/about.php:34
 msgid "Certification"
 msgstr ""
 
-#: public_html/lists/admin/about.php:32
+#: public_html/lists/admin/about.php:36
 msgid "Certified Secure by "
 msgstr ""
 
-#: public_html/lists/admin/about.php:42
+#: public_html/lists/admin/about.php:46
 msgid "Developers"
 msgstr ""
 
-#: public_html/lists/admin/about.php:54
+#: public_html/lists/admin/about.php:58
 msgid "Contributors"
 msgstr ""
 
-#: public_html/lists/admin/about.php:68
+#: public_html/lists/admin/about.php:72
 msgid "Design"
 msgstr ""
 
-#: public_html/lists/admin/about.php:79
+#: public_html/lists/admin/about.php:83
 msgid "Design implementation"
 msgstr ""
 
-#: public_html/lists/admin/about.php:90
+#: public_html/lists/admin/about.php:94
 msgid "Documentation"
 msgstr ""
 
-#: public_html/lists/admin/about.php:98
+#: public_html/lists/admin/about.php:102
 msgid "Translations"
 msgstr ""
 
-#: public_html/lists/admin/about.php:101
+#: public_html/lists/admin/about.php:105
 msgid ""
 "The translations are provided by the <a href=\"https://translate.phplist.org/"
 "about/contributors/\">phpList translation community</a>"
 msgstr ""
 
-#: public_html/lists/admin/about.php:102
+#: public_html/lists/admin/about.php:106
 msgid ""
 "The <a href=\"http://translate.phplist.com/\" target=\"translate"
 "\">translation site</a> runs <a href=\"https://weblate.org/en/\" target="
 "\"translatehouse\">Weblate</a> an Open Source translation tool."
 msgstr ""
 
-#: public_html/lists/admin/about.php:107
+#: public_html/lists/admin/about.php:111
 msgid "Acknowledgements"
 msgstr ""
 
-#: public_html/lists/admin/about.php:111
+#: public_html/lists/admin/about.php:115
 msgid ""
 "The developers wish to thank the many contributors to this system, who have "
 "helped out with bug reports, suggestions, donations, feature requests, "
 "sponsoring, translations and many other contributions."
 msgstr ""
 
-#: public_html/lists/admin/about.php:117
+#: public_html/lists/admin/about.php:121
 msgid "Portions of the system include"
 msgstr ""
 
-#: public_html/lists/admin/about.php:162
+#: public_html/lists/admin/about.php:169
 msgid "Sponsor phpList"
 msgstr ""
 
@@ -7142,274 +7135,274 @@ msgstr ""
 msgid "Website address (without http://)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:70
+#: public_html/lists/admin/defaultconfig.php:71
 msgid "Domain Name of your server (for email)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:79
+#: public_html/lists/admin/defaultconfig.php:80
 msgid "Person in charge of this system (one email address)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:87
+#: public_html/lists/admin/defaultconfig.php:88
 msgid "Name of the organisation"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:95
+#: public_html/lists/admin/defaultconfig.php:96
 msgid "Logo of the organisation"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:103
+#: public_html/lists/admin/defaultconfig.php:104
 msgid "Date format"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:111
+#: public_html/lists/admin/defaultconfig.php:112
 msgid "Show notification for Release Candidates"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:121
+#: public_html/lists/admin/defaultconfig.php:122
 msgid "Secret for remote processing"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:129
+#: public_html/lists/admin/defaultconfig.php:130
 msgid "List of email addresses to CC in system messages (separate by commas)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:136
+#: public_html/lists/admin/defaultconfig.php:137
 msgid "Default for 'From:' in a campaign"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:143
+#: public_html/lists/admin/defaultconfig.php:144
 msgid "Default for 'address to alert when sending starts'"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:150
+#: public_html/lists/admin/defaultconfig.php:151
 msgid "Default for 'address to alert when sending finishes'"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:157
+#: public_html/lists/admin/defaultconfig.php:158
 msgid "Always add analytics tracking code to campaigns"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:165
+#: public_html/lists/admin/defaultconfig.php:166
 msgid "Analytics tracking code to add to campaign URLs"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:173
+#: public_html/lists/admin/defaultconfig.php:174
 msgid ""
 "Who gets the reports (email address, separate multiple emails with a comma)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:182
+#: public_html/lists/admin/defaultconfig.php:183
 msgid "From email address for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:189
+#: public_html/lists/admin/defaultconfig.php:190
 msgid "Webmaster"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:190
+#: public_html/lists/admin/defaultconfig.php:191
 msgid "Name for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:199
+#: public_html/lists/admin/defaultconfig.php:200
 msgid "Reply-to email address for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:210
+#: public_html/lists/admin/defaultconfig.php:211
 msgid ""
 "If there is only one visible list, should it be hidden in the page and "
 "automatically subscribe users who sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:220
+#: public_html/lists/admin/defaultconfig.php:221
 msgid "Categories for lists. Separate with commas."
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:229
+#: public_html/lists/admin/defaultconfig.php:230
 msgid "Display list categories on subscribe page"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:238
+#: public_html/lists/admin/defaultconfig.php:239
 msgid "Width of a textline field (numerical)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:248
+#: public_html/lists/admin/defaultconfig.php:249
 msgid "Dimensions of a textarea field (rows,columns)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:257
+#: public_html/lists/admin/defaultconfig.php:258
 msgid "Send notifications about subscribe, update and unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:266
+#: public_html/lists/admin/defaultconfig.php:267
 msgid "The default subscribe page when there are multiple"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:277
+#: public_html/lists/admin/defaultconfig.php:278
 msgid "The default HTML template to use when sending a message"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:286
+#: public_html/lists/admin/defaultconfig.php:287
 msgid "The HTML wrapper template for system messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:300
+#: public_html/lists/admin/defaultconfig.php:301
 msgid "URL where subscribers can sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:309
+#: public_html/lists/admin/defaultconfig.php:310
 msgid "URL where subscribers can unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:319
+#: public_html/lists/admin/defaultconfig.php:320
 msgid "URL where unknown users can unsubscribe (do-not-send-list)"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:328
+#: public_html/lists/admin/defaultconfig.php:329
 msgid "URL where subscribers have to confirm their subscription"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:337
+#: public_html/lists/admin/defaultconfig.php:338
 msgid "URL where subscribers can update their details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:346
+#: public_html/lists/admin/defaultconfig.php:347
 msgid "URL for forwarding messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:355
+#: public_html/lists/admin/defaultconfig.php:356
 msgid "URL for downloading vcf card"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:362
+#: public_html/lists/admin/defaultconfig.php:363
 msgid ""
 "<h3>Thanks, you have been added to our newsletter</h3><p>You will receive an "
 "email to confirm your subscription. Please click the link in the email to "
 "confirm</p>"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:363
+#: public_html/lists/admin/defaultconfig.php:364
 #: public_html/lists/admin/spageedit.php:234
 msgid "Text to display when subscription with an AJAX request was successful"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:375
+#: public_html/lists/admin/defaultconfig.php:376
 msgid "Request for confirmation"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:376
+#: public_html/lists/admin/defaultconfig.php:377
 msgid "Subject of the message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:408
+#: public_html/lists/admin/defaultconfig.php:409
 msgid "Message subscribers receive when they sign up"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:416
+#: public_html/lists/admin/defaultconfig.php:417
 msgid "Goodbye from our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:417
+#: public_html/lists/admin/defaultconfig.php:418
 msgid "Subject of the message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:438
+#: public_html/lists/admin/defaultconfig.php:439
 msgid "Message subscribers receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:446
+#: public_html/lists/admin/defaultconfig.php:447
 msgid "Welcome to our Newsletter"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:447
+#: public_html/lists/admin/defaultconfig.php:448
 msgid ""
 "Subject of the message subscribers receive after confirming their email "
 "address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:468
+#: public_html/lists/admin/defaultconfig.php:469
 msgid "Message subscribers receive after confirming their email address"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:476
+#: public_html/lists/admin/defaultconfig.php:477
 msgid "[notify] Change of List-Membership details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:477
+#: public_html/lists/admin/defaultconfig.php:478
 msgid ""
 "Subject of the message subscribers receive when they have changed their "
 "details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:507
+#: public_html/lists/admin/defaultconfig.php:508
 msgid "Message subscribers receive when they have changed their details"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:524
+#: public_html/lists/admin/defaultconfig.php:525
 msgid ""
 "Part of the message that is sent to their new email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:541
+#: public_html/lists/admin/defaultconfig.php:542
 msgid ""
 "Part of the message that is sent to their old email address when subscribers "
 "change their information, and the email address has changed"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:548
+#: public_html/lists/admin/defaultconfig.php:549
 msgid "Your personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:549
+#: public_html/lists/admin/defaultconfig.php:550
 msgid "Subject of message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:566
+#: public_html/lists/admin/defaultconfig.php:567
 msgid "Message when subscribers request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:583
+#: public_html/lists/admin/defaultconfig.php:584
 msgid "Default footer for sending a campaign"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:598
+#: public_html/lists/admin/defaultconfig.php:599
 msgid "Footer used when a message has been forwarded"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:606
+#: public_html/lists/admin/defaultconfig.php:607
 msgid "Header of public pages."
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:614
+#: public_html/lists/admin/defaultconfig.php:615
 msgid "Footer of public pages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:643
+#: public_html/lists/admin/defaultconfig.php:644
 msgid "Message to send when they request their personal location"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:651
+#: public_html/lists/admin/defaultconfig.php:652
 msgid "String to always append to remote URL when using send-a-webpage"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:659
+#: public_html/lists/admin/defaultconfig.php:660
 msgid "Width for Wordwrap of Text messages"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:667
+#: public_html/lists/admin/defaultconfig.php:668
 msgid "CSS for HTML messages without a template"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:675
+#: public_html/lists/admin/defaultconfig.php:676
 msgid "Domains that only accept text emails, one per line"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:683
+#: public_html/lists/admin/defaultconfig.php:684
 msgid "last time TLDs were fetched"
 msgstr ""
 
-#: public_html/lists/admin/defaultconfig.php:691
+#: public_html/lists/admin/defaultconfig.php:692
 msgid "Top level domains"
 msgstr ""
 
