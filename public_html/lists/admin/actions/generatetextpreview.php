@@ -12,8 +12,12 @@ $msgid = sprintf('%d', $_GET['id']);
 $messagedata = loadMessageData($msgid);
 // shorten to 90 chars (max message preview length)
 
+// If plaintext campaign content was separately saved, use that
+if (!empty( $messagedata['textmessage'] ) ) {
+    $previewText = $messagedata['textmessage'];
+    
 // Check if the campaign content is a 'send as a web page' url, and if so, convert that to text instead
-if (preg_match('/\[URL:(.+)\]/', $messagedata['message'], $regs)) {
+} elseif (preg_match('/\[URL:(.+)\]/', $messagedata['message'], $regs)) {
     $content = fetchUrl($regs[1]);
     $previewText = HTML2Text($content);
 } else {
