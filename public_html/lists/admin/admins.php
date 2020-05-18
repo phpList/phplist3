@@ -12,8 +12,6 @@ $start = isset($_GET['start']) ? sprintf('%d', $_GET['start']) : 0;
 $listid = isset($_GET['id']) ? sprintf('%d', $_GET['id']) : 0;
 $find = isset($_REQUEST['find']) ? $_REQUEST['find'] : '';
 
-
-
 if (!empty($find)) {
     $remember_find = '&find='.urlencode($find);
 } else {
