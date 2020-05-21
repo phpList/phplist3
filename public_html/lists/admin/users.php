@@ -417,8 +417,9 @@ $ls->usePanel($paging);
 if ($result) {
     while ($user = Sql_fetch_array($result)) {
         $some = 1;
-        $ls->addElement($user['email'], PageURL2("user&amp;start=$start&amp;id=".$user['id'].$find_url));
-        $ls->setClass($user['email'], 'row1');
+        $element = htmlspecialchars($user['email']);
+        $ls->addElement($element, PageURL2("user&amp;start=$start&amp;id=".$user['id'].$find_url));
+        $ls->setClass($element, 'row1');
 
         //# we make one column with the subscriber status being "on" or "off"
         //# two columns are too confusing and really unnecessary
@@ -426,7 +427,7 @@ if ($result) {
 
 //    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('confirmed'), $user["confirmed"] ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
         //   if (in_array("blacklist", $columns)) {
-        $onblacklist = isBlackListed($user['email']);
+        $onblacklist = isBlackListed($element);
         //    $ls->addColumn($user["email"], $GLOBALS['I18N']->get('bl l'), $onblacklist ? $GLOBALS["img_tick"] : $GLOBALS["img_cross"]);
         //  }
 
@@ -452,7 +453,7 @@ if ($result) {
         if (in_array('lists', $columns)) {
             $lists = Sql_query('SELECT count(*) FROM '.$tables['listuser'].','.$tables['list'].' where userid = '.$user['id'].' and '.$tables['listuser'].'.listid = '.$tables['list'].'.id');
             $membership = Sql_fetch_row($lists);
-            $ls->addColumn($user['email'], $GLOBALS['I18N']->get('lists'), $membership[0]);
+            $ls->addColumn($element, $GLOBALS['I18N']->get('lists'), $membership[0]);
         }
 
         if (in_array('messages', $columns)) {
@@ -465,7 +466,7 @@ if ($result) {
         if (isset($GLOBALS['plugins']) && is_array($GLOBALS['plugins'])) {
             foreach ($GLOBALS['plugins'] as $plugin) {
                 if (method_exists($plugin, 'displayUsers')) {
-                    $plugin->displayUsers($user, $user['email'], $ls);
+                    $plugin->displayUsers($user, $element, $ls);
                 }
             }
         }
@@ -474,7 +475,7 @@ if ($result) {
         if (in_array('bounces', $columns) && !empty($user['bouncecount'])) {
             $ls_bncs = $GLOBALS['I18N']->get('bncs').': '.$user['bouncecount'];
         }
-        $ls->addRow($user['email'], "<div class='listinghdname gray'>".$ls_msgs.'<br />'.$ls_bncs.'</div>',
+        $ls->addRow($element, "<div class='listinghdname gray'>".$ls_msgs.'<br />'.$ls_bncs.'</div>',
             $ls_del.'&nbsp;'.$ls_confirmed);
     }
     echo $ls->display();

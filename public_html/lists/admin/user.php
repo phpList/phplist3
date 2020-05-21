@@ -120,6 +120,10 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
                     if (!empty($_POST[$key])) {
                         Sql_Query("update {$tables['user']} set $key = \"".encryptPass($_POST[$key])."\" where id = $id");
                     }
+                } elseif ($key == 'email') { ## we don't want html in the email, but other fields, we may
+                    if (!empty($email)) {
+                        Sql_Query("update {$tables['user']} set $key = \"".$email."\" where id = $id");
+                    }
                 } else {
                     if ($key != 'password' || !empty($_POST[$key])) {
                         if ($key == 'password') {
