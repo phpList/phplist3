@@ -1372,7 +1372,7 @@ function ListofLists($current, $fieldname, $subselect)
         }
 
         if (!empty($list['description'])) {
-            $desc = nl2br(stripslashes($list['description']));
+            $desc = nl2br(stripslashes(disableJavascript($list['description'])));
             $categoryhtml[$list['category']] .= "<br />$desc";
         }
         $categoryhtml[$list['category']] .= '</li>';

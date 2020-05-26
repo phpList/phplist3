@@ -807,7 +807,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
 
                         $html .= ' /><b>' . stripslashes($listelement['name']) . '</b><div class="listdescription">';
-                        $desc = nl2br(stripslashes($listelement['description']));
+                        $desc = nl2br(disableJavascript(stripslashes($listelement['description'])));
                         //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
                         $html .= $desc . '</div></li>';
                         ++$some;
@@ -846,7 +846,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     }
                 }
                 $html .= " /> <label for=\"list$row[id]\"><b>".stripslashes($row['name']).'</b></label><div class="listdescription">';
-                $desc = nl2br(stripslashes($row['description']));
+                $desc = nl2br(disableJavascript(stripslashes($row['description'])));
                 //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
                 $html .= $desc.'</div></li>';
                 ++$some;

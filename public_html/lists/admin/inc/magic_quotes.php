@@ -69,6 +69,7 @@ function disableJavascript($content) {
     $content = str_ireplace('onreset','on reset',$content);
     $content = str_ireplace('onkeyup','on keyup',$content);
     $content = str_ireplace('onkeydown','on keydown',$content);
+    $content = str_ireplace('ontoggle','on toggle',$content);
     return $content;
 }
 
