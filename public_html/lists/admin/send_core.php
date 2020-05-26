@@ -1006,7 +1006,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     ' .$sendtestresult.Help('sendtest').' <b>'.s('to email address(es)').':</b><br />'.
         '<p><i>&nbsp; '.s('(comma separate addresses - all must be existing subscribers)').'</i></p>'.
         '<div class="input-group">
-            <input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'" class="form-control blockenterkey" />
+            <input type="text" name="testtarget" size="40" value="'.htmlspecialchars($messagedata['testtarget']).'" class="form-control blockenterkey" />
             <span class="input-group-btn">
                 <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" />
              </span>
