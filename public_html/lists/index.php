@@ -145,7 +145,7 @@ if ($login_required && empty($_SESSION['userloggedin'])) {
                     $encP == $userpassword && $_POST['email'] == $emailcheck;
                 //      print $_POST['password'].' '.$encP.' '.$userpassword.' '.$canlogin; exit;
             } else {
-                $canlogin = $_POST['password'] == $userpassword && $_POST['email'] == $emailcheck;
+                $canlogin = $_POST['password'] === $userpassword && $_POST['email'] === $emailcheck;
             }
         }
 

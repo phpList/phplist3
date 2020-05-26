@@ -140,7 +140,7 @@ if (!isset($_POST['password'])) {
 }
 
 if ($allthere && ASKFORPASSWORD && ($_POST['passwordreq'] || $_POST['password'])) {
-    if (empty($_POST['password']) || $_POST['password'] != $_POST['password_check']) {
+    if (empty($_POST['password']) || $_POST['password'] !== $_POST['password_check']) {
         $allthere = 0;
         $missing = $GLOBALS['strPasswordsNoMatch'];
     }
@@ -148,7 +148,7 @@ if ($allthere && ASKFORPASSWORD && ($_POST['passwordreq'] || $_POST['password'])
         $curpwd = Sql_Fetch_Row_Query(sprintf('select password from %s where email = "%s"',
             $GLOBALS['tables']['user'], sql_escape($_POST['email'])));
 
-        if ($curpwd[0] && $_POST['password'] != $curpwd[0]) {
+        if ($curpwd[0] && $_POST['password'] !== $curpwd[0]) {
             $missing = $GLOBALS['strInvalidPassword'];
         }
     }
