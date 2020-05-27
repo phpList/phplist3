@@ -177,7 +177,7 @@ if (count($aListCategories)) {
     }
     $tabs = new WebblerTabs();
     foreach ($aListCategories as $category) {
-        $category = trim($category);
+        $category = trim(htmlspecialchars($category));
         if ($category == '') {
             $category = s('Uncategorised');
         }

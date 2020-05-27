@@ -85,6 +85,14 @@ if (!empty($_REQUEST['save'])) {
                     $value = str_replace('[DOMAIN]', '', $value);
                     $value = str_replace('[WEBSITE]', '', $value);
                 }
+                if ($id == 'list_categories') {
+                    $categories = explode(',',$value);
+                    $clean = array();
+                    foreach ($categories as $category) {
+                        $clean[] = preg_replace('/[^A-Z0-9\. ]+/i','',$category);
+                    }
+                    $value = implode(',',$clean);
+                }
                 if (empty($value) && !$info['allowempty']) {
                     //    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
                     $haserror = $info['description'].' '.$GLOBALS['I18N']->get('cannot be empty');
