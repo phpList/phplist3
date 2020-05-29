@@ -108,7 +108,7 @@ while ($admin = Sql_fetch_array($result)) {
     $ls->addElement(htmlentities($admin['loginname']),
         PageUrl2('admin', s('Show'), "start=$start&amp;id=".$admin['id'].$remember_find));
     $ls->addColumn($admin['loginname'], s('Id'), $admin['id']);
-    $ls->addColumn($admin['loginname'], s('email'), $admin['email']);
+    $ls->addColumn($admin['loginname'], s('email'), htmlspecialchars($admin['email']));
     $ls->addColumn($admin['loginname'], s('Super Admin'), $admin['superuser'] ? s('Yes') : s('No'));
     $ls->addColumn($admin['loginname'], s('Disabled'), $admin['disabled'] ? s('Yes') : s('No'));
     if ($_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {

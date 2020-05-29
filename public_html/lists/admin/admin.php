@@ -89,6 +89,7 @@ if (!empty($_POST['change'])) {
     if ($id) {
         echo '<div class="actionresult">';
         reset($struct);
+        $_POST['email'] = htmlspecialchars(strip_tags($_POST['email']));
         foreach ($struct as $key => $val) {
             $a = $b = '';
             if (strstr($val[1], ':')) {
