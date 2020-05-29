@@ -445,7 +445,7 @@ $(document).ready(function () {
     });
 
     var docurl = document.location.search;
-    document.cookie = "browsetrail=" + escape(docurl);
+    document.cookie = "browsetrail=" + escape(docurl) +'; SameSite=Strict';
 
     setInterval("autoSave();", 120000); // once every two minutes should suffice
 
