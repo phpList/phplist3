@@ -278,7 +278,7 @@ msgstr ""
 msgid "Search, edit and add Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:73 public_html/lists/admin/admin.php:321
+#: public_html/lists/admin/home.php:73 public_html/lists/admin/admin.php:322
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
 msgstr ""
@@ -1667,7 +1667,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:321
 #: public_html/lists/admin/eventlog.php:37 public_html/lists/admin/list.php:130
 #: public_html/lists/admin/user.php:304 public_html/lists/admin/admins.php:48
-#: public_html/lists/admin/admin.php:136 public_html/lists/admin/users.php:240
+#: public_html/lists/admin/admin.php:137 public_html/lists/admin/users.php:240
 msgid "Done"
 msgstr ""
 
@@ -2437,7 +2437,7 @@ msgstr ""
 #: public_html/lists/admin/list.php:318 public_html/lists/admin/user.php:508
 #: public_html/lists/admin/user.php:534
 #: public_html/lists/admin/bouncerule.php:79
-#: public_html/lists/admin/admin.php:328
+#: public_html/lists/admin/admin.php:329
 #: public_html/lists/admin/attributes.php:416
 #: public_html/lists/admin/attributes.php:445
 #: public_html/lists/admin/bouncerules.php:125
@@ -2607,55 +2607,55 @@ msgstr ""
 msgid "other"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:90
+#: public_html/lists/admin/configure.php:98
 msgid "cannot be empty"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:102
-#: public_html/lists/admin/user.php:267 public_html/lists/admin/admin.php:122
+#: public_html/lists/admin/configure.php:110
+#: public_html/lists/admin/user.php:267 public_html/lists/admin/admin.php:123
 #: public_html/lists/admin/editlist.php:93
 msgid "Changes saved"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:105
+#: public_html/lists/admin/configure.php:113
 msgid "Changes not saved"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:115
+#: public_html/lists/admin/configure.php:123
 #: public_html/lists/admin/catlists.php:61
 msgid "Categories saved"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:135
+#: public_html/lists/admin/configure.php:143
 #, php-format
 msgid "%s settings"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:148
+#: public_html/lists/admin/configure.php:156
 #: public_html/lists/admin/actions/configure.php:64
 #: public_html/lists/admin/user.php:418
 #: public_html/lists/admin/bouncerule.php:39
 #: public_html/lists/admin/admins.php:112
-#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:235
-#: public_html/lists/admin/admin.php:266
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:236
+#: public_html/lists/admin/admin.php:267
 msgid "Yes"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:150
+#: public_html/lists/admin/configure.php:158
 #: public_html/lists/admin/actions/configure.php:71
 #: public_html/lists/admin/user.php:418
 #: public_html/lists/admin/bouncerule.php:40
 #: public_html/lists/admin/admins.php:112
-#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:235
-#: public_html/lists/admin/admin.php:267
+#: public_html/lists/admin/admins.php:113 public_html/lists/admin/admin.php:236
+#: public_html/lists/admin/admin.php:268
 msgid "No"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:183
+#: public_html/lists/admin/configure.php:191
 msgid "edit this value"
 msgstr ""
 
-#: public_html/lists/admin/configure.php:184
+#: public_html/lists/admin/configure.php:192
 #: public_html/lists/admin/spage.php:98 public_html/lists/admin/spage.php:99
 msgid "edit"
 msgstr ""
@@ -3081,7 +3081,7 @@ msgstr ""
 msgid "You have requested a password update"
 msgstr ""
 
-#: public_html/lists/admin/login.php:104 public_html/lists/admin/admin.php:211
+#: public_html/lists/admin/login.php:104 public_html/lists/admin/admin.php:212
 msgid "Confirm password"
 msgstr ""
 
@@ -3102,7 +3102,7 @@ msgstr ""
 
 #: public_html/lists/admin/login.php:124
 #: public_html/lists/admin/import3.php:237
-#: public_html/lists/admin/admin.php:233 public_html/databasestructure.php:24
+#: public_html/lists/admin/admin.php:234 public_html/databasestructure.php:24
 #: public_html/databasestructure.php:142
 msgid "Password"
 msgstr ""
@@ -3295,7 +3295,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:200
 #: public_html/lists/admin/eventlog.php:32 public_html/lists/admin/list.php:123
 #: public_html/lists/admin/user.php:275 public_html/lists/admin/admins.php:43
-#: public_html/lists/admin/admin.php:132
+#: public_html/lists/admin/admin.php:133
 msgid "Deleting"
 msgstr ""
 
@@ -6697,73 +6697,73 @@ msgstr ""
 msgid "Back to edit admin"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:125
+#: public_html/lists/admin/admin.php:126
 msgid ""
 "Error adding new admin, login name and/or email not inserted, email not "
 "valid or admin already exists"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:138
+#: public_html/lists/admin/admin.php:139
 msgid "Failed, you cannot delete yourself"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:147
+#: public_html/lists/admin/admin.php:148
 msgid "Edit Administrator"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:158
+#: public_html/lists/admin/admin.php:159
 msgid "Add a new Administrator"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:192
+#: public_html/lists/admin/admin.php:193
 msgid "Choose how to set password"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:194
+#: public_html/lists/admin/admin.php:195
 msgid "Send email"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:195 public_html/lists/admin/admin.php:201
+#: public_html/lists/admin/admin.php:196 public_html/lists/admin/admin.php:202
 msgid "Create password"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:205
+#: public_html/lists/admin/admin.php:206
 msgid "Password must be at least 8 characters"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:215
+#: public_html/lists/admin/admin.php:216
 msgid "Not matching"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:233
+#: public_html/lists/admin/admin.php:234
 msgid "hidden"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:234
+#: public_html/lists/admin/admin.php:235
 msgid "Update it?"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:259
+#: public_html/lists/admin/admin.php:260
 msgid "Login Name"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:318
+#: public_html/lists/admin/admin.php:319
 #: public_html/lists/admin/importadmin.php:337
 #: public_html/databasestructure.php:146
 msgid "Privileges"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:319
+#: public_html/lists/admin/admin.php:320
 #: public_html/lists/admin/importadmin.php:338
 msgid "Manage subscribers"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:320
+#: public_html/lists/admin/admin.php:321
 #: public_html/lists/admin/importadmin.php:339
 msgid "Send Campaigns"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:322
+#: public_html/lists/admin/admin.php:323
 #: public_html/lists/admin/importadmin.php:341
 msgid "Change Settings"
 msgstr ""
@@ -6853,21 +6853,21 @@ msgstr ""
 msgid "Adding subscribers"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:187
+#: public_html/lists/admin/importsimple.php:186
 msgid ""
 "Please enter the emails to import, one per line, in the box below and click "
 "\"Import Emails\""
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:191
+#: public_html/lists/admin/importsimple.php:190
 msgid "Check to skip emails that are not valid"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:192
+#: public_html/lists/admin/importsimple.php:191
 msgid "Confirm email addresses by default"
 msgstr ""
 
-#: public_html/lists/admin/importsimple.php:193
+#: public_html/lists/admin/importsimple.php:192
 msgid "Import emails"
 msgstr ""
 
@@ -9848,33 +9848,33 @@ msgid "general settings"
 msgstr ""
 
 #: public_html/databasestructure.php:364
-msgid "system settings"
-msgstr ""
-
-#: public_html/databasestructure.php:365
 msgid "security settings"
 msgstr ""
 
-#: public_html/databasestructure.php:366
+#: public_html/databasestructure.php:365
 msgid "reporting settings"
 msgstr ""
 
-#: public_html/databasestructure.php:367
+#: public_html/databasestructure.php:366
 msgid "campaign settings"
 msgstr ""
 
-#: public_html/databasestructure.php:368
+#: public_html/databasestructure.php:367
 msgid "transactional settings"
 msgstr ""
 
-#: public_html/databasestructure.php:369
+#: public_html/databasestructure.php:368
 msgid "subscription-ui settings"
 msgstr ""
 
-#: public_html/databasestructure.php:370
+#: public_html/databasestructure.php:369
 msgid "list-organisation settings"
 msgstr ""
 
-#: public_html/databasestructure.php:371
+#: public_html/databasestructure.php:370
 msgid "subscription settings"
+msgstr ""
+
+#: public_html/databasestructure.php:371
+msgid "system settings"
 msgstr ""
