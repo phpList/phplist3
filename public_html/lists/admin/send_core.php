@@ -1016,8 +1016,8 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     // notification of progress of message sending
     // defaulting to admin_details['email'] gives the wrong impression that this is the
     // value in the database, so it is better to leave that empty instead
-    $notify_start = isset($messagedata['notify_start']) ? $messagedata['notify_start'] : ''; //$admin_details['email'];
-    $notify_end = isset($messagedata['notify_end']) ? $messagedata['notify_end'] : ''; //$admin_details['email'];
+    $notify_start = isset($messagedata['notify_start']) && is_email($messagedata['notify_start']) ? $messagedata['notify_start'] : ''; //$admin_details['email'];
+    $notify_end = isset($messagedata['notify_end']) && is_email($messagedata['notify_end']) ? $messagedata['notify_end'] : ''; //$admin_details['email'];
 
     $send_content = sprintf('
     <div class="sendNotify">
