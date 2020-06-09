@@ -712,7 +712,11 @@ if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
     if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
-        Warn($GLOBALS['I18N']->get('The pageroot in your config does not match the current locationCheck your config file.'));
+        Warn(s(
+            'The pageroot in your config "%s" does not match the current location "%s". Check your config file.',
+            $pageroot,
+            strstr(getenv('REQUEST_URI'), '/admin', true)
+        ));
     }
 }
 clearstatcache();
