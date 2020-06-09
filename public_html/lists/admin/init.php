@@ -687,14 +687,15 @@ if (!isset($attachment_repository)) {
     $attachment_repository = $tmpdir;
 }
 
-if (!isset($pageroot)) {
+if (isset($pageroot)) {
+    if ($pageroot == '/') {
+        $pageroot = '';
+    }
+} else {
     $pageroot = '/lists';
-    $GLOBALS['pageroot'] = '/lists';
 }
-//# as the "admin" in adminpages is hardcoded, don't put it in the config file
+// as the "admin" in adminpages is hardcoded, don't put it in the config file
 $adminpages = $GLOBALS['pageroot'].'/admin';
-//# remove possibly duplicated // at the beginning
-$adminpages = preg_replace('~^//~', '/', $adminpages);
 
 $GLOBALS['homepage'] = 'home';
 
