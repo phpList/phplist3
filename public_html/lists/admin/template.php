@@ -333,17 +333,11 @@ if ($id) {
             <td><input type="checkbox"
                        name="checkfullimages" <?php echo $checkfullimages ? 'checked="checked"' : '' ?> /></td>
         </tr>
-
-        <?php if ($GLOBALS['can_fetchUrl']) {
-                    ?>
-            <tr>
-                <td><?php echo s('Check that all external images exist') ?></td>
-                <td><input type="checkbox"
-                           name="checkimagesexist" <?php echo $checkimagesexist ? 'checked="checked"' : '' ?> /></td>
-            </tr>
-            <?php
-
-                } ?>
+        <tr>
+            <td><?php echo s('Check that all external images exist') ?></td>
+            <td><input type="checkbox"
+                       name="checkimagesexist" <?php echo $checkimagesexist ? 'checked="checked"' : '' ?> /></td>
+        </tr>
         <tr>
             <td colspan="2"><input class="submit" type="submit" name="save"
                                    value="<?php echo s('Save Changes') ?>"/></td>
@@ -352,7 +346,7 @@ if ($id) {
 </div></div>
 <?php $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
-    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
+    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s:
     <input type="text" name="testtarget" size="40" value="' .htmlspecialchars($testtarget).'"/><br />%s
     </div>',
     s('Send test message'), s('to email addresses'),

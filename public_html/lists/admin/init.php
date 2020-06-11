@@ -667,9 +667,7 @@ if (!defined('RFC_DIRECT_DELIVERY')) {
 }  //# Request for Confirmation, delivery with SMTP
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/PEAR');
-$GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
 $GLOBALS['has_curl'] = function_exists('curl_init');
-$GLOBALS['can_fetchUrl'] = true;
 
 $GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
 

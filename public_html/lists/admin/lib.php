@@ -1370,64 +1370,6 @@ function fetchUrlHttpRequest2($url, $requestParameters)
     return $content;
 }
 
-function fetchUrlPear($url, $request_parameters)
-{
-    if (VERBOSE) {
-        logEvent($url.' fetching with PEAR');
-    }
-
-    if (0 && $GLOBALS['has_pear_http_request'] == 2) {
-        $headreq = new HTTP_Request2($url, $request_parameters);
-        $headreq->setHeader('User-Agent', 'phplist v'.VERSION.'p (https://www.phplist.com)');
-    } else {
-        $headreq = new HTTP_Request($url, $request_parameters);
-        $headreq->addHeader('User-Agent', 'phplist v'.VERSION.'p (https://www.phplist.com)');
-    }
-    if (!PEAR::isError($headreq->sendRequest(false))) {
-        $code = $headreq->getResponseCode();
-        if ($code != 200) {
-            logEvent('Fetching '.$url.' failed, error code '.$code);
-
-            return 0;
-        }
-        $header = $headreq->getResponseHeader();
-
-        if (preg_match('/charset=(.*)/i', $header['content-type'], $regs)) {
-            $remote_charset = strtoupper($regs[1]);
-        }
-
-        $request_parameters['method'] = 'GET';
-        if (0 && $GLOBALS['has_pear_http_request'] == 2) {
-            $req = new HTTP_Request2($url, $request_parameters);
-            $req->setHeader('User-Agent', 'phplist v'.VERSION.'p (https://www.phplist.com)');
-        } else {
-            $req = new HTTP_Request($url, $request_parameters);
-            $req->addHeader('User-Agent', 'phplist v'.VERSION.'p (https://www.phplist.com)');
-        }
-        logEvent('Fetching '.$url);
-        if (VERBOSE && function_exists('output')) {
-            output('Fetching remote: '.$url);
-        }
-        if (!PEAR::isError($req->sendRequest(true))) {
-            $content = $req->getResponseBody();
-
-            if ($remote_charset != 'UTF-8' && function_exists('iconv')) {
-                $content = iconv($remote_charset, 'UTF-8//TRANSLIT', $content);
-            }
-        } else {
-            logEvent('Fetching '.$url.' failed on GET '.$req->getResponseCode());
-
-            return 0;
-        }
-    } else {
-        logEvent('Fetching '.$url.' failed on HEAD');
-
-        return 0;
-    }
-
-    return $content;
-}
-
 function releaseLock($processid)
 {
     global $tables;
