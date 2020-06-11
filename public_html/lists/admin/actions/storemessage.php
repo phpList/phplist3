@@ -16,24 +16,20 @@ if (isset($_POST['sendmethod']) && $_POST['sendmethod'] == 'inputhere') {
 }
 
 if (!empty($_POST['sendurl'])) {
-    if (!$GLOBALS['can_fetchUrl']) {
-        echo Warn($GLOBALS['I18N']->get('You are trying to send a remote URL, but PEAR::HTTP_Request is not available, so this will fail'));
+    //# hard overwrite the message content, wipe all that was there.
+    //# check there's a protocol
+    //# @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
+
+    if ($_POST['sendurl'] == 'e.g. https://www.phplist.com/testcampaign.html') {
+        $_POST['sendurl'] = '';
     } else {
-        //# hard overwrite the message content, wipe all that was there.
-        //# check there's a protocol
-        //# @@@ do we want to allow other than http and https? Can't imagine, ppl would want to use ftp or something
-
-        if ($_POST['sendurl'] == 'e.g. https://www.phplist.com/testcampaign.html') {
-            $_POST['sendurl'] = '';
-        } else {
-            if (!preg_match('/^https?:\/\//i', $_POST['sendurl']) && !preg_match('/testcampaign/i',
-                    $_POST['sendurl'])
-            ) {
-                $_POST['sendurl'] = 'http://'.$_POST['sendurl'];
-            }
-
-            $_POST['message'] = '[URL:'.$_POST['sendurl'].']';
+        if (!preg_match('/^https?:\/\//i', $_POST['sendurl']) && !preg_match('/testcampaign/i',
+                $_POST['sendurl'])
+        ) {
+            $_POST['sendurl'] = 'http://'.$_POST['sendurl'];
         }
+
+        $_POST['message'] = '[URL:'.$_POST['sendurl'].']';
     }
 }
 

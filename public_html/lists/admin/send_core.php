@@ -242,10 +242,6 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
 //    print "Message ID: $id";
     //    exit;
-    if (!$GLOBALS['can_fetchUrl'] && preg_match("/\[URL:/i", $_POST['message'])) {
-        echo $GLOBALS['can_fetchUrl'].Warn(s('You are trying to send a remote URL, but PEAR::HTTP_Request or CURL is not available, so this will fail'));
-    }
-
     if ($GLOBALS['commandline']) {
         if (isset($_POST['targetlist']) && is_array($_POST['targetlist'])) {
             Sql_query("delete from {$tables['listmessage']} where messageid = $id");
@@ -701,11 +697,11 @@ if (!$done) {
     <label for="subject">' .s('Campaign subject').Help('subject').'</label>'.
     '<input type="text" name="subject"  id="subjectinput" value="' .htmlentities($utf8_subject, ENT_QUOTES, 'UTF-8').'" size="60" />
   </div>
-                
+
   <div class="field"><label for="fromfield">' .$GLOBALS['I18N']->get('From Line').Help('from').'</label>'.'
     <input type="text" name="fromfield"
    value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>
-   
+
     <div class="field" id="message-text-preview">
       <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
       <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
@@ -714,29 +710,27 @@ if (!$done) {
       </div>
     </div>';
 
-    if ($GLOBALS['can_fetchUrl']) {
-        $maincontent .= sprintf('
+    $maincontent .= sprintf('
 
       <div id="contentchoice" class="field">
       <label for="sendmethod">' .$GLOBALS['I18N']->get('Content').Help('sendmethod').'</label>'.'
       <input type="radio" name="sendmethod" value="remoteurl" %s />' .$GLOBALS['I18N']->get('Send a Webpage').'
       <input type="radio" name="sendmethod" value="inputhere" %s />' .$GLOBALS['I18N']->get('Compose Message').'
       </div>',
-            $messagedata['sendmethod'] == 'remoteurl' ? 'checked="checked"' : '',
-            $messagedata['sendmethod'] == 'inputhere' ? 'checked="checked"' : ''
+        $messagedata['sendmethod'] == 'remoteurl' ? 'checked="checked"' : '',
+        $messagedata['sendmethod'] == 'inputhere' ? 'checked="checked"' : ''
         );
 
-        if (empty($messagedata['sendurl'])) {
-            $messagedata['sendurl'] = 'e.g. https://www.phplist.com/testcampaign.html';
-        }
+    if (empty($messagedata['sendurl'])) {
+        $messagedata['sendurl'] = 'e.g. https://www.phplist.com/testcampaign.html';
+    }
 
-        $maincontent .= '
+    $maincontent .= '
       <div id="remoteurl" class="field"><label for="sendurl">' .$GLOBALS['I18N']->get('Send a Webpage - URL').Help('sendurl').'</label>'.'
         <input type="text" name="sendurl" id="remoteurlinput"
-       value="' .htmlspecialchars($messagedata['sendurl']).'" size="60" /> <span id="remoteurlstatus"></span></div>';
-        if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
-            $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
-        }
+       value="' .$messagedata['sendurl'].'" size="60" /> <span id="remoteurlstatus"></span></div>';
+    if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
+        $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
     }
 
 // custom code - end

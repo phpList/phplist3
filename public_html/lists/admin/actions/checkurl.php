@@ -16,18 +16,13 @@ $url = expandURL($_GET['url']);
 $isOk = true;
 $code = -1;
 
-if ($GLOBALS['can_fetchUrl']) {
-    $code = testUrl($url);
-    if ($code != 200) {
-        if (!empty($url_append)) {
-            $status = $GLOBALS['I18N']->get('Error fetching URL').' '.$GLOBALS['I18N']->get('Check your "remoteurl_append" setting.');
-        } else {
-            $status = $GLOBALS['I18N']->get('Error fetching URL');
-        }
-        $isOk = false;
+$code = testUrl($url);
+if ($code != 200) {
+    if (!empty($url_append)) {
+        $status = $GLOBALS['I18N']->get('Error fetching URL').' '.$GLOBALS['I18N']->get('Check your "remoteurl_append" setting.');
+    } else {
+        $status = $GLOBALS['I18N']->get('Error fetching URL');
     }
-} else {
-    $status = $GLOBALS['I18N']->get('Error fetching URL');
     $isOk = false;
 }
 

@@ -122,7 +122,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         }
 
         //# Fetch external content, only if the URL has placeholders
-        if ($GLOBALS['can_fetchUrl'] && preg_match("/\[URL:([^\s]+)\]/i", $content, $regs)) {
+        if (preg_match("/\[URL:([^\s]+)\]/i", $content, $regs)) {
             while (isset($regs[1]) && strlen($regs[1])) {
                 $url = $regs[1];
                 if (!preg_match('/^http/i', $url)) {
@@ -1468,7 +1468,7 @@ function precacheMessage($messageid, $forwardContent = 0)
 
     if (!$cached[$messageid]['userspecific_url']) {
         //# Fetch external content here, because URL does not contain placeholders
-        if ($GLOBALS['can_fetchUrl'] && preg_match("/\[URL:([^\s]+)\]/i", $cached[$messageid]['content'], $regs)) {
+        if (preg_match("/\[URL:([^\s]+)\]/i", $cached[$messageid]['content'], $regs)) {
             $remote_content = fetchUrl($regs[1], array());
             //  $remote_content = fetchUrl($message['sendurl'],array());
 
