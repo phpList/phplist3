@@ -728,7 +728,7 @@ if (!$done) {
     $maincontent .= '
       <div id="remoteurl" class="field"><label for="sendurl">' .$GLOBALS['I18N']->get('Send a Webpage - URL').Help('sendurl').'</label>'.'
         <input type="text" name="sendurl" id="remoteurlinput"
-       value="' .$messagedata['sendurl'].'" size="60" /> <span id="remoteurlstatus"></span></div>';
+       value="' .htmlspecialchars($messagedata['sendurl']).'" size="60" /> <span id="remoteurlstatus"></span></div>';
     if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
         $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
     }
