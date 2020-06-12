@@ -222,7 +222,7 @@ if (!empty($_SESSION['import_file'])) {
 //  var_dump($system_attributes);
     $system_attribute_reverse_map = array();
     for ($i = 0; $i < count($headers); ++$i) {
-        $column = clean($headers[$i]);
+        $column = strip_tags($headers[$i]);
         //  print $i."<h3>$column</h3>".$_POST['column'.$i].'<br/>';
         $column = preg_replace('#/#', '', $column);
 //    $dbg = "Field $i: $headers[$i] - $column - form/option:" . $_POST['column' . $i];
@@ -383,6 +383,7 @@ if (!empty($_SESSION['test_import'])) {
     }
     foreach ($_SESSION['import_attribute'] as $column => $rec) {
         if (trim($column) != '') {
+            $column = htmlspecialchars($column);
             $ls->addElement($column);
             if ($rec['record'] == 'new') {
                 $ls->addColumn($column, $GLOBALS['I18N']->get('maps to'),
