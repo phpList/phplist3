@@ -88,6 +88,8 @@ $default_config = array(
         'description' => s('Name of the organisation'),
         'type'        => 'text',
         'allowempty'  => true,
+        'allowtags'   => '<b><i><u><strong><em><h1><h2><h3><h4>',
+        'allowJS'     => false,
         'category'    => 'general',
     ),
 // logo of the organisation

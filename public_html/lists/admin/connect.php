@@ -245,6 +245,14 @@ function SaveConfig($item, $value, $editable = 1, $ignore_errors = 0)
 #            }
             //# we only use the image type for the logo
             flushLogoCache();
+            break;
+        default:
+            if (isset($configInfo['allowtags'])) { ## allowtags can be set but empty
+                $value = strip_tags($value,$configInfo['allowtags']);
+            }
+            if (isset($configInfo['allowJS']) && !$configInfo['allowJS']) { ## it needs to be set and false
+                $value = disableJavascript($value);
+            }
     }
     //# reset to default if not set, and required
     if (empty($configInfo['allowempty']) && empty($value)) {
