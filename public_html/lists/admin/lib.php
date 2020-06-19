@@ -114,6 +114,17 @@ function setMessageData($msgid, $name, $value)
             }
         }
     }
+    if ($name == 'excludelist' && is_array($value)) {
+        ## make sure all entries are numerical. @@TO(DO We could also check that they are actually valid list IDs
+        $newLists = array();
+        foreach ($value as $v) {
+            if (is_numeric($v)) {
+                $newLists[] = $v;
+            }
+        }
+        $value = $newLists;
+        unset($newLists);
+    }
     if (is_array($value) || is_object($value)) {
         $value = 'SER:'.serialize($value);
     }
