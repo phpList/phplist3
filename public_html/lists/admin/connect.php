@@ -1331,18 +1331,21 @@ function ListofLists($current, $fieldname, $subselect)
     // $categoryhtml['unselect'] = '<input type="hidden" name="'.$fieldname.'[unselect]" value="1" />';
 
     $categoryhtml['selected'] = '';
-    $categoryhtml['all'] = '
-  <li><input type="hidden" name="' .$fieldname.'[unselect]" value="-1" /><input type="checkbox" name="'.$fieldname.'[all]"';
-    if (!empty($current['all'])) {
-        $categoryhtml['all'] .= 'checked';
-    }
-    $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
 
-    $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
-    if (!empty($current['allactive'])) {
-        $categoryhtml['all'] .= 'checked="checked"';
+    if ($fieldname == 'targetlist') {
+        $categoryhtml['all'] = '
+    <li><input type="hidden" name="' .$fieldname.'[unselect]" value="-1" /><input type="checkbox" name="'.$fieldname.'[all]"';
+        if (!empty($current['all'])) {
+            $categoryhtml['all'] .= 'checked';
+        }
+        $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
+    
+        $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
+        if (!empty($current['allactive'])) {
+            $categoryhtml['all'] .= 'checked="checked"';
+        }
+        $categoryhtml['all'] .= ' />'.s('All Public Lists').'</li>';
     }
-    $categoryhtml['all'] .= ' />'.s('All Public Lists').'</li>';
 
     //# need a better way to suppress this
     if ($_GET['page'] != 'send') {
