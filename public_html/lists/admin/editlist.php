@@ -162,7 +162,7 @@ if (empty($list['category'])) {
         echo '<div class="label"><label for="owner">'.s('Owner').'</label></div><div class="field"><select name="owner">';
         foreach ($admins as $adminid => $adminname) {
             printf('    <option value="%d" %s>%s</option>', $adminid,
-                $adminid == $list['owner'] ? 'selected="selected"' : '', $adminname);
+                $adminid == $list['owner'] ? 'selected="selected"' : '', htmlentities($adminname));
         }
         echo '</select></div>';
     } else {
