@@ -218,14 +218,12 @@ if ($total > 30 && empty($_SESSION['showalllists'])) {
 $result = Sql_query('select * from '.$tables['list'].' '.$subselect.$searchLists.' order by listorder '.$limit);
 $numlists = Sql_Affected_Rows($result);
 
-echo formStart(' id="messagefilterform" ');
-
 $searchValue = $_SESSION['searchlists'];
 
 echo '<div> <input type="text" name="search" placeholder="&#128269;'.s('Search lists').'" value="'.htmlentities($searchValue).'" />';
 echo '<button type="submit" name="go" id="filterbutton" >'.s('Go').'</button>
       <button type="submit" name="clear" id="filterclearbutton" value="1">'.s('Clear').'</button>';
-echo '</div> </form>';
+echo '</div> ';
 $ls = new WebblerListing($total.' '.s('Lists'));
 $ls->usePanel($paging);
 
