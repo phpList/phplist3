@@ -412,7 +412,7 @@ if (isSuperUser() || accessLevel('spageedit') == 'all') {
     foreach ($admins as $adminid => $adminname) {
         $singleOwner = '<input type="hidden" name="owner" value="'.$adminid.'" />';
         $ownerHTML .= sprintf('<option value="%d" %s>%s</option>', $adminid,
-            $adminid == $data['owner'] ? 'selected="selected"' : '', $adminname);
+            $adminid == $data['owner'] ? 'selected="selected"' : '', htmlentities($adminname));
     }
     $ownerHTML .= '</select>';
 
