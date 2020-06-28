@@ -387,8 +387,8 @@ msgstr ""
 msgid "Administrator Functions"
 msgstr ""
 
-#: public_html/lists/admin/home.php:208 public_html/lists/admin/list.php:251
-#: public_html/lists/admin/list.php:310
+#: public_html/lists/admin/home.php:208 public_html/lists/admin/list.php:249
+#: public_html/lists/admin/list.php:308
 msgid "send"
 msgstr ""
 
@@ -660,7 +660,7 @@ msgstr ""
 
 #: public_html/lists/admin/connect.php:1349
 #: public_html/lists/admin/import2.php:618 public_html/lists/admin/list.php:110
-#: public_html/lists/admin/list.php:114 public_html/lists/admin/list.php:348
+#: public_html/lists/admin/list.php:114 public_html/lists/admin/list.php:346
 #: public_html/lists/admin/import3.php:43
 msgid "Add a list"
 msgstr ""
@@ -2434,7 +2434,7 @@ msgstr ""
 #: public_html/lists/admin/template.php:343
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:156
-#: public_html/lists/admin/list.php:318 public_html/lists/admin/user.php:508
+#: public_html/lists/admin/list.php:316 public_html/lists/admin/user.php:508
 #: public_html/lists/admin/user.php:534
 #: public_html/lists/admin/bouncerule.php:79
 #: public_html/lists/admin/admin.php:329
@@ -2911,8 +2911,8 @@ msgstr ""
 msgid "Tag all users in this page"
 msgstr ""
 
-#: public_html/lists/admin/members.php:316 public_html/lists/admin/list.php:246
-#: public_html/lists/admin/list.php:290
+#: public_html/lists/admin/members.php:316 public_html/lists/admin/list.php:244
+#: public_html/lists/admin/list.php:288
 msgid "Members"
 msgstr ""
 
@@ -3282,13 +3282,13 @@ msgid "Search campaigns"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:183
-#: public_html/lists/admin/list.php:226 public_html/lists/admin/admins.php:97
+#: public_html/lists/admin/list.php:224 public_html/lists/admin/admins.php:97
 #: public_html/lists/admin/users.php:326 public_html/lists/admin/users.php:395
 msgid "Go"
 msgstr ""
 
 #: public_html/lists/admin/messages.php:183
-#: public_html/lists/admin/list.php:227
+#: public_html/lists/admin/list.php:225
 msgid "Clear"
 msgstr ""
 
@@ -3359,7 +3359,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:450
 #: public_html/lists/admin/send_core.php:577
-#: public_html/lists/admin/list.php:229 public_html/lists/admin/user.php:542
+#: public_html/lists/admin/list.php:227 public_html/lists/admin/user.php:542
 #: public_html/lists/admin/spageedit.php:369
 msgid "Lists"
 msgstr ""
@@ -4223,8 +4223,8 @@ msgstr ""
 msgid "None yet"
 msgstr ""
 
-#: public_html/lists/admin/message.php:180 public_html/lists/admin/list.php:247
-#: public_html/lists/admin/list.php:284 public_html/lists/admin/list.php:291
+#: public_html/lists/admin/message.php:180 public_html/lists/admin/list.php:245
+#: public_html/lists/admin/list.php:282 public_html/lists/admin/list.php:289
 msgid "View Members"
 msgstr ""
 
@@ -5730,70 +5730,70 @@ msgstr ""
 msgid "Categorise lists"
 msgstr ""
 
-#: public_html/lists/admin/list.php:225
+#: public_html/lists/admin/list.php:223
 msgid "Search lists"
 msgstr ""
 
-#: public_html/lists/admin/list.php:240 public_html/lists/admin/list.php:242
+#: public_html/lists/admin/list.php:238 public_html/lists/admin/list.php:240
 msgid "All subscribers"
 msgstr ""
 
-#: public_html/lists/admin/list.php:251
+#: public_html/lists/admin/list.php:249
 msgid "start a new campaign targetting all lists"
 msgstr ""
 
-#: public_html/lists/admin/list.php:252 public_html/lists/admin/list.php:313
+#: public_html/lists/admin/list.php:250 public_html/lists/admin/list.php:311
 msgid "Add Members"
 msgstr ""
 
-#: public_html/lists/admin/list.php:257
+#: public_html/lists/admin/list.php:255
 msgid ""
 "You seem to have quite a lot of lists, do you want to organise them in "
 "categories? "
 msgstr ""
 
-#: public_html/lists/admin/list.php:258
+#: public_html/lists/admin/list.php:256
 msgid "Great idea!"
 msgstr ""
 
-#: public_html/lists/admin/list.php:294
+#: public_html/lists/admin/list.php:292
 msgid "Public"
 msgstr ""
 
-#: public_html/lists/admin/list.php:299
+#: public_html/lists/admin/list.php:297
 msgid "Order"
 msgstr ""
 
-#: public_html/lists/admin/list.php:304
+#: public_html/lists/admin/list.php:302
 #: public_html/lists/admin/editlist.php:127
 msgid "Are you sure you want to delete this list?"
 msgstr ""
 
-#: public_html/lists/admin/list.php:304
+#: public_html/lists/admin/list.php:302
 #: public_html/lists/admin/editlist.php:127
 msgid "This will NOT remove the subscribers that are on this list."
 msgstr ""
 
-#: public_html/lists/admin/list.php:304
+#: public_html/lists/admin/list.php:302
 #: public_html/lists/admin/editlist.php:127
 msgid ""
 "You can reconnect subscribers to lists on the Reconcile Subscribers page."
 msgstr ""
 
-#: public_html/lists/admin/list.php:306
+#: public_html/lists/admin/list.php:304
 #: public_html/lists/admin/editlist.php:129
 msgid "delete this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:309
+#: public_html/lists/admin/list.php:307
 msgid "Edit this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:311
+#: public_html/lists/admin/list.php:309
 msgid "start a new campaign targetting this list"
 msgstr ""
 
-#: public_html/lists/admin/list.php:321
+#: public_html/lists/admin/list.php:319
 msgid "No lists, use Add List to add one"
 msgstr ""
 
