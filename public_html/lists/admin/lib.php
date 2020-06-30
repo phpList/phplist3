@@ -207,6 +207,7 @@ function loadMessageData($msgid)
         'google_track'   => $default['google_track'] == 'true' || $default['google_track'] === true || $default['google_track'] == '1',
         'excludelist'    => array(),
         'sentastest'     => 0,
+        'resetstats'     => 1,
     );
     if (is_array($prevMsgData)) {
         foreach ($prevMsgData as $key => $val) {
