@@ -127,9 +127,9 @@ if (!empty($_POST['import'])) {
         //   var_dump($values);
         $email = clean($values[$emailindex]);
         $password = $values[$passwordindex];
-        $loginname = $values[$loginnameindex];
+        $loginname = strip_tags($values[$loginnameindex]);
         $invalid = 0;
-        if (!$email) {
+        if (!$email || !is_email($email)) {
             if ($test_input && $show_warnings) {
                 Warn($GLOBALS['I18N']->get('Record has no email').': '.$c->$line);
             }
@@ -163,14 +163,14 @@ if (!empty($_POST['import'])) {
         foreach ($user_list as $email => $data) {
             $email = trim($email);
             if (strlen($email) > 4) {
-                echo "<br/><b>$email</b><br/>";
+                echo "<br/><b>".htmlspecialchars($email)."</b><br/>";
                 $html = '';
-                $html .= $GLOBALS['I18N']->get('password').': '.$data['password'].'</br>';
-                $html .= $GLOBALS['I18N']->get('login').': '.$data['loginname'].'</br>';
+                $html .= $GLOBALS['I18N']->get('password').': '.htmlspecialchars($data['password']).'</br>';
+                $html .= $GLOBALS['I18N']->get('login').': '.htmlspecialchars($data['loginname']).'</br>';
                 reset($import_attribute);
                 foreach ($import_attribute as $item) {
                     if (!empty($data['values'][$item['index']])) {
-                        $html .= $attributes[$item['index']].' -> '.$data['values'][$item['index']].'<br/>';
+                        $html .= htmlspecialchars($attributes[$item['index']]).' -> '.htmlspecialchars($data['values'][$item['index']]).'<br/>';
                     }
                 }
                 if ($html) {
