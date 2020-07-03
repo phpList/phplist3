@@ -119,7 +119,7 @@ function setMessageData($msgid, $name, $value)
         $newLists = array();
         foreach ($value as $v) {
             if (is_numeric($v)) {
-                $newLists[] = $v;
+                $newLists[$v] = $v;
             }
         }
         $value = $newLists;
