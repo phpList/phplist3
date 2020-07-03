@@ -213,7 +213,7 @@ if (!empty($_POST['import'])) {
             privileges  = "%s"
             where id = %d',
                             $tables['admin'], sql_escape($email), sql_escape($loginname),
-                            normalize($loginname), adminName($_SESSION['logindetails']['id']),
+                            sql_escape(normalize($loginname)), adminName($_SESSION['logindetails']['id']),
                             encryptPass($data['password']), sql_escape(serialize($privs)), $adminid);
                         $result = Sql_query($query);
                     } else {
@@ -221,7 +221,7 @@ if (!empty($_POST['import'])) {
             (email,loginname,namelc,created,modifiedby,passwordchanged,password,superuser,disabled,privileges)
             values("%s","%s","%s",now(),"%s",now(),"%s",0,0,"%s")',
                             $tables['admin'], sql_escape($email), sql_escape($loginname),
-                            normalize($loginname), adminName($_SESSION['logindetails']['id']),
+                            sql_escape(normalize($loginname)), adminName($_SESSION['logindetails']['id']),
                             encryptPass($data['password']), sql_escape(serialize($privs)));
                         $result = Sql_query($query);
                         $adminid = Sql_insert_id();
