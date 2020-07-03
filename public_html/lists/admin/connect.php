@@ -1332,9 +1332,10 @@ function ListofLists($current, $fieldname, $subselect)
 
     $categoryhtml['selected'] = '';
 
+    $categoryhtml['all'] = '<input type="hidden" name="' .$fieldname.'[unselect]" value="-1" />';
     if ($fieldname == 'targetlist') {
-        $categoryhtml['all'] = '
-    <li><input type="hidden" name="' .$fieldname.'[unselect]" value="-1" /><input type="checkbox" name="'.$fieldname.'[all]"';
+        $categoryhtml['all'] .= '
+    <li><input type="checkbox" name="'.$fieldname.'[all]"';
         if (!empty($current['all'])) {
             $categoryhtml['all'] .= 'checked';
         }
