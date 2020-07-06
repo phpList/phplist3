@@ -635,10 +635,9 @@ Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
 
 // Click tracking
 // If you set this to 1, all links in your emails will be converted to links that
-// go via phpList. This will make sure that clicks are tracked. This is experimental and
-// all your findings when using this feature should be reported to mantis
-// for now it's off by default until we think it works correctly
-define('CLICKTRACK', 0);
+// go via phpList. This will make sure that clicks are tracked. Default: 1
+// If you disable a URL conversion, set to 0.
+define('CLICKTRACK', 1);
 
 // Click track, list detail
 // if you enable this, you will get some extra statistics about unique users who have clicked the
