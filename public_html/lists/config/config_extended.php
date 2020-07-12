@@ -549,6 +549,9 @@ define('LANGUAGE_SWITCH', 1);
 //# the contents are displayed "as-is", so it will not run any PHP code in the file.
 define('ERROR404PAGE', '404.html');
 
+// Add a Reply-To header. Set this to true to show a Reply to field on the Compose tab when creating a campaign.
+define('USE_REPLY_TO', false);
+
 /*
 
 =========================================================================

@@ -700,8 +700,15 @@ if (!$done) {
 
   <div class="field"><label for="fromfield">' .$GLOBALS['I18N']->get('From Line').Help('from').'</label>'.'
     <input type="text" name="fromfield"
-   value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>
+   value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>';
 
+    if (USE_REPLY_TO) {
+        $maincontent .= '
+  <div class="field"><label for="replyto">' .$GLOBALS['I18N']->get('Reply to').Help('from').'</label>'.'
+    <input type="text" name="replyto"
+   value="' .htmlspecialchars($messagedata['replyto']).'" size="60" /></div>';
+    }
+    $maincontent .= '
     <div class="field" id="message-text-preview">
       <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
       <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
