@@ -1393,7 +1393,7 @@ function precacheMessage($messageid, $forwardContent = 0)
     $message = loadMessageData($messageid);
     $cached[$messageid]['uuid'] = $message['uuid'];
 
-    //# the reply to is actually not in use
+    // parse the reply-to field into its components - email and name
     if (preg_match('/([^ ]+@[^ ]+)/', $message['replyto'], $regs)) {
         // if there is an email in the from, rewrite it as "name <email>"
         $message['replyto'] = str_replace($regs[0], '', $message['replyto']);
