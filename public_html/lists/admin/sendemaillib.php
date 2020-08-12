@@ -889,19 +889,21 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 //  print htmlspecialchars($htmlmessage);exit;
 
     if (!TEST) {
+        $fromemail = $cached[$messageid]['fromemail'];
+
         if ($hash != 'forwarded' || !count($forwardedby)) {
             $fromname = $cached[$messageid]['fromname'];
-            $fromemail = $cached[$messageid]['fromemail'];
             $subject = $cached[$messageid]['subject'];
+
+            if (!empty($cached[$messageid]['replytoemail'])) {
+                $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
+            }
         } else {
-            $fromname = '';
-            $fromemail = $forwardedby['email'];
+            $fromname = $forwardedby['subscriberName'];
             $subject = $GLOBALS['strFwd'].': '.$cached[$messageid]['subject'];
+            $mail->AddReplyTo($forwardedby['email'], $forwardedby['subscriberName']);
         }
 
-        if (!empty($cached[$messageid]['replytoemail'])) {
-            $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
-        }
         if ($getspeedstats) {
             output('build End '.$GLOBALS['processqueue_timer']->interval(1));
         }
