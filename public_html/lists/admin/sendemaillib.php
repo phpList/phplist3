@@ -1539,16 +1539,15 @@ function precacheMessage($messageid, $forwardContent = 0)
         output('parse config end');
     }
 
-    //# ##17233 not that many fields are actually useful, so don't blatantly use all
-//  foreach($message as $key => $val) {
     foreach (array('subject', 'id', 'fromname', 'fromemail') as $key) {
         $val = $message[$key];
-        if (!is_array($val)) {
+        // Replace in content except for user-specific URL
+        if (!$cached[$messageid]['userspecific_url']) {
             $cached[$messageid]['content'] = str_ireplace("[$key]", $val, $cached[$messageid]['content']);
-            $cached[$messageid]['textcontent'] = str_ireplace("[$key]", $val, $cached[$messageid]['textcontent']);
-            $cached[$messageid]['textfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['textfooter']);
-            $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
         }
+        $cached[$messageid]['textcontent'] = str_ireplace("[$key]", $val, $cached[$messageid]['textcontent']);
+        $cached[$messageid]['textfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['textfooter']);
+        $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
     }
     /*
      *  cache message owner and list owner attribute values

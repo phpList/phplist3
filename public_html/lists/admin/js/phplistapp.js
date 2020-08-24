@@ -272,7 +272,7 @@ $(document).ready(function () {
             return;
         }
         $("#remoteurlstatus").html(busyImage);
-        $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + this.value);
+        $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + encodeURIComponent(this.value));
     });
     $("#filtertext").on("focus",function () {
         if (this.value == ' --- filter --- ') {
