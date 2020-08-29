@@ -1094,7 +1094,7 @@ msgstr "Plugin kann nicht aktiviert werden, weil \"%s\" aktiviert ist."
 
 #: public_html/lists/admin/plugins.php:260
 msgid "Plugin can not be enabled."
-msgstr "Plugin kann nciht aktiviert werden."
+msgstr "Plugin kann nicht aktiviert werden."
 
 #: public_html/lists/admin/plugins.php:260
 #, php-format
