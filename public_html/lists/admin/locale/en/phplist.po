@@ -9115,7 +9115,7 @@ msgstr "Choose from some common attributes provided by the phpList community"
 
 #: public_html/databasestructure.php:262
 msgid "pagetitle:upgrade"
-msgstr "Upgrade phpList"
+msgstr "Upgrade database"
 
 #: public_html/databasestructure.php:263
 msgid "pagetitlehover:upgrade"
