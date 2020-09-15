@@ -245,7 +245,9 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
                     $_POST['email'] = $_GET['email'];
                 }
                 foreach (explode(',', $GLOBALS['pagedata']['lists']) as $listid) {
-                    $_POST['list'][$listid] = 'signup';
+                    if( $listid != ''){ //# do not add an empty element
+                        $_POST['list'][$listid] = 'signup';
+                    }
                 }
                 $_POST['htmlemail'] = 1; //# @@ should actually be taken from the subscribe page data
 
