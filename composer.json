@@ -30,7 +30,7 @@
     "sllh/php-cs-fixer-styleci-bridge": "~1.3",
     "njoannidi/php-lint-bash": "dev-master",
     "se/selenium-server-standalone": "^2.52",
-    "enm1989/chromedriver": "^83.0",
+    "enm1989/chromedriver": "^85.0",
     "bex/behat-screenshot": "^1.2",
     "zbateson/mail-mime-parser": "^1.1"
   },
