@@ -312,6 +312,7 @@ if (!empty($GLOBALS['require_login'])) {
                 $_REQUEST['login']));
             $msg = $loginresult[1];
         } else {
+            session_regenerate_id();
             $_SESSION['adminloggedin'] = $remoteAddr;
             $_SESSION['logindetails'] = array(
                 'adminname' => $_REQUEST['login'],
