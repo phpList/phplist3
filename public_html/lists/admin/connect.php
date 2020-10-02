@@ -1004,7 +1004,7 @@ function recentlyVisited()
         foreach ($browsetrail as $pageid => $visitedpage) {
             if (strpos($visitedpage,
                 'SEP')) { //# old method, store page title in cookie. However, that breaks on multibyte languages
-                list($pageurl, $pagetitle) = explode('SEP', $visitedpage);
+                list($pageurl, $pagetitle) = explode('SEP', strip_tags($visitedpage));
                 if ($pagetitle != 'phplist') {  //# pages with no title
 //          $pagetitle = str_replace('%',' ',$pagetitle);
                     if (strpos($pagetitle, ' ') > 20) {
