@@ -299,6 +299,10 @@ define('REGISTER', 1);
 // to be 1, the HTML emails will then only add a line of text as signature
 define('EMAILTEXTCREDITS', 0);
 
+// If you still want to remove the credits from emails completely
+// set the next constant to 0.
+define('EMAILCREDITS', 1);
+
 // if you want to also remove the image from your public webpages
 // set the next one to 1, and the pages will only include a line of text
 define('PAGETEXTCREDITS', 0);
