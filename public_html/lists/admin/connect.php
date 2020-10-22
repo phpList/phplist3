@@ -69,6 +69,7 @@ $commandline_pages = array(
     'initlanguages',
     'cron',
     'updatetlds',
+    'export',
     'runcommand',
 );
 
