@@ -37,6 +37,9 @@ function isSuperUser()
     if (defined('WEBBLER') || defined('IN_WEBBLER')) {
         return 1;
     }
+    if ($GLOBALS['commandline']) {
+        return true;
+    }
     global $tables;
     $issuperuser = 0;
 //  if (!isset($_SESSION["adminloggedin"])) return 0;
