@@ -58,14 +58,14 @@ if ($_SESSION['export']['column'] == 'nodate') {
     $todate = $_SESSION['export']['todate'];
 }
 ob_end_clean();
+if ($list) {
+    $filename = s('phpList Export on %s from %s to %s (%s).csv', ListName($list), $fromdate, $todate, date('Y-M-d'));
+} else {
+    $filename = s('phpList Export from %s to %s (%s).csv', $fromdate, $todate, date('Y-M-d'));
+}
+$filename = trim(strip_tags($filename));
 
 if (!empty($_SESSION['export']['fileready']) && is_file($_SESSION['export']['fileready'])) {
-    if ($list) {
-        $filename = s('phpList Export on %s from %s to %s (%s).csv', ListName($list), $fromdate, $todate, date('Y-M-d'));
-    } else {
-        $filename = s('phpList Export from %s to %s (%s).csv', $fromdate, $todate, date('Y-M-d'));
-    }
-    $filename = trim(strip_tags($filename));
     header('Content-type: '.$GLOBALS['export_mimetype'].'; charset=UTF-8');
     header("Content-disposition:  attachment; filename=\"$filename\"");
     $fp = fopen($_SESSION['export']['fileready'], 'r');
@@ -85,6 +85,10 @@ if (EXPORT_EXCEL) {
     $col_delim = ',';
 }
 $row_delim = "\n";
+
+if ($GLOBALS['commandline'] && VERBOSE) {
+    cl_output(s(' * exporting to %s',$exportfileName));
+}
 
 if (is_array($_SESSION['export']['cols'])) {
     foreach ($DBstruct['user'] as $key => $val) {
@@ -135,22 +139,26 @@ if ($_SESSION['export']['column'] == 'listentered') {
 //#$subselect .= ' limit 500'; // just to test the progress meter
 
 if ($list) {
-    $result = Sql_query(sprintf('select * from
+    $query = sprintf('select * from
     %s where user.id = listuser.userid and listuser.listid = %d and %s >= "%s 00:00:00" and %s  <= "%s 23:59:59" %s
     ', $querytables, $list, $column, $fromdate, $column, $todate, $subselect)
-    );
+    ;
 } else {
-    $result = Sql_query(sprintf('
+    $query = sprintf('
     select * from %s where %s >= "%s 00:00:00" and %s  <= "%s 23:59:59" %s',
-        $querytables, $column, $fromdate, $column, $todate, $subselect));
+        $querytables, $column, $fromdate, $column, $todate, $subselect);
 }
 
+if (VERBOSE) {
+    cl_output(' SQL '.$query);
+}
+$result = Sql_query($query);
 $todo = Sql_Affected_Rows();
 $done = 0;
 
-fwrite($exportfile, $GLOBALS['I18N']->get('List Membership').$row_delim);
+fwrite($exportfile, s('List Membership').$row_delim);
 
-while ($user = Sql_fetch_array($result)) {
+while ($user = Sql_fetch_assoc($result)) {
     //# re-verify the blacklist status
     if (empty($user['blacklisted']) && isBlackListed($user['email'])) {
         $user['blacklisted'] = 1;
@@ -160,20 +168,30 @@ while ($user = Sql_fetch_array($result)) {
 
     set_time_limit(500);
     if ($done % 50 == 0) {
-        echo '<script type="text/javascript">
-    var parentJQuery = window.parent.jQuery;
-    parentJQuery("#progressbar").updateProgress("' .$done.','.$todo.'");
-    </script>';
-        flush();
+        if (!$GLOBALS['commandline']) {
+            echo '<script type="text/javascript">
+        var parentJQuery = window.parent.jQuery;
+        parentJQuery("#progressbar").updateProgress("' .$done.','.$todo.'");
+        </script>';
+            flush();
+        } else {
+            cl_progress($done.' out of '.$todo);
+        }
     }
     ++$done;
     reset($_SESSION['export']['cols']);
     foreach ($_SESSION['export']['cols'] as $key => $val) {
+        if (VERBOSE) {
+            cl_output($key.' '.$val.' '.$user[$val].' '.strtr($user[$val], $col_delim, ',').$col_delim);
+        }
         fwrite($exportfile, strtr($user[$val], $col_delim, ',').$col_delim);
     }
     reset($attributes);
     foreach ($attributes as $key => $val) {
         $value = UserAttributeValue($user['id'], $val['id']);
+        if (VERBOSE) {
+            cl_output($key.' '.$val.' '.quoteEnclosed($value, $col_delim, $row_delim).$col_delim);
+        }
         fwrite($exportfile, quoteEnclosed($value, $col_delim, $row_delim).$col_delim);
     }
     if ($exporthistory) {
@@ -194,15 +212,20 @@ while ($user = Sql_fetch_array($result)) {
     fwrite($exportfile, $row_delim);
 }
 
-echo '<script type="text/javascript">
-var parentJQuery = window.parent.jQuery;
-parentJQuery("#busyimage").show();
-parentJQuery("#progressbar").updateProgress("' .$todo.','.$todo.'");
-parentJQuery("#busyimage").hide();
-parentJQuery("#progresscount").html("' .s('All done').'");
-</script>';
-flush();
-$_SESSION['export']['fileready'] = $exportfileName;
-echo '<script type="text/javascript">
-document.location = document.location;
-</script>';
+if (!$GLOBALS['commandline']) {
+    echo '<script type="text/javascript">
+    var parentJQuery = window.parent.jQuery;
+    parentJQuery("#busyimage").show();
+    parentJQuery("#progressbar").updateProgress("' .$todo.','.$todo.'");
+    parentJQuery("#busyimage").hide();
+    parentJQuery("#progresscount").html("' .s('All done').'");
+    </script>';
+    flush();
+    $_SESSION['export']['fileready'] = $exportfileName;
+    echo '<script type="text/javascript">
+    document.location = document.location;
+    </script>';
+} else {
+    rename($exportfileName,$GLOBALS['tmpdir'].'/'.$filename);
+    cl_output(s('File available as "%s"',$GLOBALS['tmpdir'].'./'.$filename));
+}
