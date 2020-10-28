@@ -54,7 +54,7 @@ include_once dirname(__FILE__).'/admin/lib.php';
 
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
-//header('Vary', 'Origin');
+header('Vary: Origin'); // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#CORS_and_caching
 
 if (!empty($GLOBALS['SessionTableName'])) {
     require_once dirname(__FILE__).'/admin/sessionlib.php';
