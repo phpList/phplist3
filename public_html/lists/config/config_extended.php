@@ -874,3 +874,7 @@ define('ALLOW_UPDATER', true);
 // When feedback loop is configured in Google mail according to https://support.google.com/mail/answer/6254652?hl=en
 // adds constant to email headers
 define('GOOGLE_SENDERID', '');
+
+// For ajax based signup forms (https://discuss.phplist.org/t/solved-ajax-subscribe-api/974) the access-control-allow-origin header has to be set properly.
+// Add the addresses of the websites you want to allow to perform ajax requests to PHPList.
+define('ACCESS_CONTROL_ALLOW_ORIGINS', ['https://example.com','https://example.org']);
