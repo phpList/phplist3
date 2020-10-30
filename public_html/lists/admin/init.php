@@ -761,7 +761,7 @@ if (!defined('MESSAGEQUEUE_PREPARE')) {
     }
 }
 if (!defined('USE_PHPMAILER6')) {
-    define('USE_PHPMAILER6', false);
+    define('USE_PHPMAILER6', true);
 }
 if (!isset($GLOBALS['export_mimetype'])) {
     $GLOBALS['export_mimetype'] = 'application/csv';
