@@ -8,7 +8,7 @@ if (USE_PHPMAILER6) {
             $prefixLength = strlen($prefix);
 
             if (substr($classname, 0, $prefixLength) == $prefix) {
-                $phpmailerPath = defined('PHPMAILER_PATH') && PHPMAILER_PATH != ''
+                $phpmailerPath = defined('PHPMAILER_PATH') && is_dir(PHPMAILER_PATH)
                     ? rtrim(PHPMAILER_PATH, '/') . '/'
                     : 'PHPMailer6/src/';
                 $filename = $phpmailerPath . substr($classname, $prefixLength) . '.php';
@@ -33,7 +33,7 @@ if (USE_PHPMAILER6) {
         }
     }
 } else {
-    if (defined('PHPMAILER_PATH') and PHPMAILER_PATH != '') {
+    if (defined('PHPMAILER_PATH') && is_file(PHPMAILER_PATH)) {
         require_once PHPMAILER_PATH;
     } else {
         require_once __DIR__.'/PHPMailer/PHPMailerAutoload.php';
