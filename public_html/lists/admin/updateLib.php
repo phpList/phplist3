@@ -7,6 +7,7 @@
  */
 function getCurrentphpListVersion($path = '')
 {
+    if (empty($path)) return false;
     $version = file_get_contents($path);
     $matches = array();
     preg_match_all('/define\(\"VERSION\",\"(.*)\"\);/', $version, $matches);
