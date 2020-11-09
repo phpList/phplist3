@@ -426,7 +426,6 @@ if (!empty($_SESSION['test_import'])) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
     if ($total > 300 && !$_SESSION['test_import']) {
         // this is a possibly a time consuming process, so show a progress bar
-        echo '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
         // increase the memory to make sure we are not running out
         ini_set('memory_limit', '32M');

@@ -122,6 +122,7 @@ if (isset($_REQUEST['import'])) {
         }
         if (!is_email($email) && $omit_invalid) {
             unset($email, $info);
+            continue;
         }
         //# actually looks like the "info" bit will get lost, but
         //# in a way, that doesn't matter
@@ -132,7 +133,6 @@ if (isset($_REQUEST['import'])) {
 
     if (count($email_list) > 300 && !$test_import) {
         // this is a possibly a time consuming process, so lets show a progress bar
-        //  print '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
         // increase the memory to make sure we are not running out
         ini_set('memory_limit', '16M');
