@@ -763,6 +763,13 @@ if (!defined('MESSAGEQUEUE_PREPARE')) {
 if (!defined('USE_PHPMAILER6')) {
     define('USE_PHPMAILER6', true);
 }
+if (!defined('HTTP_PROXY_HOST')) {
+    define('HTTP_PROXY_HOST', false);
+} 
+if (!defined('HTTP_PROXY_PORT')) {
+    define('HTTP_PROXY_PORT', false);
+}
+
 if (!isset($GLOBALS['export_mimetype'])) {
     $GLOBALS['export_mimetype'] = 'application/csv';
 }

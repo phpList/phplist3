@@ -1321,6 +1321,10 @@ function fetchUrlCurl($url, $request_parameters)
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
     curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }    
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
