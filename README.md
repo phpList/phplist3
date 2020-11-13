@@ -4,7 +4,7 @@
 </div>
 
 #
-[![Build Status](https://travis-ci.org/phpList/phplist3.svg?branch=master)](https://travis-ci.org/phpList/phplist3)
+[![Build Status](https://travis-ci.com/phpList/phplist3.svg?branch=master)](https://travis-ci.com/phpList/phplist3)
 [![Stable release](https://img.shields.io/badge/stable-3.5.6-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 <a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
