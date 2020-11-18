@@ -298,7 +298,8 @@ if (!empty($_SESSION['import_file'])) {
             } else {
                 //# define mapping based on existing attribute or ask for it
                 //@@ Why is $attributes not used
-                $existing = Sql_Fetch_Row_Query('select id from '.$tables['attribute']." where name = \"$column\"");
+                $query = sprintf('select id from %s where name = "%s"', $tables['attribute'], sql_escape($column));
+                $existing = Sql_Fetch_Row_Query($query);
                 $_SESSION['import_attribute'][$column] = array(
                     'index'  => $i,
                     'record' => $existing[0],
