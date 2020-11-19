@@ -170,6 +170,13 @@ if (isset($_POST['import'])) {
     $_SESSION['throttle_import'] = !empty($_POST['throttle_import']) ? sprintf('%d', $_POST['throttle_import']) : 0;
 }
 
+if (isset($_GET['delimiter'])) {
+    // Reprocess the file using the selected delimiter
+    $_SESSION['import_field_delimiter'] = $_GET['delimiter'];
+    $_SESSION['import_attribute'] = [];
+    unset($_GET['delimiter']);
+}
+
 if (!empty($_GET['confirm'])) {
     $_SESSION['test_import'] = '';
 }
@@ -354,6 +361,23 @@ if (!empty($_SESSION['import_file'])) {
     }
     if ($request_mapping) {
         $ls->addButton($GLOBALS['I18N']->get('Continue'), 'javascript:document.importform.submit()');
+
+        if (count($headers) == 1) {
+            // try to identify the actual field delimiter from commonly-used values
+            if (preg_match('/([,;:|])/', $headers[0], $matches)) {
+                $delimiter = $matches[1];
+                $warning = s(
+                    "The file appears to be using '%s' as the field delimiter. Click Resubmit to use '%s' as the delimiter.",
+                    $delimiter,
+                    $delimiter
+                );
+                $url = sprintf('import2&delimiter=%s', urlencode($delimiter));
+                printf('<p class="information">%s</p>%s', $warning, PageLinkButton($url, s('Resubmit')));
+            } else {
+                $warning = s('The entered field delimiter might not be correct.');
+                printf('<p class="information">%s</p>', $warning);
+            }
+        }
         echo '<p class="information">'.$GLOBALS['I18N']->get('Please identify the target of the following unknown columns').'</p>';
         echo '<form name="importform" method="post">';
         echo $ls->display();
