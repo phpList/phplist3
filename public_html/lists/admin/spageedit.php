@@ -194,6 +194,7 @@ $generalinfoHTML .= sprintf('<label for="title">%s</label><input type="text" nam
     s('Title'),
     htmlspecialchars(stripslashes($data['title'])));
 
+$language_files = array();
 $language_file = $GLOBALS['language_module'];
 if (is_dir(dirname(__FILE__).'/../texts')) {
     $language_files = array();
