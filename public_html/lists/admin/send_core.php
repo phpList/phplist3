@@ -708,14 +708,16 @@ if (!$done) {
     <input type="text" name="replyto"
    value="' .htmlspecialchars($messagedata['replyto']).'" size="60" /></div>';
     }
+    if (USE_MESSAGE_PREVIEW) {
     $maincontent .= '
-    <div class="field" id="message-text-preview">
-      <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
-      <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
-      <div id="message-text-preview-button">' .
-        PageLinkAjax('send&tab=Content&id='.$id.'&action=generatetextpreview', $GLOBALS['I18N']->get('Generate')).'</a>
-      </div>
-    </div>';
+        <div class="field" id="message-text-preview">
+        <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
+        <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
+        <div id="message-text-preview-button">' .
+            PageLinkAjax('send&tab=Content&id='.$id.'&action=generatetextpreview', $GLOBALS['I18N']->get('Generate')).'
+        </div>
+        </div>';
+    }
 
     $maincontent .= sprintf('
 
