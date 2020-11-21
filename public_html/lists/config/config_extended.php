@@ -672,6 +672,9 @@ define('EMBEDEXTERNALIMAGES',false);
 // instead of trying to create it by parsing the HTML version into plain text
 define('USE_MANUAL_TEXT_PART', 0);
 
+// Message preview tries to show a small preview of how your campaign will look in email applications
+define('USE_MESSAGE_PREVIEW',true);
+
 // set this to 1 to allow adding attachments to the mails
 // caution, message may become very large. it is generally more
 // acceptable to send a URL for download to users

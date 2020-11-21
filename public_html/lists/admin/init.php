@@ -369,6 +369,9 @@ if (!defined('UPLOADIMAGES_DIR')) {
 if (!defined('USE_MANUAL_TEXT_PART')) {
     define('USE_MANUAL_TEXT_PART', 0);
 }
+if (!defined('USE_MESSAGE_PREVIEW')) {
+    define('USE_MESSAGE_PREVIEW',false);
+}
 if (!defined('ALLOW_NON_LIST_SUBSCRIBE')) {
     define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 }
