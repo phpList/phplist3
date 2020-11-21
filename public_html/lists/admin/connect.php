@@ -1558,21 +1558,14 @@ function Help($topic, $text = '?')
  */
 function isPrivateList($listid) {
 
-    $activeVal = Sql_Query(sprintf('
+    $activeList = Sql_Fetch_Row_Query(sprintf('
           SELECT active
           FROM   %s
           WHERE  id = %d',
             $GLOBALS['tables']['list'], sql_escape($listid))
     );
 
-    while ($row = Sql_Fetch_Row($activeVal)) {
-        $activeVal = $row[0];
-    }
-
-    if ($activeVal == 0) {
-        return true;
-    } else
-        return false;
+    return $activeList[0] == 0;
 }
 
 // Debugging system, needs $debug = TRUE and $verbose = TRUE or $debug_log = {path} in config.php
