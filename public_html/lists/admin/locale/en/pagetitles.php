@@ -75,6 +75,7 @@ switch ($page) {
   case 'updatetranslation': $page_title = 'Update translations'; break;
   case 'reindex': $page_title = 'Re-index DB'; break;
   case 'plugins': $page_title = 'Manage Plugins'; break;
+  case 'update': $page_title = 'Update'; break;
 
   default: $page_title = $page;
     if (0) { //# discover new titles
