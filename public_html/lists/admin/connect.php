@@ -723,7 +723,7 @@ $GLOBALS['pagecategories'] = array(
             'generatebouncerules',
             'initialise',
             'upgrade',
-            'redirecttoupdater',
+            'update',
             'processqueue',
             'processbounces',
             'reindex',
@@ -737,7 +737,7 @@ $GLOBALS['pagecategories'] = array(
             'eventlog',
             'initialise',
             'upgrade',
-            'redirecttoupdater',
+            'update',
             'bouncemgt',
             'processqueue',
             //     'processbounces',
@@ -805,8 +805,8 @@ if(!isSuperUser() || !ALLOW_UPDATER){
     //     'pages'  => array(),
     //     'menulinks' => array(),
     // );
-    unset($GLOBALS['pagecategories']['system']['pages']['redirecttoupdater']);
-    unset($GLOBALS['pagecategories']['system']['menulinks']['redirecttoupdater']);
+    unset($GLOBALS['pagecategories']['system']['pages']['update']);
+    unset($GLOBALS['pagecategories']['system']['menulinks']['update']);
 }
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
