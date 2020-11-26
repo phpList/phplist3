@@ -799,12 +799,7 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
-if(!isSuperUser() || !ALLOW_UPDATER){
-    // $GLOBALS['pagecategories']['update'] = array(
-    //     'toplink'=> 'redirecttoupdater',
-    //     'pages'  => array(),
-    //     'menulinks' => array(),
-    // );
+if(!isSuperUser() || !ALLOW_UPDATER) {
     unset($GLOBALS['pagecategories']['system']['pages']['update']);
     unset($GLOBALS['pagecategories']['system']['menulinks']['update']);
 }
