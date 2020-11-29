@@ -826,7 +826,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:177
 #: public_html/lists/admin/import4.php:186
 #: public_html/lists/admin/attributes.php:365
-#: public_html/lists/admin/spageedit.php:334
+#: public_html/lists/admin/spageedit.php:335
 msgid "Attribute"
 msgstr ""
 
@@ -1365,9 +1365,9 @@ msgstr ""
 #: public_html/lists/admin/userclicks.php:102
 #: public_html/lists/admin/userclicks.php:139
 #: public_html/lists/admin/mclicks.php:80
-#: public_html/lists/admin/spageedit.php:282
-#: public_html/lists/admin/spageedit.php:289
-#: public_html/lists/admin/spageedit.php:296
+#: public_html/lists/admin/spageedit.php:283
+#: public_html/lists/admin/spageedit.php:290
+#: public_html/lists/admin/spageedit.php:297
 #: public_html/lists/admin/mviews.php:89
 msgid "Subject"
 msgstr ""
@@ -2442,30 +2442,30 @@ msgstr ""
 #: public_html/lists/admin/attributes.php:416
 #: public_html/lists/admin/attributes.php:445
 #: public_html/lists/admin/bouncerules.php:125
-#: public_html/lists/admin/spageedit.php:427
+#: public_html/lists/admin/spageedit.php:428
 msgid "Save Changes"
 msgstr ""
 
 #: public_html/lists/admin/template.php:352
-#: public_html/lists/admin/spageedit.php:307
+#: public_html/lists/admin/spageedit.php:308
 msgid "Send test message"
 msgstr ""
 
 #: public_html/lists/admin/template.php:352
-#: public_html/lists/admin/spageedit.php:307
+#: public_html/lists/admin/spageedit.php:308
 msgid "to email addresses"
 msgstr ""
 
 #: public_html/lists/admin/template.php:353
 #: public_html/lists/admin/send_core.php:1008
-#: public_html/lists/admin/spageedit.php:308
+#: public_html/lists/admin/spageedit.php:309
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
 
 #: public_html/lists/admin/template.php:354
 #: public_html/lists/admin/send_core.php:1012
 #: public_html/lists/admin/send_core.php:1399
-#: public_html/lists/admin/spageedit.php:309
+#: public_html/lists/admin/spageedit.php:310
 msgid "Send Test"
 msgstr ""
 
@@ -2558,7 +2558,7 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:134
 #: public_html/lists/admin/attributes.php:376
 #: public_html/lists/admin/attributes.php:431
-#: public_html/lists/admin/spageedit.php:337
+#: public_html/lists/admin/spageedit.php:338
 msgid "Type"
 msgstr ""
 
@@ -3003,13 +3003,13 @@ msgstr ""
 
 #: public_html/lists/admin/spage.php:80
 #: public_html/lists/admin/editlist.php:162
-#: public_html/lists/admin/spageedit.php:409
+#: public_html/lists/admin/spageedit.php:410
 msgid "Owner"
 msgstr ""
 
 #: public_html/lists/admin/spage.php:86
 #: public_html/lists/admin/editattributes.php:213
-#: public_html/lists/admin/spageedit.php:210
+#: public_html/lists/admin/spageedit.php:211
 msgid "default"
 msgstr ""
 
@@ -3095,7 +3095,7 @@ msgstr ""
 #: public_html/lists/admin/login.php:122
 #: public_html/lists/admin/attributes.php:374
 #: public_html/lists/admin/attributes.php:429
-#: public_html/lists/admin/spageedit.php:336
+#: public_html/lists/admin/spageedit.php:337
 #: public_html/lists/admin/catlists.php:80 public_html/databasestructure.php:2
 #: public_html/databasestructure.php:33 public_html/databasestructure.php:147
 msgid "Name"
@@ -3361,7 +3361,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:450
 #: public_html/lists/admin/send_core.php:577
 #: public_html/lists/admin/list.php:227 public_html/lists/admin/user.php:542
-#: public_html/lists/admin/spageedit.php:369
+#: public_html/lists/admin/spageedit.php:370
 msgid "Lists"
 msgstr ""
 
@@ -3912,7 +3912,7 @@ msgid "generate from HTML"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:927
-#: public_html/lists/admin/spageedit.php:227
+#: public_html/lists/admin/spageedit.php:228
 msgid "Footer"
 msgstr ""
 
@@ -6952,13 +6952,13 @@ msgstr ""
 
 #: public_html/lists/admin/attributes.php:406
 #: public_html/lists/admin/attributes.php:438
-#: public_html/lists/admin/spageedit.php:338
+#: public_html/lists/admin/spageedit.php:339
 msgid "Default Value"
 msgstr ""
 
 #: public_html/lists/admin/attributes.php:408
 #: public_html/lists/admin/attributes.php:440
-#: public_html/lists/admin/spageedit.php:339
+#: public_html/lists/admin/spageedit.php:340
 msgid "Order of Listing"
 msgstr ""
 
@@ -6989,7 +6989,7 @@ msgid "Read more"
 msgstr ""
 
 #: public_html/lists/admin/attributes.php:442
-#: public_html/lists/admin/spageedit.php:340
+#: public_html/lists/admin/spageedit.php:341
 msgid "Is this attribute required?"
 msgstr ""
 
@@ -7100,7 +7100,7 @@ msgid "Comment"
 msgstr ""
 
 #: public_html/lists/admin/bounce.php:229
-#: public_html/lists/admin/spageedit.php:224
+#: public_html/lists/admin/spageedit.php:225
 msgid "Header"
 msgstr ""
 
@@ -7296,7 +7296,7 @@ msgid ""
 msgstr ""
 
 #: public_html/lists/admin/defaultconfig.php:366
-#: public_html/lists/admin/spageedit.php:234
+#: public_html/lists/admin/spageedit.php:235
 msgid "Text to display when subscription with an AJAX request was successful"
 msgstr ""
 
@@ -8535,127 +8535,127 @@ msgstr ""
 msgid "General Information"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:218
+#: public_html/lists/admin/spageedit.php:219
 msgid "Language file to use"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:221
+#: public_html/lists/admin/spageedit.php:222
 msgid "Intro"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:230
+#: public_html/lists/admin/spageedit.php:231
 msgid "Thank you page"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:238
+#: public_html/lists/admin/spageedit.php:239
 msgid "Text for Button"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:240
+#: public_html/lists/admin/spageedit.php:241
 msgid "HTML Email choice"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:244
+#: public_html/lists/admin/spageedit.php:245
 msgid "Don't offer choice, default to <b>text</b>"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:248
+#: public_html/lists/admin/spageedit.php:249
 msgid "Don't offer choice, default to <b>HTML</b>"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:252
+#: public_html/lists/admin/spageedit.php:253
 msgid "Offer checkbox for text"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:256
+#: public_html/lists/admin/spageedit.php:257
 msgid "Offer checkbox for HTML"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:260
+#: public_html/lists/admin/spageedit.php:261
 msgid "Radio buttons, default to text"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:264
+#: public_html/lists/admin/spageedit.php:265
 msgid "Radio buttons, default to HTML"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:267
+#: public_html/lists/admin/spageedit.php:268
 msgid "Display Email confirmation"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:270
+#: public_html/lists/admin/spageedit.php:271
 msgid "Display email confirmation"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:273
+#: public_html/lists/admin/spageedit.php:274
 msgid "Don't display email confirmation"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:277
+#: public_html/lists/admin/spageedit.php:278
 msgid "Transaction messages"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:280
+#: public_html/lists/admin/spageedit.php:281
 msgid "Message they receive when they subscribe"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:285
-#: public_html/lists/admin/spageedit.php:292
-#: public_html/lists/admin/spageedit.php:299
+#: public_html/lists/admin/spageedit.php:286
+#: public_html/lists/admin/spageedit.php:293
+#: public_html/lists/admin/spageedit.php:300
 #: public_html/databasestructure.php:53
 msgid "Message"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:287
+#: public_html/lists/admin/spageedit.php:288
 msgid "Message they receive when they confirm their subscription"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:294
+#: public_html/lists/admin/spageedit.php:295
 msgid "Message they receive when they unsubscribe"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:315
+#: public_html/lists/admin/spageedit.php:316
 msgid "Select the attributes to use"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:335
+#: public_html/lists/admin/spageedit.php:336
 msgid "Check this box to use this attribute in the page"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:354
+#: public_html/lists/admin/spageedit.php:355
 #, php-format
 msgid "Information needed for %s"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:359
+#: public_html/lists/admin/spageedit.php:360
 msgid "Select the lists to offer"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:362
+#: public_html/lists/admin/spageedit.php:363
 msgid "Display list categories"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:365
+#: public_html/lists/admin/spageedit.php:366
 msgid "Do not show list categories"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:368
+#: public_html/lists/admin/spageedit.php:369
 msgid "Display lists in labelled categories"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:369
+#: public_html/lists/admin/spageedit.php:370
 msgid "You can only select \"public\" lists for subscribe pages."
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:372
+#: public_html/lists/admin/spageedit.php:373
 msgid "No lists available, please create one first"
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:375
+#: public_html/lists/admin/spageedit.php:376
 msgid "If you do not choose a list here, all public lists will be displayed."
 msgstr ""
 
-#: public_html/lists/admin/spageedit.php:378
+#: public_html/lists/admin/spageedit.php:379
 msgid ""
 "If you choose one list only, a checkbox for this list will not be displayed "
 "and the subscriber will automatically be added to this list."
