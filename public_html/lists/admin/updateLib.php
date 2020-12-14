@@ -33,7 +33,7 @@ function checkForUpdate()
     }
     $versionString = isset($serverResponse['versionstring']) ? $serverResponse['versionstring'] : '';
 
-    if ($version !== '' && $version !== VERSION && version_compare(VERSION, $version) && $enabledNotification) {
+    if ($version !== '' && $version !== VERSION && version_compare(VERSION, $version) < 0 && $enabledNotification) {
         $updateMessage = s('A new version of phpList is available: %s',htmlentities($versionString));
     } else {
         $updateMessage = '';

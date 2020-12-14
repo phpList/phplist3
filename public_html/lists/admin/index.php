@@ -540,7 +540,7 @@ if (!$ajax && $page != 'login') {
         if ($updateNotif !== '') {
             Info($updateNotif . '' . $moreInfo);
         }
-        
+
 #   }
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
@@ -854,6 +854,9 @@ function parseCline()
             $clinearg = substr($clinearg, 2, strlen($clinearg));
             // $res[$par] = "";
             $cur = mb_strtolower($par);
+            if (!isset($res[$cur])) {
+                $res[$cur] = '';
+            }
             $res[$cur] .= $clinearg;
         } elseif ($cur) {
             if ($res[$cur]) {
