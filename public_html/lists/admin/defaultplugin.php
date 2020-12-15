@@ -1087,6 +1087,16 @@ class phplistPlugin
     }
 
     /**
+      * isBlacklistedEmail
+      * @param string $emailaddress
+      * @return bool true if email address should is considered blacklisted
+     */
+    public function isBlackListedEmail($email = '') 
+    {
+        return false;
+    }
+
+    /**
      * Allow additional processing of a link click.
      *
      * @param string $msgtype   H or T
