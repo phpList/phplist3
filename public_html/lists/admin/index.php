@@ -525,14 +525,14 @@ if (!$ajax && $page != 'login') {
     }
 
  #   if (!DEVVERSION) { ## why not, quite useful to see
-
+    if (ALLOW_UPDATER) {
         $updaterdir = __DIR__ . '/../updater';
 
         include 'updateLib.php';
         $updateNotif = checkForUpdate();
         $moreInfo = ' <ul><li><a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a></li>';
 
-        if (file_exists($updaterdir) && ALLOW_UPDATER) {
+        if (file_exists($updaterdir)) {
             $moreInfo .= '<li>'.s('or use the %sphpList Updater%s','<a href="?page=update" title="' . s('automatic updater') . '">','</a>');
         }
         $moreInfo .= '</ul>';
@@ -540,7 +540,7 @@ if (!$ajax && $page != 'login') {
         if ($updateNotif !== '') {
             Info($updateNotif . '' . $moreInfo);
         }
-
+    }
 #   }
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
