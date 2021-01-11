@@ -421,6 +421,10 @@ if ($dbversion == VERSION && !$force) {
         SaveConfig('secret', bin2hex(random_bytes(20)));
     }
 
+    if (version_compare($dbversion, '3.6.0','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['message']} change column processed processed integer ");
+    }
+    
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();
