@@ -1530,7 +1530,7 @@ function formatBytes($value)
 function phpcfgsize2bytes($val)
 {
     $val = trim($val);
-    $last = mb_strtolower($val{strlen($val) - 1});
+    $last = mb_strtolower($val[strlen($val) - 1]);
     $result = substr($val, 0, -1);
     switch ($last) {
         case 'g':
