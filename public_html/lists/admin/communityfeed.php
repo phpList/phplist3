@@ -51,6 +51,8 @@ function buildNews($rss, $max)
  * in the session.
  */
 $newsSize = 'long';
+## OnyxRSS doesn't work in PHP8 
+if (PHP_VERSION_ID >= 80000) return;
 
 if (empty($_SESSION['adminloggedin'])
     || (isset($_GET['page']) && !in_array($_GET['page'], array('home', 'about', 'dashboard', 'community', 'login')))) {
