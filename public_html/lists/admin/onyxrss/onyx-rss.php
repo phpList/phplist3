@@ -76,7 +76,7 @@ class ONYX_RSS
         }
 
         $this->parser = @xml_parser_create();
-        if (!is_resource($this->parser)) {
+        if (!is_resource($this->parser) && !is_object($this->parser)) {
             $this->raiseError((__LINE__ - 3), ONYX_ERR_NO_PARSER);
 
             return false;
