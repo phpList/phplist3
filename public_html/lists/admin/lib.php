@@ -988,10 +988,11 @@ function getPageCache($url, $lastmodified = 0)
 
 function getPageCacheLastModified($url)
 {
-    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],
-        $url));
-
-    return $req[0];
+    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],$url));
+    if (!empty($req) && is_array($req)) {
+        return $req[0];
+    }
+    return 0;
 }
 
 function setPageCache($url, $lastmodified, $content)
