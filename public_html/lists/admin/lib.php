@@ -980,22 +980,28 @@ function checkLock($processid)
 
 function getPageCache($url, $lastmodified = 0)
 {
+    if (empty($_SESSION['hasconf'])) return;
     $req = Sql_Fetch_Row_Query(sprintf('select content from %s where url = "%s" and lastmodified >= %d',
         $GLOBALS['tables']['urlcache'], $url, $lastmodified));
-
-    return $req[0];
+    if (!empty($req) && is_array($req)) {
+        return $req[0];
+    }
+    return '';
 }
 
 function getPageCacheLastModified($url)
 {
-    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],
-        $url));
-
-    return $req[0];
+    if (empty($_SESSION['hasconf'])) return;
+    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],$url));
+    if (!empty($req) && is_array($req)) {
+        return $req[0];
+    }
+    return 0;
 }
 
 function setPageCache($url, $lastmodified, $content)
 {
+    if (empty($_SESSION['hasconf'])) return;
     //  if (isset($GLOBALS['developer_email'])) return;
     Sql_Query(sprintf('delete from %s where url = "%s"', $GLOBALS['tables']['urlcache'], $url));
     Sql_Query(sprintf('insert into %s (url,lastmodified,added,content)
