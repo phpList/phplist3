@@ -225,7 +225,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:343
 #: public_html/lists/admin/initialise.php:249
-#: public_html/lists/admin/upgrade.php:470
+#: public_html/lists/admin/upgrade.php:474
 msgid "Upgrade"
 msgstr ""
 
@@ -1221,105 +1221,105 @@ msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:1812 public_html/lists/admin/lib.php:1817
+#: public_html/lists/admin/lib.php:1818 public_html/lists/admin/lib.php:1823
 msgid "Error, incorrect session token"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2073
+#: public_html/lists/admin/lib.php:2079
 msgid "Remote queue processing has been activated successfully"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2074
+#: public_html/lists/admin/lib.php:2080
 #: public_html/lists/admin/send_core.php:389
 msgid "view progress"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2076 public_html/lists/admin/lib.php:2087
+#: public_html/lists/admin/lib.php:2082 public_html/lists/admin/lib.php:2093
 msgid "Error activating remote queue processing"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2078
+#: public_html/lists/admin/lib.php:2084
 msgid "The API key is incorrect"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2080
+#: public_html/lists/admin/lib.php:2086
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2082
+#: public_html/lists/admin/lib.php:2088
 msgid "Unknown error"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2084
+#: public_html/lists/admin/lib.php:2090
 #: public_html/lists/admin/processqueue.php:96
 msgid "Change settings"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2085 public_html/lists/admin/lib.php:2088
+#: public_html/lists/admin/lib.php:2091 public_html/lists/admin/lib.php:2094
 msgid "Run queue locally"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2101
+#: public_html/lists/admin/lib.php:2107
 msgid "Sign up to receive news and updates about phpList "
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2102
+#: public_html/lists/admin/lib.php:2108
 msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2108
+#: public_html/lists/admin/lib.php:2114
 msgid "Subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2108
+#: public_html/lists/admin/lib.php:2114
 msgid "Do not subscribe"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2313
+#: public_html/lists/admin/lib.php:2319
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2315
+#: public_html/lists/admin/lib.php:2321
 msgid "Still loading"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2316
+#: public_html/lists/admin/lib.php:2322
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2317
+#: public_html/lists/admin/lib.php:2323
 msgid "It should be soon now, your page content is almost here."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2318
+#: public_html/lists/admin/lib.php:2324
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2319
+#: public_html/lists/admin/lib.php:2325
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2320
+#: public_html/lists/admin/lib.php:2326
 msgid "It will really be soon now until the page will display."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2321
+#: public_html/lists/admin/lib.php:2327
 msgid "Still loading, please wait"
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2322
+#: public_html/lists/admin/lib.php:2328
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 msgstr ""
 
-#: public_html/lists/admin/lib.php:2323
+#: public_html/lists/admin/lib.php:2329
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr ""
 
@@ -6268,18 +6268,18 @@ msgid "Domain Statistics"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:15
-#: public_html/lists/admin/upgrade.php:451
+#: public_html/lists/admin/upgrade.php:455
 msgid "The clicktracking system has changed"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:16
-#: public_html/lists/admin/upgrade.php:452
+#: public_html/lists/admin/upgrade.php:456
 #, php-format
 msgid "You have %s entries in the old statistics table"
 msgstr ""
 
 #: public_html/lists/admin/statsmgt.php:18
-#: public_html/lists/admin/upgrade.php:453
+#: public_html/lists/admin/upgrade.php:457
 msgid "Convert Old data to new"
 msgstr ""
 
@@ -7620,7 +7620,7 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:227
-#: public_html/lists/admin/upgrade.php:442
+#: public_html/lists/admin/upgrade.php:446
 msgid "Success"
 msgstr ""
 
@@ -8504,27 +8504,27 @@ msgstr ""
 msgid "Documentation how to set up phpList commandline"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:457
+#: public_html/lists/admin/upgrade.php:461
 msgid "Upgrade successful"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:462
+#: public_html/lists/admin/upgrade.php:466
 msgid "Upgrade failed"
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:467
+#: public_html/lists/admin/upgrade.php:471
 msgid ""
 "Your database requires upgrading, please make sure to create a backup of "
 "your database first."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:468
+#: public_html/lists/admin/upgrade.php:472
 msgid ""
 "If you have a large database, make sure you have sufficient diskspace "
 "available for upgrade."
 msgstr ""
 
-#: public_html/lists/admin/upgrade.php:469
+#: public_html/lists/admin/upgrade.php:473
 #, php-format
 msgid ""
 "When you are ready click %s Depending on the size of your database, this may "
