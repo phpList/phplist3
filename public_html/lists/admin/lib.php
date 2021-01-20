@@ -1906,7 +1906,7 @@ function shortenTextDisplay($text, $max = 30)
         return mb_shortenTextDisplay($text, $max);
     }
 
-    $text = str_replace('http://', '', $text);
+    $text = preg_replace('!^https?://!i', '', $text);
     if (strlen($text) > $max) {
         if ($max < 30) {
             $display = substr($text, 0, $max - 4).' ... ';
@@ -1925,7 +1925,7 @@ function shortenTextDisplay($text, $max = 30)
 
 function mb_shortenTextDisplay($text, $max = 30)
 {
-    $text = str_replace('http://', '', $text);
+    $text = preg_replace('!^https?://!i', '', $text);
     if (mb_strlen($text) > $max) {
         if ($max < 30) {
             $display = mb_substr($text, 0, $max - 4).' ... ';
