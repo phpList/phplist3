@@ -5,7 +5,6 @@ Feature: Setup
   I need to be able to init db
 
   Scenario: Go to dashboard
-    When I recreate the database
     Given I am on "/lists/admin/"
     Then I should see "Database has not been initialised. go to Initialise Database to continue"
 
