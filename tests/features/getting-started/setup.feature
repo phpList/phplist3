@@ -1,4 +1,4 @@
-@first-run
+@initialise
 Feature: Setup
   In order to setup phplist
   As an admin user
