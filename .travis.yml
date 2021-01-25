@@ -13,31 +13,10 @@ matrix:
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '5.6'
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.0'
-          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.1'
-          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.1'
-          env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.2'
-          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.2'
-          env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.3'
-          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
-        - php: '7.3'
-          env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
 
 apt:
   packages:
     - dpkg  # see https://github.com/travis-ci/travis-ci/issues/9361
-
-notifications:
-  slack:
-    rooms:
-      secure: "LegKwsGSAQDcqUGA8Jg90XUWfhnmho5U+RXKpuRfAT4L5Z8j761AVGIwTrUWw8gnxeGccr3smTWahm+GYuwMvg8YDxcygPuVn3U+fus0qgqAnfkQLmMl4vSdkZfO1GTc7YkyLAJcmwdDeUgXr94gQ4qvmsTSk8E0gzIstdfFiOU="
-  on_success: change
-  on_failure: always
 
 addons:
   chrome: stable
@@ -103,4 +82,3 @@ script:
 after_failure:
   - ls -l build/mails
   - ls -l
-  - IMGUR_CLIENT_ID=bec050c54e1bb52 ./bin/imgur-uploader.sh build/screenshot/*.png
