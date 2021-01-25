@@ -1,4 +1,4 @@
-@javascript
+@wip
 Feature: Update plugin
     In order to user extra functions of phpPlist
     As an admin user
