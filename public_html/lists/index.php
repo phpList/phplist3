@@ -750,8 +750,12 @@ function confirmPage($id)
                 getUserConfig("confirmationmessage:$id", $userdata['id']));
 
             if (!TEST) {
-                sendMail($userdata['email'], getConfig("confirmationsubject:$id"), $confirmationmessage,
-                    system_messageheaders(), $envelope);
+                if( !defined("SUBSCRIBE_CONFIRMATION") || ( defined("SUBSCRIBE_CONFIRMATION") && ( SUBSCRIBE_CONFIRMATION == true ) ) ){
+					if( !defined("SUBSCRIBE_CONFIRMATION_{$id}") || ( defined("SUBSCRIBE_CONFIRMATION_{$id}") && ( constant("SUBSCRIBE_CONFIRMATION_{$id}") == true ) ) ){
+						sendMail($userdata['email'], getConfig("confirmationsubject:$id"), $confirmationmessage,
+							system_messageheaders(), $envelope);
+					}
+				}
                 $adminmessage = $userdata['email'].' has confirmed their subscription';
                 if ($blacklisted) {
                     $adminmessage .= "\n\n".s('Subscriber has been removed from blacklist');
