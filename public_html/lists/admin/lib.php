@@ -1275,7 +1275,9 @@ function fetchUrl($url, $userdata = array(), $ttl = REMOTE_URL_REFETCH_TIMEOUT)
 
     if (!empty($content)) {
         $content = addAbsoluteResources($content, $url);
-        logEvent('Fetching '.$url.' success');
+        if (VERBOSE) {
+            logEvent('Fetching '.$url.' success');
+        }
         setPageCache($url, $lastmodified, $content);
 
         $GLOBALS['urlcache'][$url] = array(
