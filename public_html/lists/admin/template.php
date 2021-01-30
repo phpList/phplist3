@@ -11,6 +11,11 @@ if (!empty($_FILES['file_template']) && is_uploaded_file($_FILES['file_template'
 } else {
     $content = '';
 }
+if (isset($_POST['template_text'])) {
+    $content_text = $_POST['template_text'];
+} else {
+    $content_text = '[CONTENT]';
+}
 $sendtestresult = '';
 $testtarget = getConfig('admin_address');
 $systemTemplateID = getConfig('systemmessagetemplate');
@@ -94,7 +99,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     }
 
     $content = disableJavascript($content);
-    if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
+    if (!empty($title) && strpos($content, '[CONTENT]') !== false && strpos($content_text, '[CONTENT]') !== false) {
         $images = getTemplateImages($content);
 
         //   var_dump($images);
@@ -141,8 +146,8 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
             Sql_Query(sprintf('insert into %s (title) values("%s")', $tables['template'], sql_escape($title)));
             $id = Sql_Insert_id();
         }
-        Sql_Query(sprintf('update %s set title = "%s",template = "%s" where id = %d',
-            $tables['template'], sql_escape($title), sql_escape($content), $id));
+        Sql_Query(sprintf('update %s set title = "%s",template = "%s",template_text = "%s" where id = %d',
+            $tables['template'], sql_escape($title), sql_escape($content), sql_escape($content_text), $id));
         Sql_Query(sprintf('select * from %s where filename = "%s" and template = %d',
             $tables['templateimage'], 'powerphplist.png', $id));
         if (!Sql_Affected_Rows()) {
@@ -214,6 +219,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         $actionresult .= s('Some errors were found, template NOT saved!');
         $data['title'] = $title;
         $data['template'] = $content;
+        $data['template_text'] = $content_text;
     }
     if (!empty($_POST['sendtest'])) {
         //# check if it's the system message template or a normal one:
@@ -273,10 +279,14 @@ if ($id) {
     if (!empty($_POST['template'])) {
         $data['template'] = $content;
     }
+    if (!empty($_POST['template_text'])) {
+        $data['template_text'] = $content_text;
+    }
 } else {
     $data = array();
     $data['title'] = '';
     $data['template'] = '';
+    $data['template_text'] = '[CONTENT]';
 }
 
 ?>
@@ -316,6 +326,18 @@ if ($id) {
                     echo '</textarea>';
                 }
                 ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?php echo s('Text version of the template.') ?>
+                <br/><?php echo s('The content should at least have <b>[CONTENT]</b> somewhere.')
+                ?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea name="template_text" id="template_text" cols="65" rows="20"><?php
+                echo stripslashes(htmlspecialchars($data['template_text']));
+                ?></textarea>
             </td>
         </tr>
 

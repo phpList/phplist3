@@ -451,6 +451,7 @@ function constructSystemMail($message, $subject = '')
 {
     $hasHTML = strip_tags($message) != $message;
     $htmlcontent = '';
+    $textcontent = '';
 
     if ($hasHTML) {
         $message = stripslashes($message);
@@ -476,11 +477,13 @@ function constructSystemMail($message, $subject = '')
     }
 
     $htmltemplate = '';
+    $texttemplate = '';
     $templateid = getConfig('systemmessagetemplate');
     if (!empty($templateid)) {
-        $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
+        $req = Sql_Fetch_Row_Query(sprintf('select template, template_text from %s where id = %d',
             $GLOBALS['tables']['template'], $templateid));
         $htmltemplate = stripslashes($req[0]);
+        $texttemplate = stripslashes($req[1]);
     }
     if (strpos($htmltemplate, '[CONTENT]') !== false) {
         $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
@@ -501,8 +504,19 @@ function constructSystemMail($message, $subject = '')
         }
         $htmlcontent = parseLogoPlaceholders($htmlcontent);
     }
+    if (strpos($texttemplate, '[CONTENT]') !== false) {
+        $textcontent = str_replace('[CONTENT]', $textmessage, $texttemplate);
+        $textcontent = str_replace('[SUBJECT]', $subject, $textcontent);
+        $textcontent = str_replace('[FOOTER]', '', $textcontent);
+        $phpListPowered = trim(HTML2Text($GLOBALS['PoweredByText']));
+        if (strpos($textcontent, '[SIGNATURE]')) {
+            $textcontent = str_replace('[SIGNATURE]', $phpListPowered, $textcontent);
+        } else {
+            $textcontent .= "\n\n" . $phpListPowered;
+        }
+    }
 
-    return array($htmlcontent, $textmessage);
+    return array($htmlcontent, $textcontent);
 }
 
 function sendMailPhpMailer($to, $subject, $message)
