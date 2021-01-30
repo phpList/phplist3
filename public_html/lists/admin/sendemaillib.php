@@ -315,7 +315,13 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         $htmlmessage = $htmlcontent;
         $adddefaultstyle = 1;
     }
-    $textmessage = $textcontent;
+    if ($cached[$messageid]['template_text']) {
+        // text template used
+        $textmessage = str_replace('[CONTENT]', $textcontent, $cached[$messageid]['template_text']);
+    } else {
+        // no text template used
+        $textmessage = $textcontent;
+    }
 
     if (VERBOSE && $getspeedstats) {
         output('merge into template end');
@@ -1444,12 +1450,14 @@ function precacheMessage($messageid, $forwardContent = 0)
     $cached[$messageid]['htmlformatted'] = strip_tags($cached[$messageid]['content']) != $cached[$messageid]['content'];
     $cached[$messageid]['sendformat'] = $message['sendformat'];
     if ($message['template']) {
-        $req = Sql_Fetch_Row_Query("select template from {$GLOBALS['tables']['template']} where id = {$message['template']}");
+        $req = Sql_Fetch_Row_Query("select template, template_text from {$GLOBALS['tables']['template']} where id = {$message['template']}");
         $cached[$messageid]['template'] = stripslashes($req[0]);
+        $cached[$messageid]['template_text'] = stripslashes($req[1]);
         $cached[$messageid]['templateid'] = $message['template'];
         //   dbg("TEMPLATE: ".$req[0]);
     } else {
         $cached[$messageid]['template'] = '';
+        $cached[$messageid]['template_text'] = '';
         $cached[$messageid]['templateid'] = 0;
     }
 
@@ -1484,6 +1492,7 @@ function precacheMessage($messageid, $forwardContent = 0)
 
                 //# 17086 - disregard any template settings when we have a valid remote URL
                 $cached[$messageid]['template'] = null;
+                $cached[$messageid]['template_text'] = null;
                 $cached[$messageid]['templateid'] = null;
             } else {
                 //print Error(s('unable to fetch web page for sending'));

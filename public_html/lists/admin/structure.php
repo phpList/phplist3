@@ -232,6 +232,7 @@ $DBstructphplist = array(
         'id'        => array('integer not null primary key auto_increment', 'ID'),
         'title'     => array('varchar(255) not null', 'Title'),
         'template'  => array('longblob', 'The template'),
+        'template_text' => array('longblob', 'The template (text version)'),
         'listorder' => array('integer', ''),
         'unique_1'  => array('(title)', ''),
     ),

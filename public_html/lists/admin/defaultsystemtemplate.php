@@ -413,7 +413,7 @@ if (isset($_POST['Submit'])) {
         echo PageLinkButton('templates', s('Go back to templates'));
         echo '</p>';
     } else {
-        Sql_Query(sprintf('insert into %s (title,template,listorder) values("%s","%s",0)',
+        Sql_Query(sprintf('insert into %s (title,template,template_text,listorder) values("%s","%s","[CONTENT]",0)',
             $GLOBALS['tables']['template'], $title, addslashes($content)));
         $newid = Sql_Insert_Id();
         if ($title === 'System template') {
