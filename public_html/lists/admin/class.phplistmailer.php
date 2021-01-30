@@ -281,7 +281,7 @@ class phplistMailer extends phplistMailerBase
                     }
                 }
             }
-            if (!parent::Send()) {
+            if (!parent::send()) {
                 logEvent(s('Error sending email to %s', $to_addr).' '.$this->ErrorInfo);
 
                 return 0;
