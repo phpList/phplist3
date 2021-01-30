@@ -482,7 +482,7 @@ function constructSystemMail($message, $subject = '')
             $GLOBALS['tables']['template'], $templateid));
         $htmltemplate = stripslashes($req[0]);
     }
-    if (strpos($htmltemplate, '[CONTENT]')) {
+    if (strpos($htmltemplate, '[CONTENT]') !== false) {
         $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
         $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
         $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
