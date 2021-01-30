@@ -578,7 +578,7 @@ function sendMailDirect($destinationemail, $subject, $message)
     }
     $mail->add_text($textmessage);
     try {
-        $mail->Send('', $destinationemail, $fromname, $fromemail, $subject);
+        $mail->send('', $destinationemail, $fromname, $fromemail, $subject);
     } catch (Exception $e) {
         $GLOBALS['smtpError'] = $e->getMessage();
 
