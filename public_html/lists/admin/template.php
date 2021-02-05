@@ -217,10 +217,11 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         }
     } else {
         $actionresult .= s('Some errors were found, template NOT saved!');
-        $data['title'] = $title;
-        $data['template'] = $content;
-        $data['template_text'] = $content_text;
     }
+    $data = array();
+    $data['title'] = $title;
+    $data['template'] = $content;
+    $data['template_text'] = $content_text;
     if (!empty($_POST['sendtest'])) {
         //# check if it's the system message template or a normal one:
 
@@ -267,12 +268,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         }
         $testtarget = preg_replace('/, $/', '', $testtarget);
     }
-}
-if (!empty($actionresult)) {
-    echo '<div class="actionresult">'.$actionresult.'</div>';
-}
-
-if ($id) {
+} elseif ($id) {
     $req = Sql_Query("select * from {$tables['template']} where id = $id");
     $data = Sql_Fetch_Array($req);
     //# keep POSTED data, even if not saved
@@ -287,6 +283,9 @@ if ($id) {
     $data['title'] = '';
     $data['template'] = '';
     $data['template_text'] = '[CONTENT]';
+}
+if (!empty($actionresult)) {
+    echo '<div class="actionresult">'.$actionresult.'</div>';
 }
 
 ?>
