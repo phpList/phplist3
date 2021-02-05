@@ -89,12 +89,13 @@ if ($total > 0) {
 
         //print ("<pre>" . var_dump($_SESSION["import_attribute"]) . "</pre>"); // debug
         //    dbg('_SESSION["import_attribute"',$_SESSION["import_attribute"]); //debug
-        if (count($values) != (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
-            Warn('Record has more values than header indicated ('.
-                count($values).'!='.
-                (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)).
-                "), this may cause trouble: $index");
-        }
+        ##@TODO, this needs rewriting, as $unused_systemattr doesn' t actually exist here
+        // if (count($values) != (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
+        //     Warn('Record has more values than header indicated ('.
+        //         count($values).'!='.
+        //         (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)).
+        //         "), this may cause trouble: $index");
+        // }
         if (!$invalid || ($invalid && $_SESSION['omit_invalid'] != 'yes')) {
             $user['systemvalues'] = $system_values;
             reset($_SESSION['import_attribute']);
@@ -453,23 +454,6 @@ if ($total > 0) {
                 }
                 if (isset($everyone_groupid) && !in_array($everyone_groupid, $groups)) {
                     array_push($groups, $everyone_groupid);
-                }
-                if (defined('IN_WEBBLER') && is_array($groups)) {
-                    //add this user to the groups identified
-                    reset($groups);
-                    $groupaddition = 0;
-                    foreach ($groups as $key => $groupid) {
-                        if ($groupid) {
-                            $query = sprintf('replace INTO user_group (userid,groupid,type) values(%d,%d,%d)', $userid,
-                                $groupid, $_SESSION['grouptype']);
-                            $result = Sql_query($query);
-                            // if the affected rows is 2, the user was already subscribed
-                            $groupaddition = $groupaddition || Sql_Affected_Rows() == 1;
-                        }
-                    }
-                    if ($groupaddition) {
-                        ++$count['group_add'];
-                    }
                 }
             }
         } // end else not test
