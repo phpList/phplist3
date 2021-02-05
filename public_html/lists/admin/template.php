@@ -11,7 +11,8 @@ if (!empty($_FILES['file_template']) && is_uploaded_file($_FILES['file_template'
 } else {
     $content = '';
 }
-if (isset($_POST['template_text'])) {
+$enabletexttemplate = !empty($_POST['enabletexttemplate']) ? 1 : 0;
+if ($enabletexttemplate && isset($_POST['template_text'])) {
     $content_text = $_POST['template_text'];
 } else {
     $content_text = '[CONTENT]';
@@ -278,6 +279,9 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     if (!empty($_POST['template_text'])) {
         $data['template_text'] = $content_text;
     }
+    if ($data['template_text'] != '[CONTENT]') {
+        $enabletexttemplate = 1;
+    }
 } else {
     $data = array();
     $data['title'] = '';
@@ -292,6 +296,17 @@ if (!empty($actionresult)) {
 
 <p class="information"><?php echo $msg ?></p>
 <?php echo '<p class="button pull-right">'.PageLink2('templates', s('List of Templates')).'</p><div class="clearfix"></div>'; ?>
+
+<?php echo '<script type="text/javascript" src="js/'.$GLOBALS['jQuery'].'"></script>' ?>
+<script type="text/javascript">
+$(document).ready(function(){
+$(".texttemplatefield").toggle($('#enabletexttemplate').val()=='1');
+});
+function toggletexttemplate(){
+$('#enabletexttemplate').val(($('#enabletexttemplate').val()=='1')?'':'1');
+$('.texttemplatefield').toggle($('#enabletexttemplate').val()=='1');
+}
+</script>
 
 <?php echo formStart(' enctype="multipart/form-data" class="template2" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
@@ -328,11 +343,16 @@ if (!empty($actionresult)) {
             </td>
         </tr>
         <tr>
+            <td colspan="2"><input type="button" value="<?php echo s('Edit text version of the template') ?>" onclick="toggletexttemplate();" />
+            <input type="hidden" name="enabletexttemplate" id="enabletexttemplate" value="<?php echo $enabletexttemplate ? '1' : '' ?>" />
+            <br/><?php echo s('The text version is not automatically generated from the HTML version; its default value is <b>[CONTENT]</b>.'); ?></td>
+        </tr>
+        <tr class="texttemplatefield">
             <td colspan="2"><?php echo s('Text version of the template.') ?>
                 <br/><?php echo s('The content should at least have <b>[CONTENT]</b> somewhere.')
                 ?></td>
         </tr>
-        <tr>
+        <tr class="texttemplatefield">
             <td colspan="2">
                 <textarea name="template_text" id="template_text" cols="65" rows="20"><?php
                 echo stripslashes(htmlspecialchars($data['template_text']));
