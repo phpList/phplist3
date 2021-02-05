@@ -27,6 +27,14 @@ matrix:
           env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
         - php: '7.3'
           env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
+        - php: '7.4'
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
+        - php: '7.4'
+          env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
+        - php: '8.0'
+          env: BROWSER=goutte TAGS="~javascript && ~@first-run && ~@wip"
+        - php: '8.0'
+          env: BROWSER=chrome TAGS="~javascript && ~@first-run && ~@wip"
 
 apt:
   packages:

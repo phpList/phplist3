@@ -568,7 +568,7 @@ END;
           <tbody>
               %s %s
               <tr><td>' .s('total').'</td><td>'.s('text').'</td><td>'.s('html').'</td>
-                %s%
+                %s
               </tr>
               <tr><td><b>%s</b></td><td><b>%s</b></td><td><b>%s</b></td>
                 %s %s %s %s
