@@ -142,10 +142,9 @@ function findUserID($text)
     //# that should not be too bad
 
     if (!$userid) {
-        preg_match_all('/[\S]+@[\S\.]+/', $text, $regs);
+        preg_match_all('/[._a-zA-Z0-9-]+@[.a-zA-Z0-9-]+/', $text, $regs);
 
-        foreach ($regs[0] as $match) {
-            $email = cleanEmail($match);
+        foreach ($regs[0] as $email) {
             $useridQ = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
                 sql_escape($email)));
             if (!empty($useridQ[0])) {
@@ -203,24 +202,30 @@ function processImapBounce($link, $num, $header)
         //# just say we did something, when actually we didn't
         return true;
     }
+    $bounceDateFormatted = date('Y-m-d H:i:s', $bounceDate);
 
     Sql_Query(sprintf('insert into %s (date,header,data)
     values("%s","%s","%s")',
         $tables['bounce'],
-        date('Y-m-d H:i', $bounceDate),
+        $bounceDateFormatted,
         addslashes($header),
         addslashes($body)));
 
     $bounceid = Sql_Insert_Id();
 
-    return processBounceData($bounceid, $msgid, $userid);
+    return processBounceData($bounceid, $msgid, $userid, $bounceDateFormatted);
 }
 
-function processBounceData($bounceid, $msgid, $userid)
+function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
 {
     global $tables;
     $useremailQ = Sql_fetch_row_query(sprintf('select email from %s where id = %d', $tables['user'], $userid));
     $useremail = $useremailQ[0];
+
+    if ($bounceDate === null) {
+        $bounceDate = date('Y-m-d H:i', time());
+    }
+
     if ($msgid === 'systemmessage' && !empty($userid)) {
         Sql_Query(sprintf('update %s
       set status = "bounced system message",
@@ -229,8 +234,24 @@ function processBounceData($bounceid, $msgid, $userid)
             $tables['bounce'],
             $userid, $bounceid));
 
-        ##@@TODO use the date of the bounce, instead of "now" as processing may be different
-        Sql_Query(sprintf('insert into %s (user,message,bounce,time) values(%d,-1,%d,current_timestamp)',$tables['user_message_bounce'], $userid, $bounceid));
+        #Use the date of the bounce, instead of "now" as processing may be different
+        Sql_Query(sprintf('INSERT INTO %s
+            (
+                        user,
+                        message,
+                        bounce,
+                        time
+            )
+            VALUES
+            (
+                        %d,
+                        -1,
+                        %d,
+                        "%s"
+            )',
+                $tables['user_message_bounce'],
+                $userid, $bounceid, $bounceDate)
+        );
         logEvent("$userid ".$GLOBALS['I18N']->get('system message bounced, user marked unconfirmed'));
         addUserHistory($useremail, $GLOBALS['I18N']->get('Bounced system message'), '
     <br/>' .$GLOBALS['I18N']->get('User marked unconfirmed')."

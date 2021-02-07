@@ -69,6 +69,7 @@ $commandline_pages = array(
     'initlanguages',
     'cron',
     'updatetlds',
+    'export',
     'runcommand',
 );
 
@@ -245,6 +246,14 @@ function SaveConfig($item, $value, $editable = 1, $ignore_errors = 0)
 #            }
             //# we only use the image type for the logo
             flushLogoCache();
+            break;
+        default:
+            if (isset($configInfo['allowtags'])) { ## allowtags can be set but empty
+                $value = strip_tags($value,$configInfo['allowtags']);
+            }
+            if (isset($configInfo['allowJS']) && !$configInfo['allowJS']) { ## it needs to be set and false
+                $value = disableJavascript($value);
+            }
     }
     //# reset to default if not set, and required
     if (empty($configInfo['allowempty']) && empty($value)) {
@@ -408,6 +417,8 @@ function sendMessageStats($msgid)
     }
     $data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['message'], $msgid));
     $msg .= 'phpList version '.VERSION."\n";
+    $msg .= 'phpList url '.getConfig("website")."\n";
+
     $diff = timeDiff($data['sendstart'], $data['sent']);
 
     if ($data['id'] && $data['processed'] > 10 && $diff != 'very little time') {
@@ -712,6 +723,7 @@ $GLOBALS['pagecategories'] = array(
             'generatebouncerules',
             'initialise',
             'upgrade',
+            'update',
             'processqueue',
             'processbounces',
             'reindex',
@@ -725,6 +737,7 @@ $GLOBALS['pagecategories'] = array(
             'eventlog',
             'initialise',
             'upgrade',
+            'update',
             'bouncemgt',
             'processqueue',
             //     'processbounces',
@@ -786,12 +799,9 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
-if(ALLOW_UPDATER){
-    $GLOBALS['pagecategories']['update'] = array(
-        'toplink'=> 'redirecttoupdater',
-        'pages'  => array(),
-        'menulinks' => array(),
-    );
+if(!isSuperUser() || !ALLOW_UPDATER) {
+    unset($GLOBALS['pagecategories']['system']['pages']['update']);
+    unset($GLOBALS['pagecategories']['system']['menulinks']['update']);
 }
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
@@ -994,7 +1004,7 @@ function recentlyVisited()
         foreach ($browsetrail as $pageid => $visitedpage) {
             if (strpos($visitedpage,
                 'SEP')) { //# old method, store page title in cookie. However, that breaks on multibyte languages
-                list($pageurl, $pagetitle) = explode('SEP', $visitedpage);
+                list($pageurl, $pagetitle) = explode('SEP', strip_tags($visitedpage));
                 if ($pagetitle != 'phplist') {  //# pages with no title
 //          $pagetitle = str_replace('%',' ',$pagetitle);
                     if (strpos($pagetitle, ' ') > 20) {
@@ -1321,18 +1331,22 @@ function ListofLists($current, $fieldname, $subselect)
     // $categoryhtml['unselect'] = '<input type="hidden" name="'.$fieldname.'[unselect]" value="1" />';
 
     $categoryhtml['selected'] = '';
-    $categoryhtml['all'] = '
-  <li><input type="hidden" name="' .$fieldname.'[unselect]" value="-1" /><input type="checkbox" name="'.$fieldname.'[all]"';
-    if (!empty($current['all'])) {
-        $categoryhtml['all'] .= 'checked';
-    }
-    $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
 
-    $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
-    if (!empty($current['allactive'])) {
-        $categoryhtml['all'] .= 'checked="checked"';
+    $categoryhtml['all'] = '<input type="hidden" name="' .$fieldname.'[unselect]" value="-1" />';
+    if ($fieldname == 'targetlist') {
+        $categoryhtml['all'] .= '
+    <li><input type="checkbox" name="'.$fieldname.'[all]"';
+        if (!empty($current['all'])) {
+            $categoryhtml['all'] .= 'checked';
+        }
+        $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
+    
+        $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
+        if (!empty($current['allactive'])) {
+            $categoryhtml['all'] .= 'checked="checked"';
+        }
+        $categoryhtml['all'] .= ' />'.s('All Public Lists').'</li>';
     }
-    $categoryhtml['all'] .= ' />'.s('All Public Lists').'</li>';
 
     //# need a better way to suppress this
     if ($_GET['page'] != 'send') {
@@ -1370,7 +1384,7 @@ function ListofLists($current, $fieldname, $subselect)
         }
 
         if (!empty($list['description'])) {
-            $desc = nl2br(stripslashes($list['description']));
+            $desc = nl2br(stripslashes(disableJavascript($list['description'])));
             $categoryhtml[$list['category']] .= "<br />$desc";
         }
         $categoryhtml[$list['category']] .= '</li>';
@@ -1516,7 +1530,7 @@ function formatBytes($value)
 function phpcfgsize2bytes($val)
 {
     $val = trim($val);
-    $last = mb_strtolower($val{strlen($val) - 1});
+    $last = mb_strtolower($val[strlen($val) - 1]);
     $result = substr($val, 0, -1);
     switch ($last) {
         case 'g':
@@ -1533,6 +1547,24 @@ function phpcfgsize2bytes($val)
 function Help($topic, $text = '?')
 {
     return sprintf('<a href="help/?topic=%s" class="helpdialog" target="_blank">%s</a>', $topic, $text);
+}
+
+/**
+ * Checks if the list is private based on if the specified list id is active or not.
+ *
+ * @param int $listid
+ * @return bool
+ */
+function isPrivateList($listid) {
+
+    $activeList = Sql_Fetch_Row_Query(sprintf('
+          SELECT active
+          FROM   %s
+          WHERE  id = %d',
+            $GLOBALS['tables']['list'], sql_escape($listid))
+    );
+
+    return $activeList[0] == 0;
 }
 
 // Debugging system, needs $debug = TRUE and $verbose = TRUE or $debug_log = {path} in config.php
@@ -1684,55 +1716,115 @@ function PageAttributes($data)
     );
 }
 
+/**
+ * Return either the short or long representation of a month in the language for the current admin.
+ * Cache the set of month translations to avoid repeating the translations.
+ *
+ * @param string $month month number 01-12
+ * @param bool   $short generate short or long representation of the month
+ *
+ * @return string
+ */
 function monthName($month, $short = 0)
 {
-    $months = array(
-        '',
-        $GLOBALS['I18N']->get('January'),
-        $GLOBALS['I18N']->get('February'),
-        $GLOBALS['I18N']->get('March'),
-        $GLOBALS['I18N']->get('April'),
-        $GLOBALS['I18N']->get('May'),
-        $GLOBALS['I18N']->get('June'),
-        $GLOBALS['I18N']->get('July'),
-        $GLOBALS['I18N']->get('August'),
-        $GLOBALS['I18N']->get('September'),
-        $GLOBALS['I18N']->get('October'),
-        $GLOBALS['I18N']->get('November'),
-        $GLOBALS['I18N']->get('December'),
-    );
-    $shortmonths = array(
-        '',
-        $GLOBALS['I18N']->get('Jan'),
-        $GLOBALS['I18N']->get('Feb'),
-        $GLOBALS['I18N']->get('Mar'),
-        $GLOBALS['I18N']->get('Apr'),
-        $GLOBALS['I18N']->get('May'),
-        $GLOBALS['I18N']->get('Jun'),
-        $GLOBALS['I18N']->get('Jul'),
-        $GLOBALS['I18N']->get('Aug'),
-        $GLOBALS['I18N']->get('Sep'),
-        $GLOBALS['I18N']->get('Oct'),
-        $GLOBALS['I18N']->get('Nov'),
-        $GLOBALS['I18N']->get('Dec'),
-    );
+    static $shortmonths;
+    static $months;
+
     if ($short) {
-        return $shortmonths[intval($month)];
-    } else {
-        return $months[intval($month)];
+        if ($shortmonths === null) {
+            $shortmonths = array(
+                '',
+                s('Jan'),
+                s('Feb'),
+                s('Mar'),
+                s('Apr'),
+                s('May'),
+                s('Jun'),
+                s('Jul'),
+                s('Aug'),
+                s('Sep'),
+                s('Oct'),
+                s('Nov'),
+                s('Dec'),
+            );
+        }
+
+        return $shortmonths[(int) $month];
     }
+
+    if ($months === null) {
+        $months = array(
+            '',
+            s('January'),
+            s('February'),
+            s('March'),
+            s('April'),
+            s('May'),
+            s('June'),
+            s('July'),
+            s('August'),
+            s('September'),
+            s('October'),
+            s('November'),
+            s('December'),
+        );
+    }
+
+    return $months[(int) $month];
 }
 
+/**
+ * Format a date using a configurable format string.
+ *      d   2-digit day with leading zero
+ *      j   day without leading zero
+ *      F   long representation of month
+ *      m   2-digit month with leading zero
+ *      n   month without leading zero
+ *      M   short representation of month
+ *      y   2-digit year
+ *      Y   4-digit year
+ * Optionally force a short representation to be used for the month.
+ *
+ * @param string $date  date as YYYY-MM-DD
+ * @param bool   $short force short representation of the month
+ *
+ * @return string
+ */
 function formatDate($date, $short = 0)
 {
+    $format = getConfig('date_format');
     $year = substr($date, 0, 4);
     $month = substr($date, 5, 2);
     $day = substr($date, 8, 2);
-    $day = sprintf('%d', $day);
+    $specifiers = array(
+        'Y' => $year,
+        'y' => substr($year, 2, 2),
+        'F' => monthName($month, $short),
+        'M' => monthName($month, true),
+        'm' => $month,
+        'n' => +$month,
+        'd' => $day,
+        'j' => +$day,
+    );
+    $result = strtr($format, $specifiers);
 
-    if ($date) {
-        return $day.' '.monthName(intval($month), $short).' '.$year;
+    return $result;
+}
+
+function formatTime($time, $short = 0)
+{
+    return $time;
+}
+
+function formatDateTime($datetime, $short = 0)
+{
+    if ($datetime == '') {
+        return '';
     }
+    $date = substr($datetime, 0, 10);
+    $time = substr($datetime, 11, 8);
+
+    return formatDate($date, $short).' '.formatTime($time, $short);
 }
 
 $oldestpoweredimage = 'iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAABGdBTUEAALGPC/xhBQAAAMBQTFRFmQAAZgAAmgICmwUFnAgInQsLnxAQbw4OohYWcBERpBwcpiIiqCcnqiwsfCAgrDAwrjU1rzg4sTs7iTAws0FBtEVFtklJuU9Pu1VVn0pKkEREvltbtFxcwWRkw2trm1ZWrGNjx3V1y3x8zoWFqW5u0I6O15ycuoqK3aysxZqa3rm55s3N8t3d9+zs+fHx5t/f/Pf3/fr6////7+/vz8/PtbW1j4+Pb29vVVVVRkZGKioqExMTDg4OBwcHAwMDAAAAB4LGQwAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfSBAITGhB/UY5ZAAAD2ElEQVR4nI2VC3uiOhCGoVqq9YbcZHGxIoI0SLGhIJdt8///1c4kHnVPhTpPK4TPvEzmpkTvsiK/73vckmAuSdJ93/26G5wEhsQN7uuaVTSrWP1BGT1WtCpgUWUf7FhVX1WWVZ/Hz/Qu6ltoSf8ZLFnxwfKypPBXZ02dsrQss7oovnJ+PZa0au6gHqJFT5KuwDmjGctZzp09lux4pF911RRFTT/x+geU8ifqe2T3pX8MEsM+ioY2BThHyyavm5TWRQbhKMS1KVJQOo24ivR/o/RY101Oi4Yd4SUVBoTmNaCqnOYV0POqKLtyR7zBNyoHVz+402nxZqI83uIi+KdSWjtOfFPYh+boeaB8D4N0Xx3LsnzjaRK5hqZOkNwK7u4rIsv6Nyrxl0t7YRmc3ApmneCdLK//efAWhxvPW63cpc3JreCU1QyrNj/31+tul5K1s+brtSzv0p3j7IS0ffHW+lT3kO3aljYbP7eBcyhk6BAKnXGJ6gv8y0NMmg4eD3G1pe97iIvs4OIpCjbearkw1PGoDQzFm7OU5U124sbI3G6HIriIcXY6pnAf+VzCF+kHCIhrm/NJK7iqM+gKdmmvV+Er8hPMHcY44bURrbn0HqGU+OAyxKIV3JQweWh9dphu8dgiCARzNwXujrsfvfCIkGiKUrBBsMvnpAl4xTThBm10qeO8uTQgBDE+XQkF1I4eyBr9fiM6SntC+DsjDqY+d9CTzAQcmHGCdwFX58xdOmKIlClHRQ7yee4gRoQ84VMOnp/BJFaUfcRvpZudF5/AcB2eYns6+z4QKxKgREOevDPYo6E7kjrAkDtw57B38PTgowOIULi65RIhXDpAVUC5ncGSBwF0O8C4W08xqk+pSOQ+XInc/bqWYlEUZ7BtSkpEO8DgzlTm9koPOn7G/i90MQn1a8kX/UFDKAMe48S2430b+BDjqVNsvCmBcPIERp6OuYuDaykCLrYH34a0WQTBmt0EH8hm6f7mhRu8QsCSEGYNFJHvuitYktW15AJX6x6bwt7JSlWNxRJO/ULf/E0QBjDAwGy05dJdeSfJ55INXJhAg9ZfEGHEfVaexzPNssWpcSyCTwvLsngvWQt76QqJzzUcmXPO7QLHq4H00FcGo8ncsHjFRq4Y5NocTFXVuWYAWkh8EoO76onbbwHHHh+oCAaX54aubxPqA9U0tNlsMpmMwSYzVTNMIeErTXCXx/fxsd+7Cd6MTzcPvcfBYIRkKwxD2KnB1vFo9CxsNJ6A2yZItmWdNOT2+73b4LMBGFzG/RrYXBU7uSkKfKA0UyEwVyJwe72Hh1u4v1tVRVPPqSx/AAAAAElFTkSuQmCC';
@@ -1990,11 +2082,6 @@ function versionCompare($thisversion, $latestversion)
     return 0;
 }
 
-function formatTime($time, $short = 0)
-{
-    return $time;
-}
-
 function cleanArray($array)
 {
     $result = array();
@@ -2009,14 +2096,6 @@ function cleanArray($array)
     }
 
     return $result;
-}
-
-function formatDateTime($datetime, $short = 0)
-{
-    $date = substr($datetime, 0, 10);
-    $time = substr($datetime, 11, 8);
-
-    return formatDate($date, $short).' '.formatTime($time, $short);
 }
 
 function cl_processtitle($title)
@@ -2210,35 +2289,36 @@ function printarray($array)
 
 function simplePaging($baseurl, $start, $total, $numpp, $itemname = '')
 {
-    $end = $start ? $start + $numpp : $numpp;
-    if ($end > $total) {
-        $end = $total;
-    }
+    $start = max(0, $start);
+    $end = min($total, $start + $numpp);
+
     if (!empty($itemname)) {
         $text = $GLOBALS['I18N']->get('Listing %d to %d of %d');
     } else {
         $text = $GLOBALS['I18N']->get('Listing %d to %d');
     }
-    if ($start > 0) {
-        $listing = sprintf($text, $start + 1, $end, $total).' '.$itemname;
-    } else {
-        $listing = sprintf($text, 1, $end, $total).' '.$itemname;
-        $start = 0;
-    }
+    $listing = sprintf($text, $start + 1, $end, $total).' '.$itemname;
+
     if ($total < $numpp) {
         return $listing;
     }
+    // The last page displays the remaining items
+    $remainingItems = $total % $numpp;
 
-//# 22934 - new code
+    if ($remainingItems == 0) {
+        $remainingItems = $numpp;
+    }
+    $startLast = $total - $remainingItems;
+
     return '<div class="paging">
     <p class="range">' .$listing.'</p><div class="controls">
     <a title="' .$GLOBALS['I18N']->get('First Page').'" class="first" href="'.PageUrl2($baseurl.'&amp;start=0').'"></a>
     <a title="' .$GLOBALS['I18N']->get('Previous').'" class="previous" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
             max(0, $start - $numpp))).'"></a>
     <a title="' .$GLOBALS['I18N']->get('Next').'" class="next" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
-            min($total, $start + $numpp))).'"></a>
+            min($startLast, $start + $numpp))).'"></a>
     <a title="' .$GLOBALS['I18N']->get('Last Page').'" class="last" href="'.PageUrl2($baseurl.sprintf('&amp;start=%d',
-            $total - $numpp)).'"></a>
+            $startLast)).'"></a>
     </div></div>
   ';
 }

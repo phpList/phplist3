@@ -390,7 +390,7 @@ class phplist_I18N
         } elseif (!empty($page_title)) {
             $title = $page_title;
         } else {
-            $title = $page;
+            $title = ucfirst($page);
         }
 
         return $title;

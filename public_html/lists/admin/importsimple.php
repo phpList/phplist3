@@ -114,7 +114,7 @@ if (!empty($_POST['importcontent'])) {
                 $count['foundonblacklist']).PHP_EOL;
     }
 
-    echo ActionResult(nl2br($report));
+    echo Info(nl2br($report),true);
 
     if ($_GET['page'] == 'importsimple') {
         if (!empty($_GET['list'])) {
@@ -176,10 +176,9 @@ $c = 0;
 if ($total == 1) {
     $row = Sql_fetch_array($result);
     $content .= sprintf('<input type="hidden" name="listname[%d]" value="%s"><input type="hidden" name="importlists[%d]" value="%d">'.s('Adding subscribers').' <b>%s</b>',
-        $c, stripslashes($row['name']), $c, $row['id'], stripslashes($row['name']));
+        $c, disableJavascript(stripslashes($row['name'])), $c, $row['id'], disableJavascript(stripslashes($row['name'])));
 } else {
     $content .= '<p>'.s('Select the lists to add the emails to').'</p>';
-
     $content .= ListSelectHTML($selected_lists, 'importlists', $subselectimp);
 }
 

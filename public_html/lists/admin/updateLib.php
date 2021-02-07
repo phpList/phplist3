@@ -1,57 +1,30 @@
 <?php
-/**
- * Get Current phpList Version.
- *
- * @param string $path Production version location
- * @return string|bool
- */
-function getCurrentphpListVersion($path = '')
-{
-    $version = file_get_contents($path);
-    $matches = array();
-    preg_match_all('/define\(\"VERSION\",\"(.*)\"\);/', $version, $matches);
-
-    if (isset($matches[1][0])) {
-        return $matches[1][0];
-    } else {
-        return false;
-    }
-}
 
 /**
  * Get response from server.
  *
- * @param string $path Production version location
  * @return mixed
  * @throws Exception
  */
-function getResponse($path = '')
+function getResponse()
 {
     $serverUrl = "https://download.phplist.org/version.json";
-    $updateUrl = $serverUrl . '?version=' . getCurrentphpListVersion($path);
+    $updateUrl = $serverUrl . '?version=' . VERSION;
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL, $updateUrl);
-    $responseFromServer = curl_exec($ch);
-    curl_close($ch);
-
+    $responseFromServer = fetchUrl($updateUrl,array(),259200); ## cache for three days
     $responseFromServer = json_decode($responseFromServer, true);
-
     return $responseFromServer;
 }
 
 /**
  * Check for update and return a message only if there is an update available.
  *
- * @param string $path Production version location
  * @return string
  * @throws Exception
  */
-function checkForUpdate($path = '')
+function checkForUpdate()
 {
-    $serverResponse = getResponse($path);
+    $serverResponse = getResponse();
     $version = isset($serverResponse['version']) ? $serverResponse['version'] : '';
     $enabledNotification = true;
 
@@ -59,13 +32,15 @@ function checkForUpdate($path = '')
         $enabledNotification = false;
     }
     $versionString = isset($serverResponse['versionstring']) ? $serverResponse['versionstring'] : '';
+    $myVersion = str_replace('-dev','',VERSION);
 
-    if ($version !== '' && $version !== getCurrentphpListVersion($path) && version_compare(getCurrentphpListVersion($path), $version) && $enabledNotification) {
-        $updateMessage = s('Update to ' . htmlentities($versionString) . ' is available.  ');
+    if ($version !== '' && $version !== $myVersion && version_compare($myVersion, $version) < 0 && $enabledNotification) {
+        $updateMessage = s('A new version of phpList is available: %s',htmlentities($versionString));
     } else {
         $updateMessage = '';
     }
 
+    ## why not just save it as epoch, makes calculations much easier
     SaveConfig('lastcheckupdate', date('m/d/Y h:i:s', time()), 0, true);
 
     return $updateMessage;
@@ -103,6 +78,8 @@ function lastTimeCheck()
  */
 function showUpdateNotification()
 {
+    # we can show all the time, the fetching is cached for three days
+    return true;
 
     if (lastTimeCheck()) {
 

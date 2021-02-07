@@ -80,7 +80,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     //$msg = '';
 } elseif (!empty($_POST['save']) || !empty($_POST['sendtest'])) { //# let's save when sending a test
     $templateok = 1;
-    $title = $_POST['title'];
+    $title = strip_tags($_POST['title']);
     $req = Sql_Query(sprintf('select * from %s where title = "%s" ',$tables['template'], sql_escape($title)));
     if(Sql_Affected_Rows()){
         $titleExists = true;
@@ -91,9 +91,9 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     if($titleExists && !$id){
         $actionresult .= s('The title of the template exists.').'<br/>';
         $templateok = 0;
-
     }
 
+    $content = disableJavascript($content);
     if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
         $images = getTemplateImages($content);
 
@@ -333,17 +333,11 @@ if ($id) {
             <td><input type="checkbox"
                        name="checkfullimages" <?php echo $checkfullimages ? 'checked="checked"' : '' ?> /></td>
         </tr>
-
-        <?php if ($GLOBALS['can_fetchUrl']) {
-                    ?>
-            <tr>
-                <td><?php echo s('Check that all external images exist') ?></td>
-                <td><input type="checkbox"
-                           name="checkimagesexist" <?php echo $checkimagesexist ? 'checked="checked"' : '' ?> /></td>
-            </tr>
-            <?php
-
-                } ?>
+        <tr>
+            <td><?php echo s('Check that all external images exist') ?></td>
+            <td><input type="checkbox"
+                       name="checkimagesexist" <?php echo $checkimagesexist ? 'checked="checked"' : '' ?> /></td>
+        </tr>
         <tr>
             <td colspan="2"><input class="submit" type="submit" name="save"
                                    value="<?php echo s('Save Changes') ?>"/></td>
@@ -352,7 +346,7 @@ if ($id) {
 </div></div>
 <?php $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
-    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
+    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s:
     <input type="text" name="testtarget" size="40" value="' .htmlspecialchars($testtarget).'"/><br />%s
     </div>',
     s('Send test message'), s('to email addresses'),

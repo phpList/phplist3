@@ -89,6 +89,7 @@ if (!empty($_POST['change'])) {
     if ($id) {
         echo '<div class="actionresult">';
         reset($struct);
+        $_POST['email'] = htmlspecialchars(strip_tags($_POST['email']));
         foreach ($struct as $key => $val) {
             $a = $b = '';
             if (strstr($val[1], ':')) {
@@ -147,10 +148,10 @@ if ($id) {
     echo '<h3>'.s('Edit Administrator').': ';
     $result = Sql_query("SELECT * FROM {$tables['admin']} where id = $id");
     $data = sql_fetch_assoc($result);
-    echo $data['loginname'].'</h3>';
+    echo htmlentities($data['loginname']).'</h3>';
     if ($data['id'] != $_SESSION['logindetails']['id'] && $accesslevel == 'all') {
         printf("<br /><a href=\"javascript:deleteRec('%s');\">Delete</a> %s\n", PageURL2('admin', '', "delete=$id"),
-            $data['loginname']);
+            htmlentities($data['loginname']));
     }
 } else {
     $addAdmin = true;
@@ -180,10 +181,11 @@ foreach ($struct as $key => $val) {
         list($a, $b) = explode(':', $val[1]);
     }
     if ($a == 'sys') {
-        if ($b == 'Privileges') { //# this whole thing of using structure is getting silly, @@TODO rewrite without
-        } else {
-            //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
-            if ($b == 'Password') {
+        switch ($b) {
+            case 'Privileges':
+                break;
+            case 'Password':
+                //If key is 'password' and the passwords are encrypted, locate two radio buttons to allow an update.
                 $changeAdminPass = !empty($_SESSION['firstinstall']);
                 if ($addAdmin===true){
 
@@ -233,16 +235,26 @@ foreach ($struct as $key => $val) {
                         s('Update it?'),
                         $checkYes, s('Yes'), $checkNo, s('No'));
                 }
-            } else {
-                if ($b != 'Password') {
-                    if ($addAdmin !==true) {
-                        printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $data[$key]);
-                    }
-                } else {
-                    printf('<tr><td>%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
-                        s('Password'), $key, stripslashes($data[$key]));
+                break;
+            default:
+                if ($addAdmin) {
+                    break;
                 }
-            }
+
+                switch ($key) {
+                    case 'created':
+                        $value = formatDateTime($data[$key]);
+                        break;
+                    case 'modified':
+                        $value = formatDateTime($data[$key]);
+                        break;
+                    case 'passwordchanged':
+                        $value = formatDate($data[$key]);
+                        break;
+                    default:
+                        $value = htmlentities($data[$key]);
+                }
+                printf('<tr><td>%s</td><td>%s</td></tr>', s($b), $value);
         }
     } elseif ($key == 'loginname' && $data[$key] == 'admin') {
         printf('<tr><td>'.s('Login Name').'</td><td>admin</td>');
@@ -283,11 +295,12 @@ while ($row = Sql_fetch_array($res)) {
         $checked_index = $checked_index_req[0];
         $checked = $checked_index == $row['value'] ? 'checked="checked"' : '';
         printf('<tr><td>%s</td><td><input class="attributeinput" type="hidden" name="cbattribute[]" value="%d" />
+
 <input class="attributeinput" type="checkbox" name="attribute[%d]" value="Checked" %s /></td></tr>' ."\n",
-            $row['name'], $row['id'], $row['id'], $checked);
+            htmlentities($row['name']), $row['id'], $row['id'], $checked);
     } else {
         printf('<tr><td>%s</td><td><input class="attributeinput" type="text" name="attribute[%d]" value="%s" size="30" /></td></tr>'."\n",
-            $row['name'], $row['id'], htmlspecialchars(stripslashes($row['value'])));
+            htmlentities($row['name']), $row['id'], htmlentities($row['value']));
     }
 }
 

@@ -20,8 +20,41 @@ if (isset($_REQUEST['list'])) {
 } else {
     $list = 0;
 }
-
 $access = accessLevel('export');
+
+if ($GLOBALS['commandline']) {
+    if (isset($cline['l'])) {
+        $list = $cline['l'];
+    } else {
+        $list = 0;
+    }
+    cl_output(s('Export subscribers'));
+    cl_output('*  '.s('Exporting all subscribers. Use -l[listnumber] to export subscribers on a list'));
+
+    $_SESSION['export'] = array();
+    $cols = array();
+    foreach ($DBstruct['user'] as $key => $val) {
+        if (strpos($val[1], 'sys') === false) {
+            $cols[] = $key;
+        } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {
+            $cols[] = $key;
+        }
+    }
+    $res = Sql_Query("select id,name,tablename,type from {$tables['attribute']} order by listorder");
+    $attrs = array();
+    while ($row = Sql_fetch_array($res)) {
+        $attrs[$row['id']] = stripslashes(htmlspecialchars($row['name']));
+    }
+    $_SESSION['export']['column'] = 'nodate';
+    $_SESSION['export']['cols'] = $cols;
+    $_SESSION['export']['attrs'] = $attrs;
+    $_SESSION['export']['fromdate'] = '2000-01-01';
+    $_SESSION['export']['todate'] = date('Y-m-d');
+    $_SESSION['export']['list'] = $list;
+    require __DIR__.'/actions/export.php';
+    exit;
+}
+
 switch ($access) {
     case 'owner':
         if ($list) {

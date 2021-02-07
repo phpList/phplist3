@@ -177,9 +177,13 @@ define('HASH_ALGO', 'sha256');
 // to 1 for this to have an effect
 define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 
-// if a user should immediately be unsubscribed, when using their personal URL, instead of
-// the default way, which will ask them for a reason, set this to 1
-define('UNSUBSCRIBE_JUMPOFF', 0);
+// Immediately unsubscribe a subscriber when using their personal URL.
+// To display a confirmation page asking them for a reason set this to 0.
+// Be aware that setting to 1 might lead to unauthorised unsubscriptions due to a receiving mail server
+// "following" links in an email. If that happens then set this to 0.
+// Also, see the file README.robots in the phplist distribution doc directory for another way to try to
+// stop unauthorised unsubscriptions.
+define('UNSUBSCRIBE_JUMPOFF', 1);
 
 // To not send confirmation of unsubscription , instead of
 // the default way, which will send it, set this to false
@@ -549,6 +553,9 @@ define('LANGUAGE_SWITCH', 1);
 //# the contents are displayed "as-is", so it will not run any PHP code in the file.
 define('ERROR404PAGE', '404.html');
 
+// Add a Reply-To header. Set this to true to show a Reply to field on the Compose tab when creating a campaign.
+define('USE_REPLY_TO', false);
+
 /*
 
 =========================================================================
@@ -561,14 +568,16 @@ Message sending options
 
 */
 
-// you can specify the location of the phpMailer class here
-// if not set, the version included in the distribution will be used
-//# eg for Debian based systems, it may be something like the example below
-//# when you do this, you may need to run some tests, to see if the phpMailer version
-//# you have works ok
-//define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/class.phpmailer.php');
-// or a more recent version of phpMailer will be like this
-//define ('PHPMAILER_PATH','/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php');
+// If you are using PHPMailer 5 then you can use a different version to the phplist distribution by specifying
+// the location of the PHPMailer autoload file
+// if not set, the PHPMailer version included in the distribution will be used
+// eg for Debian based systems, it may be something like the example below
+// when you do this, you may need to run some tests, to see if the phpMailer version you have works ok
+//define ('PHPMAILER_PATH', '/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php');
+//
+// If you are using PHPMailer 6 then you can use a different version by setting the location of the PHPMailer
+// src directory, e.g.
+//define ('PHPMAILER_PATH', '/var/www/PHPMailer-master/src');
 
 // To use a SMTP server please give your server hostname here, leave it blank to use the standard
 // PHP mail() command.
@@ -599,7 +608,7 @@ define('PHPMAILERHOST', '');
 
 //# SMTP debugging
 // Enable debugging output by phpmailer when sending test emails
-// See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.html#property_SMTPDebug
+// See https://phpmailer.github.io/PHPMailer/classes/PHPMailer.PHPMailer.PHPMailer.html#property_SMTPDebug
 // define('PHPMAILER_SMTP_DEBUG', 0);
 
 //# Smtp Timeout
@@ -633,10 +642,9 @@ Advanced Features, HTML editor, RSS, Attachments, Plugins. PDF creation
 
 // Click tracking
 // If you set this to 1, all links in your emails will be converted to links that
-// go via phpList. This will make sure that clicks are tracked. This is experimental and
-// all your findings when using this feature should be reported to mantis
-// for now it's off by default until we think it works correctly
-define('CLICKTRACK', 0);
+// go via phpList. This will make sure that clicks are tracked. Default: 1
+// If you disable a URL conversion, set to 0.
+define('CLICKTRACK', 1);
 
 // Click track, list detail
 // if you enable this, you will get some extra statistics about unique users who have clicked the
@@ -667,6 +675,9 @@ define('EMBEDEXTERNALIMAGES',false);
 // Manual text part, will give you an input box for the text version of the message
 // instead of trying to create it by parsing the HTML version into plain text
 define('USE_MANUAL_TEXT_PART', 0);
+
+// Message preview tries to show a small preview of how your campaign will look in email applications
+define('USE_MESSAGE_PREVIEW',true);
 
 // set this to 1 to allow adding attachments to the mails
 // caution, message may become very large. it is generally more
@@ -866,4 +877,11 @@ define('FORWARD_ALTERNATIVE_CONTENT', 0);
 // To disable the automatic updater change the value to false. By default the value is true.
 define('ALLOW_UPDATER', true);
 
+// Google mail Feedback loop configuration
+// When feedback loop is configured in Google mail according to https://support.google.com/mail/answer/6254652?hl=en
+// adds constant to email headers
+define('GOOGLE_SENDERID', '');
 
+// For ajax based signup forms (https://discuss.phplist.org/t/solved-ajax-subscribe-api/974) the access-control-allow-origin header has to be set properly.
+// Add the addresses of the websites you want to allow to perform ajax requests to PHPList.
+define('ACCESS_CONTROL_ALLOW_ORIGINS', ['https://example.com','https://example.org']);

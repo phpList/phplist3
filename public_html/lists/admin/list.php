@@ -85,7 +85,22 @@ switch ($access) {
         $subselect_and = ' and id = 0';
         break;
 }
+if (!empty($_POST['clear'])) {
+    $_SESSION['searchlists'] = '';
+    $_POST['search'] = '';
+}
+if (!isset($_SESSION['searchlists'])) {
+    $_SESSION['searchlists'] = '';
+}
+if (isset($_POST['search'])) {
+    $_SESSION['searchlists'] = $_POST['search'];
+}
 
+if (!empty($_SESSION['searchlists'])) {
+    $searchLists = ' and name like "%'.sql_escape($_SESSION['searchlists']).'%" ';
+} else {
+    $searchLists = '';
+}
 echo '<div class="row"><div class="actions col-xs-12">';
 echo '<span class="pull-left">'.PageLinkButton('catlists', $I18N->get('Categorise lists')).'</span>';
 $canaddlist = false;
@@ -162,7 +177,7 @@ if (count($aListCategories)) {
     }
     $tabs = new WebblerTabs();
     foreach ($aListCategories as $category) {
-        $category = trim($category);
+        $category = trim(htmlspecialchars($category));
         if ($category == '') {
             $category = s('Uncategorised');
         }
@@ -181,7 +196,7 @@ if (count($aListCategories)) {
 $countquery
     = ' select *'
     .' from '.$tables['list']
-    .$subselect;
+    .$subselect.$searchLists;
 $countresult = Sql_query($countquery);
 $total = Sql_Num_Rows($countresult);
 
@@ -200,9 +215,15 @@ if ($total > 30 && empty($_SESSION['showalllists'])) {
     $limit = '';
 }
 
-$result = Sql_query('select * from '.$tables['list'].' '.$subselect.' order by listorder '.$limit);
+$result = Sql_query('select * from '.$tables['list'].' '.$subselect.$searchLists.' order by listorder '.$limit);
 $numlists = Sql_Affected_Rows($result);
 
+$searchValue = $_SESSION['searchlists'];
+
+echo '<div> <input type="text" name="search" placeholder="&#128269;'.s('Search lists').'" value="'.htmlentities($searchValue).'" />';
+echo '<button type="submit" name="go" id="filterbutton" >'.s('Go').'</button>
+      <button type="submit" name="clear" id="filterclearbutton" value="1">'.s('Clear').'</button>';
+echo '</div> ';
 $ls = new WebblerListing($total.' '.s('Lists'));
 $ls->usePanel($paging);
 

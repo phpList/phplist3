@@ -34,7 +34,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
     //# verify the url against known locations, and require it to be "zip".
     //# let's hope Github keeps this structure for a while
-    if (!preg_match('~^https?://github\.com/([\w-_]+)/([\w-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
+    if (!preg_match('~^https?://github\.com/([\w\-_]+)/([\w\-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
         echo Error(s('Invalid download URL, please reload the page and try again'));
 
         return;
@@ -49,7 +49,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     echo '<h2>'.s('Project').': '.$project_name.'</h2>';
 
     $filename = '';
-    $packagefile = file_get_contents($packageurl);
+    $packagefile = fetchUrlDirect($packageurl);
     if (!$packagefile) {
         echo Error(s('Unable to download plugin package, check your connection'));
     } else {
@@ -165,23 +165,21 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
 
 if (defined('PLUGIN_ROOTDIR') && !is_writable(PLUGIN_ROOTDIR)) {
     Info(s('The plugin root directory is not writable, please install plugins manually'));
-} elseif (ini_get('allow_url_fopen') != '1') {
-    Info(s('The PHP option for <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">URL-aware fopen wrappers</a> needs to be enabled. This is required to allow installation from a remote URL'));
 } elseif (!class_exists('ZipArchive')) {
     Info(s('PHP has no <a href="http://php.net/zip">Zip capability</a>. This is required to allow installation from a remote URL'));
 } else {
     echo '<h3>'.s('Install a new plugin').'</h3>';
-		echo '<div class="jumbotron col-sm-12">';
+        echo '<div class="jumbotron col-sm-12">';
     echo '<div class="col-sm-3 col-md-3 col-lg-3 row"><a class="resourceslink btn btn-info" href="http://resources.phplist.com/plugins/" title="'.s('Find plugins').'" target="_blank">'.s('Find plugins').'</a></div><div class="clearfix visible-xs visible-md"></div><br class="visible-xs visible-md" />';
     echo formStart('class="form-horizontal"');
     echo '<fieldset class="col-sm-9 col-md-9 col-lg-9 input-group">
       <label for="pluginurl" class="pull-left control-label">' .s('Plugin package URL').'</label>
-			<div class="clearfix visible-xs visible-md"></div>
+            <div class="clearfix visible-xs visible-md"></div>
       <div type="field" class="pull-left col-lg-7 col-md-9 input-group"><input type="text" id="pluginurl" name="pluginurl" /></div>
       <button type="submit" name="download">' .s('Install plugin').'</button>
       </fieldset>';
-		echo '</form>';
-		echo '</div>';
+        echo '</form>';
+        echo '</div>';
 }
 
 $ls = new WebblerListing(s('Installed plugins'));
@@ -277,7 +275,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if (!empty($pluginDetails['installDate'])) {
         //  $ls->addColumn($pluginname,s('installed'),date('Y-m-d',$pluginDetails['installDate']));
         $details .= '<div class="detail"><span class="label">'.s('installed').'</span>';
-        $details .= '<span class="value">'.date('Y-m-d', $pluginDetails['installDate']).'</span></div>';
+        $details .= '<span class="value">'.formatDateTime(date('Y-m-d', $pluginDetails['installDate'])).'</span></div>';
     }
     if (!empty($pluginDetails['installUrl'])) {
         //   $ls->addRow($pluginname,s('installation Url'),$pluginDetails['installUrl']);
@@ -294,7 +292,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if ($plugin->enabled && !empty($plugin->settings)) {
         $firstSetting = reset($plugin->settings);
         $category = $firstSetting['category'];
-        $settingsUrl = PageURL2('configure').'#'.strtolower($category);
+        $settingsUrl = PageURL2('configure').'#'.sanitiseId(strtolower($category));
         $detailEntry .= '<span class="label">'.s('Configure').'</span>';
         $detailEntry .= '<span class="value"><a href="'.$settingsUrl.'">'.s($category).' '.s('settings').'</a></span>';
     }
@@ -365,7 +363,7 @@ $ls->usePanel(
 );
 echo $ls->display();
 
-/** 
+/**
  * Creates a link to the plugins page to show only plugins that meet the filter value.
  *
  * @param string $filterParam the URL query parameter
@@ -383,7 +381,7 @@ function filterLink($filterParam, $count, $caption)
         : $caption;
 }
 
-/** 
+/**
  * Query GitHub for the latest tag of a plugin.
  * Cache the result of each query for 24 hours to limit the number of API calls.
  *
@@ -398,22 +396,8 @@ function filterLink($filterParam, $count, $caption)
 function getLatestTag($developer, $repository)
 {
     $tagUrl = "https://api.github.com/repos/$developer/$repository/tags";
-    $now = time();
-    $addedSince = $now - 24 * 60 * 60;
-    $content = getPageCache($tagUrl, $addedSince);
-
-    if ($content === null) {
-        // query result not in cache or cache has expired
-        $options = array(
-            'http' => array(
-                'method' => 'GET',
-                'header' => array("User-Agent: $repository")
-            )
-        );
-        $context = stream_context_create($options);
-        $content = file_get_contents($tagUrl, false, $context);
-        setPageCache($tagUrl, $now, $content);
-    }
+    $ttl = 24 * 60 * 60;
+    $content = fetchUrl($tagUrl, array(), $ttl);
 
     if (!$content) {
         return null;

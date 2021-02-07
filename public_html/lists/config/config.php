@@ -12,7 +12,7 @@
 ==============================================================================================================
 */
 // what is your Mysql database server hostname
-$database_host = 'localhost';
+$database_host = 'dbhost';
 // what is the name of the database we are using
 $database_name = 'phplistdb';
 // what user has access to this database

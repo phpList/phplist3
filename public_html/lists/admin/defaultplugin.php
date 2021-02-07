@@ -280,7 +280,7 @@ class phplistPlugin
         return $this->name.' : '.$page;
     }
 
-    /** 
+    /**
      * deleteSent - wipe DB entries marking a campaign sent for subscribers
      * this is used in DEV mode only.
      */
@@ -288,7 +288,7 @@ class phplistPlugin
     {
     }
 
-    /** 
+    /**
      * write a value to the general config to be retrieved at a later stage
      * parameters: name -> name of the variable
      * value -> value of the variablesiable, can be a scalar, array or object
@@ -309,7 +309,7 @@ class phplistPlugin
         return 1;
     }
 
-    /** 
+    /**
      * read a value from the general config to be retrieved at a later stage
      * parameters: name -> name of the variable
      * returns value
@@ -334,7 +334,7 @@ class phplistPlugin
         return $result;
     }
 
-    /** 
+    /**
      * displayConfig
      * purpose: display input for a config variable in the backend
      * parameters:
@@ -399,7 +399,7 @@ class phplistPlugin
     //###########################################################
     // Frontend
 
-    /** 
+    /**
      * return snippet for the Subscribe page
      */
     public function displaySubscriptionChoice($pageData, $userID = 0)
@@ -412,7 +412,7 @@ class phplistPlugin
         return;
     }
 
-    /** 
+    /**
      * parse the text of the thankyou page
      * parameters:
      * pageid -> id of the subscribe page
@@ -445,7 +445,7 @@ class phplistPlugin
     //###########################################################
     // Message
 
-    /** 
+    /**
      * add a tab to the "Send a Message page" for options to be set in the plugin
      * @param messageid ID of the message being displayed (should always be > 0)
      * @param messagedata associative array of all data from the db for this message
@@ -456,7 +456,7 @@ class phplistPlugin
         return '';
     }
 
-    /** 
+    /**
      * If adding a TAB to the Send a Message page, what is the TAB's name
      * parameters: none
      * @return short title (less than about 10 characters)
@@ -467,7 +467,7 @@ class phplistPlugin
         return '';
     }
 
-    /** 
+    /**
      * If adding a TAB to the Send a Message page, try to insert the tab before the one returned here by title
      * parameters: none
      * returns: tab title to insert before
@@ -585,7 +585,7 @@ class phplistPlugin
         return '';
     }
 
-    /** 
+    /**
      * messageStatus
      * @param int    $id     messageid
      * @param string $status message status
@@ -710,7 +710,7 @@ class phplistPlugin
         return array();
     }
 
-    /** 
+    /**
      * parseFinalMessage
      * purpose: create the actual message, based on the text and html content as prepared by phplist
      * parameters:
@@ -1084,6 +1084,29 @@ class phplistPlugin
     public function validateEmailAddress($emailAddress)
     {
         return true;
+    }
+
+    /**
+      * isBlacklistedEmail
+      * @param string $emailaddress
+      * @return bool true if email address should is considered blacklisted
+     */
+    public function isBlackListedEmail($email = '') 
+    {
+        return false;
+    }
+
+    /**
+     * Allow additional processing of a link click.
+     *
+     * @param string $msgtype   H or T
+     * @param int    $fwdid     id of row in linktrack_forward table
+     * @param int    $messageid id of row in message table
+     * @param int    $userid    id of row in user table
+     * @param string $url       url of row in linktrack_forward table
+     */
+    public function linkClick($msgtype, $fwdid, $messageid, $userid, $url)
+    {
     }
 
     //#####################################

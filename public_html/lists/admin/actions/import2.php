@@ -4,6 +4,7 @@ verifyCsrfGetToken();
 
 require dirname(__FILE__).'/../structure.php';
 require dirname(__FILE__).'/../inc/importlib.php';
+require dirname(__FILE__).'/../CsvReader.php';
 
 @ob_end_flush();
 $status = 'FAIL';
@@ -12,36 +13,23 @@ flush();
 if (filesize($_SESSION['import_file']) > 50000) {
     @ini_set('memory_limit', memory_get_usage() + 50 * filesize($_SESSION['import_file']));
 }
-$email_list = file_get_contents($_SESSION['import_file']);
 flush();
-// Clean up email file
-$email_list = trim($email_list);
-$email_list = str_replace("\r", "\n", $email_list);
-$email_list = str_replace("\n\r", "\n", $email_list);
-$email_list = str_replace("\n\n", "\n", $email_list);
 
-if ($_SESSION['import_record_delimiter'] != "\n") {
-    $email_list = str_replace($_SESSION['import_record_delimiter'], "\n", $email_list);
-}
-
-// Split file/emails into array
-$email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
-output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
-$header = array_shift($email_list);
-$total = count($email_list);
-$headers = str_getcsv($header, $_SESSION['import_field_delimiter']);
+$csvReader = new CsvReader($_SESSION['import_file'], $_SESSION['import_field_delimiter']);
+$total = $csvReader->totalRows();
+output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', $total));
+--$total; // now the number of subscribers to be imported
+$headers = $csvReader->getRow();
 $headers = array_unique($headers);
 $_SESSION['columnnames'] = $headers;
 
 //## show progress and adjust working space
-if (count($email_list)) {
+if ($total > 0) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
-    if (count($email_list) > 300 && !$_SESSION['test_import']) {
+    if ($total > 300 && !$_SESSION['test_import']) {
         // this is a possibly a time consuming process, so show a progress bar
-        echo '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
         // increase the memory to make sure we are not running out
-        //    $mem = sizeof($email_list);
         ini_set('memory_limit', '32M');
     }
 
@@ -65,18 +53,17 @@ if (count($email_list)) {
     $c = 1;
     $count['invalid_email'] = 0;
     $num_lists = count($_SESSION['lists']);
-    $total = count($email_list);
     $cnt = 0;
     $count['emailmatch'] = 0;
     $count['fkeymatch'] = 0;
     $count['dataupdate'] = 0;
     $count['duplicate'] = 0;
     $additional_emails = 0;
-    foreach ($email_list as $line) {
+
+    while ($values = $csvReader->getRow()) {
         set_time_limit(60);
         // will contain attributes to store / change
         $user = array();
-        $values = str_getcsv($line, $_SESSION['import_field_delimiter']);
         $system_values = array();
         foreach ($system_attribute_mapping as $column => $index) {
             //   print '<br/>'.$column . ' = '. $values[$index];
@@ -102,20 +89,21 @@ if (count($email_list)) {
 
         //print ("<pre>" . var_dump($_SESSION["import_attribute"]) . "</pre>"); // debug
         //    dbg('_SESSION["import_attribute"',$_SESSION["import_attribute"]); //debug
-        if (count($values) != (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
-            Warn('Record has more values than header indicated ('.
-                count($values).'!='.
-                (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)).
-                "), this may cause trouble: $index");
-        }
+        ##@TODO, this needs rewriting, as $unused_systemattr doesn' t actually exist here
+        // if (count($values) != (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)) && !empty($_SESSION['test_import']) && !empty($_SESSION['show_warnings'])) {
+        //     Warn('Record has more values than header indicated ('.
+        //         count($values).'!='.
+        //         (count($_SESSION['import_attribute']) + count($system_attributes) - count($unused_systemattr)).
+        //         "), this may cause trouble: $index");
+        // }
         if (!$invalid || ($invalid && $_SESSION['omit_invalid'] != 'yes')) {
             $user['systemvalues'] = $system_values;
             reset($_SESSION['import_attribute']);
             $replace = array();
             foreach ($_SESSION['import_attribute'] as $key => $val) {
                 if (!empty($values[$val['index']])) {
-                    $user[$val['index']] = addslashes($values[$val['index']]);
-                    $replace[$key] = addslashes($values[$val['index']]);
+                    $user[$val['index']] = htmlspecialchars($values[$val['index']]);
+                    $replace[$key] = htmlspecialchars($values[$val['index']]);
                 }
             }
         } else {
@@ -467,23 +455,6 @@ if (count($email_list)) {
                 if (isset($everyone_groupid) && !in_array($everyone_groupid, $groups)) {
                     array_push($groups, $everyone_groupid);
                 }
-                if (defined('IN_WEBBLER') && is_array($groups)) {
-                    //add this user to the groups identified
-                    reset($groups);
-                    $groupaddition = 0;
-                    foreach ($groups as $key => $groupid) {
-                        if ($groupid) {
-                            $query = sprintf('replace INTO user_group (userid,groupid,type) values(%d,%d,%d)', $userid,
-                                $groupid, $_SESSION['grouptype']);
-                            $result = Sql_query($query);
-                            // if the affected rows is 2, the user was already subscribed
-                            $groupaddition = $groupaddition || Sql_Affected_Rows() == 1;
-                        }
-                    }
-                    if ($groupaddition) {
-                        ++$count['group_add'];
-                    }
-                }
             }
         } // end else not test
         if ($_SESSION['test_import'] && $c > 50) {
@@ -536,7 +507,7 @@ if (count($email_list)) {
     } else {
         output($report);
     }
-    $htmlupdate = $report.'<br/>'.PageLinkButton('import2', s('Import some more emails'));
+    $htmlupdate = $report.'<br/>'.'<div class="button btn btn-default">'.PageLinkButton('import2', s('Import some more emails')).'</div>';
     $htmlupdate = str_replace("'", "\'", $htmlupdate);
 
     clearImport();

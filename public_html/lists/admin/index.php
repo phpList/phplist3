@@ -241,7 +241,7 @@ if ($GLOBALS['commandline']) {
         $ref = parse_url($_SERVER['HTTP_REFERER']);
         $parts = explode(':', $_SERVER['HTTP_HOST']);
         if ($ref['host'] != $parts[0] && !in_array($ref['host'], $allowed_referrers)) {
-            echo 'Access denied';
+            echo 'Access denied <script type="text/javascript">document.location = document.location</script>';
             exit;
         }
     }
@@ -312,6 +312,7 @@ if (!empty($GLOBALS['require_login'])) {
                 $_REQUEST['login']));
             $msg = $loginresult[1];
         } else {
+            session_regenerate_id();
             $_SESSION['adminloggedin'] = $remoteAddr;
             $_SESSION['logindetails'] = array(
                 'adminname' => $_REQUEST['login'],
@@ -523,28 +524,24 @@ if (!$ajax && $page != 'login') {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
 
-    if (!strpos(VERSION, 'dev')) {
-
+ #   if (!DEVVERSION) { ## why not, quite useful to see
+    if (ALLOW_UPDATER) {
         $updaterdir = __DIR__ . '/../updater';
 
         include 'updateLib.php';
+        $updateNotif = checkForUpdate();
+        $moreInfo = ' <ul><li><a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a></li>';
 
-        if (showUpdateNotification() && (getCurrentphpListVersion() !== false) && extension_loaded('curl')) {
+        if (file_exists($updaterdir)) {
+            $moreInfo .= '<li>'.s('or use the %sphpList Updater%s','<a href="?page=update" title="' . s('automatic updater') . '">','</a>');
+        }
+        $moreInfo .= '</ul>';
 
-            $updateNotif = checkForUpdate('init.php');
-            $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a>';
-
-            if (file_exists($updaterdir) && ALLOW_UPDATER) {
-
-                $moreInfo .= s(' or update') . ' <a href="?page=redirecttoupdater" title="' . s('automatic updater') . '">' . s('here.') . '</a>';
-            }
-
-            if ($updateNotif !== '') {
-
-                Info($updateNotif . '' . $moreInfo);
-            }
+        if ($updateNotif !== '') {
+            Info($updateNotif . '' . $moreInfo);
         }
     }
+#   }
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
@@ -651,7 +648,7 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
     $phpListNewsLastChecked = getConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso']);
     if (empty($phpListNewsLastChecked) || ($phpListNewsLastChecked + 86400 < time())) {
         SaveConfig('phpListNewsLastChecked-'.$_SESSION['adminlanguage']['iso'], time(), 0, 1);
-        $newsIndex = fetchUrl(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
+        $newsIndex = fetchUrlDirect(PHPLISTNEWSROOT.'/'.VERSION.'-'.$_SESSION['adminlanguage']['iso'].'-index.txt');
         SaveConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso'], $newsIndex, 0, 1);
     }
     $newsIndex = getConfig('phpListNewsIndex-'.$_SESSION['adminlanguage']['iso']);
@@ -712,7 +709,11 @@ if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
     if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
-        Warn($GLOBALS['I18N']->get('The pageroot in your config does not match the current locationCheck your config file.'));
+        Warn(s(
+            'The pageroot in your config "%s" does not match the current location "%s". Check your config file.',
+            $pageroot,
+            strstr(getenv('REQUEST_URI'), '/admin', true)
+        ));
     }
 }
 clearstatcache();
@@ -853,6 +854,9 @@ function parseCline()
             $clinearg = substr($clinearg, 2, strlen($clinearg));
             // $res[$par] = "";
             $cur = mb_strtolower($par);
+            if (!isset($res[$cur])) {
+                $res[$cur] = '';
+            }
             $res[$cur] .= $clinearg;
         } elseif ($cur) {
             if ($res[$cur]) {

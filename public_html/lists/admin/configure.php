@@ -85,6 +85,14 @@ if (!empty($_REQUEST['save'])) {
                     $value = str_replace('[DOMAIN]', '', $value);
                     $value = str_replace('[WEBSITE]', '', $value);
                 }
+                if ($id == 'list_categories') {
+                    $categories = explode(',',$value);
+                    $clean = array();
+                    foreach ($categories as $category) {
+                        $clean[] = preg_replace('/[^A-Z0-9\. ]+/i','',$category);
+                    }
+                    $value = implode(',',$clean);
+                }
                 if (empty($value) && !$info['allowempty']) {
                     //    Error($info['description']. ' ' . $GLOBALS['I18N']->get('cannot be empty'));
                     $haserror = $info['description'].' '.$GLOBALS['I18N']->get('cannot be empty');
@@ -131,7 +139,7 @@ if (empty($id)) {
 
     foreach ($configCategories as $configCategory => $configItems) {
         $some = 0;
-        $categoryHTML = '<fieldset id="' . $configCategory . '">';
+        $categoryHTML = '<fieldset id="' . sanitiseId($configCategory) . '">';
         $categoryHTML .= '<legend>' . s('%s settings',$configCategory) . '</legend>';
 
         foreach ($configItems as $configItem) {
@@ -158,11 +166,10 @@ if (empty($id)) {
                     }
                     break;
                 case 'select':
-                    if (isset($default_config[$configItem]['values'][$value])) {
-                        $displayValue = $default_config[$configItem]['values'][$value];
-                    } else {
-                        $displayValue = $default_config[$configItem]['value'];
-                    }
+                    $index = isset($default_config[$configItem]['values'][$value])
+                        ? $value
+                        : $default_config[$configItem]['value'];
+                    $displayValue = $default_config[$configItem]['values'][$index];
                     break;
                 default:
                     $displayValue = nl2br(htmlspecialchars(stripslashes($value)));
@@ -183,7 +190,7 @@ if (empty($id)) {
                 $categoryHTML .= sprintf('<div class="shade%d"><div class="configEdit" id="item_%s"><a href="%s" class="ajaxable" title="%s">%s</a> <b>%s</b> %s</div>',
                     $alternate, $configItem, PageURL2('configure', '', "id=$configItem"), s('edit this value'),
                     s('edit'), $default_config[$configItem]['description'],  $infotext, $resourceLink);
-               
+
                 $categoryHTML .= sprintf('<div id="edit_%s" class="configcontent">%s</div></div>', $configItem,
                     $displayValue);
                 if ($alternate == 1) {

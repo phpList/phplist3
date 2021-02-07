@@ -203,3 +203,27 @@ while ($row = Sql_Fetch_Array($req)) {
     }
 }
 $status .= $ls->display();
+$status .= '<br /><br />';
+
+$ls = new WebblerListing(s('Top 25 domains with the highest number of bounces'));
+$ls->setElementHeading('Domain');
+$req = Sql_Query(sprintf('
+SELECT COUNT(lcase(substring_index(u.email, "@", -1))) num,
+       lcase(substring_index(u.email, "@", -1)) domain
+FROM %s AS u
+RIGHT JOIN %s AS b ON u.id = b.user
+GROUP BY domain
+ORDER BY num DESC
+LIMIT 25;
+', $GLOBALS['tables']['user'],
+    $GLOBALS['tables']['user_message_bounce']));
+
+while ($row = Sql_Fetch_Array($req)) {
+    $ls->addElement($row['domain'],  PageURL2("domainbounces&amp;domain=".$row['domain'])."&amp;bounces=".$row['num']);
+    $ls->addColumn(
+        $row['domain'],
+        s('Bounces'),
+        sprintf( number_format($row['num']),'')
+    );
+}
+$status .= $ls->display();

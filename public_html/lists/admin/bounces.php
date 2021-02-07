@@ -42,13 +42,13 @@ if (ALLOW_DELETEBOUNCE && isset($_GET['action']) && $_GET['action']) {
         case 'deleteunidentified':
             $req = Sql_Query(sprintf('delete from %s where status = "unidentified bounce" and date_add(date,interval 2 month) < now()',
                 $tables['bounce']));
-            $count = Sql_Num_Rows($req);
+            $count = Sql_Affected_Rows($req);
             $actionresult = s('%d unidentified bounces older than 2 months have been deleted', $count);
             break;
         case 'deleteprocessed':
             $req = Sql_Query(sprintf('delete from %s where comment != "not processed" and date_add(date,interval 2 month) < now()',
                 $tables['bounce']));
-            $count = Sql_Num_Rows($req);
+            $count = Sql_Affected_Rows($req);
             $actionresult = s('%d processed bounces older than 2 months have been deleted', $count);
             break;
         case 'deleteall':
@@ -88,17 +88,17 @@ if ($total > MAX_USER_PP) {
     $paging = simplePaging("bounces&amp;tab=$currentTab", $start, $total, MAX_USER_PP,
         $status.' '.$GLOBALS['I18N']->get('bounces'));
     $query = sprintf('
-        select 
-            * 
-        from 
-            %s 
-        where 
-            status %s "unidentified bounce" 
-        order by 
-            date desc 
-        limit 
-            %s 
-        offset 
+        select
+            *
+        from
+            %s
+        where
+            status %s "unidentified bounce"
+        order by
+            date desc
+        limit
+            %s
+        offset
             %s'
         , $tables['bounce']
         , $status_compare
@@ -109,13 +109,13 @@ if ($total > MAX_USER_PP) {
 } else {
     $paging = '';
     $query = sprintf('
-        select 
-            * 
-        from 
-            %s 
-        where 
-            status '.$status_compare.' "unidentified bounce" 
-        order by 
+        select
+            *
+        from
+            %s
+        where
+            status '.$status_compare.' "unidentified bounce"
+        order by
             date desc'
         , $tables['bounce']
     );
@@ -188,7 +188,7 @@ while ($bounce = Sql_fetch_array($result)) {
     */
     $ls->addColumn($element, s('Campaign'), $messageid);
 
-    
+
     if (
         preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)
         OR preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)
@@ -196,11 +196,11 @@ while ($bounce = Sql_fetch_array($result)) {
         // Fetch additional data to be able to print subscriber address
         $userdata = Sql_Fetch_Array_Query(
             sprintf('
-                select 
-                    * 
-                from 
-                    %s 
-                where 
+                select
+                    *
+                from
+                    %s
+                where
                     id = %d'
                 , $GLOBALS['tables']['user']
                 , $regs[1]

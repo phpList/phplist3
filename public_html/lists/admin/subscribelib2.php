@@ -140,7 +140,7 @@ if (!isset($_POST['password'])) {
 }
 
 if ($allthere && ASKFORPASSWORD && ($_POST['passwordreq'] || $_POST['password'])) {
-    if (empty($_POST['password']) || $_POST['password'] != $_POST['password_check']) {
+    if (empty($_POST['password']) || $_POST['password'] !== $_POST['password_check']) {
         $allthere = 0;
         $missing = $GLOBALS['strPasswordsNoMatch'];
     }
@@ -148,7 +148,7 @@ if ($allthere && ASKFORPASSWORD && ($_POST['passwordreq'] || $_POST['password'])
         $curpwd = Sql_Fetch_Row_Query(sprintf('select password from %s where email = "%s"',
             $GLOBALS['tables']['user'], sql_escape($_POST['email'])));
 
-        if ($curpwd[0] && $_POST['password'] != $curpwd[0]) {
+        if ($curpwd[0] && $_POST['password'] !== $curpwd[0]) {
             $missing = $GLOBALS['strInvalidPassword'];
         }
     }
@@ -245,7 +245,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (isset($_POST['list']) && is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) { // make sure that the list is not private
                 $key = sprintf('%d', $key);
                 if (!empty($key)) {
                     $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',
@@ -527,7 +527,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     $lists = '';
     if (is_array($_POST['list'])) {
         foreach ($_POST['list'] as $key => $val) {
-            if ($val == 'signup') {
+            if ($val == 'signup' && !isPrivateList($key)) {
                 $result = Sql_query(sprintf('replace into %s (userid,listid,entered) values(%d,%d,now())',$GLOBALS['tables']['listuser'],$userid,$key));
 //        $lists .= "  * ".$_POST["listname"][$key]."\n";
             }
@@ -723,7 +723,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     global $tables;
     if (isset($_POST['list'])) {
         $list = $_POST['list'];
-    } elseif (!isset($_POST["subscribe"]) && isset($_GET['list'])) {
+    } elseif (!isset($_POST["subscribe"]) && isset($_GET['list']) && preg_match("/^(\d+,)*\d+$/", $_GET['list'])) {
         $list_value = "signup";
         $list_values = explode(",", $_GET["list"]);
         $list = array_fill_keys($list_values, $list_value);
@@ -746,7 +746,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
 
     foreach ($showlists as $listid) {
-        if (preg_match("/^\d+$/", $listid)) {
+        if (preg_match("/^\d+$/", $listid) && !isPrivateList($listid)) {
             array_push($listset, $listid);
         }
     }
@@ -807,7 +807,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
 
                         $html .= ' /><b>' . stripslashes($listelement['name']) . '</b><div class="listdescription">';
-                        $desc = nl2br(stripslashes($listelement['description']));
+                        $desc = nl2br(disableJavascript(stripslashes($listelement['description'])));
                         //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
                         $html .= $desc . '</div></li>';
                         ++$some;
@@ -846,7 +846,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     }
                 }
                 $html .= " /> <label for=\"list$row[id]\"><b>".stripslashes($row['name']).'</b></label><div class="listdescription">';
-                $desc = nl2br(stripslashes($row['description']));
+                $desc = nl2br(disableJavascript(stripslashes($row['description'])));
                 //     $html .= '<input type="hidden" name="listname['.$row["id"] . ']" value="'.htmlspecialchars(stripslashes($row["name"])).'"/>';
                 $html .= $desc.'</div></li>';
                 ++$some;
@@ -907,7 +907,7 @@ function ListAttributes($attributes, $attributedata, $htmlchoice = 0, $userid = 
         }
         if (isset($_POST['htmlemail'])) {
             $htmlemail = $_POST['htmlemail'];
-    	} elseif (!isset($_POST["subscribe"]) && isset($_GET['htmlemail'])) {
+    	} elseif (!isset($_POST["subscribe"]) && isset($_GET['htmlemail']) && in_array($_GET['htmlemail'], [1,0])) {
       		$htmlemail = $_GET["htmlemail"];
         }
         $data = array();

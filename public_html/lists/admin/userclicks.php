@@ -49,7 +49,6 @@ $downloadContent = '';
 
 if ($download) {
     ob_end_clean();
-//  header("Content-type: text/plain");
     header('Content-type: text/csv');
     header('Content-disposition:  attachment; filename="phpList click statistics.csv"');
     ob_start();
@@ -163,29 +162,35 @@ if ($fwdid && $msgid) {
 } elseif ($userid) {
     echo '<div class="jumbotron">'.$GLOBALS['I18N']->get('All clicks by').' <b>'.PageLink2('user&amp;id='.$userid, $userdata['email']).'</b></div>';
 
-    $query = sprintf('
-        SELECT SUM(htmlclicked) AS htmlclicked,
-        SUM(textclicked) AS textclicked,
-        user.email,
-        user.id AS userid,
-        MIN(firstclick) AS firstclick,
-        MAX(latestclick) AS latestclick,
-        SUM(clicked) AS clicked,
-        GROUP_CONCAT(messageid ORDER BY messageid SEPARATOR \' \') AS messageid,
-        forwardid,
-        url
-        FROM %s AS uml_click
-        JOIN %s AS user ON uml_click.userid = user.id
-        JOIN %s AS forward ON forward.id = uml_click.forwardid
-        WHERE uml_click.userid = %d
-        GROUP BY forwardid
-        ORDER BY clicked DESC, url
-        ',
-        $GLOBALS['tables']['linktrack_uml_click'],
-        $GLOBALS['tables']['user'],
-        $GLOBALS['tables']['linktrack_forward'],
-        $userid
-    );
+    $query = '
+        SELECT
+            SUM(htmlclicked) AS htmlclicked,
+            SUM(textclicked) AS textclicked,
+            user.email,
+            user.id AS userid,
+            MIN(firstclick) AS firstclick,
+            MAX(latestclick) AS latestclick,
+            SUM(clicked) AS clicked,
+            GROUP_CONCAT(
+                messageid
+            ORDER BY
+                messageid SEPARATOR \' \') AS messageid,
+                forwardid,
+                url
+        FROM 
+            '.$GLOBALS['tables']['linktrack_uml_click'].' AS uml_click
+        JOIN
+            '.$GLOBALS['tables']['user'].' AS user ON uml_click.userid = user.id
+        JOIN 
+            '.$GLOBALS['tables']['linktrack_forward'].' AS forward ON forward.id = uml_click.forwardid
+        WHERE 
+            uml_click.userid = '.sprintf('%d', $userid).'
+        GROUP BY 
+            forwardid
+        ORDER BY 
+            clicked DESC, 
+            url
+        ';
 }
 
 //ob_end_flush();

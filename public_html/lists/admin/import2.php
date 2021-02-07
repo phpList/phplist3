@@ -20,7 +20,6 @@ $illegal_cha = array(
     '#',
     "\t",
 );
-$email_list = array();
 $attributes = array();
 
 if (!isset($everyone_groupid)) {
@@ -39,8 +38,9 @@ if (($post_max_size < $file_max_size) && WARN_ABOUT_PHP_SETTINGS) {
         'http://php.net/post_max_size', 'http://php.net/post_max_size')));
 }
 
-require dirname(__FILE__).'//structure.php';
+require dirname(__FILE__).'/structure.php';
 require dirname(__FILE__).'/inc/importlib.php';
+require dirname(__FILE__).'/CsvReader.php';
 register_shutdown_function('my_shutdown');
 
 if (!defined('WEBBLER')) {
@@ -170,6 +170,15 @@ if (isset($_POST['import'])) {
     $_SESSION['throttle_import'] = !empty($_POST['throttle_import']) ? sprintf('%d', $_POST['throttle_import']) : 0;
 }
 
+if (isset($_GET['delimiter'])) {
+    if (is_string($_GET['delimiter']) && strlen($_GET['delimiter']) == 1) {
+        // Reprocess the file using the selected delimiter
+        $_SESSION['import_field_delimiter'] = $_GET['delimiter'];
+        $_SESSION['import_attribute'] = [];
+    }
+    unset($_GET['delimiter']);
+}
+
 if (!empty($_GET['confirm'])) {
     $_SESSION['test_import'] = '';
 }
@@ -184,43 +193,16 @@ if (!empty($_SESSION['import_file'])) {
     if (filesize($_SESSION['import_file']) > 50000) {
         @ini_set('memory_limit', memory_get_usage() + 50 * filesize($_SESSION['import_file']));
     }
-    $email_list = file_get_contents($_SESSION['import_file']);
     flush();
 
     if (!isset($_SESSION['import_attribute'])) {
         $_SESSION['import_attribute'] = array();
     }
-    // Clean up email file
-    $email_list = trim($email_list);
-    $email_list = str_replace("\r", "\n", $email_list);
-    $email_list = str_replace("\n\r", "\n", $email_list);
-    $email_list = str_replace("\n\n", "\n", $email_list);
-
-    if ($_SESSION['import_record_delimiter'] != "\n") {
-        $email_list = str_replace($_SESSION['import_record_delimiter'], "\n", $email_list);
-    }
-
-    // not sure if we need to check on errors
-    /*
-      for($i=0; $i<count($illegal_cha); $i++) {
-        if( ($illegal_cha[$i] != $import_field_delimiter) && ($illegal_cha[$i] != $import_record_delimiter) && (strpos($header, $illegal_cha[$i]) != false) ) {
-          $errpos = strpos($email_list, $illegal_cha[$i]);
-          $startpos = ( $errpos > 20 ) ? $errpos - 20 : 0;
-          print '<h3>';
-          printf($GLOBALS['I18N']->get('Error was around here &quot;%s&quot;'),substr( $email_list, $startpos, 40 ));
-          print '</h3>';
-          printf('<h3>',$GLOBALS['I18N']->get('Illegal character was %s').'</h3>',$illegal_cha[$i]);
-          Fatal_Error($GLOBALS['I18N']->get('A character has been found in the import which is not the delimiter indicated, but is likely to be confused for one. Please clean up your import file and try again')." $import_field_delimiter, $import_record_delimiter");
-          return;
-        }
-      };
-    */
-    // Split file/emails into array
-    $email_list = explode("\n", $email_list); //WARNING the file contents get replace by an array
-    output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', count($email_list)));
-    $header = array_shift($email_list);
-    $total = count($email_list);
-    $headers = str_getcsv($header, $_SESSION['import_field_delimiter']);
+    $csvReader = new CsvReader($_SESSION['import_file'], $_SESSION['import_field_delimiter']);
+    $total = $csvReader->totalRows();
+    output(sprintf('..'.$GLOBALS['I18N']->get('ok, %d lines').'</p>', $total));
+    --$total; // now the number of subscribers to be imported
+    $headers = $csvReader->getRow();
     $headers = array_unique($headers);
     $_SESSION['columnnames'] = $headers;
 
@@ -249,7 +231,7 @@ if (!empty($_SESSION['import_file'])) {
 //  var_dump($system_attributes);
     $system_attribute_reverse_map = array();
     for ($i = 0; $i < count($headers); ++$i) {
-        $column = clean($headers[$i]);
+        $column = strip_tags($headers[$i]);
         //  print $i."<h3>$column</h3>".$_POST['column'.$i].'<br/>';
         $column = preg_replace('#/#', '', $column);
 //    $dbg = "Field $i: $headers[$i] - $column - form/option:" . $_POST['column' . $i];
@@ -325,7 +307,8 @@ if (!empty($_SESSION['import_file'])) {
             } else {
                 //# define mapping based on existing attribute or ask for it
                 //@@ Why is $attributes not used
-                $existing = Sql_Fetch_Row_Query('select id from '.$tables['attribute']." where name = \"$column\"");
+                $query = sprintf('select id from %s where name = "%s"', $tables['attribute'], sql_escape($column));
+                $existing = Sql_Fetch_Row_Query($query);
                 $_SESSION['import_attribute'][$column] = array(
                     'index'  => $i,
                     'record' => $existing[0],
@@ -380,6 +363,24 @@ if (!empty($_SESSION['import_file'])) {
     }
     if ($request_mapping) {
         $ls->addButton($GLOBALS['I18N']->get('Continue'), 'javascript:document.importform.submit()');
+
+        if (count($headers) == 1) {
+            echo '<div class="clearfix"></div><div class="note">';
+            // try to identify the actual field delimiter from commonly-used values
+            if (preg_match('/([,;:|])/', $headers[0], $matches)) {
+                $delimiter = $matches[1];
+                $warning = s(
+                    "The file appears to be using '%s' as the field delimiter. Click Resubmit to use that delimiter.",
+                    $delimiter
+                );
+                $url = sprintf('import2&delimiter=%s', urlencode($delimiter));
+                printf('<p class="information">%s</p>%s', $warning, PageLinkButton($url, s('Resubmit')));
+            } else {
+                $warning = s('The entered field delimiter might not be correct.');
+                printf('<p class="information">%s</p>', $warning);
+            }
+            echo '</div>';
+        }
         echo '<p class="information">'.$GLOBALS['I18N']->get('Please identify the target of the following unknown columns').'</p>';
         echo '<form name="importform" method="post">';
         echo $ls->display();
@@ -410,6 +411,7 @@ if (!empty($_SESSION['test_import'])) {
     }
     foreach ($_SESSION['import_attribute'] as $column => $rec) {
         if (trim($column) != '') {
+            $column = htmlspecialchars($column);
             $ls->addElement($column);
             if ($rec['record'] == 'new') {
                 $ls->addColumn($column, $GLOBALS['I18N']->get('maps to'),
@@ -436,8 +438,8 @@ if (!empty($_SESSION['test_import'])) {
     echo '<p>'.PageLinkButton($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')).'</p>';
     echo '<h3>'.$GLOBALS['I18N']->get('Test Output').'</h3>';
 //  dbg($_SESSION["import_attribute"]);
-} elseif (count($email_list)) {
-    echo '<h3>'.s('Importing %d subscribers to %d lists, please wait', count($email_list),
+} elseif (isset($_GET['confirm']) || isset($_POST['import'])) {
+    echo '<h3>'.s('Importing %d subscribers to %d lists, please wait', $total,
             count($_SESSION['lists'])).'</h3>';
     echo $GLOBALS['img_busy'];
     echo '<div id="progresscount" style="width: 200; height: 50;">Progress</div>';
@@ -448,14 +450,12 @@ if (!empty($_SESSION['test_import'])) {
 
 //var_dump($system_attributes);
 //## show progress and adjust working space
-if (count($email_list)) {
+if (!empty($_SESSION['test_import'])) {
     $import_field_delimiter = $_SESSION['import_field_delimiter'];
-    if (count($email_list) > 300 && !$_SESSION['test_import']) {
+    if ($total > 300 && !$_SESSION['test_import']) {
         // this is a possibly a time consuming process, so show a progress bar
-        echo '<script language="Javascript" type="text/javascript"> document.write(progressmeter); start();</script>';
         flush();
         // increase the memory to make sure we are not running out
-        //    $mem = sizeof($email_list);
         ini_set('memory_limit', '32M');
     }
 
@@ -494,18 +494,17 @@ if (count($email_list)) {
     $c = 1;
     $count['invalid_email'] = 0;
     $num_lists = count($_SESSION['lists']);
-    $total = count($email_list);
     $cnt = 0;
     $count['emailmatch'] = 0;
     $count['fkeymatch'] = 0;
     $count['dataupdate'] = 0;
     $count['duplicate'] = 0;
     $additional_emails = 0;
-    foreach ($email_list as $line) {
+
+    while ($values = $csvReader->getRow()) {
         set_time_limit(60);
         // will contain attributes to store / change
         $user = array();
-        $values = str_getcsv($line, $_SESSION['import_field_delimiter']);
         $system_values = array();
         foreach ($system_attribute_mapping as $column => $index) {
             // print '<br/>'.$column . ' = '. $values[$index];
@@ -540,8 +539,8 @@ if (count($email_list)) {
             $replace = array();
             foreach ($_SESSION['import_attribute'] as $key => $val) {
                 if (!empty($values[$val['index']])) {
-                    $user[$val['index']] = addslashes($values[$val['index']]);
-                    $replace[$key] = addslashes($values[$val['index']]);
+                    $user[$val['index']] = htmlspecialchars($values[$val['index']]);
+                    $replace[$key] = htmlspecialchars($values[$val['index']]);
                 }
             }
         } else {
@@ -605,7 +604,7 @@ if (count($email_list)) {
     printf($GLOBALS['I18N']->get('Test output<br/>If the output looks ok, click %s to submit for real').'<br/><br/>',
         PageLink2($_GET['page'].'&amp;confirm=yes', $GLOBALS['I18N']->get('Confirm Import')));
 
-    echo '<p>'.PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')).'</p>';
+    echo '<div class="button btn btn-default">'.PageLink2($_GET['page'], $GLOBALS['I18N']->get('Import some more emails')).'</div>';
 
     return;
 }
@@ -714,7 +713,7 @@ if (count($email_list)) {
                 <td><?php echo $GLOBALS['I18N']->get('Test output') ?>:</td>
                 <td><input type="checkbox" name="import_test" value="yes" checked="checked"/><?php echo Help('testoutput'); ?></td>
             </tr>
-         
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Show Warnings') ?>:</td>
                 <td><input type="checkbox" name="show_warnings" value="yes"/><?php echo Help('showwarnings'); ?></td>
@@ -728,12 +727,12 @@ if (count($email_list)) {
                 <td><input type="text" name="assign_invalid" value="<?php echo $GLOBALS['assign_invalid_default'] ?>"/><?php echo Help('assigninvalid'); ?>
                 </td>
             </tr>
-        
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Overwrite Existing') ?>:</td>
                 <td><input type="checkbox" name="overwrite" value="yes" checked="checked"/><?php echo Help('overwriteexisting'); ?></td>
             </tr>
-           
+
             <tr>
                 <td><?php echo $GLOBALS['I18N']->get('Retain Old User Email') ?>:</td>
                 <td><input type="checkbox" name="retainold" value="yes"/><?php echo Help('retainoldemail'); ?></td>

@@ -54,6 +54,9 @@ include_once dirname(__FILE__).'/admin/lib.php';
 
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
+if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && count('ACCESS_CONTROL_ALLOW_ORIGINS') > 1) {
+    header('Vary: Origin'); // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#CORS_and_caching
+}
 
 if (!empty($GLOBALS['SessionTableName'])) {
     require_once dirname(__FILE__).'/admin/sessionlib.php';
@@ -145,13 +148,14 @@ if ($login_required && empty($_SESSION['userloggedin'])) {
                     $encP == $userpassword && $_POST['email'] == $emailcheck;
                 //      print $_POST['password'].' '.$encP.' '.$userpassword.' '.$canlogin; exit;
             } else {
-                $canlogin = $_POST['password'] == $userpassword && $_POST['email'] == $emailcheck;
+                $canlogin = $_POST['password'] === $userpassword && $_POST['email'] === $emailcheck;
             }
         }
 
         if (!$canlogin) {
             $msg = '<p class="error">'.$strInvalidPassword.'</p>';
         } else {
+            session_regenerate_id();
             loadUser($emailcheck);
             $_SESSION['userloggedin'] = $_SERVER['REMOTE_ADDR'];
         }
@@ -244,8 +248,10 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
                 if (isset($_GET['email']) && !isset($_POST['email'])) {
                     $_POST['email'] = $_GET['email'];
                 }
-                foreach (explode(',', $GLOBALS['pagedata']['lists']) as $listid) {
-                    $_POST['list'][$listid] = 'signup';
+                if (!isset($_POST['list'])) {
+                    foreach (explode(',', $GLOBALS['pagedata']['lists']) as $listid) {
+                        $_POST['list'][$listid] = 'signup';
+                    }
                 }
                 $_POST['htmlemail'] = 1; //# @@ should actually be taken from the subscribe page data
 
@@ -272,9 +278,8 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
 
                     echo 'FAIL';
 
-                    // thow an exception so the http status code is a 500
-                    // Internal Server Error, easily caught by jquery.ajax()
-                    throw new Exception( "Error: Subscribe attempt failed!" );
+                    // return a 500, so that it is more easily processed at the other end
+                    http_response_code( 500 );
 
                 }
                 break;
@@ -325,7 +330,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
     echo '<title>'.$GLOBALS['strSubscribeTitle'].'</title>';
     echo $pagedata['header'];
     $req = Sql_Query(sprintf('select * from %s where active', $tables['subscribepage']));
-        
+
     // If active subscribe pages exist then list them
     if (Sql_Affected_Rows()) {
         while ($row = Sql_Fetch_Array($req)) {
@@ -354,7 +359,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
         printf('<p><a href="'.getConfig('unsubscribeurl').'">%s</a></p>', $strUnsubscribeTitle);
     }
     // Print link to contact admin using HTML entities for email obfuscation
-    echo 
+    echo
         '<p class=""><a href="'.
             preg_replace_callback('/./', function($m) {
                 return '&#'.ord($m[0]).';';
@@ -690,7 +695,7 @@ function checkGroup(name,value)
     if (SHOW_UNSUBSCRIBELINK) {
         $html .= ' &nbsp;&nbsp; <a href="'.getConfig('unsubscribeurl').'&id='.$id.'">'.$GLOBALS['strUnsubscribe'].'</a>';
     }
-	$html .='</form>';
+    $html .='</form>';
     $html .= $GLOBALS['PoweredBy'];
     $html .= $GLOBALS['pagedata']['footer'];
     unset($_SESSION['subscriberConfirmed']);
@@ -913,15 +918,15 @@ function unsubscribePage($id)
             }
         }
 
-	if ($userid) {
-	    if (UNSUBSCRIBE_CONFIRMATION) {
-	        $res .= '<h3>' . $GLOBALS['strUnsubscribeDone'] . '</h3>';
-	    } else {
-	        $res .= '<h3>' . $GLOBALS['strUnsubscribedNoConfirm'] . '</h3>';
-	    }
-	}
-        
-	//0013076: Blacklisting posibility for unknown users
+    if ($userid) {
+        if (UNSUBSCRIBE_CONFIRMATION) {
+            $res .= '<h3>' . $GLOBALS['strUnsubscribeDone'] . '</h3>';
+        } else {
+            $res .= '<h3>' . $GLOBALS['strUnsubscribedNoConfirm'] . '</h3>';
+        }
+    }
+
+    //0013076: Blacklisting posibility for unknown users
         //if ($blacklistRequest) {
         //$res .= '<h3>'.$GLOBALS["strYouAreBlacklisted"] ."</h3>";
         //}
@@ -1076,7 +1081,14 @@ function forwardPage($id)
     } else {
         $ok = false;
     }
-
+    // subscriber name
+    if (!empty($_REQUEST['subscriberName'])) {
+        $subscriberName = htmlspecialchars_decode(stripslashes($_REQUEST['subscriberName']));
+        $userdata['subscriberName'] = $subscriberName;
+    } else {
+        $subscriberName = '';
+        $ok = false;
+    }
     //0011996: forward to friend - personal message
     // text cannot be longer than max, to prevent very long text with only linefeeds total cannot be longer than twice max
     if (FORWARD_PERSONAL_NOTE_SIZE && isset($_REQUEST['personalNote'])) {
@@ -1178,22 +1190,36 @@ function forwardPage($id)
     if (!$ok) {
         //0011860: forward to friend, multiple emails
         if (FORWARD_EMAIL_COUNT == 1) {
-            $form .= '<br /><h2>'.$GLOBALS['strForwardEnterEmail'].'</h2>';
-            $form .= sprintf('<input type=text name="email" value="%s" size=50 class="attributeinput">', $forwardemail);
+            $format = <<<'END'
+<div class="required"><label for="email">%s</label></div>
+<input type=text name="email" id="email" value="%s" size=50 class="attributeinput">
+END;
+            $form .= sprintf($format, $GLOBALS['strForwardEnterEmail'], $forwardemail);
         } else {
-            $form .= '<br /><h2>'.sprintf($GLOBALS['strForwardEnterEmails'], FORWARD_EMAIL_COUNT).'</h2>';
-            $form .= sprintf('<textarea name="email" rows="10" cols="50" class="attributeinput">%s</textarea>',
-                $forwardemail);
+            $labelText = sprintf($GLOBALS['strForwardEnterEmails'], FORWARD_EMAIL_COUNT);
+            $format = <<<'END'
+<div class="required"><label for="email">%s</label></div>
+<textarea name="email" id="email" rows="%d" cols="50" class="attributeinput">%s</textarea>
+END;
+            $form .= sprintf($format, $labelText, min(10, FORWARD_EMAIL_COUNT), $forwardemail);
         }
+        $format = <<<'END'
+<div class="required"><label for="subscriberName">%s</label></div>
+<input type=text name="subscriberName" id="subscriberName" value="%s" size=50 class="attributeinput">
+END;
+        $form .= sprintf($format, $GLOBALS['strForwardForwardingName'], htmlspecialchars($subscriberName));
 
         //0011996: forward to friend - personal message
         if (FORWARD_PERSONAL_NOTE_SIZE) {
-            $form .= sprintf('<h2>'.$GLOBALS['strForwardPersonalNote'].'</h2>', FORWARD_PERSONAL_NOTE_SIZE);
+            $labelText= sprintf($GLOBALS['strForwardPersonalNote'], FORWARD_PERSONAL_NOTE_SIZE);
             $cols = 50;
             $rows = min(10, ceil(FORWARD_PERSONAL_NOTE_SIZE / 40));
-
-            $form .= sprintf('<br/><textarea type="text" name="personalNote" rows="%d" cols="%d" class="attributeinput">%s</textarea>',
-                $rows, $cols, $personalNote);
+            $format = <<<'END'
+<div><label for="personalNote">%s</div>
+<textarea type="text" name="personalNote" id="personalNote" rows="%d" cols="%d" class="attributeinput">%s</textarea>
+</label>
+END;
+            $form .= sprintf($format, $labelText, $rows, $cols, $personalNote);
         }
         $form .= sprintf('<br /><input type="submit" value="%s"></form>', $GLOBALS['strContinue']);
     }

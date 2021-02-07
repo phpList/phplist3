@@ -70,15 +70,16 @@ $timerange = '';
 
 $query = sprintf('select msg.owner,msg.id as messageid, subject, sent, bouncecount as bounced
     from %s msg where msg.status = "sent" %s %s %s
-    group by msg.id order by msg.entered desc',
+    group by msg.id order by msg.sent desc',
     $GLOBALS['tables']['message'], $subselect, $timerange, $ownership);
 $req = Sql_Query($query);
 $total = Sql_Num_Rows($req);
 if ($total > 10) {
     //print Paging(PageUrl2('statsoverview'),$start,$total,10);
     $paging = simplePaging('statsoverview', $start, $total, 10);
+    // Increase the record limit for exported files
     if ($download) {
-        $limit = ' limit 25';
+        $limit = ' limit 1000';
     }
 
     $query .= $limit;
@@ -134,7 +135,7 @@ while ($row = Sql_Fetch_Array($req)) {
         PageURL2('statsoverview&amp;id='.$row['messageid'])); //,PageURL2('message&amp;id='.$row['messageid']));
     $ls->setClass($element, 'row1');
     //   $ls->addColumn($element,s('owner'),$row['owner']);
-    $ls->addColumn($element, s('date'), formatDate($row['sent'], true));
+    $ls->addColumn($element, s('Date sent'), formatDate($row['sent'], true));
     $ls->addColumn($element, s('sent'), number_format((int)$totls[0]));
     $ls->addColumn($element, s('bncs').Help("bounces"), number_format((int)$row['bounced']).$percentBouncedFormatted);
     $ls->addColumn($element, s('fwds').Help("forwards"), number_format((int)$fwded[0]));

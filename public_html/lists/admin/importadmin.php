@@ -127,9 +127,9 @@ if (!empty($_POST['import'])) {
         //   var_dump($values);
         $email = clean($values[$emailindex]);
         $password = $values[$passwordindex];
-        $loginname = $values[$loginnameindex];
+        $loginname = strip_tags($values[$loginnameindex]);
         $invalid = 0;
-        if (!$email) {
+        if (!$email || !is_email($email)) {
             if ($test_input && $show_warnings) {
                 Warn($GLOBALS['I18N']->get('Record has no email').': '.$c->$line);
             }
@@ -163,14 +163,14 @@ if (!empty($_POST['import'])) {
         foreach ($user_list as $email => $data) {
             $email = trim($email);
             if (strlen($email) > 4) {
-                echo "<br/><b>$email</b><br/>";
+                echo "<br/><b>".htmlspecialchars($email)."</b><br/>";
                 $html = '';
-                $html .= $GLOBALS['I18N']->get('password').': '.$data['password'].'</br>';
-                $html .= $GLOBALS['I18N']->get('login').': '.$data['loginname'].'</br>';
+                $html .= $GLOBALS['I18N']->get('password').': '.htmlspecialchars($data['password']).'</br>';
+                $html .= $GLOBALS['I18N']->get('login').': '.htmlspecialchars($data['loginname']).'</br>';
                 reset($import_attribute);
                 foreach ($import_attribute as $item) {
                     if (!empty($data['values'][$item['index']])) {
-                        $html .= $attributes[$item['index']].' -> '.$data['values'][$item['index']].'<br/>';
+                        $html .= htmlspecialchars($attributes[$item['index']]).' -> '.htmlspecialchars($data['values'][$item['index']]).'<br/>';
                     }
                 }
                 if ($html) {
@@ -213,7 +213,7 @@ if (!empty($_POST['import'])) {
             privileges  = "%s"
             where id = %d',
                             $tables['admin'], sql_escape($email), sql_escape($loginname),
-                            normalize($loginname), adminName($_SESSION['logindetails']['id']),
+                            sql_escape(normalize($loginname)), adminName($_SESSION['logindetails']['id']),
                             encryptPass($data['password']), sql_escape(serialize($privs)), $adminid);
                         $result = Sql_query($query);
                     } else {
@@ -221,7 +221,7 @@ if (!empty($_POST['import'])) {
             (email,loginname,namelc,created,modifiedby,passwordchanged,password,superuser,disabled,privileges)
             values("%s","%s","%s",now(),"%s",now(),"%s",0,0,"%s")',
                             $tables['admin'], sql_escape($email), sql_escape($loginname),
-                            normalize($loginname), adminName($_SESSION['logindetails']['id']),
+                            sql_escape(normalize($loginname)), adminName($_SESSION['logindetails']['id']),
                             encryptPass($data['password']), sql_escape(serialize($privs)));
                         $result = Sql_query($query);
                         $adminid = Sql_insert_id();
@@ -264,7 +264,7 @@ if (!empty($_POST['import'])) {
                             }
 
                             Sql_query(sprintf('replace into %s (adminattributeid,adminid,value) values("%s","%s","%s")',
-                                $tables['admin_attribute'], $attribute_index, $adminid, $att_value));
+                                $tables['admin_attribute'], $attribute_index, $adminid, sql_escape($att_value)));
                         }
                     }
 

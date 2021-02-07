@@ -26,7 +26,7 @@
     </div>
     <div id="gethelp">
         <h3><?php echo s('Get help with phpList') ?></h3>
-        <p><?php echo s('A variety of support options are available for this phpList server, including free help from communnity members, and professional advice and consulting from experts') ?>
+        <p><?php echo s('A variety of support options are available for this phpList server, including free help from community members, and professional advice and consulting from experts') ?>
             .</p>
 
         <ul>
@@ -50,9 +50,9 @@
 
     </div>
     <div id="hosted">
-        
+
         <h3><?php echo s('phpList Hosted') ?></h3>
-        
+
         <p>phpList.com provides professional hosting of phpList with plans from 300 messages to millions of messages per month. Free trials and customised packages are available. All accounts include technical support and complete setup and management of your account
             .</p>
 

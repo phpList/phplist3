@@ -46,6 +46,13 @@ if (!defined('DEVVERSION')) {
     define('DEVVERSION', false);
 }
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    ini_set('session.name','phpListSession');
+    ini_set('session.cookie_samesite','Strict');
+    ini_set('session.use_only_cookies',1);
+    ini_set('session.cookie_httponly',1);
+}
+
 // record the start time(usec) of script
 $now = gettimeofday();
 $GLOBALS['pagestats'] = array();
@@ -362,6 +369,9 @@ if (!defined('UPLOADIMAGES_DIR')) {
 if (!defined('USE_MANUAL_TEXT_PART')) {
     define('USE_MANUAL_TEXT_PART', 0);
 }
+if (!defined('USE_MESSAGE_PREVIEW')) {
+    define('USE_MESSAGE_PREVIEW',false);
+}
 if (!defined('ALLOW_NON_LIST_SUBSCRIBE')) {
     define('ALLOW_NON_LIST_SUBSCRIBE', 0);
 }
@@ -606,9 +616,15 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
 }
+ if (!defined('GOOGLE_SENDERID')) {
+    define('GOOGLE_SENDERID', '');
+}
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
     define('ALLOW_UPDATER', true);
+}
+if (!defined ('USE_REPLY_TO')){
+    define('USE_REPLY_TO', false);
 }
 if (!isset($plugins_disabled) || !is_array($plugins_disabled)) {
     $plugins_disabled = array();
@@ -640,7 +656,9 @@ if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
     $allowed_referrers = array();
 }
-if (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) {
+if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && in_array($_SERVER['HTTP_ORIGIN'], ACCESS_CONTROL_ALLOW_ORIGINS)) {
+    define('ACCESS_CONTROL_ALLOW_ORIGIN', $_SERVER['HTTP_ORIGIN']);
+} elseif (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) {
     define('ACCESS_CONTROL_ALLOW_ORIGIN', $GLOBALS['scheme'].'://'.$_SERVER['HTTP_HOST']);
 }
 
@@ -657,20 +675,9 @@ if (!defined('USE_PRECEDENCE_HEADER')) {
 if (!defined('RFC_DIRECT_DELIVERY')) {
     define('RFC_DIRECT_DELIVERY', false);
 }  //# Request for Confirmation, delivery with SMTP
-// check whether Pear HTTP/Request is available, and which version
-// try 2 first
 
-// @@TODO finish this, as it is more involved than just renaming the class
-//@include_once "HTTP/Request2.php";
-if (0 && class_exists('HTTP_Request2')) {
-    $GLOBALS['has_pear_http_request'] = 2;
-} else {
-    //# this seems to crash in PHP7. Let's just use curl instead
-    // @include_once 'HTTP/Request.php';
-    $GLOBALS['has_pear_http_request'] = class_exists('HTTP_Request');
-}
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/PEAR');
 $GLOBALS['has_curl'] = function_exists('curl_init');
-$GLOBALS['can_fetchUrl'] = $GLOBALS['has_pear_http_request'] || $GLOBALS['has_curl'];
 
 $GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
 
@@ -688,14 +695,15 @@ if (!isset($attachment_repository)) {
     $attachment_repository = $tmpdir;
 }
 
-if (!isset($pageroot)) {
+if (isset($pageroot)) {
+    if ($pageroot == '/') {
+        $pageroot = '';
+    }
+} else {
     $pageroot = '/lists';
-    $GLOBALS['pageroot'] = '/lists';
 }
-//# as the "admin" in adminpages is hardcoded, don't put it in the config file
+// as the "admin" in adminpages is hardcoded, don't put it in the config file
 $adminpages = $GLOBALS['pageroot'].'/admin';
-//# remove possibly duplicated // at the beginning
-$adminpages = preg_replace('~^//~', '/', $adminpages);
 
 $GLOBALS['homepage'] = 'home';
 
@@ -754,6 +762,9 @@ if (!defined('MESSAGEQUEUE_PREPARE')) {
     } else {
         define('MESSAGEQUEUE_PREPARE', false);
     }
+}
+if (!defined('USE_PHPMAILER6')) {
+    define('USE_PHPMAILER6', true);
 }
 if (!isset($GLOBALS['export_mimetype'])) {
     $GLOBALS['export_mimetype'] = 'application/csv';

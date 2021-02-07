@@ -69,10 +69,12 @@ foreach ($languages as $lan) {
         $status = s('Not installed');
         $updateLink = pageLinkAjax('updatetranslation&lan='.$lan->iso, s('Install'));
     }
-    $languageName = !empty($LANGUAGES[(string) $lan->iso]) ? $LANGUAGES[(string) $lan->iso][0] : $lan->name;
-    $ls->addElement($languageName);
-    $ls->addColumn($languageName, s('Code'), $lan->iso);
-    $ls->addColumn($languageName, s('Translation status'), $status);
-    $ls->addColumn($languageName, s('Action'), $updateLink);
+    $languageName = !empty($LANGUAGES[(string) $lan->iso]) ? $LANGUAGES[(string)$lan->iso][0] : (string) $lan->name;
+    if (!empty($languageName)) {
+        $ls->addElement($languageName);
+        $ls->addColumn($languageName, s('Code'), $lan->iso);
+        $ls->addColumn($languageName, s('Translation status'), $status);
+        $ls->addColumn($languageName, s('Action'), $updateLink);
+    }
 }
 echo $ls->display();

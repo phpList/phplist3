@@ -61,10 +61,10 @@ function autoSave() {
 function checkAllBoxes(checked, checkboxes) {
     checkboxes.each(function () {
         if (checked) {
-            $(this).find('input[id^=targetlist]').prop('checked', true);
+            $(this).find('input[name^=targetlist]').prop('checked', true);
         }
         else {
-            $(this).find('input[id^=targetlist]').prop('checked', false);
+            $(this).find('input[name^=targetlist]').prop('checked', false);
         }
     });
 }
@@ -272,7 +272,7 @@ $(document).ready(function () {
             return;
         }
         $("#remoteurlstatus").html(busyImage);
-        $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + this.value);
+        $("#remoteurlstatus").load("./?page=pageaction&action=checkurl&ajaxed=true&url=" + encodeURIComponent(this.value));
     });
     $("#filtertext").on("focus",function () {
         if (this.value == ' --- filter --- ') {
@@ -283,6 +283,14 @@ $(document).ready(function () {
         if (this.value == "") {
             this.value = " --- filter --- ";
             return;
+        }
+    });
+
+    $("#google_track").on("click",function () {
+        if (this.checked) {
+            $("#analytics").show();
+        } else {
+            $("#analytics").hide();
         }
     });
 
@@ -437,20 +445,19 @@ $(document).ready(function () {
     });
 
     var docurl = document.location.search;
-    document.cookie = "browsetrail=" + escape(docurl);
+    document.cookie = "browsetrail=" + escape(docurl) +'; SameSite=Strict';
 
     setInterval("autoSave();", 120000); // once every two minutes should suffice
 
     // tick all the boxes in a category.
     $('li.selectallcategory').on('click', function () {
-        if ($(this).find('input[type=checkbox]').attr('id').match('all-lists')) {
+        if ($(this).find('input[type=checkbox]').attr('name').match('all-lists')) {
             var ul = $(this).parent();
             var lists = ul.parent().find('li');
 
-            checkAllBoxes(lists.find('input[id^=all-lists]').prop('checked'), lists);
+            checkAllBoxes(lists.find('input[name^=all-lists]').prop('checked'), lists);
         }
     });
-
     // @TODO, only set when needed
     setInterval(getServerTime, 30000);
 

@@ -59,6 +59,7 @@ $default_config = array(
     'website' => array(
         'value'       => $D_website,
         'description' => s('Website address (without http://)'),
+        'infoicon'    => true,
         'type'        => 'text',
         'allowempty'  => false, //# indication this value cannot be empty (1 being it can be empty)
         'category'    => 'general',
@@ -87,6 +88,8 @@ $default_config = array(
         'description' => s('Name of the organisation'),
         'type'        => 'text',
         'allowempty'  => true,
+        'allowtags'   => '<b><i><u><strong><em><h1><h2><h3><h4>',
+        'allowJS'     => false,
         'category'    => 'general',
     ),
 // logo of the organisation
@@ -98,12 +101,20 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'general',
     ),
+    'date_format' => array(
+        'value'       => 'j F Y',
+        'description' => s('Date format'),
+        'infoicon'    => true,
+        'type'        => 'text',
+        'allowempty'  => false,
+        'category'    => 'general',
+    ),
     'rc_notification' => array(
         'value'       => 0,
         'description' => s('Show notification for Release Candidates'),
         'type'        => 'boolean',
         'allowempty'  => true,
-        'category'    => 'system',
+        'category'    => 'security',
     ),
 
     //# remote processing secret
@@ -146,10 +157,18 @@ $default_config = array(
     ),
     'always_add_googletracking' => array(
         'value'       => '0',
-        'description' => s('Always add Google tracking code to campaigns'),
+        'description' => s('Always add analytics tracking code to campaigns'),
         'type'        => 'boolean',
         'allowempty'  => true,
         'category'    => 'campaign',
+    ),
+    'analytic_tracker' => array(
+        'values'       => array('google' => 'Google Analytics', 'matomo' => 'Matomo'),
+        'value'        => 'google',
+        'description'  => s('Analytics tracking code to add to campaign URLs'),
+        'type'         => 'select',
+        'allowempty'   => false,
+        'category'     => 'campaign',
     ),
     // report address is the person who gets the reports
     'report_address' => array(
@@ -557,9 +576,9 @@ Thank you.'
         'value' => '--
 
     <div class="footer" style="text-align:left; font-size: 75%;">
-      <p>This message was sent to [EMAIL] by [FROMEMAIL]</p>
+      <p>This message was sent to [EMAIL] by [FROMEMAIL].</p>
       <p>To forward this message, please do not use the forward button of your email application, because this message was made specifically for you only. Instead use the <a href="[FORWARDURL]">forward page</a> in our newsletter system.<br/>
-      To change your details and to choose which lists to be subscribed to, visit your personal <a href="[PREFERENCESURL]">preferences page</a><br/>
+      To change your details and to choose which lists to be subscribed to, visit your personal <a href="[PREFERENCESURL]">preferences page</a>.<br/>
       Or you can <a href="[UNSUBSCRIBEURL]">opt-out completely</a> from all future mailings.</p>
     </div>
 

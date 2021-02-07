@@ -92,7 +92,7 @@ if ($find) {
     <tr>
         <td colspan=4><?php echo formStart('action=""') ?><input type="hidden" name="id" value="<?php echo $listid ?>">
             <?php echo s('Find an admin') ?>: <input type=text name="find"
-                                                                         value="<?php echo htmlspecialchars($find) ?>"
+                                                                         value="<?php echo htmlentities($find) ?>"
                                                                          size="40"><input type="submit"
                                                                                           value="<?php echo s('Go') ?>">
             </form></td>
@@ -105,10 +105,10 @@ $ls->setElementHeading('Login name');
 while ($admin = Sql_fetch_array($result)) {
     $delete_url = sprintf("<a href=\"javascript:deleteRec('%s');\">".s('del').'</a>',
         PageURL2('admins', 'Delete', "start=$start&amp;delete=".$admin['id']));
-    $ls->addElement($admin['loginname'],
+    $ls->addElement(htmlentities($admin['loginname']),
         PageUrl2('admin', s('Show'), "start=$start&amp;id=".$admin['id'].$remember_find));
     $ls->addColumn($admin['loginname'], s('Id'), $admin['id']);
-    $ls->addColumn($admin['loginname'], s('email'), $admin['email']);
+    $ls->addColumn($admin['loginname'], s('email'), htmlspecialchars($admin['email']));
     $ls->addColumn($admin['loginname'], s('Super Admin'), $admin['superuser'] ? s('Yes') : s('No'));
     $ls->addColumn($admin['loginname'], s('Disabled'), $admin['disabled'] ? s('Yes') : s('No'));
     if ($_SESSION['logindetails']['superuser'] && $admin['id'] != $_SESSION['logindetails']['id']) {

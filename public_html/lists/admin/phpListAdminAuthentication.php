@@ -45,10 +45,11 @@ class phpListAdminAuthentication
         if ($admindata['disabled']) {
             return array(0, s('your account has been disabled'));
         }
-        if (//Password validation.
-            !empty($passwordDB) && $encryptedPass == $passwordDB
-        )
+        if (
+            !empty($passwordDB) && $encryptedPass === $passwordDB
+        ) {
             return array($admindata['id'], 'OK');
+        }
          else {
             if (!empty($GLOBALS['admin_auth_module'])) {
                 Error(s('Admin authentication has changed, please update your admin module'),

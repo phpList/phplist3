@@ -68,7 +68,7 @@ Feature: Navigate the app using the menu
          | Verify the DB structure   |
          | Log of events             |
          | Initialise the database   |
-         | Upgrade phpList           |
+         | Upgrade database          |
          | Manage bounces            |
          | Send the queue            |
          | Rebuild DB indexes        |

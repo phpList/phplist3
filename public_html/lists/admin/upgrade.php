@@ -63,13 +63,15 @@ if (!versionCompare($dbversion,'2.11.11') && $dbversion!=='dev') {
 // only action upgrade if necessary
 if ($force && $dbversion == VERSION  && defined('RELEASEDATE') && RELEASEDATE <= $releaseDBversion) {
     output(s('Your database is already the correct version (%s), including release date version (%s), there is no need to upgrade',$dbversion, $releaseDBversion));
-    unset($_GET['doit']);
+    clearMaintenanceMode();
+   unset($_GET['doit']);
 }
 
 if ($dbversion == VERSION && !$force) {
     output($GLOBALS['I18N']->get('Your database is already the correct version, there is no need to upgrade'));
 
     echo '<p>'.PageLinkAjax('upgrade&update=tlds', s('update Top Level Domains'), '', 'button').'</p>';
+    clearMaintenanceMode();
 
     echo subscribeToAnnouncementsForm();
 } elseif (isset($_GET['doit']) && $_GET['doit'] == 'yes') {
@@ -175,7 +177,7 @@ if ($dbversion == VERSION && !$force) {
     // Update jQuery version referenced in public page HTML stored in the database
     if (version_compare($dbversion, '3.4.1', '<')) {
 
-        // The new filename does not hard-code the jQuery version number  
+        // The new filename does not hard-code the jQuery version number
         $replacement = "jquery.min.js";
 
         // Replace jQuery version public page footers in config table
@@ -227,9 +229,10 @@ if ($dbversion == VERSION && !$force) {
                 $maxsize = $row['tablesize'];
             }
         }
-        $maxsize = (int) $maxsize;
-        $avail = disk_free_space('/'); //# we have no idea where MySql stores the data, so this is only a crude check and warning.
         $maxsize = (int) ($maxsize * 1.2); //# add another 20%
+        $row = Sql_Fetch_Row_Query('select @@datadir');
+        $dataDir = $row[0];
+        $avail = disk_free_space($dataDir);
 
         //# convert to UTF8
         $dbname = $GLOBALS['database_name'];
@@ -418,6 +421,10 @@ if ($dbversion == VERSION && !$force) {
         SaveConfig('secret', bin2hex(random_bytes(20)));
     }
 
+    if (version_compare($dbversion, '3.6.0','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['message']} change column processed processed integer ");
+    }
+    
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

@@ -137,6 +137,7 @@ foreach ($user_list as $email => $data) {
             $randval = mt_rand();
             $uniqid = getUniqid();
             $old_listmembership = array();
+            $old_data = array();
 
             $query = sprintf('INSERT INTO %s (email,entered,confirmed,uniqid,htmlemail,uuid) values("%s",now(),%d,"%s","%s", "%s")',
                 $tables['user'], $email, $importdata['notify'] != 'yes', $uniqid,
@@ -218,7 +219,7 @@ foreach ($user_list as $email => $data) {
             $history_entry .= $GLOBALS['I18N']->get('Not subscribed to any lists') . "\n";
         }
 
-        addUserHistory($email, $GLOBALS['I18N']->get('Import by ') . adminName(), $history_entry);
+        addUserHistory($email, $GLOBALS['I18N']->get('Import by') . ' ' . adminName(), $history_entry);
     } // end if
 } // end while
 
@@ -243,7 +244,7 @@ if ($foundBlacklisted) {
             $foundBlacklisted);
 }
 
-$htmlupdate = $report . '<br/>' . PageLinkButton('import1', s('Import some more emails'));
+$htmlupdate = $report . '<br/>' .'<div class="input button btn btn-default">'.PageLinkButton('import1', s('Import some more emails')).'</div>';
 $htmlupdate = str_replace("'", "\'", $htmlupdate);
 
 $status = '<script type="text/javascript">

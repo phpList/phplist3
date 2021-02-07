@@ -71,7 +71,7 @@ switch ($data['type']) {
                 $listorder = $maxitem[0] + 1; // One more than the maximum
             }
             foreach ($items as $key => $val) {
-                $val = clean($val);
+                $val = strip_tags($val);
                 if ($val != '') {
                     $query = sprintf('insert into %s (name,listorder) values("%s","%s")', $table, $val, $listorder);
                     $result = Sql_query($query);
@@ -209,7 +209,7 @@ switch ($data['type']) {
                 printf(' <input type="text" name="listorder[%d]" value="%s" size="5" class="listorder" />', $row['id'],
                     $row['listorder']);
             }
-            printf(' %s %s </div>', $row['name'],
+            printf(' %s %s </div>', htmlspecialchars($row['name']),
                 ($row['name'] == $data['default_value']) ? '('.$GLOBALS['I18N']->get('default').')' : '');
         }
         if ($num && $num < ATTRIBUTEVALUE_REORDER_LIMIT) {

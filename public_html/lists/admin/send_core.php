@@ -2,6 +2,7 @@
 require_once dirname(__FILE__).'/accesscheck.php';
 
 include_once dirname(__FILE__).'/date.php';
+include_once dirname(__FILE__).'/analytics.php';
 
 $errormsg = '';
 $done = 0;
@@ -58,7 +59,9 @@ if (!$id) {
     $id = Sql_Insert_Id();
     if (empty($id)) { // something went wrong creating the campaign
         Fatal_Error(s('Unable to create campaign, did you forget to upgrade the database?'));
-        exit;
+        $done = 1;
+
+        return;
     }
 
     if (isset($_GET['list'])) {
@@ -239,10 +242,6 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
 //    print "Message ID: $id";
     //    exit;
-    if (!$GLOBALS['can_fetchUrl'] && preg_match("/\[URL:/i", $_POST['message'])) {
-        echo $GLOBALS['can_fetchUrl'].Warn(s('You are trying to send a remote URL, but PEAR::HTTP_Request or CURL is not available, so this will fail'));
-    }
-
     if ($GLOBALS['commandline']) {
         if (isset($_POST['targetlist']) && is_array($_POST['targetlist'])) {
             Sql_query("delete from {$tables['listmessage']} where messageid = $id");
@@ -694,36 +693,53 @@ if (!$done) {
     */
 
     $maincontent .= '
-  <div class="field"><label for="subject">' .s('Campaign subject').Help('subject').'</label>'.
-        '<input type="text" name="subject"  id="subjectinput"
-    value="' .htmlentities($utf8_subject, ENT_QUOTES, 'UTF-8').'" size="60" /></div>
+  <div class="field">
+    <label for="subject">' .s('Campaign subject').Help('subject').'</label>'.
+    '<input type="text" name="subject"  id="subjectinput" value="' .htmlentities($utf8_subject, ENT_QUOTES, 'UTF-8').'" size="60" />
+  </div>
+
   <div class="field"><label for="fromfield">' .$GLOBALS['I18N']->get('From Line').Help('from').'</label>'.'
     <input type="text" name="fromfield"
    value="' .htmlentities($utf8_from, ENT_QUOTES, 'UTF-8').'" size="60" /></div>';
 
-    if ($GLOBALS['can_fetchUrl']) {
-        $maincontent .= sprintf('
+    if (USE_REPLY_TO) {
+        $maincontent .= '
+  <div class="field"><label for="replyto">' .$GLOBALS['I18N']->get('Reply to').Help('from').'</label>'.'
+    <input type="text" name="replyto"
+   value="' .htmlspecialchars($messagedata['replyto']).'" size="60" /></div>';
+    }
+    if (USE_MESSAGE_PREVIEW) {
+    $maincontent .= '
+        <div class="field" id="message-text-preview">
+        <label for="messagepreview">' .s('Message preview').Help('generatetextpreview').'</label>
+        <input type="text" id="messagepreview" name="messagepreview" size="60" readonly />
+        <div id="message-text-preview-button">' .
+            PageLinkAjax('send&tab=Content&id='.$id.'&action=generatetextpreview', $GLOBALS['I18N']->get('Generate')).'
+        </div>
+        </div>';
+    }
+
+    $maincontent .= sprintf('
 
       <div id="contentchoice" class="field">
       <label for="sendmethod">' .$GLOBALS['I18N']->get('Content').Help('sendmethod').'</label>'.'
       <input type="radio" name="sendmethod" value="remoteurl" %s />' .$GLOBALS['I18N']->get('Send a Webpage').'
       <input type="radio" name="sendmethod" value="inputhere" %s />' .$GLOBALS['I18N']->get('Compose Message').'
       </div>',
-            $messagedata['sendmethod'] == 'remoteurl' ? 'checked="checked"' : '',
-            $messagedata['sendmethod'] == 'inputhere' ? 'checked="checked"' : ''
+        $messagedata['sendmethod'] == 'remoteurl' ? 'checked="checked"' : '',
+        $messagedata['sendmethod'] == 'inputhere' ? 'checked="checked"' : ''
         );
 
-        if (empty($messagedata['sendurl'])) {
-            $messagedata['sendurl'] = 'e.g. https://www.phplist.com/testcampaign.html';
-        }
+    if (empty($messagedata['sendurl'])) {
+        $messagedata['sendurl'] = 'e.g. https://www.phplist.com/testcampaign.html';
+    }
 
-        $maincontent .= '
+    $maincontent .= '
       <div id="remoteurl" class="field"><label for="sendurl">' .$GLOBALS['I18N']->get('Send a Webpage - URL').Help('sendurl').'</label>'.'
         <input type="text" name="sendurl" id="remoteurlinput"
-       value="' .$messagedata['sendurl'].'" size="60" /> <span id="remoteurlstatus"></span></div>';
-        if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
-            $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
-        }
+       value="' .htmlspecialchars($messagedata['sendurl']).'" size="60" /> <span id="remoteurlstatus"></span></div>';
+    if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
+        $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
     }
 
 // custom code - end
@@ -860,7 +876,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     $req = Sql_Query("select id,title from {$tables['template']} order by listorder");
     if (Sql_affected_Rows()) {
         $formatting_content .= '<div class="field"><label for="template">'.$GLOBALS['I18N']->get('Use Template').Help('usetemplate').'</label>'.'
-      <select name="template"><option value="0">-- ' .s('select one').'</option>
+      <select name="template"><option value="0" hidden>' .s('--Select one--').'</option>
       <option value="0">-- ' .s('No template').'</option>';
         $req = Sql_Query("select id,title from {$tables['template']} order by listorder");
         while ($row = Sql_Fetch_Array($req)) {
@@ -993,7 +1009,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     ' .$sendtestresult.Help('sendtest').' <b>'.s('to email address(es)').':</b><br />'.
         '<p><i>&nbsp; '.s('(comma separate addresses - all must be existing subscribers)').'</i></p>'.
         '<div class="input-group">
-            <input type="text" name="testtarget" size="40" value="'.$messagedata['testtarget'].'" class="form-control blockenterkey" />
+            <input type="text" name="testtarget" size="40" value="'.htmlspecialchars($messagedata['testtarget']).'" class="form-control blockenterkey" />
             <span class="input-group-btn">
                 <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" />
              </span>
@@ -1003,8 +1019,8 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     // notification of progress of message sending
     // defaulting to admin_details['email'] gives the wrong impression that this is the
     // value in the database, so it is better to leave that empty instead
-    $notify_start = isset($messagedata['notify_start']) ? $messagedata['notify_start'] : ''; //$admin_details['email'];
-    $notify_end = isset($messagedata['notify_end']) ? $messagedata['notify_end'] : ''; //$admin_details['email'];
+    $notify_start = isset($messagedata['notify_start']) && is_email($messagedata['notify_start']) ? $messagedata['notify_start'] : ''; //$admin_details['email'];
+    $notify_end = isset($messagedata['notify_end']) && is_email($messagedata['notify_end']) ? $messagedata['notify_end'] : ''; //$admin_details['email'];
 
     $send_content = sprintf('
     <div class="sendNotify">
@@ -1018,17 +1034,40 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
 
     $send_content .= sprintf('
     <div class="campaignTracking">
-    <label for"cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
+    <label for="cb[google_track]">%s</label><input type="hidden" name="cb[google_track]" value="1" /><input type="checkbox" name="google_track" id="google_track" value="1" %s />
     </div>',
-        Help('googletrack').' '.s('add Google Analytics tracking code'),
+        Help('googletrack').' '.s('Add analytics tracking code'),
         !empty($messagedata['google_track']) ? 'checked="checked"' : '');
 
+    /* add analytics query parameters then hide if not currently enabled */
+    $analytics = getAnalyticsQuery();
+    $editableParameters = $analytics->editableParameters($messagedata);
+
+    if (count($editableParameters) > 0) {
+        $send_content .= '<div id="analytics">';
+
+        foreach ($editableParameters as $field => $default) {
+            $value =  isset($messagedata[$field]) ? $messagedata[$field] : $default;
+            $send_content .= sprintf(
+                '<label>%s <input type="text" name="%s" id="%s" value="%s" size="35"/></label>',
+                $field,
+                $field,
+                $field,
+                $value
+            ) . "\n";
+        }
+        $send_content .= '</div>';
+
+        if (empty($messagedata['google_track'])) {
+            $GLOBALS['pagefooter']['hideanalytics'] = '<script type="text/javascript">$("#analytics").hide()</script>';
+        }
+    }
     $numsent = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where messageid = %d',
         $GLOBALS['tables']['usermessage'], $messagedata['id']));
     if ($numsent[0] < RESETSTATS_MAX) {
         $send_content .= sprintf('
         <div class="resetStatistics">
-        <label for"cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
+        <label for="cb[resetstats]">%s</label><input type="hidden" name="cb[resetstats]" value="1" /><input type="checkbox" name="resetstats" id="resetstats" value="1" %s />
         </div>',
             Help('resetstats').' '.s('Reset click statistics'),
             !empty($messagedata['resetstats']) ? 'checked="checked"' : '');
@@ -1038,7 +1077,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
 
     $send_content .= sprintf('
     <div class="isTestCampaign">
-    <label for"cb[istestcampaign]">%s</label><input type="hidden" name="cb[istestcampaign]" value="1" /><input type="checkbox" name="istestcampaign" id="istestcampaign" value="1" %s />
+    <label for="cb[istestcampaign]">%s</label><input type="hidden" name="cb[istestcampaign]" value="1" /><input type="checkbox" name="istestcampaign" id="istestcampaign" value="1" %s />
     </div>',
         Help('istestcampaign').' '.s('This is a test campaign'),
         !empty($messagedata['istestcampaign']) ? 'checked="checked"' : '');
