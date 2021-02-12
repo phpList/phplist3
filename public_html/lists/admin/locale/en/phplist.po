@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: English (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-02-12 21:09+0000\n"
+"Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/en/>\n"
+"phplist3/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,7 @@ msgstr "Unique ID"
 #: public_html/databasestructure.php:20 public_html/databasestructure.php:48
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
@@ -406,7 +406,7 @@ msgstr "Primary key"
 
 #: public_html/databasestructure.php:107
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: public_html/databasestructure.php:108
 msgid "Start Time"
@@ -629,7 +629,7 @@ msgstr "forward ID"
 
 #: public_html/databasestructure.php:191
 msgid "hash value of URL"
-msgstr ""
+msgstr "hash value of URL"
 
 #: public_html/databasestructure.php:193
 msgid "Forward adding the UID?"
@@ -653,7 +653,7 @@ msgstr "Regex"
 
 #: public_html/databasestructure.php:198
 msgid "hash value of regex"
-msgstr ""
+msgstr "hash value of regex"
 
 #: public_html/databasestructure.php:199
 msgid "Action on rule"
@@ -1331,15 +1331,15 @@ msgstr "Suppression List"
 
 #: public_html/databasestructure.php:363
 msgid "general settings"
-msgstr ""
+msgstr "general settings"
 
 #: public_html/databasestructure.php:364
 msgid "security settings"
-msgstr ""
+msgstr "security settings"
 
 #: public_html/databasestructure.php:365
 msgid "reporting settings"
-msgstr ""
+msgstr "reporting settings"
 
 #: public_html/databasestructure.php:366
 msgid "campaign settings"
