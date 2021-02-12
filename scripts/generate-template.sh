@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # script to generate the language gettext template.po from the source code
 # $1: current phplist.pot file
 # $2: mail where to report the diff between the new and old template
@@ -16,36 +17,7 @@ if [ -z "$current" -o ! -f "$current" ]; then
   exit 1;
 fi
 
-[ "$reportto" ] || reportto=root@localhost
-
-[ -d public_html ] || exit 1; ## needs to run from phplist root
-
-function mail_template_diff() {
-
-	if [ -z "$from_envelope" -o -z "$from_realn" ]; then
-		echo "Not from configured, skipping sending mail"
-		return
-	fi
-
-	cp phplist.pot "$current"
-	diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
-
-	if [ -n "$diff" ]; then
-		sendmail -f $from_envelope -F "$from_realn" $reportto << EOF
-Subject: phpList language changes
-To: $reportto
-
-These are this weeks changes in the language template file
-They will show up in https://translate.phplist.com as untranslated
-Please update your translations, thanks
-
-$diff
-EOF
-	fi
-
-	# Revert the cp we just did, so the diff is empty again
-	git checkout "$current"
-}
+[[ -d public_html ]] || exit 1; ## needs to run from phplist root
 
 ## from http://www.lxg.de/code/playing-with-xgettext
 echo '' > messages.po # xgettext needs that file, and we need it empty
@@ -59,4 +31,10 @@ msgmerge -qN $current messages.po > phplist-new.pot
 mv -f phplist-new.pot phplist.pot
 rm -f messages.po phplist-new.pot public_html/databasestructure.php
 
-mail_template_diff
+cp phplist.pot "$current"
+diff=$(git diff $current | grep "^\+" | grep -v "$current" | grep -v "^.#" | grep -v '^.msgid ""$' | grep -v '^.msgstr ""$' || true)
+
+# Revert the cp we just did, so the diff is empty again
+git checkout "$current"
+echo $diff
+
