@@ -450,8 +450,6 @@ function sendMail($to, $subject, $message, $header = '', $parameters = '', $skip
 function constructSystemMail($message, $subject = '')
 {
     $hasHTML = strip_tags($message) != $message;
-    $htmlcontent = '';
-    $textcontent = '';
 
     if ($hasHTML) {
         $message = stripslashes($message);
@@ -476,43 +474,41 @@ function constructSystemMail($message, $subject = '')
         $htmlmessage = str_replace($listsmatch[0], '<ul>'.$listsHTML.'</ul>', $htmlmessage);
     }
 
-    $htmltemplate = '';
-    $texttemplate = '';
+    $htmlcontent = $htmlmessage;
+    $textcontent = $textmessage;
     $templateid = getConfig('systemmessagetemplate');
     if (!empty($templateid)) {
         $req = Sql_Fetch_Row_Query(sprintf('select template, template_text from %s where id = %d',
             $GLOBALS['tables']['template'], $templateid));
-        $htmltemplate = stripslashes($req[0]);
-        $texttemplate = stripslashes($req[1]);
-    }
-    if (strpos($htmltemplate, '[CONTENT]') !== false) {
-        $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
-        $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
-        $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
-        if (!EMAILTEXTCREDITS) {
-            $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
-                $GLOBALS['PoweredByImage']);
-        } else {
-            $phpListPowered = $GLOBALS['PoweredByText'];
-        }
-        if (strpos($htmlcontent, '[SIGNATURE]')) {
-            $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
-        } elseif (strpos($htmlcontent, '</body>')) {
-            $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
-        } else {
-            $htmlcontent .= $phpListPowered;
-        }
-        $htmlcontent = parseLogoPlaceholders($htmlcontent);
-    }
-    if (strpos($texttemplate, '[CONTENT]') !== false) {
-        $textcontent = str_replace('[CONTENT]', $textmessage, $texttemplate);
-        $textcontent = str_replace('[SUBJECT]', $subject, $textcontent);
-        $textcontent = str_replace('[FOOTER]', '', $textcontent);
-        $phpListPowered = trim(HTML2Text($GLOBALS['PoweredByText']));
-        if (strpos($textcontent, '[SIGNATURE]')) {
-            $textcontent = str_replace('[SIGNATURE]', $phpListPowered, $textcontent);
-        } else {
-            $textcontent .= "\n\n" . $phpListPowered;
+        if ($req) {
+            $htmltemplate = stripslashes($req[0]);
+            $texttemplate = stripslashes($req[1]);
+            $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
+            $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
+            $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
+            if (!EMAILTEXTCREDITS) {
+                $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
+                    $GLOBALS['PoweredByImage']);
+            } else {
+                $phpListPowered = $GLOBALS['PoweredByText'];
+            }
+            if (strpos($htmlcontent, '[SIGNATURE]')) {
+                $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
+            } elseif (strpos($htmlcontent, '</body>')) {
+                $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
+            } else {
+                $htmlcontent .= $phpListPowered;
+            }
+            $htmlcontent = parseLogoPlaceholders($htmlcontent);
+            $textcontent = str_replace('[CONTENT]', $textmessage, $texttemplate);
+            $textcontent = str_replace('[SUBJECT]', $subject, $textcontent);
+            $textcontent = str_replace('[FOOTER]', '', $textcontent);
+            $phpListPowered = trim(HTML2Text($GLOBALS['PoweredByText']));
+            if (strpos($textcontent, '[SIGNATURE]')) {
+                $textcontent = str_replace('[SIGNATURE]', $phpListPowered, $textcontent);
+            } else {
+                $textcontent .= "\n\n" . $phpListPowered;
+            }
         }
     }
 
