@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2021-02-12 21:09+0000\n"
+"PO-Revision-Date: 2021-02-13 12:54+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
@@ -1343,7 +1343,7 @@ msgstr "reporting settings"
 
 #: public_html/databasestructure.php:366
 msgid "campaign settings"
-msgstr ""
+msgstr "campaign settings"
 
 #: public_html/databasestructure.php:367
 msgid "transactional settings"
