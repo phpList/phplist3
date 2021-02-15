@@ -217,25 +217,26 @@ function SaveConfig($item, $value, $editable = 1, $ignore_errors = 0)
             }
             break;
         case 'emaillist':
-            $valid = array();
-            $hasError = false;
-            $emails = explode(',', $value);
-            foreach ($emails as $email) {
-                if (is_email($email)) {
-                    $valid[] = $email;
-                } else {
-                    $hasError = true;
+            if (!empty($value)) {
+                $valid = array();
+                $hasError = false;
+                $emails = explode(',', $value);
+                foreach ($emails as $email) {
+                    if (is_email($email)) {
+                        $valid[] = $email;
+                    } else {
+                        $hasError = true;
+                    }
+                }
+                $value = implode(',', $valid);
+                /*
+                 * hmm, not sure this is good or bad for UX
+                 *
+                  */
+                if ($hasError) {
+                    return $configInfo['description'].': '.s('Invalid value for email address');
                 }
             }
-            $value = implode(',', $valid);
-            /*
-             * hmm, not sure this is good or bad for UX
-             *
-              */
-            if ($hasError) {
-                return $configInfo['description'].': '.s('Invalid value for email address');
-            }
-
             break;
         case 'image':
             include 'class.image.inc';
