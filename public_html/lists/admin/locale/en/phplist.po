@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2021-02-13 13:00+0000\n"
+"PO-Revision-Date: 2021-02-15 21:50+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
@@ -1355,7 +1355,7 @@ msgstr "Subscription user interface settings"
 
 #: public_html/databasestructure.php:369
 msgid "list-organisation settings"
-msgstr ""
+msgstr "list-organisation settings"
 
 #: public_html/databasestructure.php:370
 msgid "subscription settings"
@@ -1363,7 +1363,7 @@ msgstr "Subscription settings"
 
 #: public_html/databasestructure.php:371
 msgid "system settings"
-msgstr ""
+msgstr "system settings"
 
 #: public_html/lists/lt.php:227
 msgid ""
@@ -1381,6 +1381,7 @@ msgstr "Export subscribers"
 msgid ""
 "Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
 msgstr ""
+"Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
 
 #: public_html/lists/admin/export.php:64
 #: public_html/lists/admin/actions/export.php:23
@@ -1484,16 +1485,16 @@ msgstr "Subscriber management functions"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
-msgstr ""
+msgstr "Please enter your credentials."
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:46
 #: public_html/lists/admin/phpListAdminAuthentication.php:103
 msgid "your account has been disabled"
-msgstr ""
+msgstr " your account has been disabled"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:55
 msgid "Admin authentication has changed, please update your admin module"
-msgstr ""
+msgstr "Admin authentication has changed, please update your admin module"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:59
 msgid "incorrect password"
@@ -1501,7 +1502,7 @@ msgstr "Incorrect password"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:101
 msgid "No such account"
-msgstr ""
+msgstr "No such account"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:138
 msgid "Nobody"
