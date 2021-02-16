@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: French (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-02-16 21:39+0000\n"
+"Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/fr/>\n"
+"phplist3/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:203
 msgid "adminid"
-msgstr "adminid"
+msgstr "administrateur"
 
 #: public_html/lists/admin/massremove.php:49
 msgid "Remove more"
@@ -107,7 +107,7 @@ msgstr "Liste publique (listée en première page)"
 
 #: public_html/databasestructure.php:306
 msgid "pagetitlehover:vote"
-msgstr "pagetitlehover:vote"
+msgstr "pagetitlehover:Voter"
 
 #: public_html/lists/admin/list.php:258
 msgid "Great idea!"
@@ -144,7 +144,7 @@ msgstr "Ecraser Données Existantes"
 
 #: public_html/databasestructure.php:250
 msgid "pagetitlehover:sendprepared"
-msgstr "pagetitlehover:sendprepared"
+msgstr "pagetitlehover:Envoyer"
 
 #: public_html/lists/admin/import4.php:88
 msgid "continue"
@@ -356,7 +356,7 @@ msgstr ""
 # Suggested in Weblate: Créer les tables de la base nécessaires au fonctionnement de phpList
 #: public_html/databasestructure.php:244
 msgid "pagetitlehover:initialise"
-msgstr "pagetitlehover:initialise"
+msgstr "pagetitlehover:Initialiser la base de données"
 
 #: public_html/lists/admin/usercheck.php:51,
 #: public_html/lists/admin/users.php:381,
@@ -855,7 +855,7 @@ msgstr "Importer des abonnés à partir d'IMAP"
 
 #: public_html/databasestructure.php:242
 msgid "pagetitlehover:export"
-msgstr "pagetitlehover:export"
+msgstr "pagetitlehover:Export"
 
 #: public_html/lists/admin/generatebouncerules.php:39
 msgid "Process Next Batch"
@@ -1103,7 +1103,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:298
 msgid "pagetitlehover:eventlog"
-msgstr "pagetitlehover:eventlog"
+msgstr "pagetitlehover:Journal des événements "
 
 #: public_html/databasestructure.php:275
 msgid "pagetitle:template"
@@ -1172,7 +1172,7 @@ msgstr "Version"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:262
 msgid "pagetitlehover:userhistory"
-msgstr "pagetitlehover:userhistory"
+msgstr "pagetitlehover:Historique"
 
 #: public_html/lists/admin/defaultconfig.php:87
 msgid "Name of the organisation"
@@ -1634,7 +1634,7 @@ msgstr ""
 # Suggested in Weblate: Modifier les détails d'un attribut
 #: public_html/databasestructure.php:224
 msgid "pagetitlehover:editattributes"
-msgstr "pagetitlehover:editattributes"
+msgstr "pagetitlehover:Attributs"
 
 #: public_html/databasestructure.php:323
 msgid "pagetitle:domainstats"
@@ -1733,7 +1733,7 @@ msgstr "Demande de confirmation"
 # Suggested in Weblate: Afficher la liste des campagnes
 #: public_html/databasestructure.php:264
 msgid "pagetitlehover:messages"
-msgstr "pagetitlehover:messages"
+msgstr "pagetitlehover:Campagnes"
 
 #: public_html/lists/admin/setup.php:94
 msgid "Congratulations, phpList is set up, you are ready to start mailing"
@@ -2084,7 +2084,7 @@ msgstr "les nouveaux administrateurs étaient"
 # Suggested in Weblate: Importer des abonnés par copier-coller
 #: public_html/databasestructure.php:230
 msgid "pagetitlehover:importsimple"
-msgstr "pagetitlehover:importsimple"
+msgstr "pagetitlehover:Import simple"
 
 #: public_html/lists/admin/eventlog.php:90
 msgid "No events available"
@@ -2143,7 +2143,7 @@ msgstr "Ajouter quelques destinataires / abonnés"
 # Suggested in Weblate: Configuration
 #: public_html/databasestructure.php:220
 msgid "pagetitlehover:config"
-msgstr "pagetitlehover:config"
+msgstr "pagetitlehover:Paramètres"
 
 #: public_html/lists/admin/home.php:109
 msgid "Import Users"
@@ -2558,7 +2558,7 @@ msgstr "Fermeture de la boîte aux lettres et purge des messages"
 # Suggested in Weblate: Paramètres du comportement de phpList
 #: public_html/databasestructure.php:280
 msgid "pagetitlehover:configure"
-msgstr "pagetitlehover:configure"
+msgstr "pagetitlehover:Paramètres"
 
 #: public_html/lists/admin/messages.php:644
 msgid "Suspend All"
@@ -2804,7 +2804,7 @@ msgstr "Suppression de %d de cette liste "
 
 #: public_html/databasestructure.php:296
 msgid "pagetitlehover:spage"
-msgstr "pagetitlehover:spage"
+msgstr "pagetitlehover:Page d'abonnement"
 
 #: public_html/lists/admin/actions/campaigns.php:62
 msgid "bounce"
@@ -3498,7 +3498,7 @@ msgstr "séparer les adresses avec une virgule"
 # Suggested in Weblate: Fonctions de nettoyage de la base d'inscrits
 #: public_html/databasestructure.php:256
 msgid "pagetitlehover:reconcileusers"
-msgstr "pagetitlehover:reconcileusers"
+msgstr "pagetitlehover:Actions globales"
 
 #: public_html/lists/admin/initialise.php:211
 msgid "Sign up to our newsletter"
@@ -3596,7 +3596,7 @@ msgstr "Mise à jour l'extenstion existante"
 # Suggested in Weblate: Vérifier les traductions
 #: public_html/databasestructure.php:228
 msgid "pagetitlehover:checki18n"
-msgstr "pagetitlehover:checki18n"
+msgstr "pagetitlehover:Traductions"
 
 #: public_html/lists/admin/connect.php:2261,
 #: public_html/lists/admin/inc/interfacelib.php:832
@@ -3764,7 +3764,7 @@ msgstr "Dernière modification"
 # Suggested in Weblate: Afficher les détails d'une campagne
 #: public_html/databasestructure.php:266
 msgid "pagetitlehover:message"
-msgstr "pagetitlehover:message"
+msgstr "pagetitlehover:Campagne"
 
 #: public_html/lists/admin/actions/domainstats.php:77,
 #: public_html/lists/admin/actions/domainstats.php:157
@@ -4577,7 +4577,7 @@ msgstr "Vous êtes connecté en tant qu'administrateur (%s) de ce système phpLi
 # Suggested in Weblate: Aperçu du modèle
 #: public_html/databasestructure.php:278
 msgid "pagetitlehover:viewtemplate"
-msgstr "pagetitlehover:viewtemplate"
+msgstr "pagetitlehover:Voir"
 
 #: public_html/lists/admin/reconcileusers.php:330
 msgid "Marking subscribers with an invalid email as unconfirmed"
@@ -4692,7 +4692,7 @@ msgstr "Quand ils ont modifié les informations les concernant"
 
 #: public_html/databasestructure.php:308
 msgid "pagetitlehover:login"
-msgstr "pagetitlehover:login"
+msgstr "pagetitlehover:Identification"
 
 #: public_html/lists/admin/runcommand.php:18
 msgid "Invalid command"
@@ -4763,7 +4763,7 @@ msgstr "Annuler"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:258
 msgid "pagetitlehover:user"
-msgstr "pagetitlehover:user"
+msgstr "pagetitlehover:Abonné"
 
 #: public_html/lists/admin/import3.php:177,
 #: public_html/lists/admin/import3.php:437,
@@ -4939,7 +4939,7 @@ msgstr "affichages"
 # Suggested in Weblate: Organiser les listes d'abonnés par catégories
 #: public_html/databasestructure.php:222
 msgid "pagetitlehover:catlists"
-msgstr "pagetitlehover:catlists"
+msgstr "pagetitlehover:Catégories de listes"
 
 #: public_html/lists/admin/import2.php:738
 msgid "Retain Old User Email"
@@ -5343,7 +5343,7 @@ msgstr "Vérifier les traductions"
 
 #: public_html/databasestructure.php:292
 msgid "pagetitlehover:bounce"
-msgstr "pagetitlehover:bounce"
+msgstr "pagetitlehover:Rebond"
 
 # Suggested in Weblate: Thème avec ID
 # Suggested in Weblate: Modèle avec ID
@@ -5542,7 +5542,7 @@ msgstr "Faites un don pour soutenir le développement de phpList"
 # Suggested in Weblate: Créer et modifier les attributs des abonnés
 #: public_html/databasestructure.php:214
 msgid "pagetitlehover:attributes"
-msgstr "pagetitlehover:attributes"
+msgstr "pagetitlehover:Attributs"
 
 #: public_html/lists/admin/home.php:271,
 #: public_html/lists/admin/bouncemgt.php:11
@@ -5556,7 +5556,7 @@ msgstr "Envoyer la file d'attente"
 # Suggested in Weblate: Importer des abonnés
 #: public_html/databasestructure.php:240
 msgid "pagetitlehover:import"
-msgstr "pagetitlehover:import"
+msgstr "pagetitlehover:Import"
 
 #: public_html/databasestructure.php:164
 msgid "page this log was for"
@@ -5683,7 +5683,7 @@ msgstr "phpList exporte de %s à %s (%s).csv"
 # Suggested in Weblate: Reste à faire pour configurer phpList correctement
 #: public_html/databasestructure.php:210
 msgid "pagetitlehover:setup"
-msgstr "pagetitlehover:setup"
+msgstr "pagetitlehover:Configuration"
 
 #: public_html/lists/admin/bouncerule.php:53
 msgid "delete this rule and go to the next candidate"
@@ -5820,7 +5820,7 @@ msgstr "formulaires"
 # Suggested in Weblate: Importer des abonnés depuis un fichier texte simple contenant des adresses email
 #: public_html/databasestructure.php:238
 msgid "pagetitlehover:import1"
-msgstr "pagetitlehover:import1"
+msgstr "pagetitlehover:Import 1"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:100
 msgid "No such account"
@@ -5861,7 +5861,7 @@ msgstr ""
 # Suggested in Weblate: Aller au tableau de bord
 #: public_html/databasestructure.php:208
 msgid "pagetitlehover:home"
-msgstr "pagetitlehover:home"
+msgstr "pagetitlehover:Page d'Accueil"
 
 #: public_html/lists/admin/processbounces.php:711
 msgid "Identifying consecutive bounces"
@@ -5975,7 +5975,7 @@ msgstr "Documentation à propos de cette erreur"
 # Suggested in Weblate: Modifier les détails d'une liste
 #: public_html/databasestructure.php:226
 msgid "pagetitlehover:editlist"
-msgstr "pagetitlehover:editlist"
+msgstr "pagetitlehover:Modifier la liste"
 
 #: public_html/lists/admin/home.php:14,
 #: public_html/lists/admin/home.php:343,
@@ -6482,7 +6482,7 @@ msgstr "Abonnés existants"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:260
 msgid "pagetitlehover:adduser"
-msgstr "pagetitlehover:adduser"
+msgstr "pagetitlehover:Ajout"
 
 #: public_html/lists/admin/defaultconfig.php:183
 msgid "Reply-to email address for system messages"
@@ -6543,7 +6543,7 @@ msgstr "Bloqué jusqu'à cette période"
 
 #: public_html/databasestructure.php:300
 msgid "pagetitlehover:getrss"
-msgstr "pagetitlehover:getrss"
+msgstr "pagetitlehover:Flux RSS"
 
 #: public_html/lists/admin/home.php:57
 msgid "Manage Campaigns"
@@ -6552,7 +6552,7 @@ msgstr "Gestion des campagnes"
 # Suggested in Weblate: Créer une campagne pour diffuser à vos abonnés
 #: public_html/databasestructure.php:246
 msgid "pagetitlehover:send"
-msgstr "pagetitlehover:send"
+msgstr "pagetitlehover:Envoyer"
 
 #: public_html/lists/admin/actions/msgstatus.php:48,
 #: public_html/lists/admin/actions/processqueue.php:1333
@@ -6584,7 +6584,7 @@ msgstr "de"
 # Suggested in Weblate: Ajouter ou modifier un administrateur autorisé à configurer phpList
 #: public_html/databasestructure.php:282
 msgid "pagetitlehover:admin"
-msgstr "pagetitlehover:admin"
+msgstr "pagetitlehover:Administrateur"
 
 #: public_html/lists/admin/plugins.php:279
 msgid "installed"
@@ -6597,7 +6597,7 @@ msgstr "Date du retour en erreur"
 # Suggested in Weblate: Importer des abonnés depuis IMAP
 #: public_html/databasestructure.php:234
 msgid "pagetitlehover:import3"
-msgstr "pagetitlehover:import3"
+msgstr "pagetitlehover:Import 3"
 
 #: public_html/lists/admin/members.php:58,
 #: public_html/lists/admin/members.php:183,
@@ -6780,7 +6780,7 @@ msgstr "traitement annulé"
 
 #: public_html/databasestructure.php:304
 msgid "pagetitlehover:community"
-msgstr "pagetitlehover:community"
+msgstr "pagetitlehover:Communauté"
 
 #: public_html/lists/admin/processbounces.php:329
 msgid "system message bounced, but unknown user"
@@ -7145,7 +7145,7 @@ msgstr "Message à envoyer quand ils demandent leur emplacement personnel"
 # Suggested in Weblate: Mettre à jour la base de données pour correspondre à la version actuelle du code
 #: public_html/databasestructure.php:272
 msgid "pagetitlehover:upgrade"
-msgstr "pagetitlehover:upgrade"
+msgstr "pagetitlehover:Mise à jour"
 
 #: public_html/lists/admin/actions/processqueue.php:505
 msgid "Started"
@@ -7302,7 +7302,7 @@ msgstr "Trouvés"
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr "Cet abonné est-il en liste \"interdits d'envoi\" ?"
+msgstr "Cet abonné est-il en liste noire ?"
 
 #: public_html/lists/admin/actions/import1.php:228,
 #: public_html/lists/admin/import3.php:512
@@ -7601,7 +7601,7 @@ msgstr "La table existe déjà"
 # Suggested in Weblate: Envoyer les campagnes en file d'attente
 #: public_html/databasestructure.php:268
 msgid "pagetitlehover:processqueue"
-msgstr "pagetitlehover:processqueue"
+msgstr "pagetitlehover:Envoyer"
 
 #: public_html/lists/admin/user.php:262
 #, php-format
@@ -7615,7 +7615,7 @@ msgstr "Détail du rejet"
 # Suggested in Weblate: Voir les abonnés membres de la liste
 #: public_html/databasestructure.php:252
 msgid "pagetitlehover:members"
-msgstr "pagetitlehover:members"
+msgstr "pagetitlehover:Destinataires"
 
 #: public_html/lists/admin/sendemaillib.php:1076
 #, php-format
@@ -7873,7 +7873,7 @@ msgstr "utilisé sur"
 
 #: public_html/databasestructure.php:294
 msgid "pagetitlehover:spageedit"
-msgstr "pagetitlehover:spageedit"
+msgstr "pagetitlehover:Page d'abonnement"
 
 #: public_html/databasestructure.php:122
 msgid "Status of this bounce"
@@ -7897,7 +7897,7 @@ msgstr "et %d en plus"
 
 #: public_html/databasestructure.php:290
 msgid "pagetitlehover:bounces"
-msgstr "pagetitlehover:bounces"
+msgstr "pagetitlehover:Rebonds"
 
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "This may be caused by a too slow or too busy server"
@@ -8536,7 +8536,7 @@ msgstr "En cours de chargement"
 
 #: public_html/databasestructure.php:286
 msgid "pagetitlehover:adminattributes"
-msgstr "pagetitlehover:adminattributes"
+msgstr "pagetitlehover:Attributs des administrateurs"
 
 #: public_html/lists/admin/importadmin.php:246,
 #: public_html/databasestructure.php:133
@@ -8916,7 +8916,7 @@ msgstr "Dernière page"
 # Suggested in Weblate: Gérer les modèles de courrier utilisés pour les envois au format HTML
 #: public_html/databasestructure.php:274
 msgid "pagetitlehover:templates"
-msgstr "pagetitlehover:templates"
+msgstr "pagetitlehover:Modèles"
 
 #: public_html/lists/admin/importadmin.php:291
 msgid "Information has been updated from the import"
@@ -9234,7 +9234,7 @@ msgstr "Adresse e-mail de provenance pour les messages système"
 # Suggested in Weblate: À propos de phpList
 #: public_html/databasestructure.php:212
 msgid "pagetitlehover:about"
-msgstr "pagetitlehover:about"
+msgstr "pagetitlehover:A propos"
 
 #: public_html/lists/admin/convertstats.php:51
 msgid "creating tables done"
@@ -9262,7 +9262,7 @@ msgstr ""
 # Suggested in Weblate: Stress test
 #: public_html/databasestructure.php:216
 msgid "pagetitlehover:stresstest"
-msgstr "pagetitlehover:stresstest"
+msgstr "pagetitlehover:Test de résistance"
 
 #: public_html/lists/admin/attributes.php:186,
 #: public_html/lists/admin/users.php:237
@@ -9388,7 +9388,7 @@ msgstr ""
 # Suggested in Weblate: Ajouter ou modifier un modèle
 #: public_html/databasestructure.php:276
 msgid "pagetitlehover:template"
-msgstr "pagetitlehover:template"
+msgstr "pagetitlehover:Modèle"
 
 #: public_html/lists/admin/initialise.php:249
 msgid "instead?"
@@ -9539,7 +9539,7 @@ msgstr "bloquer les abonnés qui ont plus de"
 # Suggested in Weblate: Importer des abonnés à partir d'un fichier contenant leur email et des informations complémentaires
 #: public_html/databasestructure.php:236
 msgid "pagetitlehover:import2"
-msgstr "pagetitlehover:import2"
+msgstr "pagetitlehover:Import 2"
 
 #: public_html/databasestructure.php:195
 msgid "Name of data"
@@ -9903,7 +9903,7 @@ msgstr "Forcer la mise à niveau"
 # Suggested in Weblate: Listes auxquelles les abonnés peuvent souscrire
 #: public_html/databasestructure.php:218
 msgid "pagetitlehover:list"
-msgstr "pagetitlehover:list"
+msgstr "pagetitlehover:Listes de diffusion"
 
 #: public_html/lists/admin/defaultconfig.php:149
 msgid "Always add Google tracking code to campaigns"
@@ -10158,7 +10158,7 @@ msgstr "importés avec succès dans la base de données et ajoutés à"
 # Suggested in Weblate: Importer des abonnés depuis une base distante
 #: public_html/databasestructure.php:232
 msgid "pagetitlehover:import4"
-msgstr "pagetitlehover:import4"
+msgstr "pagetitlehover:Import 4"
 
 #: public_html/lists/admin/initialise.php:240
 msgid "phpList Setup"
@@ -10256,7 +10256,7 @@ msgstr "Traitement des campagnes en file d'attente"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:254
 msgid "pagetitlehover:users"
-msgstr "pagetitlehover:users"
+msgstr "pagetitlehover:Destinataires"
 
 #: public_html/lists/admin/import3.php:235
 msgid "Server"
@@ -10307,7 +10307,7 @@ msgstr "Augmenter le décompte des erreurs de"
 
 #: public_html/databasestructure.php:302
 msgid "pagetitlehover:viewrss"
-msgstr "pagetitlehover:viewrss"
+msgstr "pagetitlehover:Flux RSS"
 
 #: public_html/lists/admin/actions/campaigns.php:37
 msgid "Campaign Id"
@@ -10439,12 +10439,12 @@ msgstr "Pas de modèle"
 
 #: public_html/databasestructure.php:288
 msgid "pagetitlehover:processbounces"
-msgstr "pagetitlehover:processbounces"
+msgstr "pagetitlehover:Rebonds"
 
 # Suggested in Weblate: Sélectionner certains attributs proposés par la communauté phpList
 #: public_html/databasestructure.php:270
 msgid "pagetitlehover:defaults"
-msgstr "pagetitlehover:defaults"
+msgstr "pagetitlehover:Par défaut"
 
 #: public_html/lists/admin/defaultconfig.php:128
 msgid "Default for 'From:' in a campaign"
@@ -10493,7 +10493,7 @@ msgstr "Metadonnées"
 # Suggested in Weblate: Gérer les administrateurs autorisés à configurer l'ensemble ou certaines fonctoins de phpList
 #: public_html/databasestructure.php:284
 msgid "pagetitlehover:admins"
-msgstr "pagetitlehover:admins"
+msgstr "pagetitlehover:Administrateurs"
 
 #: public_html/lists/admin/processbounces.php:609,
 #: public_html/lists/admin/processbounces.php:793
@@ -10508,7 +10508,7 @@ msgstr "Événements"
 # Suggested in Weblate: Préparer un message à envoyer
 #: public_html/databasestructure.php:248
 msgid "pagetitlehover:preparesend"
-msgstr "pagetitlehover:preparesend"
+msgstr "pagetitlehover:Préparer un envoi"
 
 #: public_html/lists/admin/bouncerule.php:38
 msgid ""
