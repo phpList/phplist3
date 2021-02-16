@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Albanian (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: 2021-02-16 13:03+0000\n"
-"Last-Translator: Mariana Test <mariana@phplist.com>\n"
+"PO-Revision-Date: 2021-02-16 14:14+0000\n"
+"Last-Translator: Mariana Balla <marianaballa848@gmail.com>\n"
 "Language-Team: Albanian <http://translate.phplist.org/projects/phplist/"
 "phplist3/sq/>\n"
 "Language: sq\n"
@@ -25,7 +25,7 @@ msgstr "Shkarkoni versionin e ri"
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr "Dërgoji këtë abonenti emaile HTML"
+msgstr "Dërgoji këtij abonenti email-e në format HTML"
 
 #: public_html/lists/admin/plugins.php:232
 msgid "Plugin is up-to-date"
@@ -542,7 +542,7 @@ msgstr "Bëj atë më lart"
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
-msgstr "Pjesa fundore për një mesazh"
+msgstr "Pjesa fundore për një mesazhi"
 
 #: public_html/lists/admin/actions/export.php:64
 #, php-format
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
-msgstr "A e konfirmoi ky abonent manualisht"
+msgstr "Është ky abonent i konfirmuar manualisht"
 
 #: public_html/lists/admin/userclicks.php:78
 #, php-format
@@ -1373,7 +1373,7 @@ msgstr "..U krye, duke ngarkuar kthimin tjetër.."
 
 #: public_html/databasestructure.php:72
 msgid "Sent as Text and HTML"
-msgstr "Dërgoje si Tekst dhe HTML"
+msgstr "Dërguar si tekst dhe HTML"
 
 #: public_html/lists/admin/plugins.php:261
 msgid "version"
@@ -1633,7 +1633,7 @@ msgstr "Menaxho abonentët"
 #: public_html/databasestructure.php:26,
 #: public_html/databasestructure.php:145
 msgid "Is this account disabled?"
-msgstr "A është kjo llogari e çaktivizuar?"
+msgstr "Është kjo llogari e çaktivizuar?"
 
 #: public_html/databasestructure.php:239
 msgid "pagetitle:import"
@@ -1663,7 +1663,7 @@ msgstr "Të dhëna shtesë"
 #: public_html/databasestructure.php:34,
 #: public_html/databasestructure.php:96
 msgid "Description"
-msgstr "Përshkrim"
+msgstr "Përshkrimi"
 
 #: public_html/lists/admin/send_core.php:323
 msgid "Uploaded file not properly received, empty file"
@@ -2137,7 +2137,7 @@ msgstr "hyrje e pavërtetuar nga %s për %s (gabim %s)"
 
 #: public_html/databasestructure.php:79
 msgid "Admin who is owner"
-msgstr "Admini i cili është pronar"
+msgstr "Administratori i cili është pronar"
 
 #: public_html/lists/admin/uclicks.php:88
 msgid "URL Click Statistics"
@@ -2502,7 +2502,7 @@ msgstr "DËSHTOI"
 
 #: public_html/databasestructure.php:52
 msgid "reply-to"
-msgstr "përgjigju-tek"
+msgstr "përgjigju tek"
 
 #: public_html/lists/admin/connect.php:1433
 msgid "There are no lists available"
@@ -3141,7 +3141,7 @@ msgstr "pagetitle:adminët"
 
 #: public_html/databasestructure.php:92
 msgid "Attachment ID"
-msgstr "ID e Bashkëngjitjes"
+msgstr "ID e bashkëngjitjes"
 
 #: public_html/lists/admin/home.php:236
 msgid "Configure Templates"
@@ -3474,7 +3474,7 @@ msgstr "Shikoni kthimet"
 
 #: public_html/databasestructure.php:13
 msgid "Is this subscriber confirmed"
-msgstr "A është ky abonent i konfirmuar"
+msgstr "Është ky abonent i konfirmuar"
 
 #: public_html/lists/admin/message.php:145
 msgid "Attachments for this campaign"
@@ -3895,7 +3895,7 @@ msgstr "PO"
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr "E hapur"
+msgstr "E vendosur"
 
 #: public_html/lists/admin/index.php:493
 msgid "good afternoon"
@@ -3912,7 +3912,7 @@ msgstr "fjalëkalimi"
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
 msgid "Last time password was changed"
-msgstr "Hera e fundit kur fjalëkalimi u ndryshua"
+msgstr "Hera e fundit që fjalëkalimi u ndryshua"
 
 #: public_html/lists/admin/message.php:7
 msgid "Please select a message to display"
@@ -4145,7 +4145,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:90
 msgid "Name of Dataitem"
-msgstr "Emri i sendiTëdhënë"
+msgstr "Emri i të dhënës"
 
 #: public_html/lists/admin/usermgt.php:9
 msgid "search subscribers"
@@ -4788,7 +4788,7 @@ msgstr "Konfiguroni Tiparet për administratorët"
 
 #: public_html/databasestructure.php:64
 msgid "query to select the subscribers for this message"
-msgstr "kriteri për të zgjedhur abonentët për këtë mesazh"
+msgstr "kërkesa për të zgjedhur abonentët për këtë mesazh"
 
 #: public_html/lists/admin/list.php:225
 msgid "Search lists"
@@ -5460,7 +5460,7 @@ msgstr "%d rreshta të përpunuara"
 #: public_html/lists/admin/spageedit.php:299,
 #: public_html/databasestructure.php:53
 msgid "Message"
-msgstr "Mesazh"
+msgstr "Mesazhi"
 
 #: public_html/lists/admin/templates.php:11
 #, fuzzy
@@ -5749,7 +5749,7 @@ msgstr "Historia e Abonimeve"
 #: public_html/databasestructure.php:86,
 #: public_html/databasestructure.php:109
 msgid "Modified"
-msgstr "E modifikuar"
+msgstr "Modifikuar"
 
 #: public_html/lists/admin/send.php:158
 msgid ""
@@ -5872,7 +5872,7 @@ msgstr "%d terma gjuhësor të përditësuar"
 #: public_html/databasestructure.php:28,
 #: public_html/databasestructure.php:29
 msgid "Foreign Key"
-msgstr "Çelës i huaj"
+msgstr "Çelës unik"
 
 #: public_html/lists/admin/actions/import2.php:97,
 #: public_html/lists/admin/import2.php:526,
@@ -6058,7 +6058,7 @@ msgstr "shiko përdoruesin"
 #: public_html/databasestructure.php:173,
 #: public_html/databasestructure.php:181
 msgid "Message ID"
-msgstr "ID e Mesazhit"
+msgstr "ID e mesazhit"
 
 #: public_html/databasestructure.php:134
 msgid "Editable?"
@@ -6442,7 +6442,7 @@ msgstr "E Premte"
 
 #: public_html/databasestructure.php:94
 msgid "The original location on the uploader machine"
-msgstr "Vendndodhja origjinale në pajisjen e ngarkuesit"
+msgstr "Vendndodhja origjinale në pajisjen ngarkuese"
 
 #: public_html/lists/admin/community.php:40
 msgid "Contribute to phpList"
@@ -6989,7 +6989,7 @@ msgstr "Shiko fushatat aktuale"
 
 #: public_html/databasestructure.php:74
 msgid "Sent as Text and PDF"
-msgstr "Dërgoje si Tekst dhe PDF"
+msgstr "Dërguar si tekst dhe PDF"
 
 #: public_html/lists/admin/lib.php:2041
 msgid "Remote queue processing has been activated successfully"
@@ -7171,7 +7171,7 @@ msgstr "Koha e Krijimit"
 
 #: public_html/databasestructure.php:36
 msgid "Order of listing"
-msgstr "Radhitja e listës"
+msgstr "Rradhitja e listës"
 
 #: public_html/lists/admin/community.php:29
 msgid ""
@@ -8174,7 +8174,7 @@ msgstr ""
 #: public_html/lists/admin/uclicks.php:133,
 #: public_html/databasestructure.php:65
 msgid "sent"
-msgstr "dërguar"
+msgstr "Dërguar"
 
 #: public_html/lists/admin/sendemaillib.php:953
 #, php-format
@@ -9346,7 +9346,7 @@ msgstr "Asgjë"
 
 #: public_html/databasestructure.php:51
 msgid "tofield"
-msgstr "fushatek"
+msgstr "tek fusha"
 
 #: public_html/lists/admin/bounce.php:55,
 #: public_html/lists/admin/bounce.php:100
@@ -9484,7 +9484,7 @@ msgstr "Të gjithë administratorët ekzistojnë tashmë në bazën e të dhëna
 
 #: public_html/databasestructure.php:73
 msgid "Sent as PDF"
-msgstr "Dërgoje si PDF"
+msgstr "Dërguar si PDF"
 
 #: public_html/lists/admin/inc/interfacelib.php:1032
 msgid "Close this box"
@@ -9714,7 +9714,7 @@ msgstr "Duke shtuar bashkëngjitjet"
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr "A është ky abonent në listën e zezë"
+msgstr "Është ky abonent në listën e zezë"
 
 #: public_html/lists/admin/runcommand.php:22
 msgid "Command result"
@@ -9759,7 +9759,7 @@ msgstr "pagetitlehover:shabllonet"
 
 #: public_html/databasestructure.php:18
 msgid "Last Modified"
-msgstr "E Modifikuar së Fundmi"
+msgstr "Modifikuar së fundmi"
 
 #: public_html/lists/admin/class.phplistmailer.php:319
 #, php-format
@@ -9921,7 +9921,7 @@ msgstr "Të dhënat meta"
 
 #: public_html/databasestructure.php:41
 msgid "Admin who is owner of this list"
-msgstr "Admin i cili është pronar i kësaj liste"
+msgstr "Administratori i cili është pronar i kësaj liste"
 
 #: public_html/lists/admin/upgrade.php:275
 msgid "Please do a manual conversion."
@@ -10275,7 +10275,7 @@ msgstr "Mesazhi i dërguar"
 
 #: public_html/databasestructure.php:69
 msgid "Number Processed"
-msgstr "Numri i Përpunimeve"
+msgstr "Numri i përpunuar"
 
 #: public_html/lists/admin/lib.php:2052,
 #: public_html/lists/admin/processqueue.php:96
