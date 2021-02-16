@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-16 21:42+0000\n"
+"PO-Revision-Date: 2021-02-16 22:32+0000\n"
 "Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -586,7 +586,7 @@ msgstr "Mise à jour des domaines de premier niveau (TLDs)"
 
 #: public_html/databasestructure.php:338
 msgid "pagetitlehover:dbadmin"
-msgstr "pagetitlehover:dbadmin"
+msgstr "pagetitlehover:Gestion de la base de données"
 
 #: public_html/lists/admin/initialise.php:63
 #, php-format
@@ -1564,7 +1564,7 @@ msgstr "remettre le style par défaut"
 #: public_html/lists/admin/mclicks.php:146,
 #: public_html/lists/admin/uclicks.php:131
 msgid "latestclick"
-msgstr "dernierclick"
+msgstr "Dernier clic"
 
 #: public_html/databasestructure.php:58
 msgid "Time to send message"
@@ -1606,7 +1606,7 @@ msgstr "URL d'installation"
 #: public_html/lists/admin/mclicks.php:145,
 #: public_html/lists/admin/uclicks.php:130
 msgid "firstclick"
-msgstr "premierclick"
+msgstr "Premier clic"
 
 #: public_html/lists/admin/inc/interfacelib.php:1271,
 #: public_html/lists/admin/inc/interfacelib.php:1316
@@ -2125,7 +2125,7 @@ msgstr "&agrave; traiter"
 
 #: public_html/databasestructure.php:342
 msgid "pagetitlehover:listbounces"
-msgstr "pagetitlehover:listbounces"
+msgstr "pagetitlehover:Rebonds par liste"
 
 #: public_html/lists/admin/send_core.php:744
 msgid "Current Server Time is"
@@ -2193,7 +2193,7 @@ msgstr "Importer des adresses e-mails"
 
 #: public_html/lists/admin/usermgt.php:34
 msgid "Reconcile Subscribers"
-msgstr "Faire le ménage dans la base de données Utilisateurs"
+msgstr "Faire le ménage dans la base de données abonnés"
 
 #: public_html/lists/admin/importadmin.php:122
 msgid "Import administrators, please wait"
@@ -2469,7 +2469,7 @@ msgstr "CSS pour les messages HTML sans modèle"
 
 #: public_html/databasestructure.php:328
 msgid "pagetitlehover:statsmgt"
-msgstr "pagetitlehover:statsmgt"
+msgstr "pagetitlehover:Gestion des statistiques"
 
 #: public_html/lists/admin/home.php:68
 msgid "Search, edit and add Subscribers"
@@ -2913,7 +2913,7 @@ msgstr "Valeur par défaut"
 
 #: public_html/lists/admin/usermgt.php:44
 msgid "subscriber management functions"
-msgstr "fonctions de gestion des abonnés"
+msgstr "Fonctions de gestion des abonnés"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
@@ -3545,7 +3545,7 @@ msgstr "Lister les catégories"
 
 #: public_html/databasestructure.php:356
 msgid "pagetitlehover:reindex"
-msgstr "pagetitlehover:reindex"
+msgstr "pagetitlehover:Réindexer la base de données"
 
 #: public_html/lists/admin/processqueue.php:65
 msgid "Use local processing"
@@ -3918,7 +3918,7 @@ msgstr "Télécharger les adresses"
 
 #: public_html/databasestructure.php:346
 msgid "pagetitlehover:bouncerule"
-msgstr "pagetitlehover:bouncerule"
+msgstr "pagetitlehover:Règles pour le rebond"
 
 #: public_html/lists/admin/plugins.php:330
 msgid "Dependency check"
@@ -4321,7 +4321,7 @@ msgstr "valeur de hachage pour le regex"
 
 #: public_html/databasestructure.php:362
 msgid "pagetitlehover:suppressionlist"
-msgstr "pagetitlehover:suppressionlist"
+msgstr "pagetitlehover:Suppression par liste"
 
 #: public_html/lists/admin/connect.php:1416,
 #: public_html/lists/admin/connect.php:1419,
@@ -4438,7 +4438,7 @@ msgstr "Description de la liste"
 
 #: public_html/databasestructure.php:320
 msgid "pagetitlehover:usermgt"
-msgstr "pagetitlehover:usermgt"
+msgstr "pagetitlehover:Abonnés"
 
 #: public_html/databasestructure.php:273
 msgid "pagetitle:templates"
@@ -4542,7 +4542,7 @@ msgstr "Sept"
 # Suggested in Weblate: Entrez vos identifiants
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
-msgstr "Veuillez entrer vos identifiants, svp."
+msgstr "Veuillez entrer vos identifiants, SVP."
 
 #: public_html/lists/index.php:1133
 #, php-format
@@ -4925,7 +4925,7 @@ msgstr "Configurer les modèles"
 
 #: public_html/databasestructure.php:326
 msgid "pagetitlehover:mviews"
-msgstr "pagetitlehover:mviews"
+msgstr "pagetitlehover:Statistiques des visualisations"
 
 #: public_html/databasestructure.php:38
 msgid "Rss Feed"
@@ -5609,7 +5609,7 @@ msgstr "Suppression par lot"
 
 #: public_html/databasestructure.php:348
 msgid "pagetitlehover:checkbouncerules"
-msgstr "pagetitlehover:checkbouncerules"
+msgstr "pagetitlehover:Vérifier les règles"
 
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
@@ -6169,7 +6169,7 @@ msgstr "Êtes vous sur de vouloir supprimer cette liste ?"
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
 msgid "unique clicks"
-msgstr "clicks uniques"
+msgstr "Clics uniques"
 
 #: public_html/lists/admin/actions/processqueue.php:75
 #, php-format
@@ -6252,7 +6252,7 @@ msgstr "Visualiser les statistiques"
 
 #: public_html/databasestructure.php:334
 msgid "pagetitlehover:dbcheck"
-msgstr "pagetitlehover:dbcheck"
+msgstr "pagetitlehover:Vérification de la base de données"
 
 #: public_html/lists/admin/send.php:112,
 #: public_html/lists/admin/message.php:106
@@ -6690,7 +6690,7 @@ msgstr "Modifier cette liste"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:340
 msgid "pagetitlehover:usercheck"
-msgstr "pagetitlehover:usercheck"
+msgstr "pagetitlehover:Vérification des abonnés"
 
 #: public_html/lists/admin/sendemaillib.php:974
 #, php-format
@@ -6966,7 +6966,7 @@ msgstr "Traductions"
 
 #: public_html/databasestructure.php:350
 msgid "pagetitlehover:translate"
-msgstr "pagetitlehover:translate"
+msgstr "pagetitlehover:Traduire"
 
 #: public_html/lists/admin/actions/import2.php:496
 msgid ""
@@ -7226,7 +7226,7 @@ msgstr "Plugin mis à jour"
 
 #: public_html/lists/admin/usermgt.php:30
 msgid "edit values for attributes"
-msgstr "édition des valeurs des attributs"
+msgstr "Modification des valeurs des attributs"
 
 #: public_html/lists/admin/actions/processqueue.php:611
 msgid "One campaign to process."
@@ -7407,7 +7407,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:354
 msgid "pagetitlehover:updatetranslation"
-msgstr "pagetitlehover:updatetranslation"
+msgstr "pagetitlehover:Traductions"
 
 #: public_html/databasestructure.php:355
 msgid "pagetitle:reindex"
@@ -8163,7 +8163,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:336
 msgid "pagetitlehover:importadmin"
-msgstr "pagetitlehover:importadmin"
+msgstr "pagetitlehover:Importer des administrateurs"
 
 #: public_html/databasestructure.php:131
 msgid "Status of forward"
@@ -8340,7 +8340,7 @@ msgstr "Fusion de %s dans %d"
 
 #: public_html/databasestructure.php:324
 msgid "pagetitlehover:domainstats"
-msgstr "pagetitlehover:domainstats"
+msgstr "pagetitlehover:Statistiques par destinataires"
 
 #: public_html/lists/admin/plugins.php:49
 msgid "Project"
@@ -8587,7 +8587,7 @@ msgstr ""
 
 #: public_html/lists/admin/export.php:93
 msgid "What date needs to be used:"
-msgstr "Quelle est la date à utiliser :"
+msgstr "Date à utiliser :"
 
 #: public_html/databasestructure.php:101,
 #: public_html/databasestructure.php:106
@@ -8794,7 +8794,7 @@ msgstr ""
 msgid "Admin authentication has changed, please update your admin module"
 msgstr ""
 "L'authentification administrateur a été modifiée, merci de mettre à jour le "
-"module admin"
+"module administrateur"
 
 #: public_html/lists/admin/statsoverview.php:156
 msgid "Clicked"
@@ -8899,7 +8899,7 @@ msgstr "pages d'inscription"
 
 #: public_html/databasestructure.php:344
 msgid "pagetitlehover:bouncerules"
-msgstr "pagetitlehover:bouncerules"
+msgstr "pagetitlehover:Règles des rebonds"
 
 #: public_html/lists/admin/lib.php:28
 msgid "blacklist email address"
@@ -9158,7 +9158,7 @@ msgstr "Importation réussie"
 
 #: public_html/databasestructure.php:330
 msgid "pagetitlehover:statsoverview"
-msgstr "pagetitlehover:statsoverview"
+msgstr "pagetitlehover:Résumé des statistiques"
 
 # Suggested in Weblate: Extension
 #: public_html/lists/admin/plugins.php:188
@@ -9530,7 +9530,7 @@ msgstr "html"
 #: public_html/lists/admin/phpListAdminAuthentication.php:46,
 #: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "your account has been disabled"
-msgstr "votre compte a été désactivé"
+msgstr " Votre compte a été désactivé"
 
 #: public_html/lists/admin/reconcileusers.php:225
 msgid "Blacklisting subscribers with more than"
@@ -9594,7 +9594,7 @@ msgstr "prochain lot de %s dans %s"
 
 #: public_html/databasestructure.php:352
 msgid "pagetitlehover:ajaxform"
-msgstr "pagetitlehover:ajaxform"
+msgstr "pagetitlehover:Formulaire AJAX"
 
 #: public_html/lists/admin/import2.php:38
 #, php-format
@@ -9988,7 +9988,7 @@ msgstr "Page d'Accueil"
 
 #: public_html/databasestructure.php:332
 msgid "pagetitlehover:subscriberstats"
-msgstr "pagetitlehover:subscriberstats"
+msgstr "pagetitlehover:Statistiques par abonné"
 
 #: public_html/lists/admin/exportuserdata.php:7,
 #: public_html/lists/admin/exportuserdata.php:16,
@@ -10144,7 +10144,7 @@ msgstr "Valeur par défaut"
 
 #: public_html/databasestructure.php:358
 msgid "pagetitlehover:plugins"
-msgstr "pagetitlehover:plugins"
+msgstr "pagetitlehover:Extensions"
 
 #: public_html/lists/admin/importadmin.php:290
 msgid "All the administrators already exist in the database"
@@ -10278,7 +10278,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:322
 msgid "pagetitlehover:bouncemgt"
-msgstr "pagetitlehover:bouncemgt"
+msgstr "pagetitlehover:Rebonds"
 
 #: public_html/lists/admin/import4.php:101
 msgid "cannot connect to remote database"
@@ -10349,7 +10349,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:360
 msgid "pagetitlehover:hostedprocessqueuesetup"
-msgstr "pagetitlehover:hostedprocessqueuesetup"
+msgstr "pagetitlehover:Configuration de la file d'attente"
 
 #: public_html/lists/admin/defaultconfig.php:232
 msgid "Dimensions of a textarea field (rows,columns)"
@@ -10469,7 +10469,7 @@ msgstr "Détails des clics pour un Message"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
-msgstr "pagetitlehover:massremove"
+msgstr "pagetitlehover:Suppression de destinataires "
 
 #: public_html/lists/admin/template.php:340
 msgid "Check that all external images exist"
@@ -10545,7 +10545,7 @@ msgstr "unique"
 #: public_html/lists/admin/mclicks.php:137,
 #: public_html/lists/admin/mclicks.php:159
 msgid "clickrate"
-msgstr "taux de clics"
+msgstr "Taux de clics"
 
 #: public_html/databasestructure.php:31
 msgid "History Detail"
@@ -10577,7 +10577,7 @@ msgstr "utilisé %d fois"
 
 #: public_html/lists/admin/usermgt.php:11
 msgid "manage subscriber attributes"
-msgstr "gestion des attributs des abonnés"
+msgstr "Gestion des attributs des abonnés"
 
 #: public_html/databasestructure.php:151
 msgid "Required"
@@ -10748,3 +10748,10 @@ msgstr "desc"
 #: public_html/lists/admin/export.php:125
 msgid "Date To:"
 msgstr "Jusqu'à la date :"
+
+#: public_html/lists/admin/export.php:32
+msgid ""
+"Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
+msgstr ""
+"Exportation de tous les abonnés. Utilisation de -l[listnumber] pour exporter "
+"les abonnés d'une liste"
