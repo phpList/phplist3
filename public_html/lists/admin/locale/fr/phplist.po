@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-16 21:39+0000\n"
+"PO-Revision-Date: 2021-02-16 21:42+0000\n"
 "Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -5474,7 +5474,7 @@ msgstr "Configuration"
 
 #: public_html/databasestructure.php:310
 msgid "pagetitlehover:logout"
-msgstr "pagetitlehover:logout"
+msgstr "pagetitlehover:Déconnexion"
 
 #: public_html/lists/admin/message.php:133
 msgid "Requeueing"
@@ -6370,7 +6370,7 @@ msgstr "L'envoi a échoué pour"
 
 #: public_html/databasestructure.php:314
 msgid "pagetitlehover:uclicks"
-msgstr "pagetitlehover:uclicks"
+msgstr "pagetitlehover:Liens cliqués"
 
 #: public_html/lists/admin/msgstatus.php:31,
 #: public_html/lists/admin/actions/msgstatus.php:125,
@@ -6895,7 +6895,7 @@ msgstr "Statistiques des URL cliquées"
 
 #: public_html/databasestructure.php:312
 msgid "pagetitlehover:mclicks"
-msgstr "pagetitlehover:mclicks"
+msgstr "pagetitlehover:Statistiques par clics"
 
 #: public_html/lists/admin/community.php:17
 msgid ""
@@ -7010,7 +7010,7 @@ msgstr "Mars"
 
 #: public_html/databasestructure.php:316
 msgid "pagetitlehover:massunconfirm"
-msgstr "pagetitlehover:massunconfirm"
+msgstr "pagetitlehover:Suppression par lot"
 
 #: public_html/lists/admin/actions/processqueue.php:540
 #, php-format
