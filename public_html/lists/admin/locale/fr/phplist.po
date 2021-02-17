@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 03:30+0000\n"
-"Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
+"PO-Revision-Date: 2021-02-17 11:33+0000\n"
+"Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
 "Language: fr\n"
@@ -192,7 +192,7 @@ msgstr "Configurer"
 
 #: public_html/lists/admin/actions/processqueue.php:609
 msgid "Processing has started,"
-msgstr "Le processus a commencé,"
+msgstr "Le processus a démarré,"
 
 #: public_html/lists/admin/spageedit.php:248
 msgid "Don't offer choice, default to <b>HTML</b>"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:211
 msgid "pagetitle:about"
-msgstr "A propos"
+msgstr "À propos de phpList"
 
 #: public_html/lists/admin/list.php:294
 msgid "Public"
@@ -434,9 +434,8 @@ msgid "Database has not been initialised"
 msgstr "La base de données n'a pas été initialisée"
 
 #: public_html/lists/admin/tests/sendpage.php:16
-#, fuzzy
 msgid "Test email not set "
-msgstr "E-mail de test non défini "
+msgstr "Adresse électronique de test non définie "
 
 #: public_html/lists/admin/processbounces.php:436,
 #: public_html/lists/admin/processbounces.php:445,
@@ -522,7 +521,7 @@ msgstr "Répertoires et"
 
 #: public_html/lists/admin/usermgt.php:37
 msgid "Verify subscribers"
-msgstr "Vérification des abonnés"
+msgstr "Vérifier les abonnés"
 
 #: public_html/lists/admin/reconcileusers.php:424
 msgid "in the database"
@@ -822,7 +821,7 @@ msgstr "Nom de la liste"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:339
 msgid "pagetitle:usercheck"
-msgstr "Vérification des abonnés"
+msgstr "Vérifier si des abonnés existent"
 
 #: public_html/lists/admin/processbounces.php:449
 msgid "Not deleting unprocessed message"
@@ -1006,7 +1005,7 @@ msgstr "Paramètres d'organisation des listes"
 #: public_html/lists/admin/statsoverview.php:113,
 #: public_html/databasestructure.php:70
 msgid "Sent as text"
-msgstr "Envoyer en mode texte"
+msgstr "Envoyer au format texte"
 
 #: public_html/lists/admin/actions/statsoverview.php:63,
 #: public_html/lists/admin/actions/mclicks.php:104,
@@ -1051,7 +1050,7 @@ msgstr "Contributeur de phplist"
 
 #: public_html/databasestructure.php:317
 msgid "pagetitle:massremove"
-msgstr "Suppression de destinataires"
+msgstr "Supprimer des abonnés"
 
 #: public_html/lists/admin/user.php:245
 msgid "(no data)"
@@ -1089,7 +1088,7 @@ msgstr "En convertir quelques un de plus"
 
 #: public_html/lists/admin/attributes.php:389
 msgid "authoritative list"
-msgstr "Liste officielle"
+msgstr "liste officielle"
 
 #: public_html/lists/admin/plugins.php:169
 msgid ""
@@ -1120,7 +1119,7 @@ msgstr "Ordre"
 
 #: public_html/lists/admin/initialise.php:75
 msgid "The name of your organisation"
-msgstr "Le nom de votre entreprise / organisation"
+msgstr "Le nom de votre entreprise/organisation"
 
 #: public_html/lists/admin/plugins.php:336
 msgid "Plugin can not be enabled."
@@ -1232,7 +1231,7 @@ msgstr "phpList ne traitera pas les fichiers de plus de %dMo"
 
 #: public_html/databasestructure.php:295
 msgid "pagetitle:spage"
-msgstr "Page d'abonnement"
+msgstr "Pages d'abonnement"
 
 #: public_html/lists/admin/editattributes.php:91
 msgid "Alternatively you can replace all values with another one:"
@@ -1268,7 +1267,7 @@ msgstr "Préparer un message pour envoi"
 
 #: public_html/databasestructure.php:269
 msgid "pagetitle:defaults"
-msgstr "Attributs par défaut"
+msgstr "Valeurs d'attribut par défaut"
 
 #: public_html/lists/admin/reconcileusers.php:163
 #, php-format
@@ -1484,7 +1483,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:22
 msgid "Which page was used to subscribe"
-msgstr "Quelle page a été utilisée pour l'adhésion"
+msgstr "Quelle page a été utilisée pour s'abonner"
 
 #: public_html/lists/admin/lib.php:2285
 msgid "It should be soon now, your page content is almost here."
@@ -1689,7 +1688,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:77
 msgid "When did sending of this message start"
-msgstr "Quand l'envoi de ce message a commencé"
+msgstr "Quand l'envoi de ce message a-t-il commencé"
 
 #: public_html/lists/admin/upgrade.php:383
 msgid ""
@@ -1756,7 +1755,7 @@ msgstr "pour afficher la progression de cet envoi, aller à %s://%s"
 
 #: public_html/lists/admin/attributes.php:345
 msgid "Warning, changing types of attributes can take a long time"
-msgstr "Attention, modifier le type d'attribut peut prendre un temps assez long"
+msgstr "Attention, modifier le type d'attribut peut prendre du temps"
 
 #: public_html/lists/admin/import2.php:31
 #, php-format
@@ -2221,7 +2220,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:301
 msgid "pagetitle:viewrss"
-msgstr "Voir un élément RSS"
+msgstr "Voir les éléments RSS"
 
 #: public_html/lists/admin/hostedprocessqueuesetup.php:46
 msgid ""
@@ -2281,7 +2280,7 @@ msgstr "Fichier thème."
 
 #: public_html/databasestructure.php:73
 msgid "Sent as PDF"
-msgstr "Envoyé en PDF"
+msgstr "Envoyé au format PDF"
 
 #: public_html/lists/admin/template.php:298
 msgid "Content of the template."
@@ -2389,7 +2388,7 @@ msgstr "Installation de l'extension"
 
 #: public_html/databasestructure.php:343
 msgid "pagetitle:bouncerules"
-msgstr "Règles pour les rebonds"
+msgstr "Règles pour le rebond"
 
 #: public_html/lists/admin/messages.php:316
 msgid "Marking all as sent "
@@ -2482,12 +2481,12 @@ msgstr "Sujet du message que les utilisateurs reçoivent lorsqu'ils s'inscrivent
 #: public_html/lists/admin/attributes.php:193
 msgid "Cannot delete attribute, it is being used by the following forms:"
 msgstr ""
-"Impossible de supprimer l'attribut ; il est utilisé par les formulaires "
+"Impossible de supprimer l'attribut, car il est utilisé par les formulaires "
 "suivants :"
 
 #: public_html/databasestructure.php:213
 msgid "pagetitle:attributes"
-msgstr "Attributs"
+msgstr "Configurer les attributs"
 
 #: public_html/lists/admin/export.php:98
 msgid "When they signed up"
@@ -2648,7 +2647,7 @@ msgstr "Ce processus est-il toujours actif ?"
 #: public_html/lists/admin/inc/userlib.php:586
 #, php-format
 msgid "Added to blacklist for reason %s"
-msgstr "Ajouté à la liste \"interdits d'envoi\" pour la raison : %s"
+msgstr "Ajouté à la liste \"interdits d'envoi\" pour la raison suivante : %s"
 
 #: public_html/lists/admin/catlists.php:43,
 #: public_html/lists/admin/catlists.php:73
@@ -2719,7 +2718,7 @@ msgstr "Inscription avant le"
 
 #: public_html/lists/admin/actions/processqueue.php:331
 msgid "Finished, All done"
-msgstr "Terminé, Tout a été exécuté"
+msgstr "Terminé, tout a été exécuté"
 
 #: public_html/lists/admin/export.php:124
 msgid "Date From:"
@@ -2756,7 +2755,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:223
 msgid "pagetitle:editattributes"
-msgstr "Modification des attributs"
+msgstr "Configurer les attributs"
 
 #: public_html/lists/admin/spage.php:108
 msgid "Add a new subscribe page"
@@ -2921,7 +2920,7 @@ msgstr "Version de phplist"
 
 #: public_html/lists/admin/mclicks.php:76
 msgid "Sent to"
-msgstr "Envoyer à"
+msgstr "Envoyé à"
 
 # Suggested in Weblate: Continuer la lecture
 #: public_html/lists/admin/attributes.php:427
@@ -2944,7 +2943,7 @@ msgstr "Modifier les paramètres"
 #: public_html/lists/admin/initialise.php:120,
 #: public_html/lists/admin/initialise.php:163
 msgid "failed"
-msgstr "Échec"
+msgstr "échec"
 
 #: public_html/lists/admin/plugins.php:320
 msgid "Initialise"
@@ -3300,7 +3299,7 @@ msgstr ""
 
 #: public_html/lists/admin/usermgt.php:35
 msgid "Suppression list"
-msgstr "Liste de suppression"
+msgstr "Suppression de liste"
 
 #: public_html/lists/admin/uclicks.php:140
 msgid "view subscribers who clicked"
@@ -3326,7 +3325,7 @@ msgstr "Documentation pour paramétrer phpList depuis la ligne de commande"
 
 #: public_html/databasestructure.php:136
 msgid "Login Name (max 25 chars)"
-msgstr "Identifiant (max 25 caractères)"
+msgstr "Identifiant (max. 25 caractères)"
 
 #: public_html/lists/admin/sendemaillib.php:1069
 #, php-format
@@ -3735,7 +3734,7 @@ msgstr "Message d'erreurs de traitement des files d'attente"
 
 #: public_html/databasestructure.php:345
 msgid "pagetitle:bouncerule"
-msgstr "Règles pour le rebond"
+msgstr "Règle pour le rebond"
 
 #: public_html/databasestructure.php:357
 msgid "pagetitle:plugins"
@@ -3898,7 +3897,7 @@ msgstr "Temps passé pour l'envoi "
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:261
 msgid "pagetitle:userhistory"
-msgstr "Historique d'un destinataire"
+msgstr "Historique du profil d'un abonné"
 
 #: public_html/lists/admin/home.php:65
 msgid "Manage Subscribers"
@@ -4029,7 +4028,7 @@ msgstr "Mettre à jour cette extension"
 
 #: public_html/lists/admin/initialise.php:251
 msgid "(will erase all data!)"
-msgstr "( supprimera toutes les données ! )"
+msgstr "(supprimera toutes les données !)"
 
 #: public_html/databasestructure.php:204
 msgid "Language ISO"
@@ -4183,7 +4182,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:351
 msgid "pagetitle:ajaxform"
-msgstr "Formulaire AJAX"
+msgstr "Intégration Ajax"
 
 #: public_html/databasestructure.php:367
 msgid "campaign settings"
@@ -4191,7 +4190,7 @@ msgstr "Paramètres des campagnes"
 
 #: public_html/databasestructure.php:361
 msgid "pagetitle:suppressionlist"
-msgstr "Suppression par liste"
+msgstr "Suppression de liste"
 
 #: public_html/lists/admin/plugins.php:253
 msgid "developer"
@@ -4521,7 +4520,7 @@ msgstr "Supprimer les abonnés en liste noire qui se sont désabonnés"
 
 #: public_html/lists/admin/convertstats.php:6
 msgid "Hint: this page also works from commandline"
-msgstr "Astuce : cette page fonctionne aussi en ligne de commande"
+msgstr "Astuce : cette page fonctionne également en ligne de commande"
 
 #: public_html/lists/admin/importadmin.php:161
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
@@ -4713,7 +4712,7 @@ msgstr "Adresse e-mail qui avertit lorsque l'envoi de ce message commence"
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:253
 msgid "pagetitle:users"
-msgstr "Destinataires"
+msgstr "Rechercher des abonnés"
 
 #: public_html/lists/admin/login.php:33
 msgid "In order to login, you need to enable cookies in your browser"
@@ -5533,7 +5532,7 @@ msgstr "Etes vous sûr de vouloir supprimer tous les rejets"
 
 #: public_html/databasestructure.php:229
 msgid "pagetitle:importsimple"
-msgstr "Importer des abonnés par copier/coller"
+msgstr "Importer des abonnés par copier-coller"
 
 #: public_html/lists/admin/community.php:48
 msgid "Donate to support phpList development"
@@ -5560,7 +5559,7 @@ msgstr "pagetitlehover:Import"
 
 #: public_html/databasestructure.php:164
 msgid "page this log was for"
-msgstr "Page à l'origine de cet historique"
+msgstr "page à l'origine de cet historique"
 
 #: public_html/lists/admin/actions/campaigns.php:33
 msgid "messages sent to this user"
@@ -5658,7 +5657,7 @@ msgstr ""
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:259
 msgid "pagetitle:adduser"
-msgstr "Ajouter un destinataire"
+msgstr "Ajouter un nouvel abonné"
 
 #: public_html/lists/admin/massremove.php:61
 msgid "Paste the emails to remove in this box, and click continue"
@@ -6328,7 +6327,7 @@ msgstr "Novembre"
 
 #: public_html/databasestructure.php:51
 msgid "tofield"
-msgstr "Vers le champ"
+msgstr "vers le champ"
 
 #: public_html/lists/admin/spageedit.php:277
 msgid "Transaction messages"
@@ -6341,7 +6340,7 @@ msgstr "Adresse e-mail non valide"
 
 #: public_html/lists/admin/mclicks.php:82
 msgid "Unique subscribers who clicked"
-msgstr "Voir les destinataires ayant cliqué"
+msgstr "Voir les abonnés ayant cliqué"
 
 #: public_html/lists/admin/actions/reconcileusers.php:91
 #, php-format
@@ -6350,7 +6349,7 @@ msgstr "%d des rejets ont été associé avec un profil d'abonné"
 
 #: public_html/databasestructure.php:239
 msgid "pagetitle:import"
-msgstr "Importer des adresses e-mails"
+msgstr "Importer des abonnés"
 
 #: public_html/lists/admin/send_core.php:804
 msgid "do not requeue"
@@ -6681,7 +6680,7 @@ msgstr "Importer des adresses e-mails"
 #: public_html/lists/admin/adminattributes.php:84,
 #: public_html/lists/admin/attributes.php:358
 msgid "No Attributes have been defined yet"
-msgstr "Aucun attribut n'a encore été définini"
+msgstr "Aucun attribut n'a encore été défini"
 
 #: public_html/lists/admin/list.php:309
 msgid "Edit this list"
@@ -6700,7 +6699,7 @@ msgstr "Taille du courriel en format texte : %s "
 #. Ne doit pas être traduis
 #: public_html/databasestructure.php:257
 msgid "pagetitle:user"
-msgstr "Détails d'un destinataire"
+msgstr "Détails d'un abonné"
 
 #: public_html/lists/admin/defaultconfig.php:460
 msgid "[notify] Change of List-Membership details"
@@ -6909,7 +6908,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:78
 msgid "if used as a RSS template, what frequency"
-msgstr "Si utilisé comme modèle de flux RSS, à quelle fréquence"
+msgstr "si utilisé comme modèle de flux RSS, à quelle fréquence"
 
 #: public_html/lists/admin/send_core.php:1050
 msgid "Estimated size of HTML email"
@@ -7359,7 +7358,7 @@ msgstr "Le destinataire figure sur la liste des destinataires interdits d'envoi"
 
 #: public_html/lists/admin/usermgt.php:41
 msgid "Export subscribers"
-msgstr "Exporter les abonnés"
+msgstr "Exporter des abonnés"
 
 #: public_html/lists/admin/sendemaillib.php:986
 #, php-format
@@ -7918,7 +7917,7 @@ msgstr "Clef étrangère"
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
 msgid "Last time password was changed"
-msgstr "La dernière fois que le mot de passe a été modifié"
+msgstr "Date de dernière modification du mot de passe"
 
 #: public_html/lists/admin/spageedit.php:264
 msgid "Radio buttons, default to HTML"
@@ -7986,7 +7985,7 @@ msgstr "Renouveler les envois tous les"
 #: public_html/databasestructure.php:7,
 #: public_html/databasestructure.php:152
 msgid "Name of table with values"
-msgstr "Nom de la table avec des valeurs"
+msgstr "Nom de la table avec valeurs"
 
 #: public_html/lists/admin/reconcileusers.php:249
 msgid "Deleting unconfirmed subscribers who signed up after"
@@ -8284,7 +8283,7 @@ msgstr "Importer des abonnés"
 
 #: public_html/databasestructure.php:75
 msgid "Was the message viewed"
-msgstr "Le message a-t-il été vu"
+msgstr "Le message a-t-il été affiché"
 
 #: public_html/databasestructure.php:23
 msgid "RSS Frequency"
@@ -8725,11 +8724,11 @@ msgstr "Connexion impossible. Vous devez d'abord créer un compte."
 #: public_html/lists/admin/statsoverview.php:109,
 #: public_html/databasestructure.php:71
 msgid "Sent as HTML"
-msgstr "Envoyer en mode HTML"
+msgstr "Envoyer au format HTML"
 
 #: public_html/databasestructure.php:74
 msgid "Sent as Text and PDF"
-msgstr "Envoyé en Texte et en PDF"
+msgstr "Envoyé aux formats texte et PDF"
 
 #: public_html/lists/admin/defaultconfig.php:525
 msgid ""
@@ -8953,7 +8952,7 @@ msgstr "Votre version de la base de données"
 
 #: public_html/databasestructure.php:225
 msgid "pagetitle:editlist"
-msgstr "Modifier la liste"
+msgstr "Modifier une liste"
 
 #: public_html/lists/admin/reindex.php:26
 #, php-format
@@ -8988,7 +8987,7 @@ msgstr "trouvé"
 #: public_html/lists/admin/importadmin.php:337,
 #: public_html/databasestructure.php:146
 msgid "Privileges"
-msgstr "Privilèges"
+msgstr "Droits"
 
 #: public_html/lists/admin/plugins.php:299
 msgid "settings"
@@ -9188,7 +9187,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:82
 msgid "Data"
-msgstr "Données"
+msgstr "Donnée"
 
 #: public_html/lists/admin/actions/subscription.php:96
 msgid "detail"
@@ -9214,7 +9213,7 @@ msgstr "Modifier le thème"
 
 #: public_html/databasestructure.php:72
 msgid "Sent as Text and HTML"
-msgstr "Envoyé en Texte et HTML"
+msgstr "Envoyé aux formats texte et HTML"
 
 #: public_html/lists/admin/connect.php:1739,
 #: public_html/lists/admin/systemstats.php:36
@@ -9265,7 +9264,7 @@ msgstr "pagetitlehover:Test de résistance"
 #: public_html/lists/admin/attributes.php:186,
 #: public_html/lists/admin/users.php:237
 msgid "deleting"
-msgstr "suppression"
+msgstr "Suppression"
 
 #: public_html/databasestructure.php:43
 msgid "Subscriber ID"
@@ -9401,7 +9400,7 @@ msgid "Comment"
 msgstr "Commentaire"
 
 #: public_html/lists/admin/listbounces.php:76
-#, fuzzy, php-format
+#, php-format
 msgid "%s bounces to list %s"
 msgstr "%d messages rejetés de la liste %s"
 
@@ -9432,7 +9431,7 @@ msgstr "Accès refusé"
 
 #: public_html/databasestructure.php:202
 msgid "Related bounce"
-msgstr "Retours en erreur liés"
+msgstr "Retour en erreur lié"
 
 #: public_html/lists/admin/editlist.php:51
 msgid "Members of this list"
@@ -9879,12 +9878,12 @@ msgid ""
 "Profile links in test campaigns only work when you are logged in as an "
 "administrator."
 msgstr ""
-"En campagne de test, les liens vers les profils ne fonctionnement que si "
+"Dans les campagnes test, les liens vers les profils ne fonctionnement que si "
 "vous êtes connecté en tant qu'administrateur."
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr "Envoyer à ce destinataire les messages en HTML"
+msgstr "Envoyer les messages en HTML à ce destinataire"
 
 #: public_html/lists/admin/send_core.php:1267
 msgid "message content missing"
@@ -9982,7 +9981,7 @@ msgstr "Pour envoyer ce message"
 
 #: public_html/databasestructure.php:207
 msgid "pagetitle:home"
-msgstr "Page d'Accueil"
+msgstr "Page d'accueil"
 
 #: public_html/databasestructure.php:332
 msgid "pagetitlehover:subscriberstats"
@@ -10373,7 +10372,7 @@ msgstr "Le modèle HTML pour les messages système"
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
 msgid "Reading emails from file ... "
-msgstr "Lecture des adresses e-mails à partir du fichier ... "
+msgstr "Lecture des adresses e-mails à partir du fichier ..."
 
 #: public_html/lists/admin/msgstatus.php:19
 msgid "Stalled"
@@ -10463,7 +10462,7 @@ msgstr "Terminé"
 
 #: public_html/lists/admin/mclicks.php:55
 msgid "Click Details for a Message"
-msgstr "Détails des clics pour un Message"
+msgstr "Détails des clics pour une campagne"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
@@ -10751,5 +10750,5 @@ msgstr "Jusqu'à la date :"
 msgid ""
 "Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
 msgstr ""
-"Exportation de tous les abonnés. Utilisation de -l[listnumber] pour exporter "
-"les abonnés d'une liste"
+"Export de tous les abonnés. Utiliser -l[listnumber] pour exporter les "
+"abonnés d'une liste"
