@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Greek (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 16:20+0000\n"
+"PO-Revision-Date: 2021-02-17 16:40+0000\n"
 "Last-Translator: Mariana Test <mariana@phplist.com>\n"
 "Language-Team: Greek <http://translate.phplist.org/projects/phplist/phplist3/"
 "el/>\n"
@@ -950,7 +950,7 @@ msgstr "Προβολή στατιστικών"
 
 #: public_html/databasestructure.php:23
 msgid "RSS Frequency"
-msgstr ""
+msgstr "Συχνότητα RSS"
 
 #: public_html/databasestructure.php:97
 msgid "Size of the file"
@@ -1413,7 +1413,7 @@ msgstr "Ανασταλτικός"
 
 #: public_html/databasestructure.php:58
 msgid "Time to send message"
-msgstr ""
+msgstr "Χρόνος για αποστολή μηνύματος"
 
 #: public_html/lists/admin/adminattributes.php:93
 msgid "Attribute:"
@@ -1432,7 +1432,7 @@ msgstr ""
 #: public_html/databasestructure.php:86,
 #: public_html/databasestructure.php:109
 msgid "Modified"
-msgstr ""
+msgstr "Τροποποιημένο"
 
 #: public_html/lists/admin/about.php:116
 msgid "Portions of the system include"
@@ -2600,7 +2600,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:59
 msgid "Number of seconds to repeat the message"
-msgstr ""
+msgstr "Αριθμός δευτερολέπτων για την επανάληψη του μηνύματος"
 
 #: public_html/lists/admin/home.php:172
 msgid "Configuration Functions"
@@ -2629,7 +2629,7 @@ msgstr "Το αρχείο εικόνας αρχείου εικόνας είνα�
 
 #: public_html/databasestructure.php:30
 msgid "History Summary"
-msgstr ""
+msgstr "Περίληψη ιστορικού"
 
 #: public_html/lists/admin/home.php:60
 msgid "View current campaigns"
@@ -2821,7 +2821,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:22
 msgid "Which page was used to subscribe"
-msgstr ""
+msgstr "Ποια σελίδα χρησιμοποιήθηκε για εγγραφή"
 
 #: public_html/lists/admin/messages.php:621
 msgid "delete this campaign"
@@ -3165,7 +3165,7 @@ msgstr "Πίσω για να επεξεργαστείτε το πρότυπο"
 
 #: public_html/databasestructure.php:54
 msgid "Text version of Message"
-msgstr ""
+msgstr "Έκδοση κειμένου του μηνύματος"
 
 #: public_html/lists/admin/actions/statsoverview.php:132,
 #: public_html/lists/admin/actions/mclicks.php:59,
@@ -3390,7 +3390,7 @@ msgstr "εξαγωγή"
 
 #: public_html/databasestructure.php:47
 msgid "Primary Key"
-msgstr ""
+msgstr "Πρωτεύων κλειδί"
 
 #: public_html/lists/admin/messages.php:607
 msgid "statistics"
@@ -4030,7 +4030,7 @@ msgstr "Η μεταφόρτωση έχει τα ακόλουθα όρια που
 
 #: public_html/databasestructure.php:40
 msgid "Active"
-msgstr ""
+msgstr "Ενεργός"
 
 #: public_html/lists/admin/reconcileusers.php:317,
 #: public_html/lists/admin/reconcileusers.php:322,
@@ -4082,7 +4082,7 @@ msgstr ""
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
 msgid "Last time password was changed"
-msgstr ""
+msgstr "Η τελευταία φορά που άλλαξε ο κωδικός πρόσβασης"
 
 #: public_html/lists/admin/statsoverview.php:145
 msgid "Opened "
@@ -4800,7 +4800,7 @@ msgstr "Κατηγορίες για λίστες. Ξεχωρίστε με κόμ
 
 #: public_html/databasestructure.php:18
 msgid "Last Modified"
-msgstr ""
+msgstr "Τελευταία τροποποίηση"
 
 #: public_html/lists/admin/import2.php:665
 msgid "Select the groups to add the users to"
@@ -4955,7 +4955,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:38
 msgid "Rss Feed"
-msgstr ""
+msgstr "Rss Feed"
 
 #: public_html/lists/admin/processbounces.php:419
 msgid "Processed messages will be deleted from mailbox"
@@ -5113,7 +5113,7 @@ msgstr "ανταποκρίνονται στους ισχύοντες κανόν�
 
 #: public_html/databasestructure.php:60
 msgid "Final time to stop repetition"
-msgstr ""
+msgstr "Τελικός χρόνος για διακοπή της επανάληψης"
 
 #: public_html/lists/admin/message.php:133
 msgid "Requeueing"
@@ -5143,7 +5143,7 @@ msgstr "Σεπ"
 #: public_html/lists/admin/spageedit.php:299,
 #: public_html/databasestructure.php:53
 msgid "Message"
-msgstr ""
+msgstr "Μήνυμα"
 
 #: public_html/lists/admin/actions/processqueue.php:51
 msgid "In maintenance mode, try again later."
@@ -5219,7 +5219,7 @@ msgstr "Επεξεργαστείτε αυτό το μήνυμα"
 
 #: public_html/databasestructure.php:32
 msgid "System Information"
-msgstr ""
+msgstr "Πληροφορίες συστήματος"
 
 #: public_html/lists/admin/message.php:167
 msgid ""
@@ -5248,7 +5248,7 @@ msgstr "Συνημμένα για αυτήν την καμπάνια"
 #: public_html/databasestructure.php:44,
 #: public_html/databasestructure.php:84
 msgid "List ID"
-msgstr ""
+msgstr "ID λίστας"
 
 #: public_html/lists/admin/bounce.php:82
 #, php-format
@@ -5514,7 +5514,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
-msgstr ""
+msgstr "Υποσέλιδο για ένα μήνυμα"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
@@ -5658,7 +5658,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:37
 msgid "Subject prefix"
-msgstr ""
+msgstr "Πρόθεμα θέματος"
 
 #: public_html/lists/admin/reconcileusers.php:456
 msgid "Mark all subscribers to receive HTML"
@@ -5869,7 +5869,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:41
 msgid "Admin who is owner of this list"
-msgstr ""
+msgstr "Διαχειριστής που είναι κάτοχος αυτής της λίστας"
 
 #: public_html/lists/admin/defaultconfig.php:347,
 #: public_html/lists/admin/spageedit.php:234
@@ -6050,7 +6050,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:52
 msgid "reply-to"
-msgstr ""
+msgstr "απάντηση σε"
 
 #: public_html/lists/admin/home.php:208,
 #: public_html/lists/admin/list.php:251,
@@ -6320,7 +6320,7 @@ msgstr "Στάδιο δέσμης ενεργειών"
 
 #: public_html/databasestructure.php:51
 msgid "tofield"
-msgstr ""
+msgstr "στο πεδίο"
 
 #: public_html/lists/admin/bouncerules.php:82
 msgid "No Rules found"
@@ -6381,7 +6381,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
-msgstr ""
+msgstr "Επιβεβαιώθηκε αυτός ο συνδρομητής μη αυτόματα"
 
 #: public_html/lists/admin/members.php:251
 #, php-format
@@ -6557,7 +6557,7 @@ msgstr "Προστέθηκε το% s στο λογαριασμό αναπήδη�
 
 #: public_html/databasestructure.php:43
 msgid "Subscriber ID"
-msgstr ""
+msgstr "ID συνδρομητή"
 
 #: public_html/lists/admin/members.php:58,
 #: public_html/lists/admin/members.php:183,
@@ -7082,7 +7082,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:42
 msgid "List category"
-msgstr ""
+msgstr "Κατηγορία λίστας"
 
 #: public_html/lists/index.php:734
 msgid ""
@@ -7207,7 +7207,7 @@ msgstr "Μέτα δεδομένα"
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr ""
+msgstr "Αποστολή email σε μορφή HTML σε αυτόν τον συνδρομητή"
 
 #: public_html/lists/admin/plugins.php:279
 msgid "installed"
@@ -7652,7 +7652,7 @@ msgstr "Προσθέστε έναν νέο διαχειριστή"
 
 #: public_html/databasestructure.php:16
 msgid "Number of bounces"
-msgstr ""
+msgstr "Αριθμός αναπηδήσεων"
 
 #: public_html/lists/admin/actions/domainbounces.php:75
 #, fuzzy
@@ -8103,7 +8103,7 @@ msgstr "Διεύθυνση URL για προώθηση μηνυμάτων"
 
 #: public_html/databasestructure.php:31
 msgid "History Detail"
-msgstr ""
+msgstr "Λεπτομέρειες ιστορικού"
 
 #: public_html/lists/admin/connect.php:2243
 #, php-format
@@ -8288,7 +8288,7 @@ msgstr "Απαγόρευση μέχρι"
 
 #: public_html/databasestructure.php:50
 msgid "from"
-msgstr ""
+msgstr "από"
 
 #: public_html/lists/admin/defaultconfig.php:431
 msgid ""
@@ -8802,7 +8802,7 @@ msgstr "αρχείο καταγραφής συμβάντων"
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr ""
+msgstr "Είναι αυτός ο συνδρομητής blacklisted"
 
 #: public_html/lists/admin/connect.php:564,
 #: public_html/lists/admin/plugins.php:290
@@ -8832,7 +8832,7 @@ msgstr "Επισκόπηση"
 
 #: public_html/databasestructure.php:36
 msgid "Order of listing"
-msgstr ""
+msgstr "Σειρά καταχώρησης"
 
 #: public_html/lists/admin/actions/domainbounces.php:79
 #, fuzzy
@@ -8934,7 +8934,7 @@ msgstr ""
 #: public_html/databasestructure.php:48,
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/databasestructure.php:66
 msgid "Is this message HTML formatted"
@@ -9294,7 +9294,7 @@ msgstr "Δευτέρα"
 #: public_html/databasestructure.php:26,
 #: public_html/databasestructure.php:145
 msgid "Is this account disabled?"
-msgstr ""
+msgstr "Είναι απενεργοποιημένος αυτός ο λογαριασμός;"
 
 #: public_html/lists/admin/connect.php:561
 msgid "Documentation about this error"
@@ -9672,7 +9672,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:27
 msgid "Additional data"
-msgstr ""
+msgstr "Πρόσθετα δεδομένα"
 
 #: public_html/lists/admin/checkbouncerules.php:46
 msgid "bounce matched current active rules"
