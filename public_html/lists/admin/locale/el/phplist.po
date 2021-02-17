@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Greek (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Greek <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/el/>\n"
+"PO-Revision-Date: 2021-02-17 16:20+0000\n"
+"Last-Translator: Mariana Test <mariana@phplist.com>\n"
+"Language-Team: Greek <http://translate.phplist.org/projects/phplist/phplist3/"
+"el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1240,7 +1240,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:13
 msgid "Is this subscriber confirmed"
-msgstr ""
+msgstr "Είναι αυτός ο συνδρομητής επιβεβαιωμένος"
 
 #: public_html/lists/admin/lib.php:2291
 msgid "If the page does not load soon, please report this in the user forums."
@@ -1621,7 +1621,7 @@ msgstr ""
 #: public_html/databasestructure.php:4,
 #: public_html/databasestructure.php:149
 msgid "order of listing"
-msgstr ""
+msgstr "Σειρά καταχώρησης"
 
 #: public_html/lists/admin/message.php:166
 msgid ""
@@ -2413,7 +2413,7 @@ msgstr "Επιλέξτε μια υπάρχουσα πρόχειρη καμπάν
 
 #: public_html/databasestructure.php:6
 msgid "Required for subscriber to fill out"
-msgstr ""
+msgstr "Απαιτείται να συμπληρωθεί από το συνδρομητή"
 
 # Suggested in Weblate: διαγραφή
 #: public_html/lists/admin/send.php:115,
@@ -3023,7 +3023,7 @@ msgstr "Αυτόματη κατάργηση εγγραφής χρήστη για
 
 #: public_html/databasestructure.php:10
 msgid "Value of this attribute for this subscriber"
-msgstr ""
+msgstr "Τιμή αυτού του χαρακτηριστικού για αυτόν τον συνδρομητή"
 
 #: public_html/databasestructure.php:95
 msgid "The type of attachment"
@@ -3314,7 +3314,7 @@ msgstr ""
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
 msgid "Default value"
-msgstr ""
+msgstr "Προεπιλογή"
 
 #: public_html/lists/admin/import2.php:719
 msgid "Show Warnings"
@@ -6917,7 +6917,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:8
 msgid "attribute"
-msgstr ""
+msgstr "Χαρακτηριστικό"
 
 #: public_html/lists/admin/adminattributes.php:15,
 #: public_html/lists/admin/defaults.php:49,
@@ -8147,7 +8147,7 @@ msgstr "Πόροι προγραμματιστών & amp; τεκμηρίωση"
 #: public_html/databasestructure.php:3,
 #: public_html/databasestructure.php:148
 msgid "Type of attribute"
-msgstr ""
+msgstr "Τύπος χαρακτηριστικού"
 
 #: public_html/lists/admin/plugins.php:249
 msgid "name"
@@ -9760,7 +9760,7 @@ msgstr "(ώστε να μπορείτε να στείλετε ξανά το αί
 #: public_html/databasestructure.php:7,
 #: public_html/databasestructure.php:152
 msgid "Name of table with values"
-msgstr ""
+msgstr "Όνομα πίνακα με τιμές"
 
 #: public_html/lists/admin/plugins.php:54
 msgid "Unable to download plugin package, check your connection"
@@ -10204,7 +10204,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:9
 msgid "subscriber id"
-msgstr ""
+msgstr "id συνδρομητή"
 
 #: public_html/lists/admin/converttoutf8.php:74,
 #: public_html/lists/admin/upgrade.php:256
