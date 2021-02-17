@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 14:08+0000\n"
-"Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
+"PO-Revision-Date: 2021-02-17 22:22+0000\n"
+"Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
 "Language: fr\n"
@@ -384,7 +384,7 @@ msgstr "Serveur :"
 #: public_html/lists/admin/actions/processqueue.php:989
 msgid "Campaign sending timed out, is past date to process until"
 msgstr ""
-"Délais dépassé pour l'envoi de la campagne, traitement reporté jusqu'à ce que"
+"Délai dépassé pour l'envoi de la campagne, traitement reporté jusqu'à ce que"
 
 #: public_html/lists/admin/send_core.php:1276
 msgid "Incorrect URL for sending"
@@ -5835,7 +5835,7 @@ msgstr "Ajouter des pièces jointes à votre campagne"
 #: public_html/lists/admin/actions/import2.php:514
 #, php-format
 msgid "%d duplicate emails found."
-msgstr "%d adresses e-mails en doublon."
+msgstr "%d adresses e-mails en double."
 
 #: public_html/lists/admin/actions/processqueue.php:914
 msgid ""
@@ -6491,7 +6491,7 @@ msgstr "Adresse de réponse pour les messages du système"
 #: public_html/lists/admin/import3.php:380,
 #: public_html/lists/admin/initialise.php:161
 msgid "ok"
-msgstr "ok"
+msgstr "Ok"
 
 #: public_html/lists/admin/import3.php:274
 msgid "Attribute one"
@@ -6509,7 +6509,7 @@ msgstr "Suppression du rejet %d"
 #: public_html/lists/admin/actions/import2.php:239,
 #: public_html/lists/admin/actions/import2.php:275
 msgid "Duplicate Email"
-msgstr "Adresse e-mail en doublon"
+msgstr "Adresse e-mail en double"
 
 #: public_html/lists/admin/reconcileusers.php:125
 msgid "no user found"
@@ -7061,7 +7061,7 @@ msgstr "Il n'y a pas de liste disponible"
 #: public_html/lists/admin/actions/campaigns.php:41,
 #: public_html/lists/admin/actions/bounces.php:44
 msgid "view"
-msgstr "afficher"
+msgstr "Afficher"
 
 #: public_html/lists/admin/defaultconfig.php:635
 msgid "String to always append to remote URL when using send-a-webpage"
