@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 11:33+0000\n"
+"PO-Revision-Date: 2021-02-17 14:08+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -407,7 +407,7 @@ msgstr "Événement"
 #: public_html/lists/admin/actions/user.php:19
 #, php-format
 msgid "Manually blacklisted by %s"
-msgstr "Mis sur la liste \"interdits d'envoi\" par %s"
+msgstr "Mis manuellement sur la liste \"interdits d'envoi\" par %s"
 
 #: public_html/lists/admin/send_core.php:1053
 msgid "Estimated size of text email"
@@ -558,7 +558,7 @@ msgstr "nouveaux utilisateurs"
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
 msgid "new email was"
-msgstr "La nouvelle adresse e-mail était"
+msgstr "la nouvelle adresse électronique était"
 
 #: public_html/lists/admin/massremove.php:46
 #, php-format
@@ -1309,7 +1309,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:768
 msgid "No users apply for attributes"
-msgstr "Aucun destinataire ne correspond aux attributs choisis"
+msgstr "Aucun abonné ne correspond aux attributs choisis"
 
 #: public_html/databasestructure.php:371
 msgid "subscription settings"
@@ -1344,7 +1344,7 @@ msgstr "Total des messages revenus en erreur"
 
 #: public_html/lists/admin/actions/import1.php:9
 msgid "File not found"
-msgstr "Fichier non trouvé"
+msgstr "Fichier introuvable"
 
 #: public_html/lists/admin/defaultconfig.php:461
 msgid ""
@@ -1380,7 +1380,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/checkurl.php:37
 msgid "Please verify that the URL entered is correct."
-msgstr "Svp, vérifiez que l'adresse entrée est correcte."
+msgstr "Veuillez vérifier que l'adresse entrée est correcte."
 
 #: public_html/databasestructure.php:369
 msgid "subscription-ui settings"
@@ -1683,8 +1683,7 @@ msgstr "(essai)"
 
 #: public_html/lists/admin/actions/processqueue.php:821
 msgid "looking for users who can be excluded from this mailing"
-msgstr ""
-"recherche des destinataires qui peuvent être exclus de cet envoi de message"
+msgstr "recherche d'abonnés qui peuvent être exclus de cet envoi de message"
 
 #: public_html/databasestructure.php:77
 msgid "When did sending of this message start"
@@ -1921,7 +1920,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:735
 msgid "Looking for users"
-msgstr "Recherche des destinataires"
+msgstr "Recherche d'abonnés"
 
 #: public_html/lists/admin/home.php:114
 msgid "export"
@@ -2406,7 +2405,7 @@ msgstr "Taille"
 
 #: public_html/lists/admin/actions/processqueue.php:1305
 msgid "already sent"
-msgstr "Déjà envoyé"
+msgstr "déjà envoyé"
 
 #: public_html/databasestructure.php:265
 msgid "pagetitle:message"
@@ -2447,7 +2446,7 @@ msgstr "Paramétrage des attributs des administrateurs"
 
 #: public_html/lists/admin/actions/processqueue.php:1370
 msgid "Message campaign finished"
-msgstr "Message de campagne terminé"
+msgstr "Campagne terminée"
 
 #: public_html/lists/admin/processbounces.php:410
 #, php-format
@@ -2807,7 +2806,7 @@ msgstr "pagetitlehover:Page d'abonnement"
 
 #: public_html/lists/admin/actions/campaigns.php:62
 msgid "bounce"
-msgstr "Message revenu en erreur"
+msgstr "message revenu en erreur"
 
 #: public_html/databasestructure.php:333
 msgid "pagetitle:dbcheck"
@@ -2865,7 +2864,7 @@ msgstr "Vos commentaires"
 #: public_html/lists/admin/actions/processqueue.php:1235
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
-msgstr "Attente de %.1f secondes pour atteindre %s secondes par message"
+msgstr "attente de %.1f secondes pour atteindre %s secondes par message"
 
 #: public_html/lists/admin/actions/configure.php:92
 msgid "Don't know how to handle type "
@@ -2952,7 +2951,7 @@ msgstr "Initialiser"
 #: public_html/lists/admin/actions/import2.php:500
 #, php-format
 msgid "%d emails subscribed to the lists"
-msgstr "%d adresses e-mails inscrites aux listes"
+msgstr "%d adresses électroniques abonnées aux listes"
 
 #: public_html/lists/admin/send_core.php:913,
 #: public_html/lists/admin/spageedit.php:227
@@ -3008,7 +3007,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1246
 msgid "not sending to "
-msgstr "Pas d'envoi à "
+msgstr "aucun d'envoi à "
 
 #: public_html/lists/admin/home.php:334
 msgid "setup"
@@ -3054,7 +3053,7 @@ msgstr "En-tête"
 #: public_html/lists/admin/actions/import1.php:228,
 #: public_html/lists/admin/import3.php:512
 msgid "emails were"
-msgstr "Les adresses e-mails étaient"
+msgstr "les adresses électroniques étaient"
 
 #: public_html/lists/admin/eventlog.php:111,
 #: public_html/lists/admin/userclicks.php:228
@@ -3238,7 +3237,7 @@ msgstr "Modifier le message"
 
 #: public_html/lists/admin/actions/import1.php:218
 msgid "Not subscribed to any lists"
-msgstr "Inscrit(e) sur aucune liste"
+msgstr "Abonné·e à aucune liste"
 
 #: public_html/lists/admin/bounces.php:161
 msgid "no processed bounces available"
@@ -3350,7 +3349,7 @@ msgstr "Le téléchargement a échoué, sortie"
 
 #: public_html/lists/admin/actions/mviews.php:72
 msgid "Available Messages"
-msgstr "Messages Disponibles"
+msgstr "Campagnes disponibles"
 
 #: public_html/lists/admin/bounce.php:178
 msgid "Delete subscriber"
@@ -3429,7 +3428,7 @@ msgstr "Action"
 
 #: public_html/lists/admin/actions/processqueue.php:1305
 msgid "Not sending to"
-msgstr "Pas d'envoi à"
+msgstr "Aucun envoi à"
 
 #: public_html/lists/admin/bouncerules.php:95,
 #: public_html/lists/admin/bouncerules.php:96
@@ -3522,7 +3521,7 @@ msgstr "L'extension doit être mise à jour manuellement"
 #: public_html/lists/admin/configure.php:28,
 #: public_html/lists/admin/actions/configure.php:10
 msgid "invalid request"
-msgstr "Requête invalide"
+msgstr "requête invalide"
 
 #: public_html/lists/admin/user.php:256
 #, php-format
@@ -3702,7 +3701,7 @@ msgid ""
 "For this subscriber to be removed from the blacklist, you need to ask them "
 "to re-subscribe using the phpList subscribe page"
 msgstr ""
-"Pour enlever cet abonné de la liste des \"interdits d'envoi\",  vous devez "
+"Pour retirer cet abonné·e de la liste des \"interdits d'envoi\",  vous devez "
 "lui demander de se ré-abonner en utilisant la page d'inscription de phpList"
 
 #: public_html/lists/admin/actions/domainstats.php:131
@@ -3871,7 +3870,7 @@ msgstr "État de la traduction"
 
 #: public_html/lists/admin/actions/subscription.php:86
 msgid "no details found"
-msgstr "aucun détail trouvé"
+msgstr "Aucun détail trouvé"
 
 #: public_html/lists/admin/members.php:331,
 #: public_html/lists/admin/bouncerules.php:107
@@ -4124,7 +4123,7 @@ msgstr "Erreur, aucune liste en local définie pour"
 #: public_html/lists/admin/editlist.php:20,
 #: public_html/lists/admin/editlist.php:41
 msgid "You do not have enough privileges to view this page"
-msgstr "Vos droits sont insuffisants pour visualiser cette page"
+msgstr "Vos droits ne sont pas suffisants pour visualiser cette page"
 
 #: public_html/lists/admin/importadmin.php:346
 msgid "Do Import"
@@ -4146,7 +4145,7 @@ msgstr "Vendredi"
 #: public_html/lists/admin/eventlog.php:110,
 #: public_html/lists/admin/bounces.php:215
 msgid "date"
-msgstr "Date"
+msgstr "date"
 
 #: public_html/databasestructure.php:47
 msgid "Primary Key"
@@ -4393,7 +4392,7 @@ msgstr "Connexion à la base de données distante"
 
 #: public_html/lists/admin/actions/subscription.php:58
 msgid "Blacklist info"
-msgstr "Information sur la liste des destinataires interdits d'envoi"
+msgstr "Information sur la liste des abonné·es interdits d'envoi"
 
 # Suggested in Weblate: Le version %s est disponible
 #: public_html/lists/admin/plugins.php:229
@@ -4566,7 +4565,7 @@ msgstr "%d campagnes déplacées"
 #. inscrit sans e ? Ou toujours (e), un(e) abonné(e) ?
 #: public_html/lists/admin/actions/import1.php:212
 msgid "Was subscribed to:"
-msgstr "Était inscrit(e) sur :"
+msgstr "Était abonné·e à :"
 
 #: public_html/lists/index.php:658
 #, php-format
@@ -4986,7 +4985,7 @@ msgstr "Nombre de secondes avant de remettre le message en file d'attente"
 
 #: public_html/lists/admin/actions/msgstatus.php:102
 msgid "limit reached"
-msgstr "Limite atteinte"
+msgstr "limite atteinte"
 
 #: public_html/databasestructure.php:201
 msgid "Related regex"
@@ -5072,7 +5071,7 @@ msgstr "Erreur, aucun attribut défini pour"
 
 #: public_html/lists/admin/actions/reconcileusers.php:6
 msgid "Deleting subscribers with an invalid email"
-msgstr "Suppression des utilisateurs avec un email invalide"
+msgstr "Suppression des utilisateurs avec une adresse électronique invalide"
 
 #: public_html/lists/admin/bounces.php:52
 #, php-format
@@ -5124,7 +5123,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:717
 #, php-format
 msgid "phplist has started sending the campaign with subject %s"
-msgstr "phplist a commencé à envoyer le message ayant pour Sujet %s"
+msgstr "phplist a commencé à envoyer le message ayant pour sujet %s"
 
 #: public_html/lists/admin/catlists.php:68
 msgid "All lists have already been assigned a category"
@@ -5357,7 +5356,7 @@ msgstr "Veuillez choisir"
 
 #: public_html/lists/admin/actions/import1.php:215
 msgid "Is now subscribed to:"
-msgstr "Est maintenant inscrit(e) sur :"
+msgstr "Est maintenant abonné·e à :"
 
 #: public_html/lists/admin/defaultconfig.php:95
 msgid "Logo of the organisation"
@@ -5563,7 +5562,7 @@ msgstr "page à l'origine de cet historique"
 
 #: public_html/lists/admin/actions/campaigns.php:33
 msgid "messages sent to this user"
-msgstr "messages envoyés à cet utilisateur"
+msgstr "messages envoyés à cet·te abonné·e"
 
 #: public_html/lists/admin/upgrade.php:468
 #, php-format
@@ -5584,7 +5583,7 @@ msgstr "Une valeur par ligne"
 #: public_html/lists/admin/actions/import1.php:231
 #, php-format
 msgid "%d emails already existed in the database"
-msgstr "%d e-mails existaient déjà dans la base de données"
+msgstr "%d adresses électroniques existaient déjà dans la base de données"
 
 #: public_html/lists/admin/members.php:68,
 #: public_html/lists/admin/members.php:80,
@@ -5691,7 +5690,7 @@ msgstr "Supprimer cette règle et aller à la suivante"
 #: public_html/lists/admin/actions/import2.php:506
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr "%d adresses e-mails invalides ont été trouvées."
+msgstr "%d adresses électroniques invalides ont été trouvées."
 
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
@@ -5843,8 +5842,8 @@ msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr ""
-"Attention ! La recherche de destinataires peut prendre un certain temps. "
-"Préférez utiliser l'envoi par ligne de commande"
+"Attention ! La recherche d'abonnés peut prendre un certain temps. Envisagez "
+"de passer à l’envoi par ligne de commande"
 
 #: public_html/lists/admin/users.php:268
 #, php-format
@@ -6097,7 +6096,7 @@ msgstr "Logiciel Libre"
 #: public_html/lists/admin/actions/import1.php:239,
 #: public_html/lists/admin/import3.php:517
 msgid "subscribed to the"
-msgstr "inscrit(e) à"
+msgstr "abonné·e à"
 
 # Suggested in Weblate: Le mot de passe doit faire 8 caractères au minimum
 # Suggested in Weblate: LE mot de passe doit faire 8 caractères au minimum
@@ -6108,7 +6107,7 @@ msgstr "Le mot de passe doit contenir au minimum 8 caractères"
 #: public_html/lists/admin/statsoverview.php:165,
 #: public_html/lists/admin/actions/statsoverview.php:146
 msgid "Unique Clicks"
-msgstr "Clics unique"
+msgstr "Clics uniques"
 
 #: public_html/lists/admin/admin.php:191
 msgid "Choose how to set password"
@@ -6292,7 +6291,7 @@ msgstr "Concilier la base de données des utilisateurs"
 
 #: public_html/lists/admin/actions/processqueue.php:960
 msgid "batch limit reached"
-msgstr "limite du traitement par lot atteint"
+msgstr "limite du traitement par lot atteinte"
 
 #: public_html/lists/admin/login.php:43
 msgid "Enter your email address"
@@ -6407,7 +6406,7 @@ msgstr "nouvelles règles trouvées"
 #: public_html/lists/admin/list.php:123,
 #: public_html/lists/admin/import3.php:510
 msgid "list"
-msgstr "Liste"
+msgstr "liste"
 
 #: public_html/lists/admin/defaults.php:97
 msgid "return to editing attributes"
@@ -6556,7 +6555,7 @@ msgstr "pagetitlehover:Envoyer"
 #: public_html/lists/admin/actions/msgstatus.php:48,
 #: public_html/lists/admin/actions/processqueue.php:1333
 msgid "unknown"
-msgstr "Inconnu"
+msgstr "inconnu"
 
 #. A revoir en ligne
 #: public_html/lists/admin/send.php:113
@@ -6763,7 +6762,7 @@ msgstr "Importation d'un nouvel abonné"
 #: public_html/lists/admin/import3.php:533,
 #: public_html/lists/admin/importsimple.php:128
 msgid "Import some more emails"
-msgstr "Importer d'autres adresses e-mails"
+msgstr "Importer d'autres adresses électroniques"
 
 #: public_html/lists/admin/attributes.php:420
 msgid "Delete tagged attributes"
@@ -6930,7 +6929,7 @@ msgstr "Destinataires trouvés, cliquez sur ajouter pour ajouter cet utilisateur
 #: public_html/lists/admin/import3.php:510,
 #: public_html/lists/admin/users.php:455
 msgid "lists"
-msgstr "Listes"
+msgstr "listes"
 
 #: public_html/lists/admin/actions/addemail.php:19
 msgid "Added with add-email on test"
@@ -7046,7 +7045,7 @@ msgid ""
 "%d emails were found on the do-not-send-list and have not been added to the "
 "lists"
 msgstr ""
-"%d adresses de courrier figuraient sur la liste des envois interdits et "
+"%d adresses électronique figuraient sur la liste des envois interdits et "
 "n'ont pas été ajoutées aux listes"
 
 #: public_html/lists/admin/runcommand.php:22
@@ -7062,7 +7061,7 @@ msgstr "Il n'y a pas de liste disponible"
 #: public_html/lists/admin/actions/campaigns.php:41,
 #: public_html/lists/admin/actions/bounces.php:44
 msgid "view"
-msgstr "Afficher"
+msgstr "afficher"
 
 #: public_html/lists/admin/defaultconfig.php:635
 msgid "String to always append to remote URL when using send-a-webpage"
@@ -7272,15 +7271,16 @@ msgstr "Délai de réponse"
 
 #: public_html/lists/admin/actions/import2.php:239
 msgid " user imported as "
-msgstr " Utilisateur importé sous "
+msgstr " abonné importé sous "
 
 #: public_html/lists/admin/actions/import1.php:237
 msgid "All the emails already exist in the database."
-msgstr "Toutes les adresses sont déjà dans la base de données."
+msgstr ""
+"Toutes les adresses électroniques figurent déjà dans la base de données."
 
 #: public_html/lists/admin/actions/subscription.php:69
 msgid "it should only be done with explicit permission from this subscriber"
-msgstr "Ceci ne devrait être effectué qu'avec l'accord explicite de l'abonné"
+msgstr "ceci ne devrait être effectué qu'avec l'accord explicite de l'abonné·e"
 
 #: public_html/lists/admin/lib.php:2076
 msgid "Subscribe"
@@ -7307,7 +7307,7 @@ msgstr "Cet abonné est-il en liste noire ?"
 #: public_html/lists/admin/actions/import1.php:228,
 #: public_html/lists/admin/import3.php:512
 msgid "email was"
-msgstr "L'adresse e-mail était"
+msgstr "l'adresse électronique était"
 
 #: public_html/lists/admin/processbounces.php:471
 msgid "Bounce mechanism not properly configured"
@@ -7331,7 +7331,7 @@ msgstr "Envoyer message de notification"
 
 #: public_html/lists/admin/actions/processqueue.php:1357
 msgid "Hmmm, No users found to send to"
-msgstr "Hmmm, aucun utilisateur trouvé à qui envoyer le message"
+msgstr "Aucun abonné trouvé à qui envoyer le message"
 
 #: public_html/lists/admin/send_core.php:822
 msgid "Requeue Until"
@@ -7486,7 +7486,7 @@ msgstr "Continuer la configuration"
 
 #: public_html/lists/admin/actions/mviews.php:93
 msgid "in progress"
-msgstr "En cours"
+msgstr "en cours"
 
 #: public_html/lists/admin/msgstatus.php:28,
 #: public_html/lists/admin/actions/msgstatus.php:123
@@ -7734,7 +7734,7 @@ msgid ""
 "These records were deleted. Check your source and reimport the data. "
 "Duplicates will be identified."
 msgstr ""
-"Ces données ont été effacées. Vérifiez votre source et réimportez les "
+"Ces données ont été supprimées. Vérifiez votre source et réimportez les "
 "données. Les doublons seront identifiées."
 
 #: public_html/lists/admin/template.php:285
@@ -7743,7 +7743,7 @@ msgstr "Liste des modèles"
 
 #: public_html/lists/admin/actions/processqueue.php:1265
 msgid "Unconfirmed user"
-msgstr "Utilisateur non-confirmé"
+msgstr "Abonné non-confirmé"
 
 #: public_html/lists/admin/attributes.php:205
 msgid "cannot merge just one attribute"
@@ -7798,7 +7798,7 @@ msgstr "Configurer"
 
 #: public_html/lists/admin/actions/processqueue.php:1286
 msgid "Subscriber marked unconfirmed for invalid email address"
-msgstr "Abonné marqué non confirmé pour adresse e-mail invalide"
+msgstr "Abonné marqué non confirmé car l'adresse e-mail est invalide"
 
 #: public_html/lists/admin/actions/processqueue.php:193
 msgid "Maximum time for queue processing"
@@ -8215,7 +8215,8 @@ msgstr "Envoi en lots de %s messages"
 
 #: public_html/lists/admin/actions/addemail.php:26
 msgid "Adding email address failed, try again later"
-msgstr "L'ajout de l'adresse e-mail a échouée, veuillez réessayer plus tard"
+msgstr ""
+"L'ajout de l'adresse électronique a échoué, veuillez réessayer plus tard"
 
 # Suggested in Weblate: Page d'inscription
 #: public_html/lists/admin/home.php:164
@@ -8834,7 +8835,7 @@ msgstr "Modifications enregistrées"
 
 #: public_html/lists/admin/actions/subscription.php:51
 msgid "subscriber is blacklisted since"
-msgstr "L'utilisateur est mis sur la liste des envois interdits depuis"
+msgstr "L'abonné·e est sur la liste des envois interdits depuis"
 
 #: public_html/lists/admin/import1.php:143
 #, fuzzy
@@ -9307,7 +9308,7 @@ msgstr "Démarrer une nouvelle campagne ciblant toutes les listes"
 #: public_html/lists/admin/actions/subscription.php:71,
 #: public_html/lists/admin/actions/subscription.php:72
 msgid "remove subscriber from blacklist"
-msgstr "Retirer le destinataire de la liste \"interdits d'envoi\""
+msgstr "Retirer l'abonné·e de la liste \"interdits d'envoi\""
 
 #: public_html/lists/admin/usercheck.php:26,
 #: public_html/lists/admin/usercheck.php:30
@@ -9515,7 +9516,7 @@ msgstr "Taille du courriel en format HTML : %s "
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
 msgstr ""
-"Pour afficher les résultats de l'envoi de cette campagne, aller à %s://%s"
+"pour afficher les résultats de l'envoi de cette campagne, aller à %s://%s"
 
 #: public_html/lists/admin/messages.php:570,
 #: public_html/lists/admin/send_core.php:833,
@@ -9587,7 +9588,7 @@ msgstr "Séparateur de champ"
 #: public_html/lists/admin/actions/msgstatus.php:108
 #, php-format
 msgid "next batch of %s in %s"
-msgstr "Prochain lot de %s dans %s"
+msgstr "prochain lot de %s dans %s"
 
 #: public_html/databasestructure.php:352
 msgid "pagetitlehover:ajaxform"
@@ -9684,7 +9685,7 @@ msgstr "La base de données nécessite une conversion en UTF-8."
 #: public_html/lists/admin/actions/processqueue.php:1371
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
-msgstr "phplist a terminé d'envoyer le message ayant comme Objet %s"
+msgstr "phplist a terminé l'envoi du message ayant %s comme sujet"
 
 #: public_html/lists/admin/lib.php:2052,
 #: public_html/lists/admin/processqueue.php:96
@@ -9821,7 +9822,7 @@ msgstr "%d utilisateurs ont été liés par leur clé étrangère, %d par leur e
 #: public_html/lists/admin/actions/processqueue.php:1351
 #, php-format
 msgid "Processed %d out of %d subscribers"
-msgstr "Traitement du destinataire %d sur %d"
+msgstr "Traitement l'abonné %d sur %d"
 
 #: public_html/lists/admin/plugins.php:327
 msgid "delete this plugin"
@@ -9973,11 +9974,11 @@ msgstr "S.O."
 #: public_html/lists/admin/actions/processqueue.php:1102
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
-"Ajout d'un délai supplémentaire pour réduire les échecs dûs à l'engorgement"
+"Ajout d'un délai supplémentaire pour réduire les échecs dus à l'engorgement"
 
 #: public_html/lists/admin/actions/processqueue.php:1382
 msgid "to send this message"
-msgstr "Pour envoyer ce message"
+msgstr "pour envoyer ce message"
 
 #: public_html/databasestructure.php:207
 msgid "pagetitle:home"
@@ -10423,7 +10424,7 @@ msgstr "Récupération de données de "
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
 msgid "new emails were"
-msgstr "Les nouvelles adresses e-mails étaient"
+msgstr "les nouvelles adresses électroniques étaient"
 
 #: public_html/lists/admin/defaultconfig.php:401
 msgid "Subject of the message subscribers receive when they unsubscribe"
@@ -10698,8 +10699,8 @@ msgstr "fichier"
 #: public_html/lists/admin/actions/processqueue.php:756
 msgid "users apply for attributes, now checking lists"
 msgstr ""
-"utilisateurs correspondent aux attributs sélectionnés, vérification des "
-"listes"
+"abonnés correspondent aux attributs sélectionnés, vérification maintenant "
+"des listes"
 
 #: public_html/lists/admin/adminattributes.php:102,
 #: public_html/lists/admin/adminattributes.php:134,
