@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 00:13+0000\n"
+"PO-Revision-Date: 2021-02-17 03:30+0000\n"
 "Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -134,7 +134,7 @@ msgstr "Date de réception"
 
 #: public_html/lists/admin/members.php:216
 msgid "Inserting user"
-msgstr "Insertion de l'utilisateur"
+msgstr "Ajout de l'utilisateur"
 
 #: public_html/lists/admin/import2.php:733,
 #: public_html/lists/admin/import3.php:265,
@@ -158,7 +158,7 @@ msgstr ""
 
 #: public_html/lists/admin/catlists.php:40
 msgid "No list categories have been defined"
-msgstr "Aucune catégorie de liste n'à était définie"
+msgstr "Aucune catégorie de liste n'à été définie"
 
 # Suggested in Weblate: Attention : Le stockage de données personnelles sensibles telles que l'origine ethnique, la santé, l'orientation sexuelle, la religion, l'orientation politique est soumise à la législation en vigueur
 #: public_html/lists/admin/attributes.php:427
@@ -188,7 +188,7 @@ msgstr "Nombre de rejets"
 
 #: public_html/lists/admin/home.php:137
 msgid "configure"
-msgstr "configurer"
+msgstr "Configurer"
 
 #: public_html/lists/admin/actions/processqueue.php:609
 msgid "Processing has started,"
@@ -265,7 +265,7 @@ msgstr "Total"
 #: public_html/lists/admin/home.php:107,
 #: public_html/lists/admin/import1.php:251
 msgid "import"
-msgstr "importer"
+msgstr "Importer"
 
 #: public_html/lists/admin/sendemaillib.php:1071,
 #: public_html/lists/admin/sendemaillib.php:1086
@@ -318,7 +318,7 @@ msgstr "Pas de liste, utiliser Ajouter une liste"
 #: public_html/lists/admin/import2.php:712,
 #: public_html/lists/admin/importadmin.php:322
 msgid "default is line break"
-msgstr "par défaut : retour à la ligne"
+msgstr "Par défaut : retour à la ligne"
 
 #: public_html/databasestructure.php:62
 msgid "Final time to stop requeueing"
@@ -415,7 +415,7 @@ msgstr "Taille estimée du message texte"
 
 #: public_html/lists/admin/catlists.php:93
 msgid "save"
-msgstr "enregistrer"
+msgstr "Enregistrer"
 
 #: public_html/lists/admin/importadmin.php:198
 msgid "Empty loginname, using email:"
@@ -530,7 +530,7 @@ msgstr "dans la base de données"
 
 #: public_html/lists/admin/importadmin.php:293
 msgid "succesfully imported to the database and added to the system."
-msgstr "importés avec succès dans la base de données et ajoutés au système."
+msgstr "Importés avec succès dans la base de données et ajoutés au système."
 
 #: public_html/lists/admin/eventlog.php:84
 msgid "Are you sure you want to delete all events matching this filter?"
@@ -544,7 +544,7 @@ msgstr "Ajouter ou modifier un administrateur"
 
 #: public_html/lists/admin/tests.php:7
 msgid "phplist test suite"
-msgstr "suite de test phpList"
+msgstr "Suite de test phpList"
 
 #: public_html/lists/admin/listbounces.php:108,
 #: public_html/lists/admin/actions/listbounces.php:56,
@@ -600,7 +600,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:216
 msgid "preparesend"
-msgstr "préparer un message"
+msgstr "Préparer un message"
 
 #: public_html/lists/admin/community.php:47
 msgid "Translation platform"
@@ -622,7 +622,7 @@ msgstr "..Terminé, chargement du rejet suivant.."
 
 #: public_html/lists/admin/members.php:67
 msgid "edit list details"
-msgstr "édition des détails de la liste"
+msgstr "Modification des détails de la liste"
 
 #: public_html/lists/admin/configure.php:105
 msgid "Changes not saved"
@@ -646,7 +646,7 @@ msgstr ""
 
 #: public_html/lists/admin/processbounces.php:707
 msgid "bounces were not matched by advanced processing rules"
-msgstr "messages rejetés ne correspondant pas aux règles de traitement avancé"
+msgstr "Messages rejetés ne correspondant pas aux règles de traitement avancé"
 
 #: public_html/lists/admin/lib.php:679
 msgid "very little time"
@@ -695,7 +695,7 @@ msgstr "Sujet manquant"
 
 #: public_html/lists/admin/processbounces.php:676
 msgid "email auto unsubscribed for"
-msgstr "Utilisateur a été automatiquement désinscrit suite à"
+msgstr "L'utilisateur a été automatiquement désinscrit suite à"
 
 #: public_html/databasestructure.php:97
 msgid "Size of the file"
@@ -707,11 +707,11 @@ msgstr "Créer une nouvelle règle en fonction de ce message rejeté"
 
 #: public_html/lists/admin/home.php:145
 msgid "attributes"
-msgstr "attributs"
+msgstr "Attributs"
 
 #: public_html/lists/admin/bouncerules.php:100
 msgid "expression"
-msgstr "expression"
+msgstr "Expression"
 
 #: public_html/databasestructure.php:64
 msgid "query to select the subscribers for this message"
@@ -796,16 +796,16 @@ msgstr "Nouvelle liste ajoutée"
 
 #: public_html/lists/admin/home.php:22
 msgid "to continue"
-msgstr "continuer"
+msgstr "Continuer"
 
 #: public_html/lists/admin/lib.php:30
 msgid "unconfirm subscriber and delete bounce"
 msgstr ""
-"marquer le destinataire comme non confirmé et supprimer le message rejeté"
+"Marquer le destinataire comme non confirmé et supprimer le message rejeté"
 
 #: public_html/lists/admin/userclicks.php:247
 msgid "view user"
-msgstr "afficher l'utilisateur"
+msgstr "Afficher l'utilisateur"
 
 #: public_html/lists/admin/spageedit.php:378
 msgid ""
@@ -1116,7 +1116,7 @@ msgstr "Effacer la valeur"
 
 #: public_html/lists/admin/bouncerules.php:109
 msgid "order"
-msgstr "ordre"
+msgstr "Ordre"
 
 #: public_html/lists/admin/initialise.php:75
 msgid "The name of your organisation"
@@ -1241,12 +1241,12 @@ msgstr "Vous pouvez aussi remplacer toutes les valeurs par une nouvelle :"
 #: public_html/lists/admin/processbounces.php:256
 msgid "system message bounced, user marked unconfirmed"
 msgstr ""
-"message retourné au système : l'utilisateur est marqué comme étant non-"
+"Message retourné au système : l'utilisateur est marqué comme étant non-"
 "confirmé"
 
 #: public_html/lists/admin/bouncerule.php:87
 msgid "no related bounces found"
-msgstr "aucun message rejeté lié trouvé"
+msgstr "Aucun message rejeté lié trouvé"
 
 #: public_html/databasestructure.php:115
 msgid "id of template"
@@ -1287,7 +1287,7 @@ msgstr "Visualiser les statistiques"
 #: public_html/lists/admin/list.php:306,
 #: public_html/lists/admin/editlist.php:129
 msgid "delete this list"
-msgstr "supprimer cette liste"
+msgstr "Supprimer cette liste"
 
 #: public_html/lists/admin/defaultconfig.php:321
 msgid "URL where subscribers can update their details"
@@ -1322,7 +1322,7 @@ msgstr "Dans cette partie"
 
 #: public_html/lists/admin/statsoverview.php:101
 msgid "Date entered"
-msgstr "Date entrée"
+msgstr "Date d'entrée"
 
 #: public_html/lists/admin/actions/configure.php:117
 msgid "editing cancelled"
@@ -1421,7 +1421,7 @@ msgstr "Identifiant de la liste"
 
 #: public_html/lists/admin/lib.php:33
 msgid "delete bounce"
-msgstr "supprimer le message rejeté"
+msgstr "Supprimer le message rejeté"
 
 #: public_html/lists/admin/connect.php:2245
 #, php-format
@@ -1454,7 +1454,7 @@ msgstr "et plus, %d au total"
 
 #: public_html/lists/admin/admin.php:147
 msgid "Edit Administrator"
-msgstr "Editer Administrateur"
+msgstr "Modifier l'administrateur"
 
 #: public_html/lists/admin/user.php:259
 #, php-format
@@ -1520,7 +1520,7 @@ msgstr "Abonnés"
 
 #: public_html/lists/admin/eventlog.php:115
 msgid "page"
-msgstr "page"
+msgstr "Page"
 
 #: public_html/lists/admin/inc/userlib.php:586
 msgid "Added to blacklist"
@@ -1528,7 +1528,7 @@ msgstr "Ajouté à la liste \"interdits d'envoi\""
 
 #: public_html/lists/admin/admin.php:82
 msgid "Back to edit admin"
-msgstr "Retour à l'édition du compte administrateur"
+msgstr "Retour à la modification du compte administrateur"
 
 #: public_html/lists/admin/messages.php:367,
 #: public_html/lists/admin/messages.php:370,
@@ -1587,7 +1587,7 @@ msgstr "Vérifier que toutes les images ont une URL complète"
 #: public_html/lists/admin/index.php:369
 #, php-format
 msgid "login ip invalid from %s for %s (was %s)"
-msgstr "adresse IP en échec d'authentification de %s sur %s (était %s )"
+msgstr "Adresse IP en échec d'authentification de %s sur %s (était %s )"
 
 #: public_html/lists/admin/spageedit.php:252
 msgid "Offer checkbox for text"
@@ -1615,11 +1615,11 @@ msgstr "Fermer"
 
 #: public_html/lists/admin/reconcileusers.php:131
 msgid "unable to find original email"
-msgstr "impossible de retrouver l'email original"
+msgstr "Impossible de retrouver l'email original"
 
 #: public_html/lists/admin/bounces.php:19
 msgid "unidentified"
-msgstr "non identifié"
+msgstr "Non identifié"
 
 #: public_html/lists/admin/importadmin.php:109
 msgid "Cannot find the loginname in the header"
@@ -1628,7 +1628,7 @@ msgstr "L'identifiant de connexion n'a pas été trouvé dans l'entête"
 #: public_html/lists/admin/bounces.php:133
 msgid "are you sure you want to delete all bounces older than 2 months"
 msgstr ""
-"êtes-vous certain(e) de vouloir supprimer tous les messages rejetés de plus "
+"Etes-vous certain.e de vouloir supprimer tous les messages rejetés de plus "
 "de 2 mois"
 
 # Suggested in Weblate: Modifier les détails d'un attribut
@@ -1642,7 +1642,7 @@ msgstr "Statistiques par domaine"
 
 #: public_html/lists/admin/home.php:357
 msgid "eventlog"
-msgstr "journal des évènements"
+msgstr "Journal des évènements"
 
 #: public_html/lists/admin/connect.php:1350,
 #: public_html/lists/admin/list.php:150,
@@ -1662,7 +1662,7 @@ msgstr "Proposer une case à cocher pour le format HTML"
 
 #: public_html/lists/admin/messages.php:144
 msgid "draft"
-msgstr "brouillon"
+msgstr "Brouillon"
 
 #: public_html/lists/admin/actions/import2.php:517
 #, php-format
@@ -1743,7 +1743,7 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:66
 msgid "last clicked"
-msgstr "dernier cliqué"
+msgstr "Dernier cliqué"
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
@@ -1848,7 +1848,7 @@ msgstr "Mémoire insuffisante pour ajouter une pièce jointe à l'envoi %d %d - 
 #: public_html/lists/admin/send.php:117,
 #: public_html/lists/admin/editattributes.php:50
 msgid "delete all"
-msgstr "tout supprimer"
+msgstr "Tout supprimer"
 
 #: public_html/lists/admin/template.php:233,
 #: public_html/lists/admin/template.php:240,
@@ -1926,7 +1926,7 @@ msgstr "Recherche des destinataires"
 
 #: public_html/lists/admin/home.php:114
 msgid "export"
-msgstr "exporter"
+msgstr "Exporter"
 
 #: public_html/lists/admin/message.php:154
 msgid "Size"
@@ -2047,7 +2047,7 @@ msgstr ""
 
 #: public_html/lists/admin/bouncerule.php:47
 msgid "back to list of bounce rules"
-msgstr "retour vers la liste des règles pour les messages rejetés"
+msgstr "Retour vers la liste des règles pour les messages rejetés"
 
 # Suggested in Weblate: Lien URL
 #: public_html/lists/admin/mclicks.php:91
@@ -2092,7 +2092,7 @@ msgstr "Aucun événement enregistré"
 
 #: public_html/lists/admin/import2.php:377
 msgid "select"
-msgstr "sélectionner"
+msgstr "Sélectionner"
 
 #: public_html/lists/admin/user.php:362
 msgid "Add a new subscriber"
@@ -2157,7 +2157,7 @@ msgstr "%d termes mis à jour"
 #: public_html/lists/admin/import2.php:424,
 #: public_html/lists/admin/catlists.php:83
 msgid "none"
-msgstr "aucune"
+msgstr "Aucune"
 
 #: public_html/lists/admin/editlist.php:200
 msgid "Do not save, and go back to the lists"
@@ -2255,7 +2255,7 @@ msgstr "Le thème par défaut du système a été ajouté avec l'identifiant"
 
 #: public_html/lists/admin/template.php:70
 msgid "Images stored"
-msgstr "Images sauvées"
+msgstr "Images sauvegardées"
 
 #: public_html/lists/admin/plugins.php:173
 msgid "Install a new plugin"
@@ -2303,7 +2303,7 @@ msgstr ""
 #: public_html/lists/admin/home.php:255,
 #: public_html/lists/admin/connect.php:571
 msgid "warning"
-msgstr "attention"
+msgstr "Attention"
 
 #: public_html/lists/admin/messages.php:237
 msgid "Requeuing"
@@ -2346,7 +2346,7 @@ msgstr "Inscription après le"
 
 #: public_html/lists/admin/users.php:482
 msgid "no results"
-msgstr "aucun résultat"
+msgstr "Aucun résultat"
 
 #: public_html/lists/admin/actions/addemail.php:14
 msgid "That is not a valid email address"
@@ -2415,7 +2415,7 @@ msgstr "Voir une campagne"
 
 #: public_html/lists/admin/admin.php:158
 msgid "Add a new Administrator"
-msgstr "Ajouter un nouvel Administrateur"
+msgstr "Ajouter un nouvel administrateur"
 
 #: public_html/lists/admin/processbounces.php:610,
 #: public_html/lists/admin/processbounces.php:633,
@@ -2424,7 +2424,7 @@ msgstr "Ajouter un nouvel Administrateur"
 #: public_html/lists/admin/processbounces.php:676,
 #: public_html/lists/admin/processbounces.php:688
 msgid "bounce rule"
-msgstr "règle pour les messages rejetés"
+msgstr "Règle pour les messages rejetés"
 
 #: public_html/lists/admin/import1.php:143
 msgid "If the output looks ok, go"
@@ -2444,7 +2444,7 @@ msgstr "Rechercher un destinataire"
 
 #: public_html/lists/admin/home.php:190
 msgid "adminattributes"
-msgstr "paramétrage des attributs des administrateurs"
+msgstr "Paramétrage des attributs des administrateurs"
 
 #: public_html/lists/admin/actions/processqueue.php:1370
 msgid "Message campaign finished"
@@ -2562,7 +2562,7 @@ msgstr "pagetitlehover:Paramètres"
 
 #: public_html/lists/admin/messages.php:644
 msgid "Suspend All"
-msgstr "Suspendre tous"
+msgstr "Suspendre tout"
 
 #: public_html/lists/admin/send_core.php:371,
 #: public_html/lists/admin/send_core.php:1300
@@ -2676,7 +2676,7 @@ msgstr "Domaines de niveau supérieur"
 #: public_html/lists/admin/users.php:461,
 #: public_html/lists/admin/uclicks.php:65
 msgid "msgs"
-msgstr "msgs"
+msgstr "Messages"
 
 #: public_html/databasestructure.php:111
 msgid "IP Address of who started it"
@@ -2684,7 +2684,7 @@ msgstr "Adresse IP de l'initiateur"
 
 #: public_html/lists/admin/connect.php:881
 msgid "about"
-msgstr "en savoir plus"
+msgstr "A propos"
 
 #: public_html/lists/admin/plugins.php:291
 msgid "Documentation Page"
@@ -2711,7 +2711,7 @@ msgstr "Modèle enregistré"
 
 #: public_html/lists/admin/home.php:368
 msgid "Change your details (e.g. password)"
-msgstr "Modifier vos détails (ex : mot de passe)"
+msgstr "Modifier vos préférences (ex : mot de passe)"
 
 #: public_html/lists/admin/reconcileusers.php:579
 msgid "Date they signed up before"
@@ -2741,7 +2741,7 @@ msgstr ""
 #: public_html/lists/admin/bounces.php:89,
 #: public_html/lists/admin/bounces.php:167
 msgid "bounces"
-msgstr "messages revenus en erreur"
+msgstr "Messages revenus en erreur"
 
 #: public_html/lists/admin/actions/processqueue.php:365
 msgid "Finished this run"
@@ -2769,7 +2769,7 @@ msgstr "Il y a maintenant %d domaines de premier niveau"
 
 #: public_html/lists/admin/about.php:54
 msgid "Contributors"
-msgstr "Contributions"
+msgstr "Contributeurs"
 
 # Suggested in Weblate: Afficher les listes dans les catégories sélectionnées
 #: public_html/lists/admin/spageedit.php:368
@@ -2795,7 +2795,7 @@ msgstr "Voir la file d'attente"
 
 #: public_html/lists/admin/bouncerules.php:123
 msgid "make inactive"
-msgstr "désactiver"
+msgstr "Désactiver"
 
 #: public_html/lists/admin/members.php:251
 #, php-format
@@ -2833,7 +2833,7 @@ msgstr "statique"
 
 #: public_html/lists/admin/messages.php:612
 msgid "Mark&nbsp;sent"
-msgstr "Marqué envoyé"
+msgstr "Marquer comme envoyé"
 
 #: public_html/lists/admin/inc/importlib.php:90
 msgid "Invalid email"
@@ -2917,7 +2917,7 @@ msgstr "Fonctions de gestion des abonnés"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr "version de phplist"
+msgstr "Version de phplist"
 
 #: public_html/lists/admin/mclicks.php:76
 msgid "Sent to"
@@ -3013,7 +3013,7 @@ msgstr "Pas d'envoi à "
 
 #: public_html/lists/admin/home.php:334
 msgid "setup"
-msgstr "installation"
+msgstr "Configuration"
 
 #: public_html/lists/admin/inc/interfacelib.php:868,
 #: public_html/lists/admin/catlists.php:68
@@ -3060,7 +3060,7 @@ msgstr "Les adresses e-mails étaient"
 #: public_html/lists/admin/eventlog.php:111,
 #: public_html/lists/admin/userclicks.php:228
 msgid "message"
-msgstr "message"
+msgstr "Message"
 
 #: public_html/lists/admin/send_core.php:1016
 msgid "email to alert when sending of this message has finished"
@@ -3127,7 +3127,7 @@ msgstr "Confirmer par défaut les adresses électroniques"
 
 #: public_html/lists/admin/home.php:116
 msgid "Export Users"
-msgstr "Exporter des Utilisateurs"
+msgstr "Exporter des abonnés"
 
 #: public_html/lists/admin/suppressionlist.php:35
 msgid "Manage suppression list"
@@ -3235,7 +3235,7 @@ msgstr "Mise à jour disponible"
 
 #: public_html/lists/admin/message.php:84
 msgid "Edit this message"
-msgstr "Éditer le message"
+msgstr "Modifier le message"
 
 #: public_html/lists/admin/actions/import1.php:218
 msgid "Not subscribed to any lists"
@@ -3243,7 +3243,7 @@ msgstr "Inscrit(e) sur aucune liste"
 
 #: public_html/lists/admin/bounces.php:161
 msgid "no processed bounces available"
-msgstr "il n'y a pas de rejets traités"
+msgstr "Il n'y a pas de rejets traités"
 
 #: public_html/lists/admin/plugins.php:46
 msgid "Fetching plugin"
@@ -3367,7 +3367,7 @@ msgstr "Traitement secret en cours incorrect"
 
 #: public_html/lists/admin/importadmin.php:168
 msgid "password"
-msgstr "mot de passe"
+msgstr "Mot de passe"
 
 #: public_html/databasestructure.php:159
 msgid "Key"
@@ -3435,7 +3435,7 @@ msgstr "Pas d'envoi à"
 #: public_html/lists/admin/bouncerules.php:95,
 #: public_html/lists/admin/bouncerules.php:96
 msgid "match"
-msgstr "correspondance"
+msgstr "Correspondance"
 
 #: public_html/lists/admin/bouncerule.php:63
 msgid "Created By"
@@ -3448,7 +3448,7 @@ msgstr "Votre mot de passe a été modifié avec succès"
 #: public_html/lists/admin/editlist.php:179,
 #: public_html/lists/admin/catlists.php:82
 msgid "choose category"
-msgstr "choisissez la catégorie"
+msgstr "Choisissez la catégorie"
 
 #: public_html/lists/admin/import4.php:66
 msgid "Table prefix:"
@@ -3537,7 +3537,7 @@ msgstr ""
 
 #: public_html/lists/admin/dbcheck.php:90
 msgid "category"
-msgstr "catégorie"
+msgstr "Catégorie"
 
 #: public_html/databasestructure.php:42
 msgid "List category"
@@ -3639,12 +3639,12 @@ msgstr "Fonctions du système"
 
 #: public_html/lists/admin/reconcileusers.php:106
 msgid "user found"
-msgstr "utilisateur trouvé"
+msgstr "Utilisateur trouvé"
 
 # Suggested in Weblate: Ajouter des abonnés
 #: public_html/lists/admin/import1.php:201
 msgid "adding_users"
-msgstr "adding_users"
+msgstr "Ajouter des abonnés"
 
 #: public_html/lists/admin/send.php:158
 msgid ""
@@ -3723,7 +3723,7 @@ msgstr "Affichage des utilisateurs de 1 à 50"
 
 #: public_html/lists/admin/home.php:261
 msgid "processbounces"
-msgstr "traiter les rejets"
+msgstr "Traiter les rejets"
 
 #: public_html/lists/admin/import.php:33
 msgid "Please choose one of the import methods below"
@@ -3829,7 +3829,7 @@ msgstr "Si vous sélectionnez"
 
 #: public_html/lists/admin/import2.php:437
 msgid "Test Output"
-msgstr "Résultat test"
+msgstr "Résultat du test"
 
 #: public_html/lists/admin/bouncerules.php:80
 msgid "Bounce Regular Expressions"
@@ -3877,7 +3877,7 @@ msgstr "aucun détail trouvé"
 #: public_html/lists/admin/members.php:331,
 #: public_html/lists/admin/bouncerules.php:107
 msgid "tag"
-msgstr "cocher"
+msgstr "Cocher"
 
 #: public_html/databasestructure.php:165
 msgid "Link ID"
@@ -3885,11 +3885,11 @@ msgstr "Identifiant du lien"
 
 #: public_html/lists/admin/connect.php:467
 msgid "error"
-msgstr "erreur"
+msgstr "Erreur"
 
 #: public_html/lists/admin/configure.php:184
 msgid "edit this value"
-msgstr "éditer cette valeur"
+msgstr "Modifier cette valeur"
 
 #: public_html/lists/admin/messages.php:521
 msgid "Time to send"
@@ -3960,7 +3960,7 @@ msgstr "Cadence des notifications"
 
 #: public_html/lists/admin/home.php:224
 msgid "sendprepared"
-msgstr "envoyer un message préparé"
+msgstr "Envoyer un message préparé"
 
 #: public_html/lists/admin/about.php:23
 #, php-format
@@ -4110,7 +4110,7 @@ msgstr "Afficher la liste des catégories"
 #: public_html/lists/admin/reconcileusers.php:255,
 #: public_html/lists/admin/reconcileusers.php:263
 msgid "subscribers apply"
-msgstr "demande se souscription"
+msgstr "Demande d'inscription"
 
 #: public_html/lists/admin/import4.php:350
 msgid "Error, no local list defined for"
@@ -4222,7 +4222,7 @@ msgstr "Nom du fichier"
 
 #: public_html/lists/admin/index.php:491
 msgid "good morning"
-msgstr "bonjour"
+msgstr "Bonjour"
 
 #: public_html/lists/admin/index.php:402
 msgid "Your session timed out, please login again"
@@ -4291,7 +4291,7 @@ msgstr "Statistiques des campagnes par clics"
 
 #: public_html/lists/admin/users.php:325
 msgid "asc"
-msgstr "asc"
+msgstr "Asc"
 
 #: public_html/lists/admin/reconcileusers.php:442
 msgid "-All-"
@@ -4356,7 +4356,7 @@ msgstr "Démarrer une campagne / message"
 
 #: public_html/lists/admin/about.php:32
 msgid "Certified Secure by "
-msgstr "Certifié Secure par "
+msgstr "Certifié sûr par "
 
 #: public_html/lists/admin/bounce.php:176
 msgid "Mark subscriber as unconfirmed"
@@ -4483,7 +4483,7 @@ msgstr "phpList exporte %s de %s à %s (%s).csv"
 
 #: public_html/lists/admin/home.php:233
 msgid "templates"
-msgstr "modèles"
+msgstr "Modèles"
 
 #: public_html/lists/admin/lib.php:2290
 msgid ""
@@ -4531,7 +4531,7 @@ msgstr ""
 
 #: public_html/lists/admin/bounces.php:147
 msgid "view bounces by list"
-msgstr "visualiser les rejets par liste"
+msgstr "Visualiser les rejets par liste"
 
 # Suggested in Weblate: Pas
 #: public_html/lists/admin/setup.php:18
@@ -4639,7 +4639,7 @@ msgstr "Communauté d'aide"
 
 #: public_html/lists/admin/messages.php:645
 msgid "Mark All Sent"
-msgstr "Marquer tous envoyé"
+msgstr "Marquer tous les messages comme envoyés"
 
 #: public_html/lists/admin/importsimple.php:191
 msgid "Check to skip emails that are not valid"
@@ -4656,7 +4656,7 @@ msgstr "Fermer cette fenêtre"
 #: public_html/lists/admin/connect.php:535,
 #: public_html/lists/admin/connect.php:540
 msgid "fatalerror"
-msgstr "erreur fatale"
+msgstr "Erreur fatale"
 
 #: public_html/lists/admin/lib.php:2286
 msgid ""
@@ -4834,7 +4834,7 @@ msgstr "Supprimer le destinataire"
 
 #: public_html/lists/admin/bouncerules.php:129
 msgid "add a new rule"
-msgstr "ajouter une nouvelle règle"
+msgstr "Ajouter une nouvelle règle"
 
 #: public_html/databasestructure.php:321
 msgid "pagetitle:bouncemgt"
@@ -4868,7 +4868,7 @@ msgstr "Suspendre"
 
 #: public_html/lists/admin/members.php:454
 msgid "do it"
-msgstr "exécuter"
+msgstr "Exécuter"
 
 #: public_html/lists/admin/reconcileusers.php:509
 msgid "To blacklist all subscribers with more than"
@@ -5051,7 +5051,7 @@ msgstr "Désactivé"
 #: public_html/lists/admin/bouncerules.php:67,
 #: public_html/lists/admin/bouncerules.php:69
 msgid "candidate"
-msgstr "potentielle"
+msgstr "Potentielle"
 
 #: public_html/lists/admin/messages.php:497,
 #: public_html/lists/admin/mclicks.php:84
@@ -5096,7 +5096,7 @@ msgstr "L'adresse e-mail n'a pas été trouvée dans l'entête"
 
 #: public_html/lists/admin/home.php:121
 msgid "reconcileusers"
-msgstr "faire le ménage"
+msgstr "Faire le ménage"
 
 #: public_html/lists/admin/initialise.php:91
 msgid "Creating tables"
@@ -5133,7 +5133,7 @@ msgstr "Toutes les listes ont déjà été affectées à une catégorie"
 
 #: public_html/lists/admin/dbcheck.php:19
 msgid "real name"
-msgstr "nom réel"
+msgstr "Nom réel"
 
 #: public_html/lists/admin/members.php:417
 msgid ""
@@ -5148,7 +5148,7 @@ msgstr "Code secret pour le traitement à distance"
 #: public_html/lists/admin/uclicks.php:142,
 #: public_html/lists/admin/uclicks.php:155
 msgid "click rate"
-msgstr "taux de clics"
+msgstr "Taux de clics"
 
 #: public_html/lists/admin/plugins.php:167
 msgid ""
@@ -5238,7 +5238,7 @@ msgstr "L'entrée n'a pas d'adresse e-mail"
 
 #: public_html/lists/admin/index.php:487
 msgid "goodbye"
-msgstr "au revoir"
+msgstr "Au revoir"
 
 #: public_html/lists/admin/processbounces.php:258
 msgid "User marked unconfirmed"
@@ -5478,7 +5478,7 @@ msgstr "pagetitlehover:Déconnexion"
 
 #: public_html/lists/admin/message.php:133
 msgid "Requeueing"
-msgstr "Remis en file d'attente"
+msgstr "Remise en file d'attente"
 
 #: public_html/lists/admin/initialise.php:80
 msgid "The initial <i>login name</i> will be"
@@ -5517,7 +5517,7 @@ msgstr "Largeur pour le retour à la ligne automatique des message textuels"
 
 #: public_html/lists/admin/bouncerules.php:105
 msgid "#bncs"
-msgstr "#bncs"
+msgstr "Rejets"
 
 #: public_html/lists/admin/admins.php:115
 msgid "Del"
@@ -5525,11 +5525,11 @@ msgstr "Supprimer"
 
 #: public_html/lists/admin/importsimple.php:178
 msgid "Adding subscribers"
-msgstr "Ajout des abonnés"
+msgstr "Ajouter des abonnés"
 
 #: public_html/lists/admin/bounces.php:138
 msgid "are you sure you want to delete all bounces"
-msgstr "êtes vous sur de vouloir supprimer tous les rejets"
+msgstr "Etes vous sûr de vouloir supprimer tous les rejets"
 
 #: public_html/databasestructure.php:229
 msgid "pagetitle:importsimple"
@@ -5579,7 +5579,7 @@ msgstr ""
 
 #: public_html/lists/admin/editattributes.php:188
 msgid "one per line"
-msgstr "une valeur par ligne"
+msgstr "Une valeur par ligne"
 
 #: public_html/lists/admin/actions/import2.php:502,
 #: public_html/lists/admin/actions/import1.php:231
@@ -5687,7 +5687,7 @@ msgstr "pagetitlehover:Configuration"
 
 #: public_html/lists/admin/bouncerule.php:53
 msgid "delete this rule and go to the next candidate"
-msgstr "supprimer cette règle et aller à la suivante"
+msgstr "Supprimer cette règle et aller à la suivante"
 
 #: public_html/lists/admin/actions/import2.php:506
 #, php-format
@@ -5937,11 +5937,11 @@ msgstr "%d abonnés traités au total"
 
 #: public_html/lists/admin/processbounces.php:706
 msgid "bounces processed by advanced processing"
-msgstr "messages rejetés traités par le traitement avancé"
+msgstr "Messages rejetés par le traitement avancé"
 
 #: public_html/lists/admin/home.php:185
 msgid "Add, edit and remove Administrators"
-msgstr "Ajouter, modifier et supprimer des Administrateurs"
+msgstr "Ajouter, modifier et supprimer des administrateurs"
 
 #: public_html/lists/admin/processbounces.php:419
 msgid "Processed messages will be deleted from mailbox"
@@ -6154,7 +6154,7 @@ msgstr "Pour supprimer tous les utilisateurs avec plus de"
 
 #: public_html/lists/admin/messages.php:607
 msgid "statistics"
-msgstr "statistiques"
+msgstr "Statistiques"
 
 #: public_html/lists/index.php:852,
 #: public_html/lists/admin/actions/reconcileusers.php:59
@@ -6193,7 +6193,7 @@ msgstr "Pièce jointe %d ajoutée avec succès"
 
 #: public_html/lists/admin/home.php:182
 msgid "admins"
-msgstr "administrateurs"
+msgstr "Administrateurs"
 
 #: public_html/lists/admin/processbounces.php:610,
 #: public_html/lists/admin/processbounces.php:633
@@ -6285,7 +6285,7 @@ msgstr "démarrer un nouveau publipostage en utilisant cette liste"
 
 #: public_html/lists/admin/catlists.php:58
 msgid "Category assignments saved"
-msgstr "catégories d'attributs sauvegardés"
+msgstr "Catégories d'attributs sauvegardées"
 
 #: public_html/lists/admin/home.php:124
 msgid "Reconcile the User Database"
@@ -6358,7 +6358,7 @@ msgstr "ne pas remettre en file d'attente"
 
 #: public_html/lists/admin/message.php:51
 msgid "campaign requeued"
-msgstr "campagne remise en file d'attente"
+msgstr "Campagne remise en file d'attente"
 
 #: public_html/lists/admin/users.php:415
 msgid "subscriber"
@@ -6381,7 +6381,7 @@ msgstr "messages par heure"
 #: public_html/lists/admin/editattributes.php:188,
 #: public_html/lists/admin/editattributes.php:191
 msgid "Add new"
-msgstr "Ajouter nouveau"
+msgstr "Ajouter un nouveau"
 
 #: public_html/lists/admin/import3.php:361
 msgid "Process Selected Folders"
@@ -6412,7 +6412,7 @@ msgstr "Liste"
 
 #: public_html/lists/admin/defaults.php:97
 msgid "return to editing attributes"
-msgstr "retour à l'édition des attributs"
+msgstr "Retour à la modification des attributs"
 
 #: public_html/lists/admin/import2.php:100,
 #: public_html/lists/admin/import1.php:52
@@ -6472,7 +6472,7 @@ msgstr "Envoyer courriel"
 #: public_html/lists/admin/processbounces.php:817
 #, php-format
 msgid "processed %d out of %d subscribers"
-msgstr "traitement de %d de %d abonnés"
+msgstr "Traitement de %d de %d abonnés"
 
 #: public_html/lists/admin/usercheck.php:7
 msgid "Existing subscribers"
@@ -6515,7 +6515,7 @@ msgstr "Adresse e-mail en doublon"
 
 #: public_html/lists/admin/reconcileusers.php:125
 msgid "no user found"
-msgstr "aucun destinataire n'a été trouvé"
+msgstr "Aucun destinataire n'a été trouvé"
 
 #: public_html/databasestructure.php:59
 msgid "Number of seconds to repeat the message"
@@ -6531,7 +6531,7 @@ msgstr "Afficher les avertissements"
 
 #: public_html/lists/admin/user.php:541
 msgid "Subscription"
-msgstr "Souscription"
+msgstr "Inscription"
 
 #: public_html/lists/admin/send_core.php:503
 msgid "success"
@@ -6575,7 +6575,7 @@ msgstr "Attributs existants"
 
 #: public_html/lists/admin/bouncerule.php:55
 msgid "activate this rule and go to the next candidate"
-msgstr "activer cette règle et aller à la suivante"
+msgstr "Activer cette règle et aller à la suivante"
 
 #: public_html/databasestructure.php:50
 msgid "from"
@@ -6647,7 +6647,7 @@ msgstr "Rechercher des extensions"
 
 #: public_html/lists/admin/import2.php:727
 msgid "Assign Invalid"
-msgstr "Attribuer non valides"
+msgstr "Attribut non valide"
 
 #: public_html/lists/admin/class.phplistmailer.php:324
 #, php-format
@@ -6670,7 +6670,7 @@ msgstr "Supprimer"
 #, php-format
 msgid "invalid login from %s, tried logging in as %s"
 msgstr ""
-"échec d'identification depuis %s, tentative d'identification en tant que %s"
+"Echec d'identification depuis %s, tentative d'identification en tant que %s"
 
 # Suggested in Weblate: Total des e-mails envoyés
 #: public_html/lists/admin/actions/domainbounces.php:75
@@ -6772,7 +6772,7 @@ msgstr "Supprimer les attributs cochés"
 
 #: public_html/lists/admin/send.php:92
 msgid "campaign deleted"
-msgstr "campagne supprimée"
+msgstr "Campagne supprimée"
 
 #: public_html/lists/admin/convertstats.php:79
 msgid "processing cancelled"
@@ -6784,7 +6784,7 @@ msgstr "pagetitlehover:Communauté"
 
 #: public_html/lists/admin/processbounces.php:329
 msgid "system message bounced, but unknown user"
-msgstr "le message système a été rejeté, mais l'utilisateur n'existe pas"
+msgstr "Le message système a été rejeté, mais l'utilisateur n'existe pas"
 
 #: public_html/lists/admin/actions/subscription.php:29
 msgid ""
@@ -6827,7 +6827,7 @@ msgstr "Ceci peut prendre du temps"
 
 #: public_html/lists/admin/importsimple.php:72
 msgid "import_by"
-msgstr "importer par"
+msgstr "Importé par"
 
 # Suggested in Weblate: Juill
 #: public_html/lists/admin/connect.php:1737,
@@ -6857,7 +6857,7 @@ msgstr ""
 
 #: public_html/lists/admin/messages.php:582
 msgid "both"
-msgstr "les deux"
+msgstr "Les deux"
 
 #: public_html/databasestructure.php:11,
 #: public_html/databasestructure.php:156
@@ -6919,7 +6919,7 @@ msgstr "Taille estimée du message HTML"
 msgid ""
 "are you sure you want to delete all unidentified bounces older than 2 months"
 msgstr ""
-"êtes-vous certain(e) de vouloir supprimer tous les messages rejetés non "
+"Etes-vous certain.e de vouloir supprimer tous les messages rejetés non "
 "identifiés de plus de 2 mois"
 
 #: public_html/lists/admin/members.php:181
@@ -6943,7 +6943,7 @@ msgstr "Ne pas supprimer les messages traités"
 
 #: public_html/lists/admin/reindex.php:17
 msgid "processing "
-msgstr "En traitement ... "
+msgstr "Traitement en cours ... "
 
 #: public_html/databasestructure.php:177
 msgid "Number of times this link has been sent to subscribers for this message"
@@ -7082,7 +7082,7 @@ msgstr "Afficher des notifications pour les versions Release Candidates"
 
 #: public_html/lists/admin/import1.php:143
 msgid "back"
-msgstr "retour"
+msgstr "Retour"
 
 #: public_html/lists/admin/index.php:565
 msgid ""
@@ -7127,7 +7127,7 @@ msgstr ""
 #: public_html/lists/admin/processbounces.php:675,
 #: public_html/lists/admin/processbounces.php:687
 msgid "Auto Unsubscribed"
-msgstr "Désabonné automatique"
+msgstr "Désabonné automatiquement"
 
 #: public_html/lists/admin/reconcileusers.php:470
 #, php-format
@@ -7171,7 +7171,7 @@ msgstr "Le nom ne peut être vide"
 #: public_html/lists/admin/members.php:125,
 #: public_html/lists/admin/members.php:165
 msgid "subscribers were deleted from this list"
-msgstr "les abonnés ont été supprimés de cette liste"
+msgstr "Les abonnés ont été supprimés de cette liste"
 
 #: public_html/lists/index.php:752
 msgid "Subscriber has been removed from blacklist"
@@ -7204,7 +7204,7 @@ msgstr "Corps du message"
 #: public_html/lists/admin/members.php:103,
 #: public_html/lists/admin/members.php:150
 msgid "subscribers were moved to"
-msgstr "les abonnés ont été déplacés sur"
+msgstr "Les abonnés ont été déplacés sur"
 
 #: public_html/lists/admin/actions/statsoverview.php:132,
 #: public_html/lists/admin/actions/mclicks.php:59,
@@ -7234,7 +7234,7 @@ msgstr "Une campagne à traiter."
 
 #: public_html/lists/admin/bouncerule.php:54
 msgid "activate and next"
-msgstr "activer et aller à la suivante"
+msgstr "Activer et aller à la suivante"
 
 #: public_html/lists/admin/importsimple.php:109
 #, php-format
@@ -7243,7 +7243,8 @@ msgstr "Les adresses invalides seront mentionnées dans le rapport envoyé à %s
 
 #: public_html/lists/admin/reconcileusers.php:173
 msgid "Creating UniqID for all subscribers who do not have one"
-msgstr "Création d'un UniqID pour tous les utilisateurs qui n'en ont pas"
+msgstr ""
+"Création d'un identifiant unique pour tous les utilisateurs qui n'en ont pas"
 
 #: public_html/lists/admin/export.php:151
 msgid "Export"
@@ -7251,7 +7252,7 @@ msgstr "Exporter"
 
 #: public_html/lists/admin/defaultplugin.php:355
 msgid "choose"
-msgstr "choisissez"
+msgstr "Choisissez"
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
@@ -7477,7 +7478,7 @@ msgstr "Ouvrir"
 
 #: public_html/lists/admin/subscribelib2.php:119
 msgid "phplist Spam blocked"
-msgstr "Spam phplist bloqué"
+msgstr "Pourriel phplist bloqué"
 
 #: public_html/lists/admin/home.php:39,
 #: public_html/lists/admin/index.php:502
@@ -7664,7 +7665,7 @@ msgstr "Administrateur propriétaire de cette page"
 
 #: public_html/lists/admin/message.php:107
 msgid "fromfield"
-msgstr "champ «de»"
+msgstr "Champ «de»"
 
 #: public_html/lists/admin/editlist.php:153
 msgid "Order for listing"
@@ -7682,11 +7683,11 @@ msgstr "Envoyer en tant que"
 
 #: public_html/lists/admin/readtestmail.php:54
 msgid "test processing error"
-msgstr "erreur lors de l'essai du traitement"
+msgstr "Erreur lors du traitement de test"
 
 #: public_html/lists/admin/lib.php:29
 msgid "delete subscriber and bounce"
-msgstr "supprimer l'utilisateur et le message rejeté"
+msgstr "Supprimer l'utilisateur et le message rejeté"
 
 #: public_html/lists/admin/processqueue.php:94
 msgid "To send your queue, you use the service from phpList.com"
@@ -7695,7 +7696,7 @@ msgstr "Pour envoyer votre file, vous utilisez le service de phpList.com"
 #: public_html/lists/admin/converttoutf8.php:92,
 #: public_html/lists/admin/upgrade.php:270
 msgid "upgrade to UTF-8, done"
-msgstr "mise à jour vers le format UTF-8 terminé"
+msgstr "Mise à jour vers le format UTF-8 terminé"
 
 #: public_html/databasestructure.php:283
 msgid "pagetitle:admins"
@@ -7712,7 +7713,7 @@ msgstr "Traiter la file d'attente"
 
 #: public_html/lists/admin/index.php:493
 msgid "good afternoon"
-msgstr "bonjour"
+msgstr "Bonjour"
 
 #: public_html/lists/admin/converttoutf8.php:85,
 #: public_html/lists/admin/converttoutf8.php:87,
@@ -7841,7 +7842,7 @@ msgstr "Veuillez entrer votre nom."
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
-msgstr "suppression de tout les traités (âgés de plus de 2 mois)"
+msgstr "Suppression de tout les traités (âgés de plus de 2 mois)"
 
 # Suggested in Weblate: Vous faites tourner la version DEV, mais le mail du développer n'est pas défini
 #: public_html/lists/admin/index.php:519
@@ -7965,7 +7966,7 @@ msgstr "Les domaines de premier niveau (TLDs) ont été mis à jour avec succès
 
 #: public_html/lists/admin/bouncerules.php:120
 msgid "make active"
-msgstr "activer"
+msgstr "Activer"
 
 #: public_html/lists/admin/lib.php:385
 msgid ""
@@ -8042,7 +8043,7 @@ msgstr "Existe en local"
 
 #: public_html/lists/admin/home.php:365
 msgid "admin"
-msgstr "administrateur"
+msgstr "Administrateur"
 
 #: public_html/lists/admin/send_core.php:538
 msgid "Removed Attachment "
@@ -8220,7 +8221,7 @@ msgstr "L'ajout de l'adresse e-mail a échouée, veuillez réessayer plus tard"
 # Suggested in Weblate: Page d'inscription
 #: public_html/lists/admin/home.php:164
 msgid "spage"
-msgstr "spage"
+msgstr "Page d'abonnement"
 
 #: public_html/lists/admin/messages.php:259,
 #: public_html/lists/admin/send_core.php:373,
@@ -8262,7 +8263,7 @@ msgstr ""
 
 #: public_html/lists/admin/bounces.php:158
 msgid "no unidentified bounces available"
-msgstr "il n'y a pas de messages rejetés non identifiés"
+msgstr "Il n'y a pas de messages rejetés non identifiés"
 
 #: public_html/lists/admin/spageedit.php:190
 msgid "General Information"
@@ -8398,7 +8399,7 @@ msgstr "Le rapport d'exécution sera envoyé par e-mail"
 #: public_html/lists/admin/import2.php:714,
 #: public_html/lists/admin/importadmin.php:327
 msgid "Test output"
-msgstr "Résultat test"
+msgstr "Résultat du test"
 
 #: public_html/lists/admin/msgstatus.php:30,
 #: public_html/lists/admin/members.php:89,
@@ -8468,7 +8469,7 @@ msgstr "URL à journaliser"
 
 #: public_html/lists/admin/bounces.php:130
 msgid "delete all unidentified (&gt; 2 months old)"
-msgstr "suppression de tous les non identifiés (âgés de plus de 2 mois)"
+msgstr "Suppression de tous les non identifiés (âgés de plus de 2 mois)"
 
 #: public_html/lists/admin/statsoverview.php:105,
 #: public_html/lists/admin/mclicks.php:75
@@ -8544,7 +8545,7 @@ msgstr "Valeur"
 
 #: public_html/lists/admin/editattributes.php:45
 msgid "add new"
-msgstr "ajouter nouveau"
+msgstr "Ajouter un nouveau"
 
 #: public_html/lists/admin/actions/statsoverview.php:159,
 #: public_html/lists/admin/actions/mviews.php:101,
@@ -8901,7 +8902,7 @@ msgstr "pagetitlehover:Règles des rebonds"
 
 #: public_html/lists/admin/lib.php:28
 msgid "blacklist email address"
-msgstr "adresse e-mail sur \"interdits d'envoi\""
+msgstr "Adresse e-mail sur \"interdits d'envoi\""
 
 #: public_html/lists/admin/initialise.php:77
 msgid "Please enter your email address."
@@ -8922,7 +8923,7 @@ msgstr "L'information a été mise à jour à partir de l'importation"
 
 #: public_html/lists/admin/members.php:206
 msgid "add user"
-msgstr "ajouter l'utilisateur"
+msgstr "Ajouter l'utilisateur"
 
 #: public_html/databasestructure.php:325
 msgid "pagetitle:mviews"
@@ -8961,7 +8962,7 @@ msgstr "Ajout d'une clé unique <b>%s</b> à %s</li>"
 
 #: public_html/lists/admin/import2.php:362
 msgid "Import Attributes"
-msgstr "Importer Attributs"
+msgstr "Importer des attributs"
 
 #: public_html/lists/admin/import3.php:271
 msgid ""
@@ -9035,7 +9036,7 @@ msgstr "Abonnement aux listes"
 
 #: public_html/lists/admin/messages.php:304
 msgid "Suspending all"
-msgstr "Suspendre tous"
+msgstr "Suspendre tout"
 
 #: public_html/lists/admin/defaultconfig.php:284
 msgid "URL where subscribers can sign up"
@@ -9071,7 +9072,7 @@ msgstr "Retour aux attributs"
 
 #: public_html/lists/admin/readtestmail.php:56
 msgid "test Processing info"
-msgstr "messages dans la boîte aux lettres de réception"
+msgstr "Information concernant le traitement de test"
 
 #: public_html/lists/admin/runcommand.php:8,
 #: public_html/lists/admin/processbounces.php:9,
@@ -9086,7 +9087,7 @@ msgstr "Remerciements"
 
 #: public_html/lists/admin/user.php:347
 msgid "Are you sure you want to remove this subscriber from the system."
-msgstr "Êtes-vous certain·e de vouloir supprimer cet·te inscrit·e du système ?"
+msgstr "Êtes-vous certain·e de vouloir supprimer cet·te abonné·e du système ?"
 
 #: public_html/lists/admin/actions/subscription.php:74,
 #: public_html/lists/admin/actions/subscription.php:76
@@ -9169,7 +9170,7 @@ msgstr "Mise à jour échouée"
 
 #: public_html/lists/admin/login.php:5
 msgid "default login is"
-msgstr "l'identifiant par défaut est"
+msgstr "L'identifiant par défaut est"
 
 #: public_html/lists/admin/eventlog.php:97
 msgid "Filter"
@@ -9325,7 +9326,7 @@ msgstr "Résumé"
 
 #: public_html/lists/admin/bounces.php:18
 msgid "processed"
-msgstr "traité"
+msgstr "Traité"
 
 #: public_html/lists/admin/messages.php:288
 msgid "Marking as sent "
@@ -9360,7 +9361,7 @@ msgstr "Expression régulière"
 #: public_html/lists/admin/members.php:114,
 #: public_html/lists/admin/members.php:161
 msgid "subscribers were copied to"
-msgstr "les abonnés ont été copiés sur"
+msgstr "Les abonnés ont été copiés sur"
 
 #: public_html/lists/admin/messages.php:200,
 #: public_html/lists/admin/eventlog.php:32,
@@ -9478,7 +9479,7 @@ msgstr "Envoi de la version HTML à "
 
 #: public_html/lists/admin/lib.php:26
 msgid "unconfirm subscriber"
-msgstr "déconfirmer l'abonné"
+msgstr "Désinscrire l'abonné"
 
 #: public_html/lists/admin/send_core.php:405
 msgid "Please enter a message"
@@ -9531,7 +9532,7 @@ msgstr " Votre compte a été désactivé"
 
 #: public_html/lists/admin/reconcileusers.php:225
 msgid "Blacklisting subscribers with more than"
-msgstr "bloquer les abonnés qui ont plus de"
+msgstr "Bloquer les abonnés qui ont plus de"
 
 # Suggested in Weblate: Importer des abonnés à partir d'un fichier contenant leur email et des informations complémentaires
 #: public_html/databasestructure.php:236
@@ -9711,7 +9712,7 @@ msgstr ""
 
 #: public_html/lists/admin/importadmin.php:296
 msgid "Import some more administrators"
-msgstr "Importe quelque administrateurs de plus"
+msgstr "Importe quelques administrateurs de plus"
 
 #: public_html/lists/admin/lib.php:2069
 msgid "Sign up to receive news and updates about phpList "
@@ -9735,7 +9736,7 @@ msgstr "Apercu"
 #: public_html/lists/admin/index.php:378
 #, php-format
 msgid "invalidated login from %s for %s (error %s)"
-msgstr "identification invalide de %s sur %s (erreur %s)"
+msgstr "Identification invalide de %s sur %s (erreur %s)"
 
 #: public_html/databasestructure.php:10
 msgid "Value of this attribute for this subscriber"
@@ -9841,7 +9842,7 @@ msgstr "messages rejetés ne correspondant pas à des règles"
 #: public_html/lists/admin/import1.php:144,
 #: public_html/lists/admin/import1.php:234
 msgid "Test output:"
-msgstr "Résultat test :"
+msgstr "Résultat du test :"
 
 #: public_html/lists/admin/bounce.php:225
 msgid "Date"
@@ -9891,7 +9892,7 @@ msgstr "Contenu du message absent"
 
 #: public_html/lists/admin/bouncerule.php:52
 msgid "delete and next"
-msgstr "supprimer et suivant"
+msgstr "Supprimer et suivant"
 
 #: public_html/lists/admin/upgrade.php:40
 msgid "Force Upgrade"
@@ -9908,11 +9909,11 @@ msgstr "Toujours ajouter le code de suivi Google aux campagnes"
 
 #: public_html/lists/admin/bouncerules.php:89
 msgid "rule"
-msgstr "règle"
+msgstr "Règle"
 
 #: public_html/lists/admin/readtestmail.php:242
 msgid "tests"
-msgstr "tests"
+msgstr "Tests"
 
 #: public_html/lists/admin/send_core.php:964
 msgid "or"
@@ -10400,7 +10401,7 @@ msgstr ""
 #: public_html/lists/admin/import2.php:709,
 #: public_html/lists/admin/importadmin.php:321
 msgid "default is TAB"
-msgstr "par défaut TAB"
+msgstr "Par défaut TAB"
 
 #: public_html/lists/admin/index.php:539
 msgid "automatic updater"
@@ -10687,7 +10688,7 @@ msgstr "Ordre de la liste"
 
 #: public_html/lists/admin/index.php:495
 msgid "good evening"
-msgstr "bonsoir"
+msgstr "Bonsoir"
 
 #: public_html/lists/admin/send_core.php:945,
 #: public_html/lists/admin/send_core.php:947,
@@ -10735,7 +10736,7 @@ msgstr "Générer les règles pour les messages rejetés"
 
 #: public_html/lists/admin/importadmin.php:246
 msgid "added to attribute"
-msgstr "ajoutée à l'attribut"
+msgstr "Ajoutée à l'attribut"
 
 #: public_html/lists/admin/send_core.php:940,
 #: public_html/lists/admin/users.php:324
