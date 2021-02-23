@@ -59,6 +59,7 @@ Vagrant.configure("2") do |config|
       service apache2 stop
       service mysqld start
       cp -fv tests/ci/config.php public_html/lists/config/config.php
+      cp -fv tests/default.behat.yml tests/behat.yml
       [[ ! -d public_html/lists/admin/ui/phplist-ui-bootlist ]] && { 
         cd public_html/lists/admin/ui/ 
         wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
