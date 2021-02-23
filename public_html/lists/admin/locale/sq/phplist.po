@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Albanian (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-02-16 14:14+0000\n"
+"Last-Translator: Mariana Balla <marianaballa848@gmail.com>\n"
 "Language-Team: Albanian <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/sq/>\n"
+"phplist3/sq/>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Shkarkoni versionin e ri"
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr "Dërgoji këtë abonenti emaile HTML"
+msgstr "Dërgoji këtij abonenti email-e në format HTML"
 
 #: public_html/lists/admin/plugins.php:232
 msgid "Plugin is up-to-date"
@@ -154,7 +154,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/addemail.php:26
 msgid "Adding email address failed, try again later"
-msgstr "Shtimi i adresës së email-it dështoi, provoni përsëri."
+msgstr "Shtimi i adresës së email-it dështoi, provoni përsëri"
 
 #: public_html/lists/admin/message.php:122
 msgid "Embargoed until"
@@ -283,7 +283,7 @@ msgstr "Kategoritë për listat. Ndajini me presje."
 #: public_html/lists/admin/actions/statsoverview.php:139,
 #: public_html/lists/admin/users.php:475
 msgid "bncs"
-msgstr "bncs"
+msgstr "Kthime"
 
 #: public_html/lists/admin/convertstats.php:72
 msgid "converting data"
@@ -542,7 +542,7 @@ msgstr "Bëj atë më lart"
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
-msgstr "Pjesa fundore për një mesazh"
+msgstr "Pjesa fundore për një mesazhi"
 
 #: public_html/lists/admin/actions/export.php:64
 #, php-format
@@ -652,9 +652,7 @@ msgstr "Pasardhësja"
 #: public_html/lists/admin/actions/import2.php:496
 msgid ""
 "All the emails already exist in the database and are member of the lists"
-msgstr ""
-"Të gjitha email-et ekzistojnë gjenden akoma në databazë dhe janë pjesë e "
-"listave."
+msgstr "Të gjitha email-et gjenden në databazë dhe janë pjesë e listave."
 
 #: public_html/lists/admin/connect.php:1734,
 #: public_html/lists/admin/systemstats.php:31
@@ -699,7 +697,7 @@ msgstr "Asnje ngjarje e disponueshme"
 
 #: public_html/databasestructure.php:370
 msgid "list-organisation settings"
-msgstr ""
+msgstr "cilësimet e listë-organizatës"
 
 #: public_html/databasestructure.php:269
 msgid "pagetitle:defaults"
@@ -796,7 +794,7 @@ msgstr "Datat dhe orët janë relative në lidhje me Kohën e Serverit"
 #: public_html/lists/admin/actions/listbounces.php:56,
 #: public_html/lists/admin/actions/msgbounces.php:76
 msgid "Total bounces"
-msgstr "Gjithsej kthehet "
+msgstr "Kthimet totale"
 
 #: public_html/lists/admin/actions/campaigns.php:56
 msgid "viewed"
@@ -821,7 +819,7 @@ msgstr "Data kur u morr"
 
 #: public_html/lists/admin/about.php:7
 msgid "Announcements"
-msgstr ""
+msgstr "Njoftime"
 
 #: public_html/lists/admin/actions/processqueue.php:718
 #, php-format
@@ -1004,7 +1002,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
-msgstr "A e konfirmoi ky abonent manualisht"
+msgstr "Është ky abonent i konfirmuar manualisht"
 
 #: public_html/lists/admin/userclicks.php:78
 #, php-format
@@ -1087,9 +1085,8 @@ msgid " or update"
 msgstr "përditëso"
 
 #: public_html/lists/admin/statsoverview.php:145
-#, fuzzy
 msgid "Opened "
-msgstr "U hap"
+msgstr "Hapur "
 
 #: public_html/lists/admin/actions/mclicks.php:85
 msgid "links"
@@ -1376,7 +1373,7 @@ msgstr "..U krye, duke ngarkuar kthimin tjetër.."
 
 #: public_html/databasestructure.php:72
 msgid "Sent as Text and HTML"
-msgstr "Dërgoje si Tekst dhe HTML"
+msgstr "Dërguar si tekst dhe HTML"
 
 #: public_html/lists/admin/plugins.php:261
 msgid "version"
@@ -1515,7 +1512,7 @@ msgstr "Fushatat e fshira"
 
 #: public_html/lists/admin/actions/processqueue.php:507
 msgid "Time now "
-msgstr "Koha tani"
+msgstr "Koha tani "
 
 #: public_html/databasestructure.php:197
 msgid "Regex"
@@ -1617,7 +1614,7 @@ msgstr "pagetitle:tiparet"
 
 #: public_html/lists/admin/community.php:48
 msgid "Donate to support phpList development"
-msgstr ""
+msgstr "Dhuroni për të mbështetur zhvillimin e phpList"
 
 #: public_html/lists/admin/community.php:9
 msgid "Open Source"
@@ -1636,7 +1633,7 @@ msgstr "Menaxho abonentët"
 #: public_html/databasestructure.php:26,
 #: public_html/databasestructure.php:145
 msgid "Is this account disabled?"
-msgstr "A është kjo llogari e çaktivizuar?"
+msgstr "Është kjo llogari e çaktivizuar?"
 
 #: public_html/databasestructure.php:239
 msgid "pagetitle:import"
@@ -1666,7 +1663,7 @@ msgstr "Të dhëna shtesë"
 #: public_html/databasestructure.php:34,
 #: public_html/databasestructure.php:96
 msgid "Description"
-msgstr "Përshkrim"
+msgstr "Përshkrimi"
 
 #: public_html/lists/admin/send_core.php:323
 msgid "Uploaded file not properly received, empty file"
@@ -1708,7 +1705,7 @@ msgstr "Dërguar si HTML"
 
 #: public_html/databasestructure.php:191
 msgid "hash value of URL"
-msgstr ""
+msgstr "Vlera hash e URL"
 
 #: public_html/lists/admin/send_core.php:763
 msgid "no repetition"
@@ -2123,7 +2120,7 @@ msgstr "pagetitlehover:redaktolistën"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
-msgstr "pagetitlehover:heqjemasive"
+msgstr "Fshi abonuesit nga sistemi "
 
 #: public_html/lists/admin/defaults.php:44
 msgid "Loading"
@@ -2140,7 +2137,7 @@ msgstr "hyrje e pavërtetuar nga %s për %s (gabim %s)"
 
 #: public_html/databasestructure.php:79
 msgid "Admin who is owner"
-msgstr "Admini i cili është pronar"
+msgstr "Administratori i cili është pronar"
 
 #: public_html/lists/admin/uclicks.php:88
 msgid "URL Click Statistics"
@@ -2352,7 +2349,7 @@ msgstr "Dokumentacioni për këtë gabim"
 
 #: public_html/databasestructure.php:365
 msgid "security settings"
-msgstr ""
+msgstr "cilësimet e sigurisë"
 
 #: public_html/lists/admin/actions/processqueue.php:527
 msgid "Processing has been suspended by your ISP, please try again later"
@@ -2374,7 +2371,7 @@ msgstr "Abonuar te %s"
 
 #: public_html/lists/admin/community.php:33
 msgid "Support community"
-msgstr ""
+msgstr "Komuniteti për mbështetje"
 
 #: public_html/lists/admin/send_core.php:510
 msgid "Email address not found to send test message."
@@ -2404,7 +2401,7 @@ msgstr "Abonentët që klikuan në URL \"%s\" përgjatë gjithë fushatave"
 
 #: public_html/databasestructure.php:298
 msgid "pagetitlehover:eventlog"
-msgstr "pagetitlehover:dokumentuesiieventeve"
+msgstr "Shaq disa ngjarje interesante që kanë ndodhur në phpList "
 
 #: public_html/lists/admin/home.php:216
 msgid "preparesend"
@@ -2505,7 +2502,7 @@ msgstr "DËSHTOI"
 
 #: public_html/databasestructure.php:52
 msgid "reply-to"
-msgstr "përgjigju-tek"
+msgstr "përgjigju tek"
 
 #: public_html/lists/admin/connect.php:1433
 msgid "There are no lists available"
@@ -2677,7 +2674,7 @@ msgstr "Përmbajtja"
 #: public_html/lists/admin/phpListAdminAuthentication.php:54
 msgid "Admin authentication has changed, please update your admin module"
 msgstr ""
-"Vërtetësimi i administratorit ka ndryshuar, ju lutem përditësoni modulin "
+"Autentifikimi i administratorit ka ndryshuar, ju lutem përditësoni modulin "
 "tuaj të administratorit"
 
 #: public_html/databasestructure.php:40
@@ -2733,7 +2730,7 @@ msgstr "shto të re"
 
 #: public_html/lists/admin/actions/processqueue.php:1246
 msgid "not sending to "
-msgstr "nuk i është dërguar"
+msgstr "nuk i është dërguar "
 
 #: public_html/lists/admin/community.php:16
 msgid "phpList is Open Source software"
@@ -2956,7 +2953,7 @@ msgstr "Themelimi i phpList"
 
 #: public_html/databasestructure.php:198
 msgid "hash value of regex"
-msgstr ""
+msgstr "vlera hash e regex"
 
 #: public_html/lists/admin/actions/processqueue.php:42
 msgid "Unable get lock for processing"
@@ -3027,7 +3024,7 @@ msgstr "pagetitlehover:importo"
 
 #: public_html/lists/admin/statsoverview.php:172
 msgid "Click Per View Rate"
-msgstr ""
+msgstr "Klikim për Normë Shfaqeje"
 
 #: public_html/lists/admin/template.php:106,
 #: public_html/lists/admin/template.php:113
@@ -3144,7 +3141,7 @@ msgstr "pagetitle:adminët"
 
 #: public_html/databasestructure.php:92
 msgid "Attachment ID"
-msgstr "ID e Bashkëngjitjes"
+msgstr "ID e bashkëngjitjes"
 
 #: public_html/lists/admin/home.php:236
 msgid "Configure Templates"
@@ -3404,7 +3401,7 @@ msgstr "Fshi abonuesit me më shumë se"
 #: public_html/lists/admin/bouncerules.php:125,
 #: public_html/lists/admin/spageedit.php:427
 msgid "Save Changes"
-msgstr "Ruaj Ndryshimet "
+msgstr "Ruaj ndryshimet"
 
 #: public_html/lists/admin/actions/msgstatus.php:102
 msgid "limit reached"
@@ -3440,7 +3437,7 @@ msgstr "Kjo është një fushatë testimi."
 
 #: public_html/lists/admin/community.php:44
 msgid "Developer community"
-msgstr ""
+msgstr "Komuniteti i zhvilluesve"
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
@@ -3477,7 +3474,7 @@ msgstr "Shikoni kthimet"
 
 #: public_html/databasestructure.php:13
 msgid "Is this subscriber confirmed"
-msgstr "A është ky abonent i konfirmuar"
+msgstr "Është ky abonent i konfirmuar"
 
 #: public_html/lists/admin/message.php:145
 msgid "Attachments for this campaign"
@@ -3581,7 +3578,7 @@ msgstr "Të gjitha listave u është caktuar tashmë një kategori"
 
 #: public_html/lists/admin/actions/import1.php:9
 msgid "File not found"
-msgstr "Skedari nuk u gjend."
+msgstr "Skedari nuk u gjend"
 
 #: public_html/lists/index.php:1045
 msgid ""
@@ -3634,16 +3631,15 @@ msgid "Process Next Batch"
 msgstr "Përpuno Tufën Tjetër"
 
 #: public_html/lists/admin/processbounces.php:410
-#, fuzzy, php-format
+#, php-format
 msgid "%d bounces to process"
-msgstr "%d kthime për tu ripërpunuar"
+msgstr "%d kthime për tu përpunuar"
 
 # Suggested in Weblate: Zgjidhni një fushatë ekzistuese të papërfunduar për të punuar
 # Suggested in Weblate: Zgjidhni një mesazh të papërfunduar ekzistues për të punuar , gabim gabim
 #: public_html/lists/admin/send.php:103
-#, fuzzy
 msgid "Choose an existing draft campaign to work on"
-msgstr "Zgjidhni një fushatë të papërfunduar ekzistuese për të punuar"
+msgstr "Zgjidhni një fushatë ekzistuese të papërfundua për të punuar"
 
 #: public_html/lists/admin/index.php:715
 msgid ""
@@ -3742,7 +3738,7 @@ msgstr "përdoruesi u gjend"
 #: public_html/lists/admin/export.php:82
 #, php-format
 msgid "Export subscribers on %s"
-msgstr "Eksporto abonentët tek %s"
+msgstr "<h4>Eksporto abonuesit tek %s </h4>"
 
 #: public_html/lists/admin/import4.php:120
 msgid "No users to copy, is the prefix correct?"
@@ -3899,7 +3895,7 @@ msgstr "PO"
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr "E hapur"
+msgstr "E vendosur"
 
 #: public_html/lists/admin/index.php:493
 msgid "good afternoon"
@@ -3916,7 +3912,7 @@ msgstr "fjalëkalimi"
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
 msgid "Last time password was changed"
-msgstr "Hera e fundit kur fjalëkalimi u ndryshua"
+msgstr "Hera e fundit që fjalëkalimi u ndryshua"
 
 #: public_html/lists/admin/message.php:7
 msgid "Please select a message to display"
@@ -4119,12 +4115,12 @@ msgid ""
 "activate.      It will however, not catch every single bounce, so it will be "
 "necessary to add new rules over      time when new bounces come in."
 msgstr ""
-"Momentalisht ju nuk keni rregulla të përcaktuar.     Ju mund të klikoni "
+"Momentalisht ju nuk keni rregulla të përcaktuar.  Ju mund të klikoni "
 "\"Gjenero Rregulla Kthimi\" në mënyrë që të gjeneroni automatikisht rregulla "
-"nga kthimet tuaja ekzistuese.      Kjo do të rezultojë në shumë rregulla të "
-"cilat do të duhet t'i rishikoni dhe aktivizoni.      Gjithsesi, nuk do të "
-"kapë çdo kthim të vetëm, kështu që do të jetë e nevojshme të shtohen "
-"rregulla të reja përgjatë      kohës kur kthime të reja të shfaqen."
+"nga kthimet ekzistuese. Kjo do të rezultojë në shumë rregulla të cilat do të "
+"duhet t'i rishikoni dhe aktivizoni. Gjithsesi, nuk do të kapë çdo kthim, "
+"kështu që do të jetë e nevojshme të shtohen rregulla të reja përgjatë kohës "
+"kur kthime të reja të shfaqen."
 
 #: public_html/lists/admin/userclicks.php:198,
 #: public_html/lists/admin/mclicks.php:76,
@@ -4149,7 +4145,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:90
 msgid "Name of Dataitem"
-msgstr "Emri i sendiTëdhënë"
+msgstr "Emri i të dhënës"
 
 #: public_html/lists/admin/usermgt.php:9
 msgid "search subscribers"
@@ -4193,9 +4189,8 @@ msgstr "ruaj ndryshimet"
 
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
-#, fuzzy
 msgid "unique clicks"
-msgstr "Pamje Unike"
+msgstr "Klikime unike"
 
 #: public_html/lists/admin/template.php:359,
 #: public_html/lists/admin/send_core.php:994,
@@ -4268,7 +4263,7 @@ msgstr "U shtua tek lista e zezë për arsyen %s"
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
 msgid "Reading emails from file ... "
-msgstr "Duke lexuar emailet nga skedari ... "
+msgstr "Duke lexuar email-et nga skedari ..."
 
 #: public_html/lists/admin/actions/reconcileusers.php:22,
 #: public_html/lists/admin/actions/reconcileusers.php:44
@@ -4367,9 +4362,9 @@ msgid "html"
 msgstr "html"
 
 #: public_html/lists/admin/processbounces.php:402
-#, fuzzy, php-format
+#, php-format
 msgid "%d bounces to fetch from the mailbox"
-msgstr "kthimet për tu tërhequr nga kutia e mesazheve"
+msgstr "%d kthime për tu tërhequr nga kutia e mesazheve"
 
 #: public_html/lists/admin/send_core.php:940,
 #: public_html/lists/admin/users.php:324
@@ -4415,7 +4410,7 @@ msgstr ""
 #: public_html/lists/admin/plugins.php:38
 msgid "Invalid download URL, please reload the page and try again"
 msgstr ""
-"URL shkarkimi e pavlefshme, ju lutem ringarkoni faqen dhe provoni përsëri."
+"URL shkarkimi e pavlefshme, ju lutem ringarkoni faqen dhe provoni përsëri"
 
 #: public_html/lists/admin/lib.php:385
 msgid ""
@@ -4469,7 +4464,7 @@ msgstr "Përfundoi, Gjithçka u krye"
 
 #: public_html/databasestructure.php:367
 msgid "campaign settings"
-msgstr ""
+msgstr "cilësimet e fushatave"
 
 #: public_html/lists/admin/actions/processqueue.php:1286
 msgid "Subscriber marked unconfirmed for invalid email address"
@@ -4793,7 +4788,7 @@ msgstr "Konfiguroni Tiparet për administratorët"
 
 #: public_html/databasestructure.php:64
 msgid "query to select the subscribers for this message"
-msgstr "kriteri për të zgjedhur abonentët për këtë mesazh"
+msgstr "kërkesa për të zgjedhur abonentët për këtë mesazh"
 
 #: public_html/lists/admin/list.php:225
 msgid "Search lists"
@@ -4816,7 +4811,7 @@ msgstr "kohë shumë e shkurtër"
 
 #: public_html/lists/admin/community.php:45
 msgid "Developer resources &amp; documentation"
-msgstr ""
+msgstr "Burime &amp; dokumentim për zhvilluesit"
 
 #: public_html/lists/admin/processbounces.php:436,
 #: public_html/lists/admin/processbounces.php:445,
@@ -4935,9 +4930,9 @@ msgstr "përdorues"
 
 # Suggested in Weblate: sdfsdf
 #: public_html/lists/admin/listbounces.php:76
-#, fuzzy, php-format
+#, php-format
 msgid "%s bounces to list %s"
-msgstr "%d kthime ne list %s"
+msgstr "%d kthime në listë %s"
 
 #: public_html/lists/admin/bounce.php:225
 msgid "Date"
@@ -5010,7 +5005,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:107
 msgid "IP"
-msgstr ""
+msgstr "Adresa IP"
 
 #: public_html/lists/admin/actions/import2.php:160,
 #: public_html/lists/admin/import2.php:586
@@ -5195,7 +5190,7 @@ msgstr "Email i pavlefshëm"
 
 #: public_html/lists/admin/community.php:35
 msgid "Independent professional support"
-msgstr ""
+msgstr "Mbështetje e pavarur pfofesionale"
 
 #: public_html/databasestructure.php:140
 msgid "Time modified"
@@ -5259,7 +5254,7 @@ msgstr "Shenjoji të Gjitha si të Dërguara"
 #: public_html/lists/admin/actions/processqueue.php:613
 #, php-format
 msgid "%d campaigns to process."
-msgstr "%d fushata për të përpunuar"
+msgstr "%d fushata për të përpunuar."
 
 #: public_html/databasestructure.php:212
 msgid "pagetitlehover:about"
@@ -5334,7 +5329,7 @@ msgstr ""
 
 #: public_html/lists/admin/community.php:34
 msgid "Support forum"
-msgstr ""
+msgstr "Forumi për mbështetje"
 
 #: public_html/lists/index.php:1160
 #, php-format
@@ -5382,9 +5377,8 @@ msgstr ""
 
 # Suggested in Weblate: Shtesë
 #: public_html/lists/admin/plugins.php:188
-#, fuzzy
 msgid "Plugin"
-msgstr "Shtesat"
+msgstr "Shtesë"
 
 #: public_html/lists/admin/spage.php:104
 msgid "Are you sure you want to reset this subscription page template?"
@@ -5405,7 +5399,7 @@ msgstr "pagetitle:importoadmin"
 
 #: public_html/lists/admin/actions/import1.php:149
 msgid "Import of new subscriber"
-msgstr "Importi i abonentit të ri."
+msgstr "Import i një abonenuesi të ri."
 
 #: public_html/lists/admin/templates.php:71
 msgid "Add templates from default selection"
@@ -5466,7 +5460,7 @@ msgstr "%d rreshta të përpunuara"
 #: public_html/lists/admin/spageedit.php:299,
 #: public_html/databasestructure.php:53
 msgid "Message"
-msgstr "Mesazh"
+msgstr "Mesazhi"
 
 #: public_html/lists/admin/templates.php:11
 #, fuzzy
@@ -5596,10 +5590,13 @@ msgid ""
 "Help phpList to serve your needs more effectively by applying your skills "
 "and resources."
 msgstr ""
+"phpList është një përpjekje e komunitetit &mdash; kontributet tuaja "
+"fuqizojnë projektin. Ndihmoni phpList për të shërbyer nevojave tuaja në "
+"mënyrë më efektive duke aplikuar aftësitë dhe burimet tuaja."
 
 #: public_html/databasestructure.php:366
 msgid "reporting settings"
-msgstr ""
+msgstr "cilësimet e raportimeve"
 
 #: public_html/lists/admin/template.php:113
 msgid "does not exist"
@@ -5660,7 +5657,6 @@ msgid "pagetitle:usermgt"
 msgstr "pagetitle:menaxhimiipërdoruesit"
 
 #: public_html/lists/admin/plugins.php:358
-#, fuzzy
 msgid "Enabled"
 msgstr "E aktivizuar"
 
@@ -5753,7 +5749,7 @@ msgstr "Historia e Abonimeve"
 #: public_html/databasestructure.php:86,
 #: public_html/databasestructure.php:109
 msgid "Modified"
-msgstr "E modifikuar"
+msgstr "Modifikuar"
 
 #: public_html/lists/admin/send.php:158
 msgid ""
@@ -5869,14 +5865,14 @@ msgstr "Korrik"
 #: public_html/lists/admin/actions/updatetranslation.php:29
 #, php-format
 msgid "updated %d language terms"
-msgstr "Përditësim %d i termave të gjuhës."
+msgstr "%d terma gjuhësor të përditësuar"
 
 #: public_html/lists/admin/usercheck.php:50,
 #: public_html/lists/admin/users.php:384,
 #: public_html/databasestructure.php:28,
 #: public_html/databasestructure.php:29
 msgid "Foreign Key"
-msgstr "Çelës i huaj"
+msgstr "Çelës unik"
 
 #: public_html/lists/admin/actions/import2.php:97,
 #: public_html/lists/admin/import2.php:526,
@@ -5939,9 +5935,8 @@ msgstr ""
 "binarë si një Dokument Word.     "
 
 #: public_html/lists/admin/processqueue.php:77
-#, fuzzy
 msgid "stop processing"
-msgstr "Përpunim i gabuar"
+msgstr "Ndal përpunimin"
 
 #: public_html/lists/admin/actions/upgrade.php:14
 #, fuzzy, php-format
@@ -6016,7 +6011,7 @@ msgstr "Të gjitha kthimet janë fshirë"
 #: public_html/lists/admin/export.php:62
 msgid "Invalid security token. Please reload the page and try again."
 msgstr ""
-"Çelës i pavlefshëm sigurie. Ju lutem rifreskoni faqen dhe provoni përsëri."
+"Çelës sigurie i pavlefshëm. Ju lutem rifreskoni faqen dhe provoni përsëri."
 
 #: public_html/lists/admin/plugins.php:49
 msgid "Project"
@@ -6063,7 +6058,7 @@ msgstr "shiko përdoruesin"
 #: public_html/databasestructure.php:173,
 #: public_html/databasestructure.php:181
 msgid "Message ID"
-msgstr "ID e Mesazhit"
+msgstr "ID e mesazhit"
 
 #: public_html/databasestructure.php:134
 msgid "Editable?"
@@ -6106,7 +6101,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:984
 msgid "queue processing time has exceeded max processing time "
-msgstr "koha e përpunimit të rradhës ka kaluar kohën maksimale të përpunimit "
+msgstr "koha e përpunimit të rradhës ka kaluar kohën maksimale të përpunimit"
 
 #: public_html/lists/admin/send_core.php:1016
 msgid "email to alert when sending of this message has finished"
@@ -6174,7 +6169,7 @@ msgstr "pagetitlehover:testi stresues"
 
 #: public_html/lists/admin/community.php:46
 msgid "Documentation coordination"
-msgstr ""
+msgstr "Koordinimi i dokumentimit"
 
 #: public_html/lists/admin/defaultconfig.php:359
 msgid "Request for confirmation"
@@ -6223,7 +6218,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:21
 msgid "The plugin "
-msgstr "Shtesa"
+msgstr "Shtesa "
 
 #: public_html/lists/admin/templates.php:25
 msgid "No template have been defined"
@@ -6279,7 +6274,7 @@ msgstr "Fshi të gjitha hyrjet"
 
 #: public_html/lists/admin/bouncemgt.php:12
 msgid "View Bounces per campaign"
-msgstr ""
+msgstr "Shaq Kthimet për fushatë"
 
 #: public_html/lists/index.php:1133
 #, php-format
@@ -6447,7 +6442,7 @@ msgstr "E Premte"
 
 #: public_html/databasestructure.php:94
 msgid "The original location on the uploader machine"
-msgstr "Vendndodhja origjinale në pajisjen e ngarkuesit"
+msgstr "Vendndodhja origjinale në pajisjen ngarkuese"
 
 #: public_html/lists/admin/community.php:40
 msgid "Contribute to phpList"
@@ -6514,9 +6509,8 @@ msgstr "shiko kthimet sipas listave"
 
 #: public_html/lists/admin/actions/campaigns.php:57,
 #: public_html/lists/admin/mviews.php:217
-#, fuzzy
 msgid "Response time"
-msgstr "kohaepërgjigjes"
+msgstr "Koha e përgjigjes"
 
 #: public_html/lists/admin/export.php:95
 msgid "Export all subscribers"
@@ -6613,7 +6607,7 @@ msgstr "Nuk ka të dhëna të tilla"
 
 #: public_html/lists/admin/actions/import1.php:123
 msgid "Import of existing subscriber"
-msgstr "Importi i abonentit ekzistues."
+msgstr "Import i një abonuesi ekzistues"
 
 #: public_html/lists/admin/spageedit.php:256
 msgid "Offer checkbox for HTML"
@@ -6703,7 +6697,7 @@ msgstr "Subjekti"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:100
 msgid "No such account"
-msgstr "Nuk ka llogari të tillë "
+msgstr "Nuk ka llogari të tillë"
 
 #: public_html/lists/admin/import2.php:723,
 #: public_html/lists/admin/import1.php:238
@@ -6923,7 +6917,7 @@ msgstr "Faqja e paravendosur e abonimit kur janë shumë"
 #: public_html/databasestructure.php:4,
 #: public_html/databasestructure.php:149
 msgid "order of listing"
-msgstr "rradhitja e listimit"
+msgstr "Rradhitja e listimit"
 
 #: public_html/lists/admin/defaultconfig.php:173
 msgid "Webmaster"
@@ -6987,7 +6981,7 @@ msgstr "%d Emaile të Pavlefshëm u gjendën."
 
 #: public_html/databasestructure.php:364
 msgid "system settings"
-msgstr ""
+msgstr "cilësimet e sistemit"
 
 #: public_html/lists/admin/home.php:60
 msgid "View current campaigns"
@@ -6995,7 +6989,7 @@ msgstr "Shiko fushatat aktuale"
 
 #: public_html/databasestructure.php:74
 msgid "Sent as Text and PDF"
-msgstr "Dërgoje si Tekst dhe PDF"
+msgstr "Dërguar si tekst dhe PDF"
 
 #: public_html/lists/admin/lib.php:2041
 msgid "Remote queue processing has been activated successfully"
@@ -7067,7 +7061,7 @@ msgstr "Modifiko fushatën"
 
 #: public_html/databasestructure.php:368
 msgid "transactional settings"
-msgstr ""
+msgstr "cilësimet transaksionale"
 
 #: public_html/lists/admin/uclicks.php:140
 msgid "view subscribers who clicked"
@@ -7177,7 +7171,7 @@ msgstr "Koha e Krijimit"
 
 #: public_html/databasestructure.php:36
 msgid "Order of listing"
-msgstr "Radhitja e listës"
+msgstr "Rradhitja e listës"
 
 #: public_html/lists/admin/community.php:29
 msgid ""
@@ -7434,7 +7428,7 @@ msgstr "etiketim"
 
 #: public_html/lists/admin/actions/addemail.php:20
 msgid "Email address added"
-msgstr "Adresa e email-it u shtua."
+msgstr "Adresa e email-it u shtua"
 
 #: public_html/lists/admin/import3.php:264
 msgid "Mark new users as HTML"
@@ -7485,7 +7479,7 @@ msgstr "Përserit derisa"
 
 #: public_html/databasestructure.php:369
 msgid "subscription-ui settings"
-msgstr ""
+msgstr "Cilësimet e ndërfaqjes së abonimeve"
 
 #: public_html/lists/admin/converttoutf8.php:77,
 #: public_html/lists/admin/converttoutf8.php:79,
@@ -8149,7 +8143,7 @@ msgstr "informacion mbi përpunimin e kthimit"
 
 #: public_html/lists/admin/processqueue.php:78
 msgid "resume processing"
-msgstr ""
+msgstr "Rifillo përpunimin"
 
 #: public_html/lists/admin/template.php:155
 msgid "Template saved"
@@ -8180,7 +8174,7 @@ msgstr ""
 #: public_html/lists/admin/uclicks.php:133,
 #: public_html/databasestructure.php:65
 msgid "sent"
-msgstr "dërguar"
+msgstr "Dërguar"
 
 #: public_html/lists/admin/sendemaillib.php:953
 #, php-format
@@ -8237,7 +8231,7 @@ msgstr "ip"
 
 #: public_html/lists/admin/about.php:89
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentim"
 
 #: public_html/lists/admin/home.php:128
 msgid "List and user functions"
@@ -8282,7 +8276,7 @@ msgstr "pagetitle:historiaepërdoruesit"
 
 #: public_html/databasestructure.php:363
 msgid "general settings"
-msgstr ""
+msgstr "cilësimet e përgjithshme"
 
 #: public_html/lists/admin/msgstatus.php:27,
 #: public_html/lists/admin/actions/msgstatus.php:73,
@@ -8421,7 +8415,7 @@ msgstr "Emri i Hyrjes"
 #: public_html/lists/admin/actions/reconcileusers.php:39,
 #: public_html/lists/admin/actions/reconcileusers.php:68
 msgid "subscribers deleted"
-msgstr "Abonentët u fshinë."
+msgstr "Abonentët u fshinë"
 
 #: public_html/lists/admin/send_core.php:768,
 #: public_html/lists/admin/send_core.php:809
@@ -8956,7 +8950,7 @@ msgstr "pagetitle:importothjesht"
 
 #: public_html/lists/admin/actions/import1.php:210
 msgid "List subscriptions:"
-msgstr "Përshkrimet e listës"
+msgstr "Abonimet e listës:"
 
 #: public_html/lists/admin/actions/subscription.php:77
 msgid ""
@@ -9026,7 +9020,7 @@ msgstr "Shiko abonentët"
 
 #: public_html/databasestructure.php:371
 msgid "subscription settings"
-msgstr ""
+msgstr "Cilësimet e abonimit"
 
 #: public_html/lists/admin/login.php:104,
 #: public_html/lists/admin/admin.php:210
@@ -9180,7 +9174,7 @@ msgstr "detaj"
 #: public_html/lists/admin/phpListAdminAuthentication.php:46,
 #: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "your account has been disabled"
-msgstr "llogaria juaj është çaktivizuar"
+msgstr " llogaria juaj është çaktivizuar"
 
 #: public_html/lists/admin/import2.php:707,
 #: public_html/lists/admin/importadmin.php:321
@@ -9352,7 +9346,7 @@ msgstr "Asgjë"
 
 #: public_html/databasestructure.php:51
 msgid "tofield"
-msgstr "fushatek"
+msgstr "tek fusha"
 
 #: public_html/lists/admin/bounce.php:55,
 #: public_html/lists/admin/bounce.php:100
@@ -9490,7 +9484,7 @@ msgstr "Të gjithë administratorët ekzistojnë tashmë në bazën e të dhëna
 
 #: public_html/databasestructure.php:73
 msgid "Sent as PDF"
-msgstr "Dërgoje si PDF"
+msgstr "Dërguar si PDF"
 
 #: public_html/lists/admin/inc/interfacelib.php:1032
 msgid "Close this box"
@@ -9636,6 +9630,8 @@ msgid ""
 "The concept behind Open Source is collaboration. An organised network of "
 "many contributors where the whole is greater than the sum of its parts."
 msgstr ""
+"Koncepti pas Open Source është bashkëpunimi. Një rrjet i organizuar me shumë "
+"kontribues ku i tërë është më e madh se shuma e pjesëve të tij."
 
 #: public_html/lists/admin/actions/import2.php:147,
 #: public_html/lists/admin/import2.php:573
@@ -9699,7 +9695,7 @@ msgstr "Ju lutem zgjidhni"
 #: public_html/databasestructure.php:48,
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/lists/admin/send.php:152
 msgid "Please select the lists you want to exclude from this campaign"
@@ -9718,7 +9714,7 @@ msgstr "Duke shtuar bashkëngjitjet"
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr "A është ky abonent në listën e zezë"
+msgstr "Është ky abonent në listën e zezë"
 
 #: public_html/lists/admin/runcommand.php:22
 msgid "Command result"
@@ -9763,7 +9759,7 @@ msgstr "pagetitlehover:shabllonet"
 
 #: public_html/databasestructure.php:18
 msgid "Last Modified"
-msgstr "E Modifikuar së Fundmi"
+msgstr "Modifikuar së fundmi"
 
 #: public_html/lists/admin/class.phplistmailer.php:319
 #, php-format
@@ -9848,7 +9844,7 @@ msgstr "%d kthime ishin ri-përpunuar dhe %d kthime ishin ri-identifikuar"
 #: public_html/lists/admin/statsoverview.php:165,
 #: public_html/lists/admin/actions/statsoverview.php:146
 msgid "Unique Clicks"
-msgstr ""
+msgstr "Klikime unike"
 
 #: public_html/lists/admin/about.php:4
 #, fuzzy
@@ -9863,7 +9859,7 @@ msgstr "e aktivizuar"
 #: public_html/lists/admin/actions/import1.php:202,
 #: public_html/lists/admin/user.php:252
 msgid "No data changed"
-msgstr "Asnjë e dhënë e ndryshuar."
+msgstr "Asnjë e dhënë e ndryshuar"
 
 #: public_html/lists/admin/spageedit.php:359
 msgid "Select the lists to offer"
@@ -9925,7 +9921,7 @@ msgstr "Të dhënat meta"
 
 #: public_html/databasestructure.php:41
 msgid "Admin who is owner of this list"
-msgstr "Admin i cili është pronar i kësaj liste"
+msgstr "Administratori i cili është pronar i kësaj liste"
 
 #: public_html/lists/admin/upgrade.php:275
 msgid "Please do a manual conversion."
@@ -9987,7 +9983,7 @@ msgstr ""
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
-msgstr ""
+msgstr "Ju lutem vendosni kredencialet tuaja."
 
 #: public_html/lists/admin/community.php:47
 msgid "Translation platform"
@@ -10082,7 +10078,7 @@ msgstr "aplikimi i abonentëve"
 
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "This may be caused by a too slow or too busy server"
-msgstr "Kjo mund të shkaktohet nga një server i ngadaltë ose shumë i zënë."
+msgstr "Kjo mund të shkaktohet nga një server i ngadaltë ose shumë i zënë"
 
 #: public_html/lists/admin/send_core.php:1356
 msgid "Campaign Title"
@@ -10279,7 +10275,7 @@ msgstr "Mesazhi i dërguar"
 
 #: public_html/databasestructure.php:69
 msgid "Number Processed"
-msgstr "Numri i Përpunimeve"
+msgstr "Numri i përpunuar"
 
 #: public_html/lists/admin/lib.php:2052,
 #: public_html/lists/admin/processqueue.php:96
@@ -10402,3 +10398,10 @@ msgstr "Përditësuar nga %s"
 #: public_html/lists/admin/mclicks.php:82
 msgid "Unique subscribers who clicked"
 msgstr "Abonentë unikë që klikuan"
+
+#: public_html/lists/admin/export.php:32
+msgid ""
+"Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
+msgstr ""
+"Eksportimi i të gjithë abonuesve. Përdorni -l[listnumber] për të eksportuar "
+"abonuesit në një listë"
