@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Albanian (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: 2021-02-16 14:14+0000\n"
+"PO-Revision-Date: 2021-02-24 10:07+0000\n"
 "Last-Translator: Mariana Balla <marianaballa848@gmail.com>\n"
 "Language-Team: Albanian <http://translate.phplist.org/projects/phplist/"
 "phplist3/sq/>\n"
@@ -888,7 +888,7 @@ msgstr "Shtator"
 #: public_html/lists/admin/template.php:186,
 #: public_html/lists/admin/template.php:191
 msgid "Image name:"
-msgstr "Emri imazhit:"
+msgstr "Emri imazhit"
 
 #: public_html/lists/admin/users.php:407
 msgid "Download all users as CSV file"
@@ -1150,7 +1150,7 @@ msgstr "Duke dërguar në tufa prej %d mesazhesh"
 
 #: public_html/lists/admin/import4.php:66
 msgid "Table prefix:"
-msgstr "Prefixi tabelës:"
+msgstr "Prefiksi tabelës"
 
 #: public_html/databasestructure.php:342
 msgid "pagetitlehover:listbounces"
@@ -3050,7 +3050,7 @@ msgstr "Çfarë është përgatitja e një mesazhi"
 
 #: public_html/lists/admin/adminattributes.php:82
 msgid "Existing attributes:"
-msgstr "Tipar ekzistues"
+msgstr "Tipare ekzistuese:"
 
 #: public_html/lists/admin/actions/removeemptylists.php:5
 #, php-format
@@ -4272,7 +4272,7 @@ msgstr ""
 
 #: public_html/lists/admin/import4.php:87
 msgid "Overwrite Existing:"
-msgstr "Mbishkrim Ekzistues:"
+msgstr "Mbishkruaj ekzistuesën"
 
 #: public_html/lists/admin/actions/bounces.php:50
 msgid "time"
@@ -5528,7 +5528,7 @@ msgstr "Kryesore"
 
 #: public_html/lists/admin/import4.php:67
 msgid "Usertable prefix:"
-msgstr "Prefixi tabelës së përdoruesit:"
+msgstr "Prefiks i tabelës së përdoruesit"
 
 #: public_html/lists/admin/user.php:245
 msgid "(no data)"
@@ -7081,9 +7081,9 @@ msgid ""
 "database will be replaced by the imported information. Users are matched by "
 "email."
 msgstr ""
-"Nëse zgjedh \"Mbishkruaj mbi Ekzistuesin\", informacioni rreth një "
-"përdoruesi në databazë do të zëvendësohet nga informacioni i importuar. "
-"Përdoruesit janë përputhur nga email-i:"
+"Nëse zgjedh \"Mbishkruaj mbi ekzistuesin\", informacioni rreth një abonenti "
+"në databazë do të zëvendësohet nga informacioni i importuar. Përdoruesit "
+"janë përputhur nga email-i."
 
 #: public_html/lists/admin/send_core.php:567
 msgid "Forward"
@@ -7099,7 +7099,7 @@ msgstr "pagetitle:shabllonet"
 
 #: public_html/lists/admin/import4.php:65
 msgid "Database Name:"
-msgstr "Emri i bazës së të dhënave:"
+msgstr "Emri i bazës së të dhënave"
 
 #: public_html/lists/admin/bouncerule.php:55
 msgid "activate this rule and go to the next candidate"
@@ -7354,7 +7354,7 @@ msgstr "Vendos që abonenti të marrë tekst në vend të HTML"
 #: public_html/lists/admin/adminattributes.php:116,
 #: public_html/lists/admin/adminattributes.php:151
 msgid "Is this attribute required?:"
-msgstr "Është ky tipar i kërkuar?"
+msgstr "Është ky tipar i kërkuar?:"
 
 #: public_html/lists/admin/spageedit.php:221
 msgid "Intro"
@@ -8546,7 +8546,7 @@ msgstr "largo abonentin"
 
 #: public_html/lists/admin/import4.php:85
 msgid "Mark new users as HTML:"
-msgstr "Shënjo perdoruesit e rinj si HTML:"
+msgstr "Shënjo perdoruesit e rinj si HTML"
 
 #: public_html/lists/admin/importadmin.php:296
 msgid "Import some more administrators"
@@ -8730,7 +8730,7 @@ msgstr "Fshih"
 #: public_html/lists/admin/adminattributes.php:113,
 #: public_html/lists/admin/adminattributes.php:149
 msgid "Order of Listing:"
-msgstr "Renditja e listimit"
+msgstr "Renditja e listimit:"
 
 #: public_html/lists/admin/send.php:113
 msgid "age"
@@ -10141,7 +10141,7 @@ msgstr ""
 
 #: public_html/lists/admin/adminattributes.php:127
 msgid "Add a new Attribute:"
-msgstr "Shto një tipar të ri"
+msgstr "Shto një tipar të ri:"
 
 #: public_html/lists/admin/converttoutf8.php:85,
 #: public_html/lists/admin/converttoutf8.php:87,
