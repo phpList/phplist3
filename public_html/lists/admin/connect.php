@@ -723,7 +723,6 @@ $GLOBALS['pagecategories'] = array(
             'generatebouncerules',
             'initialise',
             'upgrade',
-            'update',
             'processqueue',
             'processbounces',
             'reindex',
@@ -737,7 +736,6 @@ $GLOBALS['pagecategories'] = array(
             'eventlog',
             'initialise',
             'upgrade',
-            'update',
             'bouncemgt',
             'processqueue',
             //     'processbounces',
@@ -799,9 +797,9 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
-if(!isSuperUser() || !ALLOW_UPDATER) {
-    unset($GLOBALS['pagecategories']['system']['pages']['update']);
-    unset($GLOBALS['pagecategories']['system']['menulinks']['update']);
+if (isSuperUser() && ALLOW_UPDATER) {
+    $GLOBALS['pagecategories']['system']['pages'][] = 'update';
+    $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
 }
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
@@ -1340,7 +1338,7 @@ function ListofLists($current, $fieldname, $subselect)
             $categoryhtml['all'] .= 'checked';
         }
         $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
-    
+
         $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
         if (!empty($current['allactive'])) {
             $categoryhtml['all'] .= 'checked="checked"';
