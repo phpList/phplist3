@@ -8,7 +8,8 @@
 
 ### Developing tests with Vagrant
 
-To develop acceptance tests locally, install Vagrant.
+To develop acceptance tests locally, install Vagrant. This allows you to run tests against 
+different versions of PHP.
 Find the line "PHPVERSION=7.4" and change it to the version of PHP you want to use.
 Put @wip in the feature you are working on, so that it doesn't interfere with Github CI.
 
@@ -75,7 +76,7 @@ Edit your phplist `config.php` [file](https://www.phplist.org/manual/ch028_insta
 
 ### First time
 
-Some tests can only be run once before they change the system state upon which they depend. These tests should only be run once, or only in automated testing environments like Travis. Execute these and all other tests together by running the following command from within your phpList 3 code root directory:
+Some tests can only be run once before they change the system state upon which they depend. These tests should only be run once, or only in automated testing environments like Github actions. Execute these and all other tests together by running the following command from within your phpList 3 code root directory:
 
 ```sh
 $ vendor/bin/behat
@@ -91,6 +92,16 @@ $ vendor/bin/behat --tags '~@initialise'
 
 This will run all tests except for those with the `initialise` tag.
 
+### Errors
+
+When you run it locally or using Vagrant, and a test fails, it will drop a screenshot of the page where it failed in
+tests/output/screenshots
+
+That way you can find out why it failed and update your test.
+
+
+
 #### TODO
 
 Add writing tests documentation.
+
