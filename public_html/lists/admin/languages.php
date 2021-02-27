@@ -355,9 +355,10 @@ class phplist_I18N
             $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
                 sql_escape(str_replace('"', '\"', $text)), $this->language), 1);
         }
-        $this->setCachedTranslation($text, stripslashes($tr[0]));
+        $translated = !empty($tr[0]) ? stripslashes($tr[0]) : '';
+        $this->setCachedTranslation($text, $translated);
 
-        return stripslashes($tr[0]);
+        return $translated;
     }
 
     public function pageTitle($page)
