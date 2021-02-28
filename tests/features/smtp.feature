@@ -1,3 +1,4 @@
+@wip
 Feature: SMTP Mail test
 
     @emptySentMail

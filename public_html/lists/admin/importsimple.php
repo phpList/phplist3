@@ -114,7 +114,7 @@ if (!empty($_POST['importcontent'])) {
                 $count['foundonblacklist']).PHP_EOL;
     }
 
-    echo ActionResult(nl2br($report));
+    echo Info(nl2br($report),true);
 
     if ($_GET['page'] == 'importsimple') {
         if (!empty($_GET['list'])) {

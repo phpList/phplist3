@@ -1,0 +1,8 @@
+Placing a robots.txt file in the web root directory can help stop anti-malware software or email servers
+"following" links in an email. That can lead to unauthorised unsubscriptions when UNSUBSCRIBE_JUMPOFF is set to 1.
+
+Create a robots.txt file in the web root directory with these lines or add to an existing robots.txt file
+adjusting if necessary to the actual directory in which phplist is installed.
+
+user-agent: *
+disallow: /lists/
