@@ -220,7 +220,11 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
 {
     global $tables;
     $useremailQ = Sql_fetch_row_query(sprintf('select email from %s where id = %d', $tables['user'], $userid));
-    $useremail = $useremailQ[0];
+    if (empty($useremailQ)) {
+        $useremail = "";
+    } else {
+        $useremail = $useremailQ[0];
+    }
 
     if ($bounceDate === null) {
         $bounceDate = date('Y-m-d H:i', time());
@@ -362,7 +366,12 @@ function processPop($server, $user, $password)
     set_time_limit(6000);
 
     if (!TEST) {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
+        ## PHP8.0.0 and 8.0.1 bug https://bugs.php.net/bug.php?id=80800
+        if (PHP_VERSION_ID ==  80001 || PHP_VERSION_ID ==  80000) {
+          $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
+        } else {
+          $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
+        }           
     } else {
         $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
     }
@@ -415,7 +424,11 @@ function processMessages($link, $max = 3000)
     if (TEST) {
         echo s('Running in test mode, not deleting messages from mailbox').'<br/>';
     } else {
-        echo s('Processed messages will be deleted from mailbox').'<br/>';
+        if (PHP_VERSION_ID ==  80001 || PHP_VERSION_ID ==  80000) {
+            echo s('Due to a bug in your PHP version, processed messages will not be deleted from the mailbox').'<br/>';
+        } else {
+            echo s('Processed messages will be deleted from the mailbox').'<br/>';
+        }   
     }
     $nberror = 0;
 //  for ($x=1;$x<150;$x++) {
