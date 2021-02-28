@@ -365,16 +365,7 @@ function processPop($server, $user, $password)
     }
     set_time_limit(6000);
 
-    if (!TEST) {
-        ## PHP8.0.0 and 8.0.1 bug https://bugs.php.net/bug.php?id=80800
-        if (PHP_VERSION_ID ==  80001 || PHP_VERSION_ID ==  80000) {
-          $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
-        } else {
-          $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
-        }           
-    } else {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
-    }
+    $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
 
     if (!$link) {
         outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $server: ".imap_last_error());
@@ -424,11 +415,7 @@ function processMessages($link, $max = 3000)
     if (TEST) {
         echo s('Running in test mode, not deleting messages from mailbox').'<br/>';
     } else {
-        if (PHP_VERSION_ID ==  80001 || PHP_VERSION_ID ==  80000) {
-            echo s('Due to a bug in your PHP version, processed messages will not be deleted from the mailbox').'<br/>';
-        } else {
-            echo s('Processed messages will be deleted from the mailbox').'<br/>';
-        }   
+        echo s('Processed messages will be deleted from the mailbox').'<br/>';
     }
     $nberror = 0;
 //  for ($x=1;$x<150;$x++) {
@@ -466,7 +453,11 @@ function processMessages($link, $max = 3000)
     flush();
     outputProcessBounce(s('Closing mailbox, and purging messages'));
     set_time_limit(60 * $num);
-    imap_close($link);
+    if (!TEST) {
+        imap_close($link, CL_EXPUNGE);
+    } else {
+        imap_close($link);
+    }
 
     return $report;
 }
