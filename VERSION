@@ -2,4 +2,4 @@
 # this automates publishing a new version, when it's tagged
 # if you don't understand this, don't worry. You don't need this file
 VERSION=3.6.2
-DEVVERSION=3.6.2-RC1
+DEVVERSION=3.6.3-RC1
