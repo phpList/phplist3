@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2021-02-15 21:50+0000\n"
-"Last-Translator: Michiel <michiel@phplist.com>\n"
+"PO-Revision-Date: 2021-03-17 16:07+0000\n"
+"Last-Translator: Duncan Cameron <phplist@dcameron.me.uk>\n"
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
 "Language: en\n"
@@ -4205,9 +4205,8 @@ msgid "email to alert when sending of this message has finished"
 msgstr "Email address to alert when sending of this campaign has finished"
 
 #: public_html/lists/admin/send_core.php:1039
-#, fuzzy
 msgid "Add analytics tracking code"
-msgstr "Add Google Analytics tracking code"
+msgstr "Add analytics tracking code"
 
 #: public_html/lists/admin/send_core.php:1072
 msgid "Reset click statistics"
@@ -8360,14 +8359,12 @@ msgid "Default for 'address to alert when sending finishes'"
 msgstr "Default for 'email address to alert when sending finishes'"
 
 #: public_html/lists/admin/defaultconfig.php:160
-#, fuzzy
 msgid "Always add analytics tracking code to campaigns"
-msgstr "Always add Google tracking code to campaigns"
+msgstr "Always add analytics tracking code to campaigns"
 
 #: public_html/lists/admin/defaultconfig.php:168
-#, fuzzy
 msgid "Analytics tracking code to add to campaign URLs"
-msgstr "Always add Google tracking code to campaigns"
+msgstr "Analytics tracking code to add to campaign URLs"
 
 #: public_html/lists/admin/defaultconfig.php:176
 msgid ""
