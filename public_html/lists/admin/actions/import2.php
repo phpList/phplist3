@@ -410,9 +410,8 @@ if ($total > 0) {
                         }
                     }
                     if (!$information_changed) {
-                        $history_entry .= "\nNo user details changed";
+                        $history_entry .= "No user details changed\n";
                     }
-                    addUserHistory($user['systemvalues']['email'], 'Import by '.adminName(), $history_entry);
                 }
 
                 //add this user to the lists identified, except when they are blacklisted
@@ -425,7 +424,10 @@ if ($total > 0) {
                         $query = 'insert ignore INTO '.$tables['listuser']." (userid,listid,entered) values($userid,$listid,now())";
                         $result = Sql_query($query, 1);
                         // if the affected rows is 0, the user was already subscribed
-                        $addition = $addition || Sql_Affected_Rows() == 1;
+                        if (Sql_Affected_Rows() == 1) {
+                            $addition = 1;
+                            $history_entry .= s('Subscribed to %s', listName($key))."\n";
+                        }
                         $listoflists .= '  * '.listName($key)."\n"; // $_SESSION["listname"][$key] . "\n";
                     }
                     if ($addition) {
@@ -447,6 +449,8 @@ if ($total > 0) {
                     Sql_Query(sprintf('update %s set blacklisted = 1 where id = %d', $tables['user'], $userid));
                     ++$count['foundblacklisted'];
                 }
+                addUserHistory($user['systemvalues']['email'], 'Import by '.adminName(), $history_entry);
+
                 if (!is_array($_SESSION['groups'])) {
                     $groups = array();
                 } else {
