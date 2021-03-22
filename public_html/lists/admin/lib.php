@@ -70,12 +70,26 @@ function cleanListName($name) { ## we allow certain tags in a listname
     return $name;
 }
 
+/**
+ * Returns the name of a list.
+ * The list names are cached because this can be called repeatedly for the same list id.
+ *
+ * @param int $id list id
+ *
+ * @return string the list name
+ */
 function listName($id)
 {
     global $tables;
-    $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
 
-    return $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
+    static $listNames = [];
+
+    if (!isset($listNames[$id])) {
+        $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
+        $listNames[$id] = $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
+    }
+
+    return $listNames[$id];
 }
 
 function setMessageData($msgid, $name, $value)
