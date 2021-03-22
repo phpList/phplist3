@@ -278,6 +278,7 @@ if ($total > 0) {
                     $some = 1;
                 }
 
+                $history_entry = $GLOBALS['admin_scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&id='.$userid."\n\n";
                 reset($_SESSION['import_attribute']);
                 //   var_dump($_SESSION);exit;
                 if ($new || (!$new && $_SESSION['overwrite'] == 'yes')) {
@@ -286,7 +287,6 @@ if ($total > 0) {
                     $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'],
                         $userid));
                     $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-                    $history_entry = $GLOBALS['admin_scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&id='.$userid."\n\n";
                     foreach ($user['systemvalues'] as $column => $value) {
                         if (!empty($column)) { // && !empty($value)) {
                             if ($column == 'groupmapping' || strpos($column, 'grouptype_') === 0) {
