@@ -176,8 +176,10 @@ while ($bounce = Sql_fetch_array($result)) {
             30)); //sprintf('<a href="./?page=message&amp;id=%d">%d</a>',$regs[1],$regs[1]);
     } elseif ($bounce['status'] == 'bounced system message') {
         $messageid = $GLOBALS['I18N']->get('System Message');
-    } else {
+    } elseif ($bounce['status'] == 'unidentified bounce') {
         $messageid = $GLOBALS['I18N']->get('Unknown');
+    } else {
+        $messageid = htmlspecialchars($bounce['status']);
     }
 
     /*  if (preg_match('/Action: delayed\s+Status: 4\.4\.7/im',$bounce["data"])) {
@@ -193,22 +195,11 @@ while ($bounce = Sql_fetch_array($result)) {
         preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)
         OR preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)
     ) {
-        // Fetch additional data to be able to print subscriber address
-        $userdata = Sql_Fetch_Array_Query(
-            sprintf('
-                select
-                    *
-                from
-                    %s
-                where
-                    id = %d'
-                , $GLOBALS['tables']['user']
-                , $regs[1]
-            )
-        );
-        $userIdLink = PageLink2('user&id='.$regs[1], $userdata['email']);
-    } else {
+        $userIdLink = PageLink2('user&id='.$regs[1], getUserEmail($regs[1]));
+    } elseif ($bounce['comment'] == 'not processed') {
         $userIdLink = $GLOBALS['I18N']->get('Unknown');
+    } else {
+        $userIdLink = htmlspecialchars($bounce['comment']);
     }
 
     $ls->addColumn($element, $GLOBALS['I18N']->get('user'), $userIdLink);
