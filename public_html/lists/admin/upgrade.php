@@ -421,6 +421,18 @@ if ($dbversion == VERSION && !$force) {
         SaveConfig('secret', bin2hex(random_bytes(20)));
     }
 
+    if (version_compare($dbversion, '3.6.0','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['message']} change column processed processed integer ");
+    }
+
+    if (!Sql_Table_Column_Exists($GLOBALS['tables']['template'], 'template_text')) {
+        Sql_Query(sprintf('alter table %s add column template_text longblob after template',
+            $GLOBALS['tables']['template']));
+        //# no change in behavior for existing templates
+        Sql_Query(sprintf('update %s set template_text="[CONTENT]"',
+            $GLOBALS['tables']['template']));
+    }
+    
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

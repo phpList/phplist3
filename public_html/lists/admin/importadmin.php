@@ -264,7 +264,7 @@ if (!empty($_POST['import'])) {
                             }
 
                             Sql_query(sprintf('replace into %s (adminattributeid,adminid,value) values("%s","%s","%s")',
-                                $tables['admin_attribute'], $attribute_index, $adminid, $att_value));
+                                $tables['admin_attribute'], $attribute_index, $adminid, sql_escape($att_value)));
                         }
                     }
 

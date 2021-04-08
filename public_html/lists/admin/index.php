@@ -524,28 +524,24 @@ if (!$ajax && $page != 'login') {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
 
-    if (!strpos(VERSION, 'dev')) {
-
+ #   if (!DEVVERSION) { ## why not, quite useful to see
+    if (ALLOW_UPDATER) {
         $updaterdir = __DIR__ . '/../updater';
 
         include 'updateLib.php';
+        $updateNotif = checkForUpdate();
+        $moreInfo = ' <ul><li><a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a></li>';
 
-        if (showUpdateNotification() && (getCurrentphpListVersion() !== false) && extension_loaded('curl')) {
+        if (file_exists($updaterdir)) {
+            $moreInfo .= '<li>'.s('or use the %sphpList Updater%s','<a href="?page=update" title="' . s('automatic updater') . '">','</a>');
+        }
+        $moreInfo .= '</ul>';
 
-            $updateNotif = checkForUpdate('init.php');
-            $moreInfo = '<a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a>';
-
-            if (file_exists($updaterdir) && ALLOW_UPDATER) {
-
-                $moreInfo .= s(' or update') . ' <a href="?page=redirecttoupdater" title="' . s('automatic updater') . '">' . s('here.') . '</a>';
-            }
-
-            if ($updateNotif !== '') {
-
-                Info($updateNotif . '' . $moreInfo);
-            }
+        if ($updateNotif !== '') {
+            Info($updateNotif . '' . $moreInfo);
         }
     }
+#   }
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
@@ -858,6 +854,9 @@ function parseCline()
             $clinearg = substr($clinearg, 2, strlen($clinearg));
             // $res[$par] = "";
             $cur = mb_strtolower($par);
+            if (!isset($res[$cur])) {
+                $res[$cur] = '';
+            }
             $res[$cur] .= $clinearg;
         } elseif ($cur) {
             if ($res[$cur]) {

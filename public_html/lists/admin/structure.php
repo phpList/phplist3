@@ -139,7 +139,7 @@ $DBstructphplist = array(
         'htmlformatted' => array('tinyint default 0', 'Is this message HTML formatted'),
         'sendformat'    => array('varchar(20)', 'Format to send this message in'),
         'template'      => array('integer', 'Template to use'),
-        'processed'     => array('mediumint unsigned default 0', 'Number Processed'),
+        'processed'     => array('integer unsigned default 0', 'Number Processed'),
         'astext'        => array('integer default 0', 'Sent as text'),
         'ashtml'        => array('integer default 0', 'Sent as HTML'),
         'astextandhtml' => array('integer default 0', 'Sent as Text and HTML'), // obsolete
@@ -232,6 +232,7 @@ $DBstructphplist = array(
         'id'        => array('integer not null primary key auto_increment', 'ID'),
         'title'     => array('varchar(255) not null', 'Title'),
         'template'  => array('longblob', 'The template'),
+        'template_text' => array('longblob', 'The template (text version)'),
         'listorder' => array('integer', ''),
         'unique_1'  => array('(title)', ''),
     ),

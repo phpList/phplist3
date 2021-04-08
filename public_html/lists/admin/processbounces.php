@@ -220,7 +220,11 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
 {
     global $tables;
     $useremailQ = Sql_fetch_row_query(sprintf('select email from %s where id = %d', $tables['user'], $userid));
-    $useremail = $useremailQ[0];
+    if (empty($useremailQ)) {
+        $useremail = "";
+    } else {
+        $useremail = $useremailQ[0];
+    }
 
     if ($bounceDate === null) {
         $bounceDate = date('Y-m-d H:i', time());
@@ -361,11 +365,7 @@ function processPop($server, $user, $password)
     }
     set_time_limit(6000);
 
-    if (!TEST) {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
-    } else {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
-    }
+    $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
 
     if (!$link) {
         outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $server: ".imap_last_error());
@@ -415,7 +415,7 @@ function processMessages($link, $max = 3000)
     if (TEST) {
         echo s('Running in test mode, not deleting messages from mailbox').'<br/>';
     } else {
-        echo s('Processed messages will be deleted from mailbox').'<br/>';
+        echo s('Processed messages will be deleted from the mailbox').'<br/>';
     }
     $nberror = 0;
 //  for ($x=1;$x<150;$x++) {
@@ -453,7 +453,11 @@ function processMessages($link, $max = 3000)
     flush();
     outputProcessBounce(s('Closing mailbox, and purging messages'));
     set_time_limit(60 * $num);
-    imap_close($link);
+    if (!TEST) {
+        imap_close($link, CL_EXPUNGE);
+    } else {
+        imap_close($link);
+    }
 
     return $report;
 }

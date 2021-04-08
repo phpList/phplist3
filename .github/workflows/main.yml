@@ -1,0 +1,101 @@
+
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    continue-on-error: ${{ matrix.experimental }}
+
+    strategy:
+      fail-fast: false     
+      matrix:   
+        php-version: ['7.1', '7.2', '7.3', '7.4']
+        experimental: [false]
+        include:
+        - php-version: '8.0'
+          experimental: true
+        - php-version: '7.0'
+          experimental: true
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Setup Packages
+        run: |
+          cd $GITHUB_WORKSPACE
+          sudo apt update
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install dependencies
+        uses: php-actions/composer@v5
+        with:
+          dev: yes
+          args: --prefer-dist --no-interaction
+
+      - name: Create Database
+        run: |
+          sudo systemctl start mysql.service
+          sudo mysql -proot  -e 'drop database if exists phplistdb'
+          sudo mysqladmin -proot create phplistdb
+          sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
+
+      - name: Set bootlist theme
+        run: |
+          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+          wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+          tar -xzf master.tar.gz
+          mv phplist-ui-bootlist-master phplist-ui-bootlist
+          rm master.tar.gz
+
+      - name: Start Test Server
+        run: |
+          cd $GITHUB_WORKSPACE
+          cp -fv tests/default.behat.yml tests/behat.yml
+          cp -fv tests/ci/config.php public_html/lists/config/config.php
+          mkdir -p output/screenshots
+          mkdir -p build/mails
+          ./bin/start-selenium > output/selenium.log 2>&1 &
+          sleep 5
+          sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
+
+      - name: Check PHP syntax errors
+        uses: overtrue/phplint@2.3.5
+        with:
+          path: ./public_html
+          
+      - name: Report Versions
+        run: |
+          google-chrome --version
+          php -v
+          chromedriver -v
+          geckodriver -V
+          which geckodriver
+          which chromedriver
+          firefox -v
+          vendor/bin/behat -V
+          cd vendor/bin/ && sudo ln -s /usr/bin/chromedriver && sudo ln -s /usr/bin/geckodriver
+
+      - name: Run BDD Tests
+        run: |
+          cd $GITHUB_WORKSPACE/tests
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+
+      - name: Display output
+        run: |
+          cd $GITHUB_WORKSPACE
+          cat output/selenium.log
+
+

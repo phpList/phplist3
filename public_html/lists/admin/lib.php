@@ -450,7 +450,6 @@ function sendMail($to, $subject, $message, $header = '', $parameters = '', $skip
 function constructSystemMail($message, $subject = '')
 {
     $hasHTML = strip_tags($message) != $message;
-    $htmlcontent = '';
 
     if ($hasHTML) {
         $message = stripslashes($message);
@@ -475,34 +474,45 @@ function constructSystemMail($message, $subject = '')
         $htmlmessage = str_replace($listsmatch[0], '<ul>'.$listsHTML.'</ul>', $htmlmessage);
     }
 
-    $htmltemplate = '';
+    $htmlcontent = $htmlmessage;
+    $textcontent = $textmessage;
     $templateid = getConfig('systemmessagetemplate');
     if (!empty($templateid)) {
-        $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
+        $req = Sql_Fetch_Row_Query(sprintf('select template, template_text from %s where id = %d',
             $GLOBALS['tables']['template'], $templateid));
-        $htmltemplate = stripslashes($req[0]);
-    }
-    if (strpos($htmltemplate, '[CONTENT]')) {
-        $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
-        $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
-        $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
-        if (!EMAILTEXTCREDITS) {
-            $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
-                $GLOBALS['PoweredByImage']);
-        } else {
-            $phpListPowered = $GLOBALS['PoweredByText'];
+        if ($req) {
+            $htmltemplate = stripslashes($req[0]);
+            $texttemplate = stripslashes($req[1]);
+            $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
+            $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
+            $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
+            if (!EMAILTEXTCREDITS) {
+                $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
+                    $GLOBALS['PoweredByImage']);
+            } else {
+                $phpListPowered = $GLOBALS['PoweredByText'];
+            }
+            if (strpos($htmlcontent, '[SIGNATURE]')) {
+                $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
+            } elseif (strpos($htmlcontent, '</body>')) {
+                $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
+            } else {
+                $htmlcontent .= $phpListPowered;
+            }
+            $htmlcontent = parseLogoPlaceholders($htmlcontent);
+            $textcontent = str_replace('[CONTENT]', $textmessage, $texttemplate);
+            $textcontent = str_replace('[SUBJECT]', $subject, $textcontent);
+            $textcontent = str_replace('[FOOTER]', '', $textcontent);
+            $phpListPowered = trim(HTML2Text($GLOBALS['PoweredByText']));
+            if (strpos($textcontent, '[SIGNATURE]')) {
+                $textcontent = str_replace('[SIGNATURE]', $phpListPowered, $textcontent);
+            } else {
+                $textcontent .= "\n\n" . $phpListPowered;
+            }
         }
-        if (strpos($htmlcontent, '[SIGNATURE]')) {
-            $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
-        } elseif (strpos($htmlcontent, '</body>')) {
-            $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
-        } else {
-            $htmlcontent .= $phpListPowered;
-        }
-        $htmlcontent = parseLogoPlaceholders($htmlcontent);
     }
 
-    return array($htmlcontent, $textmessage);
+    return array($htmlcontent, $textcontent);
 }
 
 function sendMailPhpMailer($to, $subject, $message)
@@ -578,7 +588,7 @@ function sendMailDirect($destinationemail, $subject, $message)
     }
     $mail->add_text($textmessage);
     try {
-        $mail->Send('', $destinationemail, $fromname, $fromemail, $subject);
+        $mail->send('', $destinationemail, $fromname, $fromemail, $subject);
     } catch (Exception $e) {
         $GLOBALS['smtpError'] = $e->getMessage();
 
@@ -980,22 +990,28 @@ function checkLock($processid)
 
 function getPageCache($url, $lastmodified = 0)
 {
+    if (empty($_SESSION['hasconf'])) return;
     $req = Sql_Fetch_Row_Query(sprintf('select content from %s where url = "%s" and lastmodified >= %d',
         $GLOBALS['tables']['urlcache'], $url, $lastmodified));
-
-    return $req[0];
+    if (!empty($req) && is_array($req)) {
+        return $req[0];
+    }
+    return '';
 }
 
 function getPageCacheLastModified($url)
 {
-    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],
-        $url));
-
-    return $req[0];
+    if (empty($_SESSION['hasconf'])) return;
+    $req = Sql_Fetch_Row_Query(sprintf('select lastmodified from %s where url = "%s"', $GLOBALS['tables']['urlcache'],$url));
+    if (!empty($req) && is_array($req)) {
+        return $req[0];
+    }
+    return 0;
 }
 
 function setPageCache($url, $lastmodified, $content)
 {
+    if (empty($_SESSION['hasconf'])) return;
     //  if (isset($GLOBALS['developer_email'])) return;
     Sql_Query(sprintf('delete from %s where url = "%s"', $GLOBALS['tables']['urlcache'], $url));
     Sql_Query(sprintf('insert into %s (url,lastmodified,added,content)
@@ -1269,7 +1285,9 @@ function fetchUrl($url, $userdata = array(), $ttl = REMOTE_URL_REFETCH_TIMEOUT)
 
     if (!empty($content)) {
         $content = addAbsoluteResources($content, $url);
-        logEvent('Fetching '.$url.' success');
+        if (VERBOSE) {
+            logEvent('Fetching '.$url.' success');
+        }
         setPageCache($url, $lastmodified, $content);
 
         $GLOBALS['urlcache'][$url] = array(
@@ -1904,7 +1922,7 @@ function shortenTextDisplay($text, $max = 30)
         return mb_shortenTextDisplay($text, $max);
     }
 
-    $text = str_replace('http://', '', $text);
+    $text = preg_replace('!^https?://!i', '', $text);
     if (strlen($text) > $max) {
         if ($max < 30) {
             $display = substr($text, 0, $max - 4).' ... ';
@@ -1923,7 +1941,7 @@ function shortenTextDisplay($text, $max = 30)
 
 function mb_shortenTextDisplay($text, $max = 30)
 {
-    $text = str_replace('http://', '', $text);
+    $text = preg_replace('!^https?://!i', '', $text);
     if (mb_strlen($text) > $max) {
         if ($max < 30) {
             $display = mb_substr($text, 0, $max - 4).' ... ';

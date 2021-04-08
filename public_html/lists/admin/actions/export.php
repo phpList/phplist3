@@ -5,6 +5,15 @@ verifyCsrfGetToken();
 $access = accessLevel('export');
 $list = $_SESSION['export']['list'];
 
+#https://owasp.org/www-community/attacks/CSV_Injection
+function cleanForExport($text) {
+    $text = preg_replace('/^=/','\' =',$text);
+    $text = preg_replace('/^\+/','\' +',$text);
+    $text = preg_replace('/^\-/','\' -',$text);
+    $text = preg_replace('/^@/','\' @',$text);
+    return $text;
+}
+
 switch ($access) {
     case 'owner':
         if ($list) {
@@ -94,12 +103,12 @@ if (is_array($_SESSION['export']['cols'])) {
     foreach ($DBstruct['user'] as $key => $val) {
         if (in_array($key, $_SESSION['export']['cols'])) {
             if (strpos($val[1], 'sys') === false) {
-                fwrite($exportfile, $val[1].$col_delim);
+                fwrite($exportfile, cleanForExport($val[1]).$col_delim);
             } elseif (preg_match('/sysexp:(.*)/', $val[1], $regs)) {
                 if ($regs[1] == 'ID') { // avoid freak Excel bug: http://mantis.phplist.com/view.php?id=15526
                     $regs[1] = 'id';
                 }
-                fwrite($exportfile, $regs[1].$col_delim);
+                fwrite($exportfile, cleanForExport($regs[1]).$col_delim);
             }
         }
     }
@@ -184,7 +193,7 @@ while ($user = Sql_fetch_assoc($result)) {
         if (VERBOSE) {
             cl_output($key.' '.$val.' '.$user[$val].' '.strtr($user[$val], $col_delim, ',').$col_delim);
         }
-        fwrite($exportfile, strtr($user[$val], $col_delim, ',').$col_delim);
+        fwrite($exportfile, strtr(cleanForExport($user[$val]), $col_delim, ',').$col_delim);
     }
     reset($attributes);
     foreach ($attributes as $key => $val) {
@@ -192,7 +201,7 @@ while ($user = Sql_fetch_assoc($result)) {
         if (VERBOSE) {
             cl_output($key.' '.$val.' '.quoteEnclosed($value, $col_delim, $row_delim).$col_delim);
         }
-        fwrite($exportfile, quoteEnclosed($value, $col_delim, $row_delim).$col_delim);
+        fwrite($exportfile, quoteEnclosed(cleanForExport($value), $col_delim, $row_delim).$col_delim);
     }
     if ($exporthistory) {
         fwrite($exportfile, quoteEnclosed($user['ip'], $col_delim, $row_delim).$col_delim);
@@ -227,5 +236,5 @@ if (!$GLOBALS['commandline']) {
     </script>';
 } else {
     rename($exportfileName,$GLOBALS['tmpdir'].'/'.$filename);
-    cl_output(s('File available as "%s"',$GLOBALS['tmpdir'].'./'.$filename));
+    cl_output(s('File available as "%s"',$GLOBALS['tmpdir'].'/'.$filename));
 }

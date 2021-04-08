@@ -188,9 +188,13 @@ define('HASH_ALGO', 'sha256');
 // to 1 for this to have an effect
 define('UNSUBSCRIBE_REQUIRES_PASSWORD', 0);
 
-// if a user should immediately be unsubscribed, when using their personal URL, instead of
-// the default way, which will ask them for a reason, set this to 1
-define('UNSUBSCRIBE_JUMPOFF', 0);
+// Immediately unsubscribe a subscriber when using their personal URL.
+// To display a confirmation page asking them for a reason set this to 0.
+// Be aware that setting to 1 might lead to unauthorised unsubscriptions due to a receiving mail server
+// "following" links in an email. If that happens then set this to 0.
+// Also, see the file README.robots in the phplist distribution doc directory for another way to try to
+// stop unauthorised unsubscriptions.
+define('UNSUBSCRIBE_JUMPOFF', 1);
 
 // To not send confirmation of unsubscription , instead of
 // the default way, which will send it, set this to false
@@ -682,6 +686,9 @@ define('EMBEDEXTERNALIMAGES',false);
 // Manual text part, will give you an input box for the text version of the message
 // instead of trying to create it by parsing the HTML version into plain text
 define('USE_MANUAL_TEXT_PART', 0);
+
+// Message preview tries to show a small preview of how your campaign will look in email applications
+define('USE_MESSAGE_PREVIEW',true);
 
 // set this to 1 to allow adding attachments to the mails
 // caution, message may become very large. it is generally more

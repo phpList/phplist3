@@ -568,7 +568,7 @@ END;
           <tbody>
               %s %s
               <tr><td>' .s('total').'</td><td>'.s('text').'</td><td>'.s('html').'</td>
-                %s%
+                %s%s
               </tr>
               <tr><td><b>%s</b></td><td><b>%s</b></td><td><b>%s</b></td>
                 %s %s %s %s
@@ -576,7 +576,6 @@ END;
           </tbody>
       </table>',
                 !empty($started) ? '<tr> <td colspan="'.$colspan.'">'.$started.'</td></tr>' : '',
-
                 !empty($timetosend) ? '<tr> <td colspan="'.$colspan.'">'.$timetosend.'</td></tr>' : '',
                 !empty($msg['aspdf']) ? '<td>'.$GLOBALS['I18N']->get('PDF').'</td>' : '',
                 !empty($msg['astextandpdf']) ? '<td>'.$GLOBALS['I18N']->get('both').'</td>' : '',
@@ -585,7 +584,8 @@ END;
                 $sentStatsFormatted['html'],
                 !empty($msg['aspdf']) ? '<td><b>'.$sentStatsFormatted['pdf'].'</b></td>' : '',
                 !empty($msg['astextandpdf']) ? '<td><b>'.$sentStatsFormatted['textPlusPDF'].'</b></td>' : '',
-                $clicksrow, $bouncedrow
+                $clicksrow,
+                $bouncedrow
             );
         if ($msg['status'] != 'draft') {
             $ls->addRow($listingelement, '', $resultStats.$sendstats);

@@ -70,6 +70,7 @@ function disableJavascript($content) {
     $content = str_ireplace('onkeyup','on keyup',$content);
     $content = str_ireplace('onkeydown','on keydown',$content);
     $content = str_ireplace('ontoggle','on toggle',$content);
+    $content = str_ireplace('onafterprint','on afterprint',$content);
     return $content;
 }
 

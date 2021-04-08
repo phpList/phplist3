@@ -76,7 +76,7 @@ if (isset($_GET['find'])) {
     $_SESSION['userlistfilter']['findby'] = '';
 }
 
-$find = $_SESSION['userlistfilter']['find'];
+$find = trim($_SESSION['userlistfilter']['find']);
 $findby = $_SESSION['userlistfilter']['findby'];
 if (!$findby) {
     $findby = 'email';

@@ -57,7 +57,7 @@ class FeatureContext extends MinkContext
         // merge default admin user value into configured value
         $admin = array_merge(array(
             'username' => 'admin',
-            'password' => 'admin'
+            'password' => 'Mypassword123+'
         ),$admin);
 
         $this->params = array(
@@ -67,15 +67,6 @@ class FeatureContext extends MinkContext
             'db_name' => $database['name'],
             'admin_username' => $admin['username'],
             'admin_password' => $admin['password']
-        );
-        
-        $this->db = mysqli_init();
-        mysqli_real_connect(
-            $this->db,
-            $database['host'],
-            $database['user'],
-            $database['password'],
-            $database['name']
         );
     }
 
@@ -179,37 +170,8 @@ class FeatureContext extends MinkContext
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
-
-        if (null === $this->getSession ()->getPage ()->find ('named', array('content', 'Dashboard'))) {
-            $this->throwExpectationException('Login failed: Dashboard link not found');
-        }
-
-        // store current token
-        $link = $this->getSession()->getPage()->findLink('dashboard');
-        $href = $link->getAttribute('href');
-        $this->token = substr($href,strpos($href,'tk=')+3);
-        $this->currentUser = $this->generateCurrentUserInfo($this->params['admin_username']);
     }
 
-    /**
-     * @param $name
-     * @return array
-     * @throws Exception
-     */
-    private function generateCurrentUserInfo($name)
-    {
-        $db = $this->getMysqli();
-        $query = sprintf(
-            'SELECT * from %s where loginname="%s"',
-            'phplist_admin',
-            $name
-        );
-        $results = $db->query($query)->fetch_assoc();
-        if(!isset($results['id']) ){
-            throw new \Exception($db->error);
-        }
-        return $results;
-    }
     /**
      * @return bool
      */
@@ -240,15 +202,6 @@ class FeatureContext extends MinkContext
         return $this->token;
     }
 
-    /**
-     * @When /^I recreate the database$/
-     */
-    public function iRecreateTheDatabase()
-    {
-        mysqli_query($this->db,'drop database if exists '.$this->params['db_name']);
-        mysqli_query($this->db,'create database '.$this->params['db_name']);
-    }
-    
     /**
      * @When I fill in :arg1 with a valid username
      */
@@ -367,7 +320,7 @@ class FeatureContext extends MinkContext
      /**
      * @When I confirm the popup
      */
-    public function iConfirmPopup()
+    public function iConfirmThePopup()
     {  
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
     }

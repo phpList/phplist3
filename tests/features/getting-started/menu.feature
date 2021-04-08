@@ -30,7 +30,7 @@ Feature: Navigate the app using the menu
          | Manage subscribers        |
          | Configure attributes      |
          | Subscriber lists          |
-         | Import emails             |
+         | Import subscribers        |
          | Export subscribers        |
          | View bounces per list     |
          | Suppression List          |
@@ -68,7 +68,7 @@ Feature: Navigate the app using the menu
          | Verify the DB structure   |
          | Log of events             |
          | Initialise the database   |
-         | Upgrade database          |
+         | Upgrade phpList           |
          | Manage bounces            |
          | Send the queue            |
          | Rebuild DB indexes        |
@@ -79,7 +79,7 @@ Feature: Navigate the app using the menu
         Then I should see "<Innerpages>"
         Examples:
          | Innerpages                         |
-         | Configuration                      |
+         | Checklist                          |
          | Settings                           |
          | Manage plugins                     |
          | Subscribe pages                    |
@@ -90,13 +90,13 @@ Feature: Navigate the app using the menu
          | Check bounce rules                 |
          | Categorise lists                   |
     
-    Scenario Outline: Browse Develop menu
-        Given I have logged in as an administrator
-        Given I follow "Develop"
-        Then I should see "<Innerpages>"
-        Examples:
-         | Innerpages                |
-         | Subscriber statistics     |
-         | tests                     |
+#    Scenario Outline: Browse Develop menu
+#        Given I have logged in as an administrator
+#        Given I follow "Develop"
+#        Then I should see "<Innerpages>"
+#        Examples:
+#         | Innerpages                |
+#         | Subscriber statistics     |
+#         | tests                     |
          
     

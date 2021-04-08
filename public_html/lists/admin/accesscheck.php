@@ -37,7 +37,7 @@ function isSuperUser()
     if (defined('WEBBLER') || defined('IN_WEBBLER')) {
         return 1;
     }
-    if ($GLOBALS['commandline']) {
+    if (!empty($GLOBALS['commandline'])) {
         return true;
     }
     global $tables;
