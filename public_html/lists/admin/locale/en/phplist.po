@@ -2163,7 +2163,7 @@ msgstr ""
 #: public_html/lists/admin/actions/mclicks.php:59
 #: public_html/lists/admin/actions/campaigns.php:51
 #: public_html/lists/admin/actions/statsoverview.php:133
-#: public_html/lists/admin/bounces.php:189
+#: public_html/lists/admin/bounces.php:191
 msgid "Campaign"
 msgstr "Campaign"
 
@@ -2741,7 +2741,7 @@ msgstr "Available campaigns"
 #: public_html/lists/admin/actions/mviews.php:93
 #: public_html/lists/admin/actions/subscription.php:92
 #: public_html/lists/admin/eventlog.php:110
-#: public_html/lists/admin/bounces.php:215
+#: public_html/lists/admin/bounces.php:206
 msgid "date"
 msgstr "date"
 
@@ -2872,7 +2872,7 @@ msgid "emails were"
 msgstr "emails were"
 
 #: public_html/lists/admin/actions/import1.php:232
-#: public_html/lists/admin/actions/import2.php:473
+#: public_html/lists/admin/actions/import2.php:477
 #, php-format
 msgid "%d emails already existed in the database"
 msgstr "%d emails already existed in the database"
@@ -2906,7 +2906,7 @@ msgstr ""
 "lists"
 
 #: public_html/lists/admin/actions/import1.php:247
-#: public_html/lists/admin/actions/import2.php:510
+#: public_html/lists/admin/actions/import2.php:514
 #: public_html/lists/admin/import3.php:533
 #: public_html/lists/admin/importsimple.php:128
 #: public_html/lists/admin/import2.php:607
@@ -3084,8 +3084,8 @@ msgid "still to process"
 msgstr "Still to process"
 
 #: public_html/lists/admin/actions/msgstatus.php:81
-#: public_html/lists/admin/lib.php:689 public_html/lists/admin/bounces.php:180
-#: public_html/lists/admin/bounces.php:211
+#: public_html/lists/admin/lib.php:703 public_html/lists/admin/bounces.php:180
+#: public_html/lists/admin/bounces.php:200
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -3360,32 +3360,38 @@ msgstr "Duplicate Email"
 msgid " user imported as "
 msgstr " subscriber imported as "
 
-#: public_html/lists/admin/actions/import2.php:467
+#: public_html/lists/admin/actions/import2.php:429
+#: public_html/lists/admin/user.php:260
+#, php-format
+msgid "Subscribed to %s"
+msgstr "Subscribed to %s"
+
+#: public_html/lists/admin/actions/import2.php:471
 msgid ""
 "All the emails already exist in the database and are member of the lists"
 msgstr ""
 "All the emails already exist in the database and are member of the lists"
 
-#: public_html/lists/admin/actions/import2.php:469
+#: public_html/lists/admin/actions/import2.php:473
 #, php-format
 msgid "%d emails succesfully imported to the database and added to %d lists."
 msgstr "%d emails succesfully imported to the database and added to %d lists."
 
-#: public_html/lists/admin/actions/import2.php:471
+#: public_html/lists/admin/actions/import2.php:475
 #, php-format
 msgid "%d emails subscribed to the lists"
 msgstr "%d emails subscribed to the lists"
 
-#: public_html/lists/admin/actions/import2.php:477
+#: public_html/lists/admin/actions/import2.php:481
 #, php-format
 msgid "%d Invalid Emails found."
 msgstr "%d Invalid Emails found."
 
-#: public_html/lists/admin/actions/import2.php:479
+#: public_html/lists/admin/actions/import2.php:483
 msgid "These records were added, but the email has been made up from "
 msgstr "These records were added, but the email has been made up from "
 
-#: public_html/lists/admin/actions/import2.php:481
+#: public_html/lists/admin/actions/import2.php:485
 #: public_html/lists/admin/import3.php:526
 msgid ""
 "These records were deleted. Check your source and reimport the data. "
@@ -3394,27 +3400,27 @@ msgstr ""
 "These records were deleted. Check your source and reimport the data. "
 "Duplicates will be identified."
 
-#: public_html/lists/admin/actions/import2.php:485
+#: public_html/lists/admin/actions/import2.php:489
 #, php-format
 msgid "%d duplicate emails found."
 msgstr "%d duplicate emails found."
 
-#: public_html/lists/admin/actions/import2.php:488
+#: public_html/lists/admin/actions/import2.php:492
 #, php-format
 msgid "Subscriber data was updated for %d subscribers"
 msgstr "Subscriber data was updated for %d subscribers"
 
-#: public_html/lists/admin/actions/import2.php:491
+#: public_html/lists/admin/actions/import2.php:495
 #, php-format
 msgid "%d emails were on the blacklist and have not been added to the lists"
 msgstr "%d emails were on the blacklist and have not been added to the lists"
 
-#: public_html/lists/admin/actions/import2.php:494
+#: public_html/lists/admin/actions/import2.php:498
 #, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
 msgstr "%d subscribers were matched by foreign key, %d by email"
 
-#: public_html/lists/admin/actions/import2.php:499
+#: public_html/lists/admin/actions/import2.php:503
 #: public_html/lists/admin/importsimple.php:138
 msgid "phplist Import Results"
 msgstr "phplist Import Results"
@@ -3852,7 +3858,7 @@ msgid "processqueue"
 msgstr "Process queue"
 
 #: public_html/lists/admin/send_core.php:389
-#: public_html/lists/admin/lib.php:2092
+#: public_html/lists/admin/lib.php:2106
 msgid "view progress"
 msgstr "view progress"
 
@@ -4457,7 +4463,7 @@ msgid "View progress"
 msgstr "View progress"
 
 #: public_html/lists/admin/processqueue.php:96
-#: public_html/lists/admin/lib.php:2102
+#: public_html/lists/admin/lib.php:2116
 msgid "Change settings"
 msgstr "Change settings"
 
@@ -4492,7 +4498,7 @@ msgstr "Server"
 
 #: public_html/lists/admin/import4.php:63
 #: public_html/lists/admin/msgbounces.php:106
-#: public_html/lists/admin/bounces.php:214
+#: public_html/lists/admin/bounces.php:205
 #: public_html/lists/admin/editattributes.php:137
 msgid "user"
 msgstr "User"
@@ -5687,11 +5693,6 @@ msgstr "(no data)"
 #: public_html/lists/admin/user.php:251
 msgid "changed from"
 msgstr "changed from"
-
-#: public_html/lists/admin/user.php:260
-#, php-format
-msgid "Subscribed to %s"
-msgstr "Subscribed to %s"
 
 #: public_html/lists/admin/user.php:263
 #, php-format
@@ -7560,23 +7561,23 @@ msgstr "Add email address to the do-not-send-list and delete bounce"
 msgid "delete bounce"
 msgstr "Delete bounce"
 
-#: public_html/lists/admin/lib.php:78
+#: public_html/lists/admin/lib.php:89
 msgid "Unnamed List"
 msgstr "Unnamed list"
 
-#: public_html/lists/admin/lib.php:386
+#: public_html/lists/admin/lib.php:400
 msgid "Hello"
 msgstr "Hello"
 
-#: public_html/lists/admin/lib.php:387
+#: public_html/lists/admin/lib.php:401
 msgid "You have requested a new password for phpList."
 msgstr "You have requested a new password for phpList."
 
-#: public_html/lists/admin/lib.php:388
+#: public_html/lists/admin/lib.php:402
 msgid "To enter a new one, please visit the following link:"
 msgstr "To enter a new one, please visit the following link:"
 
-#: public_html/lists/admin/lib.php:390
+#: public_html/lists/admin/lib.php:404
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
@@ -7584,29 +7585,29 @@ msgstr ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 
-#: public_html/lists/admin/lib.php:392 public_html/lists/admin/login.php:102
+#: public_html/lists/admin/lib.php:406 public_html/lists/admin/login.php:102
 msgid "New password"
 msgstr "New password"
 
-#: public_html/lists/admin/lib.php:396
+#: public_html/lists/admin/lib.php:410
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 "A password change token has been sent to the corresponding email address."
 
-#: public_html/lists/admin/lib.php:398
+#: public_html/lists/admin/lib.php:412
 msgid "Error sending password change token"
 msgstr "Error sending password change token"
 
-#: public_html/lists/admin/lib.php:700
+#: public_html/lists/admin/lib.php:714
 msgid "very little time"
 msgstr "very little time"
 
-#: public_html/lists/admin/lib.php:757
+#: public_html/lists/admin/lib.php:771
 msgid "This is the Newsletter Subject"
 msgstr "This is the Newsletter Subject"
 
-#: public_html/lists/admin/lib.php:936 public_html/lists/admin/lib.php:940
+#: public_html/lists/admin/lib.php:950 public_html/lists/admin/lib.php:954
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
@@ -7615,55 +7616,55 @@ msgstr ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 
-#: public_html/lists/admin/lib.php:942
+#: public_html/lists/admin/lib.php:956
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 
-#: public_html/lists/admin/lib.php:945
+#: public_html/lists/admin/lib.php:959
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "Sleeping for 20 seconds, aborting will quit"
 
-#: public_html/lists/admin/lib.php:953
+#: public_html/lists/admin/lib.php:967
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 "We have been waiting too long, I guess the other process is still going ok"
 
-#: public_html/lists/admin/lib.php:1830 public_html/lists/admin/lib.php:1835
+#: public_html/lists/admin/lib.php:1844 public_html/lists/admin/lib.php:1849
 msgid "Error, incorrect session token"
 msgstr "Error, incorrect session token"
 
-#: public_html/lists/admin/lib.php:2091
+#: public_html/lists/admin/lib.php:2105
 msgid "Remote queue processing has been activated successfully"
 msgstr "Remote queue processing has been activated successfully"
 
-#: public_html/lists/admin/lib.php:2094 public_html/lists/admin/lib.php:2105
+#: public_html/lists/admin/lib.php:2108 public_html/lists/admin/lib.php:2119
 msgid "Error activating remote queue processing"
 msgstr "Error activating remote queue processing"
 
-#: public_html/lists/admin/lib.php:2096
+#: public_html/lists/admin/lib.php:2110
 msgid "The API key is incorrect"
 msgstr "The API key is incorrect"
 
-#: public_html/lists/admin/lib.php:2098
+#: public_html/lists/admin/lib.php:2112
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr "The phpList.com server is unable to reach your phpList installation"
 
-#: public_html/lists/admin/lib.php:2100
+#: public_html/lists/admin/lib.php:2114
 msgid "Unknown error"
 msgstr "Unknown error"
 
-#: public_html/lists/admin/lib.php:2103 public_html/lists/admin/lib.php:2106
+#: public_html/lists/admin/lib.php:2117 public_html/lists/admin/lib.php:2120
 msgid "Run queue locally"
 msgstr "Run queue locally"
 
-#: public_html/lists/admin/lib.php:2119
+#: public_html/lists/admin/lib.php:2133
 msgid "Sign up to receive news and updates about phpList "
 msgstr "Sign up to receive news and updates about phpList "
 
-#: public_html/lists/admin/lib.php:2120
+#: public_html/lists/admin/lib.php:2134
 msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
@@ -7671,24 +7672,24 @@ msgstr ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 
-#: public_html/lists/admin/lib.php:2126
+#: public_html/lists/admin/lib.php:2140
 msgid "Subscribe"
 msgstr "Subscribe"
 
-#: public_html/lists/admin/lib.php:2126
+#: public_html/lists/admin/lib.php:2140
 msgid "Do not subscribe"
 msgstr "Do not subscribe"
 
-#: public_html/lists/admin/lib.php:2331
+#: public_html/lists/admin/lib.php:2345
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 "Please wait, your request is being processed. Do not refresh this page."
 
-#: public_html/lists/admin/lib.php:2333
+#: public_html/lists/admin/lib.php:2347
 msgid "Still loading"
 msgstr "Still loading"
 
-#: public_html/lists/admin/lib.php:2334
+#: public_html/lists/admin/lib.php:2348
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
@@ -7696,11 +7697,11 @@ msgstr ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 
-#: public_html/lists/admin/lib.php:2335
+#: public_html/lists/admin/lib.php:2349
 msgid "It should be soon now, your page content is almost here."
 msgstr "It should be soon now, your page content is almost here."
 
-#: public_html/lists/admin/lib.php:2336
+#: public_html/lists/admin/lib.php:2350
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
@@ -7708,19 +7709,19 @@ msgstr ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 
-#: public_html/lists/admin/lib.php:2337
+#: public_html/lists/admin/lib.php:2351
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr "Still loading, please be patient, your page content will show shortly."
 
-#: public_html/lists/admin/lib.php:2338
+#: public_html/lists/admin/lib.php:2352
 msgid "It will really be soon now until the page will display."
 msgstr "It will really be soon now until the page will display."
 
-#: public_html/lists/admin/lib.php:2339
+#: public_html/lists/admin/lib.php:2353
 msgid "Still loading, please wait"
 msgstr "Still loading, please wait"
 
-#: public_html/lists/admin/lib.php:2340
+#: public_html/lists/admin/lib.php:2354
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
@@ -7728,7 +7729,7 @@ msgstr ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 
-#: public_html/lists/admin/lib.php:2341
+#: public_html/lists/admin/lib.php:2355
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr "If the page does not load soon, please report this in the user forums."
 
