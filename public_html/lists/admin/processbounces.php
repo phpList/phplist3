@@ -117,31 +117,32 @@ function findUserID($text)
 {
     global $tables;
     $userid = 0;
-    $user = '';
 
     if (preg_match('/(?:X-ListMember|X-User): (.*)\r\n/iU', $text, $match)) {
         $user = trim($match[1]);
-    }
 
-    // some versions used the email to identify the users, some the userid and others the uniqid
-    // use backward compatible way to find user
-    if (strpos($user, '@') !== false) {
-        $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
-            sql_escape($user)));
-        $userid = $userid_req[0];
-    } elseif (preg_match("/^\d$/", $user)) {
-        $userid = $user;
-    } elseif (!empty($user)) {
-        $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"', $tables['user'],
-            sql_escape($user)));
-        $userid = $userid_req[0];
-    }
+        // some versions used the email to identify the users, some the userid and others the uniqid
+        // use backward compatible way to find user
+        if (strpos($user, '@') !== false) {
+            $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
+                sql_escape($user)));
+            if ($userid_req) {
+                $userid = $userid_req[0];
+            }
+        } elseif (preg_match("/^\d$/", $user)) {
+            $userid = $user;
+        } elseif (!empty($user)) {
+            $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"', $tables['user'],
+                sql_escape($user)));
+            if ($userid_req) {
+                $userid = $userid_req[0];
+            }
+        }
+    } else {
+        //## if we didn't find any, parse anything looking like an email address and check if it's a subscriber.
+        //# this is probably fairly time consuming, but as the process is only done once every so often
+        //# that should not be too bad
 
-    //## if we didn't find any, parse anything looking like an email address and check if it's a subscriber.
-    //# this is probably fairly time consuming, but as the process is only done once every so often
-    //# that should not be too bad
-
-    if (!$userid) {
         preg_match_all('/[._a-zA-Z0-9-]+@[.a-zA-Z0-9-]+/', $text, $regs);
 
         foreach ($regs[0] as $email) {
