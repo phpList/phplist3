@@ -17,8 +17,49 @@
     "source": "https://github.com/phpList/phpList3"
   },
   "minimum-stability": "dev",
+  "repositories": [
+      {
+          "type": "composer",
+          "url": "https://repo.packagist.org"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-ui-bootlist"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-lan-help"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-lan-info"
+      }
+    ],
+  "extra": {
+      "installer-paths": {
+          "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
+          "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
+          "public_html/lists/admin/info": ["phplist/phplist-lan-info"]
+      }
+  },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "phplist/phplist-ui-bootlist": "master",
+    "phplist/phplist-lan-help": "master",
+    "phplist/phplist-lan-info": "master"
+  },
+  "scripts": { 
+    "__comment" : "to work around installer-paths not working as documented, if extra->installer-paths works, this can be removed",
+    "post-install-cmd": [
+        "php -r \"system('rm -rf public_html/lists/admin/help'); rename('vendor/phplist/phplist-lan-help', 'public_html/lists/admin/help');\"",
+        "php -r \"system('rm -rf public_html/lists/admin/info'); rename('vendor/phplist/phplist-lan-info', 'public_html/lists/admin/info');\"",
+        "php -r \"system('rm -rf public_html/lists/admin/ui/phplist-ui-bootlist'); rename('vendor/phplist/phplist-ui-bootlist', 'public_html/lists/admin//ui/phplist-ui-bootlist');\""
+    ],
+    "post-update-cmd": [
+        "php -r \"system('rm -rf public_html/lists/admin/help'); rename('vendor/phplist/phplist-lan-help', 'public_html/lists/admin/help');\"",
+        "php -r \"system('rm -rf public_html/lists/admin/info'); rename('vendor/phplist/phplist-lan-info', 'public_html/lists/admin/info');\"",
+        "php -r \"system('rm -rf public_html/lists/admin/ui/phplist-ui-bootlist'); rename('vendor/phplist/phplist-ui-bootlist', 'public_html/lists/admin//ui/phplist-ui-bootlist');\""
+    ]
   },
   "require-dev": {
     "behat/mink": "@stable",
