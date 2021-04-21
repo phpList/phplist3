@@ -33,6 +33,10 @@
       {
             "type": "vcs",
             "url": "https://github.com/phpList/phplist-lan-info"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/updater"
       }
     ],
   "extra": {
@@ -40,7 +44,8 @@
           "vendor/{$vendor}/{$name}/": ["type:library"],
           "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
           "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
-          "public_html/lists/admin/info": ["phplist/phplist-lan-info"]
+          "public_html/lists/admin/info": ["phplist/phplist-lan-info"],
+          "public_html/lists/updater": ["phplist/updater"]
       }
   },
   "require": {
@@ -48,7 +53,8 @@
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
-    "phplist/phplist-lan-info": "@stable"
+    "phplist/phplist-lan-info": "@stable",
+    "phplist/updater": "@stable"
   },
   "require-dev": {
     "behat/mink": "@stable",
