@@ -36,7 +36,8 @@
       }
     ],
   "extra": {
-      "installer-paths": {
+      "custom-installer": {
+          "vendor/{$vendor}/{$name}/": ["type:library"],
           "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
           "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
           "public_html/lists/admin/info": ["phplist/phplist-lan-info"]
@@ -44,22 +45,10 @@
   },
   "require": {
     "php": ">=7.0",
-    "phplist/phplist-ui-bootlist": "master",
-    "phplist/phplist-lan-help": "master",
-    "phplist/phplist-lan-info": "master"
-  },
-  "scripts": { 
-    "__comment" : "to work around installer-paths not working as documented, if extra->installer-paths works, this can be removed",
-    "post-install-cmd": [
-        "php -r \"system('rm -rf public_html/lists/admin/help'); rename('vendor/phplist/phplist-lan-help', 'public_html/lists/admin/help');\"",
-        "php -r \"system('rm -rf public_html/lists/admin/info'); rename('vendor/phplist/phplist-lan-info', 'public_html/lists/admin/info');\"",
-        "php -r \"system('rm -rf public_html/lists/admin/ui/phplist-ui-bootlist'); rename('vendor/phplist/phplist-ui-bootlist', 'public_html/lists/admin//ui/phplist-ui-bootlist');\""
-    ],
-    "post-update-cmd": [
-        "php -r \"system('rm -rf public_html/lists/admin/help'); rename('vendor/phplist/phplist-lan-help', 'public_html/lists/admin/help');\"",
-        "php -r \"system('rm -rf public_html/lists/admin/info'); rename('vendor/phplist/phplist-lan-info', 'public_html/lists/admin/info');\"",
-        "php -r \"system('rm -rf public_html/lists/admin/ui/phplist-ui-bootlist'); rename('vendor/phplist/phplist-ui-bootlist', 'public_html/lists/admin//ui/phplist-ui-bootlist');\""
-    ]
+    "davidbarratt/custom-installer": "@stable",
+    "phplist/phplist-ui-bootlist": "@stable",
+    "phplist/phplist-lan-help": "@stable",
+    "phplist/phplist-lan-info": "@stable"
   },
   "require-dev": {
     "behat/mink": "@stable",
