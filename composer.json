@@ -1,6 +1,6 @@
 {
   "name": "phplist/phplist3",
-  "description": "The world's most popular open source newsletter manager",
+  "description": "The world's most popular Open Source Newsletter Manager",
   "keywords": [
     "phplist",
     "email",
@@ -37,6 +37,18 @@
       {
             "type": "vcs",
             "url": "https://github.com/phpList/updater"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-plugin-invite.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-common.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
       }
     ],
   "extra": {
@@ -48,13 +60,24 @@
           "public_html/lists/updater": ["phplist/updater"]
       }
   },
+  "scripts": { 
+    "post-install-cmd": [
+      "php -r \"system('scripts/install-plugins.sh vendor public_html/lists/admin/plugins/'); \""
+    ],
+    "post-update-cmd": [
+      "php -r \"system('scripts/install-plugins.sh vendor public_html/lists/admin/plugins/'); \""
+    ]
+  },
   "require": {
     "php": ">=7.0",
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
     "phplist/phplist-lan-info": "@stable",
-    "phplist/updater": "@stable"
+    "phplist/updater": "@stable",
+    "phplist/phplist-plugin-invite": "dev-master",
+    "phplist/phplist-plugin-common": "dev-master",
+    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
   },
   "require-dev": {
     "behat/mink": "@stable",
