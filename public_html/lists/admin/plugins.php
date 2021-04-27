@@ -404,7 +404,7 @@ function getLatestTag($developer, $repository)
     }
     $tags = json_decode($content);
 
-    if ($tags === null) {
+    if ($tags === null || count($tags) == 0) {
         return null;
     }
 
