@@ -48,6 +48,18 @@
       },
       {
             "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-captcha.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-ckeditor.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-segment.git"
+      },
+      {
+            "type": "vcs",
             "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
       }
     ],
@@ -77,6 +89,9 @@
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
     "bramley/phplist-plugin-common": "dev-master",
+    "bramley/phplist-plugin-captcha": "dev-master",
+    "bramley/phplist-plugin-ckeditor": "dev-master",
+    "bramley/phplist-plugin-segment": "dev-master",
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
   },
   "require-dev": {
