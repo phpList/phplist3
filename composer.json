@@ -60,6 +60,26 @@
       },
       {
             "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-campaignslicer.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-dateplaceholder.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-disposablemailblock.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-domainthrottlemap.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-embedremoteimages.git"
+      },
+      {
+            "type": "vcs",
             "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
       }
     ],
@@ -88,6 +108,11 @@
     "phplist/phplist-lan-info": "@stable",
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
+    "michield/phplist-plugin-campaignslicer": "dev-master",
+    "michield/phplist-plugin-dateplaceholder": "dev-master",
+    "michield/phplist-plugin-disposablemailblock": "dev-master",
+    "michield/phplist-plugin-domainthrottlemap": "dev-master",
+    "michield/phplist-plugin-embedremoteimages": "dev-master",
     "bramley/phplist-plugin-common": "dev-master",
     "bramley/phplist-plugin-captcha": "dev-master",
     "bramley/phplist-plugin-ckeditor": "dev-master",
