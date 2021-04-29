@@ -7,6 +7,6 @@ to=$2
 
 echo $from $to
 
-for plugin in $from/phplist/phplist-plugin-*; do
+for plugin in $(find $from -type d -name phplist-plugin-*); do
   [[ ! -z "$(ls -A $plugin/plugins/)" ]] && mv $plugin/plugins/* $to
 done
