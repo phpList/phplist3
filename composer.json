@@ -76,7 +76,7 @@
     "phplist/phplist-lan-info": "@stable",
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
-    "phplist/phplist-plugin-common": "dev-master",
+    "bramley/phplist-plugin-common": "dev-master",
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
   },
   "require-dev": {
