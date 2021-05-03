@@ -8,5 +8,5 @@ to=$2
 echo $from $to
 
 for plugin in $(find $from -type d -name phplist-plugin-*); do
-  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && mv $plugin/plugins/* $to
+  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && rsync -a $plugin/plugins/* $to
 done
