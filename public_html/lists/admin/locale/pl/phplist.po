@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Polish (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-05-04 14:19+0000\n"
+"Last-Translator: rysiek_d <ryszard.d79@gmail.com>\n"
 "Language-Team: Polish <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/pl/>\n"
+"phplist3/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +175,7 @@ msgstr "Dalej"
 
 #: public_html/lists/admin/defaultconfig.php:330
 msgid "URL for forwarding messages"
-msgstr "Adres  URL do przekazywania wiadomości"
+msgstr "Adres URL do przekazywania wiadomości"
 
 #: public_html/lists/admin/connect.php:1726,
 #: public_html/lists/admin/systemstats.php:23,
@@ -516,7 +516,7 @@ msgid ""
 "button once to save all the changes you made."
 msgstr ""
 "Możesz edytować wszystkie wartości na tej stronie, kliknij przycisk \"zapisz "
-"zmiany\"  aby zapisać wszystkie wprowadzone zmiany."
+"zmiany\" aby zapisać wszystkie wprowadzone zmiany."
 
 #: public_html/lists/admin/community.php:28
 msgid "Get help with phpList"
@@ -1527,7 +1527,7 @@ msgstr "%s subskrybentów"
 
 #: public_html/databasestructure.php:60
 msgid "Final time to stop repetition"
-msgstr "Końcowy czas  powtarzania"
+msgstr "Końcowy czas powtarzania"
 
 #: public_html/lists/admin/import4.php:101
 msgid "cannot connect to remote database"
@@ -2114,7 +2114,7 @@ msgid ""
 "queue, continue?"
 msgstr ""
 "Edycja aktywnej lub zakończonej kampanii będzie skutkowało ponownym "
-"umieszczeniem projektu w  kolejce, czy kontynuować? "
+"umieszczeniem projektu w kolejce, czy kontynuować?"
 
 #: public_html/lists/admin/actions/processqueue.php:609
 msgid "Processing has started,"
@@ -2510,7 +2510,7 @@ msgid ""
 "Note: Links in emails will not work, because this is a test message, which "
 "is deleted after sending"
 msgstr ""
-"Uwaga: Łącza w wiadomości e-mail nie będą działać,  jest wiadomość testowa, "
+"Uwaga: Łącza w wiadomości e-mail nie będą działać, jest wiadomość testowa, "
 "która jest usuwana po wysłaniu"
 
 #: public_html/lists/admin/importadmin.php:293
@@ -2617,7 +2617,7 @@ msgstr "Kiedy zaczęto wysyłanie tej wiadomości"
 #: public_html/lists/admin/hostedprocessqueuesetup.php:35,
 #: public_html/lists/admin/hostedprocessqueuesetup.php:49
 msgid "Use local processing instead"
-msgstr "Użyj lokalnego przetwarzania zamiast "
+msgstr "Użyj lokalnego przetwarzania zamiast"
 
 #: public_html/databasestructure.php:323
 msgid "pagetitle:domainstats"
@@ -3445,7 +3445,7 @@ msgstr "Statystyki kliknięcie kampanii"
 
 #: public_html/lists/admin/members.php:311
 msgid "Tag all users in this page"
-msgstr "Zaznacz  wszystkich użytkowników na tej stronie"
+msgstr "Zaznacz wszystkich użytkowników na tej stronie"
 
 #: public_html/lists/admin/users.php:299
 msgid "Show only blacklisted users"
@@ -3700,7 +3700,7 @@ msgstr "Potwierdź import"
 #: public_html/lists/admin/phpListAdminAuthentication.php:46,
 #: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "your account has been disabled"
-msgstr "Twoje konto zostało wyłączone"
+msgstr " Twoje konto zostało wyłączone"
 
 #: public_html/lists/admin/statsmgt.php:15,
 #: public_html/lists/admin/upgrade.php:450
@@ -4585,7 +4585,7 @@ msgid ""
 "This will process all subscribers on this list, confirmed and unconfirmed"
 msgstr ""
 "Będą przetwarzani wszyscy subskrybentów na tej liście, potwierdzeni i "
-"niepotwierdzeni  "
+"niepotwierdzeni"
 
 #: public_html/lists/admin/runcommand.php:8,
 #: public_html/lists/admin/processbounces.php:9,
@@ -5338,7 +5338,7 @@ msgstr "Optymalizacja tabeli w celu odzyskania wolnego miejsca"
 
 #: public_html/databasestructure.php:367
 msgid "campaign settings"
-msgstr "ustawienia kampanii"
+msgstr "Ustawienia kampanii"
 
 #: public_html/lists/admin/importsimple.php:178
 msgid "Adding subscribers"
@@ -5473,8 +5473,8 @@ msgstr "Data od:"
 #: public_html/lists/admin/template.php:299
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
 msgstr ""
-"Zawartość powinna zawierać w swojej treści przynajmniej znacznik  "
-"<b>[CONTENT]</b>"
+"Zawartość powinna zawierać w swojej treści przynajmniej znacznik "
+"<b>[CONTENT]</b>."
 
 #: public_html/lists/admin/template.php:359,
 #: public_html/lists/admin/send_core.php:994,
@@ -7094,7 +7094,7 @@ msgstr "Nie można pobrać pakietu wtyczki, sprawdź połączenie"
 
 #: public_html/lists/admin/send_core.php:1014
 msgid "email to alert when sending of this message starts"
-msgstr "Email na który zostanie wysłana informacją o rozpoczęciu wysyłki  "
+msgstr "Email na który zostanie wysłana informacją o rozpoczęciu wysyłki"
 
 #: public_html/databasestructure.php:252
 msgid "pagetitlehover:members"
@@ -7415,7 +7415,7 @@ msgstr "Z wyjątkiem, gdy były one również członkiem tych list"
 
 #: public_html/lists/admin/actions/import2.php:508
 msgid "These records were added, but the email has been made up from "
-msgstr "Te rekordy zostały dodane, lecz adresy e-mail zostały złożone  z"
+msgstr "Te rekordy zostały dodane, lecz adresy e-mail zostały złożone z "
 
 #: public_html/lists/admin/template.php:175
 msgid ""
@@ -7997,7 +7997,7 @@ msgstr "Adres e-mail dodany"
 
 #: public_html/databasestructure.php:368
 msgid "transactional settings"
-msgstr "ustawienia transakcyjne"
+msgstr "Ustawienia transakcyjne"
 
 #: public_html/lists/admin/editlist.php:200
 msgid "Do not save, and go back to the lists"
@@ -8160,8 +8160,9 @@ msgid "If the page does not load soon, please report this in the user forums."
 msgstr "Jeśli strona nie ładuje się szybko, zgłoś to na forach użytkowników."
 
 #: public_html/databasestructure.php:198
+#, fuzzy
 msgid "hash value of regex"
-msgstr "hash value of URL"
+msgstr "hash value of regex"
 
 #: public_html/lists/admin/editlist.php:198
 msgid "Save"
@@ -8920,7 +8921,7 @@ msgstr "Scalanie list"
 
 #: public_html/databasestructure.php:366
 msgid "reporting settings"
-msgstr "ustawienia raportowania"
+msgstr "Ustawienia raportowania"
 
 #: public_html/lists/admin/logout.php:17
 msgid ""
@@ -8981,7 +8982,7 @@ msgstr "Statystyka kliknięć adresu URL"
 
 #: public_html/databasestructure.php:31
 msgid "History Detail"
-msgstr "Szczegóły historii  "
+msgstr "Szczegóły historii"
 
 #: public_html/lists/admin/template.php:75
 msgid "Template saved and ready for use in campaigns"
@@ -10330,3 +10331,22 @@ msgstr ""
 #: public_html/lists/admin/community.php:16
 msgid "phpList is Open Source software"
 msgstr "phpList jest oprogramowaniem Open Source"
+
+#: public_html/lists/admin/defaultconfig.php:168
+msgid "Analytics tracking code to add to campaign URLs"
+msgstr "Kod śledzenia Analytics do dodania do adresów URL kampanii"
+
+#: public_html/lists/admin/defaultconfig.php:160
+msgid "Always add analytics tracking code to campaigns"
+msgstr "Zawsze dodawaj kod śledzenia analytics do kampanii"
+
+#: public_html/lists/admin/send_core.php:1039
+msgid "Add analytics tracking code"
+msgstr "Dodaj kod śledzenia analytics"
+
+#: public_html/lists/admin/export.php:32
+msgid ""
+"Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
+msgstr ""
+"Eksportowanie wszystkich subskrybentów. Użyj -l[numer listy], aby "
+"wyeksportować subskrybentów z listy"
