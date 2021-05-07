@@ -26,6 +26,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+        env:
+          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
       - name: Setup Packages
         run: |
