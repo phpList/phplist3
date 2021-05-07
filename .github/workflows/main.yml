@@ -42,13 +42,16 @@ jobs:
 
       - name: Add HTTP basic auth credentials
         run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
-        
+
       - name: Install dependencies
         uses: php-actions/composer@v5
         with:
           dev: yes
           args: --prefer-dist --no-interaction
-          
+          php_version: 7.4
+          php_extensions: xml 
+          version: 2
+             
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
