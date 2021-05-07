@@ -45,6 +45,8 @@ jobs:
         with:
           dev: yes
           args: --prefer-dist --no-interaction
+        env:
+          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
       - name: Create Database
         run: |
