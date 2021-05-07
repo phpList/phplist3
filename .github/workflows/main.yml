@@ -83,16 +83,16 @@ jobs:
         with:
           path: ./public_html
           
-      - name: Report Versions
-        run: |
-          google-chrome --version
-          php -v
-          chromedriver -v
-          geckodriver -V
-          which geckodriver
-          which chromedriver
-          firefox -v
-          vendor/bin/behat -V
+      # - name: Report Versions
+      #   run: |
+      #     google-chrome --version
+      #     php -v
+      #     chromedriver -v
+      #     geckodriver -V
+      #     which geckodriver
+      #     which chromedriver
+      #     firefox -v
+      #     vendor/bin/behat -V
 
       - name: Run BDD Tests
         run: |
