@@ -45,9 +45,9 @@ jobs:
         with:
           dev: yes
           args: --prefer-dist --no-interaction
-        env:
-          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
-
+          ssh_key: ${{ secrets.ssh_key }}
+          ssh_key_pub: ${{ secrets.ssh_key_pub }}
+          
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
