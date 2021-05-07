@@ -23,7 +23,7 @@ jobs:
         uses: s3-actions/s3cmd@v1.1
         with:
           provider: aws # default is linode
-          region: 'eu-central-1'
+          region: 'us-east-1'
           access_key: ${{ secrets.AWS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Interact with object storage
