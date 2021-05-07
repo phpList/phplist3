@@ -93,7 +93,6 @@ jobs:
           which chromedriver
           firefox -v
           vendor/bin/behat -V
-          cd vendor/bin/ && sudo ln -s /usr/bin/chromedriver && sudo ln -s /usr/bin/geckodriver
 
       - name: Run BDD Tests
         run: |
