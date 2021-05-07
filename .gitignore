@@ -1,7 +1,6 @@
 /.svn/
 /plugins
 vendor/
-composer.lock
 /behat.yml
 .php_cs.cache
 /.idea/
