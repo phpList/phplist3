@@ -51,7 +51,7 @@ jobs:
           php_version: 7.4
           php_extensions: xml 
           version: 2
-             
+
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
@@ -59,13 +59,13 @@ jobs:
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
 
-      - name: Set bootlist theme
-        run: |
-          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
-          wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-          tar -xzf master.tar.gz
-          mv phplist-ui-bootlist-master phplist-ui-bootlist
-          rm master.tar.gz
+      # - name: Set bootlist theme
+      #   run: |
+      #     cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+      #     wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+      #     tar -xzf master.tar.gz
+      #     mv phplist-ui-bootlist-master phplist-ui-bootlist
+      #     rm master.tar.gz
 
       - name: Start Test Server
         run: |
