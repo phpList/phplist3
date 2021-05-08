@@ -11,12 +11,10 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.1', '7.2', '7.3', '7.4']
+        php-version: ['7.2', '7.3', '7.4']
         experimental: [false]
         include:
         - php-version: '8.0'
-          experimental: true
-        - php-version: '7.0'
           experimental: true
 
     steps:
