@@ -130,4 +130,4 @@ jobs:
         run: |
           cd ..
           s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_BUCKET }}/versions/
-          s3cmd put public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_BUCKET }}/images/${RELEASE_VERSION}/
+          s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_BUCKET }}/images/${RELEASE_VERSION}/
