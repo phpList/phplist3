@@ -91,6 +91,8 @@ jobs:
           geckodriver -V
           which geckodriver
           which chromedriver
+          which rsync
+          rsync --version
           firefox -v
           vendor/bin/behat -V
 
