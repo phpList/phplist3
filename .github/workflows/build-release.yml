@@ -94,8 +94,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           version=1.2.3.4-testing
-          ls -l 
-          find . -type f
+          ls -l ..
+          #find . -type f
           find ./ -name .git -type d -exec rm -rf {} \; 2>/dev/null
           find . -type d -exec chmod 755 {} \;
           find . -type f -exec chmod 644 {} \;
