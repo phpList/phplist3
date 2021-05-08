@@ -115,6 +115,7 @@ jobs:
           sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
           sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
           ls -l 
+          mv phplist-$RELEASE_VERSION phplist3 
           cd $GITHUB_WORKSPACE
 
       - name: Set up S3cmd cli tool
@@ -127,5 +128,6 @@ jobs:
 
       - name: Upload the files
         run: |
+          cd ..
           s3cmd put phplist-${version}.* s3://${{ secrets.AWS_S3_BUCKET }}/versions/
           s3cmd put public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_BUCKET }}/images/${version}/
