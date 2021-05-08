@@ -27,6 +27,8 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
+          echo $GITHUB_REF
+          echo ${{ env.GITHUB_REF }}
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
