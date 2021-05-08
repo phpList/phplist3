@@ -103,17 +103,19 @@ jobs:
           cd $GITHUB_WORKSPACE
           cd ..
           mv phplist3 phplist-$RELEASE_VERSION
-          find . -type d -exec chmod 755 {} \;
-          find . -type f -exec chmod 644 {} \;
+          sudo find . -type d -exec chmod 755 {} \;
+          sudo find . -type f -exec chmod 644 {} \;
           cd phplist-$RELEASE_VERSION
           chmod 755 public_html/lists/admin/plugins
-          rm -rf default.behat.yml TESTING.md .dotgitlab-ci.yml .travis.yml composer.json .php_cs .gitmodules .styleci.yml .gitignore .gitsvnextmodules tests public_html/lists/admin/tests scripts bin/start-selenium bin/fake-sendmail.sh bin/imgur-uploader.sh public_html/lists/base/tests public_html/lists/base/.htaccess public_html/lists/base/phpunit.xml.dist public_html/lists/base/composer.* public_html/lists/base/CODE_OF_CONDUCT.md public_html/lists/admin/ui/default
+          sudo rm -rf default.behat.yml TESTING.md .dotgitlab-ci.yml .travis.yml composer.json .php_cs .gitmodules .styleci.yml .gitignore .gitsvnextmodules tests public_html/lists/admin/tests scripts bin/start-selenium bin/fake-sendmail.sh bin/imgur-uploader.sh public_html/lists/base/tests public_html/lists/base/.htaccess public_html/lists/base/phpunit.xml.dist public_html/lists/base/composer.* public_html/lists/base/CODE_OF_CONDUCT.md public_html/lists/admin/ui/default
           cd ..
           zip -rq9 phplist-${RELEASE_VERSION}.zip phplist-${RELEASE_VERSION}
           tar zcf phplist-${RELEASE_VERSION}.tgz phplist-${RELEASE_VERSION}
           md5sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.md5
           sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
           sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
+          ls -l 
+          cd $GITHUB_WORKSPACE
 
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
