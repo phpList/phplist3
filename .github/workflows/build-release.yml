@@ -95,8 +95,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           version=1.2.3.4-testing
           ls -l ..
-          #find . -type f
-          find ./ -name .git -type d -exec rm -rf {} \; 2>/dev/null
+          find . -name .git -type d -exec rm -rf {} \; 
           find . -type d -exec chmod 755 {} \;
           find . -type f -exec chmod 644 {} \;
           chmod 755 public_html/lists/admin/plugins
@@ -118,5 +117,5 @@ jobs:
 
       - name: Upload the files
         run: |
-          s3cmd put phplist-${version}.* s3://powered.phplist/versions/
-          s3cmd put public_html/lists/admin/images/power-phplist.png s3://powered.phplist/images/${version}/
+          s3cmd put phplist-${version}.* s3://${{ secrets.AWS_S3_BUCKET }}/versions/
+          s3cmd put public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_BUCKET }}/images/${version}/
