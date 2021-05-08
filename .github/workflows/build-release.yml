@@ -110,6 +110,10 @@ jobs:
           sudo find . -type f -exec chmod 644 {} \;
           cd phplist-$RELEASE_VERSION
           chmod 777 public_html/lists/admin/plugins
+          cat public_html/lists/admin/init.php | tr '\n' '\r' | sed 's~//## remove on rollout.*//## end remove on rollout ###~define("VERSION","'${RELEASE_VERSION}'");~' | tr '\r' '\n' > /tmp/$$.init
+          mv -f /tmp/$$.init public_html/lists/admin/init.php
+          sed -i s~define\(\'STRUCTUREVERSION\'.*~define\(\'STRUCTUREVERSION\',\"${RELEASE_VERSION}\"\)\;~ public_html/lists/admin/structure.php
+          sed -i /VERSION=/VERSION=${RELEASE_VERSION}/ VERSION
 
           cd ..
           zip -rq9 phplist-${RELEASE_VERSION}.zip phplist-${RELEASE_VERSION}
