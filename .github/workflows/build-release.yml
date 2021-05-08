@@ -106,11 +106,57 @@ jobs:
           sudo find . -type d -exec chmod 755 {} \;
           sudo find . -type f -exec chmod 644 {} \;
           cd phplist-$RELEASE_VERSION
-          chmod 755 public_html/lists/admin/plugins
-          sudo rm -rf default.behat.yml TESTING.md .dotgitlab-ci.yml .travis.yml composer.json .php_cs .gitmodules .styleci.yml .gitignore .gitsvnextmodules tests public_html/lists/admin/tests scripts bin/start-selenium bin/fake-sendmail.sh bin/imgur-uploader.sh public_html/lists/base/tests public_html/lists/base/.htaccess public_html/lists/base/phpunit.xml.dist public_html/lists/base/composer.* public_html/lists/base/CODE_OF_CONDUCT.md public_html/lists/admin/ui/default
+          chmod 777 public_html/lists/admin/plugins
+
           cd ..
           zip -rq9 phplist-${RELEASE_VERSION}.zip phplist-${RELEASE_VERSION}
-          tar zcf phplist-${RELEASE_VERSION}.tgz phplist-${RELEASE_VERSION}
+          tar cf phplist-${RELEASE_VERSION}.tar phplist-${RELEASE_VERSION}
+
+          remove=(
+            default.behat.yml
+            TESTING.md
+            .dotgitlab-ci.yml
+            .travis.yml
+            composer.json
+            composer.lock
+            .git
+            .github
+            .php_cs
+            .gitmodules
+            Dockerfile
+            Vagrantfile
+            .styleci.yml 
+            .gitignore 
+            .gitsvnextmodules 
+            tests
+            public_html/lists/admin/tests
+            scripts
+            bin/start-selenium
+            bin/fake-sendmail.sh
+            bin/imgur-uploader.sh
+            public_html/lists/base/tests
+            public_html/lists/base/.htaccess
+            public_html/lists/base/phpunit.xml.dist 
+            public_html/lists/base/composer.lock
+            public_html/lists/base/composer.json
+            public_html/lists/base/CODE_OF_CONDUCT.md 
+            public_html/lists/admin/ui/default
+          )
+
+          for item in ${remove[@]}; do
+            [[ -f phplist-$RELEASE_VERSION/$item ]] && {
+              tar -vf phplist-${RELEASE_VERSION}.tar --delete phplist-$RELEASE_VERSION/$item
+              zip -d phplist-${RELEASE_VERSION}.zip phplist-$RELEASE_VERSION/$item
+            }
+            [[ -d phplist-$RELEASE_VERSION/$item ]] && {
+              tar -vf phplist-${RELEASE_VERSION}.tar --delete phplist-$RELEASE_VERSION/$item
+              zip -d phplist-${RELEASE_VERSION}.zip phplist-$RELEASE_VERSION/$item/\*
+            }
+          done
+
+          gzip phplist-${RELEASE_VERSION}.tar
+          mv phplist-${RELEASE_VERSION}.tar.gz phplist-${RELEASE_VERSION}.tgz
+
           md5sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.md5
           sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
           sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
