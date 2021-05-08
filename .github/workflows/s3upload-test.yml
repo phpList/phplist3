@@ -9,7 +9,7 @@ on:
 
 jobs:
   upload:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
       # - uses: shallwefootball/s3-upload-action@master
