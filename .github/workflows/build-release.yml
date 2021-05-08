@@ -41,6 +41,9 @@ jobs:
         with:
           dev: yes
           args: --prefer-dist --no-interaction
+          php_version: 7.4
+          php_extensions: xml 
+          version: 2
 
       - name: Create Database
         run: |
