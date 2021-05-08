@@ -20,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Find the version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Show the discovered version
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
@@ -93,19 +101,19 @@ jobs:
       - name: Clean Up
         run: |
           cd $GITHUB_WORKSPACE
-          version=1.2.3.4-testing
-          ls -l ..
-          find . -name .git -type d -exec rm -rf {} \; 
+          cd ..
+          mv phplist3 phplist-$RELEASE_VERSION
           find . -type d -exec chmod 755 {} \;
           find . -type f -exec chmod 644 {} \;
+          cd phplist-$RELEASE_VERSION
           chmod 755 public_html/lists/admin/plugins
           rm -rf default.behat.yml TESTING.md .dotgitlab-ci.yml .travis.yml composer.json .php_cs .gitmodules .styleci.yml .gitignore .gitsvnextmodules tests public_html/lists/admin/tests scripts bin/start-selenium bin/fake-sendmail.sh bin/imgur-uploader.sh public_html/lists/base/tests public_html/lists/base/.htaccess public_html/lists/base/phpunit.xml.dist public_html/lists/base/composer.* public_html/lists/base/CODE_OF_CONDUCT.md public_html/lists/admin/ui/default
-          zip -rq9 phplist-${version}.zip phplist-${version}
-          tar zcf phplist-${version}.tgz phplist-${version}
-          rm -f ${version}.md5
-          md5sum phplist-${version}.* > phplist-${version}.md5
-          sha256sum phplist-${version}.* > phplist-${version}.sha256
-          sha1sum phplist-${version}.* > phplist-${version}.sha1
+          cd ..
+          zip -rq9 phplist-${RELEASE_VERSION}.zip phplist-${RELEASE_VERSION}
+          tar zcf phplist-${RELEASE_VERSION}.tgz phplist-${RELEASE_VERSION}
+          md5sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.md5
+          sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
+          sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
 
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
