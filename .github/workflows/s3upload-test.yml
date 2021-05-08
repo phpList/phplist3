@@ -28,5 +28,5 @@ jobs:
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Interact with object storage
         run: |
-          s3cmd sync --recursive --acl-public doc s3://powered.phplist
+          s3cmd sync --recursive --acl-public doc s3://powered.phplist/test/
           s3cmd info s3://powered.phplist
