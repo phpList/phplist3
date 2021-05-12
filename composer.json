@@ -1,6 +1,6 @@
 {
   "name": "phplist/phplist3",
-  "description": "The world's most popular open source newsletter manager",
+  "description": "The world's most popular Open Source Newsletter Manager",
   "keywords": [
     "phplist",
     "email",
@@ -17,8 +17,109 @@
     "source": "https://github.com/phpList/phpList3"
   },
   "minimum-stability": "dev",
+  "repositories": [
+      {
+          "type": "composer",
+          "url": "https://repo.packagist.org"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-ui-bootlist"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-lan-help"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-lan-info"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/updater"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phpList/phplist-plugin-invite.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-common.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-captcha.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-ckeditor.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/bramley/phplist-plugin-segment.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-campaignslicer.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-dateplaceholder.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-disposablemailblock.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-domainthrottlemap.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-embedremoteimages.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
+      }
+    ],
+  "extra": {
+      "custom-installer": {
+          "vendor/{$vendor}/{$name}/": ["type:library"],
+          "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
+          "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
+          "public_html/lists/admin/info": ["phplist/phplist-lan-info"],
+          "public_html/lists/updater": ["phplist/updater"]
+      }
+  },
+  "scripts": { 
+    "post-install-cmd": [
+      "php -r \"system('scripts/install-plugins.sh vendor public_html/lists/admin/plugins/'); \""
+    ],
+    "post-update-cmd": [
+      "php -r \"system('scripts/install-plugins.sh vendor public_html/lists/admin/plugins/'); \""
+    ]
+  },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "davidbarratt/custom-installer": "@stable",
+    "phplist/phplist-ui-bootlist": "@stable",
+    "phplist/phplist-lan-help": "@stable",
+    "phplist/phplist-lan-info": "@stable",
+    "phplist/updater": "@stable",
+    "phplist/phplist-plugin-invite": "dev-master",
+    "michield/phplist-plugin-campaignslicer": "dev-master",
+    "michield/phplist-plugin-dateplaceholder": "dev-master",
+    "michield/phplist-plugin-disposablemailblock": "dev-master",
+    "michield/phplist-plugin-domainthrottlemap": "dev-master",
+    "michield/phplist-plugin-embedremoteimages": "dev-master",
+    "bramley/phplist-plugin-common": "dev-master",
+    "bramley/phplist-plugin-captcha": "dev-master",
+    "bramley/phplist-plugin-ckeditor": "dev-master",
+    "bramley/phplist-plugin-segment": "dev-master",
+    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
+    "enm1989/geckodriver": "^0.20.0",
+    "enm1989/chromedriver": "^90.0"
   },
   "require-dev": {
     "behat/mink": "@stable",

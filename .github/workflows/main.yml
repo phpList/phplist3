@@ -11,12 +11,10 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.1', '7.2', '7.3', '7.4']
+        php-version: ['7.2', '7.3', '7.4']
         experimental: [false]
         include:
         - php-version: '8.0'
-          experimental: true
-        - php-version: '7.0'
           experimental: true
 
     steps:
@@ -26,6 +24,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+        env:
+          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
       - name: Setup Packages
         run: |
@@ -38,11 +38,17 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
+      - name: Add HTTP basic auth credentials
+        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+
       - name: Install dependencies
         uses: php-actions/composer@v5
         with:
           dev: yes
           args: --prefer-dist --no-interaction
+          php_version: 7.4
+          php_extensions: xml 
+          version: 2
 
       - name: Create Database
         run: |
@@ -51,13 +57,13 @@ jobs:
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
 
-      - name: Set bootlist theme
-        run: |
-          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
-          wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-          tar -xzf master.tar.gz
-          mv phplist-ui-bootlist-master phplist-ui-bootlist
-          rm master.tar.gz
+      # - name: Set bootlist theme
+      #   run: |
+      #     cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+      #     wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+      #     tar -xzf master.tar.gz
+      #     mv phplist-ui-bootlist-master phplist-ui-bootlist
+      #     rm master.tar.gz
 
       - name: Start Test Server
         run: |
@@ -75,17 +81,16 @@ jobs:
         with:
           path: ./public_html
           
-      - name: Report Versions
-        run: |
-          google-chrome --version
-          php -v
-          chromedriver -v
-          geckodriver -V
-          which geckodriver
-          which chromedriver
-          firefox -v
-          vendor/bin/behat -V
-          cd vendor/bin/ && sudo ln -s /usr/bin/chromedriver && sudo ln -s /usr/bin/geckodriver
+      # - name: Report Versions
+      #   run: |
+      #     google-chrome --version
+      #     php -v
+      #     chromedriver -v
+      #     geckodriver -V
+      #     which geckodriver
+      #     which chromedriver
+      #     firefox -v
+      #     vendor/bin/behat -V
 
       - name: Run BDD Tests
         run: |

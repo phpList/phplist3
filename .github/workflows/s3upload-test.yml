@@ -1,0 +1,31 @@
+
+
+name: Upload to S3
+
+on:
+  push:
+    tags: testing-[1-9]+.[0-9]+.[0-9]+
+
+jobs:
+  upload:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      # - uses: shallwefootball/s3-upload-action@master
+      #   with:
+      #     aws_key_id: ${{ secrets.AWS_KEY_ID }}
+      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+      #     aws_bucket: ${{ secrets.AWS_BUCKET }}
+      #     source_dir: 'doc'
+      #     destination_dir: '/test'
+      - name: Set up S3cmd cli tool
+        uses: s3-actions/s3cmd@v1.1
+        with:
+          provider: aws # default is linode
+          region: 'us-east-1'
+          access_key: ${{ secrets.AWS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Interact with object storage
+        run: |
+          s3cmd sync --recursive --acl-public doc s3://powered.phplist/test/
+          s3cmd info s3://powered.phplist

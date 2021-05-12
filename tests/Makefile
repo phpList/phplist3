@@ -3,7 +3,7 @@
 createdb:
 	mysql -e 'drop database if exists phplistdb'
 	mysqladmin create phplistdb
-	mysql -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
+	mysql -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"; FLUSH PRIVILEGES;'
 
 test: createdb
 	../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
