@@ -105,7 +105,7 @@ $format = '<tr><td valign="top" class="dataname">%s</td><td valign="top">%s</td>
 $content .= sprintf($format, s('Subject'), htmlentities($msgdata['subject']));
 $content .= sprintf($format, s('entered'), formatDateTime( stripslashes($msgdata['entered'] )));
 $content .= sprintf($format, s('fromfield'), htmlentities(stripslashes($msgdata['fromfield'])));
-$content .= sprintf($format, s('HTML content'), stripslashes($msgdata['message']));
+$content .= sprintf($format, s('HTML content'), disableJavascript(stripslashes($msgdata['message'])));
 $content .= sprintf($format, s('Text content'), htmlentities(stripslashes($msgdata['textmessage'])));
 $content .= sprintf($format, s('footer'), stripslashes($msgdata['footer']));
 

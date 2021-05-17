@@ -105,6 +105,9 @@ function setMessageData($msgid, $name, $value)
         //# disallow html in the subject and title
         $value = strip_tags($value);
     }
+    if ($name == 'message') { ## there's no need for js actions in the body. @@TODO expand on other fields
+      $value = disableJavascript($value);
+    }
 
     if ($name == 'targetlist' && is_array($value)) {
         Sql_query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
@@ -1041,7 +1044,7 @@ function clearPageCache()
 function removeJavascript($content)
 {
     $content = preg_replace('/<script[^>]*>(.*?)<\/script\s*>/mis', '', $content);
-
+    $content = disableJavascript($content);
     return $content;
 }
 
