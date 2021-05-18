@@ -59,6 +59,17 @@ jobs:
           cd $GITHUB_WORKSPACE
           ./scripts/install-plugins.sh vendor public_html/lists/admin/plugins/
 
+      - name: Install the phpList4 based REST API
+        run: |
+          cd $GITHUB_WORKSPACE
+          cd public_html/lists
+          wget https://github.com/phpList/base-distribution/archive/phplist3.zip
+          unzip phplist3.zip
+          rm phplist3.zip
+          mv base-distribution-phplist3 base
+          cd base
+          composer update --no-dev
+
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
