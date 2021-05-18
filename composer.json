@@ -36,6 +36,10 @@
       },
       {
             "type": "vcs",
+            "url": "https://github.com/phpList/phplist-lan-texts"
+      },
+      {
+            "type": "vcs",
             "url": "https://github.com/phpList/updater"
       },
       {
@@ -89,6 +93,7 @@
           "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
           "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
           "public_html/lists/admin/info": ["phplist/phplist-lan-info"],
+          "public_html/lists/texts": ["phplist/phplist-lan-texts"],
           "public_html/lists/updater": ["phplist/updater"]
       }
   },
