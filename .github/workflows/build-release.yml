@@ -92,6 +92,7 @@ jobs:
         uses: overtrue/phplint@2.3.5
         with:
           path: ./public_html
+          options: --exclude=base/vendor
           
       - name: Report Versions
         run: |
