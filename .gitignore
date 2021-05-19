@@ -10,4 +10,6 @@ public_html/lists/admin/info/
 /build
 .DS_Store
 .vagrant
-/updater
+public_html/lists/updater
+public_html/lists/texts
+
