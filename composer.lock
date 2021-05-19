@@ -845,7 +845,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:njoannidi/phpLintBash.git",
+                "url": "https://github.com/njoannidi/phpLintBash.git",
                 "reference": "c3c92486656ca9860c6df076e2586b28f1e9b88e"
             },
             "dist": {

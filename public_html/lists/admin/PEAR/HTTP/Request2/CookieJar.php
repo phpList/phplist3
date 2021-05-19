@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2016 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2020 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -47,7 +47,7 @@ class HTTP_Request2_CookieJar implements Serializable
      *
      * @var array
      */
-    protected $cookies = array();
+    protected $cookies = [];
 
     /**
      * Whether session cookies should be serialized when serializing the jar
@@ -72,7 +72,7 @@ class HTTP_Request2_CookieJar implements Serializable
      * @var  array
      * @link http://publicsuffix.org/
      */
-    protected static $psl = array();
+    protected static $psl = [];
 
     /**
      * Class constructor, sets various options
@@ -131,7 +131,7 @@ class HTTP_Request2_CookieJar implements Serializable
      */
     protected function checkAndUpdateFields(array $cookie, Net_URL2 $setter = null)
     {
-        if ($missing = array_diff(array('name', 'value'), array_keys($cookie))) {
+        if ($missing = array_diff(['name', 'value'], array_keys($cookie))) {
             throw new HTTP_Request2_LogicException(
                 "Cookie array should contain 'name' and 'value' fields",
                 HTTP_Request2_Exception::MISSING_VALUE
@@ -149,7 +149,7 @@ class HTTP_Request2_CookieJar implements Serializable
                 HTTP_Request2_Exception::INVALID_ARGUMENT
             );
         }
-        $cookie += array('domain' => '', 'path' => '', 'expires' => null, 'secure' => false);
+        $cookie += ['domain' => '', 'path' => '', 'expires' => null, 'secure' => false];
 
         // Need ISO-8601 date @ UTC timezone
         if (!empty($cookie['expires'])
@@ -223,10 +223,10 @@ class HTTP_Request2_CookieJar implements Serializable
             && (is_null($cookie['expires']) || $cookie['expires'] > $this->now())
         ) {
             if (!isset($this->cookies[$cookie['domain']])) {
-                $this->cookies[$cookie['domain']] = array();
+                $this->cookies[$cookie['domain']] = [];
             }
             if (!isset($this->cookies[$cookie['domain']][$cookie['path']])) {
-                $this->cookies[$cookie['domain']][$cookie['path']] = array();
+                $this->cookies[$cookie['domain']][$cookie['path']] = [];
             }
             $this->cookies[$cookie['domain']][$cookie['path']][$cookie['name']] = $cookie;
 
@@ -286,7 +286,7 @@ class HTTP_Request2_CookieJar implements Serializable
         $path   = $url->getPath();
         $secure = 0 == strcasecmp($url->getScheme(), 'https');
 
-        $matched = $ret = array();
+        $matched = $ret = [];
         foreach (array_keys($this->cookies) as $domain) {
             if ($this->domainMatch($host, $domain)) {
                 foreach (array_keys($this->cookies[$domain]) as $cPath) {
@@ -322,7 +322,7 @@ class HTTP_Request2_CookieJar implements Serializable
      */
     public function getAll()
     {
-        $cookies = array();
+        $cookies = [];
         foreach (array_keys($this->cookies) as $domain) {
             foreach (array_keys($this->cookies[$domain]) as $path) {
                 foreach ($this->cookies[$domain][$path] as $name => $cookie) {
@@ -398,12 +398,12 @@ class HTTP_Request2_CookieJar implements Serializable
                 }
             }
         }
-        return serialize(array(
+        return serialize([
             'cookies'          => $cookies,
             'serializeSession' => $this->serializeSession,
             'useList'          => $this->useList,
             'ignoreInvalid'    => $this->ignoreInvalid
-        ));
+        ]);
     }
 
     /**
@@ -427,10 +427,10 @@ class HTTP_Request2_CookieJar implements Serializable
                 continue;
             }
             if (!isset($this->cookies[$cookie['domain']])) {
-                $this->cookies[$cookie['domain']] = array();
+                $this->cookies[$cookie['domain']] = [];
             }
             if (!isset($this->cookies[$cookie['domain']][$cookie['path']])) {
-                $this->cookies[$cookie['domain']][$cookie['path']] = array();
+                $this->cookies[$cookie['domain']][$cookie['path']] = [];
             }
             $this->cookies[$cookie['domain']][$cookie['path']][$cookie['name']] = $cookie;
         }
@@ -490,7 +490,7 @@ class HTTP_Request2_CookieJar implements Serializable
             $path = '@data_dir@' . DIRECTORY_SEPARATOR . 'HTTP_Request2';
             if (0 === strpos($path, '@' . 'data_dir@')) {
                 $path = realpath(
-                    dirname(__FILE__) . DIRECTORY_SEPARATOR . '..'
+                    __DIR__ . DIRECTORY_SEPARATOR . '..'
                     . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'
                 );
             }

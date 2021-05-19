@@ -105,6 +105,9 @@ function setMessageData($msgid, $name, $value)
         //# disallow html in the subject and title
         $value = strip_tags($value);
     }
+    if ($name == 'message') { ## there's no need for js actions in the body. @@TODO expand on other fields
+      $value = disableJavascript($value);
+    }
 
     if ($name == 'targetlist' && is_array($value)) {
         Sql_query(sprintf('delete from %s where messageid = %d', $GLOBALS['tables']['listmessage'], $msgid));
@@ -1041,7 +1044,7 @@ function clearPageCache()
 function removeJavascript($content)
 {
     $content = preg_replace('/<script[^>]*>(.*?)<\/script\s*>/mis', '', $content);
-
+    $content = disableJavascript($content);
     return $content;
 }
 
@@ -1353,6 +1356,10 @@ function fetchUrlCurl($url, $request_parameters)
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
     curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }    
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
