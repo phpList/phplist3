@@ -111,6 +111,7 @@
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
     "phplist/phplist-lan-info": "@stable",
+    "phplist/phplist-lan-texts": "@stable",
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
     "michield/phplist-plugin-campaignslicer": "dev-master",
