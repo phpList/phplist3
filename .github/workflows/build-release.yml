@@ -202,6 +202,8 @@ jobs:
           cd ..
           s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
           s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
+          cd $GITHUB_WORKSPACE
+          tar zxf ../phplist-${RELEASE_VERSION}.tgz
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -220,4 +222,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:$RELEASE_VERSION
+          build-args: VERSION=${{ env.RELEASE_VERSION }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
