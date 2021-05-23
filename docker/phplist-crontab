@@ -1,0 +1,2 @@
+*/1 * * * * phplist -pprocessqueue >> /var/log/phplist.log 2>&1
+0 3 * * * phplist -pprocessbounces >> /var/log/phplist-bounces.log 2>&1

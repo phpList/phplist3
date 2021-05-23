@@ -202,3 +202,22 @@ jobs:
           cd ..
           s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
           s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:$RELEASE_VERSION
