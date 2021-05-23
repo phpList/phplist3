@@ -223,5 +223,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          no-cache: true
           build-args: VERSION=${{ env.RELEASE_VERSION }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
