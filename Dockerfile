@@ -3,19 +3,21 @@ FROM debian:buster-slim
 
 LABEL maintainer="michiel@phplist.com" 
 
-RUN apt-get update && apt-get upgrade -y
+ RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install -y apt-utils \
-    vim apache2 net-tools php-mysql \
-    libapache2-mod-php php-curl php-gd \
-    git cron php-imap php-xml php-zip php-mbstring
+ RUN apt-get install -y apt-utils \
+     vim apache2 net-tools php-mysql \
+     libapache2-mod-php php-curl php-gd \
+     git cron php-imap php-xml php-zip php-mbstring s4cmd
 
 RUN useradd -d /var/www/phpList3 phplist
 
 ARG VERSION=unknown
 RUN echo VERSION=${VERSION}
+ARG AWS_ACCESSKEY=x
+ARG AWS_SECRETKEY=y
 
-RUN rm -rf /var/www/phpList3 && mkdir /var/www/phpList3
+RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
 RUN rm -rf /etc/phplist && mkdir /etc/phplist
 
 COPY docker/docker-apache-phplist.conf /etc/apache2/sites-available
@@ -23,8 +25,10 @@ COPY docker/docker-entrypoint.sh /usr/local/bin/
 COPY docker/phplist-crontab /etc/cron.d/
 COPY docker/docker-phplist-config-live.php /etc/phplist/
 
-#COPY phplist-$VERSION /var/www/phpList3
-COPY . /var/www/phpList3
+RUN s4cmd --access-key=$AWS_ACCESSKEY --secret-key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
+
+RUN tar zvxf phplist-$VERSION.tgz
+RUN mv phplist-$VERSION/* /var/www/phpList3/
 
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
     cd /var/www/ && find . -type d -name .git -print0 | xargs -0 rm -rf && \
