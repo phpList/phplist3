@@ -3084,7 +3084,7 @@ msgid "still to process"
 msgstr "Still to process"
 
 #: public_html/lists/admin/actions/msgstatus.php:81
-#: public_html/lists/admin/lib.php:703 public_html/lists/admin/bounces.php:180
+#: public_html/lists/admin/lib.php:706 public_html/lists/admin/bounces.php:180
 #: public_html/lists/admin/bounces.php:200
 msgid "Unknown"
 msgstr "Unknown"
@@ -3858,7 +3858,7 @@ msgid "processqueue"
 msgstr "Process queue"
 
 #: public_html/lists/admin/send_core.php:389
-#: public_html/lists/admin/lib.php:2110
+#: public_html/lists/admin/lib.php:2113
 msgid "view progress"
 msgstr "view progress"
 
@@ -4462,7 +4462,7 @@ msgid "View progress"
 msgstr "View progress"
 
 #: public_html/lists/admin/processqueue.php:96
-#: public_html/lists/admin/lib.php:2120
+#: public_html/lists/admin/lib.php:2123
 msgid "Change settings"
 msgstr "Change settings"
 
@@ -7564,19 +7564,19 @@ msgstr "Delete bounce"
 msgid "Unnamed List"
 msgstr "Unnamed list"
 
-#: public_html/lists/admin/lib.php:400
+#: public_html/lists/admin/lib.php:403
 msgid "Hello"
 msgstr "Hello"
 
-#: public_html/lists/admin/lib.php:401
+#: public_html/lists/admin/lib.php:404
 msgid "You have requested a new password for phpList."
 msgstr "You have requested a new password for phpList."
 
-#: public_html/lists/admin/lib.php:402
+#: public_html/lists/admin/lib.php:405
 msgid "To enter a new one, please visit the following link:"
 msgstr "To enter a new one, please visit the following link:"
 
-#: public_html/lists/admin/lib.php:404
+#: public_html/lists/admin/lib.php:407
 msgid ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
@@ -7584,29 +7584,29 @@ msgstr ""
 "You have 24 hours left to change your password. After that, your token won't "
 "be valid."
 
-#: public_html/lists/admin/lib.php:406 public_html/lists/admin/login.php:102
+#: public_html/lists/admin/lib.php:409 public_html/lists/admin/login.php:102
 msgid "New password"
 msgstr "New password"
 
-#: public_html/lists/admin/lib.php:410
+#: public_html/lists/admin/lib.php:413
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
 "A password change token has been sent to the corresponding email address."
 
-#: public_html/lists/admin/lib.php:412
+#: public_html/lists/admin/lib.php:415
 msgid "Error sending password change token"
 msgstr "Error sending password change token"
 
-#: public_html/lists/admin/lib.php:714
+#: public_html/lists/admin/lib.php:717
 msgid "very little time"
 msgstr "very little time"
 
-#: public_html/lists/admin/lib.php:771
+#: public_html/lists/admin/lib.php:774
 msgid "This is the Newsletter Subject"
 msgstr "This is the Newsletter Subject"
 
-#: public_html/lists/admin/lib.php:950 public_html/lists/admin/lib.php:954
+#: public_html/lists/admin/lib.php:953 public_html/lists/admin/lib.php:957
 #, php-format
 msgid ""
 "A process for this page is already running and it was still alive %d seconds "
@@ -7615,55 +7615,55 @@ msgstr ""
 "A process for this page is already running and it was still alive %d seconds "
 "ago"
 
-#: public_html/lists/admin/lib.php:956
+#: public_html/lists/admin/lib.php:959
 msgid ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 msgstr ""
 "Running commandline, quitting. We'll find out what to do in the next run."
 
-#: public_html/lists/admin/lib.php:959
+#: public_html/lists/admin/lib.php:962
 msgid "Sleeping for 20 seconds, aborting will quit"
 msgstr "Sleeping for 20 seconds, aborting will quit"
 
-#: public_html/lists/admin/lib.php:967
+#: public_html/lists/admin/lib.php:970
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
 "We have been waiting too long, I guess the other process is still going ok"
 
-#: public_html/lists/admin/lib.php:1848 public_html/lists/admin/lib.php:1853
+#: public_html/lists/admin/lib.php:1851 public_html/lists/admin/lib.php:1856
 msgid "Error, incorrect session token"
 msgstr "Error, incorrect session token"
 
-#: public_html/lists/admin/lib.php:2109
+#: public_html/lists/admin/lib.php:2112
 msgid "Remote queue processing has been activated successfully"
 msgstr "Remote queue processing has been activated successfully"
 
-#: public_html/lists/admin/lib.php:2112 public_html/lists/admin/lib.php:2123
+#: public_html/lists/admin/lib.php:2115 public_html/lists/admin/lib.php:2126
 msgid "Error activating remote queue processing"
 msgstr "Error activating remote queue processing"
 
-#: public_html/lists/admin/lib.php:2114
+#: public_html/lists/admin/lib.php:2117
 msgid "The API key is incorrect"
 msgstr "The API key is incorrect"
 
-#: public_html/lists/admin/lib.php:2116
+#: public_html/lists/admin/lib.php:2119
 msgid "The phpList.com server is unable to reach your phpList installation"
 msgstr "The phpList.com server is unable to reach your phpList installation"
 
-#: public_html/lists/admin/lib.php:2118
+#: public_html/lists/admin/lib.php:2121
 msgid "Unknown error"
 msgstr "Unknown error"
 
-#: public_html/lists/admin/lib.php:2121 public_html/lists/admin/lib.php:2124
+#: public_html/lists/admin/lib.php:2124 public_html/lists/admin/lib.php:2127
 msgid "Run queue locally"
 msgstr "Run queue locally"
 
-#: public_html/lists/admin/lib.php:2137
+#: public_html/lists/admin/lib.php:2140
 msgid "Sign up to receive news and updates about phpList "
 msgstr "Sign up to receive news and updates about phpList "
 
-#: public_html/lists/admin/lib.php:2138
+#: public_html/lists/admin/lib.php:2141
 msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
@@ -7671,24 +7671,24 @@ msgstr ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 
-#: public_html/lists/admin/lib.php:2144
+#: public_html/lists/admin/lib.php:2147
 msgid "Subscribe"
 msgstr "Subscribe"
 
-#: public_html/lists/admin/lib.php:2144
+#: public_html/lists/admin/lib.php:2147
 msgid "Do not subscribe"
 msgstr "Do not subscribe"
 
-#: public_html/lists/admin/lib.php:2349
+#: public_html/lists/admin/lib.php:2352
 msgid "Please wait, your request is being processed. Do not refresh this page."
 msgstr ""
 "Please wait, your request is being processed. Do not refresh this page."
 
-#: public_html/lists/admin/lib.php:2351
+#: public_html/lists/admin/lib.php:2354
 msgid "Still loading"
 msgstr "Still loading"
 
-#: public_html/lists/admin/lib.php:2352
+#: public_html/lists/admin/lib.php:2355
 msgid ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
@@ -7696,11 +7696,11 @@ msgstr ""
 "It may seem to take a while, but there is a lot of data to crunch<br/>if you "
 "have a lot of subscribers and campaigns"
 
-#: public_html/lists/admin/lib.php:2353
+#: public_html/lists/admin/lib.php:2356
 msgid "It should be soon now, your page content is almost here."
 msgstr "It should be soon now, your page content is almost here."
 
-#: public_html/lists/admin/lib.php:2354
+#: public_html/lists/admin/lib.php:2357
 msgid ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
@@ -7708,19 +7708,19 @@ msgstr ""
 "This seems to take longer than expected, looks like there is a lot of data "
 "to work on."
 
-#: public_html/lists/admin/lib.php:2355
+#: public_html/lists/admin/lib.php:2358
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr "Still loading, please be patient, your page content will show shortly."
 
-#: public_html/lists/admin/lib.php:2356
+#: public_html/lists/admin/lib.php:2359
 msgid "It will really be soon now until the page will display."
 msgstr "It will really be soon now until the page will display."
 
-#: public_html/lists/admin/lib.php:2357
+#: public_html/lists/admin/lib.php:2360
 msgid "Still loading, please wait"
 msgstr "Still loading, please wait"
 
-#: public_html/lists/admin/lib.php:2358
+#: public_html/lists/admin/lib.php:2361
 msgid ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
@@ -7728,7 +7728,7 @@ msgstr ""
 "The loading has been just over seven minutes. We can wait just a little "
 "longer."
 
-#: public_html/lists/admin/lib.php:2359
+#: public_html/lists/admin/lib.php:2362
 msgid "If the page does not load soon, please report this in the user forums."
 msgstr "If the page does not load soon, please report this in the user forums."
 
