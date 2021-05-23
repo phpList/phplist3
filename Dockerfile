@@ -28,7 +28,7 @@ COPY docker/docker-phplist-config-live.php /etc/phplist/
 
 RUN which s4cmd && s4cmd --version
 
-RUN s4cmd --access-key=$AWS_ACCESSKEY --secret-key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
+RUN s4cmd ---verbose --access-key=$AWS_ACCESSKEY --secret-key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
 
 RUN tar zvxf phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
