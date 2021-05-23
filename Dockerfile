@@ -16,6 +16,7 @@ ARG VERSION=unknown
 RUN echo VERSION=${VERSION}
 ARG AWS_ACCESSKEY=x
 ARG AWS_SECRETKEY=y
+ARG S3_VERSIONS_BUCKET=unknown
 
 RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
 RUN rm -rf /etc/phplist && mkdir /etc/phplist
