@@ -23,7 +23,7 @@ COPY docker/docker-entrypoint.sh /usr/local/bin/
 COPY docker/phplist-crontab /etc/cron.d/
 COPY docker/docker-phplist-config-live.php /etc/phplist/
 
-COPY phplist3/ /var/www/phpList3
+COPY ./ /var/www/phpList3
 
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
     cd /var/www/ && find . -type d -name .git -print0 | xargs -0 rm -rf && \
