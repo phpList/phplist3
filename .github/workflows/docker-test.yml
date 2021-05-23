@@ -40,6 +40,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          build_args: VERSION=${{ env.RELEASE_VERSION }}
+          build-args: VERSION=${{ env.RELEASE_VERSION }}
           no-cache: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
