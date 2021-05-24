@@ -233,6 +233,7 @@ if ($start > $total) {
 }
 
 if (!empty($delete) && isSuperUser()) {
+    verifyCsrfGetToken();
     // delete the index in delete
     $action_result = $GLOBALS['I18N']->get('deleting')." $delete ..\n";
     deleteUser($delete);
