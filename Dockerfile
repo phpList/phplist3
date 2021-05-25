@@ -17,6 +17,7 @@ RUN echo VERSION=${VERSION}
 ARG AWS_ACCESSKEY=x
 ARG AWS_SECRETKEY=y
 ARG S3_VERSIONS_BUCKET=unknown
+RUN echo AWS_ACCESSKEY=${AWS_ACCESSKEY}
 
 RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
 RUN rm -rf /etc/phplist && mkdir /etc/phplist
@@ -28,7 +29,7 @@ COPY docker/docker-phplist-config-live.php /etc/phplist/
 
 RUN pip install s3cmd
 
-RUN s3cmd --access_key=$AWS_ACCESSKEY --secret_key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
+RUN s3cmd --access_key=${AWS_ACCESSKEY} --secret_key=${AWS_SECRETKEY} get s3://${S3_VERSIONS_BUCKET}/phplist-${VERSION}.tgz ./
 
 RUN tar zvxf phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
