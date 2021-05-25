@@ -1,7 +1,9 @@
 
 name: Build Release - Dev
 
-on: [push]
+on: 
+  push:
+    tags: testing-[1-9]+.[0-9]+.[0-9]+
 
 jobs:
   test:
@@ -53,6 +55,7 @@ jobs:
         with:
           push: true
           no-cache: true
+          file: Dockerfile.release
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
