@@ -8,7 +8,7 @@ LABEL maintainer="michiel@phplist.com"
  RUN apt-get install -y apt-utils \
      vim apache2 net-tools php-mysql \
      libapache2-mod-php php-curl php-gd \
-     git cron php-imap php-xml php-zip php-mbstring s4cmd
+     git cron php-imap php-xml php-zip php-mbstring python-pip
 
 RUN useradd -d /var/www/phpList3 phplist
 
@@ -26,9 +26,9 @@ COPY docker/docker-entrypoint.sh /usr/local/bin/
 COPY docker/phplist-crontab /etc/cron.d/
 COPY docker/docker-phplist-config-live.php /etc/phplist/
 
-RUN which s4cmd && s4cmd --version
+RUN pip install s3cmd
 
-RUN s4cmd ---verbose --access-key=$AWS_ACCESSKEY --secret-key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
+RUN s3cmd --access_key=$AWS_ACCESSKEY --secret_key=$AWS_SECRETKEY get s3://$S3_VERSIONS_BUCKET/phplist-$VERSION.tgz ./
 
 RUN tar zvxf phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
