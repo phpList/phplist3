@@ -221,5 +221,10 @@ jobs:
         with:
           push: true
           no-cache: true
-          build-args: VERSION=${{ env.RELEASE_VERSION }},S3_VERSIONS_BUCKET=${{ secrets.AWS_S3_VERSIONS_BUCKET }},AWS_ACCESSKEY=${{ secrets.AWS_KEY_ID }},AWS_SECRETKEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          file: Dockerfile.release
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
+          build-args: |
+            VERSION=${{ env.RELEASE_VERSION }}
+            S3_VERSIONS_BUCKET=${{ secrets.AWS_S3_VERSIONS_BUCKET }}
+            AWS_ACCESSKEY=${{ secrets.AWS_KEY_ID }}
+            AWS_SECRETKEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
