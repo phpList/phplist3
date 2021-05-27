@@ -3,12 +3,12 @@ FROM debian:buster-slim
 
 LABEL maintainer="michiel@phplist.com" 
 
- RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
- RUN apt-get install -y apt-utils \
-     vim apache2 net-tools php-mysql \
-     libapache2-mod-php php-curl php-gd \
-     git cron php-imap php-xml php-zip php-mbstring python-pip
+RUN apt-get install -y apt-utils \
+    vim apache2 net-tools php-mysql \
+    libapache2-mod-php php-curl php-gd \
+    git cron php-imap php-xml php-zip php-mbstring python-pip
 
 RUN useradd -d /var/www/phpList3 phplist
 

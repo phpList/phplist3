@@ -70,12 +70,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: phpListZip
-          path: phplist-${{ env.RELEASE_VERSION }}.tgz
+          path: tmp/phplist-${{ env.RELEASE_VERSION }}.tgz
 
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           no-cache: true
           file: Dockerfile.release
