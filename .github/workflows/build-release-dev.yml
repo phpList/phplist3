@@ -45,7 +45,7 @@ jobs:
           zip -rq9 phplist-${RELEASE_VERSION}.zip phplist3
           tar zcf phplist-${RELEASE_VERSION}.tgz phplist3
           cd $GITHUB_WORKSPACE
-          mv phplist-${RELEASE_VERSION}.* .
+          mv ../phplist-${RELEASE_VERSION}.* .
           ls -l 
 
       - name: Set up QEMU
