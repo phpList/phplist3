@@ -28,9 +28,9 @@ COPY docker/docker-phplist-config-live.php /etc/phplist/
 
 RUN pip install s3cmd
 
-RUN s3cmd --access_key=${AWS_ACCESSKEY} --secret_key=${AWS_SECRETKEY} get s3://${S3_VERSIONS_BUCKET}/phplist-${VERSION}.tgz ./
+COPY ./phplist-${VERSION}.tgz /tmp/
 
-RUN tar zvxf phplist-$VERSION.tgz
+RUN tar zvxf /tmp/phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
 
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
