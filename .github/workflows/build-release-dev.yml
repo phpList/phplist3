@@ -48,7 +48,7 @@ jobs:
           mv ../phplist-${RELEASE_VERSION}.* .
           ls -l 
 
-        name: Upload artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: phpListZip
