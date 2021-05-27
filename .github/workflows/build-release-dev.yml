@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: phpListZip
-          path: phplist-${RELEASE_VERSION}.tgz
+          path: phplist-${{ env.RELEASE_VERSION }}.tgz
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -70,7 +70,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: phpListZip
-          path: phplist-${RELEASE_VERSION}.tgz
+          path: phplist-${{ env.RELEASE_VERSION }}.tgz
 
       - name: Build and push
         id: docker_build
