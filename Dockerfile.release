@@ -21,9 +21,10 @@ RUN rm -rf /etc/phplist && mkdir /etc/phplist
 COPY docker/docker-apache-phplist.conf /etc/apache2/sites-available
 COPY docker/docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
+RUN a2enside docker-apache-phplist
 
 COPY docker/phplist-crontab /etc/cron.d/
-COPY docker/docker-phplist-config-live.php /etc/phplist/
+COPY docker/docker-phplist-config-live.php /etc/phplist/config.php
 
 COPY phplist-${VERSION}.tgz ./
 
