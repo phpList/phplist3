@@ -48,6 +48,12 @@ jobs:
           mv ../phplist-${RELEASE_VERSION}.* .
           ls -l 
 
+        name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: phpListZip
+          path: phplist-${RELEASE_VERSION}.tgz
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -59,6 +65,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: phpListZip
+          path: phplist-${RELEASE_VERSION}.tgz
 
       - name: Build and push
         id: docker_build
