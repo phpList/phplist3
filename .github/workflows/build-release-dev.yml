@@ -41,8 +41,9 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd ..
-          zip -rq9 phplist-${RELEASE_VERSION}.zip .
-          tar cf phplist-${RELEASE_VERSION}.tar .
+          ls -l 
+          zip -rq9 phplist-${RELEASE_VERSION}.zip ./
+          tar zcf phplist-${RELEASE_VERSION}.tgz ./
           cd $GITHUB_WORKSPACE
           mv phplist-${RELEASE_VERSION}.* .
           ls -l 
