@@ -8,25 +8,22 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y apt-utils \
     vim apache2 net-tools php-mysql \
     libapache2-mod-php php-curl php-gd \
-    git cron php-imap php-xml php-zip php-mbstring python-pip
+    git cron php-imap php-xml php-zip php-mbstring
 
 RUN useradd -d /var/www/phpList3 phplist
 
 ARG VERSION=unknown
 RUN echo VERSION=${VERSION}
-ARG AWS_ACCESSKEY=x
-ARG AWS_SECRETKEY=y
-ARG S3_VERSIONS_BUCKET=unknown
 
 RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
 RUN rm -rf /etc/phplist && mkdir /etc/phplist
 
 COPY docker/docker-apache-phplist.conf /etc/apache2/sites-available
 COPY docker/docker-entrypoint.sh /usr/local/bin/
+RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
+
 COPY docker/phplist-crontab /etc/cron.d/
 COPY docker/docker-phplist-config-live.php /etc/phplist/
-
-RUN pip install s3cmd
 
 COPY phplist-${VERSION}.tgz ./
 
