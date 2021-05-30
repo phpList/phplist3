@@ -286,7 +286,7 @@ if (isset($_GET['markSent'])) {
     verifyCsrfGetToken();
     $markSent = sprintf('%d', $_GET['markSent']);
     $action_result .= $GLOBALS['I18N']->get('Marking as sent ')." $markSent ..";
-    $result = Sql_query(sprintf('update %s set status = "sent", repeatinterval = 0,requeueinterval = 0 where id = %d and (status = "suspended") %s',
+    $result = Sql_query(sprintf('update %s set status = "sent", sent = now(), repeatinterval = 0,requeueinterval = 0 where id = %d and (status = "suspended") %s',
         $tables['message'], $markSent, $ownerselect_and));
     $suc6 = Sql_Affected_Rows();
     if ($suc6) {
@@ -314,7 +314,7 @@ if (isset($_GET['action'])) {
             break;
         case 'markallsent':
             $action_result .= $GLOBALS['I18N']->get('Marking all as sent ').'  ..';
-            $result = Sql_query(sprintf('update %s set status = "sent", repeatinterval = 0,requeueinterval = 0 where (status = "suspended") %s',
+            $result = Sql_query(sprintf('update %s set status = "sent", sent = now(), repeatinterval = 0,requeueinterval = 0 where (status = "suspended") %s',
                 $tables['message'], $markSent, $ownerselect_and));
             $suc6 = Sql_Affected_Rows();
             if ($suc6) {
