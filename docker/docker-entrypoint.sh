@@ -34,7 +34,7 @@ if [[ "$UNCONNECTED" ]]; then
     exit;
 fi
 
-/usr/bin/phplist -pinitialise
+/usr/bin/phplist -pinitialise ## https://github.com/phpList/phplist3/issues/718 - @TODO make this work
 /usr/bin/phplist -pinitlanguages
 
 echo READY
