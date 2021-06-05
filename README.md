@@ -122,8 +122,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 <div align="center" width="100%">
   <img src="https://www.phplist.com/site/images/readme-images/issues_icon.svg" align="center" width="96px" />
   <h3>Issues</h3>
-  <p>Report issues to <a href="https://mantis.phplist.org/bug_report_page.php">Mantis issue tracker</a> (select project phpList 3 application)<br>
-     'Please don't use GitHub issues'.</p>
+  <p>Report issues to <a href="https://github.com/phpList/phplist3/issues">GitHub Issues</a> and, if applicable, add the respective label.</p>
 </div>
 
 #
