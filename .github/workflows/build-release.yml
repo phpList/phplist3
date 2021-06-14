@@ -152,7 +152,7 @@ jobs:
             output.log
             output
             build
-            .phplist-cache
+            .phplint-cache
             docker_tag
             vendor
             public_html/lists/admin/tests
