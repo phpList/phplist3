@@ -163,7 +163,6 @@ jobs:
             public_html/lists/base/.htaccess
             public_html/lists/base/phpunit.xml.dist 
             public_html/lists/base/composer.lock
-            public_html/lists/base/composer.json
             public_html/lists/base/CODE_OF_CONDUCT.md 
             public_html/lists/admin/ui/default
           )
