@@ -9,6 +9,10 @@ if (!defined('PHPLISTINIT')) {
 function accessLevel($page)
 {
     global $tables, $access_levels;
+    if (!empty($GLOBALS['firsttime']) || !empty($_SESSION['firstinstall'])) {
+      return 'all';
+    }
+
     if (isSuperUser()) {
         return 'all';
     }
@@ -37,10 +41,9 @@ function isSuperUser()
     if (defined('WEBBLER') || defined('IN_WEBBLER')) {
         return true;
     }
-    if (!empty($_SESSION['firstinstall'])) {
+    if (!empty($GLOBALS['firsttime'])) {
       return true;
     }
-
     if (!empty($GLOBALS['commandline'])) {
         return true;
     }
