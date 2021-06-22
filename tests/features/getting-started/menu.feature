@@ -26,7 +26,7 @@ Feature: Navigate the app using the menu
         Then I should see "<Innerpages>"
         Examples:
          | Innerpages                |
-         | Search subscribers        |
+#         | Search subscribers        |
          | Manage subscribers        |
          | Configure attributes      |
          | Subscriber lists          |
