@@ -81,16 +81,16 @@ jobs:
         with:
           path: ./public_html
           
-      # - name: Report Versions
-      #   run: |
-      #     google-chrome --version
-      #     php -v
-      #     chromedriver -v
-      #     geckodriver -V
-      #     which geckodriver
-      #     which chromedriver
-      #     firefox -v
-      #     vendor/bin/behat -V
+      - name: Report Versions
+        run: |
+          google-chrome --version
+          php -v
+          chromedriver -v
+          geckodriver -V
+          which geckodriver
+          which chromedriver
+          firefox -v
+          vendor/bin/behat -V
 
       - name: Run BDD Tests
         run: |
@@ -109,7 +109,7 @@ jobs:
 
       - name: Upload the screenshots
         run: |
-          s3cmd sync output/screenshots s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/screenshots/${{ matrix.php-version }}
+          s3cmd sync output s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/testoutput/${{ matrix.php-version }}
         if: ${{ failure() }}
 
       - name: Display output
