@@ -1,3 +1,4 @@
+@wip
 Feature: Navigate the app using the menu
   In order to access different application pages
   As an admin user
@@ -26,7 +27,7 @@ Feature: Navigate the app using the menu
         Then I should see "<Innerpages>"
         Examples:
          | Innerpages                |
-#         | Search subscribers        |
+         | Search subscribers        |
          | Manage subscribers        |
          | Configure attributes      |
          | Subscriber lists          |
