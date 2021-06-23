@@ -1,7 +1,7 @@
 
 name: CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -110,11 +110,13 @@ jobs:
       - name: Upload the screenshots
         run: |
           cd ..
-          s3cmd sync output/screenshots s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/
-          
+          s3cmd sync output/screenshots s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/screenshots/${{ matrix.php-version }}
+        if: ${{ failure() }}
+
       - name: Display output
         run: |
           cd $GITHUB_WORKSPACE
           cat output/selenium.log
+        if: ${{ failure() }}
 
 
