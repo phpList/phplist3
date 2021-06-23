@@ -1,4 +1,4 @@
-@wip
+
 Feature: Navigate the app using the menu
   In order to access different application pages
   As an admin user
