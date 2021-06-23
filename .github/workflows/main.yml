@@ -109,7 +109,6 @@ jobs:
 
       - name: Upload the screenshots
         run: |
-          cd ..
           s3cmd sync output/screenshots s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/screenshots/${{ matrix.php-version }}
         if: ${{ failure() }}
 
