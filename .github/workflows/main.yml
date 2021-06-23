@@ -98,6 +98,20 @@ jobs:
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
 
+      - name: Set up S3cmd cli tool
+        uses: s3-actions/s3cmd@v1.1
+        with:
+          provider: aws
+          region: 'us-east-1'
+          access_key: ${{ secrets.AWS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        if: ${{ failure() }}
+
+      - name: Upload the screenshots
+        run: |
+          cd ..
+          s3cmd sync output/screenshots s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/
+          
       - name: Display output
         run: |
           cd $GITHUB_WORKSPACE
