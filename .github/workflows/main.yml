@@ -5,7 +5,7 @@ on: [pull_request]
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-18.04
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
