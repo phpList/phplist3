@@ -96,8 +96,8 @@ jobs:
       - name: Run BDD Tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -n -fprogress -p firefox --strict --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -n -fprogress -p firefox --strict --stop-on-failure --tags="~@initialise && ~@wip"
 
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
@@ -117,7 +117,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           find output -type f
-          cat output/selenium.log
+        #  cat output/selenium.log
         if: ${{ failure() }}
 
 
