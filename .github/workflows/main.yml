@@ -71,6 +71,7 @@ jobs:
           cp -fv tests/default.behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
+          touch output/screenshots/README.md
           mkdir -p build/mails
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
