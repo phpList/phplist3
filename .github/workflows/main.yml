@@ -115,6 +115,7 @@ jobs:
       - name: Display output
         run: |
           cd $GITHUB_WORKSPACE
+          find output -type f
           cat output/selenium.log
         if: ${{ failure() }}
 
