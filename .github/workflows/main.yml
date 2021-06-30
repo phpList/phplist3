@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.2'] #['7.2', '7.3', '7.4']
+        php-version: ['7.2', '7.2', '7.3', '7.4']
         experimental: [false]
         include:
         - php-version: '8.0'
@@ -31,6 +31,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt update
+          sudo apt install rsync
 
       - name: Cache Composer dependencies
         uses: actions/cache@v2
@@ -57,13 +58,13 @@ jobs:
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
 
-      # - name: Set bootlist theme
-      #   run: |
-      #     cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
-      #     wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-      #     tar -xzf master.tar.gz
-      #     mv phplist-ui-bootlist-master phplist-ui-bootlist
-      #     rm master.tar.gz
+      - name: Set bootlist theme
+        run: |
+          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+          wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+          tar -xzf master.tar.gz
+          mv phplist-ui-bootlist-master phplist-ui-bootlist
+          rm master.tar.gz
 
       - name: Start Test Server
         run: |
@@ -96,27 +97,21 @@ jobs:
       - name: Run BDD Tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -n -fprogress -p firefox --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -fprogress -p firefox --strict --stop-on-failure --tags="~@initialise && ~@wip"
-
-      - name: Set up S3cmd cli tool
-        uses: s3-actions/s3cmd@v1.1
-        with:
-          provider: aws
-          region: 'us-east-1'
-          access_key: ${{ secrets.AWS_KEY_ID }}
-          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        if: ${{ failure() }}
+          ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
 
       - name: Upload the screenshots
-        run: |
-          s3cmd sync output s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/testoutput/${{ matrix.php-version }}/
-        if: ${{ failure() }}
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          path: "output"
+          name: "behat output"
+          retention-days: 3
 
       - name: Display output
         run: |
           cd $GITHUB_WORKSPACE
-          find output -type f
+        #  find . -type f
         #  cat output/selenium.log
         if: ${{ failure() }}
 
