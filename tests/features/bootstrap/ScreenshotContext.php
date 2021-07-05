@@ -86,7 +86,11 @@ class ScreenshotContext extends BaseContext
         $filename = $this->scenarioTitle;
         $filename = preg_replace("#[^a-zA-Z0-9\._-]#", '_', $filename);
 
-        return sprintf('%s/%s.png', sys_get_temp_dir(), $filename);
+        if (!is_dir(__DIR__.'/output/screenshots/')) {
+            mkdir(__DIR__.'/output/screenshots/',0777,true);
+        }
+
+        return sprintf('%s//output/screenshots/%s.png', __DIR__, $filename);
     }
 
     protected function isJavascript()

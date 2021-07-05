@@ -31,6 +31,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt update
+          sudo apt install rsync
 
       - name: Cache Composer dependencies
         uses: actions/cache@v2
@@ -57,13 +58,13 @@ jobs:
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
 
-      # - name: Set bootlist theme
-      #   run: |
-      #     cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
-      #     wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
-      #     tar -xzf master.tar.gz
-      #     mv phplist-ui-bootlist-master phplist-ui-bootlist
-      #     rm master.tar.gz
+      - name: Set bootlist theme
+        run: |
+          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+          wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
+          tar -xzf master.tar.gz
+          mv phplist-ui-bootlist-master phplist-ui-bootlist
+          rm master.tar.gz
 
       - name: Start Test Server
         run: |
@@ -77,30 +78,40 @@ jobs:
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       - name: Check PHP syntax errors
-        uses: phplist/phplint@2.4.1
+        uses: overtrue/phplint@2.4.1
         with:
           path: ./public_html
           
-      # - name: Report Versions
-      #   run: |
-      #     google-chrome --version
-      #     php -v
-      #     chromedriver -v
-      #     geckodriver -V
-      #     which geckodriver
-      #     which chromedriver
-      #     firefox -v
-      #     vendor/bin/behat -V
+      - name: Report Versions
+        run: |
+          google-chrome --version
+          php -v
+          chromedriver -v
+          geckodriver -V
+          which geckodriver
+          which chromedriver
+          firefox -v
+          vendor/bin/behat -V
 
       - name: Run BDD Tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          path: "output"
+          name: "behat output"
+          retention-days: 3
 
       - name: Display output
         run: |
           cd $GITHUB_WORKSPACE
-          cat output/selenium.log
+        #  find . -type f
+        #  cat output/selenium.log
+        if: ${{ failure() }}
 
 

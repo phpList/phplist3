@@ -5,7 +5,7 @@
 
 #
 ![CI](https://github.com/phpList/phplist3/workflows/CI/badge.svg)
-[![Stable release](https://img.shields.io/badge/stable-3.6.2-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+[![Stable release](https://img.shields.io/badge/stable-3.6.3-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 <a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
 <img src="http://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
@@ -122,8 +122,7 @@ This process may take quite a while if your database is large. Don't interrupt i
 <div align="center" width="100%">
   <img src="https://www.phplist.com/site/images/readme-images/issues_icon.svg" align="center" width="96px" />
   <h3>Issues</h3>
-  <p>Report issues to <a href="https://mantis.phplist.org/bug_report_page.php">Mantis issue tracker</a> (select project phpList 3 application)<br>
-     'Please don't use GitHub issues'.</p>
+  <p>Report issues to <a href="https://github.com/phpList/phplist3/issues">GitHub Issues</a> and, if applicable, add the respective label.</p>
 </div>
 
 #

@@ -47,7 +47,7 @@ msgstr ""
 #: public_html/databasestructure.php:12 public_html/databasestructure.php:87
 #: public_html/databasestructure.php:89 public_html/databasestructure.php:139
 #: public_html/lists/admin/usercheck.php:51
-#: public_html/lists/admin/users.php:381
+#: public_html/lists/admin/users.php:382
 msgid "Email"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Last Modified"
 msgstr ""
 
-#: public_html/databasestructure.php:19 public_html/lists/admin/users.php:387
+#: public_html/databasestructure.php:19 public_html/lists/admin/users.php:388
 msgid "Unique ID"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:28 public_html/databasestructure.php:29
 #: public_html/lists/admin/usercheck.php:50
-#: public_html/lists/admin/users.php:384
+#: public_html/lists/admin/users.php:385
 msgid "Foreign Key"
 msgstr ""
 
@@ -1541,7 +1541,7 @@ msgstr ""
 
 #: public_html/lists/admin/mclicks.php:83
 #: public_html/lists/admin/userclicks.php:203
-#: public_html/lists/admin/users.php:358
+#: public_html/lists/admin/users.php:359
 msgid "Subscribers"
 msgstr ""
 
@@ -1779,7 +1779,7 @@ msgid "Converting %s from %s to %s"
 msgstr ""
 
 #: public_html/lists/admin/attributes.php:186
-#: public_html/lists/admin/users.php:237
+#: public_html/lists/admin/users.php:238
 msgid "deleting"
 msgstr ""
 
@@ -2128,7 +2128,7 @@ msgstr ""
 #: public_html/lists/admin/actions/mclicks.php:88
 #: public_html/lists/admin/reconcileusers.php:423
 #: public_html/lists/admin/members.php:281
-#: public_html/lists/admin/users.php:414
+#: public_html/lists/admin/users.php:415
 msgid "subscribers"
 msgstr ""
 
@@ -2789,7 +2789,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:227
 #: public_html/lists/admin/import4.php:126
 #: public_html/lists/admin/import3.php:510
-#: public_html/lists/admin/users.php:456
+#: public_html/lists/admin/users.php:457
 msgid "lists"
 msgstr ""
 
@@ -3188,7 +3188,7 @@ msgid "There are currently no campaigns to view"
 msgstr ""
 
 #: public_html/lists/admin/actions/statsoverview.php:140
-#: public_html/lists/admin/users.php:476
+#: public_html/lists/admin/users.php:477
 msgid "bncs"
 msgstr ""
 
@@ -4035,7 +4035,7 @@ msgid "filename"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:956
-#: public_html/lists/admin/users.php:324
+#: public_html/lists/admin/users.php:325
 msgid "desc"
 msgstr ""
 
@@ -4516,7 +4516,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:293
 #: public_html/lists/admin/messages.php:309
 #: public_html/lists/admin/messages.php:321
-#: public_html/lists/admin/users.php:240
+#: public_html/lists/admin/users.php:241
 msgid "Done"
 msgstr ""
 
@@ -4752,8 +4752,8 @@ msgid "Subscriber"
 msgstr ""
 
 #: public_html/lists/admin/mviews.php:124
-#: public_html/lists/admin/mviews.php:127 public_html/lists/admin/users.php:345
-#: public_html/lists/admin/users.php:349
+#: public_html/lists/admin/mviews.php:127 public_html/lists/admin/users.php:346
+#: public_html/lists/admin/users.php:350
 #, php-format
 msgid "Listing user %d to %d"
 msgstr ""
@@ -5658,7 +5658,7 @@ msgstr ""
 
 #: public_html/lists/admin/admins.php:97 public_html/lists/admin/list.php:224
 #: public_html/lists/admin/messages.php:183
-#: public_html/lists/admin/users.php:326 public_html/lists/admin/users.php:395
+#: public_html/lists/admin/users.php:327 public_html/lists/admin/users.php:396
 msgid "Go"
 msgstr ""
 
@@ -7264,7 +7264,7 @@ msgstr ""
 msgid "Available URLs"
 msgstr ""
 
-#: public_html/lists/admin/uclicks.php:65 public_html/lists/admin/users.php:462
+#: public_html/lists/admin/uclicks.php:65 public_html/lists/admin/users.php:463
 msgid "msgs"
 msgstr ""
 
@@ -7834,7 +7834,7 @@ msgid "Inserting user"
 msgstr ""
 
 #: public_html/lists/admin/members.php:245
-#: public_html/lists/admin/users.php:260
+#: public_html/lists/admin/users.php:261
 msgid "User added"
 msgstr ""
 
@@ -9431,65 +9431,65 @@ msgstr ""
 msgid "Delete will delete user from the list"
 msgstr ""
 
-#: public_html/lists/admin/users.php:249
+#: public_html/lists/admin/users.php:250
 msgid "Sorry, only super users can delete users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:268
+#: public_html/lists/admin/users.php:269
 #, php-format
 msgid "%s subscribers in total"
 msgstr ""
 
-#: public_html/lists/admin/users.php:269
+#: public_html/lists/admin/users.php:270
 msgid ""
 "Subscribers with a red icon are either unconfirmed or blacklisted or both"
 msgstr ""
 
-#: public_html/lists/admin/users.php:297
+#: public_html/lists/admin/users.php:298
 msgid "Show only unconfirmed users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:299
+#: public_html/lists/admin/users.php:300
 msgid "Show only blacklisted users"
 msgstr ""
 
-#: public_html/lists/admin/users.php:323
+#: public_html/lists/admin/users.php:324
 msgid "Sort by"
 msgstr ""
 
-#: public_html/lists/admin/users.php:325
+#: public_html/lists/admin/users.php:326
 msgid "asc"
 msgstr ""
 
-#: public_html/lists/admin/users.php:372
+#: public_html/lists/admin/users.php:373
 msgid "Find a user"
 msgstr ""
 
-#: public_html/lists/admin/users.php:395
+#: public_html/lists/admin/users.php:396
 msgid "reset"
 msgstr ""
 
-#: public_html/lists/admin/users.php:402
+#: public_html/lists/admin/users.php:403
 msgid "Find subscribers"
 msgstr ""
 
-#: public_html/lists/admin/users.php:407
+#: public_html/lists/admin/users.php:408
 msgid "Download all users as CSV file"
 msgstr ""
 
-#: public_html/lists/admin/users.php:409
+#: public_html/lists/admin/users.php:410
 msgid "Add a User"
 msgstr ""
 
-#: public_html/lists/admin/users.php:415
+#: public_html/lists/admin/users.php:416
 msgid "subscriber"
 msgstr ""
 
-#: public_html/lists/admin/users.php:483
+#: public_html/lists/admin/users.php:484
 msgid "no results"
 msgstr ""
 
-#: public_html/lists/admin/users.php:483
+#: public_html/lists/admin/users.php:484
 msgid "No users apply"
 msgstr ""
 
