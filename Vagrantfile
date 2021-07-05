@@ -8,13 +8,8 @@
 ## below
 
 Vagrant.configure("2") do |config|
-  config.vagrant.plugins = [
-    "vagrant-docker-compose",
-  ]
   config.vm.box = "ubuntu/bionic64"
-  config.vm.provision :docker
-  config.vm.provision :docker_compose,
-    compose_version: "1.22.0"
+  config.vm.network "public_network"
 
   config.vm.provider "virtualbox" do |v|
       v.memory = 10640
@@ -31,9 +26,7 @@ Vagrant.configure("2") do |config|
       apt install software-properties-common
       add-apt-repository ppa:ondrej/php
       DEBIAN_FRONTEND=noninteractive apt update
-      DEBIAN_FRONTEND=noninteractive apt install -y composer mariadb-client mariadb-server postfix chromium-chromedriver firefox openjdk-8-jre-headless fonts-liberation
-      DEBIAN_FRONTEND=noninteractive apt install -y php7.0 php7.0-mbstring php7.0-curl php7.0-mysql php7.0-xml php7.0-zip 
-      DEBIAN_FRONTEND=noninteractive apt install -y php7.1 php7.1-mbstring php7.1-curl php7.1-mysql php7.1-xml php7.1-zip 
+      DEBIAN_FRONTEND=noninteractive apt install -y make mariadb-client mariadb-server postfix chromium-chromedriver firefox openjdk-8-jre-headless fonts-liberation xdg-utils 
       DEBIAN_FRONTEND=noninteractive apt install -y php7.2 php7.2-mbstring php7.2-curl php7.2-mysql php7.2-xml php7.2-zip 
       DEBIAN_FRONTEND=noninteractive apt install -y php7.3 php7.3-mbstring php7.3-curl php7.3-mysql php7.3-xml php7.3-zip 
       DEBIAN_FRONTEND=noninteractive apt install -y php7.4 php7.4-mbstring php7.4-curl php7.4-mysql php7.4-xml php7.4-zip 
@@ -49,17 +42,20 @@ Vagrant.configure("2") do |config|
       update-alternatives --set phpize /usr/bin/phpize$PHPVERSION
       update-alternatives --set php-config /usr/bin/php-config$PHPVERSION
       [[ ! -z $(which google-chrome) ]] || {
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        [[ ! -f google-chrome-stable_current_amd64.deb ]] && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         dpkg -i google-chrome-stable_current_amd64.deb
       }
       google-chrome --version
       rm -rf vendor
-      composer install
+      bin/update-composer.sh
+      sudo -u vagrant php composer.phar update
+      ln -s /vagrant/vendor/bin/chromedriver /usr/local/bin/chromedriver
+      ln -s /vagrant/vendor/bin/geckodriver /usr/local/bin/geckodriver
       service postfix stop
       service apache2 stop
       service mysqld start
       cp -fv tests/ci/config.php public_html/lists/config/config.php
-      cp -fv tests/default.behat.yml tests/behat.yml
+      cp -fv tests/ci/behat.yml tests/behat.yml
       [[ ! -d public_html/lists/admin/ui/phplist-ui-bootlist ]] && { 
         cd public_html/lists/admin/ui/ 
         wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz

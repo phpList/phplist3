@@ -6,8 +6,8 @@ createdb:
 	mysql -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"; FLUSH PRIVILEGES;'
 
 test: createdb
-	../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
-	../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+	../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags=@initialise
+	../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags="~@initialise && ~@wip"
 
 verbosetest: createdb
 	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
