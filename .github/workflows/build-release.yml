@@ -113,6 +113,14 @@ jobs:
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
 
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          path: "output"
+          name: "behat output"
+          retention-days: 3
+
       - name: Clean Up
         run: |
           cd $GITHUB_WORKSPACE
