@@ -3,7 +3,7 @@ name: Build Release
 
 on:
   push:
-    tags: v[1-9]+.[0-9]+.*
+#    tags: v[1-9]+.[0-9]+.*
 
 jobs:
   test:
@@ -117,7 +117,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          path: "output"
+          path: "$GITHUB_WORKSPACE/tests/output"
           name: "behat output"
           retention-days: 3
 
