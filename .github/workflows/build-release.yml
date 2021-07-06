@@ -58,6 +58,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           ./scripts/install-plugins.sh vendor public_html/lists/admin/plugins/
+          ./scripts/install-themes.sh vendor public_html/lists/admin/ui/
 
       - name: Install the phpList4 based REST API
         run: |
@@ -89,7 +90,7 @@ jobs:
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       - name: Check PHP syntax errors
-        uses: overtrue/phplint@2.3.5
+        uses: overtrue/phplint@2.4.1
         with:
           path: ./public_html
           options: --exclude=base/vendor
@@ -112,6 +113,14 @@ jobs:
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          path: "output"
+          name: "behat output"
+          retention-days: 3
 
       - name: Clean Up
         run: |
