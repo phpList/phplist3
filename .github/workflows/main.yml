@@ -43,7 +43,7 @@ jobs:
         run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
 
       - name: Install dependencies
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           dev: yes
           args: --prefer-dist --no-interaction

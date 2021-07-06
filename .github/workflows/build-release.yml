@@ -54,7 +54,7 @@ jobs:
           php_extensions: xml 
           version: 2
 
-      - name: Install Plugins
+      - name: Install Plugins and Themes
         run: |
           cd $GITHUB_WORKSPACE
           ./scripts/install-plugins.sh vendor public_html/lists/admin/plugins/
@@ -108,7 +108,7 @@ jobs:
           firefox -v
           vendor/bin/behat -V
 
-      - name: Run BDD Tests
+      - name: Run Behat Tests
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
