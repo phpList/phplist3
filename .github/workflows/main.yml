@@ -39,9 +39,6 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
-      - name: Add HTTP basic auth credentials
-        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
-
       - name: Install dependencies
         uses: php-actions/composer@v6
         with:
