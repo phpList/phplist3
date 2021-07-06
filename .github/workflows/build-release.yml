@@ -58,6 +58,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           ./scripts/install-plugins.sh vendor public_html/lists/admin/plugins/
+          ./scripts/install-themes.sh vendor public_html/lists/admin/ui/
 
       - name: Install the phpList4 based REST API
         run: |
