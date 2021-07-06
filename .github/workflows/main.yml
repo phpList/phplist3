@@ -1,7 +1,7 @@
 
 name: CI
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -39,11 +39,8 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
-      - name: Add HTTP basic auth credentials
-        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
-
       - name: Install dependencies
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           dev: yes
           args: --prefer-dist --no-interaction
