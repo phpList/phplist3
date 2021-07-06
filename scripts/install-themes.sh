@@ -10,6 +10,6 @@ echo $from $to
 for theme in $(ls -d $from/*/phplist-ui-*); do
   [[ ! -z "$(ls -A $theme)" ]] && {
     echo installing $theme
-    mv $theme $to
+    cp -R $theme $to
   }
 done
