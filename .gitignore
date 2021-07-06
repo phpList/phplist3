@@ -12,4 +12,9 @@ public_html/lists/admin/info/
 .vagrant
 public_html/lists/updater
 public_html/lists/texts
+public_html/lists/admin/plugins/
+/parked/
+public_html/lists/admin/ui/dressprow
+public_html/lists/admin/ui/dressprow-ph
+public_html/lists/admin/ui/phplist-ui-*
 
