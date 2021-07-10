@@ -427,7 +427,7 @@ function processQueueOutput($message, $logit = 1, $target = 'summary')
 
         return;
     } else {
-        $infostring = '['.date('D j M Y H:i', time()).'] ['.$_SERVER['REMOTE_ADDR'].']';
+        $infostring = '['.date('D j M Y H:i', time()).'] ['.getClientIP().']';
         //print "$infostring $message<br/>\n";
         $lines = explode("\n", $message);
         foreach ($lines as $line) {

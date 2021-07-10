@@ -58,7 +58,7 @@ if (!empty($_GET['u']) && !empty($_GET['m'])) {
         }
 
         Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
-            $GLOBALS['tables']['user_message_view'], $_GET['m'], $userid[0],$_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
+            $GLOBALS['tables']['user_message_view'], $_GET['m'], $userid[0],getClientIP(), sql_escape(serialize($metaData))));
     }
 }
 

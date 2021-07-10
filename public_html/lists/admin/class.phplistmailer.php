@@ -170,7 +170,7 @@ class phplistMailer extends phplistMailerBase
 //        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
         }
         //# when the email is generated from a webpage (quite possible :-) add a "received line" to identify the origin
-        if (!empty($_SERVER['REMOTE_ADDR'])) {
+        if (!empty(getClientIP())) {
             $this->add_timestamp();
         }
         $this->messageid = $messageid;
@@ -192,7 +192,7 @@ class phplistMailer extends phplistMailerBase
         //0013076:
         // Add a line like Received: from [10.1.2.3] by website.example.com with HTTP; 01 Jan 2003 12:34:56 -0000
         // more info: http://www.spamcop.net/fom-serve/cache/369.html
-        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $ip_address = getClientIP();
         if (!empty($_SERVER['REMOTE_HOST'])) {
             $ip_domain = $_SERVER['REMOTE_HOST'];
         } else {
