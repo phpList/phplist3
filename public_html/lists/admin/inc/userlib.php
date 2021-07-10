@@ -588,7 +588,7 @@ function addEmailToBlackList($email, $reason = '', $date = '')
     Sql_Query(sprintf('insert ignore into %s (email,name,data) values("%s","%s","%s")',
         $GLOBALS['tables']['user_blacklist_data'], sql_escape($email),
         'reason', addslashes($reason)));
-    foreach (array('REMOTE_ADDR') as $item) { // @@@do we want to know more?
+    foreach (array('REMOTE_ADDR','HTTP_X_FORWARDED_FOR') as $item) { // @@@do we want to know more?
         if (isset($_SERVER[$item])) {
             Sql_Query(sprintf('insert ignore into %s (email,name,data) values("%s","%s","%s")',
                 $GLOBALS['tables']['user_blacklist_data'], addslashes($email),
@@ -829,7 +829,7 @@ function addUserHistory($email, $msg, $detail)
             }
         }
     } else {
-        $default = array('HTTP_USER_AGENT', 'HTTP_REFERER', 'REMOTE_ADDR', 'REQUEST_URI');
+        $default = array('HTTP_USER_AGENT', 'HTTP_REFERER', 'REMOTE_ADDR', 'REQUEST_URI','HTTP_X_FORWARDED_FOR');
         foreach ($sysarrays as $key => $val) {
             if (in_array($key, $default)) {
                 $sysinfo .= "\n".strip_tags($key).' = '.htmlspecialchars($val);
@@ -839,13 +839,8 @@ function addUserHistory($email, $msg, $detail)
 
     $userid = Sql_Fetch_Row_Query("select id from $user_table where email = \"$email\"");
     if ($userid[0]) {
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ip = '';
-        }
         Sql_Query(sprintf('insert into %s (ip,userid,date,summary,detail,systeminfo)
-            values("%s",%d,now(),"%s","%s","%s")', $user_his_table, $ip, $userid[0], sql_escape($msg),
+            values("%s",%d,now(),"%s","%s","%s")', $user_his_table, getClientIP(), $userid[0], sql_escape($msg),
             sql_escape(htmlspecialchars($detail)), sql_escape($sysinfo)));
     }
 }

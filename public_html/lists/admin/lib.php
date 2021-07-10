@@ -979,7 +979,7 @@ function getPageLock($force = 0)
     if (!empty($GLOBALS['commandline'])) {
         $processIdentifier = SENDPROCESS_SERVERNAME.':'.getmypid();
     } else {
-        $processIdentifier = $_SERVER['REMOTE_ADDR'];
+        $processIdentifier = getClientIP();
     }
     $res = Sql_query('insert into '.$tables['sendprocess'].' (started,page,alive,ipaddress) values(now(),"'.$thispage.'",1,"'.$processIdentifier.'")');
     $send_process_id = Sql_Insert_Id();
