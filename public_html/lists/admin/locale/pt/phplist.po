@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-07-11 14:07+0000\n"
+"Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/pt/>\n"
+"phplist3/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +80,7 @@ msgstr "A vers&atilde;o remota tem"
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
 msgid "Default value"
-msgstr "Valor padr&atilde;o"
+msgstr "Valor Padr&atilde;o"
 
 #: public_html/lists/admin/import2.php:754
 msgid "Import"
@@ -1543,7 +1543,7 @@ msgstr "Enviar como PDF"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
-msgstr "proceder à remoção em bloco de assinantes/utilizadores"
+msgstr "proceder à remoção em bloco de assinantes/utilizadores "
 
 #: public_html/lists/admin/send_core.php:935
 msgid "Current Attachments"
@@ -1591,7 +1591,7 @@ msgstr "Relat&oacute;rio:"
 msgid "Invalid security token. Please reload the page and try again."
 msgstr ""
 "Token de seguran&ccedil;a inv&aacute;lido. Por favor, recarregue a p&aacute;"
-"gina e tente novamente."
+"gina e tente novamente"
 
 #: public_html/lists/admin/about.php:110
 msgid ""
@@ -2183,7 +2183,7 @@ msgstr "Ordem para a listagem"
 #: public_html/lists/admin/export.php:82
 #, php-format
 msgid "Export subscribers on %s"
-msgstr "Exportar assinantes em %s"
+msgstr "<h4>Exportar assinantes em %s</h4>"
 
 #: public_html/lists/admin/members.php:390,
 #: public_html/lists/admin/members.php:427
@@ -6570,7 +6570,7 @@ msgstr "Desculpe, usou carateres inv&aacute;lidos no campo De."
 #: public_html/databasestructure.php:11,
 #: public_html/databasestructure.php:156
 msgid "PKey"
-msgstr "Pkey"
+msgstr "PKey"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:137
 msgid "Nobody"
@@ -7695,7 +7695,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:298
 msgid "pagetitlehover:eventlog"
-msgstr "ver o registo de eventos verificados no sistema"
+msgstr "ver o registo de eventos verificados no sistema "
 
 #: public_html/lists/admin/home.php:39,
 #: public_html/lists/admin/index.php:502
@@ -9600,7 +9600,7 @@ msgstr "Estat&iacute;sticas"
 #: public_html/lists/admin/phpListAdminAuthentication.php:46,
 #: public_html/lists/admin/phpListAdminAuthentication.php:102
 msgid "your account has been disabled"
-msgstr "a sua conta foi desativada"
+msgstr " a sua conta foi desativada"
 
 #: public_html/lists/admin/index.php:523,
 #: public_html/lists/admin/processqueue.php:29
@@ -10689,3 +10689,23 @@ msgstr "Agora "
 #: public_html/databasestructure.php:133
 msgid "Value"
 msgstr "Valor"
+
+#: public_html/lists/admin/defaultconfig.php:168
+msgid "Analytics tracking code to add to campaign URLs"
+msgstr ""
+"C&oacute;digo de rastreamento de análise para adicionar aos URLs da campanha"
+
+#: public_html/lists/admin/defaultconfig.php:160
+msgid "Always add analytics tracking code to campaigns"
+msgstr "Adicione sempre o c&oacute;digo de rastreamento de análise às campanhas"
+
+#: public_html/lists/admin/send_core.php:1039
+msgid "Add analytics tracking code"
+msgstr "Adicionar c&oacute;digo de rastreamento de análise"
+
+#: public_html/lists/admin/export.php:32
+msgid ""
+"Exporting all subscribers. Use -l[listnumber] to export subscribers on a list"
+msgstr ""
+"Exportar todos os assinantes. Utilize -l[listnumber] para exportar os "
+"assinantes dessa lista"
