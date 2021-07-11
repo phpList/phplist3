@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-11 21:14+0000\n"
+"PO-Revision-Date: 2021-07-11 23:35+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -499,7 +499,7 @@ msgstr "N&atilde;o apagar mensagem processada"
 #: public_html/lists/admin/actions/updatetranslation.php:29
 #, php-format
 msgid "updated %d language terms"
-msgstr "%d termos de idiomas atualizados"
+msgstr "%d termos dos idiomas atualizados"
 
 #: public_html/lists/admin/send_core.php:1320
 msgid "Content contains click track links."
@@ -749,7 +749,7 @@ msgstr "Transferir a nova vers&atilde;o"
 #: public_html/lists/admin/actions/msgstatus.php:125,
 #: public_html/lists/admin/actions/processqueue.php:269
 msgid "msgs/hr"
-msgstr "Msgs/Hr"
+msgstr "msgs/hr"
 
 #: public_html/lists/admin/plugins.php:291
 msgid "Documentation Page"
@@ -881,8 +881,7 @@ msgstr "enviada"
 #: public_html/lists/admin/actions/processqueue.php:717
 #, php-format
 msgid "phplist has started sending the campaign with subject %s"
-msgstr ""
-"O phpList iniciou/reiniciou o envio da campanha/mensagem com o assunto %s"
+msgstr "O phpList iniciou/reiniciou o envio da campanha com o assunto %s"
 
 #: public_html/lists/admin/readtestmail.php:239
 msgid "mails in mailbox"
@@ -1348,7 +1347,7 @@ msgstr "voltar para a lista das regras das devolu&ccedil;&otilde;es dos emails"
 
 #: public_html/lists/admin/actions/mclicks.php:85
 msgid "links"
-msgstr "hiperliga&ccedil;&otilde;es"
+msgstr "Hiperliga&ccedil;&otilde;es"
 
 #: public_html/lists/admin/messages.php:367,
 #: public_html/lists/admin/messages.php:370,
@@ -2395,7 +2394,7 @@ msgstr "N&atilde;o existe esse registo"
 #: public_html/lists/admin/actions/export.php:64
 #, php-format
 msgid "phpList Export on %s from %s to %s (%s).csv"
-msgstr "Exportação phpList em %s de %s a %s (%s).csv"
+msgstr "Exportação assinantes phpList em %s de %s a %s (%s).csv"
 
 #: public_html/lists/admin/list.php:304,
 #: public_html/lists/admin/editlist.php:127
@@ -3135,7 +3134,7 @@ msgstr "Seleccionar todos"
 
 #: public_html/lists/admin/actions/processqueue.php:756
 msgid "users apply for attributes, now checking lists"
-msgstr "utilizadores selecionados pelos atributos definidos, a verificar listas"
+msgstr "assinantes selecionados pelos atributos definidos, a verificar listas"
 
 #: public_html/lists/admin/bounce.php:141
 msgid "Manage bounces"
@@ -4367,7 +4366,7 @@ msgstr ""
 #: public_html/lists/admin/uclicks.php:139,
 #: public_html/lists/admin/uclicks.php:153
 msgid "clicks"
-msgstr "cliques"
+msgstr "Cliques"
 
 #: public_html/lists/admin/spageedit.php:221
 msgid "Intro"
@@ -4429,7 +4428,7 @@ msgstr "Editar valores"
 #: public_html/lists/admin/actions/domainstats.php:77,
 #: public_html/lists/admin/actions/domainstats.php:157
 msgid "blacklisted"
-msgstr "na lista negra"
+msgstr "Lista negra"
 
 #: public_html/lists/admin/bouncemgt.php:26
 msgid "Generate Bounce Rules"
@@ -4929,7 +4928,7 @@ msgstr "Log&oacute;tipo da organiza&ccedil;&atilde;o"
 #: public_html/lists/admin/uclicks.php:153,
 #: public_html/lists/admin/uclicks.php:155
 msgid "total"
-msgstr "total"
+msgstr "Total"
 
 #: public_html/lists/admin/import4.php:48,
 #: public_html/lists/admin/import2.php:645,
@@ -5646,8 +5645,7 @@ msgstr "escolher"
 #: public_html/lists/admin/actions/processqueue.php:718
 #, php-format
 msgid "to view the progress of this campaign, go to %s://%s"
-msgstr ""
-"Para ver o progresso do envio desta campanha/mensagem, v&aacute; para %s://%s"
+msgstr "para ver o progresso do envio desta campanha, v&aacute; para %s://%s"
 
 #: public_html/lists/admin/bouncemgt.php:12
 msgid "View Bounces per campaign"
@@ -6178,7 +6176,7 @@ msgstr "Nenhum assinante"
 #: public_html/lists/admin/actions/mclicks.php:56,
 #: public_html/lists/admin/actions/mviews.php:69
 msgid "There are currently no messages to view"
-msgstr "N&atilde;o existe nenhuma mensagem para ver"
+msgstr "N&atilde;o existe nenhuma campanha para ver"
 
 #: public_html/databasestructure.php:22
 msgid "Which page was used to subscribe"
@@ -7013,7 +7011,7 @@ msgstr "esse registo era para a p&aacute;gina"
 #: public_html/lists/admin/actions/processqueue.php:992,
 #: public_html/lists/admin/generatebouncerules.php:50
 msgid "Process Killed by other process"
-msgstr "Processo Interrompido por outro processo"
+msgstr "Processo interrompido por outro processo"
 
 #: public_html/lists/admin/community.php:40
 msgid "Contribute to phpList"
@@ -7276,7 +7274,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:768
 msgid "No users apply for attributes"
-msgstr "Nenhum utilizador selecionado pelos atributos definidos"
+msgstr "Nenhum assinante selecionado pelos atributos definidos"
 
 #: public_html/lists/admin/editlist.php:27
 msgid ""
@@ -7720,7 +7718,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:726
 msgid "Processing message"
-msgstr "A processar mensagem"
+msgstr "A processar campanha"
 
 #: public_html/lists/admin/adminattributes.php:107,
 #: public_html/lists/admin/adminattributes.php:145
@@ -8013,7 +8011,7 @@ msgstr ""
 #: public_html/lists/admin/actions/bounces.php:9,
 #: public_html/lists/admin/actions/bounces.php:19
 msgid "no such User"
-msgstr "este Utilizador n&atilde;o existe"
+msgstr "este assinante n&atilde;o existe"
 
 #: public_html/lists/admin/connect.php:1726,
 #: public_html/lists/admin/systemstats.php:23,
@@ -8123,7 +8121,7 @@ msgstr "N&Uacute;mero de devolu&ccedil;&otilde;es"
 
 #: public_html/lists/admin/actions/processqueue.php:821
 msgid "looking for users who can be excluded from this mailing"
-msgstr "a procurar utilizadores que podem ser exclu&iacute;dos deste mailing"
+msgstr "a procurar assinantes que podem ser exclu&iacute;dos deste mailing"
 
 #: public_html/lists/admin/actions/import1.php:215
 msgid "Is now subscribed to:"
@@ -9188,7 +9186,7 @@ msgstr ""
 #: public_html/lists/admin/actions/mclicks.php:59,
 #: public_html/lists/admin/bounces.php:189
 msgid "Campaign"
-msgstr "Campanha/Mensagem"
+msgstr "Campanha"
 
 #: public_html/lists/admin/defaultconfig.php:222
 msgid "Width of a textline field (numerical)"
@@ -9505,7 +9503,7 @@ msgstr "utilizadores"
 
 #: public_html/lists/admin/actions/processqueue.php:735
 msgid "Looking for users"
-msgstr "A procurar utilizadores"
+msgstr "A procurar assinantes"
 
 #: public_html/databasestructure.php:26,
 #: public_html/databasestructure.php:145
@@ -9584,7 +9582,7 @@ msgstr "Verificar estado"
 
 #: public_html/lists/admin/convertstats.php:79
 msgid "processing cancelled"
-msgstr "processamento cancelado"
+msgstr "Processamento cancelado"
 
 #: public_html/databasestructure.php:111
 msgid "IP Address of who started it"
@@ -10240,7 +10238,7 @@ msgstr "Top 25 do dom&iacute;nio dos endere&ccedil;os eletr&oacute;nicos"
 #: public_html/lists/admin/actions/mclicks.php:87,
 #: public_html/lists/admin/users.php:414
 msgid "subscribers"
-msgstr "assinantes"
+msgstr "Assinantes"
 
 #: public_html/lists/admin/templates.php:25
 msgid "No template have been defined"
@@ -10367,7 +10365,7 @@ msgstr "Coloque o seu nome."
 #: public_html/lists/admin/actions/export.php:66
 #, php-format
 msgid "phpList Export from %s to %s (%s).csv"
-msgstr "Exportação phpList de %s a %s (%s).csv"
+msgstr "Exportação assinantes phpList de %s a %s (%s).csv"
 
 #: public_html/databasestructure.php:139
 msgid "Time Created"
