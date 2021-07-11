@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-11 20:31+0000\n"
+"PO-Revision-Date: 2021-07-11 21:14+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -305,7 +305,7 @@ msgstr "Senha:"
 
 #: public_html/lists/admin/attributes.php:420
 msgid "Merge tagged attributes"
-msgstr "juntar atributos marcados"
+msgstr "Juntar atributos marcados"
 
 #: public_html/lists/admin/bouncerules.php:120
 msgid "make active"
@@ -437,7 +437,7 @@ msgstr "ID da Campanha"
 #: public_html/lists/admin/initialise.php:227,
 #: public_html/lists/admin/upgrade.php:441
 msgid "Success"
-msgstr "Bem-sucedido"
+msgstr "Bem sucedido"
 
 #: public_html/databasestructure.php:88
 msgid "When added to blacklist"
@@ -620,7 +620,7 @@ msgstr "Enviar como HTML"
 
 #: public_html/lists/admin/mclicks.php:82
 msgid "Unique subscribers who clicked"
-msgstr "ver assinantes que clicaram"
+msgstr "Ver assinantes que clicaram"
 
 #: public_html/lists/admin/connect.php:135
 msgid "Theme for phpList"
@@ -1209,7 +1209,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:328
 msgid "pagetitlehover:statsmgt"
-msgstr "visualização das estatísticas"
+msgstr "Lista de funções mais comuns nas estatísticas do phpList"
 
 #: public_html/databasestructure.php:202
 msgid "Related bounce"
@@ -1581,7 +1581,7 @@ msgstr "conte&uacute;do HTML"
 
 #: public_html/databasestructure.php:349
 msgid "pagetitle:translate"
-msgstr "tradu&ccedil;&otilde;es"
+msgstr "Traduzir o phpList"
 
 #: public_html/lists/admin/processbounces.php:836
 msgid "Report:"
@@ -2104,7 +2104,7 @@ msgstr "Por favor, escolha"
 
 #: public_html/databasestructure.php:369
 msgid "subscription-ui settings"
-msgstr "configura&ccedil;&otilde;es da subscrição-ui"
+msgstr "configura&ccedil;&otilde;es da interface de subscri&ccedil;&atilde;o"
 
 #: public_html/lists/admin/connect.php:1329
 msgid "All Lists"
@@ -3444,7 +3444,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:351
 msgid "pagetitle:ajaxform"
-msgstr "formul&aacute;rio AJAX"
+msgstr "Integra&ccedil;&atilde;o AJAX"
 
 #: public_html/lists/admin/import2.php:719
 msgid "Show Warnings"
@@ -3815,7 +3815,7 @@ msgstr "Apagar todos os registos com mais de 2 meses"
 
 #: public_html/lists/admin/usermgt.php:9
 msgid "search subscribers"
-msgstr "procurar assinantes"
+msgstr "Procurar assinantes"
 
 #: public_html/lists/admin/login.php:42
 msgid "Forgot password"
@@ -4167,7 +4167,7 @@ msgstr ""
 
 #: public_html/lists/admin/initialise.php:70
 msgid "phpList initialisation"
-msgstr "inicializa&ccedil;&atilde;o do phpList"
+msgstr "Inicializa&ccedil;&atilde;o do phpList"
 
 #: public_html/lists/admin/importadmin.php:315
 msgid ""
@@ -4424,7 +4424,7 @@ msgstr "A processar mensagens devolvidas com base nas regras ativas"
 
 #: public_html/lists/admin/attributes.php:402
 msgid "edit values"
-msgstr "editar valores"
+msgstr "Editar valores"
 
 #: public_html/lists/admin/actions/domainstats.php:77,
 #: public_html/lists/admin/actions/domainstats.php:157
@@ -4602,7 +4602,7 @@ msgstr "e %d mais"
 
 #: public_html/lists/admin/usermgt.php:44
 msgid "subscriber management functions"
-msgstr "gerir definições assinantes"
+msgstr "Gerir definições assinantes"
 
 #: public_html/lists/admin/bounces.php:133
 msgid "are you sure you want to delete all bounces older than 2 months"
@@ -4610,7 +4610,9 @@ msgstr "tem certeza que quer apagar todos os emails de erro com mais de 2 meses"
 
 #: public_html/databasestructure.php:340
 msgid "pagetitlehover:usercheck"
-msgstr "irá proceder à verificação de assinantes/utilizadores"
+msgstr ""
+"irá proceder à verificação de assinantes através da introdução de uma lista "
+"de emails"
 
 #: public_html/lists/admin/editattributes.php:45
 msgid "add new"
@@ -4886,7 +4888,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:357
 msgid "pagetitle:plugins"
-msgstr "plugins"
+msgstr "gerir plugins"
 
 #: public_html/lists/admin/send_core.php:403
 msgid "Please enter a from line."
@@ -4968,7 +4970,7 @@ msgstr "listas existentes"
 #: public_html/lists/admin/mclicks.php:83,
 #: public_html/lists/admin/uclicks.php:93
 msgid "View subscribers"
-msgstr "Encontrar utilizadores/assinantes"
+msgstr "Encontrar assinantes"
 
 #: public_html/lists/admin/hostedprocessqueuesetup.php:61
 msgid "API key from phpList.com"
@@ -5147,7 +5149,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:362
 msgid "pagetitlehover:suppressionlist"
-msgstr "gerir a remoção de emails"
+msgstr "Gerir a remoção de emails"
 
 #: public_html/lists/admin/defaultconfig.php:135
 msgid "Default for 'address to alert when sending starts'"
@@ -5173,7 +5175,7 @@ msgstr "Sistema"
 
 #: public_html/lists/admin/usermgt.php:30
 msgid "edit values for attributes"
-msgstr "editar valores dos atributos"
+msgstr "Editar valores dos atributos"
 
 #: public_html/lists/admin/messages.php:163
 msgid "Search campaigns"
@@ -5464,7 +5466,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:331
 msgid "pagetitle:subscriberstats"
-msgstr "estat&iacute;sticas assinantes/utilizadores"
+msgstr "estat&iacute;sticas dos assinantes"
 
 #: public_html/lists/admin/actions/processqueue.php:337
 msgid "Script finished, but not all messages have been sent yet."
@@ -5717,7 +5719,7 @@ msgstr "Erro no envio da mensagem %d (%d/%d) para %s (%s) "
 #: public_html/lists/admin/bouncerules.php:125,
 #: public_html/lists/admin/spageedit.php:427
 msgid "Save Changes"
-msgstr "Gravar Altera&ccedil;&otilde;es"
+msgstr "Gravar altera&ccedil;&otilde;es"
 
 #: public_html/lists/admin/processbounces.php:832
 msgid ""
@@ -6342,7 +6344,7 @@ msgstr "utilizadores existentes"
 
 #: public_html/databasestructure.php:353
 msgid "pagetitle:updatetranslation"
-msgstr "estado tradu&ccedil;&otilde;es"
+msgstr "Atualizar tradu&ccedil;&otilde;es"
 
 #: public_html/databasestructure.php:112
 msgid "The page that this process runs in"
@@ -6624,7 +6626,7 @@ msgstr "At&eacute; &agrave; data"
 
 #: public_html/lists/admin/attributes.php:410
 msgid "Is this attribute required ?"
-msgstr "Atributo requerido ?"
+msgstr "Atributo requerido?"
 
 #: public_html/lists/admin/send_core.php:199
 msgid ""
@@ -7488,7 +7490,7 @@ msgstr "Instalar novo plugin"
 
 #: public_html/databasestructure.php:332
 msgid "pagetitlehover:subscriberstats"
-msgstr "veja as estatísticas relativas aos assinantes/utilizadores"
+msgstr "veja as estatísticas relativas aos assinantes"
 
 #: public_html/databasestructure.php:194
 msgid "URL should be unique"
@@ -7571,7 +7573,7 @@ msgstr "abrir"
 
 #: public_html/databasestructure.php:352
 msgid "pagetitlehover:ajaxform"
-msgstr "configure o formulário AJAX"
+msgstr "Configurar a integração AJAX"
 
 #: public_html/lists/admin/plugins.php:146
 msgid "Error installing plugin"
@@ -7731,7 +7733,7 @@ msgstr "Texto"
 
 #: public_html/lists/admin/attributes.php:420
 msgid "Delete tagged attributes"
-msgstr "apagar atributos marcados"
+msgstr "Apagar atributos marcados"
 
 #: public_html/lists/admin/message.php:128
 msgid "Repeating"
@@ -9232,7 +9234,7 @@ msgstr "A copiar listas"
 
 #: public_html/databasestructure.php:361
 msgid "pagetitle:suppressionlist"
-msgstr "lista de remo&ccedil;&atilde;o"
+msgstr "Lista de remo&ccedil;&atilde;o"
 
 #: public_html/lists/admin/template.php:358,
 #: public_html/lists/admin/spageedit.php:307
@@ -9719,7 +9721,7 @@ msgstr "Desculpe, usou carateres inv&aacute;lidos no campo Assunto."
 
 #: public_html/databasestructure.php:333
 msgid "pagetitle:dbcheck"
-msgstr "estrutura da base de dados"
+msgstr "Verificar a estrutura da base de dados"
 
 #: public_html/lists/admin/import3.php:531
 msgid "No emails found"
@@ -9749,7 +9751,7 @@ msgstr "Membros desta lista"
 
 #: public_html/lists/admin/attributes.php:214
 msgid "Can only merge attributes of the same type"
-msgstr "S&oacute; &eacute; possível juntar os atributos do mesmo tipo"
+msgstr "S&oacute; &eacute; possível juntar atributos do mesmo tipo"
 
 #: public_html/databasestructure.php:218
 msgid "pagetitlehover:list"
@@ -9882,7 +9884,7 @@ msgstr "Atualizado por %s"
 
 #: public_html/lists/admin/initialise.php:56
 msgid "To install phpList, you need to enable Javascript"
-msgstr "Para instalar o phpList, precisa de ter o Javascript"
+msgstr "Para instalar o phpList, precisa de ativar o Javascript"
 
 #: public_html/lists/admin/initialise.php:63
 #, php-format
@@ -10019,7 +10021,7 @@ msgstr "regra"
 
 #: public_html/lists/admin/usermgt.php:35
 msgid "Suppression list"
-msgstr "Remoç&atilde;o das listas"
+msgstr "Remoç&atilde;o da lista"
 
 #: public_html/lists/admin/subscribelib2.php:338
 msgid "Email is blacklisted, so request for confirmation has been sent."
@@ -10356,7 +10358,7 @@ msgstr "Vote no phpList"
 
 #: public_html/databasestructure.php:355
 msgid "pagetitle:reindex"
-msgstr "re-indexar base de bados"
+msgstr "Reconstruir as indexações da BD"
 
 #: public_html/lists/admin/initialise.php:73
 msgid "Please enter your name."
