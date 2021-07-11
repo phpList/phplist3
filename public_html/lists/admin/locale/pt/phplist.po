@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-11 14:07+0000\n"
+"PO-Revision-Date: 2021-07-11 20:31+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -699,7 +699,7 @@ msgstr "iniciar uma nova campanha destinada a todas as listas"
 
 #: public_html/databasestructure.php:281
 msgid "pagetitle:admin"
-msgstr "administra&ccedil;&atilde;o"
+msgstr "Editar ou adicionar um administrador"
 
 #: public_html/lists/admin/export.php:129
 msgid "Select the columns to include in the export"
@@ -708,7 +708,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:237
 msgid "pagetitle:import1"
-msgstr "importar ficheiro com emails"
+msgstr "importar assinantes com ficheiro em texto"
 
 #: public_html/lists/admin/actions/subscription.php:91
 msgid "ip"
@@ -720,7 +720,7 @@ msgstr "testes"
 
 #: public_html/databasestructure.php:257
 msgid "pagetitle:user"
-msgstr "utilizador/assinante"
+msgstr "perfil de assinante"
 
 #: public_html/lists/admin/bouncerule.php:38
 msgid ""
@@ -1034,7 +1034,7 @@ msgstr "Descri&ccedil;&atilde;o do anexo"
 
 #: public_html/databasestructure.php:243
 msgid "pagetitle:initialise"
-msgstr "inicializar sistema"
+msgstr "inicializar a base de dados"
 
 #: public_html/lists/admin/export.php:101
 msgid "When the record was changed"
@@ -1167,7 +1167,7 @@ msgstr "O nome da sua organiza&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:306
 msgid "pagetitlehover:vote"
-msgstr "gerir processo de votação"
+msgstr "Vote no phpList em sites do mundo"
 
 #: public_html/lists/admin/defaultconfig.php:183
 msgid "Reply-to email address for system messages"
@@ -1290,7 +1290,7 @@ msgstr "taxa de clique"
 
 #: public_html/databasestructure.php:285
 msgid "pagetitle:adminattributes"
-msgstr "atributos administradores"
+msgstr "configurar atributos dos administradores"
 
 #: public_html/lists/admin/reconcileusers.php:259
 msgid "Trying to merge duplicates"
@@ -1331,7 +1331,7 @@ msgstr "Ficheiro n&atilde;o encontrado"
 
 #: public_html/databasestructure.php:316
 msgid "pagetitlehover:massunconfirm"
-msgstr "gerir os utilizadores/assinantes Não Confirmados em bloco"
+msgstr "Gerir os assinantes que Não pretendem receber campanhas"
 
 #: public_html/lists/admin/user.php:348,
 #: public_html/lists/admin/user.php:349
@@ -1421,7 +1421,7 @@ msgstr "dia"
 
 #: public_html/databasestructure.php:256
 msgid "pagetitlehover:reconcileusers"
-msgstr "irá proceder à reconciliação dos utilizadores/assinantes"
+msgstr "Diversas funções de limpeza dos assinantes registados na BD"
 
 #: public_html/lists/admin/plugins.php:157
 msgid "Invalid plugin package"
@@ -1560,7 +1560,7 @@ msgstr "importado(s) com sucesso para a base de dados e adicionado(s) em"
 
 #: public_html/databasestructure.php:294
 msgid "pagetitlehover:spageedit"
-msgstr "adicionar nova página de inscrição/subscrição"
+msgstr "editar a página de inscrição/subscrição"
 
 #: public_html/lists/admin/import3.php:270
 msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
@@ -1664,7 +1664,7 @@ msgstr "Nome:"
 #: public_html/databasestructure.php:293
 msgid "pagetitle:spageedit"
 msgstr ""
-"adicionar/Editar p&aacute;gina de inscri&ccedil;&atilde;o/"
+"Adicionar/Editar p&aacute;gina de inscri&ccedil;&atilde;o/"
 "subscri&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:123
@@ -1864,7 +1864,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:303
 msgid "pagetitle:community"
-msgstr "comunidade do phpList"
+msgstr "Ajuda"
 
 #: public_html/lists/admin/bouncerules.php:82
 msgid "No Rules found"
@@ -1876,7 +1876,7 @@ msgstr "Nome da lista"
 
 #: public_html/databasestructure.php:252
 msgid "pagetitlehover:members"
-msgstr "irá mostrar os membros"
+msgstr "irá mostrar os assinantes membros de uma lista"
 
 #: public_html/lists/admin/importsimple.php:109
 #, php-format
@@ -1960,7 +1960,7 @@ msgstr "Reenviar"
 
 #: public_html/databasestructure.php:264
 msgid "pagetitlehover:messages"
-msgstr "veja as mensagens enviadas ou a enviar"
+msgstr "veja as mensagens/campanhas enviadas ou a enviar"
 
 #: public_html/lists/admin/index.php:510
 msgid ""
@@ -2135,7 +2135,7 @@ msgstr "o padr&atilde;o &eacute; TAB"
 
 #: public_html/databasestructure.php:247
 msgid "pagetitle:preparesend"
-msgstr "preparar uma mensagem/campanha"
+msgstr "prepara uma mensagem/campanha para envio"
 
 #: public_html/lists/admin/actions/domainstats.php:208
 msgid "Top 25 domains with the highest number of bounces"
@@ -2206,7 +2206,8 @@ msgstr ""
 
 #: public_html/databasestructure.php:270
 msgid "pagetitlehover:defaults"
-msgstr "irá carregar os atributos padrão pré-definidos"
+msgstr ""
+"Escolher de alguns dos atributos padrão fornecidos pela comunidade phpList"
 
 #: public_html/lists/admin/configure.php:115,
 #: public_html/lists/admin/catlists.php:61
@@ -2288,7 +2289,7 @@ msgstr "Eliminar"
 #: public_html/lists/admin/converttoutf8.php:87,
 #: public_html/lists/admin/upgrade.php:265
 msgid "Upgrading column "
-msgstr "A atualizar coluna "
+msgstr "A atualizar coluna"
 
 #: public_html/lists/admin/message.php:198
 msgid "Send this campaign to another list"
@@ -2518,7 +2519,7 @@ msgstr "ID dos Administradores"
 
 #: public_html/databasestructure.php:258
 msgid "pagetitlehover:user"
-msgstr "irá adicionar o utilizador/assinante definido"
+msgstr "Ver o perfil de um assinante no sistema"
 
 #: public_html/lists/admin/import3.php:264
 msgid "Mark new users as HTML"
@@ -2616,7 +2617,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:312
 msgid "pagetitlehover:mclicks"
-msgstr "veja as estatísticas de cliques nas mensagens"
+msgstr "veja as estatísticas de cliques das ligações nas mensagens"
 
 #: public_html/lists/admin/statsmgt.php:15,
 #: public_html/lists/admin/upgrade.php:450
@@ -2771,7 +2772,7 @@ msgstr "Lista de Administradores"
 
 #: public_html/databasestructure.php:275
 msgid "pagetitle:template"
-msgstr "adicionar um novo modelo/template"
+msgstr "adicionar ou editar um novo modelo"
 
 #: public_html/lists/admin/actions/bounces.php:48
 msgid "Transactional message"
@@ -2849,7 +2850,7 @@ msgstr "Acelerador de notifica&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:225
 msgid "pagetitle:editlist"
-msgstr "adicionar lista"
+msgstr "Editar lista"
 
 #: public_html/lists/admin/import2.php:632,
 #: public_html/lists/admin/import3.php:254
@@ -2983,7 +2984,7 @@ msgstr "Estat&iacute;sticas de abertura"
 
 #: public_html/databasestructure.php:277
 msgid "pagetitle:viewtemplate"
-msgstr "ver modelos"
+msgstr "pré-visualizar modelos"
 
 #: public_html/lists/admin/community.php:46
 msgid "Documentation coordination"
@@ -3224,7 +3225,7 @@ msgstr "enviar uma mensagem/campanha"
 
 #: public_html/databasestructure.php:259
 msgid "pagetitle:adduser"
-msgstr "utilizador/assinante"
+msgstr "Adicionar um novo assinante"
 
 #: public_html/lists/admin/actions/processqueue.php:618
 msgid "Please leave this window open."
@@ -3232,7 +3233,7 @@ msgstr "Deixe esta janela aberta, p.f."
 
 #: public_html/lists/admin/user.php:347
 msgid "Are you sure you want to remove this subscriber from the system."
-msgstr "Tem a certeza que deseja remover este assinante do sistema."
+msgstr "Tem a certeza que deseja remover este assinante do sistema?"
 
 #: public_html/lists/admin/actions/import2.php:502,
 #: public_html/lists/admin/actions/import1.php:231
@@ -3285,7 +3286,7 @@ msgstr "N&atilde;o &eacute; um endere&ccedil;o de email v&aacute;lido"
 
 #: public_html/databasestructure.php:261
 msgid "pagetitle:userhistory"
-msgstr "hist&oacute;rico utilizador"
+msgstr "hist&oacute;rico do assinante"
 
 #: public_html/lists/admin/editlist.php:200
 msgid "Do not save, and go back to the lists"
@@ -3331,7 +3332,7 @@ msgstr "processamento de emails de erro n&atilde;o dispon&iacute;vel"
 
 #: public_html/databasestructure.php:239
 msgid "pagetitle:import"
-msgstr "importar"
+msgstr "importar assinantes"
 
 #: public_html/lists/admin/plugins.php:149,
 #: public_html/lists/admin/plugins.php:161,
@@ -3401,13 +3402,13 @@ msgid ""
 "activate.      It will however, not catch every single bounce, so it will be "
 "necessary to add new rules over      time when new bounces come in."
 msgstr ""
-"Neste momento n&atilde;o tem regras definidas.      Pode clicar em \"Criar "
-"regras para emails de erro\", a fim de gerar autom&aacute;ticamente as "
-"regras das devolu&ccedil;&otilde;es existentes.      Esta "
-"situa&ccedil;&atilde;o ir&aacute; resultar em muitas regras que ter&aacute; "
-"que rever e ativar.      No entanto, ao n&atilde;o analisar cada "
-"devolu&ccedil;&atilde;o, ir&aacute; ser necess&aacute;rio adicionar novas "
-"regras      no momento em que novas devolu&ccedil;&otilde;es chegarem."
+"Neste momento n&atilde;o tem regras definidas. Pode clicar em \"Criar regras "
+"para emails de erro\", a fim de gerar autom&aacute;ticamente as regras das "
+"devolu&ccedil;&otilde;es existentes. Esta situa&ccedil;&atilde;o ir&aacute; "
+"resultar em muitas regras que ter&aacute; que rever e ativar. No entanto, ao "
+"n&atilde;o analisar cada devolu&ccedil;&atilde;o, ir&aacute; ser "
+"necess&aacute;rio adicionar novas regras no momento em que novas "
+"devolu&ccedil;&otilde;es chegarem."
 
 #: public_html/lists/admin/members.php:305
 #, php-format
@@ -3530,7 +3531,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:260
 msgid "pagetitlehover:adduser"
-msgstr "irá adicionar o utilizador/assinante definido"
+msgstr "Adicionar ou editar manualmente um novo assinante"
 
 #: public_html/lists/admin/about.php:32
 msgid "Certified Secure by "
@@ -3601,7 +3602,7 @@ msgstr "Valor deste atributo para este assinante"
 
 #: public_html/databasestructure.php:240
 msgid "pagetitlehover:import"
-msgstr "importar endereços de email"
+msgstr "importar assinantes"
 
 #: public_html/lists/admin/import4.php:87
 msgid "Overwrite Existing:"
@@ -3720,7 +3721,8 @@ msgstr "Tamanho m&aacute;ximo de cada ficheiro individualmente"
 
 #: public_html/databasestructure.php:284
 msgid "pagetitlehover:admins"
-msgstr "lista de administradores"
+msgstr ""
+"Ver, editar e adicionar administradores com acesso a tudo no sistema phpList"
 
 #: public_html/lists/admin/bounces.php:128
 msgid ""
@@ -3735,7 +3737,7 @@ msgstr "conjunto de testes phplist"
 
 #: public_html/databasestructure.php:265
 msgid "pagetitle:message"
-msgstr "mensagem"
+msgstr "Ver a mensagem/campanha"
 
 #: public_html/lists/admin/users.php:187
 msgid "Your privileges for this page are insufficient"
@@ -3769,7 +3771,8 @@ msgstr "Reencaminhar email"
 
 #: public_html/databasestructure.php:282
 msgid "pagetitlehover:admin"
-msgstr "irá para a página onde poderá adicionar um novo administrador"
+msgstr ""
+"irá para a página onde poderá adicionar ou editar um administrador do sistema"
 
 #: public_html/lists/admin/import1.php:242
 msgid "Send Notification email"
@@ -3816,7 +3819,7 @@ msgstr "procurar assinantes"
 
 #: public_html/lists/admin/login.php:42
 msgid "Forgot password"
-msgstr "Esqueceu a sua senha"
+msgstr "Esqueceu a sua senha?"
 
 #: public_html/lists/admin/suppressionlist.php:38
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
@@ -3863,7 +3866,7 @@ msgstr "N&atilde;o h&aacute; listas"
 
 #: public_html/databasestructure.php:224
 msgid "pagetitlehover:editattributes"
-msgstr "adicionar um novo atributo"
+msgstr "editar os detalhes de um atributo"
 
 #: public_html/lists/admin/import4.php:48
 msgid "add_list"
@@ -4335,7 +4338,7 @@ msgstr "Categorias das listas"
 
 #: public_html/databasestructure.php:266
 msgid "pagetitlehover:message"
-msgstr "veja a mensagem"
+msgstr "veja os detalhes da mensagem/campanha"
 
 #: public_html/lists/admin/editlist.php:198
 msgid "Save"
@@ -4452,7 +4455,7 @@ msgstr "ir para a realização de um teste de resistência"
 
 #: public_html/databasestructure.php:226
 msgid "pagetitlehover:editlist"
-msgstr "irá editar os detalhes da lista"
+msgstr "irá alterar os detalhes da lista"
 
 #: public_html/lists/admin/actions/subscription.php:107
 msgid "info"
@@ -4531,7 +4534,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:317
 msgid "pagetitle:massremove"
-msgstr "remo&ccedil;&atilde;o em bloco"
+msgstr "Remo&ccedil;&atilde;o de assinantes"
 
 #: public_html/lists/admin/actions/domainstats.php:131
 msgid "Domains with most unconfirmed subscribers"
@@ -4539,7 +4542,7 @@ msgstr "Os dom&iacute;nios com a maioria dos assinantes n&atilde;o confirmados"
 
 #: public_html/databasestructure.php:242
 msgid "pagetitlehover:export"
-msgstr "procede à exportação dos assinantes/utilizadores"
+msgstr "procede à importação de assinantes/utilizadores"
 
 #: public_html/lists/admin/spage.php:108
 msgid "Add a new subscribe page"
@@ -4580,7 +4583,7 @@ msgstr "instalado"
 
 #: public_html/lists/admin/tests/sendpage.php:28
 msgid "Sending HTML version to "
-msgstr "Envio de versão HTML para "
+msgstr "Envio de versão HTML para"
 
 #: public_html/lists/admin/editlist.php:177,
 #: public_html/lists/admin/catlists.php:90
@@ -4667,7 +4670,8 @@ msgstr ""
 #: public_html/lists/admin/import2.php:702
 #, php-format
 msgid "phpList will not process files larger than %dMB"
-msgstr ". O phpList n&atilde;o ir&aacute; processar ficheiros maiores que %d MB"
+msgstr ""
+"<br/>O phpList n&atilde;o ir&aacute; processar ficheiros maiores que %d MB"
 
 #: public_html/lists/admin/spageedit.php:365
 msgid "Do not show list categories"
@@ -5121,7 +5125,7 @@ msgstr "Iniciar uma mensagem/campanha"
 
 #: public_html/databasestructure.php:248
 msgid "pagetitlehover:preparesend"
-msgstr "irá para a secção onde pode preparar uma mensagem/campanha"
+msgstr "irá para a secção onde pode preparar uma mensagem/campanha para envio"
 
 #: public_html/lists/admin/reconcileusers.php:456
 msgid "Mark all subscribers to receive HTML"
@@ -5138,8 +5142,8 @@ msgstr "Esses registos foram adicionados, mas o email foi composto a partir de "
 #: public_html/lists/admin/actions/processqueue.php:984
 msgid "queue processing time has exceeded max processing time "
 msgstr ""
-"o tempo de processamento da fila superou o tempo de processamento m&aacute;"
-"ximo "
+"o tempo de processamento da fila superou o tempo de processamento "
+"m&aacute;ximo"
 
 #: public_html/databasestructure.php:362
 msgid "pagetitlehover:suppressionlist"
@@ -5828,7 +5832,7 @@ msgstr "Nome da organiza&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:246
 msgid "pagetitlehover:send"
-msgstr "irá para a secção de enviar uma mensagem/campanha"
+msgstr "Cria uma mensagem/campanha para enviar aos assinantes"
 
 #: public_html/lists/admin/import3.php:232
 msgid "Please enter details of the IMAP account"
@@ -6210,7 +6214,7 @@ msgstr "Corpo da mensagem"
 
 #: public_html/databasestructure.php:273
 msgid "pagetitle:templates"
-msgstr "modelos"
+msgstr "gerir os modelos das campanhas"
 
 #: public_html/lists/admin/sendemaillib.php:1069
 #, php-format
@@ -6261,7 +6265,7 @@ msgstr "Anterior"
 #: public_html/lists/admin/converttoutf8.php:98,
 #: public_html/lists/admin/converttoutf8.php:99
 msgid "The DB was already converted to UTF-8 on"
-msgstr "A BD j&aacute; foi convertida para UTF-8 em"
+msgstr "A BD j&aacute; foi convertida para UTF-8 em "
 
 #: public_html/lists/admin/upgrade.php:383
 msgid ""
@@ -6437,8 +6441,8 @@ msgstr ""
 #: public_html/lists/admin/importadmin.php:161
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
 msgstr ""
-"Testar resultados: Se o resultado lhe parecer correto, clique em Voltar para "
-"envi&aacute;-lo"
+"Testar resultados<br/>Se o resultado lhe parecer correto, clique em Voltar "
+"para envi&aacute;-lo"
 
 #: public_html/lists/admin/actions/processqueue.php:1149
 #, php-format
@@ -6627,8 +6631,8 @@ msgid ""
 "Warning: You indicated the content was not HTML, but there were  some HTML  "
 "tags in it. This  may  cause  errors"
 msgstr ""
-"Aviso: indicou que o conte&uacute;do não &eacute; HTML, mas h&aacute;  "
-"algumas  tags HTML nele. Isto  pode  provocar  erros"
+"Aviso: indicou que o conte&uacute;do não &eacute; HTML, mas h&aacute; "
+"algumas tags HTML nele. Isto pode provocar erros"
 
 #: public_html/lists/admin/messages.php:45,
 #: public_html/lists/admin/messages.php:49,
@@ -6788,8 +6792,8 @@ msgid ""
 "The campaign will go to users who are a member of the lists above,     "
 "unless they are a member of one of the lists you select here."
 msgstr ""
-"A mensagem ser&aacute; enviada aos utilizadores membros da lista acima,     "
-"a menos que sejam membros de uma das listas selecionada aqui."
+"A mensagem ser&aacute; enviada aos utilizadores membros da lista acima, a "
+"menos que sejam membros de uma das listas selecionada aqui."
 
 #: public_html/lists/admin/editattributes.php:103
 msgid "Delete and replace"
@@ -6856,7 +6860,7 @@ msgstr "nenhum utilizador foi encontrado"
 
 #: public_html/databasestructure.php:299
 msgid "pagetitle:getrss"
-msgstr "obter RSS"
+msgstr "Recuperar feeds RSS"
 
 #: public_html/lists/admin/templates.php:44
 msgid "Campaign Default"
@@ -6988,9 +6992,7 @@ msgstr "Estat&iacute;sticas por dom&iacute;nio"
 
 #: public_html/databasestructure.php:254
 msgid "pagetitlehover:users"
-msgstr ""
-"irá proceder à pesquisa de utilizadores/assinantes de acordo com o critério "
-"definido"
+msgstr "Procurar assinantes no sistema"
 
 #: public_html/lists/admin/actions/statsoverview.php:155,
 #: public_html/lists/admin/actions/mviews.php:113
@@ -7301,7 +7303,7 @@ msgstr "Baseado no changelog"
 
 #: public_html/databasestructure.php:315
 msgid "pagetitle:massunconfirm"
-msgstr "n&atilde;o confirmados em bloco"
+msgstr "Lista de remo&ccedil;&atilde;o"
 
 #: public_html/lists/admin/lib.php:2069
 msgid "Sign up to receive news and updates about phpList "
@@ -7452,7 +7454,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:255
 msgid "pagetitle:reconcileusers"
-msgstr "reconciliar utilizadores"
+msgstr "reconciliar assinantes"
 
 #: public_html/lists/admin/home.php:241,
 #: public_html/lists/admin/import3.php:162,
@@ -7498,7 +7500,9 @@ msgstr "Adeus &agrave; nossa Newsletter"
 
 #: public_html/databasestructure.php:244
 msgid "pagetitlehover:initialise"
-msgstr "irá reinicializar o sistema phpList"
+msgstr ""
+"Cria todas as tabelas da BD requeridas pelo sistema phpList para funcionar "
+"corretamente"
 
 #: public_html/lists/admin/message.php:174
 msgid "None yet"
@@ -7897,7 +7901,7 @@ msgstr "p&aacute;gina de administra&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:263
 msgid "pagetitle:messages"
-msgstr "mensagens"
+msgstr "Lista de mensagens/campanhas"
 
 #: public_html/databasestructure.php:278
 msgid "pagetitlehover:viewtemplate"
@@ -7963,7 +7967,7 @@ msgstr "salvar modificações"
 
 #: public_html/databasestructure.php:262
 msgid "pagetitlehover:userhistory"
-msgstr "poderá visualizar o histórico do utilizador/assinante"
+msgstr "poderá visualizar o histórico do perfil  do assinante"
 
 #: public_html/lists/admin/connect.php:1738,
 #: public_html/lists/admin/systemstats.php:35
@@ -8030,7 +8034,7 @@ msgstr "Nenhum idioma encontrado"
 
 #: public_html/databasestructure.php:241
 msgid "pagetitle:export"
-msgstr "exportar"
+msgstr "exportar assinantes"
 
 #: public_html/lists/admin/processbounces.php:671,
 #: public_html/lists/admin/processbounces.php:683
@@ -8171,7 +8175,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:319
 msgid "pagetitle:usermgt"
-msgstr "defini&ccedil;&otilde;es utilizadores"
+msgstr "Defini&ccedil;&otilde;es assinantes"
 
 #: public_html/lists/admin/updatetranslation.php:63,
 #: public_html/lists/admin/updatetranslation.php:66
@@ -8202,7 +8206,8 @@ msgstr "Novo anexo"
 #, php-format
 msgid "Added %s to bouncecount for subscriber %s"
 msgstr ""
-"Adicionado %s ao contador de devolu&ccedil;&otilde;es para o assinante %s"
+"Adicionado %s ao contador de devolu&ccedil;&otilde;es para o assinante %s<br/"
+">"
 
 #: public_html/databasestructure.php:231
 msgid "pagetitle:import4"
@@ -8732,7 +8737,7 @@ msgstr "N&atilde;o enviado para"
 
 #: public_html/databasestructure.php:283
 msgid "pagetitle:admins"
-msgstr "administradores"
+msgstr "gerir administradores"
 
 #: public_html/lists/admin/processbounces.php:643
 msgid "Subscriber auto blacklisted  by bounce rule"
@@ -8801,7 +8806,7 @@ msgstr ""
 
 #: public_html/lists/admin/bounce.php:64
 msgid "Not Found"
-msgstr "N&atilde;o encontrado"
+msgstr "N&atilde;o encontrado<br/>"
 
 #: public_html/lists/admin/upgrade.php:82
 msgid "Upgrading phpList to version "
@@ -8890,7 +8895,7 @@ msgstr ""
 "sobre \"email inválido\" de forma a encontrar esses registos. O tamanho "
 "m&aacute;ximo de uma chave externa &eacute; de 100.          "
 "Aten&ccedil;&atilde;o: o arquivo precisa ser de texto simples. N&atilde;o "
-"envie arquivos bin&aacute;rios como um documento do Word.     "
+"envie arquivos bin&aacute;rios como um documento do Word."
 
 #: public_html/lists/admin/messages.php:288
 msgid "Marking as sent "
@@ -8933,7 +8938,7 @@ msgstr "Parado"
 
 #: public_html/databasestructure.php:314
 msgid "pagetitlehover:uclicks"
-msgstr "veja as estatísticas dos cliques dos utilizadores/assinantes"
+msgstr "veja as estatísticas dos cliques dos assinantes, listados por URL"
 
 #: public_html/lists/admin/reconcileusers.php:348,
 #: public_html/lists/admin/reconcileusers.php:355,
@@ -9072,7 +9077,7 @@ msgstr "Transferir"
 
 #: public_html/databasestructure.php:304
 msgid "pagetitlehover:community"
-msgstr "saiba mais sobre a comunidade do phpList"
+msgstr "Como obter ajuda e como ajudar no phpList"
 
 #: public_html/lists/admin/actions/processqueue.php:1246
 msgid "not sending to "
@@ -9141,7 +9146,7 @@ msgstr "Todas as devolu&ccedil;&otilde;es foram eliminadas"
 #: public_html/lists/admin/converttoutf8.php:79,
 #: public_html/lists/admin/upgrade.php:259
 msgid "Upgrading table "
-msgstr "A atualizar a tabela "
+msgstr "A atualizar a tabela"
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
@@ -9637,7 +9642,7 @@ msgstr "Esta n&atilde;o &eacute; a sua lista"
 
 #: public_html/databasestructure.php:268
 msgid "pagetitlehover:processqueue"
-msgstr "irá proceder ao processamento da fila"
+msgstr "irá proceder ao processamento das campanhas em fila"
 
 #: public_html/lists/admin/actions/processqueue.php:42
 msgid "Unable get lock for processing"
@@ -9676,7 +9681,7 @@ msgstr "Verificar se todos os links possuem um URL completo"
 
 #: public_html/databasestructure.php:276
 msgid "pagetitlehover:template"
-msgstr "adiciona um modelo/template"
+msgstr "adicionar ou editar um modelo de campanha"
 
 #: public_html/lists/admin/actions/bounces.php:54
 msgid "Bounces data not found"
@@ -9693,7 +9698,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:320
 msgid "pagetitlehover:usermgt"
-msgstr "irá proceder à gestão das definições dos utilizadores/assinantes"
+msgstr "Gestão das definições mais comuns dos assinantes"
 
 #: public_html/databasestructure.php:238
 msgid "pagetitlehover:import1"
@@ -9732,7 +9737,7 @@ msgstr "Membros"
 
 #: public_html/databasestructure.php:223
 msgid "pagetitle:editattributes"
-msgstr "adicionar atributos"
+msgstr "configurar atributos"
 
 #: public_html/lists/admin/convertstats.php:167
 msgid "Finished"
@@ -9844,7 +9849,7 @@ msgstr "Assinante adicionado &agrave; lista %s"
 
 #: public_html/databasestructure.php:236
 msgid "pagetitlehover:import2"
-msgstr "importar emails através do envio de ficheiro CSV"
+msgstr "importar emails através de ficheiro com email e informação adicional"
 
 #: public_html/lists/admin/admins.php:111
 msgid "email"
@@ -10261,9 +10266,9 @@ msgstr ""
 "O ficheiro que enviar ter&aacute; de conter os emails que quer adicionar a "
 "estas listas. Qualquer coisa depois do email ser&aacute; adicionado como "
 "atributo \"Info\" do Assinante. Pode especificar o resto dos atributos "
-"desses assinantes abaixo. Aviso: o ficheiro precisa ser um texto simples. "
-"N&atilde;o fa&ccedil;a upload de ficheiros bin&aacute;rios como um documento "
-"do Word."
+"desses assinantes abaixo.<b>Aviso</b>: o ficheiro precisa ser um texto "
+"simples. N&atilde;o fa&ccedil;a upload de ficheiros bin&aacute;rios como um "
+"documento do Word."
 
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
@@ -10347,7 +10352,7 @@ msgstr "Ativado"
 
 #: public_html/databasestructure.php:305
 msgid "pagetitle:vote"
-msgstr "vota&ccedil;&atilde;o"
+msgstr "Vote no phpList"
 
 #: public_html/databasestructure.php:355
 msgid "pagetitle:reindex"
@@ -10386,7 +10391,7 @@ msgstr "limite atingido"
 
 #: public_html/databasestructure.php:251
 msgid "pagetitle:members"
-msgstr "membros"
+msgstr "lista membros"
 
 #: public_html/lists/admin/defaultconfig.php:598
 msgid "Footer of public pages"
@@ -10420,7 +10425,7 @@ msgstr "Ver todas as campanhas"
 
 #: public_html/lists/admin/defaultconfig.php:590
 msgid "Header of public pages."
-msgstr "Cabe&ccedil;alho de p&aacute;ginas p&uacute;blicas."
+msgstr "Cabe&ccedil;alho de p&aacute;ginas p&uacute;blicas"
 
 #: public_html/databasestructure.php:338
 msgid "pagetitlehover:dbadmin"
@@ -10491,7 +10496,7 @@ msgstr "Envio de mensagem %d com o assunto %s para %s"
 
 #: public_html/databasestructure.php:313
 msgid "pagetitle:uclicks"
-msgstr "estat&iacute;sticas dos cliques dos utilizadores"
+msgstr "estat&iacute;sticas dos cliques dos URL"
 
 #: public_html/lists/admin/attributes.php:81,
 #: public_html/lists/admin/attributes.php:125,
@@ -10552,7 +10557,7 @@ msgstr "Comunidade de apoio"
 
 #: public_html/databasestructure.php:253
 msgid "pagetitle:users"
-msgstr "utilizadores/assinantes"
+msgstr "Procurar assinantes"
 
 #: public_html/lists/admin/processbounces.php:42
 msgid "Bounce Processing info"
@@ -10666,7 +10671,7 @@ msgstr "Exibir email de confirma&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:269
 msgid "pagetitle:defaults"
-msgstr "padr&otilde;es"
+msgstr "Alguns valores padr&atilde;o do atributo"
 
 #: public_html/lists/admin/actions/checkurl.php:35
 msgid "URL is valid"
