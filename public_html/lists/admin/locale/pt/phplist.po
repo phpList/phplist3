@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-11 23:35+0000\n"
+"PO-Revision-Date: 2021-07-14 20:30+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -667,7 +667,7 @@ msgstr "Atualizando a base de dados para usar com UTF-8, por favor aguarde"
 
 #: public_html/lists/admin/actions/subscription.php:51
 msgid "subscriber is blacklisted since"
-msgstr "assinante est&aacute; na lista negra desde"
+msgstr "Assinante est&aacute; na lista negra desde"
 
 #: public_html/lists/admin/bouncerule.php:55
 msgid "activate this rule and go to the next candidate"
@@ -712,7 +712,7 @@ msgstr "importar assinantes com ficheiro em texto"
 
 #: public_html/lists/admin/actions/subscription.php:91
 msgid "ip"
-msgstr "ip"
+msgstr "IP"
 
 #: public_html/lists/admin/readtestmail.php:242
 msgid "tests"
@@ -1198,7 +1198,7 @@ msgstr "&Uacute;ltima P&aacute;gina"
 #: public_html/lists/admin/actions/subscription.php:71,
 #: public_html/lists/admin/actions/subscription.php:72
 msgid "remove subscriber from blacklist"
-msgstr "remover assinante da lista negra"
+msgstr "Remover assinante da lista negra"
 
 #: public_html/lists/admin/actions/processqueue.php:989
 msgid "Campaign sending timed out, is past date to process until"
@@ -1354,7 +1354,7 @@ msgstr "Hiperliga&ccedil;&otilde;es"
 #: public_html/lists/admin/actions/campaigns.php:24,
 #: public_html/lists/admin/user.php:539
 msgid "Campaigns"
-msgstr "Mensagens"
+msgstr "Campanhas"
 
 #: public_html/lists/admin/bounce.php:182
 msgid "Do the above"
@@ -1781,7 +1781,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:123
 msgid "Import of existing subscriber"
-msgstr "Importa&ccedil;&atilde;o de utilizadores existentes"
+msgstr "Importa&ccedil;&atilde;o de assinantes existentes"
 
 #: public_html/lists/admin/subscribelib2.php:99
 msgid ""
@@ -2297,7 +2297,7 @@ msgstr "Enviar esta campanha/mensagem para outra lista"
 #: public_html/lists/admin/actions/processqueue.php:1371
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
-msgstr "O phpList finalizou o envio da campanha/mensagem com o assunto %s"
+msgstr "O phpList finalizou o envio da campanha com o assunto %s"
 
 #: public_html/lists/admin/plugins.php:336
 msgid "Plugin can not be enabled."
@@ -2558,7 +2558,7 @@ msgstr "Exibir Email de confirma&ccedil;&atilde;o"
 #: public_html/lists/admin/actions/reconcileusers.php:39,
 #: public_html/lists/admin/actions/reconcileusers.php:68
 msgid "subscribers deleted"
-msgstr "assinantes removidos"
+msgstr "Assinantes removidos"
 
 #: public_html/lists/admin/usermgt.php:36
 msgid "Bulk remove subscribers"
@@ -4442,7 +4442,7 @@ msgstr "Processo bloqueado pelo plugin %s"
 
 #: public_html/lists/admin/actions/subscription.php:69
 msgid "are you sure you want to delete this subscriber from the blacklist"
-msgstr "tem a certeza que deseja retirar este assinante da lista negra"
+msgstr "Tem a certeza que deseja retirar este assinante da lista negra"
 
 #: public_html/lists/admin/send_core.php:354
 msgid "Campaign added"
@@ -4458,7 +4458,7 @@ msgstr "irá alterar os detalhes da lista"
 
 #: public_html/lists/admin/actions/subscription.php:107
 msgid "info"
-msgstr "informa&ccedil;&atilde;o"
+msgstr "Informa&ccedil;&atilde;o"
 
 #: public_html/lists/admin/initialise.php:81
 msgid "minimum of 8 characters."
@@ -4664,9 +4664,7 @@ msgstr "etiqueta"
 #: public_html/lists/admin/actions/processqueue.php:1372
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
-msgstr ""
-"Para ver os resultados do envio desta campanha/mensagem, v&aacute; para %s "
-"://%s"
+msgstr "Para ver os resultados do envio desta campanha, v&aacute; para %s ://%s"
 
 #: public_html/lists/admin/import2.php:702
 #, php-format
@@ -5649,7 +5647,7 @@ msgstr "para ver o progresso do envio desta campanha, v&aacute; para %s://%s"
 
 #: public_html/lists/admin/bouncemgt.php:12
 msgid "View Bounces per campaign"
-msgstr "Ver devolu&ccedil;&otilde;es por campanha/mensagem"
+msgstr "Ver devolu&ccedil;&otilde;es por campanha"
 
 #: public_html/lists/admin/actions/processqueue.php:540
 #, php-format
@@ -6061,7 +6059,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/mviews.php:72
 msgid "Available Messages"
-msgstr "Mensagens Dispon&iacute;veis"
+msgstr "Campanhas Dispon&iacute;veis"
 
 #: public_html/lists/admin/messages.php:237
 msgid "Requeuing"
@@ -6227,7 +6225,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:96
 msgid "detail"
-msgstr "detalhe"
+msgstr "Detalhe"
 
 #: public_html/lists/admin/bounce.php:177
 msgid "Set subscriber to receive text instead of HTML"
@@ -6841,8 +6839,8 @@ msgid ""
 "For this subscriber to be removed from the blacklist, you need to ask them "
 "to re-subscribe using the phpList subscribe page"
 msgstr ""
-"Para este assinante ser removido da lista negra, &eacute; preciso pedir-lhe "
-"para voltar a inscrever-se atrav&eacute;s da p&aacute;gina de "
+"Para este assinante ser removido da lista negra, &eacute; preciso voltar a "
+"pedir-lhe para se inscrever atrav&eacute;s da p&aacute;gina de "
 "subscri&ccedil;&atilde;o"
 
 #: public_html/lists/admin/processbounces.php:610,
@@ -7131,7 +7129,7 @@ msgstr "Para parar de receber estes relat&oacute;rios leia:"
 
 #: public_html/lists/admin/actions/processqueue.php:1370
 msgid "Message campaign finished"
-msgstr "Mensagem da campanha terminou"
+msgstr "Campanha terminada"
 
 #: public_html/lists/admin/reconcileusers.php:225
 msgid "Blacklisting subscribers with more than"
@@ -7999,8 +7997,8 @@ msgstr "Ignorar valor"
 #, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
 msgstr ""
-"%d utilizadores foram encontrados atrav&eacute;s de uma chave externa, %d "
-"por email"
+"%d assinantes foram encontrados atrav&eacute;s de uma chave externa, %d por "
+"email"
 
 #: public_html/lists/admin/exportuserdata.php:7,
 #: public_html/lists/admin/exportuserdata.php:16,
@@ -8227,7 +8225,7 @@ msgstr "O modelo padr&atilde;o seleccionado foi adicionado como modelo com o ID"
 
 #: public_html/lists/admin/actions/processqueue.php:1357
 msgid "Hmmm, No users found to send to"
-msgstr "Hummm, n&atilde;o foi encontrado nenhum utilizador para enviar"
+msgstr "N&atilde;o foi encontrado nenhum assinante para enviar"
 
 #: public_html/lists/admin/userclicks.php:243,
 #: public_html/lists/admin/mclicks.php:145,
@@ -9775,7 +9773,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/campaigns.php:33
 msgid "messages sent to this user"
-msgstr "mensagens enviadas a este utilizador"
+msgstr "mensagens enviadas a este assinante"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
@@ -9869,7 +9867,7 @@ msgstr "Atualiz&aacute;-lo?"
 
 #: public_html/lists/admin/actions/subscription.php:86
 msgid "no details found"
-msgstr "nenhum detalhe foi encontrado"
+msgstr "Nenhum detalhe foi encontrado"
 
 #: public_html/lists/admin/processqueue.php:77
 msgid "stop processing"
@@ -10222,7 +10220,7 @@ msgstr "Linguagem"
 msgid ""
 "you only have privileges to view this page, not change any of the information"
 msgstr ""
-"s&oacute; tem permiss&atilde;o de ver esta p&aacute;gina, mas n&atilde;o "
+"S&oacute; tem permiss&atilde;o de ver esta p&aacute;gina, mas n&atilde;o "
 "pode alterar nenhuma informa&ccedil;&atilde;o"
 
 #: public_html/databasestructure.php:36
@@ -10304,7 +10302,7 @@ msgstr "ao clicar irá abandonar o sistema de envio de mailings do phpList"
 
 #: public_html/lists/admin/actions/import1.php:149
 msgid "Import of new subscriber"
-msgstr "Importa&ccedil;&atilde;o de novos utilizadores"
+msgstr "Importa&ccedil;&atilde;o de novos assinantes"
 
 #: public_html/lists/admin/processqueue.php:65
 msgid "Use local processing"
@@ -10625,7 +10623,7 @@ msgstr "Sem atributo:"
 #: public_html/lists/admin/actions/viewtemplate.php:5,
 #: public_html/lists/admin/viewtemplate.php:27
 msgid "Sample Newsletter Content"
-msgstr "Exemplo de conte&uacute;do Newsletter"
+msgstr "Exemplo de conte&uacute;do da Newsletter"
 
 #: public_html/lists/admin/defaultconfig.php:635
 msgid "String to always append to remote URL when using send-a-webpage"
