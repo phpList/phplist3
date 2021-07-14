@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-14 20:30+0000\n"
+"PO-Revision-Date: 2021-07-14 23:12+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -70,7 +70,7 @@ msgstr ""
 #: public_html/lists/admin/editattributes.php:213,
 #: public_html/lists/admin/spageedit.php:210
 msgid "default"
-msgstr "padr&atilde;o"
+msgstr "Padr&atilde;o"
 
 #: public_html/lists/admin/import4.php:118,
 #: public_html/lists/admin/import4.php:126
@@ -264,7 +264,7 @@ msgstr "Sem T&iacute;tulo"
 #: public_html/lists/admin/bouncerules.php:117,
 #: public_html/lists/admin/bounces.php:125
 msgid "delete"
-msgstr "eliminar"
+msgstr "Eliminar"
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
@@ -328,7 +328,7 @@ msgstr "se for usado como um modelo RSS, que frequ&ecirc;ncia"
 #: public_html/lists/admin/plugins.php:308,
 #: public_html/lists/admin/bouncerules.php:102
 msgid "action"
-msgstr "a&ccedil&atilde;o"
+msgstr "A&ccedil&atilde;o"
 
 #: public_html/lists/admin/usercheck.php:7
 msgid "Existing subscribers"
@@ -823,7 +823,7 @@ msgstr ""
 #: public_html/lists/admin/plugins.php:344,
 #: public_html/lists/admin/plugins.php:348
 msgid "update"
-msgstr "atualizar"
+msgstr "Atualizar"
 
 #: public_html/lists/admin/export.php:107
 msgid "When they subscribed to"
@@ -1105,7 +1105,7 @@ msgstr "Linguagem ISO"
 
 #: public_html/lists/admin/spage.php:97
 msgid "not active"
-msgstr "inativa"
+msgstr "Inativa"
 
 #: public_html/lists/admin/configure.php:40
 msgid "Reset to default"
@@ -1270,7 +1270,7 @@ msgid ""
 "You have already defined bounce rules in your system.      Be careful with "
 "generating new ones, because these may interfere with the ones that exist."
 msgstr ""
-"Se j&aacute; definiu regras para os emails de erro do seu sistema,     tome "
+"Se j&aacute; definiu regras para os emails de erro do seu sistema.      Tome "
 "cuidado ao criar novas regras, pois elas podem interferir naquelas que "
 "j&aacute; existem."
 
@@ -1711,7 +1711,7 @@ msgstr "O relatório do processamento será enviado por email"
 #: public_html/lists/admin/editattributes.php:137,
 #: public_html/lists/admin/bounces.php:214
 msgid "user"
-msgstr "utilizador"
+msgstr "Utilizador"
 
 #: public_html/lists/admin/message.php:84
 msgid "Edit this message"
@@ -2385,7 +2385,7 @@ msgstr "Chave"
 
 #: public_html/lists/admin/send_core.php:1053
 msgid "Estimated size of text email"
-msgstr "Tamanho estimado do email em texto"
+msgstr "Tamanho estimado da mensagem em texto"
 
 #: public_html/lists/admin/bounce.php:38
 msgid "No such record"
@@ -2606,7 +2606,7 @@ msgstr "A processar primeiro %d devolu&ccedil;&otilde;es"
 
 #: public_html/lists/admin/send_core.php:907
 msgid "generate from HTML"
-msgstr "obter a partir de HTML"
+msgstr "Obter a partir de HTML"
 
 #: public_html/lists/admin/spageedit.php:375
 msgid "If you do not choose a list here, all public lists will be displayed."
@@ -2626,7 +2626,7 @@ msgstr "O sistema de seguimento dos cliques mudou"
 #: public_html/lists/admin/lib.php:2042,
 #: public_html/lists/admin/send_core.php:390
 msgid "view progress"
-msgstr "ver progresso"
+msgstr "Ver progresso"
 
 #: public_html/lists/admin/send_core.php:863
 msgid "select one"
@@ -2745,8 +2745,8 @@ msgstr "Nome da imagem:"
 msgid ""
 "About %d users to receive HTML and %s users to receive text version of email"
 msgstr ""
-"Sobre o email em que %d utilizadores recebem em HTML e %s utilizadores "
-"recebem a vers&atilde;o em texto"
+"Sobre o email em que %d assinantes recebem em HTML e %s assinantes recebem a "
+"vers&atilde;o em texto"
 
 #: public_html/lists/admin/send.php:104
 msgid "Draft campaigns"
@@ -2832,7 +2832,7 @@ msgstr "Hora do Servidor &eacute;"
 
 #: public_html/lists/admin/plugins.php:327
 msgid "delete this plugin"
-msgstr "apagar este plugin"
+msgstr "Apagar este plugin"
 
 #: public_html/lists/admin/eventlog.php:99
 msgid "Exclude filter"
@@ -3086,7 +3086,7 @@ msgstr "Quando eles se inscreveram"
 
 #: public_html/lists/admin/import4.php:88
 msgid "continue"
-msgstr "continuar"
+msgstr "Continuar"
 
 #: public_html/lists/admin/send_core.php:913,
 #: public_html/lists/admin/spageedit.php:227
@@ -3150,7 +3150,7 @@ msgstr "com senha"
 
 #: public_html/lists/admin/send_core.php:1267
 msgid "message content missing"
-msgstr "conte&uacute;do da mensagem em falta"
+msgstr "Conte&uacute;do da mensagem em falta"
 
 #: public_html/lists/admin/send_core.php:905
 msgid "Plain text version of message"
@@ -3869,7 +3869,7 @@ msgstr "editar os detalhes de um atributo"
 
 #: public_html/lists/admin/import4.php:48
 msgid "add_list"
-msgstr "adicionar uma lista"
+msgstr "Adicionar uma lista"
 
 #: public_html/lists/admin/users.php:269
 msgid ""
@@ -4520,7 +4520,7 @@ msgstr "URL onde os assinantes podem cancelar a sua subscri&ccedil;&atilde;o"
 #: public_html/lists/admin/plugins.php:38
 msgid "Invalid download URL, please reload the page and try again"
 msgstr ""
-"URL inv&aacute;lido de download, por favor, recarregue a p&aacute;gina e "
+"URL de download inv&aacute;lido , por favor recarregue a p&aacute;gina e "
 "tente novamente"
 
 #: public_html/lists/admin/message.php:166
@@ -4574,11 +4574,11 @@ msgstr "ir para a verificação da tabela de tradução na BD"
 
 #: public_html/lists/admin/plugins.php:253
 msgid "developer"
-msgstr "programador"
+msgstr "Programador"
 
 #: public_html/lists/admin/plugins.php:279
 msgid "installed"
-msgstr "instalado"
+msgstr "Instalado"
 
 #: public_html/lists/admin/tests/sendpage.php:28
 msgid "Sending HTML version to "
@@ -4642,7 +4642,7 @@ msgstr "incapaz de detetar o nome do host"
 
 #: public_html/lists/admin/spage.php:71
 msgid "subscribe pages"
-msgstr "p&aacute;ginas de inscri&ccedil&atilde;o"
+msgstr "P&aacute;ginas de inscri&ccedil&atilde;o"
 
 #: public_html/lists/admin/send_core.php:721
 msgid "Send a Webpage - URL"
@@ -4765,7 +4765,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:939
 msgid "filename"
-msgstr "nome do ficheiro"
+msgstr "Nome do ficheiro"
 
 #: public_html/lists/admin/home.php:11
 msgid "Your database is out of date, please make sure to upgrade"
@@ -5660,7 +5660,7 @@ msgstr ""
 
 #: public_html/lists/admin/import4.php:73
 msgid "select_lists"
-msgstr "selecione as listas nas quais quer adicionar os emails"
+msgstr "Selecione as listas nas quais quer adicionar os emails"
 
 #: public_html/lists/admin/attributes.php:352
 msgid "predefined defaults"
@@ -6041,7 +6041,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:804
 msgid "do not requeue"
-msgstr "n&atilde;o reenviar"
+msgstr "N&atilde;o reenviar"
 
 #: public_html/lists/admin/about.php:12
 msgid "Version"
@@ -6114,7 +6114,7 @@ msgstr "salvar"
 
 #: public_html/lists/admin/plugins.php:271
 msgid "origin"
-msgstr "origem"
+msgstr "Origem"
 
 #: public_html/lists/admin/import2.php:114,
 #: public_html/lists/admin/import1.php:68
@@ -6157,7 +6157,7 @@ msgstr "%s devolu&ccedil;&otilde;es para a lista %s"
 #: public_html/lists/admin/send_core.php:1015,
 #: public_html/lists/admin/send_core.php:1017
 msgid "separate multiple with a comma"
-msgstr "separar com v&iacute;rgula se v&aacute;rios"
+msgstr "Separar com v&iacute;rgula se v&aacute;rios"
 
 #: public_html/lists/admin/inc/interfacelib.php:1034
 msgid "Hide"
@@ -6184,7 +6184,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:941
 msgid "size"
-msgstr "tamanho"
+msgstr "Tamanho"
 
 #: public_html/lists/admin/initialise.php:211
 msgid "Sign up to our newsletter"
@@ -6407,7 +6407,7 @@ msgstr "Dimens&otilde;es do campo de texto (linhas, colunas)"
 
 #: public_html/lists/admin/plugins.php:258
 msgid "description"
-msgstr "descri&ccedil;&atilde;o"
+msgstr "Descri&ccedil;&atilde;o"
 
 #: public_html/lists/admin/upgrade.php:273
 msgid "Database requires converting to UTF-8."
@@ -6567,7 +6567,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:401
 msgid "Sorry, you used invalid characters in the From field."
-msgstr "Desculpe, usou carateres inv&aacute;lidos no campo De."
+msgstr "Desculpe, usou carateres inv&aacute;lidos no campo \"de\"."
 
 #: public_html/databasestructure.php:11,
 #: public_html/databasestructure.php:156
@@ -6904,11 +6904,11 @@ msgstr "Talvez prefira"
 
 #: public_html/lists/admin/plugins.php:261
 msgid "version"
-msgstr "vers&atilde;o"
+msgstr "Vers&atilde;o"
 
 #: public_html/lists/admin/send_core.php:451
 msgid "No target email addresses listed for testing."
-msgstr "Nenhum endere&ccedil;o de email alvo foi encontrado para testes."
+msgstr "Nenhum endere&ccedil;o de email foi encontrado para testes."
 
 #: public_html/lists/admin/reconcileusers.php:288
 msgid "Don't know how to"
@@ -7021,7 +7021,7 @@ msgstr "adicionar utilizador"
 
 #: public_html/lists/admin/processqueue.php:78
 msgid "resume processing"
-msgstr "retomar o processamento"
+msgstr "Retomar o processamento"
 
 #: public_html/lists/lt.php:230
 msgid ""
@@ -7375,7 +7375,7 @@ msgstr "Gerir op&ccedil;&otilde;es dos administradores"
 #: public_html/lists/admin/plugins.php:307,
 #: public_html/lists/admin/plugins.php:312
 msgid "enabled"
-msgstr "ativado"
+msgstr "Ativado"
 
 #: public_html/lists/admin/lib.php:2288
 msgid "It will really be soon now until the page will display."
@@ -7548,7 +7548,7 @@ msgstr "A mostrar utilizador de %d a %d"
 #: public_html/lists/admin/send_core.php:123,
 #: public_html/lists/admin/send_core.php:1344
 msgid "Send Campaign"
-msgstr "Enviar Campanha"
+msgstr "Enviar campanha"
 
 #: public_html/lists/admin/initialise.php:229
 msgid "Tell us about it"
@@ -7654,7 +7654,7 @@ msgstr "Exportar Utilizadores/Assinantes"
 
 #: public_html/lists/admin/import4.php:210
 msgid "Copying users"
-msgstr "A copiar utilizadores"
+msgstr "A copiar assinantes"
 
 #: public_html/lists/admin/messages.php:205,
 #: public_html/lists/admin/messages.php:265,
@@ -7912,7 +7912,7 @@ msgstr "Colaboradores"
 #: public_html/lists/admin/home.php:249,
 #: public_html/lists/admin/send_core.php:388
 msgid "processqueue"
-msgstr "processar fila"
+msgstr "Processar fila"
 
 #: public_html/lists/admin/template.php:236
 msgid "Sending test \"Welcome\" to"
@@ -8095,7 +8095,7 @@ msgstr "O ficheiro n&atilde;o foi especificado."
 
 #: public_html/lists/admin/import4.php:101
 msgid "cannot connect to remote database"
-msgstr "n&atilde;o foi poss&iacute;vel ligar &agrave; base de dados remota"
+msgstr "N&atilde;o foi poss&iacute;vel ligar &agrave; base de dados remota"
 
 #: public_html/lists/admin/spageedit.php:280
 msgid "Message they receive when they subscribe"
@@ -8217,7 +8217,7 @@ msgstr "importar assinantes de uma base de dados remota"
 #: public_html/lists/admin/bouncerules.php:66,
 #: public_html/lists/admin/bouncerules.php:71
 msgid "active"
-msgstr "ativa"
+msgstr "Ativa"
 
 #: public_html/lists/admin/defaultsystemtemplate.php:423
 msgid "The selected default template has been added as template with ID"
@@ -8696,7 +8696,7 @@ msgstr "test_protocol n&atilde;o suportado"
 
 #: public_html/lists/admin/send_core.php:1050
 msgid "Estimated size of HTML email"
-msgstr "Tamanho estimado do email em HTML"
+msgstr "Tamanho estimado da mensagem em HTML"
 
 #: public_html/lists/admin/about.php:101
 msgid ""
@@ -8746,7 +8746,7 @@ msgstr ""
 #: public_html/lists/admin/import4.php:120
 msgid "No users to copy, is the prefix correct?"
 msgstr ""
-"N&atilde;o h&aacute; utilizadores para copiar, ser&aacute; o prefixo correto?"
+"N&atilde;o h&aacute; assinantes para copiar, ser&aacute; o prefixo correto?"
 
 #: public_html/lists/admin/bouncerules.php:80
 msgid "Bounce Regular Expressions"
@@ -8792,7 +8792,7 @@ msgstr "Colocar Campanha na Fila para Envio"
 
 #: public_html/lists/admin/plugins.php:350
 msgid "details"
-msgstr "detalhes"
+msgstr "Detalhes"
 
 #: public_html/lists/admin/community.php:18
 msgid ""
@@ -9299,7 +9299,7 @@ msgstr "Taxa de rejei&ccedil;&atilde;o"
 
 #: public_html/lists/admin/plugins.php:299
 msgid "settings"
-msgstr "defini&ccedil;&otilde;es"
+msgstr "Defini&ccedil;&otilde;es"
 
 #: public_html/lists/admin/sendemaillib.php:1083
 #, php-format
@@ -9497,7 +9497,7 @@ msgstr "at&eacute; breve"
 #: public_html/lists/admin/home.php:100,
 #: public_html/lists/admin/import4.php:118
 msgid "users"
-msgstr "utilizadores"
+msgstr "Assinantes"
 
 #: public_html/lists/admin/actions/processqueue.php:735
 msgid "Looking for users"
@@ -9713,7 +9713,7 @@ msgstr "Ordem na Listagem:"
 
 #: public_html/lists/admin/send_core.php:399
 msgid "Sorry, you used invalid characters in the Subject field."
-msgstr "Desculpe, usou carateres inv&aacute;lidos no campo Assunto."
+msgstr "Desculpe, usou carateres inv&aacute;lidos no campo \"assunto\"."
 
 #: public_html/databasestructure.php:333
 msgid "pagetitle:dbcheck"
@@ -9871,7 +9871,7 @@ msgstr "Nenhum detalhe foi encontrado"
 
 #: public_html/lists/admin/processqueue.php:77
 msgid "stop processing"
-msgstr "parar o processamento"
+msgstr "Parar o processamento"
 
 #: public_html/lists/admin/user.php:262
 #, php-format
@@ -10319,7 +10319,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:915
 msgid "forwardfooter"
-msgstr "rodap&eacute; do reencaminhamento"
+msgstr "Rodap&eacute; do reencaminhamento"
 
 #: public_html/lists/admin/defaultsystemtemplate.php:409
 msgid "This default template already exists"
