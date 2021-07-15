@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-14 23:12+0000\n"
+"PO-Revision-Date: 2021-07-15 20:45+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -138,7 +138,7 @@ msgstr "Administrador adicionado"
 
 #: public_html/lists/admin/import.php:38
 msgid "copy and paste list of emails"
-msgstr "copiar e colar a lista de emails"
+msgstr "Copiar e colar a lista de emails"
 
 #: public_html/lists/admin/home.php:336
 msgid "Setup "
@@ -197,7 +197,7 @@ msgstr "Tem %s entradas na antiga tabela de estat&iacute;sticas"
 #: public_html/lists/admin/mviews.php:127
 #, php-format
 msgid "Listing user %d to %d"
-msgstr "A mostrar utilizadores de %d a %d"
+msgstr "A mostrar assinantes de %d a %d"
 
 #: public_html/lists/admin/convertstats.php:170
 msgid "Convert some more"
@@ -462,9 +462,9 @@ msgid ""
 "information about a user in the database will be replaced by the imported "
 "information. Users are matched by email."
 msgstr ""
-"a informa&ccedil;&atilde;o do utilizador que existe na base de dados "
+"a informa&ccedil;&atilde;o do assinante que existe na base de dados "
 "ser&aacute; substitu&iacute;da pela informa&ccedil;&atilde;o importada. Os "
-"utilizadores ser&atilde;o encontrados atrav&eacute;s do email."
+"assinantes ser&atilde;o encontrados atrav&eacute;s do email."
 
 #: public_html/lists/admin/admins.php:112
 msgid "Super Admin"
@@ -861,7 +861,7 @@ msgstr "Ver estatísticas"
 
 #: public_html/lists/admin/userclicks.php:247
 msgid "view user"
-msgstr "mostrar utilizador"
+msgstr "mostrar assinante"
 
 #: public_html/lists/admin/import3.php:389
 msgid "unique emails found"
@@ -1508,7 +1508,7 @@ msgstr "Confirmar senha"
 #: public_html/lists/admin/reconcileusers.php:322,
 #: public_html/lists/admin/import3.php:236
 msgid "User"
-msgstr "Utilizador"
+msgstr "Assinante"
 
 #: public_html/databasestructure.php:335
 msgid "pagetitle:importadmin"
@@ -2453,8 +2453,7 @@ msgstr ""
 
 #: public_html/lists/admin/eventlog.php:79
 msgid "Are you sure you want to delete all events older than 2 months?"
-msgstr ""
-"Tem a certeza que quer apagar todos os emails de erro com mais de 2 meses?"
+msgstr "Tem a certeza que quer apagar todos os eventos com mais de 2 meses?"
 
 #: public_html/lists/admin/user.php:259
 #, php-format
@@ -2522,7 +2521,7 @@ msgstr "Ver o perfil de um assinante no sistema"
 
 #: public_html/lists/admin/import3.php:264
 msgid "Mark new users as HTML"
-msgstr "Marcar novos utilizadores como HTML"
+msgstr "Marcar novos assinantes como HTML"
 
 #: public_html/lists/admin/generatebouncerules.php:144
 msgid "new rules found"
@@ -2552,7 +2551,7 @@ msgstr "Atribuir um UUID para %d assinantes/subscritores, pode demorar um pouco"
 
 #: public_html/lists/admin/spageedit.php:267
 msgid "Display Email confirmation"
-msgstr "Exibir Email de confirma&ccedil;&atilde;o"
+msgstr "Exibir campo de confirma&ccedil;&atilde;o para o email"
 
 #: public_html/lists/admin/actions/reconcileusers.php:18,
 #: public_html/lists/admin/actions/reconcileusers.php:39,
@@ -2854,7 +2853,7 @@ msgstr "Editar lista"
 #: public_html/lists/admin/import2.php:632,
 #: public_html/lists/admin/import3.php:254
 msgid "Adding users to list"
-msgstr "Adicionar utilizadores &agrave; lista"
+msgstr "Adicionar assinantes &agrave; lista"
 
 #: public_html/lists/admin/plugins.php:144
 msgid "Plugin installed successfully"
@@ -2957,10 +2956,10 @@ msgid ""
 "If you use &quot;two attributes&quot;, the name will be split after the "
 "first space."
 msgstr ""
-"Existem duas formas de adicionar os nomes dos utilizadores,  um atributo "
-"para o nome inteiro ou dois atributos, um para nome e outro para o "
-"sobrenome. Se usar &quot;dois atributos&quot;, o nome ser&aacute; dividido "
-"ap&oacute;s o primeiro espa&ccedil;o."
+"Existem duas formas de adicionar os nomes dos assinantes,  um atributo para "
+"o nome inteiro ou dois atributos, um para nome e outro para o sobrenome. Se "
+"usar &quot;dois atributos&quot;, o nome ser&aacute; dividido ap&oacute;s o "
+"primeiro espa&ccedil;o."
 
 #: public_html/lists/admin/send_core.php:512
 msgid "add"
@@ -3182,7 +3181,7 @@ msgstr "Importar Utilizadores"
 
 #: public_html/lists/admin/import.php:40
 msgid "import by uploading a file with emails"
-msgstr "importar atrav&eacute;s do envio de um ficheiro com emails"
+msgstr "Importar atrav&eacute;s do envio de um ficheiro com emails"
 
 #: public_html/lists/admin/connect.php:881
 msgid "about"
@@ -4143,7 +4142,7 @@ msgid ""
 "You only have privileges to view this page, not change any of the information"
 msgstr ""
 "Os seus privil&eacute;gios s&oacute; permitem a visualiza&ccedil;&atilde;o "
-"das informa&ccedil;&otilde;es"
+"das informa&ccedil;&otilde;es deste p&aacute;gina"
 
 #: public_html/lists/admin/spageedit.php:354
 #, php-format
@@ -4243,7 +4242,7 @@ msgstr "Nome login (m&aacute;x. 25 carateres)"
 
 #: public_html/lists/admin/eventlog.php:115
 msgid "page"
-msgstr "p&aacute;gina"
+msgstr "P&aacute;gina"
 
 #: public_html/lists/admin/plugins.php:344
 msgid "update this plugin"
@@ -4624,7 +4623,7 @@ msgstr "ID da lista"
 
 #: public_html/lists/admin/spageedit.php:273
 msgid "Don't display email confirmation"
-msgstr "N&atilde;o exibir o email de confirma&ccedil;&atilde;o"
+msgstr "N&atilde;o exibir campo de confirma&ccedil;&atilde;o para o email"
 
 #: public_html/databasestructure.php:271
 msgid "pagetitle:upgrade"
@@ -5262,14 +5261,14 @@ msgid ""
 "subscription to which they will have to reply. This is recommended, because "
 "it will identify invalid emails."
 msgstr ""
-"ser&aacute; enviada aos utilizadores que est&aacute; a adicionar, uma "
-"mensagem com o pedido de confirma&ccedil;&atilde;o da inscri&ccedil;&atilde;"
-"o, &agrave; qual eles devem responder. Esse processo &eacute; recomendado, "
-"pois identificar&aacute; os emails inv&aacute;lidos."
+"ser&aacute; enviada aos assinantes que est&aacute; a adicionar, uma mensagem "
+"com o pedido de confirma&ccedil;&atilde;o da inscri&ccedil;&atilde;o, "
+"&agrave; qual eles devem responder. Esse processo &eacute; recomendado, pois "
+"identificar&aacute; os emails inv&aacute;lidos."
 
 #: public_html/lists/admin/setup.php:99
 msgid "configuration steps"
-msgstr "etapas de configura&ccedil;&atilde;o"
+msgstr "Etapas de configura&ccedil;&atilde;o"
 
 #: public_html/lists/admin/dbcheck.php:84
 msgid "index"
@@ -5691,7 +5690,7 @@ msgstr "Adicionar uma lista"
 
 #: public_html/lists/admin/userclicks.php:28
 msgid "Invalid Request"
-msgstr "Pedido Inv&aacute;lido"
+msgstr "pedido inv&aacute;lido"
 
 #: public_html/lists/admin/about.php:7
 msgid "Announcements"
@@ -5754,7 +5753,7 @@ msgstr "Criar p&aacute;gina de inscri&ccedil;&atilde;o"
 #: public_html/lists/admin/import.php:42
 msgid "import by uploading a CSV file with emails and additional data"
 msgstr ""
-"importar atrav&eacute;s do envio de um ficheiro CSV com emails e dados "
+"Importar atrav&eacute;s do envio de um ficheiro CSV com emails e dados "
 "adicionais"
 
 #: public_html/lists/admin/home.php:167
@@ -6139,7 +6138,7 @@ msgstr "Ter&ccedil;a-feira"
 
 #: public_html/lists/admin/import4.php:359
 msgid "new users"
-msgstr "novos utilizadores"
+msgstr "novos assinantes"
 
 #: public_html/lists/admin/upgrade.php:466
 msgid ""
@@ -6336,7 +6335,7 @@ msgstr "Imagens"
 
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
-msgstr "utilizadores existentes"
+msgstr "assinantes existentes"
 
 #: public_html/databasestructure.php:353
 msgid "pagetitle:updatetranslation"
@@ -7458,7 +7457,7 @@ msgstr "reconciliar assinantes"
 #: public_html/lists/admin/import3.php:162,
 #: public_html/lists/admin/import3.php:388
 msgid "messages"
-msgstr "mensagens"
+msgstr "Mensagens"
 
 #: public_html/lists/admin/about.php:106
 msgid "Acknowledgements"
@@ -8100,7 +8099,8 @@ msgstr "N&atilde;o foi poss&iacute;vel ligar &agrave; base de dados remota"
 #: public_html/lists/admin/spageedit.php:280
 msgid "Message they receive when they subscribe"
 msgstr ""
-"Mensagem que ser&aacute; recebida quando confirmada a inscri&ccedil;&atilde;o"
+"Mensagem que ser&aacute; recebida pelos assinantes quando confirmada a "
+"inscri&ccedil;&atilde;o"
 
 #: public_html/lists/admin/processbounces.php:463,
 #: public_html/lists/admin/readtestmail.php:292
@@ -8268,7 +8268,7 @@ msgstr "Campo Separador"
 
 #: public_html/lists/admin/bounce.php:178
 msgid "Delete subscriber"
-msgstr "apagar assinante"
+msgstr "Apagar assinante"
 
 #: public_html/lists/admin/home.php:224
 msgid "sendprepared"
@@ -8830,7 +8830,7 @@ msgstr "Adicionar &agrave; lista negra"
 #: public_html/lists/admin/eventlog.php:111,
 #: public_html/lists/admin/userclicks.php:228
 msgid "message"
-msgstr "mensagem"
+msgstr "Mensagem"
 
 #: public_html/lists/admin/defaultconfig.php:250
 msgid "The default subscribe page when there are multiple"
@@ -9568,7 +9568,7 @@ msgstr "express&atilde;o"
 #: public_html/lists/admin/bounces.php:13,
 #: public_html/lists/admin/defaults.php:95
 msgid "done"
-msgstr "conclu&iacute;do"
+msgstr "Conclu&iacute;do"
 
 #: public_html/databasestructure.php:339
 msgid "pagetitle:usercheck"
@@ -9709,7 +9709,7 @@ msgstr "n&atilde;o identificados"
 #: public_html/lists/admin/adminattributes.php:113,
 #: public_html/lists/admin/adminattributes.php:149
 msgid "Order of Listing:"
-msgstr "Ordem na Listagem:"
+msgstr "Ordem na listagem:"
 
 #: public_html/lists/admin/send_core.php:399
 msgid "Sorry, you used invalid characters in the Subject field."
@@ -10027,7 +10027,7 @@ msgstr ""
 
 #: public_html/lists/admin/sendemaillib.php:763
 msgid "sendingtextonlyto"
-msgstr "enviar mensagens de texto apenas para"
+msgstr "Enviar mensagens de texto apenas para"
 
 #: public_html/lists/admin/processbounces.php:524,
 #: public_html/lists/admin/processbounces.php:536
@@ -10334,7 +10334,7 @@ msgid ""
 "You have been logged out for security purposes, because there were too many "
 "errors in your session"
 msgstr ""
-"A sua sess&atilde;o foi desligada para fins de seguran&ccedil;a, porque "
+"A sua sess&atilde;o foi desligada por motivos de seguran&ccedil;a, porque "
 "havia muitos erros"
 
 #: public_html/lists/admin/sendemaillib.php:1084
@@ -10665,7 +10665,7 @@ msgstr "Seguinte"
 
 #: public_html/lists/admin/spageedit.php:270
 msgid "Display email confirmation"
-msgstr "Exibir email de confirma&ccedil;&atilde;o"
+msgstr "Exibir campo de confirma&ccedil;&atilde;o para o email"
 
 #: public_html/databasestructure.php:269
 msgid "pagetitle:defaults"
