@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-18 14:04+0000\n"
+"PO-Revision-Date: 2021-07-18 15:12+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -801,7 +801,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:193
 msgid "Configure Attributes for administrators"
-msgstr "Configurar atributos dos administradores"
+msgstr "Configurar Atributos dos administradores"
 
 #: public_html/lists/admin/defaultconfig.php:533
 msgid "Subject of message when subscribers request their personal location"
@@ -1239,7 +1239,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:124
 msgid "Reconcile the User Database"
-msgstr "Corrigir base de dados dos utilizadores"
+msgstr "Reconciliar a base de dados dos assinantes"
 
 #: public_html/databasestructure.php:290
 msgid "pagetitlehover:bounces"
@@ -1386,7 +1386,7 @@ msgstr "utilizado em"
 #: public_html/lists/admin/admin.php:309,
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
-msgstr "Ver Estat&iacute;sticas"
+msgstr "Ver estat&iacute;sticas"
 
 #: public_html/lists/admin/users.php:461,
 #: public_html/lists/admin/uclicks.php:65
@@ -1640,7 +1640,7 @@ msgstr "ok, %d linhas"
 
 #: public_html/lists/admin/home.php:236
 msgid "Configure Templates"
-msgstr "Configurar Modelos"
+msgstr "Configurar modelos"
 
 #: public_html/lists/admin/send_core.php:1276
 msgid "Incorrect URL for sending"
@@ -1687,7 +1687,7 @@ msgstr "A excluir devolu&ccedil;&atilde;o %d"
 
 #: public_html/lists/admin/home.php:114
 msgid "export"
-msgstr "exportar"
+msgstr "Exportar"
 
 #: public_html/lists/admin/send_core.php:748
 msgid "Embargoed Until"
@@ -2484,7 +2484,7 @@ msgstr "%s assinantes no total"
 
 #: public_html/lists/admin/home.php:148
 msgid "Configure Attributes"
-msgstr "Configurar Atributos"
+msgstr "Configurar atributos"
 
 #: public_html/lists/admin/mclicks.php:55
 msgid "Click Details for a Message"
@@ -2789,7 +2789,7 @@ msgstr ""
 
 #: public_html/lists/admin/send.php:101
 msgid "start a new message"
-msgstr "criar uma nova mensagem"
+msgstr "Criar uma nova mensagem"
 
 #: public_html/lists/admin/send_core.php:757
 msgid "Repeat campaign every"
@@ -2923,7 +2923,7 @@ msgstr "Assinante"
 
 #: public_html/lists/admin/home.php:145
 msgid "attributes"
-msgstr "atributos"
+msgstr "Atributos"
 
 #: public_html/lists/admin/initialise.php:77
 msgid "Please enter your email address."
@@ -3021,7 +3021,7 @@ msgstr "Criar Atributo"
 #: public_html/lists/admin/send.php:112,
 #: public_html/lists/admin/message.php:106
 msgid "entered"
-msgstr "inserido"
+msgstr "Inserido"
 
 #: public_html/databasestructure.php:7,
 #: public_html/databasestructure.php:152
@@ -3177,7 +3177,7 @@ msgstr "pedido inv&aacute;lido"
 
 #: public_html/lists/admin/home.php:109
 msgid "Import Users"
-msgstr "Importar Utilizadores"
+msgstr "Importar assinantes"
 
 #: public_html/lists/admin/import.php:40
 msgid "import by uploading a file with emails"
@@ -3429,7 +3429,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:244
 msgid "List all Messages"
-msgstr "Listar todas as Mensagens"
+msgstr "Listar todas as campanhas"
 
 #: public_html/lists/admin/actions/updatetranslation.php:12,
 #: public_html/lists/admin/updatetranslation.php:16
@@ -3488,7 +3488,7 @@ msgstr "Se escolher"
 
 #: public_html/lists/admin/send.php:88
 msgid "campaigns deleted"
-msgstr "campanhas apagadas"
+msgstr "Campanhas apagadas"
 
 #: public_html/lists/admin/list.php:304,
 #: public_html/lists/admin/editlist.php:127
@@ -3822,8 +3822,8 @@ msgstr "Esqueceu a sua senha?"
 #: public_html/lists/admin/suppressionlist.php:38
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
 msgstr ""
-"Cole os emails dos utilizadores a marcar como n&atilde;o confirmados na "
-"caixa, e clique continuar"
+"Cole os emails dos assinantes a marcar como n&atilde;o confirmados na caixa, "
+"e clique continuar"
 
 #: public_html/lists/admin/actions/configure.php:75
 msgid "Please upload an image file, PNG or JPG."
@@ -3984,7 +3984,7 @@ msgstr ""
 
 #: public_html/lists/admin/configure.php:184
 msgid "edit this value"
-msgstr "editar este valor"
+msgstr "Editar este valor"
 
 #: public_html/lists/admin/actions/processqueue.php:385
 msgid "The following events occured while processing the message queue:"
@@ -4034,7 +4034,7 @@ msgstr "pr&oacute;ximo lote de %s em %s"
 
 #: public_html/lists/admin/home.php:182
 msgid "admins"
-msgstr "administradores"
+msgstr "Administradores"
 
 #: public_html/lists/admin/actions/statsoverview.php:139,
 #: public_html/lists/admin/users.php:475
@@ -4151,7 +4151,7 @@ msgstr "Informa&ccedil;&atilde;o necess&aacute;ria para %s"
 
 #: public_html/lists/admin/home.php:121
 msgid "reconcileusers"
-msgstr "corrigir base de utilizadores"
+msgstr "Reconciliar assinantes"
 
 #: public_html/lists/admin/processqueue.php:91
 msgid "Using local processing"
@@ -5155,7 +5155,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:102
 msgid "List all Users"
-msgstr "Listar/procurar todos os utilizadores"
+msgstr "Listar todos os assinantes"
 
 #: public_html/lists/admin/actions/processqueue.php:1195
 msgid "Failed sending to"
@@ -5202,7 +5202,7 @@ msgstr "Cliques exclusivos"
 
 #: public_html/lists/admin/send.php:92
 msgid "campaign deleted"
-msgstr "campanha apagada"
+msgstr "Campanha apagada"
 
 #: public_html/databasestructure.php:274
 msgid "pagetitlehover:templates"
@@ -5344,7 +5344,7 @@ msgstr "Atribuir um UUID para %d campanhas/mensagens"
 
 #: public_html/lists/admin/home.php:190
 msgid "adminattributes"
-msgstr "atributos de administrador"
+msgstr "Atributos de administrador"
 
 #: public_html/lists/admin/catlists.php:41
 msgid ""
@@ -5930,7 +5930,7 @@ msgstr "O que far&aacute; com todos os assinantes"
 
 #: public_html/lists/admin/home.php:128
 msgid "List and user functions"
-msgstr "Gerir op&ccedil;&otilde;es da lista e dos utilizadores"
+msgstr "Gerir op&ccedil;&otilde;es da lista e dos assinantes"
 
 #: public_html/lists/admin/dbcheck.php:19
 msgid "real name"
@@ -6236,11 +6236,11 @@ msgstr "A sua vers&atilde;o"
 
 #: public_html/lists/admin/home.php:91
 msgid "Manage Lists"
-msgstr "Gerir Listas"
+msgstr "Gerir listas"
 
 #: public_html/lists/admin/home.php:252
 msgid "Process the Message Queue"
-msgstr "Processar a mensagem em fila de espera"
+msgstr "Processar a campanha em fila de espera"
 
 #: public_html/databasestructure.php:296
 msgid "pagetitlehover:spage"
@@ -6322,7 +6322,7 @@ msgstr "elaborar mensagem pr&eacute;-trabalhada"
 
 #: public_html/lists/admin/home.php:65
 msgid "Manage Subscribers"
-msgstr "Gerir Assinantes"
+msgstr "Gerir assinantes"
 
 #: public_html/databasestructure.php:3,
 #: public_html/databasestructure.php:148
@@ -6596,7 +6596,7 @@ msgstr "Agora temos %d dom&iacute;nios de n&iacute;vel superior"
 
 #: public_html/lists/admin/template.php:106
 msgid "\"not full URL"
-msgstr "\"URL n&atilde;o completo"
+msgstr "URL n&atilde;o completo"
 
 #: public_html/lists/admin/actions/processqueue.php:1135
 msgid "Sending"
@@ -6820,7 +6820,7 @@ msgstr "fechar"
 #: public_html/lists/admin/home.php:255,
 #: public_html/lists/admin/connect.php:571
 msgid "warning"
-msgstr "aviso"
+msgstr "Aviso"
 
 #: public_html/lists/admin/initialise.php:91
 msgid "Creating tables"
@@ -7177,7 +7177,7 @@ msgstr "Data rece&ccedil;&atilde;o"
 
 #: public_html/lists/admin/home.php:185
 msgid "Add, edit and remove Administrators"
-msgstr "Adicionar, editar e excluir administradores"
+msgstr "Adicionar, editar e excluir Administradores"
 
 #: public_html/lists/admin/updatetranslation.php:74
 msgid "Code"
@@ -7369,7 +7369,7 @@ msgstr "removido"
 
 #: public_html/lists/admin/home.php:198
 msgid "Administrator Functions"
-msgstr "Gerir op&ccedil;&otilde;es dos administradores"
+msgstr "Gerir op&ccedil;&otilde;es dos Administradores"
 
 #: public_html/lists/admin/plugins.php:307,
 #: public_html/lists/admin/plugins.php:312
@@ -7649,7 +7649,7 @@ msgstr "O t&iacute;tulo deste modelo existe."
 
 #: public_html/lists/admin/home.php:116
 msgid "Export Users"
-msgstr "Exportar Utilizadores/Assinantes"
+msgstr "Exportar assinantes"
 
 #: public_html/lists/admin/import4.php:210
 msgid "Copying users"
@@ -7681,7 +7681,7 @@ msgstr "Nome lista: \"%s\", duplicados: %d"
 
 #: public_html/lists/admin/send.php:113
 msgid "age"
-msgstr "idade"
+msgstr "Idade"
 
 #: public_html/lists/admin/bounce.php:176
 msgid "(so you can resend the request for confirmation)"
@@ -7985,7 +7985,7 @@ msgstr "verifique se existem alterações nas traduções do phpList"
 
 #: public_html/lists/admin/home.php:233
 msgid "templates"
-msgstr "modelos"
+msgstr "Modelos"
 
 #: public_html/lists/admin/actions/import2.php:160,
 #: public_html/lists/admin/import2.php:586
@@ -9267,7 +9267,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:210
 msgid "Send a Message"
-msgstr "Enviar uma mensagem/campanha"
+msgstr "Enviar uma campanha/mensagem"
 
 #: public_html/databasestructure.php:286
 msgid "pagetitlehover:adminattributes"
@@ -10000,7 +10000,7 @@ msgstr "Qual &eacute; o tipo de informa&ccedil;&atilde;o que deseja verificar"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr "vers&atilde;o do phplist"
+msgstr "Vers&atilde;o <a href=http://www.phplist.com>phpList</a>"
 
 #: public_html/lists/admin/actions/reconcileusers.php:22,
 #: public_html/lists/admin/actions/reconcileusers.php:44
@@ -10397,7 +10397,7 @@ msgstr "Rodap&eacute; de p&aacute;ginas p&uacute;blicas"
 
 #: public_html/lists/admin/home.php:219
 msgid "Prepare a Message"
-msgstr "Preparar uma mensagem"
+msgstr "Preparar uma Mensagem"
 
 #: public_html/databasestructure.php:291
 msgid "pagetitle:bounce"
@@ -10432,7 +10432,7 @@ msgstr "proceder à administração da base de dados"
 #: public_html/lists/admin/send.php:117,
 #: public_html/lists/admin/editattributes.php:50
 msgid "delete all"
-msgstr "eliminar tudo"
+msgstr "Eliminar tudo"
 
 #: public_html/lists/admin/admin.php:310,
 #: public_html/lists/admin/importadmin.php:341
@@ -10682,7 +10682,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:164
 msgid "spage"
-msgstr "p&aacute;gina de inscri&ccedil;&atilde;o"
+msgstr "P&aacute;gina de inscri&ccedil;&atilde;o"
 
 #: public_html/lists/admin/actions/processqueue.php:507
 msgid "Time now "
