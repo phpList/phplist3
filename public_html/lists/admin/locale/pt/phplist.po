@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-15 20:45+0000\n"
+"PO-Revision-Date: 2021-07-18 14:04+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -56,7 +56,7 @@ msgstr "Julho"
 
 #: public_html/lists/admin/bouncerules.php:109
 msgid "order"
-msgstr "ordem"
+msgstr "Ordem"
 
 #: public_html/lists/admin/lib.php:2290
 msgid ""
@@ -309,7 +309,7 @@ msgstr "Juntar atributos marcados"
 
 #: public_html/lists/admin/bouncerules.php:120
 msgid "make active"
-msgstr "tornar ativa"
+msgstr "Tornar ativa"
 
 #: public_html/lists/admin/spageedit.php:264
 msgid "Radio buttons, default to HTML"
@@ -539,12 +539,12 @@ msgstr "Copiar"
 
 #: public_html/lists/admin/reconcileusers.php:106
 msgid "user found"
-msgstr "utilizador encontrado"
+msgstr "assinante encontrado"
 
 #: public_html/lists/admin/list.php:252,
 #: public_html/lists/admin/list.php:313
 msgid "Add Members"
-msgstr "Adicionar Membros"
+msgstr "Adicionar membros"
 
 #: public_html/databasestructure.php:323
 msgid "pagetitle:domainstats"
@@ -653,7 +653,7 @@ msgstr "ou"
 #: public_html/lists/admin/home.php:324,
 #: public_html/lists/admin/about.php:134
 msgid "Plugins"
-msgstr "Cr&eacute;ditos Plugins"
+msgstr "Plugins"
 
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
@@ -695,7 +695,7 @@ msgstr ""
 
 #: public_html/lists/admin/list.php:251
 msgid "start a new campaign targetting all lists"
-msgstr "iniciar uma nova campanha destinada a todas as listas"
+msgstr "Iniciar uma nova campanha destinada a todas as listas"
 
 #: public_html/databasestructure.php:281
 msgid "pagetitle:admin"
@@ -885,7 +885,7 @@ msgstr "O phpList iniciou/reiniciou o envio da campanha com o assunto %s"
 
 #: public_html/lists/admin/readtestmail.php:239
 msgid "mails in mailbox"
-msgstr "mensagens na caixa de correio"
+msgstr "Mensagens na caixa de correio"
 
 #: public_html/databasestructure.php:203
 msgid "adminid"
@@ -1090,7 +1090,7 @@ msgstr "senha errada"
 
 #: public_html/lists/admin/import1.php:201
 msgid "adding_users"
-msgstr "adicionando utilizadores &agrave; lista"
+msgstr "Adicionando assinantes"
 
 #: public_html/lists/admin/template.php:360,
 #: public_html/lists/admin/send_core.php:998,
@@ -1335,7 +1335,7 @@ msgstr "Gerir os assinantes que Não pretendem receber campanhas"
 #: public_html/lists/admin/user.php:348,
 #: public_html/lists/admin/user.php:349
 msgid "remove subscriber"
-msgstr "remover assinante"
+msgstr "Remover assinante"
 
 #: public_html/lists/admin/bouncerules.php:54
 msgid "That rule exists already"
@@ -1751,7 +1751,7 @@ msgstr "importado por"
 
 #: public_html/lists/admin/dbcheck.php:90
 msgid "category"
-msgstr "categoria"
+msgstr "Categoria"
 
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "This may be caused by a too slow or too busy server"
@@ -2158,7 +2158,7 @@ msgstr "assinante na lista negra"
 #: public_html/lists/admin/listbounces.php:107,
 #: public_html/lists/admin/msgbounces.php:103
 msgid "Subscriber address"
-msgstr "Endere&ccedil;o subscritor"
+msgstr "Endere&ccedil;o assinante"
 
 #: public_html/lists/admin/reconcileusers.php:424
 msgid "in the database"
@@ -2762,7 +2762,7 @@ msgstr ""
 
 #: public_html/lists/admin/admins.php:41
 msgid "You cannot delete yourself"
-msgstr "N&atilde;o se pode excluir"
+msgstr "N&atilde;o se pode auto-excluir"
 
 #: public_html/lists/admin/admin.php:6
 msgid "List of Administrators"
@@ -3301,7 +3301,7 @@ msgstr "Exibidas uma vez"
 #: public_html/lists/admin/home.php:107,
 #: public_html/lists/admin/import1.php:251
 msgid "import"
-msgstr "importar"
+msgstr "Importar"
 
 #: public_html/lists/admin/lib.php:2284
 msgid ""
@@ -3513,7 +3513,7 @@ msgstr ""
 
 #: public_html/lists/admin/reconcileusers.php:55
 msgid "Resending confirmation request to"
-msgstr "A reenviar a confirma&ccedil;&atilde;o solicitada por"
+msgstr "A reenviar a confirma&ccedil;&atilde;o solicitada para"
 
 #: public_html/lists/admin/listbounces.php:17,
 #: public_html/lists/admin/listbounces.php:31,
@@ -3582,8 +3582,8 @@ msgstr "visualiza&ccedil;&atilde;o das estat&iacute;sticas"
 #: public_html/lists/admin/users.php:223
 msgid "Delete will delete user and all listmemberships"
 msgstr ""
-"Apagar exclu&iacute;ra o utilizador, e ainda de todas as listas em que "
-"&eacute; membro"
+"Apagar exclu&iacute;ra o assinante, e ainda em todas as listas que &eacute; "
+"membro"
 
 #: public_html/lists/admin/suppressionlist.php:26
 #, php-format
@@ -3793,8 +3793,8 @@ msgstr "Atualiza&ccedil;&atilde;o dispon&aacute;vel"
 msgid ""
 "You can reconnect subscribers to lists on the Reconcile Subscribers page."
 msgstr ""
-"Pode voltar a religar assinantes de listas na p&aacute;gina Assinantes "
-"Reconciliar."
+"Pode voltar a religar assinantes de listas na p&aacute;gina Reconciliar "
+"Assinantes."
 
 #: public_html/databasestructure.php:90
 msgid "Name of Dataitem"
@@ -3994,7 +3994,7 @@ msgstr ""
 #: public_html/lists/admin/reconcileusers.php:163
 #, php-format
 msgid "Marking all subscribers on list %s confirmed"
-msgstr "Marcar todos os utilizadores na lista %s como confirmados"
+msgstr "Marcar todos os assinantes na lista %s como confirmados"
 
 #: public_html/lists/admin/spageedit.php:294
 msgid "Message they receive when they unsubscribe"
@@ -4714,7 +4714,7 @@ msgstr "Utilizador n&atilde;o confirmado"
 #: public_html/lists/admin/list.php:284,
 #: public_html/lists/admin/list.php:291
 msgid "View Members"
-msgstr "Ver membros"
+msgstr "Ver membros desta lista"
 
 #: public_html/lists/admin/template.php:332
 msgid "Check that all images have a full URL"
@@ -4728,7 +4728,7 @@ msgstr "A excluir devolu&ccedil;&atilde;o %d .. "
 #: public_html/lists/admin/list.php:306,
 #: public_html/lists/admin/editlist.php:129
 msgid "delete this list"
-msgstr "apagar esta lista"
+msgstr "Apagar esta lista"
 
 #: public_html/lists/admin/connect.php:1350,
 #: public_html/lists/admin/list.php:150,
@@ -5882,7 +5882,7 @@ msgstr "Nota de rodap&eacute;"
 #: public_html/lists/admin/list.php:251,
 #: public_html/lists/admin/list.php:310
 msgid "send"
-msgstr "enviar"
+msgstr "Enviar"
 
 #: public_html/lists/admin/reconcileusers.php:180
 msgid "Marking all subscribers to receive HTML"
@@ -6707,7 +6707,7 @@ msgstr "Configurar a utiliza&ccedil;&atilde;o do servi&ccedil;o"
 #: public_html/lists/admin/bouncerules.php:67,
 #: public_html/lists/admin/bouncerules.php:69
 msgid "candidate"
-msgstr "proposta"
+msgstr "Candidata"
 
 #: public_html/databasestructure.php:137
 msgid "Normalised loginname"
@@ -6853,7 +6853,7 @@ msgstr "regra de emails de erro"
 
 #: public_html/lists/admin/reconcileusers.php:125
 msgid "no user found"
-msgstr "nenhum utilizador foi encontrado"
+msgstr "nenhum assinante foi encontrado"
 
 #: public_html/databasestructure.php:299
 msgid "pagetitle:getrss"
@@ -7536,7 +7536,7 @@ msgstr "Tempo final para parar o reenvio"
 #: public_html/lists/admin/subscribelib2.php:339
 msgid "If user confirms subscription, they will be removed from the blacklist."
 msgstr ""
-"Se o utilizador confirmar a inscri&ccedil;&atilde;o, ser&aacute; removido da "
+"Se o assinante confirmar a inscri&ccedil;&atilde;o, ser&aacute; removido da "
 "lista negra."
 
 #: public_html/lists/admin/members.php:273
@@ -8455,7 +8455,7 @@ msgid ""
 "If you are going to send notification to users, you may want to add a little "
 "delay between messages"
 msgstr ""
-"Se for enviar uma notifica&ccedil;&atilde;o aos utilizadores, pode querer "
+"Se for enviar uma notifica&ccedil;&atilde;o aos assinantes, pode querer "
 "adicionar um pouco de atraso entre as mensagens"
 
 #: public_html/lists/admin/message.php:71
@@ -9013,7 +9013,7 @@ msgstr "pastas e"
 
 #: public_html/lists/admin/readtestmail.php:54
 msgid "test processing error"
-msgstr "erro de processamento do teste"
+msgstr "Erro no processamento do teste"
 
 #: public_html/lists/admin/spageedit.php:260
 msgid "Radio buttons, default to text"
@@ -9384,8 +9384,8 @@ msgstr "String original"
 #, php-format
 msgid "phpList is licensed with the %sGNU Affero Public License (AGPL)%s"
 msgstr ""
-"O phpList &eacute; licenciado nas condi&ccedil;&otilde;es %sGNU Public "
-"License (GPL)%s"
+"O phpList &eacute; licenciado nas condi&ccedil;&otilde;es %sGNU Affero "
+"Public License (AGPL)%s"
 
 #: public_html/lists/admin/import3.php:267
 msgid ""
@@ -9622,7 +9622,7 @@ msgstr "Transferir a &uacute;ltima vers&atilde;o"
 
 #: public_html/lists/admin/bouncerules.php:123
 msgid "make inactive"
-msgstr "tornar inativa"
+msgstr "Tornar inativa"
 
 #: public_html/lists/admin/actions/processqueue.php:1305
 msgid "already sent"
@@ -10022,7 +10022,7 @@ msgstr "Remoç&atilde;o da lista"
 #: public_html/lists/admin/subscribelib2.php:338
 msgid "Email is blacklisted, so request for confirmation has been sent."
 msgstr ""
-"O email foi colocado na lista negra, tendo sido enviado um pedido de "
+"O assinante foi colocado na lista negra, tendo sido enviado um pedido de "
 "confirma&ccedil;&atilde;o."
 
 #: public_html/lists/admin/sendemaillib.php:763
@@ -10294,7 +10294,7 @@ msgstr ""
 
 #: public_html/lists/admin/list.php:311
 msgid "start a new campaign targetting this list"
-msgstr "iniciar uma nova campanha destinada a esta lista"
+msgstr "Iniciar uma nova campanha destinada a esta lista"
 
 #: public_html/databasestructure.php:310
 msgid "pagetitlehover:logout"
