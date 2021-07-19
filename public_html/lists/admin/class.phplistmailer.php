@@ -84,8 +84,8 @@ class phplistMailer extends phplistMailerBase
             defined('PHPMAILERSUBSCRIBEHOST') && 
             defined('PHPMAILERSUBSCRIBEPORT') && PHPMAILERSUBSCRIBEHOST != '') {
 #            logEvent('Sending email via PHPMAILERSUBSCRIBEHOST '.PHPMAILERSUBSCRIBEHOST);
-            $this->Host = PHPMAILERSUBSCRIBERHOST;
-            $this->Port = PHPMAILERSUBSCRIBERPORT;
+            $this->Host = PHPMAILERSUBSCRIBEHOST;
+            $this->Port = PHPMAILERSUBSCRIBEPORT;
             $this->Mailer = 'smtp';
         } elseif ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
             $this->Host = PHPMAILERBLASTHOST;
