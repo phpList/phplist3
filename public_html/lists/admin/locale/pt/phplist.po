@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-20 20:00+0000\n"
+"PO-Revision-Date: 2021-07-20 20:01+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -6528,7 +6528,7 @@ msgstr "assinantes foram copiados para"
 
 #: public_html/lists/admin/connect.php:467
 msgid "error"
-msgstr "erro"
+msgstr "Erro"
 
 #: public_html/lists/admin/attributes.php:345
 msgid "Warning, changing types of attributes can take a long time"
