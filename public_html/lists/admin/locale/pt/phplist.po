@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-20 20:02+0000\n"
+"PO-Revision-Date: 2021-07-20 20:32+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -88,7 +88,7 @@ msgstr "Importar"
 
 #: public_html/lists/admin/bounces.php:147
 msgid "view bounces by list"
-msgstr "ver emails de erro agrupados por lista"
+msgstr "Ver emails de erro agrupados por lista"
 
 #: public_html/lists/admin/statsoverview.php:86
 msgid "Campaign not found"
@@ -968,7 +968,7 @@ msgstr ""
 
 #: public_html/lists/admin/users.php:402
 msgid "Find subscribers"
-msgstr "Encontrar utilizadores/assinantes"
+msgstr "Encontrar assinantes"
 
 #: public_html/lists/admin/actions/processqueue.php:1155,
 #: public_html/lists/admin/actions/processqueue.php:1381
@@ -1405,7 +1405,7 @@ msgstr "Guardar Imagens"
 
 #: public_html/lists/admin/statsmgt.php:9
 msgid "View Clicks by Message"
-msgstr "Exibir cliques por mensagem"
+msgstr "Exibir cliques por campanha"
 
 #: public_html/lists/admin/lib.php:2048
 msgid "The phpList.com server is unable to reach your phpList installation"
@@ -1489,7 +1489,7 @@ msgstr "Apagada"
 
 #: public_html/lists/admin/users.php:191
 msgid "Delete will delete user from the list"
-msgstr "O utilizador ser&aacute; removido da lista"
+msgstr "O assinante ser&aacute; removido da lista"
 
 #: public_html/lists/admin/about.php:97
 msgid "Translations"
@@ -2801,7 +2801,7 @@ msgstr "Mostrar"
 
 #: public_html/lists/admin/import2.php:665
 msgid "Select the groups to add the users to"
-msgstr "Selecione os grupos nos quais quer adicionar utilizadores"
+msgstr "Selecione os grupos nos quais quer adicionar assinantes"
 
 #: public_html/lists/admin/upgrade.php:467
 msgid ""
@@ -3726,7 +3726,7 @@ msgstr ""
 msgid ""
 "are you sure you want to delete all unidentified bounces older than 2 months"
 msgstr ""
-"tem certeza que quer apagar todos os emails de erro n&atilde;o identificados "
+"Tem certeza que quer apagar todos os emails de erro n&atilde;o identificados "
 "com mais de 2 meses"
 
 #: public_html/lists/admin/tests.php:7
@@ -4604,7 +4604,7 @@ msgstr "Gerir definições assinantes"
 
 #: public_html/lists/admin/bounces.php:133
 msgid "are you sure you want to delete all bounces older than 2 months"
-msgstr "tem certeza que quer apagar todos os emails de erro com mais de 2 meses"
+msgstr "Tem certeza que quer apagar todos os emails de erro com mais de 2 meses"
 
 #: public_html/databasestructure.php:340
 msgid "pagetitlehover:usercheck"
@@ -4614,7 +4614,7 @@ msgstr ""
 
 #: public_html/lists/admin/editattributes.php:45
 msgid "add new"
-msgstr "adicionar novo"
+msgstr "Adicionar novo"
 
 #: public_html/databasestructure.php:44,
 #: public_html/databasestructure.php:84
@@ -4826,7 +4826,7 @@ msgstr "%d falhou (tentar novamente mais tarde)"
 
 #: public_html/lists/admin/statsmgt.php:10
 msgid "View Opens by Message"
-msgstr "Ver visualiza&ccedil;&otilde;es da mensagem"
+msgstr "Ver visualiza&ccedil;&otilde;es da campanha"
 
 #: public_html/lists/admin/actions/statsoverview.php:143
 msgid "Total Clicks"
@@ -4896,7 +4896,7 @@ msgstr "N&atilde;o existem campanhas para ver"
 
 #: public_html/lists/admin/users.php:372
 msgid "Find a user"
-msgstr "Procurar um utilizador/assinante"
+msgstr "Procurar um assinante"
 
 #: public_html/lists/admin/actions/processqueue.php:75
 #, php-format
@@ -5291,7 +5291,7 @@ msgstr "Membros confirmados e que n&atilde;o est&atilde;o na lista negra"
 
 #: public_html/lists/admin/users.php:297
 msgid "Show only unconfirmed users"
-msgstr "Mostrar s&oacute; os n&atilde;o confirmados"
+msgstr "Mostrar s&oacute; os assinantes n&atilde;o confirmados"
 
 #: public_html/lists/index.php:660
 msgid ""
@@ -5361,7 +5361,7 @@ msgstr "N&atilde;o confirma&ccedil;&atilde;o autom&aacute;tica do assinante"
 
 #: public_html/lists/admin/bounces.php:138
 msgid "are you sure you want to delete all bounces"
-msgstr "tem a certeza que quer apagar todos os emails de erro"
+msgstr "Tem a certeza que quer apagar todos os emails de erro"
 
 #: public_html/lists/admin/messages.php:147
 msgid "static"
@@ -6015,7 +6015,7 @@ msgstr "O campo Nome n&atilde;o pode ficar em branco:"
 
 #: public_html/lists/admin/users.php:299
 msgid "Show only blacklisted users"
-msgstr "Mostrar s&oacute; os da lista negra"
+msgstr "Mostrar s&oacute; os assinantes da lista negra"
 
 #: public_html/lists/admin/messages.php:183,
 #: public_html/lists/admin/list.php:226,
@@ -6605,7 +6605,7 @@ msgstr "A enviar"
 #: public_html/lists/admin/importadmin.php:293
 msgid "succesfully imported to the database and added to the system."
 msgstr ""
-"importado(s) com sucesso para a base de dados e adicionado(s) ao sistema."
+"Importado(s) com sucesso para a base de dados e adicionado(s) ao sistema."
 
 #: public_html/databasestructure.php:163
 msgid "data"
@@ -6644,7 +6644,7 @@ msgstr "Enviada"
 
 #: public_html/lists/admin/users.php:407
 msgid "Download all users as CSV file"
-msgstr "Exportar todos os utilizadores para ficheiro de texto CSV"
+msgstr "Exportar todos os assinantes para ficheiro de texto CSV"
 
 #: public_html/lists/admin/processbounces.php:676
 msgid "email auto unsubscribed for"
@@ -6782,7 +6782,7 @@ msgstr "%d linha(s) processada(s)"
 
 #: public_html/lists/admin/import2.php:738
 msgid "Retain Old User Email"
-msgstr "Guardar o email antigo do utilizador"
+msgstr "Guardar o email antigo do assinante"
 
 #: public_html/lists/admin/send.php:158
 msgid ""
@@ -7832,7 +7832,7 @@ msgstr "Todas as mensagens rascunho foram apagadas"
 
 #: public_html/lists/admin/bouncerule.php:53
 msgid "delete this rule and go to the next candidate"
-msgstr "excluir essa regra e ir para o pr&oacute;ximo candidato"
+msgstr "Excluir essa regra e ir para o pr&oacute;ximo candidato"
 
 #: public_html/lists/index.php:852,
 #: public_html/lists/admin/actions/reconcileusers.php:59
@@ -8280,7 +8280,7 @@ msgstr "configura&ccedil;&otilde;es dos relat&oacute;rios"
 
 #: public_html/lists/admin/users.php:249
 msgid "Sorry, only super users can delete users"
-msgstr "S&oacute; os super utilizadores &eacute; que podem apagar utilizadores"
+msgstr "S&oacute; os super utilizadores &eacute; que podem apagar assinantes"
 
 #: public_html/lists/admin/converttoutf8.php:43
 msgid "Confirm UTF8 conversion"
@@ -8337,7 +8337,7 @@ msgstr ""
 
 #: public_html/lists/admin/bounces.php:130
 msgid "delete all unidentified (&gt; 2 months old)"
-msgstr "excluir todos os n&atilde;o identificados (&gt; 2 meses)"
+msgstr "Excluir todos os n&atilde;o identificados (&gt; 2 meses)"
 
 #: public_html/lists/admin/import4.php:302
 msgid "Error, no mapped attribute for"
@@ -9148,7 +9148,7 @@ msgstr "A atualizar a tabela"
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
-msgstr "excluir todos os processados (&gt; 2 meses)"
+msgstr "Excluir todos os processados (&gt; 2 meses)"
 
 #: public_html/databasestructure.php:168,
 #: public_html/databasestructure.php:190
@@ -9312,7 +9312,7 @@ msgstr "Cliques do assinante numa campanha"
 
 #: public_html/lists/admin/bounces.php:18
 msgid "processed"
-msgstr "processado"
+msgstr "Processado"
 
 #: public_html/lists/admin/user.php:507
 msgid "Mailinglist membership"
@@ -9859,7 +9859,7 @@ msgstr "A mensagem em que eu estava a trabalhar desapareceu"
 
 #: public_html/lists/admin/bouncerule.php:52
 msgid "delete and next"
-msgstr "excluir e pr&oacute;xima"
+msgstr "Excluir e pr&oacute;xima"
 
 #: public_html/lists/admin/admin.php:233
 msgid "Update it?"
@@ -10099,7 +10099,7 @@ msgstr "entrar no sistema"
 #: public_html/lists/admin/users.php:482
 msgid "No users apply"
 msgstr ""
-"N&atilde;o foram encontrados utilizadores de acordo com os crit&eacute;rios "
+"N&atilde;o foram encontrados assinantes de acordo com os crit&eacute;rios "
 "definidos"
 
 #: public_html/lists/admin/admin.php:308,
@@ -10569,7 +10569,7 @@ msgstr "Erro ao procurar URL"
 
 #: public_html/lists/admin/users.php:409
 msgid "Add a User"
-msgstr "Adicionar um utilizador"
+msgstr "Adicionar um assinante"
 
 #: public_html/lists/admin/actions/upgrade.php:14
 #, php-format
