@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-18 22:40+0000\n"
+"PO-Revision-Date: 2021-07-20 20:00+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -1850,7 +1850,7 @@ msgstr "lista oficial"
 
 #: public_html/lists/admin/community.php:45
 msgid "Developer resources &amp; documentation"
-msgstr "Recursos do programador e documenta&ccedil;&atilde;o"
+msgstr "Recursos do programador &amp; documenta&ccedil;&atilde;o"
 
 #: public_html/lists/admin/send_core.php:243
 msgid ""
@@ -2566,7 +2566,7 @@ msgstr "Remo&ccedil;&atilde;o em bloco de assinantes"
 #: public_html/lists/admin/processbounces.php:817
 #, php-format
 msgid "processed %d out of %d subscribers"
-msgstr "processados %d de %d assinantes"
+msgstr "Processados %d de %d assinantes"
 
 #: public_html/lists/admin/members.php:276
 msgid "Listing subscriber 1 to 50"
@@ -3215,7 +3215,7 @@ msgstr ""
 
 #: public_html/lists/admin/upgrade.php:73
 msgid "update Top Level Domains"
-msgstr "atualizar Dominios Topo"
+msgstr "Atualizar Dominios de Topo"
 
 #: public_html/databasestructure.php:245
 msgid "pagetitle:send"
@@ -4784,7 +4784,7 @@ msgstr "(teste)"
 
 #: public_html/lists/admin/processbounces.php:258
 msgid "User marked unconfirmed"
-msgstr "Utilizador marcado como n&atilde;o confirmado"
+msgstr "Assinante marcado como n&atilde;o confirmado"
 
 #: public_html/lists/admin/home.php:264,
 #: public_html/lists/admin/bouncemgt.php:16
@@ -5838,7 +5838,7 @@ msgstr "Por favor, coloque os dados da sua conta IMAP"
 #: public_html/lists/admin/processbounces.php:402
 #, php-format
 msgid "%d bounces to fetch from the mailbox"
-msgstr "%d mensagens devolvidas para trazer a partir da caixa de correio"
+msgstr "%d mensagens devolvidas para encontrar na caixa de correio"
 
 #: public_html/lists/admin/send_core.php:1343
 msgid ""
@@ -5861,8 +5861,8 @@ msgstr "Open Source (C&oacute;digo Aberto ou Software Livre)"
 #, php-format
 msgid "%d bounces were re-processed and %d bounces were re-identified"
 msgstr ""
-"%d devolu&ccedil;&otilde;es foram reprocessadas %d devolu&ccedil;&otilde;es "
-"foram reidentificadas"
+"%d devolu&ccedil;&otilde;es foram reprocessadas e %d devolu&ccedil;&otilde;"
+"es foram reidentificadas"
 
 #: public_html/lists/admin/index.php:560
 msgid "You are trying to use RSS, but XML is not included in your PHP"
@@ -6402,7 +6402,7 @@ msgstr "boa noite"
 
 #: public_html/lists/admin/defaultconfig.php:232
 msgid "Dimensions of a textarea field (rows,columns)"
-msgstr "Dimens&otilde;es do campo de texto (linhas, colunas)"
+msgstr "dimens&otilde;es do campo de texto (linhas, colunas)"
 
 #: public_html/lists/admin/plugins.php:258
 msgid "description"
@@ -7096,7 +7096,7 @@ msgstr "Tem %s campanha(s) na fila, pronta(s) a ser(em) processada(s)"
 
 #: public_html/lists/admin/messages.php:621
 msgid "delete this campaign"
-msgstr "apagar esta campanha"
+msgstr "Apagar esta campanha"
 
 #: public_html/lists/admin/actions/statsoverview.php:140
 msgid "fwds"
@@ -7390,7 +7390,7 @@ msgid ""
 "Help phpList to serve your needs more effectively by applying your skills "
 "and resources."
 msgstr ""
-"O phpList &eacute; um esfor&ccedil;o da comunidade e as suas "
+"O phpList &eacute; um esfor&ccedil;o da comunidade &mdash; e as suas "
 "contribui&ccedil;&otilde;es ajudam a manter o projeto. Ajude o phpList a ir "
 "de encontro &agrave;s suas necessidades de forma mais eficaz, aplicando as "
 "suas habilidades e recursos."
@@ -7592,7 +7592,7 @@ msgstr "Procurar plugin"
 
 #: public_html/lists/admin/processbounces.php:329
 msgid "system message bounced, but unknown user"
-msgstr "mensagem do sistema devolvida, mas utilizador desconhecido"
+msgstr "Mensagem do sistema devolvida, pois assinante desconhecido"
 
 #: public_html/databasestructure.php:102
 msgid "Status of message"
@@ -7941,8 +7941,8 @@ msgstr "Quando o pedido de altera&ccedil;&atilde;o de senha foi feito"
 #: public_html/lists/admin/processbounces.php:256
 msgid "system message bounced, user marked unconfirmed"
 msgstr ""
-"mensagem do sistema sobre emails de erro, utilizador est&aacute; marcado "
-"como n&atide;o confirmado"
+"mensagem do sistema sobre emails de erro, assinante est&aacute; marcado como "
+"n&atide;o confirmado"
 
 #: public_html/lists/admin/import2.php:137,
 #: public_html/lists/admin/import1.php:90
@@ -9188,7 +9188,7 @@ msgstr "Campanha"
 
 #: public_html/lists/admin/defaultconfig.php:222
 msgid "Width of a textline field (numerical)"
-msgstr "Largura de um campo de texto (num&eacute;rico)"
+msgstr "largura de um campo de texto (num&eacute;rico)"
 
 #: public_html/lists/admin/send_core.php:832
 msgid "Send as"
@@ -9448,7 +9448,7 @@ msgid ""
 "User (url:%s) has consecutive bounces (%d) over threshold (%d), user marked "
 "unconfirmed"
 msgstr ""
-"Utilizador (url:%s) tem devolu&ccedil;&otilde;es consecutivas (%d) mais do "
+"Assinante (url:%s) tem devolu&ccedil;&otilde;es consecutivas (%d) mais do "
 "limite (%d), o utilizador foi marcado como n&atilde;o confirmado"
 
 #: public_html/lists/admin/messages.php:570,
@@ -10696,11 +10696,14 @@ msgstr "Valor"
 #: public_html/lists/admin/defaultconfig.php:168
 msgid "Analytics tracking code to add to campaign URLs"
 msgstr ""
-"C&oacute;digo de rastreamento de análise para adicionar aos URLs da campanha"
+"C&oacute;digo de rastreamento de an&aacute;lise para adicionar aos URLs da "
+"campanha"
 
 #: public_html/lists/admin/defaultconfig.php:160
 msgid "Always add analytics tracking code to campaigns"
-msgstr "Adicione sempre o c&oacute;digo de rastreamento de análise às campanhas"
+msgstr ""
+"Adicione sempre o c&oacute;digo de rastreamento de an&aacute;lise &agrave;s "
+"campanhas"
 
 #: public_html/lists/admin/send_core.php:1039
 msgid "Add analytics tracking code"
