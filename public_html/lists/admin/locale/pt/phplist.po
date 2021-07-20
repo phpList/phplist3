@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-20 20:01+0000\n"
+"PO-Revision-Date: 2021-07-20 20:02+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -3185,7 +3185,7 @@ msgstr "Importar atrav&eacute;s do envio de um ficheiro com emails"
 
 #: public_html/lists/admin/connect.php:881
 msgid "about"
-msgstr "sobre"
+msgstr "Sobre"
 
 #: public_html/lists/admin/uclicks.php:88
 msgid "URL Click Statistics"
@@ -4591,7 +4591,7 @@ msgstr "Categoria"
 #: public_html/lists/admin/connect.php:535,
 #: public_html/lists/admin/connect.php:540
 msgid "fatalerror"
-msgstr "erro fatal"
+msgstr "Erro fatal"
 
 #: public_html/lists/admin/messages.php:447
 #, php-format
