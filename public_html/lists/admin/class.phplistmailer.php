@@ -80,6 +80,13 @@ class phplistMailer extends phplistMailerBase
 
         if ($GLOBALS['emailsenderplugin']) {
             $this->Mailer = 'plugin';
+        } elseif (!$this->inBlast && empty($_SESSION['adminloggedin']) && 
+            defined('PHPMAILERSUBSCRIBEHOST') && 
+            defined('PHPMAILERSUBSCRIBEPORT') && PHPMAILERSUBSCRIBEHOST != '') {
+#            logEvent('Sending email via PHPMAILERSUBSCRIBEHOST '.PHPMAILERSUBSCRIBEHOST);
+            $this->Host = PHPMAILERSUBSCRIBEHOST;
+            $this->Port = PHPMAILERSUBSCRIBEPORT;
+            $this->Mailer = 'smtp';
         } elseif ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
             $this->Host = PHPMAILERBLASTHOST;
             $this->Port = PHPMAILERBLASTPORT;
@@ -95,7 +102,7 @@ class phplistMailer extends phplistMailerBase
             if (defined('PHPMAILERPORT')) {
                 $this->Port = PHPMAILERPORT;
             }
-            //logEvent('Sending email via '.PHPMAILERHOST);
+#            logEvent('Sending email via PHPMAILERTESTHOST '.PHPMAILERTESTHOST);
             $this->Host = PHPMAILERTESTHOST;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
                 && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
@@ -111,6 +118,7 @@ class phplistMailer extends phplistMailerBase
             }
             //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERHOST;
+#            logEvent('Sending email via PHPMAILERHOST '.PHPMAILERHOST);
             if (POP_BEFORE_SMTP) {
                 // authenticate using the smtp user and password
                 $pop = new POP3();

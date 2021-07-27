@@ -1750,8 +1750,7 @@ msgid "Maybe you want to"
 msgstr ""
 
 #: public_html/lists/admin/initialise.php:249
-#: public_html/lists/admin/home.php:14 public_html/lists/admin/home.php:343
-#: public_html/lists/admin/upgrade.php:482
+#: public_html/lists/admin/home.php:14 public_html/lists/admin/upgrade.php:482
 msgid "Upgrade"
 msgstr ""
 
@@ -3355,7 +3354,6 @@ msgid "List Bounce Rules"
 msgstr ""
 
 #: public_html/lists/admin/bouncemgt.php:11
-#: public_html/lists/admin/home.php:271
 msgid "View Bounces"
 msgstr ""
 
@@ -3372,7 +3370,6 @@ msgid "Check Current Bounce Rules"
 msgstr ""
 
 #: public_html/lists/admin/bouncemgt.php:16
-#: public_html/lists/admin/home.php:264
 msgid "Process Bounces"
 msgstr ""
 
@@ -3593,7 +3590,7 @@ msgstr ""
 msgid "Documentation Page"
 msgstr ""
 
-#: public_html/lists/admin/plugins.php:296 public_html/lists/admin/home.php:140
+#: public_html/lists/admin/plugins.php:296
 msgid "Configure"
 msgstr ""
 
@@ -3758,7 +3755,6 @@ msgid "Campaign queued"
 msgstr ""
 
 #: public_html/lists/admin/send_core.php:387
-#: public_html/lists/admin/home.php:249
 msgid "processqueue"
 msgstr ""
 
@@ -4458,7 +4454,7 @@ msgstr ""
 msgid "Remote version has"
 msgstr ""
 
-#: public_html/lists/admin/import4.php:118 public_html/lists/admin/home.php:100
+#: public_html/lists/admin/import4.php:118
 msgid "users"
 msgstr ""
 
@@ -4536,7 +4532,7 @@ msgstr ""
 msgid "Step"
 msgstr ""
 
-#: public_html/lists/admin/setup.php:20 public_html/lists/admin/home.php:21
+#: public_html/lists/admin/setup.php:20 public_html/lists/admin/home.php:23
 msgid "Initialise Database"
 msgstr ""
 
@@ -5068,7 +5064,7 @@ msgid "can't connect"
 msgstr ""
 
 #: public_html/lists/admin/import3.php:162
-#: public_html/lists/admin/import3.php:388 public_html/lists/admin/home.php:241
+#: public_html/lists/admin/import3.php:388
 msgid "messages"
 msgstr ""
 
@@ -5827,7 +5823,7 @@ msgstr ""
 msgid "Portions of the system include"
 msgstr ""
 
-#: public_html/lists/admin/about.php:139 public_html/lists/admin/home.php:324
+#: public_html/lists/admin/about.php:139
 msgid "Plugins"
 msgstr ""
 
@@ -5963,7 +5959,7 @@ msgstr ""
 msgid "(default is nothing, will send as fast as it can)"
 msgstr ""
 
-#: public_html/lists/admin/import1.php:251 public_html/lists/admin/home.php:107
+#: public_html/lists/admin/import1.php:251
 msgid "import"
 msgstr ""
 
@@ -6170,7 +6166,7 @@ msgstr ""
 #: public_html/lists/admin/reconcileusers.php:225
 #: public_html/lists/admin/reconcileusers.php:502
 #: public_html/lists/admin/reconcileusers.php:518
-#: public_html/lists/admin/home.php:269 public_html/lists/admin/bounces.php:89
+#: public_html/lists/admin/bounces.php:89
 #: public_html/lists/admin/bounces.php:167
 msgid "bounces"
 msgstr ""
@@ -6506,7 +6502,6 @@ msgid "View Members"
 msgstr ""
 
 #: public_html/lists/admin/list.php:249 public_html/lists/admin/list.php:308
-#: public_html/lists/admin/home.php:208
 msgid "send"
 msgstr ""
 
@@ -7025,239 +7020,38 @@ msgstr ""
 msgid "phplist version"
 msgstr ""
 
-#: public_html/lists/admin/home.php:19
+#: public_html/lists/admin/home.php:21
 msgid "Database has not been initialised"
 msgstr ""
 
-#: public_html/lists/admin/home.php:20
+#: public_html/lists/admin/home.php:22
 msgid "go to"
 msgstr ""
 
-#: public_html/lists/admin/home.php:22
+#: public_html/lists/admin/home.php:24
 msgid "to continue"
 msgstr ""
 
-#: public_html/lists/admin/home.php:39 public_html/lists/admin/index.php:503
-msgid "Continue Configuration"
+#: public_html/lists/admin/home.php:92
+msgid "Import Subscribers"
 msgstr ""
 
-#: public_html/lists/admin/home.php:42
-msgid "Continue the Configuration process of phpList"
-msgstr ""
-
-#: public_html/lists/admin/home.php:49
-#: public_html/lists/admin/importsimple.php:127
-msgid "Send a campaign"
-msgstr ""
-
-#: public_html/lists/admin/home.php:52
+#: public_html/lists/admin/home.php:96
 msgid "Start or continue a campaign"
 msgstr ""
 
-#: public_html/lists/admin/home.php:57
-msgid "Manage Campaigns"
-msgstr ""
-
-#: public_html/lists/admin/home.php:60
-msgid "View current campaigns"
-msgstr ""
-
-#: public_html/lists/admin/home.php:65
-msgid "Manage Subscribers"
-msgstr ""
-
-#: public_html/lists/admin/home.php:68
-msgid "Search, edit and add Subscribers"
-msgstr ""
-
-#: public_html/lists/admin/home.php:73 public_html/lists/admin/admin.php:322
+#: public_html/lists/admin/home.php:101 public_html/lists/admin/home.php:105
+#: public_html/lists/admin/admin.php:322
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
 msgstr ""
 
-#: public_html/lists/admin/home.php:76 public_html/lists/admin/message.php:97
-msgid "View statistics"
+#: public_html/lists/admin/home.php:119 public_html/lists/admin/uclicks.php:79
+msgid "There are currently no statistics available"
 msgstr ""
 
-#: public_html/lists/admin/home.php:81
-msgid "Main"
-msgstr ""
-
-#: public_html/lists/admin/home.php:91
-msgid "Manage Lists"
-msgstr ""
-
-#: public_html/lists/admin/home.php:94
-msgid "View, edit and add lists, that your subscribers can sign up to"
-msgstr ""
-
-#: public_html/lists/admin/home.php:102
-msgid "List all Users"
-msgstr ""
-
-#: public_html/lists/admin/home.php:109
-msgid "Import Users"
-msgstr ""
-
-#: public_html/lists/admin/home.php:114
-msgid "export"
-msgstr ""
-
-#: public_html/lists/admin/home.php:116
-msgid "Export Users"
-msgstr ""
-
-#: public_html/lists/admin/home.php:121
-msgid "reconcileusers"
-msgstr ""
-
-#: public_html/lists/admin/home.php:124
-msgid "Reconcile the User Database"
-msgstr ""
-
-#: public_html/lists/admin/home.php:128
-msgid "List and user functions"
-msgstr ""
-
-#: public_html/lists/admin/home.php:137
-msgid "configure"
-msgstr ""
-
-#: public_html/lists/admin/home.php:145
-msgid "attributes"
-msgstr ""
-
-#: public_html/lists/admin/home.php:148
-msgid "Configure Attributes"
-msgstr ""
-
-#: public_html/lists/admin/home.php:156
-msgid "Control values for"
-msgstr ""
-
-#: public_html/lists/admin/home.php:164
-msgid "spage"
-msgstr ""
-
-#: public_html/lists/admin/home.php:167
-msgid "Configure Subscribe Pages"
-msgstr ""
-
-#: public_html/lists/admin/home.php:172
-msgid "Configuration Functions"
-msgstr ""
-
-#: public_html/lists/admin/home.php:182
-msgid "admins"
-msgstr ""
-
-#: public_html/lists/admin/home.php:185
-msgid "Add, edit and remove Administrators"
-msgstr ""
-
-#: public_html/lists/admin/home.php:190
-msgid "adminattributes"
-msgstr ""
-
-#: public_html/lists/admin/home.php:193
-msgid "Configure Attributes for administrators"
-msgstr ""
-
-#: public_html/lists/admin/home.php:198
-msgid "Administrator Functions"
-msgstr ""
-
-#: public_html/lists/admin/home.php:210
-msgid "Send a Message"
-msgstr ""
-
-#: public_html/lists/admin/home.php:216
-msgid "preparesend"
-msgstr ""
-
-#: public_html/lists/admin/home.php:219
-msgid "Prepare a Message"
-msgstr ""
-
-#: public_html/lists/admin/home.php:224
-msgid "sendprepared"
-msgstr ""
-
-#: public_html/lists/admin/home.php:227
-msgid "Send a Prepared Message"
-msgstr ""
-
-#: public_html/lists/admin/home.php:233
-msgid "templates"
-msgstr ""
-
-#: public_html/lists/admin/home.php:236
-msgid "Configure Templates"
-msgstr ""
-
-#: public_html/lists/admin/home.php:244
-msgid "List all Messages"
-msgstr ""
-
-#: public_html/lists/admin/home.php:252
-msgid "Process the Message Queue"
-msgstr ""
-
-#: public_html/lists/admin/home.php:255 public_html/lists/admin/connect.php:585
-msgid "warning"
-msgstr ""
-
-#: public_html/lists/admin/home.php:256
-msgid ""
-"You have set TEST in config.php to 1, so it will only show what would be sent"
-msgstr ""
-
-#: public_html/lists/admin/home.php:261
-msgid "processbounces"
-msgstr ""
-
-#: public_html/lists/admin/home.php:275
-msgid "Message Functions"
-msgstr ""
-
-#: public_html/lists/admin/home.php:334
-msgid "setup"
-msgstr ""
-
-#: public_html/lists/admin/home.php:336
-msgid "Setup "
-msgstr ""
-
-#: public_html/lists/admin/home.php:341
-msgid "upgrade"
-msgstr ""
-
-#: public_html/lists/admin/home.php:348
-msgid "dbcheck"
-msgstr ""
-
-#: public_html/lists/admin/home.php:351
-msgid "Check Database structure"
-msgstr ""
-
-#: public_html/lists/admin/home.php:357
-msgid "eventlog"
-msgstr ""
-
-#: public_html/lists/admin/home.php:360
-msgid "View the eventlog"
-msgstr ""
-
-#: public_html/lists/admin/home.php:365
-msgid "admin"
-msgstr ""
-
-#: public_html/lists/admin/home.php:368
-msgid "Change your details (e.g. password)"
-msgstr ""
-
-#: public_html/lists/admin/home.php:372
-msgid "System Functions"
+#: public_html/lists/admin/home.php:144
+msgid "Help"
 msgstr ""
 
 #: public_html/lists/admin/uclicks.php:56
@@ -7274,10 +7068,6 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:74
 msgid "Select URL to view"
-msgstr ""
-
-#: public_html/lists/admin/uclicks.php:79
-msgid "There are currently no statistics available"
 msgstr ""
 
 #: public_html/lists/admin/uclicks.php:88
@@ -7523,6 +7313,10 @@ msgstr ""
 msgid "%d addresses were blacklisted and have not been subscribed to the list"
 msgstr ""
 
+#: public_html/lists/admin/importsimple.php:127
+msgid "Send a campaign"
+msgstr ""
+
 #: public_html/lists/admin/importsimple.php:134
 msgid "Rejected email addresses"
 msgstr ""
@@ -7697,6 +7491,10 @@ msgstr ""
 #: public_html/lists/admin/messages.php:607
 #: public_html/lists/admin/subscriberstats.php:7
 msgid "Statistics"
+msgstr ""
+
+#: public_html/lists/admin/message.php:97
+msgid "View statistics"
 msgstr ""
 
 #: public_html/lists/admin/message.php:107
@@ -8964,6 +8762,10 @@ msgstr ""
 msgid "Documentation about this error"
 msgstr ""
 
+#: public_html/lists/admin/connect.php:585
+msgid "warning"
+msgstr ""
+
 #: public_html/lists/admin/connect.php:891
 msgid "Main Page"
 msgstr ""
@@ -9554,6 +9356,10 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:496
 msgid "good evening"
+msgstr ""
+
+#: public_html/lists/admin/index.php:503
+msgid "Continue Configuration"
 msgstr ""
 
 #: public_html/lists/admin/index.php:511

@@ -1,7 +1,7 @@
 
 name: CI
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -11,11 +11,8 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.2', '7.2', '7.3', '7.4']
+        php-version: ['7.2', '7.2', '7.3', '7.4', '8.0']
         experimental: [false]
-        include:
-        - php-version: '8.0'
-          experimental: true
 
     steps:
       - uses: actions/checkout@v2
@@ -39,11 +36,8 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
-      - name: Add HTTP basic auth credentials
-        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
-
       - name: Install dependencies
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           dev: yes
           args: --prefer-dist --no-interaction
@@ -69,7 +63,7 @@ jobs:
       - name: Start Test Server
         run: |
           cd $GITHUB_WORKSPACE
-          cp -fv tests/default.behat.yml tests/behat.yml
+          cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
           touch output/screenshots/README.md
