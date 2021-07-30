@@ -411,7 +411,7 @@ foreach ($struct as $key => $val) {
                 stripslashes($user[$key]));
         }
     } elseif ($key == 'password') {
-        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" /></td></tr>'."\n",
+        $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" autocomplete="new-password" /></td></tr>'."\n",
             $val[1], $key, '');
     } elseif ($key == 'blacklisted') {
         $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s', s($b),
