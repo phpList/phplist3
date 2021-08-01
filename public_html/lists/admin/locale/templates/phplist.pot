@@ -6998,12 +6998,12 @@ msgstr ""
 msgid "phpList community news"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:285
+#: public_html/lists/admin/class.phplistmailer.php:293
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:290
+#: public_html/lists/admin/class.phplistmailer.php:298
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
