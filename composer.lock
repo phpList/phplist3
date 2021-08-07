@@ -311,7 +311,7 @@
         },
         {
             "name": "enm1989/chromedriver",
-            "version": "90.0",
+            "version": "92.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ENM1989/chromedriver.git",
