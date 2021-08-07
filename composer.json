@@ -125,7 +125,7 @@
     "bramley/phplist-plugin-segment": "dev-master",
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
     "enm1989/geckodriver": "^0.20.0",
-    "enm1989/chromedriver": "^90.0"
+    "enm1989/chromedriver": "^92.0"
   },
   "require-dev": {
     "behat/mink": "@stable",
