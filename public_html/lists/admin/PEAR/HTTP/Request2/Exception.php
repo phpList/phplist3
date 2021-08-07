@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2016 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2020 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -30,7 +30,7 @@ require_once 'PEAR/Exception.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
+ * @version  Release: 2.4.2
  * @link     http://pear.php.net/package/HTTP_Request2
  * @link     http://pear.php.net/pepr/pepr-proposal-show.php?id=132
  */
@@ -90,71 +90,10 @@ class HTTP_Request2_Exception extends PEAR_Exception
     }
 }
 
-/**
- * Exception thrown in case of missing features
- *
- * @category HTTP
- * @package  HTTP_Request2
- * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
- * @link     http://pear.php.net/package/HTTP_Request2
- */
-class HTTP_Request2_NotImplementedException extends HTTP_Request2_Exception
-{
-}
+// backwards compatibility, include the child exceptions if installed with PEAR installer
+require_once 'HTTP/Request2/ConnectionException.php';
+require_once 'HTTP/Request2/LogicException.php';
+require_once 'HTTP/Request2/MessageException.php';
+require_once 'HTTP/Request2/NotImplementedException.php';
 
-/**
- * Exception that represents error in the program logic
- *
- * This exception usually implies a programmer's error, like passing invalid
- * data to methods or trying to use PHP extensions that weren't installed or
- * enabled. Usually exceptions of this kind will be thrown before request even
- * starts.
- *
- * The exception will usually contain a package error code.
- *
- * @category HTTP
- * @package  HTTP_Request2
- * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
- * @link     http://pear.php.net/package/HTTP_Request2
- */
-class HTTP_Request2_LogicException extends HTTP_Request2_Exception
-{
-}
-
-/**
- * Exception thrown when connection to a web or proxy server fails
- *
- * The exception will not contain a package error code, but will contain
- * native error code, as returned by stream_socket_client() or curl_errno().
- *
- * @category HTTP
- * @package  HTTP_Request2
- * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
- * @link     http://pear.php.net/package/HTTP_Request2
- */
-class HTTP_Request2_ConnectionException extends HTTP_Request2_Exception
-{
-}
-
-/**
- * Exception thrown when sending or receiving HTTP message fails
- *
- * The exception may contain both package error code and native error code.
- *
- * @category HTTP
- * @package  HTTP_Request2
- * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
- * @link     http://pear.php.net/package/HTTP_Request2
- */
-class HTTP_Request2_MessageException extends HTTP_Request2_Exception
-{
-}
 ?>

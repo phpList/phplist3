@@ -217,25 +217,26 @@ function SaveConfig($item, $value, $editable = 1, $ignore_errors = 0)
             }
             break;
         case 'emaillist':
-            $valid = array();
-            $hasError = false;
-            $emails = explode(',', $value);
-            foreach ($emails as $email) {
-                if (is_email($email)) {
-                    $valid[] = $email;
-                } else {
-                    $hasError = true;
+            if (!empty($value)) {
+                $valid = array();
+                $hasError = false;
+                $emails = explode(',', $value);
+                foreach ($emails as $email) {
+                    if (is_email($email)) {
+                        $valid[] = $email;
+                    } else {
+                        $hasError = true;
+                    }
+                }
+                $value = implode(',', $valid);
+                /*
+                 * hmm, not sure this is good or bad for UX
+                 *
+                  */
+                if ($hasError) {
+                    return $configInfo['description'].': '.s('Invalid value for email address');
                 }
             }
-            $value = implode(',', $valid);
-            /*
-             * hmm, not sure this is good or bad for UX
-             *
-              */
-            if ($hasError) {
-                return $configInfo['description'].': '.s('Invalid value for email address');
-            }
-
             break;
         case 'image':
             include 'class.image.inc';
@@ -388,9 +389,11 @@ function checkAccess($page, $pluginName = '')
 //@@TODO centralise the reporting and who gets what
 function sendReport($subject, $message)
 {
-    $report_addresses = explode(',', getConfig('report_address'));
-    foreach ($report_addresses as $address) {
-        sendMail($address, $GLOBALS['installation_name'].' '.$subject, $message);
+    $report_addresses = getConfig('report_address');
+    if ($report_addresses) {
+        foreach (explode(',', $report_addresses) as $address) {
+            sendMail($address, $GLOBALS['installation_name'].' '.$subject, $message);
+        }
     }
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->sendReport($GLOBALS['installation_name'].' '.$subject, $message);
@@ -723,7 +726,6 @@ $GLOBALS['pagecategories'] = array(
             'generatebouncerules',
             'initialise',
             'upgrade',
-            'update',
             'processqueue',
             'processbounces',
             'reindex',
@@ -737,7 +739,6 @@ $GLOBALS['pagecategories'] = array(
             'eventlog',
             'initialise',
             'upgrade',
-            'update',
             'bouncemgt',
             'processqueue',
             //     'processbounces',
@@ -799,9 +800,9 @@ $GLOBALS['pagecategories'] = array(
     //'menulinks' => array(),
     //),
 );
-if(!isSuperUser() || !ALLOW_UPDATER) {
-    unset($GLOBALS['pagecategories']['system']['pages']['update']);
-    unset($GLOBALS['pagecategories']['system']['menulinks']['update']);
+if (isSuperUser() && ALLOW_UPDATER) {
+    $GLOBALS['pagecategories']['system']['pages'][] = 'update';
+    $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
 }
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
@@ -1340,7 +1341,7 @@ function ListofLists($current, $fieldname, $subselect)
             $categoryhtml['all'] .= 'checked';
         }
         $categoryhtml['all'] .= ' />'.s('All Lists').'</li>';
-    
+
         $categoryhtml['all'] .= '<li><input type="checkbox" name="'.$fieldname.'[allactive]"';
         if (!empty($current['allactive'])) {
             $categoryhtml['all'] .= 'checked="checked"';

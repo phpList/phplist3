@@ -11,6 +11,12 @@ if (!empty($_FILES['file_template']) && is_uploaded_file($_FILES['file_template'
 } else {
     $content = '';
 }
+$enabletexttemplate = !empty($_POST['enabletexttemplate']) ? 1 : 0;
+if ($enabletexttemplate && isset($_POST['template_text'])) {
+    $content_text = $_POST['template_text'];
+} else {
+    $content_text = '[CONTENT]';
+}
 $sendtestresult = '';
 $testtarget = getConfig('admin_address');
 $systemTemplateID = getConfig('systemmessagetemplate');
@@ -94,7 +100,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
     }
 
     $content = disableJavascript($content);
-    if (!empty($title) && strpos($content, '[CONTENT]') !== false) {
+    if (!empty($title) && strpos($content, '[CONTENT]') !== false && strpos($content_text, '[CONTENT]') !== false) {
         $images = getTemplateImages($content);
 
         //   var_dump($images);
@@ -141,8 +147,8 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
             Sql_Query(sprintf('insert into %s (title) values("%s")', $tables['template'], sql_escape($title)));
             $id = Sql_Insert_id();
         }
-        Sql_Query(sprintf('update %s set title = "%s",template = "%s" where id = %d',
-            $tables['template'], sql_escape($title), sql_escape($content), $id));
+        Sql_Query(sprintf('update %s set title = "%s",template = "%s",template_text = "%s" where id = %d',
+            $tables['template'], sql_escape($title), sql_escape($content), sql_escape($content_text), $id));
         Sql_Query(sprintf('select * from %s where filename = "%s" and template = %d',
             $tables['templateimage'], 'powerphplist.png', $id));
         if (!Sql_Affected_Rows()) {
@@ -212,9 +218,11 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         }
     } else {
         $actionresult .= s('Some errors were found, template NOT saved!');
-        $data['title'] = $title;
-        $data['template'] = $content;
     }
+    $data = array();
+    $data['title'] = $title;
+    $data['template'] = $content;
+    $data['template_text'] = $content_text;
     if (!empty($_POST['sendtest'])) {
         //# check if it's the system message template or a normal one:
 
@@ -261,28 +269,44 @@ if (!empty($_POST['action']) && $_POST['action'] == 'addimages') {
         }
         $testtarget = preg_replace('/, $/', '', $testtarget);
     }
-}
-if (!empty($actionresult)) {
-    echo '<div class="actionresult">'.$actionresult.'</div>';
-}
-
-if ($id) {
+} elseif ($id) {
     $req = Sql_Query("select * from {$tables['template']} where id = $id");
     $data = Sql_Fetch_Array($req);
     //# keep POSTED data, even if not saved
     if (!empty($_POST['template'])) {
         $data['template'] = $content;
     }
+    if (!empty($_POST['template_text'])) {
+        $data['template_text'] = $content_text;
+    }
+    if ($data['template_text'] != '[CONTENT]') {
+        $enabletexttemplate = 1;
+    }
 } else {
     $data = array();
     $data['title'] = '';
     $data['template'] = '';
+    $data['template_text'] = '[CONTENT]';
+}
+if (!empty($actionresult)) {
+    echo '<div class="actionresult">'.$actionresult.'</div>';
 }
 
 ?>
 
 <p class="information"><?php echo $msg ?></p>
 <?php echo '<p class="button pull-right">'.PageLink2('templates', s('List of Templates')).'</p><div class="clearfix"></div>'; ?>
+
+<?php echo '<script type="text/javascript" src="js/'.$GLOBALS['jQuery'].'"></script>' ?>
+<script type="text/javascript">
+$(document).ready(function(){
+$(".texttemplatefield").toggle($('#enabletexttemplate').val()=='1');
+});
+function toggletexttemplate(){
+$('#enabletexttemplate').val(($('#enabletexttemplate').val()=='1')?'':'1');
+$('.texttemplatefield').toggle($('#enabletexttemplate').val()=='1');
+}
+</script>
 
 <?php echo formStart(' enctype="multipart/form-data" class="template2" ') ?>
 <input type="hidden" name="id" value="<?php echo $id ?>"/>
@@ -316,6 +340,23 @@ if ($id) {
                     echo '</textarea>';
                 }
                 ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" value="<?php echo s('Edit text version of the template') ?>" onclick="toggletexttemplate();" />
+            <input type="hidden" name="enabletexttemplate" id="enabletexttemplate" value="<?php echo $enabletexttemplate ? '1' : '' ?>" />
+            <br/><?php echo s('The text version is not automatically generated from the HTML version; its default value is <b>[CONTENT]</b>.'); ?></td>
+        </tr>
+        <tr class="texttemplatefield">
+            <td colspan="2"><?php echo s('Text version of the template.') ?>
+                <br/><?php echo s('The content should at least have <b>[CONTENT]</b> somewhere.')
+                ?></td>
+        </tr>
+        <tr class="texttemplatefield">
+            <td colspan="2">
+                <textarea name="template_text" id="template_text" cols="65" rows="20"><?php
+                echo stripslashes(htmlspecialchars($data['template_text']));
+                ?></textarea>
             </td>
         </tr>
 

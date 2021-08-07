@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2016 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2020 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -34,7 +34,7 @@ require_once 'HTTP/Request2/Response.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
+ * @version  Release: 2.4.2
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 abstract class HTTP_Request2_Adapter
@@ -43,7 +43,7 @@ abstract class HTTP_Request2_Adapter
      * A list of methods that MUST NOT have a request body, per RFC 2616
      * @var  array
      */
-    protected static $bodyDisallowed = array('TRACE');
+    protected static $bodyDisallowed = ['TRACE'];
 
     /**
      * Methods having defined semantics for request body
@@ -55,7 +55,7 @@ abstract class HTTP_Request2_Adapter
      * @link http://pear.php.net/bugs/bug.php?id=12900
      * @link http://pear.php.net/bugs/bug.php?id=14740
      */
-    protected static $bodyRequired = array('POST', 'PUT');
+    protected static $bodyRequired = ['POST', 'PUT'];
 
     /**
      * Request being sent

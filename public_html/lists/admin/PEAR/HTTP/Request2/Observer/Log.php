@@ -14,7 +14,7 @@
  * @package   HTTP_Request2
  * @author    David Jean Louis <izi@php.net>
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2016 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2020 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -64,7 +64,7 @@ require_once 'HTTP/Request2/Exception.php';
  * @author   David Jean Louis <izi@php.net>
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.3.0
+ * @version  Release: 2.4.2
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Observer_Log implements SplObserver
@@ -83,14 +83,14 @@ class HTTP_Request2_Observer_Log implements SplObserver
      *
      * @var array $events
      */
-    public $events = array(
+    public $events = [
         'connect',
         'sentHeaders',
         'sentBody',
         'receivedHeaders',
         'receivedBody',
         'disconnect',
-    );
+    ];
 
     // }}}
     // __construct() {{{
@@ -104,7 +104,7 @@ class HTTP_Request2_Observer_Log implements SplObserver
      *
      * @return void
      */
-    public function __construct($target = 'php://output', array $events = array())
+    public function __construct($target = 'php://output', array $events = [])
     {
         if (!empty($events)) {
             $this->events = $events;

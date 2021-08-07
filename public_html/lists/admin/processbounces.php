@@ -117,31 +117,32 @@ function findUserID($text)
 {
     global $tables;
     $userid = 0;
-    $user = '';
 
     if (preg_match('/(?:X-ListMember|X-User): (.*)\r\n/iU', $text, $match)) {
         $user = trim($match[1]);
-    }
 
-    // some versions used the email to identify the users, some the userid and others the uniqid
-    // use backward compatible way to find user
-    if (strpos($user, '@') !== false) {
-        $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
-            sql_escape($user)));
-        $userid = $userid_req[0];
-    } elseif (preg_match("/^\d$/", $user)) {
-        $userid = $user;
-    } elseif (!empty($user)) {
-        $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"', $tables['user'],
-            sql_escape($user)));
-        $userid = $userid_req[0];
-    }
+        // some versions used the email to identify the users, some the userid and others the uniqid
+        // use backward compatible way to find user
+        if (strpos($user, '@') !== false) {
+            $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"', $tables['user'],
+                sql_escape($user)));
+            if ($userid_req) {
+                $userid = $userid_req[0];
+            }
+        } elseif (preg_match("/^\d$/", $user)) {
+            $userid = $user;
+        } elseif (!empty($user)) {
+            $userid_req = Sql_Fetch_Row_Query(sprintf('select id from %s where uniqid = "%s"', $tables['user'],
+                sql_escape($user)));
+            if ($userid_req) {
+                $userid = $userid_req[0];
+            }
+        }
+    } else {
+        //## if we didn't find any, parse anything looking like an email address and check if it's a subscriber.
+        //# this is probably fairly time consuming, but as the process is only done once every so often
+        //# that should not be too bad
 
-    //## if we didn't find any, parse anything looking like an email address and check if it's a subscriber.
-    //# this is probably fairly time consuming, but as the process is only done once every so often
-    //# that should not be too bad
-
-    if (!$userid) {
         preg_match_all('/[._a-zA-Z0-9-]+@[.a-zA-Z0-9-]+/', $text, $regs);
 
         foreach ($regs[0] as $email) {
@@ -220,7 +221,11 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
 {
     global $tables;
     $useremailQ = Sql_fetch_row_query(sprintf('select email from %s where id = %d', $tables['user'], $userid));
-    $useremail = $useremailQ[0];
+    if (empty($useremailQ)) {
+        $useremail = "";
+    } else {
+        $useremail = $useremailQ[0];
+    }
 
     if ($bounceDate === null) {
         $bounceDate = date('Y-m-d H:i', time());
@@ -361,11 +366,7 @@ function processPop($server, $user, $password)
     }
     set_time_limit(6000);
 
-    if (!TEST) {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password, CL_EXPUNGE);
-    } else {
-        $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
-    }
+    $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
 
     if (!$link) {
         outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $server: ".imap_last_error());
@@ -415,7 +416,7 @@ function processMessages($link, $max = 3000)
     if (TEST) {
         echo s('Running in test mode, not deleting messages from mailbox').'<br/>';
     } else {
-        echo s('Processed messages will be deleted from mailbox').'<br/>';
+        echo s('Processed messages will be deleted from the mailbox').'<br/>';
     }
     $nberror = 0;
 //  for ($x=1;$x<150;$x++) {
@@ -453,7 +454,11 @@ function processMessages($link, $max = 3000)
     flush();
     outputProcessBounce(s('Closing mailbox, and purging messages'));
     set_time_limit(60 * $num);
-    imap_close($link);
+    if (!TEST) {
+        imap_close($link, CL_EXPUNGE);
+    } else {
+        imap_close($link);
+    }
 
     return $report;
 }

@@ -906,7 +906,6 @@ function unsubscribePage($id)
             if (empty($isBlackListed)) { // only process when not already marked as blacklisted
                 // add user to blacklist
                 addUserToBlacklist($email, nl2br(strip_tags($_POST['unsubscribereason'])));
-                addUserHistory($email, 'Unsubscription', "Unsubscribed from $lists");
                 $unsubscribemessage = str_replace('[LISTS]', $lists, getUserConfig("unsubscribemessage:$id", $userid));
                 if (UNSUBSCRIBE_CONFIRMATION) {
                     sendMail($email, getUserConfig("unsubscribesubject:$id"), stripslashes($unsubscribemessage),

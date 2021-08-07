@@ -236,5 +236,5 @@ if (!$GLOBALS['commandline']) {
     </script>';
 } else {
     rename($exportfileName,$GLOBALS['tmpdir'].'/'.$filename);
-    cl_output(s('File available as "%s"',$GLOBALS['tmpdir'].'./'.$filename));
+    cl_output(s('File available as "%s"',$GLOBALS['tmpdir'].'/'.$filename));
 }

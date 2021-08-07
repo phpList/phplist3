@@ -60,6 +60,17 @@ $usertable_prefix = 'phplist_user_';
 // install and initialise phpList.
 $pageroot = '/lists';
 
+
+// there are places in phpList where files need to be fetched from the internet.
+// for example translations, or lists of valid domains
+// also the phpList updater needs access to the phpList servers
+// if your system is behind a proxy server, provide the details here
+
+#define('HTTP_PROXY_HOST', 'proxy.mydomain.com');
+// ex 80. Usually 80,8080 or 3128
+#1define('HTTP_PROXY_PORT', '80');
+
+
 /*
 
 =========================================================================

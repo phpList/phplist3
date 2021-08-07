@@ -319,7 +319,7 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
             $details .= '</span></div>';
         }
     }
-    if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname)) {
+    if (!empty($pluginDetails['installUrl']) && is_writable($pluginDestination.'/'.$pluginname.'.php')) {
         //# we can only delete the ones that were installed from the interface
         $ls->addColumn($pluginname, s('delete'),
             '<span class="delete"><a href="javascript:deleteRec(\'./?page=plugins&delete='.$pluginname.'\');" class="button" title="'.s('delete this plugin').'">'.s('delete').'</a></span>');
@@ -404,7 +404,7 @@ function getLatestTag($developer, $repository)
     }
     $tags = json_decode($content);
 
-    if ($tags === null) {
+    if ($tags === null || count($tags) == 0) {
         return null;
     }
 

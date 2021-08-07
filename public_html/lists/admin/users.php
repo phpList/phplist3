@@ -76,7 +76,7 @@ if (isset($_GET['find'])) {
     $_SESSION['userlistfilter']['findby'] = '';
 }
 
-$find = $_SESSION['userlistfilter']['find'];
+$find = trim($_SESSION['userlistfilter']['find']);
 $findby = $_SESSION['userlistfilter']['findby'];
 if (!$findby) {
     $findby = 'email';
@@ -233,6 +233,7 @@ if ($start > $total) {
 }
 
 if (!empty($delete) && isSuperUser()) {
+    verifyCsrfGetToken();
     // delete the index in delete
     $action_result = $GLOBALS['I18N']->get('deleting')." $delete ..\n";
     deleteUser($delete);

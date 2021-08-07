@@ -23,13 +23,13 @@ if (isset($_REQUEST['list'])) {
 $access = accessLevel('export');
 
 if ($GLOBALS['commandline']) {
+    cl_output(s('Export subscribers'));
     if (isset($cline['l'])) {
         $list = $cline['l'];
     } else {
         $list = 0;
+        cl_output('*  '.s('Exporting all subscribers. Use -l[listnumber] to export subscribers on a list'));
     }
-    cl_output(s('Export subscribers'));
-    cl_output('*  '.s('Exporting all subscribers. Use -l[listnumber] to export subscribers on a list'));
 
     $_SESSION['export'] = array();
     $cols = array();

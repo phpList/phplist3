@@ -71,6 +71,13 @@ if (function_exists('iconv') || ((!strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' &&
     }
 }
 
+## ironically, this doesn't work with Xdebug enabled.
+## avoid the screen being blank, due to the FOUC system
+ini_set("error_append_string",'<script>document.body.classList.remove("invisible");</script>'); ## remove the FOUC
+ini_set("error_prepend_string",'<div style="{font-size: 24px;color:red;}">Sorry a software error occurred:</div><br/>
+  Please <a href="http://mantis.phplist.org">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
+
+
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding('UTF-8');
 }
@@ -336,6 +343,27 @@ if (!defined('PLUGIN_ROOTDIRS')) {
 if (!defined('PHPMAILERHOST')) {
     define('PHPMAILERHOST', '');
 }
+if (!defined('PHPMAILERSUBSCRIBEHOST') && defined('PHPMAILERHOST')) {
+    define('PHPMAILERSUBSCRIBEHOST', PHPMAILERHOST);
+}
+if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
+    define('PHPMAILERBLASTHOST', PHPMAILERHOST);
+}
+if (!defined('PHPMAILERBLASTPORT') && defined('PHPMAILERPORT')) {
+    define('PHPMAILERBLASTPORT', PHPMAILERPORT);
+}
+if (!defined('PHPMAILERSUBSCRIBEPORT') && defined('PHPMAILERPORT')) {
+    define('PHPMAILERSUBSCRIBEPORT', PHPMAILERPORT);
+}
+if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
+    define('PHPMAILERTESTHOST', PHPMAILERHOST);
+}
+if (!defined('PHPMAILER_SECURE')) {
+    define('PHPMAILER_SECURE', 'auto');
+}
+if (!defined('PHPMAILER_SMTP_DEBUG')) {
+    define('PHPMAILER_SMTP_DEBUG', 0);
+}
 if (!defined('MANUALLY_PROCESS_QUEUE')) {
     define('MANUALLY_PROCESS_QUEUE', 1);
 }
@@ -592,21 +620,6 @@ if (!defined('MAX_MAILSIZE')) {
 if (!defined('INTERFACELIB')) {
     define('INTERFACELIB', 1);
 }
-if (!defined('PHPMAILERBLASTHOST') && defined('PHPMAILERHOST')) {
-    define('PHPMAILERBLASTHOST', PHPMAILERHOST);
-}
-if (!defined('PHPMAILERBLASTPORT') && defined('PHPMAILERPORT')) {
-    define('PHPMAILERBLASTPORT', PHPMAILERPORT);
-}
-if (!defined('PHPMAILERTESTHOST') && defined('PHPMAILERHOST')) {
-    define('PHPMAILERTESTHOST', PHPMAILERHOST);
-}
-if (!defined('PHPMAILER_SECURE')) {
-    define('PHPMAILER_SECURE', 'auto');
-}
-if (!defined('PHPMAILER_SMTP_DEBUG')) {
-    define('PHPMAILER_SMTP_DEBUG', 0);
-}
 if (!defined('POP_BEFORE_SMTP')) {
     define('POP_BEFORE_SMTP', '');
 }
@@ -766,6 +779,13 @@ if (!defined('MESSAGEQUEUE_PREPARE')) {
 if (!defined('USE_PHPMAILER6')) {
     define('USE_PHPMAILER6', true);
 }
+if (!defined('HTTP_PROXY_HOST')) {
+    define('HTTP_PROXY_HOST', false);
+} 
+if (!defined('HTTP_PROXY_PORT')) {
+    define('HTTP_PROXY_PORT', false);
+}
+
 if (!isset($GLOBALS['export_mimetype'])) {
     $GLOBALS['export_mimetype'] = 'application/csv';
 }

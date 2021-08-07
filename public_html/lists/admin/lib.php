@@ -70,12 +70,26 @@ function cleanListName($name) { ## we allow certain tags in a listname
     return $name;
 }
 
+/**
+ * Returns the name of a list.
+ * The list names are cached because this can be called repeatedly for the same list id.
+ *
+ * @param int $id list id
+ *
+ * @return string the list name
+ */
 function listName($id)
 {
     global $tables;
-    $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
 
-    return $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
+    static $listNames = [];
+
+    if (!isset($listNames[$id])) {
+        $req = Sql_Fetch_Row_Query(sprintf('select name from %s where id = %d', $tables['list'], $id));
+        $listNames[$id] = $req[0] ? stripslashes(cleanListName($req[0])) : $GLOBALS['I18N']->get('Unnamed List');
+    }
+
+    return $listNames[$id];
 }
 
 function setMessageData($msgid, $name, $value)
@@ -90,6 +104,9 @@ function setMessageData($msgid, $name, $value)
     if ($name == 'subject' || $name == 'campaigntitle') {
         //# disallow html in the subject and title
         $value = strip_tags($value);
+    }
+    if ($name == 'message') { ## there's no need for js actions in the body. @@TODO expand on other fields
+      $value = disableJavascript($value);
     }
 
     if ($name == 'targetlist' && is_array($value)) {
@@ -450,7 +467,6 @@ function sendMail($to, $subject, $message, $header = '', $parameters = '', $skip
 function constructSystemMail($message, $subject = '')
 {
     $hasHTML = strip_tags($message) != $message;
-    $htmlcontent = '';
 
     if ($hasHTML) {
         $message = stripslashes($message);
@@ -475,34 +491,45 @@ function constructSystemMail($message, $subject = '')
         $htmlmessage = str_replace($listsmatch[0], '<ul>'.$listsHTML.'</ul>', $htmlmessage);
     }
 
-    $htmltemplate = '';
+    $htmlcontent = $htmlmessage;
+    $textcontent = $textmessage;
     $templateid = getConfig('systemmessagetemplate');
     if (!empty($templateid)) {
-        $req = Sql_Fetch_Row_Query(sprintf('select template from %s where id = %d',
+        $req = Sql_Fetch_Row_Query(sprintf('select template, template_text from %s where id = %d',
             $GLOBALS['tables']['template'], $templateid));
-        $htmltemplate = stripslashes($req[0]);
-    }
-    if (strpos($htmltemplate, '[CONTENT]')) {
-        $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
-        $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
-        $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
-        if (!EMAILTEXTCREDITS) {
-            $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
-                $GLOBALS['PoweredByImage']);
-        } else {
-            $phpListPowered = $GLOBALS['PoweredByText'];
+        if ($req) {
+            $htmltemplate = stripslashes($req[0]);
+            $texttemplate = stripslashes($req[1]);
+            $htmlcontent = str_replace('[CONTENT]', $htmlmessage, $htmltemplate);
+            $htmlcontent = str_replace('[SUBJECT]', $subject, $htmlcontent);
+            $htmlcontent = str_replace('[FOOTER]', '', $htmlcontent);
+            if (!EMAILTEXTCREDITS) {
+                $phpListPowered = preg_replace('/src=".*power-phplist.png"/', 'src="powerphplist.png"',
+                    $GLOBALS['PoweredByImage']);
+            } else {
+                $phpListPowered = $GLOBALS['PoweredByText'];
+            }
+            if (strpos($htmlcontent, '[SIGNATURE]')) {
+                $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
+            } elseif (strpos($htmlcontent, '</body>')) {
+                $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
+            } else {
+                $htmlcontent .= $phpListPowered;
+            }
+            $htmlcontent = parseLogoPlaceholders($htmlcontent);
+            $textcontent = str_replace('[CONTENT]', $textmessage, $texttemplate);
+            $textcontent = str_replace('[SUBJECT]', $subject, $textcontent);
+            $textcontent = str_replace('[FOOTER]', '', $textcontent);
+            $phpListPowered = trim(HTML2Text($GLOBALS['PoweredByText']));
+            if (strpos($textcontent, '[SIGNATURE]')) {
+                $textcontent = str_replace('[SIGNATURE]', $phpListPowered, $textcontent);
+            } else {
+                $textcontent .= "\n\n" . $phpListPowered;
+            }
         }
-        if (strpos($htmlcontent, '[SIGNATURE]')) {
-            $htmlcontent = str_replace('[SIGNATURE]', $phpListPowered, $htmlcontent);
-        } elseif (strpos($htmlcontent, '</body>')) {
-            $htmlcontent = str_replace('</body>', $phpListPowered.'</body>', $htmlcontent);
-        } else {
-            $htmlcontent .= $phpListPowered;
-        }
-        $htmlcontent = parseLogoPlaceholders($htmlcontent);
     }
 
-    return array($htmlcontent, $textmessage);
+    return array($htmlcontent, $textcontent);
 }
 
 function sendMailPhpMailer($to, $subject, $message)
@@ -578,7 +605,7 @@ function sendMailDirect($destinationemail, $subject, $message)
     }
     $mail->add_text($textmessage);
     try {
-        $mail->Send('', $destinationemail, $fromname, $fromemail, $subject);
+        $mail->send('', $destinationemail, $fromname, $fromemail, $subject);
     } catch (Exception $e) {
         $GLOBALS['smtpError'] = $e->getMessage();
 
@@ -1017,7 +1044,7 @@ function clearPageCache()
 function removeJavascript($content)
 {
     $content = preg_replace('/<script[^>]*>(.*?)<\/script\s*>/mis', '', $content);
-
+    $content = disableJavascript($content);
     return $content;
 }
 
@@ -1329,6 +1356,10 @@ function fetchUrlCurl($url, $request_parameters)
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_DNS_USE_GLOBAL_CACHE, true);
     curl_setopt($curl, CURLOPT_USERAGENT, 'phplist v'.VERSION.'c (https://www.phplist.com)');
+    if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
+        curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
+        curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+    }    
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);

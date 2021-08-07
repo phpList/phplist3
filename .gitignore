@@ -1,7 +1,6 @@
 /.svn/
 /plugins
 vendor/
-composer.lock
 /behat.yml
 .php_cs.cache
 /.idea/
@@ -11,3 +10,11 @@ public_html/lists/admin/info/
 /build
 .DS_Store
 .vagrant
+public_html/lists/updater
+public_html/lists/texts
+public_html/lists/admin/plugins/
+/parked/
+public_html/lists/admin/ui/dressprow
+public_html/lists/admin/ui/dressprow-ph
+public_html/lists/admin/ui/phplist-ui-*
+
