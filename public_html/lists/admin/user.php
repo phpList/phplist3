@@ -117,16 +117,20 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
             }
             if ($key == 'password') {
                 if (!empty($_POST[$key])) {
-                    Sql_Query("update {$tables['user']} set $key = \"".encryptPass($_POST[$key])."\" where id = $id");
+                    Sql_Query(
+                        "update {$tables['user']}
+                        set password = \"".encryptPass($_POST[$key])."\",
+                        passwordchanged = CURDATE()
+                        where id = $id"
+                    );
                 }
-            }
-            if (strpos($a, 'sys') === false && $val[1]) {
+            } elseif (strpos($a, 'sys') === false && $val[1]) {
                 if ($key == 'email') { ## we don't want html in the email, but other fields, we may
                     if (!empty($email)) {
                         Sql_Query("update {$tables['user']} set $key = \"".$email."\" where id = $id");
                     }
                 } else {
-                    if ($key != 'password' || !empty($_POST[$key])) {
+                    if (isset($_POST[$key])) {
                         Sql_Query("update {$tables['user']} set $key = \"".sql_escape($_POST[$key])."\" where id = $id");
                     }
                 }
@@ -329,8 +333,8 @@ if ($id) {
     echo PageLinkButton("exportuserdata&amp;id=$id", s('Download subscriber data'));
     if (!isBlackListed($user['email'])) {
         echo
-            '<a 
-            class="confirm btn btn-default" 
+            '<a
+            class="confirm btn btn-default"
             href="' . getConfig('preferencesurl') . "&amp;uid=" . $user['uniqid'] . '">' .
             s('Preferences page') . '</a>';
     }
@@ -392,6 +396,10 @@ if (isBlackListed($user['email'])) {
 $userdetailsHTML .= '<table class="userAdd" border="1">';
 
 foreach ($struct as $key => $val) {
+    if ($key == 'passwordchanged') {
+        // handled with password field
+        continue;
+    }
     @list($a, $b) = explode(':', $val[1]);
 
     if (!isset($user[$key])) {
@@ -408,8 +416,18 @@ foreach ($struct as $key => $val) {
         }
     } elseif ($key == 'password') {
         if (ASKFORPASSWORD) {
-          $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" autocomplete="new-password" /></td></tr>'."\n",
-              $b, $key, '');
+            $userdetailsHTML .= sprintf(
+                '<tr><td class="dataname">%s</td><td><input type="text" name="%s" value="%s" size="30" autocomplete="new-password" /></td></tr>'."\n",
+                s('Enter new password'),
+                $key,
+                ''
+            );
+            list($a, $b) = explode(':', $struct['passwordchanged'][1]);
+            $userdetailsHTML .= sprintf(
+                '<tr><td class="dataname">%s</td><td>%s</td></tr>',
+                s($b),
+                stripslashes(formatDate($user['passwordchanged']))
+            );
         }
     } elseif ($key == 'blacklisted') {
         $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s', s($b),
@@ -426,7 +444,7 @@ foreach ($struct as $key => $val) {
     } else {
         if (!strpos($key, '_')) {
             if (strpos($a, 'sys') !== false) {
-                if ($key === 'modified' || $key === 'entered' || $key === 'passwordchanged') {
+                if ($key === 'modified' || $key === 'entered') {
                     $userdetailsHTML .= sprintf('<tr><td class="dataname">%s</td><td>%s</td></tr>',
                         s($b), stripslashes(formatDateTime($user[$key])));
                 } else {
