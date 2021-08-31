@@ -1,5 +1,5 @@
 # file that keeps track of the latest tag in cvs and the corresponding version
 # this automates publishing a new version, when it's tagged
 # if you don't understand this, don't worry. You don't need this file
-VERSION=3.6.3
-DEVVERSION=3.6.4-RC1
+VERSION=3.6.4
+DEVVERSION=3.6.5-RC1

@@ -81,7 +81,7 @@ jobs:
       - name: Start Test Server
         run: |
           cd $GITHUB_WORKSPACE
-          cp -fv tests/default.behat.yml tests/behat.yml
+          cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
           mkdir -p build/mails

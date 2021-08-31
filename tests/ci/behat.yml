@@ -21,6 +21,7 @@ default:
             mail_dir: build/mails
         - SubscriberContext
         - UserContext
+        - FailAid\Context\FailureContext
   extensions:
     Behat\MinkExtension:
       show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
@@ -54,6 +55,12 @@ default:
           selenium2:
             browser: "firefox"
             wd_host: http://127.0.0.1:4444/wd/hub
+    # FailAid\Extension: 
+    #   screenshot:
+    #     directory: ./output/screenshots/
+    #     mode: default
+    #     autoClean: false
+    #     size: 1444x1280
     Bex\Behat\ScreenshotExtension:
       active_image_drivers: [local]
       image_drivers:
