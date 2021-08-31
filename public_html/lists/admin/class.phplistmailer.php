@@ -86,6 +86,13 @@ class phplistMailer extends phplistMailerBase
 #            logEvent('Sending email via PHPMAILERSUBSCRIBEHOST '.PHPMAILERSUBSCRIBEHOST);
             $this->Host = PHPMAILERSUBSCRIBEHOST;
             $this->Port = PHPMAILERSUBSCRIBEPORT;
+            if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+                && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
+            ) {
+                $this->Username = $GLOBALS['phpmailer_smtpuser'];
+                $this->Password = $GLOBALS['phpmailer_smtppassword'];
+                $this->SMTPAuth = true;
+            }
             $this->Mailer = 'smtp';
         } elseif ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
             $this->Host = PHPMAILERBLASTHOST;
