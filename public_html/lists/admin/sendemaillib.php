@@ -616,9 +616,12 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         for ($i = 0; $i < count($links[3]); ++$i) {
             $link = cleanUrl($links[3][$i]);
             $link = str_replace('"', '', $link);
-            $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
-            $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
-            $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
+
+            if (preg_match('/^http|ftp/i', $link)) {
+                $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
+                $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
+                $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
+            }
         }
         /*
          * process plain-text format email
