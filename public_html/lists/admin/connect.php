@@ -64,6 +64,7 @@ $commandline_pages = array(
     'convertstats',
     'reindex',
     'blacklistemail',
+    'unblacklistemail',
     'systemstats',
     'converttoutf8',
     'initlanguages',
