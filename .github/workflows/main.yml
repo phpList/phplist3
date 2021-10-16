@@ -101,7 +101,7 @@ jobs:
           export ADMIN_PASSWORD=somepassword
           export ORGANISATION_NAME="phpList"
           export ADMIN_NAME="phpList Administrator"
-          php public_html/lists/admin/index.php -c /var/www/phpList3/config.php -p initialise
+          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
 
