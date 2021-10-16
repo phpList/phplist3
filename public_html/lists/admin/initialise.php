@@ -215,8 +215,8 @@ foreach ($GLOBALS['plugins'] as $pluginName => $plugin) {
 if ($success) {
     output( s('Setting default configuration').'<br/>');
     // mark the database to be our current version
-    output(s('Admin = '.$_REQUEST['adminname']));
-    output(s('Admin Email = '.$adminemail));
+    output('<strong>'.s('Admin =').'</strong> '.$_REQUEST['adminname'].'<br/>');
+    output('<strong>'.s('Admin Email =').'</strong> '.$adminemail.'<br/>');
     SaveConfig('version', VERSION, 0);
     SaveConfig('admin_address', $adminemail, 1);
     SaveConfig('message_from_name', strip_tags($_REQUEST['adminname']), 1);
