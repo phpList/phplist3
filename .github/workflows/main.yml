@@ -98,7 +98,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           export ADMIN_EMAIL=admin@phplist.dev
-          export ADMIN_PASSWORD=somepassword
+          export ADMIN_PASSWORD=Mypassword123+
           export ORGANISATION_NAME="phpList"
           export ADMIN_NAME="phpList Administrator"
           php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
