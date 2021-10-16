@@ -881,6 +881,10 @@ function system_messageHeaders($useremail = '')
 
 function logEvent($msg)
 {
+    global $tables;
+    if (!Sql_Table_Exists($tables['eventlog'])) {
+        return;
+    }
     $logged = false;
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $logged = $logged || $plugin->logEvent($msg);
@@ -889,7 +893,6 @@ function logEvent($msg)
         return;
     }
 
-    global $tables;
     if (isset($GLOBALS['page'])) {
         $p = $GLOBALS['page'];
     } elseif (isset($_GET['page'])) {
@@ -898,9 +901,6 @@ function logEvent($msg)
         $p = $_GET['p'];
     } else {
         $p = 'unknown page';
-    }
-    if (!Sql_Table_Exists($tables['eventlog'])) {
-        return;
     }
     Sql_Query(sprintf('insert into %s (entered,page,entry) values(now(),"%s","%s")', $tables['eventlog'],
         $p, sql_escape($msg)));
