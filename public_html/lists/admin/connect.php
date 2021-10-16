@@ -55,6 +55,7 @@ $checkboxgroup_storesize = 1; // this will allow 10000 options for checkboxes
 
 // identify pages that can be run on commandline
 $commandline_pages = array(
+    'initialise',
     'dbcheck',
     'send',
     'processqueue',
