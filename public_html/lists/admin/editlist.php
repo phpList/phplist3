@@ -191,7 +191,6 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 }
 
 ?>
-<form>
     <label for="description"><?php echo s('List Description'); ?></label>
     <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>
