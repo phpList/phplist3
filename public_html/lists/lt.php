@@ -241,7 +241,8 @@ if (!isset($_SESSION['entrypoint'])) {
     $_SESSION['entrypoint'] = $url;
 }
 
-if (!empty($messagedata['google_track'])) {
+// Add analytics tracking parameters only to http and https URLs
+if (!empty($messagedata['google_track']) && preg_match('/^http/i', $url)) {
     require __DIR__ . '/admin/analytics.php';
 
     $analytics = getAnalyticsQuery();
