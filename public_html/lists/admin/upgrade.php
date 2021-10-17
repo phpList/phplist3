@@ -55,6 +55,13 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
     );
 }
 
+if (!empty($GLOBALS['mysql_database_engine'])) {
+  $engines_count = Sql_Fetch_Row_Query(sprintf('select count(table_name) from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
+  if (!empty($engines_count[0])) {
+    echo Warn(s('You have %d tables that do not use your preferred database engine',$engines_count[0]).'<br/>'.s('Use the commandline upgrade method to convert them'));
+  }
+}
+
 if (!versionCompare($dbversion,'2.11.11') && $dbversion!=='dev') {
     Fatal_Error(s('Your version is older than 3.2.0 and cannot be upgraded to this version. Please upgrade to 3.2.0 first and then try again.'));
     return;
