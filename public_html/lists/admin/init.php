@@ -174,6 +174,9 @@ if (!isset($database_connection_compression)) {
 if (!isset($database_connection_ssl)) {
     $database_connection_ssl = false;
 }
+if (!isset($mysql_database_engine)) {
+  $mysql_database_engine = '';
+}
 
 //# @@ would be nice to move this to the config file at some point
 // http://mantis.phplist.com/view.php?id=15521
