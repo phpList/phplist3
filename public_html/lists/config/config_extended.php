@@ -902,4 +902,6 @@ define('ACCESS_CONTROL_ALLOW_ORIGINS', ['https://example.com','https://example.o
 ## If you set this, the next time upgrade is run on commandline, the system will attempt to change all tables to this engine.
 ## this is useful for old systems that have been created 
 ## for valid engines, check your server documentation (MariaDB or Mysql)
+## Warning, setting this value incorrectly will cause your database creation to break
+## the current value is a sensible one to use. It is advised not to change this.
 $mysql_database_engine = 'InnoDB';
