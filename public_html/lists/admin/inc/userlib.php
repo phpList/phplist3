@@ -206,7 +206,7 @@ function addNewUser($email, $password = '')
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
     uniqid = "%s",htmlemail = 1, uuid = "%s"
-    ', $GLOBALS['tables']['user'], $email, $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
+    ', $GLOBALS['tables']['user'], sql_escape($email), $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
 
     $id = Sql_Insert_Id();
 
