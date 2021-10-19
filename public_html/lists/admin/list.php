@@ -298,7 +298,7 @@ while ($row = Sql_fetch_array($result)) {
         s('Order'),
         sprintf('<input type="text" name="listorder[%d]" value="%d" size="3" class="listorder" />', $row['id'],
             $row['listorder']));
-    $ls->addColumn($element, s('ID'), $row['id']);
+    $ls->addColumn($element, s('List ID'), $row['id']);
 
     $deletebutton = new ConfirmButton(
         s('Are you sure you want to delete this list?').'\n'.s('This will NOT remove the subscribers that are on this list.').'\n'.s('You can reconnect subscribers to lists on the Reconcile Subscribers page.'),
