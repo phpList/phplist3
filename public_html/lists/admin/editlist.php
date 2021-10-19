@@ -136,7 +136,7 @@ if (empty($list['category'])) {
 
 <?php echo formStart(' class="editlistSave" ') ?>
 <?php if ($id): ?>
-    <div class="label"><label><?php echo s('ID'); ?>:</label><?php echo $id ?></div>
+    <div class="label"><label><?php echo s('List ID'); ?>:</label><?php echo $id ?></div>
 <?php endif;?>
 <div class="label"><label for="listname"><?php echo s('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname"
