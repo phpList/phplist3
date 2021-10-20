@@ -2397,10 +2397,13 @@ function sanitiseId($value)
     return preg_replace('/[^0-9A-Za-z\-_:.]/', '', $value);
 }
 
-//bth rainhail.com 7.1.2015 added to support proxys passing along the client IP
-//https://www.chriswiegman.com/2014/05/getting-correct-ip-address-php/
 function getClientIP()
 {
+    static $the_ip = null;
+
+    if ($the_ip !== null) {
+        return $the_ip;
+    }
     if (function_exists('apache_request_headers')) {
         $headers = apache_request_headers();
         //logEvent("apache_request_headers");
