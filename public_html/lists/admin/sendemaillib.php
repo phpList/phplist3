@@ -1281,13 +1281,15 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
             $GLOBALS['tables']['linktrack_ml'], $messageid, $fwdid));
         if (!Sql_Affected_Rows()) {
             //# first time for this link/message
+            $total = 1;
             Sql_Query(sprintf('replace into %s set total = %d,messageid = %d,forwardid = %d',
-                $GLOBALS['tables']['linktrack_ml'], $tot[0] + 1, $messageid, $fwdid));
+                $GLOBALS['tables']['linktrack_ml'], $total, $messageid, $fwdid));
         } else {
+            $total = $tot[0] + 1;
             Sql_Query(sprintf('update %s set total = %d where messageid = %d and forwardid = %d',
-                $GLOBALS['tables']['linktrack_ml'], $tot[0] + 1, $messageid, $fwdid));
+                $GLOBALS['tables']['linktrack_ml'], $total, $messageid, $fwdid));
         }
-        $cached['linktracksent'][$messageid][$fwdid] = $tot[0] + 1;
+        $cached['linktracksent'][$messageid][$fwdid] = $total;
     } else {
         ++$cached['linktracksent'][$messageid][$fwdid];
         //# write every so often, to make sure it's saved when interrupted
