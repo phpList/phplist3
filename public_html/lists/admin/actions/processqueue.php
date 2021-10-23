@@ -627,8 +627,10 @@ if ($num_messages) {
         ." where status not in ('draft', 'sent', 'prepared', 'suspended')"
         .' and embargo > now()'
         .' order by embargo asc limit 1');
-    $counters['status'] = 'embargo';
-    $counters['delaysend'] = $future['waittime'];
+    if ($future) {
+        $counters['status'] = 'embargo';
+        $counters['delaysend'] = $future['waittime'];
+    }
 }
 
 $script_stage = 2; // we know the messages to process
