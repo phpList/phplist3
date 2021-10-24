@@ -1793,6 +1793,9 @@ function monthName($month, $short = 0)
  */
 function formatDate($date, $short = 0)
 {
+    if ($date == '') {
+        return '';
+    }
     $format = getConfig('date_format');
     $year = substr($date, 0, 4);
     $month = substr($date, 5, 2);
