@@ -58,15 +58,16 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
 if (!empty($GLOBALS['mysql_database_engine'])) {
   $engines_count = Sql_Fetch_Row_Query(sprintf('select count(table_name) from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
   if (!empty($engines_count[0])) {
-    echo Warn(s('You have %d tables that do not use your preferred database engine',$engines_count[0]).'<br/>'.s('Use the commandline upgrade method to convert them'));
-  }
-}
-if ($GLOBALS['commandline'] && !empty($engines_count[0])) {
-  cl_output(s('Converting tables to preferred database engine'));
-  $engines = Sql_Query(sprintf('select table_name from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
-  while ($engine = Sql_Fetch_Assoc($engines)) {
-    cl_output(s('Converting table %s',$engine['table_name']));
-    Sql_Query(sprintf('alter table %s Engine %s',$engine['table_name'],$GLOBALS['mysql_database_engine']));
+    if ($GLOBALS['commandline']) {
+      cl_output(s('Converting tables to preferred database engine'));
+      $engines = Sql_Query(sprintf('select table_name from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
+      while ($engine = Sql_Fetch_Assoc($engines)) {
+        cl_output(s('Converting table %s',$engine['table_name']));
+        Sql_Query(sprintf('alter table %s Engine %s',$engine['table_name'],$GLOBALS['mysql_database_engine']));
+      }
+    } else {
+      echo Warn(s('You have %d tables that do not use your preferred database engine',$engines_count[0]).'<br/>'.s('Use the commandline upgrade method to convert them'));
+    }
   }
 }
 
