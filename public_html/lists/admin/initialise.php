@@ -161,21 +161,8 @@ foreach ($DBstruct as $table => $val) {
             if ($table == 'admin') {
                 // create a default admin
                 $_SESSION['firstinstall'] = 1;
-intialise_cli_tests
-                if (isset($_REQUEST['adminemail'])) {
-                    $adminemail = $_REQUEST['adminemail'];
-                } else {
-                    $adminemail = '';
-                }
-                if (isset($_REQUEST['adminpassword'])) {
-                    $adminpass = $_REQUEST['adminpassword'];
-                } else {
-                    $adminpass = md5(time());
-                }
-
                 $adminemail = $_REQUEST['adminemail'];
                 $adminpass = $_REQUEST['adminpassword'];
-master
                 Sql_Query(sprintf('insert into %s (loginname,namelc,email,created,modified,password,passwordchanged,superuser,disabled)
                     values("%s","%s","%s",now(),now(),"%s",now(),%d,0)',
                     $tables['admin'], 'admin', 'admin', sql_escape($adminemail), encryptPass($adminpass), 1));
