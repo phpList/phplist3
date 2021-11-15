@@ -427,7 +427,7 @@ function processQueueOutput($message, $logit = 1, $target = 'summary')
 
         return;
     } else {
-        $infostring = '['.date('D j M Y H:i', time()).'] ['.$_SERVER['REMOTE_ADDR'].']';
+        $infostring = '['.date('D j M Y H:i', time()).'] ['.getClientIP().']';
         //print "$infostring $message<br/>\n";
         $lines = explode("\n", $message);
         foreach ($lines as $line) {
@@ -627,8 +627,10 @@ if ($num_messages) {
         ." where status not in ('draft', 'sent', 'prepared', 'suspended')"
         .' and embargo > now()'
         .' order by embargo asc limit 1');
-    $counters['status'] = 'embargo';
-    $counters['delaysend'] = $future['waittime'];
+    if ($future) {
+        $counters['status'] = 'embargo';
+        $counters['delaysend'] = $future['waittime'];
+    }
 }
 
 $script_stage = 2; // we know the messages to process

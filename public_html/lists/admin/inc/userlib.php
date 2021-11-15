@@ -129,7 +129,7 @@ function deleteUserBlacklistRecords($id)
 function deleteUserRecordsLeaveBlacklistRecords($id)
 {
     global $tables;
-    
+
     Sql_Query('delete from '.$tables['linktrack_uml_click'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['listuser'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['usermessage'].' where userid = '.$id);
@@ -156,7 +156,7 @@ function deleteUserLeaveBlacklist($id)
  */
 function deleteUserIncludeBlacklist($id)
 {
-    // Note: deleteUserBlacklistRecords() must be executed first, else the ID 
+    // Note: deleteUserBlacklistRecords() must be executed first, else the ID
     // to email lookup fails due to the missing record
     deleteUserBlacklistRecords($id);
     deleteUserRecordsLeaveBlacklistRecords($id);
@@ -206,7 +206,7 @@ function addNewUser($email, $password = '')
     entered = now(),modified = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
     uniqid = "%s",htmlemail = 1, uuid = "%s"
-    ', $GLOBALS['tables']['user'], $email, $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
+    ', $GLOBALS['tables']['user'], sql_escape($email), $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
 
     $id = Sql_Insert_Id();
 
@@ -312,8 +312,8 @@ function AttributeValue($table, $value)
 function getUserEmail($id)
 {
     global $tables;
-    
-    $userid = Sql_Fetch_Row_Query("select email from {$tables['user']} where id = \"$id\"");    
+
+    $userid = Sql_Fetch_Row_Query("select email from {$tables['user']} where id = \"$id\"");
     return $userid[0];
 }
 
@@ -416,7 +416,7 @@ function UserAttributeValue($user = 0, $attribute = 0)
         case 'checkboxgroup':
             //     print "select value from $user_att_table where userid = $user and attributeid = $attribute";
             $val_ids = Sql_Fetch_Row_Query("select value from $user_att_table where userid = $user and attributeid = $attribute");
-            if ($val_ids[0]) {
+            if ($val_ids && $val_ids[0]) {
                 //       print '<br/>1 <b>'.$val_ids[0].'</b>';
                 if (function_exists('cleancommalist')) {
                     $val_ids[0] = cleanCommaList($val_ids[0]);
@@ -457,13 +457,13 @@ function UserAttributeValue($user = 0, $attribute = 0)
         $table_prefix".'listattr_'.$att['tablename'].".id = $user_att_table".".value and
         $user_att_table".'.attributeid = '.$attribute);
             $row = Sql_Fetch_row($res);
-            $value = $row[0];
+            $value = $row ? $row[0] : '';
             break;
         default:
             $res = Sql_Query(sprintf('select value from %s where
         userid = %d and attributeid = %d', $user_att_table, $user, $attribute));
             $row = Sql_Fetch_row($res);
-            $value = $row[0];
+            $value = $row ? $row[0] : '';
     }
 
     return stripslashes($value);
@@ -588,7 +588,7 @@ function addEmailToBlackList($email, $reason = '', $date = '')
     Sql_Query(sprintf('insert ignore into %s (email,name,data) values("%s","%s","%s")',
         $GLOBALS['tables']['user_blacklist_data'], sql_escape($email),
         'reason', addslashes($reason)));
-    foreach (array('REMOTE_ADDR') as $item) { // @@@do we want to know more?
+    foreach (array('REMOTE_ADDR','HTTP_X_FORWARDED_FOR') as $item) { // @@@do we want to know more?
         if (isset($_SERVER[$item])) {
             Sql_Query(sprintf('insert ignore into %s (email,name,data) values("%s","%s","%s")',
                 $GLOBALS['tables']['user_blacklist_data'], addslashes($email),
@@ -829,7 +829,7 @@ function addUserHistory($email, $msg, $detail)
             }
         }
     } else {
-        $default = array('HTTP_USER_AGENT', 'HTTP_REFERER', 'REMOTE_ADDR', 'REQUEST_URI');
+        $default = array('HTTP_USER_AGENT', 'HTTP_REFERER', 'REMOTE_ADDR', 'REQUEST_URI','HTTP_X_FORWARDED_FOR');
         foreach ($sysarrays as $key => $val) {
             if (in_array($key, $default)) {
                 $sysinfo .= "\n".strip_tags($key).' = '.htmlspecialchars($val);
@@ -839,13 +839,8 @@ function addUserHistory($email, $msg, $detail)
 
     $userid = Sql_Fetch_Row_Query("select id from $user_table where email = \"$email\"");
     if ($userid[0]) {
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ip = '';
-        }
         Sql_Query(sprintf('insert into %s (ip,userid,date,summary,detail,systeminfo)
-            values("%s",%d,now(),"%s","%s","%s")', $user_his_table, $ip, $userid[0], sql_escape($msg),
+            values("%s",%d,now(),"%s","%s","%s")', $user_his_table, getClientIP(), $userid[0], sql_escape($msg),
             sql_escape(htmlspecialchars($detail)), sql_escape($sysinfo)));
     }
 }
