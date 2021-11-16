@@ -88,10 +88,21 @@ jobs:
           firefox -v
           vendor/bin/behat -V
 
-      - name: Run BDD Tests
+      - name: Run BDD Tests UI
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+
+      - name: Run BDD Tests CLI
+        run: |
+          cd $GITHUB_WORKSPACE
+          export ADMIN_EMAIL=admin@phplist.dev
+          export ADMIN_PASSWORD=Mypassword123+
+          export ORGANISATION_NAME="phpList"
+          export ADMIN_NAME="phpList Administrator"
+          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
+          cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
 
       - name: Upload the screenshots
