@@ -147,6 +147,10 @@ foreach ($DBstruct as $table => $val) {
     $query = substr($query, 0, -1);
     $query .= "\n) default character set utf8";
 
+    if (!empty($GLOBALS['mysql_database_engine'])) {
+      $query .= ' engine '.$GLOBALS['mysql_database_engine'];
+    }
+
     // submit it to the database
     output(s('Initialising table')." <b>$table</b>");
     if (!$force && Sql_Table_Exists($tables[$table])) {
