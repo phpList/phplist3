@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "d1ed8a8452a0878f5de784dc7a52fc5cea7510e4"
+                "reference": "faac8dfef6d607628e0bc1ec4be7df5d5980140a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/d1ed8a8452a0878f5de784dc7a52fc5cea7510e4",
-                "reference": "d1ed8a8452a0878f5de784dc7a52fc5cea7510e4",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/faac8dfef6d607628e0bc1ec4be7df5d5980140a",
+                "reference": "faac8dfef6d607628e0bc1ec4be7df5d5980140a",
                 "shasum": ""
             },
             "require": {
@@ -134,10 +134,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.15.5",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.15.8",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2021-04-28T04:35:00+00:00"
+            "time": "2021-10-23T07:42:32+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -1033,16 +1033,16 @@
         },
         {
             "name": "phplist/phplist-ui-bootlist",
-            "version": "v2021-06-22",
+            "version": "v2021-11-15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpList/phplist-ui-bootlist.git",
-                "reference": "b3a9de656467cd3e7bfc3d2ebac7f3e3b47f7838"
+                "reference": "8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpList/phplist-ui-bootlist/zipball/b3a9de656467cd3e7bfc3d2ebac7f3e3b47f7838",
-                "reference": "b3a9de656467cd3e7bfc3d2ebac7f3e3b47f7838",
+                "url": "https://api.github.com/repos/phpList/phplist-ui-bootlist/zipball/8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce",
+                "reference": "8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce",
                 "shasum": ""
             },
             "require": {
@@ -1069,7 +1069,7 @@
                 "wiki": "http://resources.phplist.com/",
                 "source": "https://github.com/phpList/phpList3"
             },
-            "time": "2021-06-22T07:50:35+00:00"
+            "time": "2021-11-15T09:55:33+00:00"
         },
         {
             "name": "phplist/updater",
