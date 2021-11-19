@@ -91,8 +91,8 @@ jobs:
       - name: Run BDD Tests UI
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
 
       - name: Run BDD Tests CLI
         run: |
