@@ -215,7 +215,7 @@ jobs:
           else 
             RELEASE_FOLDER=phplist
           fi
-          echo ${{ secrets.SF_HOSTKEY }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
 
           sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
             cd /home/frs/project/phplist/
