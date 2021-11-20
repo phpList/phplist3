@@ -23,7 +23,7 @@ jobs:
       - name: Show the discovered version
         run: |
           if [[ $RELEASE_VERSION = "refs/heads/master" ]]; then
-            echo "RELEASE_VERSION=testing" >> $GITHUB_ENV
+            echo "RELEASE_VERSION=testing-RC1" >> $GITHUB_ENV
           fi
           echo \$RELEASE_VERSION = $RELEASE_VERSION
           echo \$\{\{ env.RELEASE_VERSION \}\} = ${{ env.RELEASE_VERSION }}
