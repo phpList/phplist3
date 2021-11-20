@@ -30,11 +30,11 @@ jobs:
           sudo apt update
           sudo apt install rsync
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: /tmp/composer-cache
-          key: ${{ matrix.php-version }}-${{ env.RELEASE_VERSION }}-${{ hashFiles('**/composer.lock') }}
+      # - name: Cache Composer dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: /tmp/composer-cache
+      #     key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Install dependencies
         uses: php-actions/composer@v6
