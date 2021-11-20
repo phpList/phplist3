@@ -60,17 +60,17 @@ jobs:
           mv phplist-ui-bootlist-master phplist-ui-bootlist
           rm master.tar.gz
 
-      - name: Start Test Server
-        run: |
-          cd $GITHUB_WORKSPACE
-          cp -fv tests/ci/behat.yml tests/behat.yml
-          cp -fv tests/ci/config.php public_html/lists/config/config.php
-          mkdir -p output/screenshots
-          touch output/screenshots/README.md
-          mkdir -p build/mails
-          ./bin/start-selenium > output/selenium.log 2>&1 &
-          sleep 5
-          sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
+      # - name: Start Test Server
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #     cp -fv tests/ci/behat.yml tests/behat.yml
+      #     cp -fv tests/ci/config.php public_html/lists/config/config.php
+      #     mkdir -p output/screenshots
+      #     touch output/screenshots/README.md
+      #     mkdir -p build/mails
+      #     ./bin/start-selenium > output/selenium.log 2>&1 &
+      #     sleep 5
+      #     sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       - name: Check PHP syntax errors
         uses: overtrue/phplint@2.4.1
@@ -88,36 +88,36 @@ jobs:
           firefox -v
           vendor/bin/behat -V
 
-      - name: Run BDD Tests UI
-        run: |
-          cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+      # - name: Run BDD Tests UI
+      #   run: |
+      #     cd $GITHUB_WORKSPACE/tests
+      #     ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
+      #     ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
 
-      - name: Run BDD Tests CLI
-        run: |
-          cd $GITHUB_WORKSPACE
-          export ADMIN_EMAIL=admin@phplist.dev
-          export ADMIN_PASSWORD=Mypassword123+
-          export ORGANISATION_NAME="phpList"
-          export ADMIN_NAME="phpList Administrator"
-          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
-          cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+      # - name: Run BDD Tests CLI
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #     export ADMIN_EMAIL=admin@phplist.dev
+      #     export ADMIN_PASSWORD=Mypassword123+
+      #     export ORGANISATION_NAME="phpList"
+      #     export ADMIN_NAME="phpList Administrator"
+      #     php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
+      #     cd $GITHUB_WORKSPACE/tests
+      #     ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
 
-      - name: Upload the screenshots
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          path: "output"
-          name: "behat output"
-          retention-days: 3
+      # - name: Upload the screenshots
+      #   if: always()
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     path: "output"
+      #     name: "behat output"
+      #     retention-days: 3
 
-      - name: Display output
-        run: |
-          cd $GITHUB_WORKSPACE
-        #  find . -type f
-        #  cat output/selenium.log
-        if: ${{ failure() }}
+      # - name: Display output
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #   #  find . -type f
+      #   #  cat output/selenium.log
+      #   if: ${{ failure() }}
 
 

@@ -105,6 +105,7 @@ jobs:
           rsync --version
           firefox -v
           which sftp 
+          which sshpass
           vendor/bin/behat -V
 
       - name: Run Behat Tests
@@ -204,4 +205,6 @@ jobs:
           access_key: ${{ secrets.AWS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #
-#      - name: Upload the files
+      - name: Upload the files
+        run: |
+
