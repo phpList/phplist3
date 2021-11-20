@@ -218,7 +218,8 @@ jobs:
 
           sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
             cd /home/frs/project/phplist/
-            ls -l $RELEASE_FOLDER
+            ls -l 
+            pwd
             bye
           EOF
 
