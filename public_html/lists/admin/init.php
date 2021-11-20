@@ -174,6 +174,9 @@ if (!isset($database_connection_compression)) {
 if (!isset($database_connection_ssl)) {
     $database_connection_ssl = false;
 }
+if (!isset($mysql_database_engine)) {
+  $mysql_database_engine = '';
+}
 
 //# @@ would be nice to move this to the config file at some point
 // http://mantis.phplist.com/view.php?id=15521
@@ -692,7 +695,7 @@ if (!defined('RFC_DIRECT_DELIVERY')) {
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/PEAR');
 $GLOBALS['has_curl'] = function_exists('curl_init');
 
-$GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
+$GLOBALS['jQuery'] = 'jquery-3.6.0.min.js';
 
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {

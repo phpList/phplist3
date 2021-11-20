@@ -105,7 +105,6 @@ require_once dirname(__FILE__).'/defaultconfig.php';
 
 require_once dirname(__FILE__).'/connect.php';
 include_once dirname(__FILE__).'/lib.php';
-require_once dirname(__FILE__).'/inc/netlib.php';
 require_once dirname(__FILE__).'/inc/interfacelib.php';
 
 if (!empty($cline['-']) && $cline['-'] == 'version') {
@@ -186,7 +185,7 @@ if (isset($GLOBALS['pageheader'])) {
 $GLOBALS['require_login'] = 1; ## this is no longer configurable and should never have been
 if ($GLOBALS['commandline']) {
     cl_output(ClineSignature());
-    if (!isset($_SERVER['USER']) && count($GLOBALS['commandline_users'])) {
+    if (!isset($_SERVER['USER']) && is_array($GLOBALS['commandline_users']) && count($GLOBALS['commandline_users'])) {
         clineError('USER environment variable is not defined, cannot do access check. Please make sure USER is defined.');
         exit;
     }
@@ -718,6 +717,7 @@ if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
 }
 clearstatcache();
 if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
+
     if (checkAccess($page) || $page == 'about') {
         // check whether there is a language file to include
         if (is_file('lan/'.$_SESSION['adminlanguage']['iso'].'/'.$include)) {

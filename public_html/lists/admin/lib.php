@@ -881,6 +881,10 @@ function system_messageHeaders($useremail = '')
 
 function logEvent($msg)
 {
+    global $tables;
+    if (!Sql_Table_Exists($tables['eventlog'])) {
+        return;
+    }
     $logged = false;
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $logged = $logged || $plugin->logEvent($msg);
@@ -889,7 +893,6 @@ function logEvent($msg)
         return;
     }
 
-    global $tables;
     if (isset($GLOBALS['page'])) {
         $p = $GLOBALS['page'];
     } elseif (isset($_GET['page'])) {
@@ -898,9 +901,6 @@ function logEvent($msg)
         $p = $_GET['p'];
     } else {
         $p = 'unknown page';
-    }
-    if (!Sql_Table_Exists($tables['eventlog'])) {
-        return;
     }
     Sql_Query(sprintf('insert into %s (entered,page,entry) values(now(),"%s","%s")', $tables['eventlog'],
         $p, sql_escape($msg)));
@@ -979,7 +979,7 @@ function getPageLock($force = 0)
     if (!empty($GLOBALS['commandline'])) {
         $processIdentifier = SENDPROCESS_SERVERNAME.':'.getmypid();
     } else {
-        $processIdentifier = $_SERVER['REMOTE_ADDR'];
+        $processIdentifier = getClientIP();
     }
     $res = Sql_query('insert into '.$tables['sendprocess'].' (started,page,alive,ipaddress) values(now(),"'.$thispage.'",1,"'.$processIdentifier.'")');
     $send_process_id = Sql_Insert_Id();
@@ -2140,7 +2140,7 @@ function subscribeToAnnouncementsForm($emailAddress = '')
         .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
         .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
         '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
-        '<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+        '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
 <input type="text" name="email" value="" id="emailaddress" />
@@ -2395,4 +2395,57 @@ function asyncLoadContentDiv($url,$divname)
 function sanitiseId($value)
 {
     return preg_replace('/[^0-9A-Za-z\-_:.]/', '', $value);
+}
+
+function getClientIP()
+{
+    static $the_ip = null;
+
+    if ($the_ip !== null) {
+        return $the_ip;
+    }
+    if (function_exists('apache_request_headers')) {
+        $headers = apache_request_headers();
+        //logEvent("apache_request_headers");
+    } else {
+        $headers = $_SERVER;
+        //logEvent("_SERVER");
+    }
+
+    if (array_key_exists('X-Forwarded-For', $headers)) {
+        //logEvent("server1=".$headers['X-Forwarded-For']);
+    }
+
+    if (array_key_exists('HTTP_X_FORWARDED_FOR', $headers)) {
+        //logEvent("server2=".$headers['HTTP_X_FORWARDED_FOR']);
+    }
+
+    if (array_key_exists('X-Forwarded-For', $headers)) {
+        $forwarded_for = $headers['X-Forwarded-For'];
+        $forwarded_list = explode(',', $forwarded_for);
+        $forwarded_list = array_map('trim', $forwarded_list);
+        $the_ip = array_shift($forwarded_list);
+
+        if (filter_var($the_ip, FILTER_VALIDATE_IP)) {
+            //logEvent("X-Forwarded-For ip=".$the_ip);
+            return $the_ip;
+        }
+    }
+
+    if (array_key_exists('HTTP_X_FORWARDED_FOR', $headers)) {
+        $forwarded_for = $headers['HTTP_X_FORWARDED_FOR'];
+        $forwarded_list = explode(',', $forwarded_for);
+        $forwarded_list = array_map('trim', $forwarded_list);
+        $the_ip = array_shift($forwarded_list);
+
+        if (filter_var($the_ip, FILTER_VALIDATE_IP)) {
+            //logEvent("HTTP_X_FORWARDED_FOR ip=".$the_ip);
+            return $the_ip;
+        }
+    }
+
+    $the_ip = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
+    //logEvent("REMOTE_ADDR ip=".$the_ip);
+
+    return $the_ip;
 }
