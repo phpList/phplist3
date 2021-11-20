@@ -1,9 +1,7 @@
 
 name: Build Release
 
-on:
-  push:
-    tags: v[1-9]+.[0-9]+.*
+on: [push]
 
 jobs:
   test:
@@ -106,6 +104,7 @@ jobs:
           which rsync
           rsync --version
           firefox -v
+          which sftp 
           vendor/bin/behat -V
 
       - name: Run Behat Tests
@@ -206,7 +205,3 @@ jobs:
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload the files
-        run: |
-          cd ..
-          s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
-          s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
