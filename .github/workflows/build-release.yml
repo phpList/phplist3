@@ -218,9 +218,11 @@ jobs:
           echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
 
           sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
-            cd /home/frs/project/phplist/
+            cd /home/frs/project/phplist/$RELEASE_FOLDER
+            mkdir $RELEASE_VERSION
+            cd $RELEASE_VERSION
+            put phplist-${RELEASE_VERSION}.*
             ls -l 
-            pwd
             bye
           EOF
 
