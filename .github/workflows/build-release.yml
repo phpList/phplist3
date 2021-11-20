@@ -71,23 +71,23 @@ jobs:
           cd base
           composer update --no-dev
 
-      - name: Create Database
-        run: |
-          sudo systemctl start mysql.service
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
-          sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'grant all on phplistdb.* to phplist@localhost identified by "phplist"'
+      # - name: Create Database
+      #   run: |
+      #     sudo systemctl start mysql.service
+      #     sudo mysql -proot  -e 'drop database if exists phplistdb'
+      #     sudo mysqladmin -proot create phplistdb
+      #     sudo mysql -proot -e 'grant all on phplistdb.* to phplist@localhost identified by "phplist"'
 
-      - name: Start Test Server
-        run: |
-          cd $GITHUB_WORKSPACE
-          cp -fv tests/ci/behat.yml tests/behat.yml
-          cp -fv tests/ci/config.php public_html/lists/config/config.php
-          mkdir -p output/screenshots
-          mkdir -p build/mails
-          ./bin/start-selenium > output/selenium.log 2>&1 &
-          sleep 5
-          sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
+      # - name: Start Test Server
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #     cp -fv tests/ci/behat.yml tests/behat.yml
+      #     cp -fv tests/ci/config.php public_html/lists/config/config.php
+      #     mkdir -p output/screenshots
+      #     mkdir -p build/mails
+      #     ./bin/start-selenium > output/selenium.log 2>&1 &
+      #     sleep 5
+      #     sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       # - name: Check PHP syntax errors
       #   uses: overtrue/phplint@2.4.1
@@ -216,7 +216,7 @@ jobs:
             RELEASE_FOLDER=phplist
           fi
 
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+          sshpass -e sftp -o 'StrictHostKeyChecking no' -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
             cd /home/frs/project/phplist/
             ls -l 
             pwd
