@@ -24,10 +24,12 @@ jobs:
 
       - name: Show the discovered version
         run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
-          echo $GITHUB_REF
-          echo ${{ env.GITHUB_REF }}
+          if [[ $RELEASE_VERSION = "refs/heads/master" ]]; then
+            echo "RELEASE_VERSION=testing-RC1" >> $GITHUB_ENV
+          fi
+          echo \$RELEASE_VERSION = $RELEASE_VERSION
+          echo \$\{\{ env.RELEASE_VERSION \}\} = ${{ env.RELEASE_VERSION }}
+          echo \$GITHUB_REF = $GITHUB_REF
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
@@ -106,6 +108,8 @@ jobs:
           which rsync
           rsync --version
           firefox -v
+          which sftp 
+          which sshpass
           vendor/bin/behat -V
 
       - name: Run Behat Tests
@@ -134,7 +138,7 @@ jobs:
           cat public_html/lists/admin/init.php | tr '\n' '\r' | sed 's~//## remove on rollout.*//## end remove on rollout ###~define("VERSION","'${RELEASE_VERSION}'");~' | tr '\r' '\n' > /tmp/$$.init
           mv -f /tmp/$$.init public_html/lists/admin/init.php
           sed -i s~define\(\'STRUCTUREVERSION\'.*~define\(\'STRUCTUREVERSION\',\"${RELEASE_VERSION}\"\)\;~ public_html/lists/admin/structure.php
-          sed -i s/^VERSION=/VERSION=${RELEASE_VERSION}/ VERSION
+          sed -i s/^VERSION=.*/VERSION=${RELEASE_VERSION}/ VERSION
 
           cd ..
           zip -rq9 phplist-${RELEASE_VERSION}.zip phplist-${RELEASE_VERSION}
@@ -207,6 +211,22 @@ jobs:
 
       - name: Upload the files
         run: |
+          export SSHPASS=${{ secrets.SF_PASS }}
+          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
+            RELEASE_FOLDER=phplist-development
+          else 
+            RELEASE_FOLDER=phplist
+          fi
+          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
+          cd $GITHUB_WORKSPACE
           cd ..
-          s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
-          s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
+
+          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+            cd /home/frs/project/phplist/$RELEASE_FOLDER
+            mkdir $RELEASE_VERSION
+            cd $RELEASE_VERSION
+            put phplist-${RELEASE_VERSION}.*
+            ls -l 
+            bye
+          EOF
+
