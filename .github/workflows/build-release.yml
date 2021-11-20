@@ -216,9 +216,9 @@ jobs:
             RELEASE_FOLDER=phplist
           fi
 
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << !
+          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
             cd /home/frs/project/phplist/
             ls -l $RELEASE_FOLDER
             bye
-          !
+          EOF
 
