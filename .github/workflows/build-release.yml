@@ -209,7 +209,13 @@ jobs:
           access_key: ${{ secrets.AWS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Upload the files
+      - name: Upload the files to S3
+        run: |
+          cd ..
+          s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
+          s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
+
+      - name: Upload the files to SF
         run: |
           export SSHPASS=${{ secrets.SF_PASS }}
           if [[ $RELEASE_VERSION =~ "-RC" ]]; then
