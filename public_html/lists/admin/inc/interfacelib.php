@@ -455,6 +455,9 @@ class WebblerListing
         foreach ($this->elements as $element) {
             $html .= $this->listingElement($element);
         }
+	if (!empty($this->insideNav)) {
+            $html .= sprintf('<tr><td colspan="%d">%s</td></tr>', count($this->columns) + 1, $this->insideNav);
+        }
         $html .= $this->listingEnd();
 
         if ($this->usePanel) {
