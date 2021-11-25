@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-02-17 22:22+0000\n"
-"Last-Translator: Joël Gaillard <joel.gaillard@online.fr>\n"
+"PO-Revision-Date: 2021-10-05 13:21+0000\n"
+"Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
 "Language: fr\n"
@@ -383,8 +383,7 @@ msgstr "Serveur :"
 
 #: public_html/lists/admin/actions/processqueue.php:989
 msgid "Campaign sending timed out, is past date to process until"
-msgstr ""
-"Délai dépassé pour l'envoi de la campagne, traitement reporté jusqu'à ce que"
+msgstr "Délais dépassé pour l'envoi de la campagne, traitement reporté jusqu'à"
 
 #: public_html/lists/admin/send_core.php:1276
 msgid "Incorrect URL for sending"
@@ -1666,7 +1665,7 @@ msgstr "Brouillon"
 #: public_html/lists/admin/actions/import2.php:517
 #, php-format
 msgid "Subscriber data was updated for %d subscribers"
-msgstr "Les données des destinataires ont été mises à jour pour %d d'entre eux"
+msgstr "Les données ont été mises à jour pour %d abonné·es"
 
 #: public_html/databasestructure.php:335
 msgid "pagetitle:importadmin"
@@ -6491,7 +6490,7 @@ msgstr "Adresse de réponse pour les messages du système"
 #: public_html/lists/admin/import3.php:380,
 #: public_html/lists/admin/initialise.php:161
 msgid "ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: public_html/lists/admin/import3.php:274
 msgid "Attribute one"
@@ -7061,7 +7060,7 @@ msgstr "Il n'y a pas de liste disponible"
 #: public_html/lists/admin/actions/campaigns.php:41,
 #: public_html/lists/admin/actions/bounces.php:44
 msgid "view"
-msgstr "Afficher"
+msgstr "affichage"
 
 #: public_html/lists/admin/defaultconfig.php:635
 msgid "String to always append to remote URL when using send-a-webpage"
@@ -10753,3 +10752,15 @@ msgid ""
 msgstr ""
 "Export de tous les abonnés. Utiliser -l[listnumber] pour exporter les "
 "abonnés d'une liste"
+
+#: public_html/lists/admin/defaultconfig.php:168
+msgid "Analytics tracking code to add to campaign URLs"
+msgstr "Code de suivi d'analyse à ajouter à l'URL de la campagne"
+
+#: public_html/lists/admin/defaultconfig.php:160
+msgid "Always add analytics tracking code to campaigns"
+msgstr "Toujours ajouter un code de suivi d'analyse aux campagnes"
+
+#: public_html/lists/admin/send_core.php:1039
+msgid "Add analytics tracking code"
+msgstr "Ajouter un code de suivi pour analyse"
