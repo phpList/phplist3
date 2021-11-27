@@ -37,6 +37,7 @@ RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
     find . -type f -print0 | xargs -0 chmod 644
 
 RUN chown -R www-data: /var/www/phpList3
+USER www-data
 
 EXPOSE 80 
 
