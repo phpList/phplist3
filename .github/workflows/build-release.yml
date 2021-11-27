@@ -199,7 +199,8 @@ jobs:
           sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
           sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
           ls -l 
-          mv phplist-$RELEASE_VERSION phplist3 
+          ## move the files for use in Docker build
+          mv phplist-$RELEASE_VERSION $GITHUB_WORKSPACE 
           cd $GITHUB_WORKSPACE
 
       - name: Set up S3cmd cli tool
@@ -216,24 +217,23 @@ jobs:
           s3cmd put phplist-${RELEASE_VERSION}.* s3://${{ secrets.AWS_S3_VERSIONS_BUCKET }}/
           s3cmd put phplist3/public_html/lists/admin/images/power-phplist.png s3://${{ secrets.AWS_S3_POWERED_BUCKET }}/images/${RELEASE_VERSION}/
 
-      - name: Upload the files to SF
-        run: |
-          export SSHPASS=${{ secrets.SF_PASS }}
-          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
-            RELEASE_FOLDER=phplist-development
-          else 
-            RELEASE_FOLDER=phplist
-          fi
-          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
-          cd $GITHUB_WORKSPACE
-          cd ..
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
-            cd /home/frs/project/phplist/$RELEASE_FOLDER
-            mkdir $RELEASE_VERSION
-            cd $RELEASE_VERSION
-            put phplist-${RELEASE_VERSION}.*
-            ls -l 
-            bye
-          EOF
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          no-cache: true
+          file: Dockerfile.release
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/phplist-dev:${{ env.RELEASE_VERSION }}
+          build-args: |
+            VERSION=${{ env.RELEASE_VERSION }}
