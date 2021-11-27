@@ -157,7 +157,7 @@ if ($login_required && empty($_SESSION['userloggedin'])) {
         } else {
             session_regenerate_id();
             loadUser($emailcheck);
-            $_SESSION['userloggedin'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['userloggedin'] = getClientIP();
         }
     } elseif (!empty($_POST['forgotpassword'])) {
         // forgot password button pushed
@@ -1045,7 +1045,7 @@ function forwardPage($id)
         $GLOBALS['tables']['usermessage'], $userdata['id'], $mid));
     if (empty($userdata['id']) || $allowed[0] != $userdata['id']) {
         //# when sending a test email as an admin, the entry isn't there yet
-        if (empty($_SESSION['adminloggedin']) || $_SESSION['adminloggedin'] != $_SERVER['REMOTE_ADDR']) {
+        if (empty($_SESSION['adminloggedin']) || $_SESSION['adminloggedin'] != getClientIP()) {
             FileNotFound('<br/><i>'.$GLOBALS['I18N']->get('When testing the phpList forward functionality, you need to be logged in as an administrator.').'</i><br/>');
         }
     }

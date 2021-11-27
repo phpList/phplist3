@@ -9,14 +9,18 @@ if (!defined('PHPLISTINIT')) {
 function accessLevel($page)
 {
     global $tables, $access_levels;
+    if (!empty($GLOBALS['firsttime']) || !empty($_SESSION['firstinstall'])) {
+      return 'all';
+    }
+
     if (isSuperUser()) {
         return 'all';
     }
     if (!isset($_SESSION['adminloggedin'])) {
-        return 0;
+        return "none";
     }
     if (!is_array($_SESSION['logindetails'])) {
-        return 0;
+        return "none";
     }
 
     //# for non-supers we only allow owner views
@@ -35,7 +39,10 @@ function isSuperUser()
 {
     //# for now mark webbler admins superuser
     if (defined('WEBBLER') || defined('IN_WEBBLER')) {
-        return 1;
+        return true;
+    }
+    if (!empty($GLOBALS['firsttime'])) {
+      return true;
     }
     if (!empty($GLOBALS['commandline'])) {
         return true;
@@ -58,5 +65,5 @@ function isSuperUser()
         $_SESSION['logindetails']['superuser'] = $issuperuser;
     }
 
-    return $issuperuser;
+    return !empty($issuperuser);
 }

@@ -100,9 +100,9 @@ if (isset($_POST['password1']) && isset($_POST['password2'])) {
 //      echo "    <tr><td><span class=\"general\">".$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
 //      echo "    <tr><td>".$row[0]."</td></tr>";
         echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('New password').":</span></td></tr>\n";
-        echo '    <tr><td><input type="password" name="password1" value="" size="30" /></td></tr>';
+        echo '    <tr><td><input type="password" name="password1" value="" size="30" pattern=".{8,}" required title="'.$GLOBALS['I18N']->get('Password must be at least 8 characters').'" /></td></tr>';
         echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('Confirm password').':</span></td></tr>';
-        echo '    <tr><td><input type="password" name="password2" value="" size="30" /></td></tr>';
+        echo '    <tr><td><input type="password" name="password2" value="" size="30" pattern=".{8,}" required title="'.$GLOBALS['I18N']->get('Password must be at least 8 characters').'" /></td></tr>';
         echo '    <tr><td><input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Continue').'" /></td></tr>';
         echo '  </table>';
         echo '</form>';

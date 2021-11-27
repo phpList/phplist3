@@ -602,8 +602,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         output('click track end');
     }
 //exit;
-    //# if we're not tracking clicks, we should add Google tracking here
-    //# otherwise, we can add it when redirecting on the click
+    // if we're not tracking clicks, we should add Google tracking here
+    // otherwise, we can add it when redirecting on the click
+    // Add analytics tracking parameters only to http and https URLs
     if (!CLICKTRACK && !empty($cached[$messageid]['google_track'])) {
         /*
          * process html format email
@@ -616,9 +617,12 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         for ($i = 0; $i < count($links[3]); ++$i) {
             $link = cleanUrl($links[3][$i]);
             $link = str_replace('"', '', $link);
-            $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
-            $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
-            $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
+
+            if (preg_match('/^http/i', $link)) {
+                $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
+                $newlink = sprintf('<a %shref="%s" %s>%s</a>', $links[1][$i], $newurl, $links[4][$i], $links[5][$i]);
+                $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
+            }
         }
         /*
          * process plain-text format email
@@ -633,13 +637,9 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             if (preg_match('/\.$/', $link)) {
                 $link = substr($link, 0, -1);
             }
-
-            if (preg_match('/^http|ftp/i', $link)) {
-                // && !strpos($link,$clicktrack_root)) {
-                $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
-                $newlinks[$i] = $newurl;
-                $textmessage = str_replace($links[1][$i], '[%%%'.$i.'%%%]', $textmessage);
-            }
+            $newurl = addAnalyticsTracking($link, $trackingParameters, $prefix);
+            $newlinks[$i] = $newurl;
+            $textmessage = str_replace($links[1][$i], '[%%%'.$i.'%%%]', $textmessage);
         }
         foreach ($newlinks as $linkid => $newlink) {
             $textmessage = str_replace('[%%%'.$linkid.'%%%]', $newlink, $textmessage);
@@ -1281,13 +1281,15 @@ function clickTrackLinkId($messageid, $userid, $url, $link)
             $GLOBALS['tables']['linktrack_ml'], $messageid, $fwdid));
         if (!Sql_Affected_Rows()) {
             //# first time for this link/message
+            $total = 1;
             Sql_Query(sprintf('replace into %s set total = %d,messageid = %d,forwardid = %d',
-                $GLOBALS['tables']['linktrack_ml'], $tot[0] + 1, $messageid, $fwdid));
+                $GLOBALS['tables']['linktrack_ml'], $total, $messageid, $fwdid));
         } else {
+            $total = $tot[0] + 1;
             Sql_Query(sprintf('update %s set total = %d where messageid = %d and forwardid = %d',
-                $GLOBALS['tables']['linktrack_ml'], $tot[0] + 1, $messageid, $fwdid));
+                $GLOBALS['tables']['linktrack_ml'], $total, $messageid, $fwdid));
         }
-        $cached['linktracksent'][$messageid][$fwdid] = $tot[0] + 1;
+        $cached['linktracksent'][$messageid][$fwdid] = $total;
     } else {
         ++$cached['linktracksent'][$messageid][$fwdid];
         //# write every so often, to make sure it's saved when interrupted

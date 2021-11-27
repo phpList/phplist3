@@ -80,6 +80,20 @@ class phplistMailer extends phplistMailerBase
 
         if ($GLOBALS['emailsenderplugin']) {
             $this->Mailer = 'plugin';
+        } elseif (!$this->inBlast && empty($_SESSION['adminloggedin']) && 
+            defined('PHPMAILERSUBSCRIBEHOST') && 
+            defined('PHPMAILERSUBSCRIBEPORT') && PHPMAILERSUBSCRIBEHOST != '') {
+#            logEvent('Sending email via PHPMAILERSUBSCRIBEHOST '.PHPMAILERSUBSCRIBEHOST);
+            $this->Host = PHPMAILERSUBSCRIBEHOST;
+            $this->Port = PHPMAILERSUBSCRIBEPORT;
+            if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
+                && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
+            ) {
+                $this->Username = $GLOBALS['phpmailer_smtpuser'];
+                $this->Password = $GLOBALS['phpmailer_smtppassword'];
+                $this->SMTPAuth = true;
+            }
+            $this->Mailer = 'smtp';
         } elseif ($this->inBlast && defined('PHPMAILERBLASTHOST') && defined('PHPMAILERBLASTPORT') && PHPMAILERBLASTHOST != '') {
             $this->Host = PHPMAILERBLASTHOST;
             $this->Port = PHPMAILERBLASTPORT;
@@ -95,7 +109,7 @@ class phplistMailer extends phplistMailerBase
             if (defined('PHPMAILERPORT')) {
                 $this->Port = PHPMAILERPORT;
             }
-            //logEvent('Sending email via '.PHPMAILERHOST);
+#            logEvent('Sending email via PHPMAILERTESTHOST '.PHPMAILERTESTHOST);
             $this->Host = PHPMAILERTESTHOST;
             if (isset($GLOBALS['phpmailer_smtpuser']) && $GLOBALS['phpmailer_smtpuser'] != ''
                 && isset($GLOBALS['phpmailer_smtppassword']) && $GLOBALS['phpmailer_smtppassword']
@@ -111,6 +125,7 @@ class phplistMailer extends phplistMailerBase
             }
             //logEvent('Sending email via '.PHPMAILERHOST);
             $this->Host = PHPMAILERHOST;
+#            logEvent('Sending email via PHPMAILERHOST '.PHPMAILERHOST);
             if (POP_BEFORE_SMTP) {
                 // authenticate using the smtp user and password
                 $pop = new POP3();
@@ -170,7 +185,7 @@ class phplistMailer extends phplistMailerBase
 //        $this->addCustomHeader("Return-Receipt-To: ".$GLOBALS["message_envelope"]);
         }
         //# when the email is generated from a webpage (quite possible :-) add a "received line" to identify the origin
-        if (!empty($_SERVER['REMOTE_ADDR'])) {
+        if (!empty(getClientIP())) {
             $this->add_timestamp();
         }
         $this->messageid = $messageid;
@@ -192,7 +207,7 @@ class phplistMailer extends phplistMailerBase
         //0013076:
         // Add a line like Received: from [10.1.2.3] by website.example.com with HTTP; 01 Jan 2003 12:34:56 -0000
         // more info: http://www.spamcop.net/fom-serve/cache/369.html
-        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $ip_address = getClientIP();
         if (!empty($_SERVER['REMOTE_HOST'])) {
             $ip_domain = $_SERVER['REMOTE_HOST'];
         } else {

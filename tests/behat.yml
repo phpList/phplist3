@@ -1,73 +1,86 @@
 default:
-    autoload:
-        - ./features/bootstrap
-    suites:
+  autoload:
+    - ./features/bootstrap
+  suites:
+    default:
+      paths:
+        - ./features
+      contexts:
+        - FeatureContext:
+          # Set database access credentials
+          database:
+            host: 127.0.0.1
+            user: phplist
+            password: phplist
+            name: phplistdb
+          # Set admin user login credentials
+          admin:
+            username: admin
+            password: Mypassword123+
+          mail_dir: build/mails
+        - SubscriberContext
+        - UserContext
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://127.0.0.1'
+      default_session: goutte
+      goutte: ~
+      sessions:
         default:
-            paths:
-                - ./features
-            contexts:
-                - FeatureContext:
-                    # Set database access credentials
-                    database:
-                        host: 127.0.0.1
-                        user: phplist
-                        password: phplist
-                        name: phplistdb
-                    # Set admin user login credentials
-                    admin:
-                        username: admin
-                        password: Mypassword123+
-                - MailContext:
-                    mail_dir: build/mails
-                - SubscriberContext
-                - UserContext
-    extensions:
-        Behat\MinkExtension:
-            base_url:  'http://127.0.0.1'
-            default_session: goutte
-            goutte: ~
-            sessions:
-                default:
-                    goutte: ~
-                chrome:
-                    selenium2:
-                        browser: chrome
-                        capabilities:
-                            browserName: chrome
-                            browser: chrome
-                            version: ""
-                            chrome:
-                                switches:
-                                    - "--headless"
-                                    - "--disable-gpu"
-                                    - "--window-size=2000,2000"
-                                    - "--lang=en"
-                                    - "--no-sandbox"
+          goutte: ~
+        chrome:
+          selenium2:
+            browser: chrome
+            capabilities:
+              browserName: chrome
+              browser: chrome
+              version: ""
+              chrome:
+                switches:
+                  - "--headless"
+                  - "--disable-gpu"
+                  - "--window-size=2000,2000"
+                  - "--lang=en"
+                  - "--no-sandbox"
 
-                firefox:
-                    selenium2:
-                        wd_host: http://127.0.0.1:4444/wd/hub
-                        capabilities:
-                            browser: firefox
-                            version: ""
-                            marionette: true
-                javascript:
-                    selenium2:
-                        browser: "firefox"
-                        wd_host: http://127.0.0.1:4444/wd/hub
+        firefox:
+          selenium2:
+            wd_host: http://127.0.0.1:4444/wd/hub
+            capabilities:
+              browser: firefox
+              version: ""
+              marionette: true
+        javascript:
+          selenium2:
+            browser: "firefox"
+            wd_host: http://127.0.0.1:4444/wd/hub
+    FailAid\Extension:
+      screenshot:
+        directory: output/screenshots/
+        mode: default
+        autoClean: false
+        size: 1444x1280
+    Bex\Behat\ScreenshotExtension:
+      active_image_drivers: [local]
+      image_drivers:
+        local:
+          screenshot_directory: output/screenshots
+          clear_screenshot_directory: true  
+
+
 
 goutte:
-    extensions:
-        Behat\MinkExtension:
-            default_session: goutte
+  extensions:
+    Behat\MinkExtension:
+      default_session: goutte
 
 chrome:
-    extensions:
-        Behat\MinkExtension:
-            browser_name: chrome
-            default_session: chrome
+  extensions:
+    Behat\MinkExtension:
+      browser_name: chrome
+      default_session: chrome
 firefox:
-    extensions:
-        Behat\MinkExtension:
-            default_session: firefox
-            browser_name: firefox
+  extensions:
+    Behat\MinkExtension:
+      default_session: firefox
+      browser_name: firefox
