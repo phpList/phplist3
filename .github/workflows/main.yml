@@ -11,9 +11,11 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.2', '7.2', '7.3', '7.4', '8.0']
+        php-version: ['7.2', '7.2', '7.3', '7.4']
         experimental: [false]
         include:
+          - php-version: 8.0
+            experimental: true
           - php-version: 8.1
             experimental: true
 
@@ -44,7 +46,7 @@ jobs:
         with:
           dev: yes
           args: --prefer-dist --no-interaction
-          php_version: 7.4
+          php_version: ${{ matrix.php-version }}
           php_extensions: xml 
           version: 2
 
