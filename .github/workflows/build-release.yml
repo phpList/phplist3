@@ -198,10 +198,11 @@ jobs:
           md5sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.md5
           sha256sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha256
           sha1sum phplist-${RELEASE_VERSION}.* > phplist-${RELEASE_VERSION}.sha1
-          ## move the files for use in Docker build
-          mv phplist-$RELEASE_VERSION $GITHUB_WORKSPACE 
-          cd $GITHUB_WORKSPACE
           ls -l 
+          ## move the files for use in Docker build
+          mv phplist-$RELEASE_VERSION phplist3 
+          cd $GITHUB_WORKSPACE
+          cp ../phplist-${RELEASE_VERSION}.tgz .
 
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
