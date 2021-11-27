@@ -21,7 +21,7 @@ jobs:
 
       - name: Find the version
       #  run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
-        run: echo "RELEASE_VERSION=5.6.7-RC17" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=CI-testbuild-unstable-RC1" >> $GITHUB_ENV
 
       - name: Show the discovered version
         run: |
