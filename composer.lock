@@ -1033,16 +1033,16 @@
         },
         {
             "name": "phplist/phplist-ui-bootlist",
-            "version": "v2021-11-15",
+            "version": "v2021-11-23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpList/phplist-ui-bootlist.git",
-                "reference": "8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce"
+                "reference": "0519610e0f06a3b012c129c06dbdb60f2b594095"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpList/phplist-ui-bootlist/zipball/8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce",
-                "reference": "8870dcec8bf2a5bc3e1290c9b1ea64c435fca2ce",
+                "url": "https://api.github.com/repos/phpList/phplist-ui-bootlist/zipball/0519610e0f06a3b012c129c06dbdb60f2b594095",
+                "reference": "0519610e0f06a3b012c129c06dbdb60f2b594095",
                 "shasum": ""
             },
             "require": {
@@ -1069,7 +1069,7 @@
                 "wiki": "http://resources.phplist.com/",
                 "source": "https://github.com/phpList/phpList3"
             },
-            "time": "2021-11-15T09:55:33+00:00"
+            "time": "2021-11-23T20:08:37+00:00"
         },
         {
             "name": "phplist/updater",
