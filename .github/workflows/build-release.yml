@@ -222,7 +222,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          path: "phplist-${RELEASE_VERSION}.tgz"
+          path: "phplist-*.tgz"
           name: "tgzip"
           retention-days: 3
 

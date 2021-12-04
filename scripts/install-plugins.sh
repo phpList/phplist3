@@ -12,7 +12,7 @@ echo $from $to
 }
 
 for plugin in $(find $from -type d -name phplist-plugin-*); do
-  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && {}
+  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && {
     echo installing plugin $plugin
     rsync -a $plugin/plugins/* $to
   }
