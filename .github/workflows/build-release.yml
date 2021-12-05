@@ -21,7 +21,7 @@ jobs:
 
       - name: Find the version
       #  run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
-        run: echo "RELEASE_VERSION=3.6.6-CI-testbuild-unstable-$$" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=3.6.6-CI-testbuild-unstable-RC$$" >> $GITHUB_ENV
 
       - name: Show the discovered version
         run: |
@@ -223,7 +223,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: "phplist-*.tgz"
-          name: "tgzip"
+          name: "phpList Release File"
           retention-days: 3
 
       - name: Upload the files to SF
