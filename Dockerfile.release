@@ -6,9 +6,9 @@ LABEL maintainer="michiel@phplist.com"
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y apt-utils \
-    vim apache2 php-mysql \
+    apache2 php-mysql \
     libapache2-mod-php php-curl php-gd \
-    git cron php-imap php-xml php-zip php-mbstring
+    cron php-imap php-xml php-zip php-mbstring
 
 RUN useradd -d /var/www/phpList3 phplist
 
@@ -29,8 +29,9 @@ COPY docker/docker-phplist-config-live.php /etc/phplist/config.php
 
 COPY phplist-${VERSION}.tgz ./
 
-RUN tar zvxf phplist-$VERSION.tgz
+RUN tar zxf phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
+RUN rm -rf /phplist-$VERSION*
 
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
     cd /var/www/ && find . -type d -name .git -print0 | xargs -0 rm -rf && \
@@ -39,9 +40,6 @@ RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
 
 RUN chown -R www-data: /var/www/phpList3
 
-#USER www-data
-
 EXPOSE 80 
 
-VOLUME ["/var/www", "/var/log/apache2"]
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
