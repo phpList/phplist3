@@ -37,7 +37,6 @@ fi
 /usr/bin/phplist -pinitialise ## https://github.com/phpList/phplist3/issues/718 - @TODO make this work
 /usr/bin/phplist -pinitlanguages
 
-echo READY
-echo $(phplist --version)
 service cron start
+echo $(phplist --version) READY
 /usr/sbin/apache2ctl -D FOREGROUND

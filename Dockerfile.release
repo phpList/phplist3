@@ -19,10 +19,14 @@ RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
 RUN rm -rf /etc/phplist && mkdir /etc/phplist
 
 COPY docker/docker-apache-phplist.conf /etc/apache2/sites-available
+COPY docker/security.conf /etc/apache2/conf-available
 COPY docker/docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 RUN a2ensite docker-apache-phplist
 RUN a2enmod rewrite
+RUN a2enmod headers
+RUN a2disconf other-vhosts-access-log
+RUN sed -i s/LogLevel.*/LogLevel\ warn/ /etc/apache2/apache2.conf
 
 COPY docker/phplist-crontab /etc/cron.d/
 COPY docker/docker-phplist-config-live.php /etc/phplist/config.php
