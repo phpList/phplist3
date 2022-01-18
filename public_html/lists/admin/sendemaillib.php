@@ -909,6 +909,8 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             $subject = $GLOBALS['strFwd'].': '.$cached[$messageid]['subject'];
             $mail->AddReplyTo($forwardedby['email'], $forwardedby['subscriberName']);
         }
+        
+        $subject = parsePlaceHolders($subject, $user_att_values);
 
         if ($getspeedstats) {
             output('build End '.$GLOBALS['processqueue_timer']->interval(1));
