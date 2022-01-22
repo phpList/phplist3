@@ -672,7 +672,7 @@ if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
     $allowed_referrers = array();
 }
-if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && in_array($_SERVER['HTTP_ORIGIN'], ACCESS_CONTROL_ALLOW_ORIGINS)) {
+if (isset($_SERVER['HTTP_ORIGIN']) && defined('ACCESS_CONTROL_ALLOW_ORIGINS') && in_array($_SERVER['HTTP_ORIGIN'], ACCESS_CONTROL_ALLOW_ORIGINS)) {
     define('ACCESS_CONTROL_ALLOW_ORIGIN', $_SERVER['HTTP_ORIGIN']);
 } elseif (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) {
     define('ACCESS_CONTROL_ALLOW_ORIGIN', $GLOBALS['scheme'].'://'.$_SERVER['HTTP_HOST']);
