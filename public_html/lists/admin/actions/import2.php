@@ -284,7 +284,7 @@ if ($total > 0) {
                 if ($new || (!$new && $_SESSION['overwrite'] == 'yes')) {
                     $query = '';
                     ++$count['dataupdate'];
-                    $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'],
+                    $old_data = Sql_Fetch_Assoc_Query(sprintf('select * from %s where id = %d', $tables['user'],
                         $userid));
                     $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
                     foreach ($user['systemvalues'] as $column => $value) {
@@ -397,16 +397,20 @@ if ($total > 0) {
                             }
                         }
                     }
-                    $current_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'],
+                    $current_data = Sql_Fetch_Assoc_Query(sprintf('select * from %s where id = %d', $tables['user'],
                         $userid));
                     $current_data = array_merge($current_data, getUserAttributeValues('', $userid));
                     $information_changed = 0;
+
                     foreach ($current_data as $key => $val) {
-                        if (!is_numeric($key)) {
-                            if (isset($old_data[$key]) && $old_data[$key] != $val && $old_data[$key] && $key != 'password' && $key != 'modified') {
-                                $information_changed = 1;
-                                $history_entry .= "$key = $val\n*changed* from $old_data[$key]\n";
-                            }
+                        if ($key == 'password' || $key == 'modified') {
+                            continue;
+                        }
+                        $old_value = isset($old_data[$key]) ? $old_data[$key] : '';
+
+                        if ($old_value != $val) {
+                            $information_changed = 1;
+                            $history_entry .= "$key = $val\n*changed* from $old_value\n";
                         }
                     }
                     if (!$information_changed) {
