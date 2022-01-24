@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2021-10-17 23:36+0000\n"
-"Last-Translator: Michiel <michiel@phplist.com>\n"
+"PO-Revision-Date: 2021-12-31 12:06+0000\n"
+"Last-Translator: Duncan Cameron <phplist@dcameron.me.uk>\n"
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
 "Language: en\n"
@@ -9791,13 +9791,13 @@ msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr "You are trying to use PDF support without having FPDF loaded"
 
 #: public_html/lists/admin/index.php:713
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The pageroot in your config \"%s\" does not match the current location \"%s"
 "\". Check your config file."
 msgstr ""
-"The pageroot in your config does not match the current location<br/>Check "
-"your config file."
+"The pageroot in your config \"%s\" does not match the current location \"%s\""
+". Check your config file."
 
 #: public_html/lists/admin/index.php:757
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
