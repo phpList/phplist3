@@ -7,6 +7,13 @@ to=$2
 
 echo $from $to
 
+[[ -x $(which rsync) ]] || {
+  apt install -y rsync
+}
+
 for plugin in $(find $from -type d -name phplist-plugin-*); do
-  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && rsync -a $plugin/plugins/* $to
+  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && {
+    echo installing plugin $plugin
+    rsync -a $plugin/plugins/* $to
+  }
 done

@@ -7,6 +7,9 @@ to=$2
 
 echo $from $to
 
+[[ -x $(which rsync) ]] || {
+  apt install -y rsync
+}
 for theme in $(ls -d $from/*/phplist-ui-*); do
   [[ ! -z "$(ls -A $theme)" ]] && {
     echo installing $theme
