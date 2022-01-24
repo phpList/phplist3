@@ -62,7 +62,7 @@ switch ($data['type']) {
         <?php
 
         if (isset($_POST['addnew'])) {
-            $items = explode("\n", $_POST['itemlist']);
+            $items = explode("\r\n", $_POST['itemlist']);
             $query = sprintf('select max(listorder) as listorder from %s', $table);
             $maxitem = Sql_Fetch_Row_Query($query);
             if (!Sql_Affected_Rows() || !is_numeric($maxitem[0])) {
