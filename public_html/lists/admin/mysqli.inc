@@ -22,6 +22,8 @@ function Sql_Connect($host, $user, $password, $database)
     $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
     $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
 
+    mysqli_report(MYSQLI_REPORT_OFF);
+
     if (!mysqli_real_connect($db, $host, $user, $password, $database, $database_port, $database_socket, $compress | $secure)) {
         $errno = mysqli_connect_errno();
 
