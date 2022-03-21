@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-03-21 11:05+0000\n"
+"PO-Revision-Date: 2022-03-21 15:03+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -507,7 +507,7 @@ msgid ""
 "You have been logged out for security purposes, because there were too many "
 "errors in your session"
 msgstr ""
-"Vous avez été déconnecté pour des raisons de séciruté, parce qu'il y avait "
+"Vous avez été déconnecté pour des raisons de sécurité, parce qu'il y avait "
 "trop d'erreurs dans votre session"
 
 #: public_html/lists/admin/message.php:150
@@ -1027,7 +1027,7 @@ msgstr "%d échecs (nouvelle tentative plus tard)"
 
 #: public_html/lists/admin/setup.php:99
 msgid "configuration steps"
-msgstr "Etapes de configuration"
+msgstr "Étapes de configuration"
 
 #: public_html/lists/admin/userclicks.php:144
 #, php-format
@@ -1948,7 +1948,7 @@ msgstr "Ce rejet n'existe plus dans la base de données."
 
 #: public_html/lists/admin/export.php:104
 msgid "Based on changelog"
-msgstr "Basé sur l'historique des modifications de leurs informations"
+msgstr "Basé sur l'historique des modifications"
 
 #: public_html/lists/admin/initialise.php:174
 msgid "Initialise plugin"
@@ -2068,7 +2068,7 @@ msgstr "Télécharger la dernière version"
 #: public_html/lists/admin/connect.php:1738,
 #: public_html/lists/admin/systemstats.php:35
 msgid "Aug"
-msgstr "Août"
+msgstr "Aoû"
 
 #: public_html/lists/admin/send_core.php:1314
 msgid "destination lists missing"
@@ -2135,7 +2135,7 @@ msgstr "Mardi"
 #: public_html/lists/admin/setup.php:80,
 #: public_html/lists/admin/editlist.php:102
 msgid "Add some subscribers"
-msgstr "Ajouter quelques destinataires / abonnés"
+msgstr "Ajouter des abonnés"
 
 # Suggested in Weblate: Configuration
 #: public_html/databasestructure.php:220
@@ -2270,7 +2270,7 @@ msgstr "Taux de clics par vue"
 #: public_html/lists/admin/connect.php:1731,
 #: public_html/lists/admin/systemstats.php:28
 msgid "Jan"
-msgstr "Janvier"
+msgstr "Jan"
 
 #: public_html/lists/admin/template.php:303
 msgid "Template file."
@@ -2541,7 +2541,7 @@ msgstr "l'importation n'est pas disponible"
 
 #: public_html/lists/admin/bounce.php:64
 msgid "Not Found"
-msgstr "Non trouvé"
+msgstr "Introuvable<br/>"
 
 #: public_html/lists/admin/send_core.php:744
 msgid "Dates and times are relative to the Server Time"
@@ -3099,7 +3099,7 @@ msgstr "Les restrictions suivantes ont été établies par votre FAI :"
 #: public_html/lists/admin/initialise.php:81
 msgid "Please enter the password you want to use for this account."
 msgstr ""
-"Veuillez entrer le mot de passe que vous souhaitez utiliser pour ce compte."
+"Veuillez saisir le mot de passe que vous souhaitez utiliser pour ce compte"
 
 #: public_html/lists/admin/home.php:49,
 #: public_html/lists/admin/importsimple.php:127
@@ -3155,7 +3155,7 @@ msgstr "OK"
 #: public_html/lists/admin/connect.php:1742,
 #: public_html/lists/admin/systemstats.php:39
 msgid "Dec"
-msgstr "Décembre"
+msgstr "Déc"
 
 #: public_html/lists/admin/user.php:348,
 #: public_html/lists/admin/user.php:349
@@ -3292,7 +3292,7 @@ msgstr "Plus d'informations"
 #, php-format
 msgid "Campaign %d suspended for too many errors with attachments"
 msgstr ""
-"Envoi %d interrompu en raison du nombre d'erreurs trop élevé en fonction des "
+"Envoi %d interrompu en raison du nombre d'erreurs trop élevé relatives aux "
 "pièces jointes"
 
 #: public_html/lists/admin/usermgt.php:35
@@ -3397,7 +3397,7 @@ msgstr "Cocher tous les utilisateurs de cette page"
 #: public_html/lists/admin/bounce.php:88
 #, php-format
 msgid "Made subscriber %d to receive text"
-msgstr "Marquer l'abonné %d pour réception de message en texte"
+msgstr "Marquer l'abonné %d pour réception de message au format texte"
 
 #: public_html/lists/admin/actions/processqueue.php:386
 msgid "To stop receiving these reports read:"
@@ -3736,7 +3736,7 @@ msgstr "Règle pour le rebond"
 
 #: public_html/databasestructure.php:357
 msgid "pagetitle:plugins"
-msgstr "Extensions"
+msgstr "Gérer les extensions"
 
 #: public_html/lists/admin/reconcileusers.php:259
 msgid "Trying to merge duplicates"
@@ -3794,7 +3794,7 @@ msgstr "Traiter les %d suivants"
 #: public_html/lists/admin/adminattributes.php:116,
 #: public_html/lists/admin/adminattributes.php:151
 msgid "Is this attribute required?:"
-msgstr "Cet attribut est-il requis ? :"
+msgstr "Cet attribut est-il requis :"
 
 #: public_html/lists/admin/members.php:174
 msgid ""
@@ -3931,7 +3931,7 @@ msgstr "chaque %s jusqu'à %s"
 #: public_html/lists/admin/bounce.php:74
 #, php-format
 msgid "Added %s to bouncecount for subscriber %s"
-msgstr "%s a été ajouté au compteur des retours en erreur pour l'abonné %s"
+msgstr "%s a été ajouté au compteur des retours en erreur pour l'abonné %s<br/>"
 
 #: public_html/lists/admin/initialise.php:81
 msgid "minimum of 8 characters."
@@ -4003,7 +4003,7 @@ msgstr "Abonnés ayant cliqué pour la campagne"
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr "Entrée"
+msgstr "Renseigné"
 
 #: public_html/lists/admin/processbounces.php:14,
 #: public_html/lists/admin/actions/processqueue.php:8
@@ -4685,7 +4685,7 @@ msgstr "Erreur lors de l'envoi du message %d (%d/%d) à %s (%s) "
 
 #: public_html/lists/admin/export.php:101
 msgid "When the record was changed"
-msgstr "Quand ils ont modifié les informations les concernant"
+msgstr "Quand l’enregistrement a été modifié"
 
 #: public_html/databasestructure.php:308
 msgid "pagetitlehover:login"
@@ -5336,7 +5336,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:227
 msgid "pagetitle:checki18n"
-msgstr "Vérifier les traductions"
+msgstr "Vérifier si les traductions existent"
 
 #: public_html/databasestructure.php:292
 msgid "pagetitlehover:bounce"
@@ -5479,7 +5479,7 @@ msgstr "Remise en file d'attente"
 
 #: public_html/lists/admin/initialise.php:80
 msgid "The initial <i>login name</i> will be"
-msgstr "Le <i>nom d'utilisateur</i> pour la connexion sera"
+msgstr "Le <i>nom d'utilisateur</i> initial pour la connexion sera"
 
 #: public_html/lists/admin/message.php:93
 msgid "Edit campaign"
@@ -6321,7 +6321,7 @@ msgstr "clicks uniques"
 #: public_html/lists/admin/connect.php:1741,
 #: public_html/lists/admin/systemstats.php:38
 msgid "Nov"
-msgstr "Novembre"
+msgstr "Nov"
 
 #: public_html/databasestructure.php:51
 msgid "tofield"
@@ -6830,7 +6830,7 @@ msgstr "Importé par"
 #: public_html/lists/admin/connect.php:1737,
 #: public_html/lists/admin/systemstats.php:34
 msgid "Jul"
-msgstr "Juillet"
+msgstr "Jul"
 
 #: public_html/databasestructure.php:79
 msgid "Admin who is owner"
@@ -6864,7 +6864,7 @@ msgstr "Clef Primaire (PKey)"
 #: public_html/lists/admin/connect.php:1740,
 #: public_html/lists/admin/systemstats.php:37
 msgid "Oct"
-msgstr "Octobre"
+msgstr "Oct"
 
 #: public_html/lists/admin/actions/import2.php:29,
 #: public_html/lists/admin/import2.php:220
@@ -7003,7 +7003,7 @@ msgstr "Ajouter un nouvel attribut :"
 #: public_html/lists/admin/connect.php:1733,
 #: public_html/lists/admin/systemstats.php:30
 msgid "Mar"
-msgstr "Mars"
+msgstr "Mar"
 
 #: public_html/databasestructure.php:316
 msgid "pagetitlehover:massunconfirm"
@@ -7836,7 +7836,7 @@ msgstr "Nom pour les messages du système"
 
 #: public_html/lists/admin/initialise.php:73
 msgid "Please enter your name."
-msgstr "Veuillez entrer votre nom."
+msgstr "Veuillez entrer votre nom"
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
@@ -8196,7 +8196,7 @@ msgstr "Mise à jour"
 
 #: public_html/lists/admin/bounce.php:38
 msgid "No such record"
-msgstr "Pas d'enregistrement de ce type"
+msgstr "Aucun enregistrement de ce type"
 
 #: public_html/databasestructure.php:158
 msgid "Admin's Id"
@@ -8303,7 +8303,7 @@ msgstr "Pour installer phplist, vous devez activer Javascript"
 
 #: public_html/databasestructure.php:6
 msgid "Required for subscriber to fill out"
-msgstr "Remplissage requis pour les abonnés"
+msgstr "Champ requis pour les abonnés"
 
 #: public_html/lists/admin/list.php:43
 msgid "Blacklisted members"
@@ -8595,7 +8595,7 @@ msgstr "Vu le"
 
 #: public_html/databasestructure.php:271
 msgid "pagetitle:upgrade"
-msgstr "Mettre à jour phpList"
+msgstr "Mettre à jour la base de données phpList"
 
 #: public_html/lists/admin/lib.php:924
 msgid "Sleeping for 20 seconds, aborting will quit"
@@ -8905,7 +8905,7 @@ msgstr "Adresse e-mail sur \"interdits d'envoi\""
 
 #: public_html/lists/admin/initialise.php:77
 msgid "Please enter your email address."
-msgstr "Veuillez entrer votre adresse e-mail."
+msgstr "Veuillez entrer votre adresse électronique"
 
 #: public_html/lists/admin/connect.php:2265
 msgid "Last Page"
@@ -9218,7 +9218,7 @@ msgstr "Envoyé aux formats texte et HTML"
 #: public_html/lists/admin/connect.php:1739,
 #: public_html/lists/admin/systemstats.php:36
 msgid "Sep"
-msgstr "Septembre"
+msgstr "Sep"
 
 #: public_html/databasestructure.php:337
 msgid "pagetitle:dbadmin"
@@ -10372,7 +10372,7 @@ msgstr "Le modèle HTML pour les messages système"
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
 msgid "Reading emails from file ... "
-msgstr "Lecture des adresses e-mails à partir du fichier ..."
+msgstr "Lecture des adresses électroniques à partir du fichier ... "
 
 #: public_html/lists/admin/msgstatus.php:19
 msgid "Stalled"
@@ -10534,7 +10534,7 @@ msgstr ""
 #: public_html/lists/admin/bounce.php:165,
 #: public_html/lists/admin/bouncerules.php:141
 msgid "Add new Rule"
-msgstr "Ajouter une nouvelle Règle"
+msgstr "Ajouter une nouvelle règle"
 
 #: public_html/lists/admin/dbcheck.php:87
 msgid "unique"
@@ -10630,7 +10630,7 @@ msgstr "Marquer comme envoyé"
 #: public_html/lists/admin/connect.php:1736,
 #: public_html/lists/admin/systemstats.php:33
 msgid "Jun"
-msgstr "Juin"
+msgstr "Jun"
 
 #: public_html/databasestructure.php:193
 msgid "Forward adding the UID?"
@@ -10657,7 +10657,7 @@ msgstr ""
 #: public_html/lists/admin/connect.php:1732,
 #: public_html/lists/admin/systemstats.php:29
 msgid "Feb"
-msgstr "Février"
+msgstr "Fév"
 
 #: public_html/lists/admin/send_core.php:791
 msgid "Repeat Until"
