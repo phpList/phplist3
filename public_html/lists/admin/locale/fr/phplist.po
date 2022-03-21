@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2021-10-05 13:21+0000\n"
+"PO-Revision-Date: 2022-03-21 11:05+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -365,7 +365,7 @@ msgstr "pagetitlehover:Initialiser la base de données"
 #: public_html/databasestructure.php:89,
 #: public_html/databasestructure.php:138
 msgid "Email"
-msgstr "E-mail"
+msgstr "Courriel"
 
 #: public_html/lists/admin/attributes.php:426
 msgid "Add new Attribute"
@@ -8162,7 +8162,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:336
 msgid "pagetitlehover:importadmin"
-msgstr "pagetitlehover:Importer des administrateurs"
+msgstr "Importer des administrateurs ayant accès à tout ou partie du système"
 
 #: public_html/databasestructure.php:131
 msgid "Status of forward"
@@ -9500,7 +9500,7 @@ msgstr "Date du dernier clic"
 #: public_html/lists/admin/admin.php:31,
 #: public_html/lists/admin/admin.php:38
 msgid "No Access"
-msgstr "Accès interdit"
+msgstr "Vous n’avez pas un accès suffisant"
 
 #: public_html/lists/admin/send_core.php:606
 msgid "Finish"
@@ -10490,7 +10490,9 @@ msgstr "Metadonnées"
 # Suggested in Weblate: Gérer les administrateurs autorisés à configurer l'ensemble ou certaines fonctoins de phpList
 #: public_html/databasestructure.php:284
 msgid "pagetitlehover:admins"
-msgstr "pagetitlehover:Administrateurs"
+msgstr ""
+"Afficher, modifier et ajouter des administrateurs qui ont accès à tout ou "
+"partie du système phpList"
 
 #: public_html/lists/admin/processbounces.php:609,
 #: public_html/lists/admin/processbounces.php:793
@@ -10764,3 +10766,12 @@ msgstr "Toujours ajouter un code de suivi d'analyse aux campagnes"
 #: public_html/lists/admin/send_core.php:1039
 msgid "Add analytics tracking code"
 msgstr "Ajouter un code de suivi pour analyse"
+
+#: public_html/lists/admin/index.php:713
+#, php-format
+msgid ""
+"The pageroot in your config \"%s\" does not match the current location \"%s"
+"\". Check your config file."
+msgstr ""
+"La variable pageroot de votre configuration \"%s\" ne correspond pas à l’"
+"emplacement courant \"%s\". Veuillez vérifier votre fichier de configuration."
