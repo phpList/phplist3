@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-03-22 14:58+0000\n"
+"PO-Revision-Date: 2022-03-23 01:29+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -425,7 +425,7 @@ msgstr "Numéro de l'attribut"
 
 #: public_html/lists/admin/lib.php:2046
 msgid "The API key is incorrect"
-msgstr "La clef de l'API est incorrecte"
+msgstr "La clé API n'est pas correcte"
 
 #: public_html/lists/admin/home.php:19
 msgid "Database has not been initialised"
@@ -797,8 +797,7 @@ msgstr "Continuer"
 
 #: public_html/lists/admin/lib.php:30
 msgid "unconfirm subscriber and delete bounce"
-msgstr ""
-"Marquer le destinataire comme non confirmé et supprimer le message rejeté"
+msgstr "Marquer l'abonné comme non confirmé et supprimer le message rejeté"
 
 #: public_html/lists/admin/userclicks.php:247
 msgid "view user"
@@ -2001,7 +2000,7 @@ msgstr "Adresse électronique"
 
 #: public_html/lists/admin/template.php:204
 msgid "Template was successfully saved"
-msgstr "Le modèle a été enregistré avec succès"
+msgstr "Le modèle a bien été enregistré"
 
 #: public_html/lists/admin/bounce.php:175
 msgid "(use negative numbers to decrease)"
@@ -2038,8 +2037,8 @@ msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
-"Ci-dessous se trouve une liste d'images utilisées dans votre modèle. Si une "
-"image n'est pas disponible, veuillez la téléverser dans la base de données."
+"Voici la liste des images utilisées dans votre modèle. Si une image n'est "
+"pas disponible, veuillez la téléverser dans la base de données."
 
 #: public_html/lists/admin/bouncerule.php:47
 msgid "back to list of bounce rules"
@@ -2845,7 +2844,7 @@ msgid ""
 "be valid."
 msgstr ""
 "Il vous reste 24h pour changer votre mot de passe. Après ce délai, le jeton "
-"sera invalide."
+"ne sera plus valide."
 
 #: public_html/lists/admin/users.php:187
 msgid "Your privileges for this page are insufficient"
@@ -2899,7 +2898,7 @@ msgstr "La page d'inscription par défaut lorsqu'il y en a plusieurs"
 
 #: public_html/lists/admin/template.php:214
 msgid "Some errors were found, template NOT saved!"
-msgstr "Des erreurs ont été trouvées, le modèle n'a PAS été sauvegardé !"
+msgstr "Des erreurs ont été trouvées, le modèle n'a PAS été enregistré !"
 
 #: public_html/lists/admin/attributes.php:406,
 #: public_html/lists/admin/attributes.php:438,
@@ -2913,7 +2912,7 @@ msgstr "Fonctions de gestion des abonnés"
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr "Version de phplist"
+msgstr "Version de <a href=http://www.phplist.com>phpList</a>"
 
 #: public_html/lists/admin/mclicks.php:76
 msgid "Sent to"
@@ -3312,9 +3311,10 @@ msgid ""
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
-"Cela inclut toutes les images (également celles référencées), vous pouvez "
-"donc choisir de ne pas en télécharger certaines. Si vous téléchargez des "
-"images, elles seront incluses dans les campagnes qui utiliseront ce thème."
+"Cela inclut toutes les images, également celles entièrement référencées, "
+"vous pouvez donc choisir de ne pas en télécharger certaines. Si vous "
+"téléchargez des images, elles seront incluses dans les campagnes qui "
+"utiliseront ce modèle."
 
 #: public_html/lists/admin/upgrade.php:384
 msgid "Documentation how to set up phpList commandline"
@@ -3472,7 +3472,7 @@ msgstr "URL pour le transfert de messages"
 
 #: public_html/lists/admin/template.php:75
 msgid "Template saved and ready for use in campaigns"
-msgstr "Modèle enregistré et prêt pour l'utilisation dans les envois"
+msgstr "Modèle enregistré et prêt à être utilisé dans les campagnes"
 
 #: public_html/lists/admin/actions/subscription.php:64
 msgid "value"
@@ -4447,7 +4447,7 @@ msgstr "Vous ne pouvez pas supprimer votre propre profil"
 
 #: public_html/lists/admin/template.php:133
 msgid "No Title"
-msgstr "Pas de Titre"
+msgstr "Aucun titre"
 
 #: public_html/lists/admin/spageedit.php:238
 msgid "Text for Button"
@@ -4546,11 +4546,11 @@ msgstr "%s a transféré le message %d à %s"
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
 msgstr ""
 "Copier/coller les adresses à marquer comme non confirmées dans le cadre ci-"
-"dessous, puis cliquez sur \"continuer\""
+"dessous, puis cliquez sur Continuer"
 
 #: public_html/lists/admin/template.php:106
 msgid "\"not full URL"
-msgstr "\"n'est pas une adresse internet complète"
+msgstr "URL non complète"
 
 #: public_html/lists/admin/actions/mergeduplicatelists.php:18
 #, php-format
@@ -5730,7 +5730,7 @@ msgstr "Février"
 
 #: public_html/lists/admin/template.php:198
 msgid "Save Images"
-msgstr "Sauvegarder les images"
+msgstr "Enregistrer les images"
 
 #: public_html/databasestructure.php:170,
 #: public_html/databasestructure.php:175,
@@ -6268,7 +6268,7 @@ msgstr "Sommaire"
 #: public_html/lists/admin/admin.php:309,
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
-msgstr "Visualiser les statistiques"
+msgstr "Voir les statistiques"
 
 #: public_html/lists/admin/initlanguages.php:24
 msgid "Initialising language"
@@ -6647,7 +6647,7 @@ msgstr "Attribut non valide"
 #: public_html/lists/admin/class.phplistmailer.php:324
 #, php-format
 msgid "Error, empty message-body sending email to %s"
-msgstr "Erreur : le corps du message est vide lors de l'envoi de l'e-mail à %s"
+msgstr "Erreur : le corps du message est vide lors de l'envoi du courriel à %s"
 
 #. Situation ?
 #: public_html/lists/admin/attributes.php:27
@@ -7420,8 +7420,8 @@ msgid ""
 "Make sure you are updated with new security and feature release "
 "announcements (fewer than one message per month)"
 msgstr ""
-"Assurez-vous d'obtenir les dernières informations de sécurités et de "
-"versions(moins d'une par mois)"
+"Assurez-vous d'obtenir les dernières informations de sécurité et de versions "
+"(moins d'une fois par mois)"
 
 #: public_html/lists/admin/send_core.php:381
 msgid "Campaign queued"
@@ -7559,7 +7559,7 @@ msgstr "Ne pas s'abonner"
 
 #: public_html/lists/admin/uclicks.php:92
 msgid "Click details for a URL"
-msgstr "Détail des clics pour une URL"
+msgstr "Détails des clics pour une URL"
 
 #: public_html/lists/admin/import2.php:748,
 #: public_html/lists/admin/import1.php:243
@@ -7572,7 +7572,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:250
 msgid "Error sending test messages to"
-msgstr "Erreur lors de l'envoi des tests"
+msgstr "Erreur lors de l'envoi des tests à"
 
 #: public_html/lists/admin/template.php:243
 msgid "Sending test \"Unsubscribe confirmation\" to"
@@ -7683,7 +7683,7 @@ msgstr "Erreur lors du traitement de test"
 
 #: public_html/lists/admin/lib.php:29
 msgid "delete subscriber and bounce"
-msgstr "Supprimer l'utilisateur et le message rejeté"
+msgstr "Supprimer l'abonné et le message rejeté"
 
 #: public_html/lists/admin/processqueue.php:94
 msgid "To send your queue, you use the service from phpList.com"
@@ -7968,8 +7968,8 @@ msgstr "Activer"
 msgid ""
 "A password change token has been sent to the corresponding email address."
 msgstr ""
-"Un jeton de renouvellement de mot de passe a été envoyé à l'adresse e-mail "
-"correspondante."
+"Un jeton de renouvellement de mot de passe a été envoyé à l'adresse "
+"électronique correspondante."
 
 #: public_html/lists/admin/actions/processqueue.php:303
 msgid "Less than batch size were sent, so reloading imminently"
@@ -8408,7 +8408,7 @@ msgstr "En cours de traitement"
 #: public_html/lists/admin/template.php:186,
 #: public_html/lists/admin/template.php:191
 msgid "Image name:"
-msgstr "Nom de l'image :"
+msgstr "Nom de l'image"
 
 #: public_html/lists/admin/userclicks.php:78
 #, php-format
@@ -8614,8 +8614,8 @@ msgstr "abonnés mis à jour"
 #: public_html/lists/admin/lib.php:31
 msgid "blacklist subscriber and delete bounce"
 msgstr ""
-"Mettre le destinataire sur liste \"interdits d'envoi\" et supprimer le "
-"message rejeté"
+"Mettre l'abonné sur liste \"interdits d'envoi\" et supprimer le message "
+"rejeté"
 
 #: public_html/lists/admin/messages.php:491
 msgid "Unique Views"
@@ -8898,7 +8898,7 @@ msgstr "pagetitlehover:Règles des rebonds"
 
 #: public_html/lists/admin/lib.php:28
 msgid "blacklist email address"
-msgstr "Adresse e-mail sur \"interdits d'envoi\""
+msgstr "Adresse électronique sur liste \"interdits d'envoi\""
 
 #: public_html/lists/admin/initialise.php:77
 msgid "Please enter your email address."
@@ -9105,8 +9105,8 @@ msgstr "dernière fois que les TLDs ont été lus"
 #: public_html/lists/admin/lib.php:32
 msgid "blacklist email address and delete bounce"
 msgstr ""
-"Mettre l'adresse e-mail sur liste \"interdits d'envoi\" et supprimer les "
-"rejets"
+"Mettre l'adresse électronique sur liste \"interdits d'envoi\" et supprimer "
+"le rejet"
 
 #: public_html/lists/admin/importsimple.php:99
 msgid "Imported"
@@ -9556,7 +9556,7 @@ msgstr "L'adresse e-mail n'est pas correcte"
 
 #: public_html/lists/admin/lib.php:736
 msgid "This is the Newsletter Subject"
-msgstr "Ceci est le sujet du bulletin"
+msgstr "Ceci est le sujet de la newletter"
 
 # Suggested in Weblate: Rejets par campagne
 #: public_html/lists/admin/msgbounces.php:78
@@ -9667,8 +9667,8 @@ msgstr "Ressources et documentation pour développeurs"
 msgid ""
 "We have been waiting too long, I guess the other process is still going ok"
 msgstr ""
-"Cela fait trop longtemps que l'on attend, l'autre processus doit "
-"vraisemblablement être encore en cours d'exécution"
+"Le temps d'attente est trop long, l'autre processus doit vraisemblablement "
+"encore être en cours d'exécution"
 
 #: public_html/lists/admin/defaultconfig.php:532
 msgid "Your personal location"
@@ -9998,7 +9998,7 @@ msgstr "Cet utilisateur n'existe pas"
 #: public_html/lists/admin/class.phplistmailer.php:319
 #, php-format
 msgid "Error sending email to %s"
-msgstr "Erreur lors de l'envoi d'un e-mail à %s"
+msgstr "Erreur lors de l'envoi d'un courriel à %s"
 
 #: public_html/databasestructure.php:132
 msgid "When was it forwarded"
@@ -10322,7 +10322,7 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:79
 msgid "There are currently no statistics available"
-msgstr "Il n'y a pas de statistiques disponible pour le moment."
+msgstr "Il n'y a aucune statistique disponible pour le moment"
 
 #: public_html/lists/admin/plugins.php:28,
 #: public_html/lists/admin/configure.php:74,
