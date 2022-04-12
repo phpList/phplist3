@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-03-23 01:29+0000\n"
+"PO-Revision-Date: 2022-04-12 09:45+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -143,7 +143,7 @@ msgstr "Remplacer les données existantes"
 
 #: public_html/databasestructure.php:250
 msgid "pagetitlehover:sendprepared"
-msgstr "pagetitlehover:Envoyer"
+msgstr "Envoyer un message préparé"
 
 #: public_html/lists/admin/import4.php:88
 msgid "continue"
@@ -329,7 +329,7 @@ msgstr "Détails"
 
 #: public_html/lists/admin/configure.php:40
 msgid "Reset to default"
-msgstr "Remettre aux valeurs par défaut"
+msgstr "Réinitialiser aux valeurs par défaut"
 
 #: public_html/lists/admin/import3.php:522
 msgid "Invalid Emails found."
@@ -455,7 +455,7 @@ msgstr "Modifier une page d'abonnement"
 #: public_html/lists/admin/plugins.php:333
 #, php-format
 msgid "Plugin can not be enabled, because \"%s\" is enabled."
-msgstr "L'extension ne peut être activée parce-que \"%s\" est actif."
+msgstr "L'extension ne peut être activée parce que \"%s\" est actif."
 
 #: public_html/lists/admin/massremove.php:56
 msgid "Mass remove email addresses"
@@ -639,7 +639,7 @@ msgid ""
 "\"Import Emails\""
 msgstr ""
 "Veuillez entrer les adresses e-mails à importer, une par ligne dans le "
-"champs ci-dessous, puis cliquez sur \"importer les adresses\""
+"champs ci-dessous, puis cliquez sur \"Importer les adresses\""
 
 #: public_html/lists/admin/processbounces.php:707
 msgid "bounces were not matched by advanced processing rules"
@@ -997,7 +997,7 @@ msgstr "Vous avez %s entrées dans l'ancienne table des statistiques"
 
 #: public_html/databasestructure.php:370
 msgid "list-organisation settings"
-msgstr "Paramètres d'organisation des listes"
+msgstr "paramètres d'organisation des listes"
 
 #: public_html/lists/admin/statsoverview.php:113,
 #: public_html/databasestructure.php:70
@@ -1381,7 +1381,7 @@ msgstr "Veuillez vérifier que l'adresse entrée est correcte."
 
 #: public_html/databasestructure.php:369
 msgid "subscription-ui settings"
-msgstr "Paramètres de l'interface utilisateur des inscriptions"
+msgstr "Paramètres de l'interface d'inscription de l'utilisateur"
 
 #: public_html/databasestructure.php:118
 msgid "The image"
@@ -1592,7 +1592,7 @@ msgstr "Proposer une case à cocher pour le format texte"
 #: public_html/lists/admin/inc/interfacelib.php:254
 #, php-format
 msgid "sort by %s"
-msgstr "Trier par %s"
+msgstr "trier par %s"
 
 #: public_html/lists/admin/plugins.php:284
 msgid "installation Url"
@@ -2120,7 +2120,7 @@ msgstr "&agrave; traiter"
 
 #: public_html/databasestructure.php:342
 msgid "pagetitlehover:listbounces"
-msgstr "pagetitlehover:Rebonds par liste"
+msgstr "Afficher les courriels retournés par liste d’abonnés"
 
 #: public_html/lists/admin/send_core.php:744
 msgid "Current Server Time is"
@@ -2138,7 +2138,7 @@ msgstr "Ajouter des abonnés"
 # Suggested in Weblate: Configuration
 #: public_html/databasestructure.php:220
 msgid "pagetitlehover:config"
-msgstr "pagetitlehover:Paramètres"
+msgstr "Fonctions de configuration"
 
 #: public_html/lists/admin/home.php:109
 msgid "Import Users"
@@ -2184,7 +2184,7 @@ msgstr "Les mots de passe que vous avez entrés ne correspondent pas."
 
 #: public_html/lists/admin/importsimple.php:193
 msgid "Import emails"
-msgstr "Importer des adresses e-mails"
+msgstr "Importer des adresses électroniques"
 
 #: public_html/lists/admin/usermgt.php:34
 msgid "Reconcile Subscribers"
@@ -2543,7 +2543,7 @@ msgstr "Introuvable<br/>"
 
 #: public_html/lists/admin/send_core.php:744
 msgid "Dates and times are relative to the Server Time"
-msgstr "La date et l'heure sont fonctions des paramètres du serveur"
+msgstr "Les dates et heures sont relatives aux paramètres du serveur"
 
 #: public_html/lists/admin/processbounces.php:455,
 #: public_html/lists/admin/readtestmail.php:277
@@ -2553,7 +2553,7 @@ msgstr "Fermeture de la boîte électronique et purge des messages"
 # Suggested in Weblate: Paramètres du comportement de phpList
 #: public_html/databasestructure.php:280
 msgid "pagetitlehover:configure"
-msgstr "pagetitlehover:Paramètres"
+msgstr "Modifier les paramètres qui contrôlent le comportement de phpList"
 
 #: public_html/lists/admin/messages.php:644
 msgid "Suspend All"
@@ -2726,7 +2726,8 @@ msgid ""
 "only upload a plain text file with one email address per line."
 msgstr ""
 "Veuillez envoyer un fichier texte. Vous ne pouvez pas utiliser un tableur. "
-"Vous devez envoyer un fichier texte contenant une adresse e-mail par ligne."
+"Vous devez envoyer un fichier texte contenant une adresse électronique par "
+"ligne."
 
 #: public_html/lists/admin/home.php:269,
 #: public_html/lists/admin/reconcileusers.php:215,
@@ -4157,7 +4158,7 @@ msgstr "Traiter la file d'attente"
 
 #: public_html/databasestructure.php:368
 msgid "transactional settings"
-msgstr "Paramètres transactionnels"
+msgstr "paramètres transactionnels"
 
 #: public_html/lists/admin/defaults.php:44
 msgid "Loading"
@@ -4181,7 +4182,7 @@ msgstr "Intégration Ajax"
 
 #: public_html/databasestructure.php:367
 msgid "campaign settings"
-msgstr "Paramètres des campagnes"
+msgstr "paramètres des campagnes"
 
 #: public_html/databasestructure.php:361
 msgid "pagetitle:suppressionlist"
@@ -4315,7 +4316,7 @@ msgstr "valeur de hachage pour le regex"
 
 #: public_html/databasestructure.php:362
 msgid "pagetitlehover:suppressionlist"
-msgstr "pagetitlehover:Suppression par liste"
+msgstr "Suppression par liste"
 
 #: public_html/lists/admin/connect.php:1416,
 #: public_html/lists/admin/connect.php:1419,
@@ -4592,7 +4593,7 @@ msgstr "Vues Uniques"
 
 #: public_html/databasestructure.php:364
 msgid "system settings"
-msgstr "Paramètres système"
+msgstr "paramètres système"
 
 #: public_html/lists/admin/import2.php:693
 msgid ""
@@ -4729,8 +4730,8 @@ msgid ""
 "You have been logged out, because the session token of your request was "
 "incorrect"
 msgstr ""
-"Vous avez été déconnecté, parce que l'identifiant de session de votre "
-"requête est incorrect"
+"Vous avez été déconnecté parce que l'identifiant de session de votre requête "
+"est incorrect"
 
 #: public_html/lists/admin/bouncerules.php:116
 msgid "with tagged rules: "
@@ -4815,8 +4816,8 @@ msgstr "Nombre de règles %s : %d"
 #: public_html/lists/admin/actions/import2.php:508
 msgid "These records were added, but the email has been made up from "
 msgstr ""
-"Ces données ont été ajoutées, mais l'adresse e-mail a été inventée à partir "
-"de "
+"Ces données ont été ajoutées, mais l'adresse électronique a été inventée à "
+"partir de "
 
 #: public_html/lists/admin/connect.php:988
 msgid "Recently visited"
@@ -5216,8 +5217,8 @@ msgstr ""
 #: public_html/lists/admin/spageedit.php:308
 msgid "(comma separate addresses - all must be existing subscribers)"
 msgstr ""
-"(adresses e-mails séparées par une virgule - chacune doit appartenir à un(e) "
-"destinataire existant(e))"
+"(adresses électroniques séparées par une virgule - chacune doit appartenir à "
+"un·e destinataire existant·e)"
 
 #: public_html/lists/admin/adminattributes.php:97,
 #: public_html/lists/admin/adminattributes.php:130
@@ -6412,7 +6413,7 @@ msgstr "Retour à la modification des attributs"
 #: public_html/lists/admin/import2.php:100,
 #: public_html/lists/admin/import1.php:52
 msgid "File too big, please split it up into smaller ones"
-msgstr "Le fichier est trop volumineux, divisez-le en parts plus petites"
+msgstr "Le fichier est trop volumineux, divisez-le en parties plus petites"
 
 #: public_html/lists/admin/message.php:215
 msgid "Resend"
@@ -6822,7 +6823,7 @@ msgstr "Ceci peut prendre du temps"
 
 #: public_html/lists/admin/importsimple.php:72
 msgid "import_by"
-msgstr "Importé par"
+msgstr "importé par"
 
 # Suggested in Weblate: Juill
 #: public_html/lists/admin/connect.php:1737,
@@ -6890,7 +6891,7 @@ msgstr "Statistiques des URL cliquées"
 
 #: public_html/databasestructure.php:312
 msgid "pagetitlehover:mclicks"
-msgstr "pagetitlehover:Statistiques par clics"
+msgstr "Statistiques des abonnés ayant cliqué sur des liens dans les campagnes"
 
 #: public_html/lists/admin/community.php:17
 msgid ""
@@ -7005,7 +7006,7 @@ msgstr "Mar"
 
 #: public_html/databasestructure.php:316
 msgid "pagetitlehover:massunconfirm"
-msgstr "pagetitlehover:Suppression par lot"
+msgstr "Gérer la liste des abonnés qui ne doivent PAS recevoir de courriels"
 
 #: public_html/lists/admin/actions/processqueue.php:540
 #, php-format
@@ -7382,8 +7383,8 @@ msgid ""
 "subscribers."
 msgstr ""
 "Lorsque vous aurez plus de destinataires, cette page vous montrera la liste "
-"des serveurs MX de vos destinataires. N'apparaîtront que les serveurs qui "
-"ont au moins 5 destinataires ou plus."
+"des domaines de vos destinataires. N'apparaîtront que les domaines qui ont "
+"au moins 5 destinataires."
 
 #: public_html/lists/admin/index.php:483
 msgid "Main page"
@@ -7700,7 +7701,7 @@ msgstr "Gestion des administrateurs"
 
 #: public_html/lists/admin/bouncemgt.php:13
 msgid "View Bounces per list"
-msgstr "Visualiser les rebonds par liste"
+msgstr "Voir les rebonds par liste"
 
 #: public_html/lists/admin/home.php:249,
 #: public_html/lists/admin/send_core.php:388
@@ -7761,7 +7762,7 @@ msgstr "Pas de campagne de ce type"
 
 #: public_html/lists/admin/import.php:40
 msgid "import by uploading a file with emails"
-msgstr "Importer en utilisant un fichier avec des adresses e-mails"
+msgstr "Importer en utilisant un fichier avec des adresses électroniques"
 
 #: public_html/lists/admin/index.php:535
 msgid "Download the new version"
@@ -7817,7 +7818,7 @@ msgstr "Mise à jour de phpList vers la version "
 #: public_html/lists/admin/import.php:42
 msgid "import by uploading a CSV file with emails and additional data"
 msgstr ""
-"Importer en utilisant un fichier CSV avec des adresses e-mails et "
+"Importer en utilisant un fichier CSV avec des adresses électroniques et des "
 "informations supplémentaires"
 
 #: public_html/lists/admin/processqueue.php:95
@@ -8178,8 +8179,8 @@ msgstr "Il reste %d entrées à convertir"
 #, php-format
 msgid "%d emails were on the blacklist and have not been added to the lists"
 msgstr ""
-"%d adresses e-mail appartenaient à la liste des destinataires \"interdits d'"
-"envoi\" et n'ont pas été ajoutées aux listes"
+"%d adresses électroniques figurent sur la liste des destinataires \"interdits"
+" d'envoi\" et n'ont pas été ajoutées aux listes"
 
 #: public_html/lists/admin/import2.php:383
 msgid "Please identify the target of the following unknown columns"
@@ -8337,7 +8338,7 @@ msgstr "Fusion de %s dans %d"
 
 #: public_html/databasestructure.php:324
 msgid "pagetitlehover:domainstats"
-msgstr "pagetitlehover:Statistiques par destinataires"
+msgstr "Statistiques des domaines des abonnés dans le système"
 
 #: public_html/lists/admin/plugins.php:49
 msgid "Project"
@@ -8390,7 +8391,7 @@ msgstr "Télécharger les abonnés"
 
 #: public_html/lists/admin/actions/processqueue.php:620
 msgid "Report of processing will be sent by email"
-msgstr "Le rapport d'exécution sera envoyé par e-mail"
+msgstr "Le rapport d'exécution sera envoyé par courriel"
 
 #: public_html/lists/admin/import2.php:714,
 #: public_html/lists/admin/importadmin.php:327
@@ -8762,7 +8763,7 @@ msgstr "Novembre"
 
 #: public_html/databasestructure.php:341
 msgid "pagetitle:listbounces"
-msgstr "Visualiser les rebonds par liste"
+msgstr "Voir les rebonds par liste"
 
 #: public_html/lists/admin/statsoverview.php:145
 msgid "Opened "
@@ -8782,8 +8783,8 @@ msgid ""
 msgstr ""
 "Si vous cochez \"Résultat test\", vous aurez la liste des adresses analysées "
 "à l'écran. La base de données ne sera pas mise à jour avec les informations. "
-"Ceci permet de vérifier si le format de votre fichier est correct. Il ne "
-"montre que les 50 premiers enregistrements."
+"Ceci permet de vérifier si le format de votre fichier est correct. Ne "
+"s'afficheront que les 50 premiers enregistrements."
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:54
 msgid "Admin authentication has changed, please update your admin module"
@@ -8872,8 +8873,8 @@ msgstr "Taille estimée du publipostage"
 #: public_html/lists/admin/admin.php:81
 msgid "Cannot save admin, that email address already exists for another admin"
 msgstr ""
-"Impossible d'enregistrer le compte administrateur, cette adresse e-mail est "
-"déjà utilisée par un autre compte administrateur"
+"Impossible d'enregistrer le compte administrateur, cette adresse "
+"électronique est déjà utilisée par un autre compte administrateur"
 
 #: public_html/lists/admin/defaultconfig.php:550
 msgid "Message when subscribers request their personal location"
@@ -9813,7 +9814,9 @@ msgstr "Utilisateur"
 #: public_html/lists/admin/actions/import2.php:523
 #, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
-msgstr "%d utilisateurs ont été liés par leur clé étrangère, %d par leur e-mail"
+msgstr ""
+"%d utilisateurs ont été liés par leur clé étrangère, %d par leur adresse "
+"électronique"
 
 #: public_html/lists/admin/actions/processqueue.php:1351
 #, php-format
@@ -9982,7 +9985,7 @@ msgstr "Page d'accueil"
 
 #: public_html/databasestructure.php:332
 msgid "pagetitlehover:subscriberstats"
-msgstr "pagetitlehover:Statistiques par abonné"
+msgstr "Statistiques par abonné"
 
 #: public_html/lists/admin/exportuserdata.php:7,
 #: public_html/lists/admin/exportuserdata.php:16,
@@ -10391,8 +10394,8 @@ msgstr "adresses électroniques différentes trouvées"
 #: public_html/lists/admin/lib.php:2287
 msgid "Still loading, please be patient, your page content will show shortly."
 msgstr ""
-"En cours d'affichage, soyez patient, le contenu de votre page apparaîtra "
-"sous peu."
+"En cours d'affichage, veuillez patienter, le contenu de votre page "
+"apparaîtra sous peu."
 
 #: public_html/lists/admin/import2.php:709,
 #: public_html/lists/admin/importadmin.php:321
@@ -10438,7 +10441,8 @@ msgstr "pagetitlehover:Rebonds"
 # Suggested in Weblate: Sélectionner certains attributs proposés par la communauté phpList
 #: public_html/databasestructure.php:270
 msgid "pagetitlehover:defaults"
-msgstr "pagetitlehover:Par défaut"
+msgstr ""
+"Choisissez parmi certains attributs communs fournis par la communauté phpList"
 
 #: public_html/lists/admin/defaultconfig.php:128
 msgid "Default for 'From:' in a campaign"
@@ -10504,7 +10508,7 @@ msgstr "Événements"
 # Suggested in Weblate: Préparer un message à envoyer
 #: public_html/databasestructure.php:248
 msgid "pagetitlehover:preparesend"
-msgstr "pagetitlehover:Préparer un envoi"
+msgstr "Préparer un message pour envoi"
 
 #: public_html/lists/admin/bouncerule.php:38
 msgid ""
