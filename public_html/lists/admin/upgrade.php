@@ -452,6 +452,11 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query(sprintf('update %s set template_text="[CONTENT]"',
             $GLOBALS['tables']['template']));
     }
+        //#increase size 'loginname' for the sso plugin
+
+    if (version_compare($dbversion, '3.6.7','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['admin']} change column loginname varchar(66) default ");
+    }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
