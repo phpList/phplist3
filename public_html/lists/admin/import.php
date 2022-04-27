@@ -72,10 +72,15 @@ if ($GLOBALS['commandline']) {
     $_POST['overwrite'] = 'yes';
     $_POST['notify'] = 'no';
     $_POST['omit_invalid'] = 'yes';
+    $_POST['assign_invalid'] = '';
     $_POST['import_field_delimiter'] = "\t";
     $_POST['import_field_delimiter'] = ',';
     $_POST['import_record_delimiter'] = "\n";
+
     require dirname(__FILE__).'/import2.php';
+    ob_end_clean();
+    ob_start();
+    require dirname(__FILE__).'/actions/import2.php';
     ob_end_clean();
     echo "\nAll done\n";
     exit;

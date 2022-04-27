@@ -2,9 +2,9 @@
 
 verifyCsrfGetToken();
 
-require dirname(__FILE__).'/../structure.php';
-require dirname(__FILE__).'/../inc/importlib.php';
-require dirname(__FILE__).'/../CsvReader.php';
+require_once dirname(__FILE__).'/../structure.php';
+require_once dirname(__FILE__).'/../inc/importlib.php';
+require_once dirname(__FILE__).'/../CsvReader.php';
 
 @ob_end_flush();
 $status = 'FAIL';
