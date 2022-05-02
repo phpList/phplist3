@@ -454,8 +454,8 @@ if ($dbversion == VERSION && !$force) {
     }
         //#increase size 'loginname' for the sso plugin
 
-    if (version_compare($dbversion, '3.6.7','<')) {
-        Sql_Query("alter table {$GLOBALS['tables']['admin']} change column loginname varchar(66) default ");
+    if (version_compare($dbversion, '3.6.8','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['admin']} change column loginname loginname varchar(66) default ''");
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
