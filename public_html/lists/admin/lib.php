@@ -642,7 +642,7 @@ function sendAdminCopy($subject, $message, $lists = array())
         foreach ($mails as $admin_mail) {
             $admin_mail = trim($admin_mail);
             if (!isset($sent[$admin_mail]) && !empty($admin_mail)) {
-                sendMail($admin_mail, $subject, $message, system_messageheaders($admin_mail));
+                sendMail($admin_mail, $GLOBALS['installation_name'].' '.$subject, $message, system_messageheaders($admin_mail));
                 //   logEvent(s('Sending admin copy to').' '.$admin_mail);
                 $sent[$admin_mail] = 1;
             }
@@ -1359,7 +1359,7 @@ function fetchUrlCurl($url, $request_parameters)
     if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
         curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
         curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
-    }    
+    }
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
