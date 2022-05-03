@@ -286,7 +286,7 @@ $DBstructphplist = array(
     ),
     'admin' => array(
         'id'              => array('integer not null primary key auto_increment', 'sys:ID'),
-        'loginname'       => array('varchar(25) not null', 'Login Name (max 25 chars)'),
+        'loginname'       => array('varchar(66) not null', 'Login Name (max 66 chars)'),
         'namelc'          => array('varchar(255)', 'sys:Normalised loginname'),
         'email'           => array('varchar(255) not null', 'Email'),
         'created'         => array('datetime', 'sys:Time Created'),
