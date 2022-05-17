@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-captcha.git",
-                "reference": "94c14ba8c2fddc3ccf050ecb0cfd65ab862d6afd"
+                "reference": "77027bc8ee89cec41d2e08309a9b8267f138d8bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-captcha/zipball/94c14ba8c2fddc3ccf050ecb0cfd65ab862d6afd",
-                "reference": "94c14ba8c2fddc3ccf050ecb0cfd65ab862d6afd",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-captcha/zipball/77027bc8ee89cec41d2e08309a9b8267f138d8bf",
+                "reference": "77027bc8ee89cec41d2e08309a9b8267f138d8bf",
                 "shasum": ""
             },
             "default-branch": true,
@@ -35,10 +35,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-captcha/tree/2.2.1",
+                "source": "https://github.com/bramley/phplist-plugin-captcha/tree/2.2.3",
                 "issues": "https://github.com/bramley/phplist-plugin-captcha/issues"
             },
-            "time": "2021-04-28T04:54:34+00:00"
+            "time": "2022-03-10T06:38:02+00:00"
         },
         {
             "name": "bramley/phplist-plugin-ckeditor",
@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "6537a10930bae9f8c53c3c100f3ee52bb0b39653"
+                "reference": "34c23acd05ff7dee9b440b20168d6d9f74b70979"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/6537a10930bae9f8c53c3c100f3ee52bb0b39653",
-                "reference": "6537a10930bae9f8c53c3c100f3ee52bb0b39653",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/34c23acd05ff7dee9b440b20168d6d9f74b70979",
+                "reference": "34c23acd05ff7dee9b440b20168d6d9f74b70979",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.2",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.6",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2021-04-28T04:42:05+00:00"
+            "time": "2022-05-15T11:18:09+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "889c0a91108c67dc3c0c8213f9729b8249620cf2"
+                "reference": "830f5cca1fef973764575c2f5b71bfd602279d4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/889c0a91108c67dc3c0c8213f9729b8249620cf2",
-                "reference": "889c0a91108c67dc3c0c8213f9729b8249620cf2",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/830f5cca1fef973764575c2f5b71bfd602279d4e",
+                "reference": "830f5cca1fef973764575c2f5b71bfd602279d4e",
                 "shasum": ""
             },
             "require": {
@@ -93,7 +93,7 @@
                 "jasongrimes/paginator": "1.0.2",
                 "jdorn/sql-formatter": "^1.2",
                 "jmathai/php-multi-curl": "dev-master",
-                "katzgrau/klogger": "1.2.0",
+                "katzgrau/klogger": "1.2.1",
                 "mouf/picotainer": "1.1.0",
                 "pelago/emogrifier": "^5.0.1",
                 "psr/container": "1.0.0",
@@ -136,10 +136,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.18.0",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.18.4",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2021-12-28T16:26:20+00:00"
+            "time": "2022-04-21T06:38:12+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -463,21 +463,21 @@
         },
         {
             "name": "katzgrau/klogger",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/katzgrau/KLogger.git",
-                "reference": "87735262be7c3bd210740b5cd4831dee3d827c46"
+                "reference": "a4ed373fa8a214aa4ae7aa4f221fe2c6ce862ef1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/katzgrau/KLogger/zipball/87735262be7c3bd210740b5cd4831dee3d827c46",
-                "reference": "87735262be7c3bd210740b5cd4831dee3d827c46",
+                "url": "https://api.github.com/repos/katzgrau/KLogger/zipball/a4ed373fa8a214aa4ae7aa4f221fe2c6ce862ef1",
+                "reference": "a4ed373fa8a214aa4ae7aa4f221fe2c6ce862ef1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "psr/log": "1.0.0"
+                "psr/log": "^1.0.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.0.*"
@@ -511,9 +511,9 @@
             ],
             "support": {
                 "issues": "https://github.com/katzgrau/KLogger/issues",
-                "source": "https://github.com/katzgrau/KLogger/tree/1.2.0"
+                "source": "https://github.com/katzgrau/KLogger/tree/master"
             },
-            "time": "2015-11-04T22:43:22+00:00"
+            "time": "2016-11-07T19:29:14+00:00"
         },
         {
             "name": "michield/phplist-plugin-campaignslicer",
@@ -1778,25 +1778,28 @@
         },
         {
             "name": "behat/mink-selenium2-driver",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
-                "reference": "0dee8cceed7e198bf130b4af0fab0ffab6dab47f"
+                "reference": "e5f8421654930da725499fb92983e6948c6f973e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/0dee8cceed7e198bf130b4af0fab0ffab6dab47f",
-                "reference": "0dee8cceed7e198bf130b4af0fab0ffab6dab47f",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/e5f8421654930da725499fb92983e6948c6f973e",
+                "reference": "e5f8421654930da725499fb92983e6948c6f973e",
                 "shasum": ""
             },
             "require": {
-                "behat/mink": "~1.7@dev",
-                "instaclick/php-webdriver": "~1.1",
-                "php": ">=5.4"
+                "behat/mink": "^1.9@dev",
+                "ext-json": "*",
+                "instaclick/php-webdriver": "^1.4",
+                "php": ">=7.2"
             },
             "require-dev": {
-                "mink/driver-testsuite": "dev-master"
+                "mink/driver-testsuite": "dev-master",
+                "phpunit/phpunit": "^8.5.22 || ^9.5.11",
+                "symfony/error-handler": "^4.4 || ^5.0"
             },
             "type": "mink-driver",
             "extra": {
@@ -1837,36 +1840,36 @@
             ],
             "support": {
                 "issues": "https://github.com/minkphp/MinkSelenium2Driver/issues",
-                "source": "https://github.com/minkphp/MinkSelenium2Driver/tree/v1.5.0"
+                "source": "https://github.com/minkphp/MinkSelenium2Driver/tree/v1.6.0"
             },
-            "time": "2021-10-12T16:01:47+00:00"
+            "time": "2022-03-28T14:55:17+00:00"
         },
         {
             "name": "behat/transliterator",
-            "version": "v1.3.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "3c4ec1d77c3d05caa1f0bf8fb3aae4845005c7fc"
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/3c4ec1d77c3d05caa1f0bf8fb3aae4845005c7fc",
-                "reference": "3c4ec1d77c3d05caa1f0bf8fb3aae4845005c7fc",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/baac5873bac3749887d28ab68e2f74db3a4408af",
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=7.2"
             },
             "require-dev": {
                 "chuyskywalker/rolling-curl": "^3.1",
                 "php-yaoi/php-yaoi": "^1.0",
-                "phpunit/phpunit": "^4.8.36|^6.3"
+                "phpunit/phpunit": "^8.5.25 || ^9.5.19"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -1886,9 +1889,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Behat/Transliterator/issues",
-                "source": "https://github.com/Behat/Transliterator/tree/v1.3.0"
+                "source": "https://github.com/Behat/Transliterator/tree/v1.5.0"
             },
-            "time": "2020-01-14T16:39:13+00:00"
+            "time": "2022-03-30T09:27:43+00:00"
         },
         {
             "name": "bex/behat-extension-driver-locator",
@@ -2171,12 +2174,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2233,12 +2236,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2292,16 +2295,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.3",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -2326,12 +2329,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2382,7 +2385,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.3"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.5"
             },
             "funding": [
                 {
@@ -2398,20 +2401,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-05T13:56:00+00:00"
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "instaclick/php-webdriver",
-            "version": "1.4.10",
+            "version": "1.4.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/instaclick/php-webdriver.git",
-                "reference": "6bc1f44cf23031e68c326cd61e14ec32486f241b"
+                "reference": "200b8df772b74d604bebf25ef42ad6f8ee6380a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/6bc1f44cf23031e68c326cd61e14ec32486f241b",
-                "reference": "6bc1f44cf23031e68c326cd61e14ec32486f241b",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/200b8df772b74d604bebf25ef42ad6f8ee6380a9",
+                "reference": "200b8df772b74d604bebf25ef42ad6f8ee6380a9",
                 "shasum": ""
             },
             "require": {
@@ -2419,8 +2422,8 @@
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "satooshi/php-coveralls": "^1.0||^2.0"
+                "phpunit/phpunit": "^8.5 || ^9.5",
+                "satooshi/php-coveralls": "^1.0 || ^2.0"
             },
             "type": "library",
             "extra": {
@@ -2459,9 +2462,9 @@
             ],
             "support": {
                 "issues": "https://github.com/instaclick/php-webdriver/issues",
-                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.10"
+                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.14"
             },
-            "time": "2021-10-14T03:25:34+00:00"
+            "time": "2022-04-19T02:06:59+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2605,16 +2608,16 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v4.4.27",
+            "version": "v4.4.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "9629d1524d8ced5a4ec3e94abdbd638b4ec8319b"
+                "reference": "6e81008cac62369871cb6b8de64576ed138e3998"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/9629d1524d8ced5a4ec3e94abdbd638b4ec8319b",
-                "reference": "9629d1524d8ced5a4ec3e94abdbd638b4ec8319b",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/6e81008cac62369871cb6b8de64576ed138e3998",
+                "reference": "6e81008cac62369871cb6b8de64576ed138e3998",
                 "shasum": ""
             },
             "require": {
@@ -2657,7 +2660,7 @@
             "description": "Simulates the behavior of a web browser, allowing you to make requests, click on links and submit forms programmatically",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/browser-kit/tree/v4.4.27"
+                "source": "https://github.com/symfony/browser-kit/tree/v4.4.37"
             },
             "funding": [
                 {
@@ -2673,7 +2676,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-21T12:19:41+00:00"
+            "time": "2022-01-02T09:41:36+00:00"
         },
         {
             "name": "symfony/class-loader",
@@ -2988,16 +2991,16 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.4.36",
+            "version": "v4.4.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "42de12bee3b5e594977209bcdf58ec4fef8dde39"
+                "reference": "4e9215a8b533802ba84a3cc5bd3c43103e7a6dc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/42de12bee3b5e594977209bcdf58ec4fef8dde39",
-                "reference": "42de12bee3b5e594977209bcdf58ec4fef8dde39",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/4e9215a8b533802ba84a3cc5bd3c43103e7a6dc3",
+                "reference": "4e9215a8b533802ba84a3cc5bd3c43103e7a6dc3",
                 "shasum": ""
             },
             "require": {
@@ -3042,7 +3045,7 @@
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dom-crawler/tree/v4.4.36"
+                "source": "https://github.com/symfony/dom-crawler/tree/v4.4.39"
             },
             "funding": [
                 {
@@ -3058,7 +3061,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-28T14:48:02+00:00"
+            "time": "2022-02-25T10:38:15+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3125,16 +3128,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.36",
+            "version": "v4.4.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "1fef05633cd61b629e963e5d8200fb6b67ecf42c"
+                "reference": "40790bdf293b462798882ef6da72bb49a4a6633a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/1fef05633cd61b629e963e5d8200fb6b67ecf42c",
-                "reference": "1fef05633cd61b629e963e5d8200fb6b67ecf42c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/40790bdf293b462798882ef6da72bb49a4a6633a",
+                "reference": "40790bdf293b462798882ef6da72bb49a4a6633a",
                 "shasum": ""
             },
             "require": {
@@ -3167,7 +3170,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v4.4.36"
+                "source": "https://github.com/symfony/finder/tree/v4.4.41"
             },
             "funding": [
                 {
@@ -3183,11 +3186,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-15T10:33:10+00:00"
+            "time": "2022-04-14T15:36:10+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -3219,12 +3222,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3249,7 +3252,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3269,7 +3272,7 @@
         },
         {
             "name": "symfony/polyfill-iconv",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
@@ -3301,12 +3304,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Iconv\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Iconv\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3332,7 +3335,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3352,7 +3355,7 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -3383,12 +3386,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3419,7 +3422,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3439,7 +3442,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -3468,12 +3471,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -3503,7 +3506,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3523,7 +3526,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -3555,12 +3558,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3586,7 +3589,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3606,7 +3609,7 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
@@ -3632,12 +3635,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php72\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3662,7 +3665,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php72/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3682,16 +3685,16 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9"
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/57b712b08eddb97c762a8caa32c84e037892d2e9",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/4407588e0d3f1f52efb65fbe92babe41f37fe50c",
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c",
                 "shasum": ""
             },
             "require": {
@@ -3708,12 +3711,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -3745,7 +3748,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -3761,7 +3764,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T13:58:33+00:00"
+            "time": "2022-03-04T08:16:47+00:00"
         },
         {
             "name": "symfony/translation",
