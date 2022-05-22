@@ -96,10 +96,6 @@ foreach ($handlers as $handler) {
 // @@@ needs more work
 $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 
-// make sure these are set correctly, so they cannot be injected due to the PHP Globals Problem,
-// http://www.hardened-php.net/globals-problem
-$GLOBALS['language_module'] = $language_module;
-$GLOBALS['database_module'] = $database_module;
 
 //# this is mostly useful when using commandline, and the language is not detected
 //# with the browser
@@ -157,9 +153,15 @@ $GLOBALS['show_dev_errors'] = $show_dev_errors;
 
 if (empty($GLOBALS['language_module'])) {
     $GLOBALS['language_module'] = 'english.inc';
+    if (isset($language_module)) {
+      $GLOBALS['language_module'] = $language_module;
+    }
 }
 if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__).'/'.$GLOBALS['database_module'])) {
     $GLOBALS['database_module'] = 'mysqli.inc';
+    if (isset($database_module)) {
+        $GLOBALS['database_module'] = $database_module;
+    }
 }
 if (!isset($database_port)) {
     $database_port = null;
