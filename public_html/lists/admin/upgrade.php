@@ -246,9 +246,15 @@ if ($dbversion == VERSION && !$force) {
             }
         }
         $maxsize = (int) ($maxsize * 1.2); //# add another 20%
-        $row = Sql_Fetch_Row_Query('select @@datadir');
-        $dataDir = $row[0];
-        $avail = disk_free_space($dataDir);
+        #this is only valid when the DB is on the same host
+        if ($GLOBALS['database_host'] == 'localhost') {
+          $row = Sql_Fetch_Row_Query('select @@datadir');
+          $dataDir = $row[0];
+          $avail = disk_free_space($dataDir);
+        } else {
+          # let's assume the DB host has sufficient space
+          $avail = $maxsize + 1;
+        }
 
         //# convert to UTF8
         $dbname = $GLOBALS['database_name'];
