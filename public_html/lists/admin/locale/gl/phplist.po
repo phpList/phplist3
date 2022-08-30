@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-08-30 00:23+0000\n"
+"PO-Revision-Date: 2022-08-31 10:25+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -219,7 +219,7 @@ msgstr ""
 #: public_html/lists/admin/uclicks.php:133,
 #: public_html/databasestructure.php:65
 msgid "sent"
-msgstr ""
+msgstr "Enviado"
 
 #: public_html/databasestructure.php:264
 msgid "pagetitlehover:messages"
@@ -243,7 +243,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:132
 msgid "When was it forwarded"
-msgstr ""
+msgstr "Cando foi reenviado"
 
 #: public_html/lists/admin/lib.php:375
 msgid "Hello"
@@ -578,7 +578,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:140
 msgid "Time modified"
-msgstr ""
+msgstr "Hora de modificación"
 
 #: public_html/lists/admin/lib.php:2286
 msgid ""
@@ -651,7 +651,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:103
 msgid "Primary key"
-msgstr ""
+msgstr "Clave primaria"
 
 #: public_html/databasestructure.php:243
 msgid "pagetitle:initialise"
@@ -663,7 +663,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:79
 msgid "Admin who is owner"
-msgstr ""
+msgstr "Administrador que é o propietario"
 
 #: public_html/lists/admin/about.php:4
 msgid "About"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:75
 msgid "Was the message viewed"
-msgstr ""
+msgstr "A mensaxe foi vista"
 
 #: public_html/lists/admin/index.php:791
 msgid "Sorry, not implemented yet"
@@ -778,7 +778,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:110
 msgid "Is this process still alive?"
-msgstr ""
+msgstr "Este proceso segue activo?"
 
 #: public_html/lists/admin/actions/processqueue.php:331
 msgid "Finished, All done"
@@ -795,7 +795,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:58
 msgid "Time to send message"
-msgstr ""
+msgstr "Hora para enviar a mensaxe"
 
 #: public_html/databasestructure.php:355
 msgid "pagetitle:reindex"
@@ -873,7 +873,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:9
 msgid "subscriber id"
-msgstr ""
+msgstr "ID do subscritor"
 
 #: public_html/lists/admin/adminattributes.php:82
 msgid "Existing attributes:"
@@ -881,7 +881,7 @@ msgstr "Atributos existentes:"
 
 #: public_html/databasestructure.php:135
 msgid "Type of data"
-msgstr ""
+msgstr "Tipo de datos"
 
 #: public_html/lists/admin/lib.php:2069
 msgid "Sign up to receive news and updates about phpList "
@@ -1189,7 +1189,7 @@ msgstr ""
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr ""
+msgstr "Creado"
 
 #: public_html/lists/admin/generatebouncerules.php:39
 msgid "Process Next Batch"
@@ -1397,7 +1397,7 @@ msgstr ""
 #: public_html/databasestructure.php:80,
 #: public_html/databasestructure.php:162
 msgid "Name of field"
-msgstr ""
+msgstr "Nome do campo"
 
 #: public_html/lists/admin/send_core.php:924
 msgid "The upload has the following limits set by the server"
@@ -1593,7 +1593,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:72
 msgid "Sent as Text and HTML"
-msgstr ""
+msgstr "Enviado como Texto e HTML"
 
 #: public_html/lists/admin/defaultconfig.php:431
 msgid ""
@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:139
 msgid "Time Created"
-msgstr ""
+msgstr "Hora de creación"
 
 #: public_html/lists/admin/login.php:82
 msgid "The passwords you entered are not the same."
@@ -1776,7 +1776,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:92
 msgid "Attachment ID"
-msgstr ""
+msgstr "ID do adxunto"
 
 #: public_html/lists/admin/admin.php:193
 msgid "Send email"
@@ -1799,7 +1799,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:68
 msgid "Template to use"
-msgstr ""
+msgstr "Modelo a usar"
 
 #: public_html/lists/admin/converttoutf8.php:92,
 #: public_html/lists/admin/upgrade.php:270
@@ -1814,7 +1814,7 @@ msgstr ""
 #: public_html/databasestructure.php:25,
 #: public_html/databasestructure.php:143
 msgid "Last time password was changed"
-msgstr ""
+msgstr "Último cambio de contrasinal"
 
 #: public_html/lists/admin/plugins.php:356
 msgid "All"
@@ -1831,7 +1831,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:54
 msgid "Text version of Message"
-msgstr ""
+msgstr "Versión do texto da Mensaxe"
 
 #: public_html/lists/admin/editattributes.php:132
 msgid "Cannot delete"
@@ -1856,7 +1856,7 @@ msgstr ""
 #: public_html/lists/admin/message.php:156,
 #: public_html/databasestructure.php:116
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipo Mime"
 
 #: public_html/lists/admin/editattributes.php:92
 msgid "Replace with"
@@ -1906,7 +1906,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:30
 msgid "History Summary"
-msgstr ""
+msgstr "Resumo Histórico"
 
 #: public_html/lists/admin/processbounces.php:829
 msgid "Report of advanced bounce processing:"
@@ -1994,7 +1994,7 @@ msgstr ""
 #: public_html/databasestructure.php:11,
 #: public_html/databasestructure.php:156
 msgid "PKey"
-msgstr ""
+msgstr "PKey"
 
 #: public_html/lists/admin/attributes.php:209
 #, php-format
@@ -2103,7 +2103,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:49
 msgid "subject"
-msgstr "asunto"
+msgstr "Asunto"
 
 #: public_html/lists/admin/actions/addemail.php:14
 msgid "That is not a valid email address"
@@ -2161,7 +2161,7 @@ msgstr ""
 #: public_html/databasestructure.php:86,
 #: public_html/databasestructure.php:109
 msgid "Modified"
-msgstr ""
+msgstr "Modificado"
 
 #: public_html/lists/admin/processbounces.php:805
 #, php-format
@@ -2172,7 +2172,7 @@ msgstr ""
 #: public_html/databasestructure.php:48,
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/databasestructure.php:254
 msgid "pagetitlehover:users"
@@ -2203,7 +2203,7 @@ msgstr "Estatísticas"
 
 #: public_html/databasestructure.php:41
 msgid "Admin who is owner of this list"
-msgstr ""
+msgstr "Administrador que é dono deste listado"
 
 #: public_html/lists/admin/index.php:539
 msgid "here."
@@ -2255,7 +2255,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:40
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #: public_html/lists/admin/messages.php:183,
 #: public_html/lists/admin/list.php:226,
@@ -2347,7 +2347,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:67
 msgid "Format to send this message in"
-msgstr ""
+msgstr "Formato no que enviar esta mensaxe"
 
 #: public_html/lists/admin/actions/import1.php:242
 #, php-format
@@ -2543,7 +2543,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:22
 msgid "Which page was used to subscribe"
-msgstr ""
+msgstr "Que páxina foi usada para subscribirse"
 
 #: public_html/lists/admin/attributes.php:351
 msgid "Load data from"
@@ -2713,7 +2713,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:38
 msgid "Rss Feed"
-msgstr ""
+msgstr "Fonte RSS"
 
 #: public_html/lists/admin/connect.php:1416,
 #: public_html/lists/admin/connect.php:1419,
@@ -2740,7 +2740,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:131
 msgid "Status of forward"
-msgstr ""
+msgstr "Estado do reenvío"
 
 #: public_html/lists/admin/home.php:365
 msgid "admin"
@@ -2975,7 +2975,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:32
 msgid "System Information"
-msgstr ""
+msgstr "Información do Sistema"
 
 #: public_html/lists/admin/reconcileusers.php:473,
 #: public_html/lists/admin/reconcileusers.php:486,
@@ -3220,11 +3220,11 @@ msgstr ""
 
 #: public_html/databasestructure.php:77
 msgid "When did sending of this message start"
-msgstr ""
+msgstr "Cando comezou o envío desta mensaxe"
 
 #: public_html/databasestructure.php:153
 msgid "attribute number"
-msgstr ""
+msgstr "número de atributo"
 
 #: public_html/lists/admin/convertstats.php:170
 msgid "Convert some more"
@@ -3334,7 +3334,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:126
 msgid "Bounce ID"
-msgstr ""
+msgstr "ID do rebote"
 
 #: public_html/lists/admin/importadmin.php:103
 msgid "Cannot find the email in the header"
@@ -3406,7 +3406,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:121
 msgid "The bounce"
-msgstr ""
+msgstr "O rebote"
 
 #: public_html/lists/admin/login.php:124,
 #: public_html/lists/admin/import3.php:237,
@@ -3414,9 +3414,8 @@ msgstr ""
 #: public_html/lists/admin/admin.php:243,
 #: public_html/databasestructure.php:24,
 #: public_html/databasestructure.php:142
-#, fuzzy
 msgid "Password"
-msgstr "Contrasinal:"
+msgstr "Contrasinal"
 
 #: public_html/lists/admin/plugins.php:46
 msgid "Fetching plugin"
@@ -3465,7 +3464,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:47
 msgid "Primary Key"
-msgstr ""
+msgstr "Clave Primaria"
 
 #: public_html/lists/admin/lib.php:932
 msgid ""
@@ -3515,7 +3514,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:78
 msgid "if used as a RSS template, what frequency"
-msgstr ""
+msgstr "se se usa como modelo RSS, que frecuencia"
 
 #: public_html/lists/admin/defaultconfig.php:149
 msgid "Always add Google tracking code to campaigns"
@@ -3669,7 +3668,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:43
 msgid "Subscriber ID"
-msgstr ""
+msgstr "ID do subscritor"
 
 #: public_html/lists/admin/send_core.php:567
 msgid "Forward"
@@ -3767,7 +3766,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:61
 msgid "Number of seconds to requeue the message"
-msgstr ""
+msgstr "Número de segundos para sumar a mensaxe á cola"
 
 #: public_html/lists/admin/spageedit.php:294
 msgid "Message they receive when they unsubscribe"
@@ -4134,7 +4133,7 @@ msgstr "Nome da imaxe:"
 
 #: public_html/databasestructure.php:95
 msgid "The type of attachment"
-msgstr ""
+msgstr "O tipo de adxunto"
 
 #: public_html/lists/admin/editattributes.php:91
 msgid "Alternatively you can replace all values with another one:"
@@ -4143,7 +4142,7 @@ msgstr ""
 #: public_html/lists/admin/importadmin.php:246,
 #: public_html/databasestructure.php:133
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: public_html/databasestructure.php:221
 msgid "pagetitle:catlists"
@@ -4155,7 +4154,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:10
 msgid "Value of this attribute for this subscriber"
-msgstr ""
+msgstr "Valor deste atributo para este subscritor"
 
 #: public_html/databasestructure.php:360
 msgid "pagetitlehover:hostedprocessqueuesetup"
@@ -4208,7 +4207,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:66
 msgid "Is this message HTML formatted"
-msgstr ""
+msgstr "Está esta mensaxe formateada en HTML"
 
 #: public_html/lists/admin/spageedit.php:335
 msgid "Check this box to use this attribute in the page"
@@ -4246,7 +4245,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:69
 msgid "Number Processed"
-msgstr ""
+msgstr "Número Procesado"
 
 #: public_html/databasestructure.php:111
 msgid "IP Address of who started it"
@@ -4269,7 +4268,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:141
 msgid "Modified by"
-msgstr ""
+msgstr "Modificado por"
 
 #: public_html/lists/admin/mclicks.php:91
 msgid "Link URL"
@@ -4323,7 +4322,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:88
 msgid "When added to blacklist"
-msgstr ""
+msgstr "Cando foi engadido á lista negra"
 
 #: public_html/lists/admin/import4.php:116
 msgid "Remote version is"
@@ -4426,7 +4425,7 @@ msgstr "Probar a saída"
 #: public_html/lists/admin/users.php:387,
 #: public_html/databasestructure.php:19
 msgid "Unique ID"
-msgstr ""
+msgstr "ID único"
 
 #: public_html/lists/admin/processbounces.php:463,
 #: public_html/lists/admin/readtestmail.php:292
@@ -4527,7 +4526,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:115
 msgid "id of template"
-msgstr ""
+msgstr "ID do modelo"
 
 #: public_html/lists/admin/send_core.php:563
 msgid "Text"
@@ -4579,7 +4578,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:130
 msgid "Forward email"
-msgstr ""
+msgstr "Reenviar correo"
 
 #: public_html/lists/admin/defaultconfig.php:174
 msgid "Name for system messages"
@@ -4612,7 +4611,7 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:113,
 #: public_html/databasestructure.php:70
 msgid "Sent as text"
-msgstr ""
+msgstr "Enviado como texto"
 
 #: public_html/databasestructure.php:276
 msgid "pagetitlehover:template"
@@ -4629,7 +4628,7 @@ msgstr ""
 #: public_html/databasestructure.php:173,
 #: public_html/databasestructure.php:181
 msgid "Message ID"
-msgstr ""
+msgstr "ID da mensaxe"
 
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
@@ -4643,7 +4642,7 @@ msgstr ""
 #: public_html/databasestructure.php:89,
 #: public_html/databasestructure.php:138
 msgid "Email"
-msgstr ""
+msgstr "Correo"
 
 #: public_html/databasestructure.php:194
 msgid "URL should be unique"
@@ -4683,7 +4682,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:94
 msgid "The original location on the uploader machine"
-msgstr ""
+msgstr "Ubicación orixinal da máquina que envía"
 
 #: public_html/lists/admin/bounces.php:147
 msgid "view bounces by list"
@@ -4958,7 +4957,7 @@ msgstr ""
 #: public_html/databasestructure.php:167,
 #: public_html/databasestructure.php:182
 msgid "subscriber ID"
-msgstr ""
+msgstr "ID do subscritor"
 
 #: public_html/lists/admin/eventlog.php:81
 msgid "Delete all (&gt; 2 months old)"
@@ -5052,7 +5051,7 @@ msgstr ""
 #: public_html/databasestructure.php:28,
 #: public_html/databasestructure.php:29
 msgid "Foreign Key"
-msgstr ""
+msgstr "Clave Externa"
 
 #: public_html/lists/admin/send_core.php:123,
 #: public_html/lists/admin/send_core.php:1344
@@ -5149,7 +5148,7 @@ msgstr ""
 #: public_html/lists/admin/message.php:153,
 #: public_html/databasestructure.php:117
 msgid "Filename"
-msgstr ""
+msgstr "Nome do ficheiro"
 
 #: public_html/lists/admin/importadmin.php:109
 msgid "Cannot find the loginname in the header"
@@ -5355,7 +5354,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:97
 msgid "Size of the file"
-msgstr ""
+msgstr "Tamaño do ficheiro"
 
 #: public_html/lists/admin/statsmgt.php:7
 msgid "Overview"
@@ -5484,7 +5483,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:64
 msgid "query to select the subscribers for this message"
-msgstr ""
+msgstr "consulta para seleccionar os subscritores para esta mensaxe"
 
 #: public_html/lists/admin/defaultconfig.php:452
 msgid "Message subscribers receive after confirming their email address"
@@ -5674,7 +5673,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:42
 msgid "List category"
-msgstr ""
+msgstr "Listar categoría"
 
 #: public_html/lists/admin/processbounces.php:706
 msgid "bounces processed by advanced processing"
@@ -5948,7 +5947,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr ""
+msgstr "Este subscritor está na lista negra"
 
 #: public_html/lists/admin/processbounces.php:14,
 #: public_html/lists/admin/actions/processqueue.php:8
@@ -6074,7 +6073,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
-msgstr ""
+msgstr "Este subscritor foi confirmado manualmente"
 
 #: public_html/lists/admin/import2.php:416
 msgid "Create new Attribute"
@@ -6255,7 +6254,7 @@ msgstr ""
 #: public_html/lists/admin/setup.php:18,
 #: public_html/databasestructure.php:63
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: public_html/lists/admin/bouncemgt.php:10
 msgid "List Bounce Rules"
@@ -6367,7 +6366,7 @@ msgstr "Rodapé"
 
 #: public_html/databasestructure.php:16
 msgid "Number of bounces"
-msgstr ""
+msgstr "Número de rebotes"
 
 #: public_html/lists/admin/spageedit.php:368
 msgid "Display lists in labelled categories"
@@ -6376,9 +6375,8 @@ msgstr ""
 #: public_html/lists/admin/message.php:157,
 #: public_html/databasestructure.php:34,
 #: public_html/databasestructure.php:96
-#, fuzzy
 msgid "Description"
-msgstr "descrición"
+msgstr "Descrición"
 
 #: public_html/lists/admin/actions/addemail.php:20
 msgid "Email address added"
@@ -6394,7 +6392,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:118
 msgid "The image"
-msgstr ""
+msgstr "A imaxe"
 
 #: public_html/lists/admin/messages.php:17,
 #: public_html/lists/admin/messages.php:25,
@@ -6660,7 +6658,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:136
 msgid "Login Name (max 25 chars)"
-msgstr ""
+msgstr "Nome de usuario (máx. 25 letras)"
 
 #: public_html/lists/admin/readtestmail.php:242
 msgid "tests"
@@ -6988,7 +6986,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:107
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: public_html/lists/admin/editlist.php:151
 msgid "Public list (listed on the frontend)"
@@ -7224,7 +7222,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:123
 msgid "System Comment"
-msgstr ""
+msgstr "Comentario do Sistema"
 
 #: public_html/lists/admin/messages.php:570,
 #: public_html/lists/admin/send_core.php:833,
@@ -7367,7 +7365,7 @@ msgstr ""
 #: public_html/databasestructure.php:101,
 #: public_html/databasestructure.php:106
 msgid "When viewed"
-msgstr ""
+msgstr "Cando foi visto"
 
 #: public_html/databasestructure.php:199
 msgid "Action on rule"
@@ -7426,7 +7424,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:102
 msgid "Status of message"
-msgstr ""
+msgstr "Estado da mensaxe"
 
 #: public_html/databasestructure.php:313
 msgid "pagetitle:uclicks"
@@ -7434,7 +7432,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:122
 msgid "Status of this bounce"
-msgstr ""
+msgstr "Estado deste rebote"
 
 #: public_html/lists/admin/about.php:97
 msgid "Translations"
@@ -7446,7 +7444,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:74
 msgid "Sent as Text and PDF"
-msgstr ""
+msgstr "Enviado como Texto e PDF"
 
 #: public_html/lists/admin/import2.php:31
 #, php-format
@@ -7469,7 +7467,7 @@ msgstr "Xoves"
 
 #: public_html/databasestructure.php:23
 msgid "RSS Frequency"
-msgstr ""
+msgstr "Frecuencia de RSS"
 
 #: public_html/lists/admin/actions/processqueue.php:620
 msgid "Report of processing will be sent by email"
@@ -7516,7 +7514,7 @@ msgstr ""
 #: public_html/databasestructure.php:26,
 #: public_html/databasestructure.php:145
 msgid "Is this account disabled?"
-msgstr ""
+msgstr "Está esta conta inhabilitada?"
 
 #: public_html/lists/admin/bounces.php:18
 msgid "processed"
@@ -7933,7 +7931,7 @@ msgstr ""
 #: public_html/databasestructure.php:4,
 #: public_html/databasestructure.php:149
 msgid "order of listing"
-msgstr ""
+msgstr "Orde da listaxe"
 
 #: public_html/lists/admin/lib.php:2050
 msgid "Unknown error"
@@ -7967,7 +7965,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:151
 msgid "Required"
-msgstr ""
+msgstr "Obrigatorio"
 
 #: public_html/lists/admin/export.php:62
 msgid "Invalid security token. Please reload the page and try again."
@@ -8031,7 +8029,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:73
 msgid "Sent as PDF"
-msgstr ""
+msgstr "Enviado como PDF"
 
 #: public_html/lists/admin/defaultconfig.php:567
 msgid "Default footer for sending a campaign"
@@ -8167,9 +8165,8 @@ msgstr ""
 
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
-#, fuzzy
 msgid "Default value"
-msgstr "Valor predefinido:"
+msgstr "Valor por defecto"
 
 #: public_html/lists/admin/initialise.php:182
 msgid "Setting default configuration"
@@ -8196,7 +8193,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
-msgstr ""
+msgstr "Pé de páxina para unha mensaxe"
 
 #: public_html/lists/admin/template.php:72
 msgid "No images found"
@@ -8208,7 +8205,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:155
 msgid "Value of this attribute for this admin"
-msgstr ""
+msgstr "Valor deste atributo para este admin"
 
 #: public_html/databasestructure.php:339
 msgid "pagetitle:usercheck"
@@ -8228,7 +8225,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:60
 msgid "Final time to stop repetition"
-msgstr ""
+msgstr "Hora límite para parar a repetición"
 
 #: public_html/lists/admin/messages.php:205,
 #: public_html/lists/admin/messages.php:265,
@@ -8511,7 +8508,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr ""
+msgstr "Enviar a este subscritor correos en HTML"
 
 #: public_html/lists/admin/upgrade.php:276
 msgid "Run manual conversion to UTF8"
@@ -8802,7 +8799,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:50
 msgid "from"
-msgstr ""
+msgstr "de"
 
 #: public_html/lists/admin/reconcileusers.php:528
 msgid "Delete subscribers who have an invalid email address"
@@ -8876,7 +8873,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:114
 msgid "The template"
-msgstr ""
+msgstr "O modelo"
 
 #: public_html/lists/admin/actions/processqueue.php:1098
 #, php-format
@@ -8928,7 +8925,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:127
 msgid "When did it bounce"
-msgstr ""
+msgstr "Cando rebotou"
 
 #: public_html/lists/admin/index.php:710
 msgid "You are trying to use PDF support without having FPDF loaded"
@@ -8994,12 +8991,11 @@ msgstr ""
 #: public_html/databasestructure.php:7,
 #: public_html/databasestructure.php:152
 msgid "Name of table with values"
-msgstr ""
+msgstr "Nome da táboa con valores"
 
 #: public_html/databasestructure.php:8
-#, fuzzy
 msgid "attribute"
-msgstr "Atributo:"
+msgstr "atributo"
 
 #: public_html/lists/admin/import2.php:635,
 #: public_html/lists/admin/import2.php:650,
@@ -9027,7 +9023,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:154
 msgid "id of admin"
-msgstr ""
+msgstr "ID do admin"
 
 #: public_html/lists/admin/send_core.php:1016
 msgid "email to alert when sending of this message has finished"
@@ -9097,7 +9093,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:37
 msgid "Subject prefix"
-msgstr ""
+msgstr "Prefixo do asunto"
 
 #: public_html/lists/admin/messages.php:273
 msgid "Suspending"
@@ -9109,7 +9105,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:6
 msgid "Required for subscriber to fill out"
-msgstr ""
+msgstr "Requirido para que sexa cuberto polo subscritor"
 
 #: public_html/lists/admin/actions/import1.php:239,
 #: public_html/lists/admin/import3.php:517
@@ -9132,7 +9128,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:108
 msgid "Start Time"
-msgstr ""
+msgstr "Hora de inicio"
 
 #: public_html/lists/admin/connect.php:1736,
 #: public_html/lists/admin/systemstats.php:33
@@ -9360,7 +9356,7 @@ msgstr ""
 #: public_html/databasestructure.php:44,
 #: public_html/databasestructure.php:84
 msgid "List ID"
-msgstr ""
+msgstr "ID do listado"
 
 #: public_html/lists/admin/members.php:454
 msgid "do it"
@@ -9372,7 +9368,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:27
 msgid "Additional data"
-msgstr ""
+msgstr "Datos adicionais"
 
 #: public_html/databasestructure.php:274
 msgid "pagetitlehover:templates"
@@ -9380,7 +9376,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:62
 msgid "Final time to stop requeueing"
-msgstr ""
+msgstr "Hora límite para parar de sumar á cola"
 
 #: public_html/databasestructure.php:202
 msgid "Related bounce"
@@ -9429,7 +9425,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:36
 msgid "Order of listing"
-msgstr ""
+msgstr "Orde do listado"
 
 #: public_html/databasestructure.php:177
 msgid "Number of times this link has been sent to subscribers for this message"
@@ -9463,7 +9459,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:59
 msgid "Number of seconds to repeat the message"
-msgstr ""
+msgstr "Número de segundos para repetir a mensaxe"
 
 #: public_html/lists/admin/community.php:34
 msgid "Support forum"
@@ -9530,7 +9526,7 @@ msgstr ""
 #: public_html/lists/admin/importadmin.php:337,
 #: public_html/databasestructure.php:146
 msgid "Privileges"
-msgstr ""
+msgstr "Privilexios"
 
 #: public_html/lists/admin/list.php:258
 msgid "Great idea!"
@@ -9652,7 +9648,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:31
 msgid "History Detail"
-msgstr ""
+msgstr "Histórico en detalle"
 
 #: public_html/lists/admin/actions/campaigns.php:33
 msgid "messages sent to this user"
@@ -9825,7 +9821,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:112
 msgid "The page that this process runs in"
-msgstr ""
+msgstr "A páxina na que se executa este proceso"
 
 #: public_html/lists/admin/uclicks.php:142,
 #: public_html/lists/admin/uclicks.php:155
@@ -9842,7 +9838,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:13
 msgid "Is this subscriber confirmed"
-msgstr ""
+msgstr "Este subscritor está confirmado"
 
 #: public_html/lists/admin/defaultconfig.php:532
 msgid "Your personal location"
@@ -9877,7 +9873,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:18
 msgid "Last Modified"
-msgstr ""
+msgstr "Última modificación"
 
 #: public_html/lists/admin/userclicks.php:244,
 #: public_html/lists/admin/mclicks.php:146,
@@ -9898,7 +9894,7 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:109,
 #: public_html/databasestructure.php:71
 msgid "Sent as HTML"
-msgstr ""
+msgstr "Enviado como HTML"
 
 #: public_html/lists/admin/editattributes.php:140
 msgid "* Too many to list, total dependencies:"
@@ -9946,7 +9942,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:76
 msgid "How many bounces on this message"
-msgstr ""
+msgstr "Cantos rebotes nesta mensaxe"
 
 #: public_html/lists/admin/template.php:250
 msgid "Error sending test messages to"
@@ -9961,9 +9957,8 @@ msgid "Congratulations, phpList is set up, you are ready to start mailing"
 msgstr ""
 
 #: public_html/databasestructure.php:82
-#, fuzzy
 msgid "Data"
-msgstr "Data"
+msgstr "Datos"
 
 #: public_html/lists/admin/message.php:129,
 #: public_html/lists/admin/message.php:134
