@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-06 18:55+0000\n"
+"PO-Revision-Date: 2022-09-07 21:36+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -493,7 +493,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:283
 msgid "pagetitle:admins"
-msgstr ""
+msgstr "Xestionar administradores"
 
 #: public_html/lists/admin/index.php:539
 msgid " or update"
@@ -2436,6 +2436,8 @@ msgstr ""
 #: public_html/databasestructure.php:284
 msgid "pagetitlehover:admins"
 msgstr ""
+"Ver, editar e engadir administradores que teñen acceso a todo ou parte do "
+"sistema de phpList"
 
 #: public_html/lists/admin/editattributes.php:202,
 #: public_html/lists/admin/editattributes.php:217
@@ -2580,6 +2582,8 @@ msgstr ""
 #: public_html/databasestructure.php:270
 msgid "pagetitlehover:defaults"
 msgstr ""
+"Escoller entre varios atributos comúns proporcionados pola comunidade de "
+"phpList"
 
 #: public_html/lists/index.php:663
 msgid "Send this subscriber a request for confirmation email"
@@ -3112,7 +3116,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:271
 msgid "pagetitle:upgrade"
-msgstr ""
+msgstr "Actualizar base de datos de phpList"
 
 #: public_html/lists/admin/convertstats.php:165
 msgid "Optimizing table to recover space"
@@ -3489,7 +3493,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:269
 msgid "pagetitle:defaults"
-msgstr ""
+msgstr "Valores por defecto dalgúns atributos"
 
 #: public_html/lists/admin/lib.php:1780,
 #: public_html/lists/admin/lib.php:1785
@@ -3556,7 +3560,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:267
 msgid "pagetitle:processqueue"
-msgstr ""
+msgstr "Enviar a cola"
 
 #: public_html/lists/admin/send_core.php:863
 msgid "select one"
@@ -4566,7 +4570,7 @@ msgstr "Xa existe esa regra"
 
 #: public_html/databasestructure.php:278
 msgid "pagetitlehover:viewtemplate"
-msgstr ""
+msgstr "Previsualización do modelo"
 
 #: public_html/lists/admin/bounce.php:228
 msgid "Comment"
@@ -4619,7 +4623,7 @@ msgstr "Enviado como texto"
 
 #: public_html/databasestructure.php:276
 msgid "pagetitlehover:template"
-msgstr ""
+msgstr "Engadir ou editar un modelo dunha campaña"
 
 #: public_html/databasestructure.php:81,
 #: public_html/databasestructure.php:83,
@@ -5168,7 +5172,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:273
 msgid "pagetitle:templates"
-msgstr ""
+msgstr "Xestionar os modelos das campañas"
 
 #: public_html/lists/admin/importadmin.php:106
 msgid "Cannot find the password in the header"
@@ -5454,7 +5458,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:286
 msgid "pagetitlehover:adminattributes"
-msgstr ""
+msgstr "Configurar atributos de administrador"
 
 #: public_html/lists/admin/importadmin.php:14
 msgid "No file was specified."
@@ -5742,7 +5746,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:287
 msgid "pagetitle:processbounces"
-msgstr ""
+msgstr "Procesar rebotes"
 
 #: public_html/lists/admin/processbounces.php:707
 msgid "bounces were not matched by advanced processing rules"
@@ -6234,7 +6238,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:275
 msgid "pagetitle:template"
-msgstr ""
+msgstr "Engadir ou editar un modelo"
 
 #: public_html/lists/admin/defaultconfig.php:128
 msgid "Default for 'From:' in a campaign"
@@ -6481,7 +6485,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:280
 msgid "pagetitlehover:configure"
-msgstr ""
+msgstr "Cambiar a configuración que controla como se comporta phpList"
 
 #: public_html/lists/admin/send_core.php:1014
 msgid "email to alert when sending of this message starts"
@@ -6635,7 +6639,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:279
 msgid "pagetitle:configure"
-msgstr ""
+msgstr "Configuración"
 
 #: public_html/lists/admin/actions/configure.php:98
 #, fuzzy
@@ -7171,6 +7175,8 @@ msgstr ""
 #: public_html/databasestructure.php:282
 msgid "pagetitlehover:admin"
 msgstr ""
+"Editar ou agregar un administrador que pode facer login en phpList para "
+"xestionar aspectos do sistema"
 
 #: public_html/lists/admin/connect.php:881
 msgid "about"
@@ -7852,7 +7858,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:268
 msgid "pagetitlehover:processqueue"
-msgstr ""
+msgstr "Enviar as campañas en cola"
 
 #: public_html/lists/admin/template.php:303
 msgid "Template file."
@@ -7895,7 +7901,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:277
 msgid "pagetitle:viewtemplate"
-msgstr ""
+msgstr "Previsualización do modelo"
 
 #: public_html/lists/admin/home.php:255,
 #: public_html/lists/admin/connect.php:571
@@ -8005,7 +8011,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:281
 msgid "pagetitle:admin"
-msgstr ""
+msgstr "Editar ou engadir un administrador"
 
 #: public_html/lists/admin/sendemaillib.php:763
 msgid "sendingtextonlyto"
@@ -8669,7 +8675,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:285
 msgid "pagetitle:adminattributes"
-msgstr ""
+msgstr "Configurar atributos de administrador"
 
 #: public_html/lists/admin/actions/processqueue.php:95
 #, php-format
@@ -9378,6 +9384,8 @@ msgstr "Datos adicionais"
 #: public_html/databasestructure.php:274
 msgid "pagetitlehover:templates"
 msgstr ""
+"Ver e xestionar os modelos das campañas, que son usados para enviar correos "
+"HTML"
 
 #: public_html/databasestructure.php:62
 msgid "Final time to stop requeueing"
@@ -9620,6 +9628,8 @@ msgstr ""
 #: public_html/databasestructure.php:272
 msgid "pagetitlehover:upgrade"
 msgstr ""
+"Actualizar a base de datos de phpList para estar ao mesmo nivel que a "
+"versión actual do código"
 
 #: public_html/lists/admin/actions/subscription.php:96
 msgid "detail"
