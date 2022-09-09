@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-09 12:20+0000\n"
+"PO-Revision-Date: 2022-09-09 14:22+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -270,7 +270,7 @@ msgstr ""
 #: public_html/lists/admin/messages.php:600,
 #: public_html/lists/admin/actions/msgstatus.php:70
 msgid "Requeue"
-msgstr ""
+msgstr "Volver a engadir á cola"
 
 #: public_html/lists/admin/defaultconfig.php:347,
 #: public_html/lists/admin/spageedit.php:234
@@ -310,7 +310,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/reconcileusers.php:6
 msgid "Deleting subscribers with an invalid email"
-msgstr ""
+msgstr "Eliminando subscritores cun enderezo de correo electrónico non válido"
 
 #: public_html/lists/admin/import4.php:359
 msgid "new users"
@@ -690,7 +690,7 @@ msgstr "Ver rebotes"
 
 #: public_html/lists/admin/actions/statsoverview.php:89
 msgid "There are currently no campaigns to view"
-msgstr ""
+msgstr "Actualmente non hai campañas para ver"
 
 #: public_html/lists/admin/import4.php:361
 msgid "existing users"
@@ -815,7 +815,7 @@ msgstr "ficheiro"
 #: public_html/lists/admin/actions/reconcileusers.php:39,
 #: public_html/lists/admin/actions/reconcileusers.php:68
 msgid "subscribers deleted"
-msgstr ""
+msgstr "Subscritores eliminados"
 
 #: public_html/lists/admin/user.php:418
 msgid "Add to blacklist"
@@ -1151,9 +1151,8 @@ msgid "Import of new subscriber"
 msgstr "Importación de novo subscritor"
 
 #: public_html/lists/admin/actions/subscription.php:86
-#, fuzzy
 msgid "no details found"
-msgstr "Non se atoparon imaxes"
+msgstr "Non se atoparon detalles"
 
 #: public_html/lists/admin/list.php:299
 msgid "Order"
@@ -1252,7 +1251,7 @@ msgstr "Valor predefinido:"
 
 #: public_html/lists/admin/actions/msgstatus.php:114
 msgid "Send the queue"
-msgstr ""
+msgstr "Enviar á cola"
 
 #: public_html/lists/admin/spageedit.php:365
 msgid "Do not show list categories"
@@ -1500,17 +1499,17 @@ msgstr "Título"
 #: public_html/lists/admin/actions/campaigns.php:41,
 #: public_html/lists/admin/actions/bounces.php:44
 msgid "view"
-msgstr ""
+msgstr "ver"
 
 #: public_html/lists/admin/actions/subscription.php:74,
 #: public_html/lists/admin/actions/subscription.php:76
 msgid "remove"
-msgstr ""
+msgstr "Eliminar"
 
 #: public_html/lists/admin/actions/msgstatus.php:108
 #, php-format
 msgid "next batch of %s in %s"
-msgstr ""
+msgstr "seguinte lote de %s en %s"
 
 #: public_html/lists/admin/spageedit.php:354
 #, php-format
@@ -1918,7 +1917,7 @@ msgstr "Comprobar que existen traducións"
 
 #: public_html/lists/admin/actions/subscription.php:58
 msgid "Blacklist info"
-msgstr ""
+msgstr "Información da lista negra"
 
 #: public_html/lists/admin/import4.php:48
 msgid "add_list"
@@ -2015,7 +2014,7 @@ msgstr ""
 #: public_html/lists/admin/actions/statsoverview.php:139,
 #: public_html/lists/admin/users.php:475
 msgid "bncs"
-msgstr ""
+msgstr "bncs"
 
 #: public_html/lists/admin/index.php:550
 msgid ""
@@ -2068,7 +2067,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/checkurl.php:37
 msgid "Please verify that the URL entered is correct."
-msgstr ""
+msgstr "Por favor, verifica que a URL introducida é correcta."
 
 #: public_html/lists/admin/actions/processqueue.php:337
 msgid "Script finished, but not all messages have been sent yet."
@@ -2295,7 +2294,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/checkurl.php:35
 msgid "URL is valid"
-msgstr ""
+msgstr "A URL non é válida"
 
 #: public_html/lists/admin/send_core.php:913,
 #: public_html/lists/admin/spageedit.php:227
@@ -2339,7 +2338,7 @@ msgstr "Contido"
 #: public_html/lists/admin/actions/checkurl.php:25,
 #: public_html/lists/admin/actions/checkurl.php:30
 msgid "Error fetching URL"
-msgstr ""
+msgstr "Produciuse un erro ao obter a URL"
 
 #: public_html/lists/admin/actions/processqueue.php:273,
 #: public_html/lists/admin/importsimple.php:108
@@ -2357,6 +2356,8 @@ msgid ""
 "%d emails were found on the do-not-send-list and have not been added to the "
 "lists"
 msgstr ""
+"Atopáronse %d correos electrónicos na lista de non enviar e non se engadiron "
+"ás listas"
 
 #: public_html/lists/admin/bouncerule.php:87
 msgid "no related bounces found"
@@ -2478,7 +2479,7 @@ msgstr ""
 #: public_html/lists/admin/actions/viewtemplate.php:5,
 #: public_html/lists/admin/viewtemplate.php:27
 msgid "Sample Newsletter Content"
-msgstr ""
+msgstr "Mostra de contido do boletín"
 
 #: public_html/lists/admin/processbounces.php:419
 msgid "Processed messages will be deleted from mailbox"
@@ -2731,7 +2732,7 @@ msgstr "Seleccionar todo"
 
 #: public_html/lists/admin/actions/subscription.php:51
 msgid "subscriber is blacklisted since"
-msgstr ""
+msgstr "O subscritor está na lista negra desde entón"
 
 #: public_html/lists/admin/catlists.php:93
 msgid "save"
@@ -2922,7 +2923,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:75
 msgid "Please upload an image file, PNG or JPG."
-msgstr ""
+msgstr "Carga un ficheiro de imaxe, PNG ou JPG."
 
 #: public_html/lists/admin/actions/addemail.php:19
 #, php-format
@@ -2945,7 +2946,7 @@ msgstr ""
 #: public_html/lists/admin/msgstatus.php:15,
 #: public_html/lists/admin/actions/msgstatus.php:69
 msgid "requeue"
-msgstr ""
+msgstr "Volver a engadir á cola"
 
 #: public_html/lists/admin/home.php:14,
 #: public_html/lists/admin/home.php:343,
@@ -3008,7 +3009,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:228,
 #: public_html/lists/admin/import3.php:512
 msgid "emails were"
-msgstr ""
+msgstr "os correos foron"
 
 #: public_html/lists/admin/catlists.php:41
 msgid ""
@@ -3182,7 +3183,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:237
 msgid "All the emails already exist in the database."
-msgstr ""
+msgstr "Todos os correos electrónicos xa existen na base de datos."
 
 #: public_html/lists/admin/spageedit.php:238
 msgid "Text for Button"
@@ -3272,7 +3273,7 @@ msgstr ""
 #: public_html/lists/admin/actions/listbounces.php:61,
 #: public_html/lists/admin/actions/msgbounces.php:81
 msgid "None found"
-msgstr ""
+msgstr "Non se atopou nada"
 
 #: public_html/lists/admin/inc/userlib.php:541
 #, php-format
@@ -3558,7 +3559,7 @@ msgstr ""
 #: public_html/lists/admin/import3.php:533,
 #: public_html/lists/admin/importsimple.php:128
 msgid "Import some more emails"
-msgstr ""
+msgstr "Importar algúns correos electrónicos máis"
 
 #: public_html/databasestructure.php:267
 msgid "pagetitle:processqueue"
@@ -3904,7 +3905,7 @@ msgstr ""
 #: public_html/lists/admin/admin.php:234,
 #: public_html/lists/admin/admin.php:255
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
 #: public_html/lists/admin/import4.php:48,
 #: public_html/lists/admin/import2.php:645,
@@ -3946,7 +3947,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:231
 #, php-format
 msgid "%d emails already existed in the database"
-msgstr ""
+msgstr "Xa existían %d correos electrónicos na base de datos"
 
 #: public_html/lists/admin/actions/processqueue.php:365
 msgid "Finished this run"
@@ -4238,7 +4239,7 @@ msgstr ""
 #: public_html/lists/admin/statsoverview.php:165,
 #: public_html/lists/admin/actions/statsoverview.php:146
 msgid "Unique Clicks"
-msgstr ""
+msgstr "Clics únicos"
 
 #: public_html/lists/admin/import1.php:60
 msgid ""
@@ -4467,7 +4468,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/campaigns.php:62
 msgid "bounce"
-msgstr ""
+msgstr "rebote"
 
 #: public_html/lists/admin/importadmin.php:293
 msgid "succesfully imported to the database and added to the system."
@@ -4537,7 +4538,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:112
 msgid "Waiting"
-msgstr ""
+msgstr "Agardando"
 
 #: public_html/databasestructure.php:115
 msgid "id of template"
@@ -4561,7 +4562,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:91
 msgid "ip"
-msgstr ""
+msgstr "IP"
 
 #: public_html/lists/admin/bouncerule.php:85
 msgid "related bounces"
@@ -4726,6 +4727,8 @@ msgid ""
 "For this subscriber to be removed from the blacklist, you need to ask them "
 "to re-subscribe using the phpList subscribe page"
 msgstr ""
+"Para que este subscritor sexa eliminado da lista negra, debes pedirlle que "
+"se volva subscribir usando a páxina de subscrición de phpList"
 
 #: public_html/lists/admin/suppressionlist.php:38
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
@@ -5138,7 +5141,7 @@ msgstr "pechar"
 #: public_html/lists/admin/actions/listbounces.php:56,
 #: public_html/lists/admin/actions/msgbounces.php:76
 msgid "Total bounces"
-msgstr ""
+msgstr "Rebotes totais"
 
 #: public_html/lists/admin/lib.php:2046
 msgid "The API key is incorrect"
@@ -5280,7 +5283,7 @@ msgstr ""
 #: public_html/lists/index.php:852,
 #: public_html/lists/admin/actions/reconcileusers.php:59
 msgid "\"Jump off\" set, reason not requested"
-msgstr ""
+msgstr "Subscrición cancelada, razón: non solicitada"
 
 #: public_html/databasestructure.php:247
 msgid "pagetitle:preparesend"
@@ -5649,6 +5652,8 @@ msgstr ""
 msgid ""
 "you only have privileges to view this page, not change any of the information"
 msgstr ""
+"Só tes privilexios para ver esta páxina, non para cambiar ningunha "
+"información"
 
 #: public_html/lists/admin/actions/import2.php:514
 #, php-format
@@ -5672,7 +5677,7 @@ msgstr ""
 #: public_html/lists/admin/actions/campaigns.php:57,
 #: public_html/lists/admin/mviews.php:217
 msgid "Response time"
-msgstr ""
+msgstr "Tempo de resposta"
 
 #: public_html/lists/admin/import2.php:712,
 #: public_html/lists/admin/importadmin.php:322
@@ -5681,7 +5686,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:102
 msgid "limit reached"
-msgstr ""
+msgstr "Límite alcanzado"
 
 #: public_html/databasestructure.php:294
 msgid "pagetitlehover:spageedit"
@@ -5706,7 +5711,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:107
 msgid "info"
-msgstr ""
+msgstr "Info"
 
 #: public_html/lists/admin/bounce.php:55,
 #: public_html/lists/admin/bounce.php:100
@@ -6120,7 +6125,7 @@ msgstr ""
 #: public_html/lists/admin/admin.php:234,
 #: public_html/lists/admin/admin.php:256
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: public_html/lists/admin/import2.php:746,
 #: public_html/lists/admin/import1.php:241
@@ -6465,7 +6470,7 @@ msgstr ""
 #: public_html/lists/admin/actions/subscription.php:71,
 #: public_html/lists/admin/actions/subscription.php:72
 msgid "remove subscriber from blacklist"
-msgstr ""
+msgstr "Eliminar subscritor da lista negra"
 
 #: public_html/lists/admin/bouncerule.php:61,
 #: public_html/lists/admin/bounce.php:157,
@@ -6520,7 +6525,7 @@ msgstr ""
 #: public_html/lists/admin/msgstatus.php:28,
 #: public_html/lists/admin/actions/msgstatus.php:123
 msgid "ETA"
-msgstr ""
+msgstr "ETA"
 
 #: public_html/lists/admin/admin.php:125
 msgid ""
@@ -6573,7 +6578,7 @@ msgstr "Configurar atributos"
 
 #: public_html/lists/admin/actions/upgrade.php:13
 msgid "Top level domains were updated successfully"
-msgstr ""
+msgstr "Os dominios de nivel superior actualizáronse correctamente"
 
 #: public_html/lists/admin/defaultconfig.php:87
 msgid "Name of the organisation"
@@ -6658,9 +6663,8 @@ msgid "pagetitle:configure"
 msgstr "Configuración"
 
 #: public_html/lists/admin/actions/configure.php:98
-#, fuzzy
 msgid "save changes"
-msgstr "Gardar as imaxes"
+msgstr "Gardar cambios"
 
 #: public_html/lists/admin/list.php:304,
 #: public_html/lists/admin/editlist.php:127
@@ -6786,7 +6790,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:117
 msgid "editing cancelled"
-msgstr ""
+msgstr "Edición cancelada"
 
 #: public_html/lists/admin/users.php:409
 #, fuzzy
@@ -6815,7 +6819,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:27
 msgid "Editing"
-msgstr ""
+msgstr "Editando"
 
 #: public_html/lists/admin/bounce.php:141
 msgid "Manage bounces"
@@ -6883,7 +6887,7 @@ msgstr ""
 #: public_html/lists/admin/configure.php:28,
 #: public_html/lists/admin/actions/configure.php:10
 msgid "invalid request"
-msgstr ""
+msgstr "Solicitude non válida"
 
 #: public_html/lists/admin/actions/export.php:151
 msgid "List Membership"
@@ -6976,7 +6980,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:82
 msgid "Subscription History"
-msgstr ""
+msgstr "Historial de subscricións"
 
 #: public_html/lists/admin/user.php:247
 msgid "changed from"
@@ -7154,7 +7158,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/statsoverview.php:140
 msgid "fwds"
-msgstr ""
+msgstr "fwds"
 
 #: public_html/lists/admin/eventlog.php:115
 msgid "page"
@@ -7311,7 +7315,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/msgstatus.php:116
 msgid "Check status"
-msgstr ""
+msgstr "Comprobar estado"
 
 #: public_html/lists/admin/reconcileusers.php:326
 msgid "subscribers fixed"
@@ -7521,7 +7525,7 @@ msgstr "Crear atributo"
 #: public_html/lists/admin/actions/import1.php:228,
 #: public_html/lists/admin/import3.php:512
 msgid "email was"
-msgstr ""
+msgstr "o correo foi"
 
 #: public_html/lists/admin/home.php:116
 msgid "Export Users"
@@ -7628,7 +7632,7 @@ msgstr "Febreiro"
 
 #: public_html/lists/admin/actions/subscription.php:69
 msgid "are you sure you want to delete this subscriber from the blacklist"
-msgstr ""
+msgstr "Seguro que queres eliminar este subscritor da lista negra"
 
 #: public_html/lists/admin/login.php:44
 msgid "Send password"
@@ -7681,7 +7685,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/checkurl.php:23
 msgid "Check your \"remoteurl_append\" setting."
-msgstr ""
+msgstr "Comproba a túa configuración de \"remoteurl_append\"."
 
 #: public_html/lists/admin/actions/import1.php:215
 msgid "Is now subscribed to:"
@@ -7699,13 +7703,13 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:64
 msgid "value"
-msgstr ""
+msgstr "Valor"
 
 #: public_html/lists/admin/msgstatus.php:27,
 #: public_html/lists/admin/actions/msgstatus.php:73,
 #: public_html/lists/admin/actions/msgstatus.php:87
 msgid "still to process"
-msgstr ""
+msgstr "Non procesado"
 
 #: public_html/lists/admin/import3.php:235
 #, fuzzy
@@ -7872,7 +7876,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:69
 msgid "it should only be done with explicit permission from this subscriber"
-msgstr ""
+msgstr "só debería facerse co permiso explícito deste subscritor"
 
 #: public_html/databasestructure.php:268
 msgid "pagetitlehover:processqueue"
@@ -8092,7 +8096,7 @@ msgstr ""
 #: public_html/lists/admin/actions/msgstatus.php:124,
 #: public_html/lists/admin/import3.php:159
 msgid "Processing"
-msgstr ""
+msgstr "Procesando"
 
 #: public_html/lists/admin/message.php:84
 msgid "Edit this message"
@@ -8136,7 +8140,7 @@ msgstr ""
 #: public_html/lists/admin/actions/msgstatus.php:62
 #, php-format
 msgid "%s left until embargo"
-msgstr ""
+msgstr "%s restantes ata o bloqueo"
 
 #: public_html/lists/admin/connect.php:2243
 #, php-format
@@ -8145,14 +8149,14 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:93
 msgid "summary"
-msgstr "resumo"
+msgstr "Resumo"
 
 #: public_html/lists/admin/messages.php:367,
 #: public_html/lists/admin/messages.php:370,
 #: public_html/lists/admin/actions/campaigns.php:24,
 #: public_html/lists/admin/user.php:539
 msgid "Campaigns"
-msgstr ""
+msgstr "Campañas"
 
 #: public_html/lists/admin/send_core.php:1352
 msgid "Save and continue editing"
@@ -8362,7 +8366,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:104
 msgid "undo"
-msgstr ""
+msgstr "Desfacer"
 
 #: public_html/lists/admin/actions/processqueue.php:984
 msgid "queue processing time has exceeded max processing time "
@@ -8423,7 +8427,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/bounces.php:50
 msgid "time"
-msgstr ""
+msgstr "hora"
 
 #: public_html/lists/admin/readtestmail.php:54
 msgid "test processing error"
@@ -8821,7 +8825,7 @@ msgstr "segundos en enviar"
 #: public_html/lists/admin/bounces.php:180,
 #: public_html/lists/admin/bounces.php:211
 msgid "Unknown"
-msgstr ""
+msgstr "Descoñecido"
 
 #: public_html/lists/admin/send_core.php:804
 msgid "do not requeue"
@@ -8829,7 +8833,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:92
 msgid "Don't know how to handle type "
-msgstr ""
+msgstr "Non sei como manexar o tipo "
 
 #: public_html/databasestructure.php:50
 msgid "from"
@@ -9086,7 +9090,7 @@ msgstr "Ver correos rebotados por lista de subscritores"
 #: public_html/lists/admin/editlist.php:20,
 #: public_html/lists/admin/editlist.php:41
 msgid "You do not have enough privileges to view this page"
-msgstr ""
+msgstr "Non tes suficientes privilexios para ver esta páxina"
 
 #: public_html/lists/admin/send_core.php:154
 msgid ""
@@ -9146,7 +9150,7 @@ msgstr "Requirido para que sexa cuberto polo subscritor"
 #: public_html/lists/admin/actions/import1.php:239,
 #: public_html/lists/admin/import3.php:517
 msgid "subscribed to the"
-msgstr ""
+msgstr "subscrito ao"
 
 #: public_html/lists/admin/home.php:216
 msgid "preparesend"
@@ -9371,7 +9375,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/listbounces.php:48
 msgid "Choose a list"
-msgstr ""
+msgstr "Escoller unha lista"
 
 #: public_html/lists/admin/updatetranslation.php:31
 msgid "Language"
@@ -9447,7 +9451,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/campaigns.php:56
 msgid "viewed"
-msgstr ""
+msgstr "Visto"
 
 #: public_html/lists/admin/spageedit.php:190
 msgid "General Information"
@@ -9658,7 +9662,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/subscription.php:96
 msgid "detail"
-msgstr ""
+msgstr "Detalle"
 
 #: public_html/lists/admin/connect.php:525
 msgid "Too many errors, please login again"
@@ -9694,7 +9698,7 @@ msgstr "Histórico en detalle"
 
 #: public_html/lists/admin/actions/campaigns.php:33
 msgid "messages sent to this user"
-msgstr ""
+msgstr "mensaxes enviadas a este subscritor"
 
 #: public_html/lists/admin/send_core.php:576
 msgid "Scheduling"
@@ -9817,7 +9821,7 @@ msgstr "Sen acceso"
 #: public_html/lists/admin/actions/import1.php:239,
 #: public_html/lists/admin/import3.php:517
 msgid "succesfully imported to the database and added to"
-msgstr ""
+msgstr "importouse correctamente á base de datos e engadiuse a"
 
 #: public_html/lists/admin/processqueue.php:95
 msgid "View progress"
