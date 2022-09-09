@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-09 02:56+0000\n"
+"PO-Revision-Date: 2022-09-09 12:20+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:998
 msgid "Message I was working on has disappeared"
-msgstr ""
+msgstr "A mensaxe na que estaba traballando desapareceu"
 
 #: public_html/lists/admin/home.php:100,
 #: public_html/lists/admin/import4.php:118
@@ -415,7 +415,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:283
 #, php-format
 msgid "%d emails unconfirmed (not sent)"
-msgstr ""
+msgstr "%d correos electrónicos sen confirmar (non enviados)"
 
 #: public_html/databasestructure.php:205
 msgid "Original string"
@@ -471,7 +471,7 @@ msgstr "Cando se realizou a petición de cambio de contrasinal"
 
 #: public_html/lists/admin/actions/processqueue.php:1357
 msgid "Hmmm, No users found to send to"
-msgstr ""
+msgstr "Non se atopou ningún subscritor ao que enviar"
 
 #: public_html/lists/admin/adminattributes.php:127
 msgid "Add a new Attribute:"
@@ -782,7 +782,7 @@ msgstr "Este proceso segue activo?"
 
 #: public_html/lists/admin/actions/processqueue.php:331
 msgid "Finished, All done"
-msgstr ""
+msgstr "Rematou, todo feito"
 
 #: public_html/lists/admin/export.php:125
 msgid "Date To:"
@@ -791,7 +791,7 @@ msgstr "Data ata:"
 #: public_html/lists/admin/actions/processqueue.php:718
 #, php-format
 msgid "to view the progress of this campaign, go to %s://%s"
-msgstr ""
+msgstr "para ver o progreso desta campaña, vai a %s://%s"
 
 #: public_html/databasestructure.php:58
 msgid "Time to send message"
@@ -975,9 +975,8 @@ msgstr ""
 #: public_html/lists/admin/actions/mviews.php:93,
 #: public_html/lists/admin/eventlog.php:110,
 #: public_html/lists/admin/bounces.php:215
-#, fuzzy
 msgid "date"
-msgstr "Data"
+msgstr "data"
 
 #: public_html/lists/admin/import3.php:522
 msgid "Invalid Emails found."
@@ -1001,7 +1000,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:726
 msgid "Processing message"
-msgstr ""
+msgstr "Procesando campaña"
 
 #: public_html/lists/admin/bounces.php:8
 #, php-format
@@ -1080,7 +1079,7 @@ msgstr "Estatísticas do dominio"
 
 #: public_html/lists/admin/actions/processqueue.php:1305
 msgid "already sent"
-msgstr ""
+msgstr "xa se enviou"
 
 #: public_html/lists/admin/defaultconfig.php:659
 msgid "Domains that only accept text emails, one per line"
@@ -1149,7 +1148,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:149
 msgid "Import of new subscriber"
-msgstr ""
+msgstr "Importación de novo subscritor"
 
 #: public_html/lists/admin/actions/subscription.php:86
 #, fuzzy
@@ -1285,7 +1284,7 @@ msgstr "Forzar inicialización"
 
 #: public_html/lists/admin/actions/processqueue.php:1382
 msgid "to send this message"
-msgstr ""
+msgstr "para enviar esta mensaxe"
 
 #: public_html/lists/admin/import4.php:129
 msgid "Copying lists"
@@ -1323,7 +1322,7 @@ msgstr "lista autorizada"
 
 #: public_html/lists/admin/actions/import1.php:123
 msgid "Import of existing subscriber"
-msgstr ""
+msgstr "Importación do subscritor existente"
 
 #: public_html/lists/admin/import3.php:519
 msgid "emails already existed in the database"
@@ -1428,6 +1427,8 @@ msgstr "non existe"
 #: public_html/lists/admin/actions/addemail.php:26
 msgid "Adding email address failed, try again later"
 msgstr ""
+"Produciuse un erro ao engadir o enderezo de correo electrónico. Téntao de "
+"novo máis tarde"
 
 #: public_html/lists/admin/import2.php:137,
 #: public_html/lists/admin/import1.php:90
@@ -1661,7 +1662,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1370
 msgid "Message campaign finished"
-msgstr ""
+msgstr "Campaña rematada"
 
 #: public_html/lists/admin/eventlog.php:45
 msgid "Deleted all entries older than 2 months"
@@ -1885,7 +1886,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:756
 msgid "users apply for attributes, now checking lists"
-msgstr ""
+msgstr "subscritores correspondentes aos atributos, agora comprobando listas"
 
 #: public_html/lists/admin/import2.php:727
 msgid "Assign Invalid"
@@ -1957,7 +1958,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/mviews.php:72
 msgid "Available Messages"
-msgstr ""
+msgstr "Campañas dispoñibles"
 
 #: public_html/lists/admin/configure.php:19
 msgid "The settings have been reset to the phpList default"
@@ -2071,7 +2072,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:337
 msgid "Script finished, but not all messages have been sent yet."
-msgstr ""
+msgstr "O script rematou, pero aínda non se enviaron todas as mensaxes."
 
 #: public_html/lists/admin/actions/import2.php:523
 #, php-format
@@ -2106,7 +2107,7 @@ msgstr "Asunto"
 
 #: public_html/lists/admin/actions/addemail.php:14
 msgid "That is not a valid email address"
-msgstr ""
+msgstr "Ese non é un enderezo de correo electrónico válido"
 
 #: public_html/lists/admin/actions/domainbounces.php:79
 msgid "Bounce rate"
@@ -2139,7 +2140,7 @@ msgstr ""
 #: public_html/lists/admin/actions/user.php:19
 #, php-format
 msgid "Manually blacklisted by %s"
-msgstr ""
+msgstr "Posto en lista negra manualmente por %s"
 
 #: public_html/lists/admin/user.php:390
 msgid ""
@@ -2243,7 +2244,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:960
 msgid "batch limit reached"
-msgstr ""
+msgstr "alcanzouse o límite de lote"
 
 #: public_html/lists/admin/actions/bounces.php:48
 msgid "Transactional message"
@@ -2268,7 +2269,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:768
 msgid "No users apply for attributes"
-msgstr ""
+msgstr "Ningún subscritor corresponde aos atributos"
 
 #: public_html/lists/admin/community.php:48
 msgid "Donate to support phpList development"
@@ -2344,7 +2345,7 @@ msgstr ""
 #: public_html/lists/admin/importsimple.php:108
 #, php-format
 msgid "%d invalid email addresses"
-msgstr ""
+msgstr "%d enderezos de correo electrónico non válidos"
 
 #: public_html/databasestructure.php:67
 msgid "Format to send this message in"
@@ -2678,6 +2679,8 @@ msgstr ""
 #, php-format
 msgid "%s is currently over throttle limit of %d per %d seconds"
 msgstr ""
+"%s actualmente está por enriba do límite de regulación de tráfico, "
+"establecido en %d por %d segundos"
 
 #: public_html/lists/admin/bounce.php:93
 #, php-format
@@ -2710,7 +2713,7 @@ msgstr "Configuración de seguridade"
 #: public_html/lists/admin/actions/processqueue.php:613
 #, php-format
 msgid "%d campaigns to process."
-msgstr ""
+msgstr "%d campañas para procesar."
 
 #: public_html/databasestructure.php:226
 msgid "pagetitlehover:editlist"
@@ -2907,7 +2910,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:9
 msgid "File not found"
-msgstr ""
+msgstr "Ficheiro non atopado"
 
 #: public_html/lists/admin/send_core.php:757
 msgid "Repeat campaign every"
@@ -2924,7 +2927,7 @@ msgstr ""
 #: public_html/lists/admin/actions/addemail.php:19
 #, php-format
 msgid "Added by %s"
-msgstr ""
+msgstr "Engadido por %s"
 
 #: public_html/lists/admin/user.php:541
 #, fuzzy
@@ -3023,7 +3026,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1195
 msgid "Failed sending to"
-msgstr ""
+msgstr "Fallou o envío a"
 
 #: public_html/lists/admin/initialise.php:63
 #, php-format
@@ -3122,7 +3125,7 @@ msgstr "Optimizando táboa para recuperar espazo"
 
 #: public_html/lists/admin/actions/mviews.php:93
 msgid "in progress"
-msgstr ""
+msgstr "en progreso"
 
 #: public_html/lists/admin/statsmgt.php:18,
 #: public_html/lists/admin/upgrade.php:452
@@ -3240,7 +3243,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1265
 msgid "Unconfirmed user"
-msgstr ""
+msgstr "Subscritor non confirmado"
 
 #: public_html/lists/admin/defaultconfig.php:675
 msgid "Top level domains"
@@ -3296,7 +3299,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:212
 msgid "Was subscribed to:"
-msgstr ""
+msgstr "Estaba subscrito a:"
 
 #: public_html/lists/admin/bouncerule.php:38
 msgid ""
@@ -3381,7 +3384,7 @@ msgstr "O procesamento comezou,"
 
 #: public_html/lists/admin/actions/processqueue.php:264
 msgid "Calculating"
-msgstr ""
+msgstr "Calculando"
 
 #: public_html/lists/admin/import4.php:88
 msgid "continue"
@@ -3576,7 +3579,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:618
 msgid "This may take a while"
-msgstr ""
+msgstr "Isto pode levar un tempo"
 
 #: public_html/lists/admin/bounce.php:64
 msgid "Not Found"
@@ -3819,9 +3822,8 @@ msgstr "Rematar"
 #: public_html/lists/admin/actions/statsoverview.php:159,
 #: public_html/lists/admin/actions/mviews.php:101,
 #: public_html/lists/admin/actions/mviews.php:117
-#, fuzzy
 msgid "rate"
-msgstr "Data"
+msgstr "Taxa"
 
 #: public_html/lists/admin/importadmin.php:168
 #, fuzzy
@@ -3948,7 +3950,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:365
 msgid "Finished this run"
-msgstr ""
+msgstr "Acabada esta pasada"
 
 #: public_html/lists/admin/members.php:305
 #, php-format
@@ -4062,6 +4064,8 @@ msgstr "adminid"
 #: public_html/lists/admin/actions/processqueue.php:1286
 msgid "Subscriber marked unconfirmed for invalid email address"
 msgstr ""
+"O subscritor marcouse como sen confirmar porque o enderezo de correo non é "
+"válido"
 
 #: public_html/lists/admin/plugins.php:249
 msgid "name"
@@ -4177,7 +4181,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:202,
 #: public_html/lists/admin/user.php:252
 msgid "No data changed"
-msgstr ""
+msgstr "Non se cambiou ningún dato"
 
 #: public_html/lists/admin/list.php:304,
 #: public_html/lists/admin/editlist.php:127
@@ -4367,7 +4371,7 @@ msgstr "Resumo"
 
 #: public_html/lists/admin/actions/addemail.php:19
 msgid "Added with add-email on test"
-msgstr ""
+msgstr "Engadido con correo electrónico adicional nas probas"
 
 #: public_html/lists/admin/defaultconfig.php:135
 msgid "Default for 'address to alert when sending starts'"
@@ -4394,7 +4398,7 @@ msgstr ""
 #: public_html/lists/admin/actions/statsoverview.php:155,
 #: public_html/lists/admin/actions/mviews.php:113
 msgid "Comparison to other admins"
-msgstr ""
+msgstr "Comparación con outros administradores"
 
 #: public_html/lists/admin/attributes.php:406,
 #: public_html/lists/admin/attributes.php:438,
@@ -4644,7 +4648,7 @@ msgstr "ID da mensaxe"
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
 msgid "new emails were"
-msgstr ""
+msgstr "os novos correos foron"
 
 #: public_html/lists/admin/usercheck.php:51,
 #: public_html/lists/admin/users.php:381,
@@ -4702,7 +4706,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import1.php:227,
 #: public_html/lists/admin/import3.php:511
 msgid "new email was"
-msgstr ""
+msgstr "o novo correo foi"
 
 #: public_html/lists/admin/bounce.php:176
 msgid "(so you can resend the request for confirmation)"
@@ -4882,6 +4886,8 @@ msgstr "hora"
 #: public_html/lists/admin/actions/processqueue.php:1102
 msgid "Introducing extra delay to decrease throttle failures"
 msgstr ""
+"Incrementando o tempo de espera para reducir fracasos debidos á regulación "
+"de tráfico"
 
 #: public_html/lists/admin/userclicks.php:78
 #, php-format
@@ -5022,7 +5028,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:276
 #, php-format
 msgid "%d failed (will retry later)"
-msgstr ""
+msgstr "%d fallou (intentarase máis tarde)"
 
 #: public_html/lists/admin/usercheck.php:7
 msgid "Existing subscribers"
@@ -5319,7 +5325,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:517
 #, php-format
 msgid "Processing blocked by plugin %s"
-msgstr ""
+msgstr "Procesamento bloqueado polo plugin %s"
 
 #: public_html/lists/admin/send_core.php:748
 msgid "Embargoed Until"
@@ -5493,7 +5499,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1305
 msgid "Not sending to"
-msgstr ""
+msgstr "Non se enviou a"
 
 #: public_html/databasestructure.php:64
 msgid "query to select the subscribers for this message"
@@ -5519,6 +5525,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "This may be caused by a too slow or too busy server"
 msgstr ""
+"Isto pode ser causado por un servidor demasiado lento ou demasiado ocupado"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:58
 msgid "incorrect password"
@@ -5530,7 +5537,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1246
 msgid "not sending to "
-msgstr ""
+msgstr "non se enviou a "
 
 #: public_html/databasestructure.php:225
 msgid "pagetitle:editlist"
@@ -5742,7 +5749,7 @@ msgstr "Reenviar agregando o UID?"
 
 #: public_html/lists/admin/actions/processqueue.php:618
 msgid "Please leave this window open."
-msgstr ""
+msgstr "Por favor, deixe esta ventá aberta."
 
 #: public_html/databasestructure.php:361
 msgid "pagetitle:suppressionlist"
@@ -5943,7 +5950,7 @@ msgstr ""
 #: public_html/lists/admin/list.php:123,
 #: public_html/lists/admin/import3.php:510
 msgid "list"
-msgstr ""
+msgstr "lista"
 
 #: public_html/lists/admin/plugins.php:48
 msgid "Developer"
@@ -5999,7 +6006,7 @@ msgstr "Escriba unha mensaxe"
 
 #: public_html/lists/admin/actions/processqueue.php:268
 msgid "messages sent in"
-msgstr ""
+msgstr "mensaxes enviadas en"
 
 #: public_html/lists/admin/actions/msgbounces.php:55
 msgid "There are currently no data to view"
@@ -6133,7 +6140,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:989
 msgid "Campaign sending timed out, is past date to process until"
-msgstr ""
+msgstr "O envío dacampaña caducou, pasou a data de procesamento ata"
 
 #: public_html/lists/admin/import4.php:66
 msgid "Table prefix:"
@@ -6162,7 +6169,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:562
 msgid "Skipped in last run"
-msgstr ""
+msgstr "Saltados na última pasada"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:100
 msgid "No such account"
@@ -6201,7 +6208,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:717
 #, php-format
 msgid "phplist has started sending the campaign with subject %s"
-msgstr ""
+msgstr "phplist comezou a enviar a campaña co asunto %s"
 
 #: public_html/lists/admin/languages.php:634
 msgid "over treshold, user marked unconfirmed"
@@ -6217,7 +6224,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:489,
 #: public_html/lists/admin/actions/processqueue.php:491
 msgid "Would have sent"
-msgstr ""
+msgstr "Tería enviado"
 
 #: public_html/lists/admin/lib.php:2284
 msgid ""
@@ -6233,7 +6240,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:303
 msgid "Less than batch size were sent, so reloading imminently"
-msgstr ""
+msgstr "Enviáronse menos do tamaño do lote, polo que a recarga é inminente"
 
 #: public_html/lists/admin/index.php:555
 msgid "Download the latest version"
@@ -6300,7 +6307,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:561
 msgid "Sent in last run"
-msgstr ""
+msgstr "Enviados na última pasada"
 
 #: public_html/lists/admin/upgrade.php:65
 #, php-format
@@ -6315,7 +6322,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:256
 msgid "Finished, Nothing to do"
-msgstr ""
+msgstr "Rematou, nada que facer"
 
 #: public_html/lists/admin/setup.php:18
 msgid "Step"
@@ -6348,7 +6355,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:309
 #, php-format
 msgid "Waiting for %d seconds before reloading"
-msgstr ""
+msgstr "Agardando %d segundos antes de volver cargar"
 
 #: public_html/lists/admin/user.php:95
 #, php-format
@@ -6396,11 +6403,13 @@ msgstr "Descrición"
 
 #: public_html/lists/admin/actions/addemail.php:20
 msgid "Email address added"
-msgstr ""
+msgstr "Engadiuse o enderezo de correo electrónico"
 
 #: public_html/lists/admin/actions/processqueue.php:699
 msgid "Error loading message, please check the eventlog for details"
 msgstr ""
+"Produciuse un erro ao cargar a mensaxe, consulta o rexistro de logs para "
+"obter máis detalles"
 
 #: public_html/lists/admin/users.php:482
 msgid "No users apply"
@@ -6439,7 +6448,7 @@ msgstr "O correo electrónico é un atributo do sistema"
 
 #: public_html/lists/admin/actions/processqueue.php:618
 msgid "phpList will process your queue until all messages have been sent."
-msgstr ""
+msgstr "phpList procesará a túa cola ata que todas as mensaxes sexan enviadas."
 
 #: public_html/lists/admin/listbounces.php:107,
 #: public_html/lists/admin/msgbounces.php:103
@@ -6612,7 +6621,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1001
 msgid "Sending of this message has been suspended"
-msgstr ""
+msgstr "Suspendeuse o envío desta mensaxe"
 
 #: public_html/lists/admin/members.php:390,
 #: public_html/lists/admin/members.php:427
@@ -6722,7 +6731,7 @@ msgstr ""
 #: public_html/lists/admin/actions/statsoverview.php:157,
 #: public_html/lists/admin/actions/mviews.php:115
 msgid "views"
-msgstr ""
+msgstr "Vistas"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:54
 msgid "Admin authentication has changed, please update your admin module"
@@ -6818,7 +6827,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:269
 msgid "seconds"
-msgstr ""
+msgstr "segundos"
 
 #: public_html/lists/admin/statsoverview.php:185
 #, fuzzy
@@ -6925,7 +6934,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:527
 msgid "Processing has been suspended by your ISP, please try again later"
-msgstr ""
+msgstr "O teu ISP suspendeu o procesamento. Téntao de novo máis tarde"
 
 #: public_html/lists/admin/connect.php:535,
 #: public_html/lists/admin/connect.php:540
@@ -6946,7 +6955,7 @@ msgstr "Domingo"
 
 #: public_html/lists/admin/actions/processqueue.php:918
 msgid "Found them"
-msgstr ""
+msgstr "Atopados"
 
 #: public_html/lists/admin/date.php:21
 msgid "Wednesday"
@@ -7039,7 +7048,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:716
 msgid "Campaign started"
-msgstr ""
+msgstr "Campaña iniciada"
 
 #: public_html/lists/admin/home.php:12
 msgid "Your version"
@@ -7153,12 +7162,12 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:821
 msgid "looking for users who can be excluded from this mailing"
-msgstr ""
+msgstr "buscando subscritores que poidan ser excluídos deste correo"
 
 #: public_html/lists/admin/actions/processqueue.php:650
 #, php-format
 msgid "Maximum for campaign %d is %d"
-msgstr ""
+msgstr "O máximo para a campaña %d é %d"
 
 #: public_html/lists/admin/tests/sendpage.php:48
 msgid "Check your INBOX to see if all worked ok"
@@ -7234,7 +7243,7 @@ msgstr "Integración con AJAX"
 
 #: public_html/lists/admin/actions/processqueue.php:251
 msgid "Script stage"
-msgstr ""
+msgstr "Estadio de script"
 
 #: public_html/lists/admin/converttoutf8.php:102
 msgid "All Done"
@@ -7358,7 +7367,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:918
 msgid "to process"
-msgstr ""
+msgstr "para procesar"
 
 #: public_html/lists/admin/send_core.php:401
 msgid "Sorry, you used invalid characters in the From field."
@@ -7474,7 +7483,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:210
 msgid "List subscriptions:"
-msgstr ""
+msgstr "Subscricións a listas:"
 
 #: public_html/databasestructure.php:164
 msgid "page this log was for"
@@ -7490,7 +7499,7 @@ msgstr "Frecuencia de RSS"
 
 #: public_html/lists/admin/actions/processqueue.php:620
 msgid "Report of processing will be sent by email"
-msgstr ""
+msgstr "O informe do procesamento enviarase por correo electrónico"
 
 #: public_html/databasestructure.php:232
 msgid "pagetitlehover:import4"
@@ -7676,7 +7685,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:215
 msgid "Is now subscribed to:"
-msgstr ""
+msgstr "Está subscrito a:"
 
 #: public_html/lists/admin/home.php:73,
 #: public_html/lists/admin/admin.php:309,
@@ -7849,6 +7858,8 @@ msgid ""
 "Warning, finding the subscribers to send out to takes a long time, consider "
 "changing to commandline sending"
 msgstr ""
+"Aviso, atopar os subscritores aos que enviar o envío leva moito tempo, "
+"considera cambiar ao envío de liña de comandos"
 
 #: public_html/lists/admin/importsimple.php:106
 #, php-format
@@ -7874,7 +7885,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:1155,
 #: public_html/lists/admin/actions/processqueue.php:1381
 msgid "It took"
-msgstr ""
+msgstr "tardou"
 
 #: public_html/lists/admin/lib.php:736
 msgid "This is the Newsletter Subject"
@@ -7975,7 +7986,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:1372
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
-msgstr ""
+msgstr "para ver as estatísticas desta campaña, vai a %s://%s"
 
 #: public_html/lists/admin/bounce.php:182
 msgid "Do the above"
@@ -8102,11 +8113,13 @@ msgstr ""
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
 msgstr ""
+"agardando por %.1f segundos para acadar o obxectivo de %s segundos por "
+"mensaxe"
 
 #: public_html/lists/admin/actions/processqueue.php:489,
 #: public_html/lists/admin/actions/processqueue.php:491
 msgid "(test)"
-msgstr ""
+msgstr "(prueba)"
 
 #: public_html/lists/admin/tests/sendpage.php:28
 msgid "Sending HTML version to "
@@ -8168,7 +8181,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:735
 msgid "Looking for users"
-msgstr ""
+msgstr "Buscando subscritores"
 
 #: public_html/lists/admin/index.php:495
 msgid "good evening"
@@ -8181,7 +8194,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:1149
 #, php-format
 msgid "Warning: a lot of errors while sending campaign %d"
-msgstr ""
+msgstr "Aviso: moitos erros ao enviar a campaña %d"
 
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
@@ -8353,7 +8366,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:984
 msgid "queue processing time has exceeded max processing time "
-msgstr ""
+msgstr "o procesamento da cola superou o tempo máximo de procesamento"
 
 #: public_html/databasestructure.php:303
 msgid "pagetitle:community"
@@ -8452,7 +8465,7 @@ msgstr "Editar valores"
 #: public_html/lists/admin/actions/processqueue.php:1287
 #, php-format
 msgid "Marked unconfirmed while sending campaign %d"
-msgstr ""
+msgstr "Marcado como sen confirmar durante o envío da campaña %d"
 
 #: public_html/lists/admin/plugins.php:307,
 #: public_html/lists/admin/plugins.php:312
@@ -8475,7 +8488,7 @@ msgstr "Engadir un novo administrador"
 #: public_html/lists/admin/actions/msgstatus.php:125,
 #: public_html/lists/admin/actions/processqueue.php:269
 msgid "msgs/hr"
-msgstr ""
+msgstr "mensaxes/hora"
 
 #: public_html/lists/admin/hostedprocessqueuesetup.php:48
 msgid ""
@@ -8498,7 +8511,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:684
 #, php-format
 msgid "sending of this campaign will stop, if it is still going in %s"
-msgstr ""
+msgstr "o envío desta campaña deterase, se aínda está en curso en %s"
 
 #: public_html/lists/admin/statsoverview.php:91,
 #: public_html/lists/admin/mviews.php:72
@@ -8583,7 +8596,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:1371
 #, php-format
 msgid "phpList has finished sending the campaign with subject %s"
-msgstr ""
+msgstr "phpList rematou de enviar a campaña co asunto %s"
 
 #: public_html/lists/admin/reconcileusers.php:326
 msgid "subscribers could not be fixed"
@@ -8639,14 +8652,14 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:1135
 msgid "Sending"
-msgstr ""
+msgstr "Enviando"
 
 #: public_html/lists/admin/import4.php:126,
 #: public_html/lists/admin/actions/import1.php:226,
 #: public_html/lists/admin/import3.php:510,
 #: public_html/lists/admin/users.php:455
 msgid "lists"
-msgstr ""
+msgstr "listas"
 
 #: public_html/lists/admin/reconcileusers.php:192
 msgid "Deleting subscribers who are not on any list"
@@ -8801,7 +8814,7 @@ msgstr "engadir unha nova regra"
 
 #: public_html/lists/admin/actions/processqueue.php:1155
 msgid "seconds to send"
-msgstr ""
+msgstr "segundos en enviar"
 
 #: public_html/lists/admin/lib.php:668,
 #: public_html/lists/admin/actions/msgstatus.php:81,
@@ -8902,6 +8915,8 @@ msgid ""
 "There have been more than 10 attempts to send to %s that have been blocked "
 "for domain throttling."
 msgstr ""
+"Houbo máis de 10 intentos de enviar a %s que foron bloqueados para limitar o "
+"dominio."
 
 #: public_html/lists/admin/connect.php:1335
 msgid "All Public Lists"
@@ -8978,7 +8993,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:507
 msgid "Time now "
-msgstr ""
+msgstr "Hora actual "
 
 #: public_html/databasestructure.php:161
 msgid "Admin who is owner of this page"
@@ -9036,7 +9051,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import1.php:218
 msgid "Not subscribed to any lists"
-msgstr ""
+msgstr "Non está subscrito a ningunha lista"
 
 #: public_html/databasestructure.php:245
 msgid "pagetitle:send"
@@ -9301,7 +9316,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:611
 msgid "One campaign to process."
-msgstr ""
+msgstr "Unha campaña para procesar."
 
 #: public_html/lists/admin/members.php:372
 msgid ""
@@ -9318,7 +9333,7 @@ msgstr "Convertendo %s de %s a %s"
 
 #: public_html/lists/admin/actions/processqueue.php:386
 msgid "To stop receiving these reports read:"
-msgstr ""
+msgstr "Para deixar de recibir estes informes le:"
 
 #: public_html/lists/admin/import3.php:388
 msgid "folders and"
@@ -9493,7 +9508,7 @@ msgstr ""
 #: public_html/lists/admin/actions/msgstatus.php:48,
 #: public_html/lists/admin/actions/processqueue.php:1333
 msgid "unknown"
-msgstr ""
+msgstr "descoñecido"
 
 #: public_html/lists/admin/connect.php:1737,
 #: public_html/lists/admin/systemstats.php:34
@@ -9504,7 +9519,7 @@ msgstr "Xullo"
 #: public_html/lists/admin/actions/processqueue.php:1275,
 #: public_html/lists/admin/actions/processqueue.php:1277
 msgid "Invalid email address"
-msgstr ""
+msgstr "Dirección de correo non válida"
 
 #: public_html/lists/admin/importadmin.php:315
 msgid ""
@@ -9559,7 +9574,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "Warning: script never reached stage 5"
-msgstr ""
+msgstr "Atención: o script non alcanzou o estadio 5"
 
 #: public_html/lists/admin/template.php:229
 msgid "Sending test \"Request for confirmation\" to"
@@ -9582,7 +9597,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:505
 msgid "Started"
-msgstr ""
+msgstr "Comezado"
 
 #: public_html/lists/admin/reconcileusers.php:173
 msgid "Creating UniqID for all subscribers who do not have one"
@@ -9940,7 +9955,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:491,
 #: public_html/lists/admin/actions/processqueue.php:1135
 msgid "to"
-msgstr ""
+msgstr "a"
 
 #: public_html/databasestructure.php:296
 msgid "pagetitlehover:spage"
@@ -9970,7 +9985,7 @@ msgstr ""
 #: public_html/lists/admin/actions/processqueue.php:1351
 #, php-format
 msgid "Processed %d out of %d subscribers"
-msgstr ""
+msgstr "Procesáronse %d de %d subscritores"
 
 #: public_html/databasestructure.php:76
 msgid "How many bounces on this message"
