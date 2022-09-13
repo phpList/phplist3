@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-09 14:22+0000\n"
+"PO-Revision-Date: 2022-09-13 12:39+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:232
 msgid "Plugin is up-to-date"
-msgstr ""
+msgstr "O plugin está actualizado"
 
 #: public_html/lists/admin/lib.php:25
 msgid "delete subscriber"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:178
 msgid "Plugin package URL"
-msgstr ""
+msgstr "URL do paquete de plugins"
 
 #: public_html/lists/admin/about.php:30
 msgid "Certification"
@@ -560,7 +560,7 @@ msgstr ""
 
 #: public_html/lists/admin/generatebouncerules.php:146
 msgid "bounces matched to existing rules"
-msgstr ""
+msgstr "rebotes coincidentes coas regras existentes"
 
 #: public_html/lists/admin/upgrade.php:38
 msgid ""
@@ -647,7 +647,7 @@ msgstr ""
 #: public_html/lists/admin/home.php:264,
 #: public_html/lists/admin/bouncemgt.php:16
 msgid "Process Bounces"
-msgstr ""
+msgstr "Procesar rebotes"
 
 #: public_html/databasestructure.php:103
 msgid "Primary key"
@@ -766,6 +766,7 @@ msgstr ""
 #: public_html/lists/admin/spageedit.php:32
 msgid "Invalid security token, please reload the page and try again"
 msgstr ""
+"O token de seguranza non é válido. Volve cargar a páxina e téntao de novo"
 
 #: public_html/databasestructure.php:220
 msgid "pagetitlehover:config"
@@ -824,7 +825,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:517
 #, php-format
 msgid "Subscriber data was updated for %d subscribers"
-msgstr ""
+msgstr "Actualizáronse os datos dos subscritores de %d subscritores"
 
 #: public_html/lists/admin/initialise.php:81
 msgid "Please enter the password you want to use for this account."
@@ -868,7 +869,7 @@ msgstr "O teu ISP estableceu as seguintes restricións:"
 
 #: public_html/lists/admin/plugins.php:54
 msgid "Unable to download plugin package, check your connection"
-msgstr ""
+msgstr "Non se pode descargar o paquete de plugins, comproba a túa conexión"
 
 #: public_html/databasestructure.php:9
 msgid "subscriber id"
@@ -1030,6 +1031,7 @@ msgstr ""
 #, php-format
 msgid "%d emails were on the blacklist and have not been added to the lists"
 msgstr ""
+"%d correos electrónicos estaban na lista negra e non se engadiron ás listas"
 
 #: public_html/lists/admin/configure.php:90
 msgid "cannot be empty"
@@ -1165,7 +1167,7 @@ msgstr "Aínda non se definiu ningún atributo"
 
 #: public_html/lists/admin/plugins.php:38
 msgid "Invalid download URL, please reload the page and try again"
-msgstr ""
+msgstr "A URL de descarga non é válida. Volve cargar a páxina e téntao de novo"
 
 #: public_html/lists/admin/processbounces.php:417
 msgid "Running in test mode, not deleting messages from mailbox"
@@ -1190,7 +1192,7 @@ msgstr "Creado"
 
 #: public_html/lists/admin/generatebouncerules.php:39
 msgid "Process Next Batch"
-msgstr ""
+msgstr "Procesar o seguinte lote"
 
 #: public_html/lists/admin/import2.php:401
 msgid ""
@@ -1353,6 +1355,8 @@ msgid ""
 "You have already defined bounce rules in your system.      Be careful with "
 "generating new ones, because these may interfere with the ones that exist."
 msgstr ""
+"Xa definiches regras de rebote no teu sistema. Teña coidado coa xeración "
+"doutras novas, porque poden interferir coas que existen."
 
 #: public_html/lists/admin/converttoutf8.php:77,
 #: public_html/lists/admin/converttoutf8.php:79,
@@ -1474,7 +1478,7 @@ msgstr "Importar subscritores"
 
 #: public_html/lists/admin/plugins.php:21
 msgid "The plugin "
-msgstr ""
+msgstr "O plugin "
 
 #: public_html/lists/admin/reconcileusers.php:186
 msgid "Marking all subscribers to receive text"
@@ -1580,7 +1584,7 @@ msgstr ""
 #: public_html/lists/admin/import2.php:220
 #, php-format
 msgid "ok, %d lines"
-msgstr ""
+msgstr "ok, %d liñas"
 
 #: public_html/lists/admin/convertstats.php:72
 msgid "converting data"
@@ -1685,6 +1689,8 @@ msgid ""
 "PHP has no <a href=\"http://php.net/zip\">Zip capability</a>. This is "
 "required to allow installation from a remote URL"
 msgstr ""
+"PHP non ten <a href=\"http://php.net/zip\">capacidade Zip</a>. Isto é "
+"necesario para permitir a instalación desde unha URL remota"
 
 #: public_html/lists/admin/adminattributes.php:94,
 #: public_html/lists/admin/members.php:324,
@@ -1730,6 +1736,11 @@ msgid ""
 "activate.      It will however, not catch every single bounce, so it will be "
 "necessary to add new rules over      time when new bounces come in."
 msgstr ""
+"Actualmente non tes regras definidas. Podes facer clic en Xerar regras de "
+"rebotes para xerar regras automáticas a partir dos teus rebotes existentes. "
+"Isto dará lugar a moitas regras que terás que revisar e activar. Non "
+"obstante, non capturará todos os rebotes, polo que será necesario engadir "
+"novas regras co paso do tempo cando se produzan novos rebotes."
 
 #: public_html/lists/admin/defaultconfig.php:166
 msgid "From email address for system messages"
@@ -1754,7 +1765,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:239
 msgid " user imported as "
-msgstr "usuario importado como"
+msgstr " subscritor importado como "
 
 #: public_html/lists/admin/dbcheck.php:87
 msgid "unique"
@@ -2077,6 +2088,8 @@ msgstr "O script rematou, pero aínda non se enviaron todas as mensaxes."
 #, php-format
 msgid "%d subscribers were matched by foreign key, %d by email"
 msgstr ""
+"%d subscritores foron coincidentes por clave externa, %d por correo "
+"electrónico"
 
 #: public_html/databasestructure.php:290
 msgid "pagetitlehover:bounces"
@@ -2084,7 +2097,7 @@ msgstr "Ver os correos rebotados no sistema"
 
 #: public_html/lists/admin/plugins.php:144
 msgid "Plugin installed successfully"
-msgstr ""
+msgstr "Plugin instalado con éxito"
 
 #: public_html/lists/admin/bouncerules.php:109
 msgid "order"
@@ -2093,7 +2106,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:147,
 #: public_html/lists/admin/import2.php:573
 msgid "clear value"
-msgstr "limpar o valor"
+msgstr "limpar valor"
 
 #: public_html/lists/admin/configure.php:115,
 #: public_html/lists/admin/catlists.php:61
@@ -2286,7 +2299,7 @@ msgstr ""
 #: public_html/lists/admin/import2.php:523,
 #: public_html/lists/admin/importadmin.php:134
 msgid "Record has no email"
-msgstr ""
+msgstr "O rexistro non ten correo electrónico"
 
 #: public_html/lists/admin/eventlog.php:97
 msgid "Filter"
@@ -2416,7 +2429,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/import2.php:508
 msgid "These records were added, but the email has been made up from "
-msgstr ""
+msgstr "Engadíronse estes rexistros, pero o correo electrónico foi feito desde "
 
 #: public_html/lists/admin/defaultconfig.php:598
 msgid "Footer of public pages"
@@ -2466,7 +2479,7 @@ msgstr ""
 
 #: public_html/lists/admin/bouncemgt.php:13
 msgid "View Bounces per list"
-msgstr ""
+msgstr "Ver rebotes por lista"
 
 #: public_html/lists/admin/bouncerules.php:82
 msgid "No Rules found"
@@ -2875,7 +2888,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:261
 msgid "version"
-msgstr "versión"
+msgstr "Versión"
 
 #: public_html/lists/admin/import4.php:162
 msgid "Copying attributes"
@@ -3000,7 +3013,7 @@ msgstr "O ficheiro é demasiado grande ou non existe."
 
 #: public_html/lists/admin/plugins.php:160
 msgid "Plugin installation failed"
-msgstr ""
+msgstr "Fallou a instalación do plugin"
 
 #: public_html/lists/admin/defaultconfig.php:667
 msgid "last time TLDs were fetched"
@@ -3057,7 +3070,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:173
 msgid "Install a new plugin"
-msgstr ""
+msgstr "Instalar un novo plugin"
 
 #: public_html/lists/admin/plugins.php:358
 msgid "Enabled"
@@ -3089,7 +3102,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:258
 msgid "description"
-msgstr "descrición"
+msgstr "Descrición"
 
 #: public_html/lists/admin/attributes.php:368
 msgid "forms"
@@ -3254,7 +3267,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:239,
 #: public_html/lists/admin/actions/import2.php:241
 msgid "duplicate"
-msgstr ""
+msgstr "duplicar"
 
 #: public_html/lists/admin/connect.php:1738,
 #: public_html/lists/admin/systemstats.php:35
@@ -3427,7 +3440,7 @@ msgstr "Contrasinal"
 
 #: public_html/lists/admin/plugins.php:46
 msgid "Fetching plugin"
-msgstr ""
+msgstr "Obtendo plugin"
 
 #: public_html/lists/admin/spage.php:97
 msgid "not active"
@@ -3763,7 +3776,7 @@ msgstr ""
 #: public_html/lists/admin/import2.php:526,
 #: public_html/lists/admin/importadmin.php:136
 msgid "Invalid Email"
-msgstr ""
+msgstr "Correo electrónico non válido"
 
 #: public_html/lists/admin/bouncerule.php:63
 msgid "Created By"
@@ -3791,7 +3804,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:236
 msgid "Plugin must be updated manually"
-msgstr ""
+msgstr "O plugin debe actualizarse manualmente"
 
 #: public_html/lists/admin/plugins.php:308,
 #: public_html/lists/admin/bouncerules.php:102
@@ -3814,7 +3827,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:157
 msgid "Invalid plugin package"
-msgstr ""
+msgstr "Paquete de plugins non válido"
 
 #: public_html/lists/admin/send_core.php:606
 msgid "Finish"
@@ -4009,6 +4022,8 @@ msgid ""
 "These records were deleted. Check your source and reimport the data. "
 "Duplicates will be identified."
 msgstr ""
+"Estes rexistros foron eliminados. Comproba a súa fonte e volve importar os "
+"datos. Identificaranse os duplicados."
 
 #: public_html/lists/admin/actions/updatetranslation.php:31
 msgid "No language terms found"
@@ -4070,7 +4085,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:249
 msgid "name"
-msgstr "nome"
+msgstr "Nome"
 
 #: public_html/lists/admin/send_core.php:512
 msgid "add"
@@ -4300,7 +4315,7 @@ msgstr "Martes"
 #: public_html/lists/admin/actions/import2.php:528,
 #: public_html/lists/admin/importsimple.php:138
 msgid "phplist Import Results"
-msgstr "Resultados de importación a phplist"
+msgstr "Resultados de importación a phpList"
 
 #: public_html/databasestructure.php:302
 msgid "pagetitlehover:viewrss"
@@ -4602,7 +4617,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:265
 msgid "Update status"
-msgstr ""
+msgstr "Actualizar estado"
 
 #: public_html/lists/admin/actions/processqueue.php:547
 #, php-format
@@ -4809,7 +4824,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:227
 msgid "Unable to find update"
-msgstr ""
+msgstr "Non se puido atopar a actualización"
 
 #: public_html/lists/admin/messages.php:200,
 #: public_html/lists/admin/eventlog.php:32,
@@ -4822,7 +4837,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:111
 msgid "updating existing plugin"
-msgstr ""
+msgstr "actualizando o plugin existente"
 
 #: public_html/lists/admin/tests.php:42
 msgid "Test failed"
@@ -5122,7 +5137,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:188
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 #: public_html/lists/admin/reconcileusers.php:106
 msgid "user found"
@@ -5536,7 +5551,7 @@ msgstr "Contrasinal incorrecto"
 
 #: public_html/lists/admin/plugins.php:175
 msgid "Find plugins"
-msgstr ""
+msgstr "Buscar plugins"
 
 #: public_html/lists/admin/actions/processqueue.php:1246
 msgid "not sending to "
@@ -5658,7 +5673,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:514
 #, php-format
 msgid "%d duplicate emails found."
-msgstr ""
+msgstr "Atopáronse %d correos electrónicos duplicados."
 
 #: public_html/lists/admin/user.php:245
 msgid "(no data)"
@@ -5867,7 +5882,7 @@ msgstr "Por favor, introduce a túa dirección de correo."
 #: public_html/lists/admin/plugins.php:229
 #, php-format
 msgid "Version %s is available"
-msgstr ""
+msgstr "A versión %s está dispoñible"
 
 #: public_html/lists/admin/home.php:372
 msgid "System Functions"
@@ -5921,6 +5936,8 @@ msgstr ""
 msgid ""
 "The plugin root directory is not writable, please install plugins manually"
 msgstr ""
+"O directorio raíz do plugin está protexido contra escritura, por favor "
+"instala os plugins manualmente"
 
 #: public_html/lists/admin/login.php:95
 msgid "You have requested a password update"
@@ -6041,7 +6058,7 @@ msgstr "Copiar"
 
 #: public_html/lists/admin/generatebouncerules.php:132
 msgid "Hmm, duplicate entry, "
-msgstr "Hmm, entrada duplicada,"
+msgstr "Hmm, entrada duplicada, "
 
 #: public_html/lists/admin/adminattributes.php:113,
 #: public_html/lists/admin/adminattributes.php:149
@@ -6287,7 +6304,7 @@ msgstr "Estado"
 
 #: public_html/lists/admin/bouncemgt.php:10
 msgid "List Bounce Rules"
-msgstr ""
+msgstr "Lista de regras de rebote"
 
 #: public_html/databasestructure.php:163
 msgid "data"
@@ -6485,7 +6502,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
 msgid "Reading emails from file ... "
-msgstr ""
+msgstr "Lendo correos electrónicos do ficheiro... "
 
 #: public_html/lists/admin/import.php:40
 msgid "import by uploading a file with emails"
@@ -6709,7 +6726,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:118
 msgid "new plugin"
-msgstr ""
+msgstr "novo plugin"
 
 #: public_html/lists/admin/import2.php:707,
 #: public_html/lists/admin/importadmin.php:321
@@ -7123,7 +7140,7 @@ msgstr "Engadido á lista negra"
 
 #: public_html/lists/admin/plugins.php:187
 msgid "Installed plugins"
-msgstr ""
+msgstr "Plugins instalados"
 
 #: public_html/lists/admin/send_core.php:335
 msgid "Adding attachment"
@@ -7154,7 +7171,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:146
 msgid "Error installing plugin"
-msgstr ""
+msgstr "Erro de instalación do plugin"
 
 #: public_html/lists/admin/actions/statsoverview.php:140
 msgid "fwds"
@@ -7279,7 +7296,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:253
 msgid "developer"
-msgstr "desenvolvedor"
+msgstr "Desenvolvedor"
 
 #: public_html/lists/admin/attributes.php:426
 msgid "Add new Attribute"
@@ -7300,7 +7317,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:500
 #, php-format
 msgid "%d emails subscribed to the lists"
-msgstr ""
+msgstr "%d correos electrónicos subscritos ás listas"
 
 #: public_html/lists/admin/sendemaillib.php:1069
 #, php-format
@@ -7574,7 +7591,7 @@ msgstr "Lista de administradores"
 
 #: public_html/lists/admin/bouncemgt.php:12
 msgid "View Bounces per campaign"
-msgstr ""
+msgstr "Ver rebotes por campaña"
 
 #: public_html/lists/admin/import2.php:58
 msgid "Are you sure you want to reset the import session?"
@@ -7607,6 +7624,8 @@ msgstr ""
 #, php-format
 msgid "%d emails succesfully imported to the database and added to %d lists."
 msgstr ""
+"%d correos electrónicos importáronse correctamente á base de datos e "
+"engadíronse a %d listas."
 
 #: public_html/lists/admin/connect.php:2156,
 #: public_html/lists/admin/import4.php:177,
@@ -7756,7 +7775,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:506
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr ""
+msgstr "Atopáronse %d correos electrónicos non válidos."
 
 #: public_html/lists/admin/send.php:152
 msgid "Please select the lists you want to exclude from this campaign"
@@ -7821,7 +7840,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:154
 msgid "Plugin directory is not writable"
-msgstr ""
+msgstr "O directorio do plugin está protexido contra escritura"
 
 #: public_html/lists/admin/messages.php:607,
 #: public_html/lists/admin/subscriberstats.php:7,
@@ -8011,7 +8030,7 @@ msgstr ""
 
 #: public_html/lists/admin/generatebouncerules.php:145
 msgid "bounces not matched"
-msgstr ""
+msgstr "rebotes non coincidentes"
 
 #: public_html/lists/admin/send.php:145
 msgid "Please select the lists you want to send your campaign to"
@@ -8259,7 +8278,7 @@ msgstr "Ver un rebote"
 
 #: public_html/lists/admin/bouncemgt.php:26
 msgid "Generate Bounce Rules"
-msgstr ""
+msgstr "Crear normas para rebotes"
 
 #: public_html/databasestructure.php:60
 msgid "Final time to stop repetition"
@@ -8330,7 +8349,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:59
 msgid "Installing plugin"
-msgstr ""
+msgstr "Instalando plugin"
 
 #: public_html/lists/admin/actions/processqueue.php:534
 #, php-format
@@ -8510,7 +8529,7 @@ msgstr "Taxa de clics"
 
 #: public_html/lists/admin/bouncemgt.php:14
 msgid "Check Current Bounce Rules"
-msgstr ""
+msgstr "Comprobar as regras de rebote actuais"
 
 #: public_html/lists/admin/actions/processqueue.php:684
 #, php-format
@@ -8639,7 +8658,7 @@ msgstr ""
 #: public_html/lists/admin/home.php:271,
 #: public_html/lists/admin/bouncemgt.php:11
 msgid "View Bounces"
-msgstr ""
+msgstr "Ver rebotes"
 
 #: public_html/lists/admin/import2.php:409,
 #: public_html/lists/admin/import2.php:415,
@@ -8694,7 +8713,7 @@ msgstr ""
 #: public_html/lists/admin/user.php:256
 #, php-format
 msgid "Subscribed to %s"
-msgstr ""
+msgstr "Subscrito a %s"
 
 #: public_html/databasestructure.php:352
 msgid "pagetitlehover:ajaxform"
@@ -8776,7 +8795,7 @@ msgstr ""
 #: public_html/lists/admin/defaultsystemtemplate.php:413,
 #: public_html/lists/admin/defaultsystemtemplate.php:427
 msgid "Go back to templates"
-msgstr ""
+msgstr "Volver aos modelos"
 
 #: public_html/lists/admin/editlist.php:102
 msgid "Add another list"
@@ -8800,7 +8819,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:181
 msgid "Install plugin"
-msgstr ""
+msgstr "Instalar plugin"
 
 #: public_html/lists/admin/spage.php:104
 msgid "Are you sure you want to reset this subscription page template?"
@@ -8861,7 +8880,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:271
 msgid "origin"
-msgstr ""
+msgstr "Orixe"
 
 #: public_html/lists/admin/send.php:113
 msgid "age"
@@ -8938,7 +8957,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:239,
 #: public_html/lists/admin/actions/import2.php:275
 msgid "Duplicate Email"
-msgstr ""
+msgstr "Duplicar correo electrónico"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
@@ -9230,7 +9249,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:160,
 #: public_html/lists/admin/import2.php:586
 msgid "Skip value"
-msgstr ""
+msgstr "Saltar valor"
 
 #: public_html/lists/admin/message.php:108
 msgid "HTML content"
@@ -9848,6 +9867,8 @@ msgstr "Configurar o procesamento usando o servizo contratado"
 msgid ""
 "All the emails already exist in the database and are member of the lists"
 msgstr ""
+"Todos os correos electrónicos xa existen na base de datos e son membros das "
+"listas"
 
 #: public_html/lists/admin/actions/domainstats.php:95
 msgid ""
@@ -9866,7 +9887,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:279
 msgid "installed"
-msgstr ""
+msgstr "Instalado"
 
 #: public_html/databasestructure.php:112
 msgid "The page that this process runs in"
