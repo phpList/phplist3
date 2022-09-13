@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-13 12:39+0000\n"
+"PO-Revision-Date: 2022-09-13 13:33+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:323
 msgid "Uploaded file not properly received, empty file"
-msgstr ""
+msgstr "O ficheiro cargado non se recibiu correctamente, ficheiro baleiro"
 
 #: public_html/lists/admin/reconcileusers.php:8,
 #: public_html/lists/admin/massremove.php:8,
@@ -410,7 +410,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:538
 msgid "Removed Attachment "
-msgstr ""
+msgstr "Eliminouse o anexo "
 
 #: public_html/lists/admin/actions/processqueue.php:283
 #, php-format
@@ -712,6 +712,8 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:510
 msgid "Email address not found to send test message."
 msgstr ""
+"Non se atopou o enderezo de correo electrónico para enviar a mensaxe de "
+"proba."
 
 #: public_html/lists/admin/upgrade.php:461
 msgid "Upgrade failed"
@@ -740,7 +742,7 @@ msgstr ""
 #: public_html/lists/admin/bouncerules.php:117,
 #: public_html/lists/admin/bounces.php:125
 msgid "delete"
-msgstr ""
+msgstr "Borrar"
 
 #: public_html/lists/admin/defaultconfig.php:400
 msgid "Goodbye from our Newsletter"
@@ -804,7 +806,7 @@ msgstr "Reconstruír índices da base de datos"
 
 #: public_html/lists/admin/send_core.php:399
 msgid "Sorry, you used invalid characters in the Subject field."
-msgstr ""
+msgstr "Usaches caracteres non válidos no campo \"asunto\"."
 
 #: public_html/lists/admin/send_core.php:945,
 #: public_html/lists/admin/send_core.php:947,
@@ -1051,7 +1053,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:350
 msgid "details"
-msgstr ""
+msgstr "Detalles"
 
 #: public_html/lists/admin/defaultconfig.php:270
 msgid "The HTML wrapper template for system messages"
@@ -1375,7 +1377,7 @@ msgstr ""
 #: public_html/lists/admin/plugins.php:344,
 #: public_html/lists/admin/plugins.php:348
 msgid "update"
-msgstr ""
+msgstr "Actualizar"
 
 #: public_html/lists/admin/defaultconfig.php:360
 msgid "Subject of the message subscribers receive when they sign up"
@@ -1647,7 +1649,7 @@ msgstr "creación de táboas feita"
 #: public_html/lists/admin/home.php:140,
 #: public_html/lists/admin/plugins.php:298
 msgid "Configure"
-msgstr ""
+msgstr "Configurar"
 
 #: public_html/lists/admin/about.php:100
 msgid ""
@@ -1828,7 +1830,7 @@ msgstr "Último cambio de contrasinal"
 
 #: public_html/lists/admin/plugins.php:356
 msgid "All"
-msgstr ""
+msgstr "Todo"
 
 #: public_html/lists/admin/actions/processqueue.php:950
 #, php-format
@@ -1857,7 +1859,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:1307,
 #: public_html/lists/admin/message.php:59
 msgid "Review Scheduling"
-msgstr ""
+msgstr "Revisar a programación"
 
 #: public_html/databasestructure.php:312
 msgid "pagetitlehover:mclicks"
@@ -2253,6 +2255,8 @@ msgid ""
 "Warning: You indicated the content was not HTML, but there were  some HTML  "
 "tags in it. This  may  cause  errors"
 msgstr ""
+"Aviso: indicaches que o contido non era HTML, pero había algunhas etiquetas "
+"HTML nel. Isto pode causar erros"
 
 #: public_html/lists/admin/actions/processqueue.php:960
 msgid "batch limit reached"
@@ -2539,7 +2543,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:570
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #: public_html/lists/admin/processbounces.php:449
 msgid "Not deleting unprocessed message"
@@ -2658,7 +2662,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:320
 #, php-format
 msgid "Adding attachment %d failed"
-msgstr ""
+msgstr "Produciuse un erro ao engadir o anexo %d"
 
 #: public_html/lists/admin/index.php:539
 msgid "automatic updater"
@@ -2683,7 +2687,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:336
 msgid "Plugin can not be enabled."
-msgstr ""
+msgstr "O plugin non se pode activar."
 
 #: public_html/lists/admin/lib.php:2285
 msgid "It should be soon now, your page content is almost here."
@@ -2707,7 +2711,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:291
 msgid "Documentation Page"
-msgstr ""
+msgstr "Páxina de documentación"
 
 #: public_html/lists/admin/processbounces.php:832
 msgid ""
@@ -2718,7 +2722,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:443
 #, php-format
 msgid "You can send a test mail once every %d seconds"
-msgstr ""
+msgstr "Podes enviar un correo de proba unha vez cada %d segundos"
 
 #: public_html/databasestructure.php:365
 msgid "security settings"
@@ -3074,7 +3078,7 @@ msgstr "Instalar un novo plugin"
 
 #: public_html/lists/admin/plugins.php:358
 msgid "Enabled"
-msgstr ""
+msgstr "Activado"
 
 #: public_html/lists/admin/lib.php:33
 msgid "delete bounce"
@@ -3526,7 +3530,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:407
 msgid "Please enter a subject"
-msgstr "Introduza un asunto"
+msgstr "Por favor, introduce un asunto"
 
 #: public_html/databasestructure.php:240
 msgid "pagetitlehover:import"
@@ -3564,7 +3568,7 @@ msgstr "Non existe ese subscritor"
 
 #: public_html/lists/admin/send_core.php:403
 msgid "Please enter a from line."
-msgstr ""
+msgstr "Por favor, introduce unha dirección de remitente."
 
 #: public_html/lists/admin/actions/import2.php:539,
 #: public_html/lists/admin/actions/import1.php:246,
@@ -3680,7 +3684,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:348
 msgid "Campaign saved as draft"
-msgstr ""
+msgstr "Campaña gardada como borrador"
 
 #: public_html/lists/admin/list.php:309
 msgid "Edit this list"
@@ -3809,7 +3813,7 @@ msgstr "O plugin debe actualizarse manualmente"
 #: public_html/lists/admin/plugins.php:308,
 #: public_html/lists/admin/bouncerules.php:102
 msgid "action"
-msgstr ""
+msgstr "Acción"
 
 #: public_html/lists/admin/import1.php:24
 msgid ""
@@ -3929,7 +3933,7 @@ msgstr "Non hai listas dispoñíbeis"
 #: public_html/lists/admin/plugins.php:333
 #, php-format
 msgid "Plugin can not be enabled, because \"%s\" is enabled."
-msgstr ""
+msgstr "O plugin non se pode activar porque \"%s\" está activado."
 
 #: public_html/lists/admin/template.php:349,
 #: public_html/lists/admin/adminattributes.php:5,
@@ -4117,7 +4121,7 @@ msgstr "Estatísticas de dominios dos subscritores no sistema"
 
 #: public_html/lists/admin/plugins.php:318
 msgid "initialise"
-msgstr ""
+msgstr "Inicializar"
 
 #: public_html/lists/admin/members.php:216
 msgid "Inserting user"
@@ -4211,7 +4215,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:381
 msgid "Campaign queued"
-msgstr ""
+msgstr "Campaña engadida á cola"
 
 #: public_html/databasestructure.php:252
 msgid "pagetitlehover:members"
@@ -4375,7 +4379,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:354
 msgid "Campaign added"
-msgstr ""
+msgstr "Campaña engadida"
 
 #: public_html/lists/admin/reconcileusers.php:424
 msgid "in the database"
@@ -4439,7 +4443,7 @@ msgstr ""
 #: public_html/lists/admin/index.php:760,
 #: public_html/lists/admin/index.php:781
 msgid "Access Denied"
-msgstr ""
+msgstr "Acceso denegado"
 
 #: public_html/lists/admin/spageedit.php:218
 msgid "Language file to use"
@@ -4496,7 +4500,7 @@ msgstr ""
 #: public_html/lists/admin/connect.php:564,
 #: public_html/lists/admin/plugins.php:290
 msgid "More information"
-msgstr ""
+msgstr "Máis información"
 
 #: public_html/databasestructure.php:368
 msgid "transactional settings"
@@ -4514,7 +4518,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:409
 msgid "Error: you can use an attribute in one rule only"
-msgstr ""
+msgstr "Erro: só se pode usar un atributo nunha regra"
 
 #: public_html/lists/admin/send_core.php:798
 msgid "Requeue every"
@@ -4545,7 +4549,7 @@ msgstr " mensaxes"
 #: public_html/lists/admin/plugins.php:336
 #, php-format
 msgid "Failure on system requirement <strong>%s</strong>"
-msgstr ""
+msgstr "Produciuse un erro no requisito do sistema <strong>%s</strong>"
 
 #: public_html/lists/admin/send_core.php:952
 msgid "Delete checked"
@@ -4573,7 +4577,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:451
 msgid "No target email addresses listed for testing."
-msgstr ""
+msgstr "Non se indican direccións de correo electrónico de destino para probar."
 
 #: public_html/lists/admin/actions/subscription.php:91
 msgid "ip"
@@ -4880,7 +4884,7 @@ msgstr "Campaña"
 #: public_html/lists/admin/plugins.php:360,
 #: public_html/lists/admin/admins.php:113
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivado"
 
 #: public_html/lists/admin/processbounces.php:256
 msgid "system message bounced, user marked unconfirmed"
@@ -5089,7 +5093,7 @@ msgstr "Clave Externa"
 #: public_html/lists/admin/send_core.php:123,
 #: public_html/lists/admin/send_core.php:1344
 msgid "Send Campaign"
-msgstr ""
+msgstr "Enviar campaña"
 
 #: public_html/lists/admin/userclicks.php:144
 #, php-format
@@ -5114,7 +5118,7 @@ msgstr "Organizar as listas de subscritores en categorías"
 #: public_html/lists/admin/user.php:538,
 #: public_html/lists/admin/spageedit.php:369
 msgid "Lists"
-msgstr ""
+msgstr "Listas"
 
 #: public_html/lists/admin/spage.php:72,
 #: public_html/lists/admin/user.php:271,
@@ -5564,7 +5568,7 @@ msgstr "Editar unha lista"
 #: public_html/lists/admin/home.php:249,
 #: public_html/lists/admin/send_core.php:388
 msgid "processqueue"
-msgstr ""
+msgstr "Procesar a cola de mensaxes"
 
 #: public_html/lists/admin/user.php:421
 msgid "Remove from blacklist"
@@ -5681,7 +5685,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:327
 msgid "delete this plugin"
-msgstr ""
+msgstr "Borrar este plugin"
 
 #: public_html/lists/admin/template.php:233,
 #: public_html/lists/admin/template.php:240,
@@ -5785,7 +5789,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:320
 msgid "Initialise"
-msgstr ""
+msgstr "Inicializar"
 
 #: public_html/databasestructure.php:216
 msgid "pagetitlehover:stresstest"
@@ -6024,7 +6028,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:405
 msgid "Please enter a message"
-msgstr "Escriba unha mensaxe"
+msgstr "Por favor, engade algún contido"
 
 #: public_html/lists/admin/actions/processqueue.php:268
 msgid "messages sent in"
@@ -6283,7 +6287,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:318
 #, php-format
 msgid "Attachment %d succesfully added"
-msgstr ""
+msgstr "Engadiuse correctamente o anexo %d"
 
 #: public_html/lists/admin/connect.php:2265
 msgid "Last Page"
@@ -6531,7 +6535,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:344
 msgid "update this plugin"
-msgstr ""
+msgstr "actualizar este plugin"
 
 #: public_html/lists/admin/adminattributes.php:15,
 #: public_html/lists/admin/defaults.php:49,
@@ -6778,7 +6782,7 @@ msgstr "Informe:"
 
 #: public_html/lists/admin/send_core.php:283
 msgid "Mime Type is longer than 255 characters, this is trouble"
-msgstr ""
+msgstr "O tipo MIME ten máis de 255 caracteres, isto causará problemas"
 
 #: public_html/lists/admin/reindex.php:20
 #, php-format
@@ -7065,7 +7069,7 @@ msgstr ""
 #: public_html/lists/admin/lib.php:2042,
 #: public_html/lists/admin/send_core.php:390
 msgid "view progress"
-msgstr ""
+msgstr "ver progreso"
 
 #: public_html/lists/admin/actions/processqueue.php:716
 msgid "Campaign started"
@@ -7144,7 +7148,7 @@ msgstr "Plugins instalados"
 
 #: public_html/lists/admin/send_core.php:335
 msgid "Adding attachment"
-msgstr ""
+msgstr "Engadindo anexo"
 
 #: public_html/lists/admin/connect.php:1722,
 #: public_html/lists/admin/systemstats.php:19,
@@ -7392,7 +7396,7 @@ msgstr "para procesar"
 
 #: public_html/lists/admin/send_core.php:401
 msgid "Sorry, you used invalid characters in the From field."
-msgstr ""
+msgstr "Usaches caracteres non válidos no campo \"de\"."
 
 #: public_html/lists/admin/send_core.php:993
 msgid "to email address(es)"
@@ -7683,7 +7687,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:330
 msgid "Dependency check"
-msgstr ""
+msgstr "Comprobación de dependencia"
 
 #: public_html/lists/admin/members.php:276
 msgid "Listing subscriber 1 to 50"
@@ -8196,7 +8200,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:411
 msgid "Please select the list(s) to send the campaign to"
-msgstr ""
+msgstr "Selecciona a(s) lista(s) ás que enviar a campaña"
 
 #: public_html/lists/admin/ui/default/rssfeed.php:54
 msgid "phpList community news"
@@ -8493,7 +8497,7 @@ msgstr "Marcado como sen confirmar durante o envío da campaña %d"
 #: public_html/lists/admin/plugins.php:307,
 #: public_html/lists/admin/plugins.php:312
 msgid "enabled"
-msgstr "activado"
+msgstr "Activado"
 
 #: public_html/lists/admin/bounces.php:135
 msgid "delete all processed (&gt; 2 months old)"
@@ -8690,7 +8694,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:362
 msgid "Update available"
-msgstr ""
+msgstr "Actualización dispoñible"
 
 #: public_html/lists/admin/send_core.php:1053
 msgid "Estimated size of text email"
@@ -9116,6 +9120,8 @@ msgid ""
 "You should not paste the results of a test message back into the editor<br/"
 ">This will break the click-track statistics, and overload the server."
 msgstr ""
+"Non debes pegar os resultados dunha mensaxe de proba de novo no editor<br/"
+">Isto romperá as estatísticas de clics e sobrecargará o servidor."
 
 #: public_html/lists/admin/import4.php:113
 msgid "Getting data from "
@@ -9137,6 +9143,8 @@ msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
+"Está previsto que esta campaña deixe de enviarse antes da hora do embargo. "
+"Non se enviarán correos electrónicos."
 
 #: public_html/lists/admin/template.php:243
 msgid "Sending test \"Unsubscribe confirmation\" to"
@@ -9381,7 +9389,7 @@ msgstr ""
 
 #: public_html/lists/admin/plugins.php:284
 msgid "installation Url"
-msgstr ""
+msgstr "URL de instalación"
 
 #: public_html/lists/admin/spageedit.php:270
 msgid "Display email confirmation"
@@ -9572,6 +9580,7 @@ msgstr "(borraranse todos os datos!)"
 #: public_html/lists/admin/send_core.php:446
 msgid "Sending test mails is currently not available"
 msgstr ""
+"O envío de correos electrónicos de proba non está dispoñible actualmente"
 
 #: public_html/lists/admin/send_core.php:907
 msgid "generate from HTML"
@@ -9721,7 +9730,7 @@ msgstr "mensaxes enviadas a este subscritor"
 
 #: public_html/lists/admin/send_core.php:576
 msgid "Scheduling"
-msgstr ""
+msgstr "Programando"
 
 #: public_html/lists/admin/readtestmail.php:56
 msgid "test Processing info"
@@ -9917,7 +9926,7 @@ msgstr ""
 #: public_html/lists/admin/send_core.php:468
 #, php-format
 msgid "There is a maximum of %d test emails allowed"
-msgstr ""
+msgstr "Permítese un máximo de %d correos electrónicos de proba"
 
 #: public_html/lists/admin/processqueue.php:58
 msgid "Set up using the service"
@@ -10062,7 +10071,7 @@ msgstr "Número de clics"
 
 #: public_html/lists/admin/plugins.php:299
 msgid "settings"
-msgstr ""
+msgstr "Configuración"
 
 #: public_html/lists/admin/send_core.php:60
 msgid "Unable to create campaign, did you forget to upgrade the database?"
