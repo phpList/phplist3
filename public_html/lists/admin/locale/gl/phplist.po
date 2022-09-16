@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-16 07:11+0000\n"
+"PO-Revision-Date: 2022-09-16 07:52+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -44,7 +44,7 @@ msgstr "O plugin está actualizado"
 
 #: public_html/lists/admin/lib.php:25
 msgid "delete subscriber"
-msgstr ""
+msgstr "Borrar subscritor"
 
 #: public_html/lists/admin/updatetranslation.php:75
 msgid "Translation status"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: public_html/lists/admin/lib.php:27
 msgid "blacklist subscriber"
-msgstr ""
+msgstr "poñer en lista negra ao subscritor"
 
 #: public_html/lists/admin/spageedit.php:240
 msgid "HTML Email choice"
@@ -328,7 +328,7 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:92
 msgid "Click details for a URL"
-msgstr ""
+msgstr "Fai clic en detalles para obter unha URL"
 
 #: public_html/lists/admin/home.php:107,
 #: public_html/lists/admin/import1.php:251
@@ -374,7 +374,7 @@ msgstr "Atributo:"
 
 #: public_html/lists/admin/lib.php:31
 msgid "blacklist subscriber and delete bounce"
-msgstr ""
+msgstr "Engadir un subscritor á lista de non enviar e eliminar o rebote"
 
 #: public_html/lists/admin/msgbounces.php:75
 msgid "Download"
@@ -761,7 +761,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:52
 msgid "Start or continue a campaign"
-msgstr ""
+msgstr "Iniciar ou continuar unha campaña"
 
 #: public_html/lists/admin/plugins.php:28,
 #: public_html/lists/admin/configure.php:74,
@@ -1322,7 +1322,7 @@ msgstr "Crea unha páxina de subscrición"
 #: public_html/lists/admin/users.php:461,
 #: public_html/lists/admin/uclicks.php:65
 msgid "msgs"
-msgstr ""
+msgstr "msxs"
 
 #: public_html/lists/admin/attributes.php:389
 msgid "authoritative list"
@@ -1918,7 +1918,7 @@ msgstr "Ver rebotes por lista"
 
 #: public_html/lists/admin/template.php:332
 msgid "Check that all images have a full URL"
-msgstr ""
+msgstr "Comproba que todas as imaxes teñan unha URL completa"
 
 #: public_html/lists/admin/actions/processqueue.php:756
 msgid "users apply for attributes, now checking lists"
@@ -1982,7 +1982,7 @@ msgstr "Eliminando o rebote %d "
 
 #: public_html/lists/admin/uclicks.php:88
 msgid "URL Click Statistics"
-msgstr ""
+msgstr "Estatísticas clics URL"
 
 #: public_html/databasestructure.php:353
 msgid "pagetitle:updatetranslation"
@@ -2609,7 +2609,7 @@ msgstr "Eliminar eliminará o subscritor e todos os membros da lista"
 
 #: public_html/lists/admin/lib.php:30
 msgid "unconfirm subscriber and delete bounce"
-msgstr ""
+msgstr "Desconfirmar o subscritor e eliminar o rebote"
 
 #: public_html/lists/admin/template.php:231,
 #: public_html/lists/admin/template.php:238,
@@ -2981,7 +2981,7 @@ msgstr "Subscrición"
 
 #: public_html/lists/admin/template.php:340
 msgid "Check that all external images exist"
-msgstr ""
+msgstr "Comproba que existen todas as imaxes externas"
 
 #: public_html/lists/admin/reconcileusers.php:536
 msgid "Associate system bounces to subscriber profiles"
@@ -4013,7 +4013,7 @@ msgstr ""
 #: public_html/lists/admin/class.phplistmailer.php:324
 #, php-format
 msgid "Error, empty message-body sending email to %s"
-msgstr ""
+msgstr "Erro, o corpo da mensaxe está baleiro ao enviar correo electrónico a %s"
 
 #: public_html/lists/admin/home.php:269,
 #: public_html/lists/admin/reconcileusers.php:215,
@@ -4074,7 +4074,7 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:79
 msgid "There are currently no statistics available"
-msgstr ""
+msgstr "Actualmente non hai estatísticas dispoñibles"
 
 #: public_html/lists/admin/bounce.php:175
 msgid "Increase bouncecount with"
@@ -4650,7 +4650,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:13
 msgid "phplist version"
-msgstr ""
+msgstr "Versión <a href=http://www.phplist.com>phpList</a>"
 
 #: public_html/databasestructure.php:130
 msgid "Forward email"
@@ -4829,7 +4829,7 @@ msgstr "Nada por facer"
 
 #: public_html/lists/admin/uclicks.php:74
 msgid "Select URL to view"
-msgstr ""
+msgstr "Selecciona URL para ver"
 
 #: public_html/lists/admin/upgrade.php:275
 msgid "Please do a manual conversion."
@@ -5507,7 +5507,7 @@ msgstr ""
 
 #: public_html/lists/admin/home.php:20
 msgid "go to"
-msgstr ""
+msgstr "ir a"
 
 #: public_html/lists/admin/import3.php:273
 msgid "Use one attribute for name"
@@ -5515,7 +5515,7 @@ msgstr "Usar un atributo para o nome"
 
 #: public_html/lists/admin/home.php:11
 msgid "Your database is out of date, please make sure to upgrade"
-msgstr ""
+msgstr "A túa base de datos está desactualizada, asegúrate de actualizar"
 
 #: public_html/lists/admin/import3.php:265
 msgid ""
@@ -5966,7 +5966,7 @@ msgstr ""
 
 #: public_html/lists/admin/lib.php:26
 msgid "unconfirm subscriber"
-msgstr ""
+msgstr "desconfirmar o subscritor"
 
 #: public_html/lists/admin/userclicks.php:252
 msgid "HTML"
@@ -6192,7 +6192,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:327
 msgid "Check that all links have a full URL"
-msgstr ""
+msgstr "Comproba que todas as ligazóns teñen unha URL completa"
 
 #: public_html/lists/admin/configure.php:150,
 #: public_html/lists/admin/actions/configure.php:71,
@@ -6252,7 +6252,7 @@ msgstr "N/A"
 
 #: public_html/lists/admin/home.php:19
 msgid "Database has not been initialised"
-msgstr ""
+msgstr "A base de datos non foi inicializada"
 
 #: public_html/lists/admin/actions/processqueue.php:562
 msgid "Skipped in last run"
@@ -6955,7 +6955,7 @@ msgstr ""
 
 #: public_html/lists/admin/uclicks.php:66
 msgid "last clicked"
-msgstr ""
+msgstr "Últimos clics"
 
 #: public_html/lists/admin/importadmin.php:331
 msgid ""
@@ -7027,7 +7027,7 @@ msgstr "descrición"
 
 #: public_html/lists/admin/home.php:22
 msgid "to continue"
-msgstr ""
+msgstr "continuar"
 
 #: public_html/lists/admin/actions/processqueue.php:527
 msgid "Processing has been suspended by your ISP, please try again later"
@@ -7149,7 +7149,7 @@ msgstr "Campaña iniciada"
 
 #: public_html/lists/admin/home.php:12
 msgid "Your version"
-msgstr ""
+msgstr "A túa versión"
 
 #: public_html/lists/admin/about.php:21
 msgid "Legal"
@@ -7466,7 +7466,7 @@ msgstr "Limpeza de subscritores"
 
 #: public_html/lists/admin/lib.php:29
 msgid "delete subscriber and bounce"
-msgstr ""
+msgstr "Eliminar ao subscritor e o rebote"
 
 #: public_html/lists/admin/members.php:251
 #, php-format
@@ -7803,7 +7803,7 @@ msgstr "Está subscrito a:"
 #: public_html/lists/admin/admin.php:309,
 #: public_html/lists/admin/importadmin.php:340
 msgid "View Statistics"
-msgstr ""
+msgstr "Ver estatísticas"
 
 #: public_html/lists/admin/connect.php:2148
 msgid "secs"
@@ -7991,7 +7991,7 @@ msgstr "Enviar as campañas en cola"
 
 #: public_html/lists/admin/template.php:303
 msgid "Template file."
-msgstr ""
+msgstr "Ficheiro de modelo."
 
 #: public_html/lists/admin/actions/processqueue.php:1155,
 #: public_html/lists/admin/actions/processqueue.php:1381
@@ -8049,7 +8049,7 @@ msgstr "Lista de baixas"
 
 #: public_html/lists/admin/lib.php:28
 msgid "blacklist email address"
-msgstr ""
+msgstr "poñer en lista negra a dirección de correo"
 
 #: public_html/lists/admin/user.php:271,
 #: public_html/lists/admin/userclicks.php:96,
@@ -9137,7 +9137,7 @@ msgstr "Inicio"
 #: public_html/lists/admin/class.phplistmailer.php:319
 #, php-format
 msgid "Error sending email to %s"
-msgstr ""
+msgstr "Produciuse un erro ao enviar o correo electrónico a %s"
 
 #: public_html/lists/admin/initialise.php:209
 msgid "List for testing"
@@ -9258,7 +9258,7 @@ msgstr "Crear unha campaña para enviar aos teus subscritores"
 
 #: public_html/lists/admin/uclicks.php:56
 msgid "Available URLs"
-msgstr ""
+msgstr "URL dispoñibles"
 
 #: public_html/databasestructure.php:37
 msgid "Subject prefix"
@@ -10017,7 +10017,7 @@ msgstr "A páxina na que se executa este proceso"
 #: public_html/lists/admin/uclicks.php:142,
 #: public_html/lists/admin/uclicks.php:155
 msgid "click rate"
-msgstr ""
+msgstr "Taxa de clics"
 
 #: public_html/lists/admin/send.php:101
 msgid "start a new message"
