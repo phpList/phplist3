@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-15 22:18+0000\n"
+"PO-Revision-Date: 2022-09-16 07:11+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:293
 msgid "Title of this template"
-msgstr ""
+msgstr "Título deste modelo"
 
 #: public_html/lists/admin/messages.php:147
 msgid "static"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:255
 msgid "Sending a test from templates only works for the system template."
-msgstr ""
+msgstr "Enviar unha proba dende os modelos só funciona cos modelos do sistema."
 
 #: public_html/lists/admin/templates.php:47
 msgid "System"
@@ -96,7 +96,7 @@ msgstr "Subscritores"
 
 #: public_html/lists/admin/template.php:204
 msgid "Template was successfully saved"
-msgstr ""
+msgstr "O modelo gardouse correctamente"
 
 #: public_html/lists/admin/importadmin.php:141
 msgid "Record has more values than header indicated, this may cause trouble"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:299
 msgid "The content should at least have <b>[CONTENT]</b> somewhere."
-msgstr ""
+msgstr "O contido debería ter, polo menos, <b>[CONTENT]</b> nalgún lugar."
 
 #: public_html/lists/admin/userclicks.php:198,
 #: public_html/lists/admin/mclicks.php:76,
@@ -354,7 +354,7 @@ msgstr "Xestión da base de datos"
 
 #: public_html/lists/admin/tests.php:47
 msgid "Tests available"
-msgstr ""
+msgstr "Probas dispoñibles"
 
 #: public_html/lists/admin/defaultconfig.php:627
 msgid "Message to send when they request their personal location"
@@ -485,7 +485,7 @@ msgstr "Engadir un novo atributo:"
 #: public_html/lists/admin/converttoutf8.php:87,
 #: public_html/lists/admin/upgrade.php:265
 msgid "Upgrading column "
-msgstr ""
+msgstr "Actualizando columna"
 
 #: public_html/lists/admin/message.php:128
 msgid "Repeating"
@@ -913,7 +913,7 @@ msgstr ""
 #: public_html/lists/admin/converttoutf8.php:98,
 #: public_html/lists/admin/converttoutf8.php:99
 msgid "The DB was already converted to UTF-8 on"
-msgstr ""
+msgstr "A base de datos xa estaba convertida a UTF-8 "
 
 #: public_html/databasestructure.php:310
 msgid "pagetitlehover:logout"
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:42
 msgid "Otherwise, free up some diskspace and try again"
-msgstr ""
+msgstr "En caso contrario, libera algo de espazo en disco e téntao de novo"
 
 #: public_html/lists/admin/actions/processqueue.php:726
 msgid "Processing message"
@@ -1300,7 +1300,7 @@ msgstr "Copiando listas"
 
 #: public_html/lists/admin/tests.php:7
 msgid "phplist test suite"
-msgstr ""
+msgstr "paquete de proba de phpList"
 
 #: public_html/lists/admin/export.php:98
 msgid "When they signed up"
@@ -1342,7 +1342,7 @@ msgstr "Falta o asunto"
 
 #: public_html/lists/admin/template.php:298
 msgid "Content of the template."
-msgstr ""
+msgstr "Contido do modelo."
 
 #: public_html/lists/admin/massremove.php:48
 #, php-format
@@ -1356,6 +1356,8 @@ msgid ""
 "To test your template, go to campaigns and send a test campaign using the "
 "template."
 msgstr ""
+"Para probar o teu modelo, vai a Campañas e envía unha campaña de proba "
+"usando o modelo."
 
 #: public_html/lists/admin/bouncemgt.php:24
 msgid ""
@@ -1369,7 +1371,7 @@ msgstr ""
 #: public_html/lists/admin/converttoutf8.php:79,
 #: public_html/lists/admin/upgrade.php:259
 msgid "Upgrading table "
-msgstr ""
+msgstr "Actualizando táboa"
 
 #: public_html/lists/admin/actions/domainbounces.php:75
 msgid "Total sent emails"
@@ -1658,7 +1660,7 @@ msgstr "texto"
 #: public_html/lists/admin/converttoutf8.php:74,
 #: public_html/lists/admin/upgrade.php:256
 msgid "Upgrading the database to use UTF-8, please wait"
-msgstr ""
+msgstr "Actualizando a base de datos para usar UTF-8, agarda"
 
 #: public_html/lists/admin/convertstats.php:51
 msgid "creating tables done"
@@ -1836,7 +1838,7 @@ msgstr "Modelo a usar"
 #: public_html/lists/admin/converttoutf8.php:92,
 #: public_html/lists/admin/upgrade.php:270
 msgid "upgrade to UTF-8, done"
-msgstr ""
+msgstr "Actualización a UTF-8, feita"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:46,
 #: public_html/lists/admin/phpListAdminAuthentication.php:102
@@ -2317,7 +2319,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:126
 msgid "Not a full URL"
-msgstr ""
+msgstr "Non é unha URL completa"
 
 #: public_html/lists/admin/send_core.php:1349
 msgid "Save as draft"
@@ -2348,7 +2350,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:133
 msgid "No Title"
-msgstr ""
+msgstr "Non ten título"
 
 #: public_html/lists/admin/actions/processqueue.php:75
 #, php-format
@@ -2502,7 +2504,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:236
 msgid "Sending test \"Welcome\" to"
-msgstr ""
+msgstr "Enviando proba de \"Benvida\" a"
 
 #: public_html/lists/admin/bouncemgt.php:13
 msgid "View Bounces per list"
@@ -2828,7 +2830,7 @@ msgstr "Compoñer mensaxe"
 
 #: public_html/lists/admin/template.php:75
 msgid "Template saved and ready for use in campaigns"
-msgstr ""
+msgstr "Modelo gardado e listo para usar en campañas"
 
 #: public_html/lists/admin/community.php:47
 msgid "Translation platform"
@@ -2873,7 +2875,7 @@ msgstr ""
 
 #: public_html/lists/admin/tests.php:52
 msgid "Purpose"
-msgstr ""
+msgstr "Finalidade"
 
 #: public_html/databasestructure.php:326
 msgid "pagetitlehover:mviews"
@@ -3241,7 +3243,7 @@ msgstr "ou"
 
 #: public_html/lists/admin/template.php:225
 msgid "Sending test"
-msgstr ""
+msgstr "Enviando proba"
 
 #: public_html/lists/admin/members.php:311
 msgid "Tag all users in this page"
@@ -3358,7 +3360,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:58
 msgid "No such template"
-msgstr ""
+msgstr "Non existe ese modelo"
 
 #: public_html/lists/admin/actions/statsoverview.php:143
 msgid "Total Clicks"
@@ -3401,7 +3403,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:285
 msgid "List of Templates"
-msgstr ""
+msgstr "Lista de modelos"
 
 #: public_html/lists/admin/import1.php:143
 msgid "to resubmit for real"
@@ -3487,7 +3489,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:106
 msgid "\"not full URL"
-msgstr ""
+msgstr "URL non completa"
 
 #: public_html/databasestructure.php:321
 msgid "pagetitle:bouncemgt"
@@ -3580,6 +3582,9 @@ msgid ""
 "to upload some. If you upload images, they will be included in the campaigns "
 "that use this template."
 msgstr ""
+"Isto inclúe todas as imaxes, tamén as completamente referenciadas, polo que "
+"podes optar por non cargar algunhas. Se cargas imaxes, incluiranse nas "
+"campañas que utilicen este modelo."
 
 #: public_html/lists/admin/exportuserdata.php:7,
 #: public_html/lists/admin/exportuserdata.php:16,
@@ -4193,7 +4198,7 @@ msgstr "Movendo subscritores que non están en ningunha lista a"
 #: public_html/lists/admin/template.php:186,
 #: public_html/lists/admin/template.php:191
 msgid "Image name:"
-msgstr "Nome da imaxe:"
+msgstr "Nome da imaxe"
 
 #: public_html/databasestructure.php:95
 msgid "The type of attachment"
@@ -4214,7 +4219,7 @@ msgstr "Organizar listas"
 
 #: public_html/lists/admin/suppressionlist.php:35
 msgid "Manage suppression list"
-msgstr ""
+msgstr "Xestionar a lista de supresión"
 
 #: public_html/databasestructure.php:10
 msgid "Value of this attribute for this subscriber"
@@ -4788,6 +4793,8 @@ msgstr ""
 #: public_html/lists/admin/suppressionlist.php:38
 msgid "Paste the emails to mark unconfirmed in this box, and click continue"
 msgstr ""
+"Pega os correos electrónicos para marcar como non confirmados nesta caixa e "
+"fai clic en continuar"
 
 #: public_html/lists/admin/index.php:785
 msgid "Sorry, that module does not exist"
@@ -4884,7 +4891,7 @@ msgstr "actualizando o plugin existente"
 
 #: public_html/lists/admin/tests.php:42
 msgid "Test failed"
-msgstr ""
+msgstr "Fallou a proba"
 
 #: public_html/lists/admin/send_core.php:721
 msgid "Send a Webpage - URL"
@@ -4932,7 +4939,7 @@ msgstr ""
 #: public_html/lists/admin/massremove.php:26,
 #: public_html/lists/admin/suppressionlist.php:23
 msgid "Blacklisted by"
-msgstr ""
+msgstr "Na lista negra por"
 
 #: public_html/lists/admin/initialise.php:211
 msgid "Sign up to our newsletter"
@@ -5087,7 +5094,7 @@ msgstr "e"
 
 #: public_html/lists/admin/template.php:214
 msgid "Some errors were found, template NOT saved!"
-msgstr ""
+msgstr "Atopáronse algúns erros, o modelo NON se gardou!"
 
 #: public_html/lists/admin/actions/processqueue.php:276
 #, php-format
@@ -5487,7 +5494,7 @@ msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:95
 msgid "Unable to determine the name of the database to convert"
-msgstr ""
+msgstr "Non se puido determinar o nome da base de datos a converter"
 
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
@@ -5739,7 +5746,7 @@ msgstr "Borrar este plugin"
 #: public_html/lists/admin/template.php:240,
 #: public_html/lists/admin/template.php:247
 msgid "FAILED"
-msgstr ""
+msgstr "FALLOU"
 
 #: public_html/lists/admin/actions/campaigns.php:57,
 #: public_html/lists/admin/mviews.php:217
@@ -6300,6 +6307,8 @@ msgid ""
 "The maximum table size in your system is %s and space available on the root "
 "filesystem is %s, which means %s is required."
 msgstr ""
+"O tamaño máximo da táboa no teu sistema é %s e o espazo dispoñible no "
+"sistema de ficheiros raíz é %s, o que significa que se necesita %s."
 
 #: public_html/lists/admin/actions/processqueue.php:489,
 #: public_html/lists/admin/actions/processqueue.php:491
@@ -6450,7 +6459,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:155
 msgid "Template saved"
-msgstr ""
+msgstr "Modelo gardado"
 
 #: public_html/lists/admin/setup.php:99
 msgid "configuration steps"
@@ -6638,7 +6647,7 @@ msgstr "Editar unha páxina de subscrición"
 
 #: public_html/lists/admin/suppressionlist.php:36
 msgid "Make suppression permanent"
-msgstr ""
+msgstr "Facer a supresión permanente"
 
 #: public_html/databasestructure.php:229
 msgid "pagetitle:importsimple"
@@ -6897,6 +6906,8 @@ msgid ""
 "Below is the list of images used in your template. If an image is currently "
 "unavailable, please upload it to the database."
 msgstr ""
+"Abaixo está a lista de imaxes utilizadas no teu modelo. Se unha imaxe non "
+"está dispoñible actualmente, cárgaa á base de datos."
 
 #: public_html/lists/admin/actions/configure.php:27
 msgid "Editing"
@@ -6908,7 +6919,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:300
 msgid "You can upload a template file or paste the text in the box below"
-msgstr ""
+msgstr "Podes cargar un ficheiro de modelo ou pegar o texto no cadro de abaixo"
 
 #: public_html/lists/admin/actions/processqueue.php:269
 msgid "seconds"
@@ -7095,7 +7106,7 @@ msgstr "Non hai listas, usa Engadir lista para engadir unha"
 #: public_html/lists/admin/converttoutf8.php:50,
 #: public_html/lists/admin/converttoutf8.php:55
 msgid "Converting DB to use UTF-8, please wait"
-msgstr ""
+msgstr "Convertendo DB para usar UTF-8, agarda"
 
 #: public_html/databasestructure.php:107
 msgid "IP"
@@ -7231,6 +7242,8 @@ msgid ""
 "All done, %d emails processed, %d emails marked unconfirmed, %d emails "
 "blacklisted<br/>"
 msgstr ""
+"Todo feito, %d correos electrónicos procesados, %d correos electrónicos "
+"marcados como sen confirmar, %d correos electrónicos na lista negra<br/>"
 
 #: public_html/lists/admin/home.php:65
 msgid "Manage Subscribers"
@@ -7292,6 +7305,8 @@ msgid ""
 "The campaign will go to users who are a member of the lists above,     "
 "unless they are a member of one of the lists you select here."
 msgstr ""
+"A campaña irá para os subscritores que sexan membros das listas anteriores, "
+"a non ser que tamén sexan membros dunha das listas que selecciones aquí."
 
 #: public_html/lists/admin/send_core.php:1343
 msgid ""
@@ -7336,7 +7351,7 @@ msgstr "Estadio de script"
 
 #: public_html/lists/admin/converttoutf8.php:102
 msgid "All Done"
-msgstr ""
+msgstr "Todo listo"
 
 #: public_html/databasestructure.php:123
 msgid "System Comment"
@@ -7651,6 +7666,8 @@ msgid ""
 "This is not a problem if your Database server is on a different filesystem. "
 "Click the button to continue."
 msgstr ""
+"Isto non é un problema se o servidor de base de datos está nun sistema de "
+"ficheiros diferente. Fai clic no botón para continuar."
 
 #: public_html/lists/admin/processbounces.php:657
 #, php-format
@@ -7850,7 +7867,7 @@ msgstr "Atopáronse %d correos electrónicos non válidos."
 
 #: public_html/lists/admin/send.php:152
 msgid "Please select the lists you want to exclude from this campaign"
-msgstr ""
+msgstr "Por favor, selecciona as listas que queres excluír desta campaña"
 
 #: public_html/lists/admin/import2.php:424,
 #: public_html/lists/admin/catlists.php:83
@@ -8107,7 +8124,7 @@ msgstr "rebotes non coincidentes"
 
 #: public_html/lists/admin/send.php:145
 msgid "Please select the lists you want to send your campaign to"
-msgstr ""
+msgstr "Por favor, selecciona as listas ás que desexas enviar a túa campaña"
 
 #: public_html/databasestructure.php:330
 msgid "pagetitlehover:statsoverview"
@@ -8122,7 +8139,7 @@ msgstr ""
 
 #: public_html/lists/admin/tests.php:40
 msgid "Test passed"
-msgstr ""
+msgstr "Proba superada"
 
 #: public_html/databasestructure.php:281
 msgid "pagetitle:admin"
@@ -8223,7 +8240,7 @@ msgstr "Enviando versión HTML a"
 
 #: public_html/lists/admin/converttoutf8.php:37
 msgid "Converting to UTF-8 requires sufficient diskspace on your system."
-msgstr ""
+msgstr "A conversión a UTF-8 require suficiente espazo en disco no teu sistema."
 
 #: public_html/lists/admin/statsoverview.php:172
 msgid "Click Per View Rate"
@@ -8843,7 +8860,7 @@ msgstr ""
 
 #: public_html/lists/admin/converttoutf8.php:43
 msgid "Confirm UTF8 conversion"
-msgstr ""
+msgstr "Confirmar a conversión UTF-8"
 
 #: public_html/lists/admin/defaultconfig.php:204
 msgid "Categories for lists. Separate with commas."
@@ -9233,7 +9250,7 @@ msgstr ""
 
 #: public_html/lists/admin/template.php:243
 msgid "Sending test \"Unsubscribe confirmation\" to"
-msgstr ""
+msgstr "Enviando proba de \"Confirmación de cancelación da subscrición\" a"
 
 #: public_html/databasestructure.php:246
 msgid "pagetitlehover:send"
@@ -9419,7 +9436,7 @@ msgstr "Ir á páxina principal"
 #: public_html/lists/admin/template.php:191
 #, php-format
 msgid "%d times used"
-msgstr ""
+msgstr "%d veces usado"
 
 #: public_html/databasestructure.php:261
 msgid "pagetitle:userhistory"
@@ -9578,7 +9595,7 @@ msgstr "Información xeral"
 
 #: public_html/lists/admin/template.php:135
 msgid "Template does not contain the [CONTENT] placeholder"
-msgstr ""
+msgstr "O modelo non contén o marcador de posición [CONTENT]"
 
 #: public_html/lists/admin/reconcileusers.php:125
 msgid "no user found"
@@ -9658,7 +9675,7 @@ msgstr ""
 
 #: public_html/lists/admin/msgstatus.php:19
 msgid "Stalled"
-msgstr ""
+msgstr "Estancado"
 
 #: public_html/lists/admin/userclicks.php:114
 msgid "Subscribers who clicked a URL"
@@ -9702,7 +9719,7 @@ msgstr "Atención: o script non alcanzou o estadio 5"
 
 #: public_html/lists/admin/template.php:229
 msgid "Sending test \"Request for confirmation\" to"
-msgstr ""
+msgstr "Enviando proba de \"Solicitude de confirmación\" a"
 
 #: public_html/lists/admin/actions/statsoverview.php:63,
 #: public_html/lists/admin/actions/mclicks.php:104,
@@ -10122,7 +10139,7 @@ msgstr "Cantos rebotes nesta mensaxe"
 
 #: public_html/lists/admin/template.php:250
 msgid "Error sending test messages to"
-msgstr ""
+msgstr "Produciuse un erro ao enviar mensaxes de proba a"
 
 #: public_html/lists/admin/send_core.php:791
 msgid "Repeat Until"
