@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-19 08:46+0000\n"
+"PO-Revision-Date: 2022-09-19 08:57+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -8436,7 +8436,7 @@ msgstr "Gardar"
 #: public_html/lists/admin/import2.php:709,
 #: public_html/lists/admin/importadmin.php:321
 msgid "default is TAB"
-msgstr ""
+msgstr "por defecto é TAB"
 
 #: public_html/databasestructure.php:55
 msgid "Footer for a message"
