@@ -133,7 +133,7 @@ foreach ($pluginFiles as $file) {
                     dbg($className.' disabled');
                 }
             } else {
-                Error('initialisation of plugin '.$className.' failed');
+                Error('initialisation of plugin '.$className.' failed. Remove the plugin and try again.','https://resources.phplist.com/documentation/errors/pluginfailed');
             }
             //print "$className = ".$pluginInstance->name."<br/>";
         }
