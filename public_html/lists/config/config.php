@@ -32,7 +32,7 @@ $database_password = 'phplist';
 //#
 //#     define("PHPMAILERHOST",'smtp.mydomain.com');
 
-define('PHPMAILERHOST', 'localhost');
+define('PHPMAILERHOST', '');
 define('PHPMAILERPORT',2500);
 define('PHPMAILER_SECURE',false);
 
@@ -41,7 +41,7 @@ define('PHPMAILER_SECURE',false);
 // this is here, to make sure you edited the config file and mails are not sent "accidentally"
 // on unmanaged systems
 
-define('TEST', 0);
+define('TEST', 1);
 /*
 
 ==============================================================================================================
