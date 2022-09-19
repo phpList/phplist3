@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Galician (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-09-19 08:57+0000\n"
+"PO-Revision-Date: 2022-09-19 08:58+0000\n"
 "Last-Translator: dinahosting <comunicacion@dinahosting.com>\n"
 "Language-Team: Galician <http://translate.phplist.org/projects/phplist/"
 "phplist3/gl/>\n"
@@ -5832,7 +5832,7 @@ msgstr "Tempo de resposta"
 #: public_html/lists/admin/import2.php:712,
 #: public_html/lists/admin/importadmin.php:322
 msgid "default is line break"
-msgstr ""
+msgstr "por defecto é o salto de liña"
 
 #: public_html/lists/admin/actions/msgstatus.php:102
 msgid "limit reached"
