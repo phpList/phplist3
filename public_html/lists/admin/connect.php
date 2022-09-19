@@ -460,10 +460,13 @@ function ClineSignature()
     return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, https://www.phplist.com";
 }
 
-function ClineError($msg)
+function ClineError($msg, $documentationURL = '')
 {
     ob_end_clean();
-    echo "\nError: $msg\n";
+    echo PHP.EOL."Error: $msg\n";
+    if (!empty($documentationURL)) {
+      echo PHP_EOL.s("For more information: "). $documentationURL;
+    }
     exit;
 }
 
@@ -475,11 +478,11 @@ function clineUsage($line = '')
 function Error($msg, $documentationURL = '')
 {
     if ($GLOBALS['commandline']) {
-        clineError($msg);
+        clineError($msg, $documentationURL);
 
         return;
     }
-    echo '<div class="error">'.$GLOBALS['I18N']->get('error').": $msg ";
+    echo '<div class="error">'.s('error').": $msg ";
     if (!empty($documentationURL)) {
         echo resourceLink($documentationURL);
     }
