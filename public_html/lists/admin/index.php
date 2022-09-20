@@ -65,7 +65,7 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
 } elseif (isset($cline['c']) && is_file($cline['c'])) {
     $configfile = $cline['c'];
 } elseif (is_file(dirname(__FILE__).'/../config/config.php')) {
-    $configfile = dirname(__FILE__).'../config/config.php';
+    $configfile = dirname(__FILE__).'/../config/config.php';
 } else {
     $configfile = '../config/config.php';
 }
