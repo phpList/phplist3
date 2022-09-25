@@ -99,9 +99,7 @@ if (isset($_REQUEST['id']) && $_REQUEST['id']) {
 }
 // make sure the subscribe page still exists
 $req = Sql_fetch_row_query(sprintf('select id from %s where id = %d', $tables['subscribepage'], $id));
-if (is_array($req)) {
-  $id = $req[0];
-} else {
+if (!$req) {
   $id = 0;
 }
 $msg = '';
