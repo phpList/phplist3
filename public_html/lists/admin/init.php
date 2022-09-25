@@ -122,6 +122,8 @@ if (isset($GLOBALS['design'])) {
 //  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
 
+$website = $domain = '';
+
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
     if (is_dir(dirname(__FILE__).'/ui/phplist-ui-bootlist')) {
         $GLOBALS['ui'] = 'phplist-ui-bootlist';
