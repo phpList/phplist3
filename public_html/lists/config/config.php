@@ -33,9 +33,6 @@ $database_password = 'phplist';
 //#     define("PHPMAILERHOST",'smtp.mydomain.com');
 
 define('PHPMAILERHOST', '');
-define('PHPMAILERPORT',2500);
-define('PHPMAILER_SECURE',false);
-
 
 // if TEST is set to 1 (not 0) it will not actually send ANY messages, but display what it would have sent
 // this is here, to make sure you edited the config file and mails are not sent "accidentally"
