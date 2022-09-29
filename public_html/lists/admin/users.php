@@ -390,7 +390,7 @@ $filterpanel .= '>'.$GLOBALS['I18N']->get('Unique ID').'</option>';
 $att_req = Sql_Query('select id,name from '.$tables['attribute'].' where type = "hidden" or type = "textline" or type = "select"');
 while ($row = Sql_Fetch_Array($att_req)) {
     $filterpanel .= sprintf('<option value="%d" %s>%s</option>', $row['id'],
-        $row['id'] == $findby ? 'selected="selected"' : '', substr($row['name'], 0, 20));
+        $row['id'] == $findby ? 'selected="selected"' : '', shortentextdisplay($row['name'], 20));
 }
 
 $filterpanel .= '</select><input class="submit" type="submit" value="'.s('Go').'" />&nbsp;&nbsp;<a href="./?page=users&amp;find=NULL" class="reset">'.s('reset').'</a>';
