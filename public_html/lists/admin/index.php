@@ -64,8 +64,8 @@ if (isset($_SERVER['ConfigFile']) && is_file($_SERVER['ConfigFile'])) {
     $configfile = $_SERVER['ConfigFile'];
 } elseif (isset($cline['c']) && is_file($cline['c'])) {
     $configfile = $cline['c'];
-} elseif (is_file(dirname(__FILE__).'/../config/config.php')) {
-    $configfile = '../config/config.php';
+} elseif (is_file(__DIR__.'/../config/config.php')) {
+    $configfile = __DIR__.'/../config/config.php';
 } else {
     $configfile = '../config/config.php';
 }
@@ -734,7 +734,7 @@ if (empty($_GET['pi']) && (is_file($include) || is_link($include))) {
 
         if (!$parses_ok) {
             echo Error("cannot parse $include");
-            echo '<p class="error">Sorry, an error occurred. This is a bug. Please <a href="http://mantis.phplist.com">report the bug to the Bug Tracker</a><br/>Sorry for the inconvenience</a></p>';
+            echo '<p class="error">Sorry, an error occurred. This is a bug. Please <a href="https://github.com/phpList/phplist3/issues">report the bug to the Bug Tracker</a><br/>Sorry for the inconvenience</a></p>';
         } else {
             if (!empty($_SESSION['action_result'])) {
                 echo '<div class="actionresult">'.$_SESSION['action_result'].'</div>';

@@ -606,43 +606,7 @@ if (!$done) {
         ++$counttabs;
 
         // print $tabs->display();
-    } ?>
-
-    <script language="Javascript" type="text/javascript">
-        // some debugging stuff to see what happens
-        function checkForm() {
-            //  return true;
-            for (var i = 0; i < document.sendmessageform.elements.length; i++) {
-                alert(document.sendmessageform.elements[i].name + " " + document.sendmessageform.elements[i].value);
-            }
-            return true;
-        }
-
-        // detection of unsaved changes,
-        var browser = navigator.appName.substring(0, 9);
-        var changed = 1;
-        function haschanged() {
-            changed = 1;
-        }
-        function savechanges() {
-        }
-        var event_number = 0;
-        if (browser == "Microsoft") {
-            document.onkeydown = haschanged;
-            document.onchange = haschanged;
-        } else if (browser == "Netscape") {
-            document.captureEvents(Event.KEYDOWN);
-            document.captureEvents(Event.CHANGE);
-            document.onkeydown = haschanged;
-            document.onchange = haschanged;
-        }
-        function submitform() {
-            document.sendmessageform.submit()
-        }
-    </script>
-    <?php
-    //print '<form method="post" enctype="multipart/form-data" name="sendmessageform" onSubmit="return checkForm()">';
-    echo '<input type="hidden" name="workaround_fck_bug" value="1" />';
+    } 
     echo '<input type="hidden" name="followupto" value="" />';
 
     if ($_GET['page'] == 'preparemessage') {

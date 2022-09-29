@@ -404,7 +404,7 @@ if (isset($_POST['Submit'])) {
         , $title
     ));
     
-    if ($exists[0]) {
+    if (!empty($exists[0])) {
         $messages = '<div class="actionresult alert alert-warning">';
         $messages .= s('This default template already exists');
         $messages .= '</div>';

@@ -285,7 +285,11 @@ while ($row = Sql_fetch_array($res)) {
     if ($id) {
         $val_req = Sql_Fetch_Row_Query("select value from {$tables['admin_attribute']}
       where adminid = $id and adminattributeid = $row[id]");
-        $row['value'] = $val_req[0];
+        if (isset($val_req[0])) {
+          $row['value'] = $val_req[0];
+        } else {
+          $row['value'] = '';
+        }
     } else {
         $row['value'] = '';
     }
