@@ -463,7 +463,7 @@ function UserAttributeValue($user = 0, $attribute = 0)
             $res = Sql_Query(sprintf('select value from %s where
         userid = %d and attributeid = %d', $user_att_table, $user, $attribute));
             $row = Sql_Fetch_row($res);
-            $value = $row ? $row[0] : '';
+            $value = $row ? (string) $row[0] : '';
     }
 
     return stripslashes($value);
