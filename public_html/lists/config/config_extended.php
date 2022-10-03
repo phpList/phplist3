@@ -406,6 +406,14 @@ define('USE_DOMAIN_THROTTLE', 0);
 define('DOMAIN_BATCH_SIZE', 1);
 define('DOMAIN_BATCH_PERIOD', 120);
 
+//allows us to throttle specific providers, while leaving others wide open.
+//Yahoo,Microsoft
+define('DOMAINS_SPECIFIC_TO_THROTTLE', 'Yahoo,Microsoft');
+
+//allows us to completely turn off providers if they have spam complaints about our email.
+//Microsoft
+define('DOMAINS_FULL_STOP', 'Microsoft');
+
 // if you have very large numbers of users on the same domains, this may result in the need
 // to run processqueue many times, when you use domain throttling. You can also tell phplist
 // to simply delay a bit between messages to increase the number of messages sent per queue run
@@ -595,8 +603,12 @@ Message sending options
 define('PHPMAILERHOST', '');
 
 // in the above you can specify multiple SMTP servers like this:
-// 'server1:port1;server2:port2;server3:port3' eg
-//define('PHPMAILERHOST','smtp1.mydomain.com:25;smtp2.mydomain.com:2500;smtp3.phplist.com:5123');
+// 'server1:port1:priority;server2:port2:priority;server3:port3:priority' eg
+//define('PHPMAILERHOST','smtp1.mydomain.com:25:10;smtp2.mydomain.com:2500:30;smtp3.phplist.com:5123:60');
+
+//priority allows you to set how much mail goes through that specific smtp server.  
+//since the server might just be coming online, providers might not know about it yet and therefore
+//limit its use, so we add a priority to limit how much email goes out of it.
 
 // if you want to use smtp authentication when sending the email uncomment the following
 // two lines and set the username and password to be the correct ones

@@ -1070,23 +1070,36 @@ while ($message = Sql_fetch_array($messages)) {
 // Throttling
 
                 $throttled = 0;
-                if ($cansend && USE_DOMAIN_THROTTLE) {
+				$shouldDomainBeThrottled = 0;
+				$userDomainFullStop = '';
+				
+				//logEvent('throttle work '.$useremail.' '.DOMAINS_SPECIFIC_TO_THROTTLE);
+				
+                if ($cansend && USE_DOMAIN_THROTTLE){
                     list($mailbox, $throttleDomain) = explode('@', $useremail);
                     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
                         if ($newThrottleDomain = $plugin->throttleDomainMap($throttleDomain)) {
                             $throttleDomain = $newThrottleDomain;
+							//logEvent($throttleDomain);
                             break;
                         }
                     }
+					
+					if (strpos(DOMAINS_SPECIFIC_TO_THROTTLE, $throttleDomain) !== false)
+					{
+						//logEvent($throttleDomain.' is set to be throttled '.$useremail);
+						$shouldDomainBeThrottled = 1;
+					}
+					
                     $now = time();
                     $interval = $now - ($now % DOMAIN_BATCH_PERIOD);
-                    if (!isset($domainthrottle[$throttleDomain]) || !is_array($domainthrottle[$throttleDomain])) {
+                    if ((!isset($domainthrottle[$throttleDomain]) || !is_array($domainthrottle[$throttleDomain])) && $shouldDomainBeThrottled) {
                         $domainthrottle[$throttleDomain] = array(
                             'interval'  => '',
                             'sent'      => 0,
                             'attempted' => 0,
                         );
-                    } elseif (isset($domainthrottle[$throttleDomain]['interval']) && $domainthrottle[$throttleDomain]['interval'] == $interval) {
+                    } elseif (isset($domainthrottle[$throttleDomain]['interval']) && $domainthrottle[$throttleDomain]['interval'] == $interval && $shouldDomainBeThrottled) {
                         $throttled = $domainthrottle[$throttleDomain]['sent'] >= DOMAIN_BATCH_SIZE;
                         if ($throttled) {
                             ++$counters['send blocked by domain throttle'];
@@ -1138,8 +1151,16 @@ while ($message = Sql_fetch_array($messages)) {
                             }
                             $emailSentTimer = new timer();
                             ++$counters['batch_count'];
-                            $success = sendEmail($messageid, $useremail, $userhash,
+							
+							if (strpos(DOMAINS_FULL_STOP, $throttleDomain) !== false)
+							{
+								logEvent($throttleDomain.' is full stopped '.$useremail);
+								$success = 1;
+							} else {
+						    $success = sendEmail($messageid, $useremail, $userhash,
                                 $htmlpref); // $rssitems Obsolete by rssmanager plugin
+							}
+							
                             if (!$success) {
                                 ++$counters['sendemail returned false total'];
                                 ++$counters['sendemail returned false'];
@@ -1158,6 +1179,7 @@ while ($message = Sql_fetch_array($messages)) {
                             }
                         } else {
                             ++$throttlecount;
+							logEvent('currently throttled '.$throttleDomain.' '.$throttlecount);
                         }
                     } else {
                         $success = sendEmailTest($messageid, $useremail);

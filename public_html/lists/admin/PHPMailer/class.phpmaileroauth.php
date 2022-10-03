@@ -114,8 +114,41 @@ class PHPMailerOAuth extends PHPMailer
         $hosts = explode(';', $this->Host);
         $lastexception = null;
 
+      
+        $percentages = array();
+        $count = 0;
+
         foreach ($hosts as $hostentry) {
-            $hostinfo = array();
+            $tempHostParamaters = explode(':', $hostentry);
+            $percentages[$count] = $tempHostParamaters[2];
+            $count += 1;
+        }
+
+        $rand = rand(1,100);
+        $sum = 0;
+        $chosenHost;
+
+        $chosenHostInteger = 0;
+        foreach ($percentages as $v) {
+            $sum += $v;
+            if ( $sum >= $rand ) {
+                break;
+        }
+        $chosenHostInteger += 1;
+        }
+
+        $randomlySelectedHost = array();
+        $randomlySelectedHost[0] = $hosts[$chosenHostInteger];
+
+        foreach ($randomlySelectedHost as $hostentry) {
+			$tempHostEntry = explode(':', $hostentry);
+            $removal = $tempHostEntry[2];
+			
+		$hostentry = str_replace(":".$removal, "",$hostentry);
+			
+			//logEvent('rolling through hosts '.$hostentry);
+                $hostinfo = [];
+            
             if (!preg_match('/^((ssl|tls):\/\/)*([a-zA-Z0-9\.-]*):?([0-9]*)$/', trim($hostentry), $hostinfo)) {
                 // Not a valid host entry
                 continue;
