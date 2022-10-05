@@ -8282,7 +8282,7 @@ msgstr "URL for forwarding messages"
 #: public_html/lists/admin/defaultconfig.php:358
 #, fuzzy
 msgid "URL for downloading vcf card"
-msgstr "URL for forwarding messages"
+msgstr "URL for downloading vcf card"
 
 #: public_html/lists/admin/defaultconfig.php:365
 msgid ""
