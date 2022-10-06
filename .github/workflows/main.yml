@@ -31,6 +31,19 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
+      - name: Report Versions
+        run: |
+          google-chrome --version
+          php -v
+          chromedriver -v
+          geckodriver -V
+          which geckodriver
+          which chromedriver
+          firefox -v
+          vendor/bin/behat -V
+          mysql --version
+          mysqladmin --version
+
       - name: Setup Packages
         run: |
           cd $GITHUB_WORKSPACE
@@ -84,17 +97,6 @@ jobs:
         with:
           path: ./public_html
           
-      - name: Report Versions
-        run: |
-          google-chrome --version
-          php -v
-          chromedriver -v
-          geckodriver -V
-          which geckodriver
-          which chromedriver
-          firefox -v
-          vendor/bin/behat -V
-
       - name: Run BDD Tests UI
         run: |
           cd $GITHUB_WORKSPACE/tests
