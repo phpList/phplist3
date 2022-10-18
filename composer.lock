@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dfed075bf385e806dbaf1a42e37eb86",
+    "content-hash": "b241b28ca15e572e7c299cdbfc202bfd",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -4115,5 +4115,5 @@
         "php": ">=7.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.0.0"
 }
