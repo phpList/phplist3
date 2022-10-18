@@ -237,7 +237,7 @@ $generalinfoHTML .= sprintf('<label for="ajax_subscribeconfirmation">%s</label><
 
 $generalinfoHTML .= sprintf('<label for="button">%s</label><input type="text" name="button" value="%s" size="60" />',
     s('Text for Button'),
-    htmlspecialchars($data['button']));
+    htmlspecialchars(stripslashes($data['button'])));
 $generalinfoHTML .= sprintf('<label for="htmlchoice">%s</label>', s('HTML Email choice'));
 $generalinfoHTML .= sprintf('<input type="radio" name="htmlchoice" value="textonly" %s />
   %s <br/>',
@@ -302,7 +302,7 @@ $transactionHTML .= sprintf('<label for="unsubscribemessage">%s</label><textarea
 
 $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
-    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s: 
+    <input class="submit" type="submit" name="sendtest" value="%s"/>  %s:
     <input type="text" name="testtarget" size="40" value="' .htmlspecialchars($testtarget).'"/><br />%s
     </div>',
     s('Send test message'), s('to email addresses'),

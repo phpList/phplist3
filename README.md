@@ -5,12 +5,15 @@
 
 #
 ![CI](https://github.com/phpList/phplist3/workflows/CI/badge.svg)
-[![Stable release](https://img.shields.io/badge/stable-3.6.4-blue.svg)](https://sourceforge.net/projects/phplist/files/phplist/)
+<a href="https://www.phplist.org/download-phplist"><img alt="GitHub tag (latest SemVer)" src="https://img.shields.io/github/v/tag/phplist/phplist3?label=latest%20stable&sort=semver"></a>
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 <a href="http://translate.phplist.org/engage/phplist/?utm_source=widget">
-<img src="http://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
+<img src="https://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
 </a>
+<a href="https://hub.docker.com/r/phplist/phplist/tags"><img alt="Docker Image Version (latest semver)" src="https://img.shields.io/docker/v/phplist/phplist?label=docker&sort=semver"></a>
+
 <br/>
+
 Fully functional Open Source email marketing manager for creating, sending, integrating, and analysing email campaigns and newsletters: [https://www.phplist.org](https://www.phplist.org)
 
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.

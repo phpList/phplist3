@@ -64,7 +64,7 @@ function processbounces_shutdown()
 function outputProcessBounce($message, $reset = 0)
 {
     $infostring = '['.date('D j M Y H:i',
-            time()).'] ['.getenv('REMOTE_HOST').'] ['.getenv('REMOTE_ADDR').']';
+            time()).'] ['.getenv('REMOTE_HOST').'] ['.getClientIP().']';
     //print "$infostring $message<br/>\n";
     $message = preg_replace("/\n/", '', $message);
     //# contribution from http://forums.phplist.com/viewtopic.php?p=14648
@@ -596,8 +596,7 @@ if (count($bouncerules)) {
                     case 'deleteuser':
                         logEvent('User '.$userdata['email'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
                                 $rule['id']));
-                        $advanced_report .= 'User '.$userdata['email'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
+                        $advanced_report .= 'User '.$userdata['email'].' Id '.$userdata['id'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
                         $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
                         deleteUser($row['user']);
                         break;
@@ -618,8 +617,7 @@ if (count($bouncerules)) {
                     case 'deleteuserandbounce':
                         logEvent('User '.$userdata['email'].' deleted by bounce rule '.PageLink2('bouncerule&amp;id='.$rule['id'],
                                 $rule['id']));
-                        $advanced_report .= 'User '.$userdata['email'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
-                        $advanced_report .= 'User: '.$report_linkroot.'/?page=user&amp;id='.$userdata['id'].PHP_EOL;
+                        $advanced_report .= 'User '.$userdata['email'].' Id '.$userdata['id'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
                         $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
                         deleteUser($row['user']);
                         deleteBounce($row['bounce']);

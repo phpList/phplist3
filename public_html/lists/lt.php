@@ -200,7 +200,7 @@ if (!$viewed[0]) {
     }
 
     Sql_Query(sprintf('insert into %s (messageid,userid,viewed,ip,data) values(%d,%d,now(),"%s","%s")',
-        $GLOBALS['tables']['user_message_view'], $messageid, $userid, $_SERVER['REMOTE_ADDR'], sql_escape(serialize($metaData))));
+        $GLOBALS['tables']['user_message_view'], $messageid, $userid, getClientIP(), sql_escape(serialize($metaData))));
 }
 
 $uml = Sql_Fetch_Array_Query(sprintf('select * from %s where messageid = %d and forwardid = %d and userid = %d',
@@ -241,7 +241,8 @@ if (!isset($_SESSION['entrypoint'])) {
     $_SESSION['entrypoint'] = $url;
 }
 
-if (!empty($messagedata['google_track'])) {
+// Add analytics tracking parameters only to http and https URLs
+if (!empty($messagedata['google_track']) && preg_match('/^http/i', $url)) {
     require __DIR__ . '/admin/analytics.php';
 
     $analytics = getAnalyticsQuery();

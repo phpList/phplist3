@@ -1881,7 +1881,7 @@ msgstr ""
 #: public_html/lists/admin/adminattributes.php:5
 #: public_html/lists/admin/adminattributes.php:156
 #: public_html/lists/admin/spageedit.php:428
-#: public_html/lists/admin/user.php:508 public_html/lists/admin/user.php:534
+#: public_html/lists/admin/user.php:524 public_html/lists/admin/user.php:550
 #: public_html/lists/admin/bouncerules.php:125
 #: public_html/lists/admin/list.php:316
 #: public_html/lists/admin/template.php:384
@@ -2194,7 +2194,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/domainstats.php:225
 #: public_html/lists/admin/actions/bounces.php:25
-#: public_html/lists/admin/user.php:544
+#: public_html/lists/admin/user.php:560
 msgid "Bounces"
 msgstr ""
 
@@ -2853,7 +2853,7 @@ msgid "Import some more emails"
 msgstr ""
 
 #: public_html/lists/admin/actions/campaigns.php:24
-#: public_html/lists/admin/user.php:543
+#: public_html/lists/admin/user.php:559
 #: public_html/lists/admin/messages.php:367
 #: public_html/lists/admin/messages.php:370
 msgid "Campaigns"
@@ -2958,7 +2958,7 @@ msgid "Editing"
 msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:64
-#: public_html/lists/admin/user.php:418 public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/user.php:434 public_html/lists/admin/admins.php:112
 #: public_html/lists/admin/admins.php:113
 #: public_html/lists/admin/configure.php:156
 #: public_html/lists/admin/admin.php:236 public_html/lists/admin/admin.php:267
@@ -2967,7 +2967,7 @@ msgid "Yes"
 msgstr ""
 
 #: public_html/lists/admin/actions/configure.php:71
-#: public_html/lists/admin/user.php:418 public_html/lists/admin/admins.php:112
+#: public_html/lists/admin/user.php:434 public_html/lists/admin/admins.php:112
 #: public_html/lists/admin/admins.php:113
 #: public_html/lists/admin/configure.php:158
 #: public_html/lists/admin/admin.php:236 public_html/lists/admin/admin.php:268
@@ -3857,7 +3857,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:577
 #: public_html/lists/admin/spageedit.php:370
-#: public_html/lists/admin/user.php:542 public_html/lists/admin/list.php:227
+#: public_html/lists/admin/user.php:558 public_html/lists/admin/list.php:227
 #: public_html/lists/admin/messages.php:450
 msgid "Lists"
 msgstr ""
@@ -5602,23 +5602,27 @@ msgid ""
 "Subscriber is blacklisted. No emails will be sent to this email address."
 msgstr ""
 
-#: public_html/lists/admin/user.php:422
+#: public_html/lists/admin/user.php:421
+msgid "Enter new password"
+msgstr ""
+
+#: public_html/lists/admin/user.php:438
 msgid "Add to blacklist"
 msgstr ""
 
-#: public_html/lists/admin/user.php:425
+#: public_html/lists/admin/user.php:441
 msgid "Remove from blacklist"
 msgstr ""
 
-#: public_html/lists/admin/user.php:511
+#: public_html/lists/admin/user.php:527
 msgid "Mailinglist membership"
 msgstr ""
 
-#: public_html/lists/admin/user.php:541
+#: public_html/lists/admin/user.php:557
 msgid "Details"
 msgstr ""
 
-#: public_html/lists/admin/user.php:545
+#: public_html/lists/admin/user.php:561
 msgid "Subscription"
 msgstr ""
 
@@ -6998,12 +7002,12 @@ msgstr ""
 msgid "phpList community news"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:293
+#: public_html/lists/admin/class.phplistmailer.php:300
 #, php-format
 msgid "Error sending email to %s"
 msgstr ""
 
-#: public_html/lists/admin/class.phplistmailer.php:298
+#: public_html/lists/admin/class.phplistmailer.php:305
 #, php-format
 msgid "Error, empty message-body sending email to %s"
 msgstr ""
@@ -7385,7 +7389,8 @@ msgstr ""
 msgid "Create password"
 msgstr ""
 
-#: public_html/lists/admin/admin.php:206
+#: public_html/lists/admin/admin.php:206 public_html/lists/admin/login.php:103
+#: public_html/lists/admin/login.php:105
 msgid "Password must be at least 8 characters"
 msgstr ""
 

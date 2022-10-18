@@ -55,6 +55,22 @@ if ($GLOBALS['database_module'] == 'mysql.inc') {
     );
 }
 
+if (!empty($GLOBALS['mysql_database_engine'])) {
+  $engines_count = Sql_Fetch_Row_Query(sprintf('select count(table_name) from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
+  if (!empty($engines_count[0])) {
+    if ($GLOBALS['commandline']) {
+      cl_output(s('Converting tables to preferred database engine'));
+      $engines = Sql_Query(sprintf('select table_name from information_schema.tables where engine != \'%s\' and table_schema = \'%s\'',$GLOBALS['mysql_database_engine'],$GLOBALS['database_name']));
+      while ($engine = Sql_Fetch_Assoc($engines)) {
+        cl_output(s('Converting table %s',$engine['table_name']));
+        Sql_Query(sprintf('alter table %s Engine %s',$engine['table_name'],$GLOBALS['mysql_database_engine']));
+      }
+    } else {
+      echo Warn(s('You have %d tables that do not use your preferred database engine',$engines_count[0]).'<br/>'.s('Use the commandline upgrade method to convert them'));
+    }
+  }
+}
+
 if (!versionCompare($dbversion,'2.11.11') && $dbversion!=='dev') {
     Fatal_Error(s('Your version is older than 3.2.0 and cannot be upgraded to this version. Please upgrade to 3.2.0 first and then try again.'));
     return;
@@ -230,9 +246,15 @@ if ($dbversion == VERSION && !$force) {
             }
         }
         $maxsize = (int) ($maxsize * 1.2); //# add another 20%
-        $row = Sql_Fetch_Row_Query('select @@datadir');
-        $dataDir = $row[0];
-        $avail = disk_free_space($dataDir);
+        #this is only valid when the DB is on the same host
+        if ($GLOBALS['database_host'] == 'localhost') {
+          $row = Sql_Fetch_Row_Query('select @@datadir');
+          $dataDir = $row[0];
+          $avail = disk_free_space($dataDir);
+        } else {
+          # let's assume the DB host has sufficient space
+          $avail = $maxsize + 1;
+        }
 
         //# convert to UTF8
         $dbname = $GLOBALS['database_name'];
@@ -425,6 +447,10 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['message']} change column processed processed integer ");
     }
 
+    if (version_compare($dbversion, '3.6.7', '<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['message']} alter column processed set default 0 ");
+    }
+
     if (!Sql_Table_Column_Exists($GLOBALS['tables']['template'], 'template_text')) {
         Sql_Query(sprintf('alter table %s add column template_text longblob after template',
             $GLOBALS['tables']['template']));
@@ -432,7 +458,12 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query(sprintf('update %s set template_text="[CONTENT]"',
             $GLOBALS['tables']['template']));
     }
-    
+        //#increase size 'loginname' for the sso plugin
+
+    if (version_compare($dbversion, '3.6.8','<')) {
+        Sql_Query("alter table {$GLOBALS['tables']['admin']} change column loginname loginname varchar(66) default ''");
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

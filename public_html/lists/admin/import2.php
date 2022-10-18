@@ -63,7 +63,7 @@ if (!empty($_GET['reset']) && $_GET['reset'] == 'yes') {
     // }
 }
 if (isset($_POST['import'])) {
-    if (!verifyToken()) {
+    if (!$commandline && !verifyToken()) {
         echo Error(s('Invalid security token, please reload the page and try again'),
             'http://resources.phplist.com/documentation/errors/securitytoken');
 

@@ -85,7 +85,7 @@ function processTestEmails_shutdown()
 function output($message, $reset = 0)
 {
     $infostring = '['.date('D j M Y H:i',
-            time()).'] ['.getenv('REMOTE_HOST').'] ['.getenv('REMOTE_ADDR').']';
+            time()).'] ['.getenv('REMOTE_HOST').'] ['.getClientIP().']';
     //print "$infostring $message<br/>\n";
     $message = preg_replace("/\n/", '', $message);
     //# contribution from http://forums.phplist.com/viewtopic.php?p=14648
