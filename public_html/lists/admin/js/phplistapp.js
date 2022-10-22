@@ -307,12 +307,10 @@ $(document).ready(function () {
 
 
     $("a.savechanges").on("click",function () {
-        if (changed) {
-            document.sendmessageform.followupto.value = this.href;
-            document.location.hash = ""
-            document.sendmessageform.submit();
-            return false;
-        }
+        document.sendmessageform.followupto.value = this.href;
+        document.location.hash = ""
+        document.sendmessageform.submit();
+        return false;
     });
 
     $("#criteriaSelect").on("change",function () {
