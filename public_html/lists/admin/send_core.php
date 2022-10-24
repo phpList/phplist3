@@ -607,7 +607,7 @@ if (!$done) {
 
         // print $tabs->display();
     } 
-    echo '<input type="hidden" name="followupto" value="" />';
+    echo '<input id="followupto" type="hidden" name="followupto" value="" />';
 
     if ($_GET['page'] == 'preparemessage') {
         echo Help('preparemessage', $GLOBALS['I18N']->get('What is prepare a message'));
