@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "fe926e1fe1e638192a5da8350687e5342af618d3"
+                "reference": "91542b948cd472112c1190c90a22d1b58dee7864"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/fe926e1fe1e638192a5da8350687e5342af618d3",
-                "reference": "fe926e1fe1e638192a5da8350687e5342af618d3",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/91542b948cd472112c1190c90a22d1b58dee7864",
+                "reference": "91542b948cd472112c1190c90a22d1b58dee7864",
                 "shasum": ""
             },
             "require": {
@@ -94,7 +94,7 @@
                 "jdorn/sql-formatter": "^1.2",
                 "jmathai/php-multi-curl": "dev-master",
                 "katzgrau/klogger": "1.2.2",
-                "pelago/emogrifier": "^5.0.1",
+                "pelago/emogrifier": "~6.0",
                 "psr/container": "1.0.0",
                 "psr/log": "1.0.0",
                 "setasign/tfpdf": "1.32",
@@ -106,6 +106,8 @@
             "autoload": {
                 "classmap": [
                     "plugins/CommonPlugin/vendor/chdemko/bitarray/src",
+                    "plugins/CommonPlugin/vendor/crossjoin/css/src/",
+                    "plugins/CommonPlugin/vendor/crossjoin/pre-mailer/src/",
                     "plugins/CommonPlugin/vendor/ext/",
                     "plugins/CommonPlugin/vendor/jmathai/php-multi-curl/src",
                     "plugins/CommonPlugin/vendor/katzgrau/klogger/src",
@@ -113,10 +115,9 @@
                     "plugins/CommonPlugin/vendor/pelago/emogrifier/src",
                     "plugins/CommonPlugin/vendor/psr/container/src",
                     "plugins/CommonPlugin/vendor/psr/log/Psr",
+                    "plugins/CommonPlugin/vendor/sabberworm/php-css-parser/src",
                     "plugins/CommonPlugin/vendor/symfony/css-selector",
-                    "plugins/CommonPlugin/vendor/symfony/filesystem",
-                    "plugins/CommonPlugin/vendor/crossjoin/css/src/Crossjoin/Css/",
-                    "plugins/CommonPlugin/vendor/crossjoin/pre-mailer/src/Crossjoin/PreMailer/"
+                    "plugins/CommonPlugin/vendor/symfony/filesystem"
                 ],
                 "exclude-from-classmap": [
                     "plugins/CommonPlugin/vendor/psr/log/Psr/Log/Test/"
@@ -135,10 +136,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.22.1",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.23.0",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2022-10-06T10:48:59+00:00"
+            "time": "2022-10-19T08:47:30+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -670,34 +671,34 @@
         },
         {
             "name": "pelago/emogrifier",
-            "version": "v5.0.1",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyIntervals/emogrifier.git",
-                "reference": "37595a9bb62c3c25969bdd9e8d7dd24c3ac62bc9"
+                "reference": "aa72d5407efac118f3896bcb995a2cba793df0ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/37595a9bb62c3c25969bdd9e8d7dd24c3ac62bc9",
-                "reference": "37595a9bb62c3c25969bdd9e8d7dd24c3ac62bc9",
+                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/aa72d5407efac118f3896bcb995a2cba793df0ae",
+                "reference": "aa72d5407efac118f3896bcb995a2cba793df0ae",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
-                "php": "~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0",
-                "symfony/css-selector": "^3.4.32 || ^4.4 || ^5.1"
+                "php": "~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0",
+                "sabberworm/php-css-parser": "^8.3.1",
+                "symfony/css-selector": "^3.4.32 || ^4.4 || ^5.3 || ^6.0"
             },
             "require-dev": {
-                "php-parallel-lint/php-parallel-lint": "^1.2.0",
-                "rawr/cross-data-providers": "^2.3.0",
-                "slevomat/coding-standard": "^6.4.1",
-                "squizlabs/php_codesniffer": "^3.5.8"
+                "php-parallel-lint/php-parallel-lint": "^1.3.0",
+                "phpunit/phpunit": "^8.5.16",
+                "rawr/cross-data-providers": "^2.3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.0.x-dev"
+                    "dev-main": "7.0.x-dev"
                 }
             },
             "autoload": {
@@ -744,7 +745,7 @@
                 "issues": "https://github.com/MyIntervals/emogrifier/issues",
                 "source": "https://github.com/MyIntervals/emogrifier"
             },
-            "time": "2021-04-06T08:18:22+00:00"
+            "time": "2021-09-16T16:22:04+00:00"
         },
         {
             "name": "phplist/phplist-lan-help",
@@ -1118,6 +1119,59 @@
                 "source": "https://github.com/php-fig/log/tree/1.0.0"
             },
             "time": "2012-12-21T11:40:51+00:00"
+        },
+        {
+            "name": "sabberworm/php-css-parser",
+            "version": "8.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=5.6.20"
+            },
+            "require-dev": {
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "suggest": {
+                "ext-mbstring": "for parsing UTF-8 CSS"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabberworm\\CSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Schweikert"
+                }
+            ],
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "keywords": [
+                "css",
+                "parser",
+                "stylesheet"
+            ],
+            "support": {
+                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
+            },
+            "time": "2021-12-11T13:40:54+00:00"
         },
         {
             "name": "setasign/tfpdf",
