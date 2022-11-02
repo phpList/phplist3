@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Chinese (Simplified) (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: 2022-11-02 00:44+0000\n"
+"PO-Revision-Date: 2022-11-02 19:04+0000\n"
 "Last-Translator: dayadiguo <dayadiguo@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.phplist.org/projects/"
 "phplist/phplist3/zh_Hans/>\n"
@@ -418,7 +418,7 @@ msgstr "将所有使用者标示为已确认"
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr "加入"
+msgstr "创建日期"
 
 #: public_html/lists/admin/members.php:245,
 #: public_html/lists/admin/users.php:260
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:22
 msgid "Which page was used to subscribe"
-msgstr ""
+msgstr "哪个页面用于订阅"
 
 #: public_html/databasestructure.php:196
 msgid "date in unix format"
@@ -3250,7 +3250,7 @@ msgstr "您没有权限存取这个页面"
 #: public_html/databasestructure.php:48,
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/lists/admin/messages.php:597
 msgid "Suspend"
@@ -3453,7 +3453,7 @@ msgstr "网址点阅细节"
 
 #: public_html/databasestructure.php:18
 msgid "Last Modified"
-msgstr ""
+msgstr "上一次更改"
 
 #: public_html/lists/admin/about.php:67
 msgid "Design"
@@ -3577,7 +3577,7 @@ msgstr "错误的email"
 
 #: public_html/databasestructure.php:13
 msgid "Is this subscriber confirmed"
-msgstr ""
+msgstr "该订阅者是否已确认"
 
 #: public_html/lists/admin/users.php:323
 msgid "Sort by"
@@ -4045,7 +4045,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:16
 msgid "Number of bounces"
-msgstr ""
+msgstr "退信次数"
 
 #: public_html/lists/admin/plugins.php:154
 msgid "Plugin directory is not writable"
@@ -4070,11 +4070,10 @@ msgstr "没有任何电子报，请先建立"
 
 #: public_html/databasestructure.php:23
 msgid "RSS Frequency"
-msgstr ""
+msgstr "RSS 更新频率"
 
 #: public_html/databasestructure.php:4,
 #: public_html/databasestructure.php:149
-#, fuzzy
 msgid "order of listing"
 msgstr "顺序"
 
@@ -4205,9 +4204,8 @@ msgid "Subscribers"
 msgstr "使用者"
 
 #: public_html/databasestructure.php:8
-#, fuzzy
 msgid "attribute"
-msgstr "栏位"
+msgstr "属性"
 
 #: public_html/lists/admin/messages.php:570,
 #: public_html/lists/admin/actions/domainstats.php:85,
@@ -4547,9 +4545,8 @@ msgid "Login Name (max 25 chars)"
 msgstr ""
 
 #: public_html/databasestructure.php:9
-#, fuzzy
 msgid "subscriber id"
-msgstr "使用者"
+msgstr "订阅用户ID"
 
 #: public_html/lists/admin/send_core.php:757
 msgid "Repeat campaign every"
@@ -6388,7 +6385,7 @@ msgstr "档桉名称"
 #: public_html/lists/admin/users.php:387,
 #: public_html/databasestructure.php:19
 msgid "Unique ID"
-msgstr ""
+msgstr "唯一身份"
 
 #: public_html/lists/admin/reconcileusers.php:343
 msgid "Cleaning some user tables of invalid entries"
@@ -6583,7 +6580,6 @@ msgstr "汇出"
 
 #: public_html/databasestructure.php:5,
 #: public_html/databasestructure.php:150
-#, fuzzy
 msgid "Default value"
 msgstr "预设值"
 
@@ -7351,7 +7347,7 @@ msgstr "已处理"
 
 #: public_html/databasestructure.php:6
 msgid "Required for subscriber to fill out"
-msgstr ""
+msgstr "订阅者必须填写"
 
 #: public_html/lists/admin/actions/processqueue.php:360
 msgid "Message queue processing errors"
@@ -7939,7 +7935,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:10
 msgid "Value of this attribute for this subscriber"
-msgstr ""
+msgstr "此订阅者的此属性的值"
 
 #: public_html/lists/admin/statsoverview.php:91,
 #: public_html/lists/admin/mviews.php:72
@@ -8457,7 +8453,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:15
 msgid "Did this subscriber manually confirm"
-msgstr ""
+msgstr "此订阅者是否手动确认"
 
 #: public_html/lists/admin/import.php:38
 msgid "copy and paste list of emails"
@@ -8962,7 +8958,7 @@ msgstr "这些资料删除了，检查您的资料来源后重新汇入，重複
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
-msgstr ""
+msgstr "该用户是否被列入黑名单"
 
 #: public_html/databasestructure.php:112
 msgid "The page that this process runs in"
@@ -9091,7 +9087,7 @@ msgstr ""
 #: public_html/databasestructure.php:7,
 #: public_html/databasestructure.php:152
 msgid "Name of table with values"
-msgstr ""
+msgstr "值表名称"
 
 #: public_html/lists/admin/actions/mclicks.php:56,
 #: public_html/lists/admin/actions/mviews.php:69
@@ -9454,7 +9450,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
-msgstr ""
+msgstr "发送 HTML 邮件给这个订阅者"
 
 #: public_html/lists/admin/template.php:229
 msgid "Sending test \"Request for confirmation\" to"
@@ -9662,7 +9658,7 @@ msgstr "让使用者 %s 订阅纯文字版本<br/>"
 #: public_html/databasestructure.php:11,
 #: public_html/databasestructure.php:156
 msgid "PKey"
-msgstr ""
+msgstr "密钥"
 
 #: public_html/lists/admin/send_core.php:1276
 msgid "Incorrect URL for sending"
