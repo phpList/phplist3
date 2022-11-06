@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Chinese (Simplified) (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: 2022-11-06 11:09+0000\n"
+"PO-Revision-Date: 2022-11-06 16:49+0000\n"
 "Last-Translator: dayadiguo <dayadiguo@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.phplist.org/projects/"
 "phplist/phplist3/zh_Hans/>\n"
@@ -96,7 +96,7 @@ msgstr "已经寄出"
 
 #: public_html/lists/admin/setup.php:94
 msgid "Congratulations, phpList is set up, you are ready to start mailing"
-msgstr "恭喜你，phpList已经设置好了，你可以开始邮寄了。"
+msgstr "恭喜你，phpList已经设置好了，你可以开始邮寄了"
 
 #: public_html/lists/admin/import2.php:90
 msgid ""
@@ -569,7 +569,7 @@ msgstr "发起人的IP地址"
 #: public_html/lists/admin/import2.php:605
 #, php-format
 msgid "Test output<br/>If the output looks ok, click %s to submit for real"
-msgstr "测试输出 <br/>如果输出资料看来没问题，点选  %s 来正式送出资料"
+msgstr "测试输出 <br/>如果输出信息没问题，点选 %s 来正式发出消息"
 
 #: public_html/lists/admin/processbounces.php:42
 msgid "Bounce Processing info"
@@ -615,7 +615,7 @@ msgstr "phplist 测试组件"
 
 #: public_html/databasestructure.php:210
 msgid "pagetitlehover:setup"
-msgstr ""
+msgstr "正确配置phpList要做的事情列表"
 
 #: public_html/lists/admin/dbcheck.php:11
 msgid "Database structure"
@@ -705,7 +705,7 @@ msgstr "附件%d个成功添加"
 #: public_html/lists/admin/send_core.php:791
 #, fuzzy
 msgid "Repeat Until"
-msgstr "重複到"
+msgstr "重复到"
 
 #: public_html/lists/admin/configure.php:150,
 #: public_html/lists/admin/actions/configure.php:71,
@@ -1016,7 +1016,7 @@ msgstr ""
 
 #: public_html/lists/admin/index.php:335
 msgid "Failed sending a change password token"
-msgstr "发送修改密码邮件失败！"
+msgstr "发送修改密码邮件失败"
 
 #: public_html/lists/admin/send_core.php:1267
 msgid "message content missing"
@@ -1368,9 +1368,9 @@ msgid "Sorry, you used invalid characters in the From field."
 msgstr ""
 
 #: public_html/lists/admin/bounce.php:97
-#, fuzzy, php-format
+#, php-format
 msgid "Deleting bounce %d .. "
-msgstr "删除退信中 %s .."
+msgstr "删除退信中 %d  .. "
 
 #: public_html/databasestructure.php:201
 msgid "Related regex"
@@ -1681,7 +1681,7 @@ msgstr "贡献给phpList"
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
 msgid "unique clicks"
-msgstr "不重複点阅次数"
+msgstr "不重复点阅次数"
 
 #: public_html/databasestructure.php:27
 msgid "Additional data"
@@ -1693,7 +1693,7 @@ msgstr "哪个页面用于订阅"
 
 #: public_html/databasestructure.php:196
 msgid "date in unix format"
-msgstr ""
+msgstr "Unix格式的日期"
 
 #: public_html/lists/admin/members.php:311
 msgid "Tag all users in this page"
@@ -1743,7 +1743,7 @@ msgstr "发送此信息的格式为"
 
 #: public_html/databasestructure.php:219
 msgid "pagetitle:config"
-msgstr ""
+msgstr "设置"
 
 #: public_html/databasestructure.php:352
 msgid "pagetitlehover:ajaxform"
@@ -1808,7 +1808,7 @@ msgstr "自动取消订阅"
 
 #: public_html/databasestructure.php:211
 msgid "pagetitle:about"
-msgstr ""
+msgstr "phpList动态"
 
 #: public_html/lists/admin/home.php:91
 msgid "Manage Lists"
@@ -1849,7 +1849,7 @@ msgstr "以这封退信建立新规则"
 
 #: public_html/lists/admin/actions/import2.php:239
 msgid " user imported as "
-msgstr " 使用者汇入于"
+msgstr " 订阅用户导入为 "
 
 #: public_html/lists/admin/processbounces.php:721,
 #: public_html/lists/admin/cron.php:55
@@ -1897,7 +1897,7 @@ msgstr "翻译的字符串"
 
 #: public_html/databasestructure.php:139
 msgid "Time Created"
-msgstr ""
+msgstr "建立时间"
 
 #: public_html/lists/admin/actions/processqueue.php:716
 msgid "Campaign started"
@@ -2036,7 +2036,7 @@ msgstr "订阅者点击活动"
 
 #: public_html/databasestructure.php:52
 msgid "reply-to"
-msgstr ""
+msgstr "回复"
 
 #: public_html/lists/admin/bounces.php:128
 msgid ""
@@ -2105,7 +2105,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:218
 msgid "pagetitlehover:list"
-msgstr ""
+msgstr "用户可以注册的列表"
 
 #: public_html/lists/admin/actions/mviews.php:93
 msgid "in progress"
@@ -2314,8 +2314,8 @@ msgid ""
 "Warning: the file needs to be plain text. Do not upload binary files like a "
 "Word Document.   "
 msgstr ""
-"您上传的档桉必须包含您希望新增的管理者资讯，标题列需要包含栏位如下：<b>email</b>、<b>帐号</b>、<b>密码</b>，其他的栏位会被新增为"
-"管理者栏位。 <b>注意</b>：档桉必须是纯文字格式，而非 Word 之类的文件  "
+"   您上传的文件将需要包含要添加到系统的管理员。这些列必须具有以下标题:  <b>email</b> ， <b>loginname</b> ， "
+"<b>password</b> 。任何其他列都将添加为新属性。 <b>警告</b> : 文件必须为纯文本。不要像Word文档一样上传二进制文件。   "
 
 #: public_html/databasestructure.php:248
 msgid "pagetitlehover:preparesend"
@@ -3258,7 +3258,7 @@ msgstr ""
 
 #: public_html/lists/admin/import1.php:242
 msgid "Send Notification email"
-msgstr "发送&nbsp;通知&nbsp;信函&nbsp;"
+msgstr "发送通知电子邮件"
 
 #: public_html/lists/admin/reconcileusers.php:522
 msgid ""
@@ -3527,7 +3527,7 @@ msgstr "退信"
 #: public_html/lists/admin/actions/import2.php:506
 #, php-format
 msgid "%d Invalid Emails found."
-msgstr "%d 个错误的电子邮件"
+msgstr "%d 个错误的电子邮件。"
 
 #: public_html/databasestructure.php:90
 msgid "Name of Dataitem"
@@ -3847,7 +3847,7 @@ msgstr "正在将%d个订阅者导入到%d个列表中，请等待"
 
 #: public_html/lists/admin/initialise.php:77
 msgid "Please enter your email address."
-msgstr "输入您的电子邮件地址"
+msgstr "请输入您的电子邮件地址。"
 
 #: public_html/lists/admin/editlist.php:102
 msgid "Add another list"
@@ -4029,7 +4029,7 @@ msgstr "系统消息的HTML包装器模板"
 #: public_html/lists/admin/actions/processqueue.php:1372
 #, php-format
 msgid "to view the statistics of this campaign, go to %s://%s"
-msgstr "要检视这个信件的处理过程，请前往 %s"
+msgstr "要查看此活动的统计信息，请访问 %s://%s"
 
 #: public_html/lists/admin/actions/checkurl.php:35
 msgid "URL is valid"
@@ -4108,7 +4108,7 @@ msgstr "请不要中断这个处理程序"
 
 #: public_html/lists/admin/generatebouncerules.php:132
 msgid "Hmm, duplicate entry, "
-msgstr "资料重複 "
+msgstr "资料重复 "
 
 #: public_html/lists/admin/plugins.php:236
 msgid "Plugin must be updated manually"
@@ -4234,7 +4234,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:207
 msgid "pagetitle:home"
-msgstr ""
+msgstr "管理中心"
 
 #: public_html/lists/admin/import2.php:406
 msgid "Summary"
@@ -4273,7 +4273,7 @@ msgstr "发送到服务器的总数据的最大大小"
 #: public_html/lists/admin/actions/processqueue.php:718
 #, php-format
 msgid "to view the progress of this campaign, go to %s://%s"
-msgstr "要检视这个信件的处理过程，请前往 %s"
+msgstr "要查看此活动的进度，请转到 %s://%s"
 
 #: public_html/databasestructure.php:260
 msgid "pagetitlehover:adduser"
@@ -4509,7 +4509,7 @@ msgstr "处理队列"
 
 #: public_html/databasestructure.php:136
 msgid "Login Name (max 25 chars)"
-msgstr ""
+msgstr "登录名（最多25个字符）"
 
 #: public_html/databasestructure.php:9
 msgid "subscriber id"
@@ -4552,7 +4552,7 @@ msgstr "上午好"
 
 #: public_html/lists/admin/subscribelib2.php:338
 msgid "Email is blacklisted, so request for confirmation has been sent."
-msgstr "帐号在黑名单中，确认讯息已经寄出"
+msgstr "订阅者被列入黑名单，确认信息已经发出。"
 
 #: public_html/lists/admin/bouncerules.php:62
 #, php-format
@@ -5017,7 +5017,7 @@ msgstr "摘要"
 #: public_html/lists/admin/import1.php:242,
 #: public_html/lists/admin/import3.php:270
 msgid "Make confirmed immediately"
-msgstr "立即加入&nbsp;"
+msgstr "立即确认"
 
 #: public_html/lists/admin/eventlog.php:61,
 #: public_html/lists/admin/eventlog.php:102
@@ -5077,7 +5077,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:216
 msgid "pagetitlehover:stresstest"
-msgstr ""
+msgstr "压力测试"
 
 #: public_html/lists/admin/actions/listbounces.php:48
 msgid "Choose a list"
@@ -5109,7 +5109,7 @@ msgstr "日期到："
 #: public_html/lists/admin/inc/userlib.php:586
 #, php-format
 msgid "Added to blacklist for reason %s"
-msgstr "已加入黑名单"
+msgstr "添加到黑名单的原因是 %s"
 
 #: public_html/lists/admin/send_core.php:570
 msgid "Format"
@@ -5607,7 +5607,7 @@ msgstr "还剩%s禁运"
 
 #: public_html/databasestructure.php:212
 msgid "pagetitlehover:about"
-msgstr ""
+msgstr "有关phpList应用程序的更多信息"
 
 #: public_html/lists/admin/reconcileusers.php:288
 msgid "Don't know how to"
@@ -5921,7 +5921,7 @@ msgstr "键"
 
 #: public_html/databasestructure.php:214
 msgid "pagetitlehover:attributes"
-msgstr ""
+msgstr "创建、编辑和更改订阅者的信息"
 
 #: public_html/lists/admin/updatetranslation.php:75
 msgid "Translation status"
@@ -6602,9 +6602,8 @@ msgid ""
 msgstr "全部完成，已处理%d个电子邮件<br/>已将%d个电子邮件列入黑名单<br/>已删除%d个电子邮件<br/>找不到%d封电子邮件"
 
 #: public_html/lists/admin/importadmin.php:161
-#, fuzzy
 msgid "Test output: If the output looks ok, go Back to resubmit for real"
-msgstr "测试输出 <br/>如果输出资料看来没问题，点选  %s 来正式送出资料"
+msgstr "测试输出<br/>如果输出正常，请返回正式提交"
 
 #: public_html/lists/admin/actions/statsoverview.php:159,
 #: public_html/lists/admin/actions/mviews.php:101,
@@ -6764,7 +6763,7 @@ msgstr "下一步"
 
 #: public_html/databasestructure.php:217
 msgid "pagetitle:list"
-msgstr ""
+msgstr "订阅者列表"
 
 #: public_html/databasestructure.php:371
 msgid "subscription settings"
@@ -6902,7 +6901,7 @@ msgid ""
 "the entire name or two attributes, one for first name and one for last name. "
 "If you use &quot;two attributes&quot;, the name will be split after the "
 "first space."
-msgstr "有两个加入使用者名称的方法，就是一或两个栏位，两个栏位是将姓与名分开。如果您使用两个栏位，名称会使用空白字元分开"
+msgstr "有两个加入订阅用户名称的方法，就是一或两个栏位，两个栏位是将姓与名分开。如果您使用两个栏位，名称会使用空白字元分开。"
 
 #: public_html/lists/admin/sendemaillib.php:986
 #, php-format
@@ -6949,7 +6948,7 @@ msgstr "%d个电子邮件已列入黑名单，尚未添加到列表中"
 
 #: public_html/lists/admin/eventlog.php:79
 msgid "Are you sure you want to delete all events older than 2 months?"
-msgstr "您确定要删除两个月前的所有退信"
+msgstr "您确定要删除两个月前的所有退信?"
 
 #: public_html/databasestructure.php:279
 msgid "pagetitle:configure"
@@ -7009,9 +7008,8 @@ msgid "Forward request from invalid user ID: %s"
 msgstr "来自无效用户ID: %s的转发请求"
 
 #: public_html/lists/admin/user.php:347
-#, fuzzy
 msgid "Are you sure you want to remove this subscriber from the system."
-msgstr "您确定要从黑名单中删除这个使用者"
+msgstr "您确定要从黑名单中删除这个订阅用户?"
 
 #: public_html/lists/admin/configure.php:40
 msgid "Reset to default"
@@ -7040,7 +7038,7 @@ msgstr "密码"
 
 #: public_html/lists/admin/attributes.php:356
 msgid "Existing attributes"
-msgstr "现有属性："
+msgstr "现有属性"
 
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
@@ -7855,7 +7853,7 @@ msgstr "初始化"
 
 #: public_html/databasestructure.php:208
 msgid "pagetitlehover:home"
-msgstr ""
+msgstr "转到管理中心页面"
 
 #: public_html/lists/admin/home.php:244
 msgid "List all Messages"
@@ -8118,7 +8116,7 @@ msgstr "选择另一个列表"
 #: public_html/databasestructure.php:173,
 #: public_html/databasestructure.php:181
 msgid "Message ID"
-msgstr ""
+msgstr "信息ID"
 
 #: public_html/lists/admin/send_core.php:1050
 msgid "Estimated size of HTML email"
@@ -8238,7 +8236,7 @@ msgstr "在全部活动中单击URL“%s”的订阅者"
 #: public_html/lists/admin/actions/import1.php:231
 #, php-format
 msgid "%d emails already existed in the database"
-msgstr "%s 个电子邮件已经存在于资料库中"
+msgstr "%d个电子邮件已经存在于资料库中"
 
 #: public_html/lists/admin/members.php:417
 msgid ""
@@ -8327,7 +8325,7 @@ msgstr "尝试合并重复资料"
 #: public_html/lists/admin/import2.php:77,
 #: public_html/lists/admin/import1.php:47
 msgid "File is either too large or does not exist."
-msgstr "文档太大或不存在"
+msgstr "文档太大或不存在。"
 
 #: public_html/databasestructure.php:344
 msgid "pagetitlehover:bouncerules"
@@ -8360,7 +8358,7 @@ msgstr "生成退信规则"
 msgid ""
 "addresses that do not have a real name will be ignored. Otherwise all emails "
 "will be imported."
-msgstr "位址不完整的会被忽略，其他email会被导入"
+msgstr "地址不完整的会被忽略，其它email会被导入。"
 
 #: public_html/lists/admin/connect.php:1339,
 #: public_html/lists/admin/import2.php:646,
@@ -8619,7 +8617,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:215
 msgid "pagetitle:stresstest"
-msgstr ""
+msgstr "压力测试"
 
 #: public_html/databasestructure.php:296
 msgid "pagetitlehover:spage"
@@ -8708,7 +8706,7 @@ msgstr "查询选择该邮件的订阅者"
 
 #: public_html/databasestructure.php:107
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: public_html/lists/admin/actions/processqueue.php:1382
 msgid "to send this message"
@@ -8762,7 +8760,7 @@ msgstr ""
 #: public_html/lists/admin/attributes.php:431,
 #: public_html/lists/admin/spageedit.php:337
 msgid "Type"
-msgstr "类型："
+msgstr "类型"
 
 #: public_html/lists/admin/converttoutf8.php:42
 msgid "Otherwise, free up some diskspace and try again"
@@ -8878,7 +8876,7 @@ msgstr "使用者"
 msgid ""
 "These records were deleted. Check your source and reimport the data. "
 "Duplicates will be identified."
-msgstr "这些资料删除了，检查您的资料来源后重新导入，重複资料会被挑出"
+msgstr "这些记录已被删除。检查来源并重新导入数据。将识别重复项。"
 
 #: public_html/databasestructure.php:14
 msgid "Is this subscriber blacklisted"
@@ -9219,7 +9217,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:114
 msgid "The template"
-msgstr ""
+msgstr "模板"
 
 #: public_html/lists/admin/spageedit.php:121
 msgid "Subscribe page information saved"
@@ -9265,7 +9263,7 @@ msgstr "与找到的email"
 msgid ""
 "The following limits are set by your server:<br/>Maximum size of a total "
 "data sent to server: %s<br/>Maximum size of each individual file: %s"
-msgstr "服务器设置了以下限制:  <br/>发送到服务器的总数据的最大大小: %s <br/>每个文件的最大大小: %s"
+msgstr "服务器设置了以下限制:<br/>发送到服务器的总数据的最大大小:%s<br/>单个文件的最大大小:%s"
 
 #: public_html/lists/admin/template.php:58
 msgid "No such template"
@@ -9318,7 +9316,7 @@ msgstr "删除使用者"
 
 #: public_html/lists/admin/import3.php:270
 msgid "Send&nbsp;Notification&nbsp;email&nbsp;"
-msgstr "发送提醒邮件"
+msgstr "发送通知电子邮件"
 
 #: public_html/lists/admin/import3.php:522
 msgid "Invalid Emails found."
@@ -9547,7 +9545,7 @@ msgstr "没有记录"
 
 #: public_html/databasestructure.php:209
 msgid "pagetitle:setup"
-msgstr ""
+msgstr "检查表"
 
 #: public_html/lists/admin/actions/processqueue.php:650
 #, php-format
@@ -9897,53 +9895,8 @@ msgstr "下载为CSV文件"
 
 #: public_html/lists/admin/actions/viewtemplate.php:5,
 #: public_html/lists/admin/viewtemplate.php:27
-#, fuzzy
 msgid "Sample Newsletter Content"
-msgstr ""
-"真糗，在书店门口打了半天的资料，因为忘记存档就付诸流水了；这是第二次开头，希望别忘记太多。由于许多管理学理论都在没有电脑与网路的时代发明，当代的管理学大师"
-"也不会为了我所面临的问题写书，更别提许许多多我请不起、也不见得认同的顾问，毕竟我还小。因此我决定停止翻书了，放下老师教的东西(应该说忘了吧...)，诚实面"
-"对自己遇到的问题，试着找出合适的解决方桉。从\"顾问成功的秘密\"( http://www.cite.com.tw/"
-"product_info.php?products_id=9394 "
-")一书，我认同大部分的答桉，在问题提出前就存在于发问者的脑中，只是大部份发问者都无法跳脱自己的立场，或是不敢下决定；从\"重新想像\"( "
-"http://www.bookzone.com.tw/event/CB311/index.asp )一书，我认同现在许多过去深信不已的事情，现在都需要重新"
-"检验或打破。我是个非常厌恶效率不彰的人，因此希望能够找到一个符合实际需求的答桉，更希望能够让人动起来。我希望能够发展以开放原始码为基础的商务模式，也就是朝"
-"服务导向发展。这样的方向，从GOOGLE( http://www.google.com.tw/ )现在的成果中看到了些信心，也从IKEA( "
-"http://www.ikea.com.tw/ )的卖场中发现，消费者体验带给人们的影响，远超过夸大不实的行销手法；即使后者往往有着比较好的成本、效益比，"
-"我还是希望能够踏实些。朝着这个方向走，我需要更多人的帮助；而如何能够让更多人的力量朝这个方向推进？也许真有些朋友像我这样傻，有着一两个念头就会彻夜难眠，"
-"凭着一点点理想就 \"撩落去\"；但是这样的人毕竟太少了，而且光靠这些人，只会让这件事情看来像是遥遥欲墬的象牙塔，当然不够！还要有更多的人才行。这样的人，"
-"可能每天沉溺在线上游戏与即时通讯之中，无法从现实中获得足够的认同；这样的人，可能每天忙于事业、家庭等压力，除非有机会病倒，否则很难思考什麽人生价值之类的问"
-"题；这样的人，可能活在一个又一个的小圈子中，每天鑽研少数人看的懂得技术、理论，出口闭口都异于常人而不自知。(我也许也算是第三种人吧)线上游戏真的很迷人吧，"
-"我在过去网路聊天盛行的时代也有着同样的感受，当时每天只要有机会打开电脑、连上网路，我的暱称就一定会出现在线上聊天室中；感谢那些让我发现自己自作多情的女性网"
-"友，感谢品质越来越差的聊天室，我因此有机会戒了这个瘾，也对后来更多的诱惑产生抗体。但是，我如何让身陷其中的力量能够转而支持自己的方向？抱歉，只能够等，我也"
-"只愿意等；等到这样的朋友发现自己因此忽略了现实生活，等到这样的朋友认同这个方向，或者，线上游戏公司突然都消失？别闹了。 :)当然不能够只是期待推力，要想法"
-"子让这个方向对他们而言具有吸引力。这样的朋友大多较年轻，有很多的机会变成忙于生活的人们；所以先在他们的下一个阶段设下圈套！嘿嘿..."
-"成天忙于事业、家庭的朋友，很直接的问题就是经济压力；钱的问题好解决，可惜我也没有钱...。我的想法是，设置一个类似\"开放原始码商业协会\"的组织，制定游"
-"戏规则来让这个社群能够活下去；我很有把握的是，一定会有想要鑽研规则漏洞的朋友，毕竟这是台湾闻名世界的条件之一。但是规则要想一开始就没有漏洞，那也是不切实际"
-"的想法；先要有人动手做、正视面临的任何问题、挽回失去的信心，然后才有蓬勃发展的可能。我不打算回答大量\"你凭什麽...\"之类的问题"
-"，虽然我说过要放下老师教的东西，但是有一句话回应问题最方便，那就是\"Action speaks louder than words\"。对于那些希望在技"
-"术领域持续精进的朋友，也就是下一个GOOGLE可能的创办人，或者是因为无私的牺牲奉献而留名青史的伟人，我相信自己经常是被这些朋友嗤之以鼻的对象；我想说的很"
-"单纯，如果有机会发现这麽做没那麽糟时，千万别把跟我或我们之间的争执放在心上；就事论事罢了，立场不同、答桉也就自然不同。其实，这篇文章的重点从下面才开始，感"
-"谢您那麽用心的看了我的开场白...。\"开放原始码商业协会\"这样的组织需要什麽样的游戏规则？开宗明义，就是要开放原始码。而在GPL( "
-"http://www.slat.org/project/legal/GNU_GPL_Chinese )的定义中，如果我没有着太多的误解，那麽也许该说是对您"
-"的客户开放原始码；除非您透过GPL发布的软体公开让人下载，否则没有必要去理会那些莫名奇妙想索取原始码的朋友。但是GPL并不是开放原始码唯一的途径，在开放原"
-"始码协会( http://www.opensource.org/ "
-")中通过了许多我们可能从未看过的授权方式，伟大的微软公司对于特定对象也有开放原始码的行为( http://taiwan.cnet.com/news/"
-"software/0,2000064574,20064270,00.htm )，我们需要一个比较明确、通用的定义。我曾提出这样的定义：「当商品的标的为软体"
-"时，任何客户有权(无偿或合理价格)取得软体原始码，散佈、修改与否则依各公司规定；当商品标的为硬体时，客户有权得知硬体所附带之各种软体/韧体授权方式等必要资"
-"讯。合理价格的定义是不超过软体或服务本身交易价格的 2 "
-"倍，而任何商务发展均不得违反原始软体的授权规定。」也许可以用来起个头，等候大家的评论。至于做法，就以台湾PHP联盟( http://twpug.net/ "
-")想要做的事情当作例子。从一个愿意支援开放原始码软体本地化(也就是翻译或自行设计)的朋友开始，他会将与软体有关的资讯带给大家；因此如果有商务需求时，自然会"
-"推荐这个热心的朋友。这个热心的朋友很有可能来自学术界，因此商务需求也许会导向他所推荐的对象；从这裡开始就可以区分成三个角色，一个是商务性支援的联繫人，一个"
-"是学术性资源的联繫人，另外一个则是横跨两个领域的角色，这三个角色都对于该软体有相当的贡献。三个和尚没水喝，因此在这边需要多一点着墨。当专桉的本地化只有一个"
-"人支援时，这个人理所当然扮演了三个角色；而要一个人兼三个角色或另外指定人来协助，就由开始的人决定。三个角色都各只能有一个人担任，"
-"其他热心参与贡献且希望参与核心运作的朋友则可以隶属于\"意见小组\"，也就是具有重大决议的提桉与投票权。当冲突形成时，就是透过这群人自行协商来取得共识(投"
-"票？)；如果争议无法解决，则由协会仲裁。那麽协会扮演的角色为何？很简单，就是凝聚通用性资讯、资源与担任沟通的桥樑。人的定义为何？那就是法人或自然人(还有其"
-"他的吗？)。接着要考虑的是依存关係的部分，像是模组、佈景、元件、物件、...等等基于于同一个软体所存在的资源；如果有程式设计概念的朋友，麻烦使用递迴处理."
-"..。简单的说，就是把协会对于软体专桉的角色，换成了软体专桉对于模组的角色；如果还有更下层的关係，以此类推。但是有个特别的地方是，如果模组本地化维护者不愿"
-"意隶属于软体专桉下，那麽也可以直接对应到协会；而如果连对协会都不满，这个专有名词叫做无限迴圈，俗话说叫做无解，那就只能麻烦自己成立一个协会了。不过有一个冲"
-"突情形，那就是衍生版本(FORK)；如果有朋友希望支援衍生版本，那麽就不能够隶属于原本的专桉之下。而上面这些东西当然不是说说就算了，任何重大决议都要透过书"
-"面协议；我没有写的像法条一样，原因是要先讨论，也让大家了解这些想法。真的有机会成型时，希望能够有法律领域的专业先进指导。额外一提，以商业协会名义存在的目的"
-"只有一个，那就是更大的包容；非营利组织经常无法包容营利行为，这不是我们所乐见的。"
+msgstr "消息内容示例"
 
 #: public_html/lists/admin/send_core.php:1101
 msgid "Estimated size of mailout"
@@ -10049,7 +10002,7 @@ msgstr ""
 
 #: public_html/lists/admin/actions/processqueue.php:337
 msgid "Script finished, but not all messages have been sent yet."
-msgstr "程式完成，但并不是所有信件都已寄出"
+msgstr "程式完成，但并不是所有信件都已寄出。"
 
 #: public_html/lists/admin/processbounces.php:520
 #, php-format
@@ -10090,7 +10043,7 @@ msgstr "最好是在初始化数据库之前做这件事。"
 
 #: public_html/databasestructure.php:213
 msgid "pagetitle:attributes"
-msgstr ""
+msgstr "配置属性"
 
 #: public_html/lists/admin/plugins.php:356
 msgid "All"
@@ -10098,7 +10051,7 @@ msgstr "全部"
 
 #: public_html/lists/admin/send_core.php:744
 msgid "Dates and times are relative to the Server Time"
-msgstr "日期和时间是相对于服务器时间而言的。"
+msgstr "日期和时间是相对于服务器时间而言的"
 
 #: public_html/lists/admin/attributes.php:351
 msgid "Load data from"
