@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -34,14 +34,15 @@ require_once 'HTTP/Request2/Response.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 abstract class HTTP_Request2_Adapter
 {
     /**
      * A list of methods that MUST NOT have a request body, per RFC 2616
-     * @var  array
+     *
+     * @var array
      */
     protected static $bodyDisallowed = ['TRACE'];
 
@@ -59,20 +60,23 @@ abstract class HTTP_Request2_Adapter
 
     /**
      * Request being sent
-     * @var  HTTP_Request2
+     *
+     * @var HTTP_Request2
      */
     protected $request;
 
     /**
      * Request body
-     * @var  string|resource|HTTP_Request2_MultipartBody
-     * @see  HTTP_Request2::getBody()
+     *
+     * @var string|resource|HTTP_Request2_MultipartBody
+     * @see HTTP_Request2::getBody()
      */
     protected $requestBody;
 
     /**
      * Length of the request body
-     * @var  integer
+     *
+     * @var integer
      */
     protected $contentLength;
 
@@ -81,17 +85,19 @@ abstract class HTTP_Request2_Adapter
      *
      * @param HTTP_Request2 $request HTTP request message
      *
-     * @return   HTTP_Request2_Response
-     * @throws   HTTP_Request2_Exception
+     * @return HTTP_Request2_Response
+     * @throws HTTP_Request2_Exception
      */
     abstract public function sendRequest(HTTP_Request2 $request);
 
     /**
      * Calculates length of the request body, adds proper headers
      *
-     * @param array &$headers associative array of request headers, this method
-     *                        will add proper 'Content-Length' and 'Content-Type'
-     *                        headers to this array (or remove them if not needed)
+     * @param array $headers associative array of request headers, this method
+     *                       will add proper 'Content-Length' and 'Content-Type'
+     *                       headers to this array (or remove them if not needed)
+     *
+     * @return void
      */
     protected function calculateRequestLength(&$headers)
     {
