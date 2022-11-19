@@ -13,38 +13,9 @@ require_once dirname(__FILE__).'/accesscheck.php';
  */
 function listMemberCounts($listId)
 {
-    global $tables;
-
-    if ($listId) {
-        $join =
-        "JOIN {$tables['listuser']} lu ON u.id = lu.userid
-        WHERE lu.listid = $listId";
-    } else {
-        $join = '';
-    }
-    $req = Sql_Query(
-        "SELECT
-        SUM(1) AS total,
-        SUM(IF(u.confirmed = 1 && u.blacklisted = 0, 1, 0)) AS confirmed,
-        SUM(IF(u.confirmed = 0 && u.blacklisted = 0, 1, 0)) AS notconfirmed,
-        SUM(IF(u.blacklisted = 1, 1, 0)) AS blacklisted
-        FROM {$tables['user']} u
-        $join"
-    );
-    $counts = Sql_Fetch_Assoc($req);
-    $membersDisplay = sprintf(
-        '<span class="memberCount" title="%s">%s</span>'.' ('
-        .'<span class="unconfirmedCount" title="%s">%s</span>, '.' '
-        .'<span class="blacklistedCount" title="%s">%s</span>'.')',
-        s('Confirmed and not blacklisted members'),
-        number_format($counts['confirmed']),
-        s('Unconfirmed and not blacklisted members'),
-        number_format($counts['notconfirmed']),
-        s('Blacklisted members'),
-        number_format($counts['blacklisted'])
-    );
-
-    return $membersDisplay;
+    return '
+      <div id="listmembercount'.$listId.'"></div>'.
+      asyncLoadContentDiv('?page=pageaction&ajaxed=1&action=listmembercount&listid='.$listId,'listmembercount'.$listId);
 }
 
 echo formStart('class="listListing"');
