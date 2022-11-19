@@ -46,13 +46,14 @@ function listMemberCounts($listId)
 $status = ' ';
 if ($listid) {
   $cacheTimeout = rand(300,900); ## randomly timeout the cache
-  if (isset($_SESSION['listmembercount'][$listid]) && ($_SESSION['listmembercount']['lastupdate'] - time() > $cacheTimeout)) {
+  $now = time();
+  if (isset($_SESSION['listmembercount'][$listid]) && (($now - $_SESSION['listmembercount'][$listid]['lastupdate']) < $cacheTimeout)) {
     $status = $_SESSION['listmembercount'][$listid]['content'];
   } else {
     $status = listMemberCounts($listid);
     $_SESSION['listmembercount'][$listid] = [
       'content' => $status,
-      'lastupdate' => time()
+      'lastupdate' => $now
     ];
   }
 }
