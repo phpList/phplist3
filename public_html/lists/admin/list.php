@@ -15,7 +15,7 @@ function listMemberCounts($listId)
 {
     return '
       <div id="listmembercount'.$listId.'"></div>'.
-      asyncLoadContentDiv('?page=pageaction&ajaxed=1&action=listmembercount&listid='.$listId,'listmembercount'.$listId);
+      asyncLoadContentDiv('?page=pageaction&ajaxed=1&action=listmembercount&listid='.$listId.addCsrfGetToken(),'listmembercount'.$listId);
 }
 
 echo formStart('class="listListing"');
@@ -185,7 +185,7 @@ if ($total > 30 && empty($_SESSION['showalllists'])) {
 } else {
     $limit = '';
 }
-
+#$limit = ' limit 5';
 $result = Sql_query('select * from '.$tables['list'].' '.$subselect.$searchLists.' order by listorder '.$limit);
 $numlists = Sql_Affected_Rows($result);
 
