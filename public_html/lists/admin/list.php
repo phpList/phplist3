@@ -17,6 +17,7 @@ function listMemberCounts($listId)
       <div id="listmembercount'.$listId.'"></div>'.
       asyncLoadContentDiv('?page=pageaction&ajaxed=1&action=listmembercount&listid='.$listId.addCsrfGetToken(),'listmembercount'.$listId);
 }
+$_SESSION['listcounter'] = 0;
 
 echo formStart('class="listListing"');
 $some = 0;
@@ -179,13 +180,12 @@ if ($total == 0 && count($aListCategories) && $current == '' && empty($_GET['tab
 }
 
 //echo '<p class="total">'.$total.' '.s('Lists').'</p>';
-if ($total > 30 && empty($_SESSION['showalllists'])) {
-    $paging = simplePaging('list', $s, $total, 10, '&nbsp;');
-    $limit = " limit $s,10";
+if ($total > LISTPAGE_MAX && empty($_SESSION['showalllists'])) {
+    $paging = simplePaging('list', $s, $total, LISTPAGE_MAX, '&nbsp;');
+    $limit = " limit $s,".LISTPAGE_MAX;
 } else {
     $limit = '';
 }
-#$limit = ' limit 5';
 $result = Sql_query('select * from '.$tables['list'].' '.$subselect.$searchLists.' order by listorder '.$limit);
 $numlists = Sql_Affected_Rows($result);
 
