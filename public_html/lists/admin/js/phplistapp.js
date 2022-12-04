@@ -4,7 +4,7 @@
  */
 
 /* these can be "overwritten" by the UI */
-var busyImage = '<div id="pleasewait"><img src="images/busy.gif" width="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" id="pleasewaitimg" /></div>';
+var busyImage = '<span class="pleasewait"><img src="images/busy.gif" width="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" class="pleasewaitimg" /></span>';
 var menuArrowImage = 'ui/dressprow/images/menuarrow.png';
 var menuArrowActiveImagesrc = 'ui/dressprow/images/menuarrow_active.png';
 var loaded = false;
@@ -70,8 +70,11 @@ function checkAllBoxes(checked, checkboxes) {
 }
 
 function loadDivContent(divid, index) {
-    $("#"+asyncLoadDiv[index]).html(busyImage + '<div id="loadingprogressbanner"></div>');
-    $("#"+asyncLoadDiv[index]).load(asyncLoadUrl[index]);
+    $("#"+asyncLoadDiv[index]).html(busyImage + '<span class="loadingprogressbanner"></span>');
+    setTimeout(function(){
+//      console.log('Loading '+index+' '+asyncLoadUrl[index]);
+      $("#"+asyncLoadDiv[index]).load(asyncLoadUrl[index]);
+    },index * 8000);
 }
 
 function refreshCriteriaList() {
