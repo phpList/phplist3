@@ -2,14 +2,23 @@
 
 //# list member count
 ## load asynchronous, to speed up page loads
+if (!defined('PHPLISTINIT')) {
+    die();
+}
+verifyCsrfGetToken();
 
+$status = ' ';
+
+if (empty($_SESSION['adminloggedin'])) return;
+
+$now = time();
 $listid = sprintf('%d',$_GET['listid']);
 if (!isset($_SESSION['listmembercount'])) {
   $_SESSION['listmembercount'] = array();
 }
 function listMemberCounts($listId)
 {
-    global $tables;
+    global $tables,$now;
 
     if ($listId) {
         $join =
@@ -44,16 +53,19 @@ function listMemberCounts($listId)
 }
 
 $status = ' ';
-if ($listid) {
-  $cacheTimeout = rand(300,900); ## randomly timeout the cache
-  $now = time();
-  if (isset($_SESSION['listmembercount'][$listid]) && (($now - $_SESSION['listmembercount'][$listid]['lastupdate']) < $cacheTimeout)) {
-    $status = $_SESSION['listmembercount'][$listid]['content'];
-  } else {
-    $status = listMemberCounts($listid);
-    $_SESSION['listmembercount'][$listid] = [
-      'content' => $status,
-      'lastupdate' => $now
-    ];
-  }
+$cacheTimeout = rand(900,15000); ## randomly timeout the cache
+$now = time();
+
+if (isset($_SESSION['listmembercount'][$listid]['content']) && (($now - $_SESSION['listmembercount'][$listid]['lastupdate']) < $cacheTimeout)) {
+  $status = '<!-- cached -->'.$_SESSION['listmembercount'][$listid]['content'];
+} else {
+  sleep($_SESSION['listcounter'] * 30);
+  $_SESSION['listcounter']++;
+  $status = listMemberCounts($listid);
+  $_SESSION['listmembercount'][$listid] = [
+    'content' => $status,
+    'lastupdate' => $now
+  ];
+  $status = '<!-- not cached -->'.$status;
 }
+
