@@ -69,13 +69,20 @@ function checkAllBoxes(checked, checkboxes) {
     });
 }
 
-function loadDivContent(divid, index) {
-    $("#"+asyncLoadDiv[index]).html(busyImage + '<span class="loadingprogressbanner"></span>');
-    setTimeout(function(){
-//      console.log('Loading '+index+' '+asyncLoadUrl[index]);
-      $("#"+asyncLoadDiv[index]).load(asyncLoadUrl[index]);
-    },index * 8000);
+function loadDivContent(index) {
+    var div;
+    var url;
+
+    if (index < asyncLoadDiv.length) {
+        div = asyncLoadDiv[index];
+        url = asyncLoadUrl[index];
+        $("#"+div).html(busyImage + '<span class="loadingprogressbanner"></span>');
+        $("#"+div).load(url, function() {
+            loadDivContent(index + 1);
+        });
+    }
 }
+
 
 function refreshCriteriaList() {
     var id = urlParameter('id', document.location);
@@ -501,9 +508,9 @@ $(document).ready(function () {
         $("#contentdiv").load(contentdivcontent);
         setInterval(loadProgress, 1000);
     }
-    // a loader for multiple divs
+    // sequentially load multiple divs
     if (typeof asyncLoadDiv != 'undefined') {
-        asyncLoadDiv.forEach(loadDivContent)
+        loadDivContent(0);
     }
 });
 

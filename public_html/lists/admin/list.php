@@ -17,7 +17,6 @@ function listMemberCounts($listId)
       <div id="listmembercount'.$listId.'"></div>'.
       asyncLoadContentDiv('?page=pageaction&ajaxed=1&action=listmembercount&listid='.$listId.addCsrfGetToken(),'listmembercount'.$listId);
 }
-$_SESSION['listcounter'] = 0;
 
 echo formStart('class="listListing"');
 $some = 0;

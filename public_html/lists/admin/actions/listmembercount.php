@@ -59,8 +59,6 @@ $now = time();
 if (isset($_SESSION['listmembercount'][$listid]['content']) && (($now - $_SESSION['listmembercount'][$listid]['lastupdate']) < $cacheTimeout)) {
   $status = '<!-- cached -->'.$_SESSION['listmembercount'][$listid]['content'];
 } else {
-  sleep($_SESSION['listcounter'] * 30);
-  $_SESSION['listcounter']++;
   $status = listMemberCounts($listid);
   $_SESSION['listmembercount'][$listid] = [
     'content' => $status,
