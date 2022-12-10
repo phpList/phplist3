@@ -640,7 +640,7 @@ if (!defined('USERSPAGE_MAX')) {
 }
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
-    define('ALLOW_UPDATER', true);
+    define('ALLOW_UPDATER', false);
 }
 if (!defined ('USE_REPLY_TO')){
     define('USE_REPLY_TO', false);
