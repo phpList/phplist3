@@ -8,10 +8,10 @@ if (!defined('PHPLISTINIT')) {
 verifyCsrfGetToken();
 
 $status = ' ';
+$now = time();
 
 if (empty($_SESSION['adminloggedin'])) return;
 
-$now = time();
 $listid = sprintf('%d',$_GET['listid']);
 if (!isset($_SESSION['listmembercount'])) {
   $_SESSION['listmembercount'] = array();
@@ -52,9 +52,7 @@ function listMemberCounts($listId)
     return $membersDisplay;
 }
 
-$status = ' ';
 $cacheTimeout = rand(900,15000); ## randomly timeout the cache
-$now = time();
 
 if (isset($_SESSION['listmembercount'][$listid]['content']) && (($now - $_SESSION['listmembercount'][$listid]['lastupdate']) < $cacheTimeout)) {
   $status = '<!-- cached -->'.$_SESSION['listmembercount'][$listid]['content'];
