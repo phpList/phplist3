@@ -1492,6 +1492,8 @@ function hostName()
 {
     if (HTTP_HOST) {
         return HTTP_HOST;
+    } elseif (!empty($_SERVER['X_FORWARDED_FOR'])) {
+        return $_SERVER['X_FORWARDED_FOR'];
     } elseif (!empty($_SERVER['HTTP_HOST'])) {
         return $_SERVER['HTTP_HOST'];
     } else {
