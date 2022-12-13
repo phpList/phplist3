@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Portuguese (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-07-20 20:32+0000\n"
+"PO-Revision-Date: 2022-02-17 01:29+0000\n"
 "Last-Translator: cflores <carlos.florest@gmail.com>\n"
 "Language-Team: Portuguese <http://translate.phplist.org/projects/phplist/"
 "phplist3/pt/>\n"
@@ -4627,7 +4627,7 @@ msgstr "N&atilde;o exibir campo de confirma&ccedil;&atilde;o para o email"
 
 #: public_html/databasestructure.php:271
 msgid "pagetitle:upgrade"
-msgstr "atualizar phpList"
+msgstr "atualizar a base de dados phpList"
 
 #: public_html/lists/admin/actions/processqueue.php:1235
 #, php-format
@@ -10715,3 +10715,12 @@ msgid ""
 msgstr ""
 "Exportar todos os assinantes. Utilize -l[listnumber] para exportar os "
 "assinantes dessa lista"
+
+#: public_html/lists/admin/index.php:713
+#, php-format
+msgid ""
+"The pageroot in your config \"%s\" does not match the current location \"%s"
+"\". Check your config file."
+msgstr ""
+"A página do seu config \"%s\" não corresponde à localização atual \"%s\". "
+"Verifique o seu ficheiro config."

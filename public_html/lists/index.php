@@ -54,7 +54,7 @@ include_once dirname(__FILE__).'/admin/lib.php';
 
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
-if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && count('ACCESS_CONTROL_ALLOW_ORIGINS') > 1) {
+if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && count(ACCESS_CONTROL_ALLOW_ORIGINS) > 1) {
     header('Vary: Origin'); // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#CORS_and_caching
 }
 
@@ -99,7 +99,9 @@ if (isset($_REQUEST['id']) && $_REQUEST['id']) {
 }
 // make sure the subscribe page still exists
 $req = Sql_fetch_row_query(sprintf('select id from %s where id = %d', $tables['subscribepage'], $id));
-$id = $req[0];
+if (!$req) {
+  $id = 0;
+}
 $msg = '';
 
 if (!empty($_POST['sendpersonallocation'])) {
@@ -663,7 +665,7 @@ function checkGroup(name,value)
         $html .= '<div class="adminmessage"><p><b>'.s('You are logged in as administrator (%s) of this phpList system',
                 $_SESSION['logindetails']['adminname']).'</b></p>';
         $html .= '<p>'.s('You are therefore offered the following choice, which your subscribers will not see when they load this page.').'</p>';
-        $html .= '<p><a href="'.$GLOBALS['adminpages'].'" class="button">'.s('Go back to admin area').'</a></p>';
+        $html .= '<p><a href="'.$GLOBALS['adminpages'].'?page=spage" class="button">'.s('Go back to admin area').'</a></p>';
         $html .= '<p><b>'.s('Please choose').'</b>: <br/><input type=radio name="makeconfirmed" value="1"> '.s('Make this subscriber confirmed immediately').'
       <br/><input type=radio name="makeconfirmed" value="0" checked> ' .s('Send this subscriber a request for confirmation email').' </p></div>';
     }

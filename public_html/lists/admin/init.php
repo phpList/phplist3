@@ -75,8 +75,7 @@ if (function_exists('iconv') || ((!strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' &&
 ## avoid the screen being blank, due to the FOUC system
 ini_set("error_append_string",'<script>document.body.classList.remove("invisible");</script>'); ## remove the FOUC
 ini_set("error_prepend_string",'<div style="{font-size: 24px;color:red;}">Sorry a software error occurred:</div><br/>
-  Please <a href="http://mantis.phplist.org">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
-
+  Please <a href="https://github.com/phpList/phplist3/issues">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
 
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding('UTF-8');
@@ -97,10 +96,6 @@ foreach ($handlers as $handler) {
 // @@@ needs more work
 $GLOBALS['compression_used'] = $zlib_compression || $gzhandler;
 
-// make sure these are set correctly, so they cannot be injected due to the PHP Globals Problem,
-// http://www.hardened-php.net/globals-problem
-$GLOBALS['language_module'] = $language_module;
-$GLOBALS['database_module'] = $database_module;
 
 //# this is mostly useful when using commandline, and the language is not detected
 //# with the browser
@@ -121,6 +116,8 @@ if (isset($GLOBALS['design'])) {
 //@todo
 //  $GLOBALS['design'] = basename($GLOBALS['design']);
 }
+
+$website = $domain = '';
 
 if (!isset($GLOBALS['ui']) || !is_dir(dirname(__FILE__).'/ui/'.$GLOBALS['ui'])) {
     if (is_dir(dirname(__FILE__).'/ui/phplist-ui-bootlist')) {
@@ -158,9 +155,15 @@ $GLOBALS['show_dev_errors'] = $show_dev_errors;
 
 if (empty($GLOBALS['language_module'])) {
     $GLOBALS['language_module'] = 'english.inc';
+    if (isset($language_module)) {
+      $GLOBALS['language_module'] = $language_module;
+    }
 }
 if (empty($GLOBALS['database_module']) || !is_file(dirname(__FILE__).'/'.$GLOBALS['database_module'])) {
     $GLOBALS['database_module'] = 'mysqli.inc';
+    if (isset($database_module)) {
+        $GLOBALS['database_module'] = $database_module;
+    }
 }
 if (!isset($database_port)) {
     $database_port = null;
@@ -173,6 +176,9 @@ if (!isset($database_connection_compression)) {
 }
 if (!isset($database_connection_ssl)) {
     $database_connection_ssl = false;
+}
+if (!isset($mysql_database_engine)) {
+  $mysql_database_engine = '';
 }
 
 //# @@ would be nice to move this to the config file at some point
@@ -669,7 +675,7 @@ if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
     $allowed_referrers = array();
 }
-if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && in_array($_SERVER['HTTP_ORIGIN'], ACCESS_CONTROL_ALLOW_ORIGINS)) {
+if (isset($_SERVER['HTTP_ORIGIN']) && defined('ACCESS_CONTROL_ALLOW_ORIGINS') && in_array($_SERVER['HTTP_ORIGIN'], ACCESS_CONTROL_ALLOW_ORIGINS)) {
     define('ACCESS_CONTROL_ALLOW_ORIGIN', $_SERVER['HTTP_ORIGIN']);
 } elseif (!defined('ACCESS_CONTROL_ALLOW_ORIGIN')) {
     define('ACCESS_CONTROL_ALLOW_ORIGIN', $GLOBALS['scheme'].'://'.$_SERVER['HTTP_HOST']);
@@ -692,7 +698,7 @@ if (!defined('RFC_DIRECT_DELIVERY')) {
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/PEAR');
 $GLOBALS['has_curl'] = function_exists('curl_init');
 
-$GLOBALS['jQuery'] = 'jquery-3.3.1.min.js';
+$GLOBALS['jQuery'] = 'jquery-3.6.0.min.js';
 
 $system_tmpdir = ini_get('upload_tmp_dir');
 if (!isset($GLOBALS['tmpdir']) && !empty($system_tmpdir)) {

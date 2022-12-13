@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Polish (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:04+0000\n"
-"PO-Revision-Date: 2021-05-04 14:19+0000\n"
+"PO-Revision-Date: 2022-01-18 14:33+0000\n"
 "Last-Translator: rysiek_d <ryszard.d79@gmail.com>\n"
 "Language-Team: Polish <http://translate.phplist.org/projects/phplist/"
 "phplist3/pl/>\n"
@@ -4045,7 +4045,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:16
 msgid "Number of bounces"
-msgstr "Liczba zwrotów "
+msgstr "Liczba zwrotów"
 
 #: public_html/lists/admin/plugins.php:344
 msgid "update this plugin"

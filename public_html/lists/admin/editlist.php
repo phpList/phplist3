@@ -135,7 +135,9 @@ if (empty($list['category'])) {
 ?>
 
 <?php echo formStart(' class="editlistSave" ') ?>
-<input type="hidden" name="id" value="<?php echo $id ?>"/>
+<?php if ($id): ?>
+    <div class="label"><label><?php echo s('List ID'); ?>:</label><?php echo $id ?></div>
+<?php endif;?>
 <div class="label"><label for="listname"><?php echo s('List name'); ?>:</label></div>
 <div class="field"><input type="text" name="listname"
                           value="<?php echo htmlspecialchars(stripslashes($list['name'])) ?>"/></div>
@@ -191,7 +193,6 @@ foreach ($GLOBALS['plugins'] as $plugin) {
 }
 
 ?>
-<form>
     <label for="description"><?php echo s('List Description'); ?></label>
     <div class="field"><textarea name="description" cols="35" rows="5">
 <?php echo htmlspecialchars(stripslashes($list['description'])) ?></textarea></div>

@@ -55,6 +55,7 @@ $checkboxgroup_storesize = 1; // this will allow 10000 options for checkboxes
 
 // identify pages that can be run on commandline
 $commandline_pages = array(
+    'initialise',
     'dbcheck',
     'send',
     'processqueue',
@@ -459,10 +460,13 @@ function ClineSignature()
     return 'phpList version '.VERSION.' (c) 2000-'.date('Y')." phpList Ltd, https://www.phplist.com";
 }
 
-function ClineError($msg)
+function ClineError($msg, $documentationURL = '')
 {
     ob_end_clean();
-    echo "\nError: $msg\n";
+    echo PHP_EOL."Error: $msg\n";
+    if (!empty($documentationURL)) {
+      echo PHP_EOL.s("For more information: "). $documentationURL;
+    }
     exit;
 }
 
@@ -474,11 +478,11 @@ function clineUsage($line = '')
 function Error($msg, $documentationURL = '')
 {
     if ($GLOBALS['commandline']) {
-        clineError($msg);
+        clineError($msg, $documentationURL);
 
         return;
     }
-    echo '<div class="error">'.$GLOBALS['I18N']->get('error').": $msg ";
+    echo '<div class="error">'.s('error').": $msg ";
     if (!empty($documentationURL)) {
         echo resourceLink($documentationURL);
     }
@@ -1795,6 +1799,9 @@ function monthName($month, $short = 0)
  */
 function formatDate($date, $short = 0)
 {
+    if ($date == '') {
+        return '';
+    }
     $format = getConfig('date_format');
     $year = substr($date, 0, 4);
     $month = substr($date, 5, 2);

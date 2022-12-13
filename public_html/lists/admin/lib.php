@@ -36,7 +36,7 @@ $GLOBALS['bounceruleactions'] = array(
 if (!isset($GLOBALS['developer_email'])) {
     ini_set('error_append_string', 'phpList version '.VERSION);
     ini_set('error_prepend_string', '<p class="error">Sorry a software error occurred:<br/>
-    Please <a href="http://mantis.phplist.com">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
+    Please <a href="https://github.com/phpList/phplist3/issues">report a bug</a> when reporting the bug, please include URL and the entire content of this page.<br/>');
 }
 
 function cleanListName($name) { ## we allow certain tags in a listname
@@ -642,7 +642,7 @@ function sendAdminCopy($subject, $message, $lists = array())
         foreach ($mails as $admin_mail) {
             $admin_mail = trim($admin_mail);
             if (!isset($sent[$admin_mail]) && !empty($admin_mail)) {
-                sendMail($admin_mail, $subject, $message, system_messageheaders($admin_mail));
+                sendMail($admin_mail, $GLOBALS['installation_name'].' '.$subject, $message, system_messageheaders($admin_mail));
                 //   logEvent(s('Sending admin copy to').' '.$admin_mail);
                 $sent[$admin_mail] = 1;
             }
@@ -881,6 +881,10 @@ function system_messageHeaders($useremail = '')
 
 function logEvent($msg)
 {
+    global $tables;
+    if (!Sql_Table_Exists($tables['eventlog'])) {
+        return;
+    }
     $logged = false;
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $logged = $logged || $plugin->logEvent($msg);
@@ -889,7 +893,6 @@ function logEvent($msg)
         return;
     }
 
-    global $tables;
     if (isset($GLOBALS['page'])) {
         $p = $GLOBALS['page'];
     } elseif (isset($_GET['page'])) {
@@ -898,9 +901,6 @@ function logEvent($msg)
         $p = $_GET['p'];
     } else {
         $p = 'unknown page';
-    }
-    if (!Sql_Table_Exists($tables['eventlog'])) {
-        return;
     }
     Sql_Query(sprintf('insert into %s (entered,page,entry) values(now(),"%s","%s")', $tables['eventlog'],
         $p, sql_escape($msg)));
@@ -1150,7 +1150,7 @@ function fetchStyles($text) {
 function isValidRedirect($url)
 {
     //# we might want to add some more checks here
-    return strpos($url, hostName());
+    return stripos($url, hostName()) || stripos($url,getConfig('website'));
 }
 
 /* check the url_append config and expand the url with it
@@ -1359,7 +1359,7 @@ function fetchUrlCurl($url, $request_parameters)
     if (HTTP_PROXY_HOST and HTTP_PROXY_PORT) {
         curl_setopt($curl, CURLOPT_PROXY, HTTP_PROXY_HOST);
         curl_setopt($curl, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
-    }    
+    }
     $raw_result = curl_exec($curl);
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
@@ -1924,55 +1924,64 @@ function listCategories()
 }
 
 /*
+ * shortenText
+ *
+ * Shorten text for use by shortenTextDisplay() but also stand-alone.
+ *
+ * Define multibyte-string aware/unaware function depending on whether the mbstring extension is available
+ * see https://github.com/phpList/phplist3/pull/10
+ */
+if (!function_exists('mb_strlen')) {
+    // mbstring unavailable
+    function shortenText($text, $max = 30)
+    {
+        if (strlen($text) > $max) {
+            if ($max < 30) {
+                $shortened = substr($text, 0, $max - 4).' ... ';
+            } else {
+                $shortened = substr($text, 0, 20).' ... '.substr($text, -10);
+            }
+        } else {
+            $shortened = $text;
+        }
+
+        return $shortened;
+    }
+} else {
+    // mbstring available
+    function shortenText($text, $max = 30)
+    {
+        if (mb_strlen($text) > $max) {
+            if ($max < 30) {
+                $shortened = mb_substr($text, 0, $max - 4).' ... ';
+            } else {
+                $shortened = mb_substr($text, 0, 20).' ... '.mb_substr($text, -10);
+            }
+        } else {
+            $shortened = $text;
+        }
+
+        return $shortened;
+    }
+}
+
+/*
  * shortenTextDisplay
  *
  * mostly used for columns in listings to retrict the width, particularly on mobile devices
  * it will show the full text as the title tip but restrict the size of the output
  *
  * will also place a space after / and @ to facilitate wrapping in the browser
+ *
  */
-
 function shortenTextDisplay($text, $max = 30)
 {
-    //# use mb_ version if possible, see https://github.com/phpList/phplist3/pull/10
-    if (function_exists('mb_strlen')) {
-        return mb_shortenTextDisplay($text, $max);
-    }
-
-    $text = preg_replace('!^https?://!i', '', $text);
-    if (strlen($text) > $max) {
-        if ($max < 30) {
-            $display = substr($text, 0, $max - 4).' ... ';
-        } else {
-            $display = substr($text, 0, 20).' ... '.substr($text, -10);
-        }
-    } else {
-        $display = $text;
-    }
+    $display = preg_replace('!^https?://!i', '', $text);
+    $display = shortenText($display, $max);
     $display = str_replace('/', '/&#x200b;', $display);
     $display = str_replace('@', '@&#x200b;', $display);
 
-    return sprintf('<span title="%s">%s</span>', htmlspecialchars($text),
-        htmlspecialchars($text), $display);
-}
-
-function mb_shortenTextDisplay($text, $max = 30)
-{
-    $text = preg_replace('!^https?://!i', '', $text);
-    if (mb_strlen($text) > $max) {
-        if ($max < 30) {
-            $display = mb_substr($text, 0, $max - 4).' ... ';
-        } else {
-            $display = mb_substr($text, 0, 20).' ... '.mb_substr($text, -10);
-        }
-    } else {
-        $display = $text;
-    }
-    $display = str_replace('/', '/&#x200b;', $display);
-    $display = str_replace('@', '@&#x200b;', $display);
-
-    return sprintf('<span title="%s" ondblclick="alert(\'%s\');">%s</span>', htmlspecialchars($text),
-        htmlspecialchars($text), $display);
+    return sprintf('<span title="%s">%s</span>', htmlspecialchars($text), $display);
 }
 
 if (!function_exists('getnicebacktrace')) {
@@ -2140,7 +2149,7 @@ function subscribeToAnnouncementsForm($emailAddress = '')
         .'<h3>'.s('Sign up to receive news and updates about phpList ').'</h3>'
         .s('Make sure you are updated with new security and feature release announcements (fewer than one message per month)').
         '<script type="text/javascript">var pleaseEnter = "'.strip_tags($emailAddress).'";</script> '.
-        '<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+        '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/phplist-subscribe-0.3.min.js"></script>
 <div id="phplistsubscriberesult"></div> <form action="https://announce.hosted.phplist.com/lists/?p=subscribe&id=3" method="post" id="phplistsubscribeform">
 <input type="text" name="email" value="" id="emailaddress" />

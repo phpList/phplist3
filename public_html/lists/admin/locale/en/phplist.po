@@ -3,8 +3,9 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2021-03-17 16:07+0000\n"
-"Last-Translator: Duncan Cameron <phplist@dcameron.me.uk>\n"
+"PO-Revision-Date: 2022-10-07 05:34+0000\n"
+"Last-Translator: Michiel <michiel@phplist.com>\n"
+
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
 "Language: en\n"
@@ -954,7 +955,7 @@ msgstr "Choose from some common attributes provided by the phpList community"
 
 #: public_html/databasestructure.php:272
 msgid "pagetitle:upgrade"
-msgstr "Upgrade phpList"
+msgstr "Upgrade phpList Database"
 
 #: public_html/databasestructure.php:273
 msgid "pagetitlehover:upgrade"
@@ -8280,9 +8281,8 @@ msgid "URL for forwarding messages"
 msgstr "URL for forwarding messages"
 
 #: public_html/lists/admin/defaultconfig.php:358
-#, fuzzy
 msgid "URL for downloading vcf card"
-msgstr "URL for forwarding messages"
+msgstr "URL for downloading vcf card"
 
 #: public_html/lists/admin/defaultconfig.php:365
 msgid ""
@@ -9791,13 +9791,13 @@ msgid "You are trying to use PDF support without having FPDF loaded"
 msgstr "You are trying to use PDF support without having FPDF loaded"
 
 #: public_html/lists/admin/index.php:713
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The pageroot in your config \"%s\" does not match the current location \"%s"
 "\". Check your config file."
 msgstr ""
-"The pageroot in your config does not match the current location<br/>Check "
-"your config file."
+"The pageroot in your config \"%s\" does not match the current location \"%s\""
+". Check your config file."
 
 #: public_html/lists/admin/index.php:757
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
