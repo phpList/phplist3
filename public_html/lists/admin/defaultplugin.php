@@ -48,6 +48,12 @@ class phplistPlugin
 
     public $needI18N = 0;
 
+    // Configuration items for the Settings page
+    public $settings = [];
+
+    // File system path to the plugin file
+    public $origin = '';
+
     /**
      * set to true, if this plugin provides the WYSIWYG editor for the send page
      * the plugin will then need to implement:.
@@ -237,11 +243,9 @@ class phplistPlugin
      */
     public function activate()
     {
-        if (isset($this->settings)) {
-            foreach ($this->settings as $item => $itemDetails) {
-                $GLOBALS['default_config'][$item] = $itemDetails;
-                $GLOBALS['default_config'][$item]['hidden'] = false;
-            }
+        foreach ($this->settings as $item => $itemDetails) {
+            $GLOBALS['default_config'][$item] = $itemDetails;
+            $GLOBALS['default_config'][$item]['hidden'] = false;
         }
     }
 
@@ -1091,7 +1095,7 @@ class phplistPlugin
       * @param string $emailaddress
       * @return bool true if email address should is considered blacklisted
      */
-    public function isBlackListedEmail($email = '') 
+    public function isBlackListedEmail($email = '')
     {
         return false;
     }
