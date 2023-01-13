@@ -4,7 +4,7 @@
  */
 
 /* these can be "overwritten" by the UI */
-var busyImage = '<div id="pleasewait"><img src="images/busy.gif" width="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" id="pleasewaitimg" /></div>';
+var busyImage = '<span class="pleasewait"><img src="images/busy.gif" width="34" height="34" border="0" alt="Please wait, processing your request" title="Please wait, processing your request" class="pleasewaitimg" /></span>';
 var menuArrowImage = 'ui/dressprow/images/menuarrow.png';
 var menuArrowActiveImagesrc = 'ui/dressprow/images/menuarrow_active.png';
 var loaded = false;
@@ -69,10 +69,20 @@ function checkAllBoxes(checked, checkboxes) {
     });
 }
 
-function loadDivContent(divid, index) {
-    $("#"+asyncLoadDiv[index]).html(busyImage + '<div id="loadingprogressbanner"></div>');
-    $("#"+asyncLoadDiv[index]).load(asyncLoadUrl[index]);
+function loadDivContent(index) {
+    var div;
+    var url;
+
+    if (index < asyncLoadDiv.length) {
+        div = asyncLoadDiv[index];
+        url = asyncLoadUrl[index];
+        $("#"+div).html(busyImage + '<span class="loadingprogressbanner"></span>');
+        $("#"+div).load(url, function() {
+            loadDivContent(index + 1);
+        });
+    }
 }
+
 
 function refreshCriteriaList() {
     var id = urlParameter('id', document.location);
@@ -498,9 +508,9 @@ $(document).ready(function () {
         $("#contentdiv").load(contentdivcontent);
         setInterval(loadProgress, 1000);
     }
-    // a loader for multiple divs
+    // sequentially load multiple divs
     if (typeof asyncLoadDiv != 'undefined') {
-        asyncLoadDiv.forEach(loadDivContent)
+        loadDivContent(0);
     }
 });
 
