@@ -14,7 +14,7 @@
  * @package   HTTP_Request2
  * @author    David Jean Louis <izi@php.net>
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -64,7 +64,7 @@ require_once 'HTTP/Request2/Exception.php';
  * @author   David Jean Louis <izi@php.net>
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Observer_Log implements SplObserver
@@ -119,6 +119,7 @@ class HTTP_Request2_Observer_Log implements SplObserver
     // }}}
     // update() {{{
 
+    #[ReturnTypeWillChange]
     /**
      * Called when the request notifies us of an event.
      *
@@ -148,10 +149,12 @@ class HTTP_Request2_Observer_Log implements SplObserver
             $this->log('> ' . $event['data'] . ' byte(s) sent');
             break;
         case 'receivedHeaders':
-            $this->log(sprintf(
-                '< HTTP/%s %s %s', $event['data']->getVersion(),
-                $event['data']->getStatus(), $event['data']->getReasonPhrase()
-            ));
+            $this->log(
+                sprintf(
+                    '< HTTP/%s %s %s', $event['data']->getVersion(),
+                    $event['data']->getStatus(), $event['data']->getReasonPhrase()
+                )
+            );
             $headers = $event['data']->getHeader();
             foreach ($headers as $key => $val) {
                 $this->log('< ' . $key . ': ' . $val);

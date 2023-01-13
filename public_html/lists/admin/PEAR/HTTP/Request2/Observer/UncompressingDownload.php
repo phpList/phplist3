@@ -14,7 +14,7 @@
  * @package   HTTP_Request2
  * @author    Delian Krustev <krustev@krustev.net>
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -95,55 +95,63 @@ require_once 'HTTP/Request2/Response.php';
  * @author   Delian Krustev <krustev@krustev.net>
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Observer_UncompressingDownload implements SplObserver
 {
     /**
      * The stream to write response body to
+     *
      * @var resource
      */
     private $_stream;
 
     /**
-     * zlib.inflate filter possibly added to stream
+     * 'zlib.inflate' filter possibly added to stream
+     *
      * @var resource
      */
     private $_streamFilter;
 
     /**
      * The value of response's Content-Encoding header
+     *
      * @var string
      */
     private $_encoding;
 
     /**
      * Whether the observer is still waiting for gzip/deflate header
+     *
      * @var bool
      */
     private $_processingHeader = true;
 
     /**
      * Starting position in the stream observer writes to
+     *
      * @var int
      */
     private $_startPosition = 0;
 
     /**
      * Maximum bytes to write
+     *
      * @var int|null
      */
     private $_maxDownloadSize;
 
     /**
      * Whether response being received is a redirect
+     *
      * @var bool
      */
     private $_redirect = false;
 
     /**
      * Accumulated body chunks that may contain (gzip) header
+     *
      * @var string
      */
     private $_possibleHeader = '';
@@ -166,6 +174,7 @@ class HTTP_Request2_Observer_UncompressingDownload implements SplObserver
         }
     }
 
+    #[ReturnTypeWillChange]
     /**
      * Called when the request notifies us of an event.
      *
@@ -185,7 +194,7 @@ class HTTP_Request2_Observer_UncompressingDownload implements SplObserver
         case 'receivedHeaders':
             $this->_processingHeader = true;
             $this->_redirect = $event['data']->isRedirect();
-            $this->_encoding = strtolower($event['data']->getHeader('content-encoding'));
+            $this->_encoding = strtolower($event['data']->getHeader('content-encoding') ?: '');
             $this->_possibleHeader = '';
             break;
 
@@ -247,10 +256,12 @@ class HTTP_Request2_Observer_UncompressingDownload implements SplObserver
             if ($this->_maxDownloadSize
                 && ftell($this->_stream) - $this->_startPosition > $this->_maxDownloadSize
             ) {
-                throw new HTTP_Request2_MessageException(sprintf(
-                    'Body length limit (%d bytes) reached',
-                    $this->_maxDownloadSize
-                ));
+                throw new HTTP_Request2_MessageException(
+                    sprintf(
+                        'Body length limit (%d bytes) reached',
+                        $this->_maxDownloadSize
+                    )
+                );
             }
             break;
 
