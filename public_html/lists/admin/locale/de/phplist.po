@@ -1513,7 +1513,7 @@ msgstr "Die E-Mail-Adresse ist eine Systemeigenschaft"
 # Suggested in Weblate: Plugin kann nicht aktiviert werden.
 #: public_html/lists/admin/plugins.php:336
 msgid "Plugin can not be enabled."
-msgstr "Plugin kann nciht aktiviert werden."
+msgstr "Plugin kann nicht aktiviert werden."
 
 #: public_html/lists/admin/importadmin.php:331
 msgid ""
