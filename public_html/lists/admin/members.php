@@ -316,7 +316,7 @@ if (!empty($id) || $listAll) {
     $ls = new WebblerListing($GLOBALS['I18N']->get('Members'));
     $ls->usePanel($paging);
     while ($user = Sql_fetch_array($result)) {
-        $element = shortenTextDisplay($user['email']);
+        $element = shortenEmailDisplay($user['email']);
         $ls->addElement($element, PageUrl2('user&amp;id='.$user['id']));
         $ls->setClass($element, 'row1');
         $ls_delete = '';
@@ -364,14 +364,14 @@ if ($listAll) {
 
 ?>
 <div class="panel">
-	<h3><?php echo s('Actions') ?></h3>
-	<div class=" content well">
-		<div class="row">
-    		<div class="col-sm-6 membersProcess">
-            	<h4 style="margin-bottom:0"><?php echo $GLOBALS['I18N']->get('What to do with "Tagged" users') ?>:</h4>
+    <h3><?php echo s('Actions') ?></h3>
+    <div class=" content well">
+        <div class="row">
+            <div class="col-sm-6 membersProcess">
+                <h4 style="margin-bottom:0"><?php echo $GLOBALS['I18N']->get('What to do with "Tagged" users') ?>:</h4>
                 <h6><?php echo $GLOBALS['I18N']->get('This will only process the users in this page that have the "Tag" checkbox checked') ?></h6>
                 <div class="row col-sm-12"  style="margin:10px 0 5px">
-                	<p><input type="radio" name="tagaction" value="delete"/> <?php echo $GLOBALS['I18N']->get('Delete') ?>
+                    <p><input type="radio" name="tagaction" value="delete"/> <?php echo $GLOBALS['I18N']->get('Delete') ?>
                     (<?php echo $GLOBALS['I18N']->get('from this list') ?>)</p>
                 </div>
                 <div class="clearfix" style="margin-bottom:10px;margin-top:-10px"></div>
@@ -385,26 +385,26 @@ if ($listAll) {
             }
             if ($html) {
                 ?>
-					<div class="row col-sm-12" style="margin:0px 0 10px">
-						<div class="fleft">
-							<input type="radio" name="tagaction" value="move"/> <?php echo $GLOBALS['I18N']->get('Move').'&nbsp;'.$GLOBALS['I18N']->get('to').': &nbsp;&nbsp;' ?>
-    					</div>
-						<div class="fleft">
-	                     	<select name="movedestination">
+                    <div class="row col-sm-12" style="margin:0px 0 10px">
+                        <div class="fleft">
+                            <input type="radio" name="tagaction" value="move"/> <?php echo $GLOBALS['I18N']->get('Move').'&nbsp;'.$GLOBALS['I18N']->get('to').': &nbsp;&nbsp;' ?>
+                        </div>
+                        <div class="fleft">
+                            <select name="movedestination">
                                 <?php echo $html ?>
-	                         </select>
-	                    </div>
+                             </select>
+                        </div>
                      </div>
-                	<div class="row col-sm-12" style="margin:0px 0 10px">
-						<div class="fleft">
-	                		<input type="radio" name="tagaction" value="copy"/> <?php echo $GLOBALS['I18N']->get('Copy').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp;' ?>
-    					</div>
-						<div class="fleft">
-	                    	<select name="copydestination">
+                    <div class="row col-sm-12" style="margin:0px 0 10px">
+                        <div class="fleft">
+                            <input type="radio" name="tagaction" value="copy"/> <?php echo $GLOBALS['I18N']->get('Copy').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp;' ?>
+                        </div>
+                        <div class="fleft">
+                            <select name="copydestination">
                                 <?php echo $html ?>
-	                        </select>
-	                    </div>
-					</div>
+                            </select>
+                        </div>
+                    </div>
                 <div class="row col-sm-12" style="margin:0px 0 10px">
                     <input type="radio" name="tagaction" value="nothing" checked="checked"/><?php echo $GLOBALS['I18N']->get('Nothing') ?>
                 </div>
@@ -413,7 +413,7 @@ if ($listAll) {
             </div>
             <br  class="visible-xs" />
             <div class="col-sm-6 membersProcess">
-            	<h4 style="margin-bottom:0"><?php echo s('What to do with all subscribers') ?></h4>
+                <h4 style="margin-bottom:0"><?php echo s('What to do with all subscribers') ?></h4>
                 <h6><?php echo s('This will process all subscribers on this list, confirmed and unconfirmed') ?></h6>
                 <div class="row col-sm-12" style="margin:10px 0 5px">
                     <p><input type="radio" name="tagaction_all" value="delete"/> <?php echo $GLOBALS['I18N']->get('Delete') ?>
@@ -422,29 +422,29 @@ if ($listAll) {
                 <div class="clearfix" style="margin-bottom:10px;margin-top:-10px"></div>
            <?php if ($html) {
                 ?>
-                	<div class="row col-sm-12"  style="margin:0px 0 10px">
-						<div class="fleft">
-	                		<input type="radio" name="tagaction_all" value="move"/> <?php echo $GLOBALS['I18N']->get('Move').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp' ?>
-						</div>
-						<div class="fleft">
-	                    	<select name="movedestination_all">
+                    <div class="row col-sm-12"  style="margin:0px 0 10px">
+                        <div class="fleft">
+                            <input type="radio" name="tagaction_all" value="move"/> <?php echo $GLOBALS['I18N']->get('Move').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp' ?>
+                        </div>
+                        <div class="fleft">
+                            <select name="movedestination_all">
                                 <?php echo $html ?>
-	                        </select>
-						</div>
+                            </select>
+                        </div>
                     </div>
-                	<div class="row col-sm-12" style="margin:0px 0 10px">
-                		<div class="fleft">
-	                		<input type="radio" name="tagaction_all" value="copy"/> <?php echo $GLOBALS['I18N']->get('Copy').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp' ?>
-						</div>    
-                		<div class="fleft">
-	                    	<select name="copydestination_all">
+                    <div class="row col-sm-12" style="margin:0px 0 10px">
+                        <div class="fleft">
+                            <input type="radio" name="tagaction_all" value="copy"/> <?php echo $GLOBALS['I18N']->get('Copy').'&nbsp;'.$GLOBALS['I18N']->get('to').':&nbsp;&nbsp' ?>
+                        </div>
+                        <div class="fleft">
+                            <select name="copydestination_all">
                                 <?php echo $html ?>
-	                        </select>
-	                    </div>
+                            </select>
+                        </div>
                     </div>
                 <div class="row col-sm-12"  style="margin:0px 0">
-	                <input type="radio" name="tagaction_all" value="nothing" checked="checked"/> <?php echo $GLOBALS['I18N']->get('Nothing') ?>
-	            </div>
+                    <input type="radio" name="tagaction_all" value="nothing" checked="checked"/> <?php echo $GLOBALS['I18N']->get('Nothing') ?>
+                </div>
                 <?php
 
             } ?>

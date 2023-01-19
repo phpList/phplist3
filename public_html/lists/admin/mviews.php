@@ -23,11 +23,11 @@ switch ($access) {
         if ($id) {
             $allow = Sql_Fetch_Row_query(
                 sprintf(
-                    'select 
-                        owner 
-                    from 
-                        %s 
-                    where 
+                    'select
+                        owner
+                    from
+                        %s
+                    where
                         id = %d %s'
                 , $GLOBALS['tables']['message']
                 , $id
@@ -78,11 +78,11 @@ if (empty($start)) {
 
 //print '<h3>'.s('View Details for a Message').'</h3>';
 $messagedata = Sql_Fetch_Array_query(
-    "SELECT 
-        * 
-    FROM 
-        {$tables['message']} 
-    WHERE 
+    "SELECT
+        *
+    FROM
+        {$tables['message']}
+    WHERE
         id = $id $subselect"
 );
 echo '<table class="mviewsDetails table table-bordered"><tr><td>' .
@@ -102,16 +102,16 @@ $ls->setElementHeading(s('Subscriber'));
 
 $req = Sql_Query(
     sprintf(
-        'select 
+        'select
             um.userid
-        from 
+        from
             %s um
-            , %s msg 
-        where 
-            um.messageid = %d 
-            and um.messageid = msg.id 
+            , %s msg
+        where
+            um.messageid = %d
+            and um.messageid = msg.id
             and um.viewed is not null %s
-        group by 
+        group by
             userid'
     , $GLOBALS['tables']['usermessage']
     , $GLOBALS['tables']['message']
@@ -150,7 +150,7 @@ if ($total) {
 
 $req = Sql_Query(
     sprintf(
-        'select 
+        'select
             userid
             , email
             , um.entered as sent
@@ -159,21 +159,21 @@ $req = Sql_Query(
             , count(um.viewed) as uniqueviews
             , msg.viewed as totalcampaignviews
             , abs(unix_timestamp(um.entered) - unix_timestamp(um.viewed)) as responsetime
-        from 
+        from
             %s um
             , %s user
-            , %s msg 
-        where 
-            um.messageid = %d 
-            and um.messageid = msg.id 
-            and um.userid = user.id 
-            and um.status = "sent" 
-            and um.viewed is not null 
+            , %s msg
+        where
+            um.messageid = %d
+            and um.messageid = msg.id
+            and um.userid = user.id
+            and um.status = "sent"
+            and um.viewed is not null
             %s
-        group by 
+        group by
             userid
         order by
-            lastview desc 
+            lastview desc
         %s'
         , $GLOBALS['tables']['usermessage']
         , $GLOBALS['tables']['user']
@@ -189,14 +189,14 @@ while ($row = Sql_Fetch_Array($req)) {
 
     $allViewsReq = Sql_Query(
         sprintf(
-            'select 
-                * 
-            from 
-                %s 
-            where 
-                userid = %d 
-                and messageid = %d 
-            order by 
+            'select
+                *
+            from
+                %s
+            where
+                userid = %d
+                and messageid = %d
+            order by
                 viewed'
         , $GLOBALS['tables']['user_message_view']
         , $row['userid']
@@ -209,7 +209,7 @@ while ($row = Sql_Fetch_Array($req)) {
         $element = $row['email'];
         $separator = ',';
     } else {
-        $element = shortenTextDisplay($row['email'], 35);
+        $element = shortenEmailDisplay($row['email'], 35);
         $separator = '<br/>';
     }
     $ls->addElement($element, PageUrl2('user&amp;id='.$row['userid']));
