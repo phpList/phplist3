@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a9b0d60fdef52316d4d29387d5b43f6",
+    "content-hash": "f0444a650d3bb5deffc5c7f3c5a734e7",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -4199,9 +4199,9 @@
         "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-segment": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
-        "friends-of-behat/mink": 0,
-        "behat/mink-selenium2-driver": 0,
         "behat/behat": 0,
+        "behat/mink-selenium2-driver": 0,
+        "friends-of-behat/mink": 0,
         "symfony/config": 0
     },
     "prefer-stable": true,

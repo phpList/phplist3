@@ -126,9 +126,9 @@
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
   },
   "require-dev": {
-    "friends-of-behat/mink": "@stable",
-    "behat/mink-selenium2-driver": "@stable",
     "behat/behat": "@stable",
+    "behat/mink-selenium2-driver": "@stable",
+    "friends-of-behat/mink": "@stable",
     "friends-of-behat/mink-extension": "^2.7",
     "symfony/config": "@stable",
     "se/selenium-server-standalone": "^2.52",
