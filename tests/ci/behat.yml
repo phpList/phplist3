@@ -26,8 +26,7 @@ default:
     Behat\MinkExtension:
       show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
       base_url: 'http://127.0.0.1'
-      default_session: goutte
-      goutte: ~
+      default_session: chrome
       sessions:
         chrome:
           selenium2:
@@ -67,11 +66,6 @@ default:
         local:
           screenshot_directory: output/screenshots
           clear_screenshot_directory: true  
-
-goutte:
-  extensions:
-    Behat\MinkExtension:
-      default_session: goutte
 
 chrome:
   extensions:
