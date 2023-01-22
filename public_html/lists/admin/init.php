@@ -635,12 +635,15 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
 }
- if (!defined('GOOGLE_SENDERID')) {
+if (!defined('LISTPAGE_MAX')) {
+    define('LISTPAGE_MAX', 10);
+}
+if (!defined('GOOGLE_SENDERID')) {
     define('GOOGLE_SENDERID', '');
 }
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
-    define('ALLOW_UPDATER', true);
+    define('ALLOW_UPDATER', false);
 }
 if (!defined ('USE_REPLY_TO')){
     define('USE_REPLY_TO', false);
@@ -665,11 +668,7 @@ if (!defined('AWS_POSTURL')) {
     define('AWS_POSTURL', 'https://email.us-east-1.amazonaws.com/');
 }
 if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
-    if ($GLOBALS['public_scheme'] == 'https') {
-        define('PHPLIST_POWEREDBY_URLROOT', 'https://d3u7tsw7cvar0t.cloudfront.net/images');
-    } else {
-        define('PHPLIST_POWEREDBY_URLROOT', 'http://powered.phplist.com/images');
-    }
+    define('PHPLIST_POWEREDBY_URLROOT', 'https://d3u7tsw7cvar0t.cloudfront.net/images');
 }
 
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {

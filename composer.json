@@ -140,6 +140,9 @@
   },
   "prefer-stable": true,
   "config": {
-    "bin-dir": "vendor/bin/"
+    "bin-dir": "vendor/bin/",
+    "allow-plugins": {
+            "davidbarratt/custom-installer": true
+        }
   }
 }

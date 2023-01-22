@@ -138,6 +138,8 @@ $ls->addElement($element);
 $ls->addColumn($element, '', number_format ($bounced[0]) );
 $totalBounced = $bounced[0];
 
+$any = $totalSent - $totalBounced;
+
 $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messageid = %d and status = "sent" and viewed is not null',
     $tables['usermessage'], $id));
 
@@ -145,7 +147,11 @@ $viewed = Sql_Fetch_Row_Query(sprintf('select count(userid) from %s where messag
 $element = ucfirst(s('Opened '));
 $ls->addElement($element);
 // Opened Rate 
-$perc = sprintf('%0.2f', $viewed[0] / ($totalSent - $totalBounced) * 100);
+if ($any > 0) {
+  $perc = sprintf('%0.2f', $viewed[0] / ($totalSent - $totalBounced) * 100);
+} else {
+  $perc = s('N/A');
+}
 $ls->addColumn($element, '', !empty($viewed[0]) ? PageLink2('mviews&id='.$id, number_format($viewed[0])).' ('. $perc .' %)' : '0');
 
 $clicked = Sql_Fetch_Row_Query(sprintf('select sum(clicked) from %s where messageid= %d',
@@ -156,7 +162,11 @@ $clicked = Sql_Fetch_Row_Query(sprintf('select sum(clicked) from %s where messag
 $element = ucfirst(s('Clicked'));
 $ls->addElement($element);
 // Clicked Rate  
-$perc = sprintf('%0.2f', $clicked[0] / ($totalSent - $totalBounced) * 100);
+if ($any > 0) {
+  $perc = sprintf('%0.2f', $clicked[0] / ($totalSent - $totalBounced) * 100);
+} else {
+  $perc = s('N/A');
+}
 $ls->addColumn($element, '', !empty($clicked[0]) ? PageLink2('mclicks&id='.$id, number_format($clicked[0])).' ('. $perc .' %)': '0');
 
 // Number of Unique Clicks
@@ -164,7 +174,11 @@ $uniqueclicked = Sql_Fetch_Row_Query(sprintf('select count( distinct userid) fro
     $tables['linktrack_uml_click'], $id));
 $element = ucfirst(s('Unique Clicks'));
 // Unique Clicked Rate  
-$perc = sprintf('%0.2f', $uniqueclicked[0] / ($totalSent - $totalBounced) * 100);
+if ($any > 0) {
+  $perc = sprintf('%0.2f', $uniqueclicked[0] / ($totalSent - $totalBounced) * 100);
+} else {
+  $perc = s('N/A');
+}
 $ls->addElement($element);
 $ls->addColumn($element,'' , !empty($uniqueclicked[0]) ? PageLink2('mclicks&id='.$id, number_format($uniqueclicked[0])).' ('. $perc .' %)' : '0');
 

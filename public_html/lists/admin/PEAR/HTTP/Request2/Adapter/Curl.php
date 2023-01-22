@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -30,14 +30,15 @@ require_once 'HTTP/Request2/Adapter.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
 {
     /**
      * Mapping of header names to cURL options
-     * @var  array
+     *
+     * @var array
      */
     protected static $headerMap = [
         'accept-encoding' => CURLOPT_ENCODING,
@@ -48,7 +49,8 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
 
     /**
      * Mapping of SSL context options to cURL options
-     * @var  array
+     *
+     * @var array
      */
     protected static $sslContextMap = [
         'ssl_verify_peer' => CURLOPT_SSL_VERIFYPEER,
@@ -60,7 +62,8 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
 
     /**
      * Mapping of CURLE_* constants to Exception subclasses and error codes
-     * @var  array
+     *
+     * @var array
      */
     protected static $errorMap = [
         CURLE_UNSUPPORTED_PROTOCOL  => ['HTTP_Request2_MessageException',
@@ -100,38 +103,44 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
 
     /**
      * Response being received
-     * @var  HTTP_Request2_Response
+     *
+     * @var HTTP_Request2_Response
      */
     protected $response;
 
     /**
      * Whether 'sentHeaders' event was sent to observers
-     * @var  boolean
+     *
+     * @var boolean
      */
     protected $eventSentHeaders = false;
 
     /**
      * Whether 'receivedHeaders' event was sent to observers
+     *
      * @var boolean
      */
     protected $eventReceivedHeaders = false;
 
     /**
      * Whether 'sentBoody' event was sent to observers
+     *
      * @var boolean
      */
     protected $eventSentBody = false;
 
     /**
      * Position within request body
-     * @var  integer
-     * @see  callbackReadBody()
+     *
+     * @var integer
+     * @see callbackReadBody()
      */
     protected $position = 0;
 
     /**
      * Information about last transfer, as returned by curl_getinfo()
-     * @var  array
+     *
+     * @var array
      */
     protected $lastInfo;
 
@@ -161,8 +170,8 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
      *
      * @param HTTP_Request2 $request HTTP request message
      *
-     * @return   HTTP_Request2_Response
-     * @throws   HTTP_Request2_Exception
+     * @return HTTP_Request2_Response
+     * @throws HTTP_Request2_Exception
      */
     public function sendRequest(HTTP_Request2 $request)
     {
@@ -208,7 +217,7 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
     /**
      * Returns information about last transfer
      *
-     * @return   array   associative array as returned by curl_getinfo()
+     * @return array   associative array as returned by curl_getinfo()
      */
     public function getInfo()
     {
@@ -218,27 +227,29 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
     /**
      * Creates a new cURL handle and populates it with data from the request
      *
-     * @return   resource    a cURL handle, as created by curl_init()
-     * @throws   HTTP_Request2_LogicException
-     * @throws   HTTP_Request2_NotImplementedException
+     * @return resource    a cURL handle, as created by curl_init()
+     * @throws HTTP_Request2_LogicException
+     * @throws HTTP_Request2_NotImplementedException
      */
     protected function createCurlHandle()
     {
         $ch = curl_init();
 
-        curl_setopt_array($ch, [
-            // setup write callbacks
-            CURLOPT_HEADERFUNCTION => [$this, 'callbackWriteHeader'],
-            CURLOPT_WRITEFUNCTION  => [$this, 'callbackWriteBody'],
-            // buffer size
-            CURLOPT_BUFFERSIZE     => $this->request->getConfig('buffer_size'),
-            // connection timeout
-            CURLOPT_CONNECTTIMEOUT => $this->request->getConfig('connect_timeout'),
-            // save full outgoing headers, in case someone is interested
-            CURLINFO_HEADER_OUT    => true,
-            // request url
-            CURLOPT_URL            => $this->request->getUrl()->getUrl()
-        ]);
+        curl_setopt_array(
+            $ch, [
+                // setup write callbacks
+                CURLOPT_HEADERFUNCTION => [$this, 'callbackWriteHeader'],
+                CURLOPT_WRITEFUNCTION  => [$this, 'callbackWriteBody'],
+                // buffer size
+                CURLOPT_BUFFERSIZE     => $this->request->getConfig('buffer_size'),
+                // connection timeout
+                CURLOPT_CONNECTTIMEOUT => $this->request->getConfig('connect_timeout'),
+                // save full outgoing headers, in case someone is interested
+                CURLINFO_HEADER_OUT    => true,
+                // request url
+                CURLOPT_URL            => $this->request->getUrl()->getUrl()
+            ]
+        );
 
         // set up redirects
         if (!$this->request->getConfig('follow_redirects')) {
@@ -399,8 +410,10 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
      * and setting it as CURLOPT_POSTFIELDS, so it isn't recommended for large
      * file uploads, use Socket adapter instead.
      *
-     * @param resource $ch       cURL handle
-     * @param array    &$headers Request headers
+     * @param resource $ch      cURL handle
+     * @param array    $headers Request headers
+     *
+     * @return void
      */
     protected function workaroundPhpBug47204($ch, &$headers)
     {
@@ -409,7 +422,7 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
         // https://pear.php.net/bugs/bug.php?id=20440 for PUTs
         if (!$this->request->getConfig('follow_redirects')
             && (!($auth = $this->request->getAuth())
-                || HTTP_Request2::AUTH_DIGEST != $auth['scheme'])
+            || HTTP_Request2::AUTH_DIGEST !== $auth['scheme'])
             || HTTP_Request2::METHOD_POST !== $this->request->getMethod()
         ) {
             curl_setopt($ch, CURLOPT_READFUNCTION, [$this, 'callbackReadBody']);
@@ -439,7 +452,7 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
      * @param resource $fd     file descriptor (not used)
      * @param integer  $length maximum length of data to return
      *
-     * @return   string      part of the request body, up to $length bytes
+     * @return string      part of the request body, up to $length bytes
      */
     protected function callbackReadBody($ch, $fd, $length)
     {
@@ -472,8 +485,8 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
      * @param resource $ch     cURL handle
      * @param string   $string response header (with trailing CRLF)
      *
-     * @return   integer     number of bytes saved
-     * @see      HTTP_Request2_Response::parseHeaderLine()
+     * @return integer     number of bytes saved
+     * @see    HTTP_Request2_Response::parseHeaderLine()
      */
     protected function callbackWriteHeader($ch, $string)
     {
@@ -548,9 +561,9 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
      * @param resource $ch     cURL handle (not used)
      * @param string   $string part of the response body
      *
-     * @return   integer     number of bytes saved
-     * @throws   HTTP_Request2_MessageException
-     * @see      HTTP_Request2_Response::appendBody()
+     * @return integer     number of bytes saved
+     * @throws HTTP_Request2_MessageException
+     * @see    HTTP_Request2_Response::appendBody()
      */
     protected function callbackWriteBody($ch, $string)
     {
