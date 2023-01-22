@@ -55,6 +55,7 @@ jobs:
       - name: Report Versions
         run: |
           google-chrome --version
+          lsb_release -a
           php -v
           chromedriver -v
           geckodriver -V
