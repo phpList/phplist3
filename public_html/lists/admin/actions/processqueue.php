@@ -1323,7 +1323,7 @@ while ($message = Sql_fetch_array($messages)) {
          */
 
         $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
-        if ($counters['sent'] > 0) {
+        if ($counters['sent'] > 0 && $totaltime > 0) {
             $msgperhour = (3600 / $totaltime) * $counters['sent'];
             $secpermsg = $totaltime / $counters['sent'];
             $timeleft = ($counters['total_users_for_message '.$messageid] - $counters['sent']) * $secpermsg;

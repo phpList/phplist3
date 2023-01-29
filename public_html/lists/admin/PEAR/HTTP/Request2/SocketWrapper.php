@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -31,7 +31,7 @@ require_once 'HTTP/Request2/Exception.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  * @link     http://pear.php.net/bugs/bug.php?id=19332
  * @link     http://tools.ietf.org/html/rfc1928
@@ -40,24 +40,28 @@ class HTTP_Request2_SocketWrapper
 {
     /**
      * PHP warning messages raised during stream_socket_client() call
+     *
      * @var array
      */
     protected $connectionWarnings = [];
 
     /**
      * Connected socket
+     *
      * @var resource
      */
     protected $socket;
 
     /**
      * Sum of start time and global timeout, exception will be thrown if request continues past this time
+     *
      * @var float
      */
     protected $deadline;
 
     /**
      * Global timeout value, mostly for exception messages
+     *
      * @var integer
      */
     protected $timeout;
@@ -82,6 +86,10 @@ class HTTP_Request2_SocketWrapper
             $contextOptions = ['ssl' => $contextOptions];
         }
         if (isset($contextOptions['ssl'])) {
+            $cryptoMethod = STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT;
+            if (defined('STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT')) {
+                $cryptoMethod |= STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT;
+            }
             $contextOptions['ssl'] += [
                 // Using "Intermediate compatibility" cipher bundle from
                 // https://wiki.mozilla.org/Security/Server_Side_TLS
@@ -97,8 +105,7 @@ class HTTP_Request2_SocketWrapper
                                          . 'DHE-RSA-AES128-GCM-SHA256:'
                                          . 'DHE-RSA-AES256-GCM-SHA384',
                 'disable_compression' => true,
-                'crypto_method'       => STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
-                                         | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
+                'crypto_method'       => $cryptoMethod
             ];
         }
         $context = stream_context_create();
@@ -147,8 +154,8 @@ class HTTP_Request2_SocketWrapper
      *
      * @param int $length Reads up to this number of bytes
      *
-     * @return   string|false Data read from socket by fread()
-     * @throws   HTTP_Request2_MessageException     In case of timeout
+     * @return string|false Data read from socket by fread()
+     * @throws HTTP_Request2_MessageException     In case of timeout
      */
     public function read($length)
     {
@@ -182,8 +189,8 @@ class HTTP_Request2_SocketWrapper
      * @param int $localTimeout timeout value to use just for this call
      *                          (used when waiting for "100 Continue" response)
      *
-     * @return   string Available data up to the newline (not including newline)
-     * @throws   HTTP_Request2_MessageException     In case of timeout
+     * @return string Available data up to the newline (not including newline)
+     * @throws HTTP_Request2_MessageException     In case of timeout
      */
     public function readLine($bufferSize, $localTimeout = null)
     {
@@ -228,23 +235,33 @@ class HTTP_Request2_SocketWrapper
     public function write($data)
     {
         $totalWritten = 0;
-        while (strlen($data)) {
+        while (strlen($data) && !$this->eof()) {
             $written  = 0;
+            $error    = null;
             $timeouts = $this->_getTimeoutsForStreamSelect();
 
-            $r = [];
+            $r = null;
             $w = [$this->socket];
-            $e = [];
+            $e = null;
             if (stream_select($r, $w, $e, $timeouts[0], $timeouts[1])) {
-                // Notice: fwrite(): send of #### bytes failed with errno=10035
-                // A non-blocking socket operation could not be completed immediately.
-                $written = @fwrite($this->socket, $data);
+                set_error_handler(
+                    static function ($errNo, $errStr) use (&$error) {
+                        if (0 !== (E_NOTICE | E_WARNING) & $errNo) {
+                            $error = $errStr;
+                        }
+                    }
+                );
+                $written = fwrite($this->socket, $data);
+                restore_error_handler();
             }
             $this->checkTimeout();
 
-            // http://www.php.net/manual/en/function.fwrite.php#96951
-            if (0 === (int)$written) {
-                throw new HTTP_Request2_MessageException('Error writing request');
+            // php_sockop_write() defined in /main/streams/xp_socket.c may return zero written bytes for non-blocking
+            // sockets in case of transient errors. These writes will not have notices raised and should be retried
+            if (false === $written || 0 === $written && null !== $error) {
+                throw new HTTP_Request2_MessageException(
+                    'Error writing request' . (null === $error ? '' : ': ' . $error)
+                );
             }
             $data = substr($data, $written);
             $totalWritten += $written;
@@ -271,8 +288,10 @@ class HTTP_Request2_SocketWrapper
      *
      * @param float|null $deadline Exception will be thrown if request continues
      *                             past this time
-     * @param int $timeout         Original request timeout value, to use in
+     * @param int        $timeout  Original request timeout value, to use in
      *                             Exception message
+     *
+     * @return void
      */
     public function setDeadline($deadline, $timeout)
     {
@@ -286,12 +305,15 @@ class HTTP_Request2_SocketWrapper
     /**
      * Turns on encryption on a socket
      *
+     * @return void
      * @throws HTTP_Request2_ConnectionException
      */
     public function enableCrypto()
     {
-        $cryptoMethod = STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
-                        | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT;
+        $cryptoMethod = STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT;
+        if (defined('STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT')) {
+            $cryptoMethod |= STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT;
+        }
 
         try {
             stream_set_blocking($this->socket, true);
@@ -308,6 +330,7 @@ class HTTP_Request2_SocketWrapper
     /**
      * Throws an Exception if stream timed out
      *
+     * @return void
      * @throws HTTP_Request2_MessageException
      */
     protected function checkTimeout()

@@ -463,7 +463,7 @@ function ClineSignature()
 function ClineError($msg, $documentationURL = '')
 {
     ob_end_clean();
-    echo PHP.EOL."Error: $msg\n";
+    echo PHP_EOL."Error: $msg\n";
     if (!empty($documentationURL)) {
       echo PHP_EOL.s("For more information: "). $documentationURL;
     }

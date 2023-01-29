@@ -33,7 +33,7 @@ foreach ($pluginRootDirs as $pluginRootDir) {
                 if (is_file($pluginRootDir.'/'.$file) && preg_match("/\.php$/", $file)) {
                     //          print "ADD $file<br/>";
                     array_push($pluginFiles, $pluginRootDir.'/'.$file);
-                } elseif (is_dir($pluginRootDir.'/'.$file.'/plugins')) {
+                } elseif (is_dir($pluginRootDir.'/'.$file) && is_dir($pluginRootDir.'/'.$file.'/plugins')) {
                     //         print 'SUBROOT'.$pluginRootDir.' '.$file.'<br/>';
                     $subRoot = $pluginRootDir.'/'.$file.'/plugins';
                     $subDir = opendir($subRoot);

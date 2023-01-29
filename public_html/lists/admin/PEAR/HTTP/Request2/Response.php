@@ -13,7 +13,7 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2020 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2022 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
@@ -47,7 +47,7 @@ require_once 'HTTP/Request2/Exception.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.4.2
+ * @version  Release: 2.5.1
  * @link     http://pear.php.net/package/HTTP_Request2
  * @link     http://tools.ietf.org/html/rfc2616#section-6
  */
@@ -55,12 +55,14 @@ class HTTP_Request2_Response
 {
     /**
      * HTTP protocol version (e.g. 1.0, 1.1)
-     * @var  string
+     *
+     * @var string
      */
     protected $version;
 
     /**
      * Status code
+     *
      * @var  integer
      * @link http://tools.ietf.org/html/rfc2616#section-6.1.1
      */
@@ -68,6 +70,7 @@ class HTTP_Request2_Response
 
     /**
      * Reason phrase
+     *
      * @var  string
      * @link http://tools.ietf.org/html/rfc2616#section-6.1.1
      */
@@ -75,19 +78,22 @@ class HTTP_Request2_Response
 
     /**
      * Effective URL (may be different from original request URL in case of redirects)
-     * @var  string
+     *
+     * @var string
      */
     protected $effectiveUrl;
 
     /**
      * Associative array of response headers
-     * @var  array
+     *
+     * @var array
      */
     protected $headers = [];
 
     /**
      * Cookies set in the response
-     * @var  array
+     *
+     * @var array
      */
     protected $cookies = [];
 
@@ -96,13 +102,14 @@ class HTTP_Request2_Response
      *
      * Used to handle the headers that span multiple lines
      *
-     * @var  string
+     * @var string
      */
     protected $lastHeader = null;
 
     /**
      * Response body
-     * @var  string
+     *
+     * @var string
      */
     protected $body = '';
 
@@ -112,7 +119,7 @@ class HTTP_Request2_Response
      * cURL provides the decoded body to the callback; if we are reading from
      * socket the body is still gzipped / deflated
      *
-     * @var  bool
+     * @var bool
      */
     protected $bodyEncoded;
 
@@ -207,7 +214,7 @@ class HTTP_Request2_Response
      * @param bool   $bodyEncoded  Whether body is still encoded by Content-Encoding
      * @param string $effectiveUrl Effective URL of the response
      *
-     * @throws   HTTP_Request2_MessageException if status line is invalid according to spec
+     * @throws HTTP_Request2_MessageException if status line is invalid according to spec
      */
     public function __construct($statusLine, $bodyEncoded = true, $effectiveUrl = null)
     {
@@ -233,6 +240,8 @@ class HTTP_Request2_Response
      * empty string in the end.
      *
      * @param string $headerLine Line from HTTP response
+     *
+     * @return void
      */
     public function parseHeaderLine($headerLine)
     {
@@ -285,7 +294,9 @@ class HTTP_Request2_Response
      *
      * @param string $cookieString value of Set-Cookie header
      *
-     * @link     http://web.archive.org/web/20080331104521/http://cgi.netscape.com/newsref/std/cookie_spec.html
+     * @return void
+     *
+     * @link http://web.archive.org/web/20080331104521/http://cgi.netscape.com/newsref/std/cookie_spec.html
      */
     protected function parseCookie($cookieString)
     {
@@ -335,6 +346,8 @@ class HTTP_Request2_Response
      * Appends a string to the response body
      *
      * @param string $bodyChunk part of response body
+     *
+     * @return void
      */
     public function appendBody($bodyChunk)
     {
@@ -357,7 +370,7 @@ class HTTP_Request2_Response
     /**
      * Returns the status code
      *
-     * @return   integer
+     * @return integer
      */
     public function getStatus()
     {
@@ -367,7 +380,7 @@ class HTTP_Request2_Response
     /**
      * Returns the reason phrase
      *
-     * @return   string
+     * @return string
      */
     public function getReasonPhrase()
     {
@@ -377,7 +390,7 @@ class HTTP_Request2_Response
     /**
      * Whether response is a redirect that can be automatically handled by HTTP_Request2
      *
-     * @return   bool
+     * @return bool
      */
     public function isRedirect()
     {
@@ -390,7 +403,7 @@ class HTTP_Request2_Response
      *
      * @param string $headerName Name of header to return
      *
-     * @return   string|array    Value of $headerName header (null if header is
+     * @return string|array    Value of $headerName header (null if header is
      *                           not present), array of all response headers if
      *                           $headerName is null
      */
@@ -407,7 +420,7 @@ class HTTP_Request2_Response
     /**
      * Returns cookies set in response
      *
-     * @return   array
+     * @return array
      */
     public function getCookies()
     {
@@ -417,13 +430,13 @@ class HTTP_Request2_Response
     /**
      * Returns the body of the response
      *
-     * @return   string
-     * @throws   HTTP_Request2_Exception if body cannot be decoded
+     * @return string
+     * @throws HTTP_Request2_Exception if body cannot be decoded
      */
     public function getBody()
     {
         if (0 == strlen($this->body) || !$this->bodyEncoded
-            || !in_array(strtolower($this->getHeader('content-encoding')), ['gzip', 'deflate'])
+            || !in_array(strtolower($this->getHeader('content-encoding') ?: ''), ['gzip', 'deflate'])
         ) {
             return $this->body;
 
@@ -452,7 +465,7 @@ class HTTP_Request2_Response
     /**
      * Get the HTTP version of the response
      *
-     * @return   string
+     * @return string
      */
     public function getVersion()
     {
@@ -602,10 +615,10 @@ class HTTP_Request2_Response
      *
      * @param string $data gzip-encoded data
      *
-     * @return   string  decoded data
-     * @throws   HTTP_Request2_LogicException
-     * @throws   HTTP_Request2_MessageException
-     * @link     http://tools.ietf.org/html/rfc1952
+     * @return string  decoded data
+     * @throws HTTP_Request2_LogicException
+     * @throws HTTP_Request2_MessageException
+     * @link   http://tools.ietf.org/html/rfc1952
      */
     public static function decodeGzip($data)
     {
@@ -657,8 +670,8 @@ class HTTP_Request2_Response
      *
      * @param string $data deflate-encoded data
      *
-     * @return   string  decoded data
-     * @throws   HTTP_Request2_LogicException
+     * @return string  decoded data
+     * @throws HTTP_Request2_LogicException
      */
     public static function decodeDeflate($data)
     {

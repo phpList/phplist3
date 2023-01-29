@@ -1,24 +1,24 @@
 
 name: CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.3', '7.4']
+        php-version: ['7.4', '8.0', '8.1']
         experimental: [false]
         include:
           - php-version: 7.2
             experimental: true
-          - php-version: 8.0
+          - php-version: 7.3
             experimental: true
-          - php-version: 8.1
+          - php-version: 8.2
             experimental: true
 
     steps:
@@ -57,7 +57,7 @@ jobs:
           sudo systemctl start mysql.service
           sudo mysql -proot  -e 'drop database if exists phplistdb'
           sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
+          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
 
       - name: Set bootlist theme
         run: |
@@ -117,7 +117,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: "output"
-          name: "behat output"
+          name: "behat output ${{ matrix.php-version }}"
           retention-days: 3
 
       - name: Display output
