@@ -3,9 +3,8 @@ msgstr ""
 "Project-Id-Version: English (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:38+0000\n"
-"PO-Revision-Date: 2022-10-07 05:34+0000\n"
+"PO-Revision-Date: 2022-10-24 12:40+0000\n"
 "Last-Translator: Michiel <michiel@phplist.com>\n"
-
 "Language-Team: English <http://translate.phplist.org/projects/phplist/"
 "phplist3/en/>\n"
 "Language: en\n"
@@ -5050,7 +5049,7 @@ msgstr "Not Found<br/>"
 #: public_html/lists/admin/bounce.php:71 public_html/lists/admin/bounce.php:74
 #, php-format
 msgid "Added %s to bouncecount for subscriber %s"
-msgstr "Added %s to bouncecount for subscriber %s<br/>"
+msgstr "Added %s to bouncecount for subscriber %s"
 
 #: public_html/lists/admin/bounce.php:82
 #, php-format
@@ -6495,9 +6494,8 @@ msgstr "Delete subscribers who have an invalid email address"
 
 # Suggested in Weblate: Added %s to bouncecount for subscriber %s</br>
 #: public_html/lists/admin/reconcileusers.php:536
-#, fuzzy
 msgid "Associate system bounces to subscriber profiles"
-msgstr "Added %s to bouncecount for subscriber %s<br/>"
+msgstr "Associate system bounces to subscriber profiles"
 
 #: public_html/lists/admin/reconcileusers.php:543
 msgid "Delete subscribers who are blacklisted because they unsubscribed"
