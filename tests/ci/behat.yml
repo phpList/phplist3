@@ -26,8 +26,7 @@ default:
     Behat\MinkExtension:
       show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
       base_url: 'http://127.0.0.1'
-      default_session: goutte
-      goutte: ~
+      default_session: chrome
       sessions:
         chrome:
           selenium2:
@@ -55,23 +54,18 @@ default:
           selenium2:
             browser: "firefox"
             wd_host: http://127.0.0.1:4444/wd/hub
-    # FailAid\Extension: 
-    #   screenshot:
-    #     directory: ./output/screenshots/
-    #     mode: default
-    #     autoClean: false
-    #     size: 1444x1280
+    FailAid\Extension: 
+      screenshot:
+        directory: ./output/screenshots/
+        mode: default
+        autoClean: false
+        size: 1444x1280
     Bex\Behat\ScreenshotExtension:
       active_image_drivers: [local]
       image_drivers:
         local:
           screenshot_directory: output/screenshots
           clear_screenshot_directory: true  
-
-goutte:
-  extensions:
-    Behat\MinkExtension:
-      default_session: goutte
 
 chrome:
   extensions:
