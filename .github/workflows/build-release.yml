@@ -78,7 +78,7 @@ jobs:
           sudo systemctl start mysql.service
           sudo mysql -proot  -e 'drop database if exists phplistdb'
           sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'grant all on phplistdb.* to phplist@localhost identified by "phplist"'
+          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
 
       - name: Start Test Server
         run: |
