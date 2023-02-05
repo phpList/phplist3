@@ -597,8 +597,8 @@ if (!defined('MAX_AVATAR_SIZE')) {
     define('MAX_AVATAR_SIZE', 2000);
 }
 if (!defined('DEFAULT_MESSAGEAGE')) {
-    define('DEFAULT_MESSAGEAGE', 604800);
-} //# 7 days in seconds
+    define('DEFAULT_MESSAGEAGE', 691200);
+} //# 8 days in seconds
 if (!defined('ADD_EMAIL_THROTTLE')) {
     define('ADD_EMAIL_THROTTLE', 1);
 } //# seconds between addemail ajax requests
