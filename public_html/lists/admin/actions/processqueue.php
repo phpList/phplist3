@@ -190,7 +190,7 @@ if (empty($GLOBALS['commandline'])) {
 }
 
 if (VERBOSE && $maxProcessQueueTime) {
-    processQueueOutput(s('Maximum time for queue processing').': '.$maxProcessQueueTime, 'progress');
+    processQueueOutput(s('Maximum time for queue processing').': '.$maxProcessQueueTime, 1, 'progress');
 }
 
 if (isset($cline['m'])) {
@@ -267,7 +267,7 @@ function my_shutdown()
         processQueueOutput(sprintf('%d %s %01.2f %s (%d %s)', $counters['sent'],
             $GLOBALS['I18N']->get('messages sent in'),
             $totaltime, $GLOBALS['I18N']->get('seconds'), $msgperhour, $GLOBALS['I18N']->get('msgs/hr')),
-            $counters['sent'], 'progress');
+            1, 'progress');
     }
     if ($counters['invalid']) {
         processQueueOutput(s('%d invalid email addresses', $counters['invalid']), 1, 'progress');
