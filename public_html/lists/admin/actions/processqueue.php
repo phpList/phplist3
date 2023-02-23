@@ -683,7 +683,7 @@ while ($message = Sql_fetch_array($messages)) {
         if (empty($reload)) {
             //## Hmm, this is probably incredibly confusing. It won't finish then
             if (VERBOSE) {
-                processQueueOutput(sprintf(s('sending of this campaign will stop, if it is still going in %s'),
+                processQueueOutput(s('sending of this campaign will stop, if it is still going in %s',
                     secs2time($secondsTogo)));
             }
         }
@@ -1097,7 +1097,7 @@ while ($message = Sql_fetch_array($messages)) {
                                 && $counters['total_users_for_message '.$messageid] < 1000 // and also when there's not too many left, because then it's likely they're all being throttled
                             ) {
                                 $domainthrottle[$throttleDomain]['attempted'] = 0;
-                                logEvent(sprintf(s('There have been more than 10 attempts to send to %s that have been blocked for domain throttling.'),
+                                logEvent(s('There have been more than 10 attempts to send to %s that have been blocked for domain throttling.',
                                     $throttleDomain));
                                 logEvent(s('Introducing extra delay to decrease throttle failures'));
                                 if (VERBOSE) {
@@ -1234,7 +1234,7 @@ while ($message = Sql_fetch_array($messages)) {
                                 /* processQueueOutput(s('waiting for').' '.$delay.' '.s('seconds').' '.
                                s('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
                                s('messages in ').' '.MAILQUEUE_BATCH_PERIOD.s('seconds')); */
-                                processQueueOutput(sprintf(s('waiting for %.1f seconds to meet target of %s seconds per message'),
+                                processQueueOutput(s('waiting for %.1f seconds to meet target of %s seconds per message',
                                         $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
                                 );
                             }
