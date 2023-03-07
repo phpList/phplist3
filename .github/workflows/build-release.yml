@@ -226,27 +226,6 @@ jobs:
           name: "phpList Release File"
           retention-days: 3
 
-      - name: Upload the files to SF
-        run: |
-          export SSHPASS=${{ secrets.SF_PASS }}
-          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
-            RELEASE_FOLDER=phplist-development
-          else 
-            RELEASE_FOLDER=phplist
-          fi
-          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
-          cd $GITHUB_WORKSPACE
-          cd ..
-
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
-            cd /home/frs/project/phplist/$RELEASE_FOLDER
-            mkdir $RELEASE_VERSION
-            cd $RELEASE_VERSION
-            put phplist-${RELEASE_VERSION}.*
-            ls -l 
-            bye
-          EOF
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -267,3 +246,24 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMAGE }}:${{ env.RELEASE_VERSION }}
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
+
+      - name: Upload the files to SF
+        run: |
+          export SSHPASS=${{ secrets.SF_PASS }}
+          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
+            RELEASE_FOLDER=phplist-development
+          else 
+            RELEASE_FOLDER=phplist
+          fi
+          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
+          cd $GITHUB_WORKSPACE
+          cd ..
+
+          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+            cd /home/frs/project/phplist/$RELEASE_FOLDER
+            mkdir $RELEASE_VERSION
+            cd $RELEASE_VERSION
+            put phplist-${RELEASE_VERSION}.*
+            ls -l 
+            bye
+          EOF
