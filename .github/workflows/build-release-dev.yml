@@ -18,14 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Find the version
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
-
       - name: Show the discovered version
         run: |
-          if [[ ! -z ${{ secrets.BUILD_TEST }} ]]; then
-            echo "RELEASE_VERSION=build-testing-RC1" >> $GITHUB_ENV
-          fi
+          echo "RELEASE_VERSION=build-testing-RC1" >> $GITHUB_ENV
           echo \$RELEASE_VERSION = $RELEASE_VERSION
           echo \$\{\{ env.RELEASE_VERSION \}\} = ${{ env.RELEASE_VERSION }}
           echo \$GITHUB_REF = $GITHUB_REF
