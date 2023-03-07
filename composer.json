@@ -123,7 +123,8 @@
     "bramley/phplist-plugin-captcha": "dev-master",
     "bramley/phplist-plugin-ckeditor": "dev-master",
     "bramley/phplist-plugin-segment": "dev-master",
-    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
+    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
+    "bramley/phplist-plugin-addons": "dev-master"
   },
   "require-dev": {
     "behat/behat": "@stable",
