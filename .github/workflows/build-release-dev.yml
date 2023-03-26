@@ -247,7 +247,7 @@ jobs:
           unzip phplist-${RELEASE_VERSION}.zip
           mv phplist-${RELEASE_VERSION} phplist
           zip -rq9 phplist.zip phplist
-          mkdir ~/.ssh/
+          [[ ! -d ~/.ssh ]] && mkdir ~/.ssh/
           echo ${{ secrets.UPLOADER_SSH_KEY }} > ~/.ssh/id_ed25519
           echo ${{ secrets.UPLOADER_SSH_PUBKEY }} > ~/.ssh/id_ed25519.pub
           scp -p ${{ secrets.UPLOADER_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null phplist.zip download.phplist.org:${{ secrets.UPLOADER_PATH }}
