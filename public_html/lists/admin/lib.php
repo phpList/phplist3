@@ -2385,6 +2385,7 @@ function asyncLoadContentDiv($url,$divname)
         if (typeof asyncLoadDiv == "undefined") {
             var asyncLoadDiv = new Array();
             var asyncLoadUrl = new Array();
+            var asyncRequestInterval = ' . ASYNC_REQUEST_INTERVAL . ';
         }
         asyncLoadDiv[asyncLoadDiv.length] = "'.$divname.'";
         asyncLoadUrl[asyncLoadUrl.length] = "'.$url.'";

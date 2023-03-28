@@ -786,9 +786,13 @@ if (!defined('USE_PHPMAILER6')) {
 }
 if (!defined('HTTP_PROXY_HOST')) {
     define('HTTP_PROXY_HOST', false);
-} 
+}
 if (!defined('HTTP_PROXY_PORT')) {
     define('HTTP_PROXY_PORT', false);
+}
+// interval in milliseconds between asynchronous requests
+if (!defined('ASYNC_REQUEST_INTERVAL')) {
+    define('ASYNC_REQUEST_INTERVAL', 0);
 }
 
 if (!isset($GLOBALS['export_mimetype'])) {
