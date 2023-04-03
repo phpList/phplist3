@@ -309,6 +309,10 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
     if ($cached[$messageid]['template']) {
         // template used
+        // use only the content of the body element if it is present
+        if (preg_match('|<body.*?>(.+)</body>|is', $htmlcontent, $matches)) {
+            $htmlcontent = $matches[1];
+        }
         $htmlmessage = str_replace('[CONTENT]', $htmlcontent, $cached[$messageid]['template']);
     } else {
         // no template used
