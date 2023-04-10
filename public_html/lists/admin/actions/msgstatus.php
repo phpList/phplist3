@@ -40,7 +40,7 @@ if ($sent > 0 && $totaltime > 0) {
     $msgperhour = (int) (3600 / $totaltime) * $sent;
     $secpermsg = $totaltime / $sent;
     $timeleft = ($num_users - $sent) * $secpermsg;
-    $eta = date('D j M H:i', time() + $timeleft);
+    $eta = date('D j M H:i', time() + (int)$timeleft);
 } else {
     $msgperhour = 0;
     $secpermsg = 0;
