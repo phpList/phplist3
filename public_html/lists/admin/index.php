@@ -523,24 +523,23 @@ if (!$ajax && $page != 'login') {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
 
- #   if (!DEVVERSION) { ## why not, quite useful to see
-    if (ALLOW_UPDATER) {
+    if (ALLOW_UPDATER || (isset($GLOBALS['plugins']['AddonsPlugin']) && $GLOBALS['plugins']['AddonsPlugin']->enabled)) {
         $updaterdir = __DIR__ . '/../updater';
 
         include 'updateLib.php';
         $updateNotif = checkForUpdate();
         $moreInfo = ' <ul><li><a href="https://www.phplist.com/download?utm_source=pl' . VERSION . '&amp;utm_medium=updatedownload&amp;utm_campaign=phpList" title="' . s('Download the new version') . '" target="_blank">' . s('Download the new version') . '</a></li>';
-
-        if (file_exists($updaterdir)) {
+        if (isset($GLOBALS['plugins']['AddonsPlugin']) && $GLOBALS['plugins']['AddonsPlugin']->enabled) {
+            $moreInfo .= '<li>'.s('or use the %sphpList Updater%s','<a href="?page=update&amp;pi=AddonsPlugin" title="' . s('automatic updater') . '">','</a>');
+        } elseif (file_exists($updaterdir)) {
             $moreInfo .= '<li>'.s('or use the %sphpList Updater%s','<a href="?page=update" title="' . s('automatic updater') . '">','</a>');
         }
         $moreInfo .= '</ul>';
 
-        if ($updateNotif !== '') {
+        if ($updateNotif !== '' && $_GET['page'] !== 'update') {
             Info($updateNotif . '' . $moreInfo);
         }
     }
-#   }
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
