@@ -241,3 +241,23 @@ jobs:
             VERSION=${{ env.RELEASE_VERSION }}
 
 
+      - name: Upload the files to SF
+        run: |
+          export SSHPASS=${{ secrets.SF_PASS }}
+          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
+            RELEASE_FOLDER=phplist-development
+          else 
+            RELEASE_FOLDER=phplist
+          fi
+          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
+          cd $GITHUB_WORKSPACE
+          cd ..
+
+          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+            cd /home/frs/project/phplist/$RELEASE_FOLDER
+            mkdir $RELEASE_VERSION
+            cd $RELEASE_VERSION
+            put phplist-${RELEASE_VERSION}.*
+            ls -l 
+            bye
+          EOF
