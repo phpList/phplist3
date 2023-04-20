@@ -198,9 +198,9 @@ jobs:
           cp ../phplist-${RELEASE_VERSION}.tgz .
 
       - name: set ssh key
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.UPLOADER_SSH_KEY }}
+        - uses: webfactory/ssh-agent@v0.7.0
+          with:
+              ssh-private-key: ${{ secrets.UPLOADER_SSH_KEY }}
 
       - name: Create and upload the download version
         run: |
