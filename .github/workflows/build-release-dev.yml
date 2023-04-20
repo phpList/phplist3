@@ -211,7 +211,7 @@ jobs:
           zip -rq9 phplist.zip phplist
           [[ ! -d ~/.ssh ]] && mkdir ~/.ssh/
           ls -l 
-          scp -P ${{ secrets.UPLOADER_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null phplist.zip download.phplist.org:${{ secrets.UPLOADER_PATH }}
+          scp -p ${{ secrets.UPLOADER_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null phplist.zip download.phplist.org:${{ secrets.UPLOADER_PATH }}
 
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
