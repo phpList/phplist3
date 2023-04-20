@@ -1,7 +1,7 @@
 
 name: CI
 
-on: [push]
+on: ${{ env.BUILD_TRIGGER }}
 
 jobs:
   test:
