@@ -197,6 +197,22 @@ jobs:
           cd $GITHUB_WORKSPACE
           cp ../phplist-${RELEASE_VERSION}.tgz .
 
+      - name: set ssh key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.UPLOADER_SSH_KEY }}
+
+      - name: Create and upload the download version
+        run: |
+          cd $GITHUB_WORKSPACE
+          cd ..
+          unzip -qq phplist-${RELEASE_VERSION}.zip
+          mv phplist-${RELEASE_VERSION} phplist
+          zip -rq9 phplist.zip phplist
+          [[ ! -d ~/.ssh ]] && mkdir ~/.ssh/
+          ls -l 
+          scp -P ${{ secrets.UPLOADER_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null phplist.zip download.phplist.org:${{ secrets.UPLOADER_PATH }}
+
       - name: Set up S3cmd cli tool
         uses: s3-actions/s3cmd@v1.1
         with:
