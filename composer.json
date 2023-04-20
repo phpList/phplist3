@@ -85,6 +85,10 @@
       {
             "type": "vcs",
             "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
+      },
+      {
+            "type": "vcs",
+            "url": "https://github.com/michield/phplist-plugin-addons.git"
       }
     ],
   "extra": {
@@ -106,7 +110,7 @@
     ]
   },
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.3",
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
@@ -123,7 +127,8 @@
     "bramley/phplist-plugin-captcha": "dev-master",
     "bramley/phplist-plugin-ckeditor": "dev-master",
     "bramley/phplist-plugin-segment": "dev-master",
-    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master"
+    "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
+    "michield/phplist-plugin-addons": "dev-master"
   },
   "require-dev": {
     "behat/behat": "@stable",
