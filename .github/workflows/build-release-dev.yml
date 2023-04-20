@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['8.1']
+        php-version: ['7.4']
         experimental: [false]
 
     steps:
