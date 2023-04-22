@@ -2163,12 +2163,6 @@ function createCachedLogoImage($size)
     if (empty($logoImageId)) {
         return false;
     }
-
-    $imgData = Sql_Fetch_Assoc_Query(sprintf('select data from %s where template = 0 and filename = "ORGANISATIONLOGO%d.png"',
-        $GLOBALS['tables']['templateimage'], $size));
-    if (!empty($imgData['data'])) {
-        return true;
-    }
     $imgData = Sql_Fetch_Assoc_Query(sprintf('select data from %s where id = %d and template = 0',
         $GLOBALS['tables']['templateimage'], $logoImageId));
     $imageContent = base64_decode($imgData['data']);
@@ -2238,7 +2232,7 @@ function parseLogoPlaceholders($content)
             $logoSize = '500';
         }
         createCachedLogoImage($logoSize);
-        $content = str_replace($logoInstance, 'ORGANISATIONLOGO'.$logoSize.'.png', $content);
+        $content = str_replace($logoInstance, '<img src="ORGANISATIONLOGO'.$logoSize.'.png" />', $content);
     }
 
     return $content;
