@@ -140,7 +140,7 @@ while ($row = Sql_Fetch_Array($req)) {
     );
 
     if (!$download) {
-        $element = shortenUrlDisplay($row['url']);
+        $element = shortenTextDisplay($row['url']);
     } else {
         $element = $row['url'];
     }

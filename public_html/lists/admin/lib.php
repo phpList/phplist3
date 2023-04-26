@@ -1971,36 +1971,15 @@ if (!function_exists('mb_strlen')) {
  * mostly used for columns in listings to retrict the width, particularly on mobile devices
  * it will show the full text as the title tip but restrict the size of the output
  *
+ * will also place a space after / and @ to facilitate wrapping in the browser
+ *
  */
 function shortenTextDisplay($text, $max = 30)
 {
-    $display = shortenText($text, $max);
-
-    return sprintf('<span title="%s">%s</span>', htmlspecialchars($text), $display);
-}
-/*
- * shortenEmailDisplay
- *
- * Similar to shortenTextDisplay() but adds a wbr element after @ to allow wrapping
- */
-function shortenEmailDisplay($text, $max = 30)
-{
-    $display = shortenText($text, $max);
-    $display = str_replace('@', '@<wbr>', $display);
-
-    return sprintf('<span title="%s">%s</span>', htmlspecialchars($text), $display);
-}
-
-/*
- * shortenUrlDisplay
- *
- * Similar to shortenTextDisplay() but adds a wbr element after each / to allow wrapping
- */
-function shortenUrlDisplay($text, $max = 30)
-{
     $display = preg_replace('!^https?://!i', '', $text);
     $display = shortenText($display, $max);
-    $display = str_replace('/', '/<wbr>', $display);
+    $display = str_replace('/', '/&#x200b;', $display);
+    $display = str_replace('@', '@&#x200b;', $display);
 
     return sprintf('<span title="%s">%s</span>', htmlspecialchars($text), $display);
 }
