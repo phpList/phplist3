@@ -2453,7 +2453,11 @@ function getClientIP()
         }
     }
 
-    $the_ip = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
+    if (isset($_SERVER['REMOTE_ADDR'])) {
+        $the_ip = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
+    } else {
+        $the_ip = '';
+    }
     //logEvent("REMOTE_ADDR ip=".$the_ip);
 
     return $the_ip;

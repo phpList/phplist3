@@ -23,10 +23,16 @@ class phpListAdminAuthentication
      */
     public function validateLogin($login, $password)
     {
+        if (empty($login) || ($password == '')) {
+            return array(0, s('Please enter your credentials.'));
+        }
         $query = sprintf('select password, disabled, id from %s where loginname = "%s"', $GLOBALS['tables']['admin'],
             sql_escape($login));
         $req = Sql_Query($query);
         $admindata = Sql_Fetch_Assoc($req);
+        if (!$admindata) {
+            return array(0, s('incorrect password'));
+        }
         $encryptedPass = hash(HASH_ALGO, $password);
         $passwordDB = $admindata['password'];
         //Password encryption verification.
@@ -39,9 +45,6 @@ class phpListAdminAuthentication
             $req = Sql_Query($query);
         }
 
-        if(empty($login)||($password=="")){
-            return array(0, s('Please enter your credentials.'));
-        }
         if ($admindata['disabled']) {
             return array(0, s('your account has been disabled'));
         }

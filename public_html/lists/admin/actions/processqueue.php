@@ -623,7 +623,7 @@ if ($num_messages) {
 } else {
     //# check for a future embargo, to be able to report when it expires.
     $future = Sql_Fetch_Assoc_Query('select unix_timestamp(embargo) - unix_timestamp(now()) as waittime '
-        ." from ${tables['message']}"
+        ." from {$tables['message']}"
         ." where status not in ('draft', 'sent', 'prepared', 'suspended')"
         .' and embargo > now()'
         .' order by embargo asc limit 1');
@@ -1327,7 +1327,7 @@ while ($message = Sql_fetch_array($messages)) {
             $msgperhour = (3600 / $totaltime) * $counters['sent'];
             $secpermsg = $totaltime / $counters['sent'];
             $timeleft = ($counters['total_users_for_message '.$messageid] - $counters['sent']) * $secpermsg;
-            $eta = date('D j M H:i', time() + $timeleft);
+            $eta = date('D j M H:i', time() + (int) $timeleft);
         } else {
             $msgperhour = 0;
             $secpermsg = 0;
