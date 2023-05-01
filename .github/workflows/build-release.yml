@@ -5,9 +5,10 @@ on:
   push:
     tags: v[1-9]+.[0-9]+.*
 
+
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
@@ -24,8 +25,8 @@ jobs:
 
       - name: Show the discovered version
         run: |
-          if [[ $RELEASE_VERSION = "refs/heads/master" ]]; then
-            echo "RELEASE_VERSION=testing-RC1" >> $GITHUB_ENV
+          if [[ ${{ secrets.BUILD_TEST }} ]]; then
+            echo "RELEASE_VERSION=build-testing-RC1" >> $GITHUB_ENV
           fi
           echo \$RELEASE_VERSION = $RELEASE_VERSION
           echo \$\{\{ env.RELEASE_VERSION \}\} = ${{ env.RELEASE_VERSION }}
@@ -66,7 +67,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd public_html/lists
-          wget https://github.com/phpList/base-distribution/archive/phplist3.zip
+          wget https://github.com/phpList/base-distribution/archive/refs/heads/phplist3.zip
           unzip phplist3.zip
           rm phplist3.zip
           mv base-distribution-phplist3 base
@@ -78,7 +79,7 @@ jobs:
           sudo systemctl start mysql.service
           sudo mysql -proot  -e 'drop database if exists phplistdb'
           sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'grant all on phplistdb.* to phplist@localhost identified by "phplist"'
+          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
 
       - name: Start Test Server
         run: |
@@ -225,27 +226,6 @@ jobs:
           name: "phpList Release File"
           retention-days: 3
 
-      - name: Upload the files to SF
-        run: |
-          export SSHPASS=${{ secrets.SF_PASS }}
-          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
-            RELEASE_FOLDER=phplist-development
-          else 
-            RELEASE_FOLDER=phplist
-          fi
-          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
-          cd $GITHUB_WORKSPACE
-          cd ..
-
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
-            cd /home/frs/project/phplist/$RELEASE_FOLDER
-            mkdir $RELEASE_VERSION
-            cd $RELEASE_VERSION
-            put phplist-${RELEASE_VERSION}.*
-            ls -l 
-            bye
-          EOF
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -266,3 +246,24 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMAGE }}:${{ env.RELEASE_VERSION }}
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
+
+      - name: Upload the files to SF
+        run: |
+          export SSHPASS=${{ secrets.SF_PASS }}
+          if [[ $RELEASE_VERSION =~ "-RC" ]]; then
+            RELEASE_FOLDER=phplist-development
+          else 
+            RELEASE_FOLDER=phplist
+          fi
+          echo "${{ secrets.SF_HOSTKEY }}" >> ~/.ssh/known_hosts
+          cd $GITHUB_WORKSPACE
+          cd ..
+
+          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+            cd /home/frs/project/phplist/$RELEASE_FOLDER
+            mkdir $RELEASE_VERSION
+            cd $RELEASE_VERSION
+            put phplist-${RELEASE_VERSION}.*
+            ls -l 
+            bye
+          EOF

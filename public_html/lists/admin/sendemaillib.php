@@ -309,6 +309,10 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
     if ($cached[$messageid]['template']) {
         // template used
+        // use only the content of the body element if it is present
+        if (preg_match('|<body.*?>(.+)</body>|is', $htmlcontent, $matches)) {
+            $htmlcontent = $matches[1];
+        }
         $htmlmessage = str_replace('[CONTENT]', $htmlcontent, $cached[$messageid]['template']);
     } else {
         // no template used
@@ -1443,16 +1447,18 @@ function precacheMessage($messageid, $forwardContent = 0)
 
     $cached[$messageid]['htmlformatted'] = strip_tags($cached[$messageid]['content']) != $cached[$messageid]['content'];
     $cached[$messageid]['sendformat'] = $message['sendformat'];
+
+    $cached[$messageid]['template'] = '';
+    $cached[$messageid]['template_text'] = '';
+    $cached[$messageid]['templateid'] = 0;
     if ($message['template']) {
         $req = Sql_Fetch_Row_Query("select template, template_text from {$GLOBALS['tables']['template']} where id = {$message['template']}");
-        $cached[$messageid]['template'] = stripslashes($req[0]);
-        $cached[$messageid]['template_text'] = stripslashes($req[1]);
-        $cached[$messageid]['templateid'] = $message['template'];
-        //   dbg("TEMPLATE: ".$req[0]);
-    } else {
-        $cached[$messageid]['template'] = '';
-        $cached[$messageid]['template_text'] = '';
-        $cached[$messageid]['templateid'] = 0;
+        if ($req) {
+            $cached[$messageid]['template'] = stripslashes($req[0]);
+            $cached[$messageid]['template_text'] = stripslashes($req[1]);
+            $cached[$messageid]['templateid'] = $message['template'];
+            //   dbg("TEMPLATE: ".$req[0]);
+        }
     }
 
     //# @@ put this here, so it can become editable per email sent out at a later stage
