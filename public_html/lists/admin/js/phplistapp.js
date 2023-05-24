@@ -77,8 +77,12 @@ function loadDivContent(index) {
         div = asyncLoadDiv[index];
         url = asyncLoadUrl[index];
         $("#"+div).html(busyImage + '<span class="loadingprogressbanner"></span>');
-        $("#"+div).load(url, function() {
-            loadDivContent(index + 1);
+        $("#"+div).load(url, function(response, status, xhr) {
+            if (status == "error") {
+                $("#"+div).html('');
+            } else {
+                setTimeout(() => loadDivContent(index + 1), asyncRequestInterval);
+            }
         });
     }
 }

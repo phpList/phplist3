@@ -57,7 +57,7 @@ if (!$id) {
     while ($row = Sql_Fetch_Array($req)) {
         $some = 1;
         if (!$download) {
-            $element = shortenTextDisplay($row['url'], 30);
+            $element = shortenUrlDisplay($row['url'], 30);
         } else {
             $element = $row['url'];
         }

@@ -2416,9 +2416,9 @@ class timer
         $end = $now['sec'] * 1000000 + $now['usec'];
         $elapsed = $end - $this->start;
         if ($seconds) {
-            return sprintf('%0.10f', $elapsed / 1000000);
+            return sprintf('%0.10F', $elapsed / 1000000);
         } else {
-            return sprintf('%0.10f', $elapsed);
+            return sprintf('%0.10F', $elapsed);
         }
     }
 
@@ -2434,9 +2434,9 @@ class timer
         $this->previous = $end;
 
         if ($seconds) {
-            return sprintf('%0.10f', $elapsed / 1000000);
+            return sprintf('%0.10F', $elapsed / 1000000);
         } else {
-            return sprintf('%0.10f', $elapsed);
+            return sprintf('%0.10F', $elapsed);
         }
     }
 }

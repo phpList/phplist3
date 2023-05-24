@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "649d2601a8490d6d847ec5d161288430",
+    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "b65aa6989ebffc6bdfa29a86bb29c93a37127d3f"
+                "reference": "71ff8e22177f322990500e056634bb5e41281885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/b65aa6989ebffc6bdfa29a86bb29c93a37127d3f",
-                "reference": "b65aa6989ebffc6bdfa29a86bb29c93a37127d3f",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/71ff8e22177f322990500e056634bb5e41281885",
+                "reference": "71ff8e22177f322990500e056634bb5e41281885",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.7",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.8",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2022-12-31T11:49:23+00:00"
+            "time": "2023-04-07T07:32:32+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -80,16 +80,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "19c14a89889a654af402c3f17832a25ac57cc471"
+                "reference": "86ee727fe8a6a394d0c7dad69781642d6e739d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/19c14a89889a654af402c3f17832a25ac57cc471",
-                "reference": "19c14a89889a654af402c3f17832a25ac57cc471",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/86ee727fe8a6a394d0c7dad69781642d6e739d0d",
+                "reference": "86ee727fe8a6a394d0c7dad69781642d6e739d0d",
                 "shasum": ""
             },
             "require": {
-                "chdemko/bitarray": "1.0.0",
+                "chdemko/bitarray": "1.2.0",
                 "jasongrimes/paginator": "1.0.2",
                 "jdorn/sql-formatter": "^1.2",
                 "jmathai/php-multi-curl": "dev-master",
@@ -97,7 +97,7 @@
                 "pelago/emogrifier": "~7.0",
                 "psr/container": "1.0.0",
                 "psr/log": "1.0.0",
-                "setasign/tfpdf": "1.32",
+                "setasign/tfpdf": "1.33",
                 "symfony/css-selector": "^4.4.23",
                 "symfony/filesystem": "3.4"
             },
@@ -136,10 +136,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.24.1",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.26.0",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2023-02-05T12:30:13+00:00"
+            "time": "2023-04-25T09:10:27+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -147,12 +147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-segment.git",
-                "reference": "9f2e3ef2d9a01219c93a3fdc675981b8ca84ab78"
+                "reference": "3c99756eb4c85a124a07172ea77eae00caf6499b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-segment/zipball/9f2e3ef2d9a01219c93a3fdc675981b8ca84ab78",
-                "reference": "9f2e3ef2d9a01219c93a3fdc675981b8ca84ab78",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-segment/zipball/3c99756eb4c85a124a07172ea77eae00caf6499b",
+                "reference": "3c99756eb4c85a124a07172ea77eae00caf6499b",
                 "shasum": ""
             },
             "default-branch": true,
@@ -170,36 +170,75 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-segment/tree/2.13.1",
+                "source": "https://github.com/bramley/phplist-plugin-segment/tree/2.13.2",
                 "issues": "https://github.com/bramley/phplist-plugin-segment/issues"
             },
-            "time": "2023-01-03T08:55:07+00:00"
+            "time": "2023-04-03T14:57:27+00:00"
         },
         {
-            "name": "chdemko/bitarray",
-            "version": "1.0.0",
+            "name": "bramley/phplist-plugin-updater",
+            "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/chdemko/php-bitarray.git",
-                "reference": "e7627033c8ed5198da16373ac120c759732a6711"
+                "url": "https://github.com/bramley/phplist-plugin-updater.git",
+                "reference": "c8d93dde1f631b1137c7445861ed72c1aeccb231"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chdemko/php-bitarray/zipball/e7627033c8ed5198da16373ac120c759732a6711",
-                "reference": "e7627033c8ed5198da16373ac120c759732a6711",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/c8d93dde1f631b1137c7445861ed72c1aeccb231",
+                "reference": "c8d93dde1f631b1137c7445861ed72c1aeccb231",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "symfony/filesystem": "3.4"
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "Updater plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.0.0",
+                "issues": "https://github.com/bramley/phplist-plugin-updater/issues"
+            },
+            "time": "2023-04-28T07:31:40+00:00"
+        },
+        {
+            "name": "chdemko/bitarray",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chdemko/php-bitarray.git",
+                "reference": "16dbf6c55840b2c84e62de82a84077bb65fc1d11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chdemko/php-bitarray/zipball/16dbf6c55840b2c84e62de82a84077bb65fc1d11",
+                "reference": "16dbf6c55840b2c84e62de82a84077bb65fc1d11",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "2.5.*@dev",
-                "satooshi/php-coveralls": "dev-master"
+                "joomla/coding-standards": "~2.0@alpha",
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpdocumentor/phpdocumentor": "2.9.*",
+                "phpunit/phpunit": "^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -209,7 +248,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "CECILL-B"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -219,7 +258,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "BitArray for PHP >= 5.4",
+            "description": "BitArray for PHP >= 5.5",
             "homepage": "http://github.com/chdemko/php-bitarray",
             "keywords": [
                 "array",
@@ -228,9 +267,9 @@
             ],
             "support": {
                 "issues": "https://github.com/chdemko/php-bitarray/issues",
-                "source": "https://github.com/chdemko/php-bitarray/tree/master"
+                "source": "https://github.com/chdemko/php-bitarray/tree/1.2.0"
             },
-            "time": "2014-06-18T12:21:40+00:00"
+            "time": "2018-05-28T14:48:09+00:00"
         },
         {
             "name": "davidbarratt/custom-installer",
@@ -374,7 +413,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jdorn/sql-formatter/issues",
-                "source": "https://github.com/jdorn/sql-formatter/tree/master"
+                "source": "https://github.com/jdorn/sql-formatter/tree/v1.2.17"
             },
             "time": "2014-01-12T16:20:24+00:00"
         },
@@ -478,45 +517,6 @@
                 "source": "https://github.com/katzgrau/KLogger/tree/1.2.2"
             },
             "time": "2022-07-29T20:41:14+00:00"
-        },
-        {
-            "name": "michield/phplist-plugin-addons",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/michield/phplist-plugin-addons.git",
-                "reference": "f4f6c873c0977498557a57e5d9f1c7488e15cf1e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/michield/phplist-plugin-addons/zipball/f4f6c873c0977498557a57e5d9f1c7488e15cf1e",
-                "reference": "f4f6c873c0977498557a57e5d9f1c7488e15cf1e",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/filesystem": "3.4"
-            },
-            "default-branch": true,
-            "type": "phplist-plugin",
-            "license": [
-                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
-            ],
-            "description": "Addons plugin for phpList",
-            "homepage": "https://www.phpList.org/",
-            "keywords": [
-                "email",
-                "manager",
-                "newsletter",
-                "permission marketing",
-                "phplist"
-            ],
-            "support": {
-                "issues": "https://github.com/phpList/phpList3/issues",
-                "forum": "https://discuss.phplist.org/",
-                "wiki": "http://resources.phplist.com/",
-                "source": "https://github.com/phpList/phpList3"
-            },
-            "time": "2023-03-26T19:19:30+00:00"
         },
         {
             "name": "michield/phplist-plugin-campaignslicer",
@@ -1214,16 +1214,16 @@
         },
         {
             "name": "setasign/tfpdf",
-            "version": "v1.32",
+            "version": "v1.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Setasign/tFPDF.git",
-                "reference": "a879b83485c263605cbf98ab2e8fdd4d37ca2707"
+                "reference": "050de12ab5359ce475dab49bae5cedbcf455f708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Setasign/tFPDF/zipball/a879b83485c263605cbf98ab2e8fdd4d37ca2707",
-                "reference": "a879b83485c263605cbf98ab2e8fdd4d37ca2707",
+                "url": "https://api.github.com/repos/Setasign/tFPDF/zipball/050de12ab5359ce475dab49bae5cedbcf455f708",
+                "reference": "050de12ab5359ce475dab49bae5cedbcf455f708",
                 "shasum": ""
             },
             "type": "library",
@@ -1262,9 +1262,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Setasign/tFPDF/issues",
-                "source": "https://github.com/Setasign/tFPDF/tree/master"
+                "source": "https://github.com/Setasign/tFPDF/tree/v1.33"
             },
-            "time": "2020-08-31T07:28:46+00:00"
+            "time": "2022-12-20T10:26:07+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -1471,16 +1471,16 @@
     "packages-dev": [
         {
             "name": "behat/behat",
-            "version": "v3.12.0",
+            "version": "v3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Behat.git",
-                "reference": "2f059c9172764ba1f1759b3679aca499b665330a"
+                "reference": "9dd7cdb309e464ddeab095cd1a5151c2dccba4ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Behat/zipball/2f059c9172764ba1f1759b3679aca499b665330a",
-                "reference": "2f059c9172764ba1f1759b3679aca499b665330a",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/9dd7cdb309e464ddeab095cd1a5151c2dccba4ab",
+                "reference": "9dd7cdb309e464ddeab095cd1a5151c2dccba4ab",
                 "shasum": ""
             },
             "require": {
@@ -1552,9 +1552,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Behat/Behat/issues",
-                "source": "https://github.com/Behat/Behat/tree/v3.12.0"
+                "source": "https://github.com/Behat/Behat/tree/v3.13.0"
             },
-            "time": "2022-11-29T15:30:11+00:00"
+            "time": "2023-04-18T15:40:53+00:00"
         },
         {
             "name": "behat/gherkin",
@@ -1992,16 +1992,16 @@
         },
         {
             "name": "genesis/behat-fail-aid",
-            "version": "3.7.4",
+            "version": "3.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/forceedge01/behat-fail-aid.git",
-                "reference": "43fb34def35a66a073d1b23cedf07d65fcf24572"
+                "reference": "bd25adc2b39352155b93eee7ba162194bb27259b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/43fb34def35a66a073d1b23cedf07d65fcf24572",
-                "reference": "43fb34def35a66a073d1b23cedf07d65fcf24572",
+                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/bd25adc2b39352155b93eee7ba162194bb27259b",
+                "reference": "bd25adc2b39352155b93eee7ba162194bb27259b",
                 "shasum": ""
             },
             "require": {
@@ -2048,28 +2048,28 @@
             ],
             "support": {
                 "issues": "https://github.com/forceedge01/behat-fail-aid/issues",
-                "source": "https://github.com/forceedge01/behat-fail-aid/tree/3.7.4"
+                "source": "https://github.com/forceedge01/behat-fail-aid/tree/3.7.5"
             },
-            "time": "2022-07-28T21:59:26+00:00"
+            "time": "2023-05-04T10:11:46+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.4.4",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "3cf1b6d4f0c820a2cf8bcaec39fc698f3443b5cf"
+                "reference": "b635f279edd83fc275f822a1188157ffea568ff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/3cf1b6d4f0c820a2cf8bcaec39fc698f3443b5cf",
-                "reference": "3cf1b6d4f0c820a2cf8bcaec39fc698f3443b5cf",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/b635f279edd83fc275f822a1188157ffea568ff6",
+                "reference": "b635f279edd83fc275f822a1188157ffea568ff6",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0",
                 "ralouphie/getallheaders": "^3.0"
             },
             "provide": {
@@ -2089,9 +2089,6 @@
                 "bamarni-bin": {
                     "bin-links": true,
                     "forward-command": false
-                },
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2153,7 +2150,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.4.4"
+                "source": "https://github.com/guzzle/psr7/tree/2.5.0"
             },
             "funding": [
                 {
@@ -2169,7 +2166,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-09T13:19:02+00:00"
+            "time": "2023-04-17T16:11:26+00:00"
         },
         {
             "name": "instaclick/php-webdriver",
@@ -2286,21 +2283,21 @@
         },
         {
             "name": "psr/http-factory",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-factory.git",
-                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be"
+                "reference": "e616d01114759c4c489f93b099585439f795fe35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
-                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/e616d01114759c4c489f93b099585439f795fe35",
+                "reference": "e616d01114759c4c489f93b099585439f795fe35",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.0.0",
-                "psr/http-message": "^1.0"
+                "psr/http-message": "^1.0 || ^2.0"
             },
             "type": "library",
             "extra": {
@@ -2320,7 +2317,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interfaces for PSR-7 HTTP message factories",
@@ -2335,31 +2332,31 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-factory/tree/master"
+                "source": "https://github.com/php-fig/http-factory/tree/1.0.2"
             },
-            "time": "2019-04-30T12:38:16+00:00"
+            "time": "2023-04-10T20:10:41+00:00"
         },
         {
             "name": "psr/http-message",
-            "version": "1.0.1",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -2374,7 +2371,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for HTTP messages",
@@ -2388,9 +2385,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-message/tree/master"
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2023-04-04T09:54:51+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -2559,16 +2556,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.21",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "c77433ddc6cdc689caf48065d9ea22ca0853fbd9"
+                "reference": "90f21e27d0d88ce38720556dd164d4a1e4c3934c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/c77433ddc6cdc689caf48065d9ea22ca0853fbd9",
-                "reference": "c77433ddc6cdc689caf48065d9ea22ca0853fbd9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/90f21e27d0d88ce38720556dd164d4a1e4c3934c",
+                "reference": "90f21e27d0d88ce38720556dd164d4a1e4c3934c",
                 "shasum": ""
             },
             "require": {
@@ -2633,12 +2630,12 @@
             "homepage": "https://symfony.com",
             "keywords": [
                 "cli",
-                "command line",
+                "command-line",
                 "console",
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.21"
+                "source": "https://github.com/symfony/console/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -2654,7 +2651,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-25T16:59:41+00:00"
+            "time": "2023-04-24T18:47:29+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2811,16 +2808,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v5.4.21",
+            "version": "v5.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "f0ae1383a8285dfc6752b8d8602790953118ff5a"
+                "reference": "1df20e45d56da29a4b1d8259dd6e950acbf1b13f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/f0ae1383a8285dfc6752b8d8602790953118ff5a",
-                "reference": "f0ae1383a8285dfc6752b8d8602790953118ff5a",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/1df20e45d56da29a4b1d8259dd6e950acbf1b13f",
+                "reference": "1df20e45d56da29a4b1d8259dd6e950acbf1b13f",
                 "shasum": ""
             },
             "require": {
@@ -2876,7 +2873,7 @@
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher/tree/v5.4.21"
+                "source": "https://github.com/symfony/event-dispatcher/tree/v5.4.22"
             },
             "funding": [
                 {
@@ -2892,7 +2889,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-14T08:03:56+00:00"
+            "time": "2023-03-17T11:31:58+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -3687,16 +3684,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.21",
+            "version": "v5.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "edac10d167b78b1d90f46a80320d632de0bd9f2f"
+                "reference": "8036a4c76c0dd29e60b6a7cafcacc50cf088ea62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/edac10d167b78b1d90f46a80320d632de0bd9f2f",
-                "reference": "edac10d167b78b1d90f46a80320d632de0bd9f2f",
+                "url": "https://api.github.com/repos/symfony/string/zipball/8036a4c76c0dd29e60b6a7cafcacc50cf088ea62",
+                "reference": "8036a4c76c0dd29e60b6a7cafcacc50cf088ea62",
                 "shasum": ""
             },
             "require": {
@@ -3753,7 +3750,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.21"
+                "source": "https://github.com/symfony/string/tree/v5.4.22"
             },
             "funding": [
                 {
@@ -3769,7 +3766,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-22T08:00:55+00:00"
+            "time": "2023-03-14T06:11:53+00:00"
         },
         {
             "name": "symfony/translation",
@@ -3940,16 +3937,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.4.21",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "3713e20d93e46e681e51605d213027e48dab3469"
+                "reference": "4cd2e3ea301aadd76a4172756296fe552fb45b0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3713e20d93e46e681e51605d213027e48dab3469",
-                "reference": "3713e20d93e46e681e51605d213027e48dab3469",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/4cd2e3ea301aadd76a4172756296fe552fb45b0b",
+                "reference": "4cd2e3ea301aadd76a4172756296fe552fb45b0b",
                 "shasum": ""
             },
             "require": {
@@ -3995,7 +3992,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v5.4.21"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -4011,7 +4008,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-21T19:46:44+00:00"
+            "time": "2023-04-23T19:33:36+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
@@ -4156,27 +4153,27 @@
         },
         {
             "name": "zbateson/stream-decorators",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zbateson/stream-decorators.git",
-                "reference": "7466ff45d249c86b96267a83cdae68365ae1787e"
+                "reference": "712b9e7d25dc665a6c64bdba65929bbb6f0932aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/7466ff45d249c86b96267a83cdae68365ae1787e",
-                "reference": "7466ff45d249c86b96267a83cdae68365ae1787e",
+                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/712b9e7d25dc665a6c64bdba65929bbb6f0932aa",
+                "reference": "712b9e7d25dc665a6c64bdba65929bbb6f0932aa",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/psr7": "^1.9 | ^2.0",
-                "php": ">=7.1",
+                "php": ">=7.2",
                 "zbateson/mb-wrapper": "^1.0.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "*",
                 "phpstan/phpstan": "*",
-                "phpunit/phpunit": "<=9.0"
+                "phpunit/phpunit": "<10.0"
             },
             "type": "library",
             "autoload": {
@@ -4207,7 +4204,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zbateson/stream-decorators/issues",
-                "source": "https://github.com/zbateson/stream-decorators/tree/1.1.0"
+                "source": "https://github.com/zbateson/stream-decorators/tree/1.2.0"
             },
             "funding": [
                 {
@@ -4215,7 +4212,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-11T23:22:44+00:00"
+            "time": "2023-04-19T16:56:59+00:00"
         }
     ],
     "aliases": [],
@@ -4238,7 +4235,7 @@
         "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-segment": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
-        "michield/phplist-plugin-addons": 20,
+        "bramley/phplist-plugin-updater": 20,
         "behat/behat": 0,
         "behat/mink-selenium2-driver": 0,
         "friends-of-behat/mink": 0,

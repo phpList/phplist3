@@ -88,7 +88,7 @@
       },
       {
             "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-addons.git"
+            "url": "https://github.com/bramley/phplist-plugin-updater.git"
       }
     ],
   "extra": {
@@ -128,7 +128,7 @@
     "bramley/phplist-plugin-ckeditor": "dev-master",
     "bramley/phplist-plugin-segment": "dev-master",
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
-    "michield/phplist-plugin-addons": "dev-master"
+    "bramley/phplist-plugin-updater": "dev-main"
   },
   "require-dev": {
     "behat/behat": "@stable",

@@ -20,6 +20,7 @@ class phplistPlugin
     public $documentationUrl = ''; //# link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
     public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
     public $system_root = ''; //# root dir of the phpList admin directory
+    public $dependencyFailure;
 
     //@@Some ideas to implement this:
     // * Start each method with if (!$this->enabled) return parent :: parentMethod($args);

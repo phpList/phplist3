@@ -25,7 +25,7 @@ jobs:
 
       - name: Show the discovered version
         run: |
-          if [[ ${{ secrets.BUILD_TEST }} ]]; then
+          if [[ ! -z "${{ secrets.BUILD_TEST }}" ]]; then
             echo "RELEASE_VERSION=build-testing-RC1" >> $GITHUB_ENV
           fi
           echo \$RELEASE_VERSION = $RELEASE_VERSION
