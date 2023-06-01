@@ -458,21 +458,6 @@ $lan = array(
         file_put_contents($file, $filecontents);
     }
 
-    public function getPluginBasedir()
-    {
-        $pl = $_GET['pi'];
-        $pl = preg_replace('/\W/', '', $pl);
-        $pluginroot = '';
-        if (isset($GLOBALS['plugins'][$pl]) && is_object($GLOBALS['plugins'][$pl])) {
-            $pluginroot = $GLOBALS['plugins'][$pl]->coderoot;
-        }
-        if (is_dir($pluginroot.'/lan/')) {
-            return $pluginroot.'/lan/';
-        } else {
-            return $pluginroot.'/';
-        }
-    }
-
     public function initFSTranslations($language = '')
     {
         if (empty($language)) {
@@ -497,7 +482,7 @@ $lan = array(
         saveConfig('lastlanguageupdate-'.$language, $time, 0);
     }
 
-    public function getTranslation($text, $page, $basedir)
+    public function getTranslation($text, $page)
     {
 
         //# try DB, as it will be the latest
@@ -549,18 +534,7 @@ $lan = array(
             $page = 'home';
         }
         $page = preg_replace('/\W/', '', $page);
-
-        if (!empty($_GET['pi'])) {
-            $plugin_languagedir = $this->getPluginBasedir();
-            if (is_dir($plugin_languagedir)) {
-                $translation = $this->getTranslation($text, $page, $plugin_languagedir);
-            }
-        }
-
-        //# if a plugin did not return the translation, find it in core
-        if (empty($translation)) {
-            $translation = $this->getTranslation($text, $page, $this->basedir);
-        }
+        $translation = $this->getTranslation($text, $page);
 
         //   print $this->language.' '.$text.' '.$translation. '<br/>';
 
