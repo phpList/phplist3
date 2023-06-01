@@ -196,41 +196,6 @@ class phplist_I18N
         } else {
             $_SESSION['hasI18Ntable'] = false;
         }
-
-        if (isset($_GET['origpage']) && !empty($_GET['ajaxed'])) { //# used in ajaxed requests
-            $page = basename($_GET['origpage']);
-        } elseif (isset($_GET['page'])) {
-            $page = basename($_GET['page']);
-        } else {
-            $page = 'home';
-        }
-        //# as we're including things, let's make sure it's clean
-        $page = preg_replace('/\W/', '', $page);
-
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/'.$page.'.php')) {
-            @include $this->basedir.$this->language.'/'.$page.'.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/'.$page.'.php';
-        }
-        $this->lan = $lan;
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/common.php')) {
-            @include $this->basedir.$this->language.'/common.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/common.php';
-        }
-        $this->lan += $lan;
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/frontend.php')) {
-            @include $this->basedir.$this->language.'/frontend.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/frontend.php';
-        }
-        $this->lan += $lan;
     }
 
     public function gettext($text)
@@ -560,24 +525,6 @@ $lan = array(
             if (!empty($gettext)) {
                 return $this->formatText($gettext);
             }
-        }
-
-        $lan = $this->lan;
-
-        if (trim($text) == '') {
-            return '';
-        }
-        if (strip_tags($text) == '') {
-            return $text;
-        }
-        if (isset($lan[$text])) {
-            return $this->formatText($lan[$text]);
-        }
-        if (isset($lan[strtolower($text)])) {
-            return $this->formatText($lan[strtolower($text)]);
-        }
-        if (isset($lan[strtoupper($text)])) {
-            return $this->formatText($lan[strtoupper($text)]);
         }
 
         return '';
