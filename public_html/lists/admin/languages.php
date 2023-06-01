@@ -482,7 +482,7 @@ $lan = array(
         saveConfig('lastlanguageupdate-'.$language, $time, 0);
     }
 
-    public function getTranslation($text, $page)
+    public function getTranslation($text)
     {
 
         //# try DB, as it will be the latest
@@ -523,25 +523,12 @@ $lan = array(
         if (strip_tags($text) == '') {
             return $text;
         }
-        $translation = '';
-
-        $this->basedir = dirname(__FILE__).'/lan/';
-        if (isset($_GET['origpage']) && !empty($_GET['ajaxed'])) { //# used in ajaxed requests
-            $page = basename($_GET['origpage']);
-        } elseif (isset($_GET['page'])) {
-            $page = basename($_GET['page']);
-        } else {
-            $page = 'home';
-        }
-        $page = preg_replace('/\W/', '', $page);
-        $translation = $this->getTranslation($text, $page);
-
-        //   print $this->language.' '.$text.' '.$translation. '<br/>';
 
         // spelling mistake, retry with old spelling
         if ($text == 'over threshold, user marked unconfirmed' && empty($translation)) {
             return $this->get('over treshold, user marked unconfirmed');
         }
+        $translation = $this->getTranslation($text);
 
         if (!empty($translation)) {
             return $translation;
