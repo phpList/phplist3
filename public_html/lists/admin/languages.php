@@ -207,19 +207,6 @@ class phplist_I18N
         //# as we're including things, let's make sure it's clean
         $page = preg_replace('/\W/', '', $page);
 
-        if (!empty($_GET['pi'])) {
-            $plugin_languagedir = $this->getPluginBasedir();
-            if (is_dir($plugin_languagedir)) {
-                $this->basedir = $plugin_languagedir;
-                if (isset($GLOBALS['plugins'][$_GET['pi']])) {
-                    $plugin = $GLOBALS['plugins'][$_GET['pi']];
-                    if ($plugin->enabled && $plugin->needI18N && $plugin->i18nLanguageDir()) {
-                        $this->basedir = $plugin->i18nLanguageDir();
-                    }
-                }
-            }
-        }
-
         $lan = array();
 
         if (is_file($this->basedir.$this->language.'/'.$page.'.php')) {
