@@ -603,15 +603,6 @@ if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION
 }
 
 /*
-if (USEFCK) {
-  $imgdir = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  if (!is_dir($imgdir) || !is_writeable ($imgdir)) {
-    Warn("The FCK image directory does not exist, or is not writable");
-  }
-}
-*/
-
-/*
  *
  * show global news, based on the version in use
  *
@@ -702,10 +693,6 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
  * end of news
  *
  * **/
-
-if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
-    Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
-}
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
     if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
