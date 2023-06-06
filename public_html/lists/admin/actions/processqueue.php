@@ -1080,13 +1080,15 @@ while ($message = Sql_fetch_array($messages)) {
                     }
                     $now = time();
                     $interval = $now - ($now % DOMAIN_BATCH_PERIOD);
-                    if (!isset($domainthrottle[$throttleDomain]) || !is_array($domainthrottle[$throttleDomain])) {
+                    if (!isset($domainthrottle[$throttleDomain])
+                        || $domainthrottle[$throttleDomain]['interval'] < $interval) {
+                        // new throttle domain or a new interval for existing domain
                         $domainthrottle[$throttleDomain] = array(
-                            'interval'  => '',
+                            'interval'  => $interval,
                             'sent'      => 0,
                             'attempted' => 0,
                         );
-                    } elseif (isset($domainthrottle[$throttleDomain]['interval']) && $domainthrottle[$throttleDomain]['interval'] == $interval) {
+                    } else {
                         $throttled = $domainthrottle[$throttleDomain]['sent'] >= DOMAIN_BATCH_SIZE;
                         if ($throttled) {
                             ++$counters['send blocked by domain throttle'];
@@ -1170,12 +1172,7 @@ while ($message = Sql_fetch_array($messages)) {
                     // tried to send email , process succes / failure
                     if ($success) {
                         if (USE_DOMAIN_THROTTLE) {
-                            if ($domainthrottle[$throttleDomain]['interval'] != $interval) {
-                                $domainthrottle[$throttleDomain]['interval'] = $interval;
-                                $domainthrottle[$throttleDomain]['sent'] = 1;
-                            } else {
-                                ++$domainthrottle[$throttleDomain]['sent'];
-                            }
+                            ++$domainthrottle[$throttleDomain]['sent'];
                         }
                         ++$counters['sent'];
                         ++$counters['sent_users_for_message '.$messageid];
