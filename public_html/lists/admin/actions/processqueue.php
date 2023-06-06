@@ -1217,28 +1217,31 @@ while ($message = Sql_fetch_array($messages)) {
                             // retry running faster after some more messages, to see if that helps
                             unset($running_throttle_delay);
                         }
-                    } elseif (MAILQUEUE_THROTTLE) {
-                        usleep(MAILQUEUE_THROTTLE * 1000000);
-                    } elseif (MAILQUEUE_BATCH_SIZE && MAILQUEUE_AUTOTHROTTLE) {
-                        $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
-                        $msgperhour = (3600 / $totaltime) * $counters['sent'];
-                        $msgpersec = $msgperhour / 3600;
+                    } elseif (!$throttled) {
+                        // apply delay only when attempted to send, not when throttled
+                        if (MAILQUEUE_THROTTLE) {
+                            usleep(MAILQUEUE_THROTTLE * 1000000);
+                        } elseif (MAILQUEUE_BATCH_SIZE && MAILQUEUE_AUTOTHROTTLE) {
+                            $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
+                            $msgperhour = (3600 / $totaltime) * $counters['sent'];
+                            $msgpersec = $msgperhour / 3600;
 
-                        //#11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
-                        //  $secpermsg = $totaltime / $counters['sent'];
-                        $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $counters['sent'];
-                        $delay = $target - $totaltime;
+                            //#11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
+                            //  $secpermsg = $totaltime / $counters['sent'];
+                            $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $counters['sent'];
+                            $delay = $target - $totaltime;
 
-                        if ($delay > 0) {
-                            if (VERBOSE) {
-                                /* processQueueOutput(s('waiting for').' '.$delay.' '.s('seconds').' '.
-                               s('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
-                               s('messages in ').' '.MAILQUEUE_BATCH_PERIOD.s('seconds')); */
-                                processQueueOutput(s('waiting for %.1f seconds to meet target of %s seconds per message',
-                                        $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
-                                );
+                            if ($delay > 0) {
+                                if (VERBOSE) {
+                                    /* processQueueOutput(s('waiting for').' '.$delay.' '.s('seconds').' '.
+                                   s('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
+                                   s('messages in ').' '.MAILQUEUE_BATCH_PERIOD.s('seconds')); */
+                                    processQueueOutput(s('waiting for %.1f seconds to meet target of %s seconds per message',
+                                            $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
+                                    );
+                                }
+                                usleep($delay * 1000000);
                             }
-                            usleep($delay * 1000000);
                         }
                     }
                 } else {
