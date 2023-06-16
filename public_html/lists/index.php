@@ -1234,7 +1234,11 @@ END;
         if (isset($regs[1]) && strlen($regs[1])) {
             $url = $regs[1];
             if (!preg_match('/^http/i', $url)) {
-                $url = 'http://'.$url;
+                if(isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') { // use https URL if protocol is enabled
+                    $url = 'https://'.$url;
+                } else {
+                    $url = 'http://'.$url;
+                }
             }
             $remote_content = fetchUrl($url);
         }
