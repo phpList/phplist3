@@ -87,7 +87,7 @@ if ($fwdid && $msgid) {
     echo '<div class="fright">'.PageLinkButton('userclicks&fwdid='.$fwdid.'&msgid='.$msgid.'&dl=1',
             s('Download subscribers')).'</div>';
     $query = sprintf('select htmlclicked, textclicked, user.email,user.id as userid,firstclick,latestclick,clicked
-    from %s as uml_click, %s as user where uml_click.userid = user.id 
+    from %s as uml_click, %s as user where uml_click.userid = user.id
     and uml_click.forwardid = %d and uml_click.messageid = %d
     and uml_click.clicked', $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['user'], $fwdid, $msgid);
 } elseif ($userid && $msgid) {
@@ -105,7 +105,7 @@ if ($fwdid && $msgid) {
   <tr><td>' .$GLOBALS['I18N']->get('Sent').'<td><td>'.$messagedata['sent'].'</td></tr>
   </table>';
     $query = sprintf('select htmlclicked, textclicked,user.email,user.id as userid,firstclick,latestclick,
-    clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id 
+    clicked,messageid,forwardid,url from %s as uml_click, %s as user, %s as forward where uml_click.userid = user.id
     and uml_click.userid = %d and uml_click.messageid = %d and forward.id = uml_click.forwardid',
         $GLOBALS['tables']['linktrack_uml_click'], $GLOBALS['tables']['user'], $GLOBALS['tables']['linktrack_forward'],
         $userid, $msgid);
@@ -151,7 +151,7 @@ if ($fwdid && $msgid) {
         MAX(latestclick) AS latestclick,
         SUM(clicked) AS clicked
         FROM %s AS uml_click
-        JOIN %s AS user ON uml_click.userid = user.id 
+        JOIN %s AS user ON uml_click.userid = user.id
         WHERE uml_click.messageid = %d
         GROUP BY uml_click.userid
         ',
@@ -177,18 +177,18 @@ if ($fwdid && $msgid) {
                 messageid SEPARATOR \' \') AS messageid,
                 forwardid,
                 url
-        FROM 
+        FROM
             '.$GLOBALS['tables']['linktrack_uml_click'].' AS uml_click
         JOIN
             '.$GLOBALS['tables']['user'].' AS user ON uml_click.userid = user.id
-        JOIN 
+        JOIN
             '.$GLOBALS['tables']['linktrack_forward'].' AS forward ON forward.id = uml_click.forwardid
-        WHERE 
+        WHERE
             uml_click.userid = '.sprintf('%d', $userid).'
-        GROUP BY 
+        GROUP BY
             forwardid
-        ORDER BY 
-            clicked DESC, 
+        ORDER BY
+            clicked DESC,
             url
         ';
 }
@@ -214,13 +214,13 @@ while ($row = Sql_Fetch_Array($req)) {
         $downloadContent .= $row['email'].PHP_EOL;
     } else {
         if (!$userid) {
-            $element = shortenTextDisplay($row['email']);
+            $element = shortenEmailDisplay($row['email']);
             $ls->addElement($element, PageUrl2('user&amp;id='.$row['userid']));
             $ls->setClass($element, 'row1');
         } else {
             //    $link = substr($row['url'],0,50);
             //    $element = PageLink2($link,$link,PageUrl2('uclicks&amp;id='.$row['forwardid']),"",true,$row['url']);
-            $element = shortenTextDisplay($row['url']);
+            $element = shortenUrlDisplay($row['url']);
             $ls->addElement($element, PageUrl2('uclicks&amp;id='.$row['forwardid']));
             $ls->setClass($element, 'row1');
             $messageLinks = preg_replace_callback(

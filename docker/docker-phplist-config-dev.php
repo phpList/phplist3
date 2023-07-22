@@ -20,3 +20,10 @@ define('DEVVERSION',true);
 
 $developer_email = 'phplist@test-mailhost.phplist.com';
 define('PHPLIST_POWEREDBY_URLROOT','https://d3u7tsw7cvar0t.cloudfront.net/images');
+
+$addonsUpdater = [
+    'work' => '/var/tmp/phplistupdate',
+];
+$updaterConfig = [
+    'work' => '/var/tmp/phplistupdate',
+];

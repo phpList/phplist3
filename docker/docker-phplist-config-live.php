@@ -14,3 +14,10 @@ define ('MANUALLY_PROCESS_QUEUE',0);
 define('PHPMAILER_SECURE',0);
 define('CHECK_REFERRER',false);
 define('PHPLIST_POWEREDBY_URLROOT','https://d3u7tsw7cvar0t.cloudfront.net/images');
+
+$addonsUpdater = [
+    'work' => '/var/tmp/phplistupdate',
+];
+$updaterConfig = [
+    'work' => '/var/tmp/phplistupdate',
+];

@@ -11,6 +11,7 @@
 <img src="https://translate.phplist.org/widgets/phplist/-/svg-badge.svg" alt="Translation status" />
 </a>
 <a href="https://hub.docker.com/r/phplist/phplist/tags"><img alt="Docker Image Version (latest semver)" src="https://img.shields.io/docker/v/phplist/phplist?label=docker&sort=semver"></a>
+<img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/phplist/phplist?label=docker%20pulls&logo=docker%20pulls">
 
 <br/>
 
@@ -18,11 +19,11 @@ Fully functional Open Source email marketing manager for creating, sending, inte
 
 phpList includes analytics, segmentation, content personalisation, bounce processing, plugin-based architecture, and multiple APIs. Used in 95 countries, available in 20 languages, and used to send more than 25 billion campaign messages in 2018.
 
-Deploy it on your own server, or get a hosted account at http://phplist.com.
+Deploy it on your own server, or get a hosted account at https://phplist.com.
 
 <div align="center" width="100%">
-  <a href="http://phplist.org/">Community</a> |
-  <a href="http://phplist.com/">Hosted</a> |
+  <a href="https://phplist.org/">Community</a> |
+  <a href="https://phplist.com/">Hosted</a> |
   <a href="https://demo.phplist.org">Demo</a>
   <br>
   <img src="https://www.phplist.com/site/images/readme-images/panel.png" align="center" width="100%">

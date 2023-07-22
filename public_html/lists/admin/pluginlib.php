@@ -4,12 +4,14 @@ require_once dirname(__FILE__).'/accesscheck.php';
 require_once dirname(__FILE__).'/EmailSender.php';
 include_once dirname(__FILE__).'/defaultplugin.php';
 require_once dirname(__FILE__).'/AnalyticsQuery.php';
+require_once dirname(__FILE__).'/Updater.php';
 
 $GLOBALS['plugins'] = array();
 $GLOBALS['editorplugin'] = false;
 $GLOBALS['authenticationplugin'] = false;
 $GLOBALS['emailsenderplugin'] = false;
 $GLOBALS['analyticsqueryplugin'] = false;
+$GLOBALS['updaterplugin'] = false;
 
 $pluginRootDirs = array();
 if (PLUGIN_ROOTDIRS != '') {
@@ -121,6 +123,10 @@ foreach ($pluginFiles as $file) {
                         $GLOBALS['analyticsqueryplugin'] = $pluginInstance;
                         // Add 'plugin' as an option on the Settings page
                         $default_config['analytic_tracker']['values'] += array('plugin' => $analyticsqueryplugin->name);
+                    }
+
+                    if (!$GLOBALS['updaterplugin'] && $pluginInstance instanceof Updater) {
+                        $GLOBALS['updaterplugin'] = $pluginInstance;
                     }
 
                     if (!empty($pluginInstance->DBstruct)) {

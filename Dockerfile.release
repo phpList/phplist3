@@ -37,6 +37,8 @@ RUN tar zxf phplist-$VERSION.tgz
 RUN mv phplist-$VERSION/* /var/www/phpList3/
 RUN rm -rf /phplist-$VERSION*
 
+RUN mkdir -p /var/tmp/phplistupdate && chown www-data /var/tmp/phplistupdate
+
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
     cd /var/www/ && find . -type d -name .git -print0 | xargs -0 rm -rf && \
     find . -type d -print0 | xargs -0 chmod 755 && \
