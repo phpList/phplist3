@@ -117,8 +117,6 @@ class phplistPlugin
     
      */
 
-    public $dependencyFailure = "";
-
     /**
      * dependency check
      *
