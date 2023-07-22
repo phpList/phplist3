@@ -133,6 +133,10 @@ if ($id) {
     include dirname(__FILE__).'/actions/storemessage.php';
 }
 
+if (empty($messagedata['message'])) {
+  $messagedata['message'] = "";
+}
+
 $htmlformatted = strip_tags($messagedata['message']) != $messagedata['message'];
 
 // sanitise the header fields, what else do we need to check on?

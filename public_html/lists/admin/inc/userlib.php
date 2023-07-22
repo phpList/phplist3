@@ -411,7 +411,9 @@ function UserAttributeValue($user = 0, $attribute = 0)
         $att_table = 'attribute';
         $user_att_table = 'user_attribute';
     }
+    $value = "";
     $att = Sql_Fetch_array_Query("select * from $att_table where id = $attribute");
+    if (!empty($att))
     switch ($att['type']) {
         case 'checkboxgroup':
             //     print "select value from $user_att_table where userid = $user and attributeid = $attribute";

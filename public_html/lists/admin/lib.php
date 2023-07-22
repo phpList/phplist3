@@ -292,7 +292,7 @@ function loadMessageData($msgid)
 
         //# can't do "ungreedy matching, in case the URL has placeholders, but this can potentially
         //# throw problems
-        if (preg_match('/\[URL:(.*)\]/i', $messagedata['message'], $regs)) {
+        if (!empty($messagedata['message']) && preg_match('/\[URL:(.*)\]/i', $messagedata['message'], $regs)) {
             $messagedata['sendurl'] = $regs[1];
         }
     }
