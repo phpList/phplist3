@@ -42,6 +42,8 @@ class ONYX_RSS
     public $data;
     public $type;
     public $lasterror;
+
+    private $context;
    /* For when PHP v.5 is released
     * http://www.phpvolcano.com/eide/php5.php?page=variables
     * private $parser;

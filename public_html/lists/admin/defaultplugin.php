@@ -20,6 +20,7 @@ class phplistPlugin
     public $documentationUrl = ''; //# link to documentation for this plugin (eg https://resources.phplist.com/plugin/pluginname
     public $enabled = 1; // use directly, can be privitsed later and calculated with __get and __set
     public $system_root = ''; //# root dir of the phpList admin directory
+    public $dependencyFailure;
 
     //@@Some ideas to implement this:
     // * Start each method with if (!$this->enabled) return parent :: parentMethod($args);
@@ -47,6 +48,12 @@ class phplistPlugin
     public $importTabTitle = ''; //# title of the tab for the import page
 
     public $needI18N = 0;
+
+    // Configuration items for the Settings page
+    public $settings = [];
+
+    // File system path to the plugin file
+    public $origin = '';
 
     /**
      * set to true, if this plugin provides the WYSIWYG editor for the send page
@@ -237,11 +244,9 @@ class phplistPlugin
      */
     public function activate()
     {
-        if (isset($this->settings)) {
-            foreach ($this->settings as $item => $itemDetails) {
-                $GLOBALS['default_config'][$item] = $itemDetails;
-                $GLOBALS['default_config'][$item]['hidden'] = false;
-            }
+        foreach ($this->settings as $item => $itemDetails) {
+            $GLOBALS['default_config'][$item] = $itemDetails;
+            $GLOBALS['default_config'][$item]['hidden'] = false;
         }
     }
 
@@ -1091,7 +1096,7 @@ class phplistPlugin
       * @param string $emailaddress
       * @return bool true if email address should is considered blacklisted
      */
-    public function isBlackListedEmail($email = '') 
+    public function isBlackListedEmail($email = '')
     {
         return false;
     }

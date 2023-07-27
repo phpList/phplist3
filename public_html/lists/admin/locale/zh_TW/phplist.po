@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chinese (Traditional) (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2022-11-02 19:04+0000\n"
+"Last-Translator: dayadiguo <dayadiguo@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <http://translate.phplist.org/projects/"
-"phplist/phplist-languages/zh_Hant/>\n"
-"Language: zh_Hant\n"
+"phplist/phplist3/zh_Hant/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1035,7 +1035,7 @@ msgstr "您的資料庫需要升級，請確認在升級前，先行備份您的
 #: public_html/databasestructure.php:85,
 #: public_html/databasestructure.php:100
 msgid "Entered"
-msgstr "加入"
+msgstr "創建日期"
 
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157

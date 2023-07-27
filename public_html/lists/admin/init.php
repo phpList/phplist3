@@ -597,8 +597,8 @@ if (!defined('MAX_AVATAR_SIZE')) {
     define('MAX_AVATAR_SIZE', 2000);
 }
 if (!defined('DEFAULT_MESSAGEAGE')) {
-    define('DEFAULT_MESSAGEAGE', 604800);
-} //# 7 days in seconds
+    define('DEFAULT_MESSAGEAGE', 691200);
+} //# 8 days in seconds
 if (!defined('ADD_EMAIL_THROTTLE')) {
     define('ADD_EMAIL_THROTTLE', 1);
 } //# seconds between addemail ajax requests
@@ -635,12 +635,15 @@ if (!defined('POPBEFORESMTP_DEBUG')) {
 if (!defined('USERSPAGE_MAX')) {
     define('USERSPAGE_MAX', 1000);
 }
- if (!defined('GOOGLE_SENDERID')) {
+if (!defined('LISTPAGE_MAX')) {
+    define('LISTPAGE_MAX', 10);
+}
+if (!defined('GOOGLE_SENDERID')) {
     define('GOOGLE_SENDERID', '');
 }
 // if false, it will disable the automatic updater.
 if (!defined ('ALLOW_UPDATER')){
-    define('ALLOW_UPDATER', true);
+    define('ALLOW_UPDATER', false);
 }
 if (!defined ('USE_REPLY_TO')){
     define('USE_REPLY_TO', false);
@@ -665,11 +668,7 @@ if (!defined('AWS_POSTURL')) {
     define('AWS_POSTURL', 'https://email.us-east-1.amazonaws.com/');
 }
 if (!defined('PHPLIST_POWEREDBY_URLROOT')) {
-    if ($GLOBALS['public_scheme'] == 'https') {
-        define('PHPLIST_POWEREDBY_URLROOT', 'https://d3u7tsw7cvar0t.cloudfront.net/images');
-    } else {
-        define('PHPLIST_POWEREDBY_URLROOT', 'http://powered.phplist.com/images');
-    }
+    define('PHPLIST_POWEREDBY_URLROOT', 'https://d3u7tsw7cvar0t.cloudfront.net/images');
 }
 
 if (!isset($allowed_referrers) || !is_array($allowed_referrers)) {
@@ -794,9 +793,13 @@ if (!defined('USE_PHPMAILER6')) {
 }
 if (!defined('HTTP_PROXY_HOST')) {
     define('HTTP_PROXY_HOST', false);
-} 
+}
 if (!defined('HTTP_PROXY_PORT')) {
     define('HTTP_PROXY_PORT', false);
+}
+// interval in milliseconds between asynchronous requests
+if (!defined('ASYNC_REQUEST_INTERVAL')) {
+    define('ASYNC_REQUEST_INTERVAL', 0);
 }
 
 if (!isset($GLOBALS['export_mimetype'])) {
