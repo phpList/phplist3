@@ -1509,7 +1509,11 @@ function hostName()
 function Redirect($page)
 {
     $website = hostName();
-    header('Location: '.$GLOBALS['admin_scheme'].'://'.$website.$GLOBALS['adminpages']."/?page=$page");
+    if (defined('ADMIN_WWWROOT')) {
+      header('Location: '.ADMIN_WWWROOT."/?page=$page");
+    } else {
+      header('Location: '.$GLOBALS['admin_scheme'].'://'.$website.$GLOBALS['adminpages']."/?page=$page");
+    }
     exit;
 }
 

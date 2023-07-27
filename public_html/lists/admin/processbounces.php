@@ -580,7 +580,11 @@ if (count($bouncerules)) {
                 if ($row['user']) {
                     $userdata = Sql_Fetch_Array_Query("select * from {$tables['user']} where id = ".$row['user']);
                 }
-                $report_linkroot = $GLOBALS['admin_scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
+                if (defined('ADMIN_WWWROOT')) {
+                  $report_linkroot = $GLOBALS['admin_scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
+                } else {
+                  $report_linkroot = ADMIN_WWWROOT;
+                }
 
                 Sql_Query(sprintf('update %s set count = count + 1 where id = %d',
                     $GLOBALS['tables']['bounceregex'], $rule['id']));
@@ -797,7 +801,12 @@ while ($user = Sql_Fetch_Row($userid_req)) {
                         Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $tables['user'], $user[0]));
                         $email_req = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d', $tables['user'],
                             $user[0]));
-                        $unsubscribed_users .= $email_req[0]."\t\t($cnt)\t\t".$GLOBALS['scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&amp;id='.$user[0].PHP_EOL;
+                        $unsubscribed_users .= $email_req[0]."\t\t($cnt)\t\t";
+                        if (defined('ADMIN_WWWROOT')) {
+                          $unsubscribed_users .= ADMIN_WWWROOT.'/?page=user&amp;id='.$user[0].PHP_EOL;
+                        } else {
+                          $unsubscribed_users .= $GLOBALS['scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&amp;id='.$user[0].PHP_EOL;
+                        }
                         $unsubscribed = 1;
                     }
                     if (BLACKLIST_EMAIL_ON_BOUNCE && $cnt >= BLACKLIST_EMAIL_ON_BOUNCE) {

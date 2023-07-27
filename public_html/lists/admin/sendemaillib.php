@@ -259,7 +259,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
       You can configure how the credits are added to your pages and emails in your
       config file.
 
-      Michiel Dethmers, phpList Ltd 2003 - 2013
+      Michiel Dethmers, phpList Ltd 2003 - 2023
     */
     if (!EMAILTEXTCREDITS) {
         $html['signature'] = $PoweredByImage; //'<div align="center" id="signature"><a href="https://www.phplist.com"><img src="powerphplist.png" width=88 height=31 title="Powered by PHPlist" alt="Powered by PHPlist" border="0" /></a></div>';
@@ -423,15 +423,15 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if (ALWAYS_ADD_USERTRACK) {
         if (stripos($htmlmessage, '</body>')) {
             $htmlmessage = str_replace('</body>',
-                '<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" /></body>',
+                '<img src="'.$GLOBALS['publicBaseUrl'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" /></body>',
                 $htmlmessage);
         } else {
-            $htmlmessage .= '<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />';
+            $htmlmessage .= '<img src="'.$GLOBALS['publicBaseUrl'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />';
         }
     } else {
         //# can't use str_replace or str_ireplace, because those replace all, and we only want to replace one
         $htmlmessage = preg_replace('/\[USERTRACK\]/i',
-            '<img src="'.$GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />',
+            '<img src="'.$GLOBALS['publicBaseUrl'].'/ut.php?u='.$hash.'&amp;m='.$messageid.'" width="1" height="1" border="0" alt="" />',
             $htmlmessage, 1);
     }
     // make sure to only include usertrack once, otherwise the stats would go silly
@@ -540,16 +540,16 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $masked = preg_replace('/=$/', '', $masked);
                 $masked = urlencode($masked);
                 if (SIGN_WITH_HMAC) {
-                    $masked .= '&amp;hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
+                    $masked .= '&amp;hm='.hash_hmac(HASH_ALGO, sprintf('%s/lt.php?tid=%s', $GLOBALS['publicBaseUrl'], $masked), HMACKEY);
                 }
 
+                ## this may need removing, CLICKTRACK_LINKMAP is badly documented, so slightly unclear how this works
                 if (!CLICKTRACK_LINKMAP) {
-                    $newlink = sprintf('<a %shref="%s://%s/lt.php?tid=%s" %s>%s</a>', $links[1][$i],
-                        $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked, $links[4][$i],
+                    $newlink = sprintf('<a %shref="%s/lt.php?tid=%s" %s>%s</a>', $links[1][$i],
+                        $GLOBALS['publicBaseUrl'], $masked, $links[4][$i],
                         $links[5][$i]);
                 } else {
-                    $newlink = sprintf('<a %shref="%s://%s%s" %s>%s</a>', $links[1][$i], $GLOBALS['public_scheme'],
-                        $website.CLICKTRACK_LINKMAP, $masked, $links[4][$i], $links[5][$i]);
+                    $newlink = sprintf('<a %shref="%s%s" %s>%s</a>', $links[1][$i], $GLOBALS['publicBaseUrl'].CLICKTRACK_LINKMAP, $masked, $links[4][$i], $links[5][$i]);
                 }
                 $htmlmessage = str_replace($links[0][$i], $newlink, $htmlmessage);
             }
@@ -584,13 +584,11 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 }
 
                 if (!CLICKTRACK_LINKMAP) {
-                    $newlinks[$linkUUID] = sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'],
-                        $website.$GLOBALS['pageroot'], $masked);
+                    $newlinks[$linkUUID] = sprintf('%s/lt.php?tid=%s', $GLOBALS['publicBaseUrl'], $masked);
                 } else {
-                    $newlinks[$linkUUID] = sprintf('%s://%s%s', $GLOBALS['public_scheme'], $website.CLICKTRACK_LINKMAP,
+                    $newlinks[$linkUUID] = sprintf('%s%s', $GLOBALS['publicBaseUrl'].CLICKTRACK_LINKMAP,
                         $masked);
                 }
-
                 $textmessage = str_replace($links[1][$i], '[%%%'.$linkUUID.'%%%]', $textmessage);
             }
         }

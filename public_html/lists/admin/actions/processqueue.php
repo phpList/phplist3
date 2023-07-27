@@ -382,8 +382,8 @@ function finish($flag, $message, $script_stage)
 
         // If plugins have not sent the report, send it the default way
         if (!$reportSent) {
-            $messageWithIntro = s('The following events occured while processing the message queue:')."\n".$message;
-            $messageWithIntroAndFooter = $messageWithIntro."\n\n".s('To stop receiving these reports read:').' https://resources.phplist.com/system/config/send_queue_processing_report'."\n\n";
+            $messageWithIntro = '<br/>'.s('The following events occured while processing the message queue:')."<br/>\n".$message;
+            $messageWithIntroAndFooter = $messageWithIntro."<br/>\n<br/>\n".s('To stop receiving these reports read:').' https://resources.phplist.com/system/config/send_queue_processing_report'."\n\n";
             sendReport($subject, $messageWithIntroAndFooter);
         }
     }
@@ -458,7 +458,7 @@ function processQueueOutput($message, $logit = 1, $target = 'summary')
         flush();
     }
 
-    $report .= "\n$infostring $message";
+    $report .= "<br/>\n$infostring $message";
     if ($logit) {
         logEvent($message);
     }
@@ -715,10 +715,14 @@ while ($message = Sql_fetch_array($messages)) {
     if (!empty($msgdata['notify_start']) && !isset($msgdata['start_notified'])) {
         $notifications = explode(',', $msgdata['notify_start']);
         foreach ($notifications as $notification) {
+            if (defined('ADMIN_WWWROOT')) {
+              $progressUrl = ADMIN_WWWROOT.'/?page=messages&amp;tab=active';
+            } else {
+              $progressUrl = $GLOBALS['admin_scheme'].'://'.hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active';
+            }
             sendMail($notification, s('Campaign started'),
                 s('phplist has started sending the campaign with subject %s', $msgdata['subject'])."\n\n".
-                s('to view the progress of this campaign, go to %s://%s', $GLOBALS['admin_scheme'],
-                    hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active'));
+                s('to view the progress of this campaign, go to %s',$progressUrl));
         }
         Sql_Query(sprintf('insert ignore into %s (name,id,data) values("start_notified",%d,now())',
             $GLOBALS['tables']['messagedata'], $messageid));
@@ -1369,10 +1373,14 @@ while ($message = Sql_fetch_array($messages)) {
             if (!empty($msgdata['notify_end']) && !isset($msgdata['end_notified'])) {
                 $notifications = explode(',', $msgdata['notify_end']);
                 foreach ($notifications as $notification) {
+                    if (defined('ADMIN_WWWROOT')) {
+                      $resultsUrl = ADMIN_WWWROOT.'/?page=statsoverview&id='.$messageid;
+                    } else {
+                      $resultsUrl = $GLOBALS['admin_scheme'].'://'.hostName().$GLOBALS['adminpages'].'/?page=statsoverview&id='.$messageid;
+                    }
                     sendMail($notification, $GLOBALS['I18N']->get('Message campaign finished'),
                         s('phpList has finished sending the campaign with subject %s', $msgdata['subject'])."\n\n".
-                        s('to view the statistics of this campaign, go to %s://%s', $GLOBALS['admin_scheme'],
-                            getConfig('website').$GLOBALS['adminpages'].'/?page=statsoverview&id='.$messageid)
+                        s('to view the statistics of this campaign, go to %s',$resultsUrl )
                     );
                 }
                 Sql_Query(sprintf('insert ignore into %s (name,id,data) values("end_notified",%d,now())',

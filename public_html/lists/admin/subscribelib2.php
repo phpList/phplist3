@@ -218,7 +218,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
         $userid = $old_data['id'];
         $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-        $history_entry = ''; //http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+        $history_entry = ''; 
 
         $query = sprintf('update %s set email = "%s",htmlemail = %d,subscribepage = %d where id = %d',
             $GLOBALS['tables']['user'], addslashes($email), $htmlemail, $id, $userid);
@@ -327,16 +327,20 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     echo $subscribepagedata['header'];
 
     if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] && !(isset($_GET['p']) && $_GET['p'] == 'asubscribe')) {
-        echo '<p class="information"><b>You are logged in as '.$_SESSION['logindetails']['adminname'].'</b></p>';
-        echo '<p><a href="'.$adminpages.'" class="button">Back to the main admin page</a></p>';
+        echo '<p class="information"><b>'.s('You are logged in as %s',$_SESSION['logindetails']['adminname']).'</b></p>';
+        if (defined('ADMIN_WWWROOT')) {
+          echo '<p><a href="'.$adminpages.'" class="button">'.s('Back to the main admin page').'</a></p>';
+        } else {
+          echo '<p><a href="'.ADMIN_WWWROOT.'" class="button">'.s('Back to the main admin page').'</a></p>';
+        }
 
         if ($_POST['makeconfirmed'] && !$blacklisted) {
             $sendrequest = 0;
             Sql_Query(sprintf('update %s set confirmed = 1 where email = "%s"', $GLOBALS['tables']['user'], $email));
             addUserHistory($email, $history_subject.' by '.$_SESSION['logindetails']['adminname'], $history_entry);
         } elseif ($_POST['makeconfirmed']) {
-            echo '<p class="information">'.$GLOBALS['I18N']->get('Email is blacklisted, so request for confirmation has been sent.').'<br/>';
-            echo $GLOBALS['I18N']->get('If user confirms subscription, they will be removed from the blacklist.').'</p>';
+            echo '<p class="information">'.s('Email is blacklisted, so request for confirmation has been sent.').'<br/>';
+            echo s('If user confirms subscription, they will be removed from the blacklist.').'</p>';
 
             $sendrequest = 1;
         } else {
@@ -475,7 +479,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
     // read the current values to compare changes
     $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $GLOBALS['tables']['user'], $userid));
     $old_data = array_merge($old_data, getUserAttributeValues('', $userid));
-    $history_entry = ''; //'http://'.getConfig("website").$GLOBALS["adminpages"].'/?page=user&amp;id='.$userid."\n\n";
+    $history_entry = '';
 
     if (ASKFORPASSWORD && $_POST['password']) {
         if (ENCRYPTPASSWORD) {

@@ -23,7 +23,13 @@ if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php')) {
 
 $envHost = getEnv('HOSTNAME');
 $envPort = getEnv('PORT');
-if (isset($_SERVER['HTTP_HOST'])) {
+if (defined('USER_WWWROOT')) {
+  $domainParts = parse_url(USER_WWWROOT);
+  $D_website = $domainParts['host'];
+  if ($domainParts['port'] != 80 && $domainParts['port'] != 443) {
+      $D_website .= ":".$domainParts['port'];
+  }
+} elseif (isset($_SERVER['HTTP_HOST'])) {
     $D_website = $_SERVER['HTTP_HOST'];
 } elseif (isset($_SERVER['SERVER_NAME'])) {
     $D_website = $_SERVER['SERVER_NAME'];
@@ -41,7 +47,9 @@ $D_domain = $D_website;
 if (preg_match("#^www\.(.*)#i", $D_domain, $regs)) {
     $D_domain = $regs[1];
 }
-
+if (preg_match("#(.*):(\d+)#i", $D_domain, $regs)) {
+    $D_domain = $regs[1];
+}
 // for starters, you want to leave this line as it is.
 $default_config = array(
 
@@ -299,7 +307,7 @@ $default_config = array(
 
     // the location of your subscribe script
     'subscribeurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=subscribe",
+        'value'       => $publicBaseUrl."/?p=subscribe",
         'description' => s('URL where subscribers can sign up'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -308,7 +316,7 @@ $default_config = array(
 
     // the location of your unsubscribe script:
     'unsubscribeurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=unsubscribe",
+        'value'       => $publicBaseUrl."/?p=unsubscribe",
         'description' => s('URL where subscribers can unsubscribe'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -318,7 +326,7 @@ $default_config = array(
     //0013076: Blacklisting posibility for unknown users
     // the location of your blacklist script:
     'blacklisturl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=donotsend",
+        'value'       => $publicBaseUrl."/?p=donotsend",
         'description' => s('URL where unknown users can unsubscribe (do-not-send-list)'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -327,7 +335,7 @@ $default_config = array(
 
 // the location of your confirm script:
     'confirmationurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=confirm",
+        'value'       => $publicBaseUrl."/?p=confirm",
         'description' => s('URL where subscribers have to confirm their subscription'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -336,7 +344,7 @@ $default_config = array(
 
     // url to change their preferences
     'preferencesurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=preferences",
+        'value'       => $publicBaseUrl."/?p=preferences",
         'description' => s('URL where subscribers can update their details'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -345,7 +353,7 @@ $default_config = array(
 
     // url to change their preferences
     'forwardurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=forward",
+        'value'       => $publicBaseUrl."/?p=forward",
         'description' => s('URL for forwarding messages'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -354,7 +362,7 @@ $default_config = array(
 
     // url to download vcf card
     'vcardurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=vcard",
+        'value'       => $publicBaseUrl."/?p=vcard",
         'description' => s('URL for downloading vcf card'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -368,10 +376,6 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'subscription',
     ),
-
-    // the location of your subscribe script
-    //"subscribe_baseurl" => array("http://[WEBSITE]$pageroot/",
-    //  "Base URL for public pages","text"),
 
     // the subject of the message
     'subscribesubject' => array(

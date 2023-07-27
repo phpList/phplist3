@@ -516,7 +516,7 @@ if (!defined('NOTIFY_SPAM')) {
     define('NOTIFY_SPAM', 1);
 }
 if (!defined('CLICKTRACK_LINKMAP')) {
-    define('CLICKTRACK_LINKMAP', 0);
+    define('CLICKTRACK_LINKMAP', false);
 }
 if (!defined('SIGN_WITH_HMAC')) {
     define('SIGN_WITH_HMAC', false);
@@ -714,13 +714,20 @@ if (!isset($attachment_repository)) {
     $attachment_repository = $tmpdir;
 }
 
-if (isset($pageroot)) {
-    if ($pageroot == '/') {
-        $pageroot = '';
-    }
+if (defined('USER_WWWROOT')) {
+  $pageroot = USER_WWWROOT;
+  $publicBaseUrl = USER_WWWROOT;
 } else {
+  if (isset($pageroot)) {
+      if ($pageroot == '/') {
+          $pageroot = '';
+      }
+  } else {
     $pageroot = '/lists';
+  }
+  $publicBaseUrl = $GLOBALS['public_scheme']."://".hostName()."/$pageroot";
 }
+
 // as the "admin" in adminpages is hardcoded, don't put it in the config file
 $adminpages = $GLOBALS['pageroot'].'/admin';
 

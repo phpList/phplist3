@@ -278,7 +278,11 @@ if ($total > 0) {
                     $some = 1;
                 }
 
-                $history_entry = $GLOBALS['admin_scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&id='.$userid."\n\n";
+                if (defined('ADMIN_WWWROOT')) {
+                  $history_entry = ADMIN_WWWROOT.'/?page=user&id='.$userid."\n\n";
+                } else {
+                  $history_entry = $GLOBALS['admin_scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&id='.$userid."\n\n";
+                }
                 reset($_SESSION['import_attribute']);
                 //   var_dump($_SESSION);exit;
                 if ($new || (!$new && $_SESSION['overwrite'] == 'yes')) {
