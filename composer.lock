@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "8151f5ae9639baba835390c311ef6f3599804350"
+                "reference": "785ffdde1e18ab3bef21912d4bf1baecb2102ef6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/8151f5ae9639baba835390c311ef6f3599804350",
-                "reference": "8151f5ae9639baba835390c311ef6f3599804350",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/785ffdde1e18ab3bef21912d4bf1baecb2102ef6",
+                "reference": "785ffdde1e18ab3bef21912d4bf1baecb2102ef6",
                 "shasum": ""
             },
             "require": {
@@ -94,8 +94,6 @@
                 "jdorn/sql-formatter": "^1.2",
                 "jmathai/php-multi-curl": "dev-master",
                 "katzgrau/klogger": "1.2.2",
-                "kodus/db-cache": "^2.0",
-                "kodus/file-cache": "^2.0",
                 "pelago/emogrifier": "~7.0",
                 "psr/container": "1.0.0",
                 "psr/log": "1.0.0",
@@ -142,10 +140,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.28.1",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/master",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2023-07-25T17:17:12+00:00"
+            "time": "2023-07-27T10:20:00+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -519,110 +517,6 @@
                 "source": "https://github.com/katzgrau/KLogger/tree/1.2.2"
             },
             "time": "2022-07-29T20:41:14+00:00"
-        },
-        {
-            "name": "kodus/db-cache",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kodus/db-cache.git",
-                "reference": "d0c85d0b018145be2d2137c5249ae427665b69d4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kodus/db-cache/zipball/d0c85d0b018145be2d2137c5249ae427665b69d4",
-                "reference": "d0c85d0b018145be2d2137c5249ae427665b69d4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pdo": "*",
-                "php": ">= 8.0",
-                "psr/simple-cache": "^2||^3"
-            },
-            "provide": {
-                "psr/simple-cache-implementation": "1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Kodus\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rasmus Schultz",
-                    "email": "rasc@jfmedier.dk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PSR-16 cache-implementation for SQL databases",
-            "support": {
-                "issues": "https://github.com/kodus/db-cache/issues",
-                "source": "https://github.com/kodus/db-cache/tree/2.0.0"
-            },
-            "time": "2022-08-24T14:07:56+00:00"
-        },
-        {
-            "name": "kodus/file-cache",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kodus/file-cache.git",
-                "reference": "dcd68ed8a0296d79815a52cc723a5bb59fee4e69"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kodus/file-cache/zipball/dcd68ed8a0296d79815a52cc723a5bb59fee4e69",
-                "reference": "dcd68ed8a0296d79815a52cc723a5bb59fee4e69",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">= 8.0",
-                "psr/simple-cache": "^2||^3"
-            },
-            "provide": {
-                "psr/simple-cache-implementation": "1.0"
-            },
-            "require-dev": {
-                "cache/integration-tests": "dev-master",
-                "codeception/codeception": "^5",
-                "codeception/module-asserts": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Kodus\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rasmus Schultz",
-                    "email": "rasc@jfmedier.dk",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Thomas Pedersen",
-                    "email": "thno@jfmedier.dk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Minimal PSR-16 cache-implementation",
-            "support": {
-                "issues": "https://github.com/kodus/file-cache/issues",
-                "source": "https://github.com/kodus/file-cache/tree/2.0.0"
-            },
-            "time": "2022-08-24T12:47:20+00:00"
         },
         {
             "name": "michield/phplist-plugin-campaignslicer",
@@ -1264,57 +1158,6 @@
                 "source": "https://github.com/php-fig/log/tree/1.0.0"
             },
             "time": "2012-12-21T11:40:51+00:00"
-        },
-        {
-            "name": "psr/simple-cache",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
-                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\SimpleCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interfaces for simple caching",
-            "keywords": [
-                "cache",
-                "caching",
-                "psr",
-                "psr-16",
-                "simple-cache"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
-            },
-            "time": "2021-10-29T13:26:27+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
