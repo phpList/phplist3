@@ -724,7 +724,7 @@ if (defined('USER_WWWROOT')) {
   } else {
     $pageroot = '/lists';
   }
-  $publicBaseUrl = $GLOBALS['public_scheme']."://".hostName()."/$pageroot";
+  $publicBaseUrl = "https://[WEBSITE]/$pageroot";
 }
 
 // as the "admin" in adminpages is hardcoded, don't put it in the config file
