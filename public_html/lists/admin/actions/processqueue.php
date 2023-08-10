@@ -1178,6 +1178,41 @@ while ($message = Sql_fetch_array($messages)) {
                         ++$counters['sent_users_for_message '.$messageid];
                         $um = Sql_Query(sprintf('replace into %s (entered,userid,messageid,status) values(now(),%d,%d,"sent")',
                             $tables['usermessage'], $userid, $messageid));
+
+                        if ($script_stage < 5) {
+                            $script_stage = 5; // we have actually sent one user
+                        }
+
+                        if (isset($running_throttle_delay)) {
+                            sleep($running_throttle_delay);
+                            if ($counters['sent'] % 5 == 0) {
+                                // retry running faster after some more messages, to see if that helps
+                                unset($running_throttle_delay);
+                            }
+                        } elseif (MAILQUEUE_THROTTLE) {
+                                usleep(MAILQUEUE_THROTTLE * 1000000);
+                        } elseif (MAILQUEUE_BATCH_SIZE && MAILQUEUE_AUTOTHROTTLE) {
+                            $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
+                            $msgperhour = (3600 / $totaltime) * $counters['sent'];
+                            $msgpersec = $msgperhour / 3600;
+
+                            //#11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
+                            //  $secpermsg = $totaltime / $counters['sent'];
+                            $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $counters['sent'];
+                            $delay = $target - $totaltime;
+
+                            if ($delay > 0) {
+                                if (VERBOSE) {
+                                    /* processQueueOutput(s('waiting for').' '.$delay.' '.s('seconds').' '.
+                                   s('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
+                                   s('messages in ').' '.MAILQUEUE_BATCH_PERIOD.s('seconds')); */
+                                    processQueueOutput(s('waiting for %.1f seconds to meet target of %s seconds per message',
+                                            $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
+                                    );
+                                }
+                                usleep($delay * 1000000);
+                            }
+                        }
                     } else {
                         ++$counters['failed_sent'];
                         ++$counters['failed_sent_for_message '.$messageid];
@@ -1202,43 +1237,6 @@ while ($message = Sql_fetch_array($messages)) {
                             logEvent("invalid email address $useremail user marked unconfirmed");
                             Sql_Query(sprintf('update %s set confirmed = 0 where email = "%s"',
                                 $GLOBALS['tables']['user'], $useremail));
-                        }
-                    }
-
-                    if ($script_stage < 5) {
-                        $script_stage = 5; // we have actually sent one user
-                    }
-                    if (isset($running_throttle_delay)) {
-                        sleep($running_throttle_delay);
-                        if ($counters['sent'] % 5 == 0) {
-                            // retry running faster after some more messages, to see if that helps
-                            unset($running_throttle_delay);
-                        }
-                    } elseif (!$throttled) {
-                        // apply delay only when attempted to send, not when throttled
-                        if (MAILQUEUE_THROTTLE) {
-                            usleep(MAILQUEUE_THROTTLE * 1000000);
-                        } elseif (MAILQUEUE_BATCH_SIZE && MAILQUEUE_AUTOTHROTTLE) {
-                            $totaltime = $GLOBALS['processqueue_timer']->elapsed(1);
-                            $msgperhour = (3600 / $totaltime) * $counters['sent'];
-                            $msgpersec = $msgperhour / 3600;
-
-                            //#11336 - this may cause "division by 0", but 'secpermsg' isn't used at all
-                            //  $secpermsg = $totaltime / $counters['sent'];
-                            $target = (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE) * $counters['sent'];
-                            $delay = $target - $totaltime;
-
-                            if ($delay > 0) {
-                                if (VERBOSE) {
-                                    /* processQueueOutput(s('waiting for').' '.$delay.' '.s('seconds').' '.
-                                   s('to make sure we don\'t exceed our limit of ').MAILQUEUE_BATCH_SIZE.' '.
-                                   s('messages in ').' '.MAILQUEUE_BATCH_PERIOD.s('seconds')); */
-                                    processQueueOutput(s('waiting for %.1f seconds to meet target of %s seconds per message',
-                                            $delay, (MAILQUEUE_BATCH_PERIOD / MAILQUEUE_BATCH_SIZE))
-                                    );
-                                }
-                                usleep($delay * 1000000);
-                            }
                         }
                     }
                 } else {
