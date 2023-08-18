@@ -196,54 +196,6 @@ class phplist_I18N
         } else {
             $_SESSION['hasI18Ntable'] = false;
         }
-
-        if (isset($_GET['origpage']) && !empty($_GET['ajaxed'])) { //# used in ajaxed requests
-            $page = basename($_GET['origpage']);
-        } elseif (isset($_GET['page'])) {
-            $page = basename($_GET['page']);
-        } else {
-            $page = 'home';
-        }
-        //# as we're including things, let's make sure it's clean
-        $page = preg_replace('/\W/', '', $page);
-
-        if (!empty($_GET['pi'])) {
-            $plugin_languagedir = $this->getPluginBasedir();
-            if (is_dir($plugin_languagedir)) {
-                $this->basedir = $plugin_languagedir;
-                if (isset($GLOBALS['plugins'][$_GET['pi']])) {
-                    $plugin = $GLOBALS['plugins'][$_GET['pi']];
-                    if ($plugin->enabled && $plugin->needI18N && $plugin->i18nLanguageDir()) {
-                        $this->basedir = $plugin->i18nLanguageDir();
-                    }
-                }
-            }
-        }
-
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/'.$page.'.php')) {
-            @include $this->basedir.$this->language.'/'.$page.'.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/'.$page.'.php';
-        }
-        $this->lan = $lan;
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/common.php')) {
-            @include $this->basedir.$this->language.'/common.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/common.php';
-        }
-        $this->lan += $lan;
-        $lan = array();
-
-        if (is_file($this->basedir.$this->language.'/frontend.php')) {
-            @include $this->basedir.$this->language.'/frontend.php';
-        } elseif (!isset($GLOBALS['developer_email'])) {
-            @include $this->basedir.$this->defaultlanguage.'/frontend.php';
-        }
-        $this->lan += $lan;
     }
 
     public function gettext($text)
@@ -506,21 +458,6 @@ $lan = array(
         file_put_contents($file, $filecontents);
     }
 
-    public function getPluginBasedir()
-    {
-        $pl = $_GET['pi'];
-        $pl = preg_replace('/\W/', '', $pl);
-        $pluginroot = '';
-        if (isset($GLOBALS['plugins'][$pl]) && is_object($GLOBALS['plugins'][$pl])) {
-            $pluginroot = $GLOBALS['plugins'][$pl]->coderoot;
-        }
-        if (is_dir($pluginroot.'/lan/')) {
-            return $pluginroot.'/lan/';
-        } else {
-            return $pluginroot.'/';
-        }
-    }
-
     public function initFSTranslations($language = '')
     {
         if (empty($language)) {
@@ -545,7 +482,7 @@ $lan = array(
         saveConfig('lastlanguageupdate-'.$language, $time, 0);
     }
 
-    public function getTranslation($text, $page, $basedir)
+    public function getTranslation($text)
     {
 
         //# try DB, as it will be the latest
@@ -575,24 +512,6 @@ $lan = array(
             }
         }
 
-        $lan = $this->lan;
-
-        if (trim($text) == '') {
-            return '';
-        }
-        if (strip_tags($text) == '') {
-            return $text;
-        }
-        if (isset($lan[$text])) {
-            return $this->formatText($lan[$text]);
-        }
-        if (isset($lan[strtolower($text)])) {
-            return $this->formatText($lan[strtolower($text)]);
-        }
-        if (isset($lan[strtoupper($text)])) {
-            return $this->formatText($lan[strtoupper($text)]);
-        }
-
         return '';
     }
 
@@ -604,36 +523,12 @@ $lan = array(
         if (strip_tags($text) == '') {
             return $text;
         }
-        $translation = '';
-
-        $this->basedir = dirname(__FILE__).'/lan/';
-        if (isset($_GET['origpage']) && !empty($_GET['ajaxed'])) { //# used in ajaxed requests
-            $page = basename($_GET['origpage']);
-        } elseif (isset($_GET['page'])) {
-            $page = basename($_GET['page']);
-        } else {
-            $page = 'home';
-        }
-        $page = preg_replace('/\W/', '', $page);
-
-        if (!empty($_GET['pi'])) {
-            $plugin_languagedir = $this->getPluginBasedir();
-            if (is_dir($plugin_languagedir)) {
-                $translation = $this->getTranslation($text, $page, $plugin_languagedir);
-            }
-        }
-
-        //# if a plugin did not return the translation, find it in core
-        if (empty($translation)) {
-            $translation = $this->getTranslation($text, $page, $this->basedir);
-        }
-
-        //   print $this->language.' '.$text.' '.$translation. '<br/>';
 
         // spelling mistake, retry with old spelling
         if ($text == 'over threshold, user marked unconfirmed' && empty($translation)) {
             return $this->get('over treshold, user marked unconfirmed');
         }
+        $translation = $this->getTranslation($text);
 
         if (!empty($translation)) {
             return $translation;
