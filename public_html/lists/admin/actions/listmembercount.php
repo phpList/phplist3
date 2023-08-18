@@ -37,6 +37,13 @@ function listMemberCounts($listId)
         $join"
     );
     $counts = Sql_Fetch_Assoc($req);
+    if (empty($counts)) {
+      $counts = [
+        'confirmed' => 0,
+        'notconfirmed' => 0,
+        'blacklisted' => 0,
+      ];
+    } 
     $membersDisplay = sprintf(
         '<span class="memberCount text-success" title="%s">%s</span>'.' ('
         .'<span class="unconfirmedCount text-warning" title="%s">%s</span>, '.' '

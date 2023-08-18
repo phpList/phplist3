@@ -113,6 +113,11 @@ class phplistPlugin
     public $pageTitles = array();
 
     /**
+      * dependencyFailure holds the reason the plugin cannot be initialised 
+    
+     */
+
+    /**
      * dependency check
      *
      * provides tests to determine whether this plugin can be used
@@ -297,7 +302,7 @@ class phplistPlugin
      * write a value to the general config to be retrieved at a later stage
      * parameters: name -> name of the variable
      * value -> value of the variablesiable, can be a scalar, array or object
-     * returns success or failure    $store = '';
+     * returns success or failure
      */
     public function writeConfig($name, $value)
     {
@@ -309,7 +314,7 @@ class phplistPlugin
         Sql_Query(sprintf('replace into %s set item = "%s-%s",value="%s",editable=0', $GLOBALS['tables']['config'],
             $this->name, addslashes($name), addslashes($store)));
         //# force refresh of config in session
-        unset($_SESSION['config']);
+        unset($_SESSION['config'][$this->name.'-'.addslashes($name)]);
 
         return 1;
     }

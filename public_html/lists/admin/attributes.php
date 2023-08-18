@@ -404,7 +404,7 @@ while ($row = Sql_Fetch_array($res)) {
     }
 
     echo '<label>'.s('Default Value').':</label>
-  <input type="text" name="default[' .$row['id'].']" value="'.htmlspecialchars(stripslashes($row['default_value'])).'" size="40" />';
+  <input type="text" name="default[' .$row['id'].']" value="'.htmlspecialchars(stripslashes((string)$row['default_value'])).'" size="40" />';
     echo '<label>'.s('Order of Listing').':</label>
   <input type="text" name="listorder[' .$row['id'].']" value="'.$row['listorder'].'" size="5" />';
     echo '<label>'.s('Is this attribute required ?').'<input type="checkbox" name="required['.$row['id'].']" value="1" ';

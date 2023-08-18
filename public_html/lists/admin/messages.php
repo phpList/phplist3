@@ -477,7 +477,7 @@ END;
 
             // Make statistical integers human readable
             foreach ($viewStats as $key => $value) {
-                $viewStatsFormatted[$key] = number_format($value);
+                $viewStatsFormatted[$key] = number_format((int)$value);
             }
             $resultStats = '
     <table class="messagesendstats">
