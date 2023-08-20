@@ -40,6 +40,9 @@ if (isset($_GET['delete']) && $_GET['delete']) {
     if ($_GET['delete'] == $_SESSION['logindetails']['id']) {
         echo s('You cannot delete yourself')."\n";
     } else {
+        $adminName = $admin_auth->adminName($_GET['delete']);
+        $deleterName = $admin_auth->adminName($_SESSION['logindetails']['id']);
+        logEvent(s('Administrator %s deleted by %s', $adminName, $deleterName));
         echo s('Deleting')." $delete ..\n";
         Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $_GET['delete']));
         Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'],
