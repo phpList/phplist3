@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "785ffdde1e18ab3bef21912d4bf1baecb2102ef6"
+                "reference": "71d122472724a631ac928f8fa506c81ff78013b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/785ffdde1e18ab3bef21912d4bf1baecb2102ef6",
-                "reference": "785ffdde1e18ab3bef21912d4bf1baecb2102ef6",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/71d122472724a631ac928f8fa506c81ff78013b9",
+                "reference": "71d122472724a631ac928f8fa506c81ff78013b9",
                 "shasum": ""
             },
             "require": {
@@ -140,10 +140,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/master",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.29.0",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2023-07-27T10:20:00+00:00"
+            "time": "2023-08-13T13:01:13+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -185,12 +185,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-updater.git",
-                "reference": "51942750b568699be3c492cfa13fa0966af968cc"
+                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/51942750b568699be3c492cfa13fa0966af968cc",
-                "reference": "51942750b568699be3c492cfa13fa0966af968cc",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/570aacaab72df144a0bd8dedf4027c0e17d434b1",
+                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1",
                 "shasum": ""
             },
             "default-branch": true,
@@ -208,10 +208,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.0",
+                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.1",
                 "issues": "https://github.com/bramley/phplist-plugin-updater/issues"
             },
-            "time": "2023-06-30T13:19:22+00:00"
+            "time": "2023-08-22T16:08:09+00:00"
         },
         {
             "name": "chdemko/bitarray",
@@ -2085,16 +2085,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "b635f279edd83fc275f822a1188157ffea568ff6"
+                "reference": "8bd7c33a0734ae1c5d074360512beb716bef3f77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/b635f279edd83fc275f822a1188157ffea568ff6",
-                "reference": "b635f279edd83fc275f822a1188157ffea568ff6",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/8bd7c33a0734ae1c5d074360512beb716bef3f77",
+                "reference": "8bd7c33a0734ae1c5d074360512beb716bef3f77",
                 "shasum": ""
             },
             "require": {
@@ -2181,7 +2181,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.5.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.6.0"
             },
             "funding": [
                 {
@@ -2197,7 +2197,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-17T16:11:26+00:00"
+            "time": "2023-08-03T15:06:02+00:00"
         },
         {
             "name": "instaclick/php-webdriver",
