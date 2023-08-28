@@ -715,7 +715,7 @@ if (!isset($attachment_repository)) {
 
 if (defined('USER_WWWROOT')) {
   $pageroot = USER_WWWROOT;
-  $publicBaseUrl = USER_WWWROOT;
+  $publicConfigBaseUrl = USER_WWWROOT;
 } else {
   if (isset($pageroot)) {
       if ($pageroot == '/') {
@@ -724,7 +724,7 @@ if (defined('USER_WWWROOT')) {
   } else {
     $pageroot = '/lists';
   }
-  $publicBaseUrl = "http://[WEBSITE]$pageroot";
+  $publicConfigBaseUrl = "http://[WEBSITE]$pageroot";
 }
 
 // as the "admin" in adminpages is hardcoded, don't put it in the config file
