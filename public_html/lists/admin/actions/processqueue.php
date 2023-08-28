@@ -715,11 +715,7 @@ while ($message = Sql_fetch_array($messages)) {
     if (!empty($msgdata['notify_start']) && !isset($msgdata['start_notified'])) {
         $notifications = explode(',', $msgdata['notify_start']);
         foreach ($notifications as $notification) {
-            if (defined('ADMIN_WWWROOT')) {
-              $progressUrl = ADMIN_WWWROOT.'/?page=messages&amp;tab=active';
-            } else {
-              $progressUrl = $GLOBALS['admin_scheme'].'://'.hostName().$GLOBALS['adminpages'].'/?page=messages&amp;tab=active';
-            }
+            $progressUrl = $GLOBALS['adminBaseUrl'].'/?page=messages&amp;tab=active';
             sendMail($notification, s('Campaign started'),
                 s('phplist has started sending the campaign with subject %s', $msgdata['subject'])."\n\n".
                 s('to view the progress of this campaign, go to %s',$progressUrl));
@@ -1373,11 +1369,7 @@ while ($message = Sql_fetch_array($messages)) {
             if (!empty($msgdata['notify_end']) && !isset($msgdata['end_notified'])) {
                 $notifications = explode(',', $msgdata['notify_end']);
                 foreach ($notifications as $notification) {
-                    if (defined('ADMIN_WWWROOT')) {
-                      $resultsUrl = ADMIN_WWWROOT.'/?page=statsoverview&id='.$messageid;
-                    } else {
-                      $resultsUrl = $GLOBALS['admin_scheme'].'://'.hostName().$GLOBALS['adminpages'].'/?page=statsoverview&id='.$messageid;
-                    }
+                    $resultsUrl = $GLOBALS['adminBaseUrl'].'/?page=statsoverview&id='.$messageid;
                     sendMail($notification, s('Message campaign finished'),
 
                         s('phpList has finished sending the campaign with subject %s', $msgdata['subject'])."\n\n".

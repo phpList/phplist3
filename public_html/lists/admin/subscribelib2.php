@@ -328,12 +328,7 @@ if (isset($_POST['subscribe']) && is_email($_POST['email']) && $listsok && $allt
 
     if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] && !(isset($_GET['p']) && $_GET['p'] == 'asubscribe')) {
         echo '<p class="information"><b>'.s('You are logged in as %s',$_SESSION['logindetails']['adminname']).'</b></p>';
-        if (defined('ADMIN_WWWROOT')) {
-          echo '<p><a href="'.$adminpages.'" class="button">'.s('Back to the main admin page').'</a></p>';
-        } else {
-          echo '<p><a href="'.ADMIN_WWWROOT.'" class="button">'.s('Back to the main admin page').'</a></p>';
-        }
-
+        echo '<p><a href="'.$GLOBALS['adminBaseUrl'].'" class="button">'.s('Back to the main admin page').'</a></p>';
         if ($_POST['makeconfirmed'] && !$blacklisted) {
             $sendrequest = 0;
             Sql_Query(sprintf('update %s set confirmed = 1 where email = "%s"', $GLOBALS['tables']['user'], $email));

@@ -403,11 +403,7 @@ function sendAdminPasswordToken($adminId)
     $emailBody = $GLOBALS['I18N']->get('Hello').' '.$adminName."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have requested a new password for phpList.')."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('To enter a new one, please visit the following link:')."\n\n";
-    if (defined('ADMIN_WWWROOT')) {
-      $emailBody .= sprintf('%s://%s/?page=login&token=%s', $GLOBALS['admin_scheme'], $urlroot, $key)."\n\n";
-    } else {
-      $emailBody .= sprintf('%s/?page=login&token=%s',ADMIN_WWWROOT, $key)."\n\n";
-    }
+    $emailBody .= sprintf('%s/?page=login&token=%s',$GLOBALS['adminBaseUrl'], $key)."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have 24 hours left to change your password. After that, your token won\'t be valid.');
 
     if (sendMail($email, $GLOBALS['I18N']->get('New password'), "\n\n".$emailBody, '', '', true)) {
