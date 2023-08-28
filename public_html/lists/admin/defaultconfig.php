@@ -23,13 +23,7 @@ if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/frontendfooter.php')) {
 
 $envHost = getEnv('HOSTNAME');
 $envPort = getEnv('PORT');
-if (defined('USER_WWWROOT')) {
-  $domainParts = parse_url(USER_WWWROOT);
-  $D_website = $domainParts['host'];
-  if ($domainParts['port'] != 80 && $domainParts['port'] != 443) {
-      $D_website .= ":".$domainParts['port'];
-  }
-} elseif (isset($_SERVER['HTTP_HOST'])) {
+if (isset($_SERVER['HTTP_HOST'])) {
     $D_website = $_SERVER['HTTP_HOST'];
 } elseif (isset($_SERVER['SERVER_NAME'])) {
     $D_website = $_SERVER['SERVER_NAME'];
@@ -307,7 +301,7 @@ $default_config = array(
 
     // the location of your subscribe script
     'subscribeurl' => array(
-        'value'       => $publicBaseUrl."/?p=subscribe",
+        'value'       => $publicConfigBaseUrl."/?p=subscribe",
         'description' => s('URL where subscribers can sign up'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -316,7 +310,7 @@ $default_config = array(
 
     // the location of your unsubscribe script:
     'unsubscribeurl' => array(
-        'value'       => $publicBaseUrl."/?p=unsubscribe",
+        'value'       => $publicConfigBaseUrl."/?p=unsubscribe",
         'description' => s('URL where subscribers can unsubscribe'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -326,7 +320,7 @@ $default_config = array(
     //0013076: Blacklisting posibility for unknown users
     // the location of your blacklist script:
     'blacklisturl' => array(
-        'value'       => $publicBaseUrl."/?p=donotsend",
+        'value'       => $publicConfigBaseUrl."/?p=donotsend",
         'description' => s('URL where unknown users can unsubscribe (do-not-send-list)'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -335,7 +329,7 @@ $default_config = array(
 
 // the location of your confirm script:
     'confirmationurl' => array(
-        'value'       => $publicBaseUrl."/?p=confirm",
+        'value'       => $publicConfigBaseUrl."/?p=confirm",
         'description' => s('URL where subscribers have to confirm their subscription'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -344,7 +338,7 @@ $default_config = array(
 
     // url to change their preferences
     'preferencesurl' => array(
-        'value'       => $publicBaseUrl."/?p=preferences",
+        'value'       => $publicConfigBaseUrl."/?p=preferences",
         'description' => s('URL where subscribers can update their details'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -353,7 +347,7 @@ $default_config = array(
 
     // url to change their preferences
     'forwardurl' => array(
-        'value'       => $publicBaseUrl."/?p=forward",
+        'value'       => $publicConfigBaseUrl."/?p=forward",
         'description' => s('URL for forwarding messages'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -362,7 +356,7 @@ $default_config = array(
 
     // url to download vcf card
     'vcardurl' => array(
-        'value'       => $publicBaseUrl."/?p=vcard",
+        'value'       => $publicConfigBaseUrl."/?p=vcard",
         'description' => s('URL for downloading vcf card'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -742,6 +736,18 @@ if (!function_exists('getconfig')) {
             $_SESSION['hasconf'] = $hasconf;
         } else {
             $hasconf = $_SESSION['hasconf'];
+        }
+
+        if (defined('USER_WWWROOT')) {
+          switch ($item) {
+            case 'subscribeurl': return USER_WWWROOT.'/?p=subscribe';
+            case 'unsubscribeurl': return USER_WWWROOT.'/?p=unsubscribe';
+            case 'blacklisturl': return USER_WWWROOT.'/?p=donotsend';
+            case 'confirmationurl': return USER_WWWROOT.'/?p=confirm';
+            case 'preferencesurl': return USER_WWWROOT.'/?p=preferences';
+            case 'forwardurl': return USER_WWWROOT.'/?p=forward';
+            case 'vcardurl': return USER_WWWROOT.'/?p=vcard';
+          }  
         }
 
         $value = '';
