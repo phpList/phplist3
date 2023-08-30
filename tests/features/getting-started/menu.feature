@@ -85,12 +85,13 @@ Feature: Navigate the app using the menu
          | Settings                           |
          | Manage plugins                     |
          | Subscribe pages                    |
-         | Manage administrators              |
-         | Import administrators              |
-         | Configure administrator attributes|
          | Bounce rules                       |
          | Check bounce rules                 |
          | Categorise lists                   |
+         | Manage administrators              |
+         | Edit or add an administrator       | 
+         | Import administrators              |
+         | Configure administrator attributes |
     
 #    Scenario Outline: Browse Develop menu
 #        Given I have logged in as an administrator
