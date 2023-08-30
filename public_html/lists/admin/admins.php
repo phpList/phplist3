@@ -1,6 +1,10 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+if (!isSuperUser()) {
+    echo Error(s('No Access'));
+    return;
+}
 if (isset($_GET['remember_find'])) {
     $remember_find = (string) $_GET['remember_find'];
 } else {

@@ -758,10 +758,6 @@ $GLOBALS['pagecategories'] = array(
             'catlists',
             'spage',
             'spageedit',
-            'admins',
-            'admin',
-            'importadmin',
-            'adminattributes',
             'editattributes',
             'defaults',
             'bouncerules',
@@ -773,9 +769,6 @@ $GLOBALS['pagecategories'] = array(
             'configure',
             'plugins',
             'spage',
-            'admins',
-            'importadmin',
-            'adminattributes',
             'bouncerules',
             'checkbouncerules',
             'catlists',
@@ -808,6 +801,17 @@ if (isSuperUser() && ALLOW_UPDATER) {
     $GLOBALS['pagecategories']['system']['pages'][] = 'update';
     $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
 }
+if (isSuperUser()) {
+  foreach (array('admins','admin','importadmin','adminattributes') as $adminPage) {
+    $GLOBALS['pagecategories']['config']['menulinks'][] = $adminPage;
+    $GLOBALS['pagecategories']['config']['pages'][] = $adminPage;
+  }
+}
+            // 'admins',
+            // 'admin',
+            // 'importadmin',
+            // 'adminattributes',
+
 if (DEVVERSION) {
     $GLOBALS['pagecategories']['develop'] = array(
         'toplink' => 'develop',
@@ -1103,7 +1107,7 @@ function topMenu()
         ) {
             continue;
         }
-
+var_dump($category);exit;
         $thismenu = '';
         foreach ($categoryDetails['menulinks'] as $page) {
             $title = $GLOBALS['I18N']->pageTitle($page);

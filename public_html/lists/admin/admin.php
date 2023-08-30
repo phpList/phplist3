@@ -14,22 +14,8 @@ $start = isset($_GET['start']) ? sprintf('%d', $_GET['start']) : 0;
 
 echo '<hr /><br />';
 
-$noaccess = 0;
-$accesslevel = accessLevel('admin');
-switch ($accesslevel) {
-    case 'owner':
-        $id = $_SESSION['logindetails']['id'];
-        break;
-    case 'all':
-        $subselect = '';
-        break;
-    case 'none':
-    default:
-        $noaccess = 1;
-}
-if ($noaccess) {
+if (!isSuperUser()) {
     echo Error(s('No Access'));
-
     return;
 }
 
