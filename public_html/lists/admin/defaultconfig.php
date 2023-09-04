@@ -41,7 +41,9 @@ $D_domain = $D_website;
 if (preg_match("#^www\.(.*)#i", $D_domain, $regs)) {
     $D_domain = $regs[1];
 }
-
+if (preg_match("#(.*):(\d+)#i", $D_domain, $regs)) {
+    $D_domain = $regs[1];
+}
 // for starters, you want to leave this line as it is.
 $default_config = array(
 
@@ -299,7 +301,7 @@ $default_config = array(
 
     // the location of your subscribe script
     'subscribeurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=subscribe",
+        'value'       => $publicConfigBaseUrl."/?p=subscribe",
         'description' => s('URL where subscribers can sign up'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -308,7 +310,7 @@ $default_config = array(
 
     // the location of your unsubscribe script:
     'unsubscribeurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=unsubscribe",
+        'value'       => $publicConfigBaseUrl."/?p=unsubscribe",
         'description' => s('URL where subscribers can unsubscribe'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -318,7 +320,7 @@ $default_config = array(
     //0013076: Blacklisting posibility for unknown users
     // the location of your blacklist script:
     'blacklisturl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=donotsend",
+        'value'       => $publicConfigBaseUrl."/?p=donotsend",
         'description' => s('URL where unknown users can unsubscribe (do-not-send-list)'),
         'type'        => 'url',
         'allowempty'  => 0,
@@ -327,7 +329,7 @@ $default_config = array(
 
 // the location of your confirm script:
     'confirmationurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=confirm",
+        'value'       => $publicConfigBaseUrl."/?p=confirm",
         'description' => s('URL where subscribers have to confirm their subscription'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -336,7 +338,7 @@ $default_config = array(
 
     // url to change their preferences
     'preferencesurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=preferences",
+        'value'       => $publicConfigBaseUrl."/?p=preferences",
         'description' => s('URL where subscribers can update their details'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -345,7 +347,7 @@ $default_config = array(
 
     // url to change their preferences
     'forwardurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=forward",
+        'value'       => $publicConfigBaseUrl."/?p=forward",
         'description' => s('URL for forwarding messages'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -354,7 +356,7 @@ $default_config = array(
 
     // url to download vcf card
     'vcardurl' => array(
-        'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=vcard",
+        'value'       => $publicConfigBaseUrl."/?p=vcard",
         'description' => s('URL for downloading vcf card'),
         'type'        => 'text',
         'allowempty'  => 0,
@@ -368,10 +370,6 @@ $default_config = array(
         'allowempty'  => true,
         'category'    => 'subscription',
     ),
-
-    // the location of your subscribe script
-    //"subscribe_baseurl" => array("http://[WEBSITE]$pageroot/",
-    //  "Base URL for public pages","text"),
 
     // the subject of the message
     'subscribesubject' => array(
@@ -738,6 +736,18 @@ if (!function_exists('getconfig')) {
             $_SESSION['hasconf'] = $hasconf;
         } else {
             $hasconf = $_SESSION['hasconf'];
+        }
+
+        if (defined('USER_WWWROOT')) {
+          switch ($item) {
+            case 'subscribeurl': return USER_WWWROOT.'/?p=subscribe';
+            case 'unsubscribeurl': return USER_WWWROOT.'/?p=unsubscribe';
+            case 'blacklisturl': return USER_WWWROOT.'/?p=donotsend';
+            case 'confirmationurl': return USER_WWWROOT.'/?p=confirm';
+            case 'preferencesurl': return USER_WWWROOT.'/?p=preferences';
+            case 'forwardurl': return USER_WWWROOT.'/?p=forward';
+            case 'vcardurl': return USER_WWWROOT.'/?p=vcard';
+          }  
         }
 
         $value = '';

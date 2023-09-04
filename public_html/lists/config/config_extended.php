@@ -70,6 +70,17 @@ $pageroot = '/lists';
 // ex 80. Usually 80,8080 or 3128
 #1define('HTTP_PROXY_PORT', '80');
 
+// phpList tries to detect the URL and host it is running on. However, in "proxy" environments, this may
+// not work as desired. Instead you can use these two configuration variables to force phpList to
+// operate with some fixed URLs. You can split out the admin and the frontend URLs, which is also
+// better for security, as you can IP restrict the admin part by using a different domain
+// do not end the value with /
+// if you use this, the $pageroot value above, needs to be the path after the domain
+// on the final application system where phpList resides, not the one that is defined
+// on the frontend Proxy.
+
+#define('ADMIN_WWWROOT','https://admin.mydomain.com:8080/newsletter/admin');
+#define('USER_WWWROOT','https://mydomain.com/newsletter');
 
 /*
 

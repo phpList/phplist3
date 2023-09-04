@@ -602,14 +602,6 @@ if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION
     }
 }
 
-/*
-if (USEFCK) {
-  $imgdir = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  if (!is_dir($imgdir) || !is_writeable ($imgdir)) {
-    Warn("The FCK image directory does not exist, or is not writable");
-  }
-}
-*/
 
 /*
  *
@@ -708,7 +700,7 @@ if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
 }
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
-    if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
+    if (!defined('USER_WWWROOT') && strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
         Warn(s(
             'The pageroot in your config "%s" does not match the current location "%s". Check your config file.',
             $pageroot,

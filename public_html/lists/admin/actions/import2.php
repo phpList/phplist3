@@ -278,7 +278,7 @@ if ($total > 0) {
                     $some = 1;
                 }
 
-                $history_entry = $GLOBALS['admin_scheme'].'://'.getConfig('website').$GLOBALS['adminpages'].'/?page=user&id='.$userid."\n\n";
+                $history_entry = $GLOBALS['adminBaseUrl'].'/?page=user&id='.$userid."\n\n";
                 reset($_SESSION['import_attribute']);
                 //   var_dump($_SESSION);exit;
                 if ($new || (!$new && $_SESSION['overwrite'] == 'yes')) {

@@ -23,6 +23,19 @@ if (empty($website)) {
 if (empty($organisation_name)) {
     $organisation_name = $_SERVER['SERVER_NAME'];
 }
+if (defined('USER_WWWROOT')) {
+  $publicBaseUrl = USER_WWWROOT;
+  $domainParts = parse_url($publicBaseUrl);
+  $GLOBALS['public_scheme'] = $domainParts['scheme'];
+  $GLOBALS['website'] = $domainParts['host'];
+} else {
+  $publicBaseUrl = $GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'];
+}
+if (defined('ADMIN_WWWROOT')) {
+  $adminBaseUrl = ADMIN_WWWROOT;
+} else {
+  $adminBaseUrl = $GLOBALS['admin_scheme'].'://'.$website.$GLOBALS['pageroot'].'/admin';
+}
 
 $xormask = getConfig('xormask');
 if (empty($xormask)) {
@@ -1496,6 +1509,8 @@ function hostName()
 {
     if (HTTP_HOST) {
         return HTTP_HOST;
+    } elseif (!empty($_SERVER['X_FORWARDED_FOR'])) {
+        return $_SERVER['X_FORWARDED_FOR'];
     } elseif (!empty($_SERVER['HTTP_HOST'])) {
         return $_SERVER['HTTP_HOST'];
     } else {
@@ -1506,8 +1521,7 @@ function hostName()
 
 function Redirect($page)
 {
-    $website = hostName();
-    header('Location: '.$GLOBALS['admin_scheme'].'://'.$website.$GLOBALS['adminpages']."/?page=$page");
+    header('Location: '.$GLOBALS['adminBaseUrl']."/?page=$page");
     exit;
 }
 
