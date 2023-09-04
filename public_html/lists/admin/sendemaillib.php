@@ -512,7 +512,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     if (CLICKTRACK && $hash != 'forwarded' && !empty($userdata['id'])) {
         // convert html message
         preg_match_all('/<a (.*)href=(["\'])(.*)\2([^>]*)>(.*)<\/a>/Umis', $htmlmessage, $links);
-        $clicktrack_root = sprintf('%s://%s/lt.php', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot']);
+        $clicktrack_root = sprintf('%s/lt.php', $GLOBALS['publicBaseUrl']);
 
         for ($i = 0; $i < count($links[3]); ++$i) {
             $link = cleanUrl(trim($links[3][$i]));
@@ -584,7 +584,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
                 $masked = str_replace('=', '', base64_encode(hex2bin(str_replace('-', '', $masked))));
 
                 if (SIGN_WITH_HMAC) {
-                    $masked .= '&hm='.hash_hmac(HASH_ALGO, sprintf('%s://%s/lt.php?tid=%s', $GLOBALS['public_scheme'], $website.$GLOBALS['pageroot'], $masked), HMACKEY);
+                    $masked .= '&hm='.hash_hmac(HASH_ALGO, sprintf('/lt.php?tid=%s',  $GLOBALS['publicBaseUrl'], $masked), HMACKEY);
                 }
 
                 if (!CLICKTRACK_LINKMAP) {
@@ -1062,7 +1062,7 @@ function addAttachments($msgid, &$mail, $type,$hash = '')
                         break;
 
                     case 'text':
-                        $viewurl = $GLOBALS['public_scheme'].'://'.$website.$GLOBALS['pageroot'].'/dl.php?id='.$att['id'];
+                        $viewurl = $GLOBALS['publicBaseUrl'].'/dl.php?id='.$att['id'];
                         if (!empty($hash)) {
                             $viewurl .= '&uid='.$hash;
                         }
