@@ -398,7 +398,6 @@ function sendAdminPasswordToken($adminId)
     $adminName = $row[0];
     $email = $row[1];
 
-    $urlroot = getConfig('website').$GLOBALS['adminpages'];
     //Build the email body to be sent, and finally send it.
     $emailBody = $GLOBALS['I18N']->get('Hello').' '.$adminName."\n\n";
     $emailBody .= $GLOBALS['I18N']->get('You have requested a new password for phpList.')."\n\n";
