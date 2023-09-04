@@ -714,17 +714,19 @@ if (!isset($attachment_repository)) {
 }
 
 if (defined('USER_WWWROOT')) {
-  $pageroot = USER_WWWROOT;
-  $publicConfigBaseUrl = USER_WWWROOT;
+    if (!isset($pageroot)) {
+        $pageroot = parse_url(USER_WWWROOT, PHP_URL_PATH);
+    }
+    $publicConfigBaseUrl = USER_WWWROOT;
 } else {
-  if (isset($pageroot)) {
-      if ($pageroot == '/') {
-          $pageroot = '';
-      }
-  } else {
-    $pageroot = '/lists';
-  }
-  $publicConfigBaseUrl = "http://[WEBSITE]$pageroot";
+    if (isset($pageroot)) {
+        if ($pageroot == '/') {
+            $pageroot = '';
+        }
+    } else {
+        $pageroot = '/lists';
+    }
+    $publicConfigBaseUrl = "http://[WEBSITE]$pageroot";
 }
 
 // as the "admin" in adminpages is hardcoded, don't put it in the config file
