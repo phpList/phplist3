@@ -1107,7 +1107,6 @@ function topMenu()
         ) {
             continue;
         }
-var_dump($category);exit;
         $thismenu = '';
         foreach ($categoryDetails['menulinks'] as $page) {
             $title = $GLOBALS['I18N']->pageTitle($page);
