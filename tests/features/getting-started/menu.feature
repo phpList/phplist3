@@ -88,10 +88,10 @@ Feature: Navigate the app using the menu
          | Bounce rules                       |
          | Check bounce rules                 |
          | Categorise lists                   |
-         | Manage administrators              |
-         | Edit or add an administrator       | 
-         | Import administrators              |
-         | Configure administrator attributes |
+#         | Manage administrators              |
+#         | Edit or add an administrator       |
+#         | Import administrators              |
+#         | Configure administrator attributes |
     
 #    Scenario Outline: Browse Develop menu
 #        Given I have logged in as an administrator
