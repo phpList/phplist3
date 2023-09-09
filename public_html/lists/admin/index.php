@@ -404,6 +404,18 @@ if ($ajax && empty($_SESSION['adminloggedin'])) {
     exit;
 }
 
+## add a few menu options when the admin is superuser
+if (isSuperUser() && ALLOW_UPDATER) {
+    $GLOBALS['pagecategories']['system']['pages'][] = 'update';
+    $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
+}
+if (isSuperUser()) {
+  foreach (array('admins','admin','importadmin','adminattributes') as $adminPage) {
+    $GLOBALS['pagecategories']['config']['menulinks'][] = $adminPage;
+    $GLOBALS['pagecategories']['config']['pages'][] = $adminPage;
+  }
+}
+
 $languageswitcher = '';
 if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinstall']) && empty($_GET['firstinstall'])) {
     $languageswitcher = '
