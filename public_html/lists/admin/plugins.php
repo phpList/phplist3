@@ -31,11 +31,16 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     }
 
     $packageurl = trim($_POST['pluginurl']);
+    $source = pluginSource($packageurl);
 
-    //# verify the url against known locations, and require it to be "zip".
-    //# let's hope Github keeps this structure for a while
-    if (!preg_match('~^https?://github\.com/([\w\-_]+)/([\w\-_]+)/archive/(.+)\.zip$~i', $packageurl, $regs)) {
-        echo Error(s('Invalid download URL, please reload the page and try again'));
+    if ($source === false) {
+        echo Error(s('Unsupported plugin source'));
+
+        return;
+    }
+
+    if (!preg_match($source['packageRegex'], $packageurl, $regs)) {
+        echo Error(s('Incorrect format of plugin URL'));
 
         return;
     }
@@ -215,7 +220,8 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
         $latestVersion = $plugin->checkForUpdate($pluginDetails);
 
         if ($latestVersion === null) {
-            $latestVersion = getLatestTag($pluginDetails['developer'], $pluginDetails['projectName']);
+            $source = pluginSource($pluginDetails['installUrl']);
+            $latestVersion = getLatestTag($source['tagUrlFormat'], $pluginDetails['developer'], $pluginDetails['projectName']);
             $updateAvailable = $latestVersion === null ? false : version_compare($latestVersion, $plugin->version) > 0;
         } else {
             $updateAvailable = (bool)$latestVersion;
@@ -382,20 +388,21 @@ function filterLink($filterParam, $count, $caption)
 }
 
 /**
- * Query GitHub for the latest tag of a plugin.
+ * Query for the latest tag of a plugin.
  * Cache the result of each query for 24 hours to limit the number of API calls.
  *
  * @link https://developer.github.com/v3/repos/#list-tags
  * @link https://developer.github.com/v3/#rate-limiting
  *
+ * @param string $tagUrlFormat
  * @param string $developer
  * @param string $repository
  *
  * @return string|null the name of the latest tag or null when that cannot be retrieved
  */
-function getLatestTag($developer, $repository)
+function getLatestTag($tagUrlFormat, $developer, $repository)
 {
-    $tagUrl = "https://api.github.com/repos/$developer/$repository/tags";
+    $tagUrl = sprintf($tagUrlFormat, $developer, $repository);
     $ttl = 24 * 60 * 60;
     $content = fetchUrl($tagUrl, array(), $ttl);
 
@@ -409,4 +416,26 @@ function getLatestTag($developer, $repository)
     }
 
     return $tags[0]->name;
+}
+
+function pluginSource($url)
+{
+    $pluginSources = [
+        'github.com' => [
+            'packageRegex' => '~^https?://github\.com/([\w\-_]+)/([\w\-_]+)/archive/(.+)\.zip$~i',
+            'tagUrlFormat' => 'https://api.github.com/repos/%s/%s/tags',
+        ],
+        'gitlab.com' => [
+            'packageRegex' => '~^https://gitlab\.com/([\w\-_]+)/([\w\-_]+)/-/archive/([^/]+)/[\w\-_]+\.zip$~i',
+            'tagUrlFormat' => 'https://gitlab.com/api/v4/projects/%s%%2F%s/repository/tags',
+        ],
+    ];
+
+    foreach ($pluginSources as $id => $source) {
+        if (strpos($url, $id) !== false) {
+            return $source;
+        }
+    }
+
+    return false;
 }
