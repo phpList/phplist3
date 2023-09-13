@@ -48,7 +48,7 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
     $dir = dirname($_SERVER['SCRIPT_FILENAME']);
     chdir($dir);
 
-    if (!is_file($cline['c'])) {
+    if (isset($cline['c']) && !is_file($cline['c'])) {
         echo "Cannot find config file\n";
         exit;
     }
