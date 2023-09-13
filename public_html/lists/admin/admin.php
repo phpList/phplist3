@@ -118,6 +118,9 @@ if (!empty($_GET['delete'])) {
     // delete the index in delete
     echo s('Deleting')." $delete ..\n";
     if ($delete != $_SESSION['logindetails']['id']) {
+        $adminName = $admin_auth->adminName($delete);
+        $deleterName = $admin_auth->adminName($_SESSION['logindetails']['id']);
+        logEvent(s('Administrator %s deleted by %s', $adminName, $deleterName));
         Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $delete));
         Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'], $delete));
         echo '..'.s('Done');
