@@ -216,6 +216,15 @@ if (!isset($bounce_mailbox_purge)) {
 if (!isset($bounce_mailbox_purge_unprocessed)) {
     $bounce_mailbox_purge_unprocessed = true;
 }
+if (!isset($bounce_mailbox_maximum)) {
+    $bounce_mailbox_maximum = 100000;
+}
+if (!isset($bounce_rules_batch_size)) {
+    $bounce_rules_batch_size = 500;
+}
+if (!isset($bounce_mailbox_name)) {
+    $bounce_mailbox_name = 'INBOX';
+}
 
 // set some defaults if they are not specified
 if (!defined('REGISTER')) {
