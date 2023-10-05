@@ -9,8 +9,8 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 
 # Reporting an Issue
 
-You can report an issue here in Github or use our issue tracker at https://mantis.phplist.com.
-Most issues are in Mantis, and it may be best to check around to see if your issue has been reported before.
+You can report an issue [here in Github](https://github.com/phpList/phplist3/issues).
+Previously issues were in Mantis, but it's no longer available.
 
 Please follow the guidelines below when creating an issue so that your issue can be more promptly resolved:
 
@@ -26,7 +26,7 @@ Please follow the guidelines below when creating an issue so that your issue can
 
 **Avoid duplicated issues**
 
-Before you report an issue, please search through [existing issues on Mantis](https://mantis.phplist.com) and [GitHub](https://github.com/phpList/phplist3/issues) to see if your issue is already reported or fixed to make sure you are not reporting a duplicated issue. 
+Before you report an issue, please search through [existing issues](https://github.com/phpList/phplist3/issues) to see if your issue is already reported or fixed to make sure you are not reporting a duplicated issue. 
 Also, make sure you have the latest version of phpList and see if the issue still exists.
 
 
