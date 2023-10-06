@@ -64,7 +64,7 @@ if ($configItem['type'] == 'textarea') {
     echo $GLOBALS['I18N']->get('Yes');
     echo '  </option>';
     echo '<option value="false" ';
-    if ($value === false || $value == 'false' || $value == 0) {
+    if ($value === false || $value == 'false' || $value == 0 || $value === '') {
         echo 'selected="selected"';
     }
     echo '>';
@@ -112,7 +112,7 @@ echo '<script type="text/javascript">
 
   $(".dontsavebutton").click(function() {
      item = $(this).attr(\'id\');
-     item = item.replace(/dontsave/,\'\'); 
+     item = item.replace(/dontsave/,\'\');
      desc = $("#description"+item).html();
      $("#"+item).html(desc+\' <i>' .str_replace("'", "\'", s('editing cancelled')).'</i>\');
   });

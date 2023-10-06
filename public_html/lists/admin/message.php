@@ -48,6 +48,10 @@ if (!empty($_POST['resend']) && is_array($_POST['list'])) {
         }
     }
     Sql_Query("update $tables[message] set status = \"submitted\" where id = $id");
+
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+        $plugin->messageReQueued($id);
+    }
     $_SESSION['action_result'] = s('campaign requeued');
     $messagedata = loadMessageData($id);
     $finishSending = mktime($messagedata['finishsending']['hour'], $messagedata['finishsending']['minute'], 0,

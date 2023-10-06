@@ -48,7 +48,7 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
     $dir = dirname($_SERVER['SCRIPT_FILENAME']);
     chdir($dir);
 
-    if (!is_file($cline['c'])) {
+    if (isset($cline['c']) && !is_file($cline['c'])) {
         echo "Cannot find config file\n";
         exit;
     }
@@ -404,6 +404,18 @@ if ($ajax && empty($_SESSION['adminloggedin'])) {
     exit;
 }
 
+## add a few menu options when the admin is superuser
+if (isSuperUser() && ALLOW_UPDATER) {
+    $GLOBALS['pagecategories']['system']['pages'][] = 'update';
+    $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
+}
+if (isSuperUser()) {
+  foreach (array('admins','admin','importadmin','adminattributes') as $adminPage) {
+    $GLOBALS['pagecategories']['config']['menulinks'][] = $adminPage;
+    $GLOBALS['pagecategories']['config']['pages'][] = $adminPage;
+  }
+}
+
 $languageswitcher = '';
 if (LANGUAGE_SWITCH && empty($logoutontop) && !$ajax && empty($_SESSION['firstinstall']) && empty($_GET['firstinstall'])) {
     $languageswitcher = '
@@ -603,15 +615,6 @@ if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION
 }
 
 /*
-if (USEFCK) {
-  $imgdir = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  if (!is_dir($imgdir) || !is_writeable ($imgdir)) {
-    Warn("The FCK image directory does not exist, or is not writable");
-  }
-}
-*/
-
-/*
  *
  * show global news, based on the version in use
  *
@@ -702,10 +705,6 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
  * end of news
  *
  * **/
-
-if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
-    Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
-}
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
     if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {
