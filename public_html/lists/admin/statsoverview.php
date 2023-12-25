@@ -131,7 +131,7 @@ $ls->addElement($element);
 $ls->addColumn($element,'&nbsp;',$messagedata['bouncecount']);
 */
 //Bounced
-$bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct user) from %s where message = %d',
+$bounced = Sql_Fetch_Row_Query(sprintf('select count(distinct userid) from %s where message = %d',
     $tables['user_message_bounce'], $id));
 $element = ucfirst(s('Bounced'));
 $ls->addElement($element);

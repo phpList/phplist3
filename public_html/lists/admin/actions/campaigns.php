@@ -31,10 +31,10 @@ if (Sql_Table_Exists($GLOBALS['tables']['usermessage'])) {
             abs(unix_timestamp(entered) - unix_timestamp(viewed)) as responsetime,
             (select max(time)
                 from %s umb
-                where umb.message = messageid and umb.user = userid
+                where umb.message = messageid and umb.userid = um.userid
             ) as bouncetime
-            from %s
-            where userid = %d and status = "sent"
+            from %s um
+            where um.userid = %d and status = "sent"
             order by entered desc',
         $GLOBALS['tables']['user_message_bounce'],
         $GLOBALS['tables']['usermessage'],

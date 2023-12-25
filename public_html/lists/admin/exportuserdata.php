@@ -92,7 +92,7 @@ select
 from 
     %s as message_bounce
 where 
-    user = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
+    userid = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
 
 while ($row = Sql_Fetch_Assoc($bouncesrows))
     fputcsv($output, $row, $csvColumnDelimiter);

@@ -242,7 +242,7 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
         #Use the date of the bounce, instead of "now" as processing may be different
         Sql_Query(sprintf('INSERT INTO %s
             (
-                        user,
+                        userid,
                         message,
                         bounce,
                         time
@@ -271,11 +271,11 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
     } elseif (!empty($msgid) && !empty($userid)) {
         //# check if we already have this um as a bounce
         //# so that we don't double count "delayed" like bounces
-        $exists = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where user = %d and message = %d',
+        $exists = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where userid = %d and message = %d',
             $tables['user_message_bounce'], $userid, $msgid));
         if (empty($exists[0])) {
             Sql_Query(sprintf('insert into %s
-        set user = %d, message = %d, bounce = %d',
+        set userid = %d, message = %d, bounce = %d',
                 $tables['user_message_bounce'],
                 $userid, $msgid, $bounceid));
             Sql_Query(sprintf('update %s
@@ -298,7 +298,7 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
         } else {
             //# we create the relationship, but don't increase counters
             Sql_Query(sprintf('insert into %s
-        set user = %d, message = %d, bounce = %d',
+        set userid = %d, message = %d, bounce = %d',
                 $tables['user_message_bounce'],
                 $userid, $msgid, $bounceid));
 
@@ -582,14 +582,14 @@ if (count($bouncerules)) {
             }
             //    cl_output(memory_get_usage());
 
-            //    outputProcessBounce('User '.$row['user']);
+            //    outputProcessBounce('User '.$row['userid']);
             $rule = matchBounceRules($row['header']."\n\n".$row['data'], $bouncerules);
             //    outputProcessBounce('Action '.$rule['action']);
             //    outputProcessBounce('Rule'.$rule['id']);
             $userdata = array();
             if ($rule && is_array($rule)) {
-                if ($row['user']) {
-                    $userdata = Sql_Fetch_Array_Query("select * from {$tables['user']} where id = ".$row['user']);
+                if ($row['userid']) {
+                    $userdata = Sql_Fetch_Array_Query("select * from {$tables['user']} where id = ".$row['userid']);
                 }
                 $report_linkroot = $GLOBALS['admin_scheme'].'://'.$GLOBALS['website'].$GLOBALS['adminpages'];
 
@@ -599,7 +599,7 @@ if (count($bouncerules)) {
                     $GLOBALS['tables']['bounceregex_bounce'], $rule['id'], $row['bounce']));
 
                 //17860 - check the current status to avoid doing it over and over
-                $currentStatus = Sql_Fetch_Assoc_Query(sprintf('select confirmed,blacklisted from %s where id = %d', $GLOBALS['tables']['user'],$row['user']));
+                $currentStatus = Sql_Fetch_Assoc_Query(sprintf('select confirmed,blacklisted from %s where id = %d', $GLOBALS['tables']['user'],$row['userid']));
                 $confirmed = !empty($currentStatus['confirmed']);
                 $blacklisted = !empty($currentStatus['blacklisted']);
 
@@ -609,14 +609,14 @@ if (count($bouncerules)) {
                                 $rule['id']));
                         $advanced_report .= 'User '.$userdata['email'].' Id '.$userdata['id'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
                         $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        deleteUser($row['user']);
+                        deleteUser($row['userid']);
                         break;
                     case 'unconfirmuser':
                         if ($confirmed) {
                             logEvent('User ' . $userdata['email'] . ' unconfirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
                                     $rule['id']));
                             Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
-                                $row['user']));
+                                $row['userid']));
                             $advanced_report .= 'User ' . $userdata['email'] . ' made unconfirmed by bounce rule ' . $rule['id'] . PHP_EOL;
                             $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
                             $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
@@ -630,7 +630,7 @@ if (count($bouncerules)) {
                                 $rule['id']));
                         $advanced_report .= 'User '.$userdata['email'].' Id '.$userdata['id'].' deleted by bounce rule '.$rule['id'].PHP_EOL;
                         $advanced_report .= 'Rule: '.$report_linkroot.'/?page=bouncerule&amp;id='.$rule['id'].PHP_EOL;
-                        deleteUser($row['user']);
+                        deleteUser($row['userid']);
                         deleteBounce($row['bounce']);
                         break;
                     case 'unconfirmuseranddeletebounce':
@@ -638,7 +638,7 @@ if (count($bouncerules)) {
                             logEvent('User ' . $userdata['email'] . ' unconfirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
                                     $rule['id']));
                             Sql_Query(sprintf('update %s set confirmed = 0 where id = %d', $GLOBALS['tables']['user'],
-                                $row['user']));
+                                $row['userid']));
                             $advanced_report .= 'User ' . $userdata['email'] . ' made unconfirmed by bounce rule ' . $rule['id'] . PHP_EOL;
                             $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
                             $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
@@ -724,8 +724,8 @@ if (count($bouncerules)) {
 outputProcessBounce($GLOBALS['I18N']->get('Identifying consecutive bounces'));
 
 // we only need users who are confirmed at the moment
-$userid_req = Sql_query(sprintf('select distinct umb.user from %s umb, %s u
-  where u.id = umb.user and u.confirmed and !u.blacklisted',
+$userid_req = Sql_query(sprintf('select distinct umb.userid from %s umb, %s u
+  where u.id = umb.userid and u.confirmed and !u.blacklisted',
     $tables['user_message_bounce'],
     $tables['user']
 ));
@@ -739,17 +739,9 @@ $unsubscribed_users = '';
 while ($user = Sql_Fetch_Row($userid_req)) {
     keepLock($process_id);
     set_time_limit(600);
-    //$msg_req = Sql_Query(sprintf('select * from
-    //%s um left join %s umb on (um.messageid = umb.message and userid = user)
-    //where userid = %d and um.status = "sent"
-    //order by entered desc',
-    //$tables["usermessage"],$tables["user_message_bounce"],
-    //$user[0]));
-
-    //# 17361 - update of the above query, to include the bounce table and to exclude duplicate bounces
-    $msg_req = Sql_Query(sprintf('select umb.*,um.*,b.status,b.comment from %s um left join %s umb on (um.messageid = umb.message and userid = user)
+    $msg_req = Sql_Query(sprintf('select umb.*,um.*,b.status,b.comment from %s um left join %s umb on (um.messageid = umb.message and um.userid = umb.userid)
     left join %s b on umb.bounce = b.id
-    where userid = %d and um.status = "sent"
+    where um.userid = %d and um.status = "sent"
     order by entered desc',
         $tables['usermessage'], $tables['user_message_bounce'], $tables['bounce'],
         $user[0]));

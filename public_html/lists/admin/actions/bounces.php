@@ -35,7 +35,7 @@ message_bounce.id
 from
 %s as message_bounce
 where
-user = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
+userid = %d', $GLOBALS['tables']['user_message_bounce'], $user['id']));
 
 if (Sql_Affected_Rows()) {
     while ($row = Sql_Fetch_Array($req)) {
