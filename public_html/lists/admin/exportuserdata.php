@@ -233,7 +233,7 @@ SELECT
 FROM
     '.$GLOBALS['tables']['user_message_forward'].'
 WHERE
-    USER = '.sprintf('%d', $user['id'])
+    USERID = '.sprintf('%d', $user['id'])
 );
 
 $totalForwards = Sql_Num_Rows( $forwardrows );

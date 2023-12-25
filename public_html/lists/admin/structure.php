@@ -269,13 +269,13 @@ $DBstructphplist = array(
     ),
     'user_message_forward' => array(
         'id'      => array('integer not null primary key auto_increment', 'ID'),
-        'user'    => array('integer not null', 'subscriber ID'),
+        'userid'  => array('integer not null', 'subscriber ID'),
         'message' => array('integer not null', 'Message ID'),
         'forward' => array('varchar(255)', 'Forward email'),
         'status'  => array('varchar(255)', 'Status of forward'),
         'time'    => array('timestamp', 'When was it forwarded'),
-        'index_1' => array('usermessageidx (user,message)', 'index'),
-        'index_2' => array('useridx (user)', 'index'),
+        'index_1' => array('usermessageidx (userid,message)', 'index'),
+        'index_2' => array('useridx (userid)', 'index'),
         'index_3' => array('messageidx (message)', 'index'),
     ),
     'config' => array(
