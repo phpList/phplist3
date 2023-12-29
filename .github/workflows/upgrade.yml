@@ -64,7 +64,7 @@ jobs:
           sudo mysql -proot  -e 'drop database if exists phplistdb'
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
-          sudo gunzip -c tests/phplist-3.6.sql.gz | mysql -proot phplistdb
+          sudo gunzip -c tests/phplist-3.6.sql.gz | sudo mysql -proot phplistdb
 
       - name: Set bootlist theme
         run: |
