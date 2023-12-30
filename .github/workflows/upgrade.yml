@@ -14,7 +14,7 @@ jobs:
         php-version: ['8.1']
         experimental: [false]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
@@ -44,7 +44,7 @@ jobs:
           php_extensions: xml 
           version: 2
 
-      - name: Report Versions
+      - name: Report Versions and show ENV vars
         run: |
           google-chrome --version
           lsb_release -a
@@ -57,6 +57,7 @@ jobs:
           vendor/bin/behat -V
           mysql --version
           mysqladmin --version
+          export
 
       - name: Create Database
         run: |
@@ -101,9 +102,7 @@ jobs:
 
       - name: Reset Database
         run: |
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
-          sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
+          sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
 
       - name: Run BDD Tests UI
         run: |
@@ -120,11 +119,19 @@ jobs:
           export ADMIN_NAME="phpList Administrator"
           php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+
+      - name: copy screenshots
+        if: always()
+        run: |
+          cd $GITHUB_WORKSPACE
+          images=$(ls -l /tmp/*.png 2>/dev/null | wc -l)
+          [[ $images -gt 0 ]] && cp -v /tmp/*.png output/screenshots
+          exit 0;
 
       - name: Upload the screenshots
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: "output"
           name: "behat output ${{ matrix.php-version }}"
