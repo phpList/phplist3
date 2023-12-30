@@ -44,7 +44,7 @@ jobs:
           php_extensions: xml 
           version: 2
 
-      - name: Report Versions
+      - name: Report Versions and show ENV vars
         run: |
           google-chrome --version
           lsb_release -a
@@ -57,6 +57,7 @@ jobs:
           vendor/bin/behat -V
           mysql --version
           mysqladmin --version
+          export
 
       - name: Create Database
         run: |
@@ -98,7 +99,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
-          cp /tmp/*.png output/screenshots
 
       - name: Reset Database
         run: |
@@ -122,6 +122,12 @@ jobs:
           php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+
+      - name: copy screenshots
+        if: always()
+        run: |
+          cd $GITHUB_WORKSPACE/tests
+          cp /tmp/*.png output/screenshots
 
       - name: Upload the screenshots
         if: always()
