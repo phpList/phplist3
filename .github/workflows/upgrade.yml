@@ -102,9 +102,7 @@ jobs:
 
       - name: Reset Database
         run: |
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
-          sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
+          sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
 
       - name: Run BDD Tests UI
         run: |
