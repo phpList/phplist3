@@ -1,7 +1,7 @@
 
 name: Upgrade
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   test:
@@ -61,8 +61,7 @@ jobs:
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
-          sudo mysqladmin -proot create phplistdb
+          sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
           sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
           sudo gunzip -c tests/phplist-3.6.sql.gz | sudo mysql -proot phplistdb
 
@@ -98,7 +97,6 @@ jobs:
       - name: Run BDD Tests UI
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
 
       - name: Reset Database
