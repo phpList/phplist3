@@ -98,6 +98,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+          cp /tmp/*.png output/screenshots
 
       - name: Reset Database
         run: |
