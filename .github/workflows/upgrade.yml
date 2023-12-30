@@ -126,7 +126,7 @@ jobs:
       - name: copy screenshots
         if: always()
         run: |
-          cd $GITHUB_WORKSPACE/tests
+          cd $GITHUB_WORKSPACE
           cp /tmp/*.png output/screenshots
 
       - name: Upload the screenshots
