@@ -1,4 +1,5 @@
-FROM php:7.4-cli
+#FROM php:8.2-cli   ## this throws a lot of Deprecation errors
+FROM php:7.4-cli   
 
 LABEL maintainer="michiel@phplist.com"
 
@@ -16,8 +17,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set the working directory inside the container
 WORKDIR /behat
 
-COPY composer.json composer.lock ./
-RUN composer install
+COPY composer.json ./
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install
 
 COPY run-tests.sh /behat
 RUN chmod 755 /behat/run-tests.sh

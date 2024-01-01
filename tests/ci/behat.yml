@@ -8,15 +8,15 @@ default:
       contexts:
         - FeatureContext:
           # Set database access credentials
-          database:
-            host: 127.0.0.1
-            user: phplist
-            password: phplist
-            name: phplistdb
-          # Set admin user login credentials
-          admin:
-            username: admin
-            password: Mypassword123+
+            database:
+              host: 127.0.0.1
+              user: phplist
+              password: phplist
+              name: phplistdb
+            # Set admin user login credentials
+            admin:
+              username: admin
+              password: Mypassword123+
         - MailContext:
             mail_dir: build/mails
         - SubscriberContext

@@ -2,6 +2,7 @@
 .PHONY: test stop testhub
 
 test: stop
+	rm -f composer.lock
 	docker-compose up --build -d --remove-orphans
 	docker logs -f behat
 
