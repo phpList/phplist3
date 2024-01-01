@@ -22,6 +22,7 @@ Feature: Login
 #        When I fill in "login" with "no-user"
 #        And I fill in "password" with ""
 #        And I press "Continue"
+#        ## these are modals
 #        Then I should see "Please enter your credentials"
 
 #    Scenario: Login with only a password
@@ -29,4 +30,5 @@ Feature: Login
 #        When I fill in "login" with ""
 #        And I fill in "password" with "no-password"
 #        And I press "Continue"
+#        ## modal prompt
 #        Then I should see "Please enter your credentials"
