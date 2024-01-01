@@ -19,3 +19,4 @@ public_html/lists/admin/ui/dressprow-ph
 public_html/lists/admin/ui/phplist-ui-*
 features/*
 tests/output/
+*.env
