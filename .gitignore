@@ -17,4 +17,5 @@ public_html/lists/admin/plugins/
 public_html/lists/admin/ui/dressprow
 public_html/lists/admin/ui/dressprow-ph
 public_html/lists/admin/ui/phplist-ui-*
-
+features/*
+tests/output/
