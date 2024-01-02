@@ -1,7 +1,7 @@
 
 name: CI
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   test:
@@ -35,7 +35,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt update
-          sudo apt install rsync
+          sudo apt -y install rsync postfix
 
       # - name: Cache Composer dependencies
       #   uses: actions/cache@v2
@@ -69,8 +69,7 @@ jobs:
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
-          sudo mysqladmin -proot create phplistdb
+          sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
           sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
 
       - name: Set bootlist theme
@@ -88,7 +87,8 @@ jobs:
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
           touch output/screenshots/README.md
-          mkdir -p build/mails
+          mkdir -p output/mails
+          smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
