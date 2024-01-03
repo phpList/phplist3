@@ -20,3 +20,5 @@ public_html/lists/admin/ui/phplist-ui-*
 features/*
 tests/output/
 *.env
+.local
+public_html/images/
