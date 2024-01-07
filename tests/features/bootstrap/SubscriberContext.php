@@ -136,8 +136,6 @@ EOC;
 
     }
 
-
-
     /**
      * @Given /I want to send campaign with title "(.*)"/
      */
