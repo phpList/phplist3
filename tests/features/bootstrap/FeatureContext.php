@@ -42,29 +42,10 @@ class FeatureContext extends MinkContext
      * Every scenario gets its own context object.
      *
      * @param array $admin
-     * @param array $database
      */
-    public function __construct( $database = array(), $admin = array())
+    public function __construct($admin = array())
     {
-        // merge default database value into configured value
-        $database = array_merge(array(
-            'host'      => 'localhost',
-            'password'  => 'phplist',
-            'user'      => 'phplist',
-            'name'      => 'phplistdb'
-        ),$database);
-
-        // merge default admin user value into configured value
-        $admin = array_merge(array(
-            'username' => 'admin',
-            'password' => 'Mypassword123+'
-        ),$admin);
-
         $this->params = array(
-            'db_host' => $database['host'],
-            'db_user' => $database['user'],
-            'db_password' => $database['password'],
-            'db_name' => $database['name'],
             'admin_username' => $admin['username'],
             'admin_password' => $admin['password']
         );
@@ -215,7 +196,7 @@ class FeatureContext extends MinkContext
      */
     public function iFillInWithAValidPassword($arg1)
     {
-        $this->fillField($arg1, $this->params['admin_password']);
+       $this->fillField($arg1, $this->params['admin_password']);
     }
 
     /**
@@ -226,6 +207,19 @@ class FeatureContext extends MinkContext
         $this->data['email'] = 'email@domain.com'; // at some point really make random
         $this->fillField($fieldName, $this->data['email']);
     }
+
+    /**
+     * @Given I fill in :arg1 with :arg2 emails
+     */
+    public function iFillInWithEmails($arg1, $arg2)
+    {
+        $content = "";
+        for ($i = 0; $i < $arg2; $i++ ){
+          $content .= 'user'.$i.'@phplist.dev'.PHP_EOL;
+        }
+        $this->fillField($arg1, $content);
+    }
+
 
     /**
      * @Given /^I should see the email address I entered$/
@@ -323,6 +317,16 @@ class FeatureContext extends MinkContext
     public function iConfirmThePopup()
     {  
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+    }
+
+
+    /**
+     * @When I show the :arg1 tabpanel
+     */
+    public function iShowTheTabpanel($arg1)
+    {
+        $script = "document.getElementById('$arg1').style.display = 'block';";
+        $this->getSession()->executeScript($script);
     }
 
 }
