@@ -104,7 +104,7 @@ services:
     container_name: mailpit
     image: axllent/mailpit
     ports:
-      - "8025:8025"
+      - "8026:8025"
     networks:
       - phplistbehatnet
 

@@ -1,10 +1,28 @@
 <?php
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Selector\Xpath\Escaper;
+use WebDriver\Element;
+use \Behat\Mink\Element\NodeElement;
+use WebDriver\Exception\NoSuchElement;
+use WebDriver\Exception\UnknownCommand;
+use WebDriver\Exception\UnknownError;
+use WebDriver\Exception;
+use WebDriver\Key;
+use WebDriver\WebDriver;
+use WebDriver\Exception\UnexpectedAlertOpen;
 
 use Behat\Behat\Context\Context;
 
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
-#use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
+
+use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\ResponseTextException;
+use Behat\Mink\Exception\ElementNotFoundException;
+use WebDriver\Exception\StaleElementReference;
+use Behat\Behat\Tester\Exception\PendingException;
+
 
 //
 // Require 3rd-party libraries here:
@@ -16,6 +34,7 @@ use Behat\MinkExtension\Context\MinkContext;
 /**
  * Features context.
  */
+
 class FeatureContext extends MinkContext
 {
     private $params = array();
@@ -25,7 +44,6 @@ class FeatureContext extends MinkContext
      * @var mysqli
      */
     private $db;
-
     /**
      * Null if user is not logged in
      * @var string
@@ -50,7 +68,6 @@ class FeatureContext extends MinkContext
             'admin_password' => $admin['password']
         );
     }
-
     public function __call($method, $parameters)
     {
         // we try to call the method on the Page first
@@ -58,19 +75,16 @@ class FeatureContext extends MinkContext
         if (method_exists($page, $method)) {
             return call_user_func_array(array($page, $method), $parameters);
         }
-
         // we try to call the method on the Session
         $session = $this->getSession();
         if (method_exists($session, $method)) {
             return call_user_func_array(array($session, $method), $parameters);
         }
-
         // could not find the method at all
         throw new \RuntimeException(sprintf(
             'The "%s()" method does not exist.', $method
         ));
     }
-
     /**
      * Everyone who tried Behat with Mink and a JavaScript driver (I use 
      * Selenium2Driver with phantomjs) has had issues with trying to assert something 
@@ -86,14 +100,12 @@ class FeatureContext extends MinkContext
         for ($i = 0; $i <= $tries; $i++) {
             try {
                 $closure();
-
                 return;
             } catch (\Exception $e) {
                 if ($i == $tries) {
                     throw $e;
                 }
             }
-
             sleep(1);
         }
     }
@@ -104,19 +116,16 @@ class FeatureContext extends MinkContext
     {
         throw new ExpectationException($message, $this->getSession());
     }
-
     /**
      * @When something long is taking long but should output :text
      */
     public function somethingLongShouldOutput($text)
     {
         $this->find('css', 'button#longStuff')->click();
-
         $this->spins(function() use ($text) { 
             $this->assertSession()->pageTextContains($text);
         });
     }
-
     /**
      * @Then do something on a button that might not be there yet
      */
@@ -130,8 +139,6 @@ class FeatureContext extends MinkContext
             $button->click();
         });
     }
-
-
 //
 // Place your definition and hook methods here:
 //
@@ -190,7 +197,6 @@ class FeatureContext extends MinkContext
     {
         $this->fillField($arg1, $this->params['admin_username']);
     }
-
     /**
      * @When I fill in :arg1 with a valid password
      */
@@ -198,7 +204,6 @@ class FeatureContext extends MinkContext
     {
        $this->fillField($arg1, $this->params['admin_password']);
     }
-
     /**
      * @When /^I fill in "([^"]*)" with an email address$/
      */
@@ -207,7 +212,6 @@ class FeatureContext extends MinkContext
         $this->data['email'] = 'email@domain.com'; // at some point really make random
         $this->fillField($fieldName, $this->data['email']);
     }
-
     /**
      * @Given I fill in :arg1 with :arg2 emails
      */
@@ -228,7 +232,6 @@ class FeatureContext extends MinkContext
     {
         $this->assertSession()->pageTextContains($this->data['email']);
     }
-
     /**
      * @Given /^No campaigns yet exist$/
      */
@@ -245,12 +248,10 @@ class FeatureContext extends MinkContext
                 ')
         );
         $campaignCount = $result['count'];
-
         if ($campaignCount > 0) {
             $this->throwExpectationException('One or more campagins already exist');
         }
     }
-
     /**
      * @Given /^I have subscriber with email "([^"]*)"/
      */
@@ -304,6 +305,125 @@ class FeatureContext extends MinkContext
     }
     
      /**
+  /**
+     * @When I switch to iframe :arg1
+     */
+    public function iSwitchToIframe($arg1)
+    {  $arg1=$this->find("css",'cke_wysiwyg_frame cke_reset');
+        $this->getSession()->switchToIFrame($arg1);
+       
+    }
+    
+    /**
+     * Go back to main document frame.
+     *
+     * @When (I )switch to main frame
+     */
+    public function switchToMainFrame()
+    {
+        $this->getSession()->getDriver()->switchToDefaultContent(); 
+    }
+
+    /**
+     * @Then I click on :arg1
+     */
+    public function iClickOn($arg1)
+    {  $arg1= $this->find("css",'submit btn btn-primary');
+       $this->getSession()->click($arg1);
+    }
+     /**
+     * @When I enter text :arg1
+     */
+    public function iEnterText($arg1)
+    { 
+
+        $script = <<<JS
+            (function(){
+        CKEDITOR.instances.message.setData( '<p>This is the editor data.</p>' ); })();
+JS;
+    //$this->getSession()->executeScript("document.body.innerHTML = '<p>".$arg1."</p>'");}
+      $this->getSession()->evaluateScript($script);
+    }
+      /**
+     * @Then I should read :arg1
+     */
+    public function iShouldRead($arg1)
+    {
+        $script = <<<JS
+        (function(){
+            CKEDITOR.instances.message.getData();})();
+
+JS;
+  $this->getSession()->evaluateScript($script);
+    }
+       /**
+     * @Then :arg1 checkbox should be checked
+     */
+
+   /**
+    * @Then /^Radio button with id "([^"]*)" should be checked$/
+    */
+   public function RadioButtonWithIdShouldBeChecked($sId)
+   {
+       $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
+       if (!$elementByCss) {
+           throw new Exception('Radio button with id ' . $sId.' is not checked');
+       }
+   }
+
+       /**
+     * @When I switch back from iframe
+     */
+    public function iSwitchBackFrom($name=null)
+    {
+     $this->getSession()->getDriver()->switchToIframe(null);
+    }
+
+      /**
+     * @Then I switch to other iframe :arg1
+     */
+    public function iSwitchToOtherIframe($arg1)
+    {
+      $this->getSession()->switchToIframe($arg1);
+    }
+    
+    /**
+     * @Given I mouse over :arg1
+     */
+    public function iMouseOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="menuTop"]/ul[5]/li');
+    if (!$findName) {
+        throw new Exception($arg1 . " could not be found");
+    } else {
+        $findName->mouseOver();
+    }
+}
+     /**
+     * @Given I click over :arg1
+     */
+    public function iClickOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="wrapp"]/form/div[1]/div/span[1]/a');
+        $findName->click();
+    }
+
+    /**
+   * @Given I write :text into :field
+   */
+  public function iWriteTextIntoField($text, $field)
+  {
+    $field = $this->getSession()
+      ->getDriver()
+      ->getWebDriverSession()
+      ->element('xpath', '//*[@id="edit_list_categories"]/div/input');
+      $field->postValue(['value' => [$text]]);
+  }
+
+
+       /**
      * @Given I go back
      */
     public function iGoBack()
@@ -319,14 +439,38 @@ class FeatureContext extends MinkContext
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
     }
 
-
-    /**
-     * @When I show the :arg1 tabpanel
+ /**
+     * @Given I go back to :arg1
      */
-    public function iShowTheTabpanel($arg1)
+    public function iGoBackTo($page)
     {
-        $script = "document.getElementById('$arg1').style.display = 'block';";
-        $this->getSession()->executeScript($script);
+        $this->getSession()->getDriver()->back();
+    }
+
+ /**
+     * @Then The header color should be black
+     */
+    public function theDivContextMenuBlockMenuColorShouldBeBlack()
+    {
+
+        // JS script that makes the CSS assertion in the browser.
+
+        $script = <<<JS
+            (function(){
+                return $('#header').css('color') === 'rgb(51, 51, 51)';
+            })();
+JS;
+
+        if (!$this->getSession()->evaluateScript($script)) {
+            throw new Exception();
+        }
+    }
+          /**
+     * @Then I should see :message on popups
+     */
+    public function iShouldSeeOnPopups($message)
+    {   return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
+    
     }
 
 }
