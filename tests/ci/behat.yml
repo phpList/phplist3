@@ -19,6 +19,7 @@ default:
     Behat\MinkExtension:
       show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
       base_url: 'http://127.0.0.1'
+      files_path: "files/"
       default_session: chrome
       sessions:
         chrome:
