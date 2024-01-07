@@ -1878,7 +1878,7 @@ function refreshTlds($force = 0)
     $lastDone = getConfig('tld_last_sync');
     $tlds = '';
     //# let's not do this too often
-    if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
+    if (((int)$lastDone + TLD_REFETCH_TIMEOUT < time()) || $force) {
         //# even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
         SaveConfig('tld_last_sync', time(), 0);
         if (defined('TLD_AUTH_LIST')) {
