@@ -14,6 +14,7 @@ default:
     Behat\MinkExtension:
       base_url: http://phplist
       default_session: selenium2
+      files_path: "files/"
       selenium2:
          wd_host: http://firefox:4444/wd/hub
          capabilities: 

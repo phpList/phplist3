@@ -80,9 +80,8 @@ services:
   #     - CHROME=false
   #     - FIREFOX=true
 
-
   phplist:
-    image: phplist/phplist:3.6.14
+    image: phplist/phplist:latest
     container_name: phplist
     depends_on:
       - firefox
@@ -94,7 +93,8 @@ services:
       DB_USER: phplist
       DB_PASSWORD: phplist
       DB_NAME: phplistdb
-      MAILHOST: mailpit
+      MAILHOST: mailpit:1025
+      PHP_VERSION: 8.2
     networks:
       - phplistbehatnet
     ports:
