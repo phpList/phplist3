@@ -18,6 +18,7 @@ if (!isSuperUser()) {
     echo Error(s('No Access'));
     return;
 }
+$accesslevel = 'all';
 
 if (!empty($_POST['change'])) {
     if (!verifyToken()) { //# csrf check, should be added in more places
