@@ -27,7 +27,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt update
-          sudo apt install rsync
+          sudo apt install -y rsync postfix
 
       # - name: Cache Composer dependencies
       #   uses: actions/cache@v2
@@ -82,6 +82,7 @@ jobs:
           mkdir -p output/screenshots
           touch output/screenshots/README.md
           mkdir -p build/mails
+          smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
