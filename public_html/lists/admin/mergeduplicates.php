@@ -17,10 +17,10 @@ function mergeUsers($original, $duplicate)
         Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s"',
             $GLOBALS['tables']['usermessage'], $original, $um['entered'], $duplicate, $um['entered']), 1);
     }
-    $bncreq = Sql_Query(sprintf('select * from %s where user = %d', $GLOBALS['tables']['user_message_bounce'],
+    $bncreq = Sql_Query(sprintf('select * from %s where userid = %d', $GLOBALS['tables']['user_message_bounce'],
         $duplicate));
     while ($bnc = Sql_Fetch_Array($bncreq)) {
-        Sql_Query(sprintf('update %s set user = %d, time = "%s" where user = %d and time = "%s"',
+        Sql_Query(sprintf('update %s set userid = %d, time = "%s" where userid = %d and time = "%s"',
             $GLOBALS['tables']['user_message_bounce'], $original, $bnc['time'], $duplicate, $bnc['time']), 1);
     }
     $listreq = Sql_Query(sprintf('select * from %s where userid = %d', $GLOBALS['tables']['listuser'], $duplicate));
@@ -30,7 +30,7 @@ function mergeUsers($original, $duplicate)
             1);
     }
     Sql_Query(sprintf('delete from %s where userid = %d', $GLOBALS['tables']['listuser'], $duplicate));
-    Sql_Query(sprintf('delete from %s where user = %d', $GLOBALS['tables']['user_message_bounce'], $duplicate));
+    Sql_Query(sprintf('delete from %s where userid = %d', $GLOBALS['tables']['user_message_bounce'], $duplicate));
     Sql_Query(sprintf('delete from %s where userid = %d', $GLOBALS['tables']['usermessage'], $duplicate));
 //  if (MERGE_DUPLICATES_DELETE_DUPLICATE) {
     deleteUser($duplicate);

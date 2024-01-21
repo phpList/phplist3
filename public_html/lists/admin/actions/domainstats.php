@@ -211,7 +211,7 @@ $req = Sql_Query(sprintf('
 SELECT COUNT(lcase(substring_index(u.email, "@", -1))) num,
        lcase(substring_index(u.email, "@", -1)) domain
 FROM %s AS u
-RIGHT JOIN %s AS b ON u.id = b.user
+RIGHT JOIN %s AS umb ON u.id = umb.userid
 GROUP BY domain
 ORDER BY num DESC
 LIMIT 25;

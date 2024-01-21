@@ -52,7 +52,7 @@ $query = <<<END
         mb.bounce,
         mb.time
     from {$tables['user_message_bounce']} mb
-    join {$tables['user']} u on u.id = mb.user
+    join {$tables['user']} u on u.id = mb.userid
     where mb.message = $messageid
 END;
 $req = Sql_Query($query);

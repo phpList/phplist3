@@ -48,7 +48,7 @@ if (!$listid) {
 
     return;
 }
-$query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.user
+$query = sprintf('select lu.userid, count(umb.bounce) as numbounces from %s lu join %s umb on lu.userid = umb.userid
   where ' .
 //  now() < date_add(umb.time,interval 6 month) and
     ' lu.listid = %d

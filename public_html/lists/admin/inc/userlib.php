@@ -135,7 +135,7 @@ function deleteUserRecordsLeaveBlacklistRecords($id)
     Sql_Query('delete from '.$tables['usermessage'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['user_attribute'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['user_history'].' where userid = '.$id);
-    Sql_Query('delete from '.$tables['user_message_bounce'].' where user = '.$id);
+    Sql_Query('delete from '.$tables['user_message_bounce'].' where userid = '.$id);
     Sql_Query('delete from '.$tables['user_message_forward'].' where user = '.$id);
     Sql_Query('delete from '.$tables['user'].' where id = '.$id);
     Sql_Query('delete from '.$tables['user_message_view'].' where userid = '.$id);

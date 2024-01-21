@@ -109,14 +109,14 @@ function mergeUser($userid)
                 Sql_Query(sprintf('update %s set userid = %d, entered = "%s" where userid = %d and entered = "%s"',
                     $GLOBALS['tables']['usermessage'], $orig[0], $um['entered'], $duplicate['id'], $um['entered']), 1);
             }
-            $bncreq = Sql_Query("select * from {$GLOBALS['tables']['user_message_bounce']} where user = ".$duplicate['id']);
+            $bncreq = Sql_Query("select * from {$GLOBALS['tables']['user_message_bounce']} where userid = ".$duplicate['id']);
             while ($bnc = Sql_Fetch_Array($bncreq)) {
-                Sql_Query(sprintf('update %s set user = %d, time = "%s" where user = %d and time = "%s"',
+                Sql_Query(sprintf('update %s set userid = %d, time = "%s" where userid = %d and time = "%s"',
                     $GLOBALS['tables']['user_message_bounce'], $orig[0], $bnc['time'], $duplicate['id'], $bnc['time']),
                     1);
             }
             Sql_Query("delete from {$GLOBALS['tables']['listuser']} where userid = ".$duplicate['id']);
-            Sql_Query("delete from {$GLOBALS['tables']['user_message_bounce']} where user = ".$duplicate['id']);
+            Sql_Query("delete from {$GLOBALS['tables']['user_message_bounce']} where userid = ".$duplicate['id']);
             Sql_Query("delete from {$GLOBALS['tables']['usermessage']} where userid = ".$duplicate['id']);
             if (MERGE_DUPLICATES_DELETE_DUPLICATE) {
                 deleteUser($duplicate['id']);
@@ -370,12 +370,12 @@ if (($require_login && !isSuperUser()) || !$require_login || isSuperUser()) {
                 while ($row = Sql_Fetch_Row($req)) {
                     Sql_Query("delete from {$tables['usermessage']} where userid = $row[0]");
                 }
-                $req = Sql_Verbose_Query("select {$tables['user_message_bounce']}.user
-          from {$tables['user_message_bounce']} left join {$tables['user']} on {$tables['user_message_bounce']}.user = {$tables['user']}.id
-          where {$tables['user']}.id IS NULL group by {$tables['user_message_bounce']}.user");
+                $req = Sql_Verbose_Query("select {$tables['user_message_bounce']}.userid
+          from {$tables['user_message_bounce']} left join {$tables['user']} on {$tables['user_message_bounce']}.userid = {$tables['user']}.id
+          where {$tables['user']}.id IS NULL group by {$tables['user_message_bounce']}.userid");
                 echo Sql_Affected_Rows().' '.s('entries apply').'<br/>';
                 while ($row = Sql_Fetch_Row($req)) {
-                    Sql_Query("delete from {$tables['user_message_bounce']} where user = $row[0]");
+                    Sql_Query("delete from {$tables['user_message_bounce']} where userid = $row[0]");
                 }
             }
 

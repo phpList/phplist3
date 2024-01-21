@@ -81,9 +81,9 @@ if ($_GET['option'] == 'deleteinvalidemail') {
         ++$cnt;
         set_time_limit(60);
         if (preg_match('/([\d]+) marked unconfirmed/',$row['comment'],$regs)) {
-            $exists = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where user = %d and message = -1 and bounce = %d',$tables['user_message_bounce'],$regs[1],$row['id']));
+            $exists = Sql_Fetch_Row_Query(sprintf('select count(*) from %s where userid = %d and message = -1 and bounce = %d',$tables['user_message_bounce'],$regs[1],$row['id']));
             if (empty($exists[0])) {
-                Sql_Query(sprintf('insert into %s (user,message,bounce,time) values(%d,-1,%d,"%s")',$tables['user_message_bounce'],$regs[1],$row['id'],$row['date']));
+                Sql_Query(sprintf('insert into %s (userid,message,bounce,time) values(%d,-1,%d,"%s")',$tables['user_message_bounce'],$regs[1],$row['id'],$row['date']));
                 ++$done;
             }
         }
