@@ -1,31 +1,26 @@
+#FROM php:8.2-cli   ## this throws a lot of Deprecation errors
+FROM php:7.4-cli   
 
-FROM debian:buster-slim
+LABEL maintainer="michiel@phplist.com"
 
-LABEL maintainer="michiel@phplist.com" 
+RUN apt-get update && apt-get install -y \
+        libzip-dev \
+        unzip jq curl \
+        git \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt -y update && apt -y upgrade
+RUN docker-php-ext-install zip
 
-RUN apt install -y -qq postfix
+# Install Composer 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN apt install -y php-cli mariadb-server bash sudo composer git php-curl php-mysqli php-dom make firefox-esr wget
-## otherwise jdk fails, https://github.com/geerlingguy/ansible-role-java/issues/64
-RUN mkdir -p /usr/share/man/man1
-RUN apt install -y default-jdk
+# Set the working directory inside the container
+WORKDIR /behat
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt -y install ./google-chrome-stable_current_amd64.deb
+COPY composer.json ./
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install
 
-## debugging utils, that can be removed once it works
-RUN apt install -y vim curl telnet psutils
+COPY run-tests.sh /behat
+RUN chmod 755 /behat/run-tests.sh
 
-RUN useradd -m -s /bin/bash -d /home/phplist phplist
-
-COPY . /var/www/phplist3
-RUN chown -R phplist: /var/www
-USER phplist
-WORKDIR /var/www/phplist3/
-RUN rm -rf vendor
-
-
-ENTRYPOINT [ "./scripts/run-tests.sh" ]
-
-#ENTRYPOINT [ "/bin/bash" ]
+CMD ["/behat/run-tests.sh"]

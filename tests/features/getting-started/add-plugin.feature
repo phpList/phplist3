@@ -1,6 +1,7 @@
+
 @wip
 Feature: Update plugin
-    In order to user extra functions of phpPlist
+    In order to user extra functions of phpList
     As an admin user
     I need to be able to add, update or remove plugins
 

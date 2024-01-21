@@ -1,21 +1,11 @@
 <?php
 
-use Behat\Behat\Context\Context;
-
-use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
-#use Behat\MinkExtension\Context\RawMinkContext;
-
-//
-// Require 3rd-party libraries here:
-//
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
 
 /**
  * Features context.
  */
+
 class FeatureContext extends MinkContext
 {
     private $params = array();
@@ -25,7 +15,6 @@ class FeatureContext extends MinkContext
      * @var mysqli
      */
     private $db;
-
     /**
      * Null if user is not logged in
      * @var string
@@ -42,34 +31,14 @@ class FeatureContext extends MinkContext
      * Every scenario gets its own context object.
      *
      * @param array $admin
-     * @param array $database
      */
-    public function __construct( $database = array(), $admin = array())
+    public function __construct($admin = array())
     {
-        // merge default database value into configured value
-        $database = array_merge(array(
-            'host'      => 'localhost',
-            'password'  => 'phplist',
-            'user'      => 'phplist',
-            'name'      => 'phplistdb'
-        ),$database);
-
-        // merge default admin user value into configured value
-        $admin = array_merge(array(
-            'username' => 'admin',
-            'password' => 'Mypassword123+'
-        ),$admin);
-
         $this->params = array(
-            'db_host' => $database['host'],
-            'db_user' => $database['user'],
-            'db_password' => $database['password'],
-            'db_name' => $database['name'],
             'admin_username' => $admin['username'],
             'admin_password' => $admin['password']
         );
     }
-
     public function __call($method, $parameters)
     {
         // we try to call the method on the Page first
@@ -77,13 +46,11 @@ class FeatureContext extends MinkContext
         if (method_exists($page, $method)) {
             return call_user_func_array(array($page, $method), $parameters);
         }
-
         // we try to call the method on the Session
         $session = $this->getSession();
         if (method_exists($session, $method)) {
             return call_user_func_array(array($session, $method), $parameters);
         }
-
         // could not find the method at all
         throw new \RuntimeException(sprintf(
             'The "%s()" method does not exist.', $method
@@ -105,14 +72,12 @@ class FeatureContext extends MinkContext
         for ($i = 0; $i <= $tries; $i++) {
             try {
                 $closure();
-
                 return;
             } catch (\Exception $e) {
                 if ($i == $tries) {
                     throw $e;
                 }
             }
-
             sleep(1);
         }
     }
@@ -130,12 +95,10 @@ class FeatureContext extends MinkContext
     public function somethingLongShouldOutput($text)
     {
         $this->find('css', 'button#longStuff')->click();
-
         $this->spins(function() use ($text) { 
             $this->assertSession()->pageTextContains($text);
         });
     }
-
     /**
      * @Then do something on a button that might not be there yet
      */
@@ -150,18 +113,6 @@ class FeatureContext extends MinkContext
         });
     }
 
-
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
     /**
      * @Given /^I have logged in as an administrator$/
      */
@@ -215,7 +166,7 @@ class FeatureContext extends MinkContext
      */
     public function iFillInWithAValidPassword($arg1)
     {
-        $this->fillField($arg1, $this->params['admin_password']);
+       $this->fillField($arg1, $this->params['admin_password']);
     }
 
     /**
@@ -228,6 +179,18 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Given I fill in :arg1 with :arg2 emails
+     */
+    public function iFillInWithEmails($arg1, $arg2)
+    {
+        $content = "";
+        for ($i = 0; $i < $arg2; $i++ ){
+          $content .= 'user'.$i.'@phplist.dev'.PHP_EOL;
+        }
+        $this->fillField($arg1, $content);
+    }
+
+    /**
      * @Given /^I should see the email address I entered$/
      */
     public function iShouldSeeTheEmailAddressIEntered()
@@ -236,41 +199,11 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^No campaigns yet exist$/
-     */
-    public function iHaveNotYetCreatedCampaigns()
-    {
-        // Count the number of campaigns in phplist_message table
-        $result = mysqli_fetch_assoc(
-            mysqli_query(
-                $this->db,'
-                    select 
-                        count(*) as count 
-                    from 
-                        phplist_message;
-                ')
-        );
-        $campaignCount = $result['count'];
-
-        if ($campaignCount > 0) {
-            $this->throwExpectationException('One or more campagins already exist');
-        }
-    }
-
-    /**
      * @Given /^I have subscriber with email "([^"]*)"/
      */
     public function iHaveSubscriber($email)
     {
         $this->clickLink('S');
-    }
-
-    /**
-     * @return mysqli
-     */
-    public function getMysqli()
-    {
-        return $this->db;
     }
 
     /**
@@ -309,20 +242,158 @@ class FeatureContext extends MinkContext
         $this->getSession()->wait(5000, '(0 === jQuery.active)');
     }
     
-     /**
-     * @Given I go back
+    /**
+     * @Then I click on :arg1
      */
+    public function iClickOn($arg1)
+    {  
+        $arg1= $this->find("css",'submit btn btn-primary');
+        $this->getSession()->click($arg1);
+    }
+
+    /**
+     * @When I enter text :arg1
+     * 
+     * requires the CKEDITOR, which is not there by default
+     */
+    public function iEnterText($arg1)
+    { 
+
+        $script = <<<JS
+            (function(){
+        CKEDITOR.instances.message.setData( '<p>This is the editor data.</p>' ); })();
+JS;
+        //$this->getSession()->executeScript("document.body.innerHTML = '<p>".$arg1."</p>'");}
+        $this->getSession()->evaluateScript($script);
+    }
+
+    /**
+     * @Then I should read :arg1
+     */
+    public function iShouldRead($arg1)
+    {
+        $script = <<<JS
+        (function(){
+            CKEDITOR.instances.message.getData();})();
+
+JS;
+        $this->getSession()->evaluateScript($script);
+    }
+
+    /**
+     * @Then :arg1 checkbox should be checked
+     */
+
+
+    /**
+    * @Then /^Radio button with id "([^"]*)" should be checked$/
+    */
+    public function RadioButtonWithIdShouldBeChecked($sId)
+    {
+        $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
+    }
+
+    /**
+     * @When I switch back from iframe
+     */
+    public function iSwitchBackFrom($name=null)
+    {
+     $this->getSession()->getDriver()->switchToIframe(null);
+    }
+
+    /**
+     * @Then I switch to other iframe :arg1
+     */
+    public function iSwitchToOtherIframe($arg1)
+    {
+      $this->getSession()->switchToIframe($arg1);
+    }
+    
+    /**
+     * @Given I mouse over :arg1
+     */
+    public function iMouseOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="menuTop"]/ul[5]/li');
+    if (!$findName) {
+        throw new Exception($arg1 . " could not be found");
+    } else {
+        $findName->mouseOver();
+    }
+}
+    /**
+     * @Given I click over :arg1
+     */
+    public function iClickOver($arg1)
+    {
+         $page = $this->getSession()->getPage();
+    $findName = $page->find("xpath", '//*[@id="wrapp"]/form/div[1]/div/span[1]/a');
+        $findName->click();
+    }
+
+    /**
+    * @Given I write :text into :field
+    */
+    public function iWriteTextIntoField($text, $field)
+    {
+      $field = $this->getSession()
+        ->getDriver()
+        ->getWebDriverSession()
+        ->element('xpath', '//*[@id="edit_list_categories"]/div/input');
+        $field->postValue(['value' => [$text]]);
+    }
+
+
+    /**
+    * @Given I go back
+    */
     public function iGoBack()
     {
         $this->getSession()->getDriver()->back();
     }
 
-     /**
-     * @When I confirm the popup
-     */
+    /**
+    * @When I confirm the popup
+    */
     public function iConfirmThePopup()
     {  
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+    }
+
+    /**
+    * @Given I go back to :arg1
+    */
+    public function iGoBackTo($page)
+    {
+        $this->getSession()->getDriver()->back();
+    }
+
+    /**
+    * @Then The header color should be black
+    */
+    public function theDivContextMenuBlockMenuColorShouldBeBlack()
+    {
+
+        // JS script that makes the CSS assertion in the browser.
+
+        $script = <<<JS
+            (function(){
+                return $('#header').css('color') === 'rgb(51, 51, 51)';
+            })();
+JS;
+
+        if (!$this->getSession()->evaluateScript($script)) {
+            throw new Exception();
+        }
+    }
+
+    /**
+    * @Then I should see :message on popups
+    */
+    public function iShouldSeeOnPopups($message)
+    {   
+        return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
     }
 
 }

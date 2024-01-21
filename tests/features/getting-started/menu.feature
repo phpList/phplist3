@@ -16,7 +16,6 @@ Feature: Navigate the app using the menu
       | statistics                |
       | system                    |
       | config                    |
-      | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
      Then I should see "Dashboard"
@@ -70,9 +69,8 @@ Feature: Navigate the app using the menu
          | Verify the DB structure   |
          | Log of events             |
          | Initialise the database   |
-         | Upgrade phpList           |
+         | Upgrade phpList Database  |
          | Manage bounces            |
-         | Send the queue            |
          | Rebuild DB indexes        |
          | system                    |
      Scenario Outline: Browse Config menu
