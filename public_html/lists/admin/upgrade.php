@@ -468,6 +468,15 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
 
+    if (Sql_Table_Column_Exists($GLOBALS['tables']['user_message_forward'],'user')) {
+        Sql_Query('drop index usermessageidx on '.$GLOBALS['tables']['user_message_forward']);
+        Sql_Query('drop index useridx on '.$GLOBALS['tables']['user_message_forward']);
+        Sql_Query('alter table '.$GLOBALS['tables']['user_message_forward'].' change column user userid integer not null');
+        Sql_Query('alter table '.$GLOBALS['tables']['user_message_forward'].' add index usermessageidx (userid,message)');
+        Sql_Query('alter table '.$GLOBALS['tables']['user_message_forward'].' add index useridx (userid)');
+        Sql_Query('drop index useridx on '.$GLOBALS['tables']['user_message_forward']);
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

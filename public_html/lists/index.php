@@ -1058,7 +1058,7 @@ function forwardPage($id)
     $forwardemail = '';
     if (isset($_REQUEST['email']) && !empty($_REQUEST['email'])) {
         $firstpage = 0;
-        $forwardPeriodCount = Sql_Fetch_Array_Query(sprintf('select count(user) from %s where date_add(time,interval %s) >= now() and user = %d and status ="sent" ',
+        $forwardPeriodCount = Sql_Fetch_Array_Query(sprintf('select count(userid) from %s where date_add(time,interval %s) >= now() and userid = %d and status ="sent" ',
             $tables['user_message_forward'], FORWARD_EMAIL_PERIOD, $userdata['id']));
         $forwardemail = stripslashes($_REQUEST['email']);
         $emails = explode("\n", $forwardemail);
@@ -1126,7 +1126,7 @@ function forwardPage($id)
 
             foreach ($emails as $index => $email) {
                 //0011860: forward to friend, multiple emails
-                $done = Sql_Fetch_Array_Query(sprintf('select user,status,time from %s where forward = "%s" and message = %d',
+                $done = Sql_Fetch_Array_Query(sprintf('select userid,status,time from %s where forward = "%s" and message = %d',
                     $tables['user_message_forward'], $email, $mid));
                 $info .= '<br />'.$email.': ';
                 if ($done['status'] === 'sent') {
@@ -1145,7 +1145,7 @@ function forwardPage($id)
                             sendAdminCopy(s('Message Forwarded'),
                                 s('%s has forwarded message %d to %s', $userdata['email'], $mid, $email),
                                 $messagelists);
-                            Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
+                            Sql_Query(sprintf('insert into %s (userid,message,forward,status,time)
                  values(%d,%d,"%s","sent",now())',
                                 $tables['user_message_forward'], $userdata['id'], $mid, $email));
                             if ($iCountFriends) {
@@ -1156,7 +1156,7 @@ function forwardPage($id)
                             sendAdminCopy(s('Message Forwarded'),
                                 s('%s tried forwarding message %d to %s but failed', $userdata['email'], $mid, $email),
                                 $messagelists);
-                            Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
+                            Sql_Query(sprintf('insert into %s (userid,message,forward,status,time)
                 values(%d,%d,"%s","failed",now())',
                                 $tables['user_message_forward'], $userdata['id'], $mid, $email));
                             $ok = false;
