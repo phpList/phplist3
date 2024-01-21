@@ -74,6 +74,9 @@ $bounce_protocol = 'pop';
 // commandline
 define('MANUALLY_PROCESS_BOUNCES', 1);
 
+## run queue on CLI
+define('MANUALLY_PROCESS_QUEUE', 0);
+
 // when the protocol is pop, specify these three
 $bounce_mailbox_host = 'localhost';
 $bounce_mailbox_user = 'popuser';
