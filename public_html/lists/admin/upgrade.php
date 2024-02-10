@@ -468,6 +468,14 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
 
+    if (version_compare($dbversion, '3.6.15','<')) {
+        // support utf8mb4 for campaign subject and content
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify subject varchar(255) character set utf8mb4 not null default '(no subject)'");
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify message longtext character set utf8mb4");
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify textmessage longtext character set utf8mb4");
+        Sql_Query("alter table {$GLOBALS['tables']['messagedata']} modify data longtext character set utf8mb4");
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();
