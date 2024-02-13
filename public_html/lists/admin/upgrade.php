@@ -101,16 +101,6 @@ if ($dbversion == VERSION && !$force) {
     Sql_Query(sprintf('delete from %s ',$GLOBALS['tables']['sendprocess']));
 
     ignore_user_abort(1);
-    // rename tables if we are using the prefix
-    include dirname(__FILE__).'/structure.php';
-    foreach ($DBstruct as $table => $value) {
-        set_time_limit(500);
-        if (isset($table_prefix)) {
-            if (Sql_Table_exists($table) && !Sql_Table_Exists($tables[$table])) {
-                Sql_Verbose_Query("alter table $table rename $tables[$table]", 1);
-            }
-        }
-    }
     @ob_end_flush();
     @ob_start();
 
@@ -236,59 +226,6 @@ if ($dbversion == VERSION && !$force) {
         refreshTlds(true);
     }
 
-    //# changed terminology
-    Sql_Query(sprintf('update %s set status = "invalid email address" where status = "invalid email"',
-        $tables['usermessage']));
-
-    //# for some reason there are some config entries marked non-editable, that should be
-    include_once dirname(__FILE__).'/defaultconfig.php';
-    foreach ($default_config as $configItem => $configDetails) {
-        if (empty($configDetails['hidden'])) {
-            Sql_Query(sprintf('update %s set editable = 1 where item = "%s"', $tables['config'], $configItem));
-        } else {
-            Sql_Query(sprintf('update %s set editable = 0 where item = "%s"', $tables['config'], $configItem));
-        }
-    }
-
-    //# replace old header and footer with the new one
-    //# but only if there are untouched from the default, which seems fairly common
-    $oldPH = @file_get_contents(dirname(__FILE__).'/ui/old_public_header.inc');
-    $oldPH2 = preg_replace("/\n/", "\r\n", $oldPH); //# version with \r\n instead of \n
-
-    $oldPF = @file_get_contents(dirname(__FILE__).'/ui/old_public_footer.inc');
-    $oldPF2 = preg_replace("/\n/", "\r\n", $oldPF); //# version with \r\n instead of \n
-    Sql_Query(sprintf('update %s set value = "%s" where item = "pageheader" and (value = "%s" or value = "%s")',
-        $tables['config'], sql_escape($defaultheader), addslashes($oldPH), addslashes($oldPH2)));
-    Sql_Query(sprintf('update %s set value = "%s" where item = "pagefooter" and (value = "%s" or value = "%s")',
-        $tables['config'], sql_escape($defaultfooter), addslashes($oldPF), addslashes($oldPF2)));
-
-    //# and the same for subscribe pages
-    Sql_Query(sprintf('update %s set data = "%s" where name = "header" and (data = "%s" or data = "%s")',
-        $tables['subscribepage_data'], sql_escape($defaultheader), addslashes($oldPH), addslashes($oldPH2)));
-    Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and (data = "%s" or data = "%s")',
-        $tables['subscribepage_data'], sql_escape($defaultfooter), addslashes($oldPF), addslashes($oldPF2)));
-
-    if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc')) {
-        $oldPH = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc');
-        $oldPH2 = preg_replace("/\n/", "\r\n", $oldPH); //# version with \r\n instead of \n
-        $oldPF = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_footer.inc');
-        $oldPF2 = preg_replace("/\n/", "\r\n", $oldPF); //# version with \r\n instead of \n
-        $currentPH = getConfig('pageheader');
-        $currentPF = getConfig('pagefooter');
-
-        if (($currentPH == $oldPH2 || $currentPH."\r\n" == $oldPH2) && !empty($defaultheader)) {
-            SaveConfig('pageheader', $defaultheader, 1);
-            Sql_Query(sprintf('update %s set data = "%s" where name = "header" and data = "%s"',
-                $tables['subscribepage_data'], sql_escape($defaultheader), addslashes($currentPH)));
-            //# only try to change footer when header has changed
-            if ($currentPF == $oldPF2 && !empty($defaultfooter)) {
-                SaveConfig('pagefooter', $defaultfooter, 1);
-                Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and data = "%s"',
-                    $tables['subscribepage_data'], sql_escape($defaultfooter), addslashes($currentPF)));
-            }
-        }
-    }
-
     //# #17328 - remove list categories with quotes
     Sql_Query(sprintf("update %s set category = replace(category,\"\\\\'\",\" \")", $tables['list']));
 
@@ -388,11 +325,6 @@ if ($dbversion == VERSION && !$force) {
     if (version_compare($dbversion, '3.6.14','<')) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
-
-    //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
-    //# before converting, it's quickest to clear the cache
-    clearPageCache();
-    Sql_Query(sprintf('alter table %s change column content content longblob', $tables['urlcache']));
 
     //# unlock the upgrade process
     Sql_Query(sprintf('delete from %s where item = "in-upgrade-to"', $tables['config']));
