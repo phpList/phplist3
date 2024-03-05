@@ -505,6 +505,8 @@ echo prepareOutput();
 flushBrowser();
 
 $download_report = '';
+if (isset($_GET['justexisting']))
+    goto aftermailbox;	
 switch ($bounce_protocol) {
     case 'pop':
         $download_report = processPop($bounce_mailbox_host, $bounce_mailbox_user, $bounce_mailbox_password);
@@ -524,7 +526,7 @@ if ($GLOBALS['commandline'] && $download_report === false) {
     return;
 }
 // now we have filled database with all available bounces
-
+aftermailbox:
 //# reprocess the unidentified ones, as the bounce detection has improved, so it might catch more
 
 cl_output('reprocessing');
@@ -645,6 +647,22 @@ if (count($bouncerules)) {
                             addUserHistory($userdata['email'], s('Auto unconfirmed'),
                                 s('Subscriber auto unconfirmed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
                             addSubscriberStatistics('auto unsubscribe', 1);
+                        }
+                        deleteBounce($row['bounce']);
+                        break;
+                    case 'decreasecountconfirmuseranddeletebounce':
+                        Sql_Query(sprintf('update %s set bouncecount = bouncecount + %d where id = %d',
+                            $GLOBALS['tables']['user'], '-1', $row['user']));
+                        if (!$confirmed) {
+                            logEvent('User ' . $userdata['email'] . ' confirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            Sql_Query(sprintf('update %s set confirmed = 1 where id = %d', $GLOBALS['tables']['user'],
+                                $row['user']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' made confirmed by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], s('Auto confirmed'),
+                                s('Subscriber auto confirmed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
                         }
                         deleteBounce($row['bounce']);
                         break;
