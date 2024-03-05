@@ -15,7 +15,7 @@ Put @wip in the feature you are working on, so that it doesn't interfere with Gi
 
 Then run
 ```sh
-vagant up
+vagant up --provision
 ```
 
 Once it has run once, you can fire off further runs with
@@ -23,14 +23,15 @@ Once it has run once, you can fire off further runs with
 ```sh
 vagant ssh
 cd /vagrant/tests
+sudo su
 make test
 ```
 
 You can also use the following commands:
 
-make verbosetest - show progress during testing, useful to identify issues in your tests
-make test-wip - only run the features marked "@wip"
-make testall - run all tests
+- make verbosetest - show progress during testing, useful to identify issues in your tests
+- make test-wip - only run the features marked "@wip"
+- make testall - run all tests
 
 
 

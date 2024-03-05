@@ -27,10 +27,8 @@ Vagrant.configure("2") do |config|
       add-apt-repository ppa:ondrej/php
       DEBIAN_FRONTEND=noninteractive apt update
       DEBIAN_FRONTEND=noninteractive apt install -y make mariadb-client mariadb-server postfix chromium-chromedriver firefox openjdk-8-jre-headless fonts-liberation xdg-utils 
-      DEBIAN_FRONTEND=noninteractive apt install -y php7.2 php7.2-mbstring php7.2-curl php7.2-mysql php7.2-xml php7.2-zip 
-      DEBIAN_FRONTEND=noninteractive apt install -y php7.3 php7.3-mbstring php7.3-curl php7.3-mysql php7.3-xml php7.3-zip 
-      DEBIAN_FRONTEND=noninteractive apt install -y php7.4 php7.4-mbstring php7.4-curl php7.4-mysql php7.4-xml php7.4-zip 
-      DEBIAN_FRONTEND=noninteractive apt install -y php8.0 php8.0-mbstring php8.0-curl php8.0-mysql php8.0-xml php8.0-zip 
+      DEBIAN_FRONTEND=noninteractive apt install -y php${PHPVERSION} php${PHPVERSION}-mbstring php${PHPVERSION}-curl php${PHPVERSION}-mysql php${PHPVERSION}-xml php${PHPVERSION}-zip 
+
       [[ ! -f /usr/bin/geckodriver ]] && {
         wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
         tar zxf geckodriver-v0.29.0-linux64.tar.gz
@@ -39,8 +37,6 @@ Vagrant.configure("2") do |config|
       update-alternatives --set php /usr/bin/php$PHPVERSION
       update-alternatives --set phar /usr/bin/phar$PHPVERSION
       update-alternatives --set phar.phar /usr/bin/phar.phar$PHPVERSION
-      update-alternatives --set phpize /usr/bin/phpize$PHPVERSION
-      update-alternatives --set php-config /usr/bin/php-config$PHPVERSION
       [[ ! -z $(which google-chrome) ]] || {
         [[ ! -f google-chrome-stable_current_amd64.deb ]] && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         dpkg -i google-chrome-stable_current_amd64.deb
