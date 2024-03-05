@@ -890,10 +890,20 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
         if ($hash != 'forwarded' || !count($forwardedby)) {
             $fromname = $cached[$messageid]['fromname'];
-            $subject = $cached[$messageid]['subject'];
+            $subject = (!$isTestMail ? '' : ($GLOBALS['I18N']->get('(test)')) . ' ') . $cached[$messageid]['subject'];
 
             if (!empty($cached[$messageid]['replytoemail'])) {
                 $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
+            } elseif ($isTestMail) {
+                $testReplyFrom = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d', $GLOBALS['tables']['admin'], $_SESSION['logindetails']['id']))[0];
+                $testReplyName = adminName();
+                if (empty($testReplyFrom)) {
+                    $testReplyFrom = getConfig('admin_address');
+                    $testReplyName = '';
+                }
+                if (!empty($testReplyFrom)) {
+                    $mail->AddReplyTo($testReplyFrom, $testReplyName);
+                }
             }
         } else {
             $fromname = $forwardedby['subscriberName'];
