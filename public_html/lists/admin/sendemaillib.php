@@ -895,14 +895,14 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
             if (!empty($cached[$messageid]['replytoemail'])) {
                 $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
             } elseif ($isTestMail) {
-                $testReplyFrom = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d', $GLOBALS['tables']['admin'], $_SESSION['logindetails']['id']))[0];
+                $testReplyAddress = Sql_Fetch_Row_Query(sprintf('select email from %s where id = %d', $GLOBALS['tables']['admin'], $_SESSION['logindetails']['id']))[0];
                 $testReplyName = adminName();
-                if (empty($testReplyFrom)) {
-                    $testReplyFrom = getConfig('admin_address');
+                if (empty($testReplyAddress)) {
+                    $testReplyAddress = getConfig('admin_address');
                     $testReplyName = '';
                 }
-                if (!empty($testReplyFrom)) {
-                    $mail->AddReplyTo($testReplyFrom, $testReplyName);
+                if (!empty($testReplyAddress)) {
+                    $mail->AddReplyTo($testReplyAddress, $testReplyName);
                 }
             }
         } else {
