@@ -323,12 +323,12 @@ $DBstructphplist = array(
     ),
     'admin_login' => array( 
         'id'    => array('integer not null primary key auto_increment', 'Id'),
-        'moment'      => array('bigint', 'epoch when it happened'),
-        'adminid'     => array('integer', "Admin Id"),
+        'moment'      => array('bigint not null', 'epoch when it happened'),
+        'adminid'     => array('integer not null', "Admin Id"),
         'remote_ip4' => array('varchar (32) not null', 'IPv4 address'),
         'remote_ip6' => array('varchar (50) not null', 'IPv6 address'),
         'sessionid' => array('varchar (50) not null', 'Session ID'),
-        'active' => array('tinyint', 'is this login active'),
+        'active' => array('tinyint not null default 0', 'is this login active'),
     ),    /*
      * obsolete tables
           "task" => array(
