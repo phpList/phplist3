@@ -2506,9 +2506,8 @@ this, please login to your phpList installation and change your password.
 $GLOBALS['config']['website']);
 
   $admin_mail = $GLOBALS['admin_auth']->adminEmail($_SESSION['logindetails']['id']);
-  sendMail($admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
+  $ok = sendMail($admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
 
-  $ok = sendAdminCopy(s('login from new location'), "\n".$msg);
   if ($ok === 0) {
     $main_admin_mail = getConfig('admin_address');
     logEvent(sprintf('Error sending login notification to %s', $admin_mail));
