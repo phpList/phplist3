@@ -331,17 +331,13 @@ if (!empty($GLOBALS['require_login'])) {
             }
 
             # check if this is a new IP address
-            $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s"',$GLOBALS['tables']['admin_login'],$remoteAddr));
+            $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s" and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$loginresult[0]));
             if (empty($knownIP[0])) {
               notifyNewIPLogin($loginresult[0]);
             }
             Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
               values(%d,%d,"%s","%s","%s",1)',
               $GLOBALS['tables']['admin_login'],time(),$loginresult[0],$remoteAddr,"",session_id()));
-
-
-
-
         }
         //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
     } elseif (isset($_REQUEST['forgotpassword'])) {
