@@ -505,28 +505,27 @@ echo prepareOutput();
 flushBrowser();
 
 $download_report = '';
-if (isset($_GET['justexisting']))
-    goto aftermailbox;	
-switch ($bounce_protocol) {
-    case 'pop':
-        $download_report = processPop($bounce_mailbox_host, $bounce_mailbox_user, $bounce_mailbox_password);
-        break;
-    case 'mbox':
-        $download_report = processMbox($bounce_mailbox);
-        break;
-    default:
-        Error($GLOBALS['I18N']->get('bounce_protocol not supported'));
+if (!isset($_GET['justexisting'])) {
+    switch ($bounce_protocol) {
+        case 'pop':
+            $download_report = processPop($bounce_mailbox_host, $bounce_mailbox_user, $bounce_mailbox_password);
+            break;
+        case 'mbox':
+            $download_report = processMbox($bounce_mailbox);
+            break;
+        default:
+            Error($GLOBALS['I18N']->get('bounce_protocol not supported'));
+
+            return;
+    }
+
+    if ($GLOBALS['commandline'] && $download_report === false) {
+        cl_output(s('Download failed, exiting'));
 
         return;
-}
-
-if ($GLOBALS['commandline'] && $download_report === false) {
-    cl_output(s('Download failed, exiting'));
-
-    return;
-}
+    }
 // now we have filled database with all available bounces
-aftermailbox:
+}
 //# reprocess the unidentified ones, as the bounce detection has improved, so it might catch more
 
 cl_output('reprocessing');
@@ -651,8 +650,8 @@ if (count($bouncerules)) {
                         deleteBounce($row['bounce']);
                         break;
                     case 'decreasecountconfirmuseranddeletebounce':
-                        Sql_Query(sprintf('update %s set bouncecount = bouncecount + %d where id = %d',
-                            $GLOBALS['tables']['user'], '-1', $row['user']));
+                        Sql_Query(sprintf('update %s set bouncecount = bouncecount -1 where id = %d',
+                            $GLOBALS['tables']['user'], $row['user']));
                         if (!$confirmed) {
                             logEvent('User ' . $userdata['email'] . ' confirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
                                     $rule['id']));
