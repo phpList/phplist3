@@ -2499,8 +2499,9 @@ function notifyNewIPLogin($adminId) {
 --------------------------------------------------------------------------------
 
 We noticed a login to your phpList installation at https://%s
-from a new location. If this was you, you can delete this message. If you do not recognise
-this, please login to your phpList installation and change your password.
+from a new location. If this was you, you can delete this message.
+If you do not recognise this, please login to your phpList installation 
+and change your password.
 
 --------------------------------------------------------------------------------  ',
 $GLOBALS['config']['website']);
