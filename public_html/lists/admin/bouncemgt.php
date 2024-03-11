@@ -14,11 +14,7 @@ echo $spb.PageLink2('listbounces', s('View Bounces per list')).$spe;
 echo $spb.PageLink2('checkbouncerules', s('Check Current Bounce Rules')).$spe;
 
 echo $spb.PageLink2('processbounces', s('Process Bounces')).$spe;
-if (version_compare(PHP_VERSION, '8.0.0', '<') { // Hardcoding defaults when not supporting Named Arguments
-    echo $spb.PageLink2('processbounces&justexisting=true', s('Reprocess Only Existing Bounces'), '', false, s('Reprocess Only Existing Bounces')).$spe;
-} else {
-    echo $spb.PageLink2('processbounces&justexisting=true', s('Reprocess Only Existing Bounces'), title: s('Reprocess Only Existing Bounces')).$spe;
-}
+echo $spb.PageLink2('processbounces&justexisting=true', s('Reprocess Only Existing Bounces'), '', false, s('Reprocess Only Existing Bounces')).$spe;
 
 echo '</ul><br />';
 
