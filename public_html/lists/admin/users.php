@@ -333,13 +333,13 @@ $filterpanel .= sprintf('<form method="get" name="listcontrol" action="">
     $start,
     htmlspecialchars(stripslashes($find)),
     htmlspecialchars(stripslashes($findby)),
-    $GLOBALS['I18N']->get('Show only unconfirmed users'),
+    $GLOBALS['I18N']->get('Show only unconfirmed subscribers'),
     $unc,
-    $GLOBALS['I18N']->get('Show only blacklisted users'),
+    $GLOBALS['I18N']->get('Show only blacklisted subscribers'),
     $bll,
-    $GLOBALS['I18N']->get('Show only confirmed users'),
+    $GLOBALS['I18N']->get('Show only confirmed subscribers'),
     $nonunc,
-    $GLOBALS['I18N']->get('Show only non blacklisted users'),
+    $GLOBALS['I18N']->get('Show only non blacklisted subscribers'),
     $nonbll);
 //print '</td><td valign="top">';
 $select = '';
