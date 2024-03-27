@@ -18,6 +18,7 @@ if (!isSuperUser()) {
     echo Error(s('No Access'));
     return;
 }
+$accesslevel = 'all';
 
 if (!empty($_POST['change'])) {
     if (!verifyToken()) { //# csrf check, should be added in more places
@@ -157,7 +158,7 @@ printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" 
 if (isset($data['privileges'])) {
     $privileges = unserialize($data['privileges']);
 } else {
-    $privileges = array();
+    $privileges = array('subscribers' => 0, 'campaigns' => 0, 'statistics' => 0, 'settings' => 0);
 }
 
 reset($struct);
