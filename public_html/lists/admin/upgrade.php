@@ -468,6 +468,11 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
 
+    if (!Sql_Table_exists($GLOBALS['tables']['admin_login'])) {
+        cl_output(s('Creating new table "admin_login"'));
+        createTable('admin_login');
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();

@@ -377,12 +377,10 @@ class phplist_I18N
 
         if (isset($GLOBALS['developer_email'])) {
             if (!empty($_SESSION['show_translation_colours'])) {
-                return '<span style="color:#A704FF">'.str_replace("\n", '', $text).'</span>';
+                return '<span style="color:#A704FF">'.$text.'</span>';
             }
-//       return 'TE'.$text.'XT';
         }
-//    return '<span class="translateabletext">'.str_replace("\n","",$text).'</span>';
-        return str_replace("\n", '', $text);
+        return $text;
     }
 
     /**

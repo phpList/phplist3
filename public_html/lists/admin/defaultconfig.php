@@ -125,7 +125,13 @@ $default_config = array(
         'type'        => 'text',
         'category'    => 'security',
     ),
-
+    'notify_admin_login' => array(
+        'value'       => 1,
+        'description' => s('Notify admin on login from new location'),
+        'type'        => 'boolean',
+        'category'    => 'security',
+        'allowempty'  => true,
+    ),
     // admin addresses are other people who receive copies of subscriptions
     'admin_addresses' => array(
         'value'       => '',
