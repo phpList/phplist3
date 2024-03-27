@@ -1262,10 +1262,10 @@ function PageLinkDialogOnly($name, $desc = '', $url = '', $extraclass = '')
     return $link;
 }
 
-function PageLinkAjax($name, $desc = '', $url = '', $extraclass = '')
+function PageLinkAjax($name, $desc = '', $url = '', $extraclass = '', $title = '')
 {
     //# as PageLink2, but add the option to ajax it in a popover window
-    $link = PageLink2($name, $desc, $url);
+    $link = PageLink2($name, $desc, $url, false, $title ?: $desc);
     if ($link) {
         $link = str_replace('<a ', '<a class="ajaxable '.$extraclass.'" ', $link);
         $link .= '';
