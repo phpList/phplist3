@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: French (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2022-12-08 02:09+0000\n"
+"PO-Revision-Date: 2024-02-07 13:38+0000\n"
 "Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
@@ -2564,8 +2564,8 @@ msgid ""
 "This campaign is scheduled to stop sending before the embargo time. No mails "
 "will be sent."
 msgstr ""
-"Cette campagne est programmée pour cesser d'envoyer avant le temps "
-"d'embargo. Aucun courrier ne sera envoyé."
+"Cette campagne est programmée pour ne rien envoyer avant le temps d'envoi "
+"différé. Aucun courriel ne sera envoyé."
 
 #: public_html/databasestructure.php:126
 msgid "Bounce ID"
@@ -6203,7 +6203,7 @@ msgstr "Clics des abonnés pour une campagne"
 #: public_html/lists/admin/actions/msgstatus.php:62
 #, php-format
 msgid "%s left until embargo"
-msgstr "%s restant avant l'embargo"
+msgstr "%s restant avant l'envoi différé"
 
 # Suggested in Weblate: Modèles de campagne
 #: public_html/lists/admin/templates.php:31
@@ -6535,7 +6535,7 @@ msgstr "Opération réussie"
 
 #: public_html/lists/admin/send_core.php:748
 msgid "Embargoed Until"
-msgstr "Bloqué jusqu'à cette période"
+msgstr "Bloqué jusqu'à"
 
 #: public_html/databasestructure.php:300
 msgid "pagetitlehover:getrss"
@@ -7405,7 +7405,7 @@ msgstr ""
 
 #: public_html/databasestructure.php:354
 msgid "pagetitlehover:updatetranslation"
-msgstr "pagetitlehover:Traductions"
+msgstr "Obtenez la dernière traduction du système de traduction communautaire"
 
 #: public_html/databasestructure.php:355
 msgid "pagetitle:reindex"
