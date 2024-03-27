@@ -162,7 +162,8 @@ if (!Sql_Num_Rows($result)) {
             break;
 
     }
-}
+} elseif ($status == 'processed')
+    echo s('Subscribers with a red icon are either unconfirmed or blacklisted or both');
 
 $ls = new WebblerListing(s($status).' '.s('bounces'));
 $ls->setElementHeading('Bounce ID');
@@ -195,7 +196,13 @@ while ($bounce = Sql_fetch_array($result)) {
         preg_match("#([\d]+) bouncecount increased#", $bounce['comment'], $regs)
         OR preg_match("#([\d]+) marked unconfirmed#", $bounce['comment'], $regs)
     ) {
-        $userIdLink = PageLink2('user&id='.$regs[1], getUserEmail($regs[1]));
+        $userIdLink = PageLink2('user&id='.$regs[1], ($regs[1]));
+        $userDetails = Sql_Fetch_Assoc_Query(sprintf('select email, confirmed from %s where id = %d', $tables['user'], $regs[1]));
+        if ($userDetails['confirmed'] && !isBlackListed(htmlspecialchars($userDetails['email'])))
+            $ls_confirmed = $GLOBALS['img_tick'];
+        else
+            $ls_confirmed = $GLOBALS['img_cross'];
+        $userIdLink .= '&nbsp;' . $ls_confirmed;
     } elseif ($bounce['comment'] == 'not processed') {
         $userIdLink = $GLOBALS['I18N']->get('Unknown');
     } else {

@@ -18,6 +18,7 @@ $useremail = isset($_GET['useremail']) && is_email($_GET['useremail']) ? $_GET['
 $deletebounce = isset($_GET['deletebounce']); //BUGFIX #15286 - nickyoung
 $amount = isset($_GET['amount']) ? sprintf('%d', $_GET['amount']) : ''; //BUGFIX #15286 - CS2
 $unconfirm = isset($_GET['unconfirm']); //BUGFIX #15286 - CS2
+$confirm = isset($_GET['confirm']);
 $maketext = isset($_GET['maketext']); //BUGFIX #15286 - CS2
 $deleteuser = isset($_GET['deleteuser']);  //BUGFIX #15286 - CS2
 
@@ -76,10 +77,14 @@ if (isset($_GET['doit']) && isSuperUser()) {
         }
     }
 
-    if (!empty($userid) && $unconfirm) {
-        Sql_Query(sprintf('update %s set confirmed = 0 where id = %d',
+    if (!empty($userid) && ($unconfirm || $confirm)) {
+        Sql_Query(sprintf('update %s set confirmed = ' . ($confirm ? '1' : '0')  . ' where id = %d',
             $tables['user'], $userid));
-        $actionresult .= sprintf($GLOBALS['I18N']->get('Made subscriber %s unconfirmed').'<br />', $userid);
+        if ($confirm) {
+            $actionresult .= sprintf(s('Made subscriber %s confirmed').'<br />', $userid);
+        } else {
+            $actionresult .= sprintf(s('Made subscriber %s unconfirmed').'<br />', $userid);
+        }          
     }
 
     if (!empty($userid) && $maketext) {
@@ -164,16 +169,28 @@ if ($id) {
         $GLOBALS['I18N']->get('Memo for this rule'));
     $newruleform .= '<tr><td colspan="2"><p class="submit"><input type="submit" name="add" value="'.$GLOBALS['I18N']->get('Add new Rule').'" /></p></td></tr>';
     $newruleform .= '</table></form>';
-
     $actionpanel = '';
     $actionpanel .= '<form method="get" action="">';
     $actionpanel .= '<input type="hidden" name="page" value="'.$page.'" />';
     $actionpanel .= '<input type="hidden" name="id" value="'.$id.'" />';
     $actionpanel .= '<input type="hidden" name="type" value="'.$type.'" />';
     $actionpanel .= '<table class="bounceActions">';
-    $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('For subscriber with email').'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
+    list($msgDetails, $userDetails, $furtherDetails) = array('', '', '');
+    if (preg_match("#bounced list message ([\d]+)#", $bounce['status'], $regs))
+        $msgDetails = s('Campaign') . '&nbsp;' . PageLink2('message&id='.$regs[1], shortenTextDisplay(campaignTitle($regs[1]), 30));
+    if (isset($guessedid)) {
+        $userDetails = Sql_Fetch_Assoc_Query(sprintf('select confirmed from %s where id = %d', $tables['user'], $guessedid));
+        if ($userDetails['confirmed'] && !isBlackListed(htmlspecialchars($guessedemail)))
+            $ls_confirmed = $GLOBALS['img_tick'];
+        else
+            $ls_confirmed = $GLOBALS['img_cross'];
+        $userDetails = s('User') . '&nbsp' . PageLink2('user&id='.$guessedid, $guessedid) . '&nbsp' . $ls_confirmed . '<br />(' . s('Subscribers with a red icon are either unconfirmed or blacklisted or both') . ')';
+    }
+    if (!empty($msgDetails) || !empty($userDetails))
+        $furtherDetails = '<br />' . $msgDetails . (empty($msgDetails) ? '' : '&nbsp') . $userDetails;
+    $actionpanel .= '<tr><td>'.s('For subscriber with email').$furtherDetails.'</td><td><input type="text" name="useremail" value="'.$guessedemail.'" size="35" /></td></tr>';
     $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Increase bouncecount with').'<br />'.$GLOBALS['I18N']->get('(use negative numbers to decrease)').'</td><td><input type="text" name="amount" value="0" size="5" /></td></tr>';
-    $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Mark subscriber as unconfirmed').'<br />'.$GLOBALS['I18N']->get('(so you can resend the request for confirmation)').' </td><td><input type="checkbox" name="unconfirm" value="1" /></td></tr>';
+    $actionpanel .= '<tr><td>'.s('Mark subscriber as unconfirmed').'<br />'.s('(so you can resend the request for confirmation)').'<br />'.s('or confirmed').'<br />'.s('(so you can revert possible auto unconfirmation)'). ' </td><td>'.s('unconfirmed').'<input onclick="if (this.checked && form.confirm.checked) form.confirm.checked=false" type="checkbox" name="unconfirm" value="1" />'.s('confirmed').'<input onclick="if (this.checked && form.unconfirm.checked) form.unconfirm.checked=false" type="checkbox" name="confirm" value="1" /></td></tr>';
     $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Set subscriber to receive text instead of HTML').' </td><td><input type="checkbox" name="maketext" value="1" /></td></tr>';
     $actionpanel .= '<tr><td>'.$GLOBALS['I18N']->get('Delete subscriber').' </td><td><input type="checkbox" name="deleteuser" value="1" /></td></tr>';
     if (ALLOW_DELETEBOUNCE) {
