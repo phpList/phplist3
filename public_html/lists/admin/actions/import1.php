@@ -53,12 +53,13 @@ foreach ($email_list as $line) {
     if (!is_email($email) && $omit_invalid) {
         unset($email, $info);
         $count_invalid_emails++;
+    } else {
+      //# actually looks like the "info" bit will get lost, but
+      //# in a way, that doesn't matter
+      $user_list[$email] = array(
+          'info' => $info,
+      );
     }
-    //# actually looks like the "info" bit will get lost, but
-    //# in a way, that doesn't matter
-    $user_list[$email] = array(
-        'info' => $info,
-    );
 }
 
 $count_email_add = 0;

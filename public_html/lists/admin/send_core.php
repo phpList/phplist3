@@ -211,7 +211,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         subject = "%s", fromfield = "%s", tofield = "%s",
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s",
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
-        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d',
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%d" where id = %d',
             $tables['message'],
             sql_escape(strip_tags($messagedata['campaigntitle'])),
             /* we store the title in the subject field. Better would be to rename the DB column, but this will do for now */

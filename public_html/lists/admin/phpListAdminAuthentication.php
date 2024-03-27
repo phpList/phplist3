@@ -138,7 +138,7 @@ class phpListAdminAuthentication
     {
         $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d', $GLOBALS['tables']['admin'], $id));
 
-        return $req[0] ? $req[0] : s('Nobody');
+        return !empty($req[0]) ? $req[0] : s('Nobody');
     }
 
     /**
