@@ -14,6 +14,7 @@ if (!function_exists('output')) {
 
 function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array(), $forwardedby = array())
 {
+    global $admin_auth;
     $getspeedstats = VERBOSE && !empty($GLOBALS['getspeedstats']) && isset($GLOBALS['processqueue_timer']);
     $sqlCountStart = $GLOBALS['pagestats']['number_of_queries'];
     $isTestMail = isset($_GET['page']) && $_GET['page'] == 'send';
@@ -890,10 +891,20 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
 
         if ($hash != 'forwarded' || !count($forwardedby)) {
             $fromname = $cached[$messageid]['fromname'];
-            $subject = $cached[$messageid]['subject'];
+            $subject = (!$isTestMail ? '' : ($GLOBALS['I18N']->get('(test)')) . ' ') . $cached[$messageid]['subject'];
 
             if (!empty($cached[$messageid]['replytoemail'])) {
                 $mail->AddReplyTo($cached[$messageid]['replytoemail'], $cached[$messageid]['replytoname']);
+            } elseif ($isTestMail) {
+                $testReplyAddress = $admin_auth->adminEmail($_SESSION['logindetails']['id']);
+                $testReplyName = $admin_auth->adminName($_SESSION['logindetails']['id']);
+                if (empty($testReplyAddress)) {
+                    $testReplyAddress = getConfig('admin_address');
+                    $testReplyName = '';
+                }
+                if (!empty($testReplyAddress)) {
+                    $mail->AddReplyTo($testReplyAddress, $testReplyName);
+                }
             }
         } else {
             $fromname = $forwardedby['subscriberName'];
@@ -1630,3 +1641,4 @@ if (!Sql_Affected_Rows()) {
         $newpoweredimage,
         70, 30));
 }
+
