@@ -760,7 +760,7 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     if (isset($GLOBALS['showCat'])&& $GLOBALS['showCat']===true){
         $listspercategory = array();
         $categories = array();
-        $catresult = Sql_query(sprintf('select * from %s %s order by category, listorder, name',
+        $catresult = Sql_query(sprintf('select * from %s %s order by listorder, name',
             $GLOBALS['tables']['list'], $subselect));
 
 
