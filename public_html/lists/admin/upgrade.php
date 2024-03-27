@@ -468,6 +468,34 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
 
+    if (version_compare($dbversion, '3.6.15', '<')) {
+        // Ensure timestamp field does not have null values then give explicit defaults
+        Sql_Query(sprintf('update %s set modified = created where modified is null', $GLOBALS['tables']['admin']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['list']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['listmessage']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['listuser']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['message']));
+        Sql_Query(sprintf('update %s set modified = started where modified is null', $GLOBALS['tables']['sendprocess']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['user']));
+        Sql_Query(sprintf('update %s set time = current_timestamp where time is null', $GLOBALS['tables']['user_message_bounce']));
+        Sql_Query(sprintf('update %s set time = current_timestamp where time is null', $GLOBALS['tables']['user_message_forward']));
+
+        foreach (['admin', 'list', 'listmessage' , 'listuser', 'message', 'sendprocess', 'user'] as $t) {
+            Sql_Query(sprintf(
+                'alter table %s modify modified timestamp not null default current_timestamp on update current_timestamp',
+                $GLOBALS['tables'][$t]
+            ));
+        }
+        Sql_Query(sprintf(
+            'alter table %s modify time timestamp not null default current_timestamp on update current_timestamp',
+            $GLOBALS['tables']['user_message_bounce']
+        ));
+        Sql_Query(sprintf(
+            'alter table %s modify time timestamp not null default current_timestamp on update current_timestamp',
+            $GLOBALS['tables']['user_message_forward']
+        ));
+    }
+
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
     //# before converting, it's quickest to clear the cache
     clearPageCache();
