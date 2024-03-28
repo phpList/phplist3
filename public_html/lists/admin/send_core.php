@@ -610,7 +610,7 @@ if (!$done) {
         ++$counttabs;
 
         // print $tabs->display();
-    } 
+    }
     echo '<input id="followupto" type="hidden" name="followupto" value="" />';
 
     if ($_GET['page'] == 'preparemessage') {
@@ -1333,7 +1333,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
     if ($pluginerror) {
         $allReady = false;
-        $pluginerror = preg_replace("/\n/", '', $pluginerror);
+        $pluginerror = str_replace(["\n", "'"], ['', "\\'"], $pluginerror);
         $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
     $("#addtoqueue").append(\'<div class="missing">' .$pluginerror.'</div>\');
     </script>';
