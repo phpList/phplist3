@@ -1145,8 +1145,8 @@ function forwardPage($id)
                             sendAdminCopy(s('Message Forwarded'),
                                 s('%s has forwarded message %d to %s', $userdata['email'], $mid, $email),
                                 $messagelists);
-                            Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
-                 values(%d,%d,"%s","sent",now())',
+                            Sql_Query(sprintf('insert into %s (user,message,forward,status)
+                 values(%d,%d,"%s","sent")',
                                 $tables['user_message_forward'], $userdata['id'], $mid, $email));
                             if ($iCountFriends) {
                                 ++$nFriends;
@@ -1156,8 +1156,8 @@ function forwardPage($id)
                             sendAdminCopy(s('Message Forwarded'),
                                 s('%s tried forwarding message %d to %s but failed', $userdata['email'], $mid, $email),
                                 $messagelists);
-                            Sql_Query(sprintf('insert into %s (user,message,forward,status,time)
-                values(%d,%d,"%s","failed",now())',
+                            Sql_Query(sprintf('insert into %s (user,message,forward,status)
+                values(%d,%d,"%s","failed")',
                                 $tables['user_message_forward'], $userdata['id'], $mid, $email));
                             $ok = false;
                         }
