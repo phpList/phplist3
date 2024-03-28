@@ -25,7 +25,7 @@ Please follow the guidelines below when creating an issue so that your issue can
 
 **Avoid duplicated issues**
 
-Before you report an issue, please search through [existing issues on Mantis](https://mantis.phplist.com) and [GitHub](https://github.com/phpList/phplist3/issues) to see if your issue is already reported or fixed to make sure you are not reporting a duplicated issue. 
+Before you report an issue, please search through [existing issues](https://github.com/phpList/phplist3/issues) to see if your issue is already reported or fixed to make sure you are not reporting a duplicated issue. 
 Also, make sure you have the latest version of phpList and see if the issue still exists.
 
 
