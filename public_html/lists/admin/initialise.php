@@ -167,8 +167,8 @@ foreach ($DBstruct as $table => $val) {
                 $_SESSION['firstinstall'] = 1;
                 $adminemail = $_REQUEST['adminemail'];
                 $adminpass = $_REQUEST['adminpassword'];
-                Sql_Query(sprintf('insert into %s (loginname,namelc,email,created,modified,password,passwordchanged,superuser,disabled)
-                    values("%s","%s","%s",now(),now(),"%s",now(),%d,0)',
+                Sql_Query(sprintf('insert into %s (loginname,namelc,email,created,password,passwordchanged,superuser,disabled)
+                    values("%s","%s","%s",now(),"%s",now(),%d,0)',
                     $tables['admin'], 'admin', 'admin', sql_escape($adminemail), encryptPass($adminpass), 1));
 
                 //# let's add them as a subscriber as well

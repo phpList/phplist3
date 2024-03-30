@@ -30,6 +30,7 @@ $GLOBALS['bounceruleactions'] = array(
     'unconfirmuseranddeletebounce'  => $GLOBALS['I18N']->get('unconfirm subscriber and delete bounce'),
     'blacklistuseranddeletebounce'  => $GLOBALS['I18N']->get('blacklist subscriber and delete bounce'),
     'blacklistemailanddeletebounce' => $GLOBALS['I18N']->get('blacklist email address and delete bounce'),
+    'decreasecountconfirmuseranddeletebounce'  => $GLOBALS['I18N']->get('decrease count and confirm subscriber and delete bounce'),
     'deletebounce'                  => $GLOBALS['I18N']->get('delete bounce'),
 );
 
