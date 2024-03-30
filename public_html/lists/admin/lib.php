@@ -943,7 +943,7 @@ function getPageLock($force = 0)
     // while ($running_res['age'] && $count >= $max) { # a process is already running
     while ($count >= $max) { // don't check age, as it may be 0
         //   cl_output('running process: '.$running_res['age'].' '.$max);
-        if ($running_res['age'] > 600) {
+        if (!empty($running_res['age']) && (int)$running_res['age'] > 600) {
             // some sql queries can take quite a while
             //cl_output($running_res['id'].' is old '.$running_res['age']);
             // process has been inactive for too long, kill it
@@ -1879,7 +1879,7 @@ function refreshTlds($force = 0)
     $lastDone = getConfig('tld_last_sync');
     $tlds = '';
     //# let's not do this too often
-    if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
+    if (((int)$lastDone + TLD_REFETCH_TIMEOUT < time()) || $force) {
         //# even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
         SaveConfig('tld_last_sync', time(), 0);
         if (defined('TLD_AUTH_LIST')) {

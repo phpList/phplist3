@@ -22,6 +22,7 @@ if (isset($_GET['tab']) && $_GET['tab'] == 'unconfirmed') {
     $confirmedSelection = ' u.confirmed and !u.blacklisted';
 }
 $listAll = false;
+$subselect = '';
 
 switch ($access) {
     case 'owner':
