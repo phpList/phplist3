@@ -468,6 +468,11 @@ if ($dbversion == VERSION && !$force) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
     }
 
+
+    if (!Sql_Table_exists($GLOBALS['tables']['admin_login'])) {
+        cl_output(s('Creating new table "admin_login"'));
+        createTable('admin_login');
+    }
     if (version_compare($dbversion, '3.6.15', '<')) {
         // Ensure timestamp field does not have null values then give explicit defaults
         Sql_Query(sprintf('update %s set modified = created where modified is null', $GLOBALS['tables']['admin']));

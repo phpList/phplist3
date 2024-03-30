@@ -2487,3 +2487,39 @@ function getClientIP()
 
     return $the_ip;
 }
+
+
+function notifyNewIPLogin($adminId) {
+
+    $enabled = getConfig('notify_admin_login');
+    if (empty($enabled)) {
+      return;
+    }    
+    $msg = s('
+
+--------------------------------------------------------------------------------
+
+We noticed a login to your phpList installation at https://%s
+from a new location. If this was you, you can delete this message.
+If you do not recognise this, please login to your phpList installation 
+and change your password.
+
+--------------------------------------------------------------------------------  ',
+$GLOBALS['config']['website']);
+
+  $admin_mail = $GLOBALS['admin_auth']->adminEmail($_SESSION['logindetails']['id']);
+  $ok = sendMail($admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
+
+  if ($ok === 0) {
+    $main_admin_mail = getConfig('admin_address');
+    logEvent(sprintf('Error sending login notification to %s', $admin_mail));
+
+    $msg = s('
+---------------------
+    phpList tried sending the below message to '.$admin_mail.'
+    but this failed.
+------------------').PHP_EOL.PHP_EOL.$msg;
+    sendMail($main_admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
+  }
+
+}
