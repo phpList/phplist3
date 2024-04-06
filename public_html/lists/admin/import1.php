@@ -134,8 +134,8 @@ if (isset($_REQUEST['import'])) {
     if (count($email_list) > 300 && !$test_import) {
         // this is a possibly a time consuming process, so lets show a progress bar
         flush();
-        // increase the memory to make sure we are not running out
-        ini_set('memory_limit', '16M');
+        // try to increase the memory to make sure we are not running out
+        @ini_set('memory_limit', '16M');
     }
 
     // View test output of emails
