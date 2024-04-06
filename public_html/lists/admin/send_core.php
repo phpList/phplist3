@@ -211,7 +211,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         subject = "%s", fromfield = "%s", tofield = "%s",
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s",
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
-        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d',
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%d" where id = %d',
             $tables['message'],
             sql_escape(strip_tags($messagedata['campaigntitle'])),
             /* we store the title in the subject field. Better would be to rename the DB column, but this will do for now */
@@ -610,7 +610,7 @@ if (!$done) {
         ++$counttabs;
 
         // print $tabs->display();
-    } 
+    }
     echo '<input id="followupto" type="hidden" name="followupto" value="" />';
 
     if ($_GET['page'] == 'preparemessage') {
@@ -1333,7 +1333,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
     if ($pluginerror) {
         $allReady = false;
-        $pluginerror = preg_replace("/\n/", '', $pluginerror);
+        $pluginerror = str_replace(["\n", "'"], ['', "\\'"], $pluginerror);
         $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
     $("#addtoqueue").append(\'<div class="missing">' .$pluginerror.'</div>\');
     </script>';

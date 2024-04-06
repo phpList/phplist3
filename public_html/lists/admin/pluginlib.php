@@ -69,6 +69,8 @@ if (is_array($disabled_plugins)) {
             $GLOBALS['plugins_disabled'][] = $pl;
         }
     }
+} else {
+  $disabled_plugins = array();
 }
 
 //var_dump($GLOBALS['plugins_disabled']);exit;

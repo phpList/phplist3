@@ -30,6 +30,7 @@ $GLOBALS['bounceruleactions'] = array(
     'unconfirmuseranddeletebounce'  => $GLOBALS['I18N']->get('unconfirm subscriber and delete bounce'),
     'blacklistuseranddeletebounce'  => $GLOBALS['I18N']->get('blacklist subscriber and delete bounce'),
     'blacklistemailanddeletebounce' => $GLOBALS['I18N']->get('blacklist email address and delete bounce'),
+    'decreasecountconfirmuseranddeletebounce'  => $GLOBALS['I18N']->get('decrease count and confirm subscriber and delete bounce'),
     'deletebounce'                  => $GLOBALS['I18N']->get('delete bounce'),
 );
 
@@ -942,7 +943,7 @@ function getPageLock($force = 0)
     // while ($running_res['age'] && $count >= $max) { # a process is already running
     while ($count >= $max) { // don't check age, as it may be 0
         //   cl_output('running process: '.$running_res['age'].' '.$max);
-        if ($running_res['age'] > 600) {
+        if (!empty($running_res['age']) && (int)$running_res['age'] > 600) {
             // some sql queries can take quite a while
             //cl_output($running_res['id'].' is old '.$running_res['age']);
             // process has been inactive for too long, kill it
@@ -1878,7 +1879,7 @@ function refreshTlds($force = 0)
     $lastDone = getConfig('tld_last_sync');
     $tlds = '';
     //# let's not do this too often
-    if ($lastDone + TLD_REFETCH_TIMEOUT < time() || $force) {
+    if (((int)$lastDone + TLD_REFETCH_TIMEOUT < time()) || $force) {
         //# even if it fails we mark it as done, so that we won't getting stuck in eternal updating.
         SaveConfig('tld_last_sync', time(), 0);
         if (defined('TLD_AUTH_LIST')) {
@@ -2485,4 +2486,40 @@ function getClientIP()
     //logEvent("REMOTE_ADDR ip=".$the_ip);
 
     return $the_ip;
+}
+
+
+function notifyNewIPLogin($adminId) {
+
+    $enabled = getConfig('notify_admin_login');
+    if (empty($enabled)) {
+      return;
+    }    
+    $msg = s('
+
+--------------------------------------------------------------------------------
+
+We noticed a login to your phpList installation at https://%s
+from a new location. If this was you, you can delete this message.
+If you do not recognise this, please login to your phpList installation 
+and change your password.
+
+--------------------------------------------------------------------------------  ',
+$GLOBALS['config']['website']);
+
+  $admin_mail = $GLOBALS['admin_auth']->adminEmail($_SESSION['logindetails']['id']);
+  $ok = sendMail($admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
+
+  if ($ok === 0) {
+    $main_admin_mail = getConfig('admin_address');
+    logEvent(sprintf('Error sending login notification to %s', $admin_mail));
+
+    $msg = s('
+---------------------
+    phpList tried sending the below message to '.$admin_mail.'
+    but this failed.
+------------------').PHP_EOL.PHP_EOL.$msg;
+    sendMail($main_admin_mail, $GLOBALS['installation_name'].' '.s('login from new location'), $msg, system_messageheaders($admin_mail));
+  }
+
 }

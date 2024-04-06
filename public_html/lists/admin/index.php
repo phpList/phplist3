@@ -290,6 +290,7 @@ if (isset($GLOBALS['installation_name'])) {
 }
 echo "$page_title</title>";
 $inRemoteCall = false;
+$doLoginCheck = Sql_Table_exists($tables['admin_login']);
 
 if (!empty($GLOBALS['require_login'])) {
     //bth 7.1.2015 to support x-forwarded-for
@@ -312,6 +313,11 @@ if (!empty($GLOBALS['require_login'])) {
             $msg = $loginresult[1];
         } else {
             session_regenerate_id();
+            if ($doLoginCheck) {
+              # invalidate other active sessions
+              Sql_Query(sprintf('update %s set active = 0 where adminid = %d and active != 0',$GLOBALS['tables']['admin_login'],$loginresult[0]));
+            }
+
             $_SESSION['adminloggedin'] = $remoteAddr;
             $_SESSION['logindetails'] = array(
                 'adminname' => $_REQUEST['login'],
@@ -324,6 +330,17 @@ if (!empty($GLOBALS['require_login'])) {
             unset($_SESSION['session_age']);
             if (!empty($_POST['page'])) {
                 $page = preg_replace('/\W+/', '', $_POST['page']);
+            }
+
+            if ($doLoginCheck) {
+              # check if this is a new IP address
+              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s" and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$loginresult[0]));
+              if (empty($knownIP[0])) {
+                notifyNewIPLogin($loginresult[0]);
+              }
+              Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
+                values(%d,%d,"%s","%s","%s",1)',
+                $GLOBALS['tables']['admin_login'],time(),$loginresult[0],$remoteAddr,"",session_id()));
             }
         }
         //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
@@ -373,14 +390,24 @@ if (!empty($GLOBALS['require_login'])) {
         $_SESSION['logindetails'] = '';
         $page = 'login';
     } elseif ($_SESSION['adminloggedin'] && $_SESSION['logindetails']) {
+        if ($doLoginCheck) {
+          $active = Sql_Fetch_Row_Query(sprintf('select active from %s where adminid = %d and (remote_ip4 = "%s" or remote_ip6 = "%s") and sessionid = "%s"',
+            $GLOBALS['tables']['admin_login'],$_SESSION['logindetails']['id'],$remoteAddr,"",session_id()));
+        } else {
+          $active = array(1); ## pretend to be active
+        }
         $validate = $GLOBALS['admin_auth']->validateAccount($_SESSION['logindetails']['id']);
-        if (!$validate[0]) {
+        if (empty($active[0]) || !$validate[0]) {
             logEvent(sprintf($GLOBALS['I18N']->get('invalidated login from %s for %s (error %s)'), $remoteAddr,
                 $_SESSION['logindetails']['adminname'], $validate[1]));
             $_SESSION['adminloggedin'] = '';
             $_SESSION['logindetails'] = '';
             $page = 'login';
-            $msg = $validate[1];
+            if (empty($active[0])) {
+              $msg = s('Your session was invalidated by a new session in a different browser');
+            } else {
+              $msg = $validate[1];
+            }
         }
     } else {
         $page = 'login';
