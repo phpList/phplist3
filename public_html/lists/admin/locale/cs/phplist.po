@@ -1,18 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Czech <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/cs/>\n"
+"PO-Revision-Date: 2024-04-08 13:41+0000\n"
+"Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
+"Language-Team: Czech <http://translate.phplist.org/projects/phplist/phplist3/"
+"cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3.1\n"
+"X-Generator: Weblate 4.11\n"
 
 #: public_html/databasestructure.php:49
 msgid "subject"
@@ -453,12 +453,12 @@ msgstr "Bezpečnost garantována "
 
 #: public_html/lists/admin/bounce.php:64
 msgid "Not Found"
-msgstr "Nenalezeno"
+msgstr "Nenalezeno<br/>"
 
 #: public_html/lists/index.php:852,
 #: public_html/lists/admin/actions/reconcileusers.php:59
 msgid "\"Jump off\" set, reason not requested"
-msgstr "Rychlé odhlášení nastaveno, důvod nepožadován "
+msgstr "Rychlé odhlášení nastaveno, důvod nepožadován"
 
 #: public_html/lists/admin/tests/sendpage.php:16
 msgid "Test email not set "
@@ -1046,7 +1046,7 @@ msgstr ""
 #: public_html/lists/admin/actions/export.php:66
 #, php-format
 msgid "phpList Export from %s to %s (%s).csv"
-msgstr "phpList exportován na %s z %s do %s (%s).csv"
+msgstr "phpList exportován z %s do %s (%s).csv"
 
 #: public_html/lists/admin/logout.php:17
 msgid ""
@@ -1090,7 +1090,7 @@ msgstr "Nedoručené ID"
 
 #: public_html/lists/admin/import4.php:113
 msgid "Getting data from "
-msgstr "Získávám data z"
+msgstr "Získávám data z "
 
 #: public_html/lists/admin/editlist.php:90
 msgid "New list added"
@@ -1231,7 +1231,7 @@ msgstr "odběratel"
 #: public_html/lists/admin/user.php:227
 #, php-format
 msgid "Subscriber removed from list %s"
-msgstr "Ocberatel odebran ze seznamu s"
+msgstr "Odběratel odstraněn ze seznamu %s"
 
 #: public_html/lists/admin/message.php:153,
 #: public_html/databasestructure.php:117
@@ -3373,7 +3373,7 @@ msgstr "udělat neaktivní"
 #: public_html/lists/admin/reconcileusers.php:237,
 #: public_html/lists/admin/reconcileusers.php:249
 msgid "and before"
-msgstr "a před."
+msgstr "a před"
 
 #: public_html/lists/admin/lib.php:2042,
 #: public_html/lists/admin/send_core.php:390
@@ -3481,7 +3481,7 @@ msgid "Independent professional support"
 msgstr "Profesionální nezavislá podpora "
 
 #: public_html/lists/admin/plugins.php:336
-#, php-format
+#, fuzzy, php-format
 msgid "Failure on system requirement <strong>%s</strong>"
 msgstr "Chyba systému požadovaného          %s"
 
@@ -3654,7 +3654,7 @@ msgstr "Atribut:"
 #: public_html/lists/admin/import2.php:100,
 #: public_html/lists/admin/import1.php:52
 msgid "File too big, please split it up into smaller ones"
-msgstr "Soubor je příliš velký, prosím rozdělte soubor na menší."
+msgstr "Soubor je příliš velký, prosím rozdělte ho na menší"
 
 #: public_html/lists/admin/defaultconfig.php:360
 msgid "Subject of the message subscribers receive when they sign up"
@@ -3697,7 +3697,7 @@ msgstr "Příjem vyčištěn"
 
 #: public_html/lists/admin/actions/processqueue.php:618
 msgid "Please leave this window open."
-msgstr "Nechte toto okno otevřené"
+msgstr "Nechte toto okno otevřené."
 
 #: public_html/databasestructure.php:329
 msgid "pagetitle:statsoverview"
@@ -4044,8 +4044,7 @@ msgstr ""
 msgid ""
 "Error, when trying to send campaign %d the attachment (%s) could not be "
 "found in the repository"
-msgstr ""
-"Chyba, při odesílání %d příloha (%s)  nebyla nalezena v kořenovém adresáři"
+msgstr "Chyba při odesílání %d - příloha (%s) nebyla nalezena v úložišti"
 
 #: public_html/lists/admin/converttoutf8.php:92,
 #: public_html/lists/admin/upgrade.php:270
@@ -4067,7 +4066,7 @@ msgstr "Zobrazení logu"
 
 #: public_html/lists/admin/actions/configure.php:92
 msgid "Don't know how to handle type "
-msgstr "Neumím jak naložit s typem"
+msgstr "Neumím zpracovat typ "
 
 #: public_html/lists/admin/about.php:54
 msgid "Contributors"
@@ -4100,7 +4099,7 @@ msgstr "dobré odpoledne"
 
 #: public_html/lists/admin/bouncerules.php:116
 msgid "with tagged rules: "
-msgstr "s označenými pravidli:"
+msgstr "s označenými pravidly: "
 
 #: public_html/lists/admin/actions/processqueue.php:534
 #, php-format
@@ -4413,7 +4412,7 @@ msgstr "Uživatel nalezen, klikněte k přidání uživatele"
 
 #: public_html/databasestructure.php:318
 msgid "pagetitlehover:massremove"
-msgstr "pagetitlehover:massremove"
+msgstr "Smazání odběratelů ze systému "
 
 #: public_html/lists/admin/reconcileusers.php:522
 msgid ""
@@ -4511,7 +4510,7 @@ msgstr "pagetitlehover:šablona"
 
 #: public_html/lists/admin/import1.php:83
 msgid "Cannot read file. It is not readable !"
-msgstr "Nelze přečíst soubor. "
+msgstr "Nelze načíst soubor!"
 
 #: public_html/lists/admin/actions/processqueue.php:331
 msgid "Finished, All done"
@@ -4914,7 +4913,7 @@ msgstr "ukaž nedoručené seznam"
 #: public_html/lists/admin/actions/import1.php:231
 #, php-format
 msgid "%d emails already existed in the database"
-msgstr "%d všechny emaily již existují v databázi."
+msgstr "%d emailů již existovalo v databázi"
 
 #: public_html/lists/admin/uclicks.php:88
 msgid "URL Click Statistics"
@@ -5065,6 +5064,7 @@ msgid "Are you sure you want to reset the configuration to the default?"
 msgstr "Chcete vrátit nastavení do výchozího stavu?"
 
 #: public_html/lists/admin/bouncemgt.php:22
+#, fuzzy
 msgid ""
 "You currently have no rules defined.      You can click \"Generate Bounce "
 "Rules\" in order to auto-generate rules from your existing bounces.      "
@@ -5072,11 +5072,11 @@ msgid ""
 "activate.      It will however, not catch every single bounce, so it will be "
 "necessary to add new rules over      time when new bounces come in."
 msgstr ""
-"Nejsou žádná nastavená pravidla.     Klikněte na \"Vytvořit pravidla "
+"Nejsou žádná nastavená pravidla. Klikněte na \"Vytvořit pravidla "
 "nedoručených emailů\" na příkaz automatického vytvoření pravidel z "
-"nedoručených emailů.   To bude znamenat hodně pravidel a jejich "
-"kontrolu.     Ale nechytne každého nedoručeného email, takže bude nutné "
-"vytvořit nové pravidla před    časem než přijde nový nedoručený."
+"nedoručených emailů. To bude znamenat hodně pravidel a jejich kontrolu. Ale "
+"nechytne každého nedoručeného email, takže bude nutné vytvořit nové pravidla "
+"před časem než přijde nový nedoručený."
 
 #: public_html/lists/admin/importadmin.php:106
 msgid "Cannot find the password in the header"
@@ -5390,7 +5390,7 @@ msgstr "Import odběratelů z textového souboru"
 #: public_html/lists/admin/actions/import2.php:498
 #, php-format
 msgid "%d emails succesfully imported to the database and added to %d lists."
-msgstr "%d emailů úspěšně vloženo do databáze a přidáno"
+msgstr "%d emailů úspěšně vloženo do databáze a přidáno do %d seznamů."
 
 #: public_html/lists/admin/defaultconfig.php:103
 msgid "Show notification for Release Candidates"
@@ -6059,7 +6059,7 @@ msgid ""
 "The plugin root directory is not writable, please install plugins manually"
 msgstr ""
 "Plugin nemůže zapisovat do kořenového adresáře, prosím instalujte plugin "
-"manuálně."
+"manuálně"
 
 #: public_html/lists/admin/home.php:109
 msgid "Import Users"
@@ -6072,7 +6072,7 @@ msgstr "Neznámá chyba"
 #: public_html/lists/admin/sendemaillib.php:970
 #, php-format
 msgid "Size of HTML email: %s "
-msgstr "Velikost HTML emailu: %s"
+msgstr "Velikost HTML emailu: %s "
 
 #: public_html/lists/admin/actions/import2.php:10,
 #: public_html/lists/admin/import2.php:182
@@ -7090,8 +7090,9 @@ msgid "Test output"
 msgstr "Testovací výstup"
 
 #: public_html/lists/admin/actions/import2.php:508
+#, fuzzy
 msgid "These records were added, but the email has been made up from "
-msgstr "Záznamy byli přidány, ale emaily byli přidány z"
+msgstr "Záznamy byli přidány, ale emaily byli přidány z "
 
 #: public_html/lists/admin/uclicks.php:142,
 #: public_html/lists/admin/uclicks.php:155
@@ -7585,6 +7586,7 @@ msgid "Are you sure you want to delete all events older than 2 months?"
 msgstr "Opravdu chcete smazat všechny události starší než 2 měsíce?"
 
 #: public_html/lists/admin/hostedprocessqueuesetup.php:24
+#, fuzzy
 msgid "Remote queue processing settings were saved successfully"
 msgstr "Nastavení ovládacích front procesů bylo uloženo."
 
@@ -7940,7 +7942,7 @@ msgstr "Byli jste odhlášeni, přihlašte se prosím znovu"
 
 #: public_html/lists/admin/actions/configure.php:117
 msgid "editing cancelled"
-msgstr "upravování zrušeno "
+msgstr "Upravování zrušeno"
 
 #: public_html/lists/admin/connect.php:1742,
 #: public_html/lists/admin/systemstats.php:39
@@ -8402,7 +8404,7 @@ msgstr ""
 
 #: public_html/lists/admin/send_core.php:451
 msgid "No target email addresses listed for testing."
-msgstr "Není źádný cílený emailový adresář"
+msgstr "Chybí emailové adresy pro test."
 
 #: public_html/lists/admin/users.php:372
 msgid "Find a user"
@@ -8553,7 +8555,7 @@ msgstr "Posílám"
 
 #: public_html/databasestructure.php:67
 msgid "Format to send this message in"
-msgstr "Formát k odeslání v této zprávě "
+msgstr "Formát pro odeslání této zprávy"
 
 #: public_html/lists/admin/setup.php:18
 #, fuzzy
@@ -8906,7 +8908,7 @@ msgstr "Vkládám přílohu"
 #: public_html/lists/admin/actions/processqueue.php:1235
 #, php-format
 msgid "waiting for %.1f seconds to meet target of %s seconds per message"
-msgstr "čekání pro %. 1f vteřin k dosažení cíle z %s vteřin projednu zprávu"
+msgstr "čekání %.1f sekund k dosažení cíle %s vteřin na jednu zprávu"
 
 #: public_html/lists/admin/processbounces.php:520
 #, php-format
@@ -8953,7 +8955,7 @@ msgstr "Název"
 #: public_html/lists/admin/sendemaillib.php:1026
 #, php-format
 msgid "Insufficient memory to add attachment to campaign %d %d - %d"
-msgstr "Nedostatek paměti pro přidání přílohy ke kampaňi %d - %d."
+msgstr "Nedostatek paměti pro přidání přílohy ke kampani %d %d - %d."
 
 #: public_html/lists/admin/actions/domainstats.php:225,
 #: public_html/lists/admin/actions/bounces.php:25,
@@ -9390,7 +9392,7 @@ msgstr ""
 #: public_html/lists/admin/hostedprocessqueuesetup.php:35,
 #: public_html/lists/admin/hostedprocessqueuesetup.php:49
 msgid "Use local processing instead"
-msgstr "Přidat novou hodnotu:"
+msgstr "Použít lokální zpracování"
 
 #: public_html/lists/admin/attributes.php:27
 msgid "Email is a system attribute"
@@ -9796,7 +9798,7 @@ msgstr "Všichni správci již existují v databízi"
 
 #: public_html/databasestructure.php:240
 msgid "pagetitlehover:import"
-msgstr "Import odběratelů "
+msgstr "Import odběratelů"
 
 #: public_html/lists/admin/list.php:43
 msgid "Blacklisted members"
@@ -10093,6 +10095,7 @@ msgid "messages"
 msgstr "Zprávy"
 
 #: public_html/lists/admin/send_core.php:154
+#, fuzzy
 msgid ""
 "You should not paste the results of a test message back into the editor<br/"
 ">This will break the click-track statistics, and overload the server."
@@ -10239,7 +10242,7 @@ msgstr "Kampaň"
 #: public_html/lists/admin/sendemaillib.php:974
 #, php-format
 msgid "Size of Text email: %s "
-msgstr "Velikost textového email: %s"
+msgstr "Velikost textového emailu: %s "
 
 #: public_html/lists/index.php:734
 msgid ""
