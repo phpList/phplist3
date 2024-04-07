@@ -1,5 +1,5 @@
 
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
 LABEL maintainer="michiel@phplist.com" 
 
