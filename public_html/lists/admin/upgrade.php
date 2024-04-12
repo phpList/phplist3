@@ -337,6 +337,10 @@ if ($dbversion == VERSION && !$force) {
     if (!Sql_Table_exists($GLOBALS['tables']['admin_login'])) {
         cl_output(s('Creating new table "admin_login"'));
         createTable('admin_login');
+        ## add an entry for current admin to avoid being kicked out
+        Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
+          values(%d,%d,"%s","%s","%s",1)',
+          $GLOBALS['tables']['admin_login'],time(),$_SESSION['logindetails']['id'],$_SESSION['adminloggedin'],"",session_id()));
     }
     if (version_compare($dbversion, '3.6.15', '<')) {
         // Ensure timestamp field does not have null values then give explicit defaults
