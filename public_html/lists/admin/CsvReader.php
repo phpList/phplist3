@@ -16,7 +16,6 @@ class CsvReader
      */
     public function __construct($filename, $delimiter)
     {
-        ini_set('auto_detect_line_endings', true);
         $this->fh = fopen($filename, 'r');
         $this->delimiter = $delimiter;
         $this->totalRows = 0;

@@ -101,16 +101,6 @@ if ($dbversion == VERSION && !$force) {
     Sql_Query(sprintf('delete from %s ',$GLOBALS['tables']['sendprocess']));
 
     ignore_user_abort(1);
-    // rename tables if we are using the prefix
-    include dirname(__FILE__).'/structure.php';
-    foreach ($DBstruct as $table => $value) {
-        set_time_limit(500);
-        if (isset($table_prefix)) {
-            if (Sql_Table_exists($table) && !Sql_Table_Exists($tables[$table])) {
-                Sql_Verbose_Query("alter table $table rename $tables[$table]", 1);
-            }
-        }
-    }
     @ob_end_flush();
     @ob_start();
 
@@ -230,142 +220,10 @@ if ($dbversion == VERSION && !$force) {
             Sql_Query(sprintf('update %s set data = "%s" where data = "%s" ', $GLOBALS['tables']['subscribepage_data'], sql_escape($newFooter), addslashes($value)));
         }
     }
-    //# remember whether we've done this, to avoid doing it every time
-    //# even thought that's not such a big deal
-    $isUTF8 = getConfig('UTF8converted');
-
-    if (empty($isUTF8)) {
-        $maxsize = 0;
-        $req = Sql_Query('select (data_length+index_length) tablesize
-      from information_schema.tables
-      where table_schema="' .$GLOBALS['database_name'].'"');
-
-        while ($row = Sql_Fetch_Assoc($req)) {
-            if ($row['tablesize'] > $maxsize) {
-                $maxsize = $row['tablesize'];
-            }
-        }
-        $maxsize = (int) ($maxsize * 1.2); //# add another 20%
-        #this is only valid when the DB is on the same host
-        if ($GLOBALS['database_host'] == 'localhost') {
-          $row = Sql_Fetch_Row_Query('select @@datadir');
-          $dataDir = $row[0];
-          $avail = disk_free_space($dataDir);
-        } else {
-          # let's assume the DB host has sufficient space
-          $avail = $maxsize + 1;
-        }
-
-        //# convert to UTF8
-        $dbname = $GLOBALS['database_name'];
-        if ($maxsize < $avail && !empty($dbname)) {
-            //# the conversion complains about a key length
-            Sql_Query(sprintf('alter table '.$GLOBALS['tables']['user_blacklist_data'].' change column email email varchar(150) not null unique'));
-
-            $req = Sql_Query('select * from information_schema.columns where table_schema = "'.$dbname.'" and CHARACTER_SET_NAME != "utf8"');
-
-            $dbcolumns = array();
-            $dbtables = array();
-            while ($row = Sql_Fetch_Assoc($req)) {
-                //# make sure to only change our own tables, in case we share with other applications
-                if (in_array($row['TABLE_NAME'], array_values($GLOBALS['tables']))) {
-                    $dbcolumns[] = $row;
-                    $dbtables[$row['TABLE_NAME']] = $row['TABLE_NAME'];
-                }
-            }
-
-            Sql_Query('use '.$dbname);
-
-            output($GLOBALS['I18N']->get('Upgrading the database to use UTF-8, please wait').'<br/>');
-            foreach ($dbtables as $dbtable) {
-                set_time_limit(3600);
-                output($GLOBALS['I18N']->get('Upgrading table ').' '.$dbtable.'<br/>');
-                Sql_Query(sprintf('alter table %s default charset utf8', $dbtable), 1);
-            }
-
-            foreach ($dbcolumns as $dbcolumn) {
-                set_time_limit(600);
-                output($GLOBALS['I18N']->get('Upgrading column ').' '.$dbcolumn['COLUMN_NAME'].'<br/>');
-                Sql_Query(sprintf('alter table %s change column %s %s %s default character set utf8',
-                    $dbcolumn['TABLE_NAME'], $dbcolumn['COLUMN_NAME'], $dbcolumn['COLUMN_NAME'],
-                    $dbcolumn['COLUMN_TYPE']), 1);
-            }
-            output($GLOBALS['I18N']->get('upgrade to UTF-8, done').'<br/>');
-            saveConfig('UTF8converted', date('Y-m-d H:i'), 0);
-        } else {
-            echo '<div class="error">'.s('Database requires converting to UTF-8.').'<br/>';
-            echo s('However, there is too little diskspace for this conversion').'<br/>';
-            echo s('Please do a manual conversion.').' '.PageLinkButton('converttoutf8',
-                    s('Run manual conversion to UTF8'));
-            echo '</div>';
-        }
-    }
-
-    //# 2.11.7 and up
-    Sql_Query(sprintf('alter table %s add column privileges text', $tables['admin']), 1);
-    Sql_Query('alter table '.$tables['list'].' add column category varchar(255) default ""', 1);
-    Sql_Query('alter table '.$tables['user_attribute'].' change column value value text');
-    Sql_Query('alter table '.$tables['message'].' change column textmessage textmessage longtext');
-    Sql_Query('alter table '.$tables['message'].' change column message message longtext');
-    Sql_Query('alter table '.$tables['messagedata'].' change column data data longtext');
-    Sql_Query('alter table '.$tables['bounce'].' add index statusidx (status(20))', 1);
 
     //# fetch the list of TLDs, if possible
     if (defined('TLD_AUTH_LIST')) {
         refreshTlds(true);
-    }
-
-    //# changed terminology
-    Sql_Query(sprintf('update %s set status = "invalid email address" where status = "invalid email"',
-        $tables['usermessage']));
-
-    //# for some reason there are some config entries marked non-editable, that should be
-    include_once dirname(__FILE__).'/defaultconfig.php';
-    foreach ($default_config as $configItem => $configDetails) {
-        if (empty($configDetails['hidden'])) {
-            Sql_Query(sprintf('update %s set editable = 1 where item = "%s"', $tables['config'], $configItem));
-        } else {
-            Sql_Query(sprintf('update %s set editable = 0 where item = "%s"', $tables['config'], $configItem));
-        }
-    }
-
-    //# replace old header and footer with the new one
-    //# but only if there are untouched from the default, which seems fairly common
-    $oldPH = @file_get_contents(dirname(__FILE__).'/ui/old_public_header.inc');
-    $oldPH2 = preg_replace("/\n/", "\r\n", $oldPH); //# version with \r\n instead of \n
-
-    $oldPF = @file_get_contents(dirname(__FILE__).'/ui/old_public_footer.inc');
-    $oldPF2 = preg_replace("/\n/", "\r\n", $oldPF); //# version with \r\n instead of \n
-    Sql_Query(sprintf('update %s set value = "%s" where item = "pageheader" and (value = "%s" or value = "%s")',
-        $tables['config'], sql_escape($defaultheader), addslashes($oldPH), addslashes($oldPH2)));
-    Sql_Query(sprintf('update %s set value = "%s" where item = "pagefooter" and (value = "%s" or value = "%s")',
-        $tables['config'], sql_escape($defaultfooter), addslashes($oldPF), addslashes($oldPF2)));
-
-    //# and the same for subscribe pages
-    Sql_Query(sprintf('update %s set data = "%s" where name = "header" and (data = "%s" or data = "%s")',
-        $tables['subscribepage_data'], sql_escape($defaultheader), addslashes($oldPH), addslashes($oldPH2)));
-    Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and (data = "%s" or data = "%s")',
-        $tables['subscribepage_data'], sql_escape($defaultfooter), addslashes($oldPF), addslashes($oldPF2)));
-
-    if (is_file(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc')) {
-        $oldPH = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_header.inc');
-        $oldPH2 = preg_replace("/\n/", "\r\n", $oldPH); //# version with \r\n instead of \n
-        $oldPF = file_get_contents(dirname(__FILE__).'/ui/'.$GLOBALS['ui'].'/old_public_footer.inc');
-        $oldPF2 = preg_replace("/\n/", "\r\n", $oldPF); //# version with \r\n instead of \n
-        $currentPH = getConfig('pageheader');
-        $currentPF = getConfig('pagefooter');
-
-        if (($currentPH == $oldPH2 || $currentPH."\r\n" == $oldPH2) && !empty($defaultheader)) {
-            SaveConfig('pageheader', $defaultheader, 1);
-            Sql_Query(sprintf('update %s set data = "%s" where name = "header" and data = "%s"',
-                $tables['subscribepage_data'], sql_escape($defaultheader), addslashes($currentPH)));
-            //# only try to change footer when header has changed
-            if ($currentPF == $oldPF2 && !empty($defaultfooter)) {
-                SaveConfig('pagefooter', $defaultfooter, 1);
-                Sql_Query(sprintf('update %s set data = "%s" where name = "footer" and data = "%s"',
-                    $tables['subscribepage_data'], sql_escape($defaultfooter), addslashes($currentPF)));
-            }
-        }
     }
 
     //# #17328 - remove list categories with quotes
@@ -402,7 +260,7 @@ if ($dbversion == VERSION && !$force) {
 
         //   output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
         //   output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
-    } else {
+    } elseif ($numS > 0) {
         output(s('Giving a UUID to your subscribers and campaigns. If you have a lot of them, this may take a while.'));
         output(s('If the page times out, you can reload. Or otherwise try to run the upgrade from commandline instead.').' '.resourceLink('https://resources.phplist.com/system/commandline', s('Documentation how to set up phpList commandline')));
         while ($row = Sql_Fetch_Row($req)) {
@@ -466,6 +324,50 @@ if ($dbversion == VERSION && !$force) {
 
     if (version_compare($dbversion, '3.6.14','<')) {
         Sql_Query("alter table {$GLOBALS['tables']['admin']} modify modifiedby varchar(66) default ''");
+    }
+
+    if (version_compare($dbversion, '3.6.15','<')) {
+        // support utf8mb4 for campaign subject and content
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify subject varchar(255) character set utf8mb4 not null default '(no subject)'");
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify message longtext character set utf8mb4");
+        Sql_Query("alter table {$GLOBALS['tables']['message']} modify textmessage longtext character set utf8mb4");
+        Sql_Query("alter table {$GLOBALS['tables']['messagedata']} modify data longtext character set utf8mb4");
+    }
+
+    if (!Sql_Table_exists($GLOBALS['tables']['admin_login'])) {
+        cl_output(s('Creating new table "admin_login"'));
+        createTable('admin_login');
+        ## add an entry for current admin to avoid being kicked out
+        Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
+          values(%d,%d,"%s","%s","%s",1)',
+          $GLOBALS['tables']['admin_login'],time(),$_SESSION['logindetails']['id'],$_SESSION['adminloggedin'],"",session_id()));
+    }
+    if (version_compare($dbversion, '3.6.15', '<')) {
+        // Ensure timestamp field does not have null values then give explicit defaults
+        Sql_Query(sprintf('update %s set modified = created where modified is null', $GLOBALS['tables']['admin']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['list']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['listmessage']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['listuser']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['message']));
+        Sql_Query(sprintf('update %s set modified = started where modified is null', $GLOBALS['tables']['sendprocess']));
+        Sql_Query(sprintf('update %s set modified = entered where modified is null', $GLOBALS['tables']['user']));
+        Sql_Query(sprintf('update %s set time = current_timestamp where time is null', $GLOBALS['tables']['user_message_bounce']));
+        Sql_Query(sprintf('update %s set time = current_timestamp where time is null', $GLOBALS['tables']['user_message_forward']));
+
+        foreach (['admin', 'list', 'listmessage' , 'listuser', 'message', 'sendprocess', 'user'] as $t) {
+            Sql_Query(sprintf(
+                'alter table %s modify modified timestamp not null default current_timestamp on update current_timestamp',
+                $GLOBALS['tables'][$t]
+            ));
+        }
+        Sql_Query(sprintf(
+            'alter table %s modify time timestamp not null default current_timestamp on update current_timestamp',
+            $GLOBALS['tables']['user_message_bounce']
+        ));
+        Sql_Query(sprintf(
+            'alter table %s modify time timestamp not null default current_timestamp on update current_timestamp',
+            $GLOBALS['tables']['user_message_forward']
+        ));
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
