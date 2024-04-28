@@ -1,18 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Czech <http://translate.phplist.org/projects/phplist/"
-"phplist-languages/cs/>\n"
+"PO-Revision-Date: 2024-04-28 10:39+0000\n"
+"Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
+"Language-Team: Czech <https://translate.phplist.org/projects/phplist/"
+"phplist3/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3.1\n"
+"X-Generator: Weblate 5.5\n"
 
 #: public_html/databasestructure.php:49
 msgid "subject"
@@ -6399,9 +6399,8 @@ msgstr "Zpracovat nedoručené"
 
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
-#, fuzzy
 msgid "unique clicks"
-msgstr "Zobrazených"
+msgstr ""
 
 #: public_html/lists/admin/import2.php:60
 msgid "Reset Import session"
@@ -9780,7 +9779,7 @@ msgstr "použito v"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:43
 msgid "Please enter your credentials."
-msgstr ""
+msgstr "Prosím zadejte vaše přihlašovací údaje."
 
 #: public_html/databasestructure.php:369
 msgid "subscription-ui settings"
