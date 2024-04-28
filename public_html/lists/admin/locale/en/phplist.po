@@ -5951,15 +5951,15 @@ msgstr ""
 #: public_html/lists/admin/about.php:106
 #, fuzzy
 msgid ""
-"The <a href=\"http://translate.phplist.com/\" target=\"translate"
-"\">translation site</a> runs <a href=\"https://weblate.org/en/\" target="
-"\"translatehouse\">Weblate</a> an Open Source translation tool."
+"The <a href=\"http://translate.phplist.com/\" "
+"target=\"translate\">translation site</a> runs <a href=\"https://weblate.org/"
+"en/\" target=\"translatehouse\">Weblate</a> an Open Source translation tool."
 msgstr ""
-"The <a href=\"http://translate.phplist.com/\" target=\"translate"
-"\">translation site</a> runs <a href=\"http://translate.sourceforge.net/\" "
-"target=\"pootle\">Pootle</a> an Open Source translation tool, provided by <a "
-"href=\"http://translatehouse.org\" target=\"translatehouse\">Translate "
-"House</a>"
+"The <a href=\"http://translate.phplist.com/\" "
+"target=\"translate\">translation site</a> runs <a href=\"http://translate."
+"sourceforge.net/\" target=\"pootle\">Pootle</a> an Open Source translation "
+"tool, provided by <a href=\"http://translatehouse.org\" "
+"target=\"translatehouse\">Translate House</a>"
 
 #: public_html/lists/admin/about.php:111
 msgid "Acknowledgements"
@@ -9789,11 +9789,11 @@ msgstr "You are trying to use PDF support without having FPDF loaded"
 #: public_html/lists/admin/index.php:713
 #, php-format
 msgid ""
-"The pageroot in your config \"%s\" does not match the current location \"%s"
-"\". Check your config file."
+"The pageroot in your config \"%s\" does not match the current location "
+"\"%s\". Check your config file."
 msgstr ""
-"The pageroot in your config \"%s\" does not match the current location \"%s\""
-". Check your config file."
+"The pageroot in your config \"%s\" does not match the current location "
+"\"%s\". Check your config file."
 
 #: public_html/lists/admin/index.php:757
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
@@ -9898,11 +9898,11 @@ msgstr "Please identify the target of the following unknown columns"
 
 #: public_html/lists/admin/import2.php:402
 msgid ""
-"Cannot find column with email, you need to map at least one column to \"Email"
-"\""
+"Cannot find column with email, you need to map at least one column to "
+"\"Email\""
 msgstr ""
-"Cannot find column with email, you need to map at least one column to \"Email"
-"\""
+"Cannot find column with email, you need to map at least one column to "
+"\"Email\""
 
 #: public_html/lists/admin/import2.php:407
 msgid "Summary"
