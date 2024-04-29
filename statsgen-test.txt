@@ -1,0 +1,20 @@
+Czech
+Language name
+cs
+Language code
+97.7
+Percents translated
+2132
+Number of strings
+2085
+Number of translated strings
+public_html/lists/admin/locale/cs/phplist.po
+Translation filename
+phpList3
+Component name
+phplist3
+Component URL slug
+phpList
+Project name
+phplist
+Project URL slug

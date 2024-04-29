@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2024-04-28 10:39+0000\n"
+"PO-Revision-Date: 2024-04-29 10:13+0000\n"
 "Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
 "Language-Team: Czech <https://translate.phplist.org/projects/phplist/"
 "phplist3/cs/>\n"
@@ -2638,7 +2638,7 @@ msgstr "Soubor je buďto příliš velký, nebo neexistuje."
 #: public_html/databasestructure.php:48,
 #: public_html/databasestructure.php:192
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: public_html/lists/admin/index.php:371
 msgid "Your IP address has changed. For security reasons, please login again"
@@ -6535,7 +6535,7 @@ msgstr "Exportovat seznam odběratelů"
 # Suggested in Weblate: IP adresa
 #: public_html/databasestructure.php:107
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: public_html/lists/admin/plugins.php:21
 msgid "The plugin "
