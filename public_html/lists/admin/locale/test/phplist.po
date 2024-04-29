@@ -1,18 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test (generated) (phpList)\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: test (generated) <http://translate.phplist.org/projects/"
-"phplist/phplist-languages/test/>\n"
+"PO-Revision-Date: 2024-04-29 10:38+0000\n"
+"Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
+"Language-Team: test (generated) <https://translate.phplist.org/projects/"
+"phplist/phplist3/test/>\n"
 "Language: test\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=(n != 1);\n"
-"X-Generator: Weblate 4.3.1\n"
+"X-Generator: Weblate 5.5\n"
 
 #: public_html/lists/index.php:1132,
 #: public_html/lists/index.php:1143
@@ -3848,8 +3848,9 @@ msgstr ""
 #: public_html/databasestructure.php:2,
 #: public_html/databasestructure.php:33,
 #: public_html/databasestructure.php:147
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: public_html/lists/admin/usercheck.php:26,
 #: public_html/lists/admin/usercheck.php:30
