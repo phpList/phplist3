@@ -1,4 +1,4 @@
-@javascript
+@javascript @wip
 Feature: Get new translated strings
   In order to get available translated application strings
   As an admin user

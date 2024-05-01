@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2024-04-08 13:41+0000\n"
+"PO-Revision-Date: 2024-04-29 10:13+0000\n"
 "Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
-"Language-Team: Czech <http://translate.phplist.org/projects/phplist/phplist3/"
-"cs/>\n"
+"Language-Team: Czech <https://translate.phplist.org/projects/phplist/"
+"phplist3/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11\n"
+"X-Generator: Weblate 5.5\n"
 
 #: public_html/databasestructure.php:2 public_html/databasestructure.php:33
 #: public_html/databasestructure.php:148
@@ -103,12 +103,6 @@ msgstr "Naposledy změněno"
 #: public_html/databasestructure.php:19 public_html/lists/admin/users.php:388
 msgid "Unique ID"
 msgstr "Unikátní ID"
-
-# Suggested in Weblate: Univerzální unikátní identifikátor
-#: public_html/databasestructure.php:20 public_html/databasestructure.php:48
-#: public_html/databasestructure.php:193
-msgid "UUID"
-msgstr ""
 
 #: public_html/databasestructure.php:21
 msgid "Send this subscriber HTML emails"
@@ -405,11 +399,6 @@ msgstr "Stav zprávy"
 #: public_html/databasestructure.php:103
 msgid "Primary key"
 msgstr "Primární Klíč"
-
-# Suggested in Weblate: IP adresa
-#: public_html/databasestructure.php:107
-msgid "IP"
-msgstr ""
 
 #: public_html/databasestructure.php:108
 msgid "Start Time"
@@ -1114,10 +1103,6 @@ msgstr "Odhlásit se"
 msgid "pagetitlehover:logout"
 msgstr "Odhlásit se"
 
-#: public_html/databasestructure.php:312
-msgid "pagetitle:mclicks"
-msgstr "Poček kliknutí v kampani"
-
 #: public_html/databasestructure.php:313
 msgid "pagetitlehover:mclicks"
 msgstr "pagetitlehover:mklicks"
@@ -1476,10 +1461,6 @@ msgstr "Import odběratelů"
 msgid "subscriber management functions"
 msgstr "funkce pro správu odběratelů"
 
-#: public_html/lists/admin/phpListAdminAuthentication.php:43
-msgid "Please enter your credentials."
-msgstr ""
-
 #: public_html/lists/admin/phpListAdminAuthentication.php:46
 #: public_html/lists/admin/phpListAdminAuthentication.php:103
 msgid "your account has been disabled"
@@ -1605,12 +1586,6 @@ msgstr "Statistika kliknutí v kampani"
 #: public_html/lists/admin/mclicks.php:98
 msgid "Link URL"
 msgstr ""
-
-#: public_html/lists/admin/mclicks.php:162
-#: public_html/lists/admin/mclicks.php:186
-#, fuzzy
-msgid "unique clicks"
-msgstr "Zobrazených"
 
 #: public_html/lists/admin/mclicks.php:163
 #: public_html/lists/admin/uclicks.php:140
@@ -2548,6 +2523,13 @@ msgstr "Žádný uživatel nepožádal o atribut"
 #: public_html/lists/admin/actions/processqueue.php:821
 msgid "looking for users who can be excluded from this mailing"
 msgstr "kouknout se na uživatelé kteří nemají být v tomto mailingu"
+
+# Suggested in Weblate: Univerzální unikátní identifikátor
+#: public_html/databasestructure.php:20,
+#: public_html/databasestructure.php:48,
+#: public_html/databasestructure.php:192
+msgid "UUID"
+msgstr "UUID"
 
 #: public_html/lists/admin/actions/processqueue.php:914
 #, fuzzy
@@ -3512,10 +3494,6 @@ msgstr "nedorucene nebyli spojeni"
 #: public_html/lists/admin/generatebouncerules.php:146
 msgid "bounces matched to existing rules"
 msgstr "vrácené se shodují s platnými pravidli"
-
-#: public_html/lists/admin/plugins.php:21
-msgid "The plugin "
-msgstr "Zásuvný modul "
 
 #: public_html/lists/admin/plugins.php:28
 #: public_html/lists/admin/spageedit.php:32 public_html/lists/admin/user.php:68
@@ -5517,10 +5495,6 @@ msgstr "Přihlášení k odběru novinek"
 msgid "Please indicate how often you want to receive messages"
 msgstr "Zvolte jak často chcete dostávat zprávy"
 
-#: public_html/lists/admin/spageedit.php:190
-msgid "General Information"
-msgstr "Základní informace"
-
 #: public_html/lists/admin/spageedit.php:219
 msgid "Language file to use"
 msgstr "Jazyk pro použití na stránce"
@@ -6258,6 +6232,20 @@ msgstr "Pokračovat v nastavení"
 
 #: public_html/lists/admin/subscribelib2.php:99
 #, fuzzy
+#: public_html/lists/admin/mclicks.php:135,
+#: public_html/lists/admin/mclicks.php:157
+msgid "unique clicks"
+msgstr ""
+
+#: public_html/lists/admin/import2.php:60
+msgid "Reset Import session"
+msgstr "Zresetovat vložený výběr"
+
+#: public_html/databasestructure.php:311
+msgid "pagetitle:mclicks"
+msgstr "Počet kliknutí v kampani"
+
+#: public_html/lists/admin/community.php:17
 msgid ""
 "\n"
 "--------------------------------------------------------------------------------\n"
@@ -6417,6 +6405,23 @@ msgstr "Odběratele nelze opravit"
 #: public_html/lists/admin/reconcileusers.php:330
 msgid "Marking subscribers with an invalid email as unconfirmed"
 msgstr "Označit odběratele s neplatným emailem jako nepotvrzené"
+
+# Suggested in Weblate: IP adresa
+#: public_html/databasestructure.php:107
+msgid "IP"
+msgstr "IP"
+
+#: public_html/lists/admin/plugins.php:21
+msgid "The plugin "
+msgstr "Zásuvný modul "
+
+#: public_html/lists/admin/statsmgt.php:7
+msgid "Overview"
+msgstr "Náhled"
+
+#: public_html/lists/admin/spageedit.php:190
+msgid "General Information"
+msgstr "Základní informace"
 
 #: public_html/lists/admin/reconcileusers.php:341
 msgid "subscribers updated"
@@ -9146,10 +9151,6 @@ msgstr "První stránka"
 msgid "Last Page"
 msgstr "Poslední stránka"
 
-#: public_html/lists/admin/statsmgt.php:7
-msgid "Overview"
-msgstr "Náhled"
-
 #: public_html/lists/admin/statsmgt.php:8
 msgid "View Clicks by URL"
 msgstr "Zobrazit prokliky podle URL"
@@ -9794,15 +9795,16 @@ msgstr "Zkoušíte použít PDF pomoc bez nahraného PDF"
 
 #: public_html/lists/admin/index.php:713
 #, fuzzy, php-format
-#| msgid ""
-#| "The pageroot in your config does not match the current locationCheck your "
-#| "config file."
 msgid ""
 "The pageroot in your config \"%s\" does not match the current location "
 "\"%s\". Check your config file."
 msgstr ""
-"Základstránky ve vašem nastavení se neshoduje s nynějším umístění. "
+"Základ stránky ve vašem nastavení se neshoduje s nynějším umístění. "
 "Zkontrolujte konfigurační složku."
+
+#: public_html/lists/admin/phpListAdminAuthentication.php:43
+msgid "Please enter your credentials."
+msgstr "Prosím zadejte vaše přihlašovací údaje."
 
 #: public_html/lists/admin/index.php:757
 msgid "phpList is in maintenance mode.<br/>Please try again in half an hour."
@@ -9845,10 +9847,6 @@ msgstr "Příjem vyčištěn"
 #: public_html/lists/admin/import2.php:58
 msgid "Are you sure you want to reset the import session?"
 msgstr "Jste si jistý(á), že chcete zresetovat vložený výběr?"
-
-#: public_html/lists/admin/import2.php:60
-msgid "Reset Import session"
-msgstr "Zresetovat vložený výběr"
 
 #: public_html/lists/admin/import2.php:82
 msgid "No file was specified. Maybe the file is too big? "

@@ -48,7 +48,7 @@ if (!isset($_SERVER['SERVER_SOFTWARE']) && (php_sapi_name() == 'cli' || (is_nume
     $dir = dirname($_SERVER['SCRIPT_FILENAME']);
     chdir($dir);
 
-    if (!is_file($cline['c'])) {
+    if (isset($cline['c']) && !is_file($cline['c'])) {
         echo "Cannot find config file\n";
         exit;
     }
@@ -290,6 +290,7 @@ if (isset($GLOBALS['installation_name'])) {
 }
 echo "$page_title</title>";
 $inRemoteCall = false;
+$doLoginCheck = Sql_Table_exists($tables['admin_login']);
 
 if (!empty($GLOBALS['require_login'])) {
     //bth 7.1.2015 to support x-forwarded-for
@@ -312,6 +313,11 @@ if (!empty($GLOBALS['require_login'])) {
             $msg = $loginresult[1];
         } else {
             session_regenerate_id();
+            if ($doLoginCheck) {
+              # invalidate other active sessions
+              Sql_Query(sprintf('update %s set active = 0 where adminid = %d and active != 0',$GLOBALS['tables']['admin_login'],$loginresult[0]));
+            }
+
             $_SESSION['adminloggedin'] = $remoteAddr;
             $_SESSION['logindetails'] = array(
                 'adminname' => $_REQUEST['login'],
@@ -324,6 +330,17 @@ if (!empty($GLOBALS['require_login'])) {
             unset($_SESSION['session_age']);
             if (!empty($_POST['page'])) {
                 $page = preg_replace('/\W+/', '', $_POST['page']);
+            }
+
+            if ($doLoginCheck) {
+              # check if this is a new IP address
+              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s" and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$loginresult[0]));
+              if (empty($knownIP[0])) {
+                notifyNewIPLogin($loginresult[0]);
+              }
+              Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
+                values(%d,%d,"%s","%s","%s",1)',
+                $GLOBALS['tables']['admin_login'],time(),$loginresult[0],$remoteAddr,"",session_id()));
             }
         }
         //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
@@ -373,14 +390,24 @@ if (!empty($GLOBALS['require_login'])) {
         $_SESSION['logindetails'] = '';
         $page = 'login';
     } elseif ($_SESSION['adminloggedin'] && $_SESSION['logindetails']) {
+        if ($doLoginCheck) {
+          $active = Sql_Fetch_Row_Query(sprintf('select active from %s where adminid = %d and (remote_ip4 = "%s" or remote_ip6 = "%s") and sessionid = "%s"',
+            $GLOBALS['tables']['admin_login'],$_SESSION['logindetails']['id'],$remoteAddr,"",session_id()));
+        } else {
+          $active = array(1); ## pretend to be active
+        }
         $validate = $GLOBALS['admin_auth']->validateAccount($_SESSION['logindetails']['id']);
-        if (!$validate[0]) {
+        if (empty($active[0]) || !$validate[0]) {
             logEvent(sprintf($GLOBALS['I18N']->get('invalidated login from %s for %s (error %s)'), $remoteAddr,
                 $_SESSION['logindetails']['adminname'], $validate[1]));
             $_SESSION['adminloggedin'] = '';
             $_SESSION['logindetails'] = '';
             $page = 'login';
-            $msg = $validate[1];
+            if (empty($active[0])) {
+              $msg = s('Your session was invalidated by a new session in a different browser');
+            } else {
+              $msg = $validate[1];
+            }
         }
     } else {
         $page = 'login';
@@ -402,6 +429,18 @@ if ($ajax && empty($_SESSION['adminloggedin'])) {
     $_SESSION['action_result'] = s('Your session timed out, please login again');
     echo '<script type="text/javascript">top.location = "./?page=home";</script>';
     exit;
+}
+
+## add a few menu options when the admin is superuser
+if (isSuperUser() && ALLOW_UPDATER) {
+    $GLOBALS['pagecategories']['system']['pages'][] = 'update';
+    $GLOBALS['pagecategories']['system']['menulinks'][] = 'update';
+}
+if (isSuperUser()) {
+  foreach (array('admins','admin','importadmin','adminattributes') as $adminPage) {
+    $GLOBALS['pagecategories']['config']['menulinks'][] = $adminPage;
+    $GLOBALS['pagecategories']['config']['pages'][] = $adminPage;
+  }
 }
 
 $languageswitcher = '';
@@ -603,15 +642,6 @@ if (!empty($_GET['action']) && $_GET['page'] != 'pageaction' && !empty($_SESSION
 }
 
 /*
-if (USEFCK) {
-  $imgdir = getenv("DOCUMENT_ROOT").$GLOBALS["pageroot"].'/'.FCKIMAGES_DIR.'/';
-  if (!is_dir($imgdir) || !is_writeable ($imgdir)) {
-    Warn("The FCK image directory does not exist, or is not writable");
-  }
-}
-*/
-
-/*
  *
  * show global news, based on the version in use
  *
@@ -702,10 +732,6 @@ if (!empty($_SESSION['logindetails']['id']) && defined('PHPLISTNEWSROOT') && PHP
  * end of news
  *
  * **/
-
-if (defined('USE_PDF') && USE_PDF && !defined('FPDF_VERSION')) {
-    Warn($GLOBALS['I18N']->get('You are trying to use PDF support without having FPDF loaded'));
-}
 
 if (WARN_ABOUT_PHP_SETTINGS && !$GLOBALS['commandline']) {
     if (strpos(getenv('REQUEST_URI'), $pageroot.'/admin') !== 0) {

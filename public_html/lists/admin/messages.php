@@ -215,9 +215,9 @@ if (isset($_GET['duplicate'])) {
     $idToDuplicate = sprintf('%d', $_GET['duplicate']);
     $action_result .= $GLOBALS['I18N']->get('Copying')." $idToDuplicate ..";
     Sql_Query(sprintf('insert into %s (uuid, subject, fromfield, tofield, replyto, message, textmessage, footer, entered,
-        modified, embargo, repeatuntil, repeatinterval, requeueinterval, status, htmlformatted, sendformat, template, rsstemplate, owner)
+        embargo, repeatuntil, repeatinterval, requeueinterval, status, htmlformatted, sendformat, template, rsstemplate, owner)
         select "%s", subject, fromfield, tofield, replyto, message, textmessage, footer, now(),
-        now(), now(), now(), repeatinterval, requeueinterval, "draft",  htmlformatted,
+        now(), now(), repeatinterval, requeueinterval, "draft",  htmlformatted,
         sendformat, template, rsstemplate, "%d" from %s
         where id = %d',
         $GLOBALS['tables']['message'], (string) Uuid::generate(4), $_SESSION['logindetails']['id'],$GLOBALS['tables']['message'],
@@ -477,7 +477,7 @@ END;
 
             // Make statistical integers human readable
             foreach ($viewStats as $key => $value) {
-                $viewStatsFormatted[$key] = number_format($value);
+                $viewStatsFormatted[$key] = number_format((int)$value);
             }
             $resultStats = '
     <table class="messagesendstats">

@@ -77,7 +77,7 @@ function Sql_Connect($host, $user, $password, $database)
         print "Cannot connect to Database, please check your configuration";
         exit;
     }
-    mysqli_query($db, "SET NAMES 'utf8'");
+    mysqli_query($db, "SET NAMES 'utf8mb4'");
     unset($GLOBALS['lastquery']);
 
     return $db;
@@ -410,6 +410,9 @@ function Sql_create_Table($table, $structure)
 
 function sql_escape($text)
 {
+    if (empty($text)) {
+      return '';
+    }
     if (empty($GLOBALS['database_connection'])) {
         $GLOBALS['database_connection'] = Sql_Connect(
             $GLOBALS['database_host'],

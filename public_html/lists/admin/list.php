@@ -32,7 +32,7 @@ $actionresult = '';
 
 if (isset($_POST['listorder']) && is_array($_POST['listorder'])) {
     foreach ($_POST['listorder'] as $key => $val) {
-        $active = sprintf('%d', $_POST['active'][$key]);
+        $active = sprintf('%d', !empty($_POST['active'][$key]));
         $active = $active || listUsedInSubscribePage($key);
         $query = sprintf('update %s set listorder = %d, active = %d where id = %d', $tables['list'], $val, $active,
             $key);

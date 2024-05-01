@@ -137,6 +137,18 @@ $bounce_unsubscribe_threshold = 5;
 // Set to 0 to received by mail bounce deletions in the advanced bounce processing report
 define('REPORT_DELETED_BOUNCES', 0);
 
+// The name of the POP3 mailbox
+// Multiple mailboxes can be specified separated by comma
+$bounce_mailbox_name = 'INBOX';
+
+// The maximum number of bounces to retrieve from the mailbox
+// This might need to be reduced if the processing times-out
+$bounce_mailbox_maximum = 100000;
+
+// When applying bounce rules the number of bounces to process in each batch
+// This might need to be reduced when there are a large number of bounces to process
+$bounce_rules_batch_size = 500;
+
 /*
 
 =========================================================================

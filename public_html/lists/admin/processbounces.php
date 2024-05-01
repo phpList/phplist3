@@ -360,25 +360,36 @@ function processBounceData($bounceid, $msgid, $userid, $bounceDate = null)
 
 function processPop($server, $user, $password)
 {
-    $port = $GLOBALS['bounce_mailbox_port'];
+    global $bounce_mailbox_port, $bounce_mailbox_name, $bounce_mailbox_maximum;
+
+    $port = $bounce_mailbox_port;
     if (!$port) {
         $port = '110/pop3/notls';
     }
     set_time_limit(6000);
 
-    $link = imap_open('{'.$server.':'.$port.'}INBOX', $user, $password);
+    $mailboxNames = explode(',', $bounce_mailbox_name);
+    $report = '';
 
-    if (!$link) {
-        outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $server: ".imap_last_error());
+    foreach ($mailboxNames as $mailboxName) {
+        $mailbox = sprintf('{%s:%s}%s', $server, $port, $mailboxName);
+        $link = imap_open($mailbox, $user, $password);
 
-        return false;
+        if (!$link) {
+            outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $mailbox: ".imap_last_error());
+
+            return false;
+        }
+        $report .= processMessages($link, $bounce_mailbox_maximum);
     }
 
-    return processMessages($link, 100000);
+    return $report;
 }
 
 function processMbox($file)
 {
+    global $bounce_mailbox_maximum;
+
     set_time_limit(6000);
 
     if (!TEST) {
@@ -392,10 +403,10 @@ function processMbox($file)
         return false;
     }
 
-    return processMessages($link, 100000);
+    return processMessages($link, $bounce_mailbox_maximum);
 }
 
-function processMessages($link, $max = 3000)
+function processMessages($link, $max)
 {
     global $bounce_mailbox_purge_unprocessed, $bounce_mailbox_purge;
     $num = imap_num_msg($link);
@@ -494,26 +505,27 @@ echo prepareOutput();
 flushBrowser();
 
 $download_report = '';
-switch ($bounce_protocol) {
-    case 'pop':
-        $download_report = processPop($bounce_mailbox_host, $bounce_mailbox_user, $bounce_mailbox_password);
-        break;
-    case 'mbox':
-        $download_report = processMbox($bounce_mailbox);
-        break;
-    default:
-        Error($GLOBALS['I18N']->get('bounce_protocol not supported'));
+if (!isset($_GET['justexisting'])) {
+    switch ($bounce_protocol) {
+        case 'pop':
+            $download_report = processPop($bounce_mailbox_host, $bounce_mailbox_user, $bounce_mailbox_password);
+            break;
+        case 'mbox':
+            $download_report = processMbox($bounce_mailbox);
+            break;
+        default:
+            Error($GLOBALS['I18N']->get('bounce_protocol not supported'));
+
+            return;
+    }
+
+    if ($GLOBALS['commandline'] && $download_report === false) {
+        cl_output(s('Download failed, exiting'));
 
         return;
-}
-
-if ($GLOBALS['commandline'] && $download_report === false) {
-    cl_output(s('Download failed, exiting'));
-
-    return;
-}
+    }
 // now we have filled database with all available bounces
-
+}
 //# reprocess the unidentified ones, as the bounce detection has improved, so it might catch more
 
 cl_output('reprocessing');
@@ -554,7 +566,7 @@ if (count($bouncerules)) {
     $bounceCount = Sql_Fetch_Row_Query(sprintf('select count(*) from %s', $GLOBALS['tables']['user_message_bounce']));
     $total = $bounceCount[0];
     $counter = 0;
-    $batchSize = 500; //# @TODO make a config, to allow tweaking on bigger systems
+    $batchSize = $bounce_rules_batch_size;
     while ($counter < $total) {
         $limit = ' limit '.$counter.', '.$batchSize;
         $counter += $batchSize;
@@ -634,6 +646,22 @@ if (count($bouncerules)) {
                             addUserHistory($userdata['email'], s('Auto unconfirmed'),
                                 s('Subscriber auto unconfirmed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
                             addSubscriberStatistics('auto unsubscribe', 1);
+                        }
+                        deleteBounce($row['bounce']);
+                        break;
+                    case 'decreasecountconfirmuseranddeletebounce':
+                        Sql_Query(sprintf('update %s set bouncecount = bouncecount -1 where id = %d',
+                            $GLOBALS['tables']['user'], $row['user']));
+                        if (!$confirmed) {
+                            logEvent('User ' . $userdata['email'] . ' confirmed by bounce rule ' . PageLink2('bouncerule&amp;id=' . $rule['id'],
+                                    $rule['id']));
+                            Sql_Query(sprintf('update %s set confirmed = 1 where id = %d', $GLOBALS['tables']['user'],
+                                $row['user']));
+                            $advanced_report .= 'User ' . $userdata['email'] . ' made confirmed by bounce rule ' . $rule['id'] . PHP_EOL;
+                            $advanced_report .= 'User: ' . $report_linkroot . '/?page=user&amp;id=' . $userdata['id'] . PHP_EOL;
+                            $advanced_report .= 'Rule: ' . $report_linkroot . '/?page=bouncerule&amp;id=' . $rule['id'] . PHP_EOL;
+                            addUserHistory($userdata['email'], s('Auto confirmed'),
+                                s('Subscriber auto confirmed for') . ' ' . $GLOBALS['I18N']->get('bounce rule') . ' ' . $rule['id']);
                         }
                         deleteBounce($row['bounce']);
                         break;

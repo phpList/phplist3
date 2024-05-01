@@ -1322,10 +1322,6 @@ msgstr "pagetitlehover:Formulaire AJAX"
 msgid "pagetitle:updatetranslation"
 msgstr "Mise à jour des traductions"
 
-#: public_html/databasestructure.php:355
-msgid "pagetitlehover:updatetranslation"
-msgstr "Obtenez la dernière traduction du système de traduction communautaire"
-
 #: public_html/databasestructure.php:356
 msgid "pagetitle:reindex"
 msgstr "Reconstruire les index de la base de données"
@@ -2428,6 +2424,15 @@ msgstr "%d échecs (nouvelle tentative plus tard)"
 #, php-format
 msgid "%d emails unconfirmed (not sent)"
 msgstr "%d e-mails non confirmés (non envoyés)"
+
+#: public_html/lists/admin/send_core.php:371,
+#: public_html/lists/admin/send_core.php:1300
+msgid ""
+"This campaign is scheduled to stop sending before the embargo time. No mails "
+"will be sent."
+msgstr ""
+"Cette campagne est programmée pour ne rien envoyer avant le temps d'envoi "
+"différé. Aucun courriel ne sera envoyé."
 
 #: public_html/lists/admin/actions/processqueue.php:297
 msgid "Warning: script never reached stage 5"
@@ -3964,15 +3969,6 @@ msgstr "Campagne enregistrée en tant que brouillon"
 msgid "Campaign added"
 msgstr "Campagne ajoutée"
 
-#: public_html/lists/admin/send_core.php:370
-#: public_html/lists/admin/send_core.php:1339
-msgid ""
-"This campaign is scheduled to stop sending before the embargo time. No mails "
-"will be sent."
-msgstr ""
-"Cette campagne est programmée pour ne rien envoyer avant le temps d'envoi "
-"différé. Aucun courriel ne sera envoyé."
-
 #: public_html/lists/admin/send_core.php:372
 #: public_html/lists/admin/send_core.php:1340
 #: public_html/lists/admin/send_core.php:1346
@@ -4158,10 +4154,6 @@ msgstr "Les dates et heures sont relatives aux paramètres du serveur"
 #: public_html/lists/admin/send_core.php:760
 msgid "Current Server Time is"
 msgstr "L'heure indiquée par le serveur est"
-
-#: public_html/lists/admin/send_core.php:764
-msgid "Embargoed Until"
-msgstr "Bloqué jusqu'à"
 
 #: public_html/lists/admin/send_core.php:766
 #: public_html/lists/admin/message.php:125
@@ -6363,6 +6355,10 @@ msgstr ""
 "Si vous envoyez un message de confirmation aux futurs abonnés, vous pourriez "
 "vouloir ajouter un délai entre les messages"
 
+#: public_html/lists/admin/send_core.php:748
+msgid "Embargoed Until"
+msgstr "Bloqué jusqu'à"
+
 #: public_html/lists/admin/import1.php:244
 #: public_html/lists/admin/import2.php:748
 msgid "Notification throttle"
@@ -7403,6 +7399,10 @@ msgstr ""
 #: public_html/lists/admin/template.php:197
 msgid "Image name:"
 msgstr "Nom de l'image"
+
+#: public_html/databasestructure.php:354
+msgid "pagetitlehover:updatetranslation"
+msgstr "Obtenez la dernière traduction du système de traduction communautaire"
 
 #: public_html/lists/admin/template.php:192
 #: public_html/lists/admin/template.php:197

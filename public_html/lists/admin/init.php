@@ -216,13 +216,19 @@ if (!isset($bounce_mailbox_purge)) {
 if (!isset($bounce_mailbox_purge_unprocessed)) {
     $bounce_mailbox_purge_unprocessed = true;
 }
+if (!isset($bounce_mailbox_maximum)) {
+    $bounce_mailbox_maximum = 100000;
+}
+if (!isset($bounce_rules_batch_size)) {
+    $bounce_rules_batch_size = 500;
+}
+if (!isset($bounce_mailbox_name)) {
+    $bounce_mailbox_name = 'INBOX';
+}
 
 // set some defaults if they are not specified
 if (!defined('REGISTER')) {
     define('REGISTER', 1);
-}
-if (!defined('USE_PDF')) {
-    define('USE_PDF', 0);
 }
 if (!defined('VERBOSE')) {
     define('VERBOSE', 0);
@@ -259,12 +265,6 @@ if (!defined('EMAILTEXTCREDITS')) {
 if (!defined('PAGETEXTCREDITS')) {
     define('PAGETEXTCREDITS', 0);
 }
-if (!defined('USEFCK')) {
-    define('USEFCK', 1);
-}
-if (!defined('USECK')) {
-    define('USECK', 0);
-} //# ckeditor integration, not finished yet
 if (!defined('ASKFORPASSWORD')) {
     define('ASKFORPASSWORD', 0);
 }
@@ -331,9 +331,6 @@ if (!defined('HASH_ALGO')) {
 //# remember the length of a hashed string
 $hash_length = strlen(hash(HASH_ALGO, 'some text'));
 
-if (!defined('PHPMAILER')) {
-    define('PHPMAILER', 1);
-}
 if (!defined('WARN_ABOUT_PHP_SETTINGS')) {
     define('WARN_ABOUT_PHP_SETTINGS', 1);
 }
@@ -391,9 +388,6 @@ if (!defined('DEFAULT_MIMETYPE')) {
 if (!defined('USE_REPETITION')) {
     define('USE_REPETITION', 0);
 }
-if (!defined('USE_EDITMESSAGE')) {
-    define('USE_EDITMESSAGE', 0);
-}
 if (!defined('FCKIMAGES_DIR')) {
     define('FCKIMAGES_DIR', 'uploadimages');
 }
@@ -424,9 +418,6 @@ if (!defined('MAILQUEUE_AUTOTHROTTLE')) {
 if (!defined('NAME')) {
     define('NAME', 'phpList');
 }
-if (!defined('USE_OUTLOOK_OPTIMIZED_HTML')) {
-    define('USE_OUTLOOK_OPTIMIZED_HTML', 0);
-}
 if (!defined('EXPORT_EXCEL')) {
     define('EXPORT_EXCEL', 0);
 }
@@ -442,12 +433,6 @@ if (!defined('TEXTEMAIL_ENCODING')) {
 if (!defined('USE_LIST_EXCLUDE')) {
     define('USE_LIST_EXCLUDE', 0);
 }
-if (!defined('WARN_SAVECHANGES')) {
-    define('WARN_SAVECHANGES', 1);
-}
-if (!defined('STACKED_ATTRIBUTE_SELECTION')) {
-    define('STACKED_ATTRIBUTE_SELECTION', 0);
-}
 if (!defined('ATTRIBUTEVALUE_REORDER_LIMIT')) {
     define('ATTRIBUTEVALUE_REORDER_LIMIT', 100);
 }
@@ -459,15 +444,6 @@ if (!defined('CLICKTRACK')) {
 }
 if (!defined('CLICKTRACK_SHOWDETAIL')) {
     define('CLICKTRACK_SHOWDETAIL', 0);
-}
-if (!defined('USETINYMCEMESG')) {
-    define('USETINYMCEMESG', 0);
-}
-if (!defined('USETINYMCETEMPL')) {
-    define('USETINYMCETEMPL', 0);
-}
-if (!defined('TINYMCEPATH')) {
-    define('TINYMCEPATH', '');
 }
 if (!defined('STATS_INTERVAL')) {
     define('STATS_INTERVAL', 'weekly');
@@ -623,9 +599,6 @@ if (!defined('SESSION_TIMEOUT')) {
 if (!defined('MAX_MAILSIZE')) {
     define('MAX_MAILSIZE', 209715200);
 } // in bytes, 200Mb
-if (!defined('INTERFACELIB')) {
-    define('INTERFACELIB', 1);
-}
 if (!defined('POP_BEFORE_SMTP')) {
     define('POP_BEFORE_SMTP', '');
 }

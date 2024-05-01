@@ -1,6 +1,10 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+if (!isSuperUser()) {
+    echo Error(s('No Access'));
+    return;
+}
 ignore_user_abort();
 set_time_limit(500);
 

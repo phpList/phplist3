@@ -1,0 +1,20 @@
+test (generated) (test)
+Language name
+test
+Language code
+12.9
+Percents translated
+2132
+Number of strings
+276
+Number of translated strings
+public_html/lists/admin/locale/test/phplist.po
+Translation filename
+phpList3
+Component name
+phplist3
+Component URL slug
+phpList
+Project name
+phplist
+Project URL slug

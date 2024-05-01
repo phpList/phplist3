@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false     
       matrix:   
-        php-version: ['7.4']
+        php-version: ['8.2']
         experimental: [false]
 
     steps:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Show the discovered version
         run: |
-          if [[ ${{ secrets.BUILD_TEST }} ]]; then
+          if [[ ! -z "${{ secrets.BUILD_TEST }}" ]]; then
             echo "RELEASE_VERSION=build-testing-RC1" >> $GITHUB_ENV
           fi
           echo \$RELEASE_VERSION = $RELEASE_VERSION
@@ -93,7 +93,7 @@ jobs:
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       - name: Check PHP syntax errors
-        uses: overtrue/phplint@2.4.1
+        uses: overtrue/phplint@9.1.2
         with:
           path: ./public_html
           options: --exclude=base/vendor

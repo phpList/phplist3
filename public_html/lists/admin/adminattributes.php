@@ -1,6 +1,10 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
+if (!isSuperUser()) {
+    echo Error(s('No Access'));
+    return;
+}
 ob_end_flush();
 if (isset($_POST['action']) && $_POST['action'] == $GLOBALS['I18N']->get('Save Changes')) {
     if (isset($_POST['name'])) {

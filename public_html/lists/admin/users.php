@@ -45,6 +45,8 @@ if (!empty($_GET['start'])) {
 }
 $unconfirmed = !empty($_GET['unconfirmed']) ? sprintf('%d', $_GET['unconfirmed']) : 0;
 $blacklisted = !empty($_GET['blacklisted']) ? sprintf('%d', $_GET['blacklisted']) : 0;
+$confirmed = !empty($_GET['confirmed']) ? sprintf('%d', $_GET['confirmed']) : 0;
+$nonblacklisted = !empty($_GET['nonblacklisted']) ? sprintf('%d', $_GET['nonblacklisted']) : 0;
 if (isset($_GET['sortorder'])) {
     if ($_GET['sortorder'] == 'asc') {
         $sortorder = 'asc';
@@ -147,10 +149,15 @@ if ($require_login && !isSuperUser()) {
             $subselect = "{$tables['user']}.id = {$tables['listuser']}.userid and {$tables['listuser']}.listid = {$tables['list']}.id and {$tables['list']}.owner = ".$_SESSION['logindetails']['id'];
             if ($unconfirmed) {
                 $subselect .= ' and !confirmed ';
+            } elseif ($confirmed) {
+                $subselect .= ' and confirmed ';
             }
             if ($blacklisted) {
                 $subselect .= ' and blacklisted ';
+            } elseif ($nonblacklisted) {
+                $subselect .= ' and !blacklisted ';
             }
+
             if ($find && $findbyselect) {
                 $listquery = "select DISTINCT {$tables['user']}.email,{$tables['user']}.id,$findfield,confirmed from ".$table_list." where $subselect and $findbyselect";
                 $count = Sql_query("SELECT count(distinct {$tables['user']}.id) FROM ".$table_list." where $subselect and $findbyselect");
@@ -167,9 +174,13 @@ if ($require_login && !isSuperUser()) {
             if ($find && $findbyselect) {
                 if ($unconfirmed) {
                     $findbyselect .= ' and !confirmed ';
+                } elseif ($confirmed) {
+                    $findbyselect .= ' and confirmed ';
                 }
                 if ($blacklisted) {
                     $findbyselect .= ' and blacklisted ';
+                } elseif ($nonblacklisted) {
+                    $findbyselect .= ' and !blacklisted ';
                 }
                 $listquery = "select DISTINCT {$tables['user']}.email,{$tables['user']}.id,$findfield,{$tables['user']}.confirmed from ".$table_list." where $findbyselect";
                 $count = Sql_query('SELECT count(*) FROM '.$table_list." where $findbyselect");
@@ -195,21 +206,35 @@ if ($require_login && !isSuperUser()) {
     if ($find && $findbyselect) {
         if ($unconfirmed) {
             $findbyselect .= ' and !confirmed ';
+        } elseif ($confirmed) {
+            $findbyselect .= ' and confirmed ';
         }
         if ($blacklisted) {
             $findbyselect .= ' and blacklisted ';
+        } elseif ($nonblacklisted) {
+            $findbyselect .= ' and !blacklisted ';
         }
         $listquery = "select {$tables['user']}.email,{$tables['user']}.id,$findfield,{$tables['user']}.confirmed from ".$table_list." where $findbyselect";
         $count = Sql_query('SELECT count(*) FROM '.$table_list." where $findbyselect");
         $unconfirmedcount = Sql_query('SELECT count(*) FROM '.$table_list." where !confirmed and $findbyselect");
     } else {
         $subselect = '';
-        if ($unconfirmed || $blacklisted) {
+        if ($unconfirmed || $blacklisted || $confirmed || $nonblacklisted) {
             $subselect = ' where ';
             if ($unconfirmed && $blacklisted) {
                 $subselect .= ' !confirmed and blacklisted ';
+            } elseif ($confirmed && $nonblacklisted) {
+                $subselect .= ' confirmed and !blacklisted ';
+            } elseif ($unconfirmed && $nonblacklisted) {
+                $subselect .= ' !confirmed and !blacklisted ';
+            } elseif ($confirmed && $blacklisted) {
+                $subselect .= ' confirmed and blacklisted ';
             } elseif ($unconfirmed) {
                 $subselect .= ' !confirmed ';
+            } elseif ($confirmed) {
+                $subselect .= ' confirmed ';
+            } elseif ($nonblacklisted) {
+                $subselect .= ' !blacklisted ';
             } else {
                 $subselect .= ' blacklisted';
             }
@@ -280,6 +305,16 @@ if ($blacklisted) {
 } else {
     $bll = '';
 }
+if ($confirmed) {
+    $nonunc = 'checked="checked"';
+} else {
+    $nonunc = '';
+}
+if ($nonblacklisted) {
+    $nonbll = 'checked="checked"';
+} else {
+    $nonbll = '';
+}
 if (!isset($start)) {
     $start = 0;
 }
@@ -290,15 +325,22 @@ $filterpanel .= sprintf('<form method="get" name="listcontrol" action="">
   <input type="hidden" name="start" value="%d" />
   <input type="hidden" name="find" value="%s" />
   <input type="hidden" name="findby" value="%s" />
-  <label for="unconfirmed">%s:<input type="checkbox" name="unconfirmed" value="1" %s /></label>
-  <label for="blacklisted">%s:<input type="checkbox" name="blacklisted" value="1" %s /></label>',
+  <label for="unconfirmed">%s:<input onclick="if (this.checked && form.confirmed.checked) form.confirmed.checked=false" type="checkbox" name="unconfirmed" value="1" %s /></label>
+  <label for="blacklisted">%s:<input onclick="if (this.checked && form.nonblacklisted.checked) form.nonblacklisted.checked=false" type="checkbox" name="blacklisted" value="1" %s /></label>
+  <div class="clearfix"></div>
+  <label for="confirmed">%s:<input onclick="if (this.checked && form.unconfirmed.checked) form.unconfirmed.checked=false" type="checkbox" name="confirmed" value="1" %s /></label>
+  <label for="backlisted">%s:<input onclick="if (this.checked && form.blacklisted.checked) form.blacklisted.checked=false"type="checkbox" name="nonblacklisted" value="1" %s /></label>',
     $start,
     htmlspecialchars(stripslashes($find)),
     htmlspecialchars(stripslashes($findby)),
-    $GLOBALS['I18N']->get('Show only unconfirmed users'),
+    $GLOBALS['I18N']->get('Show only unconfirmed subscribers'),
     $unc,
-    $GLOBALS['I18N']->get('Show only blacklisted users'),
-    $bll);
+    $GLOBALS['I18N']->get('Show only blacklisted subscribers'),
+    $bll,
+    $GLOBALS['I18N']->get('Show only confirmed subscribers'),
+    $nonunc,
+    $GLOBALS['I18N']->get('Show only non blacklisted subscribers'),
+    $nonbll);
 //print '</td><td valign="top">';
 $select = '';
 foreach (array(

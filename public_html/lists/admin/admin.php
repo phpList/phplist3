@@ -14,24 +14,11 @@ $start = isset($_GET['start']) ? sprintf('%d', $_GET['start']) : 0;
 
 echo '<hr /><br />';
 
-$noaccess = 0;
-$accesslevel = accessLevel('admin');
-switch ($accesslevel) {
-    case 'owner':
-        $id = $_SESSION['logindetails']['id'];
-        break;
-    case 'all':
-        $subselect = '';
-        break;
-    case 'none':
-    default:
-        $noaccess = 1;
-}
-if ($noaccess) {
+if (!isSuperUser()) {
     echo Error(s('No Access'));
-
     return;
 }
+$accesslevel = 'all';
 
 if (!empty($_POST['change'])) {
     if (!verifyToken()) { //# csrf check, should be added in more places
@@ -116,7 +103,7 @@ if (!empty($_POST['change'])) {
             'statistics'  => !empty($_POST['statistics']),
             'settings'    => !empty($_POST['settings']),
         );
-        Sql_Query(sprintf('update %s set modified=now(), modifiedby = "%s", privileges = "%s" where id = %d',
+        Sql_Query(sprintf('update %s set modifiedby = "%s", privileges = "%s" where id = %d',
             $GLOBALS['tables']['admin'], adminName($_SESSION['logindetails']['id']), sql_escape(serialize($privs)),
             $id));
 
@@ -132,6 +119,9 @@ if (!empty($_GET['delete'])) {
     // delete the index in delete
     echo s('Deleting')." $delete ..\n";
     if ($delete != $_SESSION['logindetails']['id']) {
+        $adminName = $admin_auth->adminName($delete);
+        $deleterName = $admin_auth->adminName($_SESSION['logindetails']['id']);
+        logEvent(s('Administrator %s deleted by %s', $adminName, $deleterName));
         Sql_query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['admin'], $delete));
         Sql_query(sprintf('delete from %s where adminid = %d', $GLOBALS['tables']['admin_attribute'], $delete));
         echo '..'.s('Done');
@@ -168,7 +158,7 @@ printf('<input type="hidden" name="id" value="%d" /><table class="adminDetails" 
 if (isset($data['privileges'])) {
     $privileges = unserialize($data['privileges']);
 } else {
-    $privileges = array();
+    $privileges = array('subscribers' => 0, 'campaigns' => 0, 'statistics' => 0, 'settings' => 0);
 }
 
 reset($struct);
