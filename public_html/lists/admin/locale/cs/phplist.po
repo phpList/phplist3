@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2024-04-29 10:13+0000\n"
+"PO-Revision-Date: 2024-05-01 16:06+0000\n"
 "Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
 "Language-Team: Czech <https://translate.phplist.org/projects/phplist/"
 "phplist3/cs/>\n"
@@ -277,9 +277,8 @@ msgid "sent"
 msgstr "odeslat"
 
 #: public_html/databasestructure.php:66
-#, fuzzy
 msgid "Is this message HTML formatted"
-msgstr "Je tato zpáva formátována jako HTML"
+msgstr "Je tato zpráva formátována jako HTML"
 
 #: public_html/databasestructure.php:67
 msgid "Format to send this message in"
@@ -6231,9 +6230,9 @@ msgid "Continue setup"
 msgstr "Pokračovat v nastavení"
 
 #: public_html/lists/admin/subscribelib2.php:99
-#, fuzzy
 #: public_html/lists/admin/mclicks.php:135,
 #: public_html/lists/admin/mclicks.php:157
+#, fuzzy
 msgid "unique clicks"
 msgstr ""
 
