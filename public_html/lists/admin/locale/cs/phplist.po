@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2024-05-01 16:06+0000\n"
+"PO-Revision-Date: 2024-05-04 06:50+0000\n"
 "Last-Translator: Weblate Admin <ovsenak@seznam.cz>\n"
 "Language-Team: Czech <https://translate.phplist.org/projects/phplist/"
 "phplist3/cs/>\n"
@@ -22,12 +22,12 @@ msgstr "Prosím zadejte vaše přihlašovací údaje."
 #: public_html/lists/admin/phpListAdminAuthentication.php:40
 #: public_html/lists/admin/phpListAdminAuthentication.php:65
 msgid "incorrect password"
-msgstr "nesprávné heslo"
+msgstr "Nesprávné heslo"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:52
 #: public_html/lists/admin/phpListAdminAuthentication.php:109
 msgid "your account has been disabled"
-msgstr "Váš účet byl zablokován"
+msgstr " Váš účet byl zablokován"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:61
 msgid "Admin authentication has changed, please update your admin module"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:107
 msgid "No such account"
-msgstr "Žádný takový ůčet"
+msgstr "Účet neexistuje"
 
 #: public_html/lists/admin/phpListAdminAuthentication.php:144
 msgid "Nobody"
@@ -91,6 +91,7 @@ msgid "Subject"
 msgstr "Předmět"
 
 #: public_html/lists/admin/statsoverview.php:101
+#, fuzzy
 msgid "Date entered"
 msgstr "Zadané datum"
 
@@ -103,12 +104,12 @@ msgstr "Datum odeslání"
 #: public_html/lists/admin/statsoverview.php:109
 #: public_html/databasestructure.php:71
 msgid "Sent as HTML"
-msgstr "Odeslat jako HTML"
+msgstr "Odesláno jako HTML"
 
 #: public_html/lists/admin/statsoverview.php:113
 #: public_html/databasestructure.php:70
 msgid "Sent as text"
-msgstr "Odeslat jako text"
+msgstr "Odesláno jako text"
 
 #: public_html/lists/admin/statsoverview.php:136
 #: public_html/lists/admin/messages.php:507
@@ -117,9 +118,8 @@ msgid "Bounced"
 msgstr "Přeskočené"
 
 #: public_html/lists/admin/statsoverview.php:147
-#, fuzzy
 msgid "Opened "
-msgstr "Otevřeno"
+msgstr "Otevřeno "
 
 #: public_html/lists/admin/statsoverview.php:153
 #: public_html/lists/admin/statsoverview.php:168
@@ -6304,16 +6304,15 @@ msgstr "URL kde odběratelé musí potvrdit jejich podpis"
 
 #: public_html/lists/admin/defaultconfig.php:346
 msgid "URL where subscribers can update their details"
-msgstr "URL, kde odběratelé můhou aktualizovat své kontaktní údaje"
+msgstr "URL, kde odběratelé mohou aktualizovat své kontaktní údaje"
 
 #: public_html/lists/admin/defaultconfig.php:355
 msgid "URL for forwarding messages"
 msgstr "URL pro přeposílání zpráv"
 
 #: public_html/lists/admin/defaultconfig.php:364
-#, fuzzy
 msgid "URL for downloading vcf card"
-msgstr "URL pro přeposílání zpráv"
+msgstr "URL pro stažení VCF vizitky"
 
 #: public_html/lists/admin/defaultconfig.php:371
 msgid ""
@@ -6321,24 +6320,24 @@ msgid ""
 "email to confirm your subscription. Please click the link in the email to "
 "confirm</p>"
 msgstr ""
-"<h3> Děkujeme, byl jste přidán k odběru newsletrů</h3><p> Dostanete email "
+"<h3> Děkujeme, byl jste přidán k odběru našich zpráv</h3><p> Dostanete email "
 "pro potvrzení vašeho odběru. Klikněte na odkaz v mailu pro potvrzení</p>"
 
 #: public_html/lists/admin/defaultconfig.php:384
 msgid "Request for confirmation"
-msgstr "Požadavek na potvrzení"
+msgstr "Žádost o potvrzení"
 
 #: public_html/lists/admin/defaultconfig.php:385
 msgid "Subject of the message subscribers receive when they sign up"
-msgstr "Obsah zprávy pro odběratelé, kteří se přihllásili"
+msgstr "Předmět zprávy pro odběratele, kteří se přihllásí"
 
 #: public_html/lists/admin/defaultconfig.php:417
 msgid "Message subscribers receive when they sign up"
-msgstr "Zpráva odběratelům, kteří se přihlásili"
+msgstr "Zpráva odběratelům, kteří se přihlásí"
 
 #: public_html/lists/admin/defaultconfig.php:425
 msgid "Goodbye from our Newsletter"
-msgstr "Nashledanou od Newsletrů"
+msgstr "Odhlášení zpráv"
 
 #: public_html/lists/admin/defaultconfig.php:426
 msgid "Subject of the message subscribers receive when they unsubscribe"
@@ -6356,15 +6355,16 @@ msgstr "Vítáme Vás v našem newsletru"
 msgid ""
 "Subject of the message subscribers receive after confirming their email "
 "address"
-msgstr "Předmět zprávy pro potvrení emailové adresy odběratele"
+msgstr "Předmět zprávy, kterou obdrží odběratelé po potvrzení emailové adresy"
 
 #: public_html/lists/admin/defaultconfig.php:477
 msgid "Message subscribers receive after confirming their email address"
-msgstr "Text zprávy pro potvrzení emailové adresy odběratele"
+msgstr "Text zprávy, kterou obdrží odběratelé po potvrzení emailové adresy"
 
 #: public_html/lists/admin/defaultconfig.php:485
+#, fuzzy
 msgid "[notify] Change of List-Membership details"
-msgstr "[zjisti] změna v seznamu čelnů "
+msgstr "[zjisti] změna v seznamu členů"
 
 #: public_html/lists/admin/defaultconfig.php:486
 msgid ""
