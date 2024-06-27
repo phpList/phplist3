@@ -382,7 +382,7 @@ function finish($flag, $message, $script_stage)
 
         // If plugins have not sent the report, send it the default way
         if (!$reportSent) {
-            $messageWithIntro = s('The following events occured while processing the message queue:')."\n".$message;
+            $messageWithIntro = s('The following events occurred while processing the message queue:')."\n".$message;
             $messageWithIntroAndFooter = $messageWithIntro."\n\n".s('To stop receiving these reports read:').' https://resources.phplist.com/system/config/send_queue_processing_report'."\n\n";
             sendReport($subject, $messageWithIntroAndFooter);
         }
@@ -1169,7 +1169,7 @@ while ($message = Sql_fetch_array($messages)) {
                     }
 
                     //############################
-                    // tried to send email , process succes / failure
+                    // tried to send email , process success / failure
                     if ($success) {
                         if (USE_DOMAIN_THROTTLE) {
                             ++$domainthrottle[$throttleDomain]['sent'];

@@ -546,7 +546,7 @@ END;
         //$colspan-1,$GLOBALS['I18N']->get("Bounced"),$msg["bouncecount"]);
         //}
 
-        // Calculcate sent statistics for printing
+        // Calculate sent statistics for printing
         $sentStats = array(
             'grandTotal' => $msg['astext'] + $msg['ashtml'] + $msg['astextandhtml'] + $msg['aspdf'] + $msg['astextandpdf']
             , 'text' => $msg['astext']

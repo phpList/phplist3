@@ -62,7 +62,7 @@
  * called from anywhere and isn't dependent on the currentTable being set up correctly before calling
  *
  * Known problems:
- * - Auto-scoll has some problems with IE7  (it scrolls even when it shouldn't), work-around: set scrollAmount to 0
+ * - Auto-scroll has some problems with IE7  (it scrolls even when it shouldn't), work-around: set scrollAmount to 0
  *
  * Version 0.2: 2008-02-20 First public version
  * Version 0.3: 2008-02-07 Added onDragStart option
@@ -363,7 +363,7 @@ window.jQuery.tableDnD = {
             && window.scrollBy(0, config.scrollAmount);
 
     },
-    moveVerticle: function (moving, currentRow) {
+    moveVertical: function (moving, currentRow) {
 
         if (0 != moving.vertical
             // If we're over a row then move the dragged row to there so that the user sees the
@@ -435,7 +435,7 @@ window.jQuery.tableDnD = {
         currentRow = $.tableDnD.findDropTargetRow(dragObj, y);
         moving = $.tableDnD.findDragDirection(x, y);
 
-        $.tableDnD.moveVerticle(moving, currentRow);
+        $.tableDnD.moveVertical(moving, currentRow);
         $.tableDnD.moveHorizontal(moving, currentRow);
 
         return false;

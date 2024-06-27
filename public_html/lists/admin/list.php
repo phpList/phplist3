@@ -217,7 +217,7 @@ if (SHOW_LIST_OFALL_SUBSCRIBERS && isSuperUser()) {
 
     $ls->addRow($element, '',
         '<span class="send-list">'.PageLinkButton('send&new=1&list=all',
-            s('send'), '', '', s('start a new campaign targetting all lists')).'</span>'.
+            s('send'), '', '', s('start a new campaign targeting all lists')).'</span>'.
         '<span class="add_member">'.PageLink2('import', s('Add Members')).'</span>', '', '', 'actions nodrag');
     $some = 1;
 }
@@ -278,7 +278,7 @@ while ($row = Sql_fetch_array($result)) {
     $ls->addRow($element, '',
         '<span class="edit-list"><a class="button" href="?page=editlist&amp;id='.$row['id'].'" title="'.s('Edit this list').'"></a></span>'.'<span class="send-list">'.PageLinkButton('send&new=1&list='.$row['id'],
             s('send'), '', '',
-            s('start a new campaign targetting this list')).'</span>'.
+            s('start a new campaign targeting this list')).'</span>'.
         '<span class="add_member">'.PageLinkDialogOnly('importsimple&list='.$row['id'],
             s('Add Members')).'</span>'.
         '<span class="delete">'.$deletebutton->show().'</span>', '', '', 'actions nodrag');

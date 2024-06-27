@@ -160,7 +160,7 @@ foreach ($user_list as $email => $data) {
             }
         }
 
-        //add this user to the lists identified, execpt when found in the blacklist
+        //add this user to the lists identified, except when found in the blacklist
         $addition = 0;
         $listoflists = '';
         $isBlackListed = isBlackListed($email);
@@ -224,7 +224,7 @@ foreach ($user_list as $email => $data) {
     } // end if
 } // end while
 
-// lets be gramatically correct :-)
+// lets be grammatically correct :-)
 $displists = ($num_lists == 1) ? $GLOBALS['I18N']->get('list') : $GLOBALS['I18N']->get('lists');
 $dispemail = ($count_email_add == 1) ? $GLOBALS['I18N']->get('new email was') : $GLOBALS['I18N']->get('new emails were');
 $dispemail2 = ($additional_emails == 1) ? $GLOBALS['I18N']->get('email was') : $GLOBALS['I18N']->get('emails were');
@@ -238,7 +238,7 @@ if ($count_invalid_emails !== 0) {
 if (!$some && !$additional_emails) {
     $report .= '<br/>' . s('All the emails already exist in the database.');
 } else {
-    $report .= "<br/>$count_email_add $dispemail " . s('succesfully imported to the database and added to') . " $num_lists $displists.<br/>$additional_emails $dispemail2 " . $GLOBALS['I18N']->get('subscribed to the') . " $displists";
+    $report .= "<br/>$count_email_add $dispemail " . s('successfully imported to the database and added to') . " $num_lists $displists.<br/>$additional_emails $dispemail2 " . $GLOBALS['I18N']->get('subscribed to the') . " $displists";
 }
 if ($foundBlacklisted) {
     $report .= '<br/>' . s('%d emails were found on the do-not-send-list and have not been added to the lists',

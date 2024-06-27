@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__).'/accesscheck.php';
 // library used for plugging into the webbler, instead of "connect"
-// depricated and should be removed
+// deprecated and should be removed
 include_once dirname(__FILE__).'/class.phplistmailer.php';
 
 $domain = getConfig('domain');
@@ -280,7 +280,7 @@ function loadMessageData($msgid)
         }
     }
 
-    // Load lists that were targetted with message...
+    // Load lists that were targeted with message...
     $result = Sql_Query(sprintf('select list.name,list.id
     from ' .$GLOBALS['tables']['listmessage'].' listmessage,'.$GLOBALS['tables']['list'].' list
      where listmessage.messageid = %d and listmessage.listid = list.id', $msgid));
@@ -775,7 +775,7 @@ function previewTemplate($id, $adminid = 0, $text = '', $footer = '')
     $template = str_ireplace('[SUBJECT]', s('This is the Newsletter Subject'), $template);
     $template = str_ireplace('[UNSUBSCRIBE]',
         sprintf('<a href="%s">%s</a>', getConfig('unsubscribeurl'), $GLOBALS['strThisLink']), $template);
-    //0013076: Blacklisting posibility for unknown users
+    //0013076: Blacklisting possibility for unknown users
     $template = str_ireplace('[BLACKLIST]',
         sprintf('<a href="%s">%s</a>', getConfig('blacklisturl'), $GLOBALS['strThisLink']), $template);
     $template = str_ireplace('[PREFERENCES]',
@@ -1971,7 +1971,7 @@ if (!function_exists('mb_strlen')) {
 /*
  * shortenTextDisplay
  *
- * mostly used for columns in listings to retrict the width, particularly on mobile devices
+ * mostly used for columns in listings to restrict the width, particularly on mobile devices
  * it will show the full text as the title tip but restrict the size of the output
  *
  */

@@ -321,7 +321,7 @@ $default_config = array(
         'category'    => 'subscription',
     ),
 
-    //0013076: Blacklisting posibility for unknown users
+    //0013076: Blacklisting possibility for unknown users
     // the location of your blacklist script:
     'blacklisturl' => array(
         'value'       => $GLOBALS['public_scheme']."://[WEBSITE]$pageroot/?p=donotsend",

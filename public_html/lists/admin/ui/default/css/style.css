@@ -537,7 +537,7 @@ table.messagesendstats									{ float:right; margin-right:10px}
 body.message table.messageView td img { max-width:100% !important;height:auto !important}
 /* HIDE TABLES IN DESIGN EMAILS WHEN WIDTH EXCEED VIEW CAMPAIGN TABLE WIDTH */
 body.message div.panel .content{ overflow:hidden}
-/* REMOVE BACKGROUND COLOR ON TABLES inside MAILINGS DESING */
+/* REMOVE BACKGROUND COLOR ON TABLES inside MAILINGS DESIGN */
 body.message div.panel table.messageView table{ background-color:transparent}
 
 /* user page */

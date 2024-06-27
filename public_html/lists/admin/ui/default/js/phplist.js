@@ -132,7 +132,7 @@ $(document).ready(function() {
 			var rows = table.tBodies[0].rows;
 			
 			var id = $(row).attr("data-row-position"); // current row
-			// rebuid ids
+			// rebuild ids
 			$( "tr.rows" ).each(function( index ) {
 				var newIndex = index + 0;
 				$(this).attr('data-row-position',newIndex);

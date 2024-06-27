@@ -127,7 +127,7 @@
     <div class="footer">The footer of the panel</div>
 </div>
 <br />
-<p>You can add inside the <code>.content</code> div of the panel all kind of information elemnts, like tables, forms, tabs, accordions, etc.</p>
+<p>You can add inside the <code>.content</code> div of the panel all kind of information elements, like tables, forms, tabs, accordions, etc.</p>
 <br /><br />
 </section>
 
@@ -139,7 +139,7 @@
 <a href="#menud" style="font-size:12px;padding-right:10px;padding-top:0">BACK TO TOP</a>
 <hr />
 <h3>Show & Hide</h3>
-<p>Thare are 3 items in this list below. You can modify your browser window size to see the effect.</p>
+<p>There are 3 items in this list below. You can modify your browser window size to see the effect.</p>
 <ul>
 <li>1- THIS ITEM WILL BE VISIBLE ON All SCREENS</li>
 <li class="show-on-mobile"><ins>2 - THIS ITEM WILL BE VISIBLE ONLY ON SCREENS SMALLER THAN 768px</ins></li>
@@ -221,7 +221,7 @@ This is the code of the table above:
 <hr />
 <br />
 <p>To use an accordion, create a div class <mark><code>.accordion</code></mark>. 
-Into that div add, for each item, a <code>&lt;h3&gt;</code> tag and insde a <code>&lt;a&gt;</code> with the item title. And after that add a div with the item text. Like this:</p>
+Into that div add, for each item, a <code>&lt;h3&gt;</code> tag and inside a <code>&lt;a&gt;</code> with the item title. And after that add a div with the item text. Like this:</p>
 <textarea readonly style="resize:none;height:100px;font-family:monospace;padding:15px 15px 0px;overflow:auto;">
 <div class="accordion">
   <h3><a href="javascript:;">First item title</a></h3>
@@ -637,7 +637,7 @@ just add the class="panel" inline the td, as it is done below.
 <br />
 <h3>The Send Tabs</h3>
 
-This tabs are used on the "Start a new Campaign" screen. Each tab is realy a link but designed as a tab, 
+This tabs are used on the "Start a new Campaign" screen. Each tab is really a link but designed as a tab, 
 and they use the jQuery plugin http://www.gmarwaha.com/jquery/jcarousellite/ 
 to slide the tabs when they exceed the width of the container.
 

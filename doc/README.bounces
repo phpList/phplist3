@@ -33,7 +33,7 @@ be unsubscribed immediately. Unsubscribed means that their email will be marked 
 will cause the system to stop sending emails to this user.
 
 In the future it will become possible to "probe" the unconfirmed emails with a renewed request for
-confirmation, which will be dealt with seperately, most likely by simply deleting the user.
+confirmation, which will be dealt with separately, most likely by simply deleting the user.
 
 If a message to a user bounces, the threshold will be used to determine the previous number of
 message that have bounced. A user will only be marked unconfirmed once a row of consecutive messages
