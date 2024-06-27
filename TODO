@@ -28,7 +28,7 @@ plugin dependencies: Plugin A requires Plugin B (+version) so installing A also 
 - speed - allow sending with multiple processes/servers
 - memcached
 
-- calculate subscriber engagement value, based on opens, option, clicks, bounces etc
+- calculate subscriber engagement value, based on opens, optin, clicks, bounces etc
 - make attributes classes that can be added with plugins
 - Optimize database structure to really deal with large amounts of emails.
 - List Archive entry
