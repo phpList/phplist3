@@ -699,7 +699,7 @@ class phplistPlugin
      *   messageid: message being sent
      *   uservalues: array of "attributename" => "attributevalue" of all user attributes
      *   email: email that this message is current set to go out to
-     * @returnN email that it should go out to
+     * @return email that it should go out to
      */
     public function setFinalDestinationEmail($messageid, $uservalues, $email)
     {
