@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Czech (phpList)\n"
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
-"PO-Revision-Date: 2024-06-27 11:35+0000\n"
+"PO-Revision-Date: 2024-07-01 17:46+0000\n"
 "Last-Translator: user1365 <martin@phplist.com>\n"
 "Language-Team: Czech <http://translate.phplist.org/projects/phplist/phplist3/"
 "cs/>\n"
@@ -136,7 +136,7 @@ msgstr "Kliknuté"
 #: public_html/lists/admin/statsoverview.php:175
 #: public_html/lists/admin/actions/statsoverview.php:147
 msgid "Unique Clicks"
-msgstr ""
+msgstr "Unikátních kliknutí"
 
 #: public_html/lists/admin/statsoverview.php:186
 msgid "Click Per View Rate"
