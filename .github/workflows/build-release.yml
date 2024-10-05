@@ -244,6 +244,7 @@ jobs:
           no-cache: true
           file: Dockerfile.release
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMAGE }}:${{ env.RELEASE_VERSION }}
+          platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
 
