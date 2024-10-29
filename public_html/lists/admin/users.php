@@ -325,11 +325,11 @@ $filterpanel .= sprintf('<form method="get" name="listcontrol" action="">
   <input type="hidden" name="start" value="%d" />
   <input type="hidden" name="find" value="%s" />
   <input type="hidden" name="findby" value="%s" />
-  <label for="unconfirmed">%s:<input onclick="if (this.checked && form.confirmed.checked) form.confirmed.checked=false" type="checkbox" name="unconfirmed" value="1" %s /></label>
-  <label for="blacklisted">%s:<input onclick="if (this.checked && form.nonblacklisted.checked) form.nonblacklisted.checked=false" type="checkbox" name="blacklisted" value="1" %s /></label>
+  <label for="unconfirmed">%s:<input id="unconfirmed" onclick="if (this.checked && form.confirmed.checked) form.confirmed.checked=false" type="checkbox" name="unconfirmed" value="1" %s /></label>
+  <label for="blacklisted">%s:<input id="blacklisted" onclick="if (this.checked && form.nonblacklisted.checked) form.nonblacklisted.checked=false" type="checkbox" name="blacklisted" value="1" %s /></label>
   <div class="clearfix"></div>
-  <label for="confirmed">%s:<input onclick="if (this.checked && form.unconfirmed.checked) form.unconfirmed.checked=false" type="checkbox" name="confirmed" value="1" %s /></label>
-  <label for="backlisted">%s:<input onclick="if (this.checked && form.blacklisted.checked) form.blacklisted.checked=false"type="checkbox" name="nonblacklisted" value="1" %s /></label>',
+  <label for="confirmed">%s:<input id="confirmed" onclick="if (this.checked && form.unconfirmed.checked) form.unconfirmed.checked=false" type="checkbox" name="confirmed" value="1" %s /></label>
+  <label for="nonblacklisted">%s:<input id="nonblacklisted" onclick="if (this.checked && form.blacklisted.checked) form.blacklisted.checked=false"type="checkbox" name="nonblacklisted" value="1" %s /></label>',
     $start,
     htmlspecialchars(stripslashes($find)),
     htmlspecialchars(stripslashes($findby)),
