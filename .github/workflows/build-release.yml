@@ -67,10 +67,10 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd public_html/lists
-          wget https://github.com/phpList/base-distribution/archive/refs/heads/phplist3.zip
-          unzip phplist3.zip
-          rm phplist3.zip
-          mv base-distribution-phplist3 base
+          wget https://github.com/phpList/base-distribution/archive/refs/heads/main.zip
+          unzip main.zip
+          rm main.zip
+          mv base-distribution-main base
           cd base
           composer update --no-dev
 
