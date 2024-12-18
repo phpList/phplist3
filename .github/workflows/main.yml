@@ -9,16 +9,16 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
-      fail-fast: false     
-      matrix:   
-        php-version: ['7.4', '8.0', '8.1','8.2']
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2']
         experimental: [false]
         include:
-          - php-version: 8.3
+          - php-version: '8.3'
             experimental: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
@@ -29,15 +29,8 @@ jobs:
 
       - name: Setup Packages
         run: |
-          cd $GITHUB_WORKSPACE
           sudo apt update
-          sudo apt install rsync
-
-      # - name: Cache Composer dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/composer-cache
-      #     key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          sudo apt install -y rsync
 
       - name: Install dependencies
         uses: php-actions/composer@v6
@@ -45,8 +38,7 @@ jobs:
           dev: yes
           args: --prefer-dist --no-interaction
           php_version: ${{ matrix.php-version }}
-          php_extensions: xml 
-          version: 2
+          php_extensions: xml
 
       - name: Report Versions
         run: |
@@ -65,13 +57,13 @@ jobs:
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
-          sudo mysql -proot  -e 'drop database if exists phplistdb'
+          sudo mysql -proot -e 'DROP DATABASE IF EXISTS phplistdb'
           sudo mysqladmin -proot create phplistdb
-          sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
+          sudo mysql -proot -e 'CREATE USER phplist@"%" IDENTIFIED BY "phplist"; GRANT ALL ON phplistdb.* TO phplist@"%"'
 
-      - name: Set bootlist theme
+      - name: Set Bootlist Theme
         run: |
-          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
+          cd public_html/lists/admin/ui/
           wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
           tar -xzf master.tar.gz
           mv phplist-ui-bootlist-master phplist-ui-bootlist
@@ -79,11 +71,9 @@ jobs:
 
       - name: Start Test Server
         run: |
-          cd $GITHUB_WORKSPACE
           cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
-          touch output/screenshots/README.md
           mkdir -p build/mails
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
@@ -93,37 +83,33 @@ jobs:
         uses: overtrue/phplint@2.4.1
         with:
           path: ./public_html
-          
+
       - name: Run BDD Tests UI
         run: |
-          cd $GITHUB_WORKSPACE/tests
+          cd tests
           ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
 
       - name: Run BDD Tests CLI
         run: |
-          cd $GITHUB_WORKSPACE
           export ADMIN_EMAIL=admin@phplist.dev
           export ADMIN_PASSWORD=Mypassword123+
           export ORGANISATION_NAME="phpList"
           export ADMIN_NAME="phpList Administrator"
-          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
-          cd $GITHUB_WORKSPACE/tests
+          php public_html/lists/admin/index.php -c public_html/lists/config/config.php -p initialise -f
+          cd tests
           ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
 
-      - name: Upload the screenshots
+      - name: Upload the Screenshots
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: "output"
           name: "behat output ${{ matrix.php-version }}"
           retention-days: 3
 
-      - name: Display output
+      - name: Display Output on Failure
+        if: failure()
         run: |
-          cd $GITHUB_WORKSPACE
-        #  find . -type f
-        #  cat output/selenium.log
-        if: ${{ failure() }}
-
-
+          find . -type f
+          cat output/selenium.log
