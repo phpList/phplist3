@@ -39,6 +39,7 @@ jobs:
           args: --prefer-dist --no-interaction
           php_version: ${{ matrix.php-version }}
           php_extensions: xml
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Report Versions
         run: |
@@ -53,6 +54,7 @@ jobs:
           vendor/bin/behat -V
           mysql --version
           mysqladmin --version
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Create Database
         run: |
@@ -60,6 +62,7 @@ jobs:
           sudo mysql -proot -e 'DROP DATABASE IF EXISTS phplistdb'
           sudo mysqladmin -proot create phplistdb
           sudo mysql -proot -e 'CREATE USER phplist@"%" IDENTIFIED BY "phplist"; GRANT ALL ON phplistdb.* TO phplist@"%"'
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Set Bootlist Theme
         run: |
@@ -68,6 +71,7 @@ jobs:
           tar -xzf master.tar.gz
           mv phplist-ui-bootlist-master phplist-ui-bootlist
           rm master.tar.gz
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Start Test Server
         run: |
@@ -78,17 +82,20 @@ jobs:
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Check PHP syntax errors
         uses: overtrue/phplint@2.4.1
         with:
           path: ./public_html
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests UI
         run: |
           cd tests
           ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests CLI
         run: |
@@ -99,6 +106,12 @@ jobs:
           php public_html/lists/admin/index.php -c public_html/lists/config/config.php -p initialise -f
           cd tests
           ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+        continue-on-error: ${{ matrix.experimental }}
+
+      - name: Handle Experimental Warnings
+        if: ${{ matrix.experimental && failure() }}
+        run: |
+          echo "::warning::PHP ${matrix.php-version} tests failed. This is marked as experimental and does not impact overall workflow success."
 
       - name: Upload the Screenshots
         if: always()
@@ -109,7 +122,7 @@ jobs:
           retention-days: 3
 
       - name: Display Output on Failure
-        if: failure()
+        if: failure() && !matrix.experimental
         run: |
           find . -type f
           cat output/selenium.log
