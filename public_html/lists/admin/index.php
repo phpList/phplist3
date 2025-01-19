@@ -100,6 +100,11 @@ include_once dirname(__FILE__).'/defaultFrontendTexts.php';
 if (file_exists(dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'])) {
     include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
 }
+if (!empty($_COOKIE['SimpleSAMLAuthToken'])) {
+    // Set the session ID before starting the session
+    session_id($_COOKIE['SimpleSAMLAuthToken']);
+}
+@session_start();
 include_once dirname(__FILE__).'/languages.php';
 require_once dirname(__FILE__).'/defaultconfig.php';
 
@@ -374,6 +379,9 @@ if (!empty($GLOBALS['require_login'])) {
         //$msg = 'Not logged in';
         $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+            if ($pluginname == 'simplesaml' && !isset($_GET['sso'])) {
+                continue;
+            }
             if ($plugin->login()) {
                 $logged = true;
                 break;
