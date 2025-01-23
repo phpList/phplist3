@@ -115,7 +115,7 @@ jobs:
 
       - name: Upload the Screenshots
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: "output"
           name: "behat output ${{ matrix.php-version }}"
