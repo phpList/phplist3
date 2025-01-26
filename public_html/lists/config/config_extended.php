@@ -530,6 +530,10 @@ define('USE_ADMIN_DETAILS_FOR_MESSAGES', 1);
 // test emails are sent to
 define('SEND_ONE_TESTMAIL', 0);
 
+// test emails
+// with this setting you can ensure that test emails are always sent to the same email address
+define('TEST_EMAIL_ALWAYS_TO',false);
+
 // send a webpage. You can send the contents of a webpage, by adding
 // [URL:http://website/file.html] as the content of a message. This can also be personalised
 // for users by using eg
