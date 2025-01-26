@@ -16,7 +16,7 @@ jobs:
         experimental: [false]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Find the version
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
@@ -119,7 +119,7 @@ jobs:
 
       - name: Upload the screenshots
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: "output"
           name: "behat output"
@@ -218,7 +218,7 @@ jobs:
 
       - name: Upload the package as artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: "phplist-*.tgz"
           name: "phpList Release File"
