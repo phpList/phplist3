@@ -376,7 +376,7 @@ function processPop($server, $user, $password)
         $link = imap_open($mailbox, $user, $password);
 
         if (!$link) {
-            outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $mailbox: ".imap_last_error());
+            outputProcessBounce($GLOBALS['I18N']->get('Cannot create connection to')." $mailbox: ".imap_last_error());
 
             return false;
         }
