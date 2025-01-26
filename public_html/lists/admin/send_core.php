@@ -461,7 +461,11 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
             include 'sendemaillib.php';
 
             // OK, let's get to sending!
-            $emailaddresses = explode(',', $messagedata['testtarget']);
+            if (defined('TEST_EMAIL_ALWAYS_TO') && TEST_EMAIL_ALWAYS_TO) {
+                $emailaddresses = array(TEST_EMAIL_ALWAYS_TO);
+            } else {
+                $emailaddresses = explode(',', $messagedata['testtarget']);
+            }
             if (count($emailaddresses) > SENDTEST_MAX) {
                 foreach ($GLOBALS['plugins'] as $plname => $plugin) {
                     $plugin->processError('Send test capped from '.count($emailaddresses).' to '.SENDTEST_MAX);
@@ -983,7 +987,19 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
              </span>
         </div>
     </div>';
-
+    
+    if (defined('TEST_EMAIL_ALWAYS_TO') && TEST_EMAIL_ALWAYS_TO) {
+        $sendtest_content = '<div class="sendTest" id="sendTest">
+        ' .$sendtestresult.Help('sendtest').' <b>'.s('to email address(es)').':</b><br />'.
+            '<p><i>&nbsp; '.s('All test emails will go to %s',TEST_EMAIL_ALWAYS_TO).'</i></p>'.
+            '<div class="input-group">
+                <input type="hidden" name="testtarget" value="'.htmlspecialchars(TEST_EMAIL_ALWAYS_TO).'" />
+                <span class="input-group-btn">
+                    <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" />
+                 </span>
+            </div>
+        </div>';
+    }
     // notification of progress of message sending
     // defaulting to admin_details['email'] gives the wrong impression that this is the
     // value in the database, so it is better to leave that empty instead
