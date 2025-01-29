@@ -96,7 +96,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
         Redirect("user&id=$id");
     }
 
-    /************ BEGIN <whitout_error IF block>  (end in line 264) **********************/
+    /************ BEGIN <without_error IF block>  (end in line 264) **********************/
     // read the current values to compare changes
     $old_data = Sql_Fetch_Array_Query(sprintf('select * from %s where id = %d', $tables['user'], $id));
     $old_data = array_merge($old_data, getUserAttributeValues('', $id));
@@ -266,7 +266,7 @@ if (!empty($_POST['change']) && ($access == 'owner' || $access == 'all')) {
     addUserHistory($email, s('Update by %s', adminName($_SESSION['logindetails']['id'])), $history_entry);
     $_SESSION['action_result'] = s('Changes saved').$feedback;
     Redirect("user&id=$id");
-    /************ END <whitout_error IF block>  (start in line 71) **********************/
+    /************ END <without_error IF block>  (start in line 71) **********************/
 }
 
 if (isset($delete) && $delete && $access != 'view') {

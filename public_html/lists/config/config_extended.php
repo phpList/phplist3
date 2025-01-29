@@ -184,7 +184,7 @@ $commandline_users = array();
 define('ASKFORPASSWORD', 0);
 
 // if you use passwords, they will be stored hashed
-// set this one to the algorythm to use. You can find out which ones are
+// set this one to the algorithm to use. You can find out which ones are
 // supported by your system with the command
 // $ php -r "var_dump(hash_algos());";
 // "sha256" is fairly common on the latest systems, but if your system is very old (not a good idea)
@@ -795,7 +795,7 @@ Experimental Features
 // 1 = 10.4 style email validation.
 // 2 = RFC821 email validation without escaping and quoting of local part.
 // 3 = RFC821 email validation.
-// This is an expirimental email address validation based on the original RFC. It will validate all kind
+// This is an experimental email address validation based on the original RFC. It will validate all kind
 // of 'weird' emails like !#$%&'*+-/=.?^_`{|}~@example.com and escaped\ spaces\ are\ allowed@[1.0.0.127]
 // not implemented are:
 //   Length of domainPart is not checked

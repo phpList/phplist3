@@ -10,7 +10,7 @@ $messageid = 0;
 $forwardsubject = $forwardmessage = $forwardfooter = '';
 $placeinqueue = '';
 $sendtestresult = '';
-$duplicate_atribute = 0; // not actually used it seems @@@ check
+$duplicate_attribute = 0; // not actually used it seems @@@ check
 $embargo = new date('embargo');
 $embargo->useTime = true;
 $repeatuntil = new date('repeatuntil');
@@ -234,7 +234,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         )
     );
 
-    //# do this seperately, so that the above query doesn't fail when the DB hasn't been upgraded
+    //# do this separately, so that the above query doesn't fail when the DB hasn't been upgraded
     $result = Sql_Query(
         sprintf('update %s set requeueinterval = "%s", requeueuntil = "%s" where id = %d', $tables['message'],
             $messagedata['requeueinterval'], sprintf('%04d-%02d-%02d %02d:%02d',
@@ -318,7 +318,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
                     // do a final check
                     if (filesize($GLOBALS['attachment_repository'].'/'.$newfile)) {
-                        echo Info(s('Attachment %d succesfully added', $att_cnt));
+                        echo Info(s('Attachment %d successfully added', $att_cnt));
                     } else {
                         echo Info(s('Adding attachment %d failed', $att_cnt));
                     }
@@ -360,7 +360,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
 
     // If we're sending the message, just return now to the calling script
     // we only need to check that everything is there, once we actually want to send
-    if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_atribute) && count($messagedata['targetlist'])) {
+    if ($send && !empty($messagedata['subject']) && !empty($messagedata['fromfield']) && !empty($messagedata['message']) && empty($duplicate_attribute) && count($messagedata['targetlist'])) {
         if ($messagedata['status'] == 'submitted') {
 
             //#16615, check that "send until" is in after the embargo and warn if it isn't
@@ -1121,7 +1121,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     }
     $send_content .= '</div>';
 
-    //# the button to actually send the campagin
+    //# the button to actually send the campaign
     $send_content .= $placeinqueue;
 
     echo '<div class="sendtabs_container">';

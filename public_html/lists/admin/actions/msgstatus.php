@@ -92,7 +92,7 @@ if ($message['status'] != 'inprocess') {
     }
 
     //# if the plugins don't return anything do the speed calculation
-    //# otherwise just what the plugins retunr
+    //# otherwise just what the plugins return
     if (empty($pluginhtml)) {
         //# not sure this calculation is accurate
         //  $html .= $GLOBALS['I18N']->get('sent').': '.$totalsent.'<br/>';

@@ -66,7 +66,7 @@ if (!empty($_POST['pluginurl']) && class_exists('ZipArchive')) {
     $zip = new ZipArchive();
     if (!empty($filename) && $zip->open($GLOBALS['tmpdir'].'/phpListPlugin-'.$filename) === true) {
 
-        /* the zip may have a variety of directory structures, as Github seems to add at least one for the "branch" of
+        /* the zip may have a variety of directory structures, as GitHub seems to add at least one for the "branch" of
          * the project and then the developer has some more.
          * We look for a directory called "plugins" and place it's contents in the plugins folder.
          */

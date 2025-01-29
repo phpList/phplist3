@@ -73,7 +73,7 @@ if (isset($_POST['password1']) && isset($_POST['password2'])) {
             $GLOBALS['tables']['admin'], encryptPass($p1), $admin);
         //#     print $SQLquery;
         $query = Sql_Query($SQLquery);
-        echo $GLOBALS['I18N']->get('Your password was changed succesfully').'<br/>';
+        echo $GLOBALS['I18N']->get('Your password was changed successfully').'<br/>';
         echo '<p><a href="./" class="action-button">'.$GLOBALS['I18N']->get('Continue').'</a></p>';
         //Token deletion.
         $SQLquery = sprintf('delete from %s where admin = %d;', $GLOBALS['tables']['admin_password_request'], $adminId);

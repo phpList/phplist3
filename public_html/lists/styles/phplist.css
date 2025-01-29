@@ -932,7 +932,7 @@ label, .label, h3.ui-accordion-header {
 }
 
 /*  h3.ui-accordion-header styles up an additional label element created by jquery-ui */
-/* inline lable class for radio select options */
+/* inline label class for radio select options */
 label.inline, .label.inline {
     display: inline;
     font-weight: normal;
@@ -1165,7 +1165,7 @@ input.action-button:hover {
 
 /* */
 
-/* -------------- Capitalise Text - legact system fix ------------------ */
+/* -------------- Capitalise Text - legacy system fix ------------------ */
 
 .missing,
 .sendNotify {

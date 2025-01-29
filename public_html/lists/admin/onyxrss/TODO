@@ -5,6 +5,6 @@
 
 2.) Make a general set function for variables that can replace
     the four set functions.  This function should take an array
-    or the variables seperately.
+    or the variables separately.
 
 3.) Feed validation option prior to parsing.

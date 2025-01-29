@@ -294,7 +294,7 @@ if (!empty($_POST['import'])) {
             echo '<br/>'.$GLOBALS['I18N']->get('All the administrators already exist in the database').'<br/>';
             echo $GLOBALS['I18N']->get('Information has been updated from the import').'<br/>';
         } else {
-            echo "$count_email_add $dispemail ".$GLOBALS['I18N']->get('succesfully imported to the database and added to the system.').'<br/>';
+            echo "$count_email_add $dispemail ".$GLOBALS['I18N']->get('successfully imported to the database and added to the system.').'<br/>';
         }
     } // end else
     echo PageLinkButton('importadmin', $GLOBALS['I18N']->get('Import some more administrators'));

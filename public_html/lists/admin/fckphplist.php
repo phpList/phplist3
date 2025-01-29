@@ -69,7 +69,7 @@ if ($_GET['action'] == 'js') {
     config.ImageBrowserWindowHeight = 480 ;
 
     config.ImageUpload = <?php echo $enable_image_upload ?> ;
-    // Page that effectivelly upload the image.
+    // Page that effectively upload the image.
     config.ImageUploadURL = config.BasePath + "../?page=fckphplist&amp;action=uploadimage" ;
     config.ImageUploadWindowWidth  = 600 ;
     config.ImageUploadWindowHeight  = 480 ;
@@ -687,7 +687,7 @@ FCKConfig.AutoGrowMax = 400 ;
     FCKConfig.FlashDlgHideAdvanced = false ;
 
     // The following value defines which File Browser connector and Quick Upload
-    // "uploader" to use. It is valid for the default implementaion and it is here
+    // "uploader" to use. It is valid for the default implementation and it is here
     // just to make this configuration file cleaner.
     // It is not possible to change this value using an external file or even
     // inline when creating the editor instance. In that cases you must set the
@@ -1069,7 +1069,7 @@ FCKConfig.AutoGrowMax = 400 ;
                 FCKConfig.JustifyClasses = [] ;
 
                 // The following value defines which File Browser connector and Quick Upload
-                // "uploader" to use. It is valid for the default implementaion and it is here
+                // "uploader" to use. It is valid for the default implementation and it is here
                 // just to make this configuration file cleaner.
                 // It is not possible to change this value using an external file or even
                 // inline when creating the editor instance. In that cases you must set the
@@ -1137,7 +1137,7 @@ FCKConfig.AutoGrowMax = 400 ;
 
                 FCKConfig.SmileyPath = FCKConfig.BasePath + 'images/smiley/msn/' ;
                 FCKConfig.SmileyImages =
-                ['regular_smile.gif','sad_smile.gif','wink_smile.gif','teeth_smile.gif','confused_smile.gif','tounge_smile.gif','embaressed_smile.gif','omg_smile.gif','whatchutalkingabout_smile.gif','angry_smile.gif','angel_smile.gif','shades_smile.gif','devil_smile.gif','cry_smile.gif','lightbulb.gif','thumbs_down.gif','thumbs_up.gif','heart.gif','broken_heart.gif','kiss.gif','envelope.gif']
+                ['regular_smile.gif','sad_smile.gif','wink_smile.gif','teeth_smile.gif','confused_smile.gif','tongue_smile.gif','embarrassed_smile.gif','omg_smile.gif','whatchutalkingabout_smile.gif','angry_smile.gif','angel_smile.gif','shades_smile.gif','devil_smile.gif','cry_smile.gif','lightbulb.gif','thumbs_down.gif','thumbs_up.gif','heart.gif','broken_heart.gif','kiss.gif','envelope.gif']
                 ;
                 FCKConfig.SmileyColumns = 8 ;
                 FCKConfig.SmileyWindowWidth = 320 ;

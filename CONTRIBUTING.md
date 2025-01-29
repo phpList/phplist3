@@ -9,7 +9,7 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 
 # Reporting an Issue
 
-You can report an issue here in the [Github issue tracker](https://github.com/phpList/phplist3/issues). 
+You can report an issue here in the [GitHub issue tracker](https://github.com/phpList/phplist3/issues). 
 
 Please follow the guidelines below when creating an issue so that your issue can be more promptly resolved:
 

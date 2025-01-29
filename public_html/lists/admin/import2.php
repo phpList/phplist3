@@ -108,7 +108,7 @@ if (isset($_POST['import'])) {
       }
     */
 
-    //# set notify to always "no". Confirmation should run through the first campaing
+    //# set notify to always "no". Confirmation should run through the first campaign
     $_POST['notify'] = 'no';
     if (!$_POST['notify'] && !$test_import) {
         Fatal_Error($GLOBALS['I18N']->get('Please choose whether to sign up immediately or to send a notification'));
@@ -285,7 +285,7 @@ if (!empty($_SESSION['import_file'])) {
                         );
                         array_push($used_systemattr, strtolower('grouptype_'.$type));
                     } else {
-                        //  print "COLUMMN $column = $i<br/>";
+                        //  print "COLUMN $column = $i<br/>";
                         $_SESSION['systemindex'][$column] = $i;
                         $_SESSION['import_attribute'][$column] = array(
                             'index'  => $i,

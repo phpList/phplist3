@@ -2,7 +2,7 @@
 
 /**
  * Turn register globals off, even if it's on
- * taken from Wordpress.
+ * taken from WordPress.
  *
  * @since 2.2.10
  */

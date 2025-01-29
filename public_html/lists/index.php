@@ -315,7 +315,7 @@ if ($login_required && empty($_SESSION['userloggedin']) && !$canlogin) {
             case 'vcard':
                 print downloadvCard();
                 break;
-            //0013076: Blacklisting posibility for unknown users
+            //0013076: Blacklisting possibility for unknown users
             case 'donotsend':
             case 'blacklist':
             case 'unsubscribe':
@@ -839,7 +839,7 @@ function unsubscribePage($id)
             $email = '';
         }
 
-        //0013076: Blacklisting posibility for unknown users
+        //0013076: Blacklisting possibility for unknown users
         // Set flag for blacklisting
         $blacklistRequest = $_GET['p'] == 'blacklist' || $_GET['p'] == 'donotsend';
 
@@ -872,7 +872,7 @@ function unsubscribePage($id)
 
         //# all conditions met, do the unsubscribe
 
-        //0013076: Blacklisting posibility for unknown users
+        //0013076: Blacklisting possibility for unknown users
         // It would be better to do this above, where the email is set for the other cases.
         // But to prevent vulnerabilities let's keep it here for now. [bas]
         if (!$blacklistRequest) {
@@ -884,7 +884,7 @@ function unsubscribePage($id)
         }
 
         if (!$userid) {
-            //0013076: Blacklisting posibility for unknown users
+            //0013076: Blacklisting possibility for unknown users
             if ($blacklistRequest && !empty($email)) {
                 addUserToBlacklist($email, $_POST['unsubscribereason']);
                 addSubscriberStatistics('blacklist', 1);
@@ -927,7 +927,7 @@ function unsubscribePage($id)
         }
     }
 
-    //0013076: Blacklisting posibility for unknown users
+    //0013076: Blacklisting possibility for unknown users
         //if ($blacklistRequest) {
         //$res .= '<h3>'.$GLOBALS["strYouAreBlacklisted"] ."</h3>";
         //}
@@ -976,7 +976,7 @@ function unsubscribePage($id)
     $finaltext = str_ireplace('[preferencesurl]', $pref_url.$sep.'uid='.$hash, $finaltext);
 
     if (!$some) {
-        //0013076: Blacklisting posibility for unknown users
+        //0013076: Blacklisting possibility for unknown users
         if (!$blacklistRequest) {
             $res .= '<b>'.$GLOBALS['strNoListsFound'].'</b></ul>';
         }

@@ -41,7 +41,7 @@ plugin dependencies: Plugin A requires Plugin B (+version) so installing A also 
 - system messages identifiable for bounces and process them
 DONE, NEEDS FEEDBACK direct delivery of subscription message to make sure it can arrive, and give error when it can't
 - move configurable stuff outside the webroot, to make upgrading easier
-- seperate message for signing up people from import
+- separate message for signing up people from import
 - statistics retrieval (#lists #users #messages)
 - use DKIM capabilities of phpMailer
 - integration with other OSS projects

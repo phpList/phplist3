@@ -696,7 +696,7 @@ class WebblerListing2 extends WebblerListing
     </div>
 </div><!--ENDOF .settings -->
 <div class="content">
-<p>This is a text description of this list decribing it in as much detail as required by the administartor that creates the list</p>
+<p>This is a text description of this list describing it in as much detail as required by the administrator that creates the list</p>
 </div><!--ENDOF .content -->
 
 */

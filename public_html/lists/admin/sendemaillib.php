@@ -175,7 +175,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
     $text['unsubscribeurl'] = sprintf('%s%suid=%s', $url, $sep, $hash);
     $text['jumpoffurl'] = sprintf('%s%suid=%s&jo=1', $url, $sep, $hash);
 
-    //0013076: Blacklisting posibility for unknown users
+    //0013076: Blacklisting possibility for unknown users
     $url = getConfig('blacklisturl');
     $sep = strpos($url, '?') === false ? '?' : '&';
     $html['blacklist'] = sprintf('<a href="%s%semail=%s">%s</a>', $url, htmlspecialchars($sep), $email,
@@ -401,7 +401,7 @@ function sendEmail($messageid, $email, $hash, $htmlpref = 0, $rssitems = array()
         }
     }
 
-    //# the text message has to be parsed seperately, because the line might wrap if the text for the link is long, so the match text is different
+    //# the text message has to be parsed separately, because the line might wrap if the text for the link is long, so the match text is different
     while (preg_match('/\[FORWARD:([^\]]+)\]/Uxm', $textmessage, $regs)) {
         $newforward = $regs[1];
         $matchtext = $regs[0];

@@ -11,7 +11,7 @@
 To develop acceptance tests locally, install Vagrant. This allows you to run tests against 
 different versions of PHP.
 Find the line "PHPVERSION=7.4" and change it to the version of PHP you want to use.
-Put @wip in the feature you are working on, so that it doesn't interfere with Github CI.
+Put @wip in the feature you are working on, so that it doesn't interfere with GitHub CI.
 
 Then run
 ```sh
@@ -77,7 +77,7 @@ Edit your phplist `config.php` [file](https://www.phplist.org/manual/ch028_insta
 
 ### First time
 
-Some tests can only be run once before they change the system state upon which they depend. These tests should only be run once, or only in automated testing environments like Github actions. Execute these and all other tests together by running the following command from within your phpList 3 code root directory:
+Some tests can only be run once before they change the system state upon which they depend. These tests should only be run once, or only in automated testing environments like GitHub actions. Execute these and all other tests together by running the following command from within your phpList 3 code root directory:
 
 ```sh
 $ vendor/bin/behat

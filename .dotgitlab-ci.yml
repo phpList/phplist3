@@ -32,6 +32,6 @@ script:
   - vendor/bin/behat
 
 after_failure:
-  - echo "Failures detected. Outputing additional logs:"
+  - echo "Failures detected. Outputting additional logs:"
   - sudo cat /var/log/apache2/error.log
   - sudo cat /var/log/mysql/error.log

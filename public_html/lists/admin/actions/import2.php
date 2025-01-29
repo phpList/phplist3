@@ -474,7 +474,7 @@ if ($total > 0) {
     if (empty($some) && !$count['list_add']) {
         $report .= '<br/>'.s('All the emails already exist in the database and are member of the lists');
     } else {
-        $report .= '<br/>'.s('%d emails succesfully imported to the database and added to %d lists.',
+        $report .= '<br/>'.s('%d emails successfully imported to the database and added to %d lists.',
                 $count['email_add'], $num_lists);
         $report .= '<br/>'.s('%d emails subscribed to the lists', $count['list_add']);
         if ($count['exist']) {

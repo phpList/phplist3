@@ -162,7 +162,7 @@ if (isset($_POST['action'])) {
                     $tables['attribute'], sql_escape(strip_tags($_POST['name'][$id])), sql_escape($_POST['type'][$id]),
                     $_POST['listorder'][$id], sql_escape($_POST['default'][$id]), $nRequired, $id);
                 Sql_Query($query);
-                // save keywordlib seperately in case the DB hasn't been upgraded
+                // save keywordlib separately in case the DB hasn't been upgraded
                 if ((defined('IN_WEBBLER') && IN_WEBBLER) || (defined('WEBBLER') && WEBBLER)) {
                     Sql_Query(sprintf('update ignore %s set keywordlib = %d where id = %d',
                         $GLOBALS['tables']['attribute'], $_POST['keywordlib'][$id], $id));

@@ -253,7 +253,7 @@ class FeatureContext extends MinkContext
         $campaignCount = $result['count'];
 
         if ($campaignCount > 0) {
-            $this->throwExpectationException('One or more campagins already exist');
+            $this->throwExpectationException('One or more campaigns already exist');
         }
     }
 

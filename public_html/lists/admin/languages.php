@@ -524,7 +524,7 @@ $lan = array(
 
         // spelling mistake, retry with old spelling
         if ($text == 'over threshold, user marked unconfirmed' && empty($translation)) {
-            return $this->get('over treshold, user marked unconfirmed');
+            return $this->get('over threshold, user marked unconfirmed');
         }
         $translation = $this->getTranslation($text);
 
@@ -567,7 +567,7 @@ if (!empty($setlanguage)) {
 
 function s($text)
 {
-    //# allow overloading with sprintf paramaters
+    //# allow overloading with sprintf parameters
     $translation = $GLOBALS['I18N']->get($text);
 
     if (func_num_args() > 1) {

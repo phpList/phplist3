@@ -699,7 +699,7 @@ class phplistPlugin
      *   messageid: message being sent
      *   uservalues: array of "attributename" => "attributevalue" of all user attributes
      *   email: email that this message is current set to go out to
-     * @returN email that it should go out to
+     * @return email that it should go out to
      */
     public function setFinalDestinationEmail($messageid, $uservalues, $email)
     {
@@ -743,7 +743,7 @@ class phplistPlugin
      *
      * @deprecated, no longer used since 3.2.4
      */
-    public function processSuccesFailure($messageid, $sendformat, $userdata, $success = true)
+    public function processSuccessFailure($messageid, $sendformat, $userdata, $success = true)
     {
     }
 
@@ -1123,7 +1123,7 @@ class phplistPlugin
     // Static functions to manage the collection of plugins
 
     /**
-     * see if a plugin is enabled, static method so it can be called even if existance of plugin is unknown.
+     * see if a plugin is enabled, static method so it can be called even if existence of plugin is unknown.
      */
     public static function isEnabled($pluginName)
     {

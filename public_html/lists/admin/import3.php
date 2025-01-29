@@ -514,7 +514,7 @@ if (!$_POST['server'] || !$_POST['user'] || !$_POST['password'] || !is_array($_P
         if (!$some && !$additional_emails) {
             echo '<br/>'.$GLOBALS['I18N']->get('All the emails already exist in the database and are members of the')." $displists.";
         } else {
-            echo "$count_email_add $dispemail ".$GLOBALS['I18N']->get('succesfully imported to the database and added to')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed to the')." $displists";
+            echo "$count_email_add $dispemail ".$GLOBALS['I18N']->get('successfully imported to the database and added to')." $num_lists $displists.<br/>$additional_emails $dispemail2 ".$GLOBALS['I18N']->get('subscribed to the')." $displists";
             if ($count_exist) {
                 echo "<br/>$count_exist ".$GLOBALS['I18N']->get('emails already existed in the database');
             }
