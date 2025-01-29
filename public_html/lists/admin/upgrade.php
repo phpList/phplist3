@@ -370,19 +370,17 @@ if ($dbversion == VERSION && !$force) {
         ));
     }
 
-    if (version_compare($dbversion, '3.6.16', '<')) {
-        if (isset($plugins['CKEditorPlugin'])) {
-            // Update the version of CKEditor if the CDN is being used
-            $latestUrl = $plugins['CKEditorPlugin']->settings['ckeditor_url']['value'];
+    if (isset($plugins['CKEditorPlugin'])) {
+        // Update the version of CKEditor if the CDN is being used
+        $latestUrl = $plugins['CKEditorPlugin']->settings['ckeditor_url']['value'];
 
-            if (preg_match('/\d+\.\d+\.\d+/', $latestUrl, $matches)) {
-                $latestVersion = $matches[0];
-                $currentUrl = getConfig('ckeditor_url');
+        if (preg_match('/\d+\.\d+\.\d+/', $latestUrl, $matches)) {
+            $latestVersion = $matches[0];
+            $currentUrl = getConfig('ckeditor_url');
 
-                if (strpos($currentUrl, 'cdn.ckeditor.com') !== false) {
-                    $newUrl = preg_replace('/\d+\.\d+\.\d+/', $latestVersion, $currentUrl);
-                    SaveConfig('ckeditor_url', $newUrl);
-                }
+            if (strpos($currentUrl, 'cdn.ckeditor.com') !== false) {
+                $newUrl = preg_replace('/\d+\.\d+\.\d+/', $latestVersion, $currentUrl);
+                SaveConfig('ckeditor_url', $newUrl);
             }
         }
     }
