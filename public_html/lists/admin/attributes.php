@@ -424,6 +424,7 @@ if ($c) {
 echo '<br /><br /><br /><div id="new-attribute">
 <a name="new"></a>
 <h3>' .s('Add new Attribute').'</h3>
+<p>' .s('Note: Each attribute that you add will apply to members for all lists.'). '</p>
 <div class="alert alert-warning">' .s('Warning: Storage of sensitive personal data such as race, health, and sexual orientation is regulated by some data protection laws').'. <a href="https://www.phplist.org/manual/ch048_gdpr.xhtml" target="_blank">' .s('Read more'). '&hellip;</a></div>
 
 <div class="label pull-left"><label class="label">' .s('Name').': </label></div>
