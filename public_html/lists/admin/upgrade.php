@@ -338,7 +338,7 @@ if ($dbversion == VERSION && !$force) {
         cl_output(s('Creating new table "admin_login"'));
         createTable('admin_login');
         ## add an entry for current admin to avoid being kicked out
-        Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
+        Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active)
           values(%d,%d,"%s","%s","%s",1)',
           $GLOBALS['tables']['admin_login'],time(),$_SESSION['logindetails']['id'],$_SESSION['adminloggedin'],"",session_id()));
     }
@@ -368,6 +368,21 @@ if ($dbversion == VERSION && !$force) {
             'alter table %s modify time timestamp not null default current_timestamp on update current_timestamp',
             $GLOBALS['tables']['user_message_forward']
         ));
+    }
+
+    if (isset($plugins['CKEditorPlugin'])) {
+        // Update the version of CKEditor if the CDN is being used
+        $latestUrl = $plugins['CKEditorPlugin']->settings['ckeditor_url']['value'];
+
+        if (preg_match('/\d+\.\d+\.\d+/', $latestUrl, $matches)) {
+            $latestVersion = $matches[0];
+            $currentUrl = getConfig('ckeditor_url');
+
+            if (strpos($currentUrl, 'cdn.ckeditor.com') !== false) {
+                $newUrl = preg_replace('/\d+\.\d+\.\d+/', $latestVersion, $currentUrl);
+                SaveConfig('ckeditor_url', $newUrl);
+            }
+        }
     }
 
     //# longblobs are better at mixing character encoding. We don't know the encoding of anything we may want to store in cache
