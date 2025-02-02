@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
+    "content-hash": "9b77d273fc7d5cbb5550c35c5a41a0fb",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -39,40 +39,6 @@
                 "issues": "https://github.com/bramley/phplist-plugin-captcha/issues"
             },
             "time": "2022-08-10T09:06:38+00:00"
-        },
-        {
-            "name": "bramley/phplist-plugin-ckeditor",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/e18b4c75ee617a5164a73bf118c753919afbe8c9",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "phplist-plugin",
-            "license": [
-                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
-            ],
-            "description": "CKEditor plugin for phpList",
-            "homepage": "https://www.phpList.org/",
-            "keywords": [
-                "email",
-                "manager",
-                "newsletter",
-                "permission marketing",
-                "phplist"
-            ],
-            "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.9",
-                "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
-            },
-            "time": "2023-05-18T12:41:49+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -1469,6 +1435,40 @@
                 }
             ],
             "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
+            "name": "tatevikgr/phplist-plugin-ckeditor5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TatevikGr/phplist-plugin-ckeditor5.git",
+                "reference": "a336c3036cd4e4697511e4b4e6a701db7d87f4ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/a336c3036cd4e4697511e4b4e6a701db7d87f4ea",
+                "reference": "a336c3036cd4e4697511e4b4e6a701db7d87f4ea",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "CKEditor plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/tree/master",
+                "issues": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/issues"
+            },
+            "time": "2025-02-13T18:11:04+00:00"
         }
     ],
     "packages-dev": [
@@ -3953,7 +3953,6 @@
         "michield/phplist-plugin-embedremoteimages": 20,
         "bramley/phplist-plugin-common": 20,
         "bramley/phplist-plugin-captcha": 20,
-        "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-segment": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
         "bramley/phplist-plugin-updater": 20,
