@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
+    "content-hash": "ec6d71cc89212b5d0b972613cdc1143d",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -39,40 +39,6 @@
                 "issues": "https://github.com/bramley/phplist-plugin-captcha/issues"
             },
             "time": "2022-08-10T09:06:38+00:00"
-        },
-        {
-            "name": "bramley/phplist-plugin-ckeditor",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/e18b4c75ee617a5164a73bf118c753919afbe8c9",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "phplist-plugin",
-            "license": [
-                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
-            ],
-            "description": "CKEditor plugin for phpList",
-            "homepage": "https://www.phpList.org/",
-            "keywords": [
-                "email",
-                "manager",
-                "newsletter",
-                "permission marketing",
-                "phplist"
-            ],
-            "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.9",
-                "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
-            },
-            "time": "2023-05-18T12:41:49+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -1469,6 +1435,40 @@
                 }
             ],
             "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
+            "name": "tatevikgr/phplist-plugin-tinymce",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TatevikGr/phplist-plugin-tinymce.git",
+                "reference": "3348a5aeb07d505d0a7186c88bb9c305d28292cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-tinymce/zipball/3348a5aeb07d505d0a7186c88bb9c305d28292cb",
+                "reference": "3348a5aeb07d505d0a7186c88bb9c305d28292cb",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "TinyMce plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/TatevikGr/phplist-plugin-tinymce/tree/master",
+                "issues": "https://github.com/TatevikGr/phplist-plugin-tinymce/issues"
+            },
+            "time": "2025-02-02T14:12:23+00:00"
         }
     ],
     "packages-dev": [
@@ -3953,10 +3953,10 @@
         "michield/phplist-plugin-embedremoteimages": 20,
         "bramley/phplist-plugin-common": 20,
         "bramley/phplist-plugin-captcha": 20,
-        "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-segment": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
         "bramley/phplist-plugin-updater": 20,
+        "tatevikgr/phplist-plugin-tinymce": 20,
         "behat/behat": 0,
         "behat/mink-selenium2-driver": 0,
         "friends-of-behat/mink": 0,
