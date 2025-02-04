@@ -10,7 +10,7 @@
 		Require all denied
 	</IfModule>
 </FilesMatch>
-<FilesMatch "index.php$">
+<FilesMatch "(index.php|module.php)$">
 	# Apache < 2.3
 	<IfModule !mod_authz_core.c>
 		Order allow,deny

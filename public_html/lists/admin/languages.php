@@ -53,7 +53,6 @@ uasort($LANGUAGES, 'lanSort');
 if (!empty($GLOBALS['SessionTableName'])) {
     require_once dirname(__FILE__).'/sessionlib.php';
 }
-@session_start();
 
 if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($LANGUAGES[$_POST['setlanguage']])) {
     //# just in case
