@@ -43,6 +43,14 @@ function footer()
     echo $GLOBALS['I18N']->get('Enter your email address').': </p><input type="text" name="forgotpassword" value="" size="30" />';
     echo '  <input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Send password').'" />';
     echo '  <div class="clear"></div>';
+    echo '<div style="display: flex; justify-content: space-around; margin-top: 10px;">';
+    if (isset($GLOBALS['plugins']['simplesaml'])) {
+        echo '<a href="?sso" style="display: inline-block; padding: 5px 10px; background-color: #2c2c2c; color: #fff; text-decoration: none; border-radius: 5px; font-size: 16px; text-align: center;"">SSO login</a>';
+    }
+    if (isset($GLOBALS['plugins']['OidcPlugin'])) {
+        echo '<a href="?oidc" style="display: inline-block; padding: 5px 10px; background-color: #2c2c2c; color: #fff; text-decoration: none; border-radius: 5px; font-size: 16px; text-align: center;">OIDC login</a>';
+    }
+    echo '</div>';
     echo '</div></form>';
 }
 
