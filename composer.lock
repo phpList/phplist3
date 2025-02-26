@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
+    "content-hash": "806697d38c4a1b78185ab2401c14f5f0",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -1469,6 +1469,40 @@
                 }
             ],
             "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
+            "name": "tatevikgr/phplist-plugin-ckeditor5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TatevikGr/phplist-plugin-ckeditor5.git",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/0b67edb97930b2b56148410fd724e1ce047d5154",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "CKEditor plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/tree/master",
+                "issues": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/issues"
+            },
+            "time": "2025-02-23T15:38:35+00:00"
         }
     ],
     "packages-dev": [
@@ -3957,6 +3991,7 @@
         "bramley/phplist-plugin-segment": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
         "bramley/phplist-plugin-updater": 20,
+        "tatevikgr/phplist-plugin-ckeditor5": 20,
         "behat/behat": 0,
         "behat/mink-selenium2-driver": 0,
         "friends-of-behat/mink": 0,
