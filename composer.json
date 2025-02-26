@@ -89,6 +89,10 @@
       {
             "type": "vcs",
             "url": "https://github.com/bramley/phplist-plugin-updater.git"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/tatevikgr/phplist-plugin-ckeditor5.git"
       }
     ],
   "extra": {
@@ -128,7 +132,8 @@
     "bramley/phplist-plugin-ckeditor": "dev-master",
     "bramley/phplist-plugin-segment": "dev-master",
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
-    "bramley/phplist-plugin-updater": "dev-main"
+    "bramley/phplist-plugin-updater": "dev-main",
+    "tatevikgr/phplist-plugin-ckeditor5": "dev-master"
   },
   "require-dev": {
     "behat/behat": "@stable",
@@ -145,7 +150,7 @@
   "config": {
     "bin-dir": "vendor/bin/",
     "allow-plugins": {
-            "davidbarratt/custom-installer": true
-        }
+      "davidbarratt/custom-installer": true
+    }
   }
 }
