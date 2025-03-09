@@ -410,7 +410,7 @@ function Sql_create_Table($table, $structure)
 
 function sql_escape($text)
 {
-    if (empty($text)) {
+    if ($text === null) {
       return '';
     }
     if (empty($GLOBALS['database_connection'])) {
