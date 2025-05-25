@@ -50,6 +50,7 @@ Feature: Create new campaign
         And I follow "Finish"
         Then I should see "destination lists missing"
         Given I follow "Lists"
+        And I refresh the page
         # Try with and without the colon
         Then I should see "Please select the lists you want to send your campaign to:"
         And the "targetlist[all]" checkbox should not be checked
