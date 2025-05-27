@@ -78,6 +78,7 @@ jobs:
           cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
+          mkdir -p /tmp/screenshots/
           touch output/screenshots/README.md
           mkdir -p output/mails
           smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
