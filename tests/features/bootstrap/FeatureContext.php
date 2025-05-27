@@ -186,15 +186,6 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given I refresh the page
-     */
-    public function iRefreshThePage()
-    {
-        $this->getSession()->getDriver()->reload();
-    }
-
-
-    /**
      * @When /^I fill in "([^"]*)" with an email address$/
      */
     public function iFillInWithAnEmailAddress($fieldName)
@@ -421,8 +412,9 @@ JS;
         return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
     }
 
-     * @Then I must see :text
-     */
+    /** 
+    * @Then I must see :text
+    */
     public function iMustSee($text)
     {
         $maxAttempts = 3;
