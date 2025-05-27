@@ -1,3 +1,4 @@
+@wip
 Feature: Create a new subscriber
   In order to create a new subscriber
   As an admin user

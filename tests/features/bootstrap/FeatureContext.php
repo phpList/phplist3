@@ -412,6 +412,15 @@ JS;
         return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
     }
 
+
+    /**
+     * @Then I must see the email address I entered
+     */
+    public function iMustSeeTheEmailAddressIEntered()
+    {
+        throw new PendingException();
+    }
+
     /** 
     * @Then I must see :text
     */
