@@ -16,6 +16,8 @@ jobs:
         include:
           - php-version: '8.3'
             experimental: true
+          - php-version: '8.4'
+            experimental: true
 
     steps:
       - uses: actions/checkout@v4
