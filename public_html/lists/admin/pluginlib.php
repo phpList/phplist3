@@ -12,6 +12,7 @@ $GLOBALS['authenticationplugin'] = false;
 $GLOBALS['emailsenderplugin'] = false;
 $GLOBALS['analyticsqueryplugin'] = false;
 $GLOBALS['updaterplugin'] = false;
+$GLOBALS['ssoplugin'] = [];
 
 $pluginRootDirs = array();
 if (PLUGIN_ROOTDIRS != '') {
@@ -69,6 +70,8 @@ if (is_array($disabled_plugins)) {
             $GLOBALS['plugins_disabled'][] = $pl;
         }
     }
+} else {
+  $disabled_plugins = array();
 }
 
 //var_dump($GLOBALS['plugins_disabled']);exit;
@@ -108,6 +111,10 @@ foreach ($pluginFiles as $file) {
                             'editor')
                     ) {
                         $GLOBALS['editorplugin'] = $className;
+                    }
+                    if (method_exists($pluginInstance, 'login') && isset($pluginInstance->ssoProvider))
+                    {
+                        $GLOBALS['ssoplugin'][] = $className;
                     }
                     if (!$GLOBALS['authenticationplugin'] && $pluginInstance->authProvider && method_exists($pluginInstance,
                             'validateLogin')

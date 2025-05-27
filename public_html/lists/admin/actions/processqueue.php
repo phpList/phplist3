@@ -504,7 +504,7 @@ flush();
 if (empty($reload)) { //# only show on first load
     processQueueOutput(s('Started'), 0);
     if (defined('SYSTEM_TIMEZONE')) {
-        processQueueOutput(s('Time now ').date('Y-m-d H:i'));
+        processQueueOutput(s('Time now ').' '.date('Y-m-d H:i'));
     }
 }
 //processQueueOutput('Will process for a maximum of '.$maxProcessQueueTime.' seconds '.MAX_PROCESSQUEUE_TIME);

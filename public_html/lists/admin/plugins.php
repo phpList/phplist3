@@ -310,8 +310,8 @@ foreach ($GLOBALS['allplugins'] as $pluginname => $plugin) {
     if ($canEnable) {
         $ls->addColumn($pluginname, s('enabled'), $plugin->enabled ? $GLOBALS['img_tick'] : $GLOBALS['img_cross']);
         $ls->addColumn($pluginname, s('action'), $plugin->enabled ?
-            PageLinkAjax('plugins&disable='.$pluginname, '<button>Disable</button>') :
-            PageLinkAjax('plugins&enable='.$pluginname, '<button>Enable</button>'));
+            PageLinkAjax('plugins&disable='.$pluginname, '<button id="disable_plugin'.$pluginname.'">Disable</button>') :
+            PageLinkAjax('plugins&enable='.$pluginname, '<button id="enable_plugin'.$pluginname.'">Enable</button>'));
     } else {
         $ls->addColumn($pluginname, s('enabled'), $GLOBALS['img_cross']);
     }

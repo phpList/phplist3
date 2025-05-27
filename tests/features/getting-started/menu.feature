@@ -7,6 +7,7 @@ Feature: Navigate the app using the menu
 
   Scenario Outline: Use main menu navigation links
     Given I have logged in as an administrator
+    Given I follow "Dashboard"
     Then I should see "<Pagename>"
     Examples:
       | Pagename                  |
@@ -19,7 +20,6 @@ Feature: Navigate the app using the menu
      Then I should see "Recently Visited"
      Then I should see "logout"
      Then I should see "Dashboard"
-
 
     Scenario Outline: Browse Subscribers menu
         Given I have logged in as an administrator
@@ -73,8 +73,10 @@ Feature: Navigate the app using the menu
          | Manage bounces            |
          | Rebuild DB indexes        |
          | system                    |
+
      Scenario Outline: Browse Config menu
         Given I have logged in as an administrator
+        Given I follow "Dashboard"
         Given I follow "Config"
         Then I should see "<Innerpages>"
         Examples:

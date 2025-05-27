@@ -14,6 +14,7 @@ echo $spb.PageLink2('listbounces', s('View Bounces per list')).$spe;
 echo $spb.PageLink2('checkbouncerules', s('Check Current Bounce Rules')).$spe;
 
 echo $spb.PageLink2('processbounces', s('Process Bounces')).$spe;
+echo $spb.PageLink2('processbounces&justexisting=true', s('Reprocess Only Existing Bounces'), '', false, s('Reprocess Only Existing Bounces')).$spe;
 
 echo '</ul><br />';
 
@@ -24,3 +25,4 @@ if (!$numrules[0]) {
     echo '<p class="information text-warning"><big>'.s('You have already defined bounce rules in your system.      Be careful with generating new ones, because these may interfere with the ones that exist.').'</big></p>';
 }
 echo '<br /><p class="button">'.PageLink2('generatebouncerules', s('Generate Bounce Rules')).'</p>';
+

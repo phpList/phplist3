@@ -465,7 +465,7 @@ if (empty($GLOBALS['config']['hide_user_attributes']) && !defined('HIDE_USER_ATT
     while ($row = Sql_fetch_array($res)) {
         if (!empty($id)) {
             $val_req = Sql_Fetch_Row_Query("select value from $tables[user_attribute] where userid = $id and attributeid = $row[id]");
-            $row['value'] = $val_req[0];
+            $row['value'] = !empty($val_req[0]) ? $val_req[0] : "";
         } elseif (!empty($_POST['attribute'][$row['id']])) {
             $row['value'] = $_POST['attribute'][$row['id']];
         } else {

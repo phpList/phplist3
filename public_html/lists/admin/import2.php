@@ -309,16 +309,21 @@ if (!empty($_SESSION['import_file'])) {
                 //@@ Why is $attributes not used
                 $query = sprintf('select id from %s where name = "%s"', $tables['attribute'], sql_escape($column));
                 $existing = Sql_Fetch_Row_Query($query);
-                $_SESSION['import_attribute'][$column] = array(
-                    'index'  => $i,
-                    'record' => $existing[0],
-                    'column' => $column,
-                );
-                array_push($used_attributes, $existing[0]);
-                if ($existing[0]) {
+                if (!empty($existing[0])) {
                     //        $dbg .= " =known attribute id=" . $existing[0];
-                } else {
+                  $_SESSION['import_attribute'][$column] = array(
+                      'index'  => $i,
+                      'record' => $existing[0],
+                      'column' => $column,
+                  );
+                  array_push($used_attributes, $existing[0]);
+               } else {
                     //          $dbg .= " =request mapping";
+                  $_SESSION['import_attribute'][$column] = array(
+                      'index'  => $i,
+                      'record' => "",
+                      'column' => $column,
+                  );
                 }
             }
         }

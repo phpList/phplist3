@@ -3,7 +3,6 @@
 require __DIR__.'/bootstrap.php';
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
@@ -25,10 +24,9 @@ class SubscriberContext implements Context
 
     /**
      * @param string $list
-     * @param array $table
-     *
-     * @Given /I have "(.*)" list with the following subscribers:/
+     * @param PyStringNode $stringNode
      * @throws Exception
+     * @Given /I have "(.*)" list with the following subscribers:/
      */
     public function iHaveSubscribersForList($list, PyStringNode $stringNode)
     {

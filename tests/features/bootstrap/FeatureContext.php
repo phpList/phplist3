@@ -1,5 +1,7 @@
 <?php
 
+
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
@@ -73,7 +75,7 @@ class FeatureContext extends MinkContext
             try {
                 $closure();
                 return;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 if ($i == $tries) {
                     throw $e;
                 }
@@ -122,12 +124,13 @@ class FeatureContext extends MinkContext
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
     	$this->getSession()->getDriver()->setTimeouts([
-            'script' => 10,
-            'implicit' => 30,
+            'script' => 30000,
+            'implicit' => 30000,
             'page load' => 30000 //https://web.archive.org/web/20160730151941/http://alex-panshin.me/blog/how-to-set-pageload-timeout-for-selenium-with-behat/
 
         ]); 
     }
+
     /**
      * @return bool
      */
@@ -135,7 +138,7 @@ class FeatureContext extends MinkContext
     {
         $retVal = $this->token != null;
         if(!$retVal && $throwsException){
-            throw new \Exception('Not logged in yet');
+            throw new Exception('Not logged in yet');
         }
         return $retVal;
     }
@@ -172,6 +175,14 @@ class FeatureContext extends MinkContext
     public function iFillInWithAValidPassword($arg1)
     {
        $this->fillField($arg1, $this->params['admin_password']);
+    }
+    
+    /**
+     * @Given I refresh the page
+     */
+    public function iRefreshThePage()
+    {
+        $this->getSession()->getDriver()->reload();
     }
 
     /**
@@ -410,4 +421,27 @@ JS;
         return $message == $this->getSession()->getDriver()->getWebDriverSession()->getAlert_text();
     }
 
+     * @Then I must see :text
+     */
+    public function iMustSee($text)
+    {
+        $maxAttempts = 3;
+        $waitTimeMs = 1000;
+        $this->getSession()->wait(5000, "document.readyState === 'complete'");
+
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            try {
+                $this->assertSession()->pageTextContains($this->fixStepArgument($text));
+                return;
+            } catch (\WebDriver\Exception\StaleElementReference $e) {
+                // Handle Selenium stale element exception, retry
+            } catch (\Behat\Mink\Exception\ResponseTextException $e) {
+                // Handle Mink text assertion failure, retry
+            }
+
+            usleep($waitTimeMs * 1000);
+        }
+
+        throw new Exception(sprintf("Text '%s' not found after %d attempts.", $text, $maxAttempts));
+    }
 }

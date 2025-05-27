@@ -37,12 +37,15 @@ class phpListAdminAuthentication
         $passwordDB = $admindata['password'];
         //Password encryption verification.
         if (strlen($passwordDB) < $GLOBALS['hash_length']) { // Passwords are encrypted but the actual is not.
+            return array(0, s('incorrect password'));
+
+            // the below is actually insecure, it allows resetting the password without approval, so remove
             //Encrypt the actual DB password before performing the validation below.
-            $encryptedPassDB = hash(HASH_ALGO, $passwordDB);
-            $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'],
-                $encryptedPassDB, sql_escape($login));
-            $passwordDB = $encryptedPassDB;
-            $req = Sql_Query($query);
+            // $encryptedPassDB = hash(HASH_ALGO, $passwordDB);
+            // $query = sprintf('update %s set password = "%s" where loginname = "%s"', $GLOBALS['tables']['admin'],
+            //     $encryptedPassDB, sql_escape($login));
+            // $passwordDB = $encryptedPassDB;
+            // $req = Sql_Query($query);
         }
 
         if ($admindata['disabled']) {
@@ -138,7 +141,7 @@ class phpListAdminAuthentication
     {
         $req = Sql_Fetch_Row_Query(sprintf('select loginname from %s where id = %d', $GLOBALS['tables']['admin'], $id));
 
-        return $req[0] ? $req[0] : s('Nobody');
+        return !empty($req[0]) ? $req[0] : s('Nobody');
     }
 
     /**

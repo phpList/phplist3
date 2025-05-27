@@ -49,11 +49,11 @@ function listMemberCounts($listId)
         .'<span class="unconfirmedCount text-warning" title="%s">%s</span>, '.' '
         .'<span class="blacklistedCount text-danger" title="%s">%s</span>'.')',
         s('Confirmed and not blacklisted members'),
-        number_format($counts['confirmed']),
+        number_format(!empty($counts['confirmed']) ? $counts['confirmed'] : 0),
         s('Unconfirmed and not blacklisted members'),
-        number_format($counts['notconfirmed']),
+        number_format(!empty($counts['notconfirmed']) ? $counts['notconfirmed'] : 0),
         s('Blacklisted members'),
-        number_format($counts['blacklisted'])
+        number_format(!empty($counts['blacklisted']) ? $counts['blacklisted'] : 0)
     );
 
     return $membersDisplay;

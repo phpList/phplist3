@@ -1262,10 +1262,10 @@ function PageLinkDialogOnly($name, $desc = '', $url = '', $extraclass = '')
     return $link;
 }
 
-function PageLinkAjax($name, $desc = '', $url = '', $extraclass = '')
+function PageLinkAjax($name, $desc = '', $url = '', $extraclass = '', $title = '')
 {
     //# as PageLink2, but add the option to ajax it in a popover window
-    $link = PageLink2($name, $desc, $url);
+    $link = PageLink2($name, $desc, $url, false, $title ?: $desc);
     if ($link) {
         $link = str_replace('<a ', '<a class="ajaxable '.$extraclass.'" ', $link);
         $link .= '';
@@ -1871,9 +1871,8 @@ function FileNotFound($msg = '')
         exit;
     }
 
-    printf('<html><head><title>404 Not Found</title></head><body><h1>Not Found</h1>The requested document was not found on this server<br/>%s<br/>Please contact the <a href="mailto:%s?subject=File not Found: %s">Administrator</a><p><hr><address><a href="http://phplist.com" target="_phplist">phpList</a> version %s</address></body></html>',
-        $msg, getConfig('admin_address'),
-        strip_tags($_SERVER['REQUEST_URI']), VERSION);
+    printf('<html><head><title>404 Not Found</title></head><body><h1>Not Found</h1>The requested document was not found on this server<br/>%s<br/>Please contact the <a href="mailto:%s?subject=File not Found">Administrator</a><p><hr><address><a href="http://phplist.com" target="_phplist">phpList</a> version %s</address></body></html>',
+        $msg, getConfig('admin_address'), VERSION);
     exit;
 }
 

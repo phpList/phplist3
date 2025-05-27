@@ -211,7 +211,7 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
         subject = "%s", fromfield = "%s", tofield = "%s",
         replyto ="%s", embargo = "%s", repeatinterval = "%s", repeatuntil = "%s",
         message = "%s", textmessage = "%s", footer = "%s", status = "%s",
-        htmlformatted = "%s", sendformat  = "%s", template  =  "%s" where id = %d',
+        htmlformatted = "%s", sendformat  = "%s", template  =  "%d" where id = %d',
             $tables['message'],
             sql_escape(strip_tags($messagedata['campaigntitle'])),
             /* we store the title in the subject field. Better would be to rename the DB column, but this will do for now */
@@ -461,7 +461,11 @@ if ($send || $sendtest || $prepare || $save || $savedraft) {
             include 'sendemaillib.php';
 
             // OK, let's get to sending!
-            $emailaddresses = explode(',', $messagedata['testtarget']);
+            if (defined('TEST_EMAIL_ALWAYS_TO') && TEST_EMAIL_ALWAYS_TO) {
+                $emailaddresses = array(TEST_EMAIL_ALWAYS_TO);
+            } else {
+                $emailaddresses = explode(',', $messagedata['testtarget']);
+            }
             if (count($emailaddresses) > SENDTEST_MAX) {
                 foreach ($GLOBALS['plugins'] as $plname => $plugin) {
                     $plugin->processError('Send test capped from '.count($emailaddresses).' to '.SENDTEST_MAX);
@@ -610,7 +614,7 @@ if (!$done) {
         ++$counttabs;
 
         // print $tabs->display();
-    } 
+    }
     echo '<input id="followupto" type="hidden" name="followupto" value="" />';
 
     if ($_GET['page'] == 'preparemessage') {
@@ -861,7 +865,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
     $maincontent .= '<div id="messagecontent" class="field"><label for="message">'.s('Compose Message').Help('message').'</label> ';
     $forwardcontent .= '<div id="messagecontent" class="field"><label for="forwardmessage">'.s('Compose Message').Help('forwardmessage').'</label> ';
 
-    if (!empty($GLOBALS['editorplugin'])) {
+    if (!empty($GLOBALS['editorplugin']) && !empty($GLOBALS['plugins'][$GLOBALS['editorplugin']])) {
         $maincontent .= '<div>'.$GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('message',
                 $messagedata['message']).'</div>';
     } else {
@@ -983,7 +987,19 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
              </span>
         </div>
     </div>';
-
+    
+    if (defined('TEST_EMAIL_ALWAYS_TO') && TEST_EMAIL_ALWAYS_TO) {
+        $sendtest_content = '<div class="sendTest" id="sendTest">
+        ' .$sendtestresult.Help('sendtest').' <b>'.s('to email address(es)').':</b><br />'.
+            '<p><i>&nbsp; '.s('All test emails will go to %s',TEST_EMAIL_ALWAYS_TO).'</i></p>'.
+            '<div class="input-group">
+                <input type="hidden" name="testtarget" value="'.htmlspecialchars(TEST_EMAIL_ALWAYS_TO).'" />
+                <span class="input-group-btn">
+                    <input class="submit btn btn-primary" type="submit" name="sendtest" value="' .s('Send Test').'" />
+                 </span>
+            </div>
+        </div>';
+    }
     // notification of progress of message sending
     // defaulting to admin_details['email'] gives the wrong impression that this is the
     // value in the database, so it is better to leave that empty instead
@@ -1333,7 +1349,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
     $pluginerror = $plugin->allowMessageToBeQueued($messagedata);
     if ($pluginerror) {
         $allReady = false;
-        $pluginerror = preg_replace("/\n/", '', $pluginerror);
+        $pluginerror = str_replace(["\n", "'"], ['', "\\'"], $pluginerror);
         $GLOBALS['pagefooter']['addtoqueue'] .= '<script type="text/javascript">
     $("#addtoqueue").append(\'<div class="missing">' .$pluginerror.'</div>\');
     </script>';

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
+    "content-hash": "73b8d5f2d576ee5a37e4dadca9a2cec1",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9"
+                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/e18b4c75ee617a5164a73bf118c753919afbe8c9",
-                "reference": "e18b4c75ee617a5164a73bf118c753919afbe8c9",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/6b83415e640463ddb7540f0257abbfa852a1f6db",
+                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.6.9",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.1",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2023-05-18T12:41:49+00:00"
+            "time": "2025-02-16T17:23:55+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "4c09fe0dc33d5e0dfcda57f22aa722f399e070b9"
+                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/4c09fe0dc33d5e0dfcda57f22aa722f399e070b9",
-                "reference": "4c09fe0dc33d5e0dfcda57f22aa722f399e070b9",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/1241ce37e8e6583b30e3eda8f93da57f7746d445",
+                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445",
                 "shasum": ""
             },
             "require": {
@@ -115,10 +115,13 @@
                     "plugins/CommonPlugin/vendor/ext/",
                     "plugins/CommonPlugin/vendor/jmathai/php-multi-curl/src",
                     "plugins/CommonPlugin/vendor/katzgrau/klogger/src",
+                    "plugins/CommonPlugin/vendor/kodus/db-cache/src",
+                    "plugins/CommonPlugin/vendor/kodus/file-cache/src",
                     "plugins/CommonPlugin/vendor/mouf/picotainer/src",
                     "plugins/CommonPlugin/vendor/pelago/emogrifier/src",
                     "plugins/CommonPlugin/vendor/psr/container/src",
                     "plugins/CommonPlugin/vendor/psr/log/Psr",
+                    "plugins/CommonPlugin/vendor/psr/simple-cache/src",
                     "plugins/CommonPlugin/vendor/sabberworm/php-css-parser/src",
                     "plugins/CommonPlugin/vendor/symfony/css-selector",
                     "plugins/CommonPlugin/vendor/symfony/filesystem"
@@ -140,10 +143,53 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.29.1",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.34.2",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2023-09-06T16:55:37+00:00"
+            "time": "2025-05-27T09:22:16+00:00"
+        },
+        {
+            "name": "bramley/phplist-plugin-imap2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bramley/phplist-plugin-imap2.git",
+                "reference": "21b92cebf113f89863a35f1305a4d5812ca4a7a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-imap2/zipball/21b92cebf113f89863a35f1305a4d5812ca4a7a7",
+                "reference": "21b92cebf113f89863a35f1305a4d5812ca4a7a7",
+                "shasum": ""
+            },
+            "require": {
+                "javanile/php-imap2": "*"
+            },
+            "replace": {
+                "psr/container": "*"
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "extra": {
+                "1": "Common Plugin provides psr/container, do not install to avoid version problems"
+            },
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "phpList plugin emulating php imap functions",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/bramley/phplist-plugin-imap2/tree/1.0.3",
+                "issues": "https://github.com/bramley/phplist-plugin-imap2/issues"
+            },
+            "time": "2025-01-23T11:39:17+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -151,12 +197,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-segment.git",
-                "reference": "3c99756eb4c85a124a07172ea77eae00caf6499b"
+                "reference": "50850afce743b574493f9d13ee219868ae1ec417"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-segment/zipball/3c99756eb4c85a124a07172ea77eae00caf6499b",
-                "reference": "3c99756eb4c85a124a07172ea77eae00caf6499b",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-segment/zipball/50850afce743b574493f9d13ee219868ae1ec417",
+                "reference": "50850afce743b574493f9d13ee219868ae1ec417",
                 "shasum": ""
             },
             "default-branch": true,
@@ -174,10 +220,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-segment/tree/2.13.2",
+                "source": "https://github.com/bramley/phplist-plugin-segment/tree/2.14.1",
                 "issues": "https://github.com/bramley/phplist-plugin-segment/issues"
             },
-            "time": "2023-04-03T14:57:27+00:00"
+            "time": "2023-12-12T10:10:51+00:00"
         },
         {
             "name": "bramley/phplist-plugin-updater",
@@ -362,6 +408,66 @@
                 "source": "https://github.com/jasongrimes/php-paginator/tree/master"
             },
             "time": "2015-10-15T09:42:44+00:00"
+        },
+        {
+            "name": "javanile/php-imap2",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/javanile/php-imap2.git",
+                "reference": "376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/javanile/php-imap2/zipball/376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8",
+                "reference": "376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/javanile/webrequest",
+                    "name": "javanile/webrequest"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Javanile\\Imap2\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francesco Bianco",
+                    "homepage": "https://github.com/francescobianco"
+                }
+            ],
+            "description": "Implement no-code input function for PHP",
+            "homepage": "https://github.com/javanile/php-inpuy",
+            "keywords": [
+                "input",
+                "lowcode",
+                "nocode",
+                "web3",
+                "webrequest"
+            ],
+            "support": {
+                "issues": "https://github.com/javanile/php-imap2/issues",
+                "source": "https://github.com/javanile/php-imap2/tree/0.1.4"
+            },
+            "time": "2022-07-05T14:45:45+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -710,29 +816,33 @@
         },
         {
             "name": "pelago/emogrifier",
-            "version": "v7.0.0",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyIntervals/emogrifier.git",
-                "reference": "547b8c814794aec871e3c98b1c712f416755f4eb"
+                "reference": "6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/547b8c814794aec871e3c98b1c712f416755f4eb",
-                "reference": "547b8c814794aec871e3c98b1c712f416755f4eb",
+                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6",
+                "reference": "6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
-                "php": "~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0",
-                "sabberworm/php-css-parser": "^8.4.0",
-                "symfony/css-selector": "^4.4.23 || ^5.4.0 || ^6.0.0"
+                "php": "~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+                "sabberworm/php-css-parser": "^8.7.0",
+                "symfony/css-selector": "^4.4.23 || ^5.4.0 || ^6.0.0 || ^7.0.0"
             },
             "require-dev": {
-                "php-parallel-lint/php-parallel-lint": "^1.3.2",
-                "phpunit/phpunit": "^9.5.25",
-                "rawr/cross-data-providers": "^2.3.0"
+                "php-parallel-lint/php-parallel-lint": "1.4.0",
+                "phpstan/extension-installer": "1.4.3",
+                "phpstan/phpstan": "1.12.7",
+                "phpstan/phpstan-phpunit": "1.4.0",
+                "phpstan/phpstan-strict-rules": "1.6.1",
+                "phpunit/phpunit": "9.6.21",
+                "rawr/cross-data-providers": "2.4.0"
             },
             "type": "library",
             "extra": {
@@ -764,7 +874,7 @@
                 },
                 {
                     "name": "Jake Hotson",
-                    "email": "jake@qzdesign.co.uk"
+                    "email": "jake.github@qzdesign.co.uk"
                 },
                 {
                     "name": "Cameron Brooks"
@@ -784,7 +894,7 @@
                 "issues": "https://github.com/MyIntervals/emogrifier/issues",
                 "source": "https://github.com/MyIntervals/emogrifier"
             },
-            "time": "2022-11-01T17:53:29+00:00"
+            "time": "2024-10-28T16:12:26+00:00"
         },
         {
             "name": "phplist/phplist-lan-help",
@@ -1065,59 +1175,6 @@
             "time": "2022-01-19T20:39:33+00:00"
         },
         {
-            "name": "psr/container",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/master"
-            },
-            "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1161,30 +1218,34 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "8.4.0",
+            "version": "v8.8.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
+                "url": "https://github.com/MyIntervals/PHP-CSS-Parser.git",
+                "reference": "3de493bdddfd1f051249af725c7e0d2c38fed740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
-                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/3de493bdddfd1f051249af725c7e0d2c38fed740",
+                "reference": "3de493bdddfd1f051249af725c7e0d2c38fed740",
                 "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
-                "php": ">=5.6.20"
+                "php": "^5.6.20 || ^7.0.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "require-dev": {
-                "codacy/coverage": "^1.4",
-                "phpunit/phpunit": "^4.8.36"
+                "phpunit/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.41"
             },
             "suggest": {
                 "ext-mbstring": "for parsing UTF-8 CSS"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "9.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Sabberworm\\CSS\\": "src/"
@@ -1197,6 +1258,14 @@
             "authors": [
                 {
                     "name": "Raphael Schweikert"
+                },
+                {
+                    "name": "Oliver Klee",
+                    "email": "github@oliverklee.de"
+                },
+                {
+                    "name": "Jake Hotson",
+                    "email": "jake.github@qzdesign.co.uk"
                 }
             ],
             "description": "Parser for CSS Files written in PHP",
@@ -1207,10 +1276,10 @@
                 "stylesheet"
             ],
             "support": {
-                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
-                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
+                "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
+                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.8.0"
             },
-            "time": "2021-12-11T13:40:54+00:00"
+            "time": "2025-03-23T17:59:05+00:00"
         },
         {
             "name": "setasign/tfpdf",
@@ -1386,29 +1455,26 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.28.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "6caa57379c4aec19c0a12a38b59b26487dcfe4b5"
+                "reference": "0cc9dd0f17f61d8131e7df6b84bd344899fe2608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/6caa57379c4aec19c0a12a38b59b26487dcfe4b5",
-                "reference": "6caa57379c4aec19c0a12a38b59b26487dcfe4b5",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/0cc9dd0f17f61d8131e7df6b84bd344899fe2608",
+                "reference": "0cc9dd0f17f61d8131e7df6b84bd344899fe2608",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.28-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1449,7 +1515,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.28.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -1466,6 +1532,40 @@
                 }
             ],
             "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
+            "name": "tatevikgr/phplist-plugin-ckeditor5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TatevikGr/phplist-plugin-ckeditor5.git",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/0b67edb97930b2b56148410fd724e1ce047d5154",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "CKEditor plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/tree/master",
+                "issues": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/issues"
+            },
+            "time": "2025-02-23T15:38:35+00:00"
         }
     ],
     "packages-dev": [
@@ -3007,20 +3107,20 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.28.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "ea208ce43cbb04af6867b4fdddb1bdbf84cc28cb"
+                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/ea208ce43cbb04af6867b4fdddb1bdbf84cc28cb",
-                "reference": "ea208ce43cbb04af6867b4fdddb1bdbf84cc28cb",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/a3cc8b044a6ea513310cbd48ef7333b384945638",
+                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
             "provide": {
                 "ext-ctype": "*"
@@ -3030,12 +3130,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.28-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -3069,7 +3166,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.28.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -3085,7 +3182,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-26T09:26:14+00:00"
+            "time": "2024-09-09T11:45:10+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -3172,20 +3269,21 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.28.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "42292d99c55abe617799667f454222c54c60e229"
+                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/42292d99c55abe617799667f454222c54c60e229",
-                "reference": "42292d99c55abe617799667f454222c54c60e229",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6d857f4d76bd4b343eac26d6b539585d2bc56493",
+                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "ext-iconv": "*",
+                "php": ">=7.2"
             },
             "provide": {
                 "ext-mbstring": "*"
@@ -3195,12 +3293,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.28-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -3235,7 +3330,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.28.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -3251,7 +3346,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-28T09:04:16+00:00"
+            "time": "2024-12-23T08:48:59+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -3936,27 +4031,32 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "behat/behat": 0,
+        "behat/mink-selenium2-driver": 0,
+        "bramley/phplist-plugin-captcha": 20,
+        "bramley/phplist-plugin-ckeditor": 20,
+        "bramley/phplist-plugin-common": 20,
+        "bramley/phplist-plugin-segment": 20,
+        "bramley/phplist-plugin-updater": 20,
         "davidbarratt/custom-installer": 0,
-        "phplist/phplist-ui-bootlist": 0,
-        "phplist/phplist-lan-help": 0,
-        "phplist/phplist-lan-info": 0,
-        "phplist/phplist-lan-texts": 0,
-        "phplist/updater": 0,
-        "phplist/phplist-plugin-invite": 20,
+        "friends-of-behat/mink": 0,
         "michield/phplist-plugin-campaignslicer": 20,
         "michield/phplist-plugin-dateplaceholder": 20,
         "michield/phplist-plugin-disposablemailblock": 20,
         "michield/phplist-plugin-domainthrottlemap": 20,
         "michield/phplist-plugin-embedremoteimages": 20,
-        "bramley/phplist-plugin-common": 20,
-        "bramley/phplist-plugin-captcha": 20,
-        "bramley/phplist-plugin-ckeditor": 20,
-        "bramley/phplist-plugin-segment": 20,
+        "phplist/phplist-lan-help": 0,
+        "phplist/phplist-lan-info": 0,
+        "phplist/phplist-lan-texts": 0,
+        "phplist/phplist-plugin-invite": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
         "bramley/phplist-plugin-updater": 20,
+        "bramley/phplist-plugin-imap2": 20,
+        "tatevikgr/phplist-plugin-ckeditor5": 20,
         "behat/behat": 0,
         "behat/mink-selenium2-driver": 0,
         "friends-of-behat/mink": 0,
+        "phplist/phplist-ui-bootlist": 0,
         "symfony/config": 0
     },
     "prefer-stable": true,
@@ -3964,6 +4064,6 @@
     "platform": {
         "php": ">=7.3"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

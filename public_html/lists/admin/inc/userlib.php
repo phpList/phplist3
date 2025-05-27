@@ -196,14 +196,14 @@ function addNewUser($email, $password = '')
     // insert into user db
     $exists = Sql_Fetch_Row_Query(sprintf('select id from %s where email = "%s"',
         $GLOBALS['tables']['user'], $email));
-    if ($exists[0]) {
+    if (!empty($exists[0])) {
         return $exists[0];
     }
 
     $blacklist = isBlackListed($email);
     $passwordEnc = encryptPass($password);
     Sql_Query(sprintf('insert into %s set email = "%s", blacklisted = "%d",
-    entered = now(),modified = now(),password = "%s",
+    entered = now(),password = "%s",
     passwordchanged = now(),disabled = 0,
     uniqid = "%s",htmlemail = 1, uuid = "%s"
     ', $GLOBALS['tables']['user'], sql_escape($email), $blacklist, $passwordEnc, getUniqid(), (string) uuid::generate(4)));
@@ -840,7 +840,7 @@ function addUserHistory($email, $msg, $detail)
     }
 
     $userid = Sql_Fetch_Row_Query("select id from $user_table where email = \"$email\"");
-    if ($userid[0]) {
+    if (!empty($userid[0])) {
         Sql_Query(sprintf('insert into %s (ip,userid,date,summary,detail,systeminfo)
             values("%s",%d,now(),"%s","%s","%s")', $user_his_table, getClientIP(), $userid[0], sql_escape($msg),
             sql_escape(htmlspecialchars($detail)), sql_escape($sysinfo)));

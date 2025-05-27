@@ -46,6 +46,41 @@ function footer()
     echo '</div></form>';
 }
 
+function enableDefaultLogin()
+{
+    echo '<div class="login"><p>';
+    echo '<strong>' . $GLOBALS['I18N']->get('Having trouble with SSO login?') . '</strong><br>';
+    echo $GLOBALS['I18N']->get('You can still use default login by clicking on the button') . ' ';
+    echo '<a href="?page=enablelogin" class="submit">' . $GLOBALS['I18N']->get('Enable default login') . '</a>';
+    echo '</p><div class="clear"></div></div>';
+}
+
+
+function renderSSO()
+{
+    if (!empty($GLOBALS['ssoplugin'])) {
+        echo '<form method="post" id="forgotpassword-form" action="">';
+        echo '<div style="display: flex; justify-content: space-around; align-items: center;">';
+
+        foreach ($GLOBALS['ssoplugin'] as $plugin) {
+            if (isset($GLOBALS['plugins'][$plugin])) {
+                $pluginInstance = $GLOBALS['plugins'][$plugin];
+                $ssoUrl = $pluginInstance->autUrl;
+                $buttonText = 'Login with ' . getConfig($pluginInstance->name);
+
+                echo '<a href="?' . $ssoUrl . '" 
+                    style="display: inline-block; padding: 8px 15px; background-color: #3c3c3c; color: #fff; 
+                           text-decoration: none; border-radius: 5px; font-size: 16px; text-align: center; 
+                           min-width: 120px;">
+                    ' .  $buttonText . '
+                  </a>';
+            }
+        }
+
+        echo '</div>';
+        echo '</form>';
+    }
+}
 //Delete from the DB every token older than certain elapsed time.
 function deleteOldTokens()
 {
@@ -116,16 +151,24 @@ if (isset($_POST['password1']) && isset($_POST['password2'])) {
         exit;
     }
 } else {
-    echo "<form method=\"post\" id=\"login-form\" action=\"\">\n";
-    echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
-    echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
-    echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
-    echo '    <tr><td><input type="text" name="login" value="" size="30"  autofocus="autofocus" /></td></tr>';
-    echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('Password').':</span></td></tr>';
-    echo '    <tr><td><input type="password" name="password" value="" size="30" /></td></tr>';
-    echo '    <tr><td><input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Continue').'" /></td></tr>';
-    echo '  </table>';
-    echo '</form>';
-    footer();
+    $showDefaultLogin = !isset($GLOBALS['ssoplugin']) || !getConfig('hide_default_login');
+    if ($showDefaultLogin) {
+        echo "<form method=\"post\" id=\"login-form\" action=\"\">\n";
+        echo "  <input type=\"hidden\" name=\"page\" value=\"$page\" />\n";
+        echo "  <table class=\"loginPassUpdate\" width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">\n";
+        echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('Name').":</span></td></tr>\n";
+        echo '    <tr><td><input type="text" name="login" value="" size="30"  autofocus="autofocus" /></td></tr>';
+        echo '    <tr><td><span class="general">'.$GLOBALS['I18N']->get('Password').':</span></td></tr>';
+        echo '    <tr><td><input type="password" name="password" value="" size="30" /></td></tr>';
+        echo '    <tr><td><input class="submit" type="submit" name="process" value="'.$GLOBALS['I18N']->get('Continue').'" /></td></tr>';
+        echo '  </table>';
+        echo '</form>';
+        footer();
+    }
+    renderSSO();
+
+    if (!$showDefaultLogin) {
+        enableDefaultLogin();
+    }
 }
 ?>

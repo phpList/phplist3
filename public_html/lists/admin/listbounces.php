@@ -103,14 +103,22 @@ while ($row = Sql_Fetch_Array($req)) {
         if ($download) {
             echo $userdata['email']."\n";
         } else {
+            if ($userdata['confirmed'] && !isBlackListed(htmlspecialchars($userdata['email']))) {
+                $ls_confirmed = $GLOBALS['img_tick'];
+            } else {
+                $ls_confirmed = $GLOBALS['img_cross'];
+            }
             $ls->addElement($row['userid'], PageUrl2('user&amp;id='.$row['userid']));
-            $ls->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $userdata['email']));
+            $ls->addColumn($row['userid'], s('Subscriber address'), PageLink2('user&id='.$row['userid'], $userdata['email']) . '&nbsp;' . $ls_confirmed);
             $ls->addColumn($row['userid'], s('Total bounces'),
                 PageLink2('user&id='.$row['userid'], $row['numbounces']));
         }
     }
 }
 if (!$download) {
+    if ($total) {
+        echo s('Subscribers with a red icon are either unconfirmed or blacklisted or both');
+    }
     echo $ls->display();
 } else {
     exit;
