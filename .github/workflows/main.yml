@@ -99,14 +99,16 @@ jobs:
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Check PHP syntax errors
-        uses: overtrue/phplint@2.4.1
+        uses: overtrue/phplint@3.0.0
         with:
-          path: |
-            ./public_html
-            ./public_html/lists/base/vendor/phplist
-          options: >
-            --exclude=lists/base/vendor
-            --exclude=lists/base/var
+          path: ./public_html
+          options: --exclude=lists/base
+        continue-on-error: ${{ matrix.experimental }}
+
+      - name: Check PHP syntax errors in API
+        uses: overtrue/phplint@9.5.0
+        with:
+          path: ./public_html/lists/base/vendor/phplist
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests UI
