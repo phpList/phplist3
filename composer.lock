@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db"
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/6b83415e640463ddb7540f0257abbfa852a1f6db",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/99782b0dea9a1af99a5b45c96614644bd1921f07",
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.1",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.2",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2025-02-16T17:23:55+00:00"
+            "time": "2025-06-05T16:27:48+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
