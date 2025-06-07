@@ -124,7 +124,7 @@ jobs:
         run: |
           cd tests
           ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p firefox --tags="~@initialise && ~@wip && ~@behattest"
+          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip && ~@behattest"
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests CLI
