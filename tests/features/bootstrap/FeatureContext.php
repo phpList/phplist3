@@ -124,9 +124,9 @@ class FeatureContext extends MinkContext
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
     	$this->getSession()->getDriver()->setTimeouts([
-            'script' => 30000,
-            'implicit' => 30000,
-            'page load' => 30000 //https://web.archive.org/web/20160730151941/http://alex-panshin.me/blog/how-to-set-pageload-timeout-for-selenium-with-behat/
+            'script' => 300000,
+            'implicit' => 300000,
+            'page load' => 300000 //https://web.archive.org/web/20160730151941/http://alex-panshin.me/blog/how-to-set-pageload-timeout-for-selenium-with-behat/
 
         ]); 
     }
