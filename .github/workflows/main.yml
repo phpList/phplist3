@@ -11,16 +11,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.0', '8.1', '8.2']
+        php-version: ['8.1', '8.2', '8.3']
         experimental: [false]
         unsupported: [false]
         include:
           - php-version: '7.4'
             unsupported: true
             experimental: false
-          - php-version: '8.3'
-            unsupported: false
-            experimental: true
+          - php-version: '8.0'
+            unsupported: true
+            experimental: false
           - php-version: '8.4'
             unsupported: false
             experimental: true
