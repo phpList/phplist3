@@ -11,9 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1', '8.2']
+        php-version: ['8.0', '8.1', '8.2']
         experimental: [false]
+        unsupported: [false]
         include:
+          - php-version: '7.4'
+            unsupported: true
           - php-version: '8.3'
             experimental: true
           - php-version: '8.4'
@@ -83,6 +86,7 @@ jobs:
           mv base-distribution-main base
           cd base
           composer update --no-dev
+        if: ${{ matrix.unsupported == false }}
           
       - name: Start Test Server
         run: |
@@ -103,12 +107,14 @@ jobs:
         with:
           path: ./public_html
           options: --exclude=lists/base
+        if: ${{ matrix.unsupported == false }}
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Check PHP syntax errors in API
         uses: overtrue/phplint@9.5.0
         with:
           path: ./public_html/lists/base/vendor/phplist
+        if: ${{ matrix.unsupported == false }}
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests UI
