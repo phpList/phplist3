@@ -17,9 +17,12 @@ jobs:
         include:
           - php-version: '7.4'
             unsupported: true
+            experimental: false
           - php-version: '8.3'
+            unsupported: false
             experimental: true
           - php-version: '8.4'
+            unsupported: false
             experimental: true
 
     steps:
