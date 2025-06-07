@@ -30,6 +30,7 @@ Feature: Create, edit, categorize and delete lists
            Then I should see "Editing Categories for lists. Separate with commas."
            When I write "First Category, Second Category" into "edit_list_categories"
            And I press "savebutton"
+           And I press "savebutton"
            Then I should see "Categories saved"
 
  Scenario: Edit a list
