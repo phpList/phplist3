@@ -16,7 +16,7 @@ C=0
 
 while [[ "$seleniumready" != "success" ]]; do
   echo $C: Waiting for selenium to be ready: $seleniumready
-  sleep 30
+  sleep 10
   C=$(( $C + 1 ));
   seleniumready=$(curl -s http://firefox:4444/wd/hub/status | jq '.state' | sed s/\"//g)
   [[ $C -gt 5 ]] && break
@@ -28,7 +28,7 @@ C=0
 while [[ "$phplistready" != "200" ]]; do
   C=$(( $C + 1 ));
   echo $C: Waiting for phpList to be ready: $phplistready
-  sleep 30
+  sleep 10
   phplistready=$(curl -s --head http://phplist/lists/admin/ | grep OK | cut -d ' ' -f 2)
   [[ $C -gt 5 ]] && break
 done
