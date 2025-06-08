@@ -10,7 +10,7 @@ Scenario: Install new Plugin and update
         And I am on "/lists/admin/?page=plugins"
         When I fill in "pluginurl" with "https://github.com/bramley/phplist-plugin-autoresponder/archive/master.zip"
         And I press "download"
-        Then I should see "Plugin installed successfully"
+        Then I must see "Plugin installed successfully"
         Given I follow "Continue" 
         And I press "update" 
         Then I wait for 5 seconds

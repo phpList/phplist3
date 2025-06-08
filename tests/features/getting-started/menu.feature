@@ -8,7 +8,7 @@ Feature: Navigate the app using the menu
   Scenario Outline: Use main menu navigation links
     Given I have logged in as an administrator
     Given I follow "Dashboard"
-    Then I should see "<Pagename>"
+    Then I must see "<Pagename>"
     Examples:
       | Pagename                  |
       | dashboard                 |
@@ -17,14 +17,14 @@ Feature: Navigate the app using the menu
       | statistics                |
       | system                    |
       | config                    |
-     Then I should see "Recently Visited"
-     Then I should see "logout"
-     Then I should see "Dashboard"
+     Then I must see "Recently Visited"
+     Then I must see "logout"
+     Then I must see "Dashboard"
 
     Scenario Outline: Browse Subscribers menu
         Given I have logged in as an administrator
         Given I follow "Subscribers"
-        Then I should see "<Innerpages>"
+        Then I must see "<Innerpages>"
         Examples:
          | Innerpages                |
          | Search subscribers        |
@@ -40,7 +40,7 @@ Feature: Navigate the app using the menu
     Scenario Outline: Browse Campaigns menu
         Given I have logged in as an administrator
         Given I follow "Campaigns"
-        Then I should see "<Innerpages>"
+        Then I must see "<Innerpages>"
         Examples:
          | Innerpages                |
          | Send a campaign           |
@@ -50,7 +50,7 @@ Feature: Navigate the app using the menu
     Scenario Outline: Browse Statistics menu
         Given I have logged in as an administrator
         Given I follow "Statistics"
-        Then I should see "<Innerpages>"
+        Then I must see "<Innerpages>"
         Examples:
          | Innerpages                |
          | Statistics overview       |
@@ -62,7 +62,7 @@ Feature: Navigate the app using the menu
     Scenario Outline: Browse System menu
         Given I have logged in as an administrator
         Given I follow "System"
-        Then I should see "<Innerpages>"
+        Then I must see "<Innerpages>"
         Examples:
          | Innerpages                |
          | Update translations       |
@@ -78,7 +78,7 @@ Feature: Navigate the app using the menu
         Given I have logged in as an administrator
         Given I follow "Dashboard"
         Given I follow "Config"
-        Then I should see "<Innerpages>"
+        Then I must see "<Innerpages>"
         Examples:
          | Innerpages                         |
          | Checklist                          |
@@ -96,7 +96,7 @@ Feature: Navigate the app using the menu
 #    Scenario Outline: Browse Develop menu
 #        Given I have logged in as an administrator
 #        Given I follow "Develop"
-#        Then I should see "<Innerpages>"
+#        Then I must see "<Innerpages>"
 #        Examples:
 #         | Innerpages                |
 #         | Subscriber statistics     |

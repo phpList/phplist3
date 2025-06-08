@@ -7,29 +7,29 @@ Feature: Load default attributes
   Scenario: Load default attributes and add a value
     Given I have logged in as an administrator
     And I am on "/lists/admin/?page=attributes"
-    Then I should see "predefined defaults"
+    Then I must see "predefined defaults"
     When I follow "Predefined defaults"
-    Then I should see "Countries in the world"
+    Then I must see "Countries in the world"
     When I fill in the following:
       | selected[]  | be-cities.txt   |
  #   Then print last response
     And I press "Add"
-    Then I should see "Loading Cities of Belgium"
-    And I should see "done"
+    Then I must see "Loading Cities of Belgium"
+    And I must see "done"
     When I follow "Return to editing attributes"
-    Then I should see "Woonplaats"
-    And I should see "Edit values"
+    Then I must see "Woonplaats"
+    And I must see "Edit values"
     When I follow "Edit values"
  #   Then print last response
-    Then I should see "Brussel"
-    And I should see "Bruxelles"
+    Then I must see "Brussel"
+    And I must see "Bruxelles"
     When I follow "Add new"
-    Then I should see "Add new Woonplaats, one per line"
+    Then I must see "Add new Woonplaats, one per line"
     When I fill in the following:
       | itemlist  | Undefined   |
     And I press "Add new Woonplaats"
-    Then I should see "Brussel"
-    And I should see "Bruxelles"
-    And I should see "Undefined"
+    Then I must see "Brussel"
+    And I must see "Bruxelles"
+    And I must see "Undefined"
     And I follow "Back to attributes"
-    Then I should see "Existing attributes"
+    Then I must see "Existing attributes"

@@ -6,5 +6,5 @@ Feature: Setup
 
   Scenario: Go to phpList 
     Given I am on "https://www.phplist.com"
-    Then I should see "Open Source"
+    Then I must see "Open Source"
 
