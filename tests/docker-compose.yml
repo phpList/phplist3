@@ -16,6 +16,7 @@ services:
       - .:/behat
     links:
       - firefox
+      - chrome
     networks:
       - phplistbehatnet
 
@@ -38,21 +39,21 @@ services:
         soft: 32768
         hard: 32768
         
-  # chrome:
-  #   container_name: chrome
-  #   image: selenium/standalone-chrome:${SELENIUM_VERSION}
-  #   shm_size: 2gb
-  #   environment:
-  #     - SE_LOG_LEVEL=INFO
-  #   networks:
-  #     - phplistbehatnet
-  #   ports:
-  #     - "5902:5900" #VNC
-  #     - "4445:4444" #Selenium
-  #   ulimits:
-  #     nofile:
-  #       soft: 32768
-  #       hard: 32768
+  chrome:
+    container_name: chrome
+    image: selenium/standalone-chrome-debug:${SELENIUM_VERSION}
+    shm_size: 2gb
+    environment:
+      - SE_LOG_LEVEL=INFO
+    networks:
+      - phplistbehatnet
+    ports:
+      - "5902:5900" #VNC
+      - "4445:4444" #Selenium
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
         
 
   # firefox:
