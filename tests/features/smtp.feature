@@ -48,7 +48,6 @@ Feature: SMTP Mail test
         And I follow "Format"
         And I press "Save and continue editing"
         And I follow "Lists"
-        And I show the "targetlist2" tabpanel
         And I check "my test list" as target list
         And I press "Save and continue editing"
         When I follow "Finish"
