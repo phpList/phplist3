@@ -13,16 +13,45 @@ default:
   extensions:
     Behat\MinkExtension:
       base_url: http://phplist
-      default_session: selenium2
+      default_session: chrome
       files_path: "files/"
-      selenium2:
-         wd_host: http://firefox:4444/wd/hub
-         capabilities: 
-           browserName: "firefox"
-           version: ""
-           platform: "ANY"
-           browserVersion: "ANY"
-           browser: "firefox"
+      sessions:
+        chrome:
+          selenium2:
+            browser: chrome
+            capabilities:
+            wd_host: http://chrome:4444/wd/hub
+            capabilities: 
+              browserName: "chrome"
+              version: ""
+              platform: "ANY"
+              browserVersion: "ANY"
+              browser: "chrome"
+              # extra_capabilities:
+              #   timeouts:
+              #     implicit: 10000    # 10 seconds for implicit waits
+              #     pageLoad: 60000    # 30 seconds for page loads
+              #     script: 60000      # 30 seconds for async scripts
+              chrome:
+                switches:
+                  - "--headless"
+                  - "--disable-gpu"
+                  - "--window-size=2000,2000"
+                  - "--lang=en"
+        firefox:
+          selenium2:
+            wd_host: http://firefox:4444/wd/hub
+            capabilities: 
+              browserName: "firefox"
+              version: ""
+              platform: "ANY"
+              browserVersion: "ANY"
+              browser: "firefox"
+              extra_capabilities:
+                timeouts:
+                  implicit: 10000    # 10 seconds for implicit waits
+                  pageLoad: 60000    # 30 seconds for page loads
+                  script: 60000      # 30 seconds for async scripts
     FailAid\Extension:
       screenshot:
         directory: output/screenshots/
@@ -30,3 +59,13 @@ default:
         autoClean: false
         size: 1444x1280
 
+chrome:
+  extensions:
+    Behat\MinkExtension:
+      browser_name: chrome
+      default_session: chrome
+firefox:
+  extensions:
+    Behat\MinkExtension:
+      default_session: firefox
+      browser_name: firefox

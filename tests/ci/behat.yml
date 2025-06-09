@@ -29,19 +29,17 @@ default:
               browserName: chrome
               browser: chrome
               version: ""
-              extra_capabilities:
-                timeouts:
-                  implicit: 10000     # 5 seconds for implicit waits
-                  pageLoad: 60000    # 30 seconds for page loads
-                  script: 60000      # 30 seconds for async scripts
+              # extra_capabilities:
+              #   timeouts:
+              #     implicit: 10000    # 10 seconds for implicit waits
+              #     pageLoad: 60000    # 30 seconds for page loads
+              #     script: 60000      # 30 seconds for async scripts
               chrome:
                 switches:
                   - "--headless"
                   - "--disable-gpu"
                   - "--window-size=2000,2000"
                   - "--lang=en"
-                  - "--no-sandbox"
-
         firefox:
           selenium2:
             wd_host: http://127.0.0.1:4444/wd/hub
