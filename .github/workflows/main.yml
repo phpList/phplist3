@@ -156,11 +156,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: "/tmp/screenshots/"
-          name: "behat output ${{ matrix.php-version }}"
+          name: "screenshots ${{ matrix.php-version }}"
           retention-days: 3
 
-      - name: Display Output on Failure
-        if: failure() && !matrix.experimental
-        run: |
-          find . -type f
-          cat output/selenium.log
+      - name: Upload the Selenium Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          path: "output/selenium.log"
+          name: "selenium log ${{ matrix.php-version }}"
+          retention-days: 3
