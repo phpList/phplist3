@@ -1,6 +1,6 @@
+@wip
 Feature: SMTP Mail test
 
-    @wip
     Scenario: Sending a test email
         Given I have logged in as an administrator
         And I follow "Campaigns"
