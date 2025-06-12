@@ -36,6 +36,19 @@ You can load phpList with http://localhost/lists/admin/
 
 Or if you want a different port, change that in the .env file
 
+### viewing the browser
+
+To view the browser container, use a VNC viewer (eg remmina) and go to localhost:5901 password secret for Firefox
+Use localhost:5902 password secret for chrome
+
+### Viewing emails
+
+To view email delivery go to http://localhost:8026/ to view the mailpit UI
+
+### Verbose
+
+To increase verbosity on the tests remove "-fprogress" from the command
+
 ### Errors
 
 When you run it locally, and a test fails, it will drop a screenshot of the page where it failed in

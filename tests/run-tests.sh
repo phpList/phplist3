@@ -47,7 +47,7 @@ done
 echo READY
 vendor/bin/behat --tags="@behattest"
 vendor/bin/behat --tags="@initialise"
-#vendor/bin/behat -p firefox --tags="~@initialise && ~@wip && ~@behattest"
+vendor/bin/behat -n -fprogress -p firefox --tags="~@initialise && ~@wip && ~@behattest"
 vendor/bin/behat -n -fprogress -p chrome --strict --tags="~@initialise && ~@wip && ~@behattest"
 
 echo ======================================================================================
