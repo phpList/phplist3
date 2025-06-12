@@ -88,6 +88,8 @@ services:
       - firefox
       - dbhost
       - mailpit
+    volumes:
+      - ${PHPLIST_CODE}:/var/www/phplist3      
     restart: always
     environment:
       DB_HOST: dbhost
