@@ -1,7 +1,7 @@
 
 name: Upgrade
 
-on: [pull_request, push]
+on: [manual]
 
 jobs:
   test:
