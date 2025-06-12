@@ -8,10 +8,10 @@ Feature: Create a new subscriber
     Given I follow "Subscribers"
     Given I follow "Search subscribers"
     Given I follow "Add a subscriber"
-    Then I should see "Email address"
+    Then I must see "Email address"
     When I fill in "email" with an email address
     And I press "change"
-    Then I should see "subscriber profile"
-    Then I should see "Add to blacklist"
+    Then I must see "subscriber profile"
+    Then I must see "Add to blacklist"
     And I follow "Search subscribers"
-    Then I should see the email address I entered
+    Then I must see the email address I entered

@@ -331,7 +331,7 @@ $('.texttemplatefield').toggle($('#enabletexttemplate').val()=='1');
             <td colspan="2">
 
                 <?php
-                if ($GLOBALS['editorplugin']) {
+                if (!empty($GLOBALS['editorplugin']) && !empty($GLOBALS['plugins'][$GLOBALS['editorplugin']])) {
                     echo $GLOBALS['plugins'][$GLOBALS['editorplugin']]->editor('template',
                             stripslashes($data['template'])).'</div>';
                 } else {

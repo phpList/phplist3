@@ -84,7 +84,7 @@ if (isset($_GET['doit']) && isSuperUser()) {
             $actionresult .= sprintf(s('Made subscriber %s confirmed').'<br />', $userid);
         } else {
             $actionresult .= sprintf(s('Made subscriber %s unconfirmed').'<br />', $userid);
-        }          
+        }
     }
 
     if (!empty($userid) && $maketext) {
@@ -223,10 +223,10 @@ if ($id) {
 
     switch ($transfer_encoding) {
         case 'quoted-printable':
-            $bounceBody = imap_qprint($bounce['data']);
+            $bounceBody = quoted_printable_decode($bounce['data']);
             break;
         case 'base64':
-            $bounceBody = imap_base64($bounce['data']);
+            $bounceBody = base64_decode($bounce['data']);
             break;
         case '7bit':
         case '8bit':

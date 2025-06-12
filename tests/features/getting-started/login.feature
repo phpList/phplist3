@@ -8,14 +8,14 @@ Feature: Login
         When I fill in "login" with a valid username
         And I fill in "password" with a valid password
         And I press "Continue"
-        Then I should see "Start or continue a campaign"
+        Then I must see "Start or continue a campaign"
 
     Scenario: Login with bad credentials
         Given I am on "/lists/admin/"
         When I fill in "login" with "no-user"
         And I fill in "password" with "no-password"
         And I press "Continue"
-        Then I should see "Incorrect password"
+        Then I must see "Incorrect password"
 
 #    Scenario: Login with only a username
 #        Given I am on "/lists/admin/"

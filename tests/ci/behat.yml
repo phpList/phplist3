@@ -7,13 +7,11 @@ default:
         - ./features
       contexts:
         - FeatureContext:
-          # Set database access credentials
           database:
             host: 127.0.0.1
             user: phplist
             password: phplist
             name: phplistdb
-          # Set admin user login credentials
           admin:
             username: admin
             password: Mypassword123+
@@ -24,7 +22,7 @@ default:
         - FailAid\Context\FailureContext
   extensions:
     Behat\MinkExtension:
-      show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
+      show_cmd: 'cp %s ./output/lastResponse.html'
       base_url: 'http://127.0.0.1'
       default_session: chrome
       sessions:
@@ -35,6 +33,11 @@ default:
               browserName: chrome
               browser: chrome
               version: ""
+              extra_capabilities:
+                timeouts:
+                  implicit: 10000     # 5 seconds for implicit waits
+                  pageLoad: 60000    # 30 seconds for page loads
+                  script: 60000      # 30 seconds for async scripts
               chrome:
                 switches:
                   - "--headless"
@@ -54,18 +57,11 @@ default:
           selenium2:
             browser: "firefox"
             wd_host: http://127.0.0.1:4444/wd/hub
-    FailAid\Extension: 
+    FailAid\Extension:
       screenshot:
-        directory: ./output/screenshots/
+        directory: /tmp/screenshots/
         mode: default
         autoClean: false
-        size: 1444x1280
-    Bex\Behat\ScreenshotExtension:
-      active_image_drivers: [local]
-      image_drivers:
-        local:
-          screenshot_directory: output/screenshots
-          clear_screenshot_directory: true  
 
 chrome:
   extensions:
