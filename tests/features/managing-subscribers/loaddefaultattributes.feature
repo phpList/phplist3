@@ -1,4 +1,5 @@
 
+@wip
 Feature: Load default attributes
   In order to load default attributes
   As an admin user

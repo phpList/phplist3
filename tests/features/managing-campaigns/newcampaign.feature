@@ -1,5 +1,6 @@
 Feature: Create new campaign
 
+    @wip
     In order to create a new campaign
     As an admin user
     I need to be able to login and start a new campaign

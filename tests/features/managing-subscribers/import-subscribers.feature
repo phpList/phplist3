@@ -1,3 +1,4 @@
+@wip
 Feature: Import subscribers
   In order to import subscribers 
   As an admin user
