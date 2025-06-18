@@ -123,8 +123,8 @@ jobs:
       - name: Run BDD Tests UI
         run: |
           cd tests
-          ../vendor/bin/behat -p chrome --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip && ~@behattest"
+          ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip && ~@behattest"
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests CLI
@@ -135,7 +135,7 @@ jobs:
           export ADMIN_NAME="phpList Administrator"
           php public_html/lists/admin/index.php -c public_html/lists/config/config.php -p initialise -f
           cd tests
-          ../vendor/bin/behat -p chrome --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
         continue-on-error: ${{ matrix.experimental }}
 
       - name: copy screenshots
