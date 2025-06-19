@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db"
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/6b83415e640463ddb7540f0257abbfa852a1f6db",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/99782b0dea9a1af99a5b45c96614644bd1921f07",
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.1",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.2",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2025-02-16T17:23:55+00:00"
+            "time": "2025-06-05T16:27:48+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -154,12 +154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-imap2.git",
-                "reference": "21b92cebf113f89863a35f1305a4d5812ca4a7a7"
+                "reference": "72703f4834bc034b742d03a7d0cca9e07de027c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-imap2/zipball/21b92cebf113f89863a35f1305a4d5812ca4a7a7",
-                "reference": "21b92cebf113f89863a35f1305a4d5812ca4a7a7",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-imap2/zipball/72703f4834bc034b742d03a7d0cca9e07de027c4",
+                "reference": "72703f4834bc034b742d03a7d0cca9e07de027c4",
                 "shasum": ""
             },
             "require": {
@@ -186,10 +186,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-imap2/tree/1.0.3",
+                "source": "https://github.com/bramley/phplist-plugin-imap2/tree/1.0.4",
                 "issues": "https://github.com/bramley/phplist-plugin-imap2/issues"
             },
-            "time": "2025-01-23T11:39:17+00:00"
+            "time": "2025-05-28T11:59:07+00:00"
         },
         {
             "name": "bramley/phplist-plugin-segment",
@@ -231,12 +231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-updater.git",
-                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1"
+                "reference": "9a41526ca8275d26566ea4e3ea50cdf2beeff689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/570aacaab72df144a0bd8dedf4027c0e17d434b1",
-                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/9a41526ca8275d26566ea4e3ea50cdf2beeff689",
+                "reference": "9a41526ca8275d26566ea4e3ea50cdf2beeff689",
                 "shasum": ""
             },
             "default-branch": true,
@@ -254,10 +254,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.1",
+                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.2",
                 "issues": "https://github.com/bramley/phplist-plugin-updater/issues"
             },
-            "time": "2023-08-22T16:08:09+00:00"
+            "time": "2025-05-31T14:04:56+00:00"
         },
         {
             "name": "chdemko/bitarray",
@@ -4036,6 +4036,7 @@
         "bramley/phplist-plugin-captcha": 20,
         "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-common": 20,
+        "bramley/phplist-plugin-imap2": 20,
         "bramley/phplist-plugin-segment": 20,
         "bramley/phplist-plugin-updater": 20,
         "davidbarratt/custom-installer": 0,
@@ -4050,14 +4051,10 @@
         "phplist/phplist-lan-texts": 0,
         "phplist/phplist-plugin-invite": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
-        "bramley/phplist-plugin-updater": 20,
-        "bramley/phplist-plugin-imap2": 20,
-        "tatevikgr/phplist-plugin-ckeditor5": 20,
-        "behat/behat": 0,
-        "behat/mink-selenium2-driver": 0,
-        "friends-of-behat/mink": 0,
         "phplist/phplist-ui-bootlist": 0,
-        "symfony/config": 0
+        "phplist/updater": 0,
+        "symfony/config": 0,
+        "tatevikgr/phplist-plugin-ckeditor5": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
