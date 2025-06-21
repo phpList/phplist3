@@ -100,6 +100,7 @@ include_once dirname(__FILE__).'/defaultFrontendTexts.php';
 if (file_exists(dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'])) {
     include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
 }
+@session_start();
 include_once dirname(__FILE__).'/languages.php';
 require_once dirname(__FILE__).'/defaultconfig.php';
 
@@ -290,11 +291,17 @@ if (isset($GLOBALS['installation_name'])) {
 }
 echo "$page_title</title>";
 $inRemoteCall = false;
+if ($page_title === 'enablelogin') {
+    SaveConfig('hide_default_login', 0);
+    header('Location: ?page=home');
+    exit;
+}
 $doLoginCheck = Sql_Table_exists($tables['admin_login']);
 
 if (!empty($GLOBALS['require_login'])) {
     //bth 7.1.2015 to support x-forwarded-for
     $remoteAddr = getClientIP();
+    $isIP4 = preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $remoteAddr);
 
     if ($GLOBALS['authenticationplugin']) {
         $GLOBALS['admin_auth'] = $GLOBALS['plugins'][$GLOBALS['authenticationplugin']];
@@ -334,13 +341,13 @@ if (!empty($GLOBALS['require_login'])) {
 
             if ($doLoginCheck) {
               # check if this is a new IP address
-              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s" and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$loginresult[0]));
+              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where (remote_ip4 = "%s" or remote_ip6 = "%s") and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$remoteAddr,$loginresult[0]));
               if (empty($knownIP[0])) {
                 notifyNewIPLogin($loginresult[0]);
               }
               Sql_Query(sprintf('insert into %s (moment,adminid,remote_ip4,remote_ip6,sessionid,active) 
                 values(%d,%d,"%s","%s","%s",1)',
-                $GLOBALS['tables']['admin_login'],time(),$loginresult[0],$remoteAddr,"",session_id()));
+                $GLOBALS['tables']['admin_login'],time(),$loginresult[0],$isIP4 ? $remoteAddr: '',$isIP4 ? '' : $remoteAddr,session_id()));
             }
         }
         //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
@@ -374,6 +381,9 @@ if (!empty($GLOBALS['require_login'])) {
         //$msg = 'Not logged in';
         $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+            if ($pluginname == 'simplesaml' && !isset($_GET[$GLOBALS['plugins'][$pluginname]->autUrl])) {
+                continue;
+            }
             if ($plugin->login()) {
                 $logged = true;
                 break;
@@ -392,7 +402,7 @@ if (!empty($GLOBALS['require_login'])) {
     } elseif ($_SESSION['adminloggedin'] && $_SESSION['logindetails']) {
         if ($doLoginCheck) {
           $active = Sql_Fetch_Row_Query(sprintf('select active from %s where adminid = %d and (remote_ip4 = "%s" or remote_ip6 = "%s") and sessionid = "%s"',
-            $GLOBALS['tables']['admin_login'],$_SESSION['logindetails']['id'],$remoteAddr,"",session_id()));
+            $GLOBALS['tables']['admin_login'],$_SESSION['logindetails']['id'],$remoteAddr,$remoteAddr,session_id()));
         } else {
           $active = array(1); ## pretend to be active
         }
@@ -558,6 +568,12 @@ if (!$ajax && $page != 'login') {
             Info( s('Running DEV version, but developer email is not set') );
         }
     }
+    if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
+        Info(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
+            Visit <a href="https://www.phplist.org/users/" title="'.s('Get some help').'">the support site</a> if you need some help.'
+            ,'<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=outdated-download-forced&amp;utm_campaign=phpList" title="'.s('Download the latest version').'" target="_blank">'));
+    }
+
     if (TEST) {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
@@ -584,12 +600,6 @@ if (!$ajax && $page != 'login') {
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
-    }
-    if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
-        Fatal_Error(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
-            Visit <a href="https://www.phplist.org/users/" title="'.s('Get some help').'">the support site</a> if you need some help.'
-            ,'<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=outdated-download-forced&amp;utm_campaign=phpList" title="'.s('Download the latest version').'" target="_blank">'));
-        return;
     }
 
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {

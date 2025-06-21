@@ -1,7 +1,8 @@
 
-name: CI
+name: Upgrade
 
-on: [pull_request, push]
+on: 
+  workflow_dispatch:
 
 jobs:
   test:
@@ -9,22 +10,10 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
-      fail-fast: false
-      matrix:
-        php-version: ['8.1', '8.2', '8.3']
+      fail-fast: false     
+      matrix:   
+        php-version: ['8.1']
         experimental: [false]
-        unsupported: [false]
-        include:
-          - php-version: '7.4'
-            unsupported: true
-            experimental: false
-          - php-version: '8.0'
-            unsupported: true
-            experimental: false
-          - php-version: '8.4'
-            unsupported: false
-            experimental: true
-
     steps:
       - uses: actions/checkout@v4
 
@@ -37,8 +26,15 @@ jobs:
 
       - name: Setup Packages
         run: |
+          cd $GITHUB_WORKSPACE
           sudo apt update
-          sudo apt -y install rsync postfix
+          sudo apt install -y rsync postfix
+
+      # - name: Cache Composer dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: /tmp/composer-cache
+      #     key: ${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Install dependencies
         uses: php-actions/composer@v6
@@ -46,10 +42,10 @@ jobs:
           dev: yes
           args: --prefer-dist --no-interaction
           php_version: ${{ matrix.php-version }}
-          php_extensions: xml
-        continue-on-error: ${{ matrix.experimental }}
+          php_extensions: xml 
+          version: 2
 
-      - name: Report Versions
+      - name: Report Versions and show ENV vars
         run: |
           google-chrome --version
           lsb_release -a
@@ -62,81 +58,70 @@ jobs:
           vendor/bin/behat -V
           mysql --version
           mysqladmin --version
-        continue-on-error: ${{ matrix.experimental }}
+          export
 
       - name: Create Database
         run: |
           sudo systemctl start mysql.service
           sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
           sudo mysql -proot -e 'create user phplist@"%" identified by "phplist"; grant all on phplistdb.* to phplist@"%"'
+          sudo gunzip -c tests/phplist-3.6.sql.gz | sudo mysql -proot phplistdb
 
-      - name: Set Bootlist Theme
+      - name: Set bootlist theme
         run: |
-          cd public_html/lists/admin/ui/
+          cd $GITHUB_WORKSPACE/public_html/lists/admin/ui/
           wget https://github.com/phpList/phplist-ui-bootlist/archive/master.tar.gz
           tar -xzf master.tar.gz
           mv phplist-ui-bootlist-master phplist-ui-bootlist
           rm master.tar.gz
-        continue-on-error: ${{ matrix.experimental }}
 
-      - name: Install the phpList4 based REST API
-        run: |
-          cd $GITHUB_WORKSPACE
-          cd public_html/lists
-          wget https://github.com/phpList/base-distribution/archive/refs/heads/main.zip
-          unzip main.zip
-          rm main.zip
-          mv base-distribution-main base
-          cd base
-          composer update --no-dev
-        if: ${{ matrix.unsupported == false }}
-          
       - name: Start Test Server
         run: |
+          cd $GITHUB_WORKSPACE
           cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
-          mkdir -p /tmp/screenshots/
           touch output/screenshots/README.md
-          mkdir -p output/mails
+          mkdir -p build/mails
           smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
           ./bin/start-selenium > output/selenium.log 2>&1 &
-          sleep 15
+          sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
-        continue-on-error: ${{ matrix.experimental }}
 
       - name: Check PHP syntax errors
-        uses: overtrue/phplint@3.0.0
+        uses: overtrue/phplint@2.4.1
         with:
           path: ./public_html
-          options: --exclude=lists/base
-        if: ${{ matrix.unsupported == false }}
-        continue-on-error: ${{ matrix.experimental }}
-
-      - name: Check PHP syntax errors in API
-        uses: overtrue/phplint@9.5.0
-        with:
-          path: ./public_html/lists/base/vendor/phplist
-        if: ${{ matrix.unsupported == false }}
-        continue-on-error: ${{ matrix.experimental }}
+          
+      - name: Upgrade from 3.6 to 3.7
+        run: |
+          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p upgrade
 
       - name: Run BDD Tests UI
         run: |
-          cd tests
+          cd $GITHUB_WORKSPACE/tests
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+
+      - name: Reset Database
+        run: |
+          sudo mysql -proot  -e 'drop database if exists phplistdb; create database phplistdb;'
+
+      - name: Run BDD Tests UI
+        run: |
+          cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip && ~@behattest"
-        continue-on-error: ${{ matrix.experimental }}
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
 
       - name: Run BDD Tests CLI
         run: |
+          cd $GITHUB_WORKSPACE
           export ADMIN_EMAIL=admin@phplist.dev
           export ADMIN_PASSWORD=Mypassword123+
           export ORGANISATION_NAME="phpList"
           export ADMIN_NAME="phpList Administrator"
-          php public_html/lists/admin/index.php -c public_html/lists/config/config.php -p initialise -f
-          cd tests
+          php public_html/lists/admin/index.php -c $GITHUB_WORKSPACE/public_html/lists/config/config.php -p initialise -f
+          cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
-        continue-on-error: ${{ matrix.experimental }}
 
       - name: copy screenshots
         if: always()
@@ -146,23 +131,19 @@ jobs:
           [[ $images -gt 0 ]] && cp -v /tmp/*.png output/screenshots
           exit 0;
 
-      - name: Handle Experimental Warnings
-        if: ${{ matrix.experimental && failure() }}
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          path: "output"
+          name: "behat output ${{ matrix.php-version }}"
+          retention-days: 3
+
+      - name: Display output
         run: |
-          echo "::warning::PHP ${matrix.php-version} tests failed. This is marked as experimental and does not impact overall workflow success."
+          cd $GITHUB_WORKSPACE
+        #  find . -type f
+        #  cat output/selenium.log
+        if: ${{ failure() }}
 
-      - name: Upload the Screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          path: "/tmp/screenshots/"
-          name: "screenshots ${{ matrix.php-version }}"
-          retention-days: 3
 
-      - name: Upload the Selenium Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          path: "output/selenium.log"
-          name: "selenium log ${{ matrix.php-version }}"
-          retention-days: 3

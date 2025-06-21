@@ -1,26 +1,19 @@
 
+.PHONY: test stop testhub
 
-createdb:
-	mysql -e 'drop database if exists phplistdb'
-	mysqladmin create phplistdb
-	mysql -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"; FLUSH PRIVILEGES;'
+test: stop
+	rm -f composer.lock
+	docker-compose up --build -d --remove-orphans
+	docker logs -f behat
 
-test: createdb
-	../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags=@initialise
-	../vendor/bin/behat -n -fprogress -p goutte --strict --stop-on-failure --tags="~@initialise && ~@wip"
+testhub: stop
+	docker-compose -f run-tests.yml up --build -d
 
-verbosetest: createdb
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
-	
-test-wip: createdb
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags="~@initialise && @wip"
+stop:
+	docker-compose down --remove-orphans || true
+	docker-compose -f run-tests.yml down --remove-orphans || true
+	docker stop chrome mailpit dbhost phplist || true
+	docker rm chrome mailpit dbhost phplist || true
+	docker network rm tests_phplistbehatnet || true
 
-test-all: createdb
-	mysql -e 'drop database if exists phplistdb'
-	mysqladmin create phplistdb
-	mysql -e 'grant all on phplistdb.* to phplist@"%" identified by "phplist"'
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
-	../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags="~@initialise"
 

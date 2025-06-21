@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c8e0a88ebd1df627cbe3401caeb515",
+    "content-hash": "73b8d5f2d576ee5a37e4dadca9a2cec1",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-ckeditor.git",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db"
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/6b83415e640463ddb7540f0257abbfa852a1f6db",
-                "reference": "6b83415e640463ddb7540f0257abbfa852a1f6db",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-ckeditor/zipball/99782b0dea9a1af99a5b45c96614644bd1921f07",
+                "reference": "99782b0dea9a1af99a5b45c96614644bd1921f07",
                 "shasum": ""
             },
             "default-branch": true,
@@ -69,10 +69,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.1",
+                "source": "https://github.com/bramley/phplist-plugin-ckeditor/tree/2.8.2",
                 "issues": "https://github.com/bramley/phplist-plugin-ckeditor/issues"
             },
-            "time": "2025-02-16T17:23:55+00:00"
+            "time": "2025-06-05T16:27:48+00:00"
         },
         {
             "name": "bramley/phplist-plugin-common",
@@ -149,6 +149,49 @@
             "time": "2025-05-27T09:22:16+00:00"
         },
         {
+            "name": "bramley/phplist-plugin-imap2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bramley/phplist-plugin-imap2.git",
+                "reference": "72703f4834bc034b742d03a7d0cca9e07de027c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-imap2/zipball/72703f4834bc034b742d03a7d0cca9e07de027c4",
+                "reference": "72703f4834bc034b742d03a7d0cca9e07de027c4",
+                "shasum": ""
+            },
+            "require": {
+                "javanile/php-imap2": "*"
+            },
+            "replace": {
+                "psr/container": "*"
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "extra": {
+                "1": "Common Plugin provides psr/container, do not install to avoid version problems"
+            },
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "phpList plugin emulating php imap functions",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/bramley/phplist-plugin-imap2/tree/1.0.4",
+                "issues": "https://github.com/bramley/phplist-plugin-imap2/issues"
+            },
+            "time": "2025-05-28T11:59:07+00:00"
+        },
+        {
             "name": "bramley/phplist-plugin-segment",
             "version": "dev-master",
             "source": {
@@ -188,12 +231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-updater.git",
-                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1"
+                "reference": "9a41526ca8275d26566ea4e3ea50cdf2beeff689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/570aacaab72df144a0bd8dedf4027c0e17d434b1",
-                "reference": "570aacaab72df144a0bd8dedf4027c0e17d434b1",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-updater/zipball/9a41526ca8275d26566ea4e3ea50cdf2beeff689",
+                "reference": "9a41526ca8275d26566ea4e3ea50cdf2beeff689",
                 "shasum": ""
             },
             "default-branch": true,
@@ -211,10 +254,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.1",
+                "source": "https://github.com/bramley/phplist-plugin-updater/tree/1.2.2",
                 "issues": "https://github.com/bramley/phplist-plugin-updater/issues"
             },
-            "time": "2023-08-22T16:08:09+00:00"
+            "time": "2025-05-31T14:04:56+00:00"
         },
         {
             "name": "chdemko/bitarray",
@@ -365,6 +408,66 @@
                 "source": "https://github.com/jasongrimes/php-paginator/tree/master"
             },
             "time": "2015-10-15T09:42:44+00:00"
+        },
+        {
+            "name": "javanile/php-imap2",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/javanile/php-imap2.git",
+                "reference": "376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/javanile/php-imap2/zipball/376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8",
+                "reference": "376cc0ce7e21cf7a04515dec6bbc7b86acdd59d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/javanile/webrequest",
+                    "name": "javanile/webrequest"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Javanile\\Imap2\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francesco Bianco",
+                    "homepage": "https://github.com/francescobianco"
+                }
+            ],
+            "description": "Implement no-code input function for PHP",
+            "homepage": "https://github.com/javanile/php-inpuy",
+            "keywords": [
+                "input",
+                "lowcode",
+                "nocode",
+                "web3",
+                "webrequest"
+            ],
+            "support": {
+                "issues": "https://github.com/javanile/php-imap2/issues",
+                "source": "https://github.com/javanile/php-imap2/tree/0.1.4"
+            },
+            "time": "2022-07-05T14:45:45+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1072,59 +1175,6 @@
             "time": "2022-01-19T20:39:33+00:00"
         },
         {
-            "name": "psr/container",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/master"
-            },
-            "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1481,7 +1531,41 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-02T08:10:11+00:00"
+            "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
+            "name": "tatevikgr/phplist-plugin-ckeditor5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TatevikGr/phplist-plugin-ckeditor5.git",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/0b67edb97930b2b56148410fd724e1ce047d5154",
+                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "CKEditor plugin for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "source": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/tree/master",
+                "issues": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/issues"
+            },
+            "time": "2025-02-23T15:38:35+00:00"
         }
     ],
     "packages-dev": [
@@ -3952,6 +4036,7 @@
         "bramley/phplist-plugin-captcha": 20,
         "bramley/phplist-plugin-ckeditor": 20,
         "bramley/phplist-plugin-common": 20,
+        "bramley/phplist-plugin-imap2": 20,
         "bramley/phplist-plugin-segment": 20,
         "bramley/phplist-plugin-updater": 20,
         "davidbarratt/custom-installer": 0,
@@ -3968,7 +4053,8 @@
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
         "phplist/phplist-ui-bootlist": 0,
         "phplist/updater": 0,
-        "symfony/config": 0
+        "symfony/config": 0,
+        "tatevikgr/phplist-plugin-ckeditor5": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

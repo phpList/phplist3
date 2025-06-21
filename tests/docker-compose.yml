@@ -1,0 +1,136 @@
+version: '3.5'
+
+networks:
+  phplistbehatnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.200.0.0/16
+
+services:
+  behat:
+    container_name: behat
+    build: .
+    volumes:
+      - .:/behat
+    links:
+      - firefox
+      - chrome
+    networks:
+      - phplistbehatnet
+
+  firefox:
+    container_name: firefox
+    image: selenium/standalone-firefox-debug:${SELENIUM_VERSION}
+    shm_size: 2g
+    ports:
+      - "4444:4444" #Selenium
+      - "5901:5900" #VNC
+      - "7900:7900"
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - phplistbehatnet
+    environment:
+      - VNC_NO_PASSWORD=1
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+        
+  chrome:
+    container_name: chrome
+    image: selenium/standalone-chrome-debug:${SELENIUM_VERSION}
+    shm_size: 2gb
+    environment:
+      - SE_LOG_LEVEL=INFO
+    networks:
+      - phplistbehatnet
+    ports:
+      - "5902:5900" #VNC
+      - "4445:4444" #Selenium
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+        
+
+  # firefox:
+  #   image: elgalu/selenium
+  #  # volumes:
+  #  #   - /dev/shm:/dev/shm
+  #   ports:
+  #    # VNC: See what's going on by connecting your VNC client to 0.0.0.0:5900
+  #     - 5900:25900
+  #     # noVNC: See what's going on by hitting http://0.0.0.0:6080 in your browser
+  #     #        Important: http://127.0.0.1:6080 works but http://localhost:6080 doesn't
+  #     - 6080:26080
+  #   shm_size: 12g
+  #   privileged: true
+  #   environment:
+  #     - NOVNC=true
+  #     - DEBUG=false
+  #     - SELENIUM_HUB_HOST=hub
+  #     - SELENIUM_HUB_PORT=4444
+  #     - SELENIUM_NODE_HOST={{CONTAINER_IP}}
+  #     - SCREEN_WIDTH=1300
+  #     - SCREEN_HEIGHT=999
+  #     - VIDEO=${VIDEO-false}
+  #     - GRID=false
+  #     - CHROME=false
+  #     - FIREFOX=true
+
+  phplist:
+    image: phplist/phplist:latest
+    container_name: phplist
+    depends_on:
+      - firefox
+      - dbhost
+      - mailpit
+    volumes:
+      - ${PHPLIST_CODE}:/var/www/phplist3      
+    restart: always
+    environment:
+      DB_HOST: dbhost
+      DB_USER: phplist
+      DB_PASSWORD: phplist
+      DB_NAME: phplistdb
+      MAILHOST: mailpit:1025
+      PHP_VERSION: 8.2
+    networks:
+      - phplistbehatnet
+    ports:
+      - "${PHPLIST_PORT-8080}:80"
+
+  mailpit:
+    container_name: mailpit
+    image: axllent/mailpit
+    ports:
+      - "8026:8025"
+    networks:
+      - phplistbehatnet
+
+  dbhost:
+    container_name: dbhost
+    image: mariadb:10.1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: phplist
+      MYSQL_DATABASE: phplistdb
+      MYSQL_USER: phplist
+      MYSQL_PASSWORD: phplist
+    networks:
+      - phplistbehatnet
+
+  ## a small python app to test Selenium and debug Behat behaviour
+#   pythontest:
+#     container_name: pythontest
+#     build: 
+#       context: app
+#       dockerfile: Dockerfile
+#     depends_on:
+# #      - chrome
+#       - firefox
+#     networks:
+#       - phplistbehatnet

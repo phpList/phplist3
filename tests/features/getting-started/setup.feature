@@ -6,12 +6,12 @@ Feature: Setup
 
   Scenario: Go to dashboard
     Given I am on "/lists/admin/"
-    Then I should see "Database has not been initialised. go to Initialise Database to continue"
+    Then I must see "Database has not been initialised. go to Initialise Database to continue"
 
   Scenario: Launch the initialisation
     Given I am on "/lists/admin/"
     When I follow "Initialise Database"
-    Then I should see "phpList initialisation"
+    Then I must see "phpList initialisation"
 
   Scenario: Init database
     Given I am on "/lists/admin/?page=initialise&firstinstall=1"
@@ -20,4 +20,4 @@ Feature: Setup
     And I fill in "adminemail" with "admin@phplist.dev"
     And I fill in "adminpassword" with a valid password
     And I press "Continue"
-    Then I should see "Success:"
+    Then I must see "Success:"

@@ -3,7 +3,6 @@
 require __DIR__.'/bootstrap.php';
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
@@ -25,10 +24,9 @@ class SubscriberContext implements Context
 
     /**
      * @param string $list
-     * @param array $table
-     *
-     * @Given /I have "(.*)" list with the following subscribers:/
+     * @param PyStringNode $stringNode
      * @throws Exception
+     * @Given /I have "(.*)" list with the following subscribers:/
      */
     public function iHaveSubscribersForList($list, PyStringNode $stringNode)
     {
@@ -66,12 +64,12 @@ class SubscriberContext implements Context
     {
         $table = 'phplist_user_user';
         $insert = <<<EOC
-insert into ${table} (email,entered,htmlemail,confirmed,uniqid)
+insert into {$table} (email,entered,htmlemail,confirmed,uniqid)
 values("%s",now(),1,1,"%s")
 EOC;
         ;
         $select = <<<EOC
-select * from ${table} where email = "%s"
+select * from {$table} where email = "%s"
 EOC;
         $db = $this->featureContext->getMysqli();
         $results = $db
@@ -136,8 +134,6 @@ EOC;
 
     }
 
-
-
     /**
      * @Given /I want to send campaign with title "(.*)"/
      */
@@ -145,15 +141,15 @@ EOC;
     {
         $db = $this->featureContext->getMysqli();
         $table = 'phplist_message';
-        $select = "SELECT id from ${table} where subject='${title}'";
+        $select = "SELECT id from {$table} where subject='{$title}'";
         $results = $db->query($select)->fetch_assoc();
 
         if(!isset($results['id'])){
             $uuid = UUID::generate(4);
             $insert = <<<EOC
-insert into ${table}
+insert into {$table}
   (subject, status, entered, sendformat, embargo, repeatuntil, owner, uuid)
-  values(${title}, "draft", now(), "HTML", now(), now(), , %d, "${uuid}" )
+  values({$title}, "draft", now(), "HTML", now(), now(), , %d, "{$uuid}" )
 EOC;
 
         }
@@ -172,7 +168,7 @@ EOC;
     public function iCheckAsTargetList($name)
     {
         $page = $this->featureContext->getSession()->getPage();
-        $element = $page->find('xpath',"//*[contains(text(),'${name}')]");
+        $element = $page->find('xpath',"//*[contains(text(),'{$name}')]");
         $input = $element->find('xpath',"//input[@type='checkbox']");
         $value = $input->getAttribute('name');
         $this->featureContext->checkOption($value);

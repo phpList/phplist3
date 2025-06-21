@@ -7,16 +7,9 @@ default:
         - ./features
       contexts:
         - FeatureContext:
-          # Set database access credentials
-          database:
-            host: 127.0.0.1
-            user: phplist
-            password: phplist
-            name: phplistdb
-          # Set admin user login credentials
-          admin:
-            username: admin
-            password: Mypassword123+
+            admin:
+              username: admin
+              password: Mypassword123+
         - MailContext:
             mail_dir: build/mails
         - SubscriberContext
@@ -24,8 +17,9 @@ default:
         - FailAid\Context\FailureContext
   extensions:
     Behat\MinkExtension:
-      show_cmd: 'cp %s ./output/lastResponse.html' #'cat %s'
+      show_cmd: 'cp %s ./output/lastResponse.html'
       base_url: 'http://127.0.0.1'
+      files_path: "files/"
       default_session: chrome
       sessions:
         chrome:
@@ -35,14 +29,17 @@ default:
               browserName: chrome
               browser: chrome
               version: ""
+              # extra_capabilities:
+              #   timeouts:
+              #     implicit: 10000    # 10 seconds for implicit waits
+              #     pageLoad: 60000    # 30 seconds for page loads
+              #     script: 60000      # 30 seconds for async scripts
               chrome:
                 switches:
                   - "--headless"
                   - "--disable-gpu"
                   - "--window-size=2000,2000"
                   - "--lang=en"
-                  - "--no-sandbox"
-
         firefox:
           selenium2:
             wd_host: http://127.0.0.1:4444/wd/hub
@@ -54,7 +51,7 @@ default:
           selenium2:
             browser: "firefox"
             wd_host: http://127.0.0.1:4444/wd/hub
-    FailAid\Extension: 
+    FailAid\Extension:
       screenshot:
         directory: /tmp/screenshots/
         mode: default
