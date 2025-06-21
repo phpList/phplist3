@@ -52,6 +52,11 @@ require_once dirname(__FILE__).'/admin/defaultconfig.php';
 require_once dirname(__FILE__).'/admin/connect.php';
 include_once dirname(__FILE__).'/admin/lib.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
+    print s('Not implemented');
+    return;
+}
+
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
 if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && count(ACCESS_CONTROL_ALLOW_ORIGINS) > 1) {
