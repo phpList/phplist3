@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62b7387cc572bc5fca3aebed83a8a76d",
+    "content-hash": "d575a705a7163d03b7cc0fa598af2f25",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -1062,12 +1062,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpList/phplist-plugin-saml2.git",
-                "reference": "8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d"
+                "reference": "ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpList/phplist-plugin-saml2/zipball/8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d",
-                "reference": "8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d",
+                "url": "https://api.github.com/repos/phpList/phplist-plugin-saml2/zipball/ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1",
+                "reference": "ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1",
                 "shasum": ""
             },
             "require": {
@@ -1093,7 +1093,7 @@
                 "wiki": "http://resources.phplist.com/",
                 "source": "https://github.com/phpList/phpList3"
             },
-            "time": "2026-05-06T08:58:48+00:00"
+            "time": "2025-06-28T09:36:08+00:00"
         },
         {
             "name": "phplist/phplist-plugin-subjectlineplaceholders",
@@ -4078,6 +4078,7 @@
         "phplist/phplist-lan-texts": 20,
         "phplist/updater": 0,
         "phplist/phplist-plugin-invite": 20,
+        "phplist/phplist-plugin-saml2": 20,
         "michield/phplist-plugin-campaignslicer": 20,
         "michield/phplist-plugin-dateplaceholder": 20,
         "michield/phplist-plugin-disposablemailblock": 20,
@@ -4100,7 +4101,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3"
+        "php": ">=8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"

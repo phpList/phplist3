@@ -122,7 +122,7 @@
     ]
   },
   "require": {
-    "php": ">=7.3",
+    "php": ">=8.1",
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
