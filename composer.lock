@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73b8d5f2d576ee5a37e4dadca9a2cec1",
+    "content-hash": "c465600e381048f108d8e407de6b8852",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445"
+                "reference": "bb5cb1f12398ac79609b37ad77f0a8683e1f1acb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/1241ce37e8e6583b30e3eda8f93da57f7746d445",
-                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/bb5cb1f12398ac79609b37ad77f0a8683e1f1acb",
+                "reference": "bb5cb1f12398ac79609b37ad77f0a8683e1f1acb",
                 "shasum": ""
             },
             "require": {
@@ -143,10 +143,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.34.2",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.35.1",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2025-05-27T09:22:16+00:00"
+            "time": "2025-09-09T11:22:43+00:00"
         },
         {
             "name": "bramley/phplist-plugin-imap2",
@@ -1054,6 +1054,45 @@
                 "source": "https://github.com/phpList/phpList3"
             },
             "time": "2021-04-20T20:54:46+00:00"
+        },
+        {
+            "name": "phplist/phplist-plugin-saml2",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpList/phplist-plugin-saml2.git",
+                "reference": "ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpList/phplist-plugin-saml2/zipball/ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1",
+                "reference": "ad8aaa2f5a22f42b3cc50f720de039ddeb6d56f1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "default-branch": true,
+            "type": "phplist-plugin",
+            "license": [
+                "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
+            ],
+            "description": "SAML2 support for phpList",
+            "homepage": "https://www.phpList.org/",
+            "keywords": [
+                "email",
+                "manager",
+                "newsletter",
+                "permission marketing",
+                "phplist"
+            ],
+            "support": {
+                "issues": "https://github.com/phpList/phpList3/issues",
+                "forum": "https://discuss.phplist.org/",
+                "wiki": "http://resources.phplist.com/",
+                "source": "https://github.com/phpList/phpList3"
+            },
+            "time": "2025-06-28T09:36:08+00:00"
         },
         {
             "name": "phplist/phplist-plugin-subjectlineplaceholders",
@@ -4104,36 +4143,37 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "behat/behat": 0,
+        "behat/mink-selenium2-driver": 0,
+        "bramley/phplist-plugin-captcha": 20,
+        "bramley/phplist-plugin-ckeditor": 20,
+        "bramley/phplist-plugin-common": 20,
+        "bramley/phplist-plugin-imap2": 20,
+        "bramley/phplist-plugin-segment": 20,
+        "bramley/phplist-plugin-updater": 20,
         "davidbarratt/custom-installer": 0,
-        "phplist/phplist-ui-bootlist": 0,
-        "phplist/phplist-lan-help": 0,
-        "phplist/phplist-lan-info": 0,
-        "phplist/phplist-lan-texts": 0,
-        "phplist/updater": 0,
-        "phplist/phplist-plugin-invite": 20,
+        "friends-of-behat/mink": 0,
         "michield/phplist-plugin-campaignslicer": 20,
         "michield/phplist-plugin-dateplaceholder": 20,
         "michield/phplist-plugin-disposablemailblock": 20,
         "michield/phplist-plugin-domainthrottlemap": 20,
         "michield/phplist-plugin-embedremoteimages": 20,
-        "bramley/phplist-plugin-common": 20,
-        "bramley/phplist-plugin-captcha": 20,
-        "bramley/phplist-plugin-ckeditor": 20,
-        "bramley/phplist-plugin-segment": 20,
+        "phplist/phplist-lan-help": 0,
+        "phplist/phplist-lan-info": 0,
+        "phplist/phplist-lan-texts": 0,
+        "phplist/phplist-plugin-invite": 20,
+        "phplist/phplist-plugin-saml2": 20,
         "phplist/phplist-plugin-subjectlineplaceholders": 20,
-        "bramley/phplist-plugin-updater": 20,
-        "bramley/phplist-plugin-imap2": 20,
-        "tatevikgr/phplist-plugin-ckeditor5": 20,
-        "behat/behat": 0,
-        "behat/mink-selenium2-driver": 0,
-        "friends-of-behat/mink": 0,
-        "symfony/config": 0
+        "phplist/phplist-ui-bootlist": 0,
+        "phplist/updater": 0,
+        "symfony/config": 0,
+        "tatevikgr/phplist-plugin-ckeditor5": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3"
+        "php": ">=8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
