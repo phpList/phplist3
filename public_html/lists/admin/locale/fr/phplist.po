@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: info@phplist.com\n"
 "POT-Creation-Date: 2021-02-12 19:03+0000\n"
 "PO-Revision-Date: 2026-03-14 00:26+0000\n"
-"Last-Translator: \"contact@spnt.org\" <contact@spnt.org>\n"
+"Last-Translator: Alain Rihs <alainrihs@sunrise.ch>\n"
 "Language-Team: French <http://translate.phplist.org/projects/phplist/"
 "phplist3/fr/>\n"
 "Language: fr\n"
@@ -2528,7 +2528,7 @@ msgstr "Ajouté par %s"
 
 #: public_html/lists/admin/actions/addemail.php:19
 msgid "Added with add-email on test"
-msgstr "Ajouté avec l'ajout d'adresse pour test"
+msgstr "Ajouté lors de l'ajout d'adresse pendant le test"
 
 #: public_html/lists/admin/actions/addemail.php:20
 msgid "Email address added"
@@ -2602,7 +2602,7 @@ msgstr "Suppression des abonnés en liste noire"
 #: public_html/lists/admin/actions/reconcileusers.php:59
 #: public_html/lists/index.php:859
 msgid "\"Jump off\" set, reason not requested"
-msgstr "Désinscription, raison non demandée"
+msgstr "Désinscription, aucune raison fournie"
 
 # Que pensez-vous de "Relier" plutôt que "Concilier", qui est peut-être moins "grand public" ?
 #: public_html/lists/admin/actions/reconcileusers.php:70
@@ -2681,7 +2681,7 @@ msgstr "ok, %d lignes"
 #: public_html/lists/admin/importadmin.php:138
 #: public_html/lists/admin/import2.php:527
 msgid "Record has no email"
-msgstr "Enregistrement sans adresse électronique"
+msgstr "L'entrée n'a pas d'adresse électronique"
 
 #: public_html/lists/admin/actions/import2.php:84
 #: public_html/lists/admin/importadmin.php:140
@@ -2736,8 +2736,8 @@ msgstr ""
 #, php-format
 msgid "%d emails succesfully imported to the database and added to %d lists."
 msgstr ""
-"%d adresses électroniques ont été importées avec succès dans la base de "
-"données et ajoutées à %d listes."
+"%d adresses électroniques ont été importés avec succès dans la base de "
+"données et ajoutés à %d listes."
 
 #: public_html/lists/admin/actions/import2.php:479
 #, php-format
@@ -2767,7 +2767,7 @@ msgstr ""
 #: public_html/lists/admin/actions/import2.php:493
 #, php-format
 msgid "%d duplicate emails found."
-msgstr "%d adresses électroniques en double trouvées."
+msgstr "%d adresses électroniques en doublon."
 
 #: public_html/lists/admin/actions/import2.php:496
 #, php-format
@@ -3013,7 +3013,7 @@ msgstr "prochain lot de %s dans %s"
 
 #: public_html/lists/admin/actions/msgstatus.php:112
 msgid "Waiting"
-msgstr "Attente"
+msgstr "En attente"
 
 #: public_html/lists/admin/actions/msgstatus.php:114
 msgid "Send the queue"
@@ -10473,7 +10473,7 @@ msgstr "pagetitlehover:Journal des événements "
 
 #: public_html/databasestructure.php:306
 msgid "pagetitle:getrss"
-msgstr "Récupération de flux RSS"
+msgstr "Récupérer les flux RSS"
 
 #: public_html/databasestructure.php:307
 msgid "pagetitlehover:getrss"
@@ -10537,7 +10537,7 @@ msgstr "pagetitlehover:Liens cliqués"
 
 #: public_html/databasestructure.php:322
 msgid "pagetitle:massunconfirm"
-msgstr "Suppression par lot"
+msgstr "Suppression de liste"
 
 #: public_html/databasestructure.php:323
 msgid "pagetitlehover:massunconfirm"
