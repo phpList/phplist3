@@ -88,7 +88,7 @@ jobs:
           rm main.zip
           mv base-distribution-main base
           cd base
-          composer update --no-dev
+          composer install --no-dev --no-interaction --prefer-dist
         if: ${{ matrix.unsupported == false }}
           
       - name: Start Test Server

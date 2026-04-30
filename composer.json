@@ -18,100 +18,100 @@
   },
   "minimum-stability": "dev",
   "repositories": [
-      {
-          "type": "composer",
-          "url": "https://repo.packagist.org"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/phplist-ui-bootlist"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/phplist-lan-help"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/phplist-lan-info"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/phplist-lan-texts"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/updater"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phpList/phplist-plugin-invite.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-common.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-captcha.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-ckeditor.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-segment.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-campaignslicer.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-dateplaceholder.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-disposablemailblock.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-domainthrottlemap.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/michield/phplist-plugin-embedremoteimages.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-updater.git"
-      },
-      {
-            "type": "vcs",
-            "url": "https://github.com/bramley/phplist-plugin-imap2.git"
-      },
-      {
-        "type": "vcs",
-        "url": "https://github.com/tatevikgr/phplist-plugin-ckeditor5.git"
-      },
-      {
-        "type": "vcs",
-        "url": "https://github.com/phpList/phplist-plugin-saml2.git"
-      }
-    ],
+    {
+      "type": "composer",
+      "url": "https://repo.packagist.org"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-ui-bootlist"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-lan-help"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-lan-info"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-lan-texts"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/updater"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-plugin-invite.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-common.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-captcha.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-ckeditor.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-segment.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/michield/phplist-plugin-campaignslicer.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/michield/phplist-plugin-dateplaceholder.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/michield/phplist-plugin-disposablemailblock.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/michield/phplist-plugin-domainthrottlemap.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/michield/phplist-plugin-embedremoteimages.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phplist/phplist-plugin-subjectLinePlaceholdersPlugin.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-updater.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bramley/phplist-plugin-imap2.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/tatevikgr/phplist-plugin-ckeditor5.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpList/phplist-plugin-saml2.git"
+    }
+  ],
   "extra": {
-      "custom-installer": {
-          "vendor/{$vendor}/{$name}/": ["type:library"],
-          "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
-          "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
-          "public_html/lists/admin/info": ["phplist/phplist-lan-info"],
-          "public_html/lists/texts": ["phplist/phplist-lan-texts"],
-          "public_html/lists/updater": ["phplist/updater"]
-      }
+    "custom-installer": {
+      "vendor/{$vendor}/{$name}/": ["type:library"],
+      "public_html/lists/admin/ui/{$name}": ["phplist/phplist-ui-bootlist"],
+      "public_html/lists/admin/help": ["phplist/phplist-lan-help"],
+      "public_html/lists/admin/info": ["phplist/phplist-lan-info"],
+      "public_html/lists/texts": ["phplist/phplist-lan-texts"],
+      "public_html/lists/updater": ["phplist/updater"]
+    }
   },
   "scripts": { 
     "post-install-cmd": [
@@ -122,7 +122,7 @@
     ]
   },
   "require": {
-    "php": ">=8.2",
+    "php": ">=7.3",
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
@@ -130,7 +130,6 @@
     "phplist/phplist-lan-texts": "@stable",
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
-    "phplist/phplist-plugin-saml2": "dev-main",
     "michield/phplist-plugin-campaignslicer": "dev-master",
     "michield/phplist-plugin-dateplaceholder": "dev-master",
     "michield/phplist-plugin-disposablemailblock": "dev-master",
@@ -143,7 +142,8 @@
     "phplist/phplist-plugin-subjectlineplaceholders": "dev-master",
     "bramley/phplist-plugin-updater": "dev-main",
     "bramley/phplist-plugin-imap2": "dev-master",
-    "tatevikgr/phplist-plugin-ckeditor5": "dev-master"
+    "tatevikgr/phplist-plugin-ckeditor5": "dev-master",
+    "phplist/phplist-plugin-saml2": "dev-main"
   },
   "require-dev": {
     "behat/behat": "@stable",
