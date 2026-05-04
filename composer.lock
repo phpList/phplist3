@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramley/phplist-plugin-common.git",
-                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445"
+                "reference": "dc6552326aba8d951196be7160b9b757a5eb8d72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/1241ce37e8e6583b30e3eda8f93da57f7746d445",
-                "reference": "1241ce37e8e6583b30e3eda8f93da57f7746d445",
+                "url": "https://api.github.com/repos/bramley/phplist-plugin-common/zipball/dc6552326aba8d951196be7160b9b757a5eb8d72",
+                "reference": "dc6552326aba8d951196be7160b9b757a5eb8d72",
                 "shasum": ""
             },
             "require": {
@@ -143,10 +143,10 @@
                 "phplist"
             ],
             "support": {
-                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.34.2",
+                "source": "https://github.com/bramley/phplist-plugin-common/tree/3.35.2",
                 "issues": "https://github.com/bramley/phplist-plugin-common/issues"
             },
-            "time": "2025-05-27T09:22:16+00:00"
+            "time": "2025-11-10T15:11:22+00:00"
         },
         {
             "name": "bramley/phplist-plugin-imap2",
