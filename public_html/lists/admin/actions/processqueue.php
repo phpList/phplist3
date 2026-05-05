@@ -666,6 +666,9 @@ while ($message = Sql_fetch_array($messages)) {
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->campaignStarted($msgdata);
     }
+    if (isset($GLOBALS['MD'][$messageid]['subject'])) {
+        $msgdata['subject'] = $GLOBALS['MD'][$messageid]['subject'];
+    }
 
     if (!empty($msgdata['resetstats'])) {
         resetMessageStatistics($msgdata['id']);
@@ -1360,6 +1363,9 @@ while ($message = Sql_fetch_array($messages)) {
             repeatMessage($messageid);
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
                 $plugin->processSendingCampaignFinished($messageid, $msgdata);
+            }
+            if (isset($GLOBALS['MD'][$messageid]['subject'])) {
+                $msgdata['subject'] = $GLOBALS['MD'][$messageid]['subject'];
             }
             $status = Sql_query(sprintf('update %s set status = "sent",sent = now() where id = %d',
                 $GLOBALS['tables']['message'], $messageid));
