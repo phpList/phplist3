@@ -41,6 +41,9 @@ $database_connection_compression = false;
 // force database connection to use SSL
 $database_connection_ssl = false;
 
+// force to check SSL connection
+$database_connection_ssl_check = false;
+
 // if you use multiple installations of phpList you can set this to
 // something to identify this one. it will be prepended to email report
 // subjects

@@ -11,7 +11,7 @@ if (!function_exists("mysqli_init")) {
 
 function Sql_Connect($host, $user, $password, $database)
 {
-    global $database_port, $database_socket, $database_connection_compression, $database_connection_ssl;
+    global $database_port, $database_socket, $database_connection_compression, $database_connection_ssl, $database_connection_ssl_check;
 
     if (!$host || !$user) {
         header('HTTP/1.0 500 Cannot connect to database');
@@ -20,7 +20,12 @@ function Sql_Connect($host, $user, $password, $database)
     }
     $db = mysqli_init();
     $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
-    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+    $secure = 0;
+    if (!empty($database_connection_ssl)) {
+        $secure = !empty($database_connection_ssl_check)
+            ? MYSQLI_CLIENT_SSL
+            : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+    }
 
     mysqli_report(MYSQLI_REPORT_OFF);
 
