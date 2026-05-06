@@ -1061,12 +1061,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpList/phplist-plugin-saml2.git",
-                "reference": "31c6f67c946ca343af49b9e21036558cf39dc383"
+                "reference": "8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpList/phplist-plugin-saml2/zipball/31c6f67c946ca343af49b9e21036558cf39dc383",
-                "reference": "31c6f67c946ca343af49b9e21036558cf39dc383",
+                "url": "https://api.github.com/repos/phpList/phplist-plugin-saml2/zipball/8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d",
+                "reference": "8f1ca9ff9ed0812103126bc0c0b9fe064bb6575d",
                 "shasum": ""
             },
             "require": {
@@ -1092,7 +1092,7 @@
                 "wiki": "http://resources.phplist.com/",
                 "source": "https://github.com/phpList/phpList3"
             },
-            "time": "2026-05-05T11:40:02+00:00"
+            "time": "2026-05-06T08:58:48+00:00"
         },
         {
             "name": "phplist/phplist-plugin-subjectlineplaceholders",
