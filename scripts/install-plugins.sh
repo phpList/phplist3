@@ -23,9 +23,14 @@ while IFS= read -r -d '' plugin; do
 
   case "$plugin_name" in
     phplist-plugin-saml2)
-      echo "Preserving SAML2 settings.php"
+      settings_file="$to/simplesaml/settings.php"
 
-      rsync_args+=(--exclude='simplesaml/settings.php')
+      if [[ -f "$settings_file" ]]; then
+        echo "Preserving existing SAML2 settings.php"
+        rsync_args+=(--exclude='simplesaml/settings.php')
+      else
+        echo "SAML2 settings.php does not exist, it will be created"
+      fi
       ;;
   esac
 
