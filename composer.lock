@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b0dba623b44ffa4fc27181e381c231a",
+    "content-hash": "62b7387cc572bc5fca3aebed83a8a76d",
     "packages": [
         {
             "name": "bramley/phplist-plugin-captcha",
@@ -978,16 +978,16 @@
         },
         {
             "name": "phplist/phplist-lan-texts",
-            "version": "v2021.05",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpList/phplist-lan-texts.git",
-                "reference": "af837824227574aa3678d2c09f77197cd2e172f1"
+                "reference": "3933161d06a86c1d5018daeae07c5ddff5a7a3f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpList/phplist-lan-texts/zipball/af837824227574aa3678d2c09f77197cd2e172f1",
-                "reference": "af837824227574aa3678d2c09f77197cd2e172f1",
+                "url": "https://api.github.com/repos/phpList/phplist-lan-texts/zipball/3933161d06a86c1d5018daeae07c5ddff5a7a3f6",
+                "reference": "3933161d06a86c1d5018daeae07c5ddff5a7a3f6",
                 "shasum": ""
             },
             "require": {
@@ -996,6 +996,7 @@
             "require-dev": {
                 "njoannidi/php-lint-bash": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "license": [
                 "GNU Affero General Public License version 3.0 or later (AGPLv3+)"
@@ -1014,7 +1015,7 @@
                 "wiki": "http://resources.phplist.com/",
                 "source": "https://github.com/phpList/phpList3"
             },
-            "time": "2021-05-18T20:29:44+00:00"
+            "time": "2023-07-27T12:50:29+00:00"
         },
         {
             "name": "phplist/phplist-plugin-invite",
@@ -4074,7 +4075,7 @@
         "phplist/phplist-ui-bootlist": 0,
         "phplist/phplist-lan-help": 0,
         "phplist/phplist-lan-info": 0,
-        "phplist/phplist-lan-texts": 0,
+        "phplist/phplist-lan-texts": 20,
         "phplist/updater": 0,
         "phplist/phplist-plugin-invite": 20,
         "michield/phplist-plugin-campaignslicer": 20,
