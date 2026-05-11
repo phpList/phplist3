@@ -246,7 +246,9 @@ while ($row = Sql_fetch_array($result)) {
     //foreach ($GLOBALS['plugins'] as $plugin) {
     //$desc = $plugin->displayLists($row) . $desc;
     //}
-    $displayDesc = strlen($desc) > 50 ? substr($desc, 0, 50) . '...' : $desc;
+    $displayDesc = mb_strlen($desc, 'UTF-8') > 50
+        ? mb_substr($desc, 0, 50, 'UTF-8') . '...'
+        : $desc;
 
     $element = '<!-- '.
     $row['id'].'-->'.'<a href="./?page=members&id='.
