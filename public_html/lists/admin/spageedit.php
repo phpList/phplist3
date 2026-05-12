@@ -108,10 +108,21 @@ if (isset($_POST['save'])) {
     }
     Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"attributes","%s")',
         $tables['subscribepage_data'], $id, $attributes));
+    $preselectList = 0;
+    if (!empty($_POST['preselectlist'])) {
+        $preselectList = (int) $_POST['preselectlist'];
+    }
     if (isset($_POST['list']) && is_array($_POST['list'])) {
+        if (!$preselectList || !isset($_POST['list'][$preselectList])) {
+            $preselectList = 0;
+        }
         Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"lists","%s")',
             $tables['subscribepage_data'], $id, implode(',', $_POST['list'])));
+    } else {
+        $preselectList = 0;
     }
+    Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"preselectlist","%d")',
+        $tables['subscribepage_data'], $id, $preselectList));
 
     //## Store plugin data
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -144,6 +155,7 @@ $data['unsubscribemessage'] = getConfig('unsubscribemessage');
 $data['unsubscribesubject'] = getConfig('unsubscribesubject');
 $data['htmlchoice'] = 'htmlonly';
 $data['emaildoubleentry'] = 'yes';
+$data['preselectlist'] = 0;
 $data['rssdefault'] = 'daily'; //Leftover from the preplugin era
 $data['rssintro'] = s('Please indicate how often you want to receive messages');  //Leftover from the preplugin era
 $selected_lists = array();
@@ -382,10 +394,26 @@ if (!Sql_Affected_Rows()) {
     }
 }
 $listsHTML .= '</p>';
+$preselectList = (int) $data['preselectlist'];
+if (!in_array($preselectList, $selected_lists)) {
+    $preselectList = 0;
+}
+$listsHTML .= sprintf('<p><label><input type="radio" name="preselectlist" value="0" %s /> %s</label></p>',
+    empty($preselectList) ? 'checked="checked"' : '',
+    s('Do not preselect any list'));
 while ($row = Sql_Fetch_Array($req)) {
-    $listsHTML .= sprintf('<label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label><div>%s</div>',
-        $row['id'], $row['id'], in_array($row['id'], $selected_lists) ? 'checked="checked"' : '',
-        stripslashes($row['name']), htmlspecialchars(stripslashes($row['description'])));
+    $listSelected = in_array($row['id'], $selected_lists);
+    $listsHTML .= sprintf(
+        '<label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label> <label><input type="radio" name="preselectlist" value="%d" %s /> %s</label><div>%s</div>',
+        $row['id'],
+        $row['id'],
+        $listSelected ? 'checked="checked"' : '',
+        stripslashes($row['name']),
+        $row['id'],
+        $preselectList == $row['id'] ? 'checked="checked"' : '',
+        s('Preselect'),
+        htmlspecialchars(stripslashes($row['description']))
+    );
 }
 
 $listsHTML .= '</div>';

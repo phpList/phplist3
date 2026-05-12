@@ -716,9 +716,10 @@ if (isset($_POST['subscribe']) || isset($_POST['update'])) {
 /**
  * @param int $userid
  * @param string $lists_to_show
+ * @param int $preselect_list_id
  * @return string
  */
-function ListAvailableLists($userid = 0, $lists_to_show = '')
+function ListAvailableLists($userid = 0, $lists_to_show = '', $preselect_list_id = 0)
 {
     global $tables;
     if (isset($_POST['list'])) {
@@ -730,6 +731,9 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
     } else {
         $list = '';
     }
+    $hasExplicitListSelection = isset($_POST['list'])
+        || (!isset($_POST['subscribe']) && isset($_GET['list']) && preg_match("/^(\d+,)*\d+$/", $_GET['list']));
+    $preselect_list_id = (int) $preselect_list_id;
     $subselect = '';
     $listset = array();
     $subscribed = array();
@@ -766,7 +770,14 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
 
         while ($row = Sql_fetch_array($catresult)) {
 
-            $listspercategory[] = array('id' => $row ['id'], 'name' => $row ['name'], 'description' => $row ['description'], 'active' => $row ['active'], 'category' => $row ['category']);
+            $listspercategory[] = array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'description' => $row['description'],
+                'active' => $row['active'],
+                'category' => $row['category'],
+                'preselect' => isset($row['preselect']) ? $row['preselect'] : 0,
+            );
 
         }
 
@@ -801,6 +812,12 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                             $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
                                 $GLOBALS['tables']['listuser'], $userid, $listelement['id']));
                             if (Sql_Affected_Rows()) {
+                                $html .= 'checked="checked"';
+                            }
+                        } elseif (!$hasExplicitListSelection) {
+                            if ($preselect_list_id && $preselect_list_id == $listelement['id']) {
+                                $html .= 'checked="checked"';
+                            } elseif (!$preselect_list_id && !empty($listelement['preselect'])) {
                                 $html .= 'checked="checked"';
                             }
                         }
@@ -842,6 +859,12 @@ function ListAvailableLists($userid = 0, $lists_to_show = '')
                     $req = Sql_Fetch_Row_Query(sprintf('select userid from %s where userid = %d and listid = %d',
                         $GLOBALS['tables']['listuser'], $userid, $row['id']));
                     if (Sql_Affected_Rows()) {
+                        $html .= 'checked="checked"';
+                    }
+                } elseif (!$hasExplicitListSelection) {
+                    if ($preselect_list_id && $preselect_list_id == $row['id']) {
+                        $html .= 'checked="checked"';
+                    } elseif (!$preselect_list_id && !empty($row['preselect'])) {
                         $html .= 'checked="checked"';
                     }
                 }
