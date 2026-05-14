@@ -714,6 +714,24 @@ if (isset($_POST['subscribe']) || isset($_POST['update'])) {
 }
 
 /**
+ * Determine whether a list checkbox should be preselected.
+ *
+ * @param bool $hasExplicitListSelection
+ * @param int $preselect_list_id
+ * @param int $listId
+ * @param mixed $rowPreselect
+ * @return bool
+ */
+function shouldPreselectList($hasExplicitListSelection, $preselect_list_id, $listId, $rowPreselect)
+{
+    return !$hasExplicitListSelection &&
+    (
+        ($preselect_list_id && $preselect_list_id == $listId) ||
+        (!$preselect_list_id && !empty($rowPreselect))
+    );
+}
+
+/**
  * @param int $userid
  * @param string $lists_to_show
  * @param int $preselect_list_id
@@ -814,12 +832,13 @@ function ListAvailableLists($userid = 0, $lists_to_show = '', $preselect_list_id
                             if (Sql_Affected_Rows()) {
                                 $html .= 'checked="checked"';
                             }
-                        } elseif (!$hasExplicitListSelection) {
-                            if ($preselect_list_id && $preselect_list_id == $listelement['id']) {
-                                $html .= 'checked="checked"';
-                            } elseif (!$preselect_list_id && !empty($listelement['preselect'])) {
-                                $html .= 'checked="checked"';
-                            }
+                        } elseif (shouldPreselectList(
+                            $hasExplicitListSelection,
+                            $preselect_list_id,
+                            $listelement['id'],
+                            $listelement['preselect']
+                        )) {
+                            $html .= 'checked="checked"';
                         }
 
 
@@ -861,12 +880,13 @@ function ListAvailableLists($userid = 0, $lists_to_show = '', $preselect_list_id
                     if (Sql_Affected_Rows()) {
                         $html .= 'checked="checked"';
                     }
-                } elseif (!$hasExplicitListSelection) {
-                    if ($preselect_list_id && $preselect_list_id == $row['id']) {
-                        $html .= 'checked="checked"';
-                    } elseif (!$preselect_list_id && !empty($row['preselect'])) {
-                        $html .= 'checked="checked"';
-                    }
+                } elseif (shouldPreselectList(
+                    $hasExplicitListSelection,
+                    $preselect_list_id,
+                    $row['id'],
+                    isset($row['preselect']) ? $row['preselect'] : 0
+                )) {
+                    $html .= 'checked="checked"';
                 }
                 $html .= " /> <label for=\"list$row[id]\"><b>".stripslashes($row['name']).'</b></label><div class="listdescription">';
                 $desc = nl2br(disableJavascript(stripslashes($row['description'])));
