@@ -407,6 +407,7 @@ if ($total) {
 
         */
         $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Entered'), formatDateTime($msg['entered']));
+        $ls->addColumn($listingelement, $GLOBALS['I18N']->get('Embargoed Until'), formatDateTime($msg['embargo']));
 
         $_GET['id'] = $msg['id'];
         $statusdiv = '<div id="messagestatus'.$msg['id'].'">';
