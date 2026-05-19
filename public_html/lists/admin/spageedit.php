@@ -204,7 +204,7 @@ $generalinfoHTML .= '<div>';
 
 $generalinfoHTML .= sprintf('<label for="title">%s</label><input type="text" name="title" value="%s" size="60" />',
     s('Title'),
-    htmlspecialchars(stripslashes($data['title'])));
+    htmlspecialchars(stripslashes($data['title'] ?? '')));
 
 $language_files = array();
 $language_file = $GLOBALS['language_module'];
@@ -232,24 +232,24 @@ $generalinfoHTML .= sprintf('<label for="language_file">%s</label>%s',
 
 $generalinfoHTML .= sprintf('<label for="intro">%s</label><textarea name="intro" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Intro'),
-    htmlspecialchars(stripslashes($data['intro'])));
+    htmlspecialchars(stripslashes($data['intro'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="header">%s</label><textarea name="header" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Header'),
-    htmlspecialchars(stripslashes($data['header'])));
+    htmlspecialchars(stripslashes($data['header'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="footer">%s</label><textarea name="footer" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Footer'),
-    htmlspecialchars(stripslashes($data['footer'])));
+    htmlspecialchars(stripslashes($data['footer'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="thankyoupage">%s</label><textarea name="thankyoupage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Thank you page'),
-    htmlspecialchars(stripslashes($data['thankyoupage'])));
+    htmlspecialchars(stripslashes($data['thankyoupage'] ?? '')));
 
 $generalinfoHTML .= sprintf('<label for="ajax_subscribeconfirmation">%s</label><textarea name="ajax_subscribeconfirmation" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Text to display when subscription with an AJAX request was successful'),
-    htmlspecialchars(stripslashes($data['ajax_subscribeconfirmation'])));
+    htmlspecialchars(stripslashes($data['ajax_subscribeconfirmation'] ?? '')));
 
 $generalinfoHTML .= sprintf('<label for="button">%s</label><input type="text" name="button" value="%s" size="60" />',
     s('Text for Button'),
-    htmlspecialchars(stripslashes($data['button'])));
+    htmlspecialchars(stripslashes($data['button'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="htmlchoice">%s</label>', s('HTML Email choice'));
 $generalinfoHTML .= sprintf('<input type="radio" name="htmlchoice" value="textonly" %s />
   %s <br/>',
@@ -293,24 +293,24 @@ $transactionHTML .= '<div>';
 $transactionHTML .= '<h4>'.s('Message they receive when they subscribe').'</h4>';
 $transactionHTML .= sprintf('<label for="subscribesubject">%s</label><input type="text" name="subscribesubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['subscribesubject'])));
+    htmlspecialchars(stripslashes($data['subscribesubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="subscribemessage">%s</label><textarea name="subscribemessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['subscribemessage'])));
+    htmlspecialchars(stripslashes($data['subscribemessage'] ?? '')));
 $transactionHTML .= '<h4>'.s('Message they receive when they confirm their subscription').'</h4>';
 $transactionHTML .= sprintf('<label for="confirmationsubject">%s</label><input type="text" name="confirmationsubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['confirmationsubject'])));
+    htmlspecialchars(stripslashes($data['confirmationsubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="confirmationmessage">%s</label><textarea name="confirmationmessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['confirmationmessage'])));
+    htmlspecialchars(stripslashes($data['confirmationmessage'] ?? '')));
 $transactionHTML .= '<h4>'.s('Message they receive when they unsubscribe').'</h4>';
 $transactionHTML .= sprintf('<label for="unsubscribesubject">%s</label><input type="text" name="unsubscribesubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['unsubscribesubject'])));
+    htmlspecialchars(stripslashes($data['unsubscribesubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="unsubscribemessage">%s</label><textarea name="unsubscribemessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['unsubscribemessage'])));
+    htmlspecialchars(stripslashes($data['unsubscribemessage'] ?? '')));
 
 $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
@@ -346,9 +346,9 @@ while ($row = Sql_Fetch_Array($req)) {
     $attributesHTML .= '<table class="spageeditListing" border="1" width="100%" bgcolor="'.$bgcol.'">';
     $attributesHTML .= '<tr><td colspan="2" width="150">'.s('Attribute').': '.$row['id'].'</td>';
     $attributesHTML .= '<td colspan="2">'.s('Check this box to use this attribute in the page').'<input type="checkbox" name="attr_use['.$row['id'].']" value="1" '.$checked[$row['id']].' /></td></tr>';
-    $attributesHTML .= '<tr><td colspan="2">'.s('Name').': </td><td colspan="2"><h4>'.htmlspecialchars(stripslashes($row['name'])).'</h4></td></tr>';
+    $attributesHTML .= '<tr><td colspan="2">'.s('Name').': </td><td colspan="2"><h4>'.htmlspecialchars(stripslashes($row['name'] ?? '')).'</h4></td></tr>';
     $attributesHTML .= '<tr><td colspan="2">'.s('Type').': </td><td colspan="2"><h4>'.s($row['type']).'</h4></td></tr>';
-    $attributesHTML .= '<tr><td colspan="2">'.s('Default Value').': </td><td colspan="2"><input type="text" name="attr_default['.$row['id'].']" value="'.htmlspecialchars(stripslashes($value['default_value'])).'" size="40" /></td></tr>';
+    $attributesHTML .= '<tr><td colspan="2">'.s('Default Value').': </td><td colspan="2"><input type="text" name="attr_default['.$row['id'].']" value="'.htmlspecialchars(stripslashes($value['default_value'] ?? '')).'" size="40" /></td></tr>';
     $attributesHTML .= '<tr><td>'.s('Order of Listing').': </td><td><input type="text" name="attr_listorder['.$row['id'].']" value="'.$value['listorder'].'" size="5" /></td>';
     $attributesHTML .= '<td>'.s('Is this attribute required?').': </td><td><input type="checkbox" name="attr_required['.$row['id'].']" value="1" ';
     $attributesHTML .= $value['required'] ? 'checked="checked"' : '';
@@ -408,11 +408,11 @@ while ($row = Sql_Fetch_Array($req)) {
         $row['id'],
         $row['id'],
         $listSelected ? 'checked="checked"' : '',
-        stripslashes($row['name']),
+        stripslashes($row['name'] ?? ''),
         $row['id'],
         $preselectList == $row['id'] ? 'checked="checked"' : '',
         s('Preselect'),
-        htmlspecialchars(stripslashes($row['description']))
+        htmlspecialchars(stripslashes($row['description'] ?? ''))
     );
 }
 
