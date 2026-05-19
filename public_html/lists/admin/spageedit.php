@@ -370,7 +370,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 }
 
 $listsHTML = '<h3><a name="lists">'.s('Select the lists to offer').'</a></h3>';
-$listsHTML .= '<div>';
+$listsHTML .= '<div class="spageedit-lists">';
 $listsHTML .= sprintf('<label for="listcategories">%s</label><br/>',
     s('Display list categories'));
 $listsHTML .= sprintf('<input type="radio" name="showcategories" value="no" %s />%s<br/>',
@@ -398,23 +398,38 @@ $preselectList = (int) $data['preselectlist'];
 if (!in_array($preselectList, $selected_lists)) {
     $preselectList = 0;
 }
-$listsHTML .= sprintf('<p><label><input type="radio" name="preselectlist" value="0" %s /> %s</label></p>',
-    empty($preselectList) ? 'checked="checked"' : '',
-    s('Do not preselect any list'));
+$listsHTML .= '<table class="spageedit-lists-table">';
+$listsHTML .= sprintf(
+    '<tr><td>%s</td><td>%s</td><td>%s</td></tr>',
+    ucfirst(s('Select')),
+    ucfirst(s('Default')),
+    ucfirst(s('Description'))
+);
+$listsHTML .= '<tbody>';
 while ($row = Sql_Fetch_Array($req)) {
     $listSelected = in_array($row['id'], $selected_lists);
+    $listName = htmlspecialchars(stripslashes($row['name'] ?? ''), ENT_QUOTES);
+    $listDescription = htmlspecialchars(stripslashes($row['description'] ?? ''), ENT_QUOTES);
+    if ($listDescription === '') {
+        $listDescription = '&nbsp;';
+    }
     $listsHTML .= sprintf(
-        '<label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label> <label><input type="radio" name="preselectlist" value="%d" %s /> %s</label><div>%s</div>',
+        '<tr><td><label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label></td><td><input type="radio" name="preselectlist" value="%d" %s /></td><td>%s</td></tr>',
         $row['id'],
         $row['id'],
         $listSelected ? 'checked="checked"' : '',
-        stripslashes($row['name'] ?? ''),
+        $listName,
         $row['id'],
         $preselectList == $row['id'] ? 'checked="checked"' : '',
-        s('Preselect'),
-        htmlspecialchars(stripslashes($row['description'] ?? ''))
+        $listDescription
     );
 }
+$listsHTML .= sprintf(
+    '<tr><td></td><td><label><input type="radio" name="preselectlist" value="0" %s /> %s</label></td><td></td></tr>',
+    empty($preselectList) ? 'checked="checked"' : '',
+    s('none')
+);
+$listsHTML .= '</tbody></table>';
 
 $listsHTML .= '</div>';
 
@@ -428,6 +443,36 @@ echo $transactionHTML;
 echo $pluginsHTML;
 
 echo '</div>'; // accordion
+
+echo '
+<style>
+.spageedit-lists-table {
+    width: 100% !important;
+    border-collapse: collapse;
+}
+.spageedit-lists-table th,
+.spageedit-lists-table td {
+    padding: 10px 8px;
+    vertical-align: top;
+    text-align: left;
+}
+.spageedit-lists-table th {
+    font-weight: bold;
+    border-bottom: 1px solid #cfcfcf;
+}
+.spageedit-lists-table tbody tr td {
+    border-bottom: 1px solid #d9d9d9;
+}
+.spageedit-lists-table td label {
+    margin: 0;
+    font-weight: normal;
+}
+.spageedit-lists-table td input[type="checkbox"],
+.spageedit-lists-table td input[type="radio"] {
+    margin: 0 6px 0 0;
+    vertical-align: middle;
+}
+</style>';
 
 $ownerHTML = $singleOwner = '';
 $adminCount = 0;
