@@ -386,6 +386,7 @@ if (!Sql_Affected_Rows()) {
 } else {
 
     $listsHTML .= '<br/>'.s('If you do not choose a list here, all public lists will be displayed.');
+    $listsHTML .= '<br/>'.s('One list may be chosen to be selected by default on the subscribe page.');
     $hideSingle = getConfig('hide_single_list');
     if ($hideSingle) {
         $listsHTML .= '<br/>'.s('If you choose one list only, a checkbox for this list will not be displayed and the subscriber will automatically be added to this list.');
