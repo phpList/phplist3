@@ -38,8 +38,15 @@ $database_socket = null;
 // enable database connection compression
 $database_connection_compression = false;
 
-// force database connection to use SSL
+// Use SSL/TLS for the database connection.
 $database_connection_ssl = false;
+
+// Set to true if MySQL is configured with require_secure_transport=ON.
+$database_connection_ssl_force = false;
+
+// If the database user requires SSL, set this to the path
+// of the CA certificate used to verify the MySQL server certificate.
+$database_connection_ssl_ca = '/path/to/ca.pem';
 
 // if you use multiple installations of phpList you can set this to
 // something to identify this one. it will be prepended to email report
