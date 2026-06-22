@@ -46,4 +46,4 @@ RUN tar zxf phplist-$VERSION.tgz && \
 
 EXPOSE 80 
 
-ENTRYPOINT ["/usr/local/bin/build-test.sh"]
+ENTRYPOINT ["/usr/local/bin/build-entrypoint.sh"]
