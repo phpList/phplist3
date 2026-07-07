@@ -18,7 +18,7 @@ jobs:
             experimental: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
@@ -30,7 +30,7 @@ jobs:
       - name: Setup Packages
         run: |
           cd $GITHUB_WORKSPACE
-          sudo apt update
+          sudo apt update  --allow-releaseinfo-change-label 
           sudo apt install rsync
 
       # - name: Cache Composer dependencies
@@ -90,7 +90,7 @@ jobs:
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
 
       - name: Check PHP syntax errors
-        uses: overtrue/phplint@2.4.1
+        uses: overtrue/phplint@3.0.0
         with:
           path: ./public_html
           
@@ -113,7 +113,7 @@ jobs:
 
       - name: Upload the screenshots
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: "output"
           name: "behat output ${{ matrix.php-version }}"
