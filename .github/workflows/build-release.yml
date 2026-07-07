@@ -36,7 +36,7 @@ jobs:
       - name: Setup Packages
         run: |
           cd $GITHUB_WORKSPACE
-          sudo apt update && sudo apt install -y rsync
+          sudo apt update --allow-releaseinfo-change-label && sudo apt install -y rsync
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
