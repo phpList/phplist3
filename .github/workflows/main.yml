@@ -37,7 +37,7 @@ jobs:
 
       - name: Setup Packages
         run: |
-          sudo apt update
+          sudo apt update --allow-releaseinfo-change-label
           sudo apt -y install rsync postfix
 
       - name: Install dependencies
