@@ -417,6 +417,29 @@ function sendAdminPasswordToken($adminId)
     }
 }
 
+//Send an email with a username reminder the specified adminId.
+function sendAdminUsernameReminder($adminId)
+{
+    //Retrieve the admin login name and email address
+    $SQLquery = sprintf('select loginname,email from %s where id=%d;', $GLOBALS['tables']['admin'], $adminId);
+    $row = Sql_Fetch_Row_Query($SQLquery);
+    $adminName = $row[0];
+    $email = $row[1];
+
+    $urlroot = getConfig('website').$GLOBALS['adminpages'];
+    //Build the email body to be sent, and finally send it.
+    $emailBody = $GLOBALS['I18N']->get('Hello')."\n\n";
+    $emailBody .= $GLOBALS['I18N']->get('You have requested a username reminder for phpList.')."\n\n";
+    $emailBody .= $GLOBALS['I18N']->get('Your username is:')."\n\n";
+    $emailBody .= $adminName;
+
+    if (sendMail($email, $GLOBALS['I18N']->get('Username reminder'), "\n\n".$emailBody, '', '', true)) {
+        return $GLOBALS['I18N']->get('A username reminder has been sent to the corresponding email address.');
+    } else {
+        return $GLOBALS['I18N']->get('Error sending user reminder');
+    }
+}
+
 function getTopSmtpServer($domain)
 {
     $mx = getmxrr($domain, $mxhosts, $weight);
