@@ -287,3 +287,7 @@ div.plugindetails > div.detail > span.value {
     font-weight: bold;
     height: 150px;
 }
+
+form#forgotpassword-form input[type="submit"] {
+    margin-top: 10px;
+}
