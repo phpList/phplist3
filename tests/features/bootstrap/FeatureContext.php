@@ -171,11 +171,15 @@ class FeatureContext extends MinkContext
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
     	$this->getSession()->getDriver()->setTimeouts([
-            'script' => 3000000,
-            'implicit' => 3000000,
-            'page load' => 3000000 //https://web.archive.org/web/20160730151941/http://alex-panshin.me/blog/how-to-set-pageload-timeout-for-selenium-with-behat/
-
-        ]); 
+            // Values are in milliseconds. The implicit wait applies to EVERY
+            // element lookup, so keeping it small is essential: a large value
+            // turns any legitimately-failing step into a multi-minute hang.
+            // Use the explicit spins()/"wait for the ajax response" helpers for
+            // elements that genuinely need to be polled.
+            'script' => 30000,
+            'implicit' => 10000,
+            'page load' => 30000
+        ]);
     }
 
     /**
@@ -335,8 +339,37 @@ class FeatureContext extends MinkContext
      * @When I confirm the popup
      */
     public function iConfirmThePopup()
-    {  
+    {
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
+    }
+
+    /**
+     * Override Mink's default "I should see" so the text assertion is retried
+     * when it races a page transition. With Selenium, asserting text right
+     * after a navigation/submit/tab reload can hit "stale element reference"
+     * because the DOM is being replaced while Mink reads it. Retrying lets the
+     * new page settle instead of failing the whole scenario on a transient race.
+     *
+     * NOTE: intentionally no @Then annotation here. The step is already bound to
+     * this method name by the parent MinkContext's annotation; adding it again
+     * would register the same regex twice ("step is already defined"). Method
+     * overriding alone ensures the parent's step calls this retrying version.
+     */
+    public function assertPageContainsText($text)
+    {
+        $tries = 10;
+        for ($i = 0; $i <= $tries; $i++) {
+            try {
+                parent::assertPageContainsText($text);
+
+                return;
+            } catch (\WebDriver\Exception\StaleElementReference $e) {
+                if ($i == $tries) {
+                    throw $e;
+                }
+                sleep(1);
+            }
+        }
     }
 
 }
