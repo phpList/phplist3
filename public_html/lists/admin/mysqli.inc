@@ -20,7 +20,7 @@ function Sql_Connect($host, $user, $password, $database)
     }
     $db = mysqli_init();
     $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
-    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL;
 
     mysqli_report(MYSQLI_REPORT_OFF);
 
