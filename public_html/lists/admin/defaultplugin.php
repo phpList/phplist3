@@ -849,6 +849,22 @@ class phplistPlugin
     }
 
     /**
+     * processQueueUserSelectQuery
+     * called with the query that selects the subscribers of a campaign, just
+     * before that query is run
+     * allows a plugin to change the order in which subscribers are processed,
+     * for example to interleave imported segments instead of sending in
+     * database order
+     * @param string query the query that is about to be run
+     * @param int messageid the campaign being processed
+     * @return string the query to run
+     */
+    public function processQueueUserSelectQuery($query, $messageid)
+    {
+        return $query;
+    }
+
+    /**
      * allowProcessQueue
      * called at the beginning of processQueue
      * if this returns anything but "true" processing will be cancelled

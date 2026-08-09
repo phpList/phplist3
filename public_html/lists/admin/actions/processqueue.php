@@ -897,6 +897,12 @@ while ($message = Sql_fetch_array($messages)) {
         );
     }
 
+    //# this allows plugins to change the order in which the subscribers are
+    //# processed, by adding an "order by" clause to the query
+    foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+        $query = $plugin->processQueueUserSelectQuery($query, $messageid);
+    }
+
     if (VERBOSE) {
         processQueueOutput('User select query '.$query);
     }
@@ -938,6 +944,9 @@ while ($message = Sql_fetch_array($messages)) {
         //# rerun the initial query, in order to continue as normal
         $query = sprintf('select userid from '.$tables['usermessage'].' where messageid = %d and status = "todo"',
             $messageid);
+        foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+            $query = $plugin->processQueueUserSelectQuery($query, $messageid);
+        }
         $userids = Sql_Query($query);
         $counters['total_users_for_message '.$messageid] = Sql_Affected_Rows();
     }
