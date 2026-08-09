@@ -1,4 +1,3 @@
-version: '3.5'
 
 networks:
   phplistbehatnet:
@@ -56,7 +55,7 @@ services:
         hard: 32768
         
   phplist:
-    image: phplist/phplist:${PHPLIST_VERSION:3.6.16}
+    image: phplist/phplist:${PHPLIST_VERSION:-3.6.16}
     container_name: phplist
     depends_on:
       - firefox
