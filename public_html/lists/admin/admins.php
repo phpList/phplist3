@@ -40,6 +40,7 @@ echo '<div class="button">'.PageLink2('importadmin', s('Import list of admins'))
 echo '<div class="pull-right fright">'.PageLinkActionButton('admin', s('Add new admin'), "start=$start".$remember_find).'</div><div class="clearfix"></div>';
 
 if (isset($_GET['delete']) && $_GET['delete']) {
+    verifyCsrfGetToken();
     // delete the index in delete
     if ($_GET['delete'] == $_SESSION['logindetails']['id']) {
         echo s('You cannot delete yourself')."\n";
