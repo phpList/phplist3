@@ -1,16 +1,15 @@
 <?php
 require_once dirname(__FILE__).'/accesscheck.php';
 
-@ob_end_flush();
-flushBrowser();
 
 if (!$_SESSION['logindetails']['superuser']) {
     echo $GLOBALS['I18N']->get('Sorry, this page can only be used by super admins');
-
     return;
 }
 
-if (isset($_POST['unsubscribe'])) {
+if (isset($_POST['unsubscribe']) && verifyCsrfGetToken()) {
+    @ob_end_flush();
+    flushBrowser();
     $emails = explode("\n", trim($_POST['unsubscribe']));
     $total = count($emails);
     $count = $notfound = $deleted = $blacklisted = $notDeleted = 0;

@@ -11,6 +11,10 @@ if (isset($_GET['type']) && $_GET['type'] == 'candidate') {
 }
 
 if (isset($_POST['tagaction']) && isset($_POST['tagged']) && is_array($_POST['tagged']) && count($_POST['tagged'])) {
+    if (!verifyToken()) {
+        echo Error(s('Invalid security token, please reload the page and try again'));
+        return;
+    }
     switch ($_POST['tagaction']) {
         case 'delete':
             foreach ($_POST['tagged'] as $key => $val) {
@@ -40,12 +44,16 @@ if (isset($_POST['listorder']) && is_array($_POST['listorder'])) {
     }
 }
 
-if (isset($_GET['del']) && $_GET['del']) {
+if (isset($_GET['del']) && $_GET['del'] && verifyCsrfGetToken()) {
     Sql_Query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['bounceregex'], $_GET['del']));
     Redirect('bouncerules'.$url);
 }
 
 if (isset($_POST['newrule']) && $_POST['newrule']) {
+    if (!verifyToken()) {
+        echo Error(s('Invalid security token, please reload the page and try again'));
+        return;
+    }    
     Sql_Query(sprintf('insert into %s (regex, regexhash, action,comment,admin,status) values("%s","%s","%s","%s",%d,"active")',
         $GLOBALS['tables']['bounceregex'], sql_escape($_POST['newrule']), md5(sql_escape($_POST['newrule'])), sql_escape($_POST['action']),
         sql_escape($_POST['comment']), $_SESSION['logindetails']['id']), 1);
@@ -127,7 +135,7 @@ if ($some) {
 }
 echo '<hr/>';
 echo '<h3>'.$GLOBALS['I18N']->get('add a new rule').'</h3>';
-echo '<form method=post>';
+echo formStart('method="post" class="bouncerulesAdd"');
 echo '<table class="bouncerulesAction">';
 printf('<tr><td>%s</td><td><input type=text name="newrule" size=30></td></tr>',
     $GLOBALS['I18N']->get('Regular Expression'));
