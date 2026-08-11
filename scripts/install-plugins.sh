@@ -11,9 +11,29 @@ echo $from $to
   apt install -y rsync
 }
 
-for plugin in $(find $from -type d -name phplist-plugin-*); do
-  [[ ! -z "$(ls -A $plugin/plugins/)" ]] && {
-    echo installing plugin $plugin
-    rsync -a $plugin/plugins/* $to
-  }
-done
+while IFS= read -r -d '' plugin; do
+  plugin_name="$(basename "$plugin")"
+
+  [[ -d "$plugin/plugins" ]] || continue
+  [[ -n "$(find "$plugin/plugins" -mindepth 1 -maxdepth 1 -print -quit)" ]] || continue
+
+  echo "Installing plugin: $plugin_name"
+
+  rsync_args=(-a)
+
+  case "$plugin_name" in
+    phplist-plugin-saml2)
+      settings_file="$to/simplesaml/settings.php"
+
+      if [[ -f "$settings_file" ]]; then
+        echo "Preserving existing SAML2 settings.php"
+        rsync_args+=(--exclude='simplesaml/settings.php')
+      else
+        echo "SAML2 settings.php does not exist, it will be created"
+      fi
+      ;;
+  esac
+
+  rsync "${rsync_args[@]}" "$plugin/plugins/" "$to/"
+
+done < <(find "$from" -type d -name 'phplist-plugin-*' -print0)

@@ -504,7 +504,7 @@ flush();
 if (empty($reload)) { //# only show on first load
     processQueueOutput(s('Started'), 0);
     if (defined('SYSTEM_TIMEZONE')) {
-        processQueueOutput(s('Time now ').date('Y-m-d H:i'));
+        processQueueOutput(s('Time now ').' '.date('Y-m-d H:i'));
     }
 }
 //processQueueOutput('Will process for a maximum of '.$maxProcessQueueTime.' seconds '.MAX_PROCESSQUEUE_TIME);
@@ -665,6 +665,9 @@ while ($message = Sql_fetch_array($messages)) {
     $msgdata = loadMessageData($messageid);
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
         $plugin->campaignStarted($msgdata);
+    }
+    if (isset($GLOBALS['MD'][$messageid]['subject'])) {
+        $msgdata['subject'] = $GLOBALS['MD'][$messageid]['subject'];
     }
 
     if (!empty($msgdata['resetstats'])) {
@@ -1360,6 +1363,9 @@ while ($message = Sql_fetch_array($messages)) {
             repeatMessage($messageid);
             foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
                 $plugin->processSendingCampaignFinished($messageid, $msgdata);
+            }
+            if (isset($GLOBALS['MD'][$messageid]['subject'])) {
+                $msgdata['subject'] = $GLOBALS['MD'][$messageid]['subject'];
             }
             $status = Sql_query(sprintf('update %s set status = "sent",sent = now() where id = %d',
                 $GLOBALS['tables']['message'], $messageid));

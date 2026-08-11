@@ -1,10 +1,8 @@
-
 name: Build Release
 
 on:
   push:
     tags: v[1-9]+.[0-9]+.*
-
 
 jobs:
   test:
@@ -13,10 +11,9 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
-      fail-fast: false     
-      matrix:   
+      fail-fast: false
+      matrix:
         php-version: ['8.2']
-        experimental: [false]
 
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +38,7 @@ jobs:
       - name: Setup Packages
         run: |
           cd $GITHUB_WORKSPACE
-          sudo apt update --allow-releaseinfo-change-label  && sudo apt install -y rsync
+          sudo apt update --allow-releaseinfo-change-label && sudo apt install -y rsync
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
@@ -55,7 +52,7 @@ jobs:
           dev: yes
           args: --prefer-dist --no-interaction
           php_version: ${{ matrix.php-version }}
-          php_extensions: xml 
+          php_extensions: xml
           version: 2
 
       - name: Install Plugins and Themes
@@ -92,6 +89,7 @@ jobs:
           mkdir /tmp/screenshots
           chmod 777 /tmp/screenshots
           mkdir -p build/mails
+          smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
@@ -101,7 +99,7 @@ jobs:
         with:
           path: ./public_html
           options: --exclude=base/vendor
-          
+
       - name: Report Versions
         run: |
           google-chrome --version
@@ -122,8 +120,8 @@ jobs:
       - name: Run Behat Tests ## problem encountered https://github.com/forceedge01/behat-fail-aid/issues/76
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip && ~@behattest"
 
       - name: Upload the output
         if: always()
@@ -258,6 +256,7 @@ jobs:
           no-cache: true
           file: Dockerfile.release
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMAGE }}:${{ env.RELEASE_VERSION }}
+          platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
 

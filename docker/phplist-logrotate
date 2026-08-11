@@ -1,0 +1,10 @@
+/var/log/phplist.log
+/var/log/phplist-bounces.log
+{
+        rotate 7
+        daily
+        missingok
+        notifempty
+        compress
+        delaycompress
+}

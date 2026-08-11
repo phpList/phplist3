@@ -1,0 +1,109 @@
+
+networks:
+  phplistbehatnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.200.0.0/16
+
+services:
+  behat:
+    container_name: behat
+    build: .
+    volumes:
+      - .:/behat
+    links:
+      - firefox
+      - chrome
+    networks:
+      - phplistbehatnet
+
+  firefox:
+    container_name: firefox
+    image: selenium/standalone-firefox-debug:${SELENIUM_VERSION}
+    shm_size: 2g
+    ports:
+      - "4444:4444" #Selenium
+      - "5901:5900" #VNC
+      - "7900:7900"
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - phplistbehatnet
+    environment:
+      - VNC_NO_PASSWORD=1
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+        
+  chrome:
+    container_name: chrome
+    image: selenium/standalone-chrome-debug:${SELENIUM_VERSION}
+    shm_size: 2gb
+    environment:
+      - SE_LOG_LEVEL=INFO
+    networks:
+      - phplistbehatnet
+    ports:
+      - "5902:5900" #VNC
+      - "4445:4444" #Selenium
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+        
+  phplist:
+    image: phplist/phplist:${PHPLIST_VERSION:-3.6.16}
+    container_name: phplist
+    depends_on:
+      - firefox
+      - dbhost
+      - mailpit
+    volumes:
+#      - ${PHPLIST_CODE}:/var/www/phplist3      
+      - images:/var/www/phpList3/public_html/images      
+    restart: always
+    environment:
+      DB_HOST: dbhost
+      DB_USER: phplist
+      DB_PASSWORD: phplist
+      DB_NAME: phplistdb
+      
+      PHPLIST_DATABASE_HOST: dbhost
+      PHPLIST_DATABASE_PORT: 3306
+      PHPLIST_DATABASE_DRIVER: pdo_mysql
+      PHPLIST_DATABASE_NAME: phplistdb
+      PHPLIST_DATABASE_USER: phplist
+      PHPLIST_DATABASE_PASSWORD: phplist
+      PHPLIST_SECRET: ohFai9ohk4Shah9Ahzinephiijaelai5kuP4thal0raezaeZeiditaiphieghaeg
+      MAILHOST: mailpit:1025
+      PHP_VERSION: 8.2
+    networks:
+      - phplistbehatnet
+    ports:
+      - "${PHPLIST_PORT-8080}:80"
+
+  mailpit:
+    container_name: mailpit
+    image: axllent/mailpit
+    ports:
+      - "8026:8025"
+    networks:
+      - phplistbehatnet
+
+  dbhost:
+    container_name: dbhost
+    image: mariadb:10.1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: phplist
+      MYSQL_DATABASE: phplistdb
+      MYSQL_USER: phplist
+      MYSQL_PASSWORD: phplist
+    networks:
+      - phplistbehatnet
+
+volumes:
+  images:

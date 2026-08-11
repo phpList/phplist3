@@ -166,10 +166,10 @@ function decodeBody($header, $body)
     }
     switch ($transfer_encoding) {
         case 'quoted-printable':
-            $decoded_body = @imap_qprint($body);
+            $decoded_body = quoted_printable_decode($body);
             break;
         case 'base64':
-            $decoded_body = @imap_base64($body);
+            $decoded_body = base64_decode($body);
             break;
         case '7bit':
         case '8bit':
@@ -376,7 +376,7 @@ function processPop($server, $user, $password)
         $link = imap_open($mailbox, $user, $password);
 
         if (!$link) {
-            outputProcessBounce($GLOBALS['I18N']->get('Cannot create POP3 connection to')." $mailbox: ".imap_last_error());
+            outputProcessBounce($GLOBALS['I18N']->get('Cannot create connection to')." $mailbox: ".imap_last_error());
 
             return false;
         }

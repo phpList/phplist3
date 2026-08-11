@@ -239,19 +239,28 @@ if ($numlists > 15) {
 
 while ($row = Sql_fetch_array($result)) {
     $membersDisplay = listMemberCounts($row['id']);
-    $desc = stripslashes($row['description']);
+    $desc = stripslashes($row['description'] ?? '');
 
     //## allow plugins to add columns
     // @@@ TODO review this
     //foreach ($GLOBALS['plugins'] as $plugin) {
     //$desc = $plugin->displayLists($row) . $desc;
     //}
+    $displayDesc = mb_strlen($desc, 'UTF-8') > 50
+        ? mb_substr($desc, 0, 50, 'UTF-8') . '...'
+        : $desc;
 
     $element = '<!-- '.
     $row['id'].'-->'.'<a href="./?page=members&id='.
     $row['id'].'" title="'.
     s('View Members').'">'.
     stripslashes(cleanListName($row['name']).'</a>');
+
+    if ($desc !== '') {
+        $element .= '<br><span class="list-description">' .
+                htmlspecialchars($displayDesc, ENT_QUOTES, 'UTF-8') .
+                '</span>';
+    }
 
     $ls->addElement($element);
     $ls->setClass($element, 'rows row1');

@@ -44,7 +44,8 @@ if (isset($_POST['listorder']) && is_array($_POST['listorder'])) {
     }
 }
 
-if (isset($_GET['del']) && $_GET['del'] && verifyCsrfGetToken()) {
+if (isset($_GET['del']) && $_GET['del']) {
+    verifyCsrfGetToken();
     Sql_Query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['bounceregex'], $_GET['del']));
     Redirect('bouncerules'.$url);
 }

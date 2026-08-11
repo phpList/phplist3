@@ -53,7 +53,6 @@ uasort($LANGUAGES, 'lanSort');
 if (!empty($GLOBALS['SessionTableName'])) {
     require_once dirname(__FILE__).'/sessionlib.php';
 }
-@session_start();
 
 if (isset($_POST['setlanguage']) && !empty($_POST['setlanguage']) && is_array($LANGUAGES[$_POST['setlanguage']])) {
     //# just in case
@@ -298,7 +297,7 @@ class phplist_I18N
         }
 
         $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
-            sql_escape(trim($text)), $this->language), 1);
+            sql_escape(trim($text ?? '')), $this->language), 1);
         if (empty($tr[0])) {
             $tr = Sql_Fetch_Row_Query(sprintf('select translation from '.$GLOBALS['tables']['i18n'].' where original = "%s" and lan = "%s"',
                 sql_escape($text), $this->language), 1);
@@ -515,7 +514,7 @@ $lan = array(
 
     public function get($text)
     {
-        if (trim($text) == '') {
+        if (trim($text ?? '') == '') {
             return '';
         }
         if (strip_tags($text) == '') {

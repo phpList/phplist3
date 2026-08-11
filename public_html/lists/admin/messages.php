@@ -5,6 +5,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 $subselect = $whereClause = '';
 $action_result = '';
 $access = accessLevel('messages');
+$filterSelectDefault = ' --- filter --- ';
 
 $messageSortOptions = array(
     'subjectasc'  => array(

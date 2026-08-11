@@ -115,6 +115,7 @@ if (!empty($_POST['change'])) {
 }
 
 if (!empty($_GET['delete'])) {
+    verifyCsrfGetToken();
     $delete = sprintf('%d', $_GET['delete']);
     // delete the index in delete
     echo s('Deleting')." $delete ..\n";

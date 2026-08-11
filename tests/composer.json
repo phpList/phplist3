@@ -1,0 +1,14 @@
+{
+    "name": "phplisthosted/tests",
+    "require": {
+        "friends-of-behat/mink-extension": "@stable",
+        "friends-of-behat/mink": "@stable",
+        "behat/mink-selenium2-driver": "@stable",
+        "behat/behat": "@stable",
+        "se/selenium-server-standalone": "^2.52",
+        "zbateson/mail-mime-parser": "^1.1",
+        "genesis/behat-fail-aid": "dev-master",
+        "bex/behat-screenshot": "dev-master"
+    },
+    "minimum-stability": "dev"
+}

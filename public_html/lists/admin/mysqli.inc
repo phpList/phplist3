@@ -11,7 +11,8 @@ if (!function_exists("mysqli_init")) {
 
 function Sql_Connect($host, $user, $password, $database)
 {
-    global $database_port, $database_socket, $database_connection_compression, $database_connection_ssl;
+    global $database_port, $database_socket, $database_connection_compression;
+    global $database_connection_ssl, $database_connection_ssl_force, $database_connection_ssl_ca;
 
     if (!$host || !$user) {
         header('HTTP/1.0 500 Cannot connect to database');
@@ -20,9 +21,33 @@ function Sql_Connect($host, $user, $password, $database)
     }
     $db = mysqli_init();
     $compress = empty($database_connection_compression) ? 0 : MYSQLI_CLIENT_COMPRESS;
-    $secure = empty($database_connection_ssl) ? 0 : MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+    $secure = 0;
+    if (!empty($database_connection_ssl)) {
+        $secure = MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+    }
+    if (!empty($database_connection_ssl_force)) {
+        $secure = MYSQLI_CLIENT_SSL;
+    }
 
     mysqli_report(MYSQLI_REPORT_OFF);
+
+    if (!empty($database_connection_ssl_ca)) {
+        $caPath = realpath($database_connection_ssl_ca);
+        if ($caPath === false) {
+            throw new RuntimeException(
+                "Invalid SSL CA file: {$database_connection_ssl_ca}"
+            );
+        }
+
+        mysqli_ssl_set(
+            $db,
+            null,
+            null,
+            $caPath,
+            null,
+            null
+        );
+    }
 
     if (!mysqli_real_connect($db, $host, $user, $password, $database, $database_port, $database_socket, $compress | $secure)) {
         $errno = mysqli_connect_errno();
@@ -410,7 +435,7 @@ function Sql_create_Table($table, $structure)
 
 function sql_escape($text)
 {
-    if (empty($text)) {
+    if ($text === null) {
       return '';
     }
     if (empty($GLOBALS['database_connection'])) {
@@ -427,5 +452,3 @@ function sql_escape($text)
         return '';
     }
 }
-
-

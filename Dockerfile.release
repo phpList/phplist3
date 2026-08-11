@@ -3,10 +3,8 @@ FROM debian:bookworm-slim
 
 LABEL maintainer="michiel@phplist.com" 
 
-RUN apt-get update && apt-get upgrade -y
-
-RUN apt-get install -y apt-utils \
-    apache2 php-mysql \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y apt-utils \
+    apache2 php-mysql logrotate \
     libapache2-mod-php php-curl php-gd \
     cron php-imap php-xml php-zip php-mbstring
 
@@ -15,36 +13,36 @@ RUN useradd -d /var/www/phpList3 phplist
 ARG VERSION=unknown
 RUN echo VERSION=${VERSION}
 
-RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3
-RUN rm -rf /etc/phplist && mkdir /etc/phplist
+RUN rm -rf /var/www/phpList3 && mkdir -p /var/www/phpList3 && rm -rf /etc/phplist && mkdir /etc/phplist
 
 COPY docker/docker-apache-phplist.conf /etc/apache2/sites-available
 COPY docker/security.conf /etc/apache2/conf-available
 COPY docker/docker-entrypoint.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
-RUN a2ensite docker-apache-phplist
-RUN a2enmod rewrite
-RUN a2enmod headers
-RUN a2disconf other-vhosts-access-log
-RUN sed -i s/LogLevel.*/LogLevel\ warn/ /etc/apache2/apache2.conf
 
 COPY docker/phplist-crontab /etc/cron.d/
+COPY docker/phplist-logrotate /etc/logrotate.d/phplist
 COPY docker/docker-phplist-config-live.php /etc/phplist/config.php
-
 COPY phplist-${VERSION}.tgz ./
 
-RUN tar zxf phplist-$VERSION.tgz
-RUN mv phplist-$VERSION/* /var/www/phpList3/
-RUN rm -rf /phplist-$VERSION*
+RUN chmod 755 /usr/local/bin/docker-entrypoint.sh && \
+    a2ensite docker-apache-phplist && \
+    a2enmod rewrite && \
+    a2enmod headers && \
+    a2disconf other-vhosts-access-log \
+    && sed -i s/LogLevel.*/LogLevel\ warn/ /etc/apache2/apache2.conf
 
-RUN mkdir -p /var/tmp/phplistupdate && chown www-data /var/tmp/phplistupdate
-
-RUN rm -f /etc/apache2/sites-enabled/000-default.conf && \
+RUN tar zxf phplist-$VERSION.tgz && \
+    mv phplist-$VERSION/* /var/www/phpList3/ && \
+    rm -rf /phplist-$VERSION* && \
+    mkdir -p /var/tmp/phplistupdate && \
+    chown www-data /var/tmp/phplistupdate && \
+    rm -f /etc/apache2/sites-enabled/000-default.conf && \
     cd /var/www/ && find . -type d -name .git -print0 | xargs -0 rm -rf && \
     find . -type d -print0 | xargs -0 chmod 755 && \
-    find . -type f -print0 | xargs -0 chmod 644
-
-RUN chown -R www-data: /var/www/phpList3
+    find . -type f -print0 | xargs -0 chmod 644 && \
+    mkdir -p /var/www/phpList3/public_html/images && \
+    chown -R www-data: /var/www/phpList3 && \
+    apt -y remove exim4-base && apt -y auto-remove 
 
 EXPOSE 80 
 

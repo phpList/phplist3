@@ -11,6 +11,7 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_GET['action']) && $_GET['action'] == 'next') {
+    verifyCsrfGetToken();
     if (isset($_GET['del'])) {
         Sql_Query(sprintf('delete from %s where id = %d', $GLOBALS['tables']['bounceregex'], $_GET['del']));
     } elseif (isset($_GET['activate'])) {

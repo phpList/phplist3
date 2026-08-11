@@ -108,10 +108,21 @@ if (isset($_POST['save'])) {
     }
     Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"attributes","%s")',
         $tables['subscribepage_data'], $id, $attributes));
+    $preselectList = 0;
+    if (!empty($_POST['preselectlist'])) {
+        $preselectList = (int) $_POST['preselectlist'];
+    }
     if (isset($_POST['list']) && is_array($_POST['list'])) {
+        if (!$preselectList || !isset($_POST['list'][$preselectList])) {
+            $preselectList = 0;
+        }
         Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"lists","%s")',
             $tables['subscribepage_data'], $id, implode(',', $_POST['list'])));
+    } else {
+        $preselectList = 0;
     }
+    Sql_Query(sprintf('replace into %s (id,name,data) values(%d,"preselectlist","%d")',
+        $tables['subscribepage_data'], $id, $preselectList));
 
     //## Store plugin data
     foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
@@ -144,6 +155,7 @@ $data['unsubscribemessage'] = getConfig('unsubscribemessage');
 $data['unsubscribesubject'] = getConfig('unsubscribesubject');
 $data['htmlchoice'] = 'htmlonly';
 $data['emaildoubleentry'] = 'yes';
+$data['preselectlist'] = 0;
 $data['rssdefault'] = 'daily'; //Leftover from the preplugin era
 $data['rssintro'] = s('Please indicate how often you want to receive messages');  //Leftover from the preplugin era
 $selected_lists = array();
@@ -192,7 +204,7 @@ $generalinfoHTML .= '<div>';
 
 $generalinfoHTML .= sprintf('<label for="title">%s</label><input type="text" name="title" value="%s" size="60" />',
     s('Title'),
-    htmlspecialchars(stripslashes($data['title'])));
+    htmlspecialchars(stripslashes($data['title'] ?? '')));
 
 $language_files = array();
 $language_file = $GLOBALS['language_module'];
@@ -220,24 +232,24 @@ $generalinfoHTML .= sprintf('<label for="language_file">%s</label>%s',
 
 $generalinfoHTML .= sprintf('<label for="intro">%s</label><textarea name="intro" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Intro'),
-    htmlspecialchars(stripslashes($data['intro'])));
+    htmlspecialchars(stripslashes($data['intro'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="header">%s</label><textarea name="header" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Header'),
-    htmlspecialchars(stripslashes($data['header'])));
+    htmlspecialchars(stripslashes($data['header'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="footer">%s</label><textarea name="footer" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Footer'),
-    htmlspecialchars(stripslashes($data['footer'])));
+    htmlspecialchars(stripslashes($data['footer'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="thankyoupage">%s</label><textarea name="thankyoupage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Thank you page'),
-    htmlspecialchars(stripslashes($data['thankyoupage'])));
+    htmlspecialchars(stripslashes($data['thankyoupage'] ?? '')));
 
 $generalinfoHTML .= sprintf('<label for="ajax_subscribeconfirmation">%s</label><textarea name="ajax_subscribeconfirmation" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Text to display when subscription with an AJAX request was successful'),
-    htmlspecialchars(stripslashes($data['ajax_subscribeconfirmation'])));
+    htmlspecialchars(stripslashes($data['ajax_subscribeconfirmation'] ?? '')));
 
 $generalinfoHTML .= sprintf('<label for="button">%s</label><input type="text" name="button" value="%s" size="60" />',
     s('Text for Button'),
-    htmlspecialchars(stripslashes($data['button'])));
+    htmlspecialchars(stripslashes($data['button'] ?? '')));
 $generalinfoHTML .= sprintf('<label for="htmlchoice">%s</label>', s('HTML Email choice'));
 $generalinfoHTML .= sprintf('<input type="radio" name="htmlchoice" value="textonly" %s />
   %s <br/>',
@@ -281,24 +293,24 @@ $transactionHTML .= '<div>';
 $transactionHTML .= '<h4>'.s('Message they receive when they subscribe').'</h4>';
 $transactionHTML .= sprintf('<label for="subscribesubject">%s</label><input type="text" name="subscribesubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['subscribesubject'])));
+    htmlspecialchars(stripslashes($data['subscribesubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="subscribemessage">%s</label><textarea name="subscribemessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['subscribemessage'])));
+    htmlspecialchars(stripslashes($data['subscribemessage'] ?? '')));
 $transactionHTML .= '<h4>'.s('Message they receive when they confirm their subscription').'</h4>';
 $transactionHTML .= sprintf('<label for="confirmationsubject">%s</label><input type="text" name="confirmationsubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['confirmationsubject'])));
+    htmlspecialchars(stripslashes($data['confirmationsubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="confirmationmessage">%s</label><textarea name="confirmationmessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['confirmationmessage'])));
+    htmlspecialchars(stripslashes($data['confirmationmessage'] ?? '')));
 $transactionHTML .= '<h4>'.s('Message they receive when they unsubscribe').'</h4>';
 $transactionHTML .= sprintf('<label for="unsubscribesubject">%s</label><input type="text" name="unsubscribesubject" value="%s" size="60" />',
     s('Subject'),
-    htmlspecialchars(stripslashes($data['unsubscribesubject'])));
+    htmlspecialchars(stripslashes($data['unsubscribesubject'] ?? '')));
 $transactionHTML .= sprintf('<label for="unsubscribemessage">%s</label><textarea name="unsubscribemessage" cols="60" rows="10" class="virtual">%s</textarea>',
     s('Message'),
-    htmlspecialchars(stripslashes($data['unsubscribemessage'])));
+    htmlspecialchars(stripslashes($data['unsubscribemessage'] ?? '')));
 
 $sendtest_content = sprintf('<div class="sendTest" id="sendTest">
     ' .$sendtestresult.'
@@ -334,9 +346,9 @@ while ($row = Sql_Fetch_Array($req)) {
     $attributesHTML .= '<table class="spageeditListing" border="1" width="100%" bgcolor="'.$bgcol.'">';
     $attributesHTML .= '<tr><td colspan="2" width="150">'.s('Attribute').': '.$row['id'].'</td>';
     $attributesHTML .= '<td colspan="2">'.s('Check this box to use this attribute in the page').'<input type="checkbox" name="attr_use['.$row['id'].']" value="1" '.$checked[$row['id']].' /></td></tr>';
-    $attributesHTML .= '<tr><td colspan="2">'.s('Name').': </td><td colspan="2"><h4>'.htmlspecialchars(stripslashes($row['name'])).'</h4></td></tr>';
+    $attributesHTML .= '<tr><td colspan="2">'.s('Name').': </td><td colspan="2"><h4>'.htmlspecialchars(stripslashes($row['name'] ?? '')).'</h4></td></tr>';
     $attributesHTML .= '<tr><td colspan="2">'.s('Type').': </td><td colspan="2"><h4>'.s($row['type']).'</h4></td></tr>';
-    $attributesHTML .= '<tr><td colspan="2">'.s('Default Value').': </td><td colspan="2"><input type="text" name="attr_default['.$row['id'].']" value="'.htmlspecialchars(stripslashes($value['default_value'])).'" size="40" /></td></tr>';
+    $attributesHTML .= '<tr><td colspan="2">'.s('Default Value').': </td><td colspan="2"><input type="text" name="attr_default['.$row['id'].']" value="'.htmlspecialchars(stripslashes($value['default_value'] ?? '')).'" size="40" /></td></tr>';
     $attributesHTML .= '<tr><td>'.s('Order of Listing').': </td><td><input type="text" name="attr_listorder['.$row['id'].']" value="'.$value['listorder'].'" size="5" /></td>';
     $attributesHTML .= '<td>'.s('Is this attribute required?').': </td><td><input type="checkbox" name="attr_required['.$row['id'].']" value="1" ';
     $attributesHTML .= $value['required'] ? 'checked="checked"' : '';
@@ -358,7 +370,7 @@ foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
 }
 
 $listsHTML = '<h3><a name="lists">'.s('Select the lists to offer').'</a></h3>';
-$listsHTML .= '<div>';
+$listsHTML .= '<div class="spageedit-lists">';
 $listsHTML .= sprintf('<label for="listcategories">%s</label><br/>',
     s('Display list categories'));
 $listsHTML .= sprintf('<input type="radio" name="showcategories" value="no" %s />%s<br/>',
@@ -374,6 +386,7 @@ if (!Sql_Affected_Rows()) {
 } else {
 
     $listsHTML .= '<br/>'.s('If you do not choose a list here, all public lists will be displayed.');
+    $listsHTML .= '<br/>'.s('One list may be chosen to be selected by default on the subscribe page.');
     $hideSingle = getConfig('hide_single_list');
     if ($hideSingle) {
         $listsHTML .= '<br/>'.s('If you choose one list only, a checkbox for this list will not be displayed and the subscriber will automatically be added to this list.');
@@ -382,11 +395,42 @@ if (!Sql_Affected_Rows()) {
     }
 }
 $listsHTML .= '</p>';
-while ($row = Sql_Fetch_Array($req)) {
-    $listsHTML .= sprintf('<label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label><div>%s</div>',
-        $row['id'], $row['id'], in_array($row['id'], $selected_lists) ? 'checked="checked"' : '',
-        stripslashes($row['name']), htmlspecialchars(stripslashes($row['description'])));
+$preselectList = (int) $data['preselectlist'];
+if (!in_array($preselectList, $selected_lists)) {
+    $preselectList = 0;
 }
+$listsHTML .= '<table class="spageedit-lists-table">';
+$listsHTML .= sprintf(
+    '<tr><td>%s</td><td>%s</td><td>%s</td></tr>',
+    ucfirst(s('Select')),
+    ucfirst(s('Default')),
+    ucfirst(s('Description'))
+);
+$listsHTML .= '<tbody>';
+while ($row = Sql_Fetch_Array($req)) {
+    $listSelected = in_array($row['id'], $selected_lists);
+    $listName = htmlspecialchars(stripslashes($row['name'] ?? ''), ENT_QUOTES);
+    $listDescription = htmlspecialchars(stripslashes($row['description'] ?? ''), ENT_QUOTES);
+    if ($listDescription === '') {
+        $listDescription = '&nbsp;';
+    }
+    $listsHTML .= sprintf(
+        '<tr><td><label><input type="checkbox" name="list[%d]" value="%d" %s /> %s</label></td><td><input type="radio" name="preselectlist" value="%d" %s /></td><td>%s</td></tr>',
+        $row['id'],
+        $row['id'],
+        $listSelected ? 'checked="checked"' : '',
+        $listName,
+        $row['id'],
+        $preselectList == $row['id'] ? 'checked="checked"' : '',
+        $listDescription
+    );
+}
+$listsHTML .= sprintf(
+    '<tr><td></td><td><label><input type="radio" name="preselectlist" value="0" %s /> %s</label></td><td></td></tr>',
+    empty($preselectList) ? 'checked="checked"' : '',
+    s('none')
+);
+$listsHTML .= '</tbody></table>';
 
 $listsHTML .= '</div>';
 
@@ -400,6 +444,36 @@ echo $transactionHTML;
 echo $pluginsHTML;
 
 echo '</div>'; // accordion
+
+echo '
+<style>
+.spageedit-lists-table {
+    width: 100% !important;
+    border-collapse: collapse;
+}
+.spageedit-lists-table th,
+.spageedit-lists-table td {
+    padding: 10px 8px;
+    vertical-align: top;
+    text-align: left;
+}
+.spageedit-lists-table th {
+    font-weight: bold;
+    border-bottom: 1px solid #cfcfcf;
+}
+.spageedit-lists-table tbody tr td {
+    border-bottom: 1px solid #d9d9d9;
+}
+.spageedit-lists-table td label {
+    margin: 0;
+    font-weight: normal;
+}
+.spageedit-lists-table td input[type="checkbox"],
+.spageedit-lists-table td input[type="radio"] {
+    margin: 0 6px 0 0;
+    vertical-align: middle;
+}
+</style>';
 
 $ownerHTML = $singleOwner = '';
 $adminCount = 0;

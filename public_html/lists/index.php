@@ -52,6 +52,11 @@ require_once dirname(__FILE__).'/admin/defaultconfig.php';
 require_once dirname(__FILE__).'/admin/connect.php';
 include_once dirname(__FILE__).'/admin/lib.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
+    print s('Not implemented');
+    return;
+}
+
 $I18N = new phplist_I18N();
 header('Access-Control-Allow-Origin: '.ACCESS_CONTROL_ALLOW_ORIGIN);
 if (defined('ACCESS_CONTROL_ALLOW_ORIGINS') && count(ACCESS_CONTROL_ALLOW_ORIGINS) > 1) {
@@ -527,7 +532,11 @@ function checkEmail()
         }
     }
 
-    $html .= ListAvailableLists($userid, $GLOBALS['pagedata']['lists']);
+    $html .= ListAvailableLists(
+        $userid,
+        $GLOBALS['pagedata']['lists'],
+        isset($GLOBALS['pagedata']['preselectlist']) ? (int) $GLOBALS['pagedata']['preselectlist'] : 0
+    );
     if (isBlackListedID($userid)) {
         $html .= $GLOBALS['strYouAreBlacklisted'];
     }
@@ -685,7 +694,11 @@ function checkGroup(name,value)
             $html .= $plugin->displaySubscriptionChoice($GLOBALS['pagedata']);
         }
     }
-    $html .= ListAvailableLists('', $GLOBALS['pagedata']['lists']);
+    $html .= ListAvailableLists(
+        '',
+        $GLOBALS['pagedata']['lists'],
+        isset($GLOBALS['pagedata']['preselectlist']) ? (int) $GLOBALS['pagedata']['preselectlist'] : 0
+    );
 
     if (empty($GLOBALS['pagedata']['button'])) {
         $GLOBALS['pagedata']['button'] = $GLOBALS['strSubmit'];
@@ -794,7 +807,11 @@ function subscribePage2($id)
   $html .= formStart();
   $html .= '<fieldset class="phplist"><legend>'.strip_tags($GLOBALS['pagedata']['intro']).'</legend>';
   $html .= ListAttributes2011($attributes,$attributedata,$GLOBALS['pagedata']["htmlchoice"],0,$GLOBALS['pagedata']['emaildoubleentry']);
-  $html .= ListAvailableLists("",$GLOBALS['pagedata']["lists"]);
+  $html .= ListAvailableLists(
+      "",
+      $GLOBALS['pagedata']["lists"],
+      isset($GLOBALS['pagedata']['preselectlist']) ? (int) $GLOBALS['pagedata']['preselectlist'] : 0
+  );
 
   if (empty($GLOBALS['pagedata']['button'])) {
     $GLOBALS['pagedata']['button'] = $GLOBALS['strSubmit'];
