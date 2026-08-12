@@ -121,7 +121,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip && ~@behattest"
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise&&~@wip&&~@behattest"
 
       - name: Upload the output
         if: always()
