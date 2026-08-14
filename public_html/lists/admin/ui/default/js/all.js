@@ -1221,7 +1221,7 @@ $(document).ready(function () {
         $(this).parents('.note').hide();
     });
 
-    $("a.ajaxable").click(function () {
+    $(document).on("click", "a.ajaxable", function () {
         var url = this.href;
         var thispage = urlParameter('page', window.location.href);
         if (thispage == "") {
@@ -1232,6 +1232,7 @@ $(document).ready(function () {
             url += '&action=' + thispage;
         }
         parent = $(this).parent();
+        parent.data('original-html', parent.html());
         parent.html(busyImage);
         url = url.replace(/page=/, 'origpage=');
         //  alert(url+'&ajaxed=true&page=pageaction');
