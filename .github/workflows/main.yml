@@ -15,12 +15,6 @@ jobs:
         experimental: [false]
         unsupported: [false]
         include:
-          - php-version: '7.4'
-            unsupported: true
-            experimental: false
-          - php-version: '8.0'
-            unsupported: true
-            experimental: false
           - php-version: '8.4'
             unsupported: false
             experimental: true
