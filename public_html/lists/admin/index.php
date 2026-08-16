@@ -351,12 +351,22 @@ if (!empty($GLOBALS['require_login'])) {
             }
         }
         //If passwords are encrypted and a password recovery request was made, send mail to the admin of the given email address.
-    } elseif (isset($_REQUEST['forgotpassword'])) {
-        $adminId = $GLOBALS['admin_auth']->adminIdForEmail($_REQUEST['forgotpassword']);
+    } elseif (isset($_REQUEST['forgotpassword']) || isset($_REQUEST['forgotusername'])) {
+        $addressReminderType = '';
+        $addressReminder = '';
+        if (isset($_REQUEST['forgotpassword']) && !empty($_REQUEST['forgotpassword'])) {
+            $addressReminderType = 'password';
+            $addressReminder = $_REQUEST['forgotpassword'];
+        } elseif (isset($_REQUEST['forgotusername']) && !empty($_REQUEST['forgotusername'])) {
+            $addressReminderType = 'username';
+            $addressReminder = $_REQUEST['forgotusername'];
+        }
+        $adminId = $GLOBALS['admin_auth']->adminIdForEmail($addressReminder);
         if ($adminId) {
-            $msg = sendAdminPasswordToken($adminId);
+            $msg = ($addressReminderType == 'password') ? sendAdminPasswordToken($adminId) : sendAdminUsernameReminder($adminId);
         } else {
-            $msg = $GLOBALS['I18N']->get('Failed sending a change password token');
+            if (empty($addressReminderType)) $addressReminderType = 'password';
+            $msg = $GLOBALS['I18N']->get('Failed sending a ' . (($addressReminderType == 'password') ? 'change password token' : 'username reminder'));
         }
         $page = 'login';
     } elseif (!empty($_GET['secret'])
