@@ -31,7 +31,7 @@ function Sql_Connect($host, $user, $password, $database)
 
     mysqli_report(MYSQLI_REPORT_OFF);
 
-    if (!empty($database_connection_ssl_ca)) {
+    if ($secure > 0 && !empty($database_connection_ssl_ca)) {
         $caPath = realpath($database_connection_ssl_ca);
         if ($caPath === false) {
             throw new RuntimeException(
