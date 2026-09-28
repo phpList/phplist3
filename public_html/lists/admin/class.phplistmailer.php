@@ -76,7 +76,7 @@ class phplistMailer extends phplistMailerBase
         if (isset($_GET['page']) && $_GET['page'] == 'send') {
             $this->inBlast = false;
         }
-        $this->Helo = getConfig('domain');
+        $this->Helo = defined('PHPMAILER_HELO') && PHPMAILER_HELO ? PHPMAILER_HELO : getConfig('domain');
 
         if ($GLOBALS['emailsenderplugin']) {
             $this->Mailer = 'plugin';
