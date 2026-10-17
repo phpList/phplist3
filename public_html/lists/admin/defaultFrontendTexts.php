@@ -29,7 +29,7 @@ $strThanks              = 'Thank you for subscribing to our newsletters.';
 # the EmailConfirmation message can contain placeholders
 #$strEmailConfirmation   = 'Your email [email] has been added to our system. You will be e-mailed shortly with confirmation of the lists you have subscribed to.';
 $strEmailConfirmation   = 'Your email address has been added to our system. You will receive a message with a request to confirm your membership. Please make sure to click the link in that message to confirm your subscription.';
-$strEmailFailed          = 'Sorry, sending the message to request your confirmation failed, please click "Reload" to try again. If it still does not work, please contact the administrator.';
+$strEmailFailed          = 'Sorry, your address doesn\'t accept messages! Please <a href="#" onclick="history.back(); return false;">go back</a> and try another address.';
 $strUnsubscribeTitle    = 'Unsubscribe from our Newsletters';
 $strUnsubscribeDone     = 'You have been unsubscribed from our newsletters and you will receive a confirmation message shortly.';
 $strUnsubscribedNoConfirm = 'You have been unsubscribed from this newsletter system';
