@@ -121,15 +121,9 @@ class FeatureContext extends MinkContext
     public function iAmAuthenticatedAsAdmin() {
         $this->visit('/lists/admin/');
         $this->getSession()->wait(5000, "document.readyState === 'complete'");
-        $page = $this->getSession()->getPage();
-
-        // A request still in flight from the previous scenario can re-create the
-        // session after Mink resets cookies, so we may already be logged in.
-        if ($page->findById('logout') === null) {
-            $this->fillField('login', $this->params['admin_username']);
-            $this->fillField('password', $this->params['admin_password']);
-            $this->pressButton('Continue');
-        }
+        $this->fillField('login', $this->params['admin_username']);
+        $this->fillField('password', $this->params['admin_password']);
+        $this->pressButton('Continue');
 
         // Clicking does not wait for the next page to load with Selenium, so wait
         // until we are on a logged in page before the next step looks for links.
