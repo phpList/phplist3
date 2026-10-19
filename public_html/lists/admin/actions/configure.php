@@ -113,8 +113,14 @@ echo '<script type="text/javascript">
   $(".dontsavebutton").click(function() {
      item = $(this).attr(\'id\');
      item = item.replace(/dontsave/,\'\');
-     desc = $("#description"+item).html();
-     $("#"+item).html(desc+\' <i>' .str_replace("'", "\'", s('editing cancelled')).'</i>\');
+     itemEl = $("#"+item);
+     original = itemEl.data(\'original-html\');
+     if (original) {
+       itemEl.html(original);
+     } else {
+       desc = $("#description"+item).html();
+       itemEl.html(desc+\' <i>' .str_replace("'", "\'", s('editing cancelled')).'</i>\');
+     }
   });
 
 </script>';

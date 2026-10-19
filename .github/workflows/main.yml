@@ -6,6 +6,7 @@ on: [pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-22.04
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental }}
 
     strategy:
@@ -15,12 +16,6 @@ jobs:
         experimental: [false]
         unsupported: [false]
         include:
-          - php-version: '7.4'
-            unsupported: true
-            experimental: false
-          - php-version: '8.0'
-            unsupported: true
-            experimental: false
           - php-version: '8.4'
             unsupported: false
             experimental: true
@@ -44,7 +39,11 @@ jobs:
         uses: php-actions/composer@v6
         with:
           dev: yes
-          args: --prefer-dist --no-interaction
+          # PHP 8.3 is an experimental target. The locked pelago/emogrifier
+          # v7.0.0 only declares support up to PHP 8.2, so composer refuses to
+          # install it on 8.3. Ignore platform reqs for that job only; all
+          # supported versions (7.4-8.2) keep strict lock verification.
+          args: --prefer-dist --no-interaction ${{ matrix.php-version == '8.3' && '--ignore-platform-reqs' || '' }}
           php_version: ${{ matrix.php-version }}
           php_extensions: xml
         continue-on-error: ${{ matrix.experimental }}
@@ -124,7 +123,7 @@ jobs:
         run: |
           cd tests
           ../vendor/bin/behat -p chrome -f progress --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip && ~@behattest"
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise&&~@wip&&~@behattest"
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Run BDD Tests CLI
@@ -135,7 +134,7 @@ jobs:
           export ADMIN_NAME="phpList Administrator"
           php public_html/lists/admin/index.php -c public_html/lists/config/config.php -p initialise -f
           cd tests
-          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -p chrome -f progress --tags="~@initialise&&~@wip"
         continue-on-error: ${{ matrix.experimental }}
 
       - name: copy screenshots

@@ -7,6 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
+    timeout-minutes: 30
 
     strategy:
       fail-fast: false
@@ -45,7 +46,7 @@ jobs:
           key: ${{ matrix.php-version }}-${{ env.RELEASE_VERSION }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Install dependencies
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           dev: yes
           args: --prefer-dist --no-interaction
@@ -119,7 +120,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/tests
           ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip && ~@behattest"
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise&&~@wip&&~@behattest"
 
       - name: Upload the output
         if: always()
