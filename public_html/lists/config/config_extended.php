@@ -640,6 +640,10 @@ define('PHPMAILERHOST', '');
 // it can either be "ssl" or "tls" or false to not use SSL/TLS at all
 // define("PHPMAILER_SECURE",'ssl');
 
+// Hostname to use in the SMTP HELO/EHLO greeting. Defaults to the "domain" setting.
+// Set this when your SMTP server rejects the list domain as HELO (e.g. use the web server's FQDN)
+// define('PHPMAILER_HELO', 'www.mydomain.com');
+
 //# SMTP debugging
 // Enable debugging output by phpmailer when sending test emails
 // See https://phpmailer.github.io/PHPMailer/classes/PHPMailer-PHPMailer-PHPMailer.html#property_SMTPDebug
